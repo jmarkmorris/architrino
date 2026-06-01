@@ -424,6 +424,102 @@ monotonicity rules, exact $B\xi=0$ certificates, or rank certificates are
 present. The sharper blocker is now endpoint-functional finite basis data,
 not another screen or contract.
 
+The endpoint-functional source audit is recorded in
+`fold_coordinate_endpoint_functional_source_audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_source_audit_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It checks whether the already-emitted seed, mesh, preledger input, one-leaf
+boundary-data rows, source-cover atlas, and boundary-ownership audit contain
+enough row-local data to start the exact endpoint-functional construction. They
+do locate the targets: 4 / 4 `fc_*` variables have target endpoint refs, 3 / 3
+rows resolve in the preledger input, mesh, source-cover atlas, and ownership
+audit, 4 / 4 row-local endpoint values are present, and 3 / 3 row-local
+ownership components resolve. They still do not define the endpoint
+functionals: 0 / 4 endpoint bindings, endpoint-functional domains, supports,
+formulas, exact $B\xi=0$ certificates, or rank certificates are present.
+
+The endpoint-functional construction attempt is recorded in
+`fold_coordinate_endpoint_functional_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It tries the promotion step explicitly. The attempt reaches 4 / 4 endpoint
+locators, 4 / 4 row-local endpoint values, and 4 / 4 target equations, but
+constructs 0 / 4 endpoint functionals and 0 / 3 rows because
+endpoint-functional domains and bindings, support/formula/derivative data,
+exact $B\xi=0$, and rank certification are still absent. The fold-coordinate
+matrix is therefore still a tolerance-level screen witness, not a solved
+same-packet endpoint-functional basis.
+
+The endpoint-functional binding no-go is recorded in
+`fold_coordinate_endpoint_functional_binding_contract_no_go.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_binding_contract_no_go_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It tests four promotion methods: row-local value as endpoint binding, target
+equation as functional definition, basis-formula endpoint realization, and
+exact screen/rank certification. All fail under current artifacts. The no-go
+certifies 0 / 4 binding contracts and 0 / 3 binding-ready rows, so the
+row-local endpoint values remain target-location data rather than
+endpoint-functional construction data.
+
+The endpoint-functional domain/evaluation-map attempt is recorded in
+`fold_coordinate_endpoint_functional_domain_evaluation_map_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_domain_evaluation_map_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It tests five ways to recover the missing domain/evaluation layer from the
+current artifacts. All fail: 4 / 4 endpoint locators, 4 / 4 row-local endpoint
+values, and 4 / 4 target equations are present, but 0 / 4 domain charts,
+domain coordinate rules, evaluation maps, endpoint evaluation rules, endpoint
+motion rules, exact $B\xi=0$ certificates, rank certificates, or
+domain/evaluation maps are constructed.
+
+The endpoint-functional domain/evaluation-map contract is recorded in
+`fold_coordinate_endpoint_functional_domain_evaluation_contract.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_domain_evaluation_contract_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It declares the exact proof burden after the fail-closed attempt: 4 / 4
+endpoint-functional domain/evaluation-map contracts and 3 / 3 signed row
+contracts exist as contracts, but no endpoint-functional domain chart,
+evaluation map, endpoint motion rule, same-packet $\Psi_j$ formula, exact
+$B\xi=0$ certificate, rank certificate, candidate artifact, topology
+recertification, or v1-v6 replay exists.
+
+The endpoint-functional $C^1$ endpoint-basis ansatz attempt is recorded in
+`fold_coordinate_endpoint_functional_c1_endpoint_basis_ansatz_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_c1_endpoint_basis_ansatz_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It verifies that the shifted-separator $C^1$ bump template can be reused only
+as ansatz input: 4 / 4 template formulas, derivative formulas, and gluing rules
+are declared, but 0 / 4 endpoint-basis ansatzes, 0 / 4 domain/evaluation maps,
+and 0 / 3 row-ready pairs are constructed.
+
+The endpoint-functional explicit $\Psi_j$ formula attempt is recorded in
+`fold_coordinate_endpoint_functional_explicit_psi_formula_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_explicit_psi_formula_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It removes the purely local formula absence: 4 / 4 endpoint-local formula
+candidates, derivative formulas, support components, and target-action
+identities are declared exactly. The lower source and receiver variables are
+component unions over `A03/A09` and `A04/A10`; the upper source and receiver
+variables are supported on `A06` and `A07`. The attempt still constructs
+0 / 4 proof-grade endpoint-functional formulas, 0 / 4 domain/evaluation maps,
+and 0 / 3 row-ready pairs because global domain charts, gluing/periodicity as
+same-packet history update, non-target zero certificates, exact $B\xi=0$,
+rank certificates, topology recertification, and v1-v6 replay remain absent.
+
+The endpoint-functional global domain/evaluation-map construction attempt is
+recorded in
+`fold_coordinate_endpoint_functional_global_domain_evaluation_map_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_global_domain_evaluation_map_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It tests whether those local formulas promote into one global same-packet map
+per `fc_*` variable, where global means all support components for that
+variable are covered by a single same-packet domain/evaluation construction.
+The attempt keeps 4 / 4 local $\Psi_j$ formula candidates and 4 / 4 exact
+component endpoint identities, but constructs 0 / 4 global domain charts, 0 / 4
+global coordinate rules, 0 / 4 endpoint evaluation maps, 0 / 4 non-target zero
+certificates, 0 / 4 exact $B\xi=0$ or rank certificates, and 0 / 3 row-ready
+global domain/evaluation pairs.
+
 ## Pre-Ledger Stop Condition
 
 Stop before branch-chart construction unless every pre-ledger row satisfies

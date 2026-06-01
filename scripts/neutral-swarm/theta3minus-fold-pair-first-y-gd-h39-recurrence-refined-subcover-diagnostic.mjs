@@ -2419,6 +2419,55 @@ function n38NodeWidthLocalizationForRow({
         : pointInterval(intervalMidpoint(interval))
     );
   };
+  const sourceInputProvenanceForVariant = ({
+    variant,
+    cellMode,
+    activeHIndexes,
+  }) => {
+    const activeSet = new Set(activeHIndexes);
+    const allHIndexes = hIndexRange(0, hIntervals.length - 1);
+    const inactiveHIndexes = allHIndexes.filter(
+      (hIndex) => !activeSet.has(hIndex)
+    );
+    return {
+      variant,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      source_evaluator:
+        variant === "full-cell-and-hrows"
+          ? "exported-h38-residual-before-solve"
+          : "evaluateH38RecurrenceNumeratorBeforeSolve",
+      coefficient_interval_source:
+        variant === "full-cell-and-hrows"
+          ? "branchRow.h38_residual_before_solve"
+          : "evaluateH38RecurrenceNumeratorBeforeSolve(...).numerator_interval",
+      cell_mode: cellMode,
+      source_cell_constructor:
+        cellMode === "cell-midpoint" ? "pointCellAtMidpoint(cell)" : "cell",
+      h_interval_mode:
+        activeHIndexes.length === 0
+          ? "all-h-midpoints"
+          : "active-h-intervals-inactive-h-midpoints",
+      source_h_interval_constructor:
+        activeHIndexes.length === 0
+          ? "pointHIntervals()"
+          : "hIntervalsWithActiveIndexes(active_h_indexes)",
+      active_h_indexes: [...activeHIndexes],
+      active_h_index_range:
+        activeHIndexes.length > 0
+          ? [Math.min(...activeHIndexes), Math.max(...activeHIndexes)]
+          : null,
+      inactive_h_indexes: inactiveHIndexes,
+      inactive_h_index_range:
+        inactiveHIndexes.length > 0
+          ? [Math.min(...inactiveHIndexes), Math.max(...inactiveHIndexes)]
+          : null,
+      h38_input_status: activeSet.has(38)
+        ? "h38-interval-active"
+        : "h38-midpoint-frozen",
+      directed_rounding_status:
+        "not-certified-by-node-width-localization-diagnostic",
+    };
+  };
   const coefficientForVariant = ({ variant, cellForVariant, hForVariant }) => {
     if (variant === "full-cell-and-hrows") {
       return directInterval;
@@ -2433,6 +2482,72 @@ function n38NodeWidthLocalizationForRow({
       hIntervals: hForVariant,
       includeTermDecomposition: false,
     }).numerator_interval;
+  };
+  const sourceInputReplayForVariant = ({
+    variant,
+    coefficient,
+    activeHIndexes,
+  }) => {
+    if (variant !== "h0-h34-cell-midpoint") {
+      return null;
+    }
+    const activeSet = new Set(activeHIndexes);
+    const allHIndexes = hIndexRange(0, hIntervals.length - 1);
+    const midpointFrozenHIndexes = allHIndexes.filter(
+      (hIndex) => !activeSet.has(hIndex)
+    );
+    const replayCell = pointCellAtMidpoint(cell);
+    const replayHIntervals = hIntervals.map((interval, index) =>
+      activeSet.has(index)
+        ? numericOrderedInterval(`h${index}_source_replay_active_interval`, interval)
+        : pointInterval(intervalMidpoint(interval))
+    );
+    const replayedInterval = evaluateH38RecurrenceNumeratorBeforeSolve({
+      cell: replayCell,
+      branch,
+      branchSign,
+      hIntervals: replayHIntervals,
+      includeTermDecomposition: false,
+    }).numerator_interval;
+    const storedInterval = finiteOrderedIntervalOrNull(coefficient);
+    const replayedSourceInterval = finiteOrderedIntervalOrNull(
+      replayedInterval
+    );
+    const endpointMaxGap =
+      storedInterval !== null && replayedSourceInterval !== null
+        ? intervalEndpointMaxGap(storedInterval, replayedSourceInterval)
+        : null;
+    const endpointRelativeGap =
+      storedInterval !== null && replayedSourceInterval !== null
+        ? intervalEndpointRelativeGap(storedInterval, replayedSourceInterval)
+        : null;
+    const replayMatchesStored =
+      finiteNonnegative(endpointRelativeGap) &&
+      Number(endpointRelativeGap) < 1e-12;
+    return {
+      replay_kind: "same-row-h0-h34-cell-midpoint-source-input-replay",
+      source_variant: variant,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      source_evaluator: "evaluateH38RecurrenceNumeratorBeforeSolve",
+      source_cell_constructor: "pointCellAtMidpoint(cell)",
+      source_h_interval_constructor:
+        "rebuild-active-h0-h34-from-original-row-and-midpoint-freeze-h35-h38",
+      active_h_indexes: [...activeHIndexes],
+      midpoint_frozen_h_indexes: midpointFrozenHIndexes,
+      target_h_index_zeroed_by_evaluator: 38,
+      h38_midpoint_supplied_to_evaluator: true,
+      h38_target_zeroed_by_evaluator: true,
+      stored_source_interval: storedInterval,
+      replayed_source_interval: replayedSourceInterval,
+      stored_vs_replayed_endpoint_max_gap: endpointMaxGap,
+      stored_vs_replayed_endpoint_relative_gap: endpointRelativeGap,
+      stored_source_replayed_from_original_row: replayMatchesStored,
+      certifies_same_row_replay_for_stored_intervals: replayMatchesStored,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      replay_status: replayMatchesStored
+        ? "same-row-h0-h34-cell-midpoint-source-input-replayed-directed-rounding-open"
+        : "same-row-source-input-replay-open",
+    };
   };
   const variants = [
     {
@@ -2516,6 +2631,16 @@ function n38NodeWidthLocalizationForRow({
         coefficient_midpoint: intervalMidpoint(coefficient),
         coefficient_width: coefficientWidth,
         coefficient_abs_upper: coefficientAbsUpper,
+        source_input_provenance: sourceInputProvenanceForVariant({
+          variant,
+          cellMode,
+          activeHIndexes,
+        }),
+        source_input_replay: sourceInputReplayForVariant({
+          variant,
+          coefficient,
+          activeHIndexes,
+        }),
         width_to_direct_ratio: finitePositive(directWidth)
           ? coefficientWidth / directWidth
           : null,
@@ -12283,6 +12408,16 @@ function buildSignedNonterminalH0H34FloorCancellationTargetCandidate({
       ),
       coefficient_midpoint: Number(variant?.coefficient_midpoint),
       coefficient_width: Number(variant?.coefficient_width),
+      source_input_provenance:
+        variant?.source_input_provenance !== null &&
+        typeof variant?.source_input_provenance === "object"
+          ? variant.source_input_provenance
+          : null,
+      source_input_replay:
+        variant?.source_input_replay !== null &&
+        typeof variant?.source_input_replay === "object"
+          ? variant.source_input_replay
+          : null,
       width_to_direct_ratio: Number(variant?.width_to_direct_ratio),
     };
   });
@@ -12373,6 +12508,359 @@ function buildSignedNonterminalH0H34FloorCancellationTargetCandidate({
       certifies_nonterminal_h0_h34_covariance_enclosure: false,
       certifies_signed_nonterminal_cancellation: false,
       certifies_n38_fourth_derivative_bound: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function buildSignedNonterminalH0H34SourceInputProvenanceDiagnostic({
+  provider,
+  signedNonterminalFloorTarget,
+} = {}) {
+  if (
+    provider === null ||
+    provider === undefined ||
+    signedNonterminalFloorTarget === null ||
+    signedNonterminalFloorTarget === undefined ||
+    signedNonterminalFloorTarget.target_kind !==
+      "candidate-signed-nonterminal-h0-h34-floor-cancellation-target"
+  ) {
+    return null;
+  }
+  const sourceRows =
+    signedNonterminalFloorTarget.nonterminal_node_interval_rows ?? [];
+  if (sourceRows.length !== 5) {
+    return null;
+  }
+  const expectedInactiveHIndexes = [35, 36, 37, 38];
+  const provenanceRows = sourceRows.map((row, index) => {
+    const provenance = row?.source_input_provenance;
+    const activeHIndexes = Array.isArray(provenance?.active_h_indexes)
+      ? provenance.active_h_indexes.map(Number)
+      : [];
+    const inactiveHIndexes = Array.isArray(provenance?.inactive_h_indexes)
+      ? provenance.inactive_h_indexes.map(Number)
+      : [];
+    const activeH0H34 =
+      activeHIndexes.length === 35 &&
+      activeHIndexes.every((hIndex, activeIndex) => hIndex === activeIndex);
+    const frozenH35H38 =
+      inactiveHIndexes.length === expectedInactiveHIndexes.length &&
+      inactiveHIndexes.every(
+        (hIndex, inactiveIndex) =>
+          hIndex === expectedInactiveHIndexes[inactiveIndex]
+      );
+    const sameRowCellMidpointPath =
+      provenance?.variant === "h0-h34-cell-midpoint" &&
+      provenance?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+      provenance?.source_evaluator ===
+        "evaluateH38RecurrenceNumeratorBeforeSolve" &&
+      provenance?.coefficient_interval_source ===
+        "evaluateH38RecurrenceNumeratorBeforeSolve(...).numerator_interval" &&
+      provenance?.cell_mode === "cell-midpoint" &&
+      provenance?.source_cell_constructor === "pointCellAtMidpoint(cell)" &&
+      provenance?.h_interval_mode ===
+        "active-h-intervals-inactive-h-midpoints" &&
+      provenance?.source_h_interval_constructor ===
+        "hIntervalsWithActiveIndexes(active_h_indexes)";
+    const coefficientInterval = finiteOrderedIntervalOrNull(
+      row?.coefficient_interval
+    );
+    const rowIdentified =
+      sameRowCellMidpointPath &&
+      activeH0H34 &&
+      frozenH35H38 &&
+      provenance?.h38_input_status === "h38-midpoint-frozen" &&
+      provenance?.directed_rounding_status ===
+        "not-certified-by-node-width-localization-diagnostic" &&
+      coefficientInterval !== null &&
+      Number.isFinite(Number(row?.coefficient_midpoint));
+    return {
+      node_index: Number.isInteger(row?.node_index) ? row.node_index : index,
+      xi_midpoint: Number(row?.xi_midpoint),
+      source_variant: "h0-h34-cell-midpoint",
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      source_evaluator: provenance?.source_evaluator ?? null,
+      coefficient_interval_source:
+        provenance?.coefficient_interval_source ?? null,
+      source_cell_constructor: provenance?.source_cell_constructor ?? null,
+      source_h_interval_constructor:
+        provenance?.source_h_interval_constructor ?? null,
+      h_interval_mode: provenance?.h_interval_mode ?? null,
+      active_h_indexes: activeHIndexes,
+      inactive_h_indexes: inactiveHIndexes,
+      active_h0_h34_intervals_identified: activeH0H34,
+      inactive_h35_h38_midpoints_identified: frozenH35H38,
+      h38_input_status: provenance?.h38_input_status ?? null,
+      same_row_cell_midpoint_input_path_identified:
+        sameRowCellMidpointPath,
+      source_inputs_certified_directed_rounded_same_domain: false,
+      source_input_provenance_row_status: rowIdentified
+        ? "same-row-h0-h34-cell-midpoint-input-path-identified-directed-rounding-open"
+        : "source-input-provenance-open",
+    };
+  });
+  if (
+    !provenanceRows.every(
+      (row) =>
+        Number.isInteger(row.node_index) &&
+        Number.isFinite(row.xi_midpoint)
+    )
+  ) {
+    return null;
+  }
+  const allRowsIdentifySameRowPath = provenanceRows.every(
+    (row) => row.same_row_cell_midpoint_input_path_identified === true
+  );
+  const allRowsUseActiveH0H34 = provenanceRows.every(
+    (row) => row.active_h0_h34_intervals_identified === true
+  );
+  const allRowsFreezeH35H38 = provenanceRows.every(
+    (row) => row.inactive_h35_h38_midpoints_identified === true
+  );
+  const allRowsKeepDirectedRoundingOpen = provenanceRows.every(
+    (row) => row.source_inputs_certified_directed_rounded_same_domain === false
+  );
+  const allRowsIdentified =
+    allRowsIdentifySameRowPath &&
+    allRowsUseActiveH0H34 &&
+    allRowsFreezeH35H38 &&
+    allRowsKeepDirectedRoundingOpen;
+  return {
+    target_kind:
+      "candidate-signed-nonterminal-h0-h34-source-input-provenance-diagnostic",
+    source_floor_target_kind: signedNonterminalFloorTarget.target_kind,
+    proof_status:
+      "candidate-source-input-path-identified-directed-rounding-open",
+    source_input_kind:
+      "same-row-cell-midpoint-active-h0-h34-inactive-h35-h38-midpoints",
+    h38_source_provider_kind: provider?.provider_kind ?? null,
+    h38_source_provider_proof_status:
+      provider?.proof_status ?? provider?.provider_proof_status ?? null,
+    source_y_order: H38_NUMERATOR_Y_ORDER,
+    interpolation_node_count: 5,
+    source_input_provenance_rows: provenanceRows,
+    all_source_input_rows_identify_same_row_cell_midpoint_path:
+      allRowsIdentifySameRowPath,
+    all_source_input_rows_use_active_h0_h34_intervals:
+      allRowsUseActiveH0H34,
+    all_source_input_rows_freeze_h35_h38_to_midpoints:
+      allRowsFreezeH35H38,
+    all_source_input_rows_keep_directed_rounding_open:
+      allRowsKeepDirectedRoundingOpen,
+    certifies_source_inputs_as_directed_rounded_same_domain: false,
+    source_input_provenance_classification: allRowsIdentified
+      ? "same-row-h0-h34-source-input-path-identified-directed-rounding-open"
+      : "source-input-provenance-path-open",
+    missing_directed_rounded_operation:
+      "certify the same-row h0-h34-cell-midpoint input intervals from the H38 producer image with directed outward rounding",
+    next_certificate_object:
+      "directed-rounded same-row source-input certificate for active h0-h34 intervals with h35-h38 midpoint freezing",
+    claim_boundary: {
+      certifies_h0_h34_cell_midpoint_source_inputs: false,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_nonterminal_h0_h34_covariance_enclosure: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function buildSignedNonterminalH0H34SourceInputReplayDiagnostic({
+  provider,
+  signedNonterminalFloorTarget,
+  sourceInputProvenanceDiagnostic,
+} = {}) {
+  if (
+    provider === null ||
+    provider === undefined ||
+    signedNonterminalFloorTarget === null ||
+    signedNonterminalFloorTarget === undefined ||
+    signedNonterminalFloorTarget.target_kind !==
+      "candidate-signed-nonterminal-h0-h34-floor-cancellation-target"
+  ) {
+    return null;
+  }
+  const sourceRows =
+    signedNonterminalFloorTarget.nonterminal_node_interval_rows ?? [];
+  if (sourceRows.length !== 5) {
+    return null;
+  }
+  const expectedActiveHIndexes = hIndexRange(0, 34);
+  const expectedFrozenHIndexes = [35, 36, 37, 38];
+  const replayRows = sourceRows.map((row, index) => {
+    const replay = row?.source_input_replay;
+    const activeHIndexes = Array.isArray(replay?.active_h_indexes)
+      ? replay.active_h_indexes.map(Number)
+      : [];
+    const frozenHIndexes = Array.isArray(replay?.midpoint_frozen_h_indexes)
+      ? replay.midpoint_frozen_h_indexes.map(Number)
+      : [];
+    const activeH0H34 =
+      activeHIndexes.length === expectedActiveHIndexes.length &&
+      activeHIndexes.every(
+        (hIndex, activeIndex) => hIndex === expectedActiveHIndexes[activeIndex]
+      );
+    const frozenH35H38 =
+      frozenHIndexes.length === expectedFrozenHIndexes.length &&
+      frozenHIndexes.every(
+        (hIndex, frozenIndex) => hIndex === expectedFrozenHIndexes[frozenIndex]
+      );
+    const storedInterval = finiteOrderedIntervalOrNull(
+      row?.coefficient_interval
+    );
+    const replayStoredInterval = finiteOrderedIntervalOrNull(
+      replay?.stored_source_interval
+    );
+    const replayedInterval = finiteOrderedIntervalOrNull(
+      replay?.replayed_source_interval
+    );
+    const storedToReplayStoredGap =
+      storedInterval !== null && replayStoredInterval !== null
+        ? intervalEndpointRelativeGap(storedInterval, replayStoredInterval)
+        : null;
+    const storedToReplayedMaxGap =
+      storedInterval !== null && replayedInterval !== null
+        ? intervalEndpointMaxGap(storedInterval, replayedInterval)
+        : null;
+    const storedToReplayedRelativeGap =
+      storedInterval !== null && replayedInterval !== null
+        ? intervalEndpointRelativeGap(storedInterval, replayedInterval)
+        : null;
+    const replayMatchesStored =
+      replay?.replay_kind ===
+        "same-row-h0-h34-cell-midpoint-source-input-replay" &&
+      replay?.source_variant === "h0-h34-cell-midpoint" &&
+      replay?.source_evaluator === "evaluateH38RecurrenceNumeratorBeforeSolve" &&
+      replay?.source_cell_constructor === "pointCellAtMidpoint(cell)" &&
+      replay?.source_h_interval_constructor ===
+        "rebuild-active-h0-h34-from-original-row-and-midpoint-freeze-h35-h38" &&
+      replay?.h38_midpoint_supplied_to_evaluator === true &&
+      replay?.h38_target_zeroed_by_evaluator === true &&
+      activeH0H34 &&
+      frozenH35H38 &&
+      finiteNonnegative(storedToReplayStoredGap) &&
+      Number(storedToReplayStoredGap) < 1e-12 &&
+      finiteNonnegative(storedToReplayedRelativeGap) &&
+      Number(storedToReplayedRelativeGap) < 1e-12 &&
+      replay?.stored_source_replayed_from_original_row === true &&
+      replay?.certifies_same_row_replay_for_stored_intervals === true;
+    return {
+      node_index: Number.isInteger(row?.node_index) ? row.node_index : index,
+      xi_midpoint: Number(row?.xi_midpoint),
+      source_variant: "h0-h34-cell-midpoint",
+      replay_kind: replay?.replay_kind ?? null,
+      source_evaluator: replay?.source_evaluator ?? null,
+      source_cell_constructor: replay?.source_cell_constructor ?? null,
+      source_h_interval_constructor:
+        replay?.source_h_interval_constructor ?? null,
+      active_h_indexes: activeHIndexes,
+      midpoint_frozen_h_indexes: frozenHIndexes,
+      active_h0_h34_intervals_replayed: activeH0H34,
+      midpoint_frozen_h35_h38_replayed: frozenH35H38,
+      h38_midpoint_supplied_to_evaluator:
+        replay?.h38_midpoint_supplied_to_evaluator === true,
+      h38_target_zeroed_by_evaluator:
+        replay?.h38_target_zeroed_by_evaluator === true,
+      stored_source_interval: storedInterval,
+      replay_recorded_stored_source_interval: replayStoredInterval,
+      replayed_source_interval: replayedInterval,
+      stored_to_replay_recorded_stored_endpoint_relative_gap:
+        storedToReplayStoredGap,
+      stored_vs_replayed_endpoint_max_gap: storedToReplayedMaxGap,
+      stored_vs_replayed_endpoint_relative_gap: storedToReplayedRelativeGap,
+      stored_source_replayed_from_original_row: replayMatchesStored,
+      certifies_same_row_replay_for_stored_intervals: replayMatchesStored,
+      source_inputs_certified_directed_rounded_same_domain: false,
+      source_input_replay_row_status: replayMatchesStored
+        ? "same-row-h0-h34-cell-midpoint-source-input-replayed-directed-rounding-open"
+        : "same-row-source-input-replay-open",
+    };
+  });
+  if (
+    !replayRows.every(
+      (row) =>
+        Number.isInteger(row.node_index) &&
+        Number.isFinite(row.xi_midpoint)
+    )
+  ) {
+    return null;
+  }
+  const allRowsReplayFromOriginalRow = replayRows.every(
+    (row) => row.stored_source_replayed_from_original_row === true
+  );
+  const allRowsReplayH0H34 = replayRows.every(
+    (row) =>
+      row.active_h0_h34_intervals_replayed === true &&
+      row.midpoint_frozen_h35_h38_replayed === true
+  );
+  const allRowsRecordH38Zeroing = replayRows.every(
+    (row) =>
+      row.h38_midpoint_supplied_to_evaluator === true &&
+      row.h38_target_zeroed_by_evaluator === true
+  );
+  const allRowsKeepDirectedRoundingOpen = replayRows.every(
+    (row) =>
+      row.source_inputs_certified_directed_rounded_same_domain === false
+  );
+  const maxRelativeGap = finiteMaximum(
+    replayRows.map((row) => row.stored_vs_replayed_endpoint_relative_gap)
+  );
+  const maxEndpointGap = finiteMaximum(
+    replayRows.map((row) => row.stored_vs_replayed_endpoint_max_gap)
+  );
+  const replayClosesEvaluatorPath =
+    allRowsReplayFromOriginalRow &&
+    allRowsReplayH0H34 &&
+    allRowsRecordH38Zeroing &&
+    allRowsKeepDirectedRoundingOpen &&
+    finiteNonnegative(maxRelativeGap) &&
+    Number(maxRelativeGap) < 1e-12;
+  return {
+    target_kind:
+      "candidate-signed-nonterminal-h0-h34-source-input-replay-diagnostic",
+    source_floor_target_kind: signedNonterminalFloorTarget.target_kind,
+    source_input_provenance_diagnostic_kind:
+      sourceInputProvenanceDiagnostic?.target_kind ?? null,
+    proof_status:
+      "candidate-source-input-replayed-from-same-row-directed-rounding-open",
+    source_input_replay_kind:
+      "same-row-h0-h34-cell-midpoint-source-input-replay",
+    h38_source_provider_kind: provider?.provider_kind ?? null,
+    h38_source_provider_proof_status:
+      provider?.proof_status ?? provider?.provider_proof_status ?? null,
+    source_y_order: H38_NUMERATOR_Y_ORDER,
+    interpolation_node_count: 5,
+    source_input_replay_rows: replayRows,
+    all_source_input_rows_replay_from_original_row:
+      allRowsReplayFromOriginalRow,
+    all_source_input_rows_replay_active_h0_h34_freeze_h35_h38:
+      allRowsReplayH0H34,
+    all_source_input_rows_record_h38_evaluator_zeroing:
+      allRowsRecordH38Zeroing,
+    all_source_input_rows_keep_directed_rounding_open:
+      allRowsKeepDirectedRoundingOpen,
+    certifies_same_row_replay_for_stored_intervals:
+      allRowsReplayFromOriginalRow,
+    certifies_source_inputs_as_directed_rounded_same_domain: false,
+    max_source_input_replay_endpoint_gap: maxEndpointGap,
+    max_source_input_replay_relative_gap: maxRelativeGap,
+    source_input_replay_classification: replayClosesEvaluatorPath
+      ? "same-row-h0-h34-source-input-replay-closes-evaluator-path-directed-rounding-open"
+      : "same-row-h0-h34-source-input-replay-open",
+    missing_directed_rounded_operation:
+      "certify the replayed same-row h0-h34 source intervals as directed-rounded H38 producer-image enclosures rather than evaluator-regression intervals",
+    next_certificate_object:
+      "directed-rounded producer-image certificate for the replayed h0-h34-cell-midpoint source intervals with h35-h38 midpoint freezing and h38 evaluator zeroing recorded",
+    claim_boundary: {
+      certifies_same_row_replay_for_stored_intervals:
+        allRowsReplayFromOriginalRow,
+      certifies_h0_h34_cell_midpoint_source_inputs: false,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_nonterminal_h0_h34_covariance_enclosure: false,
       certifies_shifted_R43_outer_bound: false,
       certifies_directed_rounded_shared_domain: false,
       retained_branch: false,
@@ -15487,6 +15975,808 @@ function buildSignedNonterminalH0H34ScaledLiveSourceProviderDiagnostic({
   };
 }
 
+function buildSignedNonterminalH0H34SourceMapDiagnostic({
+  provider,
+  signedNonterminalFloorTarget,
+  dependencyLossBudget,
+  providerSpecification,
+  singleContractionProviderContract,
+  scaledLiveSourceProviderDiagnostic,
+} = {}) {
+  if (
+    signedNonterminalFloorTarget === null ||
+    signedNonterminalFloorTarget === undefined ||
+    signedNonterminalFloorTarget.target_kind !==
+      "candidate-signed-nonterminal-h0-h34-floor-cancellation-target" ||
+    dependencyLossBudget === null ||
+    dependencyLossBudget === undefined ||
+    dependencyLossBudget.target_kind !==
+      "candidate-signed-nonterminal-h0-h34-dependency-loss-budget" ||
+    providerSpecification === null ||
+    providerSpecification === undefined ||
+    providerSpecification.target_kind !==
+      "candidate-signed-nonterminal-h0-h34-midpoint-dependency-preserving-provider-specification-target" ||
+    singleContractionProviderContract === null ||
+    singleContractionProviderContract === undefined ||
+    singleContractionProviderContract.target_kind !==
+      "candidate-signed-nonterminal-h0-h34-single-contraction-provider-contract" ||
+    scaledLiveSourceProviderDiagnostic === null ||
+    scaledLiveSourceProviderDiagnostic === undefined ||
+    scaledLiveSourceProviderDiagnostic.target_kind !==
+      "candidate-signed-nonterminal-h0-h34-scaled-live-source-provider-diagnostic"
+  ) {
+    return null;
+  }
+  const selectedProviderContractionFactor = Number(
+    singleContractionProviderContract.selected_provider_contraction_factor
+  );
+  const sourceRows =
+    signedNonterminalFloorTarget.nonterminal_node_interval_rows ?? [];
+  const dependencyRows =
+    dependencyLossBudget.node_dependency_loss_budget_rows ?? [];
+  const providerSpecRows =
+    providerSpecification.provider_specification_rows ?? [];
+  const contractRows =
+    singleContractionProviderContract.provider_contract_rows ?? [];
+  const scaledRows =
+    scaledLiveSourceProviderDiagnostic.scaled_provider_rows ?? [];
+  if (
+    sourceRows.length !== 5 ||
+    dependencyRows.length !== 5 ||
+    providerSpecRows.length !== 5 ||
+    contractRows.length !== 5 ||
+    scaledRows.length !== 5 ||
+    !finitePositive(selectedProviderContractionFactor)
+  ) {
+    return null;
+  }
+  const intervalRelativeGap = (left, right) => {
+    const resolvedLeft = finiteOrderedIntervalOrNull(left);
+    const resolvedRight = finiteOrderedIntervalOrNull(right);
+    if (resolvedLeft === null || resolvedRight === null) {
+      return null;
+    }
+    return intervalEndpointRelativeGap(resolvedLeft, resolvedRight);
+  };
+  const intervalMatches = (left, right, tolerance = 1e-12) => {
+    const gap = intervalRelativeGap(left, right);
+    return finiteNonnegative(gap) && Number(gap) <= tolerance;
+  };
+  const rowsByNode = (rows) =>
+    new Map(
+      rows
+        .filter((row) => Number.isInteger(row?.node_index))
+        .map((row) => [Number(row.node_index), row])
+    );
+  const dependencyRowsByNode = rowsByNode(dependencyRows);
+  const providerSpecRowsByNode = rowsByNode(providerSpecRows);
+  const contractRowsByNode = rowsByNode(contractRows);
+  const scaledRowsByNode = rowsByNode(scaledRows);
+  const sourceMapRows = sourceRows.map((sourceRow, index) => {
+    const nodeIndex = Number.isInteger(sourceRow?.node_index)
+      ? sourceRow.node_index
+      : index;
+    const dependencyRow = dependencyRowsByNode.get(nodeIndex) ?? null;
+    const providerSpecRow = providerSpecRowsByNode.get(nodeIndex) ?? null;
+    const contractRow = contractRowsByNode.get(nodeIndex) ?? null;
+    const scaledRow = scaledRowsByNode.get(nodeIndex) ?? null;
+    const coefficientInterval = finiteOrderedIntervalOrNull(
+      sourceRow?.coefficient_interval
+    );
+    const coefficientMidpoint = Number(sourceRow?.coefficient_midpoint);
+    const lagrangeWeight = Number(
+      dependencyRow?.lagrange_fourth_derivative_weight
+    );
+    if (
+      coefficientInterval === null ||
+      !Number.isFinite(coefficientMidpoint) ||
+      !Number.isFinite(lagrangeWeight) ||
+      dependencyRow === null ||
+      providerSpecRow === null ||
+      contractRow === null ||
+      scaledRow === null
+    ) {
+      return null;
+    }
+    const coefficientResidualFromSource = root.addIntervals(
+      coefficientInterval,
+      [-coefficientMidpoint, -coefficientMidpoint]
+    );
+    const weightedResidualFromSource = root.scaleInterval(
+      coefficientResidualFromSource,
+      lagrangeWeight
+    );
+    const providerSpecCoefficientResidual = finiteOrderedIntervalOrNull(
+      providerSpecRow.coefficient_residual_interval_after_midpoint
+    );
+    const dependencyWeightedResidual = finiteOrderedIntervalOrNull(
+      dependencyRow.node_directed_residual_interval
+    );
+    const contractWeightedResidual = finiteOrderedIntervalOrNull(
+      contractRow.live_weighted_residual_interval
+    );
+    const contractCoefficientResidual = finiteOrderedIntervalOrNull(
+      contractRow.live_coefficient_residual_interval_after_midpoint
+    );
+    const scaledWeightedResidual = finiteOrderedIntervalOrNull(
+      scaledRow.scaled_weighted_residual_interval
+    );
+    const scaledCoefficientResidual = finiteOrderedIntervalOrNull(
+      scaledRow.scaled_coefficient_residual_interval_after_midpoint
+    );
+    const screenedWeightedTarget = finiteOrderedIntervalOrNull(
+      contractRow.screened_weighted_residual_target_interval
+    );
+    const screenedCoefficientTarget = finiteOrderedIntervalOrNull(
+      contractRow.screened_coefficient_residual_target_interval
+    );
+    if (
+      providerSpecCoefficientResidual === null ||
+      dependencyWeightedResidual === null ||
+      contractWeightedResidual === null ||
+      contractCoefficientResidual === null ||
+      scaledWeightedResidual === null ||
+      scaledCoefficientResidual === null ||
+      screenedWeightedTarget === null ||
+      screenedCoefficientTarget === null
+    ) {
+      return null;
+    }
+    const scaledWeightedFromLive = root.scaleInterval(
+      contractWeightedResidual,
+      1 / selectedProviderContractionFactor
+    );
+    const scaledCoefficientFromLive = root.scaleInterval(
+      contractCoefficientResidual,
+      1 / selectedProviderContractionFactor
+    );
+    const coefficientIdentityGap = intervalRelativeGap(
+      coefficientResidualFromSource,
+      providerSpecCoefficientResidual
+    );
+    const weightedIdentityGap = intervalRelativeGap(
+      weightedResidualFromSource,
+      dependencyWeightedResidual
+    );
+    const contractWeightedGap = intervalRelativeGap(
+      dependencyWeightedResidual,
+      contractWeightedResidual
+    );
+    const contractCoefficientGap = intervalRelativeGap(
+      providerSpecCoefficientResidual,
+      contractCoefficientResidual
+    );
+    const scaledWeightedGap = intervalRelativeGap(
+      scaledWeightedFromLive,
+      scaledWeightedResidual
+    );
+    const scaledCoefficientGap = intervalRelativeGap(
+      scaledCoefficientFromLive,
+      scaledCoefficientResidual
+    );
+    const scaledWeightedTargetGap = intervalRelativeGap(
+      scaledWeightedResidual,
+      screenedWeightedTarget
+    );
+    const scaledCoefficientTargetGap = intervalRelativeGap(
+      scaledCoefficientResidual,
+      screenedCoefficientTarget
+    );
+    return {
+      node_index: nodeIndex,
+      xi_midpoint: Number(sourceRow?.xi_midpoint),
+      source_variant: "h0-h34-cell-midpoint",
+      coefficient_interval: coefficientInterval,
+      coefficient_midpoint: coefficientMidpoint,
+      lagrange_fourth_derivative_weight: lagrangeWeight,
+      coefficient_residual_from_source: coefficientResidualFromSource,
+      provider_spec_coefficient_residual_interval:
+        providerSpecCoefficientResidual,
+      coefficient_source_to_provider_spec_relative_gap:
+        coefficientIdentityGap,
+      coefficient_source_identity_matches_provider_spec:
+        intervalMatches(
+          coefficientResidualFromSource,
+          providerSpecCoefficientResidual
+        ),
+      weighted_residual_from_source: weightedResidualFromSource,
+      dependency_weighted_residual_interval: dependencyWeightedResidual,
+      weighted_source_to_dependency_relative_gap: weightedIdentityGap,
+      weighted_source_identity_matches_dependency:
+        intervalMatches(weightedResidualFromSource, dependencyWeightedResidual),
+      contract_live_weighted_residual_interval: contractWeightedResidual,
+      contract_live_coefficient_residual_interval_after_midpoint:
+        contractCoefficientResidual,
+      contract_weighted_live_matches_dependency:
+        intervalMatches(dependencyWeightedResidual, contractWeightedResidual),
+      contract_coefficient_live_matches_provider_spec:
+        intervalMatches(
+          providerSpecCoefficientResidual,
+          contractCoefficientResidual
+        ),
+      contract_weighted_live_relative_gap: contractWeightedGap,
+      contract_coefficient_live_relative_gap: contractCoefficientGap,
+      scaled_weighted_from_live: scaledWeightedFromLive,
+      scaled_coefficient_from_live: scaledCoefficientFromLive,
+      scaled_weighted_residual_interval: scaledWeightedResidual,
+      scaled_coefficient_residual_interval_after_midpoint:
+        scaledCoefficientResidual,
+      scaled_weighted_map_matches_scaled_provider:
+        intervalMatches(scaledWeightedFromLive, scaledWeightedResidual),
+      scaled_coefficient_map_matches_scaled_provider:
+        intervalMatches(scaledCoefficientFromLive, scaledCoefficientResidual),
+      scaled_weighted_map_relative_gap: scaledWeightedGap,
+      scaled_coefficient_map_relative_gap: scaledCoefficientGap,
+      screened_weighted_residual_target_interval: screenedWeightedTarget,
+      screened_coefficient_residual_target_interval: screenedCoefficientTarget,
+      scaled_weighted_to_screened_target_relative_gap:
+        scaledWeightedTargetGap,
+      scaled_coefficient_to_screened_target_relative_gap:
+        scaledCoefficientTargetGap,
+      scaled_weighted_interval_contained_in_screened_target:
+        intervalContainsInterval(screenedWeightedTarget, scaledWeightedResidual),
+      scaled_coefficient_interval_contained_in_screened_target:
+        intervalContainsInterval(
+          screenedCoefficientTarget,
+          scaledCoefficientResidual
+        ),
+      source_map_row_status:
+        [
+          coefficientIdentityGap,
+          weightedIdentityGap,
+          contractWeightedGap,
+          contractCoefficientGap,
+          scaledWeightedGap,
+          scaledCoefficientGap,
+        ].every((gap) => finiteNonnegative(gap) && Number(gap) <= 1e-12)
+          ? "h0-h34-source-map-row-identities-close"
+          : "h0-h34-source-map-row-open",
+    };
+  });
+  if (sourceMapRows.some((row) => row === null)) {
+    return null;
+  }
+  const identityGaps = sourceMapRows.flatMap((row) => [
+    row.coefficient_source_to_provider_spec_relative_gap,
+    row.weighted_source_to_dependency_relative_gap,
+    row.contract_weighted_live_relative_gap,
+    row.contract_coefficient_live_relative_gap,
+    row.scaled_weighted_map_relative_gap,
+    row.scaled_coefficient_map_relative_gap,
+  ]);
+  const targetGaps = sourceMapRows.flatMap((row) => [
+    row.scaled_weighted_to_screened_target_relative_gap,
+    row.scaled_coefficient_to_screened_target_relative_gap,
+  ]);
+  const allSourceMapIdentitiesClose = sourceMapRows.every(
+    (row) =>
+      row.coefficient_source_identity_matches_provider_spec === true &&
+      row.weighted_source_identity_matches_dependency === true &&
+      row.contract_weighted_live_matches_dependency === true &&
+      row.contract_coefficient_live_matches_provider_spec === true &&
+      row.scaled_weighted_map_matches_scaled_provider === true &&
+      row.scaled_coefficient_map_matches_scaled_provider === true
+  );
+  const sourceProviderMetadataAvailable =
+    provider !== null &&
+    provider !== undefined &&
+    typeof provider.provider_kind === "string" &&
+    signedNonterminalFloorTarget.node_interval_source ===
+      "h0-h34-cell-midpoint node-width localization variant";
+  const sourceProviderCertifiesDirectedRounded =
+    provider?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+      true ||
+    provider?.h_row_provider_claim_boundary
+      ?.certifies_directed_rounded_shared_domain === true;
+  return {
+    target_kind:
+      "candidate-signed-nonterminal-h0-h34-source-map-diagnostic",
+    source_floor_target_kind: signedNonterminalFloorTarget.target_kind,
+    source_dependency_loss_budget_kind: dependencyLossBudget.target_kind,
+    source_provider_specification_kind: providerSpecification.target_kind,
+    source_single_contraction_provider_contract_kind:
+      singleContractionProviderContract.target_kind,
+    source_scaled_live_source_provider_diagnostic_kind:
+      scaledLiveSourceProviderDiagnostic.target_kind,
+    proof_status: "candidate-source-map-identities-not-directed-rounded",
+    source_map_kind:
+      "h0-h34-cell-midpoint-to-scaled-provider-row-identity-map",
+    active_h_index_range:
+      singleContractionProviderContract.active_h_index_range,
+    interpolation_node_count:
+      singleContractionProviderContract.interpolation_node_count,
+    selected_provider_contraction_factor: selectedProviderContractionFactor,
+    h38_source_provider_kind: provider?.provider_kind ?? null,
+    h38_source_provider_proof_status:
+      provider?.proof_status ?? provider?.provider_proof_status ?? null,
+    h38_source_dependency_metadata_available:
+      sourceProviderMetadataAvailable,
+    h38_source_provider_certifies_directed_rounded_shared_domain:
+      sourceProviderCertifiesDirectedRounded,
+    source_map_rows: sourceMapRows,
+    all_source_map_rows_close_arithmetic_identities:
+      allSourceMapIdentitiesClose,
+    all_source_map_rows_apply_single_uniform_contraction:
+      sourceMapRows.every(
+        (row) =>
+          row.scaled_weighted_map_matches_scaled_provider === true &&
+          row.scaled_coefficient_map_matches_scaled_provider === true
+      ),
+    all_source_map_rows_have_h0_h34_cell_midpoint_source:
+      sourceMapRows.every(
+        (row) => row.source_variant === "h0-h34-cell-midpoint"
+      ),
+    max_source_map_identity_relative_gap: Math.max(...identityGaps),
+    max_source_map_scaled_target_relative_gap: Math.max(...targetGaps),
+    source_map_classification:
+      allSourceMapIdentitiesClose &&
+      sourceProviderMetadataAvailable &&
+      sourceProviderCertifiesDirectedRounded === false
+        ? "h0-h34-source-map-identities-close-directed-source-open"
+        : allSourceMapIdentitiesClose
+          ? "h0-h34-source-map-identities-close-metadata-open"
+          : "h0-h34-source-map-open",
+    missing_directed_rounded_operation:
+      "replace the candidate h0-h34-cell-midpoint residual source rows with a directed-rounded same-domain evaluator source whose interval scaling includes the screened-target endpoint margin",
+    next_certificate_object:
+      "directed-rounded h0-h34-cell-midpoint source-map certificate for the five xi nodes feeding the scaled provider rows",
+    claim_boundary: {
+      certifies_h0_h34_cell_midpoint_source_map: false,
+      certifies_scaled_operation_as_directed_rounded_source: false,
+      certifies_h0_h34_midpoint_identity_for_continuous_domain: false,
+      certifies_signed_nonterminal_cancellation: false,
+      certifies_nonterminal_h0_h34_covariance_enclosure: false,
+      certifies_terminal_h35_h37_covariance_enclosure: false,
+      certifies_all_hrow_covariance_enclosure: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function buildSignedNonterminalH0H34SourceMapEndpointMarginDiagnostic({
+  sourceMapDiagnostic,
+} = {}) {
+  if (
+    sourceMapDiagnostic === null ||
+    sourceMapDiagnostic === undefined ||
+    sourceMapDiagnostic.target_kind !==
+      "candidate-signed-nonterminal-h0-h34-source-map-diagnostic" ||
+    !Array.isArray(sourceMapDiagnostic.source_map_rows) ||
+    sourceMapDiagnostic.source_map_rows.length !== 5
+  ) {
+    return null;
+  }
+  const endpointMarginRelativeBound = Number.EPSILON;
+  const requiredRelativeEndpointMargin = (outer, inner) => {
+    const resolvedOuter = finiteOrderedIntervalOrNull(outer);
+    const resolvedInner = finiteOrderedIntervalOrNull(inner);
+    if (resolvedOuter === null || resolvedInner === null) {
+      return null;
+    }
+    const leftOverrun = Math.max(0, resolvedOuter[0] - resolvedInner[0]);
+    const rightOverrun = Math.max(0, resolvedInner[1] - resolvedOuter[1]);
+    return (
+      Math.max(leftOverrun, rightOverrun) /
+      Math.max(1, intervalAbsUpper(resolvedOuter), intervalAbsUpper(resolvedInner))
+    );
+  };
+  const expandByRelativeEndpointMargin = (interval, relativeMargin) => {
+    const resolvedInterval = finiteOrderedIntervalOrNull(interval);
+    const resolvedMargin = Number(relativeMargin);
+    if (resolvedInterval === null || !finiteNonnegative(resolvedMargin)) {
+      return null;
+    }
+    const absoluteMargin =
+      resolvedMargin * Math.max(1, intervalAbsUpper(resolvedInterval));
+    return [resolvedInterval[0] - absoluteMargin, resolvedInterval[1] + absoluteMargin];
+  };
+  const endpointMarginRows = sourceMapDiagnostic.source_map_rows.map((row) => {
+    const scaledWeighted = finiteOrderedIntervalOrNull(
+      row?.scaled_weighted_residual_interval
+    );
+    const scaledCoefficient = finiteOrderedIntervalOrNull(
+      row?.scaled_coefficient_residual_interval_after_midpoint
+    );
+    const screenedWeighted = finiteOrderedIntervalOrNull(
+      row?.screened_weighted_residual_target_interval
+    );
+    const screenedCoefficient = finiteOrderedIntervalOrNull(
+      row?.screened_coefficient_residual_target_interval
+    );
+    if (
+      scaledWeighted === null ||
+      scaledCoefficient === null ||
+      screenedWeighted === null ||
+      screenedCoefficient === null
+    ) {
+      return null;
+    }
+    const weightedRequiredMargin = requiredRelativeEndpointMargin(
+      screenedWeighted,
+      scaledWeighted
+    );
+    const coefficientRequiredMargin = requiredRelativeEndpointMargin(
+      screenedCoefficient,
+      scaledCoefficient
+    );
+    const weightedExpandedTarget = expandByRelativeEndpointMargin(
+      screenedWeighted,
+      endpointMarginRelativeBound
+    );
+    const coefficientExpandedTarget = expandByRelativeEndpointMargin(
+      screenedCoefficient,
+      endpointMarginRelativeBound
+    );
+    if (
+      !finiteNonnegative(weightedRequiredMargin) ||
+      !finiteNonnegative(coefficientRequiredMargin) ||
+      weightedExpandedTarget === null ||
+      coefficientExpandedTarget === null
+    ) {
+      return null;
+    }
+    const weightedMarginContains = intervalContainsInterval(
+      weightedExpandedTarget,
+      scaledWeighted
+    );
+    const coefficientMarginContains = intervalContainsInterval(
+      coefficientExpandedTarget,
+      scaledCoefficient
+    );
+    return {
+      node_index: row.node_index,
+      xi_midpoint: row.xi_midpoint,
+      source_variant: row.source_variant,
+      endpoint_margin_model:
+        "screened-target-expanded-by-one-number-epsilon-relative-endpoint-margin",
+      endpoint_margin_relative_bound: endpointMarginRelativeBound,
+      scaled_weighted_residual_interval: scaledWeighted,
+      scaled_coefficient_residual_interval_after_midpoint: scaledCoefficient,
+      screened_weighted_residual_target_interval: screenedWeighted,
+      screened_coefficient_residual_target_interval: screenedCoefficient,
+      original_weighted_interval_contained_in_screened_target:
+        row.scaled_weighted_interval_contained_in_screened_target,
+      original_coefficient_interval_contained_in_screened_target:
+        row.scaled_coefficient_interval_contained_in_screened_target,
+      weighted_required_relative_endpoint_margin: weightedRequiredMargin,
+      coefficient_required_relative_endpoint_margin:
+        coefficientRequiredMargin,
+      weighted_required_margin_to_number_epsilon_ratio:
+        weightedRequiredMargin / endpointMarginRelativeBound,
+      coefficient_required_margin_to_number_epsilon_ratio:
+        coefficientRequiredMargin / endpointMarginRelativeBound,
+      number_epsilon_expanded_weighted_target_interval:
+        weightedExpandedTarget,
+      number_epsilon_expanded_coefficient_target_interval:
+        coefficientExpandedTarget,
+      weighted_number_epsilon_margin_contains_scaled_interval:
+        weightedMarginContains,
+      coefficient_number_epsilon_margin_contains_scaled_interval:
+        coefficientMarginContains,
+      endpoint_margin_row_status:
+        weightedMarginContains && coefficientMarginContains
+          ? "one-number-epsilon-endpoint-margin-contains-scaled-source-map-row"
+          : "endpoint-margin-row-open",
+    };
+  });
+  if (endpointMarginRows.some((row) => row === null)) {
+    return null;
+  }
+  const requiredMargins = endpointMarginRows.flatMap((row) => [
+    row.weighted_required_relative_endpoint_margin,
+    row.coefficient_required_relative_endpoint_margin,
+  ]);
+  const allRowsFitOneNumberEpsilon = endpointMarginRows.every(
+    (row) =>
+      row.weighted_number_epsilon_margin_contains_scaled_interval === true &&
+      row.coefficient_number_epsilon_margin_contains_scaled_interval === true
+  );
+  const maxRequiredMargin = Math.max(...requiredMargins);
+  return {
+    target_kind:
+      "candidate-signed-nonterminal-h0-h34-source-map-endpoint-margin-diagnostic",
+    source_source_map_diagnostic_kind: sourceMapDiagnostic.target_kind,
+    proof_status:
+      "candidate-endpoint-margin-screen-not-directed-rounded-source",
+    endpoint_margin_kind:
+      "one-number-epsilon-relative-endpoint-margin-screen",
+    endpoint_margin_relative_bound: endpointMarginRelativeBound,
+    active_h_index_range: sourceMapDiagnostic.active_h_index_range,
+    interpolation_node_count: sourceMapDiagnostic.interpolation_node_count,
+    source_map_rows_close_arithmetic_identities:
+      sourceMapDiagnostic.all_source_map_rows_close_arithmetic_identities,
+    source_map_certifies_directed_rounded_shared_domain:
+      sourceMapDiagnostic.h38_source_provider_certifies_directed_rounded_shared_domain,
+    endpoint_margin_rows: endpointMarginRows,
+    all_endpoint_margin_rows_use_h0_h34_cell_midpoint_source:
+      endpointMarginRows.every(
+        (row) => row.source_variant === "h0-h34-cell-midpoint"
+      ),
+    all_endpoint_margin_rows_fit_one_number_epsilon:
+      allRowsFitOneNumberEpsilon,
+    max_required_relative_endpoint_margin: maxRequiredMargin,
+    max_required_margin_to_number_epsilon_ratio:
+      maxRequiredMargin / endpointMarginRelativeBound,
+    endpoint_margin_classification:
+      allRowsFitOneNumberEpsilon &&
+      sourceMapDiagnostic.all_source_map_rows_close_arithmetic_identities ===
+        true &&
+      sourceMapDiagnostic.h38_source_provider_certifies_directed_rounded_shared_domain ===
+        false
+        ? "one-number-epsilon-endpoint-margin-suffices-source-certification-open"
+        : allRowsFitOneNumberEpsilon
+          ? "one-number-epsilon-endpoint-margin-suffices-metadata-open"
+          : "source-map-endpoint-margin-open",
+    missing_directed_rounded_operation:
+      "turn the one-number-epsilon endpoint-margin screen into a directed-rounded same-domain h0-h34-cell-midpoint source operation",
+    next_certificate_object:
+      "directed-rounded h0-h34-cell-midpoint source map with explicit outward endpoint margin no larger than one Number.EPSILON relative endpoint unit",
+    claim_boundary: {
+      certifies_endpoint_margin_as_directed_rounded_source: false,
+      certifies_h0_h34_cell_midpoint_source_map: false,
+      certifies_scaled_operation_as_directed_rounded_source: false,
+      certifies_nonterminal_h0_h34_covariance_enclosure: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function buildSignedNonterminalH0H34SourceOperationReplayCandidate({
+  sourceMapDiagnostic,
+  sourceMapEndpointMarginDiagnostic,
+} = {}) {
+  if (
+    sourceMapDiagnostic === null ||
+    sourceMapDiagnostic === undefined ||
+    sourceMapDiagnostic.target_kind !==
+      "candidate-signed-nonterminal-h0-h34-source-map-diagnostic" ||
+    sourceMapEndpointMarginDiagnostic === null ||
+    sourceMapEndpointMarginDiagnostic === undefined ||
+    sourceMapEndpointMarginDiagnostic.target_kind !==
+      "candidate-signed-nonterminal-h0-h34-source-map-endpoint-margin-diagnostic" ||
+    !Array.isArray(sourceMapDiagnostic.source_map_rows) ||
+    sourceMapDiagnostic.source_map_rows.length !== 5 ||
+    !Array.isArray(sourceMapEndpointMarginDiagnostic.endpoint_margin_rows) ||
+    sourceMapEndpointMarginDiagnostic.endpoint_margin_rows.length !== 5
+  ) {
+    return null;
+  }
+  const selectedProviderContractionFactor = Number(
+    sourceMapDiagnostic.selected_provider_contraction_factor
+  );
+  if (!finitePositive(selectedProviderContractionFactor)) {
+    return null;
+  }
+  const endpointRowsByNode = new Map(
+    sourceMapEndpointMarginDiagnostic.endpoint_margin_rows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const replayGap = (left, right) => {
+    const resolvedLeft = finiteOrderedIntervalOrNull(left);
+    const resolvedRight = finiteOrderedIntervalOrNull(right);
+    return resolvedLeft !== null && resolvedRight !== null
+      ? intervalEndpointRelativeGap(resolvedLeft, resolvedRight)
+      : null;
+  };
+  const replayRows = sourceMapDiagnostic.source_map_rows.map((row) => {
+    const nodeIndex = Number(row?.node_index);
+    const endpointRow = endpointRowsByNode.get(nodeIndex) ?? null;
+    const coefficientInterval = finiteOrderedIntervalOrNull(
+      row?.coefficient_interval
+    );
+    const coefficientMidpoint = Number(row?.coefficient_midpoint);
+    const lagrangeWeight = Number(row?.lagrange_fourth_derivative_weight);
+    const contractWeightedResidual = finiteOrderedIntervalOrNull(
+      row?.contract_live_weighted_residual_interval
+    );
+    const contractCoefficientResidual = finiteOrderedIntervalOrNull(
+      row?.contract_live_coefficient_residual_interval_after_midpoint
+    );
+    const expandedWeightedTarget = finiteOrderedIntervalOrNull(
+      endpointRow?.number_epsilon_expanded_weighted_target_interval
+    );
+    const expandedCoefficientTarget = finiteOrderedIntervalOrNull(
+      endpointRow?.number_epsilon_expanded_coefficient_target_interval
+    );
+    if (
+      !Number.isInteger(nodeIndex) ||
+      endpointRow === null ||
+      coefficientInterval === null ||
+      !Number.isFinite(coefficientMidpoint) ||
+      !Number.isFinite(lagrangeWeight) ||
+      contractWeightedResidual === null ||
+      contractCoefficientResidual === null ||
+      expandedWeightedTarget === null ||
+      expandedCoefficientTarget === null
+    ) {
+      return null;
+    }
+    const coefficientResidualReplay = root.addIntervals(
+      coefficientInterval,
+      [-coefficientMidpoint, -coefficientMidpoint]
+    );
+    const weightedResidualReplay = root.scaleInterval(
+      coefficientResidualReplay,
+      lagrangeWeight
+    );
+    const scaledWeightedReplay = root.scaleInterval(
+      contractWeightedResidual,
+      1 / selectedProviderContractionFactor
+    );
+    const scaledCoefficientReplay = root.scaleInterval(
+      contractCoefficientResidual,
+      1 / selectedProviderContractionFactor
+    );
+    const coefficientResidualReplayGap = replayGap(
+      coefficientResidualReplay,
+      row.coefficient_residual_from_source
+    );
+    const weightedResidualReplayGap = replayGap(
+      weightedResidualReplay,
+      row.weighted_residual_from_source
+    );
+    const scaledWeightedReplayGap = replayGap(
+      scaledWeightedReplay,
+      row.scaled_weighted_residual_interval
+    );
+    const scaledCoefficientReplayGap = replayGap(
+      scaledCoefficientReplay,
+      row.scaled_coefficient_residual_interval_after_midpoint
+    );
+    const replayGaps = [
+      coefficientResidualReplayGap,
+      weightedResidualReplayGap,
+      scaledWeightedReplayGap,
+      scaledCoefficientReplayGap,
+    ];
+    const replayMatchesSourceMap = replayGaps.every(
+      (gap) => finiteNonnegative(gap) && Number(gap) <= 1e-12
+    );
+    const weightedFitsEndpointMargin = intervalContainsInterval(
+      expandedWeightedTarget,
+      scaledWeightedReplay
+    );
+    const coefficientFitsEndpointMargin = intervalContainsInterval(
+      expandedCoefficientTarget,
+      scaledCoefficientReplay
+    );
+    return {
+      node_index: nodeIndex,
+      xi_midpoint: row.xi_midpoint,
+      source_variant: row.source_variant,
+      source_operation_kind:
+        "h0-h34-cell-midpoint-binary64-outward-source-map-operation",
+      operation_rounding_model:
+        "root-tube-nextafter-outward-add-and-scale-interval-primitives",
+      endpoint_margin_model: endpointRow.endpoint_margin_model,
+      endpoint_margin_relative_bound:
+        endpointRow.endpoint_margin_relative_bound,
+      selected_provider_contraction_factor: selectedProviderContractionFactor,
+      coefficient_interval: coefficientInterval,
+      coefficient_midpoint: coefficientMidpoint,
+      lagrange_fourth_derivative_weight: lagrangeWeight,
+      coefficient_residual_replay_interval: coefficientResidualReplay,
+      weighted_residual_replay_interval: weightedResidualReplay,
+      scaled_weighted_residual_replay_interval: scaledWeightedReplay,
+      scaled_coefficient_residual_replay_interval_after_midpoint:
+        scaledCoefficientReplay,
+      source_map_coefficient_residual_interval:
+        row.coefficient_residual_from_source,
+      source_map_weighted_residual_interval: row.weighted_residual_from_source,
+      source_map_scaled_weighted_residual_interval:
+        row.scaled_weighted_residual_interval,
+      source_map_scaled_coefficient_residual_interval_after_midpoint:
+        row.scaled_coefficient_residual_interval_after_midpoint,
+      coefficient_residual_replay_relative_gap:
+        coefficientResidualReplayGap,
+      weighted_residual_replay_relative_gap: weightedResidualReplayGap,
+      scaled_weighted_replay_relative_gap: scaledWeightedReplayGap,
+      scaled_coefficient_replay_relative_gap: scaledCoefficientReplayGap,
+      operation_replay_matches_source_map_row: replayMatchesSourceMap,
+      number_epsilon_expanded_weighted_target_interval:
+        expandedWeightedTarget,
+      number_epsilon_expanded_coefficient_target_interval:
+        expandedCoefficientTarget,
+      weighted_operation_replay_fits_one_epsilon_endpoint_margin:
+        weightedFitsEndpointMargin,
+      coefficient_operation_replay_fits_one_epsilon_endpoint_margin:
+        coefficientFitsEndpointMargin,
+      operation_row_status:
+        replayMatchesSourceMap &&
+        weightedFitsEndpointMargin &&
+        coefficientFitsEndpointMargin
+          ? "binary64-outward-source-operation-replay-fits-one-epsilon-endpoint-margin"
+          : "binary64-outward-source-operation-replay-open",
+    };
+  });
+  if (replayRows.some((row) => row === null)) {
+    return null;
+  }
+  const replayGaps = replayRows.flatMap((row) => [
+    row.coefficient_residual_replay_relative_gap,
+    row.weighted_residual_replay_relative_gap,
+    row.scaled_weighted_replay_relative_gap,
+    row.scaled_coefficient_replay_relative_gap,
+  ]);
+  const allRowsReplaySourceMap = replayRows.every(
+    (row) => row.operation_replay_matches_source_map_row === true
+  );
+  const allRowsFitEndpointMargin = replayRows.every(
+    (row) =>
+      row.weighted_operation_replay_fits_one_epsilon_endpoint_margin === true &&
+      row.coefficient_operation_replay_fits_one_epsilon_endpoint_margin ===
+        true
+  );
+  const sourceProvenanceStillOpen =
+    sourceMapDiagnostic.h38_source_provider_certifies_directed_rounded_shared_domain ===
+      false &&
+    sourceMapEndpointMarginDiagnostic.source_map_certifies_directed_rounded_shared_domain ===
+      false;
+  return {
+    target_kind:
+      "candidate-signed-nonterminal-h0-h34-source-operation-replay",
+    source_source_map_diagnostic_kind: sourceMapDiagnostic.target_kind,
+    source_endpoint_margin_diagnostic_kind:
+      sourceMapEndpointMarginDiagnostic.target_kind,
+    proof_status:
+      "candidate-binary64-outward-operation-replay-source-provenance-open",
+    operation_replay_kind:
+      "h0-h34-cell-midpoint-source-map-with-one-number-epsilon-endpoint-margin",
+    operation_rounding_model:
+      "root-tube-nextafter-outward-add-and-scale-interval-primitives",
+    active_h_index_range: sourceMapDiagnostic.active_h_index_range,
+    interpolation_node_count: sourceMapDiagnostic.interpolation_node_count,
+    selected_provider_contraction_factor: selectedProviderContractionFactor,
+    endpoint_margin_relative_bound:
+      sourceMapEndpointMarginDiagnostic.endpoint_margin_relative_bound,
+    source_provider_certifies_directed_rounded_shared_domain:
+      sourceMapDiagnostic.h38_source_provider_certifies_directed_rounded_shared_domain,
+    source_provenance_still_open: sourceProvenanceStillOpen,
+    operation_replay_rows: replayRows,
+    all_operation_rows_use_h0_h34_cell_midpoint_source: replayRows.every(
+      (row) => row.source_variant === "h0-h34-cell-midpoint"
+    ),
+    all_operation_rows_replay_source_map_identities:
+      allRowsReplaySourceMap,
+    all_operation_rows_fit_one_number_epsilon_endpoint_margin:
+      allRowsFitEndpointMargin,
+    certifies_binary64_outward_operation_replay_for_supplied_intervals:
+      allRowsReplaySourceMap,
+    certifies_one_number_epsilon_endpoint_margin_for_operation_replay:
+      allRowsFitEndpointMargin,
+    certifies_source_inputs_as_directed_rounded_same_domain: false,
+    max_operation_replay_relative_gap: Math.max(...replayGaps),
+    operation_replay_classification:
+      allRowsReplaySourceMap &&
+      allRowsFitEndpointMargin &&
+      sourceProvenanceStillOpen
+        ? "binary64-outward-operation-replay-closed-source-provenance-open"
+        : allRowsReplaySourceMap && allRowsFitEndpointMargin
+          ? "binary64-outward-operation-replay-closed-metadata-open"
+          : "binary64-outward-operation-replay-open",
+    missing_directed_rounded_operation:
+      "certify the h0-h34-cell-midpoint source inputs as directed-rounded same-domain intervals, then attach them to the closed binary64 outward operation replay",
+    next_certificate_object:
+      "proof-grade source provenance for the five h0-h34 coefficient intervals and midpoint subtractions feeding the closed one-epsilon operation replay",
+    claim_boundary: {
+      certifies_h0_h34_cell_midpoint_source_map: false,
+      certifies_endpoint_margin_as_directed_rounded_source: false,
+      certifies_scaled_operation_as_directed_rounded_source: false,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_nonterminal_h0_h34_covariance_enclosure: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
 function buildSignedNonterminalH0H34IdentityRouterCandidate({
   signedNonterminalFloorTarget,
   twoBlockBudget,
@@ -15861,6 +17151,19 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
     })
     .filter((row) => row !== null)
     .map((row) => {
+      const sourceInputProvenanceDiagnostic =
+        buildSignedNonterminalH0H34SourceInputProvenanceDiagnostic({
+          provider: row,
+          signedNonterminalFloorTarget:
+            row.signed_nonterminal_h0_h34_floor_cancellation_target,
+        });
+      const sourceInputReplayDiagnostic =
+        buildSignedNonterminalH0H34SourceInputReplayDiagnostic({
+          provider: row,
+          signedNonterminalFloorTarget:
+            row.signed_nonterminal_h0_h34_floor_cancellation_target,
+          sourceInputProvenanceDiagnostic,
+        });
       const midpointFourthDifferenceIdentityTarget =
         buildSignedNonterminalH0H34MidpointFourthDifferenceIdentityCandidate({
           signedNonterminalFloorTarget:
@@ -15912,6 +17215,30 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
           singleContractionProviderContract,
           liveProviderContractionDefect,
         });
+      const scaledLiveSourceProviderDiagnostic =
+        buildSignedNonterminalH0H34ScaledLiveSourceProviderDiagnostic({
+          singleContractionProviderContract,
+          liveProviderContractionDefect,
+        });
+      const sourceMapDiagnostic =
+        buildSignedNonterminalH0H34SourceMapDiagnostic({
+          provider: row,
+          signedNonterminalFloorTarget:
+            row.signed_nonterminal_h0_h34_floor_cancellation_target,
+          dependencyLossBudget,
+          providerSpecification,
+          singleContractionProviderContract,
+          scaledLiveSourceProviderDiagnostic,
+        });
+      const sourceMapEndpointMarginDiagnostic =
+        buildSignedNonterminalH0H34SourceMapEndpointMarginDiagnostic({
+          sourceMapDiagnostic,
+        });
+      const sourceOperationReplay =
+        buildSignedNonterminalH0H34SourceOperationReplayCandidate({
+          sourceMapDiagnostic,
+          sourceMapEndpointMarginDiagnostic,
+        });
       return {
         ...row,
         signed_nonterminal_h0_h34_identity_router:
@@ -15922,6 +17249,10 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
             currentTotalToRequiredRatio:
               row.total_n38_intervalized_lagrange_to_required_upper_ratio,
           }),
+        signed_nonterminal_h0_h34_source_input_provenance_diagnostic:
+          sourceInputProvenanceDiagnostic,
+        signed_nonterminal_h0_h34_source_input_replay_diagnostic:
+          sourceInputReplayDiagnostic,
         signed_nonterminal_h0_h34_midpoint_fourth_difference_identity_target:
           midpointFourthDifferenceIdentityTarget,
         signed_nonterminal_h0_h34_dependency_loss_budget: dependencyLossBudget,
@@ -15944,10 +17275,13 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
         signed_nonterminal_h0_h34_contracted_provider_candidate:
           contractedProviderCandidate,
         signed_nonterminal_h0_h34_scaled_live_source_provider_diagnostic:
-          buildSignedNonterminalH0H34ScaledLiveSourceProviderDiagnostic({
-            singleContractionProviderContract,
-            liveProviderContractionDefect,
-          }),
+          scaledLiveSourceProviderDiagnostic,
+        signed_nonterminal_h0_h34_source_map_diagnostic:
+          sourceMapDiagnostic,
+        signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic:
+          sourceMapEndpointMarginDiagnostic,
+        signed_nonterminal_h0_h34_source_operation_replay:
+          sourceOperationReplay,
       };
     });
   const terminalCovarianceMaxNumber = (field) => {
@@ -15978,6 +17312,20 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
   const signedNonterminalFloorTargetRows = terminalCovarianceRows
     .map((row) => row.signed_nonterminal_h0_h34_floor_cancellation_target)
     .filter((target) => target !== null && target !== undefined);
+  const signedNonterminalSourceInputProvenanceDiagnosticRows =
+    terminalCovarianceRows
+      .map(
+        (row) =>
+          row.signed_nonterminal_h0_h34_source_input_provenance_diagnostic
+      )
+      .filter((target) => target !== null && target !== undefined);
+  const signedNonterminalSourceInputReplayDiagnosticRows =
+    terminalCovarianceRows
+      .map(
+        (row) =>
+          row.signed_nonterminal_h0_h34_source_input_replay_diagnostic
+      )
+      .filter((target) => target !== null && target !== undefined);
   const signedNonterminalIdentityRouterRows = terminalCovarianceRows
     .map((row) => row.signed_nonterminal_h0_h34_identity_router)
     .filter((router) => router !== null && router !== undefined);
@@ -16053,6 +17401,21 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
           row
             .signed_nonterminal_h0_h34_scaled_live_source_provider_diagnostic
       )
+      .filter((target) => target !== null && target !== undefined);
+  const signedNonterminalSourceMapDiagnosticRows = terminalCovarianceRows
+    .map((row) => row.signed_nonterminal_h0_h34_source_map_diagnostic)
+    .filter((target) => target !== null && target !== undefined);
+  const signedNonterminalSourceMapEndpointMarginDiagnosticRows =
+    terminalCovarianceRows
+      .map(
+        (row) =>
+          row
+            .signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic
+      )
+      .filter((target) => target !== null && target !== undefined);
+  const signedNonterminalSourceOperationReplayRows =
+    terminalCovarianceRows
+      .map((row) => row.signed_nonterminal_h0_h34_source_operation_replay)
       .filter((target) => target !== null && target !== undefined);
   const terminalCovarianceBudgetMaxNumber = (field) => {
     const values = terminalCovarianceBudgetRows
@@ -16290,6 +17653,40 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
       .filter((value) => Number.isFinite(value));
     return values.length > 0 ? Math.min(...values) : null;
   };
+  const signedNonterminalSourceMapDiagnosticMaxNumber = (field) => {
+    const values = signedNonterminalSourceMapDiagnosticRows
+      .map((row) => fieldPathValue(row, field))
+      .filter((value) => value !== null && value !== undefined)
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+    return values.length > 0 ? Math.max(...values) : null;
+  };
+  const signedNonterminalSourceMapEndpointMarginDiagnosticMaxNumber = (
+    field
+  ) => {
+    const values = signedNonterminalSourceMapEndpointMarginDiagnosticRows
+      .map((row) => fieldPathValue(row, field))
+      .filter((value) => value !== null && value !== undefined)
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+    return values.length > 0 ? Math.max(...values) : null;
+  };
+  const signedNonterminalSourceInputReplayDiagnosticMaxNumber = (field) => {
+    const values = signedNonterminalSourceInputReplayDiagnosticRows
+      .map((row) => fieldPathValue(row, field))
+      .filter((value) => value !== null && value !== undefined)
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+    return values.length > 0 ? Math.max(...values) : null;
+  };
+  const signedNonterminalSourceOperationReplayMaxNumber = (field) => {
+    const values = signedNonterminalSourceOperationReplayRows
+      .map((row) => fieldPathValue(row, field))
+      .filter((value) => value !== null && value !== undefined)
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+    return values.length > 0 ? Math.max(...values) : null;
+  };
   const allTerminalOnlyCompressionCanClose =
     terminalCovarianceBudgetRows.length > 0 &&
     terminalCovarianceBudgetRows.every(
@@ -16340,6 +17737,80 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
     signedNonterminalFloorTargetRows.length > 0 &&
     signedNonterminalFloorTargetRows.every(
       (target) => target.nonterminal_signed_midpoint_fits_required === true
+    );
+  const allSignedNonterminalSourceInputProvenanceDiagnosticsPresent =
+    signedNonterminalSourceInputProvenanceDiagnosticRows.length ===
+      terminalCovarianceRows.length &&
+    signedNonterminalSourceInputProvenanceDiagnosticRows.length > 0;
+  const allSignedNonterminalSourceInputProvenanceDiagnosticsIdentifyPath =
+    signedNonterminalSourceInputProvenanceDiagnosticRows.length > 0 &&
+    signedNonterminalSourceInputProvenanceDiagnosticRows.every(
+      (target) =>
+        target.source_input_kind ===
+          "same-row-cell-midpoint-active-h0-h34-inactive-h35-h38-midpoints" &&
+        target.interpolation_node_count === 5 &&
+        Array.isArray(target.source_input_provenance_rows) &&
+        target.source_input_provenance_rows.length === 5 &&
+        target
+          .all_source_input_rows_identify_same_row_cell_midpoint_path === true
+    );
+  const allSignedNonterminalSourceInputProvenanceDiagnosticsUseH0H34 =
+    signedNonterminalSourceInputProvenanceDiagnosticRows.length > 0 &&
+    signedNonterminalSourceInputProvenanceDiagnosticRows.every(
+      (target) =>
+        target.all_source_input_rows_use_active_h0_h34_intervals === true &&
+        target.all_source_input_rows_freeze_h35_h38_to_midpoints === true
+    );
+  const allSignedNonterminalSourceInputProvenanceDiagnosticsKeepOpen =
+    signedNonterminalSourceInputProvenanceDiagnosticRows.length > 0 &&
+    signedNonterminalSourceInputProvenanceDiagnosticRows.every(
+      (target) =>
+        target.all_source_input_rows_keep_directed_rounding_open === true &&
+        target.certifies_source_inputs_as_directed_rounded_same_domain ===
+          false &&
+        target.source_input_provenance_classification ===
+          "same-row-h0-h34-source-input-path-identified-directed-rounding-open"
+    );
+  const allSignedNonterminalSourceInputReplayDiagnosticsPresent =
+    signedNonterminalSourceInputReplayDiagnosticRows.length ===
+      terminalCovarianceRows.length &&
+    signedNonterminalSourceInputReplayDiagnosticRows.length > 0;
+  const allSignedNonterminalSourceInputReplayDiagnosticsUseSameRow =
+    signedNonterminalSourceInputReplayDiagnosticRows.length > 0 &&
+    signedNonterminalSourceInputReplayDiagnosticRows.every(
+      (target) =>
+        target.source_input_replay_kind ===
+          "same-row-h0-h34-cell-midpoint-source-input-replay" &&
+        target.interpolation_node_count === 5 &&
+        Array.isArray(target.source_input_replay_rows) &&
+        target.source_input_replay_rows.length === 5 &&
+        target.all_source_input_rows_replay_from_original_row === true
+    );
+  const allSignedNonterminalSourceInputReplayDiagnosticsUseH0H34 =
+    signedNonterminalSourceInputReplayDiagnosticRows.length > 0 &&
+    signedNonterminalSourceInputReplayDiagnosticRows.every(
+      (target) =>
+        target.all_source_input_rows_replay_active_h0_h34_freeze_h35_h38 ===
+          true &&
+        target.all_source_input_rows_record_h38_evaluator_zeroing === true
+    );
+  const allSignedNonterminalSourceInputReplayDiagnosticsMatchStored =
+    signedNonterminalSourceInputReplayDiagnosticRows.length > 0 &&
+    signedNonterminalSourceInputReplayDiagnosticRows.every(
+      (target) =>
+        target.certifies_same_row_replay_for_stored_intervals === true &&
+        finiteNonnegative(target.max_source_input_replay_relative_gap) &&
+        Number(target.max_source_input_replay_relative_gap) < 1e-12
+    );
+  const allSignedNonterminalSourceInputReplayDiagnosticsKeepOpen =
+    signedNonterminalSourceInputReplayDiagnosticRows.length > 0 &&
+    signedNonterminalSourceInputReplayDiagnosticRows.every(
+      (target) =>
+        target.all_source_input_rows_keep_directed_rounding_open === true &&
+        target.certifies_source_inputs_as_directed_rounded_same_domain ===
+          false &&
+        target.source_input_replay_classification ===
+          "same-row-h0-h34-source-input-replay-closes-evaluator-path-directed-rounding-open"
     );
   const allSignedNonterminalIdentityRoutersPresent =
     signedNonterminalIdentityRouterRows.length ===
@@ -16692,6 +18163,118 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
         target.scaled_live_source_classification ===
           "scaled-live-h0-h34-provider-equals-screened-targets-source-certification-open"
     );
+  const allSignedNonterminalSourceMapDiagnosticsPresent =
+    signedNonterminalSourceMapDiagnosticRows.length ===
+      terminalCovarianceRows.length &&
+    signedNonterminalSourceMapDiagnosticRows.length > 0;
+  const allSignedNonterminalSourceMapDiagnosticsUseScaledProvider =
+    signedNonterminalSourceMapDiagnosticRows.length > 0 &&
+    signedNonterminalSourceMapDiagnosticRows.every(
+      (target) =>
+        target.source_scaled_live_source_provider_diagnostic_kind ===
+          "candidate-signed-nonterminal-h0-h34-scaled-live-source-provider-diagnostic" &&
+        target.interpolation_node_count === 5 &&
+        Array.isArray(target.source_map_rows) &&
+        target.source_map_rows.length === 5
+    );
+  const allSignedNonterminalSourceMapDiagnosticsCloseIdentities =
+    signedNonterminalSourceMapDiagnosticRows.length > 0 &&
+    signedNonterminalSourceMapDiagnosticRows.every(
+      (target) =>
+        target.all_source_map_rows_close_arithmetic_identities === true &&
+        target.all_source_map_rows_apply_single_uniform_contraction === true &&
+        target.all_source_map_rows_have_h0_h34_cell_midpoint_source === true
+    );
+  const allSignedNonterminalSourceMapDiagnosticsKeepSourceOpen =
+    signedNonterminalSourceMapDiagnosticRows.length > 0 &&
+    signedNonterminalSourceMapDiagnosticRows.every(
+      (target) =>
+        target.h38_source_dependency_metadata_available === true &&
+        target.h38_source_provider_certifies_directed_rounded_shared_domain ===
+          false &&
+        target.source_map_classification ===
+          "h0-h34-source-map-identities-close-directed-source-open"
+    );
+  const allSignedNonterminalSourceMapEndpointMarginDiagnosticsPresent =
+    signedNonterminalSourceMapEndpointMarginDiagnosticRows.length ===
+      terminalCovarianceRows.length &&
+    signedNonterminalSourceMapEndpointMarginDiagnosticRows.length > 0;
+  const allSignedNonterminalSourceMapEndpointMarginDiagnosticsUseSourceMap =
+    signedNonterminalSourceMapEndpointMarginDiagnosticRows.length > 0 &&
+    signedNonterminalSourceMapEndpointMarginDiagnosticRows.every(
+      (target) =>
+        target.source_source_map_diagnostic_kind ===
+          "candidate-signed-nonterminal-h0-h34-source-map-diagnostic" &&
+        target.interpolation_node_count === 5 &&
+        Array.isArray(target.endpoint_margin_rows) &&
+        target.endpoint_margin_rows.length === 5
+    );
+  const allSignedNonterminalSourceMapEndpointMarginDiagnosticsFitOneEpsilon =
+    signedNonterminalSourceMapEndpointMarginDiagnosticRows.length > 0 &&
+    signedNonterminalSourceMapEndpointMarginDiagnosticRows.every(
+      (target) =>
+        target.all_endpoint_margin_rows_fit_one_number_epsilon === true &&
+        finiteNonnegative(target.max_required_relative_endpoint_margin) &&
+        Number(target.max_required_relative_endpoint_margin) <= Number.EPSILON &&
+        finiteNonnegative(target.max_required_margin_to_number_epsilon_ratio) &&
+        Number(target.max_required_margin_to_number_epsilon_ratio) <= 1
+    );
+  const allSignedNonterminalSourceMapEndpointMarginDiagnosticsKeepSourceOpen =
+    signedNonterminalSourceMapEndpointMarginDiagnosticRows.length > 0 &&
+    signedNonterminalSourceMapEndpointMarginDiagnosticRows.every(
+      (target) =>
+        target.source_map_certifies_directed_rounded_shared_domain === false &&
+        target.endpoint_margin_classification ===
+          "one-number-epsilon-endpoint-margin-suffices-source-certification-open"
+    );
+  const allSignedNonterminalSourceOperationReplaysPresent =
+    signedNonterminalSourceOperationReplayRows.length ===
+      terminalCovarianceRows.length &&
+    signedNonterminalSourceOperationReplayRows.length > 0;
+  const allSignedNonterminalSourceOperationReplaysUseEndpointMargin =
+    signedNonterminalSourceOperationReplayRows.length > 0 &&
+    signedNonterminalSourceOperationReplayRows.every(
+      (target) =>
+        target.source_source_map_diagnostic_kind ===
+          "candidate-signed-nonterminal-h0-h34-source-map-diagnostic" &&
+        target.source_endpoint_margin_diagnostic_kind ===
+          "candidate-signed-nonterminal-h0-h34-source-map-endpoint-margin-diagnostic" &&
+        target.interpolation_node_count === 5 &&
+        Array.isArray(target.operation_replay_rows) &&
+        target.operation_replay_rows.length === 5
+    );
+  const allSignedNonterminalSourceOperationReplaysCloseMachinePath =
+    signedNonterminalSourceOperationReplayRows.length > 0 &&
+    signedNonterminalSourceOperationReplayRows.every(
+      (target) =>
+        target.all_operation_rows_replay_source_map_identities === true &&
+        target
+          .certifies_binary64_outward_operation_replay_for_supplied_intervals ===
+          true &&
+        finiteNonnegative(target.max_operation_replay_relative_gap) &&
+        Number(target.max_operation_replay_relative_gap) < 1e-12
+    );
+  const allSignedNonterminalSourceOperationReplaysFitEndpointMargin =
+    signedNonterminalSourceOperationReplayRows.length > 0 &&
+    signedNonterminalSourceOperationReplayRows.every(
+      (target) =>
+        target.all_operation_rows_fit_one_number_epsilon_endpoint_margin ===
+          true &&
+        target
+          .certifies_one_number_epsilon_endpoint_margin_for_operation_replay ===
+          true &&
+        Number(target.endpoint_margin_relative_bound) === Number.EPSILON
+    );
+  const allSignedNonterminalSourceOperationReplaysKeepSourceOpen =
+    signedNonterminalSourceOperationReplayRows.length > 0 &&
+    signedNonterminalSourceOperationReplayRows.every(
+      (target) =>
+        target.source_provenance_still_open === true &&
+        target.certifies_source_inputs_as_directed_rounded_same_domain ===
+          false &&
+        target.operation_replay_classification ===
+          "binary64-outward-operation-replay-closed-source-provenance-open"
+    );
   const terminalH35H37CovarianceTarget = {
     target_kind:
       "candidate-terminal-h35-h37-covariance-preservation-target",
@@ -16811,6 +18394,48 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
         : allSignedNonterminalFloorsBlock
           ? "signed-nonterminal-midpoints-also-block"
           : "signed-nonterminal-floor-cancellation-target-open",
+    signed_nonterminal_h0_h34_source_input_provenance_diagnostic_summary_kind:
+      "candidate-signed-nonterminal-h0-h34-source-input-provenance-diagnostic-summary",
+    all_selected_rows_have_signed_nonterminal_h0_h34_source_input_provenance_diagnostic:
+      allSignedNonterminalSourceInputProvenanceDiagnosticsPresent,
+    all_selected_rows_signed_nonterminal_h0_h34_source_input_provenance_diagnostics_identify_same_row_path:
+      allSignedNonterminalSourceInputProvenanceDiagnosticsIdentifyPath,
+    all_selected_rows_signed_nonterminal_h0_h34_source_input_provenance_diagnostics_use_h0_h34_freeze_h35_h38:
+      allSignedNonterminalSourceInputProvenanceDiagnosticsUseH0H34,
+    all_selected_rows_signed_nonterminal_h0_h34_source_input_provenance_diagnostics_keep_directed_rounding_open:
+      allSignedNonterminalSourceInputProvenanceDiagnosticsKeepOpen,
+    signed_nonterminal_h0_h34_source_input_provenance_diagnostic_interpretation:
+      allSignedNonterminalSourceInputProvenanceDiagnosticsKeepOpen
+        ? "same-row-h0-h34-source-input-path-identified-directed-rounding-open"
+        : allSignedNonterminalSourceInputProvenanceDiagnosticsIdentifyPath
+          ? "same-row-h0-h34-source-input-path-identified-metadata-open"
+          : allSignedNonterminalSourceInputProvenanceDiagnosticsPresent
+            ? "source-input-provenance-diagnostic-open"
+            : "source-input-provenance-diagnostic-missing",
+    signed_nonterminal_h0_h34_source_input_replay_diagnostic_summary_kind:
+      "candidate-signed-nonterminal-h0-h34-source-input-replay-diagnostic-summary",
+    all_selected_rows_have_signed_nonterminal_h0_h34_source_input_replay_diagnostic:
+      allSignedNonterminalSourceInputReplayDiagnosticsPresent,
+    all_selected_rows_signed_nonterminal_h0_h34_source_input_replays_use_same_row_original_inputs:
+      allSignedNonterminalSourceInputReplayDiagnosticsUseSameRow,
+    all_selected_rows_signed_nonterminal_h0_h34_source_input_replays_use_h0_h34_freeze_h35_h38:
+      allSignedNonterminalSourceInputReplayDiagnosticsUseH0H34,
+    all_selected_rows_signed_nonterminal_h0_h34_source_input_replays_match_stored_intervals:
+      allSignedNonterminalSourceInputReplayDiagnosticsMatchStored,
+    all_selected_rows_signed_nonterminal_h0_h34_source_input_replays_keep_directed_rounding_open:
+      allSignedNonterminalSourceInputReplayDiagnosticsKeepOpen,
+    max_signed_nonterminal_h0_h34_source_input_replay_relative_gap:
+      signedNonterminalSourceInputReplayDiagnosticMaxNumber(
+        "max_source_input_replay_relative_gap"
+      ),
+    signed_nonterminal_h0_h34_source_input_replay_diagnostic_interpretation:
+      allSignedNonterminalSourceInputReplayDiagnosticsKeepOpen
+        ? "same-row-h0-h34-source-input-replay-closes-evaluator-path-directed-rounding-open"
+        : allSignedNonterminalSourceInputReplayDiagnosticsMatchStored
+          ? "same-row-h0-h34-source-input-replay-matches-stored-intervals-metadata-open"
+          : allSignedNonterminalSourceInputReplayDiagnosticsPresent
+            ? "source-input-replay-diagnostic-open"
+            : "source-input-replay-diagnostic-missing",
     signed_nonterminal_h0_h34_identity_router_summary_kind:
       "candidate-signed-nonterminal-h0-h34-identity-router-summary",
     all_selected_rows_have_signed_nonterminal_h0_h34_identity_router:
@@ -17252,6 +18877,83 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
             : allSignedNonterminalScaledLiveSourceProviderDiagnosticsPresent
               ? "uniform-scaled-live-h0-h34-provider-diagnostic-open"
               : "uniform-scaled-live-h0-h34-provider-diagnostic-missing",
+    signed_nonterminal_h0_h34_source_map_diagnostic_summary_kind:
+      "candidate-signed-nonterminal-h0-h34-source-map-diagnostic-summary",
+    all_selected_rows_have_signed_nonterminal_h0_h34_source_map_diagnostic:
+      allSignedNonterminalSourceMapDiagnosticsPresent,
+    all_selected_rows_signed_nonterminal_h0_h34_source_map_diagnostics_use_scaled_provider:
+      allSignedNonterminalSourceMapDiagnosticsUseScaledProvider,
+    all_selected_rows_signed_nonterminal_h0_h34_source_map_diagnostics_close_arithmetic_identities:
+      allSignedNonterminalSourceMapDiagnosticsCloseIdentities,
+    all_selected_rows_signed_nonterminal_h0_h34_source_map_diagnostics_keep_source_open:
+      allSignedNonterminalSourceMapDiagnosticsKeepSourceOpen,
+    max_signed_nonterminal_h0_h34_source_map_identity_relative_gap:
+      signedNonterminalSourceMapDiagnosticMaxNumber(
+        "max_source_map_identity_relative_gap"
+      ),
+    max_signed_nonterminal_h0_h34_source_map_scaled_target_relative_gap:
+      signedNonterminalSourceMapDiagnosticMaxNumber(
+        "max_source_map_scaled_target_relative_gap"
+      ),
+    signed_nonterminal_h0_h34_source_map_diagnostic_interpretation:
+      allSignedNonterminalSourceMapDiagnosticsKeepSourceOpen
+        ? "h0-h34-cell-midpoint-source-map-identities-close-directed-source-open"
+        : allSignedNonterminalSourceMapDiagnosticsCloseIdentities
+          ? "h0-h34-cell-midpoint-source-map-identities-close-metadata-open"
+          : allSignedNonterminalSourceMapDiagnosticsPresent
+            ? "h0-h34-cell-midpoint-source-map-diagnostic-open"
+            : "h0-h34-cell-midpoint-source-map-diagnostic-missing",
+    signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic_summary_kind:
+      "candidate-signed-nonterminal-h0-h34-source-map-endpoint-margin-diagnostic-summary",
+    all_selected_rows_have_signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic:
+      allSignedNonterminalSourceMapEndpointMarginDiagnosticsPresent,
+    all_selected_rows_signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostics_use_source_map:
+      allSignedNonterminalSourceMapEndpointMarginDiagnosticsUseSourceMap,
+    all_selected_rows_signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostics_fit_one_number_epsilon:
+      allSignedNonterminalSourceMapEndpointMarginDiagnosticsFitOneEpsilon,
+    all_selected_rows_signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostics_keep_source_open:
+      allSignedNonterminalSourceMapEndpointMarginDiagnosticsKeepSourceOpen,
+    max_signed_nonterminal_h0_h34_source_map_endpoint_required_relative_margin:
+      signedNonterminalSourceMapEndpointMarginDiagnosticMaxNumber(
+        "max_required_relative_endpoint_margin"
+      ),
+    max_signed_nonterminal_h0_h34_source_map_endpoint_margin_to_number_epsilon_ratio:
+      signedNonterminalSourceMapEndpointMarginDiagnosticMaxNumber(
+        "max_required_margin_to_number_epsilon_ratio"
+      ),
+    signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic_interpretation:
+      allSignedNonterminalSourceMapEndpointMarginDiagnosticsKeepSourceOpen
+        ? "one-number-epsilon-endpoint-margin-suffices-source-certification-open"
+        : allSignedNonterminalSourceMapEndpointMarginDiagnosticsFitOneEpsilon
+          ? "one-number-epsilon-endpoint-margin-suffices-metadata-open"
+          : allSignedNonterminalSourceMapEndpointMarginDiagnosticsPresent
+            ? "source-map-endpoint-margin-diagnostic-open"
+            : "source-map-endpoint-margin-diagnostic-missing",
+    signed_nonterminal_h0_h34_source_operation_replay_summary_kind:
+      "candidate-signed-nonterminal-h0-h34-source-operation-replay-summary",
+    all_selected_rows_have_signed_nonterminal_h0_h34_source_operation_replay:
+      allSignedNonterminalSourceOperationReplaysPresent,
+    all_selected_rows_signed_nonterminal_h0_h34_source_operation_replays_use_endpoint_margin:
+      allSignedNonterminalSourceOperationReplaysUseEndpointMargin,
+    all_selected_rows_signed_nonterminal_h0_h34_source_operation_replays_close_binary64_outward_operation_path:
+      allSignedNonterminalSourceOperationReplaysCloseMachinePath,
+    all_selected_rows_signed_nonterminal_h0_h34_source_operation_replays_fit_one_number_epsilon_endpoint_margin:
+      allSignedNonterminalSourceOperationReplaysFitEndpointMargin,
+    all_selected_rows_signed_nonterminal_h0_h34_source_operation_replays_keep_source_provenance_open:
+      allSignedNonterminalSourceOperationReplaysKeepSourceOpen,
+    max_signed_nonterminal_h0_h34_source_operation_replay_relative_gap:
+      signedNonterminalSourceOperationReplayMaxNumber(
+        "max_operation_replay_relative_gap"
+      ),
+    signed_nonterminal_h0_h34_source_operation_replay_interpretation:
+      allSignedNonterminalSourceOperationReplaysKeepSourceOpen
+        ? "binary64-outward-operation-replay-closed-source-provenance-open"
+        : allSignedNonterminalSourceOperationReplaysCloseMachinePath &&
+            allSignedNonterminalSourceOperationReplaysFitEndpointMargin
+          ? "binary64-outward-operation-replay-closed-metadata-open"
+          : allSignedNonterminalSourceOperationReplaysPresent
+            ? "binary64-outward-operation-replay-open"
+            : "binary64-outward-operation-replay-missing",
     linear_width_share_budget_interpretation:
       !allTerminalOnlyCompressionCanClose && allHRowsCompressionCanClose
         ? "terminal-h35-h37-dominates-but-terminal-only-compression-is-insufficient-under-nonterminal-floor"
@@ -48955,6 +50657,53 @@ export function validateH39SuccessorSuffixTransitionCertificateRouteCandidate(
         covarianceTarget?.signed_nonterminal_h0_h34_floor_interpretation
       ) &&
       covarianceTarget
+        ?.signed_nonterminal_h0_h34_source_input_provenance_diagnostic_summary_kind ===
+        "candidate-signed-nonterminal-h0-h34-source-input-provenance-diagnostic-summary" &&
+      covarianceTarget
+        ?.all_selected_rows_have_signed_nonterminal_h0_h34_source_input_provenance_diagnostic ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_source_input_provenance_diagnostics_identify_same_row_path ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_source_input_provenance_diagnostics_use_h0_h34_freeze_h35_h38 ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_source_input_provenance_diagnostics_keep_directed_rounding_open ===
+        true &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_source_input_provenance_diagnostic_interpretation ===
+        "same-row-h0-h34-source-input-path-identified-directed-rounding-open" &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_source_input_replay_diagnostic_summary_kind ===
+        "candidate-signed-nonterminal-h0-h34-source-input-replay-diagnostic-summary" &&
+      covarianceTarget
+        ?.all_selected_rows_have_signed_nonterminal_h0_h34_source_input_replay_diagnostic ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_source_input_replays_use_same_row_original_inputs ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_source_input_replays_use_h0_h34_freeze_h35_h38 ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_source_input_replays_match_stored_intervals ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_source_input_replays_keep_directed_rounding_open ===
+        true &&
+      finiteNonnegative(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_source_input_replay_relative_gap
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_source_input_replay_relative_gap
+      ) < 1e-12 &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_source_input_replay_diagnostic_interpretation ===
+        "same-row-h0-h34-source-input-replay-closes-evaluator-path-directed-rounding-open" &&
+      covarianceTarget
         ?.signed_nonterminal_h0_h34_identity_router_summary_kind ===
         "candidate-signed-nonterminal-h0-h34-identity-router-summary" &&
       covarianceTarget
@@ -49408,6 +51157,103 @@ export function validateH39SuccessorSuffixTransitionCertificateRouteCandidate(
         covarianceTarget
           ?.signed_nonterminal_h0_h34_scaled_live_source_provider_diagnostic_interpretation
       ) &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_source_map_diagnostic_summary_kind ===
+        "candidate-signed-nonterminal-h0-h34-source-map-diagnostic-summary" &&
+      covarianceTarget
+        ?.all_selected_rows_have_signed_nonterminal_h0_h34_source_map_diagnostic ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_source_map_diagnostics_use_scaled_provider ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_source_map_diagnostics_close_arithmetic_identities ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_source_map_diagnostics_keep_source_open ===
+        true &&
+      finiteNonnegative(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_source_map_identity_relative_gap
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_source_map_identity_relative_gap
+      ) < 1e-12 &&
+      finiteNonnegative(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_source_map_scaled_target_relative_gap
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_source_map_scaled_target_relative_gap
+      ) < 1e-12 &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_source_map_diagnostic_interpretation ===
+        "h0-h34-cell-midpoint-source-map-identities-close-directed-source-open" &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic_summary_kind ===
+        "candidate-signed-nonterminal-h0-h34-source-map-endpoint-margin-diagnostic-summary" &&
+      covarianceTarget
+        ?.all_selected_rows_have_signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostics_use_source_map ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostics_fit_one_number_epsilon ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostics_keep_source_open ===
+        true &&
+      finiteNonnegative(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_source_map_endpoint_required_relative_margin
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_source_map_endpoint_required_relative_margin
+      ) <= Number.EPSILON &&
+      finiteNonnegative(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_source_map_endpoint_margin_to_number_epsilon_ratio
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_source_map_endpoint_margin_to_number_epsilon_ratio
+      ) <= 1 &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic_interpretation ===
+        "one-number-epsilon-endpoint-margin-suffices-source-certification-open" &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_source_operation_replay_summary_kind ===
+        "candidate-signed-nonterminal-h0-h34-source-operation-replay-summary" &&
+      covarianceTarget
+        ?.all_selected_rows_have_signed_nonterminal_h0_h34_source_operation_replay ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_source_operation_replays_use_endpoint_margin ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_source_operation_replays_close_binary64_outward_operation_path ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_source_operation_replays_fit_one_number_epsilon_endpoint_margin ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_source_operation_replays_keep_source_provenance_open ===
+        true &&
+      finiteNonnegative(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_source_operation_replay_relative_gap
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_source_operation_replay_relative_gap
+      ) < 1e-12 &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_source_operation_replay_interpretation ===
+        "binary64-outward-operation-replay-closed-source-provenance-open" &&
       covarianceTarget?.linear_width_share_budget_interpretation ===
         "terminal-h35-h37-dominates-but-terminal-only-compression-is-insufficient-under-nonterminal-floor" &&
       covarianceTarget?.covariance_preservation_interpretation ===
@@ -49673,6 +51519,171 @@ export function validateH39SuccessorSuffixTransitionCertificateRouteCandidate(
           row.signed_nonterminal_h0_h34_floor_cancellation_target
             .claim_boundary?.certifies_n38_fourth_derivative_bound === false &&
           row.signed_nonterminal_h0_h34_floor_cancellation_target
+            .claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+          row
+            ?.signed_nonterminal_h0_h34_source_input_provenance_diagnostic
+            ?.target_kind ===
+            "candidate-signed-nonterminal-h0-h34-source-input-provenance-diagnostic" &&
+          row.signed_nonterminal_h0_h34_source_input_provenance_diagnostic
+            .source_floor_target_kind ===
+            "candidate-signed-nonterminal-h0-h34-floor-cancellation-target" &&
+          row.signed_nonterminal_h0_h34_source_input_provenance_diagnostic
+            .proof_status ===
+            "candidate-source-input-path-identified-directed-rounding-open" &&
+          row.signed_nonterminal_h0_h34_source_input_provenance_diagnostic
+            .source_input_kind ===
+            "same-row-cell-midpoint-active-h0-h34-inactive-h35-h38-midpoints" &&
+          row.signed_nonterminal_h0_h34_source_input_provenance_diagnostic
+            .all_source_input_rows_identify_same_row_cell_midpoint_path ===
+            true &&
+          row.signed_nonterminal_h0_h34_source_input_provenance_diagnostic
+            .all_source_input_rows_use_active_h0_h34_intervals === true &&
+          row.signed_nonterminal_h0_h34_source_input_provenance_diagnostic
+            .all_source_input_rows_freeze_h35_h38_to_midpoints === true &&
+          row.signed_nonterminal_h0_h34_source_input_provenance_diagnostic
+            .all_source_input_rows_keep_directed_rounding_open === true &&
+          row.signed_nonterminal_h0_h34_source_input_provenance_diagnostic
+            .certifies_source_inputs_as_directed_rounded_same_domain ===
+            false &&
+          row.signed_nonterminal_h0_h34_source_input_provenance_diagnostic
+            .source_input_provenance_classification ===
+            "same-row-h0-h34-source-input-path-identified-directed-rounding-open" &&
+          Array.isArray(
+            row.signed_nonterminal_h0_h34_source_input_provenance_diagnostic
+              .source_input_provenance_rows
+          ) &&
+          row.signed_nonterminal_h0_h34_source_input_provenance_diagnostic
+            .source_input_provenance_rows.length === 5 &&
+          row.signed_nonterminal_h0_h34_source_input_provenance_diagnostic
+            .source_input_provenance_rows.every(
+              (provenanceRow) =>
+                Number.isInteger(provenanceRow?.node_index) &&
+                Number.isFinite(Number(provenanceRow?.xi_midpoint)) &&
+                provenanceRow?.source_variant ===
+                  "h0-h34-cell-midpoint" &&
+                provenanceRow?.source_evaluator ===
+                  "evaluateH38RecurrenceNumeratorBeforeSolve" &&
+                provenanceRow?.coefficient_interval_source ===
+                  "evaluateH38RecurrenceNumeratorBeforeSolve(...).numerator_interval" &&
+                provenanceRow?.source_cell_constructor ===
+                  "pointCellAtMidpoint(cell)" &&
+                provenanceRow?.source_h_interval_constructor ===
+                  "hIntervalsWithActiveIndexes(active_h_indexes)" &&
+                provenanceRow?.active_h0_h34_intervals_identified === true &&
+                provenanceRow?.inactive_h35_h38_midpoints_identified ===
+                  true &&
+                provenanceRow?.h38_input_status ===
+                  "h38-midpoint-frozen" &&
+                provenanceRow
+                  ?.same_row_cell_midpoint_input_path_identified === true &&
+                provenanceRow
+                  ?.source_inputs_certified_directed_rounded_same_domain ===
+                  false &&
+                provenanceRow?.source_input_provenance_row_status ===
+                  "same-row-h0-h34-cell-midpoint-input-path-identified-directed-rounding-open"
+            ) &&
+          row.signed_nonterminal_h0_h34_source_input_provenance_diagnostic
+            .claim_boundary?.certifies_h0_h34_cell_midpoint_source_inputs ===
+            false &&
+          row.signed_nonterminal_h0_h34_source_input_provenance_diagnostic
+            .claim_boundary
+            ?.certifies_source_inputs_as_directed_rounded_same_domain ===
+            false &&
+          row.signed_nonterminal_h0_h34_source_input_provenance_diagnostic
+            .claim_boundary?.certifies_directed_rounded_shared_domain ===
+            false &&
+          row.signed_nonterminal_h0_h34_source_input_provenance_diagnostic
+            .claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+          row?.signed_nonterminal_h0_h34_source_input_replay_diagnostic
+            ?.target_kind ===
+            "candidate-signed-nonterminal-h0-h34-source-input-replay-diagnostic" &&
+          row.signed_nonterminal_h0_h34_source_input_replay_diagnostic
+            .source_floor_target_kind ===
+            "candidate-signed-nonterminal-h0-h34-floor-cancellation-target" &&
+          row.signed_nonterminal_h0_h34_source_input_replay_diagnostic
+            .source_input_provenance_diagnostic_kind ===
+            "candidate-signed-nonterminal-h0-h34-source-input-provenance-diagnostic" &&
+          row.signed_nonterminal_h0_h34_source_input_replay_diagnostic
+            .proof_status ===
+            "candidate-source-input-replayed-from-same-row-directed-rounding-open" &&
+          row.signed_nonterminal_h0_h34_source_input_replay_diagnostic
+            .source_input_replay_kind ===
+            "same-row-h0-h34-cell-midpoint-source-input-replay" &&
+          row.signed_nonterminal_h0_h34_source_input_replay_diagnostic
+            .all_source_input_rows_replay_from_original_row === true &&
+          row.signed_nonterminal_h0_h34_source_input_replay_diagnostic
+            .all_source_input_rows_replay_active_h0_h34_freeze_h35_h38 ===
+            true &&
+          row.signed_nonterminal_h0_h34_source_input_replay_diagnostic
+            .all_source_input_rows_record_h38_evaluator_zeroing === true &&
+          row.signed_nonterminal_h0_h34_source_input_replay_diagnostic
+            .all_source_input_rows_keep_directed_rounding_open === true &&
+          row.signed_nonterminal_h0_h34_source_input_replay_diagnostic
+            .certifies_same_row_replay_for_stored_intervals === true &&
+          row.signed_nonterminal_h0_h34_source_input_replay_diagnostic
+            .certifies_source_inputs_as_directed_rounded_same_domain ===
+            false &&
+          finiteNonnegative(
+            row.signed_nonterminal_h0_h34_source_input_replay_diagnostic
+              .max_source_input_replay_relative_gap
+          ) &&
+          Number(
+            row.signed_nonterminal_h0_h34_source_input_replay_diagnostic
+              .max_source_input_replay_relative_gap
+          ) < 1e-12 &&
+          row.signed_nonterminal_h0_h34_source_input_replay_diagnostic
+            .source_input_replay_classification ===
+            "same-row-h0-h34-source-input-replay-closes-evaluator-path-directed-rounding-open" &&
+          Array.isArray(
+            row.signed_nonterminal_h0_h34_source_input_replay_diagnostic
+              .source_input_replay_rows
+          ) &&
+          row.signed_nonterminal_h0_h34_source_input_replay_diagnostic
+            .source_input_replay_rows.length === 5 &&
+          row.signed_nonterminal_h0_h34_source_input_replay_diagnostic
+            .source_input_replay_rows.every(
+              (replayRow) =>
+                Number.isInteger(replayRow?.node_index) &&
+                Number.isFinite(Number(replayRow?.xi_midpoint)) &&
+                replayRow?.source_variant === "h0-h34-cell-midpoint" &&
+                replayRow?.replay_kind ===
+                  "same-row-h0-h34-cell-midpoint-source-input-replay" &&
+                replayRow?.source_evaluator ===
+                  "evaluateH38RecurrenceNumeratorBeforeSolve" &&
+                replayRow?.source_cell_constructor ===
+                  "pointCellAtMidpoint(cell)" &&
+                replayRow?.source_h_interval_constructor ===
+                  "rebuild-active-h0-h34-from-original-row-and-midpoint-freeze-h35-h38" &&
+                replayRow?.active_h0_h34_intervals_replayed === true &&
+                replayRow?.midpoint_frozen_h35_h38_replayed === true &&
+                replayRow?.h38_midpoint_supplied_to_evaluator === true &&
+                replayRow?.h38_target_zeroed_by_evaluator === true &&
+                replayRow?.stored_source_replayed_from_original_row ===
+                  true &&
+                replayRow?.certifies_same_row_replay_for_stored_intervals ===
+                  true &&
+                replayRow
+                  ?.source_inputs_certified_directed_rounded_same_domain ===
+                  false &&
+                finiteNonnegative(
+                  replayRow?.stored_vs_replayed_endpoint_relative_gap
+                ) &&
+                Number(replayRow.stored_vs_replayed_endpoint_relative_gap) <
+                  1e-12 &&
+                replayRow?.source_input_replay_row_status ===
+                  "same-row-h0-h34-cell-midpoint-source-input-replayed-directed-rounding-open"
+            ) &&
+          row.signed_nonterminal_h0_h34_source_input_replay_diagnostic
+            .claim_boundary?.certifies_same_row_replay_for_stored_intervals ===
+            true &&
+          row.signed_nonterminal_h0_h34_source_input_replay_diagnostic
+            .claim_boundary
+            ?.certifies_source_inputs_as_directed_rounded_same_domain ===
+            false &&
+          row.signed_nonterminal_h0_h34_source_input_replay_diagnostic
+            .claim_boundary?.certifies_directed_rounded_shared_domain ===
+            false &&
+          row.signed_nonterminal_h0_h34_source_input_replay_diagnostic
             .claim_boundary?.certifies_shifted_R43_outer_bound === false &&
           row?.signed_nonterminal_h0_h34_identity_router?.router_kind ===
             "candidate-signed-nonterminal-h0-h34-identity-router" &&
@@ -50927,6 +52938,272 @@ export function validateH39SuccessorSuffixTransitionCertificateRouteCandidate(
           row
             .signed_nonterminal_h0_h34_scaled_live_source_provider_diagnostic
             .claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+          row?.signed_nonterminal_h0_h34_source_map_diagnostic?.target_kind ===
+            "candidate-signed-nonterminal-h0-h34-source-map-diagnostic" &&
+          row.signed_nonterminal_h0_h34_source_map_diagnostic
+            .source_floor_target_kind ===
+            "candidate-signed-nonterminal-h0-h34-floor-cancellation-target" &&
+          row.signed_nonterminal_h0_h34_source_map_diagnostic
+            .source_dependency_loss_budget_kind ===
+            "candidate-signed-nonterminal-h0-h34-dependency-loss-budget" &&
+          row.signed_nonterminal_h0_h34_source_map_diagnostic
+            .source_provider_specification_kind ===
+            "candidate-signed-nonterminal-h0-h34-midpoint-dependency-preserving-provider-specification-target" &&
+          row.signed_nonterminal_h0_h34_source_map_diagnostic
+            .source_single_contraction_provider_contract_kind ===
+            "candidate-signed-nonterminal-h0-h34-single-contraction-provider-contract" &&
+          row.signed_nonterminal_h0_h34_source_map_diagnostic
+            .source_scaled_live_source_provider_diagnostic_kind ===
+            "candidate-signed-nonterminal-h0-h34-scaled-live-source-provider-diagnostic" &&
+          row.signed_nonterminal_h0_h34_source_map_diagnostic.proof_status ===
+            "candidate-source-map-identities-not-directed-rounded" &&
+          row.signed_nonterminal_h0_h34_source_map_diagnostic
+            .source_map_kind ===
+            "h0-h34-cell-midpoint-to-scaled-provider-row-identity-map" &&
+          row.signed_nonterminal_h0_h34_source_map_diagnostic
+            .h38_source_dependency_metadata_available === true &&
+          row.signed_nonterminal_h0_h34_source_map_diagnostic
+            .h38_source_provider_certifies_directed_rounded_shared_domain ===
+            false &&
+          row.signed_nonterminal_h0_h34_source_map_diagnostic
+            .all_source_map_rows_close_arithmetic_identities === true &&
+          row.signed_nonterminal_h0_h34_source_map_diagnostic
+            .all_source_map_rows_apply_single_uniform_contraction === true &&
+          row.signed_nonterminal_h0_h34_source_map_diagnostic
+            .all_source_map_rows_have_h0_h34_cell_midpoint_source === true &&
+          finiteNonnegative(
+            row.signed_nonterminal_h0_h34_source_map_diagnostic
+              .max_source_map_identity_relative_gap
+          ) &&
+          Number(
+            row.signed_nonterminal_h0_h34_source_map_diagnostic
+              .max_source_map_identity_relative_gap
+          ) < 1e-12 &&
+          finiteNonnegative(
+            row.signed_nonterminal_h0_h34_source_map_diagnostic
+              .max_source_map_scaled_target_relative_gap
+          ) &&
+          Number(
+            row.signed_nonterminal_h0_h34_source_map_diagnostic
+              .max_source_map_scaled_target_relative_gap
+          ) < 1e-12 &&
+          row.signed_nonterminal_h0_h34_source_map_diagnostic
+            .source_map_classification ===
+            "h0-h34-source-map-identities-close-directed-source-open" &&
+          Array.isArray(
+            row.signed_nonterminal_h0_h34_source_map_diagnostic
+              .source_map_rows
+          ) &&
+          row.signed_nonterminal_h0_h34_source_map_diagnostic.source_map_rows
+            .length === 5 &&
+          row.signed_nonterminal_h0_h34_source_map_diagnostic.source_map_rows.every(
+            (sourceMapRow) =>
+              Number.isInteger(sourceMapRow?.node_index) &&
+              Number.isFinite(Number(sourceMapRow?.xi_midpoint)) &&
+              sourceMapRow?.source_variant === "h0-h34-cell-midpoint" &&
+              sourceMapRow?.coefficient_source_identity_matches_provider_spec ===
+                true &&
+              sourceMapRow?.weighted_source_identity_matches_dependency ===
+                true &&
+              sourceMapRow?.contract_weighted_live_matches_dependency ===
+                true &&
+              sourceMapRow?.contract_coefficient_live_matches_provider_spec ===
+                true &&
+              sourceMapRow?.scaled_weighted_map_matches_scaled_provider ===
+                true &&
+              sourceMapRow?.scaled_coefficient_map_matches_scaled_provider ===
+                true &&
+              finiteNonnegative(
+                sourceMapRow?.scaled_weighted_to_screened_target_relative_gap
+              ) &&
+              finiteNonnegative(
+                sourceMapRow
+                  ?.scaled_coefficient_to_screened_target_relative_gap
+              ) &&
+              sourceMapRow?.source_map_row_status ===
+                "h0-h34-source-map-row-identities-close"
+          ) &&
+          row.signed_nonterminal_h0_h34_source_map_diagnostic.claim_boundary
+            ?.certifies_h0_h34_cell_midpoint_source_map === false &&
+          row.signed_nonterminal_h0_h34_source_map_diagnostic.claim_boundary
+            ?.certifies_scaled_operation_as_directed_rounded_source === false &&
+          row.signed_nonterminal_h0_h34_source_map_diagnostic.claim_boundary
+            ?.certifies_directed_rounded_shared_domain === false &&
+          row.signed_nonterminal_h0_h34_source_map_diagnostic.claim_boundary
+            ?.certifies_shifted_R43_outer_bound === false &&
+          row
+            ?.signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic
+            ?.target_kind ===
+            "candidate-signed-nonterminal-h0-h34-source-map-endpoint-margin-diagnostic" &&
+          row
+            .signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic
+            .source_source_map_diagnostic_kind ===
+            "candidate-signed-nonterminal-h0-h34-source-map-diagnostic" &&
+          row
+            .signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic
+            .proof_status ===
+            "candidate-endpoint-margin-screen-not-directed-rounded-source" &&
+          row
+            .signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic
+            .endpoint_margin_kind ===
+            "one-number-epsilon-relative-endpoint-margin-screen" &&
+          Number(
+            row
+              .signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic
+              .endpoint_margin_relative_bound
+          ) === Number.EPSILON &&
+          row
+            .signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic
+            .source_map_rows_close_arithmetic_identities === true &&
+          row
+            .signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic
+            .source_map_certifies_directed_rounded_shared_domain === false &&
+          row
+            .signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic
+            .all_endpoint_margin_rows_use_h0_h34_cell_midpoint_source ===
+            true &&
+          row
+            .signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic
+            .all_endpoint_margin_rows_fit_one_number_epsilon === true &&
+          finiteNonnegative(
+            row
+              .signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic
+              .max_required_relative_endpoint_margin
+          ) &&
+          Number(
+            row
+              .signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic
+              .max_required_relative_endpoint_margin
+          ) <= Number.EPSILON &&
+          finiteNonnegative(
+            row
+              .signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic
+              .max_required_margin_to_number_epsilon_ratio
+          ) &&
+          Number(
+            row
+              .signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic
+              .max_required_margin_to_number_epsilon_ratio
+          ) <= 1 &&
+          row
+            .signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic
+            .endpoint_margin_classification ===
+            "one-number-epsilon-endpoint-margin-suffices-source-certification-open" &&
+          Array.isArray(
+            row
+              .signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic
+              .endpoint_margin_rows
+          ) &&
+          row
+            .signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic
+            .endpoint_margin_rows.length === 5 &&
+          row
+            .signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic
+            .endpoint_margin_rows.every(
+              (marginRow) =>
+                Number.isInteger(marginRow?.node_index) &&
+                marginRow?.source_variant === "h0-h34-cell-midpoint" &&
+                finiteNonnegative(
+                  marginRow?.weighted_required_relative_endpoint_margin
+                ) &&
+                finiteNonnegative(
+                  marginRow?.coefficient_required_relative_endpoint_margin
+                ) &&
+                marginRow?.weighted_number_epsilon_margin_contains_scaled_interval ===
+                  true &&
+                marginRow?.coefficient_number_epsilon_margin_contains_scaled_interval ===
+                  true &&
+                marginRow?.endpoint_margin_row_status ===
+                  "one-number-epsilon-endpoint-margin-contains-scaled-source-map-row"
+            ) &&
+          row
+            .signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic
+            .claim_boundary
+            ?.certifies_endpoint_margin_as_directed_rounded_source === false &&
+          row
+            .signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic
+            .claim_boundary?.certifies_directed_rounded_shared_domain ===
+            false &&
+          row
+            .signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic
+            .claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+          row?.signed_nonterminal_h0_h34_source_operation_replay
+            ?.target_kind ===
+            "candidate-signed-nonterminal-h0-h34-source-operation-replay" &&
+          row.signed_nonterminal_h0_h34_source_operation_replay
+            .source_source_map_diagnostic_kind ===
+            "candidate-signed-nonterminal-h0-h34-source-map-diagnostic" &&
+          row.signed_nonterminal_h0_h34_source_operation_replay
+            .source_endpoint_margin_diagnostic_kind ===
+            "candidate-signed-nonterminal-h0-h34-source-map-endpoint-margin-diagnostic" &&
+          row.signed_nonterminal_h0_h34_source_operation_replay
+            .proof_status ===
+            "candidate-binary64-outward-operation-replay-source-provenance-open" &&
+          row.signed_nonterminal_h0_h34_source_operation_replay
+            .operation_replay_kind ===
+            "h0-h34-cell-midpoint-source-map-with-one-number-epsilon-endpoint-margin" &&
+          row.signed_nonterminal_h0_h34_source_operation_replay
+            .all_operation_rows_use_h0_h34_cell_midpoint_source === true &&
+          row.signed_nonterminal_h0_h34_source_operation_replay
+            .all_operation_rows_replay_source_map_identities === true &&
+          row.signed_nonterminal_h0_h34_source_operation_replay
+            .all_operation_rows_fit_one_number_epsilon_endpoint_margin ===
+            true &&
+          row.signed_nonterminal_h0_h34_source_operation_replay
+            .certifies_binary64_outward_operation_replay_for_supplied_intervals ===
+            true &&
+          row.signed_nonterminal_h0_h34_source_operation_replay
+            .certifies_one_number_epsilon_endpoint_margin_for_operation_replay ===
+            true &&
+          row.signed_nonterminal_h0_h34_source_operation_replay
+            .certifies_source_inputs_as_directed_rounded_same_domain ===
+            false &&
+          row.signed_nonterminal_h0_h34_source_operation_replay
+            .source_provenance_still_open === true &&
+          finiteNonnegative(
+            row.signed_nonterminal_h0_h34_source_operation_replay
+              .max_operation_replay_relative_gap
+          ) &&
+          Number(
+            row.signed_nonterminal_h0_h34_source_operation_replay
+              .max_operation_replay_relative_gap
+          ) < 1e-12 &&
+          row.signed_nonterminal_h0_h34_source_operation_replay
+            .operation_replay_classification ===
+            "binary64-outward-operation-replay-closed-source-provenance-open" &&
+          Array.isArray(
+            row.signed_nonterminal_h0_h34_source_operation_replay
+              .operation_replay_rows
+          ) &&
+          row.signed_nonterminal_h0_h34_source_operation_replay
+            .operation_replay_rows.length === 5 &&
+          row.signed_nonterminal_h0_h34_source_operation_replay
+            .operation_replay_rows.every(
+              (operationRow) =>
+                Number.isInteger(operationRow?.node_index) &&
+                operationRow?.source_variant === "h0-h34-cell-midpoint" &&
+                operationRow?.source_operation_kind ===
+                  "h0-h34-cell-midpoint-binary64-outward-source-map-operation" &&
+                operationRow?.endpoint_margin_relative_bound ===
+                  Number.EPSILON &&
+                operationRow?.operation_replay_matches_source_map_row ===
+                  true &&
+                operationRow
+                  ?.weighted_operation_replay_fits_one_epsilon_endpoint_margin ===
+                  true &&
+                operationRow
+                  ?.coefficient_operation_replay_fits_one_epsilon_endpoint_margin ===
+                  true &&
+                operationRow?.operation_row_status ===
+                  "binary64-outward-source-operation-replay-fits-one-epsilon-endpoint-margin"
+            ) &&
+          row.signed_nonterminal_h0_h34_source_operation_replay.claim_boundary
+            ?.certifies_source_inputs_as_directed_rounded_same_domain ===
+            false &&
+          row.signed_nonterminal_h0_h34_source_operation_replay.claim_boundary
+            ?.certifies_directed_rounded_shared_domain === false &&
+          row.signed_nonterminal_h0_h34_source_operation_replay.claim_boundary
+            ?.certifies_shifted_R43_outer_bound === false &&
           row?.node_width_localization_interpretation ===
             "terminal-h35-h37-hrow-intervals-dominate-total-n38-node-width" &&
           Array.isArray(row?.dominant_terminal_h_indexes) &&
@@ -59414,6 +61691,40 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
           Number.isFinite(Number(variant?.coefficient_midpoint)) &&
           finiteNonnegative(variant?.coefficient_width) &&
           finiteNonnegative(variant?.coefficient_abs_upper) &&
+          variant?.source_input_provenance !== null &&
+          typeof variant?.source_input_provenance === "object" &&
+          variant.source_input_provenance.variant === variant.variant &&
+          variant.source_input_provenance.source_y_order ===
+            H38_NUMERATOR_Y_ORDER &&
+          typeof variant.source_input_provenance.source_evaluator ===
+            "string" &&
+          typeof variant.source_input_provenance
+            .coefficient_interval_source === "string" &&
+          variant.source_input_provenance.cell_mode === variant.cell_mode &&
+          typeof variant.source_input_provenance
+            .source_cell_constructor === "string" &&
+          typeof variant.source_input_provenance
+            .source_h_interval_constructor === "string" &&
+          Array.isArray(
+            variant.source_input_provenance.active_h_indexes
+          ) &&
+          variant.source_input_provenance.active_h_indexes.every(
+            (hIndex) =>
+              Number.isInteger(hIndex) && hIndex >= 0 && hIndex <= 37
+          ) &&
+          Array.isArray(
+            variant.source_input_provenance.inactive_h_indexes
+          ) &&
+          variant.source_input_provenance.inactive_h_indexes.every(
+            (hIndex) =>
+              Number.isInteger(hIndex) && hIndex >= 0 && hIndex <= 38
+          ) &&
+          [
+            "h38-interval-active",
+            "h38-midpoint-frozen",
+          ].includes(variant.source_input_provenance.h38_input_status) &&
+          variant.source_input_provenance.directed_rounding_status ===
+            "not-certified-by-node-width-localization-diagnostic" &&
           nullableFiniteNonnegative(variant?.width_to_direct_ratio) &&
           nullableFiniteNonnegative(
             variant?.abs_upper_to_direct_abs_upper_ratio

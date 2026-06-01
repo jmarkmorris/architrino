@@ -6,16 +6,24 @@ This folder develops child-facing outreach books derived from [early-learning.md
 - the lesson preserves the $\mathbb{A}\mathbb{A}\mathbb{A}$ level distinction between substrate ontology, assembly behavior, and observer-level description;
 - the art direction integrates the relevant $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry into the scene rather than leaving it as a detached diagram.
 
-## Series Map
+## Two-Level Series Map
 
-| Age | Working title | Core lesson | Status |
+Stories are organized at two levels:
+
+- **Level 1 lessons:** the one to three ideas the age band should teach.
+- **Level 2 scenes:** detailed spreads with read-aloud text, image direction, and integrated $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry.
+
+| Age | Working title | Level 1 lessons | Level 2 scene status |
 | --- | --- | --- | --- |
-| 3-5 | Nature Remembers Motion | Motion, rhythm, repetition, and stable pattern. | Planned |
-| 6-8 | [The Message That Traveled](the-message-that-traveled.md) | Causal wakes, delay, distance, direction, and simple assembly. | Full pilot draft |
-| 9-11 | The Tiny Transceivers | Architrinos, polarity, line of action, superposition, and assemblies. | Planned |
-| 12-14 | The Balance Point | Measurement interaction, thresholds, deterministic multistability, and Noether sea context. | Planned |
-| 15-16 | The History That Pushes Now | Path-history, causal sets, causal-root ledgers, self-hit, and the master equation. | Planned |
-| 17-18 | The World We Recover | Effective metric, photon channel, mass-map, Lorentz recovery, and claim levels. | Planned |
+| Baby-toddler | Here, There, Back | Presence, path, return. | Foundation only; preview image exists. |
+| 3-5 | Nature Remembers Motion | Motion leaves trails; before/after orders a path; repetition can make pattern. | Planned; preview image exists. |
+| 6-8 | [The Message That Traveled](the-message-that-traveled.md) | Messages take time to arrive; distance and direction matter; stable patterns can form. | Full pilot draft. |
+| 9-11 | The Tiny Transceivers | Two sender-receiver kinds; path, emission, and reception; combined influences make assemblies. | Planned; preview image exists. |
+| 12-14 | The Balance Point | Potential landscapes; sensitive lawful paths; measurement as physical interaction. | Planned; preview image exists. |
+| 15-16 | The History That Pushes Now | Path-history; admissible past waves; self-action and first master-equation intuition. | Planned; preview image exists. |
+| 17-18 | The World We Recover | Assembly hierarchy; effective clocks/rulers/channels; recovery targets and claim levels. | Planned; preview image exists. |
+
+The full teaching map and scene template live in [story-design.md](story-design.md#two-level-story-architecture).
 
 ## Art Continuity
 

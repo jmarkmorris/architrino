@@ -232,6 +232,90 @@ $\dot X$ update bases, mesh update, endpoint motion, gluing, monotonicity,
 exact $B\xi=0$, rank certification, candidate topology, v1-v6 replay, or row
 consumption exists.
 
+The endpoint-functional source audit,
+`fold_coordinate_endpoint_functional_source_audit_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then checks whether the existing seed, mesh, preledger input, one-leaf
+boundary-data, source-cover atlas, and ownership audit already contain the
+missing exact endpoint-functional source data. They contain locator and
+row-local endpoint-value data but not functional data: 4 / 4 target endpoint
+refs and 4 / 4 row-local endpoint values are present, all 3 one-leaf rows
+resolve in the preledger input, mesh, source-cover atlas, and ownership
+component table, but 0 / 4 endpoint bindings, endpoint-functional domains,
+supports, formulas, exact $B\xi=0$ certificates, or rank certificates are
+present.
+
+The endpoint-functional construction attempt,
+`fold_coordinate_endpoint_functional_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then attempts to promote the locator layer into exact endpoint functionals. It
+reaches 4 / 4 endpoint locators, 4 / 4 row-local endpoint values, and 4 / 4
+target equations, but constructs 0 / 4 endpoint functionals and 0 / 3 rows
+because endpoint-functional domains and bindings, support/formula/derivative
+data, exact $B\xi=0$, rank certification, candidate artifacts, topology
+recertification, and v1-v6 replay remain absent.
+
+The endpoint-functional binding no-go,
+`fold_coordinate_endpoint_functional_binding_contract_no_go_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then prevents the row-local endpoint values from being promoted by label. It
+tests 4 binding methods and 16 method evaluations, but certifies 0 / 4 binding
+contracts and 0 / 3 binding-ready rows because endpoint-functional domains,
+endpoint-boundary bindings, evaluation maps, support/formula data, exact
+$B\xi=0$, rank certification, candidate artifacts, topology recertification,
+and v1-v6 replay are absent.
+
+The endpoint-functional domain/evaluation-map attempt,
+`fold_coordinate_endpoint_functional_domain_evaluation_map_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests the missing layer directly. It evaluates 5 construction methods and
+20 method evaluations, but certifies 0 / 4 domain/evaluation maps and 0 / 3
+domain/evaluation-ready rows. Endpoint locators, row-local endpoint values, and
+target equations remain present; endpoint-functional domain charts, domain
+coordinate rules, evaluation maps, endpoint evaluation rules, endpoint motion
+rules, exact $B\xi=0$, rank certification, candidate artifacts, topology
+recertification, and v1-v6 replay remain absent.
+
+The endpoint-functional domain/evaluation-map contract,
+`fold_coordinate_endpoint_functional_domain_evaluation_contract_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then converts that fail-closed result into an exact successor burden. It
+declares 4 / 4 endpoint-functional domain/evaluation-map contracts and 3 / 3
+signed row contracts, but supplies 0 / 4 actual domain charts, coordinate
+rules, evaluation maps, endpoint motion rules, same-packet $\Psi_j$ formulas,
+exact $B\xi=0$ certificates, rank certificates, candidate artifacts, topology
+recertification, or v1-v6 replay data. It therefore consumes 0 rows while
+making clear that endpoint locations and scalar endpoint values are not enough
+to define the endpoint functionals.
+
+The endpoint-functional $C^1$ endpoint-basis ansatz attempt,
+`fold_coordinate_endpoint_functional_c1_endpoint_basis_ansatz_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests whether the existing shifted-separator $C^1$ bump machinery can
+supply that missing object. It declares 4 / 4 $C^1$ ansatz families, formulas,
+derivative formulas, periodic-extension templates, and gluing templates, but
+constructs 0 / 4 endpoint-basis ansatzes, 0 / 4 domain/evaluation maps, and
+0 / 3 row-ready pairs because no endpoint-functional domain chart,
+endpoint-motion rule, non-target zero certificate, exact $B\xi=0$, rank
+certificate, candidate artifact, topology recertification, or v1-v6 replay is
+bound to the template.
+
+The endpoint-functional explicit $\Psi_j$ formula attempt,
+`fold_coordinate_endpoint_functional_explicit_psi_formula_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then supplies the missing local polynomial formulas as component-local
+candidates. It declares 4 / 4 endpoint-local formula candidates and derivative
+formulas, verifies 4 / 4 local target-action identities, and records the exact
+support components over source intervals `A03`, `A09`, `A06` and receiver
+intervals `A04`, `A10`, `A07`. It still constructs 0 / 4 proof-grade
+endpoint-functional formulas, 0 / 4 domain/evaluation maps, and 0 / 3
+row-ready pairs because the local formulas are not bound to a same-packet
+domain chart, global gluing/periodicity rule, non-target zero certificate,
+exact $B\xi=0$, rank certificate, candidate topology, or v1-v6 replay.
+
+The endpoint-functional global domain/evaluation-map construction attempt,
+`fold_coordinate_endpoint_functional_global_domain_evaluation_map_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests that promotion layer directly. It preserves 4 / 4 local $\Psi_j$
+formula candidates and 4 / 4 exact component endpoint identities, but constructs
+0 / 4 global domain charts, 0 / 4 global coordinate rules, 0 / 4 endpoint
+evaluation maps, 0 / 4 non-target zero certificates, 0 / 4 exact $B\xi=0$ or
+rank certificates, and 0 / 3 row-ready global domain/evaluation pairs. This
+shows the one-leaf fold-coordinate route is blocked at global same-packet
+domain/evaluation semantics, not at the local polynomial formula layer.
+
 ## Capture Decision
 
 Priority-only theorem target. The partition-audit implementation is now
@@ -255,9 +339,22 @@ theorem: the exact finite $\Psi_j$ basis, support, derivative, mesh, endpoint,
 source-monotonicity, and receiver-monotonicity rules are absent. The
 finite-realization basis attempt now sharpens that again: the absent object is
 an endpoint-functional finite basis construction, not merely a missing file
-writer. The next implementation must either supply those same-packet
-realization formulas or change the row-closure geometry or strengthen the
-receiver-cover certificate:
+writer. The endpoint-functional construction attempt now confirms that even
+the locator layer cannot be promoted by current data, and the domain/evaluation
+map attempt confirms that the missing endpoint-functional object is a domain
+chart plus evaluation map, not a row-local endpoint value or target equation.
+The domain/evaluation-map contract now fixes the exact proof burden for that
+missing object without consuming rows. The $C^1$ endpoint-basis ansatz attempt
+then rules out a direct promotion from shifted-separator smooth-bump templates
+to endpoint-functional maps. The explicit $\Psi_j$ formula attempt separates
+the local obstruction cleanly, and the global domain/evaluation-map attempt
+then fail-closes the promotion step: endpoint-local cubic formulas and their
+target-action identities are available, but no global same-packet domain chart,
+coordinate rule, gluing/periodicity rule, endpoint evaluation map, non-target
+zero certificate, exact $B\xi=0$, rank certificate, or replay certificate is
+constructed. The next implementation must either build those proof-grade
+endpoint-functional domain/evaluation maps, change the row-closure geometry, or
+strengthen the receiver-cover certificate:
 new same-packet source-boundary variation data, receiver-range refinement data,
 endpoint/complement ownership, or another candidate change must actually assign
 proof-grade positive boundary shifts and preservation fields before these

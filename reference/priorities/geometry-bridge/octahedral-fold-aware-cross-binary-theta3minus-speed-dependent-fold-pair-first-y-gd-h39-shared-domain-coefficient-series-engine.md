@@ -3765,3 +3765,74 @@ verifier still rejects them because the rows are explicitly candidate-only, not
 a directed-rounded shared-domain source. This proves that interval containment
 is no longer the candidate-level obstruction; the remaining h0-h34 burden is
 source certification for the contracted provider rows.
+
+The scaled live-source diagnostic then replaces target substitution with the
+actual arithmetic map. The
+`candidate-signed-nonterminal-h0-h34-scaled-live-source-provider-diagnostic`
+divides the live midpoint-centered h0-h34 residual intervals by the selected
+single contraction factor and sends those scaled intervals through the same
+provider verifier. The scaled intervals match the screened targets to tolerance,
+but strict containment fails by only the directed-rounding edge: the maximum
+relative endpoint gap is about $2.03\times10^{-16}$. This localizes the next
+certificate to a same-domain directed-rounded source map for the existing
+h0-h34-cell-midpoint residual stream, not to a new residual shape or another
+terminal-only envelope.
+
+The follow-on source-map diagnostic now links that arithmetic map back to the
+producer stream. The
+`candidate-signed-nonterminal-h0-h34-source-map-diagnostic` verifies, on the
+same five nodes, that the coefficient residual, Lagrange-weighted residual,
+live contract row, and uniformly scaled row identities close before the
+directed-provider verifier applies absolute interval inclusion. On the live H39
+route the maximum source-map identity gap is about $2.10\times10^{-16}$ and the
+scaled-to-screened target gap remains about $2.03\times10^{-16}$. The artifact
+keeps directed-rounded source, h0-h34 covariance, retained-branch, and shifted
+$R_{\varepsilon,43}$ claims false. It advances the blocker from "find a better
+h0-h34 source shape" to "certify this h0-h34-cell-midpoint source map with
+directed-rounded endpoint margin."
+
+The endpoint-margin screen makes that burden finite. The
+`candidate-signed-nonterminal-h0-h34-source-map-endpoint-margin-diagnostic`
+measures the relative outward endpoint margin needed for the screened target
+intervals to contain the scaled source-map intervals. The live H39 route fits
+all five weighted and coefficient rows inside a one-`Number.EPSILON` relative
+endpoint expansion. The artifact still keeps directed-rounded source,
+covariance, retained-branch, and shifted $R_{\varepsilon,43}$ claims false; it
+turns the remaining proof object into a directed-rounded h0-h34-cell-midpoint
+source operation with an explicit one-epsilon endpoint margin.
+
+The source-input provenance diagnostic makes that proof object more concrete.
+The
+`candidate-signed-nonterminal-h0-h34-source-input-provenance-diagnostic`
+verifies that the five live rows use the same-row
+`h0-h34-cell-midpoint` localization path: `pointCellAtMidpoint(cell)` supplies
+the cell, $h_0,\ldots,h_{34}$ remain interval inputs, and
+$h_{35},h_{36},h_{37},h_{38}$ are frozen to midpoint inputs before
+`evaluateH38RecurrenceNumeratorBeforeSolve` computes the $N_{38}$ coefficient
+interval. The artifact keeps directed-rounded source and shifted
+$R_{\varepsilon,43}$ claims false. It narrows the next proof from "find source
+provenance" to "certify this same-row active-h0-h34 input path with h35-h38
+midpoint freezing under directed rounding."
+
+The same-row source-input replay layer now tests the stored source rows
+against the original row inputs. The
+`candidate-signed-nonterminal-h0-h34-source-input-replay-diagnostic` rebuilds
+the `h0-h34-cell-midpoint` evaluator call from the row cell, branch, and
+h-row intervals, records the h38 evaluator zeroing, and compares the replayed
+coefficient interval against the stored h0-h34 source interval. The live
+five-node route closes at sub-$10^{-12}$ relative endpoint gap. The artifact is
+still candidate-only for source trust: it proves the evaluator/provenance path
+is internally replayable, while leaving directed-rounded producer-image
+certification false.
+
+The operation-replay layer now removes one more ambiguity from that proof
+object. The
+`candidate-signed-nonterminal-h0-h34-source-operation-replay` reruns the
+h0-h34 coefficient-midpoint subtraction, Lagrange weighting, and uniform
+contraction with the root-tube `nextDown`/`nextUp` outward interval primitives.
+Those replay intervals match the source-map rows at sub-$10^{-12}$ relative
+gap and fit inside the one-`Number.EPSILON` endpoint-expanded targets. This is
+not a directed-rounded source certificate, but it proves the remaining gap is
+not in the arithmetic replay chain; the next certificate must supply
+proof-grade directed-rounded provenance for the five h0-h34 coefficient
+intervals and midpoint subtraction inputs that feed the closed replay.

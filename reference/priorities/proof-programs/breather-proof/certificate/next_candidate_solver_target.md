@@ -176,6 +176,74 @@ motion, gluing, source/receiver monotonicity, exact $B\xi=0$, and rank
 certification. Current data supplies only screen variables, basis symbols, and
 boundary-action names, so 0 / 4 variables and 0 / 3 rows are finite-basis
 ready.
+The endpoint-functional source audit,
+`fold_coordinate_endpoint_functional_source_audit_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then checks the existing seed, mesh, preledger input, one-leaf boundary-data,
+source-cover, and ownership artifacts as possible sources for those exact
+endpoint functionals. The locator data is present: 4 / 4 endpoint refs are
+declared and all 3 one-leaf rows resolve against the preledger input, mesh,
+source-cover atlas, and ownership components. The functional data is absent:
+0 / 4 endpoint bindings, endpoint-functional domains, supports, formulas,
+exact $B\xi=0$ certificates, or rank certificates are present.
+The endpoint-functional construction attempt,
+`fold_coordinate_endpoint_functional_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then attempts that promotion directly. It reaches 4 / 4 endpoint locators and
+4 / 4 row-local endpoint values and target equations, but constructs 0 / 4
+endpoint functionals and 0 / 3 rows because endpoint-functional domains and
+bindings, support/formula/derivative data, exact $B\xi=0$, and rank
+certification remain absent.
+The endpoint-functional binding no-go,
+`fold_coordinate_endpoint_functional_binding_contract_no_go_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests whether the row-local endpoint values can be treated as bindings.
+It evaluates 4 binding methods across 16 method evaluations and certifies
+0 / 4 binding contracts: endpoint locators, values, and target equations are
+present, but endpoint-functional domains, endpoint-boundary bindings,
+evaluation maps, formulas, exact $B\xi=0$, and rank certification are absent.
+The endpoint-functional domain/evaluation-map attempt,
+`fold_coordinate_endpoint_functional_domain_evaluation_map_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tries to construct that missing layer directly. It tests 5 methods across
+20 method evaluations and certifies 0 / 4 domain/evaluation maps: endpoint
+locators, row-local endpoint values, and target equations remain available, but
+no endpoint-functional domain chart, domain coordinate rule, evaluation map,
+endpoint evaluation rule, endpoint motion rule, exact $B\xi=0$, or rank
+certificate is present.
+The endpoint-functional domain/evaluation-map contract,
+`fold_coordinate_endpoint_functional_domain_evaluation_contract_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+therefore fixes the next proof object: all 4 endpoint contracts and all 3
+signed row contracts are declared, but 0 / 4 endpoint-functional domain charts,
+evaluation maps, endpoint motion rules, same-packet $\Psi_j$ formulas, exact
+$B\xi=0$ certificates, rank certificates, or row-ready domain/evaluation pairs
+are supplied.
+The $C^1$ endpoint-basis ansatz attempt,
+`fold_coordinate_endpoint_functional_c1_endpoint_basis_ansatz_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests the tempting shortcut through the existing shifted-separator bump
+machinery. It declares 4 / 4 $C^1$ ansatz formulas, derivative formulas, and
+gluing templates, but constructs 0 / 4 endpoint-basis ansatzes and 0 / 4
+domain/evaluation maps because the template is not bound to same-packet
+endpoint-functional domain charts, endpoint-motion rules, non-target zero
+certificates, exact $B\xi=0$, rank certificates, topology recertification, or
+v1-v6 replay.
+The explicit $\Psi_j$ formula attempt,
+`fold_coordinate_endpoint_functional_explicit_psi_formula_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then writes the component-local cubic formula candidates directly. It declares
+4 / 4 formula and derivative candidates and verifies 4 / 4 local target-action
+identities on the declared support components, including the two-component
+lower variables over `A03/A09` and `A04/A10`. It still constructs 0 / 4
+same-packet endpoint-functional formulas, 0 / 4 domain/evaluation maps, and
+0 / 3 row-ready pairs because the component formulas are not promoted to a
+global endpoint-functional domain chart, non-target zero certificate,
+candidate topology, exact $B\xi=0$, rank certificate, or v1-v6 replay.
+The global domain/evaluation-map construction attempt,
+`fold_coordinate_endpoint_functional_global_domain_evaluation_map_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests that promotion explicitly. It keeps the local result: 4 / 4 local
+$\Psi_j$ formula candidates and 4 / 4 component endpoint identities are exact.
+It still constructs 0 / 4 global domain charts, 0 / 4 global coordinate rules,
+0 / 4 gluing or periodicity rules, 0 / 4 endpoint evaluation maps, 0 / 4
+non-target zero certificates, 0 / 4 exact $B\xi=0$ or rank certificates, and
+0 / 3 row-ready global domain/evaluation pairs. The missing proof object is a
+global same-packet domain/evaluation map, meaning one same-packet construction
+over all support components for each `fc_*` variable, not another local formula
+identity.
 The remaining branches are periodic
 endpoint/complement ownership for the 8 lift rows and fold-layer certificate
 closure for the 112 fold-layer rows now grouped by

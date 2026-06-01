@@ -6978,6 +6978,79 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   );
   assert.equal(
     terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_source_input_provenance_diagnostic_summary_kind,
+    "candidate-signed-nonterminal-h0-h34-source-input-provenance-diagnostic-summary"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_have_signed_nonterminal_h0_h34_source_input_provenance_diagnostic,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_source_input_provenance_diagnostics_identify_same_row_path,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_source_input_provenance_diagnostics_use_h0_h34_freeze_h35_h38,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_source_input_provenance_diagnostics_keep_directed_rounding_open,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_source_input_provenance_diagnostic_interpretation,
+    "same-row-h0-h34-source-input-path-identified-directed-rounding-open"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_source_input_replay_diagnostic_summary_kind,
+    "candidate-signed-nonterminal-h0-h34-source-input-replay-diagnostic-summary"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_have_signed_nonterminal_h0_h34_source_input_replay_diagnostic,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_source_input_replays_use_same_row_original_inputs,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_source_input_replays_use_h0_h34_freeze_h35_h38,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_source_input_replays_match_stored_intervals,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_source_input_replays_keep_directed_rounding_open,
+    true
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_source_input_replay_relative_gap >= 0
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_source_input_replay_relative_gap < 1e-12
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_source_input_replay_diagnostic_interpretation,
+    "same-row-h0-h34-source-input-replay-closes-evaluator-path-directed-rounding-open"
+  );
+  assert.equal(
+    terminalCovarianceTarget
       .signed_nonterminal_h0_h34_identity_router_summary_kind,
     "candidate-signed-nonterminal-h0-h34-identity-router-summary"
   );
@@ -7560,6 +7633,213 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
       .signed_nonterminal_h0_h34_contracted_provider_candidate_interpretation,
     "contracted-h0-h34-provider-intervals-pass-verifier-source-certification-open"
   );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_scaled_live_source_provider_diagnostic_summary_kind,
+    "candidate-signed-nonterminal-h0-h34-scaled-live-source-provider-diagnostic-summary"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_have_signed_nonterminal_h0_h34_scaled_live_source_provider_diagnostic,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_scaled_live_source_provider_diagnostics_use_live_defect,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_scaled_live_source_provider_diagnostics_apply_uniform_scale,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_scaled_live_source_provider_diagnostics_contain_intervals,
+    false
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_scaled_live_source_provider_diagnostics_match_screened_targets,
+    false
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_scaled_live_source_provider_interval_to_target_ratio >
+      1
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_scaled_live_source_provider_interval_to_target_ratio <
+      1 + 1e-12
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .min_signed_nonterminal_h0_h34_scaled_live_source_provider_inclusion_headroom <
+      1
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .min_signed_nonterminal_h0_h34_scaled_live_source_provider_inclusion_headroom >
+      1 - 1e-12
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_scaled_live_source_provider_endpoint_relative_gap >
+      0
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_scaled_live_source_provider_endpoint_relative_gap <
+      1e-12
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_scaled_live_source_provider_diagnostic_interpretation,
+    "uniform-scaled-live-h0-h34-provider-needs-directed-rounding-margin-or-source"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_source_map_diagnostic_summary_kind,
+    "candidate-signed-nonterminal-h0-h34-source-map-diagnostic-summary"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_have_signed_nonterminal_h0_h34_source_map_diagnostic,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_source_map_diagnostics_use_scaled_provider,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_source_map_diagnostics_close_arithmetic_identities,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_source_map_diagnostics_keep_source_open,
+    true
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_source_map_identity_relative_gap > 0
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_source_map_identity_relative_gap <
+      1e-12
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_source_map_scaled_target_relative_gap > 0
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_source_map_scaled_target_relative_gap <
+      1e-12
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_source_map_diagnostic_interpretation,
+    "h0-h34-cell-midpoint-source-map-identities-close-directed-source-open"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic_summary_kind,
+    "candidate-signed-nonterminal-h0-h34-source-map-endpoint-margin-diagnostic-summary"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_have_signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostics_use_source_map,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostics_fit_one_number_epsilon,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostics_keep_source_open,
+    true
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_source_map_endpoint_required_relative_margin >
+      0
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_source_map_endpoint_required_relative_margin <=
+      Number.EPSILON
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_source_map_endpoint_margin_to_number_epsilon_ratio >
+      0
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_source_map_endpoint_margin_to_number_epsilon_ratio <=
+      1
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic_interpretation,
+    "one-number-epsilon-endpoint-margin-suffices-source-certification-open"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_source_operation_replay_summary_kind,
+    "candidate-signed-nonterminal-h0-h34-source-operation-replay-summary"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_have_signed_nonterminal_h0_h34_source_operation_replay,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_source_operation_replays_use_endpoint_margin,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_source_operation_replays_close_binary64_outward_operation_path,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_source_operation_replays_fit_one_number_epsilon_endpoint_margin,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_source_operation_replays_keep_source_provenance_open,
+    true
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_source_operation_replay_relative_gap >= 0
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_source_operation_replay_relative_gap <
+      1e-12
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_source_operation_replay_interpretation,
+    "binary64-outward-operation-replay-closed-source-provenance-open"
+  );
   terminalCovarianceTarget.covariance_rows.forEach((row) => {
     assert.equal(
       row.provider_kind,
@@ -7741,6 +8021,235 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
     );
     assert.equal(
       signedNonterminalTarget.claim_boundary.certifies_shifted_R43_outer_bound,
+      false
+    );
+    const sourceInputProvenance =
+      row.signed_nonterminal_h0_h34_source_input_provenance_diagnostic;
+    assert.equal(
+      sourceInputProvenance.target_kind,
+      "candidate-signed-nonterminal-h0-h34-source-input-provenance-diagnostic"
+    );
+    assert.equal(
+      sourceInputProvenance.source_floor_target_kind,
+      "candidate-signed-nonterminal-h0-h34-floor-cancellation-target"
+    );
+    assert.equal(
+      sourceInputProvenance.proof_status,
+      "candidate-source-input-path-identified-directed-rounding-open"
+    );
+    assert.equal(
+      sourceInputProvenance.source_input_kind,
+      "same-row-cell-midpoint-active-h0-h34-inactive-h35-h38-midpoints"
+    );
+    assert.equal(
+      sourceInputProvenance
+        .all_source_input_rows_identify_same_row_cell_midpoint_path,
+      true
+    );
+    assert.equal(
+      sourceInputProvenance.all_source_input_rows_use_active_h0_h34_intervals,
+      true
+    );
+    assert.equal(
+      sourceInputProvenance.all_source_input_rows_freeze_h35_h38_to_midpoints,
+      true
+    );
+    assert.equal(
+      sourceInputProvenance.all_source_input_rows_keep_directed_rounding_open,
+      true
+    );
+    assert.equal(
+      sourceInputProvenance
+        .certifies_source_inputs_as_directed_rounded_same_domain,
+      false
+    );
+    assert.equal(
+      sourceInputProvenance.source_input_provenance_classification,
+      "same-row-h0-h34-source-input-path-identified-directed-rounding-open"
+    );
+    assert.equal(sourceInputProvenance.source_input_provenance_rows.length, 5);
+    sourceInputProvenance.source_input_provenance_rows.forEach(
+      (provenanceRow) => {
+        assert.equal(provenanceRow.source_variant, "h0-h34-cell-midpoint");
+        assert.equal(
+          provenanceRow.source_evaluator,
+          "evaluateH38RecurrenceNumeratorBeforeSolve"
+        );
+        assert.equal(
+          provenanceRow.coefficient_interval_source,
+          "evaluateH38RecurrenceNumeratorBeforeSolve(...).numerator_interval"
+        );
+        assert.equal(
+          provenanceRow.source_cell_constructor,
+          "pointCellAtMidpoint(cell)"
+        );
+        assert.equal(
+          provenanceRow.source_h_interval_constructor,
+          "hIntervalsWithActiveIndexes(active_h_indexes)"
+        );
+        assert.deepEqual(provenanceRow.active_h_indexes, [
+          0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
+          18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33,
+          34,
+        ]);
+        assert.deepEqual(provenanceRow.inactive_h_indexes, [35, 36, 37, 38]);
+        assert.equal(
+          provenanceRow.active_h0_h34_intervals_identified,
+          true
+        );
+        assert.equal(
+          provenanceRow.inactive_h35_h38_midpoints_identified,
+          true
+        );
+        assert.equal(provenanceRow.h38_input_status, "h38-midpoint-frozen");
+        assert.equal(
+          provenanceRow.same_row_cell_midpoint_input_path_identified,
+          true
+        );
+        assert.equal(
+          provenanceRow.source_inputs_certified_directed_rounded_same_domain,
+          false
+        );
+        assert.equal(
+          provenanceRow.source_input_provenance_row_status,
+          "same-row-h0-h34-cell-midpoint-input-path-identified-directed-rounding-open"
+        );
+      }
+    );
+    assert.equal(
+      sourceInputProvenance.claim_boundary
+        .certifies_h0_h34_cell_midpoint_source_inputs,
+      false
+    );
+    assert.equal(
+      sourceInputProvenance.claim_boundary
+        .certifies_source_inputs_as_directed_rounded_same_domain,
+      false
+    );
+    assert.equal(
+      sourceInputProvenance.claim_boundary
+        .certifies_directed_rounded_shared_domain,
+      false
+    );
+    assert.equal(
+      sourceInputProvenance.claim_boundary.certifies_shifted_R43_outer_bound,
+      false
+    );
+    const sourceInputReplay =
+      row.signed_nonterminal_h0_h34_source_input_replay_diagnostic;
+    assert.equal(
+      sourceInputReplay.target_kind,
+      "candidate-signed-nonterminal-h0-h34-source-input-replay-diagnostic"
+    );
+    assert.equal(
+      sourceInputReplay.source_floor_target_kind,
+      "candidate-signed-nonterminal-h0-h34-floor-cancellation-target"
+    );
+    assert.equal(
+      sourceInputReplay.source_input_provenance_diagnostic_kind,
+      "candidate-signed-nonterminal-h0-h34-source-input-provenance-diagnostic"
+    );
+    assert.equal(
+      sourceInputReplay.proof_status,
+      "candidate-source-input-replayed-from-same-row-directed-rounding-open"
+    );
+    assert.equal(
+      sourceInputReplay.source_input_replay_kind,
+      "same-row-h0-h34-cell-midpoint-source-input-replay"
+    );
+    assert.equal(
+      sourceInputReplay.all_source_input_rows_replay_from_original_row,
+      true
+    );
+    assert.equal(
+      sourceInputReplay
+        .all_source_input_rows_replay_active_h0_h34_freeze_h35_h38,
+      true
+    );
+    assert.equal(
+      sourceInputReplay.all_source_input_rows_record_h38_evaluator_zeroing,
+      true
+    );
+    assert.equal(
+      sourceInputReplay.all_source_input_rows_keep_directed_rounding_open,
+      true
+    );
+    assert.equal(
+      sourceInputReplay.certifies_same_row_replay_for_stored_intervals,
+      true
+    );
+    assert.equal(
+      sourceInputReplay.certifies_source_inputs_as_directed_rounded_same_domain,
+      false
+    );
+    assert.ok(sourceInputReplay.max_source_input_replay_relative_gap >= 0);
+    assert.ok(sourceInputReplay.max_source_input_replay_relative_gap < 1e-12);
+    assert.equal(
+      sourceInputReplay.source_input_replay_classification,
+      "same-row-h0-h34-source-input-replay-closes-evaluator-path-directed-rounding-open"
+    );
+    assert.equal(sourceInputReplay.source_input_replay_rows.length, 5);
+    sourceInputReplay.source_input_replay_rows.forEach((replayRow) => {
+      assert.equal(replayRow.source_variant, "h0-h34-cell-midpoint");
+      assert.equal(
+        replayRow.replay_kind,
+        "same-row-h0-h34-cell-midpoint-source-input-replay"
+      );
+      assert.equal(
+        replayRow.source_evaluator,
+        "evaluateH38RecurrenceNumeratorBeforeSolve"
+      );
+      assert.equal(
+        replayRow.source_cell_constructor,
+        "pointCellAtMidpoint(cell)"
+      );
+      assert.equal(
+        replayRow.source_h_interval_constructor,
+        "rebuild-active-h0-h34-from-original-row-and-midpoint-freeze-h35-h38"
+      );
+      assert.deepEqual(replayRow.active_h_indexes, [
+        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
+        19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34,
+      ]);
+      assert.deepEqual(replayRow.midpoint_frozen_h_indexes, [
+        35, 36, 37, 38,
+      ]);
+      assert.equal(replayRow.active_h0_h34_intervals_replayed, true);
+      assert.equal(replayRow.midpoint_frozen_h35_h38_replayed, true);
+      assert.equal(replayRow.h38_midpoint_supplied_to_evaluator, true);
+      assert.equal(replayRow.h38_target_zeroed_by_evaluator, true);
+      assert.equal(replayRow.stored_source_replayed_from_original_row, true);
+      assert.equal(
+        replayRow.certifies_same_row_replay_for_stored_intervals,
+        true
+      );
+      assert.equal(
+        replayRow.source_inputs_certified_directed_rounded_same_domain,
+        false
+      );
+      assert.ok(replayRow.stored_vs_replayed_endpoint_relative_gap >= 0);
+      assert.ok(replayRow.stored_vs_replayed_endpoint_relative_gap < 1e-12);
+      assert.equal(
+        replayRow.source_input_replay_row_status,
+        "same-row-h0-h34-cell-midpoint-source-input-replayed-directed-rounding-open"
+      );
+    });
+    assert.equal(
+      sourceInputReplay.claim_boundary
+        .certifies_same_row_replay_for_stored_intervals,
+      true
+    );
+    assert.equal(
+      sourceInputReplay.claim_boundary
+        .certifies_source_inputs_as_directed_rounded_same_domain,
+      false
+    );
+    assert.equal(
+      sourceInputReplay.claim_boundary.certifies_directed_rounded_shared_domain,
+      false
+    );
+    assert.equal(
+      sourceInputReplay.claim_boundary.certifies_shifted_R43_outer_bound,
       false
     );
     const signedIdentityRouter =
@@ -9098,6 +9607,591 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
     assert.equal(
       contractedProviderCandidate.claim_boundary
         .certifies_shifted_R43_outer_bound,
+      false
+    );
+    const scaledLiveSourceProviderDiagnostic =
+      row.signed_nonterminal_h0_h34_scaled_live_source_provider_diagnostic;
+    assert.equal(
+      scaledLiveSourceProviderDiagnostic.target_kind,
+      "candidate-signed-nonterminal-h0-h34-scaled-live-source-provider-diagnostic"
+    );
+    assert.equal(
+      scaledLiveSourceProviderDiagnostic
+        .source_single_contraction_provider_contract_kind,
+      "candidate-signed-nonterminal-h0-h34-single-contraction-provider-contract"
+    );
+    assert.equal(
+      scaledLiveSourceProviderDiagnostic
+        .source_live_provider_contraction_defect_kind,
+      "candidate-signed-nonterminal-h0-h34-live-provider-contraction-defect"
+    );
+    assert.equal(
+      scaledLiveSourceProviderDiagnostic.source_directed_provider_verifier_kind,
+      "candidate-signed-nonterminal-h0-h34-directed-provider-verifier"
+    );
+    assert.equal(
+      scaledLiveSourceProviderDiagnostic.proof_status,
+      "candidate-scaled-live-source-operation-not-directed-rounded"
+    );
+    assert.equal(
+      scaledLiveSourceProviderDiagnostic.provider_diagnostic_kind,
+      "uniformly-scaled-live-h0-h34-provider-rows-through-directed-verifier"
+    );
+    assert.deepEqual(
+      scaledLiveSourceProviderDiagnostic.active_h_index_range,
+      [0, 34]
+    );
+    assert.equal(scaledLiveSourceProviderDiagnostic.interpolation_node_count, 5);
+    assert.ok(
+      scaledLiveSourceProviderDiagnostic.selected_provider_contraction_factor >
+        1000
+    );
+    assert.equal(
+      scaledLiveSourceProviderDiagnostic
+        .scaled_live_source_rows_apply_single_uniform_contraction,
+      true
+    );
+    assert.equal(
+      scaledLiveSourceProviderDiagnostic
+        .scaled_live_source_intervals_match_screened_targets,
+      true
+    );
+    assert.equal(
+      scaledLiveSourceProviderDiagnostic
+        .scaled_live_source_rows_match_same_domain_same_radius,
+      true
+    );
+    assert.equal(
+      scaledLiveSourceProviderDiagnostic
+        .scaled_live_source_intervals_subset_screened_targets,
+      false
+    );
+    assert.equal(
+      scaledLiveSourceProviderDiagnostic
+        .scaled_live_source_kind_matches_required,
+      false
+    );
+    assert.equal(
+      scaledLiveSourceProviderDiagnostic
+        .scaled_live_source_reaches_verifier_with_source_only_failure,
+      false
+    );
+    assert.ok(
+      scaledLiveSourceProviderDiagnostic
+        .max_scaled_live_source_interval_to_target_ratio > 1
+    );
+    assert.ok(
+      scaledLiveSourceProviderDiagnostic
+        .max_scaled_live_source_interval_to_target_ratio <
+        1 + 1e-12
+    );
+    assert.ok(
+      scaledLiveSourceProviderDiagnostic
+        .min_scaled_live_source_interval_inclusion_headroom < 1
+    );
+    assert.ok(
+      scaledLiveSourceProviderDiagnostic
+        .min_scaled_live_source_interval_inclusion_headroom >
+        1 - 1e-12
+    );
+    assert.ok(
+      scaledLiveSourceProviderDiagnostic
+        .max_scaled_live_source_endpoint_relative_gap > 0
+    );
+    assert.ok(
+      scaledLiveSourceProviderDiagnostic
+        .max_scaled_live_source_endpoint_relative_gap < 1e-12
+    );
+    assert.equal(
+      scaledLiveSourceProviderDiagnostic.scaled_live_source_classification,
+      "scaled-live-h0-h34-provider-needs-directed-rounding-margin-or-source"
+    );
+    assert.equal(
+      scaledLiveSourceProviderDiagnostic.directed_provider_verifier
+        .provider_rows_supplied,
+      true
+    );
+    assert.equal(
+      scaledLiveSourceProviderDiagnostic.directed_provider_verifier
+        .all_provider_rows_match_same_domain_contract,
+      true
+    );
+    assert.equal(
+      scaledLiveSourceProviderDiagnostic.directed_provider_verifier
+        .all_provider_rows_match_same_radius_contract,
+      true
+    );
+    assert.equal(
+      scaledLiveSourceProviderDiagnostic.directed_provider_verifier
+        .all_provider_rows_have_directed_rounded_source,
+      false
+    );
+    assert.equal(
+      scaledLiveSourceProviderDiagnostic.directed_provider_verifier
+        .all_provider_intervals_subset_screened_targets,
+      false
+    );
+    assert.equal(
+      scaledLiveSourceProviderDiagnostic.directed_provider_verifier
+        .verified_directed_rounded_same_domain_provider_rows,
+      false
+    );
+    assert.equal(
+      scaledLiveSourceProviderDiagnostic.directed_provider_verifier
+        .verifier_classification,
+      "h0-h34-directed-provider-verifier-open"
+    );
+    assert.equal(
+      scaledLiveSourceProviderDiagnostic.scaled_provider_rows.length,
+      5
+    );
+    scaledLiveSourceProviderDiagnostic.scaled_provider_rows.forEach(
+      (providerRow) => {
+        assert.equal(
+          providerRow.provider_row_source_kind,
+          "candidate-scaled-live-h0-h34-source-operation-not-directed-rounded"
+        );
+        assert.equal(
+          providerRow.scaling_operation_kind,
+          "divide-live-midpoint-centered-h0-h34-intervals-by-single-contraction-factor"
+        );
+        assert.equal(
+          typeof providerRow.scaled_weighted_interval_matches_screened_target,
+          "boolean"
+        );
+        assert.equal(
+          typeof providerRow.scaled_coefficient_interval_matches_screened_target,
+          "boolean"
+        );
+        assert.ok(
+          providerRow.weighted_scaled_abs_upper_to_target_abs_upper_ratio >= 1
+        );
+        assert.ok(
+          providerRow.weighted_scaled_abs_upper_to_target_abs_upper_ratio <
+            1 + 1e-12
+        );
+        assert.ok(
+          providerRow.coefficient_scaled_abs_upper_to_target_abs_upper_ratio >=
+            1
+        );
+        assert.ok(
+          providerRow.coefficient_scaled_abs_upper_to_target_abs_upper_ratio <
+            1 + 1e-12
+        );
+        assert.ok(providerRow.weighted_scaled_endpoint_relative_gap < 1e-12);
+        assert.ok(
+          providerRow.coefficient_scaled_endpoint_relative_gap < 1e-12
+        );
+        assert.ok(
+          [
+            "scaled-live-provider-row-contained-but-source-open",
+            "scaled-live-provider-row-needs-directed-rounding-margin",
+          ].includes(providerRow.provider_row_status)
+        );
+        assert.equal(
+          providerRow.claim_boundary
+            .certifies_scaled_operation_as_directed_rounded_source,
+          false
+        );
+        assert.equal(
+          providerRow.claim_boundary.certifies_directed_rounded_shared_domain,
+          false
+        );
+      }
+    );
+    assert.equal(
+      scaledLiveSourceProviderDiagnostic.claim_boundary
+        .certifies_scaled_operation_as_directed_rounded_source,
+      false
+    );
+    assert.equal(
+      scaledLiveSourceProviderDiagnostic.claim_boundary
+        .certifies_nonterminal_h0_h34_covariance_enclosure,
+      false
+    );
+    assert.equal(
+      scaledLiveSourceProviderDiagnostic.claim_boundary
+        .certifies_directed_rounded_shared_domain,
+      false
+    );
+    assert.equal(
+      scaledLiveSourceProviderDiagnostic.claim_boundary
+        .certifies_shifted_R43_outer_bound,
+      false
+    );
+    const sourceMapDiagnostic =
+      row.signed_nonterminal_h0_h34_source_map_diagnostic;
+    assert.equal(
+      sourceMapDiagnostic.target_kind,
+      "candidate-signed-nonterminal-h0-h34-source-map-diagnostic"
+    );
+    assert.equal(
+      sourceMapDiagnostic.source_floor_target_kind,
+      "candidate-signed-nonterminal-h0-h34-floor-cancellation-target"
+    );
+    assert.equal(
+      sourceMapDiagnostic.source_dependency_loss_budget_kind,
+      "candidate-signed-nonterminal-h0-h34-dependency-loss-budget"
+    );
+    assert.equal(
+      sourceMapDiagnostic.source_provider_specification_kind,
+      "candidate-signed-nonterminal-h0-h34-midpoint-dependency-preserving-provider-specification-target"
+    );
+    assert.equal(
+      sourceMapDiagnostic.source_single_contraction_provider_contract_kind,
+      "candidate-signed-nonterminal-h0-h34-single-contraction-provider-contract"
+    );
+    assert.equal(
+      sourceMapDiagnostic.source_scaled_live_source_provider_diagnostic_kind,
+      "candidate-signed-nonterminal-h0-h34-scaled-live-source-provider-diagnostic"
+    );
+    assert.equal(
+      sourceMapDiagnostic.proof_status,
+      "candidate-source-map-identities-not-directed-rounded"
+    );
+    assert.equal(
+      sourceMapDiagnostic.source_map_kind,
+      "h0-h34-cell-midpoint-to-scaled-provider-row-identity-map"
+    );
+    assert.equal(
+      sourceMapDiagnostic.h38_source_dependency_metadata_available,
+      true
+    );
+    assert.equal(
+      sourceMapDiagnostic.h38_source_provider_proof_status,
+      row.provider_proof_status
+    );
+    assert.equal(
+      sourceMapDiagnostic
+        .h38_source_provider_certifies_directed_rounded_shared_domain,
+      false
+    );
+    assert.equal(
+      sourceMapDiagnostic.all_source_map_rows_close_arithmetic_identities,
+      true
+    );
+    assert.equal(
+      sourceMapDiagnostic.all_source_map_rows_apply_single_uniform_contraction,
+      true
+    );
+    assert.equal(
+      sourceMapDiagnostic.all_source_map_rows_have_h0_h34_cell_midpoint_source,
+      true
+    );
+    assert.ok(sourceMapDiagnostic.max_source_map_identity_relative_gap > 0);
+    assert.ok(
+      sourceMapDiagnostic.max_source_map_identity_relative_gap < 1e-12
+    );
+    assert.ok(
+      sourceMapDiagnostic.max_source_map_scaled_target_relative_gap > 0
+    );
+    assert.ok(
+      sourceMapDiagnostic.max_source_map_scaled_target_relative_gap < 1e-12
+    );
+    assert.equal(
+      sourceMapDiagnostic.source_map_classification,
+      "h0-h34-source-map-identities-close-directed-source-open"
+    );
+    assert.equal(sourceMapDiagnostic.source_map_rows.length, 5);
+    sourceMapDiagnostic.source_map_rows.forEach((sourceMapRow) => {
+      assert.equal(sourceMapRow.source_variant, "h0-h34-cell-midpoint");
+      assert.equal(
+        sourceMapRow.coefficient_source_identity_matches_provider_spec,
+        true
+      );
+      assert.equal(
+        sourceMapRow.weighted_source_identity_matches_dependency,
+        true
+      );
+      assert.equal(
+        sourceMapRow.contract_weighted_live_matches_dependency,
+        true
+      );
+      assert.equal(
+        sourceMapRow.contract_coefficient_live_matches_provider_spec,
+        true
+      );
+      assert.equal(
+        sourceMapRow.scaled_weighted_map_matches_scaled_provider,
+        true
+      );
+      assert.equal(
+        sourceMapRow.scaled_coefficient_map_matches_scaled_provider,
+        true
+      );
+      assert.ok(
+        sourceMapRow.scaled_weighted_to_screened_target_relative_gap <
+          1e-12
+      );
+      assert.ok(
+        sourceMapRow.scaled_coefficient_to_screened_target_relative_gap <
+          1e-12
+      );
+      assert.equal(
+        typeof sourceMapRow.scaled_weighted_interval_contained_in_screened_target,
+        "boolean"
+      );
+      assert.equal(
+        typeof sourceMapRow.scaled_coefficient_interval_contained_in_screened_target,
+        "boolean"
+      );
+      assert.equal(
+        sourceMapRow.source_map_row_status,
+        "h0-h34-source-map-row-identities-close"
+      );
+    });
+    assert.equal(
+      sourceMapDiagnostic.claim_boundary.certifies_h0_h34_cell_midpoint_source_map,
+      false
+    );
+    assert.equal(
+      sourceMapDiagnostic.claim_boundary
+        .certifies_scaled_operation_as_directed_rounded_source,
+      false
+    );
+    assert.equal(
+      sourceMapDiagnostic.claim_boundary.certifies_directed_rounded_shared_domain,
+      false
+    );
+    assert.equal(
+      sourceMapDiagnostic.claim_boundary.certifies_shifted_R43_outer_bound,
+      false
+    );
+    const sourceMapEndpointMarginDiagnostic =
+      row.signed_nonterminal_h0_h34_source_map_endpoint_margin_diagnostic;
+    assert.equal(
+      sourceMapEndpointMarginDiagnostic.target_kind,
+      "candidate-signed-nonterminal-h0-h34-source-map-endpoint-margin-diagnostic"
+    );
+    assert.equal(
+      sourceMapEndpointMarginDiagnostic.source_source_map_diagnostic_kind,
+      "candidate-signed-nonterminal-h0-h34-source-map-diagnostic"
+    );
+    assert.equal(
+      sourceMapEndpointMarginDiagnostic.proof_status,
+      "candidate-endpoint-margin-screen-not-directed-rounded-source"
+    );
+    assert.equal(
+      sourceMapEndpointMarginDiagnostic.endpoint_margin_kind,
+      "one-number-epsilon-relative-endpoint-margin-screen"
+    );
+    assert.equal(
+      sourceMapEndpointMarginDiagnostic.endpoint_margin_relative_bound,
+      Number.EPSILON
+    );
+    assert.equal(
+      sourceMapEndpointMarginDiagnostic.source_map_rows_close_arithmetic_identities,
+      true
+    );
+    assert.equal(
+      sourceMapEndpointMarginDiagnostic
+        .source_map_certifies_directed_rounded_shared_domain,
+      false
+    );
+    assert.equal(
+      sourceMapEndpointMarginDiagnostic
+        .all_endpoint_margin_rows_use_h0_h34_cell_midpoint_source,
+      true
+    );
+    assert.equal(
+      sourceMapEndpointMarginDiagnostic
+        .all_endpoint_margin_rows_fit_one_number_epsilon,
+      true
+    );
+    assert.ok(
+      sourceMapEndpointMarginDiagnostic.max_required_relative_endpoint_margin >
+        0
+    );
+    assert.ok(
+      sourceMapEndpointMarginDiagnostic.max_required_relative_endpoint_margin <=
+        Number.EPSILON
+    );
+    assert.ok(
+      sourceMapEndpointMarginDiagnostic
+        .max_required_margin_to_number_epsilon_ratio > 0
+    );
+    assert.ok(
+      sourceMapEndpointMarginDiagnostic
+        .max_required_margin_to_number_epsilon_ratio <= 1
+    );
+    assert.equal(
+      sourceMapEndpointMarginDiagnostic.endpoint_margin_classification,
+      "one-number-epsilon-endpoint-margin-suffices-source-certification-open"
+    );
+    assert.equal(
+      sourceMapEndpointMarginDiagnostic.endpoint_margin_rows.length,
+      5
+    );
+    sourceMapEndpointMarginDiagnostic.endpoint_margin_rows.forEach(
+      (marginRow) => {
+        assert.equal(marginRow.source_variant, "h0-h34-cell-midpoint");
+        assert.equal(
+          marginRow.endpoint_margin_relative_bound,
+          Number.EPSILON
+        );
+        assert.ok(
+          marginRow.weighted_required_relative_endpoint_margin >= 0
+        );
+        assert.ok(
+          marginRow.coefficient_required_relative_endpoint_margin >= 0
+        );
+        assert.ok(
+          marginRow.weighted_required_margin_to_number_epsilon_ratio <= 1
+        );
+        assert.ok(
+          marginRow.coefficient_required_margin_to_number_epsilon_ratio <= 1
+        );
+        assert.equal(
+          marginRow.weighted_number_epsilon_margin_contains_scaled_interval,
+          true
+        );
+        assert.equal(
+          marginRow
+            .coefficient_number_epsilon_margin_contains_scaled_interval,
+          true
+        );
+        assert.equal(
+          marginRow.endpoint_margin_row_status,
+          "one-number-epsilon-endpoint-margin-contains-scaled-source-map-row"
+        );
+      }
+    );
+    assert.equal(
+      sourceMapEndpointMarginDiagnostic.claim_boundary
+        .certifies_endpoint_margin_as_directed_rounded_source,
+      false
+    );
+    assert.equal(
+      sourceMapEndpointMarginDiagnostic.claim_boundary
+        .certifies_directed_rounded_shared_domain,
+      false
+    );
+    assert.equal(
+      sourceMapEndpointMarginDiagnostic.claim_boundary
+        .certifies_shifted_R43_outer_bound,
+      false
+    );
+    const sourceOperationReplay =
+      row.signed_nonterminal_h0_h34_source_operation_replay;
+    assert.equal(
+      sourceOperationReplay.target_kind,
+      "candidate-signed-nonterminal-h0-h34-source-operation-replay"
+    );
+    assert.equal(
+      sourceOperationReplay.source_source_map_diagnostic_kind,
+      "candidate-signed-nonterminal-h0-h34-source-map-diagnostic"
+    );
+    assert.equal(
+      sourceOperationReplay.source_endpoint_margin_diagnostic_kind,
+      "candidate-signed-nonterminal-h0-h34-source-map-endpoint-margin-diagnostic"
+    );
+    assert.equal(
+      sourceOperationReplay.proof_status,
+      "candidate-binary64-outward-operation-replay-source-provenance-open"
+    );
+    assert.equal(
+      sourceOperationReplay.operation_replay_kind,
+      "h0-h34-cell-midpoint-source-map-with-one-number-epsilon-endpoint-margin"
+    );
+    assert.equal(
+      sourceOperationReplay.operation_rounding_model,
+      "root-tube-nextafter-outward-add-and-scale-interval-primitives"
+    );
+    assert.equal(
+      sourceOperationReplay.endpoint_margin_relative_bound,
+      Number.EPSILON
+    );
+    assert.equal(
+      sourceOperationReplay.source_provenance_still_open,
+      true
+    );
+    assert.equal(
+      sourceOperationReplay
+        .all_operation_rows_use_h0_h34_cell_midpoint_source,
+      true
+    );
+    assert.equal(
+      sourceOperationReplay.all_operation_rows_replay_source_map_identities,
+      true
+    );
+    assert.equal(
+      sourceOperationReplay
+        .all_operation_rows_fit_one_number_epsilon_endpoint_margin,
+      true
+    );
+    assert.equal(
+      sourceOperationReplay
+        .certifies_binary64_outward_operation_replay_for_supplied_intervals,
+      true
+    );
+    assert.equal(
+      sourceOperationReplay
+        .certifies_one_number_epsilon_endpoint_margin_for_operation_replay,
+      true
+    );
+    assert.equal(
+      sourceOperationReplay
+        .certifies_source_inputs_as_directed_rounded_same_domain,
+      false
+    );
+    assert.ok(sourceOperationReplay.max_operation_replay_relative_gap >= 0);
+    assert.ok(sourceOperationReplay.max_operation_replay_relative_gap < 1e-12);
+    assert.equal(
+      sourceOperationReplay.operation_replay_classification,
+      "binary64-outward-operation-replay-closed-source-provenance-open"
+    );
+    assert.equal(sourceOperationReplay.operation_replay_rows.length, 5);
+    sourceOperationReplay.operation_replay_rows.forEach((operationRow) => {
+      assert.equal(operationRow.source_variant, "h0-h34-cell-midpoint");
+      assert.equal(
+        operationRow.source_operation_kind,
+        "h0-h34-cell-midpoint-binary64-outward-source-map-operation"
+      );
+      assert.equal(
+        operationRow.operation_rounding_model,
+        "root-tube-nextafter-outward-add-and-scale-interval-primitives"
+      );
+      assert.equal(
+        operationRow.endpoint_margin_relative_bound,
+        Number.EPSILON
+      );
+      assert.ok(
+        operationRow.coefficient_residual_replay_relative_gap >= 0
+      );
+      assert.ok(operationRow.weighted_residual_replay_relative_gap >= 0);
+      assert.ok(operationRow.scaled_weighted_replay_relative_gap >= 0);
+      assert.ok(operationRow.scaled_coefficient_replay_relative_gap >= 0);
+      assert.equal(
+        operationRow.operation_replay_matches_source_map_row,
+        true
+      );
+      assert.equal(
+        operationRow
+          .weighted_operation_replay_fits_one_epsilon_endpoint_margin,
+        true
+      );
+      assert.equal(
+        operationRow
+          .coefficient_operation_replay_fits_one_epsilon_endpoint_margin,
+        true
+      );
+      assert.equal(
+        operationRow.operation_row_status,
+        "binary64-outward-source-operation-replay-fits-one-epsilon-endpoint-margin"
+      );
+    });
+    assert.equal(
+      sourceOperationReplay.claim_boundary
+        .certifies_source_inputs_as_directed_rounded_same_domain,
+      false
+    );
+    assert.equal(
+      sourceOperationReplay.claim_boundary
+        .certifies_directed_rounded_shared_domain,
+      false
+    );
+    assert.equal(
+      sourceOperationReplay.claim_boundary.certifies_shifted_R43_outer_bound,
       false
     );
   });

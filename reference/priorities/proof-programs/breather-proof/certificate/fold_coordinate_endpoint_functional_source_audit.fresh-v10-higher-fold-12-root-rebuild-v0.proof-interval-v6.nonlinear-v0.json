@@ -1,0 +1,1062 @@
+{
+  "schema": "breather-higher-fold-fold-coordinate-endpoint-functional-source-audit-v1",
+  "packet_id": "fresh-v10-higher-fold-12-root-rebuild-v0",
+  "fold_coordinate_packet_id": "fresh-v10-fold-coordinate-collocation-nonlinear-tangent-matrix-v0",
+  "candidate_run_id": "fold-coordinate-candidate.nonlinear-v0",
+  "artifact_stem": "fresh-v10-higher-fold-12-root-rebuild-v0.fold-coordinate-candidate.nonlinear-v0",
+  "status": "fold_coordinate_endpoint_functional_source_audit_fail_closed",
+  "theorem_target": "Fold-Coordinate Endpoint-Functional Source Audit",
+  "branch_chart_authorized": false,
+  "preledger_pass": false,
+  "updates_live_ledger": false,
+  "claim_level": "priority-only endpoint-functional source audit; row-local endpoint refs and values are present but global exact endpoint functionals are absent",
+  "authorization_lock": {
+    "branch_chart_authorized": false,
+    "preledger_pass": false,
+    "updates_live_ledger": false,
+    "row_consumption_count": 0
+  },
+  "source_artifacts": {
+    "basisAttempt": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_finite_realization_basis_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_finite_realization_basis_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "present": true,
+      "sha256": "f1b206f5c8dfb051abd9f454c8be3457492af5125f0329ec3b36cffb4cef047a"
+    },
+    "oneLeaf": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/one_leaf_candidate_change_boundary_data.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.json",
+      "basename": "one_leaf_candidate_change_boundary_data.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.json",
+      "present": true,
+      "sha256": "f05f1094ce80b2a3c750f77135e0322162146602650923f01954cefe1159f547"
+    },
+    "phi": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/phi_cyc.fresh-v10-higher-fold-12-root-rebuild-v0.json",
+      "basename": "phi_cyc.fresh-v10-higher-fold-12-root-rebuild-v0.json",
+      "present": true,
+      "sha256": "a731d57f5b5cfd1b3992c54dc0b989aed59c636e01e667dcc3ff15c7a160f8dd"
+    },
+    "mesh": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/mesh.fresh-v10-higher-fold-12-root-rebuild-v0.json",
+      "basename": "mesh.fresh-v10-higher-fold-12-root-rebuild-v0.json",
+      "present": true,
+      "sha256": "807ef730a80d0a8568d9e8fe09123ea8ddd3880630443ebd16e891b560ca0aee"
+    },
+    "preledgerInput": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/causal_preledger_input_screen.fresh-v10-higher-fold-12-root-rebuild-v0.json",
+      "basename": "causal_preledger_input_screen.fresh-v10-higher-fold-12-root-rebuild-v0.json",
+      "present": true,
+      "sha256": "3bdab74a60bc1c54f5fffa56bce2c21d5ec69291b953c723825cde99c45ae3ec"
+    },
+    "sourceCoverAtlas": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/source_cover_defect_atlas.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.json",
+      "basename": "source_cover_defect_atlas.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.json",
+      "present": true,
+      "sha256": "71acd423e49347c930c978976eca3d6fcd38475840f03daf572a36bc0c2b373d"
+    },
+    "ownershipAudit": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/source_cover_boundary_ownership_audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.json",
+      "basename": "source_cover_boundary_ownership_audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.json",
+      "present": true,
+      "sha256": "779de21e7d809940a94341a45176a5b45f0f4c5c0529b88cb46d002a2ab53ef6"
+    }
+  },
+  "source_artifact_summary": {
+    "seed_phi_present": true,
+    "seed_mesh_present": true,
+    "seed_preledger_input_present": true,
+    "seed_phi_samples": 26,
+    "seed_phi_intervals": 25,
+    "mesh_preledger_intervals": 25,
+    "preledger_input_rows": 1250,
+    "source_cover_atlas_rows": 42,
+    "ownership_audit_rows": 42,
+    "ownership_audit_boundary_components": 64,
+    "seed_artifacts_are_diagnostic_only": true
+  },
+  "endpoint_source_rule": "A row-local boundary ref becomes usable for a fold-coordinate basis only after the basis variable has an exact endpoint-functional domain, an endpoint boundary binding, exact endpoint value data, theta support, basis and derivative formulas, X and Xdot update bases, mesh and endpoint motion rules, source/receiver monotonicity rules, non-target endpoint-functional zero certification, exact B_xi=0 certification, and rank certification.",
+  "rejection_rule": "Diagnostic theta samples, interval ids, source/receiver range samples, terminal receiver-grid spans, and ownership component ids locate the row-local endpoint target; they do not define a global exact endpoint functional for any fc_* basis variable.",
+  "seed_artifact_note": "The phi_cyc, mesh, and causal_preledger_input_screen artifacts are the diagnostic shifted-separator seed for the higher-fold packet. They support lookup of theta ranges and sampled rows, but they are not fold-coordinate candidate history artifacts.",
+  "row_sources": [
+    {
+      "row_id": "R_w_A04_A03",
+      "cover_id": "G_w_A04_A03_v6_10",
+      "ledger": "w",
+      "receiver_interval": "A04",
+      "source_interval": "A03",
+      "failed_side": "lo",
+      "boundary_side": "lower",
+      "terminal_grid_span": {
+        "lo": 0,
+        "hi": 1,
+        "den": 128
+      },
+      "ownership_component_id": "R_w_A04_A03:left_boundary_unowned:0:1:128",
+      "source_boundary_ref": "source_inner_range_q.lo",
+      "receiver_boundary_ref": "receiver_range_q.lo",
+      "source_boundary_value": {
+        "num": "22889475682709269533413042303837882332186381319318690739134385525004858014062592566793989041615601706730549026109295638036107447029424137018797622300140513390802684414087574023253585373959809013507853720323944442908548877462127674929541409468871666749595362048011028177978722442883",
+        "den": "20737813556676946596478600506564457667824085709013815187739169879824578869563979531491976751516110219329647110034464826298821156776657596726897777940411216903568068218430965044740096000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "display": "1.103755495734966"
+      },
+      "receiver_boundary_value": {
+        "num": "23923478863106302571634315954875162615478517415591715864604836388793415892566172026938117425823421265104475915417189998177707686618953394346626118598568848409392486393431275864905600748118509682143284004515656206315212228169573960146971958847579871509209687709755403",
+        "den": "21675142283208568355530940920999142187572845848072219153647881064607296161446377030953627938867314415467117213819344472505227512758064470299653390372341679992536822180447518720000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "display": "1.103728803738441"
+      },
+      "screen_row_ref": {
+        "receiver_theta_range": [
+          0.244031876245625,
+          0.328416382350065
+        ],
+        "source_theta_range": [
+          0.131583617650084,
+          0.236031876245625
+        ],
+        "receiver_range": [
+          1.1037296462293,
+          1.33760952360725
+        ],
+        "source_range": [
+          1.10375423945306,
+          1.55013888151632
+        ],
+        "screen_status": "sampled_overlap_or_touch_requires_interval_preledger",
+        "certificate_status": "not_interval_certified"
+      },
+      "mesh_receiver_interval": {
+        "interval_id": "A04",
+        "theta_range": [
+          0.244031876245625,
+          0.328416382350065
+        ],
+        "type": "regular",
+        "order": 8,
+        "velocity_class": "sub",
+        "t_range": [
+          1.53329749931008,
+          2.06350098821914
+        ]
+      },
+      "mesh_source_interval": {
+        "interval_id": "A03",
+        "theta_range": [
+          0.131583617650084,
+          0.236031876245625
+        ],
+        "type": "regular",
+        "order": 6,
+        "velocity_class": "super",
+        "t_range": [
+          0.826764253084599,
+          1.48303201685264
+        ]
+      },
+      "source_cover_ref": {
+        "missing_terminal_leaf_count": 1,
+        "boundary_burden": {
+          "terminal_leaf_count": 1,
+          "required_source_boundary_expansion_q": {
+            "num": "5669711941314830673188480728376899483593421911182442215331992955046452573924290906757308094926076916759135911357084939411748264375892340480753286473663730836637018946258359943384672760494401626819981128632739539183360451341688771462156879964599499520587813065559513756482789186655386505146325631666783274035253863893698229228514091",
+            "den": "212412433667468637989229700431569922732680084255285865147638593843795152977823987926568462230095422229040177983141146679095289924464759995240673303665833986191487451689789004424837202586585495123071382481278844150831361081941956956782592000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "0.000026691996524"
+          },
+          "worst_source_cover_min_margin_q": {
+            "num": "-5669711941314830673188480728376899483593421911182442215331992955046452573924290906757308094926076916759135911357084939411748264375892340480753286473663730836637018946258359943384672760494401626819981128632739539183360451341688771462156879964599499520587813065559513756482789186655386505146325631666783274035253863893698229228514091",
+            "den": "212412433667468637989229700431569922732680084255285865147638593843795152977823987926568462230095422229040177983141146679095289924464759995240673303665833986191487451689789004424837202586585495123071382481278844150831361081941956956782592000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "-0.000026691996524"
+          },
+          "terminal_spans": [
+            {
+              "lo": 0,
+              "hi": 1,
+              "den": 128,
+              "leaf_count": 1,
+              "first_cell_path": "0.0.0",
+              "last_cell_path": "0.0.0"
+            }
+          ]
+        },
+        "source_theta_range_q": {
+          "lo": {
+            "num": "32895904412521",
+            "den": "250000000000000"
+          },
+          "hi": {
+            "num": "377651001993",
+            "den": "1600000000000"
+          },
+          "display": [
+            "0.131583617650084",
+            "0.236031876245625"
+          ]
+        },
+        "receiver_theta_range_q": {
+          "lo": {
+            "num": "390451001993",
+            "den": "1600000000000"
+          },
+          "hi": {
+            "num": "65683276470013",
+            "den": "200000000000000"
+          },
+          "display": [
+            "0.244031876245625",
+            "0.328416382350065"
+          ]
+        }
+      },
+      "ownership_component_ref": {
+        "kind": "left_boundary_unowned",
+        "terminal_grid_span": {
+          "lo": 0,
+          "hi": 1,
+          "den": 128
+        },
+        "terminal_leaf_count": 1,
+        "receiver_theta_range_q": {
+          "lo": {
+            "num": "390451001993",
+            "den": "1600000000000",
+            "display": "0.244031876245625"
+          },
+          "hi": {
+            "num": "783011616638611",
+            "den": "3200000000000000",
+            "display": "0.244691130199565"
+          }
+        },
+        "coverage_defect_q": {
+          "num": "5669711941314830673188480728376899483593421911182442215331992955046452573924290906757308094926076916759135911357084939411748264375892340480753286473663730836637018946258359943384672760494401626819981128632739539183360451341688771462156879964599499520587813065559513756482789186655386505146325631666783274035253863893698229228514091",
+          "den": "212412433667468637989229700431569922732680084255285865147638593843795152977823987926568462230095422229040177983141146679095289924464759995240673303665833986191487451689789004424837202586585495123071382481278844150831361081941956956782592000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "display": "0.000026691996524"
+        },
+        "classification": "structural_miss_candidate",
+        "ownership_certified": false
+      },
+      "required_fields_present": {
+        "one_leaf_row_present": true,
+        "screen_row_resolved": true,
+        "mesh_receiver_interval_resolved": true,
+        "mesh_source_interval_resolved": true,
+        "source_cover_atlas_row_resolved": true,
+        "ownership_audit_row_resolved": true,
+        "ownership_component_resolved": true,
+        "source_boundary_ref_declared": true,
+        "receiver_boundary_ref_declared": true,
+        "source_boundary_value_present": true,
+        "receiver_boundary_value_present": true,
+        "terminal_grid_span_present": true,
+        "endpoint_ownership_no_double_counting_certified": false,
+        "endpoint_functionals_certified": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "endpoint_source_row_ready": false,
+      "obstruction": "The row-local interval ids, boundary refs, source/receiver boundary values, terminal span, and ownership component resolve, but endpoint functionals, no-double-counting ownership, and row consumption are absent."
+    },
+    {
+      "row_id": "R_u_A10_A09",
+      "cover_id": "G_u_A10_A09_v6_31",
+      "ledger": "u",
+      "receiver_interval": "A10",
+      "source_interval": "A09",
+      "failed_side": "lo",
+      "boundary_side": "lower",
+      "terminal_grid_span": {
+        "lo": 0,
+        "hi": 1,
+        "den": 128
+      },
+      "ownership_component_id": "R_u_A10_A09:left_boundary_unowned:0:1:128",
+      "source_boundary_ref": "source_inner_range_q.lo",
+      "receiver_boundary_ref": "receiver_range_q.lo",
+      "source_boundary_value": {
+        "num": "88039238403884674053822967818905235111225073503214998976753728260546758148600337509414313256205686466309292001480744708043739423236237287290884511028631553198684154987618253244383156638471153653507853720323944442908548877462127674929541409468871666749595362048011028177978722442883",
+        "den": "20737813556676946596478600506564457667824085709013815187739169879824578869563979531491976751516110219329647110034464826298821156776657596726897777940411216903568068218430965044740096000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "display": "4.245348149324966"
+      },
+      "receiver_boundary_value": {
+        "num": "92017946625552320131111667196226376274649211724864932821473506991033765671679516696103350990527149858508676422567471818429704183571236733267611955715653904999304852983089366014201600952918509682143284004515656206315212228169573960146971958847579871509209687709755403",
+        "den": "21675142283208568355530940920999142187572845848072219153647881064607296161446377030953627938867314415467117213819344472505227512758064470299653390372341679992536822180447518720000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "display": "4.245321457328441"
+      },
+      "screen_row_ref": {
+        "receiver_theta_range": [
+          0.744031876245625,
+          0.828416382350065
+        ],
+        "source_theta_range": [
+          0.631583617650084,
+          0.736031876245625
+        ],
+        "receiver_range": [
+          4.2453222998193,
+          4.47920217719725
+        ],
+        "source_range": [
+          4.24534689304306,
+          4.69173153510631
+        ],
+        "screen_status": "sampled_overlap_or_touch_requires_interval_preledger",
+        "certificate_status": "not_interval_certified"
+      },
+      "mesh_receiver_interval": {
+        "interval_id": "A10",
+        "theta_range": [
+          0.744031876245625,
+          0.828416382350065
+        ],
+        "type": "regular",
+        "order": 20,
+        "velocity_class": "sub",
+        "t_range": [
+          4.67489015290008,
+          5.20509364180914
+        ]
+      },
+      "mesh_source_interval": {
+        "interval_id": "A09",
+        "theta_range": [
+          0.631583617650084,
+          0.736031876245625
+        ],
+        "type": "regular",
+        "order": 18,
+        "velocity_class": "super",
+        "t_range": [
+          3.9683569066746,
+          4.62462467044264
+        ]
+      },
+      "source_cover_ref": {
+        "missing_terminal_leaf_count": 1,
+        "boundary_burden": {
+          "terminal_leaf_count": 1,
+          "required_source_boundary_expansion_q": {
+            "num": "5669711941314830673188480728376899483593421911182442215331992955046452573924290906757308094926076916759135911357084939411748264375892340480753286473663730836637018946258359943384672760494401626819981128632739539183360451341688771462156879964599499520587813065559513756482789186655386505146325631666783274035253863893698229228514091",
+            "den": "212412433667468637989229700431569922732680084255285865147638593843795152977823987926568462230095422229040177983141146679095289924464759995240673303665833986191487451689789004424837202586585495123071382481278844150831361081941956956782592000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "0.000026691996524"
+          },
+          "worst_source_cover_min_margin_q": {
+            "num": "-5669711941314830673188480728376899483593421911182442215331992955046452573924290906757308094926076916759135911357084939411748264375892340480753286473663730836637018946258359943384672760494401626819981128632739539183360451341688771462156879964599499520587813065559513756482789186655386505146325631666783274035253863893698229228514091",
+            "den": "212412433667468637989229700431569922732680084255285865147638593843795152977823987926568462230095422229040177983141146679095289924464759995240673303665833986191487451689789004424837202586585495123071382481278844150831361081941956956782592000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "-0.000026691996524"
+          },
+          "terminal_spans": [
+            {
+              "lo": 0,
+              "hi": 1,
+              "den": 128,
+              "leaf_count": 1,
+              "first_cell_path": "0.0.0",
+              "last_cell_path": "0.0.0"
+            }
+          ]
+        },
+        "source_theta_range_q": {
+          "lo": {
+            "num": "157895904412521",
+            "den": "250000000000000"
+          },
+          "hi": {
+            "num": "1177651001993",
+            "den": "1600000000000"
+          },
+          "display": [
+            "0.631583617650084",
+            "0.736031876245625"
+          ]
+        },
+        "receiver_theta_range_q": {
+          "lo": {
+            "num": "1190451001993",
+            "den": "1600000000000"
+          },
+          "hi": {
+            "num": "165683276470013",
+            "den": "200000000000000"
+          },
+          "display": [
+            "0.744031876245625",
+            "0.828416382350065"
+          ]
+        }
+      },
+      "ownership_component_ref": {
+        "kind": "left_boundary_unowned",
+        "terminal_grid_span": {
+          "lo": 0,
+          "hi": 1,
+          "den": 128
+        },
+        "terminal_leaf_count": 1,
+        "receiver_theta_range_q": {
+          "lo": {
+            "num": "1190451001993",
+            "den": "1600000000000",
+            "display": "0.744031876245625"
+          },
+          "hi": {
+            "num": "2383011616638611",
+            "den": "3200000000000000",
+            "display": "0.744691130199565"
+          }
+        },
+        "coverage_defect_q": {
+          "num": "5669711941314830673188480728376899483593421911182442215331992955046452573924290906757308094926076916759135911357084939411748264375892340480753286473663730836637018946258359943384672760494401626819981128632739539183360451341688771462156879964599499520587813065559513756482789186655386505146325631666783274035253863893698229228514091",
+          "den": "212412433667468637989229700431569922732680084255285865147638593843795152977823987926568462230095422229040177983141146679095289924464759995240673303665833986191487451689789004424837202586585495123071382481278844150831361081941956956782592000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "display": "0.000026691996524"
+        },
+        "classification": "structural_miss_candidate",
+        "ownership_certified": false
+      },
+      "required_fields_present": {
+        "one_leaf_row_present": true,
+        "screen_row_resolved": true,
+        "mesh_receiver_interval_resolved": true,
+        "mesh_source_interval_resolved": true,
+        "source_cover_atlas_row_resolved": true,
+        "ownership_audit_row_resolved": true,
+        "ownership_component_resolved": true,
+        "source_boundary_ref_declared": true,
+        "receiver_boundary_ref_declared": true,
+        "source_boundary_value_present": true,
+        "receiver_boundary_value_present": true,
+        "terminal_grid_span_present": true,
+        "endpoint_ownership_no_double_counting_certified": false,
+        "endpoint_functionals_certified": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "endpoint_source_row_ready": false,
+      "obstruction": "The row-local interval ids, boundary refs, source/receiver boundary values, terminal span, and ownership component resolve, but endpoint functionals, no-double-counting ownership, and row consumption are absent."
+    },
+    {
+      "row_id": "R_u_A07_A06",
+      "cover_id": "G_u_A07_A06_v6_22",
+      "ledger": "u",
+      "receiver_interval": "A07",
+      "source_interval": "A06",
+      "failed_side": "hi",
+      "boundary_side": "upper",
+      "terminal_grid_span": {
+        "lo": 0,
+        "hi": 1,
+        "den": 128
+      },
+      "ownership_component_id": "R_u_A07_A06:left_boundary_unowned:0:1:128",
+      "source_boundary_ref": "source_inner_range_q.hi",
+      "receiver_boundary_ref": "receiver_range_q.hi",
+      "source_boundary_value": {
+        "num": "913404831589878227955650815249056063409642527436920989775347098713309507776410739373971247745865597132198216856434792485603225886341201786313983387101459534828848824327408487389612164487120225480879904703610257721587148795406165256750308709775447069334359579391187319193184173764651953274813153438754742706218571847990586766227306909373630379789945133405628741195160585918258878758173184554958903787",
+        "den": "206346864613173617903075239304684018917707380895670204800941091511283920337200907269932265673227619093131480070568031876858757312792787978850537940266680115688946560049691815211595107577630454504956166122639636766599124202641876016875921671462507002857788692914294746966770909427010307620000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "display": "4.426550572029212"
+      },
+      "receiver_boundary_value": {
+        "num": "3668029164140711604577729486863140436790318195624021665330903488155589948894674146747657134263392501996316122274977383039900142243661083092548626977248308735401783795478778114028913265019623054326760136351852179090806418757556730841452472939804564785882610960882651271513541783309043807372820860035509788923764248889215986303091136332460594362052978091238556407738146953363553182897981638817059",
+        "den": "828596695543815221599758647695082692964461058923279327772242187591733988576623986519727065831732668860203787760282996822216634372487868238046012967329224194146875293967586938850756257048932505933792723416710197674409478329579910129602233268305361403390904204412285963826325144988193989487000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "display": "4.426796756331923"
+      },
+      "screen_row_ref": {
+        "receiver_theta_range": [
+          0.51954699193526,
+          0.552539232202657
+        ],
+        "source_theta_range": [
+          0.407780132558234,
+          0.51154699193526
+        ],
+        "receiver_range": [
+          4.34362800566844,
+          4.42679425656005
+        ],
+        "source_range": [
+          4.0406621422619,
+          4.42655066047978
+        ],
+        "screen_status": "sampled_overlap_or_touch_requires_interval_preledger",
+        "certificate_status": "not_interval_certified"
+      },
+      "mesh_receiver_interval": {
+        "interval_id": "A07",
+        "theta_range": [
+          0.51954699193526,
+          0.552539232202657
+        ],
+        "type": "regular",
+        "order": 14,
+        "velocity_class": "super",
+        "t_range": [
+          3.26441002611719,
+          3.47170638541625
+        ]
+      },
+      "mesh_source_interval": {
+        "interval_id": "A06",
+        "theta_range": [
+          0.407780132558234,
+          0.51154699193526
+        ],
+        "type": "regular",
+        "order": 12,
+        "velocity_class": "sub",
+        "t_range": [
+          2.56215813744981,
+          3.21414454365975
+        ]
+      },
+      "source_cover_ref": {
+        "missing_terminal_leaf_count": 1,
+        "boundary_burden": {
+          "terminal_leaf_count": 1,
+          "required_source_boundary_expansion_q": {
+            "num": "11510217468575481892033589552795468629965733120476813161267433794161150969618227463865582460488839255978269103445791274495942918477116927028167548192638555698939379601396069868706606430444757468878045986190937500474826889608814674522255613692077540770836373782853994103487647387041649329390628841513099048789531613228821772347856791103440665963228039060271350624176255009591096538554370515784333308412827320933181822550262349760729210705117341995657772865078731842470499845333560894889303019",
+            "den": "46754473546210480137396805404956325951864215812962626418596338013818587638622393657397312519915902724600782964021836217924851517252599054886623909229077428999307184672876050988585762392657676611030140919912182773345761195200521839125751806147895857510423654852583809868607820326571905131377040043443939924435416848856101288506276034910801403950838635826991334162375917784699380164060000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "0.00024618430271"
+          },
+          "worst_source_cover_min_margin_q": {
+            "num": "-11510217468575481892033589552795468629965733120476813161267433794161150969618227463865582460488839255978269103445791274495942918477116927028167548192638555698939379601396069868706606430444757468878045986190937500474826889608814674522255613692077540770836373782853994103487647387041649329390628841513099048789531613228821772347856791103440665963228039060271350624176255009591096538554370515784333308412827320933181822550262349760729210705117341995657772865078731842470499845333560894889303019",
+            "den": "46754473546210480137396805404956325951864215812962626418596338013818587638622393657397312519915902724600782964021836217924851517252599054886623909229077428999307184672876050988585762392657676611030140919912182773345761195200521839125751806147895857510423654852583809868607820326571905131377040043443939924435416848856101288506276034910801403950838635826991334162375917784699380164060000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "-0.00024618430271"
+          },
+          "terminal_spans": [
+            {
+              "lo": 0,
+              "hi": 1,
+              "den": 128,
+              "leaf_count": 1,
+              "first_cell_path": "0.0.0",
+              "last_cell_path": "0.0.0"
+            }
+          ]
+        },
+        "source_theta_range_q": {
+          "lo": {
+            "num": "203890066279117",
+            "den": "500000000000000"
+          },
+          "hi": {
+            "num": "25577349596763",
+            "den": "50000000000000"
+          },
+          "display": [
+            "0.407780132558234",
+            "0.51154699193526"
+          ]
+        },
+        "receiver_theta_range_q": {
+          "lo": {
+            "num": "25977349596763",
+            "den": "50000000000000"
+          },
+          "hi": {
+            "num": "552539232202657",
+            "den": "1000000000000000"
+          },
+          "display": [
+            "0.51954699193526",
+            "0.552539232202657"
+          ]
+        }
+      },
+      "ownership_component_ref": {
+        "kind": "left_boundary_unowned",
+        "terminal_grid_span": {
+          "lo": 0,
+          "hi": 1,
+          "den": 128
+        },
+        "terminal_leaf_count": 1,
+        "receiver_theta_range_q": {
+          "lo": {
+            "num": "25977349596763",
+            "den": "50000000000000",
+            "display": "0.51954699193526"
+          },
+          "hi": {
+            "num": "66535007207980677",
+            "den": "128000000000000000",
+            "display": "0.519804743812349"
+          }
+        },
+        "coverage_defect_q": {
+          "num": "11510217468575481892033589552795468629965733120476813161267433794161150969618227463865582460488839255978269103445791274495942918477116927028167548192638555698939379601396069868706606430444757468878045986190937500474826889608814674522255613692077540770836373782853994103487647387041649329390628841513099048789531613228821772347856791103440665963228039060271350624176255009591096538554370515784333308412827320933181822550262349760729210705117341995657772865078731842470499845333560894889303019",
+          "den": "46754473546210480137396805404956325951864215812962626418596338013818587638622393657397312519915902724600782964021836217924851517252599054886623909229077428999307184672876050988585762392657676611030140919912182773345761195200521839125751806147895857510423654852583809868607820326571905131377040043443939924435416848856101288506276034910801403950838635826991334162375917784699380164060000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "display": "0.00024618430271"
+        },
+        "classification": "structural_miss_candidate",
+        "ownership_certified": false
+      },
+      "required_fields_present": {
+        "one_leaf_row_present": true,
+        "screen_row_resolved": true,
+        "mesh_receiver_interval_resolved": true,
+        "mesh_source_interval_resolved": true,
+        "source_cover_atlas_row_resolved": true,
+        "ownership_audit_row_resolved": true,
+        "ownership_component_resolved": true,
+        "source_boundary_ref_declared": true,
+        "receiver_boundary_ref_declared": true,
+        "source_boundary_value_present": true,
+        "receiver_boundary_value_present": true,
+        "terminal_grid_span_present": true,
+        "endpoint_ownership_no_double_counting_certified": false,
+        "endpoint_functionals_certified": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "endpoint_source_row_ready": false,
+      "obstruction": "The row-local interval ids, boundary refs, source/receiver boundary values, terminal span, and ownership component resolve, but endpoint functionals, no-double-counting ownership, and row consumption are absent."
+    }
+  ],
+  "variable_sources": [
+    {
+      "id": "fc_sigma_source_lower",
+      "source_symbol": "sigma_source_lower",
+      "basis_symbol": "Psi_fc_sigma_source_lower",
+      "role": "source",
+      "row_uses": [
+        "R_w_A04_A03",
+        "R_u_A10_A09"
+      ],
+      "boundary_actions": [
+        "lower_source_inner_boundary"
+      ],
+      "boundary_delta_signs": [
+        -1
+      ],
+      "target_endpoint_refs": [
+        {
+          "row_id": "R_w_A04_A03",
+          "role": "source",
+          "endpoint_ref": "source_inner_range_q.lo",
+          "endpoint_value": {
+            "num": "22889475682709269533413042303837882332186381319318690739134385525004858014062592566793989041615601706730549026109295638036107447029424137018797622300140513390802684414087574023253585373959809013507853720323944442908548877462127674929541409468871666749595362048011028177978722442883",
+            "den": "20737813556676946596478600506564457667824085709013815187739169879824578869563979531491976751516110219329647110034464826298821156776657596726897777940411216903568068218430965044740096000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "1.103755495734966"
+          },
+          "endpoint_value_present": true,
+          "ownership_component_id": "R_w_A04_A03:left_boundary_unowned:0:1:128"
+        },
+        {
+          "row_id": "R_u_A10_A09",
+          "role": "source",
+          "endpoint_ref": "source_inner_range_q.lo",
+          "endpoint_value": {
+            "num": "88039238403884674053822967818905235111225073503214998976753728260546758148600337509414313256205686466309292001480744708043739423236237287290884511028631553198684154987618253244383156638471153653507853720323944442908548877462127674929541409468871666749595362048011028177978722442883",
+            "den": "20737813556676946596478600506564457667824085709013815187739169879824578869563979531491976751516110219329647110034464826298821156776657596726897777940411216903568068218430965044740096000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "4.245348149324966"
+          },
+          "endpoint_value_present": true,
+          "ownership_component_id": "R_u_A10_A09:left_boundary_unowned:0:1:128"
+        }
+      ],
+      "required_endpoint_functionals": [
+        {
+          "action": "lower_source_inner_boundary",
+          "sign": -1,
+          "target_equation": "E_lower_source_inner_boundary(Psi_fc_sigma_source_lower) = -1",
+          "zero_equation": "All non-target one-leaf boundary functionals vanish on Psi_fc_sigma_source_lower."
+        }
+      ],
+      "required_fields_present": {
+        "screen_variable_present": true,
+        "basis_symbol_declared": true,
+        "endpoint_boundary_action_declared": true,
+        "boundary_delta_sign_consistent": true,
+        "row_uses_covered": true,
+        "target_endpoint_ref_declared": true,
+        "target_endpoint_value_present": true,
+        "endpoint_boundary_binding_present": false,
+        "endpoint_functional_domain_present": false,
+        "theta_support_present": false,
+        "basis_formula_present": false,
+        "basis_derivative_formula_present": false,
+        "x_update_basis_present": false,
+        "xdot_update_basis_present": false,
+        "mesh_update_rule_present": false,
+        "endpoint_motion_rule_present": false,
+        "source_monotonicity_rule_present": false,
+        "receiver_monotonicity_rule_present": false,
+        "periodic_extension_rule_present": false,
+        "c1_gluing_rule_present": false,
+        "non_target_endpoint_functionals_zero_certified": false,
+        "exact_screen_zero_certified": false,
+        "rank_certified": false,
+        "endpoint_source_ready": false
+      },
+      "missing_endpoint_source_fields": [
+        "endpoint_boundary_binding_present",
+        "endpoint_functional_domain_present",
+        "theta_support_present",
+        "basis_formula_present",
+        "basis_derivative_formula_present",
+        "x_update_basis_present",
+        "xdot_update_basis_present",
+        "mesh_update_rule_present",
+        "endpoint_motion_rule_present",
+        "source_monotonicity_rule_present",
+        "receiver_monotonicity_rule_present",
+        "periodic_extension_rule_present",
+        "c1_gluing_rule_present",
+        "non_target_endpoint_functionals_zero_certified",
+        "exact_screen_zero_certified",
+        "rank_certified"
+      ],
+      "endpoint_source_ready": false,
+      "obstruction": "The variable has row-local endpoint refs and values, but no exact endpoint-functional domain, endpoint binding, theta support, formula, derivative, mesh rule, endpoint motion rule, monotonicity rule, exact screen-zero certificate, or rank certificate."
+    },
+    {
+      "id": "fc_rho_receiver_lower",
+      "source_symbol": "rho_receiver_lower",
+      "basis_symbol": "Psi_fc_rho_receiver_lower",
+      "role": "receiver",
+      "row_uses": [
+        "R_w_A04_A03",
+        "R_u_A10_A09"
+      ],
+      "boundary_actions": [
+        "raise_receiver_lower_boundary"
+      ],
+      "boundary_delta_signs": [
+        1
+      ],
+      "target_endpoint_refs": [
+        {
+          "row_id": "R_w_A04_A03",
+          "role": "receiver",
+          "endpoint_ref": "receiver_range_q.lo",
+          "endpoint_value": {
+            "num": "23923478863106302571634315954875162615478517415591715864604836388793415892566172026938117425823421265104475915417189998177707686618953394346626118598568848409392486393431275864905600748118509682143284004515656206315212228169573960146971958847579871509209687709755403",
+            "den": "21675142283208568355530940920999142187572845848072219153647881064607296161446377030953627938867314415467117213819344472505227512758064470299653390372341679992536822180447518720000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "1.103728803738441"
+          },
+          "endpoint_value_present": true,
+          "ownership_component_id": "R_w_A04_A03:left_boundary_unowned:0:1:128"
+        },
+        {
+          "row_id": "R_u_A10_A09",
+          "role": "receiver",
+          "endpoint_ref": "receiver_range_q.lo",
+          "endpoint_value": {
+            "num": "92017946625552320131111667196226376274649211724864932821473506991033765671679516696103350990527149858508676422567471818429704183571236733267611955715653904999304852983089366014201600952918509682143284004515656206315212228169573960146971958847579871509209687709755403",
+            "den": "21675142283208568355530940920999142187572845848072219153647881064607296161446377030953627938867314415467117213819344472505227512758064470299653390372341679992536822180447518720000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "4.245321457328441"
+          },
+          "endpoint_value_present": true,
+          "ownership_component_id": "R_u_A10_A09:left_boundary_unowned:0:1:128"
+        }
+      ],
+      "required_endpoint_functionals": [
+        {
+          "action": "raise_receiver_lower_boundary",
+          "sign": 1,
+          "target_equation": "E_raise_receiver_lower_boundary(Psi_fc_rho_receiver_lower) = +1",
+          "zero_equation": "All non-target one-leaf boundary functionals vanish on Psi_fc_rho_receiver_lower."
+        }
+      ],
+      "required_fields_present": {
+        "screen_variable_present": true,
+        "basis_symbol_declared": true,
+        "endpoint_boundary_action_declared": true,
+        "boundary_delta_sign_consistent": true,
+        "row_uses_covered": true,
+        "target_endpoint_ref_declared": true,
+        "target_endpoint_value_present": true,
+        "endpoint_boundary_binding_present": false,
+        "endpoint_functional_domain_present": false,
+        "theta_support_present": false,
+        "basis_formula_present": false,
+        "basis_derivative_formula_present": false,
+        "x_update_basis_present": false,
+        "xdot_update_basis_present": false,
+        "mesh_update_rule_present": false,
+        "endpoint_motion_rule_present": false,
+        "source_monotonicity_rule_present": false,
+        "receiver_monotonicity_rule_present": false,
+        "periodic_extension_rule_present": false,
+        "c1_gluing_rule_present": false,
+        "non_target_endpoint_functionals_zero_certified": false,
+        "exact_screen_zero_certified": false,
+        "rank_certified": false,
+        "endpoint_source_ready": false
+      },
+      "missing_endpoint_source_fields": [
+        "endpoint_boundary_binding_present",
+        "endpoint_functional_domain_present",
+        "theta_support_present",
+        "basis_formula_present",
+        "basis_derivative_formula_present",
+        "x_update_basis_present",
+        "xdot_update_basis_present",
+        "mesh_update_rule_present",
+        "endpoint_motion_rule_present",
+        "source_monotonicity_rule_present",
+        "receiver_monotonicity_rule_present",
+        "periodic_extension_rule_present",
+        "c1_gluing_rule_present",
+        "non_target_endpoint_functionals_zero_certified",
+        "exact_screen_zero_certified",
+        "rank_certified"
+      ],
+      "endpoint_source_ready": false,
+      "obstruction": "The variable has row-local endpoint refs and values, but no exact endpoint-functional domain, endpoint binding, theta support, formula, derivative, mesh rule, endpoint motion rule, monotonicity rule, exact screen-zero certificate, or rank certificate."
+    },
+    {
+      "id": "fc_sigma_source_upper",
+      "source_symbol": "sigma_source_upper",
+      "basis_symbol": "Psi_fc_sigma_source_upper",
+      "role": "source",
+      "row_uses": [
+        "R_u_A07_A06"
+      ],
+      "boundary_actions": [
+        "raise_source_inner_boundary"
+      ],
+      "boundary_delta_signs": [
+        1
+      ],
+      "target_endpoint_refs": [
+        {
+          "row_id": "R_u_A07_A06",
+          "role": "source",
+          "endpoint_ref": "source_inner_range_q.hi",
+          "endpoint_value": {
+            "num": "913404831589878227955650815249056063409642527436920989775347098713309507776410739373971247745865597132198216856434792485603225886341201786313983387101459534828848824327408487389612164487120225480879904703610257721587148795406165256750308709775447069334359579391187319193184173764651953274813153438754742706218571847990586766227306909373630379789945133405628741195160585918258878758173184554958903787",
+            "den": "206346864613173617903075239304684018917707380895670204800941091511283920337200907269932265673227619093131480070568031876858757312792787978850537940266680115688946560049691815211595107577630454504956166122639636766599124202641876016875921671462507002857788692914294746966770909427010307620000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "4.426550572029212"
+          },
+          "endpoint_value_present": true,
+          "ownership_component_id": "R_u_A07_A06:left_boundary_unowned:0:1:128"
+        }
+      ],
+      "required_endpoint_functionals": [
+        {
+          "action": "raise_source_inner_boundary",
+          "sign": 1,
+          "target_equation": "E_raise_source_inner_boundary(Psi_fc_sigma_source_upper) = +1",
+          "zero_equation": "All non-target one-leaf boundary functionals vanish on Psi_fc_sigma_source_upper."
+        }
+      ],
+      "required_fields_present": {
+        "screen_variable_present": true,
+        "basis_symbol_declared": true,
+        "endpoint_boundary_action_declared": true,
+        "boundary_delta_sign_consistent": true,
+        "row_uses_covered": true,
+        "target_endpoint_ref_declared": true,
+        "target_endpoint_value_present": true,
+        "endpoint_boundary_binding_present": false,
+        "endpoint_functional_domain_present": false,
+        "theta_support_present": false,
+        "basis_formula_present": false,
+        "basis_derivative_formula_present": false,
+        "x_update_basis_present": false,
+        "xdot_update_basis_present": false,
+        "mesh_update_rule_present": false,
+        "endpoint_motion_rule_present": false,
+        "source_monotonicity_rule_present": false,
+        "receiver_monotonicity_rule_present": false,
+        "periodic_extension_rule_present": false,
+        "c1_gluing_rule_present": false,
+        "non_target_endpoint_functionals_zero_certified": false,
+        "exact_screen_zero_certified": false,
+        "rank_certified": false,
+        "endpoint_source_ready": false
+      },
+      "missing_endpoint_source_fields": [
+        "endpoint_boundary_binding_present",
+        "endpoint_functional_domain_present",
+        "theta_support_present",
+        "basis_formula_present",
+        "basis_derivative_formula_present",
+        "x_update_basis_present",
+        "xdot_update_basis_present",
+        "mesh_update_rule_present",
+        "endpoint_motion_rule_present",
+        "source_monotonicity_rule_present",
+        "receiver_monotonicity_rule_present",
+        "periodic_extension_rule_present",
+        "c1_gluing_rule_present",
+        "non_target_endpoint_functionals_zero_certified",
+        "exact_screen_zero_certified",
+        "rank_certified"
+      ],
+      "endpoint_source_ready": false,
+      "obstruction": "The variable has row-local endpoint refs and values, but no exact endpoint-functional domain, endpoint binding, theta support, formula, derivative, mesh rule, endpoint motion rule, monotonicity rule, exact screen-zero certificate, or rank certificate."
+    },
+    {
+      "id": "fc_rho_receiver_upper",
+      "source_symbol": "rho_receiver_upper",
+      "basis_symbol": "Psi_fc_rho_receiver_upper",
+      "role": "receiver",
+      "row_uses": [
+        "R_u_A07_A06"
+      ],
+      "boundary_actions": [
+        "lower_receiver_upper_boundary"
+      ],
+      "boundary_delta_signs": [
+        -1
+      ],
+      "target_endpoint_refs": [
+        {
+          "row_id": "R_u_A07_A06",
+          "role": "receiver",
+          "endpoint_ref": "receiver_range_q.hi",
+          "endpoint_value": {
+            "num": "3668029164140711604577729486863140436790318195624021665330903488155589948894674146747657134263392501996316122274977383039900142243661083092548626977248308735401783795478778114028913265019623054326760136351852179090806418757556730841452472939804564785882610960882651271513541783309043807372820860035509788923764248889215986303091136332460594362052978091238556407738146953363553182897981638817059",
+            "den": "828596695543815221599758647695082692964461058923279327772242187591733988576623986519727065831732668860203787760282996822216634372487868238046012967329224194146875293967586938850756257048932505933792723416710197674409478329579910129602233268305361403390904204412285963826325144988193989487000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "4.426796756331923"
+          },
+          "endpoint_value_present": true,
+          "ownership_component_id": "R_u_A07_A06:left_boundary_unowned:0:1:128"
+        }
+      ],
+      "required_endpoint_functionals": [
+        {
+          "action": "lower_receiver_upper_boundary",
+          "sign": -1,
+          "target_equation": "E_lower_receiver_upper_boundary(Psi_fc_rho_receiver_upper) = -1",
+          "zero_equation": "All non-target one-leaf boundary functionals vanish on Psi_fc_rho_receiver_upper."
+        }
+      ],
+      "required_fields_present": {
+        "screen_variable_present": true,
+        "basis_symbol_declared": true,
+        "endpoint_boundary_action_declared": true,
+        "boundary_delta_sign_consistent": true,
+        "row_uses_covered": true,
+        "target_endpoint_ref_declared": true,
+        "target_endpoint_value_present": true,
+        "endpoint_boundary_binding_present": false,
+        "endpoint_functional_domain_present": false,
+        "theta_support_present": false,
+        "basis_formula_present": false,
+        "basis_derivative_formula_present": false,
+        "x_update_basis_present": false,
+        "xdot_update_basis_present": false,
+        "mesh_update_rule_present": false,
+        "endpoint_motion_rule_present": false,
+        "source_monotonicity_rule_present": false,
+        "receiver_monotonicity_rule_present": false,
+        "periodic_extension_rule_present": false,
+        "c1_gluing_rule_present": false,
+        "non_target_endpoint_functionals_zero_certified": false,
+        "exact_screen_zero_certified": false,
+        "rank_certified": false,
+        "endpoint_source_ready": false
+      },
+      "missing_endpoint_source_fields": [
+        "endpoint_boundary_binding_present",
+        "endpoint_functional_domain_present",
+        "theta_support_present",
+        "basis_formula_present",
+        "basis_derivative_formula_present",
+        "x_update_basis_present",
+        "xdot_update_basis_present",
+        "mesh_update_rule_present",
+        "endpoint_motion_rule_present",
+        "source_monotonicity_rule_present",
+        "receiver_monotonicity_rule_present",
+        "periodic_extension_rule_present",
+        "c1_gluing_rule_present",
+        "non_target_endpoint_functionals_zero_certified",
+        "exact_screen_zero_certified",
+        "rank_certified"
+      ],
+      "endpoint_source_ready": false,
+      "obstruction": "The variable has row-local endpoint refs and values, but no exact endpoint-functional domain, endpoint binding, theta support, formula, derivative, mesh rule, endpoint motion rule, monotonicity rule, exact screen-zero certificate, or rank certificate."
+    }
+  ],
+  "summary": {
+    "variables": 4,
+    "rows": 3,
+    "seed_phi_present": true,
+    "seed_mesh_present": true,
+    "seed_preledger_input_present": true,
+    "screen_variables_present": 4,
+    "basis_symbols_declared": 4,
+    "endpoint_boundary_actions_declared": 4,
+    "boundary_delta_sign_consistent_variables": 4,
+    "variables_with_row_uses_covered": 4,
+    "variables_with_target_endpoint_refs_declared": 4,
+    "variables_with_target_endpoint_values_present": 4,
+    "endpoint_boundary_bindings_present": 0,
+    "endpoint_functional_domains_present": 0,
+    "theta_supports_present": 0,
+    "basis_formulas_present": 0,
+    "basis_derivative_formulas_present": 0,
+    "x_update_bases_present": 0,
+    "xdot_update_bases_present": 0,
+    "mesh_update_rules_present": 0,
+    "endpoint_motion_rules_present": 0,
+    "source_monotonicity_rules_present": 0,
+    "receiver_monotonicity_rules_present": 0,
+    "non_target_endpoint_functionals_zero_certified": 0,
+    "exact_screen_zero_certified_variables": 0,
+    "rank_certified_variables": 0,
+    "endpoint_source_ready_variables": 0,
+    "row_local_source_interval_refs": 3,
+    "row_local_receiver_interval_refs": 3,
+    "row_local_source_boundary_refs_declared": 3,
+    "row_local_receiver_boundary_refs_declared": 3,
+    "row_local_source_boundary_values_present": 3,
+    "row_local_receiver_boundary_values_present": 3,
+    "rows_located_in_preledger_input": 3,
+    "rows_with_mesh_receiver_interval": 3,
+    "rows_with_mesh_source_interval": 3,
+    "rows_located_in_source_cover_atlas": 3,
+    "rows_located_in_ownership_audit": 3,
+    "ownership_components_resolved": 3,
+    "endpoint_ownership_no_double_counting_certified_rows": 0,
+    "endpoint_functionals_certified_rows": 0,
+    "endpoint_source_ready_rows": 0,
+    "row_consumption_count": 0,
+    "branch_chart_authorized": false,
+    "variable_required_fields_certified_counts": {
+      "screen_variable_present": 4,
+      "basis_symbol_declared": 4,
+      "endpoint_boundary_action_declared": 4,
+      "boundary_delta_sign_consistent": 4,
+      "row_uses_covered": 4,
+      "target_endpoint_ref_declared": 4,
+      "target_endpoint_value_present": 4,
+      "endpoint_boundary_binding_present": 0,
+      "endpoint_functional_domain_present": 0,
+      "theta_support_present": 0,
+      "basis_formula_present": 0,
+      "basis_derivative_formula_present": 0,
+      "x_update_basis_present": 0,
+      "xdot_update_basis_present": 0,
+      "mesh_update_rule_present": 0,
+      "endpoint_motion_rule_present": 0,
+      "source_monotonicity_rule_present": 0,
+      "receiver_monotonicity_rule_present": 0,
+      "periodic_extension_rule_present": 0,
+      "c1_gluing_rule_present": 0,
+      "non_target_endpoint_functionals_zero_certified": 0,
+      "exact_screen_zero_certified": 0,
+      "rank_certified": 0,
+      "endpoint_source_ready": 0
+    },
+    "row_required_fields_certified_counts": {
+      "one_leaf_row_present": 3,
+      "screen_row_resolved": 3,
+      "mesh_receiver_interval_resolved": 3,
+      "mesh_source_interval_resolved": 3,
+      "source_cover_atlas_row_resolved": 3,
+      "ownership_audit_row_resolved": 3,
+      "ownership_component_resolved": 3,
+      "source_boundary_ref_declared": 3,
+      "receiver_boundary_ref_declared": 3,
+      "source_boundary_value_present": 3,
+      "receiver_boundary_value_present": 3,
+      "terminal_grid_span_present": 3,
+      "endpoint_ownership_no_double_counting_certified": 0,
+      "endpoint_functionals_certified": 0,
+      "row_consumed": 0,
+      "branch_chart_authorized": 0
+    }
+  }
+}

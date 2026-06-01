@@ -1,0 +1,1843 @@
+{
+  "schema": "breather-higher-fold-fold-coordinate-endpoint-functional-global-domain-evaluation-map-construction-attempt-v1",
+  "packet_id": "fresh-v10-higher-fold-12-root-rebuild-v0",
+  "fold_coordinate_packet_id": "fresh-v10-fold-coordinate-collocation-nonlinear-tangent-matrix-v0",
+  "status": "fold_coordinate_endpoint_functional_global_domain_evaluation_map_construction_attempt_fail_closed",
+  "theorem_target": "Fold-Coordinate Endpoint-Functional Global Domain/Evaluation-Map Construction Attempt",
+  "branch_chart_authorized": false,
+  "preledger_pass": false,
+  "updates_live_ledger": false,
+  "claim_level": "priority-only global domain/evaluation-map construction attempt; local Psi formulas are available but no proof-grade same-packet global endpoint-functional maps are constructed and no rows are consumed",
+  "authorization_lock": {
+    "branch_chart_authorized": false,
+    "preledger_pass": false,
+    "updates_live_ledger": false,
+    "row_consumption_count": 0
+  },
+  "source_artifacts": {
+    "explicitPsiAttempt": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_explicit_psi_formula_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_explicit_psi_formula_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "present": true,
+      "sha256": "98b2c6f0894e6ca2e95ed6ffc753bd280d3b5c4cfbefef70c2578154ad916b9a"
+    },
+    "domainEvaluationContract": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_domain_evaluation_contract.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_domain_evaluation_contract.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "present": true,
+      "sha256": "a7d7a5cbb74aad039e237f9af7d8a575da47740379319f56596133a83d7d1fa8"
+    }
+  },
+  "global_domain_evaluation_rule": "Here global means a single same-packet construction over all support components for the relevant `fc_*` variable, not a universal time-space object. A component-local Psi formula promotes only if the same packet constructs a global endpoint-functional domain chart, coordinate rule, basis-domain binding, gluing and periodicity rules, endpoint boundary binding, endpoint motion rule, endpoint evaluation map, non-target zero certificate, exact $B\\xi=0$, rank, topology recertification, and proof-interval v1-v6 replay.",
+  "no_promotion_rule": "Do not promote a local $E_j(\\Psi_j)=\\pm 1$ endpoint identity into a global same-packet domain/evaluation map until all global domain/evaluation-map fields and replay gates are constructed in the same packet.",
+  "component_union_rule": "A disjoint component union is only a support list until the packet constructs a global coordinate rule and a no-double-counting rule for the endpoint-functional domain.",
+  "promotion_methods": [
+    {
+      "id": "local_formula_family_as_global_domain_chart",
+      "description": "Try to read the component-local formula family as the endpoint-functional global domain chart.",
+      "required_fields": [
+        "local_formula_candidate_available",
+        "local_derivative_formula_available",
+        "local_support_components_available",
+        "component_endpoint_identities_exact",
+        "component_union_domain_symbol_declared",
+        "global_domain_chart_constructed",
+        "global_domain_coordinate_rule_constructed",
+        "global_basis_vector_bound_to_domain"
+      ]
+    },
+    {
+      "id": "component_union_as_global_coordinate_rule",
+      "description": "Try to promote the component support union into a same-packet coordinate rule without double counting.",
+      "required_fields": [
+        "component_union_domain_symbol_declared",
+        "component_supports_disjoint_or_single_component",
+        "component_union_no_double_counting_rule_constructed",
+        "global_domain_chart_constructed",
+        "global_domain_coordinate_rule_constructed",
+        "global_gluing_rule_constructed",
+        "global_periodicity_rule_constructed"
+      ]
+    },
+    {
+      "id": "local_target_identity_as_endpoint_evaluation_map",
+      "description": "Try to promote the exact local endpoint identity into a global endpoint evaluation map.",
+      "required_fields": [
+        "component_endpoint_identities_exact",
+        "endpoint_boundary_binding_constructed",
+        "endpoint_motion_rule_constructed",
+        "endpoint_evaluation_map_constructed",
+        "endpoint_value_bound_to_evaluation_map",
+        "target_action_exact_under_global_evaluation_map",
+        "global_domain_evaluation_map_constructed"
+      ]
+    },
+    {
+      "id": "component_extension_as_same_packet_history_update",
+      "description": "Try to treat the component formulas as a same-packet history update with mesh, gluing, and monotonicity rules.",
+      "required_fields": [
+        "same_packet_x_update_basis_constructed",
+        "same_packet_xdot_update_basis_constructed",
+        "mesh_update_rule_constructed",
+        "endpoint_motion_rule_constructed",
+        "source_monotonicity_rule_constructed",
+        "receiver_monotonicity_rule_constructed",
+        "global_gluing_rule_constructed",
+        "global_periodicity_rule_constructed",
+        "same_packet_history_update_formula_present"
+      ]
+    },
+    {
+      "id": "global_domain_evaluation_map_as_row_consumption",
+      "description": "Try to consume fold-coordinate rows from the promoted global domain/evaluation maps.",
+      "required_fields": [
+        "global_domain_evaluation_map_constructed",
+        "non_target_endpoint_actions_enumerated",
+        "non_target_endpoint_zero_certified",
+        "exact_screen_zero_certified",
+        "rank_certified",
+        "candidate_artifacts_present",
+        "root_topology_recertified_for_candidate_change",
+        "proof_interval_v1_v6_rerun_for_candidate_change"
+      ]
+    }
+  ],
+  "endpoint_global_domain_evaluation_attempts": [
+    {
+      "id": "fc_sigma_source_lower",
+      "endpoint_functional_id": "E_lower_source_inner_boundary",
+      "role": "source",
+      "basis_symbol": "Psi_fc_sigma_source_lower",
+      "source_symbol": "sigma_source_lower",
+      "row_uses": [
+        "R_w_A04_A03",
+        "R_u_A10_A09"
+      ],
+      "target_equation": "E_lower_source_inner_boundary(Psi_fc_sigma_source_lower) = -1",
+      "target_action": "lower_source_inner_boundary",
+      "target_sign": -1,
+      "domain_symbol": "D_fc_sigma_source_lower",
+      "chart_symbol": "chi_fc_sigma_source_lower",
+      "evaluation_map_symbol": "ev_fc_sigma_source_lower",
+      "support_topology": {
+        "support_interval_ids": [
+          "A03",
+          "A09"
+        ],
+        "unique_support_interval_ids": [
+          "A03",
+          "A09"
+        ],
+        "support_component_count": 2,
+        "support_union_kind": "disjoint_component_union",
+        "component_supports_disjoint_or_single_component": true
+      },
+      "support_components": [
+        {
+          "row_id": "R_w_A04_A03",
+          "role": "source",
+          "support_interval_id": "A03",
+          "endpoint_ref": "source_inner_range_q.lo",
+          "endpoint_q_value": {
+            "num": "22889475682709269533413042303837882332186381319318690739134385525004858014062592566793989041615601706730549026109295638036107447029424137018797622300140513390802684414087574023253585373959809013507853720323944442908548877462127674929541409468871666749595362048011028177978722442883",
+            "den": "20737813556676946596478600506564457667824085709013815187739169879824578869563979531491976751516110219329647110034464826298821156776657596726897777940411216903568068218430965044740096000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "1.103755495734966"
+          },
+          "endpoint_side_q": {
+            "num": "377651001993",
+            "den": "1600000000000"
+          },
+          "endpoint_side_theta": "hi",
+          "target_sign": -1,
+          "target_equation": "E_lower_source_inner_boundary(Psi_fc_sigma_source_lower) = -1",
+          "ownership_component_id": "R_w_A04_A03:left_boundary_unowned:0:1:128",
+          "theta_range_q": {
+            "lo": {
+              "num": "32895904412521",
+              "den": "250000000000000"
+            },
+            "hi": {
+              "num": "377651001993",
+              "den": "1600000000000"
+            },
+            "display": [
+              "0.131583617650084",
+              "0.236031876245625"
+            ]
+          },
+          "theta_range_display": [
+            "0.131583617650084",
+            "0.236031876245625"
+          ],
+          "mesh_interval": {
+            "interval_id": "A03",
+            "theta_range": [
+              0.131583617650084,
+              0.236031876245625
+            ],
+            "type": "regular",
+            "order": 6,
+            "velocity_class": "super",
+            "t_range": [
+              0.826764253084599,
+              1.48303201685264
+            ]
+          },
+          "terminal_grid_span": {
+            "lo": 0,
+            "hi": 1,
+            "den": 128
+          },
+          "formula_candidate": {
+            "local_coordinate": "s_R_w_A04_A03=(theta-L_A03)/(R_A03-L_A03)",
+            "shape_id": "H_right",
+            "shape_formula": "H_right(s)=3s^2-2s^3",
+            "shape_derivative": "dH_right/dtheta=(6s-6s^2)/(R-L)",
+            "formula": "Psi_fc_sigma_source_lower[R_w_A04_A03](theta)=-1*H_right(s_R_w_A04_A03)",
+            "derivative_formula": "dPsi_fc_sigma_source_lower[R_w_A04_A03]/dtheta=-1*dH_right/dtheta"
+          },
+          "local_endpoint_identities": {
+            "target_endpoint_shape_value": 1,
+            "target_endpoint_formula_value": -1,
+            "target_endpoint_derivative_value": 0,
+            "opposite_endpoint_shape_value": 0,
+            "opposite_endpoint_formula_value": 0,
+            "opposite_endpoint_derivative_value": 0,
+            "target_action_matches_sign": true,
+            "target_derivative_zero": true,
+            "opposite_endpoint_zero": true,
+            "opposite_endpoint_derivative_zero": true,
+            "local_identity_exact": true
+          }
+        },
+        {
+          "row_id": "R_u_A10_A09",
+          "role": "source",
+          "support_interval_id": "A09",
+          "endpoint_ref": "source_inner_range_q.lo",
+          "endpoint_q_value": {
+            "num": "88039238403884674053822967818905235111225073503214998976753728260546758148600337509414313256205686466309292001480744708043739423236237287290884511028631553198684154987618253244383156638471153653507853720323944442908548877462127674929541409468871666749595362048011028177978722442883",
+            "den": "20737813556676946596478600506564457667824085709013815187739169879824578869563979531491976751516110219329647110034464826298821156776657596726897777940411216903568068218430965044740096000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "4.245348149324966"
+          },
+          "endpoint_side_q": {
+            "num": "1177651001993",
+            "den": "1600000000000"
+          },
+          "endpoint_side_theta": "hi",
+          "target_sign": -1,
+          "target_equation": "E_lower_source_inner_boundary(Psi_fc_sigma_source_lower) = -1",
+          "ownership_component_id": "R_u_A10_A09:left_boundary_unowned:0:1:128",
+          "theta_range_q": {
+            "lo": {
+              "num": "157895904412521",
+              "den": "250000000000000"
+            },
+            "hi": {
+              "num": "1177651001993",
+              "den": "1600000000000"
+            },
+            "display": [
+              "0.631583617650084",
+              "0.736031876245625"
+            ]
+          },
+          "theta_range_display": [
+            "0.631583617650084",
+            "0.736031876245625"
+          ],
+          "mesh_interval": {
+            "interval_id": "A09",
+            "theta_range": [
+              0.631583617650084,
+              0.736031876245625
+            ],
+            "type": "regular",
+            "order": 18,
+            "velocity_class": "super",
+            "t_range": [
+              3.9683569066746,
+              4.62462467044264
+            ]
+          },
+          "terminal_grid_span": {
+            "lo": 0,
+            "hi": 1,
+            "den": 128
+          },
+          "formula_candidate": {
+            "local_coordinate": "s_R_u_A10_A09=(theta-L_A09)/(R_A09-L_A09)",
+            "shape_id": "H_right",
+            "shape_formula": "H_right(s)=3s^2-2s^3",
+            "shape_derivative": "dH_right/dtheta=(6s-6s^2)/(R-L)",
+            "formula": "Psi_fc_sigma_source_lower[R_u_A10_A09](theta)=-1*H_right(s_R_u_A10_A09)",
+            "derivative_formula": "dPsi_fc_sigma_source_lower[R_u_A10_A09]/dtheta=-1*dH_right/dtheta"
+          },
+          "local_endpoint_identities": {
+            "target_endpoint_shape_value": 1,
+            "target_endpoint_formula_value": -1,
+            "target_endpoint_derivative_value": 0,
+            "opposite_endpoint_shape_value": 0,
+            "opposite_endpoint_formula_value": 0,
+            "opposite_endpoint_derivative_value": 0,
+            "target_action_matches_sign": true,
+            "target_derivative_zero": true,
+            "opposite_endpoint_zero": true,
+            "opposite_endpoint_derivative_zero": true,
+            "local_identity_exact": true
+          }
+        }
+      ],
+      "required_fields_present": {
+        "local_formula_candidate_available": true,
+        "local_derivative_formula_available": true,
+        "local_support_components_available": true,
+        "component_endpoint_identities_exact": true,
+        "component_union_domain_symbol_declared": true,
+        "component_supports_disjoint_or_single_component": true,
+        "component_union_no_double_counting_rule_constructed": false,
+        "global_domain_chart_constructed": false,
+        "global_domain_coordinate_rule_constructed": false,
+        "global_basis_vector_bound_to_domain": false,
+        "global_gluing_rule_constructed": false,
+        "global_periodicity_rule_constructed": false,
+        "endpoint_boundary_binding_constructed": false,
+        "endpoint_motion_rule_constructed": false,
+        "endpoint_evaluation_map_constructed": false,
+        "endpoint_value_bound_to_evaluation_map": false,
+        "target_action_exact_under_global_evaluation_map": false,
+        "non_target_endpoint_actions_enumerated": false,
+        "non_target_endpoint_zero_certified": false,
+        "same_packet_x_update_basis_constructed": false,
+        "same_packet_xdot_update_basis_constructed": false,
+        "mesh_update_rule_constructed": false,
+        "source_monotonicity_rule_constructed": false,
+        "receiver_monotonicity_rule_constructed": false,
+        "same_packet_history_update_formula_present": false,
+        "exact_screen_zero_certified": false,
+        "rank_certified": false,
+        "candidate_artifacts_present": false,
+        "root_topology_recertified_for_candidate_change": false,
+        "proof_interval_v1_v6_rerun_for_candidate_change": false,
+        "global_domain_evaluation_map_constructed": false
+      },
+      "method_results": [
+        {
+          "method_id": "local_formula_family_as_global_domain_chart",
+          "description": "Try to read the component-local formula family as the endpoint-functional global domain chart.",
+          "required_fields": [
+            "local_formula_candidate_available",
+            "local_derivative_formula_available",
+            "local_support_components_available",
+            "component_endpoint_identities_exact",
+            "component_union_domain_symbol_declared",
+            "global_domain_chart_constructed",
+            "global_domain_coordinate_rule_constructed",
+            "global_basis_vector_bound_to_domain"
+          ],
+          "missing_fields": [
+            "global_domain_chart_constructed",
+            "global_domain_coordinate_rule_constructed",
+            "global_basis_vector_bound_to_domain"
+          ],
+          "failure_codes": [
+            "missing_global_global_domain_chart_constructed",
+            "missing_global_global_domain_coordinate_rule_constructed",
+            "missing_global_global_basis_vector_bound_to_domain"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "component_union_as_global_coordinate_rule",
+          "description": "Try to promote the component support union into a same-packet coordinate rule without double counting.",
+          "required_fields": [
+            "component_union_domain_symbol_declared",
+            "component_supports_disjoint_or_single_component",
+            "component_union_no_double_counting_rule_constructed",
+            "global_domain_chart_constructed",
+            "global_domain_coordinate_rule_constructed",
+            "global_gluing_rule_constructed",
+            "global_periodicity_rule_constructed"
+          ],
+          "missing_fields": [
+            "component_union_no_double_counting_rule_constructed",
+            "global_domain_chart_constructed",
+            "global_domain_coordinate_rule_constructed",
+            "global_gluing_rule_constructed",
+            "global_periodicity_rule_constructed"
+          ],
+          "failure_codes": [
+            "missing_global_component_union_no_double_counting_rule_constructed",
+            "missing_global_global_domain_chart_constructed",
+            "missing_global_global_domain_coordinate_rule_constructed",
+            "missing_global_global_gluing_rule_constructed",
+            "missing_global_global_periodicity_rule_constructed"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "local_target_identity_as_endpoint_evaluation_map",
+          "description": "Try to promote the exact local endpoint identity into a global endpoint evaluation map.",
+          "required_fields": [
+            "component_endpoint_identities_exact",
+            "endpoint_boundary_binding_constructed",
+            "endpoint_motion_rule_constructed",
+            "endpoint_evaluation_map_constructed",
+            "endpoint_value_bound_to_evaluation_map",
+            "target_action_exact_under_global_evaluation_map",
+            "global_domain_evaluation_map_constructed"
+          ],
+          "missing_fields": [
+            "endpoint_boundary_binding_constructed",
+            "endpoint_motion_rule_constructed",
+            "endpoint_evaluation_map_constructed",
+            "endpoint_value_bound_to_evaluation_map",
+            "target_action_exact_under_global_evaluation_map",
+            "global_domain_evaluation_map_constructed"
+          ],
+          "failure_codes": [
+            "missing_global_endpoint_boundary_binding_constructed",
+            "missing_global_endpoint_motion_rule_constructed",
+            "missing_global_endpoint_evaluation_map_constructed",
+            "missing_global_endpoint_value_bound_to_evaluation_map",
+            "missing_global_target_action_exact_under_global_evaluation_map",
+            "missing_global_global_domain_evaluation_map_constructed"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "component_extension_as_same_packet_history_update",
+          "description": "Try to treat the component formulas as a same-packet history update with mesh, gluing, and monotonicity rules.",
+          "required_fields": [
+            "same_packet_x_update_basis_constructed",
+            "same_packet_xdot_update_basis_constructed",
+            "mesh_update_rule_constructed",
+            "endpoint_motion_rule_constructed",
+            "source_monotonicity_rule_constructed",
+            "receiver_monotonicity_rule_constructed",
+            "global_gluing_rule_constructed",
+            "global_periodicity_rule_constructed",
+            "same_packet_history_update_formula_present"
+          ],
+          "missing_fields": [
+            "same_packet_x_update_basis_constructed",
+            "same_packet_xdot_update_basis_constructed",
+            "mesh_update_rule_constructed",
+            "endpoint_motion_rule_constructed",
+            "source_monotonicity_rule_constructed",
+            "receiver_monotonicity_rule_constructed",
+            "global_gluing_rule_constructed",
+            "global_periodicity_rule_constructed",
+            "same_packet_history_update_formula_present"
+          ],
+          "failure_codes": [
+            "missing_global_same_packet_x_update_basis_constructed",
+            "missing_global_same_packet_xdot_update_basis_constructed",
+            "missing_global_mesh_update_rule_constructed",
+            "missing_global_endpoint_motion_rule_constructed",
+            "missing_global_source_monotonicity_rule_constructed",
+            "missing_global_receiver_monotonicity_rule_constructed",
+            "missing_global_global_gluing_rule_constructed",
+            "missing_global_global_periodicity_rule_constructed",
+            "missing_global_same_packet_history_update_formula_present"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "global_domain_evaluation_map_as_row_consumption",
+          "description": "Try to consume fold-coordinate rows from the promoted global domain/evaluation maps.",
+          "required_fields": [
+            "global_domain_evaluation_map_constructed",
+            "non_target_endpoint_actions_enumerated",
+            "non_target_endpoint_zero_certified",
+            "exact_screen_zero_certified",
+            "rank_certified",
+            "candidate_artifacts_present",
+            "root_topology_recertified_for_candidate_change",
+            "proof_interval_v1_v6_rerun_for_candidate_change"
+          ],
+          "missing_fields": [
+            "global_domain_evaluation_map_constructed",
+            "non_target_endpoint_actions_enumerated",
+            "non_target_endpoint_zero_certified",
+            "exact_screen_zero_certified",
+            "rank_certified",
+            "candidate_artifacts_present",
+            "root_topology_recertified_for_candidate_change",
+            "proof_interval_v1_v6_rerun_for_candidate_change"
+          ],
+          "failure_codes": [
+            "missing_global_global_domain_evaluation_map_constructed",
+            "missing_global_non_target_endpoint_actions_enumerated",
+            "missing_global_non_target_endpoint_zero_certified",
+            "missing_global_exact_screen_zero_certified",
+            "missing_global_rank_certified",
+            "missing_global_candidate_artifacts_present",
+            "missing_global_root_topology_recertified_for_candidate_change",
+            "missing_global_proof_interval_v1_v6_rerun_for_candidate_change"
+          ],
+          "passed": false
+        }
+      ],
+      "promotion_methods_passed": [],
+      "local_formula_candidate_available": true,
+      "component_endpoint_identities_exact": true,
+      "global_domain_chart_constructed": false,
+      "global_domain_evaluation_map_constructed": false,
+      "global_construction_supplied": false,
+      "obstruction_codes": [
+        "disjoint_component_union_without_no_double_counting_rule",
+        "global_domain_chart_absent",
+        "global_domain_coordinate_rule_absent",
+        "global_gluing_rule_absent",
+        "global_periodicity_rule_absent",
+        "endpoint_motion_rule_absent",
+        "endpoint_evaluation_map_absent",
+        "non_target_endpoint_zero_certificate_absent",
+        "exact_screen_zero_certificate_absent",
+        "rank_certificate_absent",
+        "proof_interval_v1_v6_replay_absent"
+      ],
+      "obstruction": "The endpoint-local cubic formula is present and its component endpoint identity is exact, but no global same-packet domain chart, coordinate rule, gluing/periodicity rule, endpoint motion/evaluation map, non-target zero certificate, exact $B\\xi=0$, rank certificate, topology recertification, or proof-interval v1-v6 replay is constructed."
+    },
+    {
+      "id": "fc_rho_receiver_lower",
+      "endpoint_functional_id": "E_raise_receiver_lower_boundary",
+      "role": "receiver",
+      "basis_symbol": "Psi_fc_rho_receiver_lower",
+      "source_symbol": "rho_receiver_lower",
+      "row_uses": [
+        "R_w_A04_A03",
+        "R_u_A10_A09"
+      ],
+      "target_equation": "E_raise_receiver_lower_boundary(Psi_fc_rho_receiver_lower) = +1",
+      "target_action": "raise_receiver_lower_boundary",
+      "target_sign": 1,
+      "domain_symbol": "D_fc_rho_receiver_lower",
+      "chart_symbol": "chi_fc_rho_receiver_lower",
+      "evaluation_map_symbol": "ev_fc_rho_receiver_lower",
+      "support_topology": {
+        "support_interval_ids": [
+          "A04",
+          "A10"
+        ],
+        "unique_support_interval_ids": [
+          "A04",
+          "A10"
+        ],
+        "support_component_count": 2,
+        "support_union_kind": "disjoint_component_union",
+        "component_supports_disjoint_or_single_component": true
+      },
+      "support_components": [
+        {
+          "row_id": "R_w_A04_A03",
+          "role": "receiver",
+          "support_interval_id": "A04",
+          "endpoint_ref": "receiver_range_q.lo",
+          "endpoint_q_value": {
+            "num": "23923478863106302571634315954875162615478517415591715864604836388793415892566172026938117425823421265104475915417189998177707686618953394346626118598568848409392486393431275864905600748118509682143284004515656206315212228169573960146971958847579871509209687709755403",
+            "den": "21675142283208568355530940920999142187572845848072219153647881064607296161446377030953627938867314415467117213819344472505227512758064470299653390372341679992536822180447518720000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "1.103728803738441"
+          },
+          "endpoint_side_q": {
+            "num": "390451001993",
+            "den": "1600000000000"
+          },
+          "endpoint_side_theta": "lo",
+          "target_sign": 1,
+          "target_equation": "E_raise_receiver_lower_boundary(Psi_fc_rho_receiver_lower) = +1",
+          "ownership_component_id": "R_w_A04_A03:left_boundary_unowned:0:1:128",
+          "theta_range_q": {
+            "lo": {
+              "num": "390451001993",
+              "den": "1600000000000"
+            },
+            "hi": {
+              "num": "65683276470013",
+              "den": "200000000000000"
+            },
+            "display": [
+              "0.244031876245625",
+              "0.328416382350065"
+            ]
+          },
+          "theta_range_display": [
+            "0.244031876245625",
+            "0.328416382350065"
+          ],
+          "mesh_interval": {
+            "interval_id": "A04",
+            "theta_range": [
+              0.244031876245625,
+              0.328416382350065
+            ],
+            "type": "regular",
+            "order": 8,
+            "velocity_class": "sub",
+            "t_range": [
+              1.53329749931008,
+              2.06350098821914
+            ]
+          },
+          "terminal_grid_span": {
+            "lo": 0,
+            "hi": 1,
+            "den": 128
+          },
+          "formula_candidate": {
+            "local_coordinate": "s_R_w_A04_A03=(theta-L_A04)/(R_A04-L_A04)",
+            "shape_id": "H_left",
+            "shape_formula": "H_left(s)=1-3s^2+2s^3",
+            "shape_derivative": "dH_left/dtheta=(-6s+6s^2)/(R-L)",
+            "formula": "Psi_fc_rho_receiver_lower[R_w_A04_A03](theta)=+1*H_left(s_R_w_A04_A03)",
+            "derivative_formula": "dPsi_fc_rho_receiver_lower[R_w_A04_A03]/dtheta=+1*dH_left/dtheta"
+          },
+          "local_endpoint_identities": {
+            "target_endpoint_shape_value": 1,
+            "target_endpoint_formula_value": 1,
+            "target_endpoint_derivative_value": 0,
+            "opposite_endpoint_shape_value": 0,
+            "opposite_endpoint_formula_value": 0,
+            "opposite_endpoint_derivative_value": 0,
+            "target_action_matches_sign": true,
+            "target_derivative_zero": true,
+            "opposite_endpoint_zero": true,
+            "opposite_endpoint_derivative_zero": true,
+            "local_identity_exact": true
+          }
+        },
+        {
+          "row_id": "R_u_A10_A09",
+          "role": "receiver",
+          "support_interval_id": "A10",
+          "endpoint_ref": "receiver_range_q.lo",
+          "endpoint_q_value": {
+            "num": "92017946625552320131111667196226376274649211724864932821473506991033765671679516696103350990527149858508676422567471818429704183571236733267611955715653904999304852983089366014201600952918509682143284004515656206315212228169573960146971958847579871509209687709755403",
+            "den": "21675142283208568355530940920999142187572845848072219153647881064607296161446377030953627938867314415467117213819344472505227512758064470299653390372341679992536822180447518720000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "4.245321457328441"
+          },
+          "endpoint_side_q": {
+            "num": "1190451001993",
+            "den": "1600000000000"
+          },
+          "endpoint_side_theta": "lo",
+          "target_sign": 1,
+          "target_equation": "E_raise_receiver_lower_boundary(Psi_fc_rho_receiver_lower) = +1",
+          "ownership_component_id": "R_u_A10_A09:left_boundary_unowned:0:1:128",
+          "theta_range_q": {
+            "lo": {
+              "num": "1190451001993",
+              "den": "1600000000000"
+            },
+            "hi": {
+              "num": "165683276470013",
+              "den": "200000000000000"
+            },
+            "display": [
+              "0.744031876245625",
+              "0.828416382350065"
+            ]
+          },
+          "theta_range_display": [
+            "0.744031876245625",
+            "0.828416382350065"
+          ],
+          "mesh_interval": {
+            "interval_id": "A10",
+            "theta_range": [
+              0.744031876245625,
+              0.828416382350065
+            ],
+            "type": "regular",
+            "order": 20,
+            "velocity_class": "sub",
+            "t_range": [
+              4.67489015290008,
+              5.20509364180914
+            ]
+          },
+          "terminal_grid_span": {
+            "lo": 0,
+            "hi": 1,
+            "den": 128
+          },
+          "formula_candidate": {
+            "local_coordinate": "s_R_u_A10_A09=(theta-L_A10)/(R_A10-L_A10)",
+            "shape_id": "H_left",
+            "shape_formula": "H_left(s)=1-3s^2+2s^3",
+            "shape_derivative": "dH_left/dtheta=(-6s+6s^2)/(R-L)",
+            "formula": "Psi_fc_rho_receiver_lower[R_u_A10_A09](theta)=+1*H_left(s_R_u_A10_A09)",
+            "derivative_formula": "dPsi_fc_rho_receiver_lower[R_u_A10_A09]/dtheta=+1*dH_left/dtheta"
+          },
+          "local_endpoint_identities": {
+            "target_endpoint_shape_value": 1,
+            "target_endpoint_formula_value": 1,
+            "target_endpoint_derivative_value": 0,
+            "opposite_endpoint_shape_value": 0,
+            "opposite_endpoint_formula_value": 0,
+            "opposite_endpoint_derivative_value": 0,
+            "target_action_matches_sign": true,
+            "target_derivative_zero": true,
+            "opposite_endpoint_zero": true,
+            "opposite_endpoint_derivative_zero": true,
+            "local_identity_exact": true
+          }
+        }
+      ],
+      "required_fields_present": {
+        "local_formula_candidate_available": true,
+        "local_derivative_formula_available": true,
+        "local_support_components_available": true,
+        "component_endpoint_identities_exact": true,
+        "component_union_domain_symbol_declared": true,
+        "component_supports_disjoint_or_single_component": true,
+        "component_union_no_double_counting_rule_constructed": false,
+        "global_domain_chart_constructed": false,
+        "global_domain_coordinate_rule_constructed": false,
+        "global_basis_vector_bound_to_domain": false,
+        "global_gluing_rule_constructed": false,
+        "global_periodicity_rule_constructed": false,
+        "endpoint_boundary_binding_constructed": false,
+        "endpoint_motion_rule_constructed": false,
+        "endpoint_evaluation_map_constructed": false,
+        "endpoint_value_bound_to_evaluation_map": false,
+        "target_action_exact_under_global_evaluation_map": false,
+        "non_target_endpoint_actions_enumerated": false,
+        "non_target_endpoint_zero_certified": false,
+        "same_packet_x_update_basis_constructed": false,
+        "same_packet_xdot_update_basis_constructed": false,
+        "mesh_update_rule_constructed": false,
+        "source_monotonicity_rule_constructed": false,
+        "receiver_monotonicity_rule_constructed": false,
+        "same_packet_history_update_formula_present": false,
+        "exact_screen_zero_certified": false,
+        "rank_certified": false,
+        "candidate_artifacts_present": false,
+        "root_topology_recertified_for_candidate_change": false,
+        "proof_interval_v1_v6_rerun_for_candidate_change": false,
+        "global_domain_evaluation_map_constructed": false
+      },
+      "method_results": [
+        {
+          "method_id": "local_formula_family_as_global_domain_chart",
+          "description": "Try to read the component-local formula family as the endpoint-functional global domain chart.",
+          "required_fields": [
+            "local_formula_candidate_available",
+            "local_derivative_formula_available",
+            "local_support_components_available",
+            "component_endpoint_identities_exact",
+            "component_union_domain_symbol_declared",
+            "global_domain_chart_constructed",
+            "global_domain_coordinate_rule_constructed",
+            "global_basis_vector_bound_to_domain"
+          ],
+          "missing_fields": [
+            "global_domain_chart_constructed",
+            "global_domain_coordinate_rule_constructed",
+            "global_basis_vector_bound_to_domain"
+          ],
+          "failure_codes": [
+            "missing_global_global_domain_chart_constructed",
+            "missing_global_global_domain_coordinate_rule_constructed",
+            "missing_global_global_basis_vector_bound_to_domain"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "component_union_as_global_coordinate_rule",
+          "description": "Try to promote the component support union into a same-packet coordinate rule without double counting.",
+          "required_fields": [
+            "component_union_domain_symbol_declared",
+            "component_supports_disjoint_or_single_component",
+            "component_union_no_double_counting_rule_constructed",
+            "global_domain_chart_constructed",
+            "global_domain_coordinate_rule_constructed",
+            "global_gluing_rule_constructed",
+            "global_periodicity_rule_constructed"
+          ],
+          "missing_fields": [
+            "component_union_no_double_counting_rule_constructed",
+            "global_domain_chart_constructed",
+            "global_domain_coordinate_rule_constructed",
+            "global_gluing_rule_constructed",
+            "global_periodicity_rule_constructed"
+          ],
+          "failure_codes": [
+            "missing_global_component_union_no_double_counting_rule_constructed",
+            "missing_global_global_domain_chart_constructed",
+            "missing_global_global_domain_coordinate_rule_constructed",
+            "missing_global_global_gluing_rule_constructed",
+            "missing_global_global_periodicity_rule_constructed"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "local_target_identity_as_endpoint_evaluation_map",
+          "description": "Try to promote the exact local endpoint identity into a global endpoint evaluation map.",
+          "required_fields": [
+            "component_endpoint_identities_exact",
+            "endpoint_boundary_binding_constructed",
+            "endpoint_motion_rule_constructed",
+            "endpoint_evaluation_map_constructed",
+            "endpoint_value_bound_to_evaluation_map",
+            "target_action_exact_under_global_evaluation_map",
+            "global_domain_evaluation_map_constructed"
+          ],
+          "missing_fields": [
+            "endpoint_boundary_binding_constructed",
+            "endpoint_motion_rule_constructed",
+            "endpoint_evaluation_map_constructed",
+            "endpoint_value_bound_to_evaluation_map",
+            "target_action_exact_under_global_evaluation_map",
+            "global_domain_evaluation_map_constructed"
+          ],
+          "failure_codes": [
+            "missing_global_endpoint_boundary_binding_constructed",
+            "missing_global_endpoint_motion_rule_constructed",
+            "missing_global_endpoint_evaluation_map_constructed",
+            "missing_global_endpoint_value_bound_to_evaluation_map",
+            "missing_global_target_action_exact_under_global_evaluation_map",
+            "missing_global_global_domain_evaluation_map_constructed"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "component_extension_as_same_packet_history_update",
+          "description": "Try to treat the component formulas as a same-packet history update with mesh, gluing, and monotonicity rules.",
+          "required_fields": [
+            "same_packet_x_update_basis_constructed",
+            "same_packet_xdot_update_basis_constructed",
+            "mesh_update_rule_constructed",
+            "endpoint_motion_rule_constructed",
+            "source_monotonicity_rule_constructed",
+            "receiver_monotonicity_rule_constructed",
+            "global_gluing_rule_constructed",
+            "global_periodicity_rule_constructed",
+            "same_packet_history_update_formula_present"
+          ],
+          "missing_fields": [
+            "same_packet_x_update_basis_constructed",
+            "same_packet_xdot_update_basis_constructed",
+            "mesh_update_rule_constructed",
+            "endpoint_motion_rule_constructed",
+            "source_monotonicity_rule_constructed",
+            "receiver_monotonicity_rule_constructed",
+            "global_gluing_rule_constructed",
+            "global_periodicity_rule_constructed",
+            "same_packet_history_update_formula_present"
+          ],
+          "failure_codes": [
+            "missing_global_same_packet_x_update_basis_constructed",
+            "missing_global_same_packet_xdot_update_basis_constructed",
+            "missing_global_mesh_update_rule_constructed",
+            "missing_global_endpoint_motion_rule_constructed",
+            "missing_global_source_monotonicity_rule_constructed",
+            "missing_global_receiver_monotonicity_rule_constructed",
+            "missing_global_global_gluing_rule_constructed",
+            "missing_global_global_periodicity_rule_constructed",
+            "missing_global_same_packet_history_update_formula_present"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "global_domain_evaluation_map_as_row_consumption",
+          "description": "Try to consume fold-coordinate rows from the promoted global domain/evaluation maps.",
+          "required_fields": [
+            "global_domain_evaluation_map_constructed",
+            "non_target_endpoint_actions_enumerated",
+            "non_target_endpoint_zero_certified",
+            "exact_screen_zero_certified",
+            "rank_certified",
+            "candidate_artifacts_present",
+            "root_topology_recertified_for_candidate_change",
+            "proof_interval_v1_v6_rerun_for_candidate_change"
+          ],
+          "missing_fields": [
+            "global_domain_evaluation_map_constructed",
+            "non_target_endpoint_actions_enumerated",
+            "non_target_endpoint_zero_certified",
+            "exact_screen_zero_certified",
+            "rank_certified",
+            "candidate_artifacts_present",
+            "root_topology_recertified_for_candidate_change",
+            "proof_interval_v1_v6_rerun_for_candidate_change"
+          ],
+          "failure_codes": [
+            "missing_global_global_domain_evaluation_map_constructed",
+            "missing_global_non_target_endpoint_actions_enumerated",
+            "missing_global_non_target_endpoint_zero_certified",
+            "missing_global_exact_screen_zero_certified",
+            "missing_global_rank_certified",
+            "missing_global_candidate_artifacts_present",
+            "missing_global_root_topology_recertified_for_candidate_change",
+            "missing_global_proof_interval_v1_v6_rerun_for_candidate_change"
+          ],
+          "passed": false
+        }
+      ],
+      "promotion_methods_passed": [],
+      "local_formula_candidate_available": true,
+      "component_endpoint_identities_exact": true,
+      "global_domain_chart_constructed": false,
+      "global_domain_evaluation_map_constructed": false,
+      "global_construction_supplied": false,
+      "obstruction_codes": [
+        "disjoint_component_union_without_no_double_counting_rule",
+        "global_domain_chart_absent",
+        "global_domain_coordinate_rule_absent",
+        "global_gluing_rule_absent",
+        "global_periodicity_rule_absent",
+        "endpoint_motion_rule_absent",
+        "endpoint_evaluation_map_absent",
+        "non_target_endpoint_zero_certificate_absent",
+        "exact_screen_zero_certificate_absent",
+        "rank_certificate_absent",
+        "proof_interval_v1_v6_replay_absent"
+      ],
+      "obstruction": "The endpoint-local cubic formula is present and its component endpoint identity is exact, but no global same-packet domain chart, coordinate rule, gluing/periodicity rule, endpoint motion/evaluation map, non-target zero certificate, exact $B\\xi=0$, rank certificate, topology recertification, or proof-interval v1-v6 replay is constructed."
+    },
+    {
+      "id": "fc_sigma_source_upper",
+      "endpoint_functional_id": "E_raise_source_inner_boundary",
+      "role": "source",
+      "basis_symbol": "Psi_fc_sigma_source_upper",
+      "source_symbol": "sigma_source_upper",
+      "row_uses": [
+        "R_u_A07_A06"
+      ],
+      "target_equation": "E_raise_source_inner_boundary(Psi_fc_sigma_source_upper) = +1",
+      "target_action": "raise_source_inner_boundary",
+      "target_sign": 1,
+      "domain_symbol": "D_fc_sigma_source_upper",
+      "chart_symbol": "chi_fc_sigma_source_upper",
+      "evaluation_map_symbol": "ev_fc_sigma_source_upper",
+      "support_topology": {
+        "support_interval_ids": [
+          "A06"
+        ],
+        "unique_support_interval_ids": [
+          "A06"
+        ],
+        "support_component_count": 1,
+        "support_union_kind": "single_component",
+        "component_supports_disjoint_or_single_component": true
+      },
+      "support_components": [
+        {
+          "row_id": "R_u_A07_A06",
+          "role": "source",
+          "support_interval_id": "A06",
+          "endpoint_ref": "source_inner_range_q.hi",
+          "endpoint_q_value": {
+            "num": "913404831589878227955650815249056063409642527436920989775347098713309507776410739373971247745865597132198216856434792485603225886341201786313983387101459534828848824327408487389612164487120225480879904703610257721587148795406165256750308709775447069334359579391187319193184173764651953274813153438754742706218571847990586766227306909373630379789945133405628741195160585918258878758173184554958903787",
+            "den": "206346864613173617903075239304684018917707380895670204800941091511283920337200907269932265673227619093131480070568031876858757312792787978850537940266680115688946560049691815211595107577630454504956166122639636766599124202641876016875921671462507002857788692914294746966770909427010307620000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "4.426550572029212"
+          },
+          "endpoint_side_q": {
+            "num": "25577349596763",
+            "den": "50000000000000"
+          },
+          "endpoint_side_theta": "hi",
+          "target_sign": 1,
+          "target_equation": "E_raise_source_inner_boundary(Psi_fc_sigma_source_upper) = +1",
+          "ownership_component_id": "R_u_A07_A06:left_boundary_unowned:0:1:128",
+          "theta_range_q": {
+            "lo": {
+              "num": "203890066279117",
+              "den": "500000000000000"
+            },
+            "hi": {
+              "num": "25577349596763",
+              "den": "50000000000000"
+            },
+            "display": [
+              "0.407780132558234",
+              "0.51154699193526"
+            ]
+          },
+          "theta_range_display": [
+            "0.407780132558234",
+            "0.51154699193526"
+          ],
+          "mesh_interval": {
+            "interval_id": "A06",
+            "theta_range": [
+              0.407780132558234,
+              0.51154699193526
+            ],
+            "type": "regular",
+            "order": 12,
+            "velocity_class": "sub",
+            "t_range": [
+              2.56215813744981,
+              3.21414454365975
+            ]
+          },
+          "terminal_grid_span": {
+            "lo": 0,
+            "hi": 1,
+            "den": 128
+          },
+          "formula_candidate": {
+            "local_coordinate": "s_R_u_A07_A06=(theta-L_A06)/(R_A06-L_A06)",
+            "shape_id": "H_right",
+            "shape_formula": "H_right(s)=3s^2-2s^3",
+            "shape_derivative": "dH_right/dtheta=(6s-6s^2)/(R-L)",
+            "formula": "Psi_fc_sigma_source_upper[R_u_A07_A06](theta)=+1*H_right(s_R_u_A07_A06)",
+            "derivative_formula": "dPsi_fc_sigma_source_upper[R_u_A07_A06]/dtheta=+1*dH_right/dtheta"
+          },
+          "local_endpoint_identities": {
+            "target_endpoint_shape_value": 1,
+            "target_endpoint_formula_value": 1,
+            "target_endpoint_derivative_value": 0,
+            "opposite_endpoint_shape_value": 0,
+            "opposite_endpoint_formula_value": 0,
+            "opposite_endpoint_derivative_value": 0,
+            "target_action_matches_sign": true,
+            "target_derivative_zero": true,
+            "opposite_endpoint_zero": true,
+            "opposite_endpoint_derivative_zero": true,
+            "local_identity_exact": true
+          }
+        }
+      ],
+      "required_fields_present": {
+        "local_formula_candidate_available": true,
+        "local_derivative_formula_available": true,
+        "local_support_components_available": true,
+        "component_endpoint_identities_exact": true,
+        "component_union_domain_symbol_declared": true,
+        "component_supports_disjoint_or_single_component": true,
+        "component_union_no_double_counting_rule_constructed": false,
+        "global_domain_chart_constructed": false,
+        "global_domain_coordinate_rule_constructed": false,
+        "global_basis_vector_bound_to_domain": false,
+        "global_gluing_rule_constructed": false,
+        "global_periodicity_rule_constructed": false,
+        "endpoint_boundary_binding_constructed": false,
+        "endpoint_motion_rule_constructed": false,
+        "endpoint_evaluation_map_constructed": false,
+        "endpoint_value_bound_to_evaluation_map": false,
+        "target_action_exact_under_global_evaluation_map": false,
+        "non_target_endpoint_actions_enumerated": false,
+        "non_target_endpoint_zero_certified": false,
+        "same_packet_x_update_basis_constructed": false,
+        "same_packet_xdot_update_basis_constructed": false,
+        "mesh_update_rule_constructed": false,
+        "source_monotonicity_rule_constructed": false,
+        "receiver_monotonicity_rule_constructed": false,
+        "same_packet_history_update_formula_present": false,
+        "exact_screen_zero_certified": false,
+        "rank_certified": false,
+        "candidate_artifacts_present": false,
+        "root_topology_recertified_for_candidate_change": false,
+        "proof_interval_v1_v6_rerun_for_candidate_change": false,
+        "global_domain_evaluation_map_constructed": false
+      },
+      "method_results": [
+        {
+          "method_id": "local_formula_family_as_global_domain_chart",
+          "description": "Try to read the component-local formula family as the endpoint-functional global domain chart.",
+          "required_fields": [
+            "local_formula_candidate_available",
+            "local_derivative_formula_available",
+            "local_support_components_available",
+            "component_endpoint_identities_exact",
+            "component_union_domain_symbol_declared",
+            "global_domain_chart_constructed",
+            "global_domain_coordinate_rule_constructed",
+            "global_basis_vector_bound_to_domain"
+          ],
+          "missing_fields": [
+            "global_domain_chart_constructed",
+            "global_domain_coordinate_rule_constructed",
+            "global_basis_vector_bound_to_domain"
+          ],
+          "failure_codes": [
+            "missing_global_global_domain_chart_constructed",
+            "missing_global_global_domain_coordinate_rule_constructed",
+            "missing_global_global_basis_vector_bound_to_domain"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "component_union_as_global_coordinate_rule",
+          "description": "Try to promote the component support union into a same-packet coordinate rule without double counting.",
+          "required_fields": [
+            "component_union_domain_symbol_declared",
+            "component_supports_disjoint_or_single_component",
+            "component_union_no_double_counting_rule_constructed",
+            "global_domain_chart_constructed",
+            "global_domain_coordinate_rule_constructed",
+            "global_gluing_rule_constructed",
+            "global_periodicity_rule_constructed"
+          ],
+          "missing_fields": [
+            "component_union_no_double_counting_rule_constructed",
+            "global_domain_chart_constructed",
+            "global_domain_coordinate_rule_constructed",
+            "global_gluing_rule_constructed",
+            "global_periodicity_rule_constructed"
+          ],
+          "failure_codes": [
+            "missing_global_component_union_no_double_counting_rule_constructed",
+            "missing_global_global_domain_chart_constructed",
+            "missing_global_global_domain_coordinate_rule_constructed",
+            "missing_global_global_gluing_rule_constructed",
+            "missing_global_global_periodicity_rule_constructed"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "local_target_identity_as_endpoint_evaluation_map",
+          "description": "Try to promote the exact local endpoint identity into a global endpoint evaluation map.",
+          "required_fields": [
+            "component_endpoint_identities_exact",
+            "endpoint_boundary_binding_constructed",
+            "endpoint_motion_rule_constructed",
+            "endpoint_evaluation_map_constructed",
+            "endpoint_value_bound_to_evaluation_map",
+            "target_action_exact_under_global_evaluation_map",
+            "global_domain_evaluation_map_constructed"
+          ],
+          "missing_fields": [
+            "endpoint_boundary_binding_constructed",
+            "endpoint_motion_rule_constructed",
+            "endpoint_evaluation_map_constructed",
+            "endpoint_value_bound_to_evaluation_map",
+            "target_action_exact_under_global_evaluation_map",
+            "global_domain_evaluation_map_constructed"
+          ],
+          "failure_codes": [
+            "missing_global_endpoint_boundary_binding_constructed",
+            "missing_global_endpoint_motion_rule_constructed",
+            "missing_global_endpoint_evaluation_map_constructed",
+            "missing_global_endpoint_value_bound_to_evaluation_map",
+            "missing_global_target_action_exact_under_global_evaluation_map",
+            "missing_global_global_domain_evaluation_map_constructed"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "component_extension_as_same_packet_history_update",
+          "description": "Try to treat the component formulas as a same-packet history update with mesh, gluing, and monotonicity rules.",
+          "required_fields": [
+            "same_packet_x_update_basis_constructed",
+            "same_packet_xdot_update_basis_constructed",
+            "mesh_update_rule_constructed",
+            "endpoint_motion_rule_constructed",
+            "source_monotonicity_rule_constructed",
+            "receiver_monotonicity_rule_constructed",
+            "global_gluing_rule_constructed",
+            "global_periodicity_rule_constructed",
+            "same_packet_history_update_formula_present"
+          ],
+          "missing_fields": [
+            "same_packet_x_update_basis_constructed",
+            "same_packet_xdot_update_basis_constructed",
+            "mesh_update_rule_constructed",
+            "endpoint_motion_rule_constructed",
+            "source_monotonicity_rule_constructed",
+            "receiver_monotonicity_rule_constructed",
+            "global_gluing_rule_constructed",
+            "global_periodicity_rule_constructed",
+            "same_packet_history_update_formula_present"
+          ],
+          "failure_codes": [
+            "missing_global_same_packet_x_update_basis_constructed",
+            "missing_global_same_packet_xdot_update_basis_constructed",
+            "missing_global_mesh_update_rule_constructed",
+            "missing_global_endpoint_motion_rule_constructed",
+            "missing_global_source_monotonicity_rule_constructed",
+            "missing_global_receiver_monotonicity_rule_constructed",
+            "missing_global_global_gluing_rule_constructed",
+            "missing_global_global_periodicity_rule_constructed",
+            "missing_global_same_packet_history_update_formula_present"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "global_domain_evaluation_map_as_row_consumption",
+          "description": "Try to consume fold-coordinate rows from the promoted global domain/evaluation maps.",
+          "required_fields": [
+            "global_domain_evaluation_map_constructed",
+            "non_target_endpoint_actions_enumerated",
+            "non_target_endpoint_zero_certified",
+            "exact_screen_zero_certified",
+            "rank_certified",
+            "candidate_artifacts_present",
+            "root_topology_recertified_for_candidate_change",
+            "proof_interval_v1_v6_rerun_for_candidate_change"
+          ],
+          "missing_fields": [
+            "global_domain_evaluation_map_constructed",
+            "non_target_endpoint_actions_enumerated",
+            "non_target_endpoint_zero_certified",
+            "exact_screen_zero_certified",
+            "rank_certified",
+            "candidate_artifacts_present",
+            "root_topology_recertified_for_candidate_change",
+            "proof_interval_v1_v6_rerun_for_candidate_change"
+          ],
+          "failure_codes": [
+            "missing_global_global_domain_evaluation_map_constructed",
+            "missing_global_non_target_endpoint_actions_enumerated",
+            "missing_global_non_target_endpoint_zero_certified",
+            "missing_global_exact_screen_zero_certified",
+            "missing_global_rank_certified",
+            "missing_global_candidate_artifacts_present",
+            "missing_global_root_topology_recertified_for_candidate_change",
+            "missing_global_proof_interval_v1_v6_rerun_for_candidate_change"
+          ],
+          "passed": false
+        }
+      ],
+      "promotion_methods_passed": [],
+      "local_formula_candidate_available": true,
+      "component_endpoint_identities_exact": true,
+      "global_domain_chart_constructed": false,
+      "global_domain_evaluation_map_constructed": false,
+      "global_construction_supplied": false,
+      "obstruction_codes": [
+        "global_domain_chart_absent",
+        "global_domain_coordinate_rule_absent",
+        "global_gluing_rule_absent",
+        "global_periodicity_rule_absent",
+        "endpoint_motion_rule_absent",
+        "endpoint_evaluation_map_absent",
+        "non_target_endpoint_zero_certificate_absent",
+        "exact_screen_zero_certificate_absent",
+        "rank_certificate_absent",
+        "proof_interval_v1_v6_replay_absent"
+      ],
+      "obstruction": "The endpoint-local cubic formula is present and its component endpoint identity is exact, but no global same-packet domain chart, coordinate rule, gluing/periodicity rule, endpoint motion/evaluation map, non-target zero certificate, exact $B\\xi=0$, rank certificate, topology recertification, or proof-interval v1-v6 replay is constructed."
+    },
+    {
+      "id": "fc_rho_receiver_upper",
+      "endpoint_functional_id": "E_lower_receiver_upper_boundary",
+      "role": "receiver",
+      "basis_symbol": "Psi_fc_rho_receiver_upper",
+      "source_symbol": "rho_receiver_upper",
+      "row_uses": [
+        "R_u_A07_A06"
+      ],
+      "target_equation": "E_lower_receiver_upper_boundary(Psi_fc_rho_receiver_upper) = -1",
+      "target_action": "lower_receiver_upper_boundary",
+      "target_sign": -1,
+      "domain_symbol": "D_fc_rho_receiver_upper",
+      "chart_symbol": "chi_fc_rho_receiver_upper",
+      "evaluation_map_symbol": "ev_fc_rho_receiver_upper",
+      "support_topology": {
+        "support_interval_ids": [
+          "A07"
+        ],
+        "unique_support_interval_ids": [
+          "A07"
+        ],
+        "support_component_count": 1,
+        "support_union_kind": "single_component",
+        "component_supports_disjoint_or_single_component": true
+      },
+      "support_components": [
+        {
+          "row_id": "R_u_A07_A06",
+          "role": "receiver",
+          "support_interval_id": "A07",
+          "endpoint_ref": "receiver_range_q.hi",
+          "endpoint_q_value": {
+            "num": "3668029164140711604577729486863140436790318195624021665330903488155589948894674146747657134263392501996316122274977383039900142243661083092548626977248308735401783795478778114028913265019623054326760136351852179090806418757556730841452472939804564785882610960882651271513541783309043807372820860035509788923764248889215986303091136332460594362052978091238556407738146953363553182897981638817059",
+            "den": "828596695543815221599758647695082692964461058923279327772242187591733988576623986519727065831732668860203787760282996822216634372487868238046012967329224194146875293967586938850756257048932505933792723416710197674409478329579910129602233268305361403390904204412285963826325144988193989487000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "4.426796756331923"
+          },
+          "endpoint_side_q": {
+            "num": "552539232202657",
+            "den": "1000000000000000"
+          },
+          "endpoint_side_theta": "hi",
+          "target_sign": -1,
+          "target_equation": "E_lower_receiver_upper_boundary(Psi_fc_rho_receiver_upper) = -1",
+          "ownership_component_id": "R_u_A07_A06:left_boundary_unowned:0:1:128",
+          "theta_range_q": {
+            "lo": {
+              "num": "25977349596763",
+              "den": "50000000000000"
+            },
+            "hi": {
+              "num": "552539232202657",
+              "den": "1000000000000000"
+            },
+            "display": [
+              "0.51954699193526",
+              "0.552539232202657"
+            ]
+          },
+          "theta_range_display": [
+            "0.51954699193526",
+            "0.552539232202657"
+          ],
+          "mesh_interval": {
+            "interval_id": "A07",
+            "theta_range": [
+              0.51954699193526,
+              0.552539232202657
+            ],
+            "type": "regular",
+            "order": 14,
+            "velocity_class": "super",
+            "t_range": [
+              3.26441002611719,
+              3.47170638541625
+            ]
+          },
+          "terminal_grid_span": {
+            "lo": 0,
+            "hi": 1,
+            "den": 128
+          },
+          "formula_candidate": {
+            "local_coordinate": "s_R_u_A07_A06=(theta-L_A07)/(R_A07-L_A07)",
+            "shape_id": "H_right",
+            "shape_formula": "H_right(s)=3s^2-2s^3",
+            "shape_derivative": "dH_right/dtheta=(6s-6s^2)/(R-L)",
+            "formula": "Psi_fc_rho_receiver_upper[R_u_A07_A06](theta)=-1*H_right(s_R_u_A07_A06)",
+            "derivative_formula": "dPsi_fc_rho_receiver_upper[R_u_A07_A06]/dtheta=-1*dH_right/dtheta"
+          },
+          "local_endpoint_identities": {
+            "target_endpoint_shape_value": 1,
+            "target_endpoint_formula_value": -1,
+            "target_endpoint_derivative_value": 0,
+            "opposite_endpoint_shape_value": 0,
+            "opposite_endpoint_formula_value": 0,
+            "opposite_endpoint_derivative_value": 0,
+            "target_action_matches_sign": true,
+            "target_derivative_zero": true,
+            "opposite_endpoint_zero": true,
+            "opposite_endpoint_derivative_zero": true,
+            "local_identity_exact": true
+          }
+        }
+      ],
+      "required_fields_present": {
+        "local_formula_candidate_available": true,
+        "local_derivative_formula_available": true,
+        "local_support_components_available": true,
+        "component_endpoint_identities_exact": true,
+        "component_union_domain_symbol_declared": true,
+        "component_supports_disjoint_or_single_component": true,
+        "component_union_no_double_counting_rule_constructed": false,
+        "global_domain_chart_constructed": false,
+        "global_domain_coordinate_rule_constructed": false,
+        "global_basis_vector_bound_to_domain": false,
+        "global_gluing_rule_constructed": false,
+        "global_periodicity_rule_constructed": false,
+        "endpoint_boundary_binding_constructed": false,
+        "endpoint_motion_rule_constructed": false,
+        "endpoint_evaluation_map_constructed": false,
+        "endpoint_value_bound_to_evaluation_map": false,
+        "target_action_exact_under_global_evaluation_map": false,
+        "non_target_endpoint_actions_enumerated": false,
+        "non_target_endpoint_zero_certified": false,
+        "same_packet_x_update_basis_constructed": false,
+        "same_packet_xdot_update_basis_constructed": false,
+        "mesh_update_rule_constructed": false,
+        "source_monotonicity_rule_constructed": false,
+        "receiver_monotonicity_rule_constructed": false,
+        "same_packet_history_update_formula_present": false,
+        "exact_screen_zero_certified": false,
+        "rank_certified": false,
+        "candidate_artifacts_present": false,
+        "root_topology_recertified_for_candidate_change": false,
+        "proof_interval_v1_v6_rerun_for_candidate_change": false,
+        "global_domain_evaluation_map_constructed": false
+      },
+      "method_results": [
+        {
+          "method_id": "local_formula_family_as_global_domain_chart",
+          "description": "Try to read the component-local formula family as the endpoint-functional global domain chart.",
+          "required_fields": [
+            "local_formula_candidate_available",
+            "local_derivative_formula_available",
+            "local_support_components_available",
+            "component_endpoint_identities_exact",
+            "component_union_domain_symbol_declared",
+            "global_domain_chart_constructed",
+            "global_domain_coordinate_rule_constructed",
+            "global_basis_vector_bound_to_domain"
+          ],
+          "missing_fields": [
+            "global_domain_chart_constructed",
+            "global_domain_coordinate_rule_constructed",
+            "global_basis_vector_bound_to_domain"
+          ],
+          "failure_codes": [
+            "missing_global_global_domain_chart_constructed",
+            "missing_global_global_domain_coordinate_rule_constructed",
+            "missing_global_global_basis_vector_bound_to_domain"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "component_union_as_global_coordinate_rule",
+          "description": "Try to promote the component support union into a same-packet coordinate rule without double counting.",
+          "required_fields": [
+            "component_union_domain_symbol_declared",
+            "component_supports_disjoint_or_single_component",
+            "component_union_no_double_counting_rule_constructed",
+            "global_domain_chart_constructed",
+            "global_domain_coordinate_rule_constructed",
+            "global_gluing_rule_constructed",
+            "global_periodicity_rule_constructed"
+          ],
+          "missing_fields": [
+            "component_union_no_double_counting_rule_constructed",
+            "global_domain_chart_constructed",
+            "global_domain_coordinate_rule_constructed",
+            "global_gluing_rule_constructed",
+            "global_periodicity_rule_constructed"
+          ],
+          "failure_codes": [
+            "missing_global_component_union_no_double_counting_rule_constructed",
+            "missing_global_global_domain_chart_constructed",
+            "missing_global_global_domain_coordinate_rule_constructed",
+            "missing_global_global_gluing_rule_constructed",
+            "missing_global_global_periodicity_rule_constructed"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "local_target_identity_as_endpoint_evaluation_map",
+          "description": "Try to promote the exact local endpoint identity into a global endpoint evaluation map.",
+          "required_fields": [
+            "component_endpoint_identities_exact",
+            "endpoint_boundary_binding_constructed",
+            "endpoint_motion_rule_constructed",
+            "endpoint_evaluation_map_constructed",
+            "endpoint_value_bound_to_evaluation_map",
+            "target_action_exact_under_global_evaluation_map",
+            "global_domain_evaluation_map_constructed"
+          ],
+          "missing_fields": [
+            "endpoint_boundary_binding_constructed",
+            "endpoint_motion_rule_constructed",
+            "endpoint_evaluation_map_constructed",
+            "endpoint_value_bound_to_evaluation_map",
+            "target_action_exact_under_global_evaluation_map",
+            "global_domain_evaluation_map_constructed"
+          ],
+          "failure_codes": [
+            "missing_global_endpoint_boundary_binding_constructed",
+            "missing_global_endpoint_motion_rule_constructed",
+            "missing_global_endpoint_evaluation_map_constructed",
+            "missing_global_endpoint_value_bound_to_evaluation_map",
+            "missing_global_target_action_exact_under_global_evaluation_map",
+            "missing_global_global_domain_evaluation_map_constructed"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "component_extension_as_same_packet_history_update",
+          "description": "Try to treat the component formulas as a same-packet history update with mesh, gluing, and monotonicity rules.",
+          "required_fields": [
+            "same_packet_x_update_basis_constructed",
+            "same_packet_xdot_update_basis_constructed",
+            "mesh_update_rule_constructed",
+            "endpoint_motion_rule_constructed",
+            "source_monotonicity_rule_constructed",
+            "receiver_monotonicity_rule_constructed",
+            "global_gluing_rule_constructed",
+            "global_periodicity_rule_constructed",
+            "same_packet_history_update_formula_present"
+          ],
+          "missing_fields": [
+            "same_packet_x_update_basis_constructed",
+            "same_packet_xdot_update_basis_constructed",
+            "mesh_update_rule_constructed",
+            "endpoint_motion_rule_constructed",
+            "source_monotonicity_rule_constructed",
+            "receiver_monotonicity_rule_constructed",
+            "global_gluing_rule_constructed",
+            "global_periodicity_rule_constructed",
+            "same_packet_history_update_formula_present"
+          ],
+          "failure_codes": [
+            "missing_global_same_packet_x_update_basis_constructed",
+            "missing_global_same_packet_xdot_update_basis_constructed",
+            "missing_global_mesh_update_rule_constructed",
+            "missing_global_endpoint_motion_rule_constructed",
+            "missing_global_source_monotonicity_rule_constructed",
+            "missing_global_receiver_monotonicity_rule_constructed",
+            "missing_global_global_gluing_rule_constructed",
+            "missing_global_global_periodicity_rule_constructed",
+            "missing_global_same_packet_history_update_formula_present"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "global_domain_evaluation_map_as_row_consumption",
+          "description": "Try to consume fold-coordinate rows from the promoted global domain/evaluation maps.",
+          "required_fields": [
+            "global_domain_evaluation_map_constructed",
+            "non_target_endpoint_actions_enumerated",
+            "non_target_endpoint_zero_certified",
+            "exact_screen_zero_certified",
+            "rank_certified",
+            "candidate_artifacts_present",
+            "root_topology_recertified_for_candidate_change",
+            "proof_interval_v1_v6_rerun_for_candidate_change"
+          ],
+          "missing_fields": [
+            "global_domain_evaluation_map_constructed",
+            "non_target_endpoint_actions_enumerated",
+            "non_target_endpoint_zero_certified",
+            "exact_screen_zero_certified",
+            "rank_certified",
+            "candidate_artifacts_present",
+            "root_topology_recertified_for_candidate_change",
+            "proof_interval_v1_v6_rerun_for_candidate_change"
+          ],
+          "failure_codes": [
+            "missing_global_global_domain_evaluation_map_constructed",
+            "missing_global_non_target_endpoint_actions_enumerated",
+            "missing_global_non_target_endpoint_zero_certified",
+            "missing_global_exact_screen_zero_certified",
+            "missing_global_rank_certified",
+            "missing_global_candidate_artifacts_present",
+            "missing_global_root_topology_recertified_for_candidate_change",
+            "missing_global_proof_interval_v1_v6_rerun_for_candidate_change"
+          ],
+          "passed": false
+        }
+      ],
+      "promotion_methods_passed": [],
+      "local_formula_candidate_available": true,
+      "component_endpoint_identities_exact": true,
+      "global_domain_chart_constructed": false,
+      "global_domain_evaluation_map_constructed": false,
+      "global_construction_supplied": false,
+      "obstruction_codes": [
+        "global_domain_chart_absent",
+        "global_domain_coordinate_rule_absent",
+        "global_gluing_rule_absent",
+        "global_periodicity_rule_absent",
+        "endpoint_motion_rule_absent",
+        "endpoint_evaluation_map_absent",
+        "non_target_endpoint_zero_certificate_absent",
+        "exact_screen_zero_certificate_absent",
+        "rank_certificate_absent",
+        "proof_interval_v1_v6_replay_absent"
+      ],
+      "obstruction": "The endpoint-local cubic formula is present and its component endpoint identity is exact, but no global same-packet domain chart, coordinate rule, gluing/periodicity rule, endpoint motion/evaluation map, non-target zero certificate, exact $B\\xi=0$, rank certificate, topology recertification, or proof-interval v1-v6 replay is constructed."
+    }
+  ],
+  "row_global_domain_evaluation_attempts": [
+    {
+      "row_id": "R_w_A04_A03",
+      "source_interval": "A03",
+      "receiver_interval": "A04",
+      "failed_side": "lo",
+      "boundary_side": "lower",
+      "source_endpoint_contract_id": "fc_sigma_source_lower",
+      "receiver_endpoint_contract_id": "fc_rho_receiver_lower",
+      "source_support_topology": {
+        "support_interval_ids": [
+          "A03",
+          "A09"
+        ],
+        "unique_support_interval_ids": [
+          "A03",
+          "A09"
+        ],
+        "support_component_count": 2,
+        "support_union_kind": "disjoint_component_union",
+        "component_supports_disjoint_or_single_component": true
+      },
+      "receiver_support_topology": {
+        "support_interval_ids": [
+          "A04",
+          "A10"
+        ],
+        "unique_support_interval_ids": [
+          "A04",
+          "A10"
+        ],
+        "support_component_count": 2,
+        "support_union_kind": "disjoint_component_union",
+        "component_supports_disjoint_or_single_component": true
+      },
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "source_formula_candidate_available": true,
+        "receiver_formula_candidate_available": true,
+        "source_local_target_action_exact": true,
+        "receiver_local_target_action_exact": true,
+        "source_global_domain_evaluation_map_constructed": false,
+        "receiver_global_domain_evaluation_map_constructed": false,
+        "combined_global_domain_evaluation_pair_constructed": false,
+        "source_non_target_zero_certified": false,
+        "receiver_non_target_zero_certified": false,
+        "screen_positive_candidate_change_row": true,
+        "signed_boundary_delta_contract_defined": true,
+        "proof_grade_boundary_opening_certified": false,
+        "same_packet_history_update_formula_present": false,
+        "candidate_artifacts_present": false,
+        "root_topology_recertified_for_candidate_change": false,
+        "proof_interval_v1_v6_rerun_for_candidate_change": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "local_formula_candidate_pair_available": true,
+      "local_target_action_pair_exact": true,
+      "global_domain_evaluation_pair_constructed": false,
+      "row_ready": false,
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The row has a source/receiver pair of local Psi formula candidates with exact local endpoint actions, but no source/receiver global domain/evaluation pair, non-target zero certificate, or same-packet replay exists."
+    },
+    {
+      "row_id": "R_u_A10_A09",
+      "source_interval": "A09",
+      "receiver_interval": "A10",
+      "failed_side": "lo",
+      "boundary_side": "lower",
+      "source_endpoint_contract_id": "fc_sigma_source_lower",
+      "receiver_endpoint_contract_id": "fc_rho_receiver_lower",
+      "source_support_topology": {
+        "support_interval_ids": [
+          "A03",
+          "A09"
+        ],
+        "unique_support_interval_ids": [
+          "A03",
+          "A09"
+        ],
+        "support_component_count": 2,
+        "support_union_kind": "disjoint_component_union",
+        "component_supports_disjoint_or_single_component": true
+      },
+      "receiver_support_topology": {
+        "support_interval_ids": [
+          "A04",
+          "A10"
+        ],
+        "unique_support_interval_ids": [
+          "A04",
+          "A10"
+        ],
+        "support_component_count": 2,
+        "support_union_kind": "disjoint_component_union",
+        "component_supports_disjoint_or_single_component": true
+      },
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "source_formula_candidate_available": true,
+        "receiver_formula_candidate_available": true,
+        "source_local_target_action_exact": true,
+        "receiver_local_target_action_exact": true,
+        "source_global_domain_evaluation_map_constructed": false,
+        "receiver_global_domain_evaluation_map_constructed": false,
+        "combined_global_domain_evaluation_pair_constructed": false,
+        "source_non_target_zero_certified": false,
+        "receiver_non_target_zero_certified": false,
+        "screen_positive_candidate_change_row": true,
+        "signed_boundary_delta_contract_defined": true,
+        "proof_grade_boundary_opening_certified": false,
+        "same_packet_history_update_formula_present": false,
+        "candidate_artifacts_present": false,
+        "root_topology_recertified_for_candidate_change": false,
+        "proof_interval_v1_v6_rerun_for_candidate_change": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "local_formula_candidate_pair_available": true,
+      "local_target_action_pair_exact": true,
+      "global_domain_evaluation_pair_constructed": false,
+      "row_ready": false,
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The row has a source/receiver pair of local Psi formula candidates with exact local endpoint actions, but no source/receiver global domain/evaluation pair, non-target zero certificate, or same-packet replay exists."
+    },
+    {
+      "row_id": "R_u_A07_A06",
+      "source_interval": "A06",
+      "receiver_interval": "A07",
+      "failed_side": "hi",
+      "boundary_side": "upper",
+      "source_endpoint_contract_id": "fc_sigma_source_upper",
+      "receiver_endpoint_contract_id": "fc_rho_receiver_upper",
+      "source_support_topology": {
+        "support_interval_ids": [
+          "A06"
+        ],
+        "unique_support_interval_ids": [
+          "A06"
+        ],
+        "support_component_count": 1,
+        "support_union_kind": "single_component",
+        "component_supports_disjoint_or_single_component": true
+      },
+      "receiver_support_topology": {
+        "support_interval_ids": [
+          "A07"
+        ],
+        "unique_support_interval_ids": [
+          "A07"
+        ],
+        "support_component_count": 1,
+        "support_union_kind": "single_component",
+        "component_supports_disjoint_or_single_component": true
+      },
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "source_formula_candidate_available": true,
+        "receiver_formula_candidate_available": true,
+        "source_local_target_action_exact": true,
+        "receiver_local_target_action_exact": true,
+        "source_global_domain_evaluation_map_constructed": false,
+        "receiver_global_domain_evaluation_map_constructed": false,
+        "combined_global_domain_evaluation_pair_constructed": false,
+        "source_non_target_zero_certified": false,
+        "receiver_non_target_zero_certified": false,
+        "screen_positive_candidate_change_row": true,
+        "signed_boundary_delta_contract_defined": true,
+        "proof_grade_boundary_opening_certified": false,
+        "same_packet_history_update_formula_present": false,
+        "candidate_artifacts_present": false,
+        "root_topology_recertified_for_candidate_change": false,
+        "proof_interval_v1_v6_rerun_for_candidate_change": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "local_formula_candidate_pair_available": true,
+      "local_target_action_pair_exact": true,
+      "global_domain_evaluation_pair_constructed": false,
+      "row_ready": false,
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The row has a source/receiver pair of local Psi formula candidates with exact local endpoint actions, but no source/receiver global domain/evaluation pair, non-target zero certificate, or same-packet replay exists."
+    }
+  ],
+  "summary": {
+    "endpoint_functionals": 4,
+    "rows": 3,
+    "local_formula_candidates_available": 4,
+    "local_derivative_formulas_available": 4,
+    "local_support_components_available": 4,
+    "component_endpoint_identities_exact": 4,
+    "component_union_domain_symbols_declared": 4,
+    "disjoint_or_single_supports": 4,
+    "no_double_counting_rules_constructed": 0,
+    "global_domain_charts_constructed": 0,
+    "global_domain_coordinate_rules_constructed": 0,
+    "global_gluing_rules_constructed": 0,
+    "global_periodicity_rules_constructed": 0,
+    "endpoint_motion_rules_constructed": 0,
+    "endpoint_evaluation_maps_constructed": 0,
+    "target_actions_exact_under_global_evaluation_map": 0,
+    "non_target_endpoint_actions_enumerated": 0,
+    "non_target_zero_certificates": 0,
+    "same_packet_history_update_formulas_present": 0,
+    "exact_screen_zero_certificates": 0,
+    "rank_certificates": 0,
+    "candidate_artifacts_present": 0,
+    "topology_recertifications": 0,
+    "proof_interval_v1_v6_replays": 0,
+    "global_domain_evaluation_maps_constructed": 0,
+    "promotion_methods_passed_total": 0,
+    "rows_with_local_formula_candidate_pairs": 3,
+    "rows_with_local_target_action_pairs_exact": 3,
+    "rows_with_global_domain_evaluation_pairs": 0,
+    "proof_grade_boundary_opening_rows": 0,
+    "row_ready_count": 0,
+    "row_consumption_count": 0,
+    "branch_chart_authorized": false,
+    "global_promotion_failure_code_counts": {
+      "missing_global_candidate_artifacts_present": 4,
+      "missing_global_component_union_no_double_counting_rule_constructed": 4,
+      "missing_global_endpoint_boundary_binding_constructed": 4,
+      "missing_global_endpoint_evaluation_map_constructed": 4,
+      "missing_global_endpoint_motion_rule_constructed": 8,
+      "missing_global_endpoint_value_bound_to_evaluation_map": 4,
+      "missing_global_exact_screen_zero_certified": 4,
+      "missing_global_global_basis_vector_bound_to_domain": 4,
+      "missing_global_global_domain_chart_constructed": 8,
+      "missing_global_global_domain_coordinate_rule_constructed": 8,
+      "missing_global_global_domain_evaluation_map_constructed": 8,
+      "missing_global_global_gluing_rule_constructed": 8,
+      "missing_global_global_periodicity_rule_constructed": 8,
+      "missing_global_mesh_update_rule_constructed": 4,
+      "missing_global_non_target_endpoint_actions_enumerated": 4,
+      "missing_global_non_target_endpoint_zero_certified": 4,
+      "missing_global_proof_interval_v1_v6_rerun_for_candidate_change": 4,
+      "missing_global_rank_certified": 4,
+      "missing_global_receiver_monotonicity_rule_constructed": 4,
+      "missing_global_root_topology_recertified_for_candidate_change": 4,
+      "missing_global_same_packet_history_update_formula_present": 4,
+      "missing_global_same_packet_x_update_basis_constructed": 4,
+      "missing_global_same_packet_xdot_update_basis_constructed": 4,
+      "missing_global_source_monotonicity_rule_constructed": 4,
+      "missing_global_target_action_exact_under_global_evaluation_map": 4
+    },
+    "endpoint_required_fields_certified_counts": {
+      "local_formula_candidate_available": 4,
+      "local_derivative_formula_available": 4,
+      "local_support_components_available": 4,
+      "component_endpoint_identities_exact": 4,
+      "component_union_domain_symbol_declared": 4,
+      "component_supports_disjoint_or_single_component": 4,
+      "component_union_no_double_counting_rule_constructed": 0,
+      "global_domain_chart_constructed": 0,
+      "global_domain_coordinate_rule_constructed": 0,
+      "global_basis_vector_bound_to_domain": 0,
+      "global_gluing_rule_constructed": 0,
+      "global_periodicity_rule_constructed": 0,
+      "endpoint_boundary_binding_constructed": 0,
+      "endpoint_motion_rule_constructed": 0,
+      "endpoint_evaluation_map_constructed": 0,
+      "endpoint_value_bound_to_evaluation_map": 0,
+      "target_action_exact_under_global_evaluation_map": 0,
+      "non_target_endpoint_actions_enumerated": 0,
+      "non_target_endpoint_zero_certified": 0,
+      "same_packet_x_update_basis_constructed": 0,
+      "same_packet_xdot_update_basis_constructed": 0,
+      "mesh_update_rule_constructed": 0,
+      "source_monotonicity_rule_constructed": 0,
+      "receiver_monotonicity_rule_constructed": 0,
+      "same_packet_history_update_formula_present": 0,
+      "exact_screen_zero_certified": 0,
+      "rank_certified": 0,
+      "candidate_artifacts_present": 0,
+      "root_topology_recertified_for_candidate_change": 0,
+      "proof_interval_v1_v6_rerun_for_candidate_change": 0,
+      "global_domain_evaluation_map_constructed": 0
+    },
+    "row_required_fields_certified_counts": {
+      "row_locator_resolved": 3,
+      "source_formula_candidate_available": 3,
+      "receiver_formula_candidate_available": 3,
+      "source_local_target_action_exact": 3,
+      "receiver_local_target_action_exact": 3,
+      "source_global_domain_evaluation_map_constructed": 0,
+      "receiver_global_domain_evaluation_map_constructed": 0,
+      "combined_global_domain_evaluation_pair_constructed": 0,
+      "source_non_target_zero_certified": 0,
+      "receiver_non_target_zero_certified": 0,
+      "screen_positive_candidate_change_row": 3,
+      "signed_boundary_delta_contract_defined": 3,
+      "proof_grade_boundary_opening_certified": 0,
+      "same_packet_history_update_formula_present": 0,
+      "candidate_artifacts_present": 0,
+      "root_topology_recertified_for_candidate_change": 0,
+      "proof_interval_v1_v6_rerun_for_candidate_change": 0,
+      "row_consumed": 0,
+      "branch_chart_authorized": 0
+    },
+    "global_promotion_method_pass_counts": {
+      "local_formula_family_as_global_domain_chart": 0,
+      "component_union_as_global_coordinate_rule": 0,
+      "local_target_identity_as_endpoint_evaluation_map": 0,
+      "component_extension_as_same_packet_history_update": 0,
+      "global_domain_evaluation_map_as_row_consumption": 0
+    }
+  }
+}

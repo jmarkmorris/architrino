@@ -17,6 +17,41 @@ The series should teach children to see nature as lawful, active, and geometrica
 
 The stories should be fun first: play, experiments, motion, puzzles, chase games, light, rhythm, building, rolling, balancing, and discovery. The physics should be embedded in action, not delivered as a lecture.
 
+## Two-Level Story Architecture
+
+Each age band should be tracked at two levels:
+
+**Level 1: Lessons.** This is the compact teaching promise for the book or age band. It should contain only one to three lessons. It answers: what do we want the child to carry after the story?
+
+**Level 2: Scenes.** This is the detailed spread-by-spread plan. Each scene should include read-aloud text, image direction, the relevant $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry, and any quiet background concept for later learning. It answers: what does the child see and hear on this page?
+
+Level 2 scenes should not introduce new teaching goals casually. Each scene should serve one of the Level 1 lessons for that age band.
+
+### Current Two-Level Series Map
+
+| Age | Working title | Level 1 lessons | Level 2 scene status |
+| --- | --- | --- | --- |
+| Baby-toddler | Here, There, Back | Presence: here/there. Path: going and returning. Trace: motion has a felt route. | Foundation only; preview image exists; no detailed board-book scene plan yet. |
+| 3-5 | Nature Remembers Motion | Motion leaves a visible trail. Before/after orders a path. Repetition can make a pattern. | Planned; preview image exists; detailed scene plan still needed. |
+| 6-8 | The Message That Traveled | Messages from motion take time to arrive. Distance and direction matter. Stable patterns can form when influences fit. | Full pilot draft exists in [the-message-that-traveled.md](the-message-that-traveled.md). |
+| 9-11 | The Tiny Transceivers | There are two fundamental sender-receiver kinds. Each keeps a path, emits potential waves, and receives waves. Many received influences can combine into assemblies. | Planned; preview image exists; detailed scene plan still needed. |
+| 12-14 | The Balance Point | A path moves through a potential landscape. Small nudges can choose among lawful outcomes. Measurement is a physical interaction. | Planned; preview image exists; detailed scene plan still needed. |
+| 15-16 | The History That Pushes Now | Present motion depends on admissible path-history. Finite field speed selects which past waves can arrive now. Self-action occurs when an entity meets its own causal history. | Planned; preview image exists; no detailed scene plan yet. |
+| 17-18 | The World We Recover | Assemblies support observer-level clocks, rulers, and channels. Effective metric, photon behavior, and mass-map recovery are higher-level outcomes. Claim levels matter: observed, simulated, derived, open. | Planned; preview image exists; no detailed scene plan yet. |
+
+### Level 2 Scene Template
+
+Every detailed book file should use the same spread pattern:
+
+| Field | Purpose |
+| --- | --- |
+| Spread title | Names the child-facing action. |
+| Read-aloud text | The words on the page or in the reverse story-text band. |
+| Lesson | Which Level 1 lesson this scene serves. |
+| $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry | The visible geometry to integrate into the scene. |
+| Background concepts | Quiet details that reward rereading without overloading the child. |
+| Illustration prompt | Text-free image direction for generation or human illustration. |
+
 ## Framing To Avoid
 
 Avoid social overtones. The series should not use the physics palette, polarity, named architrinos, or assembly behavior as metaphors for human groups, personality types, social identity, conflict, morality, or belonging.
@@ -68,6 +103,38 @@ For ages 9-11, introduce `response type`:
 For ages 12+, connect the metaphor back to formal language:
 
 > The child-facing inward/outward response maps to the sign of the interaction term in the force law. The story avoids social language, but the mathematical content remains directional acceleration along the line of action.
+
+## Directional Vocabulary Modalities
+
+Children can handle strong vocabulary when the word is taught through motion, image, and repeated use. The series should use plain direction words first, then introduce etymology-backed challenge words that name the same geometry more precisely.
+
+Primary ladder:
+
+| Rank | Term pair | Literal teaching hook | Best age/use |
+| --- | --- | --- | --- |
+| 1 | toward / away | one path aims nearer; one path carries farther | all ages, read-aloud language |
+| 2 | nearer / farther | distance gets smaller; distance gets bigger | baby through age 8 |
+| 3 | converge / diverge | from Latin roots meaning bend or tend together / bend or tend apart | ages 6+ as challenge vocabulary |
+| 4 | inward / outward | motion relative to a center, wake, ring, or assembly | diagrams and geometry overlays |
+| 5 | approach / recede | come nearer / move back or withdraw in distance | ages 9+ and parent notes |
+| 6 | contract / expand | draw together / spread out | waves, fields, and assemblies |
+| 7 | concentrate / disperse | gather toward a center / scatter apart | many-point scenes and Noether sea imagery |
+| 8 | confluent / diffluent | flow together / flow apart | older students, poetic back matter, water analogies |
+| 9 | centripetal / centrifugal | toward-center / away-from-center tendency | ages 12+, with care because "seeking" and "fleeing" roots can sound agentive |
+
+The flagship challenge pair should be `converge` / `diverge`. These words are valuable because their roots already carry the right nonverbal geometry: bending or tending together, bending or tending apart.
+
+Read-aloud bridge:
+
+> The paths converged. They bent toward the same place.
+>
+> Then the paths diverged. They widened away.
+
+Mathematical bridge for older readers:
+
+> Toward means the separation gets smaller. Away means the separation gets bigger. Converging paths narrow. Diverging paths widen.
+
+For a point at position $x(t)$ relative to a source position $s$, the child-facing idea becomes the older mathematical idea that the distance $r(t)=\|x(t)-s\|$ is decreasing, increasing, or momentarily balanced.
 
 ## Named Architrinos
 

@@ -21,6 +21,24 @@ Production warning:
 
 These images are exemplars, not final book plates. Later production should preserve their visual logic while tightening any accidental red/blue clothing competition, excess naturalistic environmental color, or geometry that becomes decorative instead of explanatory.
 
+## Here, There, Back
+
+![Here, There, Back preview](assets/here-there-back-preview.png)
+
+Why it works:
+
+- presence, path, and return are visible before language;
+- the toddler's path is shown as ordered red/blue/purple marks, not as an abstract diagram;
+- repeated child positions read as motion through time rather than a social scene;
+- the caregiver remains warm but secondary to the child's embodied path;
+- the palette stays simple enough for the baby-toddler foundation.
+
+Use this as the exemplar for:
+
+- nonverbal path intuition;
+- here/there/back motion;
+- first exposure to trace without formal terminology.
+
 ## Nature Remembers Motion
 
 ![Nature Remembers Motion preview](assets/nature-remembers-motion-preview.png)
@@ -94,6 +112,44 @@ Use this as the exemplar for:
 - deterministic multistability;
 - basin diagrams;
 - measurement interaction for ages 12-14.
+
+## The History That Pushes Now
+
+![The History That Pushes Now preview](assets/the-history-that-pushes-now-preview.png)
+
+Why it works:
+
+- the visible path is paired with earlier source positions and expanding wake fronts;
+- accepted causal-history intersections stand out without requiring equations;
+- the self-action loop is present as geometry rather than exposition;
+- the transparent tabletop keeps the delayed-interaction simulator concrete;
+- older-student complexity is higher while preserving the same palette grammar.
+
+Use this as the exemplar for:
+
+- admissible path-history;
+- finite field-speed arrival;
+- self-action and self-hit intuition;
+- 15-16 age-band simulator scenes.
+
+## The World We Recover
+
+![The World We Recover preview](assets/the-world-we-recover-preview.png)
+
+Why it works:
+
+- the image reads from tiny active parts to assemblies, medium response, and observer-level instruments;
+- nested red/blue assemblies sit inside a quiet Noether sea rather than empty space;
+- the purple-white channel bridges substrate behavior to clock/ruler/light-channel recovery;
+- claim-level hints remain nonverbal, with no labels or equations;
+- the students feel like older learners synthesizing the series.
+
+Use this as the exemplar for:
+
+- assembly hierarchy;
+- Noether sea response;
+- effective clock, ruler, photon-channel, and metric recovery;
+- 17-18 synthesis scenes.
 
 ## Exemplar Prompt Addendum
 
