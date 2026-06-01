@@ -2813,6 +2813,50 @@ into a concrete contract: prove each midpoint-centered node residual contracts
 by at least the selected current-shape factor, then consume the resulting
 budget-fitting h0-h34 provider before replaying terminal/all-h-row covariance.
 
+The screened-provider gap has now collapsed to one scalar target. The
+`candidate-signed-nonterminal-h0-h34-uniform-provider-gap-target` compares the
+live node residual radii to the first strict screened radii and verifies that
+the weighted and coefficient residual gaps agree, node by node, with the same
+selected contraction factor. The node-share drift is negligible and the gap
+spread ratio is one, so the next h0-h34 proof does not need a separate
+node-specific allocation theorem. It needs a directed-rounded same-domain proof
+that the midpoint-centered current residual shape contracts by that single
+factor while preserving the five-node dependency.
+
+The follow-on
+`candidate-signed-nonterminal-h0-h34-single-contraction-provider-contract`
+turns that statement into an interval-inclusion contract. For each interpolation
+node, the screened zero-centered target interval is a strict subinterval of the
+live midpoint-centered weighted and coefficient residual intervals, and the
+current-to-screened radius ratio is the same scalar contraction factor. The
+remaining proof burden is now sharply stated: a directed-rounded same-domain
+h0-h34 residual evaluator must emit intervals contained in those screened
+targets before the terminal/all-h-row replay can consume the contracted
+nonterminal block.
+
+The provider-verifier boundary is now executable rather than prose-only. The
+`candidate-signed-nonterminal-h0-h34-directed-provider-verifier` consumes the
+single-contraction contract and checks the exact row shape that a future
+directed-rounded provider must supply: five h0-h34 rows on the same nodes,
+same active range, same midpoint-centered target radii, and directed-rounded
+weighted plus coefficient residual intervals contained in the screened targets.
+With no true provider rows supplied, the verifier runs only a screened-target
+fixture path; it deliberately leaves same-domain, h0-h34 covariance, shifted
+$R_{\varepsilon,43}$, and retained-branch claims false. This advances the
+blocker from "what provider should exist?" to "produce real directed-rounded
+h0-h34 rows that pass the already wired inclusion verifier."
+
+The verifier now also consumes the live provider-shaped residual rows as a
+fail-closed probe. The
+`candidate-signed-nonterminal-h0-h34-live-residual-provider-probe` copies the
+existing midpoint-centered weighted residual intervals and coefficient residual
+intervals into the provider-row shape and feeds them through the verifier. The
+probe reaches the same-domain and same-radius contract, but it is explicitly
+not directed-rounded evidence and its live intervals are wider than the
+screened targets. This is useful mathematically because the blocker is no
+longer a missing interface: it is a measured contraction/certification problem
+on already identified live residual intervals.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.

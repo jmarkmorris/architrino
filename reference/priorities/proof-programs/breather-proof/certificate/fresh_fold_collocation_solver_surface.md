@@ -356,6 +356,61 @@ screen-level positive boundary openings with minimum screen margin
 `0.999753815697289`, and still certifies 0 proof-grade same-packet
 candidate-change rows.
 
+The follow-on promotion audit is recorded in
+`fold_coordinate_candidate_promotion_audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_candidate_promotion_audit_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It keeps the 3 / 3 proposed fold-coordinate shifts as priority-only screen
+data, finds 0 / 4 expected candidate-specific realization artifacts present,
+and keeps 0 proof-grade rows. The solver surface therefore does not advance by
+another tangent screen; it advances only by materializing the fold-coordinate
+candidate history and rerunning topology plus proof-interval preledger on that
+candidate.
+
+The materialization audit is recorded in
+`fold_coordinate_candidate_materialization_audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_candidate_materialization_audit_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It checks whether the fold-coordinate columns can already write that candidate
+history. They cannot: all four `fc_*` columns are present as screen variables,
+but 0 / 4 carry the required same-packet history-realization fields and 0 / 5
+candidate-specific artifacts exist. The next solver-surface upgrade must supply
+a finite $\Delta X_{\mathrm{fc}}(\theta)$ realization rule with support, $X$ and
+$\dot X$ update bases, mesh update rule, endpoint motion rule, and source and
+receiver monotonicity rules.
+
+The history-realization contract is recorded in
+`fold_coordinate_history_realization_contract.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_history_realization_contract_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It turns that upgrade into an explicit theorem/generator target:
+$$
+X_{\mathrm{fc}}(\theta;\xi)
+=X_{\mathrm{fresh}}(\theta)+\Delta X_{\mathrm{fc}}(\theta;\xi),
+\qquad
+\Delta X_{\mathrm{fc}}(\theta;\xi)=\sum_j \xi_j\Psi_j(\theta).
+$$
+For the two lower rows it requires source lower-boundary decrease and receiver
+lower-boundary increase; for the upper row it requires source upper-boundary
+increase and receiver upper-boundary decrease. It also requires a
+candidate-specific artifact namespace and v1-v6 replay plan before topology or
+preledger replay can be accepted. The contract defines 4 / 4 variable burdens
+and 3 / 3 signed row contracts, but it still supplies 0 / 4 realizations, 0 / 5
+candidate artifacts, 0 contract-ready rows, and 0 consumed rows.
+
+The history-realization theorem attempt is recorded in
+`fold_coordinate_history_realization_theorem_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_history_realization_theorem_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It tests whether the contract can already be promoted to an exact finite
+same-packet realization theorem. It cannot: the four `fc_*` variables all have
+screen coefficients and signed boundary-delta obligations, but 0 / 4 carry the
+8 realization fields, exact $B\xi=0$ certification remains absent, rank
+certification remains absent, 0 / 5 candidate artifacts exist, and 0 rows are
+theorem-ready. The next solver-surface upgrade is therefore the actual finite
+basis construction for each $\Psi_j$, with support, derivative, mesh, endpoint,
+and source/receiver monotonicity rules.
+
 ## Pre-Ledger Stop Condition
 
 Stop before branch-chart construction unless every pre-ledger row satisfies

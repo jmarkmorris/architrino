@@ -13580,6 +13580,1081 @@ function buildSignedNonterminalH0H34CurrentShapeCertificateScreenCandidate({
   };
 }
 
+function buildSignedNonterminalH0H34UniformProviderGapTargetCandidate({
+  currentShapeCertificateScreen,
+  dependencyLossBudget = null,
+  providerSpecification = null,
+}) {
+  if (
+    currentShapeCertificateScreen === null ||
+    currentShapeCertificateScreen === undefined ||
+    currentShapeCertificateScreen.target_kind !==
+      "candidate-signed-nonterminal-h0-h34-current-shape-certificate-screen"
+  ) {
+    return null;
+  }
+  const strictScreen =
+    (currentShapeCertificateScreen.current_shape_certificate_screen_rows ?? [])
+      .filter((row) => Number(row?.safety_margin_factor) > 1)
+      .find(
+        (row) =>
+          row?.h0_h34_residual_budget_fits_after_contraction === true &&
+          Array.isArray(row?.node_screen_rows) &&
+          row.node_screen_rows.length === 5
+      ) ?? null;
+  const selectedProviderContractionFactor = Number(
+    strictScreen?.required_provider_contraction_factor
+  );
+  const selectedSafetyMarginFactor = Number(strictScreen?.safety_margin_factor);
+  if (
+    strictScreen === null ||
+    !finitePositive(selectedProviderContractionFactor) ||
+    !finitePositive(selectedSafetyMarginFactor)
+  ) {
+    return null;
+  }
+  const dependencyRows =
+    dependencyLossBudget?.node_dependency_loss_budget_rows ?? [];
+  const providerSpecRows =
+    providerSpecification?.provider_specification_rows ?? [];
+  const residualAbsUpperMatches = (liveValue, currentValue) =>
+    finiteNonnegative(liveValue) &&
+    finiteNonnegative(currentValue) &&
+    Math.abs(liveValue - currentValue) <=
+      Math.max(1e-12, Math.abs(currentValue) * 1e-12);
+  const providerGapRows = strictScreen.node_screen_rows.map((row) => {
+    const liveDependencyRow =
+      dependencyRows.find(
+        (candidate) =>
+          Number(candidate?.node_index) === Number(row?.node_index)
+      ) ?? null;
+    const liveProviderSpecRow =
+      providerSpecRows.find(
+        (candidate) =>
+          Number(candidate?.node_index) === Number(row?.node_index)
+      ) ?? null;
+    const liveWeightedResidualInterval = finiteOrderedIntervalOrNull(
+      liveDependencyRow?.node_directed_residual_interval
+    );
+    const liveCoefficientResidualInterval = finiteOrderedIntervalOrNull(
+      liveProviderSpecRow?.coefficient_residual_interval_after_midpoint
+    );
+    const liveWeightedResidualIntervalAbsUpper =
+      liveWeightedResidualInterval === null
+        ? null
+        : intervalAbsUpper(liveWeightedResidualInterval);
+    const liveCoefficientResidualIntervalAbsUpper =
+      liveCoefficientResidualInterval === null
+        ? null
+        : intervalAbsUpper(liveCoefficientResidualInterval);
+    const currentWeightedResidualAbsUpper = Number(
+      row?.current_weighted_residual_abs_upper
+    );
+    const contractedWeightedResidualAbsUpper = Number(
+      row?.contracted_weighted_residual_abs_upper
+    );
+    const currentCoefficientResidualAbsUpper = Number(
+      row?.current_coefficient_residual_abs_upper
+    );
+    const contractedCoefficientResidualAbsUpper = Number(
+      row?.contracted_coefficient_residual_abs_upper
+    );
+    const currentShare = Number(row?.current_weighted_residual_share);
+    const contractedShare = Number(row?.contracted_weighted_residual_share);
+    if (
+      !finitePositive(currentWeightedResidualAbsUpper) ||
+      !finitePositive(contractedWeightedResidualAbsUpper) ||
+      !finitePositive(currentCoefficientResidualAbsUpper) ||
+      !finitePositive(contractedCoefficientResidualAbsUpper) ||
+      !finitePositive(currentShare) ||
+      !finitePositive(contractedShare)
+    ) {
+      return null;
+    }
+    const weightedResidualGapFactor =
+      currentWeightedResidualAbsUpper / contractedWeightedResidualAbsUpper;
+    const coefficientResidualGapFactor =
+      currentCoefficientResidualAbsUpper / contractedCoefficientResidualAbsUpper;
+    const weightedGapDriftAbs = Math.abs(
+      weightedResidualGapFactor - selectedProviderContractionFactor
+    );
+    const coefficientGapDriftAbs = Math.abs(
+      coefficientResidualGapFactor - selectedProviderContractionFactor
+    );
+    const liveWeightedResidualIntervalMatchesCurrent =
+      residualAbsUpperMatches(
+        liveWeightedResidualIntervalAbsUpper,
+        currentWeightedResidualAbsUpper
+      );
+    const liveCoefficientResidualIntervalMatchesCurrent =
+      residualAbsUpperMatches(
+        liveCoefficientResidualIntervalAbsUpper,
+        currentCoefficientResidualAbsUpper
+      );
+    return {
+      node_index: Number.isInteger(row?.node_index) ? row.node_index : null,
+      xi_midpoint: Number(row?.xi_midpoint),
+      current_weighted_residual_share: currentShare,
+      contracted_weighted_residual_share: contractedShare,
+      share_drift_abs: Math.abs(contractedShare - currentShare),
+      live_weighted_residual_interval: liveWeightedResidualInterval,
+      live_weighted_residual_interval_abs_upper:
+        liveWeightedResidualIntervalAbsUpper,
+      live_weighted_residual_interval_abs_upper_matches_current:
+        liveWeightedResidualIntervalMatchesCurrent,
+      current_weighted_residual_abs_upper: currentWeightedResidualAbsUpper,
+      screened_weighted_residual_abs_upper:
+        contractedWeightedResidualAbsUpper,
+      screened_weighted_residual_target_interval: [
+        -contractedWeightedResidualAbsUpper,
+        contractedWeightedResidualAbsUpper,
+      ],
+      live_coefficient_residual_interval_after_midpoint:
+        liveCoefficientResidualInterval,
+      live_coefficient_residual_interval_abs_upper:
+        liveCoefficientResidualIntervalAbsUpper,
+      live_coefficient_residual_interval_abs_upper_matches_current:
+        liveCoefficientResidualIntervalMatchesCurrent,
+      current_coefficient_residual_abs_upper:
+        currentCoefficientResidualAbsUpper,
+      screened_coefficient_residual_abs_upper:
+        contractedCoefficientResidualAbsUpper,
+      screened_coefficient_residual_target_interval: [
+        -contractedCoefficientResidualAbsUpper,
+        contractedCoefficientResidualAbsUpper,
+      ],
+      required_weighted_residual_gap_contraction_factor:
+        weightedResidualGapFactor,
+      required_coefficient_residual_gap_contraction_factor:
+        coefficientResidualGapFactor,
+      weighted_gap_drift_from_uniform_abs: weightedGapDriftAbs,
+      coefficient_gap_drift_from_uniform_abs: coefficientGapDriftAbs,
+      gap_row_status:
+        weightedGapDriftAbs < 1e-9 &&
+        coefficientGapDriftAbs < 1e-9 &&
+        Math.abs(contractedShare - currentShare) < 1e-12 &&
+        liveWeightedResidualIntervalMatchesCurrent &&
+        liveCoefficientResidualIntervalMatchesCurrent
+          ? "node-gap-collapses-to-selected-uniform-contraction"
+          : "node-gap-needs-nonuniform-provider-target",
+    };
+  });
+  if (
+    !providerGapRows.every(
+      (row) =>
+        row !== null &&
+        Number.isInteger(row.node_index) &&
+        Number.isFinite(row.xi_midpoint) &&
+        finitePositive(row.current_weighted_residual_share) &&
+        finitePositive(row.contracted_weighted_residual_share) &&
+        row.live_weighted_residual_interval !== null &&
+        finiteNonnegative(row.live_weighted_residual_interval_abs_upper) &&
+        row.live_weighted_residual_interval_abs_upper_matches_current ===
+          true &&
+        row.live_coefficient_residual_interval_after_midpoint !== null &&
+        finiteNonnegative(row.live_coefficient_residual_interval_abs_upper) &&
+        row.live_coefficient_residual_interval_abs_upper_matches_current ===
+          true &&
+        finitePositive(row.required_weighted_residual_gap_contraction_factor) &&
+        finitePositive(row.required_coefficient_residual_gap_contraction_factor) &&
+        finiteNonnegative(row.weighted_gap_drift_from_uniform_abs) &&
+        finiteNonnegative(row.coefficient_gap_drift_from_uniform_abs)
+    )
+  ) {
+    return null;
+  }
+  const maxWeightedGapFactor = Math.max(
+    ...providerGapRows.map(
+      (row) => row.required_weighted_residual_gap_contraction_factor
+    )
+  );
+  const minWeightedGapFactor = Math.min(
+    ...providerGapRows.map(
+      (row) => row.required_weighted_residual_gap_contraction_factor
+    )
+  );
+  const maxCoefficientGapFactor = Math.max(
+    ...providerGapRows.map(
+      (row) => row.required_coefficient_residual_gap_contraction_factor
+    )
+  );
+  const minCoefficientGapFactor = Math.min(
+    ...providerGapRows.map(
+      (row) => row.required_coefficient_residual_gap_contraction_factor
+    )
+  );
+  const maxNodeShareDriftAbs = Math.max(
+    ...providerGapRows.map((row) => row.share_drift_abs)
+  );
+  const maxUniformGapDriftAbs = Math.max(
+    ...providerGapRows.flatMap((row) => [
+      row.weighted_gap_drift_from_uniform_abs,
+      row.coefficient_gap_drift_from_uniform_abs,
+    ])
+  );
+  const gapSpreadRatio =
+    finitePositive(minWeightedGapFactor) && finitePositive(maxWeightedGapFactor)
+      ? maxWeightedGapFactor / minWeightedGapFactor
+      : null;
+  const uniformGapCollapse =
+    finitePositive(gapSpreadRatio) &&
+    Math.abs(gapSpreadRatio - 1) < 1e-12 &&
+    maxNodeShareDriftAbs < 1e-12 &&
+    maxUniformGapDriftAbs < 1e-9 &&
+    providerGapRows.every(
+      (row) =>
+        row.gap_row_status ===
+          "node-gap-collapses-to-selected-uniform-contraction" &&
+        row.live_weighted_residual_interval_abs_upper_matches_current ===
+          true &&
+        row.live_coefficient_residual_interval_abs_upper_matches_current ===
+          true
+    );
+  return {
+    target_kind:
+      "candidate-signed-nonterminal-h0-h34-uniform-provider-gap-target",
+    source_current_shape_certificate_screen_kind:
+      currentShapeCertificateScreen.target_kind,
+    proof_status:
+      "candidate-target-only-uniform-gap-contract-not-directed-rounded-provider",
+    uses_midpoint_centered_live_residual_intervals: true,
+    screened_target_interval_kind:
+      "symmetric-abs-upper-around-zero-after-midpoint-centering",
+    active_h_index_range: [0, 34],
+    interpolation_node_count: 5,
+    selected_safety_margin_factor: selectedSafetyMarginFactor,
+    selected_provider_contraction_factor: selectedProviderContractionFactor,
+    selected_contracted_residual_to_budget_ratio:
+      strictScreen.contracted_residual_to_budget_ratio,
+    selected_residual_budget_headroom_factor:
+      strictScreen.residual_budget_headroom_factor,
+    min_required_weighted_residual_gap_contraction_factor:
+      minWeightedGapFactor,
+    max_required_weighted_residual_gap_contraction_factor:
+      maxWeightedGapFactor,
+    min_required_coefficient_residual_gap_contraction_factor:
+      minCoefficientGapFactor,
+    max_required_coefficient_residual_gap_contraction_factor:
+      maxCoefficientGapFactor,
+    weighted_gap_spread_ratio: gapSpreadRatio,
+    max_node_share_drift_abs: maxNodeShareDriftAbs,
+    max_uniform_gap_drift_abs: maxUniformGapDriftAbs,
+    provider_gap_rows: providerGapRows,
+    uniform_gap_collapse_to_single_contraction_factor: uniformGapCollapse,
+    gap_classification: uniformGapCollapse
+      ? "h0-h34-provider-gap-collapses-to-uniform-current-shape-contraction"
+      : "h0-h34-provider-gap-needs-nonuniform-node-target",
+    next_certificate_object:
+      "directed-rounded same-domain h0-h34 provider proving a single uniform contraction factor for the midpoint-centered current residual shape",
+    claim_boundary: {
+      certifies_h0_h34_midpoint_identity_for_continuous_domain: false,
+      certifies_signed_nonterminal_cancellation: false,
+      certifies_nonterminal_h0_h34_covariance_enclosure: false,
+      certifies_terminal_h35_h37_covariance_enclosure: false,
+      certifies_all_hrow_covariance_enclosure: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function buildSignedNonterminalH0H34SingleContractionProviderContractCandidate({
+  uniformProviderGapTarget,
+}) {
+  if (
+    uniformProviderGapTarget === null ||
+    uniformProviderGapTarget === undefined ||
+    uniformProviderGapTarget.target_kind !==
+      "candidate-signed-nonterminal-h0-h34-uniform-provider-gap-target"
+  ) {
+    return null;
+  }
+  const providerGapRows = uniformProviderGapTarget.provider_gap_rows ?? [];
+  const selectedProviderContractionFactor = Number(
+    uniformProviderGapTarget.selected_provider_contraction_factor
+  );
+  const selectedResidualBudgetHeadroomFactor = Number(
+    uniformProviderGapTarget.selected_residual_budget_headroom_factor
+  );
+  if (
+    providerGapRows.length !== 5 ||
+    !finitePositive(selectedProviderContractionFactor) ||
+    !finitePositive(selectedResidualBudgetHeadroomFactor)
+  ) {
+    return null;
+  }
+  const contractRows = providerGapRows.map((row) => {
+    const liveWeightedResidualInterval = finiteOrderedIntervalOrNull(
+      row?.live_weighted_residual_interval
+    );
+    const screenedWeightedTargetInterval = finiteOrderedIntervalOrNull(
+      row?.screened_weighted_residual_target_interval
+    );
+    const liveCoefficientResidualInterval = finiteOrderedIntervalOrNull(
+      row?.live_coefficient_residual_interval_after_midpoint
+    );
+    const screenedCoefficientTargetInterval = finiteOrderedIntervalOrNull(
+      row?.screened_coefficient_residual_target_interval
+    );
+    const currentWeightedResidualAbsUpper = Number(
+      row?.current_weighted_residual_abs_upper
+    );
+    const screenedWeightedResidualAbsUpper = Number(
+      row?.screened_weighted_residual_abs_upper
+    );
+    const currentCoefficientResidualAbsUpper = Number(
+      row?.current_coefficient_residual_abs_upper
+    );
+    const screenedCoefficientResidualAbsUpper = Number(
+      row?.screened_coefficient_residual_abs_upper
+    );
+    if (
+      liveWeightedResidualInterval === null ||
+      screenedWeightedTargetInterval === null ||
+      liveCoefficientResidualInterval === null ||
+      screenedCoefficientTargetInterval === null ||
+      !finitePositive(currentWeightedResidualAbsUpper) ||
+      !finitePositive(screenedWeightedResidualAbsUpper) ||
+      !finitePositive(currentCoefficientResidualAbsUpper) ||
+      !finitePositive(screenedCoefficientResidualAbsUpper)
+    ) {
+      return null;
+    }
+    const weightedTargetSubsetOfLiveInterval = intervalContainsInterval(
+      liveWeightedResidualInterval,
+      screenedWeightedTargetInterval
+    );
+    const coefficientTargetSubsetOfLiveInterval = intervalContainsInterval(
+      liveCoefficientResidualInterval,
+      screenedCoefficientTargetInterval
+    );
+    const weightedTargetContainsZero = intervalContainsZero(
+      screenedWeightedTargetInterval
+    );
+    const coefficientTargetContainsZero = intervalContainsZero(
+      screenedCoefficientTargetInterval
+    );
+    const liveWeightedResidualContainsZero = intervalContainsZero(
+      liveWeightedResidualInterval
+    );
+    const liveCoefficientResidualContainsZero = intervalContainsZero(
+      liveCoefficientResidualInterval
+    );
+    const weightedLiveMidpointAbs = Math.abs(
+      intervalMidpoint(liveWeightedResidualInterval)
+    );
+    const coefficientLiveMidpointAbs = Math.abs(
+      intervalMidpoint(liveCoefficientResidualInterval)
+    );
+    const weightedTargetMidpointAbs = Math.abs(
+      intervalMidpoint(screenedWeightedTargetInterval)
+    );
+    const coefficientTargetMidpointAbs = Math.abs(
+      intervalMidpoint(screenedCoefficientTargetInterval)
+    );
+    const weightedTargetToLiveRadiusRatio =
+      screenedWeightedResidualAbsUpper / currentWeightedResidualAbsUpper;
+    const coefficientTargetToLiveRadiusRatio =
+      screenedCoefficientResidualAbsUpper / currentCoefficientResidualAbsUpper;
+    const requiredWeightedContractionFactor = Number(
+      row?.required_weighted_residual_gap_contraction_factor
+    );
+    const requiredCoefficientContractionFactor = Number(
+      row?.required_coefficient_residual_gap_contraction_factor
+    );
+    const weightedContractionMatchesSelected =
+      finitePositive(requiredWeightedContractionFactor) &&
+      Math.abs(
+        requiredWeightedContractionFactor - selectedProviderContractionFactor
+      ) <= Math.max(
+        1e-9,
+        Math.abs(selectedProviderContractionFactor) * 1e-12
+      );
+    const coefficientContractionMatchesSelected =
+      finitePositive(requiredCoefficientContractionFactor) &&
+      Math.abs(
+        requiredCoefficientContractionFactor -
+          selectedProviderContractionFactor
+      ) <= Math.max(
+        1e-9,
+        Math.abs(selectedProviderContractionFactor) * 1e-12
+      );
+    return {
+      node_index: Number.isInteger(row?.node_index) ? row.node_index : null,
+      xi_midpoint: Number(row?.xi_midpoint),
+      live_weighted_residual_interval: liveWeightedResidualInterval,
+      screened_weighted_residual_target_interval:
+        screenedWeightedTargetInterval,
+      live_weighted_residual_contains_zero:
+        liveWeightedResidualContainsZero,
+      screened_weighted_residual_target_contains_zero:
+        weightedTargetContainsZero,
+      screened_weighted_target_subset_of_live_interval:
+        weightedTargetSubsetOfLiveInterval,
+      live_weighted_residual_midpoint_abs: weightedLiveMidpointAbs,
+      live_weighted_residual_midpoint_to_abs_upper_ratio:
+        weightedLiveMidpointAbs / currentWeightedResidualAbsUpper,
+      screened_weighted_target_midpoint_abs: weightedTargetMidpointAbs,
+      screened_weighted_target_to_live_radius_ratio:
+        weightedTargetToLiveRadiusRatio,
+      live_coefficient_residual_interval_after_midpoint:
+        liveCoefficientResidualInterval,
+      screened_coefficient_residual_target_interval:
+        screenedCoefficientTargetInterval,
+      live_coefficient_residual_contains_zero:
+        liveCoefficientResidualContainsZero,
+      screened_coefficient_residual_target_contains_zero:
+        coefficientTargetContainsZero,
+      screened_coefficient_target_subset_of_live_interval:
+        coefficientTargetSubsetOfLiveInterval,
+      live_coefficient_residual_midpoint_abs: coefficientLiveMidpointAbs,
+      live_coefficient_residual_midpoint_to_abs_upper_ratio:
+        coefficientLiveMidpointAbs / currentCoefficientResidualAbsUpper,
+      screened_coefficient_target_midpoint_abs: coefficientTargetMidpointAbs,
+      screened_coefficient_target_to_live_radius_ratio:
+        coefficientTargetToLiveRadiusRatio,
+      required_weighted_residual_gap_contraction_factor:
+        requiredWeightedContractionFactor,
+      required_coefficient_residual_gap_contraction_factor:
+        requiredCoefficientContractionFactor,
+      weighted_contraction_matches_selected_factor:
+        weightedContractionMatchesSelected,
+      coefficient_contraction_matches_selected_factor:
+        coefficientContractionMatchesSelected,
+      contract_row_status:
+        weightedTargetSubsetOfLiveInterval &&
+        coefficientTargetSubsetOfLiveInterval &&
+        weightedTargetContainsZero &&
+        coefficientTargetContainsZero &&
+        liveWeightedResidualContainsZero &&
+        liveCoefficientResidualContainsZero &&
+        weightedContractionMatchesSelected &&
+        coefficientContractionMatchesSelected
+          ? "single-contraction-interval-inclusion-contract-ready"
+          : "single-contraction-contract-needs-recenter-or-nonuniform-target",
+    };
+  });
+  if (
+    !contractRows.every(
+      (row) =>
+        row !== null &&
+        Number.isInteger(row.node_index) &&
+        Number.isFinite(row.xi_midpoint) &&
+        Array.isArray(row.live_weighted_residual_interval) &&
+        Array.isArray(row.screened_weighted_residual_target_interval) &&
+        Array.isArray(row.live_coefficient_residual_interval_after_midpoint) &&
+        Array.isArray(row.screened_coefficient_residual_target_interval) &&
+        finiteNonnegative(
+          row.live_weighted_residual_midpoint_to_abs_upper_ratio
+        ) &&
+        finiteNonnegative(
+          row.live_coefficient_residual_midpoint_to_abs_upper_ratio
+        ) &&
+        finitePositive(row.screened_weighted_target_to_live_radius_ratio) &&
+        finitePositive(row.screened_coefficient_target_to_live_radius_ratio)
+    )
+  ) {
+    return null;
+  }
+  const currentWeightedResidualAbsUpperSum = providerGapRows.reduce(
+    (total, row) => total + Number(row.current_weighted_residual_abs_upper),
+    0
+  );
+  const screenedWeightedResidualAbsUpperSum = providerGapRows.reduce(
+    (total, row) => total + Number(row.screened_weighted_residual_abs_upper),
+    0
+  );
+  const sumContractionFactor =
+    finitePositive(screenedWeightedResidualAbsUpperSum)
+      ? currentWeightedResidualAbsUpperSum /
+        screenedWeightedResidualAbsUpperSum
+      : null;
+  const maxLiveMidpointToAbsUpperRatio = Math.max(
+    ...contractRows.flatMap((row) => [
+      row.live_weighted_residual_midpoint_to_abs_upper_ratio,
+      row.live_coefficient_residual_midpoint_to_abs_upper_ratio,
+    ])
+  );
+  const maxTargetMidpointAbs = Math.max(
+    ...contractRows.flatMap((row) => [
+      row.screened_weighted_target_midpoint_abs,
+      row.screened_coefficient_target_midpoint_abs,
+    ])
+  );
+  const maxTargetToLiveRadiusRatio = Math.max(
+    ...contractRows.flatMap((row) => [
+      row.screened_weighted_target_to_live_radius_ratio,
+      row.screened_coefficient_target_to_live_radius_ratio,
+    ])
+  );
+  const allTargetsSubsetOfLiveIntervals = contractRows.every(
+    (row) =>
+      row.screened_weighted_target_subset_of_live_interval === true &&
+      row.screened_coefficient_target_subset_of_live_interval === true
+  );
+  const allTargetsAndLiveIntervalsContainZero = contractRows.every(
+    (row) =>
+      row.live_weighted_residual_contains_zero === true &&
+      row.screened_weighted_residual_target_contains_zero === true &&
+      row.live_coefficient_residual_contains_zero === true &&
+      row.screened_coefficient_residual_target_contains_zero === true
+  );
+  const allRowsMatchSingleContractionFactor = contractRows.every(
+    (row) =>
+      row.weighted_contraction_matches_selected_factor === true &&
+      row.coefficient_contraction_matches_selected_factor === true
+  );
+  const sumContractionMatchesSelected =
+    finitePositive(sumContractionFactor) &&
+    Math.abs(sumContractionFactor - selectedProviderContractionFactor) <=
+      Math.max(1e-9, Math.abs(selectedProviderContractionFactor) * 1e-12);
+  const contractReducesToDirectedIntervalInclusion =
+    allTargetsSubsetOfLiveIntervals &&
+    allTargetsAndLiveIntervalsContainZero &&
+    allRowsMatchSingleContractionFactor &&
+    sumContractionMatchesSelected &&
+    maxTargetMidpointAbs === 0 &&
+    selectedResidualBudgetHeadroomFactor > 1;
+  return {
+    target_kind:
+      "candidate-signed-nonterminal-h0-h34-single-contraction-provider-contract",
+    source_uniform_provider_gap_target_kind:
+      uniformProviderGapTarget.target_kind,
+    proof_status:
+      "candidate-contract-only-provider-interval-inclusion-not-directed-rounded",
+    contract_kind:
+      "single-factor-midpoint-centered-h0-h34-residual-interval-target",
+    active_h_index_range: [0, 34],
+    interpolation_node_count: 5,
+    selected_provider_contraction_factor: selectedProviderContractionFactor,
+    selected_residual_budget_headroom_factor:
+      selectedResidualBudgetHeadroomFactor,
+    current_weighted_residual_abs_upper_sum:
+      currentWeightedResidualAbsUpperSum,
+    screened_weighted_residual_abs_upper_sum:
+      screenedWeightedResidualAbsUpperSum,
+    current_to_screened_weighted_residual_sum_contraction_factor:
+      sumContractionFactor,
+    sum_contraction_matches_selected_factor:
+      sumContractionMatchesSelected,
+    max_live_residual_midpoint_to_abs_upper_ratio:
+      maxLiveMidpointToAbsUpperRatio,
+    max_screened_target_midpoint_abs: maxTargetMidpointAbs,
+    max_screened_target_to_live_radius_ratio: maxTargetToLiveRadiusRatio,
+    all_screened_targets_subset_of_live_intervals:
+      allTargetsSubsetOfLiveIntervals,
+    all_screened_targets_and_live_intervals_contain_zero:
+      allTargetsAndLiveIntervalsContainZero,
+    all_contract_rows_match_single_contraction_factor:
+      allRowsMatchSingleContractionFactor,
+    contract_reduces_to_directed_interval_inclusion:
+      contractReducesToDirectedIntervalInclusion,
+    provider_contract_rows: contractRows,
+    contract_classification: contractReducesToDirectedIntervalInclusion
+      ? "h0-h34-single-contraction-provider-contract-reduces-to-directed-interval-inclusion"
+      : "h0-h34-single-contraction-provider-contract-open",
+    missing_directed_rounded_operation:
+      "same-domain h0-h34 residual evaluator must emit provider intervals contained in the screened midpoint-centered target intervals before absolute Cauchy or Lagrange sums are charged",
+    next_certificate_object:
+      "directed-rounded same-domain h0-h34 evaluator that proves each contracted residual target interval contains the true midpoint-centered h0-h34 residual on the same xi nodes",
+    claim_boundary: {
+      certifies_h0_h34_midpoint_identity_for_continuous_domain: false,
+      certifies_signed_nonterminal_cancellation: false,
+      certifies_nonterminal_h0_h34_covariance_enclosure: false,
+      certifies_terminal_h35_h37_covariance_enclosure: false,
+      certifies_all_hrow_covariance_enclosure: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function buildSignedNonterminalH0H34DirectedProviderVerifierCandidate({
+  singleContractionProviderContract,
+  directedRoundedProviderRows = null,
+} = {}) {
+  if (
+    singleContractionProviderContract === null ||
+    singleContractionProviderContract === undefined ||
+    singleContractionProviderContract.target_kind !==
+      "candidate-signed-nonterminal-h0-h34-single-contraction-provider-contract"
+  ) {
+    return null;
+  }
+  const contractRows =
+    singleContractionProviderContract.provider_contract_rows ?? [];
+  if (
+    contractRows.length !== 5 ||
+    singleContractionProviderContract
+      .contract_reduces_to_directed_interval_inclusion !== true
+  ) {
+    return null;
+  }
+  const providerRowsSupplied = Array.isArray(directedRoundedProviderRows);
+  const providerRows = providerRowsSupplied ? directedRoundedProviderRows : [];
+  const requiredProviderRowSourceKind =
+    "directed-rounded-same-domain-h0-h34-provider";
+  const fixtureProviderRowSourceKind = "screened-target-verifier-fixture";
+  const sameNumber = (left, right, tolerance = 1e-12) =>
+    Number.isFinite(Number(left)) &&
+    Number.isFinite(Number(right)) &&
+    Math.abs(Number(left) - Number(right)) <=
+      Math.max(tolerance, Math.abs(Number(right)) * tolerance);
+  const sameInterval = (left, right) => {
+    const resolvedLeft = finiteOrderedIntervalOrNull(left);
+    const resolvedRight = finiteOrderedIntervalOrNull(right);
+    return (
+      resolvedLeft !== null &&
+      resolvedRight !== null &&
+      sameNumber(resolvedLeft[0], resolvedRight[0]) &&
+      sameNumber(resolvedLeft[1], resolvedRight[1])
+    );
+  };
+  const sameRange = (left, right) =>
+    Array.isArray(left) &&
+    Array.isArray(right) &&
+    left.length === right.length &&
+    left.every((value, index) => Number(value) === Number(right[index]));
+  const providerRowsByNodeIndex = new Map(
+    providerRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const verifierRows = contractRows.map((contractRow) => {
+    const providerRow = providerRowsSupplied
+      ? providerRowsByNodeIndex.get(Number(contractRow.node_index)) ?? null
+      : null;
+    const providerRowAvailable = providerRow !== null;
+    const weightedProviderInterval = finiteOrderedIntervalOrNull(
+      providerRowAvailable
+        ? providerRow?.directed_rounded_weighted_residual_interval ??
+            providerRow?.weighted_residual_interval
+        : contractRow.screened_weighted_residual_target_interval
+    );
+    const coefficientProviderInterval = finiteOrderedIntervalOrNull(
+      providerRowAvailable
+        ? providerRow?.directed_rounded_coefficient_residual_interval_after_midpoint ??
+            providerRow?.coefficient_residual_interval_after_midpoint
+        : contractRow.screened_coefficient_residual_target_interval
+    );
+    const weightedTargetInterval = finiteOrderedIntervalOrNull(
+      contractRow.screened_weighted_residual_target_interval
+    );
+    const coefficientTargetInterval = finiteOrderedIntervalOrNull(
+      contractRow.screened_coefficient_residual_target_interval
+    );
+    const weightedProviderAbsUpper =
+      weightedProviderInterval === null
+        ? null
+        : intervalAbsUpper(weightedProviderInterval);
+    const coefficientProviderAbsUpper =
+      coefficientProviderInterval === null
+        ? null
+        : intervalAbsUpper(coefficientProviderInterval);
+    const weightedTargetAbsUpper =
+      weightedTargetInterval === null ? null : intervalAbsUpper(weightedTargetInterval);
+    const coefficientTargetAbsUpper =
+      coefficientTargetInterval === null
+        ? null
+        : intervalAbsUpper(coefficientTargetInterval);
+    const weightedContained =
+      weightedProviderInterval !== null &&
+      weightedTargetInterval !== null &&
+      intervalContainsInterval(weightedTargetInterval, weightedProviderInterval);
+    const coefficientContained =
+      coefficientProviderInterval !== null &&
+      coefficientTargetInterval !== null &&
+      intervalContainsInterval(
+        coefficientTargetInterval,
+        coefficientProviderInterval
+      );
+    const providerSourceKind = providerRowAvailable
+      ? String(providerRow.provider_row_source_kind ?? "")
+      : fixtureProviderRowSourceKind;
+    const sourceKindMatches =
+      providerSourceKind === requiredProviderRowSourceKind;
+    const sameDomainChecks = {
+      node_index_matches: providerRowAvailable
+        ? Number(providerRow.node_index) === Number(contractRow.node_index)
+        : true,
+      xi_midpoint_matches: providerRowAvailable
+        ? sameNumber(providerRow?.xi_midpoint, contractRow.xi_midpoint)
+        : true,
+      active_h_index_range_matches: providerRowAvailable
+        ? sameRange(
+            providerRow?.active_h_index_range,
+            singleContractionProviderContract.active_h_index_range
+          )
+        : true,
+      interpolation_node_count_matches: providerRowAvailable
+        ? Number(providerRow?.interpolation_node_count) ===
+          Number(singleContractionProviderContract.interpolation_node_count)
+        : true,
+    };
+    const sameRadiusChecks = {
+      weighted_target_interval_matches_contract: providerRowAvailable
+        ? providerRow?.screened_weighted_residual_target_interval === undefined ||
+          sameInterval(
+            providerRow.screened_weighted_residual_target_interval,
+            weightedTargetInterval
+          )
+        : true,
+      coefficient_target_interval_matches_contract: providerRowAvailable
+        ? providerRow?.screened_coefficient_residual_target_interval ===
+            undefined ||
+          sameInterval(
+            providerRow.screened_coefficient_residual_target_interval,
+            coefficientTargetInterval
+          )
+        : true,
+    };
+    const sameDomainMatches = Object.values(sameDomainChecks).every(
+      (value) => value === true
+    );
+    const sameRadiusMatches = Object.values(sameRadiusChecks).every(
+      (value) => value === true
+    );
+    const providerCertifiesDirectedRoundedSameDomain =
+      providerRowAvailable &&
+      sourceKindMatches &&
+      sameDomainMatches &&
+      sameRadiusMatches &&
+      providerRow?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+        true;
+    const weightedRatio =
+      finiteNonnegative(weightedProviderAbsUpper) &&
+      finitePositive(weightedTargetAbsUpper)
+        ? weightedProviderAbsUpper / weightedTargetAbsUpper
+        : null;
+    const coefficientRatio =
+      finiteNonnegative(coefficientProviderAbsUpper) &&
+      finitePositive(coefficientTargetAbsUpper)
+        ? coefficientProviderAbsUpper / coefficientTargetAbsUpper
+        : null;
+    const weightedHeadroom =
+      finitePositive(weightedProviderAbsUpper) &&
+      finitePositive(weightedTargetAbsUpper)
+        ? weightedTargetAbsUpper / weightedProviderAbsUpper
+        : null;
+    const coefficientHeadroom =
+      finitePositive(coefficientProviderAbsUpper) &&
+      finitePositive(coefficientTargetAbsUpper)
+        ? coefficientTargetAbsUpper / coefficientProviderAbsUpper
+        : null;
+    return {
+      node_index: contractRow.node_index,
+      xi_midpoint: contractRow.xi_midpoint,
+      provider_row_supplied: providerRowAvailable,
+      provider_row_source_kind: providerSourceKind,
+      required_provider_row_source_kind: requiredProviderRowSourceKind,
+      provider_source_kind_matches_required: sourceKindMatches,
+      provider_certifies_directed_rounded_shared_domain:
+        providerCertifiesDirectedRoundedSameDomain,
+      same_domain_checks: sameDomainChecks,
+      matches_same_domain_contract: sameDomainMatches,
+      same_radius_checks: sameRadiusChecks,
+      matches_same_radius_contract: sameRadiusMatches,
+      screened_weighted_residual_target_interval: weightedTargetInterval,
+      directed_rounded_weighted_residual_interval: weightedProviderInterval,
+      weighted_provider_interval_contained_in_screened_target:
+        weightedContained,
+      weighted_provider_abs_upper_to_target_abs_upper_ratio: weightedRatio,
+      weighted_provider_interval_inclusion_headroom_factor: weightedHeadroom,
+      screened_coefficient_residual_target_interval:
+        coefficientTargetInterval,
+      directed_rounded_coefficient_residual_interval_after_midpoint:
+        coefficientProviderInterval,
+      coefficient_provider_interval_contained_in_screened_target:
+        coefficientContained,
+      coefficient_provider_abs_upper_to_target_abs_upper_ratio:
+        coefficientRatio,
+      coefficient_provider_interval_inclusion_headroom_factor:
+        coefficientHeadroom,
+      provider_row_status: providerRowAvailable
+        ? providerCertifiesDirectedRoundedSameDomain &&
+          weightedContained &&
+          coefficientContained
+          ? "directed-rounded-provider-row-contained-in-screened-target"
+          : "directed-provider-row-open"
+        : "screened-target-fixture-row-exercises-verifier-only",
+    };
+  });
+  if (
+    verifierRows.some(
+      (row) =>
+        !Number.isInteger(row.node_index) ||
+        !Number.isFinite(Number(row.xi_midpoint)) ||
+        row.screened_weighted_residual_target_interval === null ||
+        row.screened_coefficient_residual_target_interval === null ||
+        row.directed_rounded_weighted_residual_interval === null ||
+        row.directed_rounded_coefficient_residual_interval_after_midpoint ===
+          null
+    )
+  ) {
+    return null;
+  }
+  const allRowsAvailable =
+    providerRowsSupplied &&
+    verifierRows.length === 5 &&
+    verifierRows.every((row) => row.provider_row_supplied === true);
+  const allProviderRowsMatchSameDomain =
+    allRowsAvailable &&
+    verifierRows.every((row) => row.matches_same_domain_contract === true);
+  const allProviderRowsMatchSameRadius =
+    allRowsAvailable &&
+    verifierRows.every((row) => row.matches_same_radius_contract === true);
+  const allProviderRowsHaveDirectedRoundedSource =
+    allRowsAvailable &&
+    verifierRows.every(
+      (row) =>
+        row.provider_source_kind_matches_required === true &&
+        row.provider_certifies_directed_rounded_shared_domain === true
+    );
+  const allProviderIntervalsContained =
+    allRowsAvailable &&
+    verifierRows.every(
+      (row) =>
+        row.weighted_provider_interval_contained_in_screened_target === true &&
+        row.coefficient_provider_interval_contained_in_screened_target === true
+    );
+  const fixtureConsumerPathPasses =
+    !providerRowsSupplied &&
+    verifierRows.every(
+      (row) =>
+        row.weighted_provider_interval_contained_in_screened_target === true &&
+        row.coefficient_provider_interval_contained_in_screened_target === true &&
+        row.provider_row_status ===
+          "screened-target-fixture-row-exercises-verifier-only"
+    );
+  const ratios = verifierRows
+    .flatMap((row) => [
+      row.weighted_provider_abs_upper_to_target_abs_upper_ratio,
+      row.coefficient_provider_abs_upper_to_target_abs_upper_ratio,
+    ])
+    .filter((value) => Number.isFinite(Number(value)));
+  const headrooms = verifierRows
+    .flatMap((row) => [
+      row.weighted_provider_interval_inclusion_headroom_factor,
+      row.coefficient_provider_interval_inclusion_headroom_factor,
+    ])
+    .filter((value) => Number.isFinite(Number(value)));
+  const verifiedDirectedRoundedSameDomainProviderRows =
+    allRowsAvailable &&
+    allProviderRowsMatchSameDomain &&
+    allProviderRowsMatchSameRadius &&
+    allProviderRowsHaveDirectedRoundedSource &&
+    allProviderIntervalsContained;
+  return {
+    target_kind:
+      "candidate-signed-nonterminal-h0-h34-directed-provider-verifier",
+    source_single_contraction_provider_contract_kind:
+      singleContractionProviderContract.target_kind,
+    proof_status: verifiedDirectedRoundedSameDomainProviderRows
+      ? "candidate-verifier-accepts-supplied-directed-rounded-provider-rows"
+      : providerRowsSupplied
+        ? "candidate-verifier-rejects-supplied-provider-rows"
+        : "candidate-verifier-boundary-ready-provider-rows-missing",
+    verifier_kind:
+      "same-domain-same-radius-directed-provider-interval-inclusion-check",
+    active_h_index_range:
+      singleContractionProviderContract.active_h_index_range,
+    interpolation_node_count:
+      singleContractionProviderContract.interpolation_node_count,
+    provider_rows_supplied: providerRowsSupplied,
+    provider_row_source_kind_required: requiredProviderRowSourceKind,
+    provider_row_interval_fields_required: [
+      "directed_rounded_weighted_residual_interval",
+      "directed_rounded_coefficient_residual_interval_after_midpoint",
+    ],
+    same_domain_and_same_radius_contract:
+      "provider rows must match the same-domain h0-h34 range, five xi nodes, midpoint-centered target intervals, and same-radius screened target radii before any absolute Cauchy/Lagrange charge is applied",
+    screened_target_fixture_consumer_path_passes: fixtureConsumerPathPasses,
+    all_provider_rows_supplied: allRowsAvailable,
+    all_provider_rows_match_same_domain_contract:
+      allProviderRowsMatchSameDomain,
+    all_provider_rows_match_same_radius_contract:
+      allProviderRowsMatchSameRadius,
+    all_provider_rows_have_directed_rounded_source:
+      allProviderRowsHaveDirectedRoundedSource,
+    all_provider_rows_are_directed_not_fixture:
+      allProviderRowsHaveDirectedRoundedSource,
+    all_provider_intervals_contained_in_screened_targets:
+      allProviderIntervalsContained,
+    all_provider_intervals_subset_screened_targets:
+      allProviderIntervalsContained,
+    verified_directed_rounded_same_domain_provider_rows:
+      verifiedDirectedRoundedSameDomainProviderRows,
+    max_provider_interval_to_target_abs_upper_ratio:
+      ratios.length > 0 ? Math.max(...ratios) : null,
+    min_provider_interval_inclusion_headroom_factor:
+      headrooms.length > 0 ? Math.min(...headrooms) : null,
+    provider_verification_rows: verifierRows,
+    verifier_classification: verifiedDirectedRoundedSameDomainProviderRows
+      ? "h0-h34-directed-provider-rows-contained-in-screened-targets"
+      : fixtureConsumerPathPasses
+        ? "h0-h34-directed-provider-verifier-boundary-ready-but-provider-missing"
+        : "h0-h34-directed-provider-verifier-open",
+    missing_directed_rounded_operation:
+      "supply actual same-domain directed-rounded h0-h34 provider rows, not screened-target fixtures, and prove their weighted and coefficient residual intervals are contained in the screened targets",
+    next_certificate_object:
+      "same-domain h0-h34 residual provider emitting directed-rounded weighted and coefficient residual intervals for the five contraction-contract nodes",
+    claim_boundary: {
+      certifies_h0_h34_midpoint_identity_for_continuous_domain: false,
+      certifies_signed_nonterminal_cancellation: false,
+      certifies_nonterminal_h0_h34_covariance_enclosure: false,
+      certifies_terminal_h35_h37_covariance_enclosure: false,
+      certifies_all_hrow_covariance_enclosure: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function buildSignedNonterminalH0H34LiveResidualProviderProbeCandidate({
+  singleContractionProviderContract,
+} = {}) {
+  if (
+    singleContractionProviderContract === null ||
+    singleContractionProviderContract === undefined ||
+    singleContractionProviderContract.target_kind !==
+      "candidate-signed-nonterminal-h0-h34-single-contraction-provider-contract"
+  ) {
+    return null;
+  }
+  const contractRows =
+    singleContractionProviderContract.provider_contract_rows ?? [];
+  if (contractRows.length !== 5) {
+    return null;
+  }
+  const providerRows = contractRows.map((row) => {
+    const liveWeightedResidualInterval = finiteOrderedIntervalOrNull(
+      row?.live_weighted_residual_interval
+    );
+    const liveCoefficientResidualInterval = finiteOrderedIntervalOrNull(
+      row?.live_coefficient_residual_interval_after_midpoint
+    );
+    const screenedWeightedTargetInterval = finiteOrderedIntervalOrNull(
+      row?.screened_weighted_residual_target_interval
+    );
+    const screenedCoefficientTargetInterval = finiteOrderedIntervalOrNull(
+      row?.screened_coefficient_residual_target_interval
+    );
+    if (
+      liveWeightedResidualInterval === null ||
+      liveCoefficientResidualInterval === null ||
+      screenedWeightedTargetInterval === null ||
+      screenedCoefficientTargetInterval === null
+    ) {
+      return null;
+    }
+    return {
+      node_index: row.node_index,
+      xi_midpoint: row.xi_midpoint,
+      active_h_index_range:
+        singleContractionProviderContract.active_h_index_range,
+      interpolation_node_count:
+        singleContractionProviderContract.interpolation_node_count,
+      provider_row_source_kind:
+        "live-midpoint-centered-h0-h34-residual-interval-probe-not-directed-rounded",
+      screened_weighted_residual_target_interval:
+        screenedWeightedTargetInterval,
+      screened_coefficient_residual_target_interval:
+        screenedCoefficientTargetInterval,
+      directed_rounded_weighted_residual_interval:
+        liveWeightedResidualInterval,
+      directed_rounded_coefficient_residual_interval_after_midpoint:
+        liveCoefficientResidualInterval,
+      live_weighted_residual_interval: liveWeightedResidualInterval,
+      live_coefficient_residual_interval_after_midpoint:
+        liveCoefficientResidualInterval,
+      claim_boundary: {
+        certifies_directed_rounded_shared_domain: false,
+        certifies_nonterminal_h0_h34_covariance_enclosure: false,
+        certifies_shifted_R43_outer_bound: false,
+        retained_branch: false,
+      },
+    };
+  });
+  if (providerRows.some((row) => row === null)) {
+    return null;
+  }
+  const verifier =
+    buildSignedNonterminalH0H34DirectedProviderVerifierCandidate({
+      singleContractionProviderContract,
+      directedRoundedProviderRows: providerRows,
+    });
+  if (verifier === null) {
+    return null;
+  }
+  const allLiveRowsMatchVerifierDomain =
+    verifier.all_provider_rows_supplied === true &&
+    verifier.all_provider_rows_match_same_domain_contract === true;
+  const allLiveRowsMatchVerifierRadius =
+    verifier.all_provider_rows_match_same_radius_contract === true;
+  const liveIntervalsFitScreenedTargets =
+    verifier.all_provider_intervals_subset_screened_targets === true;
+  const liveProviderRowsAreDirected =
+    verifier.all_provider_rows_are_directed_not_fixture === true;
+  return {
+    target_kind:
+      "candidate-signed-nonterminal-h0-h34-live-residual-provider-probe",
+    source_single_contraction_provider_contract_kind:
+      singleContractionProviderContract.target_kind,
+    source_directed_provider_verifier_kind: verifier.target_kind,
+    proof_status:
+      "candidate-probe-only-live-h0-h34-intervals-not-contained-or-not-directed-rounded",
+    provider_probe_kind:
+      "live-midpoint-centered-h0-h34-residual-intervals-through-directed-provider-verifier",
+    active_h_index_range:
+      singleContractionProviderContract.active_h_index_range,
+    interpolation_node_count:
+      singleContractionProviderContract.interpolation_node_count,
+    provider_probe_rows: providerRows,
+    directed_provider_verifier: verifier,
+    live_provider_rows_match_same_domain_contract:
+      allLiveRowsMatchVerifierDomain,
+    live_provider_rows_match_same_radius_contract:
+      allLiveRowsMatchVerifierRadius,
+    live_provider_rows_are_directed_not_fixture: liveProviderRowsAreDirected,
+    live_provider_intervals_subset_screened_targets:
+      liveIntervalsFitScreenedTargets,
+    max_live_provider_interval_to_screened_target_radius_ratio:
+      verifier.max_provider_interval_to_target_abs_upper_ratio,
+    min_live_provider_interval_inclusion_headroom_factor:
+      verifier.min_provider_interval_inclusion_headroom_factor,
+    live_provider_probe_classification:
+      allLiveRowsMatchVerifierDomain &&
+      allLiveRowsMatchVerifierRadius &&
+      !liveProviderRowsAreDirected &&
+      !liveIntervalsFitScreenedTargets
+        ? "live-h0-h34-intervals-have-correct-provider-shape-but-exceed-screened-targets-and-are-not-directed-rounded"
+        : allLiveRowsMatchVerifierDomain && allLiveRowsMatchVerifierRadius
+          ? "live-h0-h34-provider-probe-reaches-verifier"
+          : "live-h0-h34-provider-probe-open",
+    missing_directed_rounded_operation:
+      "replace the live midpoint-centered h0-h34 residual interval probe with a true directed-rounded provider whose intervals contract into the screened targets",
+    next_certificate_object:
+      "directed-rounded h0-h34 residual provider preserving the verified same-domain row shape while reducing the live interval radii by the measured target ratio",
+    claim_boundary: {
+      certifies_h0_h34_midpoint_identity_for_continuous_domain: false,
+      certifies_signed_nonterminal_cancellation: false,
+      certifies_nonterminal_h0_h34_covariance_enclosure: false,
+      certifies_terminal_h35_h37_covariance_enclosure: false,
+      certifies_all_hrow_covariance_enclosure: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
 function buildSignedNonterminalH0H34IdentityRouterCandidate({
   signedNonterminalFloorTarget,
   twoBlockBudget,
@@ -13973,6 +15048,24 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
         buildSignedNonterminalH0H34CurrentShapeRadiusContractionProfileCandidate({
           providerSpecification,
         });
+      const currentShapeCertificateScreen =
+        buildSignedNonterminalH0H34CurrentShapeCertificateScreenCandidate({
+          currentShapeProfile,
+        });
+      const uniformProviderGapTarget =
+        buildSignedNonterminalH0H34UniformProviderGapTargetCandidate({
+          currentShapeCertificateScreen,
+          dependencyLossBudget,
+          providerSpecification,
+        });
+      const singleContractionProviderContract =
+        buildSignedNonterminalH0H34SingleContractionProviderContractCandidate({
+          uniformProviderGapTarget,
+        });
+      const directedProviderVerifier =
+        buildSignedNonterminalH0H34DirectedProviderVerifierCandidate({
+          singleContractionProviderContract,
+        });
       return {
         ...row,
         signed_nonterminal_h0_h34_identity_router:
@@ -13991,8 +15084,16 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
         signed_nonterminal_h0_h34_current_shape_radius_contraction_profile:
           currentShapeProfile,
         signed_nonterminal_h0_h34_current_shape_certificate_screen:
-          buildSignedNonterminalH0H34CurrentShapeCertificateScreenCandidate({
-            currentShapeProfile,
+          currentShapeCertificateScreen,
+        signed_nonterminal_h0_h34_uniform_provider_gap_target:
+          uniformProviderGapTarget,
+        signed_nonterminal_h0_h34_single_contraction_provider_contract:
+          singleContractionProviderContract,
+        signed_nonterminal_h0_h34_directed_provider_verifier:
+          directedProviderVerifier,
+        signed_nonterminal_h0_h34_live_residual_provider_probe:
+          buildSignedNonterminalH0H34LiveResidualProviderProbeCandidate({
+            singleContractionProviderContract,
           }),
       };
     });
@@ -14057,6 +15158,27 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
         row.signed_nonterminal_h0_h34_current_shape_certificate_screen
     )
     .filter((target) => target !== null && target !== undefined);
+  const signedNonterminalUniformProviderGapRows = terminalCovarianceRows
+    .map((row) => row.signed_nonterminal_h0_h34_uniform_provider_gap_target)
+    .filter((target) => target !== null && target !== undefined);
+  const signedNonterminalSingleContractionProviderContractRows =
+    terminalCovarianceRows
+      .map(
+        (row) =>
+          row
+            .signed_nonterminal_h0_h34_single_contraction_provider_contract
+      )
+      .filter((target) => target !== null && target !== undefined);
+  const signedNonterminalDirectedProviderVerifierRows =
+    terminalCovarianceRows
+      .map((row) => row.signed_nonterminal_h0_h34_directed_provider_verifier)
+      .filter((target) => target !== null && target !== undefined);
+  const signedNonterminalLiveResidualProviderProbeRows =
+    terminalCovarianceRows
+      .map(
+        (row) => row.signed_nonterminal_h0_h34_live_residual_provider_probe
+      )
+      .filter((target) => target !== null && target !== undefined);
   const terminalCovarianceBudgetMaxNumber = (field) => {
     const values = terminalCovarianceBudgetRows
       .map((row) => row[field])
@@ -14171,6 +15293,70 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
   };
   const signedNonterminalCurrentShapeCertificateScreenMinNumber = (field) => {
     const values = signedNonterminalCurrentShapeCertificateScreenRows
+      .map((row) => fieldPathValue(row, field))
+      .filter((value) => value !== null && value !== undefined)
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+    return values.length > 0 ? Math.min(...values) : null;
+  };
+  const signedNonterminalUniformProviderGapMaxNumber = (field) => {
+    const values = signedNonterminalUniformProviderGapRows
+      .map((row) => fieldPathValue(row, field))
+      .filter((value) => value !== null && value !== undefined)
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+    return values.length > 0 ? Math.max(...values) : null;
+  };
+  const signedNonterminalUniformProviderGapMinNumber = (field) => {
+    const values = signedNonterminalUniformProviderGapRows
+      .map((row) => fieldPathValue(row, field))
+      .filter((value) => value !== null && value !== undefined)
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+    return values.length > 0 ? Math.min(...values) : null;
+  };
+  const signedNonterminalSingleContractionProviderContractMaxNumber = (field) => {
+    const values = signedNonterminalSingleContractionProviderContractRows
+      .map((row) => fieldPathValue(row, field))
+      .filter((value) => value !== null && value !== undefined)
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+    return values.length > 0 ? Math.max(...values) : null;
+  };
+  const signedNonterminalSingleContractionProviderContractMinNumber = (field) => {
+    const values = signedNonterminalSingleContractionProviderContractRows
+      .map((row) => fieldPathValue(row, field))
+      .filter((value) => value !== null && value !== undefined)
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+    return values.length > 0 ? Math.min(...values) : null;
+  };
+  const signedNonterminalDirectedProviderVerifierMaxNumber = (field) => {
+    const values = signedNonterminalDirectedProviderVerifierRows
+      .map((row) => fieldPathValue(row, field))
+      .filter((value) => value !== null && value !== undefined)
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+    return values.length > 0 ? Math.max(...values) : null;
+  };
+  const signedNonterminalDirectedProviderVerifierMinNumber = (field) => {
+    const values = signedNonterminalDirectedProviderVerifierRows
+      .map((row) => fieldPathValue(row, field))
+      .filter((value) => value !== null && value !== undefined)
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+    return values.length > 0 ? Math.min(...values) : null;
+  };
+  const signedNonterminalLiveResidualProviderProbeMaxNumber = (field) => {
+    const values = signedNonterminalLiveResidualProviderProbeRows
+      .map((row) => fieldPathValue(row, field))
+      .filter((value) => value !== null && value !== undefined)
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+    return values.length > 0 ? Math.max(...values) : null;
+  };
+  const signedNonterminalLiveResidualProviderProbeMinNumber = (field) => {
+    const values = signedNonterminalLiveResidualProviderProbeRows
       .map((row) => fieldPathValue(row, field))
       .filter((value) => value !== null && value !== undefined)
       .map((value) => Number(value))
@@ -14363,6 +15549,106 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
         target.all_strict_safety_margins_fit_residual_budget === true &&
         target.screen_classification ===
           "current-shape-contraction-screen-produces-budget-fitting-candidate-provider"
+    );
+  const allSignedNonterminalUniformProviderGapTargetsPresent =
+    signedNonterminalUniformProviderGapRows.length ===
+      terminalCovarianceRows.length &&
+    signedNonterminalUniformProviderGapRows.length > 0;
+  const allSignedNonterminalUniformProviderGapTargetsUseScreen =
+    signedNonterminalUniformProviderGapRows.length > 0 &&
+    signedNonterminalUniformProviderGapRows.every(
+      (target) =>
+        target.source_current_shape_certificate_screen_kind ===
+          "candidate-signed-nonterminal-h0-h34-current-shape-certificate-screen" &&
+        target.interpolation_node_count === 5 &&
+        Array.isArray(target.provider_gap_rows) &&
+        target.provider_gap_rows.length === 5
+    );
+  const allSignedNonterminalUniformProviderGapTargetsCollapse =
+    signedNonterminalUniformProviderGapRows.length > 0 &&
+    signedNonterminalUniformProviderGapRows.every(
+      (target) =>
+        target.uniform_gap_collapse_to_single_contraction_factor === true &&
+        target.gap_classification ===
+          "h0-h34-provider-gap-collapses-to-uniform-current-shape-contraction"
+    );
+  const allSignedNonterminalSingleContractionProviderContractsPresent =
+    signedNonterminalSingleContractionProviderContractRows.length ===
+      terminalCovarianceRows.length &&
+    signedNonterminalSingleContractionProviderContractRows.length > 0;
+  const allSignedNonterminalSingleContractionProviderContractsUseUniformGap =
+    signedNonterminalSingleContractionProviderContractRows.length > 0 &&
+    signedNonterminalSingleContractionProviderContractRows.every(
+      (target) =>
+        target.source_uniform_provider_gap_target_kind ===
+          "candidate-signed-nonterminal-h0-h34-uniform-provider-gap-target" &&
+        target.interpolation_node_count === 5 &&
+        Array.isArray(target.provider_contract_rows) &&
+        target.provider_contract_rows.length === 5
+    );
+  const allSignedNonterminalSingleContractionProviderContractsReduce =
+    signedNonterminalSingleContractionProviderContractRows.length > 0 &&
+    signedNonterminalSingleContractionProviderContractRows.every(
+      (target) =>
+        target.contract_reduces_to_directed_interval_inclusion === true &&
+        target.contract_classification ===
+          "h0-h34-single-contraction-provider-contract-reduces-to-directed-interval-inclusion"
+    );
+  const allSignedNonterminalDirectedProviderVerifiersPresent =
+    signedNonterminalDirectedProviderVerifierRows.length ===
+      terminalCovarianceRows.length &&
+    signedNonterminalDirectedProviderVerifierRows.length > 0;
+  const allSignedNonterminalDirectedProviderVerifiersUseContract =
+    signedNonterminalDirectedProviderVerifierRows.length > 0 &&
+    signedNonterminalDirectedProviderVerifierRows.every(
+      (target) =>
+        target.source_single_contraction_provider_contract_kind ===
+          "candidate-signed-nonterminal-h0-h34-single-contraction-provider-contract" &&
+        target.interpolation_node_count === 5 &&
+        Array.isArray(target.provider_verification_rows) &&
+        target.provider_verification_rows.length === 5
+    );
+  const allSignedNonterminalDirectedProviderVerifiersExerciseFixture =
+    signedNonterminalDirectedProviderVerifierRows.length > 0 &&
+    signedNonterminalDirectedProviderVerifierRows.every(
+      (target) =>
+        target.provider_rows_supplied === false &&
+        target.screened_target_fixture_consumer_path_passes === true &&
+        target.verified_directed_rounded_same_domain_provider_rows === false &&
+        target.verifier_classification ===
+          "h0-h34-directed-provider-verifier-boundary-ready-but-provider-missing"
+    );
+  const allSignedNonterminalLiveResidualProviderProbesPresent =
+    signedNonterminalLiveResidualProviderProbeRows.length ===
+      terminalCovarianceRows.length &&
+    signedNonterminalLiveResidualProviderProbeRows.length > 0;
+  const allSignedNonterminalLiveResidualProviderProbesUseVerifier =
+    signedNonterminalLiveResidualProviderProbeRows.length > 0 &&
+    signedNonterminalLiveResidualProviderProbeRows.every(
+      (target) =>
+        target.source_single_contraction_provider_contract_kind ===
+          "candidate-signed-nonterminal-h0-h34-single-contraction-provider-contract" &&
+        target.source_directed_provider_verifier_kind ===
+          "candidate-signed-nonterminal-h0-h34-directed-provider-verifier" &&
+        target.interpolation_node_count === 5 &&
+        Array.isArray(target.provider_probe_rows) &&
+        target.provider_probe_rows.length === 5
+    );
+  const allSignedNonterminalLiveResidualProviderProbesReachVerifier =
+    signedNonterminalLiveResidualProviderProbeRows.length > 0 &&
+    signedNonterminalLiveResidualProviderProbeRows.every(
+      (target) =>
+        target.live_provider_rows_match_same_domain_contract === true &&
+        target.live_provider_rows_match_same_radius_contract === true
+    );
+  const allSignedNonterminalLiveResidualProviderProbesFailByContainment =
+    signedNonterminalLiveResidualProviderProbeRows.length > 0 &&
+    signedNonterminalLiveResidualProviderProbeRows.every(
+      (target) =>
+        target.live_provider_rows_are_directed_not_fixture === false &&
+        target.live_provider_intervals_subset_screened_targets === false &&
+        target.live_provider_probe_classification ===
+          "live-h0-h34-intervals-have-correct-provider-shape-but-exceed-screened-targets-and-are-not-directed-rounded"
     );
   const terminalH35H37CovarianceTarget = {
     target_kind:
@@ -14685,6 +15971,149 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
         : allSignedNonterminalCurrentShapeCertificateScreensPresent
           ? "h0-h34-current-shape-certificate-screen-open"
           : "h0-h34-current-shape-certificate-screen-missing",
+    signed_nonterminal_h0_h34_uniform_provider_gap_summary_kind:
+      "candidate-signed-nonterminal-h0-h34-uniform-provider-gap-target-summary",
+    all_selected_rows_have_signed_nonterminal_h0_h34_uniform_provider_gap_target:
+      allSignedNonterminalUniformProviderGapTargetsPresent,
+    all_selected_rows_signed_nonterminal_h0_h34_uniform_provider_gap_targets_use_certificate_screen:
+      allSignedNonterminalUniformProviderGapTargetsUseScreen,
+    all_selected_rows_signed_nonterminal_h0_h34_provider_gap_collapses_to_uniform_contraction:
+      allSignedNonterminalUniformProviderGapTargetsCollapse,
+    max_signed_nonterminal_h0_h34_uniform_provider_gap_selected_contraction_factor:
+      signedNonterminalUniformProviderGapMaxNumber(
+        "selected_provider_contraction_factor"
+      ),
+    min_signed_nonterminal_h0_h34_uniform_provider_gap_safety_headroom:
+      signedNonterminalUniformProviderGapMinNumber(
+        "selected_residual_budget_headroom_factor"
+      ),
+    max_signed_nonterminal_h0_h34_uniform_provider_gap_spread_ratio:
+      signedNonterminalUniformProviderGapMaxNumber("weighted_gap_spread_ratio"),
+    max_signed_nonterminal_h0_h34_uniform_provider_gap_node_share_drift:
+      signedNonterminalUniformProviderGapMaxNumber("max_node_share_drift_abs"),
+    signed_nonterminal_h0_h34_uniform_provider_gap_interpretation:
+      allSignedNonterminalUniformProviderGapTargetsCollapse
+        ? "h0-h34-provider-gap-is-one-uniform-current-shape-contraction-factor"
+        : allSignedNonterminalUniformProviderGapTargetsPresent
+          ? "h0-h34-uniform-provider-gap-target-open"
+          : "h0-h34-uniform-provider-gap-target-missing",
+    signed_nonterminal_h0_h34_single_contraction_provider_contract_summary_kind:
+      "candidate-signed-nonterminal-h0-h34-single-contraction-provider-contract-summary",
+    all_selected_rows_have_signed_nonterminal_h0_h34_single_contraction_provider_contract:
+      allSignedNonterminalSingleContractionProviderContractsPresent,
+    all_selected_rows_signed_nonterminal_h0_h34_single_contraction_provider_contracts_use_uniform_gap:
+      allSignedNonterminalSingleContractionProviderContractsUseUniformGap,
+    all_selected_rows_signed_nonterminal_h0_h34_single_contraction_contracts_reduce_to_interval_inclusion:
+      allSignedNonterminalSingleContractionProviderContractsReduce,
+    max_signed_nonterminal_h0_h34_single_contraction_provider_contract_factor:
+      signedNonterminalSingleContractionProviderContractMaxNumber(
+        "selected_provider_contraction_factor"
+      ),
+    min_signed_nonterminal_h0_h34_single_contraction_provider_contract_headroom:
+      signedNonterminalSingleContractionProviderContractMinNumber(
+        "selected_residual_budget_headroom_factor"
+      ),
+    max_signed_nonterminal_h0_h34_single_contraction_target_to_live_radius_ratio:
+      signedNonterminalSingleContractionProviderContractMaxNumber(
+        "max_screened_target_to_live_radius_ratio"
+      ),
+    max_signed_nonterminal_h0_h34_single_contraction_live_midpoint_ratio:
+      signedNonterminalSingleContractionProviderContractMaxNumber(
+        "max_live_residual_midpoint_to_abs_upper_ratio"
+      ),
+    signed_nonterminal_h0_h34_single_contraction_provider_contract_interpretation:
+      allSignedNonterminalSingleContractionProviderContractsReduce
+        ? "h0-h34-single-contraction-provider-contract-reduces-to-directed-interval-inclusion"
+        : allSignedNonterminalSingleContractionProviderContractsPresent
+          ? "h0-h34-single-contraction-provider-contract-open"
+          : "h0-h34-single-contraction-provider-contract-missing",
+    signed_nonterminal_h0_h34_directed_provider_verifier_summary_kind:
+      "candidate-signed-nonterminal-h0-h34-directed-provider-verifier-summary",
+    all_selected_rows_have_signed_nonterminal_h0_h34_directed_provider_verifier:
+      allSignedNonterminalDirectedProviderVerifiersPresent,
+    all_selected_rows_signed_nonterminal_h0_h34_directed_provider_verifiers_use_single_contraction_contract:
+      allSignedNonterminalDirectedProviderVerifiersUseContract,
+    all_selected_rows_signed_nonterminal_h0_h34_directed_provider_verifiers_exercise_fixture_path:
+      allSignedNonterminalDirectedProviderVerifiersExerciseFixture,
+    all_selected_rows_signed_nonterminal_h0_h34_directed_provider_rows_verified:
+      signedNonterminalDirectedProviderVerifierRows.length > 0 &&
+      signedNonterminalDirectedProviderVerifierRows.every(
+        (target) =>
+          target.verified_directed_rounded_same_domain_provider_rows === true
+      ),
+    all_selected_rows_signed_nonterminal_h0_h34_provider_rows_match_same_domain:
+      signedNonterminalDirectedProviderVerifierRows.length > 0 &&
+      signedNonterminalDirectedProviderVerifierRows.every(
+        (target) =>
+          target.all_provider_rows_match_same_domain_contract === true
+      ),
+    all_selected_rows_signed_nonterminal_h0_h34_provider_rows_match_same_radius:
+      signedNonterminalDirectedProviderVerifierRows.length > 0 &&
+      signedNonterminalDirectedProviderVerifierRows.every(
+        (target) =>
+          target.all_provider_rows_match_same_radius_contract === true
+      ),
+    all_selected_rows_signed_nonterminal_h0_h34_provider_rows_are_directed_not_fixture:
+      signedNonterminalDirectedProviderVerifierRows.length > 0 &&
+      signedNonterminalDirectedProviderVerifierRows.every(
+        (target) => target.all_provider_rows_are_directed_not_fixture === true
+      ),
+    all_selected_rows_signed_nonterminal_h0_h34_provider_intervals_subset_screened_targets:
+      signedNonterminalDirectedProviderVerifierRows.length > 0 &&
+      signedNonterminalDirectedProviderVerifierRows.every(
+        (target) =>
+          target.all_provider_intervals_subset_screened_targets === true
+      ),
+    max_signed_nonterminal_h0_h34_directed_provider_interval_to_target_ratio:
+      signedNonterminalDirectedProviderVerifierMaxNumber(
+        "max_provider_interval_to_target_abs_upper_ratio"
+      ),
+    max_signed_nonterminal_h0_h34_provider_interval_to_screened_target_radius_ratio:
+      signedNonterminalDirectedProviderVerifierMaxNumber(
+        "max_provider_interval_to_target_abs_upper_ratio"
+      ),
+    min_signed_nonterminal_h0_h34_directed_provider_inclusion_headroom:
+      signedNonterminalDirectedProviderVerifierMinNumber(
+        "min_provider_interval_inclusion_headroom_factor"
+      ),
+    signed_nonterminal_h0_h34_directed_provider_verifier_interpretation:
+      signedNonterminalDirectedProviderVerifierRows.length > 0 &&
+      signedNonterminalDirectedProviderVerifierRows.every(
+        (target) =>
+          target.verified_directed_rounded_same_domain_provider_rows === true
+      )
+        ? "h0-h34-directed-provider-verifier-accepted-directed-rounded-rows"
+        : allSignedNonterminalDirectedProviderVerifiersExerciseFixture
+          ? "h0-h34-directed-provider-verifier-boundary-ready-but-provider-missing"
+        : allSignedNonterminalDirectedProviderVerifiersPresent
+          ? "h0-h34-directed-provider-verifier-open"
+          : "h0-h34-directed-provider-verifier-missing",
+    signed_nonterminal_h0_h34_live_residual_provider_probe_summary_kind:
+      "candidate-signed-nonterminal-h0-h34-live-residual-provider-probe-summary",
+    all_selected_rows_have_signed_nonterminal_h0_h34_live_residual_provider_probe:
+      allSignedNonterminalLiveResidualProviderProbesPresent,
+    all_selected_rows_signed_nonterminal_h0_h34_live_provider_probes_use_directed_provider_verifier:
+      allSignedNonterminalLiveResidualProviderProbesUseVerifier,
+    all_selected_rows_signed_nonterminal_h0_h34_live_provider_rows_reach_verifier_same_domain_same_radius:
+      allSignedNonterminalLiveResidualProviderProbesReachVerifier,
+    all_selected_rows_signed_nonterminal_h0_h34_live_provider_probes_fail_by_containment_and_source:
+      allSignedNonterminalLiveResidualProviderProbesFailByContainment,
+    max_signed_nonterminal_h0_h34_live_provider_interval_to_screened_target_radius_ratio:
+      signedNonterminalLiveResidualProviderProbeMaxNumber(
+        "max_live_provider_interval_to_screened_target_radius_ratio"
+      ),
+    min_signed_nonterminal_h0_h34_live_provider_inclusion_headroom:
+      signedNonterminalLiveResidualProviderProbeMinNumber(
+        "min_live_provider_interval_inclusion_headroom_factor"
+      ),
+    signed_nonterminal_h0_h34_live_provider_probe_interpretation:
+      allSignedNonterminalLiveResidualProviderProbesFailByContainment
+        ? "live-h0-h34-provider-rows-reach-verifier-but-exceed-screened-targets"
+        : allSignedNonterminalLiveResidualProviderProbesReachVerifier
+          ? "live-h0-h34-provider-rows-reach-verifier"
+          : allSignedNonterminalLiveResidualProviderProbesPresent
+            ? "live-h0-h34-provider-probe-open"
+            : "live-h0-h34-provider-probe-missing",
     linear_width_share_budget_interpretation:
       !allTerminalOnlyCompressionCanClose && allHRowsCompressionCanClose
         ? "terminal-h35-h37-dominates-but-terminal-only-compression-is-insufficient-under-nonterminal-floor"
@@ -46684,6 +48113,98 @@ export function validateH39SuccessorSuffixTransitionCertificateRouteCandidate(
       covarianceTarget
         ?.signed_nonterminal_h0_h34_current_shape_certificate_screen_interpretation ===
         "current-shape-contraction-screen-produces-budget-fitting-h0-h34-provider-target" &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_uniform_provider_gap_summary_kind ===
+        "candidate-signed-nonterminal-h0-h34-uniform-provider-gap-target-summary" &&
+      covarianceTarget
+        ?.all_selected_rows_have_signed_nonterminal_h0_h34_uniform_provider_gap_target ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_uniform_provider_gap_targets_use_certificate_screen ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_provider_gap_collapses_to_uniform_contraction ===
+        true &&
+      finitePositive(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_uniform_provider_gap_selected_contraction_factor
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_uniform_provider_gap_selected_contraction_factor
+      ) > 1000 &&
+      finitePositive(
+        covarianceTarget
+          ?.min_signed_nonterminal_h0_h34_uniform_provider_gap_safety_headroom
+      ) &&
+      Number(
+        covarianceTarget
+          .min_signed_nonterminal_h0_h34_uniform_provider_gap_safety_headroom
+      ) > 1 &&
+      finitePositive(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_uniform_provider_gap_spread_ratio
+      ) &&
+      Math.abs(
+        Number(
+          covarianceTarget
+            .max_signed_nonterminal_h0_h34_uniform_provider_gap_spread_ratio
+        ) - 1
+      ) < 1e-12 &&
+      finiteNonnegative(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_uniform_provider_gap_node_share_drift
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_uniform_provider_gap_node_share_drift
+      ) < 1e-12 &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_uniform_provider_gap_interpretation ===
+        "h0-h34-provider-gap-is-one-uniform-current-shape-contraction-factor" &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_single_contraction_provider_contract_summary_kind ===
+        "candidate-signed-nonterminal-h0-h34-single-contraction-provider-contract-summary" &&
+      covarianceTarget
+        ?.all_selected_rows_have_signed_nonterminal_h0_h34_single_contraction_provider_contract ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_single_contraction_provider_contracts_use_uniform_gap ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_single_contraction_contracts_reduce_to_interval_inclusion ===
+        true &&
+      finitePositive(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_single_contraction_provider_contract_factor
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_single_contraction_provider_contract_factor
+      ) > 1000 &&
+      finitePositive(
+        covarianceTarget
+          ?.min_signed_nonterminal_h0_h34_single_contraction_provider_contract_headroom
+      ) &&
+      Number(
+        covarianceTarget
+          .min_signed_nonterminal_h0_h34_single_contraction_provider_contract_headroom
+      ) > 1 &&
+      finitePositive(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_single_contraction_target_to_live_radius_ratio
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_single_contraction_target_to_live_radius_ratio
+      ) < 1 &&
+      finiteNonnegative(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_single_contraction_live_midpoint_ratio
+      ) &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_single_contraction_provider_contract_interpretation ===
+        "h0-h34-single-contraction-provider-contract-reduces-to-directed-interval-inclusion" &&
       covarianceTarget?.linear_width_share_budget_interpretation ===
         "terminal-h35-h37-dominates-but-terminal-only-compression-is-insufficient-under-nonterminal-floor" &&
       covarianceTarget?.covariance_preservation_interpretation ===
@@ -47516,6 +49037,355 @@ export function validateH39SuccessorSuffixTransitionCertificateRouteCandidate(
           row.signed_nonterminal_h0_h34_current_shape_certificate_screen
             .claim_boundary?.certifies_directed_rounded_shared_domain === false &&
           row.signed_nonterminal_h0_h34_current_shape_certificate_screen
+            .claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+          row?.signed_nonterminal_h0_h34_uniform_provider_gap_target
+            ?.target_kind ===
+            "candidate-signed-nonterminal-h0-h34-uniform-provider-gap-target" &&
+          row.signed_nonterminal_h0_h34_uniform_provider_gap_target
+            .source_current_shape_certificate_screen_kind ===
+            "candidate-signed-nonterminal-h0-h34-current-shape-certificate-screen" &&
+          row.signed_nonterminal_h0_h34_uniform_provider_gap_target
+            .proof_status ===
+            "candidate-target-only-uniform-gap-contract-not-directed-rounded-provider" &&
+          row.signed_nonterminal_h0_h34_uniform_provider_gap_target
+            .uses_midpoint_centered_live_residual_intervals === true &&
+          row.signed_nonterminal_h0_h34_uniform_provider_gap_target
+            .screened_target_interval_kind ===
+            "symmetric-abs-upper-around-zero-after-midpoint-centering" &&
+          row.signed_nonterminal_h0_h34_uniform_provider_gap_target
+            .selected_safety_margin_factor > 1 &&
+          finitePositive(
+            row.signed_nonterminal_h0_h34_uniform_provider_gap_target
+              .selected_provider_contraction_factor
+          ) &&
+          finitePositive(
+            row.signed_nonterminal_h0_h34_uniform_provider_gap_target
+              .selected_residual_budget_headroom_factor
+          ) &&
+          finitePositive(
+            row.signed_nonterminal_h0_h34_uniform_provider_gap_target
+              .weighted_gap_spread_ratio
+          ) &&
+          Math.abs(
+            Number(
+              row.signed_nonterminal_h0_h34_uniform_provider_gap_target
+                .weighted_gap_spread_ratio
+            ) - 1
+          ) < 1e-12 &&
+          row.signed_nonterminal_h0_h34_uniform_provider_gap_target
+            .uniform_gap_collapse_to_single_contraction_factor === true &&
+          row.signed_nonterminal_h0_h34_uniform_provider_gap_target
+            .gap_classification ===
+            "h0-h34-provider-gap-collapses-to-uniform-current-shape-contraction" &&
+          Array.isArray(
+            row.signed_nonterminal_h0_h34_uniform_provider_gap_target
+              .provider_gap_rows
+          ) &&
+          row.signed_nonterminal_h0_h34_uniform_provider_gap_target
+            .provider_gap_rows.length === 5 &&
+          row.signed_nonterminal_h0_h34_uniform_provider_gap_target
+            .provider_gap_rows.every(
+              (gapRow) =>
+                Number.isInteger(gapRow?.node_index) &&
+                Number.isFinite(Number(gapRow?.xi_midpoint)) &&
+                Array.isArray(gapRow?.live_weighted_residual_interval) &&
+                gapRow.live_weighted_residual_interval.length === 2 &&
+                finiteNonnegative(
+                  gapRow?.live_weighted_residual_interval_abs_upper
+                ) &&
+                gapRow?.live_weighted_residual_interval_abs_upper_matches_current ===
+                  true &&
+                Array.isArray(
+                  gapRow?.screened_weighted_residual_target_interval
+                ) &&
+                gapRow.screened_weighted_residual_target_interval.length ===
+                  2 &&
+                Number(gapRow.screened_weighted_residual_target_interval[0]) <
+                  0 &&
+                Number(gapRow.screened_weighted_residual_target_interval[1]) >
+                  0 &&
+                Array.isArray(
+                  gapRow?.live_coefficient_residual_interval_after_midpoint
+                ) &&
+                gapRow.live_coefficient_residual_interval_after_midpoint
+                  .length === 2 &&
+                finiteNonnegative(
+                  gapRow?.live_coefficient_residual_interval_abs_upper
+                ) &&
+                gapRow?.live_coefficient_residual_interval_abs_upper_matches_current ===
+                  true &&
+                Array.isArray(
+                  gapRow?.screened_coefficient_residual_target_interval
+                ) &&
+                gapRow.screened_coefficient_residual_target_interval.length ===
+                  2 &&
+                Number(
+                  gapRow.screened_coefficient_residual_target_interval[0]
+                ) < 0 &&
+                Number(
+                  gapRow.screened_coefficient_residual_target_interval[1]
+                ) > 0 &&
+                finitePositive(
+                  gapRow?.required_weighted_residual_gap_contraction_factor
+                ) &&
+                finitePositive(
+                  gapRow?.required_coefficient_residual_gap_contraction_factor
+                ) &&
+                finiteNonnegative(gapRow?.share_drift_abs) &&
+                Number(gapRow.share_drift_abs) < 1e-12 &&
+                finiteNonnegative(
+                  gapRow?.weighted_gap_drift_from_uniform_abs
+                ) &&
+                finiteNonnegative(
+                  gapRow?.coefficient_gap_drift_from_uniform_abs
+                ) &&
+                gapRow?.gap_row_status ===
+                  "node-gap-collapses-to-selected-uniform-contraction"
+            ) &&
+          row.signed_nonterminal_h0_h34_uniform_provider_gap_target
+            .claim_boundary?.certifies_nonterminal_h0_h34_covariance_enclosure ===
+            false &&
+          row.signed_nonterminal_h0_h34_uniform_provider_gap_target
+            .claim_boundary?.certifies_directed_rounded_shared_domain === false &&
+          row.signed_nonterminal_h0_h34_uniform_provider_gap_target
+            .claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+          row
+            ?.signed_nonterminal_h0_h34_single_contraction_provider_contract
+            ?.target_kind ===
+            "candidate-signed-nonterminal-h0-h34-single-contraction-provider-contract" &&
+          row.signed_nonterminal_h0_h34_single_contraction_provider_contract
+            .source_uniform_provider_gap_target_kind ===
+            "candidate-signed-nonterminal-h0-h34-uniform-provider-gap-target" &&
+          row.signed_nonterminal_h0_h34_single_contraction_provider_contract
+            .proof_status ===
+            "candidate-contract-only-provider-interval-inclusion-not-directed-rounded" &&
+          row.signed_nonterminal_h0_h34_single_contraction_provider_contract
+            .contract_kind ===
+            "single-factor-midpoint-centered-h0-h34-residual-interval-target" &&
+          row.signed_nonterminal_h0_h34_single_contraction_provider_contract
+            .contract_reduces_to_directed_interval_inclusion === true &&
+          row.signed_nonterminal_h0_h34_single_contraction_provider_contract
+            .contract_classification ===
+            "h0-h34-single-contraction-provider-contract-reduces-to-directed-interval-inclusion" &&
+          finitePositive(
+            row.signed_nonterminal_h0_h34_single_contraction_provider_contract
+              .selected_provider_contraction_factor
+          ) &&
+          finitePositive(
+            row.signed_nonterminal_h0_h34_single_contraction_provider_contract
+              .selected_residual_budget_headroom_factor
+          ) &&
+          row.signed_nonterminal_h0_h34_single_contraction_provider_contract
+            .all_screened_targets_subset_of_live_intervals === true &&
+          row.signed_nonterminal_h0_h34_single_contraction_provider_contract
+            .all_screened_targets_and_live_intervals_contain_zero === true &&
+          row.signed_nonterminal_h0_h34_single_contraction_provider_contract
+            .all_contract_rows_match_single_contraction_factor === true &&
+          row.signed_nonterminal_h0_h34_single_contraction_provider_contract
+            .sum_contraction_matches_selected_factor === true &&
+          finitePositive(
+            row.signed_nonterminal_h0_h34_single_contraction_provider_contract
+              .max_screened_target_to_live_radius_ratio
+          ) &&
+          Number(
+            row.signed_nonterminal_h0_h34_single_contraction_provider_contract
+              .max_screened_target_to_live_radius_ratio
+          ) < 1 &&
+          Array.isArray(
+            row.signed_nonterminal_h0_h34_single_contraction_provider_contract
+              .provider_contract_rows
+          ) &&
+          row.signed_nonterminal_h0_h34_single_contraction_provider_contract
+            .provider_contract_rows.length === 5 &&
+          row.signed_nonterminal_h0_h34_single_contraction_provider_contract
+            .provider_contract_rows.every(
+              (contractRow) =>
+                Number.isInteger(contractRow?.node_index) &&
+                Number.isFinite(Number(contractRow?.xi_midpoint)) &&
+                Array.isArray(contractRow?.live_weighted_residual_interval) &&
+                Array.isArray(
+                  contractRow?.screened_weighted_residual_target_interval
+                ) &&
+                contractRow?.screened_weighted_target_subset_of_live_interval ===
+                  true &&
+                contractRow?.screened_weighted_residual_target_contains_zero ===
+                  true &&
+                Array.isArray(
+                  contractRow?.live_coefficient_residual_interval_after_midpoint
+                ) &&
+                Array.isArray(
+                  contractRow?.screened_coefficient_residual_target_interval
+                ) &&
+                contractRow?.screened_coefficient_target_subset_of_live_interval ===
+                  true &&
+                contractRow?.screened_coefficient_residual_target_contains_zero ===
+                  true &&
+                contractRow?.weighted_contraction_matches_selected_factor ===
+                  true &&
+                contractRow
+                  ?.coefficient_contraction_matches_selected_factor === true &&
+                contractRow?.contract_row_status ===
+                  "single-contraction-interval-inclusion-contract-ready"
+            ) &&
+          row.signed_nonterminal_h0_h34_single_contraction_provider_contract
+            .claim_boundary?.certifies_nonterminal_h0_h34_covariance_enclosure ===
+            false &&
+          row.signed_nonterminal_h0_h34_single_contraction_provider_contract
+            .claim_boundary?.certifies_directed_rounded_shared_domain ===
+            false &&
+          row.signed_nonterminal_h0_h34_single_contraction_provider_contract
+            .claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+          row?.signed_nonterminal_h0_h34_directed_provider_verifier
+            ?.target_kind ===
+            "candidate-signed-nonterminal-h0-h34-directed-provider-verifier" &&
+          row.signed_nonterminal_h0_h34_directed_provider_verifier
+            .source_single_contraction_provider_contract_kind ===
+            "candidate-signed-nonterminal-h0-h34-single-contraction-provider-contract" &&
+          row.signed_nonterminal_h0_h34_directed_provider_verifier
+            .proof_status ===
+            "candidate-verifier-boundary-ready-provider-rows-missing" &&
+          row.signed_nonterminal_h0_h34_directed_provider_verifier
+            .verifier_kind ===
+            "same-domain-same-radius-directed-provider-interval-inclusion-check" &&
+          row.signed_nonterminal_h0_h34_directed_provider_verifier
+            .provider_rows_supplied === false &&
+          row.signed_nonterminal_h0_h34_directed_provider_verifier
+            .screened_target_fixture_consumer_path_passes === true &&
+          row.signed_nonterminal_h0_h34_directed_provider_verifier
+            .all_provider_rows_supplied === false &&
+          row.signed_nonterminal_h0_h34_directed_provider_verifier
+            .all_provider_rows_match_same_domain_contract === false &&
+          row.signed_nonterminal_h0_h34_directed_provider_verifier
+            .all_provider_rows_match_same_radius_contract === false &&
+          row.signed_nonterminal_h0_h34_directed_provider_verifier
+            .all_provider_rows_are_directed_not_fixture === false &&
+          row.signed_nonterminal_h0_h34_directed_provider_verifier
+            .all_provider_intervals_contained_in_screened_targets === false &&
+          row.signed_nonterminal_h0_h34_directed_provider_verifier
+            .all_provider_intervals_subset_screened_targets === false &&
+          row.signed_nonterminal_h0_h34_directed_provider_verifier
+            .verified_directed_rounded_same_domain_provider_rows === false &&
+          row.signed_nonterminal_h0_h34_directed_provider_verifier
+            .verifier_classification ===
+            "h0-h34-directed-provider-verifier-boundary-ready-but-provider-missing" &&
+          Array.isArray(
+            row.signed_nonterminal_h0_h34_directed_provider_verifier
+              .provider_verification_rows
+          ) &&
+          row.signed_nonterminal_h0_h34_directed_provider_verifier
+            .provider_verification_rows.length === 5 &&
+          row.signed_nonterminal_h0_h34_directed_provider_verifier
+            .provider_verification_rows.every(
+              (providerRow) =>
+                Number.isInteger(providerRow?.node_index) &&
+                Number.isFinite(Number(providerRow?.xi_midpoint)) &&
+                providerRow?.provider_row_supplied === false &&
+                providerRow?.provider_row_source_kind ===
+                  "screened-target-verifier-fixture" &&
+                providerRow?.matches_same_domain_contract === true &&
+                providerRow?.matches_same_radius_contract === true &&
+                providerRow
+                  ?.weighted_provider_interval_contained_in_screened_target ===
+                  true &&
+                providerRow
+                  ?.coefficient_provider_interval_contained_in_screened_target ===
+                  true &&
+                providerRow?.provider_row_status ===
+                  "screened-target-fixture-row-exercises-verifier-only"
+            ) &&
+          row.signed_nonterminal_h0_h34_directed_provider_verifier
+            .claim_boundary?.certifies_nonterminal_h0_h34_covariance_enclosure ===
+            false &&
+          row.signed_nonterminal_h0_h34_directed_provider_verifier
+            .claim_boundary?.certifies_directed_rounded_shared_domain ===
+            false &&
+          row.signed_nonterminal_h0_h34_directed_provider_verifier
+            .claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+          row?.signed_nonterminal_h0_h34_live_residual_provider_probe
+            ?.target_kind ===
+            "candidate-signed-nonterminal-h0-h34-live-residual-provider-probe" &&
+          row.signed_nonterminal_h0_h34_live_residual_provider_probe
+            .source_single_contraction_provider_contract_kind ===
+            "candidate-signed-nonterminal-h0-h34-single-contraction-provider-contract" &&
+          row.signed_nonterminal_h0_h34_live_residual_provider_probe
+            .source_directed_provider_verifier_kind ===
+            "candidate-signed-nonterminal-h0-h34-directed-provider-verifier" &&
+          row.signed_nonterminal_h0_h34_live_residual_provider_probe
+            .proof_status ===
+            "candidate-probe-only-live-h0-h34-intervals-not-contained-or-not-directed-rounded" &&
+          row.signed_nonterminal_h0_h34_live_residual_provider_probe
+            .provider_probe_kind ===
+            "live-midpoint-centered-h0-h34-residual-intervals-through-directed-provider-verifier" &&
+          row.signed_nonterminal_h0_h34_live_residual_provider_probe
+            .live_provider_rows_match_same_domain_contract === true &&
+          row.signed_nonterminal_h0_h34_live_residual_provider_probe
+            .live_provider_rows_match_same_radius_contract === true &&
+          row.signed_nonterminal_h0_h34_live_residual_provider_probe
+            .live_provider_rows_are_directed_not_fixture === false &&
+          row.signed_nonterminal_h0_h34_live_residual_provider_probe
+            .live_provider_intervals_subset_screened_targets === false &&
+          finitePositive(
+            row.signed_nonterminal_h0_h34_live_residual_provider_probe
+              .max_live_provider_interval_to_screened_target_radius_ratio
+          ) &&
+          Number(
+            row.signed_nonterminal_h0_h34_live_residual_provider_probe
+              .max_live_provider_interval_to_screened_target_radius_ratio
+          ) > 1 &&
+          finitePositive(
+            row.signed_nonterminal_h0_h34_live_residual_provider_probe
+              .min_live_provider_interval_inclusion_headroom_factor
+          ) &&
+          Number(
+            row.signed_nonterminal_h0_h34_live_residual_provider_probe
+              .min_live_provider_interval_inclusion_headroom_factor
+          ) < 1 &&
+          row.signed_nonterminal_h0_h34_live_residual_provider_probe
+            .live_provider_probe_classification ===
+            "live-h0-h34-intervals-have-correct-provider-shape-but-exceed-screened-targets-and-are-not-directed-rounded" &&
+          Array.isArray(
+            row.signed_nonterminal_h0_h34_live_residual_provider_probe
+              .provider_probe_rows
+          ) &&
+          row.signed_nonterminal_h0_h34_live_residual_provider_probe
+            .provider_probe_rows.length === 5 &&
+          row.signed_nonterminal_h0_h34_live_residual_provider_probe
+            .provider_probe_rows.every(
+              (providerRow) =>
+                Number.isInteger(providerRow?.node_index) &&
+                Number.isFinite(Number(providerRow?.xi_midpoint)) &&
+                providerRow?.provider_row_source_kind ===
+                  "live-midpoint-centered-h0-h34-residual-interval-probe-not-directed-rounded" &&
+                Array.isArray(
+                  providerRow?.directed_rounded_weighted_residual_interval
+                ) &&
+                Array.isArray(
+                  providerRow
+                    ?.directed_rounded_coefficient_residual_interval_after_midpoint
+                ) &&
+                providerRow?.claim_boundary
+                  ?.certifies_directed_rounded_shared_domain === false
+            ) &&
+          row.signed_nonterminal_h0_h34_live_residual_provider_probe
+            .directed_provider_verifier?.provider_rows_supplied === true &&
+          row.signed_nonterminal_h0_h34_live_residual_provider_probe
+            .directed_provider_verifier
+            ?.all_provider_rows_match_same_domain_contract === true &&
+          row.signed_nonterminal_h0_h34_live_residual_provider_probe
+            .directed_provider_verifier
+            ?.all_provider_rows_match_same_radius_contract === true &&
+          row.signed_nonterminal_h0_h34_live_residual_provider_probe
+            .directed_provider_verifier
+            ?.all_provider_intervals_subset_screened_targets === false &&
+          row.signed_nonterminal_h0_h34_live_residual_provider_probe
+            .directed_provider_verifier
+            ?.verified_directed_rounded_same_domain_provider_rows === false &&
+          row.signed_nonterminal_h0_h34_live_residual_provider_probe
+            .claim_boundary?.certifies_nonterminal_h0_h34_covariance_enclosure ===
+            false &&
+          row.signed_nonterminal_h0_h34_live_residual_provider_probe
+            .claim_boundary?.certifies_directed_rounded_shared_domain === false &&
+          row.signed_nonterminal_h0_h34_live_residual_provider_probe
             .claim_boundary?.certifies_shifted_R43_outer_bound === false &&
           row?.node_width_localization_interpretation ===
             "terminal-h35-h37-hrow-intervals-dominate-total-n38-node-width" &&

@@ -186,6 +186,42 @@ memory margin, endpoint ownership/no-double-counting, branch-reuse exclusion,
 non-owned complement closure, root-topology recertification, or preledger rerun
 exists for that candidate change.
 
+The fold-coordinate promotion audit,
+`fold_coordinate_candidate_promotion_audit_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+separates the screen evidence from proof-grade promotion. It records all 3
+proposed fold-coordinate shift rows, but it finds 0 / 4 expected
+fold-coordinate candidate artifacts present: no same-packet `phi_cyc`, no
+same-packet `mesh`, no candidate-specific root-topology recertification, and no
+candidate-specific proof-interval replay. The `lambda=0.305` replay remains
+external contrast only; it does not certify the fold-coordinate candidate.
+
+The materialization audit,
+`fold_coordinate_candidate_materialization_audit_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests whether those candidate artifacts can honestly be emitted from the
+current fold-coordinate data. It fail-closes: all three one-leaf rows remain
+screen-positive, but the four fold-coordinate boundary-opening columns carry
+0 / 4 history-realization rules and no candidate-specific `phi_cyc`, `mesh`,
+preledger-input screen, root-topology certificate, or preledger replay exists.
+
+The history-realization contract,
+`fold_coordinate_history_realization_contract_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+turns that blocker into a finite theorem/generator target. It defines the
+required $\Delta X_{\mathrm{fc}}(\theta;\xi)$ same-packet update form, the
+signed source/receiver boundary-delta contracts for the two lower rows and one
+upper row, the 8 realization fields required for each `fc_*` variable, and the
+candidate-specific v1-v6 replay plan. It still authorizes no row consumption:
+0 / 4 realizations, 0 / 5 candidate artifacts, and 0 contract-ready rows are
+present.
+
+The history-realization theorem attempt,
+`fold_coordinate_history_realization_theorem_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then checks whether that contract can already become an exact same-packet
+realization theorem. It cannot: 4 / 4 fold-coordinate variables have screen
+coefficients and 3 / 3 rows have signed boundary-delta contracts, but 0 / 4
+variables have the 8 required realization fields, exact $B\xi=0$ and rank
+certification are absent, 0 / 5 candidate artifacts exist, topology and v1-v6
+replay are absent, and row consumption remains 0.
+
 ## Capture Decision
 
 Priority-only theorem target. The partition-audit implementation is now
@@ -199,12 +235,21 @@ direct-path amplitude can keep proof-grade 12-root topology. It does not close
 row consumption. The fold-coordinate theorem attempt gives the first positive
 screen-level candidate-change bridge for all three one-leaf rows, but it also
 fail-closes because the positive opening has not been promoted to proof-grade
-same-packet data. The next implementation must change the row-closure geometry
-or strengthen the receiver-cover certificate: new same-packet source-boundary
-variation data, receiver-range refinement data, endpoint/complement ownership,
-or another candidate change must actually assign proof-grade positive boundary
-shifts and preservation fields before these one-leaf rows can progress. Even
-then, the finite pass rule still also requires all-owned-component memory
-margins, endpoint/topology ownership with no-double-counting, simple-root
-branch-reuse exclusion, and non-owned complement closure. No regular parent row
-may be accepted until all fields in the finite pass rule are present.
+same-packet data. The promotion audit first sharpened that into missing
+candidate-specific artifacts, and the materialization audit now sharpens it
+again into the missing mathematical object: a finite history-realization rule
+for the fold-coordinate boundary-opening variables. The history-realization
+contract now fixes the exact update and replay fields that such a theorem must
+satisfy. The theorem attempt now confirms that the contract is not already a
+theorem: the exact finite $\Psi_j$ basis, support, derivative, mesh, endpoint,
+source-monotonicity, and receiver-monotonicity rules are absent. The next
+implementation must either supply those same-packet realization formulas or
+change the row-closure geometry or strengthen the receiver-cover certificate:
+new same-packet source-boundary variation data, receiver-range refinement data,
+endpoint/complement ownership, or another candidate change must actually assign
+proof-grade positive boundary shifts and preservation fields before these
+one-leaf rows can progress. Even then, the finite pass rule still also requires
+all-owned-component memory margins, endpoint/topology ownership with
+no-double-counting, simple-root branch-reuse exclusion, and non-owned complement
+closure. No regular parent row may be accepted until all fields in the finite
+pass rule are present.

@@ -129,6 +129,42 @@ It deliberately certifies 0 / 3 proof-grade same-packet candidate-change rows:
 memory margins, endpoint ownership/no-double-counting, branch-reuse exclusion,
 non-owned complement closure, root-topology recertification, and preledger
 rerun remain absent for the candidate change.
+The promotion audit,
+`fold_coordinate_candidate_promotion_audit_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then checks whether that screen-positive witness has the candidate-specific
+realization artifacts needed for row consumption. It records 3 / 3 proposed
+shift-assignment rows, 0 / 4 expected fold-coordinate candidate artifacts
+present, and 0 proof-grade rows. Therefore the next solver object must
+materialize a same-packet fold-coordinate candidate history, rerun root-topology
+certification, and rerun proof-interval preledger before any preservation or
+ownership fields can be promoted.
+The materialization audit,
+`fold_coordinate_candidate_materialization_audit_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then fail-closes candidate-file emission under current data. The four `fc_*`
+columns are bounded boundary-opening variables with 0 / 4 history-realization
+rules and 0 / 5 candidate artifacts present. The next solver object is therefore
+the missing finite realization map from these variables to a same-packet history
+and mesh update, not another `phi_cyc` clone of the direct-path `lambda=0.305`
+packet.
+The history-realization contract,
+`fold_coordinate_history_realization_contract_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+now makes that missing map explicit: a future candidate generator must supply
+$\Delta X_{\mathrm{fc}}(\theta;\xi)=\sum_j \xi_j\Psi_j(\theta)$ with exact
+support, derivative, mesh, endpoint, source-monotonicity, and
+receiver-monotonicity fields for all four `fc_*` variables. It also fixes the
+signed boundary-delta rules for the two lower rows and one upper row, and it
+requires a candidate-specific artifact namespace plus a v1-v6 preledger replay
+chain before any row can be consumed. The contract itself remains priority-only:
+0 / 4 realizations, 0 / 5 artifacts, and 0 contract-ready rows are present.
+The history-realization theorem attempt,
+`fold_coordinate_history_realization_theorem_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then fail-closes the attempted promotion from contract to theorem. It verifies
+that all four `fc_*` variables have screen coefficients and all three one-leaf
+rows have signed boundary-delta contracts, but no exact finite same-packet
+$\Psi_j$ basis, support, derivative, mesh, endpoint, source-monotonicity, or
+receiver-monotonicity rule exists for any variable. Exact $B\xi=0$, rank
+certification, candidate artifacts, topology recertification, v1-v6 replay, and
+row consumption remain absent.
 The remaining branches are periodic
 endpoint/complement ownership for the 8 lift rows and fold-layer certificate
 closure for the 112 fold-layer rows now grouped by

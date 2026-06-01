@@ -3695,3 +3695,50 @@ enclosures, but it replaces the vague "prove enough contraction" instruction
 with a provider contract: certify the same-domain midpoint-centered residuals
 below the screened per-node contracted radii, then feed that h0-h34 provider
 into the terminal/all-h-row covariance replay.
+
+The follow-on gap target shows that this contract has no remaining
+node-allocation ambiguity. The
+`candidate-signed-nonterminal-h0-h34-uniform-provider-gap-target` replays the
+first strict screened provider row and compares each live node residual radius
+against its screened radius. The weighted-residual and coefficient-residual
+gap factors coincide with the selected provider contraction factor on all five
+nodes, the node-share drift is negligible, and the weighted gap spread ratio is
+one. The missing certificate is therefore a single same-domain contraction
+proof for the current h0-h34 residual shape, not a search for a new dominant
+node or a different budget split.
+
+The single-contraction contract makes the next proof object even narrower. The
+`candidate-signed-nonterminal-h0-h34-single-contraction-provider-contract`
+checks that every screened weighted and coefficient target interval is a
+zero-centered subinterval of the corresponding live midpoint-centered residual
+interval and that the contraction factor matches the same selected scalar on
+all rows. This remains candidate-only: it does not provide the directed-rounded
+evaluator. It specifies exactly what that evaluator must prove on the same
+domain before h0-h34 covariance can be consumed by the terminal/all-h-row
+certificate route.
+
+The next boundary is now an executable verifier:
+`candidate-signed-nonterminal-h0-h34-directed-provider-verifier`. It consumes
+the single-contraction contract and normalizes the future provider interface to
+five same-node rows with the same h0-h34 range, same interpolation-node count,
+same screened target radii, and two directed-rounded residual intervals per
+node: the weighted residual interval and the coefficient residual interval
+after midpoint centering. In the current run no real directed-rounded provider
+rows are supplied, so the verifier exercises only a screened-target fixture
+path and reports the provider as missing. That fixture path proves the consumer
+logic is wired but does not certify same-domain directed rounding, h0-h34
+covariance, shifted $R_{\varepsilon,43}$, or retained-branch closure. The
+remaining mathematical object is therefore a true same-domain h0-h34 residual
+provider whose directed-rounded intervals fit inside the screened targets.
+
+The live residual provider probe now routes the current residual intervals
+through that verifier. The
+`candidate-signed-nonterminal-h0-h34-live-residual-provider-probe` uses the
+existing live midpoint-centered weighted residual interval and the
+midpoint-centered coefficient residual interval after provider-specification
+centering, labels the rows as non-directed-rounded, and feeds them into the
+directed-provider verifier. The probe passes the same-domain and same-radius
+shape checks but fails the proof-grade source and interval-containment checks.
+The next proof object is therefore not another interface wrapper; it is a
+directed-rounded contraction of those same live h0-h34 residual intervals into
+the screened targets.
