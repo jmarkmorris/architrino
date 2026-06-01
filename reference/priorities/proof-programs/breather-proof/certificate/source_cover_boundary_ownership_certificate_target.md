@@ -382,6 +382,47 @@ rows, 0 complete receiver-cover parent rows, 0 accepted fold-layer rows, and no
 branch-chart authorization. It consumes 0 rows and records that replaying the
 same direct-path lambda screen is not row closure by itself.
 
+The one-leaf boundary-opening interval-certificate attempt,
+`one_leaf_boundary_opening_interval_certificate_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests whether that screen-level budget can become an interval certificate.
+It declares 3 / 3 nonempty sampled lambda intervals, but certifies 0 / 3
+interval active-endpoint enclosures, 0 / 3 interval defect-derivative bounds,
+0 / 3 strict combined boundary-opening certificates, 0 / 3 source/receiver
+monotonicity certificates, 0 / 3 memory-margin certificates, 0 / 3 ownership
+or non-owned-complement closures, 0 / 3 proof-grade interval certificates, and
+0 consumed rows.
+
+The one-leaf active-endpoint interval-enclosure attempt,
+`one_leaf_active_endpoint_interval_enclosure_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests the missing interval active-endpoint enclosure sublayer. It records
+3 / 3 stable sampled source/receiver endpoint pairs, but constructs 0 / 3
+source endpoint interval boxes, 0 / 3 receiver endpoint interval boxes,
+0 / 3 endpoint residual interval bounds, 0 / 3 derivative-isolation
+certificates, 0 / 3 endpoint switch-exclusion certificates, 0 / 3
+active-endpoint uniqueness certificates, 0 / 3 active-endpoint gap-margin
+certificates, and 0 / 3 interval active-endpoint enclosures. It consumes
+0 rows, keeps `preledger_pass=false`, keeps `updates_live_ledger=false`, keeps
+`branch_chart_authorized=false`, and emits no candidate artifacts, topology
+recertification, or proof-interval replay of its own. This keeps the blocker
+at proof-grade interval endpoint boxes, residual bounds, derivative isolation,
+no-switch/uniqueness data, and gap margins before any boundary-opening interval
+certificate can be promoted.
+
+The one-leaf active-endpoint interval-box/no-switch construction attempt,
+`one_leaf_active_endpoint_interval_box_no_switch_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests those missing boxes and no-switch data directly. It declares
+3 / 3 constant-theta sampled endpoint-box candidates, but constructs 0 / 3
+source endpoint interval boxes, 0 / 3 receiver endpoint interval boxes,
+0 / 3 residual functions on boxes, 0 / 3 residual interval bounds, 0 / 3
+derivative-isolation certificates, 0 / 3 endpoint uniqueness certificates,
+0 / 3 endpoint switch-exclusion certificates, 0 / 3 positive endpoint-gap
+certificates, and 0 / 3 interval active-endpoint enclosures. It consumes
+0 rows, keeps `preledger_pass=false`, keeps `updates_live_ledger=false`, keeps
+`branch_chart_authorized=false`, and emits no candidate artifacts, topology
+recertification, or proof-interval replay of its own. This prevents the stable
+sampled endpoint theta values at `lambda=0.3` and `lambda=0.305` from being
+mistaken for interval boxes over the full lambda interval.
+
 ## Capture Decision
 
 Priority-only theorem target. The partition-audit implementation is now
@@ -440,11 +481,29 @@ rules. The row-closure geometry budget packet then records that the available
 direct-path geometry change is real only at screen level: 3 / 3 one-leaf rows
 open at `lambda=0.305`, but the replay still leaves 162 split-required base
 rows, 0 complete receiver-cover parent rows, and 0 accepted fold-layer rows.
-The next implementation must therefore either supply new same-packet endpoint
-boundary bindings and endpoint motion/evaluation-map proof data, strengthen the
-positive row-closure geometry budget into interval-certified row consumption,
-or strengthen the receiver-cover certificate: new same-packet source-boundary
-variation data, receiver-range refinement data,
+The one-leaf interval-certificate attempt then fail-closes the narrowest
+promotion route: it has 3 / 3 nonempty sampled lambda intervals but 0 / 3
+interval active-endpoint enclosures, derivative bounds, strict combined
+boundary-opening certificates, monotonicity certificates, memory-margin
+certificates, ownership/no-double-counting closures, non-owned-complement
+closures, proof-grade interval certificates, or consumed rows. The
+active-endpoint interval-enclosure attempt then narrows the first missing
+subproblem: sampled source/receiver endpoint pairs are stable in 3 / 3 rows,
+but there are 0 / 3 interval endpoint boxes, residual bounds, derivative
+isolation certificates, switch-exclusion certificates, uniqueness
+certificates, active-endpoint gap-margin certificates, interval active-endpoint
+enclosures, or consumed rows. The interval-box/no-switch construction attempt
+then proves the next promotion also fails: constant-theta sampled endpoint-box
+candidates exist in 3 / 3 rows, but there are 0 / 3 proof-grade endpoint
+interval boxes, residual functions on boxes, residual interval bounds,
+derivative-isolation certificates, endpoint uniqueness certificates,
+switch-exclusion certificates, positive endpoint-gap certificates,
+active-endpoint interval enclosures, or consumed rows. The next
+implementation must therefore either supply new same-packet endpoint boundary
+bindings and endpoint motion/evaluation-map proof data, strengthen the positive
+row-closure geometry budget with actual interval enclosure and preservation
+proof data, or strengthen the receiver-cover certificate: new same-packet
+source-boundary variation data, receiver-range refinement data,
 endpoint/complement ownership, or another candidate change must actually assign
 proof-grade positive boundary shifts and preservation fields before these
 one-leaf rows can progress. Even then, the finite pass rule still also requires

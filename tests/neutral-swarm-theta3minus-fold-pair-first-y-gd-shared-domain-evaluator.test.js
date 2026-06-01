@@ -7840,6 +7840,138 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
       .signed_nonterminal_h0_h34_source_operation_replay_interpretation,
     "binary64-outward-operation-replay-closed-source-provenance-open"
   );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_source_trust_gap_diagnostic_summary_kind,
+    "candidate-signed-nonterminal-h0-h34-source-trust-gap-diagnostic-summary"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_have_signed_nonterminal_h0_h34_source_trust_gap_diagnostic,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_source_trust_gap_diagnostics_use_replay_chain,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_source_trust_gap_diagnostics_close_replay_arithmetic,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_source_trust_gap_diagnostics_fit_one_number_epsilon_endpoint_margin,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_source_trust_gap_diagnostics_localize_gap_to_directed_source_trust,
+    true
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_source_trust_gap_replay_to_source_map_relative_gap >=
+      0
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_source_trust_gap_replay_to_source_map_relative_gap <
+      1e-12
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_source_trust_gap_replay_to_operation_relative_gap >=
+      0
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_source_trust_gap_replay_to_operation_relative_gap <
+      1e-12
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_source_trust_gap_scaled_endpoint_relative_gap >=
+      0
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_source_trust_gap_scaled_endpoint_relative_gap <
+      1e-12
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_source_trust_gap_diagnostic_interpretation,
+    "interval-operation-path-closed-directed-producer-image-trust-open"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_source_term_producer_image_trace_summary_kind,
+    "candidate-signed-nonterminal-h0-h34-source-term-producer-image-trace-summary"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_have_signed_nonterminal_h0_h34_source_term_producer_image_trace,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_source_term_traces_use_trust_gap,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_source_term_traces_have_four_terms,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_source_term_traces_close_arithmetic,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_source_term_traces_preserve_endpoint_path,
+    true
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_source_term_sum_to_replayed_source_relative_gap >=
+      0
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_source_term_sum_to_replayed_source_relative_gap <
+      1e-12
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_source_term_residual_path_relative_gap >=
+      0
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_source_term_residual_path_relative_gap <
+      1e-12
+  );
+  assert.ok(
+    Number.isFinite(
+      terminalCovarianceTarget
+        .min_signed_nonterminal_h0_h34_source_term_cancellation_fraction
+    )
+  );
+  assert.ok(
+    Number.isFinite(
+      terminalCovarianceTarget
+        .min_signed_nonterminal_h0_h34_source_term_sin_pair_cancellation_fraction
+    )
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_source_term_producer_image_trace_interpretation,
+    "four-term-source-trace-closes-before-directed-producer-image-trust"
+  );
   terminalCovarianceTarget.covariance_rows.forEach((row) => {
     assert.equal(
       row.provider_kind,
@@ -8222,6 +8354,27 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
       assert.equal(
         replayRow.certifies_same_row_replay_for_stored_intervals,
         true
+      );
+      assert.equal(replayRow.replayed_source_has_four_term_decomposition, true);
+      assert.deepEqual(
+        Object.keys(replayRow.replayed_source_term_intervals),
+        [
+          "delta_squared_speed",
+          "constant_minus_two",
+          "sin_phi",
+          "sin_delta",
+        ]
+      );
+      assert.ok(
+        replayRow.replayed_source_term_sum_relative_gap >= 0
+      );
+      assert.ok(
+        replayRow.replayed_source_term_sum_relative_gap < 1e-12
+      );
+      assert.ok(
+        Number.isFinite(
+          replayRow.replayed_source_term_cancellation_fraction
+        )
       );
       assert.equal(
         replayRow.source_inputs_certified_directed_rounded_same_domain,
@@ -10192,6 +10345,300 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
     );
     assert.equal(
       sourceOperationReplay.claim_boundary.certifies_shifted_R43_outer_bound,
+      false
+    );
+    const sourceTrustGapDiagnostic =
+      row.signed_nonterminal_h0_h34_source_trust_gap_diagnostic;
+    assert.equal(
+      sourceTrustGapDiagnostic.target_kind,
+      "candidate-signed-nonterminal-h0-h34-source-trust-gap-diagnostic"
+    );
+    assert.equal(
+      sourceTrustGapDiagnostic.source_input_replay_diagnostic_kind,
+      "candidate-signed-nonterminal-h0-h34-source-input-replay-diagnostic"
+    );
+    assert.equal(
+      sourceTrustGapDiagnostic.source_source_map_diagnostic_kind,
+      "candidate-signed-nonterminal-h0-h34-source-map-diagnostic"
+    );
+    assert.equal(
+      sourceTrustGapDiagnostic.source_endpoint_margin_diagnostic_kind,
+      "candidate-signed-nonterminal-h0-h34-source-map-endpoint-margin-diagnostic"
+    );
+    assert.equal(
+      sourceTrustGapDiagnostic.source_operation_replay_kind,
+      "candidate-signed-nonterminal-h0-h34-source-operation-replay"
+    );
+    assert.equal(
+      sourceTrustGapDiagnostic.proof_status,
+      "candidate-source-trust-gap-localized-directed-producer-image-open"
+    );
+    assert.equal(
+      sourceTrustGapDiagnostic.source_trust_gap_kind,
+      "replayed-h0-h34-cell-midpoint-source-through-source-map-operation-and-one-epsilon-endpoint-margin"
+    );
+    assert.equal(
+      sourceTrustGapDiagnostic
+        .all_source_trust_gap_rows_use_same_row_source_input_replay,
+      true
+    );
+    assert.equal(
+      sourceTrustGapDiagnostic
+        .all_source_trust_gap_rows_record_h38_evaluator_zeroing,
+      true
+    );
+    assert.equal(
+      sourceTrustGapDiagnostic
+        .all_source_trust_gap_rows_close_replay_to_source_map_arithmetic,
+      true
+    );
+    assert.equal(
+      sourceTrustGapDiagnostic
+        .all_source_trust_gap_rows_close_replay_to_operation_arithmetic,
+      true
+    );
+    assert.equal(
+      sourceTrustGapDiagnostic
+        .all_source_trust_gap_rows_fit_one_number_epsilon_endpoint_margin,
+      true
+    );
+    assert.equal(
+      sourceTrustGapDiagnostic
+        .all_source_trust_gap_rows_would_pass_endpoint_margin_if_directed_source_trust_available,
+      true
+    );
+    assert.equal(
+      sourceTrustGapDiagnostic
+        .source_trust_gap_localized_to_directed_producer_image_trust,
+      true
+    );
+    assert.equal(
+      sourceTrustGapDiagnostic.source_inputs_certified_directed_rounded_same_domain,
+      false
+    );
+    assert.ok(
+      sourceTrustGapDiagnostic
+        .max_source_trust_gap_replay_to_source_map_relative_gap >= 0
+    );
+    assert.ok(
+      sourceTrustGapDiagnostic
+        .max_source_trust_gap_replay_to_source_map_relative_gap < 1e-12
+    );
+    assert.ok(
+      sourceTrustGapDiagnostic
+        .max_source_trust_gap_replay_to_operation_relative_gap >= 0
+    );
+    assert.ok(
+      sourceTrustGapDiagnostic
+        .max_source_trust_gap_replay_to_operation_relative_gap < 1e-12
+    );
+    assert.equal(
+      sourceTrustGapDiagnostic.source_trust_gap_classification,
+      "interval-operation-path-closed-directed-producer-image-trust-open"
+    );
+    assert.equal(sourceTrustGapDiagnostic.source_trust_gap_rows.length, 5);
+    sourceTrustGapDiagnostic.source_trust_gap_rows.forEach((trustGapRow) => {
+      assert.equal(trustGapRow.source_variant, "h0-h34-cell-midpoint");
+      assert.equal(
+        trustGapRow.replay_kind,
+        "same-row-h0-h34-cell-midpoint-source-input-replay"
+      );
+      assert.equal(
+        trustGapRow.source_operation_kind,
+        "h0-h34-cell-midpoint-binary64-outward-source-map-operation"
+      );
+      assert.equal(
+        trustGapRow.endpoint_margin_relative_bound,
+        Number.EPSILON
+      );
+      assert.equal(trustGapRow.source_input_path_closed_by_replay, true);
+      assert.equal(
+        trustGapRow.replayed_source_closes_source_map_arithmetic,
+        true
+      );
+      assert.equal(
+        trustGapRow.replayed_source_closes_operation_arithmetic,
+        true
+      );
+      assert.equal(
+        trustGapRow
+          .operation_path_weighted_replayed_source_fits_one_epsilon_endpoint_margin,
+        true
+      );
+      assert.equal(
+        trustGapRow
+          .operation_path_coefficient_replayed_source_fits_one_epsilon_endpoint_margin,
+        true
+      );
+      assert.equal(
+        trustGapRow
+          .would_pass_endpoint_margin_if_directed_source_trust_available,
+        true
+      );
+      assert.equal(
+        trustGapRow.source_inputs_certified_directed_rounded_same_domain,
+        false
+      );
+      assert.equal(
+        trustGapRow.source_trust_gap_row_status,
+        "replayed-source-fits-endpoint-margin-directed-source-trust-open"
+      );
+    });
+    assert.equal(
+      sourceTrustGapDiagnostic.claim_boundary
+        .certifies_source_inputs_as_directed_rounded_same_domain,
+      false
+    );
+    assert.equal(
+      sourceTrustGapDiagnostic.claim_boundary
+        .certifies_directed_rounded_shared_domain,
+      false
+    );
+    assert.equal(
+      sourceTrustGapDiagnostic.claim_boundary.certifies_shifted_R43_outer_bound,
+      false
+    );
+    const sourceTermTrace =
+      row.signed_nonterminal_h0_h34_source_term_producer_image_trace;
+    assert.equal(
+      sourceTermTrace.target_kind,
+      "candidate-signed-nonterminal-h0-h34-source-term-producer-image-trace"
+    );
+    assert.equal(
+      sourceTermTrace.source_input_replay_diagnostic_kind,
+      "candidate-signed-nonterminal-h0-h34-source-input-replay-diagnostic"
+    );
+    assert.equal(
+      sourceTermTrace.source_trust_gap_diagnostic_kind,
+      "candidate-signed-nonterminal-h0-h34-source-trust-gap-diagnostic"
+    );
+    assert.equal(
+      sourceTermTrace.proof_status,
+      "candidate-source-term-producer-image-trace-directed-trust-open"
+    );
+    assert.equal(
+      sourceTermTrace.source_term_trace_kind,
+      "four-term-h38-source-decomposition-through-h0-h34-replay-chain"
+    );
+    assert.deepEqual(sourceTermTrace.source_terms, [
+      "delta_squared_speed",
+      "constant_minus_two",
+      "sin_phi",
+      "sin_delta",
+    ]);
+    assert.equal(
+      sourceTermTrace.all_source_term_trace_rows_have_four_term_decomposition,
+      true
+    );
+    assert.equal(
+      sourceTermTrace.all_source_term_trace_rows_sum_to_replayed_source,
+      true
+    );
+    assert.equal(
+      sourceTermTrace
+        .all_source_term_trace_rows_reconstruct_midpoint_residual_path,
+      true
+    );
+    assert.equal(
+      sourceTermTrace
+        .all_source_term_trace_rows_preserve_endpoint_margin_replay_chain,
+      true
+    );
+    assert.equal(
+      sourceTermTrace
+        .source_term_trace_localized_to_directed_producer_image_trust,
+      true
+    );
+    assert.equal(
+      sourceTermTrace.source_terms_certified_directed_rounded_same_domain,
+      false
+    );
+    assert.ok(
+      sourceTermTrace.max_source_term_sum_to_replayed_source_relative_gap >= 0
+    );
+    assert.ok(
+      sourceTermTrace.max_source_term_sum_to_replayed_source_relative_gap <
+      1e-12
+    );
+    assert.ok(
+      sourceTermTrace.max_source_term_residual_path_relative_gap >= 0
+    );
+    assert.ok(
+      sourceTermTrace.max_source_term_residual_path_relative_gap < 1e-12
+    );
+    assert.equal(
+      sourceTermTrace.source_term_trace_classification,
+      "source-term-sum-and-midpoint-residual-close-directed-producer-image-trust-open"
+    );
+    assert.equal(sourceTermTrace.source_term_trace_rows.length, 5);
+    sourceTermTrace.source_term_trace_rows.forEach((termTraceRow) => {
+      assert.equal(termTraceRow.source_variant, "h0-h34-cell-midpoint");
+      assert.equal(
+        termTraceRow.replay_kind,
+        "same-row-h0-h34-cell-midpoint-source-input-replay"
+      );
+      assert.equal(
+        termTraceRow.source_term_trace_kind,
+        "h0-h34-cell-midpoint-four-term-source-producer-image-trace"
+      );
+      assert.deepEqual(termTraceRow.source_terms, [
+        "delta_squared_speed",
+        "constant_minus_two",
+        "sin_phi",
+        "sin_delta",
+      ]);
+      assert.equal(
+        termTraceRow.term_trace_reconstructs_replayed_source,
+        true
+      );
+      assert.equal(
+        termTraceRow.term_trace_reconstructs_midpoint_residual_path,
+        true
+      );
+      assert.equal(
+        termTraceRow.term_trace_preserves_endpoint_margin_replay_chain,
+        true
+      );
+      assert.equal(
+        termTraceRow.source_terms_certified_directed_rounded_same_domain,
+        false
+      );
+      assert.ok(
+        termTraceRow.source_term_sum_to_replayed_source_relative_gap >= 0
+      );
+      assert.ok(
+        termTraceRow.source_term_sum_to_replayed_source_relative_gap < 1e-12
+      );
+      assert.ok(
+        termTraceRow.coefficient_residual_term_trace_relative_gap >= 0
+      );
+      assert.ok(
+        termTraceRow.coefficient_residual_term_trace_relative_gap < 1e-12
+      );
+      assert.ok(
+        Number.isFinite(termTraceRow.source_term_cancellation_fraction)
+      );
+      assert.ok(
+        Number.isFinite(
+          termTraceRow.sin_phi_sin_delta_pair_cancellation_fraction
+        )
+      );
+      assert.equal(
+        termTraceRow.source_term_trace_row_status,
+        "source-term-trace-closes-replay-and-endpoint-path-directed-producer-image-trust-open"
+      );
+    });
+    assert.equal(
+      sourceTermTrace.claim_boundary
+        .certifies_source_terms_as_directed_rounded_same_domain,
+      false
+    );
+    assert.equal(
+      sourceTermTrace.claim_boundary.certifies_directed_rounded_shared_domain,
+      false
+    );
+    assert.equal(
+      sourceTermTrace.claim_boundary.certifies_shifted_R43_outer_bound,
       false
     );
   });

@@ -12,7 +12,7 @@ Use only:
 - white;
 - black.
 
-Human skin and hair are the only representational exception. Use natural skin and hair tones for children and caregivers so the books can represent children worldwide in informal play. Do not use those tones for AAA geometry, causal wakes, Noether sea motifs, polarity marks, or environmental color systems.
+Human skin and hair are the only representational exception. Use natural skin and hair tones for children and caregivers so the books can represent children worldwide in informal play. Do not use those tones for $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry, causal wakes, Noether sea motifs, polarity marks, or environmental color systems.
 
 No green, yellow, orange, natural sky blue, natural grass green, gold, or multicolor scenic palettes. Browns and beiges are allowed only when they are part of human skin or hair, not as general scene colors.
 
@@ -195,7 +195,7 @@ Each source PNG should contain one continuous illustration. Do not use one PNG a
 Preferred composition pattern:
 
 1. Human play or experiment in the foreground.
-2. AAA geometry integrated into the action.
+2. $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry integrated into the action.
 3. Quiet Noether sea or assembly hints in the background only when useful.
 4. White space reserved for later black text placement.
 
@@ -234,7 +234,7 @@ Red, blue, and purple may appear next to a term as a swatch, dot, or diagram mar
 
 Every image prompt should include this palette instruction:
 
-> Restricted palette for all non-human visual systems: pure red, pure blue, red-blue purples, white, and black. Human skin and hair may use natural tones to represent children worldwide in informal play. Do not use natural skin or hair tones for AAA geometry, causal wakes, Noether sea motifs, polarity marks, clothing, scenery, or background objects. No green, yellow, orange, natural sky blue, natural grass green, gold, or multicolor scenic palette.
+> Restricted palette for all non-human visual systems: pure red, pure blue, red-blue purples, white, and black. Human skin and hair may use natural tones to represent children worldwide in informal play. Do not use natural skin or hair tones for $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry, causal wakes, Noether sea motifs, polarity marks, clothing, scenery, or background objects. No green, yellow, orange, natural sky blue, natural grass green, gold, or multicolor scenic palette.
 
 Every image prompt should include this text instruction:
 
@@ -253,7 +253,7 @@ Every image prompt should identify the geometry lesson:
 
 Every image prompt should include this exemplar instruction:
 
-> Match the approved children's-book exemplar style: natural human skin and hair, informal global children-at-play energy, white paper space, black expressive linework, red/blue/purple AAA geometry integrated into the scene, and no non-human colors outside the restricted palette.
+> Match the approved children's-book exemplar style: natural human skin and hair, informal global children-at-play energy, white paper space, black expressive linework, red/blue/purple $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry integrated into the scene, and no non-human colors outside the restricted palette.
 
 If the model adds naturalistic color, regenerate with stricter language:
 

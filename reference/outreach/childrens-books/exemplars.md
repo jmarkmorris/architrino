@@ -15,7 +15,7 @@ Approved qualities:
 - purple carries overlap, balance, basins, and medium depth;
 - white space keeps the page readable;
 - black linework carries expression, boundary, and text-readiness;
-- AAA geometry is integrated into the scene rather than isolated as a detached diagram.
+- $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry is integrated into the scene rather than isolated as a detached diagram.
 
 Production warning:
 
@@ -155,7 +155,7 @@ Use this as the exemplar for:
 
 Future prompts should include the style-guide palette rule and this production phrase:
 
-> Match the approved children's-book exemplar style: natural human skin and hair, informal global children-at-play energy, white paper space, black expressive linework, red/blue/purple AAA geometry integrated into the scene, and no non-human colors outside the restricted palette.
+> Match the approved children's-book exemplar style: natural human skin and hair, informal global children-at-play energy, white paper space, black expressive linework, red/blue/purple $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry integrated into the scene, and no non-human colors outside the restricted palette.
 
 If a future image departs from these exemplars, revise the prompt by naming the specific failure:
 

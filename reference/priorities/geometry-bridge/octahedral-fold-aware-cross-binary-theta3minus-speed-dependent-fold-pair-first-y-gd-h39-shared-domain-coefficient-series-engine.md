@@ -3836,3 +3836,30 @@ not a directed-rounded source certificate, but it proves the remaining gap is
 not in the arithmetic replay chain; the next certificate must supply
 proof-grade directed-rounded provenance for the five h0-h34 coefficient
 intervals and midpoint subtraction inputs that feed the closed replay.
+
+The new source-trust gap layer makes the remaining proof boundary explicit.
+`candidate-signed-nonterminal-h0-h34-source-trust-gap-diagnostic` starts with
+the same-row source-input replay, compares it against the source-map rows and
+the source-operation replay, and confirms that the operation-path intervals
+would fit the one-`Number.EPSILON` endpoint-margin target if the source rows
+were supplied with directed-rounded producer-image trust. The live maximum
+replay gaps to the source-map and operation rows are below $10^{-12}$, so the
+current blocker is no longer arithmetic, same-radius packaging, or endpoint
+containment. It is specifically the missing directed-rounded H38 producer-image
+certificate for the replayed `h0-h34-cell-midpoint` source intervals. A direct
+duplicate scaling is recorded separately because it can differ by one outward
+rounding step; the closure path remains the already verified operation replay.
+
+The source-term trace now exposes that boundary before the source terms are
+summed. `candidate-signed-nonterminal-h0-h34-source-term-producer-image-trace`
+carries the four H38 numerator terms
+`delta_squared_speed`, `constant_minus_two`, `sin_phi`, and `sin_delta`
+through the same h0-h34 replay chain. It checks that the four-term sum matches
+the replayed source, that the term residuals reconstruct the
+midpoint-centered coefficient residual, and that the weighted/scaled replay
+still lands in the endpoint-margin path, all with sub-$10^{-12}$ replay gaps on
+the live rows. The trace keeps every directed-rounded and shifted
+$R_{\varepsilon,43}$ claim false. Its value is to make the next certificate
+object exact: prove directed-rounded same-domain H38 producer-image enclosures
+for the four source-term intervals while preserving the signed
+`sin_phi`/`sin_delta` cancellation before absolute bounds are applied.

@@ -18,7 +18,7 @@ Supporting use:
 
 - black text on white for adult notes, back matter, production notes, and documentation pages.
 
-Do not use red, blue, or bright purple for story text. Those colors are reserved for AAA geometry: polarity, causal wakes, overlap, balance, Noether sea, assemblies, and basin structure.
+Do not use red, blue, or bright purple for story text. Those colors are reserved for $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry: polarity, causal wakes, overlap, balance, Noether sea, assemblies, and basin structure.
 
 ## Typography Direction
 
@@ -45,7 +45,7 @@ Why it works:
 
 - white text on deep purple is readable and still palette-compliant;
 - the reverse band can mark a tonal shift;
-- the clean band avoids competing with AAA geometry in the artwork.
+- the clean band avoids competing with $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry in the artwork.
 
 Production requirement:
 

@@ -31,13 +31,13 @@ Level 2 scenes should not introduce new teaching goals casually. Each scene shou
 
 | Age | Working title | Level 1 lessons | Level 2 scene status |
 | --- | --- | --- | --- |
-| Baby-toddler | Here, There, Back | Presence: here/there. Path: going and returning. Trace: motion has a felt route. | Foundation only; preview image exists; no detailed board-book scene plan yet. |
-| 3-5 | Nature Remembers Motion | Motion leaves a visible trail. Before/after orders a path. Repetition can make a pattern. | Planned; preview image exists; detailed scene plan still needed. |
+| Baby-toddler | Here, There, Back | Presence: here/there. Path: going and returning. Trace: motion has a felt route. | Full Level 2 draft exists in [here-there-back.md](here-there-back.md). |
+| 3-5 | Nature Remembers Motion | Motion leaves a visible trail. Before/after orders a path. Repetition can make a pattern. | Full Level 2 draft exists in [nature-remembers-motion.md](nature-remembers-motion.md). |
 | 6-8 | The Message That Traveled | Messages from motion take time to arrive. Distance and direction matter. Stable patterns can form when influences fit. | Full pilot draft exists in [the-message-that-traveled.md](the-message-that-traveled.md). |
-| 9-11 | The Tiny Transceivers | There are two fundamental sender-receiver kinds. Each keeps a path, emits potential waves, and receives waves. Many received influences can combine into assemblies. | Planned; preview image exists; detailed scene plan still needed. |
-| 12-14 | The Balance Point | A path moves through a potential landscape. Small nudges can choose among lawful outcomes. Measurement is a physical interaction. | Planned; preview image exists; detailed scene plan still needed. |
-| 15-16 | The History That Pushes Now | Present motion depends on admissible path-history. Finite field speed selects which past waves can arrive now. Self-action occurs when an entity meets its own causal history. | Planned; preview image exists; no detailed scene plan yet. |
-| 17-18 | The World We Recover | Assemblies support observer-level clocks, rulers, and channels. Effective metric, photon behavior, and mass-map recovery are higher-level outcomes. Claim levels matter: observed, simulated, derived, open. | Planned; preview image exists; no detailed scene plan yet. |
+| 9-11 | The Tiny Transceivers | There are two fundamental sender-receiver kinds. Each keeps a path, emits potential waves, and receives waves. Many received influences can combine into assemblies. | Full Level 2 draft exists in [the-tiny-transceivers.md](the-tiny-transceivers.md). |
+| 12-14 | The Balance Point | A path moves through a potential landscape. Small nudges can choose among lawful outcomes. Measurement is a physical interaction. | Full Level 2 draft exists in [the-balance-point.md](the-balance-point.md). |
+| 15-16 | The History That Pushes Now | Present motion depends on admissible path-history. Finite field speed selects which past waves can arrive now. Self-action occurs when an entity meets its own causal history. | Full Level 2 draft exists in [the-history-that-pushes-now.md](the-history-that-pushes-now.md). |
+| 17-18 | The World We Recover | Assemblies support observer-level clocks, rulers, and channels. Effective metric, photon behavior, and mass-map recovery are higher-level outcomes. Claim levels matter: observed, simulated, derived, open. | Full Level 2 draft exists in [the-world-we-recover.md](the-world-we-recover.md). |
 
 ### Level 2 Scene Template
 
@@ -69,13 +69,13 @@ Target source-image counts:
 
 | Age | Working title | Story spreads | Cover/key art | Back matter/activity images | Target source images | Current status |
 | --- | --- | ---: | ---: | ---: | ---: | --- |
-| Baby-toddler | Here, There, Back | 8 | 1 | 1 | 10 | Preview exists; board-book scenes not yet planned. |
-| 3-5 | Nature Remembers Motion | 12 | 1 | 2 | 15 | Preview exists; scenes not yet planned. |
+| Baby-toddler | Here, There, Back | 8 | 1 | 1 | 10 | Level 2 draft exists. |
+| 3-5 | Nature Remembers Motion | 12 | 1 | 2 | 15 | Level 2 draft exists. |
 | 6-8 | The Message That Traveled | 16 | 1 | 2 | 19 | Preview exists; pilot scene plan exists. |
-| 9-11 | The Tiny Transceivers | 18 | 1 | 3 | 22 | Preview exists; scenes not yet planned. |
-| 12-14 | The Balance Point | 18 | 1 | 4 | 23 | Preview exists; scenes not yet planned. |
-| 15-16 | The History That Pushes Now | 20 | 1 | 5 | 26 | Preview exists; scenes not yet planned. |
-| 17-18 | The World We Recover | 20 | 1 | 6 | 27 | Preview exists; scenes not yet planned. |
+| 9-11 | The Tiny Transceivers | 18 | 1 | 3 | 22 | Level 2 draft exists. |
+| 12-14 | The Balance Point | 18 | 1 | 4 | 23 | Level 2 draft exists. |
+| 15-16 | The History That Pushes Now | 20 | 1 | 5 | 26 | Level 2 draft exists. |
+| 17-18 | The World We Recover | 20 | 1 | 6 | 27 | Level 2 draft exists. |
 
 Planning total: 142 source illustrations across the full age-band series, excluding derivative layout exports and discarded variants.
 
@@ -246,7 +246,7 @@ Key sentence:
 
 > Here, there, back again.
 
-AAA geometry in art:
+$\mathbb{A}\mathbb{A}\mathbb{A}$ geometry in art:
 
 - a simple dotted path behind the child or ball;
 - very faint red/blue marks only as nonverbal path rhythm, not named polarity;
@@ -276,7 +276,7 @@ A child follows rolling balls, claps, ripples, shadows, and echoes. The child wa
 
 > It moved, and the world remembered.
 
-AAA geometry in art:
+$\mathbb{A}\mathbb{A}\mathbb{A}$ geometry in art:
 
 - clear paths and return paths before any abstract diagram;
 - red and blue dots as simple "two tiny kinds";
@@ -309,7 +309,7 @@ Key sentence:
 
 > A message can be real before it reaches you.
 
-AAA geometry in art:
+$\mathbb{A}\mathbb{A}\mathbb{A}$ geometry in art:
 
 - visible source-to-receiver paths;
 - source-position dots;
@@ -347,7 +347,7 @@ Key sentence:
 
 > Electra and Poz are not heroes or teams. They are two tiny kinds of sender-receiver.
 
-AAA geometry in art:
+$\mathbb{A}\mathbb{A}\mathbb{A}$ geometry in art:
 
 - Electra and Poz as red/blue luminous points;
 - potential waves as emitted arcs;
@@ -381,7 +381,7 @@ Key sentence:
 
 > The rule did not disappear just because the path was sensitive.
 
-AAA geometry in art:
+$\mathbb{A}\mathbb{A}\mathbb{A}$ geometry in art:
 
 - red/blue basin paths;
 - purple threshold region;
@@ -416,7 +416,7 @@ Key sentence:
 
 > To know the motion now, you must know which past waves can arrive now.
 
-AAA geometry in art:
+$\mathbb{A}\mathbb{A}\mathbb{A}$ geometry in art:
 
 - path-history trails;
 - finite-speed wave fronts;
@@ -450,7 +450,7 @@ Key sentence:
 
 > The familiar world is not the starting point here. It is what the architecture must recover.
 
-AAA geometry in art:
+$\mathbb{A}\mathbb{A}\mathbb{A}$ geometry in art:
 
 - nested assemblies;
 - photon-channel motifs;

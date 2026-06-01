@@ -2953,6 +2953,32 @@ directed-rounded, and retained-branch claims false; it reduces the live blocker
 to proof-grade provenance for the five h0-h34 coefficient intervals and
 midpoint subtractions feeding the already-closed operation replay.
 
+The source-trust gap diagnostic now pins that handoff to the replay chain. The
+`candidate-signed-nonterminal-h0-h34-source-trust-gap-diagnostic` starts from
+the same-row source-input replay, carries it through the source-map and
+source-operation replay, and checks that the operation-path intervals fit the
+one-`Number.EPSILON` endpoint-expanded targets. On the live route, replay to
+the source-map and operation rows closes with sub-$10^{-12}$ relative gaps, and
+the only non-promoted ingredient is still directed-rounded H38 producer-image
+trust for the replayed `h0-h34-cell-midpoint` source intervals. The diagnostic
+also records the direct duplicate scaling separately because a different
+rounding order can be one outward step wider; the closure-relevant path remains
+the existing verified operation replay.
+
+The source-term producer-image trace pushes the same localization one level
+deeper. The
+`candidate-signed-nonterminal-h0-h34-source-term-producer-image-trace` keeps
+`delta_squared_speed`, `constant_minus_two`, `sin_phi`, and `sin_delta`
+separate on the five h0-h34-cell-midpoint source nodes, verifies that their
+interval sum reconstructs the replayed source at sub-$10^{-12}$ relative gap,
+and then reconstructs the midpoint-centered coefficient residual, Lagrange
+weighting, uniform scaling, and endpoint-margin replay path from those same
+terms. This shows that the open certificate is no longer a hidden summation or
+midpoint-subtraction issue. The remaining proof burden is the directed-rounded
+H38 producer-image trust for the four source-term intervals themselves, with
+the signed `sin_phi`/`sin_delta` cancellation preserved before absolute
+Cauchy bounds are charged.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.

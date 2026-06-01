@@ -55,7 +55,7 @@ Lesson:
 
 The world is full of messages from motion.
 
-AAA geometry:
+$\mathbb{A}\mathbb{A}\mathbb{A}$ geometry:
 
 A pebble splash, a hand clap, and a rolling marble each leave pale-gold causal wake arcs. The arcs are centered on earlier positions rather than the objects' current positions.
 
@@ -83,7 +83,7 @@ Lesson:
 
 Introduce before/after as the child-facing entrance to absolute time.
 
-AAA geometry:
+$\mathbb{A}\mathbb{A}\mathbb{A}$ geometry:
 
 Clock ticks become faint evenly spaced vertical light marks across the room, a gentle visual stand-in for a shared ordering parameter.
 
@@ -113,7 +113,7 @@ Lesson:
 
 Introduce Euclidean void through ordinary spatial relations.
 
-AAA geometry:
+$\mathbb{A}\mathbb{A}\mathbb{A}$ geometry:
 
 The floor has a faint child-friendly grid. Positions are clear and measurable, but the grid is a visual aid, not a cage.
 
@@ -143,7 +143,7 @@ Lesson:
 
 Teach propagation delay using sound.
 
-AAA geometry:
+$\mathbb{A}\mathbb{A}\mathbb{A}$ geometry:
 
 Concentric causal wake arcs expand from Tomas's earlier hand position. Mira receives one arc at her ear.
 
@@ -171,7 +171,7 @@ Lesson:
 
 Motion can leave a spreading history centered on an earlier event.
 
-AAA geometry:
+$\mathbb{A}\mathbb{A}\mathbb{A}$ geometry:
 
 Water ripples model causal isochrons. The source position is the splash point, not the pebble's later position.
 
@@ -199,7 +199,7 @@ Lesson:
 
 Introduce path-history in a child-facing way.
 
-AAA geometry:
+$\mathbb{A}\mathbb{A}\mathbb{A}$ geometry:
 
 The ribbon path carries earlier source positions, each with a small expanding arc.
 
@@ -231,7 +231,7 @@ Lesson:
 
 Distance changes arrival time.
 
-AAA geometry:
+$\mathbb{A}\mathbb{A}\mathbb{A}$ geometry:
 
 Two causal wake fronts show different travel distances before reaching Mira.
 
@@ -259,7 +259,7 @@ Lesson:
 
 Introduce line of action as direction from source history to receiver.
 
-AAA geometry:
+$\mathbb{A}\mathbb{A}\mathbb{A}$ geometry:
 
 A clean thread connects the earlier source point to the receiving point. The wake front is curved, but the received influence has a local direction.
 
@@ -289,7 +289,7 @@ Lesson:
 
 Introduce the architrino as a point transceiver with identity and path.
 
-AAA geometry:
+$\mathbb{A}\mathbb{A}\mathbb{A}$ geometry:
 
 One luminous point emits and receives causal wake arcs. A dotted path behind it marks provenance.
 
@@ -319,7 +319,7 @@ Lesson:
 
 Introduce polarity as response type: one response bends a path inward, another bends a path outward.
 
-AAA geometry:
+$\mathbb{A}\mathbb{A}\mathbb{A}$ geometry:
 
 Two luminous dots show same-kind and cross-kind response types through inward-bending and outward-bending paths, with response arrows along the line of action.
 
@@ -349,7 +349,7 @@ Lesson:
 
 Introduce superposition as many influences adding at one receiver.
 
-AAA geometry:
+$\mathbb{A}\mathbb{A}\mathbb{A}$ geometry:
 
 Several causal wake fronts intersect a leaf. A small net arrow shows the combined response.
 
@@ -379,7 +379,7 @@ Lesson:
 
 Introduce assembly as stable pattern from lawful interactions.
 
-AAA geometry:
+$\mathbb{A}\mathbb{A}\mathbb{A}$ geometry:
 
 Three luminous bead points exchange faint wake arcs and settle into a triangular balanced pattern.
 
@@ -407,7 +407,7 @@ Lesson:
 
 Introduce Noether sea as surrounding medium content, not the Euclidean void itself.
 
-AAA geometry:
+$\mathbb{A}\mathbb{A}\mathbb{A}$ geometry:
 
 Faint neutral Noether sea specks surround the children, with small stable pair and swarm motifs.
 
@@ -435,7 +435,7 @@ Lesson:
 
 Introduce measurement interaction gently.
 
-AAA geometry:
+$\mathbb{A}\mathbb{A}\mathbb{A}$ geometry:
 
 The flashlight beam carries small photon-channel motifs. A bead receives the light and changes slightly.
 
@@ -465,7 +465,7 @@ Lesson:
 
 AI should ask prediction-first questions and reveal the model after the child thinks.
 
-AAA geometry:
+$\mathbb{A}\mathbb{A}\mathbb{A}$ geometry:
 
 The tablet shows a simplified causal wake simulation: earlier source point, expanding ring, receiver, and line of action.
 
@@ -493,7 +493,7 @@ Lesson:
 
 State the core path-history idea explicitly for the target age.
 
-AAA geometry:
+$\mathbb{A}\mathbb{A}\mathbb{A}$ geometry:
 
 The current position is bright, but earlier positions are the centers of the arriving causal wakes.
 
@@ -523,7 +523,7 @@ Lesson:
 
 Close with wonder grounded in lawful delayed influence.
 
-AAA geometry:
+$\mathbb{A}\mathbb{A}\mathbb{A}$ geometry:
 
 Star-light paths are shown as gentle causal wake arcs crossing the sky toward the children.
 

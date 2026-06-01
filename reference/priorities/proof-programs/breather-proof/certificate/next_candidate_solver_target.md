@@ -317,6 +317,40 @@ v1-v6 replay, but the replay still has 162 `split_required` base rows,
 `preledger_pass=false`, and `branch_chart_authorized=false`. This makes the
 next row-closure object an interval-certified boundary-opening, receiver-cover,
 or fold-layer proof, not another direct replay of the same lambda screen.
+The one-leaf boundary-opening interval-certificate attempt,
+`one_leaf_boundary_opening_interval_certificate_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests the narrowest of those options. It declares 3 / 3 nonempty sampled
+lambda intervals, but certifies 0 / 3 interval active-endpoint enclosures,
+0 / 3 interval defect-derivative bounds, 0 / 3 strict combined
+boundary-opening certificates, 0 / 3 source/receiver monotonicity
+certificates, 0 / 3 memory-margin certificates, 0 / 3 endpoint ownership or
+non-owned-complement closures, 0 / 3 proof-grade interval certificates, and
+0 consumed rows. The next proof data must therefore be interval enclosure and
+monotonicity/complement proof data, not another sampled one-leaf screen.
+The active-endpoint interval-enclosure attempt,
+`one_leaf_active_endpoint_interval_enclosure_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests the first missing sublayer in that interval-certificate route. It
+records 3 / 3 stable sampled source/receiver endpoint pairs, but constructs
+0 / 3 source endpoint interval boxes, 0 / 3 receiver endpoint interval boxes,
+0 / 3 endpoint residual interval bounds, 0 / 3 derivative-isolation
+certificates, 0 / 3 endpoint switch-exclusion certificates, 0 / 3
+active-endpoint uniqueness certificates, 0 / 3 active-endpoint gap-margin
+certificates, and 0 / 3 interval active-endpoint enclosures. It consumes
+0 rows, keeps `preledger_pass=false`, keeps `updates_live_ledger=false`, keeps
+`branch_chart_authorized=false`, emits no candidate artifacts, emits no
+topology recertification, and emits no proof-interval replay of its own.
+The active-endpoint interval-box/no-switch construction attempt,
+`one_leaf_active_endpoint_interval_box_no_switch_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests the next missing layer. It declares 3 / 3 constant-theta sampled
+endpoint-box candidates, but constructs 0 / 3 source endpoint interval boxes,
+0 / 3 receiver endpoint interval boxes, 0 / 3 residual functions on boxes,
+0 / 3 residual interval bounds, 0 / 3 derivative-isolation certificates,
+0 / 3 endpoint uniqueness certificates, 0 / 3 endpoint switch-exclusion
+certificates, 0 / 3 positive endpoint-gap certificates, and 0 / 3 interval
+active-endpoint enclosures. It consumes 0 rows, keeps
+`preledger_pass=false`, keeps `updates_live_ledger=false`, keeps
+`branch_chart_authorized=false`, emits no candidate artifacts, emits no
+topology recertification, and emits no proof-interval replay of its own.
 The remaining branches are periodic
 endpoint/complement ownership for the 8 lift rows and fold-layer certificate
 closure for the 112 fold-layer rows now grouped by

@@ -15,13 +15,13 @@ Stories are organized at two levels:
 
 | Age | Working title | Level 1 lessons | Level 2 scene status |
 | --- | --- | --- | --- |
-| Baby-toddler | Here, There, Back | Presence, path, return. | Foundation only; preview image exists. |
-| 3-5 | Nature Remembers Motion | Motion leaves trails; before/after orders a path; repetition can make pattern. | Planned; preview image exists. |
+| Baby-toddler | [Here, There, Back](here-there-back.md) | Presence, path, return. | Full Level 2 draft. |
+| 3-5 | [Nature Remembers Motion](nature-remembers-motion.md) | Motion leaves trails; before/after orders a path; repetition can make pattern. | Full Level 2 draft. |
 | 6-8 | [The Message That Traveled](the-message-that-traveled.md) | Messages take time to arrive; distance and direction matter; stable patterns can form. | Full pilot draft. |
-| 9-11 | The Tiny Transceivers | Two sender-receiver kinds; path, emission, and reception; combined influences make assemblies. | Planned; preview image exists. |
-| 12-14 | The Balance Point | Potential landscapes; sensitive lawful paths; measurement as physical interaction. | Planned; preview image exists. |
-| 15-16 | The History That Pushes Now | Path-history; admissible past waves; self-action and first master-equation intuition. | Planned; preview image exists. |
-| 17-18 | The World We Recover | Assembly hierarchy; effective clocks/rulers/channels; recovery targets and claim levels. | Planned; preview image exists. |
+| 9-11 | [The Tiny Transceivers](the-tiny-transceivers.md) | Two sender-receiver kinds; path, emission, and reception; combined influences make assemblies. | Full Level 2 draft. |
+| 12-14 | [The Balance Point](the-balance-point.md) | Potential landscapes; sensitive lawful paths; measurement as physical interaction. | Full Level 2 draft. |
+| 15-16 | [The History That Pushes Now](the-history-that-pushes-now.md) | Path-history; admissible past waves; self-action and first master-equation intuition. | Full Level 2 draft. |
+| 17-18 | [The World We Recover](the-world-we-recover.md) | Assembly hierarchy; effective clocks/rulers/channels; recovery targets and claim levels. | Full Level 2 draft. |
 
 The full teaching map and scene template live in [story-design.md](story-design.md#two-level-story-architecture).
 
@@ -44,4 +44,4 @@ Generated illustrations should avoid in-image text unless a later production pas
 
 ## Approved Exemplar
 
-The first approved image direction is [Exemplar Set 1](exemplars.md#exemplar-set-1-natural-people-restricted-physics-palette): natural people, informal play, restricted non-human palette, and integrated AAA geometry.
+The first approved image direction is [Exemplar Set 1](exemplars.md#exemplar-set-1-natural-people-restricted-physics-palette): natural people, informal play, restricted non-human palette, and integrated $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry.

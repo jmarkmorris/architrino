@@ -596,6 +596,52 @@ budgets at `lambda=0.305`, with shared active-endpoint threshold
 authorization. It consumes 0 rows and emits no candidate artifacts, topology
 recertification, or proof-interval replay of its own.
 
+The one-leaf boundary-opening interval-certificate attempt is recorded in
+`one_leaf_boundary_opening_interval_certificate_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`one_leaf_boundary_opening_interval_certificate_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It tests whether the sampled row-closure budget can be promoted to an
+interval-certified same-packet boundary opening. The attempt fail-closes with
+3 / 3 nonempty sampled lambda intervals but 0 / 3 interval active-endpoint
+enclosures, 0 / 3 interval defect-derivative bounds, 0 / 3 strict combined
+boundary-opening certificates, 0 / 3 monotonicity or memory certificates,
+0 / 3 ownership or non-owned-complement closures, 0 / 3 proof-grade interval
+certificates, and 0 consumed rows.
+
+The one-leaf active-endpoint interval-enclosure attempt is recorded in
+`one_leaf_active_endpoint_interval_enclosure_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`one_leaf_active_endpoint_interval_enclosure_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It imports that interval-certificate attempt and tests the missing interval
+active-endpoint enclosures. The attempt records 3 / 3 stable sampled
+source/receiver endpoint pairs, but constructs 0 / 3 source endpoint interval
+boxes, 0 / 3 receiver endpoint interval boxes, 0 / 3 endpoint residual interval
+bounds, 0 / 3 derivative-isolation certificates, 0 / 3 endpoint
+switch-exclusion certificates, 0 / 3 active-endpoint uniqueness certificates,
+0 / 3 active-endpoint gap-margin certificates, and 0 / 3 interval
+active-endpoint enclosures. It consumes 0 rows, keeps
+`preledger_pass=false`, keeps `updates_live_ledger=false`, keeps
+`branch_chart_authorized=false`, and emits no candidate artifacts, topology
+recertification, or proof-interval replay of its own.
+
+The one-leaf active-endpoint interval-box/no-switch construction attempt is
+recorded in
+`one_leaf_active_endpoint_interval_box_no_switch_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`one_leaf_active_endpoint_interval_box_no_switch_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It imports the active-endpoint interval-enclosure attempt and tests the missing
+proof-grade endpoint interval boxes plus endpoint switch-exclusion/no-switch
+data. The attempt declares 3 / 3 constant-theta sampled endpoint-box
+candidates, but constructs 0 / 3 source endpoint interval boxes, 0 / 3 receiver
+endpoint interval boxes, 0 / 3 residual functions on boxes, 0 / 3 residual
+interval bounds, 0 / 3 derivative-isolation certificates, 0 / 3 endpoint
+uniqueness certificates, 0 / 3 endpoint switch-exclusion certificates,
+0 / 3 positive endpoint-gap certificates, and 0 / 3 interval active-endpoint
+enclosures. It consumes 0 rows, keeps `preledger_pass=false`, keeps
+`updates_live_ledger=false`, keeps `branch_chart_authorized=false`, and emits
+no candidate artifacts, topology recertification, or proof-interval replay of
+its own.
+
 ## Pre-Ledger Stop Condition
 
 Stop before branch-chart construction unless every pre-ledger row satisfies

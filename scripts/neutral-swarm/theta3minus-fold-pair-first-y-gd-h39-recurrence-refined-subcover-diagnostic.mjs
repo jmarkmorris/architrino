@@ -129,6 +129,13 @@ const H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS = Object.freeze([
   "sin_delta",
 ]);
 
+const H38_SOURCE_TERM_KEYS = Object.freeze([
+  "delta_squared_speed",
+  "constant_minus_two",
+  "sin_phi",
+  "sin_delta",
+]);
+
 const H38_NUMERATOR_Y_ORDER =
   THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift - 1;
 
@@ -2389,6 +2396,35 @@ function n38ExpressionTermEntries(decomposed) {
   });
 }
 
+function coefficientIntervalAtSourceOrder(series, order) {
+  const coefficient = series?.[order];
+  return Array.isArray(coefficient) &&
+    coefficient.length === 2 &&
+    coefficient.every((value) => Number.isFinite(Number(value)))
+    ? root.outwardInterval(coefficient)
+    : root.pointInterval(0);
+}
+
+function sumIntervals(intervals) {
+  return intervals.reduce(
+    (total, interval) => root.addIntervals(total, interval),
+    root.pointInterval(0)
+  );
+}
+
+function sourceTermIntervalsFromExpression(expression) {
+  const sourceYOrder = Number(expression?.source_y_order);
+  return Object.fromEntries(
+    H38_SOURCE_TERM_KEYS.map((term) => [
+      term,
+      coefficientIntervalAtSourceOrder(
+        expression?.term_decomposition?.[term],
+        sourceYOrder
+      ),
+    ])
+  );
+}
+
 function hIndexRange(first, last) {
   return Array.from({ length: last - first + 1 }, (_, index) => first + index);
 }
@@ -2502,17 +2538,43 @@ function n38NodeWidthLocalizationForRow({
         ? numericOrderedInterval(`h${index}_source_replay_active_interval`, interval)
         : pointInterval(intervalMidpoint(interval))
     );
-    const replayedInterval = evaluateH38RecurrenceNumeratorBeforeSolve({
+    const replayExpression = evaluateH38RecurrenceNumeratorBeforeSolve({
       cell: replayCell,
       branch,
       branchSign,
       hIntervals: replayHIntervals,
-      includeTermDecomposition: false,
-    }).numerator_interval;
+      includeTermDecomposition: true,
+    });
+    const replayedInterval = replayExpression.numerator_interval;
+    const replayedTermIntervals =
+      sourceTermIntervalsFromExpression(replayExpression);
+    const replayedTermIntervalSum = sumIntervals(
+      H38_SOURCE_TERM_KEYS.map((term) => replayedTermIntervals[term])
+    );
+    const replayedTermTriangleAbsUpper = H38_SOURCE_TERM_KEYS.reduce(
+      (sum, term) => sum + intervalAbsUpper(replayedTermIntervals[term]),
+      0
+    );
     const storedInterval = finiteOrderedIntervalOrNull(coefficient);
     const replayedSourceInterval = finiteOrderedIntervalOrNull(
       replayedInterval
     );
+    const termSumRelativeGap =
+      replayedSourceInterval !== null
+        ? intervalEndpointRelativeGap(
+            replayedTermIntervalSum,
+            replayedSourceInterval
+          )
+        : null;
+    const replayedSourceAbsUpper =
+      replayedSourceInterval !== null
+        ? intervalAbsUpper(replayedSourceInterval)
+        : null;
+    const sourceTermCancellationFraction =
+      finitePositive(replayedTermTriangleAbsUpper) &&
+      finiteNonnegative(replayedSourceAbsUpper)
+        ? 1 - replayedSourceAbsUpper / replayedTermTriangleAbsUpper
+        : null;
     const endpointMaxGap =
       storedInterval !== null && replayedSourceInterval !== null
         ? intervalEndpointMaxGap(storedInterval, replayedSourceInterval)
@@ -2539,6 +2601,13 @@ function n38NodeWidthLocalizationForRow({
       h38_target_zeroed_by_evaluator: true,
       stored_source_interval: storedInterval,
       replayed_source_interval: replayedSourceInterval,
+      replayed_source_term_intervals: replayedTermIntervals,
+      replayed_source_term_interval_sum: replayedTermIntervalSum,
+      replayed_source_term_sum_relative_gap: termSumRelativeGap,
+      replayed_source_term_triangle_abs_upper:
+        replayedTermTriangleAbsUpper,
+      replayed_source_term_cancellation_fraction:
+        sourceTermCancellationFraction,
       stored_vs_replayed_endpoint_max_gap: endpointMaxGap,
       stored_vs_replayed_endpoint_relative_gap: endpointRelativeGap,
       stored_source_replayed_from_original_row: replayMatchesStored,
@@ -12718,6 +12787,25 @@ function buildSignedNonterminalH0H34SourceInputReplayDiagnostic({
     const replayedInterval = finiteOrderedIntervalOrNull(
       replay?.replayed_source_interval
     );
+    const replayedTermIntervals =
+      replay?.replayed_source_term_intervals ?? null;
+    const replayedTermIntervalSum = finiteOrderedIntervalOrNull(
+      replay?.replayed_source_term_interval_sum
+    );
+    const replayedTermSumRelativeGap = finiteNonnegative(
+      replay?.replayed_source_term_sum_relative_gap
+    )
+      ? Number(replay.replayed_source_term_sum_relative_gap)
+      : null;
+    const replayHasFourTermDecomposition =
+      replayedTermIntervals !== null &&
+      H38_SOURCE_TERM_KEYS.every(
+        (term) =>
+          finiteOrderedIntervalOrNull(replayedTermIntervals?.[term]) !== null
+      ) &&
+      replayedTermIntervalSum !== null &&
+      finiteNonnegative(replayedTermSumRelativeGap) &&
+      Number(replayedTermSumRelativeGap) < 1e-12;
     const storedToReplayStoredGap =
       storedInterval !== null && replayStoredInterval !== null
         ? intervalEndpointRelativeGap(storedInterval, replayStoredInterval)
@@ -12768,6 +12856,20 @@ function buildSignedNonterminalH0H34SourceInputReplayDiagnostic({
       stored_source_interval: storedInterval,
       replay_recorded_stored_source_interval: replayStoredInterval,
       replayed_source_interval: replayedInterval,
+      replayed_source_term_intervals: replayedTermIntervals,
+      replayed_source_term_interval_sum: replayedTermIntervalSum,
+      replayed_source_term_sum_relative_gap: replayedTermSumRelativeGap,
+      replayed_source_term_triangle_abs_upper:
+        finiteNonnegative(replay?.replayed_source_term_triangle_abs_upper)
+          ? Number(replay.replayed_source_term_triangle_abs_upper)
+          : null,
+      replayed_source_term_cancellation_fraction: Number.isFinite(
+        Number(replay?.replayed_source_term_cancellation_fraction)
+      )
+        ? Number(replay.replayed_source_term_cancellation_fraction)
+        : null,
+      replayed_source_has_four_term_decomposition:
+        replayHasFourTermDecomposition,
       stored_to_replay_recorded_stored_endpoint_relative_gap:
         storedToReplayStoredGap,
       stored_vs_replayed_endpoint_max_gap: storedToReplayedMaxGap,
@@ -12806,6 +12908,15 @@ function buildSignedNonterminalH0H34SourceInputReplayDiagnostic({
     (row) =>
       row.source_inputs_certified_directed_rounded_same_domain === false
   );
+  const allRowsHaveSourceTermDecomposition = replayRows.every(
+    (row) => row.replayed_source_has_four_term_decomposition === true
+  );
+  const maxTermSumRelativeGap = finiteMaximum(
+    replayRows.map((row) => row.replayed_source_term_sum_relative_gap)
+  );
+  const minTermCancellationFraction = finiteMinimum(
+    replayRows.map((row) => row.replayed_source_term_cancellation_fraction)
+  );
   const maxRelativeGap = finiteMaximum(
     replayRows.map((row) => row.stored_vs_replayed_endpoint_relative_gap)
   );
@@ -12843,9 +12954,16 @@ function buildSignedNonterminalH0H34SourceInputReplayDiagnostic({
       allRowsRecordH38Zeroing,
     all_source_input_rows_keep_directed_rounding_open:
       allRowsKeepDirectedRoundingOpen,
+    all_source_input_rows_have_source_term_decomposition:
+      allRowsHaveSourceTermDecomposition,
+    all_source_input_term_sums_match_replayed_source:
+      allRowsHaveSourceTermDecomposition,
     certifies_same_row_replay_for_stored_intervals:
       allRowsReplayFromOriginalRow,
     certifies_source_inputs_as_directed_rounded_same_domain: false,
+    max_source_input_term_sum_relative_gap: maxTermSumRelativeGap,
+    min_source_input_term_cancellation_fraction:
+      minTermCancellationFraction,
     max_source_input_replay_endpoint_gap: maxEndpointGap,
     max_source_input_replay_relative_gap: maxRelativeGap,
     source_input_replay_classification: replayClosesEvaluatorPath
@@ -16777,6 +16895,801 @@ function buildSignedNonterminalH0H34SourceOperationReplayCandidate({
   };
 }
 
+function buildSignedNonterminalH0H34SourceTrustGapDiagnostic({
+  sourceInputReplayDiagnostic,
+  sourceMapDiagnostic,
+  sourceMapEndpointMarginDiagnostic,
+  sourceOperationReplay,
+} = {}) {
+  if (
+    sourceInputReplayDiagnostic === null ||
+    sourceInputReplayDiagnostic === undefined ||
+    sourceInputReplayDiagnostic.target_kind !==
+      "candidate-signed-nonterminal-h0-h34-source-input-replay-diagnostic" ||
+    sourceMapDiagnostic === null ||
+    sourceMapDiagnostic === undefined ||
+    sourceMapDiagnostic.target_kind !==
+      "candidate-signed-nonterminal-h0-h34-source-map-diagnostic" ||
+    sourceMapEndpointMarginDiagnostic === null ||
+    sourceMapEndpointMarginDiagnostic === undefined ||
+    sourceMapEndpointMarginDiagnostic.target_kind !==
+      "candidate-signed-nonterminal-h0-h34-source-map-endpoint-margin-diagnostic" ||
+    sourceOperationReplay === null ||
+    sourceOperationReplay === undefined ||
+    sourceOperationReplay.target_kind !==
+      "candidate-signed-nonterminal-h0-h34-source-operation-replay" ||
+    !Array.isArray(sourceInputReplayDiagnostic.source_input_replay_rows) ||
+    sourceInputReplayDiagnostic.source_input_replay_rows.length !== 5 ||
+    !Array.isArray(sourceMapDiagnostic.source_map_rows) ||
+    sourceMapDiagnostic.source_map_rows.length !== 5 ||
+    !Array.isArray(sourceMapEndpointMarginDiagnostic.endpoint_margin_rows) ||
+    sourceMapEndpointMarginDiagnostic.endpoint_margin_rows.length !== 5 ||
+    !Array.isArray(sourceOperationReplay.operation_replay_rows) ||
+    sourceOperationReplay.operation_replay_rows.length !== 5
+  ) {
+    return null;
+  }
+  const selectedProviderContractionFactor = Number(
+    sourceOperationReplay.selected_provider_contraction_factor
+  );
+  if (!finitePositive(selectedProviderContractionFactor)) {
+    return null;
+  }
+  const rowsByNode = (rows) =>
+    new Map(
+      rows
+        .filter((row) => Number.isInteger(row?.node_index))
+        .map((row) => [Number(row.node_index), row])
+    );
+  const sourceInputRowsByNode = rowsByNode(
+    sourceInputReplayDiagnostic.source_input_replay_rows
+  );
+  const endpointRowsByNode = rowsByNode(
+    sourceMapEndpointMarginDiagnostic.endpoint_margin_rows
+  );
+  const operationRowsByNode = rowsByNode(
+    sourceOperationReplay.operation_replay_rows
+  );
+  const relativeGap = (left, right) => {
+    const resolvedLeft = finiteOrderedIntervalOrNull(left);
+    const resolvedRight = finiteOrderedIntervalOrNull(right);
+    return resolvedLeft !== null && resolvedRight !== null
+      ? intervalEndpointRelativeGap(resolvedLeft, resolvedRight)
+      : null;
+  };
+  const gapCloses = (gap) =>
+    finiteNonnegative(gap) && Number(gap) <= 1e-12;
+  const trustGapRows = sourceMapDiagnostic.source_map_rows.map(
+    (sourceMapRow) => {
+      const nodeIndex = Number(sourceMapRow?.node_index);
+      const sourceInputRow = sourceInputRowsByNode.get(nodeIndex) ?? null;
+      const endpointRow = endpointRowsByNode.get(nodeIndex) ?? null;
+      const operationRow = operationRowsByNode.get(nodeIndex) ?? null;
+      const replayedSourceInterval = finiteOrderedIntervalOrNull(
+        sourceInputRow?.replayed_source_interval
+      );
+      const storedSourceInterval = finiteOrderedIntervalOrNull(
+        sourceInputRow?.stored_source_interval
+      );
+      const sourceMapCoefficientInterval = finiteOrderedIntervalOrNull(
+        sourceMapRow?.coefficient_interval
+      );
+      const coefficientMidpoint = Number(sourceMapRow?.coefficient_midpoint);
+      const lagrangeWeight = Number(
+        sourceMapRow?.lagrange_fourth_derivative_weight
+      );
+      const expandedWeightedTarget = finiteOrderedIntervalOrNull(
+        endpointRow?.number_epsilon_expanded_weighted_target_interval
+      );
+      const expandedCoefficientTarget = finiteOrderedIntervalOrNull(
+        endpointRow?.number_epsilon_expanded_coefficient_target_interval
+      );
+      if (
+        !Number.isInteger(nodeIndex) ||
+        sourceInputRow === null ||
+        endpointRow === null ||
+        operationRow === null ||
+        replayedSourceInterval === null ||
+        storedSourceInterval === null ||
+        sourceMapCoefficientInterval === null ||
+        !Number.isFinite(coefficientMidpoint) ||
+        !Number.isFinite(lagrangeWeight) ||
+        expandedWeightedTarget === null ||
+        expandedCoefficientTarget === null
+      ) {
+        return null;
+      }
+      const replayToStoredSourceGap = relativeGap(
+        replayedSourceInterval,
+        storedSourceInterval
+      );
+      const replayToSourceMapCoefficientGap = relativeGap(
+        replayedSourceInterval,
+        sourceMapCoefficientInterval
+      );
+      const coefficientResidualFromReplay = root.addIntervals(
+        replayedSourceInterval,
+        [-coefficientMidpoint, -coefficientMidpoint]
+      );
+      const weightedResidualFromReplay = root.scaleInterval(
+        coefficientResidualFromReplay,
+        lagrangeWeight
+      );
+      const scaledWeightedFromReplay = root.scaleInterval(
+        weightedResidualFromReplay,
+        1 / selectedProviderContractionFactor
+      );
+      const scaledCoefficientFromReplay = root.scaleInterval(
+        coefficientResidualFromReplay,
+        1 / selectedProviderContractionFactor
+      );
+      const coefficientReplayToSourceMapGap = relativeGap(
+        coefficientResidualFromReplay,
+        sourceMapRow.coefficient_residual_from_source
+      );
+      const weightedReplayToSourceMapGap = relativeGap(
+        weightedResidualFromReplay,
+        sourceMapRow.weighted_residual_from_source
+      );
+      const scaledWeightedReplayToSourceMapGap = relativeGap(
+        scaledWeightedFromReplay,
+        sourceMapRow.scaled_weighted_residual_interval
+      );
+      const scaledCoefficientReplayToSourceMapGap = relativeGap(
+        scaledCoefficientFromReplay,
+        sourceMapRow.scaled_coefficient_residual_interval_after_midpoint
+      );
+      const coefficientReplayToOperationGap = relativeGap(
+        coefficientResidualFromReplay,
+        operationRow.coefficient_residual_replay_interval
+      );
+      const weightedReplayToOperationGap = relativeGap(
+        weightedResidualFromReplay,
+        operationRow.weighted_residual_replay_interval
+      );
+      const scaledWeightedReplayToOperationGap = relativeGap(
+        scaledWeightedFromReplay,
+        operationRow.scaled_weighted_residual_replay_interval
+      );
+      const scaledCoefficientReplayToOperationGap = relativeGap(
+        scaledCoefficientFromReplay,
+        operationRow.scaled_coefficient_residual_replay_interval_after_midpoint
+      );
+      const replayToSourceMapGaps = [
+        replayToStoredSourceGap,
+        replayToSourceMapCoefficientGap,
+        coefficientReplayToSourceMapGap,
+        weightedReplayToSourceMapGap,
+        scaledWeightedReplayToSourceMapGap,
+        scaledCoefficientReplayToSourceMapGap,
+      ];
+      const replayToOperationGaps = [
+        coefficientReplayToOperationGap,
+        weightedReplayToOperationGap,
+        scaledWeightedReplayToOperationGap,
+        scaledCoefficientReplayToOperationGap,
+      ];
+      const sourceReplayClosed = replayToSourceMapGaps.every(gapCloses);
+      const operationReplayClosed = replayToOperationGaps.every(gapCloses);
+      const scaledWeightedFitsEndpointMargin = intervalContainsInterval(
+        expandedWeightedTarget,
+        scaledWeightedFromReplay
+      );
+      const scaledCoefficientFitsEndpointMargin = intervalContainsInterval(
+        expandedCoefficientTarget,
+        scaledCoefficientFromReplay
+      );
+      const operationWeightedFitsEndpointMargin =
+        operationRow.weighted_operation_replay_fits_one_epsilon_endpoint_margin ===
+        true;
+      const operationCoefficientFitsEndpointMargin =
+        operationRow.coefficient_operation_replay_fits_one_epsilon_endpoint_margin ===
+        true;
+      const sourceInputPathClosed =
+        sourceInputRow.stored_source_replayed_from_original_row === true &&
+        sourceInputRow.certifies_same_row_replay_for_stored_intervals ===
+          true &&
+        sourceInputRow.h38_midpoint_supplied_to_evaluator === true &&
+        sourceInputRow.h38_target_zeroed_by_evaluator === true &&
+        sourceInputRow.source_inputs_certified_directed_rounded_same_domain ===
+          false;
+      const wouldPassEndpointMarginIfDirectedSourceTrustAvailable =
+        sourceInputPathClosed &&
+        sourceReplayClosed &&
+        operationReplayClosed &&
+        operationWeightedFitsEndpointMargin &&
+        operationCoefficientFitsEndpointMargin;
+      return {
+        node_index: nodeIndex,
+        xi_midpoint: sourceMapRow.xi_midpoint,
+        source_variant: "h0-h34-cell-midpoint",
+        replay_kind: sourceInputRow.replay_kind,
+        source_operation_kind: operationRow.source_operation_kind,
+        operation_rounding_model: operationRow.operation_rounding_model,
+        endpoint_margin_model: endpointRow.endpoint_margin_model,
+        endpoint_margin_relative_bound:
+          endpointRow.endpoint_margin_relative_bound,
+        selected_provider_contraction_factor:
+          selectedProviderContractionFactor,
+        active_h_index_range: sourceMapDiagnostic.active_h_index_range,
+        interpolation_node_count: sourceMapDiagnostic.interpolation_node_count,
+        replayed_source_interval: replayedSourceInterval,
+        stored_source_interval: storedSourceInterval,
+        source_map_coefficient_interval: sourceMapCoefficientInterval,
+        coefficient_midpoint: coefficientMidpoint,
+        lagrange_fourth_derivative_weight: lagrangeWeight,
+        coefficient_residual_from_replayed_source:
+          coefficientResidualFromReplay,
+        weighted_residual_from_replayed_source: weightedResidualFromReplay,
+        scaled_weighted_residual_from_replayed_source:
+          scaledWeightedFromReplay,
+        scaled_coefficient_residual_from_replayed_source_after_midpoint:
+          scaledCoefficientFromReplay,
+        source_map_coefficient_residual_interval:
+          sourceMapRow.coefficient_residual_from_source,
+        source_map_weighted_residual_interval:
+          sourceMapRow.weighted_residual_from_source,
+        source_map_scaled_weighted_residual_interval:
+          sourceMapRow.scaled_weighted_residual_interval,
+        source_map_scaled_coefficient_residual_interval_after_midpoint:
+          sourceMapRow.scaled_coefficient_residual_interval_after_midpoint,
+        operation_coefficient_residual_replay_interval:
+          operationRow.coefficient_residual_replay_interval,
+        operation_weighted_residual_replay_interval:
+          operationRow.weighted_residual_replay_interval,
+        operation_scaled_weighted_residual_replay_interval:
+          operationRow.scaled_weighted_residual_replay_interval,
+        operation_scaled_coefficient_residual_replay_interval_after_midpoint:
+          operationRow.scaled_coefficient_residual_replay_interval_after_midpoint,
+        replay_to_stored_source_relative_gap: replayToStoredSourceGap,
+        replay_to_source_map_coefficient_relative_gap:
+          replayToSourceMapCoefficientGap,
+        coefficient_replay_to_source_map_relative_gap:
+          coefficientReplayToSourceMapGap,
+        weighted_replay_to_source_map_relative_gap:
+          weightedReplayToSourceMapGap,
+        scaled_weighted_replay_to_source_map_relative_gap:
+          scaledWeightedReplayToSourceMapGap,
+        scaled_coefficient_replay_to_source_map_relative_gap:
+          scaledCoefficientReplayToSourceMapGap,
+        coefficient_replay_to_operation_relative_gap:
+          coefficientReplayToOperationGap,
+        weighted_replay_to_operation_relative_gap:
+          weightedReplayToOperationGap,
+        scaled_weighted_replay_to_operation_relative_gap:
+          scaledWeightedReplayToOperationGap,
+        scaled_coefficient_replay_to_operation_relative_gap:
+          scaledCoefficientReplayToOperationGap,
+        source_input_path_closed_by_replay: sourceInputPathClosed,
+        replayed_source_closes_source_map_arithmetic: sourceReplayClosed,
+        replayed_source_closes_operation_arithmetic: operationReplayClosed,
+        number_epsilon_expanded_weighted_target_interval:
+          expandedWeightedTarget,
+        number_epsilon_expanded_coefficient_target_interval:
+          expandedCoefficientTarget,
+        direct_scaled_weighted_replayed_source_fits_one_epsilon_endpoint_margin:
+          scaledWeightedFitsEndpointMargin,
+        direct_scaled_coefficient_replayed_source_fits_one_epsilon_endpoint_margin:
+          scaledCoefficientFitsEndpointMargin,
+        operation_path_weighted_replayed_source_fits_one_epsilon_endpoint_margin:
+          operationWeightedFitsEndpointMargin,
+        operation_path_coefficient_replayed_source_fits_one_epsilon_endpoint_margin:
+          operationCoefficientFitsEndpointMargin,
+        would_pass_endpoint_margin_if_directed_source_trust_available:
+          wouldPassEndpointMarginIfDirectedSourceTrustAvailable,
+        source_inputs_certified_directed_rounded_same_domain: false,
+        source_trust_gap_row_status:
+          wouldPassEndpointMarginIfDirectedSourceTrustAvailable
+            ? "replayed-source-fits-endpoint-margin-directed-source-trust-open"
+            : "replayed-source-trust-gap-open",
+      };
+    }
+  );
+  if (trustGapRows.some((row) => row === null)) {
+    return null;
+  }
+  const sourceMapGaps = trustGapRows.flatMap((row) => [
+    row.replay_to_stored_source_relative_gap,
+    row.replay_to_source_map_coefficient_relative_gap,
+    row.coefficient_replay_to_source_map_relative_gap,
+    row.weighted_replay_to_source_map_relative_gap,
+    row.scaled_weighted_replay_to_source_map_relative_gap,
+    row.scaled_coefficient_replay_to_source_map_relative_gap,
+  ]);
+  const operationGaps = trustGapRows.flatMap((row) => [
+    row.coefficient_replay_to_operation_relative_gap,
+    row.weighted_replay_to_operation_relative_gap,
+    row.scaled_weighted_replay_to_operation_relative_gap,
+    row.scaled_coefficient_replay_to_operation_relative_gap,
+  ]);
+  const endpointGaps = trustGapRows.flatMap((row) => [
+    row.scaled_weighted_replay_to_source_map_relative_gap,
+    row.scaled_coefficient_replay_to_source_map_relative_gap,
+  ]);
+  const allRowsUseSameRowSourceInputReplay = trustGapRows.every(
+    (row) =>
+      row.replay_kind ===
+        "same-row-h0-h34-cell-midpoint-source-input-replay" &&
+      row.source_input_path_closed_by_replay === true
+  );
+  const allRowsRecordH38EvaluatorZeroing =
+    sourceInputReplayDiagnostic.all_source_input_rows_record_h38_evaluator_zeroing ===
+    true;
+  const allRowsCloseSourceMapArithmetic = trustGapRows.every(
+    (row) => row.replayed_source_closes_source_map_arithmetic === true
+  );
+  const allRowsCloseOperationArithmetic = trustGapRows.every(
+    (row) => row.replayed_source_closes_operation_arithmetic === true
+  );
+  const allRowsFitEndpointMargin = trustGapRows.every(
+    (row) =>
+      row.operation_path_weighted_replayed_source_fits_one_epsilon_endpoint_margin ===
+        true &&
+      row.operation_path_coefficient_replayed_source_fits_one_epsilon_endpoint_margin ===
+        true
+  );
+  const allRowsWouldPassIfDirectedSourceTrustAvailable = trustGapRows.every(
+    (row) =>
+      row.would_pass_endpoint_margin_if_directed_source_trust_available ===
+      true
+  );
+  const directedSourceTrustStillOpen =
+    sourceInputReplayDiagnostic.certifies_source_inputs_as_directed_rounded_same_domain ===
+      false &&
+    sourceOperationReplay.certifies_source_inputs_as_directed_rounded_same_domain ===
+      false &&
+    sourceMapDiagnostic.h38_source_provider_certifies_directed_rounded_shared_domain ===
+      false;
+  const localizedToDirectedSourceTrust =
+    allRowsUseSameRowSourceInputReplay &&
+    allRowsRecordH38EvaluatorZeroing &&
+    allRowsCloseSourceMapArithmetic &&
+    allRowsCloseOperationArithmetic &&
+    allRowsFitEndpointMargin &&
+    allRowsWouldPassIfDirectedSourceTrustAvailable &&
+    directedSourceTrustStillOpen;
+  return {
+    target_kind:
+      "candidate-signed-nonterminal-h0-h34-source-trust-gap-diagnostic",
+    source_input_replay_diagnostic_kind:
+      sourceInputReplayDiagnostic.target_kind,
+    source_source_map_diagnostic_kind: sourceMapDiagnostic.target_kind,
+    source_endpoint_margin_diagnostic_kind:
+      sourceMapEndpointMarginDiagnostic.target_kind,
+    source_operation_replay_kind: sourceOperationReplay.target_kind,
+    proof_status:
+      "candidate-source-trust-gap-localized-directed-producer-image-open",
+    source_trust_gap_kind:
+      "replayed-h0-h34-cell-midpoint-source-through-source-map-operation-and-one-epsilon-endpoint-margin",
+    operation_rounding_model: sourceOperationReplay.operation_rounding_model,
+    active_h_index_range: sourceMapDiagnostic.active_h_index_range,
+    interpolation_node_count: sourceMapDiagnostic.interpolation_node_count,
+    selected_provider_contraction_factor:
+      selectedProviderContractionFactor,
+    endpoint_margin_relative_bound:
+      sourceMapEndpointMarginDiagnostic.endpoint_margin_relative_bound,
+    source_provider_certifies_directed_rounded_shared_domain:
+      sourceMapDiagnostic.h38_source_provider_certifies_directed_rounded_shared_domain,
+    source_inputs_certified_directed_rounded_same_domain: false,
+    source_trust_gap_rows: trustGapRows,
+    all_source_trust_gap_rows_use_same_row_source_input_replay:
+      allRowsUseSameRowSourceInputReplay,
+    all_source_trust_gap_rows_record_h38_evaluator_zeroing:
+      allRowsRecordH38EvaluatorZeroing,
+    all_source_trust_gap_rows_close_replay_to_source_map_arithmetic:
+      allRowsCloseSourceMapArithmetic,
+    all_source_trust_gap_rows_close_replay_to_operation_arithmetic:
+      allRowsCloseOperationArithmetic,
+    all_source_trust_gap_rows_fit_one_number_epsilon_endpoint_margin:
+      allRowsFitEndpointMargin,
+    all_source_trust_gap_rows_would_pass_endpoint_margin_if_directed_source_trust_available:
+      allRowsWouldPassIfDirectedSourceTrustAvailable,
+    source_trust_gap_localized_to_directed_producer_image_trust:
+      localizedToDirectedSourceTrust,
+    max_source_trust_gap_replay_to_source_map_relative_gap:
+      Math.max(...sourceMapGaps),
+    max_source_trust_gap_replay_to_operation_relative_gap:
+      Math.max(...operationGaps),
+    max_source_trust_gap_scaled_endpoint_relative_gap:
+      Math.max(...endpointGaps),
+    source_trust_gap_classification: localizedToDirectedSourceTrust
+      ? "interval-operation-path-closed-directed-producer-image-trust-open"
+      : allRowsWouldPassIfDirectedSourceTrustAvailable
+        ? "interval-operation-path-closed-metadata-open"
+        : "source-trust-gap-open",
+    missing_directed_rounded_operation:
+      "prove the replayed h0-h34-cell-midpoint source intervals are same-domain directed-rounded H38 producer-image enclosures before attaching them to the closed operation and endpoint-margin path",
+    next_certificate_object:
+      "directed-rounded H38 producer-image source certificate for the five replayed h0-h34-cell-midpoint coefficient intervals, with h35-h38 midpoint freezing and h38 evaluator zeroing preserved",
+    claim_boundary: {
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_h0_h34_cell_midpoint_source_map: false,
+      certifies_endpoint_margin_as_directed_rounded_source: false,
+      certifies_scaled_operation_as_directed_rounded_source: false,
+      certifies_nonterminal_h0_h34_covariance_enclosure: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function buildSignedNonterminalH0H34SourceTermProducerImageTraceCandidate({
+  sourceInputReplayDiagnostic,
+  sourceTrustGapDiagnostic,
+} = {}) {
+  if (
+    sourceInputReplayDiagnostic === null ||
+    sourceInputReplayDiagnostic === undefined ||
+    sourceInputReplayDiagnostic.target_kind !==
+      "candidate-signed-nonterminal-h0-h34-source-input-replay-diagnostic" ||
+    sourceTrustGapDiagnostic === null ||
+    sourceTrustGapDiagnostic === undefined ||
+    sourceTrustGapDiagnostic.target_kind !==
+      "candidate-signed-nonterminal-h0-h34-source-trust-gap-diagnostic" ||
+    !Array.isArray(sourceInputReplayDiagnostic.source_input_replay_rows) ||
+    sourceInputReplayDiagnostic.source_input_replay_rows.length !== 5 ||
+    !Array.isArray(sourceTrustGapDiagnostic.source_trust_gap_rows) ||
+    sourceTrustGapDiagnostic.source_trust_gap_rows.length !== 5
+  ) {
+    return null;
+  }
+  const selectedProviderContractionFactor = Number(
+    sourceTrustGapDiagnostic.selected_provider_contraction_factor
+  );
+  if (!finitePositive(selectedProviderContractionFactor)) {
+    return null;
+  }
+  const trustRowsByNode = new Map(
+    sourceTrustGapDiagnostic.source_trust_gap_rows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const relativeGap = (left, right) => {
+    const resolvedLeft = finiteOrderedIntervalOrNull(left);
+    const resolvedRight = finiteOrderedIntervalOrNull(right);
+    return resolvedLeft !== null && resolvedRight !== null
+      ? intervalEndpointRelativeGap(resolvedLeft, resolvedRight)
+      : null;
+  };
+  const gapCloses = (gap) =>
+    finiteNonnegative(gap) && Number(gap) <= 1e-12;
+  const traceRows = sourceInputReplayDiagnostic.source_input_replay_rows.map(
+    (sourceInputRow) => {
+      const nodeIndex = Number(sourceInputRow?.node_index);
+      const trustGapRow = trustRowsByNode.get(nodeIndex) ?? null;
+      const replayedSourceInterval = finiteOrderedIntervalOrNull(
+        sourceInputRow?.replayed_source_interval
+      );
+      const termIntervals = Object.fromEntries(
+        H38_SOURCE_TERM_KEYS.map((term) => [
+          term,
+          finiteOrderedIntervalOrNull(
+            sourceInputRow?.replayed_source_term_intervals?.[term]
+          ),
+        ])
+      );
+      const termIntervalsAvailable = H38_SOURCE_TERM_KEYS.every(
+        (term) => termIntervals[term] !== null
+      );
+      const coefficientMidpoint = Number(trustGapRow?.coefficient_midpoint);
+      const lagrangeWeight = Number(
+        trustGapRow?.lagrange_fourth_derivative_weight
+      );
+      if (
+        !Number.isInteger(nodeIndex) ||
+        trustGapRow === null ||
+        replayedSourceInterval === null ||
+        !termIntervalsAvailable ||
+        !Number.isFinite(coefficientMidpoint) ||
+        !Number.isFinite(lagrangeWeight)
+      ) {
+        return null;
+      }
+      const sourceTermIntervals = Object.fromEntries(
+        H38_SOURCE_TERM_KEYS.map((term) => [term, termIntervals[term]])
+      );
+      const termIntervalSum = sumIntervals(
+        H38_SOURCE_TERM_KEYS.map((term) => sourceTermIntervals[term])
+      );
+      const termSumToReplayedSourceGap = relativeGap(
+        termIntervalSum,
+        replayedSourceInterval
+      );
+      const termMidpoints = Object.fromEntries(
+        H38_SOURCE_TERM_KEYS.map((term) => [
+          term,
+          intervalMidpoint(sourceTermIntervals[term]),
+        ])
+      );
+      const termResidualIntervals = Object.fromEntries(
+        H38_SOURCE_TERM_KEYS.map((term) => [
+          term,
+          root.addIntervals(sourceTermIntervals[term], [
+            -termMidpoints[term],
+            -termMidpoints[term],
+          ]),
+        ])
+      );
+      const termResidualSum = sumIntervals(
+        H38_SOURCE_TERM_KEYS.map((term) => termResidualIntervals[term])
+      );
+      const termMidpointSum = H38_SOURCE_TERM_KEYS.reduce(
+        (sum, term) => sum + termMidpoints[term],
+        0
+      );
+      const midpointOffset = termMidpointSum - coefficientMidpoint;
+      const coefficientResidualFromTerms = root.addIntervals(
+        termResidualSum,
+        [midpointOffset, midpointOffset]
+      );
+      const weightedResidualFromTerms = root.scaleInterval(
+        coefficientResidualFromTerms,
+        lagrangeWeight
+      );
+      const scaledWeightedFromTerms = root.scaleInterval(
+        weightedResidualFromTerms,
+        1 / selectedProviderContractionFactor
+      );
+      const scaledCoefficientFromTerms = root.scaleInterval(
+        coefficientResidualFromTerms,
+        1 / selectedProviderContractionFactor
+      );
+      const coefficientResidualGap = relativeGap(
+        coefficientResidualFromTerms,
+        trustGapRow.coefficient_residual_from_replayed_source
+      );
+      const weightedResidualGap = relativeGap(
+        weightedResidualFromTerms,
+        trustGapRow.weighted_residual_from_replayed_source
+      );
+      const scaledWeightedGap = relativeGap(
+        scaledWeightedFromTerms,
+        trustGapRow.scaled_weighted_residual_from_replayed_source
+      );
+      const scaledCoefficientGap = relativeGap(
+        scaledCoefficientFromTerms,
+        trustGapRow
+          .scaled_coefficient_residual_from_replayed_source_after_midpoint
+      );
+      const termTriangleAbsUpper = H38_SOURCE_TERM_KEYS.reduce(
+        (sum, term) => sum + intervalAbsUpper(sourceTermIntervals[term]),
+        0
+      );
+      const sourceAbsUpper = intervalAbsUpper(replayedSourceInterval);
+      const sourceCancellationFraction =
+        finitePositive(termTriangleAbsUpper)
+          ? 1 - sourceAbsUpper / termTriangleAbsUpper
+          : null;
+      const termWidthSum = H38_SOURCE_TERM_KEYS.reduce(
+        (sum, term) => sum + intervalWidth(sourceTermIntervals[term]),
+        0
+      );
+      const sourceWidthToTermWidthSumRatio = finitePositive(termWidthSum)
+        ? intervalWidth(replayedSourceInterval) / termWidthSum
+        : null;
+      const dominantTermByAbsUpper = H38_SOURCE_TERM_KEYS.reduce(
+        (best, term) => {
+          const absUpper = intervalAbsUpper(sourceTermIntervals[term]);
+          if (
+            best === null ||
+            absUpper > Number(best.coefficient_abs_upper)
+          ) {
+            return { term, coefficient_abs_upper: absUpper };
+          }
+          return best;
+        },
+        null
+      );
+      const dominantTermByWidth = H38_SOURCE_TERM_KEYS.reduce((best, term) => {
+        const width = intervalWidth(sourceTermIntervals[term]);
+        if (best === null || width > Number(best.coefficient_width)) {
+          return { term, coefficient_width: width };
+        }
+        return best;
+      }, null);
+      const sinPairInterval = root.addIntervals(
+        sourceTermIntervals.sin_phi,
+        sourceTermIntervals.sin_delta
+      );
+      const sinPairTriangleAbsUpper =
+        intervalAbsUpper(sourceTermIntervals.sin_phi) +
+        intervalAbsUpper(sourceTermIntervals.sin_delta);
+      const sinPairCancellationFraction = finitePositive(
+        sinPairTriangleAbsUpper
+      )
+        ? 1 - intervalAbsUpper(sinPairInterval) / sinPairTriangleAbsUpper
+        : null;
+      const sourceTermTraceCloses =
+        gapCloses(termSumToReplayedSourceGap) &&
+        gapCloses(coefficientResidualGap) &&
+        gapCloses(weightedResidualGap) &&
+        gapCloses(scaledWeightedGap) &&
+        gapCloses(scaledCoefficientGap) &&
+        trustGapRow
+          .would_pass_endpoint_margin_if_directed_source_trust_available ===
+          true;
+      return {
+        node_index: nodeIndex,
+        xi_midpoint: sourceInputRow.xi_midpoint,
+        source_variant: "h0-h34-cell-midpoint",
+        replay_kind: sourceInputRow.replay_kind,
+        source_term_trace_kind:
+          "h0-h34-cell-midpoint-four-term-source-producer-image-trace",
+        source_terms: [...H38_SOURCE_TERM_KEYS],
+        active_h_index_range: sourceTrustGapDiagnostic.active_h_index_range,
+        interpolation_node_count:
+          sourceTrustGapDiagnostic.interpolation_node_count,
+        selected_provider_contraction_factor:
+          selectedProviderContractionFactor,
+        replayed_source_interval: replayedSourceInterval,
+        source_term_intervals: sourceTermIntervals,
+        source_term_interval_sum: termIntervalSum,
+        source_term_sum_to_replayed_source_relative_gap:
+          termSumToReplayedSourceGap,
+        source_term_midpoints: termMidpoints,
+        source_term_midpoint_sum: termMidpointSum,
+        coefficient_midpoint: coefficientMidpoint,
+        source_term_midpoint_sum_to_coefficient_midpoint_abs_gap:
+          Math.abs(midpointOffset),
+        source_term_residual_intervals_after_midpoint:
+          termResidualIntervals,
+        source_term_residual_sum_after_midpoint: termResidualSum,
+        coefficient_residual_from_source_terms:
+          coefficientResidualFromTerms,
+        weighted_residual_from_source_terms:
+          weightedResidualFromTerms,
+        scaled_weighted_residual_from_source_terms:
+          scaledWeightedFromTerms,
+        scaled_coefficient_residual_from_source_terms_after_midpoint:
+          scaledCoefficientFromTerms,
+        coefficient_residual_term_trace_relative_gap:
+          coefficientResidualGap,
+        weighted_residual_term_trace_relative_gap: weightedResidualGap,
+        scaled_weighted_term_trace_relative_gap: scaledWeightedGap,
+        scaled_coefficient_term_trace_relative_gap: scaledCoefficientGap,
+        source_term_triangle_abs_upper: termTriangleAbsUpper,
+        replayed_source_abs_upper: sourceAbsUpper,
+        source_term_cancellation_fraction: sourceCancellationFraction,
+        source_width_to_term_width_sum_ratio:
+          sourceWidthToTermWidthSumRatio,
+        dominant_source_term_by_abs_upper:
+          dominantTermByAbsUpper?.term ?? null,
+        dominant_source_term_abs_upper:
+          dominantTermByAbsUpper?.coefficient_abs_upper ?? null,
+        dominant_source_term_by_width: dominantTermByWidth?.term ?? null,
+        dominant_source_term_width:
+          dominantTermByWidth?.coefficient_width ?? null,
+        sin_phi_sin_delta_pair_interval: sinPairInterval,
+        sin_phi_sin_delta_pair_triangle_abs_upper:
+          sinPairTriangleAbsUpper,
+        sin_phi_sin_delta_pair_cancellation_fraction:
+          sinPairCancellationFraction,
+        term_trace_reconstructs_replayed_source:
+          gapCloses(termSumToReplayedSourceGap),
+        term_trace_reconstructs_midpoint_residual_path:
+          gapCloses(coefficientResidualGap) &&
+          gapCloses(weightedResidualGap) &&
+          gapCloses(scaledWeightedGap) &&
+          gapCloses(scaledCoefficientGap),
+        term_trace_preserves_endpoint_margin_replay_chain:
+          trustGapRow
+            .would_pass_endpoint_margin_if_directed_source_trust_available ===
+          true,
+        source_terms_certified_directed_rounded_same_domain: false,
+        source_term_trace_row_status: sourceTermTraceCloses
+          ? "source-term-trace-closes-replay-and-endpoint-path-directed-producer-image-trust-open"
+          : "source-term-producer-image-trace-open",
+      };
+    }
+  );
+  if (traceRows.some((row) => row === null)) {
+    return null;
+  }
+  const termSumGaps = traceRows.map(
+    (row) => row.source_term_sum_to_replayed_source_relative_gap
+  );
+  const residualGaps = traceRows.flatMap((row) => [
+    row.coefficient_residual_term_trace_relative_gap,
+    row.weighted_residual_term_trace_relative_gap,
+    row.scaled_weighted_term_trace_relative_gap,
+    row.scaled_coefficient_term_trace_relative_gap,
+  ]);
+  const allRowsHaveFourTermDecomposition = traceRows.every(
+    (row) =>
+      row.source_terms.length === H38_SOURCE_TERM_KEYS.length &&
+      H38_SOURCE_TERM_KEYS.every((term) =>
+        finiteOrderedIntervalOrNull(row.source_term_intervals?.[term]) !== null
+      )
+  );
+  const allRowsReconstructReplayedSource = traceRows.every(
+    (row) => row.term_trace_reconstructs_replayed_source === true
+  );
+  const allRowsReconstructMidpointResidualPath = traceRows.every(
+    (row) => row.term_trace_reconstructs_midpoint_residual_path === true
+  );
+  const allRowsPreserveEndpointPath = traceRows.every(
+    (row) =>
+      row.term_trace_preserves_endpoint_margin_replay_chain === true
+  );
+  const directedSourceTrustOpen =
+    sourceTrustGapDiagnostic
+      .source_trust_gap_localized_to_directed_producer_image_trust === true &&
+    sourceTrustGapDiagnostic
+      .source_inputs_certified_directed_rounded_same_domain === false;
+  const localizedToTermProducerImageTrust =
+    allRowsHaveFourTermDecomposition &&
+    allRowsReconstructReplayedSource &&
+    allRowsReconstructMidpointResidualPath &&
+    allRowsPreserveEndpointPath &&
+    directedSourceTrustOpen;
+  return {
+    target_kind:
+      "candidate-signed-nonterminal-h0-h34-source-term-producer-image-trace",
+    source_input_replay_diagnostic_kind:
+      sourceInputReplayDiagnostic.target_kind,
+    source_trust_gap_diagnostic_kind: sourceTrustGapDiagnostic.target_kind,
+    proof_status:
+      "candidate-source-term-producer-image-trace-directed-trust-open",
+    source_term_trace_kind:
+      "four-term-h38-source-decomposition-through-h0-h34-replay-chain",
+    source_terms: [...H38_SOURCE_TERM_KEYS],
+    active_h_index_range: sourceTrustGapDiagnostic.active_h_index_range,
+    interpolation_node_count:
+      sourceTrustGapDiagnostic.interpolation_node_count,
+    selected_provider_contraction_factor:
+      selectedProviderContractionFactor,
+    source_term_trace_rows: traceRows,
+    all_source_term_trace_rows_have_four_term_decomposition:
+      allRowsHaveFourTermDecomposition,
+    all_source_term_trace_rows_sum_to_replayed_source:
+      allRowsReconstructReplayedSource,
+    all_source_term_trace_rows_reconstruct_midpoint_residual_path:
+      allRowsReconstructMidpointResidualPath,
+    all_source_term_trace_rows_preserve_endpoint_margin_replay_chain:
+      allRowsPreserveEndpointPath,
+    source_term_trace_localized_to_directed_producer_image_trust:
+      localizedToTermProducerImageTrust,
+    source_terms_certified_directed_rounded_same_domain: false,
+    max_source_term_sum_to_replayed_source_relative_gap:
+      finiteMaximum(termSumGaps),
+    max_source_term_residual_path_relative_gap:
+      finiteMaximum(residualGaps),
+    min_source_term_cancellation_fraction: finiteMinimum(
+      traceRows.map((row) => row.source_term_cancellation_fraction)
+    ),
+    min_sin_phi_sin_delta_pair_cancellation_fraction: finiteMinimum(
+      traceRows.map(
+        (row) => row.sin_phi_sin_delta_pair_cancellation_fraction
+      )
+    ),
+    max_source_width_to_term_width_sum_ratio: finiteMaximum(
+      traceRows.map((row) => row.source_width_to_term_width_sum_ratio)
+    ),
+    source_term_trace_classification: localizedToTermProducerImageTrust
+      ? "source-term-sum-and-midpoint-residual-close-directed-producer-image-trust-open"
+      : allRowsReconstructReplayedSource &&
+          allRowsReconstructMidpointResidualPath
+        ? "source-term-arithmetic-closed-metadata-open"
+        : "source-term-producer-image-trace-open",
+    missing_directed_rounded_operation:
+      "certify the four H38 source-term intervals as same-domain directed-rounded producer-image enclosures before applying the closed h0-h34 replay and endpoint-margin operation path",
+    next_certificate_object:
+      "directed-rounded producer-image certificate for delta_squared_speed, constant_minus_two, sin_phi, and sin_delta term intervals on the five h0-h34-cell-midpoint source nodes",
+    claim_boundary: {
+      certifies_source_terms_as_directed_rounded_same_domain: false,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_h0_h34_cell_midpoint_source_map: false,
+      certifies_endpoint_margin_as_directed_rounded_source: false,
+      certifies_scaled_operation_as_directed_rounded_source: false,
+      certifies_nonterminal_h0_h34_covariance_enclosure: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
 function buildSignedNonterminalH0H34IdentityRouterCandidate({
   signedNonterminalFloorTarget,
   twoBlockBudget,
@@ -17239,6 +18152,18 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
           sourceMapDiagnostic,
           sourceMapEndpointMarginDiagnostic,
         });
+      const sourceTrustGapDiagnostic =
+        buildSignedNonterminalH0H34SourceTrustGapDiagnostic({
+          sourceInputReplayDiagnostic,
+          sourceMapDiagnostic,
+          sourceMapEndpointMarginDiagnostic,
+          sourceOperationReplay,
+        });
+      const sourceTermProducerImageTrace =
+        buildSignedNonterminalH0H34SourceTermProducerImageTraceCandidate({
+          sourceInputReplayDiagnostic,
+          sourceTrustGapDiagnostic,
+        });
       return {
         ...row,
         signed_nonterminal_h0_h34_identity_router:
@@ -17282,6 +18207,10 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
           sourceMapEndpointMarginDiagnostic,
         signed_nonterminal_h0_h34_source_operation_replay:
           sourceOperationReplay,
+        signed_nonterminal_h0_h34_source_trust_gap_diagnostic:
+          sourceTrustGapDiagnostic,
+        signed_nonterminal_h0_h34_source_term_producer_image_trace:
+          sourceTermProducerImageTrace,
       };
     });
   const terminalCovarianceMaxNumber = (field) => {
@@ -17416,6 +18345,20 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
   const signedNonterminalSourceOperationReplayRows =
     terminalCovarianceRows
       .map((row) => row.signed_nonterminal_h0_h34_source_operation_replay)
+      .filter((target) => target !== null && target !== undefined);
+  const signedNonterminalSourceTrustGapDiagnosticRows =
+    terminalCovarianceRows
+      .map(
+        (row) =>
+          row.signed_nonterminal_h0_h34_source_trust_gap_diagnostic
+      )
+      .filter((target) => target !== null && target !== undefined);
+  const signedNonterminalSourceTermProducerImageTraceRows =
+    terminalCovarianceRows
+      .map(
+        (row) =>
+          row.signed_nonterminal_h0_h34_source_term_producer_image_trace
+      )
       .filter((target) => target !== null && target !== undefined);
   const terminalCovarianceBudgetMaxNumber = (field) => {
     const values = terminalCovarianceBudgetRows
@@ -17686,6 +18629,30 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
       .map((value) => Number(value))
       .filter((value) => Number.isFinite(value));
     return values.length > 0 ? Math.max(...values) : null;
+  };
+  const signedNonterminalSourceTrustGapDiagnosticMaxNumber = (field) => {
+    const values = signedNonterminalSourceTrustGapDiagnosticRows
+      .map((row) => fieldPathValue(row, field))
+      .filter((value) => value !== null && value !== undefined)
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+    return values.length > 0 ? Math.max(...values) : null;
+  };
+  const signedNonterminalSourceTermProducerImageTraceMaxNumber = (field) => {
+    const values = signedNonterminalSourceTermProducerImageTraceRows
+      .map((row) => fieldPathValue(row, field))
+      .filter((value) => value !== null && value !== undefined)
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+    return values.length > 0 ? Math.max(...values) : null;
+  };
+  const signedNonterminalSourceTermProducerImageTraceMinNumber = (field) => {
+    const values = signedNonterminalSourceTermProducerImageTraceRows
+      .map((row) => fieldPathValue(row, field))
+      .filter((value) => value !== null && value !== undefined)
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+    return values.length > 0 ? Math.min(...values) : null;
   };
   const allTerminalOnlyCompressionCanClose =
     terminalCovarianceBudgetRows.length > 0 &&
@@ -18274,6 +19241,126 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
           false &&
         target.operation_replay_classification ===
           "binary64-outward-operation-replay-closed-source-provenance-open"
+    );
+  const allSignedNonterminalSourceTrustGapDiagnosticsPresent =
+    signedNonterminalSourceTrustGapDiagnosticRows.length ===
+      terminalCovarianceRows.length &&
+    signedNonterminalSourceTrustGapDiagnosticRows.length > 0;
+  const allSignedNonterminalSourceTrustGapDiagnosticsUseReplayChain =
+    signedNonterminalSourceTrustGapDiagnosticRows.length > 0 &&
+    signedNonterminalSourceTrustGapDiagnosticRows.every(
+      (target) =>
+        target.source_input_replay_diagnostic_kind ===
+          "candidate-signed-nonterminal-h0-h34-source-input-replay-diagnostic" &&
+        target.source_source_map_diagnostic_kind ===
+          "candidate-signed-nonterminal-h0-h34-source-map-diagnostic" &&
+        target.source_endpoint_margin_diagnostic_kind ===
+          "candidate-signed-nonterminal-h0-h34-source-map-endpoint-margin-diagnostic" &&
+        target.source_operation_replay_kind ===
+          "candidate-signed-nonterminal-h0-h34-source-operation-replay" &&
+        target.interpolation_node_count === 5 &&
+        Array.isArray(target.source_trust_gap_rows) &&
+        target.source_trust_gap_rows.length === 5
+    );
+  const allSignedNonterminalSourceTrustGapDiagnosticsCloseReplayArithmetic =
+    signedNonterminalSourceTrustGapDiagnosticRows.length > 0 &&
+    signedNonterminalSourceTrustGapDiagnosticRows.every(
+      (target) =>
+        target.all_source_trust_gap_rows_close_replay_to_source_map_arithmetic ===
+          true &&
+        target.all_source_trust_gap_rows_close_replay_to_operation_arithmetic ===
+          true &&
+        finiteNonnegative(
+          target.max_source_trust_gap_replay_to_source_map_relative_gap
+        ) &&
+        Number(
+          target.max_source_trust_gap_replay_to_source_map_relative_gap
+        ) < 1e-12 &&
+        finiteNonnegative(
+          target.max_source_trust_gap_replay_to_operation_relative_gap
+        ) &&
+        Number(
+          target.max_source_trust_gap_replay_to_operation_relative_gap
+        ) < 1e-12
+    );
+  const allSignedNonterminalSourceTrustGapDiagnosticsFitEndpointMargin =
+    signedNonterminalSourceTrustGapDiagnosticRows.length > 0 &&
+    signedNonterminalSourceTrustGapDiagnosticRows.every(
+      (target) =>
+        target.all_source_trust_gap_rows_fit_one_number_epsilon_endpoint_margin ===
+          true &&
+        target
+          .all_source_trust_gap_rows_would_pass_endpoint_margin_if_directed_source_trust_available ===
+          true &&
+        Number(target.endpoint_margin_relative_bound) === Number.EPSILON
+    );
+  const allSignedNonterminalSourceTrustGapDiagnosticsLocalizeTrust =
+    signedNonterminalSourceTrustGapDiagnosticRows.length > 0 &&
+    signedNonterminalSourceTrustGapDiagnosticRows.every(
+      (target) =>
+        target.source_trust_gap_localized_to_directed_producer_image_trust ===
+          true &&
+        target.source_inputs_certified_directed_rounded_same_domain ===
+          false &&
+        target.source_trust_gap_classification ===
+          "interval-operation-path-closed-directed-producer-image-trust-open"
+    );
+  const allSignedNonterminalSourceTermProducerImageTracesPresent =
+    signedNonterminalSourceTermProducerImageTraceRows.length ===
+      terminalCovarianceRows.length &&
+    signedNonterminalSourceTermProducerImageTraceRows.length > 0;
+  const allSignedNonterminalSourceTermProducerImageTracesUseTrustGap =
+    signedNonterminalSourceTermProducerImageTraceRows.length > 0 &&
+    signedNonterminalSourceTermProducerImageTraceRows.every(
+      (target) =>
+        target.source_input_replay_diagnostic_kind ===
+          "candidate-signed-nonterminal-h0-h34-source-input-replay-diagnostic" &&
+        target.source_trust_gap_diagnostic_kind ===
+          "candidate-signed-nonterminal-h0-h34-source-trust-gap-diagnostic" &&
+        target.interpolation_node_count === 5 &&
+        Array.isArray(target.source_term_trace_rows) &&
+        target.source_term_trace_rows.length === 5
+    );
+  const allSignedNonterminalSourceTermProducerImageTracesHaveTerms =
+    signedNonterminalSourceTermProducerImageTraceRows.length > 0 &&
+    signedNonterminalSourceTermProducerImageTraceRows.every(
+      (target) =>
+        target.all_source_term_trace_rows_have_four_term_decomposition ===
+          true &&
+        Array.isArray(target.source_terms) &&
+        H38_SOURCE_TERM_KEYS.every((term) => target.source_terms.includes(term))
+    );
+  const allSignedNonterminalSourceTermProducerImageTracesCloseArithmetic =
+    signedNonterminalSourceTermProducerImageTraceRows.length > 0 &&
+    signedNonterminalSourceTermProducerImageTraceRows.every(
+      (target) =>
+        target.all_source_term_trace_rows_sum_to_replayed_source === true &&
+        target
+          .all_source_term_trace_rows_reconstruct_midpoint_residual_path ===
+          true &&
+        finiteNonnegative(
+          target.max_source_term_sum_to_replayed_source_relative_gap
+        ) &&
+        Number(target.max_source_term_sum_to_replayed_source_relative_gap) <
+          1e-12 &&
+        finiteNonnegative(
+          target.max_source_term_residual_path_relative_gap
+        ) &&
+        Number(target.max_source_term_residual_path_relative_gap) < 1e-12
+    );
+  const allSignedNonterminalSourceTermProducerImageTracesPreserveEndpointPath =
+    signedNonterminalSourceTermProducerImageTraceRows.length > 0 &&
+    signedNonterminalSourceTermProducerImageTraceRows.every(
+      (target) =>
+        target
+          .all_source_term_trace_rows_preserve_endpoint_margin_replay_chain ===
+          true &&
+        target
+          .source_term_trace_localized_to_directed_producer_image_trust ===
+          true &&
+        target.source_terms_certified_directed_rounded_same_domain === false &&
+        target.source_term_trace_classification ===
+          "source-term-sum-and-midpoint-residual-close-directed-producer-image-trust-open"
     );
   const terminalH35H37CovarianceTarget = {
     target_kind:
@@ -18954,6 +20041,79 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
           : allSignedNonterminalSourceOperationReplaysPresent
             ? "binary64-outward-operation-replay-open"
             : "binary64-outward-operation-replay-missing",
+    signed_nonterminal_h0_h34_source_trust_gap_diagnostic_summary_kind:
+      "candidate-signed-nonterminal-h0-h34-source-trust-gap-diagnostic-summary",
+    all_selected_rows_have_signed_nonterminal_h0_h34_source_trust_gap_diagnostic:
+      allSignedNonterminalSourceTrustGapDiagnosticsPresent,
+    all_selected_rows_signed_nonterminal_h0_h34_source_trust_gap_diagnostics_use_replay_chain:
+      allSignedNonterminalSourceTrustGapDiagnosticsUseReplayChain,
+    all_selected_rows_signed_nonterminal_h0_h34_source_trust_gap_diagnostics_close_replay_arithmetic:
+      allSignedNonterminalSourceTrustGapDiagnosticsCloseReplayArithmetic,
+    all_selected_rows_signed_nonterminal_h0_h34_source_trust_gap_diagnostics_fit_one_number_epsilon_endpoint_margin:
+      allSignedNonterminalSourceTrustGapDiagnosticsFitEndpointMargin,
+    all_selected_rows_signed_nonterminal_h0_h34_source_trust_gap_diagnostics_localize_gap_to_directed_source_trust:
+      allSignedNonterminalSourceTrustGapDiagnosticsLocalizeTrust,
+    max_signed_nonterminal_h0_h34_source_trust_gap_replay_to_source_map_relative_gap:
+      signedNonterminalSourceTrustGapDiagnosticMaxNumber(
+        "max_source_trust_gap_replay_to_source_map_relative_gap"
+      ),
+    max_signed_nonterminal_h0_h34_source_trust_gap_replay_to_operation_relative_gap:
+      signedNonterminalSourceTrustGapDiagnosticMaxNumber(
+        "max_source_trust_gap_replay_to_operation_relative_gap"
+      ),
+    max_signed_nonterminal_h0_h34_source_trust_gap_scaled_endpoint_relative_gap:
+      signedNonterminalSourceTrustGapDiagnosticMaxNumber(
+        "max_source_trust_gap_scaled_endpoint_relative_gap"
+      ),
+    signed_nonterminal_h0_h34_source_trust_gap_diagnostic_interpretation:
+      allSignedNonterminalSourceTrustGapDiagnosticsLocalizeTrust
+        ? "interval-operation-path-closed-directed-producer-image-trust-open"
+        : allSignedNonterminalSourceTrustGapDiagnosticsCloseReplayArithmetic &&
+            allSignedNonterminalSourceTrustGapDiagnosticsFitEndpointMargin
+          ? "interval-operation-path-closed-metadata-open"
+          : allSignedNonterminalSourceTrustGapDiagnosticsPresent
+            ? "source-trust-gap-diagnostic-open"
+            : "source-trust-gap-diagnostic-missing",
+    signed_nonterminal_h0_h34_source_term_producer_image_trace_summary_kind:
+      "candidate-signed-nonterminal-h0-h34-source-term-producer-image-trace-summary",
+    all_selected_rows_have_signed_nonterminal_h0_h34_source_term_producer_image_trace:
+      allSignedNonterminalSourceTermProducerImageTracesPresent,
+    all_selected_rows_signed_nonterminal_h0_h34_source_term_traces_use_trust_gap:
+      allSignedNonterminalSourceTermProducerImageTracesUseTrustGap,
+    all_selected_rows_signed_nonterminal_h0_h34_source_term_traces_have_four_terms:
+      allSignedNonterminalSourceTermProducerImageTracesHaveTerms,
+    all_selected_rows_signed_nonterminal_h0_h34_source_term_traces_close_arithmetic:
+      allSignedNonterminalSourceTermProducerImageTracesCloseArithmetic,
+    all_selected_rows_signed_nonterminal_h0_h34_source_term_traces_preserve_endpoint_path:
+      allSignedNonterminalSourceTermProducerImageTracesPreserveEndpointPath,
+    max_signed_nonterminal_h0_h34_source_term_sum_to_replayed_source_relative_gap:
+      signedNonterminalSourceTermProducerImageTraceMaxNumber(
+        "max_source_term_sum_to_replayed_source_relative_gap"
+      ),
+    max_signed_nonterminal_h0_h34_source_term_residual_path_relative_gap:
+      signedNonterminalSourceTermProducerImageTraceMaxNumber(
+        "max_source_term_residual_path_relative_gap"
+      ),
+    min_signed_nonterminal_h0_h34_source_term_cancellation_fraction:
+      signedNonterminalSourceTermProducerImageTraceMinNumber(
+        "min_source_term_cancellation_fraction"
+      ),
+    min_signed_nonterminal_h0_h34_source_term_sin_pair_cancellation_fraction:
+      signedNonterminalSourceTermProducerImageTraceMinNumber(
+        "min_sin_phi_sin_delta_pair_cancellation_fraction"
+      ),
+    max_signed_nonterminal_h0_h34_source_width_to_term_width_sum_ratio:
+      signedNonterminalSourceTermProducerImageTraceMaxNumber(
+        "max_source_width_to_term_width_sum_ratio"
+      ),
+    signed_nonterminal_h0_h34_source_term_producer_image_trace_interpretation:
+      allSignedNonterminalSourceTermProducerImageTracesPreserveEndpointPath
+        ? "four-term-source-trace-closes-before-directed-producer-image-trust"
+        : allSignedNonterminalSourceTermProducerImageTracesCloseArithmetic
+          ? "four-term-source-trace-arithmetic-closed-metadata-open"
+          : allSignedNonterminalSourceTermProducerImageTracesPresent
+            ? "source-term-producer-image-trace-open"
+            : "source-term-producer-image-trace-missing",
     linear_width_share_budget_interpretation:
       !allTerminalOnlyCompressionCanClose && allHRowsCompressionCanClose
         ? "terminal-h35-h37-dominates-but-terminal-only-compression-is-insufficient-under-nonterminal-floor"
@@ -51254,6 +52414,104 @@ export function validateH39SuccessorSuffixTransitionCertificateRouteCandidate(
       covarianceTarget
         ?.signed_nonterminal_h0_h34_source_operation_replay_interpretation ===
         "binary64-outward-operation-replay-closed-source-provenance-open" &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_source_trust_gap_diagnostic_summary_kind ===
+        "candidate-signed-nonterminal-h0-h34-source-trust-gap-diagnostic-summary" &&
+      covarianceTarget
+        ?.all_selected_rows_have_signed_nonterminal_h0_h34_source_trust_gap_diagnostic ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_source_trust_gap_diagnostics_use_replay_chain ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_source_trust_gap_diagnostics_close_replay_arithmetic ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_source_trust_gap_diagnostics_fit_one_number_epsilon_endpoint_margin ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_source_trust_gap_diagnostics_localize_gap_to_directed_source_trust ===
+        true &&
+      finiteNonnegative(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_source_trust_gap_replay_to_source_map_relative_gap
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_source_trust_gap_replay_to_source_map_relative_gap
+      ) < 1e-12 &&
+      finiteNonnegative(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_source_trust_gap_replay_to_operation_relative_gap
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_source_trust_gap_replay_to_operation_relative_gap
+      ) < 1e-12 &&
+      finiteNonnegative(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_source_trust_gap_scaled_endpoint_relative_gap
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_source_trust_gap_scaled_endpoint_relative_gap
+      ) < 1e-12 &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_source_trust_gap_diagnostic_interpretation ===
+        "interval-operation-path-closed-directed-producer-image-trust-open" &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_source_term_producer_image_trace_summary_kind ===
+        "candidate-signed-nonterminal-h0-h34-source-term-producer-image-trace-summary" &&
+      covarianceTarget
+        ?.all_selected_rows_have_signed_nonterminal_h0_h34_source_term_producer_image_trace ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_source_term_traces_use_trust_gap ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_source_term_traces_have_four_terms ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_source_term_traces_close_arithmetic ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_source_term_traces_preserve_endpoint_path ===
+        true &&
+      finiteNonnegative(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_source_term_sum_to_replayed_source_relative_gap
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_source_term_sum_to_replayed_source_relative_gap
+      ) < 1e-12 &&
+      finiteNonnegative(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_source_term_residual_path_relative_gap
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_source_term_residual_path_relative_gap
+      ) < 1e-12 &&
+      Number.isFinite(
+        Number(
+          covarianceTarget
+            ?.min_signed_nonterminal_h0_h34_source_term_cancellation_fraction
+        )
+      ) &&
+      Number.isFinite(
+        Number(
+          covarianceTarget
+            ?.min_signed_nonterminal_h0_h34_source_term_sin_pair_cancellation_fraction
+        )
+      ) &&
+      finiteNonnegative(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_source_width_to_term_width_sum_ratio
+      ) &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_source_term_producer_image_trace_interpretation ===
+        "four-term-source-trace-closes-before-directed-producer-image-trust" &&
       covarianceTarget?.linear_width_share_budget_interpretation ===
         "terminal-h35-h37-dominates-but-terminal-only-compression-is-insufficient-under-nonterminal-floor" &&
       covarianceTarget?.covariance_preservation_interpretation ===
@@ -53203,6 +54461,207 @@ export function validateH39SuccessorSuffixTransitionCertificateRouteCandidate(
           row.signed_nonterminal_h0_h34_source_operation_replay.claim_boundary
             ?.certifies_directed_rounded_shared_domain === false &&
           row.signed_nonterminal_h0_h34_source_operation_replay.claim_boundary
+            ?.certifies_shifted_R43_outer_bound === false &&
+          row?.signed_nonterminal_h0_h34_source_trust_gap_diagnostic
+            ?.target_kind ===
+            "candidate-signed-nonterminal-h0-h34-source-trust-gap-diagnostic" &&
+          row.signed_nonterminal_h0_h34_source_trust_gap_diagnostic
+            .source_input_replay_diagnostic_kind ===
+            "candidate-signed-nonterminal-h0-h34-source-input-replay-diagnostic" &&
+          row.signed_nonterminal_h0_h34_source_trust_gap_diagnostic
+            .source_source_map_diagnostic_kind ===
+            "candidate-signed-nonterminal-h0-h34-source-map-diagnostic" &&
+          row.signed_nonterminal_h0_h34_source_trust_gap_diagnostic
+            .source_endpoint_margin_diagnostic_kind ===
+            "candidate-signed-nonterminal-h0-h34-source-map-endpoint-margin-diagnostic" &&
+          row.signed_nonterminal_h0_h34_source_trust_gap_diagnostic
+            .source_operation_replay_kind ===
+            "candidate-signed-nonterminal-h0-h34-source-operation-replay" &&
+          row.signed_nonterminal_h0_h34_source_trust_gap_diagnostic
+            .proof_status ===
+            "candidate-source-trust-gap-localized-directed-producer-image-open" &&
+          row.signed_nonterminal_h0_h34_source_trust_gap_diagnostic
+            .source_trust_gap_kind ===
+            "replayed-h0-h34-cell-midpoint-source-through-source-map-operation-and-one-epsilon-endpoint-margin" &&
+          row.signed_nonterminal_h0_h34_source_trust_gap_diagnostic
+            .all_source_trust_gap_rows_use_same_row_source_input_replay ===
+            true &&
+          row.signed_nonterminal_h0_h34_source_trust_gap_diagnostic
+            .all_source_trust_gap_rows_record_h38_evaluator_zeroing === true &&
+          row.signed_nonterminal_h0_h34_source_trust_gap_diagnostic
+            .all_source_trust_gap_rows_close_replay_to_source_map_arithmetic ===
+            true &&
+          row.signed_nonterminal_h0_h34_source_trust_gap_diagnostic
+            .all_source_trust_gap_rows_close_replay_to_operation_arithmetic ===
+            true &&
+          row.signed_nonterminal_h0_h34_source_trust_gap_diagnostic
+            .all_source_trust_gap_rows_fit_one_number_epsilon_endpoint_margin ===
+            true &&
+          row.signed_nonterminal_h0_h34_source_trust_gap_diagnostic
+            .all_source_trust_gap_rows_would_pass_endpoint_margin_if_directed_source_trust_available ===
+            true &&
+          row.signed_nonterminal_h0_h34_source_trust_gap_diagnostic
+            .source_trust_gap_localized_to_directed_producer_image_trust ===
+            true &&
+          row.signed_nonterminal_h0_h34_source_trust_gap_diagnostic
+            .source_inputs_certified_directed_rounded_same_domain === false &&
+          finiteNonnegative(
+            row.signed_nonterminal_h0_h34_source_trust_gap_diagnostic
+              .max_source_trust_gap_replay_to_source_map_relative_gap
+          ) &&
+          Number(
+            row.signed_nonterminal_h0_h34_source_trust_gap_diagnostic
+              .max_source_trust_gap_replay_to_source_map_relative_gap
+          ) < 1e-12 &&
+          finiteNonnegative(
+            row.signed_nonterminal_h0_h34_source_trust_gap_diagnostic
+              .max_source_trust_gap_replay_to_operation_relative_gap
+          ) &&
+          Number(
+            row.signed_nonterminal_h0_h34_source_trust_gap_diagnostic
+              .max_source_trust_gap_replay_to_operation_relative_gap
+          ) < 1e-12 &&
+          row.signed_nonterminal_h0_h34_source_trust_gap_diagnostic
+            .source_trust_gap_classification ===
+            "interval-operation-path-closed-directed-producer-image-trust-open" &&
+          Array.isArray(
+            row.signed_nonterminal_h0_h34_source_trust_gap_diagnostic
+              .source_trust_gap_rows
+          ) &&
+          row.signed_nonterminal_h0_h34_source_trust_gap_diagnostic
+            .source_trust_gap_rows.length === 5 &&
+          row.signed_nonterminal_h0_h34_source_trust_gap_diagnostic.source_trust_gap_rows.every(
+            (trustGapRow) =>
+              Number.isInteger(trustGapRow?.node_index) &&
+              trustGapRow?.source_variant === "h0-h34-cell-midpoint" &&
+              trustGapRow?.replay_kind ===
+                "same-row-h0-h34-cell-midpoint-source-input-replay" &&
+              trustGapRow?.source_operation_kind ===
+                "h0-h34-cell-midpoint-binary64-outward-source-map-operation" &&
+              trustGapRow?.endpoint_margin_relative_bound ===
+                Number.EPSILON &&
+              trustGapRow?.source_input_path_closed_by_replay === true &&
+              trustGapRow?.replayed_source_closes_source_map_arithmetic ===
+                true &&
+              trustGapRow?.replayed_source_closes_operation_arithmetic ===
+                true &&
+              trustGapRow
+                ?.operation_path_weighted_replayed_source_fits_one_epsilon_endpoint_margin ===
+                true &&
+              trustGapRow
+                ?.operation_path_coefficient_replayed_source_fits_one_epsilon_endpoint_margin ===
+                true &&
+              trustGapRow
+                ?.would_pass_endpoint_margin_if_directed_source_trust_available ===
+                true &&
+              trustGapRow
+                ?.source_inputs_certified_directed_rounded_same_domain ===
+                false &&
+              trustGapRow?.source_trust_gap_row_status ===
+                "replayed-source-fits-endpoint-margin-directed-source-trust-open"
+          ) &&
+          row.signed_nonterminal_h0_h34_source_trust_gap_diagnostic.claim_boundary
+            ?.certifies_source_inputs_as_directed_rounded_same_domain ===
+            false &&
+          row.signed_nonterminal_h0_h34_source_trust_gap_diagnostic.claim_boundary
+            ?.certifies_directed_rounded_shared_domain === false &&
+          row.signed_nonterminal_h0_h34_source_trust_gap_diagnostic.claim_boundary
+            ?.certifies_shifted_R43_outer_bound === false &&
+          row
+            ?.signed_nonterminal_h0_h34_source_term_producer_image_trace
+            ?.target_kind ===
+            "candidate-signed-nonterminal-h0-h34-source-term-producer-image-trace" &&
+          row.signed_nonterminal_h0_h34_source_term_producer_image_trace
+            .source_input_replay_diagnostic_kind ===
+            "candidate-signed-nonterminal-h0-h34-source-input-replay-diagnostic" &&
+          row.signed_nonterminal_h0_h34_source_term_producer_image_trace
+            .source_trust_gap_diagnostic_kind ===
+            "candidate-signed-nonterminal-h0-h34-source-trust-gap-diagnostic" &&
+          row.signed_nonterminal_h0_h34_source_term_producer_image_trace
+            .proof_status ===
+            "candidate-source-term-producer-image-trace-directed-trust-open" &&
+          row.signed_nonterminal_h0_h34_source_term_producer_image_trace
+            .source_term_trace_kind ===
+            "four-term-h38-source-decomposition-through-h0-h34-replay-chain" &&
+          row.signed_nonterminal_h0_h34_source_term_producer_image_trace
+            .all_source_term_trace_rows_have_four_term_decomposition ===
+            true &&
+          row.signed_nonterminal_h0_h34_source_term_producer_image_trace
+            .all_source_term_trace_rows_sum_to_replayed_source === true &&
+          row.signed_nonterminal_h0_h34_source_term_producer_image_trace
+            .all_source_term_trace_rows_reconstruct_midpoint_residual_path ===
+            true &&
+          row.signed_nonterminal_h0_h34_source_term_producer_image_trace
+            .all_source_term_trace_rows_preserve_endpoint_margin_replay_chain ===
+            true &&
+          row.signed_nonterminal_h0_h34_source_term_producer_image_trace
+            .source_term_trace_localized_to_directed_producer_image_trust ===
+            true &&
+          row.signed_nonterminal_h0_h34_source_term_producer_image_trace
+            .source_terms_certified_directed_rounded_same_domain === false &&
+          finiteNonnegative(
+            row.signed_nonterminal_h0_h34_source_term_producer_image_trace
+              .max_source_term_sum_to_replayed_source_relative_gap
+          ) &&
+          Number(
+            row.signed_nonterminal_h0_h34_source_term_producer_image_trace
+              .max_source_term_sum_to_replayed_source_relative_gap
+          ) < 1e-12 &&
+          finiteNonnegative(
+            row.signed_nonterminal_h0_h34_source_term_producer_image_trace
+              .max_source_term_residual_path_relative_gap
+          ) &&
+          Number(
+            row.signed_nonterminal_h0_h34_source_term_producer_image_trace
+              .max_source_term_residual_path_relative_gap
+          ) < 1e-12 &&
+          row.signed_nonterminal_h0_h34_source_term_producer_image_trace
+            .source_term_trace_classification ===
+            "source-term-sum-and-midpoint-residual-close-directed-producer-image-trust-open" &&
+          Array.isArray(
+            row.signed_nonterminal_h0_h34_source_term_producer_image_trace
+              .source_terms
+          ) &&
+          H38_SOURCE_TERM_KEYS.every((term) =>
+            row.signed_nonterminal_h0_h34_source_term_producer_image_trace.source_terms.includes(
+              term
+            )
+          ) &&
+          Array.isArray(
+            row.signed_nonterminal_h0_h34_source_term_producer_image_trace
+              .source_term_trace_rows
+          ) &&
+          row.signed_nonterminal_h0_h34_source_term_producer_image_trace
+            .source_term_trace_rows.length === 5 &&
+          row.signed_nonterminal_h0_h34_source_term_producer_image_trace.source_term_trace_rows.every(
+            (termTraceRow) =>
+              Number.isInteger(termTraceRow?.node_index) &&
+              termTraceRow?.source_variant === "h0-h34-cell-midpoint" &&
+              termTraceRow?.source_term_trace_kind ===
+                "h0-h34-cell-midpoint-four-term-source-producer-image-trace" &&
+              Array.isArray(termTraceRow?.source_terms) &&
+              H38_SOURCE_TERM_KEYS.every((term) =>
+                termTraceRow.source_terms.includes(term)
+              ) &&
+              termTraceRow?.term_trace_reconstructs_replayed_source ===
+                true &&
+              termTraceRow
+                ?.term_trace_reconstructs_midpoint_residual_path === true &&
+              termTraceRow
+                ?.term_trace_preserves_endpoint_margin_replay_chain ===
+                true &&
+              termTraceRow
+                ?.source_terms_certified_directed_rounded_same_domain ===
+                false &&
+              termTraceRow?.source_term_trace_row_status ===
+                "source-term-trace-closes-replay-and-endpoint-path-directed-producer-image-trust-open"
+          ) &&
+          row.signed_nonterminal_h0_h34_source_term_producer_image_trace.claim_boundary
+            ?.certifies_source_terms_as_directed_rounded_same_domain ===
+            false &&
+          row.signed_nonterminal_h0_h34_source_term_producer_image_trace.claim_boundary
+            ?.certifies_directed_rounded_shared_domain === false &&
+          row.signed_nonterminal_h0_h34_source_term_producer_image_trace.claim_boundary
             ?.certifies_shifted_R43_outer_bound === false &&
           row?.node_width_localization_interpretation ===
             "terminal-h35-h37-hrow-intervals-dominate-total-n38-node-width" &&
