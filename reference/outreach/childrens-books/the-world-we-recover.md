@@ -38,7 +38,7 @@ Recurring geometry:
 - effective clocks and rulers appear as observer-level objects, not fundamental entities;
 - claim levels appear only in back matter or as nonverbal geometric marks.
 
-Image-generation rule: do not include book text, captions, labels, equations, or watermarks inside the illustration. Any labels should be added later by layout or back matter.
+Image-generation rule: every prompt inherits the style-guide palette rule. Use only pure red, pure blue, red-blue purples, white, and black for non-human visual systems and $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry. Keep scenery, clothing, and tools in white/purple/black unless a red or blue mark is explicitly part of the physics geometry. Human skin and hair may use natural tones. Do not include book text, captions, labels, equations, watermarks, or logos inside the illustration.
 
 ## Page Plan
 

@@ -423,6 +423,72 @@ recertification, or proof-interval replay of its own. This prevents the stable
 sampled endpoint theta values at `lambda=0.3` and `lambda=0.305` from being
 mistaken for interval boxes over the full lambda interval.
 
+The one-leaf active-endpoint residual source-data audit,
+`one_leaf_active_endpoint_residual_source_data_audit_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then isolates whether the blocker is construction logic or absent source data.
+It records sampled endpoint values, sampled defect lambda derivatives, sampled
+opening data, and constant-theta endpoint-box candidates as source samples only,
+while keeping residual functions on endpoint boxes, outward residual interval
+bounds, derivative isolation, uniqueness/no-switch data, competing-endpoint gap
+functions, interval active-endpoint enclosures, preledger pass, and row
+consumption absent.
+
+The one-leaf active-endpoint residual data construction attempt,
+`one_leaf_active_endpoint_residual_data_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then confirms that the available endpoint-functional formula, chart, and
+boundary source data still do not supply row-level active-endpoint residual
+functions or interval-evaluable bounds. It preserves 4 / 4 local formula and
+derivative candidates, 4 / 4 component-union chart functionals, 4 / 4 boundary
+source-data functionals, and 3 / 3 row boundary-source pairs, but constructs
+0 / 3 row residual functions, residual interval bounds, derivative-isolation
+rows, uniqueness/no-switch rows, endpoint-gap interval-bound rows, interval
+active-endpoint enclosures, preledger passes, or consumed rows. The next proof
+object remains same-packet endpoint boundary binding plus motion/evaluation-map
+construction or a stronger interval-enclosure route.
+
+The fold-coordinate endpoint-functional boundary-binding motion/evaluation
+construction attempt,
+`fold_coordinate_endpoint_functional_boundary_binding_motion_evaluation_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests that first branch directly. It preserves 4 / 4 endpoint-local
+formula candidates, 4 / 4 component-union chart functionals, 4 / 4 endpoint
+boundary-source records, 4 / 4 declared evaluation-map symbols, and 3 / 3 row
+boundary-source pairs, but constructs 0 / 4 endpoint boundary bindings,
+history update formulas, endpoint motion rules, endpoint evaluation maps, full
+endpoint evaluation maps, non-target zero certificates, exact $B\xi=0$ or rank
+certificates, candidate artifacts, topology recertifications, proof-interval
+replays, and 0 / 3 row-ready endpoint-map pairs. The route remains open only
+as a missing same-packet proof object; no row is consumed.
+
+The component-union domain/boundary-binding subcertificate,
+`fold_coordinate_endpoint_functional_component_union_domain_binding_subcertificate_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then certifies the positive subobject between source data and full
+motion/evaluation: for each of the four `fc_*` variables, the component-union
+domain is now an endpoint-functional domain with declared chart, coordinate
+rule, basis-domain binding, theta support, basis formula, and derivative
+formula. The three one-leaf rows therefore have source/receiver component-domain
+pairs. This does not close row ownership because it still has 0 endpoint
+boundary bindings, endpoint value bindings, binding contracts, same-packet
+history update formulas, endpoint motion rules, endpoint evaluation maps,
+non-target zero certificates, exact $B\xi=0$ or rank certificates, candidate
+artifacts, topology recertifications, proof-interval replays, or consumed rows.
+
+The component-domain endpoint-boundary-binding construction attempt,
+`fold_coordinate_endpoint_functional_component_domain_endpoint_boundary_binding_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then imports the component-union domain/boundary-binding subcertificate and the
+endpoint-boundary-binding source-data audit. It preserves 4 / 4
+endpoint-functional domains, domain charts, coordinate rules, basis-domain
+bindings, theta supports, basis formulas, derivative formulas,
+component-domain subcertificates, endpoint boundary-source records, and
+declared endpoint evaluation rules, plus 3 / 3 row component-domain/source-data
+pairs. It still constructs 0 / 4 endpoint boundary bindings, endpoint value
+bindings, binding contracts, same-packet history update formulas, endpoint
+motion rules, endpoint evaluation maps, non-target zero certificates, exact
+$B\xi=0$ or rank certificates, candidate artifacts, topology recertifications,
+proof-interval replays, and 0 / 3 row-ready binding pairs or consumed rows.
+The blocker is now the actual same-packet endpoint boundary-binding and
+motion/evaluation proof object, not endpoint-domain, component-formula,
+locator, or source-data availability.
+
 ## Capture Decision
 
 Priority-only theorem target. The partition-audit implementation is now
@@ -498,12 +564,31 @@ candidates exist in 3 / 3 rows, but there are 0 / 3 proof-grade endpoint
 interval boxes, residual functions on boxes, residual interval bounds,
 derivative-isolation certificates, endpoint uniqueness certificates,
 switch-exclusion certificates, positive endpoint-gap certificates,
-active-endpoint interval enclosures, or consumed rows. The next
-implementation must therefore either supply new same-packet endpoint boundary
-bindings and endpoint motion/evaluation-map proof data, strengthen the positive
-row-closure geometry budget with actual interval enclosure and preservation
-proof data, or strengthen the receiver-cover certificate: new same-packet
-source-boundary variation data, receiver-range refinement data,
+active-endpoint interval enclosures, or consumed rows. The residual source-data
+audit then separates present sampled endpoint values and sampled lambda
+derivatives from absent interval-evaluable residual functions, derivative/gap
+bounds, competing-endpoint no-switch source data, and interval-box radius rules.
+The residual data construction attempt then tests the endpoint-functional source
+stack itself and still constructs 0 row residual functions, interval bounds,
+derivative/gap/no-switch certificates, interval enclosures, preledger passes,
+or consumed rows. The fold-coordinate endpoint-functional boundary-binding
+motion/evaluation construction attempt then tests the missing endpoint branch
+directly and still constructs 0 endpoint boundary bindings, 0 history update
+formulas, 0 endpoint motion rules, 0 endpoint evaluation maps, 0 certificates,
+0 candidate artifacts, 0 replay rows, and 0 consumed rows. The component-union
+domain/boundary-binding subcertificate then closes the endpoint-domain sublayer
+but leaves the full boundary-binding and motion/evaluation layers blocked. The
+component-domain endpoint-boundary-binding construction attempt then confirms
+that the endpoint-domain, component-formula, locator, and source-data layers
+are ready but still do not construct endpoint boundary bindings, endpoint value
+bindings, binding contracts, motion/evaluation maps, candidate artifacts,
+replay, or consumed rows. The
+next implementation must therefore either supply new same-packet endpoint
+boundary bindings, endpoint value bindings, binding contracts, and endpoint
+motion/evaluation-map proof data, strengthen the positive row-closure geometry
+budget with actual interval enclosure and preservation proof data, or
+strengthen the receiver-cover certificate: new same-packet source-boundary
+variation data, receiver-range refinement data,
 endpoint/complement ownership, or another candidate change must actually assign
 proof-grade positive boundary shifts and preservation fields before these
 one-leaf rows can progress. Even then, the finite pass rule still also requires

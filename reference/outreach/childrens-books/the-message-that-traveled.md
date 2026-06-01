@@ -21,29 +21,29 @@ The parent/teacher layer should use the canonical terms `absolute time`, `Euclid
 
 Use case: illustration-story, scientific-educational.
 
-Style: warm picture-book gouache and colored-pencil texture, clear geometry, friendly classroom and outdoor scenes, soft natural light, visually rich but not cluttered.
+Style: approved children's-book exemplar style: natural human skin and hair, informal play, white page space, black expressive linework, purple shadows, and red/blue/purple $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry integrated into the scene.
 
 Recurring characters:
 
-- **Mira:** a thoughtful six-year-old with a yellow raincoat in outdoor scenes and a green sweater indoors.
-- **Tomas:** an energetic eight-year-old with red sneakers and a blue hoodie.
+- **Mira:** a thoughtful six-year-old in informal white/purple play clothes, with natural skin and hair.
+- **Tomas:** an energetic eight-year-old in informal white/purple play clothes and black shoes, with natural skin and hair.
 - **Dr. Sol:** their mother, a particle physicist and child psychologist, calm and playful, with a field notebook and simple experiment kit.
 
 Recurring geometry:
 
-- causal wakes appear as translucent pale-gold expanding arcs or rings;
-- earlier source positions appear as small glowing dots with faint footprint-like trails;
+- causal wakes appear as translucent red or blue expanding arcs or rings, with purple where red and blue influences overlap;
+- earlier source positions appear as small red or blue glowing dots with faint footprint-like trails;
 - line-of-action moments appear as a single clean arrow or luminous thread from the relevant earlier source position to the receiver;
-- Noether sea background appears as faint neutral specks arranged in gentle nested patterns, visible only when the scene invites "zooming in";
-- assemblies appear as small groups of luminous points held in balanced geometric relation.
+- Noether sea background appears as faint pale-purple specks arranged in gentle nested patterns, visible only when the scene invites "zooming in";
+- assemblies appear as small groups of red and blue luminous points held in balanced geometric relation, with purple shared glow where contributions combine.
 
-Image-generation rule: do not include book text, captions, labels, equations, or watermarks inside the illustration. Any labels should be added later by layout.
+Image-generation rule: every prompt inherits the style-guide palette rule. Use only pure red, pure blue, red-blue purples, white, and black for non-human visual systems and $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry. Keep scenery, clothing, and tools in white/purple/black unless a red or blue mark is explicitly part of the physics geometry. Human skin and hair may use natural tones. Do not include book text, captions, labels, equations, watermarks, or logos inside the illustration.
 
 ## Page Plan
 
 ### Cover
 
-Pilot generated asset:
+Legacy pilot generated asset, not palette-compliant:
 
 ![Pilot cover illustration](assets/the-message-that-traveled-preview.png)
 
@@ -57,15 +57,15 @@ The world is full of messages from motion.
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry:
 
-A pebble splash, a hand clap, and a rolling marble each leave pale-gold causal wake arcs. The arcs are centered on earlier positions rather than the objects' current positions.
+A pebble splash, a hand clap, and a rolling marble each leave red/blue causal wake arcs with purple overlaps. The arcs are centered on earlier positions rather than the objects' current positions.
 
 Background concepts:
 
-Subtle Noether sea specks in the sky and water; a small classroom mobile shaped like a nested shell swarm hanging from Dr. Sol's backpack.
+Subtle pale-purple Noether sea specks in the stylized sky and water; a small classroom mobile shaped like a nested shell swarm hanging from Dr. Sol's backpack.
 
 Illustration prompt:
 
-> Warm picture-book cover illustration. Mira in a yellow raincoat, Tomas in red sneakers, and Dr. Sol at the edge of a pond and playground path. A pebble splash, a clap, and a rolling marble create translucent pale-gold expanding arcs. The arcs visibly begin from earlier source positions marked by tiny glowing dots. Friendly, curious mood, gouache and colored-pencil texture, no text, no labels, no equations.
+> Cover illustration in the approved exemplar style. Mira, Tomas, and Dr. Sol stand beside a stylized white/purple pond and playground path. A pebble splash, a clap, and a rolling marble create translucent red and blue expanding arcs, with purple overlap where histories meet. The arcs visibly begin from earlier source positions marked by tiny red or blue glowing dots. Natural skin and hair, white/purple clothing and scenery, black expressive linework, no text, no labels, no equations.
 
 ### Spread 1: The Morning Beat
 
@@ -89,11 +89,11 @@ Clock ticks become faint evenly spaced vertical light marks across the room, a g
 
 Background concepts:
 
-The kitchen table has a ruler, a marble, a string, and a small magnet kit waiting for the day's experiments.
+The kitchen table has a ruler, a marble, a string, and simple bead tools waiting for the day's experiments.
 
 Illustration prompt:
 
-> Cozy kitchen morning. Mira listens to a wall clock while Tomas pours cereal and Dr. Sol opens a notebook. Faint evenly spaced golden tick marks cross the room like gentle time beats. On the table are a ruler, string, marbles, and magnets. Warm family science scene, no in-image text.
+> Kitchen morning in a white/purple room. Mira listens to a wall clock while Tomas pours cereal and Dr. Sol opens a notebook. Faint evenly spaced purple tick marks cross the room like gentle time beats. On the table are a ruler, string, marbles, and simple bead tools. Natural skin and hair, white/purple clothing, black linework, no in-image text, no labels.
 
 ### Spread 2: The Room Has Places
 
@@ -101,7 +101,7 @@ Read-aloud text:
 
 > Tomas rolled a marble across the floor.
 >
-> It started by the blue chair.
+> It started by the little chair.
 >
 > It passed the table leg.
 >
@@ -123,7 +123,7 @@ Subtle path-history: the marble leaves a dotted trail showing where it used to b
 
 Illustration prompt:
 
-> Living room floor scene. Tomas rolls a marble from a blue chair past a table leg toward Mira's boot. A faint friendly floor grid shows distance and direction. The marble leaves a small dotted golden trail behind it. Dr. Sol watches with a notebook. Picture-book style, no labels.
+> Living room floor scene in a restricted white/purple palette. Tomas rolls a marble from a little chair past a table leg toward Mira's boot. A faint floor grid shows distance and direction. The marble leaves a small dotted red/blue/purple trail behind it. Dr. Sol watches with a notebook. Natural skin and hair, white/purple clothing, black linework, no labels, no text.
 
 ### Spread 3: A Clap Is Not Everywhere At Once
 
@@ -149,11 +149,11 @@ Concentric causal wake arcs expand from Tomas's earlier hand position. Mira rece
 
 Background concepts:
 
-A bird, leaves, and a wind chime also show small delayed responses to the expanding wake.
+A paper streamer and a hanging chime also show small delayed responses to the expanding wake.
 
 Illustration prompt:
 
-> Backyard scene. Tomas claps near a tree while Mira stands several steps away, listening. Pale-gold translucent arcs expand from Tomas's earlier hand position, with one arc just reaching Mira's ear. Leaves and a wind chime respond gently. Dr. Sol kneels nearby, smiling. No text, no equations.
+> Stylized yard scene in white, purple, and black. Tomas claps near a simple purple tree silhouette while Mira stands several steps away, listening. Translucent red/blue causal arcs expand from Tomas's earlier hand position, with one arc just reaching Mira's ear. A paper streamer and hanging chime respond gently. Natural skin and hair, white/purple clothing, no text, no labels, no equations.
 
 ### Spread 4: The Pebble's Circles
 
@@ -181,7 +181,7 @@ The puddle reflection faintly shows a star-like Noether sea pattern, making the 
 
 Illustration prompt:
 
-> Close view of Mira dropping a pebble into a rain puddle. Clear expanding water circles move outward from the original splash point while the pebble is visible lower in the water. Add subtle pale-gold geometry over the ripples. The puddle reflection contains very faint neutral speck patterns. Gentle rainy-day colors, no labels.
+> Close view of Mira dropping a pebble into a stylized white/purple puddle. Clear expanding water circles move outward from the original splash point while the pebble is visible lower in the water. Add subtle red/blue wake geometry over the ripples, with purple where waves overlap. The puddle reflection contains very faint pale-purple speck patterns. Natural skin and hair, restricted non-human palette, no labels, no text.
 
 ### Spread 5: The Message Starts Where It Was
 
@@ -205,11 +205,11 @@ The ribbon path carries earlier source positions, each with a small expanding ar
 
 Background concepts:
 
-The grass has faint footprints and tick marks, tying absolute time to changing position.
+A white/purple play path has faint footprints and tick marks, tying absolute time to changing position.
 
 Illustration prompt:
 
-> Park scene. Tomas runs with a ribbon wand, leaving a colorful curling ribbon behind him. Along the ribbon path, tiny glowing dots mark earlier positions, each with faint pale-gold expanding arcs. Mira points to the trail while Dr. Sol watches. Grass shows soft footprints and subtle time-tick marks. No in-image text.
+> Stylized play path scene. Tomas runs with a purple ribbon wand, leaving a curling purple ribbon behind him. Along the ribbon path, tiny red and blue glowing dots mark earlier positions, each with faint red/blue expanding arcs and purple overlaps. Mira points to the trail while Dr. Sol watches. The white/purple ground shows soft footprints and subtle time-tick marks. Natural skin and hair, white/purple clothing, no in-image text, no labels.
 
 ### Spread 6: Near Messages And Far Messages
 
@@ -241,7 +241,7 @@ The line of action from each bell to Mira is subtly visible at the moment of rec
 
 Illustration prompt:
 
-> Backyard experiment with two small bells, one close to Mira and one farther away. Tomas taps both with soft mallets. Pale-gold arcs from the close bell reach Mira first, while wider arcs from the far bell are still traveling. Subtle luminous threads show the lines from bells to Mira. Friendly outdoor science scene, no text.
+> White/purple yard experiment with two small bells, one close to Mira and one farther away. Tomas taps both with soft mallets. Red/blue causal arcs from the close bell reach Mira first, while wider arcs from the far bell are still traveling. Subtle purple luminous threads show the lines from bells to Mira. Natural skin and hair, white/purple clothing and tools, black linework, no text, no labels.
 
 ### Spread 7: The Straight Thread
 
@@ -269,7 +269,7 @@ The scene distinguishes wake surface from line of action.
 
 Illustration prompt:
 
-> Dr. Sol and Mira kneel beside a puddle. A string runs from the original splash mark to Mira's boot. The water ripple is curved, while a subtle luminous straight thread overlays the string to show direction. Tomas holds the string spool. Clear geometry, warm picture-book style, no labels.
+> Dr. Sol and Mira kneel beside a stylized white/purple puddle. A string runs from the original splash mark to Mira's boot. The water ripple is curved, while a subtle purple luminous straight thread overlays the string to show direction. Tomas holds the string spool. Natural skin and hair, white/purple clothing, clear geometry, no labels, no text.
 
 ### Spread 8: Tiny Senders, Tiny Receivers
 
@@ -299,7 +299,7 @@ Keep the visual simple; background Noether sea appears only as faint neutral poi
 
 Illustration prompt:
 
-> Indoor notebook scene. Dr. Sol draws a single luminous dot above the page as if it has come alive. The dot has a dotted golden path behind it and soft expanding arcs around earlier positions. Mira and Tomas lean in with wonder. The background has a very faint neutral speck lattice, no text on the page, no labels.
+> Indoor notebook scene in a white/purple room. Dr. Sol draws a single luminous red point above the page as if it has come alive. The point has a dotted red path behind it and soft red expanding arcs around earlier positions. Mira and Tomas lean in with wonder. The background has a very faint pale-purple speck lattice. Natural skin and hair, white/purple clothing, no text on the page, no labels.
 
 ### Spread 9: Two Kinds Of Answer
 
@@ -329,7 +329,7 @@ Small assembly motifs in a tray hint that many polarity interactions can build s
 
 Illustration prompt:
 
-> Tabletop rolling-bead experiment. Mira and Tomas roll two chunky child-safe beads through shallow curved tracks. One track bends inward toward the other bead's route; another track bends outward away from the other bead's route. Above the beads, two tiny luminous dots illustrate same-kind and cross-kind response types with clean directional arrows along the line of action. Small balanced dot-pattern motifs rest in a tray. No labels.
+> Tabletop rolling-bead experiment in the restricted palette. Mira and Tomas roll two chunky child-safe beads through shallow curved tracks. One track bends inward toward the other bead's route; another track bends outward away from the other bead's route. Above the beads, one red luminous dot and one blue luminous dot illustrate two response types with clean directional arrows along the line of action. Small balanced red/blue/purple dot-pattern motifs rest in a tray. Natural skin and hair, white/purple clothing, no labels, no text.
 
 ### Spread 10: Many Messages Add
 
@@ -341,9 +341,9 @@ Read-aloud text:
 >
 > The wind chime rang.
 >
-> Circles, sounds, and sways all reached the same little leaf.
+> Circles, sounds, and sways all reached the same little paper leaf.
 >
-> The leaf moved from all of them together.
+> The paper leaf moved from all of them together.
 
 Lesson:
 
@@ -351,15 +351,15 @@ Introduce superposition as many influences adding at one receiver.
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry:
 
-Several causal wake fronts intersect a leaf. A small net arrow shows the combined response.
+Several causal wake fronts intersect a paper leaf. A small net arrow shows the combined response.
 
 Background concepts:
 
-The leaf acts as the receiver; source identities remain visually distinct.
+The paper leaf acts as the receiver; source identities remain visually distinct.
 
 Illustration prompt:
 
-> Garden scene. A small leaf hangs from a low branch as Tomas claps, Mira drops a pebble into a birdbath, and a wind chime sways. Several pale-gold wake arcs from distinct earlier source positions meet at the leaf. A small gentle net arrow shows the leaf's combined movement. Rich but readable composition, no text.
+> Stylized white/purple garden play scene. A small white paper leaf hangs from a purple branch as Tomas claps, Mira drops a pebble into a birdbath, and a chime sways. Several red and blue wake arcs from distinct earlier source positions meet at the paper leaf, forming purple overlap near the receiver. A small purple net arrow shows the leaf's combined movement. Natural skin and hair, white/purple clothing, black linework, no text, no labels.
 
 ### Spread 11: Messages Can Make A Pattern
 
@@ -389,7 +389,7 @@ A mobile in the background hints at nested shell swarm geometry without naming i
 
 Illustration prompt:
 
-> Children build a hanging bead mobile near a window. Three beads glow softly and settle into a balanced triangular rhythm with pale-gold arcs between earlier positions. Other beads are still swinging. In the background, a subtle nested circular mobile hints at layered assembly geometry. Warm indoor light, no labels.
+> Children build a hanging bead mobile near a white window in a purple-shadowed room. Three beads glow softly and settle into a balanced triangular rhythm with red/blue arcs and purple overlap between earlier positions. Other beads are still swinging. In the background, a subtle nested circular mobile hints at layered assembly geometry. Natural skin and hair, white/purple clothing, no labels, no text.
 
 ### Spread 12: The Room Is Not Empty
 
@@ -399,7 +399,7 @@ Read-aloud text:
 >
 > Mama turned off the lamp.
 >
-> The room filled with soft specks of dust in a sunbeam.
+> The room filled with soft specks in a lamp beam.
 >
 > "Sometimes what looks empty is full of quiet helpers," Mama said.
 
@@ -417,7 +417,7 @@ The floor grid remains faintly visible as place; the specks show content within 
 
 Illustration prompt:
 
-> Quiet room with a sunbeam full of visible dust-like glowing specks. Mira and Tomas look through the beam while Dr. Sol dims a lamp. The specks form faint neutral pair and swarm motifs, suggesting Noether sea contents. A very faint floor grid shows space as place. Gentle, magical but scientific mood, no text.
+> Quiet white/purple room with a white-purple lamp beam full of visible pale-purple specks. Mira and Tomas look through the beam while Dr. Sol dims a lamp. The specks form faint neutral pair and swarm motifs, suggesting Noether sea contents. A very faint floor grid shows space as place. Natural skin and hair, white/purple clothing, no text, no labels.
 
 ### Spread 13: Looking Gives A Nudge
 
@@ -445,7 +445,7 @@ The record is Mira's drawing of the bead position after the nudge, visibly a lat
 
 Illustration prompt:
 
-> Indoor mobile scene. Tomas shines a flashlight at the bead mobile. The beam contains tiny coherent pale-gold paired motifs, and one bead wiggles slightly after receiving the light. Mira draws the bead's new position in a notebook. Show the drawing as a simple sketch but with no readable text. Warm and clear.
+> Indoor mobile scene in the restricted palette. Tomas shines a flashlight at the bead mobile. The white-purple beam contains tiny coherent red/blue paired motifs, and one bead wiggles slightly after receiving the light. Mira draws the bead's new position in a notebook. Show the drawing as a simple sketch but with no readable text. Natural skin and hair, white/purple clothing, black linework, no labels.
 
 ### Spread 14: The Prediction Game
 
@@ -475,7 +475,7 @@ The tablet is a map, while the real beads and puddle tools remain nearby as the 
 
 Illustration prompt:
 
-> Family at a low table with a learning tablet. The tablet displays a simplified glowing dot, dotted path, expanding ring, and receiver point, with no text or equations. Mira points before the result is shown. Real experiment objects, beads, string, pebble bowl, and ruler sit nearby. No readable UI text.
+> Family at a low white/purple table with a learning tablet. The tablet displays a simplified red or blue glowing dot, dotted path, expanding ring, and receiver point, with no text or equations. Mira points before the result is shown. Real experiment objects, beads, string, pebble bowl, and ruler sit nearby. Natural skin and hair, white/purple clothing and tools, no readable UI text, no labels.
 
 ### Spread 15: Earlier Matters
 
@@ -503,7 +503,7 @@ Subtle future positions are not drawn; only admissible past-to-now influence is 
 
 Illustration prompt:
 
-> Tablet and imagined overlay scene. Tomas runs across the yard, with his current position bright and several earlier positions marked by small golden dots. Expanding arcs from earlier positions reach a small receiver flag now. Do not show future paths. Mira and Dr. Sol watch the model. Picture-book clarity, no text.
+> Tablet and imagined overlay scene. Tomas runs across a white/purple yard, with his current position bright and several earlier positions marked by small red/blue dots. Expanding arcs from earlier positions reach a small receiver flag now, with purple where wake histories overlap. Do not show future paths. Mira and Dr. Sol watch the model. Natural skin and hair, white/purple clothing and scenery, no text, no labels.
 
 ### Spread 16: Night Messages
 
@@ -525,7 +525,7 @@ Close with wonder grounded in lawful delayed influence.
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry:
 
-Star-light paths are shown as gentle causal wake arcs crossing the sky toward the children.
+Starlight paths are shown as gentle red/blue/purple causal wake arcs crossing the deep-purple sky toward the children.
 
 Background concepts:
 
@@ -533,7 +533,7 @@ Faint effective clock and ruler motifs in the bedroom hint that observer-level m
 
 Illustration prompt:
 
-> Night bedroom window scene. Mira and Tomas look out at stars with Dr. Sol beside them. Soft pale-gold arcs from distant stars travel across the sky toward the window. The room includes a small clock, ruler, bead mobile, and notebook, all quiet. Gentle bedtime mood, no text.
+> Night bedroom window scene in a deep purple and white palette. Mira and Tomas look out at stars with Dr. Sol beside them. Soft red/blue/purple causal arcs from distant stars travel across the deep-purple sky toward the window. The room includes a small clock, ruler, bead mobile, and notebook, all quiet. Natural skin and hair, white/purple clothing, black linework, no text, no labels.
 
 ## Back Matter For Adults
 
@@ -560,7 +560,7 @@ This book teaches causal structure before terminology. The child has seen that:
 | The message starts where it was. | Path-history | Earlier source positions can affect the receiver later. |
 | The straight thread. | Line of action | The local received influence has direction from source history to receiver. |
 | Tiny sender, tiny receiver. | Architrino | The architrino is introduced as a point transceiver with identity and path. |
-| Many messages add. | Superposition | The leaf moves from the combined influence of several sources. |
+| Many messages add. | Superposition | The paper leaf moves from the combined influence of several sources. |
 | A pattern can hold together. | Assembly | Stable geometry emerges from lawful interactions. |
 | Quiet helpers in the room. | Noether sea | The medium content is distinguished from empty spatial place. |
 | Seeing can touch. | Measurement interaction | Observation is shown as a physical nudge that can create a record. |
@@ -580,7 +580,7 @@ This book teaches causal structure before terminology. The child has seen that:
 
 For production, generate images page by page using the prompt under each spread plus the shared Art Bible. Keep the geometric overlays consistent:
 
-- causal wake arcs: pale gold, translucent, expanding from earlier source positions;
+- causal wake arcs: red or blue by source, translucent, expanding from earlier source positions, with purple where histories overlap;
 - path-history dots: small and persistent;
 - line of action: one clean thread only when the page lesson requires direction;
 - Noether sea motifs: subtle background content, never the main subject unless the page names the "quiet helpers";

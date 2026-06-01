@@ -1,0 +1,16 @@
+# Children's Book Production Outputs
+
+This folder contains generated production artifacts for the children's book workflow.
+
+- `generation-manifest.json` tracks all 142 planned source illustrations across the age-band series.
+- `source/<book>/` contains text-free generated source illustrations.
+- `qa/<book>/` contains per-image QA records for palette, no text, one continuous scene, and lesson geometry.
+- `pages/<book>/landscape/` contains first-draft reverse-band book pages.
+- `pages/<book>/<book>-first-draft.pdf` combines the landscape first-draft pages.
+- `derivatives/<book>/4x5/` contains feed portrait exports.
+- `derivatives/<book>/9x16/` contains YouTube Shorts/TikTok exports.
+
+Current completed first-draft book:
+
+- `here-there-back`: 10 source images generated, QA approved, 10 landscape pages exported, 10 feed portrait derivatives exported, and 10 short-video derivatives exported.
+- `nature-remembers-motion`: 15 source images generated, QA approved, 15 landscape pages exported, 15 feed portrait derivatives exported, and 15 short-video derivatives exported.

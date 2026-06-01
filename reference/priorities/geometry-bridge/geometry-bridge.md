@@ -2979,6 +2979,51 @@ H38 producer-image trust for the four source-term intervals themselves, with
 the signed `sin_phi`/`sin_delta` cancellation preserved before absolute
 Cauchy bounds are charged.
 
+The zero-constant source-term reduction removes one of those four terms from
+the live trust burden. The
+`candidate-signed-nonterminal-h0-h34-source-term-zero-constant-reduction`
+checks the same five source-trace rows at source order $42$ and verifies that
+the `constant_minus_two` coefficient interval, midpoint, width, and
+midpoint-residual interval are exactly zero. The nonconstant sum
+`delta_squared_speed + sin_phi + sin_delta` still reconstructs the replayed
+source at sub-$10^{-12}$ relative gap and preserves the endpoint replay chain.
+This is not a directed-rounded source certificate, but it proves the next
+producer-image certificate only has to carry the three nonconstant source-term
+intervals through the same-domain H38 producer image.
+
+The same three-term boundary is now replayed at the aggregate H39 producer-image
+comparison level. The requested-y44 budget comparison extracts the live
+row-local `source_term_derivative_inputs_for_scaffold` arrays for
+finite-stencil midpoint jets, degree-four midpoint Lagrange interpolants, and
+intervalized Lagrange node enclosures, then feeds each family into the
+standalone analytic derivative scaffold and $S_{37}$ division replay. The
+finite-stencil and midpoint Lagrange scaffold replays close the row-local
+$M_4$ and $S_{37}$ budgets, while the intervalized node replay stays complete
+but exceeds the same budgets. This is still candidate-only, but it changes the
+blocker from "find the source-term scaffold" to "replace the intervalized node
+width artifact with a directed-rounded same-domain derivative enclosure for
+`delta_squared_speed`, `sin_phi`, and `sin_delta`."
+
+The signed nonconstant source-sum bridge now rules out one more possible
+escape route. Instead of applying Lagrange weights to the three source-term
+intervals separately, the H39/y44 diagnostic first sums the propagated node
+intervals for `delta_squared_speed`, `sin_phi`, and `sin_delta`, then applies
+the same five-node fourth-derivative weights to that signed nonconstant source
+sum. The result is emitted as
+`row_local_n38_nonconstant_source_sum_xi_intervalized_lagrange_provider_candidate`
+and replayed through
+`buildH39RequestedY44RowLocalN38SignedSourceSumDerivativeProviderCandidate`.
+On the live selected rows, the maximum ratio is still
+$2.118441132093164\times10^5$ against the row-local $M_4$ ceiling, the
+midpoint estimate remains inside the intervalized enclosure with zero gap, and
+the split-to-sum reduction factor is $0.9999999999999999$. Therefore the
+obstruction is not a bookkeeping artifact of keeping the three nonconstant
+source slots separate. The width is already present once the H38 producer
+image has exported independent node intervals; the next proof object must keep
+the source covariance through a directed-rounded same-domain continuous
+derivative enclosure, or through an equivalent producer-image normal form,
+before Lagrange/Cauchy absolutization.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.

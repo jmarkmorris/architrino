@@ -34,6 +34,7 @@ import {
   buildH39PolynomialHRowGraphResidualDiagnosticCandidate,
   buildH39RecurrenceRefinedSubcoverPressureDiagnostic,
   buildH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffoldCandidate,
+  buildH39RequestedY44RowLocalN38SignedSourceSumDerivativeProviderCandidate,
   validateH39CorrelatedResidualWidthDiagnostic,
   validateH39H38NumeratorGraphLocalPartitionDiagnostic,
   validateH39H38NumeratorGraphResidualBudgetDiagnostic,
@@ -63,6 +64,7 @@ import {
   validateH39H38Y44SignedAffineTargetEnvelopeDiagnostic,
   validateH39RequestedY44ProducerImageBudgetComparison,
   validateH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffold,
+  validateH39RequestedY44RowLocalN38SignedSourceSumDerivativeProvider,
   validateH39PolynomialHRowGraphIntervalResidualDiagnostic,
   validateH39PolynomialHRowGraphResidualDiagnostic,
   validateH39RecurrenceRefinedSubcoverPressureDiagnostic,
@@ -5259,6 +5261,71 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   );
   assert.equal(
     rowLocalCollarReplay
+      .all_row_local_n38_nonconstant_source_sum_xi_intervalized_lagrange_providers_emitted,
+    true
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_row_local_n38_nonconstant_source_sum_xi_intervalized_lagrange_providers_fit_m4_target,
+    false
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_nonconstant_source_sum_xi_intervalized_lagrange_to_required_upper_ratio >
+      2e5
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_nonconstant_source_sum_xi_intervalized_lagrange_to_required_upper_ratio <
+      2.2e5
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .max_row_local_n38_nonconstant_source_sum_xi_intervalized_lagrange_gap_to_midpoint_estimate_to_required,
+    0
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_nonconstant_source_sum_xi_intervalized_to_split_abs_reduction_factor >
+      0.999999999999
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_nonconstant_source_sum_xi_intervalized_to_split_abs_reduction_factor <
+      1.000000000001
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .row_local_n38_nonconstant_source_sum_xi_intervalized_lagrange_provider_interpretation,
+    "intervalized-nonconstant-source-sum-lagrange-provider-emitted-but-open"
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_all_n38_nonconstant_source_sum_xi_intervalized_lagrange_providers_emitted,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_all_n38_nonconstant_source_sum_xi_intervalized_lagrange_providers_fit_m4_target,
+    false
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_n38_nonconstant_source_sum_xi_intervalized_lagrange_to_required_upper_ratio >
+      2e5
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_n38_nonconstant_source_sum_xi_intervalized_lagrange_gap_to_midpoint_estimate_to_required,
+    0
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_n38_nonconstant_source_sum_xi_intervalized_to_split_abs_reduction_factor >
+      0.999999999999
+  );
+  assert.equal(
+    rowLocalCollarReplay
       .all_row_local_n38_total_xi_intervalized_lagrange_providers_emitted,
     true
   );
@@ -5357,6 +5424,21 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   assert.ok(
     lossAttribution.max_source_to_total_intervalized_lagrange_relative_gap <
       1e-12
+  );
+  assert.ok(
+    lossAttribution
+      .max_nonconstant_source_sum_intervalized_lagrange_to_required_upper_ratio >
+      2e5
+  );
+  assert.ok(
+    lossAttribution
+      .max_source_term_split_to_nonconstant_source_sum_intervalized_lagrange_ratio >
+      0.999999999999
+  );
+  assert.ok(
+    lossAttribution
+      .max_source_term_split_to_nonconstant_source_sum_intervalized_lagrange_ratio <
+      1.000000000001
   );
   assert.ok(
     lossAttribution.max_node_width_terminal_h35_h37_to_direct_ratio > 0.5
@@ -5572,6 +5654,77 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
       );
       return intervalized.source_term_derivative_inputs_for_scaffold;
     });
+  const nonconstantSourceSumD4Inputs =
+    rowLocalCollarReplay.row_replays.map((row) => {
+      const nonconstantSum =
+        row.row_center_n38_s37_collar_diagnostic
+          .row_local_n38_nonconstant_source_sum_xi_intervalized_lagrange_provider_candidate;
+      assert.equal(
+        nonconstantSum.provider_kind,
+        "intervalized-degree-four-nonconstant-source-sum-xi-provider-candidate"
+      );
+      assert.equal(
+        nonconstantSum.proof_status,
+        "nonconstant-source-sum-node-intervals-propagated-through-lagrange-weights-not-directed-rounded-continuous-domain"
+      );
+      assert.equal(
+        nonconstantSum.status,
+        "row-local-n38-nonconstant-source-sum-intervalized-lagrange-provider-exceeds-m4-target"
+      );
+      assert.deepEqual(nonconstantSum.source_terms, [
+        "delta_squared_speed",
+        "sin_phi",
+        "sin_delta",
+      ]);
+      assert.deepEqual(nonconstantSum.zero_source_terms, [
+        "constant_minus_two",
+      ]);
+      assert.equal(nonconstantSum.derivative_order, 4);
+      assert.equal(nonconstantSum.interpolation_node_count, 5);
+      assert.equal(nonconstantSum.source_y_order, 42);
+      assert.equal(nonconstantSum.node_value_intervals.length, 5);
+      assert.equal(nonconstantSum.node_value_interval_widths.length, 5);
+      assert.equal(nonconstantSum.weighted_node_interval_rows.length, 5);
+      assert.equal(
+        nonconstantSum
+          .nonconstant_source_sum_intervalized_lagrange_fits_m4_target,
+        false
+      );
+      assert.ok(
+        nonconstantSum
+          .nonconstant_source_sum_intervalized_lagrange_to_required_upper_ratio >
+          2e5
+      );
+      assert.equal(
+        nonconstantSum
+          .nonconstant_source_sum_intervalized_lagrange_contains_midpoint_estimate,
+        true
+      );
+      assert.equal(
+        nonconstantSum
+          .nonconstant_source_sum_intervalized_lagrange_gap_to_midpoint_estimate_to_required,
+        0
+      );
+      assert.ok(
+        nonconstantSum
+          .nonconstant_source_sum_intervalized_to_split_abs_reduction_factor >
+          0.999999999999
+      );
+      assert.ok(
+        nonconstantSum
+          .nonconstant_source_sum_intervalized_to_split_abs_reduction_factor <
+          1.000000000001
+      );
+      assert.equal(
+        nonconstantSum.claim_boundary.certifies_n38_fourth_derivative_bound,
+        false
+      );
+      assert.equal(
+        nonconstantSum.claim_boundary.certifies_directed_rounded_shared_domain,
+        false
+      );
+      return nonconstantSum.derivative_input_for_signed_sum_bridge;
+    });
   rowLocalCollarReplay.row_replays.forEach((row) => {
     const totalIntervalized =
       row.row_center_n38_s37_collar_diagnostic
@@ -5750,6 +5903,35 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
       .certifies_n38_fourth_derivative_bound,
     false
   );
+  const comparisonFiniteStencilAnalyticProviderScaffold =
+    producerBudgetComparison
+      .producer_row_local_source_term_finite_stencil_analytic_derivative_scaffold;
+  assert.deepEqual(
+    validateH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffold(
+      comparisonFiniteStencilAnalyticProviderScaffold
+    ),
+    []
+  );
+  assert.equal(
+    comparisonFiniteStencilAnalyticProviderScaffold
+      .source_term_derivative_inputs_received_count,
+    finiteStencilSourceTermD4Inputs.length
+  );
+  assert.equal(
+    comparisonFiniteStencilAnalyticProviderScaffold.complete_row_count,
+    finiteStencilAnalyticProviderScaffold.complete_row_count
+  );
+  assert.equal(
+    comparisonFiniteStencilAnalyticProviderScaffold
+      .max_n38_d4_to_required_upper_ratio,
+    finiteStencilAnalyticProviderScaffold
+      .max_n38_d4_to_required_upper_ratio
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_source_term_finite_stencil_scaffold_closes_m4_and_s37,
+    true
+  );
   const interpolantAnalyticProviderScaffold =
     buildH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffoldCandidate({
       producerRowLocalCollarReplay: rowLocalCollarReplay,
@@ -5809,6 +5991,37 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
       .certifies_n38_fourth_derivative_bound,
     false
   );
+  const comparisonInterpolantAnalyticProviderScaffold =
+    producerBudgetComparison
+      .producer_row_local_source_term_lagrange_interpolant_analytic_derivative_scaffold;
+  assert.deepEqual(
+    validateH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffold(
+      comparisonInterpolantAnalyticProviderScaffold
+    ),
+    []
+  );
+  assert.equal(
+    comparisonInterpolantAnalyticProviderScaffold
+      .source_term_derivative_inputs_received_count,
+    interpolantSourceTermD4Inputs.length
+  );
+  assert.equal(
+    comparisonInterpolantAnalyticProviderScaffold
+      .all_complete_rows_close_s37_division_target,
+    interpolantAnalyticProviderScaffold
+      .all_complete_rows_close_s37_division_target
+  );
+  assert.equal(
+    comparisonInterpolantAnalyticProviderScaffold
+      .max_s37_division_total_numerator_width_to_target,
+    interpolantAnalyticProviderScaffold
+      .max_s37_division_total_numerator_width_to_target
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_source_term_lagrange_interpolant_scaffold_closes_m4_and_s37,
+    true
+  );
   const intervalizedAnalyticProviderScaffold =
     buildH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffoldCandidate({
       producerRowLocalCollarReplay: rowLocalCollarReplay,
@@ -5858,6 +6071,129 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
     intervalizedAnalyticProviderScaffold.claim_boundary
       .certifies_n38_fourth_derivative_bound,
     false
+  );
+  const comparisonIntervalizedAnalyticProviderScaffold =
+    producerBudgetComparison
+      .producer_row_local_source_term_intervalized_lagrange_analytic_derivative_scaffold;
+  assert.deepEqual(
+    validateH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffold(
+      comparisonIntervalizedAnalyticProviderScaffold
+    ),
+    []
+  );
+  assert.equal(
+    comparisonIntervalizedAnalyticProviderScaffold
+      .source_term_derivative_inputs_received_count,
+    intervalizedSourceTermD4Inputs.length
+  );
+  assert.equal(
+    comparisonIntervalizedAnalyticProviderScaffold
+      .all_complete_rows_close_m4_target,
+    false
+  );
+  assert.equal(
+    comparisonIntervalizedAnalyticProviderScaffold
+      .max_n38_d4_to_required_upper_ratio,
+    intervalizedAnalyticProviderScaffold
+      .max_n38_d4_to_required_upper_ratio
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_source_term_intervalized_lagrange_scaffold_exceeds_m4_and_s37,
+    true
+  );
+  const signedSourceSumDerivativeProvider =
+    buildH39RequestedY44RowLocalN38SignedSourceSumDerivativeProviderCandidate({
+      producerRowLocalCollarReplay: rowLocalCollarReplay,
+      signedSourceSumDerivativeInputs: nonconstantSourceSumD4Inputs,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44RowLocalN38SignedSourceSumDerivativeProvider(
+      signedSourceSumDerivativeProvider
+    ),
+    []
+  );
+  assert.equal(
+    signedSourceSumDerivativeProvider.complete_row_count,
+    rowLocalCollarReplay.selected_row_count
+  );
+  assert.equal(
+    signedSourceSumDerivativeProvider
+      .all_rows_have_signed_source_sum_derivative_inputs,
+    true
+  );
+  assert.equal(
+    signedSourceSumDerivativeProvider.all_complete_rows_close_m4_target,
+    false
+  );
+  assert.equal(
+    signedSourceSumDerivativeProvider
+      .all_complete_rows_close_s37_division_target,
+    false
+  );
+  assert.ok(
+    signedSourceSumDerivativeProvider.max_n38_d4_to_required_upper_ratio > 2e5
+  );
+  assert.ok(
+    Math.abs(
+      signedSourceSumDerivativeProvider.max_n38_d4_to_required_upper_ratio -
+        intervalizedAnalyticProviderScaffold
+          .max_n38_d4_to_required_upper_ratio
+    ) /
+      intervalizedAnalyticProviderScaffold.max_n38_d4_to_required_upper_ratio <
+      1e-12
+  );
+  assert.equal(
+    signedSourceSumDerivativeProvider.interpretation,
+    "signed-source-sum-d4-inputs-exceed-row-local-m4-ceiling-candidate"
+  );
+  assert.equal(
+    signedSourceSumDerivativeProvider.s37_division_bridge_interpretation,
+    "signed-source-sum-d4-candidate-exceeds-row-local-s37-division-target"
+  );
+  assert.equal(
+    signedSourceSumDerivativeProvider.claim_boundary
+      .certifies_n38_fourth_derivative_bound,
+    false
+  );
+  const comparisonSignedSourceSumDerivativeProvider =
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_intervalized_derivative_provider;
+  assert.deepEqual(
+    validateH39RequestedY44RowLocalN38SignedSourceSumDerivativeProvider(
+      comparisonSignedSourceSumDerivativeProvider
+    ),
+    []
+  );
+  assert.equal(
+    comparisonSignedSourceSumDerivativeProvider
+      .signed_source_sum_derivative_inputs_received_count,
+    nonconstantSourceSumD4Inputs.length
+  );
+  assert.equal(
+    comparisonSignedSourceSumDerivativeProvider
+      .max_n38_d4_to_required_upper_ratio,
+    signedSourceSumDerivativeProvider.max_n38_d4_to_required_upper_ratio
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_intervalized_provider_closes_m4_and_s37,
+    false
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_intervalized_provider_max_n38_d4_to_required_upper_ratio,
+    signedSourceSumDerivativeProvider.max_n38_d4_to_required_upper_ratio
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_source_term_analytic_derivative_scaffolds_available,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_source_term_analytic_derivative_scaffold_interpretation,
+    "midpoint-source-term-d4-scaffolds-close-but-intervalized-node-width-is-blocker"
   );
   const missingAnalyticProviderScaffold =
     buildH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffoldCandidate({
@@ -7971,6 +8307,72 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
     terminalCovarianceTarget
       .signed_nonterminal_h0_h34_source_term_producer_image_trace_interpretation,
     "four-term-source-trace-closes-before-directed-producer-image-trust"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_source_term_zero_constant_reduction_summary_kind,
+    "candidate-signed-nonterminal-h0-h34-source-term-zero-constant-reduction-summary"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_have_signed_nonterminal_h0_h34_source_term_zero_constant_reduction,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_source_term_zero_constant_reductions_use_trace,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_source_term_zero_constant_reductions_eliminate_constant_minus_two,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_source_term_zero_constant_reductions_close_nonconstant_sum,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_source_term_zero_constant_reductions_reduce_trust_burden,
+    true
+  );
+  assert.deepEqual(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_source_terms_requiring_directed_rounded_producer_image_trust,
+    ["delta_squared_speed", "sin_phi", "sin_delta"]
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_source_term_zero_constant_abs_upper,
+    0
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_source_term_zero_constant_width,
+    0
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_source_term_nonconstant_sum_to_replayed_source_relative_gap >=
+      0
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_source_term_nonconstant_sum_to_replayed_source_relative_gap <
+      1e-12
+  );
+  assert.ok(
+    Number.isFinite(
+      terminalCovarianceTarget
+        .min_signed_nonterminal_h0_h34_source_term_nonconstant_cancellation_fraction
+    )
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_source_term_zero_constant_reduction_interpretation,
+    "constant-minus-two-structurally-zero-trust-burden-reduced-to-three-source-terms"
   );
   terminalCovarianceTarget.covariance_rows.forEach((row) => {
     assert.equal(
@@ -10639,6 +11041,169 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
     );
     assert.equal(
       sourceTermTrace.claim_boundary.certifies_shifted_R43_outer_bound,
+      false
+    );
+    const zeroConstantReduction =
+      row.signed_nonterminal_h0_h34_source_term_zero_constant_reduction;
+    assert.equal(
+      zeroConstantReduction.target_kind,
+      "candidate-signed-nonterminal-h0-h34-source-term-zero-constant-reduction"
+    );
+    assert.equal(
+      zeroConstantReduction.source_input_replay_diagnostic_kind,
+      "candidate-signed-nonterminal-h0-h34-source-input-replay-diagnostic"
+    );
+    assert.equal(
+      zeroConstantReduction.source_term_producer_image_trace_kind,
+      "candidate-signed-nonterminal-h0-h34-source-term-producer-image-trace"
+    );
+    assert.equal(
+      zeroConstantReduction.proof_status,
+      "candidate-source-term-zero-constant-reduction-directed-trust-open"
+    );
+    assert.equal(
+      zeroConstantReduction.source_term_zero_constant_reduction_kind,
+      "constant-minus-two-zero-at-h38-source-order"
+    );
+    assert.equal(zeroConstantReduction.source_y_order, 42);
+    assert.deepEqual(zeroConstantReduction.source_terms, [
+      "delta_squared_speed",
+      "constant_minus_two",
+      "sin_phi",
+      "sin_delta",
+    ]);
+    assert.deepEqual(zeroConstantReduction.zero_source_terms, [
+      "constant_minus_two",
+    ]);
+    assert.deepEqual(
+      zeroConstantReduction
+        .source_terms_requiring_directed_rounded_producer_image_trust,
+      ["delta_squared_speed", "sin_phi", "sin_delta"]
+    );
+    assert.equal(
+      zeroConstantReduction
+        .all_source_term_zero_constant_rows_have_exact_zero_constant,
+      true
+    );
+    assert.equal(
+      zeroConstantReduction
+        .all_source_term_zero_constant_rows_nonconstant_sum_matches_source,
+      true
+    );
+    assert.equal(
+      zeroConstantReduction
+        .all_source_term_zero_constant_rows_preserve_endpoint_margin_replay_chain,
+      true
+    );
+    assert.equal(
+      zeroConstantReduction
+        .producer_image_trust_reduced_to_nonconstant_source_terms,
+      true
+    );
+    assert.equal(
+      zeroConstantReduction.source_terms_certified_directed_rounded_same_domain,
+      false
+    );
+    assert.equal(zeroConstantReduction.max_zero_constant_abs_upper, 0);
+    assert.equal(zeroConstantReduction.max_zero_constant_width, 0);
+    assert.ok(
+      zeroConstantReduction.max_nonconstant_sum_to_replayed_source_relative_gap >=
+        0
+    );
+    assert.ok(
+      zeroConstantReduction.max_nonconstant_sum_to_replayed_source_relative_gap <
+        1e-12
+    );
+    assert.equal(
+      zeroConstantReduction.source_term_zero_constant_reduction_classification,
+      "constant-minus-two-eliminated-from-source-term-trust-burden"
+    );
+    assert.equal(
+      zeroConstantReduction.source_term_zero_constant_rows.length,
+      5
+    );
+    zeroConstantReduction.source_term_zero_constant_rows.forEach(
+      (zeroConstantRow) => {
+        assert.equal(
+          zeroConstantRow.source_variant,
+          "h0-h34-cell-midpoint"
+        );
+        assert.equal(
+          zeroConstantRow.replay_kind,
+          "same-row-h0-h34-cell-midpoint-source-input-replay"
+        );
+        assert.equal(zeroConstantRow.source_y_order, 42);
+        assert.equal(
+          zeroConstantRow.source_term_zero_constant_reduction_kind,
+          "h0-h34-cell-midpoint-source-term-zero-constant-reduction"
+        );
+        assert.deepEqual(zeroConstantRow.zero_source_terms, [
+          "constant_minus_two",
+        ]);
+        assert.deepEqual(
+          zeroConstantRow
+            .source_terms_requiring_directed_rounded_producer_image_trust,
+          ["delta_squared_speed", "sin_phi", "sin_delta"]
+        );
+        assert.deepEqual(zeroConstantRow.constant_minus_two_interval, [
+          0,
+          0,
+        ]);
+        assert.deepEqual(
+          zeroConstantRow.constant_minus_two_residual_interval_after_midpoint,
+          [0, 0]
+        );
+        assert.equal(zeroConstantRow.constant_minus_two_midpoint, 0);
+        assert.equal(zeroConstantRow.constant_minus_two_abs_upper, 0);
+        assert.equal(zeroConstantRow.constant_minus_two_width, 0);
+        assert.equal(
+          zeroConstantRow.constant_minus_two_exact_zero_at_source_order,
+          true
+        );
+        assert.ok(
+          zeroConstantRow.nonconstant_sum_to_replayed_source_relative_gap >=
+            0
+        );
+        assert.ok(
+          zeroConstantRow.nonconstant_sum_to_replayed_source_relative_gap <
+            1e-12
+        );
+        assert.equal(
+          zeroConstantRow
+            .zero_constant_reduction_reconstructs_replayed_source,
+          true
+        );
+        assert.equal(
+          zeroConstantRow
+            .zero_constant_reduction_preserves_endpoint_margin_replay_chain,
+          true
+        );
+        assert.equal(
+          zeroConstantRow.source_terms_certified_directed_rounded_same_domain,
+          false
+        );
+        assert.equal(
+          zeroConstantRow.source_term_zero_constant_reduction_row_status,
+          "constant-minus-two-zero-nonconstant-source-reconstructs-replay-directed-producer-image-trust-open"
+        );
+      }
+    );
+    assert.equal(
+      zeroConstantReduction.claim_boundary
+        .certifies_source_terms_as_directed_rounded_same_domain,
+      false
+    );
+    assert.equal(
+      zeroConstantReduction.claim_boundary
+        .certifies_nonconstant_source_terms_as_directed_rounded_same_domain,
+      false
+    );
+    assert.equal(
+      zeroConstantReduction.claim_boundary.certifies_directed_rounded_shared_domain,
+      false
+    );
+    assert.equal(
+      zeroConstantReduction.claim_boundary.certifies_shifted_R43_outer_bound,
       false
     );
   });

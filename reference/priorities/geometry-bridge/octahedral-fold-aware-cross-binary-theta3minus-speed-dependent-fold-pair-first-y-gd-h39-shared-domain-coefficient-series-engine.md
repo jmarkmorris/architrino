@@ -3863,3 +3863,48 @@ $R_{\varepsilon,43}$ claim false. Its value is to make the next certificate
 object exact: prove directed-rounded same-domain H38 producer-image enclosures
 for the four source-term intervals while preserving the signed
 `sin_phi`/`sin_delta` cancellation before absolute bounds are applied.
+
+The follow-on zero-constant reduction tightens that certificate object. The
+`candidate-signed-nonterminal-h0-h34-source-term-zero-constant-reduction`
+uses the same live source order $42$ rows and proves that
+`constant_minus_two` contributes the exact interval $[0,0]$, with zero
+midpoint, zero width, and zero midpoint residual. After dropping that
+structurally constant term, the nonconstant source-term sum
+`delta_squared_speed + sin_phi + sin_delta` still reconstructs the replayed
+source at sub-$10^{-12}$ relative gap and preserves the endpoint-margin replay
+chain. The blocker is therefore the directed-rounded producer-image enclosure
+for those three nonconstant source terms, not for a four-term source box.
+
+The H39 producer-image comparison now makes that three-term scaffold first
+class at the route boundary. It collects the live row-local
+`source_term_derivative_inputs_for_scaffold` arrays from the finite-stencil
+midpoint jet provider, the degree-four midpoint Lagrange provider, and the
+intervalized Lagrange provider, then replays each family through
+`buildH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffoldCandidate`.
+The finite-stencil and midpoint Lagrange families close both the row-local
+$M_4$ ceiling and the dependency-preserving $S_{37}$ division replay, while
+the intervalized node family remains same-domain matched but exceeds those
+budgets. The result is not a directed-rounded certificate; it is an executable
+localization showing that the live H39/y44 route already has the correct
+three-term scaffold, and that the next proof object is the directed-rounded
+source-term derivative enclosure rather than another H39 collar or source-box
+gate.
+
+The next executable replay tests whether the interval loss was caused by
+splitting the three nonconstant source slots too early. The route now forms
+the signed node interval sum
+`delta_squared_speed + sin_phi + sin_delta` first, applies the same five-node
+fourth-derivative Lagrange weights to that summed nonconstant source stream,
+and feeds the resulting row inputs into
+`buildH39RequestedY44RowLocalN38SignedSourceSumDerivativeProviderCandidate`.
+The focused H39/y44 fixture rejects the split-artifact explanation: the
+producer comparison emits the provider for every selected row, but its maximum
+$N_{38}^{(4)}$-to-required ratio is still
+$2.118441132093164\times10^5$, and the split-to-sum reduction factor is
+$0.9999999999999999$. Since the midpoint derivative is contained with zero
+gap, the issue is not that the signed source sum is absent. The loss happens
+before this bridge, when same-domain H38 producer-image data is converted into
+independent node intervals. H39 closure therefore needs a directed-rounded
+continuous source-covariance derivative enclosure, or an equivalent
+producer-image normal form, before the Lagrange and Cauchy absolute bounds are
+allowed to act.

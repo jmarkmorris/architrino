@@ -351,6 +351,65 @@ active-endpoint enclosures. It consumes 0 rows, keeps
 `preledger_pass=false`, keeps `updates_live_ledger=false`, keeps
 `branch_chart_authorized=false`, emits no candidate artifacts, emits no
 topology recertification, and emits no proof-interval replay of its own.
+The active-endpoint residual source-data audit,
+`one_leaf_active_endpoint_residual_source_data_audit_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then audits the imported one-leaf sources for the data needed to construct
+residual functions on endpoint boxes. It preserves 3 / 3 sampled endpoint
+values, 3 / 3 sampled defect lambda derivatives, and 3 / 3 constant-theta
+endpoint-box candidates, but finds 0 / 3 endpoint residual formula sources,
+0 / 3 endpoint domain charts, 0 / 3 endpoint evaluation or motion rules,
+0 / 3 residual derivative formulas, 0 / 3 outward rounding rules, 0 / 3
+competing-endpoint exclusion input rows, 0 / 3 endpoint-gap bound input rows,
+0 / 3 interval-box radius rules, and 0 / 3 residual source-data-ready rows. It
+consumes 0 rows and must not promote sampled lambda derivatives into residual
+interval bounds.
+The active-endpoint residual data construction attempt,
+`one_leaf_active_endpoint_residual_data_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests whether endpoint-functional source artifacts can become row-level
+residual functions on endpoint boxes. It preserves 4 / 4 endpoint-local formula
+and derivative candidates, 4 / 4 component-union chart functionals, 4 / 4
+boundary source-data functionals, and 3 / 3 row boundary-source pairs, but
+constructs 0 / 3 residual functions on boxes, residual interval bounds,
+derivative-isolation rows, uniqueness/no-switch rows, endpoint-gap bounds,
+interval active-endpoint enclosures, preledger passes, or consumed rows.
+The fold-coordinate endpoint-functional boundary-binding motion/evaluation
+construction attempt,
+`fold_coordinate_endpoint_functional_boundary_binding_motion_evaluation_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then imports that result plus the endpoint-functional source stack. It
+preserves 4 / 4 local formula candidates, 4 / 4 component-union chart
+functionals, 4 / 4 endpoint boundary-source records, 4 / 4 declared
+evaluation-map symbols, and 3 / 3 row boundary-source pairs, but constructs
+0 / 4 endpoint boundary bindings, history update formulas, endpoint motion
+rules, endpoint evaluation maps, full endpoint evaluation maps, non-target zero
+certificates, exact $B\xi=0$ or rank certificates, candidate artifacts,
+topology recertifications, proof-interval replays, row-ready endpoint-map
+pairs, or consumed rows.
+The component-union domain/boundary-binding subcertificate,
+`fold_coordinate_endpoint_functional_component_union_domain_binding_subcertificate_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then narrows that blocker without consuming rows. It promotes the certified
+component-union domains into 4 / 4 endpoint-functional domains, domain charts,
+coordinate rules, basis-domain bindings, theta supports, basis formulas, and
+derivative formulas, and constructs 3 / 3 source/receiver component-domain
+pairs. It still constructs 0 / 4 endpoint boundary bindings, endpoint value
+bindings, binding contracts, history update formulas, endpoint motion rules,
+endpoint evaluation maps, non-target zero certificates, exact $B\xi=0$ or rank
+certificates, candidate artifacts, topology recertifications, proof-interval
+replays, row-ready endpoint-map pairs, or consumed rows.
+The component-domain endpoint-boundary-binding construction attempt,
+`fold_coordinate_endpoint_functional_component_domain_endpoint_boundary_binding_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then imports that component-domain subcertificate and the endpoint-boundary
+source-data audit. It preserves 4 / 4 endpoint-functional domains, domain
+charts, coordinate rules, basis-domain bindings, theta supports, basis
+formulas, derivative formulas, component-domain subcertificates, endpoint
+boundary-source records, declared endpoint evaluation rules, and 3 / 3 row
+component-domain/source-data pairs. It still constructs 0 / 4 endpoint boundary
+bindings, endpoint value bindings, binding contracts, same-packet history
+update formulas, endpoint motion rules, endpoint evaluation maps, non-target
+zero certificates, exact $B\xi=0$ or rank certificates, candidate artifacts,
+topology recertifications, proof-interval replays, row-ready binding pairs, or
+consumed rows. The remaining proof object is therefore the same-packet endpoint
+boundary-binding and motion/evaluation construction, not a missing
+endpoint-domain or source-data layer.
 The remaining branches are periodic
 endpoint/complement ownership for the 8 lift rows and fold-layer certificate
 closure for the 112 fold-layer rows now grouped by

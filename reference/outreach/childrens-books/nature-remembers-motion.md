@@ -34,7 +34,7 @@ Recurring geometry:
 - purple overlap appears where histories cross;
 - no named architrinos, no equations, no labels, no in-image text.
 
-Image-generation rule: do not include book text, captions, labels, equations, or watermarks inside the illustration. Any story text should be added later by layout.
+Image-generation rule: every prompt inherits the style-guide palette rule. Use only pure red, pure blue, red-blue purples, white, and black for non-human visual systems and $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry. Keep scenery, clothing, and tools in white/purple/black unless a red or blue mark is explicitly part of the physics geometry. Human skin and hair may use natural tones. Do not include book text, captions, labels, equations, watermarks, or logos inside the illustration.
 
 ## Page Plan
 
@@ -350,7 +350,7 @@ The book ends with lawful wonder, not a lecture.
 
 Illustration prompt:
 
-> Nia and Mama sit together in a white playroom looking at a gentle red/blue/purple floor pattern made of dots, rings, and return loops. Pale-purple specks are quiet in the background. Warm, simple, no labels, no text.
+> Nia and Mama sit together in a white playroom looking at a gentle red/blue/purple floor pattern made of dots, rings, and return loops. Pale-purple specks are quiet in the background. Soft and simple, no labels, no text.
 
 ## Back Matter For Adults
 
