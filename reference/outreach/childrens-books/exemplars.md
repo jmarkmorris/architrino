@@ -29,7 +29,7 @@ Why it works:
 
 - presence, path, and return are visible before language;
 - the toddler's path is shown as ordered red/blue/purple marks, not as an abstract diagram;
-- repeated child positions read as motion through time rather than a social scene;
+- one child appears once, while ordered path marks carry the earlier and returning motion;
 - the caregiver remains warm but secondary to the child's embodied path;
 - the palette stays simple enough for the baby-toddler foundation.
 
@@ -122,7 +122,7 @@ Why it works:
 - the visible path is paired with earlier source positions and expanding wake fronts;
 - accepted causal-history intersections stand out without requiring equations;
 - the self-action loop is present as geometry rather than exposition;
-- the transparent tabletop keeps the delayed-interaction simulator concrete;
+- the single tabletop keeps the delayed-interaction simulator concrete without cutaway subpanels;
 - older-student complexity is higher while preserving the same palette grammar.
 
 Use this as the exemplar for:
@@ -141,7 +141,7 @@ Why it works:
 - the image reads from tiny active parts to assemblies, medium response, and observer-level instruments;
 - nested red/blue assemblies sit inside a quiet Noether sea rather than empty space;
 - the purple-white channel bridges substrate behavior to clock/ruler/light-channel recovery;
-- claim-level hints remain nonverbal, with no labels or equations;
+- observer-level recovery is shown in one continuous tabletop flow, with no inset diagram panels;
 - the students feel like older learners synthesizing the series.
 
 Use this as the exemplar for:

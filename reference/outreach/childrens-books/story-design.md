@@ -52,6 +52,41 @@ Every detailed book file should use the same spread pattern:
 | Background concepts | Quiet details that reward rereading without overloading the child. |
 | Illustration prompt | Text-free image direction for generation or human illustration. |
 
+## Image Production Counts
+
+The series now uses planning counts for source illustrations. A source illustration is a generated or hand-produced image before story text, reverse bands, print layout, or social/video crops are applied.
+
+Rules:
+
+- each age band should keep one preview/exemplar image during planning;
+- each production book should have one cover or key-art source image;
+- each Level 2 story spread should usually receive one source illustration;
+- back matter should use a small number of clean diagram/activity source images, scaled by age;
+- 4:5 social, 9:16 YouTube Shorts/TikTok, and other layout variants are derivative exports from approved source illustrations, not additional story illustrations;
+- final counts should be frozen only after the Level 2 scene list for that age band is approved.
+
+Target source-image counts:
+
+| Age | Working title | Story spreads | Cover/key art | Back matter/activity images | Target source images | Current status |
+| --- | --- | ---: | ---: | ---: | ---: | --- |
+| Baby-toddler | Here, There, Back | 8 | 1 | 1 | 10 | Preview exists; board-book scenes not yet planned. |
+| 3-5 | Nature Remembers Motion | 12 | 1 | 2 | 15 | Preview exists; scenes not yet planned. |
+| 6-8 | The Message That Traveled | 16 | 1 | 2 | 19 | Preview exists; pilot scene plan exists. |
+| 9-11 | The Tiny Transceivers | 18 | 1 | 3 | 22 | Preview exists; scenes not yet planned. |
+| 12-14 | The Balance Point | 18 | 1 | 4 | 23 | Preview exists; scenes not yet planned. |
+| 15-16 | The History That Pushes Now | 20 | 1 | 5 | 26 | Preview exists; scenes not yet planned. |
+| 17-18 | The World We Recover | 20 | 1 | 6 | 27 | Preview exists; scenes not yet planned. |
+
+Planning total: 142 source illustrations across the full age-band series, excluding derivative layout exports and discarded variants.
+
+Generation order:
+
+1. Approve the Level 1 lessons and Level 2 scene list.
+2. Generate or select the cover/key art.
+3. Generate story-spread source illustrations in sequence.
+4. Generate back-matter diagrams only after the story images are stable.
+5. Produce 4:5 and 9:16 layout exports from approved source images when outreach assets are needed.
+
 ## Framing To Avoid
 
 Avoid social overtones. The series should not use the physics palette, polarity, named architrinos, or assembly behavior as metaphors for human groups, personality types, social identity, conflict, morality, or belonging.

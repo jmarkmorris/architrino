@@ -34,7 +34,7 @@ rules, 0 / 4 endpoint evaluation maps, 0 / 4 non-target zero certificates, and
 
 ## Promotion Rule
 
-Here global means a single same-packet construction over all support components for the relevant `fc_*` variable, not a universal time-space object. A component-local Psi formula promotes only if the same packet constructs a global endpoint-functional domain chart, coordinate rule, basis-domain binding, gluing and periodicity rules, endpoint boundary binding, endpoint motion rule, endpoint evaluation map, non-target zero certificate, exact $B\xi=0$, rank, topology recertification, and proof-interval v1-v6 replay.
+Here global means a single same-packet construction over all support components for the relevant `fc_*` variable, not a universal time-space object. A component-local $\Psi_j$ formula promotes only if the same packet constructs a global endpoint-functional domain chart, coordinate rule, basis-domain binding, gluing and periodicity rules, endpoint boundary binding, endpoint motion rule, endpoint evaluation map, non-target zero certificate, exact $B\xi=0$, rank, topology recertification, and proof-interval v1-v6 replay.
 
 Do not promote a local $E_j(\Psi_j)=\pm 1$ endpoint identity into a global same-packet domain/evaluation map until all global domain/evaluation-map fields and replay gates are constructed in the same packet.
 

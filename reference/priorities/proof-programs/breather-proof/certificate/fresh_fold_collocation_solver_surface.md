@@ -520,6 +520,82 @@ global coordinate rules, 0 / 4 endpoint evaluation maps, 0 / 4 non-target zero
 certificates, 0 / 4 exact $B\xi=0$ or rank certificates, and 0 / 3 row-ready
 global domain/evaluation pairs.
 
+The endpoint-functional candidate artifact replay-readiness audit is recorded
+in
+`fold_coordinate_endpoint_functional_candidate_artifact_replay_readiness_audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_candidate_artifact_replay_readiness_audit_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It verifies that the route still has no lawful same-packet replay surface:
+0 / 5 fold-coordinate candidate artifacts are present, 0 / 4 topology
+recertifications and 0 / 4 proof-interval v1-v6 replays are certified, and
+0 / 3 rows are replay-ready. The `lambda=0.305` replay is preserved only as
+non-reusable direct-path contrast.
+
+The endpoint-functional component-union chart certificate is recorded in
+`fold_coordinate_endpoint_functional_component_union_chart_certificate.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_component_union_chart_certificate_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It closes the support-list/no-double-counting subproblem for the four `fc_*`
+endpoint functionals: 4 / 4 component-union domains, coordinate rules,
+no-double-counting rules, formula-to-chart bindings, and target endpoint
+evaluation locators are certified, with 3 / 3 rows carrying source/receiver
+chart pairs. It still leaves 0 / 4 endpoint motion rules, 0 / 4 full endpoint
+evaluation maps, 0 / 4 non-target zero certificates, 0 / 4 exact $B\xi=0$ or
+rank certificates, and 0 consumable rows.
+
+The endpoint-functional post-component-union endpoint-motion full
+evaluation-map layer attempt is recorded in
+`fold_coordinate_endpoint_functional_post_component_union_endpoint_motion_full_evaluation_map_layer_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_post_component_union_endpoint_motion_full_evaluation_map_layer_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It tests the exact promotion that the chart certificate leaves open. The
+attempt preserves 4 / 4 component-union chart certificates, 4 / 4 target
+locators, 4 / 4 declared evaluation-map symbols, and 3 / 3 row chart pairs, but
+it constructs 0 / 4 endpoint boundary bindings, 0 / 4 same-packet history
+update formulas, 0 / 4 endpoint motion rules, 0 / 4 endpoint evaluation maps,
+0 / 4 non-target zero certificates, 0 / 4 exact $B\xi=0$ or rank certificates,
+and 0 consumable rows.
+
+The endpoint-functional post-component-union endpoint-boundary-binding
+source-data audit is recorded in
+`fold_coordinate_endpoint_functional_post_component_union_endpoint_boundary_binding_source_data_audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_post_component_union_endpoint_boundary_binding_source_data_audit_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It confirms that the source data for the next construction attempt are now
+present: 4 / 4 endpoint boundary actions, target endpoint refs and values,
+component-union target locators, evaluation-map symbols, and declared endpoint
+evaluation rules, plus 3 / 3 row source/receiver boundary refs, boundary
+values, signed boundary-delta contracts, and source/receiver chart pairs. It
+also keeps the construction boundary explicit: 0 / 4 endpoint boundary
+bindings, 0 / 4 same-packet history update formulas, 0 / 4 endpoint motion
+rules, 0 / 4 endpoint evaluation maps, 0 / 4 full endpoint evaluation maps,
+0 / 4 exact $B\xi=0$ or rank certificates, and 0 consumable rows.
+
+The endpoint-functional post-component-union endpoint-boundary-binding
+construction attempt is recorded in
+`fold_coordinate_endpoint_functional_post_component_union_endpoint_boundary_binding_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_post_component_union_endpoint_boundary_binding_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It tests whether the verified source data can be promoted into actual endpoint
+boundary bindings. The attempt fail-closes with 4 / 4 endpoint source-data rows
+preserved and 0 / 4 endpoint boundary bindings, 0 / 4 endpoint value bindings,
+0 / 4 same-packet history update formulas, 0 / 4 endpoint motion rules,
+0 / 4 endpoint evaluation maps, 0 / 4 full endpoint evaluation maps,
+0 / 4 exact $B\xi=0$ or rank certificates, and 0 consumable rows.
+
+The row-closure geometry budget packet is recorded in
+`row_closure_geometry_budget_packet.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`row_closure_geometry_budget_packet_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It records the non-endpoint route left open by the construction attempt:
+3 / 3 one-leaf rows have positive sampled direct-path boundary-opening
+budgets at `lambda=0.305`, with shared active-endpoint threshold
+`lambda>0.301815056706425`, while the imported replay still leaves
+162 `split_required` base rows, 0 complete receiver-cover parent rows,
+0 accepted fold-layer rows, `preledger_pass=false`, and no branch-chart
+authorization. It consumes 0 rows and emits no candidate artifacts, topology
+recertification, or proof-interval replay of its own.
+
 ## Pre-Ledger Stop Condition
 
 Stop before branch-chart construction unless every pre-ledger row satisfies

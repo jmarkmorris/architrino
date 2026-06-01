@@ -190,6 +190,8 @@ Do not use full black backgrounds for ordinary pages. They should be reserved fo
 
 Each image should have one readable geometry lesson. A page may contain background hints of other $\mathbb{A}\mathbb{A}\mathbb{A}$ concepts, but the primary lesson should be identifiable within three seconds.
 
+Each source PNG should contain one continuous illustration. Do not use one PNG as a contact sheet, storyboard, split-screen comparison, or collection of inset mini-images. If a lesson needs multiple diagrams, scenes, or crops, create separate PNG files for each one and combine them later in the deterministic layout step.
+
 Preferred composition pattern:
 
 1. Human play or experiment in the foreground.

@@ -541,7 +541,7 @@ function buildAttempt(inputs, sources) {
       domainEvaluationContract: artifactRecord(sources.domainEvaluationContract),
     },
     global_domain_evaluation_rule:
-      "Here global means a single same-packet construction over all support components for the relevant `fc_*` variable, not a universal time-space object. A component-local Psi formula promotes only if the same packet constructs a global endpoint-functional domain chart, coordinate rule, basis-domain binding, gluing and periodicity rules, endpoint boundary binding, endpoint motion rule, endpoint evaluation map, non-target zero certificate, exact $B\\xi=0$, rank, topology recertification, and proof-interval v1-v6 replay.",
+      "Here global means a single same-packet construction over all support components for the relevant `fc_*` variable, not a universal time-space object. A component-local $\\Psi_j$ formula promotes only if the same packet constructs a global endpoint-functional domain chart, coordinate rule, basis-domain binding, gluing and periodicity rules, endpoint boundary binding, endpoint motion rule, endpoint evaluation map, non-target zero certificate, exact $B\\xi=0$, rank, topology recertification, and proof-interval v1-v6 replay.",
     no_promotion_rule:
       "Do not promote a local $E_j(\\Psi_j)=\\pm 1$ endpoint identity into a global same-packet domain/evaluation map until all global domain/evaluation-map fields and replay gates are constructed in the same packet.",
     component_union_rule:

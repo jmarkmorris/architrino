@@ -244,6 +244,79 @@ non-target zero certificates, 0 / 4 exact $B\xi=0$ or rank certificates, and
 global same-packet domain/evaluation map, meaning one same-packet construction
 over all support components for each `fc_*` variable, not another local formula
 identity.
+The candidate artifact replay-readiness audit,
+`fold_coordinate_endpoint_functional_candidate_artifact_replay_readiness_audit_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then checks whether this endpoint-functional route may lawfully advance to
+same-packet candidate artifact emission or proof-interval replay. It fail-closes:
+4 / 4 local $\Psi_j$ formula candidates and 4 / 4 component endpoint identities
+are still exact, but there are 0 / 4 global domain/evaluation maps, 0 / 5
+candidate artifacts, 0 / 4 topology recertifications, 0 / 4 proof-interval
+v1-v6 replays, and 0 / 3 replay-ready rows. The `lambda=0.305` replay remains
+non-reusable contrast data, not a fold-coordinate candidate replay.
+The component-union chart certificate,
+`fold_coordinate_endpoint_functional_component_union_chart_certificate_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then supplies the first constructive global-chart subpiece. It certifies
+4 / 4 component-union domains, coordinate rules, no-double-counting rules,
+formula-to-chart bindings, and target endpoint evaluation locators, and it
+gives 3 / 3 rows source/receiver chart pairs. It still constructs 0 / 4
+endpoint motion rules, 0 / 4 full endpoint evaluation maps, 0 / 4 non-target
+zero certificates, 0 / 4 exact $B\xi=0$ or rank certificates, 0 / 5 candidate
+artifacts, and 0 consumable rows. The active endpoint-functional blocker is now
+full same-packet endpoint motion/evaluation semantics on top of the certified
+component-union chart.
+The post-component-union endpoint-motion/full evaluation-map layer attempt,
+`fold_coordinate_endpoint_functional_post_component_union_endpoint_motion_full_evaluation_map_layer_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests that promotion directly. It preserves 4 / 4 component-union
+domains, coordinate rules, no-double-counting rules, target locators,
+evaluation-map symbols, and endpoint evaluation rule declarations, with 3 / 3
+row chart pairs. It still constructs 0 / 4 endpoint boundary bindings, 0 / 4
+same-packet history update formulas, 0 / 4 endpoint motion rules, 0 / 4 full
+endpoint evaluation maps, 0 / 4 non-target zero certificates, 0 / 4 exact
+$B\xi=0$ or rank certificates, 0 / 5 candidate artifacts, and 0 consumable
+rows. The active endpoint-functional blocker remains an actual same-packet
+endpoint motion/evaluation-map realization, not another locator or chart
+promotion.
+The post-component-union endpoint-boundary-binding source-data audit,
+`fold_coordinate_endpoint_functional_post_component_union_endpoint_boundary_binding_source_data_audit_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then separates the completed locator/source-data layer from the missing
+construction layer. It verifies 4 / 4 endpoint boundary actions, target
+endpoint refs and values, component-union target locators, evaluation-map
+symbols, and declared endpoint evaluation rules, plus 3 / 3 row-local
+source/receiver boundary refs, boundary values, signed boundary-delta
+contracts, and source/receiver chart pairs. It still constructs 0 / 4 endpoint
+boundary bindings, 0 / 4 same-packet history update formulas, 0 / 4 endpoint
+motion rules, 0 / 4 endpoint evaluation maps, 0 / 4 full endpoint evaluation
+maps, 0 / 4 non-target zero certificates, 0 / 4 exact $B\xi=0$ or rank
+certificates, 0 / 5 candidate artifacts, and 0 consumable rows. The next
+endpoint-functional proof object is therefore an endpoint boundary binding
+construction attempt over these source data, not another endpoint locator or
+component-chart audit.
+The post-component-union endpoint-boundary-binding construction attempt,
+`fold_coordinate_endpoint_functional_post_component_union_endpoint_boundary_binding_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests that promotion. It preserves 4 / 4 endpoint source-data rows and
+3 / 3 row source-data rows, but all four construction methods fail: source data
+cannot be promoted into a boundary binding, the declared domain contract is not
+an actual boundary binding, the component locator is not a binding, and the
+signed boundary-delta contract is not an endpoint motion rule. It constructs
+0 / 4 endpoint boundary bindings, 0 / 4 endpoint value bindings, 0 / 4
+same-packet history update formulas, 0 / 4 endpoint motion rules, 0 / 4
+endpoint evaluation maps, 0 / 4 full endpoint evaluation maps, 0 / 4 non-target
+zero certificates, 0 / 4 exact $B\xi=0$ or rank certificates, 0 / 5 candidate
+artifacts, and 0 consumable rows. The active endpoint-functional blocker is now
+new same-packet boundary-binding and endpoint-motion construction data, or a
+change in row-closure geometry.
+The row-closure geometry budget packet,
+`row_closure_geometry_budget_packet_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+records that second route without consuming rows. It imports the direct-path
+one-leaf lambda screen and the `lambda=0.305` topology/preledger replay:
+3 / 3 one-leaf rows have positive sampled boundary-opening budgets, with a
+shared active-endpoint threshold `lambda>0.301815056706425` and trial margin
+`0.0031849432935751`. The imported trial keeps 12-root topology and has a
+v1-v6 replay, but the replay still has 162 `split_required` base rows,
+0 complete receiver-cover parent rows, 0 accepted fold-layer rows,
+`preledger_pass=false`, and `branch_chart_authorized=false`. This makes the
+next row-closure object an interval-certified boundary-opening, receiver-cover,
+or fold-layer proof, not another direct replay of the same lambda screen.
 The remaining branches are periodic
 endpoint/complement ownership for the 8 lift rows and fold-layer certificate
 closure for the 112 fold-layer rows now grouped by

@@ -25,6 +25,10 @@ Stories are organized at two levels:
 
 The full teaching map and scene template live in [story-design.md](story-design.md#two-level-story-architecture).
 
+## Image Count Targets
+
+The source-illustration target for the full age-band series is **142 images**, excluding derivative social/video layout exports and discarded variants. Counts by age band are controlled in [story-design.md](story-design.md#image-production-counts).
+
 ## Art Continuity
 
 Use a consistent visual grammar across the series:
