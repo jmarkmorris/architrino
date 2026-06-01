@@ -37,7 +37,7 @@ Production rule:
 | Role | Color | Hex | Use |
 | --- | --- | --- | --- |
 | Polarity A | Pure red | `#ff0000` | One intrinsic architrino polarity, red causal wakes, red-dominant influence. |
-| Polarity B | Pure blue | `#0000ff` | Opposite intrinsic architrino polarity, blue causal wakes, blue-dominant influence. |
+| Polarity B | Pure blue | `#0000ff` | Other intrinsic architrino polarity, blue causal wakes, blue-dominant influence. |
 | Exact red-blue balance | Pure purple | `#800080` | Balanced red-blue contribution, neutralized interaction, stable midpoint in diagrams. |
 | Light neutral balance | Pale purple tint | `#d8b4ff` | Gentle neutral glow, child-facing quiet balance, Noether sea softness. |
 | Dark purple depth | Deep purple shade | `#220033` | Night scenes, shadowed neutral medium, high contrast backing. |
@@ -110,7 +110,7 @@ If a page needs a strong character identifier, use hair silhouette, posture, rec
 Draw architrinos as small luminous point transceivers:
 
 - red for one polarity;
-- blue for the opposite polarity;
+- blue for polarity B;
 - white glint for identity and clarity;
 - thin black edge only when needed for contrast.
 

@@ -55,8 +55,8 @@ For ages 3-8, use motion language:
 
 - bends inward;
 - bends outward;
-- turns toward;
-- turns away;
+- curves inward;
+- curves outward;
 - path opens;
 - path closes;
 - the route changes.
@@ -106,8 +106,8 @@ Preferred introduction sentence for ages 9-11:
 | A tiny listener | Reception | A receiver responds when a potential wave reaches it. |
 | A traveling message | Potential wave | Finite-speed propagation of emitted potential structure. |
 | The message has a speed | Field speed | Potential waves propagate at field speed. |
-| The message gives a push | Action / force | Reception changes acceleration along the line of action. |
-| The push changes motion | Acceleration | Force changes velocity over time. |
+| The message changes the path | Action / force | Reception changes acceleration along the line of action. |
+| The path bends | Acceleration | Force changes velocity over time. |
 | The old path still matters | Path-history | Present action depends on admissible prior source positions. |
 | Many messages meet | Superposition | Received influences add at the receiver. |
 | A quiet pattern holds | Assembly | Stable interacting entities form persistent structure. |
@@ -261,7 +261,7 @@ What to teach:
 - path as route through a potential landscape;
 - action and acceleration near thresholds;
 - deterministic multistability;
-- basin of attraction;
+- settling basin;
 - measurement interaction;
 - Noether sea as quiet physical medium.
 
@@ -312,7 +312,7 @@ Students run a delayed-interaction simulator. A moving red or blue point can rec
 
 Key sentence:
 
-> To know the push now, you must know which past waves can arrive now.
+> To know the motion now, you must know which past waves can arrive now.
 
 AAA geometry in art:
 
@@ -402,7 +402,7 @@ Use child-facing phrases first:
 - sender-receiver;
 - traveling message;
 - old path;
-- push;
+- path-bend;
 - speed of the message;
 - held-together pattern;
 - quiet helpers.
