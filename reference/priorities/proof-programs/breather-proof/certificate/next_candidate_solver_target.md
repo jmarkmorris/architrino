@@ -165,6 +165,17 @@ $\Psi_j$ basis, support, derivative, mesh, endpoint, source-monotonicity, or
 receiver-monotonicity rule exists for any variable. Exact $B\xi=0$, rank
 certification, candidate artifacts, topology recertification, v1-v6 replay, and
 row consumption remain absent.
+The finite-realization basis attempt,
+`fold_coordinate_finite_realization_basis_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests the conservative endpoint-functional basis route. It records the
+finite-basis data lemma: a valid $\Psi_j$ must evaluate to the required signed
+boundary action under an exact endpoint functional, vanish or be accounted for
+on non-target one-leaf boundary functionals, and carry support, basis and
+derivative formulas, $X$ and $\dot X$ update bases, mesh update, endpoint
+motion, gluing, source/receiver monotonicity, exact $B\xi=0$, and rank
+certification. Current data supplies only screen variables, basis symbols, and
+boundary-action names, so 0 / 4 variables and 0 / 3 rows are finite-basis
+ready.
 The remaining branches are periodic
 endpoint/complement ownership for the 8 lift rows and fold-layer certificate
 closure for the 112 fold-layer rows now grouped by

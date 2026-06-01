@@ -2857,6 +2857,29 @@ screened targets. This is useful mathematically because the blocker is no
 longer a missing interface: it is a measured contraction/certification problem
 on already identified live residual intervals.
 
+The follow-on
+`candidate-signed-nonterminal-h0-h34-live-provider-contraction-defect` measures
+that problem directly at the verifier boundary. It compares the live weighted
+and coefficient residual intervals with the screened target intervals and
+records the required live-to-screened contraction for each node and residual
+view. The current live defect reduces to the same single uniform contraction
+factor already selected by the upstream contract; no node-specific or
+view-specific geometry mismatch appears at this stage. The remaining blocker is
+therefore sharper: produce a same-domain directed-rounded h0-h34 provider that
+realizes this single contraction factor and carries proof-grade source
+provenance, then let the existing verifier consume it.
+
+The contracted-provider candidate now executes that verifier-side split. The
+`candidate-signed-nonterminal-h0-h34-contracted-provider-candidate` feeds the
+five single-contraction h0-h34 target intervals back through the existing
+directed-provider verifier as supplied provider rows. Those rows match the same
+domain and same target radii and are contained in the screened targets; the
+verifier still rejects them because their source kind is candidate-only and
+does not certify directed-rounded shared-domain provenance. This is a real
+narrowing of the blocker: interval containment is no longer the candidate-level
+obstruction. The remaining h0-h34 proof burden is source certification for the
+same five contracted weighted and coefficient residual intervals.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.

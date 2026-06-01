@@ -3742,3 +3742,26 @@ shape checks but fails the proof-grade source and interval-containment checks.
 The next proof object is therefore not another interface wrapper; it is a
 directed-rounded contraction of those same live h0-h34 residual intervals into
 the screened targets.
+
+The reducer now classifies the failure with
+`candidate-signed-nonterminal-h0-h34-live-provider-contraction-defect`. That
+artifact reuses the live probe's provider-verification rows, measures the
+required contraction for both residual views at each of the five nodes, and
+compares those factors against the single-contraction contract. The live row
+reduces to the same uniform contraction factor rather than splitting into a
+node-specific h0-h34 defect. This removes a false search branch: the next
+directed-rounded provider does not need a new residual shape, only a proof that
+the current midpoint-centered h0-h34 residual rows can be enclosed on the same
+domain after that one contraction.
+
+The contracted-provider candidate now executes the verifier-side replay of that
+diagnosis. The
+`candidate-signed-nonterminal-h0-h34-contracted-provider-candidate` feeds the
+five single-contraction h0-h34 target intervals back through the existing
+directed-provider verifier as supplied provider rows. Those rows match the live
+domain, interpolation-node count, and residual radii, and their weighted and
+coefficient residual intervals are contained in the screened targets. The
+verifier still rejects them because the rows are explicitly candidate-only, not
+a directed-rounded shared-domain source. This proves that interval containment
+is no longer the candidate-level obstruction; the remaining h0-h34 burden is
+source certification for the contracted provider rows.

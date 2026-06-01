@@ -301,27 +301,27 @@ Illustration prompt:
 
 > Indoor notebook scene. Dr. Sol draws a single luminous dot above the page as if it has come alive. The dot has a dotted golden path behind it and soft expanding arcs around earlier positions. Mira and Tomas lean in with wonder. The background has a very faint neutral speck lattice, no text on the page, no labels.
 
-### Spread 9: Push, Pull, And Polarity
+### Spread 9: Two Kinds Of Answer
 
 Read-aloud text:
 
-> Mama gave them two magnets.
+> Mama gave them two rolling beads.
 >
-> One way, the magnets pulled together.
+> One answer bent the path inward.
 >
-> Turn one around, and they pushed apart.
+> Another answer bent the path outward.
 >
-> "Some tiny senders fit like pull," Mama said.
+> "The tiny kinds answer in different ways," Mama said.
 >
-> "Some answer like push."
+> "Watch the path change."
 
 Lesson:
 
-Introduce polarity with a familiar analogy while keeping architrino ontology distinct from ordinary magnets.
+Introduce polarity as response type: one response bends a path inward, another bends a path outward.
 
 AAA geometry:
 
-Two luminous dots show opposite polarity pulling and like polarity pushing, with arrows along the line of action.
+Two luminous dots show same-kind and cross-kind response types through inward-bending and outward-bending paths, with response arrows along the line of action.
 
 Background concepts:
 
@@ -329,7 +329,7 @@ Small assembly motifs in a tray hint that many polarity interactions can build s
 
 Illustration prompt:
 
-> Tabletop magnet experiment. Mira and Tomas hold two chunky child-safe magnets, first pulling together then shown with a ghosted second position pushing apart. Above the magnets, two tiny luminous dots illustrate opposite pull and like push with clean arrows along the line between them. Small balanced dot-pattern motifs rest in a tray. No labels.
+> Tabletop rolling-bead experiment. Mira and Tomas roll two chunky child-safe beads through shallow curved tracks. One track bends inward toward the other bead's route; another track bends outward away from the other bead's route. Above the beads, two tiny luminous dots illustrate same-kind and cross-kind response types with clean directional arrows along the line of action. Small balanced dot-pattern motifs rest in a tray. No labels.
 
 ### Spread 10: Many Messages Add
 

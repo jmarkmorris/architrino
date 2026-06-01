@@ -222,6 +222,16 @@ variables have the 8 required realization fields, exact $B\xi=0$ and rank
 certification are absent, 0 / 5 candidate artifacts exist, topology and v1-v6
 replay are absent, and row consumption remains 0.
 
+The finite-realization basis attempt,
+`fold_coordinate_finite_realization_basis_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then checks the first conservative construction route for the exact
+$\Psi_j$ functions. It verifies that the four variables have screen variables,
+basis symbols, and endpoint boundary actions, but no endpoint functional
+bindings, theta supports, basis formulas, derivative formulas, $X$ or
+$\dot X$ update bases, mesh update, endpoint motion, gluing, monotonicity,
+exact $B\xi=0$, rank certification, candidate topology, v1-v6 replay, or row
+consumption exists.
+
 ## Capture Decision
 
 Priority-only theorem target. The partition-audit implementation is now
@@ -242,9 +252,12 @@ for the fold-coordinate boundary-opening variables. The history-realization
 contract now fixes the exact update and replay fields that such a theorem must
 satisfy. The theorem attempt now confirms that the contract is not already a
 theorem: the exact finite $\Psi_j$ basis, support, derivative, mesh, endpoint,
-source-monotonicity, and receiver-monotonicity rules are absent. The next
-implementation must either supply those same-packet realization formulas or
-change the row-closure geometry or strengthen the receiver-cover certificate:
+source-monotonicity, and receiver-monotonicity rules are absent. The
+finite-realization basis attempt now sharpens that again: the absent object is
+an endpoint-functional finite basis construction, not merely a missing file
+writer. The next implementation must either supply those same-packet
+realization formulas or change the row-closure geometry or strengthen the
+receiver-cover certificate:
 new same-packet source-boundary variation data, receiver-range refinement data,
 endpoint/complement ownership, or another candidate change must actually assign
 proof-grade positive boundary shifts and preservation fields before these

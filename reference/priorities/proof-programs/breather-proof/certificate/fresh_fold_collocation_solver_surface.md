@@ -411,6 +411,19 @@ theorem-ready. The next solver-surface upgrade is therefore the actual finite
 basis construction for each $\Psi_j$, with support, derivative, mesh, endpoint,
 and source/receiver monotonicity rules.
 
+The finite-realization basis attempt is recorded in
+`fold_coordinate_finite_realization_basis_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_finite_realization_basis_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It checks the first conservative construction route for those $\Psi_j$ basis
+functions. The route still fail-closes: 4 / 4 screen variables, basis symbols,
+and endpoint boundary actions are present, but 0 / 4 endpoint functional
+bindings, theta supports, basis formulas, derivative formulas, $X$ and
+$\dot X$ update bases, mesh rules, endpoint motion rules, source/receiver
+monotonicity rules, exact $B\xi=0$ certificates, or rank certificates are
+present. The sharper blocker is now endpoint-functional finite basis data,
+not another screen or contract.
+
 ## Pre-Ledger Stop Condition
 
 Stop before branch-chart construction unless every pre-ledger row satisfies

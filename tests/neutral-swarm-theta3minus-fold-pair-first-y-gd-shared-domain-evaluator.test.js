@@ -7465,6 +7465,101 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
       .signed_nonterminal_h0_h34_live_provider_probe_interpretation,
     "live-h0-h34-provider-rows-reach-verifier-but-exceed-screened-targets"
   );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_live_provider_contraction_defect_summary_kind,
+    "candidate-signed-nonterminal-h0-h34-live-provider-contraction-defect-summary"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_have_signed_nonterminal_h0_h34_live_provider_contraction_defect,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_live_provider_defects_use_live_probe,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_live_provider_defects_reach_verifier_same_domain_same_radius,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_live_provider_defects_reduce_to_single_contraction_factor,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_live_provider_defects_reduce_to_single_uniform_contraction_factor,
+    true
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_live_provider_required_contraction_factor >
+      1000
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .min_signed_nonterminal_h0_h34_live_provider_single_contraction_headroom >
+      0
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_live_provider_single_contraction_drift <
+      1e-12
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_live_provider_contraction_factor_drift_abs <
+      1e-12
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_live_provider_contraction_defect_interpretation,
+    "live-h0-h34-provider-defect-is-single-uniform-contraction-deficit-plus-source-certification"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_contracted_provider_candidate_summary_kind,
+    "candidate-signed-nonterminal-h0-h34-contracted-provider-candidate-summary"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_have_signed_nonterminal_h0_h34_contracted_provider_candidate,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_contracted_provider_candidates_use_live_defect,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_contracted_provider_candidates_contain_intervals,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_contracted_provider_candidates_fail_by_source_only,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_contracted_provider_interval_to_target_ratio,
+    1
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .min_signed_nonterminal_h0_h34_contracted_provider_inclusion_headroom,
+    1
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_contracted_provider_candidate_interpretation,
+    "contracted-h0-h34-provider-intervals-pass-verifier-source-certification-open"
+  );
   terminalCovarianceTarget.covariance_rows.forEach((row) => {
     assert.equal(
       row.provider_kind,
@@ -8674,6 +8769,334 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
     );
     assert.equal(
       liveResidualProviderProbe.claim_boundary
+        .certifies_shifted_R43_outer_bound,
+      false
+    );
+    const liveProviderContractionDefect =
+      row.signed_nonterminal_h0_h34_live_provider_contraction_defect;
+    assert.equal(
+      liveProviderContractionDefect.target_kind,
+      "candidate-signed-nonterminal-h0-h34-live-provider-contraction-defect"
+    );
+    assert.equal(
+      liveProviderContractionDefect.source_live_residual_provider_probe_kind,
+      "candidate-signed-nonterminal-h0-h34-live-residual-provider-probe"
+    );
+    assert.equal(
+      liveProviderContractionDefect
+        .source_single_contraction_provider_contract_kind,
+      "candidate-signed-nonterminal-h0-h34-single-contraction-provider-contract"
+    );
+    assert.equal(
+      liveProviderContractionDefect.source_directed_provider_verifier_kind,
+      "candidate-signed-nonterminal-h0-h34-directed-provider-verifier"
+    );
+    assert.equal(
+      liveProviderContractionDefect.proof_status,
+      "candidate-diagnostic-only-live-provider-defect-not-directed-rounded"
+    );
+    assert.equal(
+      liveProviderContractionDefect.defect_kind,
+      "same-domain-live-provider-to-screened-target-contraction-profile"
+    );
+    assert.deepEqual(
+      liveProviderContractionDefect.active_h_index_range,
+      [0, 34]
+    );
+    assert.equal(liveProviderContractionDefect.interpolation_node_count, 5);
+    assert.ok(
+      liveProviderContractionDefect.selected_provider_contraction_factor > 1000
+    );
+    assert.ok(
+      liveProviderContractionDefect
+        .max_required_live_to_screened_contraction_factor > 1000
+    );
+    assert.ok(
+      liveProviderContractionDefect
+        .min_required_live_to_screened_contraction_factor > 1000
+    );
+    assert.ok(
+      Math.abs(
+        liveProviderContractionDefect
+          .max_required_contraction_to_selected_factor_ratio - 1
+      ) < 1e-12
+    );
+    assert.ok(
+      Math.abs(
+        liveProviderContractionDefect
+          .min_required_contraction_to_selected_factor_ratio - 1
+      ) < 1e-12
+    );
+    assert.ok(
+      liveProviderContractionDefect
+        .max_required_contraction_selected_factor_drift_abs < 1e-12
+    );
+    assert.ok(
+      liveProviderContractionDefect.single_contraction_factor_headroom > 0
+    );
+    assert.equal(
+      liveProviderContractionDefect
+        .all_defect_rows_match_same_domain_same_radius,
+      true
+    );
+    assert.equal(
+      liveProviderContractionDefect
+        .all_defect_rows_fail_screened_target_containment,
+      true
+    );
+    assert.equal(
+      liveProviderContractionDefect
+        .all_defect_rows_fail_directed_rounded_source,
+      true
+    );
+    assert.equal(
+      liveProviderContractionDefect
+        .all_defect_rows_reduce_to_single_contraction_factor,
+      true
+    );
+    assert.equal(
+      liveProviderContractionDefect
+        .all_defect_rows_reduce_to_single_uniform_contraction_factor,
+      true
+    );
+    assert.ok(
+      ["weighted", "coefficient"].includes(
+        liveProviderContractionDefect.dominant_defect_entry.residual_view
+      )
+    );
+    assert.equal(liveProviderContractionDefect.defect_rows.length, 5);
+    liveProviderContractionDefect.defect_rows.forEach((defectRow) => {
+      assert.ok(Number.isInteger(defectRow.node_index));
+      assert.ok(Number.isFinite(defectRow.xi_midpoint));
+      assert.equal(defectRow.matches_same_domain_contract, true);
+      assert.equal(defectRow.matches_same_radius_contract, true);
+      assert.equal(defectRow.provider_source_kind_matches_required, false);
+      assert.equal(
+        defectRow.provider_certifies_directed_rounded_shared_domain,
+        false
+      );
+      assert.ok(
+        defectRow.weighted_provider_abs_upper_to_target_abs_upper_ratio > 1000
+      );
+      assert.ok(
+        defectRow.coefficient_provider_abs_upper_to_target_abs_upper_ratio >
+          1000
+      );
+      assert.ok(defectRow.weighted_required_contraction_factor > 1000);
+      assert.ok(defectRow.coefficient_required_contraction_factor > 1000);
+      assert.ok(
+        Math.abs(defectRow.weighted_ratio_to_selected_contraction_factor - 1) <
+          1e-12
+      );
+      assert.ok(
+        Math.abs(
+          defectRow.coefficient_ratio_to_selected_contraction_factor - 1
+        ) < 1e-12
+      );
+      assert.equal(
+        defectRow.weighted_defect_matches_single_contraction_factor,
+        true
+      );
+      assert.equal(
+        defectRow.coefficient_defect_matches_single_contraction_factor,
+        true
+      );
+      assert.equal(defectRow.matches_single_uniform_contraction_factor, true);
+      assert.equal(
+        defectRow.defect_row_status,
+        "live-provider-defect-matches-single-contraction-factor-but-source-open"
+      );
+    });
+    assert.equal(
+      liveProviderContractionDefect.live_provider_defect_classification,
+      "live-h0-h34-provider-defect-is-single-uniform-contraction-deficit-plus-source-certification"
+    );
+    assert.equal(
+      liveProviderContractionDefect.claim_boundary
+        .certifies_nonterminal_h0_h34_covariance_enclosure,
+      false
+    );
+    assert.equal(
+      liveProviderContractionDefect.claim_boundary
+        .certifies_directed_rounded_shared_domain,
+      false
+    );
+    assert.equal(
+      liveProviderContractionDefect.claim_boundary
+        .certifies_shifted_R43_outer_bound,
+      false
+    );
+    const contractedProviderCandidate =
+      row.signed_nonterminal_h0_h34_contracted_provider_candidate;
+    assert.equal(
+      contractedProviderCandidate.target_kind,
+      "candidate-signed-nonterminal-h0-h34-contracted-provider-candidate"
+    );
+    assert.equal(
+      contractedProviderCandidate
+        .source_single_contraction_provider_contract_kind,
+      "candidate-signed-nonterminal-h0-h34-single-contraction-provider-contract"
+    );
+    assert.equal(
+      contractedProviderCandidate.source_live_provider_contraction_defect_kind,
+      "candidate-signed-nonterminal-h0-h34-live-provider-contraction-defect"
+    );
+    assert.equal(
+      contractedProviderCandidate.source_directed_provider_verifier_kind,
+      "candidate-signed-nonterminal-h0-h34-directed-provider-verifier"
+    );
+    assert.equal(
+      contractedProviderCandidate.proof_status,
+      "candidate-contracted-provider-contained-but-source-not-directed-rounded"
+    );
+    assert.equal(
+      contractedProviderCandidate.provider_candidate_kind,
+      "single-contraction-live-h0-h34-provider-rows-through-directed-verifier"
+    );
+    assert.deepEqual(contractedProviderCandidate.active_h_index_range, [0, 34]);
+    assert.equal(contractedProviderCandidate.interpolation_node_count, 5);
+    assert.ok(
+      contractedProviderCandidate.selected_provider_contraction_factor > 1000
+    );
+    assert.equal(
+      contractedProviderCandidate
+        .contracted_provider_rows_reconstruct_screened_targets,
+      true
+    );
+    assert.equal(
+      contractedProviderCandidate
+        .contracted_provider_rows_match_same_domain_same_radius,
+      true
+    );
+    assert.equal(
+      contractedProviderCandidate
+        .contracted_provider_intervals_subset_screened_targets,
+      true
+    );
+    assert.equal(
+      contractedProviderCandidate
+        .contracted_provider_source_kind_matches_required,
+      false
+    );
+    assert.equal(
+      contractedProviderCandidate
+        .contracted_provider_reaches_verifier_with_source_only_failure,
+      true
+    );
+    assert.equal(
+      contractedProviderCandidate.max_contracted_provider_interval_to_target_ratio,
+      1
+    );
+    assert.equal(
+      contractedProviderCandidate
+        .min_contracted_provider_interval_inclusion_headroom,
+      1
+    );
+    assert.equal(
+      contractedProviderCandidate.contracted_provider_classification,
+      "contracted-h0-h34-provider-contained-source-certification-open"
+    );
+    assert.equal(contractedProviderCandidate.contracted_provider_rows.length, 5);
+    contractedProviderCandidate.contracted_provider_rows.forEach(
+      (providerRow) => {
+        assert.ok(Number.isInteger(providerRow.node_index));
+        assert.ok(Number.isFinite(providerRow.xi_midpoint));
+        assert.equal(
+          providerRow.provider_row_source_kind,
+          "candidate-contracted-live-h0-h34-provider-not-directed-rounded"
+        );
+        assert.ok(providerRow.selected_provider_contraction_factor > 1000);
+        assert.equal(
+          providerRow.weighted_contraction_reconstructs_screened_target,
+          true
+        );
+        assert.equal(
+          providerRow.coefficient_contraction_reconstructs_screened_target,
+          true
+        );
+        assert.equal(
+          providerRow.contracted_weighted_interval_contained_in_screened_target,
+          true
+        );
+        assert.equal(
+          providerRow
+            .contracted_coefficient_interval_contained_in_screened_target,
+          true
+        );
+        assert.equal(
+          providerRow.provider_row_status,
+          "contracted-live-provider-row-contained-but-source-open"
+        );
+        assert.equal(
+          providerRow.claim_boundary.certifies_directed_rounded_shared_domain,
+          false
+        );
+      }
+    );
+    assert.equal(
+      contractedProviderCandidate.directed_provider_verifier.provider_rows_supplied,
+      true
+    );
+    assert.equal(
+      contractedProviderCandidate.directed_provider_verifier
+        .all_provider_rows_match_same_domain_contract,
+      true
+    );
+    assert.equal(
+      contractedProviderCandidate.directed_provider_verifier
+        .all_provider_rows_match_same_radius_contract,
+      true
+    );
+    assert.equal(
+      contractedProviderCandidate.directed_provider_verifier
+        .all_provider_intervals_subset_screened_targets,
+      true
+    );
+    assert.equal(
+      contractedProviderCandidate.directed_provider_verifier
+        .all_provider_rows_have_directed_rounded_source,
+      false
+    );
+    assert.equal(
+      contractedProviderCandidate.directed_provider_verifier
+        .verified_directed_rounded_same_domain_provider_rows,
+      false
+    );
+    contractedProviderCandidate.directed_provider_verifier.provider_verification_rows.forEach(
+      (providerRow) => {
+        assert.equal(providerRow.provider_row_supplied, true);
+        assert.equal(providerRow.matches_same_domain_contract, true);
+        assert.equal(providerRow.matches_same_radius_contract, true);
+        assert.equal(
+          providerRow.weighted_provider_interval_contained_in_screened_target,
+          true
+        );
+        assert.equal(
+          providerRow.coefficient_provider_interval_contained_in_screened_target,
+          true
+        );
+        assert.equal(
+          providerRow.provider_source_kind_matches_required,
+          false
+        );
+        assert.equal(
+          providerRow.provider_certifies_directed_rounded_shared_domain,
+          false
+        );
+      }
+    );
+    assert.equal(
+      contractedProviderCandidate.claim_boundary
+        .certifies_nonterminal_h0_h34_covariance_enclosure,
+      false
+    );
+    assert.equal(
+      contractedProviderCandidate.claim_boundary
+        .certifies_directed_rounded_shared_domain,
+      false
+    );
+    assert.equal(
+      contractedProviderCandidate.claim_boundary
         .certifies_shifted_R43_outer_bound,
       false
     );

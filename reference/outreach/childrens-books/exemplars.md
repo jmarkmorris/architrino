@@ -92,7 +92,7 @@ Use this as the exemplar for:
 
 - threshold behavior;
 - deterministic multistability;
-- basin of attraction diagrams;
+- basin diagrams;
 - measurement interaction for ages 12-14.
 
 ## Exemplar Prompt Addendum
