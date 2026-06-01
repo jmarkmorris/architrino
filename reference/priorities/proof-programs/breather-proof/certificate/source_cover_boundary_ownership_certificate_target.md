@@ -489,6 +489,32 @@ The blocker is now the actual same-packet endpoint boundary-binding and
 motion/evaluation proof object, not endpoint-domain, component-formula,
 locator, or source-data availability.
 
+The target endpoint boundary-binding object construction attempt,
+`fold_coordinate_endpoint_functional_target_endpoint_boundary_binding_object_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then packages the first positive same-packet target subobject. It constructs
+4 / 4 narrow target_endpoint_boundary_binding_object tuples from
+component-domain chart/basis data plus boundary-source refs, values, action,
+and sign data, and exposes 3 / 3 row source/receiver target-object pairs. It
+keeps 0 / 4 full endpoint boundary bindings, endpoint value bindings, binding
+contracts, history update formulas, endpoint motion rules, endpoint evaluation
+maps, non-target zero certificates, exact $B\xi=0$ or rank certificates,
+candidate artifacts, topology recertifications, proof-interval replays,
+row-ready binding pairs, consumed rows, preledger pass, live-ledger update, or
+branch-chart authorization.
+
+The full endpoint boundary-binding contract target,
+`fold_coordinate_endpoint_functional_full_endpoint_boundary_binding_contract_target_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then freezes the next proof target above that object layer. It imports the
+target endpoint boundary-binding object construction attempt and declares
+4 / 4 full endpoint boundary-binding contract targets plus 3 / 3 row
+source/receiver contract-target pairs. It still constructs 0 / 4 proof-grade
+endpoint boundary bindings, endpoint value bindings, binding contracts, history
+update formulas, endpoint motion rules, endpoint evaluation maps, full endpoint
+evaluation maps, non-target zero certificates, exact $B\xi=0$ or rank
+certificates, candidate artifacts, topology recertifications, proof-interval
+replays, row-ready binding/evaluation pairs, preledger passes, live-ledger
+updates, branch-chart authorizations, or consumed rows.
+
 ## Capture Decision
 
 Priority-only theorem target. The partition-audit implementation is now
@@ -582,8 +608,15 @@ component-domain endpoint-boundary-binding construction attempt then confirms
 that the endpoint-domain, component-formula, locator, and source-data layers
 are ready but still do not construct endpoint boundary bindings, endpoint value
 bindings, binding contracts, motion/evaluation maps, candidate artifacts,
-replay, or consumed rows. The
-next implementation must therefore either supply new same-packet endpoint
+replay, or consumed rows. The target endpoint boundary-binding object
+construction attempt then constructs the target-only binding tuple, but it
+remains a proper subobject and does not satisfy full endpoint boundary binding,
+value binding, contract, motion/evaluation, replay, or row-consumption fields.
+The full endpoint boundary-binding contract target then freezes the exact
+obligation matrix above that tuple, but it also remains a target rather than a
+construction: full binding, value binding, motion/evaluation, replay, and
+row-consumption fields remain absent.
+The next implementation must therefore either supply new same-packet endpoint
 boundary bindings, endpoint value bindings, binding contracts, and endpoint
 motion/evaluation-map proof data, strengthen the positive row-closure geometry
 budget with actual interval enclosure and preservation proof data, or

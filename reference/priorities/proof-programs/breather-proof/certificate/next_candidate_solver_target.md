@@ -410,6 +410,28 @@ topology recertifications, proof-interval replays, row-ready binding pairs, or
 consumed rows. The remaining proof object is therefore the same-packet endpoint
 boundary-binding and motion/evaluation construction, not a missing
 endpoint-domain or source-data layer.
+The target endpoint boundary-binding object construction attempt,
+`fold_coordinate_endpoint_functional_target_endpoint_boundary_binding_object_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then constructs 4 / 4 narrow target_endpoint_boundary_binding_object tuples
+from component-domain chart/basis data plus boundary-source refs, values,
+action, and signs, with 3 / 3 source/receiver target-object pairs. It is a
+positive target subobject only: full endpoint boundary bindings, endpoint value
+bindings, binding contracts, history update formulas, endpoint motion rules,
+endpoint evaluation maps, non-target zero certificates, exact $B\xi=0$ or
+rank certificates, candidate artifacts, topology recertifications,
+proof-interval replays, row-ready binding pairs, consumed rows, preledger pass,
+live-ledger update, and branch-chart authorization remain absent.
+The full endpoint boundary-binding contract target,
+`fold_coordinate_endpoint_functional_full_endpoint_boundary_binding_contract_target_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then freezes the next target above that object layer. It imports the
+target-object packet, declares 4 / 4 full endpoint boundary-binding contract
+targets and 3 / 3 row source/receiver contract-target pairs, but constructs
+0 / 4 proof-grade endpoint boundary bindings, endpoint value bindings, binding
+contracts, history update formulas, endpoint motion rules, endpoint evaluation
+maps, full endpoint evaluation maps, non-target zero certificates, exact
+$B\xi=0$ or rank certificates, candidate artifacts, topology recertifications,
+proof-interval replays, row-ready binding/evaluation pairs, preledger passes,
+live-ledger updates, branch-chart authorizations, or consumed rows.
 The remaining branches are periodic
 endpoint/complement ownership for the 8 lift rows and fold-layer certificate
 closure for the 112 fold-layer rows now grouped by

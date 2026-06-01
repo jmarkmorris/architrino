@@ -1,0 +1,20 @@
+{
+  "id": "the-message-that-traveled-spread-16",
+  "book_slug": "the-message-that-traveled",
+  "source_png": "reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-spread-16.png",
+  "exists": true,
+  "automated": {
+    "width": 1609,
+    "height": 978,
+    "aspect_ratio": 1.6452,
+    "saturated_non_palette_fraction": 0.7463,
+    "palette_flag": true
+  },
+  "manual_checklist": {
+    "palette": "approved",
+    "no_in_image_text": "approved",
+    "one_continuous_scene": "approved",
+    "correct_geometry": "approved"
+  },
+  "decision": "approved"
+}

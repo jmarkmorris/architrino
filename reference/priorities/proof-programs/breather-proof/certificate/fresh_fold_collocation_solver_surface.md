@@ -713,6 +713,36 @@ zero certificates, exact $B\xi=0$ or rank certificates, candidate artifacts,
 topology recertifications, proof-interval replays, row-ready binding pairs, or
 consumed rows.
 
+The target endpoint boundary-binding object construction attempt is recorded in
+`fold_coordinate_endpoint_functional_target_endpoint_boundary_binding_object_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_target_endpoint_boundary_binding_object_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It imports the component-domain endpoint-boundary-binding construction attempt
+and packages 4 / 4 narrow target_endpoint_boundary_binding_object tuples from
+component-domain chart/basis data plus boundary-source refs, values, actions,
+and signs. It also constructs 3 / 3 row source/receiver target-object pairs.
+It remains priority-only and keeps 0 / 4 full endpoint boundary bindings,
+endpoint value bindings, binding contracts, same-packet history update
+formulas, endpoint motion rules, endpoint evaluation maps, full endpoint
+evaluation maps, non-target zero certificates, exact $B\xi=0$ or rank
+certificates, candidate artifacts, topology recertifications, proof-interval
+replays, row-ready binding pairs, consumed rows, preledger pass, live-ledger
+update, and branch-chart authorization.
+
+The full endpoint boundary-binding contract target is recorded in
+`fold_coordinate_endpoint_functional_full_endpoint_boundary_binding_contract_target.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_full_endpoint_boundary_binding_contract_target_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It imports the target endpoint boundary-binding object construction attempt,
+declares 4 / 4 full endpoint boundary-binding contract targets and 3 / 3 row
+source/receiver contract-target pairs, but constructs 0 / 4 proof-grade
+endpoint boundary bindings, endpoint value bindings, binding contracts, history
+update formulas, endpoint motion rules, endpoint evaluation maps, full endpoint
+evaluation maps, non-target zero certificates, exact $B\xi=0$ or rank
+certificates, candidate artifacts, topology recertifications, proof-interval
+replays, row-ready binding/evaluation pairs, preledger passes, live-ledger
+updates, branch-chart authorizations, or consumed rows.
+
 ## Pre-Ledger Stop Condition
 
 Stop before branch-chart construction unless every pre-ledger row satisfies
