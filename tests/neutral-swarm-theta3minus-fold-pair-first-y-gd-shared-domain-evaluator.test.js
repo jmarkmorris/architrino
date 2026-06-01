@@ -6892,6 +6892,389 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
     terminalCovarianceTarget.linear_width_share_budget_interpretation,
     "terminal-h35-h37-dominates-but-terminal-only-compression-is-insufficient-under-nonterminal-floor"
   );
+  assert.equal(
+    terminalCovarianceTarget.two_block_covariance_allocation_budget_kind,
+    "candidate-terminal-nonterminal-two-block-covariance-allocation-budget-summary"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_two_block_uniform_all_hrow_compression_feasible,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_terminal_only_route_blocked_by_nonterminal_floor,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_first_nonterminal_probe_gives_terminal_budget,
+    true
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_minimum_nonterminal_h0_h34_compression_for_any_terminal_budget >
+      7000
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_minimum_nonterminal_h0_h34_compression_for_any_terminal_budget <
+      9000
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_minimum_terminal_h35_h37_compression_with_nonterminal_eliminated >
+      1e5
+  );
+  assert.ok(
+    terminalCovarianceTarget.max_balanced_uniform_all_hrow_compression_factor >
+      2e5
+  );
+  assert.equal(
+    terminalCovarianceTarget.two_block_covariance_allocation_interpretation,
+    "terminal-only-route-rejected-two-block-all-hrow-covariance-budget-positive"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_floor_cancellation_summary_kind,
+    "candidate-signed-nonterminal-h0-h34-floor-cancellation-target-summary"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_have_signed_nonterminal_h0_h34_floor_target,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_floor_blocks,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_midpoint_inside_interval,
+    true
+  );
+  assert.equal(
+    typeof terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_midpoint_fits_required,
+    "boolean"
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_floor_to_required_ratio > 1000
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_midpoint_abs_to_required_ratio >= 0
+  );
+  assert.ok(
+    [
+      "signed-nonterminal-midpoints-cancel-but-interval-floor-blocks",
+      "signed-nonterminal-midpoints-also-block",
+      "signed-nonterminal-floor-cancellation-target-open",
+    ].includes(
+      terminalCovarianceTarget.signed_nonterminal_h0_h34_floor_interpretation
+    )
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_identity_router_summary_kind,
+    "candidate-signed-nonterminal-h0-h34-identity-router-summary"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_have_signed_nonterminal_h0_h34_identity_router,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_identity_uses_midpoint_not_floor,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_identity_routes_to_positive_terminal_budget,
+    true
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_identity_routed_abs_to_required_ratio < 1e-6
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_required_terminal_h35_h37_compression_after_signed_nonterminal_route >
+      1e5
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_identity_router_interpretation,
+    "signed-nonterminal-midpoint-identity-routes-to-terminal-budget"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_midpoint_fourth_difference_summary_kind,
+    "candidate-signed-nonterminal-h0-h34-midpoint-fourth-difference-identity-target-summary"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_have_signed_nonterminal_h0_h34_midpoint_fourth_difference_identity,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_midpoint_fourth_difference_uses_five_node_identity,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_midpoint_fourth_difference_cancels_before_interval_floor,
+    true
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_midpoint_fourth_difference_cancellation_ratio <
+      1e-5
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .min_signed_nonterminal_h0_h34_midpoint_fourth_difference_cancellation_gain >
+      1e5
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_midpoint_fourth_difference_signed_to_required_ratio <
+      1e-6
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_midpoint_fourth_difference_absolute_mass_to_required_ratio >
+      0
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_midpoint_fourth_difference_interpretation,
+    "signed-nonterminal-five-node-fourth-difference-cancels-before-interval-floor"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_dependency_loss_budget_summary_kind,
+    "candidate-signed-nonterminal-h0-h34-dependency-loss-budget-summary"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_have_signed_nonterminal_h0_h34_dependency_loss_budget,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_dependency_loss_budget_uses_fourth_difference_identity,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_interval_floor_is_dependency_loss,
+    true
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_dependency_loss_interval_floor_to_midpoint_mass_ratio >
+      1e6
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_dependency_loss_interval_floor_to_signed_midpoint_ratio >
+      1e12
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_dependency_loss_required_interval_compression >
+      1000
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_dependency_loss_directed_residual_to_required_ratio >
+      1000
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_dependency_loss_required_directed_residual_compression >
+      1000
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .min_signed_nonterminal_h0_h34_dependency_loss_midpoint_mass_headroom >
+      1000
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_dependency_loss_node_width_compression >
+      0
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_dependency_loss_node_directed_residual_compression >
+      0
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_dependency_loss_budget_interpretation,
+    "h0-h34-midpoint-mass-fits-interval-floor-is-dependency-loss"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification_summary_kind,
+    "candidate-signed-nonterminal-h0-h34-midpoint-dependency-preserving-provider-specification-summary"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_have_signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_provider_specs_use_dependency_loss_budget,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_provider_specs_require_radius_contraction,
+    true
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_provider_spec_current_shape_residual_to_budget_ratio >
+      1000
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_provider_spec_required_current_shape_compression >
+      1000
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .min_signed_nonterminal_h0_h34_provider_spec_residual_budget_to_required_ratio >
+      0.99
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .min_signed_nonterminal_h0_h34_provider_spec_uniform_coefficient_residual_radius_bound >
+      0
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_provider_spec_node_balanced_radius_compression >
+      0
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification_interpretation,
+    "h0-h34-provider-specifies-residual-radius-targets-before-directed-rounding"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_current_shape_radius_contraction_profile_summary_kind,
+    "candidate-signed-nonterminal-h0-h34-current-shape-radius-contraction-profile-summary"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_have_signed_nonterminal_h0_h34_current_shape_radius_contraction_profile,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_current_shape_profiles_use_provider_specification,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_current_shape_profiles_sharpen_balanced_allocation,
+    true
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_current_shape_uniform_contraction_factor >
+      1000
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_current_shape_balanced_penalty > 1
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_current_shape_uniform_coefficient_penalty >
+      1
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_current_shape_dominant_residual_share > 0
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_current_shape_dominant_residual_share < 1
+  );
+  assert.ok(
+    Math.abs(
+      terminalCovarianceTarget
+        .min_signed_nonterminal_h0_h34_current_shape_rows_share_sum - 1
+    ) < 1e-12
+  );
+  assert.ok(
+    Math.abs(
+      terminalCovarianceTarget
+        .max_signed_nonterminal_h0_h34_current_shape_rows_share_sum - 1
+    ) < 1e-12
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_current_shape_radius_contraction_profile_interpretation,
+    "current-shape-residual-profile-sharpens-h0-h34-radius-contraction-target"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_current_shape_certificate_screen_summary_kind,
+    "candidate-signed-nonterminal-h0-h34-current-shape-certificate-screen-summary"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_have_signed_nonterminal_h0_h34_current_shape_certificate_screen,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_current_shape_certificate_screens_use_profile,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_current_shape_certificate_screens_preserve_shares,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_signed_nonterminal_h0_h34_current_shape_certificate_screens_fit_strict_safety_margin,
+    true
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_current_shape_certificate_minimum_contraction_factor >
+      1000
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .min_signed_nonterminal_h0_h34_current_shape_certificate_strict_safety_headroom >
+      1
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_signed_nonterminal_h0_h34_current_shape_certificate_first_strict_provider_contraction >
+      terminalCovarianceTarget
+        .max_signed_nonterminal_h0_h34_current_shape_certificate_minimum_contraction_factor
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .signed_nonterminal_h0_h34_current_shape_certificate_screen_interpretation,
+    "current-shape-contraction-screen-produces-budget-fitting-h0-h34-provider-target"
+  );
   terminalCovarianceTarget.covariance_rows.forEach((row) => {
     assert.equal(
       row.provider_kind,
@@ -6948,6 +7331,657 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
     assert.equal(
       row.linear_width_share_budget.budget_interpretation,
       "terminal-dominant-but-terminal-only-compression-cannot-close-with-nonterminal-floor-fixed"
+    );
+    const twoBlockBudget = row.two_block_covariance_allocation_budget;
+    assert.equal(
+      twoBlockBudget.budget_kind,
+      "candidate-terminal-nonterminal-two-block-covariance-allocation-budget"
+    );
+    assert.deepEqual(
+      twoBlockBudget.compression_blocks.terminal_h35_h37,
+      [35, 36, 37]
+    );
+    assert.deepEqual(
+      twoBlockBudget.compression_blocks.nonterminal_h0_h34,
+      [0, 34]
+    );
+    assert.ok(
+      twoBlockBudget
+        .minimum_nonterminal_h0_h34_compression_for_any_terminal_budget > 7000
+    );
+    assert.ok(
+      twoBlockBudget
+        .minimum_nonterminal_h0_h34_compression_for_any_terminal_budget < 9000
+    );
+    assert.ok(
+      twoBlockBudget
+        .minimum_terminal_h35_h37_compression_with_nonterminal_eliminated >
+        1e5
+    );
+    assert.ok(twoBlockBudget.balanced_uniform_all_hrow_compression_factor > 2e5);
+    assert.equal(
+      twoBlockBudget.allocation_feasible_with_uniform_all_hrow_compression,
+      true
+    );
+    assert.equal(
+      twoBlockBudget.terminal_only_route_blocked_by_nonterminal_floor,
+      true
+    );
+    assert.equal(twoBlockBudget.nonterminal_probe_rows.length, 6);
+    assert.equal(
+      twoBlockBudget.nonterminal_probe_rows[3]
+        .terminal_h35_h37_compression_can_close,
+      false
+    );
+    assert.equal(
+      twoBlockBudget.nonterminal_probe_rows[4]
+        .terminal_h35_h37_compression_can_close,
+      true
+    );
+    assert.equal(
+      twoBlockBudget.first_positive_terminal_budget_probe
+        .nonterminal_h0_h34_compression_factor,
+      10000
+    );
+    assert.ok(
+      twoBlockBudget.first_positive_terminal_budget_probe
+        .required_terminal_h35_h37_compression_factor > 1e5
+    );
+    assert.equal(
+      twoBlockBudget.budget_interpretation,
+      "two-block-covariance-feasible-only-after-nonterminal-floor-compression"
+    );
+    assert.equal(
+      twoBlockBudget.claim_boundary
+        .certifies_nonterminal_h0_h34_covariance_enclosure,
+      false
+    );
+    assert.equal(
+      twoBlockBudget.claim_boundary.certifies_all_hrow_covariance_enclosure,
+      false
+    );
+    const signedNonterminalTarget =
+      row.signed_nonterminal_h0_h34_floor_cancellation_target;
+    assert.equal(
+      signedNonterminalTarget.target_kind,
+      "candidate-signed-nonterminal-h0-h34-floor-cancellation-target"
+    );
+    assert.deepEqual(signedNonterminalTarget.active_h_index_range, [0, 34]);
+    assert.equal(signedNonterminalTarget.interpolation_node_count, 5);
+    assert.equal(
+      signedNonterminalTarget.node_interval_source,
+      "h0-h34-cell-midpoint node-width localization variant"
+    );
+    assert.equal(
+      signedNonterminalTarget.lagrange_fourth_derivative_weights.length,
+      5
+    );
+    assert.equal(signedNonterminalTarget.weighted_node_interval_rows.length, 5);
+    assert.ok(
+      signedNonterminalTarget.nonterminal_floor_to_required_ratio > 1000
+    );
+    assert.ok(
+      signedNonterminalTarget.nonterminal_midpoint_abs_to_required_ratio >= 0
+    );
+    assert.equal(
+      signedNonterminalTarget.nonterminal_midpoint_inside_interval,
+      true
+    );
+    assert.equal(
+      signedNonterminalTarget
+        .nonterminal_interval_floor_blocks_terminal_only_route,
+      true
+    );
+    assert.ok(
+      [
+        "signed-nonterminal-midpoint-cancels-but-interval-floor-blocks",
+        "signed-nonterminal-midpoint-also-blocks",
+        "signed-nonterminal-floor-fits-row-local-m4-target",
+        "signed-nonterminal-cancellation-target-open",
+      ].includes(signedNonterminalTarget.floor_classification)
+    );
+    assert.equal(
+      signedNonterminalTarget.claim_boundary
+        .certifies_nonterminal_h0_h34_covariance_enclosure,
+      false
+    );
+    assert.equal(
+      signedNonterminalTarget.claim_boundary
+        .certifies_signed_nonterminal_cancellation,
+      false
+    );
+    assert.equal(
+      signedNonterminalTarget.claim_boundary.certifies_n38_fourth_derivative_bound,
+      false
+    );
+    assert.equal(
+      signedNonterminalTarget.claim_boundary.certifies_shifted_R43_outer_bound,
+      false
+    );
+    const signedIdentityRouter =
+      row.signed_nonterminal_h0_h34_identity_router;
+    assert.equal(
+      signedIdentityRouter.router_kind,
+      "candidate-signed-nonterminal-h0-h34-identity-router"
+    );
+    assert.equal(
+      signedIdentityRouter.source_target_kind,
+      "candidate-signed-nonterminal-h0-h34-floor-cancellation-target"
+    );
+    assert.deepEqual(signedIdentityRouter.active_h_index_range, [0, 34]);
+    assert.equal(signedIdentityRouter.uses_signed_midpoint_lagrange_estimate, true);
+    assert.equal(signedIdentityRouter.does_not_use_interval_abs_floor, true);
+    assert.equal(
+      signedIdentityRouter.nonterminal_signed_midpoint_fits_required,
+      true
+    );
+    assert.equal(
+      signedIdentityRouter.nonterminal_interval_floor_blocks_terminal_only_route,
+      true
+    );
+    assert.equal(
+      signedIdentityRouter.signed_nonterminal_route_can_enter_two_block_budget,
+      true
+    );
+    assert.ok(
+      signedIdentityRouter.signed_nonterminal_abs_to_required_ratio < 1e-6
+    );
+    assert.ok(signedIdentityRouter.interval_floor_to_required_ratio > 1000);
+    assert.ok(signedIdentityRouter.terminal_h35_h37_to_required_ratio > 1e5);
+    assert.ok(
+      signedIdentityRouter
+        .available_required_ratio_after_signed_nonterminal_and_cell > 0.99
+    );
+    assert.equal(
+      signedIdentityRouter
+        .terminal_budget_after_signed_nonterminal_route_positive,
+      true
+    );
+    assert.ok(
+      signedIdentityRouter
+        .required_terminal_h35_h37_compression_after_signed_nonterminal_route >
+        1e5
+    );
+    assert.equal(
+      signedIdentityRouter.target_two_block_budget_kind,
+      "candidate-terminal-nonterminal-two-block-covariance-allocation-budget"
+    );
+    assert.equal(
+      signedIdentityRouter.router_interpretation,
+      "signed-nonterminal-midpoint-route-unblocks-positive-terminal-budget"
+    );
+    assert.equal(
+      signedIdentityRouter.claim_boundary.certifies_signed_nonterminal_identity,
+      false
+    );
+    assert.equal(
+      signedIdentityRouter.claim_boundary
+        .certifies_nonterminal_h0_h34_covariance_enclosure,
+      false
+    );
+    assert.equal(
+      signedIdentityRouter.claim_boundary
+        .certifies_terminal_h35_h37_covariance_enclosure,
+      false
+    );
+    assert.equal(
+      signedIdentityRouter.claim_boundary.certifies_all_hrow_covariance_enclosure,
+      false
+    );
+    const signedFourthDifferenceIdentity =
+      row
+        .signed_nonterminal_h0_h34_midpoint_fourth_difference_identity_target;
+    assert.equal(
+      signedFourthDifferenceIdentity.target_kind,
+      "candidate-signed-nonterminal-h0-h34-midpoint-fourth-difference-identity-target"
+    );
+    assert.equal(
+      signedFourthDifferenceIdentity.source_target_kind,
+      "candidate-signed-nonterminal-h0-h34-floor-cancellation-target"
+    );
+    assert.equal(
+      signedFourthDifferenceIdentity.proof_status,
+      "midpoint-only-arithmetic-identity-from-existing-floor-target-not-directed-rounded-enclosure"
+    );
+    assert.equal(
+      signedFourthDifferenceIdentity.identity_basis,
+      "five-node-degree-four-lagrange-midpoint-fourth-difference"
+    );
+    assert.deepEqual(
+      signedFourthDifferenceIdentity.active_h_index_range,
+      [0, 34]
+    );
+    assert.equal(signedFourthDifferenceIdentity.interpolation_node_count, 5);
+    assert.equal(
+      signedFourthDifferenceIdentity.weighted_midpoint_rows.length,
+      5
+    );
+    assert.ok(
+      signedFourthDifferenceIdentity.weighted_midpoint_rows.some(
+        (entry) => entry.contribution_sign === "positive"
+      )
+    );
+    assert.ok(
+      signedFourthDifferenceIdentity.weighted_midpoint_rows.some(
+        (entry) => entry.contribution_sign === "negative"
+      )
+    );
+    assert.ok(signedFourthDifferenceIdentity.positive_row_count > 0);
+    assert.ok(signedFourthDifferenceIdentity.negative_row_count > 0);
+    assert.ok(signedFourthDifferenceIdentity.zero_row_count >= 0);
+    assert.ok(
+      signedFourthDifferenceIdentity
+        .midpoint_fourth_difference_cancellation_ratio < 1e-5
+    );
+    assert.ok(
+      signedFourthDifferenceIdentity
+        .midpoint_fourth_difference_cancellation_fraction > 0.99999
+    );
+    assert.ok(
+      signedFourthDifferenceIdentity
+        .midpoint_fourth_difference_cancellation_gain > 1e5
+    );
+    assert.ok(
+      signedFourthDifferenceIdentity.signed_sum_to_required_ratio < 1e-6
+    );
+    assert.ok(
+      signedFourthDifferenceIdentity.absolute_midpoint_mass_to_required_ratio >
+        signedFourthDifferenceIdentity.signed_sum_to_required_ratio
+    );
+    assert.equal(
+      signedFourthDifferenceIdentity.cancels_before_interval_floor,
+      true
+    );
+    assert.equal(
+      signedFourthDifferenceIdentity.identity_classification,
+      "signed-nonterminal-fourth-difference-cancels-before-interval-floor"
+    );
+    assert.equal(
+      signedFourthDifferenceIdentity.claim_boundary
+        .certifies_signed_nonterminal_identity,
+      false
+    );
+    assert.equal(
+      signedFourthDifferenceIdentity.claim_boundary
+        .certifies_h0_h34_midpoint_identity_for_continuous_domain,
+      false
+    );
+    assert.equal(
+      signedFourthDifferenceIdentity.claim_boundary
+        .certifies_all_hrow_covariance_enclosure,
+      false
+    );
+    assert.equal(
+      signedFourthDifferenceIdentity.claim_boundary.certifies_shifted_R43_outer_bound,
+      false
+    );
+    const dependencyLossBudget =
+      row.signed_nonterminal_h0_h34_dependency_loss_budget;
+    assert.equal(
+      dependencyLossBudget.target_kind,
+      "candidate-signed-nonterminal-h0-h34-dependency-loss-budget"
+    );
+    assert.equal(
+      dependencyLossBudget.source_floor_target_kind,
+      "candidate-signed-nonterminal-h0-h34-floor-cancellation-target"
+    );
+    assert.equal(
+      dependencyLossBudget.source_identity_target_kind,
+      "candidate-signed-nonterminal-h0-h34-midpoint-fourth-difference-identity-target"
+    );
+    assert.equal(
+      dependencyLossBudget.proof_status,
+      "candidate-budget-only-interval-dependency-loss-measured-not-directed-rounded-enclosure"
+    );
+    assert.deepEqual(dependencyLossBudget.active_h_index_range, [0, 34]);
+    assert.equal(dependencyLossBudget.interpolation_node_count, 5);
+    assert.equal(dependencyLossBudget.node_dependency_loss_budget_rows.length, 5);
+    assert.equal(dependencyLossBudget.signed_midpoint_fits_required, true);
+    assert.equal(dependencyLossBudget.midpoint_absolute_mass_fits_required, true);
+    assert.ok(dependencyLossBudget.interval_floor_to_required_ratio > 1000);
+    assert.ok(
+      dependencyLossBudget.absolute_midpoint_mass_to_required_ratio < 1e-3
+    );
+    assert.ok(
+      dependencyLossBudget.interval_floor_to_midpoint_absolute_mass_ratio >
+        1e6
+    );
+    assert.ok(
+      dependencyLossBudget.interval_floor_to_signed_midpoint_ratio > 1e12
+    );
+    assert.ok(
+      dependencyLossBudget.interval_residual_budget_after_midpoint_abs_mass >
+        0.99
+    );
+    assert.ok(
+      dependencyLossBudget.directed_residual_abs_upper_to_required_ratio > 1000
+    );
+    assert.ok(
+      dependencyLossBudget
+        .required_interval_excess_compression_after_midpoint_abs_mass > 1000
+    );
+    assert.ok(
+      dependencyLossBudget
+        .required_directed_residual_compression_after_midpoint_abs_mass > 1000
+    );
+    assert.ok(
+      dependencyLossBudget.midpoint_absolute_mass_headroom_factor > 1000
+    );
+    assert.equal(dependencyLossBudget.interval_floor_is_dependency_loss, true);
+    assert.equal(
+      dependencyLossBudget.budget_classification,
+      "h0-h34-midpoint-mass-fits-interval-floor-is-dependency-loss"
+    );
+    dependencyLossBudget.node_dependency_loss_budget_rows.forEach(
+      (budgetRow) => {
+        assert.ok(Number.isInteger(budgetRow.node_index));
+        assert.ok(
+          budgetRow.weighted_interval_width_to_required_ratio >= 0
+        );
+        assert.ok(
+          budgetRow.weighted_midpoint_abs_to_required_ratio >= 0
+        );
+        assert.ok(
+          budgetRow.node_directed_residual_abs_upper_to_required_ratio >= 0
+        );
+        assert.ok(
+          budgetRow.required_width_compression_to_uniform_residual_budget >= 0
+        );
+        assert.ok(
+          budgetRow
+            .node_required_directed_residual_compression_to_uniform_budget >= 0
+        );
+      }
+    );
+    assert.equal(
+      dependencyLossBudget.claim_boundary
+        .certifies_signed_nonterminal_cancellation,
+      false
+    );
+    assert.equal(
+      dependencyLossBudget.claim_boundary
+        .certifies_nonterminal_h0_h34_covariance_enclosure,
+      false
+    );
+    assert.equal(
+      dependencyLossBudget.claim_boundary.certifies_shifted_R43_outer_bound,
+      false
+    );
+    const providerSpecification =
+      row
+        .signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification;
+    assert.equal(
+      providerSpecification.target_kind,
+      "candidate-signed-nonterminal-h0-h34-midpoint-dependency-preserving-provider-specification-target"
+    );
+    assert.equal(
+      providerSpecification.source_dependency_loss_budget_kind,
+      "candidate-signed-nonterminal-h0-h34-dependency-loss-budget"
+    );
+    assert.equal(
+      providerSpecification.proof_status,
+      "candidate-specification-only-residual-radius-targets-not-directed-rounded-enclosure"
+    );
+    assert.deepEqual(providerSpecification.active_h_index_range, [0, 34]);
+    assert.equal(providerSpecification.interpolation_node_count, 5);
+    assert.equal(
+      providerSpecification.residual_allocation_rule,
+      "balanced-weighted-derivative-residual-budget-per-lagrange-node"
+    );
+    assert.ok(
+      providerSpecification.residual_derivative_budget_to_required_ratio >
+        0.99
+    );
+    assert.ok(
+      providerSpecification.uniform_coefficient_residual_radius_bound > 0
+    );
+    assert.ok(providerSpecification.balanced_derivative_residual_abs_budget > 0);
+    assert.ok(
+      providerSpecification.current_shape_residual_to_budget_ratio > 1000
+    );
+    assert.ok(
+      providerSpecification.required_uniform_current_shape_compression > 1000
+    );
+    assert.equal(
+      providerSpecification.current_candidate_satisfies_provider_specification,
+      false
+    );
+    assert.equal(
+      providerSpecification.provider_specification_classification,
+      "requires-directed-rounded-h0-h34-residual-radius-contraction"
+    );
+    assert.ok(
+      Number.isInteger(
+        providerSpecification.dominant_balanced_radius_compression_node
+          .node_index
+      )
+    );
+    assert.ok(
+      providerSpecification.dominant_balanced_radius_compression_node
+        .required_coefficient_radius_compression_to_balanced_bound > 0
+    );
+    assert.equal(providerSpecification.provider_specification_rows.length, 5);
+    providerSpecification.provider_specification_rows.forEach((specRow) => {
+      assert.ok(Number.isInteger(specRow.node_index));
+      assert.ok(Number.isFinite(specRow.xi_midpoint));
+      assert.ok(specRow.absolute_lagrange_fourth_derivative_weight > 0);
+      assert.ok(specRow.balanced_coefficient_residual_radius_bound > 0);
+      assert.ok(specRow.uniform_coefficient_residual_radius_bound > 0);
+      assert.ok(specRow.current_coefficient_residual_abs_upper >= 0);
+      assert.ok(
+        specRow.required_coefficient_radius_compression_to_balanced_bound >= 0
+      );
+      assert.ok(
+        specRow.required_weighted_residual_compression_to_balanced_budget >= 0
+      );
+      assert.ok(
+        [
+          "current-node-radius-fits-balanced-budget",
+          "needs-directed-rounded-node-radius-contraction",
+        ].includes(specRow.provider_row_status)
+      );
+    });
+    assert.equal(
+      providerSpecification.claim_boundary
+        .certifies_nonterminal_h0_h34_covariance_enclosure,
+      false
+    );
+    assert.equal(
+      providerSpecification.claim_boundary
+        .certifies_directed_rounded_shared_domain,
+      false
+    );
+    assert.equal(
+      providerSpecification.claim_boundary.certifies_shifted_R43_outer_bound,
+      false
+    );
+    const currentShapeProfile =
+      row.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile;
+    assert.equal(
+      currentShapeProfile.target_kind,
+      "candidate-signed-nonterminal-h0-h34-current-shape-radius-contraction-profile-target"
+    );
+    assert.equal(
+      currentShapeProfile.source_provider_specification_kind,
+      "candidate-signed-nonterminal-h0-h34-midpoint-dependency-preserving-provider-specification-target"
+    );
+    assert.equal(
+      currentShapeProfile.proof_status,
+      "candidate-profile-only-current-shape-radius-contraction-not-directed-rounded-enclosure"
+    );
+    assert.equal(
+      currentShapeProfile.allocation_comparison_kind,
+      "candidate-balanced-vs-current-shape-optimized-lagrange-node-residual-allocation"
+    );
+    assert.equal(
+      currentShapeProfile.allocation_comparison_proof_status,
+      "candidate-comparison-only-not-directed-rounded-enclosure"
+    );
+    assert.equal(
+      currentShapeProfile.optimized_current_shape_allocation_rule,
+      "minimax-current-shape-weighted-residual-allocation"
+    );
+    assert.deepEqual(currentShapeProfile.active_h_index_range, [0, 34]);
+    assert.equal(currentShapeProfile.interpolation_node_count, 5);
+    assert.ok(currentShapeProfile.current_shape_uniform_contraction_factor > 1000);
+    assert.ok(currentShapeProfile.max_current_shape_row_compression > 1000);
+    assert.ok(currentShapeProfile.balanced_allocation_penalty_vs_current_shape > 1);
+    assert.ok(
+      currentShapeProfile.uniform_coefficient_allocation_penalty_vs_current_shape >
+        1
+    );
+    assert.ok(Math.abs(currentShapeProfile.current_shape_rows_share_sum - 1) < 1e-12);
+    assert.equal(
+      currentShapeProfile.current_shape_allocation_sharper_than_balanced_or_uniform,
+      true
+    );
+    assert.equal(
+      currentShapeProfile.profile_classification,
+      "current-shape-uniform-contraction-sharpens-balanced-node-radius-target"
+    );
+    assert.ok(
+      Number.isInteger(
+        currentShapeProfile.dominant_current_shape_residual_node.node_index
+      )
+    );
+    assert.ok(
+      currentShapeProfile.dominant_current_shape_residual_node
+        .current_weighted_residual_share > 0
+    );
+    assert.ok(
+      currentShapeProfile.dominant_current_shape_residual_node
+        .current_weighted_residual_share < 1
+    );
+    assert.equal(currentShapeProfile.current_shape_profile_rows.length, 5);
+    currentShapeProfile.current_shape_profile_rows.forEach((profileRow) => {
+      assert.ok(Number.isInteger(profileRow.node_index));
+      assert.ok(Number.isFinite(profileRow.xi_midpoint));
+      assert.ok(profileRow.current_weighted_residual_share > 0);
+      assert.ok(profileRow.current_shape_coefficient_residual_radius_bound > 0);
+      assert.ok(profileRow.required_compression_to_current_shape_bound > 0);
+      assert.ok(profileRow.balanced_radius_overlocalization_factor > 0);
+      assert.ok(
+        profileRow.uniform_coefficient_radius_overlocalization_factor > 0
+      );
+      assert.ok(
+        [
+          "needs-current-shape-directed-rounded-radius-contraction",
+          "current-shape-radius-fits-residual-budget",
+        ].includes(profileRow.current_shape_row_status)
+      );
+    });
+    assert.equal(
+      currentShapeProfile.claim_boundary
+        .certifies_nonterminal_h0_h34_covariance_enclosure,
+      false
+    );
+    assert.equal(
+      currentShapeProfile.claim_boundary.certifies_directed_rounded_shared_domain,
+      false
+    );
+    assert.equal(
+      currentShapeProfile.claim_boundary.certifies_shifted_R43_outer_bound,
+      false
+    );
+    const currentShapeCertificateScreen =
+      row.signed_nonterminal_h0_h34_current_shape_certificate_screen;
+    assert.equal(
+      currentShapeCertificateScreen.target_kind,
+      "candidate-signed-nonterminal-h0-h34-current-shape-certificate-screen"
+    );
+    assert.equal(
+      currentShapeCertificateScreen.source_current_shape_profile_kind,
+      "candidate-signed-nonterminal-h0-h34-current-shape-radius-contraction-profile-target"
+    );
+    assert.equal(
+      currentShapeCertificateScreen.proof_status,
+      "candidate-screen-only-contracted-current-shape-provider-not-directed-rounded-enclosure"
+    );
+    assert.equal(
+      currentShapeCertificateScreen.residual_profile_rule,
+      "current-weighted-residual-shape-preserving-provider-contraction-screen"
+    );
+    assert.deepEqual(
+      currentShapeCertificateScreen.active_h_index_range,
+      [0, 34]
+    );
+    assert.equal(currentShapeCertificateScreen.interpolation_node_count, 5);
+    assert.ok(
+      currentShapeCertificateScreen
+        .minimum_current_shape_contraction_factor_for_budget > 1000
+    );
+    assert.equal(
+      currentShapeCertificateScreen.first_strict_fitting_safety_margin_factor,
+      1.01
+    );
+    assert.ok(
+      currentShapeCertificateScreen
+        .first_strict_fitting_provider_contraction_factor >
+        currentShapeCertificateScreen
+          .minimum_current_shape_contraction_factor_for_budget
+    );
+    assert.ok(
+      currentShapeCertificateScreen.min_strict_safety_headroom_factor > 1
+    );
+    assert.equal(
+      currentShapeCertificateScreen
+        .all_screen_rows_preserve_current_shape_shares,
+      true
+    );
+    assert.equal(
+      currentShapeCertificateScreen
+        .all_strict_safety_margins_fit_residual_budget,
+      true
+    );
+    assert.equal(
+      currentShapeCertificateScreen.screen_classification,
+      "current-shape-contraction-screen-produces-budget-fitting-candidate-provider"
+    );
+    assert.equal(
+      currentShapeCertificateScreen.current_shape_certificate_screen_rows.length,
+      4
+    );
+    currentShapeCertificateScreen.current_shape_certificate_screen_rows.forEach(
+      (screenRow) => {
+        assert.ok(screenRow.safety_margin_factor >= 1);
+        assert.ok(screenRow.required_provider_contraction_factor > 1000);
+        assert.ok(screenRow.contracted_residual_to_budget_ratio <= 1 + 1e-12);
+        assert.equal(
+          screenRow.h0_h34_residual_budget_fits_after_contraction,
+          true
+        );
+        assert.ok(screenRow.residual_budget_headroom_factor >= 1);
+        assert.ok(Math.abs(screenRow.node_share_sum - 1) < 1e-12);
+        assert.ok(screenRow.max_node_share_drift_abs < 1e-12);
+        assert.equal(screenRow.node_screen_rows.length, 5);
+        screenRow.node_screen_rows.forEach((nodeRow) => {
+          assert.ok(Number.isInteger(nodeRow.node_index));
+          assert.ok(Number.isFinite(nodeRow.xi_midpoint));
+          assert.ok(nodeRow.current_weighted_residual_share > 0);
+          assert.ok(nodeRow.contracted_weighted_residual_share > 0);
+          assert.ok(nodeRow.share_drift_abs < 1e-12);
+          assert.ok(nodeRow.contracted_weighted_residual_abs_upper > 0);
+          assert.ok(nodeRow.contracted_coefficient_residual_abs_upper > 0);
+          assert.equal(
+            nodeRow.row_fits_current_shape_allocated_budget_after_contraction,
+            true
+          );
+        });
+      }
+    );
+    assert.equal(
+      currentShapeCertificateScreen.claim_boundary
+        .certifies_nonterminal_h0_h34_covariance_enclosure,
+      false
+    );
+    assert.equal(
+      currentShapeCertificateScreen.claim_boundary
+        .certifies_directed_rounded_shared_domain,
+      false
+    );
+    assert.equal(
+      currentShapeCertificateScreen.claim_boundary.certifies_shifted_R43_outer_bound,
+      false
     );
   });
   const endpointPartitionTarget =

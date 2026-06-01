@@ -131,14 +131,80 @@ source-boundary movement rows, 0 receiver-range contraction rows, 0
 all-owned-component memory-margin rows, and 0 endpoint ownership/no-double
 counting rows. The probe consumes 0 rows.
 
+The source-boundary movement theorem attempt,
+`one_leaf_source_boundary_movement_theorem_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.md`,
+then converts those three thresholds into exact source-boundary inequalities:
+the two low-side rows require strict negative movement of the source lower
+boundary by more than `0.000026691996524`, and the high-side row requires
+strict positive movement of the source upper boundary by more than
+`0.00024618430271`. It verifies the threshold identities but certifies 0
+same-packet source-boundary movement rows because no source-boundary variation,
+endpoint-tightening certificate, source-monotonicity preservation, or
+all-owned memory-margin proof is present. It consumes 0 rows.
+
+The receiver-range contraction theorem attempt,
+`one_leaf_receiver_range_contraction_theorem_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.md`,
+separately converts the same thresholds into exact receiver-boundary
+contraction inequalities. It verifies all three receiver-side threshold
+identities but certifies 0 same-packet receiver contractions because no
+receiver-range refinement, receiver endpoint-tightening certificate,
+receiver-monotonicity preservation, or all-owned memory-margin proof is
+present. It consumes 0 rows.
+
+The candidate-change boundary-data constructor,
+`one_leaf_candidate_change_boundary_data_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.md`,
+combines the two failed theorem routes into one exact boundary-opening
+condition. The low-side rows require
+`sigma_source_lower + rho_receiver_lower > required_strict_improvement_q`; the
+high-side row requires
+`sigma_source_upper + rho_receiver_upper > required_strict_improvement_q`. It
+declares all three combined targets but finds no same-packet candidate-change
+data assigning positive source or receiver boundary shifts, so it certifies 0
+candidate-change boundary-data rows and consumes 0 rows.
+
+The direct-path lambda shift screen,
+`one_leaf_direct_path_lambda_shift_screen_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.md`,
+then tests whether the existing higher-fold direct-path parameter supplies a
+candidate-change direction. At the sampled active endpoints, increasing
+`lambda` from `0.3` to `0.305` opens 3 / 3 one-leaf boundary targets, with
+largest active-endpoint opening threshold `lambda>0.301815056706425`. This is
+only a finite route-finding screen and consumes 0 rows. The follow-on
+`lambda0305_preledger_replay_audit_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.md`
+recertifies the trial seed's 12-root topology by outward-rational interval
+checks, but the v1-v6 preledger replay still leaves 162 rows `split_required`,
+0 complete receiver-cover parent rows, 0 accepted fold-layer rows, and no
+branch-chart authorization.
+
+The fold-coordinate collocation theorem attempt,
+`one_leaf_fold_coordinate_collocation_candidate_change_theorem_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then imports the nonlinear fold-coordinate tangent witness back into the
+one-leaf candidate-change stack. It matches all three constructor rows and
+verifies 3 / 3 screen-level positive boundary openings, with minimum screen
+margin `0.999753815697289`. It still certifies 0 proof-grade same-packet
+candidate-change rows: no accepted deformation, source/receiver monotonicity,
+memory margin, endpoint ownership/no-double-counting, branch-reuse exclusion,
+non-owned complement closure, root-topology recertification, or preledger rerun
+exists for that candidate change.
+
 ## Capture Decision
 
 Priority-only theorem target. The partition-audit implementation is now
-complete and consumes 0 rows. The next implementation should attempt one of the
-missing pass-rule fields for the boundary components. For the three one-leaf
-probe rows, this means a proof-grade same-packet source-boundary movement or
-receiver-range contraction certificate at the recorded strict thresholds, plus
-all-owned-component memory margins, endpoint/topology ownership with
-no-double-counting, simple-root branch-reuse exclusion, and non-owned complement
-closure. No regular parent row may be accepted until all fields in the finite
-pass rule are present.
+complete, and the first source-boundary and receiver-range theorem attempts
+both fail-close with 0 accepted rows. The candidate-change constructor now
+states the exact combined boundary-opening equation that a future deformation
+must satisfy, but it also fail-closes because no such deformation data is
+present. The direct-path lambda screen supplies the first positive sampled
+candidate-change direction, and the `lambda=0.305` replay proves that this
+direct-path amplitude can keep proof-grade 12-root topology. It does not close
+row consumption. The fold-coordinate theorem attempt gives the first positive
+screen-level candidate-change bridge for all three one-leaf rows, but it also
+fail-closes because the positive opening has not been promoted to proof-grade
+same-packet data. The next implementation must change the row-closure geometry
+or strengthen the receiver-cover certificate: new same-packet source-boundary
+variation data, receiver-range refinement data, endpoint/complement ownership,
+or another candidate change must actually assign proof-grade positive boundary
+shifts and preservation fields before these one-leaf rows can progress. Even
+then, the finite pass rule still also requires all-owned-component memory
+margins, endpoint/topology ownership with no-double-counting, simple-root
+branch-reuse exclusion, and non-owned complement closure. No regular parent row
+may be accepted until all fields in the finite pass rule are present.

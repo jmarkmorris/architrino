@@ -12256,6 +12256,1422 @@ function h39RequestedY44ProducerImageBudgetComparisonForRoute({
   });
 }
 
+function buildSignedNonterminalH0H34FloorCancellationTargetCandidate({
+  provider,
+}) {
+  const localizationRows = provider?.node_width_localization_rows ?? [];
+  const requiredFourthDerivativeUpper = Number(
+    provider?.required_fourth_derivative_upper
+  );
+  if (
+    localizationRows.length !== 5 ||
+    !finitePositive(requiredFourthDerivativeUpper)
+  ) {
+    return null;
+  }
+  const xiMidpoints = localizationRows.map((row) => Number(row?.xi_midpoint));
+  const nonterminalVariantRows = localizationRows.map((row, nodeIndex) => {
+    const variant =
+      (row?.variants ?? []).find(
+        (candidate) => candidate?.variant === "h0-h34-cell-midpoint"
+      ) ?? null;
+    return {
+      node_index: nodeIndex,
+      xi_midpoint: Number(row?.xi_midpoint),
+      coefficient_interval: finiteOrderedIntervalOrNull(
+        variant?.coefficient_interval
+      ),
+      coefficient_midpoint: Number(variant?.coefficient_midpoint),
+      coefficient_width: Number(variant?.coefficient_width),
+      width_to_direct_ratio: Number(variant?.width_to_direct_ratio),
+    };
+  });
+  if (
+    !xiMidpoints.every(Number.isFinite) ||
+    !nonterminalVariantRows.every(
+      (row) =>
+        row.coefficient_interval !== null &&
+        Number.isFinite(row.coefficient_midpoint)
+    )
+  ) {
+    return null;
+  }
+  const weights = lagrangeFourthDerivativeWeightsForNodes(xiMidpoints);
+  if (weights === null) {
+    return null;
+  }
+  const midpointSignedEstimate = nonterminalVariantRows.reduce(
+    (total, row, index) => total + row.coefficient_midpoint * weights[index],
+    0
+  );
+  const metrics = degreeFourIntervalizedInterpolantFourthDerivativeMetrics({
+    xiMidpoints,
+    valueIntervals: nonterminalVariantRows.map(
+      (row) => row.coefficient_interval
+    ),
+    requiredFourthDerivativeUpper,
+    midpointSignedEstimate,
+  });
+  if (metrics === null) {
+    return null;
+  }
+  const midpointAbsToRequired =
+    Number.isFinite(midpointSignedEstimate) &&
+    finitePositive(requiredFourthDerivativeUpper)
+      ? Math.abs(midpointSignedEstimate) / requiredFourthDerivativeUpper
+      : null;
+  const intervalFloorRatio = metrics.derivative_to_required_ratio;
+  const signedMidpointFitsRequired =
+    finiteNonnegative(midpointAbsToRequired) && midpointAbsToRequired <= 1;
+  const intervalFloorBlocks =
+    finiteNonnegative(intervalFloorRatio) && intervalFloorRatio > 1;
+  const classification =
+    intervalFloorBlocks && signedMidpointFitsRequired
+      ? "signed-nonterminal-midpoint-cancels-but-interval-floor-blocks"
+      : intervalFloorBlocks
+        ? "signed-nonterminal-midpoint-also-blocks"
+        : finiteNonnegative(intervalFloorRatio) && intervalFloorRatio <= 1
+          ? "signed-nonterminal-floor-fits-row-local-m4-target"
+          : "signed-nonterminal-cancellation-target-open";
+  return {
+    target_kind:
+      "candidate-signed-nonterminal-h0-h34-floor-cancellation-target",
+    active_h_index_range: [0, 34],
+    node_interval_source:
+      "h0-h34-cell-midpoint node-width localization variant",
+    interpolation_node_count: 5,
+    source_y_order: H38_NUMERATOR_Y_ORDER,
+    xi_midpoints: xiMidpoints,
+    required_fourth_derivative_upper: requiredFourthDerivativeUpper,
+    nonterminal_node_interval_rows: nonterminalVariantRows,
+    lagrange_fourth_derivative_weights:
+      metrics.lagrange_fourth_derivative_weights,
+    weighted_node_interval_rows: metrics.weighted_node_interval_rows,
+    nonterminal_intervalized_lagrange_interval:
+      metrics.derivative_interval_d4,
+    nonterminal_intervalized_lagrange_width:
+      metrics.derivative_interval_width,
+    nonterminal_intervalized_lagrange_abs_upper:
+      metrics.derivative_abs_upper,
+    nonterminal_floor_to_required_ratio: intervalFloorRatio,
+    nonterminal_midpoint_lagrange_signed_estimate: midpointSignedEstimate,
+    nonterminal_midpoint_abs_to_required_ratio: midpointAbsToRequired,
+    nonterminal_midpoint_inside_interval:
+      metrics.midpoint_estimate_inside_derivative_interval,
+    nonterminal_midpoint_gap_to_interval:
+      metrics.midpoint_estimate_gap_to_derivative_interval,
+    nonterminal_midpoint_gap_to_required:
+      metrics.midpoint_estimate_gap_to_required,
+    nonterminal_interval_abs_upper_to_midpoint_abs_ratio:
+      metrics.interval_abs_upper_to_midpoint_abs_ratio,
+    nonterminal_signed_midpoint_fits_required:
+      signedMidpointFitsRequired,
+    nonterminal_interval_floor_blocks_terminal_only_route:
+      intervalFloorBlocks,
+    floor_classification: classification,
+    claim_boundary: {
+      certifies_nonterminal_h0_h34_covariance_enclosure: false,
+      certifies_signed_nonterminal_cancellation: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function buildSignedNonterminalH0H34MidpointFourthDifferenceIdentityCandidate({
+  signedNonterminalFloorTarget,
+}) {
+  if (
+    signedNonterminalFloorTarget === null ||
+    signedNonterminalFloorTarget === undefined
+  ) {
+    return null;
+  }
+  const nodeRows =
+    signedNonterminalFloorTarget.nonterminal_node_interval_rows ?? [];
+  const weights =
+    signedNonterminalFloorTarget.lagrange_fourth_derivative_weights ?? [];
+  const requiredFourthDerivativeUpper = Number(
+    signedNonterminalFloorTarget.required_fourth_derivative_upper
+  );
+  if (
+    nodeRows.length !== 5 ||
+    weights.length !== 5 ||
+    !finitePositive(requiredFourthDerivativeUpper)
+  ) {
+    return null;
+  }
+  const weightedMidpointRows = nodeRows.map((row, index) => {
+    const coefficientMidpoint = Number(row?.coefficient_midpoint);
+    const weight = Number(weights[index]);
+    const weightedMidpointContribution = coefficientMidpoint * weight;
+    return {
+      node_index: Number.isInteger(row?.node_index) ? row.node_index : index,
+      xi_midpoint: Number(row?.xi_midpoint),
+      coefficient_midpoint: coefficientMidpoint,
+      lagrange_fourth_derivative_weight: weight,
+      weighted_midpoint_contribution: weightedMidpointContribution,
+      absolute_weighted_midpoint_contribution: Math.abs(
+        weightedMidpointContribution
+      ),
+      contribution_sign:
+        weightedMidpointContribution > 0
+          ? "positive"
+          : weightedMidpointContribution < 0
+            ? "negative"
+            : "zero",
+    };
+  });
+  if (
+    !weightedMidpointRows.every(
+      (row) =>
+        Number.isFinite(row.xi_midpoint) &&
+        Number.isFinite(row.coefficient_midpoint) &&
+        Number.isFinite(row.lagrange_fourth_derivative_weight) &&
+        Number.isFinite(row.weighted_midpoint_contribution)
+    )
+  ) {
+    return null;
+  }
+  const signedWeightedMidpointSum = weightedMidpointRows.reduce(
+    (total, row) => total + row.weighted_midpoint_contribution,
+    0
+  );
+  const absoluteWeightedMidpointSum = weightedMidpointRows.reduce(
+    (total, row) => total + row.absolute_weighted_midpoint_contribution,
+    0
+  );
+  const positiveWeightedMidpointSum = weightedMidpointRows
+    .filter((row) => row.weighted_midpoint_contribution > 0)
+    .reduce((total, row) => total + row.weighted_midpoint_contribution, 0);
+  const negativeWeightedMidpointSum = weightedMidpointRows
+    .filter((row) => row.weighted_midpoint_contribution < 0)
+    .reduce((total, row) => total + row.weighted_midpoint_contribution, 0);
+  const negativeWeightedMidpointAbsSum = Math.abs(
+    negativeWeightedMidpointSum
+  );
+  const positiveRowCount = weightedMidpointRows.filter(
+    (row) => row.weighted_midpoint_contribution > 0
+  ).length;
+  const negativeRowCount = weightedMidpointRows.filter(
+    (row) => row.weighted_midpoint_contribution < 0
+  ).length;
+  const zeroRowCount = weightedMidpointRows.filter(
+    (row) => row.weighted_midpoint_contribution === 0
+  ).length;
+  const absoluteSignedWeightedMidpointSum = Math.abs(
+    signedWeightedMidpointSum
+  );
+  const midpointCancellationRatio =
+    finitePositive(absoluteWeightedMidpointSum)
+      ? absoluteSignedWeightedMidpointSum / absoluteWeightedMidpointSum
+      : null;
+  const midpointCancellationGain =
+    finitePositive(absoluteWeightedMidpointSum) &&
+    finitePositive(absoluteSignedWeightedMidpointSum)
+      ? absoluteWeightedMidpointSum / absoluteSignedWeightedMidpointSum
+      : null;
+  const midpointCancellationFraction =
+    finiteNonnegative(midpointCancellationRatio)
+      ? 1 - midpointCancellationRatio
+      : null;
+  const positiveNegativeBalanceRatio =
+    finitePositive(positiveWeightedMidpointSum) &&
+    finitePositive(negativeWeightedMidpointAbsSum)
+      ? Math.min(positiveWeightedMidpointSum, negativeWeightedMidpointAbsSum) /
+        Math.max(positiveWeightedMidpointSum, negativeWeightedMidpointAbsSum)
+      : null;
+  const signedSumToRequiredRatio =
+    absoluteSignedWeightedMidpointSum / requiredFourthDerivativeUpper;
+  const absoluteMassToRequiredRatio =
+    absoluteWeightedMidpointSum / requiredFourthDerivativeUpper;
+  const floorMidpointEstimate = Number(
+    signedNonterminalFloorTarget
+      .nonterminal_midpoint_lagrange_signed_estimate
+  );
+  const signedSumToFloorEstimateAbsGap = Number.isFinite(floorMidpointEstimate)
+    ? Math.abs(signedWeightedMidpointSum - floorMidpointEstimate)
+    : null;
+  const signedSumToFloorEstimateRelativeGap =
+    finiteNonnegative(signedSumToFloorEstimateAbsGap) &&
+    finitePositive(absoluteWeightedMidpointSum)
+      ? signedSumToFloorEstimateAbsGap / absoluteWeightedMidpointSum
+      : null;
+  const intervalFloorToRequiredRatio = Number(
+    signedNonterminalFloorTarget.nonterminal_floor_to_required_ratio
+  );
+  const cancelsBeforeIntervalFloor =
+    finiteNonnegative(midpointCancellationRatio) &&
+    midpointCancellationRatio < 1e-5 &&
+    finiteNonnegative(signedSumToRequiredRatio) &&
+    signedSumToRequiredRatio < 1e-6 &&
+    finitePositive(intervalFloorToRequiredRatio) &&
+    intervalFloorToRequiredRatio > 1000;
+  const classification = cancelsBeforeIntervalFloor
+    ? "signed-nonterminal-fourth-difference-cancels-before-interval-floor"
+    : finiteNonnegative(signedSumToRequiredRatio) &&
+        signedSumToRequiredRatio <= 1
+      ? "signed-nonterminal-fourth-difference-fits-row-local-m4-target"
+      : "signed-nonterminal-fourth-difference-identity-open";
+  return {
+    target_kind:
+      "candidate-signed-nonterminal-h0-h34-midpoint-fourth-difference-identity-target",
+    source_target_kind: signedNonterminalFloorTarget.target_kind,
+    proof_status:
+      "midpoint-only-arithmetic-identity-from-existing-floor-target-not-directed-rounded-enclosure",
+    identity_basis:
+      "five-node-degree-four-lagrange-midpoint-fourth-difference",
+    active_h_index_range: [0, 34],
+    interpolation_node_count: 5,
+    source_y_order: signedNonterminalFloorTarget.source_y_order ?? null,
+    required_fourth_derivative_upper: requiredFourthDerivativeUpper,
+    weighted_midpoint_rows: weightedMidpointRows,
+    signed_weighted_midpoint_sum: signedWeightedMidpointSum,
+    absolute_weighted_midpoint_sum: absoluteWeightedMidpointSum,
+    positive_weighted_midpoint_sum: positiveWeightedMidpointSum,
+    negative_weighted_midpoint_sum: negativeWeightedMidpointSum,
+    negative_weighted_midpoint_abs_sum: negativeWeightedMidpointAbsSum,
+    positive_row_count: positiveRowCount,
+    negative_row_count: negativeRowCount,
+    zero_row_count: zeroRowCount,
+    signed_sum_to_floor_estimate_abs_gap: signedSumToFloorEstimateAbsGap,
+    signed_sum_to_floor_estimate_relative_gap:
+      signedSumToFloorEstimateRelativeGap,
+    midpoint_fourth_difference_cancellation_ratio:
+      midpointCancellationRatio,
+    midpoint_fourth_difference_cancellation_fraction:
+      midpointCancellationFraction,
+    midpoint_fourth_difference_cancellation_gain: midpointCancellationGain,
+    positive_negative_balance_ratio: positiveNegativeBalanceRatio,
+    signed_sum_to_required_ratio: signedSumToRequiredRatio,
+    absolute_midpoint_mass_to_required_ratio:
+      absoluteMassToRequiredRatio,
+    interval_floor_to_required_ratio: intervalFloorToRequiredRatio,
+    cancels_before_interval_floor: cancelsBeforeIntervalFloor,
+    identity_classification: classification,
+    next_certificate_object:
+      "directed-rounded same-domain proof that the h0-h34 five-node fourth difference remains below the row-local M4 requirement before absolute interval floors are charged",
+    claim_boundary: {
+      certifies_h0_h34_midpoint_identity_for_continuous_domain: false,
+      certifies_signed_nonterminal_identity: false,
+      certifies_nonterminal_h0_h34_covariance_enclosure: false,
+      certifies_terminal_h35_h37_covariance_enclosure: false,
+      certifies_all_hrow_covariance_enclosure: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function buildSignedNonterminalH0H34DependencyLossBudgetCandidate({
+  signedNonterminalFloorTarget,
+  midpointFourthDifferenceIdentityTarget,
+}) {
+  if (
+    signedNonterminalFloorTarget === null ||
+    signedNonterminalFloorTarget === undefined ||
+    midpointFourthDifferenceIdentityTarget === null ||
+    midpointFourthDifferenceIdentityTarget === undefined
+  ) {
+    return null;
+  }
+  const requiredFourthDerivativeUpper = Number(
+    midpointFourthDifferenceIdentityTarget.required_fourth_derivative_upper
+  );
+  const intervalFloorToRequiredRatio = Number(
+    signedNonterminalFloorTarget.nonterminal_floor_to_required_ratio
+  );
+  const signedMidpointToRequiredRatio = Number(
+    midpointFourthDifferenceIdentityTarget.signed_sum_to_required_ratio
+  );
+  const absoluteMidpointMassToRequiredRatio = Number(
+    midpointFourthDifferenceIdentityTarget.absolute_midpoint_mass_to_required_ratio
+  );
+  if (
+    !finitePositive(requiredFourthDerivativeUpper) ||
+    !finitePositive(intervalFloorToRequiredRatio) ||
+    !finiteNonnegative(signedMidpointToRequiredRatio) ||
+    !finitePositive(absoluteMidpointMassToRequiredRatio)
+  ) {
+    return null;
+  }
+  const weightedIntervalRows =
+    signedNonterminalFloorTarget.weighted_node_interval_rows ?? [];
+  const midpointRows =
+    midpointFourthDifferenceIdentityTarget.weighted_midpoint_rows ?? [];
+  if (weightedIntervalRows.length !== 5 || midpointRows.length !== 5) {
+    return null;
+  }
+  const midpointAbsoluteMassFitsRequired =
+    absoluteMidpointMassToRequiredRatio < 1;
+  const signedMidpointFitsRequired = signedMidpointToRequiredRatio < 1;
+  const midpointAbsoluteMassHeadroomFactor =
+    midpointAbsoluteMassFitsRequired
+      ? 1 / absoluteMidpointMassToRequiredRatio
+      : null;
+  const signedMidpointHeadroomFactor =
+    signedMidpointFitsRequired && finitePositive(signedMidpointToRequiredRatio)
+      ? 1 / signedMidpointToRequiredRatio
+      : null;
+  const intervalFloorCompressionRequiredToFit =
+    intervalFloorToRequiredRatio > 1 ? intervalFloorToRequiredRatio : 1;
+  const intervalFloorToMidpointAbsoluteMassRatio =
+    finitePositive(absoluteMidpointMassToRequiredRatio)
+      ? intervalFloorToRequiredRatio / absoluteMidpointMassToRequiredRatio
+      : null;
+  const intervalFloorToSignedMidpointRatio =
+    finitePositive(signedMidpointToRequiredRatio)
+      ? intervalFloorToRequiredRatio / signedMidpointToRequiredRatio
+      : null;
+  const derivativeInterval = finiteOrderedIntervalOrNull(
+    signedNonterminalFloorTarget.nonterminal_intervalized_lagrange_interval
+  );
+  const signedWeightedMidpointSum = Number(
+    midpointFourthDifferenceIdentityTarget.signed_weighted_midpoint_sum
+  );
+  const midpointCenteredDerivativeResidualInterval =
+    derivativeInterval !== null && Number.isFinite(signedWeightedMidpointSum)
+      ? root.addIntervals(derivativeInterval, [
+          -signedWeightedMidpointSum,
+          -signedWeightedMidpointSum,
+        ])
+      : null;
+  const directedResidualAbsUpper =
+    midpointCenteredDerivativeResidualInterval === null
+      ? null
+      : intervalAbsUpper(midpointCenteredDerivativeResidualInterval);
+  const directedResidualAbsUpperToRequiredRatio =
+    finiteNonnegative(directedResidualAbsUpper)
+      ? directedResidualAbsUpper / requiredFourthDerivativeUpper
+      : null;
+  const intervalResidualBudgetAfterMidpointAbsMass =
+    midpointAbsoluteMassFitsRequired
+      ? 1 - absoluteMidpointMassToRequiredRatio
+      : null;
+  const requiredIntervalExcessCompressionAfterMidpointAbsMass =
+    finitePositive(intervalResidualBudgetAfterMidpointAbsMass)
+      ? Math.max(
+          0,
+          intervalFloorToRequiredRatio - absoluteMidpointMassToRequiredRatio
+        ) / intervalResidualBudgetAfterMidpointAbsMass
+      : null;
+  const requiredDirectedResidualCompressionAfterMidpointAbsMass =
+    finitePositive(intervalResidualBudgetAfterMidpointAbsMass) &&
+    finiteNonnegative(directedResidualAbsUpperToRequiredRatio)
+      ? directedResidualAbsUpperToRequiredRatio /
+        intervalResidualBudgetAfterMidpointAbsMass
+      : null;
+  const uniformNodeResidualBudgetToRequiredRatio =
+    finitePositive(intervalResidualBudgetAfterMidpointAbsMass)
+      ? intervalResidualBudgetAfterMidpointAbsMass / weightedIntervalRows.length
+      : null;
+  const nodeDependencyLossBudgetRows = weightedIntervalRows.map((row, index) => {
+    const midpointRow = midpointRows[index] ?? {};
+    const weightedDerivativeInterval = finiteOrderedIntervalOrNull(
+      row?.weighted_derivative_interval
+    );
+    const weightedIntervalWidth =
+      weightedDerivativeInterval === null
+        ? null
+        : intervalWidth(weightedDerivativeInterval);
+    const weightedIntervalWidthToRequiredRatio =
+      finiteNonnegative(weightedIntervalWidth)
+        ? weightedIntervalWidth / requiredFourthDerivativeUpper
+        : null;
+    const weightedMidpointAbsToRequiredRatio =
+      finiteNonnegative(midpointRow.absolute_weighted_midpoint_contribution)
+        ? Number(midpointRow.absolute_weighted_midpoint_contribution) /
+          requiredFourthDerivativeUpper
+        : null;
+    const midpointContribution = Number(
+      midpointRow?.weighted_midpoint_contribution
+    );
+    const nodeDirectedResidualInterval =
+      weightedDerivativeInterval !== null && Number.isFinite(midpointContribution)
+        ? root.addIntervals(weightedDerivativeInterval, [
+            -midpointContribution,
+            -midpointContribution,
+          ])
+        : null;
+    const nodeDirectedResidualAbsUpper =
+      nodeDirectedResidualInterval === null
+        ? null
+        : intervalAbsUpper(nodeDirectedResidualInterval);
+    const nodeDirectedResidualAbsUpperToRequiredRatio =
+      finiteNonnegative(nodeDirectedResidualAbsUpper)
+        ? nodeDirectedResidualAbsUpper / requiredFourthDerivativeUpper
+        : null;
+    const widthToMidpointAbsRatio =
+      finitePositive(weightedMidpointAbsToRequiredRatio) &&
+      finiteNonnegative(weightedIntervalWidthToRequiredRatio)
+        ? weightedIntervalWidthToRequiredRatio /
+          weightedMidpointAbsToRequiredRatio
+        : null;
+    const requiredWidthCompressionToUniformResidualBudget =
+      finitePositive(uniformNodeResidualBudgetToRequiredRatio) &&
+      finiteNonnegative(weightedIntervalWidthToRequiredRatio)
+        ? weightedIntervalWidthToRequiredRatio /
+          uniformNodeResidualBudgetToRequiredRatio
+        : null;
+    const nodeRequiredDirectedResidualCompressionToUniformBudget =
+      finitePositive(uniformNodeResidualBudgetToRequiredRatio) &&
+      finiteNonnegative(nodeDirectedResidualAbsUpperToRequiredRatio)
+        ? nodeDirectedResidualAbsUpperToRequiredRatio /
+          uniformNodeResidualBudgetToRequiredRatio
+        : null;
+    return {
+      node_index: Number.isInteger(row?.node_index) ? row.node_index : index,
+      xi_midpoint: Number(row?.xi_midpoint),
+      lagrange_fourth_derivative_weight: Number(
+        row?.lagrange_fourth_derivative_weight
+      ),
+      coefficient_interval: finiteOrderedIntervalOrNull(row?.value_interval),
+      coefficient_interval_width: Number(row?.value_interval_width),
+      coefficient_midpoint: Number(midpointRow?.coefficient_midpoint),
+      weighted_derivative_interval: weightedDerivativeInterval,
+      weighted_interval_width: weightedIntervalWidth,
+      weighted_interval_width_to_required_ratio:
+        weightedIntervalWidthToRequiredRatio,
+      node_directed_residual_interval: nodeDirectedResidualInterval,
+      node_directed_residual_abs_upper: nodeDirectedResidualAbsUpper,
+      node_directed_residual_abs_upper_to_required_ratio:
+        nodeDirectedResidualAbsUpperToRequiredRatio,
+      weighted_midpoint_abs_to_required_ratio:
+        weightedMidpointAbsToRequiredRatio,
+      weighted_width_to_midpoint_abs_ratio: widthToMidpointAbsRatio,
+      required_width_compression_to_uniform_residual_budget:
+        requiredWidthCompressionToUniformResidualBudget,
+      node_required_directed_residual_compression_to_uniform_budget:
+        nodeRequiredDirectedResidualCompressionToUniformBudget,
+      midpoint_contribution_sign: midpointRow?.contribution_sign ?? null,
+    };
+  });
+  if (
+    !nodeDependencyLossBudgetRows.every(
+      (row) =>
+        Number.isFinite(row.xi_midpoint) &&
+        Number.isFinite(row.lagrange_fourth_derivative_weight) &&
+        row.coefficient_interval !== null &&
+        finiteNonnegative(row.weighted_interval_width_to_required_ratio) &&
+        finiteNonnegative(
+          row.node_directed_residual_abs_upper_to_required_ratio
+        ) &&
+        finiteNonnegative(row.weighted_midpoint_abs_to_required_ratio)
+    )
+  ) {
+    return null;
+  }
+  const maxNodeWeightedIntervalWidthToRequiredRatio = Math.max(
+    ...nodeDependencyLossBudgetRows.map(
+      (row) => row.weighted_interval_width_to_required_ratio
+    )
+  );
+  const maxRequiredNodeWidthCompressionToUniformResidualBudget = Math.max(
+    ...nodeDependencyLossBudgetRows
+      .map((row) => row.required_width_compression_to_uniform_residual_budget)
+      .filter((value) => Number.isFinite(value))
+  );
+  const maxNodeDirectedResidualAbsUpperToRequiredRatio = Math.max(
+    ...nodeDependencyLossBudgetRows.map(
+      (row) => row.node_directed_residual_abs_upper_to_required_ratio
+    )
+  );
+  const maxNodeRequiredDirectedResidualCompressionToUniformBudget = Math.max(
+    ...nodeDependencyLossBudgetRows
+      .map(
+        (row) =>
+          row.node_required_directed_residual_compression_to_uniform_budget
+      )
+      .filter((value) => Number.isFinite(value))
+  );
+  const intervalFloorIsDependencyLoss =
+    signedMidpointFitsRequired &&
+    midpointAbsoluteMassFitsRequired &&
+    intervalFloorToRequiredRatio > 1000 &&
+    finitePositive(intervalFloorToMidpointAbsoluteMassRatio) &&
+    intervalFloorToMidpointAbsoluteMassRatio > 1e6;
+  return {
+    target_kind:
+      "candidate-signed-nonterminal-h0-h34-dependency-loss-budget",
+    source_floor_target_kind: signedNonterminalFloorTarget.target_kind,
+    source_identity_target_kind:
+      midpointFourthDifferenceIdentityTarget.target_kind,
+    proof_status:
+      "candidate-budget-only-interval-dependency-loss-measured-not-directed-rounded-enclosure",
+    active_h_index_range: [0, 34],
+    interpolation_node_count: 5,
+    source_y_order: midpointFourthDifferenceIdentityTarget.source_y_order ?? null,
+    required_fourth_derivative_upper: requiredFourthDerivativeUpper,
+    interval_floor_to_required_ratio: intervalFloorToRequiredRatio,
+    signed_midpoint_to_required_ratio: signedMidpointToRequiredRatio,
+    absolute_midpoint_mass_to_required_ratio:
+      absoluteMidpointMassToRequiredRatio,
+    signed_midpoint_fits_required: signedMidpointFitsRequired,
+    midpoint_absolute_mass_fits_required: midpointAbsoluteMassFitsRequired,
+    signed_midpoint_headroom_factor: signedMidpointHeadroomFactor,
+    midpoint_absolute_mass_headroom_factor:
+      midpointAbsoluteMassHeadroomFactor,
+    interval_floor_compression_required_to_fit:
+      intervalFloorCompressionRequiredToFit,
+    interval_floor_to_midpoint_absolute_mass_ratio:
+      intervalFloorToMidpointAbsoluteMassRatio,
+    interval_floor_to_signed_midpoint_ratio:
+      intervalFloorToSignedMidpointRatio,
+    midpoint_centered_directed_residual_interval:
+      midpointCenteredDerivativeResidualInterval,
+    directed_residual_abs_upper: directedResidualAbsUpper,
+    directed_residual_abs_upper_to_required_ratio:
+      directedResidualAbsUpperToRequiredRatio,
+    interval_residual_budget_after_midpoint_abs_mass:
+      intervalResidualBudgetAfterMidpointAbsMass,
+    required_interval_excess_compression_after_midpoint_abs_mass:
+      requiredIntervalExcessCompressionAfterMidpointAbsMass,
+    required_directed_residual_compression_after_midpoint_abs_mass:
+      requiredDirectedResidualCompressionAfterMidpointAbsMass,
+    uniform_node_residual_budget_to_required_ratio:
+      uniformNodeResidualBudgetToRequiredRatio,
+    node_dependency_loss_budget_rows: nodeDependencyLossBudgetRows,
+    max_node_weighted_interval_width_to_required_ratio:
+      maxNodeWeightedIntervalWidthToRequiredRatio,
+    max_node_directed_residual_abs_upper_to_required_ratio:
+      maxNodeDirectedResidualAbsUpperToRequiredRatio,
+    max_required_node_width_compression_to_uniform_residual_budget:
+      maxRequiredNodeWidthCompressionToUniformResidualBudget,
+    max_node_required_directed_residual_compression_to_uniform_budget:
+      maxNodeRequiredDirectedResidualCompressionToUniformBudget,
+    interval_floor_is_dependency_loss: intervalFloorIsDependencyLoss,
+    budget_classification: intervalFloorIsDependencyLoss
+      ? "h0-h34-midpoint-mass-fits-interval-floor-is-dependency-loss"
+      : midpointAbsoluteMassFitsRequired
+        ? "h0-h34-midpoint-mass-fits-dependency-loss-budget-open"
+        : "h0-h34-midpoint-mass-still-blocks-required",
+    next_certificate_object:
+      "directed-rounded same-domain h0-h34 provider that preserves the five-node midpoint dependency so the interval residual around the midpoint stays below the residual budget",
+    claim_boundary: {
+      certifies_h0_h34_midpoint_identity_for_continuous_domain: false,
+      certifies_signed_nonterminal_cancellation: false,
+      certifies_nonterminal_h0_h34_covariance_enclosure: false,
+      certifies_terminal_h35_h37_covariance_enclosure: false,
+      certifies_all_hrow_covariance_enclosure: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function buildSignedNonterminalH0H34MidpointDependencyPreservingProviderSpecificationCandidate({
+  dependencyLossBudget,
+}) {
+  if (
+    dependencyLossBudget === null ||
+    dependencyLossBudget === undefined ||
+    dependencyLossBudget.target_kind !==
+      "candidate-signed-nonterminal-h0-h34-dependency-loss-budget"
+  ) {
+    return null;
+  }
+  const requiredFourthDerivativeUpper = Number(
+    dependencyLossBudget.required_fourth_derivative_upper
+  );
+  const residualBudgetToRequiredRatio = Number(
+    dependencyLossBudget.interval_residual_budget_after_midpoint_abs_mass
+  );
+  const absoluteMidpointMassToRequiredRatio = Number(
+    dependencyLossBudget.absolute_midpoint_mass_to_required_ratio
+  );
+  const directedResidualToRequiredRatio = Number(
+    dependencyLossBudget.directed_residual_abs_upper_to_required_ratio
+  );
+  const nodeRows = dependencyLossBudget.node_dependency_loss_budget_rows ?? [];
+  if (
+    !finitePositive(requiredFourthDerivativeUpper) ||
+    !finitePositive(residualBudgetToRequiredRatio) ||
+    !finitePositive(absoluteMidpointMassToRequiredRatio) ||
+    !finitePositive(directedResidualToRequiredRatio) ||
+    nodeRows.length !== 5
+  ) {
+    return null;
+  }
+  const residualDerivativeBudgetAbs =
+    residualBudgetToRequiredRatio * requiredFourthDerivativeUpper;
+  const absoluteMidpointMassAbs =
+    absoluteMidpointMassToRequiredRatio * requiredFourthDerivativeUpper;
+  const absoluteWeightSum = nodeRows.reduce(
+    (total, row) =>
+      total + Math.abs(Number(row?.lagrange_fourth_derivative_weight)),
+    0
+  );
+  if (!finitePositive(residualDerivativeBudgetAbs) || !finitePositive(absoluteWeightSum)) {
+    return null;
+  }
+  const uniformCoefficientResidualRadiusBound =
+    residualDerivativeBudgetAbs / absoluteWeightSum;
+  const balancedDerivativeResidualAbsBudget =
+    residualDerivativeBudgetAbs / nodeRows.length;
+  const providerSpecificationRows = nodeRows.map((row, index) => {
+    const coefficientInterval = finiteOrderedIntervalOrNull(
+      row?.coefficient_interval
+    );
+    const coefficientMidpoint = Number(row?.coefficient_midpoint);
+    const weight = Number(row?.lagrange_fourth_derivative_weight);
+    if (
+      coefficientInterval === null ||
+      !Number.isFinite(coefficientMidpoint) ||
+      !Number.isFinite(weight)
+    ) {
+      return null;
+    }
+    const absoluteWeight = Math.abs(weight);
+    const coefficientResidualInterval = root.addIntervals(coefficientInterval, [
+      -coefficientMidpoint,
+      -coefficientMidpoint,
+    ]);
+    const currentCoefficientResidualAbsUpper = intervalAbsUpper(
+      coefficientResidualInterval
+    );
+    const balancedCoefficientResidualRadiusBound =
+      finitePositive(absoluteWeight)
+        ? balancedDerivativeResidualAbsBudget / absoluteWeight
+        : null;
+    const currentWeightedResidualAbsUpper = Number(
+      row?.node_directed_residual_abs_upper
+    );
+    const requiredCoefficientRadiusCompressionToBalancedBound =
+      finitePositive(balancedCoefficientResidualRadiusBound) &&
+      finiteNonnegative(currentCoefficientResidualAbsUpper)
+        ? currentCoefficientResidualAbsUpper /
+          balancedCoefficientResidualRadiusBound
+        : null;
+    const requiredCoefficientRadiusCompressionToUniformBound =
+      finitePositive(uniformCoefficientResidualRadiusBound) &&
+      finiteNonnegative(currentCoefficientResidualAbsUpper)
+        ? currentCoefficientResidualAbsUpper /
+          uniformCoefficientResidualRadiusBound
+        : null;
+    const requiredWeightedResidualCompressionToBalancedBudget =
+      finitePositive(balancedDerivativeResidualAbsBudget) &&
+      finiteNonnegative(currentWeightedResidualAbsUpper)
+        ? currentWeightedResidualAbsUpper / balancedDerivativeResidualAbsBudget
+        : null;
+    const balancedNodeRadiusFitsCurrent =
+      finiteNonnegative(currentCoefficientResidualAbsUpper) &&
+      finitePositive(balancedCoefficientResidualRadiusBound) &&
+      currentCoefficientResidualAbsUpper <=
+        balancedCoefficientResidualRadiusBound;
+    return {
+      node_index: Number.isInteger(row?.node_index) ? row.node_index : index,
+      xi_midpoint: Number(row?.xi_midpoint),
+      coefficient_midpoint: coefficientMidpoint,
+      coefficient_interval: coefficientInterval,
+      coefficient_residual_interval_after_midpoint:
+        coefficientResidualInterval,
+      current_coefficient_residual_abs_upper:
+        currentCoefficientResidualAbsUpper,
+      lagrange_fourth_derivative_weight: weight,
+      absolute_lagrange_fourth_derivative_weight: absoluteWeight,
+      current_weighted_residual_abs_upper: currentWeightedResidualAbsUpper,
+      balanced_derivative_residual_abs_budget:
+        balancedDerivativeResidualAbsBudget,
+      balanced_coefficient_residual_radius_bound:
+        balancedCoefficientResidualRadiusBound,
+      uniform_coefficient_residual_radius_bound:
+        uniformCoefficientResidualRadiusBound,
+      required_coefficient_radius_compression_to_balanced_bound:
+        requiredCoefficientRadiusCompressionToBalancedBound,
+      required_coefficient_radius_compression_to_uniform_bound:
+        requiredCoefficientRadiusCompressionToUniformBound,
+      required_weighted_residual_compression_to_balanced_budget:
+        requiredWeightedResidualCompressionToBalancedBudget,
+      current_balanced_node_radius_fits_provider_spec:
+        balancedNodeRadiusFitsCurrent,
+      provider_row_status: balancedNodeRadiusFitsCurrent
+        ? "current-node-radius-fits-balanced-budget"
+        : "needs-directed-rounded-node-radius-contraction",
+    };
+  });
+  if (
+    !providerSpecificationRows.every(
+      (row) =>
+        row !== null &&
+        Number.isFinite(row.xi_midpoint) &&
+        finitePositive(row.absolute_lagrange_fourth_derivative_weight) &&
+        finiteNonnegative(row.current_coefficient_residual_abs_upper) &&
+        finitePositive(row.balanced_coefficient_residual_radius_bound) &&
+        finiteNonnegative(
+          row.required_coefficient_radius_compression_to_balanced_bound
+        ) &&
+        finiteNonnegative(
+          row.required_weighted_residual_compression_to_balanced_budget
+        )
+    )
+  ) {
+    return null;
+  }
+  const currentShapeWeightedResidualAbsUpper = providerSpecificationRows.reduce(
+    (total, row) => total + row.current_weighted_residual_abs_upper,
+    0
+  );
+  const currentShapeResidualToBudgetRatio =
+    currentShapeWeightedResidualAbsUpper / residualDerivativeBudgetAbs;
+  const requiredUniformCurrentShapeCompression =
+    currentShapeResidualToBudgetRatio > 1
+      ? currentShapeResidualToBudgetRatio
+      : 1;
+  const maxRequiredNodeBalancedRadiusCompression = Math.max(
+    ...providerSpecificationRows.map(
+      (row) => row.required_coefficient_radius_compression_to_balanced_bound
+    )
+  );
+  const maxRequiredNodeUniformRadiusCompression = Math.max(
+    ...providerSpecificationRows.map(
+      (row) => row.required_coefficient_radius_compression_to_uniform_bound
+    )
+  );
+  const maxRequiredNodeWeightedResidualCompression = Math.max(
+    ...providerSpecificationRows.map(
+      (row) => row.required_weighted_residual_compression_to_balanced_budget
+    )
+  );
+  const dominantBalancedRadiusCompressionRow =
+    providerSpecificationRows.reduce((best, row) =>
+      Number(row.required_coefficient_radius_compression_to_balanced_bound) >
+      Number(best.required_coefficient_radius_compression_to_balanced_bound)
+        ? row
+        : best
+    );
+  const currentProviderSpecFits =
+    providerSpecificationRows.every(
+      (row) => row.current_balanced_node_radius_fits_provider_spec === true
+    ) && currentShapeWeightedResidualAbsUpper <= residualDerivativeBudgetAbs;
+  return {
+    target_kind:
+      "candidate-signed-nonterminal-h0-h34-midpoint-dependency-preserving-provider-specification-target",
+    source_dependency_loss_budget_kind: dependencyLossBudget.target_kind,
+    proof_status:
+      "candidate-specification-only-residual-radius-targets-not-directed-rounded-enclosure",
+    active_h_index_range: [0, 34],
+    interpolation_node_count: 5,
+    source_y_order: dependencyLossBudget.source_y_order ?? null,
+    residual_allocation_rule:
+      "balanced-weighted-derivative-residual-budget-per-lagrange-node",
+    required_fourth_derivative_upper: requiredFourthDerivativeUpper,
+    absolute_midpoint_mass_abs: absoluteMidpointMassAbs,
+    absolute_midpoint_mass_to_required_ratio:
+      absoluteMidpointMassToRequiredRatio,
+    residual_derivative_budget_abs: residualDerivativeBudgetAbs,
+    residual_derivative_budget_to_required_ratio:
+      residualBudgetToRequiredRatio,
+    directed_residual_abs_upper_to_required_ratio:
+      directedResidualToRequiredRatio,
+    absolute_lagrange_fourth_derivative_weight_sum: absoluteWeightSum,
+    uniform_coefficient_residual_radius_bound:
+      uniformCoefficientResidualRadiusBound,
+    balanced_derivative_residual_abs_budget:
+      balancedDerivativeResidualAbsBudget,
+    current_shape_weighted_residual_abs_upper:
+      currentShapeWeightedResidualAbsUpper,
+    current_shape_residual_to_budget_ratio:
+      currentShapeResidualToBudgetRatio,
+    required_uniform_current_shape_compression:
+      requiredUniformCurrentShapeCompression,
+    max_required_node_balanced_radius_compression:
+      maxRequiredNodeBalancedRadiusCompression,
+    max_required_node_uniform_radius_compression:
+      maxRequiredNodeUniformRadiusCompression,
+    max_required_node_weighted_residual_compression:
+      maxRequiredNodeWeightedResidualCompression,
+    dominant_balanced_radius_compression_node: {
+      node_index: dominantBalancedRadiusCompressionRow.node_index,
+      xi_midpoint: dominantBalancedRadiusCompressionRow.xi_midpoint,
+      current_coefficient_residual_abs_upper:
+        dominantBalancedRadiusCompressionRow
+          .current_coefficient_residual_abs_upper,
+      balanced_coefficient_residual_radius_bound:
+        dominantBalancedRadiusCompressionRow
+          .balanced_coefficient_residual_radius_bound,
+      required_coefficient_radius_compression_to_balanced_bound:
+        dominantBalancedRadiusCompressionRow
+          .required_coefficient_radius_compression_to_balanced_bound,
+      required_weighted_residual_compression_to_balanced_budget:
+        dominantBalancedRadiusCompressionRow
+          .required_weighted_residual_compression_to_balanced_budget,
+    },
+    current_candidate_satisfies_provider_specification:
+      currentProviderSpecFits,
+    provider_specification_rows: providerSpecificationRows,
+    provider_specification_classification: currentProviderSpecFits
+      ? "current-h0-h34-residual-radii-fit-provider-specification"
+      : "requires-directed-rounded-h0-h34-residual-radius-contraction",
+    next_certificate_object:
+      "directed-rounded same-domain h0-h34 residual provider that centers each node at the five-node midpoint stream and bounds coefficient residual radii below the provider specification before Lagrange weights are summed",
+    claim_boundary: {
+      certifies_h0_h34_midpoint_identity_for_continuous_domain: false,
+      certifies_signed_nonterminal_cancellation: false,
+      certifies_nonterminal_h0_h34_covariance_enclosure: false,
+      certifies_terminal_h35_h37_covariance_enclosure: false,
+      certifies_all_hrow_covariance_enclosure: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function buildSignedNonterminalH0H34CurrentShapeRadiusContractionProfileCandidate({
+  providerSpecification,
+}) {
+  if (
+    providerSpecification === null ||
+    providerSpecification === undefined ||
+    providerSpecification.target_kind !==
+      "candidate-signed-nonterminal-h0-h34-midpoint-dependency-preserving-provider-specification-target"
+  ) {
+    return null;
+  }
+  const residualDerivativeBudgetAbs = Number(
+    providerSpecification.residual_derivative_budget_abs
+  );
+  const currentShapeWeightedResidualAbsUpper = Number(
+    providerSpecification.current_shape_weighted_residual_abs_upper
+  );
+  const balancedMaxCompression = Number(
+    providerSpecification.max_required_node_balanced_radius_compression
+  );
+  const uniformCoefficientMaxCompression = Number(
+    providerSpecification.max_required_node_uniform_radius_compression
+  );
+  const providerRows = providerSpecification.provider_specification_rows ?? [];
+  if (
+    !finitePositive(residualDerivativeBudgetAbs) ||
+    !finitePositive(currentShapeWeightedResidualAbsUpper) ||
+    !finitePositive(balancedMaxCompression) ||
+    !finitePositive(uniformCoefficientMaxCompression) ||
+    providerRows.length !== 5
+  ) {
+    return null;
+  }
+  const currentShapeUniformCompressionFactor =
+    currentShapeWeightedResidualAbsUpper / residualDerivativeBudgetAbs;
+  const currentShapeProfileRows = providerRows.map((row, index) => {
+    const currentWeightedResidualAbsUpper = Number(
+      row?.current_weighted_residual_abs_upper
+    );
+    const absoluteWeight = Number(
+      row?.absolute_lagrange_fourth_derivative_weight
+    );
+    const currentCoefficientResidualAbsUpper = Number(
+      row?.current_coefficient_residual_abs_upper
+    );
+    const balancedCoefficientResidualRadiusBound = Number(
+      row?.balanced_coefficient_residual_radius_bound
+    );
+    const uniformCoefficientResidualRadiusBound = Number(
+      row?.uniform_coefficient_residual_radius_bound
+    );
+    if (
+      !finitePositive(currentWeightedResidualAbsUpper) ||
+      !finitePositive(absoluteWeight) ||
+      !finitePositive(currentCoefficientResidualAbsUpper) ||
+      !finitePositive(balancedCoefficientResidualRadiusBound) ||
+      !finitePositive(uniformCoefficientResidualRadiusBound)
+    ) {
+      return null;
+    }
+    const currentWeightedResidualShare =
+      currentWeightedResidualAbsUpper / currentShapeWeightedResidualAbsUpper;
+    const currentShapeAllocatedDerivativeResidualBudget =
+      residualDerivativeBudgetAbs * currentWeightedResidualShare;
+    const currentShapeCoefficientResidualRadiusBound =
+      currentShapeAllocatedDerivativeResidualBudget / absoluteWeight;
+    const requiredCompressionToCurrentShapeBound =
+      currentCoefficientResidualAbsUpper /
+      currentShapeCoefficientResidualRadiusBound;
+    const balancedRadiusOverlocalizationFactor =
+      currentShapeCoefficientResidualRadiusBound /
+      balancedCoefficientResidualRadiusBound;
+    const uniformCoefficientRadiusOverlocalizationFactor =
+      currentShapeCoefficientResidualRadiusBound /
+      uniformCoefficientResidualRadiusBound;
+    return {
+      node_index: Number.isInteger(row?.node_index) ? row.node_index : index,
+      xi_midpoint: Number(row?.xi_midpoint),
+      current_weighted_residual_abs_upper: currentWeightedResidualAbsUpper,
+      current_weighted_residual_share: currentWeightedResidualShare,
+      current_coefficient_residual_abs_upper:
+        currentCoefficientResidualAbsUpper,
+      current_shape_allocated_derivative_residual_budget:
+        currentShapeAllocatedDerivativeResidualBudget,
+      current_shape_coefficient_residual_radius_bound:
+        currentShapeCoefficientResidualRadiusBound,
+      required_compression_to_current_shape_bound:
+        requiredCompressionToCurrentShapeBound,
+      balanced_coefficient_residual_radius_bound:
+        balancedCoefficientResidualRadiusBound,
+      balanced_radius_overlocalization_factor:
+        balancedRadiusOverlocalizationFactor,
+      uniform_coefficient_residual_radius_bound:
+        uniformCoefficientResidualRadiusBound,
+      uniform_coefficient_radius_overlocalization_factor:
+        uniformCoefficientRadiusOverlocalizationFactor,
+      current_shape_row_status:
+        requiredCompressionToCurrentShapeBound > 1
+          ? "needs-current-shape-directed-rounded-radius-contraction"
+          : "current-shape-radius-fits-residual-budget",
+    };
+  });
+  if (
+    !currentShapeProfileRows.every(
+      (row) =>
+        row !== null &&
+        Number.isFinite(row.xi_midpoint) &&
+        finitePositive(row.current_weighted_residual_share) &&
+        finitePositive(row.current_shape_coefficient_residual_radius_bound) &&
+        finitePositive(row.required_compression_to_current_shape_bound) &&
+        finitePositive(row.balanced_radius_overlocalization_factor) &&
+        finitePositive(row.uniform_coefficient_radius_overlocalization_factor)
+    )
+  ) {
+    return null;
+  }
+  const dominantCurrentShapeResidualRow = currentShapeProfileRows.reduce(
+    (best, row) =>
+      Number(row.current_weighted_residual_share) >
+      Number(best.current_weighted_residual_share)
+        ? row
+        : best
+  );
+  const maxCurrentShapeRowCompression = Math.max(
+    ...currentShapeProfileRows.map(
+      (row) => row.required_compression_to_current_shape_bound
+    )
+  );
+  const maxBalancedRadiusOverlocalizationFactor = Math.max(
+    ...currentShapeProfileRows.map(
+      (row) => row.balanced_radius_overlocalization_factor
+    )
+  );
+  const maxUniformCoefficientRadiusOverlocalizationFactor = Math.max(
+    ...currentShapeProfileRows.map(
+      (row) => row.uniform_coefficient_radius_overlocalization_factor
+    )
+  );
+  const balancedAllocationPenaltyVsCurrentShape =
+    balancedMaxCompression / currentShapeUniformCompressionFactor;
+  const uniformCoefficientAllocationPenaltyVsCurrentShape =
+    uniformCoefficientMaxCompression / currentShapeUniformCompressionFactor;
+  const currentShapeRowsShareSum = currentShapeProfileRows.reduce(
+    (total, row) => total + row.current_weighted_residual_share,
+    0
+  );
+  const currentShapeAllocationIsSharper =
+    balancedAllocationPenaltyVsCurrentShape > 1.05 ||
+    uniformCoefficientAllocationPenaltyVsCurrentShape > 1.05;
+  return {
+    target_kind:
+      "candidate-signed-nonterminal-h0-h34-current-shape-radius-contraction-profile-target",
+    source_provider_specification_kind: providerSpecification.target_kind,
+    proof_status:
+      "candidate-profile-only-current-shape-radius-contraction-not-directed-rounded-enclosure",
+    allocation_comparison_kind:
+      "candidate-balanced-vs-current-shape-optimized-lagrange-node-residual-allocation",
+    allocation_comparison_proof_status:
+      "candidate-comparison-only-not-directed-rounded-enclosure",
+    active_h_index_range: [0, 34],
+    interpolation_node_count: 5,
+    source_y_order: providerSpecification.source_y_order ?? null,
+    residual_profile_rule:
+      "current-weighted-residual-shape-minimax-uniform-contraction",
+    optimized_current_shape_allocation_rule:
+      "minimax-current-shape-weighted-residual-allocation",
+    residual_derivative_budget_abs: residualDerivativeBudgetAbs,
+    current_shape_weighted_residual_abs_upper:
+      currentShapeWeightedResidualAbsUpper,
+    current_shape_uniform_contraction_factor:
+      currentShapeUniformCompressionFactor,
+    max_current_shape_row_compression: maxCurrentShapeRowCompression,
+    current_shape_rows_share_sum: currentShapeRowsShareSum,
+    balanced_allocation_max_compression: balancedMaxCompression,
+    uniform_coefficient_allocation_max_compression:
+      uniformCoefficientMaxCompression,
+    balanced_allocation_penalty_vs_current_shape:
+      balancedAllocationPenaltyVsCurrentShape,
+    uniform_coefficient_allocation_penalty_vs_current_shape:
+      uniformCoefficientAllocationPenaltyVsCurrentShape,
+    max_balanced_radius_overlocalization_factor:
+      maxBalancedRadiusOverlocalizationFactor,
+    max_uniform_coefficient_radius_overlocalization_factor:
+      maxUniformCoefficientRadiusOverlocalizationFactor,
+    dominant_current_shape_residual_node: {
+      node_index: dominantCurrentShapeResidualRow.node_index,
+      xi_midpoint: dominantCurrentShapeResidualRow.xi_midpoint,
+      current_weighted_residual_share:
+        dominantCurrentShapeResidualRow.current_weighted_residual_share,
+      required_compression_to_current_shape_bound:
+        dominantCurrentShapeResidualRow
+          .required_compression_to_current_shape_bound,
+      balanced_radius_overlocalization_factor:
+        dominantCurrentShapeResidualRow
+          .balanced_radius_overlocalization_factor,
+    },
+    current_shape_allocation_sharper_than_balanced_or_uniform:
+      currentShapeAllocationIsSharper,
+    profile_classification: currentShapeAllocationIsSharper
+      ? "current-shape-uniform-contraction-sharpens-balanced-node-radius-target"
+      : "balanced-node-radius-target-near-current-shape-profile",
+    current_shape_profile_rows: currentShapeProfileRows,
+    next_certificate_object:
+      "directed-rounded same-domain h0-h34 provider proving the five node residual radii contract by the current-shape uniform factor around the midpoint stream",
+    claim_boundary: {
+      certifies_h0_h34_midpoint_identity_for_continuous_domain: false,
+      certifies_signed_nonterminal_cancellation: false,
+      certifies_nonterminal_h0_h34_covariance_enclosure: false,
+      certifies_terminal_h35_h37_covariance_enclosure: false,
+      certifies_all_hrow_covariance_enclosure: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function buildSignedNonterminalH0H34CurrentShapeCertificateScreenCandidate({
+  currentShapeProfile,
+  safetyMarginFactors = [1, 1.01, 2, 10],
+}) {
+  if (
+    currentShapeProfile === null ||
+    currentShapeProfile === undefined ||
+    currentShapeProfile.target_kind !==
+      "candidate-signed-nonterminal-h0-h34-current-shape-radius-contraction-profile-target"
+  ) {
+    return null;
+  }
+  const residualDerivativeBudgetAbs = Number(
+    currentShapeProfile.residual_derivative_budget_abs
+  );
+  const currentShapeWeightedResidualAbsUpper = Number(
+    currentShapeProfile.current_shape_weighted_residual_abs_upper
+  );
+  const currentShapeUniformContractionFactor = Number(
+    currentShapeProfile.current_shape_uniform_contraction_factor
+  );
+  const profileRows = currentShapeProfile.current_shape_profile_rows ?? [];
+  const cleanSafetyMarginFactors = safetyMarginFactors
+    .map((value) => Number(value))
+    .filter((value) => finitePositive(value));
+  if (
+    !finitePositive(residualDerivativeBudgetAbs) ||
+    !finitePositive(currentShapeWeightedResidualAbsUpper) ||
+    !finitePositive(currentShapeUniformContractionFactor) ||
+    profileRows.length !== 5 ||
+    cleanSafetyMarginFactors.length === 0
+  ) {
+    return null;
+  }
+  const screenRows = cleanSafetyMarginFactors.map((safetyMarginFactor) => {
+    const requiredProviderContractionFactor =
+      currentShapeUniformContractionFactor * safetyMarginFactor;
+    const contractedWeightedResidualAbsUpperSum =
+      currentShapeWeightedResidualAbsUpper / requiredProviderContractionFactor;
+    const contractedResidualToBudgetRatio =
+      contractedWeightedResidualAbsUpperSum / residualDerivativeBudgetAbs;
+    const budgetHeadroomFactor =
+      contractedWeightedResidualAbsUpperSum > 0
+        ? residualDerivativeBudgetAbs / contractedWeightedResidualAbsUpperSum
+        : null;
+    const nodeScreenRows = profileRows.map((row) => {
+      const currentWeightedResidualAbsUpper = Number(
+        row?.current_weighted_residual_abs_upper
+      );
+      const currentWeightedResidualShare = Number(
+        row?.current_weighted_residual_share
+      );
+      const currentCoefficientResidualAbsUpper = Number(
+        row?.current_coefficient_residual_abs_upper
+      );
+      const allocatedDerivativeResidualBudget = Number(
+        row?.current_shape_allocated_derivative_residual_budget
+      );
+      const currentShapeCoefficientResidualRadiusBound = Number(
+        row?.current_shape_coefficient_residual_radius_bound
+      );
+      if (
+        !finitePositive(currentWeightedResidualAbsUpper) ||
+        !finitePositive(currentWeightedResidualShare) ||
+        !finitePositive(currentCoefficientResidualAbsUpper) ||
+        !finitePositive(allocatedDerivativeResidualBudget) ||
+        !finitePositive(currentShapeCoefficientResidualRadiusBound)
+      ) {
+        return null;
+      }
+      const contractedWeightedResidualAbsUpper =
+        currentWeightedResidualAbsUpper / requiredProviderContractionFactor;
+      const contractedCoefficientResidualAbsUpper =
+        currentCoefficientResidualAbsUpper / requiredProviderContractionFactor;
+      const contractedWeightedResidualShare =
+        contractedWeightedResidualAbsUpper /
+        contractedWeightedResidualAbsUpperSum;
+      const shareDriftAbs = Math.abs(
+        contractedWeightedResidualShare - currentWeightedResidualShare
+      );
+      const rowFitsAllocatedBudget =
+        contractedWeightedResidualAbsUpper <=
+          allocatedDerivativeResidualBudget * (1 + 1e-12) &&
+        contractedCoefficientResidualAbsUpper <=
+          currentShapeCoefficientResidualRadiusBound * (1 + 1e-12);
+      return {
+        node_index: Number.isInteger(row?.node_index) ? row.node_index : null,
+        xi_midpoint: Number(row?.xi_midpoint),
+        current_weighted_residual_share: currentWeightedResidualShare,
+        contracted_weighted_residual_share: contractedWeightedResidualShare,
+        share_drift_abs: shareDriftAbs,
+        current_weighted_residual_abs_upper: currentWeightedResidualAbsUpper,
+        contracted_weighted_residual_abs_upper:
+          contractedWeightedResidualAbsUpper,
+        current_coefficient_residual_abs_upper:
+          currentCoefficientResidualAbsUpper,
+        contracted_coefficient_residual_abs_upper:
+          contractedCoefficientResidualAbsUpper,
+        current_shape_allocated_derivative_residual_budget:
+          allocatedDerivativeResidualBudget,
+        current_shape_coefficient_residual_radius_bound:
+          currentShapeCoefficientResidualRadiusBound,
+        row_fits_current_shape_allocated_budget_after_contraction:
+          rowFitsAllocatedBudget,
+      };
+    });
+    const allNodeRowsValid =
+      nodeScreenRows.length === 5 && nodeScreenRows.every((row) => row !== null);
+    const maxNodeShareDriftAbs = allNodeRowsValid
+      ? Math.max(...nodeScreenRows.map((row) => row.share_drift_abs))
+      : null;
+    const nodeShareSum = allNodeRowsValid
+      ? nodeScreenRows.reduce(
+          (total, row) => total + row.contracted_weighted_residual_share,
+          0
+        )
+      : null;
+    const residualBudgetFits =
+      contractedResidualToBudgetRatio <= 1 + 1e-12 &&
+      allNodeRowsValid &&
+      nodeScreenRows.every(
+        (row) =>
+          row.row_fits_current_shape_allocated_budget_after_contraction === true
+      );
+    return {
+      safety_margin_factor: safetyMarginFactor,
+      required_provider_contraction_factor:
+        requiredProviderContractionFactor,
+      contracted_weighted_residual_abs_upper_sum:
+        contractedWeightedResidualAbsUpperSum,
+      contracted_residual_to_budget_ratio: contractedResidualToBudgetRatio,
+      residual_budget_headroom_factor: budgetHeadroomFactor,
+      h0_h34_residual_budget_fits_after_contraction: residualBudgetFits,
+      node_share_sum: nodeShareSum,
+      max_node_share_drift_abs: maxNodeShareDriftAbs,
+      node_screen_rows: nodeScreenRows,
+      certificate_screen_status: residualBudgetFits
+        ? safetyMarginFactor > 1
+          ? "strict-current-shape-contraction-fits-residual-budget"
+          : "boundary-current-shape-contraction-fits-residual-budget"
+        : "current-shape-contraction-screen-open",
+    };
+  });
+  if (
+    !screenRows.every(
+      (row) =>
+        finitePositive(row.required_provider_contraction_factor) &&
+        finitePositive(row.contracted_weighted_residual_abs_upper_sum) &&
+        finitePositive(row.contracted_residual_to_budget_ratio) &&
+        finitePositive(row.residual_budget_headroom_factor) &&
+        Array.isArray(row.node_screen_rows) &&
+        row.node_screen_rows.length === 5 &&
+        row.node_screen_rows.every(
+          (nodeRow) =>
+            nodeRow !== null &&
+            Number.isInteger(nodeRow.node_index) &&
+            Number.isFinite(nodeRow.xi_midpoint) &&
+            finitePositive(nodeRow.current_weighted_residual_share) &&
+            finitePositive(nodeRow.contracted_weighted_residual_share) &&
+            finiteNonnegative(nodeRow.share_drift_abs) &&
+            finitePositive(nodeRow.contracted_weighted_residual_abs_upper) &&
+            finitePositive(nodeRow.contracted_coefficient_residual_abs_upper)
+        )
+    )
+  ) {
+    return null;
+  }
+  const strictScreenRows = screenRows.filter(
+    (row) => Number(row.safety_margin_factor) > 1
+  );
+  const firstStrictFittingScreen =
+    strictScreenRows.find(
+      (row) => row.h0_h34_residual_budget_fits_after_contraction === true
+    ) ?? null;
+  const allScreenRowsPreserveCurrentShapeShares = screenRows.every(
+    (row) =>
+      finiteNonnegative(row.max_node_share_drift_abs) &&
+      row.max_node_share_drift_abs < 1e-12 &&
+      Math.abs(Number(row.node_share_sum) - 1) < 1e-12
+  );
+  const allStrictSafetyMarginsFitBudget =
+    strictScreenRows.length > 0 &&
+    strictScreenRows.every(
+      (row) =>
+        row.h0_h34_residual_budget_fits_after_contraction === true &&
+        Number(row.residual_budget_headroom_factor) > 1
+    );
+  const minStrictSafetyHeadroomFactor =
+    strictScreenRows.length > 0
+      ? Math.min(
+          ...strictScreenRows
+            .map((row) => Number(row.residual_budget_headroom_factor))
+            .filter((value) => finitePositive(value))
+        )
+      : null;
+  return {
+    target_kind:
+      "candidate-signed-nonterminal-h0-h34-current-shape-certificate-screen",
+    source_current_shape_profile_kind: currentShapeProfile.target_kind,
+    proof_status:
+      "candidate-screen-only-contracted-current-shape-provider-not-directed-rounded-enclosure",
+    active_h_index_range: [0, 34],
+    interpolation_node_count: 5,
+    residual_profile_rule:
+      "current-weighted-residual-shape-preserving-provider-contraction-screen",
+    safety_margin_factors: cleanSafetyMarginFactors,
+    minimum_current_shape_contraction_factor_for_budget:
+      currentShapeUniformContractionFactor,
+    first_strict_fitting_safety_margin_factor:
+      firstStrictFittingScreen?.safety_margin_factor ?? null,
+    first_strict_fitting_provider_contraction_factor:
+      firstStrictFittingScreen?.required_provider_contraction_factor ?? null,
+    min_strict_safety_headroom_factor: minStrictSafetyHeadroomFactor,
+    all_screen_rows_preserve_current_shape_shares:
+      allScreenRowsPreserveCurrentShapeShares,
+    all_strict_safety_margins_fit_residual_budget:
+      allStrictSafetyMarginsFitBudget,
+    current_shape_certificate_screen_rows: screenRows,
+    screen_classification:
+      allScreenRowsPreserveCurrentShapeShares && allStrictSafetyMarginsFitBudget
+        ? "current-shape-contraction-screen-produces-budget-fitting-candidate-provider"
+        : "current-shape-contraction-screen-open",
+    next_certificate_object:
+      "directed-rounded same-domain h0-h34 provider proving each midpoint-centered node residual contracts by at least the selected current-shape provider factor before the Lagrange weights are summed",
+    claim_boundary: {
+      certifies_h0_h34_midpoint_identity_for_continuous_domain: false,
+      certifies_signed_nonterminal_cancellation: false,
+      certifies_nonterminal_h0_h34_covariance_enclosure: false,
+      certifies_terminal_h35_h37_covariance_enclosure: false,
+      certifies_all_hrow_covariance_enclosure: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function buildSignedNonterminalH0H34IdentityRouterCandidate({
+  signedNonterminalFloorTarget,
+  twoBlockBudget,
+  currentTotalToRequiredRatio,
+}) {
+  if (
+    signedNonterminalFloorTarget === null ||
+    signedNonterminalFloorTarget === undefined ||
+    twoBlockBudget === null ||
+    twoBlockBudget === undefined ||
+    !finitePositive(currentTotalToRequiredRatio)
+  ) {
+    return null;
+  }
+  const signedNonterminalAbsToRequiredRatio = Number(
+    signedNonterminalFloorTarget.nonterminal_midpoint_abs_to_required_ratio
+  );
+  const intervalFloorToRequiredRatio = Number(
+    signedNonterminalFloorTarget.nonterminal_floor_to_required_ratio
+  );
+  const cellFloorToRequiredRatio =
+    finiteNonnegative(twoBlockBudget.cell_only_width_share)
+      ? Number(twoBlockBudget.cell_only_width_share) *
+        Number(currentTotalToRequiredRatio)
+      : null;
+  const terminalH35H37ToRequiredRatio =
+    finiteNonnegative(twoBlockBudget.terminal_h35_h37_width_share)
+      ? Number(twoBlockBudget.terminal_h35_h37_width_share) *
+        Number(currentTotalToRequiredRatio)
+      : null;
+  const routedAvailableRequiredRatio =
+    finiteNonnegative(signedNonterminalAbsToRequiredRatio) &&
+    finiteNonnegative(cellFloorToRequiredRatio)
+      ? 1 - signedNonterminalAbsToRequiredRatio - cellFloorToRequiredRatio
+      : null;
+  const requiredTerminalCompressionAfterSignedRoute =
+    finitePositive(routedAvailableRequiredRatio) &&
+    finitePositive(terminalH35H37ToRequiredRatio)
+      ? terminalH35H37ToRequiredRatio / routedAvailableRequiredRatio
+      : null;
+  const signedMidpointFits =
+    signedNonterminalFloorTarget
+      .nonterminal_signed_midpoint_fits_required === true;
+  const intervalFloorBlocks =
+    signedNonterminalFloorTarget
+      .nonterminal_interval_floor_blocks_terminal_only_route === true;
+  const routeCanEnterTwoBlockBudget =
+    signedMidpointFits &&
+    intervalFloorBlocks &&
+    finitePositive(requiredTerminalCompressionAfterSignedRoute);
+  return {
+    router_kind: "candidate-signed-nonterminal-h0-h34-identity-router",
+    source_target_kind: signedNonterminalFloorTarget.target_kind,
+    active_h_index_range: [0, 34],
+    uses_signed_midpoint_lagrange_estimate: true,
+    does_not_use_interval_abs_floor: true,
+    nonterminal_signed_midpoint_fits_required: signedMidpointFits,
+    nonterminal_interval_floor_blocks_terminal_only_route:
+      intervalFloorBlocks,
+    signed_nonterminal_route_can_enter_two_block_budget:
+      routeCanEnterTwoBlockBudget,
+    signed_nonterminal_abs_to_required_ratio:
+      signedNonterminalAbsToRequiredRatio,
+    interval_floor_to_required_ratio: intervalFloorToRequiredRatio,
+    cell_floor_to_required_ratio: cellFloorToRequiredRatio,
+    terminal_h35_h37_to_required_ratio: terminalH35H37ToRequiredRatio,
+    available_required_ratio_after_signed_nonterminal_and_cell:
+      routedAvailableRequiredRatio,
+    terminal_budget_after_signed_nonterminal_route_positive:
+      finitePositive(requiredTerminalCompressionAfterSignedRoute),
+    required_terminal_h35_h37_compression_after_signed_nonterminal_route:
+      requiredTerminalCompressionAfterSignedRoute,
+    target_two_block_budget_kind: twoBlockBudget.budget_kind ?? null,
+    router_interpretation:
+      routeCanEnterTwoBlockBudget
+        ? "signed-nonterminal-midpoint-route-unblocks-positive-terminal-budget"
+        : intervalFloorBlocks && !signedMidpointFits
+          ? "signed-nonterminal-midpoint-identity-still-required"
+          : "signed-nonterminal-identity-router-open",
+    claim_boundary: {
+      certifies_signed_nonterminal_identity: false,
+      certifies_nonterminal_h0_h34_covariance_enclosure: false,
+      certifies_terminal_h35_h37_covariance_enclosure: false,
+      certifies_all_hrow_covariance_enclosure: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
 function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
   xiZetaScanEntry,
   producerImageBudgetComparison,
@@ -12285,6 +13701,7 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
   );
   const rowLocalReplay =
     producerImageBudgetComparison.producer_row_local_collar_replay ?? null;
+  const twoBlockCompressionProbeFactors = [1, 10, 100, 1000, 10000, 100000];
   const terminalCovarianceRows = (rowLocalReplay?.row_replays ?? [])
     .map((row) => {
       const provider =
@@ -12338,6 +13755,62 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
         finitePositive(currentRatio) && Number.isFinite(cellShare)
           ? currentRatio * Math.max(0, cellShare)
           : null;
+      const twoBlockAvailableShare =
+        Number.isFinite(targetShare) && Number.isFinite(cellShare)
+          ? targetShare - Math.max(0, cellShare)
+          : null;
+      const minimumNonterminalCompressionForAnyTerminalBudget =
+        finitePositive(twoBlockAvailableShare) && finitePositive(nonterminalShare)
+          ? nonterminalShare / twoBlockAvailableShare
+          : null;
+      const minimumTerminalCompressionWithNonterminalEliminated =
+        finitePositive(twoBlockAvailableShare) && finitePositive(terminalShare)
+          ? terminalShare / twoBlockAvailableShare
+          : null;
+      const balancedUniformAllHRowCompression =
+        finitePositive(twoBlockAvailableShare) && finitePositive(allHRowShare)
+          ? allHRowShare / twoBlockAvailableShare
+          : null;
+      const twoBlockCompressionProbeRows =
+        twoBlockCompressionProbeFactors.map((nonterminalCompression) => {
+          const remainingNonterminalShare =
+            finitePositive(nonterminalShare) && finitePositive(nonterminalCompression)
+              ? nonterminalShare / nonterminalCompression
+              : null;
+          const terminalAvailableShare =
+            finitePositive(twoBlockAvailableShare) &&
+            Number.isFinite(remainingNonterminalShare)
+              ? twoBlockAvailableShare - remainingNonterminalShare
+              : null;
+          const requiredTerminalCompression =
+            finitePositive(terminalAvailableShare) &&
+            finitePositive(terminalShare)
+              ? terminalShare / terminalAvailableShare
+              : null;
+          return {
+            nonterminal_h0_h34_compression_factor: nonterminalCompression,
+            remaining_nonterminal_h0_h34_width_share:
+              remainingNonterminalShare,
+            terminal_h35_h37_available_width_share:
+              terminalAvailableShare,
+            terminal_h35_h37_compression_can_close:
+              finitePositive(requiredTerminalCompression),
+            required_terminal_h35_h37_compression_factor:
+              requiredTerminalCompression,
+          };
+        });
+      const firstFiniteTwoBlockProbe =
+        twoBlockCompressionProbeRows.find(
+          (probe) =>
+            probe.terminal_h35_h37_compression_can_close === true &&
+            finitePositive(
+              probe.required_terminal_h35_h37_compression_factor
+            )
+        ) ?? null;
+      const signedNonterminalFloorTarget =
+        buildSignedNonterminalH0H34FloorCancellationTargetCandidate({
+          provider,
+        });
       return {
         cell_id: row.row_replay_context?.cell_id ?? null,
         row_index: row.row_replay_context?.row_index ?? null,
@@ -12419,9 +13892,110 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
             retained_branch: false,
           },
         },
+        two_block_covariance_allocation_budget: {
+          budget_kind:
+            "candidate-terminal-nonterminal-two-block-covariance-allocation-budget",
+          compression_blocks: {
+            terminal_h35_h37: [35, 36, 37],
+            nonterminal_h0_h34: [0, 34],
+          },
+          target_width_share_for_closure: targetShare,
+          cell_only_width_share: Number.isFinite(cellShare) ? cellShare : null,
+          terminal_h35_h37_width_share:
+            Number.isFinite(terminalShare) ? terminalShare : null,
+          nonterminal_h0_h34_width_share:
+            Number.isFinite(nonterminalShare) ? nonterminalShare : null,
+          all_hrows_width_share:
+            Number.isFinite(allHRowShare) ? allHRowShare : null,
+          available_width_share_after_cell_floor: twoBlockAvailableShare,
+          minimum_nonterminal_h0_h34_compression_for_any_terminal_budget:
+            minimumNonterminalCompressionForAnyTerminalBudget,
+          minimum_terminal_h35_h37_compression_with_nonterminal_eliminated:
+            minimumTerminalCompressionWithNonterminalEliminated,
+          balanced_uniform_all_hrow_compression_factor:
+            balancedUniformAllHRowCompression,
+          nonterminal_probe_rows: twoBlockCompressionProbeRows,
+          first_positive_terminal_budget_probe:
+            firstFiniteTwoBlockProbe === null
+              ? null
+              : {
+                  nonterminal_h0_h34_compression_factor:
+                    firstFiniteTwoBlockProbe
+                      .nonterminal_h0_h34_compression_factor,
+                  required_terminal_h35_h37_compression_factor:
+                    firstFiniteTwoBlockProbe
+                      .required_terminal_h35_h37_compression_factor,
+                },
+          allocation_feasible_with_uniform_all_hrow_compression:
+            finitePositive(balancedUniformAllHRowCompression),
+          terminal_only_route_blocked_by_nonterminal_floor:
+            !finitePositive(terminalOnlyCompression) &&
+            finitePositive(minimumNonterminalCompressionForAnyTerminalBudget),
+          budget_interpretation:
+            !finitePositive(terminalOnlyCompression) &&
+            finitePositive(firstFiniteTwoBlockProbe?.required_terminal_h35_h37_compression_factor)
+              ? "two-block-covariance-feasible-only-after-nonterminal-floor-compression"
+              : finitePositive(balancedUniformAllHRowCompression)
+                ? "uniform-all-hrow-covariance-compression-has-positive-budget"
+                : "two-block-covariance-allocation-budget-open",
+          claim_boundary: {
+            certifies_terminal_h35_h37_covariance_enclosure: false,
+            certifies_nonterminal_h0_h34_covariance_enclosure: false,
+            certifies_all_hrow_covariance_enclosure: false,
+            certifies_n38_fourth_derivative_bound: false,
+            certifies_shifted_R43_outer_bound: false,
+            certifies_directed_rounded_shared_domain: false,
+            retained_branch: false,
+          },
+        },
+        signed_nonterminal_h0_h34_floor_cancellation_target:
+          signedNonterminalFloorTarget,
       };
     })
-    .filter((row) => row !== null);
+    .filter((row) => row !== null)
+    .map((row) => {
+      const midpointFourthDifferenceIdentityTarget =
+        buildSignedNonterminalH0H34MidpointFourthDifferenceIdentityCandidate({
+          signedNonterminalFloorTarget:
+            row.signed_nonterminal_h0_h34_floor_cancellation_target,
+        });
+      const dependencyLossBudget =
+        buildSignedNonterminalH0H34DependencyLossBudgetCandidate({
+          signedNonterminalFloorTarget:
+            row.signed_nonterminal_h0_h34_floor_cancellation_target,
+          midpointFourthDifferenceIdentityTarget,
+        });
+      const providerSpecification =
+        buildSignedNonterminalH0H34MidpointDependencyPreservingProviderSpecificationCandidate({
+          dependencyLossBudget,
+        });
+      const currentShapeProfile =
+        buildSignedNonterminalH0H34CurrentShapeRadiusContractionProfileCandidate({
+          providerSpecification,
+        });
+      return {
+        ...row,
+        signed_nonterminal_h0_h34_identity_router:
+          buildSignedNonterminalH0H34IdentityRouterCandidate({
+            signedNonterminalFloorTarget:
+              row.signed_nonterminal_h0_h34_floor_cancellation_target,
+            twoBlockBudget: row.two_block_covariance_allocation_budget,
+            currentTotalToRequiredRatio:
+              row.total_n38_intervalized_lagrange_to_required_upper_ratio,
+          }),
+        signed_nonterminal_h0_h34_midpoint_fourth_difference_identity_target:
+          midpointFourthDifferenceIdentityTarget,
+        signed_nonterminal_h0_h34_dependency_loss_budget: dependencyLossBudget,
+        signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification:
+          providerSpecification,
+        signed_nonterminal_h0_h34_current_shape_radius_contraction_profile:
+          currentShapeProfile,
+        signed_nonterminal_h0_h34_current_shape_certificate_screen:
+          buildSignedNonterminalH0H34CurrentShapeCertificateScreenCandidate({
+            currentShapeProfile,
+          }),
+      };
+    });
   const terminalCovarianceMaxNumber = (field) => {
     const values = terminalCovarianceRows
       .map((row) => Number(row[field]))
@@ -12444,6 +14018,45 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
   const terminalCovarianceBudgetRows = terminalCovarianceRows
     .map((row) => row.linear_width_share_budget)
     .filter((budget) => budget !== null && budget !== undefined);
+  const twoBlockAllocationBudgetRows = terminalCovarianceRows
+    .map((row) => row.two_block_covariance_allocation_budget)
+    .filter((budget) => budget !== null && budget !== undefined);
+  const signedNonterminalFloorTargetRows = terminalCovarianceRows
+    .map((row) => row.signed_nonterminal_h0_h34_floor_cancellation_target)
+    .filter((target) => target !== null && target !== undefined);
+  const signedNonterminalIdentityRouterRows = terminalCovarianceRows
+    .map((row) => row.signed_nonterminal_h0_h34_identity_router)
+    .filter((router) => router !== null && router !== undefined);
+  const signedNonterminalMidpointFourthDifferenceIdentityRows =
+    terminalCovarianceRows
+      .map(
+        (row) =>
+          row
+            .signed_nonterminal_h0_h34_midpoint_fourth_difference_identity_target
+      )
+      .filter((target) => target !== null && target !== undefined);
+  const signedNonterminalDependencyLossBudgetRows = terminalCovarianceRows
+    .map((row) => row.signed_nonterminal_h0_h34_dependency_loss_budget)
+    .filter((target) => target !== null && target !== undefined);
+  const signedNonterminalProviderSpecificationRows = terminalCovarianceRows
+    .map(
+      (row) =>
+        row
+          .signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification
+    )
+    .filter((target) => target !== null && target !== undefined);
+  const signedNonterminalCurrentShapeProfileRows = terminalCovarianceRows
+    .map(
+      (row) =>
+        row.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile
+    )
+    .filter((target) => target !== null && target !== undefined);
+  const signedNonterminalCurrentShapeCertificateScreenRows = terminalCovarianceRows
+    .map(
+      (row) =>
+        row.signed_nonterminal_h0_h34_current_shape_certificate_screen
+    )
+    .filter((target) => target !== null && target !== undefined);
   const terminalCovarianceBudgetMaxNumber = (field) => {
     const values = terminalCovarianceBudgetRows
       .map((row) => row[field])
@@ -12451,6 +14064,118 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
       .map((value) => Number(value))
       .filter((value) => Number.isFinite(value));
     return values.length > 0 ? Math.max(...values) : null;
+  };
+  const twoBlockAllocationBudgetMaxNumber = (field) => {
+    const values = twoBlockAllocationBudgetRows
+      .map((row) => row[field])
+      .filter((value) => value !== null && value !== undefined)
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+    return values.length > 0 ? Math.max(...values) : null;
+  };
+  const signedNonterminalFloorTargetMaxNumber = (field) => {
+    const values = signedNonterminalFloorTargetRows
+      .map((row) => row[field])
+      .filter((value) => value !== null && value !== undefined)
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+    return values.length > 0 ? Math.max(...values) : null;
+  };
+  const signedNonterminalIdentityRouterMaxNumber = (field) => {
+    const values = signedNonterminalIdentityRouterRows
+      .map((row) => row[field])
+      .filter((value) => value !== null && value !== undefined)
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+    return values.length > 0 ? Math.max(...values) : null;
+  };
+  const signedNonterminalMidpointFourthDifferenceMaxNumber = (field) => {
+    const values = signedNonterminalMidpointFourthDifferenceIdentityRows
+      .map((row) => row[field])
+      .filter((value) => value !== null && value !== undefined)
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+    return values.length > 0 ? Math.max(...values) : null;
+  };
+  const signedNonterminalMidpointFourthDifferenceMinNumber = (field) => {
+    const values = signedNonterminalMidpointFourthDifferenceIdentityRows
+      .map((row) => row[field])
+      .filter((value) => value !== null && value !== undefined)
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+    return values.length > 0 ? Math.min(...values) : null;
+  };
+  const signedNonterminalDependencyLossBudgetMaxNumber = (field) => {
+    const values = signedNonterminalDependencyLossBudgetRows
+      .map((row) => row[field])
+      .filter((value) => value !== null && value !== undefined)
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+    return values.length > 0 ? Math.max(...values) : null;
+  };
+  const signedNonterminalDependencyLossBudgetMinNumber = (field) => {
+    const values = signedNonterminalDependencyLossBudgetRows
+      .map((row) => row[field])
+      .filter((value) => value !== null && value !== undefined)
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+    return values.length > 0 ? Math.min(...values) : null;
+  };
+  const signedNonterminalProviderSpecificationMaxNumber = (field) => {
+    const values = signedNonterminalProviderSpecificationRows
+      .map((row) => row[field])
+      .filter((value) => value !== null && value !== undefined)
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+    return values.length > 0 ? Math.max(...values) : null;
+  };
+  const signedNonterminalProviderSpecificationMinNumber = (field) => {
+    const values = signedNonterminalProviderSpecificationRows
+      .map((row) => row[field])
+      .filter((value) => value !== null && value !== undefined)
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+    return values.length > 0 ? Math.min(...values) : null;
+  };
+  const fieldPathValue = (row, field) =>
+    String(field)
+      .split(".")
+      .reduce(
+        (current, key) =>
+          current !== null && current !== undefined ? current[key] : undefined,
+        row
+      );
+  const signedNonterminalCurrentShapeProfileMaxNumber = (field) => {
+    const values = signedNonterminalCurrentShapeProfileRows
+      .map((row) => fieldPathValue(row, field))
+      .filter((value) => value !== null && value !== undefined)
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+    return values.length > 0 ? Math.max(...values) : null;
+  };
+  const signedNonterminalCurrentShapeProfileMinNumber = (field) => {
+    const values = signedNonterminalCurrentShapeProfileRows
+      .map((row) => fieldPathValue(row, field))
+      .filter((value) => value !== null && value !== undefined)
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+    return values.length > 0 ? Math.min(...values) : null;
+  };
+  const signedNonterminalCurrentShapeCertificateScreenMaxNumber = (field) => {
+    const values = signedNonterminalCurrentShapeCertificateScreenRows
+      .map((row) => fieldPathValue(row, field))
+      .filter((value) => value !== null && value !== undefined)
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+    return values.length > 0 ? Math.max(...values) : null;
+  };
+  const signedNonterminalCurrentShapeCertificateScreenMinNumber = (field) => {
+    const values = signedNonterminalCurrentShapeCertificateScreenRows
+      .map((row) => fieldPathValue(row, field))
+      .filter((value) => value !== null && value !== undefined)
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+    return values.length > 0 ? Math.min(...values) : null;
   };
   const allTerminalOnlyCompressionCanClose =
     terminalCovarianceBudgetRows.length > 0 &&
@@ -12461,6 +14186,183 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
     terminalCovarianceBudgetRows.length > 0 &&
     terminalCovarianceBudgetRows.every(
       (budget) => budget.all_hrows_compression_can_close === true
+    );
+  const allTwoBlockAllocationsUniformFeasible =
+    twoBlockAllocationBudgetRows.length > 0 &&
+    twoBlockAllocationBudgetRows.every(
+      (budget) =>
+        budget.allocation_feasible_with_uniform_all_hrow_compression === true
+    );
+  const allTwoBlockAllocationsTerminalOnlyBlocked =
+    twoBlockAllocationBudgetRows.length > 0 &&
+    twoBlockAllocationBudgetRows.every(
+      (budget) =>
+        budget.terminal_only_route_blocked_by_nonterminal_floor === true
+    );
+  const allTwoBlockAllocationsFirstProbeFeasible =
+    twoBlockAllocationBudgetRows.length > 0 &&
+    twoBlockAllocationBudgetRows.every(
+      (budget) =>
+        budget.first_positive_terminal_budget_probe !== null &&
+        finitePositive(
+          budget.first_positive_terminal_budget_probe
+            ?.required_terminal_h35_h37_compression_factor
+        )
+    );
+  const allSignedNonterminalFloorTargetsPresent =
+    signedNonterminalFloorTargetRows.length === terminalCovarianceRows.length &&
+    signedNonterminalFloorTargetRows.length > 0;
+  const allSignedNonterminalFloorsBlock =
+    signedNonterminalFloorTargetRows.length > 0 &&
+    signedNonterminalFloorTargetRows.every(
+      (target) =>
+        target.nonterminal_interval_floor_blocks_terminal_only_route === true
+    );
+  const allSignedNonterminalMidpointsInside =
+    signedNonterminalFloorTargetRows.length > 0 &&
+    signedNonterminalFloorTargetRows.every(
+      (target) => target.nonterminal_midpoint_inside_interval === true
+    );
+  const allSignedNonterminalMidpointsFit =
+    signedNonterminalFloorTargetRows.length > 0 &&
+    signedNonterminalFloorTargetRows.every(
+      (target) => target.nonterminal_signed_midpoint_fits_required === true
+    );
+  const allSignedNonterminalIdentityRoutersPresent =
+    signedNonterminalIdentityRouterRows.length ===
+      terminalCovarianceRows.length &&
+    signedNonterminalIdentityRouterRows.length > 0;
+  const allSignedNonterminalIdentityRoutersUseMidpoint =
+    signedNonterminalIdentityRouterRows.length > 0 &&
+    signedNonterminalIdentityRouterRows.every(
+      (router) =>
+        router.uses_signed_midpoint_lagrange_estimate === true &&
+        router.does_not_use_interval_abs_floor === true
+    );
+  const allSignedNonterminalIdentityRoutersEnterTwoBlockBudget =
+    signedNonterminalIdentityRouterRows.length > 0 &&
+    signedNonterminalIdentityRouterRows.every(
+      (router) =>
+        router.signed_nonterminal_route_can_enter_two_block_budget === true &&
+        router.terminal_budget_after_signed_nonterminal_route_positive === true
+    );
+  const allSignedNonterminalMidpointFourthDifferenceIdentityRowsPresent =
+    signedNonterminalMidpointFourthDifferenceIdentityRows.length ===
+      terminalCovarianceRows.length &&
+    signedNonterminalMidpointFourthDifferenceIdentityRows.length > 0;
+  const allSignedNonterminalMidpointFourthDifferenceRowsUseFiveNodeIdentity =
+    signedNonterminalMidpointFourthDifferenceIdentityRows.length > 0 &&
+    signedNonterminalMidpointFourthDifferenceIdentityRows.every(
+      (target) =>
+        target.identity_basis ===
+          "five-node-degree-four-lagrange-midpoint-fourth-difference" &&
+        target.interpolation_node_count === 5 &&
+        Array.isArray(target.weighted_midpoint_rows) &&
+        target.weighted_midpoint_rows.length === 5
+    );
+  const allSignedNonterminalMidpointFourthDifferenceRowsCancelBeforeFloor =
+    signedNonterminalMidpointFourthDifferenceIdentityRows.length > 0 &&
+    signedNonterminalMidpointFourthDifferenceIdentityRows.every(
+      (target) => target.cancels_before_interval_floor === true
+    );
+  const allSignedNonterminalDependencyLossBudgetsPresent =
+    signedNonterminalDependencyLossBudgetRows.length ===
+      terminalCovarianceRows.length &&
+    signedNonterminalDependencyLossBudgetRows.length > 0;
+  const allSignedNonterminalDependencyLossBudgetsUseIdentity =
+    signedNonterminalDependencyLossBudgetRows.length > 0 &&
+    signedNonterminalDependencyLossBudgetRows.every(
+      (target) =>
+        target.source_identity_target_kind ===
+          "candidate-signed-nonterminal-h0-h34-midpoint-fourth-difference-identity-target" &&
+        target.interpolation_node_count === 5 &&
+        Array.isArray(target.node_dependency_loss_budget_rows) &&
+        target.node_dependency_loss_budget_rows.length === 5
+    );
+  const allSignedNonterminalDependencyLossBudgetsClassifyFloor =
+    signedNonterminalDependencyLossBudgetRows.length > 0 &&
+    signedNonterminalDependencyLossBudgetRows.every(
+      (target) => target.interval_floor_is_dependency_loss === true
+    );
+  const allSignedNonterminalProviderSpecificationsPresent =
+    signedNonterminalProviderSpecificationRows.length ===
+      terminalCovarianceRows.length &&
+    signedNonterminalProviderSpecificationRows.length > 0;
+  const allSignedNonterminalProviderSpecificationsUseBudget =
+    signedNonterminalProviderSpecificationRows.length > 0 &&
+    signedNonterminalProviderSpecificationRows.every(
+      (target) =>
+        target.source_dependency_loss_budget_kind ===
+          "candidate-signed-nonterminal-h0-h34-dependency-loss-budget" &&
+        target.interpolation_node_count === 5 &&
+        Array.isArray(target.provider_specification_rows) &&
+        target.provider_specification_rows.length === 5
+    );
+  const allSignedNonterminalProviderSpecificationsRequireContraction =
+    signedNonterminalProviderSpecificationRows.length > 0 &&
+    signedNonterminalProviderSpecificationRows.every(
+      (target) =>
+        target.current_candidate_satisfies_provider_specification === false &&
+        target.provider_specification_classification ===
+          "requires-directed-rounded-h0-h34-residual-radius-contraction"
+    );
+  const allSignedNonterminalCurrentShapeProfilesPresent =
+    signedNonterminalCurrentShapeProfileRows.length ===
+      terminalCovarianceRows.length &&
+    signedNonterminalCurrentShapeProfileRows.length > 0;
+  const allSignedNonterminalCurrentShapeProfilesUseProviderSpec =
+    signedNonterminalCurrentShapeProfileRows.length > 0 &&
+    signedNonterminalCurrentShapeProfileRows.every(
+      (target) =>
+        target.source_provider_specification_kind ===
+          "candidate-signed-nonterminal-h0-h34-midpoint-dependency-preserving-provider-specification-target" &&
+        target.interpolation_node_count === 5 &&
+        Array.isArray(target.current_shape_profile_rows) &&
+        target.current_shape_profile_rows.length === 5
+    );
+  const allSignedNonterminalCurrentShapeProfilesSharper =
+    signedNonterminalCurrentShapeProfileRows.length > 0 &&
+    signedNonterminalCurrentShapeProfileRows.every(
+      (target) =>
+        target.current_shape_allocation_sharper_than_balanced_or_uniform ===
+          true &&
+        target.profile_classification ===
+          "current-shape-uniform-contraction-sharpens-balanced-node-radius-target"
+    );
+  const allSignedNonterminalCurrentShapeCertificateScreensPresent =
+    signedNonterminalCurrentShapeCertificateScreenRows.length ===
+      terminalCovarianceRows.length &&
+    signedNonterminalCurrentShapeCertificateScreenRows.length > 0;
+  const allSignedNonterminalCurrentShapeCertificateScreensUseProfile =
+    signedNonterminalCurrentShapeCertificateScreenRows.length > 0 &&
+    signedNonterminalCurrentShapeCertificateScreenRows.every(
+      (target) =>
+        target.source_current_shape_profile_kind ===
+          "candidate-signed-nonterminal-h0-h34-current-shape-radius-contraction-profile-target" &&
+        target.interpolation_node_count === 5 &&
+        Array.isArray(target.current_shape_certificate_screen_rows) &&
+        target.current_shape_certificate_screen_rows.length > 0
+    );
+  const allSignedNonterminalCurrentShapeCertificateScreensPreserveShares =
+    signedNonterminalCurrentShapeCertificateScreenRows.length > 0 &&
+    signedNonterminalCurrentShapeCertificateScreenRows.every(
+      (target) =>
+        target.all_screen_rows_preserve_current_shape_shares === true &&
+        target.current_shape_certificate_screen_rows.every(
+          (row) =>
+            Array.isArray(row.node_screen_rows) &&
+            row.node_screen_rows.length === 5 &&
+            finiteNonnegative(row.max_node_share_drift_abs) &&
+            Number(row.max_node_share_drift_abs) < 1e-12
+        )
+    );
+  const allSignedNonterminalCurrentShapeCertificateScreensStrictFit =
+    signedNonterminalCurrentShapeCertificateScreenRows.length > 0 &&
+    signedNonterminalCurrentShapeCertificateScreenRows.every(
+      (target) =>
+        target.all_strict_safety_margins_fit_residual_budget === true &&
+        target.screen_classification ===
+          "current-shape-contraction-screen-produces-budget-fitting-candidate-provider"
     );
   const terminalH35H37CovarianceTarget = {
     target_kind:
@@ -12529,6 +14431,260 @@ function buildH39RequestedY44ContinuousXiZetaProducerImageTargetCandidate({
       terminalCovarianceBudgetMaxNumber(
         "required_all_hrow_compression_if_cell_floor_fixed"
       ),
+    two_block_covariance_allocation_budget_kind:
+      "candidate-terminal-nonterminal-two-block-covariance-allocation-budget-summary",
+    all_selected_rows_two_block_uniform_all_hrow_compression_feasible:
+      allTwoBlockAllocationsUniformFeasible,
+    all_selected_rows_terminal_only_route_blocked_by_nonterminal_floor:
+      allTwoBlockAllocationsTerminalOnlyBlocked,
+    all_selected_rows_first_nonterminal_probe_gives_terminal_budget:
+      allTwoBlockAllocationsFirstProbeFeasible,
+    max_minimum_nonterminal_h0_h34_compression_for_any_terminal_budget:
+      twoBlockAllocationBudgetMaxNumber(
+        "minimum_nonterminal_h0_h34_compression_for_any_terminal_budget"
+      ),
+    max_minimum_terminal_h35_h37_compression_with_nonterminal_eliminated:
+      twoBlockAllocationBudgetMaxNumber(
+        "minimum_terminal_h35_h37_compression_with_nonterminal_eliminated"
+      ),
+    max_balanced_uniform_all_hrow_compression_factor:
+      twoBlockAllocationBudgetMaxNumber(
+        "balanced_uniform_all_hrow_compression_factor"
+      ),
+    two_block_covariance_allocation_interpretation:
+      allTwoBlockAllocationsTerminalOnlyBlocked &&
+      allTwoBlockAllocationsUniformFeasible &&
+      allTwoBlockAllocationsFirstProbeFeasible
+        ? "terminal-only-route-rejected-two-block-all-hrow-covariance-budget-positive"
+        : allTwoBlockAllocationsUniformFeasible
+          ? "uniform-all-hrow-covariance-budget-positive"
+          : "two-block-covariance-allocation-budget-open",
+    signed_nonterminal_h0_h34_floor_cancellation_summary_kind:
+      "candidate-signed-nonterminal-h0-h34-floor-cancellation-target-summary",
+    all_selected_rows_have_signed_nonterminal_h0_h34_floor_target:
+      allSignedNonterminalFloorTargetsPresent,
+    all_selected_rows_signed_nonterminal_h0_h34_floor_blocks:
+      allSignedNonterminalFloorsBlock,
+    all_selected_rows_signed_nonterminal_h0_h34_midpoint_inside_interval:
+      allSignedNonterminalMidpointsInside,
+    all_selected_rows_signed_nonterminal_h0_h34_midpoint_fits_required:
+      allSignedNonterminalMidpointsFit,
+    max_signed_nonterminal_h0_h34_floor_to_required_ratio:
+      signedNonterminalFloorTargetMaxNumber(
+        "nonterminal_floor_to_required_ratio"
+      ),
+    max_signed_nonterminal_h0_h34_midpoint_abs_to_required_ratio:
+      signedNonterminalFloorTargetMaxNumber(
+        "nonterminal_midpoint_abs_to_required_ratio"
+      ),
+    signed_nonterminal_h0_h34_floor_interpretation:
+      allSignedNonterminalFloorsBlock && allSignedNonterminalMidpointsFit
+        ? "signed-nonterminal-midpoints-cancel-but-interval-floor-blocks"
+        : allSignedNonterminalFloorsBlock
+          ? "signed-nonterminal-midpoints-also-block"
+          : "signed-nonterminal-floor-cancellation-target-open",
+    signed_nonterminal_h0_h34_identity_router_summary_kind:
+      "candidate-signed-nonterminal-h0-h34-identity-router-summary",
+    all_selected_rows_have_signed_nonterminal_h0_h34_identity_router:
+      allSignedNonterminalIdentityRoutersPresent,
+    all_selected_rows_signed_nonterminal_identity_uses_midpoint_not_floor:
+      allSignedNonterminalIdentityRoutersUseMidpoint,
+    all_selected_rows_signed_nonterminal_identity_routes_to_positive_terminal_budget:
+      allSignedNonterminalIdentityRoutersEnterTwoBlockBudget,
+    max_signed_nonterminal_identity_routed_abs_to_required_ratio:
+      signedNonterminalIdentityRouterMaxNumber(
+        "signed_nonterminal_abs_to_required_ratio"
+      ),
+    max_required_terminal_h35_h37_compression_after_signed_nonterminal_route:
+      signedNonterminalIdentityRouterMaxNumber(
+        "required_terminal_h35_h37_compression_after_signed_nonterminal_route"
+      ),
+    signed_nonterminal_h0_h34_identity_router_interpretation:
+      allSignedNonterminalIdentityRoutersEnterTwoBlockBudget
+        ? "signed-nonterminal-midpoint-identity-routes-to-terminal-budget"
+        : allSignedNonterminalIdentityRoutersPresent
+          ? "signed-nonterminal-identity-router-open"
+          : "signed-nonterminal-identity-router-missing",
+    signed_nonterminal_h0_h34_midpoint_fourth_difference_summary_kind:
+      "candidate-signed-nonterminal-h0-h34-midpoint-fourth-difference-identity-target-summary",
+    all_selected_rows_have_signed_nonterminal_h0_h34_midpoint_fourth_difference_identity:
+      allSignedNonterminalMidpointFourthDifferenceIdentityRowsPresent,
+    all_selected_rows_signed_nonterminal_h0_h34_midpoint_fourth_difference_uses_five_node_identity:
+      allSignedNonterminalMidpointFourthDifferenceRowsUseFiveNodeIdentity,
+    all_selected_rows_signed_nonterminal_h0_h34_midpoint_fourth_difference_cancels_before_interval_floor:
+      allSignedNonterminalMidpointFourthDifferenceRowsCancelBeforeFloor,
+    max_signed_nonterminal_h0_h34_midpoint_fourth_difference_cancellation_ratio:
+      signedNonterminalMidpointFourthDifferenceMaxNumber(
+        "midpoint_fourth_difference_cancellation_ratio"
+      ),
+    min_signed_nonterminal_h0_h34_midpoint_fourth_difference_cancellation_gain:
+      signedNonterminalMidpointFourthDifferenceMinNumber(
+        "midpoint_fourth_difference_cancellation_gain"
+      ),
+    max_signed_nonterminal_h0_h34_midpoint_fourth_difference_signed_to_required_ratio:
+      signedNonterminalMidpointFourthDifferenceMaxNumber(
+        "signed_sum_to_required_ratio"
+      ),
+    max_signed_nonterminal_h0_h34_midpoint_fourth_difference_absolute_mass_to_required_ratio:
+      signedNonterminalMidpointFourthDifferenceMaxNumber(
+        "absolute_midpoint_mass_to_required_ratio"
+      ),
+    signed_nonterminal_h0_h34_midpoint_fourth_difference_interpretation:
+      allSignedNonterminalMidpointFourthDifferenceRowsCancelBeforeFloor
+        ? "signed-nonterminal-five-node-fourth-difference-cancels-before-interval-floor"
+        : allSignedNonterminalMidpointFourthDifferenceIdentityRowsPresent
+          ? "signed-nonterminal-five-node-fourth-difference-identity-open"
+          : "signed-nonterminal-five-node-fourth-difference-identity-missing",
+    signed_nonterminal_h0_h34_dependency_loss_budget_summary_kind:
+      "candidate-signed-nonterminal-h0-h34-dependency-loss-budget-summary",
+    all_selected_rows_have_signed_nonterminal_h0_h34_dependency_loss_budget:
+      allSignedNonterminalDependencyLossBudgetsPresent,
+    all_selected_rows_signed_nonterminal_h0_h34_dependency_loss_budget_uses_fourth_difference_identity:
+      allSignedNonterminalDependencyLossBudgetsUseIdentity,
+    all_selected_rows_signed_nonterminal_h0_h34_interval_floor_is_dependency_loss:
+      allSignedNonterminalDependencyLossBudgetsClassifyFloor,
+    max_signed_nonterminal_h0_h34_dependency_loss_interval_floor_to_midpoint_mass_ratio:
+      signedNonterminalDependencyLossBudgetMaxNumber(
+        "interval_floor_to_midpoint_absolute_mass_ratio"
+      ),
+    max_signed_nonterminal_h0_h34_dependency_loss_interval_floor_to_signed_midpoint_ratio:
+      signedNonterminalDependencyLossBudgetMaxNumber(
+        "interval_floor_to_signed_midpoint_ratio"
+      ),
+    max_signed_nonterminal_h0_h34_dependency_loss_required_interval_compression:
+      signedNonterminalDependencyLossBudgetMaxNumber(
+        "required_interval_excess_compression_after_midpoint_abs_mass"
+      ),
+    max_signed_nonterminal_h0_h34_dependency_loss_directed_residual_to_required_ratio:
+      signedNonterminalDependencyLossBudgetMaxNumber(
+        "directed_residual_abs_upper_to_required_ratio"
+      ),
+    max_signed_nonterminal_h0_h34_dependency_loss_required_directed_residual_compression:
+      signedNonterminalDependencyLossBudgetMaxNumber(
+        "required_directed_residual_compression_after_midpoint_abs_mass"
+      ),
+    min_signed_nonterminal_h0_h34_dependency_loss_midpoint_mass_headroom:
+      signedNonterminalDependencyLossBudgetMinNumber(
+        "midpoint_absolute_mass_headroom_factor"
+      ),
+    max_signed_nonterminal_h0_h34_dependency_loss_node_width_compression:
+      signedNonterminalDependencyLossBudgetMaxNumber(
+        "max_required_node_width_compression_to_uniform_residual_budget"
+      ),
+    max_signed_nonterminal_h0_h34_dependency_loss_node_directed_residual_compression:
+      signedNonterminalDependencyLossBudgetMaxNumber(
+        "max_node_required_directed_residual_compression_to_uniform_budget"
+      ),
+    signed_nonterminal_h0_h34_dependency_loss_budget_interpretation:
+      allSignedNonterminalDependencyLossBudgetsClassifyFloor
+        ? "h0-h34-midpoint-mass-fits-interval-floor-is-dependency-loss"
+        : allSignedNonterminalDependencyLossBudgetsPresent
+          ? "h0-h34-dependency-loss-budget-open"
+          : "h0-h34-dependency-loss-budget-missing",
+    signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification_summary_kind:
+      "candidate-signed-nonterminal-h0-h34-midpoint-dependency-preserving-provider-specification-summary",
+    all_selected_rows_have_signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification:
+      allSignedNonterminalProviderSpecificationsPresent,
+    all_selected_rows_signed_nonterminal_h0_h34_provider_specs_use_dependency_loss_budget:
+      allSignedNonterminalProviderSpecificationsUseBudget,
+    all_selected_rows_signed_nonterminal_h0_h34_provider_specs_require_radius_contraction:
+      allSignedNonterminalProviderSpecificationsRequireContraction,
+    max_signed_nonterminal_h0_h34_provider_spec_current_shape_residual_to_budget_ratio:
+      signedNonterminalProviderSpecificationMaxNumber(
+        "current_shape_residual_to_budget_ratio"
+      ),
+    max_signed_nonterminal_h0_h34_provider_spec_required_current_shape_compression:
+      signedNonterminalProviderSpecificationMaxNumber(
+        "required_uniform_current_shape_compression"
+      ),
+    min_signed_nonterminal_h0_h34_provider_spec_residual_budget_to_required_ratio:
+      signedNonterminalProviderSpecificationMinNumber(
+        "residual_derivative_budget_to_required_ratio"
+      ),
+    min_signed_nonterminal_h0_h34_provider_spec_uniform_coefficient_residual_radius_bound:
+      signedNonterminalProviderSpecificationMinNumber(
+        "uniform_coefficient_residual_radius_bound"
+      ),
+    max_signed_nonterminal_h0_h34_provider_spec_node_balanced_radius_compression:
+      signedNonterminalProviderSpecificationMaxNumber(
+        "max_required_node_balanced_radius_compression"
+      ),
+    max_signed_nonterminal_h0_h34_provider_spec_node_weighted_residual_compression:
+      signedNonterminalProviderSpecificationMaxNumber(
+        "max_required_node_weighted_residual_compression"
+      ),
+    signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification_interpretation:
+      allSignedNonterminalProviderSpecificationsRequireContraction
+        ? "h0-h34-provider-specifies-residual-radius-targets-before-directed-rounding"
+        : allSignedNonterminalProviderSpecificationsPresent
+          ? "h0-h34-provider-specification-open"
+          : "h0-h34-provider-specification-missing",
+    signed_nonterminal_h0_h34_current_shape_radius_contraction_profile_summary_kind:
+      "candidate-signed-nonterminal-h0-h34-current-shape-radius-contraction-profile-summary",
+    all_selected_rows_have_signed_nonterminal_h0_h34_current_shape_radius_contraction_profile:
+      allSignedNonterminalCurrentShapeProfilesPresent,
+    all_selected_rows_signed_nonterminal_h0_h34_current_shape_profiles_use_provider_specification:
+      allSignedNonterminalCurrentShapeProfilesUseProviderSpec,
+    all_selected_rows_signed_nonterminal_h0_h34_current_shape_profiles_sharpen_balanced_allocation:
+      allSignedNonterminalCurrentShapeProfilesSharper,
+    max_signed_nonterminal_h0_h34_current_shape_uniform_contraction_factor:
+      signedNonterminalCurrentShapeProfileMaxNumber(
+        "current_shape_uniform_contraction_factor"
+      ),
+    max_signed_nonterminal_h0_h34_current_shape_balanced_penalty:
+      signedNonterminalCurrentShapeProfileMaxNumber(
+        "balanced_allocation_penalty_vs_current_shape"
+      ),
+    max_signed_nonterminal_h0_h34_current_shape_uniform_coefficient_penalty:
+      signedNonterminalCurrentShapeProfileMaxNumber(
+        "uniform_coefficient_allocation_penalty_vs_current_shape"
+      ),
+    max_signed_nonterminal_h0_h34_current_shape_dominant_residual_share:
+      signedNonterminalCurrentShapeProfileMaxNumber(
+        "dominant_current_shape_residual_node.current_weighted_residual_share"
+      ),
+    min_signed_nonterminal_h0_h34_current_shape_rows_share_sum:
+      signedNonterminalCurrentShapeProfileMinNumber(
+        "current_shape_rows_share_sum"
+      ),
+    max_signed_nonterminal_h0_h34_current_shape_rows_share_sum:
+      signedNonterminalCurrentShapeProfileMaxNumber(
+        "current_shape_rows_share_sum"
+      ),
+    signed_nonterminal_h0_h34_current_shape_radius_contraction_profile_interpretation:
+      allSignedNonterminalCurrentShapeProfilesSharper
+        ? "current-shape-residual-profile-sharpens-h0-h34-radius-contraction-target"
+        : allSignedNonterminalCurrentShapeProfilesPresent
+          ? "h0-h34-current-shape-radius-profile-open"
+          : "h0-h34-current-shape-radius-profile-missing",
+    signed_nonterminal_h0_h34_current_shape_certificate_screen_summary_kind:
+      "candidate-signed-nonterminal-h0-h34-current-shape-certificate-screen-summary",
+    all_selected_rows_have_signed_nonterminal_h0_h34_current_shape_certificate_screen:
+      allSignedNonterminalCurrentShapeCertificateScreensPresent,
+    all_selected_rows_signed_nonterminal_h0_h34_current_shape_certificate_screens_use_profile:
+      allSignedNonterminalCurrentShapeCertificateScreensUseProfile,
+    all_selected_rows_signed_nonterminal_h0_h34_current_shape_certificate_screens_preserve_shares:
+      allSignedNonterminalCurrentShapeCertificateScreensPreserveShares,
+    all_selected_rows_signed_nonterminal_h0_h34_current_shape_certificate_screens_fit_strict_safety_margin:
+      allSignedNonterminalCurrentShapeCertificateScreensStrictFit,
+    max_signed_nonterminal_h0_h34_current_shape_certificate_minimum_contraction_factor:
+      signedNonterminalCurrentShapeCertificateScreenMaxNumber(
+        "minimum_current_shape_contraction_factor_for_budget"
+      ),
+    min_signed_nonterminal_h0_h34_current_shape_certificate_strict_safety_headroom:
+      signedNonterminalCurrentShapeCertificateScreenMinNumber(
+        "min_strict_safety_headroom_factor"
+      ),
+    max_signed_nonterminal_h0_h34_current_shape_certificate_first_strict_provider_contraction:
+      signedNonterminalCurrentShapeCertificateScreenMaxNumber(
+        "first_strict_fitting_provider_contraction_factor"
+      ),
+    signed_nonterminal_h0_h34_current_shape_certificate_screen_interpretation:
+      allSignedNonterminalCurrentShapeCertificateScreensStrictFit
+        ? "current-shape-contraction-screen-produces-budget-fitting-h0-h34-provider-target"
+        : allSignedNonterminalCurrentShapeCertificateScreensPresent
+          ? "h0-h34-current-shape-certificate-screen-open"
+          : "h0-h34-current-shape-certificate-screen-missing",
     linear_width_share_budget_interpretation:
       !allTerminalOnlyCompressionCanClose && allHRowsCompressionCanClose
         ? "terminal-h35-h37-dominates-but-terminal-only-compression-is-insufficient-under-nonterminal-floor"
@@ -44166,6 +46322,368 @@ export function validateH39SuccessorSuffixTransitionCertificateRouteCandidate(
       Number(
         covarianceTarget.max_required_all_hrow_compression_if_cell_floor_fixed
       ) > 1e5 &&
+      covarianceTarget?.two_block_covariance_allocation_budget_kind ===
+        "candidate-terminal-nonterminal-two-block-covariance-allocation-budget-summary" &&
+      covarianceTarget
+        ?.all_selected_rows_two_block_uniform_all_hrow_compression_feasible ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_terminal_only_route_blocked_by_nonterminal_floor ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_first_nonterminal_probe_gives_terminal_budget ===
+        true &&
+      finitePositive(
+        covarianceTarget
+          ?.max_minimum_nonterminal_h0_h34_compression_for_any_terminal_budget
+      ) &&
+      Number(
+        covarianceTarget
+          .max_minimum_nonterminal_h0_h34_compression_for_any_terminal_budget
+      ) > 1000 &&
+      finitePositive(
+        covarianceTarget
+          ?.max_minimum_terminal_h35_h37_compression_with_nonterminal_eliminated
+      ) &&
+      Number(
+        covarianceTarget
+          .max_minimum_terminal_h35_h37_compression_with_nonterminal_eliminated
+      ) > 1e5 &&
+      finitePositive(
+        covarianceTarget?.max_balanced_uniform_all_hrow_compression_factor
+      ) &&
+      Number(covarianceTarget.max_balanced_uniform_all_hrow_compression_factor) >
+        1e5 &&
+      covarianceTarget?.two_block_covariance_allocation_interpretation ===
+        "terminal-only-route-rejected-two-block-all-hrow-covariance-budget-positive" &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_floor_cancellation_summary_kind ===
+        "candidate-signed-nonterminal-h0-h34-floor-cancellation-target-summary" &&
+      covarianceTarget
+        ?.all_selected_rows_have_signed_nonterminal_h0_h34_floor_target ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_floor_blocks === true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_midpoint_inside_interval ===
+        true &&
+      typeof covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_midpoint_fits_required ===
+        "boolean" &&
+      finitePositive(
+        covarianceTarget?.max_signed_nonterminal_h0_h34_floor_to_required_ratio
+      ) &&
+      Number(
+        covarianceTarget.max_signed_nonterminal_h0_h34_floor_to_required_ratio
+      ) > 1000 &&
+      finiteNonnegative(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_midpoint_abs_to_required_ratio
+      ) &&
+      [
+        "signed-nonterminal-midpoints-cancel-but-interval-floor-blocks",
+        "signed-nonterminal-midpoints-also-block",
+        "signed-nonterminal-floor-cancellation-target-open",
+      ].includes(
+        covarianceTarget?.signed_nonterminal_h0_h34_floor_interpretation
+      ) &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_identity_router_summary_kind ===
+        "candidate-signed-nonterminal-h0-h34-identity-router-summary" &&
+      covarianceTarget
+        ?.all_selected_rows_have_signed_nonterminal_h0_h34_identity_router ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_identity_uses_midpoint_not_floor ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_identity_routes_to_positive_terminal_budget ===
+        true &&
+      finiteNonnegative(
+        covarianceTarget
+          ?.max_signed_nonterminal_identity_routed_abs_to_required_ratio
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_identity_routed_abs_to_required_ratio
+      ) < 1e-6 &&
+      finitePositive(
+        covarianceTarget
+          ?.max_required_terminal_h35_h37_compression_after_signed_nonterminal_route
+      ) &&
+      Number(
+        covarianceTarget
+          .max_required_terminal_h35_h37_compression_after_signed_nonterminal_route
+      ) > 1e5 &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_identity_router_interpretation ===
+        "signed-nonterminal-midpoint-identity-routes-to-terminal-budget" &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_midpoint_fourth_difference_summary_kind ===
+        "candidate-signed-nonterminal-h0-h34-midpoint-fourth-difference-identity-target-summary" &&
+      covarianceTarget
+        ?.all_selected_rows_have_signed_nonterminal_h0_h34_midpoint_fourth_difference_identity ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_midpoint_fourth_difference_uses_five_node_identity ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_midpoint_fourth_difference_cancels_before_interval_floor ===
+        true &&
+      finiteNonnegative(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_midpoint_fourth_difference_cancellation_ratio
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_midpoint_fourth_difference_cancellation_ratio
+      ) < 1e-5 &&
+      finitePositive(
+        covarianceTarget
+          ?.min_signed_nonterminal_h0_h34_midpoint_fourth_difference_cancellation_gain
+      ) &&
+      Number(
+        covarianceTarget
+          .min_signed_nonterminal_h0_h34_midpoint_fourth_difference_cancellation_gain
+      ) > 1e5 &&
+      finiteNonnegative(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_midpoint_fourth_difference_signed_to_required_ratio
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_midpoint_fourth_difference_signed_to_required_ratio
+      ) < 1e-6 &&
+      finitePositive(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_midpoint_fourth_difference_absolute_mass_to_required_ratio
+      ) &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_midpoint_fourth_difference_interpretation ===
+        "signed-nonterminal-five-node-fourth-difference-cancels-before-interval-floor" &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_dependency_loss_budget_summary_kind ===
+        "candidate-signed-nonterminal-h0-h34-dependency-loss-budget-summary" &&
+      covarianceTarget
+        ?.all_selected_rows_have_signed_nonterminal_h0_h34_dependency_loss_budget ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_dependency_loss_budget_uses_fourth_difference_identity ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_interval_floor_is_dependency_loss ===
+        true &&
+      finitePositive(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_dependency_loss_interval_floor_to_midpoint_mass_ratio
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_dependency_loss_interval_floor_to_midpoint_mass_ratio
+      ) > 1e6 &&
+      finitePositive(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_dependency_loss_interval_floor_to_signed_midpoint_ratio
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_dependency_loss_interval_floor_to_signed_midpoint_ratio
+      ) > 1e12 &&
+      finitePositive(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_dependency_loss_required_interval_compression
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_dependency_loss_required_interval_compression
+      ) > 1000 &&
+      finitePositive(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_dependency_loss_directed_residual_to_required_ratio
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_dependency_loss_directed_residual_to_required_ratio
+      ) > 1000 &&
+      finitePositive(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_dependency_loss_required_directed_residual_compression
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_dependency_loss_required_directed_residual_compression
+      ) > 1000 &&
+      finitePositive(
+        covarianceTarget
+          ?.min_signed_nonterminal_h0_h34_dependency_loss_midpoint_mass_headroom
+      ) &&
+      Number(
+        covarianceTarget
+          .min_signed_nonterminal_h0_h34_dependency_loss_midpoint_mass_headroom
+      ) > 1000 &&
+      finitePositive(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_dependency_loss_node_width_compression
+      ) &&
+      finitePositive(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_dependency_loss_node_directed_residual_compression
+      ) &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_dependency_loss_budget_interpretation ===
+        "h0-h34-midpoint-mass-fits-interval-floor-is-dependency-loss" &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification_summary_kind ===
+        "candidate-signed-nonterminal-h0-h34-midpoint-dependency-preserving-provider-specification-summary" &&
+      covarianceTarget
+        ?.all_selected_rows_have_signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_provider_specs_use_dependency_loss_budget ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_provider_specs_require_radius_contraction ===
+        true &&
+      finitePositive(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_provider_spec_current_shape_residual_to_budget_ratio
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_provider_spec_current_shape_residual_to_budget_ratio
+      ) > 1000 &&
+      finitePositive(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_provider_spec_required_current_shape_compression
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_provider_spec_required_current_shape_compression
+      ) > 1000 &&
+      finitePositive(
+        covarianceTarget
+          ?.min_signed_nonterminal_h0_h34_provider_spec_residual_budget_to_required_ratio
+      ) &&
+      Number(
+        covarianceTarget
+          .min_signed_nonterminal_h0_h34_provider_spec_residual_budget_to_required_ratio
+      ) > 0.99 &&
+      finitePositive(
+        covarianceTarget
+          ?.min_signed_nonterminal_h0_h34_provider_spec_uniform_coefficient_residual_radius_bound
+      ) &&
+      finitePositive(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_provider_spec_node_balanced_radius_compression
+      ) &&
+      finitePositive(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_provider_spec_node_weighted_residual_compression
+      ) &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification_interpretation ===
+        "h0-h34-provider-specifies-residual-radius-targets-before-directed-rounding" &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile_summary_kind ===
+        "candidate-signed-nonterminal-h0-h34-current-shape-radius-contraction-profile-summary" &&
+      covarianceTarget
+        ?.all_selected_rows_have_signed_nonterminal_h0_h34_current_shape_radius_contraction_profile ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_current_shape_profiles_use_provider_specification ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_current_shape_profiles_sharpen_balanced_allocation ===
+        true &&
+      finitePositive(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_current_shape_uniform_contraction_factor
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_current_shape_uniform_contraction_factor
+      ) > 1000 &&
+      finitePositive(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_current_shape_balanced_penalty
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_current_shape_balanced_penalty
+      ) > 1 &&
+      finitePositive(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_current_shape_uniform_coefficient_penalty
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_current_shape_uniform_coefficient_penalty
+      ) > 1 &&
+      finitePositive(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_current_shape_dominant_residual_share
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_current_shape_dominant_residual_share
+      ) < 1 &&
+      finitePositive(
+        covarianceTarget
+          ?.min_signed_nonterminal_h0_h34_current_shape_rows_share_sum
+      ) &&
+      Number(
+        covarianceTarget
+          .min_signed_nonterminal_h0_h34_current_shape_rows_share_sum
+      ) > 0.999999999999 &&
+      finitePositive(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_current_shape_rows_share_sum
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_current_shape_rows_share_sum
+      ) < 1.000000000001 &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile_interpretation ===
+        "current-shape-residual-profile-sharpens-h0-h34-radius-contraction-target" &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_current_shape_certificate_screen_summary_kind ===
+        "candidate-signed-nonterminal-h0-h34-current-shape-certificate-screen-summary" &&
+      covarianceTarget
+        ?.all_selected_rows_have_signed_nonterminal_h0_h34_current_shape_certificate_screen ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_current_shape_certificate_screens_use_profile ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_current_shape_certificate_screens_preserve_shares ===
+        true &&
+      covarianceTarget
+        ?.all_selected_rows_signed_nonterminal_h0_h34_current_shape_certificate_screens_fit_strict_safety_margin ===
+        true &&
+      finitePositive(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_current_shape_certificate_minimum_contraction_factor
+      ) &&
+      Number(
+        covarianceTarget
+          .max_signed_nonterminal_h0_h34_current_shape_certificate_minimum_contraction_factor
+      ) > 1000 &&
+      finitePositive(
+        covarianceTarget
+          ?.min_signed_nonterminal_h0_h34_current_shape_certificate_strict_safety_headroom
+      ) &&
+      Number(
+        covarianceTarget
+          .min_signed_nonterminal_h0_h34_current_shape_certificate_strict_safety_headroom
+      ) > 1 &&
+      finitePositive(
+        covarianceTarget
+          ?.max_signed_nonterminal_h0_h34_current_shape_certificate_first_strict_provider_contraction
+      ) &&
+      covarianceTarget
+        ?.signed_nonterminal_h0_h34_current_shape_certificate_screen_interpretation ===
+        "current-shape-contraction-screen-produces-budget-fitting-h0-h34-provider-target" &&
       covarianceTarget?.linear_width_share_budget_interpretation ===
         "terminal-h35-h37-dominates-but-terminal-only-compression-is-insufficient-under-nonterminal-floor" &&
       covarianceTarget?.covariance_preservation_interpretation ===
@@ -44318,6 +46836,687 @@ export function validateH39SuccessorSuffixTransitionCertificateRouteCandidate(
             ?.certifies_terminal_h35_h37_covariance_enclosure === false &&
           row.linear_width_share_budget.claim_boundary
             ?.certifies_all_hrow_covariance_enclosure === false &&
+          row?.two_block_covariance_allocation_budget?.budget_kind ===
+            "candidate-terminal-nonterminal-two-block-covariance-allocation-budget" &&
+          Array.isArray(
+            row.two_block_covariance_allocation_budget?.compression_blocks
+              ?.terminal_h35_h37
+          ) &&
+          row.two_block_covariance_allocation_budget.compression_blocks
+            .terminal_h35_h37.length === 3 &&
+          row.two_block_covariance_allocation_budget.compression_blocks
+            .terminal_h35_h37[0] === 35 &&
+          row.two_block_covariance_allocation_budget.compression_blocks
+            .terminal_h35_h37[2] === 37 &&
+          Array.isArray(
+            row.two_block_covariance_allocation_budget
+              ?.nonterminal_probe_rows
+          ) &&
+          row.two_block_covariance_allocation_budget.nonterminal_probe_rows
+            .length === 6 &&
+          finitePositive(
+            row.two_block_covariance_allocation_budget
+              .minimum_nonterminal_h0_h34_compression_for_any_terminal_budget
+          ) &&
+          Number(
+            row.two_block_covariance_allocation_budget
+              .minimum_nonterminal_h0_h34_compression_for_any_terminal_budget
+          ) > 1000 &&
+          finitePositive(
+            row.two_block_covariance_allocation_budget
+              .minimum_terminal_h35_h37_compression_with_nonterminal_eliminated
+          ) &&
+          Number(
+            row.two_block_covariance_allocation_budget
+              .minimum_terminal_h35_h37_compression_with_nonterminal_eliminated
+          ) > 1e5 &&
+          finitePositive(
+            row.two_block_covariance_allocation_budget
+              .balanced_uniform_all_hrow_compression_factor
+          ) &&
+          Number(
+            row.two_block_covariance_allocation_budget
+              .balanced_uniform_all_hrow_compression_factor
+          ) > 1e5 &&
+          row.two_block_covariance_allocation_budget
+            .allocation_feasible_with_uniform_all_hrow_compression === true &&
+          row.two_block_covariance_allocation_budget
+            .terminal_only_route_blocked_by_nonterminal_floor === true &&
+          row.two_block_covariance_allocation_budget
+            .first_positive_terminal_budget_probe
+            ?.nonterminal_h0_h34_compression_factor === 10000 &&
+          finitePositive(
+            row.two_block_covariance_allocation_budget
+              .first_positive_terminal_budget_probe
+              ?.required_terminal_h35_h37_compression_factor
+          ) &&
+          row.two_block_covariance_allocation_budget.budget_interpretation ===
+            "two-block-covariance-feasible-only-after-nonterminal-floor-compression" &&
+          row.two_block_covariance_allocation_budget.claim_boundary
+            ?.certifies_nonterminal_h0_h34_covariance_enclosure === false &&
+          row.two_block_covariance_allocation_budget.claim_boundary
+            ?.certifies_all_hrow_covariance_enclosure === false &&
+          row?.signed_nonterminal_h0_h34_floor_cancellation_target
+            ?.target_kind ===
+            "candidate-signed-nonterminal-h0-h34-floor-cancellation-target" &&
+          Array.isArray(
+            row.signed_nonterminal_h0_h34_floor_cancellation_target
+              ?.active_h_index_range
+          ) &&
+          row.signed_nonterminal_h0_h34_floor_cancellation_target
+            .active_h_index_range[0] === 0 &&
+          row.signed_nonterminal_h0_h34_floor_cancellation_target
+            .active_h_index_range[1] === 34 &&
+          row.signed_nonterminal_h0_h34_floor_cancellation_target
+            .interpolation_node_count === 5 &&
+          Array.isArray(
+            row.signed_nonterminal_h0_h34_floor_cancellation_target
+              ?.lagrange_fourth_derivative_weights
+          ) &&
+          row.signed_nonterminal_h0_h34_floor_cancellation_target
+            .lagrange_fourth_derivative_weights.length === 5 &&
+          finitePositive(
+            row.signed_nonterminal_h0_h34_floor_cancellation_target
+              .nonterminal_floor_to_required_ratio
+          ) &&
+          Number(
+            row.signed_nonterminal_h0_h34_floor_cancellation_target
+              .nonterminal_floor_to_required_ratio
+          ) > 1000 &&
+          finiteNonnegative(
+            row.signed_nonterminal_h0_h34_floor_cancellation_target
+              .nonterminal_midpoint_abs_to_required_ratio
+          ) &&
+          row.signed_nonterminal_h0_h34_floor_cancellation_target
+            .nonterminal_midpoint_inside_interval === true &&
+          row.signed_nonterminal_h0_h34_floor_cancellation_target
+            .nonterminal_interval_floor_blocks_terminal_only_route === true &&
+          [
+            "signed-nonterminal-midpoint-cancels-but-interval-floor-blocks",
+            "signed-nonterminal-midpoint-also-blocks",
+            "signed-nonterminal-floor-fits-row-local-m4-target",
+            "signed-nonterminal-cancellation-target-open",
+          ].includes(
+            row.signed_nonterminal_h0_h34_floor_cancellation_target
+              .floor_classification
+          ) &&
+          row.signed_nonterminal_h0_h34_floor_cancellation_target
+            .claim_boundary
+            ?.certifies_nonterminal_h0_h34_covariance_enclosure === false &&
+          row.signed_nonterminal_h0_h34_floor_cancellation_target
+            .claim_boundary?.certifies_signed_nonterminal_cancellation ===
+            false &&
+          row.signed_nonterminal_h0_h34_floor_cancellation_target
+            .claim_boundary?.certifies_n38_fourth_derivative_bound === false &&
+          row.signed_nonterminal_h0_h34_floor_cancellation_target
+            .claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+          row?.signed_nonterminal_h0_h34_identity_router?.router_kind ===
+            "candidate-signed-nonterminal-h0-h34-identity-router" &&
+          row.signed_nonterminal_h0_h34_identity_router.source_target_kind ===
+            "candidate-signed-nonterminal-h0-h34-floor-cancellation-target" &&
+          Array.isArray(
+            row.signed_nonterminal_h0_h34_identity_router
+              .active_h_index_range
+          ) &&
+          row.signed_nonterminal_h0_h34_identity_router
+            .active_h_index_range[0] === 0 &&
+          row.signed_nonterminal_h0_h34_identity_router
+            .active_h_index_range[1] === 34 &&
+          row.signed_nonterminal_h0_h34_identity_router
+            .uses_signed_midpoint_lagrange_estimate === true &&
+          row.signed_nonterminal_h0_h34_identity_router
+            .does_not_use_interval_abs_floor === true &&
+          row.signed_nonterminal_h0_h34_identity_router
+            .nonterminal_signed_midpoint_fits_required === true &&
+          row.signed_nonterminal_h0_h34_identity_router
+            .nonterminal_interval_floor_blocks_terminal_only_route === true &&
+          row.signed_nonterminal_h0_h34_identity_router
+            .signed_nonterminal_route_can_enter_two_block_budget === true &&
+          finiteNonnegative(
+            row.signed_nonterminal_h0_h34_identity_router
+              .signed_nonterminal_abs_to_required_ratio
+          ) &&
+          Number(
+            row.signed_nonterminal_h0_h34_identity_router
+              .signed_nonterminal_abs_to_required_ratio
+          ) < 1e-6 &&
+          finitePositive(
+            row.signed_nonterminal_h0_h34_identity_router
+              .interval_floor_to_required_ratio
+          ) &&
+          Number(
+            row.signed_nonterminal_h0_h34_identity_router
+              .interval_floor_to_required_ratio
+          ) > 1000 &&
+          finitePositive(
+            row.signed_nonterminal_h0_h34_identity_router
+              .terminal_h35_h37_to_required_ratio
+          ) &&
+          finitePositive(
+            row.signed_nonterminal_h0_h34_identity_router
+              .available_required_ratio_after_signed_nonterminal_and_cell
+          ) &&
+          row.signed_nonterminal_h0_h34_identity_router
+            .terminal_budget_after_signed_nonterminal_route_positive === true &&
+          finitePositive(
+            row.signed_nonterminal_h0_h34_identity_router
+              .required_terminal_h35_h37_compression_after_signed_nonterminal_route
+          ) &&
+          Number(
+            row.signed_nonterminal_h0_h34_identity_router
+              .required_terminal_h35_h37_compression_after_signed_nonterminal_route
+          ) > 1e5 &&
+          row.signed_nonterminal_h0_h34_identity_router
+            .target_two_block_budget_kind ===
+            "candidate-terminal-nonterminal-two-block-covariance-allocation-budget" &&
+          row.signed_nonterminal_h0_h34_identity_router
+            .router_interpretation ===
+            "signed-nonterminal-midpoint-route-unblocks-positive-terminal-budget" &&
+          row.signed_nonterminal_h0_h34_identity_router.claim_boundary
+            ?.certifies_signed_nonterminal_identity === false &&
+          row.signed_nonterminal_h0_h34_identity_router.claim_boundary
+            ?.certifies_nonterminal_h0_h34_covariance_enclosure === false &&
+          row.signed_nonterminal_h0_h34_identity_router.claim_boundary
+            ?.certifies_terminal_h35_h37_covariance_enclosure === false &&
+          row.signed_nonterminal_h0_h34_identity_router.claim_boundary
+            ?.certifies_all_hrow_covariance_enclosure === false &&
+          row.signed_nonterminal_h0_h34_identity_router.claim_boundary
+            ?.certifies_shifted_R43_outer_bound === false &&
+          row
+            ?.signed_nonterminal_h0_h34_midpoint_fourth_difference_identity_target
+            ?.target_kind ===
+            "candidate-signed-nonterminal-h0-h34-midpoint-fourth-difference-identity-target" &&
+          row
+            .signed_nonterminal_h0_h34_midpoint_fourth_difference_identity_target
+            .source_target_kind ===
+            "candidate-signed-nonterminal-h0-h34-floor-cancellation-target" &&
+          row
+            .signed_nonterminal_h0_h34_midpoint_fourth_difference_identity_target
+            .proof_status ===
+            "midpoint-only-arithmetic-identity-from-existing-floor-target-not-directed-rounded-enclosure" &&
+          row
+            .signed_nonterminal_h0_h34_midpoint_fourth_difference_identity_target
+            .identity_basis ===
+            "five-node-degree-four-lagrange-midpoint-fourth-difference" &&
+          Array.isArray(
+            row
+              .signed_nonterminal_h0_h34_midpoint_fourth_difference_identity_target
+              .weighted_midpoint_rows
+          ) &&
+          row
+            .signed_nonterminal_h0_h34_midpoint_fourth_difference_identity_target
+            .weighted_midpoint_rows.length === 5 &&
+          row
+            .signed_nonterminal_h0_h34_midpoint_fourth_difference_identity_target
+            .positive_row_count > 0 &&
+          row
+            .signed_nonterminal_h0_h34_midpoint_fourth_difference_identity_target
+            .negative_row_count > 0 &&
+          row
+            .signed_nonterminal_h0_h34_midpoint_fourth_difference_identity_target
+            .zero_row_count >= 0 &&
+          finiteNonnegative(
+            row
+              .signed_nonterminal_h0_h34_midpoint_fourth_difference_identity_target
+              .midpoint_fourth_difference_cancellation_ratio
+          ) &&
+          Number(
+            row
+              .signed_nonterminal_h0_h34_midpoint_fourth_difference_identity_target
+              .midpoint_fourth_difference_cancellation_ratio
+          ) < 1e-5 &&
+          finiteNonnegative(
+            row
+              .signed_nonterminal_h0_h34_midpoint_fourth_difference_identity_target
+              .midpoint_fourth_difference_cancellation_fraction
+          ) &&
+          Number(
+            row
+              .signed_nonterminal_h0_h34_midpoint_fourth_difference_identity_target
+              .midpoint_fourth_difference_cancellation_fraction
+          ) > 0.99999 &&
+          finitePositive(
+            row
+              .signed_nonterminal_h0_h34_midpoint_fourth_difference_identity_target
+              .midpoint_fourth_difference_cancellation_gain
+          ) &&
+          Number(
+            row
+              .signed_nonterminal_h0_h34_midpoint_fourth_difference_identity_target
+              .midpoint_fourth_difference_cancellation_gain
+          ) > 1e5 &&
+          row
+            .signed_nonterminal_h0_h34_midpoint_fourth_difference_identity_target
+            .cancels_before_interval_floor === true &&
+          row
+            .signed_nonterminal_h0_h34_midpoint_fourth_difference_identity_target
+            .identity_classification ===
+            "signed-nonterminal-fourth-difference-cancels-before-interval-floor" &&
+          row
+            .signed_nonterminal_h0_h34_midpoint_fourth_difference_identity_target
+            .claim_boundary?.certifies_signed_nonterminal_identity === false &&
+          row
+            .signed_nonterminal_h0_h34_midpoint_fourth_difference_identity_target
+            .claim_boundary
+            ?.certifies_h0_h34_midpoint_identity_for_continuous_domain ===
+            false &&
+          row
+            .signed_nonterminal_h0_h34_midpoint_fourth_difference_identity_target
+            .claim_boundary?.certifies_all_hrow_covariance_enclosure ===
+            false &&
+          row
+            .signed_nonterminal_h0_h34_midpoint_fourth_difference_identity_target
+            .claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+          row?.signed_nonterminal_h0_h34_dependency_loss_budget?.target_kind ===
+            "candidate-signed-nonterminal-h0-h34-dependency-loss-budget" &&
+          row.signed_nonterminal_h0_h34_dependency_loss_budget
+            .source_floor_target_kind ===
+            "candidate-signed-nonterminal-h0-h34-floor-cancellation-target" &&
+          row.signed_nonterminal_h0_h34_dependency_loss_budget
+            .source_identity_target_kind ===
+            "candidate-signed-nonterminal-h0-h34-midpoint-fourth-difference-identity-target" &&
+          row.signed_nonterminal_h0_h34_dependency_loss_budget
+            .proof_status ===
+            "candidate-budget-only-interval-dependency-loss-measured-not-directed-rounded-enclosure" &&
+          Array.isArray(
+            row.signed_nonterminal_h0_h34_dependency_loss_budget
+              .active_h_index_range
+          ) &&
+          row.signed_nonterminal_h0_h34_dependency_loss_budget
+            .active_h_index_range[0] === 0 &&
+          row.signed_nonterminal_h0_h34_dependency_loss_budget
+            .active_h_index_range[1] === 34 &&
+          row.signed_nonterminal_h0_h34_dependency_loss_budget
+            .interpolation_node_count === 5 &&
+          Array.isArray(
+            row.signed_nonterminal_h0_h34_dependency_loss_budget
+              .node_dependency_loss_budget_rows
+          ) &&
+          row.signed_nonterminal_h0_h34_dependency_loss_budget
+            .node_dependency_loss_budget_rows.length === 5 &&
+          row.signed_nonterminal_h0_h34_dependency_loss_budget
+            .signed_midpoint_fits_required === true &&
+          row.signed_nonterminal_h0_h34_dependency_loss_budget
+            .midpoint_absolute_mass_fits_required === true &&
+          finitePositive(
+            row.signed_nonterminal_h0_h34_dependency_loss_budget
+              .interval_floor_to_required_ratio
+          ) &&
+          Number(
+            row.signed_nonterminal_h0_h34_dependency_loss_budget
+              .interval_floor_to_required_ratio
+          ) > 1000 &&
+          finitePositive(
+            row.signed_nonterminal_h0_h34_dependency_loss_budget
+              .absolute_midpoint_mass_to_required_ratio
+          ) &&
+          Number(
+            row.signed_nonterminal_h0_h34_dependency_loss_budget
+              .absolute_midpoint_mass_to_required_ratio
+          ) < 1e-3 &&
+          finitePositive(
+            row.signed_nonterminal_h0_h34_dependency_loss_budget
+              .interval_floor_to_midpoint_absolute_mass_ratio
+          ) &&
+          Number(
+            row.signed_nonterminal_h0_h34_dependency_loss_budget
+              .interval_floor_to_midpoint_absolute_mass_ratio
+          ) > 1e6 &&
+          finitePositive(
+            row.signed_nonterminal_h0_h34_dependency_loss_budget
+              .interval_floor_to_signed_midpoint_ratio
+          ) &&
+          Number(
+            row.signed_nonterminal_h0_h34_dependency_loss_budget
+              .interval_floor_to_signed_midpoint_ratio
+          ) > 1e12 &&
+          finitePositive(
+            row.signed_nonterminal_h0_h34_dependency_loss_budget
+              .interval_residual_budget_after_midpoint_abs_mass
+          ) &&
+          finitePositive(
+            row.signed_nonterminal_h0_h34_dependency_loss_budget
+              .directed_residual_abs_upper_to_required_ratio
+          ) &&
+          Number(
+            row.signed_nonterminal_h0_h34_dependency_loss_budget
+              .directed_residual_abs_upper_to_required_ratio
+          ) > 1000 &&
+          finitePositive(
+            row.signed_nonterminal_h0_h34_dependency_loss_budget
+              .required_interval_excess_compression_after_midpoint_abs_mass
+          ) &&
+          Number(
+            row.signed_nonterminal_h0_h34_dependency_loss_budget
+              .required_interval_excess_compression_after_midpoint_abs_mass
+          ) > 1000 &&
+          finitePositive(
+            row.signed_nonterminal_h0_h34_dependency_loss_budget
+              .required_directed_residual_compression_after_midpoint_abs_mass
+          ) &&
+          Number(
+            row.signed_nonterminal_h0_h34_dependency_loss_budget
+              .required_directed_residual_compression_after_midpoint_abs_mass
+          ) > 1000 &&
+          row.signed_nonterminal_h0_h34_dependency_loss_budget
+            .interval_floor_is_dependency_loss === true &&
+          row.signed_nonterminal_h0_h34_dependency_loss_budget
+            .budget_classification ===
+            "h0-h34-midpoint-mass-fits-interval-floor-is-dependency-loss" &&
+          row.signed_nonterminal_h0_h34_dependency_loss_budget
+            .claim_boundary?.certifies_signed_nonterminal_cancellation ===
+            false &&
+          row.signed_nonterminal_h0_h34_dependency_loss_budget
+            .claim_boundary
+            ?.certifies_nonterminal_h0_h34_covariance_enclosure === false &&
+          row.signed_nonterminal_h0_h34_dependency_loss_budget.claim_boundary
+            ?.certifies_shifted_R43_outer_bound === false &&
+          row
+            ?.signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification
+            ?.target_kind ===
+            "candidate-signed-nonterminal-h0-h34-midpoint-dependency-preserving-provider-specification-target" &&
+          row
+            .signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification
+            .source_dependency_loss_budget_kind ===
+            "candidate-signed-nonterminal-h0-h34-dependency-loss-budget" &&
+          row
+            .signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification
+            .proof_status ===
+            "candidate-specification-only-residual-radius-targets-not-directed-rounded-enclosure" &&
+          row
+            .signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification
+            .residual_allocation_rule ===
+            "balanced-weighted-derivative-residual-budget-per-lagrange-node" &&
+          Array.isArray(
+            row
+              .signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification
+              .active_h_index_range
+          ) &&
+          row
+            .signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification
+            .active_h_index_range[0] === 0 &&
+          row
+            .signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification
+            .active_h_index_range[1] === 34 &&
+          row
+            .signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification
+            .interpolation_node_count === 5 &&
+          finitePositive(
+            row
+              .signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification
+              .uniform_coefficient_residual_radius_bound
+          ) &&
+          finitePositive(
+            row
+              .signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification
+              .balanced_derivative_residual_abs_budget
+          ) &&
+          finitePositive(
+            row
+              .signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification
+              .current_shape_residual_to_budget_ratio
+          ) &&
+          Number(
+            row
+              .signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification
+              .current_shape_residual_to_budget_ratio
+          ) > 1000 &&
+          finitePositive(
+            row
+              .signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification
+              .required_uniform_current_shape_compression
+          ) &&
+          row
+            .signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification
+            .current_candidate_satisfies_provider_specification === false &&
+          row
+            .signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification
+            .provider_specification_classification ===
+            "requires-directed-rounded-h0-h34-residual-radius-contraction" &&
+          Number.isInteger(
+            row
+              .signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification
+              .dominant_balanced_radius_compression_node?.node_index
+          ) &&
+          finitePositive(
+            row
+              .signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification
+              .dominant_balanced_radius_compression_node
+              ?.required_coefficient_radius_compression_to_balanced_bound
+          ) &&
+          Array.isArray(
+            row
+              .signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification
+              .provider_specification_rows
+          ) &&
+          row
+            .signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification
+            .provider_specification_rows.length === 5 &&
+          row
+            .signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification
+            .provider_specification_rows.every(
+              (specRow) =>
+                Number.isInteger(specRow?.node_index) &&
+                Number.isFinite(Number(specRow?.xi_midpoint)) &&
+                finitePositive(
+                  specRow?.absolute_lagrange_fourth_derivative_weight
+                ) &&
+                finitePositive(
+                  specRow?.balanced_coefficient_residual_radius_bound
+                ) &&
+                finitePositive(
+                  specRow?.uniform_coefficient_residual_radius_bound
+                ) &&
+                finiteNonnegative(
+                  specRow?.current_coefficient_residual_abs_upper
+                ) &&
+                finiteNonnegative(
+                  specRow
+                    ?.required_coefficient_radius_compression_to_balanced_bound
+                ) &&
+                finiteNonnegative(
+                  specRow
+                    ?.required_weighted_residual_compression_to_balanced_budget
+                ) &&
+                [
+                  "current-node-radius-fits-balanced-budget",
+                  "needs-directed-rounded-node-radius-contraction",
+                ].includes(specRow?.provider_row_status)
+            ) &&
+          row
+            .signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification
+            .claim_boundary
+            ?.certifies_nonterminal_h0_h34_covariance_enclosure === false &&
+          row
+            .signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification
+            .claim_boundary?.certifies_directed_rounded_shared_domain ===
+            false &&
+          row
+            .signed_nonterminal_h0_h34_midpoint_dependency_preserving_provider_specification
+            .claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+          row?.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile
+            ?.target_kind ===
+            "candidate-signed-nonterminal-h0-h34-current-shape-radius-contraction-profile-target" &&
+          row.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile
+            .source_provider_specification_kind ===
+            "candidate-signed-nonterminal-h0-h34-midpoint-dependency-preserving-provider-specification-target" &&
+          row.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile
+            .proof_status ===
+            "candidate-profile-only-current-shape-radius-contraction-not-directed-rounded-enclosure" &&
+          row.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile
+            .allocation_comparison_kind ===
+            "candidate-balanced-vs-current-shape-optimized-lagrange-node-residual-allocation" &&
+          row.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile
+            .allocation_comparison_proof_status ===
+            "candidate-comparison-only-not-directed-rounded-enclosure" &&
+          row.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile
+            .optimized_current_shape_allocation_rule ===
+            "minimax-current-shape-weighted-residual-allocation" &&
+          Array.isArray(
+            row.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile
+              .active_h_index_range
+          ) &&
+          row.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile
+            .active_h_index_range[0] === 0 &&
+          row.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile
+            .active_h_index_range[1] === 34 &&
+          row.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile
+            .interpolation_node_count === 5 &&
+          finitePositive(
+            row.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile
+              .current_shape_uniform_contraction_factor
+          ) &&
+          Number(
+            row.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile
+              .current_shape_uniform_contraction_factor
+          ) > 1000 &&
+          finitePositive(
+            row.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile
+              .balanced_allocation_penalty_vs_current_shape
+          ) &&
+          Number(
+            row.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile
+              .balanced_allocation_penalty_vs_current_shape
+          ) > 1 &&
+          finitePositive(
+            row.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile
+              .uniform_coefficient_allocation_penalty_vs_current_shape
+          ) &&
+          Number(
+            row.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile
+              .uniform_coefficient_allocation_penalty_vs_current_shape
+          ) > 1 &&
+          finitePositive(
+            row.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile
+              .current_shape_rows_share_sum
+          ) &&
+          Math.abs(
+            row.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile
+              .current_shape_rows_share_sum - 1
+          ) < 1e-12 &&
+          row.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile
+            .current_shape_allocation_sharper_than_balanced_or_uniform ===
+            true &&
+          row.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile
+            .profile_classification ===
+            "current-shape-uniform-contraction-sharpens-balanced-node-radius-target" &&
+          Number.isInteger(
+            row.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile
+              .dominant_current_shape_residual_node?.node_index
+          ) &&
+          finitePositive(
+            row.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile
+              .dominant_current_shape_residual_node
+              ?.current_weighted_residual_share
+          ) &&
+          Array.isArray(
+            row.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile
+              .current_shape_profile_rows
+          ) &&
+          row.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile
+            .current_shape_profile_rows.length === 5 &&
+          row.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile
+            .current_shape_profile_rows.every(
+              (profileRow) =>
+                Number.isInteger(profileRow?.node_index) &&
+                Number.isFinite(Number(profileRow?.xi_midpoint)) &&
+                finitePositive(profileRow?.current_weighted_residual_share) &&
+                finitePositive(
+                  profileRow?.current_shape_coefficient_residual_radius_bound
+                ) &&
+                finitePositive(
+                  profileRow?.required_compression_to_current_shape_bound
+                ) &&
+                finitePositive(
+                  profileRow?.balanced_radius_overlocalization_factor
+                ) &&
+                finitePositive(
+                  profileRow
+                    ?.uniform_coefficient_radius_overlocalization_factor
+                ) &&
+                [
+                  "needs-current-shape-directed-rounded-radius-contraction",
+                  "current-shape-radius-fits-residual-budget",
+                ].includes(profileRow?.current_shape_row_status)
+            ) &&
+          row.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile
+            .claim_boundary?.certifies_nonterminal_h0_h34_covariance_enclosure ===
+            false &&
+          row.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile
+            .claim_boundary?.certifies_directed_rounded_shared_domain ===
+            false &&
+          row.signed_nonterminal_h0_h34_current_shape_radius_contraction_profile
+            .claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+          row?.signed_nonterminal_h0_h34_current_shape_certificate_screen
+            ?.target_kind ===
+            "candidate-signed-nonterminal-h0-h34-current-shape-certificate-screen" &&
+          row.signed_nonterminal_h0_h34_current_shape_certificate_screen
+            .source_current_shape_profile_kind ===
+            "candidate-signed-nonterminal-h0-h34-current-shape-radius-contraction-profile-target" &&
+          row.signed_nonterminal_h0_h34_current_shape_certificate_screen
+            .proof_status ===
+            "candidate-screen-only-contracted-current-shape-provider-not-directed-rounded-enclosure" &&
+          row.signed_nonterminal_h0_h34_current_shape_certificate_screen
+            .residual_profile_rule ===
+            "current-weighted-residual-shape-preserving-provider-contraction-screen" &&
+          finitePositive(
+            row.signed_nonterminal_h0_h34_current_shape_certificate_screen
+              .minimum_current_shape_contraction_factor_for_budget
+          ) &&
+          row.signed_nonterminal_h0_h34_current_shape_certificate_screen
+            .all_screen_rows_preserve_current_shape_shares === true &&
+          row.signed_nonterminal_h0_h34_current_shape_certificate_screen
+            .all_strict_safety_margins_fit_residual_budget === true &&
+          row.signed_nonterminal_h0_h34_current_shape_certificate_screen
+            .screen_classification ===
+            "current-shape-contraction-screen-produces-budget-fitting-candidate-provider" &&
+          finitePositive(
+            row.signed_nonterminal_h0_h34_current_shape_certificate_screen
+              .first_strict_fitting_provider_contraction_factor
+          ) &&
+          finitePositive(
+            row.signed_nonterminal_h0_h34_current_shape_certificate_screen
+              .min_strict_safety_headroom_factor
+          ) &&
+          Array.isArray(
+            row.signed_nonterminal_h0_h34_current_shape_certificate_screen
+              .current_shape_certificate_screen_rows
+          ) &&
+          row.signed_nonterminal_h0_h34_current_shape_certificate_screen
+            .current_shape_certificate_screen_rows.length > 1 &&
+          row.signed_nonterminal_h0_h34_current_shape_certificate_screen
+            .current_shape_certificate_screen_rows.every(
+              (screenRow) =>
+                finitePositive(screenRow?.safety_margin_factor) &&
+                finitePositive(
+                  screenRow?.required_provider_contraction_factor
+                ) &&
+                finitePositive(screenRow?.contracted_residual_to_budget_ratio) &&
+                screenRow?.h0_h34_residual_budget_fits_after_contraction ===
+                  true &&
+                finitePositive(screenRow?.residual_budget_headroom_factor) &&
+                finiteNonnegative(screenRow?.max_node_share_drift_abs) &&
+                Number(screenRow.max_node_share_drift_abs) < 1e-12 &&
+                Array.isArray(screenRow?.node_screen_rows) &&
+                screenRow.node_screen_rows.length === 5 &&
+                screenRow.node_screen_rows.every(
+                  (nodeRow) =>
+                    Number.isInteger(nodeRow?.node_index) &&
+                    Number.isFinite(Number(nodeRow?.xi_midpoint)) &&
+                    finitePositive(nodeRow?.current_weighted_residual_share) &&
+                    finitePositive(nodeRow?.contracted_weighted_residual_share) &&
+                    nodeRow
+                      ?.row_fits_current_shape_allocated_budget_after_contraction ===
+                      true
+                )
+            ) &&
+          row.signed_nonterminal_h0_h34_current_shape_certificate_screen
+            .claim_boundary?.certifies_nonterminal_h0_h34_covariance_enclosure ===
+            false &&
+          row.signed_nonterminal_h0_h34_current_shape_certificate_screen
+            .claim_boundary?.certifies_directed_rounded_shared_domain === false &&
+          row.signed_nonterminal_h0_h34_current_shape_certificate_screen
+            .claim_boundary?.certifies_shifted_R43_outer_bound === false &&
           row?.node_width_localization_interpretation ===
             "terminal-h35-h37-hrow-intervals-dominate-total-n38-node-width" &&
           Array.isArray(row?.dominant_terminal_h_indexes) &&

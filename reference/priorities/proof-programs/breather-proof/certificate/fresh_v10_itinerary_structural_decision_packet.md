@@ -99,7 +99,25 @@ source-boundary movement, or receiver contraction rather than more partition
 refinement. The one-leaf boundary movement probe then tests the three smallest
 regular-row components and certifies 0 source-boundary movement or
 receiver-range contraction rows, with strict thresholds `0.000026691996524`,
-`0.000026691996524`, and `0.00024618430271`. It still leaves 162 rows requiring parent-complement,
+`0.000026691996524`, and `0.00024618430271`. The source-boundary movement
+theorem attempt verifies those thresholds as exact boundary-defect identities
+but certifies 0 source-boundary movement rows because no same-packet
+source-boundary variation, endpoint-tightening certificate, or movement
+preservation proof is present. The receiver-range contraction theorem attempt
+verifies the same thresholds as exact receiver-boundary defect identities but
+certifies 0 receiver contraction rows because no same-packet receiver-range
+refinement, receiver endpoint-tightening certificate, or contraction
+preservation proof is present. The candidate-change boundary-data constructor
+declares the exact combined boundary-opening conditions for those same rows,
+but certifies 0 candidate-change rows because no deformation or
+endpoint-tightening packet assigns positive boundary shifts. The direct-path
+lambda shift screen gives a positive sampled direction for those three rows at
+`lambda=0.305`, with largest active-endpoint threshold
+`lambda>0.301815056706425`. The follow-on `lambda=0.305` replay recertifies
+the trial seed's 12-root topology by outward-rational interval checks and
+reruns v1-v6, but it still leaves 162 rows `split_required`, 0 complete
+receiver-cover parent rows, 0 accepted fold-layer rows, and no branch-chart
+authorization. The remaining rows still require parent-complement,
 endpoint/complement, and fold-layer closure. The
 remaining constructive work is therefore either the larger nonlinear
 fold-coordinate collocation target or residual proof-interval closure for

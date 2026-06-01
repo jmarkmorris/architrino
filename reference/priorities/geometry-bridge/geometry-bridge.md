@@ -2708,6 +2708,111 @@ preserve a broader all-h-row covariance through the H38 producer image or prove
 signed cancellation for the residual nonterminal floor before the absolute
 majorant is applied.
 
+The same replay now makes that conclusion quantitative as a two-block
+allocation simplex. With the cell floor removed, the selected rows need the
+nonterminal h0-h34 contribution compressed by more than about
+$7.84\times10^3$ before any positive terminal h35-h37 budget exists. Even if
+the nonterminal floor were eliminated, the terminal block would still require
+more than about $2.04\times10^5$ compression, and the balanced all-h-row
+compression target remains about $2.12\times10^5$. This is candidate-only, but
+it changes the closure route from "certify h35-h37 alone" to "certify an
+all-h-row covariance enclosure or prove signed h0-h34 cancellation before the
+absolute Cauchy majorant."
+
+The replay also now carries a
+`candidate-signed-nonterminal-h0-h34-floor-cancellation-target` on the same
+rows. This reuses the h0-h34 cell-midpoint localization intervals and the
+five-node degree-four Lagrange weights to separate the signed h0-h34 midpoint
+estimate from the intervalized h0-h34 floor. Its purpose is diagnostic rather
+than certifying: it tells the next sprint whether the nonterminal floor is a
+signed midpoint obstruction or an interval-floor artifact that must be removed
+by dependency-preserving all-h-row producer-image covariance.
+
+The live routed numbers now choose that fork. On the selected rows, the
+h0-h34 intervalized floor is about $7.84\times10^3$ times the row-local
+requirement, but the signed h0-h34 midpoint contribution is only about
+$6.69\times10^{-10}$ of the same requirement. The new
+`candidate-signed-nonterminal-h0-h34-identity-router` therefore routes the
+next proof object to a signed h0-h34 identity: if that midpoint cancellation is
+made directed-rounded, the nonterminal floor no longer consumes the two-block
+budget, and the remaining compression target is the terminal/all-h-row
+producer-image covariance.
+
+That identity target is now explicit. The replay adds
+`candidate-signed-nonterminal-h0-h34-midpoint-fourth-difference-identity-target`,
+which applies the same five-node degree-four Lagrange weights directly to the
+h0-h34 signed midpoint stream. It records the weighted node contributions, the
+signed sum, the positive and negative weighted masses, and the cancellation
+ratio before any interval absolute floor is charged. On the live rows this
+classifies as
+`signed-nonterminal-fourth-difference-cancels-before-interval-floor`: the
+signed-to-absolute midpoint ratio is about $1.70\times10^{-6}$, the
+cancellation gain is about $5.88\times10^5$, and the absolute midpoint mass is
+only about $3.93\times10^{-4}$ of the row-local requirement. The nonterminal
+obstruction is therefore not a large midpoint fourth difference. It is a
+directed-rounding and dependency-preservation problem: prove the same signed
+near-cancellation on the same domain, then feed the remaining terminal/all-h-row
+covariance target forward.
+
+The follow-on budget now measures that dependency loss directly. The
+`candidate-signed-nonterminal-h0-h34-dependency-loss-budget` compares the
+intervalized h0-h34 floor with both the signed midpoint fourth difference and
+the absolute midpoint mass. The live rows show that the absolute midpoint mass
+already has about $2.54\times10^3$ headroom against the row-local requirement,
+while the interval floor is about $2.0\times10^7$ times the absolute midpoint
+mass and about $1.17\times10^{13}$ times the signed midpoint. Thus the next
+certificate is not searching for more cancellation at the midpoint. It must
+preserve the existing five-node dependency through directed rounding. The same
+budget now subtracts the midpoint contribution from the intervalized
+fourth-difference interval and records the midpoint-centered residual burden;
+that residual, not the midpoint value, is what must be compressed into the
+remaining row-local budget before the h35-h37/all-h-row covariance target is
+charged.
+
+The next proof object is now executable as a provider specification instead of
+a vague enclosure request. The
+`candidate-signed-nonterminal-h0-h34-midpoint-dependency-preserving-provider-specification-target`
+converts the midpoint-centered residual budget into five coefficient-residual
+radius targets, one for each Lagrange node. It records the residual derivative
+budget left after charging the absolute midpoint mass, divides that budget
+across the five weighted nodes, and solves the local inequality
+$|w_i|\,\varepsilon_i \le B_i$ for the coefficient residual radius
+$\varepsilon_i$. It also records the dominant node for the required radius
+compression, so the next proof attempt can focus on the hardest local residual
+instead of re-running an undirected h0-h34 search. The live rows still require
+directed-rounded radius contraction; the current intervals do not satisfy the
+specification. This is the sharper closure route: construct a same-domain
+h0-h34 provider whose node residual radii meet those bounds, then replay the
+remaining terminal/all-h-row covariance before returning to shifted
+$R_{\varepsilon,43}$.
+
+The provider specification now has a current-shape comparison. The
+`candidate-signed-nonterminal-h0-h34-current-shape-radius-contraction-profile-target`
+compares the balanced per-node residual allocation with the minimax allocation
+that preserves the live five-node residual shape. If $B$ is the total residual
+derivative budget and $d_i$ is the current weighted residual magnitude at node
+$i$, the optimized allocation is $B_i=B\,d_i/\sum_j d_j$. Under that
+allocation every active node has the same required contraction,
+$\sum_i d_i/B$. This exposes whether the hardest balanced node is a real
+residual obstruction or an artifact of splitting the budget equally. On the
+live rows the current-shape profile sharpens the balanced radius target, so the
+next directed-rounded h0-h34 provider should try to contract the existing
+five-node residual shape uniformly around the midpoint stream rather than
+forcing an equal-budget node proof first.
+
+The profile now feeds an executable candidate certificate screen rather than a
+pure description of the next contraction. The
+`candidate-signed-nonterminal-h0-h34-current-shape-certificate-screen` keeps the
+same five-node weighted residual shares and tests explicit safety margins
+against the remaining residual derivative budget. At the boundary contraction
+factor the contracted current-shape residual exactly fits the h0-h34 budget; at
+the first strict margin, $1.01$ times that factor, the screen reports positive
+headroom while preserving the node-share sum. This still does not certify
+directed rounding or h0-h34 covariance, but it turns the next provider proof
+into a concrete contract: prove each midpoint-centered node residual contracts
+by at least the selected current-shape factor, then consume the resulting
+budget-fitting h0-h34 provider before replaying terminal/all-h-row covariance.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.

@@ -3591,3 +3591,107 @@ is still not a directed-rounded continuous producer-image certificate, but it
 removes the terminal-only false path: the next certificate must preserve
 broader all-h-row covariance or prove a signed nonterminal-floor cancellation
 before the H39 shifted-source majorant is taken.
+
+The provider-boundary target now makes the false path executable as a
+two-block allocation budget. The current selected rows have no terminal-only
+budget while h0-h34 is fixed; h0-h34 must be compressed by more than about
+$7.84\times10^3$ before a terminal h35-h37 budget even becomes positive. With
+h0-h34 eliminated, the terminal block still needs more than about
+$2.04\times10^5$ compression, while balanced all-h-row compression remains
+positive at about $2.12\times10^5$. This keeps the claim candidate-only, but it
+turns the next H39 closure object into an all-h-row covariance certificate or a
+signed h0-h34 cancellation proof, not another terminal-only envelope attempt.
+
+The same artifact now adds a signed h0-h34 floor target beside the allocation
+budget. It replays the h0-h34 cell-midpoint localization intervals through the
+same five Lagrange weights and reports both the signed midpoint contribution
+and the intervalized floor relative to the row-local $M_4$ requirement. This
+does not certify cancellation, but it makes the next fork executable: if the
+signed midpoint is already small, the blocker is an interval-dependency
+artifact; if the midpoint itself is large, the proof must find an actual
+signed h0-h34 cancellation identity before H39 shifted-source majorization.
+
+The live route falls on the first branch. The signed h0-h34 midpoint is bounded
+at about $6.69\times10^{-10}$ of the row-local requirement while the
+intervalized h0-h34 floor remains about $7.84\times10^3$ times too large. The
+new identity router records that the midpoint route can enter the two-block
+budget without using the interval absolute floor, leaving a positive terminal
+h35-h37 budget that still requires about $2.04\times10^5$ compression. The
+next proof object is therefore not "make h0-h34 small" in an absolute interval
+sense; it is "certify the signed h0-h34 midpoint identity and then preserve
+terminal/all-h-row producer-image covariance."
+
+The signed identity has now been decomposed one layer further. The diagnostic
+exports
+`candidate-signed-nonterminal-h0-h34-midpoint-fourth-difference-identity-target`,
+which replays the h0-h34 midpoint stream through the same five Lagrange
+fourth-derivative weights and records the positive, negative, absolute, and
+signed weighted contributions. The live selected rows classify as
+`signed-nonterminal-fourth-difference-cancels-before-interval-floor`: the
+signed-to-absolute midpoint ratio is about $1.70\times10^{-6}$, the
+cancellation gain is about $5.88\times10^5$, and the absolute midpoint mass is
+only about $3.93\times10^{-4}$ of the row-local requirement. The small h0-h34
+midpoint contribution is therefore a finite five-node fourth-difference
+near-cancellation, not a hidden terminal-only budget. This keeps all
+certificate flags false, but it narrows the next proof object to a
+directed-rounded same-domain proof of that signed five-node fourth-difference
+near-cancellation plus the already exposed terminal/all-h-row producer-image
+covariance.
+
+The route now quantifies the directed-interval burden instead of merely naming
+it. The diagnostic adds
+`candidate-signed-nonterminal-h0-h34-dependency-loss-budget`, derived from the
+same floor target and midpoint fourth-difference identity. On the live rows the
+absolute midpoint mass is already below the row-local requirement by about
+$2.54\times10^3$, but the interval floor is about $2.0\times10^7$ times the
+absolute midpoint mass and about $1.17\times10^{13}$ times the signed
+midpoint. The current obstruction is therefore interval dependency loss, not
+midpoint size: the directed-rounded provider must keep the five-node h0-h34
+stream tied together closely enough that only the residual around the midpoint
+is charged. The budget also subtracts the midpoint contribution from the
+intervalized fourth-difference interval and records the resulting
+midpoint-centered residual compression burden, which is the concrete directed
+interval object that must close before the terminal/all-h-row covariance proof
+can consume the remaining budget.
+
+The diagnostic now translates that burden into a concrete provider
+specification. The
+`candidate-signed-nonterminal-h0-h34-midpoint-dependency-preserving-provider-specification-target`
+keeps the five-node fourth-difference dependency visible and computes the
+coefficient residual radius each node may carry after its midpoint value is
+subtracted. Its local acceptance inequality is
+$|w_i|\,\varepsilon_i \le B_i$, where $w_i$ is the Lagrange fourth-derivative
+weight and $B_i$ is the node's allocated derivative-residual budget. This
+artifact remains candidate-only: it says exactly what a directed-rounded
+same-domain h0-h34 provider must prove, and records that the current
+intervalized node radii still need contraction before the terminal/all-h-row
+covariance route can be consumed. It also reports the dominant node for that
+balanced radius-compression demand, turning the next same-domain provider
+attempt into a local residual-radius problem instead of another all-h-row
+interval-box replay.
+
+The same lane now carries a current-shape allocation comparison. The
+`candidate-signed-nonterminal-h0-h34-current-shape-radius-contraction-profile-target`
+uses the current weighted residual magnitudes $d_i$ to form the minimax
+allocation $B_i=B\,d_i/\sum_j d_j$ of the total residual derivative budget
+$B$. This makes the common contraction factor exactly $\sum_i d_i/B$ and
+separates two questions that were previously blended: how much the current
+five-node residual shape must contract, and how much extra penalty is introduced
+by balanced or uniform-coefficient allocation. The live classification says the
+current-shape allocation sharpens the balanced node-radius target, so the next
+provider attempt should preserve the midpoint dependency and prove uniform
+contraction of the existing residual shape before applying absolute Lagrange
+majorants.
+
+That provider attempt now has a candidate screen. The
+`candidate-signed-nonterminal-h0-h34-current-shape-certificate-screen` consumes
+the current-shape profile without recomputing the Lagrange geometry, contracts
+the live weighted residual shape by the minimax factor, and then applies
+explicit safety margins. The boundary screen fits the h0-h34 residual budget,
+and the first strict safety margin uses a $1.01$ multiplier to leave positive
+headroom while keeping the five node shares unchanged. This remains
+candidate-only because it does not produce directed-rounded node residual
+enclosures, but it replaces the vague "prove enough contraction" instruction
+with a provider contract: certify the same-domain midpoint-centered residuals
+below the screened per-node contracted radii, then feed that h0-h34 provider
+into the terminal/all-h-row covariance replay.

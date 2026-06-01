@@ -19,6 +19,9 @@ const T0 = 6.28318530718;
 const AMPLITUDE = 1.25;
 const DEFAULT_SEED_LAMBDA = 0.3;
 const DEFAULT_FOLD_HALF_WIDTH = 0.004;
+const ROOT_SCAN_STEPS = 50000;
+const ROOT_TOLERANCE = 1e-13;
+const ROOT_DEDUPE_TOLERANCE = 1e-9;
 
 function parseArgs(argv) {
   const args = {
@@ -223,13 +226,93 @@ function xdotAt(theta, lambda, contract, input, result) {
   return xPrimeAt(theta, lambda, contract, input, result) / T0;
 }
 
+function rootFunction(theta, lambda, target, contract, input, result) {
+  return xdotAt(theta, lambda, contract, input, result) - target;
+}
+
+function addRoot(roots, theta) {
+  const root = modOne(theta);
+  const exists = roots.some((existing) => {
+    const gap = Math.abs(existing - root);
+    return gap <= ROOT_DEDUPE_TOLERANCE || Math.abs(gap - 1) <= ROOT_DEDUPE_TOLERANCE;
+  });
+  if (!exists) {
+    roots.push(root);
+  }
+}
+
+function bisectRoot(left, right, lambda, target, contract, input, result) {
+  let lo = left;
+  let hi = right;
+  let flo = rootFunction(lo, lambda, target, contract, input, result);
+  for (let step = 0; step < 80; step += 1) {
+    const mid = (lo + hi) / 2;
+    const fmid = rootFunction(mid, lambda, target, contract, input, result);
+    if (Math.abs(fmid) <= ROOT_TOLERANCE || Math.abs(hi - lo) <= ROOT_TOLERANCE) {
+      return mid;
+    }
+    if (Math.sign(flo) === Math.sign(fmid)) {
+      lo = mid;
+      flo = fmid;
+    } else {
+      hi = mid;
+    }
+  }
+  return (lo + hi) / 2;
+}
+
+function rootsForTarget(lambda, target, contract, input, result) {
+  const roots = [];
+  let left = 0;
+  let leftValue = rootFunction(left, lambda, target, contract, input, result);
+  if (Math.abs(leftValue) <= ROOT_TOLERANCE) {
+    addRoot(roots, left);
+  }
+  for (let index = 1; index <= ROOT_SCAN_STEPS; index += 1) {
+    const right = index / ROOT_SCAN_STEPS;
+    const rightValue = rootFunction(right, lambda, target, contract, input, result);
+    if (Math.abs(rightValue) <= ROOT_TOLERANCE) {
+      addRoot(roots, right);
+    } else if (Math.sign(leftValue) !== Math.sign(rightValue)) {
+      addRoot(roots, bisectRoot(left, right, lambda, target, contract, input, result));
+    }
+    left = right;
+    leftValue = rightValue;
+  }
+  return roots;
+}
+
+function computedStateAtLambda(lambda, contract, input, result) {
+  const positive = rootsForTarget(lambda, 1, contract, input, result).sort((a, b) => a - b);
+  const negative = rootsForTarget(lambda, -1, contract, input, result).sort((a, b) => a - b);
+  const all = [];
+  for (const root of [...positive, ...negative]) {
+    addRoot(all, root);
+  }
+  all.sort((a, b) => a - b);
+  let maxAbsXdot = 0;
+  for (let index = 0; index <= ROOT_SCAN_STEPS; index += 1) {
+    maxAbsXdot = Math.max(
+      maxAbsXdot,
+      Math.abs(xdotAt(index / ROOT_SCAN_STEPS, lambda, contract, input, result)),
+    );
+  }
+  return {
+    lambda: cleanNumber(lambda),
+    root_count: all.length,
+    root_thetas: all.map((value) => cleanNumber(value)),
+    positive_velocity_roots: positive.map((value) => cleanNumber(value)),
+    negative_velocity_roots: negative.map((value) => cleanNumber(value)),
+    max_abs_xdot_sampled: cleanNumber(maxAbsXdot),
+    source: "computed_direct_path_root_scan",
+    scan_steps: ROOT_SCAN_STEPS,
+  };
+}
+
 function stateAtLambda(obstruction, lambda) {
   const states = obstruction.field_speed_itinerary_audit?.states || [];
   const state = states.find((entry) => Math.abs(Number(entry.lambda) - lambda) <= 1e-12);
-  if (!state) {
-    throw new Error(`Missing shifted obstruction state at lambda=${lambda}`);
-  }
-  return state;
+  return state ? { ...state, source: "shifted_obstruction_state" } : null;
 }
 
 function classifyRoot(theta, state) {
@@ -410,7 +493,9 @@ function buildArtifacts(files, args) {
   const obstruction = files.obstruction.data;
   const packetId = target.selected_rebuild_target.proposed_successor_packet_id;
   const itineraryId = target.selected_rebuild_target.proposed_itinerary_id;
-  const state = stateAtLambda(obstruction, args.seedLambda);
+  const state =
+    stateAtLambda(obstruction, args.seedLambda) ??
+    computedStateAtLambda(args.seedLambda, contract, input, result);
   if (state.root_count !== target.selected_rebuild_target.target_root_count) {
     throw new Error(`Expected ${target.selected_rebuild_target.target_root_count} roots at seed lambda, got ${state.root_count}`);
   }
@@ -490,6 +575,8 @@ function buildArtifacts(files, args) {
       formula: "X_seed(theta)=X_fresh(theta)+lambda*H_shifted(theta), T_seed=T0",
       strict_gap_threshold_lambda: target.source_facts.shifted_separator_fixed_period.threshold_lambda,
       root_count_at_seed_lambda: state.root_count,
+      root_state_source: state.source,
+      root_scan_steps: state.scan_steps ?? null,
     },
     higher_fold_itinerary: {
       root_count: state.root_count,
@@ -615,11 +702,13 @@ This packet materializes the first diagnostic successor seed for
 
 It uses the shifted-separator direct path at
 \`lambda=${cleanNumber(args.seedLambda)}\`, which is above the strict-gap
-threshold and still has 12 sampled field-speed roots. The root-count topology is
-certified separately by
-\`fresh_v10_higher_fold_root_tube_interval_certificate.v0.md\`. This seed packet
+threshold and still has 12 sampled field-speed roots. The root-count topology
+must be certified separately by a matching root-tube interval certificate for
+this seed. This seed packet
 does not claim an EOM-solved returned sample, a proof-interval preledger pass, a
 live ledger update, or branch-chart authorization.
+The root-state source for this run is
+\`${artifacts.phi.direct_path_seed.root_state_source}\`.
 
 Artifacts:
 
@@ -688,6 +777,30 @@ certifies 622 simple-root receiver leaves, records 3,024 structural terminal
 source-cover misses, resolves 0 coarse cells, consumes 0 parent rows, and
 leaves the same 162 base rows \`split_required\`.
 
+The one-leaf post-probe stack,
+\`one_leaf_boundary_movement_probe_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.md\`,
+\`one_leaf_source_boundary_movement_theorem_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.md\`,
+\`one_leaf_receiver_range_contraction_theorem_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.md\`,
+and
+\`one_leaf_candidate_change_boundary_data_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.md\`,
+declares the exact source-boundary, receiver-range, and combined
+candidate-change boundary-opening targets for the three smallest regular rows.
+It certifies 0 source-boundary movement rows, 0 receiver-range contraction rows,
+0 same-packet candidate-change rows, consumes 0 rows, and does not authorize a
+branch chart.
+
+The direct-path lambda shift screen,
+\`one_leaf_direct_path_lambda_shift_screen_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.md\`,
+tests the first concrete sampled route to those shifts. Raising the existing
+direct-path parameter from \`lambda=0.3\` to \`lambda=0.305\` opens 3 / 3 one-leaf
+boundary targets at sampled active endpoints; the largest active-endpoint
+threshold is \`lambda>0.301815056706425\`, leaving trial margin
+\`0.00318494329357499\`. The \`lambda=0.305\` replay audit recertifies the trial
+seed's 12-root topology and reruns v1-v6, but it still leaves 162 rows
+\`split_required\`, 0 complete receiver-cover parent rows, 0 accepted fold-layer
+rows, and no branch-chart authorization. Direct-path lambda motion remains
+fail-closed for row consumption.
+
 The fold-layer burden atlas,
 \`fold_layer_burden_report.fresh-v10-higher-fold-12-root-rebuild-v0.md\`,
 groups the 112 fold-layer rows by 12 higher-fold separator layers. It records
@@ -700,8 +813,8 @@ Before any branch-chart work, this successor packet needs:
 
 - regenerated null-coordinate collars and fold-layer rows under this packet
   identity;
-- a new source-cover/parent-complement theorem or candidate change for the 42
-  regular residual rows;
+- a new source-cover/parent-complement theorem or candidate change with
+  proof-grade positive boundary-opening data for the 42 regular residual rows;
 - periodic endpoint/complement ownership for 8 rows;
 - fold-layer proof-interval closure, using the burden atlas as the worklist,
   that classifies the 112 fold-layer rows as bounded \`fold_layer\`.

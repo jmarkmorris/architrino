@@ -71,6 +71,64 @@ contraction rows. The exact strict improvement thresholds are
 `0.000026691996524`, `0.000026691996524`, and `0.00024618430271`, so these are
 now the smallest concrete inequalities a same-packet movement theorem or
 receiver-range contraction theorem must prove.
+The source-boundary movement theorem attempt,
+`one_leaf_source_boundary_movement_theorem_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.md`,
+verifies those thresholds as exact source-boundary defect identities but
+certifies 0 same-packet movement rows because the packet has no source-boundary
+variation or endpoint-tightening certificate preserving monotonicity and memory
+margins.
+The receiver-range contraction theorem attempt,
+`one_leaf_receiver_range_contraction_theorem_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.md`,
+verifies the same thresholds as exact receiver-boundary defect identities but
+certifies 0 same-packet contraction rows because the packet has no receiver
+range refinement or receiver endpoint-tightening certificate preserving
+monotonicity and memory margins.
+The candidate-change boundary-data constructor,
+`one_leaf_candidate_change_boundary_data_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.md`,
+then converts the separate source and receiver routes into exact combined
+boundary-opening inequalities. The two low-side rows require
+`sigma_source_lower + rho_receiver_lower > required_strict_improvement_q`; the
+high-side row requires
+`sigma_source_upper + rho_receiver_upper > required_strict_improvement_q`. It
+declares 3 / 3 combined targets but certifies 0 same-packet candidate-change
+boundary-data rows because no deformation or endpoint-tightening packet assigns
+positive boundary shifts.
+The direct-path lambda shift screen,
+`one_leaf_direct_path_lambda_shift_screen_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.md`,
+tests the first concrete route to such shifts. At sampled active endpoints, the
+existing higher-fold direct path changes all three one-leaf boundary targets
+with the favorable sign when `lambda` is increased from `0.3` to `0.305`; the
+largest active-endpoint threshold is `lambda>0.301815056706425`. This screen is
+priority-only and fail-closed because it does not itself certify monotonicity,
+memory, ownership, branch-reuse exclusion, or non-owned-complement closure. The
+follow-on `lambda=0.305` replay recertifies 12-root topology for that trial
+seed and reruns v1-v6, but the replay still leaves 162 rows `split_required`,
+0 complete receiver-cover parent rows, 0 accepted fold-layer rows, and no
+branch-chart authorization. Direct-path lambda motion alone is therefore not
+the next closure mechanism.
+The nonlinear fold-coordinate collocation tangent-matrix screen,
+`gap_opening_fresh_v10_fold_coordinate_collocation_report.nonlinear-v0.md`,
+now packages the first executable collocation-surface test: 3 homogeneous
+fold-coordinate structural rows, the 10 v10 strict null-coordinate
+parent-complement collars, and the three one-leaf boundary-opening inequalities
+as first-focus guard data. The scanner result is `feasible`, with
+`B\xi=0` verified, minimum strict-gap value after required margin
+`0.484518823372`, and minimum one-leaf boundary-opening margin
+`0.99975381569729`. This is a tangent-screen success only. It still consumes 0
+rows, keeps `preledger_pass=false`, keeps `branch_chart_authorized=false`, and
+does not prove the monotonicity, memory, endpoint ownership/no-double-counting,
+branch-reuse exclusion, non-owned complement closure, periodic
+endpoint/complement ownership, or fold-layer fields required by the pre-ledger.
+The follow-on fold-coordinate candidate-change theorem attempt,
+`one_leaf_fold_coordinate_collocation_candidate_change_theorem_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+imports that witness back into the one-leaf candidate-change stack. It matches
+3 / 3 constructor rows, verifies 3 / 3 fold-coordinate screen-positive
+boundary openings, and records minimum screen margin `0.999753815697289`.
+It deliberately certifies 0 / 3 proof-grade same-packet candidate-change rows:
+`strict_combined_boundary_opening_gt_threshold`, source/receiver monotonicity,
+memory margins, endpoint ownership/no-double-counting, branch-reuse exclusion,
+non-owned complement closure, root-topology recertification, and preledger
+rerun remain absent for the candidate change.
 The remaining branches are periodic
 endpoint/complement ownership for the 8 lift rows and fold-layer certificate
 closure for the 112 fold-layer rows now grouped by

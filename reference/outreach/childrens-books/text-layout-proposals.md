@@ -61,7 +61,23 @@ Production guidance:
 - keep story text about 20 percent smaller than the first reverse-band mockups;
 - use black-on-white only outside child-facing story pages.
 
-## Portrait Social Version
+## Primary Short-Video Version
+
+![Reverse band Shorts/TikTok version](assets/text-layout-reverse-band-shorts-tiktok-9x16.png)
+
+Recommended format:
+
+- 9:16 portrait;
+- 1080 x 1920 px;
+- primary target for YouTube Shorts, TikTok, Instagram Reels, and Instagram Stories;
+- artwork in the upper region;
+- reverse text band in the lower region;
+- story text lifted within the band so platform captions and bottom controls are less likely to cover it;
+- keep the right edge relatively quiet because short-video interfaces often place action buttons there.
+
+This should be the default export for short-video-first outreach. If a short is animated later, use the same safe-zone structure: moving art above, reverse text band below, no essential geometry at the extreme bottom or far right.
+
+## Feed Portrait Version
 
 ![Reverse band portrait social version](assets/text-layout-reverse-band-social-portrait.png)
 
@@ -69,8 +85,11 @@ Recommended format:
 
 - 4:5 portrait;
 - 1080 x 1350 px for social feeds;
+- story text uses the same font size as the landscape reverse-band example;
 - artwork in the upper region;
 - reverse text band in the bottom region;
 - generous safe margins for mobile cropping.
 
-The portrait version should be used for social posts, preview cards, campaign graphics, and series announcements. It should not replace print-book page layout.
+The feed portrait version should be used for Instagram feed posts, Threads feed posts, preview cards, campaign graphics, and series announcements. It should not replace print-book page layout.
+
+TikTok, Instagram Reels, Instagram Stories, and other full-screen vertical placements should receive a separate 9:16 export, typically 1080 x 1920 px, with the art and reverse band recomposed for that taller frame.

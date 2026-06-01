@@ -217,6 +217,36 @@ The next solver should therefore:
    components and certifies 0 movement or contraction rows; its strict
    thresholds are `0.000026691996524`, `0.000026691996524`, and
    `0.00024618430271`.
+   The source-boundary movement theorem attempt verifies those thresholds as
+   exact source-boundary defect identities but certifies 0 source-boundary
+   movement rows because the packet lacks a same-packet source-boundary
+   variation or endpoint-tightening certificate that preserves monotonicity and
+   memory margins.
+   The receiver-range contraction theorem attempt verifies the same thresholds
+   as exact receiver-boundary defect identities but certifies 0 receiver
+   contraction rows because the packet lacks a same-packet receiver-range
+   refinement or receiver endpoint-tightening certificate that preserves
+   monotonicity and memory margins.
+   The candidate-change boundary-data constructor combines those two failed
+   routes into exact boundary-opening inequalities,
+   `sigma_source_lower + rho_receiver_lower > required_strict_improvement_q`
+   for the two low-side rows and
+   `sigma_source_upper + rho_receiver_upper > required_strict_improvement_q`
+   for the high-side row. It declares all three targets but certifies 0
+   same-packet candidate-change boundary-data rows because the packet contains
+   no deformation or endpoint-tightening data assigning positive boundary
+   shifts.
+   The direct-path lambda shift screen then tests the first concrete candidate
+   direction for those shifts. At sampled active endpoints, increasing `lambda`
+   from `0.3` to `0.305` opens all three one-leaf boundary targets; the largest
+   active-endpoint threshold is `lambda>0.301815056706425`. The follow-on
+   `lambda=0.305` replay recertifies proof-grade 12-root topology for the trial
+   seed and reruns the v1-v6 preledger sidecars, but still leaves 162 rows
+   `split_required`, 0 complete receiver-cover parent rows, 0 accepted
+   fold-layer rows, and no branch-chart authorization. This remains
+   priority-only and fail-closed because direct-path lambda motion alone does
+   not prove monotonicity, memory, ownership, branch-reuse exclusion, or
+   non-owned-complement closure for row consumption.
    The fold-layer burden atlas groups the 112 fold-layer rows
    by 12 separator layers, but consumes 0 rows. The branch still leaves 162
    rows `split_required` across 42 structural parent complement-coverage rows,

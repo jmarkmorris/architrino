@@ -331,6 +331,31 @@ candidate input under `fresh-same-packet-fold-shear-seed-v0`; the remaining
 work is to enforce the full same-packet structural constraints and
 outward-rounded interval pre-ledger.
 
+The first nonlinear fold-coordinate collocation tangent-matrix surface is now
+recorded in
+`gap_opening_fresh_v10_fold_coordinate_collocation_input.nonlinear-v0.json`,
+`gap_opening_fresh_v10_fold_coordinate_collocation_result.nonlinear-v0.json`,
+and
+`gap_opening_fresh_v10_fold_coordinate_collocation_report.nonlinear-v0.md`.
+It adds bounded fold-coordinate boundary-opening columns and 3 homogeneous
+structural rows to the shifted-separator strict-gap matrix, keeps the scanner
+focused on the 10 v10 parent-complement collars, and imports the three
+higher-fold one-leaf boundary-opening rows as first-focus guard data. The
+scanner finds a strict tangent witness with minimum post-margin surplus
+`0.484518823372`; the one-leaf boundary-opening guard has minimum margin
+`0.99975381569729`. This is still not a solved candidate, not an interval
+certificate, not a pre-ledger pass, and not branch-chart authorization.
+
+The one-leaf fold-coordinate candidate-change theorem attempt is recorded in
+`one_leaf_fold_coordinate_collocation_candidate_change_theorem_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`one_leaf_fold_coordinate_collocation_candidate_change_theorem_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It imports the same fold-coordinate witness into the one-leaf
+candidate-change stack, matches 3 / 3 constructor rows, verifies 3 / 3
+screen-level positive boundary openings with minimum screen margin
+`0.999753815697289`, and still certifies 0 proof-grade same-packet
+candidate-change rows.
+
 ## Pre-Ledger Stop Condition
 
 Stop before branch-chart construction unless every pre-ledger row satisfies
