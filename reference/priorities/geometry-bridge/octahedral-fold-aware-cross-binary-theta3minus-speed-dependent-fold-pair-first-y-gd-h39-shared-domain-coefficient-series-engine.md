@@ -3961,6 +3961,31 @@ of the same-domain H38 source-map node intervals themselves. The next provider
 must contract that signed node source-map residual stream before H39 applies
 the absolute Lagrange/Cauchy envelope.
 
+The provider boundary now also distinguishes center drift from interval width.
+The candidate center-width contraction probe preserves each live node residual
+center and asks whether shrinking only the half-width by the selected
+$2.1184411339540756\times10^5$ contraction factor would fit the screened
+targets. It does not: every signed and weighted live center lies inside the
+corresponding screened target, with worst center offset below
+$1.75\times10^{-4}$ of the target half-width, but the center-preserving
+half-width fit needs a maximum contraction of
+$2.1188108171223156\times10^5$. Equivalently, the selected contraction is short
+by a factor of about $1.00017448$. The obstruction is therefore not a bad
+node center and not a missing source normal form; it is a center-aware
+same-domain node half-width certificate for the H38 source-map residual stream.
+
+That center-aware half-width target is now executable. The five-node
+source-map path emits provider-shaped rows centered at the live residual
+centers, with signed and weighted half-widths set to the largest intervals
+that remain inside the original screened targets. These rows preserve the
+same-domain source terms, $y$-order, $\xi$ nodes, and original screened target
+radii, and they pass the directed-provider verifier up to the expected
+source-kind failure: the classification is
+`center-aware-provider-radius-target-contained-source-certification-open`.
+This advances the blocker from "find the right radius" to "supply a
+directed-rounded H38 source-map residual provider that realizes this exact
+center-aware radius target."
+
 The same target now carries a source-map trace-anchor summary, threaded from the
 row-local provider rows that feed the terminal covariance route. That summary
 matches the selected requested-y44 rows to the h0-h34 source-term
@@ -4017,3 +4042,61 @@ is retained only as a non-certifying comparison and remains open under strict
 interval inclusion. The next true blocker is therefore not a missing verifier
 interface; it is the real directed-rounded same-domain H38 source-map residual
 provider for the five shared-stream nodes.
+
+The center-aware provider target now has a source-covariance realization
+budget. The executable artifact
+`source_map_residual_shared_stream_five_node_center_aware_source_covariance_realization_budget`
+joins the center-aware node half-widths to the signed-source normal-form
+triangle bounds for the same five nodes. This makes the remaining burden
+source-level rather than geometric: a future directed-rounded H38 provider must
+keep the signed `delta_squared_speed + sin_phi + sin_delta` cancellation intact
+enough that each node's source-term triangle collapses to the center-aware
+half-width before H39 applies absolute shifted-source bounds. The artifact
+keeps directed-rounded same-domain, shifted $R_{\varepsilon,43}$, and retained
+branch claims false; it is a realization budget, not closure. The focused
+fixture also shows that the extra cancellation is not a sub-$10^{-5}$ rounding
+sliver, so the next certificate has to preserve genuine signed source
+covariance through the H38 producer image rather than merely tighten the
+already-selected node radii. It also separates the dominance pictures: the
+node-radius target is still dominated by node 2, but the source-covariance
+realization budget is dominated by node 4.
+
+The node-4 realization burden now has a term-level decomposition. The H39
+artifact emits
+`source_map_residual_shared_stream_five_node_term_cancellation_decomposition`,
+which rewrites each of the five shared-stream nodes into three signed term
+residual intervals and three pairwise term-sum intervals. It checks that the
+term residual sum matches the live signed source-map residual at sub-$10^{-12}$
+endpoint gap, records the dominant term by residual upper bound, and records
+both the dominant pair by triangle share and the strongest pairwise
+cancellation. This makes the next directed-rounded H38 provider target more
+specific: it must preserve the node-4 term and pair cancellation decomposition
+through intervalization, not merely reproduce an aggregate half-width.
+
+That decomposition now has a provider-row preservation verifier. The H39
+artifact emits
+`source_map_residual_shared_stream_five_node_term_preservation_verifier`, which
+feeds the signed-source normal-form provider rows back through the five-node
+term/pair decomposition. The verifier checks that each provider row supplies
+the three source-term residual intervals, that their sum replays the provider
+signed residual and the recorded decomposition at sub-$10^{-12}$ endpoint gap,
+and that all three pair sums match the recorded pair structure. On the live
+candidate path this reaches the provider boundary with only source
+certification open: the rows preserve the term and pair cancellation structure,
+but they are still candidate rows rather than directed-rounded same-domain H38
+producer-image rows.
+
+The source-certification gap is now split one level finer. The H39 artifact
+emits
+`source_map_residual_shared_stream_five_node_term_endpoint_margin_diagnostic`
+and
+`source_map_residual_shared_stream_five_node_term_source_operation_replay`.
+Together these replay the term sums and all three pair sums through the same
+outward interval arithmetic used by the provider rows, then check that a
+one-`Number.EPSILON` relative endpoint margin contains the replayed term and
+pair intervals. The live candidate path classifies as
+`term-pair-arithmetic-replay-is-stable-source-interval-provenance-open`: the
+aggregate arithmetic is stable, so the remaining proof object is not another
+cancellation decomposition. It is a directed-rounded same-domain H38
+producer-image interval provider for the three source terms themselves before
+the already-verified term/pair operation replay.

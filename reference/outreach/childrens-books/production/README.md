@@ -17,3 +17,5 @@ Current completed first-draft books:
 - `the-message-that-traveled`: 19 source images generated, QA approved, 19 landscape pages exported, 19 feed portrait derivatives exported, and 19 short-video derivatives exported.
 - `the-tiny-transceivers`: 22 source images generated, QA approved, 22 landscape pages exported, 22 feed portrait derivatives exported, and 22 short-video derivatives exported.
 - `the-balance-point`: 23 source images generated, QA approved, 23 landscape pages exported, 23 feed portrait derivatives exported, and 23 short-video derivatives exported.
+- `the-history-that-pushes-now`: 26 source images generated, QA approved, 26 landscape pages exported, 26 feed portrait derivatives exported, and 26 short-video derivatives exported.
+- `the-world-we-recover`: 27 source images generated, QA approved, 27 landscape pages exported, 27 feed portrait derivatives exported, and 27 short-video derivatives exported.

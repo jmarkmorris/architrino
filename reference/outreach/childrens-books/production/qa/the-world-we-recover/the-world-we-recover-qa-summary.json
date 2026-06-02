@@ -1,0 +1,542 @@
+[
+  {
+    "id": "the-world-we-recover-cover",
+    "book_slug": "the-world-we-recover",
+    "source_png": "reference/outreach/childrens-books/production/source/the-world-we-recover/the-world-we-recover-cover.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.5519,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-world-we-recover-spread-01",
+    "book_slug": "the-world-we-recover",
+    "source_png": "reference/outreach/childrens-books/production/source/the-world-we-recover/the-world-we-recover-spread-01.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.5245,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-world-we-recover-spread-02",
+    "book_slug": "the-world-we-recover",
+    "source_png": "reference/outreach/childrens-books/production/source/the-world-we-recover/the-world-we-recover-spread-02.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4914,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-world-we-recover-spread-03",
+    "book_slug": "the-world-we-recover",
+    "source_png": "reference/outreach/childrens-books/production/source/the-world-we-recover/the-world-we-recover-spread-03.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.3955,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-world-we-recover-spread-04",
+    "book_slug": "the-world-we-recover",
+    "source_png": "reference/outreach/childrens-books/production/source/the-world-we-recover/the-world-we-recover-spread-04.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4095,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-world-we-recover-spread-05",
+    "book_slug": "the-world-we-recover",
+    "source_png": "reference/outreach/childrens-books/production/source/the-world-we-recover/the-world-we-recover-spread-05.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.478,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-world-we-recover-spread-06",
+    "book_slug": "the-world-we-recover",
+    "source_png": "reference/outreach/childrens-books/production/source/the-world-we-recover/the-world-we-recover-spread-06.png",
+    "exists": true,
+    "automated": {
+      "width": 1537,
+      "height": 1023,
+      "aspect_ratio": 1.5024,
+      "saturated_non_palette_fraction": 0.4724,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-world-we-recover-spread-07",
+    "book_slug": "the-world-we-recover",
+    "source_png": "reference/outreach/childrens-books/production/source/the-world-we-recover/the-world-we-recover-spread-07.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4055,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-world-we-recover-spread-08",
+    "book_slug": "the-world-we-recover",
+    "source_png": "reference/outreach/childrens-books/production/source/the-world-we-recover/the-world-we-recover-spread-08.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4327,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-world-we-recover-spread-09",
+    "book_slug": "the-world-we-recover",
+    "source_png": "reference/outreach/childrens-books/production/source/the-world-we-recover/the-world-we-recover-spread-09.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.5041,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-world-we-recover-spread-10",
+    "book_slug": "the-world-we-recover",
+    "source_png": "reference/outreach/childrens-books/production/source/the-world-we-recover/the-world-we-recover-spread-10.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4414,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-world-we-recover-spread-11",
+    "book_slug": "the-world-we-recover",
+    "source_png": "reference/outreach/childrens-books/production/source/the-world-we-recover/the-world-we-recover-spread-11.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4728,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-world-we-recover-spread-12",
+    "book_slug": "the-world-we-recover",
+    "source_png": "reference/outreach/childrens-books/production/source/the-world-we-recover/the-world-we-recover-spread-12.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4865,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-world-we-recover-spread-13",
+    "book_slug": "the-world-we-recover",
+    "source_png": "reference/outreach/childrens-books/production/source/the-world-we-recover/the-world-we-recover-spread-13.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.534,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-world-we-recover-spread-14",
+    "book_slug": "the-world-we-recover",
+    "source_png": "reference/outreach/childrens-books/production/source/the-world-we-recover/the-world-we-recover-spread-14.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4461,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-world-we-recover-spread-15",
+    "book_slug": "the-world-we-recover",
+    "source_png": "reference/outreach/childrens-books/production/source/the-world-we-recover/the-world-we-recover-spread-15.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.5325,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-world-we-recover-spread-16",
+    "book_slug": "the-world-we-recover",
+    "source_png": "reference/outreach/childrens-books/production/source/the-world-we-recover/the-world-we-recover-spread-16.png",
+    "exists": true,
+    "automated": {
+      "width": 1537,
+      "height": 1023,
+      "aspect_ratio": 1.5024,
+      "saturated_non_palette_fraction": 0.4335,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-world-we-recover-spread-17",
+    "book_slug": "the-world-we-recover",
+    "source_png": "reference/outreach/childrens-books/production/source/the-world-we-recover/the-world-we-recover-spread-17.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4272,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-world-we-recover-spread-18",
+    "book_slug": "the-world-we-recover",
+    "source_png": "reference/outreach/childrens-books/production/source/the-world-we-recover/the-world-we-recover-spread-18.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4205,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-world-we-recover-spread-19",
+    "book_slug": "the-world-we-recover",
+    "source_png": "reference/outreach/childrens-books/production/source/the-world-we-recover/the-world-we-recover-spread-19.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.472,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-world-we-recover-spread-20",
+    "book_slug": "the-world-we-recover",
+    "source_png": "reference/outreach/childrens-books/production/source/the-world-we-recover/the-world-we-recover-spread-20.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.43,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-world-we-recover-backmatter-01",
+    "book_slug": "the-world-we-recover",
+    "source_png": "reference/outreach/childrens-books/production/source/the-world-we-recover/the-world-we-recover-backmatter-01.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4813,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-world-we-recover-backmatter-02",
+    "book_slug": "the-world-we-recover",
+    "source_png": "reference/outreach/childrens-books/production/source/the-world-we-recover/the-world-we-recover-backmatter-02.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.3998,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-world-we-recover-backmatter-03",
+    "book_slug": "the-world-we-recover",
+    "source_png": "reference/outreach/childrens-books/production/source/the-world-we-recover/the-world-we-recover-backmatter-03.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4294,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-world-we-recover-backmatter-04",
+    "book_slug": "the-world-we-recover",
+    "source_png": "reference/outreach/childrens-books/production/source/the-world-we-recover/the-world-we-recover-backmatter-04.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.5251,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-world-we-recover-backmatter-05",
+    "book_slug": "the-world-we-recover",
+    "source_png": "reference/outreach/childrens-books/production/source/the-world-we-recover/the-world-we-recover-backmatter-05.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4106,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-world-we-recover-backmatter-06",
+    "book_slug": "the-world-we-recover",
+    "source_png": "reference/outreach/childrens-books/production/source/the-world-we-recover/the-world-we-recover-backmatter-06.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4523,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  }
+]

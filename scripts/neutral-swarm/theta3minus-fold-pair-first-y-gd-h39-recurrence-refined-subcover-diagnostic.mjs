@@ -350,6 +350,10 @@ function intervalWidth([left, right]) {
   return Number(right) - Number(left);
 }
 
+function intervalHalfWidth(interval) {
+  return intervalWidth(interval) / 2;
+}
+
 function intervalAbsUpper([left, right]) {
   return Math.max(Math.abs(Number(left)), Math.abs(Number(right)));
 }
@@ -44427,6 +44431,158 @@ export function buildH39RequestedY44ProducerImageBudgetComparisonCandidate({
       nonconstantSourceMapResidualCovarianceTarget
         ?.source_map_residual_shared_stream_five_node_signed_source_normal_form_probe
         ?.max_weighted_source_normal_form_to_live_endpoint_relative_gap ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_width_contraction_classification:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_width_contraction_probe
+        ?.center_width_contraction_classification ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_width_reaches_verifier_with_source_only_failure:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_width_contraction_probe
+        ?.center_width_reaches_verifier_with_source_only_failure ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_width_max_required_compression:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_width_contraction_probe
+        ?.max_required_centered_half_width_compression_factor ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_width_required_to_selected_contraction_factor:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_width_contraction_probe
+        ?.required_centered_to_selected_contraction_factor ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_width_max_center_offset:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_width_contraction_probe
+        ?.max_live_center_offset_abs_to_target_half_width ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_width_contraction_interpretation:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_width_contraction_probe
+        ?.center_width_contraction_interpretation ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_aware_provider_radius_classification:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_aware_provider_radius_target
+        ?.center_aware_provider_radius_target_classification ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_aware_provider_required_contraction_factor:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_aware_provider_radius_target
+        ?.required_center_aware_provider_contraction_factor ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_aware_provider_required_to_selected_contraction_factor:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_aware_provider_radius_target
+        ?.required_center_aware_to_selected_contraction_factor ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_aware_provider_reaches_verifier_with_source_only_failure:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_aware_provider_radius_target
+        ?.center_aware_provider_reaches_verifier_with_source_only_failure ??
+      null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_source_covariance_realization_classification:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_aware_source_covariance_realization_budget
+        ?.source_covariance_realization_budget_classification ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_source_covariance_realization_max_triangle_to_half_width:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_aware_source_covariance_realization_budget
+        ?.max_source_term_triangle_to_center_aware_half_width_ratio ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_source_covariance_realization_max_required_cancellation:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_aware_source_covariance_realization_budget
+        ?.max_required_source_term_cancellation_fraction_for_center_aware_half_width ??
+      null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_source_covariance_realization_max_extra_cancellation:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_aware_source_covariance_realization_budget
+        ?.max_extra_source_term_cancellation_fraction_needed_for_center_aware_half_width ??
+      null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_source_covariance_realization_dominant_node_index:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_aware_source_covariance_realization_budget
+        ?.dominant_realization_budget_node_index ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_source_covariance_realization_interpretation:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_aware_source_covariance_realization_budget
+        ?.realization_budget_interpretation ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_classification:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_cancellation_decomposition
+        ?.source_term_cancellation_decomposition_classification ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_dominant_node_index:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_cancellation_decomposition
+        ?.dominant_term_cancellation_node_index ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_dominant_source_term:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_cancellation_decomposition
+        ?.dominant_node_dominant_source_term ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_dominant_pair_key:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_cancellation_decomposition
+        ?.dominant_node_dominant_pair_by_triangle_terms_key ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_strongest_pair_key:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_cancellation_decomposition
+        ?.dominant_node_strongest_pair_cancellation_terms_key ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_max_pair_cancellation_fraction:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_cancellation_decomposition
+        ?.max_pair_cancellation_fraction ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_max_sum_gap:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_cancellation_decomposition
+        ?.max_source_term_sum_endpoint_relative_gap_to_live_signed_residual ??
+      null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_preservation_classification:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_preservation_verifier
+        ?.term_preservation_verifier_classification ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_preservation_reaches_source_only_failure:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_preservation_verifier
+        ?.term_preservation_reaches_verifier_with_source_only_failure ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_preservation_terms_match_decomposition:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_preservation_verifier
+        ?.all_provider_terms_match_decomposition ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_preservation_pairs_match_decomposition:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_preservation_verifier
+        ?.all_provider_pairs_match_decomposition ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_preservation_max_sum_gap:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_preservation_verifier
+        ?.max_provider_term_sum_endpoint_relative_gap ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_endpoint_margin_classification:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_endpoint_margin_diagnostic
+        ?.endpoint_margin_classification ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_endpoint_margin_fit_one_epsilon:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_endpoint_margin_diagnostic
+        ?.all_endpoint_margin_rows_fit_one_number_epsilon ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_endpoint_margin_max_required:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_endpoint_margin_diagnostic
+        ?.max_required_relative_endpoint_margin ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_endpoint_margin_max_to_epsilon:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_endpoint_margin_diagnostic
+        ?.max_required_margin_to_number_epsilon_ratio ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_source_operation_classification:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_source_operation_replay
+        ?.source_operation_replay_classification ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_source_operation_replays_term_sums:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_source_operation_replay
+        ?.all_operation_rows_replay_term_sum_identities ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_source_operation_replays_pair_sums:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_source_operation_replay
+        ?.all_operation_rows_replay_pair_sum_identities ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_source_operation_fits_one_epsilon:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_source_operation_replay
+        ?.all_operation_rows_fit_one_number_epsilon_endpoint_margin ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_source_operation_max_replay_gap:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_source_operation_replay
+        ?.max_operation_replay_relative_gap ?? null,
     producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_contracted_provider_reaches_verifier_with_source_only_failure:
       nonconstantSourceMapResidualCovarianceTarget
         ?.source_map_residual_shared_stream_five_node_contracted_provider_candidate
@@ -47534,6 +47690,2124 @@ function h39RequestedY44SourceMapResidualFiveNodeSignedSourceNormalFormProbe({
   };
 }
 
+function h39RequestedY44SourceMapResidualFiveNodeCenterWidthContractionProbe({
+  inclusionContract,
+} = {}) {
+  if (
+    inclusionContract === null ||
+    inclusionContract === undefined ||
+    inclusionContract.target_kind !==
+      "candidate-requested-y44-shared-source-map-five-node-inclusion-contract"
+  ) {
+    return null;
+  }
+  const contractRows = inclusionContract.provider_contract_rows ?? [];
+  const selectedContractionFactor = Number(
+    inclusionContract.selected_provider_contraction_factor
+  );
+  if (
+    contractRows.length !== 5 ||
+    !finitePositive(selectedContractionFactor)
+  ) {
+    return null;
+  }
+  const centerFit = (liveInterval, targetInterval) => {
+    const live = finiteOrderedIntervalOrNull(liveInterval);
+    const target = finiteOrderedIntervalOrNull(targetInterval);
+    if (live === null || target === null) {
+      return null;
+    }
+    const liveCenter = intervalMidpoint(live);
+    const liveHalfWidth = intervalHalfWidth(live);
+    const targetCenter = intervalMidpoint(target);
+    const targetHalfWidth = intervalHalfWidth(target);
+    const availableHalfWidth = Math.min(
+      liveCenter - target[0],
+      target[1] - liveCenter
+    );
+    const selectedHalfWidth =
+      finitePositive(selectedContractionFactor) &&
+      finiteNonnegative(liveHalfWidth)
+        ? liveHalfWidth / selectedContractionFactor
+        : null;
+    const selectedCenteredInterval =
+      finiteNonnegative(selectedHalfWidth)
+        ? [
+            liveCenter - Number(selectedHalfWidth),
+            liveCenter + Number(selectedHalfWidth),
+          ]
+        : null;
+    const requiredCompression =
+      finitePositive(availableHalfWidth) && finiteNonnegative(liveHalfWidth)
+        ? liveHalfWidth / Number(availableHalfWidth)
+        : finiteNonnegative(availableHalfWidth) && liveHalfWidth === 0
+          ? 1
+          : null;
+    return {
+      live_interval: live,
+      target_interval: target,
+      live_center: liveCenter,
+      live_half_width: liveHalfWidth,
+      target_center: targetCenter,
+      target_half_width: targetHalfWidth,
+      center_offset_from_target_center: liveCenter - targetCenter,
+      center_offset_abs_to_target_half_width:
+        finitePositive(targetHalfWidth)
+          ? Math.abs(liveCenter - targetCenter) / targetHalfWidth
+          : null,
+      live_center_inside_target:
+        liveCenter >= target[0] && liveCenter <= target[1],
+      available_half_width_at_live_center:
+        Number.isFinite(availableHalfWidth) ? availableHalfWidth : null,
+      required_centered_half_width_compression_factor:
+        requiredCompression,
+      selected_centered_half_width: selectedHalfWidth,
+      selected_centered_interval: selectedCenteredInterval,
+      selected_centered_interval_contained_in_target:
+        selectedCenteredInterval !== null &&
+        intervalContainsInterval(target, selectedCenteredInterval),
+    };
+  };
+  const probeRows = contractRows.map((row) => {
+    const signedFit = centerFit(
+      row.live_signed_residual_interval,
+      row.screened_signed_residual_target_interval
+    );
+    const weightedFit = centerFit(
+      row.live_weighted_residual_interval,
+      row.screened_weighted_residual_target_interval
+    );
+    if (
+      signedFit === null ||
+      weightedFit === null ||
+      signedFit.selected_centered_interval === null ||
+      weightedFit.selected_centered_interval === null
+    ) {
+      return null;
+    }
+    return {
+      node_index: row.node_index,
+      xi_midpoint: row.xi_midpoint,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      tightest_budget_cell_id: inclusionContract.tightest_budget_cell_id,
+      provider_row_source_kind:
+        "candidate-center-width-contraction-not-directed-rounded",
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      zero_source_terms: ["constant_minus_two"],
+      selected_provider_contraction_factor: selectedContractionFactor,
+      screened_signed_residual_target_interval:
+        row.screened_signed_residual_target_interval,
+      screened_weighted_residual_target_interval:
+        row.screened_weighted_residual_target_interval,
+      directed_rounded_signed_residual_interval:
+        signedFit.selected_centered_interval,
+      directed_rounded_weighted_signed_residual_interval:
+        weightedFit.selected_centered_interval,
+      directed_rounded_weighted_residual_interval:
+        weightedFit.selected_centered_interval,
+      signed_live_center: signedFit.live_center,
+      signed_live_half_width: signedFit.live_half_width,
+      signed_target_half_width: signedFit.target_half_width,
+      signed_available_half_width_at_live_center:
+        signedFit.available_half_width_at_live_center,
+      signed_center_offset_abs_to_target_half_width:
+        signedFit.center_offset_abs_to_target_half_width,
+      signed_live_center_inside_screened_target:
+        signedFit.live_center_inside_target,
+      signed_required_centered_half_width_compression_factor:
+        signedFit.required_centered_half_width_compression_factor,
+      signed_selected_centered_interval_contained_in_screened_target:
+        signedFit.selected_centered_interval_contained_in_target,
+      weighted_live_center: weightedFit.live_center,
+      weighted_live_half_width: weightedFit.live_half_width,
+      weighted_target_half_width: weightedFit.target_half_width,
+      weighted_available_half_width_at_live_center:
+        weightedFit.available_half_width_at_live_center,
+      weighted_center_offset_abs_to_target_half_width:
+        weightedFit.center_offset_abs_to_target_half_width,
+      weighted_live_center_inside_screened_target:
+        weightedFit.live_center_inside_target,
+      weighted_required_centered_half_width_compression_factor:
+        weightedFit.required_centered_half_width_compression_factor,
+      weighted_selected_centered_interval_contained_in_screened_target:
+        weightedFit.selected_centered_interval_contained_in_target,
+      claim_boundary: {
+        certifies_center_geometry_only: true,
+        certifies_center_width_fit_only: false,
+        certifies_scaled_operation_as_directed_rounded_source: false,
+        certifies_directed_rounded_shared_domain: false,
+        certifies_shifted_R43_outer_bound: false,
+        retained_branch: false,
+      },
+    };
+  });
+  if (probeRows.some((row) => row === null)) {
+    return {
+      target_kind:
+        "candidate-requested-y44-shared-source-map-center-width-contraction-probe",
+      proof_status:
+        "candidate-center-width-contraction-inputs-missing",
+      provider_probe_kind:
+        "center-width-contracted-live-source-map-provider-rows-through-directed-verifier",
+      center_width_contraction_rows_available: false,
+      center_width_contraction_rows: [],
+      directed_provider_verifier: null,
+      claim_boundary: {
+        certifies_center_width_fit_only: false,
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  }
+  const verifier = h39RequestedY44SourceMapResidualFiveNodeVerifier({
+    inclusionContract,
+    providerRows: probeRows,
+  });
+  const centeredIntervalsFit = probeRows.every(
+    (row) =>
+      row.signed_selected_centered_interval_contained_in_screened_target ===
+        true &&
+      row.weighted_selected_centered_interval_contained_in_screened_target ===
+        true
+  );
+  const liveCentersFit = probeRows.every(
+    (row) =>
+      row.signed_live_center_inside_screened_target === true &&
+      row.weighted_live_center_inside_screened_target === true
+  );
+  const requiredCompressionFactors = probeRows
+    .flatMap((row) => [
+      row.signed_required_centered_half_width_compression_factor,
+      row.weighted_required_centered_half_width_compression_factor,
+    ])
+    .filter((value) => Number.isFinite(Number(value)) && Number(value) >= 0)
+    .map(Number);
+  const centerOffsetRatios = probeRows
+    .flatMap((row) => [
+      row.signed_center_offset_abs_to_target_half_width,
+      row.weighted_center_offset_abs_to_target_half_width,
+    ])
+    .filter((value) => Number.isFinite(Number(value)) && Number(value) >= 0)
+    .map(Number);
+  return {
+    target_kind:
+      "candidate-requested-y44-shared-source-map-center-width-contraction-probe",
+    source_inclusion_contract_kind: inclusionContract.target_kind,
+    source_directed_provider_verifier_kind: verifier?.target_kind ?? null,
+    proof_status:
+      "candidate-center-width-contraction-open-not-contained-or-not-directed-rounded",
+    provider_probe_kind:
+      "center-width-contracted-live-source-map-provider-rows-through-directed-verifier",
+    selected_provider_contraction_factor: selectedContractionFactor,
+    center_width_contraction_rows_available: true,
+    center_width_contraction_rows: probeRows,
+    directed_provider_verifier: verifier,
+    all_live_interval_centers_inside_screened_targets: liveCentersFit,
+    all_selected_center_width_contractions_fit_screened_targets:
+      centeredIntervalsFit,
+    max_live_center_offset_abs_to_target_half_width:
+      finiteMaximum(centerOffsetRatios),
+    max_required_centered_half_width_compression_factor:
+      finiteMaximum(requiredCompressionFactors),
+    required_centered_to_selected_contraction_factor:
+      finitePositive(finiteMaximum(requiredCompressionFactors)) &&
+      finitePositive(selectedContractionFactor)
+        ? finiteMaximum(requiredCompressionFactors) / selectedContractionFactor
+        : null,
+    selected_contraction_covers_required_centered_half_widths:
+      requiredCompressionFactors.length > 0 &&
+      requiredCompressionFactors.every(
+        (factor) => factor <= selectedContractionFactor * (1 + 1e-12)
+      ),
+    center_width_rows_match_same_domain_contract:
+      verifier?.all_provider_rows_match_same_domain_contract ?? false,
+    center_width_rows_match_same_radius_contract:
+      verifier?.all_provider_rows_match_same_radius_contract ?? false,
+    center_width_intervals_subset_screened_targets:
+      verifier?.all_provider_intervals_subset_screened_targets ?? false,
+    center_width_source_kind_matches_required:
+      verifier?.all_provider_rows_have_directed_rounded_source ?? false,
+    center_width_reaches_verifier_with_source_only_failure:
+      verifier?.all_provider_rows_match_same_domain_contract === true &&
+      verifier?.all_provider_rows_match_same_radius_contract === true &&
+      verifier?.all_provider_intervals_subset_screened_targets === true &&
+      verifier?.all_provider_rows_have_directed_rounded_source === false,
+    center_width_contraction_classification:
+      liveCentersFit &&
+      centeredIntervalsFit &&
+      verifier?.all_provider_intervals_subset_screened_targets === true &&
+      verifier?.all_provider_rows_have_directed_rounded_source === false
+        ? "center-width-contraction-fits-screened-targets-source-certification-open"
+        : liveCentersFit
+          ? "live-centers-fit-but-center-width-contraction-open"
+          : "live-centers-miss-screened-targets",
+    next_certificate_object:
+      "directed-rounded same-domain H38 producer-image source-map residual provider whose node intervals preserve the live centers and certify only the needed centered half-widths",
+    center_width_contraction_interpretation:
+      liveCentersFit && centeredIntervalsFit
+        ? "live-centers-fit-and-selected-centered-half-widths-fit-targets"
+        : liveCentersFit
+          ? "live-centers-fit-but-selected-centered-half-widths-need-extra-contraction"
+          : "live-centers-miss-screened-targets-before-width-contraction",
+    claim_boundary: {
+      certifies_center_width_fit_only: centeredIntervalsFit,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function h39RequestedY44SourceMapResidualFiveNodeCenterAwareProviderRadiusTarget({
+  inclusionContract,
+  centerWidthContractionProbe,
+} = {}) {
+  if (
+    inclusionContract === null ||
+    inclusionContract === undefined ||
+    inclusionContract.target_kind !==
+      "candidate-requested-y44-shared-source-map-five-node-inclusion-contract" ||
+    centerWidthContractionProbe === null ||
+    centerWidthContractionProbe === undefined ||
+    centerWidthContractionProbe.target_kind !==
+      "candidate-requested-y44-shared-source-map-center-width-contraction-probe"
+  ) {
+    return null;
+  }
+  const centerWidthRows =
+    centerWidthContractionProbe.center_width_contraction_rows ?? [];
+  if (
+    centerWidthRows.length !== 5 ||
+    centerWidthContractionProbe.all_live_interval_centers_inside_screened_targets !==
+      true
+  ) {
+    return null;
+  }
+  const providerRows = centerWidthRows.map((row) => {
+    const signedAvailableHalfWidth = Number(
+      row.signed_available_half_width_at_live_center
+    );
+    const weightedAvailableHalfWidth = Number(
+      row.weighted_available_half_width_at_live_center
+    );
+    const signedCenter = Number(row.signed_live_center);
+    const weightedCenter = Number(row.weighted_live_center);
+    const signedInterval =
+      Number.isFinite(signedCenter) &&
+      finiteNonnegative(signedAvailableHalfWidth)
+        ? [
+            signedCenter - signedAvailableHalfWidth,
+            signedCenter + signedAvailableHalfWidth,
+          ]
+        : null;
+    const weightedInterval =
+      Number.isFinite(weightedCenter) &&
+      finiteNonnegative(weightedAvailableHalfWidth)
+        ? [
+            weightedCenter - weightedAvailableHalfWidth,
+            weightedCenter + weightedAvailableHalfWidth,
+          ]
+        : null;
+    if (signedInterval === null || weightedInterval === null) {
+      return null;
+    }
+    const signedRequiredCompression = Number(
+      row.signed_required_centered_half_width_compression_factor
+    );
+    const weightedRequiredCompression = Number(
+      row.weighted_required_centered_half_width_compression_factor
+    );
+    return {
+      node_index: row.node_index,
+      xi_midpoint: row.xi_midpoint,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      tightest_budget_cell_id: inclusionContract.tightest_budget_cell_id,
+      provider_row_source_kind:
+        "candidate-center-aware-provider-radius-target-not-directed-rounded",
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      zero_source_terms: ["constant_minus_two"],
+      selected_provider_contraction_factor:
+        centerWidthContractionProbe.selected_provider_contraction_factor,
+      signed_live_half_width: row.signed_live_half_width,
+      weighted_live_half_width: row.weighted_live_half_width,
+      signed_required_centered_half_width_compression_factor:
+        signedRequiredCompression,
+      weighted_required_centered_half_width_compression_factor:
+        weightedRequiredCompression,
+      screened_signed_residual_target_interval:
+        row.screened_signed_residual_target_interval,
+      screened_weighted_residual_target_interval:
+        row.screened_weighted_residual_target_interval,
+      signed_center_aware_residual_target_center: signedCenter,
+      signed_center_aware_residual_target_half_width:
+        signedAvailableHalfWidth,
+      signed_center_aware_residual_target_interval:
+        signedInterval,
+      weighted_center_aware_residual_target_center: weightedCenter,
+      weighted_center_aware_residual_target_half_width:
+        weightedAvailableHalfWidth,
+      weighted_center_aware_residual_target_interval:
+        weightedInterval,
+      directed_rounded_signed_residual_interval: signedInterval,
+      directed_rounded_weighted_signed_residual_interval:
+        weightedInterval,
+      directed_rounded_weighted_residual_interval: weightedInterval,
+      signed_center_aware_interval_contained_in_screened_target:
+        intervalContainsInterval(
+          row.screened_signed_residual_target_interval,
+          signedInterval
+        ),
+      weighted_center_aware_interval_contained_in_screened_target:
+        intervalContainsInterval(
+          row.screened_weighted_residual_target_interval,
+          weightedInterval
+        ),
+      claim_boundary: {
+        certifies_center_aware_radius_target_only: true,
+        certifies_directed_rounded_shared_domain: false,
+        certifies_shifted_R43_outer_bound: false,
+        retained_branch: false,
+      },
+    };
+  });
+  if (providerRows.some((row) => row === null)) {
+    return {
+      target_kind:
+        "candidate-requested-y44-shared-source-map-center-aware-provider-radius-target",
+      proof_status:
+        "candidate-center-aware-provider-radius-target-inputs-missing",
+      provider_target_kind:
+        "center-aware-live-source-map-provider-radius-target-through-directed-verifier",
+      center_aware_provider_radius_rows_available: false,
+      center_aware_provider_radius_rows: [],
+      directed_provider_verifier: null,
+      claim_boundary: {
+        certifies_center_aware_radius_target_only: false,
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  }
+  const verifier = h39RequestedY44SourceMapResidualFiveNodeVerifier({
+    inclusionContract,
+    providerRows,
+  });
+  const requiredCompressionFactors = providerRows
+    .flatMap((row) => [
+      row.signed_required_centered_half_width_compression_factor,
+      row.weighted_required_centered_half_width_compression_factor,
+    ])
+    .filter((value) => Number.isFinite(Number(value)) && Number(value) >= 0)
+    .map(Number);
+  const halfWidthRatios = providerRows
+    .flatMap((row) => [
+      finitePositive(row.signed_center_aware_residual_target_half_width) &&
+      finitePositive(row.signed_live_half_width)
+        ? Number(row.signed_center_aware_residual_target_half_width) /
+          Number(row.signed_live_half_width)
+        : null,
+      finitePositive(row.weighted_center_aware_residual_target_half_width) &&
+      finitePositive(row.weighted_live_half_width)
+        ? Number(row.weighted_center_aware_residual_target_half_width) /
+          Number(row.weighted_live_half_width)
+        : null,
+    ])
+    .filter((value) => Number.isFinite(Number(value)) && Number(value) >= 0)
+    .map(Number);
+  const intervalsContained = providerRows.every(
+    (row) =>
+      row.signed_center_aware_interval_contained_in_screened_target === true &&
+      row.weighted_center_aware_interval_contained_in_screened_target === true
+  );
+  return {
+    target_kind:
+      "candidate-requested-y44-shared-source-map-center-aware-provider-radius-target",
+    source_inclusion_contract_kind: inclusionContract.target_kind,
+    source_center_width_contraction_probe_kind:
+      centerWidthContractionProbe.target_kind,
+    source_directed_provider_verifier_kind: verifier?.target_kind ?? null,
+    proof_status:
+      "candidate-center-aware-provider-radius-target-contained-source-not-directed-rounded",
+    provider_target_kind:
+      "center-aware-live-source-map-provider-radius-target-through-directed-verifier",
+    selected_provider_contraction_factor:
+      centerWidthContractionProbe.selected_provider_contraction_factor,
+    required_center_aware_provider_contraction_factor:
+      finiteMaximum(requiredCompressionFactors),
+    required_center_aware_to_selected_contraction_factor:
+      finitePositive(finiteMaximum(requiredCompressionFactors)) &&
+      finitePositive(centerWidthContractionProbe.selected_provider_contraction_factor)
+        ? finiteMaximum(requiredCompressionFactors) /
+          Number(centerWidthContractionProbe.selected_provider_contraction_factor)
+        : null,
+    min_center_aware_half_width_to_live_half_width: finiteMinimum(halfWidthRatios),
+    center_aware_provider_radius_rows_available: true,
+    center_aware_provider_radius_rows: providerRows,
+    directed_provider_verifier: verifier,
+    all_center_aware_provider_radius_intervals_contained_in_screened_targets:
+      intervalsContained,
+    center_aware_provider_rows_match_same_domain_contract:
+      verifier?.all_provider_rows_match_same_domain_contract ?? false,
+    center_aware_provider_rows_match_same_radius_contract:
+      verifier?.all_provider_rows_match_same_radius_contract ?? false,
+    center_aware_provider_intervals_subset_screened_targets:
+      verifier?.all_provider_intervals_subset_screened_targets ?? false,
+    center_aware_provider_source_kind_matches_required:
+      verifier?.all_provider_rows_have_directed_rounded_source ?? false,
+    center_aware_provider_reaches_verifier_with_source_only_failure:
+      verifier?.all_provider_rows_match_same_domain_contract === true &&
+      verifier?.all_provider_rows_match_same_radius_contract === true &&
+      verifier?.all_provider_intervals_subset_screened_targets === true &&
+      verifier?.all_provider_rows_have_directed_rounded_source === false,
+    center_aware_provider_radius_target_classification:
+      intervalsContained &&
+      verifier?.all_provider_rows_match_same_domain_contract === true &&
+      verifier?.all_provider_rows_match_same_radius_contract === true &&
+      verifier?.all_provider_intervals_subset_screened_targets === true &&
+      verifier?.all_provider_rows_have_directed_rounded_source === false
+        ? "center-aware-provider-radius-target-contained-source-certification-open"
+        : "center-aware-provider-radius-target-open",
+    next_certificate_object:
+      "directed-rounded same-domain H38 source-map residual provider realizing these center-aware node-radius target intervals",
+    claim_boundary: {
+      certifies_center_aware_radius_target_only: intervalsContained,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function h39RequestedY44SourceMapResidualFiveNodeCenterAwareSourceCovarianceRealizationBudget({
+  centerAwareProviderRadiusTarget,
+  signedSourceNormalFormProbe,
+} = {}) {
+  if (
+    centerAwareProviderRadiusTarget === null ||
+    centerAwareProviderRadiusTarget === undefined ||
+    centerAwareProviderRadiusTarget.target_kind !==
+      "candidate-requested-y44-shared-source-map-center-aware-provider-radius-target" ||
+    signedSourceNormalFormProbe === null ||
+    signedSourceNormalFormProbe === undefined ||
+    signedSourceNormalFormProbe.target_kind !==
+      "candidate-requested-y44-shared-source-map-signed-source-normal-form-provider-probe"
+  ) {
+    return null;
+  }
+  const centerAwareRows =
+    centerAwareProviderRadiusTarget.center_aware_provider_radius_rows ?? [];
+  const normalRows =
+    signedSourceNormalFormProbe.signed_source_normal_form_provider_rows ?? [];
+  const normalRowsByNodeIndex = new Map(
+    normalRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  if (centerAwareRows.length !== 5 || normalRows.length !== 5) {
+    return {
+      target_kind:
+        "candidate-requested-y44-shared-source-map-center-aware-source-covariance-realization-budget",
+      proof_status:
+        "candidate-center-aware-source-covariance-realization-budget-inputs-missing",
+      budget_kind:
+        "source-term-triangle-to-center-aware-provider-radius-realization-budget",
+      realization_budget_rows_available: false,
+      realization_budget_rows: [],
+      claim_boundary: {
+        certifies_source_covariance_realization_budget_only: false,
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  }
+  const sameSequence = (actual, expected) =>
+    Array.isArray(actual) &&
+    actual.length === expected.length &&
+    actual.every((value, index) => value === expected[index]);
+  const requiredCancellationFraction = (allowed, triangle) =>
+    finitePositive(triangle) && finiteNonnegative(allowed)
+      ? 1 - Number(allowed) / Number(triangle)
+      : null;
+  const ratio = (numerator, denominator) =>
+    finitePositive(denominator) && finiteNonnegative(numerator)
+      ? Number(numerator) / Number(denominator)
+      : null;
+  const realizationRows = centerAwareRows.map((centerAwareRow) => {
+    const normalRow = normalRowsByNodeIndex.get(
+      Number(centerAwareRow.node_index)
+    );
+    const signedCenterAwareInterval = finiteOrderedIntervalOrNull(
+      centerAwareRow.signed_center_aware_residual_target_interval
+    );
+    const weightedCenterAwareInterval = finiteOrderedIntervalOrNull(
+      centerAwareRow.weighted_center_aware_residual_target_interval
+    );
+    const liveSignedInterval = finiteOrderedIntervalOrNull(
+      normalRow?.directed_rounded_signed_residual_interval
+    );
+    const liveWeightedInterval = finiteOrderedIntervalOrNull(
+      normalRow?.directed_rounded_weighted_signed_residual_interval
+    );
+    if (
+      normalRow === undefined ||
+      signedCenterAwareInterval === null ||
+      weightedCenterAwareInterval === null ||
+      liveSignedInterval === null ||
+      liveWeightedInterval === null
+    ) {
+      return null;
+    }
+    const signedCenterAwareHalfWidth = Number(
+      centerAwareRow.signed_center_aware_residual_target_half_width
+    );
+    const weightedCenterAwareHalfWidth = Number(
+      centerAwareRow.weighted_center_aware_residual_target_half_width
+    );
+    const signedLiveHalfWidth = intervalHalfWidth(liveSignedInterval);
+    const weightedLiveHalfWidth = intervalHalfWidth(liveWeightedInterval);
+    const signedLiveAbsUpper = intervalAbsUpper(liveSignedInterval);
+    const weightedLiveAbsUpper = intervalAbsUpper(liveWeightedInterval);
+    const signedCenterAwareAbsUpper = intervalAbsUpper(
+      signedCenterAwareInterval
+    );
+    const weightedCenterAwareAbsUpper = intervalAbsUpper(
+      weightedCenterAwareInterval
+    );
+    const signedSourceTermTriangle = Number(
+      normalRow.source_term_residual_triangle_abs_upper
+    );
+    const weightedSourceTermTriangle = Number(
+      normalRow.source_term_weighted_residual_triangle_abs_upper
+    );
+    const existingCancellation = Number(
+      normalRow.source_term_residual_cancellation_fraction
+    );
+    const signedRequiredCancellationForHalfWidth =
+      requiredCancellationFraction(
+        signedCenterAwareHalfWidth,
+        signedSourceTermTriangle
+      );
+    const weightedRequiredCancellationForHalfWidth =
+      requiredCancellationFraction(
+        weightedCenterAwareHalfWidth,
+        weightedSourceTermTriangle
+      );
+    const signedRequiredCancellationForAbsUpper =
+      requiredCancellationFraction(
+        signedCenterAwareAbsUpper,
+        signedSourceTermTriangle
+      );
+    const weightedRequiredCancellationForAbsUpper =
+      requiredCancellationFraction(
+        weightedCenterAwareAbsUpper,
+        weightedSourceTermTriangle
+      );
+    const signedHalfWidthGap =
+      Number.isFinite(signedRequiredCancellationForHalfWidth) &&
+      Number.isFinite(existingCancellation)
+        ? signedRequiredCancellationForHalfWidth - existingCancellation
+        : null;
+    const weightedHalfWidthGap =
+      Number.isFinite(weightedRequiredCancellationForHalfWidth) &&
+      Number.isFinite(existingCancellation)
+        ? weightedRequiredCancellationForHalfWidth - existingCancellation
+        : null;
+    return {
+      node_index: centerAwareRow.node_index,
+      xi_midpoint: centerAwareRow.xi_midpoint,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      tightest_budget_cell_id: centerAwareRow.tightest_budget_cell_id,
+      budget_row_kind:
+        "candidate-center-aware-source-covariance-realization-budget-row",
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      zero_source_terms: ["constant_minus_two"],
+      signed_center_aware_residual_target_interval:
+        signedCenterAwareInterval,
+      signed_center_aware_residual_target_half_width:
+        signedCenterAwareHalfWidth,
+      signed_center_aware_residual_target_abs_upper:
+        signedCenterAwareAbsUpper,
+      weighted_center_aware_residual_target_interval:
+        weightedCenterAwareInterval,
+      weighted_center_aware_residual_target_half_width:
+        weightedCenterAwareHalfWidth,
+      weighted_center_aware_residual_target_abs_upper:
+        weightedCenterAwareAbsUpper,
+      live_signed_residual_interval: liveSignedInterval,
+      live_signed_residual_half_width: signedLiveHalfWidth,
+      live_signed_residual_abs_upper: signedLiveAbsUpper,
+      live_weighted_residual_interval: liveWeightedInterval,
+      live_weighted_residual_half_width: weightedLiveHalfWidth,
+      live_weighted_residual_abs_upper: weightedLiveAbsUpper,
+      signed_source_term_residual_triangle_abs_upper:
+        signedSourceTermTriangle,
+      weighted_source_term_residual_triangle_abs_upper:
+        weightedSourceTermTriangle,
+      existing_source_term_residual_cancellation_fraction:
+        existingCancellation,
+      signed_live_half_width_to_center_aware_half_width_ratio: ratio(
+        signedLiveHalfWidth,
+        signedCenterAwareHalfWidth
+      ),
+      weighted_live_half_width_to_center_aware_half_width_ratio: ratio(
+        weightedLiveHalfWidth,
+        weightedCenterAwareHalfWidth
+      ),
+      signed_source_term_triangle_to_live_abs_upper_ratio: ratio(
+        signedSourceTermTriangle,
+        signedLiveAbsUpper
+      ),
+      weighted_source_term_triangle_to_live_abs_upper_ratio: ratio(
+        weightedSourceTermTriangle,
+        weightedLiveAbsUpper
+      ),
+      signed_source_term_triangle_to_center_aware_half_width_ratio: ratio(
+        signedSourceTermTriangle,
+        signedCenterAwareHalfWidth
+      ),
+      weighted_source_term_triangle_to_center_aware_half_width_ratio: ratio(
+        weightedSourceTermTriangle,
+        weightedCenterAwareHalfWidth
+      ),
+      signed_source_term_triangle_to_center_aware_abs_upper_ratio: ratio(
+        signedSourceTermTriangle,
+        signedCenterAwareAbsUpper
+      ),
+      weighted_source_term_triangle_to_center_aware_abs_upper_ratio: ratio(
+        weightedSourceTermTriangle,
+        weightedCenterAwareAbsUpper
+      ),
+      signed_required_source_term_cancellation_fraction_for_center_aware_half_width:
+        signedRequiredCancellationForHalfWidth,
+      weighted_required_source_term_cancellation_fraction_for_center_aware_half_width:
+        weightedRequiredCancellationForHalfWidth,
+      signed_required_source_term_cancellation_fraction_for_center_aware_abs_upper:
+        signedRequiredCancellationForAbsUpper,
+      weighted_required_source_term_cancellation_fraction_for_center_aware_abs_upper:
+        weightedRequiredCancellationForAbsUpper,
+      signed_extra_cancellation_fraction_needed_for_center_aware_half_width:
+        Number.isFinite(signedHalfWidthGap)
+          ? Math.max(0, signedHalfWidthGap)
+          : null,
+      weighted_extra_cancellation_fraction_needed_for_center_aware_half_width:
+        Number.isFinite(weightedHalfWidthGap)
+          ? Math.max(0, weightedHalfWidthGap)
+          : null,
+      signed_center_aware_half_width_realization_gap_fraction:
+        signedHalfWidthGap,
+      weighted_center_aware_half_width_realization_gap_fraction:
+        weightedHalfWidthGap,
+      source_term_residual_rows: normalRow.source_term_residual_rows,
+      claim_boundary: {
+        certifies_source_covariance_realization_budget_only: true,
+        certifies_directed_rounded_shared_domain: false,
+        certifies_shifted_R43_outer_bound: false,
+        retained_branch: false,
+      },
+    };
+  });
+  if (realizationRows.some((row) => row === null)) {
+    return {
+      target_kind:
+        "candidate-requested-y44-shared-source-map-center-aware-source-covariance-realization-budget",
+      proof_status:
+        "candidate-center-aware-source-covariance-realization-budget-inputs-missing",
+      budget_kind:
+        "source-term-triangle-to-center-aware-provider-radius-realization-budget",
+      realization_budget_rows_available: false,
+      realization_budget_rows: [],
+      claim_boundary: {
+        certifies_source_covariance_realization_budget_only: false,
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  }
+  const allRowsKeepSameSourceTerms = realizationRows.every(
+    (row) =>
+      sameSequence(
+        row.source_terms_preserved_signed_together,
+        H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS
+      ) && sameSequence(row.zero_source_terms, ["constant_minus_two"])
+  );
+  const signedHalfWidthRatios = realizationRows.map(
+    (row) => row.signed_live_half_width_to_center_aware_half_width_ratio
+  );
+  const weightedHalfWidthRatios = realizationRows.map(
+    (row) => row.weighted_live_half_width_to_center_aware_half_width_ratio
+  );
+  const sourceTermTriangleToHalfWidthRatios = realizationRows.flatMap(
+    (row) => [
+      row.signed_source_term_triangle_to_center_aware_half_width_ratio,
+      row.weighted_source_term_triangle_to_center_aware_half_width_ratio,
+    ]
+  );
+  const requiredCancellationFractions = realizationRows.flatMap((row) => [
+    row
+      .signed_required_source_term_cancellation_fraction_for_center_aware_half_width,
+    row
+      .weighted_required_source_term_cancellation_fraction_for_center_aware_half_width,
+  ]);
+  const requiredAbsUpperCancellationFractions = realizationRows.flatMap(
+    (row) => [
+      row
+        .signed_required_source_term_cancellation_fraction_for_center_aware_abs_upper,
+      row
+        .weighted_required_source_term_cancellation_fraction_for_center_aware_abs_upper,
+    ]
+  );
+  const existingCancellationFractions = realizationRows.map(
+    (row) => row.existing_source_term_residual_cancellation_fraction
+  );
+  const extraCancellationFractions = realizationRows.flatMap((row) => [
+    row
+      .signed_extra_cancellation_fraction_needed_for_center_aware_half_width,
+    row
+      .weighted_extra_cancellation_fraction_needed_for_center_aware_half_width,
+  ]);
+  const dominantHalfWidthRow = realizationRows
+    .filter((row) =>
+      Number.isFinite(
+        Number(row.signed_source_term_triangle_to_center_aware_half_width_ratio)
+      )
+    )
+    .reduce(
+      (best, row) =>
+        best === null ||
+        Number(
+          row.signed_source_term_triangle_to_center_aware_half_width_ratio
+        ) >
+          Number(
+            best.signed_source_term_triangle_to_center_aware_half_width_ratio
+          )
+          ? row
+          : best,
+      null
+    );
+  const maxRequiredCancellationFraction =
+    finiteMaximum(requiredCancellationFractions);
+  const maxExtraCancellationFraction =
+    finiteMaximum(extraCancellationFractions);
+  return {
+    target_kind:
+      "candidate-requested-y44-shared-source-map-center-aware-source-covariance-realization-budget",
+    source_center_aware_provider_radius_target_kind:
+      centerAwareProviderRadiusTarget.target_kind,
+    source_signed_source_normal_form_probe_kind:
+      signedSourceNormalFormProbe.target_kind,
+    proof_status:
+      "candidate-center-aware-source-covariance-realization-budget-not-directed-rounded",
+    budget_kind:
+      "source-term-triangle-to-center-aware-provider-radius-realization-budget",
+    realization_budget_rows_available: true,
+    realization_budget_rows: realizationRows,
+    all_realization_rows_keep_same_source_terms:
+      allRowsKeepSameSourceTerms,
+    max_signed_live_half_width_to_center_aware_half_width_ratio:
+      finiteMaximum(signedHalfWidthRatios),
+    max_weighted_live_half_width_to_center_aware_half_width_ratio:
+      finiteMaximum(weightedHalfWidthRatios),
+    max_source_term_triangle_to_center_aware_half_width_ratio:
+      finiteMaximum(sourceTermTriangleToHalfWidthRatios),
+    max_required_source_term_cancellation_fraction_for_center_aware_half_width:
+      maxRequiredCancellationFraction,
+    max_required_source_term_cancellation_fraction_for_center_aware_abs_upper:
+      finiteMaximum(requiredAbsUpperCancellationFractions),
+    min_existing_source_term_residual_cancellation_fraction:
+      finiteMinimum(existingCancellationFractions),
+    max_extra_source_term_cancellation_fraction_needed_for_center_aware_half_width:
+      maxExtraCancellationFraction,
+    dominant_realization_budget_node_index:
+      dominantHalfWidthRow?.node_index ?? null,
+    dominant_realization_budget_triangle_to_half_width_ratio:
+      dominantHalfWidthRow
+        ?.signed_source_term_triangle_to_center_aware_half_width_ratio ?? null,
+    source_covariance_realization_budget_classification:
+      allRowsKeepSameSourceTerms &&
+      finitePositive(finiteMaximum(sourceTermTriangleToHalfWidthRatios)) &&
+      finiteNonnegative(maxExtraCancellationFraction)
+        ? "center-aware-source-covariance-realization-reduces-to-preserving-signed-source-cancellation"
+        : "center-aware-source-covariance-realization-budget-open",
+    realization_budget_interpretation:
+      "center-aware node centers already fit; remaining provider realization is the amount of signed delta_squared_speed + sin_phi + sin_delta source-term cancellation that must survive directed-rounded H38 producer-image intervalization",
+    next_certificate_object:
+      "directed-rounded same-domain H38 source-map residual provider that preserves the signed source-term covariance to the center-aware half-width budget at each of the five shared-stream nodes",
+    claim_boundary: {
+      certifies_source_covariance_realization_budget_only:
+        allRowsKeepSameSourceTerms,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function h39RequestedY44SourceMapResidualFiveNodeTermCancellationDecomposition({
+  sourceCovarianceRealizationBudget,
+} = {}) {
+  if (
+    sourceCovarianceRealizationBudget === null ||
+    sourceCovarianceRealizationBudget === undefined ||
+    sourceCovarianceRealizationBudget.target_kind !==
+      "candidate-requested-y44-shared-source-map-center-aware-source-covariance-realization-budget"
+  ) {
+    return null;
+  }
+  const realizationRows =
+    sourceCovarianceRealizationBudget.realization_budget_rows ?? [];
+  if (realizationRows.length !== 5) {
+    return {
+      target_kind:
+        "candidate-requested-y44-shared-source-map-term-cancellation-decomposition",
+      proof_status:
+        "candidate-source-map-term-cancellation-decomposition-inputs-missing",
+      decomposition_kind:
+        "signed-source-term-residual-interval-pair-decomposition",
+      term_cancellation_decomposition_rows_available: false,
+      term_cancellation_decomposition_rows: [],
+      claim_boundary: {
+        certifies_term_cancellation_decomposition_only: false,
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  }
+  const ratio = (numerator, denominator) =>
+    finitePositive(denominator) && finiteNonnegative(numerator)
+      ? Number(numerator) / Number(denominator)
+      : null;
+  const cancellationFraction = (sumAbsUpper, triangleAbsUpper) =>
+    finitePositive(triangleAbsUpper) && finiteNonnegative(sumAbsUpper)
+      ? 1 - Number(sumAbsUpper) / Number(triangleAbsUpper)
+      : null;
+  const intervalSignStatus = (interval) => {
+    const resolved = finiteOrderedIntervalOrNull(interval);
+    if (resolved === null) {
+      return "missing";
+    }
+    if (resolved[0] > 0) {
+      return "positive";
+    }
+    if (resolved[1] < 0) {
+      return "negative";
+    }
+    if (resolved[0] === 0 && resolved[1] === 0) {
+      return "zero";
+    }
+    return "crosses-zero";
+  };
+  const midpointSign = (interval) => {
+    const resolved = finiteOrderedIntervalOrNull(interval);
+    if (resolved === null) {
+      return 0;
+    }
+    const midpoint = intervalMidpoint(resolved);
+    return midpoint > 0 ? 1 : midpoint < 0 ? -1 : 0;
+  };
+  const pairKey = (terms) => terms.join("+");
+  const decompositionRows = realizationRows.map((realizationRow) => {
+    const liveSignedInterval = finiteOrderedIntervalOrNull(
+      realizationRow.live_signed_residual_interval
+    );
+    const sourceTermRows = Array.isArray(
+      realizationRow.source_term_residual_rows
+    )
+      ? realizationRow.source_term_residual_rows
+      : [];
+    if (liveSignedInterval === null || sourceTermRows.length !== 3) {
+      return null;
+    }
+    const termRows = sourceTermRows.map((termRow) => {
+      const residualInterval = finiteOrderedIntervalOrNull(
+        termRow.residual_interval
+      );
+      if (residualInterval === null) {
+        return null;
+      }
+      return {
+        term: termRow.term,
+        residual_interval: residualInterval,
+        residual_interval_center: intervalMidpoint(residualInterval),
+        residual_interval_half_width: intervalHalfWidth(residualInterval),
+        residual_abs_upper: termRow.residual_abs_upper,
+        residual_abs_share_of_source_term_triangle: ratio(
+          termRow.residual_abs_upper,
+          realizationRow.signed_source_term_residual_triangle_abs_upper
+        ),
+        residual_interval_sign_status:
+          intervalSignStatus(residualInterval),
+        residual_interval_midpoint_sign: midpointSign(residualInterval),
+        weighted_residual_abs_upper: termRow.weighted_residual_abs_upper,
+      };
+    });
+    if (termRows.some((row) => row === null)) {
+      return null;
+    }
+    const sourceTermSumInterval = sumIntervals(
+      termRows.map((termRow) => termRow.residual_interval)
+    );
+    const sourceTermSumAbsUpper = intervalAbsUpper(sourceTermSumInterval);
+    const sourceTermTriangleAbsUpper = termRows
+      .map((termRow) => Number(termRow.residual_abs_upper))
+      .filter((value) => Number.isFinite(value) && value >= 0)
+      .reduce((total, value) => total + value, 0);
+    const sourceTermCancellationFraction = cancellationFraction(
+      sourceTermSumAbsUpper,
+      sourceTermTriangleAbsUpper
+    );
+    const pairs = [];
+    for (let i = 0; i < termRows.length; i += 1) {
+      for (let j = i + 1; j < termRows.length; j += 1) {
+        const pairTerms = [termRows[i].term, termRows[j].term];
+        const pairSumInterval = sumIntervals([
+          termRows[i].residual_interval,
+          termRows[j].residual_interval,
+        ]);
+        const pairTriangleAbsUpper =
+          Number(termRows[i].residual_abs_upper) +
+          Number(termRows[j].residual_abs_upper);
+        const pairSumAbsUpper = intervalAbsUpper(pairSumInterval);
+        const firstMidpointSign = Number(
+          termRows[i].residual_interval_midpoint_sign
+        );
+        const secondMidpointSign = Number(
+          termRows[j].residual_interval_midpoint_sign
+        );
+        pairs.push({
+          pair_terms: pairTerms,
+          pair_terms_key: pairKey(pairTerms),
+          pair_sum_interval: pairSumInterval,
+          pair_sum_abs_upper: pairSumAbsUpper,
+          pair_triangle_abs_upper: pairTriangleAbsUpper,
+          pair_cancellation_fraction: cancellationFraction(
+            pairSumAbsUpper,
+            pairTriangleAbsUpper
+          ),
+          pair_triangle_abs_share_of_source_term_triangle: ratio(
+            pairTriangleAbsUpper,
+            sourceTermTriangleAbsUpper
+          ),
+          pair_intervals_have_opposing_midpoint_signs:
+            firstMidpointSign !== 0 &&
+            secondMidpointSign !== 0 &&
+            firstMidpointSign !== secondMidpointSign,
+          pair_interval_sign_statuses: [
+            termRows[i].residual_interval_sign_status,
+            termRows[j].residual_interval_sign_status,
+          ],
+        });
+      }
+    }
+    const dominantTerm = termRows.reduce((best, row) =>
+      Number(row.residual_abs_upper) > Number(best.residual_abs_upper)
+        ? row
+        : best
+    );
+    const dominantPairByTriangle = pairs.reduce((best, row) =>
+      Number(row.pair_triangle_abs_upper) >
+      Number(best.pair_triangle_abs_upper)
+        ? row
+        : best
+    );
+    const strongestPairCancellation = pairs.reduce((best, row) =>
+      Number(row.pair_cancellation_fraction) >
+      Number(best.pair_cancellation_fraction)
+        ? row
+        : best
+    );
+    const sourceTermSumEndpointGap = intervalEndpointRelativeGap(
+      sourceTermSumInterval,
+      liveSignedInterval
+    );
+    return {
+      node_index: realizationRow.node_index,
+      xi_midpoint: realizationRow.xi_midpoint,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      tightest_budget_cell_id: realizationRow.tightest_budget_cell_id,
+      decomposition_row_kind:
+        "candidate-source-map-term-cancellation-decomposition-row",
+      row_realization_budget_dominant:
+        realizationRow.node_index ===
+        sourceCovarianceRealizationBudget
+          .dominant_realization_budget_node_index,
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      zero_source_terms: ["constant_minus_two"],
+      signed_center_aware_residual_target_half_width:
+        realizationRow.signed_center_aware_residual_target_half_width,
+      signed_source_term_triangle_to_center_aware_half_width_ratio:
+        realizationRow
+          .signed_source_term_triangle_to_center_aware_half_width_ratio,
+      existing_source_term_residual_cancellation_fraction:
+        realizationRow.existing_source_term_residual_cancellation_fraction,
+      required_source_term_cancellation_fraction_for_center_aware_half_width:
+        realizationRow
+          .signed_required_source_term_cancellation_fraction_for_center_aware_half_width,
+      extra_source_term_cancellation_fraction_needed_for_center_aware_half_width:
+        realizationRow
+          .signed_extra_cancellation_fraction_needed_for_center_aware_half_width,
+      live_signed_residual_interval: liveSignedInterval,
+      live_signed_residual_abs_upper:
+        realizationRow.live_signed_residual_abs_upper,
+      source_term_sum_interval: sourceTermSumInterval,
+      source_term_sum_abs_upper: sourceTermSumAbsUpper,
+      source_term_sum_endpoint_relative_gap_to_live_signed_residual:
+        sourceTermSumEndpointGap,
+      source_term_sum_matches_live_signed_residual_interval:
+        sourceTermSumEndpointGap <= 1e-12,
+      source_term_residual_triangle_abs_upper:
+        sourceTermTriangleAbsUpper,
+      source_term_residual_cancellation_fraction:
+        sourceTermCancellationFraction,
+      term_residual_decomposition_rows: termRows,
+      pair_residual_decomposition_rows: pairs,
+      dominant_term_by_abs_upper: {
+        term: dominantTerm.term,
+        residual_abs_upper: dominantTerm.residual_abs_upper,
+        residual_abs_share_of_source_term_triangle:
+          dominantTerm.residual_abs_share_of_source_term_triangle,
+      },
+      dominant_pair_by_triangle_abs_upper: {
+        pair_terms: dominantPairByTriangle.pair_terms,
+        pair_terms_key: dominantPairByTriangle.pair_terms_key,
+        pair_triangle_abs_upper:
+          dominantPairByTriangle.pair_triangle_abs_upper,
+        pair_triangle_abs_share_of_source_term_triangle:
+          dominantPairByTriangle
+            .pair_triangle_abs_share_of_source_term_triangle,
+      },
+      strongest_pair_cancellation: {
+        pair_terms: strongestPairCancellation.pair_terms,
+        pair_terms_key: strongestPairCancellation.pair_terms_key,
+        pair_cancellation_fraction:
+          strongestPairCancellation.pair_cancellation_fraction,
+        pair_intervals_have_opposing_midpoint_signs:
+          strongestPairCancellation
+            .pair_intervals_have_opposing_midpoint_signs,
+      },
+      claim_boundary: {
+        certifies_term_cancellation_decomposition_only: true,
+        certifies_directed_rounded_shared_domain: false,
+        certifies_shifted_R43_outer_bound: false,
+        retained_branch: false,
+      },
+    };
+  });
+  if (decompositionRows.some((row) => row === null)) {
+    return {
+      target_kind:
+        "candidate-requested-y44-shared-source-map-term-cancellation-decomposition",
+      proof_status:
+        "candidate-source-map-term-cancellation-decomposition-inputs-missing",
+      decomposition_kind:
+        "signed-source-term-residual-interval-pair-decomposition",
+      term_cancellation_decomposition_rows_available: false,
+      term_cancellation_decomposition_rows: [],
+      claim_boundary: {
+        certifies_term_cancellation_decomposition_only: false,
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  }
+  const dominantRow = decompositionRows.find(
+    (row) => row.row_realization_budget_dominant === true
+  );
+  const allTermSumsMatchLive = decompositionRows.every(
+    (row) => row.source_term_sum_matches_live_signed_residual_interval === true
+  );
+  const pairCancellationFractions = decompositionRows.flatMap((row) =>
+    row.pair_residual_decomposition_rows.map(
+      (pairRow) => pairRow.pair_cancellation_fraction
+    )
+  );
+  const sourceTermSumEndpointGaps = decompositionRows.map(
+    (row) => row.source_term_sum_endpoint_relative_gap_to_live_signed_residual
+  );
+  return {
+    target_kind:
+      "candidate-requested-y44-shared-source-map-term-cancellation-decomposition",
+    source_realization_budget_kind:
+      sourceCovarianceRealizationBudget.target_kind,
+    proof_status:
+      "candidate-source-map-term-cancellation-decomposition-not-directed-rounded",
+    decomposition_kind:
+      "signed-source-term-residual-interval-pair-decomposition",
+    term_cancellation_decomposition_rows_available: true,
+    term_cancellation_decomposition_rows: decompositionRows,
+    all_source_term_sums_match_live_signed_residual_intervals:
+      allTermSumsMatchLive,
+    max_source_term_sum_endpoint_relative_gap_to_live_signed_residual:
+      finiteMaximum(sourceTermSumEndpointGaps),
+    max_pair_cancellation_fraction:
+      finiteMaximum(pairCancellationFractions),
+    dominant_term_cancellation_node_index:
+      dominantRow?.node_index ?? null,
+    dominant_term_cancellation_triangle_to_half_width_ratio:
+      dominantRow
+        ?.signed_source_term_triangle_to_center_aware_half_width_ratio ?? null,
+    dominant_node_dominant_source_term:
+      dominantRow?.dominant_term_by_abs_upper?.term ?? null,
+    dominant_node_dominant_pair_by_triangle_terms_key:
+      dominantRow?.dominant_pair_by_triangle_abs_upper?.pair_terms_key ??
+      null,
+    dominant_node_strongest_pair_cancellation_terms_key:
+      dominantRow?.strongest_pair_cancellation?.pair_terms_key ?? null,
+    source_term_cancellation_decomposition_classification:
+      allTermSumsMatchLive && dominantRow?.node_index === 4
+        ? "term-cancellation-decomposition-localizes-node4-source-covariance-burden"
+        : "term-cancellation-decomposition-open",
+    term_cancellation_decomposition_interpretation:
+      "the directed-rounded H38 source-map residual provider must preserve the term-level signed residual sum and the pairwise cancellation structure recorded here before center-aware node radii can certify H39 shifted-source bounds",
+    next_certificate_object:
+      "directed-rounded same-domain H38 source-map residual provider preserving the dominant node-4 term and pair cancellation decomposition",
+    claim_boundary: {
+      certifies_term_cancellation_decomposition_only: allTermSumsMatchLive,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function h39RequestedY44SourceMapResidualFiveNodeTermPreservationVerifier({
+  termCancellationDecomposition,
+  providerRows = null,
+} = {}) {
+  if (
+    termCancellationDecomposition === null ||
+    termCancellationDecomposition === undefined ||
+    termCancellationDecomposition.target_kind !==
+      "candidate-requested-y44-shared-source-map-term-cancellation-decomposition"
+  ) {
+    return null;
+  }
+  const decompositionRows =
+    termCancellationDecomposition.term_cancellation_decomposition_rows ?? [];
+  if (decompositionRows.length !== 5) {
+    return null;
+  }
+  const providerRowsSupplied = Array.isArray(providerRows);
+  const suppliedRows = providerRowsSupplied ? providerRows : [];
+  const providerRowsByNodeIndex = new Map(
+    suppliedRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const requiredSourceKind =
+    "directed-rounded-same-domain-h38-source-map-residual-provider";
+  const fixtureSourceKind = "term-cancellation-decomposition-verifier-fixture";
+  const pairKey = (terms) => terms.join("+");
+  const pairRowsForTerms = (termRows) => {
+    const pairs = [];
+    for (let i = 0; i < termRows.length; i += 1) {
+      for (let j = i + 1; j < termRows.length; j += 1) {
+        const pairTerms = [termRows[i].term, termRows[j].term];
+        const pairSumInterval = sumIntervals([
+          termRows[i].residual_interval,
+          termRows[j].residual_interval,
+        ]);
+        pairs.push({
+          pair_terms: pairTerms,
+          pair_terms_key: pairKey(pairTerms),
+          pair_sum_interval: pairSumInterval,
+          pair_triangle_abs_upper:
+            Number(termRows[i].residual_abs_upper) +
+            Number(termRows[j].residual_abs_upper),
+          pair_sum_abs_upper: intervalAbsUpper(pairSumInterval),
+        });
+      }
+    }
+    return pairs;
+  };
+  const normalizedTermRows = (rows) => {
+    if (!Array.isArray(rows)) {
+      return null;
+    }
+    const rowsByTerm = new Map(rows.map((row) => [row?.term, row]));
+    return H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.map((term) => {
+      const row = rowsByTerm.get(term);
+      const residualInterval = finiteOrderedIntervalOrNull(
+        row?.residual_interval
+      );
+      const residualAbsUpper =
+        finiteNonnegative(row?.residual_abs_upper)
+          ? Number(row.residual_abs_upper)
+          : residualInterval === null
+            ? null
+            : intervalAbsUpper(residualInterval);
+      if (residualInterval === null || residualAbsUpper === null) {
+        return null;
+      }
+      return {
+        term,
+        residual_interval: residualInterval,
+        residual_abs_upper: residualAbsUpper,
+      };
+    });
+  };
+  const verifierRows = decompositionRows.map((decompositionRow) => {
+    const providerRow = providerRowsSupplied
+      ? providerRowsByNodeIndex.get(Number(decompositionRow.node_index)) ?? null
+      : null;
+    const providerRowAvailable = providerRow !== null;
+    const decompositionTermRows = normalizedTermRows(
+      decompositionRow.term_residual_decomposition_rows
+    );
+    const providerTermRows = providerRowAvailable
+      ? normalizedTermRows(providerRow?.source_term_residual_rows)
+      : decompositionTermRows;
+    if (
+      decompositionTermRows === null ||
+      providerTermRows === null ||
+      decompositionTermRows.some((row) => row === null) ||
+      providerTermRows.some((row) => row === null)
+    ) {
+      return null;
+    }
+    const providerSignedInterval = finiteOrderedIntervalOrNull(
+      providerRowAvailable
+        ? providerRow?.directed_rounded_signed_residual_interval ??
+            providerRow?.signed_residual_interval
+        : decompositionRow.live_signed_residual_interval
+    );
+    const decompositionSignedInterval = finiteOrderedIntervalOrNull(
+      decompositionRow.live_signed_residual_interval
+    );
+    if (
+      providerSignedInterval === null ||
+      decompositionSignedInterval === null
+    ) {
+      return null;
+    }
+    const providerTermSumInterval = sumIntervals(
+      providerTermRows.map((termRow) => termRow.residual_interval)
+    );
+    const decompositionTermSumInterval = finiteOrderedIntervalOrNull(
+      decompositionRow.source_term_sum_interval
+    );
+    const providerPairs = pairRowsForTerms(providerTermRows);
+    const decompositionPairs = Array.isArray(
+      decompositionRow.pair_residual_decomposition_rows
+    )
+      ? decompositionRow.pair_residual_decomposition_rows
+      : [];
+    const decompositionPairsByKey = new Map(
+      decompositionPairs.map((row) => [row?.pair_terms_key, row])
+    );
+    const termsMatchDecomposition = providerTermRows.every(
+      (termRow, index) =>
+        h39RequestedY44SameInterval(
+          termRow.residual_interval,
+          decompositionTermRows[index].residual_interval
+        )
+    );
+    const pairRowsMatchDecomposition = providerPairs.every((pairRow) => {
+      const decompositionPair = decompositionPairsByKey.get(
+        pairRow.pair_terms_key
+      );
+      return (
+        decompositionPair !== undefined &&
+        h39RequestedY44SameInterval(
+          pairRow.pair_sum_interval,
+          decompositionPair.pair_sum_interval
+        ) &&
+        h39RequestedY44SameNumber(
+          pairRow.pair_triangle_abs_upper,
+          decompositionPair.pair_triangle_abs_upper,
+          1e-12
+        )
+      );
+    });
+    const termSumToProviderGap = intervalEndpointRelativeGap(
+      providerTermSumInterval,
+      providerSignedInterval
+    );
+    const termSumToDecompositionGap =
+      decompositionTermSumInterval === null
+        ? null
+        : intervalEndpointRelativeGap(
+            providerTermSumInterval,
+            decompositionTermSumInterval
+          );
+    const providerSourceKind = providerRowAvailable
+      ? String(providerRow?.provider_row_source_kind ?? "")
+      : fixtureSourceKind;
+    const sourceKindMatches = providerSourceKind === requiredSourceKind;
+    const sameDomainChecks = {
+      source_y_order_matches: providerRowAvailable
+        ? Number(providerRow?.source_y_order) ===
+          Number(decompositionRow.source_y_order)
+        : true,
+      required_xi_derivative_order_matches: providerRowAvailable
+        ? Number(providerRow?.required_xi_derivative_order) ===
+          Number(decompositionRow.required_xi_derivative_order)
+        : true,
+      node_index_matches: providerRowAvailable
+        ? Number(providerRow?.node_index) ===
+          Number(decompositionRow.node_index)
+        : true,
+      xi_midpoint_matches: providerRowAvailable
+        ? h39RequestedY44SameNumber(
+            providerRow?.xi_midpoint,
+            decompositionRow.xi_midpoint
+          )
+        : true,
+      tightest_budget_cell_id_matches: providerRowAvailable
+        ? providerRow?.tightest_budget_cell_id ===
+          decompositionRow.tightest_budget_cell_id
+        : true,
+      source_terms_preserved_signed_together_matches: providerRowAvailable
+        ? h39RequestedY44SameSourceTerms(
+            providerRow?.source_terms_preserved_signed_together
+          )
+        : true,
+    };
+    const sameDomainMatches = Object.values(sameDomainChecks).every(
+      (value) => value === true
+    );
+    const providerCertifiesDirectedRoundedSameDomain =
+      providerRowAvailable &&
+      sourceKindMatches &&
+      sameDomainMatches &&
+      providerRow?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+        true;
+    const termSumMatchesProvider =
+      termSumToProviderGap !== null && termSumToProviderGap <= 1e-12;
+    const termSumMatchesDecomposition =
+      termSumToDecompositionGap !== null && termSumToDecompositionGap <= 1e-12;
+    return {
+      node_index: decompositionRow.node_index,
+      xi_midpoint: decompositionRow.xi_midpoint,
+      provider_row_supplied: providerRowAvailable,
+      provider_row_source_kind: providerSourceKind,
+      required_provider_row_source_kind: requiredSourceKind,
+      provider_source_kind_matches_required: sourceKindMatches,
+      provider_certifies_directed_rounded_shared_domain:
+        providerCertifiesDirectedRoundedSameDomain,
+      same_domain_checks: sameDomainChecks,
+      matches_same_domain_contract: sameDomainMatches,
+      provider_source_term_rows_supplied:
+        providerTermRows.length ===
+        H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length,
+      provider_source_terms_match_decomposition: termsMatchDecomposition,
+      provider_pair_rows_match_decomposition: pairRowsMatchDecomposition,
+      provider_term_sum_interval: providerTermSumInterval,
+      provider_signed_residual_interval: providerSignedInterval,
+      provider_term_sum_endpoint_relative_gap_to_provider_signed_residual:
+        termSumToProviderGap,
+      provider_term_sum_matches_provider_signed_residual:
+        termSumMatchesProvider,
+      provider_term_sum_endpoint_relative_gap_to_decomposition:
+        termSumToDecompositionGap,
+      provider_term_sum_matches_decomposition: termSumMatchesDecomposition,
+      provider_term_residual_rows: providerTermRows,
+      provider_pair_residual_rows: providerPairs,
+      verifier_row_status:
+        providerCertifiesDirectedRoundedSameDomain &&
+        termsMatchDecomposition &&
+        pairRowsMatchDecomposition &&
+        termSumMatchesProvider
+          ? "directed-rounded-term-preserving-provider-row-accepted"
+          : termsMatchDecomposition &&
+              pairRowsMatchDecomposition &&
+              termSumMatchesProvider
+            ? "term-preserving-provider-row-reaches-source-certification-boundary"
+            : "term-preserving-provider-row-open",
+    };
+  });
+  if (verifierRows.some((row) => row === null)) {
+    return {
+      target_kind:
+        "candidate-requested-y44-shared-source-map-term-preservation-provider-verifier",
+      proof_status:
+        "candidate-term-preservation-provider-verifier-inputs-missing",
+      verifier_kind:
+        "same-domain-source-map-term-pair-cancellation-preservation-check",
+      term_preservation_verifier_rows_available: false,
+      term_preservation_verification_rows: [],
+      claim_boundary: {
+        certifies_term_preservation_contract_only: false,
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  }
+  const allRowsAvailable =
+    providerRowsSupplied &&
+    verifierRows.length === 5 &&
+    verifierRows.every((row) => row.provider_row_supplied === true);
+  const allProviderRowsMatchSameDomain =
+    allRowsAvailable &&
+    verifierRows.every((row) => row.matches_same_domain_contract === true);
+  const allProviderTermRowsSupplied =
+    allRowsAvailable &&
+    verifierRows.every((row) => row.provider_source_term_rows_supplied === true);
+  const allProviderTermsMatchDecomposition =
+    allRowsAvailable &&
+    verifierRows.every(
+      (row) => row.provider_source_terms_match_decomposition === true
+    );
+  const allProviderPairsMatchDecomposition =
+    allRowsAvailable &&
+    verifierRows.every(
+      (row) => row.provider_pair_rows_match_decomposition === true
+    );
+  const allProviderTermSumsMatchProviderSignedResiduals =
+    allRowsAvailable &&
+    verifierRows.every(
+      (row) => row.provider_term_sum_matches_provider_signed_residual === true
+    );
+  const allProviderTermSumsMatchDecomposition =
+    allRowsAvailable &&
+    verifierRows.every(
+      (row) => row.provider_term_sum_matches_decomposition === true
+    );
+  const allProviderRowsHaveDirectedRoundedSource =
+    allRowsAvailable &&
+    verifierRows.every(
+      (row) =>
+        row.provider_source_kind_matches_required === true &&
+        row.provider_certifies_directed_rounded_shared_domain === true
+    );
+  const fixtureConsumerPathPasses =
+    !providerRowsSupplied &&
+    verifierRows.every(
+      (row) =>
+        row.provider_source_terms_match_decomposition === true &&
+        row.provider_pair_rows_match_decomposition === true &&
+        row.provider_term_sum_matches_provider_signed_residual === true
+    );
+  const verifiedDirectedRoundedTermPreservingProviderRows =
+    allProviderRowsMatchSameDomain &&
+    allProviderTermRowsSupplied &&
+    allProviderTermsMatchDecomposition &&
+    allProviderPairsMatchDecomposition &&
+    allProviderTermSumsMatchProviderSignedResiduals &&
+    allProviderRowsHaveDirectedRoundedSource;
+  const reachesSourceOnlyFailure =
+    allProviderRowsMatchSameDomain &&
+    allProviderTermRowsSupplied &&
+    allProviderTermsMatchDecomposition &&
+    allProviderPairsMatchDecomposition &&
+    allProviderTermSumsMatchProviderSignedResiduals &&
+    allProviderTermSumsMatchDecomposition &&
+    allProviderRowsHaveDirectedRoundedSource === false;
+  const sumGaps = verifierRows.flatMap((row) => [
+    row.provider_term_sum_endpoint_relative_gap_to_provider_signed_residual,
+    row.provider_term_sum_endpoint_relative_gap_to_decomposition,
+  ]);
+  return {
+    target_kind:
+      "candidate-requested-y44-shared-source-map-term-preservation-provider-verifier",
+    source_term_cancellation_decomposition_kind:
+      termCancellationDecomposition.target_kind,
+    proof_status: verifiedDirectedRoundedTermPreservingProviderRows
+      ? "candidate-verifier-accepts-term-preserving-directed-rounded-provider-rows"
+      : providerRowsSupplied
+        ? "candidate-verifier-rejects-or-keeps-open-term-preserving-provider-rows"
+        : "candidate-term-preservation-verifier-boundary-ready-provider-rows-missing",
+    verifier_kind:
+      "same-domain-source-map-term-pair-cancellation-preservation-check",
+    source_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    provider_rows_supplied: providerRowsSupplied,
+    provider_row_source_kind_required: requiredSourceKind,
+    provider_row_term_fields_required: [
+      "source_term_residual_rows[].term",
+      "source_term_residual_rows[].residual_interval",
+      "directed_rounded_signed_residual_interval",
+      "claim_boundary.certifies_directed_rounded_shared_domain",
+    ],
+    term_preservation_fixture_consumer_path_passes: fixtureConsumerPathPasses,
+    term_preservation_verifier_rows_available: true,
+    all_provider_rows_supplied: allRowsAvailable,
+    all_provider_rows_match_same_domain_contract:
+      allProviderRowsMatchSameDomain,
+    all_provider_term_rows_supplied: allProviderTermRowsSupplied,
+    all_provider_terms_match_decomposition:
+      allProviderTermsMatchDecomposition,
+    all_provider_pairs_match_decomposition:
+      allProviderPairsMatchDecomposition,
+    all_provider_term_sums_match_provider_signed_residuals:
+      allProviderTermSumsMatchProviderSignedResiduals,
+    all_provider_term_sums_match_decomposition:
+      allProviderTermSumsMatchDecomposition,
+    all_provider_rows_have_directed_rounded_source:
+      allProviderRowsHaveDirectedRoundedSource,
+    term_preservation_reaches_verifier_with_source_only_failure:
+      reachesSourceOnlyFailure,
+    verified_directed_rounded_term_preserving_provider_rows:
+      verifiedDirectedRoundedTermPreservingProviderRows,
+    max_provider_term_sum_endpoint_relative_gap:
+      finiteMaximum(sumGaps),
+    dominant_term_cancellation_node_index:
+      termCancellationDecomposition.dominant_term_cancellation_node_index,
+    term_preservation_verification_rows: verifierRows,
+    term_preservation_verifier_classification:
+      verifiedDirectedRoundedTermPreservingProviderRows
+        ? "requested-y44-term-preserving-provider-rows-certified"
+        : reachesSourceOnlyFailure
+          ? "term-preserving-provider-rows-reach-boundary-source-certification-open"
+          : fixtureConsumerPathPasses
+            ? "term-preservation-verifier-boundary-ready-but-provider-missing"
+            : "term-preservation-verifier-open",
+    term_preservation_interpretation:
+      "provider rows must carry delta_squared_speed, sin_phi, and sin_delta source-term residual intervals through the same five nodes so their signed sums and pair cancellations are preserved before H39 applies absolute source bounds",
+    next_certificate_object:
+      "directed-rounded same-domain H38 source-map residual provider rows whose term residual intervals replay this decomposition with directed source provenance",
+    claim_boundary: {
+      certifies_term_preservation_contract_only:
+        fixtureConsumerPathPasses || reachesSourceOnlyFailure,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function h39RequestedY44SourceMapResidualFiveNodeTermEndpointMarginDiagnostic({
+  termPreservationVerifier,
+} = {}) {
+  if (
+    termPreservationVerifier === null ||
+    termPreservationVerifier === undefined ||
+    termPreservationVerifier.target_kind !==
+      "candidate-requested-y44-shared-source-map-term-preservation-provider-verifier" ||
+    !Array.isArray(termPreservationVerifier.term_preservation_verification_rows) ||
+    termPreservationVerifier.term_preservation_verification_rows.length !== 5
+  ) {
+    return null;
+  }
+  const endpointMarginRelativeBound = Number.EPSILON;
+  const requiredRelativeEndpointMargin = (outer, inner) => {
+    const resolvedOuter = finiteOrderedIntervalOrNull(outer);
+    const resolvedInner = finiteOrderedIntervalOrNull(inner);
+    if (resolvedOuter === null || resolvedInner === null) {
+      return null;
+    }
+    const leftOverrun = Math.max(0, resolvedOuter[0] - resolvedInner[0]);
+    const rightOverrun = Math.max(0, resolvedInner[1] - resolvedOuter[1]);
+    return (
+      Math.max(leftOverrun, rightOverrun) /
+      Math.max(1, intervalAbsUpper(resolvedOuter), intervalAbsUpper(resolvedInner))
+    );
+  };
+  const expandByRelativeEndpointMargin = (interval, relativeMargin) => {
+    const resolvedInterval = finiteOrderedIntervalOrNull(interval);
+    const resolvedMargin = Number(relativeMargin);
+    if (resolvedInterval === null || !finiteNonnegative(resolvedMargin)) {
+      return null;
+    }
+    const absoluteMargin =
+      resolvedMargin * Math.max(1, intervalAbsUpper(resolvedInterval));
+    return [
+      resolvedInterval[0] - absoluteMargin,
+      resolvedInterval[1] + absoluteMargin,
+    ];
+  };
+  const endpointMarginRows =
+    termPreservationVerifier.term_preservation_verification_rows.map((row) => {
+      const providerTermSum = finiteOrderedIntervalOrNull(
+        row?.provider_term_sum_interval
+      );
+      const providerSignedResidual = finiteOrderedIntervalOrNull(
+        row?.provider_signed_residual_interval
+      );
+      if (providerTermSum === null || providerSignedResidual === null) {
+        return null;
+      }
+      const expandedSignedResidual = expandByRelativeEndpointMargin(
+        providerSignedResidual,
+        endpointMarginRelativeBound
+      );
+      const termSumRequiredMargin = requiredRelativeEndpointMargin(
+        providerSignedResidual,
+        providerTermSum
+      );
+      if (
+        expandedSignedResidual === null ||
+        !finiteNonnegative(termSumRequiredMargin)
+      ) {
+        return null;
+      }
+      const pairRows = Array.isArray(row?.provider_pair_residual_rows)
+        ? row.provider_pair_residual_rows
+        : [];
+      if (pairRows.length !== 3) {
+        return null;
+      }
+      const pairEndpointMarginRows = pairRows.map((pairRow) => {
+        const pairSum = finiteOrderedIntervalOrNull(pairRow?.pair_sum_interval);
+        if (pairSum === null) {
+          return null;
+        }
+        const expandedPairSum = expandByRelativeEndpointMargin(
+          pairSum,
+          endpointMarginRelativeBound
+        );
+        const pairRequiredMargin = requiredRelativeEndpointMargin(
+          pairSum,
+          pairSum
+        );
+        if (
+          expandedPairSum === null ||
+          !finiteNonnegative(pairRequiredMargin)
+        ) {
+          return null;
+        }
+        return {
+          pair_terms: pairRow.pair_terms,
+          pair_terms_key: pairRow.pair_terms_key,
+          pair_endpoint_margin_model:
+            "provider-pair-sum-expanded-by-one-number-epsilon-relative-endpoint-margin",
+          pair_sum_interval: pairSum,
+          number_epsilon_expanded_pair_sum_interval: expandedPairSum,
+          pair_required_relative_endpoint_margin: pairRequiredMargin,
+          pair_required_margin_to_number_epsilon_ratio:
+            pairRequiredMargin / endpointMarginRelativeBound,
+          pair_number_epsilon_margin_contains_pair_sum:
+            intervalContainsInterval(expandedPairSum, pairSum),
+        };
+      });
+      if (pairEndpointMarginRows.some((pairRow) => pairRow === null)) {
+        return null;
+      }
+      const pairMargins = pairEndpointMarginRows.map(
+        (pairRow) => pairRow.pair_required_relative_endpoint_margin
+      );
+      const termSumFits = intervalContainsInterval(
+        expandedSignedResidual,
+        providerTermSum
+      );
+      const pairsFit = pairEndpointMarginRows.every(
+        (pairRow) =>
+          pairRow.pair_number_epsilon_margin_contains_pair_sum === true
+      );
+      return {
+        node_index: row.node_index,
+        xi_midpoint: row.xi_midpoint,
+        endpoint_margin_model:
+          "provider-signed-residual-expanded-by-one-number-epsilon-relative-endpoint-margin",
+        endpoint_margin_relative_bound: endpointMarginRelativeBound,
+        provider_row_source_kind: row.provider_row_source_kind,
+        provider_row_source_kind_matches_required:
+          row.provider_source_kind_matches_required,
+        provider_certifies_directed_rounded_shared_domain:
+          row.provider_certifies_directed_rounded_shared_domain,
+        provider_term_sum_interval: providerTermSum,
+        provider_signed_residual_interval: providerSignedResidual,
+        number_epsilon_expanded_provider_signed_residual_interval:
+          expandedSignedResidual,
+        term_sum_required_relative_endpoint_margin: termSumRequiredMargin,
+        term_sum_required_margin_to_number_epsilon_ratio:
+          termSumRequiredMargin / endpointMarginRelativeBound,
+        term_sum_number_epsilon_margin_contains_provider_sum: termSumFits,
+        pair_endpoint_margin_rows: pairEndpointMarginRows,
+        max_pair_required_relative_endpoint_margin:
+          finiteMaximum(pairMargins),
+        max_pair_required_margin_to_number_epsilon_ratio:
+          finiteMaximum(
+            pairEndpointMarginRows.map(
+              (pairRow) => pairRow.pair_required_margin_to_number_epsilon_ratio
+            )
+          ),
+        all_pair_endpoint_margin_rows_fit_one_number_epsilon: pairsFit,
+        endpoint_margin_row_status:
+          termSumFits && pairsFit
+            ? "one-number-epsilon-endpoint-margin-contains-term-and-pair-sums"
+            : "term-pair-endpoint-margin-row-open",
+      };
+    });
+  if (endpointMarginRows.some((row) => row === null)) {
+    return {
+      target_kind:
+        "candidate-requested-y44-shared-source-map-term-endpoint-margin-diagnostic",
+      proof_status:
+        "candidate-term-endpoint-margin-diagnostic-inputs-missing",
+      endpoint_margin_kind:
+        "one-number-epsilon-relative-term-pair-endpoint-margin-screen",
+      endpoint_margin_rows_available: false,
+      endpoint_margin_rows: [],
+      claim_boundary: {
+        certifies_endpoint_margin_as_directed_rounded_source: false,
+        certifies_term_pair_operation_replay: false,
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  }
+  const requiredMargins = endpointMarginRows.flatMap((row) => [
+    row.term_sum_required_relative_endpoint_margin,
+    row.max_pair_required_relative_endpoint_margin,
+  ]);
+  const allRowsFitOneNumberEpsilon = endpointMarginRows.every(
+    (row) =>
+      row.term_sum_number_epsilon_margin_contains_provider_sum === true &&
+      row.all_pair_endpoint_margin_rows_fit_one_number_epsilon === true
+  );
+  const sourceStillOpen =
+    termPreservationVerifier.all_provider_rows_have_directed_rounded_source ===
+    false;
+  const maxRequiredMargin = finiteMaximum(requiredMargins);
+  return {
+    target_kind:
+      "candidate-requested-y44-shared-source-map-term-endpoint-margin-diagnostic",
+    source_term_preservation_verifier_kind:
+      termPreservationVerifier.target_kind,
+    proof_status:
+      "candidate-term-pair-endpoint-margin-screen-not-directed-rounded-source",
+    endpoint_margin_kind:
+      "one-number-epsilon-relative-term-pair-endpoint-margin-screen",
+    endpoint_margin_relative_bound: endpointMarginRelativeBound,
+    source_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    provider_rows_preserve_term_decomposition:
+      termPreservationVerifier.all_provider_terms_match_decomposition,
+    provider_rows_preserve_pair_decomposition:
+      termPreservationVerifier.all_provider_pairs_match_decomposition,
+    provider_rows_certify_directed_rounded_shared_domain:
+      termPreservationVerifier.all_provider_rows_have_directed_rounded_source,
+    endpoint_margin_rows_available: true,
+    endpoint_margin_rows: endpointMarginRows,
+    all_endpoint_margin_rows_fit_one_number_epsilon:
+      allRowsFitOneNumberEpsilon,
+    all_endpoint_margin_rows_keep_source_open: sourceStillOpen,
+    max_required_relative_endpoint_margin: maxRequiredMargin,
+    max_required_margin_to_number_epsilon_ratio:
+      finiteNonnegative(maxRequiredMargin)
+        ? maxRequiredMargin / endpointMarginRelativeBound
+        : null,
+    endpoint_margin_classification:
+      allRowsFitOneNumberEpsilon && sourceStillOpen
+        ? "one-number-epsilon-term-pair-endpoint-margin-suffices-source-certification-open"
+        : allRowsFitOneNumberEpsilon
+          ? "one-number-epsilon-term-pair-endpoint-margin-suffices-metadata-open"
+          : "term-pair-endpoint-margin-open",
+    endpoint_margin_interpretation:
+      "term and pair interval arithmetic fits within a one-Number.EPSILON outward endpoint screen; remaining source certification is the directed-rounded provenance of the H38 producer-image term intervals",
+    next_certificate_object:
+      "directed-rounded same-domain H38 source-term interval provider for delta_squared_speed, sin_phi, and sin_delta on the five requested-y44 nodes",
+    claim_boundary: {
+      certifies_endpoint_margin_as_directed_rounded_source: false,
+      certifies_term_pair_operation_replay: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function h39RequestedY44SourceMapResidualFiveNodeTermSourceOperationReplay({
+  termPreservationVerifier,
+  termEndpointMarginDiagnostic,
+} = {}) {
+  if (
+    termPreservationVerifier === null ||
+    termPreservationVerifier === undefined ||
+    termPreservationVerifier.target_kind !==
+      "candidate-requested-y44-shared-source-map-term-preservation-provider-verifier" ||
+    termEndpointMarginDiagnostic === null ||
+    termEndpointMarginDiagnostic === undefined ||
+    termEndpointMarginDiagnostic.target_kind !==
+      "candidate-requested-y44-shared-source-map-term-endpoint-margin-diagnostic" ||
+    !Array.isArray(termPreservationVerifier.term_preservation_verification_rows) ||
+    termPreservationVerifier.term_preservation_verification_rows.length !== 5 ||
+    !Array.isArray(termEndpointMarginDiagnostic.endpoint_margin_rows) ||
+    termEndpointMarginDiagnostic.endpoint_margin_rows.length !== 5
+  ) {
+    return null;
+  }
+  const endpointRowsByNode = new Map(
+    termEndpointMarginDiagnostic.endpoint_margin_rows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const pairKey = (terms) => terms.join("+");
+  const replayRows =
+    termPreservationVerifier.term_preservation_verification_rows.map((row) => {
+      const endpointRow = endpointRowsByNode.get(Number(row.node_index)) ?? null;
+      const termRows = Array.isArray(row?.provider_term_residual_rows)
+        ? row.provider_term_residual_rows
+        : [];
+      if (endpointRow === null || termRows.length !== 3) {
+        return null;
+      }
+      const normalizedTermRows = H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.map(
+        (term) => {
+          const termRow = termRows.find((candidate) => candidate.term === term);
+          const residualInterval = finiteOrderedIntervalOrNull(
+            termRow?.residual_interval
+          );
+          return residualInterval === null
+            ? null
+            : {
+                term,
+                residual_interval: residualInterval,
+              };
+        }
+      );
+      if (normalizedTermRows.some((termRow) => termRow === null)) {
+        return null;
+      }
+      const replayTermSumInterval = sumIntervals(
+        normalizedTermRows.map((termRow) => termRow.residual_interval)
+      );
+      const replayPairRows = [];
+      for (let i = 0; i < normalizedTermRows.length; i += 1) {
+        for (let j = i + 1; j < normalizedTermRows.length; j += 1) {
+          const pairTerms = [normalizedTermRows[i].term, normalizedTermRows[j].term];
+          replayPairRows.push({
+            pair_terms: pairTerms,
+            pair_terms_key: pairKey(pairTerms),
+            pair_sum_interval: sumIntervals([
+              normalizedTermRows[i].residual_interval,
+              normalizedTermRows[j].residual_interval,
+            ]),
+          });
+        }
+      }
+      const providerTermSum = finiteOrderedIntervalOrNull(
+        row.provider_term_sum_interval
+      );
+      const expandedSignedResidual = finiteOrderedIntervalOrNull(
+        endpointRow.number_epsilon_expanded_provider_signed_residual_interval
+      );
+      if (providerTermSum === null || expandedSignedResidual === null) {
+        return null;
+      }
+      const termSumReplayGap = intervalEndpointRelativeGap(
+        replayTermSumInterval,
+        providerTermSum
+      );
+      const endpointPairRows = new Map(
+        endpointRow.pair_endpoint_margin_rows.map((pairRow) => [
+          pairRow.pair_terms_key,
+          pairRow,
+        ])
+      );
+      const providerPairRowsByKey = new Map(
+        row.provider_pair_residual_rows.map((pairRow) => [
+          pairRow.pair_terms_key,
+          pairRow,
+        ])
+      );
+      const pairOperationReplayRows = replayPairRows.map((pairRow) => {
+        const providerPair = providerPairRowsByKey.get(pairRow.pair_terms_key);
+        const endpointPair = endpointPairRows.get(pairRow.pair_terms_key);
+        const providerPairInterval = finiteOrderedIntervalOrNull(
+          providerPair?.pair_sum_interval
+        );
+        const expandedPairInterval = finiteOrderedIntervalOrNull(
+          endpointPair?.number_epsilon_expanded_pair_sum_interval
+        );
+        if (
+          providerPairInterval === null ||
+          expandedPairInterval === null
+        ) {
+          return null;
+        }
+        const pairReplayGap = intervalEndpointRelativeGap(
+          pairRow.pair_sum_interval,
+          providerPairInterval
+        );
+        return {
+          pair_terms: pairRow.pair_terms,
+          pair_terms_key: pairRow.pair_terms_key,
+          pair_sum_replay_interval: pairRow.pair_sum_interval,
+          provider_pair_sum_interval: providerPairInterval,
+          pair_sum_replay_relative_gap: pairReplayGap,
+          number_epsilon_expanded_pair_sum_interval:
+            expandedPairInterval,
+          pair_operation_replay_fits_one_epsilon_endpoint_margin:
+            intervalContainsInterval(expandedPairInterval, pairRow.pair_sum_interval),
+        };
+      });
+      if (pairOperationReplayRows.some((pairRow) => pairRow === null)) {
+        return null;
+      }
+      const pairReplayGaps = pairOperationReplayRows.map(
+        (pairRow) => pairRow.pair_sum_replay_relative_gap
+      );
+      const termSumReplayMatches = termSumReplayGap <= 1e-12;
+      const pairSumsReplayMatch = pairOperationReplayRows.every(
+        (pairRow) =>
+          finiteNonnegative(pairRow.pair_sum_replay_relative_gap) &&
+          pairRow.pair_sum_replay_relative_gap <= 1e-12
+      );
+      const termSumFitsEndpointMargin = intervalContainsInterval(
+        expandedSignedResidual,
+        replayTermSumInterval
+      );
+      const pairSumsFitEndpointMargin = pairOperationReplayRows.every(
+        (pairRow) =>
+          pairRow.pair_operation_replay_fits_one_epsilon_endpoint_margin ===
+          true
+      );
+      return {
+        node_index: row.node_index,
+        xi_midpoint: row.xi_midpoint,
+        source_operation_kind:
+          "requested-y44-term-pair-binary64-outward-source-map-operation",
+        operation_rounding_model:
+          "root-tube-nextafter-outward-add-interval-primitives",
+        endpoint_margin_model: endpointRow.endpoint_margin_model,
+        endpoint_margin_relative_bound:
+          endpointRow.endpoint_margin_relative_bound,
+        provider_row_source_kind: row.provider_row_source_kind,
+        provider_certifies_directed_rounded_shared_domain:
+          row.provider_certifies_directed_rounded_shared_domain,
+        term_sum_replay_interval: replayTermSumInterval,
+        provider_term_sum_interval: providerTermSum,
+        term_sum_replay_relative_gap: termSumReplayGap,
+        term_sum_operation_replay_matches_provider:
+          termSumReplayMatches,
+        number_epsilon_expanded_provider_signed_residual_interval:
+          expandedSignedResidual,
+        term_sum_operation_replay_fits_one_epsilon_endpoint_margin:
+          termSumFitsEndpointMargin,
+        pair_operation_replay_rows: pairOperationReplayRows,
+        all_pair_operation_replays_match_provider:
+          pairSumsReplayMatch,
+        all_pair_operation_replays_fit_one_epsilon_endpoint_margin:
+          pairSumsFitEndpointMargin,
+        max_pair_operation_replay_relative_gap:
+          finiteMaximum(pairReplayGaps),
+        operation_row_status:
+          termSumReplayMatches &&
+          pairSumsReplayMatch &&
+          termSumFitsEndpointMargin &&
+          pairSumsFitEndpointMargin
+            ? "term-pair-source-operation-replay-fits-one-epsilon-endpoint-margin"
+            : "term-pair-source-operation-replay-open",
+      };
+    });
+  if (replayRows.some((row) => row === null)) {
+    return null;
+  }
+  const replayGaps = replayRows.flatMap((row) => [
+    row.term_sum_replay_relative_gap,
+    row.max_pair_operation_replay_relative_gap,
+  ]);
+  const allRowsReplayTermSums = replayRows.every(
+    (row) => row.term_sum_operation_replay_matches_provider === true
+  );
+  const allRowsReplayPairSums = replayRows.every(
+    (row) => row.all_pair_operation_replays_match_provider === true
+  );
+  const allRowsFitEndpointMargin = replayRows.every(
+    (row) =>
+      row.term_sum_operation_replay_fits_one_epsilon_endpoint_margin === true &&
+      row.all_pair_operation_replays_fit_one_epsilon_endpoint_margin === true
+  );
+  const sourceProvenanceStillOpen =
+    termPreservationVerifier.all_provider_rows_have_directed_rounded_source ===
+    false;
+  return {
+    target_kind:
+      "candidate-requested-y44-shared-source-map-term-source-operation-replay",
+    source_term_preservation_verifier_kind:
+      termPreservationVerifier.target_kind,
+    source_endpoint_margin_diagnostic_kind:
+      termEndpointMarginDiagnostic.target_kind,
+    proof_status:
+      "candidate-term-pair-binary64-outward-operation-replay-source-provenance-open",
+    operation_replay_kind:
+      "requested-y44-term-pair-source-map-with-one-number-epsilon-endpoint-margin",
+    operation_rounding_model:
+      "root-tube-nextafter-outward-add-interval-primitives",
+    endpoint_margin_relative_bound:
+      termEndpointMarginDiagnostic.endpoint_margin_relative_bound,
+    source_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    source_provenance_still_open: sourceProvenanceStillOpen,
+    operation_replay_rows: replayRows,
+    all_operation_rows_replay_term_sum_identities:
+      allRowsReplayTermSums,
+    all_operation_rows_replay_pair_sum_identities:
+      allRowsReplayPairSums,
+    all_operation_rows_fit_one_number_epsilon_endpoint_margin:
+      allRowsFitEndpointMargin,
+    certifies_binary64_outward_operation_replay_for_supplied_intervals:
+      allRowsReplayTermSums && allRowsReplayPairSums,
+    certifies_one_number_epsilon_endpoint_margin_for_operation_replay:
+      allRowsFitEndpointMargin,
+    certifies_source_inputs_as_directed_rounded_same_domain: false,
+    max_operation_replay_relative_gap: finiteMaximum(replayGaps),
+    source_operation_replay_classification:
+      allRowsReplayTermSums &&
+      allRowsReplayPairSums &&
+      allRowsFitEndpointMargin &&
+      sourceProvenanceStillOpen
+        ? "term-pair-arithmetic-replay-is-stable-source-interval-provenance-open"
+        : allRowsReplayTermSums && allRowsReplayPairSums
+          ? "term-pair-arithmetic-replay-closes-endpoint-margin-open"
+          : "term-pair-source-operation-replay-open",
+    source_operation_replay_interpretation:
+      "the requested-y44 term and pair sums replay through the same outward interval operations within one Number.EPSILON endpoint margin; closure now needs directed-rounded provenance for the source-term input intervals, not another aggregate cancellation route",
+    next_certificate_object:
+      "directed-rounded same-domain H38 producer-image interval provider for each source term before the verified term/pair operation replay",
+    claim_boundary: {
+      certifies_term_pair_operation_replay_only:
+        allRowsReplayTermSums && allRowsReplayPairSums && allRowsFitEndpointMargin,
+      certifies_endpoint_margin_as_directed_rounded_source: false,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
 function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
   sourceMapResidualSharedStreamNodeRadiusTarget,
 } = {}) {
@@ -47551,6 +49825,20 @@ function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
         null,
       source_map_residual_shared_stream_five_node_live_provider_probe: null,
       source_map_residual_shared_stream_five_node_signed_source_normal_form_probe:
+        null,
+      source_map_residual_shared_stream_five_node_center_width_contraction_probe:
+        null,
+      source_map_residual_shared_stream_five_node_center_aware_provider_radius_target:
+        null,
+      source_map_residual_shared_stream_five_node_center_aware_source_covariance_realization_budget:
+        null,
+      source_map_residual_shared_stream_five_node_term_cancellation_decomposition:
+        null,
+      source_map_residual_shared_stream_five_node_term_preservation_verifier:
+        null,
+      source_map_residual_shared_stream_five_node_term_endpoint_margin_diagnostic:
+        null,
+      source_map_residual_shared_stream_five_node_term_source_operation_replay:
         null,
       source_map_residual_shared_stream_five_node_contracted_provider_candidate:
         null,
@@ -47579,6 +49867,20 @@ function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
         null,
       source_map_residual_shared_stream_five_node_live_provider_probe: null,
       source_map_residual_shared_stream_five_node_signed_source_normal_form_probe:
+        null,
+      source_map_residual_shared_stream_five_node_center_width_contraction_probe:
+        null,
+      source_map_residual_shared_stream_five_node_center_aware_provider_radius_target:
+        null,
+      source_map_residual_shared_stream_five_node_center_aware_source_covariance_realization_budget:
+        null,
+      source_map_residual_shared_stream_five_node_term_cancellation_decomposition:
+        null,
+      source_map_residual_shared_stream_five_node_term_preservation_verifier:
+        null,
+      source_map_residual_shared_stream_five_node_term_endpoint_margin_diagnostic:
+        null,
+      source_map_residual_shared_stream_five_node_term_source_operation_replay:
         null,
       source_map_residual_shared_stream_five_node_contracted_provider_candidate:
         null,
@@ -47692,6 +49994,20 @@ function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
         null,
       source_map_residual_shared_stream_five_node_live_provider_probe: null,
       source_map_residual_shared_stream_five_node_signed_source_normal_form_probe:
+        null,
+      source_map_residual_shared_stream_five_node_center_width_contraction_probe:
+        null,
+      source_map_residual_shared_stream_five_node_center_aware_provider_radius_target:
+        null,
+      source_map_residual_shared_stream_five_node_center_aware_source_covariance_realization_budget:
+        null,
+      source_map_residual_shared_stream_five_node_term_cancellation_decomposition:
+        null,
+      source_map_residual_shared_stream_five_node_term_preservation_verifier:
+        null,
+      source_map_residual_shared_stream_five_node_term_endpoint_margin_diagnostic:
+        null,
+      source_map_residual_shared_stream_five_node_term_source_operation_replay:
         null,
       source_map_residual_shared_stream_five_node_contracted_provider_candidate:
         null,
@@ -47878,6 +50194,41 @@ function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
       inclusionContract,
       radiusRows,
     });
+  const centerWidthContractionProbe =
+    h39RequestedY44SourceMapResidualFiveNodeCenterWidthContractionProbe({
+      inclusionContract,
+    });
+  const centerAwareProviderRadiusTarget =
+    h39RequestedY44SourceMapResidualFiveNodeCenterAwareProviderRadiusTarget({
+      inclusionContract,
+      centerWidthContractionProbe,
+    });
+  const centerAwareSourceCovarianceRealizationBudget =
+    h39RequestedY44SourceMapResidualFiveNodeCenterAwareSourceCovarianceRealizationBudget({
+      centerAwareProviderRadiusTarget,
+      signedSourceNormalFormProbe,
+    });
+  const termCancellationDecomposition =
+    h39RequestedY44SourceMapResidualFiveNodeTermCancellationDecomposition({
+      sourceCovarianceRealizationBudget:
+        centerAwareSourceCovarianceRealizationBudget,
+    });
+  const termPreservationVerifier =
+    h39RequestedY44SourceMapResidualFiveNodeTermPreservationVerifier({
+      termCancellationDecomposition,
+      providerRows:
+        signedSourceNormalFormProbe?.signed_source_normal_form_provider_rows ??
+        null,
+    });
+  const termEndpointMarginDiagnostic =
+    h39RequestedY44SourceMapResidualFiveNodeTermEndpointMarginDiagnostic({
+      termPreservationVerifier,
+    });
+  const termSourceOperationReplay =
+    h39RequestedY44SourceMapResidualFiveNodeTermSourceOperationReplay({
+      termPreservationVerifier,
+      termEndpointMarginDiagnostic,
+    });
   const contractedProviderRows = contractRows.map((row) => {
     const scaledSignedInterval = root.scaleInterval(
       row.live_signed_residual_interval,
@@ -48011,6 +50362,20 @@ function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
       liveProviderProbe,
     source_map_residual_shared_stream_five_node_signed_source_normal_form_probe:
       signedSourceNormalFormProbe,
+    source_map_residual_shared_stream_five_node_center_width_contraction_probe:
+      centerWidthContractionProbe,
+    source_map_residual_shared_stream_five_node_center_aware_provider_radius_target:
+      centerAwareProviderRadiusTarget,
+    source_map_residual_shared_stream_five_node_center_aware_source_covariance_realization_budget:
+      centerAwareSourceCovarianceRealizationBudget,
+    source_map_residual_shared_stream_five_node_term_cancellation_decomposition:
+      termCancellationDecomposition,
+    source_map_residual_shared_stream_five_node_term_preservation_verifier:
+      termPreservationVerifier,
+    source_map_residual_shared_stream_five_node_term_endpoint_margin_diagnostic:
+      termEndpointMarginDiagnostic,
+    source_map_residual_shared_stream_five_node_term_source_operation_replay:
+      termSourceOperationReplay,
     source_map_residual_shared_stream_five_node_contracted_provider_candidate:
       contractedProviderCandidate,
     source_map_residual_shared_stream_five_node_inclusion_interpretation:
@@ -49862,6 +52227,990 @@ export function validateH39RequestedY44SourceMapResidualCovarianceTarget(
             !finiteNonnegative(termRow?.weighted_residual_abs_upper)
           ) {
             errors.push(`five-node signed-source normal-form row ${index} term ${termIndex} must be coherent`);
+          }
+        });
+      });
+    }
+  }
+  const fiveNodeCenterWidthProbe =
+    artifact
+      ?.source_map_residual_shared_stream_five_node_center_width_contraction_probe ??
+    null;
+  if (fiveNodeCenterWidthProbe !== null) {
+    const centerWidthRows =
+      fiveNodeCenterWidthProbe.center_width_contraction_rows ?? [];
+    if (
+      fiveNodeCenterWidthProbe?.target_kind !==
+        "candidate-requested-y44-shared-source-map-center-width-contraction-probe" ||
+      fiveNodeCenterWidthProbe?.proof_status !==
+        "candidate-center-width-contraction-open-not-contained-or-not-directed-rounded" ||
+      fiveNodeCenterWidthProbe?.provider_probe_kind !==
+        "center-width-contracted-live-source-map-provider-rows-through-directed-verifier" ||
+      !finitePositive(
+        fiveNodeCenterWidthProbe?.selected_provider_contraction_factor
+      ) ||
+      fiveNodeCenterWidthProbe?.center_width_contraction_rows_available !==
+        true ||
+      fiveNodeCenterWidthProbe
+        ?.all_live_interval_centers_inside_screened_targets !== true ||
+      fiveNodeCenterWidthProbe
+        ?.all_selected_center_width_contractions_fit_screened_targets !==
+        false ||
+      !finiteNonnegative(
+        fiveNodeCenterWidthProbe?.max_live_center_offset_abs_to_target_half_width
+      ) ||
+      !finitePositive(
+        fiveNodeCenterWidthProbe
+          ?.max_required_centered_half_width_compression_factor
+      ) ||
+      fiveNodeCenterWidthProbe
+        ?.selected_contraction_covers_required_centered_half_widths !== false ||
+      !finitePositive(
+        fiveNodeCenterWidthProbe
+          ?.required_centered_to_selected_contraction_factor
+      ) ||
+      Number(
+        fiveNodeCenterWidthProbe
+          ?.required_centered_to_selected_contraction_factor
+      ) <= 1 ||
+      fiveNodeCenterWidthProbe?.center_width_rows_match_same_domain_contract !==
+        true ||
+      fiveNodeCenterWidthProbe?.center_width_rows_match_same_radius_contract !==
+        true ||
+      fiveNodeCenterWidthProbe
+        ?.center_width_intervals_subset_screened_targets !== false ||
+      fiveNodeCenterWidthProbe?.center_width_source_kind_matches_required !==
+        false ||
+      fiveNodeCenterWidthProbe
+        ?.center_width_reaches_verifier_with_source_only_failure !== false ||
+      fiveNodeCenterWidthProbe?.center_width_contraction_classification !==
+        "live-centers-fit-but-center-width-contraction-open" ||
+      fiveNodeCenterWidthProbe?.center_width_contraction_interpretation !==
+        "live-centers-fit-but-selected-centered-half-widths-need-extra-contraction" ||
+      fiveNodeCenterWidthProbe?.claim_boundary
+        ?.certifies_center_width_fit_only !== false ||
+      fiveNodeCenterWidthProbe?.claim_boundary
+        ?.certifies_n38_fourth_derivative_bound !== false ||
+      fiveNodeCenterWidthProbe?.claim_boundary
+        ?.certifies_s37_dependency_preserving_division !== false ||
+      fiveNodeCenterWidthProbe?.claim_boundary
+        ?.certifies_shifted_R43_outer_bound !== false ||
+      fiveNodeCenterWidthProbe?.claim_boundary
+        ?.certifies_directed_rounded_shared_domain !== false ||
+      fiveNodeCenterWidthProbe?.claim_boundary?.retained_branch !== false ||
+      !Array.isArray(centerWidthRows) ||
+      centerWidthRows.length !== 5
+    ) {
+      errors.push("five-node center-width contraction probe must be coherent and candidate-only");
+    } else {
+      centerWidthRows.forEach((row, index) => {
+        if (
+          !Number.isInteger(row?.node_index) ||
+          row.node_index !== index ||
+          !Number.isFinite(Number(row?.xi_midpoint)) ||
+          row?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+          row?.required_xi_derivative_order !== 4 ||
+          typeof row?.tightest_budget_cell_id !== "string" ||
+          row?.provider_row_source_kind !==
+            "candidate-center-width-contraction-not-directed-rounded" ||
+          !sameTerms(row?.source_terms_preserved_signed_together) ||
+          !sameZeroTerms(row?.zero_source_terms) ||
+          !finitePositive(row?.selected_provider_contraction_factor) ||
+          !hasFiniteOrderedInterval(
+            row?.screened_signed_residual_target_interval
+          ) ||
+          !hasFiniteOrderedInterval(
+            row?.screened_weighted_residual_target_interval
+          ) ||
+          !hasFiniteOrderedInterval(
+            row?.directed_rounded_signed_residual_interval
+          ) ||
+          !hasFiniteOrderedInterval(
+            row?.directed_rounded_weighted_signed_residual_interval
+          ) ||
+          !Number.isFinite(Number(row?.signed_live_center)) ||
+          !finiteNonnegative(row?.signed_live_half_width) ||
+          !finiteNonnegative(row?.signed_target_half_width) ||
+          !finiteNonnegative(row?.signed_available_half_width_at_live_center) ||
+          !finiteNonnegative(
+            row?.signed_center_offset_abs_to_target_half_width
+          ) ||
+          row?.signed_live_center_inside_screened_target !== true ||
+          !finitePositive(
+            row?.signed_required_centered_half_width_compression_factor
+          ) ||
+          row?.signed_selected_centered_interval_contained_in_screened_target !==
+            false ||
+          !Number.isFinite(Number(row?.weighted_live_center)) ||
+          !finiteNonnegative(row?.weighted_live_half_width) ||
+          !finiteNonnegative(row?.weighted_target_half_width) ||
+          !finiteNonnegative(row?.weighted_available_half_width_at_live_center) ||
+          !finiteNonnegative(
+            row?.weighted_center_offset_abs_to_target_half_width
+          ) ||
+          row?.weighted_live_center_inside_screened_target !== true ||
+          !finitePositive(
+            row?.weighted_required_centered_half_width_compression_factor
+          ) ||
+          row
+            ?.weighted_selected_centered_interval_contained_in_screened_target !==
+            false ||
+          row?.claim_boundary?.certifies_center_geometry_only !== true ||
+          row?.claim_boundary?.certifies_center_width_fit_only !== false ||
+          row?.claim_boundary
+            ?.certifies_scaled_operation_as_directed_rounded_source !== false ||
+          row?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+            false ||
+          row?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+          row?.claim_boundary?.retained_branch !== false
+        ) {
+          errors.push(`five-node center-width contraction row ${index} must be coherent`);
+        }
+      });
+    }
+  }
+  const fiveNodeCenterAwareProviderTarget =
+    artifact
+      ?.source_map_residual_shared_stream_five_node_center_aware_provider_radius_target ??
+    null;
+  if (fiveNodeCenterAwareProviderTarget !== null) {
+    const centerAwareRows =
+      fiveNodeCenterAwareProviderTarget.center_aware_provider_radius_rows ?? [];
+    if (
+      fiveNodeCenterAwareProviderTarget?.target_kind !==
+        "candidate-requested-y44-shared-source-map-center-aware-provider-radius-target" ||
+      fiveNodeCenterAwareProviderTarget?.proof_status !==
+        "candidate-center-aware-provider-radius-target-contained-source-not-directed-rounded" ||
+      fiveNodeCenterAwareProviderTarget?.provider_target_kind !==
+        "center-aware-live-source-map-provider-radius-target-through-directed-verifier" ||
+      !finitePositive(
+        fiveNodeCenterAwareProviderTarget?.selected_provider_contraction_factor
+      ) ||
+      !finitePositive(
+        fiveNodeCenterAwareProviderTarget
+          ?.required_center_aware_provider_contraction_factor
+      ) ||
+      !finitePositive(
+        fiveNodeCenterAwareProviderTarget
+          ?.required_center_aware_to_selected_contraction_factor
+      ) ||
+      Number(
+        fiveNodeCenterAwareProviderTarget
+          ?.required_center_aware_to_selected_contraction_factor
+      ) <= 1 ||
+      !finitePositive(
+        fiveNodeCenterAwareProviderTarget
+          ?.min_center_aware_half_width_to_live_half_width
+      ) ||
+      fiveNodeCenterAwareProviderTarget
+        ?.center_aware_provider_radius_rows_available !== true ||
+      fiveNodeCenterAwareProviderTarget
+        ?.all_center_aware_provider_radius_intervals_contained_in_screened_targets !==
+        true ||
+      fiveNodeCenterAwareProviderTarget
+        ?.center_aware_provider_rows_match_same_domain_contract !== true ||
+      fiveNodeCenterAwareProviderTarget
+        ?.center_aware_provider_rows_match_same_radius_contract !== true ||
+      fiveNodeCenterAwareProviderTarget
+        ?.center_aware_provider_intervals_subset_screened_targets !== true ||
+      fiveNodeCenterAwareProviderTarget
+        ?.center_aware_provider_source_kind_matches_required !== false ||
+      fiveNodeCenterAwareProviderTarget
+        ?.center_aware_provider_reaches_verifier_with_source_only_failure !==
+        true ||
+      fiveNodeCenterAwareProviderTarget
+        ?.center_aware_provider_radius_target_classification !==
+        "center-aware-provider-radius-target-contained-source-certification-open" ||
+      fiveNodeCenterAwareProviderTarget?.claim_boundary
+        ?.certifies_center_aware_radius_target_only !== true ||
+      fiveNodeCenterAwareProviderTarget?.claim_boundary
+        ?.certifies_n38_fourth_derivative_bound !== false ||
+      fiveNodeCenterAwareProviderTarget?.claim_boundary
+        ?.certifies_s37_dependency_preserving_division !== false ||
+      fiveNodeCenterAwareProviderTarget?.claim_boundary
+        ?.certifies_shifted_R43_outer_bound !== false ||
+      fiveNodeCenterAwareProviderTarget?.claim_boundary
+        ?.certifies_directed_rounded_shared_domain !== false ||
+      fiveNodeCenterAwareProviderTarget?.claim_boundary?.retained_branch !==
+        false ||
+      !Array.isArray(centerAwareRows) ||
+      centerAwareRows.length !== 5
+    ) {
+      errors.push("five-node center-aware provider radius target must be coherent and candidate-only");
+    } else {
+      centerAwareRows.forEach((row, index) => {
+        if (
+          !Number.isInteger(row?.node_index) ||
+          row.node_index !== index ||
+          !Number.isFinite(Number(row?.xi_midpoint)) ||
+          row?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+          row?.required_xi_derivative_order !== 4 ||
+          typeof row?.tightest_budget_cell_id !== "string" ||
+          row?.provider_row_source_kind !==
+            "candidate-center-aware-provider-radius-target-not-directed-rounded" ||
+          !sameTerms(row?.source_terms_preserved_signed_together) ||
+          !sameZeroTerms(row?.zero_source_terms) ||
+          !finitePositive(row?.selected_provider_contraction_factor) ||
+          !finitePositive(
+            row?.signed_required_centered_half_width_compression_factor
+          ) ||
+          !finitePositive(
+            row?.weighted_required_centered_half_width_compression_factor
+          ) ||
+          !hasFiniteOrderedInterval(
+            row?.screened_signed_residual_target_interval
+          ) ||
+          !hasFiniteOrderedInterval(
+            row?.screened_weighted_residual_target_interval
+          ) ||
+          !Number.isFinite(
+            Number(row?.signed_center_aware_residual_target_center)
+          ) ||
+          !finiteNonnegative(
+            row?.signed_center_aware_residual_target_half_width
+          ) ||
+          !hasFiniteOrderedInterval(
+            row?.signed_center_aware_residual_target_interval
+          ) ||
+          !Number.isFinite(
+            Number(row?.weighted_center_aware_residual_target_center)
+          ) ||
+          !finiteNonnegative(
+            row?.weighted_center_aware_residual_target_half_width
+          ) ||
+          !hasFiniteOrderedInterval(
+            row?.weighted_center_aware_residual_target_interval
+          ) ||
+          !hasFiniteOrderedInterval(
+            row?.directed_rounded_signed_residual_interval
+          ) ||
+          !hasFiniteOrderedInterval(
+            row?.directed_rounded_weighted_signed_residual_interval
+          ) ||
+          row?.signed_center_aware_interval_contained_in_screened_target !==
+            true ||
+          row?.weighted_center_aware_interval_contained_in_screened_target !==
+            true ||
+          row?.claim_boundary
+            ?.certifies_center_aware_radius_target_only !== true ||
+          row?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+            false ||
+          row?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+          row?.claim_boundary?.retained_branch !== false
+        ) {
+          errors.push(`five-node center-aware provider radius row ${index} must be coherent`);
+        }
+      });
+    }
+  }
+  const fiveNodeSourceCovarianceRealizationBudget =
+    artifact
+      ?.source_map_residual_shared_stream_five_node_center_aware_source_covariance_realization_budget ??
+    null;
+  if (fiveNodeSourceCovarianceRealizationBudget !== null) {
+    const realizationRows =
+      fiveNodeSourceCovarianceRealizationBudget.realization_budget_rows ?? [];
+    if (
+      fiveNodeSourceCovarianceRealizationBudget?.target_kind !==
+        "candidate-requested-y44-shared-source-map-center-aware-source-covariance-realization-budget" ||
+      fiveNodeSourceCovarianceRealizationBudget?.proof_status !==
+        "candidate-center-aware-source-covariance-realization-budget-not-directed-rounded" ||
+      fiveNodeSourceCovarianceRealizationBudget?.budget_kind !==
+        "source-term-triangle-to-center-aware-provider-radius-realization-budget" ||
+      fiveNodeSourceCovarianceRealizationBudget
+        ?.realization_budget_rows_available !== true ||
+      fiveNodeSourceCovarianceRealizationBudget
+        ?.all_realization_rows_keep_same_source_terms !== true ||
+      !finitePositive(
+        fiveNodeSourceCovarianceRealizationBudget
+          ?.max_signed_live_half_width_to_center_aware_half_width_ratio
+      ) ||
+      !finitePositive(
+        fiveNodeSourceCovarianceRealizationBudget
+          ?.max_weighted_live_half_width_to_center_aware_half_width_ratio
+      ) ||
+      !finitePositive(
+        fiveNodeSourceCovarianceRealizationBudget
+          ?.max_source_term_triangle_to_center_aware_half_width_ratio
+      ) ||
+      !finiteNonnegative(
+        fiveNodeSourceCovarianceRealizationBudget
+          ?.max_required_source_term_cancellation_fraction_for_center_aware_half_width
+      ) ||
+      !finiteNonnegative(
+        fiveNodeSourceCovarianceRealizationBudget
+          ?.max_required_source_term_cancellation_fraction_for_center_aware_abs_upper
+      ) ||
+      !nullableFinite(
+        fiveNodeSourceCovarianceRealizationBudget
+          ?.min_existing_source_term_residual_cancellation_fraction
+      ) ||
+      !finiteNonnegative(
+        fiveNodeSourceCovarianceRealizationBudget
+          ?.max_extra_source_term_cancellation_fraction_needed_for_center_aware_half_width
+      ) ||
+      !Number.isInteger(
+        fiveNodeSourceCovarianceRealizationBudget
+          ?.dominant_realization_budget_node_index
+      ) ||
+      fiveNodeSourceCovarianceRealizationBudget
+        .dominant_realization_budget_node_index < 0 ||
+      fiveNodeSourceCovarianceRealizationBudget
+        .dominant_realization_budget_node_index > 4 ||
+      !finitePositive(
+        fiveNodeSourceCovarianceRealizationBudget
+          ?.dominant_realization_budget_triangle_to_half_width_ratio
+      ) ||
+      fiveNodeSourceCovarianceRealizationBudget
+        ?.source_covariance_realization_budget_classification !==
+        "center-aware-source-covariance-realization-reduces-to-preserving-signed-source-cancellation" ||
+      typeof fiveNodeSourceCovarianceRealizationBudget
+        ?.realization_budget_interpretation !== "string" ||
+      fiveNodeSourceCovarianceRealizationBudget?.claim_boundary
+        ?.certifies_source_covariance_realization_budget_only !== true ||
+      fiveNodeSourceCovarianceRealizationBudget?.claim_boundary
+        ?.certifies_n38_fourth_derivative_bound !== false ||
+      fiveNodeSourceCovarianceRealizationBudget?.claim_boundary
+        ?.certifies_s37_dependency_preserving_division !== false ||
+      fiveNodeSourceCovarianceRealizationBudget?.claim_boundary
+        ?.certifies_shifted_R43_outer_bound !== false ||
+      fiveNodeSourceCovarianceRealizationBudget?.claim_boundary
+        ?.certifies_directed_rounded_shared_domain !== false ||
+      fiveNodeSourceCovarianceRealizationBudget?.claim_boundary
+        ?.retained_branch !== false ||
+      !Array.isArray(realizationRows) ||
+      realizationRows.length !== 5
+    ) {
+      errors.push("five-node source-covariance realization budget must be coherent and candidate-only");
+    } else {
+      realizationRows.forEach((row, index) => {
+        if (
+          !Number.isInteger(row?.node_index) ||
+          row.node_index !== index ||
+          !Number.isFinite(Number(row?.xi_midpoint)) ||
+          row?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+          row?.required_xi_derivative_order !== 4 ||
+          typeof row?.tightest_budget_cell_id !== "string" ||
+          row?.budget_row_kind !==
+            "candidate-center-aware-source-covariance-realization-budget-row" ||
+          !sameTerms(row?.source_terms_preserved_signed_together) ||
+          !sameZeroTerms(row?.zero_source_terms) ||
+          !hasFiniteOrderedInterval(
+            row?.signed_center_aware_residual_target_interval
+          ) ||
+          !finiteNonnegative(
+            row?.signed_center_aware_residual_target_half_width
+          ) ||
+          !finiteNonnegative(
+            row?.signed_center_aware_residual_target_abs_upper
+          ) ||
+          !hasFiniteOrderedInterval(
+            row?.weighted_center_aware_residual_target_interval
+          ) ||
+          !finiteNonnegative(
+            row?.weighted_center_aware_residual_target_half_width
+          ) ||
+          !finiteNonnegative(
+            row?.weighted_center_aware_residual_target_abs_upper
+          ) ||
+          !hasFiniteOrderedInterval(row?.live_signed_residual_interval) ||
+          !finiteNonnegative(row?.live_signed_residual_half_width) ||
+          !finiteNonnegative(row?.live_signed_residual_abs_upper) ||
+          !hasFiniteOrderedInterval(row?.live_weighted_residual_interval) ||
+          !finiteNonnegative(row?.live_weighted_residual_half_width) ||
+          !finiteNonnegative(row?.live_weighted_residual_abs_upper) ||
+          !finiteNonnegative(
+            row?.signed_source_term_residual_triangle_abs_upper
+          ) ||
+          !finiteNonnegative(
+            row?.weighted_source_term_residual_triangle_abs_upper
+          ) ||
+          !nullableFinite(
+            row?.existing_source_term_residual_cancellation_fraction
+          ) ||
+          !finitePositive(
+            row?.signed_live_half_width_to_center_aware_half_width_ratio
+          ) ||
+          !finitePositive(
+            row?.weighted_live_half_width_to_center_aware_half_width_ratio
+          ) ||
+          !finitePositive(
+            row?.signed_source_term_triangle_to_center_aware_half_width_ratio
+          ) ||
+          !finitePositive(
+            row?.weighted_source_term_triangle_to_center_aware_half_width_ratio
+          ) ||
+          !finiteNonnegative(
+            row
+              ?.signed_required_source_term_cancellation_fraction_for_center_aware_half_width
+          ) ||
+          !finiteNonnegative(
+            row
+              ?.weighted_required_source_term_cancellation_fraction_for_center_aware_half_width
+          ) ||
+          !finiteNonnegative(
+            row
+              ?.signed_extra_cancellation_fraction_needed_for_center_aware_half_width
+          ) ||
+          !finiteNonnegative(
+            row
+              ?.weighted_extra_cancellation_fraction_needed_for_center_aware_half_width
+          ) ||
+          !nullableFinite(
+            row?.signed_center_aware_half_width_realization_gap_fraction
+          ) ||
+          !nullableFinite(
+            row?.weighted_center_aware_half_width_realization_gap_fraction
+          ) ||
+          !Array.isArray(row?.source_term_residual_rows) ||
+          row.source_term_residual_rows.length !==
+            H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length ||
+          row?.claim_boundary
+            ?.certifies_source_covariance_realization_budget_only !== true ||
+          row?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+            false ||
+          row?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+          row?.claim_boundary?.retained_branch !== false
+        ) {
+          errors.push(`five-node source-covariance realization row ${index} must be coherent`);
+        }
+      });
+    }
+  }
+  const fiveNodeTermCancellationDecomposition =
+    artifact
+      ?.source_map_residual_shared_stream_five_node_term_cancellation_decomposition ??
+    null;
+  if (fiveNodeTermCancellationDecomposition !== null) {
+    const decompositionRows =
+      fiveNodeTermCancellationDecomposition
+        .term_cancellation_decomposition_rows ?? [];
+    if (
+      fiveNodeTermCancellationDecomposition?.target_kind !==
+        "candidate-requested-y44-shared-source-map-term-cancellation-decomposition" ||
+      fiveNodeTermCancellationDecomposition?.proof_status !==
+        "candidate-source-map-term-cancellation-decomposition-not-directed-rounded" ||
+      fiveNodeTermCancellationDecomposition?.decomposition_kind !==
+        "signed-source-term-residual-interval-pair-decomposition" ||
+      fiveNodeTermCancellationDecomposition
+        ?.term_cancellation_decomposition_rows_available !== true ||
+      fiveNodeTermCancellationDecomposition
+        ?.all_source_term_sums_match_live_signed_residual_intervals !== true ||
+      !finiteNonnegative(
+        fiveNodeTermCancellationDecomposition
+          ?.max_source_term_sum_endpoint_relative_gap_to_live_signed_residual
+      ) ||
+      !finiteNonnegative(
+        fiveNodeTermCancellationDecomposition?.max_pair_cancellation_fraction
+      ) ||
+      !Number.isInteger(
+        fiveNodeTermCancellationDecomposition
+          ?.dominant_term_cancellation_node_index
+      ) ||
+      fiveNodeTermCancellationDecomposition
+        .dominant_term_cancellation_node_index < 0 ||
+      fiveNodeTermCancellationDecomposition
+        .dominant_term_cancellation_node_index > 4 ||
+      !finitePositive(
+        fiveNodeTermCancellationDecomposition
+          ?.dominant_term_cancellation_triangle_to_half_width_ratio
+      ) ||
+      !H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.includes(
+        fiveNodeTermCancellationDecomposition
+          ?.dominant_node_dominant_source_term
+      ) ||
+      typeof fiveNodeTermCancellationDecomposition
+        ?.dominant_node_dominant_pair_by_triangle_terms_key !== "string" ||
+      typeof fiveNodeTermCancellationDecomposition
+        ?.dominant_node_strongest_pair_cancellation_terms_key !== "string" ||
+      ![
+        "term-cancellation-decomposition-localizes-node4-source-covariance-burden",
+        "term-cancellation-decomposition-open",
+      ].includes(
+        fiveNodeTermCancellationDecomposition
+          ?.source_term_cancellation_decomposition_classification
+      ) ||
+      typeof fiveNodeTermCancellationDecomposition
+        ?.term_cancellation_decomposition_interpretation !== "string" ||
+      fiveNodeTermCancellationDecomposition?.claim_boundary
+        ?.certifies_term_cancellation_decomposition_only !== true ||
+      fiveNodeTermCancellationDecomposition?.claim_boundary
+        ?.certifies_n38_fourth_derivative_bound !== false ||
+      fiveNodeTermCancellationDecomposition?.claim_boundary
+        ?.certifies_s37_dependency_preserving_division !== false ||
+      fiveNodeTermCancellationDecomposition?.claim_boundary
+        ?.certifies_shifted_R43_outer_bound !== false ||
+      fiveNodeTermCancellationDecomposition?.claim_boundary
+        ?.certifies_directed_rounded_shared_domain !== false ||
+      fiveNodeTermCancellationDecomposition?.claim_boundary?.retained_branch !==
+        false ||
+      !Array.isArray(decompositionRows) ||
+      decompositionRows.length !== 5
+    ) {
+      errors.push("five-node term-cancellation decomposition must be coherent and candidate-only");
+    } else {
+      decompositionRows.forEach((row, index) => {
+        if (
+          !Number.isInteger(row?.node_index) ||
+          row.node_index !== index ||
+          !Number.isFinite(Number(row?.xi_midpoint)) ||
+          row?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+          row?.required_xi_derivative_order !== 4 ||
+          typeof row?.tightest_budget_cell_id !== "string" ||
+          row?.decomposition_row_kind !==
+            "candidate-source-map-term-cancellation-decomposition-row" ||
+          typeof row?.row_realization_budget_dominant !== "boolean" ||
+          !sameTerms(row?.source_terms_preserved_signed_together) ||
+          !sameZeroTerms(row?.zero_source_terms) ||
+          !finiteNonnegative(
+            row?.signed_center_aware_residual_target_half_width
+          ) ||
+          !finitePositive(
+            row?.signed_source_term_triangle_to_center_aware_half_width_ratio
+          ) ||
+          !nullableFinite(
+            row?.existing_source_term_residual_cancellation_fraction
+          ) ||
+          !finiteNonnegative(
+            row
+              ?.required_source_term_cancellation_fraction_for_center_aware_half_width
+          ) ||
+          !finiteNonnegative(
+            row
+              ?.extra_source_term_cancellation_fraction_needed_for_center_aware_half_width
+          ) ||
+          !hasFiniteOrderedInterval(row?.live_signed_residual_interval) ||
+          !finiteNonnegative(row?.live_signed_residual_abs_upper) ||
+          !hasFiniteOrderedInterval(row?.source_term_sum_interval) ||
+          !finiteNonnegative(row?.source_term_sum_abs_upper) ||
+          !finiteNonnegative(
+            row?.source_term_sum_endpoint_relative_gap_to_live_signed_residual
+          ) ||
+          row?.source_term_sum_matches_live_signed_residual_interval !== true ||
+          !finiteNonnegative(row?.source_term_residual_triangle_abs_upper) ||
+          !nullableFinite(row?.source_term_residual_cancellation_fraction) ||
+          !Array.isArray(row?.term_residual_decomposition_rows) ||
+          row.term_residual_decomposition_rows.length !==
+            H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length ||
+          !Array.isArray(row?.pair_residual_decomposition_rows) ||
+          row.pair_residual_decomposition_rows.length !== 3 ||
+          !H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.includes(
+            row?.dominant_term_by_abs_upper?.term
+          ) ||
+          typeof row?.dominant_pair_by_triangle_abs_upper?.pair_terms_key !==
+            "string" ||
+          typeof row?.strongest_pair_cancellation?.pair_terms_key !==
+            "string" ||
+          row?.claim_boundary
+            ?.certifies_term_cancellation_decomposition_only !== true ||
+          row?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+            false ||
+          row?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+          row?.claim_boundary?.retained_branch !== false
+        ) {
+          errors.push(`five-node term-cancellation decomposition row ${index} must be coherent`);
+          return;
+        }
+        row.term_residual_decomposition_rows.forEach((termRow, termIndex) => {
+          if (
+            termRow?.term !==
+              H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS[termIndex] ||
+            !hasFiniteOrderedInterval(termRow?.residual_interval) ||
+            !Number.isFinite(Number(termRow?.residual_interval_center)) ||
+            !finiteNonnegative(termRow?.residual_interval_half_width) ||
+            !finiteNonnegative(termRow?.residual_abs_upper) ||
+            !finiteNonnegative(
+              termRow?.residual_abs_share_of_source_term_triangle
+            ) ||
+            ![
+              "positive",
+              "negative",
+              "zero",
+              "crosses-zero",
+              "missing",
+            ].includes(termRow?.residual_interval_sign_status) ||
+            ![-1, 0, 1].includes(
+              Number(termRow?.residual_interval_midpoint_sign)
+            ) ||
+            !finiteNonnegative(termRow?.weighted_residual_abs_upper)
+          ) {
+            errors.push(`five-node term-cancellation decomposition row ${index} term ${termIndex} must be coherent`);
+          }
+        });
+        row.pair_residual_decomposition_rows.forEach((pairRow, pairIndex) => {
+          if (
+            !Array.isArray(pairRow?.pair_terms) ||
+            pairRow.pair_terms.length !== 2 ||
+            !pairRow.pair_terms.every((term) =>
+              H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.includes(term)
+            ) ||
+            typeof pairRow?.pair_terms_key !== "string" ||
+            !hasFiniteOrderedInterval(pairRow?.pair_sum_interval) ||
+            !finiteNonnegative(pairRow?.pair_sum_abs_upper) ||
+            !finiteNonnegative(pairRow?.pair_triangle_abs_upper) ||
+            !nullableFinite(pairRow?.pair_cancellation_fraction) ||
+            !finiteNonnegative(
+              pairRow?.pair_triangle_abs_share_of_source_term_triangle
+            ) ||
+            typeof pairRow
+              ?.pair_intervals_have_opposing_midpoint_signs !== "boolean" ||
+            !Array.isArray(pairRow?.pair_interval_sign_statuses) ||
+            pairRow.pair_interval_sign_statuses.length !== 2
+          ) {
+            errors.push(`five-node term-cancellation decomposition row ${index} pair ${pairIndex} must be coherent`);
+          }
+        });
+      });
+    }
+  }
+  const fiveNodeTermPreservationVerifier =
+    artifact
+      ?.source_map_residual_shared_stream_five_node_term_preservation_verifier ??
+    null;
+  if (fiveNodeTermPreservationVerifier !== null) {
+    const verifierRows =
+      fiveNodeTermPreservationVerifier.term_preservation_verification_rows ?? [];
+    if (
+      fiveNodeTermPreservationVerifier?.target_kind !==
+        "candidate-requested-y44-shared-source-map-term-preservation-provider-verifier" ||
+      fiveNodeTermPreservationVerifier?.proof_status !==
+        "candidate-verifier-rejects-or-keeps-open-term-preserving-provider-rows" ||
+      fiveNodeTermPreservationVerifier?.verifier_kind !==
+        "same-domain-source-map-term-pair-cancellation-preservation-check" ||
+      fiveNodeTermPreservationVerifier?.source_y_order !==
+        H38_NUMERATOR_Y_ORDER ||
+      fiveNodeTermPreservationVerifier?.required_xi_derivative_order !== 4 ||
+      fiveNodeTermPreservationVerifier?.provider_rows_supplied !== true ||
+      fiveNodeTermPreservationVerifier
+        ?.term_preservation_fixture_consumer_path_passes !== false ||
+      fiveNodeTermPreservationVerifier
+        ?.term_preservation_verifier_rows_available !== true ||
+      fiveNodeTermPreservationVerifier?.all_provider_rows_supplied !== true ||
+      fiveNodeTermPreservationVerifier
+        ?.all_provider_rows_match_same_domain_contract !== true ||
+      fiveNodeTermPreservationVerifier?.all_provider_term_rows_supplied !==
+        true ||
+      fiveNodeTermPreservationVerifier
+        ?.all_provider_terms_match_decomposition !== true ||
+      fiveNodeTermPreservationVerifier
+        ?.all_provider_pairs_match_decomposition !== true ||
+      fiveNodeTermPreservationVerifier
+        ?.all_provider_term_sums_match_provider_signed_residuals !== true ||
+      fiveNodeTermPreservationVerifier
+        ?.all_provider_term_sums_match_decomposition !== true ||
+      fiveNodeTermPreservationVerifier
+        ?.all_provider_rows_have_directed_rounded_source !== false ||
+      fiveNodeTermPreservationVerifier
+        ?.term_preservation_reaches_verifier_with_source_only_failure !== true ||
+      fiveNodeTermPreservationVerifier
+        ?.verified_directed_rounded_term_preserving_provider_rows !== false ||
+      !finiteNonnegative(
+        fiveNodeTermPreservationVerifier
+          ?.max_provider_term_sum_endpoint_relative_gap
+      ) ||
+      !Number.isInteger(
+        fiveNodeTermPreservationVerifier?.dominant_term_cancellation_node_index
+      ) ||
+      fiveNodeTermPreservationVerifier
+        .dominant_term_cancellation_node_index < 0 ||
+      fiveNodeTermPreservationVerifier
+        .dominant_term_cancellation_node_index > 4 ||
+      fiveNodeTermPreservationVerifier
+        ?.term_preservation_verifier_classification !==
+        "term-preserving-provider-rows-reach-boundary-source-certification-open" ||
+      typeof fiveNodeTermPreservationVerifier
+        ?.term_preservation_interpretation !== "string" ||
+      fiveNodeTermPreservationVerifier?.claim_boundary
+        ?.certifies_term_preservation_contract_only !== true ||
+      fiveNodeTermPreservationVerifier?.claim_boundary
+        ?.certifies_n38_fourth_derivative_bound !== false ||
+      fiveNodeTermPreservationVerifier?.claim_boundary
+        ?.certifies_s37_dependency_preserving_division !== false ||
+      fiveNodeTermPreservationVerifier?.claim_boundary
+        ?.certifies_shifted_R43_outer_bound !== false ||
+      fiveNodeTermPreservationVerifier?.claim_boundary
+        ?.certifies_directed_rounded_shared_domain !== false ||
+      fiveNodeTermPreservationVerifier?.claim_boundary?.retained_branch !==
+        false ||
+      !Array.isArray(verifierRows) ||
+      verifierRows.length !== 5
+    ) {
+      errors.push("five-node term-preservation provider verifier must be coherent and candidate-only");
+    } else {
+      verifierRows.forEach((row, index) => {
+        if (
+          !Number.isInteger(row?.node_index) ||
+          row.node_index !== index ||
+          !Number.isFinite(Number(row?.xi_midpoint)) ||
+          row?.provider_row_supplied !== true ||
+          row?.provider_row_source_kind !==
+            "candidate-signed-source-normal-form-not-directed-rounded" ||
+          row?.required_provider_row_source_kind !==
+            "directed-rounded-same-domain-h38-source-map-residual-provider" ||
+          row?.provider_source_kind_matches_required !== false ||
+          row?.provider_certifies_directed_rounded_shared_domain !== false ||
+          row?.matches_same_domain_contract !== true ||
+          row?.provider_source_term_rows_supplied !== true ||
+          row?.provider_source_terms_match_decomposition !== true ||
+          row?.provider_pair_rows_match_decomposition !== true ||
+          !hasFiniteOrderedInterval(row?.provider_term_sum_interval) ||
+          !hasFiniteOrderedInterval(row?.provider_signed_residual_interval) ||
+          !finiteNonnegative(
+            row
+              ?.provider_term_sum_endpoint_relative_gap_to_provider_signed_residual
+          ) ||
+          row?.provider_term_sum_matches_provider_signed_residual !== true ||
+          !finiteNonnegative(
+            row?.provider_term_sum_endpoint_relative_gap_to_decomposition
+          ) ||
+          row?.provider_term_sum_matches_decomposition !== true ||
+          !Array.isArray(row?.provider_term_residual_rows) ||
+          row.provider_term_residual_rows.length !==
+            H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length ||
+          !Array.isArray(row?.provider_pair_residual_rows) ||
+          row.provider_pair_residual_rows.length !== 3 ||
+          row?.verifier_row_status !==
+            "term-preserving-provider-row-reaches-source-certification-boundary"
+        ) {
+          errors.push(`five-node term-preservation verifier row ${index} must be coherent`);
+        }
+      });
+    }
+  }
+  const fiveNodeTermEndpointMarginDiagnostic =
+    artifact
+      ?.source_map_residual_shared_stream_five_node_term_endpoint_margin_diagnostic ??
+    null;
+  if (fiveNodeTermEndpointMarginDiagnostic !== null) {
+    const endpointRows =
+      fiveNodeTermEndpointMarginDiagnostic.endpoint_margin_rows ?? [];
+    if (
+      fiveNodeTermEndpointMarginDiagnostic?.target_kind !==
+        "candidate-requested-y44-shared-source-map-term-endpoint-margin-diagnostic" ||
+      fiveNodeTermEndpointMarginDiagnostic?.proof_status !==
+        "candidate-term-pair-endpoint-margin-screen-not-directed-rounded-source" ||
+      fiveNodeTermEndpointMarginDiagnostic?.endpoint_margin_kind !==
+        "one-number-epsilon-relative-term-pair-endpoint-margin-screen" ||
+      Number(
+        fiveNodeTermEndpointMarginDiagnostic?.endpoint_margin_relative_bound
+      ) !== Number.EPSILON ||
+      fiveNodeTermEndpointMarginDiagnostic
+        ?.provider_rows_preserve_term_decomposition !== true ||
+      fiveNodeTermEndpointMarginDiagnostic
+        ?.provider_rows_preserve_pair_decomposition !== true ||
+      fiveNodeTermEndpointMarginDiagnostic
+        ?.provider_rows_certify_directed_rounded_shared_domain !== false ||
+      fiveNodeTermEndpointMarginDiagnostic?.endpoint_margin_rows_available !==
+        true ||
+      fiveNodeTermEndpointMarginDiagnostic
+        ?.all_endpoint_margin_rows_fit_one_number_epsilon !== true ||
+      fiveNodeTermEndpointMarginDiagnostic
+        ?.all_endpoint_margin_rows_keep_source_open !== true ||
+      !finiteNonnegative(
+        fiveNodeTermEndpointMarginDiagnostic
+          ?.max_required_relative_endpoint_margin
+      ) ||
+      Number(
+        fiveNodeTermEndpointMarginDiagnostic
+          ?.max_required_relative_endpoint_margin
+      ) > Number.EPSILON ||
+      !finiteNonnegative(
+        fiveNodeTermEndpointMarginDiagnostic
+          ?.max_required_margin_to_number_epsilon_ratio
+      ) ||
+      Number(
+        fiveNodeTermEndpointMarginDiagnostic
+          ?.max_required_margin_to_number_epsilon_ratio
+      ) > 1 ||
+      fiveNodeTermEndpointMarginDiagnostic?.endpoint_margin_classification !==
+        "one-number-epsilon-term-pair-endpoint-margin-suffices-source-certification-open" ||
+      typeof fiveNodeTermEndpointMarginDiagnostic
+        ?.endpoint_margin_interpretation !== "string" ||
+      fiveNodeTermEndpointMarginDiagnostic?.claim_boundary
+        ?.certifies_endpoint_margin_as_directed_rounded_source !== false ||
+      fiveNodeTermEndpointMarginDiagnostic?.claim_boundary
+        ?.certifies_term_pair_operation_replay !== false ||
+      fiveNodeTermEndpointMarginDiagnostic?.claim_boundary
+        ?.certifies_n38_fourth_derivative_bound !== false ||
+      fiveNodeTermEndpointMarginDiagnostic?.claim_boundary
+        ?.certifies_s37_dependency_preserving_division !== false ||
+      fiveNodeTermEndpointMarginDiagnostic?.claim_boundary
+        ?.certifies_shifted_R43_outer_bound !== false ||
+      fiveNodeTermEndpointMarginDiagnostic?.claim_boundary
+        ?.certifies_directed_rounded_shared_domain !== false ||
+      fiveNodeTermEndpointMarginDiagnostic?.claim_boundary?.retained_branch !==
+        false ||
+      !Array.isArray(endpointRows) ||
+      endpointRows.length !== 5
+    ) {
+      errors.push("five-node term endpoint-margin diagnostic must be coherent and candidate-only");
+    } else {
+      endpointRows.forEach((row, index) => {
+        if (
+          !Number.isInteger(row?.node_index) ||
+          row.node_index !== index ||
+          !Number.isFinite(Number(row?.xi_midpoint)) ||
+          row?.endpoint_margin_model !==
+            "provider-signed-residual-expanded-by-one-number-epsilon-relative-endpoint-margin" ||
+          Number(row?.endpoint_margin_relative_bound) !== Number.EPSILON ||
+          row?.provider_row_source_kind !==
+            "candidate-signed-source-normal-form-not-directed-rounded" ||
+          row?.provider_row_source_kind_matches_required !== false ||
+          row?.provider_certifies_directed_rounded_shared_domain !== false ||
+          !hasFiniteOrderedInterval(row?.provider_term_sum_interval) ||
+          !hasFiniteOrderedInterval(row?.provider_signed_residual_interval) ||
+          !hasFiniteOrderedInterval(
+            row?.number_epsilon_expanded_provider_signed_residual_interval
+          ) ||
+          !finiteNonnegative(row?.term_sum_required_relative_endpoint_margin) ||
+          !finiteNonnegative(row?.term_sum_required_margin_to_number_epsilon_ratio) ||
+          row?.term_sum_required_margin_to_number_epsilon_ratio > 1 ||
+          row?.term_sum_number_epsilon_margin_contains_provider_sum !== true ||
+          !Array.isArray(row?.pair_endpoint_margin_rows) ||
+          row.pair_endpoint_margin_rows.length !== 3 ||
+          !finiteNonnegative(row?.max_pair_required_relative_endpoint_margin) ||
+          !finiteNonnegative(row?.max_pair_required_margin_to_number_epsilon_ratio) ||
+          row?.max_pair_required_margin_to_number_epsilon_ratio > 1 ||
+          row?.all_pair_endpoint_margin_rows_fit_one_number_epsilon !== true ||
+          row?.endpoint_margin_row_status !==
+            "one-number-epsilon-endpoint-margin-contains-term-and-pair-sums"
+        ) {
+          errors.push(`five-node term endpoint-margin row ${index} must be coherent`);
+          return;
+        }
+        row.pair_endpoint_margin_rows.forEach((pairRow, pairIndex) => {
+          if (
+            typeof pairRow?.pair_terms_key !== "string" ||
+            !hasFiniteOrderedInterval(pairRow?.pair_sum_interval) ||
+            !hasFiniteOrderedInterval(
+              pairRow?.number_epsilon_expanded_pair_sum_interval
+            ) ||
+            !finiteNonnegative(pairRow?.pair_required_relative_endpoint_margin) ||
+            !finiteNonnegative(
+              pairRow?.pair_required_margin_to_number_epsilon_ratio
+            ) ||
+            pairRow?.pair_required_margin_to_number_epsilon_ratio > 1 ||
+            pairRow?.pair_number_epsilon_margin_contains_pair_sum !== true
+          ) {
+            errors.push(`five-node term endpoint-margin row ${index} pair ${pairIndex} must be coherent`);
+          }
+        });
+      });
+    }
+  }
+  const fiveNodeTermSourceOperationReplay =
+    artifact
+      ?.source_map_residual_shared_stream_five_node_term_source_operation_replay ??
+    null;
+  if (fiveNodeTermSourceOperationReplay !== null) {
+    const replayRows =
+      fiveNodeTermSourceOperationReplay.operation_replay_rows ?? [];
+    if (
+      fiveNodeTermSourceOperationReplay?.target_kind !==
+        "candidate-requested-y44-shared-source-map-term-source-operation-replay" ||
+      fiveNodeTermSourceOperationReplay?.proof_status !==
+        "candidate-term-pair-binary64-outward-operation-replay-source-provenance-open" ||
+      fiveNodeTermSourceOperationReplay?.operation_replay_kind !==
+        "requested-y44-term-pair-source-map-with-one-number-epsilon-endpoint-margin" ||
+      fiveNodeTermSourceOperationReplay?.operation_rounding_model !==
+        "root-tube-nextafter-outward-add-interval-primitives" ||
+      Number(
+        fiveNodeTermSourceOperationReplay?.endpoint_margin_relative_bound
+      ) !== Number.EPSILON ||
+      fiveNodeTermSourceOperationReplay?.source_y_order !==
+        H38_NUMERATOR_Y_ORDER ||
+      fiveNodeTermSourceOperationReplay?.required_xi_derivative_order !== 4 ||
+      fiveNodeTermSourceOperationReplay?.source_provenance_still_open !==
+        true ||
+      fiveNodeTermSourceOperationReplay
+        ?.all_operation_rows_replay_term_sum_identities !== true ||
+      fiveNodeTermSourceOperationReplay
+        ?.all_operation_rows_replay_pair_sum_identities !== true ||
+      fiveNodeTermSourceOperationReplay
+        ?.all_operation_rows_fit_one_number_epsilon_endpoint_margin !== true ||
+      fiveNodeTermSourceOperationReplay
+        ?.certifies_binary64_outward_operation_replay_for_supplied_intervals !==
+        true ||
+      fiveNodeTermSourceOperationReplay
+        ?.certifies_one_number_epsilon_endpoint_margin_for_operation_replay !==
+        true ||
+      fiveNodeTermSourceOperationReplay
+        ?.certifies_source_inputs_as_directed_rounded_same_domain !== false ||
+      !finiteNonnegative(
+        fiveNodeTermSourceOperationReplay?.max_operation_replay_relative_gap
+      ) ||
+      fiveNodeTermSourceOperationReplay?.source_operation_replay_classification !==
+        "term-pair-arithmetic-replay-is-stable-source-interval-provenance-open" ||
+      typeof fiveNodeTermSourceOperationReplay
+        ?.source_operation_replay_interpretation !== "string" ||
+      fiveNodeTermSourceOperationReplay?.claim_boundary
+        ?.certifies_term_pair_operation_replay_only !== true ||
+      fiveNodeTermSourceOperationReplay?.claim_boundary
+        ?.certifies_endpoint_margin_as_directed_rounded_source !== false ||
+      fiveNodeTermSourceOperationReplay?.claim_boundary
+        ?.certifies_source_inputs_as_directed_rounded_same_domain !== false ||
+      fiveNodeTermSourceOperationReplay?.claim_boundary
+        ?.certifies_n38_fourth_derivative_bound !== false ||
+      fiveNodeTermSourceOperationReplay?.claim_boundary
+        ?.certifies_s37_dependency_preserving_division !== false ||
+      fiveNodeTermSourceOperationReplay?.claim_boundary
+        ?.certifies_shifted_R43_outer_bound !== false ||
+      fiveNodeTermSourceOperationReplay?.claim_boundary
+        ?.certifies_directed_rounded_shared_domain !== false ||
+      fiveNodeTermSourceOperationReplay?.claim_boundary?.retained_branch !==
+        false ||
+      !Array.isArray(replayRows) ||
+      replayRows.length !== 5
+    ) {
+      errors.push("five-node term source-operation replay must be coherent and candidate-only");
+    } else {
+      replayRows.forEach((row, index) => {
+        if (
+          !Number.isInteger(row?.node_index) ||
+          row.node_index !== index ||
+          !Number.isFinite(Number(row?.xi_midpoint)) ||
+          row?.source_operation_kind !==
+            "requested-y44-term-pair-binary64-outward-source-map-operation" ||
+          row?.operation_rounding_model !==
+            "root-tube-nextafter-outward-add-interval-primitives" ||
+          Number(row?.endpoint_margin_relative_bound) !== Number.EPSILON ||
+          row?.provider_row_source_kind !==
+            "candidate-signed-source-normal-form-not-directed-rounded" ||
+          row?.provider_certifies_directed_rounded_shared_domain !== false ||
+          !hasFiniteOrderedInterval(row?.term_sum_replay_interval) ||
+          !hasFiniteOrderedInterval(row?.provider_term_sum_interval) ||
+          !finiteNonnegative(row?.term_sum_replay_relative_gap) ||
+          row?.term_sum_operation_replay_matches_provider !== true ||
+          !hasFiniteOrderedInterval(
+            row?.number_epsilon_expanded_provider_signed_residual_interval
+          ) ||
+          row?.term_sum_operation_replay_fits_one_epsilon_endpoint_margin !==
+            true ||
+          !Array.isArray(row?.pair_operation_replay_rows) ||
+          row.pair_operation_replay_rows.length !== 3 ||
+          row?.all_pair_operation_replays_match_provider !== true ||
+          row?.all_pair_operation_replays_fit_one_epsilon_endpoint_margin !==
+            true ||
+          !finiteNonnegative(row?.max_pair_operation_replay_relative_gap) ||
+          row?.operation_row_status !==
+            "term-pair-source-operation-replay-fits-one-epsilon-endpoint-margin"
+        ) {
+          errors.push(`five-node term source-operation replay row ${index} must be coherent`);
+          return;
+        }
+        row.pair_operation_replay_rows.forEach((pairRow, pairIndex) => {
+          if (
+            typeof pairRow?.pair_terms_key !== "string" ||
+            !hasFiniteOrderedInterval(pairRow?.pair_sum_replay_interval) ||
+            !hasFiniteOrderedInterval(pairRow?.provider_pair_sum_interval) ||
+            !finiteNonnegative(pairRow?.pair_sum_replay_relative_gap) ||
+            !hasFiniteOrderedInterval(
+              pairRow?.number_epsilon_expanded_pair_sum_interval
+            ) ||
+            pairRow
+              ?.pair_operation_replay_fits_one_epsilon_endpoint_margin !== true
+          ) {
+            errors.push(`five-node term source-operation replay row ${index} pair ${pairIndex} must be coherent`);
           }
         });
       });
@@ -71158,6 +74507,191 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
         ?.source_map_residual_shared_stream_five_node_signed_source_normal_form_probe
         ?.max_weighted_source_normal_form_to_live_endpoint_relative_gap ||
     comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_width_contraction_classification !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_width_contraction_probe
+        ?.center_width_contraction_classification ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_width_reaches_verifier_with_source_only_failure !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_width_contraction_probe
+        ?.center_width_reaches_verifier_with_source_only_failure ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_width_max_required_compression !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_width_contraction_probe
+        ?.max_required_centered_half_width_compression_factor ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_width_required_to_selected_contraction_factor !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_width_contraction_probe
+        ?.required_centered_to_selected_contraction_factor ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_width_max_center_offset !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_width_contraction_probe
+        ?.max_live_center_offset_abs_to_target_half_width ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_width_contraction_interpretation !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_width_contraction_probe
+        ?.center_width_contraction_interpretation ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_aware_provider_radius_classification !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_aware_provider_radius_target
+        ?.center_aware_provider_radius_target_classification ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_aware_provider_required_contraction_factor !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_aware_provider_radius_target
+        ?.required_center_aware_provider_contraction_factor ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_aware_provider_required_to_selected_contraction_factor !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_aware_provider_radius_target
+        ?.required_center_aware_to_selected_contraction_factor ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_aware_provider_reaches_verifier_with_source_only_failure !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_aware_provider_radius_target
+        ?.center_aware_provider_reaches_verifier_with_source_only_failure ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_source_covariance_realization_classification !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_aware_source_covariance_realization_budget
+        ?.source_covariance_realization_budget_classification ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_source_covariance_realization_max_triangle_to_half_width !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_aware_source_covariance_realization_budget
+        ?.max_source_term_triangle_to_center_aware_half_width_ratio ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_source_covariance_realization_max_required_cancellation !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_aware_source_covariance_realization_budget
+        ?.max_required_source_term_cancellation_fraction_for_center_aware_half_width ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_source_covariance_realization_max_extra_cancellation !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_aware_source_covariance_realization_budget
+        ?.max_extra_source_term_cancellation_fraction_needed_for_center_aware_half_width ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_source_covariance_realization_dominant_node_index !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_aware_source_covariance_realization_budget
+        ?.dominant_realization_budget_node_index ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_source_covariance_realization_interpretation !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_center_aware_source_covariance_realization_budget
+        ?.realization_budget_interpretation ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_classification !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_cancellation_decomposition
+        ?.source_term_cancellation_decomposition_classification ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_dominant_node_index !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_cancellation_decomposition
+        ?.dominant_term_cancellation_node_index ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_dominant_source_term !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_cancellation_decomposition
+        ?.dominant_node_dominant_source_term ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_dominant_pair_key !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_cancellation_decomposition
+        ?.dominant_node_dominant_pair_by_triangle_terms_key ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_strongest_pair_key !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_cancellation_decomposition
+        ?.dominant_node_strongest_pair_cancellation_terms_key ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_max_pair_cancellation_fraction !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_cancellation_decomposition
+        ?.max_pair_cancellation_fraction ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_max_sum_gap !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_cancellation_decomposition
+        ?.max_source_term_sum_endpoint_relative_gap_to_live_signed_residual ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_preservation_classification !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_preservation_verifier
+        ?.term_preservation_verifier_classification ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_preservation_reaches_source_only_failure !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_preservation_verifier
+        ?.term_preservation_reaches_verifier_with_source_only_failure ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_preservation_terms_match_decomposition !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_preservation_verifier
+        ?.all_provider_terms_match_decomposition ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_preservation_pairs_match_decomposition !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_preservation_verifier
+        ?.all_provider_pairs_match_decomposition ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_preservation_max_sum_gap !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_preservation_verifier
+        ?.max_provider_term_sum_endpoint_relative_gap ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_endpoint_margin_classification !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_endpoint_margin_diagnostic
+        ?.endpoint_margin_classification ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_endpoint_margin_fit_one_epsilon !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_endpoint_margin_diagnostic
+        ?.all_endpoint_margin_rows_fit_one_number_epsilon ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_endpoint_margin_max_required !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_endpoint_margin_diagnostic
+        ?.max_required_relative_endpoint_margin ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_endpoint_margin_max_to_epsilon !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_endpoint_margin_diagnostic
+        ?.max_required_margin_to_number_epsilon_ratio ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_source_operation_classification !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_source_operation_replay
+        ?.source_operation_replay_classification ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_source_operation_replays_term_sums !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_source_operation_replay
+        ?.all_operation_rows_replay_term_sum_identities ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_source_operation_replays_pair_sums !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_source_operation_replay
+        ?.all_operation_rows_replay_pair_sum_identities ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_source_operation_fits_one_epsilon !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_source_operation_replay
+        ?.all_operation_rows_fit_one_number_epsilon_endpoint_margin ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_source_operation_max_replay_gap !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_term_source_operation_replay
+        ?.max_operation_replay_relative_gap ||
+    comparison
       ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_contracted_provider_reaches_verifier_with_source_only_failure !==
       nonconstantSourceMapResidualCovarianceTarget
         ?.source_map_residual_shared_stream_five_node_contracted_provider_candidate
@@ -71290,6 +74824,119 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
         ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_source_normal_form_max_weighted_gap
     ) ||
     typeof comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_width_reaches_verifier_with_source_only_failure !==
+      "boolean" ||
+    !finitePositive(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_width_max_required_compression
+    ) ||
+    !finitePositive(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_width_required_to_selected_contraction_factor
+    ) ||
+    !finiteNonnegative(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_width_max_center_offset
+    ) ||
+    !finitePositive(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_aware_provider_required_contraction_factor
+    ) ||
+    !finitePositive(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_aware_provider_required_to_selected_contraction_factor
+    ) ||
+    typeof comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_aware_provider_reaches_verifier_with_source_only_failure !==
+      "boolean" ||
+    !finitePositive(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_source_covariance_realization_max_triangle_to_half_width
+    ) ||
+    !finiteNonnegative(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_source_covariance_realization_max_required_cancellation
+    ) ||
+    !finiteNonnegative(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_source_covariance_realization_max_extra_cancellation
+    ) ||
+    !Number.isInteger(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_source_covariance_realization_dominant_node_index
+    ) ||
+    comparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_source_covariance_realization_dominant_node_index <
+      0 ||
+    comparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_source_covariance_realization_dominant_node_index >
+      4 ||
+    !Number.isInteger(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_dominant_node_index
+    ) ||
+    comparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_dominant_node_index <
+      0 ||
+    comparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_dominant_node_index >
+      4 ||
+    !H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.includes(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_dominant_source_term
+    ) ||
+    typeof comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_dominant_pair_key !==
+      "string" ||
+    typeof comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_strongest_pair_key !==
+      "string" ||
+    !finiteNonnegative(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_max_pair_cancellation_fraction
+    ) ||
+    !finiteNonnegative(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_max_sum_gap
+    ) ||
+    typeof comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_preservation_reaches_source_only_failure !==
+      "boolean" ||
+    typeof comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_preservation_terms_match_decomposition !==
+      "boolean" ||
+    typeof comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_preservation_pairs_match_decomposition !==
+      "boolean" ||
+    !finiteNonnegative(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_preservation_max_sum_gap
+    ) ||
+    typeof comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_endpoint_margin_fit_one_epsilon !==
+      "boolean" ||
+    !finiteNonnegative(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_endpoint_margin_max_required
+    ) ||
+    !finiteNonnegative(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_endpoint_margin_max_to_epsilon
+    ) ||
+    typeof comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_source_operation_replays_term_sums !==
+      "boolean" ||
+    typeof comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_source_operation_replays_pair_sums !==
+      "boolean" ||
+    typeof comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_source_operation_fits_one_epsilon !==
+      "boolean" ||
+    !finiteNonnegative(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_source_operation_max_replay_gap
+    ) ||
+    typeof comparison
       ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_contracted_provider_reaches_verifier_with_source_only_failure !==
       "boolean" ||
     ![
@@ -71355,6 +75002,68 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
     ].includes(
       comparison
         ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_source_normal_form_classification
+    ) ||
+    ![
+      "center-width-contraction-fits-screened-targets-source-certification-open",
+      "live-centers-fit-but-center-width-contraction-open",
+      "live-centers-miss-screened-targets",
+    ].includes(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_width_contraction_classification
+    ) ||
+    ![
+      "live-centers-fit-and-selected-centered-half-widths-fit-targets",
+      "live-centers-fit-but-selected-centered-half-widths-need-extra-contraction",
+      "live-centers-miss-screened-targets-before-width-contraction",
+    ].includes(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_width_contraction_interpretation
+    ) ||
+    ![
+      "center-aware-provider-radius-target-contained-source-certification-open",
+      "center-aware-provider-radius-target-open",
+    ].includes(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_aware_provider_radius_classification
+    ) ||
+    ![
+      "center-aware-source-covariance-realization-reduces-to-preserving-signed-source-cancellation",
+      "center-aware-source-covariance-realization-budget-open",
+    ].includes(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_source_covariance_realization_classification
+    ) ||
+    ![
+      "term-cancellation-decomposition-localizes-node4-source-covariance-burden",
+      "term-cancellation-decomposition-open",
+    ].includes(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_classification
+    ) ||
+    ![
+      "requested-y44-term-preserving-provider-rows-certified",
+      "term-preserving-provider-rows-reach-boundary-source-certification-open",
+      "term-preservation-verifier-boundary-ready-but-provider-missing",
+      "term-preservation-verifier-open",
+    ].includes(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_preservation_classification
+    ) ||
+    ![
+      "one-number-epsilon-term-pair-endpoint-margin-suffices-source-certification-open",
+      "one-number-epsilon-term-pair-endpoint-margin-suffices-metadata-open",
+      "term-pair-endpoint-margin-open",
+    ].includes(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_endpoint_margin_classification
+    ) ||
+    ![
+      "term-pair-arithmetic-replay-is-stable-source-interval-provenance-open",
+      "term-pair-arithmetic-replay-closes-endpoint-margin-open",
+      "term-pair-source-operation-replay-open",
+    ].includes(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_source_operation_classification
     ) ||
     ![
       "five-node-source-map-inclusion-reduces-to-directed-rounded-source-certification",

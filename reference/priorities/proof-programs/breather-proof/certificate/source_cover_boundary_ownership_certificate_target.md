@@ -792,6 +792,75 @@ authorization, and 0 consumed rows. The source-cover route remains blocked
 until that target is solved by a proof-grade actual-link rule plus
 field-membership proof on a constructed same-packet witness object.
 
+The same-packet constructed witness-object identity attempt,
+`fold_coordinate_endpoint_functional_same_packet_constructed_witness_object_identity_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+tests the constructive first route above that target. It has 4 / 4 domain-chart
+carrier subfields, 4 / 4 source endpoint-boundary-binding refs, 4 / 4 source
+endpoint value-binding maps, and 4 / 4 non-domain carrier obstruction records,
+but 0 / 4 same-packet endpoint-boundary-binding ref carriers, 0 / 4
+same-packet endpoint value-map carriers, 0 / 4 carrier-complete witness
+objects, 0 / 4 constructed witness-object identities, 0 / 4 same constructed
+witness-object membership proofs, 0 / 4 actual witness-object contract links,
+0 / 3 residual-data-ready rows, no `row_closure`, no preledger pass, no
+live-ledger update, no branch-chart authorization, and 0 consumed rows. The
+source-cover route remains blocked until the ref and value-map fields are
+constructed as non-domain carriers inside one same-packet witness object, or
+until an equivalent proof-grade constructed identity and field-membership proof
+is supplied.
+
+The ref/value non-domain carrier rule target,
+`fold_coordinate_endpoint_functional_ref_value_non_domain_carrier_rule_target_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+resolves the immediate source-availability question. It has 4 / 4 source
+endpoint-boundary-binding refs, 4 / 4 source endpoint value-binding maps,
+4 / 4 ref carrier source candidates, 4 / 4 value-map carrier source candidates,
+and 4 / 4 carrier-introduction rule targets, but 0 / 4 available ref carrier
+rules, 0 / 4 available value-map carrier rules, 0 / 4 ref/value pair rules,
+0 / 4 rule soundness proofs, 0 / 4 application proofs, 0 / 4 ref/value
+non-domain carrier pairs, 0 / 4 constructed witness-object identities, 0 / 3
+residual-data-ready rows, no `row_closure`, no preledger pass, no live-ledger
+update, no branch-chart authorization, and 0 consumed rows. The source-cover
+route remains blocked by the missing carrier-introduction rule derivation,
+soundness proof, and endpoint-level application proof.
+
+The ref/value carrier-introduction route decision,
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_route_decision_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+settles the route choice for the current proof contract. It rejects 4 / 4
+direct source-handle promotion routes and selects 4 / 4
+binding-contract/full-binding/carrier-admission routes, but still has 0 / 4
+satisfied binding contracts, 0 / 4 full endpoint boundary bindings, 0 / 4
+endpoint-boundary-binding ref carriers admitted, 0 / 4 endpoint value-map
+carriers admitted, 0 / 4 ref/value non-domain carrier pairs, 0 / 3
+residual-data-ready rows, no `row_closure`, no preledger pass, no live-ledger
+update, no branch-chart authorization, and 0 consumed rows. The source-cover
+route now needs a constructive binding-contract/full-binding/carrier-admission
+packet before another ref/value carrier-pair packet can lawfully consume rows.
+
+The binding/full-binding completion attempt,
+`fold_coordinate_endpoint_functional_binding_full_binding_completion_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests that selected route directly. It records 4 / 4 selected-route inputs,
+4 / 4 contract-link source candidates, 4 / 4 actual-link rule targets, and
+4 / 4 constructed-witness-object source bundles, but still has 0 / 4 actual
+contract-link rules, 0 / 4 constructed witness-object identities, 0 / 4
+witness-object membership proofs, 0 / 4 contract-target satisfaction proofs,
+0 / 4 binding contracts, 0 / 4 full endpoint boundary bindings, 0 / 4 carrier
+admissions, 0 / 3 residual-data-ready rows, no `row_closure`, no preledger
+pass, no live-ledger update, no branch-chart authorization, and 0 consumed
+rows. The source-cover route now needs the proof-grade actual-link rule plus
+constructed witness-object membership proof before it can try binding
+contracts, full endpoint boundary bindings, carrier admission, residual-data
+construction, or row consumption again.
+
+The actual-link/membership dependency-cycle completion attempt,
+`fold_coordinate_endpoint_functional_actual_link_membership_dependency_cycle_completion_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then shows that this first missing theorem layer is cyclic under the current
+proof order. It detects 4 / 4 endpoint dependency cycles and 3 / 3 row cycle
+pairs with 0 proof-grade escape routes. The source-cover route now remains
+blocked until the proof stack supplies an independent actual-link rule
+derivation, independent constructed witness-object membership theorem,
+independent full endpoint boundary-binding theorem, or explicit proof-contract
+order revision; without one of those, the selected carrier-admission route
+returns to the same absent contract link it needs to construct.
+
 ## Capture Decision
 
 Priority-only theorem target. The partition-audit implementation is now

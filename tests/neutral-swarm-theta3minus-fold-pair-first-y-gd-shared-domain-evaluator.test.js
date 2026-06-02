@@ -6772,6 +6772,629 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
           row.claim_boundary.certifies_directed_rounded_shared_domain === false
       )
   );
+  const fiveNodeCenterWidthProbe =
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_five_node_center_width_contraction_probe;
+  assert.equal(
+    fiveNodeCenterWidthProbe.target_kind,
+    "candidate-requested-y44-shared-source-map-center-width-contraction-probe"
+  );
+  assert.equal(
+    fiveNodeCenterWidthProbe.all_live_interval_centers_inside_screened_targets,
+    true
+  );
+  assert.equal(
+    fiveNodeCenterWidthProbe
+      .all_selected_center_width_contractions_fit_screened_targets,
+    false
+  );
+  assert.equal(
+    fiveNodeCenterWidthProbe
+      .selected_contraction_covers_required_centered_half_widths,
+    false
+  );
+  assert.ok(
+    fiveNodeCenterWidthProbe
+      .max_required_centered_half_width_compression_factor >
+      fiveNodeCenterWidthProbe.selected_provider_contraction_factor
+  );
+  assert.ok(
+    fiveNodeCenterWidthProbe
+      .required_centered_to_selected_contraction_factor > 1.00017
+  );
+  assert.ok(
+    fiveNodeCenterWidthProbe
+      .required_centered_to_selected_contraction_factor < 1.00018
+  );
+  assert.ok(
+    fiveNodeCenterWidthProbe
+      .max_live_center_offset_abs_to_target_half_width < 0.00018
+  );
+  assert.equal(
+    fiveNodeCenterWidthProbe.center_width_rows_match_same_domain_contract,
+    true
+  );
+  assert.equal(
+    fiveNodeCenterWidthProbe.center_width_rows_match_same_radius_contract,
+    true
+  );
+  assert.equal(
+    fiveNodeCenterWidthProbe.center_width_intervals_subset_screened_targets,
+    false
+  );
+  assert.equal(
+    fiveNodeCenterWidthProbe
+      .center_width_reaches_verifier_with_source_only_failure,
+    false
+  );
+  assert.equal(
+    fiveNodeCenterWidthProbe.center_width_contraction_classification,
+    "live-centers-fit-but-center-width-contraction-open"
+  );
+  assert.equal(
+    fiveNodeCenterWidthProbe.center_width_contraction_interpretation,
+    "live-centers-fit-but-selected-centered-half-widths-need-extra-contraction"
+  );
+  assert.equal(
+    fiveNodeCenterWidthProbe.claim_boundary.certifies_center_width_fit_only,
+    false
+  );
+  assert.ok(
+    fiveNodeCenterWidthProbe.center_width_contraction_rows.every(
+      (row) =>
+        row.signed_live_center_inside_screened_target === true &&
+        row.weighted_live_center_inside_screened_target === true &&
+        row.signed_selected_centered_interval_contained_in_screened_target ===
+          false &&
+        row.weighted_selected_centered_interval_contained_in_screened_target ===
+          false &&
+        row.claim_boundary.certifies_center_geometry_only === true &&
+        row.claim_boundary.certifies_center_width_fit_only === false
+    )
+  );
+  const fiveNodeCenterAwareProviderTarget =
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_five_node_center_aware_provider_radius_target;
+  assert.equal(
+    fiveNodeCenterAwareProviderTarget.target_kind,
+    "candidate-requested-y44-shared-source-map-center-aware-provider-radius-target"
+  );
+  assert.equal(
+    fiveNodeCenterAwareProviderTarget.center_aware_provider_radius_rows_available,
+    true
+  );
+  assert.equal(
+    fiveNodeCenterAwareProviderTarget
+      .required_center_aware_provider_contraction_factor,
+    fiveNodeCenterWidthProbe
+      .max_required_centered_half_width_compression_factor
+  );
+  assert.equal(
+    fiveNodeCenterAwareProviderTarget
+      .required_center_aware_to_selected_contraction_factor,
+    fiveNodeCenterWidthProbe.required_centered_to_selected_contraction_factor
+  );
+  assert.equal(
+    fiveNodeCenterAwareProviderTarget
+      .all_center_aware_provider_radius_intervals_contained_in_screened_targets,
+    true
+  );
+  assert.equal(
+    fiveNodeCenterAwareProviderTarget
+      .center_aware_provider_rows_match_same_domain_contract,
+    true
+  );
+  assert.equal(
+    fiveNodeCenterAwareProviderTarget
+      .center_aware_provider_rows_match_same_radius_contract,
+    true
+  );
+  assert.equal(
+    fiveNodeCenterAwareProviderTarget
+      .center_aware_provider_intervals_subset_screened_targets,
+    true
+  );
+  assert.equal(
+    fiveNodeCenterAwareProviderTarget
+      .center_aware_provider_source_kind_matches_required,
+    false
+  );
+  assert.equal(
+    fiveNodeCenterAwareProviderTarget
+      .center_aware_provider_reaches_verifier_with_source_only_failure,
+    true
+  );
+  assert.equal(
+    fiveNodeCenterAwareProviderTarget
+      .center_aware_provider_radius_target_classification,
+    "center-aware-provider-radius-target-contained-source-certification-open"
+  );
+  assert.equal(
+    fiveNodeCenterAwareProviderTarget.claim_boundary
+      .certifies_center_aware_radius_target_only,
+    true
+  );
+  assert.equal(
+    fiveNodeCenterAwareProviderTarget.claim_boundary
+      .certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    fiveNodeCenterAwareProviderTarget.center_aware_provider_radius_rows.length,
+    5
+  );
+  assert.ok(
+    fiveNodeCenterAwareProviderTarget.center_aware_provider_radius_rows.every(
+      (row) =>
+        row.provider_row_source_kind ===
+          "candidate-center-aware-provider-radius-target-not-directed-rounded" &&
+        row.signed_center_aware_interval_contained_in_screened_target ===
+          true &&
+        row.weighted_center_aware_interval_contained_in_screened_target ===
+          true &&
+        row.claim_boundary.certifies_center_aware_radius_target_only === true &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  const fiveNodeSourceCovarianceRealizationBudget =
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_five_node_center_aware_source_covariance_realization_budget;
+  assert.equal(
+    fiveNodeSourceCovarianceRealizationBudget.target_kind,
+    "candidate-requested-y44-shared-source-map-center-aware-source-covariance-realization-budget"
+  );
+  assert.equal(
+    fiveNodeSourceCovarianceRealizationBudget.realization_budget_rows_available,
+    true
+  );
+  assert.equal(
+    fiveNodeSourceCovarianceRealizationBudget
+      .all_realization_rows_keep_same_source_terms,
+    true
+  );
+  assert.equal(
+    fiveNodeSourceCovarianceRealizationBudget
+      .source_covariance_realization_budget_classification,
+    "center-aware-source-covariance-realization-reduces-to-preserving-signed-source-cancellation"
+  );
+  assert.ok(
+    fiveNodeSourceCovarianceRealizationBudget
+      .max_source_term_triangle_to_center_aware_half_width_ratio > 2e5
+  );
+  assert.ok(
+    fiveNodeSourceCovarianceRealizationBudget
+      .max_required_source_term_cancellation_fraction_for_center_aware_half_width >
+      0.99999
+  );
+  assert.ok(
+    fiveNodeSourceCovarianceRealizationBudget
+      .max_extra_source_term_cancellation_fraction_needed_for_center_aware_half_width >
+      9e-6
+  );
+  assert.ok(
+    fiveNodeSourceCovarianceRealizationBudget
+      .max_extra_source_term_cancellation_fraction_needed_for_center_aware_half_width <
+      1
+  );
+  assert.equal(
+    fiveNodeSourceCovarianceRealizationBudget
+      .dominant_realization_budget_node_index,
+    4
+  );
+  assert.equal(
+    fiveNodeSourceCovarianceRealizationBudget.claim_boundary
+      .certifies_source_covariance_realization_budget_only,
+    true
+  );
+  assert.equal(
+    fiveNodeSourceCovarianceRealizationBudget.claim_boundary
+      .certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    fiveNodeSourceCovarianceRealizationBudget.realization_budget_rows.length,
+    5
+  );
+  assert.ok(
+    fiveNodeSourceCovarianceRealizationBudget.realization_budget_rows.every(
+      (row) =>
+        row.budget_row_kind ===
+          "candidate-center-aware-source-covariance-realization-budget-row" &&
+        row.source_terms_preserved_signed_together.includes(
+          "delta_squared_speed"
+        ) &&
+        row.source_terms_preserved_signed_together.includes("sin_phi") &&
+        row.source_terms_preserved_signed_together.includes("sin_delta") &&
+        row.signed_source_term_triangle_to_center_aware_half_width_ratio >
+          2e5 &&
+        row.weighted_source_term_triangle_to_center_aware_half_width_ratio >
+          2e5 &&
+        row.claim_boundary
+          .certifies_source_covariance_realization_budget_only === true &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  const fiveNodeTermCancellationDecomposition =
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_five_node_term_cancellation_decomposition;
+  assert.equal(
+    fiveNodeTermCancellationDecomposition.target_kind,
+    "candidate-requested-y44-shared-source-map-term-cancellation-decomposition"
+  );
+  assert.equal(
+    fiveNodeTermCancellationDecomposition
+      .term_cancellation_decomposition_rows_available,
+    true
+  );
+  assert.equal(
+    fiveNodeTermCancellationDecomposition
+      .all_source_term_sums_match_live_signed_residual_intervals,
+    true
+  );
+  assert.ok(
+    fiveNodeTermCancellationDecomposition
+      .max_source_term_sum_endpoint_relative_gap_to_live_signed_residual <
+      1e-12
+  );
+  assert.ok(
+    fiveNodeTermCancellationDecomposition.max_pair_cancellation_fraction >= 0
+  );
+  assert.ok(
+    fiveNodeTermCancellationDecomposition.max_pair_cancellation_fraction <= 1
+  );
+  assert.equal(
+    fiveNodeTermCancellationDecomposition
+      .dominant_term_cancellation_node_index,
+    4
+  );
+  assert.ok(
+    ["delta_squared_speed", "sin_phi", "sin_delta"].includes(
+      fiveNodeTermCancellationDecomposition.dominant_node_dominant_source_term
+    )
+  );
+  assert.ok(
+    fiveNodeTermCancellationDecomposition
+      .dominant_node_dominant_pair_by_triangle_terms_key.includes("+")
+  );
+  assert.ok(
+    fiveNodeTermCancellationDecomposition
+      .dominant_node_strongest_pair_cancellation_terms_key.includes("+")
+  );
+  assert.equal(
+    fiveNodeTermCancellationDecomposition
+      .source_term_cancellation_decomposition_classification,
+    "term-cancellation-decomposition-localizes-node4-source-covariance-burden"
+  );
+  assert.equal(
+    fiveNodeTermCancellationDecomposition.claim_boundary
+      .certifies_term_cancellation_decomposition_only,
+    true
+  );
+  assert.equal(
+    fiveNodeTermCancellationDecomposition.claim_boundary
+      .certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    fiveNodeTermCancellationDecomposition
+      .term_cancellation_decomposition_rows.length,
+    5
+  );
+  const dominantTermCancellationRow =
+    fiveNodeTermCancellationDecomposition
+      .term_cancellation_decomposition_rows[4];
+  assert.equal(dominantTermCancellationRow.node_index, 4);
+  assert.equal(
+    dominantTermCancellationRow.row_realization_budget_dominant,
+    true
+  );
+  assert.equal(
+    dominantTermCancellationRow.source_term_sum_matches_live_signed_residual_interval,
+    true
+  );
+  assert.equal(
+    dominantTermCancellationRow.term_residual_decomposition_rows.length,
+    3
+  );
+  assert.equal(
+    dominantTermCancellationRow.pair_residual_decomposition_rows.length,
+    3
+  );
+  assert.ok(
+    dominantTermCancellationRow.term_residual_decomposition_rows.every(
+      (row) =>
+        ["delta_squared_speed", "sin_phi", "sin_delta"].includes(row.term) &&
+        Number.isFinite(row.residual_interval_center) &&
+        row.residual_abs_upper >= 0
+    )
+  );
+  assert.ok(
+    dominantTermCancellationRow.pair_residual_decomposition_rows.every(
+      (row) =>
+        row.pair_terms.length === 2 &&
+        row.pair_terms_key.includes("+") &&
+        (row.pair_cancellation_fraction === null ||
+          (Number.isFinite(row.pair_cancellation_fraction) &&
+            row.pair_cancellation_fraction >= -1e-12 &&
+            row.pair_cancellation_fraction <= 1))
+    )
+  );
+  const fiveNodeTermPreservationVerifier =
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_five_node_term_preservation_verifier;
+  assert.equal(
+    fiveNodeTermPreservationVerifier.target_kind,
+    "candidate-requested-y44-shared-source-map-term-preservation-provider-verifier"
+  );
+  assert.equal(
+    fiveNodeTermPreservationVerifier.provider_rows_supplied,
+    true
+  );
+  assert.equal(
+    fiveNodeTermPreservationVerifier.all_provider_rows_supplied,
+    true
+  );
+  assert.equal(
+    fiveNodeTermPreservationVerifier
+      .all_provider_rows_match_same_domain_contract,
+    true
+  );
+  assert.equal(
+    fiveNodeTermPreservationVerifier.all_provider_term_rows_supplied,
+    true
+  );
+  assert.equal(
+    fiveNodeTermPreservationVerifier
+      .all_provider_terms_match_decomposition,
+    true
+  );
+  assert.equal(
+    fiveNodeTermPreservationVerifier
+      .all_provider_pairs_match_decomposition,
+    true
+  );
+  assert.equal(
+    fiveNodeTermPreservationVerifier
+      .all_provider_term_sums_match_provider_signed_residuals,
+    true
+  );
+  assert.equal(
+    fiveNodeTermPreservationVerifier
+      .all_provider_term_sums_match_decomposition,
+    true
+  );
+  assert.equal(
+    fiveNodeTermPreservationVerifier
+      .all_provider_rows_have_directed_rounded_source,
+    false
+  );
+  assert.equal(
+    fiveNodeTermPreservationVerifier
+      .term_preservation_reaches_verifier_with_source_only_failure,
+    true
+  );
+  assert.equal(
+    fiveNodeTermPreservationVerifier
+      .verified_directed_rounded_term_preserving_provider_rows,
+    false
+  );
+  assert.ok(
+    fiveNodeTermPreservationVerifier
+      .max_provider_term_sum_endpoint_relative_gap < 1e-12
+  );
+  assert.equal(
+    fiveNodeTermPreservationVerifier.dominant_term_cancellation_node_index,
+    4
+  );
+  assert.equal(
+    fiveNodeTermPreservationVerifier
+      .term_preservation_verifier_classification,
+    "term-preserving-provider-rows-reach-boundary-source-certification-open"
+  );
+  assert.equal(
+    fiveNodeTermPreservationVerifier.claim_boundary
+      .certifies_term_preservation_contract_only,
+    true
+  );
+  assert.equal(
+    fiveNodeTermPreservationVerifier.claim_boundary
+      .certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    fiveNodeTermPreservationVerifier.term_preservation_verification_rows.length,
+    5
+  );
+  assert.ok(
+    fiveNodeTermPreservationVerifier.term_preservation_verification_rows.every(
+      (row) =>
+        row.provider_row_source_kind ===
+          "candidate-signed-source-normal-form-not-directed-rounded" &&
+        row.provider_source_terms_match_decomposition === true &&
+        row.provider_pair_rows_match_decomposition === true &&
+        row.provider_term_sum_matches_provider_signed_residual === true &&
+        row.provider_term_sum_matches_decomposition === true &&
+        row.verifier_row_status ===
+          "term-preserving-provider-row-reaches-source-certification-boundary"
+    )
+  );
+  const fiveNodeTermEndpointMarginDiagnostic =
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_five_node_term_endpoint_margin_diagnostic;
+  assert.equal(
+    fiveNodeTermEndpointMarginDiagnostic.target_kind,
+    "candidate-requested-y44-shared-source-map-term-endpoint-margin-diagnostic"
+  );
+  assert.equal(
+    fiveNodeTermEndpointMarginDiagnostic.endpoint_margin_kind,
+    "one-number-epsilon-relative-term-pair-endpoint-margin-screen"
+  );
+  assert.equal(
+    fiveNodeTermEndpointMarginDiagnostic.endpoint_margin_relative_bound,
+    Number.EPSILON
+  );
+  assert.equal(
+    fiveNodeTermEndpointMarginDiagnostic
+      .provider_rows_preserve_term_decomposition,
+    true
+  );
+  assert.equal(
+    fiveNodeTermEndpointMarginDiagnostic
+      .provider_rows_preserve_pair_decomposition,
+    true
+  );
+  assert.equal(
+    fiveNodeTermEndpointMarginDiagnostic
+      .provider_rows_certify_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    fiveNodeTermEndpointMarginDiagnostic
+      .all_endpoint_margin_rows_fit_one_number_epsilon,
+    true
+  );
+  assert.equal(
+    fiveNodeTermEndpointMarginDiagnostic
+      .all_endpoint_margin_rows_keep_source_open,
+    true
+  );
+  assert.ok(
+    fiveNodeTermEndpointMarginDiagnostic.max_required_relative_endpoint_margin >=
+      0
+  );
+  assert.ok(
+    fiveNodeTermEndpointMarginDiagnostic.max_required_relative_endpoint_margin <=
+      Number.EPSILON
+  );
+  assert.ok(
+    fiveNodeTermEndpointMarginDiagnostic
+      .max_required_margin_to_number_epsilon_ratio >= 0
+  );
+  assert.ok(
+    fiveNodeTermEndpointMarginDiagnostic
+      .max_required_margin_to_number_epsilon_ratio <= 1
+  );
+  assert.equal(
+    fiveNodeTermEndpointMarginDiagnostic.endpoint_margin_classification,
+    "one-number-epsilon-term-pair-endpoint-margin-suffices-source-certification-open"
+  );
+  assert.equal(
+    fiveNodeTermEndpointMarginDiagnostic.claim_boundary
+      .certifies_endpoint_margin_as_directed_rounded_source,
+    false
+  );
+  assert.equal(
+    fiveNodeTermEndpointMarginDiagnostic.claim_boundary
+      .certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    fiveNodeTermEndpointMarginDiagnostic.endpoint_margin_rows.length,
+    5
+  );
+  assert.ok(
+    fiveNodeTermEndpointMarginDiagnostic.endpoint_margin_rows.every(
+      (row) =>
+        row.endpoint_margin_relative_bound === Number.EPSILON &&
+        row.term_sum_number_epsilon_margin_contains_provider_sum === true &&
+        row.all_pair_endpoint_margin_rows_fit_one_number_epsilon === true &&
+        row.pair_endpoint_margin_rows.length === 3 &&
+        row.pair_endpoint_margin_rows.every(
+          (pairRow) =>
+            pairRow.pair_terms_key.includes("+") &&
+            pairRow.pair_number_epsilon_margin_contains_pair_sum === true
+        )
+    )
+  );
+  const fiveNodeTermSourceOperationReplay =
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_five_node_term_source_operation_replay;
+  assert.equal(
+    fiveNodeTermSourceOperationReplay.target_kind,
+    "candidate-requested-y44-shared-source-map-term-source-operation-replay"
+  );
+  assert.equal(
+    fiveNodeTermSourceOperationReplay.operation_replay_kind,
+    "requested-y44-term-pair-source-map-with-one-number-epsilon-endpoint-margin"
+  );
+  assert.equal(
+    fiveNodeTermSourceOperationReplay.endpoint_margin_relative_bound,
+    Number.EPSILON
+  );
+  assert.equal(
+    fiveNodeTermSourceOperationReplay.source_provenance_still_open,
+    true
+  );
+  assert.equal(
+    fiveNodeTermSourceOperationReplay
+      .all_operation_rows_replay_term_sum_identities,
+    true
+  );
+  assert.equal(
+    fiveNodeTermSourceOperationReplay
+      .all_operation_rows_replay_pair_sum_identities,
+    true
+  );
+  assert.equal(
+    fiveNodeTermSourceOperationReplay
+      .all_operation_rows_fit_one_number_epsilon_endpoint_margin,
+    true
+  );
+  assert.equal(
+    fiveNodeTermSourceOperationReplay
+      .certifies_binary64_outward_operation_replay_for_supplied_intervals,
+    true
+  );
+  assert.equal(
+    fiveNodeTermSourceOperationReplay
+      .certifies_one_number_epsilon_endpoint_margin_for_operation_replay,
+    true
+  );
+  assert.equal(
+    fiveNodeTermSourceOperationReplay
+      .certifies_source_inputs_as_directed_rounded_same_domain,
+    false
+  );
+  assert.ok(
+    fiveNodeTermSourceOperationReplay.max_operation_replay_relative_gap <
+      1e-12
+  );
+  assert.equal(
+    fiveNodeTermSourceOperationReplay.source_operation_replay_classification,
+    "term-pair-arithmetic-replay-is-stable-source-interval-provenance-open"
+  );
+  assert.equal(
+    fiveNodeTermSourceOperationReplay.claim_boundary
+      .certifies_term_pair_operation_replay_only,
+    true
+  );
+  assert.equal(
+    fiveNodeTermSourceOperationReplay.claim_boundary
+      .certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    fiveNodeTermSourceOperationReplay.operation_replay_rows.length,
+    5
+  );
+  assert.ok(
+    fiveNodeTermSourceOperationReplay.operation_replay_rows.every(
+      (row) =>
+        row.term_sum_operation_replay_matches_provider === true &&
+        row.term_sum_operation_replay_fits_one_epsilon_endpoint_margin ===
+          true &&
+        row.all_pair_operation_replays_match_provider === true &&
+        row.all_pair_operation_replays_fit_one_epsilon_endpoint_margin ===
+          true &&
+        row.pair_operation_replay_rows.length === 3 &&
+        row.pair_operation_replay_rows.every(
+          (pairRow) =>
+            pairRow.pair_terms_key.includes("+") &&
+            pairRow.pair_operation_replay_fits_one_epsilon_endpoint_margin ===
+              true
+        )
+    )
+  );
   const fiveNodeContractedProvider =
     sourceMapResidualCovarianceTarget
       .source_map_residual_shared_stream_five_node_contracted_provider_candidate;
@@ -6957,6 +7580,208 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
       .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_source_normal_form_max_weighted_gap,
     fiveNodeSignedSourceNormalFormProbe
       .max_weighted_source_normal_form_to_live_endpoint_relative_gap
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_width_contraction_classification,
+    fiveNodeCenterWidthProbe.center_width_contraction_classification
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_width_reaches_verifier_with_source_only_failure,
+    false
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_width_max_required_compression,
+    fiveNodeCenterWidthProbe
+      .max_required_centered_half_width_compression_factor
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_width_required_to_selected_contraction_factor,
+    fiveNodeCenterWidthProbe.required_centered_to_selected_contraction_factor
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_width_max_center_offset,
+    fiveNodeCenterWidthProbe.max_live_center_offset_abs_to_target_half_width
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_width_contraction_interpretation,
+    fiveNodeCenterWidthProbe.center_width_contraction_interpretation
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_aware_provider_radius_classification,
+    fiveNodeCenterAwareProviderTarget
+      .center_aware_provider_radius_target_classification
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_aware_provider_required_contraction_factor,
+    fiveNodeCenterAwareProviderTarget
+      .required_center_aware_provider_contraction_factor
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_aware_provider_required_to_selected_contraction_factor,
+    fiveNodeCenterAwareProviderTarget
+      .required_center_aware_to_selected_contraction_factor
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_center_aware_provider_reaches_verifier_with_source_only_failure,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_source_covariance_realization_classification,
+    fiveNodeSourceCovarianceRealizationBudget
+      .source_covariance_realization_budget_classification
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_source_covariance_realization_max_triangle_to_half_width,
+    fiveNodeSourceCovarianceRealizationBudget
+      .max_source_term_triangle_to_center_aware_half_width_ratio
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_source_covariance_realization_max_required_cancellation,
+    fiveNodeSourceCovarianceRealizationBudget
+      .max_required_source_term_cancellation_fraction_for_center_aware_half_width
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_source_covariance_realization_max_extra_cancellation,
+    fiveNodeSourceCovarianceRealizationBudget
+      .max_extra_source_term_cancellation_fraction_needed_for_center_aware_half_width
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_source_covariance_realization_dominant_node_index,
+    fiveNodeSourceCovarianceRealizationBudget
+      .dominant_realization_budget_node_index
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_source_covariance_realization_interpretation,
+    fiveNodeSourceCovarianceRealizationBudget
+      .realization_budget_interpretation
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_classification,
+    fiveNodeTermCancellationDecomposition
+      .source_term_cancellation_decomposition_classification
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_dominant_node_index,
+    fiveNodeTermCancellationDecomposition
+      .dominant_term_cancellation_node_index
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_dominant_source_term,
+    fiveNodeTermCancellationDecomposition.dominant_node_dominant_source_term
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_dominant_pair_key,
+    fiveNodeTermCancellationDecomposition
+      .dominant_node_dominant_pair_by_triangle_terms_key
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_strongest_pair_key,
+    fiveNodeTermCancellationDecomposition
+      .dominant_node_strongest_pair_cancellation_terms_key
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_max_pair_cancellation_fraction,
+    fiveNodeTermCancellationDecomposition.max_pair_cancellation_fraction
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_cancellation_max_sum_gap,
+    fiveNodeTermCancellationDecomposition
+      .max_source_term_sum_endpoint_relative_gap_to_live_signed_residual
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_preservation_classification,
+    fiveNodeTermPreservationVerifier
+      .term_preservation_verifier_classification
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_preservation_reaches_source_only_failure,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_preservation_terms_match_decomposition,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_preservation_pairs_match_decomposition,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_preservation_max_sum_gap,
+    fiveNodeTermPreservationVerifier.max_provider_term_sum_endpoint_relative_gap
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_endpoint_margin_classification,
+    fiveNodeTermEndpointMarginDiagnostic.endpoint_margin_classification
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_endpoint_margin_fit_one_epsilon,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_endpoint_margin_max_required,
+    fiveNodeTermEndpointMarginDiagnostic.max_required_relative_endpoint_margin
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_endpoint_margin_max_to_epsilon,
+    fiveNodeTermEndpointMarginDiagnostic
+      .max_required_margin_to_number_epsilon_ratio
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_source_operation_classification,
+    fiveNodeTermSourceOperationReplay.source_operation_replay_classification
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_source_operation_replays_term_sums,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_source_operation_replays_pair_sums,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_source_operation_fits_one_epsilon,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_term_source_operation_max_replay_gap,
+    fiveNodeTermSourceOperationReplay.max_operation_replay_relative_gap
   );
   assert.equal(
     producerBudgetComparison

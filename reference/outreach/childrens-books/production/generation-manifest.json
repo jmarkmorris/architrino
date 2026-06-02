@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-06-02T00:35:01.433384+00:00",
+  "generated_at": "2026-06-02T08:15:50.274875+00:00",
   "root": "reference/outreach/childrens-books",
   "total_source_images": 142,
   "generation_order": [
@@ -3048,11 +3048,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-history-that-pushes-now/9x16/the-history-that-pushes-now-cover.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -3081,11 +3081,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-history-that-pushes-now/9x16/the-history-that-pushes-now-spread-01.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -3114,11 +3114,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-history-that-pushes-now/9x16/the-history-that-pushes-now-spread-02.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -3147,11 +3147,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-history-that-pushes-now/9x16/the-history-that-pushes-now-spread-03.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -3180,11 +3180,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-history-that-pushes-now/9x16/the-history-that-pushes-now-spread-04.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -3213,11 +3213,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-history-that-pushes-now/9x16/the-history-that-pushes-now-spread-05.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -3246,11 +3246,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-history-that-pushes-now/9x16/the-history-that-pushes-now-spread-06.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -3279,11 +3279,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-history-that-pushes-now/9x16/the-history-that-pushes-now-spread-07.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -3312,11 +3312,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-history-that-pushes-now/9x16/the-history-that-pushes-now-spread-08.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -3345,11 +3345,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-history-that-pushes-now/9x16/the-history-that-pushes-now-spread-09.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -3378,11 +3378,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-history-that-pushes-now/9x16/the-history-that-pushes-now-spread-10.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -3411,11 +3411,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-history-that-pushes-now/9x16/the-history-that-pushes-now-spread-11.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -3444,11 +3444,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-history-that-pushes-now/9x16/the-history-that-pushes-now-spread-12.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -3477,11 +3477,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-history-that-pushes-now/9x16/the-history-that-pushes-now-spread-13.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -3510,11 +3510,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-history-that-pushes-now/9x16/the-history-that-pushes-now-spread-14.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -3543,11 +3543,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-history-that-pushes-now/9x16/the-history-that-pushes-now-spread-15.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -3576,11 +3576,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-history-that-pushes-now/9x16/the-history-that-pushes-now-spread-16.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -3609,11 +3609,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-history-that-pushes-now/9x16/the-history-that-pushes-now-spread-17.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -3642,11 +3642,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-history-that-pushes-now/9x16/the-history-that-pushes-now-spread-18.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -3675,11 +3675,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-history-that-pushes-now/9x16/the-history-that-pushes-now-spread-19.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -3708,11 +3708,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-history-that-pushes-now/9x16/the-history-that-pushes-now-spread-20.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -3741,11 +3741,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-history-that-pushes-now/9x16/the-history-that-pushes-now-backmatter-01.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -3774,11 +3774,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-history-that-pushes-now/9x16/the-history-that-pushes-now-backmatter-02.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -3807,11 +3807,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-history-that-pushes-now/9x16/the-history-that-pushes-now-backmatter-03.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -3840,11 +3840,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-history-that-pushes-now/9x16/the-history-that-pushes-now-backmatter-04.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -3873,11 +3873,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-history-that-pushes-now/9x16/the-history-that-pushes-now-backmatter-05.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -3906,11 +3906,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-world-we-recover/9x16/the-world-we-recover-cover.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -3939,11 +3939,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-world-we-recover/9x16/the-world-we-recover-spread-01.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -3972,11 +3972,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-world-we-recover/9x16/the-world-we-recover-spread-02.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -4005,11 +4005,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-world-we-recover/9x16/the-world-we-recover-spread-03.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -4038,11 +4038,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-world-we-recover/9x16/the-world-we-recover-spread-04.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -4071,11 +4071,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-world-we-recover/9x16/the-world-we-recover-spread-05.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -4104,11 +4104,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-world-we-recover/9x16/the-world-we-recover-spread-06.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -4137,11 +4137,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-world-we-recover/9x16/the-world-we-recover-spread-07.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -4170,11 +4170,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-world-we-recover/9x16/the-world-we-recover-spread-08.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -4203,11 +4203,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-world-we-recover/9x16/the-world-we-recover-spread-09.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -4236,11 +4236,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-world-we-recover/9x16/the-world-we-recover-spread-10.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -4269,11 +4269,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-world-we-recover/9x16/the-world-we-recover-spread-11.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -4302,11 +4302,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-world-we-recover/9x16/the-world-we-recover-spread-12.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -4335,11 +4335,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-world-we-recover/9x16/the-world-we-recover-spread-13.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -4368,11 +4368,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-world-we-recover/9x16/the-world-we-recover-spread-14.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -4401,11 +4401,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-world-we-recover/9x16/the-world-we-recover-spread-15.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -4434,11 +4434,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-world-we-recover/9x16/the-world-we-recover-spread-16.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -4467,11 +4467,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-world-we-recover/9x16/the-world-we-recover-spread-17.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -4500,11 +4500,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-world-we-recover/9x16/the-world-we-recover-spread-18.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -4533,11 +4533,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-world-we-recover/9x16/the-world-we-recover-spread-19.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -4566,11 +4566,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-world-we-recover/9x16/the-world-we-recover-spread-20.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -4599,11 +4599,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-world-we-recover/9x16/the-world-we-recover-backmatter-01.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -4632,11 +4632,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-world-we-recover/9x16/the-world-we-recover-backmatter-02.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -4665,11 +4665,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-world-we-recover/9x16/the-world-we-recover-backmatter-03.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -4698,11 +4698,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-world-we-recover/9x16/the-world-we-recover-backmatter-04.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -4731,11 +4731,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-world-we-recover/9x16/the-world-we-recover-backmatter-05.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -4764,11 +4764,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-world-we-recover/9x16/the-world-we-recover-backmatter-06.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     }
   ]

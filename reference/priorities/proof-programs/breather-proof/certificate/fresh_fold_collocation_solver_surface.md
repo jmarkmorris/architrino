@@ -1046,6 +1046,78 @@ rows are ready, and 0 rows are consumed. The source-condition layer is now
 fully separated from the missing proof-grade rule, identity, and membership
 proof layer.
 
+The same-packet constructed witness-object identity attempt is recorded in
+`fold_coordinate_endpoint_functional_same_packet_constructed_witness_object_identity_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_same_packet_constructed_witness_object_identity_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It tests the recommended first route above the rule/membership proof target.
+It remains priority-only and fail-closed for the solver: 4 / 4 domain-chart
+carrier subfields, 4 / 4 source endpoint-boundary-binding refs, 4 / 4 source
+endpoint value-binding maps, and 4 / 4 non-domain carrier obstruction records
+are present, but 0 / 4 same-packet endpoint-boundary-binding ref carriers,
+0 / 4 same-packet endpoint value-map carriers, 0 / 4 carrier-complete witness
+objects, 0 / 4 constructed witness-object identities, 0 / 4 same constructed
+witness-object membership proofs, 0 / 4 actual witness-object contract links,
+and 0 rows are produced. The live identity blocker is same-packet non-domain
+carrier construction plus field-membership proof, not source ref/value
+availability.
+
+The ref/value non-domain carrier rule target is recorded in
+`fold_coordinate_endpoint_functional_ref_value_non_domain_carrier_rule_target.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_ref_value_non_domain_carrier_rule_target_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It remains priority-only and fail-closed for the solver: 4 / 4 source
+endpoint-boundary-binding refs, 4 / 4 source endpoint value-binding maps,
+4 / 4 ref carrier source candidates, 4 / 4 value-map carrier source
+candidates, and 4 / 4 carrier-introduction rule targets are present, but
+0 / 4 available carrier-introduction rules, 0 / 4 rule derivations, 0 / 4
+soundness proofs, 0 / 4 application proofs, 0 / 4 ref/value non-domain carrier
+pairs, 0 / 4 constructed witness-object identities, and 0 rows are produced.
+The live rule blocker is an explicit carrier-introduction rule and proof
+application, not ref/value source availability.
+
+The ref/value carrier-introduction route decision is recorded in
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_route_decision.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_route_decision_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It remains priority-only and fail-closed for the solver: 4 / 4 direct source
+premise sets are ready, 4 / 4 direct source-handle promotion routes are
+rejected, and 4 / 4 carrier-admission routes are selected, but 0 / 4 binding
+contracts are satisfied, 0 / 4 full endpoint boundary bindings are
+constructed, 0 / 4 endpoint-boundary-binding ref carriers are admitted, 0 / 4
+endpoint value-map carriers are admitted, 0 / 4 ref/value non-domain carrier
+pairs are constructed, 0 / 4 constructed witness-object identities exist, and
+0 rows are produced. The live solver route now returns to binding contract
+satisfaction, full endpoint boundary binding, and carrier admission.
+
+The binding/full-binding completion attempt is recorded in
+`fold_coordinate_endpoint_functional_binding_full_binding_completion_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_binding_full_binding_completion_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It tests the selected carrier-admission route directly. It records 4 / 4
+selected-route inputs, 4 / 4 contract-link source candidates, 4 / 4
+actual-link rule targets, and 4 / 4 constructed-witness-object source bundles,
+but constructs 0 / 4 actual contract-link rules, 0 / 4 constructed
+witness-object identities, 0 / 4 witness-object membership proofs, 0 / 4
+contract-target satisfaction proofs, 0 / 4 binding contracts, 0 / 4 full
+endpoint boundary bindings, 0 / 4 carrier admissions, and 0 rows. The first
+missing theorem layer is the proof-grade actual-link rule plus constructed
+witness-object membership proof, so another source-availability or route-choice
+packet is not a row-closure packet.
+
+The actual-link/membership dependency-cycle completion attempt is recorded in
+`fold_coordinate_endpoint_functional_actual_link_membership_dependency_cycle_completion_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_actual_link_membership_dependency_cycle_completion_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It tests that theorem layer as a proof-order graph. It detects 4 / 4 endpoint
+dependency cycles and 3 / 3 row cycle pairs, with 0 proof-grade escape routes:
+actual-link construction needs membership, membership needs same-packet
+constructed witness-object identity, identity needs ref/value non-domain
+carrier fields, direct source-handle promotion is rejected, selected carrier
+admission needs full binding and binding contract satisfaction, and binding
+contract satisfaction needs the witness-object contract link. This is the
+current endpoint stop condition before row-closure work resumes.
+
 ## Pre-Ledger Stop Condition
 
 Stop before branch-chart construction unless every pre-ledger row satisfies
