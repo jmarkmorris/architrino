@@ -44407,6 +44407,26 @@ export function buildH39RequestedY44ProducerImageBudgetComparisonCandidate({
       nonconstantSourceMapResidualCovarianceTarget
         ?.source_map_residual_shared_stream_five_node_directed_provider_verifier
         ?.verifier_classification ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_source_normal_form_classification:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_source_normal_form_probe
+        ?.signed_source_normal_form_classification ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_source_normal_form_matches_live:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_source_normal_form_probe
+        ?.signed_source_normal_form_rows_match_live_provider_intervals ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_source_normal_form_intervals_subset_screened_targets:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_source_normal_form_probe
+        ?.signed_source_normal_form_intervals_subset_screened_targets ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_source_normal_form_max_signed_gap:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_source_normal_form_probe
+        ?.max_signed_source_normal_form_to_live_endpoint_relative_gap ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_source_normal_form_max_weighted_gap:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_source_normal_form_probe
+        ?.max_weighted_source_normal_form_to_live_endpoint_relative_gap ?? null,
     producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_contracted_provider_reaches_verifier_with_source_only_failure:
       nonconstantSourceMapResidualCovarianceTarget
         ?.source_map_residual_shared_stream_five_node_contracted_provider_candidate
@@ -46779,6 +46799,58 @@ function h39RequestedY44SourceMapResidualSharedStreamNodeRadiusTarget({
       )
         ? weightedSignedResidualAbsUpper
         : null,
+      signed_source_term_interval_sum:
+        finiteOrderedIntervalOrNull(node?.signed_source_term_interval_sum),
+      signed_source_term_midpoint_sum:
+        Number.isFinite(Number(node?.signed_source_term_midpoint_sum))
+          ? Number(node.signed_source_term_midpoint_sum)
+          : null,
+      signed_source_term_midpoint_gap:
+        finiteNonnegative(node?.signed_source_term_midpoint_gap)
+          ? Number(node.signed_source_term_midpoint_gap)
+          : null,
+      source_term_residual_interval_sum:
+        finiteOrderedIntervalOrNull(node?.source_term_residual_interval_sum),
+      source_term_residual_sum_endpoint_relative_gap:
+        finiteNonnegative(node?.source_term_residual_sum_endpoint_relative_gap)
+          ? Number(node.source_term_residual_sum_endpoint_relative_gap)
+          : null,
+      source_term_residual_triangle_abs_upper:
+        finiteNonnegative(node?.source_term_residual_triangle_abs_upper)
+          ? Number(node.source_term_residual_triangle_abs_upper)
+          : null,
+      source_term_weighted_residual_triangle_abs_upper:
+        finiteNonnegative(node?.source_term_weighted_residual_triangle_abs_upper)
+          ? Number(node.source_term_weighted_residual_triangle_abs_upper)
+          : null,
+      source_term_weighted_residual_interval_sum:
+        finiteOrderedIntervalOrNull(
+          node?.source_term_weighted_residual_interval_sum
+        ),
+      source_term_weighted_residual_to_signed_weighted_residual_ratio:
+        finiteNonnegative(
+          node?.source_term_weighted_residual_to_signed_weighted_residual_ratio
+        )
+          ? Number(
+              node.source_term_weighted_residual_to_signed_weighted_residual_ratio
+            )
+          : null,
+      source_term_residual_cancellation_fraction:
+        Number.isFinite(Number(node?.source_term_residual_cancellation_fraction))
+          ? Number(node.source_term_residual_cancellation_fraction)
+          : null,
+      source_term_residual_rows: Array.isArray(node?.source_term_residual_rows)
+        ? node.source_term_residual_rows.map((termRow) => ({
+            term: termRow?.term ?? null,
+            residual_interval: finiteOrderedIntervalOrNull(
+              termRow?.residual_interval
+            ),
+            residual_abs_upper:
+              termRow?.residual_abs_upper ?? null,
+            weighted_residual_abs_upper:
+              termRow?.weighted_residual_abs_upper ?? null,
+          }))
+        : [],
       current_weighted_residual_share: currentShare,
       current_derivative_residual_share: currentShare,
       target_weighted_residual_abs_upper: currentShapeDerivativeBudget,
@@ -47257,6 +47329,211 @@ function h39RequestedY44SourceMapResidualFiveNodeVerifier({
   };
 }
 
+function h39RequestedY44SourceMapResidualFiveNodeSignedSourceNormalFormProbe({
+  inclusionContract,
+  radiusRows,
+} = {}) {
+  if (
+    inclusionContract === null ||
+    inclusionContract === undefined ||
+    inclusionContract.target_kind !==
+      "candidate-requested-y44-shared-source-map-five-node-inclusion-contract" ||
+    !Array.isArray(radiusRows) ||
+    radiusRows.length !== 5
+  ) {
+    return null;
+  }
+  const contractRows = inclusionContract.provider_contract_rows ?? [];
+  if (contractRows.length !== 5) {
+    return null;
+  }
+  const radiusRowsByNodeIndex = new Map(
+    radiusRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const providerRows = contractRows.map((contractRow) => {
+    const radiusRow = radiusRowsByNodeIndex.get(
+      Number(contractRow.node_index)
+    );
+    const signedSourceInterval = finiteOrderedIntervalOrNull(
+      radiusRow?.source_term_residual_interval_sum
+    );
+    const weightedSourceInterval = finiteOrderedIntervalOrNull(
+      radiusRow?.source_term_weighted_residual_interval_sum
+    );
+    const liveSignedInterval = finiteOrderedIntervalOrNull(
+      contractRow.live_signed_residual_interval
+    );
+    const liveWeightedInterval = finiteOrderedIntervalOrNull(
+      contractRow.live_weighted_residual_interval
+    );
+    if (
+      radiusRow === undefined ||
+      signedSourceInterval === null ||
+      weightedSourceInterval === null ||
+      liveSignedInterval === null ||
+      liveWeightedInterval === null
+    ) {
+      return null;
+    }
+    const signedEndpointGap = intervalEndpointRelativeGap(
+      signedSourceInterval,
+      liveSignedInterval
+    );
+    const weightedEndpointGap = intervalEndpointRelativeGap(
+      weightedSourceInterval,
+      liveWeightedInterval
+    );
+    return {
+      node_index: contractRow.node_index,
+      xi_midpoint: contractRow.xi_midpoint,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      tightest_budget_cell_id: inclusionContract.tightest_budget_cell_id,
+      provider_row_source_kind:
+        "candidate-signed-source-normal-form-not-directed-rounded",
+      normal_form_identity:
+        "At each xi node, sum delta_squared_speed, sin_phi, and sin_delta as one signed H38 source residual before Lagrange weighting; constant_minus_two is zero at y^42.",
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      zero_source_terms: ["constant_minus_two"],
+      screened_signed_residual_target_interval:
+        contractRow.screened_signed_residual_target_interval,
+      screened_weighted_residual_target_interval:
+        contractRow.screened_weighted_residual_target_interval,
+      directed_rounded_signed_residual_interval: signedSourceInterval,
+      directed_rounded_weighted_signed_residual_interval:
+        weightedSourceInterval,
+      directed_rounded_weighted_residual_interval: weightedSourceInterval,
+      live_signed_residual_interval: liveSignedInterval,
+      live_weighted_residual_interval: liveWeightedInterval,
+      signed_source_normal_form_to_live_endpoint_relative_gap:
+        signedEndpointGap,
+      weighted_source_normal_form_to_live_endpoint_relative_gap:
+        weightedEndpointGap,
+      signed_source_normal_form_matches_live_interval:
+        signedEndpointGap <= 1e-12,
+      weighted_source_normal_form_matches_live_interval:
+        weightedEndpointGap <= 1e-12,
+      source_term_residual_triangle_abs_upper:
+        radiusRow.source_term_residual_triangle_abs_upper,
+      source_term_weighted_residual_triangle_abs_upper:
+        radiusRow.source_term_weighted_residual_triangle_abs_upper,
+      source_term_weighted_residual_to_signed_weighted_residual_ratio:
+        radiusRow.source_term_weighted_residual_to_signed_weighted_residual_ratio,
+      source_term_residual_cancellation_fraction:
+        radiusRow.source_term_residual_cancellation_fraction,
+      source_term_residual_rows: radiusRow.source_term_residual_rows,
+      claim_boundary: {
+        certifies_source_normal_form_only: true,
+        certifies_directed_rounded_shared_domain: false,
+        certifies_shifted_R43_outer_bound: false,
+        retained_branch: false,
+      },
+    };
+  });
+  if (providerRows.some((row) => row === null)) {
+    return {
+      target_kind:
+        "candidate-requested-y44-shared-source-map-signed-source-normal-form-provider-probe",
+      proof_status:
+        "candidate-signed-source-normal-form-provider-inputs-missing",
+      provider_probe_kind:
+        "signed-source-normal-form-rows-through-directed-provider-verifier",
+      normal_form_identity:
+        "Sum the three nonconstant H38 source terms at each node before Lagrange weighting.",
+      signed_source_normal_form_provider_rows_available: false,
+      signed_source_normal_form_provider_rows: [],
+      directed_provider_verifier: null,
+      claim_boundary: {
+        certifies_source_normal_form_only: false,
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  }
+  const verifier = h39RequestedY44SourceMapResidualFiveNodeVerifier({
+    inclusionContract,
+    providerRows,
+  });
+  const normalFormRowsMatchLive = providerRows.every(
+    (row) =>
+      row.signed_source_normal_form_matches_live_interval === true &&
+      row.weighted_source_normal_form_matches_live_interval === true
+  );
+  const signedGaps = providerRows.map(
+    (row) => row.signed_source_normal_form_to_live_endpoint_relative_gap
+  );
+  const weightedGaps = providerRows.map(
+    (row) => row.weighted_source_normal_form_to_live_endpoint_relative_gap
+  );
+  const sourceTermRatios = providerRows
+    .map((row) =>
+      Number(row.source_term_weighted_residual_to_signed_weighted_residual_ratio)
+    )
+    .filter((value) => Number.isFinite(value) && value >= 0);
+  const cancellationFractions = providerRows
+    .map((row) => Number(row.source_term_residual_cancellation_fraction))
+    .filter((value) => Number.isFinite(value));
+  const verifierIntervalsContained =
+    verifier?.all_provider_intervals_subset_screened_targets ?? false;
+  return {
+    target_kind:
+      "candidate-requested-y44-shared-source-map-signed-source-normal-form-provider-probe",
+    source_inclusion_contract_kind: inclusionContract.target_kind,
+    source_directed_provider_verifier_kind: verifier?.target_kind ?? null,
+    proof_status:
+      "candidate-signed-source-normal-form-provider-not-directed-rounded",
+    provider_probe_kind:
+      "signed-source-normal-form-rows-through-directed-provider-verifier",
+    normal_form_identity:
+      "The five requested-y44 nodes already preserve delta_squared_speed + sin_phi + sin_delta as a signed H38 source-map residual stream; the remaining loss is node interval width, not a term-splitting artifact.",
+    signed_source_normal_form_provider_rows_available: true,
+    signed_source_normal_form_provider_rows: providerRows,
+    directed_provider_verifier: verifier,
+    signed_source_normal_form_rows_match_live_provider_intervals:
+      normalFormRowsMatchLive,
+    signed_source_normal_form_rows_match_same_domain_contract:
+      verifier?.all_provider_rows_match_same_domain_contract ?? false,
+    signed_source_normal_form_rows_match_same_radius_contract:
+      verifier?.all_provider_rows_match_same_radius_contract ?? false,
+    signed_source_normal_form_intervals_subset_screened_targets:
+      verifierIntervalsContained,
+    signed_source_normal_form_source_kind_matches_required:
+      verifier?.all_provider_rows_have_directed_rounded_source ?? false,
+    max_signed_source_normal_form_to_live_endpoint_relative_gap:
+      finiteMaximum(signedGaps),
+    max_weighted_source_normal_form_to_live_endpoint_relative_gap:
+      finiteMaximum(weightedGaps),
+    max_source_term_weighted_residual_to_signed_weighted_residual_ratio:
+      finiteMaximum(sourceTermRatios),
+    min_source_term_residual_cancellation_fraction:
+      finiteMinimum(cancellationFractions),
+    signed_source_normal_form_classification:
+      normalFormRowsMatchLive &&
+      verifier?.all_provider_rows_match_same_domain_contract === true &&
+      verifier?.all_provider_rows_match_same_radius_contract === true &&
+      verifierIntervalsContained === false
+        ? "signed-source-normal-form-reaches-provider-boundary-but-node-intervals-exceed-screened-targets"
+        : "signed-source-normal-form-provider-probe-open",
+    next_certificate_object:
+      "directed-rounded same-domain producer-image contraction for the signed node source-map residual stream; source-term normal-form cancellation is already explicit",
+    claim_boundary: {
+      certifies_source_normal_form_only: normalFormRowsMatchLive,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
 function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
   sourceMapResidualSharedStreamNodeRadiusTarget,
 } = {}) {
@@ -47273,6 +47550,8 @@ function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
       source_map_residual_shared_stream_five_node_directed_provider_verifier:
         null,
       source_map_residual_shared_stream_five_node_live_provider_probe: null,
+      source_map_residual_shared_stream_five_node_signed_source_normal_form_probe:
+        null,
       source_map_residual_shared_stream_five_node_contracted_provider_candidate:
         null,
       source_map_residual_shared_stream_five_node_inclusion_interpretation:
@@ -47299,6 +47578,8 @@ function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
       source_map_residual_shared_stream_five_node_directed_provider_verifier:
         null,
       source_map_residual_shared_stream_five_node_live_provider_probe: null,
+      source_map_residual_shared_stream_five_node_signed_source_normal_form_probe:
+        null,
       source_map_residual_shared_stream_five_node_contracted_provider_candidate:
         null,
       source_map_residual_shared_stream_five_node_inclusion_interpretation:
@@ -47410,6 +47691,8 @@ function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
       source_map_residual_shared_stream_five_node_directed_provider_verifier:
         null,
       source_map_residual_shared_stream_five_node_live_provider_probe: null,
+      source_map_residual_shared_stream_five_node_signed_source_normal_form_probe:
+        null,
       source_map_residual_shared_stream_five_node_contracted_provider_candidate:
         null,
       source_map_residual_shared_stream_five_node_inclusion_interpretation:
@@ -47590,6 +47873,11 @@ function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
       retained_branch: false,
     },
   };
+  const signedSourceNormalFormProbe =
+    h39RequestedY44SourceMapResidualFiveNodeSignedSourceNormalFormProbe({
+      inclusionContract,
+      radiusRows,
+    });
   const contractedProviderRows = contractRows.map((row) => {
     const scaledSignedInterval = root.scaleInterval(
       row.live_signed_residual_interval,
@@ -47721,6 +48009,8 @@ function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
       directedProviderVerifier,
     source_map_residual_shared_stream_five_node_live_provider_probe:
       liveProviderProbe,
+    source_map_residual_shared_stream_five_node_signed_source_normal_form_probe:
+      signedSourceNormalFormProbe,
     source_map_residual_shared_stream_five_node_contracted_provider_candidate:
       contractedProviderCandidate,
     source_map_residual_shared_stream_five_node_inclusion_interpretation:
@@ -49439,6 +49729,142 @@ export function validateH39RequestedY44SourceMapResidualCovarianceTarget(
       fiveNodeLiveProbe.provider_probe_rows.length !== 5
     ) {
       errors.push("five-node live source-map provider probe must remain candidate-only and coherent");
+    }
+  }
+  const fiveNodeSignedSourceNormalFormProbe =
+    artifact
+      ?.source_map_residual_shared_stream_five_node_signed_source_normal_form_probe ??
+    null;
+  if (fiveNodeSignedSourceNormalFormProbe !== null) {
+    const normalFormRows =
+      fiveNodeSignedSourceNormalFormProbe
+        .signed_source_normal_form_provider_rows ?? [];
+    if (
+      fiveNodeSignedSourceNormalFormProbe?.target_kind !==
+        "candidate-requested-y44-shared-source-map-signed-source-normal-form-provider-probe" ||
+      fiveNodeSignedSourceNormalFormProbe?.proof_status !==
+        "candidate-signed-source-normal-form-provider-not-directed-rounded" ||
+      fiveNodeSignedSourceNormalFormProbe?.provider_probe_kind !==
+        "signed-source-normal-form-rows-through-directed-provider-verifier" ||
+      typeof fiveNodeSignedSourceNormalFormProbe?.normal_form_identity !==
+        "string" ||
+      fiveNodeSignedSourceNormalFormProbe
+        ?.signed_source_normal_form_provider_rows_available !== true ||
+      fiveNodeSignedSourceNormalFormProbe
+        ?.signed_source_normal_form_rows_match_live_provider_intervals !==
+        true ||
+      fiveNodeSignedSourceNormalFormProbe
+        ?.signed_source_normal_form_rows_match_same_domain_contract !== true ||
+      fiveNodeSignedSourceNormalFormProbe
+        ?.signed_source_normal_form_rows_match_same_radius_contract !== true ||
+      fiveNodeSignedSourceNormalFormProbe
+        ?.signed_source_normal_form_intervals_subset_screened_targets !== false ||
+      fiveNodeSignedSourceNormalFormProbe
+        ?.signed_source_normal_form_source_kind_matches_required !== false ||
+      !finiteNonnegative(
+        fiveNodeSignedSourceNormalFormProbe
+          ?.max_signed_source_normal_form_to_live_endpoint_relative_gap
+      ) ||
+      !finiteNonnegative(
+        fiveNodeSignedSourceNormalFormProbe
+          ?.max_weighted_source_normal_form_to_live_endpoint_relative_gap
+      ) ||
+      !finiteNonnegative(
+        fiveNodeSignedSourceNormalFormProbe
+          ?.max_source_term_weighted_residual_to_signed_weighted_residual_ratio
+      ) ||
+      !nullableFinite(
+        fiveNodeSignedSourceNormalFormProbe
+          ?.min_source_term_residual_cancellation_fraction
+      ) ||
+      fiveNodeSignedSourceNormalFormProbe
+        ?.signed_source_normal_form_classification !==
+        "signed-source-normal-form-reaches-provider-boundary-but-node-intervals-exceed-screened-targets" ||
+      fiveNodeSignedSourceNormalFormProbe?.claim_boundary
+        ?.certifies_source_normal_form_only !== true ||
+      fiveNodeSignedSourceNormalFormProbe?.claim_boundary
+        ?.certifies_n38_fourth_derivative_bound !== false ||
+      fiveNodeSignedSourceNormalFormProbe?.claim_boundary
+        ?.certifies_s37_dependency_preserving_division !== false ||
+      fiveNodeSignedSourceNormalFormProbe?.claim_boundary
+        ?.certifies_shifted_R43_outer_bound !== false ||
+      fiveNodeSignedSourceNormalFormProbe?.claim_boundary
+        ?.certifies_directed_rounded_shared_domain !== false ||
+      fiveNodeSignedSourceNormalFormProbe?.claim_boundary?.retained_branch !==
+        false ||
+      !Array.isArray(normalFormRows) ||
+      normalFormRows.length !== 5
+    ) {
+      errors.push("five-node signed-source normal-form probe must be coherent and candidate-only");
+    } else {
+      normalFormRows.forEach((row, index) => {
+        if (
+          !Number.isInteger(row?.node_index) ||
+          row.node_index !== index ||
+          !Number.isFinite(Number(row?.xi_midpoint)) ||
+          row?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+          row?.required_xi_derivative_order !== 4 ||
+          typeof row?.tightest_budget_cell_id !== "string" ||
+          row?.provider_row_source_kind !==
+            "candidate-signed-source-normal-form-not-directed-rounded" ||
+          typeof row?.normal_form_identity !== "string" ||
+          !sameTerms(row?.source_terms_preserved_signed_together) ||
+          !sameZeroTerms(row?.zero_source_terms) ||
+          !hasFiniteOrderedInterval(
+            row?.screened_signed_residual_target_interval
+          ) ||
+          !hasFiniteOrderedInterval(
+            row?.screened_weighted_residual_target_interval
+          ) ||
+          !hasFiniteOrderedInterval(
+            row?.directed_rounded_signed_residual_interval
+          ) ||
+          !hasFiniteOrderedInterval(
+            row?.directed_rounded_weighted_signed_residual_interval
+          ) ||
+          !hasFiniteOrderedInterval(row?.live_signed_residual_interval) ||
+          !hasFiniteOrderedInterval(row?.live_weighted_residual_interval) ||
+          !finiteNonnegative(
+            row?.signed_source_normal_form_to_live_endpoint_relative_gap
+          ) ||
+          !finiteNonnegative(
+            row?.weighted_source_normal_form_to_live_endpoint_relative_gap
+          ) ||
+          row?.signed_source_normal_form_matches_live_interval !== true ||
+          row?.weighted_source_normal_form_matches_live_interval !== true ||
+          !finiteNonnegative(row?.source_term_residual_triangle_abs_upper) ||
+          !finiteNonnegative(
+            row?.source_term_weighted_residual_triangle_abs_upper
+          ) ||
+          !finiteNonnegative(
+            row
+              ?.source_term_weighted_residual_to_signed_weighted_residual_ratio
+          ) ||
+          !nullableFinite(row?.source_term_residual_cancellation_fraction) ||
+          !Array.isArray(row?.source_term_residual_rows) ||
+          row.source_term_residual_rows.length !==
+            H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length ||
+          row?.claim_boundary?.certifies_source_normal_form_only !== true ||
+          row?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+            false ||
+          row?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+          row?.claim_boundary?.retained_branch !== false
+        ) {
+          errors.push(`five-node signed-source normal-form row ${index} must be coherent`);
+          return;
+        }
+        row.source_term_residual_rows.forEach((termRow, termIndex) => {
+          if (
+            termRow?.term !==
+              H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS[termIndex] ||
+            !hasFiniteOrderedInterval(termRow?.residual_interval) ||
+            !finiteNonnegative(termRow?.residual_abs_upper) ||
+            !finiteNonnegative(termRow?.weighted_residual_abs_upper)
+          ) {
+            errors.push(`five-node signed-source normal-form row ${index} term ${termIndex} must be coherent`);
+          }
+        });
+      });
     }
   }
   const fiveNodeContractedProvider =
@@ -70707,6 +71133,31 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
         ?.source_map_residual_shared_stream_five_node_directed_provider_verifier
         ?.verifier_classification ||
     comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_source_normal_form_classification !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_source_normal_form_probe
+        ?.signed_source_normal_form_classification ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_source_normal_form_matches_live !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_source_normal_form_probe
+        ?.signed_source_normal_form_rows_match_live_provider_intervals ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_source_normal_form_intervals_subset_screened_targets !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_source_normal_form_probe
+        ?.signed_source_normal_form_intervals_subset_screened_targets ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_source_normal_form_max_signed_gap !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_source_normal_form_probe
+        ?.max_signed_source_normal_form_to_live_endpoint_relative_gap ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_source_normal_form_max_weighted_gap !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_source_normal_form_probe
+        ?.max_weighted_source_normal_form_to_live_endpoint_relative_gap ||
+    comparison
       ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_contracted_provider_reaches_verifier_with_source_only_failure !==
       nonconstantSourceMapResidualCovarianceTarget
         ?.source_map_residual_shared_stream_five_node_contracted_provider_candidate
@@ -70825,6 +71276,20 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
       ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_inclusion_contract_reduces_to_directed_interval_inclusion !==
       "boolean" ||
     typeof comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_source_normal_form_matches_live !==
+      "boolean" ||
+    typeof comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_source_normal_form_intervals_subset_screened_targets !==
+      "boolean" ||
+    !finiteNonnegative(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_source_normal_form_max_signed_gap
+    ) ||
+    !finiteNonnegative(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_source_normal_form_max_weighted_gap
+    ) ||
+    typeof comparison
       ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_contracted_provider_reaches_verifier_with_source_only_failure !==
       "boolean" ||
     ![
@@ -70883,6 +71348,13 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
     ].includes(
       comparison
         ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_verifier_classification
+    ) ||
+    ![
+      "signed-source-normal-form-reaches-provider-boundary-but-node-intervals-exceed-screened-targets",
+      "signed-source-normal-form-provider-probe-open",
+    ].includes(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_source_normal_form_classification
     ) ||
     ![
       "five-node-source-map-inclusion-reduces-to-directed-rounded-source-certification",

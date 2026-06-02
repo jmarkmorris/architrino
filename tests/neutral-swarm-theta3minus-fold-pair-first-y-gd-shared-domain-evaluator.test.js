@@ -6704,6 +6704,74 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
     fiveNodeLiveProbe
       .max_live_provider_interval_to_screened_target_radius_ratio > 2e5
   );
+  const fiveNodeSignedSourceNormalFormProbe =
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_five_node_signed_source_normal_form_probe;
+  assert.equal(
+    fiveNodeSignedSourceNormalFormProbe.target_kind,
+    "candidate-requested-y44-shared-source-map-signed-source-normal-form-provider-probe"
+  );
+  assert.equal(
+    fiveNodeSignedSourceNormalFormProbe
+      .signed_source_normal_form_provider_rows_available,
+    true
+  );
+  assert.equal(
+    fiveNodeSignedSourceNormalFormProbe
+      .signed_source_normal_form_rows_match_live_provider_intervals,
+    true
+  );
+  assert.equal(
+    fiveNodeSignedSourceNormalFormProbe
+      .signed_source_normal_form_rows_match_same_domain_contract,
+    true
+  );
+  assert.equal(
+    fiveNodeSignedSourceNormalFormProbe
+      .signed_source_normal_form_rows_match_same_radius_contract,
+    true
+  );
+  assert.equal(
+    fiveNodeSignedSourceNormalFormProbe
+      .signed_source_normal_form_intervals_subset_screened_targets,
+    false
+  );
+  assert.equal(
+    fiveNodeSignedSourceNormalFormProbe
+      .signed_source_normal_form_source_kind_matches_required,
+    false
+  );
+  assert.ok(
+    fiveNodeSignedSourceNormalFormProbe
+      .max_signed_source_normal_form_to_live_endpoint_relative_gap < 1e-12
+  );
+  assert.ok(
+    fiveNodeSignedSourceNormalFormProbe
+      .max_weighted_source_normal_form_to_live_endpoint_relative_gap < 1e-12
+  );
+  assert.equal(
+    fiveNodeSignedSourceNormalFormProbe.signed_source_normal_form_classification,
+    "signed-source-normal-form-reaches-provider-boundary-but-node-intervals-exceed-screened-targets"
+  );
+  assert.equal(
+    fiveNodeSignedSourceNormalFormProbe
+      .signed_source_normal_form_provider_rows.length,
+    5
+  );
+  assert.ok(
+    fiveNodeSignedSourceNormalFormProbe
+      .signed_source_normal_form_provider_rows.every(
+        (row) =>
+          row.source_terms_preserved_signed_together.includes(
+            "delta_squared_speed"
+          ) &&
+          row.source_terms_preserved_signed_together.includes("sin_phi") &&
+          row.source_terms_preserved_signed_together.includes("sin_delta") &&
+          row.source_term_residual_rows.length === 3 &&
+          row.claim_boundary.certifies_source_normal_form_only === true &&
+          row.claim_boundary.certifies_directed_rounded_shared_domain === false
+      )
+  );
   const fiveNodeContractedProvider =
     sourceMapResidualCovarianceTarget
       .source_map_residual_shared_stream_five_node_contracted_provider_candidate;
@@ -6861,6 +6929,34 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
     producerBudgetComparison
       .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_verifier_classification,
     fiveNodeVerifier.verifier_classification
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_source_normal_form_classification,
+    fiveNodeSignedSourceNormalFormProbe
+      .signed_source_normal_form_classification
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_source_normal_form_matches_live,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_source_normal_form_intervals_subset_screened_targets,
+    false
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_source_normal_form_max_signed_gap,
+    fiveNodeSignedSourceNormalFormProbe
+      .max_signed_source_normal_form_to_live_endpoint_relative_gap
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_source_normal_form_max_weighted_gap,
+    fiveNodeSignedSourceNormalFormProbe
+      .max_weighted_source_normal_form_to_live_endpoint_relative_gap
   );
   assert.equal(
     producerBudgetComparison

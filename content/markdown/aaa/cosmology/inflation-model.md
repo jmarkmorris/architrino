@@ -77,7 +77,16 @@ Smoothness is a separate benchmark from scalar amplitude and tensor suppression.
 
 ### Slow-Roll Comparison Dictionary
 
-The standard slow-roll formulas are useful here as a compact benchmark dictionary, but the entries are comparison variables. Let a candidate high-curvature release record $\theta$ define effective observer variables $a_\theta$, $H_\theta$, and $N_\theta\equiv\ln a_\theta$ through the redshift, clock-rate, and transfer map. They do not describe expansion of the Euclidean void. The first comparison slow-roll coordinate is
+The standard slow-roll formulas are useful here as a compact benchmark dictionary, but the entries are comparison variables. Let a candidate high-curvature release record $\theta$ define effective observer variables $a_\theta$, $H_\theta$, and $N_\theta\equiv\ln a_\theta$ through the redshift, clock-rate, and transfer map. They do not describe expansion of the Euclidean void. The redshift side of this dictionary must first close the signed photon-frequency budget
+$$
+Z_X^\theta
+=
+Z_{\mathrm{endpoint},X}^{\theta}
++Z_{\mathrm{source},X}^{\theta}
++Z_{\mathrm{launch},X}^{\theta}
++Y_{X,\mathrm{path}}^{\theta},
+$$
+with $Y_{X,\mathrm{path}}^\theta$ carrying any Compton/Sunyaev-Zeldovich-like exchange rows. A branch may use $a_\theta$ and $N_\theta$ only after this budget has been reduced to the homogeneous comparison limit. The first comparison slow-roll coordinate is
 $$
 \varepsilon_\theta
 \equiv

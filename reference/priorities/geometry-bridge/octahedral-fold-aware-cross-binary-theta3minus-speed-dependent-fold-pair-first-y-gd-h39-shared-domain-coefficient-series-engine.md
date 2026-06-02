@@ -3948,6 +3948,19 @@ units. The next certificate must therefore keep the H38 producer-image source
 map itself directed-rounded and same-domain through residual formation before
 the H39 shifted-source replay applies absolute bounds.
 
+The five-node provider boundary now also carries an explicit signed-source
+normal-form probe. The diagnostic rebuilds each provider row from the node
+residual sum `delta_squared_speed + sin_phi + sin_delta`, verifies that these
+signed and weighted intervals match the live source-map residual intervals to
+sub-$10^{-12}$ endpoint-relative gap, and then sends those rows through the
+same directed-provider verifier. The rows match the same-domain and
+same-radius contract, but they still exceed the screened targets and
+intentionally fail the directed-rounded source-kind check. This rules out a
+missing node-level source normal form: the remaining obstruction is the width
+of the same-domain H38 source-map node intervals themselves. The next provider
+must contract that signed node source-map residual stream before H39 applies
+the absolute Lagrange/Cauchy envelope.
+
 The same target now carries a source-map trace-anchor summary, threaded from the
 row-local provider rows that feed the terminal covariance route. That summary
 matches the selected requested-y44 rows to the h0-h34 source-term
