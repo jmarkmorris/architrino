@@ -3086,6 +3086,33 @@ candidate still reports the required contraction scale
 $2.118441133954076\times10^5$ and keeps shifted
 $R_{\varepsilon,43}$, retained-branch, and directed-rounded claims open.
 
+The same shared-stream target now has an executable node-radius contract. The
+diagnostic converts the single stream and the `speed.0.first-y` tightest budget
+into five source-map residual radius targets, one for each Lagrange node, and
+also records the corresponding signed source and weighted residual target
+intervals. In the current-shape allocation the maximum contraction factor is
+the same shared-stream scale, about $2.118441133954076\times10^5$, because the
+five node shares sum back to the existing node-triangle budget. Balanced and
+uniform node allocations are retained only as comparison profiles. The
+dominant target remains node 2 with `sin_delta` as the largest termwise
+residual contribution. This is still priority-only and candidate-only, but it
+turns the next directed-rounded H38 producer-image task into a concrete
+five-node residual-inclusion certificate for one shared
+`delta_squared_speed + sin_phi + sin_delta` stream.
+
+The same five-node source-map target now has a provider-boundary verifier.
+The H39/y44 diagnostic emits an inclusion contract for five node residual
+target intervals and a candidate verifier that will accept only
+same-domain, same-radius H38 source-map provider rows preserving
+`delta_squared_speed`, `sin_phi`, and `sin_delta` signed together. On the
+focused fixture, the verifier fixture path passes, while the live source-map
+probe still exceeds the screened targets by about
+$2.118441133954076\times10^5$. The scaled contracted-provider comparison is
+not a certificate and remains open under strict interval inclusion. This
+sharpens the next blocker to one executable object: a directed-rounded
+same-domain H38 source-map residual provider for the five shared-stream
+nodes.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.

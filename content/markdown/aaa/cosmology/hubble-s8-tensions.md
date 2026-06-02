@@ -10,7 +10,7 @@ This document frames $H_0$ and $S_8$ as linked conceptual problems inside a sing
 
 ## Tension Meanings
 
-- **$H_0$ tension:** disagreement between early-inferred and local-inferred expansion-rate or redshift-transfer-slope estimates.
+- **$H_0$ tension:** disagreement between early-inferred and local-inferred expansion-rate or corrected photon-frequency-transfer-slope estimates.
 - **$S_8$ tension:** disagreement between early-inferred and late-inferred structure-growth amplitude.
 
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ Interpretation
@@ -19,6 +19,17 @@ This document frames $H_0$ and $S_8$ as linked conceptual problems inside a sing
 - $S_8$ is read through growth behavior in baryonic and neutral assembly sectors with medium-coupled dynamics.
 
 Operationally, $H_0$ is the present local slope of the corrected redshift-distance transfer map defined in [Expansion Mechanism](expansion-mechanism.md#distance-and-effective-hubble-coefficient). It remains a useful comparison coefficient, but in this ontology it measures redshift per Euclidean distance after source, motion, clock-cadence, and path-history corrections, not literal expansion of the Euclidean void.
+
+The Sunyaev-Zeldovich family sharpens why this correction is mandatory. CMB photon frequencies can be shifted by intervening energetic or moving electron populations, so a line-of-sight frequency ratio is not a pure scale-factor readout by itself. The low-redshift slope should therefore be computed from the signed propagation residual
+
+$$
+H_{\mathrm{eff},X}(R,\hat{\mathbf{k}})
+=
+c_0\,
+\partial_R Z_{\mathrm{prop},X}(R,\hat{\mathbf{k}}),
+$$
+
+after endpoint cadence, source-branch changes, and launch geometry are removed. A net positive $\partial_R Z_{\mathrm{prop},X}$ is redward path accumulation; a net negative value is blueward path boosting. Either sign is allowed only when the same Noether sea and photon-exchange ledger also passes the distance, flux, time-dilation, and spectral-coherence checks.
 
 The sharper local object is the directional transfer coefficient
 

@@ -84,6 +84,16 @@ $$
 
 so redshift is treated as path-integrated medium evolution plus endpoint clock-rate comparison.
 
+The stronger reading is that redshift is one sign of a broader photon-frequency transfer record. A photon packet may arrive redward of the clean emitted line, blueward of it, or unchanged after endpoint, source-branch, launch, and path terms have been separated. Define the signed frequency-transfer budget
+
+$$
+Z_X^{E\to R}
+\equiv
+\ln\frac{\nu_{X,0}}{\nu_{\mathrm{obs},X}},
+$$
+
+so $Z_X>0$ is redward relative to the clean reference line and $Z_X<0$ is blueward. A path segment that transfers energy from an energetic intervening medium into the photon-channel packet contributes a negative increment to the path term, while a segment that transfers photon energy into a lower-energy medium contributes a positive increment. Sunyaev-Zeldovich-type comparisons are the observed calibration family for this point: CMB photon frequencies can be shifted by intervening electron populations, so photon frequency is a path-history observable rather than a primitive expansion clock.
+
 For modeling and diagnostics, separate at least three effective channels:
 
 - endpoint clock-rate comparison,
@@ -151,6 +161,37 @@ $$
 $$
 
 A factor may be set to $1$ only when its logarithmic contribution is small relative to the dominant contribution and to the observational tolerance. This prevents the same redshift record from silently switching between gravitational, relative-motion, source-branch, and propagation explanations.
+
+In this convention the path-history term is explicitly signed:
+
+$$
+Y_{X,E\to R}
+=
+\sum_j \Delta Y_{X,j},
+\qquad
+\Delta Y_{X,j}
+=
+-\ln\frac{\nu_{X,j}^{+}}{\nu_{X,j}^{-}}
+\quad
+\text{after endpoint, source, and launch terms are held fixed}.
+$$
+
+Here $\nu_{X,j}^{-}$ and $\nu_{X,j}^{+}$ are the photon-channel frequencies immediately before and after the segment-level exchange as read by the same comparison clock. A frequency boost has $\Delta Y_{X,j}<0$; a frequency depletion has $\Delta Y_{X,j}>0$. The local exchange must close an energy ledger such as
+
+$$
+\mathcal{R}_{\nu\text{-}\mathrm{ex},j}
+=
+\frac{
+\left|
+h(\nu_{X,j}^{+}-\nu_{X,j}^{-})
++\Delta E_{\mathrm{med},j}
++\Delta E_{\mathrm{recoil},j}
++\Delta E_{\mathrm{rem},j}
+\right|
+}{\epsilon_E},
+$$
+
+where $\Delta E_{\mathrm{med}}$, $\Delta E_{\mathrm{recoil}}$, and $\Delta E_{\mathrm{rem}}$ are positive or negative according to the retained medium, target, and remnant energy changes. A cosmological path term is admissible only when the signed frequency transfer, image sharpness, packet cadence, spectral coherence, and energy ledger are supplied by one Noether sea record.
 
 ### Observable Frequency Form
 

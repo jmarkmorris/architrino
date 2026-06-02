@@ -66,6 +66,34 @@ $$
 
 This is not an untracked photon-energy loss model. $Y_{X,N}$ is the path-history phase-cadence stretch left after endpoint cadence, source-branch shift, and launch geometry have been declared.
 
+The path-history term is signed. A positive increment in $Y_X$ is a redward frequency depletion relative to the clean emitted line, while a negative increment is a blueward frequency boost. For a segment-level exchange row,
+
+$$
+\Delta Y_{X,j}^{\mathrm{ex}}
+=
+-\ln
+\frac{\nu_{X,j}^{+}}{\nu_{X,j}^{-}},
+$$
+
+with $\nu_{X,j}^{-}$ and $\nu_{X,j}^{+}$ measured in the same local comparison convention before and after the exchange. Sunyaev-Zeldovich-like mock rows should therefore be represented as signed exchange events rather than as a new expansion variable: a hot or coherently moving intervening medium may produce $\Delta Y_{X,j}^{\mathrm{ex}}<0$, while a lower-energy absorbing or relaxing segment may produce $\Delta Y_{X,j}^{\mathrm{ex}}>0$.
+
+Each exchange row should also carry the local energy residual
+
+$$
+R_{\nu\text{-}\mathrm{ex},j}
+=
+\frac{
+\left|
+h(\nu_{X,j}^{+}-\nu_{X,j}^{-})
++\Delta E_{\mathrm{med},j}
++\Delta E_{\mathrm{recoil},j}
++\Delta E_{\mathrm{rem},j}
+\right|
+}{\epsilon_E}.
+$$
+
+The signs of the $\Delta E$ terms are ledger signs, not assumptions about the outcome. A photon boost is allowed only when the intervening medium or target record supplies the energy; a photon depletion is allowed only when the lost photon energy is routed into a named medium, recoil, remnant, or thermalization row.
+
 For cosmology-facing packets, the same replay should expose whether the redshift channel also supplies the standard time-dilation and flux factors. The comparison target is
 $$
 \frac{\Delta t_{\mathrm{obs}}}{\Delta t_{\mathrm{emit}}}
@@ -100,6 +128,7 @@ Each scenario supplies:
 | `transport_terms_by_line` | optional segment-level decomposition of $\alpha_{\mathrm{prop},X}$ into named source, relaxation, or perturbation terms |
 | `transport_terms_cadence_by_line` | optional cadence-channel version of the same decomposition for time-dilation checks |
 | `dark_energy_transport_by_line` | optional coefficient packet that computes $\alpha_{\mathrm{prop},X}^{\mathrm{DE}}$ from a declared $\boldsymbol{\lambda}_X$ row and $\mathbf{q}_{\mathrm{DE}}$ record |
+| `frequency_exchange_events_by_line` | optional signed exchange rows with before/after photon frequency, medium energy change, recoil/remnant terms, and $R_{\nu\text{-}\mathrm{ex}}$ |
 
 Segment records may provide separate coefficient arrays for frequency, packet cadence, line-family comparison, and image-bundle beams. This is intentional: the first validation target is to expose when those channels agree and when they split.
 
@@ -246,6 +275,8 @@ The fixture reports:
 | `diagnostics.time_dilation_residual` | split between frequency and packet-cadence propagation |
 | `diagnostics.luminosity_factor_residual` | mismatch between the replayed flux factor and the expected $(1+z)^2$ distance-ladder factor |
 | `diagnostics.distance_reciprocity_residual` | mismatch in the observer-level $d_L=(1+z)^2D_A$ relation |
+| `diagnostics.frequency_exchange_residual` | maximum or norm of the signed exchange energy-ledger residuals $R_{\nu\text{-}\mathrm{ex},j}$ |
+| `diagnostics.path_transfer_sign` | whether the corrected path term is net redward, net blueward, or balanced after endpoint, source, and launch terms are removed |
 | `observables.nu_obs_hz` | receiver-facing observed frequency |
 | `observables.E_obs_j` | receiver-facing photon energy |
 | `component_logs` | endpoint, propagation, source-branch, and launch contributions to $Z_X$ |

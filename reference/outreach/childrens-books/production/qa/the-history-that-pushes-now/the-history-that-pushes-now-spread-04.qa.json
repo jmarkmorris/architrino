@@ -1,0 +1,20 @@
+{
+  "id": "the-history-that-pushes-now-spread-04",
+  "book_slug": "the-history-that-pushes-now",
+  "source_png": "reference/outreach/childrens-books/production/source/the-history-that-pushes-now/the-history-that-pushes-now-spread-04.png",
+  "exists": true,
+  "automated": {
+    "width": 1623,
+    "height": 969,
+    "aspect_ratio": 1.6749,
+    "saturated_non_palette_fraction": 0.5347,
+    "palette_flag": true
+  },
+  "manual_checklist": {
+    "palette": "approved",
+    "no_in_image_text": "approved",
+    "one_continuous_scene": "approved",
+    "correct_geometry": "approved"
+  },
+  "decision": "approved"
+}

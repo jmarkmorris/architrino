@@ -1,0 +1,2541 @@
+{
+  "schema": "breather-higher-fold-fold-coordinate-endpoint-functional-contract-link-membership-rule-attempt-v1",
+  "packet_id": "fresh-v10-higher-fold-12-root-rebuild-v0",
+  "fold_coordinate_packet_id": "fresh-v10-fold-coordinate-collocation-nonlinear-tangent-matrix-v0",
+  "status": "priority-only-fold-coordinate-endpoint-functional-contract-link-membership-rule-attempt-fail-closed-rule-and-membership-source-conditions-present-rule-and-membership-proofs-absent-no-row-consumption",
+  "theorem_target": "Contract-Link Membership Rule Attempt",
+  "claim_level": "priority-only fail-closed conditional rule attempt; 4 / 4 actual-link rule source-condition bundles and 4 / 4 membership source-condition bundles are ready, but 0 / 4 actual contract-link rules are available and 0 / 4 proof-grade witness-object membership proofs are constructed, so no actual witness-object contract links, binding contracts, full endpoint boundary bindings, carrier admissions, residual-ready rows, branch charts, or row consumption are produced",
+  "source_artifacts": {
+    "actual_contract_link_rule_attempt": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_actual_contract_link_rule_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_actual_contract_link_rule_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "present": true,
+      "sha256": "e90ed0eb255f24992b76bf1725d27f11864719ec39f2444d0efb16e35243e142"
+    },
+    "witness_object_contract_link_source_candidate_construction_attempt": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_witness_object_contract_link_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_witness_object_contract_link_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "present": true,
+      "sha256": "a07209d3e444711f8046813b3e156da25ebdeeb792ac2102d6af9d59306b81ed"
+    },
+    "inherited_source_artifacts": {
+      "witness_object_contract_link_source_candidate_construction_attempt": {
+        "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_witness_object_contract_link_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+        "basename": "fold_coordinate_endpoint_functional_witness_object_contract_link_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+        "present": true,
+        "sha256": "a07209d3e444711f8046813b3e156da25ebdeeb792ac2102d6af9d59306b81ed"
+      },
+      "inherited_source_artifacts": {
+        "binding_contract_full_binding_carrier_admission_construction_attempt": {
+          "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_binding_contract_full_binding_carrier_admission_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+          "basename": "fold_coordinate_endpoint_functional_binding_contract_full_binding_carrier_admission_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+          "present": true,
+          "sha256": "49b9f0e9db17df1197691a190f175545b05668950b81725e01875c3535549c9a"
+        },
+        "inherited_source_artifacts": {
+          "endpoint_value_binding_map_construction_attempt": {
+            "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_endpoint_value_binding_map_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+            "basename": "fold_coordinate_endpoint_functional_endpoint_value_binding_map_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+            "present": true,
+            "sha256": "be4bd97a224256f16b2a8b538834841238ddaf2bbe12f35fac005260f8b4004e"
+          },
+          "inherited_source_artifacts": {
+            "ref_carrier_full_binding_construction_attempt": {
+              "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_endpoint_boundary_binding_ref_carrier_full_binding_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+              "basename": "fold_coordinate_endpoint_functional_endpoint_boundary_binding_ref_carrier_full_binding_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+              "present": true,
+              "sha256": "6904d4a57e58918918ca5583a44c50cd3150967e4fdd9000f78178621b04c5be"
+            },
+            "inherited_source_artifacts": {
+              "primitive_rule_witness_record_construction_attempt": {
+                "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_endpoint_boundary_binding_primitive_rule_witness_record_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+                "basename": "fold_coordinate_endpoint_functional_endpoint_boundary_binding_primitive_rule_witness_record_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+                "present": true,
+                "sha256": "3528e431bd23d5aee3a39293d53aa115e15ecb2a470ff65582bf8efa313ae596"
+              },
+              "inherited_source_artifacts": {
+                "primitive_construction_attempt": {
+                  "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_endpoint_boundary_binding_primitive_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+                  "basename": "fold_coordinate_endpoint_functional_endpoint_boundary_binding_primitive_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+                  "present": true,
+                  "sha256": "8a2091f7ebdc0bcfdd81ac967c849f26212fa3b1beebd596d00f013a87bbf233"
+                },
+                "inherited_source_artifacts": {
+                  "primitive_dependency_certificate": {
+                    "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_full_endpoint_boundary_binding_primitive_dependency_certificate.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+                    "basename": "fold_coordinate_endpoint_functional_full_endpoint_boundary_binding_primitive_dependency_certificate.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+                    "present": true,
+                    "sha256": "bd33129ff607191f8db75df4aae6d7d181ae3ee9c3d75c1d38cfbbe511f3d670"
+                  },
+                  "inherited_source_artifacts": {
+                    "nonDomainCarrierObstructionPacket": {
+                      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_same_packet_endpoint_boundary_binding_witness_object_non_domain_carrier_obstruction_packet.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+                      "basename": "fold_coordinate_endpoint_functional_same_packet_endpoint_boundary_binding_witness_object_non_domain_carrier_obstruction_packet.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+                      "present": true,
+                      "sha256": "bcd2fd6b78b82338003146cf227b3071c5eb865f8dc79dcffb9947bbc42a9898"
+                    },
+                    "domainChartCarrierPacket": {
+                      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_same_packet_endpoint_boundary_binding_witness_object_domain_chart_carrier_subfield_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+                      "basename": "fold_coordinate_endpoint_functional_same_packet_endpoint_boundary_binding_witness_object_domain_chart_carrier_subfield_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+                      "present": true,
+                      "sha256": "c233921f884ae32fa7838761670199d7b781ec8506aaed7078d7bdc6fe0bfeef"
+                    },
+                    "fullBoundaryBindingConstructionAttempt": {
+                      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_full_endpoint_boundary_binding_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+                      "basename": "fold_coordinate_endpoint_functional_full_endpoint_boundary_binding_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+                      "present": true,
+                      "sha256": "37739226a574e2bcee83c399c503f2e59bf2926aa23a9084500c6918483a4a1e"
+                    },
+                    "endpointValueBindingSourceLayer": {
+                      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_endpoint_value_binding_source_layer.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+                      "basename": "fold_coordinate_endpoint_functional_endpoint_value_binding_source_layer.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+                      "present": true,
+                      "sha256": "dfdcc1be6692b2a8ebdf92a87c3e0e1308e56d2ebae429f5945662a0d853ae24"
+                    },
+                    "fullBoundaryBindingContractTarget": {
+                      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_full_endpoint_boundary_binding_contract_target.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+                      "basename": "fold_coordinate_endpoint_functional_full_endpoint_boundary_binding_contract_target.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+                      "present": true,
+                      "sha256": "8b302f55ff7b0d520baaf6d4a1b4a4a40d1d547e3616553bea8cd868e2ba135b"
+                    },
+                    "targetEndpointBoundaryBindingObject": {
+                      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_target_endpoint_boundary_binding_object_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+                      "basename": "fold_coordinate_endpoint_functional_target_endpoint_boundary_binding_object_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+                      "present": true,
+                      "sha256": "58209b25eb92f868881c2b8112a38a06011a938d5aa1c34c581d97ebb807d267"
+                    },
+                    "componentDomainSubcertificate": {
+                      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_component_union_domain_binding_subcertificate.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+                      "basename": "fold_coordinate_endpoint_functional_component_union_domain_binding_subcertificate.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+                      "present": true,
+                      "sha256": "6743b4216981b58bffef978a411aee375068a9bcabc0237a8aa323e1b2728d2e"
+                    },
+                    "witnessAttempt": {
+                      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_endpoint_boundary_binding_witness_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+                      "basename": "fold_coordinate_endpoint_functional_endpoint_boundary_binding_witness_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+                      "present": true,
+                      "sha256": "a28b315b293e5eda298e0799559cbb05d1526bec5189c4fd380051ea3bbbd8af"
+                    },
+                    "witnessObjectAttempt": {
+                      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_endpoint_boundary_binding_witness_object_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+                      "basename": "fold_coordinate_endpoint_functional_endpoint_boundary_binding_witness_object_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+                      "present": true,
+                      "sha256": "761af959206dbeec09b3dde96c0dde616ca7d47a971150aca84f4313a98bc2df"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "branch_chart_authorized": false,
+  "preledger_pass": false,
+  "row_closure": false,
+  "updates_live_ledger": false,
+  "emits_candidate_artifacts": false,
+  "emits_topology_recertification": false,
+  "emits_proof_interval_replay": false,
+  "authorization_lock": {
+    "conditional_actual_contract_link_rule_source_conditions_present": true,
+    "actual_contract_link_rules_available": false,
+    "membership_source_conditions_ready": true,
+    "witness_object_membership_proofs_constructed": false,
+    "actual_contract_link_rule_obligations_satisfied": false,
+    "witness_object_contract_links_constructed": false,
+    "binding_contracts_satisfied": false,
+    "full_endpoint_boundary_bindings_constructed": false,
+    "endpoint_boundary_binding_ref_carriers_unblocked": false,
+    "endpoint_value_binding_map_carriers_unblocked": false,
+    "row_unblocked": false,
+    "row_consumed": false,
+    "branch_chart_authorized": false
+  },
+  "conditional_actual_contract_link_rule_source_condition": "A future actual contract-link rule would have the following source conditions: a source candidate supplies the witness-object attempt, contract target, endpoint value-binding map, endpoint-boundary-binding ref, first primitive, and target ref/value equations. This packet records those source conditions but does not declare a proof-grade rule whose conclusion is an actual witness-object contract link.",
+  "no_promotion_rule": "The conditional rule source-condition bundle and membership source-condition bundle are not an available actual contract-link rule and not a witness-object membership proof. Inherited field claims and matching IDs do not construct or attach a witness-object contract link.",
+  "construction_methods": [
+    {
+      "method_id": "conditional_actual_contract_link_rule_declaration_attempt",
+      "output_kind": "conditional-actual-contract-link-rule-source-condition",
+      "description": "Record the source conditions for a conditional actual contract-link introduction rule without treating that source-condition record as a declared proof rule.",
+      "required_fields": [
+        "actual_contract_link_rule_attempt_inherited",
+        "actual_contract_link_conditional_rule_declaration_attempted",
+        "actual_contract_link_rule_source_conditions_present",
+        "actual_contract_link_rule_requires_witness_object_membership_proof",
+        "actual_contract_link_rule_requires_contract_target_satisfaction_proof",
+        "actual_contract_link_rule_requires_target_ref_value_equations_proof_grade",
+        "actual_contract_link_rule_preserves_fail_closed_outputs"
+      ]
+    },
+    {
+      "method_id": "membership_source_condition_bundle_check",
+      "output_kind": "membership-source-condition-bundle",
+      "description": "Check whether the source candidate carries the IDs, target references, inherited field claims, and same source witness-object attempt needed to pose the membership proof burden.",
+      "required_fields": [
+        "source_candidate_id_present",
+        "contract_target_id_present",
+        "endpoint_value_binding_map_id_present",
+        "witness_object_endpoint_boundary_binding_ref_id_present",
+        "source_witness_object_attempt_id_present",
+        "first_endpoint_boundary_binding_primitive_id_present",
+        "target_endpoint_value_binding_source_equations_present",
+        "source_candidate_targets_endpoint_value_binding_map",
+        "source_candidate_targets_endpoint_boundary_binding_ref",
+        "source_candidate_targets_witness_object_attempt",
+        "source_candidate_targets_contract_target",
+        "inherited_witness_object_endpoint_boundary_binding_ref_field_claim",
+        "inherited_witness_object_endpoint_value_binding_map_field_claim",
+        "same_source_witness_object_attempt_id_referenced",
+        "witness_object_symbol_present",
+        "binding_symbol_present",
+        "membership_source_conditions_ready"
+      ]
+    },
+    {
+      "method_id": "witness_object_membership_proof_check",
+      "output_kind": "witness-object-membership-proof",
+      "description": "Check whether the packet proves same constructed-witness-object membership for the endpoint-boundary-binding ref and endpoint value-binding map.",
+      "required_fields": [
+        "witness_object_membership_proof_present",
+        "same_constructed_witness_object_identity_proof_present",
+        "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+        "endpoint_value_binding_map_member_of_witness_object_proven",
+        "endpoint_ref_and_value_map_same_witness_object_proven",
+        "membership_source_not_id_adjacency_proven"
+      ]
+    },
+    {
+      "method_id": "actual_contract_link_obligation_check",
+      "output_kind": "actual-contract-link",
+      "description": "Check whether an available actual-link rule and every actual-link obligation construct a witness-object contract link.",
+      "required_fields": [
+        "actual_contract_link_rule_available",
+        "witness_object_membership_proof_present",
+        "contract_target_satisfaction_proof_present",
+        "target_ref_value_equations_proof_grade",
+        "endpoint_boundary_binding_ref_compatibility_proof_present",
+        "first_primitive_compatibility_proof_present",
+        "carrier_admission_bridge_present",
+        "motion_evaluation_bridge_present",
+        "algebraic_certificate_bridge_present",
+        "candidate_replay_bridge_present",
+        "actual_contract_link_rule_obligations_satisfied"
+      ]
+    },
+    {
+      "method_id": "downstream_contract_and_carrier_admission_check",
+      "output_kind": "full-endpoint-boundary-binding",
+      "description": "Check whether the actual link unlocks binding contract satisfaction, full endpoint boundary binding, and both carrier admissions.",
+      "required_fields": [
+        "witness_object_contract_link_constructed",
+        "witness_object_has_contract_link",
+        "binding_contract_satisfied",
+        "full_endpoint_boundary_binding_constructed",
+        "endpoint_boundary_binding_ref_carrier_unblocked",
+        "endpoint_value_binding_map_carrier_unblocked"
+      ]
+    }
+  ],
+  "conditional_rule_declaration_fields": [
+    "actual_contract_link_rule_attempt_inherited",
+    "actual_contract_link_conditional_rule_declaration_attempted",
+    "actual_contract_link_rule_source_conditions_present",
+    "actual_contract_link_rule_requires_witness_object_membership_proof",
+    "actual_contract_link_rule_requires_contract_target_satisfaction_proof",
+    "actual_contract_link_rule_requires_target_ref_value_equations_proof_grade",
+    "actual_contract_link_rule_preserves_fail_closed_outputs"
+  ],
+  "membership_source_condition_fields": [
+    "source_candidate_id_present",
+    "contract_target_id_present",
+    "endpoint_value_binding_map_id_present",
+    "witness_object_endpoint_boundary_binding_ref_id_present",
+    "source_witness_object_attempt_id_present",
+    "first_endpoint_boundary_binding_primitive_id_present",
+    "target_endpoint_value_binding_source_equations_present",
+    "source_candidate_targets_endpoint_value_binding_map",
+    "source_candidate_targets_endpoint_boundary_binding_ref",
+    "source_candidate_targets_witness_object_attempt",
+    "source_candidate_targets_contract_target",
+    "inherited_witness_object_endpoint_boundary_binding_ref_field_claim",
+    "inherited_witness_object_endpoint_value_binding_map_field_claim",
+    "same_source_witness_object_attempt_id_referenced",
+    "witness_object_symbol_present",
+    "binding_symbol_present"
+  ],
+  "witness_object_membership_proof_fields": [
+    "witness_object_membership_proof_present",
+    "same_constructed_witness_object_identity_proof_present",
+    "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+    "endpoint_value_binding_map_member_of_witness_object_proven",
+    "endpoint_ref_and_value_map_same_witness_object_proven",
+    "membership_source_not_id_adjacency_proven"
+  ],
+  "actual_rule_obligation_fields": [
+    "actual_contract_link_rule_available",
+    "witness_object_membership_proof_present",
+    "contract_target_satisfaction_proof_present",
+    "target_ref_value_equations_proof_grade",
+    "endpoint_boundary_binding_ref_compatibility_proof_present",
+    "first_primitive_compatibility_proof_present",
+    "carrier_admission_bridge_present",
+    "motion_evaluation_bridge_present",
+    "algebraic_certificate_bridge_present",
+    "candidate_replay_bridge_present"
+  ],
+  "actual_rule_output_fields": [
+    "actual_contract_link_rule_obligations_satisfied",
+    "witness_object_contract_link_constructed",
+    "witness_object_has_contract_link",
+    "binding_contract_satisfied",
+    "full_endpoint_boundary_binding_constructed",
+    "endpoint_boundary_binding_ref_carrier_unblocked",
+    "endpoint_value_binding_map_carrier_unblocked"
+  ],
+  "rule_obligations": [
+    {
+      "obligation_id": "actual_contract_link_rule_available",
+      "description": "Supply a proof-grade rule whose conclusion is an actual witness-object contract link when every listed premise is present.",
+      "source_evidence": "source-conditions-only-rule-not-declared"
+    },
+    {
+      "obligation_id": "witness_object_membership_proof_present",
+      "description": "Prove that the endpoint-boundary-binding ref and endpoint value-binding map are fields of the same constructed witness object rather than only adjacent referenced IDs or inherited field claims.",
+      "source_evidence": "membership-source-conditions-only"
+    },
+    {
+      "obligation_id": "contract_target_satisfaction_proof_present",
+      "description": "Prove satisfaction of the inherited full endpoint boundary-binding contract target.",
+      "source_evidence": "contract-test-applied-contract-not-satisfied"
+    },
+    {
+      "obligation_id": "target_ref_value_equations_proof_grade",
+      "description": "Promote every target ref/value equation beyond source-equation-only status into proof-grade contract-link evidence.",
+      "source_evidence": "source-equation-only"
+    },
+    {
+      "obligation_id": "endpoint_boundary_binding_ref_compatibility_proof_present",
+      "description": "Certify the endpoint-boundary-binding ref as compatible with the target endpoint boundary-binding object on the domain-chart carrier.",
+      "source_evidence": "ref-carrier-locked"
+    },
+    {
+      "obligation_id": "first_primitive_compatibility_proof_present",
+      "description": "Certify the first endpoint boundary-binding primitive as compatible with the value map and contract target.",
+      "source_evidence": "primitive-id-only"
+    },
+    {
+      "obligation_id": "carrier_admission_bridge_present",
+      "description": "Bridge the actual link into endpoint-boundary-binding reference carrier and endpoint value-map carrier admission.",
+      "source_evidence": "carrier-admission-absent"
+    },
+    {
+      "obligation_id": "motion_evaluation_bridge_present",
+      "description": "Connect the link to endpoint motion/evaluation maps, including full endpoint and global domain evaluation maps.",
+      "source_evidence": "motion-evaluation-absent"
+    },
+    {
+      "obligation_id": "algebraic_certificate_bridge_present",
+      "description": "Supply non-target zero, exact screen zero, and rank certificates needed by full endpoint boundary binding.",
+      "source_evidence": "algebraic-certificates-absent"
+    },
+    {
+      "obligation_id": "candidate_replay_bridge_present",
+      "description": "Supply candidate artifacts, topology recertification, and proof-interval replay before row consumption.",
+      "source_evidence": "replay-absent"
+    }
+  ],
+  "membership_proof_burdens": [
+    {
+      "burden_id": "same_constructed_witness_object_identity",
+      "required_evidence": "A proof-grade identity certificate that the endpoint-boundary-binding ref and endpoint value-binding map are attached to one constructed witness object, not merely to matching endpoint IDs."
+    },
+    {
+      "burden_id": "endpoint_boundary_binding_ref_membership",
+      "required_evidence": "A field-membership proof for the endpoint-boundary-binding ref inside the constructed witness object."
+    },
+    {
+      "burden_id": "endpoint_value_binding_map_membership",
+      "required_evidence": "A field-membership proof for the endpoint value-binding map inside the constructed witness object."
+    },
+    {
+      "burden_id": "membership_not_id_adjacency",
+      "required_evidence": "A check that same-ID adjacency, inherited field claims, and source-candidate target references are not promoted into membership proof without a constructed witness-object certificate."
+    }
+  ],
+  "endpoint_fields": [
+    "actual_contract_link_rule_attempt_inherited",
+    "actual_contract_link_conditional_rule_declaration_attempted",
+    "actual_contract_link_rule_source_conditions_present",
+    "actual_contract_link_rule_requires_witness_object_membership_proof",
+    "actual_contract_link_rule_requires_contract_target_satisfaction_proof",
+    "actual_contract_link_rule_requires_target_ref_value_equations_proof_grade",
+    "actual_contract_link_rule_preserves_fail_closed_outputs",
+    "source_candidate_id_present",
+    "contract_target_id_present",
+    "endpoint_value_binding_map_id_present",
+    "witness_object_endpoint_boundary_binding_ref_id_present",
+    "source_witness_object_attempt_id_present",
+    "first_endpoint_boundary_binding_primitive_id_present",
+    "target_endpoint_value_binding_source_equations_present",
+    "source_candidate_targets_endpoint_value_binding_map",
+    "source_candidate_targets_endpoint_boundary_binding_ref",
+    "source_candidate_targets_witness_object_attempt",
+    "source_candidate_targets_contract_target",
+    "inherited_witness_object_endpoint_boundary_binding_ref_field_claim",
+    "inherited_witness_object_endpoint_value_binding_map_field_claim",
+    "same_source_witness_object_attempt_id_referenced",
+    "witness_object_symbol_present",
+    "binding_symbol_present",
+    "membership_source_conditions_ready",
+    "actual_contract_link_rule_available",
+    "witness_object_membership_proof_present",
+    "same_constructed_witness_object_identity_proof_present",
+    "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+    "endpoint_value_binding_map_member_of_witness_object_proven",
+    "endpoint_ref_and_value_map_same_witness_object_proven",
+    "membership_source_not_id_adjacency_proven",
+    "contract_target_satisfaction_proof_present",
+    "target_ref_value_equations_proof_grade",
+    "endpoint_boundary_binding_ref_compatibility_proof_present",
+    "first_primitive_compatibility_proof_present",
+    "carrier_admission_bridge_present",
+    "motion_evaluation_bridge_present",
+    "algebraic_certificate_bridge_present",
+    "candidate_replay_bridge_present",
+    "actual_contract_link_rule_obligations_satisfied",
+    "witness_object_contract_link_constructed",
+    "witness_object_has_contract_link",
+    "binding_contract_satisfied",
+    "full_endpoint_boundary_binding_constructed",
+    "endpoint_boundary_binding_ref_carrier_unblocked",
+    "endpoint_value_binding_map_carrier_unblocked"
+  ],
+  "row_fields": [
+    "row_locator_resolved",
+    "source_actual_contract_link_rule_source_conditions_present",
+    "receiver_actual_contract_link_rule_source_conditions_present",
+    "combined_actual_contract_link_rule_source_condition_pair_present",
+    "source_membership_source_conditions_ready",
+    "receiver_membership_source_conditions_ready",
+    "combined_membership_source_condition_pair_ready",
+    "source_witness_object_membership_proof_present",
+    "receiver_witness_object_membership_proof_present",
+    "combined_witness_object_membership_proof_pair_present",
+    "source_actual_contract_link_rule_obligations_satisfied",
+    "receiver_actual_contract_link_rule_obligations_satisfied",
+    "combined_actual_contract_link_rule_obligations_satisfied",
+    "source_witness_object_contract_link_constructed",
+    "receiver_witness_object_contract_link_constructed",
+    "combined_witness_object_contract_link_pair_constructed",
+    "source_binding_contract_satisfied",
+    "receiver_binding_contract_satisfied",
+    "combined_binding_contract_pair_satisfied",
+    "source_full_endpoint_boundary_binding_constructed",
+    "receiver_full_endpoint_boundary_binding_constructed",
+    "combined_full_endpoint_boundary_binding_pair_constructed",
+    "source_endpoint_boundary_binding_ref_carrier_unblocked",
+    "receiver_endpoint_boundary_binding_ref_carrier_unblocked",
+    "combined_endpoint_boundary_binding_ref_carrier_pair_unblocked",
+    "source_endpoint_value_binding_map_carrier_unblocked",
+    "receiver_endpoint_value_binding_map_carrier_unblocked",
+    "combined_endpoint_value_binding_map_carrier_pair_unblocked",
+    "residual_data_construction_ready",
+    "row_unblocked",
+    "row_consumed",
+    "branch_chart_authorized"
+  ],
+  "endpoint_contract_link_membership_rule_attempts": [
+    {
+      "id": "fc_sigma_source_lower",
+      "endpoint_functional_id": "E_lower_source_inner_boundary",
+      "role": "source",
+      "contract_link_membership_rule_attempt_id": "contract_link_membership_rule_attempt:fc_sigma_source_lower",
+      "source_actual_contract_link_rule_attempt_id": "actual_contract_link_rule_attempt:fc_sigma_source_lower",
+      "source_witness_object_contract_link_construction_attempt_id": "witness_object_contract_link_construction_attempt:fc_sigma_source_lower",
+      "source_candidate_id": "witness_object_contract_link_source_candidate:fc_sigma_source_lower",
+      "source_contract_target_id": "full_endpoint_boundary_binding_contract_target:fc_sigma_source_lower",
+      "source_endpoint_value_binding_map_id": "endpoint_value_binding_map:fc_sigma_source_lower",
+      "witness_object_endpoint_boundary_binding_ref_id": "witness_object_endpoint_boundary_binding_ref:fc_sigma_source_lower",
+      "source_witness_object_attempt_id": "endpoint_boundary_binding_witness_object_attempt:fc_sigma_source_lower",
+      "source_first_endpoint_boundary_binding_primitive_id": "endpoint_boundary_binding_primitive:fc_sigma_source_lower",
+      "binding_symbol": "BB_fc_sigma_source_lower",
+      "witness_object_symbol": "WBB_fc_sigma_source_lower",
+      "target_endpoint_ref_value_count": 2,
+      "target_endpoint_value_binding_source_equation_statuses": [
+        "source-equation-only",
+        "source-equation-only"
+      ],
+      "conditional_actual_contract_link_rule": {
+        "rule_id": "conditional_actual_contract_link_rule:fc_sigma_source_lower",
+        "premise_ids": {
+          "source_witness_object_attempt_id": "endpoint_boundary_binding_witness_object_attempt:fc_sigma_source_lower",
+          "contract_target_id": "full_endpoint_boundary_binding_contract_target:fc_sigma_source_lower",
+          "endpoint_value_binding_map_id": "endpoint_value_binding_map:fc_sigma_source_lower",
+          "witness_object_endpoint_boundary_binding_ref_id": "witness_object_endpoint_boundary_binding_ref:fc_sigma_source_lower",
+          "first_endpoint_boundary_binding_primitive_id": "endpoint_boundary_binding_primitive:fc_sigma_source_lower",
+          "source_candidate_id": "witness_object_contract_link_source_candidate:fc_sigma_source_lower"
+        },
+        "premises_required": [
+          "actual_contract_link_rule_available",
+          "witness_object_membership_proof_present",
+          "contract_target_satisfaction_proof_present",
+          "target_ref_value_equations_proof_grade",
+          "endpoint_boundary_binding_ref_compatibility_proof_present",
+          "first_primitive_compatibility_proof_present",
+          "carrier_admission_bridge_present",
+          "motion_evaluation_bridge_present",
+          "algebraic_certificate_bridge_present",
+          "candidate_replay_bridge_present"
+        ],
+        "conclusion_if_all_premises_proven": "Construct and attach the witness-object contract link, then test binding contract satisfaction, full endpoint boundary binding, carrier admission, residual readiness, and row consumption.",
+        "soundness_limit": "This rule declaration does not construct an actual witness-object contract link unless every listed proof-grade premise is true."
+      },
+      "membership_source_condition_bundle": {
+        "condition_fields": [
+          "source_candidate_id_present",
+          "contract_target_id_present",
+          "endpoint_value_binding_map_id_present",
+          "witness_object_endpoint_boundary_binding_ref_id_present",
+          "source_witness_object_attempt_id_present",
+          "first_endpoint_boundary_binding_primitive_id_present",
+          "target_endpoint_value_binding_source_equations_present",
+          "source_candidate_targets_endpoint_value_binding_map",
+          "source_candidate_targets_endpoint_boundary_binding_ref",
+          "source_candidate_targets_witness_object_attempt",
+          "source_candidate_targets_contract_target",
+          "inherited_witness_object_endpoint_boundary_binding_ref_field_claim",
+          "inherited_witness_object_endpoint_value_binding_map_field_claim",
+          "same_source_witness_object_attempt_id_referenced",
+          "witness_object_symbol_present",
+          "binding_symbol_present"
+        ],
+        "ready": true,
+        "inherited_field_claims_are_not_membership_proofs": true,
+        "source_candidate_references_are_not_membership_proofs": true
+      },
+      "required_fields_present": {
+        "actual_contract_link_rule_attempt_inherited": true,
+        "actual_contract_link_conditional_rule_declaration_attempted": true,
+        "actual_contract_link_rule_source_conditions_present": true,
+        "actual_contract_link_rule_available": false,
+        "actual_contract_link_rule_requires_witness_object_membership_proof": true,
+        "actual_contract_link_rule_requires_contract_target_satisfaction_proof": true,
+        "actual_contract_link_rule_requires_target_ref_value_equations_proof_grade": true,
+        "actual_contract_link_rule_preserves_fail_closed_outputs": true,
+        "source_candidate_id_present": true,
+        "contract_target_id_present": true,
+        "endpoint_value_binding_map_id_present": true,
+        "witness_object_endpoint_boundary_binding_ref_id_present": true,
+        "source_witness_object_attempt_id_present": true,
+        "first_endpoint_boundary_binding_primitive_id_present": true,
+        "target_endpoint_value_binding_source_equations_present": true,
+        "source_candidate_targets_endpoint_value_binding_map": true,
+        "source_candidate_targets_endpoint_boundary_binding_ref": true,
+        "source_candidate_targets_witness_object_attempt": true,
+        "source_candidate_targets_contract_target": true,
+        "inherited_witness_object_endpoint_boundary_binding_ref_field_claim": true,
+        "inherited_witness_object_endpoint_value_binding_map_field_claim": true,
+        "same_source_witness_object_attempt_id_referenced": true,
+        "witness_object_symbol_present": true,
+        "binding_symbol_present": true,
+        "membership_source_conditions_ready": true,
+        "witness_object_membership_proof_present": false,
+        "same_constructed_witness_object_identity_proof_present": false,
+        "endpoint_boundary_binding_ref_member_of_witness_object_proven": false,
+        "endpoint_value_binding_map_member_of_witness_object_proven": false,
+        "endpoint_ref_and_value_map_same_witness_object_proven": false,
+        "membership_source_not_id_adjacency_proven": false,
+        "contract_target_satisfaction_proof_present": false,
+        "target_ref_value_equations_proof_grade": false,
+        "endpoint_boundary_binding_ref_compatibility_proof_present": false,
+        "first_primitive_compatibility_proof_present": false,
+        "carrier_admission_bridge_present": false,
+        "motion_evaluation_bridge_present": false,
+        "algebraic_certificate_bridge_present": false,
+        "candidate_replay_bridge_present": false,
+        "actual_contract_link_rule_obligations_satisfied": false,
+        "witness_object_contract_link_constructed": false,
+        "witness_object_has_contract_link": false,
+        "binding_contract_satisfied": false,
+        "full_endpoint_boundary_binding_constructed": false,
+        "endpoint_boundary_binding_ref_carrier_unblocked": false,
+        "endpoint_value_binding_map_carrier_unblocked": false
+      },
+      "construction_method_results": [
+        {
+          "method_id": "conditional_actual_contract_link_rule_declaration_attempt",
+          "description": "Record the source conditions for a conditional actual contract-link introduction rule without treating that source-condition record as a declared proof rule.",
+          "output_kind": "conditional-actual-contract-link-rule-source-condition",
+          "required_fields": [
+            "actual_contract_link_rule_attempt_inherited",
+            "actual_contract_link_conditional_rule_declaration_attempted",
+            "actual_contract_link_rule_source_conditions_present",
+            "actual_contract_link_rule_requires_witness_object_membership_proof",
+            "actual_contract_link_rule_requires_contract_target_satisfaction_proof",
+            "actual_contract_link_rule_requires_target_ref_value_equations_proof_grade",
+            "actual_contract_link_rule_preserves_fail_closed_outputs"
+          ],
+          "missing_fields": [],
+          "failure_codes": [],
+          "passed": true
+        },
+        {
+          "method_id": "membership_source_condition_bundle_check",
+          "description": "Check whether the source candidate carries the IDs, target references, inherited field claims, and same source witness-object attempt needed to pose the membership proof burden.",
+          "output_kind": "membership-source-condition-bundle",
+          "required_fields": [
+            "source_candidate_id_present",
+            "contract_target_id_present",
+            "endpoint_value_binding_map_id_present",
+            "witness_object_endpoint_boundary_binding_ref_id_present",
+            "source_witness_object_attempt_id_present",
+            "first_endpoint_boundary_binding_primitive_id_present",
+            "target_endpoint_value_binding_source_equations_present",
+            "source_candidate_targets_endpoint_value_binding_map",
+            "source_candidate_targets_endpoint_boundary_binding_ref",
+            "source_candidate_targets_witness_object_attempt",
+            "source_candidate_targets_contract_target",
+            "inherited_witness_object_endpoint_boundary_binding_ref_field_claim",
+            "inherited_witness_object_endpoint_value_binding_map_field_claim",
+            "same_source_witness_object_attempt_id_referenced",
+            "witness_object_symbol_present",
+            "binding_symbol_present",
+            "membership_source_conditions_ready"
+          ],
+          "missing_fields": [],
+          "failure_codes": [],
+          "passed": true
+        },
+        {
+          "method_id": "witness_object_membership_proof_check",
+          "description": "Check whether the packet proves same constructed-witness-object membership for the endpoint-boundary-binding ref and endpoint value-binding map.",
+          "output_kind": "witness-object-membership-proof",
+          "required_fields": [
+            "witness_object_membership_proof_present",
+            "same_constructed_witness_object_identity_proof_present",
+            "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+            "endpoint_value_binding_map_member_of_witness_object_proven",
+            "endpoint_ref_and_value_map_same_witness_object_proven",
+            "membership_source_not_id_adjacency_proven"
+          ],
+          "missing_fields": [
+            "witness_object_membership_proof_present",
+            "same_constructed_witness_object_identity_proof_present",
+            "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+            "endpoint_value_binding_map_member_of_witness_object_proven",
+            "endpoint_ref_and_value_map_same_witness_object_proven",
+            "membership_source_not_id_adjacency_proven"
+          ],
+          "failure_codes": [
+            "contract_link_membership_rule_missing_witness_object_membership_proof_present",
+            "contract_link_membership_rule_missing_same_constructed_witness_object_identity_proof_present",
+            "contract_link_membership_rule_missing_endpoint_boundary_binding_ref_member_of_witness_object_proven",
+            "contract_link_membership_rule_missing_endpoint_value_binding_map_member_of_witness_object_proven",
+            "contract_link_membership_rule_missing_endpoint_ref_and_value_map_same_witness_object_proven",
+            "contract_link_membership_rule_missing_membership_source_not_id_adjacency_proven"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "actual_contract_link_obligation_check",
+          "description": "Check whether an available actual-link rule and every actual-link obligation construct a witness-object contract link.",
+          "output_kind": "actual-contract-link",
+          "required_fields": [
+            "actual_contract_link_rule_available",
+            "witness_object_membership_proof_present",
+            "contract_target_satisfaction_proof_present",
+            "target_ref_value_equations_proof_grade",
+            "endpoint_boundary_binding_ref_compatibility_proof_present",
+            "first_primitive_compatibility_proof_present",
+            "carrier_admission_bridge_present",
+            "motion_evaluation_bridge_present",
+            "algebraic_certificate_bridge_present",
+            "candidate_replay_bridge_present",
+            "actual_contract_link_rule_obligations_satisfied"
+          ],
+          "missing_fields": [
+            "actual_contract_link_rule_available",
+            "witness_object_membership_proof_present",
+            "contract_target_satisfaction_proof_present",
+            "target_ref_value_equations_proof_grade",
+            "endpoint_boundary_binding_ref_compatibility_proof_present",
+            "first_primitive_compatibility_proof_present",
+            "carrier_admission_bridge_present",
+            "motion_evaluation_bridge_present",
+            "algebraic_certificate_bridge_present",
+            "candidate_replay_bridge_present",
+            "actual_contract_link_rule_obligations_satisfied"
+          ],
+          "failure_codes": [
+            "contract_link_membership_rule_missing_actual_contract_link_rule_available",
+            "contract_link_membership_rule_missing_witness_object_membership_proof_present",
+            "contract_link_membership_rule_missing_contract_target_satisfaction_proof_present",
+            "contract_link_membership_rule_missing_target_ref_value_equations_proof_grade",
+            "contract_link_membership_rule_missing_endpoint_boundary_binding_ref_compatibility_proof_present",
+            "contract_link_membership_rule_missing_first_primitive_compatibility_proof_present",
+            "contract_link_membership_rule_missing_carrier_admission_bridge_present",
+            "contract_link_membership_rule_missing_motion_evaluation_bridge_present",
+            "contract_link_membership_rule_missing_algebraic_certificate_bridge_present",
+            "contract_link_membership_rule_missing_candidate_replay_bridge_present",
+            "contract_link_membership_rule_missing_actual_contract_link_rule_obligations_satisfied"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "downstream_contract_and_carrier_admission_check",
+          "description": "Check whether the actual link unlocks binding contract satisfaction, full endpoint boundary binding, and both carrier admissions.",
+          "output_kind": "full-endpoint-boundary-binding",
+          "required_fields": [
+            "witness_object_contract_link_constructed",
+            "witness_object_has_contract_link",
+            "binding_contract_satisfied",
+            "full_endpoint_boundary_binding_constructed",
+            "endpoint_boundary_binding_ref_carrier_unblocked",
+            "endpoint_value_binding_map_carrier_unblocked"
+          ],
+          "missing_fields": [
+            "witness_object_contract_link_constructed",
+            "witness_object_has_contract_link",
+            "binding_contract_satisfied",
+            "full_endpoint_boundary_binding_constructed",
+            "endpoint_boundary_binding_ref_carrier_unblocked",
+            "endpoint_value_binding_map_carrier_unblocked"
+          ],
+          "failure_codes": [
+            "contract_link_membership_rule_missing_witness_object_contract_link_constructed",
+            "contract_link_membership_rule_missing_witness_object_has_contract_link",
+            "contract_link_membership_rule_missing_binding_contract_satisfied",
+            "contract_link_membership_rule_missing_full_endpoint_boundary_binding_constructed",
+            "contract_link_membership_rule_missing_endpoint_boundary_binding_ref_carrier_unblocked",
+            "contract_link_membership_rule_missing_endpoint_value_binding_map_carrier_unblocked"
+          ],
+          "passed": false
+        }
+      ],
+      "construction_methods_passed": [
+        "conditional_actual_contract_link_rule_declaration_attempt",
+        "membership_source_condition_bundle_check"
+      ],
+      "actual_contract_link_obligation_statuses": [
+        {
+          "obligation_id": "actual_contract_link_rule_available",
+          "description": "Supply a proof-grade rule whose conclusion is an actual witness-object contract link when every listed premise is present.",
+          "source_evidence": "source-conditions-only-rule-not-declared",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "witness_object_membership_proof_present",
+          "description": "Prove that the endpoint-boundary-binding ref and endpoint value-binding map are fields of the same constructed witness object rather than only adjacent referenced IDs or inherited field claims.",
+          "source_evidence": "membership-source-conditions-only",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "contract_target_satisfaction_proof_present",
+          "description": "Prove satisfaction of the inherited full endpoint boundary-binding contract target.",
+          "source_evidence": "contract-test-applied-contract-not-satisfied",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "target_ref_value_equations_proof_grade",
+          "description": "Promote every target ref/value equation beyond source-equation-only status into proof-grade contract-link evidence.",
+          "source_evidence": "source-equation-only",
+          "satisfied": false,
+          "observed_equation_statuses": [
+            "source-equation-only",
+            "source-equation-only"
+          ]
+        },
+        {
+          "obligation_id": "endpoint_boundary_binding_ref_compatibility_proof_present",
+          "description": "Certify the endpoint-boundary-binding ref as compatible with the target endpoint boundary-binding object on the domain-chart carrier.",
+          "source_evidence": "ref-carrier-locked",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "first_primitive_compatibility_proof_present",
+          "description": "Certify the first endpoint boundary-binding primitive as compatible with the value map and contract target.",
+          "source_evidence": "primitive-id-only",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "carrier_admission_bridge_present",
+          "description": "Bridge the actual link into endpoint-boundary-binding reference carrier and endpoint value-map carrier admission.",
+          "source_evidence": "carrier-admission-absent",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "motion_evaluation_bridge_present",
+          "description": "Connect the link to endpoint motion/evaluation maps, including full endpoint and global domain evaluation maps.",
+          "source_evidence": "motion-evaluation-absent",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "algebraic_certificate_bridge_present",
+          "description": "Supply non-target zero, exact screen zero, and rank certificates needed by full endpoint boundary binding.",
+          "source_evidence": "algebraic-certificates-absent",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "candidate_replay_bridge_present",
+          "description": "Supply candidate artifacts, topology recertification, and proof-interval replay before row consumption.",
+          "source_evidence": "replay-absent",
+          "satisfied": false
+        }
+      ],
+      "missing_actual_contract_link_obligations": [
+        {
+          "obligation_id": "actual_contract_link_rule_available",
+          "description": "Supply a proof-grade rule whose conclusion is an actual witness-object contract link when every listed premise is present.",
+          "source_evidence": "source-conditions-only-rule-not-declared",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "witness_object_membership_proof_present",
+          "description": "Prove that the endpoint-boundary-binding ref and endpoint value-binding map are fields of the same constructed witness object rather than only adjacent referenced IDs or inherited field claims.",
+          "source_evidence": "membership-source-conditions-only",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "contract_target_satisfaction_proof_present",
+          "description": "Prove satisfaction of the inherited full endpoint boundary-binding contract target.",
+          "source_evidence": "contract-test-applied-contract-not-satisfied",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "target_ref_value_equations_proof_grade",
+          "description": "Promote every target ref/value equation beyond source-equation-only status into proof-grade contract-link evidence.",
+          "source_evidence": "source-equation-only",
+          "satisfied": false,
+          "observed_equation_statuses": [
+            "source-equation-only",
+            "source-equation-only"
+          ]
+        },
+        {
+          "obligation_id": "endpoint_boundary_binding_ref_compatibility_proof_present",
+          "description": "Certify the endpoint-boundary-binding ref as compatible with the target endpoint boundary-binding object on the domain-chart carrier.",
+          "source_evidence": "ref-carrier-locked",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "first_primitive_compatibility_proof_present",
+          "description": "Certify the first endpoint boundary-binding primitive as compatible with the value map and contract target.",
+          "source_evidence": "primitive-id-only",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "carrier_admission_bridge_present",
+          "description": "Bridge the actual link into endpoint-boundary-binding reference carrier and endpoint value-map carrier admission.",
+          "source_evidence": "carrier-admission-absent",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "motion_evaluation_bridge_present",
+          "description": "Connect the link to endpoint motion/evaluation maps, including full endpoint and global domain evaluation maps.",
+          "source_evidence": "motion-evaluation-absent",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "algebraic_certificate_bridge_present",
+          "description": "Supply non-target zero, exact screen zero, and rank certificates needed by full endpoint boundary binding.",
+          "source_evidence": "algebraic-certificates-absent",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "candidate_replay_bridge_present",
+          "description": "Supply candidate artifacts, topology recertification, and proof-interval replay before row consumption.",
+          "source_evidence": "replay-absent",
+          "satisfied": false
+        }
+      ],
+      "missing_actual_contract_link_obligation_count": 10,
+      "membership_proof_burdens": [
+        {
+          "burden_id": "same_constructed_witness_object_identity",
+          "required_evidence": "A proof-grade identity certificate that the endpoint-boundary-binding ref and endpoint value-binding map are attached to one constructed witness object, not merely to matching endpoint IDs."
+        },
+        {
+          "burden_id": "endpoint_boundary_binding_ref_membership",
+          "required_evidence": "A field-membership proof for the endpoint-boundary-binding ref inside the constructed witness object."
+        },
+        {
+          "burden_id": "endpoint_value_binding_map_membership",
+          "required_evidence": "A field-membership proof for the endpoint value-binding map inside the constructed witness object."
+        },
+        {
+          "burden_id": "membership_not_id_adjacency",
+          "required_evidence": "A check that same-ID adjacency, inherited field claims, and source-candidate target references are not promoted into membership proof without a constructed witness-object certificate."
+        }
+      ],
+      "actual_contract_link_rule_available": false,
+      "membership_source_conditions_ready": true,
+      "witness_object_membership_proof_present": false,
+      "actual_contract_link_rule_obligations_satisfied": false,
+      "witness_object_contract_link": null,
+      "witness_object_contract_link_constructed": false,
+      "witness_object_has_contract_link": false,
+      "binding_contract_satisfied": false,
+      "full_endpoint_boundary_binding_constructed": false,
+      "endpoint_boundary_binding_ref_carrier_unblocked": false,
+      "endpoint_value_binding_map_carrier_unblocked": false,
+      "failure_codes": [
+        "contract_link_membership_rule_locked_actual_contract_link_rule_available",
+        "contract_link_membership_rule_locked_witness_object_membership_proof_present",
+        "contract_link_membership_rule_locked_contract_target_satisfaction_proof_present",
+        "contract_link_membership_rule_locked_target_ref_value_equations_proof_grade",
+        "contract_link_membership_rule_locked_endpoint_boundary_binding_ref_compatibility_proof_present",
+        "contract_link_membership_rule_locked_first_primitive_compatibility_proof_present",
+        "contract_link_membership_rule_locked_carrier_admission_bridge_present",
+        "contract_link_membership_rule_locked_motion_evaluation_bridge_present",
+        "contract_link_membership_rule_locked_algebraic_certificate_bridge_present",
+        "contract_link_membership_rule_locked_candidate_replay_bridge_present",
+        "contract_link_membership_rule_locked_witness_object_contract_link_constructed",
+        "contract_link_membership_rule_locked_witness_object_has_contract_link",
+        "contract_link_membership_rule_locked_binding_contract_satisfied",
+        "contract_link_membership_rule_locked_full_endpoint_boundary_binding_constructed",
+        "contract_link_membership_rule_locked_endpoint_boundary_binding_ref_carrier_unblocked",
+        "contract_link_membership_rule_locked_endpoint_value_binding_map_carrier_unblocked"
+      ],
+      "obstruction": "The actual-link rule source conditions and membership source conditions are present, but no available actual contract-link rule or proof-grade same constructed-witness-object membership certificate is supplied, so the actual witness-object contract link remains absent."
+    },
+    {
+      "id": "fc_rho_receiver_lower",
+      "endpoint_functional_id": "E_raise_receiver_lower_boundary",
+      "role": "receiver",
+      "contract_link_membership_rule_attempt_id": "contract_link_membership_rule_attempt:fc_rho_receiver_lower",
+      "source_actual_contract_link_rule_attempt_id": "actual_contract_link_rule_attempt:fc_rho_receiver_lower",
+      "source_witness_object_contract_link_construction_attempt_id": "witness_object_contract_link_construction_attempt:fc_rho_receiver_lower",
+      "source_candidate_id": "witness_object_contract_link_source_candidate:fc_rho_receiver_lower",
+      "source_contract_target_id": "full_endpoint_boundary_binding_contract_target:fc_rho_receiver_lower",
+      "source_endpoint_value_binding_map_id": "endpoint_value_binding_map:fc_rho_receiver_lower",
+      "witness_object_endpoint_boundary_binding_ref_id": "witness_object_endpoint_boundary_binding_ref:fc_rho_receiver_lower",
+      "source_witness_object_attempt_id": "endpoint_boundary_binding_witness_object_attempt:fc_rho_receiver_lower",
+      "source_first_endpoint_boundary_binding_primitive_id": "endpoint_boundary_binding_primitive:fc_rho_receiver_lower",
+      "binding_symbol": "BB_fc_rho_receiver_lower",
+      "witness_object_symbol": "WBB_fc_rho_receiver_lower",
+      "target_endpoint_ref_value_count": 2,
+      "target_endpoint_value_binding_source_equation_statuses": [
+        "source-equation-only",
+        "source-equation-only"
+      ],
+      "conditional_actual_contract_link_rule": {
+        "rule_id": "conditional_actual_contract_link_rule:fc_rho_receiver_lower",
+        "premise_ids": {
+          "source_witness_object_attempt_id": "endpoint_boundary_binding_witness_object_attempt:fc_rho_receiver_lower",
+          "contract_target_id": "full_endpoint_boundary_binding_contract_target:fc_rho_receiver_lower",
+          "endpoint_value_binding_map_id": "endpoint_value_binding_map:fc_rho_receiver_lower",
+          "witness_object_endpoint_boundary_binding_ref_id": "witness_object_endpoint_boundary_binding_ref:fc_rho_receiver_lower",
+          "first_endpoint_boundary_binding_primitive_id": "endpoint_boundary_binding_primitive:fc_rho_receiver_lower",
+          "source_candidate_id": "witness_object_contract_link_source_candidate:fc_rho_receiver_lower"
+        },
+        "premises_required": [
+          "actual_contract_link_rule_available",
+          "witness_object_membership_proof_present",
+          "contract_target_satisfaction_proof_present",
+          "target_ref_value_equations_proof_grade",
+          "endpoint_boundary_binding_ref_compatibility_proof_present",
+          "first_primitive_compatibility_proof_present",
+          "carrier_admission_bridge_present",
+          "motion_evaluation_bridge_present",
+          "algebraic_certificate_bridge_present",
+          "candidate_replay_bridge_present"
+        ],
+        "conclusion_if_all_premises_proven": "Construct and attach the witness-object contract link, then test binding contract satisfaction, full endpoint boundary binding, carrier admission, residual readiness, and row consumption.",
+        "soundness_limit": "This rule declaration does not construct an actual witness-object contract link unless every listed proof-grade premise is true."
+      },
+      "membership_source_condition_bundle": {
+        "condition_fields": [
+          "source_candidate_id_present",
+          "contract_target_id_present",
+          "endpoint_value_binding_map_id_present",
+          "witness_object_endpoint_boundary_binding_ref_id_present",
+          "source_witness_object_attempt_id_present",
+          "first_endpoint_boundary_binding_primitive_id_present",
+          "target_endpoint_value_binding_source_equations_present",
+          "source_candidate_targets_endpoint_value_binding_map",
+          "source_candidate_targets_endpoint_boundary_binding_ref",
+          "source_candidate_targets_witness_object_attempt",
+          "source_candidate_targets_contract_target",
+          "inherited_witness_object_endpoint_boundary_binding_ref_field_claim",
+          "inherited_witness_object_endpoint_value_binding_map_field_claim",
+          "same_source_witness_object_attempt_id_referenced",
+          "witness_object_symbol_present",
+          "binding_symbol_present"
+        ],
+        "ready": true,
+        "inherited_field_claims_are_not_membership_proofs": true,
+        "source_candidate_references_are_not_membership_proofs": true
+      },
+      "required_fields_present": {
+        "actual_contract_link_rule_attempt_inherited": true,
+        "actual_contract_link_conditional_rule_declaration_attempted": true,
+        "actual_contract_link_rule_source_conditions_present": true,
+        "actual_contract_link_rule_available": false,
+        "actual_contract_link_rule_requires_witness_object_membership_proof": true,
+        "actual_contract_link_rule_requires_contract_target_satisfaction_proof": true,
+        "actual_contract_link_rule_requires_target_ref_value_equations_proof_grade": true,
+        "actual_contract_link_rule_preserves_fail_closed_outputs": true,
+        "source_candidate_id_present": true,
+        "contract_target_id_present": true,
+        "endpoint_value_binding_map_id_present": true,
+        "witness_object_endpoint_boundary_binding_ref_id_present": true,
+        "source_witness_object_attempt_id_present": true,
+        "first_endpoint_boundary_binding_primitive_id_present": true,
+        "target_endpoint_value_binding_source_equations_present": true,
+        "source_candidate_targets_endpoint_value_binding_map": true,
+        "source_candidate_targets_endpoint_boundary_binding_ref": true,
+        "source_candidate_targets_witness_object_attempt": true,
+        "source_candidate_targets_contract_target": true,
+        "inherited_witness_object_endpoint_boundary_binding_ref_field_claim": true,
+        "inherited_witness_object_endpoint_value_binding_map_field_claim": true,
+        "same_source_witness_object_attempt_id_referenced": true,
+        "witness_object_symbol_present": true,
+        "binding_symbol_present": true,
+        "membership_source_conditions_ready": true,
+        "witness_object_membership_proof_present": false,
+        "same_constructed_witness_object_identity_proof_present": false,
+        "endpoint_boundary_binding_ref_member_of_witness_object_proven": false,
+        "endpoint_value_binding_map_member_of_witness_object_proven": false,
+        "endpoint_ref_and_value_map_same_witness_object_proven": false,
+        "membership_source_not_id_adjacency_proven": false,
+        "contract_target_satisfaction_proof_present": false,
+        "target_ref_value_equations_proof_grade": false,
+        "endpoint_boundary_binding_ref_compatibility_proof_present": false,
+        "first_primitive_compatibility_proof_present": false,
+        "carrier_admission_bridge_present": false,
+        "motion_evaluation_bridge_present": false,
+        "algebraic_certificate_bridge_present": false,
+        "candidate_replay_bridge_present": false,
+        "actual_contract_link_rule_obligations_satisfied": false,
+        "witness_object_contract_link_constructed": false,
+        "witness_object_has_contract_link": false,
+        "binding_contract_satisfied": false,
+        "full_endpoint_boundary_binding_constructed": false,
+        "endpoint_boundary_binding_ref_carrier_unblocked": false,
+        "endpoint_value_binding_map_carrier_unblocked": false
+      },
+      "construction_method_results": [
+        {
+          "method_id": "conditional_actual_contract_link_rule_declaration_attempt",
+          "description": "Record the source conditions for a conditional actual contract-link introduction rule without treating that source-condition record as a declared proof rule.",
+          "output_kind": "conditional-actual-contract-link-rule-source-condition",
+          "required_fields": [
+            "actual_contract_link_rule_attempt_inherited",
+            "actual_contract_link_conditional_rule_declaration_attempted",
+            "actual_contract_link_rule_source_conditions_present",
+            "actual_contract_link_rule_requires_witness_object_membership_proof",
+            "actual_contract_link_rule_requires_contract_target_satisfaction_proof",
+            "actual_contract_link_rule_requires_target_ref_value_equations_proof_grade",
+            "actual_contract_link_rule_preserves_fail_closed_outputs"
+          ],
+          "missing_fields": [],
+          "failure_codes": [],
+          "passed": true
+        },
+        {
+          "method_id": "membership_source_condition_bundle_check",
+          "description": "Check whether the source candidate carries the IDs, target references, inherited field claims, and same source witness-object attempt needed to pose the membership proof burden.",
+          "output_kind": "membership-source-condition-bundle",
+          "required_fields": [
+            "source_candidate_id_present",
+            "contract_target_id_present",
+            "endpoint_value_binding_map_id_present",
+            "witness_object_endpoint_boundary_binding_ref_id_present",
+            "source_witness_object_attempt_id_present",
+            "first_endpoint_boundary_binding_primitive_id_present",
+            "target_endpoint_value_binding_source_equations_present",
+            "source_candidate_targets_endpoint_value_binding_map",
+            "source_candidate_targets_endpoint_boundary_binding_ref",
+            "source_candidate_targets_witness_object_attempt",
+            "source_candidate_targets_contract_target",
+            "inherited_witness_object_endpoint_boundary_binding_ref_field_claim",
+            "inherited_witness_object_endpoint_value_binding_map_field_claim",
+            "same_source_witness_object_attempt_id_referenced",
+            "witness_object_symbol_present",
+            "binding_symbol_present",
+            "membership_source_conditions_ready"
+          ],
+          "missing_fields": [],
+          "failure_codes": [],
+          "passed": true
+        },
+        {
+          "method_id": "witness_object_membership_proof_check",
+          "description": "Check whether the packet proves same constructed-witness-object membership for the endpoint-boundary-binding ref and endpoint value-binding map.",
+          "output_kind": "witness-object-membership-proof",
+          "required_fields": [
+            "witness_object_membership_proof_present",
+            "same_constructed_witness_object_identity_proof_present",
+            "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+            "endpoint_value_binding_map_member_of_witness_object_proven",
+            "endpoint_ref_and_value_map_same_witness_object_proven",
+            "membership_source_not_id_adjacency_proven"
+          ],
+          "missing_fields": [
+            "witness_object_membership_proof_present",
+            "same_constructed_witness_object_identity_proof_present",
+            "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+            "endpoint_value_binding_map_member_of_witness_object_proven",
+            "endpoint_ref_and_value_map_same_witness_object_proven",
+            "membership_source_not_id_adjacency_proven"
+          ],
+          "failure_codes": [
+            "contract_link_membership_rule_missing_witness_object_membership_proof_present",
+            "contract_link_membership_rule_missing_same_constructed_witness_object_identity_proof_present",
+            "contract_link_membership_rule_missing_endpoint_boundary_binding_ref_member_of_witness_object_proven",
+            "contract_link_membership_rule_missing_endpoint_value_binding_map_member_of_witness_object_proven",
+            "contract_link_membership_rule_missing_endpoint_ref_and_value_map_same_witness_object_proven",
+            "contract_link_membership_rule_missing_membership_source_not_id_adjacency_proven"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "actual_contract_link_obligation_check",
+          "description": "Check whether an available actual-link rule and every actual-link obligation construct a witness-object contract link.",
+          "output_kind": "actual-contract-link",
+          "required_fields": [
+            "actual_contract_link_rule_available",
+            "witness_object_membership_proof_present",
+            "contract_target_satisfaction_proof_present",
+            "target_ref_value_equations_proof_grade",
+            "endpoint_boundary_binding_ref_compatibility_proof_present",
+            "first_primitive_compatibility_proof_present",
+            "carrier_admission_bridge_present",
+            "motion_evaluation_bridge_present",
+            "algebraic_certificate_bridge_present",
+            "candidate_replay_bridge_present",
+            "actual_contract_link_rule_obligations_satisfied"
+          ],
+          "missing_fields": [
+            "actual_contract_link_rule_available",
+            "witness_object_membership_proof_present",
+            "contract_target_satisfaction_proof_present",
+            "target_ref_value_equations_proof_grade",
+            "endpoint_boundary_binding_ref_compatibility_proof_present",
+            "first_primitive_compatibility_proof_present",
+            "carrier_admission_bridge_present",
+            "motion_evaluation_bridge_present",
+            "algebraic_certificate_bridge_present",
+            "candidate_replay_bridge_present",
+            "actual_contract_link_rule_obligations_satisfied"
+          ],
+          "failure_codes": [
+            "contract_link_membership_rule_missing_actual_contract_link_rule_available",
+            "contract_link_membership_rule_missing_witness_object_membership_proof_present",
+            "contract_link_membership_rule_missing_contract_target_satisfaction_proof_present",
+            "contract_link_membership_rule_missing_target_ref_value_equations_proof_grade",
+            "contract_link_membership_rule_missing_endpoint_boundary_binding_ref_compatibility_proof_present",
+            "contract_link_membership_rule_missing_first_primitive_compatibility_proof_present",
+            "contract_link_membership_rule_missing_carrier_admission_bridge_present",
+            "contract_link_membership_rule_missing_motion_evaluation_bridge_present",
+            "contract_link_membership_rule_missing_algebraic_certificate_bridge_present",
+            "contract_link_membership_rule_missing_candidate_replay_bridge_present",
+            "contract_link_membership_rule_missing_actual_contract_link_rule_obligations_satisfied"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "downstream_contract_and_carrier_admission_check",
+          "description": "Check whether the actual link unlocks binding contract satisfaction, full endpoint boundary binding, and both carrier admissions.",
+          "output_kind": "full-endpoint-boundary-binding",
+          "required_fields": [
+            "witness_object_contract_link_constructed",
+            "witness_object_has_contract_link",
+            "binding_contract_satisfied",
+            "full_endpoint_boundary_binding_constructed",
+            "endpoint_boundary_binding_ref_carrier_unblocked",
+            "endpoint_value_binding_map_carrier_unblocked"
+          ],
+          "missing_fields": [
+            "witness_object_contract_link_constructed",
+            "witness_object_has_contract_link",
+            "binding_contract_satisfied",
+            "full_endpoint_boundary_binding_constructed",
+            "endpoint_boundary_binding_ref_carrier_unblocked",
+            "endpoint_value_binding_map_carrier_unblocked"
+          ],
+          "failure_codes": [
+            "contract_link_membership_rule_missing_witness_object_contract_link_constructed",
+            "contract_link_membership_rule_missing_witness_object_has_contract_link",
+            "contract_link_membership_rule_missing_binding_contract_satisfied",
+            "contract_link_membership_rule_missing_full_endpoint_boundary_binding_constructed",
+            "contract_link_membership_rule_missing_endpoint_boundary_binding_ref_carrier_unblocked",
+            "contract_link_membership_rule_missing_endpoint_value_binding_map_carrier_unblocked"
+          ],
+          "passed": false
+        }
+      ],
+      "construction_methods_passed": [
+        "conditional_actual_contract_link_rule_declaration_attempt",
+        "membership_source_condition_bundle_check"
+      ],
+      "actual_contract_link_obligation_statuses": [
+        {
+          "obligation_id": "actual_contract_link_rule_available",
+          "description": "Supply a proof-grade rule whose conclusion is an actual witness-object contract link when every listed premise is present.",
+          "source_evidence": "source-conditions-only-rule-not-declared",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "witness_object_membership_proof_present",
+          "description": "Prove that the endpoint-boundary-binding ref and endpoint value-binding map are fields of the same constructed witness object rather than only adjacent referenced IDs or inherited field claims.",
+          "source_evidence": "membership-source-conditions-only",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "contract_target_satisfaction_proof_present",
+          "description": "Prove satisfaction of the inherited full endpoint boundary-binding contract target.",
+          "source_evidence": "contract-test-applied-contract-not-satisfied",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "target_ref_value_equations_proof_grade",
+          "description": "Promote every target ref/value equation beyond source-equation-only status into proof-grade contract-link evidence.",
+          "source_evidence": "source-equation-only",
+          "satisfied": false,
+          "observed_equation_statuses": [
+            "source-equation-only",
+            "source-equation-only"
+          ]
+        },
+        {
+          "obligation_id": "endpoint_boundary_binding_ref_compatibility_proof_present",
+          "description": "Certify the endpoint-boundary-binding ref as compatible with the target endpoint boundary-binding object on the domain-chart carrier.",
+          "source_evidence": "ref-carrier-locked",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "first_primitive_compatibility_proof_present",
+          "description": "Certify the first endpoint boundary-binding primitive as compatible with the value map and contract target.",
+          "source_evidence": "primitive-id-only",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "carrier_admission_bridge_present",
+          "description": "Bridge the actual link into endpoint-boundary-binding reference carrier and endpoint value-map carrier admission.",
+          "source_evidence": "carrier-admission-absent",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "motion_evaluation_bridge_present",
+          "description": "Connect the link to endpoint motion/evaluation maps, including full endpoint and global domain evaluation maps.",
+          "source_evidence": "motion-evaluation-absent",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "algebraic_certificate_bridge_present",
+          "description": "Supply non-target zero, exact screen zero, and rank certificates needed by full endpoint boundary binding.",
+          "source_evidence": "algebraic-certificates-absent",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "candidate_replay_bridge_present",
+          "description": "Supply candidate artifacts, topology recertification, and proof-interval replay before row consumption.",
+          "source_evidence": "replay-absent",
+          "satisfied": false
+        }
+      ],
+      "missing_actual_contract_link_obligations": [
+        {
+          "obligation_id": "actual_contract_link_rule_available",
+          "description": "Supply a proof-grade rule whose conclusion is an actual witness-object contract link when every listed premise is present.",
+          "source_evidence": "source-conditions-only-rule-not-declared",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "witness_object_membership_proof_present",
+          "description": "Prove that the endpoint-boundary-binding ref and endpoint value-binding map are fields of the same constructed witness object rather than only adjacent referenced IDs or inherited field claims.",
+          "source_evidence": "membership-source-conditions-only",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "contract_target_satisfaction_proof_present",
+          "description": "Prove satisfaction of the inherited full endpoint boundary-binding contract target.",
+          "source_evidence": "contract-test-applied-contract-not-satisfied",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "target_ref_value_equations_proof_grade",
+          "description": "Promote every target ref/value equation beyond source-equation-only status into proof-grade contract-link evidence.",
+          "source_evidence": "source-equation-only",
+          "satisfied": false,
+          "observed_equation_statuses": [
+            "source-equation-only",
+            "source-equation-only"
+          ]
+        },
+        {
+          "obligation_id": "endpoint_boundary_binding_ref_compatibility_proof_present",
+          "description": "Certify the endpoint-boundary-binding ref as compatible with the target endpoint boundary-binding object on the domain-chart carrier.",
+          "source_evidence": "ref-carrier-locked",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "first_primitive_compatibility_proof_present",
+          "description": "Certify the first endpoint boundary-binding primitive as compatible with the value map and contract target.",
+          "source_evidence": "primitive-id-only",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "carrier_admission_bridge_present",
+          "description": "Bridge the actual link into endpoint-boundary-binding reference carrier and endpoint value-map carrier admission.",
+          "source_evidence": "carrier-admission-absent",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "motion_evaluation_bridge_present",
+          "description": "Connect the link to endpoint motion/evaluation maps, including full endpoint and global domain evaluation maps.",
+          "source_evidence": "motion-evaluation-absent",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "algebraic_certificate_bridge_present",
+          "description": "Supply non-target zero, exact screen zero, and rank certificates needed by full endpoint boundary binding.",
+          "source_evidence": "algebraic-certificates-absent",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "candidate_replay_bridge_present",
+          "description": "Supply candidate artifacts, topology recertification, and proof-interval replay before row consumption.",
+          "source_evidence": "replay-absent",
+          "satisfied": false
+        }
+      ],
+      "missing_actual_contract_link_obligation_count": 10,
+      "membership_proof_burdens": [
+        {
+          "burden_id": "same_constructed_witness_object_identity",
+          "required_evidence": "A proof-grade identity certificate that the endpoint-boundary-binding ref and endpoint value-binding map are attached to one constructed witness object, not merely to matching endpoint IDs."
+        },
+        {
+          "burden_id": "endpoint_boundary_binding_ref_membership",
+          "required_evidence": "A field-membership proof for the endpoint-boundary-binding ref inside the constructed witness object."
+        },
+        {
+          "burden_id": "endpoint_value_binding_map_membership",
+          "required_evidence": "A field-membership proof for the endpoint value-binding map inside the constructed witness object."
+        },
+        {
+          "burden_id": "membership_not_id_adjacency",
+          "required_evidence": "A check that same-ID adjacency, inherited field claims, and source-candidate target references are not promoted into membership proof without a constructed witness-object certificate."
+        }
+      ],
+      "actual_contract_link_rule_available": false,
+      "membership_source_conditions_ready": true,
+      "witness_object_membership_proof_present": false,
+      "actual_contract_link_rule_obligations_satisfied": false,
+      "witness_object_contract_link": null,
+      "witness_object_contract_link_constructed": false,
+      "witness_object_has_contract_link": false,
+      "binding_contract_satisfied": false,
+      "full_endpoint_boundary_binding_constructed": false,
+      "endpoint_boundary_binding_ref_carrier_unblocked": false,
+      "endpoint_value_binding_map_carrier_unblocked": false,
+      "failure_codes": [
+        "contract_link_membership_rule_locked_actual_contract_link_rule_available",
+        "contract_link_membership_rule_locked_witness_object_membership_proof_present",
+        "contract_link_membership_rule_locked_contract_target_satisfaction_proof_present",
+        "contract_link_membership_rule_locked_target_ref_value_equations_proof_grade",
+        "contract_link_membership_rule_locked_endpoint_boundary_binding_ref_compatibility_proof_present",
+        "contract_link_membership_rule_locked_first_primitive_compatibility_proof_present",
+        "contract_link_membership_rule_locked_carrier_admission_bridge_present",
+        "contract_link_membership_rule_locked_motion_evaluation_bridge_present",
+        "contract_link_membership_rule_locked_algebraic_certificate_bridge_present",
+        "contract_link_membership_rule_locked_candidate_replay_bridge_present",
+        "contract_link_membership_rule_locked_witness_object_contract_link_constructed",
+        "contract_link_membership_rule_locked_witness_object_has_contract_link",
+        "contract_link_membership_rule_locked_binding_contract_satisfied",
+        "contract_link_membership_rule_locked_full_endpoint_boundary_binding_constructed",
+        "contract_link_membership_rule_locked_endpoint_boundary_binding_ref_carrier_unblocked",
+        "contract_link_membership_rule_locked_endpoint_value_binding_map_carrier_unblocked"
+      ],
+      "obstruction": "The actual-link rule source conditions and membership source conditions are present, but no available actual contract-link rule or proof-grade same constructed-witness-object membership certificate is supplied, so the actual witness-object contract link remains absent."
+    },
+    {
+      "id": "fc_sigma_source_upper",
+      "endpoint_functional_id": "E_raise_source_inner_boundary",
+      "role": "source",
+      "contract_link_membership_rule_attempt_id": "contract_link_membership_rule_attempt:fc_sigma_source_upper",
+      "source_actual_contract_link_rule_attempt_id": "actual_contract_link_rule_attempt:fc_sigma_source_upper",
+      "source_witness_object_contract_link_construction_attempt_id": "witness_object_contract_link_construction_attempt:fc_sigma_source_upper",
+      "source_candidate_id": "witness_object_contract_link_source_candidate:fc_sigma_source_upper",
+      "source_contract_target_id": "full_endpoint_boundary_binding_contract_target:fc_sigma_source_upper",
+      "source_endpoint_value_binding_map_id": "endpoint_value_binding_map:fc_sigma_source_upper",
+      "witness_object_endpoint_boundary_binding_ref_id": "witness_object_endpoint_boundary_binding_ref:fc_sigma_source_upper",
+      "source_witness_object_attempt_id": "endpoint_boundary_binding_witness_object_attempt:fc_sigma_source_upper",
+      "source_first_endpoint_boundary_binding_primitive_id": "endpoint_boundary_binding_primitive:fc_sigma_source_upper",
+      "binding_symbol": "BB_fc_sigma_source_upper",
+      "witness_object_symbol": "WBB_fc_sigma_source_upper",
+      "target_endpoint_ref_value_count": 1,
+      "target_endpoint_value_binding_source_equation_statuses": [
+        "source-equation-only"
+      ],
+      "conditional_actual_contract_link_rule": {
+        "rule_id": "conditional_actual_contract_link_rule:fc_sigma_source_upper",
+        "premise_ids": {
+          "source_witness_object_attempt_id": "endpoint_boundary_binding_witness_object_attempt:fc_sigma_source_upper",
+          "contract_target_id": "full_endpoint_boundary_binding_contract_target:fc_sigma_source_upper",
+          "endpoint_value_binding_map_id": "endpoint_value_binding_map:fc_sigma_source_upper",
+          "witness_object_endpoint_boundary_binding_ref_id": "witness_object_endpoint_boundary_binding_ref:fc_sigma_source_upper",
+          "first_endpoint_boundary_binding_primitive_id": "endpoint_boundary_binding_primitive:fc_sigma_source_upper",
+          "source_candidate_id": "witness_object_contract_link_source_candidate:fc_sigma_source_upper"
+        },
+        "premises_required": [
+          "actual_contract_link_rule_available",
+          "witness_object_membership_proof_present",
+          "contract_target_satisfaction_proof_present",
+          "target_ref_value_equations_proof_grade",
+          "endpoint_boundary_binding_ref_compatibility_proof_present",
+          "first_primitive_compatibility_proof_present",
+          "carrier_admission_bridge_present",
+          "motion_evaluation_bridge_present",
+          "algebraic_certificate_bridge_present",
+          "candidate_replay_bridge_present"
+        ],
+        "conclusion_if_all_premises_proven": "Construct and attach the witness-object contract link, then test binding contract satisfaction, full endpoint boundary binding, carrier admission, residual readiness, and row consumption.",
+        "soundness_limit": "This rule declaration does not construct an actual witness-object contract link unless every listed proof-grade premise is true."
+      },
+      "membership_source_condition_bundle": {
+        "condition_fields": [
+          "source_candidate_id_present",
+          "contract_target_id_present",
+          "endpoint_value_binding_map_id_present",
+          "witness_object_endpoint_boundary_binding_ref_id_present",
+          "source_witness_object_attempt_id_present",
+          "first_endpoint_boundary_binding_primitive_id_present",
+          "target_endpoint_value_binding_source_equations_present",
+          "source_candidate_targets_endpoint_value_binding_map",
+          "source_candidate_targets_endpoint_boundary_binding_ref",
+          "source_candidate_targets_witness_object_attempt",
+          "source_candidate_targets_contract_target",
+          "inherited_witness_object_endpoint_boundary_binding_ref_field_claim",
+          "inherited_witness_object_endpoint_value_binding_map_field_claim",
+          "same_source_witness_object_attempt_id_referenced",
+          "witness_object_symbol_present",
+          "binding_symbol_present"
+        ],
+        "ready": true,
+        "inherited_field_claims_are_not_membership_proofs": true,
+        "source_candidate_references_are_not_membership_proofs": true
+      },
+      "required_fields_present": {
+        "actual_contract_link_rule_attempt_inherited": true,
+        "actual_contract_link_conditional_rule_declaration_attempted": true,
+        "actual_contract_link_rule_source_conditions_present": true,
+        "actual_contract_link_rule_available": false,
+        "actual_contract_link_rule_requires_witness_object_membership_proof": true,
+        "actual_contract_link_rule_requires_contract_target_satisfaction_proof": true,
+        "actual_contract_link_rule_requires_target_ref_value_equations_proof_grade": true,
+        "actual_contract_link_rule_preserves_fail_closed_outputs": true,
+        "source_candidate_id_present": true,
+        "contract_target_id_present": true,
+        "endpoint_value_binding_map_id_present": true,
+        "witness_object_endpoint_boundary_binding_ref_id_present": true,
+        "source_witness_object_attempt_id_present": true,
+        "first_endpoint_boundary_binding_primitive_id_present": true,
+        "target_endpoint_value_binding_source_equations_present": true,
+        "source_candidate_targets_endpoint_value_binding_map": true,
+        "source_candidate_targets_endpoint_boundary_binding_ref": true,
+        "source_candidate_targets_witness_object_attempt": true,
+        "source_candidate_targets_contract_target": true,
+        "inherited_witness_object_endpoint_boundary_binding_ref_field_claim": true,
+        "inherited_witness_object_endpoint_value_binding_map_field_claim": true,
+        "same_source_witness_object_attempt_id_referenced": true,
+        "witness_object_symbol_present": true,
+        "binding_symbol_present": true,
+        "membership_source_conditions_ready": true,
+        "witness_object_membership_proof_present": false,
+        "same_constructed_witness_object_identity_proof_present": false,
+        "endpoint_boundary_binding_ref_member_of_witness_object_proven": false,
+        "endpoint_value_binding_map_member_of_witness_object_proven": false,
+        "endpoint_ref_and_value_map_same_witness_object_proven": false,
+        "membership_source_not_id_adjacency_proven": false,
+        "contract_target_satisfaction_proof_present": false,
+        "target_ref_value_equations_proof_grade": false,
+        "endpoint_boundary_binding_ref_compatibility_proof_present": false,
+        "first_primitive_compatibility_proof_present": false,
+        "carrier_admission_bridge_present": false,
+        "motion_evaluation_bridge_present": false,
+        "algebraic_certificate_bridge_present": false,
+        "candidate_replay_bridge_present": false,
+        "actual_contract_link_rule_obligations_satisfied": false,
+        "witness_object_contract_link_constructed": false,
+        "witness_object_has_contract_link": false,
+        "binding_contract_satisfied": false,
+        "full_endpoint_boundary_binding_constructed": false,
+        "endpoint_boundary_binding_ref_carrier_unblocked": false,
+        "endpoint_value_binding_map_carrier_unblocked": false
+      },
+      "construction_method_results": [
+        {
+          "method_id": "conditional_actual_contract_link_rule_declaration_attempt",
+          "description": "Record the source conditions for a conditional actual contract-link introduction rule without treating that source-condition record as a declared proof rule.",
+          "output_kind": "conditional-actual-contract-link-rule-source-condition",
+          "required_fields": [
+            "actual_contract_link_rule_attempt_inherited",
+            "actual_contract_link_conditional_rule_declaration_attempted",
+            "actual_contract_link_rule_source_conditions_present",
+            "actual_contract_link_rule_requires_witness_object_membership_proof",
+            "actual_contract_link_rule_requires_contract_target_satisfaction_proof",
+            "actual_contract_link_rule_requires_target_ref_value_equations_proof_grade",
+            "actual_contract_link_rule_preserves_fail_closed_outputs"
+          ],
+          "missing_fields": [],
+          "failure_codes": [],
+          "passed": true
+        },
+        {
+          "method_id": "membership_source_condition_bundle_check",
+          "description": "Check whether the source candidate carries the IDs, target references, inherited field claims, and same source witness-object attempt needed to pose the membership proof burden.",
+          "output_kind": "membership-source-condition-bundle",
+          "required_fields": [
+            "source_candidate_id_present",
+            "contract_target_id_present",
+            "endpoint_value_binding_map_id_present",
+            "witness_object_endpoint_boundary_binding_ref_id_present",
+            "source_witness_object_attempt_id_present",
+            "first_endpoint_boundary_binding_primitive_id_present",
+            "target_endpoint_value_binding_source_equations_present",
+            "source_candidate_targets_endpoint_value_binding_map",
+            "source_candidate_targets_endpoint_boundary_binding_ref",
+            "source_candidate_targets_witness_object_attempt",
+            "source_candidate_targets_contract_target",
+            "inherited_witness_object_endpoint_boundary_binding_ref_field_claim",
+            "inherited_witness_object_endpoint_value_binding_map_field_claim",
+            "same_source_witness_object_attempt_id_referenced",
+            "witness_object_symbol_present",
+            "binding_symbol_present",
+            "membership_source_conditions_ready"
+          ],
+          "missing_fields": [],
+          "failure_codes": [],
+          "passed": true
+        },
+        {
+          "method_id": "witness_object_membership_proof_check",
+          "description": "Check whether the packet proves same constructed-witness-object membership for the endpoint-boundary-binding ref and endpoint value-binding map.",
+          "output_kind": "witness-object-membership-proof",
+          "required_fields": [
+            "witness_object_membership_proof_present",
+            "same_constructed_witness_object_identity_proof_present",
+            "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+            "endpoint_value_binding_map_member_of_witness_object_proven",
+            "endpoint_ref_and_value_map_same_witness_object_proven",
+            "membership_source_not_id_adjacency_proven"
+          ],
+          "missing_fields": [
+            "witness_object_membership_proof_present",
+            "same_constructed_witness_object_identity_proof_present",
+            "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+            "endpoint_value_binding_map_member_of_witness_object_proven",
+            "endpoint_ref_and_value_map_same_witness_object_proven",
+            "membership_source_not_id_adjacency_proven"
+          ],
+          "failure_codes": [
+            "contract_link_membership_rule_missing_witness_object_membership_proof_present",
+            "contract_link_membership_rule_missing_same_constructed_witness_object_identity_proof_present",
+            "contract_link_membership_rule_missing_endpoint_boundary_binding_ref_member_of_witness_object_proven",
+            "contract_link_membership_rule_missing_endpoint_value_binding_map_member_of_witness_object_proven",
+            "contract_link_membership_rule_missing_endpoint_ref_and_value_map_same_witness_object_proven",
+            "contract_link_membership_rule_missing_membership_source_not_id_adjacency_proven"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "actual_contract_link_obligation_check",
+          "description": "Check whether an available actual-link rule and every actual-link obligation construct a witness-object contract link.",
+          "output_kind": "actual-contract-link",
+          "required_fields": [
+            "actual_contract_link_rule_available",
+            "witness_object_membership_proof_present",
+            "contract_target_satisfaction_proof_present",
+            "target_ref_value_equations_proof_grade",
+            "endpoint_boundary_binding_ref_compatibility_proof_present",
+            "first_primitive_compatibility_proof_present",
+            "carrier_admission_bridge_present",
+            "motion_evaluation_bridge_present",
+            "algebraic_certificate_bridge_present",
+            "candidate_replay_bridge_present",
+            "actual_contract_link_rule_obligations_satisfied"
+          ],
+          "missing_fields": [
+            "actual_contract_link_rule_available",
+            "witness_object_membership_proof_present",
+            "contract_target_satisfaction_proof_present",
+            "target_ref_value_equations_proof_grade",
+            "endpoint_boundary_binding_ref_compatibility_proof_present",
+            "first_primitive_compatibility_proof_present",
+            "carrier_admission_bridge_present",
+            "motion_evaluation_bridge_present",
+            "algebraic_certificate_bridge_present",
+            "candidate_replay_bridge_present",
+            "actual_contract_link_rule_obligations_satisfied"
+          ],
+          "failure_codes": [
+            "contract_link_membership_rule_missing_actual_contract_link_rule_available",
+            "contract_link_membership_rule_missing_witness_object_membership_proof_present",
+            "contract_link_membership_rule_missing_contract_target_satisfaction_proof_present",
+            "contract_link_membership_rule_missing_target_ref_value_equations_proof_grade",
+            "contract_link_membership_rule_missing_endpoint_boundary_binding_ref_compatibility_proof_present",
+            "contract_link_membership_rule_missing_first_primitive_compatibility_proof_present",
+            "contract_link_membership_rule_missing_carrier_admission_bridge_present",
+            "contract_link_membership_rule_missing_motion_evaluation_bridge_present",
+            "contract_link_membership_rule_missing_algebraic_certificate_bridge_present",
+            "contract_link_membership_rule_missing_candidate_replay_bridge_present",
+            "contract_link_membership_rule_missing_actual_contract_link_rule_obligations_satisfied"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "downstream_contract_and_carrier_admission_check",
+          "description": "Check whether the actual link unlocks binding contract satisfaction, full endpoint boundary binding, and both carrier admissions.",
+          "output_kind": "full-endpoint-boundary-binding",
+          "required_fields": [
+            "witness_object_contract_link_constructed",
+            "witness_object_has_contract_link",
+            "binding_contract_satisfied",
+            "full_endpoint_boundary_binding_constructed",
+            "endpoint_boundary_binding_ref_carrier_unblocked",
+            "endpoint_value_binding_map_carrier_unblocked"
+          ],
+          "missing_fields": [
+            "witness_object_contract_link_constructed",
+            "witness_object_has_contract_link",
+            "binding_contract_satisfied",
+            "full_endpoint_boundary_binding_constructed",
+            "endpoint_boundary_binding_ref_carrier_unblocked",
+            "endpoint_value_binding_map_carrier_unblocked"
+          ],
+          "failure_codes": [
+            "contract_link_membership_rule_missing_witness_object_contract_link_constructed",
+            "contract_link_membership_rule_missing_witness_object_has_contract_link",
+            "contract_link_membership_rule_missing_binding_contract_satisfied",
+            "contract_link_membership_rule_missing_full_endpoint_boundary_binding_constructed",
+            "contract_link_membership_rule_missing_endpoint_boundary_binding_ref_carrier_unblocked",
+            "contract_link_membership_rule_missing_endpoint_value_binding_map_carrier_unblocked"
+          ],
+          "passed": false
+        }
+      ],
+      "construction_methods_passed": [
+        "conditional_actual_contract_link_rule_declaration_attempt",
+        "membership_source_condition_bundle_check"
+      ],
+      "actual_contract_link_obligation_statuses": [
+        {
+          "obligation_id": "actual_contract_link_rule_available",
+          "description": "Supply a proof-grade rule whose conclusion is an actual witness-object contract link when every listed premise is present.",
+          "source_evidence": "source-conditions-only-rule-not-declared",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "witness_object_membership_proof_present",
+          "description": "Prove that the endpoint-boundary-binding ref and endpoint value-binding map are fields of the same constructed witness object rather than only adjacent referenced IDs or inherited field claims.",
+          "source_evidence": "membership-source-conditions-only",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "contract_target_satisfaction_proof_present",
+          "description": "Prove satisfaction of the inherited full endpoint boundary-binding contract target.",
+          "source_evidence": "contract-test-applied-contract-not-satisfied",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "target_ref_value_equations_proof_grade",
+          "description": "Promote every target ref/value equation beyond source-equation-only status into proof-grade contract-link evidence.",
+          "source_evidence": "source-equation-only",
+          "satisfied": false,
+          "observed_equation_statuses": [
+            "source-equation-only"
+          ]
+        },
+        {
+          "obligation_id": "endpoint_boundary_binding_ref_compatibility_proof_present",
+          "description": "Certify the endpoint-boundary-binding ref as compatible with the target endpoint boundary-binding object on the domain-chart carrier.",
+          "source_evidence": "ref-carrier-locked",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "first_primitive_compatibility_proof_present",
+          "description": "Certify the first endpoint boundary-binding primitive as compatible with the value map and contract target.",
+          "source_evidence": "primitive-id-only",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "carrier_admission_bridge_present",
+          "description": "Bridge the actual link into endpoint-boundary-binding reference carrier and endpoint value-map carrier admission.",
+          "source_evidence": "carrier-admission-absent",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "motion_evaluation_bridge_present",
+          "description": "Connect the link to endpoint motion/evaluation maps, including full endpoint and global domain evaluation maps.",
+          "source_evidence": "motion-evaluation-absent",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "algebraic_certificate_bridge_present",
+          "description": "Supply non-target zero, exact screen zero, and rank certificates needed by full endpoint boundary binding.",
+          "source_evidence": "algebraic-certificates-absent",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "candidate_replay_bridge_present",
+          "description": "Supply candidate artifacts, topology recertification, and proof-interval replay before row consumption.",
+          "source_evidence": "replay-absent",
+          "satisfied": false
+        }
+      ],
+      "missing_actual_contract_link_obligations": [
+        {
+          "obligation_id": "actual_contract_link_rule_available",
+          "description": "Supply a proof-grade rule whose conclusion is an actual witness-object contract link when every listed premise is present.",
+          "source_evidence": "source-conditions-only-rule-not-declared",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "witness_object_membership_proof_present",
+          "description": "Prove that the endpoint-boundary-binding ref and endpoint value-binding map are fields of the same constructed witness object rather than only adjacent referenced IDs or inherited field claims.",
+          "source_evidence": "membership-source-conditions-only",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "contract_target_satisfaction_proof_present",
+          "description": "Prove satisfaction of the inherited full endpoint boundary-binding contract target.",
+          "source_evidence": "contract-test-applied-contract-not-satisfied",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "target_ref_value_equations_proof_grade",
+          "description": "Promote every target ref/value equation beyond source-equation-only status into proof-grade contract-link evidence.",
+          "source_evidence": "source-equation-only",
+          "satisfied": false,
+          "observed_equation_statuses": [
+            "source-equation-only"
+          ]
+        },
+        {
+          "obligation_id": "endpoint_boundary_binding_ref_compatibility_proof_present",
+          "description": "Certify the endpoint-boundary-binding ref as compatible with the target endpoint boundary-binding object on the domain-chart carrier.",
+          "source_evidence": "ref-carrier-locked",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "first_primitive_compatibility_proof_present",
+          "description": "Certify the first endpoint boundary-binding primitive as compatible with the value map and contract target.",
+          "source_evidence": "primitive-id-only",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "carrier_admission_bridge_present",
+          "description": "Bridge the actual link into endpoint-boundary-binding reference carrier and endpoint value-map carrier admission.",
+          "source_evidence": "carrier-admission-absent",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "motion_evaluation_bridge_present",
+          "description": "Connect the link to endpoint motion/evaluation maps, including full endpoint and global domain evaluation maps.",
+          "source_evidence": "motion-evaluation-absent",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "algebraic_certificate_bridge_present",
+          "description": "Supply non-target zero, exact screen zero, and rank certificates needed by full endpoint boundary binding.",
+          "source_evidence": "algebraic-certificates-absent",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "candidate_replay_bridge_present",
+          "description": "Supply candidate artifacts, topology recertification, and proof-interval replay before row consumption.",
+          "source_evidence": "replay-absent",
+          "satisfied": false
+        }
+      ],
+      "missing_actual_contract_link_obligation_count": 10,
+      "membership_proof_burdens": [
+        {
+          "burden_id": "same_constructed_witness_object_identity",
+          "required_evidence": "A proof-grade identity certificate that the endpoint-boundary-binding ref and endpoint value-binding map are attached to one constructed witness object, not merely to matching endpoint IDs."
+        },
+        {
+          "burden_id": "endpoint_boundary_binding_ref_membership",
+          "required_evidence": "A field-membership proof for the endpoint-boundary-binding ref inside the constructed witness object."
+        },
+        {
+          "burden_id": "endpoint_value_binding_map_membership",
+          "required_evidence": "A field-membership proof for the endpoint value-binding map inside the constructed witness object."
+        },
+        {
+          "burden_id": "membership_not_id_adjacency",
+          "required_evidence": "A check that same-ID adjacency, inherited field claims, and source-candidate target references are not promoted into membership proof without a constructed witness-object certificate."
+        }
+      ],
+      "actual_contract_link_rule_available": false,
+      "membership_source_conditions_ready": true,
+      "witness_object_membership_proof_present": false,
+      "actual_contract_link_rule_obligations_satisfied": false,
+      "witness_object_contract_link": null,
+      "witness_object_contract_link_constructed": false,
+      "witness_object_has_contract_link": false,
+      "binding_contract_satisfied": false,
+      "full_endpoint_boundary_binding_constructed": false,
+      "endpoint_boundary_binding_ref_carrier_unblocked": false,
+      "endpoint_value_binding_map_carrier_unblocked": false,
+      "failure_codes": [
+        "contract_link_membership_rule_locked_actual_contract_link_rule_available",
+        "contract_link_membership_rule_locked_witness_object_membership_proof_present",
+        "contract_link_membership_rule_locked_contract_target_satisfaction_proof_present",
+        "contract_link_membership_rule_locked_target_ref_value_equations_proof_grade",
+        "contract_link_membership_rule_locked_endpoint_boundary_binding_ref_compatibility_proof_present",
+        "contract_link_membership_rule_locked_first_primitive_compatibility_proof_present",
+        "contract_link_membership_rule_locked_carrier_admission_bridge_present",
+        "contract_link_membership_rule_locked_motion_evaluation_bridge_present",
+        "contract_link_membership_rule_locked_algebraic_certificate_bridge_present",
+        "contract_link_membership_rule_locked_candidate_replay_bridge_present",
+        "contract_link_membership_rule_locked_witness_object_contract_link_constructed",
+        "contract_link_membership_rule_locked_witness_object_has_contract_link",
+        "contract_link_membership_rule_locked_binding_contract_satisfied",
+        "contract_link_membership_rule_locked_full_endpoint_boundary_binding_constructed",
+        "contract_link_membership_rule_locked_endpoint_boundary_binding_ref_carrier_unblocked",
+        "contract_link_membership_rule_locked_endpoint_value_binding_map_carrier_unblocked"
+      ],
+      "obstruction": "The actual-link rule source conditions and membership source conditions are present, but no available actual contract-link rule or proof-grade same constructed-witness-object membership certificate is supplied, so the actual witness-object contract link remains absent."
+    },
+    {
+      "id": "fc_rho_receiver_upper",
+      "endpoint_functional_id": "E_lower_receiver_upper_boundary",
+      "role": "receiver",
+      "contract_link_membership_rule_attempt_id": "contract_link_membership_rule_attempt:fc_rho_receiver_upper",
+      "source_actual_contract_link_rule_attempt_id": "actual_contract_link_rule_attempt:fc_rho_receiver_upper",
+      "source_witness_object_contract_link_construction_attempt_id": "witness_object_contract_link_construction_attempt:fc_rho_receiver_upper",
+      "source_candidate_id": "witness_object_contract_link_source_candidate:fc_rho_receiver_upper",
+      "source_contract_target_id": "full_endpoint_boundary_binding_contract_target:fc_rho_receiver_upper",
+      "source_endpoint_value_binding_map_id": "endpoint_value_binding_map:fc_rho_receiver_upper",
+      "witness_object_endpoint_boundary_binding_ref_id": "witness_object_endpoint_boundary_binding_ref:fc_rho_receiver_upper",
+      "source_witness_object_attempt_id": "endpoint_boundary_binding_witness_object_attempt:fc_rho_receiver_upper",
+      "source_first_endpoint_boundary_binding_primitive_id": "endpoint_boundary_binding_primitive:fc_rho_receiver_upper",
+      "binding_symbol": "BB_fc_rho_receiver_upper",
+      "witness_object_symbol": "WBB_fc_rho_receiver_upper",
+      "target_endpoint_ref_value_count": 1,
+      "target_endpoint_value_binding_source_equation_statuses": [
+        "source-equation-only"
+      ],
+      "conditional_actual_contract_link_rule": {
+        "rule_id": "conditional_actual_contract_link_rule:fc_rho_receiver_upper",
+        "premise_ids": {
+          "source_witness_object_attempt_id": "endpoint_boundary_binding_witness_object_attempt:fc_rho_receiver_upper",
+          "contract_target_id": "full_endpoint_boundary_binding_contract_target:fc_rho_receiver_upper",
+          "endpoint_value_binding_map_id": "endpoint_value_binding_map:fc_rho_receiver_upper",
+          "witness_object_endpoint_boundary_binding_ref_id": "witness_object_endpoint_boundary_binding_ref:fc_rho_receiver_upper",
+          "first_endpoint_boundary_binding_primitive_id": "endpoint_boundary_binding_primitive:fc_rho_receiver_upper",
+          "source_candidate_id": "witness_object_contract_link_source_candidate:fc_rho_receiver_upper"
+        },
+        "premises_required": [
+          "actual_contract_link_rule_available",
+          "witness_object_membership_proof_present",
+          "contract_target_satisfaction_proof_present",
+          "target_ref_value_equations_proof_grade",
+          "endpoint_boundary_binding_ref_compatibility_proof_present",
+          "first_primitive_compatibility_proof_present",
+          "carrier_admission_bridge_present",
+          "motion_evaluation_bridge_present",
+          "algebraic_certificate_bridge_present",
+          "candidate_replay_bridge_present"
+        ],
+        "conclusion_if_all_premises_proven": "Construct and attach the witness-object contract link, then test binding contract satisfaction, full endpoint boundary binding, carrier admission, residual readiness, and row consumption.",
+        "soundness_limit": "This rule declaration does not construct an actual witness-object contract link unless every listed proof-grade premise is true."
+      },
+      "membership_source_condition_bundle": {
+        "condition_fields": [
+          "source_candidate_id_present",
+          "contract_target_id_present",
+          "endpoint_value_binding_map_id_present",
+          "witness_object_endpoint_boundary_binding_ref_id_present",
+          "source_witness_object_attempt_id_present",
+          "first_endpoint_boundary_binding_primitive_id_present",
+          "target_endpoint_value_binding_source_equations_present",
+          "source_candidate_targets_endpoint_value_binding_map",
+          "source_candidate_targets_endpoint_boundary_binding_ref",
+          "source_candidate_targets_witness_object_attempt",
+          "source_candidate_targets_contract_target",
+          "inherited_witness_object_endpoint_boundary_binding_ref_field_claim",
+          "inherited_witness_object_endpoint_value_binding_map_field_claim",
+          "same_source_witness_object_attempt_id_referenced",
+          "witness_object_symbol_present",
+          "binding_symbol_present"
+        ],
+        "ready": true,
+        "inherited_field_claims_are_not_membership_proofs": true,
+        "source_candidate_references_are_not_membership_proofs": true
+      },
+      "required_fields_present": {
+        "actual_contract_link_rule_attempt_inherited": true,
+        "actual_contract_link_conditional_rule_declaration_attempted": true,
+        "actual_contract_link_rule_source_conditions_present": true,
+        "actual_contract_link_rule_available": false,
+        "actual_contract_link_rule_requires_witness_object_membership_proof": true,
+        "actual_contract_link_rule_requires_contract_target_satisfaction_proof": true,
+        "actual_contract_link_rule_requires_target_ref_value_equations_proof_grade": true,
+        "actual_contract_link_rule_preserves_fail_closed_outputs": true,
+        "source_candidate_id_present": true,
+        "contract_target_id_present": true,
+        "endpoint_value_binding_map_id_present": true,
+        "witness_object_endpoint_boundary_binding_ref_id_present": true,
+        "source_witness_object_attempt_id_present": true,
+        "first_endpoint_boundary_binding_primitive_id_present": true,
+        "target_endpoint_value_binding_source_equations_present": true,
+        "source_candidate_targets_endpoint_value_binding_map": true,
+        "source_candidate_targets_endpoint_boundary_binding_ref": true,
+        "source_candidate_targets_witness_object_attempt": true,
+        "source_candidate_targets_contract_target": true,
+        "inherited_witness_object_endpoint_boundary_binding_ref_field_claim": true,
+        "inherited_witness_object_endpoint_value_binding_map_field_claim": true,
+        "same_source_witness_object_attempt_id_referenced": true,
+        "witness_object_symbol_present": true,
+        "binding_symbol_present": true,
+        "membership_source_conditions_ready": true,
+        "witness_object_membership_proof_present": false,
+        "same_constructed_witness_object_identity_proof_present": false,
+        "endpoint_boundary_binding_ref_member_of_witness_object_proven": false,
+        "endpoint_value_binding_map_member_of_witness_object_proven": false,
+        "endpoint_ref_and_value_map_same_witness_object_proven": false,
+        "membership_source_not_id_adjacency_proven": false,
+        "contract_target_satisfaction_proof_present": false,
+        "target_ref_value_equations_proof_grade": false,
+        "endpoint_boundary_binding_ref_compatibility_proof_present": false,
+        "first_primitive_compatibility_proof_present": false,
+        "carrier_admission_bridge_present": false,
+        "motion_evaluation_bridge_present": false,
+        "algebraic_certificate_bridge_present": false,
+        "candidate_replay_bridge_present": false,
+        "actual_contract_link_rule_obligations_satisfied": false,
+        "witness_object_contract_link_constructed": false,
+        "witness_object_has_contract_link": false,
+        "binding_contract_satisfied": false,
+        "full_endpoint_boundary_binding_constructed": false,
+        "endpoint_boundary_binding_ref_carrier_unblocked": false,
+        "endpoint_value_binding_map_carrier_unblocked": false
+      },
+      "construction_method_results": [
+        {
+          "method_id": "conditional_actual_contract_link_rule_declaration_attempt",
+          "description": "Record the source conditions for a conditional actual contract-link introduction rule without treating that source-condition record as a declared proof rule.",
+          "output_kind": "conditional-actual-contract-link-rule-source-condition",
+          "required_fields": [
+            "actual_contract_link_rule_attempt_inherited",
+            "actual_contract_link_conditional_rule_declaration_attempted",
+            "actual_contract_link_rule_source_conditions_present",
+            "actual_contract_link_rule_requires_witness_object_membership_proof",
+            "actual_contract_link_rule_requires_contract_target_satisfaction_proof",
+            "actual_contract_link_rule_requires_target_ref_value_equations_proof_grade",
+            "actual_contract_link_rule_preserves_fail_closed_outputs"
+          ],
+          "missing_fields": [],
+          "failure_codes": [],
+          "passed": true
+        },
+        {
+          "method_id": "membership_source_condition_bundle_check",
+          "description": "Check whether the source candidate carries the IDs, target references, inherited field claims, and same source witness-object attempt needed to pose the membership proof burden.",
+          "output_kind": "membership-source-condition-bundle",
+          "required_fields": [
+            "source_candidate_id_present",
+            "contract_target_id_present",
+            "endpoint_value_binding_map_id_present",
+            "witness_object_endpoint_boundary_binding_ref_id_present",
+            "source_witness_object_attempt_id_present",
+            "first_endpoint_boundary_binding_primitive_id_present",
+            "target_endpoint_value_binding_source_equations_present",
+            "source_candidate_targets_endpoint_value_binding_map",
+            "source_candidate_targets_endpoint_boundary_binding_ref",
+            "source_candidate_targets_witness_object_attempt",
+            "source_candidate_targets_contract_target",
+            "inherited_witness_object_endpoint_boundary_binding_ref_field_claim",
+            "inherited_witness_object_endpoint_value_binding_map_field_claim",
+            "same_source_witness_object_attempt_id_referenced",
+            "witness_object_symbol_present",
+            "binding_symbol_present",
+            "membership_source_conditions_ready"
+          ],
+          "missing_fields": [],
+          "failure_codes": [],
+          "passed": true
+        },
+        {
+          "method_id": "witness_object_membership_proof_check",
+          "description": "Check whether the packet proves same constructed-witness-object membership for the endpoint-boundary-binding ref and endpoint value-binding map.",
+          "output_kind": "witness-object-membership-proof",
+          "required_fields": [
+            "witness_object_membership_proof_present",
+            "same_constructed_witness_object_identity_proof_present",
+            "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+            "endpoint_value_binding_map_member_of_witness_object_proven",
+            "endpoint_ref_and_value_map_same_witness_object_proven",
+            "membership_source_not_id_adjacency_proven"
+          ],
+          "missing_fields": [
+            "witness_object_membership_proof_present",
+            "same_constructed_witness_object_identity_proof_present",
+            "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+            "endpoint_value_binding_map_member_of_witness_object_proven",
+            "endpoint_ref_and_value_map_same_witness_object_proven",
+            "membership_source_not_id_adjacency_proven"
+          ],
+          "failure_codes": [
+            "contract_link_membership_rule_missing_witness_object_membership_proof_present",
+            "contract_link_membership_rule_missing_same_constructed_witness_object_identity_proof_present",
+            "contract_link_membership_rule_missing_endpoint_boundary_binding_ref_member_of_witness_object_proven",
+            "contract_link_membership_rule_missing_endpoint_value_binding_map_member_of_witness_object_proven",
+            "contract_link_membership_rule_missing_endpoint_ref_and_value_map_same_witness_object_proven",
+            "contract_link_membership_rule_missing_membership_source_not_id_adjacency_proven"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "actual_contract_link_obligation_check",
+          "description": "Check whether an available actual-link rule and every actual-link obligation construct a witness-object contract link.",
+          "output_kind": "actual-contract-link",
+          "required_fields": [
+            "actual_contract_link_rule_available",
+            "witness_object_membership_proof_present",
+            "contract_target_satisfaction_proof_present",
+            "target_ref_value_equations_proof_grade",
+            "endpoint_boundary_binding_ref_compatibility_proof_present",
+            "first_primitive_compatibility_proof_present",
+            "carrier_admission_bridge_present",
+            "motion_evaluation_bridge_present",
+            "algebraic_certificate_bridge_present",
+            "candidate_replay_bridge_present",
+            "actual_contract_link_rule_obligations_satisfied"
+          ],
+          "missing_fields": [
+            "actual_contract_link_rule_available",
+            "witness_object_membership_proof_present",
+            "contract_target_satisfaction_proof_present",
+            "target_ref_value_equations_proof_grade",
+            "endpoint_boundary_binding_ref_compatibility_proof_present",
+            "first_primitive_compatibility_proof_present",
+            "carrier_admission_bridge_present",
+            "motion_evaluation_bridge_present",
+            "algebraic_certificate_bridge_present",
+            "candidate_replay_bridge_present",
+            "actual_contract_link_rule_obligations_satisfied"
+          ],
+          "failure_codes": [
+            "contract_link_membership_rule_missing_actual_contract_link_rule_available",
+            "contract_link_membership_rule_missing_witness_object_membership_proof_present",
+            "contract_link_membership_rule_missing_contract_target_satisfaction_proof_present",
+            "contract_link_membership_rule_missing_target_ref_value_equations_proof_grade",
+            "contract_link_membership_rule_missing_endpoint_boundary_binding_ref_compatibility_proof_present",
+            "contract_link_membership_rule_missing_first_primitive_compatibility_proof_present",
+            "contract_link_membership_rule_missing_carrier_admission_bridge_present",
+            "contract_link_membership_rule_missing_motion_evaluation_bridge_present",
+            "contract_link_membership_rule_missing_algebraic_certificate_bridge_present",
+            "contract_link_membership_rule_missing_candidate_replay_bridge_present",
+            "contract_link_membership_rule_missing_actual_contract_link_rule_obligations_satisfied"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "downstream_contract_and_carrier_admission_check",
+          "description": "Check whether the actual link unlocks binding contract satisfaction, full endpoint boundary binding, and both carrier admissions.",
+          "output_kind": "full-endpoint-boundary-binding",
+          "required_fields": [
+            "witness_object_contract_link_constructed",
+            "witness_object_has_contract_link",
+            "binding_contract_satisfied",
+            "full_endpoint_boundary_binding_constructed",
+            "endpoint_boundary_binding_ref_carrier_unblocked",
+            "endpoint_value_binding_map_carrier_unblocked"
+          ],
+          "missing_fields": [
+            "witness_object_contract_link_constructed",
+            "witness_object_has_contract_link",
+            "binding_contract_satisfied",
+            "full_endpoint_boundary_binding_constructed",
+            "endpoint_boundary_binding_ref_carrier_unblocked",
+            "endpoint_value_binding_map_carrier_unblocked"
+          ],
+          "failure_codes": [
+            "contract_link_membership_rule_missing_witness_object_contract_link_constructed",
+            "contract_link_membership_rule_missing_witness_object_has_contract_link",
+            "contract_link_membership_rule_missing_binding_contract_satisfied",
+            "contract_link_membership_rule_missing_full_endpoint_boundary_binding_constructed",
+            "contract_link_membership_rule_missing_endpoint_boundary_binding_ref_carrier_unblocked",
+            "contract_link_membership_rule_missing_endpoint_value_binding_map_carrier_unblocked"
+          ],
+          "passed": false
+        }
+      ],
+      "construction_methods_passed": [
+        "conditional_actual_contract_link_rule_declaration_attempt",
+        "membership_source_condition_bundle_check"
+      ],
+      "actual_contract_link_obligation_statuses": [
+        {
+          "obligation_id": "actual_contract_link_rule_available",
+          "description": "Supply a proof-grade rule whose conclusion is an actual witness-object contract link when every listed premise is present.",
+          "source_evidence": "source-conditions-only-rule-not-declared",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "witness_object_membership_proof_present",
+          "description": "Prove that the endpoint-boundary-binding ref and endpoint value-binding map are fields of the same constructed witness object rather than only adjacent referenced IDs or inherited field claims.",
+          "source_evidence": "membership-source-conditions-only",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "contract_target_satisfaction_proof_present",
+          "description": "Prove satisfaction of the inherited full endpoint boundary-binding contract target.",
+          "source_evidence": "contract-test-applied-contract-not-satisfied",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "target_ref_value_equations_proof_grade",
+          "description": "Promote every target ref/value equation beyond source-equation-only status into proof-grade contract-link evidence.",
+          "source_evidence": "source-equation-only",
+          "satisfied": false,
+          "observed_equation_statuses": [
+            "source-equation-only"
+          ]
+        },
+        {
+          "obligation_id": "endpoint_boundary_binding_ref_compatibility_proof_present",
+          "description": "Certify the endpoint-boundary-binding ref as compatible with the target endpoint boundary-binding object on the domain-chart carrier.",
+          "source_evidence": "ref-carrier-locked",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "first_primitive_compatibility_proof_present",
+          "description": "Certify the first endpoint boundary-binding primitive as compatible with the value map and contract target.",
+          "source_evidence": "primitive-id-only",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "carrier_admission_bridge_present",
+          "description": "Bridge the actual link into endpoint-boundary-binding reference carrier and endpoint value-map carrier admission.",
+          "source_evidence": "carrier-admission-absent",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "motion_evaluation_bridge_present",
+          "description": "Connect the link to endpoint motion/evaluation maps, including full endpoint and global domain evaluation maps.",
+          "source_evidence": "motion-evaluation-absent",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "algebraic_certificate_bridge_present",
+          "description": "Supply non-target zero, exact screen zero, and rank certificates needed by full endpoint boundary binding.",
+          "source_evidence": "algebraic-certificates-absent",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "candidate_replay_bridge_present",
+          "description": "Supply candidate artifacts, topology recertification, and proof-interval replay before row consumption.",
+          "source_evidence": "replay-absent",
+          "satisfied": false
+        }
+      ],
+      "missing_actual_contract_link_obligations": [
+        {
+          "obligation_id": "actual_contract_link_rule_available",
+          "description": "Supply a proof-grade rule whose conclusion is an actual witness-object contract link when every listed premise is present.",
+          "source_evidence": "source-conditions-only-rule-not-declared",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "witness_object_membership_proof_present",
+          "description": "Prove that the endpoint-boundary-binding ref and endpoint value-binding map are fields of the same constructed witness object rather than only adjacent referenced IDs or inherited field claims.",
+          "source_evidence": "membership-source-conditions-only",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "contract_target_satisfaction_proof_present",
+          "description": "Prove satisfaction of the inherited full endpoint boundary-binding contract target.",
+          "source_evidence": "contract-test-applied-contract-not-satisfied",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "target_ref_value_equations_proof_grade",
+          "description": "Promote every target ref/value equation beyond source-equation-only status into proof-grade contract-link evidence.",
+          "source_evidence": "source-equation-only",
+          "satisfied": false,
+          "observed_equation_statuses": [
+            "source-equation-only"
+          ]
+        },
+        {
+          "obligation_id": "endpoint_boundary_binding_ref_compatibility_proof_present",
+          "description": "Certify the endpoint-boundary-binding ref as compatible with the target endpoint boundary-binding object on the domain-chart carrier.",
+          "source_evidence": "ref-carrier-locked",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "first_primitive_compatibility_proof_present",
+          "description": "Certify the first endpoint boundary-binding primitive as compatible with the value map and contract target.",
+          "source_evidence": "primitive-id-only",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "carrier_admission_bridge_present",
+          "description": "Bridge the actual link into endpoint-boundary-binding reference carrier and endpoint value-map carrier admission.",
+          "source_evidence": "carrier-admission-absent",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "motion_evaluation_bridge_present",
+          "description": "Connect the link to endpoint motion/evaluation maps, including full endpoint and global domain evaluation maps.",
+          "source_evidence": "motion-evaluation-absent",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "algebraic_certificate_bridge_present",
+          "description": "Supply non-target zero, exact screen zero, and rank certificates needed by full endpoint boundary binding.",
+          "source_evidence": "algebraic-certificates-absent",
+          "satisfied": false
+        },
+        {
+          "obligation_id": "candidate_replay_bridge_present",
+          "description": "Supply candidate artifacts, topology recertification, and proof-interval replay before row consumption.",
+          "source_evidence": "replay-absent",
+          "satisfied": false
+        }
+      ],
+      "missing_actual_contract_link_obligation_count": 10,
+      "membership_proof_burdens": [
+        {
+          "burden_id": "same_constructed_witness_object_identity",
+          "required_evidence": "A proof-grade identity certificate that the endpoint-boundary-binding ref and endpoint value-binding map are attached to one constructed witness object, not merely to matching endpoint IDs."
+        },
+        {
+          "burden_id": "endpoint_boundary_binding_ref_membership",
+          "required_evidence": "A field-membership proof for the endpoint-boundary-binding ref inside the constructed witness object."
+        },
+        {
+          "burden_id": "endpoint_value_binding_map_membership",
+          "required_evidence": "A field-membership proof for the endpoint value-binding map inside the constructed witness object."
+        },
+        {
+          "burden_id": "membership_not_id_adjacency",
+          "required_evidence": "A check that same-ID adjacency, inherited field claims, and source-candidate target references are not promoted into membership proof without a constructed witness-object certificate."
+        }
+      ],
+      "actual_contract_link_rule_available": false,
+      "membership_source_conditions_ready": true,
+      "witness_object_membership_proof_present": false,
+      "actual_contract_link_rule_obligations_satisfied": false,
+      "witness_object_contract_link": null,
+      "witness_object_contract_link_constructed": false,
+      "witness_object_has_contract_link": false,
+      "binding_contract_satisfied": false,
+      "full_endpoint_boundary_binding_constructed": false,
+      "endpoint_boundary_binding_ref_carrier_unblocked": false,
+      "endpoint_value_binding_map_carrier_unblocked": false,
+      "failure_codes": [
+        "contract_link_membership_rule_locked_actual_contract_link_rule_available",
+        "contract_link_membership_rule_locked_witness_object_membership_proof_present",
+        "contract_link_membership_rule_locked_contract_target_satisfaction_proof_present",
+        "contract_link_membership_rule_locked_target_ref_value_equations_proof_grade",
+        "contract_link_membership_rule_locked_endpoint_boundary_binding_ref_compatibility_proof_present",
+        "contract_link_membership_rule_locked_first_primitive_compatibility_proof_present",
+        "contract_link_membership_rule_locked_carrier_admission_bridge_present",
+        "contract_link_membership_rule_locked_motion_evaluation_bridge_present",
+        "contract_link_membership_rule_locked_algebraic_certificate_bridge_present",
+        "contract_link_membership_rule_locked_candidate_replay_bridge_present",
+        "contract_link_membership_rule_locked_witness_object_contract_link_constructed",
+        "contract_link_membership_rule_locked_witness_object_has_contract_link",
+        "contract_link_membership_rule_locked_binding_contract_satisfied",
+        "contract_link_membership_rule_locked_full_endpoint_boundary_binding_constructed",
+        "contract_link_membership_rule_locked_endpoint_boundary_binding_ref_carrier_unblocked",
+        "contract_link_membership_rule_locked_endpoint_value_binding_map_carrier_unblocked"
+      ],
+      "obstruction": "The actual-link rule source conditions and membership source conditions are present, but no available actual contract-link rule or proof-grade same constructed-witness-object membership certificate is supplied, so the actual witness-object contract link remains absent."
+    }
+  ],
+  "row_contract_link_membership_rule_attempts": [
+    {
+      "row_id": "R_w_A04_A03",
+      "cover_id": "G_w_A04_A03_v6_10",
+      "ledger": "w",
+      "source_interval": "A03",
+      "receiver_interval": "A04",
+      "failed_side": "lo",
+      "boundary_side": "lower",
+      "source_variable": "fc_sigma_source_lower",
+      "receiver_variable": "fc_rho_receiver_lower",
+      "source_contract_link_membership_rule_attempt_id": "contract_link_membership_rule_attempt:fc_sigma_source_lower",
+      "receiver_contract_link_membership_rule_attempt_id": "contract_link_membership_rule_attempt:fc_rho_receiver_lower",
+      "source_candidate_id": "witness_object_contract_link_source_candidate:fc_sigma_source_lower",
+      "receiver_candidate_id": "witness_object_contract_link_source_candidate:fc_rho_receiver_lower",
+      "source_witness_object_contract_link_id": null,
+      "receiver_witness_object_contract_link_id": null,
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "source_actual_contract_link_rule_source_conditions_present": true,
+        "receiver_actual_contract_link_rule_source_conditions_present": true,
+        "combined_actual_contract_link_rule_source_condition_pair_present": true,
+        "source_membership_source_conditions_ready": true,
+        "receiver_membership_source_conditions_ready": true,
+        "combined_membership_source_condition_pair_ready": true,
+        "source_witness_object_membership_proof_present": false,
+        "receiver_witness_object_membership_proof_present": false,
+        "combined_witness_object_membership_proof_pair_present": false,
+        "source_actual_contract_link_rule_obligations_satisfied": false,
+        "receiver_actual_contract_link_rule_obligations_satisfied": false,
+        "combined_actual_contract_link_rule_obligations_satisfied": false,
+        "source_witness_object_contract_link_constructed": false,
+        "receiver_witness_object_contract_link_constructed": false,
+        "combined_witness_object_contract_link_pair_constructed": false,
+        "source_binding_contract_satisfied": false,
+        "receiver_binding_contract_satisfied": false,
+        "combined_binding_contract_pair_satisfied": false,
+        "source_full_endpoint_boundary_binding_constructed": false,
+        "receiver_full_endpoint_boundary_binding_constructed": false,
+        "combined_full_endpoint_boundary_binding_pair_constructed": false,
+        "source_endpoint_boundary_binding_ref_carrier_unblocked": false,
+        "receiver_endpoint_boundary_binding_ref_carrier_unblocked": false,
+        "combined_endpoint_boundary_binding_ref_carrier_pair_unblocked": false,
+        "source_endpoint_value_binding_map_carrier_unblocked": false,
+        "receiver_endpoint_value_binding_map_carrier_unblocked": false,
+        "combined_endpoint_value_binding_map_carrier_pair_unblocked": false,
+        "residual_data_construction_ready": false,
+        "row_unblocked": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "row_unblocked": false,
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The row has conditional actual-link rules and source/receiver membership source-condition bundles, but both witness-object membership proofs are absent and no source/receiver witness-object contract-link pair is constructed."
+    },
+    {
+      "row_id": "R_u_A10_A09",
+      "cover_id": "G_u_A10_A09_v6_31",
+      "ledger": "u",
+      "source_interval": "A09",
+      "receiver_interval": "A10",
+      "failed_side": "lo",
+      "boundary_side": "lower",
+      "source_variable": "fc_sigma_source_lower",
+      "receiver_variable": "fc_rho_receiver_lower",
+      "source_contract_link_membership_rule_attempt_id": "contract_link_membership_rule_attempt:fc_sigma_source_lower",
+      "receiver_contract_link_membership_rule_attempt_id": "contract_link_membership_rule_attempt:fc_rho_receiver_lower",
+      "source_candidate_id": "witness_object_contract_link_source_candidate:fc_sigma_source_lower",
+      "receiver_candidate_id": "witness_object_contract_link_source_candidate:fc_rho_receiver_lower",
+      "source_witness_object_contract_link_id": null,
+      "receiver_witness_object_contract_link_id": null,
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "source_actual_contract_link_rule_source_conditions_present": true,
+        "receiver_actual_contract_link_rule_source_conditions_present": true,
+        "combined_actual_contract_link_rule_source_condition_pair_present": true,
+        "source_membership_source_conditions_ready": true,
+        "receiver_membership_source_conditions_ready": true,
+        "combined_membership_source_condition_pair_ready": true,
+        "source_witness_object_membership_proof_present": false,
+        "receiver_witness_object_membership_proof_present": false,
+        "combined_witness_object_membership_proof_pair_present": false,
+        "source_actual_contract_link_rule_obligations_satisfied": false,
+        "receiver_actual_contract_link_rule_obligations_satisfied": false,
+        "combined_actual_contract_link_rule_obligations_satisfied": false,
+        "source_witness_object_contract_link_constructed": false,
+        "receiver_witness_object_contract_link_constructed": false,
+        "combined_witness_object_contract_link_pair_constructed": false,
+        "source_binding_contract_satisfied": false,
+        "receiver_binding_contract_satisfied": false,
+        "combined_binding_contract_pair_satisfied": false,
+        "source_full_endpoint_boundary_binding_constructed": false,
+        "receiver_full_endpoint_boundary_binding_constructed": false,
+        "combined_full_endpoint_boundary_binding_pair_constructed": false,
+        "source_endpoint_boundary_binding_ref_carrier_unblocked": false,
+        "receiver_endpoint_boundary_binding_ref_carrier_unblocked": false,
+        "combined_endpoint_boundary_binding_ref_carrier_pair_unblocked": false,
+        "source_endpoint_value_binding_map_carrier_unblocked": false,
+        "receiver_endpoint_value_binding_map_carrier_unblocked": false,
+        "combined_endpoint_value_binding_map_carrier_pair_unblocked": false,
+        "residual_data_construction_ready": false,
+        "row_unblocked": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "row_unblocked": false,
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The row has conditional actual-link rules and source/receiver membership source-condition bundles, but both witness-object membership proofs are absent and no source/receiver witness-object contract-link pair is constructed."
+    },
+    {
+      "row_id": "R_u_A07_A06",
+      "cover_id": "G_u_A07_A06_v6_22",
+      "ledger": "u",
+      "source_interval": "A06",
+      "receiver_interval": "A07",
+      "failed_side": "hi",
+      "boundary_side": "upper",
+      "source_variable": "fc_sigma_source_upper",
+      "receiver_variable": "fc_rho_receiver_upper",
+      "source_contract_link_membership_rule_attempt_id": "contract_link_membership_rule_attempt:fc_sigma_source_upper",
+      "receiver_contract_link_membership_rule_attempt_id": "contract_link_membership_rule_attempt:fc_rho_receiver_upper",
+      "source_candidate_id": "witness_object_contract_link_source_candidate:fc_sigma_source_upper",
+      "receiver_candidate_id": "witness_object_contract_link_source_candidate:fc_rho_receiver_upper",
+      "source_witness_object_contract_link_id": null,
+      "receiver_witness_object_contract_link_id": null,
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "source_actual_contract_link_rule_source_conditions_present": true,
+        "receiver_actual_contract_link_rule_source_conditions_present": true,
+        "combined_actual_contract_link_rule_source_condition_pair_present": true,
+        "source_membership_source_conditions_ready": true,
+        "receiver_membership_source_conditions_ready": true,
+        "combined_membership_source_condition_pair_ready": true,
+        "source_witness_object_membership_proof_present": false,
+        "receiver_witness_object_membership_proof_present": false,
+        "combined_witness_object_membership_proof_pair_present": false,
+        "source_actual_contract_link_rule_obligations_satisfied": false,
+        "receiver_actual_contract_link_rule_obligations_satisfied": false,
+        "combined_actual_contract_link_rule_obligations_satisfied": false,
+        "source_witness_object_contract_link_constructed": false,
+        "receiver_witness_object_contract_link_constructed": false,
+        "combined_witness_object_contract_link_pair_constructed": false,
+        "source_binding_contract_satisfied": false,
+        "receiver_binding_contract_satisfied": false,
+        "combined_binding_contract_pair_satisfied": false,
+        "source_full_endpoint_boundary_binding_constructed": false,
+        "receiver_full_endpoint_boundary_binding_constructed": false,
+        "combined_full_endpoint_boundary_binding_pair_constructed": false,
+        "source_endpoint_boundary_binding_ref_carrier_unblocked": false,
+        "receiver_endpoint_boundary_binding_ref_carrier_unblocked": false,
+        "combined_endpoint_boundary_binding_ref_carrier_pair_unblocked": false,
+        "source_endpoint_value_binding_map_carrier_unblocked": false,
+        "receiver_endpoint_value_binding_map_carrier_unblocked": false,
+        "combined_endpoint_value_binding_map_carrier_pair_unblocked": false,
+        "residual_data_construction_ready": false,
+        "row_unblocked": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "row_unblocked": false,
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The row has conditional actual-link rules and source/receiver membership source-condition bundles, but both witness-object membership proofs are absent and no source/receiver witness-object contract-link pair is constructed."
+    }
+  ],
+  "summary": {
+    "endpoint_functionals": 4,
+    "residual_consumer_rows": 3,
+    "actual_contract_link_rule_attempts_inherited": 4,
+    "conditional_actual_contract_link_rule_declaration_attempts": 4,
+    "actual_contract_link_rule_source_conditions_present": 4,
+    "actual_contract_link_rules_available": 0,
+    "membership_source_condition_bundles_ready": 4,
+    "witness_object_membership_proofs_present": 0,
+    "actual_contract_link_rule_obligations_per_endpoint": 10,
+    "actual_contract_link_rule_obligations_satisfied": 0,
+    "actual_contract_link_rule_obligations_remaining_per_endpoint": 10,
+    "actual_contract_link_rule_obligations_remaining_total": 40,
+    "witness_object_contract_links_constructed": 0,
+    "witness_object_contract_links_attached": 0,
+    "binding_contracts_satisfied": 0,
+    "full_endpoint_boundary_bindings_constructed": 0,
+    "endpoint_boundary_binding_ref_carriers_unblocked": 0,
+    "endpoint_value_binding_map_carriers_unblocked": 0,
+    "row_actual_contract_link_rule_source_condition_pairs_present": 3,
+    "row_membership_source_condition_pairs_ready": 3,
+    "row_witness_object_membership_proof_pairs_present": 0,
+    "row_actual_contract_link_rule_obligation_pairs_satisfied": 0,
+    "row_witness_object_contract_link_pairs_constructed": 0,
+    "row_binding_contract_pairs_satisfied": 0,
+    "row_full_endpoint_boundary_binding_pairs_constructed": 0,
+    "row_endpoint_boundary_binding_ref_carrier_pairs_unblocked": 0,
+    "row_endpoint_value_binding_map_carrier_pairs_unblocked": 0,
+    "row_residual_data_ready": 0,
+    "rows_unblocked": 0,
+    "row_consumption_count": 0,
+    "branch_chart_authorized": false
+  },
+  "endpoint_field_counts": {
+    "actual_contract_link_rule_attempt_inherited": 4,
+    "actual_contract_link_conditional_rule_declaration_attempted": 4,
+    "actual_contract_link_rule_source_conditions_present": 4,
+    "actual_contract_link_rule_requires_witness_object_membership_proof": 4,
+    "actual_contract_link_rule_requires_contract_target_satisfaction_proof": 4,
+    "actual_contract_link_rule_requires_target_ref_value_equations_proof_grade": 4,
+    "actual_contract_link_rule_preserves_fail_closed_outputs": 4,
+    "source_candidate_id_present": 4,
+    "contract_target_id_present": 4,
+    "endpoint_value_binding_map_id_present": 4,
+    "witness_object_endpoint_boundary_binding_ref_id_present": 4,
+    "source_witness_object_attempt_id_present": 4,
+    "first_endpoint_boundary_binding_primitive_id_present": 4,
+    "target_endpoint_value_binding_source_equations_present": 4,
+    "source_candidate_targets_endpoint_value_binding_map": 4,
+    "source_candidate_targets_endpoint_boundary_binding_ref": 4,
+    "source_candidate_targets_witness_object_attempt": 4,
+    "source_candidate_targets_contract_target": 4,
+    "inherited_witness_object_endpoint_boundary_binding_ref_field_claim": 4,
+    "inherited_witness_object_endpoint_value_binding_map_field_claim": 4,
+    "same_source_witness_object_attempt_id_referenced": 4,
+    "witness_object_symbol_present": 4,
+    "binding_symbol_present": 4,
+    "membership_source_conditions_ready": 4,
+    "actual_contract_link_rule_available": 0,
+    "witness_object_membership_proof_present": 0,
+    "same_constructed_witness_object_identity_proof_present": 0,
+    "endpoint_boundary_binding_ref_member_of_witness_object_proven": 0,
+    "endpoint_value_binding_map_member_of_witness_object_proven": 0,
+    "endpoint_ref_and_value_map_same_witness_object_proven": 0,
+    "membership_source_not_id_adjacency_proven": 0,
+    "contract_target_satisfaction_proof_present": 0,
+    "target_ref_value_equations_proof_grade": 0,
+    "endpoint_boundary_binding_ref_compatibility_proof_present": 0,
+    "first_primitive_compatibility_proof_present": 0,
+    "carrier_admission_bridge_present": 0,
+    "motion_evaluation_bridge_present": 0,
+    "algebraic_certificate_bridge_present": 0,
+    "candidate_replay_bridge_present": 0,
+    "actual_contract_link_rule_obligations_satisfied": 0,
+    "witness_object_contract_link_constructed": 0,
+    "witness_object_has_contract_link": 0,
+    "binding_contract_satisfied": 0,
+    "full_endpoint_boundary_binding_constructed": 0,
+    "endpoint_boundary_binding_ref_carrier_unblocked": 0,
+    "endpoint_value_binding_map_carrier_unblocked": 0
+  },
+  "row_field_counts": {
+    "row_locator_resolved": 3,
+    "source_actual_contract_link_rule_source_conditions_present": 3,
+    "receiver_actual_contract_link_rule_source_conditions_present": 3,
+    "combined_actual_contract_link_rule_source_condition_pair_present": 3,
+    "source_membership_source_conditions_ready": 3,
+    "receiver_membership_source_conditions_ready": 3,
+    "combined_membership_source_condition_pair_ready": 3,
+    "source_witness_object_membership_proof_present": 0,
+    "receiver_witness_object_membership_proof_present": 0,
+    "combined_witness_object_membership_proof_pair_present": 0,
+    "source_actual_contract_link_rule_obligations_satisfied": 0,
+    "receiver_actual_contract_link_rule_obligations_satisfied": 0,
+    "combined_actual_contract_link_rule_obligations_satisfied": 0,
+    "source_witness_object_contract_link_constructed": 0,
+    "receiver_witness_object_contract_link_constructed": 0,
+    "combined_witness_object_contract_link_pair_constructed": 0,
+    "source_binding_contract_satisfied": 0,
+    "receiver_binding_contract_satisfied": 0,
+    "combined_binding_contract_pair_satisfied": 0,
+    "source_full_endpoint_boundary_binding_constructed": 0,
+    "receiver_full_endpoint_boundary_binding_constructed": 0,
+    "combined_full_endpoint_boundary_binding_pair_constructed": 0,
+    "source_endpoint_boundary_binding_ref_carrier_unblocked": 0,
+    "receiver_endpoint_boundary_binding_ref_carrier_unblocked": 0,
+    "combined_endpoint_boundary_binding_ref_carrier_pair_unblocked": 0,
+    "source_endpoint_value_binding_map_carrier_unblocked": 0,
+    "receiver_endpoint_value_binding_map_carrier_unblocked": 0,
+    "combined_endpoint_value_binding_map_carrier_pair_unblocked": 0,
+    "residual_data_construction_ready": 0,
+    "row_unblocked": 0,
+    "row_consumed": 0,
+    "branch_chart_authorized": 0
+  },
+  "capture_decision": "Priority-only. This packet records 4 / 4 actual-link rule source-condition bundles and verifies 4 / 4 membership source-condition bundles, but it does not declare an available actual contract-link proof rule and does not construct witness-object membership proofs. It constructs 0 / 4 actual witness-object contract links, 0 / 4 binding contracts, 0 / 4 full endpoint boundary bindings, 0 / 4 reference-carrier admissions, 0 / 4 value-map-carrier admissions, 0 residual-data rows, no branch chart, and 0 row consumption remain."
+}

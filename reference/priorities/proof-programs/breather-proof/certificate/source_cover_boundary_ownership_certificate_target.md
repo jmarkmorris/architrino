@@ -683,6 +683,115 @@ the absent applied same-packet primitive construction rule and primitive
 binding witness record that certify the domain-chart attachment and target
 ref/value attachment.
 
+The endpoint boundary-binding primitive rule/witness-record construction
+attempt,
+`fold_coordinate_endpoint_functional_endpoint_boundary_binding_primitive_rule_witness_record_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then closes that immediate primitive blocker. It applies 4 / 4 same-packet
+primitive construction rules, constructs 4 / 4 primitive binding witness
+records, certifies 4 / 4 domain-chart attachments and 4 / 4 target ref/value
+attachments, constructs 4 / 4 first endpoint boundary-binding primitives, and
+records 3 / 3 row source/receiver primitive pairs. It still unblocks 0 / 4
+endpoint-boundary-binding reference carriers, constructs 0 / 4 full endpoint
+boundary bindings, 0 / 4 endpoint value bindings, and 0 / 4 binding contracts,
+keeps 0 / 3 row-unblocked pairs, and consumes 0 rows. The direct successor must
+therefore construct witness-object endpoint-boundary-binding reference fields
+and test full endpoint boundary-binding contract data.
+
+The endpoint boundary-binding ref-carrier/full-binding construction attempt,
+`fold_coordinate_endpoint_functional_endpoint_boundary_binding_ref_carrier_full_binding_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+constructs 4 / 4 witness-object endpoint-boundary-binding reference fields,
+certifies 4 / 4 target attachments, and records 3 / 3 row reference-field
+pairs. It remains priority-only and fail-closed: 0 / 4 full endpoint boundary
+bindings, 0 / 4 endpoint-boundary-binding reference carriers, 0 / 4 endpoint
+value bindings, 0 / 4 binding contracts, 0 / 3 row-unblocked pairs, no
+`row_closure`, no preledger pass, no live-ledger update, no branch-chart
+authorization, and 0 consumed rows are produced. The source-cover route remains
+blocked by proof-grade full endpoint boundary-binding construction and
+reference-carrier admission.
+
+The endpoint value-binding map construction attempt,
+`fold_coordinate_endpoint_functional_endpoint_value_binding_map_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+constructs 4 / 4 endpoint value-binding maps from the referenced first
+primitives, binds 4 / 4 endpoint value sets, and yields 3 / 3 row
+value-map/value-binding pairs. It remains priority-only and fail-closed: 0 / 4
+binding contracts, 0 / 4 full endpoint boundary bindings, 0 / 4
+endpoint-boundary-binding reference carriers, 0 / 3 row-unblocked pairs, no
+`row_closure`, no preledger pass, no live-ledger update, no branch-chart
+authorization, and 0 consumed rows are produced. The source-cover route remains
+blocked by binding contract satisfaction plus proof-grade full endpoint
+boundary-binding construction and reference-carrier admission.
+
+The binding contract/full-binding/carrier-admission construction attempt,
+`fold_coordinate_endpoint_functional_binding_contract_full_binding_carrier_admission_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+imports 4 / 4 endpoint value-binding maps, inherits 4 / 4 contract-target
+references, applies 4 / 4 contract/full-binding tests and 3 / 3 row test pairs,
+and remains priority-only and fail-closed: 0 / 4 satisfied binding contracts,
+0 / 4 witness-object contract links, 0 / 4 full endpoint boundary bindings,
+0 / 4 endpoint-boundary-binding reference carriers, 0 / 4 endpoint value-map
+carriers, 0 / 3 residual-data-ready rows, no `row_closure`, no preledger pass,
+no live-ledger update, no branch-chart authorization, and 0 consumed rows are
+produced. The source-cover route remains blocked by actual witness-object
+contract links, binding contract satisfaction, proof-grade full endpoint
+boundary-binding construction, carrier admission, motion/evaluation data,
+algebraic certificates, replay, and residual-data construction.
+
+The witness-object contract-link construction attempt,
+`fold_coordinate_endpoint_functional_witness_object_contract_link_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+records 4 / 4 witness-object contract-link source candidates and 3 / 3 row
+source-candidate pairs from the value maps, contract targets, witness-object
+refs, and target ref/value equations. It remains priority-only and fail-closed:
+0 / 4 actual witness-object contract links, 0 / 4 satisfied binding contracts,
+0 / 4 full endpoint boundary bindings, 0 / 4 endpoint-boundary-binding
+reference carriers, 0 / 4 endpoint value-map carriers, 0 / 3
+residual-data-ready rows, no `row_closure`, no preledger pass, no live-ledger
+update, no branch-chart authorization, and 0 consumed rows are produced. The
+source-cover route remains blocked by an actual witness-object contract-link
+construction rule, binding contract satisfaction, proof-grade full endpoint
+boundary-binding construction, carrier admission, motion/evaluation data,
+algebraic certificates, replay, and residual-data construction.
+
+The actual contract-link rule attempt,
+`fold_coordinate_endpoint_functional_actual_contract_link_rule_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+tests that construction-rule layer. It imports 4 / 4 source candidates and
+applies 4 / 4 actual-rule attempts, but records 40 / 40 missing proof-grade
+actual-link obligations. It remains priority-only and fail-closed: 0 / 4
+actual witness-object contract links, 0 / 4 satisfied binding contracts, 0 / 4
+full endpoint boundary bindings, 0 / 4 endpoint-boundary-binding reference
+carriers, 0 / 4 endpoint value-map carriers, 0 / 3 residual-data-ready rows,
+no `row_closure`, no preledger pass, no live-ledger update, no branch-chart
+authorization, and 0 consumed rows are produced. The source-cover route now
+remains blocked by proof-grade evidence for those actual-link obligations,
+followed by binding contract satisfaction, full endpoint boundary-binding
+construction, carrier admission, motion/evaluation data, algebraic
+certificates, replay, and residual-data construction.
+
+The contract-link membership rule attempt,
+`fold_coordinate_endpoint_functional_contract_link_membership_rule_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+records 4 / 4 actual-link rule source-condition bundles and 4 / 4 membership
+source-condition bundles, but keeps 0 / 4 actual contract-link rules
+available, 0 / 4 witness-object membership proofs, 0 / 4 actual
+witness-object contract links, 0 / 4 satisfied binding contracts, 0 / 4 full
+endpoint boundary bindings, 0 / 4 carrier admissions, 0 / 3
+residual-data-ready rows, no `row_closure`, no preledger pass, no live-ledger
+update, no branch-chart authorization, and 0 consumed rows are produced. The
+source-cover route remains blocked before row consumption by a proof-grade
+actual contract-link rule and same constructed-witness-object membership proof;
+matched endpoint IDs, matching witness-object symbols, source-candidate target
+references, and inherited field claims are only source conditions.
+
+The actual contract-link rule/membership proof target,
+`fold_coordinate_endpoint_functional_actual_contract_link_rule_membership_proof_target_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+records the exact proof object now missing above those source conditions. It
+has 4 / 4 rule source-condition bundles, 4 / 4 rule proof targets, and 4 / 4
+constructed-witness-object identity source bundles, but 0 / 4 actual
+contract-link rules available, 0 / 4 constructed witness-object identities,
+0 / 4 same constructed-witness-object membership proofs, 0 / 4 actual
+witness-object contract links, 0 / 3 residual-data-ready rows, no
+`row_closure`, no preledger pass, no live-ledger update, no branch-chart
+authorization, and 0 consumed rows. The source-cover route remains blocked
+until that target is solved by a proof-grade actual-link rule plus
+field-membership proof on a constructed same-packet witness object.
+
 ## Capture Decision
 
 Priority-only theorem target. The partition-audit implementation is now

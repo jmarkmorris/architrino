@@ -585,6 +585,92 @@ criterion is now `primitive_construction_rule_applied`: the next lawful packet
 must supply an applied same-packet primitive construction rule plus a primitive
 binding witness record certifying the domain-chart attachment and target
 ref/value attachment.
+The endpoint boundary-binding primitive rule/witness-record construction
+attempt,
+`fold_coordinate_endpoint_functional_endpoint_boundary_binding_primitive_rule_witness_record_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then supplies that missing first primitive layer. It applies 4 / 4
+same-packet primitive construction rules, constructs 4 / 4 primitive binding
+witness records, certifies 4 / 4 domain-chart attachments and 4 / 4 target
+ref/value attachments, constructs 4 / 4 first endpoint boundary-binding
+primitives, and exposes 3 / 3 row primitive pairs. It still unblocks 0 / 4
+endpoint-boundary-binding reference carriers, constructs 0 / 4 full endpoint
+boundary bindings, 0 / 4 endpoint value bindings, and 0 / 4 binding
+contracts, keeps 0 / 3 row-unblocked pairs, and consumes 0 rows. The direct
+successor must therefore construct witness-object endpoint-boundary-binding
+reference fields and test full endpoint boundary-binding contract data, not
+repeat the primitive rule/witness-record layer.
+The endpoint boundary-binding ref-carrier/full-binding construction attempt,
+`fold_coordinate_endpoint_functional_endpoint_boundary_binding_ref_carrier_full_binding_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+constructs 4 / 4 witness-object endpoint-boundary-binding reference fields to
+the first primitives, certifies 4 / 4 target attachments, and records 3 / 3 row
+reference-field pairs. It remains priority-only and fail-closed: 0 / 4 full
+endpoint boundary bindings, 0 / 4 endpoint-boundary-binding reference carriers,
+0 / 4 endpoint value bindings, 0 / 4 binding contracts, 0 / 3 row-unblocked
+pairs, and 0 consumed rows are produced. Reference-field availability is now recorded; it is not contract satisfaction, full binding, or carrier admission.
+The endpoint value-binding map construction attempt,
+`fold_coordinate_endpoint_functional_endpoint_value_binding_map_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+constructs 4 / 4 endpoint value-binding maps from the referenced first
+primitives, binds 4 / 4 endpoint value sets, and records 3 / 3 row
+value-map/value-binding pairs. It remains priority-only and fail-closed: 0 / 4
+binding contracts, 0 / 4 full endpoint boundary bindings, 0 / 4
+endpoint-boundary-binding reference carriers, 0 / 3 row-unblocked pairs, and 0
+consumed rows are produced.
+The binding contract/full-binding/carrier-admission construction attempt,
+`fold_coordinate_endpoint_functional_binding_contract_full_binding_carrier_admission_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+imports 4 / 4 endpoint value-binding maps, inherits 4 / 4 contract-target
+references, applies 4 / 4 contract and full-binding tests, and records 3 / 3
+row contract/full-binding test pairs. It remains priority-only and fail-closed:
+0 / 4 binding contracts, 0 / 4 witness-object contract links, 0 / 4 full
+endpoint boundary bindings, 0 / 4 endpoint-boundary-binding reference carriers,
+0 / 4 endpoint value-map carriers, 0 / 3 residual-data-ready rows, and 0
+consumed rows are produced.
+The witness-object contract-link construction attempt,
+`fold_coordinate_endpoint_functional_witness_object_contract_link_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+records 4 / 4 witness-object contract-link source candidates from the inherited
+value maps, contract-target refs, witness-object refs, and target ref/value
+equations, and records 3 / 3 row source-candidate pairs. It remains
+priority-only and fail-closed: 0 / 4 actual witness-object contract links,
+0 / 4 binding contracts, 0 / 4 full endpoint boundary bindings, 0 / 4
+endpoint-boundary-binding reference carriers, 0 / 4 endpoint value-map
+carriers, 0 / 3 residual-data-ready rows, and 0 consumed rows are produced. The
+next lawful packet must supply actual witness-object contract links, satisfied
+binding contracts, proof-grade full endpoint boundary bindings, carrier
+admission, motion/evaluation data, algebraic certificates, replay, and
+residual-data construction, not repeat value-map availability, the
+contract/full-binding test layer, or contract-link source-candidate availability.
+The actual contract-link rule attempt,
+`fold_coordinate_endpoint_functional_actual_contract_link_rule_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+tests that next layer directly. It imports 4 / 4 source candidates, applies
+4 / 4 actual-rule attempts, and records 40 / 40 missing proof-grade actual-link
+obligations. It remains priority-only and fail-closed: 0 / 4 actual
+witness-object contract links, 0 / 4 binding contracts, 0 / 4 full endpoint
+boundary bindings, 0 / 4 endpoint-boundary-binding reference carriers, 0 / 4
+endpoint value-map carriers, 0 / 3 residual-data-ready rows, and 0 consumed
+rows are produced. The next lawful packet must supply the proof-grade
+obligation evidence named by that rule attempt, not repeat source-candidate
+integrity or actual-rule attempt application.
+The contract-link membership rule attempt,
+`fold_coordinate_endpoint_functional_contract_link_membership_rule_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+separates those first proof burdens. It records 4 / 4 actual-link rule
+source-condition bundles and 4 / 4 membership source-condition bundles, but
+keeps 0 / 4 actual contract-link rules available, 0 / 4 witness-object
+membership proofs, 0 / 4 actual witness-object contract links, 0 / 4 binding
+contracts, 0 / 4 full endpoint boundary bindings, 0 / 4 carrier admissions,
+0 residual-data-ready rows, and 0 consumed rows. The next lawful packet must
+supply a proof-grade actual contract-link rule and same constructed-witness-object
+membership proof; matching endpoint IDs, witness-object symbols, and inherited
+field claims are source conditions only.
+The actual contract-link rule/membership proof target,
+`fold_coordinate_endpoint_functional_actual_contract_link_rule_membership_proof_target_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+sharpens that next burden without promoting it. It records 4 / 4 rule
+source-condition bundles, 4 / 4 rule proof targets, and 4 / 4
+constructed-witness-object identity source bundles, but keeps 0 / 4 actual
+contract-link rules available, 0 / 4 constructed witness-object identities,
+0 / 4 same constructed-witness-object membership proofs, 0 / 4 actual
+witness-object contract links, 0 residual-data-ready rows, and 0 consumed rows.
+The next lawful packet must either construct the same-packet witness object or
+supply the proof-grade actual-link rule derivation, soundness proof,
+application proof, and field-membership proof on that constructed object.
 The remaining branches are periodic
 endpoint/complement ownership for the 8 lift rows and fold-layer certificate
 closure for the 112 fold-layer rows now grouped by

@@ -12,7 +12,7 @@ This ledger separates four levels:
 
 - **Ontology:** architrinos, Noether swarms, axial layers, photon assemblies, and Noether sea state variables.
 - **Reaction mechanics:** association, dissociation, planar-mode nucleation, pair production, recoil, and medium excitation.
-- **Transport and thermalization:** opacity, scattering, cascade depth, diffusion, cooling, and path-history redshift.
+- **Transport and thermalization:** opacity, scattering, cascade depth, diffusion, cooling, path-history redshift, and signed photon-frequency exchange.
 - **Effective observables:** emissivity, light-element yield, blackbody spectrum, anisotropy, polarization, and inferred cosmological parameters.
 
 ## Leap Opportunity Record
@@ -81,6 +81,7 @@ These gates are not separate ontologies. They are bookkeeping filters that preve
 | BBN photon bath | [BBN Constraints](../cosmology/BBN-constraints.md) | Show that pair, bremsstrahlung, synchrotron, and related channels maintain effective $\eta\approx6\times10^{-10}$ during the bottleneck window | Closure target |
 | CMB thermal spectrum | [CMB](../cosmology/CMB.md) | Show that source emission, transport, and thermalization produce a near-blackbody photon bath with allowed anisotropy and damping structure | Closure target |
 | Redshift and clock handoff | [Expansion Mechanism](../cosmology/expansion-mechanism.md) | Map photon transport through $\rho_{\text{NS}}$, $n$, $\chi_{\text{sea}}$, and clock-rate comparison | Effective summary with open derivation |
+| Sunyaev-Zeldovich / Compton-like frequency exchange | [CMB](../cosmology/CMB.md#sunyaev-zeldovich-path-history-calibration) and [Radiation](../reactions/radiation.md#path-frequency-exchange) | Record incoming photon packet, intervening electron or medium state, outgoing frequency, recoil, medium energy change, and thermalization side effects | Calibration row and closure target |
 
 ## Minimum Records by Channel
 
@@ -167,6 +168,25 @@ $$
 
 with $\tau_{\mathrm{th}}^{-1}$ decomposed into the specific event-recorded channels being used: planar-mode capture/release, Compton-like redistribution, pair channels, and non-radiative medium exchange. A CMB blackbody claim requires $\mathcal{D}_{\mathrm{th}}\gg1$ before decoupling, effective photon chemical potential driven to zero, and a post-decoupling transport map that preserves the already-generated spectrum while carrying anisotropy, polarization, damping, and redshift information.
 
+### Path Frequency Exchange
+
+Post-emission photon frequency changes are not automatically new photon emission events. A photon packet may exchange energy with an intervening electron population, plasma, or Noether sea state and continue as the same transported packet. For each such event or coarse segment, the ledger must record incoming frequency $\nu^-$, outgoing frequency $\nu^+$, the local medium state, recoil or target momentum, and the residual
+
+$$
+\mathcal{R}_{\nu\text{-}\mathrm{ex}}
+=
+\frac{
+\left|
+h(\nu^+-\nu^-)
++\Delta E_{\mathrm{med}}
++\Delta E_{\mathrm{recoil}}
++\Delta E_{\mathrm{rem}}
+\right|
+}{\epsilon_E}.
+$$
+
+The same row must state whether the exchange is thermalizing, spectrally distorting, or coherently transported. A Sunyaev-Zeldovich-type boost is admissible only when the electron or medium record supplies the photon energy increase and when the side effects remain compatible with the CMB spectrum, anisotropy, polarization, and kSZ/tSZ observable rows. A depletion row is admissible only when the lost photon energy is routed into a named medium, recoil, remnant, or thermalization channel.
+
 ## Closure Targets
 
 1. **Planar-mode threshold closure:** derive a shared threshold condition for bremsstrahlung and synchrotron photon assembly output.
@@ -191,3 +211,4 @@ The provenance program fails for a channel if a source story cannot survive the 
 | Matter-asymmetry ledger failure | $\eta_B^{\mathrm{ledger}}$ cannot match the observed baryon-to-photon ratio without unrecorded baryon inventory, charge imbalance, or energy imbalance | A baryogenesis-like source story cannot be promoted into cosmology provenance |
 | BBN photon-loading failure | Source-zone photon production cannot preserve deuterium survival, helium clustering, lithium constraints, and $N_{\text{eff}}$ compatibility | The BBN local-reactor mapping cannot replace the standard photon-to-baryon environment |
 | CMB handoff failure | Blackbody precision, damping behavior, anisotropy, polarization, or TT/TE/EE coherence cannot be carried through the same transport and redshift map | CMB thermalization cannot be treated as a successful source-to-observer provenance path |
+| Frequency-exchange ledger failure | A path segment changes photon frequency without a closed medium, recoil, remnant, or side-effect row | Redshift, blueshift, SZ, or distance-ladder claims are being used without photon provenance |

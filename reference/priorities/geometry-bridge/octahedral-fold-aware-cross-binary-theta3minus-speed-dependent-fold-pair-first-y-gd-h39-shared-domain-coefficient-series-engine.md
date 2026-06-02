@@ -3972,3 +3972,35 @@ route from "certify two selected source rows" to "certify one shared
 against the tightest selected row budget." The artifact remains candidate-only
 and keeps shifted $R_{\varepsilon,43}$, directed-rounded same-domain, and
 retained-branch claims false.
+
+The shared-stream target now also emits a node-radius contract rather than only
+an aggregate contraction number. It selects the same `speed.0.first-y` tightest
+budget and converts the one shared source-map residual stream into five
+Lagrange-node source residual radius targets, with explicit signed source and
+weighted residual target intervals for current-shape, balanced, and uniform
+allocations. The current-shape shares sum to one, so the maximum current-shape
+node contraction factor is exactly the shared-stream contraction scale, about
+$2.118441133954076\times10^5$; the balanced and uniform profiles are
+comparison routes, not separate proof claims. The dominant node-radius target
+is node 2, and the dominant termwise residual remains `sin_delta`. The next
+certificate is therefore concrete: directed-rounded same-domain H38
+producer-image source-map residual intervals must fit these five node radii
+for the single `delta_squared_speed + sin_phi + sin_delta` stream before H39
+applies absolute shifted-source bounds.
+
+The five-node target now crosses the provider boundary at candidate level.
+The source-map covariance artifact emits
+`source_map_residual_shared_stream_five_node_inclusion_contract`, a
+five-row interval-inclusion contract that preserves
+`delta_squared_speed`, `sin_phi`, and `sin_delta` signed together and requires
+a future provider row source kind
+`directed-rounded-same-domain-h38-source-map-residual-provider`. The boundary
+verifier accepts only same-domain, same-radius provider rows with directed
+rounded signed and weighted residual intervals contained in the screened node
+targets. On the focused H39/y44 fixture the fixture path passes, while the
+live source-map probe is still too wide by the same
+$2.118441133954076\times10^5$ scale. A scaled contracted-provider diagnostic
+is retained only as a non-certifying comparison and remains open under strict
+interval inclusion. The next true blocker is therefore not a missing verifier
+interface; it is the real directed-rounded same-domain H38 source-map residual
+provider for the five shared-stream nodes.

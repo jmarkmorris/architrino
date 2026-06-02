@@ -6541,6 +6541,210 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
     "sin_delta"
   );
   assert.equal(
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_node_radius_target_kind,
+    "candidate-requested-y44-shared-h38-source-map-residual-node-radius-target"
+  );
+  assert.equal(
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_node_radius_available,
+    true
+  );
+  assert.equal(
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_node_radius_source_stream_count,
+    1
+  );
+  assert.equal(
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_node_radius_tightest_budget_cell_id,
+    "speed.0.first-y"
+  );
+  assert.equal(
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_node_radius_rows.length,
+    5
+  );
+  assert.ok(
+    Math.abs(
+      sourceMapResidualCovarianceTarget
+        .source_map_residual_shared_stream_node_radius_current_derivative_residual_share_sum -
+        1
+    ) < 1e-9
+  );
+  assert.equal(
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_node_radius_dominant_node_index,
+    2
+  );
+  assert.equal(
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_node_radius_dominant_term,
+    "sin_delta"
+  );
+  assert.ok(
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_node_radius_max_current_contraction_factor >
+      2e5
+  );
+  assert.ok(
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_node_radius_max_balanced_contraction_factor >
+      2e5
+  );
+  assert.ok(
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_node_radius_max_uniform_contraction_factor >
+      2e5
+  );
+  assert.equal(
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_node_radius_interpretation,
+    "shared-source-stream-node-radii-reduce-directed-rounded-certificate-to-five-same-domain-node-residual-targets"
+  );
+  const dominantNodeRadiusRow =
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_node_radius_rows[2];
+  assert.equal(dominantNodeRadiusRow.node_index, 2);
+  assert.equal(
+    dominantNodeRadiusRow.dominant_source_term_contribution.term,
+    "sin_delta"
+  );
+  assert.equal(
+    dominantNodeRadiusRow.target_signed_residual_radius_upper,
+    dominantNodeRadiusRow.current_shape_source_residual_radius_upper
+  );
+  assert.deepEqual(
+    dominantNodeRadiusRow.screened_signed_residual_target_interval,
+    dominantNodeRadiusRow.current_shape_source_residual_target_interval
+  );
+  assert.deepEqual(
+    dominantNodeRadiusRow.screened_weighted_residual_target_interval,
+    dominantNodeRadiusRow.current_shape_weighted_residual_target_interval
+  );
+  assert.equal(
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_five_node_inclusion_contract_kind,
+    "candidate-requested-y44-shared-source-map-five-node-inclusion-contract"
+  );
+  assert.equal(
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_five_node_inclusion_contract_available,
+    true
+  );
+  const fiveNodeInclusionContract =
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_five_node_inclusion_contract;
+  assert.equal(
+    fiveNodeInclusionContract.contract_reduces_to_directed_interval_inclusion,
+    true
+  );
+  assert.equal(
+    fiveNodeInclusionContract.contract_classification,
+    "requested-y44-five-node-source-map-contract-reduces-to-directed-interval-inclusion"
+  );
+  assert.equal(fiveNodeInclusionContract.provider_contract_rows.length, 5);
+  assert.ok(
+    fiveNodeInclusionContract.provider_contract_rows.every(
+      (row) =>
+        row.contract_row_status ===
+          "five-node-source-map-inclusion-contract-ready" &&
+        row.signed_screened_target_subset_of_live_interval === true &&
+        row.weighted_screened_target_subset_of_live_interval === true &&
+        row.signed_contraction_matches_selected_factor === true &&
+        row.weighted_contraction_matches_selected_factor === true
+    )
+  );
+  const fiveNodeVerifier =
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_five_node_directed_provider_verifier;
+  assert.equal(
+    fiveNodeVerifier.target_kind,
+    "candidate-requested-y44-shared-source-map-five-node-directed-provider-verifier"
+  );
+  assert.equal(fiveNodeVerifier.provider_rows_supplied, false);
+  assert.equal(
+    fiveNodeVerifier.screened_target_fixture_consumer_path_passes,
+    true
+  );
+  assert.equal(
+    fiveNodeVerifier.verified_directed_rounded_same_domain_provider_rows,
+    false
+  );
+  assert.equal(
+    fiveNodeVerifier.verifier_classification,
+    "requested-y44-source-map-verifier-boundary-ready-but-provider-missing"
+  );
+  assert.ok(
+    fiveNodeVerifier.provider_row_interval_fields_required.includes(
+      "directed_rounded_weighted_signed_residual_interval"
+    )
+  );
+  assert.ok(
+    fiveNodeVerifier.provider_row_contract_fields_required.includes(
+      "source_terms_preserved_signed_together"
+    )
+  );
+  const fiveNodeLiveProbe =
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_five_node_live_provider_probe;
+  assert.equal(
+    fiveNodeLiveProbe.live_provider_rows_match_same_domain_contract,
+    true
+  );
+  assert.equal(
+    fiveNodeLiveProbe.live_provider_rows_match_same_radius_contract,
+    true
+  );
+  assert.equal(
+    fiveNodeLiveProbe.live_provider_intervals_subset_screened_targets,
+    false
+  );
+  assert.ok(
+    fiveNodeLiveProbe
+      .max_live_provider_interval_to_screened_target_radius_ratio > 2e5
+  );
+  const fiveNodeContractedProvider =
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_five_node_contracted_provider_candidate;
+  assert.equal(
+    fiveNodeContractedProvider.contracted_provider_rows_match_same_domain_same_radius,
+    true
+  );
+  assert.equal(
+    fiveNodeContractedProvider.contracted_provider_intervals_subset_screened_targets,
+    false
+  );
+  assert.equal(
+    fiveNodeContractedProvider.contracted_provider_source_kind_matches_required,
+    false
+  );
+  assert.equal(
+    fiveNodeContractedProvider
+      .contracted_provider_reaches_verifier_with_source_only_failure,
+    false
+  );
+  assert.equal(
+    fiveNodeContractedProvider.contracted_provider_classification,
+    "contracted-source-map-provider-open"
+  );
+  assert.ok(
+    fiveNodeContractedProvider.contracted_provider_rows.every(
+      (row) =>
+        Array.isArray(row.source_terms_preserved_signed_together) &&
+        row.source_terms_preserved_signed_together.includes(
+          "delta_squared_speed"
+        ) &&
+        row.source_terms_preserved_signed_together.includes("sin_phi") &&
+        row.source_terms_preserved_signed_together.includes("sin_delta")
+    )
+  );
+  assert.equal(
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_five_node_inclusion_interpretation,
+    "five-node-source-map-inclusion-reduces-to-directed-rounded-source-certification"
+  );
+  assert.equal(
     sourceMapResidualCovarianceTarget.dominant_source_map_residual_row
       .cell_id,
     "speed.0.first-y"
@@ -6608,6 +6812,66 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
       .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_interpretation,
     sourceMapResidualCovarianceTarget
       .source_map_residual_shared_stream_interpretation
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_node_radius_max_current_contraction_factor,
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_node_radius_max_current_contraction_factor
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_node_radius_max_balanced_contraction_factor,
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_node_radius_max_balanced_contraction_factor
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_node_radius_max_uniform_contraction_factor,
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_node_radius_max_uniform_contraction_factor
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_node_radius_dominant_node_index,
+    2
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_node_radius_dominant_term,
+    "sin_delta"
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_node_radius_interpretation,
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_node_radius_interpretation
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_inclusion_contract_available,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_inclusion_contract_reduces_to_directed_interval_inclusion,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_verifier_classification,
+    fiveNodeVerifier.verifier_classification
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_contracted_provider_reaches_verifier_with_source_only_failure,
+    false
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_inclusion_interpretation,
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_five_node_inclusion_interpretation
   );
   assert.equal(
     producerBudgetComparison
