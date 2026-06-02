@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-06-01T20:24:16.672134+00:00",
+  "generated_at": "2026-06-02T00:35:01.433384+00:00",
   "root": "reference/outreach/childrens-books",
   "total_source_images": 142,
   "generation_order": [
@@ -1563,11 +1563,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-cover.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -1596,11 +1596,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-01.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -1629,11 +1629,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-02.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -1662,11 +1662,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-03.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -1695,11 +1695,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-04.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -1728,11 +1728,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-05.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -1761,11 +1761,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-06.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -1794,11 +1794,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-07.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -1827,11 +1827,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-08.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -1860,11 +1860,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-09.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -1893,11 +1893,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-10.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -1926,11 +1926,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-11.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -1959,11 +1959,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-12.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -1992,11 +1992,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-13.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2025,11 +2025,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-14.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2058,11 +2058,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-15.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2091,11 +2091,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-16.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2124,11 +2124,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-17.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2157,11 +2157,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-18.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2190,11 +2190,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-backmatter-01.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2223,11 +2223,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-backmatter-02.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2256,11 +2256,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-backmatter-03.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2289,11 +2289,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-balance-point/9x16/the-balance-point-cover.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2322,11 +2322,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-balance-point/9x16/the-balance-point-spread-01.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2355,11 +2355,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-balance-point/9x16/the-balance-point-spread-02.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2388,11 +2388,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-balance-point/9x16/the-balance-point-spread-03.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2421,11 +2421,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-balance-point/9x16/the-balance-point-spread-04.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2454,11 +2454,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-balance-point/9x16/the-balance-point-spread-05.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2487,11 +2487,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-balance-point/9x16/the-balance-point-spread-06.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2520,11 +2520,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-balance-point/9x16/the-balance-point-spread-07.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2553,11 +2553,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-balance-point/9x16/the-balance-point-spread-08.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2586,11 +2586,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-balance-point/9x16/the-balance-point-spread-09.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2619,11 +2619,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-balance-point/9x16/the-balance-point-spread-10.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2652,11 +2652,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-balance-point/9x16/the-balance-point-spread-11.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2685,11 +2685,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-balance-point/9x16/the-balance-point-spread-12.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2718,11 +2718,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-balance-point/9x16/the-balance-point-spread-13.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2751,11 +2751,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-balance-point/9x16/the-balance-point-spread-14.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2784,11 +2784,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-balance-point/9x16/the-balance-point-spread-15.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2817,11 +2817,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-balance-point/9x16/the-balance-point-spread-16.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2850,11 +2850,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-balance-point/9x16/the-balance-point-spread-17.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2883,11 +2883,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-balance-point/9x16/the-balance-point-spread-18.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2916,11 +2916,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-balance-point/9x16/the-balance-point-backmatter-01.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2949,11 +2949,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-balance-point/9x16/the-balance-point-backmatter-02.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -2982,11 +2982,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-balance-point/9x16/the-balance-point-backmatter-03.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -3015,11 +3015,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/the-balance-point/9x16/the-balance-point-backmatter-04.png"
       },
       "status": {
-        "source_image": "planned",
-        "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "source_image": "generated",
+        "qa": "approved",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {

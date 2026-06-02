@@ -666,6 +666,42 @@ present, but 0 / 3 row residual functions, interval bounds, derivative/gap
 or no-switch certificates, interval enclosures, preledger passes, or consumed
 rows are constructed.
 
+The one-leaf active-endpoint interval-enclosure proof-data construction
+attempt is recorded in
+`one_leaf_active_endpoint_interval_enclosure_proof_data_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`one_leaf_active_endpoint_interval_enclosure_proof_data_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It imports the active-endpoint interval stack, residual-data construction
+attempt, and endpoint boundary-binding witness-object attempt. The attempt
+fail-closes with source inputs only: 3 / 3 sampled endpoint-value rows, sampled
+derivative rows, constant-theta endpoint-box candidates, boundary-source rows,
+and witness-object input pairs are present, but 0 / 3 endpoint interval boxes,
+residual functions on boxes, residual interval bounds, derivative-isolation
+rows, endpoint uniqueness/no-switch rows, endpoint-gap rows, interval
+active-endpoint enclosures, strict boundary-opening rows, motion/evaluation-map
+pairs, proof-interval replay rows, preledger passes, or consumed rows are
+constructed.
+
+The one-leaf active-endpoint residual-function-on-box source-layer attempt is
+recorded in
+`one_leaf_active_endpoint_residual_function_on_box_source_layer_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`one_leaf_active_endpoint_residual_function_on_box_source_layer_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It imports the residual source-data audit, residual-data construction attempt,
+interval-box/no-switch attempt, interval-enclosure proof-data attempt, endpoint
+value-binding source layer, and endpoint boundary-binding witness-object
+attempt. The attempt fail-closes with formula and source inputs only: 3 / 3
+sampled endpoint-value rows, sampled derivative rows, constant-theta
+endpoint-box candidates, endpoint-local formula candidate pairs,
+component-union chart pairs, boundary-source rows, endpoint value-binding
+source pairs, witness-object input pairs, and proof-data targets are present,
+but 0 / 3 endpoint interval boxes, endpoint residual formulas, endpoint
+domain/evaluation/motion rules, residual functions on boxes, residual
+derivative formulas, outward rounding rules, residual interval bounds,
+no-switch rows, active-endpoint enclosures, candidate artifacts,
+proof-interval replay rows, preledger passes, or consumed rows are
+constructed.
+
 The fold-coordinate endpoint-functional boundary-binding motion/evaluation
 construction attempt is recorded in
 `fold_coordinate_endpoint_functional_boundary_binding_motion_evaluation_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
@@ -742,6 +778,169 @@ evaluation maps, non-target zero certificates, exact $B\xi=0$ or rank
 certificates, candidate artifacts, topology recertifications, proof-interval
 replays, row-ready binding/evaluation pairs, preledger passes, live-ledger
 updates, branch-chart authorizations, or consumed rows.
+
+The full endpoint boundary-binding construction attempt is recorded in
+`fold_coordinate_endpoint_functional_full_endpoint_boundary_binding_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_full_endpoint_boundary_binding_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It imports the full endpoint boundary-binding contract target and tests whether
+the 4 / 4 contract targets can be promoted to proof-grade endpoint boundary
+bindings. It preserves 4 / 4 construction-ready full binding inputs and
+3 / 3 row source/receiver construction-input pairs, but constructs 0 / 4
+proof-grade endpoint boundary bindings, endpoint value bindings, satisfied
+binding contracts, history update formulas, endpoint motion rules, endpoint
+evaluation maps, full endpoint evaluation maps, non-target zero certificates,
+exact $B\xi=0$ or rank certificates, candidate artifacts, topology
+recertifications, proof-interval replays, row-ready binding/evaluation pairs,
+preledger passes, live-ledger updates, branch-chart authorizations, or consumed
+rows.
+
+The endpoint value-binding source layer is recorded in
+`fold_coordinate_endpoint_functional_endpoint_value_binding_source_layer.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_endpoint_value_binding_source_layer_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It imports the full endpoint boundary-binding construction attempt and
+declares 4 / 4 endpoint value-binding source equations from the target endpoint
+refs/values, with 3 / 3 row source/receiver source-equation pairs. It remains
+priority-only: the equations are source-layer declarations only, not
+proof-grade endpoint boundary bindings, and the packet constructs 0 / 4
+proof-grade endpoint boundary bindings, endpoint values bound to endpoint
+boundary bindings, satisfied binding contracts, history update formulas,
+endpoint motion rules, endpoint evaluation maps, full endpoint evaluation
+maps, non-target zero certificates, exact $B\xi=0$ or rank certificates,
+candidate artifacts, topology recertifications, proof-interval replays,
+row-ready binding/evaluation pairs, preledger passes, live-ledger updates,
+branch-chart authorizations, or consumed rows.
+
+The endpoint boundary-binding witness construction attempt is recorded in
+`fold_coordinate_endpoint_functional_endpoint_boundary_binding_witness_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_endpoint_boundary_binding_witness_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It imports the endpoint value-binding source layer and tests whether the 4 / 4
+source equations plus 3 / 3 row source/receiver source-equation pairs can be
+promoted into proof-grade endpoint boundary-binding witnesses. It remains
+priority-only: source equations are present, but it constructs 0 / 4 endpoint
+boundary-binding witnesses, endpoint boundary bindings, endpoint values bound
+to endpoint boundary bindings, satisfied binding contracts, history update
+formulas, endpoint motion rules, endpoint evaluation maps, full endpoint
+evaluation maps, non-target zero certificates, exact $B\xi=0$ or rank
+certificates, candidate artifacts, topology recertifications, proof-interval
+replays, row-ready witness/binding/evaluation pairs, preledger passes,
+live-ledger updates, branch-chart authorizations, or consumed rows.
+
+The same-packet endpoint boundary-binding witness-object construction attempt
+is recorded in
+`fold_coordinate_endpoint_functional_endpoint_boundary_binding_witness_object_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_endpoint_boundary_binding_witness_object_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It imports the endpoint boundary-binding witness construction attempt and tests
+whether the 4 / 4 witness-input layers plus 3 / 3 row source/receiver
+witness-input pairs can be assembled into explicit same-packet witness
+objects. It remains priority-only: witness-object targets and inputs are
+present, but it constructs 0 / 4 witness objects, endpoint boundary-binding
+witnesses, endpoint boundary bindings, endpoint values bound to endpoint
+boundary bindings, satisfied binding contracts, history update formulas,
+endpoint motion rules, endpoint evaluation maps, full endpoint evaluation
+maps, non-target zero certificates, exact $B\xi=0$ or rank certificates,
+candidate artifacts, topology recertifications, proof-interval replays,
+row-ready witness-object/binding/evaluation pairs, preledger passes,
+live-ledger updates, branch-chart authorizations, or consumed rows.
+
+The same-packet endpoint boundary-binding witness-object carrier-field
+obligation attempt is recorded in
+`fold_coordinate_endpoint_functional_same_packet_endpoint_boundary_binding_witness_object_carrier_field_obligation_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_same_packet_endpoint_boundary_binding_witness_object_carrier_field_obligation_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It imports the target-object, contract-target, full endpoint boundary-binding
+construction attempt, endpoint value-binding source layer, endpoint
+boundary-binding witness construction attempt, witness-object construction
+attempt, and active-endpoint residual-function-on-box source-layer attempt. It
+records 4 / 4 endpoint witness-object carrier-field obligations and 3 / 3
+residual consumer row source/receiver obligation pairs, but constructs 0 / 4
+carrier-complete witness objects, endpoint boundary-binding witnesses,
+endpoint boundary bindings, endpoint values bound to endpoint boundary
+bindings, satisfied binding contracts, history update formulas, endpoint
+motion rules, endpoint evaluation maps, full endpoint evaluation maps,
+non-target zero certificates, exact $B\xi=0$ or rank certificates, candidate
+artifacts, topology recertifications, proof-interval replays,
+residual-function source-layer ready rows, preledger passes, live-ledger
+updates, branch-chart authorizations, or consumed rows.
+
+The same-packet endpoint boundary-binding witness-object carrier-field
+construction attempt is recorded in
+`fold_coordinate_endpoint_functional_same_packet_endpoint_boundary_binding_witness_object_carrier_field_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_same_packet_endpoint_boundary_binding_witness_object_carrier_field_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It imports the carrier-field obligation attempt and the witness-object
+construction attempt as a consistency guard. It records 28 / 28 endpoint
+carrier-field source candidates across 4 endpoint functionals and 3 / 3
+residual consumer row source/receiver source-candidate pairs, but constructs
+0 / 28 actual carrier fields, 0 / 4 carrier-complete witness objects,
+endpoint boundary-binding witnesses, endpoint boundary bindings, endpoint
+values bound to endpoint boundary bindings, satisfied binding contracts,
+history update formulas, endpoint motion rules, endpoint evaluation maps, full
+endpoint evaluation maps, non-target zero certificates, exact $B\xi=0$ or
+rank certificates, candidate artifacts, topology recertifications,
+proof-interval replays, residual-function source-layer ready rows, preledger
+passes, live-ledger updates, branch-chart authorizations, or consumed rows.
+
+The same-packet endpoint boundary-binding witness-object domain-chart carrier
+subfield construction attempt is recorded in
+`fold_coordinate_endpoint_functional_same_packet_endpoint_boundary_binding_witness_object_domain_chart_carrier_subfield_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_same_packet_endpoint_boundary_binding_witness_object_domain_chart_carrier_subfield_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It imports the carrier-field construction attempt and the component-domain
+subcertificate. It constructs 4 / 4 `domain_chart` carrier subfields and
+3 / 3 row source/receiver domain-chart carrier pairs, but it remains
+priority-only and fail-closed: only 4 / 28 endpoint carrier fields are
+constructed, with 0 / 4 carrier-complete witness objects, endpoint
+boundary-binding refs, endpoint value maps, contract links, algebraic
+certificate refs, motion/evaluation refs, artifact/topology/replay refs,
+residual-function source-layer ready rows, preledger passes, live-ledger
+updates, branch-chart authorizations, or consumed rows.
+
+The same-packet endpoint boundary-binding witness-object non-domain carrier
+obstruction packet is recorded in
+`fold_coordinate_endpoint_functional_same_packet_endpoint_boundary_binding_witness_object_non_domain_carrier_obstruction_packet.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_same_packet_endpoint_boundary_binding_witness_object_non_domain_carrier_obstruction_packet_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It imports the domain-chart carrier subfield construction attempt as the
+preservation baseline. It preserves 4 / 4 `domain_chart` carrier subfields and
+3 / 3 residual consumer row source/receiver domain-chart carrier pairs,
+records 24 / 24 non-domain carrier source candidates, but constructs 0 / 24
+non-domain carrier fields. Thus only 4 / 28 carrier slots are constructed,
+`row_closure=false`, and no carrier-complete witness objects,
+residual-function source-layer ready rows, preledger passes, live-ledger
+updates, branch-chart authorizations, or consumed rows are produced.
+
+The full endpoint boundary-binding primitive dependency certificate is recorded
+in
+`fold_coordinate_endpoint_functional_full_endpoint_boundary_binding_primitive_dependency_certificate.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_full_endpoint_boundary_binding_primitive_dependency_certificate_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It imports the non-domain carrier obstruction packet and separates prerequisite
+readiness from the first missing proof-grade primitive. It records 4 / 4 ready
+domain/object/contract/value-source/witness-input chains, 24 / 24 carrier
+dependency rows, and 0 / 4 constructed endpoint boundary-binding primitives.
+It remains priority-only and fail-closed: no endpoint value bindings, binding
+contracts, motion/evaluation maps, algebraic certificates, candidate artifacts,
+topology recertifications, proof-interval replays, preledger passes,
+branch-chart authorizations, or consumed rows are produced.
+
+The endpoint boundary-binding primitive construction attempt is recorded in
+`fold_coordinate_endpoint_functional_endpoint_boundary_binding_primitive_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_endpoint_boundary_binding_primitive_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It imports the primitive dependency certificate and tests the first primitive
+instead of repeating the dependency locator. It constructs 4 / 4 primitive
+payload targets and 3 / 3 row source/receiver payload pairs, but 0 / 4
+proof-grade endpoint boundary-binding primitives, 0 / 4 endpoint-boundary-binding
+reference carriers, 0 / 3 row-unblocked pairs, and 0 consumed rows. It keeps
+`row_closure=false`, `preledger_pass=false`, `updates_live_ledger=false`, and
+`branch_chart_authorized=false`; the live blocker is the absent
+`primitive_construction_rule_applied` field and its primitive binding witness
+record, not target-object, contract-target, source-equation, carrier-source,
+or primitive-dependency availability.
 
 ## Pre-Ledger Stop Condition
 

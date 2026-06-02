@@ -3908,3 +3908,67 @@ independent node intervals. H39 closure therefore needs a directed-rounded
 continuous source-covariance derivative enclosure, or an equivalent
 producer-image normal form, before the Lagrange and Cauchy absolute bounds are
 allowed to act.
+
+The same provider boundary now emits a derivative-allocation target for that
+signed nonconstant stream. The artifact
+`producer_row_local_nonconstant_source_sum_derivative_allocation_target`
+subtracts the signed midpoint fourth derivative from the intervalized
+Lagrange enclosure before asking what residual remains. On the focused H39/y44
+fixture, the signed midpoint ratio is
+$5.4831125713436076\times10^{-11}$ and therefore already fits the row-local
+$M_4$ ceiling. The weighted midpoint absolute mass is
+$2.1842511355438498\times10^{-4}$ of the ceiling, with Lagrange cancellation
+gain about $3.983597103147949\times10^6$, so the midpoint normal form is not
+the live blocker. The live blocker is the post-midpoint residual allocation:
+the derivative residual still sits at
+$2.1184411322093202\times10^5$ times the signed-midpoint residual budget, and
+the current-shape node allocation reports the same contraction scale. The
+dominant row is `speed.0.first-y`. This turns the next proof packet into a
+directed-rounded same-domain source-covariance derivative provider for
+`delta_squared_speed + sin_phi + sin_delta`, preserving the H38 producer-image
+dependency before H39 shifted-source absolutization, not a deeper raw
+Lagrange-prefix search.
+
+The next diagnostic now pins the residual source one layer earlier. The
+producer comparison emits
+`producer_row_local_nonconstant_source_sum_source_map_residual_covariance_target`,
+which rebuilds the post-midpoint residual from signed source-map node
+residuals and from the three termwise residual streams. The live fixture keeps
+those reconstructions coherent: the source-map residual derivative matches the
+provider residual to sub-$10^{-12}$ relative gap, the node-triangle-to-
+derivative ratio is $1.0000000008236036$, and the term-triangle-to-signed-node
+ratio is $1.0000000047166826$. This rules out both suspected downstream
+artifacts for the current blocker: the pressure is not produced by splitting
+`delta_squared_speed`, `sin_phi`, and `sin_delta`, and it is not produced by a
+missed five-node Lagrange cancellation. The residual remains a
+$2.1184411322093202\times10^5$ source-map node-width contraction problem,
+dominated by node 2 on `speed.0.first-y`; the largest term contribution is
+`sin_delta` at $2.0953273068587252\times10^{24}$ weighted residual absolute
+units. The next certificate must therefore keep the H38 producer-image source
+map itself directed-rounded and same-domain through residual formation before
+the H39 shifted-source replay applies absolute bounds.
+
+The same target now carries a source-map trace-anchor summary, threaded from the
+row-local provider rows that feed the terminal covariance route. That summary
+matches the selected requested-y44 rows to the h0-h34 source-term
+zero-constant reduction: `constant_minus_two` is structurally zero at the live
+source order, while `delta_squared_speed`, `sin_phi`, and `sin_delta` remain
+the only producer-image term enclosures requiring directed-rounded same-domain
+trust. This is still not a certificate, but it turns the next proof object into
+a sharply stated source-map certificate for the three signed nonconstant terms
+rather than an open-ended search over source splits or hidden constant terms.
+
+The shared-stream summary now removes one more duplicate burden from that proof
+object. It builds a stable signature from the complete signed source-map
+residual stream, including the five node residual intervals, Lagrange weights,
+and term residual intervals, but excluding the selected-row labels and
+row-local budgets. On the focused H39/y44 fixture, the two selected requested
+rows collapse to one H38 source residual stream. The tightest signed-midpoint
+budget is the `speed.0.first-y` budget, the budget spread across the shared
+stream is below $1.01$, and the required contraction factor remains
+$2.118441133954076\times10^5$. This changes the next directed-rounded proof
+route from "certify two selected source rows" to "certify one shared
+`delta_squared_speed + sin_phi + sin_delta` H38 source-map residual stream
+against the tightest selected row budget." The artifact remains candidate-only
+and keeps shifted $R_{\varepsilon,43}$, directed-rounded same-domain, and
+retained-branch claims false.

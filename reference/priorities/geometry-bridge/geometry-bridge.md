@@ -3024,6 +3024,68 @@ the source covariance through a directed-rounded same-domain continuous
 derivative enclosure, or through an equivalent producer-image normal form,
 before Lagrange/Cauchy absolutization.
 
+The signed-source derivative allocation target now makes that proof object
+quantitative instead of scalar. The producer-image comparison emits
+`producer_row_local_nonconstant_source_sum_derivative_allocation_target`,
+which subtracts the signed midpoint fourth derivative before measuring the
+remaining intervalized residual. On the focused H39/y44 fixture the signed
+midpoint itself is only $5.4831125713436076\times10^{-11}$ of the row-local
+$M_4$ ceiling, and all selected rows fit this midpoint budget. The hidden
+five-node Lagrange annihilator is large but controlled: the weighted midpoint
+absolute mass is only $2.1842511355438498\times10^{-4}$ of the same ceiling,
+while its cancellation gain is about $3.983597103147949\times10^6$. The live
+obstruction is therefore the residual width after the signed midpoint is
+removed: the current intervalized derivative residual still needs a
+$2.1184411322093202\times10^5$ same-domain contraction, with the current-shape
+and uniform coefficient allocations giving the same scale. The dominant row is
+`speed.0.first-y`. The next certificate is no longer "find a source
+cancellation"; it is a directed-rounded H38 producer-image source-covariance
+derivative provider that preserves the signed nonconstant stream through the
+same-domain residual allocation before the H39 shifted source takes absolute
+bounds.
+
+The source-map residual covariance target now moves that diagnosis one layer
+earlier. The producer-image comparison also emits
+`producer_row_local_nonconstant_source_sum_source_map_residual_covariance_target`,
+which reconstructs the post-midpoint residual from the five signed node
+residuals and from the three termwise residual streams. On the focused H39/y44
+fixture the reconstructed derivative residual matches the provider residual to
+sub-$10^{-12}$ relative gap, the node-triangle-to-derivative ratio is only
+$1.0000000008236036$, and the term-triangle-to-signed-node ratio is only
+$1.0000000047166826$. Thus neither the three-term split nor a hidden Lagrange
+node cancellation is the current artifact. The same
+$2.1184411322093202\times10^5$ contraction demand is already present as
+signed source-map node residual width. The dominant live contribution is node
+2 on `speed.0.first-y`, with `sin_delta` contributing
+$2.0953273068587252\times10^{24}$ in weighted residual absolute units. The
+next proof object should therefore bind the H38 producer-image source map
+itself, not merely reshuffle the downstream Lagrange or term-split accounting.
+
+The requested-y44 target is now linked back to the existing h0-h34 source-map
+trust anchor. Its trace-anchor summary matches the selected row-local provider
+rows to the same h0-h34 zero-constant source-term reduction: `constant_minus_two`
+has exact zero width at the source order, and the directed-rounded producer
+image trust burden is reduced to `delta_squared_speed`, `sin_phi`, and
+`sin_delta`. The bridge remains candidate-only, but it removes an ambiguity in
+the closure search: the live y44 residual-width target is not asking for a new
+four-term source identity. It asks for a directed-rounded same-domain H38
+producer-image source-map certificate for those three signed nonconstant terms
+on the selected requested-y44 rows.
+
+The requested-y44 source-map target now reduces the selected-row proof burden
+one step further. The shared-stream summary hashes the complete signed
+source-map residual data, excluding row labels and budgets, and finds that the
+two selected focused-fixture rows are the same H38 source residual stream. The
+only live difference is the row-local signed-midpoint budget; the tightest
+budget is on `speed.0.first-y`, and the budget spread across the shared stream
+is below $1.01$. Thus the next directed-rounded source-map certificate does not
+need two independent producer-image source proofs. It needs one same-domain
+certificate for the shared `delta_squared_speed + sin_phi + sin_delta` source
+stream, checked against the tightest selected requested-y44 row budget. The
+candidate still reports the required contraction scale
+$2.118441133954076\times10^5$ and keeps shifted
+$R_{\varepsilon,43}$, retained-branch, and directed-rounded claims open.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.
