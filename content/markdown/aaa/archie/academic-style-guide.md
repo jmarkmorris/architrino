@@ -179,9 +179,30 @@ Avoid the following unless there is a specific reason to retain them:
 - second-person address in textbook chapters
 - hype phrases
 - empty intensifiers
+- process-history filler, such as "previously," "now redesigned," "obsolete plan," or "we used to"
 - unresolved pronouns such as "this" or "that" when the referent is unclear
 - metaphor used in place of mechanism
 - rhetorical questions used as ornament rather than structure
+
+## Forward-Only Documentation
+
+Reader-facing prose should state the current architecture, claim, rule, or curriculum directly. It should not preserve drafting history, migration story, abandoned counts, old names, or "what changed from the last version" unless that history is the subject of the document.
+
+Use present-tense, source-of-truth wording:
+
+- "The series uses age-numbered books."
+- "A source illustration is..."
+- "The production target is..."
+- "The active proof obligation is..."
+
+Avoid process-history wording:
+
+- "The redesigned series..."
+- "The prior plan was..."
+- "This is now obsolete..."
+- "The old version used to..."
+
+Historical or process context belongs only where it serves a specific purpose: historical analysis, an Architecture Decision Record, a priority ledger, a release note, an audit trail, or a source comparison where the earlier state is evidence. In ordinary textbook, outreach, style-guide, and reference prose, Git history and GitHub records are enough to preserve the past. The document itself should move forward.
 
 ## Project-Specific Rules
 

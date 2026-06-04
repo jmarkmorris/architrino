@@ -4100,3 +4100,59 @@ aggregate arithmetic is stable, so the remaining proof object is not another
 cancellation decomposition. It is a directed-rounded same-domain H38
 producer-image interval provider for the three source terms themselves before
 the already-verified term/pair operation replay.
+
+That provider target now has a candidate precertificate. The H39 artifact emits
+`source_map_residual_shared_stream_five_node_source_term_provider_precertificate`,
+which joins the center-aware source-covariance realization budget to the
+term/pair operation replay. It verifies, still candidate-only, that all five
+source-term sum centers lie inside their center-aware signed targets while the
+term and pair operations replay through the one-`Number.EPSILON` endpoint
+screen. The live path therefore localizes the missing H38 producer-image proof
+to source-term width/covariance realization: the provider must emit
+directed-rounded same-domain intervals for `delta_squared_speed`, `sin_phi`,
+and `sin_delta` whose correlated sum fits those center-aware width targets.
+The precertificate does not certify those intervals as directed-rounded source
+inputs and does not close shifted `R_{\varepsilon,43}`.
+
+The precertificate now feeds a candidate source-term provider probe. The H39
+artifact emits
+`source_map_residual_shared_stream_five_node_source_term_provider_probe`, which
+preserves each term center, redistributes the center-aware half-width budget
+across `delta_squared_speed`, `sin_phi`, and `sin_delta`, reserves a
+`Math.sqrt(Number.EPSILON)` binary64 summation margin, and sends the shaped rows
+through both five-node verifier boundaries. The shaped aggregate rows fit the
+same-domain/same-radius source-map inclusion contract, but their term and pair
+intervals no longer match the live decomposition. This is the sharper blocker:
+the missing certificate is not another aggregate verifier or term replay. It is
+a directed-rounded H38 producer-image proof that the narrowed source-term
+widths and covariances are actually realized on the same domain before H39
+applies absolute shifted-source bounds.
+
+The provider probe now has a realization-slack diagnostic. The H39 artifact
+emits
+`source_map_residual_shared_stream_five_node_source_term_realization_slack_diagnostic`,
+which compares every narrowed `delta_squared_speed`, `sin_phi`, and
+`sin_delta` interval against its live source-term interval. On the live
+candidate path, the shaped intervals are centered subintervals of the original
+source terms and share a common homothetic width-contraction target within each
+node. This changes the next proof object from a vague term-width realization
+gap into a concrete H38 producer-image certificate target: prove, with
+directed-rounded same-domain source provenance, that the H38 producer image
+realizes those centered contracted source-term intervals before H39 applies
+absolute shifted-source bounds. The diagnostic is still candidate-only; it does
+not certify the source inputs, $N_{38}$ derivative bounds, $S_{37}$ division,
+shifted `R_{\varepsilon,43}`, retained branch, or full H39 closure.
+
+The realization-slack diagnostic now feeds a candidate homothetic source-term
+contraction normal form. The H39 artifact emits
+`source_map_residual_shared_stream_five_node_homothetic_source_term_contraction_normal_form`,
+which reconstructs every shaped `delta_squared_speed`, `sin_phi`, and
+`sin_delta` interval by a node-local centered contraction of the corresponding
+live source-term interval, then verifies that summing the three contracted
+terms gives the same shaped signed-source provider interval. This changes the
+current blocker again: the open proof is no longer an unconstrained per-term
+width choice, but a directed-rounded same-domain H38 producer-image certificate
+for one node-local contraction/covariance scalar acting coherently on the
+three signed source terms. The normal form is still candidate-only; it does not
+certify the source inputs, $N_{38}$ derivative bounds, $S_{37}$ division,
+shifted `R_{\varepsilon,43}`, retained branch, or full H39 closure.

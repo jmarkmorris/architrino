@@ -24,8 +24,8 @@ Do not use red, blue, or bright purple for story text. Those colors are reserved
 
 Use large, open, print-friendly text:
 
-- ages 3-8: large read-aloud type, one or two short sentences per spread;
-- ages 9-14: still generous type, but allow two to four sentences if the art is not crowded;
+- Books 3-8: large read-aloud type, one or two short sentences per spread;
+- Books 9-14: still generous type, but allow two to four sentences if the art is not crowded;
 - adult back matter: smaller type is acceptable, but keep black on white.
 
 Body text should feel literary and warm, not technical. Geometry terms can appear in adult notes and glossaries, but child-facing pages should not need labels inside the art.

@@ -1116,7 +1116,147 @@ constructed witness-object identity, identity needs ref/value non-domain
 carrier fields, direct source-handle promotion is rejected, selected carrier
 admission needs full binding and binding contract satisfaction, and binding
 contract satisfaction needs the witness-object contract link. This is the
-current endpoint stop condition before row-closure work resumes.
+previous endpoint stop condition before row-closure work resumes.
+
+The independent constructed witness-object membership theorem attempt is
+recorded in
+`fold_coordinate_endpoint_functional_independent_constructed_witness_object_membership_theorem_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_independent_constructed_witness_object_membership_theorem_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It tests one recorded cycle-breaker route directly. It records 4 / 4 ref/value
+source pairs and 4 / 4 carrier rule targets, but 0 / 4 ref/value non-domain
+carrier pairs, carrier-complete witness objects, constructed witness-object
+identity proofs, membership proofs, independent membership theorems, or cycle
+breakers. The current endpoint stop condition is therefore the missing
+ref/value non-domain carrier pair inside one same-packet witness object.
+
+The ref/value non-domain carrier-pair theorem attempt is recorded in
+`fold_coordinate_endpoint_functional_ref_value_non_domain_carrier_pair_theorem_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_ref_value_non_domain_carrier_pair_theorem_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It tests that stop condition directly. It records 4 / 4 ref/value source
+pairs, 4 / 4 carrier rule targets, 4 / 4 non-domain carrier obstruction
+records, and 4 / 4 direct source-promotion rejections, but 0 / 4 ref carrier
+rules, value-map carrier rules, joint carrier-pair rules, rule derivations,
+soundness proofs, application proofs, same-packet ref/value carrier fields,
+same-witness carrier-pair proofs, ref/value non-domain carrier pairs,
+carrier-pair theorems, independent membership theorems, or cycle breakers. This
+exposes the carrier-introduction rule-theorem layer for the ref and value-map
+carrier fields; source handles and rule targets do not construct the carrier
+pair.
+
+The ref/value carrier-introduction rule theorem attempt is recorded in
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_rule_theorem_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_rule_theorem_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It tests that rule layer directly. It records 4 / 4 source premise sets,
+4 / 4 carrier rule targets, 4 / 4 direct source-promotion rejections, and
+4 / 4 selected carrier-admission routes, but 0 / 4 ref rule derivations,
+value-map rule derivations, joint ref/value rule derivations, soundness proofs,
+endpoint application proofs, available carrier rules, rule-theorem bundles,
+ref/value non-domain carrier pairs, independent membership theorems, or cycle
+breakers. The current endpoint stop condition is therefore the missing
+carrier-introduction rule derivation layer, with
+`ref_carrier_rule_derivation_present`,
+`value_map_carrier_rule_derivation_present`, and
+`ref_value_pair_rule_derivation_present` as the first exact blockers.
+
+The carrier-introduction rule derivation attempt is recorded in
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_rule_derivation_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_rule_derivation_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It tests whether the already-present endpoint-boundary-binding ref contract,
+endpoint value-binding map contract, joint same-witness carrier-pair rule root,
+and selected carrier-admission route derive the missing rules. It records
+4 / 4 ref contract roots, 4 / 4 value-map contract roots, 4 / 4 joint
+same-witness carrier-pair rule roots, and 4 / 4 derivation target triples, but
+0 / 4 ref contract-to-ref-carrier rule derivations, value-map
+contract-to-value-map-carrier rule derivations, joint same-witness carrier-pair
+rule derivations, soundness bridges, endpoint application proofs, available
+carrier rules, carrier-rule derivation bundles, or ref/value non-domain carrier
+pairs. The current endpoint stop condition is now
+`ref_contract_to_ref_carrier_rule_derivation_present`,
+`value_map_contract_to_value_map_carrier_rule_derivation_present`, and
+`joint_same_witness_carrier_pair_rule_derivation_present`.
+
+The carrier-introduction inference-rule schema audit is recorded in
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_inference_rule_schema_audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
+and
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_inference_rule_schema_audit_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It tests whether those ready roots already include the axiom/lemma layer needed
+to derive the carrier-introduction rules. It records 4 / 4 inference-schema
+source scopes, 4 / 4 inference-rule schema targets, and 4 / 4 missing
+axiom/lemma layers identified, but 0 / 4 carrier-introduction inference-rule
+schemata, contract-to-carrier axiom-or-lemma records, same-witness pairing
+schemata, admissibility or preservation lemmas, source-handle non-promotion
+lemmas, schema soundness proofs, endpoint instantiation lemmas, derivation
+bundles, available carrier rules, or ref/value non-domain carrier pairs. The
+current endpoint stop condition is now
+`ref_contract_to_carrier_inference_schema_present`,
+`value_map_contract_to_carrier_inference_schema_present`, and
+`joint_same_witness_pairing_schema_present`.
+
+The carrier-introduction inference-schema lemma target is recorded in
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_inference_schema_lemma_target.md`.
+It states the candidate `S_ref`, `S_val`, and `S_pair` schema obligations and
+the supporting admissibility, preservation, source-handle non-promotion,
+same-witness pairing, soundness, and endpoint-instantiation lemma stack. This
+is solver-surface state only: it claims no accepted schema, no derivation
+bundle, no available carrier rule, no ref/value carrier pair, no row
+consumption, and no branch-chart authorization.
+
+The carrier-introduction inference-schema lemma proof attempt is recorded in
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_inference_schema_lemma_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It tests the derivation-from-existing-definitions route and fail-closes with
+4 / 4 definition source scopes and primitive-rule acceptance rejections, but
+0 / 4 ref contract-to-carrier lemma derivations, value-map contract-to-carrier
+lemma derivations, same-witness carrier-pairing derivations, admissibility
+derivations, membership-preservation derivations, source-handle non-promotion
+derivations, soundness derivations, endpoint-instantiation derivations,
+schema-family derivability proofs, schema bundles, derivation bundles, carrier
+pairs, consumed rows, or branch-chart authorization. The current endpoint stop
+condition is now
+`ref_contract_to_carrier_lemma_derivation_from_definitions_present`,
+`value_map_contract_to_carrier_lemma_derivation_from_definitions_present`, and
+`same_witness_carrier_pairing_derivation_from_definitions_present`.
+
+The carrier-introduction definition-lemma stack proof attempt is recorded in
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_definition_lemma_stack_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It tests the supporting definition-level lemma stack and fail-closes with
+4 / 4 definition source scopes, direct source-promotion rejections, selected
+carrier-admission routes, and definition-lemma stack targets, but 0 / 4
+admissibility derivations, membership-preservation derivations, source-handle
+non-promotion derivations, ref contract-to-carrier lemma derivations, value-map
+contract-to-carrier lemma derivations, same-witness carrier-pairing derivations,
+soundness derivations, endpoint-instantiation derivations, definition-lemma stack
+completions, primitive-rule acceptances, schema-family derivability proofs,
+derivation bundles, carrier pairs, consumed rows, or branch-chart authorization.
+The current endpoint stop condition is now
+`ref_contract_to_carrier_lemma_derivation_from_definitions_present`,
+`value_map_contract_to_carrier_lemma_derivation_from_definitions_present`,
+`non_domain_carrier_admissibility_derivation_from_definitions_present`,
+`non_domain_carrier_membership_preservation_derivation_from_definitions_present`,
+`source_handle_non_promotion_derivation_from_definitions_present`, and
+`same_witness_carrier_pairing_derivation_from_definitions_present`.
+
+The carrier-introduction non-domain carrier admissibility lemma proof attempt is
+recorded in
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_non_domain_carrier_admissibility_lemma_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It tests the `L_adm` sublemma and fail-closes with 4 / 4 definition source
+scopes, selected carrier-admission routes, route-only carrier-admission
+rejections, source endpoint-boundary-binding refs, source endpoint value-binding
+maps, non-domain carrier obstructions, and ref/value carrier source candidates,
+but 0 / 4 ref candidate carrier fields, value-map candidate carrier fields,
+carrier-admission definition bridges, witness-object field membership proofs,
+source-handle non-promotion guards, admissibility derivations,
+membership-preservation derivations, consumed rows, or branch-chart
+authorization. The current `L_adm` stop condition is
+`ref_candidate_carrier_field_constructed`,
+`value_map_candidate_carrier_field_constructed`,
+`carrier_admission_definition_bridge_present`,
+`non_domain_witness_object_field_membership_proof_present`,
+`source_handle_non_promotion_guard_proven`, and
+`non_domain_carrier_admissibility_derivation_from_definitions_present`.
 
 ## Pre-Ledger Stop Condition
 

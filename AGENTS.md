@@ -75,6 +75,13 @@ This document distinguishes three audience scopes:
 - In markdown documents, use relative link targets relative to the current document. Do not use absolute filesystem paths and do not use root-absolute deployment-sensitive targets like `/content/...` or `/Users/...`.
 - Keep documents in `content/markdown/aaa` self-contained with respect to priority material. Do not refer or link from those documents to [reference/priorities](reference/priorities/README.md); if priority material matters, restate or promote the needed content within `content/markdown/aaa` instead.
 
+#### Forward-Only Documentation
+
+- In user-facing, reader-facing, and ordinary guide/reference markdown, state the current source of truth directly. Do not preserve process-history filler such as "redesigned," "previously," "obsolete," "old plan," or "we used to" unless the document is explicitly historical.
+- Keep historical trace, abandoned alternatives, and progress diaries in the places designed for them: `reference/priorities/`, Architecture Decision Records, GitHub issues, GitHub pull requests, and git history.
+- Even in behind-the-scenes documents, keep history only when it has an active purpose: a priority ledger, an ADR rationale, an audit trail, a generated-output inventory, a compatibility/removal condition, or evidence needed for the current claim.
+- When editing a document after a decision changes, rewrite it as the current policy or current design. Do not add a note merely explaining that the old text was replaced.
+
 #### Promotion From Priority Material
 
 - When promoting material from `reference/priorities` into `content/markdown/aaa`, preserve or choose reader-facing conceptual headings. Do not import internal workstream, task, packet, gate, queue, or status labels as top-level headings unless the term is already the best textbook-facing concept; demote such labels to theorem-target, closure-target, or local subsection labels when useful.

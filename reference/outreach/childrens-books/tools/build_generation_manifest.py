@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the children's-book source-image generation manifest."""
+"""Build the children's-book generated-image manifest."""
 
 from __future__ import annotations
 
@@ -12,11 +12,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "production" / "generation-manifest.json"
 
+# Books with generated image artifacts managed by this manifest.
 BOOKS = [
     {
         "slug": "here-there-back",
         "title": "Here, There, Back",
-        "age_band": "baby-toddler",
+        "book_number": 1,
+        "age_band": "0-1",
         "story_spreads": 8,
         "cover_count": 1,
         "back_matter_count": 1,
@@ -24,7 +26,8 @@ BOOKS = [
     {
         "slug": "nature-remembers-motion",
         "title": "Nature Remembers Motion",
-        "age_band": "3-5",
+        "book_number": 3,
+        "age_band": "2-3",
         "story_spreads": 12,
         "cover_count": 1,
         "back_matter_count": 2,
@@ -32,7 +35,8 @@ BOOKS = [
     {
         "slug": "the-message-that-traveled",
         "title": "The Message That Traveled",
-        "age_band": "6-8",
+        "book_number": 6,
+        "age_band": "5-6",
         "story_spreads": 16,
         "cover_count": 1,
         "back_matter_count": 2,
@@ -40,7 +44,8 @@ BOOKS = [
     {
         "slug": "the-tiny-transceivers",
         "title": "The Tiny Transceivers",
-        "age_band": "9-11",
+        "book_number": 9,
+        "age_band": "8-9",
         "story_spreads": 18,
         "cover_count": 1,
         "back_matter_count": 3,
@@ -48,7 +53,8 @@ BOOKS = [
     {
         "slug": "the-balance-point",
         "title": "The Balance Point",
-        "age_band": "12-14",
+        "book_number": 12,
+        "age_band": "11-12",
         "story_spreads": 18,
         "cover_count": 1,
         "back_matter_count": 4,
@@ -56,7 +62,8 @@ BOOKS = [
     {
         "slug": "the-history-that-pushes-now",
         "title": "The History That Pushes Now",
-        "age_band": "15-16",
+        "book_number": 15,
+        "age_band": "14-15",
         "story_spreads": 20,
         "cover_count": 1,
         "back_matter_count": 5,
@@ -64,7 +71,8 @@ BOOKS = [
     {
         "slug": "the-world-we-recover",
         "title": "The World We Recover",
-        "age_band": "17-18",
+        "book_number": 16,
+        "age_band": "15-16",
         "story_spreads": 20,
         "cover_count": 1,
         "back_matter_count": 6,
@@ -189,6 +197,7 @@ def back_matter_entry(book: dict, index: int, activity: str) -> dict:
         "id": f"{slug}-backmatter-{index:02d}",
         "book_slug": slug,
         "book_title": title,
+        "book_number": book["book_number"],
         "age_band": book["age_band"],
         "kind": "back_matter_activity",
         "sequence": index,
@@ -264,6 +273,7 @@ def build_manifest() -> dict:
                 "id": eid,
                 "book_slug": book["slug"],
                 "book_title": book["title"],
+                "book_number": book["book_number"],
                 "age_band": book["age_band"],
                 "source_markdown": f"{book['slug']}.md",
                 **section,
@@ -293,6 +303,7 @@ def build_manifest() -> dict:
             }
         )
 
+    # Keep the generated manifest internally consistent with this book list.
     total = sum(book["target_source_images"] for book in books_out)
     if total != 142 or len(entries) != 142:
         raise SystemExit(f"manifest count mismatch: books={total}, entries={len(entries)}")

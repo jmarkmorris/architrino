@@ -16,3 +16,4 @@ The current preferred style for live priority docs is:
 - use `Current` plus `Objective` rather than long migration diaries;
 - rerank based on real code state, not stale historical intent;
 - if a task is done, remove it and renumber the list.
+- keep history only when it supports active triage, auditability, or a current proof/certificate decision; otherwise rely on GitHub and git history.

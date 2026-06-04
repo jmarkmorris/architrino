@@ -31,7 +31,7 @@ Why it works:
 - the toddler's path is shown as ordered red/blue/purple marks, not as an abstract diagram;
 - one child appears once, while ordered path marks carry the earlier and returning motion;
 - the caregiver remains warm but secondary to the child's embodied path;
-- the palette stays simple enough for the baby-toddler foundation.
+- the palette stays simple enough for the Book 1 foundation.
 
 Use this as the exemplar for:
 
@@ -49,7 +49,7 @@ Why it works:
 - wake rings expand from earlier positions, not only from the current ball;
 - purple overlap appears where histories intersect;
 - the child's natural skin and hair keep the scene warm without weakening the physics palette;
-- the room is simple enough for ages 3-5.
+- the room is simple enough for Book 3 / Book 4 source material.
 
 Use this as the exemplar for:
 
@@ -92,7 +92,7 @@ Use this as the exemplar for:
 - polarity;
 - line of action;
 - superposition;
-- 9-11 age-band complexity.
+- Books 9-11 complexity.
 
 ## The Balance Point
 
@@ -111,7 +111,7 @@ Use this as the exemplar for:
 - threshold behavior;
 - deterministic multistability;
 - basin diagrams;
-- measurement interaction for ages 12-14.
+- measurement interaction for Books 12-14.
 
 ## The History That Pushes Now
 
@@ -130,7 +130,7 @@ Use this as the exemplar for:
 - admissible path-history;
 - finite field-speed arrival;
 - self-action and self-hit intuition;
-- 15-16 age-band simulator scenes.
+- Book 15 simulator scenes.
 
 ## The World We Recover
 
@@ -149,7 +149,7 @@ Use this as the exemplar for:
 - assembly hierarchy;
 - Noether sea response;
 - effective clock, ruler, photon-channel, and metric recovery;
-- 17-18 synthesis scenes.
+- Book 16 synthesis scenes.
 
 ## Exemplar Prompt Addendum
 

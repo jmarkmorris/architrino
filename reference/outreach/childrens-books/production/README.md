@@ -2,7 +2,7 @@
 
 This folder contains generated production artifacts for the children's book workflow.
 
-- `generation-manifest.json` tracks all 142 planned source illustrations across the age-band series.
+- `generation-manifest.json` tracks generated source illustrations.
 - `source/<book>/` contains text-free generated source illustrations.
 - `qa/<book>/` contains per-image QA records for palette, no text, one continuous scene, and lesson geometry.
 - `pages/<book>/landscape/` contains first-draft reverse-band book pages.
@@ -10,7 +10,7 @@ This folder contains generated production artifacts for the children's book work
 - `derivatives/<book>/4x5/` contains feed portrait exports.
 - `derivatives/<book>/9x16/` contains YouTube Shorts/TikTok exports.
 
-Current completed first-draft books:
+Generated first-draft books:
 
 - `here-there-back`: 10 source images generated, QA approved, 10 landscape pages exported, 10 feed portrait derivatives exported, and 10 short-video derivatives exported.
 - `nature-remembers-motion`: 15 source images generated, QA approved, 15 landscape pages exported, 15 feed portrait derivatives exported, and 15 short-video derivatives exported.
@@ -19,3 +19,10 @@ Current completed first-draft books:
 - `the-balance-point`: 23 source images generated, QA approved, 23 landscape pages exported, 23 feed portrait derivatives exported, and 23 short-video derivatives exported.
 - `the-history-that-pushes-now`: 26 source images generated, QA approved, 26 landscape pages exported, 26 feed portrait derivatives exported, and 26 short-video derivatives exported.
 - `the-world-we-recover`: 27 source images generated, QA approved, 27 landscape pages exported, 27 feed portrait derivatives exported, and 27 short-video derivatives exported.
+
+Production target for the manuscript line:
+
+- `224` core source illustrations: one cover/key-art image plus one source image for each story spread.
+- up to `32` optional back-matter source images.
+- `256` recommended full-series ceiling.
+- layout crops, PDFs, 4:5 assets, and 9:16 assets are derivatives, not additional source illustrations.

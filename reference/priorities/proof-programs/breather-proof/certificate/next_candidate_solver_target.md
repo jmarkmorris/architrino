@@ -734,6 +734,127 @@ actual-link rule derivation, independent constructed witness-object membership
 theorem, independent full endpoint boundary-binding theorem, or explicit
 proof-contract order revision before any carrier-admission row-consumption
 packet can proceed.
+The independent constructed witness-object membership theorem attempt,
+`fold_coordinate_endpoint_functional_independent_constructed_witness_object_membership_theorem_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests that escape route directly. It records 4 / 4 ref/value source pairs,
+4 / 4 carrier rule targets, 4 / 4 membership source-condition bundles, and
+4 / 4 dependency cycles, but 0 / 4 ref/value non-domain carrier pairs,
+carrier-complete witness objects, constructed witness-object identity proofs,
+membership proofs, independent membership theorem derivations, soundness proofs,
+application proofs, independent membership theorems, or cycle breakers. The next
+native endpoint packet for this route must construct the ref/value non-domain
+carrier pair inside one same-packet witness object before the independent
+membership theorem can break the cycle.
+The ref/value non-domain carrier-pair theorem attempt,
+`fold_coordinate_endpoint_functional_ref_value_non_domain_carrier_pair_theorem_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests that first exact blocker. It records 4 / 4 ref/value source pairs,
+4 / 4 carrier rule targets, 4 / 4 non-domain carrier obstruction records, and
+4 / 4 direct source-promotion rejections, but 0 / 4 ref carrier rules,
+value-map carrier rules, joint carrier-pair rules, rule derivations, soundness
+proofs, application proofs, same-packet ref carrier fields, same-packet
+value-map carrier fields, same-witness carrier-pair proofs, ref/value
+non-domain carrier pairs, carrier-pair theorem derivations, carrier-pair
+theorems, independent membership theorems, or cycle breakers. This exposes the
+carrier-introduction rule-theorem layer; source handles cannot become a
+same-packet ref/value non-domain carrier pair by target declaration.
+The ref/value carrier-introduction rule theorem attempt,
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_rule_theorem_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests that rule layer directly. It records 4 / 4 source premise sets,
+4 / 4 carrier rule targets, 4 / 4 rejected direct source-promotion routes, and
+4 / 4 selected carrier-admission routes, but 0 / 4 ref rule derivations,
+value-map rule derivations, joint ref/value rule derivations, soundness proofs,
+endpoint application proofs, available carrier rules, rule-theorem bundles,
+ref/value non-domain carrier pairs, independent membership theorems, or cycle
+breakers. The first exact blockers are now the three missing rule derivations:
+`ref_carrier_rule_derivation_present`,
+`value_map_carrier_rule_derivation_present`, and
+`ref_value_pair_rule_derivation_present`.
+The carrier-introduction rule derivation attempt,
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_rule_derivation_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests whether the existing endpoint-boundary-binding ref contract,
+endpoint value-binding map contract, joint same-witness carrier-pair rule root,
+and selected carrier-admission route already discharge those rule derivations.
+It records 4 / 4 ref contract roots, value-map contract roots, joint
+same-witness carrier-pair rule roots, derivation target triples, rejected
+direct source-promotion routes, and selected carrier-admission routes, but
+0 / 4 ref contract-to-ref-carrier rule derivations, value-map
+contract-to-value-map-carrier rule derivations, joint same-witness carrier-pair
+rule derivations, soundness bridges, endpoint application proofs, available
+carrier rules, carrier-rule derivation bundles, ref/value non-domain carrier
+pairs, independent membership theorems, or cycle breakers. The current exact
+blockers are `ref_contract_to_ref_carrier_rule_derivation_present`,
+`value_map_contract_to_value_map_carrier_rule_derivation_present`, and
+`joint_same_witness_carrier_pair_rule_derivation_present`.
+The carrier-introduction inference-rule schema audit,
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_inference_rule_schema_audit_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests the missing axiom/lemma layer below those derivations. It records
+4 / 4 inference-schema source scopes, inference-rule schema targets, and
+missing axiom/lemma layers, but 0 / 4 carrier-introduction inference-rule
+schemata, contract-to-carrier axiom-or-lemma records, same-witness pairing
+schemata, admissibility or preservation lemmas, source-handle non-promotion
+lemmas, schema soundness proofs, endpoint instantiation lemmas, derivation
+bundles, available carrier rules, ref/value non-domain carrier pairs,
+independent membership theorems, or cycle breakers. The current exact blockers
+are `ref_contract_to_carrier_inference_schema_present`,
+`value_map_contract_to_carrier_inference_schema_present`, and
+`joint_same_witness_pairing_schema_present`.
+The carrier-introduction inference-schema lemma target,
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_inference_schema_lemma_target.md`,
+is now the next exact proof object for that stop condition. It states the
+candidate `S_ref`, `S_val`, and `S_pair` schemata and the required
+admissibility, preservation, source-handle non-promotion, same-witness pairing,
+soundness, and endpoint-instantiation lemma stack, but it does not mark any
+schema, derivation bundle, available carrier rule, carrier pair, row
+consumption, or branch-chart authorization present.
+The carrier-introduction inference-schema lemma proof attempt,
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_inference_schema_lemma_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests the derivation-from-existing-definitions route above that target. It
+records 4 / 4 definition source scopes and 4 / 4 primitive-rule acceptance
+rejections, but 0 / 4 ref contract-to-carrier lemma derivations, value-map
+contract-to-carrier lemma derivations, same-witness carrier-pairing derivations,
+admissibility derivations, membership-preservation derivations, source-handle
+non-promotion derivations, soundness derivations, endpoint-instantiation
+derivations, schema-family derivability proofs, schema bundles, derivation
+bundles, carrier pairs, consumed rows, or branch-chart authorization. The
+current exact blockers are
+`ref_contract_to_carrier_lemma_derivation_from_definitions_present`,
+`value_map_contract_to_carrier_lemma_derivation_from_definitions_present`, and
+`same_witness_carrier_pairing_derivation_from_definitions_present`.
+The carrier-introduction definition-lemma stack proof attempt,
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_definition_lemma_stack_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests the supporting definition-level lemma stack. It records 4 / 4
+definition source scopes, direct source-promotion rejections, selected
+carrier-admission routes, and definition-lemma stack targets, but 0 / 4
+admissibility derivations, membership-preservation derivations, source-handle
+non-promotion derivations, ref contract-to-carrier lemma derivations, value-map
+contract-to-carrier lemma derivations, same-witness carrier-pairing derivations,
+soundness derivations, endpoint-instantiation derivations, definition-lemma stack
+completions, primitive-rule acceptances, schema-family derivability proofs,
+derivation bundles, carrier pairs, consumed rows, or branch-chart authorization.
+The current exact blockers are
+`ref_contract_to_carrier_lemma_derivation_from_definitions_present`,
+`value_map_contract_to_carrier_lemma_derivation_from_definitions_present`,
+`non_domain_carrier_admissibility_derivation_from_definitions_present`,
+`non_domain_carrier_membership_preservation_derivation_from_definitions_present`,
+`source_handle_non_promotion_derivation_from_definitions_present`, and
+`same_witness_carrier_pairing_derivation_from_definitions_present`.
+The carrier-introduction non-domain carrier admissibility lemma proof attempt,
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_non_domain_carrier_admissibility_lemma_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests the `L_adm` sublemma. It records 4 / 4 definition source
+scopes, selected carrier-admission routes, route-only carrier-admission
+rejections, source endpoint-boundary-binding refs, source endpoint value-binding
+maps, non-domain carrier obstructions, and ref/value carrier source candidates,
+but 0 / 4 ref candidate carrier fields, value-map candidate carrier fields,
+carrier-admission definition bridges, witness-object field membership proofs,
+source-handle non-promotion guards, admissibility derivations,
+membership-preservation derivations, consumed rows, or branch-chart
+authorization. The current exact blockers for `L_adm` are
+`ref_candidate_carrier_field_constructed`,
+`value_map_candidate_carrier_field_constructed`,
+`carrier_admission_definition_bridge_present`,
+`non_domain_witness_object_field_membership_proof_present`,
+`source_handle_non_promotion_guard_proven`, and
+`non_domain_carrier_admissibility_derivation_from_definitions_present`.
 The remaining branches are periodic
 endpoint/complement ownership for the 8 lift rows and fold-layer certificate
 closure for the 112 fold-layer rows now grouped by

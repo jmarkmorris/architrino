@@ -1,6 +1,6 @@
 # Children's Book Style Guide
 
-This guide controls the visual language for the $\mathbb{A}\mathbb{A}\mathbb{A}$ children's book series. It supersedes earlier full-color prompt language in pilot drafts. Existing full-color assets should be treated as concept sketches until regenerated under this palette.
+This guide controls the visual language for the $\mathbb{A}\mathbb{A}\mathbb{A}$ children's book series.
 
 ## Core Rule
 
@@ -18,7 +18,7 @@ No green, yellow, orange, natural sky blue, natural grass green, gold, or multic
 
 The goal is not ordinary realism. The goal is a disciplined symbolic world where color teaches the child how to read $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry.
 
-The approved visual target is recorded in [exemplars.md](exemplars.md). Future production should preserve that balance: natural people, informal play, high white space, black expressive linework, and red/blue/purple physics geometry.
+The approved visual target is recorded in [exemplars.md](exemplars.md). Production should preserve that balance: natural people, informal play, high white space, black expressive linework, and red/blue/purple physics geometry.
 
 ## Text Color
 
@@ -82,6 +82,18 @@ Use:
 Avoid assigning red or blue as arbitrary clothing colors if that makes a child look like a polarity source. If a character needs an identifying accent, prefer pattern, silhouette, line style, or a controlled purple value rather than a new hue. Red and blue clothing can be used only when the page composition clearly separates clothing from polarity geometry.
 
 Do not map skin tone, hair, nationality, gender, ability, or personality to red/blue polarity meaning. Polarity belongs to architrinos and causal geometry, not to human identity.
+
+### Age And Reading Context
+
+The books may begin at the normal picture-book stage, when a parent or caregiver reads aloud and shows pictures. Very young children can participate as viewers and listeners before they understand the physics lesson.
+
+For infant and young toddler scenes, show caregiver-led attention:
+
+- adult hands, lap reading, floor-level demonstration, or close adult presence;
+- the child watching, reaching, touching, or following the red and blue balls with their eyes;
+- no implication that an infant assembles tiles, handles joiners, lifts tile stacks, or plays unsupervised.
+
+The first layer for the youngest readers is visual rhythm, caregiver attention, red/blue contrast, and the idea that balls follow paths. The ball is the visual focus. A caregiver may hold the ball, but the hand should cradle or present it from the side or below so the ball remains large, clear, and mostly unobstructed. Do not draw a hand covering the ball or making the hand the main subject. Older toddler and preschool scenes can show more intentional rolling, arranging, and repeated trials.
 
 ### Clothing
 
@@ -158,6 +170,25 @@ Show assemblies as balanced arrangements of red and blue point transceivers:
 
 The child should be able to see that a calm neutral assembly is made from active parts.
 
+### Play Surface Tiles
+
+Ball-rolling, bead-rolling, path, and potential-landscape scenes may use a rectangular set of modular white play-surface tiles as the rolling surface. Rectangular includes square layouts. Treat the tiles as a recurring physical prop that can also support merchandise design; see [play-surface/README.md](../play-surface/README.md).
+
+Use the tile field when it helps the child see surface slope, path, return path, basin, ridge, or repeated trials. Do not force it into scenes where a floor, blanket, pond, paper map, or tabletop is doing a better story job.
+
+Default layout guidance:
+
+- `5 x 5`: strong default for close child play and simple ball-rolling scenes;
+- `6 x 6`: useful for wider classroom/tabletop views or longer paths;
+- `4 x 6`: useful for landscape compositions where the path should read left-to-right;
+- other rectangular arrangements are allowed when the scene needs them.
+
+The tile seams should be barely visible light gray or pale purple-gray lines. They should show modularity without becoming a heavy grid. All tile sides should look compatible with any neighboring tile side. Ordinary tile sides should meet at the neutral surface height so the ball can cross seams without seeing a ramp to nowhere.
+
+Rounded ridge tiles may be used as soft guide rims in toddler rolling scenes. Draw them as gentle raised surface features, not walls, rails, tracks, or containment barriers.
+
+The tile surface should remain white or pale purple-shadowed white. The balls remain pure red and pure blue only; do not add a purple ball. Contours should be shown through white surface height, pale purple shading, and black linework rather than extra environmental colors. Do not add decorative surface patterns, stars, waves, dots, scenery, embossed icons, texture fields, or printed graphics to the rolling surface.
+
 ## Scene Values
 
 Because the palette is narrow, scene clarity depends on value design.
@@ -205,7 +236,7 @@ Avoid:
 - placing important geometry behind faces or hands;
 - making wake arcs so faint that the lesson disappears;
 - making wake arcs so strong that the children disappear;
-- using diagram complexity above the age band.
+- using diagram complexity above the target book.
 
 ## Text And Layout
 
@@ -289,6 +320,6 @@ Before saving an image as production direction, check:
 - There is no in-image text, label, equation, watermark, or logo.
 - The image leaves usable white or quiet space for layout text.
 
-## Current Pilot Note
+## Cover Compliance
 
-The generated cover for [The Message That Traveled](the-message-that-traveled.md) predates this guide. It is useful for composition and geometry direction, but it is not palette-compliant. A production cover should be regenerated using this style guide and the approved [exemplars.md](exemplars.md) direction.
+Production covers should use this style guide and the approved [exemplars.md](exemplars.md) direction. Covers that do not meet the restricted palette, no-text, and one-continuous-scene rules should be replaced before final production.

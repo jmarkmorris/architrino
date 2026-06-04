@@ -861,6 +861,116 @@ independent full endpoint boundary-binding theorem, or explicit proof-contract
 order revision; without one of those, the selected carrier-admission route
 returns to the same absent contract link it needs to construct.
 
+The independent constructed witness-object membership theorem attempt,
+`fold_coordinate_endpoint_functional_independent_constructed_witness_object_membership_theorem_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+tests the constructed-witness-object membership escape route. It records
+4 / 4 ref/value source pairs and 4 / 4 carrier rule targets, but no ref/value
+non-domain carrier pair, no carrier-complete witness object, no constructed
+witness-object identity proof, no co-membership proof, no non-adjacency proof,
+no independent theorem derivation, no soundness proof, no application proof, and
+no cycle breaker. The source-cover route remains blocked until a same-packet
+ref/value non-domain carrier pair exists or another proof-grade escape route is
+supplied.
+
+The ref/value non-domain carrier-pair theorem attempt,
+`fold_coordinate_endpoint_functional_ref_value_non_domain_carrier_pair_theorem_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+tests that first blocker directly. It records 4 / 4 ref/value source pairs,
+4 / 4 non-domain carrier obstruction records, 4 / 4 carrier rule targets, and
+4 / 4 rejected direct source-promotion routes, but no proof-grade ref carrier
+rule, value-map carrier rule, joint carrier-pair rule, rule derivation,
+soundness proof, application proof, same-packet ref/value carrier field,
+same-witness carrier-pair proof, ref/value non-domain carrier pair, or
+carrier-pair theorem. The source-cover route therefore remains blocked at the
+carrier-introduction rule layer, before any constructed witness-object identity
+or membership theorem can unlock row consumption.
+
+The ref/value carrier-introduction rule theorem attempt,
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_rule_theorem_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+tests that layer directly. It records 4 / 4 source premise sets, 4 / 4 carrier
+rule targets, 4 / 4 rejected direct source-promotion routes, and 4 / 4 selected
+carrier-admission routes, but no ref rule derivation, value-map rule derivation,
+joint ref/value rule derivation, soundness proof, endpoint application proof,
+available carrier rule, rule-theorem bundle, ref/value non-domain carrier pair,
+or cycle breaker. The source-cover route is now blocked at the derivation layer:
+`ref_carrier_rule_derivation_present`,
+`value_map_carrier_rule_derivation_present`, and
+`ref_value_pair_rule_derivation_present`.
+
+The carrier-introduction rule derivation attempt,
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_rule_derivation_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests the contract-to-rule step directly. It records 4 / 4
+endpoint-boundary-binding ref contract roots, 4 / 4 endpoint value-binding map
+contract roots, 4 / 4 joint same-witness carrier-pair rule roots, 4 / 4
+derivation target triples, 4 / 4 direct source-promotion rejections, and 4 / 4
+selected carrier-admission routes, but no ref contract-to-ref-carrier rule
+derivation, value-map contract-to-value-map-carrier rule derivation, joint
+same-witness carrier-pair rule derivation, soundness bridge, endpoint
+application proof, available carrier rule, carrier-rule derivation bundle,
+ref/value non-domain carrier pair, or cycle breaker. The source-cover route is
+now blocked at `ref_contract_to_ref_carrier_rule_derivation_present`,
+`value_map_contract_to_value_map_carrier_rule_derivation_present`, and
+`joint_same_witness_carrier_pair_rule_derivation_present`.
+
+The carrier-introduction inference-rule schema audit,
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_inference_rule_schema_audit_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then lowers that blocker to the missing axiom/lemma layer. It records 4 / 4
+inference-schema source scopes, 4 / 4 inference-rule schema targets, and
+4 / 4 missing axiom/lemma layers identified, but no carrier-introduction
+inference-rule schema, contract-to-carrier axiom-or-lemma record, same-witness
+pairing schema, admissibility lemma, preservation lemma, source-handle
+non-promotion lemma, schema soundness proof, endpoint instantiation lemma,
+derivation bundle, available carrier rule, ref/value non-domain carrier pair,
+or cycle breaker. The source-cover route is now blocked at
+`ref_contract_to_carrier_inference_schema_present`,
+`value_map_contract_to_carrier_inference_schema_present`, and
+`joint_same_witness_pairing_schema_present`.
+
+The carrier-introduction inference-schema lemma target,
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_inference_schema_lemma_target.md`,
+now states the exact candidate schema family and lemma stack for that blocker.
+It is a source-cover route target only; it adds no boundary-ownership pass rule,
+consumes 0 rows, and authorizes no branch chart.
+
+The carrier-introduction inference-schema lemma proof attempt,
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_inference_schema_lemma_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+tests the derivation-from-existing-definitions route for the same source-cover
+blocker. It records 4 / 4 definition source scopes and 4 / 4 primitive-rule
+acceptance rejections, but 0 / 4 ref contract-to-carrier lemma derivations,
+value-map contract-to-carrier lemma derivations, same-witness carrier-pairing
+derivations, admissibility derivations, membership-preservation derivations,
+source-handle non-promotion derivations, soundness derivations,
+endpoint-instantiation derivations, schema-family derivability proofs, schema
+bundles, derivation bundles, carrier pairs, consumed rows, or branch-chart
+authorization. It is still a source-cover route target only; it adds no
+boundary-ownership pass rule.
+
+The carrier-introduction definition-lemma stack proof attempt,
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_definition_lemma_stack_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+tests the supporting definition-level lemma stack for the same source-cover
+blocker. It records 4 / 4 definition source scopes, direct source-promotion
+rejections, selected carrier-admission routes, and definition-lemma stack
+targets, but 0 / 4 admissibility derivations, membership-preservation
+derivations, source-handle non-promotion derivations, ref contract-to-carrier
+lemma derivations, value-map contract-to-carrier lemma derivations, same-witness
+carrier-pairing derivations, soundness derivations, endpoint-instantiation
+derivations, definition-lemma stack completions, primitive-rule acceptances,
+schema-family derivability proofs, derivation bundles, carrier pairs, consumed
+rows, or branch-chart authorization. It is still a source-cover route target
+only; it adds no boundary-ownership pass rule.
+
+The carrier-introduction non-domain carrier admissibility lemma proof attempt,
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_non_domain_carrier_admissibility_lemma_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+tests the `L_adm` sublemma for the same source-cover blocker. It records
+4 / 4 definition source scopes, selected carrier-admission routes, route-only
+carrier-admission rejections, source endpoint-boundary-binding refs, source
+endpoint value-binding maps, non-domain carrier obstructions, and ref/value
+carrier source candidates, but 0 / 4 ref candidate carrier fields, value-map
+candidate carrier fields, carrier-admission definition bridges, witness-object
+field membership proofs, source-handle non-promotion guards, admissibility
+derivations, membership-preservation derivations, consumed rows, or branch-chart
+authorization. It is still a source-cover route target only; it adds no
+boundary-ownership pass rule.
+
 ## Capture Decision
 
 Priority-only theorem target. The partition-audit implementation is now
