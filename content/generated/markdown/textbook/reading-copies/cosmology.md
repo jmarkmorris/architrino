@@ -53,6 +53,7 @@ All cosmological observables are computed from absolute-state evolution and then
 | Expansion status | Fixed Euclidean container; expansion variables are effective Noether sea state summaries |
 | Universe age stance | Eternal background with no mandatory one-time global origin event |
 | Redshift mechanism | Medium evolution plus clock-rate comparison and transport contributions |
+| Photon-frequency status | Observer-level signed transfer record; redshift and blueshift are outputs of endpoint cadence, source branch, launch geometry, and path-history exchange |
 | CMB origin mode | Source + transport + thermalization + decoupling in one medium-and-assembly ontology |
 | Nucleosynthesis mode | Recurring local reactor-style channels (SMBH-linked) mapped to observer-level primordial diagnostics |
 | Homogeneity stance | Statistical large-scale homogeneity from repeated local processes with allowed local inhomogeneity |
@@ -63,6 +64,16 @@ All cosmological observables are computed from absolute-state evolution and then
 Cosmological observables (e.g., $H(z)$, BAO, CMB peaks, lensing, growth proxies) must be reproducible from absolute-frame medium dynamics, with GR/$\Lambda\mathrm{CDM}$ behavior appearing as effective limits where applicable.
 
 For development and comparison, expansion, CMB transfer, BBN yields, and growth/lensing are treated as separable observational modules with explicit interface variables, while remaining one ontology.
+
+Redshift is therefore not a primitive expansion witness in this ontology. It is a signed photon-frequency transfer record,
+
+$$
+Z_X^{E\to R}
+=
+\ln\frac{\nu_{X,0}}{\nu_{\mathrm{obs},X}},
+$$
+
+whose positive and negative contributions must be assigned to endpoint cadence, source-branch state, launch geometry, and path-history exchange through the Noether sea. Sunyaev-Zeldovich-type CMB measurements make the path-history part observationally concrete: intervening medium can shift photon frequencies after emission. A valid cosmology must preserve that fact while still recovering the standard data products, rather than using redshift alone to promote literal expansion of the Euclidean void.
 
 #### Effective FRW Variable Ledger
 
@@ -435,6 +446,16 @@ $$
 
 so redshift is treated as path-integrated medium evolution plus endpoint clock-rate comparison.
 
+The stronger reading is that redshift is one sign of a broader photon-frequency transfer record. A photon packet may arrive redward of the clean emitted line, blueward of it, or unchanged after endpoint, source-branch, launch, and path terms have been separated. Define the signed frequency-transfer budget
+
+$$
+Z_X^{E\to R}
+\equiv
+\ln\frac{\nu_{X,0}}{\nu_{\mathrm{obs},X}},
+$$
+
+so $Z_X>0$ is redward relative to the clean reference line and $Z_X<0$ is blueward. A path segment that transfers energy from an energetic intervening medium into the photon-channel packet contributes a negative increment to the path term, while a segment that transfers photon energy into a lower-energy medium contributes a positive increment. Sunyaev-Zeldovich-type comparisons are the observed calibration family for this point: CMB photon frequencies can be shifted by intervening electron populations, so photon frequency is a path-history observable rather than a primitive expansion clock.
+
 For modeling and diagnostics, separate at least three effective channels:
 
 - endpoint clock-rate comparison,
@@ -502,6 +523,37 @@ $$
 $$
 
 A factor may be set to $1$ only when its logarithmic contribution is small relative to the dominant contribution and to the observational tolerance. This prevents the same redshift record from silently switching between gravitational, relative-motion, source-branch, and propagation explanations.
+
+In this convention the path-history term is explicitly signed:
+
+$$
+Y_{X,E\to R}
+=
+\sum_j \Delta Y_{X,j},
+\qquad
+\Delta Y_{X,j}
+=
+-\ln\frac{\nu_{X,j}^{+}}{\nu_{X,j}^{-}}
+\quad
+\text{after endpoint, source, and launch terms are held fixed}.
+$$
+
+Here $\nu_{X,j}^{-}$ and $\nu_{X,j}^{+}$ are the photon-channel frequencies immediately before and after the segment-level exchange as read by the same comparison clock. A frequency boost has $\Delta Y_{X,j}<0$; a frequency depletion has $\Delta Y_{X,j}>0$. The local exchange must close an energy ledger such as
+
+$$
+\mathcal{R}_{\nu\text{-}\mathrm{ex},j}
+=
+\frac{
+\left|
+h(\nu_{X,j}^{+}-\nu_{X,j}^{-})
++\Delta E_{\mathrm{med},j}
++\Delta E_{\mathrm{recoil},j}
++\Delta E_{\mathrm{rem},j}
+\right|
+}{\epsilon_E},
+$$
+
+where $\Delta E_{\mathrm{med}}$, $\Delta E_{\mathrm{recoil}}$, and $\Delta E_{\mathrm{rem}}$ are positive or negative according to the retained medium, target, and remnant energy changes. A cosmological path term is admissible only when the signed frequency transfer, image sharpness, packet cadence, spectral coherence, and energy ledger are supplied by one Noether sea record.
 
 #### Observable Frequency Form
 
@@ -1722,7 +1774,16 @@ Smoothness is a separate benchmark from scalar amplitude and tensor suppression.
 
 #### Slow-Roll Comparison Dictionary
 
-The standard slow-roll formulas are useful here as a compact benchmark dictionary, but the entries are comparison variables. Let a candidate high-curvature release record $\theta$ define effective observer variables $a_\theta$, $H_\theta$, and $N_\theta\equiv\ln a_\theta$ through the redshift, clock-rate, and transfer map. They do not describe expansion of the Euclidean void. The first comparison slow-roll coordinate is
+The standard slow-roll formulas are useful here as a compact benchmark dictionary, but the entries are comparison variables. Let a candidate high-curvature release record $\theta$ define effective observer variables $a_\theta$, $H_\theta$, and $N_\theta\equiv\ln a_\theta$ through the redshift, clock-rate, and transfer map. They do not describe expansion of the Euclidean void. The redshift side of this dictionary must first close the signed photon-frequency budget
+$$
+Z_X^\theta
+=
+Z_{\mathrm{endpoint},X}^{\theta}
++Z_{\mathrm{source},X}^{\theta}
++Z_{\mathrm{launch},X}^{\theta}
++Y_{X,\mathrm{path}}^{\theta},
+$$
+with $Y_{X,\mathrm{path}}^\theta$ carrying any Compton/Sunyaev-Zeldovich-like exchange rows. A branch may use $a_\theta$ and $N_\theta$ only after this budget has been reduced to the homogeneous comparison limit. The first comparison slow-roll coordinate is
 $$
 \varepsilon_\theta
 \equiv
@@ -2877,6 +2938,41 @@ $$
 
 So CMB temperature/redshift summaries remain usable while their mechanism is grounded in assembly-medium dynamics.
 
+#### Sunyaev-Zeldovich Path-History Calibration
+
+Sunyaev-Zeldovich measurements provide a direct reminder that CMB photon frequency is a path-history record. In standard comparison language, the thermal effect shifts CMB photon frequencies through inverse-Compton exchange with hot cluster electrons, while the kinematic effect records the bulk motion of the intervening electron population. In $\mathbb{A}\mathbb{A}\mathbb{A}$ these are not new ontology. They are calibration cases showing that a photon packet can carry signed frequency transfer from the intervening medium after decoupling.
+
+For a line of sight $\gamma$ through an intervening region $W$, the CMB module should retain a signed path row
+
+$$
+Y_{\gamma}^{\mathrm{post}}
+=
+\sum_{j\in W}\Delta Y_{\gamma,j}^{\mathrm{ex}},
+\qquad
+\Delta Y_{\gamma,j}^{\mathrm{ex}}
+=
+-\ln
+\frac{\nu_{\gamma,j}^{+}}{\nu_{\gamma,j}^{-}},
+$$
+
+where negative increments are frequency boosts and positive increments are frequency depletions relative to the local comparison clock. The corresponding exchange residual is
+
+$$
+\mathcal{R}_{\mathrm{SZ}\text{-}\mathrm{ex}}
+=
+\sum_{j\in W}
+\frac{
+\left|
+h(\nu_{\gamma,j}^{+}-\nu_{\gamma,j}^{-})
++\Delta E_{\mathrm{med},j}
++\Delta E_{\mathrm{recoil},j}
++\Delta E_{\mathrm{rem},j}
+\right|
+}{\epsilon_{E,j}}.
+$$
+
+This row is a calibration and provenance requirement, not a claim that all cosmological redshift is SZ scattering. A CMB history must still preserve the near-blackbody spectrum, anisotropy, polarization, damping, and lensing records. The SZ lesson is narrower and important: any use of CMB temperature, redshift, or kSZ velocity data must keep photon frequency transfer tied to the same Noether sea, electron-population, and path-history record rather than treating frequency as a pure expansion clock.
+
 #### Dark-Sector and Growth Link
 
 - Neutral-assembly loading and medium response both contribute to how pre-decoupling oscillations map into late-time inferred matter amplitudes.
@@ -3169,6 +3265,7 @@ Here $\mathrm{RAR}^{\theta}$ is the radial-acceleration relation predicted by th
 - Reproducing cluster-scale lensing/gas centroid separation without a collisionless component.
 - Matching acoustic-peak matter loading in pre-decoupling dynamics.
 - Producing the correct large-scale transfer-function shape in $P(k)$.
+- Preserving the large-scale inverse-square force profile inferred from kSZ halo-pair velocities. The ACT/SDSS comparison in [arXiv:2604.14327](https://arxiv.org/abs/2604.14327) fits $g(r)\propto r^{-n}$ with $n=2.1\pm0.3$ on $30$--$230\,\mathrm{Mpc}$ scales, so a pure MOND-like branch with an unscreened $n\simeq1$ profile on that window is not viable without a native screening or regime-separation mechanism.
 
 These difficulties motivate retaining Candidate A as the primary dark-matter substrate, with Candidate B contributing corrections.
 
@@ -3747,6 +3844,19 @@ X\in\{\mathrm{SN},\mathrm{BAO},\mathrm{CMB},\mathrm{growth}\}.
 $$
 
 Here $\mathcal{D}_X$ is the calibrated observable record, $\mathcal{I}_X$ is the declared projection from the shared Noether sea record into that observable family, $\nu_X$ collects nuisance and calibration variables, and $r_X$ is the residual. A successful $\Lambda$ or $w(a)$ fit belongs first to $\mathcal{I}_X$; it becomes a native dark-energy claim only if the same $\theta_{\mathrm{sea}}$ projects through the other observable families without changing the branch story.
+
+Sunyaev-Zeldovich-type frequency shifts add a concrete calibration pressure to this rule. Photon frequency can be altered by intervening medium before it enters a distance-redshift or CMB-temperature inference. Therefore a dark-energy interpretation that depends on late-time redshift-distance curvature must first preserve the signed photon-frequency transfer budget
+
+$$
+Z_X
+=
+Z_{\mathrm{endpoint},X}
++Z_{\mathrm{source},X}
++Z_{\mathrm{launch},X}
++Z_{\mathrm{path},X},
+$$
+
+with $Z_{\mathrm{path},X}$ allowed to be positive or negative only when the corresponding energy and medium-state exchange rows close. The dark-energy residual must not treat all leftover frequency shift as expansion after suppressing endpoint, source, launch, or SZ-like path terms. It must show that the same $\theta_{\mathrm{sea}}$ supplies the redshift-transfer curvature, blackbody preservation, supernova flux factors, BAO ruler projection, and growth response.
 
 As of April 2026, DESI has completed the observations for its originally planned five-year survey, but the first dark-energy results from the full five-year dataset are expected in 2027. The current public pressure comes from the 2025 first-three-year BAO analysis: combined with CMB, supernova, and weak-lensing data, it strengthens comparison fits with time-varying $w(a)$ relative to a pure constant-$\Lambda$ description. The safe $\mathbb{A}\mathbb{A}\mathbb{A}$ use is therefore a calibration gate: preserve the BAO distance ladder, supernova residual model, CMB anchor, lensing/growth consistency, and parameter-covariance record before promoting any Noether sea relaxation interpretation.
 
@@ -4647,6 +4757,32 @@ The growth module provides:
 
 This is an inference interface, not a direct ontology map. ACT/Planck-style CMB-lensing reconstructions first supply a lensing data product, compactly represented by $C_L^{\phi\phi}$. A valid medium-and-assembly growth model must then produce the same $C_L^{\phi\phi}$ from the same matter power spectrum, growth history, neutral-assembly loading, and Noether sea response variables used for galaxy clustering and low-redshift weak lensing. If the CMB-lensing fit requires one growth record while late-time shear or cluster offsets require another, the structure-formation branch has split the shared cosmology state rather than closed it.
 
+The kinematic Sunyaev-Zeldovich effect adds a force-law profile test to the same growth family. The retained observable is not a visual picture of dark matter, but the mean pairwise velocity of massive halos inferred from small CMB temperature shifts produced when CMB photons scatter from moving cluster electrons. In the ACT/SDSS comparison reported by Gallardo and collaborators, the fitted large-scale halo acceleration obeys $g(r)\propto r^{-n}$ with $n_{\mathrm{kSZ}}^{\mathrm{obs}}=2.1\pm0.3$ on $30$--$230\,\mathrm{Mpc}$ scales ([arXiv:2604.14327](https://arxiv.org/abs/2604.14327)).
+
+For a candidate medium-and-assembly history $\theta$, define the projected halo-pair acceleration profile over that separation window by
+$$
+g_\theta(r)\big|_{W_{\mathrm{kSZ}}}
+\propto
+r^{-n_\theta},
+\qquad
+W_{\mathrm{kSZ}}=[30,230]\,\mathrm{Mpc}.
+$$
+The structure-formation residual is then
+$$
+\mathcal{R}_{\mathrm{kSZ}\text{-}force}(\theta)
+=
+\left(
+\frac{n_\theta-2.1}{0.3}
+\right)^2
++
+\lambda_{\mathrm{shared}}
+d_{\mathrm{shared}}\!\left(
+\Pi_{\mathrm{kSZ}}\theta_{\mathrm{sea}},
+\Pi_{\mathrm{WL/RSD}}\theta_{\mathrm{sea}}
+\right).
+$$
+This residual protects the level distinction. A Noether sea response may still modify galaxy-scale low-acceleration behavior, but it cannot become a free large-scale modified-gravity law. On the ACT/SDSS halo-pair window the same $\theta_{\mathrm{sea}}$ must recover an approximately inverse-square effective pull while preserving CMB lensing, weak lensing, redshift-space distortions, and the matter power spectrum.
+
 Pre-BBN comparison branches enter structure formation only through the transfer record they leave behind. For any branch $X$ retained by [Inflation Model](../../../../markdown/aaa/cosmology/inflation-model.md#pre-bbn-comparison-gate) and [BBN Constraints](../../../../markdown/aaa/cosmology/BBN-constraints.md#pre-bbn-handoff-gate), the growth-side observable is
 $$
 \Delta P_X(k,z)
@@ -4847,7 +4983,7 @@ This document frames $H_0$ and $S_8$ as linked conceptual problems inside a sing
 
 ### Tension Meanings
 
-- **$H_0$ tension:** disagreement between early-inferred and local-inferred expansion-rate or redshift-transfer-slope estimates.
+- **$H_0$ tension:** disagreement between early-inferred and local-inferred expansion-rate or corrected photon-frequency-transfer-slope estimates.
 - **$S_8$ tension:** disagreement between early-inferred and late-inferred structure-growth amplitude.
 
 ### $\mathbb{A}\mathbb{A}\mathbb{A}$ Interpretation
@@ -4856,6 +4992,17 @@ This document frames $H_0$ and $S_8$ as linked conceptual problems inside a sing
 - $S_8$ is read through growth behavior in baryonic and neutral assembly sectors with medium-coupled dynamics.
 
 Operationally, $H_0$ is the present local slope of the corrected redshift-distance transfer map defined in [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md#distance-and-effective-hubble-coefficient). It remains a useful comparison coefficient, but in this ontology it measures redshift per Euclidean distance after source, motion, clock-cadence, and path-history corrections, not literal expansion of the Euclidean void.
+
+The Sunyaev-Zeldovich family sharpens why this correction is mandatory. CMB photon frequencies can be shifted by intervening energetic or moving electron populations, so a line-of-sight frequency ratio is not a pure scale-factor readout by itself. The low-redshift slope should therefore be computed from the signed propagation residual
+
+$$
+H_{\mathrm{eff},X}(R,\hat{\mathbf{k}})
+=
+c_0\,
+\partial_R Z_{\mathrm{prop},X}(R,\hat{\mathbf{k}}),
+$$
+
+after endpoint cadence, source-branch changes, and launch geometry are removed. A net positive $\partial_R Z_{\mathrm{prop},X}$ is redward path accumulation; a net negative value is blueward path boosting. Either sign is allowed only when the same Noether sea and photon-exchange ledger also passes the distance, flux, time-dilation, and spectral-coherence checks.
 
 The sharper local object is the directional transfer coefficient
 
