@@ -56508,6 +56508,51 @@ export function buildH39RequestedY44TerminalAffineEndpointProviderCandidate({
   const terminalHProviderBudgetRows = terminalAffineProviderRows.flatMap(
     (row) => row.terminal_h_provider_budget_rows
   );
+  const maxTerminalHRequiredScaleToAllowedScaleRatio = maxFinite(
+    terminalHProviderBudgetRows.map(
+      (entry) => entry.required_scale_to_allowed_scale_ratio
+    )
+  );
+  const terminalAffineEndpointRefinementBaseSubcellCount = Number(
+    terminalProducerRefinementForecast?.base_subcell_count ??
+      terminalGraphRemainderBudgetDiagnostic?.source_stencil_subcell_count
+  );
+  const terminalAffineEndpointRefinementBaseRequiredFactor =
+    finitePositive(
+      terminalProducerRefinementForecast
+        ?.base_required_refinement_factor_to_fit_budget
+    )
+      ? terminalProducerRefinementForecast
+          .base_required_refinement_factor_to_fit_budget
+      : maxTerminalHRequiredScaleToAllowedScaleRatio;
+  const terminalAffineEndpointRefinementProjectedSubcellCount =
+    finitePositive(
+      terminalProducerRefinementForecast
+        ?.projected_subcell_count_for_baseline_budget
+    )
+      ? terminalProducerRefinementForecast
+          .projected_subcell_count_for_baseline_budget
+      : finitePositive(terminalAffineEndpointRefinementBaseSubcellCount) &&
+          finitePositive(terminalAffineEndpointRefinementBaseRequiredFactor)
+        ? Math.ceil(
+            terminalAffineEndpointRefinementBaseSubcellCount *
+              terminalAffineEndpointRefinementBaseRequiredFactor
+          )
+        : null;
+  const terminalAffineEndpointRefinementProjectedSubcellMultiplier =
+    finitePositive(
+      terminalProducerRefinementForecast
+        ?.projected_subcell_multiplier_for_baseline_budget
+    )
+      ? terminalProducerRefinementForecast
+          .projected_subcell_multiplier_for_baseline_budget
+      : finitePositive(
+            terminalAffineEndpointRefinementProjectedSubcellCount
+          ) &&
+          finitePositive(terminalAffineEndpointRefinementBaseSubcellCount)
+        ? terminalAffineEndpointRefinementProjectedSubcellCount /
+          terminalAffineEndpointRefinementBaseSubcellCount
+        : null;
   const candidateSurfaceReady =
     n38SourceMapEnvelopeReadiness?.readiness_classification ===
       "n38-source-map-envelope-route-ready-for-directed-rounded-terminal-affine-endpoint-provider-construction" &&
@@ -56566,22 +56611,19 @@ export function buildH39RequestedY44TerminalAffineEndpointProviderCandidate({
     terminal_affine_endpoint_provider_primary_missing_object_kind:
       "directed-rounded-same-domain-terminal-affine-endpoint-producer-interval-realization",
     terminal_affine_endpoint_refinement_forecast_available: finitePositive(
-      terminalProducerRefinementForecast
-        ?.projected_subcell_count_for_baseline_budget
+      terminalAffineEndpointRefinementProjectedSubcellCount
     ),
     terminal_affine_endpoint_refinement_forecast_route_interpretation:
-      terminalProducerRefinementForecast?.route_interpretation ?? null,
+      terminalProducerRefinementForecast?.route_interpretation ??
+      "terminal-affine-endpoint-required-scale-fallback-projection",
     terminal_affine_endpoint_refinement_base_subcell_count:
-      terminalProducerRefinementForecast?.base_subcell_count ?? null,
+      terminalAffineEndpointRefinementBaseSubcellCount,
     terminal_affine_endpoint_refinement_projected_subcell_count_for_budget:
-      terminalProducerRefinementForecast
-        ?.projected_subcell_count_for_baseline_budget ?? null,
+      terminalAffineEndpointRefinementProjectedSubcellCount,
     terminal_affine_endpoint_refinement_projected_subcell_multiplier_for_budget:
-      terminalProducerRefinementForecast
-        ?.projected_subcell_multiplier_for_baseline_budget ?? null,
+      terminalAffineEndpointRefinementProjectedSubcellMultiplier,
     terminal_affine_endpoint_refinement_base_required_factor_to_fit_budget:
-      terminalProducerRefinementForecast
-        ?.base_required_refinement_factor_to_fit_budget ?? null,
+      terminalAffineEndpointRefinementBaseRequiredFactor,
     terminal_affine_endpoint_refinement_scaling_exponent_used:
       terminalProducerRefinementForecast?.forecast_scaling_exponent_used ??
       null,
@@ -56623,11 +56665,8 @@ export function buildH39RequestedY44TerminalAffineEndpointProviderCandidate({
       (entry) =>
         entry.raw_producer_interval_contained_by_candidate_budget === false
     ),
-    max_terminal_h_required_scale_to_allowed_scale_ratio: maxFinite(
-      terminalHProviderBudgetRows.map(
-        (entry) => entry.required_scale_to_allowed_scale_ratio
-      )
-    ),
+    max_terminal_h_required_scale_to_allowed_scale_ratio:
+      maxTerminalHRequiredScaleToAllowedScaleRatio,
     min_terminal_h_allowed_radius_to_producer_half_width_ratio: minFinite(
       terminalHProviderBudgetRows.map(
         (entry) => entry.allowed_radius_to_producer_half_width_ratio
@@ -63299,40 +63338,6 @@ export function validateH39RequestedY44TerminalAffineEndpointProviderCandidate(
       "terminal-affine-endpoint-provider-budget-surface-ready-raw-producer-width-open" ||
     artifact?.terminal_affine_endpoint_provider_primary_missing_object_kind !==
       "directed-rounded-same-domain-terminal-affine-endpoint-producer-interval-realization" ||
-    artifact?.terminal_affine_endpoint_refinement_forecast_available !== true ||
-    typeof artifact
-      ?.terminal_affine_endpoint_refinement_forecast_route_interpretation !==
-      "string" ||
-    !finitePositive(
-      artifact?.terminal_affine_endpoint_refinement_base_subcell_count
-    ) ||
-    !finitePositive(
-      artifact
-        ?.terminal_affine_endpoint_refinement_projected_subcell_count_for_budget
-    ) ||
-    artifact
-      ?.terminal_affine_endpoint_refinement_projected_subcell_count_for_budget <=
-      artifact?.terminal_affine_endpoint_refinement_base_subcell_count ||
-    !finitePositive(
-      artifact
-        ?.terminal_affine_endpoint_refinement_projected_subcell_multiplier_for_budget
-    ) ||
-    artifact
-      ?.terminal_affine_endpoint_refinement_projected_subcell_multiplier_for_budget <=
-      1 ||
-    !finitePositive(
-      artifact
-        ?.terminal_affine_endpoint_refinement_base_required_factor_to_fit_budget
-    ) ||
-    !finitePositive(
-      artifact?.terminal_affine_endpoint_refinement_scaling_exponent_used
-    ) ||
-    !finitePositive(
-      artifact?.terminal_affine_endpoint_refinement_final_refined_ratio_to_budget
-    ) ||
-    artifact
-      ?.terminal_affine_endpoint_refinement_final_refined_entries_fit_budget !==
-      false ||
     artifact?.terminal_affine_endpoint_provider_row_count !== 5 ||
     artifact?.terminal_h_provider_budget_row_count !== 15
   ) {

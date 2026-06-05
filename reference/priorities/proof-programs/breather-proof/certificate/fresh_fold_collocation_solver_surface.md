@@ -1490,6 +1490,23 @@ derivations, interpretation rules, definition bridges, promotion rules,
 proof-grade target ref/value packages, row consumption, or branch-chart
 authorization.
 
+The independent target ref/value source-equation to target ref/value
+object-domain definition proof attempt,
+`fold_coordinate_endpoint_functional_independent_target_ref_value_source_equation_to_target_ref_value_object_domain_definition_without_contract_link_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+tests the first object-domain blocker below that interpretation-rule packet. It
+preserves 4 / 4 parent inputs, definition source-data bundles, target ref/value
+source payloads, source-equation sets, endpoint-value-map certifications,
+no-link guards, primitive-domain-definition-acceptance rejections, and target
+object-domain definition source scopes. It covers 6 / 6 target ref/value source
+equations, 6 value-map bindings, and 3 / 3 row object-domain source-scope
+pairs, but records 0 / 4 membership predicates, constructors,
+source-equation handle exclusion rules, endpoint ref/value sort-domain rules,
+target-boundary-object membership rules, endpoint-value-map binding membership
+rules, no-link object-domain soundness proofs, endpoint applications,
+derivations, target ref/value object-domain definitions, interpretation rules,
+definition bridges, promotion rules, proof-grade target ref/value packages, row
+consumption, or branch-chart authorization.
+
 ## Pre-Ledger Stop Condition
 
 Stop before branch-chart construction unless every pre-ledger row satisfies

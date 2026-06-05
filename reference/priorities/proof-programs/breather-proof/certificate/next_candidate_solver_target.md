@@ -1099,6 +1099,35 @@ branch-chart authorization. The first exact blockers are
 `source_equation_to_target_ref_value_interpretation_rule_endpoint_application_present`,
 `source_equation_to_target_ref_value_interpretation_rule_derivation_present`, and
 `source_equation_to_target_ref_value_interpretation_rule_present`.
+The independent target ref/value source-equation to target ref/value
+object-domain definition proof attempt,
+`fold_coordinate_endpoint_functional_independent_target_ref_value_source_equation_to_target_ref_value_object_domain_definition_without_contract_link_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests the first object-domain blocker below that interpretation-rule
+packet. It preserves 4 / 4 parent inputs, parent source scopes, definition
+source-data bundles, target ref/value source payloads, source-equation sets,
+source-equation-only guards, endpoint-value-map-only guards, endpoint-value-map
+certifications, payload matches, contract-link non-import guards, no-link
+guards, contract-link exclusions, primitive-domain-definition-acceptance
+rejections, and target object-domain definition source scopes. The packet
+covers 6 / 6 target ref/value source equations, 6 value-map bindings, and
+3 / 3 row object-domain source-scope pairs, but records 0 / 4 membership
+predicates, constructors, source-equation handle exclusion rules, endpoint
+ref/value sort-domain rules, target-boundary-object membership rules,
+endpoint-value-map binding membership rules, no-link object-domain soundness
+proofs, endpoint applications, derivations, target ref/value object-domain
+definitions, interpretation rules, definition bridges, promotion rules,
+proof-grade target ref/value packages, row consumption, or branch-chart
+authorization. The first exact blockers are
+`target_ref_value_object_domain_membership_predicate_present`,
+`target_ref_value_object_domain_constructor_present`,
+`source_equation_handle_exclusion_rule_present`,
+`endpoint_ref_value_sort_domain_rule_present`,
+`target_boundary_binding_object_domain_membership_rule_present`,
+`endpoint_value_map_binding_domain_membership_rule_present`,
+`no_link_target_ref_value_object_domain_soundness_present`,
+`target_ref_value_object_domain_endpoint_application_present`,
+`target_ref_value_object_domain_definition_derivation_present`, and
+`target_ref_value_object_domain_defined`.
 The remaining branches are periodic
 endpoint/complement ownership for the 8 lift rows and fold-layer certificate
 closure for the 112 fold-layer rows now grouped by
