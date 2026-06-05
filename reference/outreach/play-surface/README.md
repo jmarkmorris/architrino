@@ -4,9 +4,9 @@ Status: working product-design note. This is not an engineering drawing, safety 
 
 Series frame: **The Wonder of Nature and the Universe**
 
-This note captures a tenable first design for the children's-book play-surface merchandise set. The set should let a child roll pure red and pure blue balls across modular contoured tiles while seeing path, return path, surface slope, and later potential-landscape lessons as physical play.
+This note captures a tenable first design for the series play-surface merchandise set. The set should let a child roll pure red and pure blue balls across modular contoured tiles while seeing path, return path, surface slope, and later potential-landscape lessons as physical play.
 
-The product should support the book series without turning the books into toy instructions. The play surface is a reusable physical prop for scenes, activities, and possible merchandise.
+The product should live alongside the book series without requiring the books to depict it or match it. The play surface is a separate physical activity product for caregiver-led play, classroom use, and possible merchandise.
 
 ## Theme Expression
 
@@ -20,7 +20,7 @@ Packaging should state and show the theme explicitly. The front, side, or back p
 2. exploration: the child or caregiver rolls the ball and watches the path change;
 3. discovery: trying again shows that nature has pattern: many rolls come out almost the same, and special balanced places can let the ball go this way or that way.
 
-Package art should follow [the children's-book style guide](../childrens-books/style-guide.md): white/pale-purple terrain, black linework, pure red and pure blue balls, red-blue purples for path or universe accents, and natural skin and hair tones for people only. Any stars, arcs, waves, or cosmic marks should support the wonder-of-nature-and-universe theme without becoming busy decoration or hiding the actual surface.
+Package art may draw from [the children's-book style guide](../childrens-books/style-guide.md): white/pale-purple terrain, black linework, pure red and pure blue balls, red-blue purples for path or universe accents, and natural skin and hair tones for people only. Any stars, arcs, waves, or cosmic marks should support the wonder-of-nature-and-universe theme without becoming busy decoration or hiding the actual surface.
 
 ## Design Commitments
 
@@ -61,8 +61,7 @@ Working tile target:
 - neutral surface plane: `1.5"` above the bottom;
 - lowest ordinary surface point: `0.5"` above the bottom;
 - highest ordinary surface point: `2.5"` above the bottom;
-- low hills, ridges, dips, and troughs use `0.5"` offset from neutral;
-- higher hills/ridges and deeper dips/troughs use `1.0"` offset from neutral.
+- active hills, ridges, saddles, dips, valleys, and troughs use one standard `1.0"` offset from neutral.
 
 The `11"` tile footprint is the selected nominal size. A slightly smaller-than-12-inch tile leaves room for wall thickness, corner radii, protective packaging, and a carton that still fits a clean 12-inch shipping grid.
 
@@ -96,16 +95,16 @@ Three-quarter product renders are useful for checking the tile form, sidewalls, 
 
 The play surface should express the nature-and-universe theme through the shape of the terrain and the moving red/blue balls, not through surface pattern. Stars, waves, orbit marks, scenery, dots, embossed icons, texture fields, and other decorative relief should not appear on the rolling surface.
 
-## Scene Tile Fields
+## Field Layouts
 
-Book illustrations may show a rectangular set of these tiles as the rolling surface. Rectangular includes square arrangements.
+The physical product and its demonstrations may use rectangular sets of these tiles as the rolling surface. Rectangular includes square arrangements. Book images are not required to use the play-surface tile field.
 
-Recommended scene layouts:
+Recommended product and demonstration layouts:
 
-- `5 x 5`: default for close child play and simple ball-rolling scenes;
-- `6 x 6`: wider classroom/tabletop scenes and longer paths;
-- `4 x 6`: landscape page compositions and left-to-right paths;
-- other rectangular arrangements when the scene requires a different scale.
+- `5 x 5`: default for close child play and simple ball-rolling demonstrations;
+- `6 x 6`: wider classroom/tabletop demonstrations and longer paths;
+- `4 x 6`: landscape tabletop demonstrations and left-to-right paths;
+- other rectangular arrangements when the use case requires a different scale.
 
 The field should read as a single continuous play surface first and a modular tile set second. Seams may be visible, but they should be light enough that the path and ball remain the main visual lesson.
 
@@ -153,20 +152,20 @@ The first tile set should stay simple. The initial catalog uses universal neutra
 
 Height convention:
 
-- `+0.5"` hill or ridge peak means the peak reaches `2.0"` above the tile bottom;
-- `+1.0"` hill or ridge peak means the peak reaches `2.5"` above the tile bottom;
-- `-0.5"` dip or trough low point means the low point reaches `1.0"` above the tile bottom;
-- `-1.0"` dip or trough low point means the low point reaches `0.5"` above the tile bottom.
+- raised features use `+1.0"` from neutral and reach `2.5"` above the tile bottom;
+- lowered features use `-1.0"` from neutral and reach `0.5"` above the tile bottom;
+- saddles use the same `+/-1.0"` envelope;
+- the flat tile remains at `0"` relative change.
 
 Core tiles:
 
 | Tile | Surface feature | Height range | First-use purpose |
 | --- | --- | --- | --- |
 | Flat tile | No contour; full neutral surface except normal seam treatment. | `0"` relative change | Rest, reset, joining space, open path. |
-| Half-inch offset round hill | Smooth circular mound with peak off-center in both `x` and `y`. | `+0.5"` peak | Gentle deflection, beginner slope reading. |
-| One-inch offset round hill | Smooth circular mound with peak off-center in both `x` and `y`. | `+1.0"` peak | Stronger deflection, visible potential barrier. |
-| Half-inch offset round dip | Smooth circular bowl with low point off-center in both `x` and `y`. | `-0.5"` low point | Gentle settling basin. |
-| One-inch offset round dip | Smooth circular bowl with low point off-center in both `x` and `y`. | `-1.0"` low point | Strong settling basin, high-contrast basin lesson. |
+| Standard offset round hill | Smooth circular mound with peak off-center in both `x` and `y`. | `+1.0"` peak | Clear deflection, beginner slope reading. |
+| Wide offset round hill | Larger-radius circular mound with peak off-center in both `x` and `y`. | `+1.0"` peak | Broader visible potential barrier. |
+| Standard offset round dip | Smooth circular bowl with low point off-center in both `x` and `y`. | `-1.0"` low point | Clear settling basin. |
+| Wide offset round dip | Larger-radius circular bowl with low point off-center in both `x` and `y`. | `-1.0"` low point | Broader high-contrast basin lesson. |
 
 Offset rule:
 
@@ -184,25 +183,26 @@ The set is a prototype schedule, not a locked commercial bill of materials. Ever
 | Tile family | Count | Working contour | Concept exemplar | First-use purpose |
 | --- | ---: | --- | --- | --- |
 | Flat tile | `1` | `0"` relative change | [Flat](assets/concepts/sine-curve-options/sine-flat.png) | Rest, reset, joining space, open path. |
-| Half-inch offset round hill | `4` | `+0.5"` cosine-lobe peak | [Low hill](assets/concepts/sine-curve-options/sine-low-hill.png) | Gentle deflection, beginner slope reading. |
-| One-inch offset round hill | `2` | `+1.0"` cosine-lobe peak | [High hill](assets/concepts/sine-curve-options/sine-high-hill.png) | Stronger deflection, visible potential barrier. |
-| Half-inch offset round dip | `4` | `-0.5"` cosine-lobe low point | [Low dip](assets/concepts/sine-curve-options/sine-low-dip.png) | Gentle settling basin. |
-| One-inch offset round dip | `2` | `-1.0"` cosine-lobe low point | [High dip](assets/concepts/sine-curve-options/sine-high-dip.png) | Strong settling basin, high-contrast basin lesson. |
-| Shallow diagonal saddle | `1` | About `+/-0.7"` side-faded saddle | [Diagonal saddle](assets/concepts/sine-curve-options/sine-diagonal-saddle.png) | A balanced place where a ball may leave by different paths. |
-| Shallow curved valley | `2` | `-0.5"` raised-cosine trough line | [Curved valley](assets/concepts/sine-curve-options/sine-curved-valley.png) | A broad low route that guides without becoming a track. |
+| Standard offset round hill | `4` | `+1.0"` cosine-lobe peak, standard radius | [Standard hill](assets/concepts/sine-curve-options/sine-standard-hill.png) | Clear deflection, beginner slope reading. |
+| Wide offset round hill | `2` | `+1.0"` cosine-lobe peak, larger radius | [Wide hill](assets/concepts/sine-curve-options/sine-wide-hill.png) | Broader visible potential barrier. |
+| Standard offset round dip | `4` | `-1.0"` cosine-lobe low point, standard radius | [Standard dip](assets/concepts/sine-curve-options/sine-standard-dip.png) | Clear settling basin. |
+| Wide offset round dip | `2` | `-1.0"` cosine-lobe low point, larger radius | [Wide dip](assets/concepts/sine-curve-options/sine-wide-dip.png) | Broader high-contrast basin lesson. |
+| Diagonal saddle | `1` | `+/-1.0"` side-faded saddle | [Diagonal saddle](assets/concepts/sine-curve-options/sine-diagonal-saddle.png) | A balanced place where a ball may leave by different paths. |
+| Curved valley | `2` | `-1.0"` raised-cosine trough line | [Curved valley](assets/concepts/sine-curve-options/sine-curved-valley.png) | A broad low route that guides without becoming a track. |
 | One-inch straight ridge | `4` | `+1.0"` raised-cosine ridge line | [Straight ridge](assets/concepts/sine-curve-options/sine-straight-ridge.png) | Gentle-roll guide and straight back-rail segment. |
 | One-inch rounded corner ridge | `4` | `+1.0"` raised-cosine corner ridge line | [Corner ridge](assets/concepts/sine-curve-options/sine-corner-ridge.png) | Gentle-roll guide and soft corner for a back rail. |
-| Paired hill-dip | `1` | About `+0.55"` hill and `-0.55"` dip | [Paired hill-dip](assets/concepts/sine-curve-options/sine-paired-hill-dip.png) | Older scenes about thresholds and path choice. |
+| Paired hill-dip | `1` | `+1.0"` hill and `-1.0"` dip | [Paired hill-dip](assets/concepts/sine-curve-options/sine-paired-hill-dip.png) | Older scenes about thresholds and path choice. |
 
-This starter-kit mix is also a packaging test case. The four one-inch corner ridge tiles and four one-inch straight ridge tiles are important for toddler rim behavior, but they are probably the hardest tiles to nest because their high ridges sit near the side zones where generic stack supports would like to land. Do not treat the commercial starter-kit count as final until the same set can pass play-value, stack-height, sealed-underside, and carton-size checks together.
+This starter-kit mix is also a packaging test case. The four one-inch corner ridge tiles and four one-inch straight ridge tiles are important for toddler rim behavior, but they are probably the hardest tiles to nest because their ridges sit near the side zones where generic stack supports would like to land. Do not treat the commercial starter-kit count as final until the same set can pass play-value, stack-height, sealed-underside, and carton-size checks together.
 
 Prototype contour family notes:
 
-- shallow diagonal saddle: a gentle internal saddle that returns to neutral on all sides;
-- shallow curved valley: a broad low route that guides the ball without creating a side-boundary ramp;
+- diagonal saddle: a gentle internal saddle that returns to neutral on all sides;
+- curved valley: a broad low route that guides the ball without creating a side-boundary ramp;
+- valleys and ridge-line features should extend to within about `0.75"` of the tile edge, then return smoothly to neutral before the side boundary;
 - one-inch rounded corner ridge tile: a high rounded ridge, `+1.0"` relative to the neutral plane, makes an internal right-angle turn close to two adjacent sides while preserving the flat neutral approach band at each side;
 - one-inch straight vertical ridge tile: a high rounded ridge, `+1.0"` relative to the neutral plane, runs straight near one side so it can meet the corner ridge tile on the same ridge line; rotating the tile makes horizontal or opposite-side runs;
-- paired hill-dip tile: a small offset hill and small offset dip on the same tile for older scenes about thresholds.
+- paired hill-dip tile: an offset hill and offset dip on the same tile for older scenes about thresholds.
 
 Ridge composability:
 
@@ -210,7 +210,7 @@ Ridge composability:
 - a parent, older sibling, or teacher should be able to place ridge tiles along one end or one side of a floor-level play field as a back rail for gentle toddler rolling demonstrations;
 - the back rail is meant to reduce routine roll-off under furniture, not to contain hard rolls, thrown balls, bounces, or high-speed launches;
 - the ridge centerline should use a standard side offset so straight ridge tiles and corner ridge tiles align when placed next to each other;
-- the ridge should extend as close to the tile sides as the `0.5"`, `0.75"`, or `1.0"` flat approach-band prototype allows;
+- the ridge should extend to within about `0.75"` of the tile edge while preserving the flat neutral approach band at the side boundary;
 - the ridge must still smooth back to the neutral plane before the side boundary, preserving ordinary universal side compatibility;
 - corner ridge tiles and straight ridge tiles should both use a high rounded ridge at `+1.0"` relative to the neutral plane;
 - ridge tiles are gentle-roll guides, not containment walls. They may keep a `2.75"` ball on the surface for many slow toddler rolls, but they are not intended for bounces, hard launches, or high-velocity play.
@@ -298,8 +298,7 @@ Examples for a `13`-tile stack:
 
 | Lower tile support case | Controlling height above lower tile bottom | Direct-contact stack height | Protected-clearance stack height |
 | --- | ---: | ---: | ---: |
-| High hill or high ridge, `+1.0"` from neutral | `2.5"` | `33.0"` | `34.5"` |
-| Low hill or low ridge, `+0.5"` from neutral | `2.0"` | `27.0"` | `28.5"` |
+| Active hill or ridge, `+1.0"` from neutral | `2.5"` | `33.0"` | `34.5"` |
 | Neutral plane support | `1.5"` | `21.0"` | `22.5"` |
 | Dip-only low point | does not control if neutral rim exists | neutral or higher case controls | neutral or higher case controls |
 
@@ -335,17 +334,17 @@ Starter-kit and stackability objectives:
 
 - minimize total stack height and left-stack/right-stack height mismatch;
 - reduce reliance on packaging inserts where molded geometry can solve the problem safely;
-- preserve the high ridge tiles if possible, because they support the toddler back-rail use case;
+- preserve the ridge tiles if possible, because they support the toddler back-rail use case;
 - identify which tile designs force the most packaging height;
 - revise either the tile geometry or the starter-kit counts when a tile type creates disproportionate packaging cost.
 
-This means the current `25`-tile mix is a working hypothesis, not a locked bill of materials. If the optimizer shows that eight high ridge tiles make the two-stack carton too tall or too fragile, the next design move could be to change ridge underside relief, alter ridge placement, add a safe carton interleave, split the kit into starter and expansion sets, or change the count of high ridge tiles. The decision should be made with play value and shipping geometry in the same model.
+This means the current `25`-tile mix is a working hypothesis, not a locked bill of materials. If the optimizer shows that eight ridge tiles make the two-stack carton too tall or too fragile, the next design move could be to change ridge underside relief, alter ridge placement, add a safe carton interleave, split the kit into starter and expansion sets, or change the count of ridge tiles. The decision should be made with play value and shipping geometry in the same model.
 
 The reduced `3"` body and `+/- 1.0"` ordinary contour envelope should make nesting easier than the earlier `4"` body concept, but only if the sealed underside is shaped for nesting. Production may still need tile-specific stacking guards or shallow interleave sheets that are not part of play, especially for corner ridge and hill/dip combination tiles.
 
 Stacking should not rely on the rolling contours carrying stack load. A safer design direction is a sealed shell with broad molded stack lands, ribs, shelves, or rails that land on controlled support zones of the tile below or on protective packaging supports. Those support zones should be reinforced and should avoid delicate rolling contours.
 
-Stack lands, ribs, and shelves are themselves safety-critical geometry. They must not create small breakable parts, sharp edges, pinch features, brittle hooks, or hidden debris traps. They also must not collide with high ridges, hills, dips, or troughs when tiles are stacked in ordinary orientations.
+Stack lands, ribs, and shelves are themselves safety-critical geometry. They must not create small breakable parts, sharp edges, pinch features, brittle hooks, or hidden debris traps. They also must not collide with ridges, hills, dips, or troughs when tiles are stacked in ordinary orientations.
 
 The intended stack model is:
 
@@ -358,7 +357,7 @@ This needs purpose-built 3D checking before design confidence is warranted. Use 
 First checker finding:
 
 - generic corner-pad and side-midpoint stack-contact zones work for flat, hill, dip, and paired hill/dip tiles in the first model;
-- the same generic support zones conflict with high ridge tiles and some valley/saddle geometry;
+- the same generic support zones conflict with ridge tiles and some valley/saddle geometry;
 - ridge tiles probably need a different stacking support strategy: alternate support zones, shaped sealed underside relief, protective interleave, or a dedicated packaging insert.
 
 ## Manufacturing Definition Package
@@ -506,9 +505,9 @@ Design implications:
 
 ## Open Design Questions
 
-- Final rim width: `0.5"`, `0.75"`, or `1.0"`?
+- Final flat approach band for hills, dips, saddles, seams, and non-ridge/non-valley features. Ridge and valley feature-edge clearance is currently `0.75"`.
 - Exact offset distance for the round hill and dip centers.
-- Commercial starter-set count after stackability optimization, especially the count of high ridge tiles.
+- Commercial starter-set count after stackability optimization, especially the count of ridge tiles.
 - Exact sealed-underside relief and stack-land geometry.
 - Best underside joint geometry: sliding rail, dovetail, bayonet-like large feature, or broad tongue-and-groove?
 - Best sealed-shell manufacturing method: injection-molded assembly, twin-sheet thermoform, blow molding, rotational molding, welded shell, foam-backed shell, or another process?
@@ -516,7 +515,6 @@ Design implications:
 - Final labeled age grade, warning language, and supervised-use claim for the `6` months onward working intent.
 - Whether the first product should be a small starter set, classroom set, or premium multi-tile set.
 - Whether advanced matched-pair non-neutral side tiles should exist at all.
-- Whether the children in the books should see the same play surface as the merchandise, or whether the merchandise should be a derivative activity product.
 
 ## External References To Recheck Before Production
 

@@ -28,6 +28,8 @@ TOP_QUAD = [(405, 260), (1095, 430), (750, 875), (75, 675)]
 DROP = 130
 PROFILE_PANEL = (210, 965, 990, 1115)
 FEATURE_RADIUS = 3.25
+WIDE_FEATURE_RADIUS = 4.15
+EDGE_FEATURE_CLEARANCE = 0.75
 RIDGE_HALF_WIDTH = 1.45
 VALLEY_HALF_WIDTH = 1.85
 APPROACH_BAND = 0.85
@@ -38,19 +40,21 @@ class TileOption:
     slug: str
     kind: str
     amplitude: float = 0.0
+    radius: float = FEATURE_RADIUS
+    center: tuple[float, float] = (4.45, 6.55)
 
 
 OPTIONS = [
     TileOption("sine-flat", "flat", 0.0),
-    TileOption("sine-low-hill", "round-hill", 0.5),
-    TileOption("sine-high-hill", "round-hill", 1.0),
-    TileOption("sine-low-dip", "round-dip", -0.5),
-    TileOption("sine-high-dip", "round-dip", -1.0),
-    TileOption("sine-diagonal-saddle", "diagonal-saddle", 0.7),
-    TileOption("sine-curved-valley", "curved-valley", -0.5),
+    TileOption("sine-standard-hill", "round-hill", 1.0, FEATURE_RADIUS, (4.35, 6.65)),
+    TileOption("sine-wide-hill", "round-hill", 1.0, WIDE_FEATURE_RADIUS, (4.7, 6.25)),
+    TileOption("sine-standard-dip", "round-dip", -1.0, FEATURE_RADIUS, (4.35, 6.65)),
+    TileOption("sine-wide-dip", "round-dip", -1.0, WIDE_FEATURE_RADIUS, (4.7, 6.25)),
+    TileOption("sine-diagonal-saddle", "diagonal-saddle", 1.0),
+    TileOption("sine-curved-valley", "curved-valley", -1.0),
     TileOption("sine-straight-ridge", "straight-ridge", 1.0),
     TileOption("sine-corner-ridge", "corner-ridge", 1.0),
-    TileOption("sine-paired-hill-dip", "paired-hill-dip", 0.55),
+    TileOption("sine-paired-hill-dip", "paired-hill-dip", 1.0),
 ]
 
 
@@ -120,10 +124,10 @@ def distance_to_segment(
 
 
 def corner_ridge(x: np.ndarray, y: np.ndarray, *, amplitude: float) -> np.ndarray:
-    offset = 2.1
+    offset = EDGE_FEATURE_CLEARANCE + RIDGE_HALF_WIDTH
     arc_radius = 1.45
     arc_center = (offset + arc_radius, offset + arc_radius)
-    segment_end = TILE_SIZE - 1.1
+    segment_end = TILE_SIZE - EDGE_FEATURE_CLEARANCE - RIDGE_HALF_WIDTH
 
     vertical = distance_to_segment(x, y, (offset, arc_center[1]), (offset, segment_end))
     horizontal = distance_to_segment(x, y, (arc_center[0], offset), (segment_end, offset))
@@ -140,8 +144,8 @@ def corner_ridge(x: np.ndarray, y: np.ndarray, *, amplitude: float) -> np.ndarra
 
 
 def curved_valley(x: np.ndarray, y: np.ndarray, *, amplitude: float) -> np.ndarray:
-    x_start = 1.2
-    x_end = TILE_SIZE - 1.2
+    x_start = EDGE_FEATURE_CLEARANCE + VALLEY_HALF_WIDTH
+    x_end = TILE_SIZE - EDGE_FEATURE_CLEARANCE - VALLEY_HALF_WIDTH
     phase = (x - x_start) / (x_end - x_start)
     center_y = HALF_TILE + 1.2 * np.sin(2.0 * np.pi * phase - 0.35)
     distance = np.abs(y - center_y)
@@ -172,8 +176,8 @@ def make_height_field(option: TileOption, samples: int = GRID_SAMPLES) -> tuple[
         z = radial_level_change(
             x,
             y,
-            center=(4.45, 6.55),
-            radius=FEATURE_RADIUS,
+            center=option.center,
+            radius=option.radius,
             amplitude=option.amplitude,
         )
     elif option.kind == "diagonal-saddle":
@@ -184,9 +188,9 @@ def make_height_field(option: TileOption, samples: int = GRID_SAMPLES) -> tuple[
         z = straight_ridge(
             x,
             y,
-            center_x=2.1,
-            segment_start=1.1,
-            segment_end=TILE_SIZE - 1.1,
+            center_x=EDGE_FEATURE_CLEARANCE + RIDGE_HALF_WIDTH,
+            segment_start=EDGE_FEATURE_CLEARANCE + RIDGE_HALF_WIDTH,
+            segment_end=TILE_SIZE - EDGE_FEATURE_CLEARANCE - RIDGE_HALF_WIDTH,
             half_width=RIDGE_HALF_WIDTH,
             amplitude=option.amplitude,
         )
@@ -196,15 +200,15 @@ def make_height_field(option: TileOption, samples: int = GRID_SAMPLES) -> tuple[
         z = radial_level_change(
             x,
             y,
-            center=(3.5, 7.15),
-            radius=2.35,
+            center=(3.4, 7.25),
+            radius=2.65,
             amplitude=option.amplitude,
         )
         z += radial_level_change(
             x,
             y,
-            center=(7.3, 4.15),
-            radius=2.35,
+            center=(7.45, 3.95),
+            radius=2.65,
             amplitude=-option.amplitude,
         )
     else:
@@ -235,18 +239,24 @@ def profile_values(option: TileOption, samples: int = 900) -> tuple[np.ndarray, 
     _, _, z_grid = make_height_field(option, samples=700)
 
     if option.kind in {"round-hill", "round-dip"}:
-        xs = np.linspace(4.45 - FEATURE_RADIUS - 0.55, 4.45 + FEATURE_RADIUS + 0.55, samples)
-        ys = np.full_like(xs, 6.55)
+        xs = np.linspace(
+            option.center[0] - option.radius - 0.55,
+            option.center[0] + option.radius + 0.55,
+            samples,
+        )
+        ys = np.full_like(xs, option.center[1])
     elif option.kind == "curved-valley":
         xs = np.full(samples, HALF_TILE)
         center_y = HALF_TILE + 1.2 * np.sin(2.0 * np.pi * ((HALF_TILE - 1.2) / (TILE_SIZE - 2.4)) - 0.35)
         ys = np.linspace(center_y - VALLEY_HALF_WIDTH - 0.75, center_y + VALLEY_HALF_WIDTH + 0.75, samples)
     elif option.kind == "straight-ridge":
-        xs = np.linspace(2.1 - RIDGE_HALF_WIDTH - 0.85, 2.1 + RIDGE_HALF_WIDTH + 0.85, samples)
+        ridge_center = EDGE_FEATURE_CLEARANCE + RIDGE_HALF_WIDTH
+        xs = np.linspace(ridge_center - RIDGE_HALF_WIDTH - 0.85, ridge_center + RIDGE_HALF_WIDTH + 0.85, samples)
         ys = np.full_like(xs, HALF_TILE)
     elif option.kind == "corner-ridge":
         xs = np.full(samples, 6.5)
-        ys = np.linspace(2.1 - RIDGE_HALF_WIDTH - 0.75, 2.1 + RIDGE_HALF_WIDTH + 0.75, samples)
+        ridge_center = EDGE_FEATURE_CLEARANCE + RIDGE_HALF_WIDTH
+        ys = np.linspace(ridge_center - RIDGE_HALF_WIDTH - 0.75, ridge_center + RIDGE_HALF_WIDTH + 0.75, samples)
     elif option.kind == "paired-hill-dip":
         xs = np.linspace(2.1, 8.7, samples)
         ys = np.linspace(7.9, 3.45, samples)

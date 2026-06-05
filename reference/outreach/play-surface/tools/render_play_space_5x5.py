@@ -41,8 +41,8 @@ LAYOUT: list[list[LayoutTile]] = [
     ],
     [
         ("sine-straight-ridge", 0),
-        ("sine-low-hill", 0),
-        ("sine-high-dip", 1),
+        ("sine-standard-hill", 0),
+        ("sine-wide-dip", 1),
         ("sine-curved-valley", 0),
         ("sine-straight-ridge", 2),
     ],
@@ -50,14 +50,14 @@ LAYOUT: list[list[LayoutTile]] = [
         ("sine-straight-ridge", 0),
         ("sine-diagonal-saddle", 0),
         ("sine-paired-hill-dip", 0),
-        ("sine-high-hill", 2),
+        ("sine-wide-hill", 2),
         ("sine-straight-ridge", 2),
     ],
     [
         ("sine-straight-ridge", 0),
-        ("sine-low-dip", 2),
+        ("sine-standard-dip", 2),
         ("sine-curved-valley", 2),
-        ("sine-low-hill", 1),
+        ("sine-standard-hill", 1),
         ("sine-straight-ridge", 2),
     ],
     [

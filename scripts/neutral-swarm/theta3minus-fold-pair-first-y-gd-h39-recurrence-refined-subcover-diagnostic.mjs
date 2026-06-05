@@ -44946,6 +44946,131 @@ export function buildH39RequestedY44ProducerImageBudgetComparisonCandidate({
       nonconstantSourceMapResidualCovarianceTarget
         ?.source_map_residual_shared_stream_five_node_absolute_source_provider_fit
         ?.dominant_absolute_source_provider_gap_term ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit_classification:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit
+        ?.signed_numerator_source_budget_fit_classification ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit_all_current_shape_signed_radii_fit:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit
+        ?.all_current_shape_signed_radii_fit_numerator_absolute_budget ??
+      null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit_all_shaped_term_sums_fit:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit
+        ?.all_current_shaped_term_sums_fit_numerator_absolute_budget ??
+      null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit_max_current_shape_ratio:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit
+        ?.max_current_shape_signed_radius_to_numerator_budget_ratio ??
+      null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit_max_shaped_term_sum_ratio:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit
+        ?.max_current_shaped_term_sum_to_numerator_budget_ratio ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit_max_term_split_to_signed_radius_ratio:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit
+        ?.max_shaped_term_sum_to_current_shape_signed_radius_ratio ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit_dominant_node_index:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit
+        ?.dominant_signed_numerator_budget_node_index ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit_dominant_gap_kind:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit
+        ?.dominant_signed_numerator_budget_gap_kind ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_contraction_budget_classification:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_contraction_budget
+        ?.signed_radius_contraction_budget_classification ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_contraction_budget_all_current_shape_signed_radii_fit:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_contraction_budget
+        ?.all_current_shape_signed_radii_fit_numerator_budget ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_contraction_budget_all_center_aware_half_widths_fit:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_contraction_budget
+        ?.all_center_aware_signed_half_widths_fit_numerator_budget ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_contraction_budget_max_signed_radius_ratio:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_contraction_budget
+        ?.max_signed_radius_to_numerator_budget_ratio ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_contraction_budget_max_center_aware_ratio:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_contraction_budget
+        ?.max_center_aware_signed_half_width_to_numerator_budget_ratio ??
+      null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_contraction_budget_max_required_signed_radius_contraction:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_contraction_budget
+        ?.max_required_signed_radius_contraction_to_numerator_budget ??
+      null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_contraction_budget_max_required_center_aware_contraction:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_contraction_budget
+        ?.max_required_center_aware_signed_half_width_contraction_to_numerator_budget ??
+      null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_contraction_budget_dominant_node_index:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_contraction_budget
+        ?.dominant_signed_radius_budget_node_index ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_classification:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target
+        ?.provider_acceptance_target_classification ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_reaches_source_only_failure:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target
+        ?.provider_target_reaches_verifier_with_source_only_failure ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_all_intervals_fit_numerator_budget:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target
+        ?.all_quotient_compatible_intervals_fit_numerator_budget ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_all_intervals_subset_screened_targets:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target
+        ?.all_provider_intervals_subset_screened_targets ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_all_rows_match_required_source_kind:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target
+        ?.all_provider_rows_match_required_source_kind ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_all_rows_have_directed_source:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target
+        ?.all_provider_rows_have_directed_rounded_source ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_max_interval_to_screened_target_ratio:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target
+        ?.max_provider_interval_to_screened_target_ratio ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_min_inclusion_headroom:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target
+        ?.min_provider_interval_inclusion_headroom ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_dominant_node_index:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target
+        ?.dominant_signed_radius_provider_acceptance_node_index ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_h38_source_provenance_bridge_classification:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_h38_source_provenance_bridge_classification ??
+      null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_h38_source_provenance_bridge_available:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_h38_source_provenance_bridge_available ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_h38_source_provenance_bridge_primary_missing_object_kind:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_h38_source_provenance_bridge_primary_missing_object_kind ??
+      null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_h38_source_provenance_bridge_s37_division_is_primary_blocker:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_h38_source_provenance_bridge_s37_division_is_primary_blocker ??
+      null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_h38_source_provenance_bridge_provider_node_count:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_h38_source_provenance_bridge_provider_node_count ??
+      null,
     producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_contracted_provider_reaches_verifier_with_source_only_failure:
       nonconstantSourceMapResidualCovarianceTarget
         ?.source_map_residual_shared_stream_five_node_contracted_provider_candidate
@@ -53667,6 +53792,1232 @@ function h39RequestedY44SourceMapResidualFiveNodeAbsoluteSourceProviderFit({
   };
 }
 
+function h39RequestedY44SourceMapResidualFiveNodeSignedNumeratorSourceBudgetFit({
+  sourceMapResidualSharedStreamNodeRadiusTarget,
+  quotientSourceRadiusBudget,
+  absoluteSourceProviderFit,
+} = {}) {
+  const missingArtifact = {
+    target_kind:
+      "candidate-requested-y44-shared-source-map-signed-numerator-source-budget-fit",
+    proof_status:
+      "candidate-signed-numerator-source-budget-fit-inputs-missing",
+    fit_kind:
+      "single-signed-source-map-stream-to-absolute-numerator-source-budget",
+    signed_numerator_source_budget_fit_rows_available: false,
+    signed_numerator_source_budget_fit_rows: [],
+    all_live_signed_streams_fit_numerator_absolute_budget: false,
+    all_screened_signed_targets_fit_numerator_absolute_budget: false,
+    all_current_shape_signed_radii_fit_numerator_absolute_budget: false,
+    all_current_shaped_term_sums_fit_numerator_absolute_budget: false,
+    max_live_signed_stream_to_numerator_budget_ratio: null,
+    max_screened_signed_target_to_numerator_budget_ratio: null,
+    max_current_shape_signed_radius_to_numerator_budget_ratio: null,
+    max_current_shaped_term_sum_to_numerator_budget_ratio: null,
+    max_shaped_term_sum_to_current_shape_signed_radius_ratio: null,
+    max_shaped_term_sum_to_live_signed_stream_ratio: null,
+    dominant_signed_numerator_budget_node_index: null,
+    dominant_signed_numerator_budget_gap_kind: null,
+    signed_numerator_source_budget_fit_classification:
+      "signed-numerator-source-budget-fit-inputs-missing",
+    claim_boundary: {
+      certifies_signed_numerator_source_budget_fit_only: false,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+  if (
+    sourceMapResidualSharedStreamNodeRadiusTarget === null ||
+    sourceMapResidualSharedStreamNodeRadiusTarget === undefined ||
+    sourceMapResidualSharedStreamNodeRadiusTarget
+      .source_map_residual_shared_stream_node_radius_available !== true ||
+    quotientSourceRadiusBudget === null ||
+    quotientSourceRadiusBudget === undefined ||
+    quotientSourceRadiusBudget.target_kind !==
+      "candidate-requested-y44-shared-source-map-quotient-source-radius-budget" ||
+    quotientSourceRadiusBudget.quotient_source_radius_budget_rows_available !==
+      true ||
+    absoluteSourceProviderFit === null ||
+    absoluteSourceProviderFit === undefined ||
+    absoluteSourceProviderFit.target_kind !==
+      "candidate-requested-y44-shared-source-map-absolute-source-provider-fit" ||
+    absoluteSourceProviderFit.absolute_source_provider_fit_rows_available !==
+      true
+  ) {
+    return missingArtifact;
+  }
+  const radiusRows =
+    sourceMapResidualSharedStreamNodeRadiusTarget
+      .source_map_residual_shared_stream_node_radius_rows ?? [];
+  const budgetRows =
+    quotientSourceRadiusBudget.quotient_source_radius_budget_rows ?? [];
+  const providerFitRows =
+    absoluteSourceProviderFit.absolute_source_provider_fit_rows ?? [];
+  if (
+    radiusRows.length !== 5 ||
+    budgetRows.length !== 5 ||
+    providerFitRows.length !== 5
+  ) {
+    return missingArtifact;
+  }
+  const radiusRowsByNode = new Map(
+    radiusRows.map((row) => [Number(row.node_index), row])
+  );
+  const providerFitRowsByNode = new Map(
+    providerFitRows.map((row) => [Number(row.node_index), row])
+  );
+  const rows = budgetRows.map((budgetRow) => {
+    const nodeIndex = Number(budgetRow.node_index);
+    const radiusRow = radiusRowsByNode.get(nodeIndex);
+    const providerFitRow = providerFitRowsByNode.get(nodeIndex);
+    const numeratorAllowedAbsoluteHalfWidth = Number(
+      budgetRow.numerator_allowed_absolute_half_width
+    );
+    const numeratorProviderValue = Number(budgetRow.numerator_provider_value);
+    const liveSignedResidualInterval = finiteOrderedIntervalOrNull(
+      radiusRow?.signed_residual_interval
+    );
+    const screenedSignedTargetInterval = finiteOrderedIntervalOrNull(
+      radiusRow?.screened_signed_residual_target_interval
+    );
+    const currentShapeSignedRadius = Number(
+      radiusRow?.current_shape_source_residual_radius_upper
+    );
+    const currentShapedTermSumHalfWidth = Number(
+      providerFitRow?.current_shaped_source_sum_half_width
+    );
+    if (
+      radiusRow === undefined ||
+      providerFitRow === undefined ||
+      !finitePositive(numeratorAllowedAbsoluteHalfWidth) ||
+      !finitePositive(numeratorProviderValue) ||
+      liveSignedResidualInterval === null ||
+      screenedSignedTargetInterval === null ||
+      !finiteNonnegative(currentShapeSignedRadius) ||
+      !finiteNonnegative(currentShapedTermSumHalfWidth)
+    ) {
+      return null;
+    }
+    const liveSignedResidualAbsUpper = intervalAbsUpper(
+      liveSignedResidualInterval
+    );
+    const screenedSignedTargetAbsUpper = intervalAbsUpper(
+      screenedSignedTargetInterval
+    );
+    const liveSignedToBudgetRatio =
+      liveSignedResidualAbsUpper / numeratorAllowedAbsoluteHalfWidth;
+    const screenedTargetToBudgetRatio =
+      screenedSignedTargetAbsUpper / numeratorAllowedAbsoluteHalfWidth;
+    const currentShapeRadiusToBudgetRatio =
+      currentShapeSignedRadius / numeratorAllowedAbsoluteHalfWidth;
+    const shapedTermSumToBudgetRatio =
+      currentShapedTermSumHalfWidth / numeratorAllowedAbsoluteHalfWidth;
+    const shapedTermSumToCurrentShapeSignedRadiusRatio =
+      finitePositive(currentShapeSignedRadius)
+        ? currentShapedTermSumHalfWidth / currentShapeSignedRadius
+        : null;
+    const shapedTermSumToLiveSignedStreamRatio =
+      finitePositive(liveSignedResidualAbsUpper)
+        ? currentShapedTermSumHalfWidth / liveSignedResidualAbsUpper
+        : null;
+    const liveSignedFits = liveSignedToBudgetRatio <= 1;
+    const screenedTargetFits = screenedTargetToBudgetRatio <= 1;
+    const currentShapeRadiusFits = currentShapeRadiusToBudgetRatio <= 1;
+    const shapedTermSumFits = shapedTermSumToBudgetRatio <= 1;
+    const gapKind = !currentShapeRadiusFits
+      ? "signed-source-radius-exceeds-numerator-budget"
+      : !shapedTermSumFits
+        ? "signed-source-radius-fits-but-shaped-term-sum-exceeds"
+        : !screenedTargetFits
+          ? "screened-signed-target-exceeds-numerator-budget"
+          : !liveSignedFits
+            ? "live-signed-stream-exceeds-numerator-budget"
+            : "signed-source-stream-and-shaped-term-sum-fit-numerator-budget";
+    return {
+      node_index: nodeIndex,
+      xi_midpoint: budgetRow.xi_midpoint,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      tightest_budget_cell_id: budgetRow.tightest_budget_cell_id,
+      signed_numerator_source_budget_fit_row_kind:
+        "candidate-node-local-single-signed-source-stream-numerator-budget-fit-row",
+      fit_kind:
+        "single-signed-source-map-stream-to-absolute-numerator-source-budget",
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      zero_source_terms: ["constant_minus_two"],
+      numerator_source_quantity: budgetRow.numerator_source_quantity,
+      numerator_allowed_absolute_half_width:
+        numeratorAllowedAbsoluteHalfWidth,
+      numerator_provider_value: numeratorProviderValue,
+      numerator_directed_relative_radius_ceiling:
+        budgetRow.numerator_directed_relative_radius_ceiling,
+      numerator_budget_to_provider_value_ratio:
+        numeratorAllowedAbsoluteHalfWidth / numeratorProviderValue,
+      live_signed_residual_interval: liveSignedResidualInterval,
+      live_signed_residual_abs_upper: liveSignedResidualAbsUpper,
+      live_signed_stream_to_numerator_budget_ratio:
+        liveSignedToBudgetRatio,
+      screened_signed_residual_target_interval:
+        screenedSignedTargetInterval,
+      screened_signed_residual_target_abs_upper:
+        screenedSignedTargetAbsUpper,
+      screened_signed_target_to_numerator_budget_ratio:
+        screenedTargetToBudgetRatio,
+      current_shape_signed_source_radius_upper:
+        currentShapeSignedRadius,
+      current_shape_signed_radius_to_numerator_budget_ratio:
+        currentShapeRadiusToBudgetRatio,
+      current_shaped_term_sum_half_width:
+        currentShapedTermSumHalfWidth,
+      current_shaped_term_sum_to_numerator_budget_ratio:
+        shapedTermSumToBudgetRatio,
+      current_shaped_term_sum_to_current_shape_signed_radius_ratio:
+        shapedTermSumToCurrentShapeSignedRadiusRatio,
+      current_shaped_term_sum_to_live_signed_stream_ratio:
+        shapedTermSumToLiveSignedStreamRatio,
+      live_signed_stream_fits_numerator_absolute_budget:
+        liveSignedFits,
+      screened_signed_target_fits_numerator_absolute_budget:
+        screenedTargetFits,
+      current_shape_signed_radius_fits_numerator_absolute_budget:
+        currentShapeRadiusFits,
+      current_shaped_term_sum_fits_numerator_absolute_budget:
+        shapedTermSumFits,
+      row_gap_kind: gapKind,
+      row_status:
+        currentShapeRadiusFits && !shapedTermSumFits
+          ? "candidate-signed-source-radius-fits-numerator-budget-shaped-term-provider-gap"
+          : currentShapeRadiusFits && shapedTermSumFits
+            ? "candidate-signed-source-radius-and-shaped-term-provider-fit-numerator-budget-source-certification-open"
+            : "candidate-signed-source-radius-exceeds-numerator-budget",
+      claim_boundary: {
+        certifies_signed_numerator_source_budget_fit_only:
+          currentShapeRadiusFits && shapedTermSumFits,
+        certifies_source_inputs_as_directed_rounded_same_domain: false,
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  });
+  if (rows.length !== 5 || rows.some((row) => row === null)) {
+    return missingArtifact;
+  }
+  const allLiveSignedFit = rows.every(
+    (row) => row.live_signed_stream_fits_numerator_absolute_budget === true
+  );
+  const allScreenedTargetsFit = rows.every(
+    (row) =>
+      row.screened_signed_target_fits_numerator_absolute_budget === true
+  );
+  const allCurrentShapeRadiiFit = rows.every(
+    (row) =>
+      row.current_shape_signed_radius_fits_numerator_absolute_budget === true
+  );
+  const allShapedTermSumsFit = rows.every(
+    (row) =>
+      row.current_shaped_term_sum_fits_numerator_absolute_budget === true
+  );
+  const dominantRow = rows.reduce((best, row) =>
+    Number(row.current_shaped_term_sum_to_numerator_budget_ratio) >
+    Number(best.current_shaped_term_sum_to_numerator_budget_ratio)
+      ? row
+      : best
+  );
+  const classification =
+    allCurrentShapeRadiiFit && !allShapedTermSumsFit
+      ? "signed-source-radius-fits-numerator-budget-shaped-term-provider-is-artifact"
+      : allCurrentShapeRadiiFit && allShapedTermSumsFit
+        ? "signed-source-radius-and-shaped-provider-fit-numerator-budget-source-certification-open"
+        : allScreenedTargetsFit
+          ? "screened-signed-source-target-fits-numerator-budget-live-source-radius-open"
+          : allLiveSignedFit
+            ? "live-signed-source-stream-fits-numerator-budget"
+            : "signed-source-stream-still-exceeds-numerator-budget";
+  return {
+    target_kind:
+      "candidate-requested-y44-shared-source-map-signed-numerator-source-budget-fit",
+    source_node_radius_target_kind:
+      sourceMapResidualSharedStreamNodeRadiusTarget
+        .source_map_residual_shared_stream_node_radius_target_kind,
+    quotient_source_radius_budget_kind:
+      quotientSourceRadiusBudget.target_kind,
+    absolute_source_provider_fit_kind:
+      absoluteSourceProviderFit.target_kind,
+    proof_status:
+      "candidate-signed-numerator-source-budget-fit-not-directed-rounded",
+    fit_kind:
+      "single-signed-source-map-stream-to-absolute-numerator-source-budget",
+    source_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    signed_numerator_source_budget_fit_rows_available: true,
+    signed_numerator_source_budget_fit_rows: rows,
+    all_live_signed_streams_fit_numerator_absolute_budget:
+      allLiveSignedFit,
+    all_screened_signed_targets_fit_numerator_absolute_budget:
+      allScreenedTargetsFit,
+    all_current_shape_signed_radii_fit_numerator_absolute_budget:
+      allCurrentShapeRadiiFit,
+    all_current_shaped_term_sums_fit_numerator_absolute_budget:
+      allShapedTermSumsFit,
+    max_live_signed_stream_to_numerator_budget_ratio:
+      finiteMaximum(
+        rows.map((row) => row.live_signed_stream_to_numerator_budget_ratio)
+      ),
+    max_screened_signed_target_to_numerator_budget_ratio:
+      finiteMaximum(
+        rows.map(
+          (row) => row.screened_signed_target_to_numerator_budget_ratio
+        )
+      ),
+    max_current_shape_signed_radius_to_numerator_budget_ratio:
+      finiteMaximum(
+        rows.map(
+          (row) =>
+            row.current_shape_signed_radius_to_numerator_budget_ratio
+        )
+      ),
+    max_current_shaped_term_sum_to_numerator_budget_ratio:
+      finiteMaximum(
+        rows.map(
+          (row) => row.current_shaped_term_sum_to_numerator_budget_ratio
+        )
+      ),
+    max_shaped_term_sum_to_current_shape_signed_radius_ratio:
+      finiteMaximum(
+        rows.map(
+          (row) =>
+            row.current_shaped_term_sum_to_current_shape_signed_radius_ratio
+        )
+      ),
+    max_shaped_term_sum_to_live_signed_stream_ratio:
+      finiteMaximum(
+        rows.map(
+          (row) => row.current_shaped_term_sum_to_live_signed_stream_ratio
+        )
+      ),
+    dominant_signed_numerator_budget_node_index:
+      dominantRow?.node_index ?? null,
+    dominant_signed_numerator_budget_gap_kind:
+      dominantRow?.row_gap_kind ?? null,
+    signed_numerator_source_budget_fit_classification:
+      classification,
+    signed_numerator_source_budget_fit_interpretation:
+      classification ===
+      "signed-source-radius-fits-numerator-budget-shaped-term-provider-is-artifact"
+        ? "the single signed source-map residual radius already fits the absolute numerator source budget, while the shaped term-provider sum still misses; the next certificate should preserve the signed source stream instead of absolutizing the term split"
+        : classification ===
+            "signed-source-radius-and-shaped-provider-fit-numerator-budget-source-certification-open"
+          ? "the candidate signed source stream and current shaped term provider both fit the numerator source budget, but directed-rounded source provenance remains open"
+          : "the numerator source budget still needs a narrower same-domain signed source stream before quotient-source closure can be claimed",
+    next_certificate_object:
+      "directed-rounded same-domain H38 producer-image source-map residual provider that preserves the single signed numerator source stream through delta_squared_speed, sin_phi, and sin_delta before source-term absolutization",
+    claim_boundary: {
+      certifies_signed_numerator_source_budget_fit_only:
+        allCurrentShapeRadiiFit && allShapedTermSumsFit,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function h39RequestedY44SourceMapResidualFiveNodeSignedRadiusContractionBudget({
+  sourceMapResidualSharedStreamNodeRadiusTarget,
+  centerAwareProviderRadiusTarget,
+  signedNumeratorSourceBudgetFit,
+} = {}) {
+  const missingArtifact = {
+    target_kind:
+      "candidate-requested-y44-shared-source-map-signed-radius-contraction-budget",
+    proof_status:
+      "candidate-signed-radius-contraction-budget-inputs-missing",
+    budget_kind:
+      "single-signed-source-map-radius-to-absolute-numerator-source-budget-provider-target",
+    signed_radius_contraction_budget_rows_available: false,
+    signed_radius_contraction_budget_rows: [],
+    all_current_shape_signed_radii_fit_numerator_budget: false,
+    all_center_aware_signed_half_widths_fit_numerator_budget: false,
+    all_quotient_compatible_targets_subset_current_shape_and_numerator_budget:
+      false,
+    max_signed_radius_to_numerator_budget_ratio: null,
+    max_center_aware_signed_half_width_to_numerator_budget_ratio: null,
+    max_required_signed_radius_contraction_to_numerator_budget: null,
+    max_required_center_aware_signed_half_width_contraction_to_numerator_budget:
+      null,
+    dominant_signed_radius_budget_node_index: null,
+    signed_radius_contraction_budget_classification:
+      "signed-radius-contraction-budget-inputs-missing",
+    claim_boundary: {
+      defines_signed_radius_contraction_budget_only: false,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+  if (
+    sourceMapResidualSharedStreamNodeRadiusTarget === null ||
+    sourceMapResidualSharedStreamNodeRadiusTarget === undefined ||
+    sourceMapResidualSharedStreamNodeRadiusTarget
+      .source_map_residual_shared_stream_node_radius_available !== true ||
+    centerAwareProviderRadiusTarget === null ||
+    centerAwareProviderRadiusTarget === undefined ||
+    centerAwareProviderRadiusTarget.target_kind !==
+      "candidate-requested-y44-shared-source-map-center-aware-provider-radius-target" ||
+    centerAwareProviderRadiusTarget.center_aware_provider_radius_rows_available !==
+      true ||
+    signedNumeratorSourceBudgetFit === null ||
+    signedNumeratorSourceBudgetFit === undefined ||
+    signedNumeratorSourceBudgetFit.target_kind !==
+      "candidate-requested-y44-shared-source-map-signed-numerator-source-budget-fit" ||
+    signedNumeratorSourceBudgetFit
+      .signed_numerator_source_budget_fit_rows_available !== true
+  ) {
+    return missingArtifact;
+  }
+  const radiusRows =
+    sourceMapResidualSharedStreamNodeRadiusTarget
+      .source_map_residual_shared_stream_node_radius_rows ?? [];
+  const centerAwareRows =
+    centerAwareProviderRadiusTarget.center_aware_provider_radius_rows ?? [];
+  const signedBudgetRows =
+    signedNumeratorSourceBudgetFit.signed_numerator_source_budget_fit_rows ??
+    [];
+  if (
+    radiusRows.length !== 5 ||
+    centerAwareRows.length !== 5 ||
+    signedBudgetRows.length !== 5
+  ) {
+    return missingArtifact;
+  }
+  const radiusRowsByNode = new Map(
+    radiusRows.map((row) => [Number(row.node_index), row])
+  );
+  const centerAwareRowsByNode = new Map(
+    centerAwareRows.map((row) => [Number(row.node_index), row])
+  );
+  const rows = signedBudgetRows.map((budgetRow) => {
+    const nodeIndex = Number(budgetRow.node_index);
+    const radiusRow = radiusRowsByNode.get(nodeIndex);
+    const centerAwareRow = centerAwareRowsByNode.get(nodeIndex);
+    const currentShapeSignedRadius = Number(
+      budgetRow.current_shape_signed_source_radius_upper
+    );
+    const numeratorAllowedAbsoluteHalfWidth = Number(
+      budgetRow.numerator_allowed_absolute_half_width
+    );
+    const liveSignedAbsUpper = Number(
+      budgetRow.live_signed_residual_abs_upper
+    );
+    const centerAwareSignedHalfWidth = Number(
+      centerAwareRow?.signed_center_aware_residual_target_half_width
+    );
+    const signedLiveHalfWidth = Number(centerAwareRow?.signed_live_half_width);
+    const selectedProviderContractionFactor = Number(
+      centerAwareRow?.selected_provider_contraction_factor
+    );
+    const requiredCenterAwareProviderContractionFactor = Number(
+      centerAwareRow?.signed_required_centered_half_width_compression_factor
+    );
+    const lagrangeWeight = Number(
+      radiusRow?.lagrange_fourth_derivative_weight
+    );
+    const lagrangeWeightAbs = Number(
+      radiusRow?.lagrange_fourth_derivative_weight_abs
+    );
+    if (
+      radiusRow === undefined ||
+      centerAwareRow === undefined ||
+      !finiteNonnegative(currentShapeSignedRadius) ||
+      !finitePositive(numeratorAllowedAbsoluteHalfWidth) ||
+      !finiteNonnegative(liveSignedAbsUpper) ||
+      !finiteNonnegative(centerAwareSignedHalfWidth) ||
+      !finiteNonnegative(signedLiveHalfWidth) ||
+      !finitePositive(selectedProviderContractionFactor) ||
+      !finitePositive(requiredCenterAwareProviderContractionFactor) ||
+      !Number.isFinite(lagrangeWeight) ||
+      !finiteNonnegative(lagrangeWeightAbs)
+    ) {
+      return null;
+    }
+    const quotientCompatibleSignedSourceRadius = Math.min(
+      currentShapeSignedRadius,
+      numeratorAllowedAbsoluteHalfWidth
+    );
+    const quotientCompatibleSignedTargetInterval = [
+      -quotientCompatibleSignedSourceRadius,
+      quotientCompatibleSignedSourceRadius,
+    ];
+    const quotientCompatibleWeightedTargetInterval = root.scaleInterval(
+      quotientCompatibleSignedTargetInterval,
+      lagrangeWeight
+    );
+    const requiredSignedRadiusContraction =
+      currentShapeSignedRadius / numeratorAllowedAbsoluteHalfWidth;
+    const centerAwareSignedToBudgetRatio =
+      centerAwareSignedHalfWidth / numeratorAllowedAbsoluteHalfWidth;
+    const signedLiveToCenterAwareRatio =
+      finitePositive(centerAwareSignedHalfWidth)
+        ? signedLiveHalfWidth / centerAwareSignedHalfWidth
+        : null;
+    const signedRequiredCenterAwareToSelectedRatio =
+      requiredCenterAwareProviderContractionFactor /
+      selectedProviderContractionFactor;
+    return {
+      node_index: nodeIndex,
+      xi_midpoint: budgetRow.xi_midpoint,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      tightest_budget_cell_id: budgetRow.tightest_budget_cell_id,
+      signed_radius_contraction_budget_row_kind:
+        "candidate-node-local-signed-source-radius-contraction-budget-row",
+      budget_kind:
+        "single-signed-source-map-radius-to-absolute-numerator-source-budget-provider-target",
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      zero_source_terms: ["constant_minus_two"],
+      lagrange_fourth_derivative_weight: lagrangeWeight,
+      lagrange_fourth_derivative_weight_abs: lagrangeWeightAbs,
+      numerator_allowed_absolute_half_width:
+        numeratorAllowedAbsoluteHalfWidth,
+      numerator_provider_value: budgetRow.numerator_provider_value,
+      numerator_directed_relative_radius_ceiling:
+        budgetRow.numerator_directed_relative_radius_ceiling,
+      current_shape_signed_source_radius_upper:
+        currentShapeSignedRadius,
+      signed_radius_to_numerator_budget_ratio:
+        requiredSignedRadiusContraction,
+      required_signed_radius_contraction_to_numerator_budget:
+        requiredSignedRadiusContraction,
+      live_signed_residual_abs_upper: liveSignedAbsUpper,
+      live_signed_stream_to_numerator_budget_ratio:
+        budgetRow.live_signed_stream_to_numerator_budget_ratio,
+      signed_live_half_width: signedLiveHalfWidth,
+      center_aware_signed_half_width: centerAwareSignedHalfWidth,
+      center_aware_signed_half_width_to_numerator_budget_ratio:
+        centerAwareSignedToBudgetRatio,
+      required_center_aware_signed_half_width_contraction_to_numerator_budget:
+        centerAwareSignedToBudgetRatio,
+      signed_live_half_width_to_center_aware_half_width_ratio:
+        signedLiveToCenterAwareRatio,
+      selected_provider_contraction_factor:
+        selectedProviderContractionFactor,
+      required_center_aware_provider_contraction_factor:
+        requiredCenterAwareProviderContractionFactor,
+      signed_required_center_aware_to_selected_contraction_factor:
+        signedRequiredCenterAwareToSelectedRatio,
+      quotient_compatible_signed_source_radius_upper:
+        quotientCompatibleSignedSourceRadius,
+      quotient_compatible_signed_source_target_interval:
+        quotientCompatibleSignedTargetInterval,
+      quotient_compatible_weighted_residual_target_interval:
+        quotientCompatibleWeightedTargetInterval,
+      quotient_compatible_weighted_residual_abs_upper:
+        quotientCompatibleSignedSourceRadius * lagrangeWeightAbs,
+      quotient_compatible_target_subset_current_shape_radius:
+        quotientCompatibleSignedSourceRadius <= currentShapeSignedRadius,
+      quotient_compatible_target_subset_numerator_budget:
+        quotientCompatibleSignedSourceRadius <=
+        numeratorAllowedAbsoluteHalfWidth,
+      current_shape_signed_radius_already_fits_numerator_budget:
+        currentShapeSignedRadius <= numeratorAllowedAbsoluteHalfWidth,
+      center_aware_signed_half_width_already_fits_numerator_budget:
+        centerAwareSignedHalfWidth <= numeratorAllowedAbsoluteHalfWidth,
+      row_gap_kind: budgetRow.row_gap_kind,
+      row_status:
+        currentShapeSignedRadius <= numeratorAllowedAbsoluteHalfWidth &&
+        centerAwareSignedHalfWidth <= numeratorAllowedAbsoluteHalfWidth
+          ? "candidate-signed-radius-contraction-target-already-fits-numerator-budget-source-certification-open"
+          : centerAwareSignedHalfWidth <= numeratorAllowedAbsoluteHalfWidth
+            ? "candidate-center-aware-signed-half-width-fits-numerator-budget-current-shape-radius-open"
+            : "candidate-signed-source-radius-needs-numerator-budget-contraction",
+      claim_boundary: {
+        defines_signed_radius_contraction_budget_only: true,
+        certifies_source_inputs_as_directed_rounded_same_domain: false,
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  });
+  if (rows.length !== 5 || rows.some((row) => row === null)) {
+    return missingArtifact;
+  }
+  const allCurrentShapeRadiiFit = rows.every(
+    (row) => row.current_shape_signed_radius_already_fits_numerator_budget
+  );
+  const allCenterAwareHalfWidthsFit = rows.every(
+    (row) => row.center_aware_signed_half_width_already_fits_numerator_budget
+  );
+  const allTargetsSubsetCurrentShapeAndBudget = rows.every(
+    (row) =>
+      row.quotient_compatible_target_subset_current_shape_radius === true &&
+      row.quotient_compatible_target_subset_numerator_budget === true
+  );
+  const dominantRow = rows.reduce((best, row) =>
+    Number(row.signed_radius_to_numerator_budget_ratio) >
+    Number(best.signed_radius_to_numerator_budget_ratio)
+      ? row
+      : best
+  );
+  const classification =
+    allCurrentShapeRadiiFit && allCenterAwareHalfWidthsFit
+      ? "signed-radius-and-center-aware-target-fit-numerator-budget-source-certification-open"
+      : allCenterAwareHalfWidthsFit
+        ? "center-aware-target-fits-numerator-budget-current-shape-radius-open"
+        : "same-domain-signed-source-radius-needs-numerator-budget-contraction";
+  return {
+    target_kind:
+      "candidate-requested-y44-shared-source-map-signed-radius-contraction-budget",
+    source_node_radius_target_kind:
+      sourceMapResidualSharedStreamNodeRadiusTarget
+        .source_map_residual_shared_stream_node_radius_target_kind,
+    center_aware_provider_radius_target_kind:
+      centerAwareProviderRadiusTarget.target_kind,
+    signed_numerator_source_budget_fit_kind:
+      signedNumeratorSourceBudgetFit.target_kind,
+    proof_status:
+      "candidate-signed-radius-contraction-budget-not-directed-rounded",
+    budget_kind:
+      "single-signed-source-map-radius-to-absolute-numerator-source-budget-provider-target",
+    source_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    signed_radius_contraction_budget_rows_available: true,
+    signed_radius_contraction_budget_rows: rows,
+    all_current_shape_signed_radii_fit_numerator_budget:
+      allCurrentShapeRadiiFit,
+    all_center_aware_signed_half_widths_fit_numerator_budget:
+      allCenterAwareHalfWidthsFit,
+    all_quotient_compatible_targets_subset_current_shape_and_numerator_budget:
+      allTargetsSubsetCurrentShapeAndBudget,
+    max_signed_radius_to_numerator_budget_ratio:
+      finiteMaximum(
+        rows.map((row) => row.signed_radius_to_numerator_budget_ratio)
+      ),
+    max_center_aware_signed_half_width_to_numerator_budget_ratio:
+      finiteMaximum(
+        rows.map(
+          (row) =>
+            row.center_aware_signed_half_width_to_numerator_budget_ratio
+        )
+      ),
+    max_required_signed_radius_contraction_to_numerator_budget:
+      finiteMaximum(
+        rows.map(
+          (row) =>
+            row.required_signed_radius_contraction_to_numerator_budget
+        )
+      ),
+    max_required_center_aware_signed_half_width_contraction_to_numerator_budget:
+      finiteMaximum(
+        rows.map(
+          (row) =>
+            row
+              .required_center_aware_signed_half_width_contraction_to_numerator_budget
+        )
+      ),
+    dominant_signed_radius_budget_node_index:
+      dominantRow?.node_index ?? null,
+    signed_radius_contraction_budget_classification:
+      classification,
+    signed_radius_contraction_budget_interpretation:
+      classification ===
+      "signed-radius-and-center-aware-target-fit-numerator-budget-source-certification-open"
+        ? "the current signed source radius and center-aware target fit the numerator budget; directed-rounded same-domain source provenance remains open"
+        : classification ===
+            "center-aware-target-fits-numerator-budget-current-shape-radius-open"
+          ? "the center-aware signed half-width target fits the numerator budget even though the current zero-centered source radius misses; the next certificate should preserve the live source center and emit the narrower same-domain interval"
+          : "the numerator source budget requires an additional same-domain signed source-radius contraction beyond the current center-aware provider target before quotient-source closure can be claimed",
+    next_certificate_object:
+      "directed-rounded same-domain H38 source-map residual provider whose signed node radii are contained in the quotient-compatible numerator-budget intervals recorded here",
+    claim_boundary: {
+      defines_signed_radius_contraction_budget_only: true,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function h39RequestedY44SourceMapResidualFiveNodeSignedRadiusProviderAcceptanceTarget({
+  inclusionContract,
+  signedRadiusContractionBudget,
+} = {}) {
+  const missingArtifact = {
+    target_kind:
+      "candidate-requested-y44-shared-source-map-signed-radius-provider-acceptance-target",
+    proof_status:
+      "candidate-signed-radius-provider-acceptance-target-inputs-missing",
+    provider_target_kind:
+      "quotient-compatible-signed-radius-provider-target-through-directed-verifier",
+    signed_radius_provider_acceptance_rows_available: false,
+    signed_radius_provider_acceptance_rows: [],
+    directed_provider_verifier: null,
+    all_provider_rows_match_same_domain_same_radius: false,
+    all_provider_rows_match_required_source_kind: false,
+    all_provider_intervals_subset_screened_targets: false,
+    all_provider_rows_have_directed_rounded_source: false,
+    all_quotient_compatible_intervals_fit_numerator_budget: false,
+    all_quotient_compatible_weighted_intervals_match_radius_weight: false,
+    provider_target_reaches_verifier_with_source_only_failure: false,
+    max_provider_interval_to_screened_target_ratio: null,
+    min_provider_interval_inclusion_headroom: null,
+    max_signed_radius_to_numerator_budget_ratio: null,
+    max_center_aware_signed_half_width_to_numerator_budget_ratio: null,
+    dominant_signed_radius_provider_acceptance_node_index: null,
+    provider_acceptance_target_classification:
+      "signed-radius-provider-acceptance-target-inputs-missing",
+    claim_boundary: {
+      defines_signed_radius_provider_acceptance_target_only: false,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+  if (
+    inclusionContract === null ||
+    inclusionContract === undefined ||
+    inclusionContract.target_kind !==
+      "candidate-requested-y44-shared-source-map-five-node-inclusion-contract" ||
+    signedRadiusContractionBudget === null ||
+    signedRadiusContractionBudget === undefined ||
+    signedRadiusContractionBudget.target_kind !==
+      "candidate-requested-y44-shared-source-map-signed-radius-contraction-budget" ||
+    signedRadiusContractionBudget
+      .signed_radius_contraction_budget_rows_available !== true
+  ) {
+    return missingArtifact;
+  }
+  const contractRows = inclusionContract.provider_contract_rows ?? [];
+  const budgetRows =
+    signedRadiusContractionBudget.signed_radius_contraction_budget_rows ?? [];
+  if (contractRows.length !== 5 || budgetRows.length !== 5) {
+    return missingArtifact;
+  }
+  const contractRowsByNodeIndex = new Map(
+    contractRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const rows = budgetRows.map((budgetRow) => {
+    const nodeIndex = Number(budgetRow?.node_index);
+    const contractRow = contractRowsByNodeIndex.get(nodeIndex);
+    const sourceInclusionSignedTargetInterval = finiteOrderedIntervalOrNull(
+      contractRow?.screened_signed_residual_target_interval
+    );
+    const sourceInclusionWeightedTargetInterval = finiteOrderedIntervalOrNull(
+      contractRow?.screened_weighted_residual_target_interval
+    );
+    const signedTargetInterval = finiteOrderedIntervalOrNull(
+      budgetRow?.quotient_compatible_signed_source_target_interval
+    );
+    const weightedTargetInterval = finiteOrderedIntervalOrNull(
+      budgetRow?.quotient_compatible_weighted_residual_target_interval
+    );
+    const signedProviderInterval = finiteOrderedIntervalOrNull(
+      budgetRow?.quotient_compatible_signed_source_target_interval
+    );
+    const weightedProviderInterval = finiteOrderedIntervalOrNull(
+      budgetRow?.quotient_compatible_weighted_residual_target_interval
+    );
+    const lagrangeWeight = Number(
+      budgetRow?.lagrange_fourth_derivative_weight
+    );
+    const numeratorAllowedAbsoluteHalfWidth = Number(
+      budgetRow?.numerator_allowed_absolute_half_width
+    );
+    const signedProviderAbsUpper =
+      signedProviderInterval === null
+        ? null
+        : intervalAbsUpper(signedProviderInterval);
+    const weightedProviderAbsUpper =
+      weightedProviderInterval === null
+        ? null
+        : intervalAbsUpper(weightedProviderInterval);
+    const signedTargetAbsUpper =
+      signedTargetInterval === null ? null : intervalAbsUpper(signedTargetInterval);
+    const weightedTargetAbsUpper =
+      weightedTargetInterval === null
+        ? null
+        : intervalAbsUpper(weightedTargetInterval);
+    if (
+      contractRow === undefined ||
+      !Number.isInteger(nodeIndex) ||
+      !Number.isFinite(Number(budgetRow?.xi_midpoint)) ||
+      sourceInclusionSignedTargetInterval === null ||
+      sourceInclusionWeightedTargetInterval === null ||
+      signedTargetInterval === null ||
+      weightedTargetInterval === null ||
+      signedProviderInterval === null ||
+      weightedProviderInterval === null ||
+      !Number.isFinite(lagrangeWeight) ||
+      !finitePositive(numeratorAllowedAbsoluteHalfWidth) ||
+      !finiteNonnegative(signedProviderAbsUpper) ||
+      !finiteNonnegative(weightedProviderAbsUpper)
+    ) {
+      return null;
+    }
+    const weightedIntervalFromSignedRadius = root.scaleInterval(
+      signedProviderInterval,
+      lagrangeWeight
+    );
+    const signedSubsetScreenedTarget = intervalContainsInterval(
+      signedTargetInterval,
+      signedProviderInterval
+    );
+    const weightedSubsetScreenedTarget = intervalContainsInterval(
+      weightedTargetInterval,
+      weightedProviderInterval
+    );
+    const signedFitsNumeratorBudget =
+      signedProviderAbsUpper <= numeratorAllowedAbsoluteHalfWidth;
+    const weightedMatchesSignedRadiusWeight = h39RequestedY44SameInterval(
+      weightedProviderInterval,
+      weightedIntervalFromSignedRadius
+    );
+    return {
+      node_index: nodeIndex,
+      xi_midpoint: budgetRow.xi_midpoint,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      tightest_budget_cell_id: inclusionContract.tightest_budget_cell_id,
+      provider_acceptance_target_row_kind:
+        "candidate-node-local-quotient-compatible-signed-radius-provider-acceptance-row",
+      provider_row_source_kind:
+        "directed-rounded-same-domain-h38-source-map-residual-provider",
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      zero_source_terms: ["constant_minus_two"],
+      lagrange_fourth_derivative_weight: lagrangeWeight,
+      lagrange_fourth_derivative_weight_abs:
+        budgetRow.lagrange_fourth_derivative_weight_abs,
+      numerator_allowed_absolute_half_width:
+        numeratorAllowedAbsoluteHalfWidth,
+      current_shape_signed_source_radius_upper:
+        budgetRow.current_shape_signed_source_radius_upper,
+      signed_radius_to_numerator_budget_ratio:
+        budgetRow.signed_radius_to_numerator_budget_ratio,
+      center_aware_signed_half_width_to_numerator_budget_ratio:
+        budgetRow.center_aware_signed_half_width_to_numerator_budget_ratio,
+      quotient_compatible_signed_source_radius_upper:
+        budgetRow.quotient_compatible_signed_source_radius_upper,
+      source_inclusion_contract_screened_signed_residual_target_interval:
+        sourceInclusionSignedTargetInterval,
+      source_inclusion_contract_screened_weighted_residual_target_interval:
+        sourceInclusionWeightedTargetInterval,
+      screened_signed_residual_target_interval: signedTargetInterval,
+      screened_weighted_residual_target_interval: weightedTargetInterval,
+      directed_rounded_signed_residual_interval: signedProviderInterval,
+      directed_rounded_weighted_signed_residual_interval:
+        weightedProviderInterval,
+      directed_rounded_weighted_residual_interval: weightedProviderInterval,
+      quotient_compatible_signed_interval_subset_screened_target:
+        signedSubsetScreenedTarget,
+      quotient_compatible_weighted_interval_subset_screened_target:
+        weightedSubsetScreenedTarget,
+      quotient_compatible_signed_interval_fits_numerator_budget:
+        signedFitsNumeratorBudget,
+      quotient_compatible_weighted_interval_matches_radius_weight:
+        weightedMatchesSignedRadiusWeight,
+      signed_provider_interval_abs_upper: signedProviderAbsUpper,
+      weighted_provider_interval_abs_upper: weightedProviderAbsUpper,
+      signed_provider_abs_upper_to_target_abs_upper_ratio:
+        finiteNonnegative(signedProviderAbsUpper) &&
+        finitePositive(signedTargetAbsUpper)
+          ? signedProviderAbsUpper / signedTargetAbsUpper
+          : null,
+      weighted_provider_abs_upper_to_target_abs_upper_ratio:
+        finiteNonnegative(weightedProviderAbsUpper) &&
+        finitePositive(weightedTargetAbsUpper)
+          ? weightedProviderAbsUpper / weightedTargetAbsUpper
+          : null,
+      signed_provider_interval_inclusion_headroom_factor:
+        finitePositive(signedProviderAbsUpper) &&
+        finitePositive(signedTargetAbsUpper)
+          ? signedTargetAbsUpper / signedProviderAbsUpper
+          : null,
+      weighted_provider_interval_inclusion_headroom_factor:
+        finitePositive(weightedProviderAbsUpper) &&
+        finitePositive(weightedTargetAbsUpper)
+          ? weightedTargetAbsUpper / weightedProviderAbsUpper
+          : null,
+      row_status:
+        signedSubsetScreenedTarget &&
+        weightedSubsetScreenedTarget &&
+        signedFitsNumeratorBudget &&
+        weightedMatchesSignedRadiusWeight
+          ? "candidate-quotient-compatible-provider-target-contained-source-certification-open"
+          : "candidate-quotient-compatible-provider-target-open",
+      claim_boundary: {
+        defines_signed_radius_provider_acceptance_target_only: true,
+        certifies_source_inputs_as_directed_rounded_same_domain: false,
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  });
+  if (rows.length !== 5 || rows.some((row) => row === null)) {
+    return missingArtifact;
+  }
+  const rowsByNodeIndex = new Map(
+    rows.map((row) => [Number(row.node_index), row])
+  );
+  const quotientCompatibleInclusionContract = {
+    ...inclusionContract,
+    target_kind:
+      "candidate-requested-y44-shared-source-map-five-node-inclusion-contract",
+    provider_contract_rows: contractRows.map((contractRow) => {
+      const acceptanceRow = rowsByNodeIndex.get(Number(contractRow.node_index));
+      const signedTargetInterval =
+        acceptanceRow.screened_signed_residual_target_interval;
+      const weightedTargetInterval =
+        acceptanceRow.screened_weighted_residual_target_interval;
+      const signedTargetAbsUpper = intervalAbsUpper(signedTargetInterval);
+      const weightedTargetAbsUpper = intervalAbsUpper(weightedTargetInterval);
+      return {
+        ...contractRow,
+        screened_signed_residual_target_interval: signedTargetInterval,
+        screened_signed_residual_abs_upper: signedTargetAbsUpper,
+        screened_weighted_residual_target_interval: weightedTargetInterval,
+        screened_weighted_residual_abs_upper: weightedTargetAbsUpper,
+        signed_screened_target_subset_of_live_interval: intervalContainsInterval(
+          contractRow.live_signed_residual_interval,
+          signedTargetInterval
+        ),
+        weighted_screened_target_subset_of_live_interval:
+          intervalContainsInterval(
+            contractRow.live_weighted_residual_interval,
+            weightedTargetInterval
+          ),
+        signed_live_and_target_contain_zero:
+          intervalContainsZero(contractRow.live_signed_residual_interval) &&
+          intervalContainsZero(signedTargetInterval),
+        weighted_live_and_target_contain_zero:
+          intervalContainsZero(contractRow.live_weighted_residual_interval) &&
+          intervalContainsZero(weightedTargetInterval),
+        contract_row_status:
+          "quotient-compatible-signed-radius-provider-acceptance-target-row",
+      };
+    }),
+  };
+  const directedProviderVerifier =
+    h39RequestedY44SourceMapResidualFiveNodeVerifier({
+      inclusionContract: quotientCompatibleInclusionContract,
+      providerRows: rows,
+    });
+  if (directedProviderVerifier === null) {
+    return missingArtifact;
+  }
+  const allRowsMatchSameDomainSameRadius =
+    directedProviderVerifier.all_provider_rows_match_same_domain_contract ===
+      true &&
+    directedProviderVerifier.all_provider_rows_match_same_radius_contract ===
+      true;
+  const allIntervalsSubsetScreenedTargets =
+    directedProviderVerifier.all_provider_intervals_subset_screened_targets ===
+    true;
+  const allRowsMatchRequiredSourceKind =
+    directedProviderVerifier.provider_verification_rows.every(
+      (row) => row.provider_source_kind_matches_required === true
+    );
+  const allRowsHaveDirectedRoundedSource =
+    directedProviderVerifier.all_provider_rows_have_directed_rounded_source ===
+    true;
+  const allIntervalsFitNumeratorBudget = rows.every(
+    (row) =>
+      row.quotient_compatible_signed_interval_fits_numerator_budget === true
+  );
+  const allWeightedIntervalsMatchRadiusWeight = rows.every(
+    (row) =>
+      row.quotient_compatible_weighted_interval_matches_radius_weight === true
+  );
+  const reachesVerifierWithSourceOnlyFailure =
+    allRowsMatchSameDomainSameRadius &&
+    allRowsMatchRequiredSourceKind &&
+    allIntervalsSubsetScreenedTargets &&
+    allIntervalsFitNumeratorBudget &&
+    allWeightedIntervalsMatchRadiusWeight &&
+    allRowsHaveDirectedRoundedSource === false;
+  const dominantRow = rows.reduce((best, row) =>
+    Number(row.signed_radius_to_numerator_budget_ratio) >
+    Number(best.signed_radius_to_numerator_budget_ratio)
+      ? row
+      : best
+  );
+  return {
+    target_kind:
+      "candidate-requested-y44-shared-source-map-signed-radius-provider-acceptance-target",
+    source_inclusion_contract_kind: inclusionContract.target_kind,
+    source_signed_radius_contraction_budget_kind:
+      signedRadiusContractionBudget.target_kind,
+    signed_radius_contraction_budget_kind:
+      signedRadiusContractionBudget.target_kind,
+    source_directed_provider_verifier_kind:
+      directedProviderVerifier.target_kind,
+    proof_status:
+      "candidate-signed-radius-provider-acceptance-contained-source-not-directed-rounded",
+    provider_target_kind:
+      "quotient-compatible-signed-radius-provider-target-through-directed-verifier",
+    source_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    signed_radius_provider_acceptance_rows_available: true,
+    signed_radius_provider_acceptance_rows: rows,
+    directed_provider_verifier: directedProviderVerifier,
+    all_provider_rows_match_same_domain_same_radius:
+      allRowsMatchSameDomainSameRadius,
+    all_provider_rows_match_required_source_kind:
+      allRowsMatchRequiredSourceKind,
+    all_provider_intervals_subset_screened_targets:
+      allIntervalsSubsetScreenedTargets,
+    all_provider_rows_have_directed_rounded_source:
+      allRowsHaveDirectedRoundedSource,
+    all_quotient_compatible_intervals_fit_numerator_budget:
+      allIntervalsFitNumeratorBudget,
+    all_quotient_compatible_weighted_intervals_match_radius_weight:
+      allWeightedIntervalsMatchRadiusWeight,
+    provider_target_reaches_verifier_with_source_only_failure:
+      reachesVerifierWithSourceOnlyFailure,
+    max_provider_interval_to_screened_target_ratio:
+      directedProviderVerifier.max_provider_interval_to_target_abs_upper_ratio,
+    min_provider_interval_inclusion_headroom:
+      directedProviderVerifier.min_provider_interval_inclusion_headroom_factor,
+    max_signed_radius_to_numerator_budget_ratio:
+      signedRadiusContractionBudget.max_signed_radius_to_numerator_budget_ratio,
+    max_center_aware_signed_half_width_to_numerator_budget_ratio:
+      signedRadiusContractionBudget
+        .max_center_aware_signed_half_width_to_numerator_budget_ratio,
+    dominant_signed_radius_provider_acceptance_node_index:
+      dominantRow?.node_index ?? null,
+    provider_acceptance_target_classification:
+      reachesVerifierWithSourceOnlyFailure
+        ? "signed-radius-provider-acceptance-target-contained-source-certification-open"
+        : "signed-radius-provider-acceptance-target-open",
+    provider_acceptance_target_interpretation:
+      reachesVerifierWithSourceOnlyFailure
+        ? "the quotient-compatible signed-radius rows satisfy the same-domain, same-radius, interval-inclusion, and numerator-budget verifier boundary; only directed-rounded H38 source provenance remains open"
+        : "the quotient-compatible signed-radius rows do not yet satisfy the verifier boundary, so source provenance is not the only open issue",
+    next_certificate_object:
+      "directed-rounded same-domain H38 producer-image source-map residual provider that emits the quotient-compatible signed-radius intervals recorded here",
+    claim_boundary: {
+      defines_signed_radius_provider_acceptance_target_only: true,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function h39RequestedY44SourceMapResidualH38SourceProvenanceBridge({
+  sourceMapResidualTraceAnchorSummary,
+  sourceMapResidualFiveNodeInclusionContract,
+} = {}) {
+  const acceptanceTarget =
+    sourceMapResidualFiveNodeInclusionContract
+      ?.source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target ??
+    null;
+  const traceRows =
+    sourceMapResidualTraceAnchorSummary?.source_map_residual_trace_anchor_rows ??
+    [];
+  const acceptanceRows =
+    acceptanceTarget?.signed_radius_provider_acceptance_rows ?? [];
+  const traceAnchorReady =
+    sourceMapResidualTraceAnchorSummary
+      ?.source_map_residual_trace_anchor_matches_selected_rows === true &&
+    sourceMapResidualTraceAnchorSummary
+      ?.source_map_residual_trace_anchor_terms_match_requested_y44_nonconstant_terms ===
+      true &&
+    sourceMapResidualTraceAnchorSummary
+      ?.source_map_residual_trace_anchor_eliminates_constant_minus_two ===
+      true &&
+    sourceMapResidualTraceAnchorSummary
+      ?.source_map_residual_trace_anchor_keeps_directed_source_open === true;
+  const providerAcceptanceReady =
+    acceptanceTarget?.provider_target_reaches_verifier_with_source_only_failure ===
+      true &&
+    acceptanceTarget?.all_provider_rows_match_same_domain_same_radius === true &&
+    acceptanceTarget?.all_provider_rows_match_required_source_kind === true &&
+    acceptanceTarget?.all_provider_intervals_subset_screened_targets === true &&
+    acceptanceTarget?.all_quotient_compatible_intervals_fit_numerator_budget ===
+      true &&
+    acceptanceTarget
+      ?.all_quotient_compatible_weighted_intervals_match_radius_weight ===
+      true &&
+    acceptanceTarget?.all_provider_rows_have_directed_rounded_source === false;
+  const sameSourceTerms = (terms) =>
+    h39RequestedY44SameSourceTerms(terms) &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const sameZeroTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H38_SOURCE_TERM_ZERO_KEYS.length &&
+    H38_SOURCE_TERM_ZERO_KEYS.every((term, index) => terms[index] === term);
+  const providerRowsReady =
+    acceptanceRows.length === 5 &&
+    acceptanceRows.every(
+      (row, index) =>
+        Number(row?.node_index) === index &&
+        row?.provider_row_source_kind ===
+          "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+        row?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+        row?.required_xi_derivative_order === 4 &&
+        sameSourceTerms(row?.source_terms_preserved_signed_together) &&
+        sameZeroTerms(row?.zero_source_terms) &&
+        row?.quotient_compatible_signed_interval_subset_screened_target ===
+          true &&
+        row?.quotient_compatible_weighted_interval_subset_screened_target ===
+          true &&
+        row?.quotient_compatible_signed_interval_fits_numerator_budget ===
+          true &&
+        row?.quotient_compatible_weighted_interval_matches_radius_weight ===
+          true &&
+        row?.claim_boundary?.certifies_directed_rounded_shared_domain === false
+    );
+  const available =
+    traceAnchorReady &&
+    providerAcceptanceReady &&
+    providerRowsReady &&
+    traceRows.length > 0;
+  const obligationRows = acceptanceRows.map((row) => ({
+    node_index: row.node_index,
+    xi_midpoint: row.xi_midpoint,
+    source_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    tightest_budget_cell_id: row.tightest_budget_cell_id,
+    required_provider_row_source_kind:
+      "directed-rounded-same-domain-h38-source-map-residual-provider",
+    source_terms_preserved_signed_together: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    zero_source_terms: [...H38_SOURCE_TERM_ZERO_KEYS],
+    quotient_compatible_signed_source_radius_upper:
+      row.quotient_compatible_signed_source_radius_upper,
+    directed_rounded_signed_residual_interval:
+      row.directed_rounded_signed_residual_interval,
+    directed_rounded_weighted_signed_residual_interval:
+      row.directed_rounded_weighted_signed_residual_interval,
+    provider_row_reaches_h39_verifier_boundary:
+      row.provider_row_source_kind ===
+        "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+      row.quotient_compatible_signed_interval_subset_screened_target === true &&
+      row.quotient_compatible_weighted_interval_subset_screened_target ===
+        true &&
+      row.quotient_compatible_signed_interval_fits_numerator_budget === true &&
+      row.quotient_compatible_weighted_interval_matches_radius_weight === true,
+    primary_provenance_obligation:
+      "directed-rounded-same-domain-expression-level-n38-source-map-residual-envelope-before-s37-division",
+    dependent_provenance_obligation:
+      "dependency-preserving-s37-division-transport-of-the-n38-source-map-envelope",
+    row_status:
+      row.provider_row_source_kind ===
+        "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+      row.quotient_compatible_signed_interval_subset_screened_target === true &&
+      row.quotient_compatible_weighted_interval_subset_screened_target ===
+        true &&
+      row.quotient_compatible_signed_interval_fits_numerator_budget === true &&
+      row.quotient_compatible_weighted_interval_matches_radius_weight === true
+        ? "h39-provider-row-ready-waits-on-expression-level-n38-source-provenance"
+        : "h39-provider-row-boundary-open",
+    claim_boundary: {
+      certifies_h38_source_provenance_factorization_only: true,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  }));
+  const bridgeClassification = available
+    ? "h39-source-map-provenance-reduced-to-expression-level-n38-envelope-before-s37-division"
+    : providerAcceptanceReady
+      ? "h39-source-map-provider-boundary-ready-trace-provenance-open"
+      : traceAnchorReady
+        ? "h39-source-map-trace-provenance-ready-provider-boundary-open"
+        : "h39-source-map-provenance-factorization-open";
+  return {
+    source_map_residual_h38_source_provenance_bridge_kind:
+      "candidate-requested-y44-h38-source-provenance-factorization-bridge",
+    source_map_residual_h38_source_provenance_bridge_available: available,
+    source_map_residual_h38_source_provenance_bridge_proof_status:
+      "candidate-h38-source-provenance-factorization-open-not-directed-rounded",
+    source_map_residual_h38_source_provenance_bridge_trace_anchor_ready:
+      traceAnchorReady,
+    source_map_residual_h38_source_provenance_bridge_acceptance_target_ready:
+      providerAcceptanceReady,
+    source_map_residual_h38_source_provenance_bridge_provider_rows_ready:
+      providerRowsReady,
+    source_map_residual_h38_source_provenance_bridge_trace_anchor_row_count:
+      traceRows.length,
+    source_map_residual_h38_source_provenance_bridge_provider_node_count:
+      acceptanceRows.length,
+    source_map_residual_h38_source_provenance_bridge_required_source_terms: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    source_map_residual_h38_source_provenance_bridge_zero_source_terms: [
+      ...H38_SOURCE_TERM_ZERO_KEYS,
+    ],
+    source_map_residual_h38_source_provenance_bridge_primary_missing_object_kind:
+      "directed-rounded-same-domain-expression-level-n38-source-map-residual-envelope",
+    source_map_residual_h38_source_provenance_bridge_primary_missing_object:
+      "directed-rounded same-domain Taylor or normal-form envelope for the N38 source-map residual terms delta_squared_speed, sin_phi, and sin_delta before h38=-N38/S37 division",
+    source_map_residual_h38_source_provenance_bridge_s37_division_is_primary_blocker:
+      false,
+    source_map_residual_h38_source_provenance_bridge_s37_division_obligation:
+      "after the expression-level N38 envelope is certified, transport it through dependency-preserving S37 division to emit H38 source-map residual provider rows",
+    source_map_residual_h38_source_provenance_bridge_factorization_steps: [
+      "h0-h34 trace anchors remove constant_minus_two and preserve the three nonconstant source terms",
+      "expression-level N38 source-map residual envelope must certify those terms signed together on the same domain",
+      "dependency-preserving S37 division must transport the certified envelope to H38 source-map residual rows",
+      "H39 five-node verifier consumes the quotient-compatible signed-radius rows without another interval or numerator-budget obstruction",
+    ],
+    source_map_residual_h38_source_provenance_bridge_rows: obligationRows,
+    source_map_residual_h38_source_provenance_bridge_classification:
+      bridgeClassification,
+    source_map_residual_h38_source_provenance_bridge_next_certificate_object:
+      "directed-rounded same-domain expression-level N38 source-map residual envelope for delta_squared_speed, sin_phi, and sin_delta, followed by dependency-preserving S37 division into the five quotient-compatible H39 provider rows",
+    source_map_residual_h38_source_provenance_bridge_claim_boundary: {
+      certifies_h38_source_provenance_factorization_only: available,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
 function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
   sourceMapResidualSharedStreamNodeRadiusTarget,
 } = {}) {
@@ -53716,6 +55067,12 @@ function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
       source_map_residual_shared_stream_five_node_quotient_source_radius_budget:
         null,
       source_map_residual_shared_stream_five_node_absolute_source_provider_fit:
+        null,
+      source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit:
+        null,
+      source_map_residual_shared_stream_five_node_signed_radius_contraction_budget:
+        null,
+      source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target:
         null,
       source_map_residual_shared_stream_five_node_source_term_provider_probe:
         null,
@@ -53778,6 +55135,12 @@ function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
       source_map_residual_shared_stream_five_node_quotient_source_radius_budget:
         null,
       source_map_residual_shared_stream_five_node_absolute_source_provider_fit:
+        null,
+      source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit:
+        null,
+      source_map_residual_shared_stream_five_node_signed_radius_contraction_budget:
+        null,
+      source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target:
         null,
       source_map_residual_shared_stream_five_node_source_term_provider_probe:
         null,
@@ -53925,6 +55288,12 @@ function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
       source_map_residual_shared_stream_five_node_quotient_source_radius_budget:
         null,
       source_map_residual_shared_stream_five_node_absolute_source_provider_fit:
+        null,
+      source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit:
+        null,
+      source_map_residual_shared_stream_five_node_signed_radius_contraction_budget:
+        null,
+      source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target:
         null,
       source_map_residual_shared_stream_five_node_source_term_provider_probe:
         null,
@@ -54198,6 +55567,23 @@ function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
       sourceTermProviderProbe,
       quotientSourceRadiusBudget,
     });
+  const signedNumeratorSourceBudgetFit =
+    h39RequestedY44SourceMapResidualFiveNodeSignedNumeratorSourceBudgetFit({
+      sourceMapResidualSharedStreamNodeRadiusTarget,
+      quotientSourceRadiusBudget,
+      absoluteSourceProviderFit,
+    });
+  const signedRadiusContractionBudget =
+    h39RequestedY44SourceMapResidualFiveNodeSignedRadiusContractionBudget({
+      sourceMapResidualSharedStreamNodeRadiusTarget,
+      centerAwareProviderRadiusTarget,
+      signedNumeratorSourceBudgetFit,
+    });
+  const signedRadiusProviderAcceptanceTarget =
+    h39RequestedY44SourceMapResidualFiveNodeSignedRadiusProviderAcceptanceTarget({
+      inclusionContract,
+      signedRadiusContractionBudget,
+    });
   const contractedProviderRows = contractRows.map((row) => {
     const scaledSignedInterval = root.scaleInterval(
       row.live_signed_residual_interval,
@@ -54363,6 +55749,12 @@ function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
       quotientSourceRadiusBudget,
     source_map_residual_shared_stream_five_node_absolute_source_provider_fit:
       absoluteSourceProviderFit,
+    source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit:
+      signedNumeratorSourceBudgetFit,
+    source_map_residual_shared_stream_five_node_signed_radius_contraction_budget:
+      signedRadiusContractionBudget,
+    source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target:
+      signedRadiusProviderAcceptanceTarget,
     source_map_residual_shared_stream_five_node_source_term_provider_probe:
       sourceTermProviderProbe,
     source_map_residual_shared_stream_five_node_contracted_provider_candidate:
@@ -54444,6 +55836,11 @@ export function buildH39RequestedY44SourceMapResidualCovarianceTargetCandidate({
     h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
       sourceMapResidualSharedStreamNodeRadiusTarget,
     });
+  const sourceMapResidualH38SourceProvenanceBridge =
+    h39RequestedY44SourceMapResidualH38SourceProvenanceBridge({
+      sourceMapResidualTraceAnchorSummary,
+      sourceMapResidualFiveNodeInclusionContract,
+    });
   const interpretation = !allRowsComplete
     ? "source-map-residual-covariance-inputs-missing"
     : allSourceMapResidualsFit
@@ -54477,6 +55874,7 @@ export function buildH39RequestedY44SourceMapResidualCovarianceTargetCandidate({
     ...sourceMapResidualSharedStreamSummary,
     ...sourceMapResidualSharedStreamNodeRadiusTarget,
     ...sourceMapResidualFiveNodeInclusionContract,
+    ...sourceMapResidualH38SourceProvenanceBridge,
     required_xi_derivative_order: 4,
     coefficient_extraction_order: H38_NUMERATOR_Y_ORDER,
     selected_row_count: rowTargets.length,
@@ -59266,6 +60664,832 @@ export function validateH39RequestedY44SourceMapResidualCovarianceTarget(
         });
       });
     }
+  }
+  const fiveNodeSignedNumeratorSourceBudgetFit =
+    artifact
+      ?.source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit ??
+    null;
+  if (fiveNodeSignedNumeratorSourceBudgetFit !== null) {
+    const rows =
+      fiveNodeSignedNumeratorSourceBudgetFit
+        .signed_numerator_source_budget_fit_rows ?? [];
+    const allCurrentShapeRadiiFit =
+      fiveNodeSignedNumeratorSourceBudgetFit
+        ?.all_current_shape_signed_radii_fit_numerator_absolute_budget === true;
+    const allShapedTermSumsFit =
+      fiveNodeSignedNumeratorSourceBudgetFit
+        ?.all_current_shaped_term_sums_fit_numerator_absolute_budget === true;
+    const expectedClassification =
+      allCurrentShapeRadiiFit && !allShapedTermSumsFit
+        ? "signed-source-radius-fits-numerator-budget-shaped-term-provider-is-artifact"
+        : allCurrentShapeRadiiFit && allShapedTermSumsFit
+          ? "signed-source-radius-and-shaped-provider-fit-numerator-budget-source-certification-open"
+          : fiveNodeSignedNumeratorSourceBudgetFit
+                ?.all_screened_signed_targets_fit_numerator_absolute_budget ===
+              true
+            ? "screened-signed-source-target-fits-numerator-budget-live-source-radius-open"
+            : fiveNodeSignedNumeratorSourceBudgetFit
+                  ?.all_live_signed_streams_fit_numerator_absolute_budget ===
+                true
+              ? "live-signed-source-stream-fits-numerator-budget"
+              : "signed-source-stream-still-exceeds-numerator-budget";
+    if (
+      fiveNodeSignedNumeratorSourceBudgetFit?.target_kind !==
+        "candidate-requested-y44-shared-source-map-signed-numerator-source-budget-fit" ||
+      fiveNodeSignedNumeratorSourceBudgetFit?.proof_status !==
+        "candidate-signed-numerator-source-budget-fit-not-directed-rounded" ||
+      fiveNodeSignedNumeratorSourceBudgetFit?.fit_kind !==
+        "single-signed-source-map-stream-to-absolute-numerator-source-budget" ||
+      fiveNodeSignedNumeratorSourceBudgetFit?.source_y_order !==
+        H38_NUMERATOR_Y_ORDER ||
+      fiveNodeSignedNumeratorSourceBudgetFit?.required_xi_derivative_order !==
+        4 ||
+      fiveNodeSignedNumeratorSourceBudgetFit
+        ?.signed_numerator_source_budget_fit_rows_available !== true ||
+      typeof fiveNodeSignedNumeratorSourceBudgetFit
+        ?.all_live_signed_streams_fit_numerator_absolute_budget !==
+        "boolean" ||
+      typeof fiveNodeSignedNumeratorSourceBudgetFit
+        ?.all_screened_signed_targets_fit_numerator_absolute_budget !==
+        "boolean" ||
+      typeof fiveNodeSignedNumeratorSourceBudgetFit
+        ?.all_current_shape_signed_radii_fit_numerator_absolute_budget !==
+        "boolean" ||
+      typeof fiveNodeSignedNumeratorSourceBudgetFit
+        ?.all_current_shaped_term_sums_fit_numerator_absolute_budget !==
+        "boolean" ||
+      !finiteNonnegative(
+        fiveNodeSignedNumeratorSourceBudgetFit
+          ?.max_live_signed_stream_to_numerator_budget_ratio
+      ) ||
+      !finiteNonnegative(
+        fiveNodeSignedNumeratorSourceBudgetFit
+          ?.max_screened_signed_target_to_numerator_budget_ratio
+      ) ||
+      !finiteNonnegative(
+        fiveNodeSignedNumeratorSourceBudgetFit
+          ?.max_current_shape_signed_radius_to_numerator_budget_ratio
+      ) ||
+      !finiteNonnegative(
+        fiveNodeSignedNumeratorSourceBudgetFit
+          ?.max_current_shaped_term_sum_to_numerator_budget_ratio
+      ) ||
+      !finiteNonnegative(
+        fiveNodeSignedNumeratorSourceBudgetFit
+          ?.max_shaped_term_sum_to_current_shape_signed_radius_ratio
+      ) ||
+      !Number.isInteger(
+        fiveNodeSignedNumeratorSourceBudgetFit
+          ?.dominant_signed_numerator_budget_node_index
+      ) ||
+      ![
+        "signed-source-radius-exceeds-numerator-budget",
+        "signed-source-radius-fits-but-shaped-term-sum-exceeds",
+        "screened-signed-target-exceeds-numerator-budget",
+        "live-signed-stream-exceeds-numerator-budget",
+        "signed-source-stream-and-shaped-term-sum-fit-numerator-budget",
+      ].includes(
+        fiveNodeSignedNumeratorSourceBudgetFit
+          ?.dominant_signed_numerator_budget_gap_kind
+      ) ||
+      fiveNodeSignedNumeratorSourceBudgetFit
+        ?.signed_numerator_source_budget_fit_classification !==
+        expectedClassification ||
+      typeof fiveNodeSignedNumeratorSourceBudgetFit
+        ?.signed_numerator_source_budget_fit_interpretation !== "string" ||
+      typeof fiveNodeSignedNumeratorSourceBudgetFit
+        ?.next_certificate_object !== "string" ||
+      fiveNodeSignedNumeratorSourceBudgetFit?.claim_boundary
+        ?.certifies_signed_numerator_source_budget_fit_only !==
+        (allCurrentShapeRadiiFit && allShapedTermSumsFit) ||
+      fiveNodeSignedNumeratorSourceBudgetFit?.claim_boundary
+        ?.certifies_source_inputs_as_directed_rounded_same_domain !== false ||
+      fiveNodeSignedNumeratorSourceBudgetFit?.claim_boundary
+        ?.certifies_n38_fourth_derivative_bound !== false ||
+      fiveNodeSignedNumeratorSourceBudgetFit?.claim_boundary
+        ?.certifies_s37_dependency_preserving_division !== false ||
+      fiveNodeSignedNumeratorSourceBudgetFit?.claim_boundary
+        ?.certifies_shifted_R43_outer_bound !== false ||
+      fiveNodeSignedNumeratorSourceBudgetFit?.claim_boundary
+        ?.certifies_directed_rounded_shared_domain !== false ||
+      fiveNodeSignedNumeratorSourceBudgetFit?.claim_boundary?.retained_branch !==
+        false ||
+      !Array.isArray(rows) ||
+      rows.length !== 5
+    ) {
+      errors.push("five-node signed numerator source budget fit must be coherent and candidate-only");
+    } else {
+      rows.forEach((row, index) => {
+        if (
+          !Number.isInteger(row?.node_index) ||
+          row.node_index !== index ||
+          !Number.isFinite(Number(row?.xi_midpoint)) ||
+          row?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+          row?.required_xi_derivative_order !== 4 ||
+          typeof row?.tightest_budget_cell_id !== "string" ||
+          row?.signed_numerator_source_budget_fit_row_kind !==
+            "candidate-node-local-single-signed-source-stream-numerator-budget-fit-row" ||
+          row?.fit_kind !==
+            "single-signed-source-map-stream-to-absolute-numerator-source-budget" ||
+          !sameTerms(row?.source_terms_preserved_signed_together) ||
+          !sameZeroTerms(row?.zero_source_terms) ||
+          row?.numerator_source_quantity !==
+            "signed_source_term_sum_available_half_width" ||
+          !finitePositive(row?.numerator_allowed_absolute_half_width) ||
+          !finitePositive(row?.numerator_provider_value) ||
+          !finitePositive(row?.numerator_directed_relative_radius_ceiling) ||
+          !h39RequestedY44SameNumber(
+            row.numerator_budget_to_provider_value_ratio,
+            row.numerator_directed_relative_radius_ceiling,
+            1e-9
+          ) ||
+          !hasFiniteOrderedInterval(row?.live_signed_residual_interval) ||
+          !finiteNonnegative(row?.live_signed_residual_abs_upper) ||
+          !h39RequestedY44SameNumber(
+            row.live_signed_stream_to_numerator_budget_ratio,
+            row.live_signed_residual_abs_upper /
+              row.numerator_allowed_absolute_half_width,
+            1e-9
+          ) ||
+          !hasFiniteOrderedInterval(
+            row?.screened_signed_residual_target_interval
+          ) ||
+          !finiteNonnegative(row?.screened_signed_residual_target_abs_upper) ||
+          !h39RequestedY44SameNumber(
+            row.screened_signed_target_to_numerator_budget_ratio,
+            row.screened_signed_residual_target_abs_upper /
+              row.numerator_allowed_absolute_half_width,
+            1e-9
+          ) ||
+          !finiteNonnegative(row?.current_shape_signed_source_radius_upper) ||
+          !finiteNonnegative(row?.current_shaped_term_sum_half_width) ||
+          !h39RequestedY44SameNumber(
+            row.current_shape_signed_radius_to_numerator_budget_ratio,
+            row.current_shape_signed_source_radius_upper /
+              row.numerator_allowed_absolute_half_width,
+            1e-9
+          ) ||
+          !h39RequestedY44SameNumber(
+            row.current_shaped_term_sum_to_numerator_budget_ratio,
+            row.current_shaped_term_sum_half_width /
+              row.numerator_allowed_absolute_half_width,
+            1e-9
+          ) ||
+          typeof row
+            ?.live_signed_stream_fits_numerator_absolute_budget !==
+            "boolean" ||
+          typeof row
+            ?.screened_signed_target_fits_numerator_absolute_budget !==
+            "boolean" ||
+          typeof row
+            ?.current_shape_signed_radius_fits_numerator_absolute_budget !==
+            "boolean" ||
+          typeof row
+            ?.current_shaped_term_sum_fits_numerator_absolute_budget !==
+            "boolean" ||
+          ![
+            "signed-source-radius-exceeds-numerator-budget",
+            "signed-source-radius-fits-but-shaped-term-sum-exceeds",
+            "screened-signed-target-exceeds-numerator-budget",
+            "live-signed-stream-exceeds-numerator-budget",
+            "signed-source-stream-and-shaped-term-sum-fit-numerator-budget",
+          ].includes(row?.row_gap_kind) ||
+          ![
+            "candidate-signed-source-radius-fits-numerator-budget-shaped-term-provider-gap",
+            "candidate-signed-source-radius-and-shaped-term-provider-fit-numerator-budget-source-certification-open",
+            "candidate-signed-source-radius-exceeds-numerator-budget",
+          ].includes(row?.row_status) ||
+          row?.claim_boundary
+            ?.certifies_signed_numerator_source_budget_fit_only !==
+            (row.current_shape_signed_radius_fits_numerator_absolute_budget &&
+              row.current_shaped_term_sum_fits_numerator_absolute_budget) ||
+          row?.claim_boundary
+            ?.certifies_source_inputs_as_directed_rounded_same_domain !==
+            false ||
+          row?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+            false ||
+          row?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+          row?.claim_boundary?.retained_branch !== false
+        ) {
+          errors.push(`five-node signed numerator source budget fit row ${index} must be coherent`);
+        }
+      });
+    }
+  }
+  const fiveNodeSignedRadiusContractionBudget =
+    artifact
+      ?.source_map_residual_shared_stream_five_node_signed_radius_contraction_budget ??
+    null;
+  if (fiveNodeSignedRadiusContractionBudget !== null) {
+    const rows =
+      fiveNodeSignedRadiusContractionBudget
+        .signed_radius_contraction_budget_rows ?? [];
+    const allCurrentShapeRadiiFit =
+      fiveNodeSignedRadiusContractionBudget
+        ?.all_current_shape_signed_radii_fit_numerator_budget === true;
+    const allCenterAwareHalfWidthsFit =
+      fiveNodeSignedRadiusContractionBudget
+        ?.all_center_aware_signed_half_widths_fit_numerator_budget === true;
+    const expectedClassification =
+      allCurrentShapeRadiiFit && allCenterAwareHalfWidthsFit
+        ? "signed-radius-and-center-aware-target-fit-numerator-budget-source-certification-open"
+        : allCenterAwareHalfWidthsFit
+          ? "center-aware-target-fits-numerator-budget-current-shape-radius-open"
+          : "same-domain-signed-source-radius-needs-numerator-budget-contraction";
+    const maxSignedRadiusRatio = finiteMaximum(
+      rows.map((row) => row?.signed_radius_to_numerator_budget_ratio)
+    );
+    const maxCenterAwareRatio = finiteMaximum(
+      rows.map(
+        (row) =>
+          row?.center_aware_signed_half_width_to_numerator_budget_ratio
+      )
+    );
+    const dominantRow =
+      rows.length > 0
+        ? rows.reduce((best, row) =>
+            Number(row?.signed_radius_to_numerator_budget_ratio) >
+            Number(best?.signed_radius_to_numerator_budget_ratio)
+              ? row
+              : best
+          )
+        : null;
+    if (
+      fiveNodeSignedRadiusContractionBudget?.target_kind !==
+        "candidate-requested-y44-shared-source-map-signed-radius-contraction-budget" ||
+      fiveNodeSignedRadiusContractionBudget?.proof_status !==
+        "candidate-signed-radius-contraction-budget-not-directed-rounded" ||
+      fiveNodeSignedRadiusContractionBudget?.budget_kind !==
+        "single-signed-source-map-radius-to-absolute-numerator-source-budget-provider-target" ||
+      fiveNodeSignedRadiusContractionBudget?.source_y_order !==
+        H38_NUMERATOR_Y_ORDER ||
+      fiveNodeSignedRadiusContractionBudget?.required_xi_derivative_order !==
+        4 ||
+      fiveNodeSignedRadiusContractionBudget
+        ?.signed_radius_contraction_budget_rows_available !== true ||
+      typeof fiveNodeSignedRadiusContractionBudget
+        ?.all_current_shape_signed_radii_fit_numerator_budget !==
+        "boolean" ||
+      typeof fiveNodeSignedRadiusContractionBudget
+        ?.all_center_aware_signed_half_widths_fit_numerator_budget !==
+        "boolean" ||
+      fiveNodeSignedRadiusContractionBudget
+        ?.all_quotient_compatible_targets_subset_current_shape_and_numerator_budget !==
+        true ||
+      !h39RequestedY44SameNumber(
+        fiveNodeSignedRadiusContractionBudget
+          ?.max_signed_radius_to_numerator_budget_ratio,
+        maxSignedRadiusRatio,
+        1e-9
+      ) ||
+      !h39RequestedY44SameNumber(
+        fiveNodeSignedRadiusContractionBudget
+          ?.max_center_aware_signed_half_width_to_numerator_budget_ratio,
+        maxCenterAwareRatio,
+        1e-9
+      ) ||
+      !h39RequestedY44SameNumber(
+        fiveNodeSignedRadiusContractionBudget
+          ?.max_required_signed_radius_contraction_to_numerator_budget,
+        maxSignedRadiusRatio,
+        1e-9
+      ) ||
+      !h39RequestedY44SameNumber(
+        fiveNodeSignedRadiusContractionBudget
+          ?.max_required_center_aware_signed_half_width_contraction_to_numerator_budget,
+        maxCenterAwareRatio,
+        1e-9
+      ) ||
+      fiveNodeSignedRadiusContractionBudget
+        ?.dominant_signed_radius_budget_node_index !==
+        dominantRow?.node_index ||
+      fiveNodeSignedRadiusContractionBudget
+        ?.signed_radius_contraction_budget_classification !==
+        expectedClassification ||
+      typeof fiveNodeSignedRadiusContractionBudget
+        ?.signed_radius_contraction_budget_interpretation !== "string" ||
+      typeof fiveNodeSignedRadiusContractionBudget
+        ?.next_certificate_object !== "string" ||
+      fiveNodeSignedRadiusContractionBudget?.claim_boundary
+        ?.defines_signed_radius_contraction_budget_only !== true ||
+      fiveNodeSignedRadiusContractionBudget?.claim_boundary
+        ?.certifies_source_inputs_as_directed_rounded_same_domain !== false ||
+      fiveNodeSignedRadiusContractionBudget?.claim_boundary
+        ?.certifies_n38_fourth_derivative_bound !== false ||
+      fiveNodeSignedRadiusContractionBudget?.claim_boundary
+        ?.certifies_s37_dependency_preserving_division !== false ||
+      fiveNodeSignedRadiusContractionBudget?.claim_boundary
+        ?.certifies_shifted_R43_outer_bound !== false ||
+      fiveNodeSignedRadiusContractionBudget?.claim_boundary
+        ?.certifies_directed_rounded_shared_domain !== false ||
+      fiveNodeSignedRadiusContractionBudget?.claim_boundary?.retained_branch !==
+        false ||
+      !Array.isArray(rows) ||
+      rows.length !== 5
+    ) {
+      errors.push("five-node signed radius contraction budget must be coherent and candidate-only");
+    } else {
+      rows.forEach((row, index) => {
+        const expectedRadius = Math.min(
+          Number(row?.current_shape_signed_source_radius_upper),
+          Number(row?.numerator_allowed_absolute_half_width)
+        );
+        if (
+          !Number.isInteger(row?.node_index) ||
+          row.node_index !== index ||
+          !Number.isFinite(Number(row?.xi_midpoint)) ||
+          row?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+          row?.required_xi_derivative_order !== 4 ||
+          typeof row?.tightest_budget_cell_id !== "string" ||
+          row?.signed_radius_contraction_budget_row_kind !==
+            "candidate-node-local-signed-source-radius-contraction-budget-row" ||
+          row?.budget_kind !==
+            "single-signed-source-map-radius-to-absolute-numerator-source-budget-provider-target" ||
+          !sameTerms(row?.source_terms_preserved_signed_together) ||
+          !sameZeroTerms(row?.zero_source_terms) ||
+          !Number.isFinite(Number(row?.lagrange_fourth_derivative_weight)) ||
+          !finiteNonnegative(row?.lagrange_fourth_derivative_weight_abs) ||
+          !finitePositive(row?.numerator_allowed_absolute_half_width) ||
+          !finiteNonnegative(row?.current_shape_signed_source_radius_upper) ||
+          !finiteNonnegative(row?.signed_live_half_width) ||
+          !finiteNonnegative(row?.center_aware_signed_half_width) ||
+          !finitePositive(row?.selected_provider_contraction_factor) ||
+          !finitePositive(row?.required_center_aware_provider_contraction_factor) ||
+          !h39RequestedY44SameNumber(
+            row.signed_radius_to_numerator_budget_ratio,
+            row.current_shape_signed_source_radius_upper /
+              row.numerator_allowed_absolute_half_width,
+            1e-9
+          ) ||
+          !h39RequestedY44SameNumber(
+            row.required_signed_radius_contraction_to_numerator_budget,
+            row.signed_radius_to_numerator_budget_ratio,
+            1e-9
+          ) ||
+          !h39RequestedY44SameNumber(
+            row.center_aware_signed_half_width_to_numerator_budget_ratio,
+            row.center_aware_signed_half_width /
+              row.numerator_allowed_absolute_half_width,
+            1e-9
+          ) ||
+          !h39RequestedY44SameNumber(
+            row
+              .required_center_aware_signed_half_width_contraction_to_numerator_budget,
+            row.center_aware_signed_half_width_to_numerator_budget_ratio,
+            1e-9
+          ) ||
+          !h39RequestedY44SameNumber(
+            row.signed_required_center_aware_to_selected_contraction_factor,
+            row.required_center_aware_provider_contraction_factor /
+              row.selected_provider_contraction_factor,
+            1e-9
+          ) ||
+          !h39RequestedY44SameNumber(
+            row.quotient_compatible_signed_source_radius_upper,
+            expectedRadius,
+            1e-9
+          ) ||
+          !hasFiniteOrderedInterval(
+            row?.quotient_compatible_signed_source_target_interval
+          ) ||
+          !hasFiniteOrderedInterval(
+            row?.quotient_compatible_weighted_residual_target_interval
+          ) ||
+          !h39RequestedY44SameNumber(
+            row.quotient_compatible_weighted_residual_abs_upper,
+            row.quotient_compatible_signed_source_radius_upper *
+              row.lagrange_fourth_derivative_weight_abs,
+            1e-9
+          ) ||
+          row?.quotient_compatible_target_subset_current_shape_radius !==
+            true ||
+          row?.quotient_compatible_target_subset_numerator_budget !== true ||
+          typeof row
+            ?.current_shape_signed_radius_already_fits_numerator_budget !==
+            "boolean" ||
+          typeof row
+            ?.center_aware_signed_half_width_already_fits_numerator_budget !==
+            "boolean" ||
+          ![
+            "signed-source-radius-exceeds-numerator-budget",
+            "signed-source-radius-fits-but-shaped-term-sum-exceeds",
+            "screened-signed-target-exceeds-numerator-budget",
+            "live-signed-stream-exceeds-numerator-budget",
+            "signed-source-stream-and-shaped-term-sum-fit-numerator-budget",
+          ].includes(row?.row_gap_kind) ||
+          ![
+            "candidate-signed-radius-contraction-target-already-fits-numerator-budget-source-certification-open",
+            "candidate-center-aware-signed-half-width-fits-numerator-budget-current-shape-radius-open",
+            "candidate-signed-source-radius-needs-numerator-budget-contraction",
+          ].includes(row?.row_status) ||
+          row?.claim_boundary
+            ?.defines_signed_radius_contraction_budget_only !== true ||
+          row?.claim_boundary
+            ?.certifies_source_inputs_as_directed_rounded_same_domain !==
+            false ||
+          row?.claim_boundary
+            ?.certifies_n38_fourth_derivative_bound !== false ||
+          row?.claim_boundary
+            ?.certifies_s37_dependency_preserving_division !== false ||
+          row?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+          row?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+            false ||
+          row?.claim_boundary?.retained_branch !== false
+        ) {
+          errors.push(`five-node signed radius contraction budget row ${index} must be coherent`);
+        }
+      });
+    }
+  }
+  const fiveNodeSignedRadiusProviderAcceptanceTarget =
+    artifact
+      ?.source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target ??
+    null;
+  if (fiveNodeSignedRadiusProviderAcceptanceTarget !== null) {
+    const rows =
+      fiveNodeSignedRadiusProviderAcceptanceTarget
+        .signed_radius_provider_acceptance_rows ?? [];
+    const verifier =
+      fiveNodeSignedRadiusProviderAcceptanceTarget.directed_provider_verifier;
+    const verifierRows = verifier?.provider_verification_rows ?? [];
+    const budgetRowsByNodeIndex = new Map(
+      (
+        fiveNodeSignedRadiusContractionBudget
+          ?.signed_radius_contraction_budget_rows ?? []
+      ).map((row) => [Number(row.node_index), row])
+    );
+    const allRowsMatchSameDomainSameRadius =
+      verifier?.all_provider_rows_match_same_domain_contract === true &&
+      verifier?.all_provider_rows_match_same_radius_contract === true;
+    const allRowsMatchRequiredSourceKind =
+      verifierRows.length === 5 &&
+      verifierRows.every(
+        (row) => row.provider_source_kind_matches_required === true
+      );
+    const allIntervalsSubsetScreenedTargets =
+      verifier?.all_provider_intervals_subset_screened_targets === true;
+    const allRowsHaveDirectedRoundedSource =
+      verifier?.all_provider_rows_have_directed_rounded_source === true;
+    const allIntervalsFitNumeratorBudget = rows.every(
+      (row) =>
+        row?.quotient_compatible_signed_interval_fits_numerator_budget ===
+        true
+    );
+    const allWeightedIntervalsMatchRadiusWeight = rows.every(
+      (row) =>
+        row
+          ?.quotient_compatible_weighted_interval_matches_radius_weight ===
+        true
+    );
+    const expectedReachesVerifierWithSourceOnlyFailure =
+      allRowsMatchSameDomainSameRadius &&
+      allRowsMatchRequiredSourceKind &&
+      allIntervalsSubsetScreenedTargets &&
+      allIntervalsFitNumeratorBudget &&
+      allWeightedIntervalsMatchRadiusWeight &&
+      allRowsHaveDirectedRoundedSource === false;
+    const maxIntervalRatio =
+      verifier?.max_provider_interval_to_target_abs_upper_ratio ?? null;
+    const minInclusionHeadroom =
+      verifier?.min_provider_interval_inclusion_headroom_factor ?? null;
+    const dominantRow =
+      rows.length > 0
+        ? rows.reduce((best, row) =>
+            Number(row?.signed_radius_to_numerator_budget_ratio) >
+            Number(best?.signed_radius_to_numerator_budget_ratio)
+              ? row
+              : best
+          )
+        : null;
+    if (
+      fiveNodeSignedRadiusProviderAcceptanceTarget?.target_kind !==
+        "candidate-requested-y44-shared-source-map-signed-radius-provider-acceptance-target" ||
+      fiveNodeSignedRadiusProviderAcceptanceTarget?.proof_status !==
+        "candidate-signed-radius-provider-acceptance-contained-source-not-directed-rounded" ||
+      fiveNodeSignedRadiusProviderAcceptanceTarget?.provider_target_kind !==
+        "quotient-compatible-signed-radius-provider-target-through-directed-verifier" ||
+      fiveNodeSignedRadiusProviderAcceptanceTarget
+        ?.source_signed_radius_contraction_budget_kind !==
+        "candidate-requested-y44-shared-source-map-signed-radius-contraction-budget" ||
+      fiveNodeSignedRadiusProviderAcceptanceTarget?.source_y_order !==
+        H38_NUMERATOR_Y_ORDER ||
+      fiveNodeSignedRadiusProviderAcceptanceTarget
+        ?.required_xi_derivative_order !== 4 ||
+      fiveNodeSignedRadiusProviderAcceptanceTarget
+        ?.signed_radius_provider_acceptance_rows_available !== true ||
+      verifier?.target_kind !==
+        "candidate-requested-y44-shared-source-map-five-node-directed-provider-verifier" ||
+      allRowsMatchSameDomainSameRadius !== true ||
+      fiveNodeSignedRadiusProviderAcceptanceTarget
+        ?.all_provider_rows_match_same_domain_same_radius !== true ||
+      allRowsMatchRequiredSourceKind !== true ||
+      fiveNodeSignedRadiusProviderAcceptanceTarget
+        ?.all_provider_rows_match_required_source_kind !== true ||
+      allIntervalsSubsetScreenedTargets !== true ||
+      fiveNodeSignedRadiusProviderAcceptanceTarget
+        ?.all_provider_intervals_subset_screened_targets !== true ||
+      allRowsHaveDirectedRoundedSource !== false ||
+      fiveNodeSignedRadiusProviderAcceptanceTarget
+        ?.all_provider_rows_have_directed_rounded_source !== false ||
+      allIntervalsFitNumeratorBudget !== true ||
+      fiveNodeSignedRadiusProviderAcceptanceTarget
+        ?.all_quotient_compatible_intervals_fit_numerator_budget !== true ||
+      allWeightedIntervalsMatchRadiusWeight !== true ||
+      fiveNodeSignedRadiusProviderAcceptanceTarget
+        ?.all_quotient_compatible_weighted_intervals_match_radius_weight !==
+        true ||
+      fiveNodeSignedRadiusProviderAcceptanceTarget
+        ?.provider_target_reaches_verifier_with_source_only_failure !==
+        expectedReachesVerifierWithSourceOnlyFailure ||
+      expectedReachesVerifierWithSourceOnlyFailure !== true ||
+      !h39RequestedY44SameNumber(
+        fiveNodeSignedRadiusProviderAcceptanceTarget
+          ?.max_provider_interval_to_screened_target_ratio,
+        maxIntervalRatio,
+        1e-9
+      ) ||
+      !h39RequestedY44SameNumber(
+        fiveNodeSignedRadiusProviderAcceptanceTarget
+          ?.min_provider_interval_inclusion_headroom,
+        minInclusionHeadroom,
+        1e-9
+      ) ||
+      !h39RequestedY44SameNumber(
+        fiveNodeSignedRadiusProviderAcceptanceTarget
+          ?.max_signed_radius_to_numerator_budget_ratio,
+        fiveNodeSignedRadiusContractionBudget
+          ?.max_signed_radius_to_numerator_budget_ratio,
+        1e-9
+      ) ||
+      !h39RequestedY44SameNumber(
+        fiveNodeSignedRadiusProviderAcceptanceTarget
+          ?.max_center_aware_signed_half_width_to_numerator_budget_ratio,
+        fiveNodeSignedRadiusContractionBudget
+          ?.max_center_aware_signed_half_width_to_numerator_budget_ratio,
+        1e-9
+      ) ||
+      fiveNodeSignedRadiusProviderAcceptanceTarget
+        ?.dominant_signed_radius_provider_acceptance_node_index !==
+        dominantRow?.node_index ||
+      fiveNodeSignedRadiusProviderAcceptanceTarget
+        ?.provider_acceptance_target_classification !==
+        "signed-radius-provider-acceptance-target-contained-source-certification-open" ||
+      typeof fiveNodeSignedRadiusProviderAcceptanceTarget
+        ?.provider_acceptance_target_interpretation !== "string" ||
+      typeof fiveNodeSignedRadiusProviderAcceptanceTarget
+        ?.next_certificate_object !== "string" ||
+      fiveNodeSignedRadiusProviderAcceptanceTarget?.claim_boundary
+        ?.defines_signed_radius_provider_acceptance_target_only !== true ||
+      fiveNodeSignedRadiusProviderAcceptanceTarget?.claim_boundary
+        ?.certifies_source_inputs_as_directed_rounded_same_domain !== false ||
+      fiveNodeSignedRadiusProviderAcceptanceTarget?.claim_boundary
+        ?.certifies_n38_fourth_derivative_bound !== false ||
+      fiveNodeSignedRadiusProviderAcceptanceTarget?.claim_boundary
+        ?.certifies_s37_dependency_preserving_division !== false ||
+      fiveNodeSignedRadiusProviderAcceptanceTarget?.claim_boundary
+        ?.certifies_shifted_R43_outer_bound !== false ||
+      fiveNodeSignedRadiusProviderAcceptanceTarget?.claim_boundary
+        ?.certifies_directed_rounded_shared_domain !== false ||
+      fiveNodeSignedRadiusProviderAcceptanceTarget?.claim_boundary
+        ?.retained_branch !== false ||
+      !Array.isArray(rows) ||
+      rows.length !== 5
+    ) {
+      errors.push("five-node signed radius provider acceptance target must be coherent and candidate-only");
+    } else {
+      rows.forEach((row, index) => {
+        const budgetRow = budgetRowsByNodeIndex.get(Number(row?.node_index));
+        const expectedWeightedInterval = root.scaleInterval(
+          row?.directed_rounded_signed_residual_interval,
+          Number(row?.lagrange_fourth_derivative_weight)
+        );
+        const signedAbsUpper = intervalAbsUpper(
+          row?.directed_rounded_signed_residual_interval
+        );
+        if (
+          budgetRow === undefined ||
+          !Number.isInteger(row?.node_index) ||
+          row.node_index !== index ||
+          !Number.isFinite(Number(row?.xi_midpoint)) ||
+          row?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+          row?.required_xi_derivative_order !== 4 ||
+          typeof row?.tightest_budget_cell_id !== "string" ||
+          row?.provider_acceptance_target_row_kind !==
+            "candidate-node-local-quotient-compatible-signed-radius-provider-acceptance-row" ||
+          row?.provider_row_source_kind !==
+            "directed-rounded-same-domain-h38-source-map-residual-provider" ||
+          !sameTerms(row?.source_terms_preserved_signed_together) ||
+          !sameZeroTerms(row?.zero_source_terms) ||
+          !Number.isFinite(Number(row?.lagrange_fourth_derivative_weight)) ||
+          !finiteNonnegative(row?.lagrange_fourth_derivative_weight_abs) ||
+          !finitePositive(row?.numerator_allowed_absolute_half_width) ||
+          !h39RequestedY44SameNumber(
+            row.signed_radius_to_numerator_budget_ratio,
+            budgetRow.signed_radius_to_numerator_budget_ratio,
+            1e-9
+          ) ||
+          !h39RequestedY44SameNumber(
+            row.center_aware_signed_half_width_to_numerator_budget_ratio,
+            budgetRow.center_aware_signed_half_width_to_numerator_budget_ratio,
+            1e-9
+          ) ||
+          !h39RequestedY44SameNumber(
+            row.quotient_compatible_signed_source_radius_upper,
+            budgetRow.quotient_compatible_signed_source_radius_upper,
+            1e-9
+          ) ||
+          !hasFiniteOrderedInterval(
+            row?.source_inclusion_contract_screened_signed_residual_target_interval
+          ) ||
+          !hasFiniteOrderedInterval(
+            row?.source_inclusion_contract_screened_weighted_residual_target_interval
+          ) ||
+          !h39RequestedY44SameInterval(
+            row?.screened_signed_residual_target_interval,
+            budgetRow.quotient_compatible_signed_source_target_interval
+          ) ||
+          !h39RequestedY44SameInterval(
+            row?.screened_weighted_residual_target_interval,
+            budgetRow.quotient_compatible_weighted_residual_target_interval
+          ) ||
+          !h39RequestedY44SameInterval(
+            row?.directed_rounded_signed_residual_interval,
+            row?.screened_signed_residual_target_interval
+          ) ||
+          !h39RequestedY44SameInterval(
+            row?.directed_rounded_weighted_signed_residual_interval,
+            row?.screened_weighted_residual_target_interval
+          ) ||
+          !h39RequestedY44SameInterval(
+            row?.directed_rounded_weighted_residual_interval,
+            row?.screened_weighted_residual_target_interval
+          ) ||
+          row?.quotient_compatible_signed_interval_subset_screened_target !==
+            true ||
+          row?.quotient_compatible_weighted_interval_subset_screened_target !==
+            true ||
+          row?.quotient_compatible_signed_interval_fits_numerator_budget !==
+            true ||
+          signedAbsUpper > row.numerator_allowed_absolute_half_width ||
+          row
+            ?.quotient_compatible_weighted_interval_matches_radius_weight !==
+            true ||
+          !h39RequestedY44SameInterval(
+            row?.directed_rounded_weighted_residual_interval,
+            expectedWeightedInterval
+          ) ||
+          row?.row_status !==
+            "candidate-quotient-compatible-provider-target-contained-source-certification-open" ||
+          row?.claim_boundary
+            ?.defines_signed_radius_provider_acceptance_target_only !== true ||
+          row?.claim_boundary
+            ?.certifies_source_inputs_as_directed_rounded_same_domain !==
+            false ||
+          row?.claim_boundary
+            ?.certifies_n38_fourth_derivative_bound !== false ||
+          row?.claim_boundary
+            ?.certifies_s37_dependency_preserving_division !== false ||
+          row?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+          row?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+            false ||
+          row?.claim_boundary?.retained_branch !== false
+        ) {
+          errors.push(`five-node signed radius provider acceptance target row ${index} must be coherent`);
+        }
+      });
+    }
+  }
+  if (
+    artifact?.source_map_residual_h38_source_provenance_bridge_kind !==
+      "candidate-requested-y44-h38-source-provenance-factorization-bridge" ||
+    artifact?.source_map_residual_h38_source_provenance_bridge_available !==
+      true ||
+    artifact
+      ?.source_map_residual_h38_source_provenance_bridge_proof_status !==
+      "candidate-h38-source-provenance-factorization-open-not-directed-rounded" ||
+    artifact
+      ?.source_map_residual_h38_source_provenance_bridge_trace_anchor_ready !==
+      true ||
+    artifact
+      ?.source_map_residual_h38_source_provenance_bridge_acceptance_target_ready !==
+      true ||
+    artifact
+      ?.source_map_residual_h38_source_provenance_bridge_provider_rows_ready !==
+      true ||
+    artifact
+      ?.source_map_residual_h38_source_provenance_bridge_trace_anchor_row_count !==
+      artifact.source_map_residual_trace_anchor_matched_row_count ||
+    artifact
+      ?.source_map_residual_h38_source_provenance_bridge_provider_node_count !==
+      5 ||
+    !sameTerms(
+      artifact
+        ?.source_map_residual_h38_source_provenance_bridge_required_source_terms
+    ) ||
+    !sameZeroTerms(
+      artifact
+        ?.source_map_residual_h38_source_provenance_bridge_zero_source_terms
+    ) ||
+    artifact
+      ?.source_map_residual_h38_source_provenance_bridge_primary_missing_object_kind !==
+      "directed-rounded-same-domain-expression-level-n38-source-map-residual-envelope" ||
+    typeof artifact
+      ?.source_map_residual_h38_source_provenance_bridge_primary_missing_object !==
+      "string" ||
+    artifact
+      ?.source_map_residual_h38_source_provenance_bridge_s37_division_is_primary_blocker !==
+      false ||
+    typeof artifact
+      ?.source_map_residual_h38_source_provenance_bridge_s37_division_obligation !==
+      "string" ||
+    !Array.isArray(
+      artifact
+        ?.source_map_residual_h38_source_provenance_bridge_factorization_steps
+    ) ||
+    artifact
+      .source_map_residual_h38_source_provenance_bridge_factorization_steps
+      .length !== 4 ||
+    artifact
+      ?.source_map_residual_h38_source_provenance_bridge_classification !==
+      "h39-source-map-provenance-reduced-to-expression-level-n38-envelope-before-s37-division" ||
+    typeof artifact
+      ?.source_map_residual_h38_source_provenance_bridge_next_certificate_object !==
+      "string" ||
+    artifact
+      ?.source_map_residual_h38_source_provenance_bridge_claim_boundary
+      ?.certifies_h38_source_provenance_factorization_only !== true ||
+    artifact
+      ?.source_map_residual_h38_source_provenance_bridge_claim_boundary
+      ?.certifies_source_inputs_as_directed_rounded_same_domain !== false ||
+    artifact
+      ?.source_map_residual_h38_source_provenance_bridge_claim_boundary
+      ?.certifies_n38_fourth_derivative_bound !== false ||
+    artifact
+      ?.source_map_residual_h38_source_provenance_bridge_claim_boundary
+      ?.certifies_s37_dependency_preserving_division !== false ||
+    artifact
+      ?.source_map_residual_h38_source_provenance_bridge_claim_boundary
+      ?.certifies_shifted_R43_outer_bound !== false ||
+    artifact
+      ?.source_map_residual_h38_source_provenance_bridge_claim_boundary
+      ?.certifies_directed_rounded_shared_domain !== false ||
+    artifact
+      ?.source_map_residual_h38_source_provenance_bridge_claim_boundary
+      ?.retained_branch !== false ||
+    !Array.isArray(
+      artifact?.source_map_residual_h38_source_provenance_bridge_rows
+    ) ||
+    artifact.source_map_residual_h38_source_provenance_bridge_rows.length !== 5
+  ) {
+    errors.push("H38 source provenance bridge must reduce the blocker to expression-level N38 provenance and remain candidate-only");
+  } else {
+    artifact.source_map_residual_h38_source_provenance_bridge_rows.forEach(
+      (row, index) => {
+        if (
+          !Number.isInteger(row?.node_index) ||
+          row.node_index !== index ||
+          !Number.isFinite(Number(row?.xi_midpoint)) ||
+          row?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+          row?.required_xi_derivative_order !== 4 ||
+          typeof row?.tightest_budget_cell_id !== "string" ||
+          row?.required_provider_row_source_kind !==
+            "directed-rounded-same-domain-h38-source-map-residual-provider" ||
+          !sameTerms(row?.source_terms_preserved_signed_together) ||
+          !sameZeroTerms(row?.zero_source_terms) ||
+          !finiteNonnegative(
+            row?.quotient_compatible_signed_source_radius_upper
+          ) ||
+          !hasFiniteOrderedInterval(
+            row?.directed_rounded_signed_residual_interval
+          ) ||
+          !hasFiniteOrderedInterval(
+            row?.directed_rounded_weighted_signed_residual_interval
+          ) ||
+          row?.provider_row_reaches_h39_verifier_boundary !== true ||
+          row?.primary_provenance_obligation !==
+            "directed-rounded-same-domain-expression-level-n38-source-map-residual-envelope-before-s37-division" ||
+          row?.dependent_provenance_obligation !==
+            "dependency-preserving-s37-division-transport-of-the-n38-source-map-envelope" ||
+          row?.row_status !==
+            "h39-provider-row-ready-waits-on-expression-level-n38-source-provenance" ||
+          row?.claim_boundary
+            ?.certifies_h38_source_provenance_factorization_only !== true ||
+          row?.claim_boundary
+            ?.certifies_source_inputs_as_directed_rounded_same_domain !==
+            false ||
+          row?.claim_boundary
+            ?.certifies_n38_fourth_derivative_bound !== false ||
+          row?.claim_boundary
+            ?.certifies_s37_dependency_preserving_division !== false ||
+          row?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+          row?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+            false ||
+          row?.claim_boundary?.retained_branch !== false
+        ) {
+          errors.push(`H38 source provenance bridge row ${index} must be coherent and candidate-only`);
+        }
+      }
+    );
   }
   const fiveNodeContractedProvider =
     artifact
@@ -81183,6 +83407,151 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
         ?.source_map_residual_shared_stream_five_node_absolute_source_provider_fit
         ?.dominant_absolute_source_provider_gap_term ||
     comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit_classification !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit
+        ?.signed_numerator_source_budget_fit_classification ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit_all_current_shape_signed_radii_fit !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit
+        ?.all_current_shape_signed_radii_fit_numerator_absolute_budget ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit_all_shaped_term_sums_fit !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit
+        ?.all_current_shaped_term_sums_fit_numerator_absolute_budget ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit_max_current_shape_ratio !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit
+        ?.max_current_shape_signed_radius_to_numerator_budget_ratio ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit_max_shaped_term_sum_ratio !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit
+        ?.max_current_shaped_term_sum_to_numerator_budget_ratio ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit_max_term_split_to_signed_radius_ratio !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit
+        ?.max_shaped_term_sum_to_current_shape_signed_radius_ratio ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit_dominant_node_index !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit
+        ?.dominant_signed_numerator_budget_node_index ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit_dominant_gap_kind !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit
+        ?.dominant_signed_numerator_budget_gap_kind ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_contraction_budget_classification !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_contraction_budget
+        ?.signed_radius_contraction_budget_classification ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_contraction_budget_all_current_shape_signed_radii_fit !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_contraction_budget
+        ?.all_current_shape_signed_radii_fit_numerator_budget ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_contraction_budget_all_center_aware_half_widths_fit !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_contraction_budget
+        ?.all_center_aware_signed_half_widths_fit_numerator_budget ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_contraction_budget_max_signed_radius_ratio !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_contraction_budget
+        ?.max_signed_radius_to_numerator_budget_ratio ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_contraction_budget_max_center_aware_ratio !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_contraction_budget
+        ?.max_center_aware_signed_half_width_to_numerator_budget_ratio ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_contraction_budget_max_required_signed_radius_contraction !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_contraction_budget
+        ?.max_required_signed_radius_contraction_to_numerator_budget ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_contraction_budget_max_required_center_aware_contraction !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_contraction_budget
+        ?.max_required_center_aware_signed_half_width_contraction_to_numerator_budget ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_contraction_budget_dominant_node_index !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_contraction_budget
+        ?.dominant_signed_radius_budget_node_index ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_classification !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target
+        ?.provider_acceptance_target_classification ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_reaches_source_only_failure !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target
+        ?.provider_target_reaches_verifier_with_source_only_failure ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_all_intervals_fit_numerator_budget !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target
+        ?.all_quotient_compatible_intervals_fit_numerator_budget ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_all_intervals_subset_screened_targets !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target
+        ?.all_provider_intervals_subset_screened_targets ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_all_rows_match_required_source_kind !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target
+        ?.all_provider_rows_match_required_source_kind ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_all_rows_have_directed_source !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target
+        ?.all_provider_rows_have_directed_rounded_source ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_max_interval_to_screened_target_ratio !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target
+        ?.max_provider_interval_to_screened_target_ratio ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_min_inclusion_headroom !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target
+        ?.min_provider_interval_inclusion_headroom ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_dominant_node_index !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target
+        ?.dominant_signed_radius_provider_acceptance_node_index ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_h38_source_provenance_bridge_classification !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_h38_source_provenance_bridge_classification ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_h38_source_provenance_bridge_available !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_h38_source_provenance_bridge_available ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_h38_source_provenance_bridge_primary_missing_object_kind !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_h38_source_provenance_bridge_primary_missing_object_kind ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_h38_source_provenance_bridge_s37_division_is_primary_blocker !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_h38_source_provenance_bridge_s37_division_is_primary_blocker ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_h38_source_provenance_bridge_provider_node_count !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_h38_source_provenance_bridge_provider_node_count ||
+    comparison
       ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_contracted_provider_reaches_verifier_with_source_only_failure !==
       nonconstantSourceMapResidualCovarianceTarget
         ?.source_map_residual_shared_stream_five_node_contracted_provider_candidate
@@ -81580,6 +83949,57 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
     comparison
       .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_dominant_node_index >
       4 ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_classification !==
+      "signed-radius-provider-acceptance-target-contained-source-certification-open" ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_reaches_source_only_failure !==
+      true ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_all_intervals_fit_numerator_budget !==
+      true ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_all_intervals_subset_screened_targets !==
+      true ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_all_rows_match_required_source_kind !==
+      true ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_all_rows_have_directed_source !==
+      false ||
+    !finiteNonnegative(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_max_interval_to_screened_target_ratio
+    ) ||
+    !finitePositive(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_min_inclusion_headroom
+    ) ||
+    !Number.isInteger(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_dominant_node_index
+    ) ||
+    comparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_dominant_node_index <
+      0 ||
+    comparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_dominant_node_index >
+      4 ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_h38_source_provenance_bridge_classification !==
+      "h39-source-map-provenance-reduced-to-expression-level-n38-envelope-before-s37-division" ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_h38_source_provenance_bridge_available !==
+      true ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_h38_source_provenance_bridge_primary_missing_object_kind !==
+      "directed-rounded-same-domain-expression-level-n38-source-map-residual-envelope" ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_h38_source_provenance_bridge_s37_division_is_primary_blocker !==
+      false ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_h38_source_provenance_bridge_provider_node_count !==
+      5 ||
     typeof comparison
       ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_contracted_provider_reaches_verifier_with_source_only_failure !==
       "boolean" ||

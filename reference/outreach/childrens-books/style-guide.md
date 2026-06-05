@@ -170,18 +170,18 @@ Show assemblies as balanced arrangements of red and blue point transceivers:
 
 The child should be able to see that a calm neutral assembly is made from active parts.
 
-### Play Surface Tiles
+### Optional Play Surface References
 
-Ball-rolling, bead-rolling, path, and potential-landscape scenes may use a rectangular set of modular white play-surface tiles as the rolling surface. Rectangular includes square layouts. Treat the tiles as a recurring physical prop that can also support merchandise design; see [play-surface/README.md](../play-surface/README.md).
+Children's-book images are not required to include, match, or integrate the merchandise play surface. The physical play-surface design is maintained separately as a product and activity concept; see [play-surface/README.md](../play-surface/README.md).
 
-Use the tile field when it helps the child see surface slope, path, return path, basin, ridge, or repeated trials. Do not force it into scenes where a floor, blanket, pond, paper map, or tabletop is doing a better story job.
+If a specific approved illustration chooses to show the merchandise play surface, use the tile field only when it helps the child see surface slope, path, return path, basin, ridge, or repeated trials. Do not force it into scenes where a floor, blanket, pond, paper map, or tabletop is doing a better story job.
 
-Default layout guidance:
+Optional product-layout references:
 
-- `5 x 5`: strong default for close child play and simple ball-rolling scenes;
-- `6 x 6`: useful for wider classroom/tabletop views or longer paths;
-- `4 x 6`: useful for landscape compositions where the path should read left-to-right;
-- other rectangular arrangements are allowed when the scene needs them.
+- `5 x 5`: close child play and simple ball-rolling demonstrations;
+- `6 x 6`: wider classroom/tabletop demonstrations or longer paths;
+- `4 x 6`: landscape tabletop demonstrations where the path should read left-to-right;
+- other rectangular arrangements when the use case needs them.
 
 The tile seams should be barely visible light gray or pale purple-gray lines. They should show modularity without becoming a heavy grid. All tile sides should look compatible with any neighboring tile side. Ordinary tile sides should meet at the neutral surface height so the ball can cross seams without seeing a ramp to nowhere.
 

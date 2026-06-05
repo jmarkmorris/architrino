@@ -4249,3 +4249,59 @@ term, rather than another informal "make the provider tighter" instruction. The
 diagnostic remains candidate-only; it does not certify the source inputs as
 directed-rounded, nor does it certify $N_{38}$ derivative bounds, $S_{37}$
 division, shifted `R_{\varepsilon,43}`, retained branch, or full H39 closure.
+
+The source-budget replay now also records
+`source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit`.
+This diagnostic compares the single signed source-map residual stream, the
+screened signed target stream, the current signed source radius, and the
+term-split shaped provider sum against the same absolute numerator source
+budget. Its purpose is to separate a real numerator-budget obstruction from a
+source-term absolutization artifact: if the signed source radius fits while the
+term-split provider misses, the next certificate should preserve the signed
+`delta_squared_speed`, `sin_phi`, and `sin_delta` stream before applying
+absolute Cauchy-style source bounds. This remains candidate-only; it does not
+certify directed-rounded H38 producer-image source provenance, $N_{38}$
+derivative bounds, $S_{37}$ division, shifted `R_{\varepsilon,43}`, retained
+branch, or full H39 closure.
+
+The signed-radius miss is now converted into a provider-target budget:
+`source_map_residual_shared_stream_five_node_signed_radius_contraction_budget`.
+This artifact records, node by node, the quotient-compatible signed source
+radius that is simultaneously a subset of the current shaped source radius and
+the absolute numerator source budget. It also keeps the center-aware signed
+half-width ratio separate from the zero-centered current-shape radius ratio, so
+future H38 provider work can tell whether the remaining pressure is a live-center
+source-radius problem or a current-shape bounding artifact. In the current live
+path it is still candidate-only: it defines exact same-domain signed-radius
+acceptance targets for a future directed-rounded provider, but it does not
+certify H38 producer-image source provenance, $N_{38}$ derivative bounds,
+$S_{37}$ division, shifted `R_{\varepsilon,43}`, retained branch, or full H39
+closure.
+
+The quotient-compatible signed-radius budget is now replayed through an explicit
+verifier-facing acceptance target:
+`source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target`.
+This target rewrites the five-node verifier window so the screened signed and
+weighted intervals are exactly the quotient-compatible numerator-budget
+intervals, then supplies rows with the required source-map provider kind while
+leaving directed-rounded provenance false. On the live path this reaches the
+same-domain, same-radius, interval-inclusion, and numerator-budget boundary with
+source-provenance-only failure. That narrows the next certificate to a
+directed-rounded same-domain H38 producer-image source-map residual provider
+that emits those exact quotient-compatible intervals. It remains candidate-only:
+it does not certify H38 producer-image source provenance, $N_{38}$ derivative
+bounds, $S_{37}$ division, shifted `R_{\varepsilon,43}`, retained branch, or
+full H39 closure.
+
+The source-provenance-only failure is now factorized by
+`source_map_residual_h38_source_provenance_bridge`. The bridge joins the
+H0-H34 trace anchors, which remove `constant_minus_two` and leave only
+`delta_squared_speed`, `sin_phi`, and `sin_delta`, to the five
+quotient-compatible H39 provider rows. The executable classification is that the
+next primary object is not bare $S_{37}$ division; it is a directed-rounded
+same-domain expression-level $N_{38}$ source-map residual envelope for those
+three terms before applying $h38=-N38/S37$. $S_{37}$ division remains a dependent
+transport obligation after that envelope exists. This is a provenance
+factorization only: it does not certify H38 source provenance, $N_{38}$
+derivative bounds, $S_{37}$ division, shifted `R_{\varepsilon,43}`, retained
+branch, or full H39 closure.

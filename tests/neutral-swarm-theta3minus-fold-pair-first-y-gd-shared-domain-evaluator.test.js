@@ -8623,20 +8623,24 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
       .max_source_term_live_half_width_to_allowed_budget_ratio,
     maxLiveTermToAbsoluteBudgetRatio
   );
-  const dominantGapRow = absoluteSourceProviderFitRows.find((row) =>
-    row.current_provider_term_fit_rows.some((termRow) =>
-      Math.abs(
-        termRow.term_live_half_width_to_allowed_budget_ratio -
-          maxLiveTermToAbsoluteBudgetRatio
-      ) <= 1e-9 * Math.max(1, maxLiveTermToAbsoluteBudgetRatio)
+  const dominantGapEntry = absoluteSourceProviderFitRows
+    .flatMap((row) =>
+      row.current_provider_term_fit_rows.map((termRow) => ({
+        row,
+        termRow,
+      }))
     )
-  );
-  const dominantGapTerm = dominantGapRow.current_provider_term_fit_rows.find(
-    (termRow) =>
-      Math.abs(
-        termRow.term_live_half_width_to_allowed_budget_ratio -
-          maxLiveTermToAbsoluteBudgetRatio
-      ) <= 1e-9 * Math.max(1, maxLiveTermToAbsoluteBudgetRatio)
+    .reduce((best, entry) =>
+      Number(entry.termRow.term_live_half_width_to_allowed_budget_ratio) >
+      Number(best.termRow.term_live_half_width_to_allowed_budget_ratio)
+        ? entry
+        : best
+    );
+  const dominantGapRow = dominantGapEntry.row;
+  const dominantGapTerm = dominantGapEntry.termRow;
+  numberClose(
+    dominantGapTerm.term_live_half_width_to_allowed_budget_ratio,
+    maxLiveTermToAbsoluteBudgetRatio
   );
   assert.equal(
     fiveNodeAbsoluteSourceProviderFit
@@ -8722,6 +8726,711 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
         row.claim_boundary.certifies_directed_rounded_shared_domain === false
       );
     })
+  );
+  const fiveNodeSignedNumeratorSourceBudgetFit =
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit;
+  assert.equal(
+    fiveNodeSignedNumeratorSourceBudgetFit.target_kind,
+    "candidate-requested-y44-shared-source-map-signed-numerator-source-budget-fit"
+  );
+  assert.equal(
+    fiveNodeSignedNumeratorSourceBudgetFit.fit_kind,
+    "single-signed-source-map-stream-to-absolute-numerator-source-budget"
+  );
+  assert.equal(
+    fiveNodeSignedNumeratorSourceBudgetFit
+      .signed_numerator_source_budget_fit_rows.length,
+    5
+  );
+  assert.equal(
+    fiveNodeSignedNumeratorSourceBudgetFit.claim_boundary
+      .certifies_source_inputs_as_directed_rounded_same_domain,
+    false
+  );
+  assert.equal(
+    fiveNodeSignedNumeratorSourceBudgetFit.claim_boundary
+      .certifies_n38_fourth_derivative_bound,
+    false
+  );
+  assert.equal(
+    fiveNodeSignedNumeratorSourceBudgetFit.claim_boundary
+      .certifies_s37_dependency_preserving_division,
+    false
+  );
+  assert.equal(
+    fiveNodeSignedNumeratorSourceBudgetFit.claim_boundary
+      .certifies_shifted_R43_outer_bound,
+    false
+  );
+  const signedNumeratorSourceBudgetRows =
+    fiveNodeSignedNumeratorSourceBudgetFit
+      .signed_numerator_source_budget_fit_rows;
+  const allCurrentShapeSignedRadiiFit =
+    signedNumeratorSourceBudgetRows.every(
+      (row) =>
+        row.current_shape_signed_radius_fits_numerator_absolute_budget ===
+        true
+    );
+  const allShapedTermSumsFit = signedNumeratorSourceBudgetRows.every(
+    (row) =>
+      row.current_shaped_term_sum_fits_numerator_absolute_budget === true
+  );
+  const allLiveSignedStreamsFit = signedNumeratorSourceBudgetRows.every(
+    (row) => row.live_signed_stream_fits_numerator_absolute_budget === true
+  );
+  const allScreenedSignedTargetsFit = signedNumeratorSourceBudgetRows.every(
+    (row) =>
+      row.screened_signed_target_fits_numerator_absolute_budget === true
+  );
+  assert.equal(
+    fiveNodeSignedNumeratorSourceBudgetFit
+      .all_current_shape_signed_radii_fit_numerator_absolute_budget,
+    allCurrentShapeSignedRadiiFit
+  );
+  assert.equal(
+    fiveNodeSignedNumeratorSourceBudgetFit
+      .all_current_shaped_term_sums_fit_numerator_absolute_budget,
+    allShapedTermSumsFit
+  );
+  assert.equal(
+    fiveNodeSignedNumeratorSourceBudgetFit
+      .all_live_signed_streams_fit_numerator_absolute_budget,
+    allLiveSignedStreamsFit
+  );
+  assert.equal(
+    fiveNodeSignedNumeratorSourceBudgetFit
+      .all_screened_signed_targets_fit_numerator_absolute_budget,
+    allScreenedSignedTargetsFit
+  );
+  assert.equal(
+    fiveNodeSignedNumeratorSourceBudgetFit
+      .signed_numerator_source_budget_fit_classification,
+    allCurrentShapeSignedRadiiFit && !allShapedTermSumsFit
+      ? "signed-source-radius-fits-numerator-budget-shaped-term-provider-is-artifact"
+      : allCurrentShapeSignedRadiiFit && allShapedTermSumsFit
+        ? "signed-source-radius-and-shaped-provider-fit-numerator-budget-source-certification-open"
+        : allScreenedSignedTargetsFit
+          ? "screened-signed-source-target-fits-numerator-budget-live-source-radius-open"
+          : allLiveSignedStreamsFit
+            ? "live-signed-source-stream-fits-numerator-budget"
+            : "signed-source-stream-still-exceeds-numerator-budget"
+  );
+  assert.equal(
+    fiveNodeSignedNumeratorSourceBudgetFit.claim_boundary
+      .certifies_signed_numerator_source_budget_fit_only,
+    allCurrentShapeSignedRadiiFit && allShapedTermSumsFit
+  );
+  const maxCurrentShapeSignedRadiusToNumeratorBudget = Math.max(
+    ...signedNumeratorSourceBudgetRows.map(
+      (row) => row.current_shape_signed_radius_to_numerator_budget_ratio
+    )
+  );
+  const maxShapedTermSumToNumeratorBudget = Math.max(
+    ...signedNumeratorSourceBudgetRows.map(
+      (row) => row.current_shaped_term_sum_to_numerator_budget_ratio
+    )
+  );
+  const maxTermSplitToSignedRadius = Math.max(
+    ...signedNumeratorSourceBudgetRows.map(
+      (row) =>
+        row.current_shaped_term_sum_to_current_shape_signed_radius_ratio
+    )
+  );
+  numberClose(
+    fiveNodeSignedNumeratorSourceBudgetFit
+      .max_current_shape_signed_radius_to_numerator_budget_ratio,
+    maxCurrentShapeSignedRadiusToNumeratorBudget
+  );
+  numberClose(
+    fiveNodeSignedNumeratorSourceBudgetFit
+      .max_current_shaped_term_sum_to_numerator_budget_ratio,
+    maxShapedTermSumToNumeratorBudget
+  );
+  numberClose(
+    fiveNodeSignedNumeratorSourceBudgetFit
+      .max_shaped_term_sum_to_current_shape_signed_radius_ratio,
+    maxTermSplitToSignedRadius
+  );
+  const dominantSignedNumeratorRow =
+    signedNumeratorSourceBudgetRows.find(
+      (row) =>
+        row.node_index ===
+        fiveNodeSignedNumeratorSourceBudgetFit
+          .dominant_signed_numerator_budget_node_index
+    );
+  assert.ok(dominantSignedNumeratorRow);
+  numberClose(
+    dominantSignedNumeratorRow
+      .current_shaped_term_sum_to_numerator_budget_ratio,
+    maxShapedTermSumToNumeratorBudget
+  );
+  assert.ok(
+    signedNumeratorSourceBudgetRows.every((row) => {
+      assert.deepEqual(row.source_terms_preserved_signed_together, [
+        "delta_squared_speed",
+        "sin_phi",
+        "sin_delta",
+      ]);
+      assert.deepEqual(row.zero_source_terms, ["constant_minus_two"]);
+      numberClose(
+        row.numerator_budget_to_provider_value_ratio,
+        row.numerator_directed_relative_radius_ceiling
+      );
+      numberClose(
+        row.live_signed_stream_to_numerator_budget_ratio,
+        row.live_signed_residual_abs_upper /
+          row.numerator_allowed_absolute_half_width
+      );
+      numberClose(
+        row.screened_signed_target_to_numerator_budget_ratio,
+        row.screened_signed_residual_target_abs_upper /
+          row.numerator_allowed_absolute_half_width
+      );
+      numberClose(
+        row.current_shape_signed_radius_to_numerator_budget_ratio,
+        row.current_shape_signed_source_radius_upper /
+          row.numerator_allowed_absolute_half_width
+      );
+      numberClose(
+        row.current_shaped_term_sum_to_numerator_budget_ratio,
+        row.current_shaped_term_sum_half_width /
+          row.numerator_allowed_absolute_half_width
+      );
+      numberClose(
+        row.current_shaped_term_sum_to_current_shape_signed_radius_ratio,
+        row.current_shaped_term_sum_half_width /
+          row.current_shape_signed_source_radius_upper
+      );
+      return (
+        row.signed_numerator_source_budget_fit_row_kind ===
+          "candidate-node-local-single-signed-source-stream-numerator-budget-fit-row" &&
+        row.source_y_order === 42 &&
+        row.required_xi_derivative_order === 4 &&
+        row.numerator_source_quantity ===
+          "signed_source_term_sum_available_half_width" &&
+        row.claim_boundary
+          .certifies_signed_numerator_source_budget_fit_only ===
+          (row
+            .current_shape_signed_radius_fits_numerator_absolute_budget &&
+            row
+              .current_shaped_term_sum_fits_numerator_absolute_budget) &&
+        row.claim_boundary
+          .certifies_source_inputs_as_directed_rounded_same_domain ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+      );
+    })
+  );
+  const fiveNodeSignedRadiusContractionBudget =
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_five_node_signed_radius_contraction_budget;
+  assert.equal(
+    fiveNodeSignedRadiusContractionBudget.target_kind,
+    "candidate-requested-y44-shared-source-map-signed-radius-contraction-budget"
+  );
+  assert.equal(
+    fiveNodeSignedRadiusContractionBudget.budget_kind,
+    "single-signed-source-map-radius-to-absolute-numerator-source-budget-provider-target"
+  );
+  assert.equal(
+    fiveNodeSignedRadiusContractionBudget
+      .signed_radius_contraction_budget_rows.length,
+    5
+  );
+  assert.equal(
+    fiveNodeSignedRadiusContractionBudget.claim_boundary
+      .defines_signed_radius_contraction_budget_only,
+    true
+  );
+  assert.equal(
+    fiveNodeSignedRadiusContractionBudget.claim_boundary
+      .certifies_source_inputs_as_directed_rounded_same_domain,
+    false
+  );
+  assert.equal(
+    fiveNodeSignedRadiusContractionBudget.claim_boundary
+      .certifies_n38_fourth_derivative_bound,
+    false
+  );
+  assert.equal(
+    fiveNodeSignedRadiusContractionBudget.claim_boundary
+      .certifies_s37_dependency_preserving_division,
+    false
+  );
+  assert.equal(
+    fiveNodeSignedRadiusContractionBudget.claim_boundary
+      .certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    fiveNodeSignedRadiusContractionBudget.claim_boundary.retained_branch,
+    false
+  );
+  const signedRadiusContractionRows =
+    fiveNodeSignedRadiusContractionBudget
+      .signed_radius_contraction_budget_rows;
+  const allCurrentShapeRadiiFitContractionBudget =
+    signedRadiusContractionRows.every(
+      (row) =>
+        row.current_shape_signed_radius_already_fits_numerator_budget ===
+        true
+    );
+  const allCenterAwareHalfWidthsFitContractionBudget =
+    signedRadiusContractionRows.every(
+      (row) =>
+        row.center_aware_signed_half_width_already_fits_numerator_budget ===
+        true
+    );
+  assert.equal(
+    fiveNodeSignedRadiusContractionBudget
+      .all_current_shape_signed_radii_fit_numerator_budget,
+    allCurrentShapeRadiiFitContractionBudget
+  );
+  assert.equal(
+    fiveNodeSignedRadiusContractionBudget
+      .all_center_aware_signed_half_widths_fit_numerator_budget,
+    allCenterAwareHalfWidthsFitContractionBudget
+  );
+  assert.equal(
+    fiveNodeSignedRadiusContractionBudget
+      .all_quotient_compatible_targets_subset_current_shape_and_numerator_budget,
+    true
+  );
+  assert.equal(
+    fiveNodeSignedRadiusContractionBudget
+      .signed_radius_contraction_budget_classification,
+    allCurrentShapeRadiiFitContractionBudget &&
+      allCenterAwareHalfWidthsFitContractionBudget
+      ? "signed-radius-and-center-aware-target-fit-numerator-budget-source-certification-open"
+      : allCenterAwareHalfWidthsFitContractionBudget
+        ? "center-aware-target-fits-numerator-budget-current-shape-radius-open"
+        : "same-domain-signed-source-radius-needs-numerator-budget-contraction"
+  );
+  const maxSignedRadiusToNumeratorBudget = Math.max(
+    ...signedRadiusContractionRows.map(
+      (row) => row.signed_radius_to_numerator_budget_ratio
+    )
+  );
+  const maxCenterAwareHalfWidthToNumeratorBudget = Math.max(
+    ...signedRadiusContractionRows.map(
+      (row) =>
+        row.center_aware_signed_half_width_to_numerator_budget_ratio
+    )
+  );
+  numberClose(
+    fiveNodeSignedRadiusContractionBudget
+      .max_signed_radius_to_numerator_budget_ratio,
+    maxSignedRadiusToNumeratorBudget
+  );
+  numberClose(
+    fiveNodeSignedRadiusContractionBudget
+      .max_required_signed_radius_contraction_to_numerator_budget,
+    maxSignedRadiusToNumeratorBudget
+  );
+  numberClose(
+    fiveNodeSignedRadiusContractionBudget
+      .max_center_aware_signed_half_width_to_numerator_budget_ratio,
+    maxCenterAwareHalfWidthToNumeratorBudget
+  );
+  numberClose(
+    fiveNodeSignedRadiusContractionBudget
+      .max_required_center_aware_signed_half_width_contraction_to_numerator_budget,
+    maxCenterAwareHalfWidthToNumeratorBudget
+  );
+  const dominantSignedRadiusBudgetRow =
+    signedRadiusContractionRows.find(
+      (row) =>
+        row.node_index ===
+        fiveNodeSignedRadiusContractionBudget
+          .dominant_signed_radius_budget_node_index
+    );
+  assert.ok(dominantSignedRadiusBudgetRow);
+  numberClose(
+    dominantSignedRadiusBudgetRow.signed_radius_to_numerator_budget_ratio,
+    maxSignedRadiusToNumeratorBudget
+  );
+  assert.ok(
+    signedRadiusContractionRows.every((row) => {
+      assert.deepEqual(row.source_terms_preserved_signed_together, [
+        "delta_squared_speed",
+        "sin_phi",
+        "sin_delta",
+      ]);
+      assert.deepEqual(row.zero_source_terms, ["constant_minus_two"]);
+      const expectedRadius = Math.min(
+        row.current_shape_signed_source_radius_upper,
+        row.numerator_allowed_absolute_half_width
+      );
+      const expectedWeightedInterval = [
+        -expectedRadius * row.lagrange_fourth_derivative_weight,
+        expectedRadius * row.lagrange_fourth_derivative_weight,
+      ].sort((left, right) => left - right);
+      numberClose(
+        row.signed_radius_to_numerator_budget_ratio,
+        row.current_shape_signed_source_radius_upper /
+          row.numerator_allowed_absolute_half_width
+      );
+      numberClose(
+        row.required_signed_radius_contraction_to_numerator_budget,
+        row.signed_radius_to_numerator_budget_ratio
+      );
+      numberClose(
+        row.center_aware_signed_half_width_to_numerator_budget_ratio,
+        row.center_aware_signed_half_width /
+          row.numerator_allowed_absolute_half_width
+      );
+      numberClose(
+        row
+          .required_center_aware_signed_half_width_contraction_to_numerator_budget,
+        row.center_aware_signed_half_width_to_numerator_budget_ratio
+      );
+      numberClose(
+        row.signed_required_center_aware_to_selected_contraction_factor,
+        row.required_center_aware_provider_contraction_factor /
+          row.selected_provider_contraction_factor
+      );
+      numberClose(
+        row.quotient_compatible_signed_source_radius_upper,
+        expectedRadius
+      );
+      numberClose(
+        row.quotient_compatible_signed_source_target_interval[0],
+        -expectedRadius
+      );
+      numberClose(
+        row.quotient_compatible_signed_source_target_interval[1],
+        expectedRadius
+      );
+      numberClose(
+        row.quotient_compatible_weighted_residual_target_interval[0],
+        expectedWeightedInterval[0]
+      );
+      numberClose(
+        row.quotient_compatible_weighted_residual_target_interval[1],
+        expectedWeightedInterval[1]
+      );
+      numberClose(
+        row.quotient_compatible_weighted_residual_abs_upper,
+        expectedRadius * row.lagrange_fourth_derivative_weight_abs
+      );
+      return (
+        row.signed_radius_contraction_budget_row_kind ===
+          "candidate-node-local-signed-source-radius-contraction-budget-row" &&
+        row.source_y_order === 42 &&
+        row.required_xi_derivative_order === 4 &&
+        row.quotient_compatible_target_subset_current_shape_radius ===
+          true &&
+        row.quotient_compatible_target_subset_numerator_budget === true &&
+        row.claim_boundary
+          .defines_signed_radius_contraction_budget_only === true &&
+        row.claim_boundary
+          .certifies_source_inputs_as_directed_rounded_same_domain ===
+          false &&
+        row.claim_boundary
+          .certifies_n38_fourth_derivative_bound === false &&
+        row.claim_boundary
+          .certifies_s37_dependency_preserving_division === false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain ===
+          false &&
+        row.claim_boundary.retained_branch === false
+      );
+    })
+  );
+  const fiveNodeSignedRadiusProviderAcceptanceTarget =
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target;
+  assert.equal(
+    fiveNodeSignedRadiusProviderAcceptanceTarget.target_kind,
+    "candidate-requested-y44-shared-source-map-signed-radius-provider-acceptance-target"
+  );
+  assert.equal(
+    fiveNodeSignedRadiusProviderAcceptanceTarget.provider_target_kind,
+    "quotient-compatible-signed-radius-provider-target-through-directed-verifier"
+  );
+  assert.equal(
+    fiveNodeSignedRadiusProviderAcceptanceTarget
+      .source_signed_radius_contraction_budget_kind,
+    fiveNodeSignedRadiusContractionBudget.target_kind
+  );
+  assert.equal(
+    fiveNodeSignedRadiusProviderAcceptanceTarget
+      .signed_radius_provider_acceptance_rows.length,
+    5
+  );
+  assert.equal(
+    fiveNodeSignedRadiusProviderAcceptanceTarget
+      .all_provider_rows_match_same_domain_same_radius,
+    true
+  );
+  assert.equal(
+    fiveNodeSignedRadiusProviderAcceptanceTarget
+      .all_provider_rows_match_required_source_kind,
+    true
+  );
+  assert.equal(
+    fiveNodeSignedRadiusProviderAcceptanceTarget
+      .all_provider_intervals_subset_screened_targets,
+    true
+  );
+  assert.equal(
+    fiveNodeSignedRadiusProviderAcceptanceTarget
+      .all_quotient_compatible_intervals_fit_numerator_budget,
+    true
+  );
+  assert.equal(
+    fiveNodeSignedRadiusProviderAcceptanceTarget
+      .all_quotient_compatible_weighted_intervals_match_radius_weight,
+    true
+  );
+  assert.equal(
+    fiveNodeSignedRadiusProviderAcceptanceTarget
+      .all_provider_rows_have_directed_rounded_source,
+    false
+  );
+  assert.equal(
+    fiveNodeSignedRadiusProviderAcceptanceTarget
+      .provider_target_reaches_verifier_with_source_only_failure,
+    true
+  );
+  assert.equal(
+    fiveNodeSignedRadiusProviderAcceptanceTarget
+      .provider_acceptance_target_classification,
+    "signed-radius-provider-acceptance-target-contained-source-certification-open"
+  );
+  numberClose(
+    fiveNodeSignedRadiusProviderAcceptanceTarget
+      .max_provider_interval_to_screened_target_ratio,
+    1
+  );
+  numberClose(
+    fiveNodeSignedRadiusProviderAcceptanceTarget
+      .min_provider_interval_inclusion_headroom,
+    1
+  );
+  assert.equal(
+    fiveNodeSignedRadiusProviderAcceptanceTarget.claim_boundary
+      .defines_signed_radius_provider_acceptance_target_only,
+    true
+  );
+  assert.equal(
+    fiveNodeSignedRadiusProviderAcceptanceTarget.claim_boundary
+      .certifies_source_inputs_as_directed_rounded_same_domain,
+    false
+  );
+  assert.equal(
+    fiveNodeSignedRadiusProviderAcceptanceTarget.claim_boundary
+      .certifies_n38_fourth_derivative_bound,
+    false
+  );
+  assert.equal(
+    fiveNodeSignedRadiusProviderAcceptanceTarget.claim_boundary
+      .certifies_s37_dependency_preserving_division,
+    false
+  );
+  assert.equal(
+    fiveNodeSignedRadiusProviderAcceptanceTarget.claim_boundary
+      .certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    fiveNodeSignedRadiusProviderAcceptanceTarget.claim_boundary
+      .retained_branch,
+    false
+  );
+  assert.equal(
+    fiveNodeSignedRadiusProviderAcceptanceTarget.directed_provider_verifier
+      .all_provider_rows_match_same_domain_contract,
+    true
+  );
+  assert.equal(
+    fiveNodeSignedRadiusProviderAcceptanceTarget.directed_provider_verifier
+      .all_provider_rows_match_same_radius_contract,
+    true
+  );
+  assert.equal(
+    fiveNodeSignedRadiusProviderAcceptanceTarget.directed_provider_verifier
+      .all_provider_intervals_subset_screened_targets,
+    true
+  );
+  assert.equal(
+    fiveNodeSignedRadiusProviderAcceptanceTarget.directed_provider_verifier
+      .all_provider_rows_have_directed_rounded_source,
+    false
+  );
+  const signedRadiusContractionRowsByNode = new Map(
+    signedRadiusContractionRows.map((row) => [row.node_index, row])
+  );
+  assert.ok(
+    fiveNodeSignedRadiusProviderAcceptanceTarget
+      .signed_radius_provider_acceptance_rows.every((row) => {
+        const budgetRow = signedRadiusContractionRowsByNode.get(
+          row.node_index
+        );
+        assert.ok(budgetRow);
+        const expectedWeightedInterval = [
+          row.directed_rounded_signed_residual_interval[0] *
+            row.lagrange_fourth_derivative_weight,
+          row.directed_rounded_signed_residual_interval[1] *
+            row.lagrange_fourth_derivative_weight,
+        ].sort((left, right) => left - right);
+        assert.deepEqual(row.source_terms_preserved_signed_together, [
+          "delta_squared_speed",
+          "sin_phi",
+          "sin_delta",
+        ]);
+        assert.deepEqual(row.zero_source_terms, ["constant_minus_two"]);
+        numberClose(
+          row.screened_signed_residual_target_interval[0],
+          budgetRow.quotient_compatible_signed_source_target_interval[0]
+        );
+        numberClose(
+          row.screened_signed_residual_target_interval[1],
+          budgetRow.quotient_compatible_signed_source_target_interval[1]
+        );
+        numberClose(
+          row.screened_weighted_residual_target_interval[0],
+          budgetRow.quotient_compatible_weighted_residual_target_interval[0]
+        );
+        numberClose(
+          row.screened_weighted_residual_target_interval[1],
+          budgetRow.quotient_compatible_weighted_residual_target_interval[1]
+        );
+        numberClose(
+          row.directed_rounded_signed_residual_interval[0],
+          row.screened_signed_residual_target_interval[0]
+        );
+        numberClose(
+          row.directed_rounded_signed_residual_interval[1],
+          row.screened_signed_residual_target_interval[1]
+        );
+        numberClose(
+          row.directed_rounded_weighted_residual_interval[0],
+          expectedWeightedInterval[0]
+        );
+        numberClose(
+          row.directed_rounded_weighted_residual_interval[1],
+          expectedWeightedInterval[1]
+        );
+        return (
+          row.provider_acceptance_target_row_kind ===
+            "candidate-node-local-quotient-compatible-signed-radius-provider-acceptance-row" &&
+          row.provider_row_source_kind ===
+            "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+          row.source_y_order === 42 &&
+          row.required_xi_derivative_order === 4 &&
+          row.quotient_compatible_signed_interval_subset_screened_target ===
+            true &&
+          row.quotient_compatible_weighted_interval_subset_screened_target ===
+            true &&
+          row.quotient_compatible_signed_interval_fits_numerator_budget ===
+            true &&
+          row
+            .quotient_compatible_weighted_interval_matches_radius_weight ===
+            true &&
+          row.row_status ===
+            "candidate-quotient-compatible-provider-target-contained-source-certification-open" &&
+          row.claim_boundary
+            .defines_signed_radius_provider_acceptance_target_only === true &&
+          row.claim_boundary
+            .certifies_source_inputs_as_directed_rounded_same_domain ===
+            false &&
+          row.claim_boundary
+            .certifies_n38_fourth_derivative_bound === false &&
+          row.claim_boundary
+            .certifies_s37_dependency_preserving_division === false &&
+          row.claim_boundary.certifies_directed_rounded_shared_domain ===
+            false &&
+          row.claim_boundary.retained_branch === false
+        );
+      })
+  );
+  assert.equal(
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_h38_source_provenance_bridge_kind,
+    "candidate-requested-y44-h38-source-provenance-factorization-bridge"
+  );
+  assert.equal(
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_h38_source_provenance_bridge_available,
+    true
+  );
+  assert.equal(
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_h38_source_provenance_bridge_trace_anchor_ready,
+    true
+  );
+  assert.equal(
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_h38_source_provenance_bridge_acceptance_target_ready,
+    true
+  );
+  assert.equal(
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_h38_source_provenance_bridge_provider_rows_ready,
+    true
+  );
+  assert.equal(
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_h38_source_provenance_bridge_primary_missing_object_kind,
+    "directed-rounded-same-domain-expression-level-n38-source-map-residual-envelope"
+  );
+  assert.equal(
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_h38_source_provenance_bridge_s37_division_is_primary_blocker,
+    false
+  );
+  assert.equal(
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_h38_source_provenance_bridge_provider_node_count,
+    5
+  );
+  assert.equal(
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_h38_source_provenance_bridge_classification,
+    "h39-source-map-provenance-reduced-to-expression-level-n38-envelope-before-s37-division"
+  );
+  assert.deepEqual(
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_h38_source_provenance_bridge_required_source_terms,
+    ["delta_squared_speed", "sin_phi", "sin_delta"]
+  );
+  assert.deepEqual(
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_h38_source_provenance_bridge_zero_source_terms,
+    ["constant_minus_two"]
+  );
+  assert.equal(
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_h38_source_provenance_bridge_claim_boundary
+      .certifies_h38_source_provenance_factorization_only,
+    true
+  );
+  assert.equal(
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_h38_source_provenance_bridge_claim_boundary
+      .certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.ok(
+    sourceMapResidualCovarianceTarget.source_map_residual_h38_source_provenance_bridge_rows.every(
+      (row) =>
+        row.required_provider_row_source_kind ===
+          "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+        row.primary_provenance_obligation ===
+          "directed-rounded-same-domain-expression-level-n38-source-map-residual-envelope-before-s37-division" &&
+        row.dependent_provenance_obligation ===
+          "dependency-preserving-s37-division-transport-of-the-n38-source-map-envelope" &&
+        row.provider_row_reaches_h39_verifier_boundary === true &&
+        row.row_status ===
+          "h39-provider-row-ready-waits-on-expression-level-n38-source-provenance" &&
+        row.claim_boundary
+          .certifies_h38_source_provenance_factorization_only === true &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain ===
+          false &&
+        row.claim_boundary.certifies_s37_dependency_preserving_division ===
+          false
+    )
   );
   const fiveNodeContractedProvider =
     sourceMapResidualCovarianceTarget
@@ -9606,6 +10315,177 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
       .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_dominant_gap_term,
     fiveNodeAbsoluteSourceProviderFit
       .dominant_absolute_source_provider_gap_term
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit_classification,
+    fiveNodeSignedNumeratorSourceBudgetFit
+      .signed_numerator_source_budget_fit_classification
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit_all_current_shape_signed_radii_fit,
+    fiveNodeSignedNumeratorSourceBudgetFit
+      .all_current_shape_signed_radii_fit_numerator_absolute_budget
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit_all_shaped_term_sums_fit,
+    fiveNodeSignedNumeratorSourceBudgetFit
+      .all_current_shaped_term_sums_fit_numerator_absolute_budget
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit_max_current_shape_ratio,
+    fiveNodeSignedNumeratorSourceBudgetFit
+      .max_current_shape_signed_radius_to_numerator_budget_ratio
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit_max_shaped_term_sum_ratio,
+    fiveNodeSignedNumeratorSourceBudgetFit
+      .max_current_shaped_term_sum_to_numerator_budget_ratio
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit_max_term_split_to_signed_radius_ratio,
+    fiveNodeSignedNumeratorSourceBudgetFit
+      .max_shaped_term_sum_to_current_shape_signed_radius_ratio
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit_dominant_node_index,
+    fiveNodeSignedNumeratorSourceBudgetFit
+      .dominant_signed_numerator_budget_node_index
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit_dominant_gap_kind,
+    fiveNodeSignedNumeratorSourceBudgetFit
+      .dominant_signed_numerator_budget_gap_kind
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_contraction_budget_classification,
+    fiveNodeSignedRadiusContractionBudget
+      .signed_radius_contraction_budget_classification
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_contraction_budget_all_current_shape_signed_radii_fit,
+    fiveNodeSignedRadiusContractionBudget
+      .all_current_shape_signed_radii_fit_numerator_budget
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_contraction_budget_all_center_aware_half_widths_fit,
+    fiveNodeSignedRadiusContractionBudget
+      .all_center_aware_signed_half_widths_fit_numerator_budget
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_contraction_budget_max_signed_radius_ratio,
+    fiveNodeSignedRadiusContractionBudget
+      .max_signed_radius_to_numerator_budget_ratio
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_contraction_budget_max_center_aware_ratio,
+    fiveNodeSignedRadiusContractionBudget
+      .max_center_aware_signed_half_width_to_numerator_budget_ratio
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_contraction_budget_max_required_signed_radius_contraction,
+    fiveNodeSignedRadiusContractionBudget
+      .max_required_signed_radius_contraction_to_numerator_budget
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_contraction_budget_max_required_center_aware_contraction,
+    fiveNodeSignedRadiusContractionBudget
+      .max_required_center_aware_signed_half_width_contraction_to_numerator_budget
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_contraction_budget_dominant_node_index,
+    fiveNodeSignedRadiusContractionBudget
+      .dominant_signed_radius_budget_node_index
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_classification,
+    fiveNodeSignedRadiusProviderAcceptanceTarget
+      .provider_acceptance_target_classification
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_reaches_source_only_failure,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_all_intervals_fit_numerator_budget,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_all_intervals_subset_screened_targets,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_all_rows_match_required_source_kind,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_all_rows_have_directed_source,
+    false
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_max_interval_to_screened_target_ratio,
+    fiveNodeSignedRadiusProviderAcceptanceTarget
+      .max_provider_interval_to_screened_target_ratio
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_min_inclusion_headroom,
+    fiveNodeSignedRadiusProviderAcceptanceTarget
+      .min_provider_interval_inclusion_headroom
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target_dominant_node_index,
+    fiveNodeSignedRadiusProviderAcceptanceTarget
+      .dominant_signed_radius_provider_acceptance_node_index
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_h38_source_provenance_bridge_classification,
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_h38_source_provenance_bridge_classification
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_h38_source_provenance_bridge_available,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_h38_source_provenance_bridge_primary_missing_object_kind,
+    "directed-rounded-same-domain-expression-level-n38-source-map-residual-envelope"
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_h38_source_provenance_bridge_s37_division_is_primary_blocker,
+    false
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_h38_source_provenance_bridge_provider_node_count,
+    5
   );
   assert.equal(
     producerBudgetComparison

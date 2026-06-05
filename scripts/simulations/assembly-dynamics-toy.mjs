@@ -2,13 +2,15 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
 
-const DEFAULTS = {
+export const DEFAULTS = {
   steps: 800,
   dt: 0.01,
   stride: 10,
   particles: 6,
   radius: 1,
+  radialSpeed: 0,
   tangentialSpeed: 0.55,
   driftX: 0.035,
   driftY: -0.018,
@@ -38,6 +40,7 @@ function parseArgs(argv) {
     "stride",
     "particles",
     "radius",
+    "radialSpeed",
     "tangentialSpeed",
     "driftX",
     "driftY",
@@ -85,12 +88,12 @@ function parseArgs(argv) {
   if (args.particles < 2) {
     throw new Error("--particles must be at least 2.");
   }
-  for (const key of ["dt", "radius", "cf", "softening", "jacobianFloor", "memoryDepth"]) {
+  for (const key of ["dt", "radius", "cf", "jacobianFloor", "memoryDepth"]) {
     if (args[key] <= 0) {
       throw new Error(`--${kebabCase(key)} must be positive.`);
     }
   }
-  for (const key of ["kappa", "selfHitGain", "maxAcceleration", "shellK", "shellRadius", "minDelay"]) {
+  for (const key of ["kappa", "selfHitGain", "softening", "maxAcceleration", "shellK", "shellRadius", "minDelay"]) {
     if (args[key] < 0) {
       throw new Error(`--${kebabCase(key)} must be nonnegative.`);
     }
@@ -111,6 +114,7 @@ function optionKey(key) {
     stride: "stride",
     particles: "particles",
     radius: "radius",
+    radialspeed: "radialSpeed",
     tangentialspeed: "tangentialSpeed",
     driftx: "driftX",
     drifty: "driftY",
@@ -156,13 +160,14 @@ Options:
   --stride N             Store one frame every N steps. Default: ${DEFAULTS.stride}
   --particles N          Ring particles with alternating polarity. Default: ${DEFAULTS.particles}
   --radius X             Initial ring radius. Default: ${DEFAULTS.radius}
+  --radial-speed X       Initial radial speed; negative means inward. Default: ${DEFAULTS.radialSpeed}
   --tangential-speed X   Initial internal tangential speed. Default: ${DEFAULTS.tangentialSpeed}
   --drift-x X            Initial assembly-center x velocity. Default: ${DEFAULTS.driftX}
   --drift-y X            Initial assembly-center y velocity. Default: ${DEFAULTS.driftY}
   --cf X                 Field speed c_f. Default: ${DEFAULTS.cf}
   --kappa X              Delayed-hit coupling. Default: ${DEFAULTS.kappa}
   --self-hit-gain X      Same-source contribution multiplier. Default: ${DEFAULTS.selfHitGain}
-  --softening X          Distance softening eta. Default: ${DEFAULTS.softening}
+  --softening X          Distance softening eta; use 0 to disable. Default: ${DEFAULTS.softening}
   --jacobian-floor X     Minimum |J| used in the regularized hit weight. Default: ${DEFAULTS.jacobianFloor}
   --max-acceleration X   Per-particle acceleration cap. Default: ${DEFAULTS.maxAcceleration}
   --shell-k X            Toy shell-radius restoring coefficient. Default: ${DEFAULTS.shellK}
@@ -234,7 +239,7 @@ function initialState(config) {
     const radial = [Math.cos(theta), Math.sin(theta)];
     const tangent = [-Math.sin(theta), Math.cos(theta)];
     positions.push(mul(radial, config.radius));
-    velocities.push(add(drift, mul(tangent, config.tangentialSpeed)));
+    velocities.push(add(add(drift, mul(radial, config.radialSpeed)), mul(tangent, config.tangentialSpeed)));
   }
 
   return { t: 0, positions, velocities };
@@ -261,14 +266,15 @@ function rotatingRingFrame(t, config) {
   const drift = [config.driftX, config.driftY];
   const center = mul(drift, t);
   const omega = config.tangentialSpeed / config.radius;
+  const radius = Math.max(config.radius + config.radialSpeed * t, config.softening);
 
   for (let i = 0; i < config.particles; i += 1) {
     const theta0 = (2 * Math.PI * i) / config.particles;
     const theta = theta0 + omega * t;
     const radial = [Math.cos(theta), Math.sin(theta)];
     const tangent = [-Math.sin(theta), Math.cos(theta)];
-    positions.push(add(center, mul(radial, config.radius)));
-    velocities.push(add(drift, mul(tangent, config.tangentialSpeed)));
+    positions.push(add(center, mul(radial, radius)));
+    velocities.push(add(add(drift, mul(radial, config.radialSpeed)), mul(tangent, config.tangentialSpeed)));
   }
 
   return { t, positions, velocities };
@@ -525,7 +531,8 @@ function summarizeDrift(initial, final) {
   };
 }
 
-function run(config) {
+export function run(inputConfig = {}) {
+  const config = { ...DEFAULTS, ...inputConfig };
   let state = initialState(config);
   const charges = polarities(config.particles);
   const history = buildInitialHistory(state, config);
@@ -561,7 +568,7 @@ function run(config) {
       limitations: [
         "No certified branch chart.",
         "Only the most recent causal root per source-receiver pair is retained.",
-        "Negative-time history is initialized as a rotating ring, then replaced by simulated history.",
+        "Negative-time history is initialized as a rotating ring with optional radial speed, then replaced by simulated history.",
         "The shell-radius term is a toy assembly-level response used for visualization stability.",
         "The reported conserved quantities are diagnostics, not exact conserved theorem objects.",
       ],
@@ -571,6 +578,7 @@ function run(config) {
         "q_i": "polarity bookkeeping value, alternating +1 and -1",
         "phi_i(t)": "phase angle around the assembly center",
         "R_shell(t)": "root-mean-square shell radius around the assembly center",
+        "v_r": "initial radial speed; negative means inward toward the assembly center",
         "J_ij": "regularized causal-delay Jacobian, 1 - v_j(t0) dot rhat_ij / c_f",
       },
       equations: [
@@ -663,7 +671,7 @@ function writeCsv(result, csvPath) {
   fs.writeFileSync(csvPath, `${rows.join("\n")}\n`);
 }
 
-function writeSvg(result, svgPath) {
+export function writeSvg(result, svgPath) {
   if (!svgPath) {
     return;
   }
@@ -726,7 +734,7 @@ function writeSvg(result, svgPath) {
   fs.writeFileSync(svgPath, svg);
 }
 
-function main() {
+export function main() {
   const config = parseArgs(process.argv.slice(2));
   if (config.help) {
     printHelp();
@@ -743,4 +751,6 @@ function main() {
   writeJson(result, config);
 }
 
-main();
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main();
+}

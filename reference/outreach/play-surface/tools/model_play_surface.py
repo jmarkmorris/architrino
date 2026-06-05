@@ -2,9 +2,9 @@
 """Purpose-built 3D feasibility checks for the play-surface tile concept.
 
 This is not CAD and not a safety certificate. It is a lightweight parametric
-checker for the current children's-book play-surface assumptions: tile height
-fields, neutral sides, ridge placement, support-zone conflicts, and rough
-stacking assumptions.
+checker for the current play-surface product assumptions: tile height fields,
+neutral sides, ridge placement, support-zone conflicts, and rough stacking
+assumptions.
 """
 
 from __future__ import annotations
@@ -18,16 +18,20 @@ from typing import Callable
 
 
 REPO = Path(__file__).resolve().parents[4]
-OUT_ROOT = REPO / "reference/outreach/childrens-books/production/model-checks"
+OUT_ROOT = REPO / "reference/outreach/play-surface/model-checks"
 
 TILE_SIZE = 11.0
 BODY_HEIGHT = 3.0
 NEUTRAL = 1.5
-LOW_OFFSET = 0.5
-HIGH_OFFSET = 1.0
-LOW_SURFACE = NEUTRAL - HIGH_OFFSET
-HIGH_SURFACE = NEUTRAL + HIGH_OFFSET
-DEFAULT_APPROACH_BAND = 0.5
+ACTIVE_OFFSET = 1.0
+LOW_SURFACE = NEUTRAL - ACTIVE_OFFSET
+HIGH_SURFACE = NEUTRAL + ACTIVE_OFFSET
+DEFAULT_APPROACH_BAND = 0.75
+STANDARD_ROUND_RADIUS = 3.25
+WIDE_ROUND_RADIUS = 4.15
+FEATURE_EDGE_CLEARANCE = 0.75
+RIDGE_HALF_WIDTH = 1.45
+VALLEY_HALF_WIDTH = 1.85
 GRID_SAMPLES = 81
 SUPPORT_TOLERANCE = 0.08
 SURFACE_CLEARANCE = 0.125
@@ -66,6 +70,23 @@ def ridge_profile(distance: float, half_width: float) -> float:
     return 0.5 * (1.0 + math.cos(math.pi * distance / half_width))
 
 
+def distance_to_segment(
+    x: float,
+    y: float,
+    start: tuple[float, float],
+    end: tuple[float, float],
+) -> float:
+    sx, sy = start
+    ex, ey = end
+    dx = ex - sx
+    dy = ey - sy
+    length_sq = dx * dx + dy * dy
+    t = clamp(((x - sx) * dx + (y - sy) * dy) / length_sq, 0.0, 1.0)
+    nearest_x = sx + t * dx
+    nearest_y = sy + t * dy
+    return math.hypot(x - nearest_x, y - nearest_y)
+
+
 def radial_feature(
     x: float,
     y: float,
@@ -83,64 +104,112 @@ def flat_tile(x: float, y: float, band: float) -> float:
     return NEUTRAL
 
 
-def hill_low(x: float, y: float, band: float) -> float:
-    return radial_feature(x, y, band, center=(4.0, 6.7), radius=3.4, amplitude=LOW_OFFSET)
+def standard_hill(x: float, y: float, band: float) -> float:
+    return radial_feature(
+        x,
+        y,
+        band,
+        center=(4.35, 6.65),
+        radius=STANDARD_ROUND_RADIUS,
+        amplitude=ACTIVE_OFFSET,
+    )
 
 
-def hill_high(x: float, y: float, band: float) -> float:
-    return radial_feature(x, y, band, center=(4.0, 6.7), radius=3.4, amplitude=HIGH_OFFSET)
+def wide_hill(x: float, y: float, band: float) -> float:
+    return radial_feature(
+        x,
+        y,
+        band,
+        center=(4.7, 6.25),
+        radius=WIDE_ROUND_RADIUS,
+        amplitude=ACTIVE_OFFSET,
+    )
 
 
-def dip_low(x: float, y: float, band: float) -> float:
-    return radial_feature(x, y, band, center=(4.0, 6.7), radius=3.4, amplitude=-LOW_OFFSET)
+def standard_dip(x: float, y: float, band: float) -> float:
+    return radial_feature(
+        x,
+        y,
+        band,
+        center=(4.35, 6.65),
+        radius=STANDARD_ROUND_RADIUS,
+        amplitude=-ACTIVE_OFFSET,
+    )
 
 
-def dip_high(x: float, y: float, band: float) -> float:
-    return radial_feature(x, y, band, center=(4.0, 6.7), radius=3.4, amplitude=-HIGH_OFFSET)
+def wide_dip(x: float, y: float, band: float) -> float:
+    return radial_feature(
+        x,
+        y,
+        band,
+        center=(4.7, 6.25),
+        radius=WIDE_ROUND_RADIUS,
+        amplitude=-ACTIVE_OFFSET,
+    )
 
 
 def saddle(x: float, y: float, band: float) -> float:
     nx = (x - TILE_SIZE / 2.0) / (TILE_SIZE / 2.0)
     ny = (y - TILE_SIZE / 2.0) / (TILE_SIZE / 2.0)
-    raw = 0.42 * (nx * nx - ny * ny)
+    raw = ACTIVE_OFFSET * 0.58 * (nx * nx - ny * ny)
     return NEUTRAL + raw * side_fade(x, y, band)
 
 
 def curved_valley(x: float, y: float, band: float) -> float:
-    curve_center = 5.5 + 1.2 * math.sin((x / TILE_SIZE) * math.pi * 1.3)
+    x_start = FEATURE_EDGE_CLEARANCE + VALLEY_HALF_WIDTH
+    x_end = TILE_SIZE - FEATURE_EDGE_CLEARANCE - VALLEY_HALF_WIDTH
+    if x < x_start - VALLEY_HALF_WIDTH or x > x_end + VALLEY_HALF_WIDTH:
+        return NEUTRAL
+    phase = (clamp(x, x_start, x_end) - x_start) / (x_end - x_start)
+    curve_center = 5.5 + 1.2 * math.sin(2.0 * math.pi * phase - 0.35)
     d = y - curve_center
-    return NEUTRAL - LOW_OFFSET * ridge_profile(d, 1.55) * side_fade(x, y, band)
+    length_fade = smoothstep(
+        FEATURE_EDGE_CLEARANCE,
+        x_start,
+        x,
+    ) * smoothstep(
+        FEATURE_EDGE_CLEARANCE,
+        TILE_SIZE - x_end,
+        TILE_SIZE - x,
+    )
+    return NEUTRAL - ACTIVE_OFFSET * ridge_profile(d, VALLEY_HALF_WIDTH) * length_fade
 
 
 def straight_ridge(x: float, y: float, band: float) -> float:
-    centerline = band + 0.72
-    length_fade = smoothstep(0.0, band, y) * smoothstep(0.0, band, TILE_SIZE - y)
-    value = HIGH_OFFSET * ridge_profile(x - centerline, 0.85) * length_fade
+    centerline = FEATURE_EDGE_CLEARANCE + RIDGE_HALF_WIDTH
+    start = FEATURE_EDGE_CLEARANCE + RIDGE_HALF_WIDTH
+    end = TILE_SIZE - FEATURE_EDGE_CLEARANCE - RIDGE_HALF_WIDTH
+    d = distance_to_segment(x, y, (centerline, start), (centerline, end))
+    value = ACTIVE_OFFSET * ridge_profile(d, RIDGE_HALF_WIDTH)
     return NEUTRAL + value
 
 
 def corner_ridge(x: float, y: float, band: float) -> float:
-    centerline = band + 0.72
-    vertical = ridge_profile(x - centerline, 0.85) * smoothstep(0.0, band, y)
-    horizontal = ridge_profile(y - centerline, 0.85) * smoothstep(0.0, band, x)
-    corner_round = ridge_profile(math.hypot(x - centerline, y - centerline), 1.05)
-    value = HIGH_OFFSET * max(vertical, horizontal, corner_round)
-    value *= smoothstep(0.0, band, TILE_SIZE - x) * smoothstep(0.0, band, TILE_SIZE - y)
+    centerline = FEATURE_EDGE_CLEARANCE + RIDGE_HALF_WIDTH
+    arc_radius = RIDGE_HALF_WIDTH
+    arc_center = (centerline + arc_radius, centerline + arc_radius)
+    segment_end = TILE_SIZE - FEATURE_EDGE_CLEARANCE - RIDGE_HALF_WIDTH
+    vertical = distance_to_segment(x, y, (centerline, arc_center[1]), (centerline, segment_end))
+    horizontal = distance_to_segment(x, y, (arc_center[0], centerline), (segment_end, centerline))
+    arc = abs(math.hypot(x - arc_center[0], y - arc_center[1]) - arc_radius)
+    if x > arc_center[0] or y > arc_center[1]:
+        arc = float("inf")
+    value = ACTIVE_OFFSET * ridge_profile(min(vertical, horizontal, arc), RIDGE_HALF_WIDTH)
     return NEUTRAL + value
 
 
 def paired_hill_dip(x: float, y: float, band: float) -> float:
-    hill = LOW_OFFSET * bump_profile(math.hypot(x - 3.4, y - 7.0), 2.8)
-    dip = -LOW_OFFSET * bump_profile(math.hypot(x - 7.2, y - 3.8), 2.8)
+    hill = ACTIVE_OFFSET * bump_profile(math.hypot(x - 3.4, y - 7.25), 2.65)
+    dip = -ACTIVE_OFFSET * bump_profile(math.hypot(x - 7.45, y - 3.95), 2.65)
     return NEUTRAL + (hill + dip) * side_fade(x, y, band)
 
 
 TILE_MODELS: dict[str, HeightFn] = {
     "flat": flat_tile,
-    "hill_low": hill_low,
-    "hill_high": hill_high,
-    "dip_low": dip_low,
-    "dip_high": dip_high,
+    "standard_hill": standard_hill,
+    "wide_hill": wide_hill,
+    "standard_dip": standard_dip,
+    "wide_dip": wide_dip,
     "saddle": saddle,
     "curved_valley": curved_valley,
     "corner_ridge": corner_ridge,

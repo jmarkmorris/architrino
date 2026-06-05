@@ -965,6 +965,140 @@ binding-contract stop condition is
 `independent_binding_contract_satisfaction_endpoint_application_without_contract_link_present`,
 `independent_contract_target_satisfaction_without_contract_link_proof_present`,
 and `independent_target_ref_value_equations_without_contract_link_proof_grade`.
+The target/ref-value/compatibility subproof packet,
+`fold_coordinate_endpoint_functional_independent_contract_target_satisfaction_ref_value_compatibility_without_contract_link_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then lowers that blocker to proof-grade target satisfaction. It records 4 / 4
+binding-contract targets, target objects, endpoint value-binding maps, first
+endpoint boundary-binding primitives, witness-object endpoint-boundary-binding
+refs, target-satisfaction-without-contract-link source-input sets, and
+contract-link premise non-import guards, plus 3 / 3 row input/no-link
+guard/target/value-map/ref-field/first-primitive pairs. It records 0 / 4 source
+target-satisfaction proofs, source proof-grade target ref/value packages, source
+endpoint-boundary-binding ref compatibility proofs, source first-primitive
+compatibility proofs, target-satisfaction proofs without the link premise,
+proof-grade target ref/value packages, endpoint-boundary-binding ref
+compatibility proofs, first-primitive compatibility proofs, derivations,
+soundness proofs, endpoint application proofs, target/ref-value/compatibility
+foundation-ready records, binding-contract satisfaction proofs without the link
+premise, row consumption, or branch-chart authorization. The
+target/ref-value/compatibility stop condition is
+`independent_contract_target_satisfaction_without_contract_link_proof_present`,
+`independent_target_ref_value_equations_without_contract_link_proof_grade`,
+`independent_endpoint_boundary_binding_ref_compatibility_without_contract_link_present`,
+`independent_first_primitive_compatibility_without_contract_link_present`,
+`independent_contract_target_satisfaction_derivation_without_contract_link_present`,
+and `independent_contract_target_satisfaction_soundness_without_contract_link_present`.
+The independent target ref/value equations without contract link proof attempt,
+`fold_coordinate_endpoint_functional_independent_target_ref_value_equations_without_contract_link_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then narrows the proof-grade ref/value equation blocker. It records 4 / 4
+target endpoint-boundary-binding object packet inputs, no-link premise packet
+inputs, no-link independence guards, target objects, endpoint value-binding
+maps, source-equation sets, source-equation-only guards, value-map-only guards,
+payload matches, and target/ref-value source-input sets. It records 6 / 6
+individual target ref/value source equations matched by value-map bindings, plus
+3 / 3 row source-equation/value-map/no-link input pairs. It records 0 / 4
+proof-grade target ref/value equation packages, promotion rules, derivations,
+soundness proofs, endpoint application proofs, target-satisfaction proofs
+without the link premise, compatibility proofs, binding-contract satisfaction
+proofs without the link premise, row consumption, or branch-chart
+authorization. The target ref/value equation stop condition is
+`independent_target_ref_value_equations_without_contract_link_proof_grade`,
+`independent_target_ref_value_equation_promotion_rule_without_contract_link_present`,
+`independent_target_ref_value_equation_derivation_without_contract_link_present`,
+`independent_target_ref_value_equation_soundness_without_contract_link_present`,
+and
+`independent_target_ref_value_equation_endpoint_application_without_contract_link_present`.
+The independent target ref/value equation promotion-rule target,
+`fold_coordinate_endpoint_functional_independent_target_ref_value_equation_promotion_rule_without_contract_link_target.md`,
+then converts the first promotion-rule blocker into a priority-only candidate
+target. It states the rule target over target endpoint-boundary-binding objects,
+endpoint value maps, source-equation-only guards, endpoint-value-map-only
+guards, payload matches, contract-link premise non-import guards, and no-link
+independence guards declared, without importing `witness_object_has_contract_link`.
+It keeps 0 / 4 promotion rules, derivations, soundness proofs, endpoint
+application proofs, proof-grade target ref/value equation packages,
+target-satisfaction proofs, compatibility proofs, binding-contract satisfaction
+proofs without the link premise, row consumption, or branch-chart authorization.
+The proof-attempt sidecars below test derivation routes without accepting the
+rule as primitive; primitive-rule acceptance remains a separate decision.
+The independent target ref/value equation promotion-rule proof attempt,
+`fold_coordinate_endpoint_functional_independent_target_ref_value_equation_promotion_rule_without_contract_link_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests that derivation-from-existing-source-data route. It records 4 / 4
+target-note inputs, source-input bundles, source-equation-only guards,
+endpoint-value-map-only guards, payload matches, contract-link premise
+non-import guards, no-link independence guards declared, and
+primitive-rule-acceptance rejections, plus 3 / 3 row target-input/no-link
+pairs. It records 0 / 4 promotion rules, derivations, soundness proofs,
+endpoint application proofs, proof-grade target ref/value equation packages,
+target-satisfaction proofs, compatibility proofs, binding-contract satisfaction
+proofs without the link premise, row consumption, or branch-chart authorization.
+The first exact blockers remain
+`independent_target_ref_value_equation_promotion_rule_without_contract_link_present`,
+`independent_target_ref_value_equation_derivation_without_contract_link_present`,
+`independent_target_ref_value_equation_soundness_without_contract_link_present`,
+`independent_target_ref_value_equation_endpoint_application_without_contract_link_present`,
+and `independent_target_ref_value_equations_without_contract_link_proof_grade`.
+The independent target ref/value equation promotion-rule definition-source-data
+derivation proof attempt,
+`fold_coordinate_endpoint_functional_independent_target_ref_value_equation_promotion_rule_without_contract_link_definition_source_data_derivation_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then narrows that route to explicit definition-level obligations. It preserves
+the raw target endpoint refs/values and endpoint value-map source equations,
+records 4 / 4 definition-bridge source scopes, 6 / 6 target ref/value source
+equations, 6 value-map bindings, and 3 / 3 row source-scope pairs, but records
+0 / 4 definition bridges, certification lemmas, guard-discharge lemmas,
+no-link soundness lemmas, endpoint application schemata, derivation bundles,
+promotion rules, proof-grade target ref/value equation packages, row
+consumption, or branch-chart authorization. The first exact blockers are
+`target_ref_value_source_equation_promotion_definition_bridge_present`,
+`endpoint_value_map_certification_to_target_ref_value_equation_lemma_present`,
+`source_equation_only_guard_discharge_lemma_present`,
+`no_link_promotion_rule_soundness_lemma_present`,
+`endpoint_application_derivation_schema_present`, and
+`promotion_rule_definition_source_data_derivation_present`.
+The independent target ref/value source-equation promotion definition-bridge
+proof attempt,
+`fold_coordinate_endpoint_functional_independent_target_ref_value_source_equation_promotion_definition_bridge_without_contract_link_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests the first bridge blocker directly. It preserves 4 / 4 parent
+definition-source-data routes, 4 / 4 bridge source scopes, 6 / 6 target
+ref/value source equations, 6 value-map bindings, and 3 / 3 row bridge
+source-scope pairs, but records 0 / 4 interpretation rules, endpoint value-map
+identity bridges, source-equation-only guard-lift conditions,
+endpoint-value-map certification lift conditions, no-link bridge soundness
+proofs, endpoint applications, bridge derivations, definition bridges,
+promotion rules, proof-grade target ref/value equation packages, row
+consumption, or branch-chart authorization. The first exact blockers are
+`source_equation_to_target_ref_value_interpretation_rule_present`,
+`endpoint_value_map_to_target_object_identity_bridge_present`,
+`source_equation_only_guard_lift_condition_present`,
+`endpoint_value_map_certification_lift_condition_present`,
+`no_link_definition_bridge_soundness_present`,
+`definition_bridge_endpoint_application_present`,
+`definition_bridge_derivation_from_definition_source_data_present`, and
+`target_ref_value_source_equation_promotion_definition_bridge_present`.
+The independent target ref/value source-equation to target ref/value
+interpretation-rule proof attempt,
+`fold_coordinate_endpoint_functional_independent_target_ref_value_source_equation_to_target_ref_value_interpretation_rule_without_contract_link_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests that first interpretation-rule blocker directly. It preserves
+4 / 4 parent bridge inputs, bridge routes, definition source-data bundles,
+target ref/value source payloads, source-equation sets, source-equation-only
+guards, endpoint-value-map-only guards, endpoint-value-map certifications,
+payload matches, contract-link non-import guards, no-link guards,
+contract-link exclusions, primitive-rule-acceptance rejections, and
+interpretation-rule source scopes. The packet covers 6 / 6 target ref/value
+source equations, 6 value-map bindings, and 3 / 3 row source-scope pairs, but
+records 0 / 4 target-object domain definitions, semantic bridges,
+role-equivalence proofs, sort-preservation rules, soundness proofs, endpoint
+applications, derivations, interpretation rules, definition bridges, promotion
+rules, proof-grade target ref/value equation packages, row consumption, or
+branch-chart authorization. The first exact blockers are
+`target_ref_value_object_domain_defined`,
+`source_equation_syntax_to_target_ref_value_semantics_bridge_present`,
+`source_equation_target_object_role_equivalence_present`,
+`endpoint_ref_value_sort_preservation_rule_present`,
+`source_equation_to_target_ref_value_interpretation_rule_soundness_present`,
+`source_equation_to_target_ref_value_interpretation_rule_endpoint_application_present`,
+`source_equation_to_target_ref_value_interpretation_rule_derivation_present`, and
+`source_equation_to_target_ref_value_interpretation_rule_present`.
 The remaining branches are periodic
 endpoint/complement ownership for the 8 lift rows and fold-layer certificate
 closure for the 112 fold-layer rows now grouped by
