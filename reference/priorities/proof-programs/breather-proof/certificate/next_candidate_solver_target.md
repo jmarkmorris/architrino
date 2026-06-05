@@ -855,6 +855,34 @@ authorization. The current exact blockers for `L_adm` are
 `non_domain_witness_object_field_membership_proof_present`,
 `source_handle_non_promotion_guard_proven`, and
 `non_domain_carrier_admissibility_derivation_from_definitions_present`.
+The same-packet ref/value carrier-field existence lemma proof attempt,
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_same_packet_ref_value_carrier_field_existence_lemma_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then isolates the first two `L_adm` blockers. It records 4 / 4 source
+endpoint-boundary-binding refs, source endpoint value-binding maps,
+domain-chart carrier subfields, ref/value non-domain carrier source-candidate
+pairs, non-domain carrier obstructions, and carrier-field construction
+attempts, but 0 / 4 same-packet ref carrier fields, same-packet value-map
+carrier fields, ref dependency closures, value-map dependency closures,
+carrier-field existence lemmas, endpoint application proofs, consumed rows, or
+branch-chart authorization. Source handles and carrier source candidates
+therefore remain non-promoting evidence until a constructed same-packet
+ref/value carrier-field object is supplied.
+The same-packet ref/value carrier-field dependency-closure lemma proof attempt,
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_same_packet_ref_value_carrier_field_dependency_closure_lemma_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests whether the ready source binding layers can discharge those
+dependency fields. It records 4 / 4 source ref-packet endpoint boundary
+bindings, source ref-packet witness-object ref fields, source value-map packet
+value maps, source value-map packet witness-object value-map fields, source
+endpoint values bound to source boundary bindings, and non-promotion guards,
+but 0 / 4 same-packet full endpoint boundary-binding dependencies,
+same-packet endpoint boundary-binding dependencies, same-packet witness-object
+ref dependencies, same-packet endpoint value-bound dependencies, same-packet
+witness-object value-map dependencies, ref dependency closures, value-map
+dependency closures, constructed ref/value carrier fields, dependency-closure
+lemmas, endpoint application proofs, consumed rows, or branch-chart
+authorization. Source binding evidence therefore remains non-promoting until
+the same-packet carrier-field construction and obstruction layers expose the
+proof-grade dependency fields.
 The remaining branches are periodic
 endpoint/complement ownership for the 8 lift rows and fold-layer certificate
 closure for the 112 fold-layer rows now grouped by

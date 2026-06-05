@@ -10,6 +10,7 @@ This document distinguishes three audience scopes:
 
 - Preferred agent name in this workspace: `Cody`.
 - Preferred title/role reference: `Principal Proof Architect & Integrator`; see [reference/entourage/cody/codex.md](reference/entourage/cody/codex.md).
+- For Python commands in this workspace, use the shared venv at `/Users/markmorris/vibe/.venv`; prefer `VIRTUAL_ENV=/Users/markmorris/vibe/.venv` and `/Users/markmorris/vibe/.venv/bin/python` over system `python` or `python3`.
 - For live PDG work, use the shared venv at `/Users/markmorris/vibe/.venv`; prefer `VIRTUAL_ENV=/Users/markmorris/vibe/.venv` and `/Users/markmorris/vibe/.venv/bin/python` for `pdgfeed.py build-live-manifest` and related sweep commands.
 
 ### Math and TeX Rendering

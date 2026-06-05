@@ -2,8 +2,8 @@
 """Render sine-eased play-surface tile concept options.
 
 These are geometry studies, not CAD or manufacturing drawings. The renderer
-uses a deterministic raised-cosine height field so the surface feature follows
-the intended level-to-level S-curve instead of a guessed visual contour.
+uses a deterministic cosine height field so the surface feature follows a
+smooth neutral-to-peak-to-neutral curve instead of a guessed visual contour.
 """
 
 from __future__ import annotations
@@ -23,12 +23,14 @@ OUT_ROOT = Path(__file__).resolve().parents[1] / "assets/concepts/sine-curve-opt
 SOURCE_CORNERS = [(0, 0), (GRID_SAMPLES, 0), (GRID_SAMPLES, GRID_SAMPLES), (0, GRID_SAMPLES)]
 TOP_QUAD = [(405, 260), (1095, 430), (750, 875), (75, 675)]
 DROP = 130
+PROFILE_PANEL = (210, 965, 990, 1115)
+FEATURE_RADIUS = 3.25
 
 
-def raised_cosine(t: np.ndarray) -> np.ndarray:
-    """Zero-slope transition from level 0 to level 1."""
+def cosine_lobe(t: np.ndarray) -> np.ndarray:
+    """Real cosine lobe with zero slope at neutral edge and center peak."""
     t = np.clip(t, 0.0, 1.0)
-    return 0.5 * (1.0 - np.cos(np.pi * t))
+    return 0.5 * (1.0 + np.cos(np.pi * t))
 
 
 def radial_level_change(
@@ -36,21 +38,16 @@ def radial_level_change(
     y: np.ndarray,
     *,
     center: tuple[float, float],
-    plateau_radius: float,
-    transition_width: float,
+    radius: float,
     amplitude: float,
 ) -> np.ndarray:
-    """Circular level feature with sine-eased walls and a flat center level."""
+    """Circular hill or dip with no flat plateau or flat bottom."""
     distance = np.hypot(x - center[0], y - center[1])
-    outer_radius = plateau_radius + transition_width
     z = np.zeros_like(distance)
 
-    inside = distance <= plateau_radius
-    transition = (distance > plateau_radius) & (distance < outer_radius)
-
-    z[inside] = amplitude
-    t = (outer_radius - distance[transition]) / transition_width
-    z[transition] = amplitude * raised_cosine(t)
+    inside = distance < radius
+    t = distance[inside] / radius
+    z[inside] = amplitude * cosine_lobe(t)
     return z
 
 
@@ -61,10 +58,19 @@ def make_height_field(amplitude: float) -> np.ndarray:
         x,
         y,
         center=(4.45, 6.55),
-        plateau_radius=0.95,
-        transition_width=2.25,
+        radius=FEATURE_RADIUS,
         amplitude=amplitude,
     )
+
+
+def profile_values(amplitude: float, samples: int = 900) -> tuple[np.ndarray, np.ndarray]:
+    x = np.linspace(-FEATURE_RADIUS - 0.55, FEATURE_RADIUS + 0.55, samples)
+    distance = np.abs(x)
+    z = np.zeros_like(x)
+    inside = distance < FEATURE_RADIUS
+    t = distance[inside] / FEATURE_RADIUS
+    z[inside] = amplitude * cosine_lobe(t)
+    return x, z
 
 
 def shade_height_field(z: np.ndarray) -> Image.Image:
@@ -118,6 +124,50 @@ def draw_sidewall(
     fill: tuple[int, int, int],
 ) -> None:
     draw.polygon(points, fill=fill)
+
+
+def draw_antialiased_line(
+    image: Image.Image,
+    points: list[tuple[float, float]],
+    *,
+    fill: tuple[int, int, int, int],
+    width: int,
+) -> None:
+    scale = 3
+    overlay = Image.new("RGBA", (image.width * scale, image.height * scale), (0, 0, 0, 0))
+    scaled = [(round(x * scale), round(y * scale)) for x, y in points]
+    ImageDraw.Draw(overlay).line(scaled, fill=fill, width=width * scale, joint="curve")
+    overlay = overlay.resize(image.size, Image.Resampling.LANCZOS)
+    image.alpha_composite(overlay)
+
+
+def draw_profile_panel(canvas: Image.Image, amplitude: float) -> None:
+    draw = ImageDraw.Draw(canvas)
+    x0, y0, x1, y1 = PROFILE_PANEL
+    draw.rounded_rectangle((x0, y0, x1, y1), radius=18, fill=(244, 242, 249, 238))
+
+    margin_x = 42
+    margin_y = 24
+    plot_x0 = x0 + margin_x
+    plot_x1 = x1 - margin_x
+    plot_y0 = y0 + margin_y
+    plot_y1 = y1 - margin_y
+    mid_y = (plot_y0 + plot_y1) / 2
+
+    draw.line((plot_x0, mid_y, plot_x1, mid_y), fill=(205, 202, 214, 255), width=2)
+
+    x, z = profile_values(amplitude)
+    x_min = float(x.min())
+    x_max = float(x.max())
+    y_abs_max = max(abs(amplitude), 0.12)
+
+    points = []
+    for px, pz in zip(x, z):
+        sx = plot_x0 + (float(px) - x_min) / (x_max - x_min) * (plot_x1 - plot_x0)
+        sy = mid_y - float(pz) / y_abs_max * ((plot_y1 - plot_y0) * 0.42)
+        points.append((sx, sy))
+
+    draw_antialiased_line(canvas, points, fill=(76, 72, 89, 255), width=4)
 
 
 def render_option(name: str, amplitude: float, out_path: Path) -> None:
@@ -174,6 +224,7 @@ def render_option(name: str, amplitude: float, out_path: Path) -> None:
     edge = ImageDraw.Draw(canvas)
     edge.line([front_left, front_right, back_right], fill=(199, 197, 207), width=2)
     edge.line([back_right, back_left, front_left], fill=(232, 230, 238), width=2)
+    draw_profile_panel(canvas, amplitude)
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
     canvas.convert("RGB").save(out_path, quality=95)

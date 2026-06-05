@@ -971,6 +971,33 @@ derivations, membership-preservation derivations, consumed rows, or branch-chart
 authorization. It is still a source-cover route target only; it adds no
 boundary-ownership pass rule.
 
+The same-packet ref/value carrier-field existence lemma proof attempt,
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_same_packet_ref_value_carrier_field_existence_lemma_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+narrows the first two `L_adm` blockers for the same source-cover route. It
+records 4 / 4 source endpoint-boundary-binding refs, source endpoint
+value-binding maps, domain-chart carrier subfields, ref/value non-domain
+carrier source-candidate pairs, non-domain carrier obstructions, and
+carrier-field construction attempts, but 0 / 4 same-packet ref carrier fields,
+same-packet value-map carrier fields, ref dependency closures, value-map
+dependency closures, carrier-field existence lemmas, endpoint application
+proofs, consumed rows, or branch-chart authorization. It is still a source-cover
+route target only; it adds no boundary-ownership pass rule.
+
+The same-packet ref/value carrier-field dependency-closure lemma proof attempt,
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_same_packet_ref_value_carrier_field_dependency_closure_lemma_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests the dependency half of that same source-cover route. It records
+4 / 4 source ref-packet endpoint boundary bindings, source ref-packet
+witness-object ref fields, source value-map packet value maps, source value-map
+packet witness-object value-map fields, source endpoint values bound to source
+boundary bindings, and non-promotion guards, but 0 / 4 same-packet full
+endpoint boundary-binding dependencies, endpoint boundary-binding dependencies,
+witness-object ref dependencies, endpoint value-bound dependencies,
+witness-object value-map dependencies, ref dependency closures, value-map
+dependency closures, constructed ref/value carrier fields, dependency-closure
+lemmas, endpoint application proofs, consumed rows, or branch-chart
+authorization. It is still a source-cover route target only; it adds no
+boundary-ownership pass rule.
+
 ## Capture Decision
 
 Priority-only theorem target. The partition-audit implementation is now
@@ -1010,6 +1037,11 @@ zero certificate, exact $B\xi=0$, rank certificate, or replay certificate is
 constructed. The candidate artifact replay-readiness audit then confirms that
 this absence blocks same-packet artifact emission and proof-interval replay:
 there are 0 / 5 candidate artifacts and 0 / 3 replay-ready rows. The
+same-packet ref/value carrier-field dependency-closure lemma proof attempt
+preserves that fail-closed boundary: source-layer ref/value bindings and
+non-promotion guards are present, but 0 / 4 same-packet dependency closures or
+constructed ref/value carrier fields exist, so there are still 0 / 3
+row-consumable carrier-field pairs. The
 component-union chart certificate closes the finite support-list ambiguity and
 no-double-counting subproblem for the four `fc_*` variables, but it still leaves
 endpoint motion, full endpoint evaluation maps, non-target zero certificates,
@@ -1106,7 +1138,11 @@ complete witness objects, residual source layers, and row-consumable fields
 remain absent. The non-domain carrier obstruction packet preserves that
 positive `domain_chart` layer, verifies 24 / 24 non-domain carrier source
 candidates, and confirms that 0 / 24 non-domain carrier fields and 0 / 3
-row-closure pairs are constructed. The primitive dependency certificate then
+row-closure pairs are constructed. The later same-packet ref/value
+carrier-field existence lemma proof attempt preserves the source ref/value
+handles and those carrier source candidates, but still constructs 0 / 4
+same-packet ref carrier fields, 0 / 4 value-map carrier fields, and 0 / 3
+row-consumable carrier-field pairs. The primitive dependency certificate then
 narrows the first live endpoint proof object to a proof-grade endpoint boundary
 binding on each domain-chart carrier subfield, with 0 / 4 such primitives
 constructed.

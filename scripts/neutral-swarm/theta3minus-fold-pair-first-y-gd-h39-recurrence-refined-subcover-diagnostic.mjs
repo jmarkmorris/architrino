@@ -44706,6 +44706,140 @@ export function buildH39RequestedY44ProducerImageBudgetComparisonCandidate({
       nonconstantSourceMapResidualCovarianceTarget
         ?.source_map_residual_shared_stream_five_node_homothetic_source_term_contraction_normal_form
         ?.dominant_homothetic_contraction_node_index ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_classification:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization
+        ?.homothetic_contraction_scalar_factorization_classification ??
+      null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_all_lambdas_match:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization
+        ?.all_rows_factorize_normal_form_lambda ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_all_inverse_match:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization
+        ?.all_rows_factorize_inverse_contraction ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_all_endpoint_margins_match:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization
+        ?.all_rows_endpoint_margin_reconstructs_contracted_sum_half_width ??
+      null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_all_provider_sums_match:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization
+        ?.all_rows_provider_shaped_sum_reconstructed ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_max_lambda_gap:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization
+        ?.max_node_contraction_lambda_factorization_relative_gap ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_max_inverse_gap:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization
+        ?.max_node_inverse_contraction_factorization_relative_gap ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_max_endpoint_margin_gap:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization
+        ?.max_endpoint_margin_reconstruction_relative_gap ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_max_provider_sum_gap:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization
+        ?.max_provider_shaped_sum_reconstruction_relative_gap ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_max_inverse_factor:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization
+        ?.max_factorized_node_inverse_contraction_factor ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_dominant_node_index:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization
+        ?.dominant_scalar_factorization_node_index ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_classification:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target
+        ?.homothetic_contraction_scalar_provider_target_classification ??
+      null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_all_numerators_reconstruct:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target
+        ?.all_rows_reconstruct_available_half_width_numerator ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_all_denominators_reconstruct:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target
+        ?.all_rows_reconstruct_original_half_width_denominator ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_all_lambdas_reconstruct:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target
+        ?.all_rows_reconstruct_factorized_lambda_from_provider_sources ??
+      null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_all_two_source:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target
+        ?.all_rows_reduce_scalar_certificate_to_two_source_quantities ??
+      null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_all_quotient_tolerance:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target
+        ?.all_rows_meet_candidate_quotient_tolerance_route ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_candidate_source_tolerance:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target
+        ?.candidate_source_relative_tolerance_for_scalar_target ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_max_numerator_gap:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target
+        ?.max_available_half_width_numerator_relative_gap ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_max_denominator_gap:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target
+        ?.max_original_half_width_denominator_relative_gap ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_max_lambda_gap:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target
+        ?.max_lambda_from_provider_sources_relative_gap ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_max_quotient_bound:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target
+        ?.max_quotient_relative_error_bound_at_source_tolerance ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_dominant_node_index:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target
+        ?.dominant_scalar_provider_target_node_index ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_quotient_envelope_classification:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope
+        ?.homothetic_contraction_scalar_quotient_envelope_classification ??
+      null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_quotient_envelope_all_positive:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope
+        ?.all_rows_have_positive_numerator_denominator_envelopes ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_quotient_envelope_all_factorized_contained:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope
+        ?.all_rows_quotient_interval_contains_factorized_lambda ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_quotient_envelope_all_normal_contained:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope
+        ?.all_rows_quotient_interval_contains_normal_form_lambda ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_quotient_envelope_all_within_tolerance:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope
+        ?.all_rows_quotient_relative_radius_within_scalar_tolerance ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_quotient_envelope_max_lambda_relative_radius:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope
+        ?.max_quotient_lambda_relative_radius ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_quotient_envelope_max_source_tolerance:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope
+        ?.max_candidate_source_relative_tolerance ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_quotient_envelope_min_denominator_lower:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope
+        ?.min_denominator_interval_lower ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_quotient_envelope_dominant_node_index:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope
+        ?.dominant_scalar_quotient_envelope_node_index ?? null,
     producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_contracted_provider_reaches_verifier_with_source_only_failure:
       nonconstantSourceMapResidualCovarianceTarget
         ?.source_map_residual_shared_stream_five_node_contracted_provider_candidate
@@ -51329,6 +51463,959 @@ function h39RequestedY44SourceMapResidualFiveNodeHomotheticSourceTermContraction
   };
 }
 
+function h39RequestedY44SourceMapResidualFiveNodeHomotheticContractionScalarFactorization({
+  homotheticSourceTermContractionNormalForm,
+  sourceTermProviderProbe,
+} = {}) {
+  const tolerance = 1e-9;
+  const endpointMargin = 1 - Math.sqrt(Number.EPSILON);
+  const scalarRelativeGap = (left, right) => {
+    const leftNumber = Number(left);
+    const rightNumber = Number(right);
+    if (!Number.isFinite(leftNumber) || !Number.isFinite(rightNumber)) {
+      return Infinity;
+    }
+    return (
+      Math.abs(leftNumber - rightNumber) /
+      Math.max(1, Math.abs(leftNumber), Math.abs(rightNumber))
+    );
+  };
+  const missingArtifact = {
+    target_kind:
+      "candidate-requested-y44-shared-source-map-homothetic-contraction-scalar-factorization",
+    proof_status:
+      "candidate-homothetic-contraction-scalar-factorization-inputs-missing",
+    factorization_kind:
+      "center-aware-available-half-width-over-live-source-width-sum",
+    scalar_factorization_relative_tolerance: tolerance,
+    endpoint_margin: endpointMargin,
+    homothetic_contraction_scalar_factorization_rows_available: false,
+    homothetic_contraction_scalar_factorization_rows: [],
+    all_rows_factorize_normal_form_lambda: false,
+    all_rows_factorize_inverse_contraction: false,
+    all_rows_endpoint_margin_reconstructs_contracted_sum_half_width: false,
+    all_rows_provider_shaped_sum_reconstructed: false,
+    max_node_contraction_lambda_factorization_relative_gap: null,
+    max_node_inverse_contraction_factorization_relative_gap: null,
+    max_endpoint_margin_reconstruction_relative_gap: null,
+    max_provider_shaped_sum_reconstruction_relative_gap: null,
+    min_factorized_node_contraction_lambda: null,
+    max_factorized_node_contraction_lambda: null,
+    max_factorized_node_inverse_contraction_factor: null,
+    dominant_scalar_factorization_node_index: null,
+    homothetic_contraction_scalar_factorization_classification:
+      "homothetic-contraction-scalar-factorization-inputs-missing",
+    claim_boundary: {
+      certifies_homothetic_contraction_scalar_factorization_only: false,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+  if (
+    homotheticSourceTermContractionNormalForm === null ||
+    homotheticSourceTermContractionNormalForm === undefined ||
+    homotheticSourceTermContractionNormalForm.target_kind !==
+      "candidate-requested-y44-shared-source-map-homothetic-source-term-contraction-normal-form" ||
+    homotheticSourceTermContractionNormalForm
+      .homothetic_source_term_contraction_rows_available !== true ||
+    sourceTermProviderProbe === null ||
+    sourceTermProviderProbe === undefined ||
+    sourceTermProviderProbe.target_kind !==
+      "candidate-requested-y44-shared-source-map-source-term-provider-probe" ||
+    sourceTermProviderProbe.source_term_provider_probe_rows_available !== true
+  ) {
+    return missingArtifact;
+  }
+  const normalFormRows =
+    homotheticSourceTermContractionNormalForm
+      .homothetic_source_term_contraction_rows ?? [];
+  const providerRows = sourceTermProviderProbe.source_term_provider_probe_rows ?? [];
+  if (normalFormRows.length !== 5 || providerRows.length !== 5) {
+    return missingArtifact;
+  }
+  const providerRowsByNode = new Map(
+    providerRows.map((row) => [Number(row.node_index), row])
+  );
+  const rows = normalFormRows.map((row) => {
+    const providerRow = providerRowsByNode.get(Number(row.node_index));
+    const originalTermHalfWidthSum = Number(row.original_term_half_width_sum);
+    const signedAvailableHalfWidth = Number(
+      providerRow?.signed_source_term_sum_available_half_width
+    );
+    const providerShapedTermHalfWidthSum = Number(
+      providerRow?.source_term_half_width_sum
+    );
+    const providerProbeContractionFactor = Number(
+      providerRow?.source_term_half_width_contraction_factor
+    );
+    if (
+      providerRow === undefined ||
+      !finitePositive(originalTermHalfWidthSum) ||
+      !finitePositive(signedAvailableHalfWidth) ||
+      !finiteNonnegative(providerShapedTermHalfWidthSum) ||
+      !finitePositive(providerProbeContractionFactor)
+    ) {
+      return null;
+    }
+    const factorizedNodeContractionLambda =
+      (signedAvailableHalfWidth * endpointMargin) / originalTermHalfWidthSum;
+    const normalFormNodeContractionLambda = Number(
+      row.node_contraction_lambda
+    );
+    const factorizedInverseContraction =
+      originalTermHalfWidthSum / (signedAvailableHalfWidth * endpointMargin);
+    const normalFormInverseContraction = Number(
+      row.node_inverse_contraction_factor
+    );
+    const providerEndpointAdjustedInverseContraction =
+      providerProbeContractionFactor / endpointMargin;
+    const contractedSourceTermHalfWidthSum =
+      originalTermHalfWidthSum * factorizedNodeContractionLambda;
+    const contractedSumToAvailableHalfWidthRatio =
+      contractedSourceTermHalfWidthSum / signedAvailableHalfWidth;
+    const lambdaGap = scalarRelativeGap(
+      factorizedNodeContractionLambda,
+      normalFormNodeContractionLambda
+    );
+    const inverseGap = Math.max(
+      scalarRelativeGap(
+        factorizedInverseContraction,
+        normalFormInverseContraction
+      ),
+      scalarRelativeGap(
+        factorizedInverseContraction,
+        providerEndpointAdjustedInverseContraction
+      )
+    );
+    const endpointMarginGap = scalarRelativeGap(
+      contractedSumToAvailableHalfWidthRatio,
+      endpointMargin
+    );
+    const providerShapedSumGap = scalarRelativeGap(
+      contractedSourceTermHalfWidthSum,
+      providerShapedTermHalfWidthSum
+    );
+    const lambdaMatches = lambdaGap <= tolerance;
+    const inverseMatches = inverseGap <= tolerance;
+    const endpointMarginMatches = endpointMarginGap <= tolerance;
+    const providerShapedSumMatches = providerShapedSumGap <= tolerance;
+    return {
+      node_index: row.node_index,
+      xi_midpoint: row.xi_midpoint,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      tightest_budget_cell_id: row.tightest_budget_cell_id,
+      homothetic_contraction_scalar_factorization_row_kind:
+        "candidate-node-local-homothetic-contraction-scalar-factorization-row",
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      zero_source_terms: ["constant_minus_two"],
+      endpoint_margin: endpointMargin,
+      original_source_term_half_width_sum: originalTermHalfWidthSum,
+      signed_source_term_sum_available_half_width:
+        signedAvailableHalfWidth,
+      provider_shaped_source_term_half_width_sum:
+        providerShapedTermHalfWidthSum,
+      provider_probe_source_term_half_width_contraction_factor:
+        providerProbeContractionFactor,
+      factorized_node_contraction_lambda:
+        factorizedNodeContractionLambda,
+      normal_form_node_contraction_lambda:
+        normalFormNodeContractionLambda,
+      factorized_node_inverse_contraction_factor:
+        factorizedInverseContraction,
+      normal_form_node_inverse_contraction_factor:
+        normalFormInverseContraction,
+      provider_endpoint_adjusted_inverse_contraction_factor:
+        providerEndpointAdjustedInverseContraction,
+      contracted_source_term_half_width_sum:
+        contractedSourceTermHalfWidthSum,
+      contracted_sum_to_available_half_width_ratio:
+        contractedSumToAvailableHalfWidthRatio,
+      lambda_factorization_relative_gap: lambdaGap,
+      inverse_contraction_factorization_relative_gap: inverseGap,
+      endpoint_margin_reconstruction_relative_gap: endpointMarginGap,
+      provider_shaped_sum_reconstruction_relative_gap:
+        providerShapedSumGap,
+      scalar_factorization_matches_normal_form_lambda: lambdaMatches,
+      inverse_factorization_matches_normal_form_inverse:
+        inverseMatches,
+      contracted_sum_half_width_matches_endpoint_margin:
+        endpointMarginMatches,
+      provider_shaped_sum_matches_factorized_contract:
+        providerShapedSumMatches,
+      row_status:
+        lambdaMatches &&
+        inverseMatches &&
+        endpointMarginMatches &&
+        providerShapedSumMatches
+          ? "candidate-homothetic-contraction-scalar-factorization-row-source-certification-open"
+          : "candidate-homothetic-contraction-scalar-factorization-row-open",
+      claim_boundary: {
+        certifies_homothetic_contraction_scalar_factorization_only:
+          lambdaMatches &&
+          inverseMatches &&
+          endpointMarginMatches &&
+          providerShapedSumMatches,
+        certifies_source_inputs_as_directed_rounded_same_domain: false,
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  });
+  if (rows.some((row) => row === null)) {
+    return missingArtifact;
+  }
+  const allRowsFactorizeNormalFormLambda = rows.every(
+    (row) => row.scalar_factorization_matches_normal_form_lambda === true
+  );
+  const allRowsFactorizeInverseContraction = rows.every(
+    (row) => row.inverse_factorization_matches_normal_form_inverse === true
+  );
+  const allRowsReconstructEndpointMargin = rows.every(
+    (row) => row.contracted_sum_half_width_matches_endpoint_margin === true
+  );
+  const allRowsReconstructProviderShapedSum = rows.every(
+    (row) => row.provider_shaped_sum_matches_factorized_contract === true
+  );
+  const dominantRow = rows.reduce((best, row) =>
+    Number(row.factorized_node_inverse_contraction_factor) >
+    Number(best.factorized_node_inverse_contraction_factor)
+      ? row
+      : best
+  );
+  return {
+    target_kind:
+      "candidate-requested-y44-shared-source-map-homothetic-contraction-scalar-factorization",
+    homothetic_source_term_contraction_normal_form_kind:
+      homotheticSourceTermContractionNormalForm.target_kind,
+    source_term_provider_probe_kind: sourceTermProviderProbe.target_kind,
+    proof_status:
+      "candidate-homothetic-contraction-scalar-factorization-not-directed-rounded",
+    factorization_kind:
+      "center-aware-available-half-width-over-live-source-width-sum",
+    scalar_factorization_relative_tolerance: tolerance,
+    endpoint_margin: endpointMargin,
+    source_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    homothetic_contraction_scalar_factorization_rows_available: true,
+    homothetic_contraction_scalar_factorization_rows: rows,
+    all_rows_factorize_normal_form_lambda:
+      allRowsFactorizeNormalFormLambda,
+    all_rows_factorize_inverse_contraction:
+      allRowsFactorizeInverseContraction,
+    all_rows_endpoint_margin_reconstructs_contracted_sum_half_width:
+      allRowsReconstructEndpointMargin,
+    all_rows_provider_shaped_sum_reconstructed:
+      allRowsReconstructProviderShapedSum,
+    max_node_contraction_lambda_factorization_relative_gap:
+      finiteMaximum(rows.map((row) => row.lambda_factorization_relative_gap)),
+    max_node_inverse_contraction_factorization_relative_gap:
+      finiteMaximum(
+        rows.map((row) => row.inverse_contraction_factorization_relative_gap)
+      ),
+    max_endpoint_margin_reconstruction_relative_gap:
+      finiteMaximum(
+        rows.map((row) => row.endpoint_margin_reconstruction_relative_gap)
+      ),
+    max_provider_shaped_sum_reconstruction_relative_gap:
+      finiteMaximum(
+        rows.map((row) => row.provider_shaped_sum_reconstruction_relative_gap)
+      ),
+    min_factorized_node_contraction_lambda:
+      finiteMinimum(rows.map((row) => row.factorized_node_contraction_lambda)),
+    max_factorized_node_contraction_lambda:
+      finiteMaximum(rows.map((row) => row.factorized_node_contraction_lambda)),
+    max_factorized_node_inverse_contraction_factor:
+      finiteMaximum(
+        rows.map((row) => row.factorized_node_inverse_contraction_factor)
+      ),
+    dominant_scalar_factorization_node_index:
+      dominantRow?.node_index ?? null,
+    homothetic_contraction_scalar_factorization_classification:
+      allRowsFactorizeNormalFormLambda &&
+      allRowsFactorizeInverseContraction &&
+      allRowsReconstructEndpointMargin &&
+      allRowsReconstructProviderShapedSum
+        ? "homothetic-contraction-reduces-to-center-aware-width-over-live-source-width-scalar"
+        : "homothetic-contraction-scalar-factorization-open",
+    homothetic_contraction_scalar_factorization_interpretation:
+      "the node-local homothetic contraction factor equals the center-aware signed available half-width times the shared endpoint margin, divided by the live original source-term half-width sum; the remaining certificate is a directed-rounded same-domain H38 producer-image proof of this scalar numerator and denominator, not an independent three-term width choice",
+    next_certificate_object:
+      "directed-rounded same-domain H38 producer-image scalar provider for signed_source_term_sum_available_half_width and original_source_term_half_width_sum on the live five-node source-term cover",
+    claim_boundary: {
+      certifies_homothetic_contraction_scalar_factorization_only:
+        allRowsFactorizeNormalFormLambda &&
+        allRowsFactorizeInverseContraction &&
+        allRowsReconstructEndpointMargin &&
+        allRowsReconstructProviderShapedSum,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function h39RequestedY44SourceMapResidualFiveNodeHomotheticContractionScalarProviderTarget({
+  homotheticContractionScalarFactorization,
+  sourceTermProviderProbe,
+} = {}) {
+  const tolerance = 1e-9;
+  const candidateSourceRelativeTolerance = tolerance / 4;
+  const quotientRelativeErrorBoundAtSourceTolerance =
+    candidateSourceRelativeTolerance +
+    candidateSourceRelativeTolerance /
+      (1 - candidateSourceRelativeTolerance);
+  const scalarRelativeGap = (left, right) => {
+    const leftNumber = Number(left);
+    const rightNumber = Number(right);
+    if (!Number.isFinite(leftNumber) || !Number.isFinite(rightNumber)) {
+      return Infinity;
+    }
+    return (
+      Math.abs(leftNumber - rightNumber) /
+      Math.max(1, Math.abs(leftNumber), Math.abs(rightNumber))
+    );
+  };
+  const missingArtifact = {
+    target_kind:
+      "candidate-requested-y44-shared-source-map-homothetic-contraction-scalar-provider-target",
+    proof_status:
+      "candidate-homothetic-contraction-scalar-provider-target-inputs-missing",
+    provider_target_kind:
+      "two-source-scalar-provider-target",
+    scalar_provider_formula:
+      "lambda = endpoint_margin * available_signed_half_width / original_source_term_half_width_sum",
+    scalar_provider_target_relative_tolerance: tolerance,
+    candidate_source_relative_tolerance_for_scalar_target:
+      candidateSourceRelativeTolerance,
+    quotient_relative_error_bound_at_source_tolerance:
+      quotientRelativeErrorBoundAtSourceTolerance,
+    homothetic_contraction_scalar_provider_target_rows_available: false,
+    homothetic_contraction_scalar_provider_target_rows: [],
+    all_rows_reconstruct_available_half_width_numerator: false,
+    all_rows_reconstruct_original_half_width_denominator: false,
+    all_rows_reconstruct_factorized_lambda_from_provider_sources: false,
+    all_rows_reduce_scalar_certificate_to_two_source_quantities: false,
+    all_rows_meet_candidate_quotient_tolerance_route: false,
+    max_available_half_width_numerator_relative_gap: null,
+    max_original_half_width_denominator_relative_gap: null,
+    max_lambda_from_provider_sources_relative_gap: null,
+    max_quotient_relative_error_bound_at_source_tolerance: null,
+    dominant_scalar_provider_target_node_index: null,
+    homothetic_contraction_scalar_provider_target_classification:
+      "homothetic-contraction-scalar-provider-target-inputs-missing",
+    claim_boundary: {
+      certifies_homothetic_contraction_scalar_provider_target_only: false,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+  if (
+    homotheticContractionScalarFactorization === null ||
+    homotheticContractionScalarFactorization === undefined ||
+    homotheticContractionScalarFactorization.target_kind !==
+      "candidate-requested-y44-shared-source-map-homothetic-contraction-scalar-factorization" ||
+    homotheticContractionScalarFactorization
+      .homothetic_contraction_scalar_factorization_rows_available !== true ||
+    sourceTermProviderProbe === null ||
+    sourceTermProviderProbe === undefined ||
+    sourceTermProviderProbe.target_kind !==
+      "candidate-requested-y44-shared-source-map-source-term-provider-probe" ||
+    sourceTermProviderProbe.source_term_provider_probe_rows_available !== true
+  ) {
+    return missingArtifact;
+  }
+  const scalarRows =
+    homotheticContractionScalarFactorization
+      .homothetic_contraction_scalar_factorization_rows ?? [];
+  const providerRows = sourceTermProviderProbe.source_term_provider_probe_rows ?? [];
+  if (scalarRows.length !== 5 || providerRows.length !== 5) {
+    return missingArtifact;
+  }
+  const providerRowsByNode = new Map(
+    providerRows.map((row) => [Number(row.node_index), row])
+  );
+  const rows = scalarRows.map((scalarRow) => {
+    const providerRow = providerRowsByNode.get(Number(scalarRow.node_index));
+    const signedTargetInterval = finiteOrderedIntervalOrNull(
+      providerRow?.signed_center_aware_residual_target_interval
+    );
+    const sourceTermRows = Array.isArray(providerRow?.source_term_residual_rows)
+      ? providerRow.source_term_residual_rows
+      : [];
+    const signedSourceTermSumCenter = Number(
+      providerRow?.signed_source_term_sum_center
+    );
+    const endpointMargin = Number(scalarRow.endpoint_margin);
+    if (
+      providerRow === undefined ||
+      signedTargetInterval === null ||
+      !Number.isFinite(signedSourceTermSumCenter) ||
+      !boundedUnitValue(endpointMargin) ||
+      sourceTermRows.length !== H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length
+    ) {
+      return null;
+    }
+    const termSourceRows = H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.map(
+      (term) => {
+        const termRow = sourceTermRows.find(
+          (candidate) => candidate.term === term
+        );
+        const originalInterval = finiteOrderedIntervalOrNull(
+          termRow?.original_residual_interval
+        );
+        const originalHalfWidth = Number(
+          termRow?.original_residual_interval_half_width
+        );
+        if (originalInterval === null || !finitePositive(originalHalfWidth)) {
+          return null;
+        }
+        return {
+          term,
+          original_residual_interval: originalInterval,
+          original_residual_interval_half_width: originalHalfWidth,
+        };
+      }
+    );
+    if (termSourceRows.some((termRow) => termRow === null)) {
+      return null;
+    }
+    const availableHalfWidthFromTarget = Math.min(
+      signedSourceTermSumCenter - signedTargetInterval[0],
+      signedTargetInterval[1] - signedSourceTermSumCenter
+    );
+    const availableHalfWidthFromProvider = Number(
+      providerRow.signed_source_term_sum_available_half_width
+    );
+    const originalHalfWidthSumFromTerms = termSourceRows.reduce(
+      (total, termRow) =>
+        total + Number(termRow.original_residual_interval_half_width),
+      0
+    );
+    const originalHalfWidthSumFromScalar = Number(
+      scalarRow.original_source_term_half_width_sum
+    );
+    if (
+      !finitePositive(availableHalfWidthFromTarget) ||
+      !finitePositive(availableHalfWidthFromProvider) ||
+      !finitePositive(originalHalfWidthSumFromTerms) ||
+      !finitePositive(originalHalfWidthSumFromScalar)
+    ) {
+      return null;
+    }
+    const lambdaFromProviderSources =
+      (endpointMargin * availableHalfWidthFromTarget) /
+      originalHalfWidthSumFromTerms;
+    const availableGap = scalarRelativeGap(
+      availableHalfWidthFromTarget,
+      availableHalfWidthFromProvider
+    );
+    const originalWidthGap = scalarRelativeGap(
+      originalHalfWidthSumFromTerms,
+      originalHalfWidthSumFromScalar
+    );
+    const lambdaGap = scalarRelativeGap(
+      lambdaFromProviderSources,
+      scalarRow.factorized_node_contraction_lambda
+    );
+    const availableMatches = availableGap <= tolerance;
+    const originalWidthMatches = originalWidthGap <= tolerance;
+    const lambdaMatches = lambdaGap <= tolerance;
+    const rowReducesToTwoSourceQuantities =
+      availableMatches && originalWidthMatches && lambdaMatches;
+    return {
+      node_index: scalarRow.node_index,
+      xi_midpoint: scalarRow.xi_midpoint,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      tightest_budget_cell_id: scalarRow.tightest_budget_cell_id,
+      homothetic_contraction_scalar_provider_target_row_kind:
+        "candidate-node-local-homothetic-contraction-scalar-provider-target-row",
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      zero_source_terms: ["constant_minus_two"],
+      scalar_provider_formula:
+        "lambda = endpoint_margin * available_signed_half_width / original_source_term_half_width_sum",
+      available_signed_half_width_source_kind:
+        "center-aware-signed-target-clearance-around-source-term-sum-center",
+      original_width_sum_source_kind:
+        "sum-of-live-delta-squared-speed-sin-phi-sin-delta-source-term-half-widths",
+      available_signed_half_width_formula:
+        "min(center - target_lower, target_upper - center)",
+      original_source_term_width_formula:
+        "sum(original_source_term_half_widths)",
+      signed_center_aware_residual_target_interval: signedTargetInterval,
+      signed_source_term_sum_center: signedSourceTermSumCenter,
+      available_half_width_from_target: availableHalfWidthFromTarget,
+      signed_source_term_sum_available_half_width:
+        availableHalfWidthFromProvider,
+      original_source_term_half_width_sum_from_terms:
+        originalHalfWidthSumFromTerms,
+      original_source_term_half_width_sum:
+        originalHalfWidthSumFromScalar,
+      endpoint_margin: endpointMargin,
+      factorized_node_contraction_lambda:
+        scalarRow.factorized_node_contraction_lambda,
+      lambda_from_provider_source_quantities: lambdaFromProviderSources,
+      normal_form_node_contraction_lambda:
+        scalarRow.normal_form_node_contraction_lambda,
+      quotient_relative_condition_number_bound:
+        quotientRelativeErrorBoundAtSourceTolerance /
+        candidateSourceRelativeTolerance,
+      candidate_source_relative_tolerance_for_scalar_target:
+        candidateSourceRelativeTolerance,
+      quotient_relative_error_bound_at_source_tolerance:
+        quotientRelativeErrorBoundAtSourceTolerance,
+      quotient_tolerance_route_fits_scalar_target:
+        quotientRelativeErrorBoundAtSourceTolerance <= tolerance,
+      term_source_rows: termSourceRows.map((termRow) => ({
+        ...termRow,
+        width_share_of_original_sum:
+          Number(termRow.original_residual_interval_half_width) /
+          originalHalfWidthSumFromTerms,
+      })),
+      available_half_width_numerator_relative_gap: availableGap,
+      original_half_width_denominator_relative_gap: originalWidthGap,
+      lambda_from_provider_sources_relative_gap: lambdaGap,
+      available_half_width_formula_reconstructs_scalar_numerator:
+        availableMatches,
+      original_width_sum_formula_reconstructs_scalar_denominator:
+        originalWidthMatches,
+      provider_sources_reconstruct_factorized_lambda: lambdaMatches,
+      row_reduces_scalar_certificate_to_two_source_quantities:
+        rowReducesToTwoSourceQuantities,
+      available_half_width_requires_directed_rounding: true,
+      original_width_sum_requires_directed_rounding: true,
+      row_status: rowReducesToTwoSourceQuantities
+        ? "candidate-homothetic-contraction-scalar-provider-target-row-source-certification-open"
+        : "candidate-homothetic-contraction-scalar-provider-target-row-open",
+      claim_boundary: {
+        certifies_homothetic_contraction_scalar_provider_target_only:
+          rowReducesToTwoSourceQuantities,
+        certifies_source_inputs_as_directed_rounded_same_domain: false,
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  });
+  if (rows.some((row) => row === null)) {
+    return missingArtifact;
+  }
+  const allRowsReconstructAvailableHalfWidth = rows.every(
+    (row) =>
+      row.available_half_width_formula_reconstructs_scalar_numerator === true
+  );
+  const allRowsReconstructOriginalHalfWidth = rows.every(
+    (row) =>
+      row.original_width_sum_formula_reconstructs_scalar_denominator === true
+  );
+  const allRowsReconstructLambda = rows.every(
+    (row) => row.provider_sources_reconstruct_factorized_lambda === true
+  );
+  const allRowsReduceScalarCertificate = rows.every(
+    (row) =>
+      row.row_reduces_scalar_certificate_to_two_source_quantities === true
+  );
+  const allRowsMeetQuotientToleranceRoute = rows.every(
+    (row) => row.quotient_tolerance_route_fits_scalar_target === true
+  );
+  const dominantRow = rows.reduce((best, row) =>
+    Number(row.quotient_relative_condition_number_bound) >
+    Number(best.quotient_relative_condition_number_bound)
+      ? row
+      : best
+  );
+  return {
+    target_kind:
+      "candidate-requested-y44-shared-source-map-homothetic-contraction-scalar-provider-target",
+    homothetic_contraction_scalar_factorization_kind:
+      homotheticContractionScalarFactorization.target_kind,
+    source_term_provider_probe_kind: sourceTermProviderProbe.target_kind,
+    proof_status:
+      "candidate-homothetic-contraction-scalar-provider-target-not-directed-rounded",
+    provider_target_kind:
+      "two-source-scalar-provider-target",
+    scalar_provider_formula:
+      "lambda = endpoint_margin * available_signed_half_width / original_source_term_half_width_sum",
+    scalar_provider_target_relative_tolerance: tolerance,
+    candidate_source_relative_tolerance_for_scalar_target:
+      candidateSourceRelativeTolerance,
+    quotient_relative_error_bound_at_source_tolerance:
+      quotientRelativeErrorBoundAtSourceTolerance,
+    source_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    homothetic_contraction_scalar_provider_target_rows_available: true,
+    homothetic_contraction_scalar_provider_target_rows: rows,
+    all_rows_reconstruct_available_half_width_numerator:
+      allRowsReconstructAvailableHalfWidth,
+    all_rows_reconstruct_original_half_width_denominator:
+      allRowsReconstructOriginalHalfWidth,
+    all_rows_reconstruct_factorized_lambda_from_provider_sources:
+      allRowsReconstructLambda,
+    all_rows_reduce_scalar_certificate_to_two_source_quantities:
+      allRowsReduceScalarCertificate,
+    all_rows_meet_candidate_quotient_tolerance_route:
+      allRowsMeetQuotientToleranceRoute,
+    max_available_half_width_numerator_relative_gap:
+      finiteMaximum(
+        rows.map((row) => row.available_half_width_numerator_relative_gap)
+      ),
+    max_original_half_width_denominator_relative_gap:
+      finiteMaximum(
+        rows.map((row) => row.original_half_width_denominator_relative_gap)
+      ),
+    max_lambda_from_provider_sources_relative_gap:
+      finiteMaximum(
+        rows.map((row) => row.lambda_from_provider_sources_relative_gap)
+      ),
+    max_quotient_relative_error_bound_at_source_tolerance:
+      finiteMaximum(
+        rows.map(
+          (row) => row.quotient_relative_error_bound_at_source_tolerance
+        )
+      ),
+    max_quotient_relative_condition_number_bound:
+      finiteMaximum(
+        rows.map((row) => row.quotient_relative_condition_number_bound)
+      ),
+    dominant_scalar_provider_target_node_index:
+      dominantRow?.node_index ?? null,
+    homothetic_contraction_scalar_provider_target_classification:
+      allRowsReduceScalarCertificate && allRowsMeetQuotientToleranceRoute
+        ? "homothetic-contraction-scalar-certificate-reduces-to-directed-rounded-numerator-denominator-provider"
+        : "homothetic-contraction-scalar-provider-target-open",
+    homothetic_contraction_scalar_provider_target_interpretation:
+      "the scalar contraction certificate reduces to two same-domain H38 source quantities, A_i = center-aware signed clearance and B_i = original source-term half-width sum; a directed-rounded quotient interval for endpoint_margin * A_i / B_i can certify the node contraction before H39 shifted-source absolutization",
+    next_certificate_object:
+      "directed-rounded same-domain H38 producer-image provider for center-aware signed clearance and original source-term half-width sum, followed by a quotient interval for endpoint_margin * A / B",
+    claim_boundary: {
+      certifies_homothetic_contraction_scalar_provider_target_only:
+        allRowsReduceScalarCertificate && allRowsMeetQuotientToleranceRoute,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function h39RequestedY44SourceMapResidualFiveNodeHomotheticContractionScalarQuotientEnvelopeTarget({
+  homotheticContractionScalarProviderTarget,
+} = {}) {
+  const intervalContainsNumber = (interval, value) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    Number(interval[0]) <= Number(value) &&
+    Number(value) <= Number(interval[1]);
+  const relativeRadiusAround = (interval, center) => {
+    const centerNumber = Number(center);
+    const lower = Number(interval?.[0]);
+    const upper = Number(interval?.[1]);
+    if (
+      !Number.isFinite(centerNumber) ||
+      !Number.isFinite(lower) ||
+      !Number.isFinite(upper)
+    ) {
+      return Infinity;
+    }
+    return (
+      Math.max(Math.abs(centerNumber - lower), Math.abs(upper - centerNumber)) /
+      Math.max(Number.MIN_VALUE, Math.abs(centerNumber))
+    );
+  };
+  const missingArtifact = {
+    target_kind:
+      "candidate-requested-y44-shared-source-map-homothetic-contraction-scalar-quotient-envelope-target",
+    proof_status:
+      "candidate-homothetic-contraction-scalar-quotient-envelope-inputs-missing",
+    quotient_envelope_kind:
+      "positive-numerator-denominator-relative-tolerance-quotient-envelope",
+    homothetic_contraction_scalar_quotient_envelope_rows_available: false,
+    homothetic_contraction_scalar_quotient_envelope_rows: [],
+    all_rows_have_positive_numerator_denominator_envelopes: false,
+    all_rows_quotient_interval_contains_factorized_lambda: false,
+    all_rows_quotient_interval_contains_normal_form_lambda: false,
+    all_rows_quotient_relative_radius_within_scalar_tolerance: false,
+    max_quotient_lambda_relative_radius: null,
+    max_candidate_source_relative_tolerance: null,
+    min_denominator_interval_lower: null,
+    dominant_scalar_quotient_envelope_node_index: null,
+    homothetic_contraction_scalar_quotient_envelope_classification:
+      "homothetic-contraction-scalar-quotient-envelope-inputs-missing",
+    claim_boundary: {
+      certifies_homothetic_contraction_scalar_quotient_envelope_only: false,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+  if (
+    homotheticContractionScalarProviderTarget === null ||
+    homotheticContractionScalarProviderTarget === undefined ||
+    homotheticContractionScalarProviderTarget.target_kind !==
+      "candidate-requested-y44-shared-source-map-homothetic-contraction-scalar-provider-target" ||
+    homotheticContractionScalarProviderTarget
+      .homothetic_contraction_scalar_provider_target_rows_available !== true
+  ) {
+    return missingArtifact;
+  }
+  const tolerance = Number(
+    homotheticContractionScalarProviderTarget
+      .scalar_provider_target_relative_tolerance
+  );
+  const sourceTolerance = Number(
+    homotheticContractionScalarProviderTarget
+      .candidate_source_relative_tolerance_for_scalar_target
+  );
+  const providerRows =
+    homotheticContractionScalarProviderTarget
+      .homothetic_contraction_scalar_provider_target_rows ?? [];
+  if (
+    !finitePositive(tolerance) ||
+    !finitePositive(sourceTolerance) ||
+    sourceTolerance >= 1 ||
+    providerRows.length !== 5
+  ) {
+    return missingArtifact;
+  }
+  const rows = providerRows.map((row) => {
+    const numerator = Number(row.available_half_width_from_target);
+    const denominator = Number(
+      row.original_source_term_half_width_sum_from_terms
+    );
+    const endpointMargin = Number(row.endpoint_margin);
+    const factorizedLambda = Number(row.factorized_node_contraction_lambda);
+    const normalFormLambda = Number(row.normal_form_node_contraction_lambda);
+    if (
+      !finitePositive(numerator) ||
+      !finitePositive(denominator) ||
+      !boundedUnitValue(endpointMargin) ||
+      !boundedUnitValue(factorizedLambda) ||
+      !boundedUnitValue(normalFormLambda)
+    ) {
+      return null;
+    }
+    const numeratorInterval = [
+      numerator * (1 - sourceTolerance),
+      numerator * (1 + sourceTolerance),
+    ];
+    const denominatorInterval = [
+      denominator * (1 - sourceTolerance),
+      denominator * (1 + sourceTolerance),
+    ];
+    if (
+      !finitePositive(numeratorInterval[0]) ||
+      !finitePositive(denominatorInterval[0])
+    ) {
+      return null;
+    }
+    const quotientLambdaInterval = [
+      (endpointMargin * numeratorInterval[0]) / denominatorInterval[1],
+      (endpointMargin * numeratorInterval[1]) / denominatorInterval[0],
+    ];
+    const quotientCenter =
+      (endpointMargin * numerator) / denominator;
+    const lambdaIntervalRelativeRadius = relativeRadiusAround(
+      quotientLambdaInterval,
+      factorizedLambda
+    );
+    const quotientContainsFactorizedLambda = intervalContainsNumber(
+      quotientLambdaInterval,
+      factorizedLambda
+    );
+    const quotientContainsNormalFormLambda = intervalContainsNumber(
+      quotientLambdaInterval,
+      normalFormLambda
+    );
+    const quotientRadiusWithinScalarTolerance =
+      finiteNonnegative(lambdaIntervalRelativeRadius) &&
+      lambdaIntervalRelativeRadius <= tolerance;
+    return {
+      node_index: row.node_index,
+      xi_midpoint: row.xi_midpoint,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      tightest_budget_cell_id: row.tightest_budget_cell_id,
+      homothetic_contraction_scalar_quotient_envelope_row_kind:
+        "candidate-node-local-homothetic-contraction-scalar-quotient-envelope-row",
+      quotient_envelope_source_kind:
+        "candidate-relative-source-quantity-envelope-not-directed-rounded",
+      quotient_envelope_kind:
+        "positive-numerator-denominator-relative-tolerance-quotient-envelope",
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      zero_source_terms: ["constant_minus_two"],
+      source_quantities_preserved_same_domain: [
+        "available_signed_half_width",
+        "original_source_term_half_width_sum",
+      ],
+      candidate_source_relative_tolerance: sourceTolerance,
+      scalar_provider_target_relative_tolerance: tolerance,
+      endpoint_margin: endpointMargin,
+      numerator_source_kind:
+        "center-aware-signed-target-clearance-around-source-term-sum-center",
+      denominator_source_kind:
+        "sum-of-live-delta-squared-speed-sin-phi-sin-delta-source-term-half-widths",
+      numerator_available_signed_half_width: numerator,
+      denominator_original_source_term_half_width_sum: denominator,
+      numerator_candidate_interval: numeratorInterval,
+      denominator_candidate_interval: denominatorInterval,
+      denominator_interval_lower_positive: denominatorInterval[0] > 0,
+      quotient_lambda_interval: quotientLambdaInterval,
+      quotient_lambda_interval_center: intervalMidpoint(
+        quotientLambdaInterval
+      ),
+      quotient_lambda_interval_half_width: intervalHalfWidth(
+        quotientLambdaInterval
+      ),
+      quotient_lambda_from_midpoint_sources: quotientCenter,
+      factorized_node_contraction_lambda: factorizedLambda,
+      normal_form_node_contraction_lambda: normalFormLambda,
+      quotient_interval_contains_factorized_lambda:
+        quotientContainsFactorizedLambda,
+      quotient_interval_contains_normal_form_lambda:
+        quotientContainsNormalFormLambda,
+      quotient_lambda_relative_radius_to_factorized_scalar:
+        lambdaIntervalRelativeRadius,
+      quotient_relative_radius_within_scalar_tolerance:
+        quotientRadiusWithinScalarTolerance,
+      quotient_envelope_needs_directed_rounded_numerator_provider: true,
+      quotient_envelope_needs_directed_rounded_denominator_provider: true,
+      quotient_envelope_acceptance_condition:
+        "directed-rounded same-domain numerator and denominator intervals must be contained in the candidate source intervals before applying the quotient envelope",
+      row_status:
+        denominatorInterval[0] > 0 &&
+        quotientContainsFactorizedLambda &&
+        quotientContainsNormalFormLambda &&
+        quotientRadiusWithinScalarTolerance
+          ? "candidate-homothetic-contraction-scalar-quotient-envelope-row-source-certification-open"
+          : "candidate-homothetic-contraction-scalar-quotient-envelope-row-open",
+      claim_boundary: {
+        certifies_homothetic_contraction_scalar_quotient_envelope_only:
+          denominatorInterval[0] > 0 &&
+          quotientContainsFactorizedLambda &&
+          quotientContainsNormalFormLambda &&
+          quotientRadiusWithinScalarTolerance,
+        certifies_source_inputs_as_directed_rounded_same_domain: false,
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  });
+  if (rows.some((row) => row === null)) {
+    return missingArtifact;
+  }
+  const allRowsHavePositiveNumeratorDenominatorEnvelopes = rows.every(
+    (row) =>
+      row.numerator_candidate_interval[0] > 0 &&
+      row.denominator_interval_lower_positive === true
+  );
+  const allRowsContainFactorizedLambda = rows.every(
+    (row) => row.quotient_interval_contains_factorized_lambda === true
+  );
+  const allRowsContainNormalFormLambda = rows.every(
+    (row) => row.quotient_interval_contains_normal_form_lambda === true
+  );
+  const allRowsWithinScalarTolerance = rows.every(
+    (row) => row.quotient_relative_radius_within_scalar_tolerance === true
+  );
+  const dominantRow = rows.reduce((best, row) =>
+    Number(row.quotient_lambda_relative_radius_to_factorized_scalar) >
+    Number(best.quotient_lambda_relative_radius_to_factorized_scalar)
+      ? row
+      : best
+  );
+  return {
+    target_kind:
+      "candidate-requested-y44-shared-source-map-homothetic-contraction-scalar-quotient-envelope-target",
+    homothetic_contraction_scalar_provider_target_kind:
+      homotheticContractionScalarProviderTarget.target_kind,
+    proof_status:
+      "candidate-homothetic-contraction-scalar-quotient-envelope-not-directed-rounded",
+    quotient_envelope_kind:
+      "positive-numerator-denominator-relative-tolerance-quotient-envelope",
+    source_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    candidate_source_relative_tolerance: sourceTolerance,
+    scalar_provider_target_relative_tolerance: tolerance,
+    homothetic_contraction_scalar_quotient_envelope_rows_available: true,
+    homothetic_contraction_scalar_quotient_envelope_rows: rows,
+    all_rows_have_positive_numerator_denominator_envelopes:
+      allRowsHavePositiveNumeratorDenominatorEnvelopes,
+    all_rows_quotient_interval_contains_factorized_lambda:
+      allRowsContainFactorizedLambda,
+    all_rows_quotient_interval_contains_normal_form_lambda:
+      allRowsContainNormalFormLambda,
+    all_rows_quotient_relative_radius_within_scalar_tolerance:
+      allRowsWithinScalarTolerance,
+    max_quotient_lambda_relative_radius:
+      finiteMaximum(
+        rows.map(
+          (row) => row.quotient_lambda_relative_radius_to_factorized_scalar
+        )
+      ),
+    max_candidate_source_relative_tolerance:
+      finiteMaximum(rows.map((row) => row.candidate_source_relative_tolerance)),
+    min_denominator_interval_lower:
+      finiteMinimum(rows.map((row) => row.denominator_candidate_interval[0])),
+    dominant_scalar_quotient_envelope_node_index:
+      dominantRow?.node_index ?? null,
+    homothetic_contraction_scalar_quotient_envelope_classification:
+      allRowsHavePositiveNumeratorDenominatorEnvelopes &&
+      allRowsContainFactorizedLambda &&
+      allRowsContainNormalFormLambda &&
+      allRowsWithinScalarTolerance
+        ? "homothetic-contraction-scalar-quotient-envelope-reduces-to-directed-rounded-source-interval-inclusion"
+        : "homothetic-contraction-scalar-quotient-envelope-open",
+    homothetic_contraction_scalar_quotient_envelope_interpretation:
+      "the scalar quotient envelope shows that same-domain directed-rounded enclosures for the clearance numerator and source-width denominator, each contained in the candidate relative source intervals, are sufficient to enclose the node-local homothetic contraction scalar; the remaining proof is source-interval inclusion, not quotient algebra",
+    next_certificate_object:
+      "directed-rounded same-domain H38 producer-image numerator and denominator intervals contained in the quotient-envelope source intervals",
+    claim_boundary: {
+      certifies_homothetic_contraction_scalar_quotient_envelope_only:
+        allRowsHavePositiveNumeratorDenominatorEnvelopes &&
+        allRowsContainFactorizedLambda &&
+        allRowsContainNormalFormLambda &&
+        allRowsWithinScalarTolerance,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
 function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
   sourceMapResidualSharedStreamNodeRadiusTarget,
 } = {}) {
@@ -51366,6 +52453,12 @@ function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
       source_map_residual_shared_stream_five_node_source_term_realization_slack_diagnostic:
         null,
       source_map_residual_shared_stream_five_node_homothetic_source_term_contraction_normal_form:
+        null,
+      source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization:
+        null,
+      source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target:
+        null,
+      source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope:
         null,
       source_map_residual_shared_stream_five_node_source_term_provider_probe:
         null,
@@ -51416,6 +52509,12 @@ function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
       source_map_residual_shared_stream_five_node_source_term_realization_slack_diagnostic:
         null,
       source_map_residual_shared_stream_five_node_homothetic_source_term_contraction_normal_form:
+        null,
+      source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization:
+        null,
+      source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target:
+        null,
+      source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope:
         null,
       source_map_residual_shared_stream_five_node_source_term_provider_probe:
         null,
@@ -51551,6 +52650,12 @@ function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
       source_map_residual_shared_stream_five_node_source_term_realization_slack_diagnostic:
         null,
       source_map_residual_shared_stream_five_node_homothetic_source_term_contraction_normal_form:
+        null,
+      source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization:
+        null,
+      source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target:
+        null,
+      source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope:
         null,
       source_map_residual_shared_stream_five_node_source_term_provider_probe:
         null,
@@ -51795,6 +52900,20 @@ function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
       sourceTermRealizationSlackDiagnostic,
       sourceTermProviderProbe,
     });
+  const homotheticContractionScalarFactorization =
+    h39RequestedY44SourceMapResidualFiveNodeHomotheticContractionScalarFactorization({
+      homotheticSourceTermContractionNormalForm,
+      sourceTermProviderProbe,
+    });
+  const homotheticContractionScalarProviderTarget =
+    h39RequestedY44SourceMapResidualFiveNodeHomotheticContractionScalarProviderTarget({
+      homotheticContractionScalarFactorization,
+      sourceTermProviderProbe,
+    });
+  const homotheticContractionScalarQuotientEnvelope =
+    h39RequestedY44SourceMapResidualFiveNodeHomotheticContractionScalarQuotientEnvelopeTarget({
+      homotheticContractionScalarProviderTarget,
+    });
   const contractedProviderRows = contractRows.map((row) => {
     const scaledSignedInterval = root.scaleInterval(
       row.live_signed_residual_interval,
@@ -51948,6 +53067,12 @@ function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
       sourceTermRealizationSlackDiagnostic,
     source_map_residual_shared_stream_five_node_homothetic_source_term_contraction_normal_form:
       homotheticSourceTermContractionNormalForm,
+    source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization:
+      homotheticContractionScalarFactorization,
+    source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target:
+      homotheticContractionScalarProviderTarget,
+    source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope:
+      homotheticContractionScalarQuotientEnvelope,
     source_map_residual_shared_stream_five_node_source_term_provider_probe:
       sourceTermProviderProbe,
     source_map_residual_shared_stream_five_node_contracted_provider_candidate:
@@ -55563,6 +56688,593 @@ export function validateH39RequestedY44SourceMapResidualCovarianceTarget(
             errors.push(`five-node homothetic source-term contraction row ${index} term ${termIndex} must be coherent`);
           }
         });
+      });
+    }
+  }
+  const fiveNodeHomotheticContractionScalarFactorization =
+    artifact
+      ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization ??
+    null;
+  if (fiveNodeHomotheticContractionScalarFactorization !== null) {
+    const tolerance = Number(
+      fiveNodeHomotheticContractionScalarFactorization
+        ?.scalar_factorization_relative_tolerance
+    );
+    const scalarRows =
+      fiveNodeHomotheticContractionScalarFactorization
+        .homothetic_contraction_scalar_factorization_rows ?? [];
+    if (
+      fiveNodeHomotheticContractionScalarFactorization?.target_kind !==
+        "candidate-requested-y44-shared-source-map-homothetic-contraction-scalar-factorization" ||
+      fiveNodeHomotheticContractionScalarFactorization?.proof_status !==
+        "candidate-homothetic-contraction-scalar-factorization-not-directed-rounded" ||
+      fiveNodeHomotheticContractionScalarFactorization?.factorization_kind !==
+        "center-aware-available-half-width-over-live-source-width-sum" ||
+      !finitePositive(tolerance) ||
+      tolerance > 1e-9 ||
+      !boundedUnitValue(
+        fiveNodeHomotheticContractionScalarFactorization?.endpoint_margin
+      ) ||
+      fiveNodeHomotheticContractionScalarFactorization?.source_y_order !==
+        H38_NUMERATOR_Y_ORDER ||
+      fiveNodeHomotheticContractionScalarFactorization
+        ?.required_xi_derivative_order !== 4 ||
+      fiveNodeHomotheticContractionScalarFactorization
+        ?.homothetic_contraction_scalar_factorization_rows_available !==
+        true ||
+      fiveNodeHomotheticContractionScalarFactorization
+        ?.all_rows_factorize_normal_form_lambda !== true ||
+      fiveNodeHomotheticContractionScalarFactorization
+        ?.all_rows_factorize_inverse_contraction !== true ||
+      fiveNodeHomotheticContractionScalarFactorization
+        ?.all_rows_endpoint_margin_reconstructs_contracted_sum_half_width !==
+        true ||
+      fiveNodeHomotheticContractionScalarFactorization
+        ?.all_rows_provider_shaped_sum_reconstructed !== true ||
+      !finiteNonnegative(
+        fiveNodeHomotheticContractionScalarFactorization
+          ?.max_node_contraction_lambda_factorization_relative_gap
+      ) ||
+      Number(
+        fiveNodeHomotheticContractionScalarFactorization
+          ?.max_node_contraction_lambda_factorization_relative_gap
+      ) > tolerance ||
+      !finiteNonnegative(
+        fiveNodeHomotheticContractionScalarFactorization
+          ?.max_node_inverse_contraction_factorization_relative_gap
+      ) ||
+      Number(
+        fiveNodeHomotheticContractionScalarFactorization
+          ?.max_node_inverse_contraction_factorization_relative_gap
+      ) > tolerance ||
+      !finiteNonnegative(
+        fiveNodeHomotheticContractionScalarFactorization
+          ?.max_endpoint_margin_reconstruction_relative_gap
+      ) ||
+      Number(
+        fiveNodeHomotheticContractionScalarFactorization
+          ?.max_endpoint_margin_reconstruction_relative_gap
+      ) > tolerance ||
+      !finiteNonnegative(
+        fiveNodeHomotheticContractionScalarFactorization
+          ?.max_provider_shaped_sum_reconstruction_relative_gap
+      ) ||
+      Number(
+        fiveNodeHomotheticContractionScalarFactorization
+          ?.max_provider_shaped_sum_reconstruction_relative_gap
+      ) > tolerance ||
+      !boundedUnitValue(
+        fiveNodeHomotheticContractionScalarFactorization
+          ?.min_factorized_node_contraction_lambda
+      ) ||
+      !boundedUnitValue(
+        fiveNodeHomotheticContractionScalarFactorization
+          ?.max_factorized_node_contraction_lambda
+      ) ||
+      !finitePositive(
+        fiveNodeHomotheticContractionScalarFactorization
+          ?.max_factorized_node_inverse_contraction_factor
+      ) ||
+      !Number.isInteger(
+        fiveNodeHomotheticContractionScalarFactorization
+          ?.dominant_scalar_factorization_node_index
+      ) ||
+      fiveNodeHomotheticContractionScalarFactorization
+        .dominant_scalar_factorization_node_index < 0 ||
+      fiveNodeHomotheticContractionScalarFactorization
+        .dominant_scalar_factorization_node_index > 4 ||
+      fiveNodeHomotheticContractionScalarFactorization
+        ?.homothetic_contraction_scalar_factorization_classification !==
+        "homothetic-contraction-reduces-to-center-aware-width-over-live-source-width-scalar" ||
+      typeof fiveNodeHomotheticContractionScalarFactorization
+        ?.homothetic_contraction_scalar_factorization_interpretation !==
+        "string" ||
+      typeof fiveNodeHomotheticContractionScalarFactorization
+        ?.next_certificate_object !== "string" ||
+      fiveNodeHomotheticContractionScalarFactorization?.claim_boundary
+        ?.certifies_homothetic_contraction_scalar_factorization_only !==
+        true ||
+      fiveNodeHomotheticContractionScalarFactorization?.claim_boundary
+        ?.certifies_source_inputs_as_directed_rounded_same_domain !== false ||
+      fiveNodeHomotheticContractionScalarFactorization?.claim_boundary
+        ?.certifies_n38_fourth_derivative_bound !== false ||
+      fiveNodeHomotheticContractionScalarFactorization?.claim_boundary
+        ?.certifies_s37_dependency_preserving_division !== false ||
+      fiveNodeHomotheticContractionScalarFactorization?.claim_boundary
+        ?.certifies_shifted_R43_outer_bound !== false ||
+      fiveNodeHomotheticContractionScalarFactorization?.claim_boundary
+        ?.certifies_directed_rounded_shared_domain !== false ||
+      fiveNodeHomotheticContractionScalarFactorization?.claim_boundary
+        ?.retained_branch !== false ||
+      !Array.isArray(scalarRows) ||
+      scalarRows.length !== 5
+    ) {
+      errors.push("five-node homothetic contraction scalar factorization must be coherent and candidate-only");
+    } else {
+      scalarRows.forEach((row, index) => {
+        if (
+          !Number.isInteger(row?.node_index) ||
+          row.node_index !== index ||
+          !Number.isFinite(Number(row?.xi_midpoint)) ||
+          row?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+          row?.required_xi_derivative_order !== 4 ||
+          typeof row?.tightest_budget_cell_id !== "string" ||
+          row?.homothetic_contraction_scalar_factorization_row_kind !==
+            "candidate-node-local-homothetic-contraction-scalar-factorization-row" ||
+          !sameTerms(row?.source_terms_preserved_signed_together) ||
+          !sameZeroTerms(row?.zero_source_terms) ||
+          !boundedUnitValue(row?.endpoint_margin) ||
+          !finitePositive(row?.original_source_term_half_width_sum) ||
+          !finitePositive(
+            row?.signed_source_term_sum_available_half_width
+          ) ||
+          !finiteNonnegative(
+            row?.provider_shaped_source_term_half_width_sum
+          ) ||
+          !finitePositive(
+            row?.provider_probe_source_term_half_width_contraction_factor
+          ) ||
+          !boundedUnitValue(row?.factorized_node_contraction_lambda) ||
+          !boundedUnitValue(row?.normal_form_node_contraction_lambda) ||
+          !finitePositive(row?.factorized_node_inverse_contraction_factor) ||
+          !finitePositive(row?.normal_form_node_inverse_contraction_factor) ||
+          !finitePositive(
+            row?.provider_endpoint_adjusted_inverse_contraction_factor
+          ) ||
+          !finiteNonnegative(row?.contracted_source_term_half_width_sum) ||
+          !finiteNonnegative(
+            row?.contracted_sum_to_available_half_width_ratio
+          ) ||
+          !finiteNonnegative(row?.lambda_factorization_relative_gap) ||
+          Number(row?.lambda_factorization_relative_gap) > tolerance ||
+          !finiteNonnegative(
+            row?.inverse_contraction_factorization_relative_gap
+          ) ||
+          Number(row?.inverse_contraction_factorization_relative_gap) >
+            tolerance ||
+          !finiteNonnegative(
+            row?.endpoint_margin_reconstruction_relative_gap
+          ) ||
+          Number(row?.endpoint_margin_reconstruction_relative_gap) >
+            tolerance ||
+          !finiteNonnegative(
+            row?.provider_shaped_sum_reconstruction_relative_gap
+          ) ||
+          Number(row?.provider_shaped_sum_reconstruction_relative_gap) >
+            tolerance ||
+          row?.scalar_factorization_matches_normal_form_lambda !== true ||
+          row?.inverse_factorization_matches_normal_form_inverse !== true ||
+          row?.contracted_sum_half_width_matches_endpoint_margin !== true ||
+          row?.provider_shaped_sum_matches_factorized_contract !== true ||
+          row?.row_status !==
+            "candidate-homothetic-contraction-scalar-factorization-row-source-certification-open" ||
+          row?.claim_boundary
+            ?.certifies_homothetic_contraction_scalar_factorization_only !==
+            true ||
+          row?.claim_boundary
+            ?.certifies_source_inputs_as_directed_rounded_same_domain !==
+            false ||
+          row?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+            false ||
+          row?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+          row?.claim_boundary?.retained_branch !== false
+        ) {
+          errors.push(`five-node homothetic contraction scalar factorization row ${index} must be coherent`);
+        }
+      });
+    }
+  }
+  const fiveNodeHomotheticContractionScalarProviderTarget =
+    artifact
+      ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target ??
+    null;
+  if (fiveNodeHomotheticContractionScalarProviderTarget !== null) {
+    const tolerance = Number(
+      fiveNodeHomotheticContractionScalarProviderTarget
+        ?.scalar_provider_target_relative_tolerance
+    );
+    const providerTargetRows =
+      fiveNodeHomotheticContractionScalarProviderTarget
+        .homothetic_contraction_scalar_provider_target_rows ?? [];
+    if (
+      fiveNodeHomotheticContractionScalarProviderTarget?.target_kind !==
+        "candidate-requested-y44-shared-source-map-homothetic-contraction-scalar-provider-target" ||
+      fiveNodeHomotheticContractionScalarProviderTarget?.proof_status !==
+        "candidate-homothetic-contraction-scalar-provider-target-not-directed-rounded" ||
+      fiveNodeHomotheticContractionScalarProviderTarget
+        ?.provider_target_kind !== "two-source-scalar-provider-target" ||
+      typeof fiveNodeHomotheticContractionScalarProviderTarget
+        ?.scalar_provider_formula !== "string" ||
+      !finitePositive(tolerance) ||
+      tolerance > 1e-9 ||
+      !finitePositive(
+        fiveNodeHomotheticContractionScalarProviderTarget
+          ?.candidate_source_relative_tolerance_for_scalar_target
+      ) ||
+      Number(
+        fiveNodeHomotheticContractionScalarProviderTarget
+          .candidate_source_relative_tolerance_for_scalar_target
+      ) > tolerance ||
+      !finitePositive(
+        fiveNodeHomotheticContractionScalarProviderTarget
+          ?.quotient_relative_error_bound_at_source_tolerance
+      ) ||
+      Number(
+        fiveNodeHomotheticContractionScalarProviderTarget
+          .quotient_relative_error_bound_at_source_tolerance
+      ) > tolerance ||
+      fiveNodeHomotheticContractionScalarProviderTarget?.source_y_order !==
+        H38_NUMERATOR_Y_ORDER ||
+      fiveNodeHomotheticContractionScalarProviderTarget
+        ?.required_xi_derivative_order !== 4 ||
+      fiveNodeHomotheticContractionScalarProviderTarget
+        ?.homothetic_contraction_scalar_provider_target_rows_available !==
+        true ||
+      fiveNodeHomotheticContractionScalarProviderTarget
+        ?.all_rows_reconstruct_available_half_width_numerator !== true ||
+      fiveNodeHomotheticContractionScalarProviderTarget
+        ?.all_rows_reconstruct_original_half_width_denominator !== true ||
+      fiveNodeHomotheticContractionScalarProviderTarget
+        ?.all_rows_reconstruct_factorized_lambda_from_provider_sources !==
+        true ||
+      fiveNodeHomotheticContractionScalarProviderTarget
+        ?.all_rows_reduce_scalar_certificate_to_two_source_quantities !==
+        true ||
+      fiveNodeHomotheticContractionScalarProviderTarget
+        ?.all_rows_meet_candidate_quotient_tolerance_route !== true ||
+      !finiteNonnegative(
+        fiveNodeHomotheticContractionScalarProviderTarget
+          ?.max_available_half_width_numerator_relative_gap
+      ) ||
+      Number(
+        fiveNodeHomotheticContractionScalarProviderTarget
+          .max_available_half_width_numerator_relative_gap
+      ) > tolerance ||
+      !finiteNonnegative(
+        fiveNodeHomotheticContractionScalarProviderTarget
+          ?.max_original_half_width_denominator_relative_gap
+      ) ||
+      Number(
+        fiveNodeHomotheticContractionScalarProviderTarget
+          .max_original_half_width_denominator_relative_gap
+      ) > tolerance ||
+      !finiteNonnegative(
+        fiveNodeHomotheticContractionScalarProviderTarget
+          ?.max_lambda_from_provider_sources_relative_gap
+      ) ||
+      Number(
+        fiveNodeHomotheticContractionScalarProviderTarget
+          .max_lambda_from_provider_sources_relative_gap
+      ) > tolerance ||
+      !finitePositive(
+        fiveNodeHomotheticContractionScalarProviderTarget
+          ?.max_quotient_relative_error_bound_at_source_tolerance
+      ) ||
+      Number(
+        fiveNodeHomotheticContractionScalarProviderTarget
+          .max_quotient_relative_error_bound_at_source_tolerance
+      ) > tolerance ||
+      !finitePositive(
+        fiveNodeHomotheticContractionScalarProviderTarget
+          ?.max_quotient_relative_condition_number_bound
+      ) ||
+      !Number.isInteger(
+        fiveNodeHomotheticContractionScalarProviderTarget
+          ?.dominant_scalar_provider_target_node_index
+      ) ||
+      fiveNodeHomotheticContractionScalarProviderTarget
+        .dominant_scalar_provider_target_node_index < 0 ||
+      fiveNodeHomotheticContractionScalarProviderTarget
+        .dominant_scalar_provider_target_node_index > 4 ||
+      fiveNodeHomotheticContractionScalarProviderTarget
+        ?.homothetic_contraction_scalar_provider_target_classification !==
+        "homothetic-contraction-scalar-certificate-reduces-to-directed-rounded-numerator-denominator-provider" ||
+      typeof fiveNodeHomotheticContractionScalarProviderTarget
+        ?.homothetic_contraction_scalar_provider_target_interpretation !==
+        "string" ||
+      typeof fiveNodeHomotheticContractionScalarProviderTarget
+        ?.next_certificate_object !== "string" ||
+      fiveNodeHomotheticContractionScalarProviderTarget?.claim_boundary
+        ?.certifies_homothetic_contraction_scalar_provider_target_only !==
+        true ||
+      fiveNodeHomotheticContractionScalarProviderTarget?.claim_boundary
+        ?.certifies_source_inputs_as_directed_rounded_same_domain !== false ||
+      fiveNodeHomotheticContractionScalarProviderTarget?.claim_boundary
+        ?.certifies_n38_fourth_derivative_bound !== false ||
+      fiveNodeHomotheticContractionScalarProviderTarget?.claim_boundary
+        ?.certifies_s37_dependency_preserving_division !== false ||
+      fiveNodeHomotheticContractionScalarProviderTarget?.claim_boundary
+        ?.certifies_shifted_R43_outer_bound !== false ||
+      fiveNodeHomotheticContractionScalarProviderTarget?.claim_boundary
+        ?.certifies_directed_rounded_shared_domain !== false ||
+      fiveNodeHomotheticContractionScalarProviderTarget?.claim_boundary
+        ?.retained_branch !== false ||
+      !Array.isArray(providerTargetRows) ||
+      providerTargetRows.length !== 5
+    ) {
+      errors.push("five-node homothetic contraction scalar provider target must be coherent and candidate-only");
+    } else {
+      providerTargetRows.forEach((row, index) => {
+        if (
+          !Number.isInteger(row?.node_index) ||
+          row.node_index !== index ||
+          !Number.isFinite(Number(row?.xi_midpoint)) ||
+          row?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+          row?.required_xi_derivative_order !== 4 ||
+          typeof row?.tightest_budget_cell_id !== "string" ||
+          row?.homothetic_contraction_scalar_provider_target_row_kind !==
+            "candidate-node-local-homothetic-contraction-scalar-provider-target-row" ||
+          !sameTerms(row?.source_terms_preserved_signed_together) ||
+          !sameZeroTerms(row?.zero_source_terms) ||
+          typeof row?.scalar_provider_formula !== "string" ||
+          row?.available_signed_half_width_source_kind !==
+            "center-aware-signed-target-clearance-around-source-term-sum-center" ||
+          row?.original_width_sum_source_kind !==
+            "sum-of-live-delta-squared-speed-sin-phi-sin-delta-source-term-half-widths" ||
+          !hasFiniteOrderedInterval(
+            row?.signed_center_aware_residual_target_interval
+          ) ||
+          !Number.isFinite(Number(row?.signed_source_term_sum_center)) ||
+          !finitePositive(row?.available_half_width_from_target) ||
+          !finitePositive(
+            row?.signed_source_term_sum_available_half_width
+          ) ||
+          !finitePositive(
+            row?.original_source_term_half_width_sum_from_terms
+          ) ||
+          !finitePositive(row?.original_source_term_half_width_sum) ||
+          !boundedUnitValue(row?.endpoint_margin) ||
+          !boundedUnitValue(row?.factorized_node_contraction_lambda) ||
+          !boundedUnitValue(row?.lambda_from_provider_source_quantities) ||
+          !boundedUnitValue(row?.normal_form_node_contraction_lambda) ||
+          !finitePositive(row?.quotient_relative_condition_number_bound) ||
+          !finitePositive(
+            row?.candidate_source_relative_tolerance_for_scalar_target
+          ) ||
+          !finitePositive(
+            row?.quotient_relative_error_bound_at_source_tolerance
+          ) ||
+          Number(row?.quotient_relative_error_bound_at_source_tolerance) >
+            tolerance ||
+          row?.quotient_tolerance_route_fits_scalar_target !== true ||
+          !Array.isArray(row?.term_source_rows) ||
+          row.term_source_rows.length !==
+            H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length ||
+          !finiteNonnegative(
+            row?.available_half_width_numerator_relative_gap
+          ) ||
+          Number(row?.available_half_width_numerator_relative_gap) >
+            tolerance ||
+          !finiteNonnegative(
+            row?.original_half_width_denominator_relative_gap
+          ) ||
+          Number(row?.original_half_width_denominator_relative_gap) >
+            tolerance ||
+          !finiteNonnegative(
+            row?.lambda_from_provider_sources_relative_gap
+          ) ||
+          Number(row?.lambda_from_provider_sources_relative_gap) >
+            tolerance ||
+          row?.available_half_width_formula_reconstructs_scalar_numerator !==
+            true ||
+          row?.original_width_sum_formula_reconstructs_scalar_denominator !==
+            true ||
+          row?.provider_sources_reconstruct_factorized_lambda !== true ||
+          row?.row_reduces_scalar_certificate_to_two_source_quantities !==
+            true ||
+          row?.available_half_width_requires_directed_rounding !== true ||
+          row?.original_width_sum_requires_directed_rounding !== true ||
+          row?.row_status !==
+            "candidate-homothetic-contraction-scalar-provider-target-row-source-certification-open" ||
+          row?.claim_boundary
+            ?.certifies_homothetic_contraction_scalar_provider_target_only !==
+            true ||
+          row?.claim_boundary
+            ?.certifies_source_inputs_as_directed_rounded_same_domain !==
+            false ||
+          row?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+            false ||
+          row?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+          row?.claim_boundary?.retained_branch !== false
+        ) {
+          errors.push(`five-node homothetic contraction scalar provider target row ${index} must be coherent`);
+          return;
+        }
+        row.term_source_rows.forEach((termRow, termIndex) => {
+          if (
+            termRow?.term !==
+              H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS[termIndex] ||
+            !hasFiniteOrderedInterval(termRow?.original_residual_interval) ||
+            !finitePositive(
+              termRow?.original_residual_interval_half_width
+            ) ||
+            !finiteNonnegative(termRow?.width_share_of_original_sum)
+          ) {
+            errors.push(`five-node homothetic contraction scalar provider target row ${index} term ${termIndex} must be coherent`);
+          }
+        });
+      });
+    }
+  }
+  const fiveNodeHomotheticContractionScalarQuotientEnvelope =
+    artifact
+      ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope ??
+    null;
+  if (fiveNodeHomotheticContractionScalarQuotientEnvelope !== null) {
+    const tolerance = Number(
+      fiveNodeHomotheticContractionScalarQuotientEnvelope
+        ?.scalar_provider_target_relative_tolerance
+    );
+    const quotientRows =
+      fiveNodeHomotheticContractionScalarQuotientEnvelope
+        .homothetic_contraction_scalar_quotient_envelope_rows ?? [];
+    if (
+      fiveNodeHomotheticContractionScalarQuotientEnvelope?.target_kind !==
+        "candidate-requested-y44-shared-source-map-homothetic-contraction-scalar-quotient-envelope-target" ||
+      fiveNodeHomotheticContractionScalarQuotientEnvelope?.proof_status !==
+        "candidate-homothetic-contraction-scalar-quotient-envelope-not-directed-rounded" ||
+      fiveNodeHomotheticContractionScalarQuotientEnvelope
+        ?.quotient_envelope_kind !==
+        "positive-numerator-denominator-relative-tolerance-quotient-envelope" ||
+      fiveNodeHomotheticContractionScalarQuotientEnvelope?.source_y_order !==
+        H38_NUMERATOR_Y_ORDER ||
+      fiveNodeHomotheticContractionScalarQuotientEnvelope
+        ?.required_xi_derivative_order !== 4 ||
+      !finitePositive(tolerance) ||
+      tolerance > 1e-9 ||
+      !finitePositive(
+        fiveNodeHomotheticContractionScalarQuotientEnvelope
+          ?.candidate_source_relative_tolerance
+      ) ||
+      Number(
+        fiveNodeHomotheticContractionScalarQuotientEnvelope
+          .candidate_source_relative_tolerance
+      ) >= tolerance ||
+      fiveNodeHomotheticContractionScalarQuotientEnvelope
+        ?.homothetic_contraction_scalar_quotient_envelope_rows_available !==
+        true ||
+      fiveNodeHomotheticContractionScalarQuotientEnvelope
+        ?.all_rows_have_positive_numerator_denominator_envelopes !== true ||
+      fiveNodeHomotheticContractionScalarQuotientEnvelope
+        ?.all_rows_quotient_interval_contains_factorized_lambda !== true ||
+      fiveNodeHomotheticContractionScalarQuotientEnvelope
+        ?.all_rows_quotient_interval_contains_normal_form_lambda !== true ||
+      fiveNodeHomotheticContractionScalarQuotientEnvelope
+        ?.all_rows_quotient_relative_radius_within_scalar_tolerance !==
+        true ||
+      !finiteNonnegative(
+        fiveNodeHomotheticContractionScalarQuotientEnvelope
+          ?.max_quotient_lambda_relative_radius
+      ) ||
+      Number(
+        fiveNodeHomotheticContractionScalarQuotientEnvelope
+          .max_quotient_lambda_relative_radius
+      ) > tolerance ||
+      !finitePositive(
+        fiveNodeHomotheticContractionScalarQuotientEnvelope
+          ?.max_candidate_source_relative_tolerance
+      ) ||
+      !finitePositive(
+        fiveNodeHomotheticContractionScalarQuotientEnvelope
+          ?.min_denominator_interval_lower
+      ) ||
+      !Number.isInteger(
+        fiveNodeHomotheticContractionScalarQuotientEnvelope
+          ?.dominant_scalar_quotient_envelope_node_index
+      ) ||
+      fiveNodeHomotheticContractionScalarQuotientEnvelope
+        .dominant_scalar_quotient_envelope_node_index < 0 ||
+      fiveNodeHomotheticContractionScalarQuotientEnvelope
+        .dominant_scalar_quotient_envelope_node_index > 4 ||
+      fiveNodeHomotheticContractionScalarQuotientEnvelope
+        ?.homothetic_contraction_scalar_quotient_envelope_classification !==
+        "homothetic-contraction-scalar-quotient-envelope-reduces-to-directed-rounded-source-interval-inclusion" ||
+      typeof fiveNodeHomotheticContractionScalarQuotientEnvelope
+        ?.homothetic_contraction_scalar_quotient_envelope_interpretation !==
+        "string" ||
+      typeof fiveNodeHomotheticContractionScalarQuotientEnvelope
+        ?.next_certificate_object !== "string" ||
+      fiveNodeHomotheticContractionScalarQuotientEnvelope?.claim_boundary
+        ?.certifies_homothetic_contraction_scalar_quotient_envelope_only !==
+        true ||
+      fiveNodeHomotheticContractionScalarQuotientEnvelope?.claim_boundary
+        ?.certifies_source_inputs_as_directed_rounded_same_domain !== false ||
+      fiveNodeHomotheticContractionScalarQuotientEnvelope?.claim_boundary
+        ?.certifies_n38_fourth_derivative_bound !== false ||
+      fiveNodeHomotheticContractionScalarQuotientEnvelope?.claim_boundary
+        ?.certifies_s37_dependency_preserving_division !== false ||
+      fiveNodeHomotheticContractionScalarQuotientEnvelope?.claim_boundary
+        ?.certifies_shifted_R43_outer_bound !== false ||
+      fiveNodeHomotheticContractionScalarQuotientEnvelope?.claim_boundary
+        ?.certifies_directed_rounded_shared_domain !== false ||
+      fiveNodeHomotheticContractionScalarQuotientEnvelope?.claim_boundary
+        ?.retained_branch !== false ||
+      !Array.isArray(quotientRows) ||
+      quotientRows.length !== 5
+    ) {
+      errors.push("five-node homothetic contraction scalar quotient envelope must be coherent and candidate-only");
+    } else {
+      quotientRows.forEach((row, index) => {
+        if (
+          !Number.isInteger(row?.node_index) ||
+          row.node_index !== index ||
+          !Number.isFinite(Number(row?.xi_midpoint)) ||
+          row?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+          row?.required_xi_derivative_order !== 4 ||
+          typeof row?.tightest_budget_cell_id !== "string" ||
+          row?.homothetic_contraction_scalar_quotient_envelope_row_kind !==
+            "candidate-node-local-homothetic-contraction-scalar-quotient-envelope-row" ||
+          row?.quotient_envelope_source_kind !==
+            "candidate-relative-source-quantity-envelope-not-directed-rounded" ||
+          row?.quotient_envelope_kind !==
+            "positive-numerator-denominator-relative-tolerance-quotient-envelope" ||
+          !sameTerms(row?.source_terms_preserved_signed_together) ||
+          !sameZeroTerms(row?.zero_source_terms) ||
+          !Array.isArray(row?.source_quantities_preserved_same_domain) ||
+          row.source_quantities_preserved_same_domain.length !== 2 ||
+          !finitePositive(row?.candidate_source_relative_tolerance) ||
+          !finitePositive(row?.scalar_provider_target_relative_tolerance) ||
+          !boundedUnitValue(row?.endpoint_margin) ||
+          !finitePositive(row?.numerator_available_signed_half_width) ||
+          !finitePositive(
+            row?.denominator_original_source_term_half_width_sum
+          ) ||
+          !hasFiniteOrderedInterval(row?.numerator_candidate_interval) ||
+          !hasFiniteOrderedInterval(row?.denominator_candidate_interval) ||
+          row?.denominator_interval_lower_positive !== true ||
+          !hasFiniteOrderedInterval(row?.quotient_lambda_interval) ||
+          !Number.isFinite(Number(row?.quotient_lambda_interval_center)) ||
+          !finitePositive(row?.quotient_lambda_interval_half_width) ||
+          !boundedUnitValue(row?.quotient_lambda_from_midpoint_sources) ||
+          !boundedUnitValue(row?.factorized_node_contraction_lambda) ||
+          !boundedUnitValue(row?.normal_form_node_contraction_lambda) ||
+          row?.quotient_interval_contains_factorized_lambda !== true ||
+          row?.quotient_interval_contains_normal_form_lambda !== true ||
+          !finiteNonnegative(
+            row?.quotient_lambda_relative_radius_to_factorized_scalar
+          ) ||
+          Number(row?.quotient_lambda_relative_radius_to_factorized_scalar) >
+            tolerance ||
+          row?.quotient_relative_radius_within_scalar_tolerance !== true ||
+          row?.quotient_envelope_needs_directed_rounded_numerator_provider !==
+            true ||
+          row?.quotient_envelope_needs_directed_rounded_denominator_provider !==
+            true ||
+          row?.row_status !==
+            "candidate-homothetic-contraction-scalar-quotient-envelope-row-source-certification-open" ||
+          row?.claim_boundary
+            ?.certifies_homothetic_contraction_scalar_quotient_envelope_only !==
+            true ||
+          row?.claim_boundary
+            ?.certifies_source_inputs_as_directed_rounded_same_domain !==
+            false ||
+          row?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+            false ||
+          row?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+          row?.claim_boundary?.retained_branch !== false
+        ) {
+          errors.push(`five-node homothetic contraction scalar quotient envelope row ${index} must be coherent`);
+        }
       });
     }
   }
@@ -77192,6 +78904,166 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
         ?.source_map_residual_shared_stream_five_node_homothetic_source_term_contraction_normal_form
         ?.dominant_homothetic_contraction_node_index ||
     comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_classification !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization
+        ?.homothetic_contraction_scalar_factorization_classification ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_all_lambdas_match !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization
+        ?.all_rows_factorize_normal_form_lambda ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_all_inverse_match !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization
+        ?.all_rows_factorize_inverse_contraction ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_all_endpoint_margins_match !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization
+        ?.all_rows_endpoint_margin_reconstructs_contracted_sum_half_width ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_all_provider_sums_match !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization
+        ?.all_rows_provider_shaped_sum_reconstructed ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_max_lambda_gap !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization
+        ?.max_node_contraction_lambda_factorization_relative_gap ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_max_inverse_gap !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization
+        ?.max_node_inverse_contraction_factorization_relative_gap ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_max_endpoint_margin_gap !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization
+        ?.max_endpoint_margin_reconstruction_relative_gap ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_max_provider_sum_gap !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization
+        ?.max_provider_shaped_sum_reconstruction_relative_gap ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_max_inverse_factor !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization
+        ?.max_factorized_node_inverse_contraction_factor ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_dominant_node_index !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization
+        ?.dominant_scalar_factorization_node_index ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_classification !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target
+        ?.homothetic_contraction_scalar_provider_target_classification ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_all_numerators_reconstruct !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target
+        ?.all_rows_reconstruct_available_half_width_numerator ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_all_denominators_reconstruct !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target
+        ?.all_rows_reconstruct_original_half_width_denominator ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_all_lambdas_reconstruct !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target
+        ?.all_rows_reconstruct_factorized_lambda_from_provider_sources ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_all_two_source !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target
+        ?.all_rows_reduce_scalar_certificate_to_two_source_quantities ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_all_quotient_tolerance !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target
+        ?.all_rows_meet_candidate_quotient_tolerance_route ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_candidate_source_tolerance !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target
+        ?.candidate_source_relative_tolerance_for_scalar_target ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_max_numerator_gap !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target
+        ?.max_available_half_width_numerator_relative_gap ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_max_denominator_gap !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target
+        ?.max_original_half_width_denominator_relative_gap ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_max_lambda_gap !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target
+        ?.max_lambda_from_provider_sources_relative_gap ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_max_quotient_bound !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target
+        ?.max_quotient_relative_error_bound_at_source_tolerance ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_dominant_node_index !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target
+        ?.dominant_scalar_provider_target_node_index ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_quotient_envelope_classification !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope
+        ?.homothetic_contraction_scalar_quotient_envelope_classification ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_quotient_envelope_all_positive !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope
+        ?.all_rows_have_positive_numerator_denominator_envelopes ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_quotient_envelope_all_factorized_contained !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope
+        ?.all_rows_quotient_interval_contains_factorized_lambda ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_quotient_envelope_all_normal_contained !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope
+        ?.all_rows_quotient_interval_contains_normal_form_lambda ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_quotient_envelope_all_within_tolerance !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope
+        ?.all_rows_quotient_relative_radius_within_scalar_tolerance ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_quotient_envelope_max_lambda_relative_radius !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope
+        ?.max_quotient_lambda_relative_radius ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_quotient_envelope_max_source_tolerance !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope
+        ?.max_candidate_source_relative_tolerance ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_quotient_envelope_min_denominator_lower !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope
+        ?.min_denominator_interval_lower ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_quotient_envelope_dominant_node_index !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope
+        ?.dominant_scalar_quotient_envelope_node_index ||
+    comparison
       ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_contracted_provider_reaches_verifier_with_source_only_failure !==
       nonconstantSourceMapResidualCovarianceTarget
         ?.source_map_residual_shared_stream_five_node_contracted_provider_candidate
@@ -77548,6 +79420,48 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
       .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_contraction_dominant_node_index >
       4 ||
     typeof comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_all_lambdas_match !==
+      "boolean" ||
+    typeof comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_all_inverse_match !==
+      "boolean" ||
+    typeof comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_all_endpoint_margins_match !==
+      "boolean" ||
+    typeof comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_all_provider_sums_match !==
+      "boolean" ||
+    !finiteNonnegative(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_max_lambda_gap
+    ) ||
+    !finiteNonnegative(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_max_inverse_gap
+    ) ||
+    !finiteNonnegative(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_max_endpoint_margin_gap
+    ) ||
+    !finiteNonnegative(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_max_provider_sum_gap
+    ) ||
+    !finitePositive(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_max_inverse_factor
+    ) ||
+    !Number.isInteger(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_dominant_node_index
+    ) ||
+    comparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_dominant_node_index <
+      0 ||
+    comparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_dominant_node_index >
+      4 ||
+    typeof comparison
       ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_contracted_provider_reaches_verifier_with_source_only_failure !==
       "boolean" ||
     ![
@@ -77706,6 +79620,14 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
     ].includes(
       comparison
         ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_contraction_classification
+    ) ||
+    ![
+      "homothetic-contraction-reduces-to-center-aware-width-over-live-source-width-scalar",
+      "homothetic-contraction-scalar-factorization-open",
+      "homothetic-contraction-scalar-factorization-inputs-missing",
+    ].includes(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_classification
     ) ||
     ![
       "five-node-source-map-inclusion-reduces-to-directed-rounded-source-certification",

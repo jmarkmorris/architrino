@@ -72,21 +72,27 @@ The `3"` height is the external tile envelope, not a claim that the part should 
 
 ## Contour Smoothness Rule
 
-All rolling contours should use controlled S-curve transitions. In cross-section, a hill, ridge, dip, trough, saddle, basin, or valley should be built from level-to-level height changes, not from abrupt sculptural edges. Each level change should begin flat, ease into its slope, ease out of its slope, and end flat again.
+All rolling contours should use controlled sine/cosine-family transitions. In cross-section, a hill, ridge, dip, trough, saddle, basin, or valley should be built from smooth height changes, not from abrupt sculptural edges. Each contour should leave the neutral plane smoothly, reach its high or low region smoothly, and return smoothly.
 
 The intended profile is:
 
-> neutral surface -> soft S-curve rise or fall -> smooth crest, low point, or balance region -> soft S-curve return -> neutral surface
+> neutral surface -> smooth cosine rise or fall -> smooth crest or low point -> smooth cosine return -> neutral surface
 
-The working mathematical profile for one level change is a sine-eased or raised-cosine transition. For a transition of width `W`, height change `A`, and normalized travel `t` from `0` to `1`:
+The working mathematical profile for ordinary round hills and dips is a cosine lobe with no flat top and no flat bottom. For feature radius `R`, amplitude `A`, and radial distance `r` from the feature center:
 
-> `height(t) = start_level + A x (1 - cos(pi x t)) / 2`
+> `height(r) = neutral + A x (1 + cos(pi x r / R)) / 2` for `0 <= r <= R`
 
-The first half of the transition eases away from the starting level. The second half eases into the destination level. In the current visual shorthand, this is the requested `45` degrees handled by the first curve and `45` degrees handled by the second curve: one continuous sinusoidal S-curve that moves from one flat level to another with zero slope at both ends.
+and:
 
-For a hill, the surface uses one sine-eased transition from neutral to the desired height, then another sine-eased transition from that height back to neutral. For a dip, the same rule applies with negative `A`. For a saddle, valley, or ridge, every visible cross-section should still resolve into these sine-eased level changes.
+> `height(r) = neutral` for `r > R`
+
+For a hill, `A` is positive. For a dip, `A` is negative. The derivative is sine-shaped, so the ball sees a gradual slope increase and gradual slope decrease with no step, lip, rim, mesa, flat-bottomed bowl, or sudden change.
+
+For a saddle, valley, ridge, or advanced feature that needs a real level-to-level transition, use a compatible sine-eased or raised-cosine transition with zero slope at both ends. Do not force a `45` degree midpoint tangent as a general requirement; the slope should be chosen by play value, safety, roll distance, and prototype testing.
 
 This is a ball-safety and lesson-clarity rule. A child should see the ball respond to smooth surface geometry, not to a sudden drop, step, sharp lip, curb, hard rim, groove, or track wall. Even visually strong one-inch hills and dips should still feel rounded and continuous under the ball. The feature may be high or low, but the transition into it must be gentle.
+
+Three-quarter product renders are useful for checking the tile form, sidewalls, and no-pattern surface language, but they are not enough to verify or communicate the sine-eased contour law. Any final contour exemplar should include a cross-section or profile view that shows the level-to-level S-curve directly.
 
 The play surface should express the nature-and-universe theme through the shape of the terrain and the moving red/blue balls, not through surface pattern. Stars, waves, orbit marks, scenery, dots, embossed icons, texture fields, and other decorative relief should not appear on the rolling surface.
 
@@ -363,8 +369,9 @@ Expected handoff artifacts:
 - 2D engineering drawings with dimensions, tolerances, datum references, material, finish, color, and inspection notes;
 - geometric tolerancing for seams, tile flatness at neutral approach bands, underside stack lands, and ball-crossing mismatch;
 - contour definition for each rolling surface, either directly from CAD surfaces or from a controlled height grid plus profile tolerance;
-- contour design specification for each rolling feature, including start level, destination level, transition width `W`, height/depth amplitude `A`, plateau or balance-region size when applicable, and the sine-eased or raised-cosine level-change law used to move between levels;
+- contour design specification for each rolling feature, including neutral level, feature radius or transition width, height/depth amplitude `A`, peak, low point, or balance-region definition when applicable, and the sine/cosine-family law used to define the contour;
 - cross-section verification showing that each hill, dip, ridge, trough, saddle, basin, or valley uses zero-slope or near-zero-slope starts and finishes, with the first half of the transition easing away from the old level and the second half easing into the new level;
+- visual exemplar package with both a three-quarter product view and a cross-section or profile view for each contour family, so the tile form and the sine-eased level-change law can be reviewed together;
 - assembly drawings for underside joiners and package stacking;
 - packaging drawings for the one-tile carton, 25-tile carton, accessory tray, interleaves, and pallet pattern;
 - inspection and test plan for rolling behavior, seam crossing, stack height, drop/abuse, cleaning, color, and compliance.

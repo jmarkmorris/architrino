@@ -1258,6 +1258,41 @@ authorization. The current `L_adm` stop condition is
 `source_handle_non_promotion_guard_proven`, and
 `non_domain_carrier_admissibility_derivation_from_definitions_present`.
 
+The same-packet ref/value carrier-field existence lemma proof attempt is
+recorded in
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_same_packet_ref_value_carrier_field_existence_lemma_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It narrows the first `L_adm` blocker and fail-closes with 4 / 4 source
+endpoint-boundary-binding refs, source endpoint value-binding maps,
+domain-chart carrier subfields, ref/value non-domain carrier source-candidate
+pairs, non-domain carrier obstructions, and carrier-field construction
+attempts, but 0 / 4 same-packet ref carrier fields, same-packet value-map
+carrier fields, ref dependency closures, value-map dependency closures,
+carrier-field existence lemmas, endpoint application proofs, consumed rows, or
+branch-chart authorization. The current same-packet ref/value carrier-field stop
+condition is `same_packet_ref_carrier_field_constructed`,
+`same_packet_value_map_carrier_field_constructed`,
+`ref_carrier_field_dependencies_present`, and
+`value_map_carrier_field_dependencies_present`.
+
+The same-packet ref/value carrier-field dependency-closure lemma proof attempt
+is recorded in
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_same_packet_ref_value_carrier_field_dependency_closure_lemma_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It separates source-layer binding evidence from proof-grade same-packet
+dependency evidence: 4 / 4 source ref-packet endpoint boundary bindings,
+source ref-packet witness-object ref fields, source value-map packet value maps,
+source value-map packet witness-object value-map fields, source endpoint values
+bound to source boundary bindings, and non-promotion guards are present, but
+0 / 4 same-packet full endpoint boundary-binding dependencies, endpoint
+boundary-binding dependencies, witness-object ref dependencies, endpoint
+value-bound dependencies, witness-object value-map dependencies, ref dependency
+closures, value-map dependency closures, constructed ref/value carrier fields,
+dependency-closure lemmas, endpoint application proofs, consumed rows, or
+branch-chart authorization exist. The current dependency-closure stop condition
+is `same_packet_ref_carrier_field_dependencies_closed`,
+`same_packet_value_map_carrier_field_dependencies_closed`,
+`same_packet_full_endpoint_boundary_binding_dependency_present`, and
+`same_packet_endpoint_boundary_binding_dependency_present`.
+
 ## Pre-Ledger Stop Condition
 
 Stop before branch-chart construction unless every pre-ledger row satisfies

@@ -7860,6 +7860,396 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
           row.claim_boundary.certifies_directed_rounded_shared_domain === false
       )
   );
+  const fiveNodeHomotheticContractionScalarFactorization =
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization;
+  assert.equal(
+    fiveNodeHomotheticContractionScalarFactorization.target_kind,
+    "candidate-requested-y44-shared-source-map-homothetic-contraction-scalar-factorization"
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarFactorization.factorization_kind,
+    "center-aware-available-half-width-over-live-source-width-sum"
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarFactorization
+      .homothetic_contraction_scalar_factorization_classification,
+    "homothetic-contraction-reduces-to-center-aware-width-over-live-source-width-scalar"
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarFactorization
+      .all_rows_factorize_normal_form_lambda,
+    true
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarFactorization
+      .all_rows_factorize_inverse_contraction,
+    true
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarFactorization
+      .all_rows_endpoint_margin_reconstructs_contracted_sum_half_width,
+    true
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarFactorization
+      .all_rows_provider_shaped_sum_reconstructed,
+    true
+  );
+  assert.ok(
+    fiveNodeHomotheticContractionScalarFactorization
+      .max_node_contraction_lambda_factorization_relative_gap <=
+      fiveNodeHomotheticContractionScalarFactorization
+        .scalar_factorization_relative_tolerance
+  );
+  assert.ok(
+    fiveNodeHomotheticContractionScalarFactorization
+      .max_node_inverse_contraction_factorization_relative_gap <=
+      fiveNodeHomotheticContractionScalarFactorization
+        .scalar_factorization_relative_tolerance
+  );
+  assert.ok(
+    fiveNodeHomotheticContractionScalarFactorization
+      .max_endpoint_margin_reconstruction_relative_gap <=
+      fiveNodeHomotheticContractionScalarFactorization
+        .scalar_factorization_relative_tolerance
+  );
+  assert.ok(
+    fiveNodeHomotheticContractionScalarFactorization
+      .max_provider_shaped_sum_reconstruction_relative_gap <=
+      fiveNodeHomotheticContractionScalarFactorization
+        .scalar_factorization_relative_tolerance
+  );
+  assert.ok(
+    fiveNodeHomotheticContractionScalarFactorization
+      .min_factorized_node_contraction_lambda > 0
+  );
+  assert.ok(
+    fiveNodeHomotheticContractionScalarFactorization
+      .max_factorized_node_contraction_lambda < 1
+  );
+  assert.ok(
+    fiveNodeHomotheticContractionScalarFactorization
+      .max_factorized_node_inverse_contraction_factor > 1
+  );
+  assert.equal(
+    Number.isInteger(
+      fiveNodeHomotheticContractionScalarFactorization
+        .dominant_scalar_factorization_node_index
+    ),
+    true
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarFactorization.claim_boundary
+      .certifies_homothetic_contraction_scalar_factorization_only,
+    true
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarFactorization.claim_boundary
+      .certifies_source_inputs_as_directed_rounded_same_domain,
+    false
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarFactorization.claim_boundary
+      .certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarFactorization
+      .homothetic_contraction_scalar_factorization_rows.length,
+    5
+  );
+  assert.ok(
+    fiveNodeHomotheticContractionScalarFactorization
+      .homothetic_contraction_scalar_factorization_rows.every((row) => {
+        const reconstructedLambda =
+          (row.signed_source_term_sum_available_half_width *
+            row.endpoint_margin) /
+          row.original_source_term_half_width_sum;
+        const reconstructedInverse =
+          row.original_source_term_half_width_sum /
+          (row.signed_source_term_sum_available_half_width *
+            row.endpoint_margin);
+        numberClose(reconstructedLambda, row.factorized_node_contraction_lambda);
+        numberClose(
+          reconstructedInverse,
+          row.factorized_node_inverse_contraction_factor
+        );
+        numberClose(
+          row.contracted_sum_to_available_half_width_ratio,
+          row.endpoint_margin
+        );
+        numberClose(
+          row.contracted_source_term_half_width_sum,
+          row.provider_shaped_source_term_half_width_sum
+        );
+        return (
+          row.homothetic_contraction_scalar_factorization_row_kind ===
+            "candidate-node-local-homothetic-contraction-scalar-factorization-row" &&
+          row.factorized_node_contraction_lambda > 0 &&
+          row.factorized_node_contraction_lambda < 1 &&
+          row.normal_form_node_contraction_lambda > 0 &&
+          row.normal_form_node_contraction_lambda < 1 &&
+          row.factorized_node_inverse_contraction_factor > 1 &&
+          row.normal_form_node_inverse_contraction_factor > 1 &&
+          row.scalar_factorization_matches_normal_form_lambda === true &&
+          row.inverse_factorization_matches_normal_form_inverse === true &&
+          row.contracted_sum_half_width_matches_endpoint_margin === true &&
+          row.provider_shaped_sum_matches_factorized_contract === true &&
+          row.lambda_factorization_relative_gap <=
+            fiveNodeHomotheticContractionScalarFactorization
+              .scalar_factorization_relative_tolerance &&
+          row.inverse_contraction_factorization_relative_gap <=
+            fiveNodeHomotheticContractionScalarFactorization
+              .scalar_factorization_relative_tolerance &&
+          row.endpoint_margin_reconstruction_relative_gap <=
+            fiveNodeHomotheticContractionScalarFactorization
+              .scalar_factorization_relative_tolerance &&
+          row.provider_shaped_sum_reconstruction_relative_gap <=
+            fiveNodeHomotheticContractionScalarFactorization
+              .scalar_factorization_relative_tolerance &&
+          row.claim_boundary
+            .certifies_homothetic_contraction_scalar_factorization_only ===
+            true &&
+          row.claim_boundary.certifies_directed_rounded_shared_domain === false
+        );
+      })
+  );
+  const fiveNodeHomotheticContractionScalarProviderTarget =
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target;
+  assert.equal(
+    fiveNodeHomotheticContractionScalarProviderTarget.target_kind,
+    "candidate-requested-y44-shared-source-map-homothetic-contraction-scalar-provider-target"
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarProviderTarget.provider_target_kind,
+    "two-source-scalar-provider-target"
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarProviderTarget
+      .homothetic_contraction_scalar_provider_target_classification,
+    "homothetic-contraction-scalar-certificate-reduces-to-directed-rounded-numerator-denominator-provider"
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarProviderTarget
+      .all_rows_reconstruct_available_half_width_numerator,
+    true
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarProviderTarget
+      .all_rows_reconstruct_original_half_width_denominator,
+    true
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarProviderTarget
+      .all_rows_reconstruct_factorized_lambda_from_provider_sources,
+    true
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarProviderTarget
+      .all_rows_reduce_scalar_certificate_to_two_source_quantities,
+    true
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarProviderTarget
+      .all_rows_meet_candidate_quotient_tolerance_route,
+    true
+  );
+  assert.ok(
+    fiveNodeHomotheticContractionScalarProviderTarget
+      .candidate_source_relative_tolerance_for_scalar_target <
+      fiveNodeHomotheticContractionScalarProviderTarget
+        .scalar_provider_target_relative_tolerance
+  );
+  assert.ok(
+    fiveNodeHomotheticContractionScalarProviderTarget
+      .max_quotient_relative_error_bound_at_source_tolerance <
+      fiveNodeHomotheticContractionScalarProviderTarget
+        .scalar_provider_target_relative_tolerance
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarProviderTarget.claim_boundary
+      .certifies_homothetic_contraction_scalar_provider_target_only,
+    true
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarProviderTarget.claim_boundary
+      .certifies_source_inputs_as_directed_rounded_same_domain,
+    false
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarProviderTarget.claim_boundary
+      .certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarProviderTarget
+      .homothetic_contraction_scalar_provider_target_rows.length,
+    5
+  );
+  assert.ok(
+    fiveNodeHomotheticContractionScalarProviderTarget
+      .homothetic_contraction_scalar_provider_target_rows.every((row) => {
+        const availableFromTarget = Math.min(
+          row.signed_source_term_sum_center -
+            row.signed_center_aware_residual_target_interval[0],
+          row.signed_center_aware_residual_target_interval[1] -
+            row.signed_source_term_sum_center
+        );
+        const originalWidthSumFromTerms = row.term_source_rows.reduce(
+          (total, termRow) =>
+            total + termRow.original_residual_interval_half_width,
+          0
+        );
+        const lambdaFromProviderSources =
+          (row.endpoint_margin * availableFromTarget) /
+          originalWidthSumFromTerms;
+        const widthShareSum = row.term_source_rows.reduce(
+          (total, termRow) => total + termRow.width_share_of_original_sum,
+          0
+        );
+        numberClose(availableFromTarget, row.available_half_width_from_target);
+        numberClose(
+          originalWidthSumFromTerms,
+          row.original_source_term_half_width_sum_from_terms
+        );
+        numberClose(
+          lambdaFromProviderSources,
+          row.lambda_from_provider_source_quantities
+        );
+        numberClose(widthShareSum, 1);
+        return (
+          row.homothetic_contraction_scalar_provider_target_row_kind ===
+            "candidate-node-local-homothetic-contraction-scalar-provider-target-row" &&
+          row.available_half_width_formula_reconstructs_scalar_numerator ===
+            true &&
+          row.original_width_sum_formula_reconstructs_scalar_denominator ===
+            true &&
+          row.provider_sources_reconstruct_factorized_lambda === true &&
+          row.row_reduces_scalar_certificate_to_two_source_quantities ===
+            true &&
+          row.quotient_tolerance_route_fits_scalar_target === true &&
+          row.term_source_rows.length === 3 &&
+          row.available_half_width_requires_directed_rounding === true &&
+          row.original_width_sum_requires_directed_rounding === true &&
+          row.claim_boundary
+            .certifies_homothetic_contraction_scalar_provider_target_only ===
+            true &&
+          row.claim_boundary.certifies_directed_rounded_shared_domain ===
+            false
+        );
+      })
+  );
+  const fiveNodeHomotheticContractionScalarQuotientEnvelope =
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope;
+  assert.equal(
+    fiveNodeHomotheticContractionScalarQuotientEnvelope.target_kind,
+    "candidate-requested-y44-shared-source-map-homothetic-contraction-scalar-quotient-envelope-target"
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarQuotientEnvelope
+      .quotient_envelope_kind,
+    "positive-numerator-denominator-relative-tolerance-quotient-envelope"
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarQuotientEnvelope
+      .homothetic_contraction_scalar_quotient_envelope_classification,
+    "homothetic-contraction-scalar-quotient-envelope-reduces-to-directed-rounded-source-interval-inclusion"
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarQuotientEnvelope
+      .all_rows_have_positive_numerator_denominator_envelopes,
+    true
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarQuotientEnvelope
+      .all_rows_quotient_interval_contains_factorized_lambda,
+    true
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarQuotientEnvelope
+      .all_rows_quotient_interval_contains_normal_form_lambda,
+    true
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarQuotientEnvelope
+      .all_rows_quotient_relative_radius_within_scalar_tolerance,
+    true
+  );
+  assert.ok(
+    fiveNodeHomotheticContractionScalarQuotientEnvelope
+      .max_quotient_lambda_relative_radius <
+      fiveNodeHomotheticContractionScalarQuotientEnvelope
+        .scalar_provider_target_relative_tolerance
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarQuotientEnvelope.claim_boundary
+      .certifies_homothetic_contraction_scalar_quotient_envelope_only,
+    true
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarQuotientEnvelope.claim_boundary
+      .certifies_source_inputs_as_directed_rounded_same_domain,
+    false
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarQuotientEnvelope.claim_boundary
+      .certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    fiveNodeHomotheticContractionScalarQuotientEnvelope
+      .homothetic_contraction_scalar_quotient_envelope_rows.length,
+    5
+  );
+  assert.ok(
+    fiveNodeHomotheticContractionScalarQuotientEnvelope
+      .homothetic_contraction_scalar_quotient_envelope_rows.every((row) => {
+        const quotientLower =
+          (row.endpoint_margin * row.numerator_candidate_interval[0]) /
+          row.denominator_candidate_interval[1];
+        const quotientUpper =
+          (row.endpoint_margin * row.numerator_candidate_interval[1]) /
+          row.denominator_candidate_interval[0];
+        numberClose(quotientLower, row.quotient_lambda_interval[0]);
+        numberClose(quotientUpper, row.quotient_lambda_interval[1]);
+        assert.ok(
+          row.quotient_lambda_interval[0] <=
+            row.factorized_node_contraction_lambda
+        );
+        assert.ok(
+          row.factorized_node_contraction_lambda <=
+            row.quotient_lambda_interval[1]
+        );
+        assert.ok(
+          row.quotient_lambda_interval[0] <=
+            row.normal_form_node_contraction_lambda
+        );
+        assert.ok(
+          row.normal_form_node_contraction_lambda <=
+            row.quotient_lambda_interval[1]
+        );
+        return (
+          row.homothetic_contraction_scalar_quotient_envelope_row_kind ===
+            "candidate-node-local-homothetic-contraction-scalar-quotient-envelope-row" &&
+          row.denominator_interval_lower_positive === true &&
+          row.quotient_interval_contains_factorized_lambda === true &&
+          row.quotient_interval_contains_normal_form_lambda === true &&
+          row.quotient_relative_radius_within_scalar_tolerance === true &&
+          row.quotient_envelope_needs_directed_rounded_numerator_provider ===
+            true &&
+          row.quotient_envelope_needs_directed_rounded_denominator_provider ===
+            true &&
+          row.claim_boundary
+            .certifies_homothetic_contraction_scalar_quotient_envelope_only ===
+            true &&
+          row.claim_boundary.certifies_directed_rounded_shared_domain ===
+            false
+        );
+      })
+  );
   const fiveNodeContractedProvider =
     sourceMapResidualCovarianceTarget
       .source_map_residual_shared_stream_five_node_contracted_provider_candidate;
@@ -8414,6 +8804,185 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
       .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_contraction_dominant_node_index,
     fiveNodeHomotheticSourceTermContractionNormalForm
       .dominant_homothetic_contraction_node_index
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_classification,
+    fiveNodeHomotheticContractionScalarFactorization
+      .homothetic_contraction_scalar_factorization_classification
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_all_lambdas_match,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_all_inverse_match,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_all_endpoint_margins_match,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_all_provider_sums_match,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_max_lambda_gap,
+    fiveNodeHomotheticContractionScalarFactorization
+      .max_node_contraction_lambda_factorization_relative_gap
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_max_inverse_gap,
+    fiveNodeHomotheticContractionScalarFactorization
+      .max_node_inverse_contraction_factorization_relative_gap
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_max_endpoint_margin_gap,
+    fiveNodeHomotheticContractionScalarFactorization
+      .max_endpoint_margin_reconstruction_relative_gap
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_max_provider_sum_gap,
+    fiveNodeHomotheticContractionScalarFactorization
+      .max_provider_shaped_sum_reconstruction_relative_gap
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_max_inverse_factor,
+    fiveNodeHomotheticContractionScalarFactorization
+      .max_factorized_node_inverse_contraction_factor
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_dominant_node_index,
+    fiveNodeHomotheticContractionScalarFactorization
+      .dominant_scalar_factorization_node_index
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_classification,
+    fiveNodeHomotheticContractionScalarProviderTarget
+      .homothetic_contraction_scalar_provider_target_classification
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_all_numerators_reconstruct,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_all_denominators_reconstruct,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_all_lambdas_reconstruct,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_all_two_source,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_all_quotient_tolerance,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_candidate_source_tolerance,
+    fiveNodeHomotheticContractionScalarProviderTarget
+      .candidate_source_relative_tolerance_for_scalar_target
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_max_numerator_gap,
+    fiveNodeHomotheticContractionScalarProviderTarget
+      .max_available_half_width_numerator_relative_gap
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_max_denominator_gap,
+    fiveNodeHomotheticContractionScalarProviderTarget
+      .max_original_half_width_denominator_relative_gap
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_max_lambda_gap,
+    fiveNodeHomotheticContractionScalarProviderTarget
+      .max_lambda_from_provider_sources_relative_gap
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_max_quotient_bound,
+    fiveNodeHomotheticContractionScalarProviderTarget
+      .max_quotient_relative_error_bound_at_source_tolerance
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_provider_target_dominant_node_index,
+    fiveNodeHomotheticContractionScalarProviderTarget
+      .dominant_scalar_provider_target_node_index
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_quotient_envelope_classification,
+    fiveNodeHomotheticContractionScalarQuotientEnvelope
+      .homothetic_contraction_scalar_quotient_envelope_classification
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_quotient_envelope_all_positive,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_quotient_envelope_all_factorized_contained,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_quotient_envelope_all_normal_contained,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_quotient_envelope_all_within_tolerance,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_quotient_envelope_max_lambda_relative_radius,
+    fiveNodeHomotheticContractionScalarQuotientEnvelope
+      .max_quotient_lambda_relative_radius
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_quotient_envelope_max_source_tolerance,
+    fiveNodeHomotheticContractionScalarQuotientEnvelope
+      .max_candidate_source_relative_tolerance
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_quotient_envelope_min_denominator_lower,
+    fiveNodeHomotheticContractionScalarQuotientEnvelope
+      .min_denominator_interval_lower
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_quotient_envelope_dominant_node_index,
+    fiveNodeHomotheticContractionScalarQuotientEnvelope
+      .dominant_scalar_quotient_envelope_node_index
   );
   assert.equal(
     producerBudgetComparison

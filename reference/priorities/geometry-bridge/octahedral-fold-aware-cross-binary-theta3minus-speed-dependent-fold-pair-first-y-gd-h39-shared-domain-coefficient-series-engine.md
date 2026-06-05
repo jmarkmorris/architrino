@@ -4156,3 +4156,53 @@ for one node-local contraction/covariance scalar acting coherently on the
 three signed source terms. The normal form is still candidate-only; it does not
 certify the source inputs, $N_{38}$ derivative bounds, $S_{37}$ division,
 shifted `R_{\varepsilon,43}`, retained branch, or full H39 closure.
+
+The homothetic normal form now has an executable scalar factorization. The H39
+artifact emits
+`source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization`,
+which verifies, on each of the five live nodes, that the node-local contraction
+factor is
+`signed_source_term_sum_available_half_width * endpoint_margin / original_source_term_half_width_sum`.
+It also reconstructs the inverse contraction factor, the shared endpoint
+margin, and the shaped provider half-width sum from that scalar identity. This
+changes the next proof object from "realize three narrowed source terms" to a
+sharper directed-rounded same-domain H38 producer-image scalar provider:
+certify the center-aware available signed half-width and the live original
+source-term half-width sum on the same five-node cover before H39 applies
+absolute shifted-source bounds. The scalar factorization is still
+candidate-only; it does not certify the source inputs, $N_{38}$ derivative
+bounds, $S_{37}$ division, shifted `R_{\varepsilon,43}`, retained branch, or
+full H39 closure.
+
+The scalar factorization now has an explicit provider target. The H39 artifact
+emits
+`source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target`,
+which reduces the node-local contraction certificate to two same-domain H38
+source quantities on each live node: the center-aware signed clearance
+`min(center - target_lower, target_upper - center)` and the original
+`delta_squared_speed`, `sin_phi`, `sin_delta` source-term half-width sum. It
+then reconstructs
+`endpoint_margin * available_signed_half_width / original_source_term_half_width_sum`
+from those quantities and records a candidate quotient-error route: if the
+numerator and denominator are each certified to one quarter of the scalar
+relative tolerance, the quotient bound remains below the scalar tolerance.
+This changes the open proof again from an informal scalar-provider request to
+a directed-rounded numerator/denominator provider target with an executable
+error-budget check. The target is still candidate-only; it does not certify the
+source inputs, $N_{38}$ derivative bounds, $S_{37}$ division, shifted
+`R_{\varepsilon,43}`, retained branch, or full H39 closure.
+
+The scalar provider target now has an executable quotient-envelope reduction.
+The H39 artifact emits
+`source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope`,
+which wraps the numerator and denominator source quantities in positive
+candidate relative intervals and divides those intervals to obtain a node-local
+lambda envelope. On the five-node cover, the quotient envelope contains both
+the factorized and normal-form contraction scalar and keeps the lambda relative
+radius below the scalar tolerance. This changes the next certificate again:
+the quotient algebra is no longer the open issue. The remaining same-domain
+task is to produce directed-rounded H38 numerator and denominator intervals
+contained in the candidate source intervals before H39 applies absolute
+shifted-source bounds. The quotient envelope is still candidate-only; it does
+not certify the source inputs, $N_{38}$ derivative bounds, $S_{37}$ division,
+shifted `R_{\varepsilon,43}`, retained branch, or full H39 closure.
