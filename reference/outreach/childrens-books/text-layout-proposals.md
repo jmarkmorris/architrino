@@ -1,6 +1,6 @@
-# Text Layout Proposals
+# Reverse Band Text Layout
 
-This note proposes where and how story text should appear in the $\mathbb{A}\mathbb{A}\mathbb{A}$ children's book series.
+This note records the selected story-text placement for the $\mathbb{A}\mathbb{A}\mathbb{A}$ children's book series.
 
 Core rule:
 
@@ -10,151 +10,86 @@ The image-generation prompts should continue to say `No in-image text, captions,
 
 ## Text Color Decision
 
-Default:
+Selected story-page default:
 
-- black text on white.
+- white text on a deep purple reverse band.
 
-Special cases:
+Supporting use:
 
-- white text on deep purple or black for title pages, night pages, threshold pages, or deliberate reverse-type moments.
+- black text on white for adult notes, back matter, production notes, and documentation pages.
 
-Do not use red, blue, or purple for normal body text. Those colors are reserved for AAA geometry: polarity, causal wakes, overlap, balance, Noether sea, assemblies, and basin structure.
+Do not use red, blue, or bright purple for story text. Those colors are reserved for $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry: polarity, causal wakes, overlap, balance, Noether sea, assemblies, and basin structure.
 
 ## Typography Direction
 
 Use large, open, print-friendly text:
 
-- ages 3-8: large read-aloud type, one or two short sentences per spread;
-- ages 9-14: still generous type, but allow two to four sentences if the art is not crowded;
+- Books 3-8: large read-aloud type, one or two short sentences per spread;
+- Books 9-14: still generous type, but allow two to four sentences if the art is not crowded;
 - adult back matter: smaller type is acceptable, but keep black on white.
 
 Body text should feel literary and warm, not technical. Geometry terms can appear in adult notes and glossaries, but child-facing pages should not need labels inside the art.
 
-## Proposal A: Bottom Read-Aloud Band
+## Selected Layout: Reverse Band
 
-![Bottom read-aloud band](assets/text-layout-bottom-band.png)
-
-Best for:
-
-- ages 3-8;
-- short read-aloud lines;
-- pages where the artwork has strong action across the middle;
-- keeping text predictable for early readers.
-
-Why it works:
-
-- the text never competes with faces or AAA geometry;
-- the white band gives high contrast;
-- the art can remain immersive above the text;
-- small red/blue/purple swatches may sit beside the text as decorative continuity, not labels.
-
-Production guidance:
-
-- reserve roughly the bottom 20-25 percent of the page for text;
-- keep the band white;
-- use black text;
-- add a thin black rule and optional pale-purple rule to connect the band to the visual system;
-- do not place crucial causal wakes or source-position dots under the band.
-
-## Proposal B: Left Text Rail
-
-![Left text rail](assets/text-layout-left-rail.png)
+![Reverse text band](assets/text-layout-reverse-band-clean.png)
 
 Best for:
 
-- explanation spreads;
-- causal travel scenes where the action moves left-to-right;
-- pages where the image can be composed with one side intentionally quiet.
-
-Why it works:
-
-- the rail creates a stable reading start;
-- the geometry can unfold across the remaining page;
-- the purple boundary line keeps the rail part of the book's visual grammar.
-
-Production caveat:
-
-This should not be made by cropping a finished illustration unless the crop was planned. In the mockup, the left source child is partly cropped. For final art, compose the image with a deliberate text rail from the start.
-
-Production guidance:
-
-- reserve 25-30 percent of the spread width for the rail;
-- use black text on white;
-- put optional small geometry motifs below the text, never essential explanation;
-- keep active wakes, faces, and receiver moments outside the rail.
-
-## Proposal C: Quiet-Corner Text Block
-
-![Quiet-corner text block](assets/text-layout-quiet-corner.png)
-
-Best for:
-
-- ages 9-14;
-- pages with rich central geometry;
-- spreads where the illustration naturally leaves a quiet sky, wall, page, or tabletop region.
-
-Why it works:
-
-- it keeps the text close to the relevant visual moment;
-- it allows more flexible compositions than a fixed bottom band;
-- the hard white paper block preserves readability.
-
-Production caveat:
-
-The block must sit in intentionally reserved quiet space. It should not cover the page's primary geometry lesson, source-position marks, faces, or line of action.
-
-Production guidance:
-
-- use a clean white rectangle or reserved blank area, not translucent haze;
-- use black text;
-- anchor with a thin black rule and optional pale-purple rule;
-- do not use rounded card styling;
-- keep the text block visually simple.
-
-## Proposal D: Reverse Band
-
-![Reverse text band](assets/text-layout-reverse-band.png)
-
-Best for:
-
-- night pages;
+- story pages across the series;
 - title pages;
-- threshold or high-drama moments;
-- older age bands where a darker value feels appropriate.
+- social-media preview crops;
+- threshold, night, and high-drama moments.
 
 Why it works:
 
 - white text on deep purple is readable and still palette-compliant;
 - the reverse band can mark a tonal shift;
-- red/blue/white dots can show polarity/neutral continuity without becoming body text.
+- the clean band avoids competing with $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry in the artwork.
 
-Production caveat:
+Production requirement:
 
-Use reverse text sparingly. It is powerful, but too much dark banding will make the series feel heavier than the child-facing subject requires.
+The artwork must be composed with the reverse band in mind. Do not hide essential basin structure, causal wakes, source-position marks, line of action, faces, or hands under the band.
 
 Production guidance:
 
-- reserve roughly the bottom 20 percent of the page;
+- reserve roughly the bottom 20-25 percent of the page or spread;
 - use deep purple, not pure black, unless the page is explicitly a night page;
 - use white text;
-- make sure the artwork is composed so no essential basin, wake, or face is hidden under the band.
+- do not add horizontal rules inside the text band;
+- do not add decorative red/blue/white dots inside the text band;
+- keep story text about 20 percent smaller than the first reverse-band mockups;
+- use black-on-white only outside child-facing story pages.
 
-## Recommended Default By Age
+## Primary Short-Video Version
 
-| Age band | Default text placement | Secondary placement |
-| --- | --- | --- |
-| 3-5 | Bottom read-aloud band | Full white facing page for very simple board-book moments. |
-| 6-8 | Bottom read-aloud band | Left text rail for travel/direction lessons. |
-| 9-11 | Left text rail | Quiet-corner block for science-story spreads. |
-| 12-14 | Quiet-corner block | Reverse band for threshold or measurement moments. |
-| 15-18 | Side rail or full facing text page | Diagram caption blocks in black on white. |
+![Reverse band Shorts/TikTok version](assets/text-layout-reverse-band-shorts-tiktok-9x16.png)
 
-## Production Recommendation
+Recommended format:
 
-Use **Proposal A** as the default for the first picture book, [The Message That Traveled](the-message-that-traveled.md). It is the most robust for read-aloud pacing and the least likely to interfere with causal wake geometry.
+- 9:16 portrait;
+- 1080 x 1920 px;
+- primary target for YouTube Shorts, TikTok, Instagram Reels, and Instagram Stories;
+- artwork in the upper region;
+- reverse text band in the lower region;
+- story text lifted within the band so platform captions and bottom controls are less likely to cover it;
+- keep the right edge relatively quiet because short-video interfaces often place action buttons there.
 
-Use **Proposal B** when directionality is the lesson and the art can be composed with a rail from the start.
+This should be the default export for short-video-first outreach. If a short is animated later, use the same safe-zone structure: moving art above, reverse text band below, no essential geometry at the extreme bottom or far right.
 
-Use **Proposal C** for older or richer spreads.
+## Feed Portrait Version
 
-Use **Proposal D** only when the page needs a darker emotional or conceptual beat.
+![Reverse band portrait social version](assets/text-layout-reverse-band-social-portrait.png)
+
+Recommended format:
+
+- 4:5 portrait;
+- 1080 x 1350 px for social feeds;
+- story text uses the same font size as the landscape reverse-band example;
+- artwork in the upper region;
+- reverse text band in the bottom region;
+- generous safe margins for mobile cropping.
+
+The feed portrait version should be used for Instagram feed posts, Threads feed posts, preview cards, campaign graphics, and series announcements. It should not replace print-book page layout.
+
+TikTok, Instagram Reels, Instagram Stories, and other full-screen vertical placements should receive a separate 9:16 export, typically 1080 x 1920 px, with the art and reverse band recomposed for that taller frame.

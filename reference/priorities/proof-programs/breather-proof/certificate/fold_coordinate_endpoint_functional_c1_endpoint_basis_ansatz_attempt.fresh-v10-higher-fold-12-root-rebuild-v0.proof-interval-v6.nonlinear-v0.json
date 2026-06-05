@@ -1,0 +1,1552 @@
+{
+  "schema": "breather-higher-fold-fold-coordinate-endpoint-functional-c1-endpoint-basis-ansatz-attempt-v1",
+  "packet_id": "fresh-v10-higher-fold-12-root-rebuild-v0",
+  "fold_coordinate_packet_id": "fresh-v10-fold-coordinate-collocation-nonlinear-tangent-matrix-v0",
+  "status": "fold_coordinate_endpoint_functional_c1_endpoint_basis_ansatz_attempt_fail_closed",
+  "theorem_target": "Fold-Coordinate Endpoint-Functional C1 Endpoint-Basis Ansatz Attempt",
+  "branch_chart_authorized": false,
+  "preledger_pass": false,
+  "updates_live_ledger": false,
+  "claim_level": "priority-only C1 endpoint-basis ansatz attempt; reuses diagnostic smooth-bump template data but constructs no endpoint-functional domain/evaluation maps and consumes no rows",
+  "authorization_lock": {
+    "branch_chart_authorized": false,
+    "preledger_pass": false,
+    "updates_live_ledger": false,
+    "row_consumption_count": 0
+  },
+  "source_artifacts": {
+    "domainEvaluationContract": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_domain_evaluation_contract.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_domain_evaluation_contract.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "present": true,
+      "sha256": "a7d7a5cbb74aad039e237f9af7d8a575da47740379319f56596133a83d7d1fa8"
+    },
+    "foldCoordinateInput": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/gap_opening_fresh_v10_fold_coordinate_collocation_input.nonlinear-v0.json",
+      "basename": "gap_opening_fresh_v10_fold_coordinate_collocation_input.nonlinear-v0.json",
+      "present": true,
+      "sha256": "e97e3dd67c319fb2b006ecf7c4ceabe2964af5bea069890085e00a9165d25f93"
+    },
+    "foldCoordinateResult": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/gap_opening_fresh_v10_fold_coordinate_collocation_result.nonlinear-v0.json",
+      "basename": "gap_opening_fresh_v10_fold_coordinate_collocation_result.nonlinear-v0.json",
+      "present": true,
+      "sha256": "c7c84353d03bf2a53005eabbbe0ea70f2499d97f12a52ad8b7b9e295ecba7502"
+    }
+  },
+  "ansatz_rule": "A $C^1$ bump template can be reused for the endpoint-functional route only after it is bound to a declared `fc_*` endpoint-functional domain chart, coordinate rule, basis formula, derivative formula, endpoint-motion rule, evaluation map, non-target zero rule, exact $B\\xi=0$ certificate, rank certificate, candidate artifacts, topology recertification, and proof-interval v1-v6 replay.",
+  "no_promotion_rule": "Do not promote shifted-separator $C^1$ bump templates, fold-coordinate screen columns, witness scalars, or tolerance-level $B\\xi$ residuals into same-packet endpoint-functional domain/evaluation maps.",
+  "c1_template_summary": {
+    "basis_model": "shifted_separator_c1_bumps_plus_fold_coordinate_boundary_opening_columns",
+    "formula_template": "psi_Aj(theta)=sin(pi*(theta-L_j)/(R_j-L_j))^2 on the shifted fresh arc A_j and 0 outside; H(theta+1/2)=-H(theta).",
+    "c1_variable_count": 3,
+    "fold_coordinate_variable_count": 4,
+    "fold_coordinate_result_status": "feasible",
+    "screen_tolerance_zero_present": true,
+    "exact_screen_zero_certified": false,
+    "rank_certified": false,
+    "claims_live_candidate": false,
+    "claims_branch_chart_authorization": false
+  },
+  "ansatz_methods": [
+    {
+      "id": "shifted_separator_c1_bump_as_endpoint_basis",
+      "description": "Try to reuse an existing shifted-separator $C^1$ bump as a fold-coordinate endpoint basis.",
+      "required_ansatz_fields": [
+        "c1_source_template_available",
+        "ansatz_family_declared",
+        "ansatz_basis_formula_declared",
+        "ansatz_c1_gluing_rule_declared"
+      ],
+      "required_proof_fields": [
+        "endpoint_boundary_binding_present",
+        "endpoint_functional_domain_present",
+        "domain_chart_declared",
+        "basis_vector_bound_to_domain",
+        "endpoint_motion_rule_present",
+        "non_target_endpoint_functionals_zero_certified"
+      ]
+    },
+    {
+      "id": "fold_coordinate_column_as_c1_basis_formula",
+      "description": "Try to treat the bounded fold-coordinate column itself as the $C^1$ endpoint basis formula.",
+      "required_ansatz_fields": [
+        "c1_source_template_available",
+        "ansatz_family_declared",
+        "ansatz_basis_formula_declared",
+        "ansatz_target_action_matches_contract"
+      ],
+      "required_proof_fields": [
+        "theta_support_present",
+        "basis_formula_present",
+        "basis_derivative_formula_present",
+        "x_update_basis_present",
+        "xdot_update_basis_present",
+        "mesh_update_rule_present",
+        "same_packet_history_update_formula_present"
+      ]
+    },
+    {
+      "id": "screen_witness_value_as_endpoint_derivative",
+      "description": "Try to promote the screen witness scalar into the endpoint derivative required by the target equation.",
+      "required_ansatz_fields": [
+        "c1_source_template_available",
+        "ansatz_target_action_matches_contract"
+      ],
+      "required_proof_fields": [
+        "endpoint_functional_domain_present",
+        "evaluation_map_declared",
+        "endpoint_evaluation_rule_declared",
+        "endpoint_value_bound_to_evaluation_map",
+        "endpoint_motion_rule_present",
+        "exact_screen_zero_certified",
+        "rank_certified"
+      ]
+    },
+    {
+      "id": "diagnostic_screen_as_same_packet_history",
+      "description": "Try to use the feasible fold-coordinate tangent screen as the same-packet history-update construction.",
+      "required_ansatz_fields": [
+        "c1_source_template_available",
+        "ansatz_family_declared",
+        "ansatz_promoted_to_same_packet_basis"
+      ],
+      "required_proof_fields": [
+        "same_packet_history_update_formula_present",
+        "candidate_artifacts_present",
+        "root_topology_recertified_for_candidate_change",
+        "proof_interval_v1_v6_rerun_for_candidate_change",
+        "exact_screen_zero_certified",
+        "rank_certified"
+      ]
+    },
+    {
+      "id": "local_endpoint_bump_template_instantiation",
+      "description": "Try to instantiate a new endpoint-local $C^1$ bump template for each target endpoint.",
+      "required_ansatz_fields": [
+        "c1_source_template_available",
+        "ansatz_theta_support_declared",
+        "ansatz_basis_formula_declared",
+        "ansatz_basis_derivative_formula_declared",
+        "ansatz_periodic_extension_rule_declared",
+        "ansatz_c1_gluing_rule_declared"
+      ],
+      "required_proof_fields": [
+        "endpoint_functional_domain_present",
+        "domain_chart_declared",
+        "domain_coordinate_rule_declared",
+        "theta_support_present",
+        "basis_formula_present",
+        "basis_derivative_formula_present",
+        "endpoint_motion_rule_present",
+        "source_monotonicity_rule_present",
+        "receiver_monotonicity_rule_present",
+        "non_target_endpoint_functionals_zero_certified"
+      ]
+    }
+  ],
+  "endpoint_c1_endpoint_basis_ansatz_attempts": [
+    {
+      "id": "fc_sigma_source_lower",
+      "endpoint_functional_id": "E_lower_source_inner_boundary",
+      "role": "source",
+      "basis_symbol": "Psi_fc_sigma_source_lower",
+      "source_symbol": "sigma_source_lower",
+      "row_uses": [
+        "R_w_A04_A03",
+        "R_u_A10_A09"
+      ],
+      "target_equation": "E_lower_source_inner_boundary(Psi_fc_sigma_source_lower) = -1",
+      "target_action": "lower_source_inner_boundary",
+      "target_sign": -1,
+      "c1_template_source": {
+        "basis_model": "shifted_separator_c1_bumps_plus_fold_coordinate_boundary_opening_columns",
+        "formula_template": "psi_Aj(theta)=sin(pi*(theta-L_j)/(R_j-L_j))^2 on the shifted fresh arc A_j and 0 outside; H(theta+1/2)=-H(theta).",
+        "c1_variables": [
+          "h_A0s",
+          "h_A1s",
+          "h_A2s"
+        ],
+        "fold_coordinate_column": {
+          "id": "fc_sigma_source_lower",
+          "meaning": "Fold-coordinate source-inner lower-boundary opening tangent.",
+          "collocation_role": "fold_coordinate_boundary_opening",
+          "source_symbol": "sigma_source_lower",
+          "bounded_screen_range": [
+            -1,
+            1
+          ]
+        },
+        "fold_coordinate_witness_value": 0.5
+      },
+      "ansatz_fields_present": {
+        "c1_source_template_available": true,
+        "c1_source_template_same_packet": false,
+        "ansatz_family_declared": true,
+        "ansatz_theta_support_declared": true,
+        "ansatz_basis_formula_declared": true,
+        "ansatz_basis_derivative_formula_declared": true,
+        "ansatz_periodic_extension_rule_declared": true,
+        "ansatz_c1_gluing_rule_declared": true,
+        "ansatz_endpoint_motion_rule_derived": false,
+        "ansatz_target_action_matches_contract": true,
+        "ansatz_non_target_zero_rule_checked": false,
+        "ansatz_promoted_to_same_packet_basis": false,
+        "c1_endpoint_basis_ansatz_constructed": false
+      },
+      "required_fields_present": {
+        "endpoint_locator_resolved": true,
+        "row_local_endpoint_value_present": true,
+        "functional_target_equation_defined": true,
+        "target_action_sign_consistent": true,
+        "endpoint_boundary_binding_present": false,
+        "endpoint_functional_domain_present": false,
+        "domain_chart_declared": false,
+        "domain_coordinate_rule_declared": false,
+        "basis_vector_bound_to_domain": false,
+        "evaluation_map_declared": false,
+        "endpoint_evaluation_rule_declared": false,
+        "endpoint_value_bound_to_evaluation_map": false,
+        "theta_support_present": false,
+        "basis_formula_present": false,
+        "basis_derivative_formula_present": false,
+        "x_update_basis_present": false,
+        "xdot_update_basis_present": false,
+        "mesh_update_rule_present": false,
+        "endpoint_motion_rule_present": false,
+        "source_monotonicity_rule_present": false,
+        "receiver_monotonicity_rule_present": false,
+        "periodic_extension_rule_present": false,
+        "c1_gluing_rule_present": false,
+        "same_packet_history_update_formula_present": false,
+        "non_target_endpoint_functionals_zero_certified": false,
+        "exact_screen_zero_certified": false,
+        "rank_certified": false,
+        "domain_evaluation_map_constructed": false
+      },
+      "method_results": [
+        {
+          "method_id": "shifted_separator_c1_bump_as_endpoint_basis",
+          "description": "Try to reuse an existing shifted-separator $C^1$ bump as a fold-coordinate endpoint basis.",
+          "required_ansatz_fields": [
+            "c1_source_template_available",
+            "ansatz_family_declared",
+            "ansatz_basis_formula_declared",
+            "ansatz_c1_gluing_rule_declared"
+          ],
+          "required_proof_fields": [
+            "endpoint_boundary_binding_present",
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "basis_vector_bound_to_domain",
+            "endpoint_motion_rule_present",
+            "non_target_endpoint_functionals_zero_certified"
+          ],
+          "missing_ansatz_fields": [],
+          "missing_proof_fields": [
+            "endpoint_boundary_binding_present",
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "basis_vector_bound_to_domain",
+            "endpoint_motion_rule_present",
+            "non_target_endpoint_functionals_zero_certified"
+          ],
+          "failure_codes": [
+            "missing_proof_endpoint_boundary_binding_present",
+            "missing_proof_endpoint_functional_domain_present",
+            "missing_proof_domain_chart_declared",
+            "missing_proof_basis_vector_bound_to_domain",
+            "missing_proof_endpoint_motion_rule_present",
+            "missing_proof_non_target_endpoint_functionals_zero_certified"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "fold_coordinate_column_as_c1_basis_formula",
+          "description": "Try to treat the bounded fold-coordinate column itself as the $C^1$ endpoint basis formula.",
+          "required_ansatz_fields": [
+            "c1_source_template_available",
+            "ansatz_family_declared",
+            "ansatz_basis_formula_declared",
+            "ansatz_target_action_matches_contract"
+          ],
+          "required_proof_fields": [
+            "theta_support_present",
+            "basis_formula_present",
+            "basis_derivative_formula_present",
+            "x_update_basis_present",
+            "xdot_update_basis_present",
+            "mesh_update_rule_present",
+            "same_packet_history_update_formula_present"
+          ],
+          "missing_ansatz_fields": [],
+          "missing_proof_fields": [
+            "theta_support_present",
+            "basis_formula_present",
+            "basis_derivative_formula_present",
+            "x_update_basis_present",
+            "xdot_update_basis_present",
+            "mesh_update_rule_present",
+            "same_packet_history_update_formula_present"
+          ],
+          "failure_codes": [
+            "missing_proof_theta_support_present",
+            "missing_proof_basis_formula_present",
+            "missing_proof_basis_derivative_formula_present",
+            "missing_proof_x_update_basis_present",
+            "missing_proof_xdot_update_basis_present",
+            "missing_proof_mesh_update_rule_present",
+            "missing_proof_same_packet_history_update_formula_present"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "screen_witness_value_as_endpoint_derivative",
+          "description": "Try to promote the screen witness scalar into the endpoint derivative required by the target equation.",
+          "required_ansatz_fields": [
+            "c1_source_template_available",
+            "ansatz_target_action_matches_contract"
+          ],
+          "required_proof_fields": [
+            "endpoint_functional_domain_present",
+            "evaluation_map_declared",
+            "endpoint_evaluation_rule_declared",
+            "endpoint_value_bound_to_evaluation_map",
+            "endpoint_motion_rule_present",
+            "exact_screen_zero_certified",
+            "rank_certified"
+          ],
+          "missing_ansatz_fields": [],
+          "missing_proof_fields": [
+            "endpoint_functional_domain_present",
+            "evaluation_map_declared",
+            "endpoint_evaluation_rule_declared",
+            "endpoint_value_bound_to_evaluation_map",
+            "endpoint_motion_rule_present",
+            "exact_screen_zero_certified",
+            "rank_certified"
+          ],
+          "failure_codes": [
+            "missing_proof_endpoint_functional_domain_present",
+            "missing_proof_evaluation_map_declared",
+            "missing_proof_endpoint_evaluation_rule_declared",
+            "missing_proof_endpoint_value_bound_to_evaluation_map",
+            "missing_proof_endpoint_motion_rule_present",
+            "missing_proof_exact_screen_zero_certified",
+            "missing_proof_rank_certified"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "diagnostic_screen_as_same_packet_history",
+          "description": "Try to use the feasible fold-coordinate tangent screen as the same-packet history-update construction.",
+          "required_ansatz_fields": [
+            "c1_source_template_available",
+            "ansatz_family_declared",
+            "ansatz_promoted_to_same_packet_basis"
+          ],
+          "required_proof_fields": [
+            "same_packet_history_update_formula_present",
+            "candidate_artifacts_present",
+            "root_topology_recertified_for_candidate_change",
+            "proof_interval_v1_v6_rerun_for_candidate_change",
+            "exact_screen_zero_certified",
+            "rank_certified"
+          ],
+          "missing_ansatz_fields": [
+            "ansatz_promoted_to_same_packet_basis"
+          ],
+          "missing_proof_fields": [
+            "same_packet_history_update_formula_present",
+            "candidate_artifacts_present",
+            "root_topology_recertified_for_candidate_change",
+            "proof_interval_v1_v6_rerun_for_candidate_change",
+            "exact_screen_zero_certified",
+            "rank_certified"
+          ],
+          "failure_codes": [
+            "missing_ansatz_ansatz_promoted_to_same_packet_basis",
+            "missing_proof_same_packet_history_update_formula_present",
+            "missing_proof_candidate_artifacts_present",
+            "missing_proof_root_topology_recertified_for_candidate_change",
+            "missing_proof_proof_interval_v1_v6_rerun_for_candidate_change",
+            "missing_proof_exact_screen_zero_certified",
+            "missing_proof_rank_certified"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "local_endpoint_bump_template_instantiation",
+          "description": "Try to instantiate a new endpoint-local $C^1$ bump template for each target endpoint.",
+          "required_ansatz_fields": [
+            "c1_source_template_available",
+            "ansatz_theta_support_declared",
+            "ansatz_basis_formula_declared",
+            "ansatz_basis_derivative_formula_declared",
+            "ansatz_periodic_extension_rule_declared",
+            "ansatz_c1_gluing_rule_declared"
+          ],
+          "required_proof_fields": [
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "domain_coordinate_rule_declared",
+            "theta_support_present",
+            "basis_formula_present",
+            "basis_derivative_formula_present",
+            "endpoint_motion_rule_present",
+            "source_monotonicity_rule_present",
+            "receiver_monotonicity_rule_present",
+            "non_target_endpoint_functionals_zero_certified"
+          ],
+          "missing_ansatz_fields": [],
+          "missing_proof_fields": [
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "domain_coordinate_rule_declared",
+            "theta_support_present",
+            "basis_formula_present",
+            "basis_derivative_formula_present",
+            "endpoint_motion_rule_present",
+            "source_monotonicity_rule_present",
+            "receiver_monotonicity_rule_present",
+            "non_target_endpoint_functionals_zero_certified"
+          ],
+          "failure_codes": [
+            "missing_proof_endpoint_functional_domain_present",
+            "missing_proof_domain_chart_declared",
+            "missing_proof_domain_coordinate_rule_declared",
+            "missing_proof_theta_support_present",
+            "missing_proof_basis_formula_present",
+            "missing_proof_basis_derivative_formula_present",
+            "missing_proof_endpoint_motion_rule_present",
+            "missing_proof_source_monotonicity_rule_present",
+            "missing_proof_receiver_monotonicity_rule_present",
+            "missing_proof_non_target_endpoint_functionals_zero_certified"
+          ],
+          "passed": false
+        }
+      ],
+      "passed_methods": [],
+      "failed_methods": [
+        "shifted_separator_c1_bump_as_endpoint_basis",
+        "fold_coordinate_column_as_c1_basis_formula",
+        "screen_witness_value_as_endpoint_derivative",
+        "diagnostic_screen_as_same_packet_history",
+        "local_endpoint_bump_template_instantiation"
+      ],
+      "c1_source_template_available": true,
+      "c1_endpoint_basis_ansatz_constructed": false,
+      "domain_evaluation_map_constructed": false,
+      "realization_supplied": false,
+      "no_promotion_reason": "The $C^1$ bump template supplies a diagnostic smooth perturbation family, but no same-packet endpoint-functional domain chart, endpoint evaluation map, endpoint-motion rule, or exact replay certificate is bound to this `fc_*` endpoint."
+    },
+    {
+      "id": "fc_rho_receiver_lower",
+      "endpoint_functional_id": "E_raise_receiver_lower_boundary",
+      "role": "receiver",
+      "basis_symbol": "Psi_fc_rho_receiver_lower",
+      "source_symbol": "rho_receiver_lower",
+      "row_uses": [
+        "R_w_A04_A03",
+        "R_u_A10_A09"
+      ],
+      "target_equation": "E_raise_receiver_lower_boundary(Psi_fc_rho_receiver_lower) = +1",
+      "target_action": "raise_receiver_lower_boundary",
+      "target_sign": 1,
+      "c1_template_source": {
+        "basis_model": "shifted_separator_c1_bumps_plus_fold_coordinate_boundary_opening_columns",
+        "formula_template": "psi_Aj(theta)=sin(pi*(theta-L_j)/(R_j-L_j))^2 on the shifted fresh arc A_j and 0 outside; H(theta+1/2)=-H(theta).",
+        "c1_variables": [
+          "h_A0s",
+          "h_A1s",
+          "h_A2s"
+        ],
+        "fold_coordinate_column": {
+          "id": "fc_rho_receiver_lower",
+          "meaning": "Fold-coordinate receiver lower-boundary contraction tangent.",
+          "collocation_role": "fold_coordinate_boundary_opening",
+          "source_symbol": "rho_receiver_lower",
+          "bounded_screen_range": [
+            -1,
+            1
+          ]
+        },
+        "fold_coordinate_witness_value": 0.5
+      },
+      "ansatz_fields_present": {
+        "c1_source_template_available": true,
+        "c1_source_template_same_packet": false,
+        "ansatz_family_declared": true,
+        "ansatz_theta_support_declared": true,
+        "ansatz_basis_formula_declared": true,
+        "ansatz_basis_derivative_formula_declared": true,
+        "ansatz_periodic_extension_rule_declared": true,
+        "ansatz_c1_gluing_rule_declared": true,
+        "ansatz_endpoint_motion_rule_derived": false,
+        "ansatz_target_action_matches_contract": true,
+        "ansatz_non_target_zero_rule_checked": false,
+        "ansatz_promoted_to_same_packet_basis": false,
+        "c1_endpoint_basis_ansatz_constructed": false
+      },
+      "required_fields_present": {
+        "endpoint_locator_resolved": true,
+        "row_local_endpoint_value_present": true,
+        "functional_target_equation_defined": true,
+        "target_action_sign_consistent": true,
+        "endpoint_boundary_binding_present": false,
+        "endpoint_functional_domain_present": false,
+        "domain_chart_declared": false,
+        "domain_coordinate_rule_declared": false,
+        "basis_vector_bound_to_domain": false,
+        "evaluation_map_declared": false,
+        "endpoint_evaluation_rule_declared": false,
+        "endpoint_value_bound_to_evaluation_map": false,
+        "theta_support_present": false,
+        "basis_formula_present": false,
+        "basis_derivative_formula_present": false,
+        "x_update_basis_present": false,
+        "xdot_update_basis_present": false,
+        "mesh_update_rule_present": false,
+        "endpoint_motion_rule_present": false,
+        "source_monotonicity_rule_present": false,
+        "receiver_monotonicity_rule_present": false,
+        "periodic_extension_rule_present": false,
+        "c1_gluing_rule_present": false,
+        "same_packet_history_update_formula_present": false,
+        "non_target_endpoint_functionals_zero_certified": false,
+        "exact_screen_zero_certified": false,
+        "rank_certified": false,
+        "domain_evaluation_map_constructed": false
+      },
+      "method_results": [
+        {
+          "method_id": "shifted_separator_c1_bump_as_endpoint_basis",
+          "description": "Try to reuse an existing shifted-separator $C^1$ bump as a fold-coordinate endpoint basis.",
+          "required_ansatz_fields": [
+            "c1_source_template_available",
+            "ansatz_family_declared",
+            "ansatz_basis_formula_declared",
+            "ansatz_c1_gluing_rule_declared"
+          ],
+          "required_proof_fields": [
+            "endpoint_boundary_binding_present",
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "basis_vector_bound_to_domain",
+            "endpoint_motion_rule_present",
+            "non_target_endpoint_functionals_zero_certified"
+          ],
+          "missing_ansatz_fields": [],
+          "missing_proof_fields": [
+            "endpoint_boundary_binding_present",
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "basis_vector_bound_to_domain",
+            "endpoint_motion_rule_present",
+            "non_target_endpoint_functionals_zero_certified"
+          ],
+          "failure_codes": [
+            "missing_proof_endpoint_boundary_binding_present",
+            "missing_proof_endpoint_functional_domain_present",
+            "missing_proof_domain_chart_declared",
+            "missing_proof_basis_vector_bound_to_domain",
+            "missing_proof_endpoint_motion_rule_present",
+            "missing_proof_non_target_endpoint_functionals_zero_certified"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "fold_coordinate_column_as_c1_basis_formula",
+          "description": "Try to treat the bounded fold-coordinate column itself as the $C^1$ endpoint basis formula.",
+          "required_ansatz_fields": [
+            "c1_source_template_available",
+            "ansatz_family_declared",
+            "ansatz_basis_formula_declared",
+            "ansatz_target_action_matches_contract"
+          ],
+          "required_proof_fields": [
+            "theta_support_present",
+            "basis_formula_present",
+            "basis_derivative_formula_present",
+            "x_update_basis_present",
+            "xdot_update_basis_present",
+            "mesh_update_rule_present",
+            "same_packet_history_update_formula_present"
+          ],
+          "missing_ansatz_fields": [],
+          "missing_proof_fields": [
+            "theta_support_present",
+            "basis_formula_present",
+            "basis_derivative_formula_present",
+            "x_update_basis_present",
+            "xdot_update_basis_present",
+            "mesh_update_rule_present",
+            "same_packet_history_update_formula_present"
+          ],
+          "failure_codes": [
+            "missing_proof_theta_support_present",
+            "missing_proof_basis_formula_present",
+            "missing_proof_basis_derivative_formula_present",
+            "missing_proof_x_update_basis_present",
+            "missing_proof_xdot_update_basis_present",
+            "missing_proof_mesh_update_rule_present",
+            "missing_proof_same_packet_history_update_formula_present"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "screen_witness_value_as_endpoint_derivative",
+          "description": "Try to promote the screen witness scalar into the endpoint derivative required by the target equation.",
+          "required_ansatz_fields": [
+            "c1_source_template_available",
+            "ansatz_target_action_matches_contract"
+          ],
+          "required_proof_fields": [
+            "endpoint_functional_domain_present",
+            "evaluation_map_declared",
+            "endpoint_evaluation_rule_declared",
+            "endpoint_value_bound_to_evaluation_map",
+            "endpoint_motion_rule_present",
+            "exact_screen_zero_certified",
+            "rank_certified"
+          ],
+          "missing_ansatz_fields": [],
+          "missing_proof_fields": [
+            "endpoint_functional_domain_present",
+            "evaluation_map_declared",
+            "endpoint_evaluation_rule_declared",
+            "endpoint_value_bound_to_evaluation_map",
+            "endpoint_motion_rule_present",
+            "exact_screen_zero_certified",
+            "rank_certified"
+          ],
+          "failure_codes": [
+            "missing_proof_endpoint_functional_domain_present",
+            "missing_proof_evaluation_map_declared",
+            "missing_proof_endpoint_evaluation_rule_declared",
+            "missing_proof_endpoint_value_bound_to_evaluation_map",
+            "missing_proof_endpoint_motion_rule_present",
+            "missing_proof_exact_screen_zero_certified",
+            "missing_proof_rank_certified"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "diagnostic_screen_as_same_packet_history",
+          "description": "Try to use the feasible fold-coordinate tangent screen as the same-packet history-update construction.",
+          "required_ansatz_fields": [
+            "c1_source_template_available",
+            "ansatz_family_declared",
+            "ansatz_promoted_to_same_packet_basis"
+          ],
+          "required_proof_fields": [
+            "same_packet_history_update_formula_present",
+            "candidate_artifacts_present",
+            "root_topology_recertified_for_candidate_change",
+            "proof_interval_v1_v6_rerun_for_candidate_change",
+            "exact_screen_zero_certified",
+            "rank_certified"
+          ],
+          "missing_ansatz_fields": [
+            "ansatz_promoted_to_same_packet_basis"
+          ],
+          "missing_proof_fields": [
+            "same_packet_history_update_formula_present",
+            "candidate_artifacts_present",
+            "root_topology_recertified_for_candidate_change",
+            "proof_interval_v1_v6_rerun_for_candidate_change",
+            "exact_screen_zero_certified",
+            "rank_certified"
+          ],
+          "failure_codes": [
+            "missing_ansatz_ansatz_promoted_to_same_packet_basis",
+            "missing_proof_same_packet_history_update_formula_present",
+            "missing_proof_candidate_artifacts_present",
+            "missing_proof_root_topology_recertified_for_candidate_change",
+            "missing_proof_proof_interval_v1_v6_rerun_for_candidate_change",
+            "missing_proof_exact_screen_zero_certified",
+            "missing_proof_rank_certified"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "local_endpoint_bump_template_instantiation",
+          "description": "Try to instantiate a new endpoint-local $C^1$ bump template for each target endpoint.",
+          "required_ansatz_fields": [
+            "c1_source_template_available",
+            "ansatz_theta_support_declared",
+            "ansatz_basis_formula_declared",
+            "ansatz_basis_derivative_formula_declared",
+            "ansatz_periodic_extension_rule_declared",
+            "ansatz_c1_gluing_rule_declared"
+          ],
+          "required_proof_fields": [
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "domain_coordinate_rule_declared",
+            "theta_support_present",
+            "basis_formula_present",
+            "basis_derivative_formula_present",
+            "endpoint_motion_rule_present",
+            "source_monotonicity_rule_present",
+            "receiver_monotonicity_rule_present",
+            "non_target_endpoint_functionals_zero_certified"
+          ],
+          "missing_ansatz_fields": [],
+          "missing_proof_fields": [
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "domain_coordinate_rule_declared",
+            "theta_support_present",
+            "basis_formula_present",
+            "basis_derivative_formula_present",
+            "endpoint_motion_rule_present",
+            "source_monotonicity_rule_present",
+            "receiver_monotonicity_rule_present",
+            "non_target_endpoint_functionals_zero_certified"
+          ],
+          "failure_codes": [
+            "missing_proof_endpoint_functional_domain_present",
+            "missing_proof_domain_chart_declared",
+            "missing_proof_domain_coordinate_rule_declared",
+            "missing_proof_theta_support_present",
+            "missing_proof_basis_formula_present",
+            "missing_proof_basis_derivative_formula_present",
+            "missing_proof_endpoint_motion_rule_present",
+            "missing_proof_source_monotonicity_rule_present",
+            "missing_proof_receiver_monotonicity_rule_present",
+            "missing_proof_non_target_endpoint_functionals_zero_certified"
+          ],
+          "passed": false
+        }
+      ],
+      "passed_methods": [],
+      "failed_methods": [
+        "shifted_separator_c1_bump_as_endpoint_basis",
+        "fold_coordinate_column_as_c1_basis_formula",
+        "screen_witness_value_as_endpoint_derivative",
+        "diagnostic_screen_as_same_packet_history",
+        "local_endpoint_bump_template_instantiation"
+      ],
+      "c1_source_template_available": true,
+      "c1_endpoint_basis_ansatz_constructed": false,
+      "domain_evaluation_map_constructed": false,
+      "realization_supplied": false,
+      "no_promotion_reason": "The $C^1$ bump template supplies a diagnostic smooth perturbation family, but no same-packet endpoint-functional domain chart, endpoint evaluation map, endpoint-motion rule, or exact replay certificate is bound to this `fc_*` endpoint."
+    },
+    {
+      "id": "fc_sigma_source_upper",
+      "endpoint_functional_id": "E_raise_source_inner_boundary",
+      "role": "source",
+      "basis_symbol": "Psi_fc_sigma_source_upper",
+      "source_symbol": "sigma_source_upper",
+      "row_uses": [
+        "R_u_A07_A06"
+      ],
+      "target_equation": "E_raise_source_inner_boundary(Psi_fc_sigma_source_upper) = +1",
+      "target_action": "raise_source_inner_boundary",
+      "target_sign": 1,
+      "c1_template_source": {
+        "basis_model": "shifted_separator_c1_bumps_plus_fold_coordinate_boundary_opening_columns",
+        "formula_template": "psi_Aj(theta)=sin(pi*(theta-L_j)/(R_j-L_j))^2 on the shifted fresh arc A_j and 0 outside; H(theta+1/2)=-H(theta).",
+        "c1_variables": [
+          "h_A0s",
+          "h_A1s",
+          "h_A2s"
+        ],
+        "fold_coordinate_column": {
+          "id": "fc_sigma_source_upper",
+          "meaning": "Fold-coordinate source-inner upper-boundary opening tangent.",
+          "collocation_role": "fold_coordinate_boundary_opening",
+          "source_symbol": "sigma_source_upper",
+          "bounded_screen_range": [
+            -1,
+            1
+          ]
+        },
+        "fold_coordinate_witness_value": 0.5
+      },
+      "ansatz_fields_present": {
+        "c1_source_template_available": true,
+        "c1_source_template_same_packet": false,
+        "ansatz_family_declared": true,
+        "ansatz_theta_support_declared": true,
+        "ansatz_basis_formula_declared": true,
+        "ansatz_basis_derivative_formula_declared": true,
+        "ansatz_periodic_extension_rule_declared": true,
+        "ansatz_c1_gluing_rule_declared": true,
+        "ansatz_endpoint_motion_rule_derived": false,
+        "ansatz_target_action_matches_contract": true,
+        "ansatz_non_target_zero_rule_checked": false,
+        "ansatz_promoted_to_same_packet_basis": false,
+        "c1_endpoint_basis_ansatz_constructed": false
+      },
+      "required_fields_present": {
+        "endpoint_locator_resolved": true,
+        "row_local_endpoint_value_present": true,
+        "functional_target_equation_defined": true,
+        "target_action_sign_consistent": true,
+        "endpoint_boundary_binding_present": false,
+        "endpoint_functional_domain_present": false,
+        "domain_chart_declared": false,
+        "domain_coordinate_rule_declared": false,
+        "basis_vector_bound_to_domain": false,
+        "evaluation_map_declared": false,
+        "endpoint_evaluation_rule_declared": false,
+        "endpoint_value_bound_to_evaluation_map": false,
+        "theta_support_present": false,
+        "basis_formula_present": false,
+        "basis_derivative_formula_present": false,
+        "x_update_basis_present": false,
+        "xdot_update_basis_present": false,
+        "mesh_update_rule_present": false,
+        "endpoint_motion_rule_present": false,
+        "source_monotonicity_rule_present": false,
+        "receiver_monotonicity_rule_present": false,
+        "periodic_extension_rule_present": false,
+        "c1_gluing_rule_present": false,
+        "same_packet_history_update_formula_present": false,
+        "non_target_endpoint_functionals_zero_certified": false,
+        "exact_screen_zero_certified": false,
+        "rank_certified": false,
+        "domain_evaluation_map_constructed": false
+      },
+      "method_results": [
+        {
+          "method_id": "shifted_separator_c1_bump_as_endpoint_basis",
+          "description": "Try to reuse an existing shifted-separator $C^1$ bump as a fold-coordinate endpoint basis.",
+          "required_ansatz_fields": [
+            "c1_source_template_available",
+            "ansatz_family_declared",
+            "ansatz_basis_formula_declared",
+            "ansatz_c1_gluing_rule_declared"
+          ],
+          "required_proof_fields": [
+            "endpoint_boundary_binding_present",
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "basis_vector_bound_to_domain",
+            "endpoint_motion_rule_present",
+            "non_target_endpoint_functionals_zero_certified"
+          ],
+          "missing_ansatz_fields": [],
+          "missing_proof_fields": [
+            "endpoint_boundary_binding_present",
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "basis_vector_bound_to_domain",
+            "endpoint_motion_rule_present",
+            "non_target_endpoint_functionals_zero_certified"
+          ],
+          "failure_codes": [
+            "missing_proof_endpoint_boundary_binding_present",
+            "missing_proof_endpoint_functional_domain_present",
+            "missing_proof_domain_chart_declared",
+            "missing_proof_basis_vector_bound_to_domain",
+            "missing_proof_endpoint_motion_rule_present",
+            "missing_proof_non_target_endpoint_functionals_zero_certified"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "fold_coordinate_column_as_c1_basis_formula",
+          "description": "Try to treat the bounded fold-coordinate column itself as the $C^1$ endpoint basis formula.",
+          "required_ansatz_fields": [
+            "c1_source_template_available",
+            "ansatz_family_declared",
+            "ansatz_basis_formula_declared",
+            "ansatz_target_action_matches_contract"
+          ],
+          "required_proof_fields": [
+            "theta_support_present",
+            "basis_formula_present",
+            "basis_derivative_formula_present",
+            "x_update_basis_present",
+            "xdot_update_basis_present",
+            "mesh_update_rule_present",
+            "same_packet_history_update_formula_present"
+          ],
+          "missing_ansatz_fields": [],
+          "missing_proof_fields": [
+            "theta_support_present",
+            "basis_formula_present",
+            "basis_derivative_formula_present",
+            "x_update_basis_present",
+            "xdot_update_basis_present",
+            "mesh_update_rule_present",
+            "same_packet_history_update_formula_present"
+          ],
+          "failure_codes": [
+            "missing_proof_theta_support_present",
+            "missing_proof_basis_formula_present",
+            "missing_proof_basis_derivative_formula_present",
+            "missing_proof_x_update_basis_present",
+            "missing_proof_xdot_update_basis_present",
+            "missing_proof_mesh_update_rule_present",
+            "missing_proof_same_packet_history_update_formula_present"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "screen_witness_value_as_endpoint_derivative",
+          "description": "Try to promote the screen witness scalar into the endpoint derivative required by the target equation.",
+          "required_ansatz_fields": [
+            "c1_source_template_available",
+            "ansatz_target_action_matches_contract"
+          ],
+          "required_proof_fields": [
+            "endpoint_functional_domain_present",
+            "evaluation_map_declared",
+            "endpoint_evaluation_rule_declared",
+            "endpoint_value_bound_to_evaluation_map",
+            "endpoint_motion_rule_present",
+            "exact_screen_zero_certified",
+            "rank_certified"
+          ],
+          "missing_ansatz_fields": [],
+          "missing_proof_fields": [
+            "endpoint_functional_domain_present",
+            "evaluation_map_declared",
+            "endpoint_evaluation_rule_declared",
+            "endpoint_value_bound_to_evaluation_map",
+            "endpoint_motion_rule_present",
+            "exact_screen_zero_certified",
+            "rank_certified"
+          ],
+          "failure_codes": [
+            "missing_proof_endpoint_functional_domain_present",
+            "missing_proof_evaluation_map_declared",
+            "missing_proof_endpoint_evaluation_rule_declared",
+            "missing_proof_endpoint_value_bound_to_evaluation_map",
+            "missing_proof_endpoint_motion_rule_present",
+            "missing_proof_exact_screen_zero_certified",
+            "missing_proof_rank_certified"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "diagnostic_screen_as_same_packet_history",
+          "description": "Try to use the feasible fold-coordinate tangent screen as the same-packet history-update construction.",
+          "required_ansatz_fields": [
+            "c1_source_template_available",
+            "ansatz_family_declared",
+            "ansatz_promoted_to_same_packet_basis"
+          ],
+          "required_proof_fields": [
+            "same_packet_history_update_formula_present",
+            "candidate_artifacts_present",
+            "root_topology_recertified_for_candidate_change",
+            "proof_interval_v1_v6_rerun_for_candidate_change",
+            "exact_screen_zero_certified",
+            "rank_certified"
+          ],
+          "missing_ansatz_fields": [
+            "ansatz_promoted_to_same_packet_basis"
+          ],
+          "missing_proof_fields": [
+            "same_packet_history_update_formula_present",
+            "candidate_artifacts_present",
+            "root_topology_recertified_for_candidate_change",
+            "proof_interval_v1_v6_rerun_for_candidate_change",
+            "exact_screen_zero_certified",
+            "rank_certified"
+          ],
+          "failure_codes": [
+            "missing_ansatz_ansatz_promoted_to_same_packet_basis",
+            "missing_proof_same_packet_history_update_formula_present",
+            "missing_proof_candidate_artifacts_present",
+            "missing_proof_root_topology_recertified_for_candidate_change",
+            "missing_proof_proof_interval_v1_v6_rerun_for_candidate_change",
+            "missing_proof_exact_screen_zero_certified",
+            "missing_proof_rank_certified"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "local_endpoint_bump_template_instantiation",
+          "description": "Try to instantiate a new endpoint-local $C^1$ bump template for each target endpoint.",
+          "required_ansatz_fields": [
+            "c1_source_template_available",
+            "ansatz_theta_support_declared",
+            "ansatz_basis_formula_declared",
+            "ansatz_basis_derivative_formula_declared",
+            "ansatz_periodic_extension_rule_declared",
+            "ansatz_c1_gluing_rule_declared"
+          ],
+          "required_proof_fields": [
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "domain_coordinate_rule_declared",
+            "theta_support_present",
+            "basis_formula_present",
+            "basis_derivative_formula_present",
+            "endpoint_motion_rule_present",
+            "source_monotonicity_rule_present",
+            "receiver_monotonicity_rule_present",
+            "non_target_endpoint_functionals_zero_certified"
+          ],
+          "missing_ansatz_fields": [],
+          "missing_proof_fields": [
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "domain_coordinate_rule_declared",
+            "theta_support_present",
+            "basis_formula_present",
+            "basis_derivative_formula_present",
+            "endpoint_motion_rule_present",
+            "source_monotonicity_rule_present",
+            "receiver_monotonicity_rule_present",
+            "non_target_endpoint_functionals_zero_certified"
+          ],
+          "failure_codes": [
+            "missing_proof_endpoint_functional_domain_present",
+            "missing_proof_domain_chart_declared",
+            "missing_proof_domain_coordinate_rule_declared",
+            "missing_proof_theta_support_present",
+            "missing_proof_basis_formula_present",
+            "missing_proof_basis_derivative_formula_present",
+            "missing_proof_endpoint_motion_rule_present",
+            "missing_proof_source_monotonicity_rule_present",
+            "missing_proof_receiver_monotonicity_rule_present",
+            "missing_proof_non_target_endpoint_functionals_zero_certified"
+          ],
+          "passed": false
+        }
+      ],
+      "passed_methods": [],
+      "failed_methods": [
+        "shifted_separator_c1_bump_as_endpoint_basis",
+        "fold_coordinate_column_as_c1_basis_formula",
+        "screen_witness_value_as_endpoint_derivative",
+        "diagnostic_screen_as_same_packet_history",
+        "local_endpoint_bump_template_instantiation"
+      ],
+      "c1_source_template_available": true,
+      "c1_endpoint_basis_ansatz_constructed": false,
+      "domain_evaluation_map_constructed": false,
+      "realization_supplied": false,
+      "no_promotion_reason": "The $C^1$ bump template supplies a diagnostic smooth perturbation family, but no same-packet endpoint-functional domain chart, endpoint evaluation map, endpoint-motion rule, or exact replay certificate is bound to this `fc_*` endpoint."
+    },
+    {
+      "id": "fc_rho_receiver_upper",
+      "endpoint_functional_id": "E_lower_receiver_upper_boundary",
+      "role": "receiver",
+      "basis_symbol": "Psi_fc_rho_receiver_upper",
+      "source_symbol": "rho_receiver_upper",
+      "row_uses": [
+        "R_u_A07_A06"
+      ],
+      "target_equation": "E_lower_receiver_upper_boundary(Psi_fc_rho_receiver_upper) = -1",
+      "target_action": "lower_receiver_upper_boundary",
+      "target_sign": -1,
+      "c1_template_source": {
+        "basis_model": "shifted_separator_c1_bumps_plus_fold_coordinate_boundary_opening_columns",
+        "formula_template": "psi_Aj(theta)=sin(pi*(theta-L_j)/(R_j-L_j))^2 on the shifted fresh arc A_j and 0 outside; H(theta+1/2)=-H(theta).",
+        "c1_variables": [
+          "h_A0s",
+          "h_A1s",
+          "h_A2s"
+        ],
+        "fold_coordinate_column": {
+          "id": "fc_rho_receiver_upper",
+          "meaning": "Fold-coordinate receiver upper-boundary contraction tangent.",
+          "collocation_role": "fold_coordinate_boundary_opening",
+          "source_symbol": "rho_receiver_upper",
+          "bounded_screen_range": [
+            -1,
+            1
+          ]
+        },
+        "fold_coordinate_witness_value": 0.5
+      },
+      "ansatz_fields_present": {
+        "c1_source_template_available": true,
+        "c1_source_template_same_packet": false,
+        "ansatz_family_declared": true,
+        "ansatz_theta_support_declared": true,
+        "ansatz_basis_formula_declared": true,
+        "ansatz_basis_derivative_formula_declared": true,
+        "ansatz_periodic_extension_rule_declared": true,
+        "ansatz_c1_gluing_rule_declared": true,
+        "ansatz_endpoint_motion_rule_derived": false,
+        "ansatz_target_action_matches_contract": true,
+        "ansatz_non_target_zero_rule_checked": false,
+        "ansatz_promoted_to_same_packet_basis": false,
+        "c1_endpoint_basis_ansatz_constructed": false
+      },
+      "required_fields_present": {
+        "endpoint_locator_resolved": true,
+        "row_local_endpoint_value_present": true,
+        "functional_target_equation_defined": true,
+        "target_action_sign_consistent": true,
+        "endpoint_boundary_binding_present": false,
+        "endpoint_functional_domain_present": false,
+        "domain_chart_declared": false,
+        "domain_coordinate_rule_declared": false,
+        "basis_vector_bound_to_domain": false,
+        "evaluation_map_declared": false,
+        "endpoint_evaluation_rule_declared": false,
+        "endpoint_value_bound_to_evaluation_map": false,
+        "theta_support_present": false,
+        "basis_formula_present": false,
+        "basis_derivative_formula_present": false,
+        "x_update_basis_present": false,
+        "xdot_update_basis_present": false,
+        "mesh_update_rule_present": false,
+        "endpoint_motion_rule_present": false,
+        "source_monotonicity_rule_present": false,
+        "receiver_monotonicity_rule_present": false,
+        "periodic_extension_rule_present": false,
+        "c1_gluing_rule_present": false,
+        "same_packet_history_update_formula_present": false,
+        "non_target_endpoint_functionals_zero_certified": false,
+        "exact_screen_zero_certified": false,
+        "rank_certified": false,
+        "domain_evaluation_map_constructed": false
+      },
+      "method_results": [
+        {
+          "method_id": "shifted_separator_c1_bump_as_endpoint_basis",
+          "description": "Try to reuse an existing shifted-separator $C^1$ bump as a fold-coordinate endpoint basis.",
+          "required_ansatz_fields": [
+            "c1_source_template_available",
+            "ansatz_family_declared",
+            "ansatz_basis_formula_declared",
+            "ansatz_c1_gluing_rule_declared"
+          ],
+          "required_proof_fields": [
+            "endpoint_boundary_binding_present",
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "basis_vector_bound_to_domain",
+            "endpoint_motion_rule_present",
+            "non_target_endpoint_functionals_zero_certified"
+          ],
+          "missing_ansatz_fields": [],
+          "missing_proof_fields": [
+            "endpoint_boundary_binding_present",
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "basis_vector_bound_to_domain",
+            "endpoint_motion_rule_present",
+            "non_target_endpoint_functionals_zero_certified"
+          ],
+          "failure_codes": [
+            "missing_proof_endpoint_boundary_binding_present",
+            "missing_proof_endpoint_functional_domain_present",
+            "missing_proof_domain_chart_declared",
+            "missing_proof_basis_vector_bound_to_domain",
+            "missing_proof_endpoint_motion_rule_present",
+            "missing_proof_non_target_endpoint_functionals_zero_certified"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "fold_coordinate_column_as_c1_basis_formula",
+          "description": "Try to treat the bounded fold-coordinate column itself as the $C^1$ endpoint basis formula.",
+          "required_ansatz_fields": [
+            "c1_source_template_available",
+            "ansatz_family_declared",
+            "ansatz_basis_formula_declared",
+            "ansatz_target_action_matches_contract"
+          ],
+          "required_proof_fields": [
+            "theta_support_present",
+            "basis_formula_present",
+            "basis_derivative_formula_present",
+            "x_update_basis_present",
+            "xdot_update_basis_present",
+            "mesh_update_rule_present",
+            "same_packet_history_update_formula_present"
+          ],
+          "missing_ansatz_fields": [],
+          "missing_proof_fields": [
+            "theta_support_present",
+            "basis_formula_present",
+            "basis_derivative_formula_present",
+            "x_update_basis_present",
+            "xdot_update_basis_present",
+            "mesh_update_rule_present",
+            "same_packet_history_update_formula_present"
+          ],
+          "failure_codes": [
+            "missing_proof_theta_support_present",
+            "missing_proof_basis_formula_present",
+            "missing_proof_basis_derivative_formula_present",
+            "missing_proof_x_update_basis_present",
+            "missing_proof_xdot_update_basis_present",
+            "missing_proof_mesh_update_rule_present",
+            "missing_proof_same_packet_history_update_formula_present"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "screen_witness_value_as_endpoint_derivative",
+          "description": "Try to promote the screen witness scalar into the endpoint derivative required by the target equation.",
+          "required_ansatz_fields": [
+            "c1_source_template_available",
+            "ansatz_target_action_matches_contract"
+          ],
+          "required_proof_fields": [
+            "endpoint_functional_domain_present",
+            "evaluation_map_declared",
+            "endpoint_evaluation_rule_declared",
+            "endpoint_value_bound_to_evaluation_map",
+            "endpoint_motion_rule_present",
+            "exact_screen_zero_certified",
+            "rank_certified"
+          ],
+          "missing_ansatz_fields": [],
+          "missing_proof_fields": [
+            "endpoint_functional_domain_present",
+            "evaluation_map_declared",
+            "endpoint_evaluation_rule_declared",
+            "endpoint_value_bound_to_evaluation_map",
+            "endpoint_motion_rule_present",
+            "exact_screen_zero_certified",
+            "rank_certified"
+          ],
+          "failure_codes": [
+            "missing_proof_endpoint_functional_domain_present",
+            "missing_proof_evaluation_map_declared",
+            "missing_proof_endpoint_evaluation_rule_declared",
+            "missing_proof_endpoint_value_bound_to_evaluation_map",
+            "missing_proof_endpoint_motion_rule_present",
+            "missing_proof_exact_screen_zero_certified",
+            "missing_proof_rank_certified"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "diagnostic_screen_as_same_packet_history",
+          "description": "Try to use the feasible fold-coordinate tangent screen as the same-packet history-update construction.",
+          "required_ansatz_fields": [
+            "c1_source_template_available",
+            "ansatz_family_declared",
+            "ansatz_promoted_to_same_packet_basis"
+          ],
+          "required_proof_fields": [
+            "same_packet_history_update_formula_present",
+            "candidate_artifacts_present",
+            "root_topology_recertified_for_candidate_change",
+            "proof_interval_v1_v6_rerun_for_candidate_change",
+            "exact_screen_zero_certified",
+            "rank_certified"
+          ],
+          "missing_ansatz_fields": [
+            "ansatz_promoted_to_same_packet_basis"
+          ],
+          "missing_proof_fields": [
+            "same_packet_history_update_formula_present",
+            "candidate_artifacts_present",
+            "root_topology_recertified_for_candidate_change",
+            "proof_interval_v1_v6_rerun_for_candidate_change",
+            "exact_screen_zero_certified",
+            "rank_certified"
+          ],
+          "failure_codes": [
+            "missing_ansatz_ansatz_promoted_to_same_packet_basis",
+            "missing_proof_same_packet_history_update_formula_present",
+            "missing_proof_candidate_artifacts_present",
+            "missing_proof_root_topology_recertified_for_candidate_change",
+            "missing_proof_proof_interval_v1_v6_rerun_for_candidate_change",
+            "missing_proof_exact_screen_zero_certified",
+            "missing_proof_rank_certified"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "local_endpoint_bump_template_instantiation",
+          "description": "Try to instantiate a new endpoint-local $C^1$ bump template for each target endpoint.",
+          "required_ansatz_fields": [
+            "c1_source_template_available",
+            "ansatz_theta_support_declared",
+            "ansatz_basis_formula_declared",
+            "ansatz_basis_derivative_formula_declared",
+            "ansatz_periodic_extension_rule_declared",
+            "ansatz_c1_gluing_rule_declared"
+          ],
+          "required_proof_fields": [
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "domain_coordinate_rule_declared",
+            "theta_support_present",
+            "basis_formula_present",
+            "basis_derivative_formula_present",
+            "endpoint_motion_rule_present",
+            "source_monotonicity_rule_present",
+            "receiver_monotonicity_rule_present",
+            "non_target_endpoint_functionals_zero_certified"
+          ],
+          "missing_ansatz_fields": [],
+          "missing_proof_fields": [
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "domain_coordinate_rule_declared",
+            "theta_support_present",
+            "basis_formula_present",
+            "basis_derivative_formula_present",
+            "endpoint_motion_rule_present",
+            "source_monotonicity_rule_present",
+            "receiver_monotonicity_rule_present",
+            "non_target_endpoint_functionals_zero_certified"
+          ],
+          "failure_codes": [
+            "missing_proof_endpoint_functional_domain_present",
+            "missing_proof_domain_chart_declared",
+            "missing_proof_domain_coordinate_rule_declared",
+            "missing_proof_theta_support_present",
+            "missing_proof_basis_formula_present",
+            "missing_proof_basis_derivative_formula_present",
+            "missing_proof_endpoint_motion_rule_present",
+            "missing_proof_source_monotonicity_rule_present",
+            "missing_proof_receiver_monotonicity_rule_present",
+            "missing_proof_non_target_endpoint_functionals_zero_certified"
+          ],
+          "passed": false
+        }
+      ],
+      "passed_methods": [],
+      "failed_methods": [
+        "shifted_separator_c1_bump_as_endpoint_basis",
+        "fold_coordinate_column_as_c1_basis_formula",
+        "screen_witness_value_as_endpoint_derivative",
+        "diagnostic_screen_as_same_packet_history",
+        "local_endpoint_bump_template_instantiation"
+      ],
+      "c1_source_template_available": true,
+      "c1_endpoint_basis_ansatz_constructed": false,
+      "domain_evaluation_map_constructed": false,
+      "realization_supplied": false,
+      "no_promotion_reason": "The $C^1$ bump template supplies a diagnostic smooth perturbation family, but no same-packet endpoint-functional domain chart, endpoint evaluation map, endpoint-motion rule, or exact replay certificate is bound to this `fc_*` endpoint."
+    }
+  ],
+  "row_c1_endpoint_basis_ansatz_attempts": [
+    {
+      "row_id": "R_w_A04_A03",
+      "source_interval": "A03",
+      "receiver_interval": "A04",
+      "failed_side": "lo",
+      "boundary_side": "lower",
+      "source_endpoint_contract_id": "fc_sigma_source_lower",
+      "receiver_endpoint_contract_id": "fc_rho_receiver_lower",
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "source_endpoint_contract_declared": true,
+        "receiver_endpoint_contract_declared": true,
+        "source_c1_endpoint_basis_ansatz_constructed": false,
+        "receiver_c1_endpoint_basis_ansatz_constructed": false,
+        "source_domain_evaluation_map_constructed": false,
+        "receiver_domain_evaluation_map_constructed": false,
+        "combined_domain_evaluation_pair_constructed": false,
+        "screen_positive_candidate_change_row": true,
+        "signed_boundary_delta_contract_defined": true,
+        "proof_grade_boundary_opening_certified": false,
+        "same_packet_history_update_formula_present": false,
+        "candidate_artifacts_present": false,
+        "root_topology_recertified_for_candidate_change": false,
+        "proof_interval_v1_v6_rerun_for_candidate_change": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "c1_source_template_pair_available": true,
+      "c1_endpoint_basis_ansatz_pair_constructed": false,
+      "row_ready": false,
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The row has a source/receiver $C^1$ ansatz pair and a signed screen-positive contract, but source and receiver endpoint-functional domain/evaluation maps are not constructed and no proof-grade same-packet replay exists."
+    },
+    {
+      "row_id": "R_u_A10_A09",
+      "source_interval": "A09",
+      "receiver_interval": "A10",
+      "failed_side": "lo",
+      "boundary_side": "lower",
+      "source_endpoint_contract_id": "fc_sigma_source_lower",
+      "receiver_endpoint_contract_id": "fc_rho_receiver_lower",
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "source_endpoint_contract_declared": true,
+        "receiver_endpoint_contract_declared": true,
+        "source_c1_endpoint_basis_ansatz_constructed": false,
+        "receiver_c1_endpoint_basis_ansatz_constructed": false,
+        "source_domain_evaluation_map_constructed": false,
+        "receiver_domain_evaluation_map_constructed": false,
+        "combined_domain_evaluation_pair_constructed": false,
+        "screen_positive_candidate_change_row": true,
+        "signed_boundary_delta_contract_defined": true,
+        "proof_grade_boundary_opening_certified": false,
+        "same_packet_history_update_formula_present": false,
+        "candidate_artifacts_present": false,
+        "root_topology_recertified_for_candidate_change": false,
+        "proof_interval_v1_v6_rerun_for_candidate_change": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "c1_source_template_pair_available": true,
+      "c1_endpoint_basis_ansatz_pair_constructed": false,
+      "row_ready": false,
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The row has a source/receiver $C^1$ ansatz pair and a signed screen-positive contract, but source and receiver endpoint-functional domain/evaluation maps are not constructed and no proof-grade same-packet replay exists."
+    },
+    {
+      "row_id": "R_u_A07_A06",
+      "source_interval": "A06",
+      "receiver_interval": "A07",
+      "failed_side": "hi",
+      "boundary_side": "upper",
+      "source_endpoint_contract_id": "fc_sigma_source_upper",
+      "receiver_endpoint_contract_id": "fc_rho_receiver_upper",
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "source_endpoint_contract_declared": true,
+        "receiver_endpoint_contract_declared": true,
+        "source_c1_endpoint_basis_ansatz_constructed": false,
+        "receiver_c1_endpoint_basis_ansatz_constructed": false,
+        "source_domain_evaluation_map_constructed": false,
+        "receiver_domain_evaluation_map_constructed": false,
+        "combined_domain_evaluation_pair_constructed": false,
+        "screen_positive_candidate_change_row": true,
+        "signed_boundary_delta_contract_defined": true,
+        "proof_grade_boundary_opening_certified": false,
+        "same_packet_history_update_formula_present": false,
+        "candidate_artifacts_present": false,
+        "root_topology_recertified_for_candidate_change": false,
+        "proof_interval_v1_v6_rerun_for_candidate_change": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "c1_source_template_pair_available": true,
+      "c1_endpoint_basis_ansatz_pair_constructed": false,
+      "row_ready": false,
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The row has a source/receiver $C^1$ ansatz pair and a signed screen-positive contract, but source and receiver endpoint-functional domain/evaluation maps are not constructed and no proof-grade same-packet replay exists."
+    }
+  ],
+  "summary": {
+    "endpoint_functionals": 4,
+    "rows": 3,
+    "endpoint_contracts_declared": 4,
+    "c1_endpoint_basis_ansatzes_tested": 4,
+    "c1_endpoint_basis_ansatzes_constructed": 0,
+    "ansatz_formulas_declared": 4,
+    "ansatz_derivative_formulas_declared": 4,
+    "ansatz_c1_gluing_rules_declared": 4,
+    "ansatz_promoted_to_same_packet_basis_count": 0,
+    "domain_evaluation_maps_constructed": 0,
+    "endpoint_realizations_supplied": 0,
+    "exact_screen_zero_certified_endpoint_functionals": 0,
+    "rank_certified_endpoint_functionals": 0,
+    "endpoint_methods_passed_total": 0,
+    "row_locators_resolved": 3,
+    "rows_with_source_c1_endpoint_basis_ansatz_constructed": 0,
+    "rows_with_receiver_c1_endpoint_basis_ansatz_constructed": 0,
+    "rows_with_combined_domain_evaluation_pair_constructed": 0,
+    "proof_grade_boundary_opening_rows": 0,
+    "screen_positive_rows": 3,
+    "signed_boundary_delta_rows": 3,
+    "row_ready_count": 0,
+    "row_consumption_count": 0,
+    "branch_chart_authorized": false,
+    "c1_ansatz_failure_code_counts": {
+      "missing_ansatz_ansatz_promoted_to_same_packet_basis": 4,
+      "missing_proof_basis_derivative_formula_present": 8,
+      "missing_proof_basis_formula_present": 8,
+      "missing_proof_basis_vector_bound_to_domain": 4,
+      "missing_proof_candidate_artifacts_present": 4,
+      "missing_proof_domain_chart_declared": 8,
+      "missing_proof_domain_coordinate_rule_declared": 4,
+      "missing_proof_endpoint_boundary_binding_present": 4,
+      "missing_proof_endpoint_evaluation_rule_declared": 4,
+      "missing_proof_endpoint_functional_domain_present": 12,
+      "missing_proof_endpoint_motion_rule_present": 12,
+      "missing_proof_endpoint_value_bound_to_evaluation_map": 4,
+      "missing_proof_evaluation_map_declared": 4,
+      "missing_proof_exact_screen_zero_certified": 8,
+      "missing_proof_mesh_update_rule_present": 4,
+      "missing_proof_non_target_endpoint_functionals_zero_certified": 8,
+      "missing_proof_proof_interval_v1_v6_rerun_for_candidate_change": 4,
+      "missing_proof_rank_certified": 8,
+      "missing_proof_receiver_monotonicity_rule_present": 4,
+      "missing_proof_root_topology_recertified_for_candidate_change": 4,
+      "missing_proof_same_packet_history_update_formula_present": 8,
+      "missing_proof_source_monotonicity_rule_present": 4,
+      "missing_proof_theta_support_present": 8,
+      "missing_proof_x_update_basis_present": 4,
+      "missing_proof_xdot_update_basis_present": 4
+    },
+    "endpoint_required_fields_certified_counts": {
+      "endpoint_locator_resolved": 4,
+      "row_local_endpoint_value_present": 4,
+      "functional_target_equation_defined": 4,
+      "target_action_sign_consistent": 4,
+      "endpoint_boundary_binding_present": 0,
+      "endpoint_functional_domain_present": 0,
+      "domain_chart_declared": 0,
+      "domain_coordinate_rule_declared": 0,
+      "basis_vector_bound_to_domain": 0,
+      "evaluation_map_declared": 0,
+      "endpoint_evaluation_rule_declared": 0,
+      "endpoint_value_bound_to_evaluation_map": 0,
+      "theta_support_present": 0,
+      "basis_formula_present": 0,
+      "basis_derivative_formula_present": 0,
+      "x_update_basis_present": 0,
+      "xdot_update_basis_present": 0,
+      "mesh_update_rule_present": 0,
+      "endpoint_motion_rule_present": 0,
+      "source_monotonicity_rule_present": 0,
+      "receiver_monotonicity_rule_present": 0,
+      "periodic_extension_rule_present": 0,
+      "c1_gluing_rule_present": 0,
+      "same_packet_history_update_formula_present": 0,
+      "non_target_endpoint_functionals_zero_certified": 0,
+      "exact_screen_zero_certified": 0,
+      "rank_certified": 0,
+      "domain_evaluation_map_constructed": 0
+    },
+    "endpoint_ansatz_field_counts": {
+      "c1_source_template_available": 4,
+      "c1_source_template_same_packet": 0,
+      "ansatz_family_declared": 4,
+      "ansatz_theta_support_declared": 4,
+      "ansatz_basis_formula_declared": 4,
+      "ansatz_basis_derivative_formula_declared": 4,
+      "ansatz_periodic_extension_rule_declared": 4,
+      "ansatz_c1_gluing_rule_declared": 4,
+      "ansatz_endpoint_motion_rule_derived": 0,
+      "ansatz_target_action_matches_contract": 4,
+      "ansatz_non_target_zero_rule_checked": 0,
+      "ansatz_promoted_to_same_packet_basis": 0,
+      "c1_endpoint_basis_ansatz_constructed": 0
+    },
+    "row_required_fields_certified_counts": {
+      "row_locator_resolved": 3,
+      "source_endpoint_contract_declared": 3,
+      "receiver_endpoint_contract_declared": 3,
+      "source_c1_endpoint_basis_ansatz_constructed": 0,
+      "receiver_c1_endpoint_basis_ansatz_constructed": 0,
+      "source_domain_evaluation_map_constructed": 0,
+      "receiver_domain_evaluation_map_constructed": 0,
+      "combined_domain_evaluation_pair_constructed": 0,
+      "screen_positive_candidate_change_row": 3,
+      "signed_boundary_delta_contract_defined": 3,
+      "proof_grade_boundary_opening_certified": 0,
+      "same_packet_history_update_formula_present": 0,
+      "candidate_artifacts_present": 0,
+      "root_topology_recertified_for_candidate_change": 0,
+      "proof_interval_v1_v6_rerun_for_candidate_change": 0,
+      "row_consumed": 0,
+      "branch_chart_authorized": 0
+    },
+    "ansatz_method_pass_counts": {
+      "shifted_separator_c1_bump_as_endpoint_basis": 0,
+      "fold_coordinate_column_as_c1_basis_formula": 0,
+      "screen_witness_value_as_endpoint_derivative": 0,
+      "diagnostic_screen_as_same_packet_history": 0,
+      "local_endpoint_bump_template_instantiation": 0
+    }
+  }
+}

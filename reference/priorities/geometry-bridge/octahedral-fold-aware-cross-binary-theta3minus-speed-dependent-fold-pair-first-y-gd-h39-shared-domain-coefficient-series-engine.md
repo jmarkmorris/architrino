@@ -3521,3 +3521,787 @@ the next certificate should not spend effort on cell partitioning or termwise
 source splitting first. It should attack terminal h-row covariance through the
 H38 producer image, especially h37 with h36 and h35 retained as a coupled
 terminal block, before the $N_{38}$ derivative is absolutized.
+
+The terminal eta graph diagnostic now validates the same coupled h35-h37
+quadratic graph on the exact symmetric cross-fold five-node row-local window
+used by the live H39/y44 derivative stencil. In that window, terminal h35-h37
+account for at least $0.971399$ of the active source width, h0-h34 account for
+at most $0.0286009$, and the terminal graph-only replay has width at most
+$2.03\times10^{-13}$ of the terminal replay. Adding nonterminal rows leaves
+about $0.0286009$ of the full width, while the interval residual replay
+recreates the terminal width. The next certificate route is therefore a
+dependency-preserving terminal h35-h37 graph/residual provider for the H38
+producer image, not another independent h-row box, source-term split, or
+positive-$\xi$-only coordinate repair.
+
+The H39 shared-domain replay summary now exports the provider dependency
+shape: dependency kind, witness kind, h38 solve-target policy, replay kind,
+and terminal h-index set. The endpoint-zeta provider test confirms that the
+live scalar endpoint replays carry
+`terminal-shared-residual-affine-zeta-endpoint` with terminal h-index set
+`[37,36,35]` through the provider boundary. This does not certify the
+continuous shared-zeta interval, but it proves the audit path can distinguish
+the coupled endpoint-zeta route from an independent terminal h-row box.
+
+The next bridge is now executable as a candidate object. The terminal graph
+remainder-budget validator accepts the exact symmetric cross-fold five-node
+window and verifies that affine endpoint partitions close the graph-$\xi$
+candidate while raw residual export still fails. The terminal affine-$\zeta$
+provider replay now adds
+`candidate-coupled-xi-zeta-terminal-residual-provider-summary`, which records
+the comparison $\xi$ cover, residual partition count, endpoint-zeta replays,
+requested shifted $\zeta$-slice coverage, exact `[37,36,35]` terminal h-index
+set, and candidate-only claim boundary. The H39 route has therefore moved from
+"find a coupled route" to "directed-round the already identified coupled
+$\xi,\zeta$ producer-image enclosure."
+
+The route now makes that enclosure target explicit. The coupled summary
+preserves each row's requested shifted residual-direction profile, including
+the midpoint-matching residual-radius budget, and the successor route emits a
+`candidate-requested-y44-continuous-xi-zeta-producer-image-target` over the
+live five $\xi$ rows and two $\zeta$ partitions. That target checks the
+continuous-grid bookkeeping, verifies requested shifted source reconstruction,
+confirms that producer midpoints fit the requested residual budget while full
+producer intervals do not, and records that only the selected row-local
+producer width targets have bisection collars. The same replay classifies the
+intervalized Lagrange failure as a terminal h35-h37 node-width artifact: the
+midpoint normal form fits, the intervalized enclosure contains the midpoint
+with zero gap, and the excess remains tied to terminal h-row interval width.
+The target records this as a terminal h35-h37 covariance-preservation subtarget
+on the selected rows, separating the terminal block from negligible cell-only
+width. No shifted $R_{\varepsilon,43}$ or shared-$\zeta$ interval certificate
+is promoted; the next proof object is a directed-rounded continuous
+$\xi,\zeta$ producer-image enclosure that keeps terminal h35-h37 covariance
+through the H38 producer image.
+
+The route now also records why a terminal-only repair is insufficient. The
+linear width-share budget keeps the same selected rows and asks how much width
+can remain before the row-local $M_4$ target closes. The current total
+intervalized Lagrange ratio is about $2.12\times10^5$, so the closure share is
+about $4.7\times10^{-6}$. The nonterminal h0-h34 floor plus cell floor already
+exceeds that share by about $7.84\times10^3$, even though the cell-only floor
+is negligible at about $5.62\times10^{-10}$ of the required share. Therefore
+there is no positive terminal h35-h37-only compression budget while h0-h34 is
+kept fixed; an all-h-row compression budget remains positive at about
+$2.12\times10^5$. The successor route also emits
+`candidate-requested-y44-terminal-h35-h37-coupled-endpoint-partition-target`,
+which carries the exact `[37,36,35]` endpoint provider, requested shifted
+$\zeta$ coverage, and source reconstruction as a provider-backed witness. This
+is still not a directed-rounded continuous producer-image certificate, but it
+removes the terminal-only false path: the next certificate must preserve
+broader all-h-row covariance or prove a signed nonterminal-floor cancellation
+before the H39 shifted-source majorant is taken.
+
+The provider-boundary target now makes the false path executable as a
+two-block allocation budget. The current selected rows have no terminal-only
+budget while h0-h34 is fixed; h0-h34 must be compressed by more than about
+$7.84\times10^3$ before a terminal h35-h37 budget even becomes positive. With
+h0-h34 eliminated, the terminal block still needs more than about
+$2.04\times10^5$ compression, while balanced all-h-row compression remains
+positive at about $2.12\times10^5$. This keeps the claim candidate-only, but it
+turns the next H39 closure object into an all-h-row covariance certificate or a
+signed h0-h34 cancellation proof, not another terminal-only envelope attempt.
+
+The same artifact now adds a signed h0-h34 floor target beside the allocation
+budget. It replays the h0-h34 cell-midpoint localization intervals through the
+same five Lagrange weights and reports both the signed midpoint contribution
+and the intervalized floor relative to the row-local $M_4$ requirement. This
+does not certify cancellation, but it makes the next fork executable: if the
+signed midpoint is already small, the blocker is an interval-dependency
+artifact; if the midpoint itself is large, the proof must find an actual
+signed h0-h34 cancellation identity before H39 shifted-source majorization.
+
+The live route falls on the first branch. The signed h0-h34 midpoint is bounded
+at about $6.69\times10^{-10}$ of the row-local requirement while the
+intervalized h0-h34 floor remains about $7.84\times10^3$ times too large. The
+new identity router records that the midpoint route can enter the two-block
+budget without using the interval absolute floor, leaving a positive terminal
+h35-h37 budget that still requires about $2.04\times10^5$ compression. The
+next proof object is therefore not "make h0-h34 small" in an absolute interval
+sense; it is "certify the signed h0-h34 midpoint identity and then preserve
+terminal/all-h-row producer-image covariance."
+
+The signed identity has now been decomposed one layer further. The diagnostic
+exports
+`candidate-signed-nonterminal-h0-h34-midpoint-fourth-difference-identity-target`,
+which replays the h0-h34 midpoint stream through the same five Lagrange
+fourth-derivative weights and records the positive, negative, absolute, and
+signed weighted contributions. The live selected rows classify as
+`signed-nonterminal-fourth-difference-cancels-before-interval-floor`: the
+signed-to-absolute midpoint ratio is about $1.70\times10^{-6}$, the
+cancellation gain is about $5.88\times10^5$, and the absolute midpoint mass is
+only about $3.93\times10^{-4}$ of the row-local requirement. The small h0-h34
+midpoint contribution is therefore a finite five-node fourth-difference
+near-cancellation, not a hidden terminal-only budget. This keeps all
+certificate flags false, but it narrows the next proof object to a
+directed-rounded same-domain proof of that signed five-node fourth-difference
+near-cancellation plus the already exposed terminal/all-h-row producer-image
+covariance.
+
+The route now quantifies the directed-interval burden instead of merely naming
+it. The diagnostic adds
+`candidate-signed-nonterminal-h0-h34-dependency-loss-budget`, derived from the
+same floor target and midpoint fourth-difference identity. On the live rows the
+absolute midpoint mass is already below the row-local requirement by about
+$2.54\times10^3$, but the interval floor is about $2.0\times10^7$ times the
+absolute midpoint mass and about $1.17\times10^{13}$ times the signed
+midpoint. The current obstruction is therefore interval dependency loss, not
+midpoint size: the directed-rounded provider must keep the five-node h0-h34
+stream tied together closely enough that only the residual around the midpoint
+is charged. The budget also subtracts the midpoint contribution from the
+intervalized fourth-difference interval and records the resulting
+midpoint-centered residual compression burden, which is the concrete directed
+interval object that must close before the terminal/all-h-row covariance proof
+can consume the remaining budget.
+
+The diagnostic now translates that burden into a concrete provider
+specification. The
+`candidate-signed-nonterminal-h0-h34-midpoint-dependency-preserving-provider-specification-target`
+keeps the five-node fourth-difference dependency visible and computes the
+coefficient residual radius each node may carry after its midpoint value is
+subtracted. Its local acceptance inequality is
+$|w_i|\,\varepsilon_i \le B_i$, where $w_i$ is the Lagrange fourth-derivative
+weight and $B_i$ is the node's allocated derivative-residual budget. This
+artifact remains candidate-only: it says exactly what a directed-rounded
+same-domain h0-h34 provider must prove, and records that the current
+intervalized node radii still need contraction before the terminal/all-h-row
+covariance route can be consumed. It also reports the dominant node for that
+balanced radius-compression demand, turning the next same-domain provider
+attempt into a local residual-radius problem instead of another all-h-row
+interval-box replay.
+
+The same lane now carries a current-shape allocation comparison. The
+`candidate-signed-nonterminal-h0-h34-current-shape-radius-contraction-profile-target`
+uses the current weighted residual magnitudes $d_i$ to form the minimax
+allocation $B_i=B\,d_i/\sum_j d_j$ of the total residual derivative budget
+$B$. This makes the common contraction factor exactly $\sum_i d_i/B$ and
+separates two questions that were previously blended: how much the current
+five-node residual shape must contract, and how much extra penalty is introduced
+by balanced or uniform-coefficient allocation. The live classification says the
+current-shape allocation sharpens the balanced node-radius target, so the next
+provider attempt should preserve the midpoint dependency and prove uniform
+contraction of the existing residual shape before applying absolute Lagrange
+majorants.
+
+That provider attempt now has a candidate screen. The
+`candidate-signed-nonterminal-h0-h34-current-shape-certificate-screen` consumes
+the current-shape profile without recomputing the Lagrange geometry, contracts
+the live weighted residual shape by the minimax factor, and then applies
+explicit safety margins. The boundary screen fits the h0-h34 residual budget,
+and the first strict safety margin uses a $1.01$ multiplier to leave positive
+headroom while keeping the five node shares unchanged. This remains
+candidate-only because it does not produce directed-rounded node residual
+enclosures, but it replaces the vague "prove enough contraction" instruction
+with a provider contract: certify the same-domain midpoint-centered residuals
+below the screened per-node contracted radii, then feed that h0-h34 provider
+into the terminal/all-h-row covariance replay.
+
+The follow-on gap target shows that this contract has no remaining
+node-allocation ambiguity. The
+`candidate-signed-nonterminal-h0-h34-uniform-provider-gap-target` replays the
+first strict screened provider row and compares each live node residual radius
+against its screened radius. The weighted-residual and coefficient-residual
+gap factors coincide with the selected provider contraction factor on all five
+nodes, the node-share drift is negligible, and the weighted gap spread ratio is
+one. The missing certificate is therefore a single same-domain contraction
+proof for the current h0-h34 residual shape, not a search for a new dominant
+node or a different budget split.
+
+The single-contraction contract makes the next proof object even narrower. The
+`candidate-signed-nonterminal-h0-h34-single-contraction-provider-contract`
+checks that every screened weighted and coefficient target interval is a
+zero-centered subinterval of the corresponding live midpoint-centered residual
+interval and that the contraction factor matches the same selected scalar on
+all rows. This remains candidate-only: it does not provide the directed-rounded
+evaluator. It specifies exactly what that evaluator must prove on the same
+domain before h0-h34 covariance can be consumed by the terminal/all-h-row
+certificate route.
+
+The next boundary is now an executable verifier:
+`candidate-signed-nonterminal-h0-h34-directed-provider-verifier`. It consumes
+the single-contraction contract and normalizes the future provider interface to
+five same-node rows with the same h0-h34 range, same interpolation-node count,
+same screened target radii, and two directed-rounded residual intervals per
+node: the weighted residual interval and the coefficient residual interval
+after midpoint centering. In the current run no real directed-rounded provider
+rows are supplied, so the verifier exercises only a screened-target fixture
+path and reports the provider as missing. That fixture path proves the consumer
+logic is wired but does not certify same-domain directed rounding, h0-h34
+covariance, shifted $R_{\varepsilon,43}$, or retained-branch closure. The
+remaining mathematical object is therefore a true same-domain h0-h34 residual
+provider whose directed-rounded intervals fit inside the screened targets.
+
+The live residual provider probe now routes the current residual intervals
+through that verifier. The
+`candidate-signed-nonterminal-h0-h34-live-residual-provider-probe` uses the
+existing live midpoint-centered weighted residual interval and the
+midpoint-centered coefficient residual interval after provider-specification
+centering, labels the rows as non-directed-rounded, and feeds them into the
+directed-provider verifier. The probe passes the same-domain and same-radius
+shape checks but fails the proof-grade source and interval-containment checks.
+The next proof object is therefore not another interface wrapper; it is a
+directed-rounded contraction of those same live h0-h34 residual intervals into
+the screened targets.
+
+The reducer now classifies the failure with
+`candidate-signed-nonterminal-h0-h34-live-provider-contraction-defect`. That
+artifact reuses the live probe's provider-verification rows, measures the
+required contraction for both residual views at each of the five nodes, and
+compares those factors against the single-contraction contract. The live row
+reduces to the same uniform contraction factor rather than splitting into a
+node-specific h0-h34 defect. This removes a false search branch: the next
+directed-rounded provider does not need a new residual shape, only a proof that
+the current midpoint-centered h0-h34 residual rows can be enclosed on the same
+domain after that one contraction.
+
+The contracted-provider candidate now executes the verifier-side replay of that
+diagnosis. The
+`candidate-signed-nonterminal-h0-h34-contracted-provider-candidate` feeds the
+five single-contraction h0-h34 target intervals back through the existing
+directed-provider verifier as supplied provider rows. Those rows match the live
+domain, interpolation-node count, and residual radii, and their weighted and
+coefficient residual intervals are contained in the screened targets. The
+verifier still rejects them because the rows are explicitly candidate-only, not
+a directed-rounded shared-domain source. This proves that interval containment
+is no longer the candidate-level obstruction; the remaining h0-h34 burden is
+source certification for the contracted provider rows.
+
+The scaled live-source diagnostic then replaces target substitution with the
+actual arithmetic map. The
+`candidate-signed-nonterminal-h0-h34-scaled-live-source-provider-diagnostic`
+divides the live midpoint-centered h0-h34 residual intervals by the selected
+single contraction factor and sends those scaled intervals through the same
+provider verifier. The scaled intervals match the screened targets to tolerance,
+but strict containment fails by only the directed-rounding edge: the maximum
+relative endpoint gap is about $2.03\times10^{-16}$. This localizes the next
+certificate to a same-domain directed-rounded source map for the existing
+h0-h34-cell-midpoint residual stream, not to a new residual shape or another
+terminal-only envelope.
+
+The follow-on source-map diagnostic now links that arithmetic map back to the
+producer stream. The
+`candidate-signed-nonterminal-h0-h34-source-map-diagnostic` verifies, on the
+same five nodes, that the coefficient residual, Lagrange-weighted residual,
+live contract row, and uniformly scaled row identities close before the
+directed-provider verifier applies absolute interval inclusion. On the live H39
+route the maximum source-map identity gap is about $2.10\times10^{-16}$ and the
+scaled-to-screened target gap remains about $2.03\times10^{-16}$. The artifact
+keeps directed-rounded source, h0-h34 covariance, retained-branch, and shifted
+$R_{\varepsilon,43}$ claims false. It advances the blocker from "find a better
+h0-h34 source shape" to "certify this h0-h34-cell-midpoint source map with
+directed-rounded endpoint margin."
+
+The endpoint-margin screen makes that burden finite. The
+`candidate-signed-nonterminal-h0-h34-source-map-endpoint-margin-diagnostic`
+measures the relative outward endpoint margin needed for the screened target
+intervals to contain the scaled source-map intervals. The live H39 route fits
+all five weighted and coefficient rows inside a one-`Number.EPSILON` relative
+endpoint expansion. The artifact still keeps directed-rounded source,
+covariance, retained-branch, and shifted $R_{\varepsilon,43}$ claims false; it
+turns the remaining proof object into a directed-rounded h0-h34-cell-midpoint
+source operation with an explicit one-epsilon endpoint margin.
+
+The source-input provenance diagnostic makes that proof object more concrete.
+The
+`candidate-signed-nonterminal-h0-h34-source-input-provenance-diagnostic`
+verifies that the five live rows use the same-row
+`h0-h34-cell-midpoint` localization path: `pointCellAtMidpoint(cell)` supplies
+the cell, $h_0,\ldots,h_{34}$ remain interval inputs, and
+$h_{35},h_{36},h_{37},h_{38}$ are frozen to midpoint inputs before
+`evaluateH38RecurrenceNumeratorBeforeSolve` computes the $N_{38}$ coefficient
+interval. The artifact keeps directed-rounded source and shifted
+$R_{\varepsilon,43}$ claims false. It narrows the next proof from "find source
+provenance" to "certify this same-row active-h0-h34 input path with h35-h38
+midpoint freezing under directed rounding."
+
+The same-row source-input replay layer now tests the stored source rows
+against the original row inputs. The
+`candidate-signed-nonterminal-h0-h34-source-input-replay-diagnostic` rebuilds
+the `h0-h34-cell-midpoint` evaluator call from the row cell, branch, and
+h-row intervals, records the h38 evaluator zeroing, and compares the replayed
+coefficient interval against the stored h0-h34 source interval. The live
+five-node route closes at sub-$10^{-12}$ relative endpoint gap. The artifact is
+still candidate-only for source trust: it proves the evaluator/provenance path
+is internally replayable, while leaving directed-rounded producer-image
+certification false.
+
+The operation-replay layer now removes one more ambiguity from that proof
+object. The
+`candidate-signed-nonterminal-h0-h34-source-operation-replay` reruns the
+h0-h34 coefficient-midpoint subtraction, Lagrange weighting, and uniform
+contraction with the root-tube `nextDown`/`nextUp` outward interval primitives.
+Those replay intervals match the source-map rows at sub-$10^{-12}$ relative
+gap and fit inside the one-`Number.EPSILON` endpoint-expanded targets. This is
+not a directed-rounded source certificate, but it proves the remaining gap is
+not in the arithmetic replay chain; the next certificate must supply
+proof-grade directed-rounded provenance for the five h0-h34 coefficient
+intervals and midpoint subtraction inputs that feed the closed replay.
+
+The new source-trust gap layer makes the remaining proof boundary explicit.
+`candidate-signed-nonterminal-h0-h34-source-trust-gap-diagnostic` starts with
+the same-row source-input replay, compares it against the source-map rows and
+the source-operation replay, and confirms that the operation-path intervals
+would fit the one-`Number.EPSILON` endpoint-margin target if the source rows
+were supplied with directed-rounded producer-image trust. The live maximum
+replay gaps to the source-map and operation rows are below $10^{-12}$, so the
+current blocker is no longer arithmetic, same-radius packaging, or endpoint
+containment. It is specifically the missing directed-rounded H38 producer-image
+certificate for the replayed `h0-h34-cell-midpoint` source intervals. A direct
+duplicate scaling is recorded separately because it can differ by one outward
+rounding step; the closure path remains the already verified operation replay.
+
+The source-term trace now exposes that boundary before the source terms are
+summed. `candidate-signed-nonterminal-h0-h34-source-term-producer-image-trace`
+carries the four H38 numerator terms
+`delta_squared_speed`, `constant_minus_two`, `sin_phi`, and `sin_delta`
+through the same h0-h34 replay chain. It checks that the four-term sum matches
+the replayed source, that the term residuals reconstruct the
+midpoint-centered coefficient residual, and that the weighted/scaled replay
+still lands in the endpoint-margin path, all with sub-$10^{-12}$ replay gaps on
+the live rows. The trace keeps every directed-rounded and shifted
+$R_{\varepsilon,43}$ claim false. Its value is to make the next certificate
+object exact: prove directed-rounded same-domain H38 producer-image enclosures
+for the four source-term intervals while preserving the signed
+`sin_phi`/`sin_delta` cancellation before absolute bounds are applied.
+
+The follow-on zero-constant reduction tightens that certificate object. The
+`candidate-signed-nonterminal-h0-h34-source-term-zero-constant-reduction`
+uses the same live source order $42$ rows and proves that
+`constant_minus_two` contributes the exact interval $[0,0]$, with zero
+midpoint, zero width, and zero midpoint residual. After dropping that
+structurally constant term, the nonconstant source-term sum
+`delta_squared_speed + sin_phi + sin_delta` still reconstructs the replayed
+source at sub-$10^{-12}$ relative gap and preserves the endpoint-margin replay
+chain. The blocker is therefore the directed-rounded producer-image enclosure
+for those three nonconstant source terms, not for a four-term source box.
+
+The H39 producer-image comparison now makes that three-term scaffold first
+class at the route boundary. It collects the live row-local
+`source_term_derivative_inputs_for_scaffold` arrays from the finite-stencil
+midpoint jet provider, the degree-four midpoint Lagrange provider, and the
+intervalized Lagrange provider, then replays each family through
+`buildH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffoldCandidate`.
+The finite-stencil and midpoint Lagrange families close both the row-local
+$M_4$ ceiling and the dependency-preserving $S_{37}$ division replay, while
+the intervalized node family remains same-domain matched but exceeds those
+budgets. The result is not a directed-rounded certificate; it is an executable
+localization showing that the live H39/y44 route already has the correct
+three-term scaffold, and that the next proof object is the directed-rounded
+source-term derivative enclosure rather than another H39 collar or source-box
+gate.
+
+The next executable replay tests whether the interval loss was caused by
+splitting the three nonconstant source slots too early. The route now forms
+the signed node interval sum
+`delta_squared_speed + sin_phi + sin_delta` first, applies the same five-node
+fourth-derivative Lagrange weights to that summed nonconstant source stream,
+and feeds the resulting row inputs into
+`buildH39RequestedY44RowLocalN38SignedSourceSumDerivativeProviderCandidate`.
+The focused H39/y44 fixture rejects the split-artifact explanation: the
+producer comparison emits the provider for every selected row, but its maximum
+$N_{38}^{(4)}$-to-required ratio is still
+$2.118441132093164\times10^5$, and the split-to-sum reduction factor is
+$0.9999999999999999$. Since the midpoint derivative is contained with zero
+gap, the issue is not that the signed source sum is absent. The loss happens
+before this bridge, when same-domain H38 producer-image data is converted into
+independent node intervals. H39 closure therefore needs a directed-rounded
+continuous source-covariance derivative enclosure, or an equivalent
+producer-image normal form, before the Lagrange and Cauchy absolute bounds are
+allowed to act.
+
+The same provider boundary now emits a derivative-allocation target for that
+signed nonconstant stream. The artifact
+`producer_row_local_nonconstant_source_sum_derivative_allocation_target`
+subtracts the signed midpoint fourth derivative from the intervalized
+Lagrange enclosure before asking what residual remains. On the focused H39/y44
+fixture, the signed midpoint ratio is
+$5.4831125713436076\times10^{-11}$ and therefore already fits the row-local
+$M_4$ ceiling. The weighted midpoint absolute mass is
+$2.1842511355438498\times10^{-4}$ of the ceiling, with Lagrange cancellation
+gain about $3.983597103147949\times10^6$, so the midpoint normal form is not
+the live blocker. The live blocker is the post-midpoint residual allocation:
+the derivative residual still sits at
+$2.1184411322093202\times10^5$ times the signed-midpoint residual budget, and
+the current-shape node allocation reports the same contraction scale. The
+dominant row is `speed.0.first-y`. This turns the next proof packet into a
+directed-rounded same-domain source-covariance derivative provider for
+`delta_squared_speed + sin_phi + sin_delta`, preserving the H38 producer-image
+dependency before H39 shifted-source absolutization, not a deeper raw
+Lagrange-prefix search.
+
+The next diagnostic now pins the residual source one layer earlier. The
+producer comparison emits
+`producer_row_local_nonconstant_source_sum_source_map_residual_covariance_target`,
+which rebuilds the post-midpoint residual from signed source-map node
+residuals and from the three termwise residual streams. The live fixture keeps
+those reconstructions coherent: the source-map residual derivative matches the
+provider residual to sub-$10^{-12}$ relative gap, the node-triangle-to-
+derivative ratio is $1.0000000008236036$, and the term-triangle-to-signed-node
+ratio is $1.0000000047166826$. This rules out both suspected downstream
+artifacts for the current blocker: the pressure is not produced by splitting
+`delta_squared_speed`, `sin_phi`, and `sin_delta`, and it is not produced by a
+missed five-node Lagrange cancellation. The residual remains a
+$2.1184411322093202\times10^5$ source-map node-width contraction problem,
+dominated by node 2 on `speed.0.first-y`; the largest term contribution is
+`sin_delta` at $2.0953273068587252\times10^{24}$ weighted residual absolute
+units. The next certificate must therefore keep the H38 producer-image source
+map itself directed-rounded and same-domain through residual formation before
+the H39 shifted-source replay applies absolute bounds.
+
+The five-node provider boundary now also carries an explicit signed-source
+normal-form probe. The diagnostic rebuilds each provider row from the node
+residual sum `delta_squared_speed + sin_phi + sin_delta`, verifies that these
+signed and weighted intervals match the live source-map residual intervals to
+sub-$10^{-12}$ endpoint-relative gap, and then sends those rows through the
+same directed-provider verifier. The rows match the same-domain and
+same-radius contract, but they still exceed the screened targets and
+intentionally fail the directed-rounded source-kind check. This rules out a
+missing node-level source normal form: the remaining obstruction is the width
+of the same-domain H38 source-map node intervals themselves. The next provider
+must contract that signed node source-map residual stream before H39 applies
+the absolute Lagrange/Cauchy envelope.
+
+The provider boundary now also distinguishes center drift from interval width.
+The candidate center-width contraction probe preserves each live node residual
+center and asks whether shrinking only the half-width by the selected
+$2.1184411339540756\times10^5$ contraction factor would fit the screened
+targets. It does not: every signed and weighted live center lies inside the
+corresponding screened target, with worst center offset below
+$1.75\times10^{-4}$ of the target half-width, but the center-preserving
+half-width fit needs a maximum contraction of
+$2.1188108171223156\times10^5$. Equivalently, the selected contraction is short
+by a factor of about $1.00017448$. The obstruction is therefore not a bad
+node center and not a missing source normal form; it is a center-aware
+same-domain node half-width certificate for the H38 source-map residual stream.
+
+That center-aware half-width target is now executable. The five-node
+source-map path emits provider-shaped rows centered at the live residual
+centers, with signed and weighted half-widths set to the largest intervals
+that remain inside the original screened targets. These rows preserve the
+same-domain source terms, $y$-order, $\xi$ nodes, and original screened target
+radii, and they pass the directed-provider verifier up to the expected
+source-kind failure: the classification is
+`center-aware-provider-radius-target-contained-source-certification-open`.
+This advances the blocker from "find the right radius" to "supply a
+directed-rounded H38 source-map residual provider that realizes this exact
+center-aware radius target."
+
+The same target now carries a source-map trace-anchor summary, threaded from the
+row-local provider rows that feed the terminal covariance route. That summary
+matches the selected requested-y44 rows to the h0-h34 source-term
+zero-constant reduction: `constant_minus_two` is structurally zero at the live
+source order, while `delta_squared_speed`, `sin_phi`, and `sin_delta` remain
+the only producer-image term enclosures requiring directed-rounded same-domain
+trust. This is still not a certificate, but it turns the next proof object into
+a sharply stated source-map certificate for the three signed nonconstant terms
+rather than an open-ended search over source splits or hidden constant terms.
+
+The shared-stream summary now removes one more duplicate burden from that proof
+object. It builds a stable signature from the complete signed source-map
+residual stream, including the five node residual intervals, Lagrange weights,
+and term residual intervals, but excluding the selected-row labels and
+row-local budgets. On the focused H39/y44 fixture, the two selected requested
+rows collapse to one H38 source residual stream. The tightest signed-midpoint
+budget is the `speed.0.first-y` budget, the budget spread across the shared
+stream is below $1.01$, and the required contraction factor remains
+$2.118441133954076\times10^5$. This changes the next directed-rounded proof
+route from "certify two selected source rows" to "certify one shared
+`delta_squared_speed + sin_phi + sin_delta` H38 source-map residual stream
+against the tightest selected row budget." The artifact remains candidate-only
+and keeps shifted $R_{\varepsilon,43}$, directed-rounded same-domain, and
+retained-branch claims false.
+
+The shared-stream target now also emits a node-radius contract rather than only
+an aggregate contraction number. It selects the same `speed.0.first-y` tightest
+budget and converts the one shared source-map residual stream into five
+Lagrange-node source residual radius targets, with explicit signed source and
+weighted residual target intervals for current-shape, balanced, and uniform
+allocations. The current-shape shares sum to one, so the maximum current-shape
+node contraction factor is exactly the shared-stream contraction scale, about
+$2.118441133954076\times10^5$; the balanced and uniform profiles are
+comparison routes, not separate proof claims. The dominant node-radius target
+is node 2, and the dominant termwise residual remains `sin_delta`. The next
+certificate is therefore concrete: directed-rounded same-domain H38
+producer-image source-map residual intervals must fit these five node radii
+for the single `delta_squared_speed + sin_phi + sin_delta` stream before H39
+applies absolute shifted-source bounds.
+
+The five-node target now crosses the provider boundary at candidate level.
+The source-map covariance artifact emits
+`source_map_residual_shared_stream_five_node_inclusion_contract`, a
+five-row interval-inclusion contract that preserves
+`delta_squared_speed`, `sin_phi`, and `sin_delta` signed together and requires
+a future provider row source kind
+`directed-rounded-same-domain-h38-source-map-residual-provider`. The boundary
+verifier accepts only same-domain, same-radius provider rows with directed
+rounded signed and weighted residual intervals contained in the screened node
+targets. On the focused H39/y44 fixture the fixture path passes, while the
+live source-map probe is still too wide by the same
+$2.118441133954076\times10^5$ scale. A scaled contracted-provider diagnostic
+is retained only as a non-certifying comparison and remains open under strict
+interval inclusion. The next true blocker is therefore not a missing verifier
+interface; it is the real directed-rounded same-domain H38 source-map residual
+provider for the five shared-stream nodes.
+
+The center-aware provider target now has a source-covariance realization
+budget. The executable artifact
+`source_map_residual_shared_stream_five_node_center_aware_source_covariance_realization_budget`
+joins the center-aware node half-widths to the signed-source normal-form
+triangle bounds for the same five nodes. This makes the remaining burden
+source-level rather than geometric: a future directed-rounded H38 provider must
+keep the signed `delta_squared_speed + sin_phi + sin_delta` cancellation intact
+enough that each node's source-term triangle collapses to the center-aware
+half-width before H39 applies absolute shifted-source bounds. The artifact
+keeps directed-rounded same-domain, shifted $R_{\varepsilon,43}$, and retained
+branch claims false; it is a realization budget, not closure. The focused
+fixture also shows that the extra cancellation is not a sub-$10^{-5}$ rounding
+sliver, so the next certificate has to preserve genuine signed source
+covariance through the H38 producer image rather than merely tighten the
+already-selected node radii. It also separates the dominance pictures: the
+node-radius target is still dominated by node 2, but the source-covariance
+realization budget is dominated by node 4.
+
+The node-4 realization burden now has a term-level decomposition. The H39
+artifact emits
+`source_map_residual_shared_stream_five_node_term_cancellation_decomposition`,
+which rewrites each of the five shared-stream nodes into three signed term
+residual intervals and three pairwise term-sum intervals. It checks that the
+term residual sum matches the live signed source-map residual at sub-$10^{-12}$
+endpoint gap, records the dominant term by residual upper bound, and records
+both the dominant pair by triangle share and the strongest pairwise
+cancellation. This makes the next directed-rounded H38 provider target more
+specific: it must preserve the node-4 term and pair cancellation decomposition
+through intervalization, not merely reproduce an aggregate half-width.
+
+That decomposition now has a provider-row preservation verifier. The H39
+artifact emits
+`source_map_residual_shared_stream_five_node_term_preservation_verifier`, which
+feeds the signed-source normal-form provider rows back through the five-node
+term/pair decomposition. The verifier checks that each provider row supplies
+the three source-term residual intervals, that their sum replays the provider
+signed residual and the recorded decomposition at sub-$10^{-12}$ endpoint gap,
+and that all three pair sums match the recorded pair structure. On the live
+candidate path this reaches the provider boundary with only source
+certification open: the rows preserve the term and pair cancellation structure,
+but they are still candidate rows rather than directed-rounded same-domain H38
+producer-image rows.
+
+The source-certification gap is now split one level finer. The H39 artifact
+emits
+`source_map_residual_shared_stream_five_node_term_endpoint_margin_diagnostic`
+and
+`source_map_residual_shared_stream_five_node_term_source_operation_replay`.
+Together these replay the term sums and all three pair sums through the same
+outward interval arithmetic used by the provider rows, then check that a
+one-`Number.EPSILON` relative endpoint margin contains the replayed term and
+pair intervals. The live candidate path classifies as
+`term-pair-arithmetic-replay-is-stable-source-interval-provenance-open`: the
+aggregate arithmetic is stable, so the remaining proof object is not another
+cancellation decomposition. It is a directed-rounded same-domain H38
+producer-image interval provider for the three source terms themselves before
+the already-verified term/pair operation replay.
+
+That provider target now has a candidate precertificate. The H39 artifact emits
+`source_map_residual_shared_stream_five_node_source_term_provider_precertificate`,
+which joins the center-aware source-covariance realization budget to the
+term/pair operation replay. It verifies, still candidate-only, that all five
+source-term sum centers lie inside their center-aware signed targets while the
+term and pair operations replay through the one-`Number.EPSILON` endpoint
+screen. The live path therefore localizes the missing H38 producer-image proof
+to source-term width/covariance realization: the provider must emit
+directed-rounded same-domain intervals for `delta_squared_speed`, `sin_phi`,
+and `sin_delta` whose correlated sum fits those center-aware width targets.
+The precertificate does not certify those intervals as directed-rounded source
+inputs and does not close shifted `R_{\varepsilon,43}`.
+
+The precertificate now feeds a candidate source-term provider probe. The H39
+artifact emits
+`source_map_residual_shared_stream_five_node_source_term_provider_probe`, which
+preserves each term center, redistributes the center-aware half-width budget
+across `delta_squared_speed`, `sin_phi`, and `sin_delta`, reserves a
+`Math.sqrt(Number.EPSILON)` binary64 summation margin, and sends the shaped rows
+through both five-node verifier boundaries. The shaped aggregate rows fit the
+same-domain/same-radius source-map inclusion contract, but their term and pair
+intervals no longer match the live decomposition. This is the sharper blocker:
+the missing certificate is not another aggregate verifier or term replay. It is
+a directed-rounded H38 producer-image proof that the narrowed source-term
+widths and covariances are actually realized on the same domain before H39
+applies absolute shifted-source bounds.
+
+The provider probe now has a realization-slack diagnostic. The H39 artifact
+emits
+`source_map_residual_shared_stream_five_node_source_term_realization_slack_diagnostic`,
+which compares every narrowed `delta_squared_speed`, `sin_phi`, and
+`sin_delta` interval against its live source-term interval. On the live
+candidate path, the shaped intervals are centered subintervals of the original
+source terms and share a common homothetic width-contraction target within each
+node. This changes the next proof object from a vague term-width realization
+gap into a concrete H38 producer-image certificate target: prove, with
+directed-rounded same-domain source provenance, that the H38 producer image
+realizes those centered contracted source-term intervals before H39 applies
+absolute shifted-source bounds. The diagnostic is still candidate-only; it does
+not certify the source inputs, $N_{38}$ derivative bounds, $S_{37}$ division,
+shifted `R_{\varepsilon,43}`, retained branch, or full H39 closure.
+
+The realization-slack diagnostic now feeds a candidate homothetic source-term
+contraction normal form. The H39 artifact emits
+`source_map_residual_shared_stream_five_node_homothetic_source_term_contraction_normal_form`,
+which reconstructs every shaped `delta_squared_speed`, `sin_phi`, and
+`sin_delta` interval by a node-local centered contraction of the corresponding
+live source-term interval, then verifies that summing the three contracted
+terms gives the same shaped signed-source provider interval. This changes the
+current blocker again: the open proof is no longer an unconstrained per-term
+width choice, but a directed-rounded same-domain H38 producer-image certificate
+for one node-local contraction/covariance scalar acting coherently on the
+three signed source terms. The normal form is still candidate-only; it does not
+certify the source inputs, $N_{38}$ derivative bounds, $S_{37}$ division,
+shifted `R_{\varepsilon,43}`, retained branch, or full H39 closure.
+
+The homothetic normal form now has an executable scalar factorization. The H39
+artifact emits
+`source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization`,
+which verifies, on each of the five live nodes, that the node-local contraction
+factor is
+`signed_source_term_sum_available_half_width * endpoint_margin / original_source_term_half_width_sum`.
+It also reconstructs the inverse contraction factor, the shared endpoint
+margin, and the shaped provider half-width sum from that scalar identity. This
+changes the next proof object from "realize three narrowed source terms" to a
+sharper directed-rounded same-domain H38 producer-image scalar provider:
+certify the center-aware available signed half-width and the live original
+source-term half-width sum on the same five-node cover before H39 applies
+absolute shifted-source bounds. The scalar factorization is still
+candidate-only; it does not certify the source inputs, $N_{38}$ derivative
+bounds, $S_{37}$ division, shifted `R_{\varepsilon,43}`, retained branch, or
+full H39 closure.
+
+The scalar factorization now has an explicit provider target. The H39 artifact
+emits
+`source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target`,
+which reduces the node-local contraction certificate to two same-domain H38
+source quantities on each live node: the center-aware signed clearance
+`min(center - target_lower, target_upper - center)` and the original
+`delta_squared_speed`, `sin_phi`, `sin_delta` source-term half-width sum. It
+then reconstructs
+`endpoint_margin * available_signed_half_width / original_source_term_half_width_sum`
+from those quantities and records a candidate quotient-error route: if the
+numerator and denominator are each certified to one quarter of the scalar
+relative tolerance, the quotient bound remains below the scalar tolerance.
+This changes the open proof again from an informal scalar-provider request to
+a directed-rounded numerator/denominator provider target with an executable
+error-budget check. The target is still candidate-only; it does not certify the
+source inputs, $N_{38}$ derivative bounds, $S_{37}$ division, shifted
+`R_{\varepsilon,43}`, retained branch, or full H39 closure.
+
+The scalar provider target now has an executable quotient-envelope reduction.
+The H39 artifact emits
+`source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope`,
+which wraps the numerator and denominator source quantities in positive
+candidate relative intervals and divides those intervals to obtain a node-local
+lambda envelope. On the five-node cover, the quotient envelope contains both
+the factorized and normal-form contraction scalar and keeps the lambda relative
+radius below the scalar tolerance. This changes the next certificate again:
+the quotient algebra is no longer the open issue. The remaining same-domain
+task is to produce directed-rounded H38 numerator and denominator intervals
+contained in the candidate source intervals before H39 applies absolute
+shifted-source bounds. The quotient envelope is still candidate-only; it does
+not certify the source inputs, $N_{38}$ derivative bounds, $S_{37}$ division,
+shifted `R_{\varepsilon,43}`, retained branch, or full H39 closure.
+
+The quotient envelope is now joined back to the live source-term provider by
+`source_map_residual_shared_stream_five_node_quotient_source_inclusion_bridge`.
+This bridge reconstructs the numerator from
+`signed_source_term_sum_available_half_width` and the denominator from the
+three original source-term half-widths on each of the five nodes, then checks
+that the resulting degenerate provider intervals lie inside the quotient
+envelope's candidate numerator and denominator intervals. Its mathematical
+effect is to replace an informal "feed a directed-rounded provider into the
+quotient" step with a concrete relative-radius target: a future same-domain H38
+producer-image provider must enclose those two source quantities within the
+recorded source-quantity radius ceilings before quotient division. The bridge is
+still candidate-only; it does not certify the provider intervals as
+directed-rounded, nor does it certify $N_{38}$ derivative bounds, $S_{37}$
+division, shifted `R_{\varepsilon,43}`, retained branch, or full H39 closure.
+
+The relative-radius bridge has also been converted into an absolute source
+quantity budget by
+`source_map_residual_shared_stream_five_node_quotient_source_radius_budget`.
+For each of the five nodes, the artifact multiplies the bridge numerator and
+denominator provider values by their allowed directed-relative-radius ceilings,
+then records the smaller resulting half-width as the absolute source-quantity
+budget that a future H38 producer-image provider must satisfy. It also
+allocates the denominator half-width budget back to the three original
+source-term widths, so the next certificate has concrete numerator,
+denominator, and term-level absolute radii rather than only a relative
+tolerance statement. This budget remains candidate-only; it does not certify
+the source inputs as directed-rounded, nor does it certify $N_{38}$ derivative
+bounds, $S_{37}$ division, shifted `R_{\varepsilon,43}`, retained branch, or
+full H39 closure.
+
+The absolute source budget now has a provider-fit diagnostic:
+`source_map_residual_shared_stream_five_node_absolute_source_provider_fit`.
+This diagnostic compares the current shaped five-node source-term provider
+against the absolute numerator, denominator, and term-level source budgets. It
+also records the live original source-term half-width to allowed-budget ratio,
+which quantifies how far the existing H38 source quantities are from the
+precision demanded by the quotient-source budget. Its effect is to turn the
+next blocker into a measured provider-width/provenance gap by node and source
+term, rather than another informal "make the provider tighter" instruction. The
+diagnostic remains candidate-only; it does not certify the source inputs as
+directed-rounded, nor does it certify $N_{38}$ derivative bounds, $S_{37}$
+division, shifted `R_{\varepsilon,43}`, retained branch, or full H39 closure.
+
+The source-budget replay now also records
+`source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit`.
+This diagnostic compares the single signed source-map residual stream, the
+screened signed target stream, the current signed source radius, and the
+term-split shaped provider sum against the same absolute numerator source
+budget. Its purpose is to separate a real numerator-budget obstruction from a
+source-term absolutization artifact: if the signed source radius fits while the
+term-split provider misses, the next certificate should preserve the signed
+`delta_squared_speed`, `sin_phi`, and `sin_delta` stream before applying
+absolute Cauchy-style source bounds. This remains candidate-only; it does not
+certify directed-rounded H38 producer-image source provenance, $N_{38}$
+derivative bounds, $S_{37}$ division, shifted `R_{\varepsilon,43}`, retained
+branch, or full H39 closure.
+
+The signed-radius miss is now converted into a provider-target budget:
+`source_map_residual_shared_stream_five_node_signed_radius_contraction_budget`.
+This artifact records, node by node, the quotient-compatible signed source
+radius that is simultaneously a subset of the current shaped source radius and
+the absolute numerator source budget. It also keeps the center-aware signed
+half-width ratio separate from the zero-centered current-shape radius ratio, so
+future H38 provider work can tell whether the remaining pressure is a live-center
+source-radius problem or a current-shape bounding artifact. In the current live
+path it is still candidate-only: it defines exact same-domain signed-radius
+acceptance targets for a future directed-rounded provider, but it does not
+certify H38 producer-image source provenance, $N_{38}$ derivative bounds,
+$S_{37}$ division, shifted `R_{\varepsilon,43}`, retained branch, or full H39
+closure.
+
+The quotient-compatible signed-radius budget is now replayed through an explicit
+verifier-facing acceptance target:
+`source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target`.
+This target rewrites the five-node verifier window so the screened signed and
+weighted intervals are exactly the quotient-compatible numerator-budget
+intervals, then supplies rows with the required source-map provider kind while
+leaving directed-rounded provenance false. On the live path this reaches the
+same-domain, same-radius, interval-inclusion, and numerator-budget boundary with
+source-provenance-only failure. That narrows the next certificate to a
+directed-rounded same-domain H38 producer-image source-map residual provider
+that emits those exact quotient-compatible intervals. It remains candidate-only:
+it does not certify H38 producer-image source provenance, $N_{38}$ derivative
+bounds, $S_{37}$ division, shifted `R_{\varepsilon,43}`, retained branch, or
+full H39 closure.
+
+The source-provenance-only failure is now factorized by
+`source_map_residual_h38_source_provenance_bridge`. The bridge joins the
+H0-H34 trace anchors, which remove `constant_minus_two` and leave only
+`delta_squared_speed`, `sin_phi`, and `sin_delta`, to the five
+quotient-compatible H39 provider rows. The executable classification is that the
+next primary object is not bare $S_{37}$ division; it is a directed-rounded
+same-domain expression-level $N_{38}$ source-map residual envelope for those
+three terms before applying $h38=-N38/S37$. $S_{37}$ division remains a dependent
+transport obligation after that envelope exists. This is a provenance
+factorization only: it does not certify H38 source provenance, $N_{38}$
+derivative bounds, $S_{37}$ division, shifted `R_{\varepsilon,43}`, retained
+branch, or full H39 closure.

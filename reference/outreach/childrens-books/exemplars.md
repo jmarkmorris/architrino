@@ -15,11 +15,29 @@ Approved qualities:
 - purple carries overlap, balance, basins, and medium depth;
 - white space keeps the page readable;
 - black linework carries expression, boundary, and text-readiness;
-- AAA geometry is integrated into the scene rather than isolated as a detached diagram.
+- $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry is integrated into the scene rather than isolated as a detached diagram.
 
 Production warning:
 
 These images are exemplars, not final book plates. Later production should preserve their visual logic while tightening any accidental red/blue clothing competition, excess naturalistic environmental color, or geometry that becomes decorative instead of explanatory.
+
+## Here, There, Back
+
+![Here, There, Back preview](assets/here-there-back-preview.png)
+
+Why it works:
+
+- presence, path, and return are visible before language;
+- the toddler's path is shown as ordered red/blue/purple marks, not as an abstract diagram;
+- one child appears once, while ordered path marks carry the earlier and returning motion;
+- the caregiver remains warm but secondary to the child's embodied path;
+- the palette stays simple enough for the Book 1 foundation.
+
+Use this as the exemplar for:
+
+- nonverbal path intuition;
+- here/there/back motion;
+- first exposure to trace without formal terminology.
 
 ## Nature Remembers Motion
 
@@ -31,7 +49,7 @@ Why it works:
 - wake rings expand from earlier positions, not only from the current ball;
 - purple overlap appears where histories intersect;
 - the child's natural skin and hair keep the scene warm without weakening the physics palette;
-- the room is simple enough for ages 3-5.
+- the room is simple enough for Book 3 / Book 4 source material.
 
 Use this as the exemplar for:
 
@@ -74,7 +92,7 @@ Use this as the exemplar for:
 - polarity;
 - line of action;
 - superposition;
-- 9-11 age-band complexity.
+- Books 9-11 complexity.
 
 ## The Balance Point
 
@@ -92,14 +110,52 @@ Use this as the exemplar for:
 
 - threshold behavior;
 - deterministic multistability;
-- basin of attraction diagrams;
-- measurement interaction for ages 12-14.
+- basin diagrams;
+- measurement interaction for Books 12-14.
+
+## The History That Pushes Now
+
+![The History That Pushes Now preview](assets/the-history-that-pushes-now-preview.png)
+
+Why it works:
+
+- the visible path is paired with earlier source positions and expanding wake fronts;
+- accepted causal-history intersections stand out without requiring equations;
+- the self-action loop is present as geometry rather than exposition;
+- the single tabletop keeps the delayed-interaction simulator concrete without cutaway subpanels;
+- older-student complexity is higher while preserving the same palette grammar.
+
+Use this as the exemplar for:
+
+- admissible path-history;
+- finite field-speed arrival;
+- self-action and self-hit intuition;
+- Book 15 simulator scenes.
+
+## The World We Recover
+
+![The World We Recover preview](assets/the-world-we-recover-preview.png)
+
+Why it works:
+
+- the image reads from tiny active parts to assemblies, medium response, and observer-level instruments;
+- nested red/blue assemblies sit inside a quiet Noether sea rather than empty space;
+- the purple-white channel bridges substrate behavior to clock/ruler/light-channel recovery;
+- observer-level recovery is shown in one continuous tabletop flow, with no inset diagram panels;
+- the students feel like older learners synthesizing the series.
+
+Use this as the exemplar for:
+
+- assembly hierarchy;
+- Noether sea response;
+- effective clock, ruler, photon-channel, and metric recovery;
+- Book 16 synthesis scenes.
 
 ## Exemplar Prompt Addendum
 
 Future prompts should include the style-guide palette rule and this production phrase:
 
-> Match the approved children's-book exemplar style: natural human skin and hair, informal global children-at-play energy, white paper space, black expressive linework, red/blue/purple AAA geometry integrated into the scene, and no non-human colors outside the restricted palette.
+> Match the approved children's-book exemplar style: natural human skin and hair, informal global children-at-play energy, white paper space, black expressive linework, red/blue/purple $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry integrated into the scene, and no non-human colors outside the restricted palette.
 
 If a future image departs from these exemplars, revise the prompt by naming the specific failure:
 

@@ -149,6 +149,19 @@ $$
 
 Here $\mathcal{D}_X$ is the calibrated observable record, $\mathcal{I}_X$ is the declared projection from the shared Noether sea record into that observable family, $\nu_X$ collects nuisance and calibration variables, and $r_X$ is the residual. A successful $\Lambda$ or $w(a)$ fit belongs first to $\mathcal{I}_X$; it becomes a native dark-energy claim only if the same $\theta_{\mathrm{sea}}$ projects through the other observable families without changing the branch story.
 
+Sunyaev-Zeldovich-type frequency shifts add a concrete calibration pressure to this rule. Photon frequency can be altered by intervening medium before it enters a distance-redshift or CMB-temperature inference. Therefore a dark-energy interpretation that depends on late-time redshift-distance curvature must first preserve the signed photon-frequency transfer budget
+
+$$
+Z_X
+=
+Z_{\mathrm{endpoint},X}
++Z_{\mathrm{source},X}
++Z_{\mathrm{launch},X}
++Z_{\mathrm{path},X},
+$$
+
+with $Z_{\mathrm{path},X}$ allowed to be positive or negative only when the corresponding energy and medium-state exchange rows close. The dark-energy residual must not treat all leftover frequency shift as expansion after suppressing endpoint, source, launch, or SZ-like path terms. It must show that the same $\theta_{\mathrm{sea}}$ supplies the redshift-transfer curvature, blackbody preservation, supernova flux factors, BAO ruler projection, and growth response.
+
 As of April 2026, DESI has completed the observations for its originally planned five-year survey, but the first dark-energy results from the full five-year dataset are expected in 2027. The current public pressure comes from the 2025 first-three-year BAO analysis: combined with CMB, supernova, and weak-lensing data, it strengthens comparison fits with time-varying $w(a)$ relative to a pure constant-$\Lambda$ description. The safe $\mathbb{A}\mathbb{A}\mathbb{A}$ use is therefore a calibration gate: preserve the BAO distance ladder, supernova residual model, CMB anchor, lensing/growth consistency, and parameter-covariance record before promoting any Noether sea relaxation interpretation.
 
 The shared calibration gate can be written as a residual criterion. Let

@@ -1,0 +1,1262 @@
+{
+  "schema": "breather-higher-fold-root-tube-certificate-v1",
+  "certificate_id": "fresh-v10-higher-fold-root-tube-certificate-v0",
+  "packet_id": "fresh-v10-higher-fold-12-root-rebuild-v0",
+  "itinerary_id": "fresh_v10_shifted_threshold_12_root_itinerary",
+  "source_seed_contract": "fresh-same-packet-fold-shear-seed-v0",
+  "status": "binary64_lipschitz_root_tube_certificate_ready_for_directed_rounding",
+  "claim_level": "binary64 sampled/Lipschitz root-tube evidence for the higher-fold 12-root successor seed; not an outward-rounded interval proof and not a preledger pass",
+  "promotion_decision": "priority-only",
+  "theorem_target": "12-root field-speed stability for the higher-fold breather successor packet",
+  "branch_chart_authorized": false,
+  "preledger_pass": false,
+  "updates_live_ledger": false,
+  "proof_grade_ready": false,
+  "source_artifacts": {
+    "contract": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fresh_same_packet_fold_shear_seed.v0.json",
+      "sha256": "322a6baf6e36360890b3e1c67f3781e8cd55ba9fb83d576a696e47371e43492b"
+    },
+    "input": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/gap_opening_fresh_v10_strict_gap_input.shifted_separator_fixed_period.v0.json",
+      "sha256": "8d8a654ed4aed78f6eaddce771751a7ec5e9a538898c4057fefa8d6a9a586ae3"
+    },
+    "result": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/gap_opening_fresh_v10_strict_gap_result.shifted_separator_fixed_period.v0.json",
+      "sha256": "085e03d764370aa33ac7dc33a4faecd7a191bbd485f4e98dfc6ff512338b5f55"
+    },
+    "target": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fresh_v10_higher_fold_itinerary_rebuild_target.v0.json",
+      "sha256": "b9bf46f276be0f89aad4cc2d8f48bbcfdf5a0f2105af9b84f3adb1ee3f6aba54"
+    },
+    "phi": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/phi_cyc.fresh-v10-higher-fold-12-root-rebuild-v0.lambda0305.json",
+      "sha256": "fd3bc40790ddb24b8e7bd5373a9b1a95d6fcb50680db8627ac214e66c0d52ec5"
+    },
+    "mesh": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/mesh.fresh-v10-higher-fold-12-root-rebuild-v0.lambda0305.json",
+      "sha256": "8bbf0f172bf90edf10391138a004e133da15ce6ad88d93597a96e07664e161a5"
+    }
+  },
+  "common_identity": {
+    "K": "fresh_v10_shifted_threshold_12_root_itinerary",
+    "T_cyc": 6.28318530718,
+    "S": "section x(0)=1.2447644729563, xdot(0)=-0.0876176690331297",
+    "P": {
+      "c_f": 1,
+      "eta": 0.02,
+      "epsilon_c": 0.05,
+      "g": 1,
+      "seed_lambda": 0.305,
+      "memory_horizon_h": 6.28318530718
+    },
+    "B_rep": "shifted-separator fixed-period direct-path higher-fold seed",
+    "Theta": "mesh.fresh-v10-higher-fold-12-root-rebuild-v0.json:nodes"
+  },
+  "direct_path_seed": {
+    "lambda": 0.305,
+    "formula": "X_seed(theta)=X_fresh(theta)+lambda*H_shifted(theta), T_seed=T0",
+    "strict_gap_threshold_lambda": 0.264833953926991
+  },
+  "equation_family": {
+    "negative_field_speed_equation": "xdot(theta)+1=0",
+    "positive_field_speed_equation": "xdot(theta)-1=0",
+    "xdot_definition": "xdot(theta)=d/dtheta(X_fresh(theta)+lambda*H_shifted(theta))/T0",
+    "derivative_bound_method": "global analytic absolute bound on |d(xdot)/dtheta| from base cos term plus all compact sine-square bump second-derivative envelopes, evaluated in binary64"
+  },
+  "numerical_policy": {
+    "arithmetic": "JavaScript Number binary64",
+    "directed_rounding": false,
+    "precision_rational_policy": "none; this artifact preserves decimal/binary64 routing values and intentionally does not emit rational interval tokens",
+    "complement_samples_per_unit_theta": 16384,
+    "root_derivative_samples_per_tube": 32,
+    "no_extra_root_test": "For each complement and each equation, require stable sampled sign and min_abs_sampled_residual - derivative_bound*grid_half_step > 0."
+  },
+  "no_double_counting_evidence": {
+    "ordered_disjoint_tubes_binary64": true,
+    "periodic_endpoint_policy": "The first tube starts after theta=0 and the final tube ends before theta=1; no periodic endpoint tube is present in this packet.",
+    "first_half_tube_count": 6,
+    "second_half_tube_count": 6,
+    "expected_first_half_tube_count": 6,
+    "expected_second_half_tube_count": 6,
+    "tube_to_mesh_separator_mapping": [
+      {
+        "contact_id": "Sigma_hf_01",
+        "mesh_fold_layer_id": "F01",
+        "contained": true
+      },
+      {
+        "contact_id": "Sigma_hf_02",
+        "mesh_fold_layer_id": "F02",
+        "contained": true
+      },
+      {
+        "contact_id": "Sigma_hf_03",
+        "mesh_fold_layer_id": "F03",
+        "contained": true
+      },
+      {
+        "contact_id": "Sigma_hf_04",
+        "mesh_fold_layer_id": "F04",
+        "contained": true
+      },
+      {
+        "contact_id": "Sigma_hf_05",
+        "mesh_fold_layer_id": "F05",
+        "contained": true
+      },
+      {
+        "contact_id": "Sigma_hf_06",
+        "mesh_fold_layer_id": "F06",
+        "contained": true
+      },
+      {
+        "contact_id": "Sigma_hf_07",
+        "mesh_fold_layer_id": "F07",
+        "contained": true
+      },
+      {
+        "contact_id": "Sigma_hf_08",
+        "mesh_fold_layer_id": "F08",
+        "contained": true
+      },
+      {
+        "contact_id": "Sigma_hf_09",
+        "mesh_fold_layer_id": "F09",
+        "contained": true
+      },
+      {
+        "contact_id": "Sigma_hf_10",
+        "mesh_fold_layer_id": "F10",
+        "contained": true
+      },
+      {
+        "contact_id": "Sigma_hf_11",
+        "mesh_fold_layer_id": "F11",
+        "contained": true
+      },
+      {
+        "contact_id": "Sigma_hf_12",
+        "mesh_fold_layer_id": "F12",
+        "contained": true
+      }
+    ]
+  },
+  "mesh_preledger_handoff": {
+    "authorizes_preledger_rerun": false,
+    "required_replacement_before_preledger": "Replace sampled mesh separator collars with outward-rounded certified root intervals, then regenerate preledger_intervals under the same packet identity.",
+    "current_mesh_status": "diagnostic separator-refined mesh only"
+  },
+  "summary": {
+    "target_root_count": 12,
+    "observed_root_tube_count": 12,
+    "binary64_root_count_evidence": 12,
+    "all_root_tubes_have_endpoint_sign_change": true,
+    "all_root_tubes_contained_in_mesh_fold_layer": true,
+    "all_root_tubes_disjoint_binary64": true,
+    "all_complements_pass_binary64_lipschitz_no_zero": true,
+    "first_half_root_tube_count": 6,
+    "second_half_root_tube_count": 6,
+    "min_sampled_root_derivative_abs_floor": 20.733612612016,
+    "xdot_derivative_abs_bound_used": 139.201410138921,
+    "min_binary64_complement_lipschitz_margin": 0.0372582796775772,
+    "root_tubes_with_piecewise_breakpoints": [
+      "Sigma_hf_03",
+      "Sigma_hf_05",
+      "Sigma_hf_09",
+      "Sigma_hf_11"
+    ],
+    "branch_chart_authorized": false
+  },
+  "root_tubes": [
+    {
+      "contact_id": "Sigma_hf_01",
+      "velocity_contact": "negative_field_speed",
+      "equation": "xdot(theta)+1=0",
+      "center_theta": 0.0152760654045269,
+      "theta_range": [
+        0.0132760654045269,
+        0.0172760654045269
+      ],
+      "theta_interval_binary64": [
+        0.0132760654045269,
+        0.0172760654045269
+      ],
+      "t_interval_binary64": [
+        0.0834159790868841,
+        0.108548720315604
+      ],
+      "tube_half_width": 0.002,
+      "center_residual": 1.75937042712349e-12,
+      "left_residual": 0.10425183200109,
+      "right_residual": -0.0969545469841933,
+      "endpoint_sign_change_binary64": true,
+      "sampled_derivative_abs_floor": 46.5173527652966,
+      "sampled_derivative_signs": [
+        -1
+      ],
+      "simple_root_evidence_binary64": true,
+      "nearest_adjacent_root_clearance": 0.0414175117591023,
+      "nearest_tube_separation_margin_binary64": 0.0374175117591023,
+      "disjoint_from_adjacent_tubes_binary64": true,
+      "contained_in_mesh_fold_layer": true,
+      "mesh_fold_layer_id": "F01",
+      "mesh_fold_layer_theta_range": [
+        0.0112760654045269,
+        0.0192760654045269
+      ],
+      "piecewise_breakpoints_inside_tube": []
+    },
+    {
+      "contact_id": "Sigma_hf_02",
+      "velocity_contact": "negative_field_speed",
+      "equation": "xdot(theta)+1=0",
+      "center_theta": 0.0566935771636292,
+      "theta_range": [
+        0.0546935771636292,
+        0.0586935771636292
+      ],
+      "theta_interval_binary64": [
+        0.0546935771636292,
+        0.0586935771636292
+      ],
+      "t_interval_binary64": [
+        0.343649880431631,
+        0.368782621660351
+      ],
+      "tube_half_width": 0.002,
+      "center_residual": -9.45465927770783e-13,
+      "left_residual": -0.0866951651123946,
+      "right_residual": 0.0908369255751637,
+      "endpoint_sign_change_binary64": true,
+      "sampled_derivative_abs_floor": 42.1448331220341,
+      "sampled_derivative_signs": [
+        1
+      ],
+      "simple_root_evidence_binary64": true,
+      "nearest_adjacent_root_clearance": 0.0414175117591023,
+      "nearest_tube_separation_margin_binary64": 0.0374175117591023,
+      "disjoint_from_adjacent_tubes_binary64": true,
+      "contained_in_mesh_fold_layer": true,
+      "mesh_fold_layer_id": "F02",
+      "mesh_fold_layer_theta_range": [
+        0.0526935771636292,
+        0.0606935771636292
+      ],
+      "piecewise_breakpoints_inside_tube": []
+    },
+    {
+      "contact_id": "Sigma_hf_03",
+      "velocity_contact": "negative_field_speed",
+      "equation": "xdot(theta)+1=0",
+      "center_theta": 0.127583617650084,
+      "theta_range": [
+        0.125583617650084,
+        0.129583617650084
+      ],
+      "theta_interval_binary64": [
+        0.125583617650084,
+        0.129583617650084
+      ],
+      "t_interval_binary64": [
+        0.789065141241519,
+        0.814197882470239
+      ],
+      "tube_half_width": 0.002,
+      "center_residual": -4.2454928461666e-13,
+      "left_residual": 0.119237765340566,
+      "right_residual": -0.0601961666591984,
+      "endpoint_sign_change_binary64": true,
+      "sampled_derivative_abs_floor": 30.0264522566465,
+      "sampled_derivative_signs": [
+        -1
+      ],
+      "simple_root_evidence_binary64": true,
+      "nearest_adjacent_root_clearance": 0.0708900404864548,
+      "nearest_tube_separation_margin_binary64": 0.0668900404864548,
+      "disjoint_from_adjacent_tubes_binary64": true,
+      "contained_in_mesh_fold_layer": true,
+      "mesh_fold_layer_id": "F03",
+      "mesh_fold_layer_theta_range": [
+        0.123583617650084,
+        0.131583617650084
+      ],
+      "piecewise_breakpoints_inside_tube": [
+        0.12758361765
+      ]
+    },
+    {
+      "contact_id": "Sigma_hf_04",
+      "velocity_contact": "negative_field_speed",
+      "equation": "xdot(theta)+1=0",
+      "center_theta": 0.239882538921423,
+      "theta_range": [
+        0.237882538921423,
+        0.241882538921423
+      ],
+      "theta_interval_binary64": [
+        0.237882538921423,
+        0.241882538921423
+      ],
+      "t_interval_binary64": [
+        1.49466007338576,
+        1.51979281461448
+      ],
+      "tube_half_width": 0.002,
+      "center_residual": -6.17061957086662e-13,
+      "left_residual": -0.0498739404215336,
+      "right_residual": 0.0491393708988214,
+      "endpoint_sign_change_binary64": true,
+      "sampled_derivative_abs_floor": 24.3557108905942,
+      "sampled_derivative_signs": [
+        1
+      ],
+      "simple_root_evidence_binary64": true,
+      "nearest_adjacent_root_clearance": 0.092533843428642,
+      "nearest_tube_separation_margin_binary64": 0.088533843428642,
+      "disjoint_from_adjacent_tubes_binary64": true,
+      "contained_in_mesh_fold_layer": true,
+      "mesh_fold_layer_id": "F04",
+      "mesh_fold_layer_theta_range": [
+        0.235882538921423,
+        0.243882538921423
+      ],
+      "piecewise_breakpoints_inside_tube": []
+    },
+    {
+      "contact_id": "Sigma_hf_05",
+      "velocity_contact": "negative_field_speed",
+      "equation": "xdot(theta)+1=0",
+      "center_theta": 0.332416382350065,
+      "theta_range": [
+        0.330416382350065,
+        0.334416382350065
+      ],
+      "theta_interval_binary64": [
+        0.330416382350065,
+        0.334416382350065
+      ],
+      "t_interval_binary64": [
+        2.0760673588335,
+        2.10120010006222
+      ],
+      "tube_half_width": 0.002,
+      "center_residual": -3.8968828164343e-13,
+      "left_residual": 0.0415050184268141,
+      "right_residual": -0.0766767780091386,
+      "endpoint_sign_change_binary64": true,
+      "sampled_derivative_abs_floor": 20.733612612016,
+      "sampled_derivative_signs": [
+        -1
+      ],
+      "simple_root_evidence_binary64": true,
+      "nearest_adjacent_root_clearance": 0.071508000136465,
+      "nearest_tube_separation_margin_binary64": 0.067508000136465,
+      "disjoint_from_adjacent_tubes_binary64": true,
+      "contained_in_mesh_fold_layer": true,
+      "mesh_fold_layer_id": "F05",
+      "mesh_fold_layer_theta_range": [
+        0.328416382350065,
+        0.336416382350065
+      ],
+      "piecewise_breakpoints_inside_tube": [
+        0.33241638235
+      ]
+    },
+    {
+      "contact_id": "Sigma_hf_06",
+      "velocity_contact": "negative_field_speed",
+      "equation": "xdot(theta)+1=0",
+      "center_theta": 0.40392438248653,
+      "theta_range": [
+        0.40192438248653,
+        0.40592438248653
+      ],
+      "theta_interval_binary64": [
+        0.40192438248653,
+        0.40592438248653
+      ],
+      "t_interval_binary64": [
+        2.52536537463676,
+        2.55049811586548
+      ],
+      "tube_half_width": 0.002,
+      "center_residual": 7.40518757424979e-14,
+      "left_residual": -0.0916826632363144,
+      "right_residual": 0.0941954554559646,
+      "endpoint_sign_change_binary64": true,
+      "sampled_derivative_abs_floor": 45.1344252412403,
+      "sampled_derivative_signs": [
+        1
+      ],
+      "simple_root_evidence_binary64": true,
+      "nearest_adjacent_root_clearance": 0.071508000136465,
+      "nearest_tube_separation_margin_binary64": 0.067508000136465,
+      "disjoint_from_adjacent_tubes_binary64": true,
+      "contained_in_mesh_fold_layer": true,
+      "mesh_fold_layer_id": "F06",
+      "mesh_fold_layer_theta_range": [
+        0.39992438248653,
+        0.40792438248653
+      ],
+      "piecewise_breakpoints_inside_tube": []
+    },
+    {
+      "contact_id": "Sigma_hf_07",
+      "velocity_contact": "positive_field_speed",
+      "equation": "xdot(theta)-1=0",
+      "center_theta": 0.515276065404527,
+      "theta_range": [
+        0.513276065404527,
+        0.517276065404527
+      ],
+      "theta_interval_binary64": [
+        0.513276065404527,
+        0.517276065404527
+      ],
+      "t_interval_binary64": [
+        3.22500863267688,
+        3.2501413739056
+      ],
+      "tube_half_width": 0.002,
+      "center_residual": -1.75626180265454e-12,
+      "left_residual": -0.104251832001086,
+      "right_residual": 0.0969545469841966,
+      "endpoint_sign_change_binary64": true,
+      "sampled_derivative_abs_floor": 46.5173527652965,
+      "sampled_derivative_signs": [
+        1
+      ],
+      "simple_root_evidence_binary64": true,
+      "nearest_adjacent_root_clearance": 0.041417511759102,
+      "nearest_tube_separation_margin_binary64": 0.037417511759102,
+      "disjoint_from_adjacent_tubes_binary64": true,
+      "contained_in_mesh_fold_layer": true,
+      "mesh_fold_layer_id": "F07",
+      "mesh_fold_layer_theta_range": [
+        0.511276065404527,
+        0.519276065404527
+      ],
+      "piecewise_breakpoints_inside_tube": []
+    },
+    {
+      "contact_id": "Sigma_hf_08",
+      "velocity_contact": "positive_field_speed",
+      "equation": "xdot(theta)-1=0",
+      "center_theta": 0.556693577163629,
+      "theta_range": [
+        0.554693577163629,
+        0.558693577163629
+      ],
+      "theta_interval_binary64": [
+        0.554693577163629,
+        0.558693577163629
+      ],
+      "t_interval_binary64": [
+        3.48524253402163,
+        3.51037527525035
+      ],
+      "tube_half_width": 0.002,
+      "center_residual": 9.54347711967785e-13,
+      "left_residual": 0.0866951651124037,
+      "right_residual": -0.0908369255751541,
+      "endpoint_sign_change_binary64": true,
+      "sampled_derivative_abs_floor": 42.1448331220339,
+      "sampled_derivative_signs": [
+        -1
+      ],
+      "simple_root_evidence_binary64": true,
+      "nearest_adjacent_root_clearance": 0.041417511759102,
+      "nearest_tube_separation_margin_binary64": 0.037417511759102,
+      "disjoint_from_adjacent_tubes_binary64": true,
+      "contained_in_mesh_fold_layer": true,
+      "mesh_fold_layer_id": "F08",
+      "mesh_fold_layer_theta_range": [
+        0.552693577163629,
+        0.560693577163629
+      ],
+      "piecewise_breakpoints_inside_tube": []
+    },
+    {
+      "contact_id": "Sigma_hf_09",
+      "velocity_contact": "positive_field_speed",
+      "equation": "xdot(theta)-1=0",
+      "center_theta": 0.627583617650084,
+      "theta_range": [
+        0.625583617650084,
+        0.629583617650084
+      ],
+      "theta_interval_binary64": [
+        0.625583617650084,
+        0.629583617650084
+      ],
+      "t_interval_binary64": [
+        3.93065779483152,
+        3.95579053606024
+      ],
+      "tube_half_width": 0.002,
+      "center_residual": 4.23883150801885e-13,
+      "left_residual": -0.119237765340568,
+      "right_residual": 0.0601961666591979,
+      "endpoint_sign_change_binary64": true,
+      "sampled_derivative_abs_floor": 30.0264522566465,
+      "sampled_derivative_signs": [
+        1
+      ],
+      "simple_root_evidence_binary64": true,
+      "nearest_adjacent_root_clearance": 0.070890040486455,
+      "nearest_tube_separation_margin_binary64": 0.066890040486455,
+      "disjoint_from_adjacent_tubes_binary64": true,
+      "contained_in_mesh_fold_layer": true,
+      "mesh_fold_layer_id": "F09",
+      "mesh_fold_layer_theta_range": [
+        0.623583617650084,
+        0.631583617650084
+      ],
+      "piecewise_breakpoints_inside_tube": [
+        0.62758361765
+      ]
+    },
+    {
+      "contact_id": "Sigma_hf_10",
+      "velocity_contact": "positive_field_speed",
+      "equation": "xdot(theta)-1=0",
+      "center_theta": 0.739882538921423,
+      "theta_range": [
+        0.737882538921423,
+        0.741882538921423
+      ],
+      "theta_interval_binary64": [
+        0.737882538921423,
+        0.741882538921423
+      ],
+      "t_interval_binary64": [
+        4.63625272697576,
+        4.66138546820448
+      ],
+      "tube_half_width": 0.002,
+      "center_residual": 6.17728090901437e-13,
+      "left_residual": 0.049873940421534,
+      "right_residual": -0.0491393708988204,
+      "endpoint_sign_change_binary64": true,
+      "sampled_derivative_abs_floor": 24.3557108905943,
+      "sampled_derivative_signs": [
+        -1
+      ],
+      "simple_root_evidence_binary64": true,
+      "nearest_adjacent_root_clearance": 0.092533843428642,
+      "nearest_tube_separation_margin_binary64": 0.088533843428642,
+      "disjoint_from_adjacent_tubes_binary64": true,
+      "contained_in_mesh_fold_layer": true,
+      "mesh_fold_layer_id": "F10",
+      "mesh_fold_layer_theta_range": [
+        0.735882538921423,
+        0.743882538921423
+      ],
+      "piecewise_breakpoints_inside_tube": []
+    },
+    {
+      "contact_id": "Sigma_hf_11",
+      "velocity_contact": "positive_field_speed",
+      "equation": "xdot(theta)-1=0",
+      "center_theta": 0.832416382350065,
+      "theta_range": [
+        0.830416382350065,
+        0.834416382350065
+      ],
+      "theta_interval_binary64": [
+        0.830416382350065,
+        0.834416382350065
+      ],
+      "t_interval_binary64": [
+        5.2176600124235,
+        5.24279275365222
+      ],
+      "tube_half_width": 0.002,
+      "center_residual": 3.8968828164343e-13,
+      "left_residual": -0.0415050184268141,
+      "right_residual": 0.0766767780091389,
+      "endpoint_sign_change_binary64": true,
+      "sampled_derivative_abs_floor": 20.733612612016,
+      "sampled_derivative_signs": [
+        1
+      ],
+      "simple_root_evidence_binary64": true,
+      "nearest_adjacent_root_clearance": 0.071508000136465,
+      "nearest_tube_separation_margin_binary64": 0.067508000136465,
+      "disjoint_from_adjacent_tubes_binary64": true,
+      "contained_in_mesh_fold_layer": true,
+      "mesh_fold_layer_id": "F11",
+      "mesh_fold_layer_theta_range": [
+        0.828416382350065,
+        0.836416382350065
+      ],
+      "piecewise_breakpoints_inside_tube": [
+        0.83241638235
+      ]
+    },
+    {
+      "contact_id": "Sigma_hf_12",
+      "velocity_contact": "positive_field_speed",
+      "equation": "xdot(theta)-1=0",
+      "center_theta": 0.90392438248653,
+      "theta_range": [
+        0.90192438248653,
+        0.90592438248653
+      ],
+      "theta_interval_binary64": [
+        0.90192438248653,
+        0.90592438248653
+      ],
+      "t_interval_binary64": [
+        5.66695802822676,
+        5.69209076945548
+      ],
+      "tube_half_width": 0.002,
+      "center_residual": -7.07212066686225e-14,
+      "left_residual": 0.0916826632363177,
+      "right_residual": -0.094195455455962,
+      "endpoint_sign_change_binary64": true,
+      "sampled_derivative_abs_floor": 45.1344252412403,
+      "sampled_derivative_signs": [
+        -1
+      ],
+      "simple_root_evidence_binary64": true,
+      "nearest_adjacent_root_clearance": 0.071508000136465,
+      "nearest_tube_separation_margin_binary64": 0.067508000136465,
+      "disjoint_from_adjacent_tubes_binary64": true,
+      "contained_in_mesh_fold_layer": true,
+      "mesh_fold_layer_id": "F12",
+      "mesh_fold_layer_theta_range": [
+        0.89992438248653,
+        0.90792438248653
+      ],
+      "piecewise_breakpoints_inside_tube": []
+    }
+  ],
+  "complement_intervals": [
+    {
+      "interval_id": "C01",
+      "theta_range": [
+        0,
+        0.0132760654045269
+      ],
+      "follows_contact": null,
+      "precedes_contact": "Sigma_hf_01",
+      "width": 0.0132760654045269,
+      "equation_scans": [
+        {
+          "equation": "xdot(theta)+1",
+          "sample_count": 218,
+          "observed_sign_stable": true,
+          "observed_sign": 1,
+          "min_abs_sampled_residual": 0.10425183200109,
+          "min_sampled_residual": 0.10425183200109,
+          "min_sampled_theta": 0.0132760654045269,
+          "derivative_abs_bound_used": 139.201410138921,
+          "grid_half_step": 0.0000304496912947865,
+          "binary64_lipschitz_margin": 0.100013192034561,
+          "no_zero_evidence_binary64": true,
+          "root_count_bound_binary64": [
+            0,
+            0
+          ]
+        },
+        {
+          "equation": "xdot(theta)-1",
+          "sample_count": 218,
+          "observed_sign_stable": true,
+          "observed_sign": -1,
+          "min_abs_sampled_residual": 1.08761766903313,
+          "min_sampled_residual": -1.08761766903313,
+          "min_sampled_theta": 0,
+          "derivative_abs_bound_used": 139.201410138921,
+          "grid_half_step": 0.0000304496912947865,
+          "binary64_lipschitz_margin": 1.0833790290666,
+          "no_zero_evidence_binary64": true,
+          "root_count_bound_binary64": [
+            0,
+            0
+          ]
+        }
+      ],
+      "no_extra_root_evidence_binary64": true
+    },
+    {
+      "interval_id": "C02",
+      "theta_range": [
+        0.0172760654045269,
+        0.0546935771636292
+      ],
+      "follows_contact": "Sigma_hf_01",
+      "precedes_contact": "Sigma_hf_02",
+      "width": 0.0374175117591023,
+      "equation_scans": [
+        {
+          "equation": "xdot(theta)+1",
+          "sample_count": 614,
+          "observed_sign_stable": true,
+          "observed_sign": -1,
+          "min_abs_sampled_residual": 0.0866951651123946,
+          "min_sampled_residual": -0.0866951651123946,
+          "min_sampled_theta": 0.0546935771636292,
+          "derivative_abs_bound_used": 139.201410138921,
+          "grid_half_step": 0.0000304702864487804,
+          "binary64_lipschitz_margin": 0.0824536582713875,
+          "no_zero_evidence_binary64": true,
+          "root_count_bound_binary64": [
+            0,
+            0
+          ]
+        },
+        {
+          "equation": "xdot(theta)-1",
+          "sample_count": 614,
+          "observed_sign_stable": true,
+          "observed_sign": -1,
+          "min_abs_sampled_residual": 2.08669516511239,
+          "min_sampled_residual": -2.08669516511239,
+          "min_sampled_theta": 0.0546935771636292,
+          "derivative_abs_bound_used": 139.201410138921,
+          "grid_half_step": 0.0000304702864487804,
+          "binary64_lipschitz_margin": 2.08245365827139,
+          "no_zero_evidence_binary64": true,
+          "root_count_bound_binary64": [
+            0,
+            0
+          ]
+        }
+      ],
+      "no_extra_root_evidence_binary64": true
+    },
+    {
+      "interval_id": "C03",
+      "theta_range": [
+        0.0586935771636292,
+        0.125583617650084
+      ],
+      "follows_contact": "Sigma_hf_02",
+      "precedes_contact": "Sigma_hf_03",
+      "width": 0.0668900404864548,
+      "equation_scans": [
+        {
+          "equation": "xdot(theta)+1",
+          "sample_count": 1096,
+          "observed_sign_stable": true,
+          "observed_sign": 1,
+          "min_abs_sampled_residual": 0.0908369255751634,
+          "min_sampled_residual": 0.0908369255751634,
+          "min_sampled_theta": 0.0586935771636292,
+          "derivative_abs_bound_used": 139.201410138921,
+          "grid_half_step": 0.0000305155294190031,
+          "binary64_lipschitz_margin": 0.0865891208489025,
+          "no_zero_evidence_binary64": true,
+          "root_count_bound_binary64": [
+            0,
+            0
+          ]
+        },
+        {
+          "equation": "xdot(theta)-1",
+          "sample_count": 1096,
+          "observed_sign_stable": true,
+          "observed_sign": -1,
+          "min_abs_sampled_residual": 0.720399224711928,
+          "min_sampled_residual": -0.720399224711928,
+          "min_sampled_theta": 0.0938474670543208,
+          "derivative_abs_bound_used": 139.201410138921,
+          "grid_half_step": 0.0000305155294190031,
+          "binary64_lipschitz_margin": 0.716151419985667,
+          "no_zero_evidence_binary64": true,
+          "root_count_bound_binary64": [
+            0,
+            0
+          ]
+        }
+      ],
+      "no_extra_root_evidence_binary64": true
+    },
+    {
+      "interval_id": "C04",
+      "theta_range": [
+        0.129583617650084,
+        0.237882538921423
+      ],
+      "follows_contact": "Sigma_hf_03",
+      "precedes_contact": "Sigma_hf_04",
+      "width": 0.108298921271339,
+      "equation_scans": [
+        {
+          "equation": "xdot(theta)+1",
+          "sample_count": 1775,
+          "observed_sign_stable": true,
+          "observed_sign": -1,
+          "min_abs_sampled_residual": 0.049873940421534,
+          "min_sampled_residual": -0.049873940421534,
+          "min_sampled_theta": 0.237882538921423,
+          "derivative_abs_bound_used": 139.201410138921,
+          "grid_half_step": 0.0000305067383862927,
+          "binary64_lipschitz_margin": 0.0456273594194229,
+          "no_zero_evidence_binary64": true,
+          "root_count_bound_binary64": [
+            0,
+            0
+          ]
+        },
+        {
+          "equation": "xdot(theta)-1",
+          "sample_count": 1775,
+          "observed_sign_stable": true,
+          "observed_sign": -1,
+          "min_abs_sampled_residual": 2.04987394042153,
+          "min_sampled_residual": -2.04987394042153,
+          "min_sampled_theta": 0.237882538921423,
+          "derivative_abs_bound_used": 139.201410138921,
+          "grid_half_step": 0.0000305067383862927,
+          "binary64_lipschitz_margin": 2.04562735941942,
+          "no_zero_evidence_binary64": true,
+          "root_count_bound_binary64": [
+            0,
+            0
+          ]
+        }
+      ],
+      "no_extra_root_evidence_binary64": true
+    },
+    {
+      "interval_id": "C05",
+      "theta_range": [
+        0.241882538921423,
+        0.330416382350065
+      ],
+      "follows_contact": "Sigma_hf_04",
+      "precedes_contact": "Sigma_hf_05",
+      "width": 0.088533843428642,
+      "equation_scans": [
+        {
+          "equation": "xdot(theta)+1",
+          "sample_count": 1451,
+          "observed_sign_stable": true,
+          "observed_sign": 1,
+          "min_abs_sampled_residual": 0.0415050184268141,
+          "min_sampled_residual": 0.0415050184268141,
+          "min_sampled_theta": 0.330416382350065,
+          "derivative_abs_bound_used": 139.201410138921,
+          "grid_half_step": 0.0000305078716156589,
+          "binary64_lipschitz_margin": 0.0372582796775772,
+          "no_zero_evidence_binary64": true,
+          "root_count_bound_binary64": [
+            0,
+            0
+          ]
+        },
+        {
+          "equation": "xdot(theta)-1",
+          "sample_count": 1451,
+          "observed_sign_stable": true,
+          "observed_sign": -1,
+          "min_abs_sampled_residual": 1.35225784145115,
+          "min_sampled_residual": -1.35225784145115,
+          "min_sampled_theta": 0.284593559183345,
+          "derivative_abs_bound_used": 139.201410138921,
+          "grid_half_step": 0.0000305078716156589,
+          "binary64_lipschitz_margin": 1.34801110270191,
+          "no_zero_evidence_binary64": true,
+          "root_count_bound_binary64": [
+            0,
+            0
+          ]
+        }
+      ],
+      "no_extra_root_evidence_binary64": true
+    },
+    {
+      "interval_id": "C06",
+      "theta_range": [
+        0.334416382350065,
+        0.40192438248653
+      ],
+      "follows_contact": "Sigma_hf_05",
+      "precedes_contact": "Sigma_hf_06",
+      "width": 0.067508000136465,
+      "equation_scans": [
+        {
+          "equation": "xdot(theta)+1",
+          "sample_count": 1107,
+          "observed_sign_stable": true,
+          "observed_sign": -1,
+          "min_abs_sampled_residual": 0.0766767780091386,
+          "min_sampled_residual": -0.0766767780091386,
+          "min_sampled_theta": 0.334416382350065,
+          "derivative_abs_bound_used": 139.201410138921,
+          "grid_half_step": 0.0000304914183091531,
+          "binary64_lipschitz_margin": 0.0724323295833688,
+          "no_zero_evidence_binary64": true,
+          "root_count_bound_binary64": [
+            0,
+            0
+          ]
+        },
+        {
+          "equation": "xdot(theta)-1",
+          "sample_count": 1107,
+          "observed_sign_stable": true,
+          "observed_sign": -1,
+          "min_abs_sampled_residual": 2.07667677800914,
+          "min_sampled_residual": -2.07667677800914,
+          "min_sampled_theta": 0.334416382350065,
+          "derivative_abs_bound_used": 139.201410138921,
+          "grid_half_step": 0.0000304914183091531,
+          "binary64_lipschitz_margin": 2.07243232958337,
+          "no_zero_evidence_binary64": true,
+          "root_count_bound_binary64": [
+            0,
+            0
+          ]
+        }
+      ],
+      "no_extra_root_evidence_binary64": true
+    },
+    {
+      "interval_id": "C07",
+      "theta_range": [
+        0.40592438248653,
+        0.513276065404527
+      ],
+      "follows_contact": "Sigma_hf_06",
+      "precedes_contact": "Sigma_hf_07",
+      "width": 0.107351682917997,
+      "equation_scans": [
+        {
+          "equation": "xdot(theta)+1",
+          "sample_count": 1759,
+          "observed_sign_stable": true,
+          "observed_sign": 1,
+          "min_abs_sampled_residual": 0.0941954554559646,
+          "min_sampled_residual": 0.0941954554559646,
+          "min_sampled_theta": 0.40592438248653,
+          "derivative_abs_bound_used": 139.201410138921,
+          "grid_half_step": 0.0000305149752467302,
+          "binary64_lipschitz_margin": 0.0899477278712655,
+          "no_zero_evidence_binary64": true,
+          "root_count_bound_binary64": [
+            0,
+            0
+          ]
+        },
+        {
+          "equation": "xdot(theta)-1",
+          "sample_count": 1759,
+          "observed_sign_stable": true,
+          "observed_sign": -1,
+          "min_abs_sampled_residual": 0.0895814093969424,
+          "min_sampled_residual": -0.0895814093969424,
+          "min_sampled_theta": 0.459630738920775,
+          "derivative_abs_bound_used": 139.201410138921,
+          "grid_half_step": 0.0000305149752467302,
+          "binary64_lipschitz_margin": 0.0853336818122433,
+          "no_zero_evidence_binary64": true,
+          "root_count_bound_binary64": [
+            0,
+            0
+          ]
+        }
+      ],
+      "no_extra_root_evidence_binary64": true
+    },
+    {
+      "interval_id": "C08",
+      "theta_range": [
+        0.517276065404527,
+        0.554693577163629
+      ],
+      "follows_contact": "Sigma_hf_07",
+      "precedes_contact": "Sigma_hf_08",
+      "width": 0.037417511759102,
+      "equation_scans": [
+        {
+          "equation": "xdot(theta)+1",
+          "sample_count": 614,
+          "observed_sign_stable": true,
+          "observed_sign": 1,
+          "min_abs_sampled_residual": 2.0866951651124,
+          "min_sampled_residual": 2.0866951651124,
+          "min_sampled_theta": 0.554693577163629,
+          "derivative_abs_bound_used": 139.201410138921,
+          "grid_half_step": 0.0000304702864487801,
+          "binary64_lipschitz_margin": 2.0824536582714,
+          "no_zero_evidence_binary64": true,
+          "root_count_bound_binary64": [
+            0,
+            0
+          ]
+        },
+        {
+          "equation": "xdot(theta)-1",
+          "sample_count": 614,
+          "observed_sign_stable": true,
+          "observed_sign": 1,
+          "min_abs_sampled_residual": 0.0866951651124037,
+          "min_sampled_residual": 0.0866951651124037,
+          "min_sampled_theta": 0.554693577163629,
+          "derivative_abs_bound_used": 139.201410138921,
+          "grid_half_step": 0.0000304702864487801,
+          "binary64_lipschitz_margin": 0.0824536582713967,
+          "no_zero_evidence_binary64": true,
+          "root_count_bound_binary64": [
+            0,
+            0
+          ]
+        }
+      ],
+      "no_extra_root_evidence_binary64": true
+    },
+    {
+      "interval_id": "C09",
+      "theta_range": [
+        0.558693577163629,
+        0.625583617650084
+      ],
+      "follows_contact": "Sigma_hf_08",
+      "precedes_contact": "Sigma_hf_09",
+      "width": 0.066890040486455,
+      "equation_scans": [
+        {
+          "equation": "xdot(theta)+1",
+          "sample_count": 1096,
+          "observed_sign_stable": true,
+          "observed_sign": 1,
+          "min_abs_sampled_residual": 0.720399224711928,
+          "min_sampled_residual": 0.720399224711928,
+          "min_sampled_theta": 0.593847467054321,
+          "derivative_abs_bound_used": 139.201410138921,
+          "grid_half_step": 0.0000305155294190032,
+          "binary64_lipschitz_margin": 0.716151419985667,
+          "no_zero_evidence_binary64": true,
+          "root_count_bound_binary64": [
+            0,
+            0
+          ]
+        },
+        {
+          "equation": "xdot(theta)-1",
+          "sample_count": 1096,
+          "observed_sign_stable": true,
+          "observed_sign": -1,
+          "min_abs_sampled_residual": 0.0908369255751541,
+          "min_sampled_residual": -0.0908369255751541,
+          "min_sampled_theta": 0.558693577163629,
+          "derivative_abs_bound_used": 139.201410138921,
+          "grid_half_step": 0.0000305155294190032,
+          "binary64_lipschitz_margin": 0.0865891208488931,
+          "no_zero_evidence_binary64": true,
+          "root_count_bound_binary64": [
+            0,
+            0
+          ]
+        }
+      ],
+      "no_extra_root_evidence_binary64": true
+    },
+    {
+      "interval_id": "C10",
+      "theta_range": [
+        0.629583617650084,
+        0.737882538921423
+      ],
+      "follows_contact": "Sigma_hf_09",
+      "precedes_contact": "Sigma_hf_10",
+      "width": 0.108298921271339,
+      "equation_scans": [
+        {
+          "equation": "xdot(theta)+1",
+          "sample_count": 1775,
+          "observed_sign_stable": true,
+          "observed_sign": 1,
+          "min_abs_sampled_residual": 2.04987394042153,
+          "min_sampled_residual": 2.04987394042153,
+          "min_sampled_theta": 0.737882538921423,
+          "derivative_abs_bound_used": 139.201410138921,
+          "grid_half_step": 0.0000305067383862927,
+          "binary64_lipschitz_margin": 2.04562735941942,
+          "no_zero_evidence_binary64": true,
+          "root_count_bound_binary64": [
+            0,
+            0
+          ]
+        },
+        {
+          "equation": "xdot(theta)-1",
+          "sample_count": 1775,
+          "observed_sign_stable": true,
+          "observed_sign": 1,
+          "min_abs_sampled_residual": 0.049873940421534,
+          "min_sampled_residual": 0.049873940421534,
+          "min_sampled_theta": 0.737882538921423,
+          "derivative_abs_bound_used": 139.201410138921,
+          "grid_half_step": 0.0000305067383862927,
+          "binary64_lipschitz_margin": 0.0456273594194229,
+          "no_zero_evidence_binary64": true,
+          "root_count_bound_binary64": [
+            0,
+            0
+          ]
+        }
+      ],
+      "no_extra_root_evidence_binary64": true
+    },
+    {
+      "interval_id": "C11",
+      "theta_range": [
+        0.741882538921423,
+        0.830416382350065
+      ],
+      "follows_contact": "Sigma_hf_10",
+      "precedes_contact": "Sigma_hf_11",
+      "width": 0.088533843428642,
+      "equation_scans": [
+        {
+          "equation": "xdot(theta)+1",
+          "sample_count": 1451,
+          "observed_sign_stable": true,
+          "observed_sign": 1,
+          "min_abs_sampled_residual": 1.35225784145115,
+          "min_sampled_residual": 1.35225784145115,
+          "min_sampled_theta": 0.784593559183345,
+          "derivative_abs_bound_used": 139.201410138921,
+          "grid_half_step": 0.0000305078716156589,
+          "binary64_lipschitz_margin": 1.34801110270191,
+          "no_zero_evidence_binary64": true,
+          "root_count_bound_binary64": [
+            0,
+            0
+          ]
+        },
+        {
+          "equation": "xdot(theta)-1",
+          "sample_count": 1451,
+          "observed_sign_stable": true,
+          "observed_sign": -1,
+          "min_abs_sampled_residual": 0.0415050184268141,
+          "min_sampled_residual": -0.0415050184268141,
+          "min_sampled_theta": 0.830416382350065,
+          "derivative_abs_bound_used": 139.201410138921,
+          "grid_half_step": 0.0000305078716156589,
+          "binary64_lipschitz_margin": 0.0372582796775772,
+          "no_zero_evidence_binary64": true,
+          "root_count_bound_binary64": [
+            0,
+            0
+          ]
+        }
+      ],
+      "no_extra_root_evidence_binary64": true
+    },
+    {
+      "interval_id": "C12",
+      "theta_range": [
+        0.834416382350065,
+        0.90192438248653
+      ],
+      "follows_contact": "Sigma_hf_11",
+      "precedes_contact": "Sigma_hf_12",
+      "width": 0.067508000136465,
+      "equation_scans": [
+        {
+          "equation": "xdot(theta)+1",
+          "sample_count": 1107,
+          "observed_sign_stable": true,
+          "observed_sign": 1,
+          "min_abs_sampled_residual": 2.07667677800914,
+          "min_sampled_residual": 2.07667677800914,
+          "min_sampled_theta": 0.834416382350065,
+          "derivative_abs_bound_used": 139.201410138921,
+          "grid_half_step": 0.0000304914183091531,
+          "binary64_lipschitz_margin": 2.07243232958337,
+          "no_zero_evidence_binary64": true,
+          "root_count_bound_binary64": [
+            0,
+            0
+          ]
+        },
+        {
+          "equation": "xdot(theta)-1",
+          "sample_count": 1107,
+          "observed_sign_stable": true,
+          "observed_sign": 1,
+          "min_abs_sampled_residual": 0.0766767780091389,
+          "min_sampled_residual": 0.0766767780091389,
+          "min_sampled_theta": 0.834416382350065,
+          "derivative_abs_bound_used": 139.201410138921,
+          "grid_half_step": 0.0000304914183091531,
+          "binary64_lipschitz_margin": 0.072432329583369,
+          "no_zero_evidence_binary64": true,
+          "root_count_bound_binary64": [
+            0,
+            0
+          ]
+        }
+      ],
+      "no_extra_root_evidence_binary64": true
+    },
+    {
+      "interval_id": "C13",
+      "theta_range": [
+        0.90592438248653,
+        1
+      ],
+      "follows_contact": "Sigma_hf_12",
+      "precedes_contact": null,
+      "width": 0.09407561751347,
+      "equation_scans": [
+        {
+          "equation": "xdot(theta)+1",
+          "sample_count": 1542,
+          "observed_sign_stable": true,
+          "observed_sign": 1,
+          "min_abs_sampled_residual": 0.0895817852813156,
+          "min_sampled_residual": 0.0895817852813156,
+          "min_sampled_theta": 0.959612153830145,
+          "derivative_abs_bound_used": 139.201410138921,
+          "grid_half_step": 0.0000305044155361446,
+          "binary64_lipschitz_margin": 0.0853355276232206,
+          "no_zero_evidence_binary64": true,
+          "root_count_bound_binary64": [
+            0,
+            0
+          ]
+        },
+        {
+          "equation": "xdot(theta)-1",
+          "sample_count": 1542,
+          "observed_sign_stable": true,
+          "observed_sign": -1,
+          "min_abs_sampled_residual": 0.094195455455962,
+          "min_sampled_residual": -0.094195455455962,
+          "min_sampled_theta": 0.90592438248653,
+          "derivative_abs_bound_used": 139.201410138921,
+          "grid_half_step": 0.0000305044155361446,
+          "binary64_lipschitz_margin": 0.089949197797867,
+          "no_zero_evidence_binary64": true,
+          "root_count_bound_binary64": [
+            0,
+            0
+          ]
+        }
+      ],
+      "no_extra_root_evidence_binary64": true
+    }
+  ],
+  "proof_grade_blockers": [
+    "Replace all binary64 evaluations with outward-rounded interval arithmetic for X, xdot, and d(xdot)/dtheta.",
+    "Split every root tube and complement at the listed piecewise basis breakpoints before applying derivative and sign bounds.",
+    "Emit directed-rounded root-tube parity/no-double-counting bounds that prove exactly one root in each tube and no root on every complement.",
+    "The interval root-count certificate supersedes this binary64 handoff; residual proof-grade work now belongs to higher-fold proof-interval row closure."
+  ],
+  "limitations": [
+    "This artifact does not accept any preledger row.",
+    "This artifact does not reuse the old same-itinerary row certificates.",
+    "This artifact does not authorize a live ledger update or branch chart.",
+    "The binary64 Lipschitz inequalities are useful routing evidence, not a proof-grade certificate."
+  ]
+}

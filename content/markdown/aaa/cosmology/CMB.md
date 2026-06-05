@@ -616,6 +616,41 @@ $$
 
 So CMB temperature/redshift summaries remain usable while their mechanism is grounded in assembly-medium dynamics.
 
+### Sunyaev-Zeldovich Path-History Calibration
+
+Sunyaev-Zeldovich measurements provide a direct reminder that CMB photon frequency is a path-history record. In standard comparison language, the thermal effect shifts CMB photon frequencies through inverse-Compton exchange with hot cluster electrons, while the kinematic effect records the bulk motion of the intervening electron population. In $\mathbb{A}\mathbb{A}\mathbb{A}$ these are not new ontology. They are calibration cases showing that a photon packet can carry signed frequency transfer from the intervening medium after decoupling.
+
+For a line of sight $\gamma$ through an intervening region $W$, the CMB module should retain a signed path row
+
+$$
+Y_{\gamma}^{\mathrm{post}}
+=
+\sum_{j\in W}\Delta Y_{\gamma,j}^{\mathrm{ex}},
+\qquad
+\Delta Y_{\gamma,j}^{\mathrm{ex}}
+=
+-\ln
+\frac{\nu_{\gamma,j}^{+}}{\nu_{\gamma,j}^{-}},
+$$
+
+where negative increments are frequency boosts and positive increments are frequency depletions relative to the local comparison clock. The corresponding exchange residual is
+
+$$
+\mathcal{R}_{\mathrm{SZ}\text{-}\mathrm{ex}}
+=
+\sum_{j\in W}
+\frac{
+\left|
+h(\nu_{\gamma,j}^{+}-\nu_{\gamma,j}^{-})
++\Delta E_{\mathrm{med},j}
++\Delta E_{\mathrm{recoil},j}
++\Delta E_{\mathrm{rem},j}
+\right|
+}{\epsilon_{E,j}}.
+$$
+
+This row is a calibration and provenance requirement, not a claim that all cosmological redshift is SZ scattering. A CMB history must still preserve the near-blackbody spectrum, anisotropy, polarization, damping, and lensing records. The SZ lesson is narrower and important: any use of CMB temperature, redshift, or kSZ velocity data must keep photon frequency transfer tied to the same Noether sea, electron-population, and path-history record rather than treating frequency as a pure expansion clock.
+
 ### Dark-Sector and Growth Link
 
 - Neutral-assembly loading and medium response both contribute to how pre-decoupling oscillations map into late-time inferred matter amplitudes.

@@ -1,0 +1,20 @@
+{
+  "id": "the-balance-point-spread-15",
+  "book_slug": "the-balance-point",
+  "source_png": "reference/outreach/childrens-books/production/source/the-balance-point/the-balance-point-spread-15.png",
+  "exists": true,
+  "automated": {
+    "width": 1624,
+    "height": 969,
+    "aspect_ratio": 1.676,
+    "saturated_non_palette_fraction": 0.5708,
+    "palette_flag": true
+  },
+  "manual_checklist": {
+    "palette": "approved",
+    "no_in_image_text": "approved",
+    "one_continuous_scene": "approved",
+    "correct_geometry": "approved"
+  },
+  "decision": "approved"
+}

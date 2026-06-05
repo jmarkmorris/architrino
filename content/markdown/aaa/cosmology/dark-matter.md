@@ -280,6 +280,7 @@ Here $\mathrm{RAR}^{\theta}$ is the radial-acceleration relation predicted by th
 - Reproducing cluster-scale lensing/gas centroid separation without a collisionless component.
 - Matching acoustic-peak matter loading in pre-decoupling dynamics.
 - Producing the correct large-scale transfer-function shape in $P(k)$.
+- Preserving the large-scale inverse-square force profile inferred from kSZ halo-pair velocities. The ACT/SDSS comparison in [arXiv:2604.14327](https://arxiv.org/abs/2604.14327) fits $g(r)\propto r^{-n}$ with $n=2.1\pm0.3$ on $30$--$230\,\mathrm{Mpc}$ scales, so a pure MOND-like branch with an unscreened $n\simeq1$ profile on that window is not viable without a native screening or regime-separation mechanism.
 
 These difficulties motivate retaining Candidate A as the primary dark-matter substrate, with Candidate B contributing corrections.
 

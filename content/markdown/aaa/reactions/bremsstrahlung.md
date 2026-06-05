@@ -380,13 +380,28 @@ This keeps cooling in proper time and substrate evolution in absolute time expli
 
 ## Cosmological Propagation and Redshift Map
 
-For source emissivity at emission redshift $z_{\mathrm{em}}$, the observer-level mapping target is
+For source emissivity at a declared emission record $E$ and receiver record $R$, first compute the observer-level signed photon-frequency transfer budget
 
 $$
-\epsilon_\nu^{\mathrm{obs}}(z_{\mathrm{obs}}) = (1+z)^{-4}\,\epsilon_{\nu(1+z)}^{\mathrm{ff}}(z_{\mathrm{em}})\,\mathcal{T}(\nu, z_{\mathrm{em}}\to z_{\mathrm{obs}}),
+1+z_X
+=
+\exp Z_X^{E\to R},
+\qquad
+Z_X^{E\to R}
+=
+Z_{\mathrm{endpoint},X}
++Z_{\mathrm{source},X}
++Z_{\mathrm{launch},X}
++Y_{X,\mathrm{path}}.
 $$
 
-with $1+z \equiv (1+z_{\mathrm{em}})/(1+z_{\mathrm{obs}})$ and $\mathcal{T}$ the transfer factor (absorption/scattering in plasma and any Noether sea-specific opacity).
+The observer-level mapping target is then
+
+$$
+\epsilon_\nu^{\mathrm{obs}}(R) = (1+z_X)^{-4}\,\epsilon_{\nu(1+z_X)}^{\mathrm{ff}}(E)\,\mathcal{T}(\nu, E\to R),
+$$
+
+where $\mathcal{T}$ is the transfer factor for absorption, scattering in plasma, and any Noether sea-specific opacity. The $Y_{X,\mathrm{path}}$ term records signed frequency exchange along the path; $\mathcal{T}$ must not hide an unlogged photon-energy gain or loss. In the standard homogeneous limit this reduces to the conventional redshift notation with $1+z \equiv (1+z_{\mathrm{em}})/(1+z_{\mathrm{obs}})$.
 
 ## Thermal Equilibrium Assumptions in Evolving Noether Sea States
 

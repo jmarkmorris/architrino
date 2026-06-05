@@ -512,7 +512,7 @@ function buildResult(input, ids, structuralRows, gapConstraintRows, scanResult) 
     ? vectorObject(ids, scanResult.diagnosticCandidate)
     : null;
   const tolerance = scanResult.tolerance ?? DEFAULT_TOLERANCE;
-  return {
+  const result = {
     schema: RESULT_SCHEMA,
     input_schema: input.schema,
     packet_id: input.packet_id ?? null,
@@ -566,6 +566,29 @@ function buildResult(input, ids, structuralRows, gapConstraintRows, scanResult) 
       "An inconclusive result is not a proof that no gap-opening direction exists.",
     ],
   };
+  if (
+    "basis_includes_fold_coordinate_columns" in input ||
+    input.basis_definition?.basis_includes_fold_coordinate_columns !== undefined
+  ) {
+    result.basis_includes_fold_coordinate_columns = Boolean(
+      input.basis_includes_fold_coordinate_columns ??
+        input.basis_definition?.basis_includes_fold_coordinate_columns
+    );
+  }
+  if ("uses_receiver_cover_ownership" in input) {
+    result.uses_receiver_cover_ownership = Boolean(input.uses_receiver_cover_ownership);
+  }
+  if (Array.isArray(input.one_leaf_boundary_opening_constraints)) {
+    result.one_leaf_boundary_opening_constraint_count = input.one_leaf_boundary_opening_constraints.length;
+    result.one_leaf_min_boundary_opening_margin = Number.isFinite(
+      input.one_leaf_boundary_opening_summary?.min_boundary_opening_margin
+    )
+      ? cleanNumber(input.one_leaf_boundary_opening_summary.min_boundary_opening_margin)
+      : null;
+    result.one_leaf_screen_level_success =
+      input.one_leaf_boundary_opening_summary?.screen_level_success ?? null;
+  }
+  return result;
 }
 
 function main() {

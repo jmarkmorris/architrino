@@ -395,15 +395,28 @@ This is a heuristic competition product, not a claimed first-principles closure.
 
 ## Observer-Frame Transport
 
-For cosmology-facing use, source-frame emissivity must be propagated to observer-frame spectra with explicit redshift and transfer factors:
+For cosmology-facing use, source-frame emissivity must be propagated to observer-frame spectra with explicit signed photon-frequency-transfer and ordinary transfer factors. For a declared emission record $E$ and receiver record $R$, use
 
 $$
-j_{\nu}^{\mathrm{obs}}(z_{\mathrm{obs}}) = (1+z)^{-3} \, j_{\nu(1+z)}^{\mathrm{em}}(z_{\mathrm{em}})\,\mathcal{T}(\nu,z_{\mathrm{em}}\rightarrow z_{\mathrm{obs}}),
+1+z_X
+=
+\exp Z_X^{E\to R},
+\qquad
+Z_X^{E\to R}
+=
+Z_{\mathrm{endpoint},X}
++Z_{\mathrm{source},X}
++Z_{\mathrm{launch},X}
++Y_{X,\mathrm{path}}.
 $$
 
-Here $\mathcal{T}(\nu,z_{\mathrm{em}}\rightarrow z_{\mathrm{obs}})$ is the cumulative transfer function including absorption (for example, $e^{-\tau_{\gamma\gamma}(\nu,z)}$ for pair production on extragalactic background light) and any intervening scattering. For nearby sources ($z \ll 1$), $\mathcal{T} \approx 1$.
+$$
+j_{\nu}^{\mathrm{obs}}(R) = (1+z_X)^{-3} \, j_{\nu(1+z_X)}^{\mathrm{em}}(E)\,\mathcal{T}(\nu,E\rightarrow R),
+$$
 
-with $1+z \equiv (1+z_{\mathrm{em}})/(1+z_{\mathrm{obs}})$. In standard-limit regimes, this must reduce to conventional transport results used in high-energy astrophysics.
+Here $\mathcal{T}(\nu,E\rightarrow R)$ is the cumulative transfer function including absorption (for example, $e^{-\tau_{\gamma\gamma}(\nu,z)}$ for pair production on extragalactic background light) and any intervening scattering. The signed $Y_{X,\mathrm{path}}$ term must carry any Compton/Sunyaev-Zeldovich-like frequency exchange rather than being folded into a primitive expansion factor or hidden inside $\mathcal{T}$. For nearby sources ($z_X \ll 1$) with negligible path exchange, $\mathcal{T} \approx 1$.
+
+In the standard homogeneous limit, $1+z_X$ reduces to the conventional transport notation $1+z \equiv (1+z_{\mathrm{em}})/(1+z_{\mathrm{obs}})$. In standard-limit regimes, this must recover the conventional transport results used in high-energy astrophysics.
 
 When the path includes plasma or conducting material, the transfer function must carry the same response rows used by [Radiation](radiation.md). In an effective plasma comparison,
 

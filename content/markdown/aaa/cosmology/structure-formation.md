@@ -246,6 +246,32 @@ The growth module provides:
 
 This is an inference interface, not a direct ontology map. ACT/Planck-style CMB-lensing reconstructions first supply a lensing data product, compactly represented by $C_L^{\phi\phi}$. A valid medium-and-assembly growth model must then produce the same $C_L^{\phi\phi}$ from the same matter power spectrum, growth history, neutral-assembly loading, and Noether sea response variables used for galaxy clustering and low-redshift weak lensing. If the CMB-lensing fit requires one growth record while late-time shear or cluster offsets require another, the structure-formation branch has split the shared cosmology state rather than closed it.
 
+The kinematic Sunyaev-Zeldovich effect adds a force-law profile test to the same growth family. The retained observable is not a visual picture of dark matter, but the mean pairwise velocity of massive halos inferred from small CMB temperature shifts produced when CMB photons scatter from moving cluster electrons. In the ACT/SDSS comparison reported by Gallardo and collaborators, the fitted large-scale halo acceleration obeys $g(r)\propto r^{-n}$ with $n_{\mathrm{kSZ}}^{\mathrm{obs}}=2.1\pm0.3$ on $30$--$230\,\mathrm{Mpc}$ scales ([arXiv:2604.14327](https://arxiv.org/abs/2604.14327)).
+
+For a candidate medium-and-assembly history $\theta$, define the projected halo-pair acceleration profile over that separation window by
+$$
+g_\theta(r)\big|_{W_{\mathrm{kSZ}}}
+\propto
+r^{-n_\theta},
+\qquad
+W_{\mathrm{kSZ}}=[30,230]\,\mathrm{Mpc}.
+$$
+The structure-formation residual is then
+$$
+\mathcal{R}_{\mathrm{kSZ}\text{-}force}(\theta)
+=
+\left(
+\frac{n_\theta-2.1}{0.3}
+\right)^2
++
+\lambda_{\mathrm{shared}}
+d_{\mathrm{shared}}\!\left(
+\Pi_{\mathrm{kSZ}}\theta_{\mathrm{sea}},
+\Pi_{\mathrm{WL/RSD}}\theta_{\mathrm{sea}}
+\right).
+$$
+This residual protects the level distinction. A Noether sea response may still modify galaxy-scale low-acceleration behavior, but it cannot become a free large-scale modified-gravity law. On the ACT/SDSS halo-pair window the same $\theta_{\mathrm{sea}}$ must recover an approximately inverse-square effective pull while preserving CMB lensing, weak lensing, redshift-space distortions, and the matter power spectrum.
+
 Pre-BBN comparison branches enter structure formation only through the transfer record they leave behind. For any branch $X$ retained by [Inflation Model](./inflation-model.md#pre-bbn-comparison-gate) and [BBN Constraints](./BBN-constraints.md#pre-bbn-handoff-gate), the growth-side observable is
 $$
 \Delta P_X(k,z)

@@ -1,0 +1,462 @@
+[
+  {
+    "id": "the-balance-point-cover",
+    "book_slug": "the-balance-point",
+    "source_png": "reference/outreach/childrens-books/production/source/the-balance-point/the-balance-point-cover.png",
+    "exists": true,
+    "automated": {
+      "width": 1635,
+      "height": 962,
+      "aspect_ratio": 1.6996,
+      "saturated_non_palette_fraction": 0.4676,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-balance-point-spread-01",
+    "book_slug": "the-balance-point",
+    "source_png": "reference/outreach/childrens-books/production/source/the-balance-point/the-balance-point-spread-01.png",
+    "exists": true,
+    "automated": {
+      "width": 1629,
+      "height": 966,
+      "aspect_ratio": 1.6863,
+      "saturated_non_palette_fraction": 0.436,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-balance-point-spread-02",
+    "book_slug": "the-balance-point",
+    "source_png": "reference/outreach/childrens-books/production/source/the-balance-point/the-balance-point-spread-02.png",
+    "exists": true,
+    "automated": {
+      "width": 1637,
+      "height": 961,
+      "aspect_ratio": 1.7034,
+      "saturated_non_palette_fraction": 0.6898,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-balance-point-spread-03",
+    "book_slug": "the-balance-point",
+    "source_png": "reference/outreach/childrens-books/production/source/the-balance-point/the-balance-point-spread-03.png",
+    "exists": true,
+    "automated": {
+      "width": 1635,
+      "height": 962,
+      "aspect_ratio": 1.6996,
+      "saturated_non_palette_fraction": 0.5297,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-balance-point-spread-04",
+    "book_slug": "the-balance-point",
+    "source_png": "reference/outreach/childrens-books/production/source/the-balance-point/the-balance-point-spread-04.png",
+    "exists": true,
+    "automated": {
+      "width": 1635,
+      "height": 962,
+      "aspect_ratio": 1.6996,
+      "saturated_non_palette_fraction": 0.5341,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-balance-point-spread-05",
+    "book_slug": "the-balance-point",
+    "source_png": "reference/outreach/childrens-books/production/source/the-balance-point/the-balance-point-spread-05.png",
+    "exists": true,
+    "automated": {
+      "width": 1586,
+      "height": 992,
+      "aspect_ratio": 1.5988,
+      "saturated_non_palette_fraction": 0.5118,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-balance-point-spread-06",
+    "book_slug": "the-balance-point",
+    "source_png": "reference/outreach/childrens-books/production/source/the-balance-point/the-balance-point-spread-06.png",
+    "exists": true,
+    "automated": {
+      "width": 1622,
+      "height": 970,
+      "aspect_ratio": 1.6722,
+      "saturated_non_palette_fraction": 0.4691,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-balance-point-spread-07",
+    "book_slug": "the-balance-point",
+    "source_png": "reference/outreach/childrens-books/production/source/the-balance-point/the-balance-point-spread-07.png",
+    "exists": true,
+    "automated": {
+      "width": 1643,
+      "height": 957,
+      "aspect_ratio": 1.7168,
+      "saturated_non_palette_fraction": 0.5165,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-balance-point-spread-08",
+    "book_slug": "the-balance-point",
+    "source_png": "reference/outreach/childrens-books/production/source/the-balance-point/the-balance-point-spread-08.png",
+    "exists": true,
+    "automated": {
+      "width": 1626,
+      "height": 967,
+      "aspect_ratio": 1.6815,
+      "saturated_non_palette_fraction": 0.5283,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-balance-point-spread-09",
+    "book_slug": "the-balance-point",
+    "source_png": "reference/outreach/childrens-books/production/source/the-balance-point/the-balance-point-spread-09.png",
+    "exists": true,
+    "automated": {
+      "width": 1633,
+      "height": 963,
+      "aspect_ratio": 1.6957,
+      "saturated_non_palette_fraction": 0.4894,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-balance-point-spread-10",
+    "book_slug": "the-balance-point",
+    "source_png": "reference/outreach/childrens-books/production/source/the-balance-point/the-balance-point-spread-10.png",
+    "exists": true,
+    "automated": {
+      "width": 1622,
+      "height": 970,
+      "aspect_ratio": 1.6722,
+      "saturated_non_palette_fraction": 0.499,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-balance-point-spread-11",
+    "book_slug": "the-balance-point",
+    "source_png": "reference/outreach/childrens-books/production/source/the-balance-point/the-balance-point-spread-11.png",
+    "exists": true,
+    "automated": {
+      "width": 1662,
+      "height": 946,
+      "aspect_ratio": 1.7569,
+      "saturated_non_palette_fraction": 0.6076,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-balance-point-spread-12",
+    "book_slug": "the-balance-point",
+    "source_png": "reference/outreach/childrens-books/production/source/the-balance-point/the-balance-point-spread-12.png",
+    "exists": true,
+    "automated": {
+      "width": 1635,
+      "height": 962,
+      "aspect_ratio": 1.6996,
+      "saturated_non_palette_fraction": 0.4727,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-balance-point-spread-13",
+    "book_slug": "the-balance-point",
+    "source_png": "reference/outreach/childrens-books/production/source/the-balance-point/the-balance-point-spread-13.png",
+    "exists": true,
+    "automated": {
+      "width": 1586,
+      "height": 992,
+      "aspect_ratio": 1.5988,
+      "saturated_non_palette_fraction": 0.5336,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-balance-point-spread-14",
+    "book_slug": "the-balance-point",
+    "source_png": "reference/outreach/childrens-books/production/source/the-balance-point/the-balance-point-spread-14.png",
+    "exists": true,
+    "automated": {
+      "width": 1629,
+      "height": 966,
+      "aspect_ratio": 1.6863,
+      "saturated_non_palette_fraction": 0.5455,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-balance-point-spread-15",
+    "book_slug": "the-balance-point",
+    "source_png": "reference/outreach/childrens-books/production/source/the-balance-point/the-balance-point-spread-15.png",
+    "exists": true,
+    "automated": {
+      "width": 1624,
+      "height": 969,
+      "aspect_ratio": 1.676,
+      "saturated_non_palette_fraction": 0.5708,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-balance-point-spread-16",
+    "book_slug": "the-balance-point",
+    "source_png": "reference/outreach/childrens-books/production/source/the-balance-point/the-balance-point-spread-16.png",
+    "exists": true,
+    "automated": {
+      "width": 1627,
+      "height": 967,
+      "aspect_ratio": 1.6825,
+      "saturated_non_palette_fraction": 0.4929,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-balance-point-spread-17",
+    "book_slug": "the-balance-point",
+    "source_png": "reference/outreach/childrens-books/production/source/the-balance-point/the-balance-point-spread-17.png",
+    "exists": true,
+    "automated": {
+      "width": 1619,
+      "height": 972,
+      "aspect_ratio": 1.6656,
+      "saturated_non_palette_fraction": 0.492,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-balance-point-spread-18",
+    "book_slug": "the-balance-point",
+    "source_png": "reference/outreach/childrens-books/production/source/the-balance-point/the-balance-point-spread-18.png",
+    "exists": true,
+    "automated": {
+      "width": 1601,
+      "height": 982,
+      "aspect_ratio": 1.6303,
+      "saturated_non_palette_fraction": 0.4823,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-balance-point-backmatter-01",
+    "book_slug": "the-balance-point",
+    "source_png": "reference/outreach/childrens-books/production/source/the-balance-point/the-balance-point-backmatter-01.png",
+    "exists": true,
+    "automated": {
+      "width": 1617,
+      "height": 972,
+      "aspect_ratio": 1.6636,
+      "saturated_non_palette_fraction": 0.5124,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-balance-point-backmatter-02",
+    "book_slug": "the-balance-point",
+    "source_png": "reference/outreach/childrens-books/production/source/the-balance-point/the-balance-point-backmatter-02.png",
+    "exists": true,
+    "automated": {
+      "width": 1628,
+      "height": 966,
+      "aspect_ratio": 1.6853,
+      "saturated_non_palette_fraction": 0.5158,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-balance-point-backmatter-03",
+    "book_slug": "the-balance-point",
+    "source_png": "reference/outreach/childrens-books/production/source/the-balance-point/the-balance-point-backmatter-03.png",
+    "exists": true,
+    "automated": {
+      "width": 1627,
+      "height": 967,
+      "aspect_ratio": 1.6825,
+      "saturated_non_palette_fraction": 0.5222,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-balance-point-backmatter-04",
+    "book_slug": "the-balance-point",
+    "source_png": "reference/outreach/childrens-books/production/source/the-balance-point/the-balance-point-backmatter-04.png",
+    "exists": true,
+    "automated": {
+      "width": 1620,
+      "height": 971,
+      "aspect_ratio": 1.6684,
+      "saturated_non_palette_fraction": 0.5246,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  }
+]

@@ -1,0 +1,1779 @@
+{
+  "schema": "breather-higher-fold-fold-coordinate-endpoint-functional-ref-value-carrier-introduction-rule-theorem-attempt-v1",
+  "status": "priority-only-fold-coordinate-endpoint-functional-ref-value-carrier-introduction-rule-theorem-attempt-fail-closed-source-pairs-and-rule-targets-present-rule-derivations-soundness-application-evidence-and-joint-carrier-pair-rule-absent-no-row-consumption",
+  "packet_id": "fresh-v10-higher-fold-12-root-rebuild-v0",
+  "fold_coordinate_packet_id": "fresh-v10-fold-coordinate-collocation-nonlinear-tangent-matrix-v0",
+  "claim_level": "priority-only fail-closed rule-theorem attempt; source premises and rule targets are present but rule derivations, soundness proof, endpoint application proof, and rule availability are absent",
+  "source_artifacts": [
+    {
+      "label": "ref_value_non_domain_carrier_pair_theorem_attempt",
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_ref_value_non_domain_carrier_pair_theorem_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_ref_value_non_domain_carrier_pair_theorem_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "sha256": "37a29f657392d2184555143caac0ae7d54a05f4006627f4843bc155bd57bd4cd"
+    },
+    {
+      "label": "ref_value_non_domain_carrier_rule_target",
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_ref_value_non_domain_carrier_rule_target.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_ref_value_non_domain_carrier_rule_target.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "sha256": "5683b5c1e49282d96f3bb67fb6af26590c6cac6948599e98405aa2e1f43ca1c1"
+    },
+    {
+      "label": "ref_value_carrier_introduction_route_decision",
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_ref_value_carrier_introduction_route_decision.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_ref_value_carrier_introduction_route_decision.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "sha256": "9fbf4e6bd4bbec9f8cfb10ee3bd311f6009de0ddf25ee18771805d0a7c1fdf41"
+    },
+    {
+      "label": "same_packet_constructed_witness_object_identity_attempt",
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_same_packet_constructed_witness_object_identity_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_same_packet_constructed_witness_object_identity_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "sha256": "9d86723d45faa601df0a6bacc41122dcaac1b616d49915e1695e152725a75bd9"
+    },
+    {
+      "label": "non_domain_carrier_obstruction_packet",
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_same_packet_endpoint_boundary_binding_witness_object_non_domain_carrier_obstruction_packet.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_same_packet_endpoint_boundary_binding_witness_object_non_domain_carrier_obstruction_packet.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "sha256": "bcd2fd6b78b82338003146cf227b3071c5eb865f8dc79dcffb9947bbc42a9898"
+    },
+    {
+      "label": "endpoint_boundary_binding_ref_carrier_full_binding",
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_endpoint_boundary_binding_ref_carrier_full_binding_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_endpoint_boundary_binding_ref_carrier_full_binding_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "sha256": "6904d4a57e58918918ca5583a44c50cd3150967e4fdd9000f78178621b04c5be"
+    },
+    {
+      "label": "endpoint_value_binding_map",
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_endpoint_value_binding_map_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_endpoint_value_binding_map_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "sha256": "be4bd97a224256f16b2a8b538834841238ddaf2bbe12f35fac005260f8b4004e"
+    },
+    {
+      "label": "endpoint_boundary_binding_primitive_rule_witness_record",
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_endpoint_boundary_binding_primitive_rule_witness_record_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_endpoint_boundary_binding_primitive_rule_witness_record_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "sha256": "3528e431bd23d5aee3a39293d53aa115e15ecb2a470ff65582bf8efa313ae596"
+    },
+    {
+      "label": "binding_contract_full_binding_carrier_admission_attempt",
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_binding_contract_full_binding_carrier_admission_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_binding_contract_full_binding_carrier_admission_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "sha256": "49b9f0e9db17df1197691a190f175545b05668950b81725e01875c3535549c9a"
+    }
+  ],
+  "theorem_target": {
+    "theorem_id": "ref-value-carrier-introduction-rule-theorem-target",
+    "statement": "For each endpoint functional, derive and prove sound the ref carrier-introduction rule, value-map carrier-introduction rule, and joint ref/value carrier-pair rule, then apply them endpoint-by-endpoint.",
+    "accepted_as_first_blocker_discharge_if": "Every endpoint has ref, value-map, and joint pair rule derivations, one carrier rule soundness proof, one endpoint application proof, and all three corresponding rule-availability fields true.",
+    "first_exact_blocker": "ref_carrier_rule_derivation_present, value_map_carrier_rule_derivation_present, and ref_value_pair_rule_derivation_present"
+  },
+  "no_promotion_rule": "Declared carrier-introduction rule targets and source premises do not make carrier rules available without derivation, soundness, and endpoint application proofs.",
+  "proof_burdens": [
+    {
+      "burden_id": "ref_carrier_rule_derivation",
+      "missing_field": "ref_carrier_rule_derivation_present",
+      "required_evidence": "A derivation of the endpoint-boundary-binding ref carrier-introduction rule from the endpoint-boundary-binding construction contract."
+    },
+    {
+      "burden_id": "value_map_carrier_rule_derivation",
+      "missing_field": "value_map_carrier_rule_derivation_present",
+      "required_evidence": "A derivation of the endpoint value-binding map carrier-introduction rule from the endpoint value-binding map contract."
+    },
+    {
+      "burden_id": "ref_value_pair_rule_derivation",
+      "missing_field": "ref_value_pair_rule_derivation_present",
+      "required_evidence": "A derivation of the joint ref/value carrier-pair rule that places both introduced carrier fields in one same-packet witness object."
+    },
+    {
+      "burden_id": "carrier_rule_soundness",
+      "missing_field": "carrier_rule_soundness_proof_present",
+      "required_evidence": "A soundness proof that the carrier-introduction rules preserve non-domain carrier membership and do not promote source handles by adjacency."
+    },
+    {
+      "burden_id": "carrier_rule_application",
+      "missing_field": "carrier_rule_application_proof_present",
+      "required_evidence": "Endpoint-by-endpoint application proof verifying every premise of the carrier-introduction rules."
+    },
+    {
+      "burden_id": "endpoint_boundary_binding_ref_carrier_introduction_rule",
+      "missing_field": "ref_carrier_introduction_rule_available",
+      "required_evidence": "A proof-grade ref carrier-introduction rule available after derivation, soundness, and endpoint application are established."
+    },
+    {
+      "burden_id": "endpoint_value_binding_map_carrier_introduction_rule",
+      "missing_field": "value_map_carrier_introduction_rule_available",
+      "required_evidence": "A proof-grade value-map carrier-introduction rule available after derivation, soundness, and endpoint application are established."
+    },
+    {
+      "burden_id": "ref_value_carrier_pair_rule",
+      "missing_field": "ref_value_carrier_pair_rule_available",
+      "required_evidence": "A proof-grade joint rule proving the introduced ref carrier and value-map carrier occupy one same-packet witness object."
+    },
+    {
+      "burden_id": "same_packet_ref_carrier_field",
+      "missing_field": "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+      "required_evidence": "A constructed non-domain carrier field for the endpoint-boundary-binding ref in the same witness object."
+    },
+    {
+      "burden_id": "same_packet_value_map_carrier_field",
+      "missing_field": "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+      "required_evidence": "A constructed non-domain carrier field for the endpoint value-binding map in the same witness object."
+    },
+    {
+      "burden_id": "ref_value_non_domain_carrier_pair",
+      "missing_field": "ref_value_non_domain_carrier_pair_constructed",
+      "required_evidence": "A constructed ref/value non-domain carrier pair with both fields proved to belong to one same-packet witness object."
+    }
+  ],
+  "theorem_routes": [
+    {
+      "route_id": "rule_target_as_rule_theorem_route",
+      "status": "rejected-unsound-with-current-evidence",
+      "required_fields": [
+        "proof_grade_rule_theorem_target_declared",
+        "ref_carrier_rule_derivation_present",
+        "value_map_carrier_rule_derivation_present",
+        "ref_value_pair_rule_derivation_present",
+        "carrier_rule_soundness_proof_present",
+        "carrier_rule_application_proof_present",
+        "ref_carrier_introduction_rule_available",
+        "value_map_carrier_introduction_rule_available",
+        "ref_value_carrier_pair_rule_available",
+        "ref_carrier_rule_theorem_present",
+        "value_map_carrier_rule_theorem_present",
+        "ref_value_pair_rule_theorem_present",
+        "carrier_introduction_rule_theorem_bundle_present"
+      ],
+      "limitation": "A declared carrier-introduction rule target names the theorem obligation but does not derive, prove sound, or apply the rule."
+    },
+    {
+      "route_id": "source_premise_to_rule_derivation_route",
+      "status": "blocked",
+      "required_fields": [
+        "source_premise_set_ready",
+        "ref_carrier_rule_derivation_present",
+        "value_map_carrier_rule_derivation_present",
+        "ref_value_pair_rule_derivation_present"
+      ],
+      "limitation": "The source premises are present, but no derivation turns those premises into the ref, value-map, or joint ref/value carrier-introduction rules."
+    },
+    {
+      "route_id": "selected_carrier_admission_route",
+      "status": "selected-but-blocked-not-rule-theorem",
+      "required_fields": [
+        "carrier_admission_route_selected",
+        "binding_contract_satisfied",
+        "full_endpoint_boundary_binding_constructed",
+        "endpoint_boundary_binding_ref_carrier_unblocked",
+        "endpoint_value_binding_map_carrier_unblocked"
+      ],
+      "limitation": "The selected carrier-admission route is recorded, but its own binding-contract, full-binding, and carrier-admission fields are absent and cannot substitute for an independent carrier-introduction rule theorem."
+    },
+    {
+      "route_id": "carrier_rule_soundness_route",
+      "status": "blocked",
+      "required_fields": [
+        "ref_carrier_rule_derivation_present",
+        "value_map_carrier_rule_derivation_present",
+        "ref_value_pair_rule_derivation_present",
+        "carrier_rule_soundness_proof_present"
+      ],
+      "limitation": "No soundness proof shows that the derived rules preserve same-packet non-domain carrier membership rather than source-handle adjacency."
+    },
+    {
+      "route_id": "endpoint_application_route",
+      "status": "blocked",
+      "required_fields": [
+        "carrier_rule_soundness_proof_present",
+        "carrier_rule_application_proof_present"
+      ],
+      "limitation": "No endpoint-level application proof verifies every premise of the carrier-introduction rule for the four endpoint functionals."
+    },
+    {
+      "route_id": "rule_availability_route",
+      "status": "blocked",
+      "required_fields": [
+        "ref_carrier_rule_derivation_present",
+        "value_map_carrier_rule_derivation_present",
+        "ref_value_pair_rule_derivation_present",
+        "carrier_rule_soundness_proof_present",
+        "carrier_rule_application_proof_present",
+        "ref_carrier_introduction_rule_available",
+        "value_map_carrier_introduction_rule_available",
+        "ref_value_carrier_pair_rule_available"
+      ],
+      "limitation": "The rule availability fields remain false because derivation, soundness, and endpoint application evidence are absent."
+    },
+    {
+      "route_id": "downstream_carrier_pair_route",
+      "status": "blocked-downstream",
+      "required_fields": [
+        "carrier_introduction_rule_theorem_bundle_present",
+        "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+        "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+        "ref_value_carrier_fields_same_witness_object_proven",
+        "ref_value_non_domain_carrier_pair_constructed"
+      ],
+      "limitation": "Carrier fields, same-witness-object carrier proof, and the ref/value non-domain carrier pair are downstream of the rule theorem bundle."
+    }
+  ],
+  "endpoint_fields": [
+    "domain_chart_carrier_subfield_constructed",
+    "ref_value_source_pair_ready",
+    "source_endpoint_boundary_binding_ref_constructed",
+    "source_witness_object_has_endpoint_boundary_binding_ref",
+    "source_endpoint_value_binding_map_constructed",
+    "source_witness_object_has_endpoint_value_binding_map",
+    "endpoint_boundary_binding_ref_carrier_source_candidate_declared",
+    "endpoint_value_binding_map_carrier_source_candidate_declared",
+    "non_domain_carrier_obstruction_present",
+    "direct_source_promotion_rejected",
+    "source_premise_set_ready",
+    "carrier_admission_route_selected",
+    "binding_contract_satisfied",
+    "full_endpoint_boundary_binding_constructed",
+    "endpoint_boundary_binding_ref_carrier_unblocked",
+    "endpoint_value_binding_map_carrier_unblocked",
+    "carrier_rule_target_declared",
+    "carrier_introduction_premises_named",
+    "carrier_introduction_conclusion_named",
+    "ref_carrier_rule_theorem_target_declared",
+    "value_map_carrier_rule_theorem_target_declared",
+    "ref_value_pair_rule_theorem_target_declared",
+    "proof_grade_rule_theorem_target_declared",
+    "ref_carrier_rule_derivation_present",
+    "value_map_carrier_rule_derivation_present",
+    "ref_value_pair_rule_derivation_present",
+    "carrier_rule_soundness_proof_present",
+    "carrier_rule_application_proof_present",
+    "ref_carrier_introduction_rule_available",
+    "value_map_carrier_introduction_rule_available",
+    "ref_value_carrier_pair_rule_available",
+    "ref_carrier_rule_theorem_present",
+    "value_map_carrier_rule_theorem_present",
+    "ref_value_pair_rule_theorem_present",
+    "carrier_introduction_rule_theorem_bundle_present",
+    "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+    "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+    "ref_value_carrier_fields_same_witness_object_proven",
+    "ref_value_non_domain_carrier_pair_constructed",
+    "all_carrier_fields_constructed",
+    "constructed_witness_object_id_present",
+    "same_constructed_witness_object_identity_proof_present",
+    "witness_object_membership_proof_present",
+    "carrier_pair_theorem_present",
+    "independent_constructed_witness_object_membership_theorem_present",
+    "cycle_breaker_available",
+    "row_consumption_authorized",
+    "branch_chart_authorized"
+  ],
+  "row_fields": [
+    "row_locator_resolved",
+    "source_source_premise_set_ready",
+    "receiver_source_premise_set_ready",
+    "combined_source_premise_set_ready",
+    "source_rule_theorem_target_ready",
+    "receiver_rule_theorem_target_ready",
+    "combined_rule_theorem_target_ready",
+    "source_direct_source_promotion_rejected",
+    "receiver_direct_source_promotion_rejected",
+    "combined_direct_source_promotion_rejected",
+    "source_rule_derivation_present",
+    "receiver_rule_derivation_present",
+    "combined_rule_derivation_present",
+    "source_rule_soundness_proof_present",
+    "receiver_rule_soundness_proof_present",
+    "combined_rule_soundness_proof_present",
+    "source_rule_application_proof_present",
+    "receiver_rule_application_proof_present",
+    "combined_rule_application_proof_present",
+    "source_carrier_rules_available",
+    "receiver_carrier_rules_available",
+    "combined_carrier_rules_available",
+    "source_ref_value_carrier_pair_constructed",
+    "receiver_ref_value_carrier_pair_constructed",
+    "combined_ref_value_carrier_pair_constructed",
+    "residual_data_construction_ready",
+    "row_unblocked",
+    "row_consumed",
+    "branch_chart_authorized"
+  ],
+  "endpoint_ref_value_carrier_introduction_rule_theorem_attempts": [
+    {
+      "id": "fc_sigma_source_lower",
+      "endpoint_functional_id": "E_lower_source_inner_boundary",
+      "role": "source",
+      "carrier_introduction_rule_theorem_attempt_id": "carrier_introduction_rule_theorem_attempt:fc_sigma_source_lower",
+      "source_attempt_ids": {
+        "ref_value_non_domain_carrier_pair_theorem_attempt": "ref_value_non_domain_carrier_pair_theorem_attempt:fc_sigma_source_lower",
+        "ref_value_non_domain_carrier_rule_target": "ref_value_non_domain_carrier_rule_target:fc_sigma_source_lower",
+        "ref_value_carrier_introduction_route_decision": "ref_value_carrier_introduction_route_decision:fc_sigma_source_lower",
+        "same_packet_constructed_witness_object_identity": "same_packet_constructed_witness_object_identity_attempt:fc_sigma_source_lower",
+        "non_domain_carrier_obstruction": "non_domain_carrier_obstruction:fc_sigma_source_lower",
+        "endpoint_boundary_binding_ref": "endpoint_boundary_binding_ref_carrier_full_binding_construction_attempt:fc_sigma_source_lower",
+        "endpoint_value_binding_map": "endpoint_value_binding_map_construction_attempt:fc_sigma_source_lower"
+      },
+      "theorem_target": {
+        "theorem_id": "carrier_introduction_rule_theorem:fc_sigma_source_lower",
+        "statement": "Derive, prove sound, and apply the endpoint-boundary-binding ref carrier-introduction rule, endpoint value-binding map carrier-introduction rule, and joint ref/value carrier-pair rule.",
+        "accepted_if": "The ref, value-map, and joint ref/value rule derivations are present, the carrier rule soundness proof is present, and the endpoint application proof verifies the rule premises for this endpoint.",
+        "no_promotion_guard": "Rule targets and source candidates do not make carrier-introduction rules available without derivation, soundness, and application proofs."
+      },
+      "route_attempts": [
+        {
+          "route_id": "rule_target_as_rule_theorem_route",
+          "status": "rejected-unsound-with-current-evidence",
+          "required_fields": [
+            "proof_grade_rule_theorem_target_declared",
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present",
+            "carrier_rule_soundness_proof_present",
+            "carrier_rule_application_proof_present",
+            "ref_carrier_introduction_rule_available",
+            "value_map_carrier_introduction_rule_available",
+            "ref_value_carrier_pair_rule_available",
+            "ref_carrier_rule_theorem_present",
+            "value_map_carrier_rule_theorem_present",
+            "ref_value_pair_rule_theorem_present",
+            "carrier_introduction_rule_theorem_bundle_present"
+          ],
+          "limitation": "A declared carrier-introduction rule target names the theorem obligation but does not derive, prove sound, or apply the rule.",
+          "missing_fields": [
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present",
+            "carrier_rule_soundness_proof_present",
+            "carrier_rule_application_proof_present",
+            "ref_carrier_introduction_rule_available",
+            "value_map_carrier_introduction_rule_available",
+            "ref_value_carrier_pair_rule_available",
+            "ref_carrier_rule_theorem_present",
+            "value_map_carrier_rule_theorem_present",
+            "ref_value_pair_rule_theorem_present",
+            "carrier_introduction_rule_theorem_bundle_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "source_premise_to_rule_derivation_route",
+          "status": "blocked",
+          "required_fields": [
+            "source_premise_set_ready",
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present"
+          ],
+          "limitation": "The source premises are present, but no derivation turns those premises into the ref, value-map, or joint ref/value carrier-introduction rules.",
+          "missing_fields": [
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "selected_carrier_admission_route",
+          "status": "selected-but-blocked-not-rule-theorem",
+          "required_fields": [
+            "carrier_admission_route_selected",
+            "binding_contract_satisfied",
+            "full_endpoint_boundary_binding_constructed",
+            "endpoint_boundary_binding_ref_carrier_unblocked",
+            "endpoint_value_binding_map_carrier_unblocked"
+          ],
+          "limitation": "The selected carrier-admission route is recorded, but its own binding-contract, full-binding, and carrier-admission fields are absent and cannot substitute for an independent carrier-introduction rule theorem.",
+          "missing_fields": [
+            "binding_contract_satisfied",
+            "full_endpoint_boundary_binding_constructed",
+            "endpoint_boundary_binding_ref_carrier_unblocked",
+            "endpoint_value_binding_map_carrier_unblocked"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "carrier_rule_soundness_route",
+          "status": "blocked",
+          "required_fields": [
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present",
+            "carrier_rule_soundness_proof_present"
+          ],
+          "limitation": "No soundness proof shows that the derived rules preserve same-packet non-domain carrier membership rather than source-handle adjacency.",
+          "missing_fields": [
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present",
+            "carrier_rule_soundness_proof_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "endpoint_application_route",
+          "status": "blocked",
+          "required_fields": [
+            "carrier_rule_soundness_proof_present",
+            "carrier_rule_application_proof_present"
+          ],
+          "limitation": "No endpoint-level application proof verifies every premise of the carrier-introduction rule for the four endpoint functionals.",
+          "missing_fields": [
+            "carrier_rule_soundness_proof_present",
+            "carrier_rule_application_proof_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "rule_availability_route",
+          "status": "blocked",
+          "required_fields": [
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present",
+            "carrier_rule_soundness_proof_present",
+            "carrier_rule_application_proof_present",
+            "ref_carrier_introduction_rule_available",
+            "value_map_carrier_introduction_rule_available",
+            "ref_value_carrier_pair_rule_available"
+          ],
+          "limitation": "The rule availability fields remain false because derivation, soundness, and endpoint application evidence are absent.",
+          "missing_fields": [
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present",
+            "carrier_rule_soundness_proof_present",
+            "carrier_rule_application_proof_present",
+            "ref_carrier_introduction_rule_available",
+            "value_map_carrier_introduction_rule_available",
+            "ref_value_carrier_pair_rule_available"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "downstream_carrier_pair_route",
+          "status": "blocked-downstream",
+          "required_fields": [
+            "carrier_introduction_rule_theorem_bundle_present",
+            "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+            "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+            "ref_value_carrier_fields_same_witness_object_proven",
+            "ref_value_non_domain_carrier_pair_constructed"
+          ],
+          "limitation": "Carrier fields, same-witness-object carrier proof, and the ref/value non-domain carrier pair are downstream of the rule theorem bundle.",
+          "missing_fields": [
+            "carrier_introduction_rule_theorem_bundle_present",
+            "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+            "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+            "ref_value_carrier_fields_same_witness_object_proven",
+            "ref_value_non_domain_carrier_pair_constructed"
+          ],
+          "passed": false
+        }
+      ],
+      "theorem_routes_passed": [],
+      "required_fields_present": {
+        "domain_chart_carrier_subfield_constructed": true,
+        "ref_value_source_pair_ready": true,
+        "source_endpoint_boundary_binding_ref_constructed": true,
+        "source_witness_object_has_endpoint_boundary_binding_ref": true,
+        "source_endpoint_value_binding_map_constructed": true,
+        "source_witness_object_has_endpoint_value_binding_map": true,
+        "endpoint_boundary_binding_ref_carrier_source_candidate_declared": true,
+        "endpoint_value_binding_map_carrier_source_candidate_declared": true,
+        "non_domain_carrier_obstruction_present": true,
+        "direct_source_promotion_rejected": true,
+        "carrier_rule_target_declared": true,
+        "carrier_introduction_premises_named": true,
+        "carrier_introduction_conclusion_named": true,
+        "carrier_admission_route_selected": true,
+        "binding_contract_satisfied": false,
+        "full_endpoint_boundary_binding_constructed": false,
+        "endpoint_boundary_binding_ref_carrier_unblocked": false,
+        "endpoint_value_binding_map_carrier_unblocked": false,
+        "ref_carrier_rule_theorem_target_declared": true,
+        "value_map_carrier_rule_theorem_target_declared": true,
+        "ref_value_pair_rule_theorem_target_declared": true,
+        "ref_carrier_rule_derivation_present": false,
+        "value_map_carrier_rule_derivation_present": false,
+        "ref_value_pair_rule_derivation_present": false,
+        "carrier_rule_soundness_proof_present": false,
+        "carrier_rule_application_proof_present": false,
+        "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed": false,
+        "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed": false,
+        "ref_value_carrier_fields_same_witness_object_proven": false,
+        "ref_value_non_domain_carrier_pair_constructed": false,
+        "all_carrier_fields_constructed": false,
+        "constructed_witness_object_id_present": false,
+        "same_constructed_witness_object_identity_proof_present": false,
+        "witness_object_membership_proof_present": false,
+        "carrier_pair_theorem_present": false,
+        "independent_constructed_witness_object_membership_theorem_present": false,
+        "cycle_breaker_available": false,
+        "row_consumption_authorized": false,
+        "branch_chart_authorized": false,
+        "source_premise_set_ready": true,
+        "proof_grade_rule_theorem_target_declared": true,
+        "ref_carrier_introduction_rule_available": false,
+        "value_map_carrier_introduction_rule_available": false,
+        "ref_value_carrier_pair_rule_available": false,
+        "ref_carrier_rule_theorem_present": false,
+        "value_map_carrier_rule_theorem_present": false,
+        "ref_value_pair_rule_theorem_present": false,
+        "carrier_introduction_rule_theorem_bundle_present": false
+      },
+      "missing_proof_burdens": [
+        {
+          "burden_id": "ref_carrier_rule_derivation",
+          "missing_field": "ref_carrier_rule_derivation_present",
+          "required_evidence": "A derivation of the endpoint-boundary-binding ref carrier-introduction rule from the endpoint-boundary-binding construction contract.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "value_map_carrier_rule_derivation",
+          "missing_field": "value_map_carrier_rule_derivation_present",
+          "required_evidence": "A derivation of the endpoint value-binding map carrier-introduction rule from the endpoint value-binding map contract.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "ref_value_pair_rule_derivation",
+          "missing_field": "ref_value_pair_rule_derivation_present",
+          "required_evidence": "A derivation of the joint ref/value carrier-pair rule that places both introduced carrier fields in one same-packet witness object.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "carrier_rule_soundness",
+          "missing_field": "carrier_rule_soundness_proof_present",
+          "required_evidence": "A soundness proof that the carrier-introduction rules preserve non-domain carrier membership and do not promote source handles by adjacency.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "carrier_rule_application",
+          "missing_field": "carrier_rule_application_proof_present",
+          "required_evidence": "Endpoint-by-endpoint application proof verifying every premise of the carrier-introduction rules.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "endpoint_boundary_binding_ref_carrier_introduction_rule",
+          "missing_field": "ref_carrier_introduction_rule_available",
+          "required_evidence": "A proof-grade ref carrier-introduction rule available after derivation, soundness, and endpoint application are established.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "endpoint_value_binding_map_carrier_introduction_rule",
+          "missing_field": "value_map_carrier_introduction_rule_available",
+          "required_evidence": "A proof-grade value-map carrier-introduction rule available after derivation, soundness, and endpoint application are established.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "ref_value_carrier_pair_rule",
+          "missing_field": "ref_value_carrier_pair_rule_available",
+          "required_evidence": "A proof-grade joint rule proving the introduced ref carrier and value-map carrier occupy one same-packet witness object.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "same_packet_ref_carrier_field",
+          "missing_field": "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+          "required_evidence": "A constructed non-domain carrier field for the endpoint-boundary-binding ref in the same witness object.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "same_packet_value_map_carrier_field",
+          "missing_field": "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+          "required_evidence": "A constructed non-domain carrier field for the endpoint value-binding map in the same witness object.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "ref_value_non_domain_carrier_pair",
+          "missing_field": "ref_value_non_domain_carrier_pair_constructed",
+          "required_evidence": "A constructed ref/value non-domain carrier pair with both fields proved to belong to one same-packet witness object.",
+          "satisfied": false
+        }
+      ],
+      "missing_proof_burden_count": 11,
+      "first_exact_blocker": "ref_carrier_rule_derivation_present",
+      "rule_theorem_bundle_present": false,
+      "ref_value_non_domain_carrier_pair_constructed": false,
+      "row_consumption_authorized": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The endpoint has source premises and declared carrier-introduction rule targets, but no rule derivations, soundness proof, application proof, available rules, or downstream carrier fields."
+    },
+    {
+      "id": "fc_rho_receiver_lower",
+      "endpoint_functional_id": "E_raise_receiver_lower_boundary",
+      "role": "receiver",
+      "carrier_introduction_rule_theorem_attempt_id": "carrier_introduction_rule_theorem_attempt:fc_rho_receiver_lower",
+      "source_attempt_ids": {
+        "ref_value_non_domain_carrier_pair_theorem_attempt": "ref_value_non_domain_carrier_pair_theorem_attempt:fc_rho_receiver_lower",
+        "ref_value_non_domain_carrier_rule_target": "ref_value_non_domain_carrier_rule_target:fc_rho_receiver_lower",
+        "ref_value_carrier_introduction_route_decision": "ref_value_carrier_introduction_route_decision:fc_rho_receiver_lower",
+        "same_packet_constructed_witness_object_identity": "same_packet_constructed_witness_object_identity_attempt:fc_rho_receiver_lower",
+        "non_domain_carrier_obstruction": "non_domain_carrier_obstruction:fc_rho_receiver_lower",
+        "endpoint_boundary_binding_ref": "endpoint_boundary_binding_ref_carrier_full_binding_construction_attempt:fc_rho_receiver_lower",
+        "endpoint_value_binding_map": "endpoint_value_binding_map_construction_attempt:fc_rho_receiver_lower"
+      },
+      "theorem_target": {
+        "theorem_id": "carrier_introduction_rule_theorem:fc_rho_receiver_lower",
+        "statement": "Derive, prove sound, and apply the endpoint-boundary-binding ref carrier-introduction rule, endpoint value-binding map carrier-introduction rule, and joint ref/value carrier-pair rule.",
+        "accepted_if": "The ref, value-map, and joint ref/value rule derivations are present, the carrier rule soundness proof is present, and the endpoint application proof verifies the rule premises for this endpoint.",
+        "no_promotion_guard": "Rule targets and source candidates do not make carrier-introduction rules available without derivation, soundness, and application proofs."
+      },
+      "route_attempts": [
+        {
+          "route_id": "rule_target_as_rule_theorem_route",
+          "status": "rejected-unsound-with-current-evidence",
+          "required_fields": [
+            "proof_grade_rule_theorem_target_declared",
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present",
+            "carrier_rule_soundness_proof_present",
+            "carrier_rule_application_proof_present",
+            "ref_carrier_introduction_rule_available",
+            "value_map_carrier_introduction_rule_available",
+            "ref_value_carrier_pair_rule_available",
+            "ref_carrier_rule_theorem_present",
+            "value_map_carrier_rule_theorem_present",
+            "ref_value_pair_rule_theorem_present",
+            "carrier_introduction_rule_theorem_bundle_present"
+          ],
+          "limitation": "A declared carrier-introduction rule target names the theorem obligation but does not derive, prove sound, or apply the rule.",
+          "missing_fields": [
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present",
+            "carrier_rule_soundness_proof_present",
+            "carrier_rule_application_proof_present",
+            "ref_carrier_introduction_rule_available",
+            "value_map_carrier_introduction_rule_available",
+            "ref_value_carrier_pair_rule_available",
+            "ref_carrier_rule_theorem_present",
+            "value_map_carrier_rule_theorem_present",
+            "ref_value_pair_rule_theorem_present",
+            "carrier_introduction_rule_theorem_bundle_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "source_premise_to_rule_derivation_route",
+          "status": "blocked",
+          "required_fields": [
+            "source_premise_set_ready",
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present"
+          ],
+          "limitation": "The source premises are present, but no derivation turns those premises into the ref, value-map, or joint ref/value carrier-introduction rules.",
+          "missing_fields": [
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "selected_carrier_admission_route",
+          "status": "selected-but-blocked-not-rule-theorem",
+          "required_fields": [
+            "carrier_admission_route_selected",
+            "binding_contract_satisfied",
+            "full_endpoint_boundary_binding_constructed",
+            "endpoint_boundary_binding_ref_carrier_unblocked",
+            "endpoint_value_binding_map_carrier_unblocked"
+          ],
+          "limitation": "The selected carrier-admission route is recorded, but its own binding-contract, full-binding, and carrier-admission fields are absent and cannot substitute for an independent carrier-introduction rule theorem.",
+          "missing_fields": [
+            "binding_contract_satisfied",
+            "full_endpoint_boundary_binding_constructed",
+            "endpoint_boundary_binding_ref_carrier_unblocked",
+            "endpoint_value_binding_map_carrier_unblocked"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "carrier_rule_soundness_route",
+          "status": "blocked",
+          "required_fields": [
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present",
+            "carrier_rule_soundness_proof_present"
+          ],
+          "limitation": "No soundness proof shows that the derived rules preserve same-packet non-domain carrier membership rather than source-handle adjacency.",
+          "missing_fields": [
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present",
+            "carrier_rule_soundness_proof_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "endpoint_application_route",
+          "status": "blocked",
+          "required_fields": [
+            "carrier_rule_soundness_proof_present",
+            "carrier_rule_application_proof_present"
+          ],
+          "limitation": "No endpoint-level application proof verifies every premise of the carrier-introduction rule for the four endpoint functionals.",
+          "missing_fields": [
+            "carrier_rule_soundness_proof_present",
+            "carrier_rule_application_proof_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "rule_availability_route",
+          "status": "blocked",
+          "required_fields": [
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present",
+            "carrier_rule_soundness_proof_present",
+            "carrier_rule_application_proof_present",
+            "ref_carrier_introduction_rule_available",
+            "value_map_carrier_introduction_rule_available",
+            "ref_value_carrier_pair_rule_available"
+          ],
+          "limitation": "The rule availability fields remain false because derivation, soundness, and endpoint application evidence are absent.",
+          "missing_fields": [
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present",
+            "carrier_rule_soundness_proof_present",
+            "carrier_rule_application_proof_present",
+            "ref_carrier_introduction_rule_available",
+            "value_map_carrier_introduction_rule_available",
+            "ref_value_carrier_pair_rule_available"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "downstream_carrier_pair_route",
+          "status": "blocked-downstream",
+          "required_fields": [
+            "carrier_introduction_rule_theorem_bundle_present",
+            "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+            "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+            "ref_value_carrier_fields_same_witness_object_proven",
+            "ref_value_non_domain_carrier_pair_constructed"
+          ],
+          "limitation": "Carrier fields, same-witness-object carrier proof, and the ref/value non-domain carrier pair are downstream of the rule theorem bundle.",
+          "missing_fields": [
+            "carrier_introduction_rule_theorem_bundle_present",
+            "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+            "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+            "ref_value_carrier_fields_same_witness_object_proven",
+            "ref_value_non_domain_carrier_pair_constructed"
+          ],
+          "passed": false
+        }
+      ],
+      "theorem_routes_passed": [],
+      "required_fields_present": {
+        "domain_chart_carrier_subfield_constructed": true,
+        "ref_value_source_pair_ready": true,
+        "source_endpoint_boundary_binding_ref_constructed": true,
+        "source_witness_object_has_endpoint_boundary_binding_ref": true,
+        "source_endpoint_value_binding_map_constructed": true,
+        "source_witness_object_has_endpoint_value_binding_map": true,
+        "endpoint_boundary_binding_ref_carrier_source_candidate_declared": true,
+        "endpoint_value_binding_map_carrier_source_candidate_declared": true,
+        "non_domain_carrier_obstruction_present": true,
+        "direct_source_promotion_rejected": true,
+        "carrier_rule_target_declared": true,
+        "carrier_introduction_premises_named": true,
+        "carrier_introduction_conclusion_named": true,
+        "carrier_admission_route_selected": true,
+        "binding_contract_satisfied": false,
+        "full_endpoint_boundary_binding_constructed": false,
+        "endpoint_boundary_binding_ref_carrier_unblocked": false,
+        "endpoint_value_binding_map_carrier_unblocked": false,
+        "ref_carrier_rule_theorem_target_declared": true,
+        "value_map_carrier_rule_theorem_target_declared": true,
+        "ref_value_pair_rule_theorem_target_declared": true,
+        "ref_carrier_rule_derivation_present": false,
+        "value_map_carrier_rule_derivation_present": false,
+        "ref_value_pair_rule_derivation_present": false,
+        "carrier_rule_soundness_proof_present": false,
+        "carrier_rule_application_proof_present": false,
+        "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed": false,
+        "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed": false,
+        "ref_value_carrier_fields_same_witness_object_proven": false,
+        "ref_value_non_domain_carrier_pair_constructed": false,
+        "all_carrier_fields_constructed": false,
+        "constructed_witness_object_id_present": false,
+        "same_constructed_witness_object_identity_proof_present": false,
+        "witness_object_membership_proof_present": false,
+        "carrier_pair_theorem_present": false,
+        "independent_constructed_witness_object_membership_theorem_present": false,
+        "cycle_breaker_available": false,
+        "row_consumption_authorized": false,
+        "branch_chart_authorized": false,
+        "source_premise_set_ready": true,
+        "proof_grade_rule_theorem_target_declared": true,
+        "ref_carrier_introduction_rule_available": false,
+        "value_map_carrier_introduction_rule_available": false,
+        "ref_value_carrier_pair_rule_available": false,
+        "ref_carrier_rule_theorem_present": false,
+        "value_map_carrier_rule_theorem_present": false,
+        "ref_value_pair_rule_theorem_present": false,
+        "carrier_introduction_rule_theorem_bundle_present": false
+      },
+      "missing_proof_burdens": [
+        {
+          "burden_id": "ref_carrier_rule_derivation",
+          "missing_field": "ref_carrier_rule_derivation_present",
+          "required_evidence": "A derivation of the endpoint-boundary-binding ref carrier-introduction rule from the endpoint-boundary-binding construction contract.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "value_map_carrier_rule_derivation",
+          "missing_field": "value_map_carrier_rule_derivation_present",
+          "required_evidence": "A derivation of the endpoint value-binding map carrier-introduction rule from the endpoint value-binding map contract.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "ref_value_pair_rule_derivation",
+          "missing_field": "ref_value_pair_rule_derivation_present",
+          "required_evidence": "A derivation of the joint ref/value carrier-pair rule that places both introduced carrier fields in one same-packet witness object.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "carrier_rule_soundness",
+          "missing_field": "carrier_rule_soundness_proof_present",
+          "required_evidence": "A soundness proof that the carrier-introduction rules preserve non-domain carrier membership and do not promote source handles by adjacency.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "carrier_rule_application",
+          "missing_field": "carrier_rule_application_proof_present",
+          "required_evidence": "Endpoint-by-endpoint application proof verifying every premise of the carrier-introduction rules.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "endpoint_boundary_binding_ref_carrier_introduction_rule",
+          "missing_field": "ref_carrier_introduction_rule_available",
+          "required_evidence": "A proof-grade ref carrier-introduction rule available after derivation, soundness, and endpoint application are established.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "endpoint_value_binding_map_carrier_introduction_rule",
+          "missing_field": "value_map_carrier_introduction_rule_available",
+          "required_evidence": "A proof-grade value-map carrier-introduction rule available after derivation, soundness, and endpoint application are established.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "ref_value_carrier_pair_rule",
+          "missing_field": "ref_value_carrier_pair_rule_available",
+          "required_evidence": "A proof-grade joint rule proving the introduced ref carrier and value-map carrier occupy one same-packet witness object.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "same_packet_ref_carrier_field",
+          "missing_field": "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+          "required_evidence": "A constructed non-domain carrier field for the endpoint-boundary-binding ref in the same witness object.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "same_packet_value_map_carrier_field",
+          "missing_field": "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+          "required_evidence": "A constructed non-domain carrier field for the endpoint value-binding map in the same witness object.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "ref_value_non_domain_carrier_pair",
+          "missing_field": "ref_value_non_domain_carrier_pair_constructed",
+          "required_evidence": "A constructed ref/value non-domain carrier pair with both fields proved to belong to one same-packet witness object.",
+          "satisfied": false
+        }
+      ],
+      "missing_proof_burden_count": 11,
+      "first_exact_blocker": "ref_carrier_rule_derivation_present",
+      "rule_theorem_bundle_present": false,
+      "ref_value_non_domain_carrier_pair_constructed": false,
+      "row_consumption_authorized": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The endpoint has source premises and declared carrier-introduction rule targets, but no rule derivations, soundness proof, application proof, available rules, or downstream carrier fields."
+    },
+    {
+      "id": "fc_sigma_source_upper",
+      "endpoint_functional_id": "E_raise_source_inner_boundary",
+      "role": "source",
+      "carrier_introduction_rule_theorem_attempt_id": "carrier_introduction_rule_theorem_attempt:fc_sigma_source_upper",
+      "source_attempt_ids": {
+        "ref_value_non_domain_carrier_pair_theorem_attempt": "ref_value_non_domain_carrier_pair_theorem_attempt:fc_sigma_source_upper",
+        "ref_value_non_domain_carrier_rule_target": "ref_value_non_domain_carrier_rule_target:fc_sigma_source_upper",
+        "ref_value_carrier_introduction_route_decision": "ref_value_carrier_introduction_route_decision:fc_sigma_source_upper",
+        "same_packet_constructed_witness_object_identity": "same_packet_constructed_witness_object_identity_attempt:fc_sigma_source_upper",
+        "non_domain_carrier_obstruction": "non_domain_carrier_obstruction:fc_sigma_source_upper",
+        "endpoint_boundary_binding_ref": "endpoint_boundary_binding_ref_carrier_full_binding_construction_attempt:fc_sigma_source_upper",
+        "endpoint_value_binding_map": "endpoint_value_binding_map_construction_attempt:fc_sigma_source_upper"
+      },
+      "theorem_target": {
+        "theorem_id": "carrier_introduction_rule_theorem:fc_sigma_source_upper",
+        "statement": "Derive, prove sound, and apply the endpoint-boundary-binding ref carrier-introduction rule, endpoint value-binding map carrier-introduction rule, and joint ref/value carrier-pair rule.",
+        "accepted_if": "The ref, value-map, and joint ref/value rule derivations are present, the carrier rule soundness proof is present, and the endpoint application proof verifies the rule premises for this endpoint.",
+        "no_promotion_guard": "Rule targets and source candidates do not make carrier-introduction rules available without derivation, soundness, and application proofs."
+      },
+      "route_attempts": [
+        {
+          "route_id": "rule_target_as_rule_theorem_route",
+          "status": "rejected-unsound-with-current-evidence",
+          "required_fields": [
+            "proof_grade_rule_theorem_target_declared",
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present",
+            "carrier_rule_soundness_proof_present",
+            "carrier_rule_application_proof_present",
+            "ref_carrier_introduction_rule_available",
+            "value_map_carrier_introduction_rule_available",
+            "ref_value_carrier_pair_rule_available",
+            "ref_carrier_rule_theorem_present",
+            "value_map_carrier_rule_theorem_present",
+            "ref_value_pair_rule_theorem_present",
+            "carrier_introduction_rule_theorem_bundle_present"
+          ],
+          "limitation": "A declared carrier-introduction rule target names the theorem obligation but does not derive, prove sound, or apply the rule.",
+          "missing_fields": [
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present",
+            "carrier_rule_soundness_proof_present",
+            "carrier_rule_application_proof_present",
+            "ref_carrier_introduction_rule_available",
+            "value_map_carrier_introduction_rule_available",
+            "ref_value_carrier_pair_rule_available",
+            "ref_carrier_rule_theorem_present",
+            "value_map_carrier_rule_theorem_present",
+            "ref_value_pair_rule_theorem_present",
+            "carrier_introduction_rule_theorem_bundle_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "source_premise_to_rule_derivation_route",
+          "status": "blocked",
+          "required_fields": [
+            "source_premise_set_ready",
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present"
+          ],
+          "limitation": "The source premises are present, but no derivation turns those premises into the ref, value-map, or joint ref/value carrier-introduction rules.",
+          "missing_fields": [
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "selected_carrier_admission_route",
+          "status": "selected-but-blocked-not-rule-theorem",
+          "required_fields": [
+            "carrier_admission_route_selected",
+            "binding_contract_satisfied",
+            "full_endpoint_boundary_binding_constructed",
+            "endpoint_boundary_binding_ref_carrier_unblocked",
+            "endpoint_value_binding_map_carrier_unblocked"
+          ],
+          "limitation": "The selected carrier-admission route is recorded, but its own binding-contract, full-binding, and carrier-admission fields are absent and cannot substitute for an independent carrier-introduction rule theorem.",
+          "missing_fields": [
+            "binding_contract_satisfied",
+            "full_endpoint_boundary_binding_constructed",
+            "endpoint_boundary_binding_ref_carrier_unblocked",
+            "endpoint_value_binding_map_carrier_unblocked"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "carrier_rule_soundness_route",
+          "status": "blocked",
+          "required_fields": [
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present",
+            "carrier_rule_soundness_proof_present"
+          ],
+          "limitation": "No soundness proof shows that the derived rules preserve same-packet non-domain carrier membership rather than source-handle adjacency.",
+          "missing_fields": [
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present",
+            "carrier_rule_soundness_proof_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "endpoint_application_route",
+          "status": "blocked",
+          "required_fields": [
+            "carrier_rule_soundness_proof_present",
+            "carrier_rule_application_proof_present"
+          ],
+          "limitation": "No endpoint-level application proof verifies every premise of the carrier-introduction rule for the four endpoint functionals.",
+          "missing_fields": [
+            "carrier_rule_soundness_proof_present",
+            "carrier_rule_application_proof_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "rule_availability_route",
+          "status": "blocked",
+          "required_fields": [
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present",
+            "carrier_rule_soundness_proof_present",
+            "carrier_rule_application_proof_present",
+            "ref_carrier_introduction_rule_available",
+            "value_map_carrier_introduction_rule_available",
+            "ref_value_carrier_pair_rule_available"
+          ],
+          "limitation": "The rule availability fields remain false because derivation, soundness, and endpoint application evidence are absent.",
+          "missing_fields": [
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present",
+            "carrier_rule_soundness_proof_present",
+            "carrier_rule_application_proof_present",
+            "ref_carrier_introduction_rule_available",
+            "value_map_carrier_introduction_rule_available",
+            "ref_value_carrier_pair_rule_available"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "downstream_carrier_pair_route",
+          "status": "blocked-downstream",
+          "required_fields": [
+            "carrier_introduction_rule_theorem_bundle_present",
+            "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+            "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+            "ref_value_carrier_fields_same_witness_object_proven",
+            "ref_value_non_domain_carrier_pair_constructed"
+          ],
+          "limitation": "Carrier fields, same-witness-object carrier proof, and the ref/value non-domain carrier pair are downstream of the rule theorem bundle.",
+          "missing_fields": [
+            "carrier_introduction_rule_theorem_bundle_present",
+            "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+            "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+            "ref_value_carrier_fields_same_witness_object_proven",
+            "ref_value_non_domain_carrier_pair_constructed"
+          ],
+          "passed": false
+        }
+      ],
+      "theorem_routes_passed": [],
+      "required_fields_present": {
+        "domain_chart_carrier_subfield_constructed": true,
+        "ref_value_source_pair_ready": true,
+        "source_endpoint_boundary_binding_ref_constructed": true,
+        "source_witness_object_has_endpoint_boundary_binding_ref": true,
+        "source_endpoint_value_binding_map_constructed": true,
+        "source_witness_object_has_endpoint_value_binding_map": true,
+        "endpoint_boundary_binding_ref_carrier_source_candidate_declared": true,
+        "endpoint_value_binding_map_carrier_source_candidate_declared": true,
+        "non_domain_carrier_obstruction_present": true,
+        "direct_source_promotion_rejected": true,
+        "carrier_rule_target_declared": true,
+        "carrier_introduction_premises_named": true,
+        "carrier_introduction_conclusion_named": true,
+        "carrier_admission_route_selected": true,
+        "binding_contract_satisfied": false,
+        "full_endpoint_boundary_binding_constructed": false,
+        "endpoint_boundary_binding_ref_carrier_unblocked": false,
+        "endpoint_value_binding_map_carrier_unblocked": false,
+        "ref_carrier_rule_theorem_target_declared": true,
+        "value_map_carrier_rule_theorem_target_declared": true,
+        "ref_value_pair_rule_theorem_target_declared": true,
+        "ref_carrier_rule_derivation_present": false,
+        "value_map_carrier_rule_derivation_present": false,
+        "ref_value_pair_rule_derivation_present": false,
+        "carrier_rule_soundness_proof_present": false,
+        "carrier_rule_application_proof_present": false,
+        "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed": false,
+        "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed": false,
+        "ref_value_carrier_fields_same_witness_object_proven": false,
+        "ref_value_non_domain_carrier_pair_constructed": false,
+        "all_carrier_fields_constructed": false,
+        "constructed_witness_object_id_present": false,
+        "same_constructed_witness_object_identity_proof_present": false,
+        "witness_object_membership_proof_present": false,
+        "carrier_pair_theorem_present": false,
+        "independent_constructed_witness_object_membership_theorem_present": false,
+        "cycle_breaker_available": false,
+        "row_consumption_authorized": false,
+        "branch_chart_authorized": false,
+        "source_premise_set_ready": true,
+        "proof_grade_rule_theorem_target_declared": true,
+        "ref_carrier_introduction_rule_available": false,
+        "value_map_carrier_introduction_rule_available": false,
+        "ref_value_carrier_pair_rule_available": false,
+        "ref_carrier_rule_theorem_present": false,
+        "value_map_carrier_rule_theorem_present": false,
+        "ref_value_pair_rule_theorem_present": false,
+        "carrier_introduction_rule_theorem_bundle_present": false
+      },
+      "missing_proof_burdens": [
+        {
+          "burden_id": "ref_carrier_rule_derivation",
+          "missing_field": "ref_carrier_rule_derivation_present",
+          "required_evidence": "A derivation of the endpoint-boundary-binding ref carrier-introduction rule from the endpoint-boundary-binding construction contract.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "value_map_carrier_rule_derivation",
+          "missing_field": "value_map_carrier_rule_derivation_present",
+          "required_evidence": "A derivation of the endpoint value-binding map carrier-introduction rule from the endpoint value-binding map contract.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "ref_value_pair_rule_derivation",
+          "missing_field": "ref_value_pair_rule_derivation_present",
+          "required_evidence": "A derivation of the joint ref/value carrier-pair rule that places both introduced carrier fields in one same-packet witness object.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "carrier_rule_soundness",
+          "missing_field": "carrier_rule_soundness_proof_present",
+          "required_evidence": "A soundness proof that the carrier-introduction rules preserve non-domain carrier membership and do not promote source handles by adjacency.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "carrier_rule_application",
+          "missing_field": "carrier_rule_application_proof_present",
+          "required_evidence": "Endpoint-by-endpoint application proof verifying every premise of the carrier-introduction rules.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "endpoint_boundary_binding_ref_carrier_introduction_rule",
+          "missing_field": "ref_carrier_introduction_rule_available",
+          "required_evidence": "A proof-grade ref carrier-introduction rule available after derivation, soundness, and endpoint application are established.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "endpoint_value_binding_map_carrier_introduction_rule",
+          "missing_field": "value_map_carrier_introduction_rule_available",
+          "required_evidence": "A proof-grade value-map carrier-introduction rule available after derivation, soundness, and endpoint application are established.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "ref_value_carrier_pair_rule",
+          "missing_field": "ref_value_carrier_pair_rule_available",
+          "required_evidence": "A proof-grade joint rule proving the introduced ref carrier and value-map carrier occupy one same-packet witness object.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "same_packet_ref_carrier_field",
+          "missing_field": "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+          "required_evidence": "A constructed non-domain carrier field for the endpoint-boundary-binding ref in the same witness object.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "same_packet_value_map_carrier_field",
+          "missing_field": "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+          "required_evidence": "A constructed non-domain carrier field for the endpoint value-binding map in the same witness object.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "ref_value_non_domain_carrier_pair",
+          "missing_field": "ref_value_non_domain_carrier_pair_constructed",
+          "required_evidence": "A constructed ref/value non-domain carrier pair with both fields proved to belong to one same-packet witness object.",
+          "satisfied": false
+        }
+      ],
+      "missing_proof_burden_count": 11,
+      "first_exact_blocker": "ref_carrier_rule_derivation_present",
+      "rule_theorem_bundle_present": false,
+      "ref_value_non_domain_carrier_pair_constructed": false,
+      "row_consumption_authorized": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The endpoint has source premises and declared carrier-introduction rule targets, but no rule derivations, soundness proof, application proof, available rules, or downstream carrier fields."
+    },
+    {
+      "id": "fc_rho_receiver_upper",
+      "endpoint_functional_id": "E_lower_receiver_upper_boundary",
+      "role": "receiver",
+      "carrier_introduction_rule_theorem_attempt_id": "carrier_introduction_rule_theorem_attempt:fc_rho_receiver_upper",
+      "source_attempt_ids": {
+        "ref_value_non_domain_carrier_pair_theorem_attempt": "ref_value_non_domain_carrier_pair_theorem_attempt:fc_rho_receiver_upper",
+        "ref_value_non_domain_carrier_rule_target": "ref_value_non_domain_carrier_rule_target:fc_rho_receiver_upper",
+        "ref_value_carrier_introduction_route_decision": "ref_value_carrier_introduction_route_decision:fc_rho_receiver_upper",
+        "same_packet_constructed_witness_object_identity": "same_packet_constructed_witness_object_identity_attempt:fc_rho_receiver_upper",
+        "non_domain_carrier_obstruction": "non_domain_carrier_obstruction:fc_rho_receiver_upper",
+        "endpoint_boundary_binding_ref": "endpoint_boundary_binding_ref_carrier_full_binding_construction_attempt:fc_rho_receiver_upper",
+        "endpoint_value_binding_map": "endpoint_value_binding_map_construction_attempt:fc_rho_receiver_upper"
+      },
+      "theorem_target": {
+        "theorem_id": "carrier_introduction_rule_theorem:fc_rho_receiver_upper",
+        "statement": "Derive, prove sound, and apply the endpoint-boundary-binding ref carrier-introduction rule, endpoint value-binding map carrier-introduction rule, and joint ref/value carrier-pair rule.",
+        "accepted_if": "The ref, value-map, and joint ref/value rule derivations are present, the carrier rule soundness proof is present, and the endpoint application proof verifies the rule premises for this endpoint.",
+        "no_promotion_guard": "Rule targets and source candidates do not make carrier-introduction rules available without derivation, soundness, and application proofs."
+      },
+      "route_attempts": [
+        {
+          "route_id": "rule_target_as_rule_theorem_route",
+          "status": "rejected-unsound-with-current-evidence",
+          "required_fields": [
+            "proof_grade_rule_theorem_target_declared",
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present",
+            "carrier_rule_soundness_proof_present",
+            "carrier_rule_application_proof_present",
+            "ref_carrier_introduction_rule_available",
+            "value_map_carrier_introduction_rule_available",
+            "ref_value_carrier_pair_rule_available",
+            "ref_carrier_rule_theorem_present",
+            "value_map_carrier_rule_theorem_present",
+            "ref_value_pair_rule_theorem_present",
+            "carrier_introduction_rule_theorem_bundle_present"
+          ],
+          "limitation": "A declared carrier-introduction rule target names the theorem obligation but does not derive, prove sound, or apply the rule.",
+          "missing_fields": [
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present",
+            "carrier_rule_soundness_proof_present",
+            "carrier_rule_application_proof_present",
+            "ref_carrier_introduction_rule_available",
+            "value_map_carrier_introduction_rule_available",
+            "ref_value_carrier_pair_rule_available",
+            "ref_carrier_rule_theorem_present",
+            "value_map_carrier_rule_theorem_present",
+            "ref_value_pair_rule_theorem_present",
+            "carrier_introduction_rule_theorem_bundle_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "source_premise_to_rule_derivation_route",
+          "status": "blocked",
+          "required_fields": [
+            "source_premise_set_ready",
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present"
+          ],
+          "limitation": "The source premises are present, but no derivation turns those premises into the ref, value-map, or joint ref/value carrier-introduction rules.",
+          "missing_fields": [
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "selected_carrier_admission_route",
+          "status": "selected-but-blocked-not-rule-theorem",
+          "required_fields": [
+            "carrier_admission_route_selected",
+            "binding_contract_satisfied",
+            "full_endpoint_boundary_binding_constructed",
+            "endpoint_boundary_binding_ref_carrier_unblocked",
+            "endpoint_value_binding_map_carrier_unblocked"
+          ],
+          "limitation": "The selected carrier-admission route is recorded, but its own binding-contract, full-binding, and carrier-admission fields are absent and cannot substitute for an independent carrier-introduction rule theorem.",
+          "missing_fields": [
+            "binding_contract_satisfied",
+            "full_endpoint_boundary_binding_constructed",
+            "endpoint_boundary_binding_ref_carrier_unblocked",
+            "endpoint_value_binding_map_carrier_unblocked"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "carrier_rule_soundness_route",
+          "status": "blocked",
+          "required_fields": [
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present",
+            "carrier_rule_soundness_proof_present"
+          ],
+          "limitation": "No soundness proof shows that the derived rules preserve same-packet non-domain carrier membership rather than source-handle adjacency.",
+          "missing_fields": [
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present",
+            "carrier_rule_soundness_proof_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "endpoint_application_route",
+          "status": "blocked",
+          "required_fields": [
+            "carrier_rule_soundness_proof_present",
+            "carrier_rule_application_proof_present"
+          ],
+          "limitation": "No endpoint-level application proof verifies every premise of the carrier-introduction rule for the four endpoint functionals.",
+          "missing_fields": [
+            "carrier_rule_soundness_proof_present",
+            "carrier_rule_application_proof_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "rule_availability_route",
+          "status": "blocked",
+          "required_fields": [
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present",
+            "carrier_rule_soundness_proof_present",
+            "carrier_rule_application_proof_present",
+            "ref_carrier_introduction_rule_available",
+            "value_map_carrier_introduction_rule_available",
+            "ref_value_carrier_pair_rule_available"
+          ],
+          "limitation": "The rule availability fields remain false because derivation, soundness, and endpoint application evidence are absent.",
+          "missing_fields": [
+            "ref_carrier_rule_derivation_present",
+            "value_map_carrier_rule_derivation_present",
+            "ref_value_pair_rule_derivation_present",
+            "carrier_rule_soundness_proof_present",
+            "carrier_rule_application_proof_present",
+            "ref_carrier_introduction_rule_available",
+            "value_map_carrier_introduction_rule_available",
+            "ref_value_carrier_pair_rule_available"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "downstream_carrier_pair_route",
+          "status": "blocked-downstream",
+          "required_fields": [
+            "carrier_introduction_rule_theorem_bundle_present",
+            "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+            "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+            "ref_value_carrier_fields_same_witness_object_proven",
+            "ref_value_non_domain_carrier_pair_constructed"
+          ],
+          "limitation": "Carrier fields, same-witness-object carrier proof, and the ref/value non-domain carrier pair are downstream of the rule theorem bundle.",
+          "missing_fields": [
+            "carrier_introduction_rule_theorem_bundle_present",
+            "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+            "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+            "ref_value_carrier_fields_same_witness_object_proven",
+            "ref_value_non_domain_carrier_pair_constructed"
+          ],
+          "passed": false
+        }
+      ],
+      "theorem_routes_passed": [],
+      "required_fields_present": {
+        "domain_chart_carrier_subfield_constructed": true,
+        "ref_value_source_pair_ready": true,
+        "source_endpoint_boundary_binding_ref_constructed": true,
+        "source_witness_object_has_endpoint_boundary_binding_ref": true,
+        "source_endpoint_value_binding_map_constructed": true,
+        "source_witness_object_has_endpoint_value_binding_map": true,
+        "endpoint_boundary_binding_ref_carrier_source_candidate_declared": true,
+        "endpoint_value_binding_map_carrier_source_candidate_declared": true,
+        "non_domain_carrier_obstruction_present": true,
+        "direct_source_promotion_rejected": true,
+        "carrier_rule_target_declared": true,
+        "carrier_introduction_premises_named": true,
+        "carrier_introduction_conclusion_named": true,
+        "carrier_admission_route_selected": true,
+        "binding_contract_satisfied": false,
+        "full_endpoint_boundary_binding_constructed": false,
+        "endpoint_boundary_binding_ref_carrier_unblocked": false,
+        "endpoint_value_binding_map_carrier_unblocked": false,
+        "ref_carrier_rule_theorem_target_declared": true,
+        "value_map_carrier_rule_theorem_target_declared": true,
+        "ref_value_pair_rule_theorem_target_declared": true,
+        "ref_carrier_rule_derivation_present": false,
+        "value_map_carrier_rule_derivation_present": false,
+        "ref_value_pair_rule_derivation_present": false,
+        "carrier_rule_soundness_proof_present": false,
+        "carrier_rule_application_proof_present": false,
+        "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed": false,
+        "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed": false,
+        "ref_value_carrier_fields_same_witness_object_proven": false,
+        "ref_value_non_domain_carrier_pair_constructed": false,
+        "all_carrier_fields_constructed": false,
+        "constructed_witness_object_id_present": false,
+        "same_constructed_witness_object_identity_proof_present": false,
+        "witness_object_membership_proof_present": false,
+        "carrier_pair_theorem_present": false,
+        "independent_constructed_witness_object_membership_theorem_present": false,
+        "cycle_breaker_available": false,
+        "row_consumption_authorized": false,
+        "branch_chart_authorized": false,
+        "source_premise_set_ready": true,
+        "proof_grade_rule_theorem_target_declared": true,
+        "ref_carrier_introduction_rule_available": false,
+        "value_map_carrier_introduction_rule_available": false,
+        "ref_value_carrier_pair_rule_available": false,
+        "ref_carrier_rule_theorem_present": false,
+        "value_map_carrier_rule_theorem_present": false,
+        "ref_value_pair_rule_theorem_present": false,
+        "carrier_introduction_rule_theorem_bundle_present": false
+      },
+      "missing_proof_burdens": [
+        {
+          "burden_id": "ref_carrier_rule_derivation",
+          "missing_field": "ref_carrier_rule_derivation_present",
+          "required_evidence": "A derivation of the endpoint-boundary-binding ref carrier-introduction rule from the endpoint-boundary-binding construction contract.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "value_map_carrier_rule_derivation",
+          "missing_field": "value_map_carrier_rule_derivation_present",
+          "required_evidence": "A derivation of the endpoint value-binding map carrier-introduction rule from the endpoint value-binding map contract.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "ref_value_pair_rule_derivation",
+          "missing_field": "ref_value_pair_rule_derivation_present",
+          "required_evidence": "A derivation of the joint ref/value carrier-pair rule that places both introduced carrier fields in one same-packet witness object.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "carrier_rule_soundness",
+          "missing_field": "carrier_rule_soundness_proof_present",
+          "required_evidence": "A soundness proof that the carrier-introduction rules preserve non-domain carrier membership and do not promote source handles by adjacency.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "carrier_rule_application",
+          "missing_field": "carrier_rule_application_proof_present",
+          "required_evidence": "Endpoint-by-endpoint application proof verifying every premise of the carrier-introduction rules.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "endpoint_boundary_binding_ref_carrier_introduction_rule",
+          "missing_field": "ref_carrier_introduction_rule_available",
+          "required_evidence": "A proof-grade ref carrier-introduction rule available after derivation, soundness, and endpoint application are established.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "endpoint_value_binding_map_carrier_introduction_rule",
+          "missing_field": "value_map_carrier_introduction_rule_available",
+          "required_evidence": "A proof-grade value-map carrier-introduction rule available after derivation, soundness, and endpoint application are established.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "ref_value_carrier_pair_rule",
+          "missing_field": "ref_value_carrier_pair_rule_available",
+          "required_evidence": "A proof-grade joint rule proving the introduced ref carrier and value-map carrier occupy one same-packet witness object.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "same_packet_ref_carrier_field",
+          "missing_field": "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+          "required_evidence": "A constructed non-domain carrier field for the endpoint-boundary-binding ref in the same witness object.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "same_packet_value_map_carrier_field",
+          "missing_field": "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+          "required_evidence": "A constructed non-domain carrier field for the endpoint value-binding map in the same witness object.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "ref_value_non_domain_carrier_pair",
+          "missing_field": "ref_value_non_domain_carrier_pair_constructed",
+          "required_evidence": "A constructed ref/value non-domain carrier pair with both fields proved to belong to one same-packet witness object.",
+          "satisfied": false
+        }
+      ],
+      "missing_proof_burden_count": 11,
+      "first_exact_blocker": "ref_carrier_rule_derivation_present",
+      "rule_theorem_bundle_present": false,
+      "ref_value_non_domain_carrier_pair_constructed": false,
+      "row_consumption_authorized": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The endpoint has source premises and declared carrier-introduction rule targets, but no rule derivations, soundness proof, application proof, available rules, or downstream carrier fields."
+    }
+  ],
+  "row_ref_value_carrier_introduction_rule_theorem_attempts": [
+    {
+      "row_id": "R_w_A04_A03",
+      "cover_id": "G_w_A04_A03_v6_10",
+      "ledger": "w",
+      "source_interval": "A03",
+      "receiver_interval": "A04",
+      "failed_side": "lo",
+      "boundary_side": "lower",
+      "source_variable": "fc_sigma_source_lower",
+      "receiver_variable": "fc_rho_receiver_lower",
+      "source_carrier_introduction_rule_theorem_attempt_id": "carrier_introduction_rule_theorem_attempt:fc_sigma_source_lower",
+      "receiver_carrier_introduction_rule_theorem_attempt_id": "carrier_introduction_rule_theorem_attempt:fc_rho_receiver_lower",
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "source_source_premise_set_ready": true,
+        "receiver_source_premise_set_ready": true,
+        "combined_source_premise_set_ready": true,
+        "source_rule_theorem_target_ready": true,
+        "receiver_rule_theorem_target_ready": true,
+        "combined_rule_theorem_target_ready": true,
+        "source_direct_source_promotion_rejected": true,
+        "receiver_direct_source_promotion_rejected": true,
+        "combined_direct_source_promotion_rejected": true,
+        "source_rule_derivation_present": false,
+        "receiver_rule_derivation_present": false,
+        "combined_rule_derivation_present": false,
+        "source_rule_soundness_proof_present": false,
+        "receiver_rule_soundness_proof_present": false,
+        "combined_rule_soundness_proof_present": false,
+        "source_rule_application_proof_present": false,
+        "receiver_rule_application_proof_present": false,
+        "combined_rule_application_proof_present": false,
+        "source_carrier_rules_available": false,
+        "receiver_carrier_rules_available": false,
+        "combined_carrier_rules_available": false,
+        "source_ref_value_carrier_pair_constructed": false,
+        "receiver_ref_value_carrier_pair_constructed": false,
+        "combined_ref_value_carrier_pair_constructed": false,
+        "residual_data_construction_ready": false,
+        "row_unblocked": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "row_unblocked": false,
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The row has source/receiver source premises and rule-theorem targets, but neither endpoint has rule derivations, soundness proof, application proof, available carrier rules, or constructed ref/value carrier-pair data."
+    },
+    {
+      "row_id": "R_u_A10_A09",
+      "cover_id": "G_u_A10_A09_v6_31",
+      "ledger": "u",
+      "source_interval": "A09",
+      "receiver_interval": "A10",
+      "failed_side": "lo",
+      "boundary_side": "lower",
+      "source_variable": "fc_sigma_source_lower",
+      "receiver_variable": "fc_rho_receiver_lower",
+      "source_carrier_introduction_rule_theorem_attempt_id": "carrier_introduction_rule_theorem_attempt:fc_sigma_source_lower",
+      "receiver_carrier_introduction_rule_theorem_attempt_id": "carrier_introduction_rule_theorem_attempt:fc_rho_receiver_lower",
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "source_source_premise_set_ready": true,
+        "receiver_source_premise_set_ready": true,
+        "combined_source_premise_set_ready": true,
+        "source_rule_theorem_target_ready": true,
+        "receiver_rule_theorem_target_ready": true,
+        "combined_rule_theorem_target_ready": true,
+        "source_direct_source_promotion_rejected": true,
+        "receiver_direct_source_promotion_rejected": true,
+        "combined_direct_source_promotion_rejected": true,
+        "source_rule_derivation_present": false,
+        "receiver_rule_derivation_present": false,
+        "combined_rule_derivation_present": false,
+        "source_rule_soundness_proof_present": false,
+        "receiver_rule_soundness_proof_present": false,
+        "combined_rule_soundness_proof_present": false,
+        "source_rule_application_proof_present": false,
+        "receiver_rule_application_proof_present": false,
+        "combined_rule_application_proof_present": false,
+        "source_carrier_rules_available": false,
+        "receiver_carrier_rules_available": false,
+        "combined_carrier_rules_available": false,
+        "source_ref_value_carrier_pair_constructed": false,
+        "receiver_ref_value_carrier_pair_constructed": false,
+        "combined_ref_value_carrier_pair_constructed": false,
+        "residual_data_construction_ready": false,
+        "row_unblocked": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "row_unblocked": false,
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The row has source/receiver source premises and rule-theorem targets, but neither endpoint has rule derivations, soundness proof, application proof, available carrier rules, or constructed ref/value carrier-pair data."
+    },
+    {
+      "row_id": "R_u_A07_A06",
+      "cover_id": "G_u_A07_A06_v6_22",
+      "ledger": "u",
+      "source_interval": "A06",
+      "receiver_interval": "A07",
+      "failed_side": "hi",
+      "boundary_side": "upper",
+      "source_variable": "fc_sigma_source_upper",
+      "receiver_variable": "fc_rho_receiver_upper",
+      "source_carrier_introduction_rule_theorem_attempt_id": "carrier_introduction_rule_theorem_attempt:fc_sigma_source_upper",
+      "receiver_carrier_introduction_rule_theorem_attempt_id": "carrier_introduction_rule_theorem_attempt:fc_rho_receiver_upper",
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "source_source_premise_set_ready": true,
+        "receiver_source_premise_set_ready": true,
+        "combined_source_premise_set_ready": true,
+        "source_rule_theorem_target_ready": true,
+        "receiver_rule_theorem_target_ready": true,
+        "combined_rule_theorem_target_ready": true,
+        "source_direct_source_promotion_rejected": true,
+        "receiver_direct_source_promotion_rejected": true,
+        "combined_direct_source_promotion_rejected": true,
+        "source_rule_derivation_present": false,
+        "receiver_rule_derivation_present": false,
+        "combined_rule_derivation_present": false,
+        "source_rule_soundness_proof_present": false,
+        "receiver_rule_soundness_proof_present": false,
+        "combined_rule_soundness_proof_present": false,
+        "source_rule_application_proof_present": false,
+        "receiver_rule_application_proof_present": false,
+        "combined_rule_application_proof_present": false,
+        "source_carrier_rules_available": false,
+        "receiver_carrier_rules_available": false,
+        "combined_carrier_rules_available": false,
+        "source_ref_value_carrier_pair_constructed": false,
+        "receiver_ref_value_carrier_pair_constructed": false,
+        "combined_ref_value_carrier_pair_constructed": false,
+        "residual_data_construction_ready": false,
+        "row_unblocked": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "row_unblocked": false,
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The row has source/receiver source premises and rule-theorem targets, but neither endpoint has rule derivations, soundness proof, application proof, available carrier rules, or constructed ref/value carrier-pair data."
+    }
+  ],
+  "endpoint_field_counts": {
+    "domain_chart_carrier_subfield_constructed": 4,
+    "ref_value_source_pair_ready": 4,
+    "source_endpoint_boundary_binding_ref_constructed": 4,
+    "source_witness_object_has_endpoint_boundary_binding_ref": 4,
+    "source_endpoint_value_binding_map_constructed": 4,
+    "source_witness_object_has_endpoint_value_binding_map": 4,
+    "endpoint_boundary_binding_ref_carrier_source_candidate_declared": 4,
+    "endpoint_value_binding_map_carrier_source_candidate_declared": 4,
+    "non_domain_carrier_obstruction_present": 4,
+    "direct_source_promotion_rejected": 4,
+    "source_premise_set_ready": 4,
+    "carrier_admission_route_selected": 4,
+    "binding_contract_satisfied": 0,
+    "full_endpoint_boundary_binding_constructed": 0,
+    "endpoint_boundary_binding_ref_carrier_unblocked": 0,
+    "endpoint_value_binding_map_carrier_unblocked": 0,
+    "carrier_rule_target_declared": 4,
+    "carrier_introduction_premises_named": 4,
+    "carrier_introduction_conclusion_named": 4,
+    "ref_carrier_rule_theorem_target_declared": 4,
+    "value_map_carrier_rule_theorem_target_declared": 4,
+    "ref_value_pair_rule_theorem_target_declared": 4,
+    "proof_grade_rule_theorem_target_declared": 4,
+    "ref_carrier_rule_derivation_present": 0,
+    "value_map_carrier_rule_derivation_present": 0,
+    "ref_value_pair_rule_derivation_present": 0,
+    "carrier_rule_soundness_proof_present": 0,
+    "carrier_rule_application_proof_present": 0,
+    "ref_carrier_introduction_rule_available": 0,
+    "value_map_carrier_introduction_rule_available": 0,
+    "ref_value_carrier_pair_rule_available": 0,
+    "ref_carrier_rule_theorem_present": 0,
+    "value_map_carrier_rule_theorem_present": 0,
+    "ref_value_pair_rule_theorem_present": 0,
+    "carrier_introduction_rule_theorem_bundle_present": 0,
+    "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed": 0,
+    "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed": 0,
+    "ref_value_carrier_fields_same_witness_object_proven": 0,
+    "ref_value_non_domain_carrier_pair_constructed": 0,
+    "all_carrier_fields_constructed": 0,
+    "constructed_witness_object_id_present": 0,
+    "same_constructed_witness_object_identity_proof_present": 0,
+    "witness_object_membership_proof_present": 0,
+    "carrier_pair_theorem_present": 0,
+    "independent_constructed_witness_object_membership_theorem_present": 0,
+    "cycle_breaker_available": 0,
+    "row_consumption_authorized": 0,
+    "branch_chart_authorized": 0
+  },
+  "row_field_counts": {
+    "row_locator_resolved": 3,
+    "source_source_premise_set_ready": 3,
+    "receiver_source_premise_set_ready": 3,
+    "combined_source_premise_set_ready": 3,
+    "source_rule_theorem_target_ready": 3,
+    "receiver_rule_theorem_target_ready": 3,
+    "combined_rule_theorem_target_ready": 3,
+    "source_direct_source_promotion_rejected": 3,
+    "receiver_direct_source_promotion_rejected": 3,
+    "combined_direct_source_promotion_rejected": 3,
+    "source_rule_derivation_present": 0,
+    "receiver_rule_derivation_present": 0,
+    "combined_rule_derivation_present": 0,
+    "source_rule_soundness_proof_present": 0,
+    "receiver_rule_soundness_proof_present": 0,
+    "combined_rule_soundness_proof_present": 0,
+    "source_rule_application_proof_present": 0,
+    "receiver_rule_application_proof_present": 0,
+    "combined_rule_application_proof_present": 0,
+    "source_carrier_rules_available": 0,
+    "receiver_carrier_rules_available": 0,
+    "combined_carrier_rules_available": 0,
+    "source_ref_value_carrier_pair_constructed": 0,
+    "receiver_ref_value_carrier_pair_constructed": 0,
+    "combined_ref_value_carrier_pair_constructed": 0,
+    "residual_data_construction_ready": 0,
+    "row_unblocked": 0,
+    "row_consumed": 0,
+    "branch_chart_authorized": 0
+  },
+  "summary": {
+    "endpoint_functionals": 4,
+    "residual_consumer_rows": 3,
+    "source_premise_sets_ready": 4,
+    "carrier_rule_targets_declared": 4,
+    "direct_source_promotion_routes_rejected": 4,
+    "carrier_admission_routes_selected": 4,
+    "binding_contracts_satisfied": 0,
+    "full_endpoint_boundary_bindings_constructed": 0,
+    "endpoint_boundary_binding_ref_carriers_unblocked": 0,
+    "endpoint_value_binding_map_carriers_unblocked": 0,
+    "ref_carrier_rule_theorem_targets_declared": 4,
+    "value_map_carrier_rule_theorem_targets_declared": 4,
+    "ref_value_pair_rule_theorem_targets_declared": 4,
+    "ref_carrier_rule_derivations_present": 0,
+    "value_map_carrier_rule_derivations_present": 0,
+    "ref_value_pair_rule_derivations_present": 0,
+    "carrier_rule_soundness_proofs_present": 0,
+    "carrier_rule_application_proofs_present": 0,
+    "ref_carrier_rules_available": 0,
+    "value_map_carrier_rules_available": 0,
+    "ref_value_pair_rules_available": 0,
+    "ref_carrier_rule_theorems_present": 0,
+    "value_map_carrier_rule_theorems_present": 0,
+    "ref_value_pair_rule_theorems_present": 0,
+    "carrier_introduction_rule_theorem_bundles_present": 0,
+    "same_packet_ref_carrier_fields_constructed": 0,
+    "same_packet_value_map_carrier_fields_constructed": 0,
+    "ref_value_carrier_pair_same_witness_object_proofs": 0,
+    "ref_value_non_domain_carrier_pairs_constructed": 0,
+    "carrier_pair_theorems_present": 0,
+    "independent_membership_theorems_present": 0,
+    "cycle_breakers_available": 0,
+    "row_source_premise_sets_ready": 3,
+    "row_rule_theorem_target_pairs_ready": 3,
+    "row_direct_source_promotion_pairs_rejected": 3,
+    "row_rule_derivation_pairs_present": 0,
+    "row_rule_soundness_pairs_present": 0,
+    "row_rule_application_pairs_present": 0,
+    "row_carrier_rule_pairs_available": 0,
+    "row_ref_value_carrier_pair_constructed": 0,
+    "rows_unblocked": 0,
+    "row_consumption_count": 0,
+    "branch_chart_authorized": false
+  },
+  "authorization_lock": {
+    "row_consumption_authorized": false,
+    "branch_chart_authorized": false,
+    "reason": "No endpoint has carrier rule derivations, soundness proof, application proof, available carrier-introduction rules, or constructed ref/value carrier-pair data."
+  },
+  "preledger_pass": false,
+  "updates_live_ledger": false,
+  "emits_candidate_artifacts": false,
+  "emits_topology_recertification": false,
+  "emits_proof_interval_replay": false,
+  "row_closure": false,
+  "branch_chart_authorized": false,
+  "capture_decision": "priority-only; records a fail-closed carrier-introduction rule theorem attempt and does not promote to reader-facing corpus prose."
+}

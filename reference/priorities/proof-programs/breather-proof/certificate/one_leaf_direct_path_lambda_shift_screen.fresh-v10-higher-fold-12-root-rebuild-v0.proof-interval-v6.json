@@ -1,0 +1,268 @@
+{
+  "schema": "breather-higher-fold-one-leaf-direct-path-lambda-shift-screen-v1",
+  "packet_id": "fresh-v10-higher-fold-12-root-rebuild-v0",
+  "source_contract": "fresh_same_packet_fold_shear_seed.v0.json",
+  "source_contract_sha256": "322a6baf6e36360890b3e1c67f3781e8cd55ba9fb83d576a696e47371e43492b",
+  "source_gap_input": "gap_opening_fresh_v10_strict_gap_input.shifted_separator_fixed_period.v0.json",
+  "source_gap_input_sha256": "8d8a654ed4aed78f6eaddce771751a7ec5e9a538898c4057fefa8d6a9a586ae3",
+  "source_gap_result": "gap_opening_fresh_v10_strict_gap_result.shifted_separator_fixed_period.v0.json",
+  "source_gap_result_sha256": "085e03d764370aa33ac7dc33a4faecd7a191bbd485f4e98dfc6ff512338b5f55",
+  "source_phi_cyc": "phi_cyc.fresh-v10-higher-fold-12-root-rebuild-v0.json",
+  "source_phi_cyc_sha256": "a731d57f5b5cfd1b3992c54dc0b989aed59c636e01e667dcc3ff15c7a160f8dd",
+  "source_mesh": "mesh.fresh-v10-higher-fold-12-root-rebuild-v0.json",
+  "source_mesh_sha256": "807ef730a80d0a8568d9e8fe09123ea8ddd3880630443ebd16e891b560ca0aee",
+  "source_probe": "one_leaf_boundary_movement_probe.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.json",
+  "source_probe_sha256": "8f3d773cce8b8709cc8d28352525835d7937e7a1182510e5e998ca0ff56b7438",
+  "status": "one_leaf_direct_path_lambda_shift_screen_fail_closed",
+  "theorem_target": "One-Leaf Direct-Path Lambda Candidate-Change Screen",
+  "branch_chart_authorized": false,
+  "preledger_pass": false,
+  "updates_live_ledger": false,
+  "claim_level": "priority-only sampled active-endpoint screen for one-leaf boundary openings under direct-path lambda change; no proof-interval recertification and no row consumption",
+  "screen_rule": "Use the existing direct-path family X_seed(theta; lambda)=X_fresh(theta)+lambda*H_shifted(theta) to estimate the active boundary shifts from the baseline packet lambda to a trial lambda. A positive screen requires the favorable source and receiver boundary shifts to sum strictly above the exact one-leaf probe threshold. This screen is not a theorem until the trial lambda has root-topology recertification, proof-interval preledger classification, monotonicity and memory preservation, endpoint ownership/no-double-counting, branch-reuse exclusion, and non-owned-complement closure.",
+  "lambda_screen": {
+    "baseline_lambda": 0.3,
+    "trial_lambda": 0.305,
+    "trial_lambda_increment": 0.005,
+    "sample_count_per_boundary_interval": 50000,
+    "max_lambda_min_open_from_probe_threshold_active_endpoint_screen": 0.301815056706425,
+    "trial_lambda_margin_after_max_min_open": 0.00318494329357499
+  },
+  "summary": {
+    "screen_rows": 3,
+    "active_endpoint_stable_rows": 3,
+    "sampled_trial_defect_opened_rows": 3,
+    "combined_opening_gt_probe_threshold_rows": 3,
+    "proof_grade_rows": 0,
+    "row_consumption_count": 0,
+    "branch_chart_authorized": false
+  },
+  "rows": [
+    {
+      "row_id": "R_w_A04_A03",
+      "cover_id": "G_w_A04_A03_v6_10",
+      "ledger": "w",
+      "receiver_interval": "A04",
+      "source_interval": "A03",
+      "failed_side": "lo",
+      "required_strict_improvement_q": {
+        "num": "5669711941314830673188480728376899483593421911182442215331992955046452573924290906757308094926076916759135911357084939411748264375892340480753286473663730836637018946258359943384672760494401626819981128632739539183360451341688771462156879964599499520587813065559513756482789186655386505146325631666783274035253863893698229228514091",
+        "den": "212412433667468637989229700431569922732680084255285865147638593843795152977823987926568462230095422229040177983141146679095289924464759995240673303665833986191487451689789004424837202586585495123071382481278844150831361081941956956782592000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "display": "0.000026691996524"
+      },
+      "required_strict_improvement_decimal": 0.000026691996524,
+      "baseline": {
+        "lambda": 0.3,
+        "boundary_side": "lower",
+        "receiver_boundary": {
+          "theta": 0.244031876245625,
+          "value": 1.1037296462293,
+          "lambda_derivative": -0.95439451772988
+        },
+        "source_boundary": {
+          "theta": 0.236031876245625,
+          "value": 1.10375423945306,
+          "lambda_derivative": -0.991465729766494
+        },
+        "sampled_defect": 0.0000245932237599167,
+        "sampled_defect_lambda_derivative_at_active_endpoints": -0.037071212036614
+      },
+      "trial": {
+        "lambda": 0.305,
+        "boundary_side": "lower",
+        "receiver_boundary": {
+          "theta": 0.244031876245625,
+          "value": 1.09895767364065,
+          "lambda_derivative": -0.95439451772988
+        },
+        "source_boundary": {
+          "theta": 0.236031876245625,
+          "value": 1.09879691080423,
+          "lambda_derivative": -0.991465729766494
+        },
+        "sampled_defect": -0.00016076283641997,
+        "sampled_defect_lambda_derivative_at_active_endpoints": -0.037071212036614
+      },
+      "active_endpoint_stable_between_lambdas": true,
+      "candidate_change_from_baseline_to_trial": {
+        "source_shift_favorable_sign_decimal": 0.00495732864883003,
+        "receiver_shift_favorable_sign_decimal": -0.00477197258865014,
+        "combined_boundary_opening_decimal": 0.000185356060179886,
+        "combined_boundary_opening_margin_vs_probe_threshold_decimal": 0.000158664063655886,
+        "trial_sampled_defect_opened": true,
+        "combined_opening_gt_probe_threshold": true
+      },
+      "active_endpoint_lambda_budget": {
+        "baseline_lambda": 0.3,
+        "trial_lambda": 0.305,
+        "defect_derivative_at_baseline_active_endpoints": -0.037071212036614,
+        "lambda_min_open_from_probe_threshold_active_endpoint_screen": 0.300720019526139,
+        "trial_lambda_margin_after_min_open": 0.00427998047386102
+      },
+      "proof_grade_status": {
+        "sampled_screen_only": true,
+        "root_topology_recertified_at_trial_lambda": false,
+        "proof_interval_preledger_rerun_at_trial_lambda": false,
+        "source_monotonicity_preserved_under_candidate_change": false,
+        "receiver_monotonicity_preserved_under_candidate_change": false,
+        "memory_margins_all_owned_components": false,
+        "endpoint_ownership_no_double_counting": false,
+        "simple_root_branch_reuse_exclusion": false,
+        "non_owned_complement_closed": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      }
+    },
+    {
+      "row_id": "R_u_A10_A09",
+      "cover_id": "G_u_A10_A09_v6_31",
+      "ledger": "u",
+      "receiver_interval": "A10",
+      "source_interval": "A09",
+      "failed_side": "lo",
+      "required_strict_improvement_q": {
+        "num": "5669711941314830673188480728376899483593421911182442215331992955046452573924290906757308094926076916759135911357084939411748264375892340480753286473663730836637018946258359943384672760494401626819981128632739539183360451341688771462156879964599499520587813065559513756482789186655386505146325631666783274035253863893698229228514091",
+        "den": "212412433667468637989229700431569922732680084255285865147638593843795152977823987926568462230095422229040177983141146679095289924464759995240673303665833986191487451689789004424837202586585495123071382481278844150831361081941956956782592000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "display": "0.000026691996524"
+      },
+      "required_strict_improvement_decimal": 0.000026691996524,
+      "baseline": {
+        "lambda": 0.3,
+        "boundary_side": "lower",
+        "receiver_boundary": {
+          "theta": 0.744031876245625,
+          "value": 4.2453222998193,
+          "lambda_derivative": -0.95439451772988
+        },
+        "source_boundary": {
+          "theta": 0.736031876245625,
+          "value": 4.24534689304306,
+          "lambda_derivative": -0.991465729766493
+        },
+        "sampled_defect": 0.0000245932237596946,
+        "sampled_defect_lambda_derivative_at_active_endpoints": -0.037071212036613
+      },
+      "trial": {
+        "lambda": 0.305,
+        "boundary_side": "lower",
+        "receiver_boundary": {
+          "theta": 0.744031876245625,
+          "value": 4.24055032723065,
+          "lambda_derivative": -0.95439451772988
+        },
+        "source_boundary": {
+          "theta": 0.736031876245625,
+          "value": 4.24038956439423,
+          "lambda_derivative": -0.991465729766493
+        },
+        "sampled_defect": -0.00016076283641997,
+        "sampled_defect_lambda_derivative_at_active_endpoints": -0.037071212036613
+      },
+      "active_endpoint_stable_between_lambdas": true,
+      "candidate_change_from_baseline_to_trial": {
+        "source_shift_favorable_sign_decimal": 0.00495732864882914,
+        "receiver_shift_favorable_sign_decimal": -0.00477197258864948,
+        "combined_boundary_opening_decimal": 0.000185356060179664,
+        "combined_boundary_opening_margin_vs_probe_threshold_decimal": 0.000158664063655664,
+        "trial_sampled_defect_opened": true,
+        "combined_opening_gt_probe_threshold": true
+      },
+      "active_endpoint_lambda_budget": {
+        "baseline_lambda": 0.3,
+        "trial_lambda": 0.305,
+        "defect_derivative_at_baseline_active_endpoints": -0.037071212036613,
+        "lambda_min_open_from_probe_threshold_active_endpoint_screen": 0.300720019526139,
+        "trial_lambda_margin_after_min_open": 0.00427998047386102
+      },
+      "proof_grade_status": {
+        "sampled_screen_only": true,
+        "root_topology_recertified_at_trial_lambda": false,
+        "proof_interval_preledger_rerun_at_trial_lambda": false,
+        "source_monotonicity_preserved_under_candidate_change": false,
+        "receiver_monotonicity_preserved_under_candidate_change": false,
+        "memory_margins_all_owned_components": false,
+        "endpoint_ownership_no_double_counting": false,
+        "simple_root_branch_reuse_exclusion": false,
+        "non_owned_complement_closed": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      }
+    },
+    {
+      "row_id": "R_u_A07_A06",
+      "cover_id": "G_u_A07_A06_v6_22",
+      "ledger": "u",
+      "receiver_interval": "A07",
+      "source_interval": "A06",
+      "failed_side": "hi",
+      "required_strict_improvement_q": {
+        "num": "11510217468575481892033589552795468629965733120476813161267433794161150969618227463865582460488839255978269103445791274495942918477116927028167548192638555698939379601396069868706606430444757468878045986190937500474826889608814674522255613692077540770836373782853994103487647387041649329390628841513099048789531613228821772347856791103440665963228039060271350624176255009591096538554370515784333308412827320933181822550262349760729210705117341995657772865078731842470499845333560894889303019",
+        "den": "46754473546210480137396805404956325951864215812962626418596338013818587638622393657397312519915902724600782964021836217924851517252599054886623909229077428999307184672876050988585762392657676611030140919912182773345761195200521839125751806147895857510423654852583809868607820326571905131377040043443939924435416848856101288506276034910801403950838635826991334162375917784699380164060000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "display": "0.00024618430271"
+      },
+      "required_strict_improvement_decimal": 0.00024618430271,
+      "baseline": {
+        "lambda": 0.3,
+        "boundary_side": "upper",
+        "receiver_boundary": {
+          "theta": 0.51954699193526,
+          "value": 4.42679425656005,
+          "lambda_derivative": -0.214323234697637
+        },
+        "source_boundary": {
+          "theta": 0.51154699193526,
+          "value": 4.42655066047978,
+          "lambda_derivative": -0.0786887380791211
+        },
+        "sampled_defect": 0.000243596080269803,
+        "sampled_defect_lambda_derivative_at_active_endpoints": -0.135634496618516
+      },
+      "trial": {
+        "lambda": 0.305,
+        "boundary_side": "upper",
+        "receiver_boundary": {
+          "theta": 0.51954699193526,
+          "value": 4.42572264038656,
+          "lambda_derivative": -0.214323234697637
+        },
+        "source_boundary": {
+          "theta": 0.51154699193526,
+          "value": 4.42615721678938,
+          "lambda_derivative": -0.0786887380791211
+        },
+        "sampled_defect": -0.000434576402819964,
+        "sampled_defect_lambda_derivative_at_active_endpoints": -0.135634496618516
+      },
+      "active_endpoint_stable_between_lambdas": true,
+      "candidate_change_from_baseline_to_trial": {
+        "source_shift_favorable_sign_decimal": -0.000393443690399842,
+        "receiver_shift_favorable_sign_decimal": 0.00107161617348961,
+        "combined_boundary_opening_decimal": 0.000678172483089767,
+        "combined_boundary_opening_margin_vs_probe_threshold_decimal": 0.000431988180379767,
+        "trial_sampled_defect_opened": true,
+        "combined_opening_gt_probe_threshold": true
+      },
+      "active_endpoint_lambda_budget": {
+        "baseline_lambda": 0.3,
+        "trial_lambda": 0.305,
+        "defect_derivative_at_baseline_active_endpoints": -0.135634496618516,
+        "lambda_min_open_from_probe_threshold_active_endpoint_screen": 0.301815056706425,
+        "trial_lambda_margin_after_min_open": 0.0031849432935751
+      },
+      "proof_grade_status": {
+        "sampled_screen_only": true,
+        "root_topology_recertified_at_trial_lambda": false,
+        "proof_interval_preledger_rerun_at_trial_lambda": false,
+        "source_monotonicity_preserved_under_candidate_change": false,
+        "receiver_monotonicity_preserved_under_candidate_change": false,
+        "memory_margins_all_owned_components": false,
+        "endpoint_ownership_no_double_counting": false,
+        "simple_root_branch_reuse_exclusion": false,
+        "non_owned_complement_closed": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      }
+    }
+  ],
+  "fail_closed_boundary": "The direct-path lambda screen supplies positive sampled active-endpoint boundary openings, but changing lambda changes the candidate data. It does not certify the trial packet's root topology, proof-interval preledger rows, source/receiver monotonicity preservation, memory margins, endpoint ownership/no-double-counting, branch-reuse exclusion, or non-owned complement closure."
+}

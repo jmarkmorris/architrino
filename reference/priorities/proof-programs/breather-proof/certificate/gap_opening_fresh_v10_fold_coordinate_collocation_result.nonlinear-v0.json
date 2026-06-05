@@ -1,0 +1,144 @@
+{
+  "schema": "aaa-proof/null-coordinate-gap-opening-scan-result/v1",
+  "input_schema": "aaa-proof/null-coordinate-gap-opening-scan/v1",
+  "packet_id": "fresh-v10-fold-coordinate-collocation-nonlinear-tangent-matrix-v0",
+  "packet_identity": {
+    "source_packet": "fresh-same-packet-fold-shear-seed-v0",
+    "source_refinement": "fresh-same-packet-fold-shear-seed-v0-proof-interval-topology-no-double-counting-no-go-v10",
+    "matrix_status": "diagnostic_nonlinear_fold_coordinate_collocation_tangent_matrix_not_full_candidate",
+    "basis_model": "shifted_separator_c1_bumps_plus_fold_coordinate_boundary_opening_columns",
+    "period_mode": "fixed",
+    "fold_coordinate_source": "First nonlinear collocation surface screen; fold-coordinate columns are bounded tangent variables, not an accepted candidate deformation."
+  },
+  "source": "Adds bounded fold-coordinate boundary-opening columns and nonzero structural rows to the existing fixed-period shifted-separator v10 strict-gap tangent matrix, while importing higher-fold one-leaf rows as first-focus screen data.",
+  "status": "feasible",
+  "theory_success_marker": "strict_null_coordinate_gap_opening_tangent_witness",
+  "method": "input_witness",
+  "claim_level": "strict tangent-space gap-opening witness for declared finite matrix",
+  "branch_chart_authorized": false,
+  "preledger_pass": false,
+  "nullity": null,
+  "variable_count": 7,
+  "structural_constraint_count": 3,
+  "gap_constraint_count": 10,
+  "tolerance": 1e-9,
+  "normalization": "||xi||_inf <= 1",
+  "xi_infinity_norm": 1,
+  "updates_live_ledger": false,
+  "B_xi_residual_verified_zero_with_tolerance": true,
+  "B_xi_residual_certified_zero": false,
+  "rank_B_certified": false,
+  "kappa_observed_after_required_margin": 0.484518823372,
+  "max_structural_residual": 0,
+  "min_gap_value_after_required_margin": 0.484518823372,
+  "witness": {
+    "h_A0s": -1,
+    "h_A1s": -1,
+    "h_A2s": -1,
+    "fc_sigma_source_lower": 0.5,
+    "fc_rho_receiver_lower": 0.5,
+    "fc_sigma_source_upper": 0.5,
+    "fc_rho_receiver_upper": 0.5
+  },
+  "diagnostic_candidate": null,
+  "structural_rows": [
+    {
+      "id": "fold_coordinate_lower_boundary_pair_balance",
+      "residual": 0
+    },
+    {
+      "id": "fold_coordinate_upper_boundary_pair_balance",
+      "residual": 0
+    },
+    {
+      "id": "fold_coordinate_mirrored_boundary_opening_balance",
+      "residual": 0
+    }
+  ],
+  "gap_rows": [
+    {
+      "id": "C_w_A1_A0_left_v10_1",
+      "value_after_required_margin": 0.933162112996,
+      "required_margin": 0.0305306251747979,
+      "collar_id": "C_w_A1_A0_left_v10_1",
+      "ledger": "w"
+    },
+    {
+      "id": "C_w_A2_A0_left_v10_2",
+      "value_after_required_margin": 0.484518823372,
+      "required_margin": 0.097129464401903,
+      "collar_id": "C_w_A2_A0_left_v10_2",
+      "ledger": "w"
+    },
+    {
+      "id": "C_w_A2_A0_right_v10_3",
+      "value_after_required_margin": 1.93839310733,
+      "required_margin": 0.0616068926719289,
+      "collar_id": "C_w_A2_A0_right_v10_3",
+      "ledger": "w"
+    },
+    {
+      "id": "C_w_A2_A1_left_v10_4",
+      "value_after_required_margin": 0.791157803393,
+      "required_margin": 0.030206375980675,
+      "collar_id": "C_w_A2_A1_left_v10_4",
+      "ledger": "w"
+    },
+    {
+      "id": "C_w_A2_A1_right_v10_5",
+      "value_after_required_margin": 1.93482158027,
+      "required_margin": 0.0651784197251379,
+      "collar_id": "C_w_A2_A1_right_v10_5",
+      "ledger": "w"
+    },
+    {
+      "id": "C_u_A3_A2_left_v10_6",
+      "value_after_required_margin": 0.918262984342,
+      "required_margin": 0.0454297538282589,
+      "collar_id": "C_u_A3_A2_left_v10_6",
+      "ledger": "u"
+    },
+    {
+      "id": "C_u_A4_A2_left_v10_7",
+      "value_after_required_margin": 0.695531092222,
+      "required_margin": 0.25055598013026,
+      "collar_id": "C_u_A4_A2_left_v10_7",
+      "ledger": "u"
+    },
+    {
+      "id": "C_u_A4_A2_right_v10_8",
+      "value_after_required_margin": 0.950210494975,
+      "required_margin": 0.049789505024517,
+      "collar_id": "C_u_A4_A2_right_v10_8",
+      "ledger": "u"
+    },
+    {
+      "id": "C_u_A4_A3_left_v10_9",
+      "value_after_required_margin": 0.764830307808,
+      "required_margin": 0.0266345725630224,
+      "collar_id": "C_u_A4_A3_left_v10_9",
+      "ledger": "u"
+    },
+    {
+      "id": "C_u_A4_A3_right_v10_10",
+      "value_after_required_margin": 0.961538096576,
+      "required_margin": 0.038461903424265,
+      "collar_id": "C_u_A4_A3_right_v10_10",
+      "ledger": "u"
+    }
+  ],
+  "iterations": null,
+  "projected_margin": null,
+  "note": null,
+  "limitations": [
+    "The scanner certifies only the declared finite tangent matrix, not a passed pre-ledger.",
+    "A feasible witness must still be integrated into a fresh same-packet candidate and interval-validated.",
+    "An inconclusive result is not a proof that no gap-opening direction exists."
+  ],
+  "basis_includes_fold_coordinate_columns": true,
+  "uses_receiver_cover_ownership": false,
+  "one_leaf_boundary_opening_constraint_count": 3,
+  "one_leaf_min_boundary_opening_margin": 0.999753815697,
+  "one_leaf_screen_level_success": "strict_boundary_opening_screen_positive",
+  "input_path": "/Users/markmorris/vibe/architrino/reference/priorities/proof-programs/breather-proof/certificate/gap_opening_fresh_v10_fold_coordinate_collocation_input.nonlinear-v0.json"
+}

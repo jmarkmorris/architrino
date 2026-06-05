@@ -40,6 +40,8 @@ priority-only screens now bound that route:
 | `causal_preledger_interval_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v3.md` | exact-rational root-complement monotone diagonal sidecar | certifies the same 1,062 range-empty rows plus 26 same-interval diagonal exclusions, leaves 162 rows `split_required`, and authorizes no branch chart |
 | `causal_preledger_interval_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v4.md` | exact-rational simple-root receiver-subwindow sidecar | records 42 root-complement monotone receiver subrow certificates, consumes 0 parent simple-root rows, leaves 162 rows `split_required`, and authorizes no branch chart |
 | `causal_preledger_interval_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v5.md` | exact-rational receiver-grid cover audit sidecar | audits the 42 regular residual parent rows, certifies 571 simple-root receiver cells, misses 773 cells, consumes 0 parent rows, leaves 162 rows `split_required`, and authorizes no branch chart |
+| `causal_preledger_interval_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.md` | exact-rational adaptive receiver-cover audit sidecar | refines the failed v5 receiver cells to terminal grid 128, certifies 622 simple-root receiver leaves, records 3,024 structural terminal source-cover misses, resolves 0 coarse cells, consumes 0 parent rows, leaves 162 rows `split_required`, and authorizes no branch chart |
+| `fold_layer_burden_report.fresh-v10-higher-fold-12-root-rebuild-v0.md` | priority-only fold-layer burden atlas | groups the 112 fold-layer rows by 12 higher-fold separator layers, records required same-packet fields, consumes 0 rows, and authorizes no branch chart |
 
 These artifacts are not interval infeasibility proofs, but they are strong
 sampled evidence that generic same-itinerary basis enrichment has reached a
@@ -81,9 +83,41 @@ proof-interval v2 sidecar adds row-specific trigonometric enclosures that
 classify 1,062 range-empty rows, the proof-interval v3 sidecar uses the
 root-count complement certificate to consume 26 same-interval diagonal rows,
 the proof-interval v4 sidecar records 42 simple-root receiver subwindow
-certificates without consuming their parent rows, and the proof-interval v5
-sidecar certifies 571 receiver-grid cells while missing 773 cells and consuming
-0 parent rows. It still leaves 162 rows requiring parent-complement,
+certificates without consuming their parent rows, the proof-interval v5 sidecar
+certifies 571 receiver-grid cells while missing 773 cells and consuming 0 parent
+rows, and the proof-interval v6 sidecar refines those misses to terminal grid
+128 with 622 certified leaves, 3,024 structural terminal misses, and 0 resolved
+coarse cells. The fold-layer burden atlas now groups the 112 fold-layer rows
+by separator layer but does not consume them. The source-cover defect atlas now
+records the exact 42-row regular parent-complement boundary burden: 1,207
+low-side and 1,817 high-side terminal defects, with no row consumption. It also
+records 0 receiver-interior missing leaves, so the regular-row obstruction is a
+boundary ownership or boundary movement problem. The boundary ownership audit
+then proves 42 / 42 complete terminal-grid receiver partitions while certifying
+0 rows against the full pass rule, so the next regular-row work is ownership,
+source-boundary movement, or receiver contraction rather than more partition
+refinement. The one-leaf boundary movement probe then tests the three smallest
+regular-row components and certifies 0 source-boundary movement or
+receiver-range contraction rows, with strict thresholds `0.000026691996524`,
+`0.000026691996524`, and `0.00024618430271`. The source-boundary movement
+theorem attempt verifies those thresholds as exact boundary-defect identities
+but certifies 0 source-boundary movement rows because no same-packet
+source-boundary variation, endpoint-tightening certificate, or movement
+preservation proof is present. The receiver-range contraction theorem attempt
+verifies the same thresholds as exact receiver-boundary defect identities but
+certifies 0 receiver contraction rows because no same-packet receiver-range
+refinement, receiver endpoint-tightening certificate, or contraction
+preservation proof is present. The candidate-change boundary-data constructor
+declares the exact combined boundary-opening conditions for those same rows,
+but certifies 0 candidate-change rows because no deformation or
+endpoint-tightening packet assigns positive boundary shifts. The direct-path
+lambda shift screen gives a positive sampled direction for those three rows at
+`lambda=0.305`, with largest active-endpoint threshold
+`lambda>0.301815056706425`. The follow-on `lambda=0.305` replay recertifies
+the trial seed's 12-root topology by outward-rational interval checks and
+reruns v1-v6, but it still leaves 162 rows `split_required`, 0 complete
+receiver-cover parent rows, 0 accepted fold-layer rows, and no branch-chart
+authorization. The remaining rows still require parent-complement,
 endpoint/complement, and fold-layer closure. The
 remaining constructive work is therefore either the larger nonlinear
 fold-coordinate collocation target or residual proof-interval closure for
@@ -95,7 +129,7 @@ fold-coordinate collocation target or residual proof-interval closure for
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | A | Intervalize the Hermite dual obstruction | Highest for closing the current generic same-itinerary branch | Low; it proves obstruction rather than building a candidate | Complete as an obstruction route; not constructive candidate data | outward-rounded active row data, selected exact-rational multipliers, residual budget, sample-subset lift | Current v10 collar list, Hermite active rows, sampled LP form, rationalization audit | Proof-grade upper bound $\gamma<0$ for the declared sampled row system plus sample-subset lift; achieved by `fresh_v10_hermite_active_row_interval_backend.v0` and `fresh_v10_hermite_continuous_collar_lift.v0` |
 | B | Different same-itinerary structural ansatz | Medium; keeps current itinerary alive only with a new structural mechanism | Medium to high if the ansatz is dynamics-generated | Bounded period-coupled and fixed-separator velocity-corridor screens are now obstructed; remaining route is nonlinear and larger | period-coupled screen, velocity-corridor screen, and if pursued next a fold-coordinate collocation packet with hard field-speed inequalities | Current v10 collars may remain the target | Positive certified collar gaps while preserving field-speed itinerary and recomputing/preserving accepted rows |
-| C | Higher-fold itinerary rebuild | High if the field-speed roots are accepted as real structure | High, but it restarts the packet | Large scope; prior row reuse becomes historical only | `fresh_v10_higher_fold_itinerary_rebuild_target.v0.md`, diagnostic successor seed packet, binary64 root-tube audit surface, outward-rational root-count certificate, and proof-interval v1/v2/v3/v4/v5 sidecars | Only historical diagnostics and solver-basis lessons | `fresh-v10-higher-fold-12-root-rebuild-v0` closes the remaining 162 parent-complement, endpoint/complement, and fold-layer rows before any branch chart |
+| C | Higher-fold itinerary rebuild | High if the field-speed roots are accepted as real structure | High, but it restarts the packet | Large scope; prior row reuse becomes historical only | `fresh_v10_higher_fold_itinerary_rebuild_target.v0.md`, diagnostic successor seed packet, binary64 root-tube audit surface, outward-rational root-count certificate, and proof-interval v1/v2/v3/v4/v5/v6 sidecars | Only historical diagnostics and solver-basis lessons | `fresh-v10-higher-fold-12-root-rebuild-v0` closes the remaining 42 structural parent-complement rows, 8 endpoint/complement rows, and 112 fold-layer rows before any branch chart |
 
 ## Rejected Non-Option
 

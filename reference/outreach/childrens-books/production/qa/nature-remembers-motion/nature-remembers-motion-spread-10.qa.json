@@ -1,0 +1,20 @@
+{
+  "id": "nature-remembers-motion-spread-10",
+  "book_slug": "nature-remembers-motion",
+  "source_png": "reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-spread-10.png",
+  "exists": true,
+  "automated": {
+    "width": 1536,
+    "height": 1024,
+    "aspect_ratio": 1.5,
+    "saturated_non_palette_fraction": 0.3682,
+    "palette_flag": true
+  },
+  "manual_checklist": {
+    "palette": "approved",
+    "no_in_image_text": "approved",
+    "one_continuous_scene": "approved",
+    "correct_geometry": "approved"
+  },
+  "decision": "approved"
+}

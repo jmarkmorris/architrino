@@ -1,0 +1,841 @@
+{
+  "schema": "breather-higher-fold-fold-coordinate-endpoint-functional-post-component-union-endpoint-boundary-binding-source-data-audit-v1",
+  "packet_id": "fresh-v10-higher-fold-12-root-rebuild-v0",
+  "fold_coordinate_packet_id": "fresh-v10-fold-coordinate-collocation-nonlinear-tangent-matrix-v0",
+  "status": "fold_coordinate_endpoint_functional_post_component_union_endpoint_boundary_binding_source_data_audit_source_data_present_binding_absent",
+  "theorem_target": "Fold-Coordinate Endpoint-Functional Post-Component-Union Endpoint Boundary Binding Source-Data Audit",
+  "branch_chart_authorized": false,
+  "preledger_pass": false,
+  "updates_live_ledger": false,
+  "claim_level": "priority-only post-component-union source-data audit; endpoint locator and evaluation-rule source data are present, while endpoint boundary bindings, endpoint motion rules, and full endpoint evaluation maps are absent",
+  "authorization_lock": {
+    "branch_chart_authorized": false,
+    "preledger_pass": false,
+    "updates_live_ledger": false,
+    "row_consumption_count": 0
+  },
+  "source_artifacts": {
+    "endpointSourceAudit": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_source_audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_source_audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "present": true,
+      "sha256": "bc88d7a60b1c85ba7c8c1023fc861ca4937904e60c52ae125f5a0e5c3b1aa086"
+    },
+    "bindingNoGo": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_binding_contract_no_go.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_binding_contract_no_go.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "present": true,
+      "sha256": "4bdd278f77b76d8d688bfb07f3209debedbdc3010588e0f02c07d3f6ea0e53ff"
+    },
+    "historyContract": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_history_realization_contract.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_history_realization_contract.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "present": true,
+      "sha256": "155d45c7e309938bb8415e102710c17f8260ac504820d7debb530ed4d406ad72"
+    },
+    "historyTheoremAttempt": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_history_realization_theorem_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_history_realization_theorem_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "present": true,
+      "sha256": "64689d3a8c2ccfeeff1cf052619d1bb68691f85ba9eeb66ba9253c3667b3a6c7"
+    },
+    "domainEvaluationContract": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_domain_evaluation_contract.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_domain_evaluation_contract.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "present": true,
+      "sha256": "a7d7a5cbb74aad039e237f9af7d8a575da47740379319f56596133a83d7d1fa8"
+    },
+    "componentUnionChartCertificate": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_component_union_chart_certificate.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_component_union_chart_certificate.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "present": true,
+      "sha256": "4403c7a1c1217f9a8eaa5bdc27efd6da2ebf09fd3ef8a78a96093a6aa2d96bd8"
+    },
+    "postComponentUnionLayer": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_post_component_union_endpoint_motion_full_evaluation_map_layer_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_post_component_union_endpoint_motion_full_evaluation_map_layer_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "present": true,
+      "sha256": "6561b8ddd543c8dff5285bb872744bfbdd4e27b7275b0fab271c103117cc15fc"
+    }
+  },
+  "endpoint_boundary_binding_source_data_rule": "A post-component-union source-data audit may certify only the declared boundary action, signed endpoint target, row-local endpoint values, component-union domain, target locator, evaluation-map symbol, and declared endpoint evaluation rule. It does not construct the endpoint boundary binding or the endpoint motion rule.",
+  "no_promotion_rule": "Do not promote endpoint refs, endpoint values, component-union target locators, or declared evaluation-map symbols into endpoint boundary bindings, same-packet history update formulas, endpoint motion rules, endpoint evaluation maps, exact $B\\xi=0$, rank certificates, candidate artifacts, replay, row consumption, or branch authorization.",
+  "endpoint_boundary_binding_source_data_audits": [
+    {
+      "id": "fc_sigma_source_lower",
+      "role": "source",
+      "source_symbol": "sigma_source_lower",
+      "basis_symbol": "Psi_fc_sigma_source_lower",
+      "endpoint_functional_id": "E_lower_source_inner_boundary",
+      "row_uses": [
+        "R_w_A04_A03",
+        "R_u_A10_A09"
+      ],
+      "boundary_actions": [
+        "lower_source_inner_boundary"
+      ],
+      "boundary_delta_signs": [
+        -1
+      ],
+      "target_equation": "E_lower_source_inner_boundary(Psi_fc_sigma_source_lower) = -1",
+      "target_action": "lower_source_inner_boundary",
+      "target_sign": -1,
+      "domain_symbol": "D_fc_sigma_source_lower",
+      "chart_symbol": "chi_fc_sigma_source_lower",
+      "evaluation_map_symbol": "ev_fc_sigma_source_lower",
+      "support_interval_ids": [
+        "A03",
+        "A09"
+      ],
+      "target_endpoint_refs": [
+        {
+          "row_id": "R_w_A04_A03",
+          "role": "source",
+          "endpoint_ref": "source_inner_range_q.lo",
+          "endpoint_value": {
+            "num": "22889475682709269533413042303837882332186381319318690739134385525004858014062592566793989041615601706730549026109295638036107447029424137018797622300140513390802684414087574023253585373959809013507853720323944442908548877462127674929541409468871666749595362048011028177978722442883",
+            "den": "20737813556676946596478600506564457667824085709013815187739169879824578869563979531491976751516110219329647110034464826298821156776657596726897777940411216903568068218430965044740096000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "1.103755495734966"
+          },
+          "endpoint_value_present": true,
+          "ownership_component_id": "R_w_A04_A03:left_boundary_unowned:0:1:128"
+        },
+        {
+          "row_id": "R_u_A10_A09",
+          "role": "source",
+          "endpoint_ref": "source_inner_range_q.lo",
+          "endpoint_value": {
+            "num": "88039238403884674053822967818905235111225073503214998976753728260546758148600337509414313256205686466309292001480744708043739423236237287290884511028631553198684154987618253244383156638471153653507853720323944442908548877462127674929541409468871666749595362048011028177978722442883",
+            "den": "20737813556676946596478600506564457667824085709013815187739169879824578869563979531491976751516110219329647110034464826298821156776657596726897777940411216903568068218430965044740096000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "4.245348149324966"
+          },
+          "endpoint_value_present": true,
+          "ownership_component_id": "R_u_A10_A09:left_boundary_unowned:0:1:128"
+        }
+      ],
+      "required_endpoint_functionals": [
+        {
+          "action": "lower_source_inner_boundary",
+          "sign": -1,
+          "target_equation": "E_lower_source_inner_boundary(Psi_fc_sigma_source_lower) = -1",
+          "zero_equation": "All non-target one-leaf boundary functionals vanish on Psi_fc_sigma_source_lower."
+        }
+      ],
+      "missing_binding_fields": [
+        "endpoint_boundary_binding_present",
+        "endpoint_functional_domain_present",
+        "domain_chart_declared",
+        "evaluation_map_declared",
+        "endpoint_value_bound_to_domain",
+        "theta_support_present",
+        "basis_formula_present",
+        "basis_derivative_formula_present",
+        "x_update_basis_present",
+        "xdot_update_basis_present",
+        "mesh_update_rule_present",
+        "endpoint_motion_rule_present",
+        "source_monotonicity_rule_present",
+        "receiver_monotonicity_rule_present",
+        "periodic_extension_rule_present",
+        "c1_gluing_rule_present",
+        "non_target_endpoint_functionals_zero_certified",
+        "exact_screen_zero_certified",
+        "rank_certified"
+      ],
+      "required_fields_present": {
+        "source_audit_imported": true,
+        "binding_no_go_imported": true,
+        "history_realization_contract_imported": true,
+        "history_realization_theorem_attempt_imported": true,
+        "domain_evaluation_contract_imported": true,
+        "component_union_chart_certificate_imported": true,
+        "post_component_union_layer_imported": true,
+        "basis_symbol_declared": true,
+        "endpoint_boundary_action_declared": true,
+        "boundary_delta_sign_consistent": true,
+        "target_endpoint_ref_declared": true,
+        "target_endpoint_value_present": true,
+        "component_union_domain_constructed": true,
+        "target_endpoint_evaluation_locator_constructed": true,
+        "target_action_exact_under_component_locator": true,
+        "opposite_endpoint_zero_under_component_locator": true,
+        "evaluation_map_symbol_declared": true,
+        "endpoint_evaluation_rule_declared": true,
+        "endpoint_boundary_binding_source_data_ready": true,
+        "endpoint_boundary_binding_constructed": false,
+        "same_packet_history_update_formula_present": false,
+        "endpoint_motion_rule_constructed": false,
+        "endpoint_evaluation_rule_constructed": false,
+        "endpoint_evaluation_map_constructed": false,
+        "full_endpoint_evaluation_map_constructed": false,
+        "global_domain_evaluation_map_constructed": false,
+        "non_target_endpoint_zero_certified": false,
+        "exact_screen_zero_certified": false,
+        "rank_certified": false,
+        "binding_contract_satisfied": false,
+        "candidate_artifacts_present": false,
+        "root_topology_recertified_for_candidate_change": false,
+        "proof_interval_v1_v6_rerun_for_candidate_change": false
+      },
+      "endpoint_boundary_binding_source_data_ready": true,
+      "binding_contract_satisfied": false,
+      "construction_blocker_fields": [
+        "endpoint_boundary_binding_constructed",
+        "same_packet_history_update_formula_present",
+        "endpoint_motion_rule_constructed",
+        "endpoint_evaluation_rule_constructed",
+        "endpoint_evaluation_map_constructed",
+        "full_endpoint_evaluation_map_constructed",
+        "global_domain_evaluation_map_constructed",
+        "non_target_endpoint_zero_certified",
+        "exact_screen_zero_certified",
+        "rank_certified",
+        "binding_contract_satisfied",
+        "candidate_artifacts_present",
+        "root_topology_recertified_for_candidate_change",
+        "proof_interval_v1_v6_rerun_for_candidate_change"
+      ],
+      "obstruction": "The endpoint has a declared boundary action, signed target, target endpoint value, component-union domain, target locator, evaluation-map symbol, and declared endpoint evaluation rule. These source data are ready for a boundary-binding construction attempt, but the packet still supplies no endpoint boundary binding, same-packet history update formula, endpoint motion rule, endpoint evaluation map, exact $B\\xi=0$, rank certificate, candidate artifacts, topology recertification, or proof-interval replay."
+    },
+    {
+      "id": "fc_rho_receiver_lower",
+      "role": "receiver",
+      "source_symbol": "rho_receiver_lower",
+      "basis_symbol": "Psi_fc_rho_receiver_lower",
+      "endpoint_functional_id": "E_raise_receiver_lower_boundary",
+      "row_uses": [
+        "R_w_A04_A03",
+        "R_u_A10_A09"
+      ],
+      "boundary_actions": [
+        "raise_receiver_lower_boundary"
+      ],
+      "boundary_delta_signs": [
+        1
+      ],
+      "target_equation": "E_raise_receiver_lower_boundary(Psi_fc_rho_receiver_lower) = +1",
+      "target_action": "raise_receiver_lower_boundary",
+      "target_sign": 1,
+      "domain_symbol": "D_fc_rho_receiver_lower",
+      "chart_symbol": "chi_fc_rho_receiver_lower",
+      "evaluation_map_symbol": "ev_fc_rho_receiver_lower",
+      "support_interval_ids": [
+        "A04",
+        "A10"
+      ],
+      "target_endpoint_refs": [
+        {
+          "row_id": "R_w_A04_A03",
+          "role": "receiver",
+          "endpoint_ref": "receiver_range_q.lo",
+          "endpoint_value": {
+            "num": "23923478863106302571634315954875162615478517415591715864604836388793415892566172026938117425823421265104475915417189998177707686618953394346626118598568848409392486393431275864905600748118509682143284004515656206315212228169573960146971958847579871509209687709755403",
+            "den": "21675142283208568355530940920999142187572845848072219153647881064607296161446377030953627938867314415467117213819344472505227512758064470299653390372341679992536822180447518720000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "1.103728803738441"
+          },
+          "endpoint_value_present": true,
+          "ownership_component_id": "R_w_A04_A03:left_boundary_unowned:0:1:128"
+        },
+        {
+          "row_id": "R_u_A10_A09",
+          "role": "receiver",
+          "endpoint_ref": "receiver_range_q.lo",
+          "endpoint_value": {
+            "num": "92017946625552320131111667196226376274649211724864932821473506991033765671679516696103350990527149858508676422567471818429704183571236733267611955715653904999304852983089366014201600952918509682143284004515656206315212228169573960146971958847579871509209687709755403",
+            "den": "21675142283208568355530940920999142187572845848072219153647881064607296161446377030953627938867314415467117213819344472505227512758064470299653390372341679992536822180447518720000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "4.245321457328441"
+          },
+          "endpoint_value_present": true,
+          "ownership_component_id": "R_u_A10_A09:left_boundary_unowned:0:1:128"
+        }
+      ],
+      "required_endpoint_functionals": [
+        {
+          "action": "raise_receiver_lower_boundary",
+          "sign": 1,
+          "target_equation": "E_raise_receiver_lower_boundary(Psi_fc_rho_receiver_lower) = +1",
+          "zero_equation": "All non-target one-leaf boundary functionals vanish on Psi_fc_rho_receiver_lower."
+        }
+      ],
+      "missing_binding_fields": [
+        "endpoint_boundary_binding_present",
+        "endpoint_functional_domain_present",
+        "domain_chart_declared",
+        "evaluation_map_declared",
+        "endpoint_value_bound_to_domain",
+        "theta_support_present",
+        "basis_formula_present",
+        "basis_derivative_formula_present",
+        "x_update_basis_present",
+        "xdot_update_basis_present",
+        "mesh_update_rule_present",
+        "endpoint_motion_rule_present",
+        "source_monotonicity_rule_present",
+        "receiver_monotonicity_rule_present",
+        "periodic_extension_rule_present",
+        "c1_gluing_rule_present",
+        "non_target_endpoint_functionals_zero_certified",
+        "exact_screen_zero_certified",
+        "rank_certified"
+      ],
+      "required_fields_present": {
+        "source_audit_imported": true,
+        "binding_no_go_imported": true,
+        "history_realization_contract_imported": true,
+        "history_realization_theorem_attempt_imported": true,
+        "domain_evaluation_contract_imported": true,
+        "component_union_chart_certificate_imported": true,
+        "post_component_union_layer_imported": true,
+        "basis_symbol_declared": true,
+        "endpoint_boundary_action_declared": true,
+        "boundary_delta_sign_consistent": true,
+        "target_endpoint_ref_declared": true,
+        "target_endpoint_value_present": true,
+        "component_union_domain_constructed": true,
+        "target_endpoint_evaluation_locator_constructed": true,
+        "target_action_exact_under_component_locator": true,
+        "opposite_endpoint_zero_under_component_locator": true,
+        "evaluation_map_symbol_declared": true,
+        "endpoint_evaluation_rule_declared": true,
+        "endpoint_boundary_binding_source_data_ready": true,
+        "endpoint_boundary_binding_constructed": false,
+        "same_packet_history_update_formula_present": false,
+        "endpoint_motion_rule_constructed": false,
+        "endpoint_evaluation_rule_constructed": false,
+        "endpoint_evaluation_map_constructed": false,
+        "full_endpoint_evaluation_map_constructed": false,
+        "global_domain_evaluation_map_constructed": false,
+        "non_target_endpoint_zero_certified": false,
+        "exact_screen_zero_certified": false,
+        "rank_certified": false,
+        "binding_contract_satisfied": false,
+        "candidate_artifacts_present": false,
+        "root_topology_recertified_for_candidate_change": false,
+        "proof_interval_v1_v6_rerun_for_candidate_change": false
+      },
+      "endpoint_boundary_binding_source_data_ready": true,
+      "binding_contract_satisfied": false,
+      "construction_blocker_fields": [
+        "endpoint_boundary_binding_constructed",
+        "same_packet_history_update_formula_present",
+        "endpoint_motion_rule_constructed",
+        "endpoint_evaluation_rule_constructed",
+        "endpoint_evaluation_map_constructed",
+        "full_endpoint_evaluation_map_constructed",
+        "global_domain_evaluation_map_constructed",
+        "non_target_endpoint_zero_certified",
+        "exact_screen_zero_certified",
+        "rank_certified",
+        "binding_contract_satisfied",
+        "candidate_artifacts_present",
+        "root_topology_recertified_for_candidate_change",
+        "proof_interval_v1_v6_rerun_for_candidate_change"
+      ],
+      "obstruction": "The endpoint has a declared boundary action, signed target, target endpoint value, component-union domain, target locator, evaluation-map symbol, and declared endpoint evaluation rule. These source data are ready for a boundary-binding construction attempt, but the packet still supplies no endpoint boundary binding, same-packet history update formula, endpoint motion rule, endpoint evaluation map, exact $B\\xi=0$, rank certificate, candidate artifacts, topology recertification, or proof-interval replay."
+    },
+    {
+      "id": "fc_sigma_source_upper",
+      "role": "source",
+      "source_symbol": "sigma_source_upper",
+      "basis_symbol": "Psi_fc_sigma_source_upper",
+      "endpoint_functional_id": "E_raise_source_inner_boundary",
+      "row_uses": [
+        "R_u_A07_A06"
+      ],
+      "boundary_actions": [
+        "raise_source_inner_boundary"
+      ],
+      "boundary_delta_signs": [
+        1
+      ],
+      "target_equation": "E_raise_source_inner_boundary(Psi_fc_sigma_source_upper) = +1",
+      "target_action": "raise_source_inner_boundary",
+      "target_sign": 1,
+      "domain_symbol": "D_fc_sigma_source_upper",
+      "chart_symbol": "chi_fc_sigma_source_upper",
+      "evaluation_map_symbol": "ev_fc_sigma_source_upper",
+      "support_interval_ids": [
+        "A06"
+      ],
+      "target_endpoint_refs": [
+        {
+          "row_id": "R_u_A07_A06",
+          "role": "source",
+          "endpoint_ref": "source_inner_range_q.hi",
+          "endpoint_value": {
+            "num": "913404831589878227955650815249056063409642527436920989775347098713309507776410739373971247745865597132198216856434792485603225886341201786313983387101459534828848824327408487389612164487120225480879904703610257721587148795406165256750308709775447069334359579391187319193184173764651953274813153438754742706218571847990586766227306909373630379789945133405628741195160585918258878758173184554958903787",
+            "den": "206346864613173617903075239304684018917707380895670204800941091511283920337200907269932265673227619093131480070568031876858757312792787978850537940266680115688946560049691815211595107577630454504956166122639636766599124202641876016875921671462507002857788692914294746966770909427010307620000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "4.426550572029212"
+          },
+          "endpoint_value_present": true,
+          "ownership_component_id": "R_u_A07_A06:left_boundary_unowned:0:1:128"
+        }
+      ],
+      "required_endpoint_functionals": [
+        {
+          "action": "raise_source_inner_boundary",
+          "sign": 1,
+          "target_equation": "E_raise_source_inner_boundary(Psi_fc_sigma_source_upper) = +1",
+          "zero_equation": "All non-target one-leaf boundary functionals vanish on Psi_fc_sigma_source_upper."
+        }
+      ],
+      "missing_binding_fields": [
+        "endpoint_boundary_binding_present",
+        "endpoint_functional_domain_present",
+        "domain_chart_declared",
+        "evaluation_map_declared",
+        "endpoint_value_bound_to_domain",
+        "theta_support_present",
+        "basis_formula_present",
+        "basis_derivative_formula_present",
+        "x_update_basis_present",
+        "xdot_update_basis_present",
+        "mesh_update_rule_present",
+        "endpoint_motion_rule_present",
+        "source_monotonicity_rule_present",
+        "receiver_monotonicity_rule_present",
+        "periodic_extension_rule_present",
+        "c1_gluing_rule_present",
+        "non_target_endpoint_functionals_zero_certified",
+        "exact_screen_zero_certified",
+        "rank_certified"
+      ],
+      "required_fields_present": {
+        "source_audit_imported": true,
+        "binding_no_go_imported": true,
+        "history_realization_contract_imported": true,
+        "history_realization_theorem_attempt_imported": true,
+        "domain_evaluation_contract_imported": true,
+        "component_union_chart_certificate_imported": true,
+        "post_component_union_layer_imported": true,
+        "basis_symbol_declared": true,
+        "endpoint_boundary_action_declared": true,
+        "boundary_delta_sign_consistent": true,
+        "target_endpoint_ref_declared": true,
+        "target_endpoint_value_present": true,
+        "component_union_domain_constructed": true,
+        "target_endpoint_evaluation_locator_constructed": true,
+        "target_action_exact_under_component_locator": true,
+        "opposite_endpoint_zero_under_component_locator": true,
+        "evaluation_map_symbol_declared": true,
+        "endpoint_evaluation_rule_declared": true,
+        "endpoint_boundary_binding_source_data_ready": true,
+        "endpoint_boundary_binding_constructed": false,
+        "same_packet_history_update_formula_present": false,
+        "endpoint_motion_rule_constructed": false,
+        "endpoint_evaluation_rule_constructed": false,
+        "endpoint_evaluation_map_constructed": false,
+        "full_endpoint_evaluation_map_constructed": false,
+        "global_domain_evaluation_map_constructed": false,
+        "non_target_endpoint_zero_certified": false,
+        "exact_screen_zero_certified": false,
+        "rank_certified": false,
+        "binding_contract_satisfied": false,
+        "candidate_artifacts_present": false,
+        "root_topology_recertified_for_candidate_change": false,
+        "proof_interval_v1_v6_rerun_for_candidate_change": false
+      },
+      "endpoint_boundary_binding_source_data_ready": true,
+      "binding_contract_satisfied": false,
+      "construction_blocker_fields": [
+        "endpoint_boundary_binding_constructed",
+        "same_packet_history_update_formula_present",
+        "endpoint_motion_rule_constructed",
+        "endpoint_evaluation_rule_constructed",
+        "endpoint_evaluation_map_constructed",
+        "full_endpoint_evaluation_map_constructed",
+        "global_domain_evaluation_map_constructed",
+        "non_target_endpoint_zero_certified",
+        "exact_screen_zero_certified",
+        "rank_certified",
+        "binding_contract_satisfied",
+        "candidate_artifacts_present",
+        "root_topology_recertified_for_candidate_change",
+        "proof_interval_v1_v6_rerun_for_candidate_change"
+      ],
+      "obstruction": "The endpoint has a declared boundary action, signed target, target endpoint value, component-union domain, target locator, evaluation-map symbol, and declared endpoint evaluation rule. These source data are ready for a boundary-binding construction attempt, but the packet still supplies no endpoint boundary binding, same-packet history update formula, endpoint motion rule, endpoint evaluation map, exact $B\\xi=0$, rank certificate, candidate artifacts, topology recertification, or proof-interval replay."
+    },
+    {
+      "id": "fc_rho_receiver_upper",
+      "role": "receiver",
+      "source_symbol": "rho_receiver_upper",
+      "basis_symbol": "Psi_fc_rho_receiver_upper",
+      "endpoint_functional_id": "E_lower_receiver_upper_boundary",
+      "row_uses": [
+        "R_u_A07_A06"
+      ],
+      "boundary_actions": [
+        "lower_receiver_upper_boundary"
+      ],
+      "boundary_delta_signs": [
+        -1
+      ],
+      "target_equation": "E_lower_receiver_upper_boundary(Psi_fc_rho_receiver_upper) = -1",
+      "target_action": "lower_receiver_upper_boundary",
+      "target_sign": -1,
+      "domain_symbol": "D_fc_rho_receiver_upper",
+      "chart_symbol": "chi_fc_rho_receiver_upper",
+      "evaluation_map_symbol": "ev_fc_rho_receiver_upper",
+      "support_interval_ids": [
+        "A07"
+      ],
+      "target_endpoint_refs": [
+        {
+          "row_id": "R_u_A07_A06",
+          "role": "receiver",
+          "endpoint_ref": "receiver_range_q.hi",
+          "endpoint_value": {
+            "num": "3668029164140711604577729486863140436790318195624021665330903488155589948894674146747657134263392501996316122274977383039900142243661083092548626977248308735401783795478778114028913265019623054326760136351852179090806418757556730841452472939804564785882610960882651271513541783309043807372820860035509788923764248889215986303091136332460594362052978091238556407738146953363553182897981638817059",
+            "den": "828596695543815221599758647695082692964461058923279327772242187591733988576623986519727065831732668860203787760282996822216634372487868238046012967329224194146875293967586938850756257048932505933792723416710197674409478329579910129602233268305361403390904204412285963826325144988193989487000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "4.426796756331923"
+          },
+          "endpoint_value_present": true,
+          "ownership_component_id": "R_u_A07_A06:left_boundary_unowned:0:1:128"
+        }
+      ],
+      "required_endpoint_functionals": [
+        {
+          "action": "lower_receiver_upper_boundary",
+          "sign": -1,
+          "target_equation": "E_lower_receiver_upper_boundary(Psi_fc_rho_receiver_upper) = -1",
+          "zero_equation": "All non-target one-leaf boundary functionals vanish on Psi_fc_rho_receiver_upper."
+        }
+      ],
+      "missing_binding_fields": [
+        "endpoint_boundary_binding_present",
+        "endpoint_functional_domain_present",
+        "domain_chart_declared",
+        "evaluation_map_declared",
+        "endpoint_value_bound_to_domain",
+        "theta_support_present",
+        "basis_formula_present",
+        "basis_derivative_formula_present",
+        "x_update_basis_present",
+        "xdot_update_basis_present",
+        "mesh_update_rule_present",
+        "endpoint_motion_rule_present",
+        "source_monotonicity_rule_present",
+        "receiver_monotonicity_rule_present",
+        "periodic_extension_rule_present",
+        "c1_gluing_rule_present",
+        "non_target_endpoint_functionals_zero_certified",
+        "exact_screen_zero_certified",
+        "rank_certified"
+      ],
+      "required_fields_present": {
+        "source_audit_imported": true,
+        "binding_no_go_imported": true,
+        "history_realization_contract_imported": true,
+        "history_realization_theorem_attempt_imported": true,
+        "domain_evaluation_contract_imported": true,
+        "component_union_chart_certificate_imported": true,
+        "post_component_union_layer_imported": true,
+        "basis_symbol_declared": true,
+        "endpoint_boundary_action_declared": true,
+        "boundary_delta_sign_consistent": true,
+        "target_endpoint_ref_declared": true,
+        "target_endpoint_value_present": true,
+        "component_union_domain_constructed": true,
+        "target_endpoint_evaluation_locator_constructed": true,
+        "target_action_exact_under_component_locator": true,
+        "opposite_endpoint_zero_under_component_locator": true,
+        "evaluation_map_symbol_declared": true,
+        "endpoint_evaluation_rule_declared": true,
+        "endpoint_boundary_binding_source_data_ready": true,
+        "endpoint_boundary_binding_constructed": false,
+        "same_packet_history_update_formula_present": false,
+        "endpoint_motion_rule_constructed": false,
+        "endpoint_evaluation_rule_constructed": false,
+        "endpoint_evaluation_map_constructed": false,
+        "full_endpoint_evaluation_map_constructed": false,
+        "global_domain_evaluation_map_constructed": false,
+        "non_target_endpoint_zero_certified": false,
+        "exact_screen_zero_certified": false,
+        "rank_certified": false,
+        "binding_contract_satisfied": false,
+        "candidate_artifacts_present": false,
+        "root_topology_recertified_for_candidate_change": false,
+        "proof_interval_v1_v6_rerun_for_candidate_change": false
+      },
+      "endpoint_boundary_binding_source_data_ready": true,
+      "binding_contract_satisfied": false,
+      "construction_blocker_fields": [
+        "endpoint_boundary_binding_constructed",
+        "same_packet_history_update_formula_present",
+        "endpoint_motion_rule_constructed",
+        "endpoint_evaluation_rule_constructed",
+        "endpoint_evaluation_map_constructed",
+        "full_endpoint_evaluation_map_constructed",
+        "global_domain_evaluation_map_constructed",
+        "non_target_endpoint_zero_certified",
+        "exact_screen_zero_certified",
+        "rank_certified",
+        "binding_contract_satisfied",
+        "candidate_artifacts_present",
+        "root_topology_recertified_for_candidate_change",
+        "proof_interval_v1_v6_rerun_for_candidate_change"
+      ],
+      "obstruction": "The endpoint has a declared boundary action, signed target, target endpoint value, component-union domain, target locator, evaluation-map symbol, and declared endpoint evaluation rule. These source data are ready for a boundary-binding construction attempt, but the packet still supplies no endpoint boundary binding, same-packet history update formula, endpoint motion rule, endpoint evaluation map, exact $B\\xi=0$, rank certificate, candidate artifacts, topology recertification, or proof-interval replay."
+    }
+  ],
+  "row_boundary_binding_source_data_audits": [
+    {
+      "row_id": "R_w_A04_A03",
+      "source_interval": "A03",
+      "receiver_interval": "A04",
+      "failed_side": "lo",
+      "boundary_side": "lower",
+      "source_variable": "fc_sigma_source_lower",
+      "receiver_variable": "fc_rho_receiver_lower",
+      "source_boundary_ref": "source_inner_range_q.lo",
+      "receiver_boundary_ref": "receiver_range_q.lo",
+      "source_boundary_value": {
+        "num": "22889475682709269533413042303837882332186381319318690739134385525004858014062592566793989041615601706730549026109295638036107447029424137018797622300140513390802684414087574023253585373959809013507853720323944442908548877462127674929541409468871666749595362048011028177978722442883",
+        "den": "20737813556676946596478600506564457667824085709013815187739169879824578869563979531491976751516110219329647110034464826298821156776657596726897777940411216903568068218430965044740096000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "display": "1.103755495734966"
+      },
+      "receiver_boundary_value": {
+        "num": "23923478863106302571634315954875162615478517415591715864604836388793415892566172026938117425823421265104475915417189998177707686618953394346626118598568848409392486393431275864905600748118509682143284004515656206315212228169573960146971958847579871509209687709755403",
+        "den": "21675142283208568355530940920999142187572845848072219153647881064607296161446377030953627938867314415467117213819344472505227512758064470299653390372341679992536822180447518720000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "display": "1.103728803738441"
+      },
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "source_boundary_ref_declared": true,
+        "receiver_boundary_ref_declared": true,
+        "source_boundary_value_present": true,
+        "receiver_boundary_value_present": true,
+        "source_boundary_delta_contract_defined": true,
+        "receiver_boundary_delta_contract_defined": true,
+        "source_component_union_chart_constructed": true,
+        "receiver_component_union_chart_constructed": true,
+        "combined_component_union_chart_pair_constructed": true,
+        "source_endpoint_boundary_binding_source_data_ready": true,
+        "receiver_endpoint_boundary_binding_source_data_ready": true,
+        "row_boundary_binding_source_data_ready": true,
+        "source_endpoint_motion_rule_constructed": false,
+        "receiver_endpoint_motion_rule_constructed": false,
+        "combined_boundary_binding_pair_constructed": false,
+        "proof_grade_boundary_opening_certified": false,
+        "same_packet_history_update_formula_present": false,
+        "candidate_artifacts_present": false,
+        "root_topology_recertified_for_candidate_change": false,
+        "proof_interval_v1_v6_rerun_for_candidate_change": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "row_boundary_binding_source_data_ready": true,
+      "row_ready": false,
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The row has source/receiver boundary refs and values, signed source/receiver boundary-delta contracts, and a component-union chart pair. It has no source/receiver endpoint motion rules, no boundary-binding pair, no proof-grade boundary-opening replay, and no row consumption."
+    },
+    {
+      "row_id": "R_u_A10_A09",
+      "source_interval": "A09",
+      "receiver_interval": "A10",
+      "failed_side": "lo",
+      "boundary_side": "lower",
+      "source_variable": "fc_sigma_source_lower",
+      "receiver_variable": "fc_rho_receiver_lower",
+      "source_boundary_ref": "source_inner_range_q.lo",
+      "receiver_boundary_ref": "receiver_range_q.lo",
+      "source_boundary_value": {
+        "num": "88039238403884674053822967818905235111225073503214998976753728260546758148600337509414313256205686466309292001480744708043739423236237287290884511028631553198684154987618253244383156638471153653507853720323944442908548877462127674929541409468871666749595362048011028177978722442883",
+        "den": "20737813556676946596478600506564457667824085709013815187739169879824578869563979531491976751516110219329647110034464826298821156776657596726897777940411216903568068218430965044740096000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "display": "4.245348149324966"
+      },
+      "receiver_boundary_value": {
+        "num": "92017946625552320131111667196226376274649211724864932821473506991033765671679516696103350990527149858508676422567471818429704183571236733267611955715653904999304852983089366014201600952918509682143284004515656206315212228169573960146971958847579871509209687709755403",
+        "den": "21675142283208568355530940920999142187572845848072219153647881064607296161446377030953627938867314415467117213819344472505227512758064470299653390372341679992536822180447518720000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "display": "4.245321457328441"
+      },
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "source_boundary_ref_declared": true,
+        "receiver_boundary_ref_declared": true,
+        "source_boundary_value_present": true,
+        "receiver_boundary_value_present": true,
+        "source_boundary_delta_contract_defined": true,
+        "receiver_boundary_delta_contract_defined": true,
+        "source_component_union_chart_constructed": true,
+        "receiver_component_union_chart_constructed": true,
+        "combined_component_union_chart_pair_constructed": true,
+        "source_endpoint_boundary_binding_source_data_ready": true,
+        "receiver_endpoint_boundary_binding_source_data_ready": true,
+        "row_boundary_binding_source_data_ready": true,
+        "source_endpoint_motion_rule_constructed": false,
+        "receiver_endpoint_motion_rule_constructed": false,
+        "combined_boundary_binding_pair_constructed": false,
+        "proof_grade_boundary_opening_certified": false,
+        "same_packet_history_update_formula_present": false,
+        "candidate_artifacts_present": false,
+        "root_topology_recertified_for_candidate_change": false,
+        "proof_interval_v1_v6_rerun_for_candidate_change": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "row_boundary_binding_source_data_ready": true,
+      "row_ready": false,
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The row has source/receiver boundary refs and values, signed source/receiver boundary-delta contracts, and a component-union chart pair. It has no source/receiver endpoint motion rules, no boundary-binding pair, no proof-grade boundary-opening replay, and no row consumption."
+    },
+    {
+      "row_id": "R_u_A07_A06",
+      "source_interval": "A06",
+      "receiver_interval": "A07",
+      "failed_side": "hi",
+      "boundary_side": "upper",
+      "source_variable": "fc_sigma_source_upper",
+      "receiver_variable": "fc_rho_receiver_upper",
+      "source_boundary_ref": "source_inner_range_q.hi",
+      "receiver_boundary_ref": "receiver_range_q.hi",
+      "source_boundary_value": {
+        "num": "913404831589878227955650815249056063409642527436920989775347098713309507776410739373971247745865597132198216856434792485603225886341201786313983387101459534828848824327408487389612164487120225480879904703610257721587148795406165256750308709775447069334359579391187319193184173764651953274813153438754742706218571847990586766227306909373630379789945133405628741195160585918258878758173184554958903787",
+        "den": "206346864613173617903075239304684018917707380895670204800941091511283920337200907269932265673227619093131480070568031876858757312792787978850537940266680115688946560049691815211595107577630454504956166122639636766599124202641876016875921671462507002857788692914294746966770909427010307620000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "display": "4.426550572029212"
+      },
+      "receiver_boundary_value": {
+        "num": "3668029164140711604577729486863140436790318195624021665330903488155589948894674146747657134263392501996316122274977383039900142243661083092548626977248308735401783795478778114028913265019623054326760136351852179090806418757556730841452472939804564785882610960882651271513541783309043807372820860035509788923764248889215986303091136332460594362052978091238556407738146953363553182897981638817059",
+        "den": "828596695543815221599758647695082692964461058923279327772242187591733988576623986519727065831732668860203787760282996822216634372487868238046012967329224194146875293967586938850756257048932505933792723416710197674409478329579910129602233268305361403390904204412285963826325144988193989487000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "display": "4.426796756331923"
+      },
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "source_boundary_ref_declared": true,
+        "receiver_boundary_ref_declared": true,
+        "source_boundary_value_present": true,
+        "receiver_boundary_value_present": true,
+        "source_boundary_delta_contract_defined": true,
+        "receiver_boundary_delta_contract_defined": true,
+        "source_component_union_chart_constructed": true,
+        "receiver_component_union_chart_constructed": true,
+        "combined_component_union_chart_pair_constructed": true,
+        "source_endpoint_boundary_binding_source_data_ready": true,
+        "receiver_endpoint_boundary_binding_source_data_ready": true,
+        "row_boundary_binding_source_data_ready": true,
+        "source_endpoint_motion_rule_constructed": false,
+        "receiver_endpoint_motion_rule_constructed": false,
+        "combined_boundary_binding_pair_constructed": false,
+        "proof_grade_boundary_opening_certified": false,
+        "same_packet_history_update_formula_present": false,
+        "candidate_artifacts_present": false,
+        "root_topology_recertified_for_candidate_change": false,
+        "proof_interval_v1_v6_rerun_for_candidate_change": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "row_boundary_binding_source_data_ready": true,
+      "row_ready": false,
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The row has source/receiver boundary refs and values, signed source/receiver boundary-delta contracts, and a component-union chart pair. It has no source/receiver endpoint motion rules, no boundary-binding pair, no proof-grade boundary-opening replay, and no row consumption."
+    }
+  ],
+  "summary": {
+    "endpoint_functionals": 4,
+    "rows": 3,
+    "source_audits_imported": 4,
+    "binding_no_go_imported": 4,
+    "history_realization_contracts_imported": 4,
+    "history_realization_theorem_attempts_imported": 4,
+    "domain_evaluation_contracts_imported": 4,
+    "component_union_chart_certificates_imported": 4,
+    "post_component_union_layers_imported": 4,
+    "basis_symbols_declared": 4,
+    "endpoint_boundary_actions_declared": 4,
+    "boundary_delta_sign_consistent_variables": 4,
+    "target_endpoint_refs_declared": 4,
+    "target_endpoint_values_present": 4,
+    "component_union_domains_constructed": 4,
+    "target_endpoint_evaluation_locators_constructed": 4,
+    "target_action_locators_exact": 4,
+    "opposite_endpoint_zero_locators_exact": 4,
+    "evaluation_map_symbols_declared": 4,
+    "endpoint_evaluation_rules_declared": 4,
+    "endpoint_boundary_binding_source_data_ready": 4,
+    "endpoint_boundary_bindings_constructed": 0,
+    "same_packet_history_update_formulas_present": 0,
+    "endpoint_motion_rules_constructed": 0,
+    "endpoint_evaluation_rules_constructed": 0,
+    "endpoint_evaluation_maps_constructed": 0,
+    "full_endpoint_evaluation_maps_constructed": 0,
+    "global_domain_evaluation_maps_constructed": 0,
+    "non_target_zero_certificates": 0,
+    "exact_screen_zero_certificates": 0,
+    "rank_certificates": 0,
+    "binding_contracts_satisfied": 0,
+    "candidate_artifacts_present": 0,
+    "topology_recertifications": 0,
+    "proof_interval_v1_v6_replays": 0,
+    "rows_with_boundary_refs_and_values": 3,
+    "rows_with_signed_boundary_delta_contracts": 3,
+    "rows_with_component_union_chart_pairs": 3,
+    "rows_with_boundary_binding_source_data_ready": 3,
+    "rows_with_boundary_binding_pairs": 0,
+    "proof_grade_boundary_opening_rows": 0,
+    "row_consumption_count": 0,
+    "branch_chart_authorized": false,
+    "endpoint_required_fields_certified_counts": {
+      "source_audit_imported": 4,
+      "binding_no_go_imported": 4,
+      "history_realization_contract_imported": 4,
+      "history_realization_theorem_attempt_imported": 4,
+      "domain_evaluation_contract_imported": 4,
+      "component_union_chart_certificate_imported": 4,
+      "post_component_union_layer_imported": 4,
+      "basis_symbol_declared": 4,
+      "endpoint_boundary_action_declared": 4,
+      "boundary_delta_sign_consistent": 4,
+      "target_endpoint_ref_declared": 4,
+      "target_endpoint_value_present": 4,
+      "component_union_domain_constructed": 4,
+      "target_endpoint_evaluation_locator_constructed": 4,
+      "target_action_exact_under_component_locator": 4,
+      "opposite_endpoint_zero_under_component_locator": 4,
+      "evaluation_map_symbol_declared": 4,
+      "endpoint_evaluation_rule_declared": 4,
+      "endpoint_boundary_binding_source_data_ready": 4,
+      "endpoint_boundary_binding_constructed": 0,
+      "same_packet_history_update_formula_present": 0,
+      "endpoint_motion_rule_constructed": 0,
+      "endpoint_evaluation_rule_constructed": 0,
+      "endpoint_evaluation_map_constructed": 0,
+      "full_endpoint_evaluation_map_constructed": 0,
+      "global_domain_evaluation_map_constructed": 0,
+      "non_target_endpoint_zero_certified": 0,
+      "exact_screen_zero_certified": 0,
+      "rank_certified": 0,
+      "binding_contract_satisfied": 0,
+      "candidate_artifacts_present": 0,
+      "root_topology_recertified_for_candidate_change": 0,
+      "proof_interval_v1_v6_rerun_for_candidate_change": 0
+    },
+    "row_required_fields_certified_counts": {
+      "row_locator_resolved": 3,
+      "source_boundary_ref_declared": 3,
+      "receiver_boundary_ref_declared": 3,
+      "source_boundary_value_present": 3,
+      "receiver_boundary_value_present": 3,
+      "source_boundary_delta_contract_defined": 3,
+      "receiver_boundary_delta_contract_defined": 3,
+      "source_component_union_chart_constructed": 3,
+      "receiver_component_union_chart_constructed": 3,
+      "combined_component_union_chart_pair_constructed": 3,
+      "source_endpoint_boundary_binding_source_data_ready": 3,
+      "receiver_endpoint_boundary_binding_source_data_ready": 3,
+      "row_boundary_binding_source_data_ready": 3,
+      "source_endpoint_motion_rule_constructed": 0,
+      "receiver_endpoint_motion_rule_constructed": 0,
+      "combined_boundary_binding_pair_constructed": 0,
+      "proof_grade_boundary_opening_certified": 0,
+      "same_packet_history_update_formula_present": 0,
+      "candidate_artifacts_present": 0,
+      "root_topology_recertified_for_candidate_change": 0,
+      "proof_interval_v1_v6_rerun_for_candidate_change": 0,
+      "row_consumed": 0,
+      "branch_chart_authorized": 0
+    }
+  }
+}

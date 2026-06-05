@@ -752,13 +752,28 @@ This keeps cooling in proper time and substrate evolution in absolute time expli
 
 ### Cosmological Propagation and Redshift Map
 
-For source emissivity at emission redshift $z_{\mathrm{em}}$, the observer-level mapping target is
+For source emissivity at a declared emission record $E$ and receiver record $R$, first compute the observer-level signed photon-frequency transfer budget
 
 $$
-\epsilon_\nu^{\mathrm{obs}}(z_{\mathrm{obs}}) = (1+z)^{-4}\,\epsilon_{\nu(1+z)}^{\mathrm{ff}}(z_{\mathrm{em}})\,\mathcal{T}(\nu, z_{\mathrm{em}}\to z_{\mathrm{obs}}),
+1+z_X
+=
+\exp Z_X^{E\to R},
+\qquad
+Z_X^{E\to R}
+=
+Z_{\mathrm{endpoint},X}
++Z_{\mathrm{source},X}
++Z_{\mathrm{launch},X}
++Y_{X,\mathrm{path}}.
 $$
 
-with $1+z \equiv (1+z_{\mathrm{em}})/(1+z_{\mathrm{obs}})$ and $\mathcal{T}$ the transfer factor (absorption/scattering in plasma and any Noether sea-specific opacity).
+The observer-level mapping target is then
+
+$$
+\epsilon_\nu^{\mathrm{obs}}(R) = (1+z_X)^{-4}\,\epsilon_{\nu(1+z_X)}^{\mathrm{ff}}(E)\,\mathcal{T}(\nu, E\to R),
+$$
+
+where $\mathcal{T}$ is the transfer factor for absorption, scattering in plasma, and any Noether sea-specific opacity. The $Y_{X,\mathrm{path}}$ term records signed frequency exchange along the path; $\mathcal{T}$ must not hide an unlogged photon-energy gain or loss. In the standard homogeneous limit this reduces to the conventional redshift notation with $1+z \equiv (1+z_{\mathrm{em}})/(1+z_{\mathrm{obs}})$.
 
 ### Thermal Equilibrium Assumptions in Evolving Noether Sea States
 
@@ -1204,15 +1219,28 @@ This is a heuristic competition product, not a claimed first-principles closure.
 
 ### Observer-Frame Transport
 
-For cosmology-facing use, source-frame emissivity must be propagated to observer-frame spectra with explicit redshift and transfer factors:
+For cosmology-facing use, source-frame emissivity must be propagated to observer-frame spectra with explicit signed photon-frequency-transfer and ordinary transfer factors. For a declared emission record $E$ and receiver record $R$, use
 
 $$
-j_{\nu}^{\mathrm{obs}}(z_{\mathrm{obs}}) = (1+z)^{-3} \, j_{\nu(1+z)}^{\mathrm{em}}(z_{\mathrm{em}})\,\mathcal{T}(\nu,z_{\mathrm{em}}\rightarrow z_{\mathrm{obs}}),
+1+z_X
+=
+\exp Z_X^{E\to R},
+\qquad
+Z_X^{E\to R}
+=
+Z_{\mathrm{endpoint},X}
++Z_{\mathrm{source},X}
++Z_{\mathrm{launch},X}
++Y_{X,\mathrm{path}}.
 $$
 
-Here $\mathcal{T}(\nu,z_{\mathrm{em}}\rightarrow z_{\mathrm{obs}})$ is the cumulative transfer function including absorption (for example, $e^{-\tau_{\gamma\gamma}(\nu,z)}$ for pair production on extragalactic background light) and any intervening scattering. For nearby sources ($z \ll 1$), $\mathcal{T} \approx 1$.
+$$
+j_{\nu}^{\mathrm{obs}}(R) = (1+z_X)^{-3} \, j_{\nu(1+z_X)}^{\mathrm{em}}(E)\,\mathcal{T}(\nu,E\rightarrow R),
+$$
 
-with $1+z \equiv (1+z_{\mathrm{em}})/(1+z_{\mathrm{obs}})$. In standard-limit regimes, this must reduce to conventional transport results used in high-energy astrophysics.
+Here $\mathcal{T}(\nu,E\rightarrow R)$ is the cumulative transfer function including absorption (for example, $e^{-\tau_{\gamma\gamma}(\nu,z)}$ for pair production on extragalactic background light) and any intervening scattering. The signed $Y_{X,\mathrm{path}}$ term must carry any Compton/Sunyaev-Zeldovich-like frequency exchange rather than being folded into a primitive expansion factor or hidden inside $\mathcal{T}$. For nearby sources ($z_X \ll 1$) with negligible path exchange, $\mathcal{T} \approx 1$.
+
+In the standard homogeneous limit, $1+z_X$ reduces to the conventional transport notation $1+z \equiv (1+z_{\mathrm{em}})/(1+z_{\mathrm{obs}})$. In standard-limit regimes, this must recover the conventional transport results used in high-energy astrophysics.
 
 When the path includes plasma or conducting material, the transfer function must carry the same response rows used by [Radiation](../../../../markdown/aaa/reactions/radiation.md). In an effective plasma comparison,
 

@@ -1,0 +1,1332 @@
+{
+  "schema": "breather-higher-fold-fold-coordinate-endpoint-functional-ref-value-carrier-introduction-constructive-same-packet-full-endpoint-boundary-binding-dependency-lemma-proof-attempt-v1",
+  "status": "priority-only-fold-coordinate-endpoint-functional-ref-value-carrier-introduction-constructive-same-packet-full-endpoint-boundary-binding-dependency-lemma-proof-attempt-fail-closed-full-binding-inputs-present-same-packet-full-binding-dependency-absent-no-row-consumption",
+  "packet_id": "fresh-v10-higher-fold-12-root-rebuild-v0",
+  "fold_coordinate_packet_id": "fresh-v10-fold-coordinate-collocation-nonlinear-tangent-matrix-v0",
+  "claim_level": "priority-only fail-closed proof attempt; full endpoint boundary-binding construction inputs are present, but same-packet full endpoint boundary-binding dependencies are absent",
+  "source_artifacts": [
+    {
+      "label": "same_packet_ref_value_carrier_field_dependency_closure_packet",
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_ref_value_carrier_introduction_same_packet_ref_value_carrier_field_dependency_closure_lemma_proof_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_ref_value_carrier_introduction_same_packet_ref_value_carrier_field_dependency_closure_lemma_proof_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "sha256": "3f1eedeedaf979df80f012d44da8d9207927764c4f4ebf116c7d1f0d8d89fd39"
+    },
+    {
+      "label": "full_endpoint_boundary_binding_construction_attempt",
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_full_endpoint_boundary_binding_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_full_endpoint_boundary_binding_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "sha256": "37739226a574e2bcee83c399c503f2e59bf2926aa23a9084500c6918483a4a1e"
+    },
+    {
+      "label": "endpoint_boundary_binding_ref_carrier_full_binding_packet",
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_endpoint_boundary_binding_ref_carrier_full_binding_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_endpoint_boundary_binding_ref_carrier_full_binding_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "sha256": "6904d4a57e58918918ca5583a44c50cd3150967e4fdd9000f78178621b04c5be"
+    },
+    {
+      "label": "endpoint_value_binding_map_construction_packet",
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_endpoint_value_binding_map_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_endpoint_value_binding_map_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "sha256": "be4bd97a224256f16b2a8b538834841238ddaf2bbe12f35fac005260f8b4004e"
+    },
+    {
+      "label": "same_packet_witness_object_carrier_field_construction_packet",
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_same_packet_endpoint_boundary_binding_witness_object_carrier_field_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_same_packet_endpoint_boundary_binding_witness_object_carrier_field_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "sha256": "49e0fd279da7cae67977162eed375c030440df30eb638e5df31b870cd2782186"
+    },
+    {
+      "label": "same_packet_non_domain_carrier_obstruction_packet",
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_same_packet_endpoint_boundary_binding_witness_object_non_domain_carrier_obstruction_packet.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_same_packet_endpoint_boundary_binding_witness_object_non_domain_carrier_obstruction_packet.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "sha256": "bcd2fd6b78b82338003146cf227b3071c5eb865f8dc79dcffb9947bbc42a9898"
+    }
+  ],
+  "proof_attempt_target": {
+    "target_id": "ref-value-carrier-introduction-constructive-same-packet-full-endpoint-boundary-binding-dependency-lemma-proof-attempt",
+    "selected_route": "construct_same_packet_full_endpoint_boundary_binding_dependency_from_full_binding_layer",
+    "out_of_scope_route": "carrier_field_construction_or_L_adm_discharge_route",
+    "statement": "Attempt to prove that the full endpoint boundary-binding construction layer supplies the same-packet full endpoint boundary-binding and endpoint boundary-binding dependencies required by the ref/value carrier-field dependency-closure packet.",
+    "accepted_as_blocker_discharge_if": "Every endpoint has proof-grade full endpoint boundary-binding construction fields and same-packet full endpoint boundary-binding and endpoint boundary-binding dependency fields exposed in both the full-binding construction layer and the carrier-field dependency layer.",
+    "first_exact_blocker": "full_binding_packet_full_endpoint_boundary_binding_constructed, carrier_field_layer_full_endpoint_boundary_binding_constructed, same_packet_full_endpoint_boundary_binding_dependency_present, and same_packet_endpoint_boundary_binding_dependency_present"
+  },
+  "downstream_policy": "Ref/value dependency closure, carrier-field construction, `L_adm`, row consumption, and branch-chart authorization remain downstream of proof-grade same-packet full and endpoint boundary-binding dependencies.",
+  "no_promotion_rule": "Full endpoint boundary-binding construction inputs, source endpoint-boundary-binding refs, and source endpoint value bindings are not promoted to same-packet dependency fields without constructed proof-grade full endpoint boundary bindings and endpoint boundary bindings in the same-packet carrier-field layers.",
+  "proof_burdens": [
+    {
+      "burden_id": "FB_full_binding_packet_full_binding_constructed",
+      "missing_field": "full_binding_packet_full_endpoint_boundary_binding_constructed",
+      "required_evidence": "A constructed proof-grade full endpoint boundary binding in the full-binding construction packet."
+    },
+    {
+      "burden_id": "FB_carrier_field_layer_full_binding_constructed",
+      "missing_field": "carrier_field_layer_full_endpoint_boundary_binding_constructed",
+      "required_evidence": "A constructed proof-grade full endpoint boundary binding in the same-packet carrier-field construction layer."
+    },
+    {
+      "burden_id": "FB_full_endpoint_boundary_binding_dependency",
+      "missing_field": "same_packet_full_endpoint_boundary_binding_dependency_present",
+      "required_evidence": "A proof-grade full endpoint boundary binding exposed in the same-packet carrier-field dependency layer."
+    },
+    {
+      "burden_id": "FB_endpoint_boundary_binding_dependency",
+      "missing_field": "same_packet_endpoint_boundary_binding_dependency_present",
+      "required_evidence": "A proof-grade endpoint boundary binding exposed in the same-packet carrier-field dependency layer."
+    },
+    {
+      "burden_id": "FB_endpoint_value_bound_dependency",
+      "missing_field": "same_packet_endpoint_value_bound_to_boundary_binding_dependency_present",
+      "required_evidence": "A proof-grade endpoint value bound to a constructed endpoint boundary binding in the same-packet layer."
+    },
+    {
+      "burden_id": "FB_witness_object_ref_dependency",
+      "missing_field": "same_packet_witness_object_ref_dependency_present",
+      "required_evidence": "A proof-grade same-packet witness-object reference dependency, not only a source-layer endpoint-boundary-binding ref."
+    },
+    {
+      "burden_id": "FB_witness_object_value_map_dependency",
+      "missing_field": "same_packet_witness_object_value_map_dependency_present",
+      "required_evidence": "A proof-grade same-packet witness-object value-map dependency, not only a source-layer endpoint value map."
+    },
+    {
+      "burden_id": "FB_ref_dependency_closure",
+      "missing_field": "same_packet_ref_carrier_field_dependencies_closed",
+      "required_evidence": "Ref carrier-field dependency closure after the full and endpoint boundary-binding dependencies are present."
+    },
+    {
+      "burden_id": "FB_value_map_dependency_closure",
+      "missing_field": "same_packet_value_map_carrier_field_dependencies_closed",
+      "required_evidence": "Value-map carrier-field dependency closure after the endpoint binding and value-bound dependencies are present."
+    },
+    {
+      "burden_id": "FB_dependency_lemma",
+      "missing_field": "full_binding_dependency_lemma_present",
+      "required_evidence": "A lemma proving that the full endpoint boundary-binding construction layer supplies same-packet dependency fields."
+    }
+  ],
+  "proof_routes": [
+    {
+      "route_id": "contract_target_input_as_full_binding_dependency",
+      "status": "rejected-input-only",
+      "required_fields": [
+        "full_binding_construction_input_ready",
+        "same_packet_full_endpoint_boundary_binding_dependency_present"
+      ],
+      "limitation": "Input-ready full binding contract targets are not proof-grade full endpoint boundary-binding dependencies."
+    },
+    {
+      "route_id": "source_ref_and_value_bindings_as_endpoint_binding_dependency",
+      "status": "rejected-source-layer",
+      "required_fields": [
+        "source_ref_packet_endpoint_boundary_binding_constructed",
+        "source_value_packet_endpoint_value_bound_to_boundary_binding",
+        "same_packet_endpoint_boundary_binding_dependency_present",
+        "same_packet_endpoint_value_bound_to_boundary_binding_dependency_present"
+      ],
+      "limitation": "Source-layer endpoint refs and value bindings are not same-packet endpoint boundary-binding dependencies."
+    },
+    {
+      "route_id": "full_binding_packet_as_same_packet_dependency",
+      "status": "blocked",
+      "required_fields": [
+        "full_binding_packet_full_endpoint_boundary_binding_constructed",
+        "full_binding_packet_endpoint_boundary_binding_constructed",
+        "full_binding_packet_endpoint_value_bound_to_boundary_binding",
+        "same_packet_full_endpoint_boundary_binding_dependency_present",
+        "same_packet_endpoint_boundary_binding_dependency_present"
+      ],
+      "limitation": "The full-binding construction packet has inputs ready but constructs no full binding, endpoint binding, or value-bound field."
+    },
+    {
+      "route_id": "carrier_field_layer_as_dependency_witness",
+      "status": "blocked",
+      "required_fields": [
+        "carrier_field_layer_full_endpoint_boundary_binding_constructed",
+        "carrier_field_layer_endpoint_boundary_binding_constructed",
+        "obstruction_layer_full_endpoint_boundary_binding_constructed",
+        "obstruction_layer_endpoint_boundary_binding_constructed",
+        "same_packet_full_endpoint_boundary_binding_dependency_present"
+      ],
+      "limitation": "The carrier-field construction and obstruction layers still record the same proof-grade binding fields as absent."
+    },
+    {
+      "route_id": "dependency_closure_after_full_binding_dependency",
+      "status": "blocked-downstream",
+      "required_fields": [
+        "same_packet_full_endpoint_boundary_binding_dependency_present",
+        "same_packet_endpoint_boundary_binding_dependency_present",
+        "same_packet_ref_carrier_field_dependencies_closed",
+        "same_packet_value_map_carrier_field_dependencies_closed"
+      ],
+      "limitation": "Ref/value dependency closure remains downstream of the proof-grade full and endpoint boundary-binding dependencies."
+    }
+  ],
+  "endpoint_fields": [
+    "dependency_closure_packet_input_present",
+    "full_binding_construction_input_ready",
+    "full_binding_packet_full_endpoint_boundary_binding_constructed",
+    "full_binding_packet_endpoint_boundary_binding_constructed",
+    "full_binding_packet_endpoint_value_bound_to_boundary_binding",
+    "full_binding_packet_binding_contract_satisfied",
+    "source_ref_packet_endpoint_boundary_binding_constructed",
+    "source_ref_packet_witness_object_has_endpoint_boundary_binding_ref",
+    "source_value_packet_endpoint_value_binding_map_constructed",
+    "source_value_packet_endpoint_value_bound_to_boundary_binding",
+    "carrier_field_layer_full_endpoint_boundary_binding_constructed",
+    "carrier_field_layer_endpoint_boundary_binding_constructed",
+    "carrier_field_layer_endpoint_value_bound_to_boundary_binding",
+    "obstruction_layer_full_endpoint_boundary_binding_constructed",
+    "obstruction_layer_endpoint_boundary_binding_constructed",
+    "obstruction_layer_endpoint_value_bound_to_boundary_binding",
+    "same_packet_full_endpoint_boundary_binding_dependency_present",
+    "same_packet_endpoint_boundary_binding_dependency_present",
+    "same_packet_endpoint_value_bound_to_boundary_binding_dependency_present",
+    "same_packet_witness_object_ref_dependency_present",
+    "same_packet_witness_object_value_map_dependency_present",
+    "same_packet_ref_carrier_field_dependencies_closed",
+    "same_packet_value_map_carrier_field_dependencies_closed",
+    "full_binding_dependency_lemma_present",
+    "endpoint_binding_dependency_lemma_present",
+    "source_full_binding_input_not_promoted",
+    "source_endpoint_binding_not_promoted",
+    "row_consumption_authorized",
+    "branch_chart_authorized"
+  ],
+  "row_fields": [
+    "row_locator_resolved",
+    "source_full_binding_input_ready",
+    "receiver_full_binding_input_ready",
+    "combined_full_binding_input_ready",
+    "source_same_packet_full_binding_dependency_present",
+    "receiver_same_packet_full_binding_dependency_present",
+    "combined_same_packet_full_binding_dependency_present",
+    "source_same_packet_endpoint_binding_dependency_present",
+    "receiver_same_packet_endpoint_binding_dependency_present",
+    "combined_same_packet_endpoint_binding_dependency_present",
+    "source_same_packet_value_bound_dependency_present",
+    "receiver_same_packet_value_bound_dependency_present",
+    "combined_same_packet_value_bound_dependency_present",
+    "source_ref_dependency_closure_present",
+    "receiver_ref_dependency_closure_present",
+    "combined_ref_dependency_closure_present",
+    "source_value_map_dependency_closure_present",
+    "receiver_value_map_dependency_closure_present",
+    "combined_value_map_dependency_closure_present",
+    "row_unblocked",
+    "row_consumed",
+    "branch_chart_authorized"
+  ],
+  "endpoint_same_packet_full_endpoint_boundary_binding_dependency_lemma_proof_attempts": [
+    {
+      "id": "fc_sigma_source_lower",
+      "endpoint_functional_id": "E_lower_source_inner_boundary",
+      "role": "source",
+      "same_packet_full_endpoint_boundary_binding_dependency_lemma_proof_attempt_id": "same_packet_full_endpoint_boundary_binding_dependency_lemma_proof_attempt:fc_sigma_source_lower",
+      "source_dependency_closure_lemma_proof_attempt_id": "same_packet_ref_value_carrier_field_dependency_closure_lemma_proof_attempt:fc_sigma_source_lower",
+      "source_full_binding_construction_attempt_id": "full_endpoint_boundary_binding_contract_target:fc_sigma_source_lower",
+      "source_ref_carrier_full_binding_construction_attempt_id": "endpoint_boundary_binding_ref_carrier_full_binding_construction_attempt:fc_sigma_source_lower",
+      "source_endpoint_value_binding_map_construction_attempt_id": "endpoint_value_binding_map_construction_attempt:fc_sigma_source_lower",
+      "full_binding_dependency_evidence": {
+        "full_binding_construction_input_ready": true,
+        "full_binding_packet_full_endpoint_boundary_binding_constructed": false,
+        "full_binding_packet_endpoint_boundary_binding_constructed": false,
+        "full_binding_packet_endpoint_value_bound_to_boundary_binding": false,
+        "carrier_field_layer_full_endpoint_boundary_binding_constructed": false,
+        "obstruction_layer_full_endpoint_boundary_binding_constructed": false,
+        "same_packet_full_endpoint_boundary_binding_dependency_present": false,
+        "same_packet_endpoint_boundary_binding_dependency_present": false
+      },
+      "source_binding_evidence": {
+        "source_ref_packet_endpoint_boundary_binding_constructed": true,
+        "source_ref_packet_witness_object_has_endpoint_boundary_binding_ref": true,
+        "source_value_packet_endpoint_value_binding_map_constructed": true,
+        "source_value_packet_endpoint_value_bound_to_boundary_binding": true,
+        "source_endpoint_binding_not_promoted": true
+      },
+      "route_attempts": [
+        {
+          "route_id": "contract_target_input_as_full_binding_dependency",
+          "status": "rejected-input-only",
+          "required_fields": [
+            "full_binding_construction_input_ready",
+            "same_packet_full_endpoint_boundary_binding_dependency_present"
+          ],
+          "limitation": "Input-ready full binding contract targets are not proof-grade full endpoint boundary-binding dependencies.",
+          "missing_fields": [
+            "same_packet_full_endpoint_boundary_binding_dependency_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "source_ref_and_value_bindings_as_endpoint_binding_dependency",
+          "status": "rejected-source-layer",
+          "required_fields": [
+            "source_ref_packet_endpoint_boundary_binding_constructed",
+            "source_value_packet_endpoint_value_bound_to_boundary_binding",
+            "same_packet_endpoint_boundary_binding_dependency_present",
+            "same_packet_endpoint_value_bound_to_boundary_binding_dependency_present"
+          ],
+          "limitation": "Source-layer endpoint refs and value bindings are not same-packet endpoint boundary-binding dependencies.",
+          "missing_fields": [
+            "same_packet_endpoint_boundary_binding_dependency_present",
+            "same_packet_endpoint_value_bound_to_boundary_binding_dependency_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "full_binding_packet_as_same_packet_dependency",
+          "status": "blocked",
+          "required_fields": [
+            "full_binding_packet_full_endpoint_boundary_binding_constructed",
+            "full_binding_packet_endpoint_boundary_binding_constructed",
+            "full_binding_packet_endpoint_value_bound_to_boundary_binding",
+            "same_packet_full_endpoint_boundary_binding_dependency_present",
+            "same_packet_endpoint_boundary_binding_dependency_present"
+          ],
+          "limitation": "The full-binding construction packet has inputs ready but constructs no full binding, endpoint binding, or value-bound field.",
+          "missing_fields": [
+            "full_binding_packet_full_endpoint_boundary_binding_constructed",
+            "full_binding_packet_endpoint_boundary_binding_constructed",
+            "full_binding_packet_endpoint_value_bound_to_boundary_binding",
+            "same_packet_full_endpoint_boundary_binding_dependency_present",
+            "same_packet_endpoint_boundary_binding_dependency_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "carrier_field_layer_as_dependency_witness",
+          "status": "blocked",
+          "required_fields": [
+            "carrier_field_layer_full_endpoint_boundary_binding_constructed",
+            "carrier_field_layer_endpoint_boundary_binding_constructed",
+            "obstruction_layer_full_endpoint_boundary_binding_constructed",
+            "obstruction_layer_endpoint_boundary_binding_constructed",
+            "same_packet_full_endpoint_boundary_binding_dependency_present"
+          ],
+          "limitation": "The carrier-field construction and obstruction layers still record the same proof-grade binding fields as absent.",
+          "missing_fields": [
+            "carrier_field_layer_full_endpoint_boundary_binding_constructed",
+            "carrier_field_layer_endpoint_boundary_binding_constructed",
+            "obstruction_layer_full_endpoint_boundary_binding_constructed",
+            "obstruction_layer_endpoint_boundary_binding_constructed",
+            "same_packet_full_endpoint_boundary_binding_dependency_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "dependency_closure_after_full_binding_dependency",
+          "status": "blocked-downstream",
+          "required_fields": [
+            "same_packet_full_endpoint_boundary_binding_dependency_present",
+            "same_packet_endpoint_boundary_binding_dependency_present",
+            "same_packet_ref_carrier_field_dependencies_closed",
+            "same_packet_value_map_carrier_field_dependencies_closed"
+          ],
+          "limitation": "Ref/value dependency closure remains downstream of the proof-grade full and endpoint boundary-binding dependencies.",
+          "missing_fields": [
+            "same_packet_full_endpoint_boundary_binding_dependency_present",
+            "same_packet_endpoint_boundary_binding_dependency_present",
+            "same_packet_ref_carrier_field_dependencies_closed",
+            "same_packet_value_map_carrier_field_dependencies_closed"
+          ],
+          "passed": false
+        }
+      ],
+      "routes_passed": [],
+      "required_fields_present": {
+        "dependency_closure_packet_input_present": true,
+        "full_binding_construction_input_ready": true,
+        "full_binding_packet_full_endpoint_boundary_binding_constructed": false,
+        "full_binding_packet_endpoint_boundary_binding_constructed": false,
+        "full_binding_packet_endpoint_value_bound_to_boundary_binding": false,
+        "full_binding_packet_binding_contract_satisfied": false,
+        "source_ref_packet_endpoint_boundary_binding_constructed": true,
+        "source_ref_packet_witness_object_has_endpoint_boundary_binding_ref": true,
+        "source_value_packet_endpoint_value_binding_map_constructed": true,
+        "source_value_packet_endpoint_value_bound_to_boundary_binding": true,
+        "carrier_field_layer_full_endpoint_boundary_binding_constructed": false,
+        "carrier_field_layer_endpoint_boundary_binding_constructed": false,
+        "carrier_field_layer_endpoint_value_bound_to_boundary_binding": false,
+        "obstruction_layer_full_endpoint_boundary_binding_constructed": false,
+        "obstruction_layer_endpoint_boundary_binding_constructed": false,
+        "obstruction_layer_endpoint_value_bound_to_boundary_binding": false,
+        "same_packet_full_endpoint_boundary_binding_dependency_present": false,
+        "same_packet_endpoint_boundary_binding_dependency_present": false,
+        "same_packet_endpoint_value_bound_to_boundary_binding_dependency_present": false,
+        "same_packet_witness_object_ref_dependency_present": false,
+        "same_packet_witness_object_value_map_dependency_present": false,
+        "same_packet_ref_carrier_field_dependencies_closed": false,
+        "same_packet_value_map_carrier_field_dependencies_closed": false,
+        "full_binding_dependency_lemma_present": false,
+        "endpoint_binding_dependency_lemma_present": false,
+        "source_full_binding_input_not_promoted": true,
+        "source_endpoint_binding_not_promoted": true,
+        "row_consumption_authorized": false,
+        "branch_chart_authorized": false
+      },
+      "missing_proof_burdens": [
+        {
+          "burden_id": "FB_full_binding_packet_full_binding_constructed",
+          "missing_field": "full_binding_packet_full_endpoint_boundary_binding_constructed",
+          "required_evidence": "A constructed proof-grade full endpoint boundary binding in the full-binding construction packet.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_carrier_field_layer_full_binding_constructed",
+          "missing_field": "carrier_field_layer_full_endpoint_boundary_binding_constructed",
+          "required_evidence": "A constructed proof-grade full endpoint boundary binding in the same-packet carrier-field construction layer.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_full_endpoint_boundary_binding_dependency",
+          "missing_field": "same_packet_full_endpoint_boundary_binding_dependency_present",
+          "required_evidence": "A proof-grade full endpoint boundary binding exposed in the same-packet carrier-field dependency layer.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_endpoint_boundary_binding_dependency",
+          "missing_field": "same_packet_endpoint_boundary_binding_dependency_present",
+          "required_evidence": "A proof-grade endpoint boundary binding exposed in the same-packet carrier-field dependency layer.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_endpoint_value_bound_dependency",
+          "missing_field": "same_packet_endpoint_value_bound_to_boundary_binding_dependency_present",
+          "required_evidence": "A proof-grade endpoint value bound to a constructed endpoint boundary binding in the same-packet layer.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_witness_object_ref_dependency",
+          "missing_field": "same_packet_witness_object_ref_dependency_present",
+          "required_evidence": "A proof-grade same-packet witness-object reference dependency, not only a source-layer endpoint-boundary-binding ref.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_witness_object_value_map_dependency",
+          "missing_field": "same_packet_witness_object_value_map_dependency_present",
+          "required_evidence": "A proof-grade same-packet witness-object value-map dependency, not only a source-layer endpoint value map.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_ref_dependency_closure",
+          "missing_field": "same_packet_ref_carrier_field_dependencies_closed",
+          "required_evidence": "Ref carrier-field dependency closure after the full and endpoint boundary-binding dependencies are present.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_value_map_dependency_closure",
+          "missing_field": "same_packet_value_map_carrier_field_dependencies_closed",
+          "required_evidence": "Value-map carrier-field dependency closure after the endpoint binding and value-bound dependencies are present.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_dependency_lemma",
+          "missing_field": "full_binding_dependency_lemma_present",
+          "required_evidence": "A lemma proving that the full endpoint boundary-binding construction layer supplies same-packet dependency fields.",
+          "satisfied": false
+        }
+      ],
+      "missing_proof_burden_count": 10,
+      "first_exact_blockers": [
+        "full_binding_packet_full_endpoint_boundary_binding_constructed",
+        "carrier_field_layer_full_endpoint_boundary_binding_constructed",
+        "same_packet_full_endpoint_boundary_binding_dependency_present",
+        "same_packet_endpoint_boundary_binding_dependency_present"
+      ],
+      "first_exact_blocker": "full_binding_packet_full_endpoint_boundary_binding_constructed",
+      "row_consumption_authorized": false,
+      "branch_chart_authorized": false,
+      "obstruction": "Full endpoint boundary-binding construction inputs are ready, but neither the full-binding packet nor the same-packet carrier-field layers expose proof-grade full endpoint boundary-binding dependencies."
+    },
+    {
+      "id": "fc_rho_receiver_lower",
+      "endpoint_functional_id": "E_raise_receiver_lower_boundary",
+      "role": "receiver",
+      "same_packet_full_endpoint_boundary_binding_dependency_lemma_proof_attempt_id": "same_packet_full_endpoint_boundary_binding_dependency_lemma_proof_attempt:fc_rho_receiver_lower",
+      "source_dependency_closure_lemma_proof_attempt_id": "same_packet_ref_value_carrier_field_dependency_closure_lemma_proof_attempt:fc_rho_receiver_lower",
+      "source_full_binding_construction_attempt_id": "full_endpoint_boundary_binding_contract_target:fc_rho_receiver_lower",
+      "source_ref_carrier_full_binding_construction_attempt_id": "endpoint_boundary_binding_ref_carrier_full_binding_construction_attempt:fc_rho_receiver_lower",
+      "source_endpoint_value_binding_map_construction_attempt_id": "endpoint_value_binding_map_construction_attempt:fc_rho_receiver_lower",
+      "full_binding_dependency_evidence": {
+        "full_binding_construction_input_ready": true,
+        "full_binding_packet_full_endpoint_boundary_binding_constructed": false,
+        "full_binding_packet_endpoint_boundary_binding_constructed": false,
+        "full_binding_packet_endpoint_value_bound_to_boundary_binding": false,
+        "carrier_field_layer_full_endpoint_boundary_binding_constructed": false,
+        "obstruction_layer_full_endpoint_boundary_binding_constructed": false,
+        "same_packet_full_endpoint_boundary_binding_dependency_present": false,
+        "same_packet_endpoint_boundary_binding_dependency_present": false
+      },
+      "source_binding_evidence": {
+        "source_ref_packet_endpoint_boundary_binding_constructed": true,
+        "source_ref_packet_witness_object_has_endpoint_boundary_binding_ref": true,
+        "source_value_packet_endpoint_value_binding_map_constructed": true,
+        "source_value_packet_endpoint_value_bound_to_boundary_binding": true,
+        "source_endpoint_binding_not_promoted": true
+      },
+      "route_attempts": [
+        {
+          "route_id": "contract_target_input_as_full_binding_dependency",
+          "status": "rejected-input-only",
+          "required_fields": [
+            "full_binding_construction_input_ready",
+            "same_packet_full_endpoint_boundary_binding_dependency_present"
+          ],
+          "limitation": "Input-ready full binding contract targets are not proof-grade full endpoint boundary-binding dependencies.",
+          "missing_fields": [
+            "same_packet_full_endpoint_boundary_binding_dependency_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "source_ref_and_value_bindings_as_endpoint_binding_dependency",
+          "status": "rejected-source-layer",
+          "required_fields": [
+            "source_ref_packet_endpoint_boundary_binding_constructed",
+            "source_value_packet_endpoint_value_bound_to_boundary_binding",
+            "same_packet_endpoint_boundary_binding_dependency_present",
+            "same_packet_endpoint_value_bound_to_boundary_binding_dependency_present"
+          ],
+          "limitation": "Source-layer endpoint refs and value bindings are not same-packet endpoint boundary-binding dependencies.",
+          "missing_fields": [
+            "same_packet_endpoint_boundary_binding_dependency_present",
+            "same_packet_endpoint_value_bound_to_boundary_binding_dependency_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "full_binding_packet_as_same_packet_dependency",
+          "status": "blocked",
+          "required_fields": [
+            "full_binding_packet_full_endpoint_boundary_binding_constructed",
+            "full_binding_packet_endpoint_boundary_binding_constructed",
+            "full_binding_packet_endpoint_value_bound_to_boundary_binding",
+            "same_packet_full_endpoint_boundary_binding_dependency_present",
+            "same_packet_endpoint_boundary_binding_dependency_present"
+          ],
+          "limitation": "The full-binding construction packet has inputs ready but constructs no full binding, endpoint binding, or value-bound field.",
+          "missing_fields": [
+            "full_binding_packet_full_endpoint_boundary_binding_constructed",
+            "full_binding_packet_endpoint_boundary_binding_constructed",
+            "full_binding_packet_endpoint_value_bound_to_boundary_binding",
+            "same_packet_full_endpoint_boundary_binding_dependency_present",
+            "same_packet_endpoint_boundary_binding_dependency_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "carrier_field_layer_as_dependency_witness",
+          "status": "blocked",
+          "required_fields": [
+            "carrier_field_layer_full_endpoint_boundary_binding_constructed",
+            "carrier_field_layer_endpoint_boundary_binding_constructed",
+            "obstruction_layer_full_endpoint_boundary_binding_constructed",
+            "obstruction_layer_endpoint_boundary_binding_constructed",
+            "same_packet_full_endpoint_boundary_binding_dependency_present"
+          ],
+          "limitation": "The carrier-field construction and obstruction layers still record the same proof-grade binding fields as absent.",
+          "missing_fields": [
+            "carrier_field_layer_full_endpoint_boundary_binding_constructed",
+            "carrier_field_layer_endpoint_boundary_binding_constructed",
+            "obstruction_layer_full_endpoint_boundary_binding_constructed",
+            "obstruction_layer_endpoint_boundary_binding_constructed",
+            "same_packet_full_endpoint_boundary_binding_dependency_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "dependency_closure_after_full_binding_dependency",
+          "status": "blocked-downstream",
+          "required_fields": [
+            "same_packet_full_endpoint_boundary_binding_dependency_present",
+            "same_packet_endpoint_boundary_binding_dependency_present",
+            "same_packet_ref_carrier_field_dependencies_closed",
+            "same_packet_value_map_carrier_field_dependencies_closed"
+          ],
+          "limitation": "Ref/value dependency closure remains downstream of the proof-grade full and endpoint boundary-binding dependencies.",
+          "missing_fields": [
+            "same_packet_full_endpoint_boundary_binding_dependency_present",
+            "same_packet_endpoint_boundary_binding_dependency_present",
+            "same_packet_ref_carrier_field_dependencies_closed",
+            "same_packet_value_map_carrier_field_dependencies_closed"
+          ],
+          "passed": false
+        }
+      ],
+      "routes_passed": [],
+      "required_fields_present": {
+        "dependency_closure_packet_input_present": true,
+        "full_binding_construction_input_ready": true,
+        "full_binding_packet_full_endpoint_boundary_binding_constructed": false,
+        "full_binding_packet_endpoint_boundary_binding_constructed": false,
+        "full_binding_packet_endpoint_value_bound_to_boundary_binding": false,
+        "full_binding_packet_binding_contract_satisfied": false,
+        "source_ref_packet_endpoint_boundary_binding_constructed": true,
+        "source_ref_packet_witness_object_has_endpoint_boundary_binding_ref": true,
+        "source_value_packet_endpoint_value_binding_map_constructed": true,
+        "source_value_packet_endpoint_value_bound_to_boundary_binding": true,
+        "carrier_field_layer_full_endpoint_boundary_binding_constructed": false,
+        "carrier_field_layer_endpoint_boundary_binding_constructed": false,
+        "carrier_field_layer_endpoint_value_bound_to_boundary_binding": false,
+        "obstruction_layer_full_endpoint_boundary_binding_constructed": false,
+        "obstruction_layer_endpoint_boundary_binding_constructed": false,
+        "obstruction_layer_endpoint_value_bound_to_boundary_binding": false,
+        "same_packet_full_endpoint_boundary_binding_dependency_present": false,
+        "same_packet_endpoint_boundary_binding_dependency_present": false,
+        "same_packet_endpoint_value_bound_to_boundary_binding_dependency_present": false,
+        "same_packet_witness_object_ref_dependency_present": false,
+        "same_packet_witness_object_value_map_dependency_present": false,
+        "same_packet_ref_carrier_field_dependencies_closed": false,
+        "same_packet_value_map_carrier_field_dependencies_closed": false,
+        "full_binding_dependency_lemma_present": false,
+        "endpoint_binding_dependency_lemma_present": false,
+        "source_full_binding_input_not_promoted": true,
+        "source_endpoint_binding_not_promoted": true,
+        "row_consumption_authorized": false,
+        "branch_chart_authorized": false
+      },
+      "missing_proof_burdens": [
+        {
+          "burden_id": "FB_full_binding_packet_full_binding_constructed",
+          "missing_field": "full_binding_packet_full_endpoint_boundary_binding_constructed",
+          "required_evidence": "A constructed proof-grade full endpoint boundary binding in the full-binding construction packet.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_carrier_field_layer_full_binding_constructed",
+          "missing_field": "carrier_field_layer_full_endpoint_boundary_binding_constructed",
+          "required_evidence": "A constructed proof-grade full endpoint boundary binding in the same-packet carrier-field construction layer.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_full_endpoint_boundary_binding_dependency",
+          "missing_field": "same_packet_full_endpoint_boundary_binding_dependency_present",
+          "required_evidence": "A proof-grade full endpoint boundary binding exposed in the same-packet carrier-field dependency layer.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_endpoint_boundary_binding_dependency",
+          "missing_field": "same_packet_endpoint_boundary_binding_dependency_present",
+          "required_evidence": "A proof-grade endpoint boundary binding exposed in the same-packet carrier-field dependency layer.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_endpoint_value_bound_dependency",
+          "missing_field": "same_packet_endpoint_value_bound_to_boundary_binding_dependency_present",
+          "required_evidence": "A proof-grade endpoint value bound to a constructed endpoint boundary binding in the same-packet layer.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_witness_object_ref_dependency",
+          "missing_field": "same_packet_witness_object_ref_dependency_present",
+          "required_evidence": "A proof-grade same-packet witness-object reference dependency, not only a source-layer endpoint-boundary-binding ref.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_witness_object_value_map_dependency",
+          "missing_field": "same_packet_witness_object_value_map_dependency_present",
+          "required_evidence": "A proof-grade same-packet witness-object value-map dependency, not only a source-layer endpoint value map.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_ref_dependency_closure",
+          "missing_field": "same_packet_ref_carrier_field_dependencies_closed",
+          "required_evidence": "Ref carrier-field dependency closure after the full and endpoint boundary-binding dependencies are present.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_value_map_dependency_closure",
+          "missing_field": "same_packet_value_map_carrier_field_dependencies_closed",
+          "required_evidence": "Value-map carrier-field dependency closure after the endpoint binding and value-bound dependencies are present.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_dependency_lemma",
+          "missing_field": "full_binding_dependency_lemma_present",
+          "required_evidence": "A lemma proving that the full endpoint boundary-binding construction layer supplies same-packet dependency fields.",
+          "satisfied": false
+        }
+      ],
+      "missing_proof_burden_count": 10,
+      "first_exact_blockers": [
+        "full_binding_packet_full_endpoint_boundary_binding_constructed",
+        "carrier_field_layer_full_endpoint_boundary_binding_constructed",
+        "same_packet_full_endpoint_boundary_binding_dependency_present",
+        "same_packet_endpoint_boundary_binding_dependency_present"
+      ],
+      "first_exact_blocker": "full_binding_packet_full_endpoint_boundary_binding_constructed",
+      "row_consumption_authorized": false,
+      "branch_chart_authorized": false,
+      "obstruction": "Full endpoint boundary-binding construction inputs are ready, but neither the full-binding packet nor the same-packet carrier-field layers expose proof-grade full endpoint boundary-binding dependencies."
+    },
+    {
+      "id": "fc_sigma_source_upper",
+      "endpoint_functional_id": "E_raise_source_inner_boundary",
+      "role": "source",
+      "same_packet_full_endpoint_boundary_binding_dependency_lemma_proof_attempt_id": "same_packet_full_endpoint_boundary_binding_dependency_lemma_proof_attempt:fc_sigma_source_upper",
+      "source_dependency_closure_lemma_proof_attempt_id": "same_packet_ref_value_carrier_field_dependency_closure_lemma_proof_attempt:fc_sigma_source_upper",
+      "source_full_binding_construction_attempt_id": "full_endpoint_boundary_binding_contract_target:fc_sigma_source_upper",
+      "source_ref_carrier_full_binding_construction_attempt_id": "endpoint_boundary_binding_ref_carrier_full_binding_construction_attempt:fc_sigma_source_upper",
+      "source_endpoint_value_binding_map_construction_attempt_id": "endpoint_value_binding_map_construction_attempt:fc_sigma_source_upper",
+      "full_binding_dependency_evidence": {
+        "full_binding_construction_input_ready": true,
+        "full_binding_packet_full_endpoint_boundary_binding_constructed": false,
+        "full_binding_packet_endpoint_boundary_binding_constructed": false,
+        "full_binding_packet_endpoint_value_bound_to_boundary_binding": false,
+        "carrier_field_layer_full_endpoint_boundary_binding_constructed": false,
+        "obstruction_layer_full_endpoint_boundary_binding_constructed": false,
+        "same_packet_full_endpoint_boundary_binding_dependency_present": false,
+        "same_packet_endpoint_boundary_binding_dependency_present": false
+      },
+      "source_binding_evidence": {
+        "source_ref_packet_endpoint_boundary_binding_constructed": true,
+        "source_ref_packet_witness_object_has_endpoint_boundary_binding_ref": true,
+        "source_value_packet_endpoint_value_binding_map_constructed": true,
+        "source_value_packet_endpoint_value_bound_to_boundary_binding": true,
+        "source_endpoint_binding_not_promoted": true
+      },
+      "route_attempts": [
+        {
+          "route_id": "contract_target_input_as_full_binding_dependency",
+          "status": "rejected-input-only",
+          "required_fields": [
+            "full_binding_construction_input_ready",
+            "same_packet_full_endpoint_boundary_binding_dependency_present"
+          ],
+          "limitation": "Input-ready full binding contract targets are not proof-grade full endpoint boundary-binding dependencies.",
+          "missing_fields": [
+            "same_packet_full_endpoint_boundary_binding_dependency_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "source_ref_and_value_bindings_as_endpoint_binding_dependency",
+          "status": "rejected-source-layer",
+          "required_fields": [
+            "source_ref_packet_endpoint_boundary_binding_constructed",
+            "source_value_packet_endpoint_value_bound_to_boundary_binding",
+            "same_packet_endpoint_boundary_binding_dependency_present",
+            "same_packet_endpoint_value_bound_to_boundary_binding_dependency_present"
+          ],
+          "limitation": "Source-layer endpoint refs and value bindings are not same-packet endpoint boundary-binding dependencies.",
+          "missing_fields": [
+            "same_packet_endpoint_boundary_binding_dependency_present",
+            "same_packet_endpoint_value_bound_to_boundary_binding_dependency_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "full_binding_packet_as_same_packet_dependency",
+          "status": "blocked",
+          "required_fields": [
+            "full_binding_packet_full_endpoint_boundary_binding_constructed",
+            "full_binding_packet_endpoint_boundary_binding_constructed",
+            "full_binding_packet_endpoint_value_bound_to_boundary_binding",
+            "same_packet_full_endpoint_boundary_binding_dependency_present",
+            "same_packet_endpoint_boundary_binding_dependency_present"
+          ],
+          "limitation": "The full-binding construction packet has inputs ready but constructs no full binding, endpoint binding, or value-bound field.",
+          "missing_fields": [
+            "full_binding_packet_full_endpoint_boundary_binding_constructed",
+            "full_binding_packet_endpoint_boundary_binding_constructed",
+            "full_binding_packet_endpoint_value_bound_to_boundary_binding",
+            "same_packet_full_endpoint_boundary_binding_dependency_present",
+            "same_packet_endpoint_boundary_binding_dependency_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "carrier_field_layer_as_dependency_witness",
+          "status": "blocked",
+          "required_fields": [
+            "carrier_field_layer_full_endpoint_boundary_binding_constructed",
+            "carrier_field_layer_endpoint_boundary_binding_constructed",
+            "obstruction_layer_full_endpoint_boundary_binding_constructed",
+            "obstruction_layer_endpoint_boundary_binding_constructed",
+            "same_packet_full_endpoint_boundary_binding_dependency_present"
+          ],
+          "limitation": "The carrier-field construction and obstruction layers still record the same proof-grade binding fields as absent.",
+          "missing_fields": [
+            "carrier_field_layer_full_endpoint_boundary_binding_constructed",
+            "carrier_field_layer_endpoint_boundary_binding_constructed",
+            "obstruction_layer_full_endpoint_boundary_binding_constructed",
+            "obstruction_layer_endpoint_boundary_binding_constructed",
+            "same_packet_full_endpoint_boundary_binding_dependency_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "dependency_closure_after_full_binding_dependency",
+          "status": "blocked-downstream",
+          "required_fields": [
+            "same_packet_full_endpoint_boundary_binding_dependency_present",
+            "same_packet_endpoint_boundary_binding_dependency_present",
+            "same_packet_ref_carrier_field_dependencies_closed",
+            "same_packet_value_map_carrier_field_dependencies_closed"
+          ],
+          "limitation": "Ref/value dependency closure remains downstream of the proof-grade full and endpoint boundary-binding dependencies.",
+          "missing_fields": [
+            "same_packet_full_endpoint_boundary_binding_dependency_present",
+            "same_packet_endpoint_boundary_binding_dependency_present",
+            "same_packet_ref_carrier_field_dependencies_closed",
+            "same_packet_value_map_carrier_field_dependencies_closed"
+          ],
+          "passed": false
+        }
+      ],
+      "routes_passed": [],
+      "required_fields_present": {
+        "dependency_closure_packet_input_present": true,
+        "full_binding_construction_input_ready": true,
+        "full_binding_packet_full_endpoint_boundary_binding_constructed": false,
+        "full_binding_packet_endpoint_boundary_binding_constructed": false,
+        "full_binding_packet_endpoint_value_bound_to_boundary_binding": false,
+        "full_binding_packet_binding_contract_satisfied": false,
+        "source_ref_packet_endpoint_boundary_binding_constructed": true,
+        "source_ref_packet_witness_object_has_endpoint_boundary_binding_ref": true,
+        "source_value_packet_endpoint_value_binding_map_constructed": true,
+        "source_value_packet_endpoint_value_bound_to_boundary_binding": true,
+        "carrier_field_layer_full_endpoint_boundary_binding_constructed": false,
+        "carrier_field_layer_endpoint_boundary_binding_constructed": false,
+        "carrier_field_layer_endpoint_value_bound_to_boundary_binding": false,
+        "obstruction_layer_full_endpoint_boundary_binding_constructed": false,
+        "obstruction_layer_endpoint_boundary_binding_constructed": false,
+        "obstruction_layer_endpoint_value_bound_to_boundary_binding": false,
+        "same_packet_full_endpoint_boundary_binding_dependency_present": false,
+        "same_packet_endpoint_boundary_binding_dependency_present": false,
+        "same_packet_endpoint_value_bound_to_boundary_binding_dependency_present": false,
+        "same_packet_witness_object_ref_dependency_present": false,
+        "same_packet_witness_object_value_map_dependency_present": false,
+        "same_packet_ref_carrier_field_dependencies_closed": false,
+        "same_packet_value_map_carrier_field_dependencies_closed": false,
+        "full_binding_dependency_lemma_present": false,
+        "endpoint_binding_dependency_lemma_present": false,
+        "source_full_binding_input_not_promoted": true,
+        "source_endpoint_binding_not_promoted": true,
+        "row_consumption_authorized": false,
+        "branch_chart_authorized": false
+      },
+      "missing_proof_burdens": [
+        {
+          "burden_id": "FB_full_binding_packet_full_binding_constructed",
+          "missing_field": "full_binding_packet_full_endpoint_boundary_binding_constructed",
+          "required_evidence": "A constructed proof-grade full endpoint boundary binding in the full-binding construction packet.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_carrier_field_layer_full_binding_constructed",
+          "missing_field": "carrier_field_layer_full_endpoint_boundary_binding_constructed",
+          "required_evidence": "A constructed proof-grade full endpoint boundary binding in the same-packet carrier-field construction layer.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_full_endpoint_boundary_binding_dependency",
+          "missing_field": "same_packet_full_endpoint_boundary_binding_dependency_present",
+          "required_evidence": "A proof-grade full endpoint boundary binding exposed in the same-packet carrier-field dependency layer.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_endpoint_boundary_binding_dependency",
+          "missing_field": "same_packet_endpoint_boundary_binding_dependency_present",
+          "required_evidence": "A proof-grade endpoint boundary binding exposed in the same-packet carrier-field dependency layer.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_endpoint_value_bound_dependency",
+          "missing_field": "same_packet_endpoint_value_bound_to_boundary_binding_dependency_present",
+          "required_evidence": "A proof-grade endpoint value bound to a constructed endpoint boundary binding in the same-packet layer.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_witness_object_ref_dependency",
+          "missing_field": "same_packet_witness_object_ref_dependency_present",
+          "required_evidence": "A proof-grade same-packet witness-object reference dependency, not only a source-layer endpoint-boundary-binding ref.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_witness_object_value_map_dependency",
+          "missing_field": "same_packet_witness_object_value_map_dependency_present",
+          "required_evidence": "A proof-grade same-packet witness-object value-map dependency, not only a source-layer endpoint value map.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_ref_dependency_closure",
+          "missing_field": "same_packet_ref_carrier_field_dependencies_closed",
+          "required_evidence": "Ref carrier-field dependency closure after the full and endpoint boundary-binding dependencies are present.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_value_map_dependency_closure",
+          "missing_field": "same_packet_value_map_carrier_field_dependencies_closed",
+          "required_evidence": "Value-map carrier-field dependency closure after the endpoint binding and value-bound dependencies are present.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_dependency_lemma",
+          "missing_field": "full_binding_dependency_lemma_present",
+          "required_evidence": "A lemma proving that the full endpoint boundary-binding construction layer supplies same-packet dependency fields.",
+          "satisfied": false
+        }
+      ],
+      "missing_proof_burden_count": 10,
+      "first_exact_blockers": [
+        "full_binding_packet_full_endpoint_boundary_binding_constructed",
+        "carrier_field_layer_full_endpoint_boundary_binding_constructed",
+        "same_packet_full_endpoint_boundary_binding_dependency_present",
+        "same_packet_endpoint_boundary_binding_dependency_present"
+      ],
+      "first_exact_blocker": "full_binding_packet_full_endpoint_boundary_binding_constructed",
+      "row_consumption_authorized": false,
+      "branch_chart_authorized": false,
+      "obstruction": "Full endpoint boundary-binding construction inputs are ready, but neither the full-binding packet nor the same-packet carrier-field layers expose proof-grade full endpoint boundary-binding dependencies."
+    },
+    {
+      "id": "fc_rho_receiver_upper",
+      "endpoint_functional_id": "E_lower_receiver_upper_boundary",
+      "role": "receiver",
+      "same_packet_full_endpoint_boundary_binding_dependency_lemma_proof_attempt_id": "same_packet_full_endpoint_boundary_binding_dependency_lemma_proof_attempt:fc_rho_receiver_upper",
+      "source_dependency_closure_lemma_proof_attempt_id": "same_packet_ref_value_carrier_field_dependency_closure_lemma_proof_attempt:fc_rho_receiver_upper",
+      "source_full_binding_construction_attempt_id": "full_endpoint_boundary_binding_contract_target:fc_rho_receiver_upper",
+      "source_ref_carrier_full_binding_construction_attempt_id": "endpoint_boundary_binding_ref_carrier_full_binding_construction_attempt:fc_rho_receiver_upper",
+      "source_endpoint_value_binding_map_construction_attempt_id": "endpoint_value_binding_map_construction_attempt:fc_rho_receiver_upper",
+      "full_binding_dependency_evidence": {
+        "full_binding_construction_input_ready": true,
+        "full_binding_packet_full_endpoint_boundary_binding_constructed": false,
+        "full_binding_packet_endpoint_boundary_binding_constructed": false,
+        "full_binding_packet_endpoint_value_bound_to_boundary_binding": false,
+        "carrier_field_layer_full_endpoint_boundary_binding_constructed": false,
+        "obstruction_layer_full_endpoint_boundary_binding_constructed": false,
+        "same_packet_full_endpoint_boundary_binding_dependency_present": false,
+        "same_packet_endpoint_boundary_binding_dependency_present": false
+      },
+      "source_binding_evidence": {
+        "source_ref_packet_endpoint_boundary_binding_constructed": true,
+        "source_ref_packet_witness_object_has_endpoint_boundary_binding_ref": true,
+        "source_value_packet_endpoint_value_binding_map_constructed": true,
+        "source_value_packet_endpoint_value_bound_to_boundary_binding": true,
+        "source_endpoint_binding_not_promoted": true
+      },
+      "route_attempts": [
+        {
+          "route_id": "contract_target_input_as_full_binding_dependency",
+          "status": "rejected-input-only",
+          "required_fields": [
+            "full_binding_construction_input_ready",
+            "same_packet_full_endpoint_boundary_binding_dependency_present"
+          ],
+          "limitation": "Input-ready full binding contract targets are not proof-grade full endpoint boundary-binding dependencies.",
+          "missing_fields": [
+            "same_packet_full_endpoint_boundary_binding_dependency_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "source_ref_and_value_bindings_as_endpoint_binding_dependency",
+          "status": "rejected-source-layer",
+          "required_fields": [
+            "source_ref_packet_endpoint_boundary_binding_constructed",
+            "source_value_packet_endpoint_value_bound_to_boundary_binding",
+            "same_packet_endpoint_boundary_binding_dependency_present",
+            "same_packet_endpoint_value_bound_to_boundary_binding_dependency_present"
+          ],
+          "limitation": "Source-layer endpoint refs and value bindings are not same-packet endpoint boundary-binding dependencies.",
+          "missing_fields": [
+            "same_packet_endpoint_boundary_binding_dependency_present",
+            "same_packet_endpoint_value_bound_to_boundary_binding_dependency_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "full_binding_packet_as_same_packet_dependency",
+          "status": "blocked",
+          "required_fields": [
+            "full_binding_packet_full_endpoint_boundary_binding_constructed",
+            "full_binding_packet_endpoint_boundary_binding_constructed",
+            "full_binding_packet_endpoint_value_bound_to_boundary_binding",
+            "same_packet_full_endpoint_boundary_binding_dependency_present",
+            "same_packet_endpoint_boundary_binding_dependency_present"
+          ],
+          "limitation": "The full-binding construction packet has inputs ready but constructs no full binding, endpoint binding, or value-bound field.",
+          "missing_fields": [
+            "full_binding_packet_full_endpoint_boundary_binding_constructed",
+            "full_binding_packet_endpoint_boundary_binding_constructed",
+            "full_binding_packet_endpoint_value_bound_to_boundary_binding",
+            "same_packet_full_endpoint_boundary_binding_dependency_present",
+            "same_packet_endpoint_boundary_binding_dependency_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "carrier_field_layer_as_dependency_witness",
+          "status": "blocked",
+          "required_fields": [
+            "carrier_field_layer_full_endpoint_boundary_binding_constructed",
+            "carrier_field_layer_endpoint_boundary_binding_constructed",
+            "obstruction_layer_full_endpoint_boundary_binding_constructed",
+            "obstruction_layer_endpoint_boundary_binding_constructed",
+            "same_packet_full_endpoint_boundary_binding_dependency_present"
+          ],
+          "limitation": "The carrier-field construction and obstruction layers still record the same proof-grade binding fields as absent.",
+          "missing_fields": [
+            "carrier_field_layer_full_endpoint_boundary_binding_constructed",
+            "carrier_field_layer_endpoint_boundary_binding_constructed",
+            "obstruction_layer_full_endpoint_boundary_binding_constructed",
+            "obstruction_layer_endpoint_boundary_binding_constructed",
+            "same_packet_full_endpoint_boundary_binding_dependency_present"
+          ],
+          "passed": false
+        },
+        {
+          "route_id": "dependency_closure_after_full_binding_dependency",
+          "status": "blocked-downstream",
+          "required_fields": [
+            "same_packet_full_endpoint_boundary_binding_dependency_present",
+            "same_packet_endpoint_boundary_binding_dependency_present",
+            "same_packet_ref_carrier_field_dependencies_closed",
+            "same_packet_value_map_carrier_field_dependencies_closed"
+          ],
+          "limitation": "Ref/value dependency closure remains downstream of the proof-grade full and endpoint boundary-binding dependencies.",
+          "missing_fields": [
+            "same_packet_full_endpoint_boundary_binding_dependency_present",
+            "same_packet_endpoint_boundary_binding_dependency_present",
+            "same_packet_ref_carrier_field_dependencies_closed",
+            "same_packet_value_map_carrier_field_dependencies_closed"
+          ],
+          "passed": false
+        }
+      ],
+      "routes_passed": [],
+      "required_fields_present": {
+        "dependency_closure_packet_input_present": true,
+        "full_binding_construction_input_ready": true,
+        "full_binding_packet_full_endpoint_boundary_binding_constructed": false,
+        "full_binding_packet_endpoint_boundary_binding_constructed": false,
+        "full_binding_packet_endpoint_value_bound_to_boundary_binding": false,
+        "full_binding_packet_binding_contract_satisfied": false,
+        "source_ref_packet_endpoint_boundary_binding_constructed": true,
+        "source_ref_packet_witness_object_has_endpoint_boundary_binding_ref": true,
+        "source_value_packet_endpoint_value_binding_map_constructed": true,
+        "source_value_packet_endpoint_value_bound_to_boundary_binding": true,
+        "carrier_field_layer_full_endpoint_boundary_binding_constructed": false,
+        "carrier_field_layer_endpoint_boundary_binding_constructed": false,
+        "carrier_field_layer_endpoint_value_bound_to_boundary_binding": false,
+        "obstruction_layer_full_endpoint_boundary_binding_constructed": false,
+        "obstruction_layer_endpoint_boundary_binding_constructed": false,
+        "obstruction_layer_endpoint_value_bound_to_boundary_binding": false,
+        "same_packet_full_endpoint_boundary_binding_dependency_present": false,
+        "same_packet_endpoint_boundary_binding_dependency_present": false,
+        "same_packet_endpoint_value_bound_to_boundary_binding_dependency_present": false,
+        "same_packet_witness_object_ref_dependency_present": false,
+        "same_packet_witness_object_value_map_dependency_present": false,
+        "same_packet_ref_carrier_field_dependencies_closed": false,
+        "same_packet_value_map_carrier_field_dependencies_closed": false,
+        "full_binding_dependency_lemma_present": false,
+        "endpoint_binding_dependency_lemma_present": false,
+        "source_full_binding_input_not_promoted": true,
+        "source_endpoint_binding_not_promoted": true,
+        "row_consumption_authorized": false,
+        "branch_chart_authorized": false
+      },
+      "missing_proof_burdens": [
+        {
+          "burden_id": "FB_full_binding_packet_full_binding_constructed",
+          "missing_field": "full_binding_packet_full_endpoint_boundary_binding_constructed",
+          "required_evidence": "A constructed proof-grade full endpoint boundary binding in the full-binding construction packet.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_carrier_field_layer_full_binding_constructed",
+          "missing_field": "carrier_field_layer_full_endpoint_boundary_binding_constructed",
+          "required_evidence": "A constructed proof-grade full endpoint boundary binding in the same-packet carrier-field construction layer.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_full_endpoint_boundary_binding_dependency",
+          "missing_field": "same_packet_full_endpoint_boundary_binding_dependency_present",
+          "required_evidence": "A proof-grade full endpoint boundary binding exposed in the same-packet carrier-field dependency layer.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_endpoint_boundary_binding_dependency",
+          "missing_field": "same_packet_endpoint_boundary_binding_dependency_present",
+          "required_evidence": "A proof-grade endpoint boundary binding exposed in the same-packet carrier-field dependency layer.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_endpoint_value_bound_dependency",
+          "missing_field": "same_packet_endpoint_value_bound_to_boundary_binding_dependency_present",
+          "required_evidence": "A proof-grade endpoint value bound to a constructed endpoint boundary binding in the same-packet layer.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_witness_object_ref_dependency",
+          "missing_field": "same_packet_witness_object_ref_dependency_present",
+          "required_evidence": "A proof-grade same-packet witness-object reference dependency, not only a source-layer endpoint-boundary-binding ref.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_witness_object_value_map_dependency",
+          "missing_field": "same_packet_witness_object_value_map_dependency_present",
+          "required_evidence": "A proof-grade same-packet witness-object value-map dependency, not only a source-layer endpoint value map.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_ref_dependency_closure",
+          "missing_field": "same_packet_ref_carrier_field_dependencies_closed",
+          "required_evidence": "Ref carrier-field dependency closure after the full and endpoint boundary-binding dependencies are present.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_value_map_dependency_closure",
+          "missing_field": "same_packet_value_map_carrier_field_dependencies_closed",
+          "required_evidence": "Value-map carrier-field dependency closure after the endpoint binding and value-bound dependencies are present.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "FB_dependency_lemma",
+          "missing_field": "full_binding_dependency_lemma_present",
+          "required_evidence": "A lemma proving that the full endpoint boundary-binding construction layer supplies same-packet dependency fields.",
+          "satisfied": false
+        }
+      ],
+      "missing_proof_burden_count": 10,
+      "first_exact_blockers": [
+        "full_binding_packet_full_endpoint_boundary_binding_constructed",
+        "carrier_field_layer_full_endpoint_boundary_binding_constructed",
+        "same_packet_full_endpoint_boundary_binding_dependency_present",
+        "same_packet_endpoint_boundary_binding_dependency_present"
+      ],
+      "first_exact_blocker": "full_binding_packet_full_endpoint_boundary_binding_constructed",
+      "row_consumption_authorized": false,
+      "branch_chart_authorized": false,
+      "obstruction": "Full endpoint boundary-binding construction inputs are ready, but neither the full-binding packet nor the same-packet carrier-field layers expose proof-grade full endpoint boundary-binding dependencies."
+    }
+  ],
+  "row_same_packet_full_endpoint_boundary_binding_dependency_lemma_proof_attempts": [
+    {
+      "row_id": "R_w_A04_A03",
+      "cover_id": "G_w_A04_A03_v6_10",
+      "ledger": "w",
+      "source_interval": "A03",
+      "receiver_interval": "A04",
+      "failed_side": "lo",
+      "boundary_side": "lower",
+      "source_variable": "fc_sigma_source_lower",
+      "receiver_variable": "fc_rho_receiver_lower",
+      "source_same_packet_full_endpoint_boundary_binding_dependency_lemma_proof_attempt_id": "same_packet_full_endpoint_boundary_binding_dependency_lemma_proof_attempt:fc_sigma_source_lower",
+      "receiver_same_packet_full_endpoint_boundary_binding_dependency_lemma_proof_attempt_id": "same_packet_full_endpoint_boundary_binding_dependency_lemma_proof_attempt:fc_rho_receiver_lower",
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "source_full_binding_input_ready": true,
+        "receiver_full_binding_input_ready": true,
+        "combined_full_binding_input_ready": true,
+        "source_same_packet_full_binding_dependency_present": false,
+        "receiver_same_packet_full_binding_dependency_present": false,
+        "combined_same_packet_full_binding_dependency_present": false,
+        "source_same_packet_endpoint_binding_dependency_present": false,
+        "receiver_same_packet_endpoint_binding_dependency_present": false,
+        "combined_same_packet_endpoint_binding_dependency_present": false,
+        "source_same_packet_value_bound_dependency_present": false,
+        "receiver_same_packet_value_bound_dependency_present": false,
+        "combined_same_packet_value_bound_dependency_present": false,
+        "source_ref_dependency_closure_present": false,
+        "receiver_ref_dependency_closure_present": false,
+        "combined_ref_dependency_closure_present": false,
+        "source_value_map_dependency_closure_present": false,
+        "receiver_value_map_dependency_closure_present": false,
+        "combined_value_map_dependency_closure_present": false,
+        "row_unblocked": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "row_unblocked": false,
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The row has source/receiver full-binding construction inputs, but no same-packet full-binding dependency pair, endpoint-binding dependency pair, or ref/value dependency closure pair."
+    },
+    {
+      "row_id": "R_u_A10_A09",
+      "cover_id": "G_u_A10_A09_v6_31",
+      "ledger": "u",
+      "source_interval": "A09",
+      "receiver_interval": "A10",
+      "failed_side": "lo",
+      "boundary_side": "lower",
+      "source_variable": "fc_sigma_source_lower",
+      "receiver_variable": "fc_rho_receiver_lower",
+      "source_same_packet_full_endpoint_boundary_binding_dependency_lemma_proof_attempt_id": "same_packet_full_endpoint_boundary_binding_dependency_lemma_proof_attempt:fc_sigma_source_lower",
+      "receiver_same_packet_full_endpoint_boundary_binding_dependency_lemma_proof_attempt_id": "same_packet_full_endpoint_boundary_binding_dependency_lemma_proof_attempt:fc_rho_receiver_lower",
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "source_full_binding_input_ready": true,
+        "receiver_full_binding_input_ready": true,
+        "combined_full_binding_input_ready": true,
+        "source_same_packet_full_binding_dependency_present": false,
+        "receiver_same_packet_full_binding_dependency_present": false,
+        "combined_same_packet_full_binding_dependency_present": false,
+        "source_same_packet_endpoint_binding_dependency_present": false,
+        "receiver_same_packet_endpoint_binding_dependency_present": false,
+        "combined_same_packet_endpoint_binding_dependency_present": false,
+        "source_same_packet_value_bound_dependency_present": false,
+        "receiver_same_packet_value_bound_dependency_present": false,
+        "combined_same_packet_value_bound_dependency_present": false,
+        "source_ref_dependency_closure_present": false,
+        "receiver_ref_dependency_closure_present": false,
+        "combined_ref_dependency_closure_present": false,
+        "source_value_map_dependency_closure_present": false,
+        "receiver_value_map_dependency_closure_present": false,
+        "combined_value_map_dependency_closure_present": false,
+        "row_unblocked": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "row_unblocked": false,
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The row has source/receiver full-binding construction inputs, but no same-packet full-binding dependency pair, endpoint-binding dependency pair, or ref/value dependency closure pair."
+    },
+    {
+      "row_id": "R_u_A07_A06",
+      "cover_id": "G_u_A07_A06_v6_22",
+      "ledger": "u",
+      "source_interval": "A06",
+      "receiver_interval": "A07",
+      "failed_side": "hi",
+      "boundary_side": "upper",
+      "source_variable": "fc_sigma_source_upper",
+      "receiver_variable": "fc_rho_receiver_upper",
+      "source_same_packet_full_endpoint_boundary_binding_dependency_lemma_proof_attempt_id": "same_packet_full_endpoint_boundary_binding_dependency_lemma_proof_attempt:fc_sigma_source_upper",
+      "receiver_same_packet_full_endpoint_boundary_binding_dependency_lemma_proof_attempt_id": "same_packet_full_endpoint_boundary_binding_dependency_lemma_proof_attempt:fc_rho_receiver_upper",
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "source_full_binding_input_ready": true,
+        "receiver_full_binding_input_ready": true,
+        "combined_full_binding_input_ready": true,
+        "source_same_packet_full_binding_dependency_present": false,
+        "receiver_same_packet_full_binding_dependency_present": false,
+        "combined_same_packet_full_binding_dependency_present": false,
+        "source_same_packet_endpoint_binding_dependency_present": false,
+        "receiver_same_packet_endpoint_binding_dependency_present": false,
+        "combined_same_packet_endpoint_binding_dependency_present": false,
+        "source_same_packet_value_bound_dependency_present": false,
+        "receiver_same_packet_value_bound_dependency_present": false,
+        "combined_same_packet_value_bound_dependency_present": false,
+        "source_ref_dependency_closure_present": false,
+        "receiver_ref_dependency_closure_present": false,
+        "combined_ref_dependency_closure_present": false,
+        "source_value_map_dependency_closure_present": false,
+        "receiver_value_map_dependency_closure_present": false,
+        "combined_value_map_dependency_closure_present": false,
+        "row_unblocked": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "row_unblocked": false,
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The row has source/receiver full-binding construction inputs, but no same-packet full-binding dependency pair, endpoint-binding dependency pair, or ref/value dependency closure pair."
+    }
+  ],
+  "endpoint_field_counts": {
+    "dependency_closure_packet_input_present": 4,
+    "full_binding_construction_input_ready": 4,
+    "full_binding_packet_full_endpoint_boundary_binding_constructed": 0,
+    "full_binding_packet_endpoint_boundary_binding_constructed": 0,
+    "full_binding_packet_endpoint_value_bound_to_boundary_binding": 0,
+    "full_binding_packet_binding_contract_satisfied": 0,
+    "source_ref_packet_endpoint_boundary_binding_constructed": 4,
+    "source_ref_packet_witness_object_has_endpoint_boundary_binding_ref": 4,
+    "source_value_packet_endpoint_value_binding_map_constructed": 4,
+    "source_value_packet_endpoint_value_bound_to_boundary_binding": 4,
+    "carrier_field_layer_full_endpoint_boundary_binding_constructed": 0,
+    "carrier_field_layer_endpoint_boundary_binding_constructed": 0,
+    "carrier_field_layer_endpoint_value_bound_to_boundary_binding": 0,
+    "obstruction_layer_full_endpoint_boundary_binding_constructed": 0,
+    "obstruction_layer_endpoint_boundary_binding_constructed": 0,
+    "obstruction_layer_endpoint_value_bound_to_boundary_binding": 0,
+    "same_packet_full_endpoint_boundary_binding_dependency_present": 0,
+    "same_packet_endpoint_boundary_binding_dependency_present": 0,
+    "same_packet_endpoint_value_bound_to_boundary_binding_dependency_present": 0,
+    "same_packet_witness_object_ref_dependency_present": 0,
+    "same_packet_witness_object_value_map_dependency_present": 0,
+    "same_packet_ref_carrier_field_dependencies_closed": 0,
+    "same_packet_value_map_carrier_field_dependencies_closed": 0,
+    "full_binding_dependency_lemma_present": 0,
+    "endpoint_binding_dependency_lemma_present": 0,
+    "source_full_binding_input_not_promoted": 4,
+    "source_endpoint_binding_not_promoted": 4,
+    "row_consumption_authorized": 0,
+    "branch_chart_authorized": 0
+  },
+  "row_field_counts": {
+    "row_locator_resolved": 3,
+    "source_full_binding_input_ready": 3,
+    "receiver_full_binding_input_ready": 3,
+    "combined_full_binding_input_ready": 3,
+    "source_same_packet_full_binding_dependency_present": 0,
+    "receiver_same_packet_full_binding_dependency_present": 0,
+    "combined_same_packet_full_binding_dependency_present": 0,
+    "source_same_packet_endpoint_binding_dependency_present": 0,
+    "receiver_same_packet_endpoint_binding_dependency_present": 0,
+    "combined_same_packet_endpoint_binding_dependency_present": 0,
+    "source_same_packet_value_bound_dependency_present": 0,
+    "receiver_same_packet_value_bound_dependency_present": 0,
+    "combined_same_packet_value_bound_dependency_present": 0,
+    "source_ref_dependency_closure_present": 0,
+    "receiver_ref_dependency_closure_present": 0,
+    "combined_ref_dependency_closure_present": 0,
+    "source_value_map_dependency_closure_present": 0,
+    "receiver_value_map_dependency_closure_present": 0,
+    "combined_value_map_dependency_closure_present": 0,
+    "row_unblocked": 0,
+    "row_consumed": 0,
+    "branch_chart_authorized": 0
+  },
+  "summary": {
+    "endpoint_functionals": 4,
+    "residual_consumer_rows": 3,
+    "dependency_closure_packet_inputs_present": 4,
+    "full_binding_construction_inputs_ready": 4,
+    "full_binding_packet_full_endpoint_boundary_bindings_constructed": 0,
+    "full_binding_packet_endpoint_boundary_bindings_constructed": 0,
+    "full_binding_packet_endpoint_values_bound": 0,
+    "source_ref_packet_endpoint_boundary_bindings_constructed": 4,
+    "source_value_packet_endpoint_values_bound": 4,
+    "carrier_field_layer_full_endpoint_boundary_bindings_constructed": 0,
+    "carrier_field_layer_endpoint_boundary_bindings_constructed": 0,
+    "obstruction_layer_full_endpoint_boundary_bindings_constructed": 0,
+    "same_packet_full_endpoint_boundary_binding_dependencies_present": 0,
+    "same_packet_endpoint_boundary_binding_dependencies_present": 0,
+    "same_packet_endpoint_value_bound_dependencies_present": 0,
+    "same_packet_witness_object_ref_dependencies_present": 0,
+    "same_packet_witness_object_value_map_dependencies_present": 0,
+    "same_packet_ref_dependency_closures_present": 0,
+    "same_packet_value_map_dependency_closures_present": 0,
+    "full_binding_dependency_lemmas_present": 0,
+    "endpoint_binding_dependency_lemmas_present": 0,
+    "source_full_binding_input_non_promotion_guards_present": 4,
+    "source_endpoint_binding_non_promotion_guards_present": 4,
+    "row_full_binding_input_pairs_ready": 3,
+    "row_full_binding_dependency_pairs_present": 0,
+    "row_endpoint_binding_dependency_pairs_present": 0,
+    "row_value_bound_dependency_pairs_present": 0,
+    "row_ref_dependency_closure_pairs_present": 0,
+    "row_value_map_dependency_closure_pairs_present": 0,
+    "rows_unblocked": 0,
+    "row_consumption_count": 0,
+    "branch_chart_authorized": false
+  },
+  "authorization_lock": {
+    "row_consumption_authorized": false,
+    "branch_chart_authorized": false,
+    "reason": "No endpoint has proof-grade same-packet full endpoint boundary-binding dependency, endpoint boundary-binding dependency, or ref/value dependency closure."
+  },
+  "preledger_pass": false,
+  "updates_live_ledger": false,
+  "emits_candidate_artifacts": false,
+  "emits_topology_recertification": false,
+  "emits_proof_interval_replay": false,
+  "row_closure": false,
+  "branch_chart_authorized": false,
+  "capture_decision": "priority-only; records a fail-closed same-packet full endpoint boundary-binding dependency lemma proof attempt and does not promote to reader-facing corpus prose."
+}

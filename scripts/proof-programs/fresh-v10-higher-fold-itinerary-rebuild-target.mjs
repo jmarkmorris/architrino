@@ -306,6 +306,26 @@ function buildPacket(contractFile, shiftedFile, freeFile) {
       claim_level:
         "exact-rational receiver-grid cover audit over the 42 regular residual parent-complement rows certifies 571 simple-root cells, misses 773 cells, consumes 0 parent rows, and leaves 162 split-required base rows; not a preledger pass or branch chart authorization",
     },
+    proof_interval_v6_sidecar: {
+      status: "proof_interval_v6_fail_closed_materialized",
+      artifacts: [
+        "preledger_interval_backend_certificate.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.json",
+        "causal_ledger.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.json",
+        "causal_preledger_interval_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.md",
+        "preledger_interval_engine_audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.json",
+      ],
+      claim_level:
+        "exact-rational adaptive receiver-cover audit over the 42 regular residual parent-complement rows refines failed receiver cells to terminal grid 128, certifies 622 simple-root leaves, records 3,024 structural terminal source-cover misses, resolves 0 coarse cells, consumes 0 parent rows, and leaves 162 split-required base rows; not a preledger pass or branch chart authorization",
+    },
+    fold_layer_burden_atlas: {
+      status: "higher_fold_layer_burden_atlas_materialized",
+      artifacts: [
+        "fold_layer_burden.fresh-v10-higher-fold-12-root-rebuild-v0.json",
+        "fold_layer_burden_report.fresh-v10-higher-fold-12-root-rebuild-v0.md",
+      ],
+      claim_level:
+        "priority-only fold-layer burden atlas groups 112 split-required fold-layer rows by 12 higher-fold separator layers, records required same-packet fields, consumes 0 rows, and does not authorize a branch chart",
+    },
     root_inventory_at_shifted_threshold: {
       lambda: cleanNumber(shiftedLambda),
       T_cyc: cleanNumber(shiftedThresholdState.T_cyc),
@@ -316,7 +336,8 @@ function buildPacket(contractFile, shiftedFile, freeFile) {
       "Freeze the successor packet identity before any row consumption, using a new itinerary id and mesh name rather than mutating fresh-same-packet-fold-shear-seed-v0.",
       "Use the outward rational 12-root field-speed interval certificate as the topology input for the successor packet; regenerate the seed surface if that certificate changes the root tubes or itinerary partition.",
       "Regenerate null-coordinate gap collars and fold-layer rows for the successor packet; old same-itinerary v10 rows are historical unless recomputed or proven persistent under the new packet identity.",
-      "Extend the higher-fold proof-interval backend beyond the v5 receiver-grid cover audit so the remaining 162 parent complement, endpoint/complement, and fold-layer rows are classified before branch-chart, corridor, monodromy, returned-sample, topology, or Schauder rows can resume.",
+      "Use the v6 adaptive receiver-cover audit as evidence that the 42 regular residual parent rows have structural source-cover deficits under the current full-source rule, not merely coarse 32-cell receiver-grid misses.",
+      "Use the higher-fold separator-layer burden atlas for the 112 fold-layer-candidate rows as the fold-layer certification worklist, and separately resolve the 8 periodic endpoint/complement rows before branch-chart, corridor, monodromy, returned-sample, topology, or Schauder rows can resume.",
       "Record any strict-gap tangent or sampled LP evidence as diagnostic until it is backed by outward-rounded interval certificates.",
     ],
     non_authorizations: [
@@ -326,7 +347,7 @@ function buildPacket(contractFile, shiftedFile, freeFile) {
       "Does not promote the collinear-breather theorem into $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ prose.",
     ],
     closure_condition:
-      "The 12-root field-speed topology is interval-certified for fresh-v10-higher-fold-12-root-rebuild-v0, proof-interval v3 certifies 1,062 row-specific range-empty rows plus 26 root-complement monotone diagonal exclusions, proof-interval v4 records 42 simple-root receiver subwindow certificates, and proof-interval v5 audits the 42 residual regular parents with 571 certified receiver cells and 773 missing cells. The remaining closure artifact is sharper parent-complement coverage, periodic endpoint/complement ownership, and fold-layer classification of the 162 split-required base rows before branch-chart work.",
+      "The 12-root field-speed topology is interval-certified for fresh-v10-higher-fold-12-root-rebuild-v0, proof-interval v3 certifies 1,062 row-specific range-empty rows plus 26 root-complement monotone diagonal exclusions, proof-interval v4 records 42 simple-root receiver subwindow certificates, proof-interval v5 audits the 42 residual regular parents with 571 certified receiver cells and 773 missing cells, and proof-interval v6 adaptively refines those misses to terminal grid 128 with 622 certified leaves, 3,024 structural terminal misses, and 0 resolved coarse cells. The one-leaf post-probe stack now declares exact source-boundary, receiver-range, and combined candidate-change boundary-opening targets while certifying 0 movement, contraction, or candidate-change rows. The direct-path lambda shift screen gives a positive sampled one-leaf candidate-change direction at lambda=0.305, with largest active-endpoint threshold lambda>0.301815056706425, but it is not proof-grade until root topology, proof-interval preledger, preservation, and ownership fields are recertified at the trial packet. The fold-layer burden atlas now groups the 112 split-required fold-layer rows by 12 separator layers. The remaining closure artifacts are a new source-cover/parent-complement theorem or candidate change with proof-grade positive boundary-opening data for those 42 regular rows, periodic endpoint/complement ownership for 8 rows, and same-packet fold-layer certification for 112 rows before branch-chart work.",
     capture_decision:
       "Priority-only. This packet converts obstruction evidence into a rebuild target; promotion should wait for a passed proof-interval preledger for the interval-certified successor packet.",
   };
@@ -483,6 +504,22 @@ The fifth higher-fold proof-interval sidecar now exists:
 ${packet.proof_interval_v5_sidecar.artifacts.map((item) => `- \`${item}\``).join("\n")}
 
 It remains priority-only: ${packet.proof_interval_v5_sidecar.claim_level}.
+
+## Proof-Interval v6 Sidecar
+
+The sixth higher-fold proof-interval sidecar now exists:
+
+${packet.proof_interval_v6_sidecar.artifacts.map((item) => `- \`${item}\``).join("\n")}
+
+It remains priority-only: ${packet.proof_interval_v6_sidecar.claim_level}.
+
+## Fold-Layer Burden Atlas
+
+The higher-fold fold-layer burden atlas now exists:
+
+${packet.fold_layer_burden_atlas.artifacts.map((item) => `- \`${item}\``).join("\n")}
+
+It remains priority-only: ${packet.fold_layer_burden_atlas.claim_level}.
 
 ## Row-Reuse Boundary
 

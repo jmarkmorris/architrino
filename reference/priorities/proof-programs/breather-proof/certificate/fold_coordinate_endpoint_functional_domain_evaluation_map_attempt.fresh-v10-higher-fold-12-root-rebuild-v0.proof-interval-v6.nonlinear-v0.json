@@ -1,0 +1,1618 @@
+{
+  "schema": "breather-higher-fold-fold-coordinate-endpoint-functional-domain-evaluation-map-attempt-v1",
+  "packet_id": "fresh-v10-higher-fold-12-root-rebuild-v0",
+  "fold_coordinate_packet_id": "fresh-v10-fold-coordinate-collocation-nonlinear-tangent-matrix-v0",
+  "status": "fold_coordinate_endpoint_functional_domain_evaluation_map_attempt_fail_closed",
+  "theorem_target": "Fold-Coordinate Endpoint-Functional Domain/Evaluation-Map Attempt",
+  "branch_chart_authorized": false,
+  "preledger_pass": false,
+  "updates_live_ledger": false,
+  "claim_level": "priority-only domain/evaluation-map attempt; endpoint locators and row-local endpoint values are present but no endpoint-functional domain chart or evaluation map is present",
+  "authorization_lock": {
+    "branch_chart_authorized": false,
+    "preledger_pass": false,
+    "updates_live_ledger": false,
+    "row_consumption_count": 0
+  },
+  "source_artifacts": {
+    "sourceAudit": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_source_audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_source_audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "present": true,
+      "sha256": "bc88d7a60b1c85ba7c8c1023fc861ca4937904e60c52ae125f5a0e5c3b1aa086"
+    },
+    "constructionAttempt": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "present": true,
+      "sha256": "06dc85559f4d8ab4371d1aa2eeca0023496dc6a7ff91b667c0686c802e68d3e6"
+    },
+    "basisAttempt": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_finite_realization_basis_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_finite_realization_basis_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "present": true,
+      "sha256": "f1b206f5c8dfb051abd9f454c8be3457492af5125f0329ec3b36cffb4cef047a"
+    },
+    "bindingContract": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_binding_contract_no_go.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_binding_contract_no_go.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "present": true,
+      "sha256": "4bdd278f77b76d8d688bfb07f3209debedbdc3010588e0f02c07d3f6ea0e53ff"
+    },
+    "historyContract": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_history_realization_contract.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_history_realization_contract.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "present": true,
+      "sha256": "155d45c7e309938bb8415e102710c17f8260ac504820d7debb530ed4d406ad72"
+    },
+    "historyTheoremAttempt": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_history_realization_theorem_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_history_realization_theorem_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "present": true,
+      "sha256": "64689d3a8c2ccfeeff1cf052619d1bb68691f85ba9eeb66ba9253c3667b3a6c7"
+    },
+    "foldInput": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/gap_opening_fresh_v10_fold_coordinate_collocation_input.nonlinear-v0.json",
+      "basename": "gap_opening_fresh_v10_fold_coordinate_collocation_input.nonlinear-v0.json",
+      "present": true,
+      "sha256": "e97e3dd67c319fb2b006ecf7c4ceabe2964af5bea069890085e00a9165d25f93"
+    },
+    "foldResult": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/gap_opening_fresh_v10_fold_coordinate_collocation_result.nonlinear-v0.json",
+      "basename": "gap_opening_fresh_v10_fold_coordinate_collocation_result.nonlinear-v0.json",
+      "present": true,
+      "sha256": "c7c84353d03bf2a53005eabbbe0ea70f2499d97f12a52ad8b7b9e295ecba7502"
+    }
+  },
+  "domain_evaluation_rule": "A fold-coordinate endpoint functional E_j requires an explicit endpoint-functional domain chart, a coordinate/evaluation rule for the perturbation basis, an endpoint-boundary binding, and a map from the basis perturbation to same-packet endpoint motion; target endpoint q-values and equations are admissible only as locator data until those objects are present.",
+  "no_go_lemma": "Endpoint locations and target equations do not determine endpoint-functional domains. Without a domain chart and evaluation map, E_j(Psi_j)=+/-1 remains a desired boundary action, not a constructed linear functional on a same-packet perturbation space.",
+  "rejection_rule": "Do not promote endpoint refs, scalar endpoint q-values, screen coefficients, target equations, or tolerance-level B_xi residuals into endpoint-functional domain/evaluation-map data.",
+  "domain_evaluation_methods": [
+    {
+      "id": "row_local_endpoint_ref_as_domain_chart",
+      "description": "Try to promote row-local endpoint refs and q-values into an endpoint-functional domain chart.",
+      "required_fields": [
+        "endpoint_locator_resolved",
+        "row_local_endpoint_value_present",
+        "endpoint_functional_domain_present",
+        "domain_chart_declared",
+        "domain_coordinate_rule_declared",
+        "basis_vector_bound_to_domain"
+      ]
+    },
+    {
+      "id": "target_equation_as_evaluation_map",
+      "description": "Try to promote the target equation E_j(Psi_j)=+/-1 into the endpoint evaluation map.",
+      "required_fields": [
+        "functional_target_equation_defined",
+        "target_action_sign_consistent",
+        "endpoint_boundary_binding_present",
+        "endpoint_functional_domain_present",
+        "evaluation_map_declared",
+        "endpoint_evaluation_rule_declared",
+        "endpoint_value_bound_to_evaluation_map",
+        "non_target_endpoint_functionals_zero_certified"
+      ]
+    },
+    {
+      "id": "basis_formula_as_endpoint_motion_map",
+      "description": "Try to build the evaluation map from an explicit same-packet basis formula and endpoint-motion rule.",
+      "required_fields": [
+        "theta_support_present",
+        "basis_formula_present",
+        "basis_derivative_formula_present",
+        "x_update_basis_present",
+        "xdot_update_basis_present",
+        "mesh_update_rule_present",
+        "endpoint_motion_rule_present",
+        "source_monotonicity_rule_present",
+        "receiver_monotonicity_rule_present",
+        "same_packet_history_update_formula_present"
+      ]
+    },
+    {
+      "id": "binding_contract_import_as_domain_evaluation_map",
+      "description": "Try to import an already-certified endpoint binding contract as the domain/evaluation-map certificate.",
+      "required_fields": [
+        "endpoint_boundary_binding_present",
+        "endpoint_functional_domain_present",
+        "domain_chart_declared",
+        "evaluation_map_declared",
+        "endpoint_value_bound_to_evaluation_map"
+      ]
+    },
+    {
+      "id": "exact_screen_rank_as_chart_certificate",
+      "description": "Try to certify the endpoint domain/evaluation map from exact screen-zero and rank data.",
+      "required_fields": [
+        "exact_screen_zero_certified",
+        "rank_certified",
+        "domain_chart_declared",
+        "evaluation_map_declared",
+        "endpoint_motion_rule_present"
+      ]
+    }
+  ],
+  "fold_coordinate_screen_guard": {
+    "input_variables": 7,
+    "scanner_status": "feasible",
+    "B_xi_residual_verified_zero_with_tolerance": true,
+    "B_xi_residual_certified_zero": false,
+    "rank_B_certified": false,
+    "witness": {
+      "h_A0s": -1,
+      "h_A1s": -1,
+      "h_A2s": -1,
+      "fc_sigma_source_lower": 0.5,
+      "fc_rho_receiver_lower": 0.5,
+      "fc_sigma_source_upper": 0.5,
+      "fc_rho_receiver_upper": 0.5
+    },
+    "structural_rows": [
+      {
+        "id": "fold_coordinate_lower_boundary_pair_balance",
+        "residual": 0
+      },
+      {
+        "id": "fold_coordinate_upper_boundary_pair_balance",
+        "residual": 0
+      },
+      {
+        "id": "fold_coordinate_mirrored_boundary_opening_balance",
+        "residual": 0
+      }
+    ],
+    "one_leaf_screen_level_success": "strict_boundary_opening_screen_positive",
+    "one_leaf_min_boundary_opening_margin": 0.999753815697
+  },
+  "endpoint_domain_evaluation_attempts": [
+    {
+      "id": "fc_sigma_source_lower",
+      "endpoint_functional_id": "E_lower_source_inner_boundary",
+      "role": "source",
+      "basis_symbol": "Psi_fc_sigma_source_lower",
+      "source_symbol": "sigma_source_lower",
+      "fold_input_variable": {
+        "id": "fc_sigma_source_lower",
+        "collocation_role": "fold_coordinate_boundary_opening",
+        "bounded_screen_range": [
+          -1,
+          1
+        ]
+      },
+      "target_endpoint_refs": [
+        {
+          "row_id": "R_w_A04_A03",
+          "role": "source",
+          "endpoint_ref": "source_inner_range_q.lo",
+          "endpoint_value": {
+            "num": "22889475682709269533413042303837882332186381319318690739134385525004858014062592566793989041615601706730549026109295638036107447029424137018797622300140513390802684414087574023253585373959809013507853720323944442908548877462127674929541409468871666749595362048011028177978722442883",
+            "den": "20737813556676946596478600506564457667824085709013815187739169879824578869563979531491976751516110219329647110034464826298821156776657596726897777940411216903568068218430965044740096000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "1.103755495734966"
+          },
+          "endpoint_value_present": true,
+          "ownership_component_id": "R_w_A04_A03:left_boundary_unowned:0:1:128"
+        },
+        {
+          "row_id": "R_u_A10_A09",
+          "role": "source",
+          "endpoint_ref": "source_inner_range_q.lo",
+          "endpoint_value": {
+            "num": "88039238403884674053822967818905235111225073503214998976753728260546758148600337509414313256205686466309292001480744708043739423236237287290884511028631553198684154987618253244383156638471153653507853720323944442908548877462127674929541409468871666749595362048011028177978722442883",
+            "den": "20737813556676946596478600506564457667824085709013815187739169879824578869563979531491976751516110219329647110034464826298821156776657596726897777940411216903568068218430965044740096000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "4.245348149324966"
+          },
+          "endpoint_value_present": true,
+          "ownership_component_id": "R_u_A10_A09:left_boundary_unowned:0:1:128"
+        }
+      ],
+      "target_endpoint_values": [
+        {
+          "row_id": "R_w_A04_A03",
+          "role": "source",
+          "endpoint_ref": "source_inner_range_q.lo",
+          "endpoint_value": {
+            "num": "22889475682709269533413042303837882332186381319318690739134385525004858014062592566793989041615601706730549026109295638036107447029424137018797622300140513390802684414087574023253585373959809013507853720323944442908548877462127674929541409468871666749595362048011028177978722442883",
+            "den": "20737813556676946596478600506564457667824085709013815187739169879824578869563979531491976751516110219329647110034464826298821156776657596726897777940411216903568068218430965044740096000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "1.103755495734966"
+          }
+        },
+        {
+          "row_id": "R_u_A10_A09",
+          "role": "source",
+          "endpoint_ref": "source_inner_range_q.lo",
+          "endpoint_value": {
+            "num": "88039238403884674053822967818905235111225073503214998976753728260546758148600337509414313256205686466309292001480744708043739423236237287290884511028631553198684154987618253244383156638471153653507853720323944442908548877462127674929541409468871666749595362048011028177978722442883",
+            "den": "20737813556676946596478600506564457667824085709013815187739169879824578869563979531491976751516110219329647110034464826298821156776657596726897777940411216903568068218430965044740096000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "4.245348149324966"
+          }
+        }
+      ],
+      "required_endpoint_functionals": [
+        {
+          "action": "lower_source_inner_boundary",
+          "sign": -1,
+          "target_equation": "E_lower_source_inner_boundary(Psi_fc_sigma_source_lower) = -1",
+          "zero_equation": "All non-target one-leaf boundary functionals vanish on Psi_fc_sigma_source_lower."
+        }
+      ],
+      "candidate_field_inventory": [
+        {
+          "source": "source_audit",
+          "declares_domain_chart": false,
+          "declares_evaluation_map": false,
+          "declares_endpoint_motion_rule": false
+        },
+        {
+          "source": "construction_attempt",
+          "declares_domain_chart": false,
+          "declares_evaluation_map": false,
+          "declares_endpoint_motion_rule": false
+        },
+        {
+          "source": "finite_realization_basis_attempt",
+          "declares_domain_chart": false,
+          "declares_evaluation_map": false,
+          "declares_endpoint_motion_rule": false
+        },
+        {
+          "source": "binding_contract_no_go",
+          "declares_domain_chart": false,
+          "declares_evaluation_map": false,
+          "declares_endpoint_motion_rule": false
+        },
+        {
+          "source": "history_realization_contract",
+          "declares_domain_chart": false,
+          "declares_evaluation_map": false,
+          "declares_endpoint_motion_rule": false
+        },
+        {
+          "source": "history_realization_theorem_attempt",
+          "declares_domain_chart": false,
+          "declares_evaluation_map": false,
+          "declares_endpoint_motion_rule": false
+        }
+      ],
+      "rejected_promotions": [
+        "A row-local endpoint ref is a target locator, not a domain chart.",
+        "A row-local endpoint q-value is a scalar boundary value, not an evaluation map.",
+        "A target equation E_j(Psi_j)=+/-1 states a desired action, not the rule defining E_j.",
+        "A bounded fold-coordinate screen variable is not a basis formula on a perturbation domain.",
+        "A tolerance-level B_xi residual is not exact B_xi=0 or rank certification."
+      ],
+      "method_results": [
+        {
+          "method_id": "row_local_endpoint_ref_as_domain_chart",
+          "description": "Try to promote row-local endpoint refs and q-values into an endpoint-functional domain chart.",
+          "required_fields": [
+            "endpoint_locator_resolved",
+            "row_local_endpoint_value_present",
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "domain_coordinate_rule_declared",
+            "basis_vector_bound_to_domain"
+          ],
+          "missing_fields": [
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "domain_coordinate_rule_declared",
+            "basis_vector_bound_to_domain"
+          ],
+          "failure_codes": [
+            "missing_endpoint_functional_domain_present",
+            "missing_domain_chart_declared",
+            "missing_domain_coordinate_rule_declared",
+            "missing_basis_vector_bound_to_domain"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "target_equation_as_evaluation_map",
+          "description": "Try to promote the target equation E_j(Psi_j)=+/-1 into the endpoint evaluation map.",
+          "required_fields": [
+            "functional_target_equation_defined",
+            "target_action_sign_consistent",
+            "endpoint_boundary_binding_present",
+            "endpoint_functional_domain_present",
+            "evaluation_map_declared",
+            "endpoint_evaluation_rule_declared",
+            "endpoint_value_bound_to_evaluation_map",
+            "non_target_endpoint_functionals_zero_certified"
+          ],
+          "missing_fields": [
+            "endpoint_boundary_binding_present",
+            "endpoint_functional_domain_present",
+            "evaluation_map_declared",
+            "endpoint_evaluation_rule_declared",
+            "endpoint_value_bound_to_evaluation_map",
+            "non_target_endpoint_functionals_zero_certified"
+          ],
+          "failure_codes": [
+            "missing_endpoint_boundary_binding_present",
+            "missing_endpoint_functional_domain_present",
+            "missing_evaluation_map_declared",
+            "missing_endpoint_evaluation_rule_declared",
+            "missing_endpoint_value_bound_to_evaluation_map",
+            "missing_non_target_endpoint_functionals_zero_certified"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "basis_formula_as_endpoint_motion_map",
+          "description": "Try to build the evaluation map from an explicit same-packet basis formula and endpoint-motion rule.",
+          "required_fields": [
+            "theta_support_present",
+            "basis_formula_present",
+            "basis_derivative_formula_present",
+            "x_update_basis_present",
+            "xdot_update_basis_present",
+            "mesh_update_rule_present",
+            "endpoint_motion_rule_present",
+            "source_monotonicity_rule_present",
+            "receiver_monotonicity_rule_present",
+            "same_packet_history_update_formula_present"
+          ],
+          "missing_fields": [
+            "theta_support_present",
+            "basis_formula_present",
+            "basis_derivative_formula_present",
+            "x_update_basis_present",
+            "xdot_update_basis_present",
+            "mesh_update_rule_present",
+            "endpoint_motion_rule_present",
+            "source_monotonicity_rule_present",
+            "receiver_monotonicity_rule_present",
+            "same_packet_history_update_formula_present"
+          ],
+          "failure_codes": [
+            "missing_theta_support_present",
+            "missing_basis_formula_present",
+            "missing_basis_derivative_formula_present",
+            "missing_x_update_basis_present",
+            "missing_xdot_update_basis_present",
+            "missing_mesh_update_rule_present",
+            "missing_endpoint_motion_rule_present",
+            "missing_source_monotonicity_rule_present",
+            "missing_receiver_monotonicity_rule_present",
+            "missing_same_packet_history_update_formula_present"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "binding_contract_import_as_domain_evaluation_map",
+          "description": "Try to import an already-certified endpoint binding contract as the domain/evaluation-map certificate.",
+          "required_fields": [
+            "endpoint_boundary_binding_present",
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "evaluation_map_declared",
+            "endpoint_value_bound_to_evaluation_map"
+          ],
+          "missing_fields": [
+            "endpoint_boundary_binding_present",
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "evaluation_map_declared",
+            "endpoint_value_bound_to_evaluation_map"
+          ],
+          "failure_codes": [
+            "missing_endpoint_boundary_binding_present",
+            "missing_endpoint_functional_domain_present",
+            "missing_domain_chart_declared",
+            "missing_evaluation_map_declared",
+            "missing_endpoint_value_bound_to_evaluation_map"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "exact_screen_rank_as_chart_certificate",
+          "description": "Try to certify the endpoint domain/evaluation map from exact screen-zero and rank data.",
+          "required_fields": [
+            "exact_screen_zero_certified",
+            "rank_certified",
+            "domain_chart_declared",
+            "evaluation_map_declared",
+            "endpoint_motion_rule_present"
+          ],
+          "missing_fields": [
+            "exact_screen_zero_certified",
+            "rank_certified",
+            "domain_chart_declared",
+            "evaluation_map_declared",
+            "endpoint_motion_rule_present"
+          ],
+          "failure_codes": [
+            "missing_exact_screen_zero_certified",
+            "missing_rank_certified",
+            "missing_domain_chart_declared",
+            "missing_evaluation_map_declared",
+            "missing_endpoint_motion_rule_present"
+          ],
+          "passed": false
+        }
+      ],
+      "required_fields_present": {
+        "endpoint_locator_resolved": true,
+        "row_local_endpoint_value_present": true,
+        "functional_target_equation_defined": true,
+        "target_action_sign_consistent": true,
+        "endpoint_boundary_binding_present": false,
+        "endpoint_functional_domain_present": false,
+        "domain_chart_declared": false,
+        "domain_coordinate_rule_declared": false,
+        "basis_vector_bound_to_domain": false,
+        "evaluation_map_declared": false,
+        "endpoint_evaluation_rule_declared": false,
+        "endpoint_value_bound_to_evaluation_map": false,
+        "theta_support_present": false,
+        "basis_formula_present": false,
+        "basis_derivative_formula_present": false,
+        "x_update_basis_present": false,
+        "xdot_update_basis_present": false,
+        "mesh_update_rule_present": false,
+        "endpoint_motion_rule_present": false,
+        "source_monotonicity_rule_present": false,
+        "receiver_monotonicity_rule_present": false,
+        "same_packet_history_update_formula_present": false,
+        "non_target_endpoint_functionals_zero_certified": false,
+        "exact_screen_zero_certified": false,
+        "rank_certified": false,
+        "domain_evaluation_map_constructed": false
+      },
+      "missing_domain_evaluation_fields": [
+        "endpoint_boundary_binding_present",
+        "endpoint_functional_domain_present",
+        "domain_chart_declared",
+        "domain_coordinate_rule_declared",
+        "basis_vector_bound_to_domain",
+        "evaluation_map_declared",
+        "endpoint_evaluation_rule_declared",
+        "endpoint_value_bound_to_evaluation_map",
+        "theta_support_present",
+        "basis_formula_present",
+        "basis_derivative_formula_present",
+        "x_update_basis_present",
+        "xdot_update_basis_present",
+        "mesh_update_rule_present",
+        "endpoint_motion_rule_present",
+        "source_monotonicity_rule_present",
+        "receiver_monotonicity_rule_present",
+        "same_packet_history_update_formula_present",
+        "non_target_endpoint_functionals_zero_certified",
+        "exact_screen_zero_certified",
+        "rank_certified"
+      ],
+      "domain_evaluation_map_constructed": false,
+      "no_go_reason": "The current artifacts provide endpoint locators, row-local endpoint values, target equations, and screen coefficients, but no explicit endpoint-functional domain chart or evaluation map that says how a basis perturbation moves and evaluates the same-packet endpoint."
+    },
+    {
+      "id": "fc_rho_receiver_lower",
+      "endpoint_functional_id": "E_raise_receiver_lower_boundary",
+      "role": "receiver",
+      "basis_symbol": "Psi_fc_rho_receiver_lower",
+      "source_symbol": "rho_receiver_lower",
+      "fold_input_variable": {
+        "id": "fc_rho_receiver_lower",
+        "collocation_role": "fold_coordinate_boundary_opening",
+        "bounded_screen_range": [
+          -1,
+          1
+        ]
+      },
+      "target_endpoint_refs": [
+        {
+          "row_id": "R_w_A04_A03",
+          "role": "receiver",
+          "endpoint_ref": "receiver_range_q.lo",
+          "endpoint_value": {
+            "num": "23923478863106302571634315954875162615478517415591715864604836388793415892566172026938117425823421265104475915417189998177707686618953394346626118598568848409392486393431275864905600748118509682143284004515656206315212228169573960146971958847579871509209687709755403",
+            "den": "21675142283208568355530940920999142187572845848072219153647881064607296161446377030953627938867314415467117213819344472505227512758064470299653390372341679992536822180447518720000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "1.103728803738441"
+          },
+          "endpoint_value_present": true,
+          "ownership_component_id": "R_w_A04_A03:left_boundary_unowned:0:1:128"
+        },
+        {
+          "row_id": "R_u_A10_A09",
+          "role": "receiver",
+          "endpoint_ref": "receiver_range_q.lo",
+          "endpoint_value": {
+            "num": "92017946625552320131111667196226376274649211724864932821473506991033765671679516696103350990527149858508676422567471818429704183571236733267611955715653904999304852983089366014201600952918509682143284004515656206315212228169573960146971958847579871509209687709755403",
+            "den": "21675142283208568355530940920999142187572845848072219153647881064607296161446377030953627938867314415467117213819344472505227512758064470299653390372341679992536822180447518720000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "4.245321457328441"
+          },
+          "endpoint_value_present": true,
+          "ownership_component_id": "R_u_A10_A09:left_boundary_unowned:0:1:128"
+        }
+      ],
+      "target_endpoint_values": [
+        {
+          "row_id": "R_w_A04_A03",
+          "role": "receiver",
+          "endpoint_ref": "receiver_range_q.lo",
+          "endpoint_value": {
+            "num": "23923478863106302571634315954875162615478517415591715864604836388793415892566172026938117425823421265104475915417189998177707686618953394346626118598568848409392486393431275864905600748118509682143284004515656206315212228169573960146971958847579871509209687709755403",
+            "den": "21675142283208568355530940920999142187572845848072219153647881064607296161446377030953627938867314415467117213819344472505227512758064470299653390372341679992536822180447518720000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "1.103728803738441"
+          }
+        },
+        {
+          "row_id": "R_u_A10_A09",
+          "role": "receiver",
+          "endpoint_ref": "receiver_range_q.lo",
+          "endpoint_value": {
+            "num": "92017946625552320131111667196226376274649211724864932821473506991033765671679516696103350990527149858508676422567471818429704183571236733267611955715653904999304852983089366014201600952918509682143284004515656206315212228169573960146971958847579871509209687709755403",
+            "den": "21675142283208568355530940920999142187572845848072219153647881064607296161446377030953627938867314415467117213819344472505227512758064470299653390372341679992536822180447518720000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "4.245321457328441"
+          }
+        }
+      ],
+      "required_endpoint_functionals": [
+        {
+          "action": "raise_receiver_lower_boundary",
+          "sign": 1,
+          "target_equation": "E_raise_receiver_lower_boundary(Psi_fc_rho_receiver_lower) = +1",
+          "zero_equation": "All non-target one-leaf boundary functionals vanish on Psi_fc_rho_receiver_lower."
+        }
+      ],
+      "candidate_field_inventory": [
+        {
+          "source": "source_audit",
+          "declares_domain_chart": false,
+          "declares_evaluation_map": false,
+          "declares_endpoint_motion_rule": false
+        },
+        {
+          "source": "construction_attempt",
+          "declares_domain_chart": false,
+          "declares_evaluation_map": false,
+          "declares_endpoint_motion_rule": false
+        },
+        {
+          "source": "finite_realization_basis_attempt",
+          "declares_domain_chart": false,
+          "declares_evaluation_map": false,
+          "declares_endpoint_motion_rule": false
+        },
+        {
+          "source": "binding_contract_no_go",
+          "declares_domain_chart": false,
+          "declares_evaluation_map": false,
+          "declares_endpoint_motion_rule": false
+        },
+        {
+          "source": "history_realization_contract",
+          "declares_domain_chart": false,
+          "declares_evaluation_map": false,
+          "declares_endpoint_motion_rule": false
+        },
+        {
+          "source": "history_realization_theorem_attempt",
+          "declares_domain_chart": false,
+          "declares_evaluation_map": false,
+          "declares_endpoint_motion_rule": false
+        }
+      ],
+      "rejected_promotions": [
+        "A row-local endpoint ref is a target locator, not a domain chart.",
+        "A row-local endpoint q-value is a scalar boundary value, not an evaluation map.",
+        "A target equation E_j(Psi_j)=+/-1 states a desired action, not the rule defining E_j.",
+        "A bounded fold-coordinate screen variable is not a basis formula on a perturbation domain.",
+        "A tolerance-level B_xi residual is not exact B_xi=0 or rank certification."
+      ],
+      "method_results": [
+        {
+          "method_id": "row_local_endpoint_ref_as_domain_chart",
+          "description": "Try to promote row-local endpoint refs and q-values into an endpoint-functional domain chart.",
+          "required_fields": [
+            "endpoint_locator_resolved",
+            "row_local_endpoint_value_present",
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "domain_coordinate_rule_declared",
+            "basis_vector_bound_to_domain"
+          ],
+          "missing_fields": [
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "domain_coordinate_rule_declared",
+            "basis_vector_bound_to_domain"
+          ],
+          "failure_codes": [
+            "missing_endpoint_functional_domain_present",
+            "missing_domain_chart_declared",
+            "missing_domain_coordinate_rule_declared",
+            "missing_basis_vector_bound_to_domain"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "target_equation_as_evaluation_map",
+          "description": "Try to promote the target equation E_j(Psi_j)=+/-1 into the endpoint evaluation map.",
+          "required_fields": [
+            "functional_target_equation_defined",
+            "target_action_sign_consistent",
+            "endpoint_boundary_binding_present",
+            "endpoint_functional_domain_present",
+            "evaluation_map_declared",
+            "endpoint_evaluation_rule_declared",
+            "endpoint_value_bound_to_evaluation_map",
+            "non_target_endpoint_functionals_zero_certified"
+          ],
+          "missing_fields": [
+            "endpoint_boundary_binding_present",
+            "endpoint_functional_domain_present",
+            "evaluation_map_declared",
+            "endpoint_evaluation_rule_declared",
+            "endpoint_value_bound_to_evaluation_map",
+            "non_target_endpoint_functionals_zero_certified"
+          ],
+          "failure_codes": [
+            "missing_endpoint_boundary_binding_present",
+            "missing_endpoint_functional_domain_present",
+            "missing_evaluation_map_declared",
+            "missing_endpoint_evaluation_rule_declared",
+            "missing_endpoint_value_bound_to_evaluation_map",
+            "missing_non_target_endpoint_functionals_zero_certified"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "basis_formula_as_endpoint_motion_map",
+          "description": "Try to build the evaluation map from an explicit same-packet basis formula and endpoint-motion rule.",
+          "required_fields": [
+            "theta_support_present",
+            "basis_formula_present",
+            "basis_derivative_formula_present",
+            "x_update_basis_present",
+            "xdot_update_basis_present",
+            "mesh_update_rule_present",
+            "endpoint_motion_rule_present",
+            "source_monotonicity_rule_present",
+            "receiver_monotonicity_rule_present",
+            "same_packet_history_update_formula_present"
+          ],
+          "missing_fields": [
+            "theta_support_present",
+            "basis_formula_present",
+            "basis_derivative_formula_present",
+            "x_update_basis_present",
+            "xdot_update_basis_present",
+            "mesh_update_rule_present",
+            "endpoint_motion_rule_present",
+            "source_monotonicity_rule_present",
+            "receiver_monotonicity_rule_present",
+            "same_packet_history_update_formula_present"
+          ],
+          "failure_codes": [
+            "missing_theta_support_present",
+            "missing_basis_formula_present",
+            "missing_basis_derivative_formula_present",
+            "missing_x_update_basis_present",
+            "missing_xdot_update_basis_present",
+            "missing_mesh_update_rule_present",
+            "missing_endpoint_motion_rule_present",
+            "missing_source_monotonicity_rule_present",
+            "missing_receiver_monotonicity_rule_present",
+            "missing_same_packet_history_update_formula_present"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "binding_contract_import_as_domain_evaluation_map",
+          "description": "Try to import an already-certified endpoint binding contract as the domain/evaluation-map certificate.",
+          "required_fields": [
+            "endpoint_boundary_binding_present",
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "evaluation_map_declared",
+            "endpoint_value_bound_to_evaluation_map"
+          ],
+          "missing_fields": [
+            "endpoint_boundary_binding_present",
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "evaluation_map_declared",
+            "endpoint_value_bound_to_evaluation_map"
+          ],
+          "failure_codes": [
+            "missing_endpoint_boundary_binding_present",
+            "missing_endpoint_functional_domain_present",
+            "missing_domain_chart_declared",
+            "missing_evaluation_map_declared",
+            "missing_endpoint_value_bound_to_evaluation_map"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "exact_screen_rank_as_chart_certificate",
+          "description": "Try to certify the endpoint domain/evaluation map from exact screen-zero and rank data.",
+          "required_fields": [
+            "exact_screen_zero_certified",
+            "rank_certified",
+            "domain_chart_declared",
+            "evaluation_map_declared",
+            "endpoint_motion_rule_present"
+          ],
+          "missing_fields": [
+            "exact_screen_zero_certified",
+            "rank_certified",
+            "domain_chart_declared",
+            "evaluation_map_declared",
+            "endpoint_motion_rule_present"
+          ],
+          "failure_codes": [
+            "missing_exact_screen_zero_certified",
+            "missing_rank_certified",
+            "missing_domain_chart_declared",
+            "missing_evaluation_map_declared",
+            "missing_endpoint_motion_rule_present"
+          ],
+          "passed": false
+        }
+      ],
+      "required_fields_present": {
+        "endpoint_locator_resolved": true,
+        "row_local_endpoint_value_present": true,
+        "functional_target_equation_defined": true,
+        "target_action_sign_consistent": true,
+        "endpoint_boundary_binding_present": false,
+        "endpoint_functional_domain_present": false,
+        "domain_chart_declared": false,
+        "domain_coordinate_rule_declared": false,
+        "basis_vector_bound_to_domain": false,
+        "evaluation_map_declared": false,
+        "endpoint_evaluation_rule_declared": false,
+        "endpoint_value_bound_to_evaluation_map": false,
+        "theta_support_present": false,
+        "basis_formula_present": false,
+        "basis_derivative_formula_present": false,
+        "x_update_basis_present": false,
+        "xdot_update_basis_present": false,
+        "mesh_update_rule_present": false,
+        "endpoint_motion_rule_present": false,
+        "source_monotonicity_rule_present": false,
+        "receiver_monotonicity_rule_present": false,
+        "same_packet_history_update_formula_present": false,
+        "non_target_endpoint_functionals_zero_certified": false,
+        "exact_screen_zero_certified": false,
+        "rank_certified": false,
+        "domain_evaluation_map_constructed": false
+      },
+      "missing_domain_evaluation_fields": [
+        "endpoint_boundary_binding_present",
+        "endpoint_functional_domain_present",
+        "domain_chart_declared",
+        "domain_coordinate_rule_declared",
+        "basis_vector_bound_to_domain",
+        "evaluation_map_declared",
+        "endpoint_evaluation_rule_declared",
+        "endpoint_value_bound_to_evaluation_map",
+        "theta_support_present",
+        "basis_formula_present",
+        "basis_derivative_formula_present",
+        "x_update_basis_present",
+        "xdot_update_basis_present",
+        "mesh_update_rule_present",
+        "endpoint_motion_rule_present",
+        "source_monotonicity_rule_present",
+        "receiver_monotonicity_rule_present",
+        "same_packet_history_update_formula_present",
+        "non_target_endpoint_functionals_zero_certified",
+        "exact_screen_zero_certified",
+        "rank_certified"
+      ],
+      "domain_evaluation_map_constructed": false,
+      "no_go_reason": "The current artifacts provide endpoint locators, row-local endpoint values, target equations, and screen coefficients, but no explicit endpoint-functional domain chart or evaluation map that says how a basis perturbation moves and evaluates the same-packet endpoint."
+    },
+    {
+      "id": "fc_sigma_source_upper",
+      "endpoint_functional_id": "E_raise_source_inner_boundary",
+      "role": "source",
+      "basis_symbol": "Psi_fc_sigma_source_upper",
+      "source_symbol": "sigma_source_upper",
+      "fold_input_variable": {
+        "id": "fc_sigma_source_upper",
+        "collocation_role": "fold_coordinate_boundary_opening",
+        "bounded_screen_range": [
+          -1,
+          1
+        ]
+      },
+      "target_endpoint_refs": [
+        {
+          "row_id": "R_u_A07_A06",
+          "role": "source",
+          "endpoint_ref": "source_inner_range_q.hi",
+          "endpoint_value": {
+            "num": "913404831589878227955650815249056063409642527436920989775347098713309507776410739373971247745865597132198216856434792485603225886341201786313983387101459534828848824327408487389612164487120225480879904703610257721587148795406165256750308709775447069334359579391187319193184173764651953274813153438754742706218571847990586766227306909373630379789945133405628741195160585918258878758173184554958903787",
+            "den": "206346864613173617903075239304684018917707380895670204800941091511283920337200907269932265673227619093131480070568031876858757312792787978850537940266680115688946560049691815211595107577630454504956166122639636766599124202641876016875921671462507002857788692914294746966770909427010307620000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "4.426550572029212"
+          },
+          "endpoint_value_present": true,
+          "ownership_component_id": "R_u_A07_A06:left_boundary_unowned:0:1:128"
+        }
+      ],
+      "target_endpoint_values": [
+        {
+          "row_id": "R_u_A07_A06",
+          "role": "source",
+          "endpoint_ref": "source_inner_range_q.hi",
+          "endpoint_value": {
+            "num": "913404831589878227955650815249056063409642527436920989775347098713309507776410739373971247745865597132198216856434792485603225886341201786313983387101459534828848824327408487389612164487120225480879904703610257721587148795406165256750308709775447069334359579391187319193184173764651953274813153438754742706218571847990586766227306909373630379789945133405628741195160585918258878758173184554958903787",
+            "den": "206346864613173617903075239304684018917707380895670204800941091511283920337200907269932265673227619093131480070568031876858757312792787978850537940266680115688946560049691815211595107577630454504956166122639636766599124202641876016875921671462507002857788692914294746966770909427010307620000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "4.426550572029212"
+          }
+        }
+      ],
+      "required_endpoint_functionals": [
+        {
+          "action": "raise_source_inner_boundary",
+          "sign": 1,
+          "target_equation": "E_raise_source_inner_boundary(Psi_fc_sigma_source_upper) = +1",
+          "zero_equation": "All non-target one-leaf boundary functionals vanish on Psi_fc_sigma_source_upper."
+        }
+      ],
+      "candidate_field_inventory": [
+        {
+          "source": "source_audit",
+          "declares_domain_chart": false,
+          "declares_evaluation_map": false,
+          "declares_endpoint_motion_rule": false
+        },
+        {
+          "source": "construction_attempt",
+          "declares_domain_chart": false,
+          "declares_evaluation_map": false,
+          "declares_endpoint_motion_rule": false
+        },
+        {
+          "source": "finite_realization_basis_attempt",
+          "declares_domain_chart": false,
+          "declares_evaluation_map": false,
+          "declares_endpoint_motion_rule": false
+        },
+        {
+          "source": "binding_contract_no_go",
+          "declares_domain_chart": false,
+          "declares_evaluation_map": false,
+          "declares_endpoint_motion_rule": false
+        },
+        {
+          "source": "history_realization_contract",
+          "declares_domain_chart": false,
+          "declares_evaluation_map": false,
+          "declares_endpoint_motion_rule": false
+        },
+        {
+          "source": "history_realization_theorem_attempt",
+          "declares_domain_chart": false,
+          "declares_evaluation_map": false,
+          "declares_endpoint_motion_rule": false
+        }
+      ],
+      "rejected_promotions": [
+        "A row-local endpoint ref is a target locator, not a domain chart.",
+        "A row-local endpoint q-value is a scalar boundary value, not an evaluation map.",
+        "A target equation E_j(Psi_j)=+/-1 states a desired action, not the rule defining E_j.",
+        "A bounded fold-coordinate screen variable is not a basis formula on a perturbation domain.",
+        "A tolerance-level B_xi residual is not exact B_xi=0 or rank certification."
+      ],
+      "method_results": [
+        {
+          "method_id": "row_local_endpoint_ref_as_domain_chart",
+          "description": "Try to promote row-local endpoint refs and q-values into an endpoint-functional domain chart.",
+          "required_fields": [
+            "endpoint_locator_resolved",
+            "row_local_endpoint_value_present",
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "domain_coordinate_rule_declared",
+            "basis_vector_bound_to_domain"
+          ],
+          "missing_fields": [
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "domain_coordinate_rule_declared",
+            "basis_vector_bound_to_domain"
+          ],
+          "failure_codes": [
+            "missing_endpoint_functional_domain_present",
+            "missing_domain_chart_declared",
+            "missing_domain_coordinate_rule_declared",
+            "missing_basis_vector_bound_to_domain"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "target_equation_as_evaluation_map",
+          "description": "Try to promote the target equation E_j(Psi_j)=+/-1 into the endpoint evaluation map.",
+          "required_fields": [
+            "functional_target_equation_defined",
+            "target_action_sign_consistent",
+            "endpoint_boundary_binding_present",
+            "endpoint_functional_domain_present",
+            "evaluation_map_declared",
+            "endpoint_evaluation_rule_declared",
+            "endpoint_value_bound_to_evaluation_map",
+            "non_target_endpoint_functionals_zero_certified"
+          ],
+          "missing_fields": [
+            "endpoint_boundary_binding_present",
+            "endpoint_functional_domain_present",
+            "evaluation_map_declared",
+            "endpoint_evaluation_rule_declared",
+            "endpoint_value_bound_to_evaluation_map",
+            "non_target_endpoint_functionals_zero_certified"
+          ],
+          "failure_codes": [
+            "missing_endpoint_boundary_binding_present",
+            "missing_endpoint_functional_domain_present",
+            "missing_evaluation_map_declared",
+            "missing_endpoint_evaluation_rule_declared",
+            "missing_endpoint_value_bound_to_evaluation_map",
+            "missing_non_target_endpoint_functionals_zero_certified"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "basis_formula_as_endpoint_motion_map",
+          "description": "Try to build the evaluation map from an explicit same-packet basis formula and endpoint-motion rule.",
+          "required_fields": [
+            "theta_support_present",
+            "basis_formula_present",
+            "basis_derivative_formula_present",
+            "x_update_basis_present",
+            "xdot_update_basis_present",
+            "mesh_update_rule_present",
+            "endpoint_motion_rule_present",
+            "source_monotonicity_rule_present",
+            "receiver_monotonicity_rule_present",
+            "same_packet_history_update_formula_present"
+          ],
+          "missing_fields": [
+            "theta_support_present",
+            "basis_formula_present",
+            "basis_derivative_formula_present",
+            "x_update_basis_present",
+            "xdot_update_basis_present",
+            "mesh_update_rule_present",
+            "endpoint_motion_rule_present",
+            "source_monotonicity_rule_present",
+            "receiver_monotonicity_rule_present",
+            "same_packet_history_update_formula_present"
+          ],
+          "failure_codes": [
+            "missing_theta_support_present",
+            "missing_basis_formula_present",
+            "missing_basis_derivative_formula_present",
+            "missing_x_update_basis_present",
+            "missing_xdot_update_basis_present",
+            "missing_mesh_update_rule_present",
+            "missing_endpoint_motion_rule_present",
+            "missing_source_monotonicity_rule_present",
+            "missing_receiver_monotonicity_rule_present",
+            "missing_same_packet_history_update_formula_present"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "binding_contract_import_as_domain_evaluation_map",
+          "description": "Try to import an already-certified endpoint binding contract as the domain/evaluation-map certificate.",
+          "required_fields": [
+            "endpoint_boundary_binding_present",
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "evaluation_map_declared",
+            "endpoint_value_bound_to_evaluation_map"
+          ],
+          "missing_fields": [
+            "endpoint_boundary_binding_present",
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "evaluation_map_declared",
+            "endpoint_value_bound_to_evaluation_map"
+          ],
+          "failure_codes": [
+            "missing_endpoint_boundary_binding_present",
+            "missing_endpoint_functional_domain_present",
+            "missing_domain_chart_declared",
+            "missing_evaluation_map_declared",
+            "missing_endpoint_value_bound_to_evaluation_map"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "exact_screen_rank_as_chart_certificate",
+          "description": "Try to certify the endpoint domain/evaluation map from exact screen-zero and rank data.",
+          "required_fields": [
+            "exact_screen_zero_certified",
+            "rank_certified",
+            "domain_chart_declared",
+            "evaluation_map_declared",
+            "endpoint_motion_rule_present"
+          ],
+          "missing_fields": [
+            "exact_screen_zero_certified",
+            "rank_certified",
+            "domain_chart_declared",
+            "evaluation_map_declared",
+            "endpoint_motion_rule_present"
+          ],
+          "failure_codes": [
+            "missing_exact_screen_zero_certified",
+            "missing_rank_certified",
+            "missing_domain_chart_declared",
+            "missing_evaluation_map_declared",
+            "missing_endpoint_motion_rule_present"
+          ],
+          "passed": false
+        }
+      ],
+      "required_fields_present": {
+        "endpoint_locator_resolved": true,
+        "row_local_endpoint_value_present": true,
+        "functional_target_equation_defined": true,
+        "target_action_sign_consistent": true,
+        "endpoint_boundary_binding_present": false,
+        "endpoint_functional_domain_present": false,
+        "domain_chart_declared": false,
+        "domain_coordinate_rule_declared": false,
+        "basis_vector_bound_to_domain": false,
+        "evaluation_map_declared": false,
+        "endpoint_evaluation_rule_declared": false,
+        "endpoint_value_bound_to_evaluation_map": false,
+        "theta_support_present": false,
+        "basis_formula_present": false,
+        "basis_derivative_formula_present": false,
+        "x_update_basis_present": false,
+        "xdot_update_basis_present": false,
+        "mesh_update_rule_present": false,
+        "endpoint_motion_rule_present": false,
+        "source_monotonicity_rule_present": false,
+        "receiver_monotonicity_rule_present": false,
+        "same_packet_history_update_formula_present": false,
+        "non_target_endpoint_functionals_zero_certified": false,
+        "exact_screen_zero_certified": false,
+        "rank_certified": false,
+        "domain_evaluation_map_constructed": false
+      },
+      "missing_domain_evaluation_fields": [
+        "endpoint_boundary_binding_present",
+        "endpoint_functional_domain_present",
+        "domain_chart_declared",
+        "domain_coordinate_rule_declared",
+        "basis_vector_bound_to_domain",
+        "evaluation_map_declared",
+        "endpoint_evaluation_rule_declared",
+        "endpoint_value_bound_to_evaluation_map",
+        "theta_support_present",
+        "basis_formula_present",
+        "basis_derivative_formula_present",
+        "x_update_basis_present",
+        "xdot_update_basis_present",
+        "mesh_update_rule_present",
+        "endpoint_motion_rule_present",
+        "source_monotonicity_rule_present",
+        "receiver_monotonicity_rule_present",
+        "same_packet_history_update_formula_present",
+        "non_target_endpoint_functionals_zero_certified",
+        "exact_screen_zero_certified",
+        "rank_certified"
+      ],
+      "domain_evaluation_map_constructed": false,
+      "no_go_reason": "The current artifacts provide endpoint locators, row-local endpoint values, target equations, and screen coefficients, but no explicit endpoint-functional domain chart or evaluation map that says how a basis perturbation moves and evaluates the same-packet endpoint."
+    },
+    {
+      "id": "fc_rho_receiver_upper",
+      "endpoint_functional_id": "E_lower_receiver_upper_boundary",
+      "role": "receiver",
+      "basis_symbol": "Psi_fc_rho_receiver_upper",
+      "source_symbol": "rho_receiver_upper",
+      "fold_input_variable": {
+        "id": "fc_rho_receiver_upper",
+        "collocation_role": "fold_coordinate_boundary_opening",
+        "bounded_screen_range": [
+          -1,
+          1
+        ]
+      },
+      "target_endpoint_refs": [
+        {
+          "row_id": "R_u_A07_A06",
+          "role": "receiver",
+          "endpoint_ref": "receiver_range_q.hi",
+          "endpoint_value": {
+            "num": "3668029164140711604577729486863140436790318195624021665330903488155589948894674146747657134263392501996316122274977383039900142243661083092548626977248308735401783795478778114028913265019623054326760136351852179090806418757556730841452472939804564785882610960882651271513541783309043807372820860035509788923764248889215986303091136332460594362052978091238556407738146953363553182897981638817059",
+            "den": "828596695543815221599758647695082692964461058923279327772242187591733988576623986519727065831732668860203787760282996822216634372487868238046012967329224194146875293967586938850756257048932505933792723416710197674409478329579910129602233268305361403390904204412285963826325144988193989487000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "4.426796756331923"
+          },
+          "endpoint_value_present": true,
+          "ownership_component_id": "R_u_A07_A06:left_boundary_unowned:0:1:128"
+        }
+      ],
+      "target_endpoint_values": [
+        {
+          "row_id": "R_u_A07_A06",
+          "role": "receiver",
+          "endpoint_ref": "receiver_range_q.hi",
+          "endpoint_value": {
+            "num": "3668029164140711604577729486863140436790318195624021665330903488155589948894674146747657134263392501996316122274977383039900142243661083092548626977248308735401783795478778114028913265019623054326760136351852179090806418757556730841452472939804564785882610960882651271513541783309043807372820860035509788923764248889215986303091136332460594362052978091238556407738146953363553182897981638817059",
+            "den": "828596695543815221599758647695082692964461058923279327772242187591733988576623986519727065831732668860203787760282996822216634372487868238046012967329224194146875293967586938850756257048932505933792723416710197674409478329579910129602233268305361403390904204412285963826325144988193989487000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "display": "4.426796756331923"
+          }
+        }
+      ],
+      "required_endpoint_functionals": [
+        {
+          "action": "lower_receiver_upper_boundary",
+          "sign": -1,
+          "target_equation": "E_lower_receiver_upper_boundary(Psi_fc_rho_receiver_upper) = -1",
+          "zero_equation": "All non-target one-leaf boundary functionals vanish on Psi_fc_rho_receiver_upper."
+        }
+      ],
+      "candidate_field_inventory": [
+        {
+          "source": "source_audit",
+          "declares_domain_chart": false,
+          "declares_evaluation_map": false,
+          "declares_endpoint_motion_rule": false
+        },
+        {
+          "source": "construction_attempt",
+          "declares_domain_chart": false,
+          "declares_evaluation_map": false,
+          "declares_endpoint_motion_rule": false
+        },
+        {
+          "source": "finite_realization_basis_attempt",
+          "declares_domain_chart": false,
+          "declares_evaluation_map": false,
+          "declares_endpoint_motion_rule": false
+        },
+        {
+          "source": "binding_contract_no_go",
+          "declares_domain_chart": false,
+          "declares_evaluation_map": false,
+          "declares_endpoint_motion_rule": false
+        },
+        {
+          "source": "history_realization_contract",
+          "declares_domain_chart": false,
+          "declares_evaluation_map": false,
+          "declares_endpoint_motion_rule": false
+        },
+        {
+          "source": "history_realization_theorem_attempt",
+          "declares_domain_chart": false,
+          "declares_evaluation_map": false,
+          "declares_endpoint_motion_rule": false
+        }
+      ],
+      "rejected_promotions": [
+        "A row-local endpoint ref is a target locator, not a domain chart.",
+        "A row-local endpoint q-value is a scalar boundary value, not an evaluation map.",
+        "A target equation E_j(Psi_j)=+/-1 states a desired action, not the rule defining E_j.",
+        "A bounded fold-coordinate screen variable is not a basis formula on a perturbation domain.",
+        "A tolerance-level B_xi residual is not exact B_xi=0 or rank certification."
+      ],
+      "method_results": [
+        {
+          "method_id": "row_local_endpoint_ref_as_domain_chart",
+          "description": "Try to promote row-local endpoint refs and q-values into an endpoint-functional domain chart.",
+          "required_fields": [
+            "endpoint_locator_resolved",
+            "row_local_endpoint_value_present",
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "domain_coordinate_rule_declared",
+            "basis_vector_bound_to_domain"
+          ],
+          "missing_fields": [
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "domain_coordinate_rule_declared",
+            "basis_vector_bound_to_domain"
+          ],
+          "failure_codes": [
+            "missing_endpoint_functional_domain_present",
+            "missing_domain_chart_declared",
+            "missing_domain_coordinate_rule_declared",
+            "missing_basis_vector_bound_to_domain"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "target_equation_as_evaluation_map",
+          "description": "Try to promote the target equation E_j(Psi_j)=+/-1 into the endpoint evaluation map.",
+          "required_fields": [
+            "functional_target_equation_defined",
+            "target_action_sign_consistent",
+            "endpoint_boundary_binding_present",
+            "endpoint_functional_domain_present",
+            "evaluation_map_declared",
+            "endpoint_evaluation_rule_declared",
+            "endpoint_value_bound_to_evaluation_map",
+            "non_target_endpoint_functionals_zero_certified"
+          ],
+          "missing_fields": [
+            "endpoint_boundary_binding_present",
+            "endpoint_functional_domain_present",
+            "evaluation_map_declared",
+            "endpoint_evaluation_rule_declared",
+            "endpoint_value_bound_to_evaluation_map",
+            "non_target_endpoint_functionals_zero_certified"
+          ],
+          "failure_codes": [
+            "missing_endpoint_boundary_binding_present",
+            "missing_endpoint_functional_domain_present",
+            "missing_evaluation_map_declared",
+            "missing_endpoint_evaluation_rule_declared",
+            "missing_endpoint_value_bound_to_evaluation_map",
+            "missing_non_target_endpoint_functionals_zero_certified"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "basis_formula_as_endpoint_motion_map",
+          "description": "Try to build the evaluation map from an explicit same-packet basis formula and endpoint-motion rule.",
+          "required_fields": [
+            "theta_support_present",
+            "basis_formula_present",
+            "basis_derivative_formula_present",
+            "x_update_basis_present",
+            "xdot_update_basis_present",
+            "mesh_update_rule_present",
+            "endpoint_motion_rule_present",
+            "source_monotonicity_rule_present",
+            "receiver_monotonicity_rule_present",
+            "same_packet_history_update_formula_present"
+          ],
+          "missing_fields": [
+            "theta_support_present",
+            "basis_formula_present",
+            "basis_derivative_formula_present",
+            "x_update_basis_present",
+            "xdot_update_basis_present",
+            "mesh_update_rule_present",
+            "endpoint_motion_rule_present",
+            "source_monotonicity_rule_present",
+            "receiver_monotonicity_rule_present",
+            "same_packet_history_update_formula_present"
+          ],
+          "failure_codes": [
+            "missing_theta_support_present",
+            "missing_basis_formula_present",
+            "missing_basis_derivative_formula_present",
+            "missing_x_update_basis_present",
+            "missing_xdot_update_basis_present",
+            "missing_mesh_update_rule_present",
+            "missing_endpoint_motion_rule_present",
+            "missing_source_monotonicity_rule_present",
+            "missing_receiver_monotonicity_rule_present",
+            "missing_same_packet_history_update_formula_present"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "binding_contract_import_as_domain_evaluation_map",
+          "description": "Try to import an already-certified endpoint binding contract as the domain/evaluation-map certificate.",
+          "required_fields": [
+            "endpoint_boundary_binding_present",
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "evaluation_map_declared",
+            "endpoint_value_bound_to_evaluation_map"
+          ],
+          "missing_fields": [
+            "endpoint_boundary_binding_present",
+            "endpoint_functional_domain_present",
+            "domain_chart_declared",
+            "evaluation_map_declared",
+            "endpoint_value_bound_to_evaluation_map"
+          ],
+          "failure_codes": [
+            "missing_endpoint_boundary_binding_present",
+            "missing_endpoint_functional_domain_present",
+            "missing_domain_chart_declared",
+            "missing_evaluation_map_declared",
+            "missing_endpoint_value_bound_to_evaluation_map"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "exact_screen_rank_as_chart_certificate",
+          "description": "Try to certify the endpoint domain/evaluation map from exact screen-zero and rank data.",
+          "required_fields": [
+            "exact_screen_zero_certified",
+            "rank_certified",
+            "domain_chart_declared",
+            "evaluation_map_declared",
+            "endpoint_motion_rule_present"
+          ],
+          "missing_fields": [
+            "exact_screen_zero_certified",
+            "rank_certified",
+            "domain_chart_declared",
+            "evaluation_map_declared",
+            "endpoint_motion_rule_present"
+          ],
+          "failure_codes": [
+            "missing_exact_screen_zero_certified",
+            "missing_rank_certified",
+            "missing_domain_chart_declared",
+            "missing_evaluation_map_declared",
+            "missing_endpoint_motion_rule_present"
+          ],
+          "passed": false
+        }
+      ],
+      "required_fields_present": {
+        "endpoint_locator_resolved": true,
+        "row_local_endpoint_value_present": true,
+        "functional_target_equation_defined": true,
+        "target_action_sign_consistent": true,
+        "endpoint_boundary_binding_present": false,
+        "endpoint_functional_domain_present": false,
+        "domain_chart_declared": false,
+        "domain_coordinate_rule_declared": false,
+        "basis_vector_bound_to_domain": false,
+        "evaluation_map_declared": false,
+        "endpoint_evaluation_rule_declared": false,
+        "endpoint_value_bound_to_evaluation_map": false,
+        "theta_support_present": false,
+        "basis_formula_present": false,
+        "basis_derivative_formula_present": false,
+        "x_update_basis_present": false,
+        "xdot_update_basis_present": false,
+        "mesh_update_rule_present": false,
+        "endpoint_motion_rule_present": false,
+        "source_monotonicity_rule_present": false,
+        "receiver_monotonicity_rule_present": false,
+        "same_packet_history_update_formula_present": false,
+        "non_target_endpoint_functionals_zero_certified": false,
+        "exact_screen_zero_certified": false,
+        "rank_certified": false,
+        "domain_evaluation_map_constructed": false
+      },
+      "missing_domain_evaluation_fields": [
+        "endpoint_boundary_binding_present",
+        "endpoint_functional_domain_present",
+        "domain_chart_declared",
+        "domain_coordinate_rule_declared",
+        "basis_vector_bound_to_domain",
+        "evaluation_map_declared",
+        "endpoint_evaluation_rule_declared",
+        "endpoint_value_bound_to_evaluation_map",
+        "theta_support_present",
+        "basis_formula_present",
+        "basis_derivative_formula_present",
+        "x_update_basis_present",
+        "xdot_update_basis_present",
+        "mesh_update_rule_present",
+        "endpoint_motion_rule_present",
+        "source_monotonicity_rule_present",
+        "receiver_monotonicity_rule_present",
+        "same_packet_history_update_formula_present",
+        "non_target_endpoint_functionals_zero_certified",
+        "exact_screen_zero_certified",
+        "rank_certified"
+      ],
+      "domain_evaluation_map_constructed": false,
+      "no_go_reason": "The current artifacts provide endpoint locators, row-local endpoint values, target equations, and screen coefficients, but no explicit endpoint-functional domain chart or evaluation map that says how a basis perturbation moves and evaluates the same-packet endpoint."
+    }
+  ],
+  "row_domain_evaluation_attempts": [
+    {
+      "row_id": "R_w_A04_A03",
+      "source_interval": "A03",
+      "receiver_interval": "A04",
+      "failed_side": "lo",
+      "boundary_side": "lower",
+      "source_domain_evaluation_id": "fc_sigma_source_lower",
+      "receiver_domain_evaluation_id": "fc_rho_receiver_lower",
+      "source_boundary_value": {
+        "num": "22889475682709269533413042303837882332186381319318690739134385525004858014062592566793989041615601706730549026109295638036107447029424137018797622300140513390802684414087574023253585373959809013507853720323944442908548877462127674929541409468871666749595362048011028177978722442883",
+        "den": "20737813556676946596478600506564457667824085709013815187739169879824578869563979531491976751516110219329647110034464826298821156776657596726897777940411216903568068218430965044740096000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "display": "1.103755495734966"
+      },
+      "receiver_boundary_value": {
+        "num": "23923478863106302571634315954875162615478517415591715864604836388793415892566172026938117425823421265104475915417189998177707686618953394346626118598568848409392486393431275864905600748118509682143284004515656206315212228169573960146971958847579871509209687709755403",
+        "den": "21675142283208568355530940920999142187572845848072219153647881064607296161446377030953627938867314415467117213819344472505227512758064470299653390372341679992536822180447518720000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "display": "1.103728803738441"
+      },
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "source_domain_evaluation_map_constructed": false,
+        "receiver_domain_evaluation_map_constructed": false,
+        "combined_domain_evaluation_pair_constructed": false,
+        "screen_positive_candidate_change_row": true,
+        "proof_grade_boundary_opening_certified": false,
+        "same_packet_history_update_formula_present": false,
+        "candidate_artifacts_present": false,
+        "root_topology_recertified_for_candidate_change": false,
+        "proof_interval_v1_v6_rerun_for_candidate_change": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "row_domain_evaluation_map_ready": false,
+      "obstruction": "The row has source and receiver endpoint values, but the source/receiver domain/evaluation maps are not constructed and no proof-grade boundary-opening replay exists."
+    },
+    {
+      "row_id": "R_u_A10_A09",
+      "source_interval": "A09",
+      "receiver_interval": "A10",
+      "failed_side": "lo",
+      "boundary_side": "lower",
+      "source_domain_evaluation_id": "fc_sigma_source_lower",
+      "receiver_domain_evaluation_id": "fc_rho_receiver_lower",
+      "source_boundary_value": {
+        "num": "88039238403884674053822967818905235111225073503214998976753728260546758148600337509414313256205686466309292001480744708043739423236237287290884511028631553198684154987618253244383156638471153653507853720323944442908548877462127674929541409468871666749595362048011028177978722442883",
+        "den": "20737813556676946596478600506564457667824085709013815187739169879824578869563979531491976751516110219329647110034464826298821156776657596726897777940411216903568068218430965044740096000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "display": "4.245348149324966"
+      },
+      "receiver_boundary_value": {
+        "num": "92017946625552320131111667196226376274649211724864932821473506991033765671679516696103350990527149858508676422567471818429704183571236733267611955715653904999304852983089366014201600952918509682143284004515656206315212228169573960146971958847579871509209687709755403",
+        "den": "21675142283208568355530940920999142187572845848072219153647881064607296161446377030953627938867314415467117213819344472505227512758064470299653390372341679992536822180447518720000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "display": "4.245321457328441"
+      },
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "source_domain_evaluation_map_constructed": false,
+        "receiver_domain_evaluation_map_constructed": false,
+        "combined_domain_evaluation_pair_constructed": false,
+        "screen_positive_candidate_change_row": true,
+        "proof_grade_boundary_opening_certified": false,
+        "same_packet_history_update_formula_present": false,
+        "candidate_artifacts_present": false,
+        "root_topology_recertified_for_candidate_change": false,
+        "proof_interval_v1_v6_rerun_for_candidate_change": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "row_domain_evaluation_map_ready": false,
+      "obstruction": "The row has source and receiver endpoint values, but the source/receiver domain/evaluation maps are not constructed and no proof-grade boundary-opening replay exists."
+    },
+    {
+      "row_id": "R_u_A07_A06",
+      "source_interval": "A06",
+      "receiver_interval": "A07",
+      "failed_side": "hi",
+      "boundary_side": "upper",
+      "source_domain_evaluation_id": "fc_sigma_source_upper",
+      "receiver_domain_evaluation_id": "fc_rho_receiver_upper",
+      "source_boundary_value": {
+        "num": "913404831589878227955650815249056063409642527436920989775347098713309507776410739373971247745865597132198216856434792485603225886341201786313983387101459534828848824327408487389612164487120225480879904703610257721587148795406165256750308709775447069334359579391187319193184173764651953274813153438754742706218571847990586766227306909373630379789945133405628741195160585918258878758173184554958903787",
+        "den": "206346864613173617903075239304684018917707380895670204800941091511283920337200907269932265673227619093131480070568031876858757312792787978850537940266680115688946560049691815211595107577630454504956166122639636766599124202641876016875921671462507002857788692914294746966770909427010307620000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "display": "4.426550572029212"
+      },
+      "receiver_boundary_value": {
+        "num": "3668029164140711604577729486863140436790318195624021665330903488155589948894674146747657134263392501996316122274977383039900142243661083092548626977248308735401783795478778114028913265019623054326760136351852179090806418757556730841452472939804564785882610960882651271513541783309043807372820860035509788923764248889215986303091136332460594362052978091238556407738146953363553182897981638817059",
+        "den": "828596695543815221599758647695082692964461058923279327772242187591733988576623986519727065831732668860203787760282996822216634372487868238046012967329224194146875293967586938850756257048932505933792723416710197674409478329579910129602233268305361403390904204412285963826325144988193989487000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "display": "4.426796756331923"
+      },
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "source_domain_evaluation_map_constructed": false,
+        "receiver_domain_evaluation_map_constructed": false,
+        "combined_domain_evaluation_pair_constructed": false,
+        "screen_positive_candidate_change_row": true,
+        "proof_grade_boundary_opening_certified": false,
+        "same_packet_history_update_formula_present": false,
+        "candidate_artifacts_present": false,
+        "root_topology_recertified_for_candidate_change": false,
+        "proof_interval_v1_v6_rerun_for_candidate_change": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "row_domain_evaluation_map_ready": false,
+      "obstruction": "The row has source and receiver endpoint values, but the source/receiver domain/evaluation maps are not constructed and no proof-grade boundary-opening replay exists."
+    }
+  ],
+  "summary": {
+    "endpoint_functionals": 4,
+    "rows": 3,
+    "endpoint_locators_resolved": 4,
+    "row_local_endpoint_values_present": 4,
+    "functional_target_equations_defined": 4,
+    "target_action_sign_consistent": 4,
+    "endpoint_boundary_bindings_present": 0,
+    "endpoint_functional_domains_present": 0,
+    "domain_charts_declared": 0,
+    "domain_coordinate_rules_declared": 0,
+    "basis_vectors_bound_to_domain": 0,
+    "evaluation_maps_declared": 0,
+    "endpoint_evaluation_rules_declared": 0,
+    "endpoint_values_bound_to_evaluation_map": 0,
+    "theta_supports_present": 0,
+    "basis_formulas_present": 0,
+    "basis_derivative_formulas_present": 0,
+    "x_update_bases_present": 0,
+    "xdot_update_bases_present": 0,
+    "mesh_update_rules_present": 0,
+    "endpoint_motion_rules_present": 0,
+    "source_monotonicity_rules_present": 0,
+    "receiver_monotonicity_rules_present": 0,
+    "same_packet_history_update_formulas_present": 0,
+    "non_target_endpoint_functionals_zero_certified": 0,
+    "exact_screen_zero_certified_endpoint_functionals": 0,
+    "rank_certified_endpoint_functionals": 0,
+    "domain_evaluation_maps_constructed": 0,
+    "row_locators_resolved": 3,
+    "rows_with_source_domain_evaluation_map_constructed": 0,
+    "rows_with_receiver_domain_evaluation_map_constructed": 0,
+    "rows_with_combined_domain_evaluation_pair_constructed": 0,
+    "proof_grade_boundary_opening_rows": 0,
+    "row_domain_evaluation_map_ready": 0,
+    "row_consumption_count": 0,
+    "branch_chart_authorized": false,
+    "domain_evaluation_methods_tested": 5,
+    "domain_evaluation_method_evaluations": 20,
+    "domain_evaluation_failure_code_counts": {
+      "missing_basis_derivative_formula_present": 4,
+      "missing_basis_formula_present": 4,
+      "missing_basis_vector_bound_to_domain": 4,
+      "missing_domain_chart_declared": 12,
+      "missing_domain_coordinate_rule_declared": 4,
+      "missing_endpoint_boundary_binding_present": 8,
+      "missing_endpoint_evaluation_rule_declared": 4,
+      "missing_endpoint_functional_domain_present": 12,
+      "missing_endpoint_motion_rule_present": 8,
+      "missing_endpoint_value_bound_to_evaluation_map": 8,
+      "missing_evaluation_map_declared": 12,
+      "missing_exact_screen_zero_certified": 4,
+      "missing_mesh_update_rule_present": 4,
+      "missing_non_target_endpoint_functionals_zero_certified": 4,
+      "missing_rank_certified": 4,
+      "missing_receiver_monotonicity_rule_present": 4,
+      "missing_same_packet_history_update_formula_present": 4,
+      "missing_source_monotonicity_rule_present": 4,
+      "missing_theta_support_present": 4,
+      "missing_x_update_basis_present": 4,
+      "missing_xdot_update_basis_present": 4
+    },
+    "endpoint_required_fields_certified_counts": {
+      "endpoint_locator_resolved": 4,
+      "row_local_endpoint_value_present": 4,
+      "functional_target_equation_defined": 4,
+      "target_action_sign_consistent": 4,
+      "endpoint_boundary_binding_present": 0,
+      "endpoint_functional_domain_present": 0,
+      "domain_chart_declared": 0,
+      "domain_coordinate_rule_declared": 0,
+      "basis_vector_bound_to_domain": 0,
+      "evaluation_map_declared": 0,
+      "endpoint_evaluation_rule_declared": 0,
+      "endpoint_value_bound_to_evaluation_map": 0,
+      "theta_support_present": 0,
+      "basis_formula_present": 0,
+      "basis_derivative_formula_present": 0,
+      "x_update_basis_present": 0,
+      "xdot_update_basis_present": 0,
+      "mesh_update_rule_present": 0,
+      "endpoint_motion_rule_present": 0,
+      "source_monotonicity_rule_present": 0,
+      "receiver_monotonicity_rule_present": 0,
+      "same_packet_history_update_formula_present": 0,
+      "non_target_endpoint_functionals_zero_certified": 0,
+      "exact_screen_zero_certified": 0,
+      "rank_certified": 0,
+      "domain_evaluation_map_constructed": 0
+    },
+    "row_required_fields_certified_counts": {
+      "row_locator_resolved": 3,
+      "source_domain_evaluation_map_constructed": 0,
+      "receiver_domain_evaluation_map_constructed": 0,
+      "combined_domain_evaluation_pair_constructed": 0,
+      "screen_positive_candidate_change_row": 3,
+      "proof_grade_boundary_opening_certified": 0,
+      "same_packet_history_update_formula_present": 0,
+      "candidate_artifacts_present": 0,
+      "root_topology_recertified_for_candidate_change": 0,
+      "proof_interval_v1_v6_rerun_for_candidate_change": 0,
+      "row_consumed": 0,
+      "branch_chart_authorized": 0
+    }
+  }
+}

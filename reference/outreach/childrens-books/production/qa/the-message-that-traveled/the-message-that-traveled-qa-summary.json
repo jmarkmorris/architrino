@@ -1,0 +1,382 @@
+[
+  {
+    "id": "the-message-that-traveled-cover",
+    "book_slug": "the-message-that-traveled",
+    "source_png": "reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-cover.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4038,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-message-that-traveled-spread-01",
+    "book_slug": "the-message-that-traveled",
+    "source_png": "reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-spread-01.png",
+    "exists": true,
+    "automated": {
+      "width": 1659,
+      "height": 948,
+      "aspect_ratio": 1.75,
+      "saturated_non_palette_fraction": 0.4938,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-message-that-traveled-spread-02",
+    "book_slug": "the-message-that-traveled",
+    "source_png": "reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-spread-02.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.5718,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-message-that-traveled-spread-03",
+    "book_slug": "the-message-that-traveled",
+    "source_png": "reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-spread-03.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4543,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-message-that-traveled-spread-04",
+    "book_slug": "the-message-that-traveled",
+    "source_png": "reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-spread-04.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.373,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-message-that-traveled-spread-05",
+    "book_slug": "the-message-that-traveled",
+    "source_png": "reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-spread-05.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.5205,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-message-that-traveled-spread-06",
+    "book_slug": "the-message-that-traveled",
+    "source_png": "reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-spread-06.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.5865,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-message-that-traveled-spread-07",
+    "book_slug": "the-message-that-traveled",
+    "source_png": "reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-spread-07.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4843,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-message-that-traveled-spread-08",
+    "book_slug": "the-message-that-traveled",
+    "source_png": "reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-spread-08.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.5093,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-message-that-traveled-spread-09",
+    "book_slug": "the-message-that-traveled",
+    "source_png": "reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-spread-09.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.6048,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-message-that-traveled-spread-10",
+    "book_slug": "the-message-that-traveled",
+    "source_png": "reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-spread-10.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-message-that-traveled-spread-11",
+    "book_slug": "the-message-that-traveled",
+    "source_png": "reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-spread-11.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.5182,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-message-that-traveled-spread-12",
+    "book_slug": "the-message-that-traveled",
+    "source_png": "reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-spread-12.png",
+    "exists": true,
+    "automated": {
+      "width": 1639,
+      "height": 960,
+      "aspect_ratio": 1.7073,
+      "saturated_non_palette_fraction": 0.5774,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-message-that-traveled-spread-13",
+    "book_slug": "the-message-that-traveled",
+    "source_png": "reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-spread-13.png",
+    "exists": true,
+    "automated": {
+      "width": 1639,
+      "height": 960,
+      "aspect_ratio": 1.7073,
+      "saturated_non_palette_fraction": 0.6092,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-message-that-traveled-spread-14",
+    "book_slug": "the-message-that-traveled",
+    "source_png": "reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-spread-14.png",
+    "exists": true,
+    "automated": {
+      "width": 1638,
+      "height": 960,
+      "aspect_ratio": 1.7063,
+      "saturated_non_palette_fraction": 0.6748,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-message-that-traveled-spread-15",
+    "book_slug": "the-message-that-traveled",
+    "source_png": "reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-spread-15.png",
+    "exists": true,
+    "automated": {
+      "width": 1635,
+      "height": 962,
+      "aspect_ratio": 1.6996,
+      "saturated_non_palette_fraction": 0.3906,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-message-that-traveled-spread-16",
+    "book_slug": "the-message-that-traveled",
+    "source_png": "reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-spread-16.png",
+    "exists": true,
+    "automated": {
+      "width": 1609,
+      "height": 978,
+      "aspect_ratio": 1.6452,
+      "saturated_non_palette_fraction": 0.7463,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-message-that-traveled-backmatter-01",
+    "book_slug": "the-message-that-traveled",
+    "source_png": "reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-backmatter-01.png",
+    "exists": true,
+    "automated": {
+      "width": 1629,
+      "height": 965,
+      "aspect_ratio": 1.6881,
+      "saturated_non_palette_fraction": 0.3819,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  },
+  {
+    "id": "the-message-that-traveled-backmatter-02",
+    "book_slug": "the-message-that-traveled",
+    "source_png": "reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-backmatter-02.png",
+    "exists": true,
+    "automated": {
+      "width": 1644,
+      "height": 957,
+      "aspect_ratio": 1.7179,
+      "saturated_non_palette_fraction": 0.5635,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
+    },
+    "decision": "approved"
+  }
+]

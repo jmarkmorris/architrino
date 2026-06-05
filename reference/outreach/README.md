@@ -4,6 +4,12 @@ This directory collects draft outreach language for explaining the $\mathbb{A}\m
 
 These files are not app-facing corpus chapters. They are working material for testing descriptions, planning channels, and turning the open-source, zero-price offer into clear public invitations.
 
+## Accessibility Thesis
+
+The long-term outreach thesis is that $\mathbb{A}\mathbb{A}\mathbb{A}$ should make the core architecture of nature accessible to far more people than can presently engage GR, QM, or fundamental physics at a technical level. Rough comparisons such as `100,000` deeply engaged physics readers against a global public measured in billions are useful only as order-of-magnitude motivation: the point is not the exact count, but the enormous gap between human curiosity about nature and the number of people currently able to participate in foundational physics.
+
+The outreach path should therefore build many on-ramps: caregiver-led early learning, children's books, visual simulations, public documentation, AI-assisted tutoring, and contributor workflows. The goal is not to make every reader a physicist. The goal is to let many more people understand the level structure, ask sharper questions, inspect simulations, explain ideas to others, and participate according to their age, skill, and interest.
+
 ## Files
 
 - [50-word-descriptions.md](50-word-descriptions.md): short descriptions constrained to 50 words each.

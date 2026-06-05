@@ -1,0 +1,841 @@
+{
+  "schema": "breather-higher-fold-fold-coordinate-endpoint-functional-actual-link-membership-dependency-cycle-completion-attempt-v1",
+  "status": "priority-only-fold-coordinate-endpoint-functional-actual-link-membership-dependency-cycle-completion-attempt-fail-closed-cycle-detected-proof-grade-escape-routes-absent-no-row-consumption",
+  "packet_id": "fresh-v10-higher-fold-12-root-rebuild-v0",
+  "fold_coordinate_packet_id": "fresh-v10-fold-coordinate-collocation-nonlinear-tangent-matrix-v0",
+  "claim_level": "priority-only fail-closed dependency-cycle completion attempt; detects current proof-order cycle and records absent proof-grade escape routes",
+  "source_artifacts": [
+    {
+      "label": "binding_full_binding_completion_attempt",
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_binding_full_binding_completion_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "sha256": "2c6e963376996f0952a613484b854f1f0b5edd003b32b631dfa46c814faae8bd"
+    },
+    {
+      "label": "actual_contract_link_rule_membership_proof_target",
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_actual_contract_link_rule_membership_proof_target.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "sha256": "3fe5935cc12de5501dbbdf690bc3ee97ae8678afbee07ae6a8bdbe3b04370b07"
+    },
+    {
+      "label": "same_packet_constructed_witness_object_identity_attempt",
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_same_packet_constructed_witness_object_identity_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "sha256": "9d86723d45faa601df0a6bacc41122dcaac1b616d49915e1695e152725a75bd9"
+    },
+    {
+      "label": "ref_value_non_domain_carrier_rule_target",
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_ref_value_non_domain_carrier_rule_target.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "sha256": "5683b5c1e49282d96f3bb67fb6af26590c6cac6948599e98405aa2e1f43ca1c1"
+    },
+    {
+      "label": "ref_value_carrier_introduction_route_decision",
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_ref_value_carrier_introduction_route_decision.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "sha256": "9fbf4e6bd4bbec9f8cfb10ee3bd311f6009de0ddf25ee18771805d0a7c1fdf41"
+    },
+    {
+      "label": "binding_contract_full_binding_carrier_admission_attempt",
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_binding_contract_full_binding_carrier_admission_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "sha256": "49b9f0e9db17df1197691a190f175545b05668950b81725e01875c3535549c9a"
+    }
+  ],
+  "endpoint_actual_link_membership_dependency_cycle_completion_attempts": [
+    {
+      "id": "fc_sigma_source_lower",
+      "endpoint_functional_id": "E_lower_source_inner_boundary",
+      "role": "source",
+      "actual_link_membership_dependency_cycle_completion_attempt_id": "actual_link_membership_dependency_cycle_completion_attempt:fc_sigma_source_lower",
+      "source_packets": {
+        "binding_full_binding_completion_attempt_id": "binding_full_binding_completion_attempt:fc_sigma_source_lower",
+        "actual_contract_link_rule_membership_proof_target_id": "actual_contract_link_rule_membership_proof_target:fc_sigma_source_lower",
+        "same_packet_constructed_witness_object_identity_attempt_id": "same_packet_constructed_witness_object_identity_attempt:fc_sigma_source_lower",
+        "ref_value_carrier_introduction_route_decision_id": "ref_value_carrier_introduction_route_decision:fc_sigma_source_lower",
+        "binding_contract_full_binding_carrier_admission_attempt_id": "binding_contract_full_binding_carrier_admission_attempt:fc_sigma_source_lower"
+      },
+      "required_fields_present": {
+        "source_layer_ready": true,
+        "actual_contract_link_rule_target_declared": true,
+        "actual_contract_link_rule_available": false,
+        "actual_contract_link_rule_derivation_present": false,
+        "actual_contract_link_rule_soundness_proof_present": false,
+        "actual_contract_link_rule_application_proof_present": false,
+        "constructed_witness_object_source_ready": true,
+        "same_constructed_witness_object_identity_proof_present": false,
+        "witness_object_membership_proof_present": false,
+        "direct_source_promotion_rejected": true,
+        "carrier_admission_route_selected": true,
+        "binding_contract_satisfied": false,
+        "witness_object_has_contract_link": false,
+        "full_endpoint_boundary_binding_constructed": false,
+        "endpoint_boundary_binding_ref_carrier_unblocked": false,
+        "endpoint_value_binding_map_carrier_unblocked": false,
+        "dependency_cycle_detected": true,
+        "independent_actual_contract_link_rule_derivation_present": false,
+        "independent_constructed_witness_object_membership_theorem_present": false,
+        "independent_full_endpoint_boundary_binding_theorem_present": false,
+        "proof_contract_order_revision_present": false,
+        "cycle_breaker_available": false,
+        "row_consumption_authorized": false,
+        "branch_chart_authorized": false
+      },
+      "cycle_edges": [
+        {
+          "edge_id": "actual_link_rule_application_requires_membership",
+          "from": "witness_object_contract_link_constructed",
+          "to": "witness_object_membership_proof_present",
+          "present": true,
+          "evidence": "The actual-link target names same constructed-witness-object identity and membership proof as premises."
+        },
+        {
+          "edge_id": "membership_requires_constructed_witness_object_identity",
+          "from": "witness_object_membership_proof_present",
+          "to": "same_constructed_witness_object_identity_proof_present",
+          "present": true,
+          "evidence": "The membership target requires a constructed witness object plus ref/value field-membership proofs."
+        },
+        {
+          "edge_id": "constructed_identity_requires_non_domain_carrier_fields",
+          "from": "same_constructed_witness_object_identity_proof_present",
+          "to": "ref_value_non_domain_carrier_pair_constructed",
+          "present": true,
+          "evidence": "The identity attempt requires endpoint-boundary-binding ref and endpoint value-map carrier fields inside one witness object."
+        },
+        {
+          "edge_id": "direct_ref_value_carrier_promotion_rejected",
+          "from": "ref_value_non_domain_carrier_pair_constructed",
+          "to": "carrier_admission_route_selected",
+          "present": true,
+          "evidence": "Direct source-handle promotion is rejected as unsound under current evidence."
+        },
+        {
+          "edge_id": "carrier_admission_requires_binding_and_full_binding",
+          "from": "carrier_admission_route_selected",
+          "to": "full_endpoint_boundary_binding_constructed",
+          "present": true,
+          "evidence": "The selected carrier-admission route is blocked until binding contract, contract link, and full binding exist."
+        },
+        {
+          "edge_id": "binding_contract_requires_contract_link",
+          "from": "binding_contract_satisfied",
+          "to": "witness_object_has_contract_link",
+          "present": true,
+          "evidence": "The binding contract test is applied but cannot pass without the witness-object contract link."
+        },
+        {
+          "edge_id": "contract_link_returns_to_actual_link_membership_theorem",
+          "from": "witness_object_has_contract_link",
+          "to": "actual-link-rule-plus-constructed-witness-object-membership",
+          "present": true,
+          "evidence": "The selected-route completion attempt names actual-link rule plus membership as the first missing theorem layer."
+        }
+      ],
+      "missing_fields_by_layer": {
+        "actual_contract_link_rule_layer": [
+          "actual_contract_link_rule_available",
+          "actual_contract_link_rule_derivation_present",
+          "actual_contract_link_rule_soundness_proof_present",
+          "actual_contract_link_rule_application_proof_present"
+        ],
+        "constructed_witness_object_membership_layer": [
+          "constructed_witness_object_id_present",
+          "endpoint_boundary_binding_witness_object_constructed",
+          "same_constructed_witness_object_identity_proof_present",
+          "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+          "endpoint_value_binding_map_member_of_witness_object_proven",
+          "endpoint_ref_and_value_map_same_witness_object_proven",
+          "membership_source_not_id_adjacency_proven",
+          "witness_object_membership_proof_present"
+        ],
+        "direct_ref_value_carrier_rule_layer": [
+          "ref_carrier_introduction_rule_available",
+          "value_map_carrier_introduction_rule_available",
+          "ref_value_carrier_pair_rule_available",
+          "ref_carrier_rule_derivation_present",
+          "value_map_carrier_rule_derivation_present",
+          "carrier_rule_soundness_proof_present",
+          "carrier_rule_application_proof_present",
+          "ref_value_non_domain_carrier_pair_constructed"
+        ],
+        "selected_carrier_admission_route_layer": [
+          "binding_contract_satisfied",
+          "witness_object_has_contract_link",
+          "full_endpoint_boundary_binding_constructed",
+          "endpoint_boundary_binding_ref_carrier_unblocked",
+          "endpoint_value_binding_map_carrier_unblocked"
+        ]
+      },
+      "escape_route_candidates": [
+        {
+          "route_id": "independent_actual_contract_link_rule_derivation",
+          "status": "absent",
+          "required_evidence": "A proof-grade actual contract-link introduction theorem with derivation, soundness proof, and endpoint-level application proof.",
+          "limitation": "It still cannot construct the link unless the membership premise is supplied by an independent theorem."
+        },
+        {
+          "route_id": "independent_constructed_witness_object_membership_theorem",
+          "status": "absent",
+          "required_evidence": "A constructed same-packet witness-object identity and ref/value field-membership proof that does not rely on carrier admission through the selected route.",
+          "limitation": "Current source handles, matching IDs, witness-object symbols, and domain-chart carrier subfields do not prove this."
+        },
+        {
+          "route_id": "independent_full_endpoint_boundary_binding_theorem",
+          "status": "absent",
+          "required_evidence": "A full endpoint boundary-binding theorem with carrier admission that does not use the witness-object contract link as a premise.",
+          "limitation": "This would bypass the current binding contract guard and is not supplied by current artifacts."
+        },
+        {
+          "route_id": "proof_contract_order_revision",
+          "status": "not-taken",
+          "required_evidence": "An explicit operator/developer proof-contract decision changing the dependency order.",
+          "limitation": "No contract-order revision is made by this priority-only packet."
+        }
+      ],
+      "dependency_cycle_detected": true,
+      "cycle_breaker_available": false,
+      "obstruction": "The current proof order is cyclic: contract-link construction needs actual-link rule plus membership; membership needs constructed same-packet witness-object identity; identity needs ref/value non-domain carriers; direct ref/value promotion is rejected; selected carrier admission needs full binding and binding contract satisfaction; binding contract satisfaction needs the contract link."
+    },
+    {
+      "id": "fc_rho_receiver_lower",
+      "endpoint_functional_id": "E_raise_receiver_lower_boundary",
+      "role": "receiver",
+      "actual_link_membership_dependency_cycle_completion_attempt_id": "actual_link_membership_dependency_cycle_completion_attempt:fc_rho_receiver_lower",
+      "source_packets": {
+        "binding_full_binding_completion_attempt_id": "binding_full_binding_completion_attempt:fc_rho_receiver_lower",
+        "actual_contract_link_rule_membership_proof_target_id": "actual_contract_link_rule_membership_proof_target:fc_rho_receiver_lower",
+        "same_packet_constructed_witness_object_identity_attempt_id": "same_packet_constructed_witness_object_identity_attempt:fc_rho_receiver_lower",
+        "ref_value_carrier_introduction_route_decision_id": "ref_value_carrier_introduction_route_decision:fc_rho_receiver_lower",
+        "binding_contract_full_binding_carrier_admission_attempt_id": "binding_contract_full_binding_carrier_admission_attempt:fc_rho_receiver_lower"
+      },
+      "required_fields_present": {
+        "source_layer_ready": true,
+        "actual_contract_link_rule_target_declared": true,
+        "actual_contract_link_rule_available": false,
+        "actual_contract_link_rule_derivation_present": false,
+        "actual_contract_link_rule_soundness_proof_present": false,
+        "actual_contract_link_rule_application_proof_present": false,
+        "constructed_witness_object_source_ready": true,
+        "same_constructed_witness_object_identity_proof_present": false,
+        "witness_object_membership_proof_present": false,
+        "direct_source_promotion_rejected": true,
+        "carrier_admission_route_selected": true,
+        "binding_contract_satisfied": false,
+        "witness_object_has_contract_link": false,
+        "full_endpoint_boundary_binding_constructed": false,
+        "endpoint_boundary_binding_ref_carrier_unblocked": false,
+        "endpoint_value_binding_map_carrier_unblocked": false,
+        "dependency_cycle_detected": true,
+        "independent_actual_contract_link_rule_derivation_present": false,
+        "independent_constructed_witness_object_membership_theorem_present": false,
+        "independent_full_endpoint_boundary_binding_theorem_present": false,
+        "proof_contract_order_revision_present": false,
+        "cycle_breaker_available": false,
+        "row_consumption_authorized": false,
+        "branch_chart_authorized": false
+      },
+      "cycle_edges": [
+        {
+          "edge_id": "actual_link_rule_application_requires_membership",
+          "from": "witness_object_contract_link_constructed",
+          "to": "witness_object_membership_proof_present",
+          "present": true,
+          "evidence": "The actual-link target names same constructed-witness-object identity and membership proof as premises."
+        },
+        {
+          "edge_id": "membership_requires_constructed_witness_object_identity",
+          "from": "witness_object_membership_proof_present",
+          "to": "same_constructed_witness_object_identity_proof_present",
+          "present": true,
+          "evidence": "The membership target requires a constructed witness object plus ref/value field-membership proofs."
+        },
+        {
+          "edge_id": "constructed_identity_requires_non_domain_carrier_fields",
+          "from": "same_constructed_witness_object_identity_proof_present",
+          "to": "ref_value_non_domain_carrier_pair_constructed",
+          "present": true,
+          "evidence": "The identity attempt requires endpoint-boundary-binding ref and endpoint value-map carrier fields inside one witness object."
+        },
+        {
+          "edge_id": "direct_ref_value_carrier_promotion_rejected",
+          "from": "ref_value_non_domain_carrier_pair_constructed",
+          "to": "carrier_admission_route_selected",
+          "present": true,
+          "evidence": "Direct source-handle promotion is rejected as unsound under current evidence."
+        },
+        {
+          "edge_id": "carrier_admission_requires_binding_and_full_binding",
+          "from": "carrier_admission_route_selected",
+          "to": "full_endpoint_boundary_binding_constructed",
+          "present": true,
+          "evidence": "The selected carrier-admission route is blocked until binding contract, contract link, and full binding exist."
+        },
+        {
+          "edge_id": "binding_contract_requires_contract_link",
+          "from": "binding_contract_satisfied",
+          "to": "witness_object_has_contract_link",
+          "present": true,
+          "evidence": "The binding contract test is applied but cannot pass without the witness-object contract link."
+        },
+        {
+          "edge_id": "contract_link_returns_to_actual_link_membership_theorem",
+          "from": "witness_object_has_contract_link",
+          "to": "actual-link-rule-plus-constructed-witness-object-membership",
+          "present": true,
+          "evidence": "The selected-route completion attempt names actual-link rule plus membership as the first missing theorem layer."
+        }
+      ],
+      "missing_fields_by_layer": {
+        "actual_contract_link_rule_layer": [
+          "actual_contract_link_rule_available",
+          "actual_contract_link_rule_derivation_present",
+          "actual_contract_link_rule_soundness_proof_present",
+          "actual_contract_link_rule_application_proof_present"
+        ],
+        "constructed_witness_object_membership_layer": [
+          "constructed_witness_object_id_present",
+          "endpoint_boundary_binding_witness_object_constructed",
+          "same_constructed_witness_object_identity_proof_present",
+          "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+          "endpoint_value_binding_map_member_of_witness_object_proven",
+          "endpoint_ref_and_value_map_same_witness_object_proven",
+          "membership_source_not_id_adjacency_proven",
+          "witness_object_membership_proof_present"
+        ],
+        "direct_ref_value_carrier_rule_layer": [
+          "ref_carrier_introduction_rule_available",
+          "value_map_carrier_introduction_rule_available",
+          "ref_value_carrier_pair_rule_available",
+          "ref_carrier_rule_derivation_present",
+          "value_map_carrier_rule_derivation_present",
+          "carrier_rule_soundness_proof_present",
+          "carrier_rule_application_proof_present",
+          "ref_value_non_domain_carrier_pair_constructed"
+        ],
+        "selected_carrier_admission_route_layer": [
+          "binding_contract_satisfied",
+          "witness_object_has_contract_link",
+          "full_endpoint_boundary_binding_constructed",
+          "endpoint_boundary_binding_ref_carrier_unblocked",
+          "endpoint_value_binding_map_carrier_unblocked"
+        ]
+      },
+      "escape_route_candidates": [
+        {
+          "route_id": "independent_actual_contract_link_rule_derivation",
+          "status": "absent",
+          "required_evidence": "A proof-grade actual contract-link introduction theorem with derivation, soundness proof, and endpoint-level application proof.",
+          "limitation": "It still cannot construct the link unless the membership premise is supplied by an independent theorem."
+        },
+        {
+          "route_id": "independent_constructed_witness_object_membership_theorem",
+          "status": "absent",
+          "required_evidence": "A constructed same-packet witness-object identity and ref/value field-membership proof that does not rely on carrier admission through the selected route.",
+          "limitation": "Current source handles, matching IDs, witness-object symbols, and domain-chart carrier subfields do not prove this."
+        },
+        {
+          "route_id": "independent_full_endpoint_boundary_binding_theorem",
+          "status": "absent",
+          "required_evidence": "A full endpoint boundary-binding theorem with carrier admission that does not use the witness-object contract link as a premise.",
+          "limitation": "This would bypass the current binding contract guard and is not supplied by current artifacts."
+        },
+        {
+          "route_id": "proof_contract_order_revision",
+          "status": "not-taken",
+          "required_evidence": "An explicit operator/developer proof-contract decision changing the dependency order.",
+          "limitation": "No contract-order revision is made by this priority-only packet."
+        }
+      ],
+      "dependency_cycle_detected": true,
+      "cycle_breaker_available": false,
+      "obstruction": "The current proof order is cyclic: contract-link construction needs actual-link rule plus membership; membership needs constructed same-packet witness-object identity; identity needs ref/value non-domain carriers; direct ref/value promotion is rejected; selected carrier admission needs full binding and binding contract satisfaction; binding contract satisfaction needs the contract link."
+    },
+    {
+      "id": "fc_sigma_source_upper",
+      "endpoint_functional_id": "E_raise_source_inner_boundary",
+      "role": "source",
+      "actual_link_membership_dependency_cycle_completion_attempt_id": "actual_link_membership_dependency_cycle_completion_attempt:fc_sigma_source_upper",
+      "source_packets": {
+        "binding_full_binding_completion_attempt_id": "binding_full_binding_completion_attempt:fc_sigma_source_upper",
+        "actual_contract_link_rule_membership_proof_target_id": "actual_contract_link_rule_membership_proof_target:fc_sigma_source_upper",
+        "same_packet_constructed_witness_object_identity_attempt_id": "same_packet_constructed_witness_object_identity_attempt:fc_sigma_source_upper",
+        "ref_value_carrier_introduction_route_decision_id": "ref_value_carrier_introduction_route_decision:fc_sigma_source_upper",
+        "binding_contract_full_binding_carrier_admission_attempt_id": "binding_contract_full_binding_carrier_admission_attempt:fc_sigma_source_upper"
+      },
+      "required_fields_present": {
+        "source_layer_ready": true,
+        "actual_contract_link_rule_target_declared": true,
+        "actual_contract_link_rule_available": false,
+        "actual_contract_link_rule_derivation_present": false,
+        "actual_contract_link_rule_soundness_proof_present": false,
+        "actual_contract_link_rule_application_proof_present": false,
+        "constructed_witness_object_source_ready": true,
+        "same_constructed_witness_object_identity_proof_present": false,
+        "witness_object_membership_proof_present": false,
+        "direct_source_promotion_rejected": true,
+        "carrier_admission_route_selected": true,
+        "binding_contract_satisfied": false,
+        "witness_object_has_contract_link": false,
+        "full_endpoint_boundary_binding_constructed": false,
+        "endpoint_boundary_binding_ref_carrier_unblocked": false,
+        "endpoint_value_binding_map_carrier_unblocked": false,
+        "dependency_cycle_detected": true,
+        "independent_actual_contract_link_rule_derivation_present": false,
+        "independent_constructed_witness_object_membership_theorem_present": false,
+        "independent_full_endpoint_boundary_binding_theorem_present": false,
+        "proof_contract_order_revision_present": false,
+        "cycle_breaker_available": false,
+        "row_consumption_authorized": false,
+        "branch_chart_authorized": false
+      },
+      "cycle_edges": [
+        {
+          "edge_id": "actual_link_rule_application_requires_membership",
+          "from": "witness_object_contract_link_constructed",
+          "to": "witness_object_membership_proof_present",
+          "present": true,
+          "evidence": "The actual-link target names same constructed-witness-object identity and membership proof as premises."
+        },
+        {
+          "edge_id": "membership_requires_constructed_witness_object_identity",
+          "from": "witness_object_membership_proof_present",
+          "to": "same_constructed_witness_object_identity_proof_present",
+          "present": true,
+          "evidence": "The membership target requires a constructed witness object plus ref/value field-membership proofs."
+        },
+        {
+          "edge_id": "constructed_identity_requires_non_domain_carrier_fields",
+          "from": "same_constructed_witness_object_identity_proof_present",
+          "to": "ref_value_non_domain_carrier_pair_constructed",
+          "present": true,
+          "evidence": "The identity attempt requires endpoint-boundary-binding ref and endpoint value-map carrier fields inside one witness object."
+        },
+        {
+          "edge_id": "direct_ref_value_carrier_promotion_rejected",
+          "from": "ref_value_non_domain_carrier_pair_constructed",
+          "to": "carrier_admission_route_selected",
+          "present": true,
+          "evidence": "Direct source-handle promotion is rejected as unsound under current evidence."
+        },
+        {
+          "edge_id": "carrier_admission_requires_binding_and_full_binding",
+          "from": "carrier_admission_route_selected",
+          "to": "full_endpoint_boundary_binding_constructed",
+          "present": true,
+          "evidence": "The selected carrier-admission route is blocked until binding contract, contract link, and full binding exist."
+        },
+        {
+          "edge_id": "binding_contract_requires_contract_link",
+          "from": "binding_contract_satisfied",
+          "to": "witness_object_has_contract_link",
+          "present": true,
+          "evidence": "The binding contract test is applied but cannot pass without the witness-object contract link."
+        },
+        {
+          "edge_id": "contract_link_returns_to_actual_link_membership_theorem",
+          "from": "witness_object_has_contract_link",
+          "to": "actual-link-rule-plus-constructed-witness-object-membership",
+          "present": true,
+          "evidence": "The selected-route completion attempt names actual-link rule plus membership as the first missing theorem layer."
+        }
+      ],
+      "missing_fields_by_layer": {
+        "actual_contract_link_rule_layer": [
+          "actual_contract_link_rule_available",
+          "actual_contract_link_rule_derivation_present",
+          "actual_contract_link_rule_soundness_proof_present",
+          "actual_contract_link_rule_application_proof_present"
+        ],
+        "constructed_witness_object_membership_layer": [
+          "constructed_witness_object_id_present",
+          "endpoint_boundary_binding_witness_object_constructed",
+          "same_constructed_witness_object_identity_proof_present",
+          "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+          "endpoint_value_binding_map_member_of_witness_object_proven",
+          "endpoint_ref_and_value_map_same_witness_object_proven",
+          "membership_source_not_id_adjacency_proven",
+          "witness_object_membership_proof_present"
+        ],
+        "direct_ref_value_carrier_rule_layer": [
+          "ref_carrier_introduction_rule_available",
+          "value_map_carrier_introduction_rule_available",
+          "ref_value_carrier_pair_rule_available",
+          "ref_carrier_rule_derivation_present",
+          "value_map_carrier_rule_derivation_present",
+          "carrier_rule_soundness_proof_present",
+          "carrier_rule_application_proof_present",
+          "ref_value_non_domain_carrier_pair_constructed"
+        ],
+        "selected_carrier_admission_route_layer": [
+          "binding_contract_satisfied",
+          "witness_object_has_contract_link",
+          "full_endpoint_boundary_binding_constructed",
+          "endpoint_boundary_binding_ref_carrier_unblocked",
+          "endpoint_value_binding_map_carrier_unblocked"
+        ]
+      },
+      "escape_route_candidates": [
+        {
+          "route_id": "independent_actual_contract_link_rule_derivation",
+          "status": "absent",
+          "required_evidence": "A proof-grade actual contract-link introduction theorem with derivation, soundness proof, and endpoint-level application proof.",
+          "limitation": "It still cannot construct the link unless the membership premise is supplied by an independent theorem."
+        },
+        {
+          "route_id": "independent_constructed_witness_object_membership_theorem",
+          "status": "absent",
+          "required_evidence": "A constructed same-packet witness-object identity and ref/value field-membership proof that does not rely on carrier admission through the selected route.",
+          "limitation": "Current source handles, matching IDs, witness-object symbols, and domain-chart carrier subfields do not prove this."
+        },
+        {
+          "route_id": "independent_full_endpoint_boundary_binding_theorem",
+          "status": "absent",
+          "required_evidence": "A full endpoint boundary-binding theorem with carrier admission that does not use the witness-object contract link as a premise.",
+          "limitation": "This would bypass the current binding contract guard and is not supplied by current artifacts."
+        },
+        {
+          "route_id": "proof_contract_order_revision",
+          "status": "not-taken",
+          "required_evidence": "An explicit operator/developer proof-contract decision changing the dependency order.",
+          "limitation": "No contract-order revision is made by this priority-only packet."
+        }
+      ],
+      "dependency_cycle_detected": true,
+      "cycle_breaker_available": false,
+      "obstruction": "The current proof order is cyclic: contract-link construction needs actual-link rule plus membership; membership needs constructed same-packet witness-object identity; identity needs ref/value non-domain carriers; direct ref/value promotion is rejected; selected carrier admission needs full binding and binding contract satisfaction; binding contract satisfaction needs the contract link."
+    },
+    {
+      "id": "fc_rho_receiver_upper",
+      "endpoint_functional_id": "E_lower_receiver_upper_boundary",
+      "role": "receiver",
+      "actual_link_membership_dependency_cycle_completion_attempt_id": "actual_link_membership_dependency_cycle_completion_attempt:fc_rho_receiver_upper",
+      "source_packets": {
+        "binding_full_binding_completion_attempt_id": "binding_full_binding_completion_attempt:fc_rho_receiver_upper",
+        "actual_contract_link_rule_membership_proof_target_id": "actual_contract_link_rule_membership_proof_target:fc_rho_receiver_upper",
+        "same_packet_constructed_witness_object_identity_attempt_id": "same_packet_constructed_witness_object_identity_attempt:fc_rho_receiver_upper",
+        "ref_value_carrier_introduction_route_decision_id": "ref_value_carrier_introduction_route_decision:fc_rho_receiver_upper",
+        "binding_contract_full_binding_carrier_admission_attempt_id": "binding_contract_full_binding_carrier_admission_attempt:fc_rho_receiver_upper"
+      },
+      "required_fields_present": {
+        "source_layer_ready": true,
+        "actual_contract_link_rule_target_declared": true,
+        "actual_contract_link_rule_available": false,
+        "actual_contract_link_rule_derivation_present": false,
+        "actual_contract_link_rule_soundness_proof_present": false,
+        "actual_contract_link_rule_application_proof_present": false,
+        "constructed_witness_object_source_ready": true,
+        "same_constructed_witness_object_identity_proof_present": false,
+        "witness_object_membership_proof_present": false,
+        "direct_source_promotion_rejected": true,
+        "carrier_admission_route_selected": true,
+        "binding_contract_satisfied": false,
+        "witness_object_has_contract_link": false,
+        "full_endpoint_boundary_binding_constructed": false,
+        "endpoint_boundary_binding_ref_carrier_unblocked": false,
+        "endpoint_value_binding_map_carrier_unblocked": false,
+        "dependency_cycle_detected": true,
+        "independent_actual_contract_link_rule_derivation_present": false,
+        "independent_constructed_witness_object_membership_theorem_present": false,
+        "independent_full_endpoint_boundary_binding_theorem_present": false,
+        "proof_contract_order_revision_present": false,
+        "cycle_breaker_available": false,
+        "row_consumption_authorized": false,
+        "branch_chart_authorized": false
+      },
+      "cycle_edges": [
+        {
+          "edge_id": "actual_link_rule_application_requires_membership",
+          "from": "witness_object_contract_link_constructed",
+          "to": "witness_object_membership_proof_present",
+          "present": true,
+          "evidence": "The actual-link target names same constructed-witness-object identity and membership proof as premises."
+        },
+        {
+          "edge_id": "membership_requires_constructed_witness_object_identity",
+          "from": "witness_object_membership_proof_present",
+          "to": "same_constructed_witness_object_identity_proof_present",
+          "present": true,
+          "evidence": "The membership target requires a constructed witness object plus ref/value field-membership proofs."
+        },
+        {
+          "edge_id": "constructed_identity_requires_non_domain_carrier_fields",
+          "from": "same_constructed_witness_object_identity_proof_present",
+          "to": "ref_value_non_domain_carrier_pair_constructed",
+          "present": true,
+          "evidence": "The identity attempt requires endpoint-boundary-binding ref and endpoint value-map carrier fields inside one witness object."
+        },
+        {
+          "edge_id": "direct_ref_value_carrier_promotion_rejected",
+          "from": "ref_value_non_domain_carrier_pair_constructed",
+          "to": "carrier_admission_route_selected",
+          "present": true,
+          "evidence": "Direct source-handle promotion is rejected as unsound under current evidence."
+        },
+        {
+          "edge_id": "carrier_admission_requires_binding_and_full_binding",
+          "from": "carrier_admission_route_selected",
+          "to": "full_endpoint_boundary_binding_constructed",
+          "present": true,
+          "evidence": "The selected carrier-admission route is blocked until binding contract, contract link, and full binding exist."
+        },
+        {
+          "edge_id": "binding_contract_requires_contract_link",
+          "from": "binding_contract_satisfied",
+          "to": "witness_object_has_contract_link",
+          "present": true,
+          "evidence": "The binding contract test is applied but cannot pass without the witness-object contract link."
+        },
+        {
+          "edge_id": "contract_link_returns_to_actual_link_membership_theorem",
+          "from": "witness_object_has_contract_link",
+          "to": "actual-link-rule-plus-constructed-witness-object-membership",
+          "present": true,
+          "evidence": "The selected-route completion attempt names actual-link rule plus membership as the first missing theorem layer."
+        }
+      ],
+      "missing_fields_by_layer": {
+        "actual_contract_link_rule_layer": [
+          "actual_contract_link_rule_available",
+          "actual_contract_link_rule_derivation_present",
+          "actual_contract_link_rule_soundness_proof_present",
+          "actual_contract_link_rule_application_proof_present"
+        ],
+        "constructed_witness_object_membership_layer": [
+          "constructed_witness_object_id_present",
+          "endpoint_boundary_binding_witness_object_constructed",
+          "same_constructed_witness_object_identity_proof_present",
+          "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+          "endpoint_value_binding_map_member_of_witness_object_proven",
+          "endpoint_ref_and_value_map_same_witness_object_proven",
+          "membership_source_not_id_adjacency_proven",
+          "witness_object_membership_proof_present"
+        ],
+        "direct_ref_value_carrier_rule_layer": [
+          "ref_carrier_introduction_rule_available",
+          "value_map_carrier_introduction_rule_available",
+          "ref_value_carrier_pair_rule_available",
+          "ref_carrier_rule_derivation_present",
+          "value_map_carrier_rule_derivation_present",
+          "carrier_rule_soundness_proof_present",
+          "carrier_rule_application_proof_present",
+          "ref_value_non_domain_carrier_pair_constructed"
+        ],
+        "selected_carrier_admission_route_layer": [
+          "binding_contract_satisfied",
+          "witness_object_has_contract_link",
+          "full_endpoint_boundary_binding_constructed",
+          "endpoint_boundary_binding_ref_carrier_unblocked",
+          "endpoint_value_binding_map_carrier_unblocked"
+        ]
+      },
+      "escape_route_candidates": [
+        {
+          "route_id": "independent_actual_contract_link_rule_derivation",
+          "status": "absent",
+          "required_evidence": "A proof-grade actual contract-link introduction theorem with derivation, soundness proof, and endpoint-level application proof.",
+          "limitation": "It still cannot construct the link unless the membership premise is supplied by an independent theorem."
+        },
+        {
+          "route_id": "independent_constructed_witness_object_membership_theorem",
+          "status": "absent",
+          "required_evidence": "A constructed same-packet witness-object identity and ref/value field-membership proof that does not rely on carrier admission through the selected route.",
+          "limitation": "Current source handles, matching IDs, witness-object symbols, and domain-chart carrier subfields do not prove this."
+        },
+        {
+          "route_id": "independent_full_endpoint_boundary_binding_theorem",
+          "status": "absent",
+          "required_evidence": "A full endpoint boundary-binding theorem with carrier admission that does not use the witness-object contract link as a premise.",
+          "limitation": "This would bypass the current binding contract guard and is not supplied by current artifacts."
+        },
+        {
+          "route_id": "proof_contract_order_revision",
+          "status": "not-taken",
+          "required_evidence": "An explicit operator/developer proof-contract decision changing the dependency order.",
+          "limitation": "No contract-order revision is made by this priority-only packet."
+        }
+      ],
+      "dependency_cycle_detected": true,
+      "cycle_breaker_available": false,
+      "obstruction": "The current proof order is cyclic: contract-link construction needs actual-link rule plus membership; membership needs constructed same-packet witness-object identity; identity needs ref/value non-domain carriers; direct ref/value promotion is rejected; selected carrier admission needs full binding and binding contract satisfaction; binding contract satisfaction needs the contract link."
+    }
+  ],
+  "row_actual_link_membership_dependency_cycle_completion_attempts": [
+    {
+      "row_id": "R_w_A04_A03",
+      "cover_id": "G_w_A04_A03_v6_10",
+      "ledger": "w",
+      "source_interval": "A03",
+      "receiver_interval": "A04",
+      "source_variable": "fc_sigma_source_lower",
+      "receiver_variable": "fc_rho_receiver_lower",
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "source_dependency_cycle_detected": true,
+        "receiver_dependency_cycle_detected": true,
+        "combined_dependency_cycle_pair_detected": true,
+        "source_cycle_breaker_available": false,
+        "receiver_cycle_breaker_available": false,
+        "combined_cycle_breaker_pair_available": false,
+        "source_actual_contract_link_rule_available": false,
+        "receiver_actual_contract_link_rule_available": false,
+        "source_witness_object_membership_proof_present": false,
+        "receiver_witness_object_membership_proof_present": false,
+        "source_binding_contract_satisfied": false,
+        "receiver_binding_contract_satisfied": false,
+        "residual_data_construction_ready": false,
+        "row_unblocked": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "row_dependency_cycle_detected": true,
+      "row_cycle_breaker_available": false,
+      "row_unblocked": false,
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "Both row endpoints inherit the same actual-link/membership dependency cycle, and neither endpoint has a proof-grade cycle breaker."
+    },
+    {
+      "row_id": "R_u_A10_A09",
+      "cover_id": "G_u_A10_A09_v6_31",
+      "ledger": "u",
+      "source_interval": "A09",
+      "receiver_interval": "A10",
+      "source_variable": "fc_sigma_source_lower",
+      "receiver_variable": "fc_rho_receiver_lower",
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "source_dependency_cycle_detected": true,
+        "receiver_dependency_cycle_detected": true,
+        "combined_dependency_cycle_pair_detected": true,
+        "source_cycle_breaker_available": false,
+        "receiver_cycle_breaker_available": false,
+        "combined_cycle_breaker_pair_available": false,
+        "source_actual_contract_link_rule_available": false,
+        "receiver_actual_contract_link_rule_available": false,
+        "source_witness_object_membership_proof_present": false,
+        "receiver_witness_object_membership_proof_present": false,
+        "source_binding_contract_satisfied": false,
+        "receiver_binding_contract_satisfied": false,
+        "residual_data_construction_ready": false,
+        "row_unblocked": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "row_dependency_cycle_detected": true,
+      "row_cycle_breaker_available": false,
+      "row_unblocked": false,
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "Both row endpoints inherit the same actual-link/membership dependency cycle, and neither endpoint has a proof-grade cycle breaker."
+    },
+    {
+      "row_id": "R_u_A07_A06",
+      "cover_id": "G_u_A07_A06_v6_22",
+      "ledger": "u",
+      "source_interval": "A06",
+      "receiver_interval": "A07",
+      "source_variable": "fc_sigma_source_upper",
+      "receiver_variable": "fc_rho_receiver_upper",
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "source_dependency_cycle_detected": true,
+        "receiver_dependency_cycle_detected": true,
+        "combined_dependency_cycle_pair_detected": true,
+        "source_cycle_breaker_available": false,
+        "receiver_cycle_breaker_available": false,
+        "combined_cycle_breaker_pair_available": false,
+        "source_actual_contract_link_rule_available": false,
+        "receiver_actual_contract_link_rule_available": false,
+        "source_witness_object_membership_proof_present": false,
+        "receiver_witness_object_membership_proof_present": false,
+        "source_binding_contract_satisfied": false,
+        "receiver_binding_contract_satisfied": false,
+        "residual_data_construction_ready": false,
+        "row_unblocked": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "row_dependency_cycle_detected": true,
+      "row_cycle_breaker_available": false,
+      "row_unblocked": false,
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "Both row endpoints inherit the same actual-link/membership dependency cycle, and neither endpoint has a proof-grade cycle breaker."
+    }
+  ],
+  "escape_route_fields": [
+    "independent_actual_contract_link_rule_derivation_present",
+    "independent_constructed_witness_object_membership_theorem_present",
+    "independent_full_endpoint_boundary_binding_theorem_present",
+    "proof_contract_order_revision_present"
+  ],
+  "escape_route_candidates": [
+    {
+      "route_id": "independent_actual_contract_link_rule_derivation",
+      "status": "absent",
+      "required_evidence": "A proof-grade actual contract-link introduction theorem with derivation, soundness proof, and endpoint-level application proof.",
+      "limitation": "It still cannot construct the link unless the membership premise is supplied by an independent theorem."
+    },
+    {
+      "route_id": "independent_constructed_witness_object_membership_theorem",
+      "status": "absent",
+      "required_evidence": "A constructed same-packet witness-object identity and ref/value field-membership proof that does not rely on carrier admission through the selected route.",
+      "limitation": "Current source handles, matching IDs, witness-object symbols, and domain-chart carrier subfields do not prove this."
+    },
+    {
+      "route_id": "independent_full_endpoint_boundary_binding_theorem",
+      "status": "absent",
+      "required_evidence": "A full endpoint boundary-binding theorem with carrier admission that does not use the witness-object contract link as a premise.",
+      "limitation": "This would bypass the current binding contract guard and is not supplied by current artifacts."
+    },
+    {
+      "route_id": "proof_contract_order_revision",
+      "status": "not-taken",
+      "required_evidence": "An explicit operator/developer proof-contract decision changing the dependency order.",
+      "limitation": "No contract-order revision is made by this priority-only packet."
+    }
+  ],
+  "summary": {
+    "endpoint_functionals": 4,
+    "residual_consumer_rows": 3,
+    "source_layers_ready": 4,
+    "actual_contract_link_rule_targets_declared": 4,
+    "actual_contract_link_rules_available": 0,
+    "actual_contract_link_rule_derivations_present": 0,
+    "constructed_witness_object_source_layers_ready": 4,
+    "same_constructed_witness_object_identity_proofs_present": 0,
+    "witness_object_membership_proofs_present": 0,
+    "direct_source_promotion_routes_rejected": 4,
+    "carrier_admission_routes_selected": 4,
+    "binding_contracts_satisfied": 0,
+    "full_endpoint_boundary_bindings_constructed": 0,
+    "endpoint_boundary_binding_ref_carriers_unblocked": 0,
+    "endpoint_value_binding_map_carriers_unblocked": 0,
+    "dependency_cycles_detected": 4,
+    "cycle_breakers_available": 0,
+    "row_dependency_cycle_pairs_detected": 3,
+    "row_cycle_breaker_pairs_available": 0,
+    "row_consumption_count": 0,
+    "branch_chart_authorized": false
+  },
+  "theorem_target": {
+    "theorem_id": "actual-link-membership-dependency-cycle-escape-theorem-target",
+    "statement": "To construct an actual witness-object contract link under the current proof contract, the proof stack must supply at least one proof-grade escape route that breaks the dependency cycle between actual-link rule application, constructed witness-object membership, ref/value carrier admission, full endpoint boundary binding, binding contract satisfaction, and the contract link itself.",
+    "accepted_escape_routes": [
+      "independent_actual_contract_link_rule_derivation",
+      "independent_constructed_witness_object_membership_theorem",
+      "independent_full_endpoint_boundary_binding_theorem",
+      "proof_contract_order_revision"
+    ],
+    "current_escape_routes_available": 0
+  },
+  "no_promotion_rule": "A detected dependency cycle is not a theorem completion. It does not construct an actual link, witness-object membership proof, binding contract, full endpoint boundary binding, carrier admission, row closure, or branch chart.",
+  "preledger_pass": false,
+  "updates_live_ledger": false,
+  "emits_candidate_artifacts": false,
+  "emits_topology_recertification": false,
+  "emits_proof_interval_replay": false,
+  "row_closure": false,
+  "branch_chart_authorized": false,
+  "authorization_lock": {
+    "row_consumption_authorized": false,
+    "branch_chart_authorized": false,
+    "reason": "Every residual row endpoint pair has the dependency cycle and no proof-grade escape route."
+  },
+  "capture_decision": "priority-only; records a dependency-cycle completion attempt and escape-route inventory, not a reader-facing theorem."
+}

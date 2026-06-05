@@ -1,0 +1,20 @@
+{
+  "id": "the-tiny-transceivers-spread-15",
+  "book_slug": "the-tiny-transceivers",
+  "source_png": "reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-spread-15.png",
+  "exists": true,
+  "automated": {
+    "width": 1645,
+    "height": 956,
+    "aspect_ratio": 1.7207,
+    "saturated_non_palette_fraction": 0.5815,
+    "palette_flag": true
+  },
+  "manual_checklist": {
+    "palette": "approved",
+    "no_in_image_text": "approved",
+    "one_continuous_scene": "approved",
+    "correct_geometry": "approved"
+  },
+  "decision": "approved"
+}

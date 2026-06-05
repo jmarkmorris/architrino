@@ -1,0 +1,784 @@
+{
+  "schema": "breather-higher-fold-fold-coordinate-endpoint-functional-candidate-artifact-replay-readiness-audit-v1",
+  "packet_id": "fresh-v10-higher-fold-12-root-rebuild-v0",
+  "fold_coordinate_packet_id": "fresh-v10-fold-coordinate-collocation-nonlinear-tangent-matrix-v0",
+  "status": "fold_coordinate_endpoint_functional_candidate_artifact_replay_readiness_audit_fail_closed",
+  "theorem_target": "Fold-Coordinate Endpoint-Functional Candidate Artifact Replay Readiness Audit",
+  "branch_chart_authorized": false,
+  "preledger_pass": false,
+  "updates_live_ledger": false,
+  "claim_level": "priority-only readiness audit; same-packet endpoint-functional candidate artifacts and replay are not ready",
+  "authorization_lock": {
+    "branch_chart_authorized": false,
+    "preledger_pass": false,
+    "updates_live_ledger": false,
+    "row_consumption_count": 0
+  },
+  "source_artifacts": {
+    "globalDomainEvaluationAttempt": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_global_domain_evaluation_map_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_global_domain_evaluation_map_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "present": true,
+      "sha256": "463456616b27f8d0da2934863ef2579da14ddcd72416f6d7ccd3f07e2bb72a3c"
+    },
+    "materializationAudit": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_candidate_materialization_audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_candidate_materialization_audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "present": true,
+      "sha256": "1fb3cff54698bffd12a8bfa65bf43599a17afc367ea9cd3a3c08fb3da04862cd"
+    },
+    "historyContract": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_history_realization_contract.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_history_realization_contract.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "present": true,
+      "sha256": "155d45c7e309938bb8415e102710c17f8260ac504820d7debb530ed4d406ad72"
+    },
+    "historyTheoremAttempt": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_history_realization_theorem_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_history_realization_theorem_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "present": true,
+      "sha256": "64689d3a8c2ccfeeff1cf052619d1bb68691f85ba9eeb66ba9253c3667b3a6c7"
+    },
+    "lambda0305ReplayAudit": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/lambda0305_preledger_replay_audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.json",
+      "basename": "lambda0305_preledger_replay_audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.json",
+      "present": true,
+      "sha256": "cd79f688660cf93b563a876dc4446da0c9c8aefeb8f19751eac15f13cdd468f3"
+    }
+  },
+  "candidate_run_id": "fold-coordinate-candidate.nonlinear-v0",
+  "artifact_stem": "fresh-v10-higher-fold-12-root-rebuild-v0.fold-coordinate-candidate.nonlinear-v0",
+  "candidate_artifact_namespace": "fresh-v10-higher-fold-12-root-rebuild-v0.fold-coordinate-candidate.nonlinear-v0",
+  "readiness_rule": "Candidate artifact replay is ready only when the same packet supplies global endpoint-functional domain/evaluation maps, same-packet fold-coordinate candidate artifacts, exact $B\\xi=0$, rank, candidate root topology recertification, proof-interval v1-v6 replay, row consumption, and branch-chart authorization in the fold-coordinate candidate namespace.",
+  "no_reuse_rule": "Direct-path `lambda=0.305` artifacts are contrast artifacts only; their topology certificate and replay do not validate the fold-coordinate candidate namespace.",
+  "candidate_artifacts": {
+    "same_packet_phi_cyc": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/phi_cyc.fresh-v10-higher-fold-12-root-rebuild-v0.fold-coordinate-candidate.nonlinear-v0.json",
+      "basename": "phi_cyc.fresh-v10-higher-fold-12-root-rebuild-v0.fold-coordinate-candidate.nonlinear-v0.json",
+      "present": false,
+      "sha256": null
+    },
+    "same_packet_mesh": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/mesh.fresh-v10-higher-fold-12-root-rebuild-v0.fold-coordinate-candidate.nonlinear-v0.json",
+      "basename": "mesh.fresh-v10-higher-fold-12-root-rebuild-v0.fold-coordinate-candidate.nonlinear-v0.json",
+      "present": false,
+      "sha256": null
+    },
+    "same_packet_preledger_input_screen": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/causal_preledger_input_screen.fresh-v10-higher-fold-12-root-rebuild-v0.fold-coordinate-candidate.nonlinear-v0.json",
+      "basename": "causal_preledger_input_screen.fresh-v10-higher-fold-12-root-rebuild-v0.fold-coordinate-candidate.nonlinear-v0.json",
+      "present": false,
+      "sha256": null
+    },
+    "root_topology_interval_certificate": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fresh_v10_higher_fold_root_tube_interval_certificate.fold-coordinate-candidate.nonlinear-v0.v0.json",
+      "basename": "fresh_v10_higher_fold_root_tube_interval_certificate.fold-coordinate-candidate.nonlinear-v0.v0.json",
+      "present": false,
+      "sha256": null
+    },
+    "proof_interval_replay_audit": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_candidate_preledger_replay_audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_candidate_preledger_replay_audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "present": false,
+      "sha256": null
+    }
+  },
+  "root_topology_recertification": {
+    "binary64_status": "absent_for_fold_coordinate_candidate",
+    "interval_status": "absent_for_fold_coordinate_candidate",
+    "root_count_interval_certified": false,
+    "root_count_bound": null,
+    "min_derivative_floor": null,
+    "min_complement_margin": null,
+    "same_packet_artifact_refs": {
+      "phi_cyc": "phi_cyc.fresh-v10-higher-fold-12-root-rebuild-v0.fold-coordinate-candidate.nonlinear-v0.json",
+      "mesh": "mesh.fresh-v10-higher-fold-12-root-rebuild-v0.fold-coordinate-candidate.nonlinear-v0.json",
+      "preledger_input_screen": "causal_preledger_input_screen.fresh-v10-higher-fold-12-root-rebuild-v0.fold-coordinate-candidate.nonlinear-v0.json",
+      "interval_certificate": "fresh_v10_higher_fold_root_tube_interval_certificate.fold-coordinate-candidate.nonlinear-v0.v0.json"
+    },
+    "direct_path_lambda0305_contrast": {
+      "binary64_status": "binary64_lipschitz_root_tube_certificate_ready_for_directed_rounding",
+      "interval_status": "outward_rational_interval_12_root_certificate_passed",
+      "root_count_interval_certified": true,
+      "min_derivative_floor": 20.733612612016,
+      "min_complement_margin": "0.023967918957860748",
+      "reusable_for_fold_coordinate_candidate": false
+    }
+  },
+  "proof_interval_v1_v6_replay": {
+    "candidate_namespace": "fresh-v10-higher-fold-12-root-rebuild-v0.fold-coordinate-candidate.nonlinear-v0",
+    "replay_audit_artifact": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_candidate_preledger_replay_audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_candidate_preledger_replay_audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "present": false,
+      "sha256": null
+    },
+    "candidate_replay_stages": {
+      "v1": {
+        "present": false,
+        "ledger_sha256": null,
+        "certified_counts": null,
+        "split_required_base_rows": null,
+        "branch_chart_authorized": false
+      },
+      "v2": {
+        "present": false,
+        "ledger_sha256": null,
+        "certified_counts": null,
+        "split_required_base_rows": null,
+        "branch_chart_authorized": false
+      },
+      "v3": {
+        "present": false,
+        "ledger_sha256": null,
+        "certified_counts": null,
+        "split_required_base_rows": null,
+        "branch_chart_authorized": false
+      },
+      "v4": {
+        "present": false,
+        "ledger_sha256": null,
+        "certified_counts": null,
+        "split_required_base_rows": null,
+        "branch_chart_authorized": false
+      },
+      "v5": {
+        "present": false,
+        "ledger_sha256": null,
+        "certified_counts": null,
+        "split_required_base_rows": null,
+        "branch_chart_authorized": false
+      },
+      "v6": {
+        "present": false,
+        "ledger_sha256": null,
+        "certified_counts": null,
+        "split_required_base_rows": null,
+        "branch_chart_authorized": false
+      }
+    },
+    "candidate_replay_same_packet_validated": false,
+    "direct_path_lambda0305_contrast": {
+      "v1": {
+        "ledger_sha256": "3b44924b5c05793ad4216a587a2069781e26d5419c6c9b14b2382d701d8791e9",
+        "split_required_base_rows": 996,
+        "accepted_fold_layer_rows": null,
+        "receiver_cover_complete_parent_rows": null,
+        "branch_chart_authorized": false,
+        "reusable_for_fold_coordinate_candidate": false
+      },
+      "v2": {
+        "ledger_sha256": "fb04a3cd79d4504548e7372f772523202ee024e2a8d6dd72756dc76066ac82b3",
+        "split_required_base_rows": 188,
+        "accepted_fold_layer_rows": null,
+        "receiver_cover_complete_parent_rows": null,
+        "branch_chart_authorized": false,
+        "reusable_for_fold_coordinate_candidate": false
+      },
+      "v3": {
+        "ledger_sha256": "68c0bb696693402050fc718ebcff135cb2931bbf4d81cbc7ce59e85ed6281b66",
+        "split_required_base_rows": 162,
+        "accepted_fold_layer_rows": null,
+        "receiver_cover_complete_parent_rows": null,
+        "branch_chart_authorized": false,
+        "reusable_for_fold_coordinate_candidate": false
+      },
+      "v4": {
+        "ledger_sha256": "f47f091058bdf5384ca280f44f1e6fe869b8a1e178374e1711a067995ddf2eea",
+        "split_required_base_rows": 162,
+        "accepted_fold_layer_rows": null,
+        "receiver_cover_complete_parent_rows": null,
+        "branch_chart_authorized": false,
+        "reusable_for_fold_coordinate_candidate": false
+      },
+      "v5": {
+        "ledger_sha256": "a204addfa02da67243428d1977b47e427c01e959248973dd323198753c92f3e0",
+        "split_required_base_rows": 162,
+        "accepted_fold_layer_rows": null,
+        "receiver_cover_complete_parent_rows": 0,
+        "branch_chart_authorized": false,
+        "reusable_for_fold_coordinate_candidate": false
+      },
+      "v6": {
+        "ledger_sha256": "fdf65c265586d67bbef957e93922fe58014e53697c89cffc5f4bb4a3762439a9",
+        "split_required_base_rows": 162,
+        "accepted_fold_layer_rows": 0,
+        "receiver_cover_complete_parent_rows": null,
+        "branch_chart_authorized": false,
+        "reusable_for_fold_coordinate_candidate": false
+      }
+    }
+  },
+  "exact_linear_certificate": {
+    "B_xi_residual_verified_zero_with_tolerance": false,
+    "B_xi_residual_certified_zero": false,
+    "rank_B_certified": false,
+    "nullity": null,
+    "exact_screen_zero_certified": false,
+    "rank_certified": false
+  },
+  "row_consumption_gate": {
+    "preledger_pass": false,
+    "row_consumption_count": 0,
+    "accepted_fold_layer_rows": 0,
+    "split_required_base_rows": null,
+    "row_consumed": false,
+    "branch_chart_authorized": false,
+    "direct_path_lambda0305_split_required_base_rows": 162,
+    "direct_path_lambda0305_accepted_fold_layer_rows": 0
+  },
+  "direct_path_contrast": {
+    "materialization_contrast": {
+      "all_expected_direct_path_artifacts_present": true,
+      "reusable_for_fold_coordinate_candidate": false,
+      "reason": "The lambda=0.305 files materialize the shifted-separator direct-path seed. They do not contain fold-coordinate history update formulas for the boundary-opening variables."
+    },
+    "lambda0305_replay_status": "lambda0305_topology_certified_preledger_still_blocked",
+    "lambda0305_topology_recertified": true,
+    "lambda0305_preledger_pass": false,
+    "lambda0305_branch_chart_authorized": false,
+    "reusable_for_fold_coordinate_candidate": false,
+    "reason": "The lambda=0.305 files materialize the shifted-separator direct-path seed and replay that seed. They do not contain fold-coordinate endpoint-functional history update formulas or same-packet candidate replay."
+  },
+  "packet_required_fields_present": {
+    "global_domain_evaluation_attempt_imported": true,
+    "global_domain_evaluation_maps_constructed": false,
+    "row_global_domain_evaluation_pairs_constructed": false,
+    "candidate_artifact_namespace_defined": true,
+    "candidate_phi_cyc_present": false,
+    "candidate_mesh_present": false,
+    "candidate_preledger_input_screen_present": false,
+    "candidate_root_topology_certificate_present": false,
+    "candidate_preledger_replay_present": false,
+    "candidate_artifacts_same_packet_validated": false,
+    "candidate_replay_same_packet_validated": false,
+    "candidate_artifact_replay_ready": false,
+    "row_consumed": false,
+    "branch_chart_authorized": false
+  },
+  "endpoint_readiness_attempts": [
+    {
+      "id": "fc_sigma_source_lower",
+      "endpoint_functional_id": "E_lower_source_inner_boundary",
+      "role": "source",
+      "basis_symbol": "Psi_fc_sigma_source_lower",
+      "row_uses": [
+        "R_w_A04_A03",
+        "R_u_A10_A09"
+      ],
+      "support_topology": {
+        "support_interval_ids": [
+          "A03",
+          "A09"
+        ],
+        "unique_support_interval_ids": [
+          "A03",
+          "A09"
+        ],
+        "support_component_count": 2,
+        "support_union_kind": "disjoint_component_union",
+        "component_supports_disjoint_or_single_component": true
+      },
+      "required_fields_present": {
+        "global_domain_evaluation_attempt_imported": true,
+        "local_formula_candidate_available": true,
+        "component_endpoint_identities_exact": true,
+        "global_domain_evaluation_map_constructed": false,
+        "non_target_endpoint_zero_certified": false,
+        "same_packet_history_update_formula_present": false,
+        "exact_screen_zero_certified": false,
+        "rank_certified": false,
+        "candidate_artifact_namespace_defined": true,
+        "candidate_phi_cyc_present": false,
+        "candidate_mesh_present": false,
+        "candidate_preledger_input_screen_present": false,
+        "candidate_root_topology_certificate_present": false,
+        "candidate_preledger_replay_present": false,
+        "candidate_artifacts_same_packet_validated": false,
+        "candidate_replay_same_packet_validated": false,
+        "candidate_artifact_replay_ready": false
+      },
+      "candidate_artifact_replay_ready": false,
+      "blocking_codes": [
+        "missing_global_domain_evaluation_map_constructed",
+        "missing_non_target_endpoint_zero_certified",
+        "missing_same_packet_history_update_formula_present",
+        "missing_exact_screen_zero_certified",
+        "missing_rank_certified",
+        "missing_candidate_phi_cyc_present",
+        "missing_candidate_mesh_present",
+        "missing_candidate_preledger_input_screen_present",
+        "missing_candidate_root_topology_certificate_present",
+        "missing_candidate_preledger_replay_present",
+        "missing_candidate_artifacts_same_packet_validated",
+        "missing_candidate_replay_same_packet_validated",
+        "missing_candidate_artifact_replay_ready"
+      ],
+      "obstruction": "The endpoint has a local formula candidate and exact component endpoint identity, but the same-packet global domain/evaluation map, non-target zero certificate, exact $B\\xi=0$, rank, candidate artifacts, topology recertification, and v1-v6 replay are not jointly certified."
+    },
+    {
+      "id": "fc_rho_receiver_lower",
+      "endpoint_functional_id": "E_raise_receiver_lower_boundary",
+      "role": "receiver",
+      "basis_symbol": "Psi_fc_rho_receiver_lower",
+      "row_uses": [
+        "R_w_A04_A03",
+        "R_u_A10_A09"
+      ],
+      "support_topology": {
+        "support_interval_ids": [
+          "A04",
+          "A10"
+        ],
+        "unique_support_interval_ids": [
+          "A04",
+          "A10"
+        ],
+        "support_component_count": 2,
+        "support_union_kind": "disjoint_component_union",
+        "component_supports_disjoint_or_single_component": true
+      },
+      "required_fields_present": {
+        "global_domain_evaluation_attempt_imported": true,
+        "local_formula_candidate_available": true,
+        "component_endpoint_identities_exact": true,
+        "global_domain_evaluation_map_constructed": false,
+        "non_target_endpoint_zero_certified": false,
+        "same_packet_history_update_formula_present": false,
+        "exact_screen_zero_certified": false,
+        "rank_certified": false,
+        "candidate_artifact_namespace_defined": true,
+        "candidate_phi_cyc_present": false,
+        "candidate_mesh_present": false,
+        "candidate_preledger_input_screen_present": false,
+        "candidate_root_topology_certificate_present": false,
+        "candidate_preledger_replay_present": false,
+        "candidate_artifacts_same_packet_validated": false,
+        "candidate_replay_same_packet_validated": false,
+        "candidate_artifact_replay_ready": false
+      },
+      "candidate_artifact_replay_ready": false,
+      "blocking_codes": [
+        "missing_global_domain_evaluation_map_constructed",
+        "missing_non_target_endpoint_zero_certified",
+        "missing_same_packet_history_update_formula_present",
+        "missing_exact_screen_zero_certified",
+        "missing_rank_certified",
+        "missing_candidate_phi_cyc_present",
+        "missing_candidate_mesh_present",
+        "missing_candidate_preledger_input_screen_present",
+        "missing_candidate_root_topology_certificate_present",
+        "missing_candidate_preledger_replay_present",
+        "missing_candidate_artifacts_same_packet_validated",
+        "missing_candidate_replay_same_packet_validated",
+        "missing_candidate_artifact_replay_ready"
+      ],
+      "obstruction": "The endpoint has a local formula candidate and exact component endpoint identity, but the same-packet global domain/evaluation map, non-target zero certificate, exact $B\\xi=0$, rank, candidate artifacts, topology recertification, and v1-v6 replay are not jointly certified."
+    },
+    {
+      "id": "fc_sigma_source_upper",
+      "endpoint_functional_id": "E_raise_source_inner_boundary",
+      "role": "source",
+      "basis_symbol": "Psi_fc_sigma_source_upper",
+      "row_uses": [
+        "R_u_A07_A06"
+      ],
+      "support_topology": {
+        "support_interval_ids": [
+          "A06"
+        ],
+        "unique_support_interval_ids": [
+          "A06"
+        ],
+        "support_component_count": 1,
+        "support_union_kind": "single_component",
+        "component_supports_disjoint_or_single_component": true
+      },
+      "required_fields_present": {
+        "global_domain_evaluation_attempt_imported": true,
+        "local_formula_candidate_available": true,
+        "component_endpoint_identities_exact": true,
+        "global_domain_evaluation_map_constructed": false,
+        "non_target_endpoint_zero_certified": false,
+        "same_packet_history_update_formula_present": false,
+        "exact_screen_zero_certified": false,
+        "rank_certified": false,
+        "candidate_artifact_namespace_defined": true,
+        "candidate_phi_cyc_present": false,
+        "candidate_mesh_present": false,
+        "candidate_preledger_input_screen_present": false,
+        "candidate_root_topology_certificate_present": false,
+        "candidate_preledger_replay_present": false,
+        "candidate_artifacts_same_packet_validated": false,
+        "candidate_replay_same_packet_validated": false,
+        "candidate_artifact_replay_ready": false
+      },
+      "candidate_artifact_replay_ready": false,
+      "blocking_codes": [
+        "missing_global_domain_evaluation_map_constructed",
+        "missing_non_target_endpoint_zero_certified",
+        "missing_same_packet_history_update_formula_present",
+        "missing_exact_screen_zero_certified",
+        "missing_rank_certified",
+        "missing_candidate_phi_cyc_present",
+        "missing_candidate_mesh_present",
+        "missing_candidate_preledger_input_screen_present",
+        "missing_candidate_root_topology_certificate_present",
+        "missing_candidate_preledger_replay_present",
+        "missing_candidate_artifacts_same_packet_validated",
+        "missing_candidate_replay_same_packet_validated",
+        "missing_candidate_artifact_replay_ready"
+      ],
+      "obstruction": "The endpoint has a local formula candidate and exact component endpoint identity, but the same-packet global domain/evaluation map, non-target zero certificate, exact $B\\xi=0$, rank, candidate artifacts, topology recertification, and v1-v6 replay are not jointly certified."
+    },
+    {
+      "id": "fc_rho_receiver_upper",
+      "endpoint_functional_id": "E_lower_receiver_upper_boundary",
+      "role": "receiver",
+      "basis_symbol": "Psi_fc_rho_receiver_upper",
+      "row_uses": [
+        "R_u_A07_A06"
+      ],
+      "support_topology": {
+        "support_interval_ids": [
+          "A07"
+        ],
+        "unique_support_interval_ids": [
+          "A07"
+        ],
+        "support_component_count": 1,
+        "support_union_kind": "single_component",
+        "component_supports_disjoint_or_single_component": true
+      },
+      "required_fields_present": {
+        "global_domain_evaluation_attempt_imported": true,
+        "local_formula_candidate_available": true,
+        "component_endpoint_identities_exact": true,
+        "global_domain_evaluation_map_constructed": false,
+        "non_target_endpoint_zero_certified": false,
+        "same_packet_history_update_formula_present": false,
+        "exact_screen_zero_certified": false,
+        "rank_certified": false,
+        "candidate_artifact_namespace_defined": true,
+        "candidate_phi_cyc_present": false,
+        "candidate_mesh_present": false,
+        "candidate_preledger_input_screen_present": false,
+        "candidate_root_topology_certificate_present": false,
+        "candidate_preledger_replay_present": false,
+        "candidate_artifacts_same_packet_validated": false,
+        "candidate_replay_same_packet_validated": false,
+        "candidate_artifact_replay_ready": false
+      },
+      "candidate_artifact_replay_ready": false,
+      "blocking_codes": [
+        "missing_global_domain_evaluation_map_constructed",
+        "missing_non_target_endpoint_zero_certified",
+        "missing_same_packet_history_update_formula_present",
+        "missing_exact_screen_zero_certified",
+        "missing_rank_certified",
+        "missing_candidate_phi_cyc_present",
+        "missing_candidate_mesh_present",
+        "missing_candidate_preledger_input_screen_present",
+        "missing_candidate_root_topology_certificate_present",
+        "missing_candidate_preledger_replay_present",
+        "missing_candidate_artifacts_same_packet_validated",
+        "missing_candidate_replay_same_packet_validated",
+        "missing_candidate_artifact_replay_ready"
+      ],
+      "obstruction": "The endpoint has a local formula candidate and exact component endpoint identity, but the same-packet global domain/evaluation map, non-target zero certificate, exact $B\\xi=0$, rank, candidate artifacts, topology recertification, and v1-v6 replay are not jointly certified."
+    }
+  ],
+  "row_readiness_attempts": [
+    {
+      "row_id": "R_w_A04_A03",
+      "source_interval": "A03",
+      "receiver_interval": "A04",
+      "failed_side": "lo",
+      "boundary_side": "lower",
+      "source_endpoint_contract_id": "fc_sigma_source_lower",
+      "receiver_endpoint_contract_id": "fc_rho_receiver_lower",
+      "proposed_fold_coordinate_assignment": {
+        "source_shift_variable": "fc_sigma_source_lower",
+        "receiver_shift_variable": "fc_rho_receiver_lower",
+        "success_inequality": "sigma_source_lower + rho_receiver_lower > required_strict_improvement_q",
+        "source_shift_q": {
+          "num": "1",
+          "den": "2",
+          "display": "0.5"
+        },
+        "receiver_shift_q": {
+          "num": "1",
+          "den": "2",
+          "display": "0.5"
+        },
+        "combined_boundary_opening_q": {
+          "num": "1",
+          "den": "1",
+          "display": "1"
+        },
+        "required_combined_opening_q": {
+          "num": "5669711941314830673188480728376899483593421911182442215331992955046452573924290906757308094926076916759135911357084939411748264375892340480753286473663730836637018946258359943384672760494401626819981128632739539183360451341688771462156879964599499520587813065559513756482789186655386505146325631666783274035253863893698229228514091",
+          "den": "212412433667468637989229700431569922732680084255285865147638593843795152977823987926568462230095422229040177983141146679095289924464759995240673303665833986191487451689789004424837202586585495123071382481278844150831361081941956956782592000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "display": "0.000026691996524"
+        },
+        "combined_boundary_opening_margin_q": {
+          "num": "212406763955527323158556511950841545833196490833374682705423261850840106525250063635661704922000496152123418847229789594155878176200384102900192550379360322460650814670842746064893817913825000721444562500150211411292177721490615268011129843120035400500479412186934440486243517210813344613494853674368333216725964746136106301770771485909",
+          "den": "212412433667468637989229700431569922732680084255285865147638593843795152977823987926568462230095422229040177983141146679095289924464759995240673303665833986191487451689789004424837202586585495123071382481278844150831361081941956956782592000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "display": "0.999973308003475"
+        }
+      },
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "local_formula_candidate_pair_available": true,
+        "local_target_action_pair_exact": true,
+        "global_domain_evaluation_pair_constructed": false,
+        "screen_positive_candidate_change_row": true,
+        "signed_boundary_delta_contract_defined": true,
+        "same_packet_history_update_formula_present": false,
+        "exact_screen_zero_certified": false,
+        "rank_certified": false,
+        "candidate_artifact_namespace_defined": true,
+        "candidate_artifacts_same_packet_validated": false,
+        "candidate_replay_same_packet_validated": false,
+        "candidate_artifact_replay_ready": false,
+        "row_replay_ready": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "row_replay_ready": false,
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "blocking_codes": [
+        "missing_global_domain_evaluation_pair_constructed",
+        "missing_same_packet_history_update_formula_present",
+        "missing_exact_screen_zero_certified",
+        "missing_rank_certified",
+        "missing_candidate_artifacts_same_packet_validated",
+        "missing_candidate_replay_same_packet_validated",
+        "missing_candidate_artifact_replay_ready",
+        "missing_row_replay_ready",
+        "missing_row_consumed",
+        "missing_branch_chart_authorized"
+      ],
+      "obstruction": "The row keeps its local formula pair and positive screen witness, but it has no global source/receiver domain/evaluation pair, no same-packet candidate artifact validation, no candidate replay, and no row-consumption authority."
+    },
+    {
+      "row_id": "R_u_A10_A09",
+      "source_interval": "A09",
+      "receiver_interval": "A10",
+      "failed_side": "lo",
+      "boundary_side": "lower",
+      "source_endpoint_contract_id": "fc_sigma_source_lower",
+      "receiver_endpoint_contract_id": "fc_rho_receiver_lower",
+      "proposed_fold_coordinate_assignment": {
+        "source_shift_variable": "fc_sigma_source_lower",
+        "receiver_shift_variable": "fc_rho_receiver_lower",
+        "success_inequality": "sigma_source_lower + rho_receiver_lower > required_strict_improvement_q",
+        "source_shift_q": {
+          "num": "1",
+          "den": "2",
+          "display": "0.5"
+        },
+        "receiver_shift_q": {
+          "num": "1",
+          "den": "2",
+          "display": "0.5"
+        },
+        "combined_boundary_opening_q": {
+          "num": "1",
+          "den": "1",
+          "display": "1"
+        },
+        "required_combined_opening_q": {
+          "num": "5669711941314830673188480728376899483593421911182442215331992955046452573924290906757308094926076916759135911357084939411748264375892340480753286473663730836637018946258359943384672760494401626819981128632739539183360451341688771462156879964599499520587813065559513756482789186655386505146325631666783274035253863893698229228514091",
+          "den": "212412433667468637989229700431569922732680084255285865147638593843795152977823987926568462230095422229040177983141146679095289924464759995240673303665833986191487451689789004424837202586585495123071382481278844150831361081941956956782592000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "display": "0.000026691996524"
+        },
+        "combined_boundary_opening_margin_q": {
+          "num": "212406763955527323158556511950841545833196490833374682705423261850840106525250063635661704922000496152123418847229789594155878176200384102900192550379360322460650814670842746064893817913825000721444562500150211411292177721490615268011129843120035400500479412186934440486243517210813344613494853674368333216725964746136106301770771485909",
+          "den": "212412433667468637989229700431569922732680084255285865147638593843795152977823987926568462230095422229040177983141146679095289924464759995240673303665833986191487451689789004424837202586585495123071382481278844150831361081941956956782592000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "display": "0.999973308003475"
+        }
+      },
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "local_formula_candidate_pair_available": true,
+        "local_target_action_pair_exact": true,
+        "global_domain_evaluation_pair_constructed": false,
+        "screen_positive_candidate_change_row": true,
+        "signed_boundary_delta_contract_defined": true,
+        "same_packet_history_update_formula_present": false,
+        "exact_screen_zero_certified": false,
+        "rank_certified": false,
+        "candidate_artifact_namespace_defined": true,
+        "candidate_artifacts_same_packet_validated": false,
+        "candidate_replay_same_packet_validated": false,
+        "candidate_artifact_replay_ready": false,
+        "row_replay_ready": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "row_replay_ready": false,
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "blocking_codes": [
+        "missing_global_domain_evaluation_pair_constructed",
+        "missing_same_packet_history_update_formula_present",
+        "missing_exact_screen_zero_certified",
+        "missing_rank_certified",
+        "missing_candidate_artifacts_same_packet_validated",
+        "missing_candidate_replay_same_packet_validated",
+        "missing_candidate_artifact_replay_ready",
+        "missing_row_replay_ready",
+        "missing_row_consumed",
+        "missing_branch_chart_authorized"
+      ],
+      "obstruction": "The row keeps its local formula pair and positive screen witness, but it has no global source/receiver domain/evaluation pair, no same-packet candidate artifact validation, no candidate replay, and no row-consumption authority."
+    },
+    {
+      "row_id": "R_u_A07_A06",
+      "source_interval": "A06",
+      "receiver_interval": "A07",
+      "failed_side": "hi",
+      "boundary_side": "upper",
+      "source_endpoint_contract_id": "fc_sigma_source_upper",
+      "receiver_endpoint_contract_id": "fc_rho_receiver_upper",
+      "proposed_fold_coordinate_assignment": {
+        "source_shift_variable": "fc_sigma_source_upper",
+        "receiver_shift_variable": "fc_rho_receiver_upper",
+        "success_inequality": "sigma_source_upper + rho_receiver_upper > required_strict_improvement_q",
+        "source_shift_q": {
+          "num": "1",
+          "den": "2",
+          "display": "0.5"
+        },
+        "receiver_shift_q": {
+          "num": "1",
+          "den": "2",
+          "display": "0.5"
+        },
+        "combined_boundary_opening_q": {
+          "num": "1",
+          "den": "1",
+          "display": "1"
+        },
+        "required_combined_opening_q": {
+          "num": "11510217468575481892033589552795468629965733120476813161267433794161150969618227463865582460488839255978269103445791274495942918477116927028167548192638555698939379601396069868706606430444757468878045986190937500474826889608814674522255613692077540770836373782853994103487647387041649329390628841513099048789531613228821772347856791103440665963228039060271350624176255009591096538554370515784333308412827320933181822550262349760729210705117341995657772865078731842470499845333560894889303019",
+          "den": "46754473546210480137396805404956325951864215812962626418596338013818587638622393657397312519915902724600782964021836217924851517252599054886623909229077428999307184672876050988585762392657676611030140919912182773345761195200521839125751806147895857510423654852583809868607820326571905131377040043443939924435416848856101288506276034910801403950838635826991334162375917784699380164060000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "display": "0.00024618430271"
+        },
+        "combined_boundary_opening_margin_q": {
+          "num": "46742963328741904655504771815403530483234250079842149605435070580024426487652775429933446937455413885344804694918390426650355574334121937959595741680884790443608245293274654918717055786227231853561262873925991835845286368310913024451229550534203779969652818478800955874504332679184863482047649414602426825386627317242872466733928178119697963284875407787931062811751741529689789067521445629484215666691587172679066818177449737650239270789294882658004342227134921268157529500154666439105110696981",
+          "den": "46754473546210480137396805404956325951864215812962626418596338013818587638622393657397312519915902724600782964021836217924851517252599054886623909229077428999307184672876050988585762392657676611030140919912182773345761195200521839125751806147895857510423654852583809868607820326571905131377040043443939924435416848856101288506276034910801403950838635826991334162375917784699380164060000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "display": "0.999753815697289"
+        }
+      },
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "local_formula_candidate_pair_available": true,
+        "local_target_action_pair_exact": true,
+        "global_domain_evaluation_pair_constructed": false,
+        "screen_positive_candidate_change_row": true,
+        "signed_boundary_delta_contract_defined": true,
+        "same_packet_history_update_formula_present": false,
+        "exact_screen_zero_certified": false,
+        "rank_certified": false,
+        "candidate_artifact_namespace_defined": true,
+        "candidate_artifacts_same_packet_validated": false,
+        "candidate_replay_same_packet_validated": false,
+        "candidate_artifact_replay_ready": false,
+        "row_replay_ready": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "row_replay_ready": false,
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "blocking_codes": [
+        "missing_global_domain_evaluation_pair_constructed",
+        "missing_same_packet_history_update_formula_present",
+        "missing_exact_screen_zero_certified",
+        "missing_rank_certified",
+        "missing_candidate_artifacts_same_packet_validated",
+        "missing_candidate_replay_same_packet_validated",
+        "missing_candidate_artifact_replay_ready",
+        "missing_row_replay_ready",
+        "missing_row_consumed",
+        "missing_branch_chart_authorized"
+      ],
+      "obstruction": "The row keeps its local formula pair and positive screen witness, but it has no global source/receiver domain/evaluation pair, no same-packet candidate artifact validation, no candidate replay, and no row-consumption authority."
+    }
+  ],
+  "summary": {
+    "endpoint_functionals": 4,
+    "rows": 3,
+    "local_formula_candidates_available": 4,
+    "component_endpoint_identities_exact": 4,
+    "global_domain_evaluation_maps_constructed": 0,
+    "row_global_domain_evaluation_pairs_constructed": 0,
+    "candidate_artifacts_present": 0,
+    "candidate_artifact_count": 5,
+    "candidate_artifacts_same_packet_validated": false,
+    "root_topology_recertifications": 0,
+    "proof_interval_v1_v6_replays": 0,
+    "exact_screen_zero_certified": false,
+    "rank_certified": false,
+    "endpoint_replay_ready_count": 0,
+    "row_replay_ready_count": 0,
+    "row_consumption_count": 0,
+    "branch_chart_authorized": false,
+    "packet_required_fields_certified_counts": {
+      "global_domain_evaluation_attempt_imported": 1,
+      "global_domain_evaluation_maps_constructed": 0,
+      "row_global_domain_evaluation_pairs_constructed": 0,
+      "candidate_artifact_namespace_defined": 1,
+      "candidate_phi_cyc_present": 0,
+      "candidate_mesh_present": 0,
+      "candidate_preledger_input_screen_present": 0,
+      "candidate_root_topology_certificate_present": 0,
+      "candidate_preledger_replay_present": 0,
+      "candidate_artifacts_same_packet_validated": 0,
+      "candidate_replay_same_packet_validated": 0,
+      "candidate_artifact_replay_ready": 0,
+      "row_consumed": 0,
+      "branch_chart_authorized": 0
+    },
+    "endpoint_required_fields_certified_counts": {
+      "global_domain_evaluation_attempt_imported": 4,
+      "local_formula_candidate_available": 4,
+      "component_endpoint_identities_exact": 4,
+      "global_domain_evaluation_map_constructed": 0,
+      "non_target_endpoint_zero_certified": 0,
+      "same_packet_history_update_formula_present": 0,
+      "exact_screen_zero_certified": 0,
+      "rank_certified": 0,
+      "candidate_artifact_namespace_defined": 4,
+      "candidate_phi_cyc_present": 0,
+      "candidate_mesh_present": 0,
+      "candidate_preledger_input_screen_present": 0,
+      "candidate_root_topology_certificate_present": 0,
+      "candidate_preledger_replay_present": 0,
+      "candidate_artifacts_same_packet_validated": 0,
+      "candidate_replay_same_packet_validated": 0,
+      "candidate_artifact_replay_ready": 0
+    },
+    "row_required_fields_certified_counts": {
+      "row_locator_resolved": 3,
+      "local_formula_candidate_pair_available": 3,
+      "local_target_action_pair_exact": 3,
+      "global_domain_evaluation_pair_constructed": 0,
+      "screen_positive_candidate_change_row": 3,
+      "signed_boundary_delta_contract_defined": 3,
+      "same_packet_history_update_formula_present": 0,
+      "exact_screen_zero_certified": 0,
+      "rank_certified": 0,
+      "candidate_artifact_namespace_defined": 3,
+      "candidate_artifacts_same_packet_validated": 0,
+      "candidate_replay_same_packet_validated": 0,
+      "candidate_artifact_replay_ready": 0,
+      "row_replay_ready": 0,
+      "row_consumed": 0,
+      "branch_chart_authorized": 0
+    }
+  }
+}

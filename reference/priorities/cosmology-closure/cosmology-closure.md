@@ -247,6 +247,7 @@ where the entries denote, respectively, endpoint clock cadence, path-history pro
 | --- | --- | --- |
 | Planck Legacy Archive / NASA LAMBDA | CMB frequency maps, component-separated CMB maps, TT/TE/EE spectra, likelihoods, lensing-potential maps, $C_L^{\phi\phi}$ likelihoods, parameter chains | Compute $C_\ell^{TT}$, $C_\ell^{TE}$, $C_\ell^{EE}$, $C_L^{\phi\phi}$, acoustic scale, blackbody preservation, and foreground/calibration nuisance rows from one thermalization and transfer record. Do not absorb CMB lensing mismatch into a separate growth state. |
 | ACT DR6 | High-$\ell$ TT/TE/EE spectra, covariance matrices, power-spectrum likelihoods, CMB lensing likelihood bandpowers and covariances | Cross-check Planck-derived transfer and lensing rows with an independent ground-based high-resolution CMB packet. ACT can strengthen or falsify small-scale damping, foreground, and lensing-amplitude projections without changing the CMB ontology. |
+| ACT kSZ force-law profile / SDSS halos | ACT CMB intensity maps, Sloan Digital Sky Survey halo catalogue, mean pairwise velocity estimator, separation window $30$--$230\,\mathrm{Mpc}$, and fitted force-law index $n_{\mathrm{kSZ}}^{\mathrm{obs}}=2.1\pm0.3$ from [arXiv:2604.14327](https://arxiv.org/abs/2604.14327) | Treat kSZ pairwise velocities as a direct growth-and-force-law profile benchmark. A cosmology branch may use medium response or neutral-assembly loading, but on this window its projected halo acceleration must remain close to $g(r)\propto r^{-2}$ unless the same record also fits the kSZ covariance. A MOND-like $n\simeq1$ large-scale branch fails this row unless its low-acceleration modification is screened or confined away from the ACT/SDSS halo-pair window. |
 | DESI BAO DR1/DR2 | BAO likelihoods, cosmology chains, posterior maxima, tracer/redshift-bin labels, $D_M/r_d$, $D_H/r_d$, $D_V/r_d$ comparison rows | Treat BAO as a standard-ruler packet that constrains both the effective distance map and the sound-horizon calibration $r_d^\theta$. A fit that changes $r_d^\theta$ for CMB while using a different propagation state for BAO fails shared closure. |
 | Pantheon+ / SH0ES | Supernova light-curve compilation, covariance, redshift corrections, Cepheid/SN ladder anchors, local $H_0$ estimates | Keep supernova distance modulus, ladder calibration, peculiar-velocity correction, and local slope rows separate. A high local $H_0$ coefficient is a corrected redshift-transfer slope, not literal expansion of the Euclidean void. |
 | DES weak lensing / clustering | Year-3 3$\times$2pt data vectors, shear calibration, photo-$z$ calibration, covariance, $S_8$ and $\Omega_m$ constraints | Use DES as the late-growth and lensing benchmark against Planck-like early inference. The key residual is not just $S_8^\theta-S_8^{\mathrm{obs}}$, but whether the same growth projection also preserves CMB lensing and BAO distances. |
@@ -334,6 +335,33 @@ r_{\mathrm{WL/RSD}}
 \frac{\boldsymbol\xi_{\pm}^\theta-\boldsymbol\xi_{\pm}^{\mathrm{obs}}}{\boldsymbol\sigma_{\xi}}
 \right).
 $$
+
+For kSZ force-law-profile rows, define the projected halo-pair acceleration over the ACT/SDSS separation window $W_{\mathrm{kSZ}}=[30,230]\,\mathrm{Mpc}$ by fitting
+
+$$
+g_\theta(r)\big|_{W_{\mathrm{kSZ}}}
+\propto
+r^{-n_\theta}.
+$$
+
+The corresponding residual is
+
+$$
+r_{\mathrm{kSZ}\text{-}force}
+=
+\frac{n_\theta-n_{\mathrm{kSZ}}^{\mathrm{obs}}}{\sigma_{n,\mathrm{kSZ}}}
++
+\lambda_{\mathrm{shared}}
+d_{\mathrm{shared}}\!\left(
+\Pi_{\mathrm{kSZ}}\theta_{\mathrm{sea}},
+\Pi_{\mathrm{WL/RSD}}\theta_{\mathrm{sea}}
+\right),
+\qquad
+n_{\mathrm{kSZ}}^{\mathrm{obs}}=2.1,\quad
+\sigma_{n,\mathrm{kSZ}}=0.3.
+$$
+
+This is a success marker under the existing growth/lensing closure family, not a new obligation artifact. It records that a branch fitting galaxy-scale MOND-like residuals must still recover an inverse-square large-scale halo acceleration profile from the same Noether sea and neutral-assembly state used for CMB lensing, weak lensing, redshift-space distortions, and halo statistics.
 
 These rows are benchmark contracts. They do not say that Planck, DESI, SH0ES, Pantheon+, DES, ACT, or Euclid variables are substrate variables. They say which observer-level products a Noether sea transfer-function branch must reproduce without splitting its medium-state record.
 

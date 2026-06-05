@@ -51,6 +51,7 @@ All cosmological observables are computed from absolute-state evolution and then
 | Expansion status | Fixed Euclidean container; expansion variables are effective Noether sea state summaries |
 | Universe age stance | Eternal background with no mandatory one-time global origin event |
 | Redshift mechanism | Medium evolution plus clock-rate comparison and transport contributions |
+| Photon-frequency status | Observer-level signed transfer record; redshift and blueshift are outputs of endpoint cadence, source branch, launch geometry, and path-history exchange |
 | CMB origin mode | Source + transport + thermalization + decoupling in one medium-and-assembly ontology |
 | Nucleosynthesis mode | Recurring local reactor-style channels (SMBH-linked) mapped to observer-level primordial diagnostics |
 | Homogeneity stance | Statistical large-scale homogeneity from repeated local processes with allowed local inhomogeneity |
@@ -61,6 +62,16 @@ All cosmological observables are computed from absolute-state evolution and then
 Cosmological observables (e.g., $H(z)$, BAO, CMB peaks, lensing, growth proxies) must be reproducible from absolute-frame medium dynamics, with GR/$\Lambda\mathrm{CDM}$ behavior appearing as effective limits where applicable.
 
 For development and comparison, expansion, CMB transfer, BBN yields, and growth/lensing are treated as separable observational modules with explicit interface variables, while remaining one ontology.
+
+Redshift is therefore not a primitive expansion witness in this ontology. It is a signed photon-frequency transfer record,
+
+$$
+Z_X^{E\to R}
+=
+\ln\frac{\nu_{X,0}}{\nu_{\mathrm{obs},X}},
+$$
+
+whose positive and negative contributions must be assigned to endpoint cadence, source-branch state, launch geometry, and path-history exchange through the Noether sea. Sunyaev-Zeldovich-type CMB measurements make the path-history part observationally concrete: intervening medium can shift photon frequencies after emission. A valid cosmology must preserve that fact while still recovering the standard data products, rather than using redshift alone to promote literal expansion of the Euclidean void.
 
 ### Effective FRW Variable Ledger
 

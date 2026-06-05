@@ -64,7 +64,8 @@ The following observer-level quantities are closure targets, not primitive input
 - $h,\hbar$,
 - $G$,
 - $\gamma_{\text{eff}},\beta_{\text{eff}},\alpha_i$,
-- particle masses and electroweak angles.
+- particle masses and electroweak angles,
+- observer-level redshift and expansion summaries such as $Z_X$, $a(t)$, $H(t)$, and $H_{\mathrm{eff}}$.
 
 If the theory must reset them independently for each chapter, parameter closure has failed.
 
@@ -198,6 +199,7 @@ These quantities are where closure is tested. They are not substrate inputs.
 | O4 | $m_{\text{inertial}}(A)$ | Derived output | Open | inertial mass of assembly $A$, extracted operationally from shielding and medium response | [../dynamics/energy.md](../dynamics/energy.md), [../assemblies/particle-masses.md](../assemblies/particle-masses.md) |
 | O5 | $\theta_W^{\text{bare}}$ and $\theta_W$ | Geometric target / observable benchmark | Open | bare geometric weak-mixing increment and the measured electroweak mixing angle it must eventually inform | [../assemblies/fermions/weak-mixing-angle.md](../assemblies/fermions/weak-mixing-angle.md), [../interactions/gauge-structure-emergence.md](../interactions/gauge-structure-emergence.md) |
 | O6 | $(\alpha_1,\alpha_2,\alpha_3)$ | Observable benchmark | Open | standard PPN preferred-frame coefficients derived from $(\Xi_1,\Xi_2,\Xi_3)$ | [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
+| O7 | $Z_X^{E\to R}$, $Y_{X,E\to R}$, and $H_{\mathrm{eff},X}$ | Observer-level derived output | Open | total signed photon-frequency transfer, path-history exchange contribution, and inferred redshift-transfer slope for a declared source/receiver record; not primitive expansion parameters | [../cosmology/expansion-mechanism.md](../cosmology/expansion-mechanism.md), [simulations/redshift-budget-toy-model.md](./simulations/redshift-budget-toy-model.md), [reaction-cosmology-provenance-ledger.md](reaction-cosmology-provenance-ledger.md) |
 
 ## Canonical Relations
 

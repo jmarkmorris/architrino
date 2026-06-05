@@ -1,0 +1,3119 @@
+{
+  "schema": "breather-higher-fold-fold-coordinate-endpoint-functional-same-packet-constructed-witness-object-identity-attempt-v1",
+  "packet_id": "fresh-v10-higher-fold-12-root-rebuild-v0",
+  "fold_coordinate_packet_id": "fresh-v10-fold-coordinate-collocation-nonlinear-tangent-matrix-v0",
+  "status": "priority-only-fold-coordinate-endpoint-functional-same-packet-constructed-witness-object-identity-attempt-fail-closed-domain-chart-ref-value-sources-present-non-domain-carriers-and-identity-proof-absent-no-row-consumption",
+  "theorem_target": "Same-Packet Constructed Witness-Object Identity Attempt",
+  "claim_level": "priority-only fail-closed proof packet; domain-chart, endpoint-boundary-binding ref source, and endpoint value-map source handles are present, but same-packet non-domain carrier fields, constructed witness-object identity, and ref/value membership proof are absent",
+  "source_artifacts": {
+    "actual_contract_link_rule_membership_proof_target": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_actual_contract_link_rule_membership_proof_target.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_actual_contract_link_rule_membership_proof_target.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "present": true,
+      "sha256": "3fe5935cc12de5501dbbdf690bc3ee97ae8678afbee07ae6a8bdbe3b04370b07"
+    },
+    "same_packet_non_domain_carrier_obstruction": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_same_packet_endpoint_boundary_binding_witness_object_non_domain_carrier_obstruction_packet.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_same_packet_endpoint_boundary_binding_witness_object_non_domain_carrier_obstruction_packet.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "present": true,
+      "sha256": "bcd2fd6b78b82338003146cf227b3071c5eb865f8dc79dcffb9947bbc42a9898"
+    },
+    "endpoint_boundary_binding_ref_source_packet": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_endpoint_boundary_binding_ref_carrier_full_binding_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_endpoint_boundary_binding_ref_carrier_full_binding_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "present": true,
+      "sha256": "6904d4a57e58918918ca5583a44c50cd3150967e4fdd9000f78178621b04c5be"
+    },
+    "endpoint_value_binding_map_source_packet": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fold_coordinate_endpoint_functional_endpoint_value_binding_map_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "basename": "fold_coordinate_endpoint_functional_endpoint_value_binding_map_construction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+      "present": true,
+      "sha256": "be4bd97a224256f16b2a8b538834841238ddaf2bbe12f35fac005260f8b4004e"
+    }
+  },
+  "branch_chart_authorized": false,
+  "preledger_pass": false,
+  "row_closure": false,
+  "updates_live_ledger": false,
+  "emits_candidate_artifacts": false,
+  "emits_topology_recertification": false,
+  "emits_proof_interval_replay": false,
+  "authorization_lock": {
+    "source_ref_value_handles_present": true,
+    "domain_chart_carriers_present": true,
+    "non_domain_carrier_obstructions_present": true,
+    "all_carrier_fields_constructed": false,
+    "constructed_witness_object_id_present": false,
+    "same_constructed_witness_object_identity_proof_present": false,
+    "witness_object_membership_proofs_present": false,
+    "witness_object_contract_links_constructed": false,
+    "row_unblocked": false,
+    "row_consumed": false,
+    "branch_chart_authorized": false
+  },
+  "no_promotion_rule": "Source ref/value handles, domain-chart carriers, matching witness-object symbols, and endpoint IDs do not supply a constructed same-packet witness-object identity or ref/value co-membership proof.",
+  "construction_methods": [
+    {
+      "method_id": "ref_value_source_pair_check",
+      "output_kind": "same-packet-witness-object-source-pair",
+      "description": "Check whether the endpoint has a domain-chart carrier subfield plus source endpoint-boundary-binding ref and endpoint value-binding map handles.",
+      "required_fields": [
+        "domain_chart_carrier_subfield_constructed",
+        "domain_chart_carrier_preserved_as_partial_source",
+        "source_endpoint_boundary_binding_ref_constructed",
+        "source_witness_object_has_endpoint_boundary_binding_ref",
+        "source_endpoint_value_binding_map_constructed",
+        "source_witness_object_has_endpoint_value_binding_map",
+        "source_endpoint_value_bound_to_boundary_binding",
+        "actual_contract_link_rule_source_conditions_present",
+        "constructed_witness_object_source_ready",
+        "non_domain_carrier_obstruction_present",
+        "endpoint_boundary_binding_ref_non_domain_carrier_source_candidate_declared",
+        "endpoint_value_binding_map_non_domain_carrier_source_candidate_declared"
+      ]
+    },
+    {
+      "method_id": "same_packet_carrier_completeness_check",
+      "output_kind": "carrier-complete-witness-object",
+      "description": "Check whether the ref, value-map, contract-link, algebraic, motion/evaluation, and artifact/topology/replay non-domain carrier fields are constructed in the same witness object.",
+      "required_fields": [
+        "domain_chart_carrier_subfield_constructed",
+        "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+        "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+        "same_packet_witness_object_contract_link_carrier_field_constructed",
+        "same_packet_witness_object_algebraic_certificate_refs_carrier_field_constructed",
+        "same_packet_witness_object_motion_evaluation_refs_carrier_field_constructed",
+        "same_packet_witness_object_artifact_topology_replay_refs_carrier_field_constructed",
+        "all_carrier_fields_constructed"
+      ]
+    },
+    {
+      "method_id": "constructed_witness_object_identity_check",
+      "output_kind": "constructed-witness-object-identity",
+      "description": "Check whether carrier completeness supplies a constructed same-packet witness-object identity.",
+      "required_fields": [
+        "all_carrier_fields_constructed",
+        "constructed_witness_object_id_present",
+        "endpoint_boundary_binding_witness_object_constructed",
+        "same_constructed_witness_object_identity_proof_present"
+      ]
+    },
+    {
+      "method_id": "same_witness_object_field_membership_check",
+      "output_kind": "same-constructed-witness-object-membership-proof",
+      "description": "Check whether the endpoint-boundary-binding ref and endpoint value-binding map are proved fields of the same constructed witness object.",
+      "required_fields": [
+        "constructed_witness_object_id_present",
+        "endpoint_boundary_binding_witness_object_constructed",
+        "same_constructed_witness_object_identity_proof_present",
+        "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+        "endpoint_value_binding_map_member_of_witness_object_proven",
+        "endpoint_ref_and_value_map_same_witness_object_proven",
+        "membership_source_not_id_adjacency_proven",
+        "witness_object_membership_proof_present"
+      ]
+    },
+    {
+      "method_id": "actual_contract_link_authorization_guard",
+      "output_kind": "actual-contract-link-authorization",
+      "description": "Keep actual contract-link, binding contract, full binding, carrier admission, residual, row, and branch-chart outputs locked unless the constructed witness-object identity and membership proof exist.",
+      "required_fields": [
+        "witness_object_membership_proof_present",
+        "actual_contract_link_rule_available",
+        "actual_contract_link_rule_derivation_present",
+        "actual_contract_link_rule_soundness_proof_present",
+        "actual_contract_link_rule_application_proof_present",
+        "witness_object_contract_link_constructed",
+        "witness_object_has_contract_link",
+        "binding_contract_satisfied",
+        "full_endpoint_boundary_binding_constructed",
+        "endpoint_boundary_binding_ref_carrier_unblocked",
+        "endpoint_value_binding_map_carrier_unblocked",
+        "residual_data_construction_ready",
+        "row_consumption_authorized",
+        "branch_chart_authorized"
+      ]
+    }
+  ],
+  "proof_burdens": [
+    {
+      "burden_id": "same_packet_endpoint_boundary_binding_ref_carrier_field",
+      "missing_field": "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+      "required_evidence": "A non-domain carrier field inside the same witness object for the endpoint-boundary-binding ref, not only a source reference field from an earlier packet."
+    },
+    {
+      "burden_id": "same_packet_endpoint_value_binding_map_carrier_field",
+      "missing_field": "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+      "required_evidence": "A non-domain carrier field inside the same witness object for the endpoint value-binding map, not only a source value map bound to the first primitive."
+    },
+    {
+      "burden_id": "carrier_complete_witness_object",
+      "missing_field": "all_carrier_fields_constructed",
+      "required_evidence": "All seven witness-object carrier fields, including the six non-domain carrier families, constructed in one same-packet witness object."
+    },
+    {
+      "burden_id": "constructed_witness_object_identity",
+      "missing_field": "same_constructed_witness_object_identity_proof_present",
+      "required_evidence": "A proof-grade same-packet witness-object identity attached to a constructed witness object id."
+    },
+    {
+      "burden_id": "endpoint_boundary_binding_ref_membership",
+      "missing_field": "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+      "required_evidence": "A membership proof that the endpoint-boundary-binding ref is a field of the constructed witness object."
+    },
+    {
+      "burden_id": "endpoint_value_binding_map_membership",
+      "missing_field": "endpoint_value_binding_map_member_of_witness_object_proven",
+      "required_evidence": "A membership proof that the endpoint value-binding map is a field of the same constructed witness object."
+    },
+    {
+      "burden_id": "co_membership_not_source_adjacency",
+      "missing_field": "membership_source_not_id_adjacency_proven",
+      "required_evidence": "A proof that ref/value co-membership follows from the constructed witness object, not from matching IDs, symbols, inherited field claims, or source-candidate adjacency."
+    }
+  ],
+  "endpoint_fields": [
+    "domain_chart_carrier_subfield_constructed",
+    "domain_chart_carrier_preserved_as_partial_source",
+    "source_endpoint_boundary_binding_ref_constructed",
+    "source_witness_object_has_endpoint_boundary_binding_ref",
+    "source_endpoint_value_binding_map_constructed",
+    "source_witness_object_has_endpoint_value_binding_map",
+    "source_endpoint_value_bound_to_boundary_binding",
+    "actual_contract_link_rule_source_conditions_present",
+    "constructed_witness_object_source_ready",
+    "non_domain_carrier_obstruction_present",
+    "endpoint_boundary_binding_ref_non_domain_carrier_source_candidate_declared",
+    "endpoint_value_binding_map_non_domain_carrier_source_candidate_declared",
+    "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+    "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+    "same_packet_witness_object_contract_link_carrier_field_constructed",
+    "same_packet_witness_object_algebraic_certificate_refs_carrier_field_constructed",
+    "same_packet_witness_object_motion_evaluation_refs_carrier_field_constructed",
+    "same_packet_witness_object_artifact_topology_replay_refs_carrier_field_constructed",
+    "all_carrier_fields_constructed",
+    "constructed_witness_object_id_present",
+    "endpoint_boundary_binding_witness_object_constructed",
+    "same_constructed_witness_object_identity_proof_present",
+    "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+    "endpoint_value_binding_map_member_of_witness_object_proven",
+    "endpoint_ref_and_value_map_same_witness_object_proven",
+    "membership_source_not_id_adjacency_proven",
+    "witness_object_membership_proof_present",
+    "actual_contract_link_rule_available",
+    "actual_contract_link_rule_derivation_present",
+    "actual_contract_link_rule_soundness_proof_present",
+    "actual_contract_link_rule_application_proof_present",
+    "witness_object_contract_link_constructed",
+    "witness_object_has_contract_link",
+    "binding_contract_satisfied",
+    "full_endpoint_boundary_binding_constructed",
+    "endpoint_boundary_binding_ref_carrier_unblocked",
+    "endpoint_value_binding_map_carrier_unblocked",
+    "residual_data_construction_ready",
+    "row_consumption_authorized",
+    "branch_chart_authorized"
+  ],
+  "row_fields": [
+    "row_locator_resolved",
+    "source_domain_chart_carrier_subfield_constructed",
+    "receiver_domain_chart_carrier_subfield_constructed",
+    "combined_domain_chart_carrier_subfield_pair_constructed",
+    "source_ref_value_source_pair_ready",
+    "receiver_ref_value_source_pair_ready",
+    "combined_ref_value_source_pair_ready",
+    "source_non_domain_carrier_obstruction_present",
+    "receiver_non_domain_carrier_obstruction_present",
+    "combined_non_domain_carrier_obstruction_pair_present",
+    "source_all_carrier_fields_constructed",
+    "receiver_all_carrier_fields_constructed",
+    "combined_all_carrier_fields_constructed",
+    "source_constructed_witness_object_identity_present",
+    "receiver_constructed_witness_object_identity_present",
+    "combined_constructed_witness_object_identity_pair_present",
+    "source_witness_object_membership_proof_present",
+    "receiver_witness_object_membership_proof_present",
+    "combined_witness_object_membership_proof_pair_present",
+    "residual_data_construction_ready",
+    "row_unblocked",
+    "row_consumed",
+    "branch_chart_authorized"
+  ],
+  "endpoint_same_packet_constructed_witness_object_identity_attempts": [
+    {
+      "id": "fc_sigma_source_lower",
+      "endpoint_functional_id": "E_lower_source_inner_boundary",
+      "role": "source",
+      "same_packet_constructed_witness_object_identity_attempt_id": "same_packet_constructed_witness_object_identity_attempt:fc_sigma_source_lower",
+      "source_actual_contract_link_rule_membership_proof_target_id": "actual_contract_link_rule_membership_proof_target:fc_sigma_source_lower",
+      "source_non_domain_carrier_obstruction_id": "non_domain_carrier_obstruction:fc_sigma_source_lower",
+      "source_domain_chart_carrier_subfield_id": "domain_chart_carrier_subfield:fc_sigma_source_lower",
+      "source_ref_carrier_full_binding_construction_attempt_id": "endpoint_boundary_binding_ref_carrier_full_binding_construction_attempt:fc_sigma_source_lower",
+      "source_value_binding_map_construction_attempt_id": "endpoint_value_binding_map_construction_attempt:fc_sigma_source_lower",
+      "witness_object_attempt_id": "endpoint_boundary_binding_witness_object_attempt:fc_sigma_source_lower",
+      "witness_object_symbol": "WBB_fc_sigma_source_lower",
+      "endpoint_boundary_binding_ref_id": "witness_object_endpoint_boundary_binding_ref:fc_sigma_source_lower",
+      "endpoint_value_binding_map_id": "endpoint_value_binding_map:fc_sigma_source_lower",
+      "target_endpoint_ref_value_count": 2,
+      "source_ref_field_status": "source-reference-field-constructed-not-same-packet-carrier-field",
+      "source_value_map_status": "source-value-map-constructed-not-same-packet-carrier-field",
+      "carrier_completeness_target": {
+        "target_id": "carrier_complete_witness_object_target:fc_sigma_source_lower",
+        "required_carrier_fields": [
+          "domain_chart",
+          "endpoint_boundary_binding_ref",
+          "endpoint_value_binding_map",
+          "contract_link",
+          "algebraic_certificate_refs",
+          "motion_evaluation_refs",
+          "artifact_topology_replay_refs"
+        ],
+        "constructed_carrier_fields": [
+          "domain_chart"
+        ],
+        "missing_carrier_fields": [
+          "endpoint_boundary_binding_ref",
+          "endpoint_value_binding_map",
+          "contract_link",
+          "algebraic_certificate_refs",
+          "motion_evaluation_refs",
+          "artifact_topology_replay_refs"
+        ],
+        "soundness_limit": "The domain_chart carrier and source ref/value handles are not a carrier-complete same-packet witness object."
+      },
+      "constructed_witness_object_identity_target": {
+        "target_id": "same_packet_constructed_witness_object_identity_target:fc_sigma_source_lower",
+        "witness_object_attempt_id": "endpoint_boundary_binding_witness_object_attempt:fc_sigma_source_lower",
+        "endpoint_boundary_binding_ref_id": "witness_object_endpoint_boundary_binding_ref:fc_sigma_source_lower",
+        "endpoint_value_binding_map_id": "endpoint_value_binding_map:fc_sigma_source_lower",
+        "required_membership_fields": [
+          "constructed_witness_object_id_present",
+          "endpoint_boundary_binding_witness_object_constructed",
+          "same_constructed_witness_object_identity_proof_present",
+          "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+          "endpoint_value_binding_map_member_of_witness_object_proven",
+          "endpoint_ref_and_value_map_same_witness_object_proven",
+          "membership_source_not_id_adjacency_proven",
+          "witness_object_membership_proof_present"
+        ],
+        "soundness_limit": "A source ref field, source value map, witness-object symbol, and matching endpoint id do not prove same constructed-witness-object membership."
+      },
+      "non_domain_carrier_obstructions_used": [
+        {
+          "carrier_field": "endpoint_boundary_binding_ref",
+          "target_field": "witness_object_endpoint_boundary_binding_ref_target_declared",
+          "source_ref": "BB_fc_sigma_source_lower",
+          "present_field": "witness_object_has_endpoint_boundary_binding_ref",
+          "source_layer": "full_endpoint_boundary_binding_construction_attempt",
+          "carrier_field_source_candidate_declared": true,
+          "carrier_field_constructed": false,
+          "source_signals": {
+            "source_layer": "full_endpoint_boundary_binding_construction_attempt",
+            "positive_source_fields": [
+              {
+                "field": "full_endpoint_boundary_binding_construction_input_ready",
+                "present": true
+              }
+            ],
+            "absent_blocking_fields": [
+              {
+                "field": "full_endpoint_boundary_binding_constructed",
+                "present": false
+              },
+              {
+                "field": "endpoint_boundary_binding_constructed",
+                "present": false
+              },
+              {
+                "field": "witness_object_has_endpoint_boundary_binding_ref",
+                "present": false
+              }
+            ],
+            "positive_source_fields_all_present": true,
+            "blocking_fields_all_absent": true
+          },
+          "missing_dependencies": [
+            "full_endpoint_boundary_binding_constructed",
+            "endpoint_boundary_binding_constructed",
+            "witness_object_has_endpoint_boundary_binding_ref"
+          ],
+          "failure_codes": [
+            "non_domain_carrier_obstruction_endpoint_boundary_binding_ref_missing_full_endpoint_boundary_binding_constructed",
+            "non_domain_carrier_obstruction_endpoint_boundary_binding_ref_missing_endpoint_boundary_binding_constructed",
+            "non_domain_carrier_obstruction_endpoint_boundary_binding_ref_missing_witness_object_has_endpoint_boundary_binding_ref"
+          ],
+          "construction_status": "obstructed-non-domain-carrier-absent",
+          "obstruction": "Full endpoint boundary-binding construction inputs exist, but no proof-grade endpoint boundary binding or witness-object endpoint boundary-binding reference is supplied."
+        },
+        {
+          "carrier_field": "endpoint_value_binding_map",
+          "target_field": "witness_object_value_binding_map_target_declared",
+          "source_ref": "endpoint_value_binding_source:fc_sigma_source_lower",
+          "present_field": "witness_object_has_endpoint_value_binding_map",
+          "source_layer": "endpoint_value_binding_source_layer",
+          "carrier_field_source_candidate_declared": true,
+          "carrier_field_constructed": false,
+          "source_signals": {
+            "source_layer": "endpoint_value_binding_source_layer",
+            "positive_source_fields": [
+              {
+                "field": "endpoint_value_binding_source_equation_declared",
+                "present": true
+              },
+              {
+                "field": "endpoint_value_binding_source_layer_ready",
+                "present": true
+              }
+            ],
+            "absent_blocking_fields": [
+              {
+                "field": "endpoint_boundary_binding_constructed",
+                "present": false
+              },
+              {
+                "field": "endpoint_value_bound_to_boundary_binding",
+                "present": false
+              },
+              {
+                "field": "witness_object_has_endpoint_value_binding_map",
+                "present": false
+              }
+            ],
+            "positive_source_fields_all_present": true,
+            "blocking_fields_all_absent": true
+          },
+          "missing_dependencies": [
+            "endpoint_boundary_binding_constructed",
+            "endpoint_value_bound_to_boundary_binding",
+            "witness_object_has_endpoint_value_binding_map"
+          ],
+          "failure_codes": [
+            "non_domain_carrier_obstruction_endpoint_value_binding_map_missing_endpoint_boundary_binding_constructed",
+            "non_domain_carrier_obstruction_endpoint_value_binding_map_missing_endpoint_value_bound_to_boundary_binding",
+            "non_domain_carrier_obstruction_endpoint_value_binding_map_missing_witness_object_has_endpoint_value_binding_map"
+          ],
+          "construction_status": "obstructed-non-domain-carrier-absent",
+          "obstruction": "Endpoint value-binding source equations exist, but they are not bound to a constructed endpoint boundary binding or witness-object value map."
+        },
+        {
+          "carrier_field": "contract_link",
+          "target_field": "witness_object_contract_link_target_declared",
+          "source_ref": "full_endpoint_boundary_binding_contract_target:fc_sigma_source_lower",
+          "present_field": "witness_object_has_contract_link",
+          "source_layer": "full_endpoint_boundary_binding_contract_target",
+          "carrier_field_source_candidate_declared": true,
+          "carrier_field_constructed": false,
+          "source_signals": {
+            "source_layer": "full_endpoint_boundary_binding_contract_target",
+            "positive_source_fields": [
+              {
+                "field": "binding_contract_target_declared",
+                "present": true
+              }
+            ],
+            "absent_blocking_fields": [
+              {
+                "field": "binding_contract_satisfied",
+                "present": false
+              },
+              {
+                "field": "witness_object_has_contract_link",
+                "present": false
+              }
+            ],
+            "positive_source_fields_all_present": true,
+            "blocking_fields_all_absent": true
+          },
+          "missing_dependencies": [
+            "binding_contract_satisfied",
+            "witness_object_has_contract_link"
+          ],
+          "failure_codes": [
+            "non_domain_carrier_obstruction_contract_link_missing_binding_contract_satisfied",
+            "non_domain_carrier_obstruction_contract_link_missing_witness_object_has_contract_link"
+          ],
+          "construction_status": "obstructed-non-domain-carrier-absent",
+          "obstruction": "The full endpoint boundary-binding contract target is declared, but contract satisfaction and the witness-object contract link are absent."
+        },
+        {
+          "carrier_field": "algebraic_certificate_refs",
+          "target_field": "witness_object_algebraic_certificate_refs_target_declared",
+          "source_ref": "non-target zero, exact $B\\xi=0$, and rank certificate targets",
+          "present_field": "witness_object_has_algebraic_certificate_refs",
+          "source_layer": "full_endpoint_boundary_binding_contract_target",
+          "carrier_field_source_candidate_declared": true,
+          "carrier_field_constructed": false,
+          "source_signals": {
+            "source_layer": "full_endpoint_boundary_binding_contract_target",
+            "positive_source_fields": [
+              {
+                "field": "non_target_zero_target_declared",
+                "present": true
+              },
+              {
+                "field": "exact_screen_zero_target_declared",
+                "present": true
+              },
+              {
+                "field": "rank_target_declared",
+                "present": true
+              }
+            ],
+            "absent_blocking_fields": [
+              {
+                "field": "non_target_endpoint_zero_certified",
+                "present": false
+              },
+              {
+                "field": "exact_screen_zero_certified",
+                "present": false
+              },
+              {
+                "field": "rank_certified",
+                "present": false
+              },
+              {
+                "field": "witness_object_has_algebraic_certificate_refs",
+                "present": false
+              }
+            ],
+            "positive_source_fields_all_present": true,
+            "blocking_fields_all_absent": true
+          },
+          "missing_dependencies": [
+            "non_target_endpoint_zero_certified",
+            "exact_screen_zero_certified",
+            "rank_certified",
+            "witness_object_has_algebraic_certificate_refs"
+          ],
+          "failure_codes": [
+            "non_domain_carrier_obstruction_algebraic_certificate_refs_missing_non_target_endpoint_zero_certified",
+            "non_domain_carrier_obstruction_algebraic_certificate_refs_missing_exact_screen_zero_certified",
+            "non_domain_carrier_obstruction_algebraic_certificate_refs_missing_rank_certified",
+            "non_domain_carrier_obstruction_algebraic_certificate_refs_missing_witness_object_has_algebraic_certificate_refs"
+          ],
+          "construction_status": "obstructed-non-domain-carrier-absent",
+          "obstruction": "The non-target zero, exact screen-zero, and rank targets are declared, but their certificates and witness-object certificate references are absent."
+        },
+        {
+          "carrier_field": "motion_evaluation_refs",
+          "target_field": "witness_object_motion_evaluation_refs_target_declared",
+          "source_ref": "same-packet history update, endpoint motion, and endpoint evaluation targets",
+          "present_field": "witness_object_has_motion_evaluation_refs",
+          "source_layer": "full_endpoint_boundary_binding_contract_target",
+          "carrier_field_source_candidate_declared": true,
+          "carrier_field_constructed": false,
+          "source_signals": {
+            "source_layer": "full_endpoint_boundary_binding_contract_target",
+            "positive_source_fields": [
+              {
+                "field": "history_update_target_declared",
+                "present": true
+              },
+              {
+                "field": "endpoint_motion_target_declared",
+                "present": true
+              },
+              {
+                "field": "endpoint_evaluation_target_declared",
+                "present": true
+              }
+            ],
+            "absent_blocking_fields": [
+              {
+                "field": "same_packet_history_update_formula_present",
+                "present": false
+              },
+              {
+                "field": "endpoint_motion_rule_constructed",
+                "present": false
+              },
+              {
+                "field": "endpoint_evaluation_map_constructed",
+                "present": false
+              },
+              {
+                "field": "full_endpoint_evaluation_map_constructed",
+                "present": false
+              },
+              {
+                "field": "witness_object_has_motion_evaluation_refs",
+                "present": false
+              }
+            ],
+            "positive_source_fields_all_present": true,
+            "blocking_fields_all_absent": true
+          },
+          "missing_dependencies": [
+            "same_packet_history_update_formula_present",
+            "endpoint_motion_rule_constructed",
+            "endpoint_evaluation_map_constructed",
+            "full_endpoint_evaluation_map_constructed",
+            "witness_object_has_motion_evaluation_refs"
+          ],
+          "failure_codes": [
+            "non_domain_carrier_obstruction_motion_evaluation_refs_missing_same_packet_history_update_formula_present",
+            "non_domain_carrier_obstruction_motion_evaluation_refs_missing_endpoint_motion_rule_constructed",
+            "non_domain_carrier_obstruction_motion_evaluation_refs_missing_endpoint_evaluation_map_constructed",
+            "non_domain_carrier_obstruction_motion_evaluation_refs_missing_full_endpoint_evaluation_map_constructed",
+            "non_domain_carrier_obstruction_motion_evaluation_refs_missing_witness_object_has_motion_evaluation_refs"
+          ],
+          "construction_status": "obstructed-non-domain-carrier-absent",
+          "obstruction": "History-update, endpoint-motion, and endpoint-evaluation targets are declared, but no same-packet motion/evaluation rules or witness-object references are supplied."
+        },
+        {
+          "carrier_field": "artifact_topology_replay_refs",
+          "target_field": "witness_object_artifact_topology_replay_refs_target_declared",
+          "source_ref": "candidate artifact, topology recertification, and proof-interval replay targets",
+          "present_field": "witness_object_has_artifact_topology_replay_refs",
+          "source_layer": "full_endpoint_boundary_binding_contract_target",
+          "carrier_field_source_candidate_declared": true,
+          "carrier_field_constructed": false,
+          "source_signals": {
+            "source_layer": "full_endpoint_boundary_binding_contract_target",
+            "positive_source_fields": [
+              {
+                "field": "candidate_artifact_replay_target_declared",
+                "present": true
+              }
+            ],
+            "absent_blocking_fields": [
+              {
+                "field": "candidate_artifacts_present",
+                "present": false
+              },
+              {
+                "field": "root_topology_recertified_for_candidate_change",
+                "present": false
+              },
+              {
+                "field": "proof_interval_v1_v6_rerun_for_candidate_change",
+                "present": false
+              },
+              {
+                "field": "witness_object_has_artifact_topology_replay_refs",
+                "present": false
+              }
+            ],
+            "positive_source_fields_all_present": true,
+            "blocking_fields_all_absent": true
+          },
+          "missing_dependencies": [
+            "candidate_artifacts_present",
+            "root_topology_recertified_for_candidate_change",
+            "proof_interval_v1_v6_rerun_for_candidate_change",
+            "witness_object_has_artifact_topology_replay_refs"
+          ],
+          "failure_codes": [
+            "non_domain_carrier_obstruction_artifact_topology_replay_refs_missing_candidate_artifacts_present",
+            "non_domain_carrier_obstruction_artifact_topology_replay_refs_missing_root_topology_recertified_for_candidate_change",
+            "non_domain_carrier_obstruction_artifact_topology_replay_refs_missing_proof_interval_v1_v6_rerun_for_candidate_change",
+            "non_domain_carrier_obstruction_artifact_topology_replay_refs_missing_witness_object_has_artifact_topology_replay_refs"
+          ],
+          "construction_status": "obstructed-non-domain-carrier-absent",
+          "obstruction": "Candidate artifact, topology recertification, and proof-interval replay targets are declared, but the actual artifacts, topology replay, proof replay, and witness-object replay references are absent."
+        }
+      ],
+      "required_fields_present": {
+        "domain_chart_carrier_subfield_constructed": true,
+        "domain_chart_carrier_preserved_as_partial_source": true,
+        "source_endpoint_boundary_binding_ref_constructed": true,
+        "source_witness_object_has_endpoint_boundary_binding_ref": true,
+        "source_endpoint_value_binding_map_constructed": true,
+        "source_witness_object_has_endpoint_value_binding_map": true,
+        "source_endpoint_value_bound_to_boundary_binding": true,
+        "actual_contract_link_rule_source_conditions_present": true,
+        "constructed_witness_object_source_ready": true,
+        "non_domain_carrier_obstruction_present": true,
+        "endpoint_boundary_binding_ref_non_domain_carrier_source_candidate_declared": true,
+        "endpoint_value_binding_map_non_domain_carrier_source_candidate_declared": true,
+        "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed": false,
+        "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed": false,
+        "same_packet_witness_object_contract_link_carrier_field_constructed": false,
+        "same_packet_witness_object_algebraic_certificate_refs_carrier_field_constructed": false,
+        "same_packet_witness_object_motion_evaluation_refs_carrier_field_constructed": false,
+        "same_packet_witness_object_artifact_topology_replay_refs_carrier_field_constructed": false,
+        "all_carrier_fields_constructed": false,
+        "constructed_witness_object_id_present": false,
+        "endpoint_boundary_binding_witness_object_constructed": false,
+        "same_constructed_witness_object_identity_proof_present": false,
+        "endpoint_boundary_binding_ref_member_of_witness_object_proven": false,
+        "endpoint_value_binding_map_member_of_witness_object_proven": false,
+        "endpoint_ref_and_value_map_same_witness_object_proven": false,
+        "membership_source_not_id_adjacency_proven": false,
+        "witness_object_membership_proof_present": false,
+        "actual_contract_link_rule_available": false,
+        "actual_contract_link_rule_derivation_present": false,
+        "actual_contract_link_rule_soundness_proof_present": false,
+        "actual_contract_link_rule_application_proof_present": false,
+        "witness_object_contract_link_constructed": false,
+        "witness_object_has_contract_link": false,
+        "binding_contract_satisfied": false,
+        "full_endpoint_boundary_binding_constructed": false,
+        "endpoint_boundary_binding_ref_carrier_unblocked": false,
+        "endpoint_value_binding_map_carrier_unblocked": false,
+        "residual_data_construction_ready": false,
+        "row_consumption_authorized": false,
+        "branch_chart_authorized": false
+      },
+      "construction_method_results": [
+        {
+          "method_id": "ref_value_source_pair_check",
+          "description": "Check whether the endpoint has a domain-chart carrier subfield plus source endpoint-boundary-binding ref and endpoint value-binding map handles.",
+          "output_kind": "same-packet-witness-object-source-pair",
+          "required_fields": [
+            "domain_chart_carrier_subfield_constructed",
+            "domain_chart_carrier_preserved_as_partial_source",
+            "source_endpoint_boundary_binding_ref_constructed",
+            "source_witness_object_has_endpoint_boundary_binding_ref",
+            "source_endpoint_value_binding_map_constructed",
+            "source_witness_object_has_endpoint_value_binding_map",
+            "source_endpoint_value_bound_to_boundary_binding",
+            "actual_contract_link_rule_source_conditions_present",
+            "constructed_witness_object_source_ready",
+            "non_domain_carrier_obstruction_present",
+            "endpoint_boundary_binding_ref_non_domain_carrier_source_candidate_declared",
+            "endpoint_value_binding_map_non_domain_carrier_source_candidate_declared"
+          ],
+          "missing_fields": [],
+          "failure_codes": [],
+          "passed": true
+        },
+        {
+          "method_id": "same_packet_carrier_completeness_check",
+          "description": "Check whether the ref, value-map, contract-link, algebraic, motion/evaluation, and artifact/topology/replay non-domain carrier fields are constructed in the same witness object.",
+          "output_kind": "carrier-complete-witness-object",
+          "required_fields": [
+            "domain_chart_carrier_subfield_constructed",
+            "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+            "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+            "same_packet_witness_object_contract_link_carrier_field_constructed",
+            "same_packet_witness_object_algebraic_certificate_refs_carrier_field_constructed",
+            "same_packet_witness_object_motion_evaluation_refs_carrier_field_constructed",
+            "same_packet_witness_object_artifact_topology_replay_refs_carrier_field_constructed",
+            "all_carrier_fields_constructed"
+          ],
+          "missing_fields": [
+            "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+            "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+            "same_packet_witness_object_contract_link_carrier_field_constructed",
+            "same_packet_witness_object_algebraic_certificate_refs_carrier_field_constructed",
+            "same_packet_witness_object_motion_evaluation_refs_carrier_field_constructed",
+            "same_packet_witness_object_artifact_topology_replay_refs_carrier_field_constructed",
+            "all_carrier_fields_constructed"
+          ],
+          "failure_codes": [
+            "same_packet_constructed_witness_object_identity_missing_same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+            "same_packet_constructed_witness_object_identity_missing_same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+            "same_packet_constructed_witness_object_identity_missing_same_packet_witness_object_contract_link_carrier_field_constructed",
+            "same_packet_constructed_witness_object_identity_missing_same_packet_witness_object_algebraic_certificate_refs_carrier_field_constructed",
+            "same_packet_constructed_witness_object_identity_missing_same_packet_witness_object_motion_evaluation_refs_carrier_field_constructed",
+            "same_packet_constructed_witness_object_identity_missing_same_packet_witness_object_artifact_topology_replay_refs_carrier_field_constructed",
+            "same_packet_constructed_witness_object_identity_missing_all_carrier_fields_constructed"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "constructed_witness_object_identity_check",
+          "description": "Check whether carrier completeness supplies a constructed same-packet witness-object identity.",
+          "output_kind": "constructed-witness-object-identity",
+          "required_fields": [
+            "all_carrier_fields_constructed",
+            "constructed_witness_object_id_present",
+            "endpoint_boundary_binding_witness_object_constructed",
+            "same_constructed_witness_object_identity_proof_present"
+          ],
+          "missing_fields": [
+            "all_carrier_fields_constructed",
+            "constructed_witness_object_id_present",
+            "endpoint_boundary_binding_witness_object_constructed",
+            "same_constructed_witness_object_identity_proof_present"
+          ],
+          "failure_codes": [
+            "same_packet_constructed_witness_object_identity_missing_all_carrier_fields_constructed",
+            "same_packet_constructed_witness_object_identity_missing_constructed_witness_object_id_present",
+            "same_packet_constructed_witness_object_identity_missing_endpoint_boundary_binding_witness_object_constructed",
+            "same_packet_constructed_witness_object_identity_missing_same_constructed_witness_object_identity_proof_present"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "same_witness_object_field_membership_check",
+          "description": "Check whether the endpoint-boundary-binding ref and endpoint value-binding map are proved fields of the same constructed witness object.",
+          "output_kind": "same-constructed-witness-object-membership-proof",
+          "required_fields": [
+            "constructed_witness_object_id_present",
+            "endpoint_boundary_binding_witness_object_constructed",
+            "same_constructed_witness_object_identity_proof_present",
+            "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+            "endpoint_value_binding_map_member_of_witness_object_proven",
+            "endpoint_ref_and_value_map_same_witness_object_proven",
+            "membership_source_not_id_adjacency_proven",
+            "witness_object_membership_proof_present"
+          ],
+          "missing_fields": [
+            "constructed_witness_object_id_present",
+            "endpoint_boundary_binding_witness_object_constructed",
+            "same_constructed_witness_object_identity_proof_present",
+            "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+            "endpoint_value_binding_map_member_of_witness_object_proven",
+            "endpoint_ref_and_value_map_same_witness_object_proven",
+            "membership_source_not_id_adjacency_proven",
+            "witness_object_membership_proof_present"
+          ],
+          "failure_codes": [
+            "same_packet_constructed_witness_object_identity_missing_constructed_witness_object_id_present",
+            "same_packet_constructed_witness_object_identity_missing_endpoint_boundary_binding_witness_object_constructed",
+            "same_packet_constructed_witness_object_identity_missing_same_constructed_witness_object_identity_proof_present",
+            "same_packet_constructed_witness_object_identity_missing_endpoint_boundary_binding_ref_member_of_witness_object_proven",
+            "same_packet_constructed_witness_object_identity_missing_endpoint_value_binding_map_member_of_witness_object_proven",
+            "same_packet_constructed_witness_object_identity_missing_endpoint_ref_and_value_map_same_witness_object_proven",
+            "same_packet_constructed_witness_object_identity_missing_membership_source_not_id_adjacency_proven",
+            "same_packet_constructed_witness_object_identity_missing_witness_object_membership_proof_present"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "actual_contract_link_authorization_guard",
+          "description": "Keep actual contract-link, binding contract, full binding, carrier admission, residual, row, and branch-chart outputs locked unless the constructed witness-object identity and membership proof exist.",
+          "output_kind": "actual-contract-link-authorization",
+          "required_fields": [
+            "witness_object_membership_proof_present",
+            "actual_contract_link_rule_available",
+            "actual_contract_link_rule_derivation_present",
+            "actual_contract_link_rule_soundness_proof_present",
+            "actual_contract_link_rule_application_proof_present",
+            "witness_object_contract_link_constructed",
+            "witness_object_has_contract_link",
+            "binding_contract_satisfied",
+            "full_endpoint_boundary_binding_constructed",
+            "endpoint_boundary_binding_ref_carrier_unblocked",
+            "endpoint_value_binding_map_carrier_unblocked",
+            "residual_data_construction_ready",
+            "row_consumption_authorized",
+            "branch_chart_authorized"
+          ],
+          "missing_fields": [
+            "witness_object_membership_proof_present",
+            "actual_contract_link_rule_available",
+            "actual_contract_link_rule_derivation_present",
+            "actual_contract_link_rule_soundness_proof_present",
+            "actual_contract_link_rule_application_proof_present",
+            "witness_object_contract_link_constructed",
+            "witness_object_has_contract_link",
+            "binding_contract_satisfied",
+            "full_endpoint_boundary_binding_constructed",
+            "endpoint_boundary_binding_ref_carrier_unblocked",
+            "endpoint_value_binding_map_carrier_unblocked",
+            "residual_data_construction_ready",
+            "row_consumption_authorized",
+            "branch_chart_authorized"
+          ],
+          "failure_codes": [
+            "same_packet_constructed_witness_object_identity_missing_witness_object_membership_proof_present",
+            "same_packet_constructed_witness_object_identity_missing_actual_contract_link_rule_available",
+            "same_packet_constructed_witness_object_identity_missing_actual_contract_link_rule_derivation_present",
+            "same_packet_constructed_witness_object_identity_missing_actual_contract_link_rule_soundness_proof_present",
+            "same_packet_constructed_witness_object_identity_missing_actual_contract_link_rule_application_proof_present",
+            "same_packet_constructed_witness_object_identity_missing_witness_object_contract_link_constructed",
+            "same_packet_constructed_witness_object_identity_missing_witness_object_has_contract_link",
+            "same_packet_constructed_witness_object_identity_missing_binding_contract_satisfied",
+            "same_packet_constructed_witness_object_identity_missing_full_endpoint_boundary_binding_constructed",
+            "same_packet_constructed_witness_object_identity_missing_endpoint_boundary_binding_ref_carrier_unblocked",
+            "same_packet_constructed_witness_object_identity_missing_endpoint_value_binding_map_carrier_unblocked",
+            "same_packet_constructed_witness_object_identity_missing_residual_data_construction_ready",
+            "same_packet_constructed_witness_object_identity_missing_row_consumption_authorized",
+            "same_packet_constructed_witness_object_identity_missing_branch_chart_authorized"
+          ],
+          "passed": false
+        }
+      ],
+      "construction_methods_passed": [
+        "ref_value_source_pair_check"
+      ],
+      "missing_proof_burdens": [
+        {
+          "burden_id": "same_packet_endpoint_boundary_binding_ref_carrier_field",
+          "missing_field": "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+          "required_evidence": "A non-domain carrier field inside the same witness object for the endpoint-boundary-binding ref, not only a source reference field from an earlier packet.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "same_packet_endpoint_value_binding_map_carrier_field",
+          "missing_field": "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+          "required_evidence": "A non-domain carrier field inside the same witness object for the endpoint value-binding map, not only a source value map bound to the first primitive.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "carrier_complete_witness_object",
+          "missing_field": "all_carrier_fields_constructed",
+          "required_evidence": "All seven witness-object carrier fields, including the six non-domain carrier families, constructed in one same-packet witness object.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "constructed_witness_object_identity",
+          "missing_field": "same_constructed_witness_object_identity_proof_present",
+          "required_evidence": "A proof-grade same-packet witness-object identity attached to a constructed witness object id.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "endpoint_boundary_binding_ref_membership",
+          "missing_field": "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+          "required_evidence": "A membership proof that the endpoint-boundary-binding ref is a field of the constructed witness object.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "endpoint_value_binding_map_membership",
+          "missing_field": "endpoint_value_binding_map_member_of_witness_object_proven",
+          "required_evidence": "A membership proof that the endpoint value-binding map is a field of the same constructed witness object.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "co_membership_not_source_adjacency",
+          "missing_field": "membership_source_not_id_adjacency_proven",
+          "required_evidence": "A proof that ref/value co-membership follows from the constructed witness object, not from matching IDs, symbols, inherited field claims, or source-candidate adjacency.",
+          "satisfied": false
+        }
+      ],
+      "missing_proof_burden_count": 7,
+      "ref_value_source_pair_ready": true,
+      "all_carrier_fields_constructed": false,
+      "constructed_witness_object_id_present": false,
+      "same_constructed_witness_object_identity_proof_present": false,
+      "witness_object_membership_proof_present": false,
+      "witness_object_contract_link_constructed": false,
+      "row_consumption_authorized": false,
+      "failure_codes": [
+        "same_packet_constructed_witness_object_identity_locked_same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+        "same_packet_constructed_witness_object_identity_locked_same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+        "same_packet_constructed_witness_object_identity_locked_all_carrier_fields_constructed",
+        "same_packet_constructed_witness_object_identity_locked_same_constructed_witness_object_identity_proof_present",
+        "same_packet_constructed_witness_object_identity_locked_endpoint_boundary_binding_ref_member_of_witness_object_proven",
+        "same_packet_constructed_witness_object_identity_locked_endpoint_value_binding_map_member_of_witness_object_proven",
+        "same_packet_constructed_witness_object_identity_locked_membership_source_not_id_adjacency_proven",
+        "same_packet_constructed_witness_object_identity_locked_witness_object_contract_link_constructed",
+        "same_packet_constructed_witness_object_identity_locked_row_consumption"
+      ],
+      "obstruction": "The endpoint has domain-chart, source ref, and source value-map handles, but the same-packet witness object lacks the non-domain carrier fields needed for constructed identity and ref/value co-membership proof."
+    },
+    {
+      "id": "fc_rho_receiver_lower",
+      "endpoint_functional_id": "E_raise_receiver_lower_boundary",
+      "role": "receiver",
+      "same_packet_constructed_witness_object_identity_attempt_id": "same_packet_constructed_witness_object_identity_attempt:fc_rho_receiver_lower",
+      "source_actual_contract_link_rule_membership_proof_target_id": "actual_contract_link_rule_membership_proof_target:fc_rho_receiver_lower",
+      "source_non_domain_carrier_obstruction_id": "non_domain_carrier_obstruction:fc_rho_receiver_lower",
+      "source_domain_chart_carrier_subfield_id": "domain_chart_carrier_subfield:fc_rho_receiver_lower",
+      "source_ref_carrier_full_binding_construction_attempt_id": "endpoint_boundary_binding_ref_carrier_full_binding_construction_attempt:fc_rho_receiver_lower",
+      "source_value_binding_map_construction_attempt_id": "endpoint_value_binding_map_construction_attempt:fc_rho_receiver_lower",
+      "witness_object_attempt_id": "endpoint_boundary_binding_witness_object_attempt:fc_rho_receiver_lower",
+      "witness_object_symbol": "WBB_fc_rho_receiver_lower",
+      "endpoint_boundary_binding_ref_id": "witness_object_endpoint_boundary_binding_ref:fc_rho_receiver_lower",
+      "endpoint_value_binding_map_id": "endpoint_value_binding_map:fc_rho_receiver_lower",
+      "target_endpoint_ref_value_count": 2,
+      "source_ref_field_status": "source-reference-field-constructed-not-same-packet-carrier-field",
+      "source_value_map_status": "source-value-map-constructed-not-same-packet-carrier-field",
+      "carrier_completeness_target": {
+        "target_id": "carrier_complete_witness_object_target:fc_rho_receiver_lower",
+        "required_carrier_fields": [
+          "domain_chart",
+          "endpoint_boundary_binding_ref",
+          "endpoint_value_binding_map",
+          "contract_link",
+          "algebraic_certificate_refs",
+          "motion_evaluation_refs",
+          "artifact_topology_replay_refs"
+        ],
+        "constructed_carrier_fields": [
+          "domain_chart"
+        ],
+        "missing_carrier_fields": [
+          "endpoint_boundary_binding_ref",
+          "endpoint_value_binding_map",
+          "contract_link",
+          "algebraic_certificate_refs",
+          "motion_evaluation_refs",
+          "artifact_topology_replay_refs"
+        ],
+        "soundness_limit": "The domain_chart carrier and source ref/value handles are not a carrier-complete same-packet witness object."
+      },
+      "constructed_witness_object_identity_target": {
+        "target_id": "same_packet_constructed_witness_object_identity_target:fc_rho_receiver_lower",
+        "witness_object_attempt_id": "endpoint_boundary_binding_witness_object_attempt:fc_rho_receiver_lower",
+        "endpoint_boundary_binding_ref_id": "witness_object_endpoint_boundary_binding_ref:fc_rho_receiver_lower",
+        "endpoint_value_binding_map_id": "endpoint_value_binding_map:fc_rho_receiver_lower",
+        "required_membership_fields": [
+          "constructed_witness_object_id_present",
+          "endpoint_boundary_binding_witness_object_constructed",
+          "same_constructed_witness_object_identity_proof_present",
+          "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+          "endpoint_value_binding_map_member_of_witness_object_proven",
+          "endpoint_ref_and_value_map_same_witness_object_proven",
+          "membership_source_not_id_adjacency_proven",
+          "witness_object_membership_proof_present"
+        ],
+        "soundness_limit": "A source ref field, source value map, witness-object symbol, and matching endpoint id do not prove same constructed-witness-object membership."
+      },
+      "non_domain_carrier_obstructions_used": [
+        {
+          "carrier_field": "endpoint_boundary_binding_ref",
+          "target_field": "witness_object_endpoint_boundary_binding_ref_target_declared",
+          "source_ref": "BB_fc_rho_receiver_lower",
+          "present_field": "witness_object_has_endpoint_boundary_binding_ref",
+          "source_layer": "full_endpoint_boundary_binding_construction_attempt",
+          "carrier_field_source_candidate_declared": true,
+          "carrier_field_constructed": false,
+          "source_signals": {
+            "source_layer": "full_endpoint_boundary_binding_construction_attempt",
+            "positive_source_fields": [
+              {
+                "field": "full_endpoint_boundary_binding_construction_input_ready",
+                "present": true
+              }
+            ],
+            "absent_blocking_fields": [
+              {
+                "field": "full_endpoint_boundary_binding_constructed",
+                "present": false
+              },
+              {
+                "field": "endpoint_boundary_binding_constructed",
+                "present": false
+              },
+              {
+                "field": "witness_object_has_endpoint_boundary_binding_ref",
+                "present": false
+              }
+            ],
+            "positive_source_fields_all_present": true,
+            "blocking_fields_all_absent": true
+          },
+          "missing_dependencies": [
+            "full_endpoint_boundary_binding_constructed",
+            "endpoint_boundary_binding_constructed",
+            "witness_object_has_endpoint_boundary_binding_ref"
+          ],
+          "failure_codes": [
+            "non_domain_carrier_obstruction_endpoint_boundary_binding_ref_missing_full_endpoint_boundary_binding_constructed",
+            "non_domain_carrier_obstruction_endpoint_boundary_binding_ref_missing_endpoint_boundary_binding_constructed",
+            "non_domain_carrier_obstruction_endpoint_boundary_binding_ref_missing_witness_object_has_endpoint_boundary_binding_ref"
+          ],
+          "construction_status": "obstructed-non-domain-carrier-absent",
+          "obstruction": "Full endpoint boundary-binding construction inputs exist, but no proof-grade endpoint boundary binding or witness-object endpoint boundary-binding reference is supplied."
+        },
+        {
+          "carrier_field": "endpoint_value_binding_map",
+          "target_field": "witness_object_value_binding_map_target_declared",
+          "source_ref": "endpoint_value_binding_source:fc_rho_receiver_lower",
+          "present_field": "witness_object_has_endpoint_value_binding_map",
+          "source_layer": "endpoint_value_binding_source_layer",
+          "carrier_field_source_candidate_declared": true,
+          "carrier_field_constructed": false,
+          "source_signals": {
+            "source_layer": "endpoint_value_binding_source_layer",
+            "positive_source_fields": [
+              {
+                "field": "endpoint_value_binding_source_equation_declared",
+                "present": true
+              },
+              {
+                "field": "endpoint_value_binding_source_layer_ready",
+                "present": true
+              }
+            ],
+            "absent_blocking_fields": [
+              {
+                "field": "endpoint_boundary_binding_constructed",
+                "present": false
+              },
+              {
+                "field": "endpoint_value_bound_to_boundary_binding",
+                "present": false
+              },
+              {
+                "field": "witness_object_has_endpoint_value_binding_map",
+                "present": false
+              }
+            ],
+            "positive_source_fields_all_present": true,
+            "blocking_fields_all_absent": true
+          },
+          "missing_dependencies": [
+            "endpoint_boundary_binding_constructed",
+            "endpoint_value_bound_to_boundary_binding",
+            "witness_object_has_endpoint_value_binding_map"
+          ],
+          "failure_codes": [
+            "non_domain_carrier_obstruction_endpoint_value_binding_map_missing_endpoint_boundary_binding_constructed",
+            "non_domain_carrier_obstruction_endpoint_value_binding_map_missing_endpoint_value_bound_to_boundary_binding",
+            "non_domain_carrier_obstruction_endpoint_value_binding_map_missing_witness_object_has_endpoint_value_binding_map"
+          ],
+          "construction_status": "obstructed-non-domain-carrier-absent",
+          "obstruction": "Endpoint value-binding source equations exist, but they are not bound to a constructed endpoint boundary binding or witness-object value map."
+        },
+        {
+          "carrier_field": "contract_link",
+          "target_field": "witness_object_contract_link_target_declared",
+          "source_ref": "full_endpoint_boundary_binding_contract_target:fc_rho_receiver_lower",
+          "present_field": "witness_object_has_contract_link",
+          "source_layer": "full_endpoint_boundary_binding_contract_target",
+          "carrier_field_source_candidate_declared": true,
+          "carrier_field_constructed": false,
+          "source_signals": {
+            "source_layer": "full_endpoint_boundary_binding_contract_target",
+            "positive_source_fields": [
+              {
+                "field": "binding_contract_target_declared",
+                "present": true
+              }
+            ],
+            "absent_blocking_fields": [
+              {
+                "field": "binding_contract_satisfied",
+                "present": false
+              },
+              {
+                "field": "witness_object_has_contract_link",
+                "present": false
+              }
+            ],
+            "positive_source_fields_all_present": true,
+            "blocking_fields_all_absent": true
+          },
+          "missing_dependencies": [
+            "binding_contract_satisfied",
+            "witness_object_has_contract_link"
+          ],
+          "failure_codes": [
+            "non_domain_carrier_obstruction_contract_link_missing_binding_contract_satisfied",
+            "non_domain_carrier_obstruction_contract_link_missing_witness_object_has_contract_link"
+          ],
+          "construction_status": "obstructed-non-domain-carrier-absent",
+          "obstruction": "The full endpoint boundary-binding contract target is declared, but contract satisfaction and the witness-object contract link are absent."
+        },
+        {
+          "carrier_field": "algebraic_certificate_refs",
+          "target_field": "witness_object_algebraic_certificate_refs_target_declared",
+          "source_ref": "non-target zero, exact $B\\xi=0$, and rank certificate targets",
+          "present_field": "witness_object_has_algebraic_certificate_refs",
+          "source_layer": "full_endpoint_boundary_binding_contract_target",
+          "carrier_field_source_candidate_declared": true,
+          "carrier_field_constructed": false,
+          "source_signals": {
+            "source_layer": "full_endpoint_boundary_binding_contract_target",
+            "positive_source_fields": [
+              {
+                "field": "non_target_zero_target_declared",
+                "present": true
+              },
+              {
+                "field": "exact_screen_zero_target_declared",
+                "present": true
+              },
+              {
+                "field": "rank_target_declared",
+                "present": true
+              }
+            ],
+            "absent_blocking_fields": [
+              {
+                "field": "non_target_endpoint_zero_certified",
+                "present": false
+              },
+              {
+                "field": "exact_screen_zero_certified",
+                "present": false
+              },
+              {
+                "field": "rank_certified",
+                "present": false
+              },
+              {
+                "field": "witness_object_has_algebraic_certificate_refs",
+                "present": false
+              }
+            ],
+            "positive_source_fields_all_present": true,
+            "blocking_fields_all_absent": true
+          },
+          "missing_dependencies": [
+            "non_target_endpoint_zero_certified",
+            "exact_screen_zero_certified",
+            "rank_certified",
+            "witness_object_has_algebraic_certificate_refs"
+          ],
+          "failure_codes": [
+            "non_domain_carrier_obstruction_algebraic_certificate_refs_missing_non_target_endpoint_zero_certified",
+            "non_domain_carrier_obstruction_algebraic_certificate_refs_missing_exact_screen_zero_certified",
+            "non_domain_carrier_obstruction_algebraic_certificate_refs_missing_rank_certified",
+            "non_domain_carrier_obstruction_algebraic_certificate_refs_missing_witness_object_has_algebraic_certificate_refs"
+          ],
+          "construction_status": "obstructed-non-domain-carrier-absent",
+          "obstruction": "The non-target zero, exact screen-zero, and rank targets are declared, but their certificates and witness-object certificate references are absent."
+        },
+        {
+          "carrier_field": "motion_evaluation_refs",
+          "target_field": "witness_object_motion_evaluation_refs_target_declared",
+          "source_ref": "same-packet history update, endpoint motion, and endpoint evaluation targets",
+          "present_field": "witness_object_has_motion_evaluation_refs",
+          "source_layer": "full_endpoint_boundary_binding_contract_target",
+          "carrier_field_source_candidate_declared": true,
+          "carrier_field_constructed": false,
+          "source_signals": {
+            "source_layer": "full_endpoint_boundary_binding_contract_target",
+            "positive_source_fields": [
+              {
+                "field": "history_update_target_declared",
+                "present": true
+              },
+              {
+                "field": "endpoint_motion_target_declared",
+                "present": true
+              },
+              {
+                "field": "endpoint_evaluation_target_declared",
+                "present": true
+              }
+            ],
+            "absent_blocking_fields": [
+              {
+                "field": "same_packet_history_update_formula_present",
+                "present": false
+              },
+              {
+                "field": "endpoint_motion_rule_constructed",
+                "present": false
+              },
+              {
+                "field": "endpoint_evaluation_map_constructed",
+                "present": false
+              },
+              {
+                "field": "full_endpoint_evaluation_map_constructed",
+                "present": false
+              },
+              {
+                "field": "witness_object_has_motion_evaluation_refs",
+                "present": false
+              }
+            ],
+            "positive_source_fields_all_present": true,
+            "blocking_fields_all_absent": true
+          },
+          "missing_dependencies": [
+            "same_packet_history_update_formula_present",
+            "endpoint_motion_rule_constructed",
+            "endpoint_evaluation_map_constructed",
+            "full_endpoint_evaluation_map_constructed",
+            "witness_object_has_motion_evaluation_refs"
+          ],
+          "failure_codes": [
+            "non_domain_carrier_obstruction_motion_evaluation_refs_missing_same_packet_history_update_formula_present",
+            "non_domain_carrier_obstruction_motion_evaluation_refs_missing_endpoint_motion_rule_constructed",
+            "non_domain_carrier_obstruction_motion_evaluation_refs_missing_endpoint_evaluation_map_constructed",
+            "non_domain_carrier_obstruction_motion_evaluation_refs_missing_full_endpoint_evaluation_map_constructed",
+            "non_domain_carrier_obstruction_motion_evaluation_refs_missing_witness_object_has_motion_evaluation_refs"
+          ],
+          "construction_status": "obstructed-non-domain-carrier-absent",
+          "obstruction": "History-update, endpoint-motion, and endpoint-evaluation targets are declared, but no same-packet motion/evaluation rules or witness-object references are supplied."
+        },
+        {
+          "carrier_field": "artifact_topology_replay_refs",
+          "target_field": "witness_object_artifact_topology_replay_refs_target_declared",
+          "source_ref": "candidate artifact, topology recertification, and proof-interval replay targets",
+          "present_field": "witness_object_has_artifact_topology_replay_refs",
+          "source_layer": "full_endpoint_boundary_binding_contract_target",
+          "carrier_field_source_candidate_declared": true,
+          "carrier_field_constructed": false,
+          "source_signals": {
+            "source_layer": "full_endpoint_boundary_binding_contract_target",
+            "positive_source_fields": [
+              {
+                "field": "candidate_artifact_replay_target_declared",
+                "present": true
+              }
+            ],
+            "absent_blocking_fields": [
+              {
+                "field": "candidate_artifacts_present",
+                "present": false
+              },
+              {
+                "field": "root_topology_recertified_for_candidate_change",
+                "present": false
+              },
+              {
+                "field": "proof_interval_v1_v6_rerun_for_candidate_change",
+                "present": false
+              },
+              {
+                "field": "witness_object_has_artifact_topology_replay_refs",
+                "present": false
+              }
+            ],
+            "positive_source_fields_all_present": true,
+            "blocking_fields_all_absent": true
+          },
+          "missing_dependencies": [
+            "candidate_artifacts_present",
+            "root_topology_recertified_for_candidate_change",
+            "proof_interval_v1_v6_rerun_for_candidate_change",
+            "witness_object_has_artifact_topology_replay_refs"
+          ],
+          "failure_codes": [
+            "non_domain_carrier_obstruction_artifact_topology_replay_refs_missing_candidate_artifacts_present",
+            "non_domain_carrier_obstruction_artifact_topology_replay_refs_missing_root_topology_recertified_for_candidate_change",
+            "non_domain_carrier_obstruction_artifact_topology_replay_refs_missing_proof_interval_v1_v6_rerun_for_candidate_change",
+            "non_domain_carrier_obstruction_artifact_topology_replay_refs_missing_witness_object_has_artifact_topology_replay_refs"
+          ],
+          "construction_status": "obstructed-non-domain-carrier-absent",
+          "obstruction": "Candidate artifact, topology recertification, and proof-interval replay targets are declared, but the actual artifacts, topology replay, proof replay, and witness-object replay references are absent."
+        }
+      ],
+      "required_fields_present": {
+        "domain_chart_carrier_subfield_constructed": true,
+        "domain_chart_carrier_preserved_as_partial_source": true,
+        "source_endpoint_boundary_binding_ref_constructed": true,
+        "source_witness_object_has_endpoint_boundary_binding_ref": true,
+        "source_endpoint_value_binding_map_constructed": true,
+        "source_witness_object_has_endpoint_value_binding_map": true,
+        "source_endpoint_value_bound_to_boundary_binding": true,
+        "actual_contract_link_rule_source_conditions_present": true,
+        "constructed_witness_object_source_ready": true,
+        "non_domain_carrier_obstruction_present": true,
+        "endpoint_boundary_binding_ref_non_domain_carrier_source_candidate_declared": true,
+        "endpoint_value_binding_map_non_domain_carrier_source_candidate_declared": true,
+        "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed": false,
+        "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed": false,
+        "same_packet_witness_object_contract_link_carrier_field_constructed": false,
+        "same_packet_witness_object_algebraic_certificate_refs_carrier_field_constructed": false,
+        "same_packet_witness_object_motion_evaluation_refs_carrier_field_constructed": false,
+        "same_packet_witness_object_artifact_topology_replay_refs_carrier_field_constructed": false,
+        "all_carrier_fields_constructed": false,
+        "constructed_witness_object_id_present": false,
+        "endpoint_boundary_binding_witness_object_constructed": false,
+        "same_constructed_witness_object_identity_proof_present": false,
+        "endpoint_boundary_binding_ref_member_of_witness_object_proven": false,
+        "endpoint_value_binding_map_member_of_witness_object_proven": false,
+        "endpoint_ref_and_value_map_same_witness_object_proven": false,
+        "membership_source_not_id_adjacency_proven": false,
+        "witness_object_membership_proof_present": false,
+        "actual_contract_link_rule_available": false,
+        "actual_contract_link_rule_derivation_present": false,
+        "actual_contract_link_rule_soundness_proof_present": false,
+        "actual_contract_link_rule_application_proof_present": false,
+        "witness_object_contract_link_constructed": false,
+        "witness_object_has_contract_link": false,
+        "binding_contract_satisfied": false,
+        "full_endpoint_boundary_binding_constructed": false,
+        "endpoint_boundary_binding_ref_carrier_unblocked": false,
+        "endpoint_value_binding_map_carrier_unblocked": false,
+        "residual_data_construction_ready": false,
+        "row_consumption_authorized": false,
+        "branch_chart_authorized": false
+      },
+      "construction_method_results": [
+        {
+          "method_id": "ref_value_source_pair_check",
+          "description": "Check whether the endpoint has a domain-chart carrier subfield plus source endpoint-boundary-binding ref and endpoint value-binding map handles.",
+          "output_kind": "same-packet-witness-object-source-pair",
+          "required_fields": [
+            "domain_chart_carrier_subfield_constructed",
+            "domain_chart_carrier_preserved_as_partial_source",
+            "source_endpoint_boundary_binding_ref_constructed",
+            "source_witness_object_has_endpoint_boundary_binding_ref",
+            "source_endpoint_value_binding_map_constructed",
+            "source_witness_object_has_endpoint_value_binding_map",
+            "source_endpoint_value_bound_to_boundary_binding",
+            "actual_contract_link_rule_source_conditions_present",
+            "constructed_witness_object_source_ready",
+            "non_domain_carrier_obstruction_present",
+            "endpoint_boundary_binding_ref_non_domain_carrier_source_candidate_declared",
+            "endpoint_value_binding_map_non_domain_carrier_source_candidate_declared"
+          ],
+          "missing_fields": [],
+          "failure_codes": [],
+          "passed": true
+        },
+        {
+          "method_id": "same_packet_carrier_completeness_check",
+          "description": "Check whether the ref, value-map, contract-link, algebraic, motion/evaluation, and artifact/topology/replay non-domain carrier fields are constructed in the same witness object.",
+          "output_kind": "carrier-complete-witness-object",
+          "required_fields": [
+            "domain_chart_carrier_subfield_constructed",
+            "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+            "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+            "same_packet_witness_object_contract_link_carrier_field_constructed",
+            "same_packet_witness_object_algebraic_certificate_refs_carrier_field_constructed",
+            "same_packet_witness_object_motion_evaluation_refs_carrier_field_constructed",
+            "same_packet_witness_object_artifact_topology_replay_refs_carrier_field_constructed",
+            "all_carrier_fields_constructed"
+          ],
+          "missing_fields": [
+            "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+            "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+            "same_packet_witness_object_contract_link_carrier_field_constructed",
+            "same_packet_witness_object_algebraic_certificate_refs_carrier_field_constructed",
+            "same_packet_witness_object_motion_evaluation_refs_carrier_field_constructed",
+            "same_packet_witness_object_artifact_topology_replay_refs_carrier_field_constructed",
+            "all_carrier_fields_constructed"
+          ],
+          "failure_codes": [
+            "same_packet_constructed_witness_object_identity_missing_same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+            "same_packet_constructed_witness_object_identity_missing_same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+            "same_packet_constructed_witness_object_identity_missing_same_packet_witness_object_contract_link_carrier_field_constructed",
+            "same_packet_constructed_witness_object_identity_missing_same_packet_witness_object_algebraic_certificate_refs_carrier_field_constructed",
+            "same_packet_constructed_witness_object_identity_missing_same_packet_witness_object_motion_evaluation_refs_carrier_field_constructed",
+            "same_packet_constructed_witness_object_identity_missing_same_packet_witness_object_artifact_topology_replay_refs_carrier_field_constructed",
+            "same_packet_constructed_witness_object_identity_missing_all_carrier_fields_constructed"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "constructed_witness_object_identity_check",
+          "description": "Check whether carrier completeness supplies a constructed same-packet witness-object identity.",
+          "output_kind": "constructed-witness-object-identity",
+          "required_fields": [
+            "all_carrier_fields_constructed",
+            "constructed_witness_object_id_present",
+            "endpoint_boundary_binding_witness_object_constructed",
+            "same_constructed_witness_object_identity_proof_present"
+          ],
+          "missing_fields": [
+            "all_carrier_fields_constructed",
+            "constructed_witness_object_id_present",
+            "endpoint_boundary_binding_witness_object_constructed",
+            "same_constructed_witness_object_identity_proof_present"
+          ],
+          "failure_codes": [
+            "same_packet_constructed_witness_object_identity_missing_all_carrier_fields_constructed",
+            "same_packet_constructed_witness_object_identity_missing_constructed_witness_object_id_present",
+            "same_packet_constructed_witness_object_identity_missing_endpoint_boundary_binding_witness_object_constructed",
+            "same_packet_constructed_witness_object_identity_missing_same_constructed_witness_object_identity_proof_present"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "same_witness_object_field_membership_check",
+          "description": "Check whether the endpoint-boundary-binding ref and endpoint value-binding map are proved fields of the same constructed witness object.",
+          "output_kind": "same-constructed-witness-object-membership-proof",
+          "required_fields": [
+            "constructed_witness_object_id_present",
+            "endpoint_boundary_binding_witness_object_constructed",
+            "same_constructed_witness_object_identity_proof_present",
+            "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+            "endpoint_value_binding_map_member_of_witness_object_proven",
+            "endpoint_ref_and_value_map_same_witness_object_proven",
+            "membership_source_not_id_adjacency_proven",
+            "witness_object_membership_proof_present"
+          ],
+          "missing_fields": [
+            "constructed_witness_object_id_present",
+            "endpoint_boundary_binding_witness_object_constructed",
+            "same_constructed_witness_object_identity_proof_present",
+            "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+            "endpoint_value_binding_map_member_of_witness_object_proven",
+            "endpoint_ref_and_value_map_same_witness_object_proven",
+            "membership_source_not_id_adjacency_proven",
+            "witness_object_membership_proof_present"
+          ],
+          "failure_codes": [
+            "same_packet_constructed_witness_object_identity_missing_constructed_witness_object_id_present",
+            "same_packet_constructed_witness_object_identity_missing_endpoint_boundary_binding_witness_object_constructed",
+            "same_packet_constructed_witness_object_identity_missing_same_constructed_witness_object_identity_proof_present",
+            "same_packet_constructed_witness_object_identity_missing_endpoint_boundary_binding_ref_member_of_witness_object_proven",
+            "same_packet_constructed_witness_object_identity_missing_endpoint_value_binding_map_member_of_witness_object_proven",
+            "same_packet_constructed_witness_object_identity_missing_endpoint_ref_and_value_map_same_witness_object_proven",
+            "same_packet_constructed_witness_object_identity_missing_membership_source_not_id_adjacency_proven",
+            "same_packet_constructed_witness_object_identity_missing_witness_object_membership_proof_present"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "actual_contract_link_authorization_guard",
+          "description": "Keep actual contract-link, binding contract, full binding, carrier admission, residual, row, and branch-chart outputs locked unless the constructed witness-object identity and membership proof exist.",
+          "output_kind": "actual-contract-link-authorization",
+          "required_fields": [
+            "witness_object_membership_proof_present",
+            "actual_contract_link_rule_available",
+            "actual_contract_link_rule_derivation_present",
+            "actual_contract_link_rule_soundness_proof_present",
+            "actual_contract_link_rule_application_proof_present",
+            "witness_object_contract_link_constructed",
+            "witness_object_has_contract_link",
+            "binding_contract_satisfied",
+            "full_endpoint_boundary_binding_constructed",
+            "endpoint_boundary_binding_ref_carrier_unblocked",
+            "endpoint_value_binding_map_carrier_unblocked",
+            "residual_data_construction_ready",
+            "row_consumption_authorized",
+            "branch_chart_authorized"
+          ],
+          "missing_fields": [
+            "witness_object_membership_proof_present",
+            "actual_contract_link_rule_available",
+            "actual_contract_link_rule_derivation_present",
+            "actual_contract_link_rule_soundness_proof_present",
+            "actual_contract_link_rule_application_proof_present",
+            "witness_object_contract_link_constructed",
+            "witness_object_has_contract_link",
+            "binding_contract_satisfied",
+            "full_endpoint_boundary_binding_constructed",
+            "endpoint_boundary_binding_ref_carrier_unblocked",
+            "endpoint_value_binding_map_carrier_unblocked",
+            "residual_data_construction_ready",
+            "row_consumption_authorized",
+            "branch_chart_authorized"
+          ],
+          "failure_codes": [
+            "same_packet_constructed_witness_object_identity_missing_witness_object_membership_proof_present",
+            "same_packet_constructed_witness_object_identity_missing_actual_contract_link_rule_available",
+            "same_packet_constructed_witness_object_identity_missing_actual_contract_link_rule_derivation_present",
+            "same_packet_constructed_witness_object_identity_missing_actual_contract_link_rule_soundness_proof_present",
+            "same_packet_constructed_witness_object_identity_missing_actual_contract_link_rule_application_proof_present",
+            "same_packet_constructed_witness_object_identity_missing_witness_object_contract_link_constructed",
+            "same_packet_constructed_witness_object_identity_missing_witness_object_has_contract_link",
+            "same_packet_constructed_witness_object_identity_missing_binding_contract_satisfied",
+            "same_packet_constructed_witness_object_identity_missing_full_endpoint_boundary_binding_constructed",
+            "same_packet_constructed_witness_object_identity_missing_endpoint_boundary_binding_ref_carrier_unblocked",
+            "same_packet_constructed_witness_object_identity_missing_endpoint_value_binding_map_carrier_unblocked",
+            "same_packet_constructed_witness_object_identity_missing_residual_data_construction_ready",
+            "same_packet_constructed_witness_object_identity_missing_row_consumption_authorized",
+            "same_packet_constructed_witness_object_identity_missing_branch_chart_authorized"
+          ],
+          "passed": false
+        }
+      ],
+      "construction_methods_passed": [
+        "ref_value_source_pair_check"
+      ],
+      "missing_proof_burdens": [
+        {
+          "burden_id": "same_packet_endpoint_boundary_binding_ref_carrier_field",
+          "missing_field": "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+          "required_evidence": "A non-domain carrier field inside the same witness object for the endpoint-boundary-binding ref, not only a source reference field from an earlier packet.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "same_packet_endpoint_value_binding_map_carrier_field",
+          "missing_field": "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+          "required_evidence": "A non-domain carrier field inside the same witness object for the endpoint value-binding map, not only a source value map bound to the first primitive.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "carrier_complete_witness_object",
+          "missing_field": "all_carrier_fields_constructed",
+          "required_evidence": "All seven witness-object carrier fields, including the six non-domain carrier families, constructed in one same-packet witness object.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "constructed_witness_object_identity",
+          "missing_field": "same_constructed_witness_object_identity_proof_present",
+          "required_evidence": "A proof-grade same-packet witness-object identity attached to a constructed witness object id.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "endpoint_boundary_binding_ref_membership",
+          "missing_field": "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+          "required_evidence": "A membership proof that the endpoint-boundary-binding ref is a field of the constructed witness object.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "endpoint_value_binding_map_membership",
+          "missing_field": "endpoint_value_binding_map_member_of_witness_object_proven",
+          "required_evidence": "A membership proof that the endpoint value-binding map is a field of the same constructed witness object.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "co_membership_not_source_adjacency",
+          "missing_field": "membership_source_not_id_adjacency_proven",
+          "required_evidence": "A proof that ref/value co-membership follows from the constructed witness object, not from matching IDs, symbols, inherited field claims, or source-candidate adjacency.",
+          "satisfied": false
+        }
+      ],
+      "missing_proof_burden_count": 7,
+      "ref_value_source_pair_ready": true,
+      "all_carrier_fields_constructed": false,
+      "constructed_witness_object_id_present": false,
+      "same_constructed_witness_object_identity_proof_present": false,
+      "witness_object_membership_proof_present": false,
+      "witness_object_contract_link_constructed": false,
+      "row_consumption_authorized": false,
+      "failure_codes": [
+        "same_packet_constructed_witness_object_identity_locked_same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+        "same_packet_constructed_witness_object_identity_locked_same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+        "same_packet_constructed_witness_object_identity_locked_all_carrier_fields_constructed",
+        "same_packet_constructed_witness_object_identity_locked_same_constructed_witness_object_identity_proof_present",
+        "same_packet_constructed_witness_object_identity_locked_endpoint_boundary_binding_ref_member_of_witness_object_proven",
+        "same_packet_constructed_witness_object_identity_locked_endpoint_value_binding_map_member_of_witness_object_proven",
+        "same_packet_constructed_witness_object_identity_locked_membership_source_not_id_adjacency_proven",
+        "same_packet_constructed_witness_object_identity_locked_witness_object_contract_link_constructed",
+        "same_packet_constructed_witness_object_identity_locked_row_consumption"
+      ],
+      "obstruction": "The endpoint has domain-chart, source ref, and source value-map handles, but the same-packet witness object lacks the non-domain carrier fields needed for constructed identity and ref/value co-membership proof."
+    },
+    {
+      "id": "fc_sigma_source_upper",
+      "endpoint_functional_id": "E_raise_source_inner_boundary",
+      "role": "source",
+      "same_packet_constructed_witness_object_identity_attempt_id": "same_packet_constructed_witness_object_identity_attempt:fc_sigma_source_upper",
+      "source_actual_contract_link_rule_membership_proof_target_id": "actual_contract_link_rule_membership_proof_target:fc_sigma_source_upper",
+      "source_non_domain_carrier_obstruction_id": "non_domain_carrier_obstruction:fc_sigma_source_upper",
+      "source_domain_chart_carrier_subfield_id": "domain_chart_carrier_subfield:fc_sigma_source_upper",
+      "source_ref_carrier_full_binding_construction_attempt_id": "endpoint_boundary_binding_ref_carrier_full_binding_construction_attempt:fc_sigma_source_upper",
+      "source_value_binding_map_construction_attempt_id": "endpoint_value_binding_map_construction_attempt:fc_sigma_source_upper",
+      "witness_object_attempt_id": "endpoint_boundary_binding_witness_object_attempt:fc_sigma_source_upper",
+      "witness_object_symbol": "WBB_fc_sigma_source_upper",
+      "endpoint_boundary_binding_ref_id": "witness_object_endpoint_boundary_binding_ref:fc_sigma_source_upper",
+      "endpoint_value_binding_map_id": "endpoint_value_binding_map:fc_sigma_source_upper",
+      "target_endpoint_ref_value_count": 1,
+      "source_ref_field_status": "source-reference-field-constructed-not-same-packet-carrier-field",
+      "source_value_map_status": "source-value-map-constructed-not-same-packet-carrier-field",
+      "carrier_completeness_target": {
+        "target_id": "carrier_complete_witness_object_target:fc_sigma_source_upper",
+        "required_carrier_fields": [
+          "domain_chart",
+          "endpoint_boundary_binding_ref",
+          "endpoint_value_binding_map",
+          "contract_link",
+          "algebraic_certificate_refs",
+          "motion_evaluation_refs",
+          "artifact_topology_replay_refs"
+        ],
+        "constructed_carrier_fields": [
+          "domain_chart"
+        ],
+        "missing_carrier_fields": [
+          "endpoint_boundary_binding_ref",
+          "endpoint_value_binding_map",
+          "contract_link",
+          "algebraic_certificate_refs",
+          "motion_evaluation_refs",
+          "artifact_topology_replay_refs"
+        ],
+        "soundness_limit": "The domain_chart carrier and source ref/value handles are not a carrier-complete same-packet witness object."
+      },
+      "constructed_witness_object_identity_target": {
+        "target_id": "same_packet_constructed_witness_object_identity_target:fc_sigma_source_upper",
+        "witness_object_attempt_id": "endpoint_boundary_binding_witness_object_attempt:fc_sigma_source_upper",
+        "endpoint_boundary_binding_ref_id": "witness_object_endpoint_boundary_binding_ref:fc_sigma_source_upper",
+        "endpoint_value_binding_map_id": "endpoint_value_binding_map:fc_sigma_source_upper",
+        "required_membership_fields": [
+          "constructed_witness_object_id_present",
+          "endpoint_boundary_binding_witness_object_constructed",
+          "same_constructed_witness_object_identity_proof_present",
+          "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+          "endpoint_value_binding_map_member_of_witness_object_proven",
+          "endpoint_ref_and_value_map_same_witness_object_proven",
+          "membership_source_not_id_adjacency_proven",
+          "witness_object_membership_proof_present"
+        ],
+        "soundness_limit": "A source ref field, source value map, witness-object symbol, and matching endpoint id do not prove same constructed-witness-object membership."
+      },
+      "non_domain_carrier_obstructions_used": [
+        {
+          "carrier_field": "endpoint_boundary_binding_ref",
+          "target_field": "witness_object_endpoint_boundary_binding_ref_target_declared",
+          "source_ref": "BB_fc_sigma_source_upper",
+          "present_field": "witness_object_has_endpoint_boundary_binding_ref",
+          "source_layer": "full_endpoint_boundary_binding_construction_attempt",
+          "carrier_field_source_candidate_declared": true,
+          "carrier_field_constructed": false,
+          "source_signals": {
+            "source_layer": "full_endpoint_boundary_binding_construction_attempt",
+            "positive_source_fields": [
+              {
+                "field": "full_endpoint_boundary_binding_construction_input_ready",
+                "present": true
+              }
+            ],
+            "absent_blocking_fields": [
+              {
+                "field": "full_endpoint_boundary_binding_constructed",
+                "present": false
+              },
+              {
+                "field": "endpoint_boundary_binding_constructed",
+                "present": false
+              },
+              {
+                "field": "witness_object_has_endpoint_boundary_binding_ref",
+                "present": false
+              }
+            ],
+            "positive_source_fields_all_present": true,
+            "blocking_fields_all_absent": true
+          },
+          "missing_dependencies": [
+            "full_endpoint_boundary_binding_constructed",
+            "endpoint_boundary_binding_constructed",
+            "witness_object_has_endpoint_boundary_binding_ref"
+          ],
+          "failure_codes": [
+            "non_domain_carrier_obstruction_endpoint_boundary_binding_ref_missing_full_endpoint_boundary_binding_constructed",
+            "non_domain_carrier_obstruction_endpoint_boundary_binding_ref_missing_endpoint_boundary_binding_constructed",
+            "non_domain_carrier_obstruction_endpoint_boundary_binding_ref_missing_witness_object_has_endpoint_boundary_binding_ref"
+          ],
+          "construction_status": "obstructed-non-domain-carrier-absent",
+          "obstruction": "Full endpoint boundary-binding construction inputs exist, but no proof-grade endpoint boundary binding or witness-object endpoint boundary-binding reference is supplied."
+        },
+        {
+          "carrier_field": "endpoint_value_binding_map",
+          "target_field": "witness_object_value_binding_map_target_declared",
+          "source_ref": "endpoint_value_binding_source:fc_sigma_source_upper",
+          "present_field": "witness_object_has_endpoint_value_binding_map",
+          "source_layer": "endpoint_value_binding_source_layer",
+          "carrier_field_source_candidate_declared": true,
+          "carrier_field_constructed": false,
+          "source_signals": {
+            "source_layer": "endpoint_value_binding_source_layer",
+            "positive_source_fields": [
+              {
+                "field": "endpoint_value_binding_source_equation_declared",
+                "present": true
+              },
+              {
+                "field": "endpoint_value_binding_source_layer_ready",
+                "present": true
+              }
+            ],
+            "absent_blocking_fields": [
+              {
+                "field": "endpoint_boundary_binding_constructed",
+                "present": false
+              },
+              {
+                "field": "endpoint_value_bound_to_boundary_binding",
+                "present": false
+              },
+              {
+                "field": "witness_object_has_endpoint_value_binding_map",
+                "present": false
+              }
+            ],
+            "positive_source_fields_all_present": true,
+            "blocking_fields_all_absent": true
+          },
+          "missing_dependencies": [
+            "endpoint_boundary_binding_constructed",
+            "endpoint_value_bound_to_boundary_binding",
+            "witness_object_has_endpoint_value_binding_map"
+          ],
+          "failure_codes": [
+            "non_domain_carrier_obstruction_endpoint_value_binding_map_missing_endpoint_boundary_binding_constructed",
+            "non_domain_carrier_obstruction_endpoint_value_binding_map_missing_endpoint_value_bound_to_boundary_binding",
+            "non_domain_carrier_obstruction_endpoint_value_binding_map_missing_witness_object_has_endpoint_value_binding_map"
+          ],
+          "construction_status": "obstructed-non-domain-carrier-absent",
+          "obstruction": "Endpoint value-binding source equations exist, but they are not bound to a constructed endpoint boundary binding or witness-object value map."
+        },
+        {
+          "carrier_field": "contract_link",
+          "target_field": "witness_object_contract_link_target_declared",
+          "source_ref": "full_endpoint_boundary_binding_contract_target:fc_sigma_source_upper",
+          "present_field": "witness_object_has_contract_link",
+          "source_layer": "full_endpoint_boundary_binding_contract_target",
+          "carrier_field_source_candidate_declared": true,
+          "carrier_field_constructed": false,
+          "source_signals": {
+            "source_layer": "full_endpoint_boundary_binding_contract_target",
+            "positive_source_fields": [
+              {
+                "field": "binding_contract_target_declared",
+                "present": true
+              }
+            ],
+            "absent_blocking_fields": [
+              {
+                "field": "binding_contract_satisfied",
+                "present": false
+              },
+              {
+                "field": "witness_object_has_contract_link",
+                "present": false
+              }
+            ],
+            "positive_source_fields_all_present": true,
+            "blocking_fields_all_absent": true
+          },
+          "missing_dependencies": [
+            "binding_contract_satisfied",
+            "witness_object_has_contract_link"
+          ],
+          "failure_codes": [
+            "non_domain_carrier_obstruction_contract_link_missing_binding_contract_satisfied",
+            "non_domain_carrier_obstruction_contract_link_missing_witness_object_has_contract_link"
+          ],
+          "construction_status": "obstructed-non-domain-carrier-absent",
+          "obstruction": "The full endpoint boundary-binding contract target is declared, but contract satisfaction and the witness-object contract link are absent."
+        },
+        {
+          "carrier_field": "algebraic_certificate_refs",
+          "target_field": "witness_object_algebraic_certificate_refs_target_declared",
+          "source_ref": "non-target zero, exact $B\\xi=0$, and rank certificate targets",
+          "present_field": "witness_object_has_algebraic_certificate_refs",
+          "source_layer": "full_endpoint_boundary_binding_contract_target",
+          "carrier_field_source_candidate_declared": true,
+          "carrier_field_constructed": false,
+          "source_signals": {
+            "source_layer": "full_endpoint_boundary_binding_contract_target",
+            "positive_source_fields": [
+              {
+                "field": "non_target_zero_target_declared",
+                "present": true
+              },
+              {
+                "field": "exact_screen_zero_target_declared",
+                "present": true
+              },
+              {
+                "field": "rank_target_declared",
+                "present": true
+              }
+            ],
+            "absent_blocking_fields": [
+              {
+                "field": "non_target_endpoint_zero_certified",
+                "present": false
+              },
+              {
+                "field": "exact_screen_zero_certified",
+                "present": false
+              },
+              {
+                "field": "rank_certified",
+                "present": false
+              },
+              {
+                "field": "witness_object_has_algebraic_certificate_refs",
+                "present": false
+              }
+            ],
+            "positive_source_fields_all_present": true,
+            "blocking_fields_all_absent": true
+          },
+          "missing_dependencies": [
+            "non_target_endpoint_zero_certified",
+            "exact_screen_zero_certified",
+            "rank_certified",
+            "witness_object_has_algebraic_certificate_refs"
+          ],
+          "failure_codes": [
+            "non_domain_carrier_obstruction_algebraic_certificate_refs_missing_non_target_endpoint_zero_certified",
+            "non_domain_carrier_obstruction_algebraic_certificate_refs_missing_exact_screen_zero_certified",
+            "non_domain_carrier_obstruction_algebraic_certificate_refs_missing_rank_certified",
+            "non_domain_carrier_obstruction_algebraic_certificate_refs_missing_witness_object_has_algebraic_certificate_refs"
+          ],
+          "construction_status": "obstructed-non-domain-carrier-absent",
+          "obstruction": "The non-target zero, exact screen-zero, and rank targets are declared, but their certificates and witness-object certificate references are absent."
+        },
+        {
+          "carrier_field": "motion_evaluation_refs",
+          "target_field": "witness_object_motion_evaluation_refs_target_declared",
+          "source_ref": "same-packet history update, endpoint motion, and endpoint evaluation targets",
+          "present_field": "witness_object_has_motion_evaluation_refs",
+          "source_layer": "full_endpoint_boundary_binding_contract_target",
+          "carrier_field_source_candidate_declared": true,
+          "carrier_field_constructed": false,
+          "source_signals": {
+            "source_layer": "full_endpoint_boundary_binding_contract_target",
+            "positive_source_fields": [
+              {
+                "field": "history_update_target_declared",
+                "present": true
+              },
+              {
+                "field": "endpoint_motion_target_declared",
+                "present": true
+              },
+              {
+                "field": "endpoint_evaluation_target_declared",
+                "present": true
+              }
+            ],
+            "absent_blocking_fields": [
+              {
+                "field": "same_packet_history_update_formula_present",
+                "present": false
+              },
+              {
+                "field": "endpoint_motion_rule_constructed",
+                "present": false
+              },
+              {
+                "field": "endpoint_evaluation_map_constructed",
+                "present": false
+              },
+              {
+                "field": "full_endpoint_evaluation_map_constructed",
+                "present": false
+              },
+              {
+                "field": "witness_object_has_motion_evaluation_refs",
+                "present": false
+              }
+            ],
+            "positive_source_fields_all_present": true,
+            "blocking_fields_all_absent": true
+          },
+          "missing_dependencies": [
+            "same_packet_history_update_formula_present",
+            "endpoint_motion_rule_constructed",
+            "endpoint_evaluation_map_constructed",
+            "full_endpoint_evaluation_map_constructed",
+            "witness_object_has_motion_evaluation_refs"
+          ],
+          "failure_codes": [
+            "non_domain_carrier_obstruction_motion_evaluation_refs_missing_same_packet_history_update_formula_present",
+            "non_domain_carrier_obstruction_motion_evaluation_refs_missing_endpoint_motion_rule_constructed",
+            "non_domain_carrier_obstruction_motion_evaluation_refs_missing_endpoint_evaluation_map_constructed",
+            "non_domain_carrier_obstruction_motion_evaluation_refs_missing_full_endpoint_evaluation_map_constructed",
+            "non_domain_carrier_obstruction_motion_evaluation_refs_missing_witness_object_has_motion_evaluation_refs"
+          ],
+          "construction_status": "obstructed-non-domain-carrier-absent",
+          "obstruction": "History-update, endpoint-motion, and endpoint-evaluation targets are declared, but no same-packet motion/evaluation rules or witness-object references are supplied."
+        },
+        {
+          "carrier_field": "artifact_topology_replay_refs",
+          "target_field": "witness_object_artifact_topology_replay_refs_target_declared",
+          "source_ref": "candidate artifact, topology recertification, and proof-interval replay targets",
+          "present_field": "witness_object_has_artifact_topology_replay_refs",
+          "source_layer": "full_endpoint_boundary_binding_contract_target",
+          "carrier_field_source_candidate_declared": true,
+          "carrier_field_constructed": false,
+          "source_signals": {
+            "source_layer": "full_endpoint_boundary_binding_contract_target",
+            "positive_source_fields": [
+              {
+                "field": "candidate_artifact_replay_target_declared",
+                "present": true
+              }
+            ],
+            "absent_blocking_fields": [
+              {
+                "field": "candidate_artifacts_present",
+                "present": false
+              },
+              {
+                "field": "root_topology_recertified_for_candidate_change",
+                "present": false
+              },
+              {
+                "field": "proof_interval_v1_v6_rerun_for_candidate_change",
+                "present": false
+              },
+              {
+                "field": "witness_object_has_artifact_topology_replay_refs",
+                "present": false
+              }
+            ],
+            "positive_source_fields_all_present": true,
+            "blocking_fields_all_absent": true
+          },
+          "missing_dependencies": [
+            "candidate_artifacts_present",
+            "root_topology_recertified_for_candidate_change",
+            "proof_interval_v1_v6_rerun_for_candidate_change",
+            "witness_object_has_artifact_topology_replay_refs"
+          ],
+          "failure_codes": [
+            "non_domain_carrier_obstruction_artifact_topology_replay_refs_missing_candidate_artifacts_present",
+            "non_domain_carrier_obstruction_artifact_topology_replay_refs_missing_root_topology_recertified_for_candidate_change",
+            "non_domain_carrier_obstruction_artifact_topology_replay_refs_missing_proof_interval_v1_v6_rerun_for_candidate_change",
+            "non_domain_carrier_obstruction_artifact_topology_replay_refs_missing_witness_object_has_artifact_topology_replay_refs"
+          ],
+          "construction_status": "obstructed-non-domain-carrier-absent",
+          "obstruction": "Candidate artifact, topology recertification, and proof-interval replay targets are declared, but the actual artifacts, topology replay, proof replay, and witness-object replay references are absent."
+        }
+      ],
+      "required_fields_present": {
+        "domain_chart_carrier_subfield_constructed": true,
+        "domain_chart_carrier_preserved_as_partial_source": true,
+        "source_endpoint_boundary_binding_ref_constructed": true,
+        "source_witness_object_has_endpoint_boundary_binding_ref": true,
+        "source_endpoint_value_binding_map_constructed": true,
+        "source_witness_object_has_endpoint_value_binding_map": true,
+        "source_endpoint_value_bound_to_boundary_binding": true,
+        "actual_contract_link_rule_source_conditions_present": true,
+        "constructed_witness_object_source_ready": true,
+        "non_domain_carrier_obstruction_present": true,
+        "endpoint_boundary_binding_ref_non_domain_carrier_source_candidate_declared": true,
+        "endpoint_value_binding_map_non_domain_carrier_source_candidate_declared": true,
+        "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed": false,
+        "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed": false,
+        "same_packet_witness_object_contract_link_carrier_field_constructed": false,
+        "same_packet_witness_object_algebraic_certificate_refs_carrier_field_constructed": false,
+        "same_packet_witness_object_motion_evaluation_refs_carrier_field_constructed": false,
+        "same_packet_witness_object_artifact_topology_replay_refs_carrier_field_constructed": false,
+        "all_carrier_fields_constructed": false,
+        "constructed_witness_object_id_present": false,
+        "endpoint_boundary_binding_witness_object_constructed": false,
+        "same_constructed_witness_object_identity_proof_present": false,
+        "endpoint_boundary_binding_ref_member_of_witness_object_proven": false,
+        "endpoint_value_binding_map_member_of_witness_object_proven": false,
+        "endpoint_ref_and_value_map_same_witness_object_proven": false,
+        "membership_source_not_id_adjacency_proven": false,
+        "witness_object_membership_proof_present": false,
+        "actual_contract_link_rule_available": false,
+        "actual_contract_link_rule_derivation_present": false,
+        "actual_contract_link_rule_soundness_proof_present": false,
+        "actual_contract_link_rule_application_proof_present": false,
+        "witness_object_contract_link_constructed": false,
+        "witness_object_has_contract_link": false,
+        "binding_contract_satisfied": false,
+        "full_endpoint_boundary_binding_constructed": false,
+        "endpoint_boundary_binding_ref_carrier_unblocked": false,
+        "endpoint_value_binding_map_carrier_unblocked": false,
+        "residual_data_construction_ready": false,
+        "row_consumption_authorized": false,
+        "branch_chart_authorized": false
+      },
+      "construction_method_results": [
+        {
+          "method_id": "ref_value_source_pair_check",
+          "description": "Check whether the endpoint has a domain-chart carrier subfield plus source endpoint-boundary-binding ref and endpoint value-binding map handles.",
+          "output_kind": "same-packet-witness-object-source-pair",
+          "required_fields": [
+            "domain_chart_carrier_subfield_constructed",
+            "domain_chart_carrier_preserved_as_partial_source",
+            "source_endpoint_boundary_binding_ref_constructed",
+            "source_witness_object_has_endpoint_boundary_binding_ref",
+            "source_endpoint_value_binding_map_constructed",
+            "source_witness_object_has_endpoint_value_binding_map",
+            "source_endpoint_value_bound_to_boundary_binding",
+            "actual_contract_link_rule_source_conditions_present",
+            "constructed_witness_object_source_ready",
+            "non_domain_carrier_obstruction_present",
+            "endpoint_boundary_binding_ref_non_domain_carrier_source_candidate_declared",
+            "endpoint_value_binding_map_non_domain_carrier_source_candidate_declared"
+          ],
+          "missing_fields": [],
+          "failure_codes": [],
+          "passed": true
+        },
+        {
+          "method_id": "same_packet_carrier_completeness_check",
+          "description": "Check whether the ref, value-map, contract-link, algebraic, motion/evaluation, and artifact/topology/replay non-domain carrier fields are constructed in the same witness object.",
+          "output_kind": "carrier-complete-witness-object",
+          "required_fields": [
+            "domain_chart_carrier_subfield_constructed",
+            "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+            "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+            "same_packet_witness_object_contract_link_carrier_field_constructed",
+            "same_packet_witness_object_algebraic_certificate_refs_carrier_field_constructed",
+            "same_packet_witness_object_motion_evaluation_refs_carrier_field_constructed",
+            "same_packet_witness_object_artifact_topology_replay_refs_carrier_field_constructed",
+            "all_carrier_fields_constructed"
+          ],
+          "missing_fields": [
+            "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+            "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+            "same_packet_witness_object_contract_link_carrier_field_constructed",
+            "same_packet_witness_object_algebraic_certificate_refs_carrier_field_constructed",
+            "same_packet_witness_object_motion_evaluation_refs_carrier_field_constructed",
+            "same_packet_witness_object_artifact_topology_replay_refs_carrier_field_constructed",
+            "all_carrier_fields_constructed"
+          ],
+          "failure_codes": [
+            "same_packet_constructed_witness_object_identity_missing_same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+            "same_packet_constructed_witness_object_identity_missing_same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+            "same_packet_constructed_witness_object_identity_missing_same_packet_witness_object_contract_link_carrier_field_constructed",
+            "same_packet_constructed_witness_object_identity_missing_same_packet_witness_object_algebraic_certificate_refs_carrier_field_constructed",
+            "same_packet_constructed_witness_object_identity_missing_same_packet_witness_object_motion_evaluation_refs_carrier_field_constructed",
+            "same_packet_constructed_witness_object_identity_missing_same_packet_witness_object_artifact_topology_replay_refs_carrier_field_constructed",
+            "same_packet_constructed_witness_object_identity_missing_all_carrier_fields_constructed"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "constructed_witness_object_identity_check",
+          "description": "Check whether carrier completeness supplies a constructed same-packet witness-object identity.",
+          "output_kind": "constructed-witness-object-identity",
+          "required_fields": [
+            "all_carrier_fields_constructed",
+            "constructed_witness_object_id_present",
+            "endpoint_boundary_binding_witness_object_constructed",
+            "same_constructed_witness_object_identity_proof_present"
+          ],
+          "missing_fields": [
+            "all_carrier_fields_constructed",
+            "constructed_witness_object_id_present",
+            "endpoint_boundary_binding_witness_object_constructed",
+            "same_constructed_witness_object_identity_proof_present"
+          ],
+          "failure_codes": [
+            "same_packet_constructed_witness_object_identity_missing_all_carrier_fields_constructed",
+            "same_packet_constructed_witness_object_identity_missing_constructed_witness_object_id_present",
+            "same_packet_constructed_witness_object_identity_missing_endpoint_boundary_binding_witness_object_constructed",
+            "same_packet_constructed_witness_object_identity_missing_same_constructed_witness_object_identity_proof_present"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "same_witness_object_field_membership_check",
+          "description": "Check whether the endpoint-boundary-binding ref and endpoint value-binding map are proved fields of the same constructed witness object.",
+          "output_kind": "same-constructed-witness-object-membership-proof",
+          "required_fields": [
+            "constructed_witness_object_id_present",
+            "endpoint_boundary_binding_witness_object_constructed",
+            "same_constructed_witness_object_identity_proof_present",
+            "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+            "endpoint_value_binding_map_member_of_witness_object_proven",
+            "endpoint_ref_and_value_map_same_witness_object_proven",
+            "membership_source_not_id_adjacency_proven",
+            "witness_object_membership_proof_present"
+          ],
+          "missing_fields": [
+            "constructed_witness_object_id_present",
+            "endpoint_boundary_binding_witness_object_constructed",
+            "same_constructed_witness_object_identity_proof_present",
+            "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+            "endpoint_value_binding_map_member_of_witness_object_proven",
+            "endpoint_ref_and_value_map_same_witness_object_proven",
+            "membership_source_not_id_adjacency_proven",
+            "witness_object_membership_proof_present"
+          ],
+          "failure_codes": [
+            "same_packet_constructed_witness_object_identity_missing_constructed_witness_object_id_present",
+            "same_packet_constructed_witness_object_identity_missing_endpoint_boundary_binding_witness_object_constructed",
+            "same_packet_constructed_witness_object_identity_missing_same_constructed_witness_object_identity_proof_present",
+            "same_packet_constructed_witness_object_identity_missing_endpoint_boundary_binding_ref_member_of_witness_object_proven",
+            "same_packet_constructed_witness_object_identity_missing_endpoint_value_binding_map_member_of_witness_object_proven",
+            "same_packet_constructed_witness_object_identity_missing_endpoint_ref_and_value_map_same_witness_object_proven",
+            "same_packet_constructed_witness_object_identity_missing_membership_source_not_id_adjacency_proven",
+            "same_packet_constructed_witness_object_identity_missing_witness_object_membership_proof_present"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "actual_contract_link_authorization_guard",
+          "description": "Keep actual contract-link, binding contract, full binding, carrier admission, residual, row, and branch-chart outputs locked unless the constructed witness-object identity and membership proof exist.",
+          "output_kind": "actual-contract-link-authorization",
+          "required_fields": [
+            "witness_object_membership_proof_present",
+            "actual_contract_link_rule_available",
+            "actual_contract_link_rule_derivation_present",
+            "actual_contract_link_rule_soundness_proof_present",
+            "actual_contract_link_rule_application_proof_present",
+            "witness_object_contract_link_constructed",
+            "witness_object_has_contract_link",
+            "binding_contract_satisfied",
+            "full_endpoint_boundary_binding_constructed",
+            "endpoint_boundary_binding_ref_carrier_unblocked",
+            "endpoint_value_binding_map_carrier_unblocked",
+            "residual_data_construction_ready",
+            "row_consumption_authorized",
+            "branch_chart_authorized"
+          ],
+          "missing_fields": [
+            "witness_object_membership_proof_present",
+            "actual_contract_link_rule_available",
+            "actual_contract_link_rule_derivation_present",
+            "actual_contract_link_rule_soundness_proof_present",
+            "actual_contract_link_rule_application_proof_present",
+            "witness_object_contract_link_constructed",
+            "witness_object_has_contract_link",
+            "binding_contract_satisfied",
+            "full_endpoint_boundary_binding_constructed",
+            "endpoint_boundary_binding_ref_carrier_unblocked",
+            "endpoint_value_binding_map_carrier_unblocked",
+            "residual_data_construction_ready",
+            "row_consumption_authorized",
+            "branch_chart_authorized"
+          ],
+          "failure_codes": [
+            "same_packet_constructed_witness_object_identity_missing_witness_object_membership_proof_present",
+            "same_packet_constructed_witness_object_identity_missing_actual_contract_link_rule_available",
+            "same_packet_constructed_witness_object_identity_missing_actual_contract_link_rule_derivation_present",
+            "same_packet_constructed_witness_object_identity_missing_actual_contract_link_rule_soundness_proof_present",
+            "same_packet_constructed_witness_object_identity_missing_actual_contract_link_rule_application_proof_present",
+            "same_packet_constructed_witness_object_identity_missing_witness_object_contract_link_constructed",
+            "same_packet_constructed_witness_object_identity_missing_witness_object_has_contract_link",
+            "same_packet_constructed_witness_object_identity_missing_binding_contract_satisfied",
+            "same_packet_constructed_witness_object_identity_missing_full_endpoint_boundary_binding_constructed",
+            "same_packet_constructed_witness_object_identity_missing_endpoint_boundary_binding_ref_carrier_unblocked",
+            "same_packet_constructed_witness_object_identity_missing_endpoint_value_binding_map_carrier_unblocked",
+            "same_packet_constructed_witness_object_identity_missing_residual_data_construction_ready",
+            "same_packet_constructed_witness_object_identity_missing_row_consumption_authorized",
+            "same_packet_constructed_witness_object_identity_missing_branch_chart_authorized"
+          ],
+          "passed": false
+        }
+      ],
+      "construction_methods_passed": [
+        "ref_value_source_pair_check"
+      ],
+      "missing_proof_burdens": [
+        {
+          "burden_id": "same_packet_endpoint_boundary_binding_ref_carrier_field",
+          "missing_field": "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+          "required_evidence": "A non-domain carrier field inside the same witness object for the endpoint-boundary-binding ref, not only a source reference field from an earlier packet.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "same_packet_endpoint_value_binding_map_carrier_field",
+          "missing_field": "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+          "required_evidence": "A non-domain carrier field inside the same witness object for the endpoint value-binding map, not only a source value map bound to the first primitive.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "carrier_complete_witness_object",
+          "missing_field": "all_carrier_fields_constructed",
+          "required_evidence": "All seven witness-object carrier fields, including the six non-domain carrier families, constructed in one same-packet witness object.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "constructed_witness_object_identity",
+          "missing_field": "same_constructed_witness_object_identity_proof_present",
+          "required_evidence": "A proof-grade same-packet witness-object identity attached to a constructed witness object id.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "endpoint_boundary_binding_ref_membership",
+          "missing_field": "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+          "required_evidence": "A membership proof that the endpoint-boundary-binding ref is a field of the constructed witness object.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "endpoint_value_binding_map_membership",
+          "missing_field": "endpoint_value_binding_map_member_of_witness_object_proven",
+          "required_evidence": "A membership proof that the endpoint value-binding map is a field of the same constructed witness object.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "co_membership_not_source_adjacency",
+          "missing_field": "membership_source_not_id_adjacency_proven",
+          "required_evidence": "A proof that ref/value co-membership follows from the constructed witness object, not from matching IDs, symbols, inherited field claims, or source-candidate adjacency.",
+          "satisfied": false
+        }
+      ],
+      "missing_proof_burden_count": 7,
+      "ref_value_source_pair_ready": true,
+      "all_carrier_fields_constructed": false,
+      "constructed_witness_object_id_present": false,
+      "same_constructed_witness_object_identity_proof_present": false,
+      "witness_object_membership_proof_present": false,
+      "witness_object_contract_link_constructed": false,
+      "row_consumption_authorized": false,
+      "failure_codes": [
+        "same_packet_constructed_witness_object_identity_locked_same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+        "same_packet_constructed_witness_object_identity_locked_same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+        "same_packet_constructed_witness_object_identity_locked_all_carrier_fields_constructed",
+        "same_packet_constructed_witness_object_identity_locked_same_constructed_witness_object_identity_proof_present",
+        "same_packet_constructed_witness_object_identity_locked_endpoint_boundary_binding_ref_member_of_witness_object_proven",
+        "same_packet_constructed_witness_object_identity_locked_endpoint_value_binding_map_member_of_witness_object_proven",
+        "same_packet_constructed_witness_object_identity_locked_membership_source_not_id_adjacency_proven",
+        "same_packet_constructed_witness_object_identity_locked_witness_object_contract_link_constructed",
+        "same_packet_constructed_witness_object_identity_locked_row_consumption"
+      ],
+      "obstruction": "The endpoint has domain-chart, source ref, and source value-map handles, but the same-packet witness object lacks the non-domain carrier fields needed for constructed identity and ref/value co-membership proof."
+    },
+    {
+      "id": "fc_rho_receiver_upper",
+      "endpoint_functional_id": "E_lower_receiver_upper_boundary",
+      "role": "receiver",
+      "same_packet_constructed_witness_object_identity_attempt_id": "same_packet_constructed_witness_object_identity_attempt:fc_rho_receiver_upper",
+      "source_actual_contract_link_rule_membership_proof_target_id": "actual_contract_link_rule_membership_proof_target:fc_rho_receiver_upper",
+      "source_non_domain_carrier_obstruction_id": "non_domain_carrier_obstruction:fc_rho_receiver_upper",
+      "source_domain_chart_carrier_subfield_id": "domain_chart_carrier_subfield:fc_rho_receiver_upper",
+      "source_ref_carrier_full_binding_construction_attempt_id": "endpoint_boundary_binding_ref_carrier_full_binding_construction_attempt:fc_rho_receiver_upper",
+      "source_value_binding_map_construction_attempt_id": "endpoint_value_binding_map_construction_attempt:fc_rho_receiver_upper",
+      "witness_object_attempt_id": "endpoint_boundary_binding_witness_object_attempt:fc_rho_receiver_upper",
+      "witness_object_symbol": "WBB_fc_rho_receiver_upper",
+      "endpoint_boundary_binding_ref_id": "witness_object_endpoint_boundary_binding_ref:fc_rho_receiver_upper",
+      "endpoint_value_binding_map_id": "endpoint_value_binding_map:fc_rho_receiver_upper",
+      "target_endpoint_ref_value_count": 1,
+      "source_ref_field_status": "source-reference-field-constructed-not-same-packet-carrier-field",
+      "source_value_map_status": "source-value-map-constructed-not-same-packet-carrier-field",
+      "carrier_completeness_target": {
+        "target_id": "carrier_complete_witness_object_target:fc_rho_receiver_upper",
+        "required_carrier_fields": [
+          "domain_chart",
+          "endpoint_boundary_binding_ref",
+          "endpoint_value_binding_map",
+          "contract_link",
+          "algebraic_certificate_refs",
+          "motion_evaluation_refs",
+          "artifact_topology_replay_refs"
+        ],
+        "constructed_carrier_fields": [
+          "domain_chart"
+        ],
+        "missing_carrier_fields": [
+          "endpoint_boundary_binding_ref",
+          "endpoint_value_binding_map",
+          "contract_link",
+          "algebraic_certificate_refs",
+          "motion_evaluation_refs",
+          "artifact_topology_replay_refs"
+        ],
+        "soundness_limit": "The domain_chart carrier and source ref/value handles are not a carrier-complete same-packet witness object."
+      },
+      "constructed_witness_object_identity_target": {
+        "target_id": "same_packet_constructed_witness_object_identity_target:fc_rho_receiver_upper",
+        "witness_object_attempt_id": "endpoint_boundary_binding_witness_object_attempt:fc_rho_receiver_upper",
+        "endpoint_boundary_binding_ref_id": "witness_object_endpoint_boundary_binding_ref:fc_rho_receiver_upper",
+        "endpoint_value_binding_map_id": "endpoint_value_binding_map:fc_rho_receiver_upper",
+        "required_membership_fields": [
+          "constructed_witness_object_id_present",
+          "endpoint_boundary_binding_witness_object_constructed",
+          "same_constructed_witness_object_identity_proof_present",
+          "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+          "endpoint_value_binding_map_member_of_witness_object_proven",
+          "endpoint_ref_and_value_map_same_witness_object_proven",
+          "membership_source_not_id_adjacency_proven",
+          "witness_object_membership_proof_present"
+        ],
+        "soundness_limit": "A source ref field, source value map, witness-object symbol, and matching endpoint id do not prove same constructed-witness-object membership."
+      },
+      "non_domain_carrier_obstructions_used": [
+        {
+          "carrier_field": "endpoint_boundary_binding_ref",
+          "target_field": "witness_object_endpoint_boundary_binding_ref_target_declared",
+          "source_ref": "BB_fc_rho_receiver_upper",
+          "present_field": "witness_object_has_endpoint_boundary_binding_ref",
+          "source_layer": "full_endpoint_boundary_binding_construction_attempt",
+          "carrier_field_source_candidate_declared": true,
+          "carrier_field_constructed": false,
+          "source_signals": {
+            "source_layer": "full_endpoint_boundary_binding_construction_attempt",
+            "positive_source_fields": [
+              {
+                "field": "full_endpoint_boundary_binding_construction_input_ready",
+                "present": true
+              }
+            ],
+            "absent_blocking_fields": [
+              {
+                "field": "full_endpoint_boundary_binding_constructed",
+                "present": false
+              },
+              {
+                "field": "endpoint_boundary_binding_constructed",
+                "present": false
+              },
+              {
+                "field": "witness_object_has_endpoint_boundary_binding_ref",
+                "present": false
+              }
+            ],
+            "positive_source_fields_all_present": true,
+            "blocking_fields_all_absent": true
+          },
+          "missing_dependencies": [
+            "full_endpoint_boundary_binding_constructed",
+            "endpoint_boundary_binding_constructed",
+            "witness_object_has_endpoint_boundary_binding_ref"
+          ],
+          "failure_codes": [
+            "non_domain_carrier_obstruction_endpoint_boundary_binding_ref_missing_full_endpoint_boundary_binding_constructed",
+            "non_domain_carrier_obstruction_endpoint_boundary_binding_ref_missing_endpoint_boundary_binding_constructed",
+            "non_domain_carrier_obstruction_endpoint_boundary_binding_ref_missing_witness_object_has_endpoint_boundary_binding_ref"
+          ],
+          "construction_status": "obstructed-non-domain-carrier-absent",
+          "obstruction": "Full endpoint boundary-binding construction inputs exist, but no proof-grade endpoint boundary binding or witness-object endpoint boundary-binding reference is supplied."
+        },
+        {
+          "carrier_field": "endpoint_value_binding_map",
+          "target_field": "witness_object_value_binding_map_target_declared",
+          "source_ref": "endpoint_value_binding_source:fc_rho_receiver_upper",
+          "present_field": "witness_object_has_endpoint_value_binding_map",
+          "source_layer": "endpoint_value_binding_source_layer",
+          "carrier_field_source_candidate_declared": true,
+          "carrier_field_constructed": false,
+          "source_signals": {
+            "source_layer": "endpoint_value_binding_source_layer",
+            "positive_source_fields": [
+              {
+                "field": "endpoint_value_binding_source_equation_declared",
+                "present": true
+              },
+              {
+                "field": "endpoint_value_binding_source_layer_ready",
+                "present": true
+              }
+            ],
+            "absent_blocking_fields": [
+              {
+                "field": "endpoint_boundary_binding_constructed",
+                "present": false
+              },
+              {
+                "field": "endpoint_value_bound_to_boundary_binding",
+                "present": false
+              },
+              {
+                "field": "witness_object_has_endpoint_value_binding_map",
+                "present": false
+              }
+            ],
+            "positive_source_fields_all_present": true,
+            "blocking_fields_all_absent": true
+          },
+          "missing_dependencies": [
+            "endpoint_boundary_binding_constructed",
+            "endpoint_value_bound_to_boundary_binding",
+            "witness_object_has_endpoint_value_binding_map"
+          ],
+          "failure_codes": [
+            "non_domain_carrier_obstruction_endpoint_value_binding_map_missing_endpoint_boundary_binding_constructed",
+            "non_domain_carrier_obstruction_endpoint_value_binding_map_missing_endpoint_value_bound_to_boundary_binding",
+            "non_domain_carrier_obstruction_endpoint_value_binding_map_missing_witness_object_has_endpoint_value_binding_map"
+          ],
+          "construction_status": "obstructed-non-domain-carrier-absent",
+          "obstruction": "Endpoint value-binding source equations exist, but they are not bound to a constructed endpoint boundary binding or witness-object value map."
+        },
+        {
+          "carrier_field": "contract_link",
+          "target_field": "witness_object_contract_link_target_declared",
+          "source_ref": "full_endpoint_boundary_binding_contract_target:fc_rho_receiver_upper",
+          "present_field": "witness_object_has_contract_link",
+          "source_layer": "full_endpoint_boundary_binding_contract_target",
+          "carrier_field_source_candidate_declared": true,
+          "carrier_field_constructed": false,
+          "source_signals": {
+            "source_layer": "full_endpoint_boundary_binding_contract_target",
+            "positive_source_fields": [
+              {
+                "field": "binding_contract_target_declared",
+                "present": true
+              }
+            ],
+            "absent_blocking_fields": [
+              {
+                "field": "binding_contract_satisfied",
+                "present": false
+              },
+              {
+                "field": "witness_object_has_contract_link",
+                "present": false
+              }
+            ],
+            "positive_source_fields_all_present": true,
+            "blocking_fields_all_absent": true
+          },
+          "missing_dependencies": [
+            "binding_contract_satisfied",
+            "witness_object_has_contract_link"
+          ],
+          "failure_codes": [
+            "non_domain_carrier_obstruction_contract_link_missing_binding_contract_satisfied",
+            "non_domain_carrier_obstruction_contract_link_missing_witness_object_has_contract_link"
+          ],
+          "construction_status": "obstructed-non-domain-carrier-absent",
+          "obstruction": "The full endpoint boundary-binding contract target is declared, but contract satisfaction and the witness-object contract link are absent."
+        },
+        {
+          "carrier_field": "algebraic_certificate_refs",
+          "target_field": "witness_object_algebraic_certificate_refs_target_declared",
+          "source_ref": "non-target zero, exact $B\\xi=0$, and rank certificate targets",
+          "present_field": "witness_object_has_algebraic_certificate_refs",
+          "source_layer": "full_endpoint_boundary_binding_contract_target",
+          "carrier_field_source_candidate_declared": true,
+          "carrier_field_constructed": false,
+          "source_signals": {
+            "source_layer": "full_endpoint_boundary_binding_contract_target",
+            "positive_source_fields": [
+              {
+                "field": "non_target_zero_target_declared",
+                "present": true
+              },
+              {
+                "field": "exact_screen_zero_target_declared",
+                "present": true
+              },
+              {
+                "field": "rank_target_declared",
+                "present": true
+              }
+            ],
+            "absent_blocking_fields": [
+              {
+                "field": "non_target_endpoint_zero_certified",
+                "present": false
+              },
+              {
+                "field": "exact_screen_zero_certified",
+                "present": false
+              },
+              {
+                "field": "rank_certified",
+                "present": false
+              },
+              {
+                "field": "witness_object_has_algebraic_certificate_refs",
+                "present": false
+              }
+            ],
+            "positive_source_fields_all_present": true,
+            "blocking_fields_all_absent": true
+          },
+          "missing_dependencies": [
+            "non_target_endpoint_zero_certified",
+            "exact_screen_zero_certified",
+            "rank_certified",
+            "witness_object_has_algebraic_certificate_refs"
+          ],
+          "failure_codes": [
+            "non_domain_carrier_obstruction_algebraic_certificate_refs_missing_non_target_endpoint_zero_certified",
+            "non_domain_carrier_obstruction_algebraic_certificate_refs_missing_exact_screen_zero_certified",
+            "non_domain_carrier_obstruction_algebraic_certificate_refs_missing_rank_certified",
+            "non_domain_carrier_obstruction_algebraic_certificate_refs_missing_witness_object_has_algebraic_certificate_refs"
+          ],
+          "construction_status": "obstructed-non-domain-carrier-absent",
+          "obstruction": "The non-target zero, exact screen-zero, and rank targets are declared, but their certificates and witness-object certificate references are absent."
+        },
+        {
+          "carrier_field": "motion_evaluation_refs",
+          "target_field": "witness_object_motion_evaluation_refs_target_declared",
+          "source_ref": "same-packet history update, endpoint motion, and endpoint evaluation targets",
+          "present_field": "witness_object_has_motion_evaluation_refs",
+          "source_layer": "full_endpoint_boundary_binding_contract_target",
+          "carrier_field_source_candidate_declared": true,
+          "carrier_field_constructed": false,
+          "source_signals": {
+            "source_layer": "full_endpoint_boundary_binding_contract_target",
+            "positive_source_fields": [
+              {
+                "field": "history_update_target_declared",
+                "present": true
+              },
+              {
+                "field": "endpoint_motion_target_declared",
+                "present": true
+              },
+              {
+                "field": "endpoint_evaluation_target_declared",
+                "present": true
+              }
+            ],
+            "absent_blocking_fields": [
+              {
+                "field": "same_packet_history_update_formula_present",
+                "present": false
+              },
+              {
+                "field": "endpoint_motion_rule_constructed",
+                "present": false
+              },
+              {
+                "field": "endpoint_evaluation_map_constructed",
+                "present": false
+              },
+              {
+                "field": "full_endpoint_evaluation_map_constructed",
+                "present": false
+              },
+              {
+                "field": "witness_object_has_motion_evaluation_refs",
+                "present": false
+              }
+            ],
+            "positive_source_fields_all_present": true,
+            "blocking_fields_all_absent": true
+          },
+          "missing_dependencies": [
+            "same_packet_history_update_formula_present",
+            "endpoint_motion_rule_constructed",
+            "endpoint_evaluation_map_constructed",
+            "full_endpoint_evaluation_map_constructed",
+            "witness_object_has_motion_evaluation_refs"
+          ],
+          "failure_codes": [
+            "non_domain_carrier_obstruction_motion_evaluation_refs_missing_same_packet_history_update_formula_present",
+            "non_domain_carrier_obstruction_motion_evaluation_refs_missing_endpoint_motion_rule_constructed",
+            "non_domain_carrier_obstruction_motion_evaluation_refs_missing_endpoint_evaluation_map_constructed",
+            "non_domain_carrier_obstruction_motion_evaluation_refs_missing_full_endpoint_evaluation_map_constructed",
+            "non_domain_carrier_obstruction_motion_evaluation_refs_missing_witness_object_has_motion_evaluation_refs"
+          ],
+          "construction_status": "obstructed-non-domain-carrier-absent",
+          "obstruction": "History-update, endpoint-motion, and endpoint-evaluation targets are declared, but no same-packet motion/evaluation rules or witness-object references are supplied."
+        },
+        {
+          "carrier_field": "artifact_topology_replay_refs",
+          "target_field": "witness_object_artifact_topology_replay_refs_target_declared",
+          "source_ref": "candidate artifact, topology recertification, and proof-interval replay targets",
+          "present_field": "witness_object_has_artifact_topology_replay_refs",
+          "source_layer": "full_endpoint_boundary_binding_contract_target",
+          "carrier_field_source_candidate_declared": true,
+          "carrier_field_constructed": false,
+          "source_signals": {
+            "source_layer": "full_endpoint_boundary_binding_contract_target",
+            "positive_source_fields": [
+              {
+                "field": "candidate_artifact_replay_target_declared",
+                "present": true
+              }
+            ],
+            "absent_blocking_fields": [
+              {
+                "field": "candidate_artifacts_present",
+                "present": false
+              },
+              {
+                "field": "root_topology_recertified_for_candidate_change",
+                "present": false
+              },
+              {
+                "field": "proof_interval_v1_v6_rerun_for_candidate_change",
+                "present": false
+              },
+              {
+                "field": "witness_object_has_artifact_topology_replay_refs",
+                "present": false
+              }
+            ],
+            "positive_source_fields_all_present": true,
+            "blocking_fields_all_absent": true
+          },
+          "missing_dependencies": [
+            "candidate_artifacts_present",
+            "root_topology_recertified_for_candidate_change",
+            "proof_interval_v1_v6_rerun_for_candidate_change",
+            "witness_object_has_artifact_topology_replay_refs"
+          ],
+          "failure_codes": [
+            "non_domain_carrier_obstruction_artifact_topology_replay_refs_missing_candidate_artifacts_present",
+            "non_domain_carrier_obstruction_artifact_topology_replay_refs_missing_root_topology_recertified_for_candidate_change",
+            "non_domain_carrier_obstruction_artifact_topology_replay_refs_missing_proof_interval_v1_v6_rerun_for_candidate_change",
+            "non_domain_carrier_obstruction_artifact_topology_replay_refs_missing_witness_object_has_artifact_topology_replay_refs"
+          ],
+          "construction_status": "obstructed-non-domain-carrier-absent",
+          "obstruction": "Candidate artifact, topology recertification, and proof-interval replay targets are declared, but the actual artifacts, topology replay, proof replay, and witness-object replay references are absent."
+        }
+      ],
+      "required_fields_present": {
+        "domain_chart_carrier_subfield_constructed": true,
+        "domain_chart_carrier_preserved_as_partial_source": true,
+        "source_endpoint_boundary_binding_ref_constructed": true,
+        "source_witness_object_has_endpoint_boundary_binding_ref": true,
+        "source_endpoint_value_binding_map_constructed": true,
+        "source_witness_object_has_endpoint_value_binding_map": true,
+        "source_endpoint_value_bound_to_boundary_binding": true,
+        "actual_contract_link_rule_source_conditions_present": true,
+        "constructed_witness_object_source_ready": true,
+        "non_domain_carrier_obstruction_present": true,
+        "endpoint_boundary_binding_ref_non_domain_carrier_source_candidate_declared": true,
+        "endpoint_value_binding_map_non_domain_carrier_source_candidate_declared": true,
+        "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed": false,
+        "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed": false,
+        "same_packet_witness_object_contract_link_carrier_field_constructed": false,
+        "same_packet_witness_object_algebraic_certificate_refs_carrier_field_constructed": false,
+        "same_packet_witness_object_motion_evaluation_refs_carrier_field_constructed": false,
+        "same_packet_witness_object_artifact_topology_replay_refs_carrier_field_constructed": false,
+        "all_carrier_fields_constructed": false,
+        "constructed_witness_object_id_present": false,
+        "endpoint_boundary_binding_witness_object_constructed": false,
+        "same_constructed_witness_object_identity_proof_present": false,
+        "endpoint_boundary_binding_ref_member_of_witness_object_proven": false,
+        "endpoint_value_binding_map_member_of_witness_object_proven": false,
+        "endpoint_ref_and_value_map_same_witness_object_proven": false,
+        "membership_source_not_id_adjacency_proven": false,
+        "witness_object_membership_proof_present": false,
+        "actual_contract_link_rule_available": false,
+        "actual_contract_link_rule_derivation_present": false,
+        "actual_contract_link_rule_soundness_proof_present": false,
+        "actual_contract_link_rule_application_proof_present": false,
+        "witness_object_contract_link_constructed": false,
+        "witness_object_has_contract_link": false,
+        "binding_contract_satisfied": false,
+        "full_endpoint_boundary_binding_constructed": false,
+        "endpoint_boundary_binding_ref_carrier_unblocked": false,
+        "endpoint_value_binding_map_carrier_unblocked": false,
+        "residual_data_construction_ready": false,
+        "row_consumption_authorized": false,
+        "branch_chart_authorized": false
+      },
+      "construction_method_results": [
+        {
+          "method_id": "ref_value_source_pair_check",
+          "description": "Check whether the endpoint has a domain-chart carrier subfield plus source endpoint-boundary-binding ref and endpoint value-binding map handles.",
+          "output_kind": "same-packet-witness-object-source-pair",
+          "required_fields": [
+            "domain_chart_carrier_subfield_constructed",
+            "domain_chart_carrier_preserved_as_partial_source",
+            "source_endpoint_boundary_binding_ref_constructed",
+            "source_witness_object_has_endpoint_boundary_binding_ref",
+            "source_endpoint_value_binding_map_constructed",
+            "source_witness_object_has_endpoint_value_binding_map",
+            "source_endpoint_value_bound_to_boundary_binding",
+            "actual_contract_link_rule_source_conditions_present",
+            "constructed_witness_object_source_ready",
+            "non_domain_carrier_obstruction_present",
+            "endpoint_boundary_binding_ref_non_domain_carrier_source_candidate_declared",
+            "endpoint_value_binding_map_non_domain_carrier_source_candidate_declared"
+          ],
+          "missing_fields": [],
+          "failure_codes": [],
+          "passed": true
+        },
+        {
+          "method_id": "same_packet_carrier_completeness_check",
+          "description": "Check whether the ref, value-map, contract-link, algebraic, motion/evaluation, and artifact/topology/replay non-domain carrier fields are constructed in the same witness object.",
+          "output_kind": "carrier-complete-witness-object",
+          "required_fields": [
+            "domain_chart_carrier_subfield_constructed",
+            "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+            "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+            "same_packet_witness_object_contract_link_carrier_field_constructed",
+            "same_packet_witness_object_algebraic_certificate_refs_carrier_field_constructed",
+            "same_packet_witness_object_motion_evaluation_refs_carrier_field_constructed",
+            "same_packet_witness_object_artifact_topology_replay_refs_carrier_field_constructed",
+            "all_carrier_fields_constructed"
+          ],
+          "missing_fields": [
+            "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+            "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+            "same_packet_witness_object_contract_link_carrier_field_constructed",
+            "same_packet_witness_object_algebraic_certificate_refs_carrier_field_constructed",
+            "same_packet_witness_object_motion_evaluation_refs_carrier_field_constructed",
+            "same_packet_witness_object_artifact_topology_replay_refs_carrier_field_constructed",
+            "all_carrier_fields_constructed"
+          ],
+          "failure_codes": [
+            "same_packet_constructed_witness_object_identity_missing_same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+            "same_packet_constructed_witness_object_identity_missing_same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+            "same_packet_constructed_witness_object_identity_missing_same_packet_witness_object_contract_link_carrier_field_constructed",
+            "same_packet_constructed_witness_object_identity_missing_same_packet_witness_object_algebraic_certificate_refs_carrier_field_constructed",
+            "same_packet_constructed_witness_object_identity_missing_same_packet_witness_object_motion_evaluation_refs_carrier_field_constructed",
+            "same_packet_constructed_witness_object_identity_missing_same_packet_witness_object_artifact_topology_replay_refs_carrier_field_constructed",
+            "same_packet_constructed_witness_object_identity_missing_all_carrier_fields_constructed"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "constructed_witness_object_identity_check",
+          "description": "Check whether carrier completeness supplies a constructed same-packet witness-object identity.",
+          "output_kind": "constructed-witness-object-identity",
+          "required_fields": [
+            "all_carrier_fields_constructed",
+            "constructed_witness_object_id_present",
+            "endpoint_boundary_binding_witness_object_constructed",
+            "same_constructed_witness_object_identity_proof_present"
+          ],
+          "missing_fields": [
+            "all_carrier_fields_constructed",
+            "constructed_witness_object_id_present",
+            "endpoint_boundary_binding_witness_object_constructed",
+            "same_constructed_witness_object_identity_proof_present"
+          ],
+          "failure_codes": [
+            "same_packet_constructed_witness_object_identity_missing_all_carrier_fields_constructed",
+            "same_packet_constructed_witness_object_identity_missing_constructed_witness_object_id_present",
+            "same_packet_constructed_witness_object_identity_missing_endpoint_boundary_binding_witness_object_constructed",
+            "same_packet_constructed_witness_object_identity_missing_same_constructed_witness_object_identity_proof_present"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "same_witness_object_field_membership_check",
+          "description": "Check whether the endpoint-boundary-binding ref and endpoint value-binding map are proved fields of the same constructed witness object.",
+          "output_kind": "same-constructed-witness-object-membership-proof",
+          "required_fields": [
+            "constructed_witness_object_id_present",
+            "endpoint_boundary_binding_witness_object_constructed",
+            "same_constructed_witness_object_identity_proof_present",
+            "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+            "endpoint_value_binding_map_member_of_witness_object_proven",
+            "endpoint_ref_and_value_map_same_witness_object_proven",
+            "membership_source_not_id_adjacency_proven",
+            "witness_object_membership_proof_present"
+          ],
+          "missing_fields": [
+            "constructed_witness_object_id_present",
+            "endpoint_boundary_binding_witness_object_constructed",
+            "same_constructed_witness_object_identity_proof_present",
+            "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+            "endpoint_value_binding_map_member_of_witness_object_proven",
+            "endpoint_ref_and_value_map_same_witness_object_proven",
+            "membership_source_not_id_adjacency_proven",
+            "witness_object_membership_proof_present"
+          ],
+          "failure_codes": [
+            "same_packet_constructed_witness_object_identity_missing_constructed_witness_object_id_present",
+            "same_packet_constructed_witness_object_identity_missing_endpoint_boundary_binding_witness_object_constructed",
+            "same_packet_constructed_witness_object_identity_missing_same_constructed_witness_object_identity_proof_present",
+            "same_packet_constructed_witness_object_identity_missing_endpoint_boundary_binding_ref_member_of_witness_object_proven",
+            "same_packet_constructed_witness_object_identity_missing_endpoint_value_binding_map_member_of_witness_object_proven",
+            "same_packet_constructed_witness_object_identity_missing_endpoint_ref_and_value_map_same_witness_object_proven",
+            "same_packet_constructed_witness_object_identity_missing_membership_source_not_id_adjacency_proven",
+            "same_packet_constructed_witness_object_identity_missing_witness_object_membership_proof_present"
+          ],
+          "passed": false
+        },
+        {
+          "method_id": "actual_contract_link_authorization_guard",
+          "description": "Keep actual contract-link, binding contract, full binding, carrier admission, residual, row, and branch-chart outputs locked unless the constructed witness-object identity and membership proof exist.",
+          "output_kind": "actual-contract-link-authorization",
+          "required_fields": [
+            "witness_object_membership_proof_present",
+            "actual_contract_link_rule_available",
+            "actual_contract_link_rule_derivation_present",
+            "actual_contract_link_rule_soundness_proof_present",
+            "actual_contract_link_rule_application_proof_present",
+            "witness_object_contract_link_constructed",
+            "witness_object_has_contract_link",
+            "binding_contract_satisfied",
+            "full_endpoint_boundary_binding_constructed",
+            "endpoint_boundary_binding_ref_carrier_unblocked",
+            "endpoint_value_binding_map_carrier_unblocked",
+            "residual_data_construction_ready",
+            "row_consumption_authorized",
+            "branch_chart_authorized"
+          ],
+          "missing_fields": [
+            "witness_object_membership_proof_present",
+            "actual_contract_link_rule_available",
+            "actual_contract_link_rule_derivation_present",
+            "actual_contract_link_rule_soundness_proof_present",
+            "actual_contract_link_rule_application_proof_present",
+            "witness_object_contract_link_constructed",
+            "witness_object_has_contract_link",
+            "binding_contract_satisfied",
+            "full_endpoint_boundary_binding_constructed",
+            "endpoint_boundary_binding_ref_carrier_unblocked",
+            "endpoint_value_binding_map_carrier_unblocked",
+            "residual_data_construction_ready",
+            "row_consumption_authorized",
+            "branch_chart_authorized"
+          ],
+          "failure_codes": [
+            "same_packet_constructed_witness_object_identity_missing_witness_object_membership_proof_present",
+            "same_packet_constructed_witness_object_identity_missing_actual_contract_link_rule_available",
+            "same_packet_constructed_witness_object_identity_missing_actual_contract_link_rule_derivation_present",
+            "same_packet_constructed_witness_object_identity_missing_actual_contract_link_rule_soundness_proof_present",
+            "same_packet_constructed_witness_object_identity_missing_actual_contract_link_rule_application_proof_present",
+            "same_packet_constructed_witness_object_identity_missing_witness_object_contract_link_constructed",
+            "same_packet_constructed_witness_object_identity_missing_witness_object_has_contract_link",
+            "same_packet_constructed_witness_object_identity_missing_binding_contract_satisfied",
+            "same_packet_constructed_witness_object_identity_missing_full_endpoint_boundary_binding_constructed",
+            "same_packet_constructed_witness_object_identity_missing_endpoint_boundary_binding_ref_carrier_unblocked",
+            "same_packet_constructed_witness_object_identity_missing_endpoint_value_binding_map_carrier_unblocked",
+            "same_packet_constructed_witness_object_identity_missing_residual_data_construction_ready",
+            "same_packet_constructed_witness_object_identity_missing_row_consumption_authorized",
+            "same_packet_constructed_witness_object_identity_missing_branch_chart_authorized"
+          ],
+          "passed": false
+        }
+      ],
+      "construction_methods_passed": [
+        "ref_value_source_pair_check"
+      ],
+      "missing_proof_burdens": [
+        {
+          "burden_id": "same_packet_endpoint_boundary_binding_ref_carrier_field",
+          "missing_field": "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+          "required_evidence": "A non-domain carrier field inside the same witness object for the endpoint-boundary-binding ref, not only a source reference field from an earlier packet.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "same_packet_endpoint_value_binding_map_carrier_field",
+          "missing_field": "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+          "required_evidence": "A non-domain carrier field inside the same witness object for the endpoint value-binding map, not only a source value map bound to the first primitive.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "carrier_complete_witness_object",
+          "missing_field": "all_carrier_fields_constructed",
+          "required_evidence": "All seven witness-object carrier fields, including the six non-domain carrier families, constructed in one same-packet witness object.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "constructed_witness_object_identity",
+          "missing_field": "same_constructed_witness_object_identity_proof_present",
+          "required_evidence": "A proof-grade same-packet witness-object identity attached to a constructed witness object id.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "endpoint_boundary_binding_ref_membership",
+          "missing_field": "endpoint_boundary_binding_ref_member_of_witness_object_proven",
+          "required_evidence": "A membership proof that the endpoint-boundary-binding ref is a field of the constructed witness object.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "endpoint_value_binding_map_membership",
+          "missing_field": "endpoint_value_binding_map_member_of_witness_object_proven",
+          "required_evidence": "A membership proof that the endpoint value-binding map is a field of the same constructed witness object.",
+          "satisfied": false
+        },
+        {
+          "burden_id": "co_membership_not_source_adjacency",
+          "missing_field": "membership_source_not_id_adjacency_proven",
+          "required_evidence": "A proof that ref/value co-membership follows from the constructed witness object, not from matching IDs, symbols, inherited field claims, or source-candidate adjacency.",
+          "satisfied": false
+        }
+      ],
+      "missing_proof_burden_count": 7,
+      "ref_value_source_pair_ready": true,
+      "all_carrier_fields_constructed": false,
+      "constructed_witness_object_id_present": false,
+      "same_constructed_witness_object_identity_proof_present": false,
+      "witness_object_membership_proof_present": false,
+      "witness_object_contract_link_constructed": false,
+      "row_consumption_authorized": false,
+      "failure_codes": [
+        "same_packet_constructed_witness_object_identity_locked_same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed",
+        "same_packet_constructed_witness_object_identity_locked_same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed",
+        "same_packet_constructed_witness_object_identity_locked_all_carrier_fields_constructed",
+        "same_packet_constructed_witness_object_identity_locked_same_constructed_witness_object_identity_proof_present",
+        "same_packet_constructed_witness_object_identity_locked_endpoint_boundary_binding_ref_member_of_witness_object_proven",
+        "same_packet_constructed_witness_object_identity_locked_endpoint_value_binding_map_member_of_witness_object_proven",
+        "same_packet_constructed_witness_object_identity_locked_membership_source_not_id_adjacency_proven",
+        "same_packet_constructed_witness_object_identity_locked_witness_object_contract_link_constructed",
+        "same_packet_constructed_witness_object_identity_locked_row_consumption"
+      ],
+      "obstruction": "The endpoint has domain-chart, source ref, and source value-map handles, but the same-packet witness object lacks the non-domain carrier fields needed for constructed identity and ref/value co-membership proof."
+    }
+  ],
+  "row_same_packet_constructed_witness_object_identity_attempts": [
+    {
+      "row_id": "R_w_A04_A03",
+      "cover_id": "G_w_A04_A03_v6_10",
+      "ledger": "w",
+      "source_interval": "A03",
+      "receiver_interval": "A04",
+      "failed_side": "lo",
+      "boundary_side": "lower",
+      "source_variable": "fc_sigma_source_lower",
+      "receiver_variable": "fc_rho_receiver_lower",
+      "source_same_packet_constructed_witness_object_identity_attempt_id": "same_packet_constructed_witness_object_identity_attempt:fc_sigma_source_lower",
+      "receiver_same_packet_constructed_witness_object_identity_attempt_id": "same_packet_constructed_witness_object_identity_attempt:fc_rho_receiver_lower",
+      "source_ref_row_fields_present": {
+        "row_witness_object_endpoint_boundary_binding_ref_pair_constructed": true,
+        "row_endpoint_boundary_binding_ref_carrier_pair_unblocked": false
+      },
+      "source_value_row_fields_present": {
+        "row_endpoint_value_binding_map_pair_constructed": true,
+        "row_endpoint_value_binding_pair_constructed": true,
+        "row_binding_contract_pair_satisfied": false
+      },
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "source_domain_chart_carrier_subfield_constructed": true,
+        "receiver_domain_chart_carrier_subfield_constructed": true,
+        "combined_domain_chart_carrier_subfield_pair_constructed": true,
+        "source_ref_value_source_pair_ready": true,
+        "receiver_ref_value_source_pair_ready": true,
+        "combined_ref_value_source_pair_ready": true,
+        "source_non_domain_carrier_obstruction_present": true,
+        "receiver_non_domain_carrier_obstruction_present": true,
+        "combined_non_domain_carrier_obstruction_pair_present": true,
+        "source_all_carrier_fields_constructed": false,
+        "receiver_all_carrier_fields_constructed": false,
+        "combined_all_carrier_fields_constructed": false,
+        "source_constructed_witness_object_identity_present": false,
+        "receiver_constructed_witness_object_identity_present": false,
+        "combined_constructed_witness_object_identity_pair_present": false,
+        "source_witness_object_membership_proof_present": false,
+        "receiver_witness_object_membership_proof_present": false,
+        "combined_witness_object_membership_proof_pair_present": false,
+        "residual_data_construction_ready": false,
+        "row_unblocked": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "row_unblocked": false,
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The row has source/receiver ref/value source handles and domain-chart carriers, but neither side has a carrier-complete constructed witness-object identity or same-witness membership proof."
+    },
+    {
+      "row_id": "R_u_A10_A09",
+      "cover_id": "G_u_A10_A09_v6_31",
+      "ledger": "u",
+      "source_interval": "A09",
+      "receiver_interval": "A10",
+      "failed_side": "lo",
+      "boundary_side": "lower",
+      "source_variable": "fc_sigma_source_lower",
+      "receiver_variable": "fc_rho_receiver_lower",
+      "source_same_packet_constructed_witness_object_identity_attempt_id": "same_packet_constructed_witness_object_identity_attempt:fc_sigma_source_lower",
+      "receiver_same_packet_constructed_witness_object_identity_attempt_id": "same_packet_constructed_witness_object_identity_attempt:fc_rho_receiver_lower",
+      "source_ref_row_fields_present": {
+        "row_witness_object_endpoint_boundary_binding_ref_pair_constructed": true,
+        "row_endpoint_boundary_binding_ref_carrier_pair_unblocked": false
+      },
+      "source_value_row_fields_present": {
+        "row_endpoint_value_binding_map_pair_constructed": true,
+        "row_endpoint_value_binding_pair_constructed": true,
+        "row_binding_contract_pair_satisfied": false
+      },
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "source_domain_chart_carrier_subfield_constructed": true,
+        "receiver_domain_chart_carrier_subfield_constructed": true,
+        "combined_domain_chart_carrier_subfield_pair_constructed": true,
+        "source_ref_value_source_pair_ready": true,
+        "receiver_ref_value_source_pair_ready": true,
+        "combined_ref_value_source_pair_ready": true,
+        "source_non_domain_carrier_obstruction_present": true,
+        "receiver_non_domain_carrier_obstruction_present": true,
+        "combined_non_domain_carrier_obstruction_pair_present": true,
+        "source_all_carrier_fields_constructed": false,
+        "receiver_all_carrier_fields_constructed": false,
+        "combined_all_carrier_fields_constructed": false,
+        "source_constructed_witness_object_identity_present": false,
+        "receiver_constructed_witness_object_identity_present": false,
+        "combined_constructed_witness_object_identity_pair_present": false,
+        "source_witness_object_membership_proof_present": false,
+        "receiver_witness_object_membership_proof_present": false,
+        "combined_witness_object_membership_proof_pair_present": false,
+        "residual_data_construction_ready": false,
+        "row_unblocked": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "row_unblocked": false,
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The row has source/receiver ref/value source handles and domain-chart carriers, but neither side has a carrier-complete constructed witness-object identity or same-witness membership proof."
+    },
+    {
+      "row_id": "R_u_A07_A06",
+      "cover_id": "G_u_A07_A06_v6_22",
+      "ledger": "u",
+      "source_interval": "A06",
+      "receiver_interval": "A07",
+      "failed_side": "hi",
+      "boundary_side": "upper",
+      "source_variable": "fc_sigma_source_upper",
+      "receiver_variable": "fc_rho_receiver_upper",
+      "source_same_packet_constructed_witness_object_identity_attempt_id": "same_packet_constructed_witness_object_identity_attempt:fc_sigma_source_upper",
+      "receiver_same_packet_constructed_witness_object_identity_attempt_id": "same_packet_constructed_witness_object_identity_attempt:fc_rho_receiver_upper",
+      "source_ref_row_fields_present": {
+        "row_witness_object_endpoint_boundary_binding_ref_pair_constructed": true,
+        "row_endpoint_boundary_binding_ref_carrier_pair_unblocked": false
+      },
+      "source_value_row_fields_present": {
+        "row_endpoint_value_binding_map_pair_constructed": true,
+        "row_endpoint_value_binding_pair_constructed": true,
+        "row_binding_contract_pair_satisfied": false
+      },
+      "required_fields_present": {
+        "row_locator_resolved": true,
+        "source_domain_chart_carrier_subfield_constructed": true,
+        "receiver_domain_chart_carrier_subfield_constructed": true,
+        "combined_domain_chart_carrier_subfield_pair_constructed": true,
+        "source_ref_value_source_pair_ready": true,
+        "receiver_ref_value_source_pair_ready": true,
+        "combined_ref_value_source_pair_ready": true,
+        "source_non_domain_carrier_obstruction_present": true,
+        "receiver_non_domain_carrier_obstruction_present": true,
+        "combined_non_domain_carrier_obstruction_pair_present": true,
+        "source_all_carrier_fields_constructed": false,
+        "receiver_all_carrier_fields_constructed": false,
+        "combined_all_carrier_fields_constructed": false,
+        "source_constructed_witness_object_identity_present": false,
+        "receiver_constructed_witness_object_identity_present": false,
+        "combined_constructed_witness_object_identity_pair_present": false,
+        "source_witness_object_membership_proof_present": false,
+        "receiver_witness_object_membership_proof_present": false,
+        "combined_witness_object_membership_proof_pair_present": false,
+        "residual_data_construction_ready": false,
+        "row_unblocked": false,
+        "row_consumed": false,
+        "branch_chart_authorized": false
+      },
+      "row_unblocked": false,
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The row has source/receiver ref/value source handles and domain-chart carriers, but neither side has a carrier-complete constructed witness-object identity or same-witness membership proof."
+    }
+  ],
+  "summary": {
+    "endpoint_functionals": 4,
+    "residual_consumer_rows": 3,
+    "domain_chart_carrier_subfields_constructed": 4,
+    "source_endpoint_boundary_binding_refs_constructed": 4,
+    "source_endpoint_value_binding_maps_constructed": 4,
+    "non_domain_carrier_obstructions_present": 4,
+    "same_packet_endpoint_boundary_binding_ref_carrier_fields_constructed": 0,
+    "same_packet_endpoint_value_binding_map_carrier_fields_constructed": 0,
+    "all_carrier_fields_constructed": 0,
+    "constructed_witness_object_ids_present": 0,
+    "endpoint_boundary_binding_witness_objects_constructed": 0,
+    "same_constructed_witness_object_identity_proofs_present": 0,
+    "endpoint_boundary_binding_ref_membership_proofs": 0,
+    "endpoint_value_binding_map_membership_proofs": 0,
+    "co_membership_proofs": 0,
+    "witness_object_membership_proofs_present": 0,
+    "witness_object_contract_links_constructed": 0,
+    "row_ref_value_source_pairs_ready": 3,
+    "row_non_domain_carrier_obstruction_pairs_present": 3,
+    "row_all_carrier_field_pairs_constructed": 0,
+    "row_constructed_witness_object_identity_pairs_present": 0,
+    "row_witness_object_membership_proof_pairs_present": 0,
+    "row_residual_data_ready": 0,
+    "rows_unblocked": 0,
+    "row_consumption_count": 0,
+    "branch_chart_authorized": false
+  },
+  "endpoint_field_counts": {
+    "domain_chart_carrier_subfield_constructed": 4,
+    "domain_chart_carrier_preserved_as_partial_source": 4,
+    "source_endpoint_boundary_binding_ref_constructed": 4,
+    "source_witness_object_has_endpoint_boundary_binding_ref": 4,
+    "source_endpoint_value_binding_map_constructed": 4,
+    "source_witness_object_has_endpoint_value_binding_map": 4,
+    "source_endpoint_value_bound_to_boundary_binding": 4,
+    "actual_contract_link_rule_source_conditions_present": 4,
+    "constructed_witness_object_source_ready": 4,
+    "non_domain_carrier_obstruction_present": 4,
+    "endpoint_boundary_binding_ref_non_domain_carrier_source_candidate_declared": 4,
+    "endpoint_value_binding_map_non_domain_carrier_source_candidate_declared": 4,
+    "same_packet_witness_object_endpoint_boundary_binding_ref_carrier_field_constructed": 0,
+    "same_packet_witness_object_endpoint_value_binding_map_carrier_field_constructed": 0,
+    "same_packet_witness_object_contract_link_carrier_field_constructed": 0,
+    "same_packet_witness_object_algebraic_certificate_refs_carrier_field_constructed": 0,
+    "same_packet_witness_object_motion_evaluation_refs_carrier_field_constructed": 0,
+    "same_packet_witness_object_artifact_topology_replay_refs_carrier_field_constructed": 0,
+    "all_carrier_fields_constructed": 0,
+    "constructed_witness_object_id_present": 0,
+    "endpoint_boundary_binding_witness_object_constructed": 0,
+    "same_constructed_witness_object_identity_proof_present": 0,
+    "endpoint_boundary_binding_ref_member_of_witness_object_proven": 0,
+    "endpoint_value_binding_map_member_of_witness_object_proven": 0,
+    "endpoint_ref_and_value_map_same_witness_object_proven": 0,
+    "membership_source_not_id_adjacency_proven": 0,
+    "witness_object_membership_proof_present": 0,
+    "actual_contract_link_rule_available": 0,
+    "actual_contract_link_rule_derivation_present": 0,
+    "actual_contract_link_rule_soundness_proof_present": 0,
+    "actual_contract_link_rule_application_proof_present": 0,
+    "witness_object_contract_link_constructed": 0,
+    "witness_object_has_contract_link": 0,
+    "binding_contract_satisfied": 0,
+    "full_endpoint_boundary_binding_constructed": 0,
+    "endpoint_boundary_binding_ref_carrier_unblocked": 0,
+    "endpoint_value_binding_map_carrier_unblocked": 0,
+    "residual_data_construction_ready": 0,
+    "row_consumption_authorized": 0,
+    "branch_chart_authorized": 0
+  },
+  "row_field_counts": {
+    "row_locator_resolved": 3,
+    "source_domain_chart_carrier_subfield_constructed": 3,
+    "receiver_domain_chart_carrier_subfield_constructed": 3,
+    "combined_domain_chart_carrier_subfield_pair_constructed": 3,
+    "source_ref_value_source_pair_ready": 3,
+    "receiver_ref_value_source_pair_ready": 3,
+    "combined_ref_value_source_pair_ready": 3,
+    "source_non_domain_carrier_obstruction_present": 3,
+    "receiver_non_domain_carrier_obstruction_present": 3,
+    "combined_non_domain_carrier_obstruction_pair_present": 3,
+    "source_all_carrier_fields_constructed": 0,
+    "receiver_all_carrier_fields_constructed": 0,
+    "combined_all_carrier_fields_constructed": 0,
+    "source_constructed_witness_object_identity_present": 0,
+    "receiver_constructed_witness_object_identity_present": 0,
+    "combined_constructed_witness_object_identity_pair_present": 0,
+    "source_witness_object_membership_proof_present": 0,
+    "receiver_witness_object_membership_proof_present": 0,
+    "combined_witness_object_membership_proof_pair_present": 0,
+    "residual_data_construction_ready": 0,
+    "row_unblocked": 0,
+    "row_consumed": 0,
+    "branch_chart_authorized": 0
+  },
+  "capture_decision": "Priority-only. This packet proves the recommended route is still blocked at same-packet witness-object identity: ref/value source handles and domain-chart carriers are present, but non-domain carrier fields, constructed witness-object identity, same-witness membership proof, actual contract links, and row consumption are absent."
+}

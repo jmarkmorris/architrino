@@ -177,6 +177,31 @@ The maintenance question is therefore not only "is this file or scene valid?" It
 
 When a contributor or agent notices that concepts, prose, or scene structure are beginning to overlap in a way that invites consolidation, the default behavior should be to raise the suggestion explicitly. Where ideas beg to be combined, de-duplicated, or reduced into a cleaner canonical network, the contributor should say so rather than silently preserving the sprawl.
 
+## Forward-Only Documentation
+
+Most project documents should describe the current source of truth and the intended next path, not the path by which the document arrived there. A document becomes harder to maintain when it preserves abandoned names, old counts, superseded plans, or implementation migration notes that no current reader needs.
+
+Default behavior:
+
+- write the canonical current state directly;
+- remove process-history sentences once they no longer guide action;
+- keep transition notes only when they name active residual work or an active compatibility constraint;
+- use `reference/priorities/`, Architecture Decision Records, GitHub issues, GitHub pull requests, and git history for backlog, rationale, and historical trace;
+- keep user-facing and reader-facing documents free of internal drafting history unless the document is explicitly historical.
+
+Acceptable reasons to keep history inside a document:
+
+- the document is an ADR, release note, priority ledger, audit trail, generated-output inventory, or historical comparison;
+- the earlier state is evidence for the current claim;
+- a temporary coexistence or compatibility path still exists and a maintainer needs to know its removal condition.
+
+Unacceptable reasons:
+
+- the author remembers the earlier draft;
+- the sentence explains that the current design was "redesigned";
+- the document keeps an obsolete count, name, or plan to show progress;
+- a generated artifact has not yet caught up with the canonical source.
+
 ## Review Questions for Contributors
 
 Before considering a software change complete, ask:
@@ -188,6 +213,7 @@ Before considering a software change complete, ask:
 5. Did the change preserve the ownership boundary between content, scene structure, generated manifests, and runtime behavior?
 6. Did any comment, TODO, or compatibility branch become stale because of this change?
 7. Did the change increase conceptual sprawl in scenes or markdown where a cleaner combined object would be better?
+8. Did the change leave process-history prose in a guide, reader-facing page, or reference note where current-state prose would be cleaner?
 
 If the answer reveals residual debt, either clean it up in the same change or call it out explicitly as remaining work.
 
