@@ -8250,6 +8250,479 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
         );
       })
   );
+  const fiveNodeQuotientSourceInclusionBridge =
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_five_node_quotient_source_inclusion_bridge;
+  assert.equal(
+    fiveNodeQuotientSourceInclusionBridge.target_kind,
+    "candidate-requested-y44-shared-source-map-quotient-source-inclusion-bridge"
+  );
+  assert.equal(
+    fiveNodeQuotientSourceInclusionBridge.bridge_kind,
+    "provider-source-quantities-to-quotient-envelope-source-intervals"
+  );
+  assert.equal(
+    fiveNodeQuotientSourceInclusionBridge
+      .quotient_source_inclusion_bridge_classification,
+    "quotient-source-inclusion-bridge-reduces-to-directed-rounded-relative-radius-provider"
+  );
+  assert.equal(
+    fiveNodeQuotientSourceInclusionBridge
+      .all_rows_provider_quantities_inside_quotient_source_intervals,
+    true
+  );
+  assert.equal(
+    fiveNodeQuotientSourceInclusionBridge
+      .all_rows_provider_sources_reconstruct_quotient_centers,
+    true
+  );
+  assert.equal(
+    fiveNodeQuotientSourceInclusionBridge
+      .all_rows_original_term_widths_match_quotient_denominator,
+    true
+  );
+  assert.ok(
+    fiveNodeQuotientSourceInclusionBridge
+      .min_source_quantity_directed_relative_radius_ceiling <=
+      fiveNodeQuotientSourceInclusionBridge
+        .candidate_source_relative_tolerance
+  );
+  assert.equal(
+    fiveNodeQuotientSourceInclusionBridge.claim_boundary
+      .certifies_quotient_source_inclusion_bridge_only,
+    true
+  );
+  assert.equal(
+    fiveNodeQuotientSourceInclusionBridge.claim_boundary
+      .certifies_source_inputs_as_directed_rounded_same_domain,
+    false
+  );
+  assert.equal(
+    fiveNodeQuotientSourceInclusionBridge.claim_boundary
+      .certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    fiveNodeQuotientSourceInclusionBridge
+      .quotient_source_inclusion_bridge_rows.length,
+    5
+  );
+  const sourceTermProviderRowsByNode = new Map(
+    fiveNodeSourceTermProviderProbe.source_term_provider_probe_rows.map(
+      (row) => [row.node_index, row]
+    )
+  );
+  assert.ok(
+    fiveNodeQuotientSourceInclusionBridge
+      .quotient_source_inclusion_bridge_rows.every((row) => {
+        const providerRow = sourceTermProviderRowsByNode.get(row.node_index);
+        const providerDenominator =
+          providerRow.source_term_residual_rows.reduce(
+            (total, termRow) =>
+              total + termRow.original_residual_interval_half_width,
+            0
+          );
+        numberClose(
+          providerRow.signed_source_term_sum_available_half_width,
+          row.numerator_provider_value
+        );
+        numberClose(providerDenominator, row.denominator_provider_value);
+        assert.deepEqual(row.numerator_source_interval_from_provider, [
+          row.numerator_provider_value,
+          row.numerator_provider_value,
+        ]);
+        assert.deepEqual(row.denominator_source_interval_from_provider, [
+          row.denominator_provider_value,
+          row.denominator_provider_value,
+        ]);
+        assert.ok(
+          row.numerator_quotient_candidate_interval[0] <=
+            row.numerator_provider_value
+        );
+        assert.ok(
+          row.numerator_provider_value <=
+            row.numerator_quotient_candidate_interval[1]
+        );
+        assert.ok(
+          row.denominator_quotient_candidate_interval[0] <=
+            row.denominator_provider_value
+        );
+        assert.ok(
+          row.denominator_provider_value <=
+            row.denominator_quotient_candidate_interval[1]
+        );
+        return (
+          row.quotient_source_inclusion_bridge_row_kind ===
+            "candidate-node-local-quotient-source-inclusion-bridge-row" &&
+          row.provider_numerator_interval_contained_in_quotient_envelope ===
+            true &&
+          row.provider_denominator_interval_contained_in_quotient_envelope ===
+            true &&
+          row.all_original_term_widths_match_quotient_denominator === true &&
+          row.provider_sources_reconstruct_quotient_centers === true &&
+          row.provider_quantities_inside_quotient_source_intervals === true &&
+          row.row_reduces_to_directed_rounded_relative_radius_provider ===
+            true &&
+          row.claim_boundary
+            .certifies_quotient_source_inclusion_bridge_only === true &&
+          row.claim_boundary.certifies_directed_rounded_shared_domain ===
+            false
+        );
+      })
+  );
+  const fiveNodeQuotientSourceRadiusBudget =
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_five_node_quotient_source_radius_budget;
+  assert.equal(
+    fiveNodeQuotientSourceRadiusBudget.target_kind,
+    "candidate-requested-y44-shared-source-map-quotient-source-radius-budget"
+  );
+  assert.equal(
+    fiveNodeQuotientSourceRadiusBudget.budget_kind,
+    "absolute-source-quantity-half-width-budget-from-quotient-source-inclusion-bridge"
+  );
+  assert.equal(
+    fiveNodeQuotientSourceRadiusBudget
+      .quotient_source_radius_budget_classification,
+    "quotient-source-radius-budget-reduces-provider-certificate-to-absolute-source-radii"
+  );
+  assert.equal(
+    fiveNodeQuotientSourceRadiusBudget
+      .all_rows_have_positive_absolute_source_quantity_budgets,
+    true
+  );
+  assert.equal(
+    fiveNodeQuotientSourceRadiusBudget
+      .all_rows_term_budgets_sum_to_denominator_budget,
+    true
+  );
+  assert.equal(
+    fiveNodeQuotientSourceRadiusBudget
+      .all_rows_absolute_budget_reduce_to_directed_rounded_provider_target,
+    true
+  );
+  assert.equal(
+    fiveNodeQuotientSourceRadiusBudget.claim_boundary
+      .certifies_quotient_source_absolute_radius_budget_only,
+    true
+  );
+  assert.equal(
+    fiveNodeQuotientSourceRadiusBudget.claim_boundary
+      .certifies_source_inputs_as_directed_rounded_same_domain,
+    false
+  );
+  assert.equal(
+    fiveNodeQuotientSourceRadiusBudget.claim_boundary
+      .certifies_n38_fourth_derivative_bound,
+    false
+  );
+  assert.equal(
+    fiveNodeQuotientSourceRadiusBudget.claim_boundary
+      .certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    fiveNodeQuotientSourceRadiusBudget
+      .quotient_source_radius_budget_rows.length,
+    5
+  );
+  const radiusBudgetRows =
+    fiveNodeQuotientSourceRadiusBudget
+      .quotient_source_radius_budget_rows;
+  const minSourceQuantityAllowedAbsoluteHalfWidth = Math.min(
+    ...radiusBudgetRows.map(
+      (row) => row.source_quantity_allowed_absolute_half_width
+    )
+  );
+  const minSourceQuantityAllowedRelativeRadius = Math.min(
+    ...radiusBudgetRows.map(
+      (row) => row.source_quantity_allowed_relative_radius_ceiling
+    )
+  );
+  numberClose(
+    fiveNodeQuotientSourceRadiusBudget
+      .min_source_quantity_allowed_absolute_half_width,
+    minSourceQuantityAllowedAbsoluteHalfWidth
+  );
+  numberClose(
+    fiveNodeQuotientSourceRadiusBudget
+      .min_source_quantity_allowed_relative_radius_ceiling,
+    minSourceQuantityAllowedRelativeRadius
+  );
+  const dominantRadiusBudgetRow = radiusBudgetRows.find(
+    (row) =>
+      row.node_index ===
+      fiveNodeQuotientSourceRadiusBudget
+        .dominant_quotient_source_radius_budget_node_index
+  );
+  assert.ok(dominantRadiusBudgetRow);
+  numberClose(
+    dominantRadiusBudgetRow.source_quantity_allowed_absolute_half_width,
+    minSourceQuantityAllowedAbsoluteHalfWidth
+  );
+  assert.ok(
+    radiusBudgetRows.every((row) => {
+      numberClose(
+        row.numerator_allowed_absolute_half_width,
+        row.numerator_provider_value *
+          row.numerator_directed_relative_radius_ceiling
+      );
+      numberClose(
+        row.denominator_allowed_absolute_half_width,
+        row.denominator_provider_value *
+          row.denominator_directed_relative_radius_ceiling
+      );
+      numberClose(
+        row.source_quantity_allowed_absolute_half_width,
+        Math.min(
+          row.numerator_allowed_absolute_half_width,
+          row.denominator_allowed_absolute_half_width
+        )
+      );
+      numberClose(
+        row.source_quantity_allowed_relative_radius_ceiling,
+        Math.min(
+          row.numerator_directed_relative_radius_ceiling,
+          row.denominator_directed_relative_radius_ceiling
+        )
+      );
+      const termBudgetSum =
+        row.denominator_term_absolute_half_width_budget_rows.reduce(
+          (total, termRow) =>
+            total + termRow.term_allowed_absolute_half_width,
+          0
+        );
+      numberClose(
+        termBudgetSum,
+        row.denominator_allowed_absolute_half_width
+      );
+      assert.ok(
+        row.denominator_term_absolute_half_width_budget_rows.every(
+          (termRow) => {
+            numberClose(
+              termRow.term_allowed_absolute_half_width,
+              row.denominator_allowed_absolute_half_width *
+                termRow.denominator_half_width_share
+            );
+            numberClose(
+              termRow.term_allowed_relative_radius_ceiling,
+              row.denominator_directed_relative_radius_ceiling
+            );
+            return (
+              termRow.term_budget_reconstructs_denominator_relative_radius ===
+                true &&
+              termRow.term_allowed_absolute_half_width > 0 &&
+              termRow.term_allowed_relative_radius_ceiling > 0
+            );
+          }
+        )
+      );
+      return (
+        row.quotient_source_radius_budget_row_kind ===
+          "candidate-node-local-quotient-source-absolute-radius-budget-row" &&
+        row.row_has_positive_absolute_source_quantity_budget === true &&
+        row.denominator_term_budget_sum_matches_denominator_budget === true &&
+        row
+          .row_reduces_absolute_source_quantity_budget_to_directed_rounded_provider_target ===
+          true &&
+        row.claim_boundary
+          .certifies_quotient_source_absolute_radius_budget_only === true &&
+        row.claim_boundary
+          .certifies_source_inputs_as_directed_rounded_same_domain ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+      );
+    })
+  );
+  const fiveNodeAbsoluteSourceProviderFit =
+    sourceMapResidualCovarianceTarget
+      .source_map_residual_shared_stream_five_node_absolute_source_provider_fit;
+  assert.equal(
+    fiveNodeAbsoluteSourceProviderFit.target_kind,
+    "candidate-requested-y44-shared-source-map-absolute-source-provider-fit"
+  );
+  assert.equal(
+    fiveNodeAbsoluteSourceProviderFit.fit_kind,
+    "current-shaped-source-term-provider-to-absolute-quotient-source-budget"
+  );
+  assert.equal(
+    fiveNodeAbsoluteSourceProviderFit
+      .absolute_source_provider_fit_rows.length,
+    5
+  );
+  assert.equal(
+    fiveNodeAbsoluteSourceProviderFit.claim_boundary
+      .certifies_source_inputs_as_directed_rounded_same_domain,
+    false
+  );
+  assert.equal(
+    fiveNodeAbsoluteSourceProviderFit.claim_boundary
+      .certifies_n38_fourth_derivative_bound,
+    false
+  );
+  assert.equal(
+    fiveNodeAbsoluteSourceProviderFit.claim_boundary
+      .certifies_s37_dependency_preserving_division,
+    false
+  );
+  assert.equal(
+    fiveNodeAbsoluteSourceProviderFit.claim_boundary
+      .certifies_shifted_R43_outer_bound,
+    false
+  );
+  const absoluteSourceProviderFitRows =
+    fiveNodeAbsoluteSourceProviderFit.absolute_source_provider_fit_rows;
+  const allAbsoluteProviderRowsFit = absoluteSourceProviderFitRows.every(
+    (row) => row.row_current_provider_fits_absolute_source_budget === true
+  );
+  assert.equal(
+    fiveNodeAbsoluteSourceProviderFit
+      .all_current_provider_rows_fit_absolute_source_budgets,
+    allAbsoluteProviderRowsFit
+  );
+  assert.equal(
+    fiveNodeAbsoluteSourceProviderFit
+      .absolute_source_provider_fit_classification,
+    allAbsoluteProviderRowsFit
+      ? "current-shaped-source-provider-fits-absolute-quotient-source-budgets-source-certification-open"
+      : "current-shaped-source-provider-exceeds-absolute-quotient-source-budgets"
+  );
+  assert.equal(
+    fiveNodeAbsoluteSourceProviderFit.claim_boundary
+      .certifies_current_shaped_provider_absolute_budget_fit_only,
+    allAbsoluteProviderRowsFit
+  );
+  const maxSourceQuantityToAbsoluteBudgetRatio = Math.max(
+    ...absoluteSourceProviderFitRows.map(
+      (row) => row.current_source_quantity_to_absolute_budget_ratio
+    )
+  );
+  const maxShapedTermToAbsoluteBudgetRatio = Math.max(
+    ...absoluteSourceProviderFitRows.map(
+      (row) => row.dominant_provider_term_to_absolute_budget_ratio
+    )
+  );
+  const maxLiveTermToAbsoluteBudgetRatio = Math.max(
+    ...absoluteSourceProviderFitRows.flatMap((row) =>
+      row.current_provider_term_fit_rows.map(
+        (termRow) => termRow.term_live_half_width_to_allowed_budget_ratio
+      )
+    )
+  );
+  numberClose(
+    fiveNodeAbsoluteSourceProviderFit
+      .max_current_source_quantity_to_absolute_budget_ratio,
+    maxSourceQuantityToAbsoluteBudgetRatio
+  );
+  numberClose(
+    fiveNodeAbsoluteSourceProviderFit.max_current_term_to_absolute_budget_ratio,
+    maxShapedTermToAbsoluteBudgetRatio
+  );
+  numberClose(
+    fiveNodeAbsoluteSourceProviderFit
+      .max_source_term_live_half_width_to_allowed_budget_ratio,
+    maxLiveTermToAbsoluteBudgetRatio
+  );
+  const dominantGapRow = absoluteSourceProviderFitRows.find((row) =>
+    row.current_provider_term_fit_rows.some((termRow) =>
+      Math.abs(
+        termRow.term_live_half_width_to_allowed_budget_ratio -
+          maxLiveTermToAbsoluteBudgetRatio
+      ) <= 1e-9 * Math.max(1, maxLiveTermToAbsoluteBudgetRatio)
+    )
+  );
+  const dominantGapTerm = dominantGapRow.current_provider_term_fit_rows.find(
+    (termRow) =>
+      Math.abs(
+        termRow.term_live_half_width_to_allowed_budget_ratio -
+          maxLiveTermToAbsoluteBudgetRatio
+      ) <= 1e-9 * Math.max(1, maxLiveTermToAbsoluteBudgetRatio)
+  );
+  assert.equal(
+    fiveNodeAbsoluteSourceProviderFit
+      .dominant_absolute_source_provider_gap_node_index,
+    dominantGapRow.node_index
+  );
+  assert.equal(
+    fiveNodeAbsoluteSourceProviderFit
+      .dominant_absolute_source_provider_gap_term,
+    dominantGapTerm.term
+  );
+  assert.ok(
+    absoluteSourceProviderFitRows.every((row) => {
+      assert.deepEqual(row.source_terms_preserved_signed_together, [
+        "delta_squared_speed",
+        "sin_phi",
+        "sin_delta",
+      ]);
+      assert.deepEqual(row.zero_source_terms, ["constant_minus_two"]);
+      numberClose(
+        row.numerator_budget_to_provider_value_ratio,
+        row.numerator_directed_relative_radius_ceiling
+      );
+      numberClose(
+        row.denominator_budget_to_provider_value_ratio,
+        row.denominator_directed_relative_radius_ceiling
+      );
+      numberClose(
+        row.current_source_quantity_to_absolute_budget_ratio,
+        row.current_shaped_source_sum_half_width /
+          row.source_quantity_allowed_absolute_half_width
+      );
+      const termBudgetSum = row.current_provider_term_fit_rows.reduce(
+        (total, termRow) => total + termRow.allowed_absolute_half_width,
+        0
+      );
+      numberClose(
+        termBudgetSum,
+        row.denominator_allowed_absolute_half_width
+      );
+      assert.equal(
+        row.denominator_term_budget_sum_reconstructs_denominator_allowed_absolute_half_width,
+        true
+      );
+      assert.ok(
+        row.current_provider_term_fit_rows.every((termRow) => {
+          numberClose(
+            termRow.current_shaped_provider_to_allowed_budget_ratio,
+            termRow.current_shaped_provider_half_width /
+              termRow.allowed_absolute_half_width
+          );
+          numberClose(
+            termRow.term_live_half_width_to_allowed_budget_ratio,
+            termRow.original_provider_half_width /
+              termRow.allowed_absolute_half_width
+          );
+          numberClose(
+            termRow.term_allowed_budget_to_live_half_width_ratio,
+            termRow.allowed_absolute_half_width /
+              termRow.original_provider_half_width
+          );
+          return (
+            termRow.current_shaped_provider_fits_absolute_term_budget ===
+              (termRow.current_shaped_provider_to_allowed_budget_ratio <= 1) &&
+            [
+              "candidate-current-shaped-provider-term-fits-absolute-source-budget-source-certification-open",
+              "candidate-current-shaped-provider-term-exceeds-absolute-source-budget",
+            ].includes(termRow.term_status)
+          );
+        })
+      );
+      return (
+        row.absolute_source_provider_fit_row_kind ===
+          "candidate-node-local-current-shaped-provider-absolute-source-budget-fit-row" &&
+        row.source_y_order === 42 &&
+        row.required_xi_derivative_order === 4 &&
+        row.claim_boundary
+          .certifies_current_shaped_provider_absolute_budget_fit_only ===
+          row.row_current_provider_fits_absolute_source_budget &&
+        row.claim_boundary
+          .certifies_source_inputs_as_directed_rounded_same_domain ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+      );
+    })
+  );
   const fiveNodeContractedProvider =
     sourceMapResidualCovarianceTarget
       .source_map_residual_shared_stream_five_node_contracted_provider_candidate;
@@ -8983,6 +9456,156 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
       .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_quotient_envelope_dominant_node_index,
     fiveNodeHomotheticContractionScalarQuotientEnvelope
       .dominant_scalar_quotient_envelope_node_index
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_inclusion_classification,
+    fiveNodeQuotientSourceInclusionBridge
+      .quotient_source_inclusion_bridge_classification
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_inclusion_all_inside,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_inclusion_all_centers_reconstruct,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_inclusion_all_denominator_terms_match,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_inclusion_min_radius_ceiling,
+    fiveNodeQuotientSourceInclusionBridge
+      .min_source_quantity_directed_relative_radius_ceiling
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_inclusion_dominant_node_index,
+    fiveNodeQuotientSourceInclusionBridge
+      .dominant_quotient_source_inclusion_node_index
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_classification,
+    fiveNodeQuotientSourceRadiusBudget
+      .quotient_source_radius_budget_classification
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_all_positive,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_all_term_sums_match,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_all_reduce,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_min_numerator_absolute,
+    fiveNodeQuotientSourceRadiusBudget
+      .min_numerator_allowed_absolute_half_width
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_min_denominator_absolute,
+    fiveNodeQuotientSourceRadiusBudget
+      .min_denominator_allowed_absolute_half_width
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_min_source_absolute,
+    fiveNodeQuotientSourceRadiusBudget
+      .min_source_quantity_allowed_absolute_half_width
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_min_source_relative,
+    fiveNodeQuotientSourceRadiusBudget
+      .min_source_quantity_allowed_relative_radius_ceiling
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_dominant_node_index,
+    fiveNodeQuotientSourceRadiusBudget
+      .dominant_quotient_source_radius_budget_node_index
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_dominant_quantity,
+    fiveNodeQuotientSourceRadiusBudget
+      .dominant_quotient_source_radius_budget_quantity
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_classification,
+    fiveNodeAbsoluteSourceProviderFit
+      .absolute_source_provider_fit_classification
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_all_source_sums_fit,
+    fiveNodeAbsoluteSourceProviderFit
+      .all_current_provider_source_sums_fit_absolute_budgets
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_all_terms_fit,
+    fiveNodeAbsoluteSourceProviderFit
+      .all_current_provider_terms_fit_absolute_budgets
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_all_rows_fit,
+    fiveNodeAbsoluteSourceProviderFit
+      .all_current_provider_rows_fit_absolute_source_budgets
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_max_source_quantity_ratio,
+    fiveNodeAbsoluteSourceProviderFit
+      .max_current_source_quantity_to_absolute_budget_ratio
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_max_shaped_term_ratio,
+    fiveNodeAbsoluteSourceProviderFit
+      .max_current_term_to_absolute_budget_ratio
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_max_live_term_gap_ratio,
+    fiveNodeAbsoluteSourceProviderFit
+      .max_source_term_live_half_width_to_allowed_budget_ratio
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_dominant_node_index,
+    fiveNodeAbsoluteSourceProviderFit
+      .dominant_absolute_source_provider_fit_node_index
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_dominant_quantity,
+    fiveNodeAbsoluteSourceProviderFit
+      .dominant_absolute_source_provider_fit_quantity
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_dominant_gap_term,
+    fiveNodeAbsoluteSourceProviderFit
+      .dominant_absolute_source_provider_gap_term
   );
   assert.equal(
     producerBudgetComparison

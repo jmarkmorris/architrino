@@ -44840,6 +44840,112 @@ export function buildH39RequestedY44ProducerImageBudgetComparisonCandidate({
       nonconstantSourceMapResidualCovarianceTarget
         ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope
         ?.dominant_scalar_quotient_envelope_node_index ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_inclusion_classification:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_inclusion_bridge
+        ?.quotient_source_inclusion_bridge_classification ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_inclusion_all_inside:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_inclusion_bridge
+        ?.all_rows_provider_quantities_inside_quotient_source_intervals ??
+      null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_inclusion_all_centers_reconstruct:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_inclusion_bridge
+        ?.all_rows_provider_sources_reconstruct_quotient_centers ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_inclusion_all_denominator_terms_match:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_inclusion_bridge
+        ?.all_rows_original_term_widths_match_quotient_denominator ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_inclusion_min_radius_ceiling:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_inclusion_bridge
+        ?.min_source_quantity_directed_relative_radius_ceiling ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_inclusion_dominant_node_index:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_inclusion_bridge
+        ?.dominant_quotient_source_inclusion_node_index ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_classification:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_radius_budget
+        ?.quotient_source_radius_budget_classification ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_all_positive:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_radius_budget
+        ?.all_rows_have_positive_absolute_source_quantity_budgets ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_all_term_sums_match:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_radius_budget
+        ?.all_rows_term_budgets_sum_to_denominator_budget ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_all_reduce:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_radius_budget
+        ?.all_rows_absolute_budget_reduce_to_directed_rounded_provider_target ??
+      null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_min_numerator_absolute:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_radius_budget
+        ?.min_numerator_allowed_absolute_half_width ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_min_denominator_absolute:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_radius_budget
+        ?.min_denominator_allowed_absolute_half_width ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_min_source_absolute:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_radius_budget
+        ?.min_source_quantity_allowed_absolute_half_width ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_min_source_relative:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_radius_budget
+        ?.min_source_quantity_allowed_relative_radius_ceiling ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_dominant_node_index:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_radius_budget
+        ?.dominant_quotient_source_radius_budget_node_index ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_dominant_quantity:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_radius_budget
+        ?.dominant_quotient_source_radius_budget_quantity ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_classification:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_absolute_source_provider_fit
+        ?.absolute_source_provider_fit_classification ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_all_source_sums_fit:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_absolute_source_provider_fit
+        ?.all_current_provider_source_sums_fit_absolute_budgets ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_all_terms_fit:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_absolute_source_provider_fit
+        ?.all_current_provider_terms_fit_absolute_budgets ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_all_rows_fit:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_absolute_source_provider_fit
+        ?.all_current_provider_rows_fit_absolute_source_budgets ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_max_source_quantity_ratio:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_absolute_source_provider_fit
+        ?.max_current_source_quantity_to_absolute_budget_ratio ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_max_shaped_term_ratio:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_absolute_source_provider_fit
+        ?.max_current_term_to_absolute_budget_ratio ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_max_live_term_gap_ratio:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_absolute_source_provider_fit
+        ?.max_source_term_live_half_width_to_allowed_budget_ratio ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_dominant_node_index:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_absolute_source_provider_fit
+        ?.dominant_absolute_source_provider_fit_node_index ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_dominant_quantity:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_absolute_source_provider_fit
+        ?.dominant_absolute_source_provider_fit_quantity ?? null,
+    producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_dominant_gap_term:
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_absolute_source_provider_fit
+        ?.dominant_absolute_source_provider_gap_term ?? null,
     producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_contracted_provider_reaches_verifier_with_source_only_failure:
       nonconstantSourceMapResidualCovarianceTarget
         ?.source_map_residual_shared_stream_five_node_contracted_provider_candidate
@@ -52416,6 +52522,1151 @@ function h39RequestedY44SourceMapResidualFiveNodeHomotheticContractionScalarQuot
   };
 }
 
+function h39RequestedY44SourceMapResidualFiveNodeQuotientSourceInclusionBridge({
+  sourceTermProviderProbe,
+  homotheticContractionScalarProviderTarget,
+  homotheticContractionScalarQuotientEnvelope,
+} = {}) {
+  const intervalContainsNumber = (interval, value) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    Number(interval[0]) <= Number(value) &&
+    Number(value) <= Number(interval[1]);
+  const relativePointGap = (left, right) => {
+    const leftNumber = Number(left);
+    const rightNumber = Number(right);
+    if (!Number.isFinite(leftNumber) || !Number.isFinite(rightNumber)) {
+      return Infinity;
+    }
+    return (
+      Math.abs(leftNumber - rightNumber) /
+      Math.max(1, Math.abs(leftNumber), Math.abs(rightNumber))
+    );
+  };
+  const relativeRadiusCeilingForPointInInterval = (interval, value) => {
+    const orderedInterval = finiteOrderedIntervalOrNull(interval);
+    const center = Number(value);
+    if (orderedInterval === null || !finitePositive(center)) {
+      return null;
+    }
+    const lowerSlack = center - Number(orderedInterval[0]);
+    const upperSlack = Number(orderedInterval[1]) - center;
+    const slack = Math.min(lowerSlack, upperSlack);
+    return finiteNonnegative(slack) ? slack / center : null;
+  };
+  const missingArtifact = {
+    target_kind:
+      "candidate-requested-y44-shared-source-map-quotient-source-inclusion-bridge",
+    proof_status:
+      "candidate-quotient-source-inclusion-bridge-inputs-missing",
+    bridge_kind:
+      "provider-source-quantities-to-quotient-envelope-source-intervals",
+    quotient_source_inclusion_bridge_rows_available: false,
+    quotient_source_inclusion_bridge_rows: [],
+    all_rows_provider_quantities_inside_quotient_source_intervals: false,
+    all_rows_provider_sources_reconstruct_quotient_centers: false,
+    all_rows_original_term_widths_match_quotient_denominator: false,
+    max_numerator_provider_to_quotient_relative_gap: null,
+    max_denominator_provider_to_quotient_relative_gap: null,
+    min_numerator_directed_relative_radius_ceiling: null,
+    min_denominator_directed_relative_radius_ceiling: null,
+    min_source_quantity_directed_relative_radius_ceiling: null,
+    dominant_quotient_source_inclusion_node_index: null,
+    quotient_source_inclusion_bridge_classification:
+      "quotient-source-inclusion-bridge-inputs-missing",
+    claim_boundary: {
+      certifies_quotient_source_inclusion_bridge_only: false,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+  if (
+    sourceTermProviderProbe === null ||
+    sourceTermProviderProbe === undefined ||
+    sourceTermProviderProbe.target_kind !==
+      "candidate-requested-y44-shared-source-map-source-term-provider-probe" ||
+    sourceTermProviderProbe.source_term_provider_probe_rows_available !== true ||
+    homotheticContractionScalarProviderTarget === null ||
+    homotheticContractionScalarProviderTarget === undefined ||
+    homotheticContractionScalarProviderTarget.target_kind !==
+      "candidate-requested-y44-shared-source-map-homothetic-contraction-scalar-provider-target" ||
+    homotheticContractionScalarProviderTarget
+      .homothetic_contraction_scalar_provider_target_rows_available !== true ||
+    homotheticContractionScalarQuotientEnvelope === null ||
+    homotheticContractionScalarQuotientEnvelope === undefined ||
+    homotheticContractionScalarQuotientEnvelope.target_kind !==
+      "candidate-requested-y44-shared-source-map-homothetic-contraction-scalar-quotient-envelope-target" ||
+    homotheticContractionScalarQuotientEnvelope
+      .homothetic_contraction_scalar_quotient_envelope_rows_available !== true
+  ) {
+    return missingArtifact;
+  }
+  const tolerance = Number(
+    homotheticContractionScalarQuotientEnvelope
+      .scalar_provider_target_relative_tolerance
+  );
+  const sourceTolerance = Number(
+    homotheticContractionScalarQuotientEnvelope
+      .candidate_source_relative_tolerance
+  );
+  const providerRows = sourceTermProviderProbe.source_term_provider_probe_rows ?? [];
+  const providerTargetRows =
+    homotheticContractionScalarProviderTarget
+      .homothetic_contraction_scalar_provider_target_rows ?? [];
+  const quotientRows =
+    homotheticContractionScalarQuotientEnvelope
+      .homothetic_contraction_scalar_quotient_envelope_rows ?? [];
+  if (
+    !finitePositive(tolerance) ||
+    !finitePositive(sourceTolerance) ||
+    providerRows.length !== 5 ||
+    providerTargetRows.length !== 5 ||
+    quotientRows.length !== 5
+  ) {
+    return missingArtifact;
+  }
+  const providerRowsByNode = new Map(
+    providerRows.map((row) => [Number(row.node_index), row])
+  );
+  const targetRowsByNode = new Map(
+    providerTargetRows.map((row) => [Number(row.node_index), row])
+  );
+  const rows = quotientRows.map((quotientRow) => {
+    const nodeIndex = Number(quotientRow.node_index);
+    const providerRow = providerRowsByNode.get(nodeIndex);
+    const targetRow = targetRowsByNode.get(nodeIndex);
+    const numeratorInterval = finiteOrderedIntervalOrNull(
+      quotientRow.numerator_candidate_interval
+    );
+    const denominatorInterval = finiteOrderedIntervalOrNull(
+      quotientRow.denominator_candidate_interval
+    );
+    const providerTermRows = Array.isArray(providerRow?.source_term_residual_rows)
+      ? providerRow.source_term_residual_rows
+      : [];
+    const targetTermRows = Array.isArray(targetRow?.term_source_rows)
+      ? targetRow.term_source_rows
+      : [];
+    if (
+      providerRow === undefined ||
+      targetRow === undefined ||
+      numeratorInterval === null ||
+      denominatorInterval === null ||
+      providerTermRows.length !== H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length ||
+      targetTermRows.length !== H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length
+    ) {
+      return null;
+    }
+    const numeratorProviderValue = Number(
+      providerRow.signed_source_term_sum_available_half_width
+    );
+    const numeratorQuotientCenter = Number(
+      quotientRow.numerator_available_signed_half_width
+    );
+    const denominatorProviderValue = providerTermRows.reduce(
+      (total, termRow) =>
+        total + Number(termRow.original_residual_interval_half_width),
+      0
+    );
+    const denominatorQuotientCenter = Number(
+      quotientRow.denominator_original_source_term_half_width_sum
+    );
+    if (
+      !finitePositive(numeratorProviderValue) ||
+      !finitePositive(numeratorQuotientCenter) ||
+      !finitePositive(denominatorProviderValue) ||
+      !finitePositive(denominatorQuotientCenter)
+    ) {
+      return null;
+    }
+    const termWidthRows = H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.map(
+      (term) => {
+        const providerTerm = providerTermRows.find(
+          (candidate) => candidate.term === term
+        );
+        const targetTerm = targetTermRows.find(
+          (candidate) => candidate.term === term
+        );
+        const providerHalfWidth = Number(
+          providerTerm?.original_residual_interval_half_width
+        );
+        const targetHalfWidth = Number(
+          targetTerm?.original_residual_interval_half_width
+        );
+        const gap = relativePointGap(providerHalfWidth, targetHalfWidth);
+        return {
+          term,
+          provider_original_residual_interval:
+            finiteOrderedIntervalOrNull(providerTerm?.original_residual_interval),
+          provider_original_residual_interval_half_width: providerHalfWidth,
+          quotient_target_original_residual_interval:
+            finiteOrderedIntervalOrNull(targetTerm?.original_residual_interval),
+          quotient_target_original_residual_interval_half_width:
+            targetHalfWidth,
+          original_half_width_share_of_denominator:
+            finitePositive(denominatorProviderValue)
+              ? providerHalfWidth / denominatorProviderValue
+              : null,
+          provider_to_quotient_original_half_width_relative_gap: gap,
+          term_width_matches_quotient_denominator:
+            finiteNonnegative(gap) && gap <= tolerance,
+        };
+      }
+    );
+    if (
+      termWidthRows.some(
+        (termRow) =>
+          termRow.provider_original_residual_interval === null ||
+          termRow.quotient_target_original_residual_interval === null ||
+          !finitePositive(
+            termRow.provider_original_residual_interval_half_width
+          ) ||
+          !finitePositive(
+            termRow.quotient_target_original_residual_interval_half_width
+          )
+      )
+    ) {
+      return null;
+    }
+    const numeratorGap = relativePointGap(
+      numeratorProviderValue,
+      numeratorQuotientCenter
+    );
+    const denominatorGap = relativePointGap(
+      denominatorProviderValue,
+      denominatorQuotientCenter
+    );
+    const numeratorContained = intervalContainsNumber(
+      numeratorInterval,
+      numeratorProviderValue
+    );
+    const denominatorContained = intervalContainsNumber(
+      denominatorInterval,
+      denominatorProviderValue
+    );
+    const numeratorProviderInterval = [
+      numeratorProviderValue,
+      numeratorProviderValue,
+    ];
+    const denominatorProviderInterval = [
+      denominatorProviderValue,
+      denominatorProviderValue,
+    ];
+    const numeratorRadiusCeiling =
+      relativeRadiusCeilingForPointInInterval(
+        numeratorInterval,
+        numeratorProviderValue
+      );
+    const denominatorRadiusCeiling =
+      relativeRadiusCeilingForPointInInterval(
+        denominatorInterval,
+        denominatorProviderValue
+      );
+    const allTermWidthsMatch = termWidthRows.every(
+      (termRow) => termRow.term_width_matches_quotient_denominator === true
+    );
+    const providerCentersReconstructQuotient =
+      numeratorGap <= tolerance && denominatorGap <= tolerance;
+    const providerQuantitiesInsideQuotient =
+      numeratorContained && denominatorContained;
+    return {
+      node_index: nodeIndex,
+      xi_midpoint: quotientRow.xi_midpoint,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      tightest_budget_cell_id: quotientRow.tightest_budget_cell_id,
+      quotient_source_inclusion_bridge_row_kind:
+        "candidate-node-local-quotient-source-inclusion-bridge-row",
+      bridge_kind:
+        "provider-source-quantities-to-quotient-envelope-source-intervals",
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      zero_source_terms: ["constant_minus_two"],
+      provider_row_source_kind: providerRow.provider_row_source_kind,
+      provider_row_claim_level: providerRow.provider_row_claim_level,
+      candidate_source_relative_tolerance: sourceTolerance,
+      scalar_provider_target_relative_tolerance: tolerance,
+      numerator_source_quantity:
+        "signed_source_term_sum_available_half_width",
+      denominator_source_quantity:
+        "sum_original_source_term_half_widths",
+      numerator_source_interval_from_provider: numeratorProviderInterval,
+      numerator_provider_value: numeratorProviderValue,
+      numerator_quotient_center: numeratorQuotientCenter,
+      numerator_quotient_candidate_interval: numeratorInterval,
+      numerator_provider_to_quotient_relative_gap: numeratorGap,
+      numerator_provider_point_inside_quotient_interval: numeratorContained,
+      provider_numerator_interval_contained_in_quotient_envelope:
+        intervalContainsInterval(numeratorInterval, numeratorProviderInterval),
+      numerator_directed_relative_radius_ceiling:
+        numeratorRadiusCeiling,
+      denominator_source_interval_from_provider:
+        denominatorProviderInterval,
+      denominator_provider_value: denominatorProviderValue,
+      denominator_quotient_center: denominatorQuotientCenter,
+      denominator_quotient_candidate_interval: denominatorInterval,
+      denominator_provider_to_quotient_relative_gap: denominatorGap,
+      denominator_provider_point_inside_quotient_interval:
+        denominatorContained,
+      provider_denominator_interval_contained_in_quotient_envelope:
+        intervalContainsInterval(
+          denominatorInterval,
+          denominatorProviderInterval
+        ),
+      denominator_directed_relative_radius_ceiling:
+        denominatorRadiusCeiling,
+      source_quantity_directed_relative_radius_ceiling:
+        finiteNonnegative(numeratorRadiusCeiling) &&
+        finiteNonnegative(denominatorRadiusCeiling)
+          ? Math.min(numeratorRadiusCeiling, denominatorRadiusCeiling)
+          : null,
+      term_width_rows: termWidthRows,
+      all_original_term_widths_match_quotient_denominator:
+        allTermWidthsMatch,
+      provider_sources_reconstruct_quotient_centers:
+        providerCentersReconstructQuotient,
+      provider_quantities_inside_quotient_source_intervals:
+        providerQuantitiesInsideQuotient,
+      row_reduces_to_directed_rounded_relative_radius_provider:
+        allTermWidthsMatch &&
+        providerCentersReconstructQuotient &&
+        providerQuantitiesInsideQuotient,
+      row_status:
+        allTermWidthsMatch &&
+        providerCentersReconstructQuotient &&
+        providerQuantitiesInsideQuotient
+          ? "candidate-quotient-source-inclusion-bridge-row-source-certification-open"
+          : "candidate-quotient-source-inclusion-bridge-row-open",
+      claim_boundary: {
+        certifies_quotient_source_inclusion_bridge_only:
+          allTermWidthsMatch &&
+          providerCentersReconstructQuotient &&
+          providerQuantitiesInsideQuotient,
+        certifies_source_inputs_as_directed_rounded_same_domain: false,
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  });
+  if (rows.some((row) => row === null)) {
+    return missingArtifact;
+  }
+  const allRowsProviderQuantitiesInsideQuotient = rows.every(
+    (row) =>
+      row.provider_quantities_inside_quotient_source_intervals === true
+  );
+  const allRowsProviderSourcesReconstructQuotient = rows.every(
+    (row) => row.provider_sources_reconstruct_quotient_centers === true
+  );
+  const allRowsTermWidthsMatch = rows.every(
+    (row) =>
+      row.all_original_term_widths_match_quotient_denominator === true
+  );
+  const dominantRow = rows.reduce((best, row) =>
+    Number(row.source_quantity_directed_relative_radius_ceiling) <
+    Number(best.source_quantity_directed_relative_radius_ceiling)
+      ? row
+      : best
+  );
+  return {
+    target_kind:
+      "candidate-requested-y44-shared-source-map-quotient-source-inclusion-bridge",
+    source_term_provider_probe_kind: sourceTermProviderProbe.target_kind,
+    homothetic_contraction_scalar_provider_target_kind:
+      homotheticContractionScalarProviderTarget.target_kind,
+    homothetic_contraction_scalar_quotient_envelope_kind:
+      homotheticContractionScalarQuotientEnvelope.target_kind,
+    proof_status:
+      "candidate-quotient-source-inclusion-bridge-not-directed-rounded",
+    bridge_kind:
+      "provider-source-quantities-to-quotient-envelope-source-intervals",
+    source_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    candidate_source_relative_tolerance: sourceTolerance,
+    scalar_provider_target_relative_tolerance: tolerance,
+    quotient_source_inclusion_bridge_rows_available: true,
+    quotient_source_inclusion_bridge_rows: rows,
+    all_rows_provider_quantities_inside_quotient_source_intervals:
+      allRowsProviderQuantitiesInsideQuotient,
+    all_rows_provider_sources_reconstruct_quotient_centers:
+      allRowsProviderSourcesReconstructQuotient,
+    all_rows_original_term_widths_match_quotient_denominator:
+      allRowsTermWidthsMatch,
+    max_numerator_provider_to_quotient_relative_gap:
+      finiteMaximum(
+        rows.map((row) => row.numerator_provider_to_quotient_relative_gap)
+      ),
+    max_denominator_provider_to_quotient_relative_gap:
+      finiteMaximum(
+        rows.map((row) => row.denominator_provider_to_quotient_relative_gap)
+      ),
+    min_numerator_directed_relative_radius_ceiling:
+      finiteMinimum(
+        rows.map((row) => row.numerator_directed_relative_radius_ceiling)
+      ),
+    min_denominator_directed_relative_radius_ceiling:
+      finiteMinimum(
+        rows.map((row) => row.denominator_directed_relative_radius_ceiling)
+      ),
+    min_source_quantity_directed_relative_radius_ceiling:
+      finiteMinimum(
+        rows.map(
+          (row) => row.source_quantity_directed_relative_radius_ceiling
+        )
+      ),
+    dominant_quotient_source_inclusion_node_index:
+      dominantRow?.node_index ?? null,
+    quotient_source_inclusion_bridge_classification:
+      allRowsProviderQuantitiesInsideQuotient &&
+      allRowsProviderSourcesReconstructQuotient &&
+      allRowsTermWidthsMatch
+        ? "quotient-source-inclusion-bridge-reduces-to-directed-rounded-relative-radius-provider"
+        : "quotient-source-inclusion-bridge-open",
+    quotient_source_inclusion_bridge_interpretation:
+      "the term-preserving provider rows and the scalar quotient envelope now meet at the same numerator and denominator source quantities; the future directed-rounded H38 producer-image provider only has to enclose those quantities within the recorded relative-radius ceilings before quotient division",
+    next_certificate_object:
+      "directed-rounded same-domain H38 producer-image provider for signed source-sum clearance and original source-term width sum with relative radii below the quotient source inclusion ceilings",
+    claim_boundary: {
+      certifies_quotient_source_inclusion_bridge_only:
+        allRowsProviderQuantitiesInsideQuotient &&
+        allRowsProviderSourcesReconstructQuotient &&
+        allRowsTermWidthsMatch,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function h39RequestedY44SourceMapResidualFiveNodeQuotientSourceRadiusBudget({
+  quotientSourceInclusionBridge,
+} = {}) {
+  const missingArtifact = {
+    target_kind:
+      "candidate-requested-y44-shared-source-map-quotient-source-radius-budget",
+    proof_status:
+      "candidate-quotient-source-radius-budget-inputs-missing",
+    budget_kind:
+      "absolute-source-quantity-half-width-budget-from-quotient-source-inclusion-bridge",
+    quotient_source_radius_budget_rows_available: false,
+    quotient_source_radius_budget_rows: [],
+    all_rows_have_positive_absolute_source_quantity_budgets: false,
+    all_rows_term_budgets_sum_to_denominator_budget: false,
+    all_rows_absolute_budget_reduce_to_directed_rounded_provider_target:
+      false,
+    min_numerator_allowed_absolute_half_width: null,
+    min_denominator_allowed_absolute_half_width: null,
+    min_source_quantity_allowed_absolute_half_width: null,
+    min_source_quantity_allowed_relative_radius_ceiling: null,
+    dominant_quotient_source_radius_budget_node_index: null,
+    dominant_quotient_source_radius_budget_quantity: null,
+    dominant_quotient_source_relative_radius_node_index: null,
+    quotient_source_radius_budget_classification:
+      "quotient-source-radius-budget-inputs-missing",
+    claim_boundary: {
+      certifies_quotient_source_absolute_radius_budget_only: false,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+  if (
+    quotientSourceInclusionBridge === null ||
+    quotientSourceInclusionBridge === undefined ||
+    quotientSourceInclusionBridge.target_kind !==
+      "candidate-requested-y44-shared-source-map-quotient-source-inclusion-bridge" ||
+    quotientSourceInclusionBridge
+      .quotient_source_inclusion_bridge_rows_available !== true
+  ) {
+    return missingArtifact;
+  }
+  const bridgeRows =
+    quotientSourceInclusionBridge.quotient_source_inclusion_bridge_rows ?? [];
+  const rows = bridgeRows.map((bridgeRow) => {
+    const numeratorProviderValue = Number(bridgeRow.numerator_provider_value);
+    const denominatorProviderValue = Number(
+      bridgeRow.denominator_provider_value
+    );
+    const numeratorRelativeRadiusCeiling = Number(
+      bridgeRow.numerator_directed_relative_radius_ceiling
+    );
+    const denominatorRelativeRadiusCeiling = Number(
+      bridgeRow.denominator_directed_relative_radius_ceiling
+    );
+    const sourceQuantityRelativeRadiusCeiling = Number(
+      bridgeRow.source_quantity_directed_relative_radius_ceiling
+    );
+    if (
+      !finitePositive(numeratorProviderValue) ||
+      !finitePositive(denominatorProviderValue) ||
+      !finitePositive(numeratorRelativeRadiusCeiling) ||
+      !finitePositive(denominatorRelativeRadiusCeiling) ||
+      !finitePositive(sourceQuantityRelativeRadiusCeiling)
+    ) {
+      return null;
+    }
+    const numeratorAllowedAbsoluteHalfWidth =
+      numeratorProviderValue * numeratorRelativeRadiusCeiling;
+    const denominatorAllowedAbsoluteHalfWidth =
+      denominatorProviderValue * denominatorRelativeRadiusCeiling;
+    const sourceQuantityAllowedAbsoluteHalfWidth = Math.min(
+      numeratorAllowedAbsoluteHalfWidth,
+      denominatorAllowedAbsoluteHalfWidth
+    );
+    const sourceQuantityAllowedRelativeRadiusCeiling = Math.min(
+      numeratorRelativeRadiusCeiling,
+      denominatorRelativeRadiusCeiling
+    );
+    const termWidthRows = bridgeRow.term_width_rows ?? [];
+    const termBudgetRows = termWidthRows.map((termRow) => {
+      const providerHalfWidth = Number(
+        termRow.provider_original_residual_interval_half_width
+      );
+      const denominatorShare = Number(
+        termRow.original_half_width_share_of_denominator
+      );
+      const termAllowedAbsoluteHalfWidth =
+        denominatorAllowedAbsoluteHalfWidth * denominatorShare;
+      const termAllowedRelativeRadiusCeiling =
+        finitePositive(providerHalfWidth)
+          ? termAllowedAbsoluteHalfWidth / providerHalfWidth
+          : null;
+      return {
+        term: termRow.term,
+        provider_original_residual_interval:
+          finiteOrderedIntervalOrNull(termRow.provider_original_residual_interval),
+        provider_original_residual_interval_half_width:
+          providerHalfWidth,
+        denominator_half_width_share: denominatorShare,
+        term_allowed_absolute_half_width:
+          termAllowedAbsoluteHalfWidth,
+        term_allowed_relative_radius_ceiling:
+          termAllowedRelativeRadiusCeiling,
+        term_budget_reconstructs_denominator_relative_radius:
+          h39RequestedY44SameNumber(
+            termAllowedRelativeRadiusCeiling,
+            denominatorRelativeRadiusCeiling,
+            1e-9
+          ),
+      };
+    });
+    if (
+      termBudgetRows.length !==
+        H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length ||
+      termBudgetRows.some(
+        (termRow) =>
+          !finitePositive(
+            termRow.provider_original_residual_interval_half_width
+          ) ||
+          !finitePositive(termRow.denominator_half_width_share) ||
+          !finitePositive(termRow.term_allowed_absolute_half_width) ||
+          !finitePositive(termRow.term_allowed_relative_radius_ceiling)
+      )
+    ) {
+      return null;
+    }
+    const denominatorTermBudgetSum = termBudgetRows.reduce(
+      (total, termRow) =>
+        total + Number(termRow.term_allowed_absolute_half_width),
+      0
+    );
+    const denominatorTermBudgetSumMatches =
+      h39RequestedY44SameNumber(
+        denominatorTermBudgetSum,
+        denominatorAllowedAbsoluteHalfWidth,
+        1e-9
+      ) &&
+      termBudgetRows.every(
+        (termRow) =>
+          termRow.term_budget_reconstructs_denominator_relative_radius ===
+          true
+      );
+    const rowHasPositiveAbsoluteBudget =
+      finitePositive(numeratorAllowedAbsoluteHalfWidth) &&
+      finitePositive(denominatorAllowedAbsoluteHalfWidth) &&
+      finitePositive(sourceQuantityAllowedAbsoluteHalfWidth) &&
+      finitePositive(sourceQuantityAllowedRelativeRadiusCeiling);
+    const rowReducesToDirectedProviderTarget =
+      bridgeRow.row_reduces_to_directed_rounded_relative_radius_provider ===
+        true &&
+      rowHasPositiveAbsoluteBudget &&
+      denominatorTermBudgetSumMatches &&
+      h39RequestedY44SameNumber(
+        sourceQuantityRelativeRadiusCeiling,
+        sourceQuantityAllowedRelativeRadiusCeiling,
+        1e-9
+      );
+    return {
+      node_index: bridgeRow.node_index,
+      xi_midpoint: bridgeRow.xi_midpoint,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      tightest_budget_cell_id: bridgeRow.tightest_budget_cell_id,
+      quotient_source_radius_budget_row_kind:
+        "candidate-node-local-quotient-source-absolute-radius-budget-row",
+      budget_kind:
+        "absolute-source-quantity-half-width-budget-from-relative-quotient-source-ceilings",
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      zero_source_terms: ["constant_minus_two"],
+      numerator_source_quantity: bridgeRow.numerator_source_quantity,
+      denominator_source_quantity: bridgeRow.denominator_source_quantity,
+      numerator_provider_value: numeratorProviderValue,
+      numerator_directed_relative_radius_ceiling:
+        numeratorRelativeRadiusCeiling,
+      numerator_allowed_absolute_half_width:
+        numeratorAllowedAbsoluteHalfWidth,
+      denominator_provider_value: denominatorProviderValue,
+      denominator_directed_relative_radius_ceiling:
+        denominatorRelativeRadiusCeiling,
+      denominator_allowed_absolute_half_width:
+        denominatorAllowedAbsoluteHalfWidth,
+      source_quantity_directed_relative_radius_ceiling:
+        sourceQuantityRelativeRadiusCeiling,
+      source_quantity_allowed_relative_radius_ceiling:
+        sourceQuantityAllowedRelativeRadiusCeiling,
+      source_quantity_allowed_absolute_half_width:
+        sourceQuantityAllowedAbsoluteHalfWidth,
+      source_quantity_dominant_absolute_budget_quantity:
+        numeratorAllowedAbsoluteHalfWidth <=
+        denominatorAllowedAbsoluteHalfWidth
+          ? "numerator"
+          : "denominator",
+      denominator_term_absolute_half_width_budget_rows:
+        termBudgetRows,
+      denominator_term_absolute_half_width_budget_sum:
+        denominatorTermBudgetSum,
+      denominator_term_budget_sum_matches_denominator_budget:
+        denominatorTermBudgetSumMatches,
+      row_has_positive_absolute_source_quantity_budget:
+        rowHasPositiveAbsoluteBudget,
+      row_reduces_absolute_source_quantity_budget_to_directed_rounded_provider_target:
+        rowReducesToDirectedProviderTarget,
+      row_status: rowReducesToDirectedProviderTarget
+        ? "candidate-quotient-source-absolute-radius-budget-row-source-certification-open"
+        : "candidate-quotient-source-absolute-radius-budget-row-open",
+      claim_boundary: {
+        certifies_quotient_source_absolute_radius_budget_only:
+          rowReducesToDirectedProviderTarget,
+        certifies_source_inputs_as_directed_rounded_same_domain: false,
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  });
+  if (rows.length !== 5 || rows.some((row) => row === null)) {
+    return missingArtifact;
+  }
+  const allRowsPositive = rows.every(
+    (row) => row.row_has_positive_absolute_source_quantity_budget === true
+  );
+  const allTermBudgetsSum = rows.every(
+    (row) =>
+      row.denominator_term_budget_sum_matches_denominator_budget === true
+  );
+  const allRowsReduce = rows.every(
+    (row) =>
+      row
+        .row_reduces_absolute_source_quantity_budget_to_directed_rounded_provider_target ===
+      true
+  );
+  const dominantAbsoluteBudgetRow = rows.reduce((best, row) =>
+    Number(row.source_quantity_allowed_absolute_half_width) <
+    Number(best.source_quantity_allowed_absolute_half_width)
+      ? row
+      : best
+  );
+  const dominantRelativeRadiusRow = rows.reduce((best, row) =>
+    Number(row.source_quantity_allowed_relative_radius_ceiling) <
+    Number(best.source_quantity_allowed_relative_radius_ceiling)
+      ? row
+      : best
+  );
+  return {
+    target_kind:
+      "candidate-requested-y44-shared-source-map-quotient-source-radius-budget",
+    quotient_source_inclusion_bridge_kind:
+      quotientSourceInclusionBridge.target_kind,
+    proof_status:
+      "candidate-quotient-source-absolute-radius-budget-not-directed-rounded",
+    budget_kind:
+      "absolute-source-quantity-half-width-budget-from-quotient-source-inclusion-bridge",
+    source_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    candidate_source_relative_tolerance:
+      quotientSourceInclusionBridge.candidate_source_relative_tolerance,
+    scalar_provider_target_relative_tolerance:
+      quotientSourceInclusionBridge.scalar_provider_target_relative_tolerance,
+    quotient_source_radius_budget_rows_available: true,
+    quotient_source_radius_budget_rows: rows,
+    all_rows_have_positive_absolute_source_quantity_budgets:
+      allRowsPositive,
+    all_rows_term_budgets_sum_to_denominator_budget:
+      allTermBudgetsSum,
+    all_rows_absolute_budget_reduce_to_directed_rounded_provider_target:
+      allRowsReduce,
+    min_numerator_allowed_absolute_half_width:
+      finiteMinimum(
+        rows.map((row) => row.numerator_allowed_absolute_half_width)
+      ),
+    min_denominator_allowed_absolute_half_width:
+      finiteMinimum(
+        rows.map((row) => row.denominator_allowed_absolute_half_width)
+      ),
+    min_source_quantity_allowed_absolute_half_width:
+      finiteMinimum(
+        rows.map((row) => row.source_quantity_allowed_absolute_half_width)
+      ),
+    min_source_quantity_allowed_relative_radius_ceiling:
+      finiteMinimum(
+        rows.map((row) => row.source_quantity_allowed_relative_radius_ceiling)
+      ),
+    dominant_quotient_source_radius_budget_node_index:
+      dominantAbsoluteBudgetRow?.node_index ?? null,
+    dominant_quotient_source_radius_budget_quantity:
+      dominantAbsoluteBudgetRow
+        ?.source_quantity_dominant_absolute_budget_quantity ?? null,
+    dominant_quotient_source_relative_radius_node_index:
+      dominantRelativeRadiusRow?.node_index ?? null,
+    quotient_source_radius_budget_classification:
+      allRowsPositive && allTermBudgetsSum && allRowsReduce
+        ? "quotient-source-radius-budget-reduces-provider-certificate-to-absolute-source-radii"
+        : "quotient-source-radius-budget-open",
+    quotient_source_radius_budget_interpretation:
+      "the quotient-source bridge has been converted from relative radius ceilings into absolute numerator, denominator, and term-level source half-width budgets; the next H38 producer-image certificate must realize these absolute source radii with directed rounding on the same domain",
+    next_certificate_object:
+      "directed-rounded same-domain H38 producer-image provider whose numerator, denominator, and source-term intervals fit inside the recorded absolute quotient-source radius budgets",
+    claim_boundary: {
+      certifies_quotient_source_absolute_radius_budget_only:
+        allRowsPositive && allTermBudgetsSum && allRowsReduce,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function h39RequestedY44SourceMapResidualFiveNodeAbsoluteSourceProviderFit({
+  sourceTermProviderProbe,
+  quotientSourceRadiusBudget,
+} = {}) {
+  const missingArtifact = {
+    target_kind:
+      "candidate-requested-y44-shared-source-map-absolute-source-provider-fit",
+    proof_status:
+      "candidate-absolute-source-provider-fit-inputs-missing",
+    fit_kind:
+      "current-shaped-source-term-provider-to-absolute-quotient-source-budget",
+    absolute_source_provider_fit_rows_available: false,
+    absolute_source_provider_fit_rows: [],
+    all_current_provider_source_sums_fit_absolute_budgets: false,
+    all_current_provider_terms_fit_absolute_budgets: false,
+    all_current_provider_rows_fit_absolute_source_budgets: false,
+    max_current_source_sum_to_numerator_budget_ratio: null,
+    max_current_source_sum_to_denominator_budget_ratio: null,
+    max_current_source_quantity_to_absolute_budget_ratio: null,
+    max_current_term_to_absolute_budget_ratio: null,
+    max_source_term_live_half_width_to_allowed_budget_ratio: null,
+    dominant_absolute_source_provider_fit_node_index: null,
+    dominant_absolute_source_provider_fit_quantity: null,
+    dominant_absolute_source_provider_fit_term: null,
+    dominant_absolute_source_provider_gap_node_index: null,
+    dominant_absolute_source_provider_gap_term: null,
+    absolute_source_provider_fit_classification:
+      "absolute-source-provider-fit-inputs-missing",
+    claim_boundary: {
+      certifies_current_shaped_provider_absolute_budget_fit_only: false,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+  if (
+    sourceTermProviderProbe === null ||
+    sourceTermProviderProbe === undefined ||
+    sourceTermProviderProbe.target_kind !==
+      "candidate-requested-y44-shared-source-map-source-term-provider-probe" ||
+    sourceTermProviderProbe.source_term_provider_probe_rows_available !== true ||
+    quotientSourceRadiusBudget === null ||
+    quotientSourceRadiusBudget === undefined ||
+    quotientSourceRadiusBudget.target_kind !==
+      "candidate-requested-y44-shared-source-map-quotient-source-radius-budget" ||
+    quotientSourceRadiusBudget.quotient_source_radius_budget_rows_available !==
+      true
+  ) {
+    return missingArtifact;
+  }
+  const providerRows = sourceTermProviderProbe.source_term_provider_probe_rows ?? [];
+  const budgetRows = quotientSourceRadiusBudget.quotient_source_radius_budget_rows ?? [];
+  if (providerRows.length !== 5 || budgetRows.length !== 5) {
+    return missingArtifact;
+  }
+  const providerRowsByNode = new Map(
+    providerRows.map((row) => [Number(row.node_index), row])
+  );
+  const rows = budgetRows.map((budgetRow) => {
+    const nodeIndex = Number(budgetRow.node_index);
+    const providerRow = providerRowsByNode.get(nodeIndex);
+    const providerTermRows = Array.isArray(
+      providerRow?.source_term_residual_rows
+    )
+      ? providerRow.source_term_residual_rows
+      : [];
+    const budgetTermRows = Array.isArray(
+      budgetRow?.denominator_term_absolute_half_width_budget_rows
+    )
+      ? budgetRow.denominator_term_absolute_half_width_budget_rows
+      : [];
+    if (
+      providerRow === undefined ||
+      providerTermRows.length !== H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length ||
+      budgetTermRows.length !== H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length
+    ) {
+      return null;
+    }
+    const numeratorAllowedAbsoluteHalfWidth = Number(
+      budgetRow.numerator_allowed_absolute_half_width
+    );
+    const denominatorAllowedAbsoluteHalfWidth = Number(
+      budgetRow.denominator_allowed_absolute_half_width
+    );
+    const sourceQuantityAllowedAbsoluteHalfWidth = Number(
+      budgetRow.source_quantity_allowed_absolute_half_width
+    );
+    const currentSourceSumHalfWidth = Number(
+      providerRow.source_term_half_width_sum
+    );
+    const numeratorProviderValue = Number(budgetRow.numerator_provider_value);
+    const denominatorProviderValue = Number(
+      budgetRow.denominator_provider_value
+    );
+    if (
+      !finitePositive(numeratorAllowedAbsoluteHalfWidth) ||
+      !finitePositive(denominatorAllowedAbsoluteHalfWidth) ||
+      !finitePositive(sourceQuantityAllowedAbsoluteHalfWidth) ||
+      !finiteNonnegative(currentSourceSumHalfWidth) ||
+      !finitePositive(numeratorProviderValue) ||
+      !finitePositive(denominatorProviderValue)
+    ) {
+      return null;
+    }
+    const budgetTermsByTerm = new Map(
+      budgetTermRows.map((termRow) => [termRow.term, termRow])
+    );
+    const termFitRows = H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.map(
+      (term) => {
+        const providerTerm = providerTermRows.find(
+          (candidate) => candidate.term === term
+        );
+        const budgetTerm = budgetTermsByTerm.get(term);
+        const providerHalfWidth = Number(
+          providerTerm?.residual_interval_half_width
+        );
+        const originalProviderHalfWidth = Number(
+          providerTerm?.original_residual_interval_half_width
+        );
+        const allowedAbsoluteHalfWidth = Number(
+          budgetTerm?.term_allowed_absolute_half_width
+        );
+        if (
+          !finiteNonnegative(providerHalfWidth) ||
+          !finitePositive(originalProviderHalfWidth) ||
+          !finitePositive(allowedAbsoluteHalfWidth)
+        ) {
+          return null;
+        }
+        const currentToBudgetRatio =
+          providerHalfWidth / allowedAbsoluteHalfWidth;
+        const originalToBudgetRatio =
+          originalProviderHalfWidth / allowedAbsoluteHalfWidth;
+        return {
+          term,
+          current_shaped_provider_interval:
+            finiteOrderedIntervalOrNull(providerTerm?.residual_interval),
+          current_shaped_provider_half_width: providerHalfWidth,
+          original_provider_half_width: originalProviderHalfWidth,
+          allowed_absolute_half_width: allowedAbsoluteHalfWidth,
+          current_shaped_provider_to_allowed_budget_ratio:
+            currentToBudgetRatio,
+          original_provider_to_allowed_budget_ratio:
+            originalToBudgetRatio,
+          term_live_half_width_to_allowed_budget_ratio:
+            originalToBudgetRatio,
+          term_allowed_budget_to_live_half_width_ratio:
+            allowedAbsoluteHalfWidth / originalProviderHalfWidth,
+          current_shaped_provider_fits_absolute_term_budget:
+            currentToBudgetRatio <= 1,
+          term_status:
+            currentToBudgetRatio <= 1
+              ? "candidate-current-shaped-provider-term-fits-absolute-source-budget-source-certification-open"
+              : "candidate-current-shaped-provider-term-exceeds-absolute-source-budget",
+        };
+      }
+    );
+    if (termFitRows.some((termRow) => termRow === null)) {
+      return null;
+    }
+    const currentSourceSumToNumeratorBudgetRatio =
+      currentSourceSumHalfWidth / numeratorAllowedAbsoluteHalfWidth;
+    const currentSourceSumToDenominatorBudgetRatio =
+      currentSourceSumHalfWidth / denominatorAllowedAbsoluteHalfWidth;
+    const currentSourceQuantityToAbsoluteBudgetRatio =
+      currentSourceSumHalfWidth / sourceQuantityAllowedAbsoluteHalfWidth;
+    const numeratorBudgetToProviderValueRatio =
+      numeratorAllowedAbsoluteHalfWidth / numeratorProviderValue;
+    const denominatorBudgetToProviderValueRatio =
+      denominatorAllowedAbsoluteHalfWidth / denominatorProviderValue;
+    const denominatorTermAllowedBudgetSum = termFitRows.reduce(
+      (total, termRow) =>
+        total + Number(termRow.allowed_absolute_half_width),
+      0
+    );
+    const denominatorTermBudgetSumReconstructs =
+      h39RequestedY44SameNumber(
+        denominatorTermAllowedBudgetSum,
+        denominatorAllowedAbsoluteHalfWidth,
+        1e-9
+      );
+    const sourceSumFitsNumeratorBudget =
+      currentSourceSumToNumeratorBudgetRatio <= 1;
+    const sourceSumFitsDenominatorBudget =
+      currentSourceSumToDenominatorBudgetRatio <= 1;
+    const sourceSumFitsAbsoluteBudget =
+      currentSourceQuantityToAbsoluteBudgetRatio <= 1;
+    const allTermsFit = termFitRows.every(
+      (termRow) =>
+        termRow.current_shaped_provider_fits_absolute_term_budget === true
+    );
+    const dominantTerm = termFitRows.reduce((best, termRow) =>
+      Number(termRow.current_shaped_provider_to_allowed_budget_ratio) >
+      Number(best.current_shaped_provider_to_allowed_budget_ratio)
+        ? termRow
+        : best
+    );
+    const dominantQuantity =
+      currentSourceSumToNumeratorBudgetRatio >=
+      currentSourceSumToDenominatorBudgetRatio
+        ? "numerator"
+        : "denominator";
+    const rowFitsAbsoluteBudget =
+      sourceSumFitsAbsoluteBudget && allTermsFit;
+    return {
+      node_index: nodeIndex,
+      xi_midpoint: budgetRow.xi_midpoint,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      tightest_budget_cell_id: budgetRow.tightest_budget_cell_id,
+      absolute_source_provider_fit_row_kind:
+        "candidate-node-local-current-shaped-provider-absolute-source-budget-fit-row",
+      fit_kind:
+        "current-shaped-source-term-provider-to-absolute-quotient-source-budget",
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      zero_source_terms: ["constant_minus_two"],
+      provider_row_source_kind: providerRow.provider_row_source_kind,
+      provider_row_claim_level: providerRow.provider_row_claim_level,
+      numerator_allowed_absolute_half_width:
+        numeratorAllowedAbsoluteHalfWidth,
+      numerator_provider_value: numeratorProviderValue,
+      numerator_directed_relative_radius_ceiling:
+        budgetRow.numerator_directed_relative_radius_ceiling,
+      numerator_budget_to_provider_value_ratio:
+        numeratorBudgetToProviderValueRatio,
+      denominator_allowed_absolute_half_width:
+        denominatorAllowedAbsoluteHalfWidth,
+      denominator_provider_value: denominatorProviderValue,
+      denominator_directed_relative_radius_ceiling:
+        budgetRow.denominator_directed_relative_radius_ceiling,
+      denominator_budget_to_provider_value_ratio:
+        denominatorBudgetToProviderValueRatio,
+      source_quantity_allowed_absolute_half_width:
+        sourceQuantityAllowedAbsoluteHalfWidth,
+      current_shaped_source_sum_half_width: currentSourceSumHalfWidth,
+      current_source_sum_to_numerator_budget_ratio:
+        currentSourceSumToNumeratorBudgetRatio,
+      current_source_sum_to_denominator_budget_ratio:
+        currentSourceSumToDenominatorBudgetRatio,
+      current_source_quantity_to_absolute_budget_ratio:
+        currentSourceQuantityToAbsoluteBudgetRatio,
+      current_source_sum_fits_numerator_absolute_budget:
+        sourceSumFitsNumeratorBudget,
+      current_source_sum_fits_denominator_absolute_budget:
+        sourceSumFitsDenominatorBudget,
+      current_source_sum_fits_absolute_source_quantity_budget:
+        sourceSumFitsAbsoluteBudget,
+      current_provider_term_fit_rows: termFitRows,
+      denominator_term_allowed_budget_sum:
+        denominatorTermAllowedBudgetSum,
+      denominator_term_budget_sum_reconstructs_denominator_allowed_absolute_half_width:
+        denominatorTermBudgetSumReconstructs,
+      all_current_provider_terms_fit_absolute_budgets: allTermsFit,
+      dominant_provider_term_to_absolute_budget_ratio:
+        dominantTerm?.current_shaped_provider_to_allowed_budget_ratio ?? null,
+      dominant_provider_term:
+        dominantTerm?.term ?? null,
+      dominant_absolute_budget_quantity: dominantQuantity,
+      row_current_provider_fits_absolute_source_budget:
+        rowFitsAbsoluteBudget,
+      row_status: rowFitsAbsoluteBudget
+        ? "candidate-current-shaped-provider-fits-absolute-source-budget-source-certification-open"
+        : "candidate-current-shaped-provider-exceeds-absolute-source-budget",
+      claim_boundary: {
+        certifies_current_shaped_provider_absolute_budget_fit_only:
+          rowFitsAbsoluteBudget,
+        certifies_source_inputs_as_directed_rounded_same_domain: false,
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  });
+  if (rows.length !== 5 || rows.some((row) => row === null)) {
+    return missingArtifact;
+  }
+  const allSourceSumsFit = rows.every(
+    (row) =>
+      row.current_source_sum_fits_absolute_source_quantity_budget === true
+  );
+  const allTermsFit = rows.every(
+    (row) => row.all_current_provider_terms_fit_absolute_budgets === true
+  );
+  const allRowsFit = rows.every(
+    (row) => row.row_current_provider_fits_absolute_source_budget === true
+  );
+  const dominantRow = rows.reduce((best, row) =>
+    Number(row.current_source_quantity_to_absolute_budget_ratio) >
+    Number(best.current_source_quantity_to_absolute_budget_ratio)
+      ? row
+      : best
+  );
+  const dominantTermRow = rows.reduce((best, row) =>
+    Number(row.dominant_provider_term_to_absolute_budget_ratio) >
+    Number(best.dominant_provider_term_to_absolute_budget_ratio)
+      ? row
+      : best
+  );
+  const maxLiveTermGapForRow = (row) =>
+    finiteMaximum(
+      row.current_provider_term_fit_rows.map(
+        (termRow) => termRow.term_live_half_width_to_allowed_budget_ratio
+      )
+    );
+  const dominantGapRow = rows.reduce((best, row) =>
+    Number(maxLiveTermGapForRow(row)) > Number(maxLiveTermGapForRow(best))
+      ? row
+      : best
+  );
+  const dominantGapTerm = dominantGapRow.current_provider_term_fit_rows.reduce(
+    (best, termRow) =>
+      Number(termRow.term_live_half_width_to_allowed_budget_ratio) >
+      Number(best.term_live_half_width_to_allowed_budget_ratio)
+        ? termRow
+        : best
+  );
+  return {
+    target_kind:
+      "candidate-requested-y44-shared-source-map-absolute-source-provider-fit",
+    source_term_provider_probe_kind: sourceTermProviderProbe.target_kind,
+    quotient_source_radius_budget_kind: quotientSourceRadiusBudget.target_kind,
+    proof_status:
+      "candidate-absolute-source-provider-fit-not-directed-rounded",
+    fit_kind:
+      "current-shaped-source-term-provider-to-absolute-quotient-source-budget",
+    source_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    absolute_source_provider_fit_rows_available: true,
+    absolute_source_provider_fit_rows: rows,
+    all_current_provider_source_sums_fit_absolute_budgets:
+      allSourceSumsFit,
+    all_current_provider_terms_fit_absolute_budgets: allTermsFit,
+    all_current_provider_rows_fit_absolute_source_budgets:
+      allRowsFit,
+    max_current_source_sum_to_numerator_budget_ratio:
+      finiteMaximum(
+        rows.map((row) => row.current_source_sum_to_numerator_budget_ratio)
+      ),
+    max_current_source_sum_to_denominator_budget_ratio:
+      finiteMaximum(
+        rows.map((row) => row.current_source_sum_to_denominator_budget_ratio)
+      ),
+    max_current_source_quantity_to_absolute_budget_ratio:
+      finiteMaximum(
+        rows.map((row) => row.current_source_quantity_to_absolute_budget_ratio)
+      ),
+    max_current_term_to_absolute_budget_ratio:
+      finiteMaximum(
+        rows.map((row) => row.dominant_provider_term_to_absolute_budget_ratio)
+      ),
+    max_source_term_live_half_width_to_allowed_budget_ratio:
+      finiteMaximum(
+        rows.flatMap((row) =>
+          row.current_provider_term_fit_rows.map(
+            (termRow) => termRow.term_live_half_width_to_allowed_budget_ratio
+          )
+        )
+      ),
+    dominant_absolute_source_provider_fit_node_index:
+      dominantRow?.node_index ?? null,
+    dominant_absolute_source_provider_fit_quantity:
+      dominantRow?.dominant_absolute_budget_quantity ?? null,
+    dominant_absolute_source_provider_fit_term:
+      dominantTermRow?.dominant_provider_term ?? null,
+    dominant_absolute_source_provider_fit_term_node_index:
+      dominantTermRow?.node_index ?? null,
+    dominant_absolute_source_provider_gap_node_index:
+      dominantGapRow?.node_index ?? null,
+    dominant_absolute_source_provider_gap_term:
+      dominantGapTerm?.term ?? null,
+    absolute_source_provider_fit_classification:
+      allRowsFit
+        ? "current-shaped-source-provider-fits-absolute-quotient-source-budgets-source-certification-open"
+        : "current-shaped-source-provider-exceeds-absolute-quotient-source-budgets",
+    absolute_source_provider_fit_interpretation:
+      allRowsFit
+        ? "the current shaped source-term provider is narrow enough for the absolute quotient-source budget, but directed-rounded same-domain provenance remains unproved"
+        : "the current shaped source-term provider remains wider than the absolute quotient-source budget; the H39 blocker is now a quantified H38 producer-image width/provenance miss, not quotient algebra or relative-radius bookkeeping",
+    next_certificate_object:
+      "directed-rounded same-domain H38 producer-image source-term provider with source-sum and term interval radii below the recorded absolute quotient-source budgets",
+    claim_boundary: {
+      certifies_current_shaped_provider_absolute_budget_fit_only:
+        allRowsFit,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
 function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
   sourceMapResidualSharedStreamNodeRadiusTarget,
 } = {}) {
@@ -52459,6 +53710,12 @@ function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
       source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target:
         null,
       source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope:
+        null,
+      source_map_residual_shared_stream_five_node_quotient_source_inclusion_bridge:
+        null,
+      source_map_residual_shared_stream_five_node_quotient_source_radius_budget:
+        null,
+      source_map_residual_shared_stream_five_node_absolute_source_provider_fit:
         null,
       source_map_residual_shared_stream_five_node_source_term_provider_probe:
         null,
@@ -52515,6 +53772,12 @@ function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
       source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target:
         null,
       source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope:
+        null,
+      source_map_residual_shared_stream_five_node_quotient_source_inclusion_bridge:
+        null,
+      source_map_residual_shared_stream_five_node_quotient_source_radius_budget:
+        null,
+      source_map_residual_shared_stream_five_node_absolute_source_provider_fit:
         null,
       source_map_residual_shared_stream_five_node_source_term_provider_probe:
         null,
@@ -52656,6 +53919,12 @@ function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
       source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target:
         null,
       source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope:
+        null,
+      source_map_residual_shared_stream_five_node_quotient_source_inclusion_bridge:
+        null,
+      source_map_residual_shared_stream_five_node_quotient_source_radius_budget:
+        null,
+      source_map_residual_shared_stream_five_node_absolute_source_provider_fit:
         null,
       source_map_residual_shared_stream_five_node_source_term_provider_probe:
         null,
@@ -52914,6 +54183,21 @@ function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
     h39RequestedY44SourceMapResidualFiveNodeHomotheticContractionScalarQuotientEnvelopeTarget({
       homotheticContractionScalarProviderTarget,
     });
+  const quotientSourceInclusionBridge =
+    h39RequestedY44SourceMapResidualFiveNodeQuotientSourceInclusionBridge({
+      sourceTermProviderProbe,
+      homotheticContractionScalarProviderTarget,
+      homotheticContractionScalarQuotientEnvelope,
+    });
+  const quotientSourceRadiusBudget =
+    h39RequestedY44SourceMapResidualFiveNodeQuotientSourceRadiusBudget({
+      quotientSourceInclusionBridge,
+    });
+  const absoluteSourceProviderFit =
+    h39RequestedY44SourceMapResidualFiveNodeAbsoluteSourceProviderFit({
+      sourceTermProviderProbe,
+      quotientSourceRadiusBudget,
+    });
   const contractedProviderRows = contractRows.map((row) => {
     const scaledSignedInterval = root.scaleInterval(
       row.live_signed_residual_interval,
@@ -53073,6 +54357,12 @@ function h39RequestedY44SourceMapResidualFiveNodeInclusionContract({
       homotheticContractionScalarProviderTarget,
     source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope:
       homotheticContractionScalarQuotientEnvelope,
+    source_map_residual_shared_stream_five_node_quotient_source_inclusion_bridge:
+      quotientSourceInclusionBridge,
+    source_map_residual_shared_stream_five_node_quotient_source_radius_budget:
+      quotientSourceRadiusBudget,
+    source_map_residual_shared_stream_five_node_absolute_source_provider_fit:
+      absoluteSourceProviderFit,
     source_map_residual_shared_stream_five_node_source_term_provider_probe:
       sourceTermProviderProbe,
     source_map_residual_shared_stream_five_node_contracted_provider_candidate:
@@ -57275,6 +58565,705 @@ export function validateH39RequestedY44SourceMapResidualCovarianceTarget(
         ) {
           errors.push(`five-node homothetic contraction scalar quotient envelope row ${index} must be coherent`);
         }
+      });
+    }
+  }
+  const fiveNodeQuotientSourceInclusionBridge =
+    artifact
+      ?.source_map_residual_shared_stream_five_node_quotient_source_inclusion_bridge ??
+    null;
+  if (fiveNodeQuotientSourceInclusionBridge !== null) {
+    const tolerance = Number(
+      fiveNodeQuotientSourceInclusionBridge
+        ?.scalar_provider_target_relative_tolerance
+    );
+    const bridgeRows =
+      fiveNodeQuotientSourceInclusionBridge
+        .quotient_source_inclusion_bridge_rows ?? [];
+    if (
+      fiveNodeQuotientSourceInclusionBridge?.target_kind !==
+        "candidate-requested-y44-shared-source-map-quotient-source-inclusion-bridge" ||
+      fiveNodeQuotientSourceInclusionBridge?.proof_status !==
+        "candidate-quotient-source-inclusion-bridge-not-directed-rounded" ||
+      fiveNodeQuotientSourceInclusionBridge?.bridge_kind !==
+        "provider-source-quantities-to-quotient-envelope-source-intervals" ||
+      fiveNodeQuotientSourceInclusionBridge?.source_y_order !==
+        H38_NUMERATOR_Y_ORDER ||
+      fiveNodeQuotientSourceInclusionBridge?.required_xi_derivative_order !==
+        4 ||
+      !finitePositive(tolerance) ||
+      tolerance > 1e-9 ||
+      !finitePositive(
+        fiveNodeQuotientSourceInclusionBridge
+          ?.candidate_source_relative_tolerance
+      ) ||
+      Number(
+        fiveNodeQuotientSourceInclusionBridge
+          .candidate_source_relative_tolerance
+      ) >= tolerance ||
+      fiveNodeQuotientSourceInclusionBridge
+        ?.quotient_source_inclusion_bridge_rows_available !== true ||
+      fiveNodeQuotientSourceInclusionBridge
+        ?.all_rows_provider_quantities_inside_quotient_source_intervals !==
+        true ||
+      fiveNodeQuotientSourceInclusionBridge
+        ?.all_rows_provider_sources_reconstruct_quotient_centers !== true ||
+      fiveNodeQuotientSourceInclusionBridge
+        ?.all_rows_original_term_widths_match_quotient_denominator !== true ||
+      !finiteNonnegative(
+        fiveNodeQuotientSourceInclusionBridge
+          ?.max_numerator_provider_to_quotient_relative_gap
+      ) ||
+      Number(
+        fiveNodeQuotientSourceInclusionBridge
+          .max_numerator_provider_to_quotient_relative_gap
+      ) > tolerance ||
+      !finiteNonnegative(
+        fiveNodeQuotientSourceInclusionBridge
+          ?.max_denominator_provider_to_quotient_relative_gap
+      ) ||
+      Number(
+        fiveNodeQuotientSourceInclusionBridge
+          .max_denominator_provider_to_quotient_relative_gap
+      ) > tolerance ||
+      !finitePositive(
+        fiveNodeQuotientSourceInclusionBridge
+          ?.min_numerator_directed_relative_radius_ceiling
+      ) ||
+      !finitePositive(
+        fiveNodeQuotientSourceInclusionBridge
+          ?.min_denominator_directed_relative_radius_ceiling
+      ) ||
+      !finitePositive(
+        fiveNodeQuotientSourceInclusionBridge
+          ?.min_source_quantity_directed_relative_radius_ceiling
+      ) ||
+      !Number.isInteger(
+        fiveNodeQuotientSourceInclusionBridge
+          ?.dominant_quotient_source_inclusion_node_index
+      ) ||
+      fiveNodeQuotientSourceInclusionBridge
+        .dominant_quotient_source_inclusion_node_index < 0 ||
+      fiveNodeQuotientSourceInclusionBridge
+        .dominant_quotient_source_inclusion_node_index > 4 ||
+      fiveNodeQuotientSourceInclusionBridge
+        ?.quotient_source_inclusion_bridge_classification !==
+        "quotient-source-inclusion-bridge-reduces-to-directed-rounded-relative-radius-provider" ||
+      typeof fiveNodeQuotientSourceInclusionBridge
+        ?.quotient_source_inclusion_bridge_interpretation !== "string" ||
+      typeof fiveNodeQuotientSourceInclusionBridge?.next_certificate_object !==
+        "string" ||
+      fiveNodeQuotientSourceInclusionBridge?.claim_boundary
+        ?.certifies_quotient_source_inclusion_bridge_only !== true ||
+      fiveNodeQuotientSourceInclusionBridge?.claim_boundary
+        ?.certifies_source_inputs_as_directed_rounded_same_domain !== false ||
+      fiveNodeQuotientSourceInclusionBridge?.claim_boundary
+        ?.certifies_n38_fourth_derivative_bound !== false ||
+      fiveNodeQuotientSourceInclusionBridge?.claim_boundary
+        ?.certifies_s37_dependency_preserving_division !== false ||
+      fiveNodeQuotientSourceInclusionBridge?.claim_boundary
+        ?.certifies_shifted_R43_outer_bound !== false ||
+      fiveNodeQuotientSourceInclusionBridge?.claim_boundary
+        ?.certifies_directed_rounded_shared_domain !== false ||
+      fiveNodeQuotientSourceInclusionBridge?.claim_boundary?.retained_branch !==
+        false ||
+      !Array.isArray(bridgeRows) ||
+      bridgeRows.length !== 5
+    ) {
+      errors.push("five-node quotient source inclusion bridge must be coherent and candidate-only");
+    } else {
+      bridgeRows.forEach((row, index) => {
+        if (
+          !Number.isInteger(row?.node_index) ||
+          row.node_index !== index ||
+          !Number.isFinite(Number(row?.xi_midpoint)) ||
+          row?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+          row?.required_xi_derivative_order !== 4 ||
+          typeof row?.tightest_budget_cell_id !== "string" ||
+          row?.quotient_source_inclusion_bridge_row_kind !==
+            "candidate-node-local-quotient-source-inclusion-bridge-row" ||
+          row?.bridge_kind !==
+            "provider-source-quantities-to-quotient-envelope-source-intervals" ||
+          !sameTerms(row?.source_terms_preserved_signed_together) ||
+          !sameZeroTerms(row?.zero_source_terms) ||
+          row?.provider_row_source_kind !==
+            "directed-rounded-same-domain-h38-source-map-residual-provider" ||
+          row?.provider_row_claim_level !==
+            "candidate-provider-shape-only-directed-rounded-claim-boundary-false" ||
+          !finitePositive(row?.candidate_source_relative_tolerance) ||
+          !finitePositive(row?.scalar_provider_target_relative_tolerance) ||
+          row?.numerator_source_quantity !==
+            "signed_source_term_sum_available_half_width" ||
+          row?.denominator_source_quantity !==
+            "sum_original_source_term_half_widths" ||
+          !hasFiniteOrderedInterval(row?.numerator_source_interval_from_provider) ||
+          !finitePositive(row?.numerator_provider_value) ||
+          !finitePositive(row?.numerator_quotient_center) ||
+          !hasFiniteOrderedInterval(row?.numerator_quotient_candidate_interval) ||
+          !finiteNonnegative(
+            row?.numerator_provider_to_quotient_relative_gap
+          ) ||
+          Number(row?.numerator_provider_to_quotient_relative_gap) >
+            tolerance ||
+          row?.numerator_provider_point_inside_quotient_interval !== true ||
+          row?.provider_numerator_interval_contained_in_quotient_envelope !==
+            true ||
+          !finitePositive(row?.numerator_directed_relative_radius_ceiling) ||
+          !hasFiniteOrderedInterval(
+            row?.denominator_source_interval_from_provider
+          ) ||
+          !finitePositive(row?.denominator_provider_value) ||
+          !finitePositive(row?.denominator_quotient_center) ||
+          !hasFiniteOrderedInterval(row?.denominator_quotient_candidate_interval) ||
+          !finiteNonnegative(
+            row?.denominator_provider_to_quotient_relative_gap
+          ) ||
+          Number(row?.denominator_provider_to_quotient_relative_gap) >
+            tolerance ||
+          row?.denominator_provider_point_inside_quotient_interval !== true ||
+          row?.provider_denominator_interval_contained_in_quotient_envelope !==
+            true ||
+          !finitePositive(row?.denominator_directed_relative_radius_ceiling) ||
+          !finitePositive(
+            row?.source_quantity_directed_relative_radius_ceiling
+          ) ||
+          !Array.isArray(row?.term_width_rows) ||
+          row.term_width_rows.length !==
+            H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length ||
+          row?.all_original_term_widths_match_quotient_denominator !== true ||
+          row?.provider_sources_reconstruct_quotient_centers !== true ||
+          row?.provider_quantities_inside_quotient_source_intervals !== true ||
+          row?.row_reduces_to_directed_rounded_relative_radius_provider !==
+            true ||
+          row?.row_status !==
+            "candidate-quotient-source-inclusion-bridge-row-source-certification-open" ||
+          row?.claim_boundary
+            ?.certifies_quotient_source_inclusion_bridge_only !== true ||
+          row?.claim_boundary
+            ?.certifies_source_inputs_as_directed_rounded_same_domain !==
+            false ||
+          row?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+            false ||
+          row?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+          row?.claim_boundary?.retained_branch !== false
+        ) {
+          errors.push(`five-node quotient source inclusion bridge row ${index} must be coherent`);
+          return;
+        }
+        row.term_width_rows.forEach((termRow, termIndex) => {
+          if (
+            termRow?.term !==
+              H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS[termIndex] ||
+            !hasFiniteOrderedInterval(
+              termRow?.provider_original_residual_interval
+            ) ||
+            !finitePositive(
+              termRow?.provider_original_residual_interval_half_width
+            ) ||
+            !hasFiniteOrderedInterval(
+              termRow?.quotient_target_original_residual_interval
+            ) ||
+            !finitePositive(
+              termRow
+                ?.quotient_target_original_residual_interval_half_width
+            ) ||
+            !finiteNonnegative(
+              termRow?.original_half_width_share_of_denominator
+            ) ||
+            !finiteNonnegative(
+              termRow?.provider_to_quotient_original_half_width_relative_gap
+            ) ||
+            Number(
+              termRow.provider_to_quotient_original_half_width_relative_gap
+            ) > tolerance ||
+            termRow?.term_width_matches_quotient_denominator !== true
+          ) {
+            errors.push(`five-node quotient source inclusion bridge row ${index} term ${termIndex} must be coherent`);
+          }
+        });
+      });
+    }
+  }
+  const fiveNodeQuotientSourceRadiusBudget =
+    artifact
+      ?.source_map_residual_shared_stream_five_node_quotient_source_radius_budget ??
+    null;
+  if (fiveNodeQuotientSourceRadiusBudget !== null) {
+    const radiusBudgetRows =
+      fiveNodeQuotientSourceRadiusBudget
+        .quotient_source_radius_budget_rows ?? [];
+    if (
+      fiveNodeQuotientSourceRadiusBudget?.target_kind !==
+        "candidate-requested-y44-shared-source-map-quotient-source-radius-budget" ||
+      fiveNodeQuotientSourceRadiusBudget?.proof_status !==
+        "candidate-quotient-source-absolute-radius-budget-not-directed-rounded" ||
+      fiveNodeQuotientSourceRadiusBudget?.budget_kind !==
+        "absolute-source-quantity-half-width-budget-from-quotient-source-inclusion-bridge" ||
+      fiveNodeQuotientSourceRadiusBudget?.source_y_order !==
+        H38_NUMERATOR_Y_ORDER ||
+      fiveNodeQuotientSourceRadiusBudget?.required_xi_derivative_order !==
+        4 ||
+      !finitePositive(
+        fiveNodeQuotientSourceRadiusBudget
+          ?.candidate_source_relative_tolerance
+      ) ||
+      !finitePositive(
+        fiveNodeQuotientSourceRadiusBudget
+          ?.scalar_provider_target_relative_tolerance
+      ) ||
+      fiveNodeQuotientSourceRadiusBudget
+        ?.quotient_source_radius_budget_rows_available !== true ||
+      fiveNodeQuotientSourceRadiusBudget
+        ?.all_rows_have_positive_absolute_source_quantity_budgets !== true ||
+      fiveNodeQuotientSourceRadiusBudget
+        ?.all_rows_term_budgets_sum_to_denominator_budget !== true ||
+      fiveNodeQuotientSourceRadiusBudget
+        ?.all_rows_absolute_budget_reduce_to_directed_rounded_provider_target !==
+        true ||
+      !finitePositive(
+        fiveNodeQuotientSourceRadiusBudget
+          ?.min_numerator_allowed_absolute_half_width
+      ) ||
+      !finitePositive(
+        fiveNodeQuotientSourceRadiusBudget
+          ?.min_denominator_allowed_absolute_half_width
+      ) ||
+      !finitePositive(
+        fiveNodeQuotientSourceRadiusBudget
+          ?.min_source_quantity_allowed_absolute_half_width
+      ) ||
+      !finitePositive(
+        fiveNodeQuotientSourceRadiusBudget
+          ?.min_source_quantity_allowed_relative_radius_ceiling
+      ) ||
+      !Number.isInteger(
+        fiveNodeQuotientSourceRadiusBudget
+          ?.dominant_quotient_source_radius_budget_node_index
+      ) ||
+      fiveNodeQuotientSourceRadiusBudget
+        .dominant_quotient_source_radius_budget_node_index < 0 ||
+      fiveNodeQuotientSourceRadiusBudget
+        .dominant_quotient_source_radius_budget_node_index > 4 ||
+      !["numerator", "denominator"].includes(
+        fiveNodeQuotientSourceRadiusBudget
+          ?.dominant_quotient_source_radius_budget_quantity
+      ) ||
+      !Number.isInteger(
+        fiveNodeQuotientSourceRadiusBudget
+          ?.dominant_quotient_source_relative_radius_node_index
+      ) ||
+      fiveNodeQuotientSourceRadiusBudget
+        ?.quotient_source_radius_budget_classification !==
+        "quotient-source-radius-budget-reduces-provider-certificate-to-absolute-source-radii" ||
+      typeof fiveNodeQuotientSourceRadiusBudget
+        ?.quotient_source_radius_budget_interpretation !== "string" ||
+      typeof fiveNodeQuotientSourceRadiusBudget?.next_certificate_object !==
+        "string" ||
+      fiveNodeQuotientSourceRadiusBudget?.claim_boundary
+        ?.certifies_quotient_source_absolute_radius_budget_only !== true ||
+      fiveNodeQuotientSourceRadiusBudget?.claim_boundary
+        ?.certifies_source_inputs_as_directed_rounded_same_domain !== false ||
+      fiveNodeQuotientSourceRadiusBudget?.claim_boundary
+        ?.certifies_n38_fourth_derivative_bound !== false ||
+      fiveNodeQuotientSourceRadiusBudget?.claim_boundary
+        ?.certifies_s37_dependency_preserving_division !== false ||
+      fiveNodeQuotientSourceRadiusBudget?.claim_boundary
+        ?.certifies_shifted_R43_outer_bound !== false ||
+      fiveNodeQuotientSourceRadiusBudget?.claim_boundary
+        ?.certifies_directed_rounded_shared_domain !== false ||
+      fiveNodeQuotientSourceRadiusBudget?.claim_boundary?.retained_branch !==
+        false ||
+      !Array.isArray(radiusBudgetRows) ||
+      radiusBudgetRows.length !== 5
+    ) {
+      errors.push("five-node quotient source radius budget must be coherent and candidate-only");
+    } else {
+      radiusBudgetRows.forEach((row, index) => {
+        if (
+          !Number.isInteger(row?.node_index) ||
+          row.node_index !== index ||
+          !Number.isFinite(Number(row?.xi_midpoint)) ||
+          row?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+          row?.required_xi_derivative_order !== 4 ||
+          typeof row?.tightest_budget_cell_id !== "string" ||
+          row?.quotient_source_radius_budget_row_kind !==
+            "candidate-node-local-quotient-source-absolute-radius-budget-row" ||
+          row?.budget_kind !==
+            "absolute-source-quantity-half-width-budget-from-relative-quotient-source-ceilings" ||
+          !sameTerms(row?.source_terms_preserved_signed_together) ||
+          !sameZeroTerms(row?.zero_source_terms) ||
+          row?.numerator_source_quantity !==
+            "signed_source_term_sum_available_half_width" ||
+          row?.denominator_source_quantity !==
+            "sum_original_source_term_half_widths" ||
+          !finitePositive(row?.numerator_provider_value) ||
+          !finitePositive(row?.numerator_directed_relative_radius_ceiling) ||
+          !finitePositive(row?.numerator_allowed_absolute_half_width) ||
+          !h39RequestedY44SameNumber(
+            row.numerator_allowed_absolute_half_width,
+            row.numerator_provider_value *
+              row.numerator_directed_relative_radius_ceiling,
+            1e-9
+          ) ||
+          !finitePositive(row?.denominator_provider_value) ||
+          !finitePositive(row?.denominator_directed_relative_radius_ceiling) ||
+          !finitePositive(row?.denominator_allowed_absolute_half_width) ||
+          !h39RequestedY44SameNumber(
+            row.denominator_allowed_absolute_half_width,
+            row.denominator_provider_value *
+              row.denominator_directed_relative_radius_ceiling,
+            1e-9
+          ) ||
+          !finitePositive(
+            row?.source_quantity_directed_relative_radius_ceiling
+          ) ||
+          !finitePositive(
+            row?.source_quantity_allowed_relative_radius_ceiling
+          ) ||
+          !h39RequestedY44SameNumber(
+            row.source_quantity_allowed_relative_radius_ceiling,
+            Math.min(
+              row.numerator_directed_relative_radius_ceiling,
+              row.denominator_directed_relative_radius_ceiling
+            ),
+            1e-9
+          ) ||
+          !finitePositive(row?.source_quantity_allowed_absolute_half_width) ||
+          !h39RequestedY44SameNumber(
+            row.source_quantity_allowed_absolute_half_width,
+            Math.min(
+              row.numerator_allowed_absolute_half_width,
+              row.denominator_allowed_absolute_half_width
+            ),
+            1e-9
+          ) ||
+          !["numerator", "denominator"].includes(
+            row?.source_quantity_dominant_absolute_budget_quantity
+          ) ||
+          !Array.isArray(
+            row?.denominator_term_absolute_half_width_budget_rows
+          ) ||
+          row.denominator_term_absolute_half_width_budget_rows.length !==
+            H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length ||
+          !finitePositive(
+            row?.denominator_term_absolute_half_width_budget_sum
+          ) ||
+          row?.denominator_term_budget_sum_matches_denominator_budget !==
+            true ||
+          row?.row_has_positive_absolute_source_quantity_budget !== true ||
+          row
+            ?.row_reduces_absolute_source_quantity_budget_to_directed_rounded_provider_target !==
+            true ||
+          row?.row_status !==
+            "candidate-quotient-source-absolute-radius-budget-row-source-certification-open" ||
+          row?.claim_boundary
+            ?.certifies_quotient_source_absolute_radius_budget_only !==
+            true ||
+          row?.claim_boundary
+            ?.certifies_source_inputs_as_directed_rounded_same_domain !==
+            false ||
+          row?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+            false ||
+          row?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+          row?.claim_boundary?.retained_branch !== false
+        ) {
+          errors.push(`five-node quotient source radius budget row ${index} must be coherent`);
+          return;
+        }
+        const termBudgetSum =
+          row.denominator_term_absolute_half_width_budget_rows.reduce(
+            (total, termRow) =>
+              total + Number(termRow.term_allowed_absolute_half_width),
+            0
+          );
+        if (
+          !h39RequestedY44SameNumber(
+            termBudgetSum,
+            row.denominator_allowed_absolute_half_width,
+            1e-9
+          )
+        ) {
+          errors.push(`five-node quotient source radius budget row ${index} term budget sum must reconstruct denominator budget`);
+        }
+        row.denominator_term_absolute_half_width_budget_rows.forEach(
+          (termRow, termIndex) => {
+            if (
+              termRow?.term !==
+                H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS[termIndex] ||
+              !hasFiniteOrderedInterval(
+                termRow?.provider_original_residual_interval
+              ) ||
+              !finitePositive(
+                termRow?.provider_original_residual_interval_half_width
+              ) ||
+              !finitePositive(termRow?.denominator_half_width_share) ||
+              !finitePositive(termRow?.term_allowed_absolute_half_width) ||
+              !finitePositive(termRow?.term_allowed_relative_radius_ceiling) ||
+              !h39RequestedY44SameNumber(
+                termRow.term_allowed_absolute_half_width,
+                row.denominator_allowed_absolute_half_width *
+                  termRow.denominator_half_width_share,
+                1e-9
+              ) ||
+              !h39RequestedY44SameNumber(
+                termRow.term_allowed_relative_radius_ceiling,
+                row.denominator_directed_relative_radius_ceiling,
+                1e-9
+              ) ||
+              termRow
+                ?.term_budget_reconstructs_denominator_relative_radius !==
+                true
+            ) {
+              errors.push(`five-node quotient source radius budget row ${index} term ${termIndex} must be coherent`);
+            }
+          }
+        );
+      });
+    }
+  }
+  const fiveNodeAbsoluteSourceProviderFit =
+    artifact
+      ?.source_map_residual_shared_stream_five_node_absolute_source_provider_fit ??
+    null;
+  if (fiveNodeAbsoluteSourceProviderFit !== null) {
+    const fitRows =
+      fiveNodeAbsoluteSourceProviderFit.absolute_source_provider_fit_rows ??
+      [];
+    const allRowsFit =
+      fiveNodeAbsoluteSourceProviderFit
+        ?.all_current_provider_rows_fit_absolute_source_budgets === true;
+    if (
+      fiveNodeAbsoluteSourceProviderFit?.target_kind !==
+        "candidate-requested-y44-shared-source-map-absolute-source-provider-fit" ||
+      fiveNodeAbsoluteSourceProviderFit?.proof_status !==
+        "candidate-absolute-source-provider-fit-not-directed-rounded" ||
+      fiveNodeAbsoluteSourceProviderFit?.fit_kind !==
+        "current-shaped-source-term-provider-to-absolute-quotient-source-budget" ||
+      fiveNodeAbsoluteSourceProviderFit?.source_y_order !==
+        H38_NUMERATOR_Y_ORDER ||
+      fiveNodeAbsoluteSourceProviderFit?.required_xi_derivative_order !== 4 ||
+      fiveNodeAbsoluteSourceProviderFit
+        ?.absolute_source_provider_fit_rows_available !== true ||
+      typeof fiveNodeAbsoluteSourceProviderFit
+        ?.all_current_provider_source_sums_fit_absolute_budgets !==
+        "boolean" ||
+      typeof fiveNodeAbsoluteSourceProviderFit
+        ?.all_current_provider_terms_fit_absolute_budgets !== "boolean" ||
+      typeof fiveNodeAbsoluteSourceProviderFit
+        ?.all_current_provider_rows_fit_absolute_source_budgets !==
+        "boolean" ||
+      !finiteNonnegative(
+        fiveNodeAbsoluteSourceProviderFit
+          ?.max_current_source_sum_to_numerator_budget_ratio
+      ) ||
+      !finiteNonnegative(
+        fiveNodeAbsoluteSourceProviderFit
+          ?.max_current_source_sum_to_denominator_budget_ratio
+      ) ||
+      !finiteNonnegative(
+        fiveNodeAbsoluteSourceProviderFit
+          ?.max_current_source_quantity_to_absolute_budget_ratio
+      ) ||
+      !finiteNonnegative(
+        fiveNodeAbsoluteSourceProviderFit
+          ?.max_current_term_to_absolute_budget_ratio
+      ) ||
+      !finitePositive(
+        fiveNodeAbsoluteSourceProviderFit
+          ?.max_source_term_live_half_width_to_allowed_budget_ratio
+      ) ||
+      !Number.isInteger(
+        fiveNodeAbsoluteSourceProviderFit
+          ?.dominant_absolute_source_provider_fit_node_index
+      ) ||
+      !["numerator", "denominator"].includes(
+        fiveNodeAbsoluteSourceProviderFit
+          ?.dominant_absolute_source_provider_fit_quantity
+      ) ||
+      !H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.includes(
+        fiveNodeAbsoluteSourceProviderFit
+          ?.dominant_absolute_source_provider_fit_term
+      ) ||
+      !Number.isInteger(
+        fiveNodeAbsoluteSourceProviderFit
+          ?.dominant_absolute_source_provider_gap_node_index
+      ) ||
+      !H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.includes(
+        fiveNodeAbsoluteSourceProviderFit
+          ?.dominant_absolute_source_provider_gap_term
+      ) ||
+      fiveNodeAbsoluteSourceProviderFit
+        ?.absolute_source_provider_fit_classification !==
+        (allRowsFit
+          ? "current-shaped-source-provider-fits-absolute-quotient-source-budgets-source-certification-open"
+          : "current-shaped-source-provider-exceeds-absolute-quotient-source-budgets") ||
+      typeof fiveNodeAbsoluteSourceProviderFit
+        ?.absolute_source_provider_fit_interpretation !== "string" ||
+      typeof fiveNodeAbsoluteSourceProviderFit?.next_certificate_object !==
+        "string" ||
+      fiveNodeAbsoluteSourceProviderFit?.claim_boundary
+        ?.certifies_current_shaped_provider_absolute_budget_fit_only !==
+        allRowsFit ||
+      fiveNodeAbsoluteSourceProviderFit?.claim_boundary
+        ?.certifies_source_inputs_as_directed_rounded_same_domain !== false ||
+      fiveNodeAbsoluteSourceProviderFit?.claim_boundary
+        ?.certifies_n38_fourth_derivative_bound !== false ||
+      fiveNodeAbsoluteSourceProviderFit?.claim_boundary
+        ?.certifies_s37_dependency_preserving_division !== false ||
+      fiveNodeAbsoluteSourceProviderFit?.claim_boundary
+        ?.certifies_shifted_R43_outer_bound !== false ||
+      fiveNodeAbsoluteSourceProviderFit?.claim_boundary
+        ?.certifies_directed_rounded_shared_domain !== false ||
+      fiveNodeAbsoluteSourceProviderFit?.claim_boundary?.retained_branch !==
+        false ||
+      !Array.isArray(fitRows) ||
+      fitRows.length !== 5
+    ) {
+      errors.push("five-node absolute source provider fit diagnostic must be coherent and candidate-only");
+    } else {
+      fitRows.forEach((row, index) => {
+        if (
+          !Number.isInteger(row?.node_index) ||
+          row.node_index !== index ||
+          !Number.isFinite(Number(row?.xi_midpoint)) ||
+          row?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+          row?.required_xi_derivative_order !== 4 ||
+          typeof row?.tightest_budget_cell_id !== "string" ||
+          row?.absolute_source_provider_fit_row_kind !==
+            "candidate-node-local-current-shaped-provider-absolute-source-budget-fit-row" ||
+          row?.fit_kind !==
+            "current-shaped-source-term-provider-to-absolute-quotient-source-budget" ||
+          !sameTerms(row?.source_terms_preserved_signed_together) ||
+          !sameZeroTerms(row?.zero_source_terms) ||
+          row?.provider_row_source_kind !==
+            "directed-rounded-same-domain-h38-source-map-residual-provider" ||
+          row?.provider_row_claim_level !==
+            "candidate-provider-shape-only-directed-rounded-claim-boundary-false" ||
+          !finitePositive(row?.numerator_allowed_absolute_half_width) ||
+          !finitePositive(row?.numerator_provider_value) ||
+          !finitePositive(row?.numerator_directed_relative_radius_ceiling) ||
+          !h39RequestedY44SameNumber(
+            row.numerator_budget_to_provider_value_ratio,
+            row.numerator_directed_relative_radius_ceiling,
+            1e-9
+          ) ||
+          !finitePositive(row?.denominator_allowed_absolute_half_width) ||
+          !finitePositive(row?.denominator_provider_value) ||
+          !finitePositive(row?.denominator_directed_relative_radius_ceiling) ||
+          !h39RequestedY44SameNumber(
+            row.denominator_budget_to_provider_value_ratio,
+            row.denominator_directed_relative_radius_ceiling,
+            1e-9
+          ) ||
+          !finitePositive(row?.source_quantity_allowed_absolute_half_width) ||
+          !finiteNonnegative(row?.current_shaped_source_sum_half_width) ||
+          !finiteNonnegative(
+            row?.current_source_sum_to_numerator_budget_ratio
+          ) ||
+          !finiteNonnegative(
+            row?.current_source_sum_to_denominator_budget_ratio
+          ) ||
+          !finiteNonnegative(
+            row?.current_source_quantity_to_absolute_budget_ratio
+          ) ||
+          !h39RequestedY44SameNumber(
+            row.current_source_quantity_to_absolute_budget_ratio,
+            row.current_shaped_source_sum_half_width /
+              row.source_quantity_allowed_absolute_half_width,
+            1e-9
+          ) ||
+          !Array.isArray(row?.current_provider_term_fit_rows) ||
+          row.current_provider_term_fit_rows.length !==
+            H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length ||
+          !finitePositive(row?.denominator_term_allowed_budget_sum) ||
+          row
+            ?.denominator_term_budget_sum_reconstructs_denominator_allowed_absolute_half_width !==
+            true ||
+          typeof row
+            ?.all_current_provider_terms_fit_absolute_budgets !== "boolean" ||
+          !finiteNonnegative(
+            row?.dominant_provider_term_to_absolute_budget_ratio
+          ) ||
+          !H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.includes(
+            row?.dominant_provider_term
+          ) ||
+          !["numerator", "denominator"].includes(
+            row?.dominant_absolute_budget_quantity
+          ) ||
+          typeof row
+            ?.row_current_provider_fits_absolute_source_budget !== "boolean" ||
+          row?.row_status !==
+            (row.row_current_provider_fits_absolute_source_budget
+              ? "candidate-current-shaped-provider-fits-absolute-source-budget-source-certification-open"
+              : "candidate-current-shaped-provider-exceeds-absolute-source-budget") ||
+          row?.claim_boundary
+            ?.certifies_current_shaped_provider_absolute_budget_fit_only !==
+            row.row_current_provider_fits_absolute_source_budget ||
+          row?.claim_boundary
+            ?.certifies_source_inputs_as_directed_rounded_same_domain !==
+            false ||
+          row?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+            false ||
+          row?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+          row?.claim_boundary?.retained_branch !== false
+        ) {
+          errors.push(`five-node absolute source provider fit row ${index} must be coherent`);
+          return;
+        }
+        const termBudgetSum = row.current_provider_term_fit_rows.reduce(
+          (total, termRow) => total + Number(termRow.allowed_absolute_half_width),
+          0
+        );
+        if (
+          !h39RequestedY44SameNumber(
+            termBudgetSum,
+            row.denominator_allowed_absolute_half_width,
+            1e-9
+          )
+        ) {
+          errors.push(`five-node absolute source provider fit row ${index} term budget sum must reconstruct denominator budget`);
+        }
+        row.current_provider_term_fit_rows.forEach((termRow, termIndex) => {
+          if (
+            termRow?.term !==
+              H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS[termIndex] ||
+            !hasFiniteOrderedInterval(
+              termRow?.current_shaped_provider_interval
+            ) ||
+            !finiteNonnegative(
+              termRow?.current_shaped_provider_half_width
+            ) ||
+            !finitePositive(termRow?.original_provider_half_width) ||
+            !finitePositive(termRow?.allowed_absolute_half_width) ||
+            !h39RequestedY44SameNumber(
+              termRow.current_shaped_provider_to_allowed_budget_ratio,
+              termRow.current_shaped_provider_half_width /
+                termRow.allowed_absolute_half_width,
+              1e-9
+            ) ||
+            !h39RequestedY44SameNumber(
+              termRow.term_live_half_width_to_allowed_budget_ratio,
+              termRow.original_provider_half_width /
+                termRow.allowed_absolute_half_width,
+              1e-9
+            ) ||
+            !h39RequestedY44SameNumber(
+              termRow.term_allowed_budget_to_live_half_width_ratio,
+              termRow.allowed_absolute_half_width /
+                termRow.original_provider_half_width,
+              1e-9
+            ) ||
+            typeof termRow
+              ?.current_shaped_provider_fits_absolute_term_budget !==
+              "boolean" ||
+            ![
+              "candidate-current-shaped-provider-term-fits-absolute-source-budget-source-certification-open",
+              "candidate-current-shaped-provider-term-exceeds-absolute-source-budget",
+            ].includes(termRow?.term_status)
+          ) {
+            errors.push(`five-node absolute source provider fit row ${index} term ${termIndex} must be coherent`);
+          }
+        });
       });
     }
   }
@@ -79064,6 +81053,136 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
         ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope
         ?.dominant_scalar_quotient_envelope_node_index ||
     comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_inclusion_classification !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_inclusion_bridge
+        ?.quotient_source_inclusion_bridge_classification ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_inclusion_all_inside !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_inclusion_bridge
+        ?.all_rows_provider_quantities_inside_quotient_source_intervals ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_inclusion_all_centers_reconstruct !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_inclusion_bridge
+        ?.all_rows_provider_sources_reconstruct_quotient_centers ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_inclusion_all_denominator_terms_match !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_inclusion_bridge
+        ?.all_rows_original_term_widths_match_quotient_denominator ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_inclusion_min_radius_ceiling !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_inclusion_bridge
+        ?.min_source_quantity_directed_relative_radius_ceiling ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_inclusion_dominant_node_index !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_inclusion_bridge
+        ?.dominant_quotient_source_inclusion_node_index ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_classification !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_radius_budget
+        ?.quotient_source_radius_budget_classification ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_all_positive !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_radius_budget
+        ?.all_rows_have_positive_absolute_source_quantity_budgets ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_all_term_sums_match !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_radius_budget
+        ?.all_rows_term_budgets_sum_to_denominator_budget ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_all_reduce !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_radius_budget
+        ?.all_rows_absolute_budget_reduce_to_directed_rounded_provider_target ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_min_numerator_absolute !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_radius_budget
+        ?.min_numerator_allowed_absolute_half_width ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_min_denominator_absolute !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_radius_budget
+        ?.min_denominator_allowed_absolute_half_width ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_min_source_absolute !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_radius_budget
+        ?.min_source_quantity_allowed_absolute_half_width ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_min_source_relative !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_radius_budget
+        ?.min_source_quantity_allowed_relative_radius_ceiling ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_dominant_node_index !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_radius_budget
+        ?.dominant_quotient_source_radius_budget_node_index ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_radius_budget_dominant_quantity !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_quotient_source_radius_budget
+        ?.dominant_quotient_source_radius_budget_quantity ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_classification !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_absolute_source_provider_fit
+        ?.absolute_source_provider_fit_classification ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_all_source_sums_fit !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_absolute_source_provider_fit
+        ?.all_current_provider_source_sums_fit_absolute_budgets ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_all_terms_fit !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_absolute_source_provider_fit
+        ?.all_current_provider_terms_fit_absolute_budgets ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_all_rows_fit !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_absolute_source_provider_fit
+        ?.all_current_provider_rows_fit_absolute_source_budgets ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_max_source_quantity_ratio !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_absolute_source_provider_fit
+        ?.max_current_source_quantity_to_absolute_budget_ratio ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_max_shaped_term_ratio !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_absolute_source_provider_fit
+        ?.max_current_term_to_absolute_budget_ratio ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_max_live_term_gap_ratio !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_absolute_source_provider_fit
+        ?.max_source_term_live_half_width_to_allowed_budget_ratio ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_dominant_node_index !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_absolute_source_provider_fit
+        ?.dominant_absolute_source_provider_fit_node_index ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_dominant_quantity !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_absolute_source_provider_fit
+        ?.dominant_absolute_source_provider_fit_quantity ||
+    comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_absolute_source_provider_fit_dominant_gap_term !==
+      nonconstantSourceMapResidualCovarianceTarget
+        ?.source_map_residual_shared_stream_five_node_absolute_source_provider_fit
+        ?.dominant_absolute_source_provider_gap_term ||
+    comparison
       ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_contracted_provider_reaches_verifier_with_source_only_failure !==
       nonconstantSourceMapResidualCovarianceTarget
         ?.source_map_residual_shared_stream_five_node_contracted_provider_candidate
@@ -79629,6 +81748,37 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
       comparison
         ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_homothetic_scalar_factorization_classification
     ) ||
+    ![
+      "quotient-source-inclusion-bridge-reduces-to-directed-rounded-relative-radius-provider",
+      "quotient-source-inclusion-bridge-open",
+      "quotient-source-inclusion-bridge-inputs-missing",
+    ].includes(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_inclusion_classification
+    ) ||
+    typeof comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_inclusion_all_inside !==
+      "boolean" ||
+    typeof comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_inclusion_all_centers_reconstruct !==
+      "boolean" ||
+    typeof comparison
+      ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_inclusion_all_denominator_terms_match !==
+      "boolean" ||
+    !finitePositive(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_inclusion_min_radius_ceiling
+    ) ||
+    !Number.isInteger(
+      comparison
+        ?.producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_inclusion_dominant_node_index
+    ) ||
+    comparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_inclusion_dominant_node_index <
+      0 ||
+    comparison
+      .producer_row_local_nonconstant_source_sum_source_map_residual_shared_stream_five_node_quotient_source_inclusion_dominant_node_index >
+      4 ||
     ![
       "five-node-source-map-inclusion-reduces-to-directed-rounded-source-certification",
       "five-node-source-map-inclusion-contract-open",

@@ -17,9 +17,13 @@ source ref-packet endpoint boundary bindings, and 4 / 4
 source value-bound records. It records 0 / 4
 full endpoint boundary bindings in the full-binding packet, 0 / 4
 endpoint boundary bindings in the full-binding packet, 0 / 4
+full endpoint boundary bindings in the carrier-field construction layer, 0 / 4
+full endpoint boundary bindings in the non-domain obstruction layer, 0 / 4
 same-packet full endpoint boundary-binding dependencies, 0 / 4
 same-packet endpoint boundary-binding dependencies, 0 / 4
 same-packet endpoint value-bound dependencies, 0 / 4
+same-packet witness-object ref dependencies, 0 / 4
+same-packet witness-object value-map dependencies, 0 / 4
 ref dependency closures, and 0 / 4
 value-map dependency closures. It consumes 0
 rows and authorizes no branch chart.
@@ -39,9 +43,9 @@ rows and authorizes no branch chart.
 
 Attempt to prove that the full endpoint boundary-binding construction layer supplies the same-packet full endpoint boundary-binding and endpoint boundary-binding dependencies required by the ref/value carrier-field dependency-closure packet.
 
-Accepted as blocker discharge if: Every endpoint has proof-grade same-packet full endpoint boundary-binding and endpoint boundary-binding dependency fields exposed in both the full-binding construction layer and the carrier-field dependency layer.
+Accepted as blocker discharge if: Every endpoint has proof-grade full endpoint boundary-binding construction fields and same-packet full endpoint boundary-binding and endpoint boundary-binding dependency fields exposed in both the full-binding construction layer and the carrier-field dependency layer.
 
-First exact blockers: same_packet_full_endpoint_boundary_binding_dependency_present and same_packet_endpoint_boundary_binding_dependency_present
+First exact blockers: full_binding_packet_full_endpoint_boundary_binding_constructed, carrier_field_layer_full_endpoint_boundary_binding_constructed, same_packet_full_endpoint_boundary_binding_dependency_present, and same_packet_endpoint_boundary_binding_dependency_present
 
 ## Downstream Policy
 
@@ -55,9 +59,13 @@ Full endpoint boundary-binding construction inputs, source endpoint-boundary-bin
 
 | Burden | Missing field | Required evidence |
 | --- | --- | --- |
+| FB_full_binding_packet_full_binding_constructed | full_binding_packet_full_endpoint_boundary_binding_constructed | A constructed proof-grade full endpoint boundary binding in the full-binding construction packet. |
+| FB_carrier_field_layer_full_binding_constructed | carrier_field_layer_full_endpoint_boundary_binding_constructed | A constructed proof-grade full endpoint boundary binding in the same-packet carrier-field construction layer. |
 | FB_full_endpoint_boundary_binding_dependency | same_packet_full_endpoint_boundary_binding_dependency_present | A proof-grade full endpoint boundary binding exposed in the same-packet carrier-field dependency layer. |
 | FB_endpoint_boundary_binding_dependency | same_packet_endpoint_boundary_binding_dependency_present | A proof-grade endpoint boundary binding exposed in the same-packet carrier-field dependency layer. |
 | FB_endpoint_value_bound_dependency | same_packet_endpoint_value_bound_to_boundary_binding_dependency_present | A proof-grade endpoint value bound to a constructed endpoint boundary binding in the same-packet layer. |
+| FB_witness_object_ref_dependency | same_packet_witness_object_ref_dependency_present | A proof-grade same-packet witness-object reference dependency, not only a source-layer endpoint-boundary-binding ref. |
+| FB_witness_object_value_map_dependency | same_packet_witness_object_value_map_dependency_present | A proof-grade same-packet witness-object value-map dependency, not only a source-layer endpoint value map. |
 | FB_ref_dependency_closure | same_packet_ref_carrier_field_dependencies_closed | Ref carrier-field dependency closure after the full and endpoint boundary-binding dependencies are present. |
 | FB_value_map_dependency_closure | same_packet_value_map_carrier_field_dependencies_closed | Value-map carrier-field dependency closure after the endpoint binding and value-bound dependencies are present. |
 | FB_dependency_lemma | full_binding_dependency_lemma_present | A lemma proving that the full endpoint boundary-binding construction layer supplies same-packet dependency fields. |
@@ -76,10 +84,10 @@ Full endpoint boundary-binding construction inputs, source endpoint-boundary-bin
 
 | Endpoint | Role | Full-binding input | Full binding | Endpoint binding | Source ref binding | Source value bound | Same-packet full dep | Same-packet endpoint dep | Same-packet value-bound dep | Ref deps closed | Value deps closed | First blockers |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
-| fc_sigma_source_lower | source | true | false | false | true | true | false | false | false | false | false | same_packet_full_endpoint_boundary_binding_dependency_present, same_packet_endpoint_boundary_binding_dependency_present, same_packet_endpoint_value_bound_to_boundary_binding_dependency_present, same_packet_ref_carrier_field_dependencies_closed |
-| fc_rho_receiver_lower | receiver | true | false | false | true | true | false | false | false | false | false | same_packet_full_endpoint_boundary_binding_dependency_present, same_packet_endpoint_boundary_binding_dependency_present, same_packet_endpoint_value_bound_to_boundary_binding_dependency_present, same_packet_ref_carrier_field_dependencies_closed |
-| fc_sigma_source_upper | source | true | false | false | true | true | false | false | false | false | false | same_packet_full_endpoint_boundary_binding_dependency_present, same_packet_endpoint_boundary_binding_dependency_present, same_packet_endpoint_value_bound_to_boundary_binding_dependency_present, same_packet_ref_carrier_field_dependencies_closed |
-| fc_rho_receiver_upper | receiver | true | false | false | true | true | false | false | false | false | false | same_packet_full_endpoint_boundary_binding_dependency_present, same_packet_endpoint_boundary_binding_dependency_present, same_packet_endpoint_value_bound_to_boundary_binding_dependency_present, same_packet_ref_carrier_field_dependencies_closed |
+| fc_sigma_source_lower | source | true | false | false | true | true | false | false | false | false | false | full_binding_packet_full_endpoint_boundary_binding_constructed, carrier_field_layer_full_endpoint_boundary_binding_constructed, same_packet_full_endpoint_boundary_binding_dependency_present, same_packet_endpoint_boundary_binding_dependency_present |
+| fc_rho_receiver_lower | receiver | true | false | false | true | true | false | false | false | false | false | full_binding_packet_full_endpoint_boundary_binding_constructed, carrier_field_layer_full_endpoint_boundary_binding_constructed, same_packet_full_endpoint_boundary_binding_dependency_present, same_packet_endpoint_boundary_binding_dependency_present |
+| fc_sigma_source_upper | source | true | false | false | true | true | false | false | false | false | false | full_binding_packet_full_endpoint_boundary_binding_constructed, carrier_field_layer_full_endpoint_boundary_binding_constructed, same_packet_full_endpoint_boundary_binding_dependency_present, same_packet_endpoint_boundary_binding_dependency_present |
+| fc_rho_receiver_upper | receiver | true | false | false | true | true | false | false | false | false | false | full_binding_packet_full_endpoint_boundary_binding_constructed, carrier_field_layer_full_endpoint_boundary_binding_constructed, same_packet_full_endpoint_boundary_binding_dependency_present, same_packet_endpoint_boundary_binding_dependency_present |
 
 ## Row Audits
 

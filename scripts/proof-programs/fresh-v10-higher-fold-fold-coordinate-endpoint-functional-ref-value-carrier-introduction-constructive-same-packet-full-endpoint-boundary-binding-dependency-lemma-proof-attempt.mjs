@@ -103,6 +103,19 @@ const ROW_FIELDS = [
 
 const PROOF_BURDENS = [
   {
+    burden_id: "FB_full_binding_packet_full_binding_constructed",
+    missing_field: "full_binding_packet_full_endpoint_boundary_binding_constructed",
+    required_evidence:
+      "A constructed proof-grade full endpoint boundary binding in the full-binding construction packet.",
+  },
+  {
+    burden_id: "FB_carrier_field_layer_full_binding_constructed",
+    missing_field:
+      "carrier_field_layer_full_endpoint_boundary_binding_constructed",
+    required_evidence:
+      "A constructed proof-grade full endpoint boundary binding in the same-packet carrier-field construction layer.",
+  },
+  {
     burden_id: "FB_full_endpoint_boundary_binding_dependency",
     missing_field: "same_packet_full_endpoint_boundary_binding_dependency_present",
     required_evidence:
@@ -120,6 +133,18 @@ const PROOF_BURDENS = [
       "same_packet_endpoint_value_bound_to_boundary_binding_dependency_present",
     required_evidence:
       "A proof-grade endpoint value bound to a constructed endpoint boundary binding in the same-packet layer.",
+  },
+  {
+    burden_id: "FB_witness_object_ref_dependency",
+    missing_field: "same_packet_witness_object_ref_dependency_present",
+    required_evidence:
+      "A proof-grade same-packet witness-object reference dependency, not only a source-layer endpoint-boundary-binding ref.",
+  },
+  {
+    burden_id: "FB_witness_object_value_map_dependency",
+    missing_field: "same_packet_witness_object_value_map_dependency_present",
+    required_evidence:
+      "A proof-grade same-packet witness-object value-map dependency, not only a source-layer endpoint value map.",
   },
   {
     burden_id: "FB_ref_dependency_closure",
@@ -754,9 +779,9 @@ function buildPacket({
       statement:
         "Attempt to prove that the full endpoint boundary-binding construction layer supplies the same-packet full endpoint boundary-binding and endpoint boundary-binding dependencies required by the ref/value carrier-field dependency-closure packet.",
       accepted_as_blocker_discharge_if:
-        "Every endpoint has proof-grade same-packet full endpoint boundary-binding and endpoint boundary-binding dependency fields exposed in both the full-binding construction layer and the carrier-field dependency layer.",
+        "Every endpoint has proof-grade full endpoint boundary-binding construction fields and same-packet full endpoint boundary-binding and endpoint boundary-binding dependency fields exposed in both the full-binding construction layer and the carrier-field dependency layer.",
       first_exact_blocker:
-        "same_packet_full_endpoint_boundary_binding_dependency_present and same_packet_endpoint_boundary_binding_dependency_present",
+        "full_binding_packet_full_endpoint_boundary_binding_constructed, carrier_field_layer_full_endpoint_boundary_binding_constructed, same_packet_full_endpoint_boundary_binding_dependency_present, and same_packet_endpoint_boundary_binding_dependency_present",
     },
     downstream_policy:
       "Ref/value dependency closure, carrier-field construction, `L_adm`, row consumption, and branch-chart authorization remain downstream of proof-grade same-packet full and endpoint boundary-binding dependencies.",
@@ -811,6 +836,10 @@ function buildPacket({
       same_packet_endpoint_value_bound_dependencies_present:
         endpointFieldCounts
           .same_packet_endpoint_value_bound_to_boundary_binding_dependency_present,
+      same_packet_witness_object_ref_dependencies_present:
+        endpointFieldCounts.same_packet_witness_object_ref_dependency_present,
+      same_packet_witness_object_value_map_dependencies_present:
+        endpointFieldCounts.same_packet_witness_object_value_map_dependency_present,
       same_packet_ref_dependency_closures_present:
         endpointFieldCounts
           .same_packet_ref_carrier_field_dependencies_closed,
@@ -930,10 +959,14 @@ full-binding construction inputs, ${summary.source_ref_packet_endpoint_boundary_
 source ref-packet endpoint boundary bindings, and ${summary.source_value_packet_endpoint_values_bound} / ${summary.endpoint_functionals}
 source value-bound records. It records ${summary.full_binding_packet_full_endpoint_boundary_bindings_constructed} / ${summary.endpoint_functionals}
 full endpoint boundary bindings in the full-binding packet, ${summary.full_binding_packet_endpoint_boundary_bindings_constructed} / ${summary.endpoint_functionals}
-endpoint boundary bindings in the full-binding packet, ${summary.same_packet_full_endpoint_boundary_binding_dependencies_present} / ${summary.endpoint_functionals}
+endpoint boundary bindings in the full-binding packet, ${summary.carrier_field_layer_full_endpoint_boundary_bindings_constructed} / ${summary.endpoint_functionals}
+full endpoint boundary bindings in the carrier-field construction layer, ${summary.obstruction_layer_full_endpoint_boundary_bindings_constructed} / ${summary.endpoint_functionals}
+full endpoint boundary bindings in the non-domain obstruction layer, ${summary.same_packet_full_endpoint_boundary_binding_dependencies_present} / ${summary.endpoint_functionals}
 same-packet full endpoint boundary-binding dependencies, ${summary.same_packet_endpoint_boundary_binding_dependencies_present} / ${summary.endpoint_functionals}
 same-packet endpoint boundary-binding dependencies, ${summary.same_packet_endpoint_value_bound_dependencies_present} / ${summary.endpoint_functionals}
-same-packet endpoint value-bound dependencies, ${summary.same_packet_ref_dependency_closures_present} / ${summary.endpoint_functionals}
+same-packet endpoint value-bound dependencies, ${summary.same_packet_witness_object_ref_dependencies_present} / ${summary.endpoint_functionals}
+same-packet witness-object ref dependencies, ${summary.same_packet_witness_object_value_map_dependencies_present} / ${summary.endpoint_functionals}
+same-packet witness-object value-map dependencies, ${summary.same_packet_ref_dependency_closures_present} / ${summary.endpoint_functionals}
 ref dependency closures, and ${summary.same_packet_value_map_dependency_closures_present} / ${summary.endpoint_functionals}
 value-map dependency closures. It consumes ${summary.row_consumption_count}
 rows and authorizes no branch chart.

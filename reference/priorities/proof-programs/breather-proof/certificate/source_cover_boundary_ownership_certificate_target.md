@@ -998,6 +998,71 @@ lemmas, endpoint application proofs, consumed rows, or branch-chart
 authorization. It is still a source-cover route target only; it adds no
 boundary-ownership pass rule.
 
+The constructive same-packet full endpoint boundary-binding dependency lemma
+proof attempt,
+`fold_coordinate_endpoint_functional_ref_value_carrier_introduction_constructive_same_packet_full_endpoint_boundary_binding_dependency_lemma_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests the first constructive dependency field underneath that dependency
+closure. It records 4 / 4 full-binding construction inputs, source ref-packet
+endpoint boundary bindings, and source value-bound records plus 3 / 3 row
+full-binding input pairs, but 0 / 4 full endpoint boundary bindings in the
+full-binding packet, 0 / 4 full endpoint boundary bindings in the carrier-field
+construction layer, 0 / 4 same-packet full endpoint boundary-binding dependencies,
+endpoint boundary-binding dependencies, endpoint value-bound dependencies,
+witness-object ref dependencies, witness-object value-map dependencies, ref
+dependency closures, value-map dependency closures, dependency lemmas,
+consumed rows, or branch-chart authorization. It is still a source-cover route
+target only; it adds no boundary-ownership pass rule.
+
+The independent full endpoint boundary-binding theorem attempt,
+`fold_coordinate_endpoint_functional_independent_full_endpoint_boundary_binding_theorem_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests the dependency-cycle escape route that could discharge those first
+constructive blockers without using `witness_object_has_contract_link` as a
+premise. It records 4 / 4 selected carrier-admission route inputs,
+contract-target layers, full-binding construction inputs, dependency cycles,
+and independent full endpoint boundary-binding theorem escape-route
+declarations plus 3 / 3 row selected-route input/cycle/escape pairs, but
+0 / 4 independent full endpoint boundary-binding theorems, derivations,
+soundness proofs, endpoint application proofs, no-contract-link premise proofs,
+carrier-admission bridges, full endpoint boundary bindings in the full-binding
+packet, full endpoint boundary bindings in the carrier-field construction
+layer, same-packet dependency fields, ref/value dependency closures, consumed
+rows, or branch-chart authorization. It is still a source-cover route target
+only; it adds no boundary-ownership pass rule.
+
+The no-contract-link premise proof attempt,
+`fold_coordinate_endpoint_functional_independent_full_endpoint_boundary_binding_no_contract_link_premise_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then isolates the first missing premise inside that independent theorem route.
+It records 4 / 4 selected carrier-admission route inputs, contract-target
+layers, full-binding construction inputs, dependency cycles, escape-route
+declarations, contract-link source candidates, and selected routes still
+requiring `witness_object_has_contract_link`, plus 3 / 3 row allowed-source
+input/cycle/escape/contract-link-requirement pairs, but 0 / 4
+no-contract-link premise proofs, derivations, soundness proofs, endpoint
+application proofs, selected-route contract-link dependency eliminations,
+binding-contract satisfaction proofs without the link premise, independent
+carrier-admission bridges, independent theorem derivations, independent full
+endpoint boundary-binding theorems, consumed rows, or branch-chart
+authorization. It is still a source-cover route target only; it adds no
+boundary-ownership pass rule.
+
+The direct binding-contract blocker packet,
+`fold_coordinate_endpoint_functional_independent_binding_contract_satisfaction_without_contract_link_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then isolates the binding-contract-satisfaction-without-contract-link burden
+inside that route target. It records 4 / 4 endpoint value-binding maps,
+binding-contract targets, binding-contract satisfaction tests, contract-link
+source candidates, without-contract-link source-input sets, selected routes
+requiring `witness_object_has_contract_link`, and ordinary binding-contract
+tests requiring `witness_object_has_contract_link`, plus 3 / 3 row
+input/target/value-map/test/link-requirement pairs. It records 0 / 4 source
+target-satisfaction proofs, source proof-grade target ref/value packages,
+source compatibility proofs, binding-contract satisfaction proofs without the
+link premise, derivations, soundness proofs, endpoint application proofs,
+target-satisfaction proofs, selected-route dependency eliminations, satisfied
+binding contracts, no-contract-link premise proofs, independent
+carrier-admission bridges, row consumption, or branch-chart authorization. It
+also remains source-cover route material only; it adds no boundary-ownership
+pass rule.
+
 ## Capture Decision
 
 Priority-only theorem target. The partition-audit implementation is now

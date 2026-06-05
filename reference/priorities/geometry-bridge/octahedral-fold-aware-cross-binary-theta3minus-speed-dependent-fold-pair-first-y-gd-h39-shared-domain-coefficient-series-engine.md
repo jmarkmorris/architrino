@@ -4206,3 +4206,46 @@ contained in the candidate source intervals before H39 applies absolute
 shifted-source bounds. The quotient envelope is still candidate-only; it does
 not certify the source inputs, $N_{38}$ derivative bounds, $S_{37}$ division,
 shifted `R_{\varepsilon,43}`, retained branch, or full H39 closure.
+
+The quotient envelope is now joined back to the live source-term provider by
+`source_map_residual_shared_stream_five_node_quotient_source_inclusion_bridge`.
+This bridge reconstructs the numerator from
+`signed_source_term_sum_available_half_width` and the denominator from the
+three original source-term half-widths on each of the five nodes, then checks
+that the resulting degenerate provider intervals lie inside the quotient
+envelope's candidate numerator and denominator intervals. Its mathematical
+effect is to replace an informal "feed a directed-rounded provider into the
+quotient" step with a concrete relative-radius target: a future same-domain H38
+producer-image provider must enclose those two source quantities within the
+recorded source-quantity radius ceilings before quotient division. The bridge is
+still candidate-only; it does not certify the provider intervals as
+directed-rounded, nor does it certify $N_{38}$ derivative bounds, $S_{37}$
+division, shifted `R_{\varepsilon,43}`, retained branch, or full H39 closure.
+
+The relative-radius bridge has also been converted into an absolute source
+quantity budget by
+`source_map_residual_shared_stream_five_node_quotient_source_radius_budget`.
+For each of the five nodes, the artifact multiplies the bridge numerator and
+denominator provider values by their allowed directed-relative-radius ceilings,
+then records the smaller resulting half-width as the absolute source-quantity
+budget that a future H38 producer-image provider must satisfy. It also
+allocates the denominator half-width budget back to the three original
+source-term widths, so the next certificate has concrete numerator,
+denominator, and term-level absolute radii rather than only a relative
+tolerance statement. This budget remains candidate-only; it does not certify
+the source inputs as directed-rounded, nor does it certify $N_{38}$ derivative
+bounds, $S_{37}$ division, shifted `R_{\varepsilon,43}`, retained branch, or
+full H39 closure.
+
+The absolute source budget now has a provider-fit diagnostic:
+`source_map_residual_shared_stream_five_node_absolute_source_provider_fit`.
+This diagnostic compares the current shaped five-node source-term provider
+against the absolute numerator, denominator, and term-level source budgets. It
+also records the live original source-term half-width to allowed-budget ratio,
+which quantifies how far the existing H38 source quantities are from the
+precision demanded by the quotient-source budget. Its effect is to turn the
+next blocker into a measured provider-width/provenance gap by node and source
+term, rather than another informal "make the provider tighter" instruction. The
+diagnostic remains candidate-only; it does not certify the source inputs as
+directed-rounded, nor does it certify $N_{38}$ derivative bounds, $S_{37}$
+division, shifted `R_{\varepsilon,43}`, retained branch, or full H39 closure.

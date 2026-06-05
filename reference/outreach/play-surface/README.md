@@ -88,7 +88,7 @@ and:
 
 For a hill, `A` is positive. For a dip, `A` is negative. The derivative is sine-shaped, so the ball sees a gradual slope increase and gradual slope decrease with no step, lip, rim, mesa, flat-bottomed bowl, or sudden change.
 
-For a saddle, valley, ridge, or advanced feature that needs a real level-to-level transition, use a compatible sine-eased or raised-cosine transition with zero slope at both ends. Do not force a `45` degree midpoint tangent as a general requirement; the slope should be chosen by play value, safety, roll distance, and prototype testing.
+For a saddle, valley, ridge, or advanced feature that needs a real level-to-level transition, use a compatible sine-eased or raised-cosine transition with zero slope at both ends. Do not force any fixed midpoint tangent as a general requirement; the slope should be chosen by play value, safety, roll distance, and prototype testing.
 
 This is a ball-safety and lesson-clarity rule. A child should see the ball respond to smooth surface geometry, not to a sudden drop, step, sharp lip, curb, hard rim, groove, or track wall. Even visually strong one-inch hills and dips should still feel rounded and continuous under the ball. The feature may be high or low, but the transition into it must be gentle.
 
@@ -175,24 +175,28 @@ Offset rule:
 - keep the feature far enough from all sides to preserve the flat neutral approach band;
 - use smooth slopes with no local sharp crest, lip, or rim.
 
-Suggested first physical prototype:
+## Starter Set V1
 
-- `1` flat tile;
-- `4` half-inch offset round hill tiles;
-- `2` one-inch offset round hill tiles;
-- `4` half-inch offset round dip tiles;
-- `2` one-inch offset round dip tiles;
-- `1` shallow diagonal saddle tile;
-- `2` shallow curved valley tiles;
-- `4` one-inch rounded corner ridge tiles;
-- `4` one-inch straight vertical ridge tiles;
-- `1` paired hill-dip tile.
+The first complete starter set is a `25`-tile prototype. It supports a `5 x 5` field or a `4 x 6` field with one spare tile. It favors repeatable path play, return-path play, basin behavior, balanced saddle behavior, and soft toddler back-rail behavior over unused open area.
 
-This creates a `25`-tile prototype that supports a `5 x 5` field or a `4 x 6` field with one spare tile. It favors composable path and rim behavior over unused open area.
+The set is a prototype schedule, not a locked commercial bill of materials. Every tile family keeps universal neutral sides and an unpatterned rolling surface.
+
+| Tile family | Count | Working contour | Concept exemplar | First-use purpose |
+| --- | ---: | --- | --- | --- |
+| Flat tile | `1` | `0"` relative change | [Flat](assets/concepts/sine-curve-options/sine-flat.png) | Rest, reset, joining space, open path. |
+| Half-inch offset round hill | `4` | `+0.5"` cosine-lobe peak | [Low hill](assets/concepts/sine-curve-options/sine-low-hill.png) | Gentle deflection, beginner slope reading. |
+| One-inch offset round hill | `2` | `+1.0"` cosine-lobe peak | [High hill](assets/concepts/sine-curve-options/sine-high-hill.png) | Stronger deflection, visible potential barrier. |
+| Half-inch offset round dip | `4` | `-0.5"` cosine-lobe low point | [Low dip](assets/concepts/sine-curve-options/sine-low-dip.png) | Gentle settling basin. |
+| One-inch offset round dip | `2` | `-1.0"` cosine-lobe low point | [High dip](assets/concepts/sine-curve-options/sine-high-dip.png) | Strong settling basin, high-contrast basin lesson. |
+| Shallow diagonal saddle | `1` | About `+/-0.7"` side-faded saddle | [Diagonal saddle](assets/concepts/sine-curve-options/sine-diagonal-saddle.png) | A balanced place where a ball may leave by different paths. |
+| Shallow curved valley | `2` | `-0.5"` raised-cosine trough line | [Curved valley](assets/concepts/sine-curve-options/sine-curved-valley.png) | A broad low route that guides without becoming a track. |
+| One-inch straight ridge | `4` | `+1.0"` raised-cosine ridge line | [Straight ridge](assets/concepts/sine-curve-options/sine-straight-ridge.png) | Gentle-roll guide and straight back-rail segment. |
+| One-inch rounded corner ridge | `4` | `+1.0"` raised-cosine corner ridge line | [Corner ridge](assets/concepts/sine-curve-options/sine-corner-ridge.png) | Gentle-roll guide and soft corner for a back rail. |
+| Paired hill-dip | `1` | About `+0.55"` hill and `-0.55"` dip | [Paired hill-dip](assets/concepts/sine-curve-options/sine-paired-hill-dip.png) | Older scenes about thresholds and path choice. |
 
 This starter-kit mix is also a packaging test case. The four one-inch corner ridge tiles and four one-inch straight ridge tiles are important for toddler rim behavior, but they are probably the hardest tiles to nest because their high ridges sit near the side zones where generic stack supports would like to land. Do not treat the commercial starter-kit count as final until the same set can pass play-value, stack-height, sealed-underside, and carton-size checks together.
 
-Included exploratory tiles:
+Prototype contour family notes:
 
 - shallow diagonal saddle: a gentle internal saddle that returns to neutral on all sides;
 - shallow curved valley: a broad low route that guides the ball without creating a side-boundary ramp;
