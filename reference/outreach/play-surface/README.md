@@ -91,6 +91,8 @@ For a hill, `A` is positive. For a dip, `A` is negative. The derivative is sine-
 
 For a saddle, valley, ridge, or advanced feature that needs a real level-to-level transition, use a compatible sine-eased or raised-cosine transition with zero slope at both ends. Do not force any fixed midpoint tangent as a general requirement; the slope should be chosen by play value, safety, roll distance, and prototype testing.
 
+Lowered features need special discipline because a flat-looking bottom can turn the lesson into a hole or track instead of a smooth rolling field. A dip, basin, valley, or trough should not have a constant-depth floor, shelf, or trough centerline. The path down into the shallow area should be sine/cosine-based from every ordinary approach direction. For curved valleys, the working prototype should combine a raised-cosine profile across the valley with a raised-cosine fade along the valley length, so the low region is smooth in both directions and never becomes a flat-bottomed channel.
+
 This is a ball-safety and lesson-clarity rule. A child should see the ball respond to smooth surface geometry, not to a sudden drop, step, sharp lip, curb, hard rim, groove, or track wall. Even visually strong one-inch hills and dips should still feel rounded and continuous under the ball. The feature may be high or low, but the transition into it must be gentle.
 
 Three-quarter product renders are useful for checking the tile form, sidewalls, and no-pattern surface language, but they are not enough to verify or communicate the sine-eased contour law. Any final contour exemplar should include a cross-section or profile view that shows the level-to-level S-curve directly.
@@ -190,7 +192,7 @@ The set is a prototype schedule, not a locked commercial bill of materials. Ever
 | Standard offset round dip | `4` | `-1.0"` cosine-lobe low point, standard radius | [Standard dip](assets/concepts/sine-curve-options/sine-standard-dip.png) | Clear settling basin. |
 | Wide offset round dip | `2` | `-1.0"` cosine-lobe low point, larger radius | [Wide dip](assets/concepts/sine-curve-options/sine-wide-dip.png) | Broader high-contrast basin lesson. |
 | Diagonal saddle | `1` | `+/-1.0"` side-faded saddle | [Diagonal saddle](assets/concepts/sine-curve-options/sine-diagonal-saddle.png) | A balanced place where a ball may leave by different paths. |
-| Curved valley | `2` | `-1.0"` raised-cosine trough line | [Curved valley](assets/concepts/sine-curve-options/sine-curved-valley.png) | A broad low route that guides without becoming a track. |
+| Curved valley | `2` | `-1.0"` raised-cosine valley across width and length | [Curved valley](assets/concepts/sine-curve-options/sine-curved-valley.png) | A broad low route that guides without becoming a track. |
 | Straight edge/rim tile | `4` | `+1.0"` raised-cosine ridge line plus one interior feature | [Straight ridge](assets/concepts/sine-curve-options/sine-straight-ridge.png) | Gentle-roll guide, straight back-rail segment, and active edge play. |
 | Rounded corner rim tile | `4` | `+1.0"` raised-cosine corner ridge line plus one interior feature | [Corner ridge](assets/concepts/sine-curve-options/sine-corner-ridge.png) | Gentle-roll guide, soft corner, and active corner play. |
 | Paired hill-dip | `1` | `+1.0"` hill and `-1.0"` dip | [Paired hill-dip](assets/concepts/sine-curve-options/sine-paired-hill-dip.png) | Older scenes about thresholds and path choice. |
@@ -200,7 +202,7 @@ This starter-kit mix is also a packaging test case. The four corner rim tiles an
 Prototype contour family notes:
 
 - diagonal saddle: a gentle internal saddle that returns to neutral on all sides;
-- curved valley: a broad low route that guides the ball without creating a side-boundary ramp;
+- curved valley: a broad low route that guides the ball without creating a side-boundary ramp, flat-bottomed trough, or constant-depth centerline;
 - valleys and ridge-line features should extend to within about `0.75"` of the tile edge, then return smoothly to neutral before the side boundary;
 - edge and corner rim tiles should not be blank guard pieces; each should include exactly one interior rolling feature such as a hill, dip, or curved valley, using the same sine/cosine contour law and staying within the `+/-1.0"` envelope;
 - rounded corner rim tile: a high rounded ridge, `+1.0"` relative to the neutral plane, makes an internal right-angle turn close to two adjacent sides while preserving the flat neutral approach band at each side;
@@ -377,6 +379,7 @@ Expected handoff artifacts:
 - contour definition for each rolling surface, either directly from CAD surfaces or from a controlled height grid plus profile tolerance;
 - contour design specification for each rolling feature, including neutral level, feature radius or transition width, height/depth amplitude `A`, peak, low point, or balance-region definition when applicable, and the sine/cosine-family law used to define the contour;
 - cross-section verification showing that each hill, dip, ridge, trough, saddle, basin, or valley uses zero-slope or near-zero-slope starts and finishes, with the first half of the transition easing away from the old level and the second half easing into the new level;
+- lowered-feature verification showing that each dip, basin, valley, or trough avoids constant-depth floors and constant-depth centerlines, including both cross-feature and lengthwise checks where the feature is elongated;
 - visual exemplar package with both a three-quarter product view and a cross-section or profile view for each contour family, so the tile form and the sine-eased level-change law can be reviewed together;
 - assembly drawings for underside joiners and package stacking;
 - packaging drawings for the one-tile carton, 25-tile carton, accessory tray, interleaves, and pallet pattern;

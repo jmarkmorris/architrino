@@ -132,6 +132,12 @@ export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SIGNED_SOURCE_SU
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_MAP_RESIDUAL_COVARIANCE_TARGET_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-source-map-residual-covariance-target/v1";
 
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_N38_SOURCE_MAP_ENVELOPE_READINESS_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-n38-source-map-envelope-readiness/v1";
+
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_AFFINE_ENDPOINT_PROVIDER_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-affine-endpoint-provider-candidate/v1";
+
 const H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS = Object.freeze([
   "delta_squared_speed",
   "sin_phi",
@@ -55954,6 +55960,723 @@ export function buildH39RequestedY44SourceMapResidualCovarianceTargetCandidate({
   };
 }
 
+export function buildH39RequestedY44N38SourceMapEnvelopeReadinessCandidate({
+  sourceMapResidualCovarianceTarget,
+  terminalGraphRemainderBudgetDiagnostic,
+} = {}) {
+  const bridgeRows =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_h38_source_provenance_bridge_rows ?? [];
+  const terminalRows =
+    terminalGraphRemainderBudgetDiagnostic
+      ?.terminal_graph_remainder_budget_rows ?? [];
+  const terminalSummary =
+    terminalGraphRemainderBudgetDiagnostic
+      ?.terminal_graph_remainder_budget_summary ?? {};
+  const terminalProducerRefinementForecast =
+    terminalGraphRemainderBudgetDiagnostic
+      ?.terminal_producer_refinement_forecast ?? {};
+  const sourceTermProviderProbe =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_shared_stream_five_node_source_term_provider_probe ??
+    null;
+  const sourceTermProviderProbeRows =
+    sourceTermProviderProbe?.source_term_provider_probe_rows ?? [];
+  const bridgeAvailable =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_h38_source_provenance_bridge_available === true;
+  const bridgeProviderRowsReady =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_h38_source_provenance_bridge_provider_rows_ready ===
+    true;
+  const bridgeTraceAnchorReady =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_h38_source_provenance_bridge_trace_anchor_ready ===
+    true;
+  const bridgeAcceptanceTargetReady =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_h38_source_provenance_bridge_acceptance_target_ready ===
+    true;
+  const sameFiveNodeRouteAvailable =
+    bridgeRows.length === 5 && terminalRows.length === 5;
+  const terminalAffineEndpointRouteReady =
+    terminalGraphRemainderBudgetDiagnostic
+      ?.n38_terminal_graph_remainder_budget_diagnosis ===
+      "terminal-graph-remainder-affine-zeta-endpoint-partition-route-candidate" &&
+    terminalSummary?.all_rows_h38_solve_target_zeroed === true &&
+    terminalSummary?.all_rows_form_sigma_before_h_row_substitution === true &&
+    terminalSummary?.all_rows_correlated_terminal_residual_endpoint_partitions_under_target ===
+      true &&
+    terminalSummary?.all_rows_correlated_terminal_residual_graph_endpoint_partitions_under_target ===
+      true &&
+    terminalSummary?.all_rows_correlated_terminal_residual_affine_envelopes_under_target ===
+      true &&
+    terminalSummary?.all_rows_correlated_terminal_residual_graph_affine_envelopes_under_target ===
+      true &&
+    terminalSummary?.terminal_zeta_degree_bound_summary
+      ?.all_rows_affine_in_shared_residual_coordinate === true &&
+    terminalSummary?.terminal_zeta_degree_bound_summary
+      ?.max_shared_residual_power_by_y_order === 1 &&
+    terminalSummary?.all_rows_midpoint_fit_residuals_inside_allowed_budget ===
+      true;
+  const terminalProducerIntervalWidthOpen =
+    terminalSummary?.all_rows_producer_intervals_contained_by_allowed_budget ===
+    false;
+  const terminalDirectedRoundedProviderSupplied = false;
+  const sourceTermProviderProbeReady =
+    sourceTermProviderProbe?.target_kind ===
+      "candidate-requested-y44-shared-source-map-source-term-provider-probe" &&
+    sourceTermProviderProbe?.source_term_provider_probe_rows_available ===
+      true &&
+    sourceTermProviderProbe
+      ?.source_term_provider_rows_match_same_domain_contract === true &&
+    sourceTermProviderProbe
+      ?.source_term_provider_rows_match_same_radius_contract === true &&
+    sourceTermProviderProbe
+      ?.source_term_provider_intervals_subset_screened_targets === true &&
+    sourceTermProviderProbe?.source_term_provider_rows_use_required_source_kind ===
+      true &&
+    sourceTermProviderProbe
+      ?.source_term_provider_rows_certify_directed_rounded_source === false &&
+    sourceTermProviderProbe
+      ?.source_term_provider_term_width_realization_open === true;
+  const providerReadinessRows = Array.from(
+    { length: Math.max(bridgeRows.length, terminalRows.length) },
+    (_, index) => {
+      const bridgeRow = bridgeRows[index] ?? {};
+      const terminalRow = terminalRows[index] ?? {};
+      const providerProbeRow = sourceTermProviderProbeRows[index] ?? {};
+      const rowTerminalRouteReady =
+        terminalRow.h38_solve_target_zeroed === true &&
+        terminalRow.correlated_terminal_residual_endpoint_partitions_under_target ===
+          true &&
+        terminalRow
+          .correlated_terminal_residual_graph_endpoint_partitions_under_target ===
+          true &&
+        terminalRow.correlated_terminal_residual_affine_envelopes_under_target ===
+          true &&
+        terminalRow
+          .correlated_terminal_residual_graph_affine_envelopes_under_target ===
+          true &&
+        terminalRow.terminal_graph_shared_residual_zeta_degree_bound
+          ?.max_shared_residual_power_by_y_order === 1 &&
+        terminalRow.all_terminal_midpoint_fit_residuals_inside_allowed_budget ===
+          true;
+      const rowProducerWidthOpen =
+        terminalRow.all_terminal_producer_intervals_contained_by_allowed_budget ===
+        false;
+      const rowBridgeReady =
+        bridgeRow.provider_row_reaches_h39_verifier_boundary === true &&
+        bridgeRow.row_status ===
+          "h39-provider-row-ready-waits-on-expression-level-n38-source-provenance";
+      return {
+        node_index: Number.isInteger(bridgeRow.node_index)
+          ? bridgeRow.node_index
+          : index,
+        h39_provider_xi_midpoint: bridgeRow.xi_midpoint ?? null,
+        terminal_graph_xi_midpoint: terminalRow.xi_midpoint ?? null,
+        terminal_graph_cell_id: terminalRow.cell_id ?? null,
+        source_y_order: H38_NUMERATOR_Y_ORDER,
+        required_xi_derivative_order: 4,
+        h39_provider_row_reaches_verifier_boundary: rowBridgeReady,
+        provider_probe_row_source_kind:
+          providerProbeRow.provider_row_source_kind ?? null,
+        provider_probe_row_status: providerProbeRow.row_status ?? null,
+        provider_probe_row_fits_center_aware_target:
+          providerProbeRow.signed_provider_interval_contained_in_center_aware_target ===
+            true &&
+          providerProbeRow.weighted_provider_interval_contained_in_center_aware_target ===
+            true,
+        provider_probe_row_certifies_directed_rounded_source:
+          providerProbeRow.claim_boundary
+            ?.certifies_source_inputs_as_directed_rounded_same_domain === true,
+        terminal_graph_row_affine_endpoint_route_ready:
+          rowTerminalRouteReady,
+        terminal_graph_row_producer_interval_width_open:
+          rowProducerWidthOpen,
+        terminal_graph_row_midpoint_residual_inside_allowed_budget:
+          terminalRow.all_terminal_midpoint_fit_residuals_inside_allowed_budget ===
+          true,
+        terminal_graph_route_interpretation:
+          terminalRow.residual_coordinate_partition_route_interpretation ??
+          null,
+        terminal_graph_budget_route_interpretation:
+          terminalRow.terminal_graph_remainder_budget_route_interpretation ??
+          null,
+        terminal_zeta_route_interpretation:
+          terminalRow.terminal_graph_shared_residual_zeta_degree_bound
+            ?.route_interpretation ?? null,
+        terminal_max_shared_residual_power_by_y_order:
+          terminalRow.terminal_graph_shared_residual_zeta_degree_bound
+            ?.max_shared_residual_power_by_y_order ?? null,
+        terminal_min_two_terminal_factor_gap_to_source_order:
+          terminalRow.terminal_graph_shared_residual_zeta_degree_bound
+            ?.min_two_terminal_factor_gap_to_source_order ?? null,
+        terminal_graph_affine_envelope_width_share_of_all:
+          terminalRow
+            .max_terminal_graph_correlated_residual_graph_affine_envelope_width_share_of_all ??
+          null,
+        terminal_graph_endpoint_partition_width_share_of_all:
+          terminalRow
+            .max_terminal_graph_correlated_residual_graph_endpoint_partition_width_share_of_all ??
+          null,
+        terminal_required_scale_to_allowed_scale_ratio:
+          terminalRow.max_required_scale_to_allowed_scale_ratio ?? null,
+        terminal_allowed_radius_to_producer_half_width_ratio:
+          terminalRow.min_allowed_radius_to_producer_half_width_ratio ?? null,
+        terminal_midpoint_fit_residual_to_allowed_radius_ratio:
+          terminalRow.max_midpoint_fit_residual_to_allowed_radius_ratio ??
+          null,
+        row_status:
+          rowBridgeReady && rowTerminalRouteReady && rowProducerWidthOpen
+            ? "h39-source-map-obligation-compatible-with-terminal-affine-endpoint-route-producer-interval-width-open"
+            : "h39-source-map-terminal-route-readiness-open",
+        claim_boundary: {
+          defines_n38_source_map_envelope_readiness_only: true,
+          certifies_expression_level_n38_provider: false,
+          certifies_terminal_row_provider_enclosure: false,
+          certifies_terminal_graph_remainder_bound: false,
+          certifies_s37_dependency_preserving_division: false,
+          certifies_shifted_R43_outer_bound: false,
+          certifies_directed_rounded_shared_domain: false,
+          retained_branch: false,
+        },
+      };
+    }
+  );
+  const allRowsReadyForProviderConstruction =
+    sameFiveNodeRouteAvailable &&
+    providerReadinessRows.every(
+      (row) =>
+        row.row_status ===
+        "h39-source-map-obligation-compatible-with-terminal-affine-endpoint-route-producer-interval-width-open"
+    );
+  const readinessClassification =
+    bridgeAvailable &&
+    bridgeProviderRowsReady &&
+    sourceTermProviderProbeReady &&
+    terminalAffineEndpointRouteReady &&
+    terminalProducerIntervalWidthOpen &&
+    allRowsReadyForProviderConstruction
+      ? "n38-source-map-envelope-route-ready-for-directed-rounded-terminal-affine-endpoint-provider-construction"
+      : bridgeAvailable && !terminalAffineEndpointRouteReady
+        ? "n38-source-map-bridge-ready-terminal-affine-endpoint-route-open"
+        : terminalAffineEndpointRouteReady && !bridgeAvailable
+          ? "terminal-affine-endpoint-route-ready-h39-source-map-bridge-open"
+          : "n38-source-map-envelope-readiness-open";
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_N38_SOURCE_MAP_ENVELOPE_READINESS_SCHEMA,
+    status:
+      "h39-requested-y44-n38-source-map-envelope-readiness-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-n38-source-map-envelope-readiness",
+    target_kind:
+      "candidate-requested-y44-n38-source-map-envelope-readiness",
+    source_map_residual_target_schema:
+      sourceMapResidualCovarianceTarget?.schema ?? null,
+    terminal_graph_remainder_budget_schema:
+      terminalGraphRemainderBudgetDiagnostic?.schema ?? null,
+    proof_status:
+      "candidate-n38-source-map-envelope-readiness-not-directed-rounded",
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    source_terms_preserved_signed_together: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    zero_source_terms: [...H38_SOURCE_TERM_ZERO_KEYS],
+    source_map_bridge_available: bridgeAvailable,
+    source_map_bridge_trace_anchor_ready: bridgeTraceAnchorReady,
+    source_map_bridge_acceptance_target_ready: bridgeAcceptanceTargetReady,
+    source_map_bridge_provider_rows_ready: bridgeProviderRowsReady,
+    source_map_bridge_classification:
+      sourceMapResidualCovarianceTarget
+        ?.source_map_residual_h38_source_provenance_bridge_classification ??
+      null,
+    source_map_primary_missing_object_kind:
+      sourceMapResidualCovarianceTarget
+        ?.source_map_residual_h38_source_provenance_bridge_primary_missing_object_kind ??
+      null,
+    source_term_provider_probe_available:
+      sourceTermProviderProbe?.source_term_provider_probe_rows_available ===
+      true,
+    source_term_provider_probe_kind:
+      sourceTermProviderProbe?.provider_probe_kind ?? null,
+    source_term_provider_probe_classification:
+      sourceTermProviderProbe?.provider_probe_classification ?? null,
+    source_term_provider_probe_rows_match_same_domain_contract:
+      sourceTermProviderProbe
+        ?.source_term_provider_rows_match_same_domain_contract === true,
+    source_term_provider_probe_rows_match_same_radius_contract:
+      sourceTermProviderProbe
+        ?.source_term_provider_rows_match_same_radius_contract === true,
+    source_term_provider_probe_intervals_subset_screened_targets:
+      sourceTermProviderProbe
+        ?.source_term_provider_intervals_subset_screened_targets === true,
+    source_term_provider_probe_rows_use_required_source_kind:
+      sourceTermProviderProbe
+        ?.source_term_provider_rows_use_required_source_kind === true,
+    source_term_provider_probe_rows_certify_directed_rounded_source:
+      sourceTermProviderProbe
+        ?.source_term_provider_rows_certify_directed_rounded_source === true,
+    source_term_provider_probe_reaches_aggregate_verifier_claim_boundary:
+      sourceTermProviderProbe
+        ?.source_term_provider_reaches_aggregate_verifier_claim_boundary ===
+      true,
+    source_term_provider_probe_term_width_realization_open:
+      sourceTermProviderProbe
+        ?.source_term_provider_term_width_realization_open === true,
+    h39_provider_row_count: bridgeRows.length,
+    terminal_graph_row_count: terminalRows.length,
+    same_five_node_route_available: sameFiveNodeRouteAvailable,
+    row_alignment_kind:
+      "five-node-ordinal-route-readiness-not-provider-identity",
+    terminal_graph_remainder_budget_diagnosis:
+      terminalGraphRemainderBudgetDiagnostic
+        ?.n38_terminal_graph_remainder_budget_diagnosis ?? null,
+    terminal_graph_xi_stencil_kind: terminalSummary?.xi_stencil_kind ?? null,
+    terminal_graph_route_supplies_affine_endpoint_partition:
+      terminalAffineEndpointRouteReady,
+    terminal_graph_route_supplies_directed_rounded_provider:
+      terminalDirectedRoundedProviderSupplied,
+    terminal_graph_route_current_mismatch_kind:
+      terminalAffineEndpointRouteReady && terminalProducerIntervalWidthOpen
+        ? "terminal-affine-endpoint-route-ready-but-producer-interval-width-not-directed-rounded-provider"
+        : "terminal-affine-endpoint-route-open",
+    terminal_graph_obstruction_classification:
+      terminalAffineEndpointRouteReady && terminalProducerIntervalWidthOpen
+        ? "localized-bounding-method-artifact-from-independent-terminal-producer-interval-width"
+        : "terminal-route-obstruction-open",
+    terminal_graph_all_rows_midpoint_fit_residuals_inside_allowed_budget:
+      terminalSummary?.all_rows_midpoint_fit_residuals_inside_allowed_budget ===
+      true,
+    terminal_graph_all_rows_producer_intervals_contained_by_allowed_budget:
+      terminalSummary?.all_rows_producer_intervals_contained_by_allowed_budget ===
+      true,
+    terminal_graph_max_required_scale_to_allowed_scale_ratio:
+      terminalSummary?.max_required_scale_to_allowed_scale_ratio ?? null,
+    terminal_graph_min_allowed_radius_to_producer_half_width_ratio:
+      terminalSummary?.min_allowed_radius_to_producer_half_width_ratio ?? null,
+    terminal_graph_max_midpoint_fit_residual_to_allowed_radius_ratio:
+      terminalSummary?.max_midpoint_fit_residual_to_allowed_radius_ratio ??
+      null,
+    terminal_zeta_degree_bound_summary:
+      terminalSummary?.terminal_zeta_degree_bound_summary ?? null,
+    s37_division_is_primary_blocker:
+      sourceMapResidualCovarianceTarget
+        ?.source_map_residual_h38_source_provenance_bridge_s37_division_is_primary_blocker ===
+      true,
+    s37_division_remains_dependent_obligation: true,
+    provider_readiness_rows: providerReadinessRows,
+    readiness_classification: readinessClassification,
+    next_certificate_object:
+      "directed-rounded same-domain terminal-affine endpoint provider for the expression-level N38 source-map residual, followed by dependency-preserving S37 division into the five H39 source-map provider rows",
+    candidate_certificate_route:
+      "Use the terminal graph remainder budget as the local N38 source-map envelope route: keep the shared terminal residual coordinate affine by y-order, certify endpoint affine zeta envelopes with directed rounding on the same producer image, then transport that certified N38 source envelope through S37 before H39 applies absolute shifted-source bounds.",
+    claim_boundary: {
+      defines_n38_source_map_envelope_readiness_only: true,
+      certifies_expression_level_n38_provider: false,
+      certifies_terminal_row_provider_enclosure: false,
+      certifies_terminal_graph_remainder_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+export function buildH39RequestedY44TerminalAffineEndpointProviderCandidate({
+  n38SourceMapEnvelopeReadiness,
+  terminalGraphRemainderBudgetDiagnostic,
+} = {}) {
+  const readinessRows =
+    n38SourceMapEnvelopeReadiness?.provider_readiness_rows ?? [];
+  const terminalRows =
+    terminalGraphRemainderBudgetDiagnostic
+      ?.terminal_graph_remainder_budget_rows ?? [];
+  const terminalSummary =
+    terminalGraphRemainderBudgetDiagnostic
+      ?.terminal_graph_remainder_budget_summary ?? {};
+  const finiteNumbers = (values) =>
+    values.map(Number).filter((value) => Number.isFinite(value));
+  const maxFinite = (values) => {
+    const finite = finiteNumbers(values);
+    return finite.length > 0 ? Math.max(...finite) : null;
+  };
+  const minFinite = (values) => {
+    const finite = finiteNumbers(values);
+    return finite.length > 0 ? Math.min(...finite) : null;
+  };
+  const terminalAffineProviderRows = terminalRows.map((terminalRow, index) => {
+    const readinessRow = readinessRows[index] ?? {};
+    const graphEndpointDiagnostic =
+      terminalRow.terminal_graph_shared_residual_graph_endpoint_partition_diagnostic ??
+      {};
+    const pointEndpointDiagnostic =
+      terminalRow.terminal_graph_shared_residual_point_endpoint_partition_diagnostic ??
+      {};
+    const graphEndpointPartitions =
+      graphEndpointDiagnostic.partition_replays ?? [];
+    const pointEndpointPartitions =
+      pointEndpointDiagnostic.partition_replays ?? [];
+    const terminalBudgetEntries =
+      terminalRow.terminal_graph_remainder_budget_entries ?? [];
+    const terminalHProviderBudgetRows = terminalBudgetEntries.map((entry) => {
+      const allowedRadius = Number(
+        entry.allowed_residual_radius_for_source_budget
+      );
+      const producerHalfWidth = Number(entry.producer_interval_half_width);
+      const producerHalfWidthToAllowedRadiusRatio = finitePositive(
+        allowedRadius
+      )
+        ? producerHalfWidth / allowedRadius
+        : null;
+      const candidateProviderInterval = [
+        Number(entry.graph_interval?.[0]) - allowedRadius,
+        Number(entry.graph_interval?.[1]) + allowedRadius,
+      ];
+      return {
+        node_index: Number.isInteger(readinessRow.node_index)
+          ? readinessRow.node_index
+          : index,
+        h_index: Number(entry.h_index),
+        source_y_order: H38_NUMERATOR_Y_ORDER,
+        graph_interval: entry.graph_interval ?? null,
+        producer_interval: entry.producer_interval ?? null,
+        row_residual_interval: entry.row_residual_interval ?? null,
+        raw_residual_interval_hull: entry.raw_residual_interval_hull ?? null,
+        row_residual_abs_upper: entry.row_residual_abs_upper ?? null,
+        raw_residual_abs_upper: entry.raw_residual_abs_upper ?? null,
+        candidate_provider_interval: candidateProviderInterval,
+        candidate_provider_half_width_budget: allowedRadius,
+        producer_interval_half_width: producerHalfWidth,
+        allowed_radius_to_producer_half_width_ratio:
+          entry.allowed_radius_to_producer_half_width_ratio ?? null,
+        producer_half_width_to_allowed_radius_ratio:
+          producerHalfWidthToAllowedRadiusRatio,
+        required_scale_to_allowed_scale_ratio:
+          entry.required_scale_to_allowed_scale_ratio ?? null,
+        midpoint_fit_max_abs_residual:
+          entry.midpoint_fit_max_abs_residual ?? null,
+        midpoint_fit_residual_to_allowed_radius_ratio:
+          entry.midpoint_fit_residual_to_allowed_radius_ratio ?? null,
+        midpoint_fit_residual_inside_allowed_budget:
+          entry.midpoint_fit_residual_inside_allowed_budget === true,
+        raw_producer_interval_contained_by_candidate_budget:
+          entry.producer_interval_contained_by_budget === true,
+        provider_budget_realization_status:
+          entry.producer_interval_contained_by_budget === true
+            ? "raw-producer-interval-fits-terminal-affine-budget"
+            : "raw-producer-interval-exceeds-terminal-affine-budget",
+        claim_boundary: {
+          defines_terminal_affine_endpoint_provider_budget_only: true,
+          certifies_expression_level_n38_provider: false,
+          certifies_terminal_row_provider_enclosure: false,
+          certifies_terminal_graph_remainder_bound: false,
+          certifies_s37_dependency_preserving_division: false,
+          certifies_shifted_R43_outer_bound: false,
+          certifies_directed_rounded_shared_domain: false,
+          retained_branch: false,
+        },
+      };
+    });
+    return {
+      node_index: Number.isInteger(readinessRow.node_index)
+        ? readinessRow.node_index
+        : index,
+      h39_provider_xi_midpoint: readinessRow.h39_provider_xi_midpoint ?? null,
+      terminal_graph_xi_midpoint: terminalRow.xi_midpoint ?? null,
+      terminal_graph_cell_id: terminalRow.cell_id ?? null,
+      terminal_graph_xi_interval: terminalRow.xi_interval ?? null,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      terminal_h_indexes: terminalHProviderBudgetRows.map((entry) =>
+        Number(entry.h_index)
+      ),
+      terminal_zeta_affine_by_y_order_gap:
+        terminalRow.terminal_graph_shared_residual_zeta_degree_bound
+          ?.affine_in_shared_residual_coordinate === true,
+      terminal_max_shared_residual_power_by_y_order:
+        terminalRow.terminal_graph_shared_residual_zeta_degree_bound
+          ?.max_shared_residual_power_by_y_order ?? null,
+      terminal_min_two_terminal_factor_gap_to_source_order:
+        terminalRow.terminal_graph_shared_residual_zeta_degree_bound
+          ?.two_terminal_factor_min_y_order === undefined
+          ? null
+          : Number(
+              terminalRow.terminal_graph_shared_residual_zeta_degree_bound
+                .two_terminal_factor_min_y_order
+            ) - H38_NUMERATOR_Y_ORDER,
+      graph_endpoint_partition_hulls_under_target:
+        terminalRow.correlated_terminal_residual_graph_endpoint_partitions_under_target ===
+        true,
+      graph_affine_zeta_envelopes_under_target:
+        terminalRow.correlated_terminal_residual_graph_affine_envelopes_under_target ===
+        true,
+      point_endpoint_partition_hulls_under_target:
+        terminalRow.correlated_terminal_residual_endpoint_partitions_under_target ===
+        true,
+      point_affine_zeta_envelopes_under_target:
+        terminalRow.correlated_terminal_residual_affine_envelopes_under_target ===
+        true,
+      graph_midpoint_linearity_checks_pass:
+        graphEndpointPartitions.every(
+          (partition) => partition.midpoint_linearity_check_passed === true
+        ),
+      point_midpoint_linearity_checks_pass:
+        pointEndpointPartitions.every(
+          (partition) => partition.midpoint_linearity_check_passed === true
+        ),
+      graph_endpoint_partition_count:
+        graphEndpointDiagnostic.residual_coordinate_partition_count ?? null,
+      max_graph_endpoint_partition_width_share_of_all:
+        terminalRow
+          .max_terminal_graph_correlated_residual_graph_endpoint_partition_width_share_of_all ??
+        null,
+      max_graph_affine_zeta_envelope_width_share_of_all:
+        terminalRow
+          .max_terminal_graph_correlated_residual_graph_affine_envelope_width_share_of_all ??
+        null,
+      max_graph_affine_zeta_envelope_slope_abs_upper:
+        terminalRow
+          .max_terminal_graph_correlated_residual_graph_affine_envelope_slope_abs_upper ??
+        null,
+      max_graph_midpoint_linearity_gap_abs_upper: maxFinite(
+        graphEndpointPartitions.map(
+          (partition) => partition.midpoint_linearity_gap_abs_upper
+        )
+      ),
+      terminal_h_provider_budget_rows: terminalHProviderBudgetRows,
+      all_terminal_h_midpoint_fit_residuals_inside_allowed_budget:
+        terminalHProviderBudgetRows.every(
+          (entry) =>
+            entry.midpoint_fit_residual_inside_allowed_budget === true
+        ),
+      all_terminal_h_raw_producer_intervals_contained_by_candidate_budget:
+        terminalHProviderBudgetRows.every(
+          (entry) =>
+            entry.raw_producer_interval_contained_by_candidate_budget === true
+        ),
+      max_terminal_h_required_scale_to_allowed_scale_ratio: maxFinite(
+        terminalHProviderBudgetRows.map(
+          (entry) => entry.required_scale_to_allowed_scale_ratio
+        )
+      ),
+      min_terminal_h_allowed_radius_to_producer_half_width_ratio: minFinite(
+        terminalHProviderBudgetRows.map(
+          (entry) => entry.allowed_radius_to_producer_half_width_ratio
+        )
+      ),
+      max_terminal_h_producer_half_width_to_allowed_radius_ratio: maxFinite(
+        terminalHProviderBudgetRows.map(
+          (entry) => entry.producer_half_width_to_allowed_radius_ratio
+        )
+      ),
+      max_terminal_h_midpoint_fit_residual_to_allowed_radius_ratio: maxFinite(
+        terminalHProviderBudgetRows.map(
+          (entry) => entry.midpoint_fit_residual_to_allowed_radius_ratio
+        )
+      ),
+      row_status:
+        readinessRow.terminal_graph_row_affine_endpoint_route_ready === true &&
+        terminalRow.correlated_terminal_residual_graph_endpoint_partitions_under_target ===
+          true &&
+        terminalRow.correlated_terminal_residual_graph_affine_envelopes_under_target ===
+          true &&
+        terminalHProviderBudgetRows.every(
+          (entry) =>
+            entry.midpoint_fit_residual_inside_allowed_budget === true
+        ) &&
+        terminalHProviderBudgetRows.some(
+          (entry) =>
+            entry.raw_producer_interval_contained_by_candidate_budget === false
+        )
+          ? "terminal-affine-endpoint-provider-budget-ready-raw-producer-width-open"
+          : "terminal-affine-endpoint-provider-budget-route-open",
+      claim_boundary: {
+        defines_terminal_affine_endpoint_provider_budget_only: true,
+        certifies_expression_level_n38_provider: false,
+        certifies_terminal_row_provider_enclosure: false,
+        certifies_terminal_graph_remainder_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  });
+  const terminalHProviderBudgetRows = terminalAffineProviderRows.flatMap(
+    (row) => row.terminal_h_provider_budget_rows
+  );
+  const candidateSurfaceReady =
+    n38SourceMapEnvelopeReadiness?.readiness_classification ===
+      "n38-source-map-envelope-route-ready-for-directed-rounded-terminal-affine-endpoint-provider-construction" &&
+    terminalGraphRemainderBudgetDiagnostic
+      ?.n38_terminal_graph_remainder_budget_diagnosis ===
+      "terminal-graph-remainder-affine-zeta-endpoint-partition-route-candidate" &&
+    terminalSummary?.all_rows_correlated_terminal_residual_graph_endpoint_partitions_under_target ===
+      true &&
+    terminalSummary?.all_rows_correlated_terminal_residual_graph_affine_envelopes_under_target ===
+      true &&
+    terminalSummary?.all_rows_correlated_terminal_residual_graph_midpoint_linearity_checks_pass ===
+      true &&
+    terminalSummary?.terminal_zeta_degree_bound_summary
+      ?.all_rows_affine_in_shared_residual_coordinate === true &&
+    terminalSummary?.all_rows_midpoint_fit_residuals_inside_allowed_budget ===
+      true &&
+    terminalSummary?.all_rows_producer_interval_budget_no_go === true &&
+    terminalAffineProviderRows.length === 5 &&
+    terminalAffineProviderRows.every(
+      (row) =>
+        row.row_status ===
+        "terminal-affine-endpoint-provider-budget-ready-raw-producer-width-open"
+    );
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_AFFINE_ENDPOINT_PROVIDER_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-terminal-affine-endpoint-provider-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-terminal-affine-endpoint-provider",
+    target_kind:
+      "candidate-requested-y44-terminal-affine-endpoint-provider",
+    source_map_envelope_readiness_schema:
+      n38SourceMapEnvelopeReadiness?.schema ?? null,
+    terminal_graph_remainder_budget_schema:
+      terminalGraphRemainderBudgetDiagnostic?.schema ?? null,
+    proof_status:
+      "candidate-terminal-affine-endpoint-provider-not-directed-rounded",
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    source_terms_preserved_signed_together: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    terminal_h_indexes:
+      terminalGraphRemainderBudgetDiagnostic?.terminal_provider_h_indexes ??
+      [],
+    terminal_graph_xi_stencil_kind:
+      terminalSummary?.xi_stencil_kind ?? null,
+    terminal_graph_route_current_mismatch_kind:
+      n38SourceMapEnvelopeReadiness
+        ?.terminal_graph_route_current_mismatch_kind ?? null,
+    terminal_affine_endpoint_provider_surface_ready: candidateSurfaceReady,
+    terminal_affine_endpoint_provider_certified_directed_rounded: false,
+    terminal_affine_endpoint_provider_classification: candidateSurfaceReady
+      ? "terminal-affine-endpoint-provider-budget-surface-ready-raw-producer-width-open"
+      : "terminal-affine-endpoint-provider-budget-surface-open",
+    terminal_affine_endpoint_provider_primary_missing_object_kind:
+      "directed-rounded-same-domain-terminal-affine-endpoint-producer-interval-realization",
+    terminal_affine_endpoint_refinement_forecast_available: finitePositive(
+      terminalProducerRefinementForecast
+        ?.projected_subcell_count_for_baseline_budget
+    ),
+    terminal_affine_endpoint_refinement_forecast_route_interpretation:
+      terminalProducerRefinementForecast?.route_interpretation ?? null,
+    terminal_affine_endpoint_refinement_base_subcell_count:
+      terminalProducerRefinementForecast?.base_subcell_count ?? null,
+    terminal_affine_endpoint_refinement_projected_subcell_count_for_budget:
+      terminalProducerRefinementForecast
+        ?.projected_subcell_count_for_baseline_budget ?? null,
+    terminal_affine_endpoint_refinement_projected_subcell_multiplier_for_budget:
+      terminalProducerRefinementForecast
+        ?.projected_subcell_multiplier_for_baseline_budget ?? null,
+    terminal_affine_endpoint_refinement_base_required_factor_to_fit_budget:
+      terminalProducerRefinementForecast
+        ?.base_required_refinement_factor_to_fit_budget ?? null,
+    terminal_affine_endpoint_refinement_scaling_exponent_used:
+      terminalProducerRefinementForecast?.forecast_scaling_exponent_used ??
+      null,
+    terminal_affine_endpoint_refinement_final_refined_ratio_to_budget:
+      terminalProducerRefinementForecast
+        ?.final_refined_ratio_to_baseline_budget ?? null,
+    terminal_affine_endpoint_refinement_final_refined_entries_fit_budget:
+      terminalProducerRefinementForecast
+        ?.final_refined_entries_fit_baseline_allowed_radius === true,
+    terminal_affine_endpoint_provider_row_count:
+      terminalAffineProviderRows.length,
+    terminal_h_provider_budget_row_count: terminalHProviderBudgetRows.length,
+    all_rows_terminal_zeta_affine_by_y_order_gap:
+      terminalAffineProviderRows.every(
+        (row) => row.terminal_zeta_affine_by_y_order_gap === true
+      ),
+    all_rows_graph_endpoint_partition_hulls_under_target:
+      terminalAffineProviderRows.every(
+        (row) => row.graph_endpoint_partition_hulls_under_target === true
+      ),
+    all_rows_graph_affine_zeta_envelopes_under_target:
+      terminalAffineProviderRows.every(
+        (row) => row.graph_affine_zeta_envelopes_under_target === true
+      ),
+    all_rows_graph_midpoint_linearity_checks_pass:
+      terminalAffineProviderRows.every(
+        (row) => row.graph_midpoint_linearity_checks_pass === true
+      ),
+    all_terminal_h_midpoint_fit_residuals_inside_allowed_budget:
+      terminalHProviderBudgetRows.every(
+        (entry) => entry.midpoint_fit_residual_inside_allowed_budget === true
+      ),
+    all_terminal_h_raw_producer_intervals_contained_by_candidate_budget:
+      terminalHProviderBudgetRows.every(
+        (entry) =>
+          entry.raw_producer_interval_contained_by_candidate_budget === true
+      ),
+    raw_terminal_producer_width_open: terminalHProviderBudgetRows.some(
+      (entry) =>
+        entry.raw_producer_interval_contained_by_candidate_budget === false
+    ),
+    max_terminal_h_required_scale_to_allowed_scale_ratio: maxFinite(
+      terminalHProviderBudgetRows.map(
+        (entry) => entry.required_scale_to_allowed_scale_ratio
+      )
+    ),
+    min_terminal_h_allowed_radius_to_producer_half_width_ratio: minFinite(
+      terminalHProviderBudgetRows.map(
+        (entry) => entry.allowed_radius_to_producer_half_width_ratio
+      )
+    ),
+    max_terminal_h_producer_half_width_to_allowed_radius_ratio: maxFinite(
+      terminalHProviderBudgetRows.map(
+        (entry) => entry.producer_half_width_to_allowed_radius_ratio
+      )
+    ),
+    max_terminal_h_midpoint_fit_residual_to_allowed_radius_ratio: maxFinite(
+      terminalHProviderBudgetRows.map(
+        (entry) => entry.midpoint_fit_residual_to_allowed_radius_ratio
+      )
+    ),
+    max_graph_endpoint_partition_width_share_of_all: maxFinite(
+      terminalAffineProviderRows.map(
+        (row) => row.max_graph_endpoint_partition_width_share_of_all
+      )
+    ),
+    max_graph_affine_zeta_envelope_width_share_of_all: maxFinite(
+      terminalAffineProviderRows.map(
+        (row) => row.max_graph_affine_zeta_envelope_width_share_of_all
+      )
+    ),
+    max_graph_midpoint_linearity_gap_abs_upper: maxFinite(
+      terminalAffineProviderRows.map(
+        (row) => row.max_graph_midpoint_linearity_gap_abs_upper
+      )
+    ),
+    terminal_affine_endpoint_provider_rows: terminalAffineProviderRows,
+    terminal_h_provider_budget_rows: terminalHProviderBudgetRows,
+    next_certificate_object:
+      "directed-rounded same-domain terminal-affine endpoint producer-interval realization for the expression-level N38 source-map residual",
+    candidate_certificate_route:
+      "Reuse the graph-xi affine zeta endpoint partitions as the terminal provider budget surface. The endpoint and affine envelopes are under target and the midpoint residuals fit, so the missing proof is to emit directed-rounded same-domain terminal producer intervals whose half-widths fit the candidate budget before S37 division. The attached refinement forecast gives the first executable producer-partition target; it remains a forecast, not a certified enclosure.",
+    claim_boundary: {
+      defines_terminal_affine_endpoint_provider_budget_only: true,
+      certifies_expression_level_n38_provider: false,
+      certifies_terminal_row_provider_enclosure: false,
+      certifies_terminal_graph_remainder_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
 export function validateH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffold(
   artifact
 ) {
@@ -62304,6 +63027,493 @@ function h39H38Y44N38CollarEnclosureRoute({
       retained_branch: false,
     },
   };
+}
+
+export function validateH39RequestedY44N38SourceMapEnvelopeReadinessCandidate(
+  artifact
+) {
+  const errors = [];
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const sameZeroTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H38_SOURCE_TERM_ZERO_KEYS.length &&
+    H38_SOURCE_TERM_ZERO_KEYS.every((term, index) => terms[index] === term);
+  const nullableFinitePositive = (value) =>
+    value === null || finitePositive(value);
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_N38_SOURCE_MAP_ENVELOPE_READINESS_SCHEMA
+  ) {
+    errors.push("schema must match h39 requested-y44 N38 source-map envelope readiness");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-n38-source-map-envelope-readiness-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-n38-source-map-envelope-readiness" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-n38-source-map-envelope-readiness" ||
+    artifact?.source_map_residual_target_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_MAP_RESIDUAL_COVARIANCE_TARGET_SCHEMA ||
+    artifact?.terminal_graph_remainder_budget_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_EXPRESSION_N38_TERMINAL_GRAPH_REMAINDER_BUDGET_DIAGNOSTIC_SCHEMA ||
+    artifact?.proof_status !==
+      "candidate-n38-source-map-envelope-readiness-not-directed-rounded" ||
+    artifact?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    !sameTerms(artifact?.source_terms_preserved_signed_together) ||
+    !sameZeroTerms(artifact?.zero_source_terms)
+  ) {
+    errors.push("N38 source-map readiness metadata must identify the y44 source-map route");
+  }
+  if (
+    artifact?.source_map_bridge_available !== true ||
+    artifact?.source_map_bridge_trace_anchor_ready !== true ||
+    artifact?.source_map_bridge_acceptance_target_ready !== true ||
+    artifact?.source_map_bridge_provider_rows_ready !== true ||
+    artifact?.source_map_bridge_classification !==
+      "h39-source-map-provenance-reduced-to-expression-level-n38-envelope-before-s37-division" ||
+    artifact?.source_map_primary_missing_object_kind !==
+      "directed-rounded-same-domain-expression-level-n38-source-map-residual-envelope" ||
+    artifact?.source_term_provider_probe_available !== true ||
+    artifact?.source_term_provider_probe_kind !==
+      "center-aware-source-term-provider-shaped-rows-through-five-node-verifiers" ||
+    artifact?.source_term_provider_probe_classification !==
+      "candidate-source-term-provider-fits-aggregate-contract-but-term-width-realization-open" ||
+    artifact?.source_term_provider_probe_rows_match_same_domain_contract !==
+      true ||
+    artifact?.source_term_provider_probe_rows_match_same_radius_contract !==
+      true ||
+    artifact?.source_term_provider_probe_intervals_subset_screened_targets !==
+      true ||
+    artifact?.source_term_provider_probe_rows_use_required_source_kind !==
+      true ||
+    artifact?.source_term_provider_probe_rows_certify_directed_rounded_source !==
+      false ||
+    artifact
+      ?.source_term_provider_probe_reaches_aggregate_verifier_claim_boundary !==
+      true ||
+    artifact?.source_term_provider_probe_term_width_realization_open !==
+      true ||
+    artifact?.h39_provider_row_count !== 5 ||
+    artifact?.terminal_graph_row_count !== 5 ||
+    artifact?.same_five_node_route_available !== true ||
+    artifact?.row_alignment_kind !==
+      "five-node-ordinal-route-readiness-not-provider-identity"
+  ) {
+    errors.push("source-map bridge fields must expose the five-node H39 provider obligation");
+  }
+  if (
+    artifact?.terminal_graph_remainder_budget_diagnosis !==
+      "terminal-graph-remainder-affine-zeta-endpoint-partition-route-candidate" ||
+    !["positive-xi", "symmetric-cross-fold"].includes(
+      artifact?.terminal_graph_xi_stencil_kind
+    ) ||
+    artifact?.terminal_graph_route_supplies_affine_endpoint_partition !==
+      true ||
+    artifact?.terminal_graph_route_supplies_directed_rounded_provider !==
+      false ||
+    artifact?.terminal_graph_route_current_mismatch_kind !==
+      "terminal-affine-endpoint-route-ready-but-producer-interval-width-not-directed-rounded-provider" ||
+    artifact?.terminal_graph_obstruction_classification !==
+      "localized-bounding-method-artifact-from-independent-terminal-producer-interval-width" ||
+    artifact
+      ?.terminal_graph_all_rows_midpoint_fit_residuals_inside_allowed_budget !==
+      true ||
+    artifact
+      ?.terminal_graph_all_rows_producer_intervals_contained_by_allowed_budget !==
+      false ||
+    !finitePositive(
+      artifact?.terminal_graph_max_required_scale_to_allowed_scale_ratio
+    ) ||
+    !finitePositive(
+      artifact?.terminal_graph_min_allowed_radius_to_producer_half_width_ratio
+    ) ||
+    !finiteNonnegative(
+      artifact?.terminal_graph_max_midpoint_fit_residual_to_allowed_radius_ratio
+    ) ||
+    artifact?.terminal_zeta_degree_bound_summary
+      ?.source_coefficient_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.terminal_zeta_degree_bound_summary
+      ?.max_shared_residual_power_by_y_order !== 1 ||
+    artifact?.terminal_zeta_degree_bound_summary
+      ?.all_rows_affine_in_shared_residual_coordinate !== true ||
+    artifact?.terminal_zeta_degree_bound_summary?.route_interpretation !==
+      "shared-terminal-residual-zeta-affine-by-y-order-gap"
+  ) {
+    errors.push("terminal graph route must be affine-endpoint ready but not a directed-rounded provider");
+  }
+  const rows = artifact?.provider_readiness_rows ?? [];
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== 5 ||
+    !rows.every(
+      (row, index) =>
+        row?.node_index === index &&
+        row?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+        row?.required_xi_derivative_order === 4 &&
+        Number.isFinite(Number(row?.h39_provider_xi_midpoint)) &&
+        row?.h39_provider_row_reaches_verifier_boundary === true &&
+        row?.provider_probe_row_source_kind ===
+          "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+        row?.provider_probe_row_status ===
+          "candidate-source-term-provider-row-fits-center-aware-target-source-certification-open" &&
+        row?.provider_probe_row_fits_center_aware_target === true &&
+        row?.provider_probe_row_certifies_directed_rounded_source === false &&
+        row?.terminal_graph_row_affine_endpoint_route_ready === true &&
+        row?.terminal_graph_row_producer_interval_width_open === true &&
+        row?.terminal_graph_row_midpoint_residual_inside_allowed_budget ===
+          true &&
+        row?.terminal_graph_route_interpretation ===
+          "shared-terminal-residual-coordinate-affine-endpoint-partition-closes-graph-xi-candidate" &&
+        row?.terminal_graph_budget_route_interpretation ===
+          "terminal-graph-remainder-budget-localizes-obstruction-to-producer-interval-width" &&
+        row?.terminal_zeta_route_interpretation ===
+          "shared-terminal-residual-zeta-affine-by-y-order-gap" &&
+        row?.terminal_max_shared_residual_power_by_y_order === 1 &&
+        row?.row_status ===
+          "h39-source-map-obligation-compatible-with-terminal-affine-endpoint-route-producer-interval-width-open"
+    )
+  ) {
+    errors.push("provider readiness rows must align the five H39 rows to terminal graph route rows");
+  } else {
+    rows.forEach((row, index) => {
+      if (
+        !Number.isFinite(Number(row.terminal_graph_xi_midpoint)) ||
+        typeof row.terminal_graph_cell_id !== "string" ||
+        !nullableFinitePositive(
+          row.terminal_graph_affine_envelope_width_share_of_all
+        ) ||
+        !nullableFinitePositive(
+          row.terminal_graph_endpoint_partition_width_share_of_all
+        ) ||
+        !finitePositive(row.terminal_required_scale_to_allowed_scale_ratio) ||
+        !finitePositive(
+          row.terminal_allowed_radius_to_producer_half_width_ratio
+        ) ||
+        !finiteNonnegative(
+          row.terminal_midpoint_fit_residual_to_allowed_radius_ratio
+        ) ||
+        row?.claim_boundary?.defines_n38_source_map_envelope_readiness_only !==
+          true ||
+        row?.claim_boundary?.certifies_expression_level_n38_provider !==
+          false ||
+        row?.claim_boundary?.certifies_terminal_row_provider_enclosure !==
+          false ||
+        row?.claim_boundary?.certifies_terminal_graph_remainder_bound !==
+          false ||
+        row?.claim_boundary?.certifies_s37_dependency_preserving_division !==
+          false ||
+        row?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+        row?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+          false ||
+        row?.claim_boundary?.retained_branch !== false
+      ) {
+        errors.push(`provider readiness row ${index} must keep candidate-only terminal route fields finite`);
+      }
+    });
+  }
+  if (
+    artifact?.s37_division_is_primary_blocker !== false ||
+    artifact?.s37_division_remains_dependent_obligation !== true ||
+    artifact?.readiness_classification !==
+      "n38-source-map-envelope-route-ready-for-directed-rounded-terminal-affine-endpoint-provider-construction" ||
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string" ||
+    artifact?.claim_boundary?.defines_n38_source_map_envelope_readiness_only !==
+      true ||
+    artifact?.claim_boundary?.certifies_expression_level_n38_provider !==
+      false ||
+    artifact?.claim_boundary?.certifies_terminal_row_provider_enclosure !==
+      false ||
+    artifact?.claim_boundary?.certifies_terminal_graph_remainder_bound !==
+      false ||
+    artifact?.claim_boundary?.certifies_s37_dependency_preserving_division !==
+      false ||
+    artifact?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+    artifact?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+      false ||
+    artifact?.claim_boundary?.retained_branch !== false
+  ) {
+    errors.push("readiness classification must keep N38 provider, S37, shifted R43, and retention claims open");
+  }
+  return errors;
+}
+
+export function validateH39RequestedY44TerminalAffineEndpointProviderCandidate(
+  artifact
+) {
+  const errors = [];
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const sameTerminalHIndexes = (indexes) =>
+    Array.isArray(indexes) &&
+    indexes.length === 3 &&
+    indexes[0] === 37 &&
+    indexes[1] === 36 &&
+    indexes[2] === 35;
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_AFFINE_ENDPOINT_PROVIDER_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 requested-y44 terminal-affine endpoint provider candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-terminal-affine-endpoint-provider-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-terminal-affine-endpoint-provider" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-terminal-affine-endpoint-provider" ||
+    artifact?.source_map_envelope_readiness_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_N38_SOURCE_MAP_ENVELOPE_READINESS_SCHEMA ||
+    artifact?.terminal_graph_remainder_budget_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_EXPRESSION_N38_TERMINAL_GRAPH_REMAINDER_BUDGET_DIAGNOSTIC_SCHEMA ||
+    artifact?.proof_status !==
+      "candidate-terminal-affine-endpoint-provider-not-directed-rounded" ||
+    artifact?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER ||
+    !sameTerms(artifact?.source_terms_preserved_signed_together) ||
+    !sameTerminalHIndexes(artifact?.terminal_h_indexes)
+  ) {
+    errors.push("terminal-affine endpoint provider metadata must identify the y44 N38 source-map route");
+  }
+  if (
+    !["positive-xi", "symmetric-cross-fold"].includes(
+      artifact?.terminal_graph_xi_stencil_kind
+    ) ||
+    artifact?.terminal_graph_route_current_mismatch_kind !==
+      "terminal-affine-endpoint-route-ready-but-producer-interval-width-not-directed-rounded-provider" ||
+    artifact?.terminal_affine_endpoint_provider_surface_ready !== true ||
+    artifact?.terminal_affine_endpoint_provider_certified_directed_rounded !==
+      false ||
+    artifact?.terminal_affine_endpoint_provider_classification !==
+      "terminal-affine-endpoint-provider-budget-surface-ready-raw-producer-width-open" ||
+    artifact?.terminal_affine_endpoint_provider_primary_missing_object_kind !==
+      "directed-rounded-same-domain-terminal-affine-endpoint-producer-interval-realization" ||
+    artifact?.terminal_affine_endpoint_refinement_forecast_available !== true ||
+    typeof artifact
+      ?.terminal_affine_endpoint_refinement_forecast_route_interpretation !==
+      "string" ||
+    !finitePositive(
+      artifact?.terminal_affine_endpoint_refinement_base_subcell_count
+    ) ||
+    !finitePositive(
+      artifact
+        ?.terminal_affine_endpoint_refinement_projected_subcell_count_for_budget
+    ) ||
+    artifact
+      ?.terminal_affine_endpoint_refinement_projected_subcell_count_for_budget <=
+      artifact?.terminal_affine_endpoint_refinement_base_subcell_count ||
+    !finitePositive(
+      artifact
+        ?.terminal_affine_endpoint_refinement_projected_subcell_multiplier_for_budget
+    ) ||
+    artifact
+      ?.terminal_affine_endpoint_refinement_projected_subcell_multiplier_for_budget <=
+      1 ||
+    !finitePositive(
+      artifact
+        ?.terminal_affine_endpoint_refinement_base_required_factor_to_fit_budget
+    ) ||
+    !finitePositive(
+      artifact?.terminal_affine_endpoint_refinement_scaling_exponent_used
+    ) ||
+    !finitePositive(
+      artifact?.terminal_affine_endpoint_refinement_final_refined_ratio_to_budget
+    ) ||
+    artifact
+      ?.terminal_affine_endpoint_refinement_final_refined_entries_fit_budget !==
+      false ||
+    artifact?.terminal_affine_endpoint_provider_row_count !== 5 ||
+    artifact?.terminal_h_provider_budget_row_count !== 15
+  ) {
+    errors.push("terminal-affine endpoint provider surface must remain ready but uncertified");
+  }
+  if (
+    artifact?.all_rows_terminal_zeta_affine_by_y_order_gap !== true ||
+    artifact?.all_rows_graph_endpoint_partition_hulls_under_target !== true ||
+    artifact?.all_rows_graph_affine_zeta_envelopes_under_target !== true ||
+    artifact?.all_rows_graph_midpoint_linearity_checks_pass !== true ||
+    artifact?.all_terminal_h_midpoint_fit_residuals_inside_allowed_budget !==
+      true ||
+    artifact?.all_terminal_h_raw_producer_intervals_contained_by_candidate_budget !==
+      false ||
+    artifact?.raw_terminal_producer_width_open !== true ||
+    !finitePositive(
+      artifact?.max_terminal_h_required_scale_to_allowed_scale_ratio
+    ) ||
+    !finitePositive(
+      artifact?.min_terminal_h_allowed_radius_to_producer_half_width_ratio
+    ) ||
+    !finitePositive(
+      artifact?.max_terminal_h_producer_half_width_to_allowed_radius_ratio
+    ) ||
+    !finiteNonnegative(
+      artifact?.max_terminal_h_midpoint_fit_residual_to_allowed_radius_ratio
+    ) ||
+    !finitePositive(artifact?.max_graph_endpoint_partition_width_share_of_all) ||
+    !finitePositive(
+      artifact?.max_graph_affine_zeta_envelope_width_share_of_all
+    ) ||
+    !finiteNonnegative(artifact?.max_graph_midpoint_linearity_gap_abs_upper)
+  ) {
+    errors.push("terminal-affine endpoint provider budget margins must expose producer width as the only open width object");
+  }
+  const rows = artifact?.terminal_affine_endpoint_provider_rows ?? [];
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== 5 ||
+    !rows.every(
+      (row, index) =>
+        row?.node_index === index &&
+        row?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+        sameTerminalHIndexes(row?.terminal_h_indexes) &&
+        Number.isFinite(Number(row?.h39_provider_xi_midpoint)) &&
+        Number.isFinite(Number(row?.terminal_graph_xi_midpoint)) &&
+        typeof row?.terminal_graph_cell_id === "string" &&
+        Array.isArray(row?.terminal_graph_xi_interval) &&
+        row?.terminal_zeta_affine_by_y_order_gap === true &&
+        row?.terminal_max_shared_residual_power_by_y_order === 1 &&
+        row?.terminal_min_two_terminal_factor_gap_to_source_order > 0 &&
+        row?.graph_endpoint_partition_hulls_under_target === true &&
+        row?.graph_affine_zeta_envelopes_under_target === true &&
+        row?.point_endpoint_partition_hulls_under_target === true &&
+        row?.point_affine_zeta_envelopes_under_target === true &&
+        row?.graph_midpoint_linearity_checks_pass === true &&
+        row?.point_midpoint_linearity_checks_pass === true &&
+        row?.graph_endpoint_partition_count > 0 &&
+        finitePositive(row?.max_graph_endpoint_partition_width_share_of_all) &&
+        finitePositive(row?.max_graph_affine_zeta_envelope_width_share_of_all) &&
+        finiteNonnegative(row?.max_graph_midpoint_linearity_gap_abs_upper) &&
+        row?.all_terminal_h_midpoint_fit_residuals_inside_allowed_budget ===
+          true &&
+        row?.all_terminal_h_raw_producer_intervals_contained_by_candidate_budget ===
+          false &&
+        finitePositive(
+          row?.max_terminal_h_required_scale_to_allowed_scale_ratio
+        ) &&
+        finitePositive(
+          row?.min_terminal_h_allowed_radius_to_producer_half_width_ratio
+        ) &&
+        finitePositive(
+          row?.max_terminal_h_producer_half_width_to_allowed_radius_ratio
+        ) &&
+        finiteNonnegative(
+          row?.max_terminal_h_midpoint_fit_residual_to_allowed_radius_ratio
+        ) &&
+        row?.row_status ===
+          "terminal-affine-endpoint-provider-budget-ready-raw-producer-width-open"
+    )
+  ) {
+    errors.push("terminal-affine endpoint provider rows must keep the five-node budget surface aligned");
+  } else {
+    rows.forEach((row, index) => {
+      if (
+        row?.claim_boundary
+          ?.defines_terminal_affine_endpoint_provider_budget_only !== true ||
+        row?.claim_boundary?.certifies_expression_level_n38_provider !==
+          false ||
+        row?.claim_boundary?.certifies_terminal_row_provider_enclosure !==
+          false ||
+        row?.claim_boundary?.certifies_terminal_graph_remainder_bound !==
+          false ||
+        row?.claim_boundary?.certifies_s37_dependency_preserving_division !==
+          false ||
+        row?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+        row?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+          false ||
+        row?.claim_boundary?.retained_branch !== false
+      ) {
+        errors.push(`terminal-affine endpoint provider row ${index} must remain candidate-only`);
+      }
+    });
+  }
+  const terminalHRows = artifact?.terminal_h_provider_budget_rows ?? [];
+  if (
+    !Array.isArray(terminalHRows) ||
+    terminalHRows.length !== 15 ||
+    !terminalHRows.every(
+      (row) =>
+        Number.isInteger(row?.node_index) &&
+        row.node_index >= 0 &&
+        row.node_index < 5 &&
+        [37, 36, 35].includes(row?.h_index) &&
+        row?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+        Array.isArray(row?.graph_interval) &&
+        Array.isArray(row?.producer_interval) &&
+        Array.isArray(row?.row_residual_interval) &&
+        Array.isArray(row?.raw_residual_interval_hull) &&
+        Array.isArray(row?.candidate_provider_interval) &&
+        finitePositive(row?.candidate_provider_half_width_budget) &&
+        finitePositive(row?.producer_interval_half_width) &&
+        finitePositive(row?.row_residual_abs_upper) &&
+        finitePositive(row?.raw_residual_abs_upper) &&
+        finitePositive(row?.allowed_radius_to_producer_half_width_ratio) &&
+        finitePositive(row?.producer_half_width_to_allowed_radius_ratio) &&
+        finitePositive(row?.required_scale_to_allowed_scale_ratio) &&
+        finiteNonnegative(row?.midpoint_fit_max_abs_residual) &&
+        finiteNonnegative(
+          row?.midpoint_fit_residual_to_allowed_radius_ratio
+        ) &&
+        row?.midpoint_fit_residual_inside_allowed_budget === true &&
+        row?.raw_producer_interval_contained_by_candidate_budget === false &&
+        row?.provider_budget_realization_status ===
+          "raw-producer-interval-exceeds-terminal-affine-budget"
+    )
+  ) {
+    errors.push("terminal h provider budget rows must quantify the raw producer-width gap");
+  } else {
+    terminalHRows.forEach((row, index) => {
+      if (
+        row?.claim_boundary
+          ?.defines_terminal_affine_endpoint_provider_budget_only !== true ||
+        row?.claim_boundary?.certifies_expression_level_n38_provider !==
+          false ||
+        row?.claim_boundary?.certifies_terminal_row_provider_enclosure !==
+          false ||
+        row?.claim_boundary?.certifies_terminal_graph_remainder_bound !==
+          false ||
+        row?.claim_boundary?.certifies_s37_dependency_preserving_division !==
+          false ||
+        row?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+        row?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+          false ||
+        row?.claim_boundary?.retained_branch !== false
+      ) {
+        errors.push(`terminal h provider budget row ${index} must remain candidate-only`);
+      }
+    });
+  }
+  if (
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string" ||
+    artifact?.claim_boundary
+      ?.defines_terminal_affine_endpoint_provider_budget_only !== true ||
+    artifact?.claim_boundary?.certifies_expression_level_n38_provider !==
+      false ||
+    artifact?.claim_boundary?.certifies_terminal_row_provider_enclosure !==
+      false ||
+    artifact?.claim_boundary?.certifies_terminal_graph_remainder_bound !==
+      false ||
+    artifact?.claim_boundary?.certifies_s37_dependency_preserving_division !==
+      false ||
+    artifact?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+    artifact?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+      false ||
+    artifact?.claim_boundary?.retained_branch !== false
+  ) {
+    errors.push("terminal-affine endpoint provider candidate must keep all closure claims open");
+  }
+  return errors;
 }
 
 export function buildH39H38Y44SignedAffineTargetEnvelopeDiagnosticCandidate({

@@ -2,7 +2,7 @@
 
 Status: saved first-pass concept examples, not final CAD, safety review, or manufacturing definition.
 
-These examples show the basic white tile form, sidewall visibility, smooth unpatterned rolling surface, and a separate profile strip. The profile strip shows the sine/cosine-family contour used to generate the tile surface: one active height/depth, smooth level changes, no hard lips, no sudden drops, no flat hill top, no flat dip bottom, and no forced midpoint tangent.
+These examples show the basic white tile form, sidewall visibility, smooth unpatterned rolling surface, and a separate profile strip. The profile strip shows the sine/cosine-family contour used to generate the tile surface: one active height/depth, smooth level changes, no hard lips, no sudden drops, no flat hill top, no flat dip bottom, no constant-depth valley line, and no forced midpoint tangent.
 
 The straight edge/rim and rounded corner rim examples include one interior rolling feature in addition to the rim geometry, so edge and corner tiles are not blank guard-only pieces.
 

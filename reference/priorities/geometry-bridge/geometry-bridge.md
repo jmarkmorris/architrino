@@ -3113,6 +3113,37 @@ sharpens the next blocker to one executable object: a directed-rounded
 same-domain H38 source-map residual provider for the five shared-stream
 nodes.
 
+The requested-y44 route now has an executable $N_{38}$ source-map envelope
+readiness bridge. The diagnostic
+`buildH39RequestedY44N38SourceMapEnvelopeReadinessCandidate` ties three
+surfaces together without promoting closure: the H39 source-map provenance
+bridge, the existing five-node `source_term_provider_probe` surface, and the
+expression-level $N_{38}$ terminal-graph remainder budget. On the symmetric
+cross-fold terminal graph fixture, the terminal route supplies the affine
+endpoint partition and the shared residual coordinate is affine through the
+y-order gap, while the provider probe already reaches the H39-shaped
+same-domain/same-radius verifier surface. The mismatch is now named directly:
+the terminal affine endpoint route is ready as a provider-construction route,
+but the independent terminal producer interval width is not a directed-rounded
+same-domain provider. The next proof object is therefore not another H39
+consumer wrapper; it is a directed-rounded same-domain terminal-affine endpoint
+provider for the expression-level $N_{38}$ source-map residual, followed by
+dependency-preserving $S_{37}$ transport into the five H39 provider rows.
+
+The next executable step now exists as a candidate terminal-affine endpoint
+provider budget surface. The diagnostic
+`buildH39RequestedY44TerminalAffineEndpointProviderCandidate` consumes the
+$N_{38}$ source-map envelope readiness bridge and the terminal graph remainder
+budget. It emits five terminal-affine provider rows and fifteen terminal
+$h$-budget rows for $h_{37}$, $h_{36}$, and $h_{35}$. The endpoint hulls and
+affine-zeta envelopes are under the requested source budget, the graph
+midpoint-linearity checks pass, and every terminal midpoint fit residual lies
+inside its allowed budget. The remaining failure is no longer a generic
+terminal graph issue: every raw terminal producer interval still exceeds the
+candidate terminal-affine budget. The next proof object is therefore a
+directed-rounded same-domain terminal producer-interval realization whose
+half-widths fit that budget before $S_{37}$ division.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.

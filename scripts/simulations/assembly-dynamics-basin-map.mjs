@@ -471,7 +471,11 @@ function writeSvg(result, args) {
   const panelWidth = tangentialSpeeds.length * cell;
   const panelHeight = radii.length * cell;
   const width = marginLeft + radialSpeeds.length * panelWidth + (radialSpeeds.length - 1) * gap + 36;
-  const height = marginTop + panelHeight + 92;
+  const legendItemWidth = 148;
+  const legendColumns = Math.max(1, Math.floor((width - marginLeft - 24) / legendItemWidth));
+  const legendRows = Math.ceil(Object.keys(CLASS_COLORS).length / legendColumns);
+  const legendTop = marginTop + panelHeight + 58;
+  const height = legendTop + legendRows * 24 + 24;
   const byKey = new Map(result.rows.map((row) =>
     [`${row.radius}|${row.tangential_speed}|${row.radial_speed}`, row]
   ));
@@ -493,8 +497,8 @@ function writeSvg(result, args) {
   }).join("\n");
 
   const legend = Object.entries(CLASS_COLORS).map(([label, color], index) => {
-    const x = marginLeft + index * 126;
-    const y = height - 42;
+    const x = marginLeft + (index % legendColumns) * legendItemWidth;
+    const y = legendTop + Math.floor(index / legendColumns) * 24;
     return `<rect x="${x}" y="${y}" width="14" height="14" fill="${color}"/><text x="${x + 20}" y="${y + 12}" font-family="system-ui, sans-serif" font-size="11" fill="#334155">${label}</text>`;
   }).join("\n");
 

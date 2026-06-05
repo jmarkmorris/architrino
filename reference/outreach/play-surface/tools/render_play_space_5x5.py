@@ -90,18 +90,18 @@ def shade_height_field(z: np.ndarray) -> Image.Image:
     spacing = FIELD_SIZE / (GRID_SAMPLES - 1)
     dz_dy, dz_dx = np.gradient(z, spacing, spacing)
 
-    normal = np.dstack((-3.8 * dz_dx, -3.8 * dz_dy, np.ones_like(z)))
+    normal = np.dstack((-4.2 * dz_dx, -4.2 * dz_dy, np.ones_like(z)))
     normal /= np.linalg.norm(normal, axis=2, keepdims=True)
-    light = np.array([-0.72, -0.55, 0.82])
+    light = np.array([-0.85, -0.58, 0.85])
     light /= np.linalg.norm(light)
 
-    diffuse = np.clip(normal @ light, 0.0, 1.0)
+    diffuse = normal @ light
     height_relief = np.clip(z, -1.0, 1.0)
-    shade = 0.62 + 0.48 * diffuse + 0.16 * height_relief
+    shade = 0.78 + 0.34 * diffuse + 0.03 * height_relief
     base = np.array([242, 241, 247], dtype=np.float32)
     rgb = np.clip(base * shade[..., None], 0, 255).astype(np.uint8)
 
-    image = Image.fromarray(rgb, "RGB").filter(ImageFilter.GaussianBlur(radius=0.12)).convert("RGBA")
+    image = Image.fromarray(rgb, "RGB").filter(ImageFilter.GaussianBlur(radius=0.06)).convert("RGBA")
     draw = ImageDraw.Draw(image)
 
     seam_fill = (192, 190, 202, 90)

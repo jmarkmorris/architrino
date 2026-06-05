@@ -3,8 +3,8 @@
 
 These are geometry studies, not CAD or manufacturing drawings. The renderer
 uses deterministic sine/cosine-family height fields so each rolling feature is
-smooth, unpatterned, and free of hard lips, sudden drops, or flat hill/dip
-spots.
+smooth, unpatterned, and free of hard lips, sudden drops, flat hill/dip spots,
+or constant-depth low regions.
 """
 
 from __future__ import annotations
@@ -149,11 +149,18 @@ def curved_valley(x: np.ndarray, y: np.ndarray, *, amplitude: float) -> np.ndarr
     phase = (x - x_start) / (x_end - x_start)
     center_y = HALF_TILE + 1.2 * np.sin(2.0 * np.pi * phase - 0.35)
     distance = np.abs(y - center_y)
+    center_x = (x_start + x_end) / 2.0
+    half_length = (x_end - x_start) / 2.0
+    length_t = np.abs(x - center_x) / half_length
 
     z = np.zeros_like(distance)
-    inside = distance < VALLEY_HALF_WIDTH
-    z[inside] = amplitude * cosine_lobe(distance[inside] / VALLEY_HALF_WIDTH)
-    return z * smooth_window(x, x_start, x_end, APPROACH_BAND)
+    inside = (distance < VALLEY_HALF_WIDTH) & (length_t < 1.0)
+    z[inside] = (
+        amplitude
+        * cosine_lobe(distance[inside] / VALLEY_HALF_WIDTH)
+        * cosine_lobe(length_t[inside])
+    )
+    return z
 
 
 def edge_secondary_feature(x: np.ndarray, y: np.ndarray, *, amplitude: float) -> np.ndarray:
@@ -266,8 +273,12 @@ def profile_values(option: TileOption, samples: int = 900) -> tuple[np.ndarray, 
         )
         ys = np.full_like(xs, option.center[1])
     elif option.kind == "curved-valley":
-        xs = np.full(samples, HALF_TILE)
-        center_y = HALF_TILE + 1.2 * np.sin(2.0 * np.pi * ((HALF_TILE - 1.2) / (TILE_SIZE - 2.4)) - 0.35)
+        x_start = EDGE_FEATURE_CLEARANCE + VALLEY_HALF_WIDTH
+        x_end = TILE_SIZE - EDGE_FEATURE_CLEARANCE - VALLEY_HALF_WIDTH
+        x_mid = (x_start + x_end) / 2.0
+        phase = (x_mid - x_start) / (x_end - x_start)
+        xs = np.full(samples, x_mid)
+        center_y = HALF_TILE + 1.2 * np.sin(2.0 * np.pi * phase - 0.35)
         ys = np.linspace(center_y - VALLEY_HALF_WIDTH - 0.75, center_y + VALLEY_HALF_WIDTH + 0.75, samples)
     elif option.kind == "straight-ridge":
         ridge_center = EDGE_FEATURE_CLEARANCE + RIDGE_HALF_WIDTH
@@ -296,19 +307,19 @@ def shade_height_field(z: np.ndarray) -> Image.Image:
     spacing = TILE_SIZE / (GRID_SAMPLES - 1)
     dz_dy, dz_dx = np.gradient(z, spacing, spacing)
 
-    normal = np.dstack((-2.6 * dz_dx, -2.6 * dz_dy, np.ones_like(z)))
+    normal = np.dstack((-4.2 * dz_dx, -4.2 * dz_dy, np.ones_like(z)))
     normal /= np.linalg.norm(normal, axis=2, keepdims=True)
-    light = np.array([-0.72, -0.58, 0.95])
+    light = np.array([-0.85, -0.58, 0.85])
     light /= np.linalg.norm(light)
 
-    diffuse = np.clip(normal @ light, 0.0, 1.0)
+    diffuse = normal @ light
     height_relief = np.clip(z, -1.0, 1.0)
-    shade = 0.62 + 0.48 * diffuse + 0.13 * height_relief
+    shade = 0.78 + 0.34 * diffuse + 0.03 * height_relief
 
     base = np.array([242, 241, 247], dtype=np.float32)
     rgb = np.clip(base * shade[..., None], 0, 255).astype(np.uint8)
 
-    image = Image.fromarray(rgb, "RGB").filter(ImageFilter.GaussianBlur(radius=0.2))
+    image = Image.fromarray(rgb, "RGB").filter(ImageFilter.GaussianBlur(radius=0.06))
     alpha = Image.new("L", image.size, 0)
     mask = ImageDraw.Draw(alpha)
     mask.rounded_rectangle(

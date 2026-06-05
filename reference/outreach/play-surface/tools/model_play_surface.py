@@ -159,21 +159,15 @@ def saddle(x: float, y: float, band: float) -> float:
 def curved_valley(x: float, y: float, band: float) -> float:
     x_start = FEATURE_EDGE_CLEARANCE + VALLEY_HALF_WIDTH
     x_end = TILE_SIZE - FEATURE_EDGE_CLEARANCE - VALLEY_HALF_WIDTH
-    if x < x_start - VALLEY_HALF_WIDTH or x > x_end + VALLEY_HALF_WIDTH:
+    if x < x_start or x > x_end:
         return NEUTRAL
-    phase = (clamp(x, x_start, x_end) - x_start) / (x_end - x_start)
+    phase = (x - x_start) / (x_end - x_start)
     curve_center = 5.5 + 1.2 * math.sin(2.0 * math.pi * phase - 0.35)
-    d = y - curve_center
-    length_fade = smoothstep(
-        FEATURE_EDGE_CLEARANCE,
-        x_start,
-        x,
-    ) * smoothstep(
-        FEATURE_EDGE_CLEARANCE,
-        TILE_SIZE - x_end,
-        TILE_SIZE - x,
-    )
-    return NEUTRAL - ACTIVE_OFFSET * ridge_profile(d, VALLEY_HALF_WIDTH) * length_fade
+    cross_profile = ridge_profile(y - curve_center, VALLEY_HALF_WIDTH)
+    center_x = (x_start + x_end) / 2.0
+    half_length = (x_end - x_start) / 2.0
+    length_profile = bump_profile(abs(x - center_x), half_length)
+    return NEUTRAL - ACTIVE_OFFSET * cross_profile * length_profile
 
 
 def straight_ridge(x: float, y: float, band: float) -> float:

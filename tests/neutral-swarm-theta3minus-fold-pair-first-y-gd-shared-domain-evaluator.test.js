@@ -34,6 +34,8 @@ import {
   buildH39PolynomialHRowGraphResidualDiagnosticCandidate,
   buildH39RecurrenceRefinedSubcoverPressureDiagnostic,
   buildH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffoldCandidate,
+  buildH39RequestedY44N38SourceMapEnvelopeReadinessCandidate,
+  buildH39RequestedY44TerminalAffineEndpointProviderCandidate,
   buildH39RequestedY44RowLocalN38SignedSourceSumDerivativeProviderCandidate,
   validateH39CorrelatedResidualWidthDiagnostic,
   validateH39H38NumeratorGraphLocalPartitionDiagnostic,
@@ -64,6 +66,8 @@ import {
   validateH39H38Y44SignedAffineTargetEnvelopeDiagnostic,
   validateH39RequestedY44ProducerImageBudgetComparison,
   validateH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffold,
+  validateH39RequestedY44N38SourceMapEnvelopeReadinessCandidate,
+  validateH39RequestedY44TerminalAffineEndpointProviderCandidate,
   validateH39RequestedY44RowLocalN38SignedSourceSumDerivativeProvider,
   validateH39RequestedY44SignedSourceSumDerivativeAllocationTarget,
   validateH39RequestedY44SourceMapResidualCovarianceTarget,
@@ -9431,6 +9435,241 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
         row.claim_boundary.certifies_s37_dependency_preserving_division ===
           false
     )
+  );
+  const n38SourceMapEnvelopeReadinessTerminalGraph =
+    buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate({
+      targetSpeedInterval: [3.02156, 3.02156007813],
+      branch: "-",
+      rootSubdivisions: 100,
+      sourceStencilSubcellCount: 5,
+      comparisonStencilIndex: 0,
+      polynomialDegree: 2,
+      terminalHIndexes: [37, 36, 35],
+      residualBudgetTargetShareOfAll: 0.05,
+      residualBudgetScales: [0, 0.02, 0.05, 1],
+      residualNoiseSamples: [-1, -0.5, 0, 0.5, 1],
+      residualCoordinatePartitionCount: 8,
+      refinementSubcellCounts: [5],
+      topContributorCount: 8,
+      seriesOrder: 60,
+    });
+  assert.deepEqual(
+    validateH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnostic(
+      n38SourceMapEnvelopeReadinessTerminalGraph
+    ),
+    []
+  );
+  const n38SourceMapEnvelopeReadiness =
+    buildH39RequestedY44N38SourceMapEnvelopeReadinessCandidate({
+      sourceMapResidualCovarianceTarget,
+      terminalGraphRemainderBudgetDiagnostic:
+        n38SourceMapEnvelopeReadinessTerminalGraph,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44N38SourceMapEnvelopeReadinessCandidate(
+      n38SourceMapEnvelopeReadiness
+    ),
+    []
+  );
+  assert.equal(
+    n38SourceMapEnvelopeReadiness.readiness_classification,
+    "n38-source-map-envelope-route-ready-for-directed-rounded-terminal-affine-endpoint-provider-construction"
+  );
+  assert.equal(
+    n38SourceMapEnvelopeReadiness.source_term_provider_probe_classification,
+    "candidate-source-term-provider-fits-aggregate-contract-but-term-width-realization-open"
+  );
+  assert.equal(
+    n38SourceMapEnvelopeReadiness.source_term_provider_probe_rows_certify_directed_rounded_source,
+    false
+  );
+  assert.equal(
+    n38SourceMapEnvelopeReadiness.source_term_provider_probe_term_width_realization_open,
+    true
+  );
+  assert.equal(
+    n38SourceMapEnvelopeReadiness.terminal_graph_route_current_mismatch_kind,
+    "terminal-affine-endpoint-route-ready-but-producer-interval-width-not-directed-rounded-provider"
+  );
+  assert.equal(
+    n38SourceMapEnvelopeReadiness.terminal_graph_obstruction_classification,
+    "localized-bounding-method-artifact-from-independent-terminal-producer-interval-width"
+  );
+  assert.equal(
+    n38SourceMapEnvelopeReadiness.terminal_graph_route_supplies_directed_rounded_provider,
+    false
+  );
+  assert.equal(
+    n38SourceMapEnvelopeReadiness.s37_division_is_primary_blocker,
+    false
+  );
+  assert.equal(
+    n38SourceMapEnvelopeReadiness.s37_division_remains_dependent_obligation,
+    true
+  );
+  assert.equal(n38SourceMapEnvelopeReadiness.provider_readiness_rows.length, 5);
+  assert.ok(
+    n38SourceMapEnvelopeReadiness.provider_readiness_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.h39_provider_row_reaches_verifier_boundary === true &&
+        row.provider_probe_row_source_kind ===
+          "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+        row.provider_probe_row_fits_center_aware_target === true &&
+        row.provider_probe_row_certifies_directed_rounded_source === false &&
+        row.terminal_graph_row_affine_endpoint_route_ready === true &&
+        row.terminal_graph_row_producer_interval_width_open === true &&
+        row.terminal_graph_row_midpoint_residual_inside_allowed_budget ===
+          true &&
+        row.terminal_max_shared_residual_power_by_y_order === 1 &&
+        row.row_status ===
+          "h39-source-map-obligation-compatible-with-terminal-affine-endpoint-route-producer-interval-width-open" &&
+        row.claim_boundary.certifies_expression_level_n38_provider ===
+          false &&
+        row.claim_boundary.certifies_s37_dependency_preserving_division ===
+          false &&
+        row.claim_boundary.certifies_shifted_R43_outer_bound === false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  assert.deepEqual(collectTrueCertifies(n38SourceMapEnvelopeReadiness), []);
+  assert.deepEqual(
+    collectExactKeys(n38SourceMapEnvelopeReadiness, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+  const terminalAffineEndpointProviderCandidate =
+    buildH39RequestedY44TerminalAffineEndpointProviderCandidate({
+      n38SourceMapEnvelopeReadiness,
+      terminalGraphRemainderBudgetDiagnostic:
+        n38SourceMapEnvelopeReadinessTerminalGraph,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44TerminalAffineEndpointProviderCandidate(
+      terminalAffineEndpointProviderCandidate
+    ),
+    []
+  );
+  assert.equal(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_provider_surface_ready,
+    true
+  );
+  assert.equal(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_provider_certified_directed_rounded,
+    false
+  );
+  assert.equal(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_provider_classification,
+    "terminal-affine-endpoint-provider-budget-surface-ready-raw-producer-width-open"
+  );
+  assert.equal(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_provider_primary_missing_object_kind,
+    "directed-rounded-same-domain-terminal-affine-endpoint-producer-interval-realization"
+  );
+  assert.equal(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_refinement_forecast_available,
+    true
+  );
+  assert.equal(
+    typeof terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_refinement_forecast_route_interpretation,
+    "string"
+  );
+  assert.ok(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_refinement_projected_subcell_count_for_budget >
+      terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_refinement_base_subcell_count
+  );
+  assert.ok(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_refinement_projected_subcell_multiplier_for_budget >
+      1
+  );
+  assert.ok(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_refinement_base_required_factor_to_fit_budget >
+      1
+  );
+  assert.equal(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_refinement_final_refined_entries_fit_budget,
+    false
+  );
+  assert.equal(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_provider_row_count,
+    5
+  );
+  assert.equal(
+    terminalAffineEndpointProviderCandidate.terminal_h_provider_budget_row_count,
+    15
+  );
+  assert.equal(
+    terminalAffineEndpointProviderCandidate.all_rows_graph_endpoint_partition_hulls_under_target,
+    true
+  );
+  assert.equal(
+    terminalAffineEndpointProviderCandidate.all_rows_graph_affine_zeta_envelopes_under_target,
+    true
+  );
+  assert.equal(
+    terminalAffineEndpointProviderCandidate.all_rows_graph_midpoint_linearity_checks_pass,
+    true
+  );
+  assert.equal(
+    terminalAffineEndpointProviderCandidate.all_terminal_h_midpoint_fit_residuals_inside_allowed_budget,
+    true
+  );
+  assert.equal(
+    terminalAffineEndpointProviderCandidate.all_terminal_h_raw_producer_intervals_contained_by_candidate_budget,
+    false
+  );
+  assert.equal(
+    terminalAffineEndpointProviderCandidate.raw_terminal_producer_width_open,
+    true
+  );
+  assert.ok(
+    terminalAffineEndpointProviderCandidate.max_terminal_h_required_scale_to_allowed_scale_ratio >
+      1
+  );
+  assert.ok(
+    terminalAffineEndpointProviderCandidate.min_terminal_h_allowed_radius_to_producer_half_width_ratio <
+      1
+  );
+  assert.ok(
+    terminalAffineEndpointProviderCandidate.max_terminal_h_producer_half_width_to_allowed_radius_ratio >
+      1
+  );
+  assert.ok(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_provider_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_zeta_affine_by_y_order_gap === true &&
+        row.graph_endpoint_partition_hulls_under_target === true &&
+        row.graph_affine_zeta_envelopes_under_target === true &&
+        row.graph_midpoint_linearity_checks_pass === true &&
+        row.all_terminal_h_midpoint_fit_residuals_inside_allowed_budget ===
+          true &&
+        row.all_terminal_h_raw_producer_intervals_contained_by_candidate_budget ===
+          false &&
+        row.terminal_h_provider_budget_rows.length === 3 &&
+        row.row_status ===
+          "terminal-affine-endpoint-provider-budget-ready-raw-producer-width-open"
+    )
+  );
+  assert.ok(
+    terminalAffineEndpointProviderCandidate.terminal_h_provider_budget_rows.every(
+      (row) =>
+        [37, 36, 35].includes(row.h_index) &&
+        row.midpoint_fit_residual_inside_allowed_budget === true &&
+        row.raw_producer_interval_contained_by_candidate_budget === false &&
+        row.provider_budget_realization_status ===
+          "raw-producer-interval-exceeds-terminal-affine-budget"
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalAffineEndpointProviderCandidate),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalAffineEndpointProviderCandidate,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
   );
   const fiveNodeContractedProvider =
     sourceMapResidualCovarianceTarget
