@@ -402,7 +402,8 @@ function runBasinMap(args) {
     path_graph: {
       selected_outcome: "sustained_inward",
       selection_rule: "lowest min_radius among rows classified as sustained_inward",
-      svg: args.pathSvg,
+      svg: pathGraphRun && args.pathSvg ? args.pathSvg : null,
+      configured_svg: args.pathSvg,
       status: pathGraphRun ? "selected" : "not_written_no_sustained_inward",
       selected: pathGraphRun?.row ?? null,
     },

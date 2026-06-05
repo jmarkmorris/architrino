@@ -73,6 +73,8 @@ The `3"` height is the external tile envelope, not a claim that the part should 
 
 All rolling contours should use controlled sine/cosine-family transitions. In cross-section, a hill, ridge, dip, trough, saddle, basin, or valley should be built from smooth height changes, not from abrupt sculptural edges. Each contour should leave the neutral plane smoothly, reach its high or low region smoothly, and return smoothly.
 
+The working prototype definitions should use sine, cosine, and raised-cosine functions for rolling contours and fade-outs. Do not use polynomial smoothstep easing for the playable surface when a sine/cosine definition can express the same transition.
+
 The intended profile is:
 
 > neutral surface -> smooth cosine rise or fall -> smooth crest or low point -> smooth cosine return -> neutral surface
@@ -189,19 +191,20 @@ The set is a prototype schedule, not a locked commercial bill of materials. Ever
 | Wide offset round dip | `2` | `-1.0"` cosine-lobe low point, larger radius | [Wide dip](assets/concepts/sine-curve-options/sine-wide-dip.png) | Broader high-contrast basin lesson. |
 | Diagonal saddle | `1` | `+/-1.0"` side-faded saddle | [Diagonal saddle](assets/concepts/sine-curve-options/sine-diagonal-saddle.png) | A balanced place where a ball may leave by different paths. |
 | Curved valley | `2` | `-1.0"` raised-cosine trough line | [Curved valley](assets/concepts/sine-curve-options/sine-curved-valley.png) | A broad low route that guides without becoming a track. |
-| One-inch straight ridge | `4` | `+1.0"` raised-cosine ridge line | [Straight ridge](assets/concepts/sine-curve-options/sine-straight-ridge.png) | Gentle-roll guide and straight back-rail segment. |
-| One-inch rounded corner ridge | `4` | `+1.0"` raised-cosine corner ridge line | [Corner ridge](assets/concepts/sine-curve-options/sine-corner-ridge.png) | Gentle-roll guide and soft corner for a back rail. |
+| Straight edge/rim tile | `4` | `+1.0"` raised-cosine ridge line plus one interior feature | [Straight ridge](assets/concepts/sine-curve-options/sine-straight-ridge.png) | Gentle-roll guide, straight back-rail segment, and active edge play. |
+| Rounded corner rim tile | `4` | `+1.0"` raised-cosine corner ridge line plus one interior feature | [Corner ridge](assets/concepts/sine-curve-options/sine-corner-ridge.png) | Gentle-roll guide, soft corner, and active corner play. |
 | Paired hill-dip | `1` | `+1.0"` hill and `-1.0"` dip | [Paired hill-dip](assets/concepts/sine-curve-options/sine-paired-hill-dip.png) | Older scenes about thresholds and path choice. |
 
-This starter-kit mix is also a packaging test case. The four one-inch corner ridge tiles and four one-inch straight ridge tiles are important for toddler rim behavior, but they are probably the hardest tiles to nest because their ridges sit near the side zones where generic stack supports would like to land. Do not treat the commercial starter-kit count as final until the same set can pass play-value, stack-height, sealed-underside, and carton-size checks together.
+This starter-kit mix is also a packaging test case. The four corner rim tiles and four straight edge/rim tiles are important for toddler rim behavior, but they are probably the hardest tiles to nest because their ridges sit near the side zones where generic stack supports would like to land. Do not treat the commercial starter-kit count as final until the same set can pass play-value, stack-height, sealed-underside, and carton-size checks together.
 
 Prototype contour family notes:
 
 - diagonal saddle: a gentle internal saddle that returns to neutral on all sides;
 - curved valley: a broad low route that guides the ball without creating a side-boundary ramp;
 - valleys and ridge-line features should extend to within about `0.75"` of the tile edge, then return smoothly to neutral before the side boundary;
-- one-inch rounded corner ridge tile: a high rounded ridge, `+1.0"` relative to the neutral plane, makes an internal right-angle turn close to two adjacent sides while preserving the flat neutral approach band at each side;
-- one-inch straight vertical ridge tile: a high rounded ridge, `+1.0"` relative to the neutral plane, runs straight near one side so it can meet the corner ridge tile on the same ridge line; rotating the tile makes horizontal or opposite-side runs;
+- edge and corner rim tiles should not be blank guard pieces; each should include exactly one interior rolling feature such as a hill, dip, or curved valley, using the same sine/cosine contour law and staying within the `+/-1.0"` envelope;
+- rounded corner rim tile: a high rounded ridge, `+1.0"` relative to the neutral plane, makes an internal right-angle turn close to two adjacent sides while preserving the flat neutral approach band at each side;
+- straight edge/rim tile: a high rounded ridge, `+1.0"` relative to the neutral plane, runs straight near one side so it can meet the corner rim tile on the same ridge line; rotating the tile makes horizontal or opposite-side runs;
 - paired hill-dip tile: an offset hill and offset dip on the same tile for older scenes about thresholds.
 
 Ridge composability:
@@ -209,10 +212,10 @@ Ridge composability:
 - ridge tiles should combine to realize many different paths, including soft perimeter rims around a toddler play field;
 - a parent, older sibling, or teacher should be able to place ridge tiles along one end or one side of a floor-level play field as a back rail for gentle toddler rolling demonstrations;
 - the back rail is meant to reduce routine roll-off under furniture, not to contain hard rolls, thrown balls, bounces, or high-speed launches;
-- the ridge centerline should use a standard side offset so straight ridge tiles and corner ridge tiles align when placed next to each other;
+- the ridge centerline should use a standard side offset so straight edge/rim tiles and corner rim tiles align when placed next to each other;
 - the ridge should extend to within about `0.75"` of the tile edge while preserving the flat neutral approach band at the side boundary;
 - the ridge must still smooth back to the neutral plane before the side boundary, preserving ordinary universal side compatibility;
-- corner ridge tiles and straight ridge tiles should both use a high rounded ridge at `+1.0"` relative to the neutral plane;
+- corner rim tiles and straight edge/rim tiles should both use a high rounded ridge at `+1.0"` relative to the neutral plane;
 - ridge tiles are gentle-roll guides, not containment walls. They may keep a `2.75"` ball on the surface for many slow toddler rolls, but they are not intended for bounces, hard launches, or high-velocity play.
 
 Do not add narrow tracks, hard rails, maze walls, or steep lips in the first generation. Those features may make the toy more game-like but would work against the universal rolling-surface lesson and create harder safety and seam problems.

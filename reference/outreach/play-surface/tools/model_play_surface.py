@@ -32,6 +32,7 @@ WIDE_ROUND_RADIUS = 4.15
 FEATURE_EDGE_CLEARANCE = 0.75
 RIDGE_HALF_WIDTH = 1.45
 VALLEY_HALF_WIDTH = 1.85
+SADDLE_PEAK = 0.5176077295389507
 GRID_SAMPLES = 81
 SUPPORT_TOLERANCE = 0.08
 SURFACE_CLEARANCE = 0.125
@@ -49,7 +50,7 @@ def smoothstep(edge0: float, edge1: float, x: float) -> float:
     if edge0 == edge1:
         return 1.0 if x >= edge1 else 0.0
     t = clamp((x - edge0) / (edge1 - edge0), 0.0, 1.0)
-    return t * t * (3.0 - 2.0 * t)
+    return 0.5 * (1.0 - math.cos(math.pi * t))
 
 
 def side_fade(x: float, y: float, band: float) -> float:
@@ -149,10 +150,10 @@ def wide_dip(x: float, y: float, band: float) -> float:
 
 
 def saddle(x: float, y: float, band: float) -> float:
-    nx = (x - TILE_SIZE / 2.0) / (TILE_SIZE / 2.0)
-    ny = (y - TILE_SIZE / 2.0) / (TILE_SIZE / 2.0)
-    raw = ACTIVE_OFFSET * 0.58 * (nx * nx - ny * ny)
-    return NEUTRAL + raw * side_fade(x, y, band)
+    fade = math.sin(math.pi * x / TILE_SIZE) ** 2 * math.sin(math.pi * y / TILE_SIZE) ** 2
+    wave = math.sin(math.pi * (x - y) / TILE_SIZE)
+    raw = fade * wave
+    return NEUTRAL + ACTIVE_OFFSET * raw / SADDLE_PEAK
 
 
 def curved_valley(x: float, y: float, band: float) -> float:
@@ -181,7 +182,8 @@ def straight_ridge(x: float, y: float, band: float) -> float:
     end = TILE_SIZE - FEATURE_EDGE_CLEARANCE - RIDGE_HALF_WIDTH
     d = distance_to_segment(x, y, (centerline, start), (centerline, end))
     value = ACTIVE_OFFSET * ridge_profile(d, RIDGE_HALF_WIDTH)
-    return NEUTRAL + value
+    secondary = -ACTIVE_OFFSET * bump_profile(math.hypot(x - 7.35, y - 6.55), 2.1)
+    return NEUTRAL + value + secondary
 
 
 def corner_ridge(x: float, y: float, band: float) -> float:
@@ -195,7 +197,8 @@ def corner_ridge(x: float, y: float, band: float) -> float:
     if x > arc_center[0] or y > arc_center[1]:
         arc = float("inf")
     value = ACTIVE_OFFSET * ridge_profile(min(vertical, horizontal, arc), RIDGE_HALF_WIDTH)
-    return NEUTRAL + value
+    secondary = ACTIVE_OFFSET * bump_profile(math.hypot(x - 7.15, y - 7.1), 2.15)
+    return NEUTRAL + value + secondary
 
 
 def paired_hill_dip(x: float, y: float, band: float) -> float:

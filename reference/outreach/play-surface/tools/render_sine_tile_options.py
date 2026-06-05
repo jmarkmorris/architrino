@@ -156,12 +156,30 @@ def curved_valley(x: np.ndarray, y: np.ndarray, *, amplitude: float) -> np.ndarr
     return z * smooth_window(x, x_start, x_end, APPROACH_BAND)
 
 
+def edge_secondary_feature(x: np.ndarray, y: np.ndarray, *, amplitude: float) -> np.ndarray:
+    return radial_level_change(
+        x,
+        y,
+        center=(7.35, 6.55),
+        radius=2.1,
+        amplitude=amplitude,
+    )
+
+
+def corner_secondary_feature(x: np.ndarray, y: np.ndarray, *, amplitude: float) -> np.ndarray:
+    return radial_level_change(
+        x,
+        y,
+        center=(7.15, 7.1),
+        radius=2.15,
+        amplitude=amplitude,
+    )
+
+
 def diagonal_saddle(x: np.ndarray, y: np.ndarray, *, amplitude: float) -> np.ndarray:
-    u = (x - HALF_TILE) / HALF_TILE
-    v = (y - HALF_TILE) / HALF_TILE
     side_fade = np.sin(np.pi * x / TILE_SIZE) ** 2 * np.sin(np.pi * y / TILE_SIZE) ** 2
-    side_fade = np.clip(side_fade, 0.0, 1.0)
-    raw = side_fade * (u - v) / np.sqrt(2.0)
+    diagonal_wave = np.sin(np.pi * (x - y) / TILE_SIZE)
+    raw = side_fade * diagonal_wave
     peak = float(np.max(np.abs(raw)))
     return amplitude * raw / peak
 
@@ -194,8 +212,10 @@ def make_height_field(option: TileOption, samples: int = GRID_SAMPLES) -> tuple[
             half_width=RIDGE_HALF_WIDTH,
             amplitude=option.amplitude,
         )
+        z += edge_secondary_feature(x, y, amplitude=-option.amplitude)
     elif option.kind == "corner-ridge":
         z = corner_ridge(x, y, amplitude=option.amplitude)
+        z += corner_secondary_feature(x, y, amplitude=option.amplitude)
     elif option.kind == "paired-hill-dip":
         z = radial_level_change(
             x,
@@ -276,18 +296,19 @@ def shade_height_field(z: np.ndarray) -> Image.Image:
     spacing = TILE_SIZE / (GRID_SAMPLES - 1)
     dz_dy, dz_dx = np.gradient(z, spacing, spacing)
 
-    normal = np.dstack((-1.55 * dz_dx, -1.55 * dz_dy, np.ones_like(z)))
+    normal = np.dstack((-2.6 * dz_dx, -2.6 * dz_dy, np.ones_like(z)))
     normal /= np.linalg.norm(normal, axis=2, keepdims=True)
-    light = np.array([-0.45, -0.75, 1.35])
+    light = np.array([-0.72, -0.58, 0.95])
     light /= np.linalg.norm(light)
 
     diffuse = np.clip(normal @ light, 0.0, 1.0)
-    shade = 0.72 + 0.34 * diffuse
+    height_relief = np.clip(z, -1.0, 1.0)
+    shade = 0.62 + 0.48 * diffuse + 0.13 * height_relief
 
     base = np.array([242, 241, 247], dtype=np.float32)
     rgb = np.clip(base * shade[..., None], 0, 255).astype(np.uint8)
 
-    image = Image.fromarray(rgb, "RGB").filter(ImageFilter.GaussianBlur(radius=0.35))
+    image = Image.fromarray(rgb, "RGB").filter(ImageFilter.GaussianBlur(radius=0.2))
     alpha = Image.new("L", image.size, 0)
     mask = ImageDraw.Draw(alpha)
     mask.rounded_rectangle(
