@@ -322,7 +322,144 @@ The next solver should therefore:
    `higher_fold_separator_layer_certificate_absent`: 0 / 112 accepted
    `higher_fold_layer_atlas_ref`, 0 / 112 separator-layer certificates, 0
    accepted fold-layer rows, 0 consumed rows, and no branch-chart
-   authorization;
+   authorization. The separator-certificate attempt then rejects the inspected
+   `fold_impulse_constants.json` source for all 12 separator refs as
+   wrong-packet, non-interval-certified, not accepted, and non-matching for
+   `Sigma_hf_*`, so it still records 0 / 112
+   `higher_fold_separator_layer_certificate`, accepted
+   `higher_fold_layer_atlas_ref`, proof-grade `alpha_floor`, proof-grade
+   `exit_floor`, impulse/direct-quadrature bounds, parity records, consumption
+   refs, consumed rows, or branch-chart authorizations. The separator
+   source-field readiness classifier then separates the positive source-side
+   fact from proof-grade promotion: 12 / 12 separator profiles and 112 / 112
+   fold-layer rows have complete candidate interval source fields, including
+   same-packet layer geometry, input-screen intervals, mesh intervals,
+   root-tube one-root interval sources, derivative-floor sources, and the
+   no-extra-root complement packet with total root count `12..12`, but 0 / 112
+   rows have `higher_fold_separator_layer_certificate`, accepted
+   `higher_fold_layer_atlas_ref`, `alpha_floor`, `exit_floor`,
+   `same_packet_fold_impulse_or_direct_quadrature_bound`,
+   `fold_layer_parity_record`, or `parent_complement_consumption_ref`. The
+   proof-field dependency classifier then records that the next fold-layer
+   source packet is not row consumption but
+   `same_packet_fold_impulse_or_direct_quadrature_bound_source_packet`: 12 / 12
+   accepted atlas-ref, alpha-floor, exit-floor, parity, and parent
+   row-association targets have candidate anchors, but 0 / 12 separator
+   profiles have a same-packet impulse/direct-quadrature source packet or any
+   proof-grade child field. The same-packet impulse/direct-quadrature
+   source-packet attempt then reduces that blocker to full input-screen
+   row-rectangle interval sources and row projection/source-slice candidates
+   for 112 / 112 fold-layer rows and 12 / 12 separator layers, while still
+   recording 0 mollifier or direct-quadrature route declarations, certified
+   `M_delta` or `Gamma/g` coupling fields, accepted coverage certificates,
+   dual-mollified row integrand interval enclosures, direct quadrature
+   enclosures, row impulse enclosures, or accepted
+   `same_packet_fold_impulse_or_direct_quadrature_bound` source packets. The
+   first missing source-packet checklist field is
+   `mollifier_or_direct_quadrature_route_declaration_absent`; the first reduced
+   acceptance blocker is
+   `row_projection_source_slice_coverage_certificate_absent`; the first
+   numerical enclosure blocker is
+   `dual_mollified_row_integrand_interval_enclosure_absent`. The same-packet
+   impulse route-declaration attempt then declares
+   `mollifier_norm_full_input_screen_rectangle_fallback` as the candidate
+   route for 12 / 12 separator layers and 112 / 112 fold-layer rows, with
+   candidate `E_B`, `S_B(t)`, `L_r_B`, and `L_s_B` bindings from the full
+   input-screen row rectangles. It proves no accepted route declaration, no
+   same-packet `M_delta` certificate, no `Gamma/g` coupling certificate, no
+   accepted coverage certificate, no row enclosure, no accepted source packet,
+   no row consumption, `preledger_pass=false`, no live-ledger update, and no
+   branch-chart authorization. The first source-packet blocker after route
+   declaration is `M_delta_interval_certified_absent`; the first coupling
+   blocker is `Gamma_g_coupling_certified_absent`; the first coverage blocker
+   remains `row_projection_source_slice_coverage_certificate_absent`; and the
+   first numerical enclosure blocker remains
+   `dual_mollified_row_integrand_interval_enclosure_absent`. The same-packet
+   mollifier `M_delta` certificate attempt then certifies `M_delta=15/16` and
+   `delta_eta_sup_norm=375/8` by exact rational arithmetic for 12 / 12
+   separator layers and 112 / 112 fold-layer rows. It proves no `Gamma/g`
+   coupling certificate, no accepted coverage certificate, no row enclosure, no
+   accepted source packet, no row consumption, `preledger_pass=false`, no
+   live-ledger update, and no branch-chart authorization. The first
+   source-packet blocker after this artifact is
+   `Gamma_g_coupling_certified_absent`; the first coverage blocker remains
+   `row_projection_source_slice_coverage_certificate_absent`; and the first
+   numerical enclosure blocker remains
+   `dual_mollified_row_integrand_interval_enclosure_absent`. The same-packet
+   mollifier coupling certificate attempt then certifies `Gamma=g=1` for
+   12 / 12 separator layers and 112 / 112 fold-layer rows while carrying the
+   `M_delta` certificate forward. It proves no accepted coverage certificate,
+   no row enclosure, no accepted source packet, no row consumption,
+   `preledger_pass=false`, no live-ledger update, and no branch-chart
+   authorization. The first source-packet blocker after this artifact is
+   `row_projection_source_slice_coverage_certificate_absent`; the first
+   numerical enclosure blocker remains
+   `dual_mollified_row_integrand_interval_enclosure_absent`. The same-packet
+   row coverage certificate attempt then joins the source-packet rows, route
+   declarations, and coupling rows by `row_id` and certifies full input-screen
+   rectangle equality coverage for 12 / 12 separator layers and 112 / 112
+   fold-layer rows. It proves no row-tube eta-sqrt scaling, no row enclosure,
+   no accepted source packet, no row consumption, `preledger_pass=false`, no
+   live-ledger update, and no branch-chart authorization. The first
+   source-packet blocker after this artifact is
+   `dual_mollified_row_integrand_interval_enclosure_absent`. The same-packet
+   row enclosure certificate attempt then applies the mollifier-norm
+   full-input-screen rectangle fallback with exact row bound constant `18750`.
+   It certifies 112 / 112 dual-mollified row integrand interval enclosures,
+   row acceleration ceilings, and row impulse ceilings, while still proving no
+   row-tube eta-sqrt scaling, no direct quadrature, no separator aggregate
+   fields, no accepted source packet, no row consumption, `preledger_pass=false`,
+   no live-ledger update, and no branch-chart authorization. The first
+   source-packet blocker after this artifact is
+   `separator_aggregate_C_Sigma_present_absent`. The same-packet separator
+   aggregate certificate attempt then constructs 12 / 12 separator aggregate
+   `C_Sigma`, `A_Sigma_eta_epsilon_c`, and
+   `I_fold_eta_epsilon_c_Sigma` fields from the row enclosures by exact
+   rational arithmetic. It still proves no row-tube eta-sqrt scaling, no direct
+   quadrature, no accepted source packet, no `higher_fold_separator_layer_certificate`,
+   no row consumption, `preledger_pass=false`, no live-ledger update, and no
+   branch-chart authorization. The first source-packet blocker after this
+   artifact is
+   `same_packet_fold_impulse_or_direct_quadrature_bound_source_packet_absent`.
+   The same-packet impulse-bound source-packet acceptance dependency classifier
+   then confirms that aggregate fields are present for 12 / 12 separator layers,
+   but records 0 source-packet acceptance rules, 0 accepted source packets, 0
+   `higher_fold_separator_layer_certificate` fields, no row consumption,
+   `preledger_pass=false`, no live-ledger update, and no branch-chart
+   authorization. The first source-packet blocker after this artifact is
+   `fixed_parameter_separator_aggregate_to_same_packet_fold_impulse_or_direct_quadrature_bound_acceptance_rule_absent`;
+   the alpha/exit/parity child-field interval diagnostic then materializes
+   candidate child sources for 12 / 12 separator profiles and 112 / 112
+   fold-layer rows without deciding that source-packet acceptance rule. It
+   records positive candidate `alpha_floor` sources with minimum
+   `20.353739080283133119`, positive candidate `exit_floor` source-rectangle
+   widths with minimum `0.008`, and root-tube parity source evidence for all 12
+   separator profiles, while still proving 0 / 112 proof-grade `alpha_floor`,
+   `exit_floor`, or `fold_layer_parity_record` fields, 0 row consumption,
+   `preledger_pass=false`, no live-ledger update, and no branch-chart
+   authorization. The mechanical child-field blockers are
+   `proof_grade_alpha_floor_derivation_absent`,
+   `proof_grade_exit_floor_derivation_absent`, and
+   `explicit_fold_layer_parity_record_delta_fields_absent`;
+   the follow-on child-field derivation attempt then sharpens those blockers to
+   0 fresh `alpha_floor` proof refs, 0 fresh `exit_floor` proof refs, 0 fresh
+   `fold_layer_parity_record` proof refs, and 0 fresh parity delta fields
+   `delta_root_count`, `delta_signed_degree`, `local_even_jump`, and
+   `parity_status`. It rejects stale seed-packet parity data and still consumes
+   0 rows, keeps `preledger_pass=false`, and authorizes no branch chart. The
+   next child-field blockers are `alpha_floor_proof_grade_ref_null`,
+   `exit_floor_proof_grade_ref_null`,
+   `fold_layer_parity_record_proof_grade_ref_null`, and
+   `fresh_fold_layer_parity_record_delta_fields_absent`;
+   the source-ref manifest then materializes deterministic `source_ref` handles
+   for `alpha_floor`, `exit_floor`, and `fold_layer_parity_record` evidence for
+   12 / 12 separator profiles and 112 / 112 rows. It also records 12 / 12
+   candidate parity delta records and 112 / 112 row-level candidate parity
+   delta associations, while keeping 0 proof-grade child fields,
+   0 proof-grade parity delta fields, 0 row consumption, `preledger_pass=false`,
+   and no branch-chart authorization. The current child-field blocker is
+   `child_field_source_ref_handle_not_proof_grade_ref` plus
+   `candidate_parity_delta_record_not_proof_grade_ref`;
 4. assemble the signed gap derivative matrix $A$ for the selected orientations
    above;
 5. keep the structural constraint matrix $B=DC(\mathbf a_0)$, including section,

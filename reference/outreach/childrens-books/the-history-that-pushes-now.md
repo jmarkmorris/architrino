@@ -34,13 +34,13 @@ Read-aloud title:
 
 Read-aloud text:
 
-> Dr. Sol opened the simulator.
+> Electra opened the simulator.
 >
 > One red architrino appeared at now.
 >
 > "Do not look only at where it is."
 
-Discovery:
+Editor note:
 
 The current point is not enough.
 
@@ -48,11 +48,11 @@ The current point is not enough.
 
 Read-aloud text:
 
-> Mira turned on the trail.
+> Poz turned on the trail.
 >
 > Old positions appeared behind the point.
 
-Discovery:
+Editor note:
 
 Path-history must be represented.
 
@@ -66,7 +66,7 @@ Read-aloud text:
 >
 > The waves kept traveling.
 
-Discovery:
+Editor note:
 
 Past positions can still matter.
 
@@ -78,7 +78,7 @@ Read-aloud text:
 >
 > They traveled at field speed.
 
-Discovery:
+Editor note:
 
 Finite propagation selects possible arrivals.
 
@@ -86,11 +86,11 @@ Finite propagation selects possible arrivals.
 
 Read-aloud text:
 
-> Tomas paused the simulation.
+> Electra paused the simulation.
 >
 > "Which old waves can reach here now?"
 
-Discovery:
+Editor note:
 
 The problem becomes causal-root selection.
 
@@ -100,11 +100,11 @@ Read-aloud text:
 
 > One wave met the current point.
 >
-> Ari marked it:
+> Poz wrote:
 >
 > accepted.
 
-Discovery:
+Editor note:
 
 An admissible causal root contributes now.
 
@@ -118,7 +118,7 @@ Read-aloud text:
 >
 > Close was not enough.
 
-Discovery:
+Editor note:
 
 Near is not the same as causally arrived.
 
@@ -130,7 +130,7 @@ Read-aloud text:
 >
 > It missed now.
 
-Discovery:
+Editor note:
 
 Timing rejects some prior emissions.
 
@@ -138,11 +138,11 @@ Timing rejects some prior emissions.
 
 Read-aloud text:
 
-> Mira made a row of cards.
+> Electra made a row of cards.
 >
 > Each card named one possible old source.
 
-Discovery:
+Editor note:
 
 A causal-root ledger organizes accepted and rejected roots.
 
@@ -156,7 +156,7 @@ Read-aloud text:
 >
 > History acted now.
 
-Discovery:
+Editor note:
 
 Past emissions influence present acceleration.
 
@@ -166,35 +166,35 @@ Read-aloud text:
 
 > More than one old wave could arrive.
 >
-> The receiver answered their total.
+> The path answered their total.
 
-Discovery:
+Editor note:
 
 Path-history and superposition meet.
 
-### Spread 12: A Loop Appears
+### Spread 12: The Boat Comes Around
 
 Read-aloud text:
 
-> Ari noticed one wave curving back.
+> Poz turned a toy boat.
 >
-> "It came from this same traveler."
+> The boat crossed the wake it had made.
 
-Discovery:
+Editor note:
 
-Self-action becomes possible in path-history.
+A path can meet its own earlier wake.
 
 ### Spread 13: Self-Hit
 
 Read-aloud text:
 
-> The old wave met its own later path.
+> The red point met its own old wave.
 >
 > "Self-hit,"
 >
-> Mira said.
+> Electra said.
 
-Discovery:
+Editor note:
 
 An entity can meet its own causal history.
 
@@ -202,11 +202,11 @@ An entity can meet its own causal history.
 
 Read-aloud text:
 
-> Tomas tried predicting from the current point alone.
+> Poz tried predicting from the current point alone.
 >
 > The next bend was wrong.
 
-Discovery:
+Editor note:
 
 The state must include enough history.
 
@@ -214,11 +214,13 @@ The state must include enough history.
 
 Read-aloud text:
 
-> "The state reaches through admissible history,"
+> "Now is not enough,"
 >
-> Dr. Sol said.
+> Electra said.
+>
+> "The right old waves matter too."
 
-Discovery:
+Editor note:
 
 Current dynamics requires structured past information.
 
@@ -226,15 +228,15 @@ Current dynamics requires structured past information.
 
 Read-aloud text:
 
-> Dr. Sol closed the notebook.
+> Poz closed the notebook.
 >
-> "The exact equation waits behind that door,"
+> "The exact equation is behind that door,"
 >
-> Dr. Sol said.
+> Electra said.
 >
 > "But now you know what it must remember."
 
-Discovery:
+Editor note:
 
 The master-equation intuition is ready without overclaiming closure.
 

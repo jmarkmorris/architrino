@@ -34,11 +34,11 @@ Read-aloud title:
 
 Read-aloud text:
 
-> Mira balanced the ball on a rounded ridge.
+> Electra balanced the ball on a rounded ridge.
 >
-> It waited between two basins.
+> It sat between two basins.
 
-Discovery:
+Editor note:
 
 A threshold can separate outcomes.
 
@@ -46,11 +46,11 @@ A threshold can separate outcomes.
 
 Read-aloud text:
 
-> One tiny nudge.
+> Poz gave one tiny nudge.
 >
 > The ball rolled left.
 
-Discovery:
+Editor note:
 
 Small input can select an outcome.
 
@@ -58,11 +58,11 @@ Small input can select an outcome.
 
 Read-aloud text:
 
-> Another tiny nudge.
+> Electra gave another tiny nudge.
 >
 > The ball rolled right.
 
-Discovery:
+Editor note:
 
 Nearby starts can settle differently.
 
@@ -72,11 +72,11 @@ Read-aloud text:
 
 > "It looks surprising,"
 >
-> Ari said.
+> Poz said.
 >
 > "But it is not lawless."
 
-Discovery:
+Editor note:
 
 Sensitivity is not randomness by itself.
 
@@ -84,13 +84,13 @@ Sensitivity is not randomness by itself.
 
 Read-aloud text:
 
-> Same surface.
+> Same ridge.
 >
 > Same rule.
 >
 > Different start.
 
-Discovery:
+Editor note:
 
 The law can be stable while the outcome changes.
 
@@ -102,7 +102,7 @@ Read-aloud text:
 >
 > The result stayed visible.
 
-Discovery:
+Editor note:
 
 Settling creates a record of the outcome.
 
@@ -114,7 +114,7 @@ Read-aloud text:
 >
 > A second record appeared.
 
-Discovery:
+Editor note:
 
 Different outcomes can both be lawful.
 
@@ -128,7 +128,7 @@ Read-aloud text:
 >
 > Some went right.
 
-Discovery:
+Editor note:
 
 Threshold regions organize sets of outcomes.
 
@@ -136,11 +136,11 @@ Threshold regions organize sets of outcomes.
 
 Read-aloud text:
 
-> Tomas marked the places that chose left.
+> Electra circled the places that chose left.
 >
-> Mira marked the places that chose right.
+> Poz circled the places that chose right.
 
-Discovery:
+Editor note:
 
 Outcome basins can be mapped.
 
@@ -152,7 +152,7 @@ Read-aloud text:
 >
 > It was not exactly the same.
 
-Discovery:
+Editor note:
 
 Tiny hidden differences can matter.
 
@@ -160,11 +160,11 @@ Tiny hidden differences can matter.
 
 Read-aloud text:
 
-> Ari wrote:
+> Poz wrote:
 >
 > near threshold, predict with care.
 
-Discovery:
+Editor note:
 
 Sensitivity changes how prediction should be stated.
 
@@ -172,11 +172,11 @@ Sensitivity changes how prediction should be stated.
 
 Read-aloud text:
 
-> Dr. Sol placed a pointer between two marks.
+> Electra placed a pointer between two spots.
 >
 > A tiny push made it choose.
 
-Discovery:
+Editor note:
 
 Threshold behavior prepares measurement records.
 
@@ -184,11 +184,11 @@ Threshold behavior prepares measurement records.
 
 Read-aloud text:
 
-> The pointer stopped on one mark.
+> The pointer stopped on one spot.
 >
 > Now the result could be read.
 
-Discovery:
+Editor note:
 
 Settled outcomes become records.
 
@@ -202,7 +202,7 @@ Read-aloud text:
 >
 > A basin can remember.
 
-Discovery:
+Editor note:
 
 Deterministic multistability becomes child-facing.
 

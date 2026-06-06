@@ -20,7 +20,7 @@ This kindergarten book teaches:
 2. Source place matters.
 3. Arrival can change motion.
 
-Parent/teacher terms: `source`, `receiver`, `travel time`, `causal delay`, `arrival`.
+Parent/teacher terms: `source`, `arrival object`, `travel time`, `causal delay`, `arrival`.
 
 ## Read-Aloud Manuscript
 
@@ -34,13 +34,13 @@ Read-aloud title:
 
 Read-aloud text:
 
-> Mira heard the clock.
+> Electra heard the clock.
 >
 > Tick came before.
 >
 > Tock came after.
 
-Discovery:
+Editor note:
 
 Events have order.
 
@@ -48,13 +48,13 @@ Events have order.
 
 Read-aloud text:
 
-> Tomas clapped across the yard.
+> Poz clapped across the yard.
 >
-> Mira saw his hands.
+> Electra saw Poz's hands.
 >
-> Then she heard the clap.
+> Then Electra heard the clap.
 
-Discovery:
+Editor note:
 
 Seeing and hearing can arrive at different times.
 
@@ -64,11 +64,11 @@ Read-aloud text:
 
 > "The clap was real,"
 >
-> Mira said,
+> Electra said,
 >
 > "but it was not everywhere at once."
 
-Discovery:
+Editor note:
 
 A message can travel.
 
@@ -76,11 +76,11 @@ A message can travel.
 
 Read-aloud text:
 
-> Tomas stood by the tree.
+> Poz stood by the tree.
 >
 > The clap began there.
 
-Discovery:
+Editor note:
 
 The source place matters.
 
@@ -88,11 +88,11 @@ The source place matters.
 
 Read-aloud text:
 
-> Mira dropped a pebble.
+> Electra dropped a pebble.
 >
 > Rings ran away from the splash.
 
-Discovery:
+Editor note:
 
 A starting event can send an outward message.
 
@@ -100,13 +100,13 @@ A starting event can send an outward message.
 
 Read-aloud text:
 
-> A leaf waited on the water.
+> A leaf floated on the water.
 >
 > The ring reached it.
 >
 > The leaf moved.
 
-Discovery:
+Editor note:
 
 Arrival can change what happens next.
 
@@ -114,11 +114,11 @@ Arrival can change what happens next.
 
 Read-aloud text:
 
-> Papa tapped the near bell.
+> Poz tapped the near bell.
 >
-> Mira heard it quickly.
+> Electra heard it quickly.
 
-Discovery:
+Editor note:
 
 Near messages have shorter travel.
 
@@ -126,13 +126,13 @@ Near messages have shorter travel.
 
 Read-aloud text:
 
-> Papa tapped the far bell.
+> Poz tapped the far bell.
 >
-> Mira waited.
+> Electra listened.
 >
 > Then it rang.
 
-Discovery:
+Editor note:
 
 Far messages take longer.
 
@@ -140,27 +140,29 @@ Far messages take longer.
 
 Read-aloud text:
 
-> Mira pointed from bell to ear.
+> Electra pointed from bell to ear.
 >
 > "The message came across here."
 
-Discovery:
+Editor note:
 
-A message connects source and receiver.
+A message connects where it began and where it arrives.
 
-### Spread 10: The Rolling Leaf
+### Spread 10: The Boat Wake
 
 Read-aloud text:
 
-> Tomas sent a rolling ball.
+> Poz pushed a toy boat.
 >
-> It touched a paper leaf.
+> A little wake opened behind it.
+>
+> The wake touched a paper leaf.
 >
 > The leaf slid away.
 
-Discovery:
+Editor note:
 
-One motion can cause another after contact.
+A moving thing can leave a traveling wake.
 
 ### Spread 11: Which Message?
 
@@ -176,9 +178,9 @@ Read-aloud text:
 >
 > Each one traveled.
 
-Discovery:
+Editor note:
 
-Different messages share the same idea: source, travel, arrival.
+Different messages share the same idea: begin, travel, arrive.
 
 ### Spread 12: The Discovery
 
@@ -186,14 +188,14 @@ Read-aloud text:
 
 > "A message can be on the way,"
 >
-> Mira said,
+> Electra said,
 >
 > "before it reaches me."
 
-Discovery:
+Editor note:
 
 Causal delay becomes a child-facing idea.
 
 ## Parent Note
 
-This book introduces delayed influence without formal field language. The child should leave with a concrete model: something happens at a source, the effect travels, and a receiver changes when the message arrives.
+This book introduces delayed influence without formal field language. The child should leave with a concrete model: something happens in one place, the effect travels, and something changes when the message arrives.

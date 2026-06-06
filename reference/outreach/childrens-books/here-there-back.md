@@ -34,13 +34,15 @@ Read-aloud title:
 
 Read-aloud text:
 
-> Here is Little One.
+> Here is Electra.
+>
+> Here is Poz.
 >
 > Here is the ball.
 
-Discovery:
+Editor note:
 
-Little One is somewhere.
+The children and the ball are somewhere.
 
 ### Spread 2: Look
 
@@ -52,7 +54,7 @@ Read-aloud text:
 >
 > There they are.
 
-Discovery:
+Editor note:
 
 There can be different from here.
 
@@ -60,11 +62,13 @@ There can be different from here.
 
 Read-aloud text:
 
-> Little One reaches.
+> Electra reaches.
+>
+> Poz reaches.
 >
 > Toward the ball.
 
-Discovery:
+Editor note:
 
 Wanting begins a path.
 
@@ -76,7 +80,7 @@ Read-aloud text:
 >
 > It follows a path.
 
-Discovery:
+Editor note:
 
 Motion has a route.
 
@@ -86,9 +90,11 @@ Read-aloud text:
 
 > The ball is there.
 >
-> Little One is here.
+> Electra is here.
+>
+> Poz is here.
 
-Discovery:
+Editor note:
 
 Here and there can both be held in attention.
 
@@ -96,11 +102,11 @@ Here and there can both be held in attention.
 
 Read-aloud text:
 
-> Little One goes.
+> Poz goes.
 >
 > Hands, knees, go.
 
-Discovery:
+Editor note:
 
 A body moves through places.
 
@@ -112,7 +118,7 @@ Read-aloud text:
 >
 > Back to here.
 
-Discovery:
+Editor note:
 
 Return is part of path.
 
@@ -128,12 +134,12 @@ Read-aloud text:
 >
 > Again.
 
-Discovery:
+Editor note:
 
 Repeating makes the path familiar.
 
 ## Parent Note
 
-The first book does not teach named physics. It teaches the felt basis for later physics: position, path, return, and repeated attention. The child can participate by looking, reaching, touching, and hearing the same small words again.
+The first book does not teach named physics. It teaches the felt basis for later physics: position, path, return, and repeated attention. The child can participate by looking, reaching, touching, and hearing the same small words again. Electra and Poz are recurring children, not polarity symbols.
 
 Use the ball as the focus. A caregiver can hold a red or blue ball, but should present it so the child and the picture viewer can see the ball clearly. The hand supports the ball from the side or below; it should not cover the ball or become the main subject. Then the caregiver can place the ball nearby, roll it a short distance, bring it back, and repeat. Do not turn the lesson into abstract pointing in empty space; here, there, and back should be attached to the visible ball and its motion.

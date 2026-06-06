@@ -34,23 +34,23 @@ Read-aloud title:
 
 Read-aloud text:
 
-> The white tiles are ready.
+> The floor is ready.
 >
-> The red ball waits.
+> The red ball is still.
 
-Discovery:
+Editor note:
 
-A play surface gives the ball a place to move.
+A clear space gives the ball a place to move.
 
 ### Spread 2: Gentle Push
 
 Read-aloud text:
 
-> Mama gives one soft push.
+> Electra gives one soft push.
 >
 > Roll, ball, roll.
 
-Discovery:
+Editor note:
 
 Motion can begin from a push.
 
@@ -62,7 +62,7 @@ Read-aloud text:
 >
 > It follows a path.
 
-Discovery:
+Editor note:
 
 The route matters.
 
@@ -74,9 +74,9 @@ Read-aloud text:
 >
 > Slow, slow, slow.
 
-Discovery:
+Editor note:
 
-A surface can change motion.
+A small hill can change motion.
 
 ### Spread 5: The Turn
 
@@ -86,7 +86,7 @@ Read-aloud text:
 >
 > The ball turns too.
 
-Discovery:
+Editor note:
 
 The ball follows the shape it meets.
 
@@ -98,7 +98,7 @@ Read-aloud text:
 >
 > Round and round.
 
-Discovery:
+Editor note:
 
 A dip can hold motion for a moment.
 
@@ -106,11 +106,11 @@ A dip can hold motion for a moment.
 
 Read-aloud text:
 
-> Papa catches the ball.
+> Poz catches the ball.
 >
 > Stop, little ball.
 
-Discovery:
+Editor note:
 
 A hand can end the path.
 
@@ -118,11 +118,11 @@ A hand can end the path.
 
 Read-aloud text:
 
-> Now the blue ball waits.
+> Now the blue ball is still.
 >
 > Will it go the same way?
 
-Discovery:
+Editor note:
 
 Trying again makes a question.
 
@@ -134,7 +134,7 @@ Read-aloud text:
 >
 > Blue went that way.
 
-Discovery:
+Editor note:
 
 Two paths can be compared.
 
@@ -150,10 +150,10 @@ Read-aloud text:
 >
 > We learned the path.
 
-Discovery:
+Editor note:
 
 Repeated play reveals the route.
 
 ## Parent Note
 
-This book is supervised physical play. The tile surface is a story prop and future merchandise concept: a safe, modular rolling surface that gives the child visible contours without requiring adult physics language.
+This book is supervised physical play. Electra and Poz both try, notice, stop, and repeat. The ball, gentle pushes, hills, dips, stops, and repeat trials give the child visible changes without requiring adult physics language.

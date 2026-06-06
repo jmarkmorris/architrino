@@ -34,11 +34,11 @@ Read-aloud title:
 
 Read-aloud text:
 
-> Nia looked at yesterday's trail.
+> Electra looked at yesterday's trail.
 >
 > "What if we do it again?"
 
-Discovery:
+Editor note:
 
 A repeated action can become a question.
 
@@ -46,11 +46,11 @@ A repeated action can become a question.
 
 Read-aloud text:
 
-> The red ball rolled across the tiles.
+> The red ball rolled across the floor.
 >
 > One path appeared.
 
-Discovery:
+Editor note:
 
 One run can be seen as one path.
 
@@ -62,7 +62,7 @@ Read-aloud text:
 >
 > Its path came close.
 
-Discovery:
+Editor note:
 
 Two paths can be near each other.
 
@@ -72,9 +72,9 @@ Read-aloud text:
 
 > "It almost followed the first one,"
 >
-> Nia said.
+> Electra said.
 
-Discovery:
+Editor note:
 
 Similar paths can be compared.
 
@@ -82,11 +82,11 @@ Similar paths can be compared.
 
 Read-aloud text:
 
-> Papa moved the ball farther over.
+> Poz moved the ball farther over.
 >
 > The path changed.
 
-Discovery:
+Editor note:
 
 Starting place matters.
 
@@ -94,11 +94,11 @@ Starting place matters.
 
 Read-aloud text:
 
-> Mama moved the ball near the old mark.
+> Electra moved the ball near the old path.
 >
 > The paths met.
 
-Discovery:
+Editor note:
 
 Near starts can make overlapping paths.
 
@@ -108,9 +108,9 @@ Read-aloud text:
 
 > One line crossed another.
 >
-> Nia traced the crossing with one finger.
+> Poz traced the crossing with one finger.
 
-Discovery:
+Editor note:
 
 Patterns can include crossings.
 
@@ -126,7 +126,7 @@ Read-aloud text:
 >
 > The page grew busy.
 
-Discovery:
+Editor note:
 
 Many runs can reveal structure.
 
@@ -134,11 +134,11 @@ Many runs can reveal structure.
 
 Read-aloud text:
 
-> The marks were not random.
+> The lines were not just anywhere.
 >
 > They made a quiet shape.
 
-Discovery:
+Editor note:
 
 A pattern can appear from repetition.
 
@@ -148,9 +148,9 @@ Read-aloud text:
 
 > "I think the next one goes here,"
 >
-> Nia said.
+> Poz said.
 
-Discovery:
+Editor note:
 
 Patterns support predictions.
 
@@ -162,7 +162,7 @@ Read-aloud text:
 >
 > The new path joined the shape.
 
-Discovery:
+Editor note:
 
 A prediction can be tested.
 
@@ -174,10 +174,10 @@ Read-aloud text:
 >
 > The pattern helped them see.
 
-Discovery:
+Editor note:
 
 Repeated motion can reveal nature's order.
 
 ## Parent Note
 
-This book prepares later superposition and assembly ideas without naming them. The child only needs the experience that many paths, taken together, can reveal a pattern.
+This book prepares later superposition and assembly ideas without naming them. Electra and Poz both wonder and try. The child only needs the experience that many paths, taken together, can reveal a pattern.

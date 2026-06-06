@@ -18,9 +18,9 @@ This early elementary book teaches:
 
 1. Farther messages arrive later.
 2. Direction matters.
-3. Source and receiver define a line of action.
+3. Starting place and arrival place define a line of action.
 
-Parent/teacher terms: `distance`, `direction`, `field speed`, `source`, `receiver`, `line of action`.
+Parent/teacher terms: `distance`, `direction`, `field speed`, `source`, `arrival place`, `line of action`.
 
 ## Read-Aloud Manuscript
 
@@ -34,13 +34,13 @@ Read-aloud title:
 
 Read-aloud text:
 
-> Mira set one bell nearby.
+> Electra set one bell nearby.
 >
-> Tomas set one bell far away.
+> Poz set one bell far away.
 >
 > "Which message arrives first?"
 
-Discovery:
+Editor note:
 
 Distance becomes a testable question.
 
@@ -56,7 +56,7 @@ Read-aloud text:
 >
 > Different distance.
 
-Discovery:
+Editor note:
 
 One variable is changed.
 
@@ -66,11 +66,11 @@ Read-aloud text:
 
 > The near bell answered first.
 >
-> Mira smiled.
+> Electra smiled.
 >
 > "Short path."
 
-Discovery:
+Editor note:
 
 Shorter distance gives earlier arrival.
 
@@ -80,9 +80,9 @@ Read-aloud text:
 
 > The far bell answered later.
 >
-> Tomas counted the wait.
+> Poz counted the wait.
 
-Discovery:
+Editor note:
 
 Longer distance gives later arrival.
 
@@ -90,11 +90,11 @@ Longer distance gives later arrival.
 
 Read-aloud text:
 
-> Ari flicked a rope.
+> Poz flicked a rope.
 >
 > The wave ran along it.
 
-Discovery:
+Editor note:
 
 A traveling shape can show finite speed.
 
@@ -106,7 +106,7 @@ Read-aloud text:
 >
 > It crossed every place between.
 
-Discovery:
+Editor note:
 
 Travel takes time through intervening places.
 
@@ -114,25 +114,25 @@ Travel takes time through intervening places.
 
 Read-aloud text:
 
-> Mira moved the receiver left.
+> Electra moved the bell left.
 >
 > The message path turned left too.
 
-Discovery:
+Editor note:
 
-Receiver position sets direction.
+The arrival place sets direction.
 
 ### Spread 8: The Line
 
 Read-aloud text:
 
-> Ari drew from source to receiver.
+> Poz drew from the start to the bell.
 >
 > "This is the line the answer follows."
 
-Discovery:
+Editor note:
 
-A source-receiver relation has a direction.
+A start-to-arrival line has a direction.
 
 ### Spread 9: Faster Or Slower
 
@@ -144,7 +144,7 @@ Read-aloud text:
 >
 > Speed mattered too.
 
-Discovery:
+Editor note:
 
 Arrival depends on both distance and speed.
 
@@ -162,7 +162,7 @@ Read-aloud text:
 >
 > Farther took longer.
 
-Discovery:
+Editor note:
 
 Different systems can share one rule.
 
@@ -172,11 +172,11 @@ Read-aloud text:
 
 > "Move it farther,"
 >
-> Mira said.
+> Electra said.
 >
 > "I predict a longer wait."
 
-Discovery:
+Editor note:
 
 The rule supports prediction.
 
@@ -190,7 +190,7 @@ Read-aloud text:
 >
 > Farther takes longer.
 
-Discovery:
+Editor note:
 
 Distance, speed, and direction prepare field-speed intuition.
 

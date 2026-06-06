@@ -149,7 +149,179 @@ then verifies complete candidate source evidence for 12 / 12 separator refs and
 rows, 0 consumed rows, no `preledger_pass`, no live-ledger update, and no
 branch chart. The next fold-layer certificate is the
 `higher_fold_separator_layer_certificate` / accepted `higher_fold_layer_atlas_ref`
-derivation above those candidate refs.
+derivation above those candidate refs. The separator-certificate attempt,
+`higher_fold_layer_separator_certificate_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then rejects `fold_impulse_constants.json` as wrong-packet,
+non-interval-certified, not accepted, and non-matching for `Sigma_hf_*`; it
+keeps 0 / 112 `higher_fold_separator_layer_certificate`, accepted
+`higher_fold_layer_atlas_ref`, proof-grade `alpha_floor`, proof-grade
+`exit_floor`, proof-grade impulse/direct-quadrature bound, proof-grade parity
+record, parent-complement consumption refs, consumed rows, `preledger_pass`,
+live-ledger updates, or branch-chart authorizations.
+The separator source-field readiness classifier,
+`higher_fold_layer_separator_source_field_readiness_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then records the current positive source-side split: 12 / 12 separator profiles
+and 112 / 112 fold-layer rows have complete candidate interval source fields,
+including same-packet layer geometry, input-screen intervals, mesh intervals,
+root-tube one-root interval sources, derivative-floor sources, and the
+no-extra-root complement packet with total root count `12..12`. These fields
+are still source material only: the classifier keeps 0 / 112
+`higher_fold_separator_layer_certificate`, accepted `higher_fold_layer_atlas_ref`,
+`alpha_floor`, `exit_floor`,
+`same_packet_fold_impulse_or_direct_quadrature_bound`,
+`fold_layer_parity_record`, `parent_complement_consumption_ref`, consumed rows,
+`preledger_pass`, live-ledger updates, or branch-chart authorizations.
+The separator proof-field dependency classifier,
+`higher_fold_layer_separator_proof_field_dependency_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then classifies the seven required proof-grade separator fields above those
+source anchors. It records candidate anchors for 12 / 12 accepted atlas-ref
+derivation targets, alpha-floor targets, exit-floor targets, fold-layer parity
+targets, and parent row-association targets, but 0 / 12 same-packet
+impulse/direct-quadrature source packets and 0 / 12 proof-grade child fields.
+The first same-packet source-packet blocker is
+`same_packet_fold_impulse_or_direct_quadrature_bound_source_packet_absent`;
+the first acceptance blocker remains
+`higher_fold_separator_layer_certificate_absent`.
+The same-packet impulse/direct-quadrature source-packet attempt,
+`higher_fold_layer_same_packet_impulse_direct_quadrature_source_packet_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then reduces that absent-source-packet blocker to a concrete interval-source
+state: 112 / 112 fold-layer rows and 12 / 12 separator layers have same-packet
+full input-screen row-rectangle interval sources and row projection/source-slice
+candidates. It still records 0 mollifier or direct-quadrature route
+declarations, 0 certified `M_delta` or `Gamma/g` coupling fields, 0 accepted
+row projection/source-slice coverage certificates, 0 dual-mollified row
+integrand interval enclosures, 0 direct quadrature enclosures, 0 row impulse
+enclosures, and 0 accepted
+`same_packet_fold_impulse_or_direct_quadrature_bound` source packets. The first
+missing source-packet checklist field is
+`mollifier_or_direct_quadrature_route_declaration_absent`; the first reduced
+acceptance blocker is
+`row_projection_source_slice_coverage_certificate_absent`; the first numerical
+enclosure blocker is
+`dual_mollified_row_integrand_interval_enclosure_absent`.
+The same-packet impulse route-declaration attempt,
+`higher_fold_layer_same_packet_impulse_route_declaration_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then declares `mollifier_norm_full_input_screen_rectangle_fallback` as the
+candidate route for 12 / 12 separator layers and 112 / 112 fold-layer rows,
+using the full input-screen row rectangles as candidate `E_B`, `S_B(t)`,
+`L_r_B`, and `L_s_B` bindings. This removes only the absent-route checklist
+blocker. It records 0 accepted route declarations, 0 same-packet `M_delta`
+certificates, 0 `Gamma/g` coupling certificates, 0 accepted row
+projection/source-slice coverage certificates, 0 row enclosures, 0 accepted
+source packets, 0 consumed rows, `preledger_pass=false`, no live-ledger update,
+and no branch-chart authorization. The first source-packet blocker after route
+declaration is `M_delta_interval_certified_absent`; the first coupling blocker
+is `Gamma_g_coupling_certified_absent`; the first coverage blocker is
+`row_projection_source_slice_coverage_certificate_absent`; and the first
+numerical enclosure blocker is
+`dual_mollified_row_integrand_interval_enclosure_absent`.
+The same-packet mollifier `M_delta` certificate attempt,
+`higher_fold_layer_same_packet_mollifier_m_delta_certificate_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then certifies the compact-support shell kernel norm `M_delta=15/16` and the
+fresh packet scaled norm `delta_eta_sup_norm=375/8` by exact rational
+arithmetic for 12 / 12 separator layers and 112 / 112 fold-layer rows. This
+removes only the `M_delta` checklist blocker. It records 0 same-packet
+`Gamma/g` coupling certificates, 0 accepted row projection/source-slice
+coverage certificates, 0 row enclosures, 0 accepted source packets, 0 consumed
+rows, `preledger_pass=false`, no live-ledger update, and no branch-chart
+authorization. The first source-packet blocker after this artifact is
+`Gamma_g_coupling_certified_absent`; the first coverage blocker remains
+`row_projection_source_slice_coverage_certificate_absent`; and the first
+numerical enclosure blocker remains
+`dual_mollified_row_integrand_interval_enclosure_absent`.
+The same-packet mollifier coupling certificate attempt,
+`higher_fold_layer_same_packet_mollifier_coupling_certificate_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then certifies the fresh packet convention `Gamma=g=1` for 12 / 12 separator
+layers and 112 / 112 fold-layer rows, carrying the `M_delta` certificate
+forward. This removes only the coupling checklist blocker. It records 0
+accepted row projection/source-slice coverage certificates, 0 row enclosures, 0
+accepted source packets, 0 consumed rows, `preledger_pass=false`, no
+live-ledger update, and no branch-chart authorization. The first source-packet
+blocker after this artifact is
+`row_projection_source_slice_coverage_certificate_absent`; the first numerical
+enclosure blocker remains
+`dual_mollified_row_integrand_interval_enclosure_absent`.
+The same-packet row coverage certificate attempt,
+`higher_fold_layer_same_packet_row_coverage_certificate_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then certifies full input-screen rectangle equality coverage for 12 / 12
+separator layers and 112 / 112 fold-layer rows by joining the source-packet
+rows, route declarations, and coupling rows by `row_id`. This removes only the
+coverage checklist blocker. It records 0 row-tube eta-sqrt scaling
+certificates, 0 row enclosures, 0 accepted source packets, 0 consumed rows,
+`preledger_pass=false`, no live-ledger update, and no branch-chart
+authorization. The first source-packet blocker after this artifact is
+`dual_mollified_row_integrand_interval_enclosure_absent`.
+The same-packet row enclosure certificate attempt,
+`higher_fold_layer_same_packet_row_enclosure_certificate_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then applies the mollifier-norm full-input-screen rectangle fallback with exact
+row bound constant `18750`. This removes only the row-enclosure checklist
+blocker: it certifies 112 / 112 dual-mollified row integrand interval
+enclosures, row acceleration ceilings, and row impulse ceilings, but records 0
+row-tube eta-sqrt scaling certificates, 0 direct-quadrature row impulse
+enclosures, 0 separator aggregate fields, 0 accepted source packets, 0 consumed
+rows, `preledger_pass=false`, no live-ledger update, and no branch-chart
+authorization. The first source-packet blocker after this artifact is
+`separator_aggregate_C_Sigma_present_absent`.
+The same-packet separator aggregate certificate attempt,
+`higher_fold_layer_same_packet_separator_aggregate_certificate_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then constructs 12 / 12 separator aggregate `C_Sigma`,
+`A_Sigma_eta_epsilon_c`, and `I_fold_eta_epsilon_c_Sigma` fields from the row
+enclosures. This removes only the aggregate-field checklist blocker: it records
+0 accepted `same_packet_fold_impulse_or_direct_quadrature_bound` source packets,
+0 `higher_fold_separator_layer_certificate` fields, 0 consumed rows,
+`preledger_pass=false`, no live-ledger update, and no branch-chart authorization.
+The first source-packet blocker after this artifact is
+`same_packet_fold_impulse_or_direct_quadrature_bound_source_packet_absent`.
+The same-packet impulse-bound source-packet acceptance dependency classifier,
+`higher_fold_layer_same_packet_impulse_bound_source_packet_acceptance_dependency_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then confirms that 12 / 12 separator aggregate fields are present while 0 / 12
+source-packet acceptance rules are present. It records 0 accepted
+`same_packet_fold_impulse_or_direct_quadrature_bound` source packets, 0
+`higher_fold_separator_layer_certificate` fields, 0 consumed rows,
+`preledger_pass=false`, no live-ledger update, and no branch-chart authorization.
+The first source-packet blocker after this artifact is
+`fixed_parameter_separator_aggregate_to_same_packet_fold_impulse_or_direct_quadrature_bound_acceptance_rule_absent`.
+The alpha/exit/parity child-field interval diagnostic,
+`higher_fold_layer_alpha_exit_parity_child_field_interval_diagnostic_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then materializes the non-rule-blocked child-field source side: 12 / 12
+separator profiles and 112 / 112 fold-layer rows have candidate `alpha_floor`,
+`exit_floor`, and `fold_layer_parity_record` sources. The minimum candidate
+alpha source is `20.353739080283133119`; the minimum exit-source rectangle
+width is `0.008`. It still records 0 / 112 proof-grade `alpha_floor`,
+`exit_floor`, or `fold_layer_parity_record` fields, 0 consumed rows,
+`preledger_pass=false`, no live-ledger update, and no branch-chart
+authorization. The next mechanical child-field blockers are
+`proof_grade_alpha_floor_derivation_absent`,
+`proof_grade_exit_floor_derivation_absent`, and
+`explicit_fold_layer_parity_record_delta_fields_absent`.
+The child-field derivation attempt,
+`higher_fold_layer_alpha_exit_parity_child_field_derivation_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then checks the exact fresh derivation refs and parity delta fields above those
+candidate sources. It records 0 / 12 `alpha_floor` proof refs, 0 / 12
+`exit_floor` proof refs, 0 / 12 `fold_layer_parity_record` proof refs, 0 / 12
+fresh `delta_root_count`, `delta_signed_degree`, `local_even_jump`, or
+`parity_status` fields, and rejects seed-packet static parity data as
+`stale_static_parity_packet_not_fresh_higher_fold`. It consumes 0 rows, keeps
+`preledger_pass=false`, keeps live-ledger update false, and authorizes no branch
+chart. The current mechanical child-field blockers are
+`alpha_floor_proof_grade_ref_null`, `exit_floor_proof_grade_ref_null`,
+`fold_layer_parity_record_proof_grade_ref_null`, and
+`fresh_fold_layer_parity_record_delta_fields_absent`; accepted atlas-ref,
+impulse/direct-quadrature, parent-complement consumption, and separator
+certificate fields remain separately absent.
+The child-field source-ref manifest,
+`higher_fold_layer_alpha_exit_parity_child_field_source_ref_manifest_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then materializes deterministic `source_ref` handles for `alpha_floor`,
+`exit_floor`, and `fold_layer_parity_record` evidence for 12 / 12 separator
+profiles and 112 / 112 fold-layer rows. It also records 12 / 12 candidate
+parity delta records and 112 / 112 row-level candidate parity delta
+associations, while keeping 0 proof-grade child fields, 0 proof-grade parity
+delta fields, 0 consumed rows, `preledger_pass=false`, no live-ledger update,
+and no branch-chart authorization. The current child-field blocker is
+`child_field_source_ref_handle_not_proof_grade_ref` plus
+`candidate_parity_delta_record_not_proof_grade_ref`; accepted atlas-ref,
+impulse/direct-quadrature, parent-complement consumption, and separator
+certificate fields remain separately absent.
 The nonlinear fold-coordinate collocation tangent-matrix screen,
 `gap_opening_fresh_v10_fold_coordinate_collocation_report.nonlinear-v0.md`,
 now packages the first executable collocation-surface test: 3 homogeneous

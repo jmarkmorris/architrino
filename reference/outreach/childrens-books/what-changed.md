@@ -34,11 +34,11 @@ Read-aloud title:
 
 Read-aloud text:
 
-> Nia looked at the rolling tiles.
+> Electra watched the red ball roll.
 >
 > "Why did the ball go there?"
 
-Discovery:
+Editor note:
 
 Wonder begins with noticing.
 
@@ -46,11 +46,11 @@ Wonder begins with noticing.
 
 Read-aloud text:
 
-> The red ball rolled from the star mark.
+> The red ball rolled from the star.
 >
 > It stopped in the dip.
 
-Discovery:
+Editor note:
 
 A first try gives a result.
 
@@ -58,11 +58,11 @@ A first try gives a result.
 
 Read-aloud text:
 
-> Nia drew the path.
+> Poz drew the path.
 >
 > "This is what happened."
 
-Discovery:
+Editor note:
 
 A record helps comparison.
 
@@ -72,11 +72,11 @@ Read-aloud text:
 
 > "If we try again,"
 >
-> Papa asked,
+> Electra asked,
 >
 > "where will it go?"
 
-Discovery:
+Editor note:
 
 A prediction is a careful guess.
 
@@ -90,7 +90,7 @@ Read-aloud text:
 >
 > Same path.
 
-Discovery:
+Editor note:
 
 Keeping things the same can repeat a result.
 
@@ -98,11 +98,11 @@ Keeping things the same can repeat a result.
 
 Read-aloud text:
 
-> Mama turned one tile.
+> Poz changed one thing.
 >
 > Only one.
 
-Discovery:
+Editor note:
 
 Changing one thing makes the test clearer.
 
@@ -114,9 +114,9 @@ Read-aloud text:
 >
 > This time it turned left.
 
-Discovery:
+Editor note:
 
-The changed tile changed the path.
+The one change changed the path.
 
 ### Spread 8: Compare
 
@@ -128,7 +128,7 @@ Read-aloud text:
 >
 > What changed?
 
-Discovery:
+Editor note:
 
 Comparison shows the difference.
 
@@ -140,19 +140,19 @@ Read-aloud text:
 >
 > The ball slowed near the top.
 
-Discovery:
+Editor note:
 
-Different surfaces guide motion differently.
+Different places guide motion differently.
 
 ### Spread 10: Try A Flat
 
 Read-aloud text:
 
-> They swapped in a flat tile.
+> They tried a flat path.
 >
 > The ball rolled straight through.
 
-Discovery:
+Editor note:
 
 Flat places can preserve a simpler path.
 
@@ -160,11 +160,11 @@ Flat places can preserve a simpler path.
 
 Read-aloud text:
 
-> Nia pointed.
+> Electra pointed.
 >
-> "The path changes when the surface changes."
+> "The path changes when the ball meets something new."
 
-Discovery:
+Editor note:
 
 A child can state a rule from evidence.
 
@@ -174,9 +174,9 @@ Read-aloud text:
 
 > "What should we change next?"
 >
-> Nia asked.
+> Poz asked.
 
-Discovery:
+Editor note:
 
 One answer can open the next question.
 

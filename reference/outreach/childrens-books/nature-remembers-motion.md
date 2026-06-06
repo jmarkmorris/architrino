@@ -34,11 +34,11 @@ Read-aloud title:
 
 Read-aloud text:
 
-> Nia pulled a ribbon.
+> Electra pulled a ribbon.
 >
 > The ribbon made a line.
 
-Discovery:
+Editor note:
 
 A moving thing can leave something behind.
 
@@ -46,11 +46,11 @@ A moving thing can leave something behind.
 
 Read-aloud text:
 
-> Nia rolled the red ball.
+> Poz rolled the red ball.
 >
 > The ball went away.
 
-Discovery:
+Editor note:
 
 Motion carries the ball from one place to another.
 
@@ -62,7 +62,7 @@ Read-aloud text:
 >
 > The trail was still here.
 
-Discovery:
+Editor note:
 
 A trace can remain after motion has moved on.
 
@@ -70,23 +70,23 @@ A trace can remain after motion has moved on.
 
 Read-aloud text:
 
-> This mark came first.
+> This part came first.
 >
-> That mark came next.
+> That part came next.
 
-Discovery:
+Editor note:
 
-Marks can show order.
+A trail can show order.
 
 ### Spread 5: Near And Far
 
 Read-aloud text:
 
-> Some marks were close.
+> Some parts were close.
 >
-> Some marks were far.
+> Some parts were far.
 
-Discovery:
+Editor note:
 
 Spacing helps tell the story of a path.
 
@@ -94,11 +94,11 @@ Spacing helps tell the story of a path.
 
 Read-aloud text:
 
-> Nia tapped the water.
+> Electra tapped the water.
 >
 > Circles grew from the tap.
 
-Discovery:
+Editor note:
 
 Water can show where motion began.
 
@@ -106,11 +106,11 @@ Water can show where motion began.
 
 Read-aloud text:
 
-> Papa clapped.
+> Poz clapped.
 >
-> Nia heard it after.
+> Electra heard it after.
 
-Discovery:
+Editor note:
 
 Some traces travel before they are noticed.
 
@@ -118,11 +118,11 @@ Some traces travel before they are noticed.
 
 Read-aloud text:
 
-> Nia walked past the light.
+> Poz walked past the light.
 >
 > The shadow walked too.
 
-Discovery:
+Editor note:
 
 Motion can be shown in more than one way.
 
@@ -130,11 +130,11 @@ Motion can be shown in more than one way.
 
 Read-aloud text:
 
-> Nia turned around.
+> Electra turned around.
 >
 > The new trail met the old trail.
 
-Discovery:
+Editor note:
 
 Returning can cross an earlier path.
 
@@ -144,9 +144,9 @@ Read-aloud text:
 
 > "Can we find where it went?"
 >
-> Nia followed the marks.
+> Poz followed the trail.
 
-Discovery:
+Editor note:
 
 A trace can guide later attention.
 
@@ -164,7 +164,7 @@ Read-aloud text:
 >
 > They all showed motion.
 
-Discovery:
+Editor note:
 
 Nature gives clues.
 
@@ -176,7 +176,7 @@ Read-aloud text:
 >
 > The world remembered.
 
-Discovery:
+Editor note:
 
 Motion can leave readable history.
 

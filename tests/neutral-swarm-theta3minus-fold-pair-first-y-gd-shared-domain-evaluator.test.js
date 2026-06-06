@@ -45,6 +45,18 @@ import {
   buildH39RequestedY44TerminalS37SourceCellBindingFanoutCandidate,
   buildH39RequestedY44TerminalS37SourceCellCoverageLiftReadinessCandidate,
   buildH39RequestedY44TerminalS37FiveNodeDenominatorLiftAuditCandidate,
+  buildH39RequestedY44TerminalS37RowLocalCollarSelectionSurfaceAuditCandidate,
+  buildH39RequestedY44TerminalS37FiveCellDenominatorReadinessSurfaceCandidate,
+  buildH39RequestedY44TerminalS37FiveCellDivisionDependencyWitnessAttemptCandidate,
+  buildH39RequestedY44TerminalS37FiveCellSameConstructionDependencyFieldAuditCandidate,
+  buildH39RequestedY44TerminalS37FiveCellSharedProvenanceComponentAuditCandidate,
+  buildH39RequestedY44TerminalS37FiveCellSharedDependencyTraceAuditCandidate,
+  buildH39RequestedY44TerminalS37FiveCellSharedDependencyWitnessAuditCandidate,
+  buildH39RequestedY44TerminalS37FiveCellSameConstructionPreservationStatementAuditCandidate,
+  buildH39RequestedY44TerminalS37FiveCellSharedProviderProvenanceAuditCandidate,
+  buildH39RequestedY44TerminalS37FiveCellSameConstructionProviderIdentityWitnessAuditCandidate,
+  buildH39RequestedY44TerminalS37FiveCellDependencyPreservingDivisionProviderCertificateCandidate,
+  buildH39RequestedY44TerminalRowProviderEnclosureWitnessCandidate,
   buildH39RequestedY44RowLocalN38SignedSourceSumDerivativeProviderCandidate,
   validateH39CorrelatedResidualWidthDiagnostic,
   validateH39H38NumeratorGraphLocalPartitionDiagnostic,
@@ -86,6 +98,18 @@ import {
   validateH39RequestedY44TerminalS37SourceCellBindingFanoutCandidate,
   validateH39RequestedY44TerminalS37SourceCellCoverageLiftReadinessCandidate,
   validateH39RequestedY44TerminalS37FiveNodeDenominatorLiftAuditCandidate,
+  validateH39RequestedY44TerminalS37RowLocalCollarSelectionSurfaceAuditCandidate,
+  validateH39RequestedY44TerminalS37FiveCellDenominatorReadinessSurfaceCandidate,
+  validateH39RequestedY44TerminalS37FiveCellDivisionDependencyWitnessAttemptCandidate,
+  validateH39RequestedY44TerminalS37FiveCellSameConstructionDependencyFieldAuditCandidate,
+  validateH39RequestedY44TerminalS37FiveCellSharedProvenanceComponentAuditCandidate,
+  validateH39RequestedY44TerminalS37FiveCellSharedDependencyTraceAuditCandidate,
+  validateH39RequestedY44TerminalS37FiveCellSharedDependencyWitnessAuditCandidate,
+  validateH39RequestedY44TerminalS37FiveCellSameConstructionPreservationStatementAuditCandidate,
+  validateH39RequestedY44TerminalS37FiveCellSharedProviderProvenanceAuditCandidate,
+  validateH39RequestedY44TerminalS37FiveCellSameConstructionProviderIdentityWitnessAuditCandidate,
+  validateH39RequestedY44TerminalS37FiveCellDependencyPreservingDivisionProviderCertificateCandidate,
+  validateH39RequestedY44TerminalRowProviderEnclosureWitnessCandidate,
   validateH39RequestedY44RowLocalN38SignedSourceSumDerivativeProvider,
   validateH39RequestedY44SignedSourceSumDerivativeAllocationTarget,
   validateH39RequestedY44SourceMapResidualCovarianceTarget,
@@ -11693,6 +11717,2433 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
         );
       }
     )
+  );
+  const terminalS37RowLocalCollarSelectionSurfaceAudit =
+    buildH39RequestedY44TerminalS37RowLocalCollarSelectionSurfaceAuditCandidate({
+      terminalS37SourceCellCoverageLiftReadiness,
+      terminalS37FiveNodeDenominatorLiftAudit,
+      producerRowLocalCollarReplay: rowLocalCollarReplay,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44TerminalS37RowLocalCollarSelectionSurfaceAuditCandidate(
+      terminalS37RowLocalCollarSelectionSurfaceAudit
+    ),
+    []
+  );
+  assert.equal(
+    terminalS37RowLocalCollarSelectionSurfaceAudit
+      .terminal_s37_row_local_collar_selection_surface_audit_attempt_available,
+    true
+  );
+  assert.equal(
+    terminalS37RowLocalCollarSelectionSurfaceAudit
+      .terminal_s37_row_local_collar_selection_surface_audit_attempt_ready,
+    true
+  );
+  assert.deepEqual(
+    terminalS37RowLocalCollarSelectionSurfaceAudit.terminal_source_cell_ids,
+    [
+      "speed.0.first-y",
+      "speed.1.first-y",
+      "speed.2.first-y",
+      "speed.3.first-y",
+      "speed.4.first-y",
+    ]
+  );
+  assert.deepEqual(
+    terminalS37RowLocalCollarSelectionSurfaceAudit
+      .row_local_collar_surface_source_cell_ids,
+    ["speed.0.first-y", "speed.1.first-y"]
+  );
+  assert.deepEqual(
+    terminalS37RowLocalCollarSelectionSurfaceAudit
+      .missing_row_local_collar_surface_source_cell_ids,
+    ["speed.2.first-y", "speed.3.first-y", "speed.4.first-y"]
+  );
+  assert.equal(
+    terminalS37RowLocalCollarSelectionSurfaceAudit
+      .producer_row_local_collar_replay_selected_row_count,
+    rowLocalCollarReplay.selected_row_count
+  );
+  assert.equal(
+    terminalS37RowLocalCollarSelectionSurfaceAudit
+      .producer_row_local_collar_replay_row_replay_count,
+    rowLocalCollarReplay.row_replays.length
+  );
+  assert.equal(
+    terminalS37RowLocalCollarSelectionSurfaceAudit
+      .row_local_collar_surface_exposes_only_selected_rows,
+    true
+  );
+  assert.equal(
+    terminalS37RowLocalCollarSelectionSurfaceAudit
+      .all_selected_row_local_collar_rows_have_s37_denominator_surface,
+    true
+  );
+  assert.equal(
+    terminalS37RowLocalCollarSelectionSurfaceAudit
+      .all_terminal_source_cells_have_row_local_collar_surface,
+    false
+  );
+  assert.equal(
+    terminalS37RowLocalCollarSelectionSurfaceAudit
+      .all_missing_terminal_source_cells_outside_row_local_collar_surface,
+    true
+  );
+  assert.equal(
+    terminalS37RowLocalCollarSelectionSurfaceAudit
+      .any_nonselected_row_local_s37_denominator_rows_available,
+    false
+  );
+  assert.equal(
+    terminalS37RowLocalCollarSelectionSurfaceAudit
+      .all_terminal_source_cells_have_five_node_source_budget_rows,
+    true
+  );
+  assert.equal(
+    terminalS37RowLocalCollarSelectionSurfaceAudit
+      .all_terminal_source_cells_reach_source_map_provider_boundary,
+    true
+  );
+  assert.equal(
+    terminalS37RowLocalCollarSelectionSurfaceAudit
+      .complete_terminal_source_cell_denominator_coverage_certified,
+    false
+  );
+  assert.equal(
+    terminalS37RowLocalCollarSelectionSurfaceAudit
+      .terminal_s37_dependency_preserving_division_provider_certified,
+    false
+  );
+  assert.equal(
+    terminalS37RowLocalCollarSelectionSurfaceAudit
+      .terminal_s37_row_local_collar_selection_surface_classification,
+    "terminal-source-cell-denominator-lift-blocked-by-two-row-selected-collar-surface"
+  );
+  assert.equal(
+    terminalS37RowLocalCollarSelectionSurfaceAudit
+      .terminal_s37_row_local_collar_selection_primary_missing_object_kind,
+    "five-cell-row-local-s37-denominator-collar-surface-or-same-construction-fanout-witness"
+  );
+  assert.equal(
+    terminalS37RowLocalCollarSelectionSurfaceAudit
+      .terminal_s37_row_local_collar_selection_blocker_classification,
+    "selected-row-local-collar-replay-exposes-no-nonselected-s37-denominator-rows"
+  );
+  assert.equal(
+    terminalS37RowLocalCollarSelectionSurfaceAudit
+      .terminal_s37_row_local_collar_selection_boundary_row_count,
+    5
+  );
+  assert.equal(
+    terminalS37RowLocalCollarSelectionSurfaceAudit
+      .row_local_collar_selection_surface_rows.length,
+    rowLocalCollarReplay.selected_row_count
+  );
+  assert.ok(
+    terminalS37RowLocalCollarSelectionSurfaceAudit.row_local_collar_selection_surface_rows.every(
+      (row, index) =>
+        row.cell_id === `speed.${index}.first-y` &&
+        row.row_local_s37_solve_slope_interval_available === true &&
+        row.row_local_s37_denominator_target_available === true &&
+        row.row_local_s37_nonzero_denominator_check_available === true &&
+        row.row_local_s37_provenance_context_available === true &&
+        row.row_local_s37_denominator_surface_present === true &&
+        row.row_roles.length >= 1
+    )
+  );
+  assert.ok(
+    terminalS37RowLocalCollarSelectionSurfaceAudit.terminal_s37_row_local_collar_selection_boundary_rows.every(
+      (row, index) => {
+        const selectedCell = index < rowLocalCollarReplay.selected_row_count;
+        return (
+          row.node_index === index &&
+          row.terminal_graph_source_cell_id === `speed.${index}.first-y` &&
+          row.source_map_five_node_source_budget_rows_present === true &&
+          row.source_map_provider_boundary_reached === true &&
+          row.row_local_collar_surface_cell_present === selectedCell &&
+          row.row_local_s37_solve_slope_interval_available === selectedCell &&
+          row.row_local_s37_denominator_target_available === selectedCell &&
+          row.row_local_s37_nonzero_denominator_check_available ===
+            selectedCell &&
+          row.row_local_s37_provenance_context_available === selectedCell &&
+          row.row_local_s37_denominator_surface_present === selectedCell &&
+          row.nonselected_row_local_s37_denominator_row_available === false &&
+          row.complete_terminal_source_cell_denominator_coverage_certified ===
+            false &&
+          row.dependency_preserving_s37_division_provider_certified ===
+            false &&
+          row.row_status ===
+            (selectedCell
+              ? "terminal-source-cell-selected-row-local-collar-s37-denominator-surface-present"
+              : "terminal-source-cell-outside-selected-row-local-collar-s37-denominator-surface") &&
+          row.claim_boundary
+            .defines_terminal_s37_row_local_collar_selection_surface_audit_only ===
+            true &&
+          row.claim_boundary
+            .certifies_complete_terminal_source_cell_denominator_coverage ===
+            false &&
+          row.claim_boundary.certifies_s37_dependency_preserving_division ===
+            false &&
+          row.claim_boundary.certifies_directed_rounded_shared_domain === false
+        );
+      }
+    )
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_terminal_source_cell_s37_denominator_readiness_available,
+    true
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_terminal_source_cell_s37_denominator_readiness_row_count,
+    5
+  );
+  assert.deepEqual(
+    rowLocalCollarReplay
+      .all_terminal_source_cell_s37_denominator_readiness_source_cell_ids,
+    [
+      "speed.0.first-y",
+      "speed.1.first-y",
+      "speed.2.first-y",
+      "speed.3.first-y",
+      "speed.4.first-y",
+    ]
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_terminal_source_cell_s37_denominator_readiness_rows_ready,
+    true
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_terminal_source_cell_s37_denominator_readiness_rows.length,
+    5
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .min_all_terminal_source_cell_s37_denominator_readiness_target_h38_residual_width >
+      0
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .min_all_terminal_source_cell_s37_denominator_readiness_target_numerator_width_lower >
+      0
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_all_terminal_source_cell_s37_denominator_readiness_required_coordinate_compression >
+      0
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_all_terminal_source_cell_s37_denominator_readiness_required_numerator_compression >
+      0
+  );
+  const terminalS37FiveCellDenominatorReadinessSurface =
+    buildH39RequestedY44TerminalS37FiveCellDenominatorReadinessSurfaceCandidate({
+      terminalS37RowLocalCollarSelectionSurfaceAudit,
+      terminalS37FiveNodeDenominatorLiftAudit,
+      producerRowLocalCollarReplay: rowLocalCollarReplay,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44TerminalS37FiveCellDenominatorReadinessSurfaceCandidate(
+      terminalS37FiveCellDenominatorReadinessSurface
+    ),
+    []
+  );
+  assert.equal(
+    terminalS37FiveCellDenominatorReadinessSurface
+      .terminal_s37_five_cell_denominator_readiness_surface_attempt_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellDenominatorReadinessSurface
+      .terminal_s37_five_cell_denominator_readiness_surface_attempt_ready,
+    true
+  );
+  assert.deepEqual(
+    terminalS37FiveCellDenominatorReadinessSurface.terminal_source_cell_ids,
+    [
+      "speed.0.first-y",
+      "speed.1.first-y",
+      "speed.2.first-y",
+      "speed.3.first-y",
+      "speed.4.first-y",
+    ]
+  );
+  assert.deepEqual(
+    terminalS37FiveCellDenominatorReadinessSurface
+      .selected_collar_surface_source_cell_ids,
+    ["speed.0.first-y", "speed.1.first-y"]
+  );
+  assert.deepEqual(
+    terminalS37FiveCellDenominatorReadinessSurface
+      .missing_selected_collar_surface_source_cell_ids,
+    ["speed.2.first-y", "speed.3.first-y", "speed.4.first-y"]
+  );
+  assert.deepEqual(
+    terminalS37FiveCellDenominatorReadinessSurface
+      .row_local_s37_denominator_readiness_source_cell_ids,
+    [
+      "speed.0.first-y",
+      "speed.1.first-y",
+      "speed.2.first-y",
+      "speed.3.first-y",
+      "speed.4.first-y",
+    ]
+  );
+  assert.equal(
+    terminalS37FiveCellDenominatorReadinessSurface
+      .missing_row_local_s37_denominator_readiness_source_cell_count,
+    0
+  );
+  assert.equal(
+    terminalS37FiveCellDenominatorReadinessSurface
+      .all_terminal_source_cells_have_row_local_s37_denominator_readiness,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellDenominatorReadinessSurface
+      .all_missing_selected_collar_surface_cells_have_denominator_readiness,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellDenominatorReadinessSurface
+      .all_terminal_source_cells_reach_source_map_provider_boundary,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellDenominatorReadinessSurface
+      .selected_collar_surface_still_two_row_surface,
+    true
+  );
+  assert.ok(
+    terminalS37FiveCellDenominatorReadinessSurface
+      .min_row_local_s37_denominator_readiness_target_h38_residual_width > 0
+  );
+  assert.ok(
+    terminalS37FiveCellDenominatorReadinessSurface
+      .min_row_local_s37_denominator_readiness_target_numerator_width_lower > 0
+  );
+  assert.ok(
+    terminalS37FiveCellDenominatorReadinessSurface
+      .max_row_local_s37_denominator_readiness_required_coordinate_compression >
+      0
+  );
+  assert.ok(
+    terminalS37FiveCellDenominatorReadinessSurface
+      .max_row_local_s37_denominator_readiness_required_numerator_compression >
+      0
+  );
+  assert.equal(
+    terminalS37FiveCellDenominatorReadinessSurface
+      .complete_terminal_source_cell_denominator_coverage_certified,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellDenominatorReadinessSurface
+      .same_construction_source_cell_binding_certified,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellDenominatorReadinessSurface
+      .terminal_s37_dependency_preserving_division_provider_certified,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellDenominatorReadinessSurface
+      .terminal_s37_five_cell_denominator_readiness_surface_classification,
+    "terminal-source-cell-five-cell-row-local-s37-denominator-readiness-surface-materialized-division-proof-open"
+  );
+  assert.equal(
+    terminalS37FiveCellDenominatorReadinessSurface
+      .terminal_s37_five_cell_denominator_readiness_primary_missing_object_kind,
+    "dependency-preserving-s37-division-provider-and-same-construction-source-cell-witness"
+  );
+  assert.equal(
+    terminalS37FiveCellDenominatorReadinessSurface
+      .terminal_s37_five_cell_denominator_readiness_blocker_classification,
+    "s37-dependency-preserving-division-proof-open-after-five-cell-denominator-readiness"
+  );
+  assert.equal(
+    terminalS37FiveCellDenominatorReadinessSurface
+      .terminal_s37_five_cell_denominator_readiness_boundary_row_count,
+    5
+  );
+  assert.ok(
+    terminalS37FiveCellDenominatorReadinessSurface.terminal_s37_five_cell_denominator_readiness_boundary_rows.every(
+      (row, index) => {
+        const selectedCell = index < rowLocalCollarReplay.selected_row_count;
+        return (
+          row.node_index === index &&
+          row.terminal_graph_source_cell_id === `speed.${index}.first-y` &&
+          row.selected_collar_surface_row_present === selectedCell &&
+          (selectedCell
+            ? row.selected_collar_surface_row_roles.length >= 1
+            : row.selected_collar_surface_row_roles.length === 0) &&
+          row.row_local_s37_denominator_readiness_row_present === true &&
+          row.row_local_s37_denominator_readiness_kind ===
+            "all-producer-sample-row-local-s37-denominator-readiness-target" &&
+          row.s37_solve_slope_interval_available === true &&
+          row.s37_nonzero_denominator_check_available === true &&
+          row.s37_denominator_target_available === true &&
+          row.source_domain_provenance_context_available === true &&
+          row.row_local_s37_denominator_readiness_ready === true &&
+          row.source_map_five_node_source_budget_rows_present === true &&
+          row.source_map_provider_boundary_reached === true &&
+          row.complete_terminal_source_cell_denominator_coverage_certified ===
+            false &&
+          row.same_construction_source_cell_binding_certified === false &&
+          row.dependency_preserving_s37_division_provider_certified ===
+            false &&
+          row.row_status ===
+            (selectedCell
+              ? "terminal-source-cell-selected-collar-and-five-cell-s37-denominator-readiness-present"
+              : "terminal-source-cell-five-cell-s37-denominator-readiness-present-selected-provider-identity-open") &&
+          row.claim_boundary
+            .defines_terminal_s37_five_cell_denominator_readiness_surface_only ===
+            true &&
+          row.claim_boundary
+            .certifies_complete_terminal_source_cell_denominator_coverage ===
+            false &&
+          row.claim_boundary.certifies_s37_dependency_preserving_division ===
+            false &&
+          row.claim_boundary.certifies_directed_rounded_shared_domain === false
+        );
+      }
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalS37FiveCellDenominatorReadinessSurface),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalS37FiveCellDenominatorReadinessSurface,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalS37FiveCellDivisionDependencyWitnessAttempt =
+    buildH39RequestedY44TerminalS37FiveCellDivisionDependencyWitnessAttemptCandidate(
+      {
+        terminalS37TransportReplay,
+        terminalS37FiveCellDenominatorReadinessSurface,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44TerminalS37FiveCellDivisionDependencyWitnessAttemptCandidate(
+      terminalS37FiveCellDivisionDependencyWitnessAttempt
+    ),
+    []
+  );
+  assert.equal(
+    terminalS37FiveCellDivisionDependencyWitnessAttempt
+      .terminal_s37_five_cell_division_dependency_witness_attempt_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellDivisionDependencyWitnessAttempt
+      .terminal_s37_five_cell_division_dependency_witness_attempt_ready,
+    true
+  );
+  assert.deepEqual(
+    terminalS37FiveCellDivisionDependencyWitnessAttempt.terminal_source_cell_ids,
+    [
+      "speed.0.first-y",
+      "speed.1.first-y",
+      "speed.2.first-y",
+      "speed.3.first-y",
+      "speed.4.first-y",
+    ]
+  );
+  assert.equal(
+    terminalS37FiveCellDivisionDependencyWitnessAttempt
+      .row_local_s37_denominator_readiness_row_count,
+    5
+  );
+  assert.equal(
+    terminalS37FiveCellDivisionDependencyWitnessAttempt
+      .row_local_s37_denominator_readiness_ready_row_count,
+    5
+  );
+  assert.equal(
+    terminalS37FiveCellDivisionDependencyWitnessAttempt
+      .one_to_one_terminal_source_cell_readiness_match_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellDivisionDependencyWitnessAttempt
+      .all_terminal_h_s37_matched_quotients_fit_h38_target,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellDivisionDependencyWitnessAttempt
+      .all_terminal_h_s37_matched_independent_interval_quotients_fit_h38_target,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellDivisionDependencyWitnessAttempt
+      .terminal_s37_five_cell_division_dependency_witness_boundary_replay_available,
+    true
+  );
+  assert.ok(
+    terminalS37FiveCellDivisionDependencyWitnessAttempt
+      .min_row_local_s37_division_solve_slope_abs_lower > 0
+  );
+  assert.ok(
+    terminalS37FiveCellDivisionDependencyWitnessAttempt
+      .min_row_local_s37_division_target_h38_residual_width > 0
+  );
+  assert.ok(
+    terminalS37FiveCellDivisionDependencyWitnessAttempt
+      .min_row_local_s37_division_target_numerator_width_lower > 0
+  );
+  assert.ok(
+    terminalS37FiveCellDivisionDependencyWitnessAttempt
+      .max_terminal_s37_matched_division_numerator_width_to_target_numerator_ratio >=
+      0
+  );
+  assert.ok(
+    terminalS37FiveCellDivisionDependencyWitnessAttempt
+      .max_terminal_s37_matched_division_numerator_width_to_target_numerator_ratio <=
+      1
+  );
+  assert.ok(
+    terminalS37FiveCellDivisionDependencyWitnessAttempt
+      .max_terminal_s37_matched_division_h38_residual_width_to_target >= 0
+  );
+  assert.ok(
+    terminalS37FiveCellDivisionDependencyWitnessAttempt
+      .max_terminal_s37_matched_division_h38_residual_width_to_target <= 1
+  );
+  assert.ok(
+    terminalS37FiveCellDivisionDependencyWitnessAttempt
+      .max_terminal_s37_matched_independent_interval_quotient_width_to_h38_target >=
+      0
+  );
+  assert.ok(
+    terminalS37FiveCellDivisionDependencyWitnessAttempt
+      .max_terminal_s37_matched_independent_interval_quotient_width_to_h38_target <=
+      1
+  );
+  assert.equal(
+    terminalS37FiveCellDivisionDependencyWitnessAttempt
+      .complete_terminal_source_cell_denominator_coverage_certified,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellDivisionDependencyWitnessAttempt
+      .same_construction_source_cell_binding_certified,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellDivisionDependencyWitnessAttempt
+      .terminal_s37_dependency_preserving_division_provider_certified,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellDivisionDependencyWitnessAttempt
+      .terminal_s37_five_cell_division_dependency_witness_classification,
+    "terminal-n38-source-map-envelope-s37-five-cell-matched-quotient-fits-h38-target-same-construction-witness-open"
+  );
+  assert.equal(
+    terminalS37FiveCellDivisionDependencyWitnessAttempt
+      .terminal_s37_five_cell_division_dependency_witness_primary_missing_object_kind,
+    "same-construction-dependency-preserving-s37-division-provider-witness"
+  );
+  assert.equal(
+    terminalS37FiveCellDivisionDependencyWitnessAttempt
+      .terminal_s37_five_cell_division_dependency_witness_blocker_classification,
+    "s37-same-construction-dependency-witness-open-after-five-cell-matched-quotient-fit"
+  );
+  assert.equal(
+    terminalS37FiveCellDivisionDependencyWitnessAttempt
+      .terminal_s37_five_cell_division_dependency_witness_boundary_row_count,
+    5
+  );
+  assert.equal(
+    terminalS37FiveCellDivisionDependencyWitnessAttempt
+      .terminal_h_s37_five_cell_division_dependency_witness_row_count,
+    15
+  );
+  assert.ok(
+    terminalS37FiveCellDivisionDependencyWitnessAttempt.row_local_s37_denominator_readiness_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_source_cell_id === `speed.${index}.first-y` &&
+        row.source_domain_provenance_context_available === true &&
+        row.s37_nonzero_denominator_check_available === true &&
+        row.s37_denominator_target_available === true &&
+        row.row_status ===
+          "five-cell-row-local-s37-denominator-readiness-row-ready-for-matched-division"
+    )
+  );
+  assert.ok(
+    terminalS37FiveCellDivisionDependencyWitnessAttempt.terminal_s37_five_cell_division_dependency_witness_boundary_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_source_cell_id === `speed.${index}.first-y` &&
+        row.one_to_one_terminal_source_cell_readiness_match_available ===
+          true &&
+        row.terminal_partition_reuses_source_map_domain === true &&
+        row.terminal_partition_preserves_source_map_radius === true &&
+        row.source_map_boundary_replay_reaches_provider_row === true &&
+        row.source_map_boundary_replay_directed_rounding_provenance_verified ===
+          true &&
+        row.all_terminal_h_s37_matched_quotients_fit_h38_target === true &&
+        row
+          .all_terminal_h_s37_matched_independent_interval_quotients_fit_h38_target ===
+          true &&
+        row
+          .all_terminal_h_s37_five_cell_division_dependency_witness_rows_ready ===
+          true &&
+        row
+          .s37_five_cell_division_dependency_witness_reaches_source_map_boundary ===
+          true &&
+        row.same_construction_source_cell_binding_certified === false &&
+        row.dependency_preserving_s37_division_provider_certified === false &&
+        row.row_status ===
+          "terminal-source-map-boundary-s37-five-cell-matched-quotient-ready-same-construction-witness-open" &&
+        row.claim_boundary
+          .defines_terminal_s37_five_cell_division_dependency_witness_attempt_only ===
+          true &&
+        row.claim_boundary.certifies_s37_dependency_preserving_division ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  assert.ok(
+    terminalS37FiveCellDivisionDependencyWitnessAttempt.terminal_h_s37_five_cell_division_dependency_witness_rows.every(
+      (row) =>
+        [37, 36, 35].includes(row.terminal_h_index) &&
+        row.terminal_graph_source_cell_id ===
+          `speed.${row.terminal_node_index}.first-y` &&
+        row.row_local_budget_cell_id === row.terminal_graph_source_cell_id &&
+        row.one_to_one_terminal_source_cell_readiness_match_available ===
+          true &&
+        row.terminal_partition_reuses_source_map_domain === true &&
+        row.terminal_partition_preserves_source_map_radius === true &&
+        row.source_map_boundary_replay_reaches_provider_row === true &&
+        row.terminal_s37_division_numerator_width_to_target_numerator_ratio <=
+          1 &&
+        row.terminal_s37_division_h38_residual_width_to_target <= 1 &&
+        row.independent_interval_quotient_width_to_h38_target <= 1 &&
+        row
+          .independent_interval_quotient_abs_upper_to_h38_target_half_width <=
+          1 &&
+        row.terminal_s37_matched_quotient_width_fits_h38_target === true &&
+        row
+          .terminal_s37_matched_independent_interval_quotient_fits_h38_target ===
+          true &&
+        row.same_construction_source_cell_binding_certified === false &&
+        row.dependency_preserving_s37_division_provider_certified === false &&
+        row.row_status ===
+          "terminal-n38-s37-five-cell-matched-quotient-fits-h38-target-same-construction-witness-open"
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalS37FiveCellDivisionDependencyWitnessAttempt),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalS37FiveCellDivisionDependencyWitnessAttempt,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalS37FiveCellSameConstructionDependencyFieldAudit =
+    buildH39RequestedY44TerminalS37FiveCellSameConstructionDependencyFieldAuditCandidate(
+      {
+        terminalS37FiveCellDivisionDependencyWitnessAttempt,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44TerminalS37FiveCellSameConstructionDependencyFieldAuditCandidate(
+      terminalS37FiveCellSameConstructionDependencyFieldAudit
+    ),
+    []
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionDependencyFieldAudit
+      .terminal_s37_five_cell_same_construction_dependency_field_audit_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionDependencyFieldAudit
+      .terminal_s37_five_cell_same_construction_dependency_field_audit_ready,
+    true
+  );
+  assert.deepEqual(
+    terminalS37FiveCellSameConstructionDependencyFieldAudit
+      .required_shared_identity_field_kinds,
+    [
+      "shared_source_cell_id",
+      "shared_provider_provenance",
+      "shared_dependency_trace",
+      "shared_dependency_witness",
+      "same_construction_dependency_preservation_statement",
+    ]
+  );
+  assert.deepEqual(
+    terminalS37FiveCellSameConstructionDependencyFieldAudit
+      .materialized_shared_identity_field_kinds,
+    ["shared_source_cell_id"]
+  );
+  assert.deepEqual(
+    terminalS37FiveCellSameConstructionDependencyFieldAudit
+      .missing_shared_identity_field_kinds,
+    [
+      "shared_provider_provenance",
+      "shared_dependency_trace",
+      "shared_dependency_witness",
+      "same_construction_dependency_preservation_statement",
+    ]
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionDependencyFieldAudit
+      .all_terminal_h_shared_source_cell_ids_materialized,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionDependencyFieldAudit
+      .all_terminal_h_separate_numerator_provenance_present,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionDependencyFieldAudit
+      .all_terminal_h_separate_denominator_provenance_present,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionDependencyFieldAudit
+      .all_terminal_h_shared_provider_provenance_available,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionDependencyFieldAudit
+      .all_terminal_h_shared_dependency_traces_available,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionDependencyFieldAudit
+      .all_terminal_h_shared_dependency_witnesses_available,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionDependencyFieldAudit
+      .all_terminal_h_same_construction_dependency_preservation_statements_available,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionDependencyFieldAudit
+      .terminal_s37_same_construction_provider_identity_witness_available,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionDependencyFieldAudit
+      .terminal_s37_dependency_preserving_division_provider_certified,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionDependencyFieldAudit
+      .terminal_s37_five_cell_same_construction_dependency_field_audit_classification,
+    "terminal-n38-s37-shared-source-cell-id-materialized-provider-provenance-open"
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionDependencyFieldAudit
+      .terminal_s37_five_cell_same_construction_dependency_field_audit_primary_missing_object_kind,
+    "shared-provider-provenance-dependency-trace-witness-and-preservation-statement"
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionDependencyFieldAudit
+      .terminal_s37_five_cell_same_construction_dependency_field_audit_blocker_classification,
+    "s37-shared-provider-provenance-open-after-source-cell-id-materialization"
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionDependencyFieldAudit
+      .terminal_s37_five_cell_same_construction_dependency_field_audit_boundary_row_count,
+    5
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionDependencyFieldAudit
+      .terminal_h_s37_five_cell_same_construction_dependency_field_audit_row_count,
+    15
+  );
+  assert.ok(
+    terminalS37FiveCellSameConstructionDependencyFieldAudit.terminal_h_s37_five_cell_same_construction_dependency_field_audit_rows.every(
+      (row) =>
+        [37, 36, 35].includes(row.terminal_h_index) &&
+        row.terminal_graph_source_cell_id ===
+          `speed.${row.terminal_node_index}.first-y` &&
+        row.row_local_budget_cell_id === row.terminal_graph_source_cell_id &&
+        row.shared_source_cell_id_available === true &&
+        row.separate_numerator_provenance_present === true &&
+        row.separate_denominator_provenance_present === true &&
+        row.shared_provider_provenance_available === false &&
+        row.shared_dependency_trace_available === false &&
+        row.shared_dependency_witness_available === false &&
+        row.same_construction_dependency_preservation_statement_available ===
+          false &&
+        row.all_required_shared_identity_fields_available === false &&
+        row.same_construction_provider_identity_witness_available === false &&
+        row.dependency_preserving_s37_division_provider_certified === false &&
+        row.row_status ===
+          "terminal-n38-s37-shared-source-cell-id-materialized-provider-provenance-open"
+    )
+  );
+  assert.ok(
+    terminalS37FiveCellSameConstructionDependencyFieldAudit.terminal_s37_five_cell_same_construction_dependency_field_audit_boundary_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_source_cell_id === `speed.${index}.first-y` &&
+        row.all_terminal_h_shared_source_cell_ids_materialized === true &&
+        row
+          .all_terminal_h_separate_numerator_and_denominator_provenance_present ===
+          true &&
+        row.materialized_shared_identity_field_kinds.length === 1 &&
+        row.materialized_shared_identity_field_kinds[0] ===
+          "shared_source_cell_id" &&
+        row.missing_shared_identity_field_count === 4 &&
+        row.shared_provider_provenance_available === false &&
+        row.shared_dependency_trace_available === false &&
+        row.shared_dependency_witness_available === false &&
+        row.same_construction_dependency_preservation_statement_available ===
+          false &&
+        row.all_required_shared_identity_fields_available === false &&
+        row.same_construction_provider_identity_witness_available === false &&
+        row.dependency_preserving_s37_division_provider_certified === false &&
+        row.row_status ===
+          "terminal-source-map-boundary-s37-shared-source-cell-id-materialized-provider-provenance-open" &&
+        row.claim_boundary
+          .defines_terminal_s37_five_cell_same_construction_dependency_field_audit_only ===
+          true &&
+        row.claim_boundary.certifies_s37_dependency_preserving_division ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      terminalS37FiveCellSameConstructionDependencyFieldAudit
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalS37FiveCellSameConstructionDependencyFieldAudit,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalS37FiveCellSharedProvenanceComponentAudit =
+    buildH39RequestedY44TerminalS37FiveCellSharedProvenanceComponentAuditCandidate(
+      {
+        terminalS37FiveCellDivisionDependencyWitnessAttempt,
+        terminalS37FiveCellSameConstructionDependencyFieldAudit,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44TerminalS37FiveCellSharedProvenanceComponentAuditCandidate(
+      terminalS37FiveCellSharedProvenanceComponentAudit
+    ),
+    []
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProvenanceComponentAudit
+      .terminal_s37_five_cell_shared_provenance_component_audit_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProvenanceComponentAudit
+      .terminal_s37_five_cell_shared_provenance_component_audit_ready,
+    true
+  );
+  assert.deepEqual(
+    terminalS37FiveCellSharedProvenanceComponentAudit
+      .shared_provenance_component_field_kinds,
+    [
+      "shared_source_cell_id",
+      "terminal_n38_numerator_interval",
+      "row_local_s37_solve_slope_interval",
+      "independent_interval_quotient_replay",
+      "same_domain_source_map_boundary",
+      "same_radius_source_map_boundary",
+      "source_map_boundary_directed_rounding_provenance",
+    ]
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProvenanceComponentAudit
+      .all_terminal_h_shared_provenance_components_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProvenanceComponentAudit
+      .terminal_s37_shared_provider_provenance_component_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProvenanceComponentAudit
+      .terminal_s37_shared_provider_provenance_available,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProvenanceComponentAudit
+      .terminal_s37_shared_dependency_trace_available,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProvenanceComponentAudit
+      .terminal_s37_shared_dependency_witness_available,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProvenanceComponentAudit
+      .terminal_s37_same_construction_dependency_preservation_statement_available,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProvenanceComponentAudit
+      .terminal_s37_same_construction_provider_identity_witness_available,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProvenanceComponentAudit
+      .terminal_s37_dependency_preserving_division_provider_certified,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProvenanceComponentAudit
+      .terminal_s37_five_cell_shared_provenance_component_audit_classification,
+    "terminal-n38-s37-shared-provenance-component-ready-dependency-trace-open"
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProvenanceComponentAudit
+      .terminal_s37_five_cell_shared_provenance_component_blocker_classification,
+    "s37-shared-dependency-trace-open-after-provenance-component"
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProvenanceComponentAudit
+      .terminal_s37_five_cell_shared_provenance_component_boundary_row_count,
+    5
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProvenanceComponentAudit
+      .terminal_h_s37_five_cell_shared_provenance_component_row_count,
+    15
+  );
+  assert.ok(
+    terminalS37FiveCellSharedProvenanceComponentAudit.terminal_h_s37_five_cell_shared_provenance_component_rows.every(
+      (row) => {
+        const component = row.shared_provenance_component;
+        return (
+          [37, 36, 35].includes(row.terminal_h_index) &&
+          row.shared_source_cell_id ===
+            `speed.${row.terminal_node_index}.first-y` &&
+          row.terminal_graph_source_cell_id === row.shared_source_cell_id &&
+          row.row_local_budget_cell_id === row.shared_source_cell_id &&
+          row.shared_source_cell_id_matches_numerator_and_denominator ===
+            true &&
+          row.numerator_provenance_component_available === true &&
+          row.denominator_provenance_component_available === true &&
+          row.quotient_replay_provenance_component_available === true &&
+          row.shared_provenance_component_available === true &&
+          component.component_kind ===
+            "five-cell-shared-source-cell-n38-s37-provenance-component" &&
+          component.shared_source_cell_id === row.shared_source_cell_id &&
+          component.numerator_provenance
+            .source_map_boundary_replay_directed_rounding_provenance_verified ===
+            true &&
+          component.denominator_provenance.solve_slope_abs_lower > 0 &&
+          component.quotient_replay_provenance
+            .independent_interval_quotient_width_to_h38_target <= 1 &&
+          row.shared_provider_provenance_component_available === true &&
+          row.shared_provider_provenance_available === false &&
+          row.shared_dependency_trace_available === false &&
+          row.shared_dependency_witness_available === false &&
+          row
+            .same_construction_dependency_preservation_statement_available ===
+            false &&
+          row.same_construction_provider_identity_witness_available === false &&
+          row.dependency_preserving_s37_division_provider_certified === false &&
+          row.row_status ===
+            "terminal-n38-s37-shared-provenance-component-ready-dependency-trace-open"
+        );
+      }
+    )
+  );
+  assert.ok(
+    terminalS37FiveCellSharedProvenanceComponentAudit.terminal_s37_five_cell_shared_provenance_component_boundary_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.shared_source_cell_id === `speed.${index}.first-y` &&
+        row.all_terminal_h_shared_provenance_components_available === true &&
+        row.shared_provenance_component_reaches_source_map_boundary === true &&
+        row.shared_provider_provenance_component_available === true &&
+        row.shared_provider_provenance_available === false &&
+        row.shared_dependency_trace_available === false &&
+        row.shared_dependency_witness_available === false &&
+        row.same_construction_dependency_preservation_statement_available ===
+          false &&
+        row.same_construction_provider_identity_witness_available === false &&
+        row.dependency_preserving_s37_division_provider_certified === false &&
+        row.row_status ===
+          "terminal-source-map-boundary-s37-shared-provenance-component-ready-dependency-trace-open" &&
+        row.claim_boundary
+          .defines_terminal_s37_five_cell_shared_provenance_component_audit_only ===
+          true &&
+        row.claim_boundary.certifies_s37_dependency_preserving_division ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      terminalS37FiveCellSharedProvenanceComponentAudit
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalS37FiveCellSharedProvenanceComponentAudit,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalS37FiveCellSharedDependencyTraceAudit =
+    buildH39RequestedY44TerminalS37FiveCellSharedDependencyTraceAuditCandidate(
+      {
+        terminalS37FiveCellSharedProvenanceComponentAudit,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44TerminalS37FiveCellSharedDependencyTraceAuditCandidate(
+      terminalS37FiveCellSharedDependencyTraceAudit
+    ),
+    []
+  );
+  assert.equal(
+    terminalS37FiveCellSharedDependencyTraceAudit
+      .terminal_s37_five_cell_shared_dependency_trace_audit_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSharedDependencyTraceAudit
+      .terminal_s37_five_cell_shared_dependency_trace_audit_ready,
+    true
+  );
+  assert.deepEqual(
+    terminalS37FiveCellSharedDependencyTraceAudit
+      .materialized_shared_identity_field_kinds,
+    ["shared_source_cell_id", "shared_dependency_trace"]
+  );
+  assert.deepEqual(
+    terminalS37FiveCellSharedDependencyTraceAudit
+      .missing_shared_identity_field_kinds,
+    [
+      "shared_provider_provenance",
+      "shared_dependency_witness",
+      "same_construction_dependency_preservation_statement",
+    ]
+  );
+  assert.deepEqual(
+    terminalS37FiveCellSharedDependencyTraceAudit
+      .shared_dependency_trace_step_kinds,
+    [
+      "shared_source_cell_id_binding",
+      "terminal_n38_numerator_interval_dependency",
+      "row_local_s37_solve_slope_interval_dependency",
+      "independent_interval_quotient_replay_dependency",
+      "same_domain_source_map_boundary_dependency",
+      "same_radius_source_map_boundary_dependency",
+      "source_map_directed_rounding_provenance_dependency",
+    ]
+  );
+  assert.equal(
+    terminalS37FiveCellSharedDependencyTraceAudit
+      .all_terminal_h_shared_dependency_traces_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSharedDependencyTraceAudit
+      .terminal_s37_shared_provider_provenance_available,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellSharedDependencyTraceAudit
+      .terminal_s37_shared_dependency_trace_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSharedDependencyTraceAudit
+      .terminal_s37_shared_dependency_witness_available,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellSharedDependencyTraceAudit
+      .terminal_s37_same_construction_dependency_preservation_statement_available,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellSharedDependencyTraceAudit
+      .terminal_s37_same_construction_provider_identity_witness_available,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellSharedDependencyTraceAudit
+      .terminal_s37_dependency_preserving_division_provider_certified,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellSharedDependencyTraceAudit
+      .terminal_s37_five_cell_shared_dependency_trace_audit_classification,
+    "terminal-n38-s37-shared-dependency-trace-ready-witness-open"
+  );
+  assert.equal(
+    terminalS37FiveCellSharedDependencyTraceAudit
+      .terminal_s37_five_cell_shared_dependency_trace_blocker_classification,
+    "s37-shared-dependency-witness-open-after-trace"
+  );
+  assert.equal(
+    terminalS37FiveCellSharedDependencyTraceAudit
+      .terminal_h_s37_five_cell_shared_dependency_trace_row_count,
+    15
+  );
+  assert.equal(
+    terminalS37FiveCellSharedDependencyTraceAudit
+      .terminal_s37_five_cell_shared_dependency_trace_boundary_row_count,
+    5
+  );
+  assert.ok(
+    terminalS37FiveCellSharedDependencyTraceAudit.terminal_h_s37_five_cell_shared_dependency_trace_rows.every(
+      (row) =>
+        [37, 36, 35].includes(row.terminal_h_index) &&
+        row.shared_source_cell_id ===
+          `speed.${row.terminal_node_index}.first-y` &&
+        row.terminal_graph_source_cell_id === row.shared_source_cell_id &&
+        row.row_local_budget_cell_id === row.shared_source_cell_id &&
+        row.shared_dependency_trace_kind ===
+          "five-cell-shared-source-cell-n38-s37-dependency-trace" &&
+        row.shared_dependency_trace_step_count === 7 &&
+        row.shared_dependency_trace_steps.every(
+          (step, stepIndex) =>
+            step.step_index === stepIndex &&
+            step.edge_available === true &&
+            step.shared_source_cell_id === row.shared_source_cell_id
+        ) &&
+        row.shared_dependency_trace_available === true &&
+        row.shared_dependency_trace_covers_provenance_component === true &&
+        row.materialized_shared_identity_field_kinds.includes(
+          "shared_dependency_trace"
+        ) &&
+        row.shared_provider_provenance_component_available === true &&
+        row.shared_provider_provenance_available === false &&
+        row.shared_dependency_witness_available === false &&
+        row.same_construction_dependency_preservation_statement_available ===
+          false &&
+        row.same_construction_provider_identity_witness_available === false &&
+        row.dependency_preserving_s37_division_provider_certified === false &&
+        row.row_status ===
+          "terminal-n38-s37-shared-dependency-trace-ready-witness-open"
+    )
+  );
+  assert.ok(
+    terminalS37FiveCellSharedDependencyTraceAudit.terminal_s37_five_cell_shared_dependency_trace_boundary_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.shared_source_cell_id === `speed.${index}.first-y` &&
+        row.all_terminal_h_shared_dependency_traces_available === true &&
+        row.shared_dependency_trace_reaches_source_map_boundary === true &&
+        row.shared_provider_provenance_component_available === true &&
+        row.shared_provider_provenance_available === false &&
+        row.shared_dependency_trace_available === true &&
+        row.shared_dependency_witness_available === false &&
+        row.same_construction_dependency_preservation_statement_available ===
+          false &&
+        row.same_construction_provider_identity_witness_available === false &&
+        row.dependency_preserving_s37_division_provider_certified === false &&
+        row.row_status ===
+          "terminal-source-map-boundary-s37-shared-dependency-trace-ready-witness-open" &&
+        row.claim_boundary
+          .defines_terminal_s37_five_cell_shared_dependency_trace_audit_only ===
+          true &&
+        row.claim_boundary.certifies_s37_dependency_preserving_division ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalS37FiveCellSharedDependencyTraceAudit),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalS37FiveCellSharedDependencyTraceAudit,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalS37FiveCellSharedDependencyWitnessAudit =
+    buildH39RequestedY44TerminalS37FiveCellSharedDependencyWitnessAuditCandidate(
+      {
+        terminalS37FiveCellSharedDependencyTraceAudit,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44TerminalS37FiveCellSharedDependencyWitnessAuditCandidate(
+      terminalS37FiveCellSharedDependencyWitnessAudit
+    ),
+    []
+  );
+  assert.equal(
+    terminalS37FiveCellSharedDependencyWitnessAudit
+      .terminal_s37_five_cell_shared_dependency_witness_audit_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSharedDependencyWitnessAudit
+      .terminal_s37_five_cell_shared_dependency_witness_audit_ready,
+    true
+  );
+  assert.deepEqual(
+    terminalS37FiveCellSharedDependencyWitnessAudit
+      .materialized_shared_identity_field_kinds,
+    [
+      "shared_source_cell_id",
+      "shared_dependency_trace",
+      "shared_dependency_witness",
+    ]
+  );
+  assert.deepEqual(
+    terminalS37FiveCellSharedDependencyWitnessAudit
+      .missing_shared_identity_field_kinds,
+    [
+      "shared_provider_provenance",
+      "same_construction_dependency_preservation_statement",
+    ]
+  );
+  assert.deepEqual(
+    terminalS37FiveCellSharedDependencyWitnessAudit
+      .shared_dependency_witness_check_kinds,
+    [
+      "trace_step_order_witness",
+      "shared_source_cell_consistency_witness",
+      "terminal_n38_numerator_interval_witness",
+      "row_local_s37_solve_slope_interval_witness",
+      "independent_quotient_replay_boundedness_witness",
+      "independent_quotient_replay_exact_recomputation_witness",
+      "same_domain_boundary_continuity_witness",
+      "same_radius_boundary_continuity_witness",
+      "directed_rounding_provenance_continuity_witness",
+    ]
+  );
+  assert.equal(
+    terminalS37FiveCellSharedDependencyWitnessAudit
+      .all_terminal_h_shared_dependency_witnesses_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSharedDependencyWitnessAudit
+      .terminal_s37_shared_provider_provenance_available,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellSharedDependencyWitnessAudit
+      .terminal_s37_shared_dependency_trace_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSharedDependencyWitnessAudit
+      .terminal_s37_shared_dependency_witness_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSharedDependencyWitnessAudit
+      .terminal_s37_same_construction_dependency_preservation_statement_available,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellSharedDependencyWitnessAudit
+      .terminal_s37_same_construction_provider_identity_witness_available,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellSharedDependencyWitnessAudit
+      .terminal_s37_dependency_preserving_division_provider_certified,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellSharedDependencyWitnessAudit
+      .terminal_s37_five_cell_shared_dependency_witness_audit_classification,
+    "terminal-n38-s37-shared-dependency-witness-ready-preservation-open"
+  );
+  assert.equal(
+    terminalS37FiveCellSharedDependencyWitnessAudit
+      .terminal_s37_five_cell_shared_dependency_witness_blocker_classification,
+    "s37-same-construction-preservation-statement-open-after-witness"
+  );
+  assert.equal(
+    terminalS37FiveCellSharedDependencyWitnessAudit
+      .terminal_h_s37_five_cell_shared_dependency_witness_row_count,
+    15
+  );
+  assert.equal(
+    terminalS37FiveCellSharedDependencyWitnessAudit
+      .terminal_s37_five_cell_shared_dependency_witness_boundary_row_count,
+    5
+  );
+  assert.ok(
+    terminalS37FiveCellSharedDependencyWitnessAudit.terminal_h_s37_five_cell_shared_dependency_witness_rows.every(
+      (row) => {
+        const witness = row.shared_dependency_witness;
+        return (
+          [37, 36, 35].includes(row.terminal_h_index) &&
+          row.shared_source_cell_id ===
+            `speed.${row.terminal_node_index}.first-y` &&
+          row.terminal_graph_source_cell_id === row.shared_source_cell_id &&
+          row.row_local_budget_cell_id === row.shared_source_cell_id &&
+          row.shared_dependency_witness_kind ===
+            "five-cell-shared-source-cell-n38-s37-dependency-witness" &&
+          row.shared_dependency_witness_check_count === 9 &&
+          Object.values(row.shared_dependency_witness_checks).every(
+            (value) => value === true
+          ) &&
+          row.shared_dependency_trace_available === true &&
+          row.shared_dependency_witness_available === true &&
+          witness.witness_kind ===
+            "five-cell-shared-source-cell-n38-s37-dependency-witness" &&
+          witness.shared_source_cell_id === row.shared_source_cell_id &&
+          witness.independent_interval_quotient_recomputed_exactly === true &&
+          witness.quotient_replay_within_h38_target === true &&
+          witness.same_domain_boundary_continuity_witnessed === true &&
+          witness.same_radius_boundary_continuity_witnessed === true &&
+          witness.directed_rounding_provenance_continuity_witnessed === true &&
+          row.shared_provider_provenance_component_available === true &&
+          row.shared_provider_provenance_available === false &&
+          row.same_construction_dependency_preservation_statement_available ===
+            false &&
+          row.same_construction_provider_identity_witness_available === false &&
+          row.dependency_preserving_s37_division_provider_certified === false &&
+          row.row_status ===
+            "terminal-n38-s37-shared-dependency-witness-ready-preservation-open"
+        );
+      }
+    )
+  );
+  assert.ok(
+    terminalS37FiveCellSharedDependencyWitnessAudit.terminal_s37_five_cell_shared_dependency_witness_boundary_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.shared_source_cell_id === `speed.${index}.first-y` &&
+        row.all_terminal_h_shared_dependency_witnesses_available === true &&
+        row.shared_dependency_witness_reaches_source_map_boundary === true &&
+        row.shared_provider_provenance_component_available === true &&
+        row.shared_dependency_trace_available === true &&
+        row.shared_provider_provenance_available === false &&
+        row.shared_dependency_witness_available === true &&
+        row.same_construction_dependency_preservation_statement_available ===
+          false &&
+        row.same_construction_provider_identity_witness_available === false &&
+        row.dependency_preserving_s37_division_provider_certified === false &&
+        row.row_status ===
+          "terminal-source-map-boundary-s37-shared-dependency-witness-ready-preservation-open" &&
+        row.claim_boundary
+          .defines_terminal_s37_five_cell_shared_dependency_witness_audit_only ===
+          true &&
+        row.claim_boundary.certifies_s37_dependency_preserving_division ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalS37FiveCellSharedDependencyWitnessAudit),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalS37FiveCellSharedDependencyWitnessAudit,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalS37FiveCellSameConstructionPreservationStatementAudit =
+    buildH39RequestedY44TerminalS37FiveCellSameConstructionPreservationStatementAuditCandidate(
+      {
+        terminalS37FiveCellSharedDependencyWitnessAudit,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44TerminalS37FiveCellSameConstructionPreservationStatementAuditCandidate(
+      terminalS37FiveCellSameConstructionPreservationStatementAudit
+    ),
+    []
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionPreservationStatementAudit
+      .terminal_s37_five_cell_same_construction_preservation_statement_audit_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionPreservationStatementAudit
+      .terminal_s37_five_cell_same_construction_preservation_statement_audit_ready,
+    true
+  );
+  assert.deepEqual(
+    terminalS37FiveCellSameConstructionPreservationStatementAudit
+      .materialized_shared_identity_field_kinds,
+    [
+      "shared_source_cell_id",
+      "shared_dependency_trace",
+      "shared_dependency_witness",
+      "same_construction_dependency_preservation_statement",
+    ]
+  );
+  assert.deepEqual(
+    terminalS37FiveCellSameConstructionPreservationStatementAudit
+      .missing_shared_identity_field_kinds,
+    ["shared_provider_provenance"]
+  );
+  assert.deepEqual(
+    terminalS37FiveCellSameConstructionPreservationStatementAudit
+      .preserved_dependency_field_kinds,
+    [
+      "shared_source_cell_id",
+      "terminal_n38_numerator_interval",
+      "row_local_s37_solve_slope_interval",
+      "independent_interval_quotient_replay",
+      "same_domain_source_map_boundary",
+      "same_radius_source_map_boundary",
+      "source_map_boundary_directed_rounding_provenance",
+    ]
+  );
+  assert.deepEqual(
+    terminalS37FiveCellSameConstructionPreservationStatementAudit
+      .preservation_check_kinds,
+    [
+      "shared_dependency_witness_ready",
+      "shared_provider_provenance_component_context_preserved",
+      "shared_source_cell_preserved",
+      "ordered_trace_witness_preserved",
+      "quotient_replay_exact_recomputation_preserved",
+      "quotient_replay_h38_bound_preserved",
+      "same_domain_boundary_preserved",
+      "same_radius_boundary_preserved",
+      "directed_rounding_provenance_preserved",
+    ]
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionPreservationStatementAudit
+      .all_terminal_h_same_construction_dependency_preservation_statements_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionPreservationStatementAudit
+      .terminal_s37_same_construction_dependency_preservation_statement_boundary_replay_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionPreservationStatementAudit
+      .terminal_s37_shared_provider_provenance_component_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionPreservationStatementAudit
+      .terminal_s37_shared_provider_provenance_available,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionPreservationStatementAudit
+      .terminal_s37_shared_dependency_trace_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionPreservationStatementAudit
+      .terminal_s37_shared_dependency_witness_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionPreservationStatementAudit
+      .terminal_s37_same_construction_dependency_preservation_statement_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionPreservationStatementAudit
+      .terminal_s37_same_construction_provider_identity_witness_available,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionPreservationStatementAudit
+      .terminal_s37_dependency_preserving_division_provider_certified,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionPreservationStatementAudit
+      .terminal_s37_five_cell_same_construction_preservation_statement_audit_classification,
+    "terminal-n38-s37-preservation-statement-ready-shared-provider-provenance-open"
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionPreservationStatementAudit
+      .terminal_s37_five_cell_same_construction_preservation_statement_blocker_classification,
+    "s37-shared-provider-provenance-open-after-preservation-statement"
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionPreservationStatementAudit
+      .terminal_h_s37_five_cell_same_construction_preservation_statement_row_count,
+    15
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionPreservationStatementAudit
+      .terminal_s37_five_cell_same_construction_preservation_statement_boundary_row_count,
+    5
+  );
+  assert.ok(
+    terminalS37FiveCellSameConstructionPreservationStatementAudit.terminal_h_s37_five_cell_same_construction_preservation_statement_rows.every(
+      (row) => {
+        const statement =
+          row.same_construction_dependency_preservation_statement;
+        return (
+          [37, 36, 35].includes(row.terminal_h_index) &&
+          row.shared_source_cell_id ===
+            `speed.${row.terminal_node_index}.first-y` &&
+          row.terminal_graph_source_cell_id === row.shared_source_cell_id &&
+          row.row_local_budget_cell_id === row.shared_source_cell_id &&
+          row.preservation_check_count === 9 &&
+          Object.values(row.preservation_checks).every(
+            (value) => value === true
+          ) &&
+          row.shared_provider_provenance_component_available === true &&
+          row.shared_dependency_trace_available === true &&
+          row.shared_dependency_witness_available === true &&
+          row.same_construction_dependency_preservation_statement_available ===
+            true &&
+          statement.statement_kind ===
+            "five-cell-same-construction-dependency-preservation-statement" &&
+          statement.shared_source_cell_id === row.shared_source_cell_id &&
+          statement.independent_interval_quotient_recomputed_exactly ===
+            true &&
+          statement.quotient_replay_within_h38_target === true &&
+          statement.same_domain_boundary_preserved === true &&
+          statement.same_radius_boundary_preserved === true &&
+          statement.directed_rounding_provenance_preserved === true &&
+          statement.certifies_s37_dependency_preserving_division === false &&
+          row.shared_provider_provenance_available === false &&
+          row.same_construction_provider_identity_witness_available === false &&
+          row.dependency_preserving_s37_division_provider_certified === false &&
+          row.row_status ===
+            "terminal-n38-s37-preservation-statement-ready-shared-provider-provenance-open"
+        );
+      }
+    )
+  );
+  assert.ok(
+    terminalS37FiveCellSameConstructionPreservationStatementAudit.terminal_s37_five_cell_same_construction_preservation_statement_boundary_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.shared_source_cell_id === `speed.${index}.first-y` &&
+        row
+          .all_terminal_h_same_construction_dependency_preservation_statements_available ===
+          true &&
+        row
+          .same_construction_dependency_preservation_statement_reaches_source_map_boundary ===
+          true &&
+        row.shared_provider_provenance_component_available === true &&
+        row.shared_dependency_trace_available === true &&
+        row.shared_dependency_witness_available === true &&
+        row.same_construction_dependency_preservation_statement_available ===
+          true &&
+        row.shared_provider_provenance_available === false &&
+        row.same_construction_provider_identity_witness_available === false &&
+        row.dependency_preserving_s37_division_provider_certified === false &&
+        row.row_status ===
+          "terminal-source-map-boundary-s37-preservation-statement-ready-shared-provider-provenance-open" &&
+        row.claim_boundary
+          .defines_terminal_s37_five_cell_same_construction_preservation_statement_audit_only ===
+          true &&
+        row.claim_boundary.certifies_s37_dependency_preserving_division ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      terminalS37FiveCellSameConstructionPreservationStatementAudit
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalS37FiveCellSameConstructionPreservationStatementAudit,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalS37FiveCellSharedProviderProvenanceAudit =
+    buildH39RequestedY44TerminalS37FiveCellSharedProviderProvenanceAuditCandidate(
+      {
+        terminalS37FiveCellSameConstructionPreservationStatementAudit,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44TerminalS37FiveCellSharedProviderProvenanceAuditCandidate(
+      terminalS37FiveCellSharedProviderProvenanceAudit
+    ),
+    []
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProviderProvenanceAudit
+      .terminal_s37_five_cell_shared_provider_provenance_audit_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProviderProvenanceAudit
+      .terminal_s37_five_cell_shared_provider_provenance_audit_ready,
+    true
+  );
+  assert.deepEqual(
+    terminalS37FiveCellSharedProviderProvenanceAudit
+      .materialized_shared_identity_field_kinds,
+    [
+      "shared_source_cell_id",
+      "shared_provider_provenance",
+      "shared_dependency_trace",
+      "shared_dependency_witness",
+      "same_construction_dependency_preservation_statement",
+    ]
+  );
+  assert.deepEqual(
+    terminalS37FiveCellSharedProviderProvenanceAudit
+      .missing_shared_identity_field_kinds,
+    []
+  );
+  assert.deepEqual(
+    terminalS37FiveCellSharedProviderProvenanceAudit
+      .shared_provider_provenance_field_kinds,
+    [
+      "shared_source_cell_id",
+      "shared_provider_provenance_component_context",
+      "shared_dependency_trace",
+      "shared_dependency_witness",
+      "same_construction_dependency_preservation_statement",
+      "independent_interval_quotient_replay",
+      "same_domain_source_map_boundary",
+      "same_radius_source_map_boundary",
+      "source_map_boundary_directed_rounding_provenance",
+    ]
+  );
+  assert.deepEqual(
+    terminalS37FiveCellSharedProviderProvenanceAudit
+      .shared_provider_provenance_check_kinds,
+    [
+      "preservation_statement_ready",
+      "shared_provider_provenance_component_context_ready",
+      "shared_dependency_trace_ready",
+      "shared_dependency_witness_ready",
+      "shared_source_cell_binding_ready",
+      "all_required_shared_identity_fields_materialized",
+      "quotient_replay_exact_recomputation_inherited",
+      "quotient_replay_h38_bound_inherited",
+      "same_domain_boundary_inherited",
+      "same_radius_boundary_inherited",
+      "directed_rounding_provenance_inherited",
+    ]
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProviderProvenanceAudit
+      .all_terminal_h_shared_provider_provenance_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProviderProvenanceAudit
+      .terminal_s37_shared_provider_provenance_boundary_replay_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProviderProvenanceAudit
+      .terminal_s37_shared_provider_provenance_component_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProviderProvenanceAudit
+      .terminal_s37_shared_provider_provenance_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProviderProvenanceAudit
+      .terminal_s37_shared_dependency_trace_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProviderProvenanceAudit
+      .terminal_s37_shared_dependency_witness_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProviderProvenanceAudit
+      .terminal_s37_same_construction_dependency_preservation_statement_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProviderProvenanceAudit
+      .terminal_s37_all_required_shared_identity_fields_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProviderProvenanceAudit
+      .terminal_s37_same_construction_provider_identity_witness_available,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProviderProvenanceAudit
+      .terminal_s37_dependency_preserving_division_provider_certified,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProviderProvenanceAudit
+      .terminal_s37_five_cell_shared_provider_provenance_audit_classification,
+    "terminal-n38-s37-shared-provider-provenance-ready-provider-identity-open"
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProviderProvenanceAudit
+      .terminal_s37_five_cell_shared_provider_provenance_blocker_classification,
+    "s37-same-construction-provider-identity-witness-open-after-shared-provider-provenance"
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProviderProvenanceAudit
+      .terminal_h_s37_five_cell_shared_provider_provenance_row_count,
+    15
+  );
+  assert.equal(
+    terminalS37FiveCellSharedProviderProvenanceAudit
+      .terminal_s37_five_cell_shared_provider_provenance_boundary_row_count,
+    5
+  );
+  assert.ok(
+    terminalS37FiveCellSharedProviderProvenanceAudit.terminal_h_s37_five_cell_shared_provider_provenance_rows.every(
+      (row) => {
+        const provenance = row.shared_provider_provenance;
+        return (
+          [37, 36, 35].includes(row.terminal_h_index) &&
+          row.shared_source_cell_id ===
+            `speed.${row.terminal_node_index}.first-y` &&
+          row.terminal_graph_source_cell_id === row.shared_source_cell_id &&
+          row.row_local_budget_cell_id === row.shared_source_cell_id &&
+          row.shared_provider_provenance_check_count === 11 &&
+          Object.values(row.shared_provider_provenance_checks).every(
+            (value) => value === true
+          ) &&
+          row.shared_provider_provenance_component_available === true &&
+          row.shared_dependency_trace_available === true &&
+          row.shared_dependency_witness_available === true &&
+          row.same_construction_dependency_preservation_statement_available ===
+            true &&
+          row.shared_provider_provenance_available === true &&
+          row.all_required_shared_identity_fields_available === true &&
+          provenance.provenance_kind ===
+            "five-cell-same-construction-shared-provider-provenance" &&
+          provenance.shared_source_cell_id === row.shared_source_cell_id &&
+          provenance.independent_interval_quotient_recomputed_exactly ===
+            true &&
+          provenance.quotient_replay_within_h38_target === true &&
+          provenance.same_domain_boundary_inherited === true &&
+          provenance.same_radius_boundary_inherited === true &&
+          provenance.directed_rounding_provenance_inherited === true &&
+          provenance.certifies_same_construction_provider_identity === false &&
+          provenance.certifies_s37_dependency_preserving_division === false &&
+          row.same_construction_provider_identity_witness_available === false &&
+          row.dependency_preserving_s37_division_provider_certified === false &&
+          row.row_status ===
+            "terminal-n38-s37-shared-provider-provenance-ready-provider-identity-open"
+        );
+      }
+    )
+  );
+  assert.ok(
+    terminalS37FiveCellSharedProviderProvenanceAudit.terminal_s37_five_cell_shared_provider_provenance_boundary_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.shared_source_cell_id === `speed.${index}.first-y` &&
+        row.all_terminal_h_shared_provider_provenance_available === true &&
+        row.shared_provider_provenance_reaches_source_map_boundary === true &&
+        row.shared_provider_provenance_component_available === true &&
+        row.shared_dependency_trace_available === true &&
+        row.shared_dependency_witness_available === true &&
+        row.same_construction_dependency_preservation_statement_available ===
+          true &&
+        row.shared_provider_provenance_available === true &&
+        row.all_required_shared_identity_fields_available === true &&
+        row.same_construction_provider_identity_witness_available === false &&
+        row.dependency_preserving_s37_division_provider_certified === false &&
+        row.row_status ===
+          "terminal-source-map-boundary-s37-shared-provider-provenance-ready-provider-identity-open" &&
+        row.claim_boundary
+          .defines_terminal_s37_five_cell_shared_provider_provenance_audit_only ===
+          true &&
+        row.claim_boundary.certifies_same_construction_provider_identity ===
+          false &&
+        row.claim_boundary.certifies_s37_dependency_preserving_division ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalS37FiveCellSharedProviderProvenanceAudit),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalS37FiveCellSharedProviderProvenanceAudit,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalS37FiveCellSameConstructionProviderIdentityWitnessAudit =
+    buildH39RequestedY44TerminalS37FiveCellSameConstructionProviderIdentityWitnessAuditCandidate(
+      {
+        terminalS37FiveCellSharedProviderProvenanceAudit,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44TerminalS37FiveCellSameConstructionProviderIdentityWitnessAuditCandidate(
+      terminalS37FiveCellSameConstructionProviderIdentityWitnessAudit
+    ),
+    []
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionProviderIdentityWitnessAudit
+      .terminal_s37_five_cell_same_construction_provider_identity_witness_audit_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionProviderIdentityWitnessAudit
+      .terminal_s37_five_cell_same_construction_provider_identity_witness_audit_ready,
+    true
+  );
+  assert.deepEqual(
+    terminalS37FiveCellSameConstructionProviderIdentityWitnessAudit
+      .materialized_shared_identity_field_kinds,
+    [
+      "shared_source_cell_id",
+      "shared_provider_provenance",
+      "shared_dependency_trace",
+      "shared_dependency_witness",
+      "same_construction_dependency_preservation_statement",
+    ]
+  );
+  assert.deepEqual(
+    terminalS37FiveCellSameConstructionProviderIdentityWitnessAudit
+      .missing_shared_identity_field_kinds,
+    []
+  );
+  assert.deepEqual(
+    terminalS37FiveCellSameConstructionProviderIdentityWitnessAudit
+      .same_construction_provider_identity_witness_check_kinds,
+    [
+      "shared_provider_provenance_ready",
+      "all_required_shared_identity_fields_available",
+      "shared_source_cell_identity_witnessed",
+      "shared_provider_provenance_component_context_witnessed",
+      "shared_dependency_trace_witnessed",
+      "shared_dependency_witness_witnessed",
+      "same_construction_preservation_statement_witnessed",
+      "quotient_replay_exact_recomputation_witnessed",
+      "quotient_replay_h38_bound_witnessed",
+      "same_domain_boundary_witnessed",
+      "same_radius_boundary_witnessed",
+      "directed_rounding_provenance_witnessed",
+    ]
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionProviderIdentityWitnessAudit
+      .all_terminal_h_same_construction_provider_identity_witnesses_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionProviderIdentityWitnessAudit
+      .terminal_s37_same_construction_provider_identity_witness_boundary_replay_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionProviderIdentityWitnessAudit
+      .terminal_s37_shared_provider_provenance_component_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionProviderIdentityWitnessAudit
+      .terminal_s37_shared_provider_provenance_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionProviderIdentityWitnessAudit
+      .terminal_s37_shared_dependency_trace_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionProviderIdentityWitnessAudit
+      .terminal_s37_shared_dependency_witness_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionProviderIdentityWitnessAudit
+      .terminal_s37_same_construction_dependency_preservation_statement_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionProviderIdentityWitnessAudit
+      .terminal_s37_all_required_shared_identity_fields_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionProviderIdentityWitnessAudit
+      .terminal_s37_same_construction_provider_identity_witness_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionProviderIdentityWitnessAudit
+      .terminal_s37_dependency_preserving_division_provider_certified,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionProviderIdentityWitnessAudit
+      .terminal_s37_five_cell_same_construction_provider_identity_witness_audit_classification,
+    "terminal-n38-s37-provider-identity-witness-ready-s37-division-certification-open"
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionProviderIdentityWitnessAudit
+      .terminal_s37_five_cell_same_construction_provider_identity_witness_blocker_classification,
+    "s37-dependency-preserving-division-certification-open-after-provider-identity-witness"
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionProviderIdentityWitnessAudit
+      .terminal_h_s37_five_cell_same_construction_provider_identity_witness_row_count,
+    15
+  );
+  assert.equal(
+    terminalS37FiveCellSameConstructionProviderIdentityWitnessAudit
+      .terminal_s37_five_cell_same_construction_provider_identity_witness_boundary_row_count,
+    5
+  );
+  assert.ok(
+    terminalS37FiveCellSameConstructionProviderIdentityWitnessAudit.terminal_h_s37_five_cell_same_construction_provider_identity_witness_rows.every(
+      (row) => {
+        const provenance = row.shared_provider_provenance;
+        const witness = row.same_construction_provider_identity_witness;
+        return (
+          [37, 36, 35].includes(row.terminal_h_index) &&
+          row.shared_source_cell_id ===
+            `speed.${row.terminal_node_index}.first-y` &&
+          row.terminal_graph_source_cell_id === row.shared_source_cell_id &&
+          row.row_local_budget_cell_id === row.shared_source_cell_id &&
+          row.same_construction_provider_identity_witness_check_count === 12 &&
+          Object.values(
+            row.same_construction_provider_identity_witness_checks
+          ).every((value) => value === true) &&
+          row.shared_provider_provenance_available === true &&
+          provenance.provenance_kind ===
+            "five-cell-same-construction-shared-provider-provenance" &&
+          provenance.certifies_same_construction_provider_identity === false &&
+          provenance.certifies_s37_dependency_preserving_division === false &&
+          row.shared_provider_provenance_component_available === true &&
+          row.shared_dependency_trace_available === true &&
+          row.shared_dependency_witness_available === true &&
+          row.same_construction_dependency_preservation_statement_available ===
+            true &&
+          row.all_required_shared_identity_fields_available === true &&
+          row.same_construction_provider_identity_witness_available === true &&
+          witness.witness_kind ===
+            "five-cell-same-construction-provider-identity-witness" &&
+          witness.source_shared_provider_provenance_kind ===
+            provenance.provenance_kind &&
+          witness.independent_interval_quotient_recomputed_exactly === true &&
+          witness.quotient_replay_within_h38_target === true &&
+          witness.same_domain_boundary_inherited === true &&
+          witness.same_radius_boundary_inherited === true &&
+          witness.directed_rounding_provenance_inherited === true &&
+          witness.certifies_same_construction_provider_identity === false &&
+          witness.certifies_s37_dependency_preserving_division === false &&
+          row.dependency_preserving_s37_division_provider_certified === false &&
+          row.row_status ===
+            "terminal-n38-s37-provider-identity-witness-ready-s37-division-certification-open"
+        );
+      }
+    )
+  );
+  assert.ok(
+    terminalS37FiveCellSameConstructionProviderIdentityWitnessAudit.terminal_s37_five_cell_same_construction_provider_identity_witness_boundary_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.shared_source_cell_id === `speed.${index}.first-y` &&
+        row
+          .all_terminal_h_same_construction_provider_identity_witnesses_available ===
+          true &&
+        row
+          .same_construction_provider_identity_witness_reaches_source_map_boundary ===
+          true &&
+        row.shared_provider_provenance_component_available === true &&
+        row.shared_provider_provenance_available === true &&
+        row.shared_dependency_trace_available === true &&
+        row.shared_dependency_witness_available === true &&
+        row.same_construction_dependency_preservation_statement_available ===
+          true &&
+        row.all_required_shared_identity_fields_available === true &&
+        row.same_construction_provider_identity_witness_available === true &&
+        row.dependency_preserving_s37_division_provider_certified === false &&
+        row.row_status ===
+          "terminal-source-map-boundary-s37-provider-identity-witness-ready-s37-division-certification-open" &&
+        row.claim_boundary
+          .defines_terminal_s37_five_cell_same_construction_provider_identity_witness_audit_only ===
+          true &&
+        row.claim_boundary.certifies_same_construction_provider_identity ===
+          false &&
+        row.claim_boundary.certifies_s37_dependency_preserving_division ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      terminalS37FiveCellSameConstructionProviderIdentityWitnessAudit
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalS37FiveCellSameConstructionProviderIdentityWitnessAudit,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalS37FiveCellDependencyPreservingDivisionProviderCertificate =
+    buildH39RequestedY44TerminalS37FiveCellDependencyPreservingDivisionProviderCertificateCandidate(
+      {
+        terminalS37FiveCellDivisionDependencyWitnessAttempt,
+        terminalS37FiveCellSameConstructionProviderIdentityWitnessAudit,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44TerminalS37FiveCellDependencyPreservingDivisionProviderCertificateCandidate(
+      terminalS37FiveCellDependencyPreservingDivisionProviderCertificate
+    ),
+    []
+  );
+  assert.equal(
+    terminalS37FiveCellDependencyPreservingDivisionProviderCertificate
+      .terminal_s37_five_cell_dependency_preserving_division_provider_certificate_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellDependencyPreservingDivisionProviderCertificate
+      .terminal_s37_five_cell_dependency_preserving_division_provider_certificate_ready,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellDependencyPreservingDivisionProviderCertificate
+      .all_terminal_h_dependency_preserving_s37_division_provider_certificates_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellDependencyPreservingDivisionProviderCertificate
+      .terminal_s37_dependency_preserving_division_provider_boundary_replay_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellDependencyPreservingDivisionProviderCertificate
+      .terminal_s37_same_construction_provider_identity_witness_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellDependencyPreservingDivisionProviderCertificate
+      .terminal_s37_five_cell_division_dependency_witness_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellDependencyPreservingDivisionProviderCertificate
+      .terminal_s37_dependency_preserving_division_provider_certified,
+    true
+  );
+  assert.deepEqual(
+    terminalS37FiveCellDependencyPreservingDivisionProviderCertificate
+      .dependency_preserving_s37_division_provider_certificate_check_kinds,
+    [
+      "matched_division_dependency_witness_ready",
+      "provider_identity_witness_ready",
+      "same_terminal_h_row_matched",
+      "shared_source_cell_identity_matches",
+      "row_local_budget_cell_matches",
+      "row_local_budget_row_index_matches",
+      "terminal_graph_xi_interval_matches",
+      "shared_provider_provenance_kind_witnessed",
+      "quotient_interval_matches_provider_identity_witness",
+      "quotient_width_fits_h38_target",
+      "independent_interval_quotient_fits_h38_target",
+      "same_domain_boundary_inherited",
+      "same_radius_boundary_inherited",
+      "directed_rounding_provenance_inherited",
+      "source_map_boundary_replay_verified",
+    ]
+  );
+  assert.equal(
+    terminalS37FiveCellDependencyPreservingDivisionProviderCertificate
+      .terminal_s37_five_cell_dependency_preserving_division_provider_certificate_classification,
+    "terminal-n38-s37-dependency-preserving-division-provider-certified-terminal-provider-open"
+  );
+  assert.equal(
+    terminalS37FiveCellDependencyPreservingDivisionProviderCertificate
+      .terminal_s37_five_cell_dependency_preserving_division_provider_certificate_blocker_classification,
+    "terminal-row-provider-enclosure-open-after-s37-division-provider-certificate"
+  );
+  assert.equal(
+    terminalS37FiveCellDependencyPreservingDivisionProviderCertificate
+      .terminal_h_s37_five_cell_dependency_preserving_division_provider_certificate_row_count,
+    15
+  );
+  assert.equal(
+    terminalS37FiveCellDependencyPreservingDivisionProviderCertificate
+      .terminal_s37_five_cell_dependency_preserving_division_provider_certificate_boundary_row_count,
+    5
+  );
+  assert.ok(
+    terminalS37FiveCellDependencyPreservingDivisionProviderCertificate.terminal_h_s37_five_cell_dependency_preserving_division_provider_certificate_rows.every(
+      (row) => {
+        const certificate =
+          row.dependency_preserving_s37_division_provider_certificate;
+        assert.deepEqual(
+          row.independent_interval_quotient,
+          row.provider_identity_witness_independent_interval_quotient
+        );
+        assert.deepEqual(
+          certificate.independent_interval_quotient,
+          certificate.provider_identity_witness_independent_interval_quotient
+        );
+        return (
+          [37, 36, 35].includes(row.terminal_h_index) &&
+          row.shared_source_cell_id ===
+            `speed.${row.terminal_node_index}.first-y` &&
+          row.terminal_graph_source_cell_id === row.shared_source_cell_id &&
+          row.row_local_budget_cell_id === row.shared_source_cell_id &&
+          row.dependency_preserving_s37_division_provider_certificate_kind ===
+            "five-cell-dependency-preserving-s37-division-provider-certificate" &&
+          row
+            .dependency_preserving_s37_division_provider_certificate_check_count ===
+            15 &&
+          Object.values(
+            row
+              .dependency_preserving_s37_division_provider_certificate_checks
+          ).every((value) => value === true) &&
+          row.same_construction_provider_identity_witness_available === true &&
+          row.same_construction_provider_identity_witness.witness_kind ===
+            "five-cell-same-construction-provider-identity-witness" &&
+          row.shared_provider_provenance.provenance_kind ===
+            "five-cell-same-construction-shared-provider-provenance" &&
+          row.terminal_s37_five_cell_division_dependency_witness_row_ready ===
+            true &&
+          row.terminal_s37_matched_quotient_width_fits_h38_target === true &&
+          row
+            .terminal_s37_matched_independent_interval_quotient_fits_h38_target ===
+            true &&
+          row.terminal_s37_division_h38_residual_width_to_target <= 1 &&
+          row.independent_interval_quotient_width_to_h38_target <= 1 &&
+          row
+            .independent_interval_quotient_abs_upper_to_h38_target_half_width <=
+            1 &&
+          row.same_domain_boundary_inherited === true &&
+          row.same_radius_boundary_inherited === true &&
+          row.directed_rounding_provenance_inherited === true &&
+          row.source_map_boundary_replay_verified === true &&
+          row.dependency_preserving_s37_division_provider_certified === true &&
+          certificate.dependency_preserving_s37_division_provider_certified ===
+            true &&
+          certificate.certifies_expression_level_n38_provider === false &&
+          certificate.certifies_terminal_row_provider_enclosure === false &&
+          certificate.certifies_terminal_graph_remainder_bound === false &&
+          certificate.certifies_shifted_R43_outer_bound === false &&
+          certificate.certifies_directed_rounded_shared_domain === false &&
+          certificate.retained_branch === false &&
+          row.row_status ===
+            "terminal-n38-s37-dependency-preserving-division-provider-certified-terminal-provider-open"
+        );
+      }
+    )
+  );
+  assert.ok(
+    terminalS37FiveCellDependencyPreservingDivisionProviderCertificate.terminal_s37_five_cell_dependency_preserving_division_provider_certificate_boundary_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.shared_source_cell_id === `speed.${index}.first-y` &&
+        row.same_source_cell_identity_matches === true &&
+        row.terminal_h_rows_match_boundary_domain === true &&
+        row.division_dependency_witness_boundary_ready === true &&
+        row.provider_identity_witness_boundary_ready === true &&
+        row
+          .all_terminal_h_dependency_preserving_s37_division_provider_certificates_available ===
+          true &&
+        row
+          .dependency_preserving_s37_division_provider_certificate_reaches_source_map_boundary ===
+          true &&
+        row.dependency_preserving_s37_division_provider_certified === true &&
+        row.row_status ===
+          "terminal-source-map-boundary-s37-dependency-preserving-division-provider-certified-terminal-provider-open" &&
+        row.claim_boundary
+          .defines_terminal_s37_five_cell_dependency_preserving_division_provider_certificate_only ===
+          true &&
+        row.claim_boundary.certifies_s37_dependency_preserving_division ===
+          false &&
+        row.claim_boundary.certifies_terminal_row_provider_enclosure ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  assert.equal(
+    terminalS37FiveCellDependencyPreservingDivisionProviderCertificate
+      .claim_boundary
+      .defines_terminal_s37_five_cell_dependency_preserving_division_provider_certificate_only,
+    true
+  );
+  assert.equal(
+    terminalS37FiveCellDependencyPreservingDivisionProviderCertificate
+      .claim_boundary.certifies_s37_dependency_preserving_division,
+    false
+  );
+  assert.equal(
+    terminalS37FiveCellDependencyPreservingDivisionProviderCertificate
+      .claim_boundary.certifies_terminal_row_provider_enclosure,
+    false
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      terminalS37FiveCellDependencyPreservingDivisionProviderCertificate
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalS37FiveCellDependencyPreservingDivisionProviderCertificate,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalRowProviderEnclosureWitness =
+    buildH39RequestedY44TerminalRowProviderEnclosureWitnessCandidate({
+      terminalAffineEndpointProviderCandidate,
+      terminalS37FiveCellDependencyPreservingDivisionProviderCertificate,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44TerminalRowProviderEnclosureWitnessCandidate(
+      terminalRowProviderEnclosureWitness
+    ),
+    []
+  );
+  assert.equal(
+    terminalRowProviderEnclosureWitness
+      .terminal_row_provider_enclosure_available,
+    true
+  );
+  assert.equal(
+    terminalRowProviderEnclosureWitness.terminal_row_provider_enclosure_ready,
+    true
+  );
+  assert.equal(
+    terminalRowProviderEnclosureWitness.terminal_affine_endpoint_provider_ready,
+    true
+  );
+  assert.equal(
+    terminalRowProviderEnclosureWitness
+      .terminal_s37_division_provider_certificate_ready,
+    true
+  );
+  assert.equal(
+    terminalRowProviderEnclosureWitness
+      .all_terminal_h_terminal_row_provider_enclosures_certified,
+    true
+  );
+  assert.equal(
+    terminalRowProviderEnclosureWitness
+      .terminal_row_provider_enclosure_boundary_replay_available,
+    true
+  );
+  assert.equal(
+    terminalRowProviderEnclosureWitness
+      .terminal_row_provider_enclosure_certified,
+    true
+  );
+  assert.equal(
+    terminalRowProviderEnclosureWitness
+      .terminal_row_provider_enclosure_provider_certified_directed_rounded,
+    false
+  );
+  assert.deepEqual(
+    terminalRowProviderEnclosureWitness
+      .terminal_row_provider_enclosure_check_kinds,
+    [
+      "terminal_affine_endpoint_provider_ready",
+      "s37_division_provider_certificate_ready",
+      "same_terminal_h_row_matched",
+      "shared_source_cell_identity_matches",
+      "terminal_graph_xi_interval_matches",
+      "terminal_partition_budget_row_ready",
+      "terminal_partition_interval_contained_by_candidate_budget",
+      "terminal_partition_projected_residual_fits_budget",
+      "terminal_partition_projected_half_width_fits_budget",
+      "terminal_partition_arithmetic_provenance_verified",
+      "terminal_partition_outward_rounding_primitive_available",
+      "terminal_partition_directed_rounding_provenance_verified",
+      "s37_quotient_interval_matches_provider_identity_witness",
+      "s37_quotient_fits_h38_target",
+      "s37_division_provider_certified",
+      "same_domain_boundary_inherited",
+      "same_radius_boundary_inherited",
+      "source_map_boundary_replay_verified",
+    ]
+  );
+  assert.equal(
+    terminalRowProviderEnclosureWitness
+      .terminal_row_provider_enclosure_classification,
+    "terminal-row-provider-enclosure-certified-directed-rounded-shared-domain-open"
+  );
+  assert.equal(
+    terminalRowProviderEnclosureWitness
+      .terminal_row_provider_enclosure_blocker_classification,
+    "directed-rounded-shared-domain-provider-replay-open-after-terminal-row-enclosure"
+  );
+  assert.equal(
+    terminalRowProviderEnclosureWitness
+      .terminal_h_terminal_row_provider_enclosure_row_count,
+    15
+  );
+  assert.equal(
+    terminalRowProviderEnclosureWitness
+      .terminal_row_provider_enclosure_boundary_row_count,
+    5
+  );
+  assert.ok(
+    terminalRowProviderEnclosureWitness.terminal_h_terminal_row_provider_enclosure_rows.every(
+      (row) => {
+        const certificate = row.terminal_row_provider_enclosure_certificate;
+        assert.deepEqual(
+          row.projected_row_residual_interval,
+          row.binary64_outward_scaled_residual_interval
+        );
+        assert.deepEqual(
+          row.s37_independent_interval_quotient,
+          row.s37_provider_identity_witness_independent_interval_quotient
+        );
+        assert.deepEqual(
+          certificate.projected_producer_interval_bound,
+          row.projected_producer_interval_bound
+        );
+        assert.deepEqual(
+          certificate.s37_independent_interval_quotient,
+          row.s37_independent_interval_quotient
+        );
+        return (
+          [37, 36, 35].includes(row.terminal_h_index) &&
+          row.shared_source_cell_id ===
+            `speed.${row.terminal_node_index}.first-y` &&
+          row.terminal_graph_source_cell_id === row.shared_source_cell_id &&
+          row.terminal_row_provider_enclosure_witness_kind ===
+            "terminal-row-provider-enclosure-after-s37-division-certificate" &&
+          row.terminal_row_provider_enclosure_check_count === 18 &&
+          Object.values(row.terminal_row_provider_enclosure_checks).every(
+            (value) => value === true
+          ) &&
+          row.terminal_affine_partition_row_status ===
+            "terminal-producer-outward-rounded-partition-fits-terminal-affine-budget" &&
+          row.terminal_affine_producer_partition_row_status ===
+            "same-domain-terminal-producer-partition-directed-rounding-provenance-ready" &&
+          row.s37_division_provider_certificate_row_status ===
+            "terminal-n38-s37-dependency-preserving-division-provider-certified-terminal-provider-open" &&
+          row.projected_residual_abs_upper_to_budget_ratio <= 1 &&
+          row.projected_half_width_to_budget_ratio <= 1 &&
+          row.terminal_partition_directed_rounding_provenance_verified ===
+            true &&
+          row.terminal_partition_budget_enclosed === true &&
+          row.s37_quotient_fits_h38_target === true &&
+          row.dependency_preserving_s37_division_provider_certified === true &&
+          row.same_domain_boundary_inherited === true &&
+          row.same_radius_boundary_inherited === true &&
+          row.source_map_boundary_replay_verified === true &&
+          row.terminal_row_provider_enclosure_certified === true &&
+          certificate.terminal_row_provider_enclosure_certified === true &&
+          certificate.certifies_expression_level_n38_provider === false &&
+          certificate.certifies_terminal_row_provider_enclosure === false &&
+          certificate.certifies_terminal_graph_remainder_bound === false &&
+          certificate.certifies_s37_dependency_preserving_division === false &&
+          certificate.certifies_shifted_R43_outer_bound === false &&
+          certificate.certifies_directed_rounded_shared_domain === false &&
+          certificate.retained_branch === false &&
+          row.claim_boundary.certifies_terminal_row_provider_enclosure ===
+            false &&
+          row.claim_boundary.certifies_directed_rounded_shared_domain ===
+            false &&
+          row.row_status ===
+            "terminal-n38-terminal-row-provider-enclosure-certified-directed-rounded-shared-domain-open"
+        );
+      }
+    )
+  );
+  assert.ok(
+    terminalRowProviderEnclosureWitness.terminal_row_provider_enclosure_boundary_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.shared_source_cell_id === `speed.${index}.first-y` &&
+        row.terminal_graph_source_cell_id === `speed.${index}.first-y` &&
+        row.provider_row_source_kind ===
+          "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+        row.terminal_partition_provider_kind ===
+          "same-domain-terminal-affine-endpoint-producer-partition-realization" &&
+        row.same_source_cell_identity_matches === true &&
+        row.terminal_h_rows_match_boundary_domain === true &&
+        row.terminal_affine_source_map_boundary_ready === true &&
+        row.s37_division_provider_boundary_ready === true &&
+        row
+          .all_terminal_h_terminal_row_provider_enclosures_available ===
+          true &&
+        row.terminal_row_provider_enclosure_reaches_source_map_boundary ===
+          true &&
+        row.terminal_row_provider_enclosure_certified === true &&
+        row.claim_boundary.certifies_terminal_row_provider_enclosure ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain ===
+          false &&
+        row.row_status ===
+          "terminal-source-map-boundary-terminal-row-provider-enclosure-certified-directed-rounded-shared-domain-open"
+    )
+  );
+  assert.equal(
+    terminalRowProviderEnclosureWitness.claim_boundary
+      .defines_terminal_row_provider_enclosure_witness_only,
+    true
+  );
+  assert.equal(
+    terminalRowProviderEnclosureWitness.claim_boundary
+      .certifies_terminal_row_provider_enclosure,
+    false
+  );
+  assert.equal(
+    terminalRowProviderEnclosureWitness.claim_boundary
+      .certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.deepEqual(collectTrueCertifies(terminalRowProviderEnclosureWitness), []);
+  assert.deepEqual(
+    collectExactKeys(
+      terminalRowProviderEnclosureWitness,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalS37RowLocalCollarSelectionSurfaceAudit),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalS37RowLocalCollarSelectionSurfaceAudit,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
   );
   assert.deepEqual(
     collectTrueCertifies(terminalS37FiveNodeDenominatorLiftAudit),

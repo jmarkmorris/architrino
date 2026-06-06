@@ -34,25 +34,25 @@ Read-aloud title:
 
 Read-aloud text:
 
-> Ari watched the ball roll across the white tiles.
+> Electra watched the ball curve as it rolled.
 >
 > "Why does it bend toward that place?"
 
-Discovery:
+Editor note:
 
-Curved motion becomes a question about the surface.
+Curved motion becomes a question about the landscape.
 
 ### Spread 2: The Landscape
 
 Read-aloud text:
 
-> Dr. Sol set a hill tile beside a dip tile.
+> Poz set a little hill beside a little dip.
 >
-> "The path is reading the landscape."
+> "The path follows the landscape."
 
-Discovery:
+Editor note:
 
-The surface stands in for a potential landscape.
+The hill and dip stand in for a potential landscape.
 
 ### Spread 3: Down The Slope
 
@@ -62,7 +62,7 @@ Read-aloud text:
 >
 > Its path changed without a hand touching it.
 
-Discovery:
+Editor note:
 
 A slope can guide acceleration.
 
@@ -74,7 +74,7 @@ Read-aloud text:
 >
 > Each turn was smaller.
 
-Discovery:
+Editor note:
 
 A basin can draw motion inward.
 
@@ -82,11 +82,11 @@ A basin can draw motion inward.
 
 Read-aloud text:
 
-> Mira gave a stronger push.
+> Electra gave a stronger push.
 >
 > The ball climbed out.
 
-Discovery:
+Editor note:
 
 Energy-like conditions affect escape.
 
@@ -100,7 +100,7 @@ Read-aloud text:
 >
 > One side led right.
 
-Discovery:
+Editor note:
 
 A ridge can separate outcomes.
 
@@ -108,11 +108,11 @@ A ridge can separate outcomes.
 
 Read-aloud text:
 
-> At the top, the ball nearly waited.
+> At the top, the ball almost stopped.
 >
 > The smallest nudge mattered.
 
-Discovery:
+Editor note:
 
 Balance can be sensitive.
 
@@ -120,11 +120,11 @@ Balance can be sensitive.
 
 Read-aloud text:
 
-> Ari drew a map of the tiles.
+> Poz drew a map of the landscape.
 >
-> Mira rolled the ball on the real surface.
+> Electra rolled the ball through the real scene.
 
-Discovery:
+Editor note:
 
 A map describes motion but is not the motion itself.
 
@@ -134,37 +134,39 @@ Read-aloud text:
 
 > "Architrinos do not roll on toy hills,"
 >
-> Dr. Sol said.
+> Poz said.
 >
 > "But their paths can still answer a landscape of potential."
 
-Discovery:
+Editor note:
 
-The tile surface is an analogy for potential structure.
+The rolling setup is an analogy for potential structure.
 
-### Spread 10: Toward Low
-
-Read-aloud text:
-
-> Some paths bent toward lower places.
->
-> Some paths escaped with enough motion.
-
-Discovery:
-
-Local geometry guides possible outcomes.
-
-### Spread 11: Around The Hill
+### Spread 10: Snowboard Dip
 
 Read-aloud text:
 
-> The ball did not cross the hilltop.
+> On a snowy hill,
 >
-> It curved around.
+> Poz rode into a dip.
+>
+> The board sped up.
 
-Discovery:
+Editor note:
 
-Obstacles and ridges redirect paths.
+The same landscape idea can appear in real motion.
+
+### Spread 11: Over Moguls
+
+Read-aloud text:
+
+> Electra curved over one mogul.
+>
+> The next mogul turned her path.
+
+Editor note:
+
+Moguls and ridges redirect paths.
 
 ### Spread 12: Compare The Paths
 
@@ -176,9 +178,9 @@ Read-aloud text:
 >
 > Same start?
 >
-> Same surface?
+> Same landscape?
 
-Discovery:
+Editor note:
 
 Potential landscapes can be studied by comparison.
 
@@ -188,11 +190,11 @@ Read-aloud text:
 
 > "The ball did not know the future,"
 >
-> Tomas said.
+> Electra said.
 >
 > "It answered where it was."
 
-Discovery:
+Editor note:
 
 Local rules can produce a whole path.
 
@@ -208,10 +210,10 @@ Read-aloud text:
 >
 > A path answers the landscape.
 
-Discovery:
+Editor note:
 
 Potential landscape becomes a physical story.
 
 ## Parent Note
 
-The toy surface is not the ontology. It is a controlled visual model for potential structure: local slope-like conditions guide path changes, while basins and ridges organize possible outcomes.
+The rolling setup is not the ontology. It is a controlled visual model for potential structure: local slope-like conditions guide path changes, while basins and ridges organize possible outcomes.
