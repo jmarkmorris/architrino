@@ -247,10 +247,82 @@ The next solver should therefore:
    priority-only and fail-closed because direct-path lambda motion alone does
    not prove monotonicity, memory, ownership, branch-reuse exclusion, or
    non-owned-complement closure for row consumption.
+   The preledger row-family classifier now fixes the non-rule-blocked handoff:
+   the 162 split-required rows split into 42 regular source-cover
+   parent-complement rows, 8 periodic endpoint/complement rows, and 112
+   higher-fold layer rows. The `lambda=0.305` replay improves v6 receiver-cover
+   certified cells by 10 and reduces structural misses by 12, but it does not
+   reduce the split-required row count, complete any parent row, accept any
+   fold-layer row, or authorize a branch chart. The most promising mechanical
+   certificate target is therefore the regular source-cover one-leaf
+   interval-certificate route, beginning with the three screened one-leaf rows.
+   The one-leaf proof-data readiness classifier then reduces that route to the
+   first missing proof object: all three screened rows are sampled-positive and
+   have a proof-data target declared, but all three first block at
+   `source_endpoint_interval_box_constructed`, with first source-layer blocker
+   `source_endpoint_boundary_binding_constructed`. The endpoint-box/residual-function
+   pair certificate attempt is now recorded in
+   `one_leaf_endpoint_box_residual_function_pair_certificate_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`:
+   it verifies that 4 / 4 first endpoint-boundary-binding primitives,
+   witness-object endpoint-boundary-binding refs, endpoint value-binding maps,
+   and endpoint values bound to boundary bindings are present, with 3 / 3 row
+   primitive/ref/value-map pairs, but it still constructs 0 / 4 binding
+   contracts, witness-object contract links, full endpoint boundary bindings,
+   carrier admissions, endpoint motion/evaluation maps, and 0 / 3 endpoint
+   interval-box pairs, residual-function pairs, residual interval-bound pairs,
+   pair certificates, preledger passes, or consumed rows. The current blocker
+   is `binding_contract_satisfied`, with symmetric
+   `witness_object_has_contract_link` absent. If that proof object requires a
+   rule decision, the route remains fail-closed at this handoff.
+   The one-leaf binding-contract satisfaction dependency classifier then tests
+   that handoff against the no-contract-link chain, target ref/value
+   promotion-rule attempt, and terminal constructor-basis attempt. It records
+   4 / 4 endpoint value-binding maps, 4 / 4 binding-contract tests, 6 target
+   ref/value source equations, 6 value-map bindings, 4 / 4 constructor-basis
+   source scopes, and 3 / 3 row constructor-basis source-scope pairs, but 0 / 4
+   no-contract-link premise proofs, proof-grade target ref/value packages,
+   promotion rules, predicate-symbol constructor bases, argument-sort
+   constructor bases, judgment-codomain constructor bases,
+   endpoint-localization rules, constructor-basis soundness proofs,
+   constructor-basis derivations, binding contracts, witness-object contract
+   links, preledger passes, or consumed rows. The route now collides with the
+   stopped constructor-basis blocker at `predicate_symbol_constructor_basis_present`;
+   no row consumption or branch-chart authorization follows, and this lane
+   should not continue without new proof-grade constructor-basis evidence or an
+   explicit pivot.
    The fold-layer burden atlas groups the 112 fold-layer rows
    by 12 separator layers, but consumes 0 rows. The branch still leaves 162
    rows `split_required` across 42 structural parent complement-coverage rows,
-   8 periodic endpoint/complement rows, and 112 fold-layer rows;
+   8 periodic endpoint/complement rows, and 112 fold-layer rows. The periodic
+   endpoint/complement ownership classifier then isolates the 8 seam rows with
+   source interval `A12`, source lift `-1`, and row-specific overlap/touching,
+   but records 0 / 8 source-lift consistency proofs, endpoint ownership
+   certificates, complement closure certificates, no-double-counting
+   certificates, branch-reuse exclusions, or consumed rows. The higher-fold
+   layer same-packet field readiness classifier records the absent-field
+   fold-layer baseline: it records 112 split-required fold-layer rows over
+   `Sigma_hf_01` through `Sigma_hf_12`, ledger counts `u=56`, `w=56`, interval
+   type counts `regular -> fold_layer_candidate = 50`,
+   `fold_layer_candidate -> regular = 38`, and
+   `fold_layer_candidate -> fold_layer_candidate = 24`, with 0 / 112 rows
+   carrying `higher_fold_layer_atlas_ref`, `alpha_floor`, `exit_floor`,
+   `same_packet_fold_impulse_or_direct_quadrature_bound`,
+   `fold_layer_parity_record`, or `parent_complement_consumption_ref`. It
+   consumes 0 rows, keeps `preledger_pass=false`, keeps
+   `updates_live_ledger=false`, keeps `accepted_fold_layer_rows=0`, and
+   authorizes no branch chart. The follow-up atlas-ref source candidate
+   classifier constructs 12 / 12 candidate atlas source refs and assigns
+   candidate refs to 112 / 112 fold-layer rows, but keeps 0 / 112 accepted
+   `higher_fold_layer_atlas_ref`, `alpha_floor`, `exit_floor`,
+   `same_packet_fold_impulse_or_direct_quadrature_bound`,
+   `fold_layer_parity_record`, or `parent_complement_consumption_ref`; it also
+   consumes 0 rows and authorizes no branch chart. The accepted atlas-ref
+   obligation classifier then verifies complete candidate source evidence for
+   12 / 12 separator refs and 112 / 112 rows, but fail-closes at
+   `higher_fold_separator_layer_certificate_absent`: 0 / 112 accepted
+   `higher_fold_layer_atlas_ref`, 0 / 112 separator-layer certificates, 0
+   accepted fold-layer rows, 0 consumed rows, and no branch-chart
+   authorization;
 4. assemble the signed gap derivative matrix $A$ for the selected orientations
    above;
 5. keep the structural constraint matrix $B=DC(\mathbf a_0)$, including section,

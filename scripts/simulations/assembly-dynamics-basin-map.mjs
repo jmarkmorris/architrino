@@ -15,6 +15,11 @@ const BASIN_DEFAULTS = {
   softeningRadius: 0.16,
   jacobianFloor: DEFAULTS.jacobianFloor,
   maxAcceleration: DEFAULTS.maxAcceleration,
+  memoryDepth: DEFAULTS.memoryDepth,
+  historyMode: DEFAULTS.historyMode,
+  historyMargin: DEFAULTS.historyMargin,
+  historySafetyFactor: DEFAULTS.historySafetyFactor,
+  historyMaxDepth: DEFAULTS.historyMaxDepth,
   rootHaltPolicy: DEFAULTS.rootHaltPolicy,
   captureRatio: 0.75,
   inwardRatio: 0.9,
@@ -47,6 +52,10 @@ function parseArgs(argv) {
     "softeningRadius",
     "jacobianFloor",
     "maxAcceleration",
+    "memoryDepth",
+    "historyMargin",
+    "historySafetyFactor",
+    "historyMaxDepth",
     "captureRatio",
     "inwardRatio",
     "escapeRatio",
@@ -87,11 +96,17 @@ function parseArgs(argv) {
       throw new Error(`--${kebabCase(key)} must be nonnegative.`);
     }
   }
-  for (const key of ["jacobianFloor", "maxAcceleration"]) {
+  for (const key of ["jacobianFloor", "maxAcceleration", "memoryDepth", "historySafetyFactor"]) {
     if (args[key] <= 0) {
       throw new Error(`--${kebabCase(key)} must be positive.`);
     }
   }
+  for (const key of ["historyMargin", "historyMaxDepth"]) {
+    if (args[key] < 0) {
+      throw new Error(`--${kebabCase(key)} must be nonnegative.`);
+    }
+  }
+  validateHistoryMode(args.historyMode);
   validateRootHaltPolicy(args.rootHaltPolicy);
   return args;
 }
@@ -114,6 +129,11 @@ function optionKey(key) {
     softeningradius: "softeningRadius",
     jacobianfloor: "jacobianFloor",
     maxacceleration: "maxAcceleration",
+    memorydepth: "memoryDepth",
+    historymode: "historyMode",
+    historymargin: "historyMargin",
+    historysafetyfactor: "historySafetyFactor",
+    historymaxdepth: "historyMaxDepth",
     roothaltpolicy: "rootHaltPolicy",
     captureratio: "captureRatio",
     inwardratio: "inwardRatio",
@@ -146,6 +166,12 @@ function positiveInteger(value, label) {
 function validateRootHaltPolicy(policy) {
   if (!["partner", "all", "none"].includes(policy)) {
     throw new Error("--root-halt-policy must be one of: partner, all, none.");
+  }
+}
+
+function validateHistoryMode(mode) {
+  if (!["deep", "adaptive", "fixed"].includes(mode)) {
+    throw new Error("--history-mode must be one of: deep, adaptive, fixed.");
   }
 }
 
@@ -199,6 +225,11 @@ Options:
   --softening-radius X       Close-approach classifier threshold. Use 0 to disable. Default: ${BASIN_DEFAULTS.softeningRadius}
   --jacobian-floor X         Minimum |J| in hit weight; keep tiny positive unless handling caustics. Default: ${BASIN_DEFAULTS.jacobianFloor}
   --max-acceleration X       Per-particle acceleration cap. Default: ${BASIN_DEFAULTS.maxAcceleration}
+  --memory-depth X           Initial prehistory depth; fixed-mode buffer depth. Default: ${BASIN_DEFAULTS.memoryDepth}
+  --history-mode X           Retained causal history: deep, adaptive, fixed. Default: ${BASIN_DEFAULTS.historyMode}
+  --history-margin X         Extra seconds retained beyond adaptive causal-delay estimate. Default: ${BASIN_DEFAULTS.historyMargin}
+  --history-safety-factor X  Multiplier on pairwise light-delay estimate in adaptive mode. Default: ${BASIN_DEFAULTS.historySafetyFactor}
+  --history-max-depth X      Optional cap on retained history depth; 0 means uncapped. Default: ${BASIN_DEFAULTS.historyMaxDepth}
   --root-halt-policy X       Halt each run on unresolved roots: partner, all, none. Default: ${BASIN_DEFAULTS.rootHaltPolicy}
   --capture-ratio X          Final/initial radius ratio for sustained_inward. Default: ${BASIN_DEFAULTS.captureRatio}
   --inward-ratio X           Minimum/initial radius ratio for inward leg. Default: ${BASIN_DEFAULTS.inwardRatio}
@@ -320,11 +351,18 @@ function analyzeRun(result, inputs, args) {
     halt_time: result.error?.t ?? null,
     halt_attempted_step: result.error?.attempted_step ?? null,
     partner_root_unresolved_time: firstUnresolvedPartnerRoot?.t ?? null,
+    history_mode: result.summary.history.mode,
+    history_frame_count: result.summary.history.frame_count,
+    history_oldest_t: result.summary.history.oldest_t,
+    history_retained_depth: result.summary.history.retained_depth,
     total_partner_hits: result.summary.aggregate_hit_stats.total_partner_hits,
     total_self_hits: result.summary.aggregate_hit_stats.total_self_hits,
     total_unresolved_roots: result.summary.aggregate_hit_stats.total_unresolved_roots,
     total_partner_unresolved_roots: result.summary.aggregate_hit_stats.total_partner_unresolved_roots,
     total_self_unresolved_roots: result.summary.aggregate_hit_stats.total_self_unresolved_roots,
+    root_failure_reasons: JSON.stringify(result.summary.aggregate_hit_stats.root_failure_reasons),
+    partner_root_failure_reasons: JSON.stringify(result.summary.aggregate_hit_stats.partner_root_failure_reasons),
+    self_root_failure_reasons: JSON.stringify(result.summary.aggregate_hit_stats.self_root_failure_reasons),
     delta_energy_proxy: result.summary.drift.delta_energy_proxy,
     delta_angular_momentum_z: result.summary.drift.delta_angular_momentum_z,
     inward_fit_A: inwardFit?.A ?? null,
@@ -362,6 +400,11 @@ function runBasinMap(args) {
           softening: args.softening,
           jacobianFloor: args.jacobianFloor,
           maxAcceleration: args.maxAcceleration,
+          memoryDepth: args.memoryDepth,
+          historyMode: args.historyMode,
+          historyMargin: args.historyMargin,
+          historySafetyFactor: args.historySafetyFactor,
+          historyMaxDepth: args.historyMaxDepth,
           rootHaltPolicy: args.rootHaltPolicy,
           steps: args.steps,
           dt: args.dt,
@@ -406,6 +449,11 @@ function runBasinMap(args) {
       softening: args.softening,
       jacobianFloor: args.jacobianFloor,
       maxAcceleration: args.maxAcceleration,
+      memoryDepth: args.memoryDepth,
+      historyMode: args.historyMode,
+      historyMargin: args.historyMargin,
+      historySafetyFactor: args.historySafetyFactor,
+      historyMaxDepth: args.historyMaxDepth,
       rootHaltPolicy: args.rootHaltPolicy,
       captureRatio: args.captureRatio,
       inwardRatio: args.inwardRatio,
@@ -464,10 +512,17 @@ function writeCsv(result, args) {
     "halt_time",
     "halt_attempted_step",
     "partner_root_unresolved_time",
+    "history_mode",
+    "history_frame_count",
+    "history_oldest_t",
+    "history_retained_depth",
     "total_partner_hits",
     "total_unresolved_roots",
     "total_partner_unresolved_roots",
     "total_self_unresolved_roots",
+    "root_failure_reasons",
+    "partner_root_failure_reasons",
+    "self_root_failure_reasons",
     "delta_energy_proxy",
     "delta_angular_momentum_z",
     "inward_fit_A",
@@ -479,9 +534,17 @@ function writeCsv(result, args) {
   ];
   const rows = [headers.join(",")];
   for (const row of result.rows) {
-    rows.push(headers.map((header) => row[header] ?? "").join(","));
+    rows.push(headers.map((header) => csvCell(row[header] ?? "")).join(","));
   }
   fs.writeFileSync(args.csv, `${rows.join("\n")}\n`);
+}
+
+function csvCell(value) {
+  const text = String(value);
+  if (/[",\n\r]/.test(text)) {
+    return `"${text.replaceAll("\"", "\"\"")}"`;
+  }
+  return text;
 }
 
 function writeSvg(result, args) {

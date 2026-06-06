@@ -3143,14 +3143,149 @@ terminal graph issue: every raw terminal producer interval still exceeds the
 candidate terminal-affine budget. The provider candidate now converts the
 measured worst terminal-$h$ residual and half-width ratios into an integer
 same-domain local subcell partition. That partition uses the rational width
-scale $1/k$ on every terminal row, scales the terminal residual intervals and
-terminal producer half-widths until all fifteen $h_{37},h_{36},h_{35}$ rows
+scale $1/k$ on every terminal row, realizes the scale with the existing
+binary64 `nextDown`/`nextUp` interval primitive, verifies that all fifteen
+outward-scaled $h_{37},h_{36},h_{35}$ residual and producer half-width rows
 fit the recorded terminal-affine endpoint budget, and replays those rows
 through the existing $N_{38}$ source-map boundary. This shrinks the blocker:
-raw terminal width and integer domain cover are no longer the only executable
-objects to find. The remaining non-certifying step is an outward-rounded
-interval endpoint primitive that turns this arithmetic provenance into
-directed-rounded source data before $S_{37}$ division.
+raw terminal width, integer domain cover, and the outward-rounded terminal
+endpoint primitive are no longer the executable objects to find. The remaining
+non-certifying step is dependency-preserving $S_{37}$ transport of that
+directed-rounded terminal $N_{38}$ source-map envelope into the five H39
+source-map provider rows.
+
+The $S_{37}$ transport replay is now executable at numerator-width level.
+`buildH39RequestedY44TerminalS37TransportReplayCandidate` consumes the
+terminal-affine endpoint provider candidate and the row-local $S_{37}$ collar
+replay. On the focused H39/y44 fixture, the terminal-affine partition is still
+too wide for the conservative row-local same-domain $S_{37}$ remainder budget:
+the worst pre-$S_{37}$ terminal row exceeds that budget by
+$2.3331929237700406\times 10^4$. The new packet records that measured factor,
+chooses the same-domain integer refinement $k=23332$, applies one more
+binary64 outward-scaled terminal subpartition, and verifies that all fifteen
+$h_{37},h_{36},h_{35}$ terminal numerator-width rows fit the row-local
+$S_{37}$ remainder budget while all five source-map boundary rows preserve the
+same domain and radius. This changes the live blocker again: terminal endpoint
+width and $S_{37}$ numerator-width realization now have executable candidate
+rows, while the actual dependency-preserving $S_{37}$ division witness remains
+open.
+
+The next quotient-width replay is also executable, but still not certifying.
+`buildH39RequestedY44TerminalS37DivisionTransportCandidate` consumes the
+terminal $S_{37}$ numerator-width replay and the same selected row-local
+collar replay. For every terminal $h_{37},h_{36},h_{35}$ numerator interval,
+it divides the outward-rounded numerator width, half-width, and absolute upper
+bound by each selected row's inherited solve-slope lower bound, then compares
+the induced $h_{38}$ residual width against that same row's $h_{38}$ target.
+All fifteen terminal rows fit all selected row-local quotient-width targets,
+and the five source-map boundary rows still preserve the same domain and
+radius. This removes the remaining raw width obstruction from the terminal
+path, but it does not prove dependency-preserving $S_{37}$ division: the open
+object is now the denominator-correlation witness that keeps the terminal
+$N_{38}$ numerator interval and same-domain solve-slope interval dependent
+inside a directed-rounded provider certificate.
+
+The denominator-correlation packet now tests that open object at the strongest
+non-certifying interval level available from the current rows.
+`buildH39RequestedY44TerminalS37DenominatorCorrelationCandidate` consumes the
+terminal $S_{37}$ quotient-width transport and forms the outward independent
+interval quotient $-N_{38}/S_{37}$ from each terminal numerator interval and
+each selected same-domain solve-slope interval. On the focused H39/y44
+provider-boundary replay, all fifteen terminal $h_{37},h_{36},h_{35}$ rows
+fit every selected row-local $h_{38}$ target even under this full interval
+quotient, and all five source-map boundary rows still preserve the same domain
+and radius. The blocker has therefore narrowed again: it is no longer
+numerical quotient width or denominator-variation surplus on the tested
+terminal partition. The remaining proof object is directed-rounded provenance
+for a dependency-preserving $S_{37}$ division provider that ties the numerator
+and denominator intervals to the same terminal construction without promoting
+full H39 closure, shifted $R_{\varepsilon,43}$ closure, or retained-branch
+status.
+
+The provenance ledger now removes the remaining ambiguity about row identity
+and quotient replay without certifying the division provider.
+`buildH39RequestedY44TerminalS37DivisionProvenanceLedgerCandidate` consumes the
+denominator-correlation packet and checks every terminal quotient row for
+terminal $h$-row identity, selected row-local budget identity, nonzero
+solve-slope sign, exact recomputation of the outward interval quotient, and
+source-map boundary continuity. The focused provider-boundary replay validates
+that all fifteen terminal quotient rows and all five boundary rows complete
+that ledger. The blocker is therefore no longer a missing same-domain row
+identity or a hidden quotient recomputation gap. The next proof object is the
+same-construction directed-rounded provider-identity witness proving that the
+terminal $N_{38}$ numerator interval and $S_{37}$ solve-slope interval are
+produced by one dependency-preserving construction.
+
+The same-construction witness attempt now makes the remaining provider-identity
+gap explicit. `buildH39RequestedY44TerminalS37ProviderIdentityWitnessAttemptCandidate`
+consumes the provenance ledger and verifies the available substrate fields:
+terminal $h$-row identity, selected row-local budget identity, same-domain and
+same-radius source-map boundary replay, nonzero $S_{37}$ denominator, and exact
+outward quotient recomputation. The focused provider-boundary replay validates
+those checks on all fifteen terminal quotient rows and all five boundary rows.
+It then fails closed on the five missing shared-construction fields:
+`shared_source_cell_id`, `shared_provider_provenance`,
+`shared_dependency_trace`, `shared_dependency_witness`, and
+`same_construction_dependency_preservation_statement`. The next proof object is
+therefore not another width or quotient replay; it is a provider identity
+handoff that propagates exactly those fields through the requested-y44 terminal
+$N_{38}/S_{37}$ construction.
+
+The provider identity handoff now materializes the available row-local side of
+that burden without certifying the terminal shared construction.
+`buildH39RequestedY44TerminalS37SharedIdentityFieldMaterializationAttemptCandidate`
+consumes the provider-identity witness attempt, the selected row-local collar
+replay, and the signed source-sum derivative provider. For each terminal
+quotient replay row it binds the row-local budget cell back to the source
+`cell_id`, speed interval, $\xi$ interval, source subcover row, signed-source
+dependency chain, same-domain dependency checks, and completed quotient-ledger
+substrate. The focused provider-boundary replay validates those handoff fields
+on all fifteen terminal quotient rows and all five boundary rows. It still
+fails closed on the terminal shared-construction fields: a shared source-cell
+binding for the numerator/denominator construction, provider provenance,
+dependency witness, and the same-construction dependency-preservation
+statement. The live blocker has therefore narrowed from missing row-local
+identity material to missing terminal same-construction identity binding.
+
+The terminal source-cell binding attempt now locates the next obstruction
+inside that identity binding. `buildH39RequestedY44TerminalS37SourceCellBindingFanoutCandidate`
+compares each terminal graph `cell_id` from the terminal-affine endpoint
+provider with the row-local $S_{37}$ budget cells materialized by the handoff.
+Six terminal $h$ rows have exactly one row-local replay row matching their
+terminal graph source cell, while the later terminal graph cells are absent from
+the selected row-local $S_{37}$ budget replay. Every terminal row still carries
+nonmatching row-local budget fanout. The packet therefore does not certify a
+same-construction source-cell binding. The next proof object must supply
+complete terminal source-cell denominator coverage and restrict the $S_{37}$
+denominator binding to the matching terminal source cell, or prove that the
+all-row fanout is one dependency-preserving construction.
+
+The coverage-lift readiness packet sharpens that blocker without certifying
+it. `buildH39RequestedY44TerminalS37SourceCellCoverageLiftReadinessCandidate`
+compares the five terminal graph source cells against both the selected
+row-local $S_{37}$ denominator replay and the upstream requested-y44 $\xi,\zeta$
+producer target. The upstream producer target sees all five terminal source
+cells, so the missing rows are not a terminal-graph visibility problem. The
+selected row-local $S_{37}$ denominator/provenance chain still carries only
+`speed.0.first-y` and `speed.1.first-y`; `speed.2.first-y`,
+`speed.3.first-y`, and `speed.4.first-y` remain upstream-visible but without
+row-local $S_{37}$ denominator target and provenance rows. The next proof object
+is therefore either a true five-cell row-local $S_{37}$ denominator/provenance
+lift or a dependency witness proving that the selected two-cell denominator
+fanout is one same construction.
+
+The five-node denominator-lift audit rules out one tempting shortcut.
+`buildH39RequestedY44TerminalS37FiveNodeDenominatorLiftAuditCandidate` replays
+the terminal source cells against the existing five-node source-map budget
+families: quotient source-radius budget, signed numerator source-budget fit,
+signed radius contraction budget, and signed radius provider acceptance target.
+All four five-node source-budget families are present for all five terminal
+source cells and reach the existing H38 source-map provider boundary, but none
+of those row families carries a row-local $S_{37}$ solve-slope interval,
+nonzero denominator check, denominator target row, or denominator provenance
+row. The blocker has therefore changed form: upstream source-map budget
+coverage is complete, while terminal $S_{37}$ denominator realization is still
+missing for `speed.2.first-y`, `speed.3.first-y`, and `speed.4.first-y`.
 
 ## Current Classification
 

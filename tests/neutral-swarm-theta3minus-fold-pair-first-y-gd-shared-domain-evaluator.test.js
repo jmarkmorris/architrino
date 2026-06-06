@@ -36,6 +36,15 @@ import {
   buildH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffoldCandidate,
   buildH39RequestedY44N38SourceMapEnvelopeReadinessCandidate,
   buildH39RequestedY44TerminalAffineEndpointProviderCandidate,
+  buildH39RequestedY44TerminalS37TransportReplayCandidate,
+  buildH39RequestedY44TerminalS37DivisionTransportCandidate,
+  buildH39RequestedY44TerminalS37DenominatorCorrelationCandidate,
+  buildH39RequestedY44TerminalS37DivisionProvenanceLedgerCandidate,
+  buildH39RequestedY44TerminalS37ProviderIdentityWitnessAttemptCandidate,
+  buildH39RequestedY44TerminalS37SharedIdentityFieldMaterializationAttemptCandidate,
+  buildH39RequestedY44TerminalS37SourceCellBindingFanoutCandidate,
+  buildH39RequestedY44TerminalS37SourceCellCoverageLiftReadinessCandidate,
+  buildH39RequestedY44TerminalS37FiveNodeDenominatorLiftAuditCandidate,
   buildH39RequestedY44RowLocalN38SignedSourceSumDerivativeProviderCandidate,
   validateH39CorrelatedResidualWidthDiagnostic,
   validateH39H38NumeratorGraphLocalPartitionDiagnostic,
@@ -68,6 +77,15 @@ import {
   validateH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffold,
   validateH39RequestedY44N38SourceMapEnvelopeReadinessCandidate,
   validateH39RequestedY44TerminalAffineEndpointProviderCandidate,
+  validateH39RequestedY44TerminalS37TransportReplayCandidate,
+  validateH39RequestedY44TerminalS37DivisionTransportCandidate,
+  validateH39RequestedY44TerminalS37DenominatorCorrelationCandidate,
+  validateH39RequestedY44TerminalS37DivisionProvenanceLedgerCandidate,
+  validateH39RequestedY44TerminalS37ProviderIdentityWitnessAttemptCandidate,
+  validateH39RequestedY44TerminalS37SharedIdentityFieldMaterializationAttemptCandidate,
+  validateH39RequestedY44TerminalS37SourceCellBindingFanoutCandidate,
+  validateH39RequestedY44TerminalS37SourceCellCoverageLiftReadinessCandidate,
+  validateH39RequestedY44TerminalS37FiveNodeDenominatorLiftAuditCandidate,
   validateH39RequestedY44RowLocalN38SignedSourceSumDerivativeProvider,
   validateH39RequestedY44SignedSourceSumDerivativeAllocationTarget,
   validateH39RequestedY44SourceMapResidualCovarianceTarget,
@@ -9559,11 +9577,11 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   );
   assert.equal(
     terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_provider_classification,
-    "terminal-affine-endpoint-provider-budget-surface-ready-raw-producer-width-open"
+    "terminal-affine-endpoint-provider-budget-surface-ready-terminal-partition-directed-rounding-provenance-ready-s37-division-open"
   );
   assert.equal(
     terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_provider_primary_missing_object_kind,
-    "outward-rounded-interval-endpoint-source-primitive-for-terminal-partition"
+    "dependency-preserving-s37-division-for-terminal-n38-source-map-envelope"
   );
   assert.equal(
     terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_refinement_forecast_available,
@@ -9628,11 +9646,11 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   );
   assert.equal(
     terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_producer_partition_realization_certified_directed_rounded,
-    false
+    true
   );
   assert.equal(
     terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_producer_partition_realization_classification,
-    "projected-same-domain-terminal-producer-partition-fits-terminal-affine-budget-directed-rounding-open"
+    "binary64-outward-rounded-same-domain-terminal-producer-partition-fits-terminal-affine-budget"
   );
   assert.equal(
     terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_source_map_boundary_replay_available,
@@ -9640,11 +9658,11 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   );
   assert.equal(
     terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_source_map_boundary_replay_certified_directed_rounded,
-    false
+    true
   );
   assert.equal(
     terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_source_map_boundary_replay_classification,
-    "terminal-producer-partition-realization-reaches-source-map-boundary-arithmetic-provenance-ready-directed-rounding-open"
+    "terminal-producer-partition-directed-rounding-provenance-reaches-source-map-boundary-s37-division-open"
   );
   assert.equal(
     terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_partition_arithmetic_provenance_verified,
@@ -9652,11 +9670,15 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   );
   assert.equal(
     terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_partition_outward_rounding_primitive_available,
-    false
+    true
+  );
+  assert.equal(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_partition_directed_rounding_provenance_verified,
+    true
   );
   assert.equal(
     terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_partition_directed_rounding_provenance_status,
-    "integer-subcell-domain-cover-ready-outward-rounding-primitive-open"
+    "binary64-outward-scaled-integer-subcell-endpoints-fit-terminal-affine-budget"
   );
   assert.equal(
     terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_provider_row_count,
@@ -9752,11 +9774,13 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
         row.all_terminal_h_projected_intervals_contained_by_candidate_budget ===
           true &&
         row.all_terminal_h_arithmetic_provenance_verified === true &&
-        row.any_terminal_h_outward_rounding_primitive_available === false &&
+        row.any_terminal_h_outward_rounding_primitive_available === true &&
+        row.all_terminal_h_outward_rounding_primitive_available === true &&
+        row.all_terminal_h_directed_rounding_provenance_verified === true &&
         row.certifies_terminal_partition_directed_rounding === false &&
         row.terminal_h_partition_realization_rows.length === 3 &&
         row.row_status ===
-          "same-domain-terminal-producer-partition-fits-terminal-affine-budget" &&
+          "same-domain-terminal-producer-partition-directed-rounding-provenance-ready" &&
         row.claim_boundary.certifies_expression_level_n38_provider ===
           false &&
         row.claim_boundary.certifies_directed_rounded_shared_domain === false
@@ -9779,21 +9803,39 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
         row.projected_width_scale_rational.denominator ===
           terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_partition_local_subcell_count_per_terminal_row &&
         row.integer_local_subcell_domain_cover_available === true &&
+        row.binary64_outward_endpoint_primitive ===
+          "root.scaleInterval-positive-rational-scale-nextDown-nextUp" &&
+        row.binary64_outward_scaled_residual_interval[0] ===
+          row.projected_row_residual_interval[0] &&
+        row.binary64_outward_scaled_residual_interval[1] ===
+          row.projected_row_residual_interval[1] &&
+        row.binary64_outward_scaled_residual_abs_upper ===
+          row.projected_row_residual_abs_upper &&
+        row.binary64_outward_scaled_producer_half_width_upper ===
+          row.projected_producer_interval_half_width_upper &&
         row.projected_residual_abs_upper_to_budget_ratio <= 1 &&
         row.projected_half_width_to_budget_ratio <= 1 &&
         row.projected_residual_fits_terminal_affine_budget === true &&
         row.projected_half_width_fits_terminal_affine_budget === true &&
         row.projected_interval_contained_by_candidate_budget === true &&
+        row.binary64_outward_scaled_residual_fits_terminal_affine_budget ===
+          true &&
+        row.binary64_outward_scaled_half_width_fits_terminal_affine_budget ===
+          true &&
+        row.binary64_outward_scaled_interval_contained_by_candidate_budget ===
+          true &&
         row.projected_scale_no_larger_than_residual_required_scale === true &&
         row.projected_scale_no_larger_than_half_width_required_scale ===
           true &&
         row.terminal_partition_arithmetic_provenance_verified === true &&
-        row.outward_rounding_primitive_provenance_available === false &&
+        row.outward_rounding_primitive_provenance_available === true &&
+        row.terminal_partition_directed_rounding_provenance_verified ===
+          true &&
         row.directed_rounding_provenance_status ===
-          "integer-subcell-domain-cover-ready-outward-rounding-primitive-open" &&
+          "binary64-outward-scaled-integer-subcell-endpoints-fit-terminal-affine-budget" &&
         row.certifies_terminal_partition_directed_rounding === false &&
         row.row_status ===
-          "terminal-producer-projected-partition-fits-terminal-affine-budget" &&
+          "terminal-producer-outward-rounded-partition-fits-terminal-affine-budget" &&
         row.claim_boundary.certifies_expression_level_n38_provider ===
           false &&
         row.claim_boundary.certifies_directed_rounded_shared_domain === false
@@ -9817,12 +9859,16 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
         row.terminal_partition_rows_fit_terminal_affine_budget === true &&
         row.terminal_partition_arithmetic_provenance_verified === true &&
         row.terminal_partition_outward_rounding_primitive_available ===
-          false &&
+          true &&
+        row.terminal_partition_directed_rounding_provenance_verified ===
+          true &&
         row.source_map_boundary_replay_reaches_provider_row === true &&
         row.source_map_boundary_replay_certifies_directed_rounded_provider ===
           false &&
+        row.source_map_boundary_replay_directed_rounding_provenance_verified ===
+          true &&
         row.row_status ===
-          "h39-source-map-boundary-replay-terminal-producer-partition-arithmetic-provenance-ready-directed-rounding-open" &&
+          "h39-source-map-boundary-replay-terminal-producer-partition-directed-rounding-provenance-ready-s37-division-open" &&
         row.claim_boundary.certifies_expression_level_n38_provider ===
           false &&
         row.claim_boundary.certifies_s37_dependency_preserving_division ===
@@ -9830,6 +9876,1878 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
         row.claim_boundary.certifies_shifted_R43_outer_bound === false &&
         row.claim_boundary.certifies_directed_rounded_shared_domain === false
     )
+  );
+  const terminalS37TransportReplay =
+    buildH39RequestedY44TerminalS37TransportReplayCandidate({
+      terminalAffineEndpointProviderCandidate,
+      producerRowLocalCollarReplay: rowLocalCollarReplay,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44TerminalS37TransportReplayCandidate(
+      terminalS37TransportReplay
+    ),
+    []
+  );
+  assert.equal(
+    terminalS37TransportReplay.terminal_s37_transport_replay_available,
+    true
+  );
+  assert.equal(
+    terminalS37TransportReplay.terminal_s37_transport_numerator_width_replay_ready,
+    true
+  );
+  assert.equal(
+    terminalS37TransportReplay
+      .terminal_s37_transport_dependency_preserving_division_certified,
+    false
+  );
+  assert.equal(
+    terminalS37TransportReplay
+      .terminal_s37_transport_provider_certified_directed_rounded,
+    false
+  );
+  assert.equal(
+    terminalS37TransportReplay.terminal_s37_transport_replay_classification,
+    "terminal-n38-source-map-envelope-s37-refined-width-fits-row-local-s37-numerator-budget-division-transport-open"
+  );
+  assert.equal(
+    terminalS37TransportReplay
+      .terminal_s37_transport_primary_missing_object_kind,
+    "dependency-preserving-s37-division-for-terminal-n38-source-map-envelope"
+  );
+  assert.equal(
+    terminalS37TransportReplay.terminal_s37_transport_blocker_classification,
+    "s37-division-transport-dependency-proof-open-after-numerator-width-fit"
+  );
+  assert.equal(
+    terminalS37TransportReplay.row_local_s37_budget_row_count,
+    rowLocalCollarReplay.selected_row_count
+  );
+  assert.equal(
+    terminalS37TransportReplay.row_local_s37_budget_alignment_kind,
+    "selected-row-local-collar-budget-conservative-minimum-not-provider-identity"
+  );
+  assert.equal(
+    terminalS37TransportReplay
+      .row_local_s37_same_domain_remainder_width_budget,
+    rowLocalCollarReplay
+      .min_row_local_n38_same_domain_remainder_width_budget
+  );
+  numberClose(
+    terminalS37TransportReplay
+      .row_local_s37_same_domain_remainder_half_width_budget,
+    terminalS37TransportReplay
+      .row_local_s37_same_domain_remainder_width_budget / 2
+  );
+  assert.equal(
+    terminalS37TransportReplay
+      .terminal_s37_transport_pre_refinement_width_open,
+    true
+  );
+  assert.ok(
+    terminalS37TransportReplay
+      .terminal_s37_transport_required_factor_to_fit_remainder_budget >
+      2e4
+  );
+  assert.ok(
+    terminalS37TransportReplay
+      .terminal_s37_transport_required_factor_to_fit_remainder_budget <
+      2.4e4
+  );
+  assert.ok(
+    terminalS37TransportReplay
+      .terminal_s37_transport_local_subcell_count_per_terminal_row >
+      terminalS37TransportReplay
+        .terminal_s37_transport_required_factor_to_fit_remainder_budget
+  );
+  assert.equal(
+    terminalS37TransportReplay
+      .terminal_s37_transport_projected_width_scale_rational.numerator,
+    1
+  );
+  assert.equal(
+    terminalS37TransportReplay
+      .terminal_s37_transport_projected_width_scale_rational.denominator,
+    terminalS37TransportReplay
+      .terminal_s37_transport_local_subcell_count_per_terminal_row
+  );
+  assert.equal(
+    terminalS37TransportReplay
+      .terminal_s37_transport_projected_subcell_count_for_s37_budget,
+    terminalAffineEndpointProviderCandidate
+      .terminal_affine_endpoint_partition_projected_subcell_count_for_budget *
+      terminalS37TransportReplay
+        .terminal_s37_transport_local_subcell_count_per_terminal_row
+  );
+  assert.equal(
+    terminalS37TransportReplay
+      .all_terminal_h_s37_widths_fit_remainder_budget,
+    true
+  );
+  assert.equal(
+    terminalS37TransportReplay
+      .all_terminal_h_s37_abs_uppers_fit_half_remainder_budget,
+    true
+  );
+  assert.equal(
+    terminalS37TransportReplay.terminal_s37_transport_boundary_row_count,
+    5
+  );
+  assert.equal(
+    terminalS37TransportReplay.terminal_h_s37_transport_row_count,
+    15
+  );
+  const terminalS37WidthMax = Math.max(
+    ...terminalS37TransportReplay.terminal_h_s37_transport_rows.map(
+      (row) => row.terminal_s37_transport_width_to_remainder_budget_ratio
+    )
+  );
+  const terminalS37AbsUpperMax = Math.max(
+    ...terminalS37TransportReplay.terminal_h_s37_transport_rows.map(
+      (row) =>
+        row.terminal_s37_transport_abs_upper_to_half_remainder_budget_ratio
+    )
+  );
+  const terminalS37PreRefinementWidthMax = Math.max(
+    ...terminalS37TransportReplay.terminal_h_s37_transport_rows.map(
+      (row) =>
+        row
+          .terminal_s37_transport_pre_refinement_width_to_remainder_budget_ratio
+    )
+  );
+  const terminalS37PreRefinementAbsMax = Math.max(
+    ...terminalS37TransportReplay.terminal_h_s37_transport_rows.map(
+      (row) =>
+        row
+          .terminal_s37_transport_pre_refinement_abs_upper_to_half_remainder_budget_ratio
+    )
+  );
+  numberClose(
+    terminalS37TransportReplay
+      .max_terminal_s37_transport_pre_refinement_width_to_remainder_budget_ratio,
+    terminalS37PreRefinementWidthMax
+  );
+  numberClose(
+    terminalS37TransportReplay
+      .max_terminal_s37_transport_pre_refinement_abs_upper_to_half_remainder_budget_ratio,
+    terminalS37PreRefinementAbsMax
+  );
+  assert.ok(terminalS37PreRefinementWidthMax > 2e4);
+  assert.ok(terminalS37PreRefinementAbsMax > 2e4);
+  numberClose(
+    terminalS37TransportReplay
+      .max_terminal_s37_transport_width_to_remainder_budget_ratio,
+    terminalS37WidthMax
+  );
+  numberClose(
+    terminalS37TransportReplay
+      .max_terminal_s37_transport_abs_upper_to_half_remainder_budget_ratio,
+    terminalS37AbsUpperMax
+  );
+  assert.ok(terminalS37WidthMax >= 0);
+  assert.ok(terminalS37WidthMax < 1);
+  assert.ok(terminalS37AbsUpperMax >= 0);
+  assert.ok(terminalS37AbsUpperMax < 1);
+  assert.ok(
+    terminalS37TransportReplay.terminal_s37_transport_boundary_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_partition_reuses_source_map_domain === true &&
+        row.terminal_partition_preserves_source_map_radius === true &&
+        row.source_map_boundary_replay_reaches_provider_row === true &&
+        row.source_map_boundary_replay_directed_rounding_provenance_verified ===
+          true &&
+        row.all_terminal_h_s37_widths_fit_remainder_budget === true &&
+        row.all_terminal_h_s37_abs_uppers_fit_half_remainder_budget === true &&
+        row.all_terminal_h_s37_numerator_width_rows_ready === true &&
+        row.s37_transport_replay_reaches_source_map_boundary === true &&
+        row.s37_transport_replay_certifies_dependency_preserving_division ===
+          false &&
+        row.row_status ===
+          "terminal-source-map-boundary-s37-numerator-width-replay-ready-division-open" &&
+        row.claim_boundary.certifies_s37_dependency_preserving_division ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  assert.ok(
+    terminalS37TransportReplay.terminal_h_s37_transport_rows.every(
+      (row) =>
+        [37, 36, 35].includes(row.h_index) &&
+        row.binary64_outward_endpoint_primitive ===
+          "root.scaleInterval-positive-rational-scale-nextDown-nextUp" &&
+        row.s37_local_subcell_count_per_terminal_row ===
+          terminalS37TransportReplay
+            .terminal_s37_transport_local_subcell_count_per_terminal_row &&
+        row.s37_projected_subcell_count ===
+          terminalS37TransportReplay
+            .terminal_s37_transport_projected_subcell_count_for_s37_budget &&
+        row.terminal_s37_transport_pre_refinement_width_fits_remainder_budget ===
+          false &&
+        row
+          .terminal_s37_transport_pre_refinement_abs_upper_fits_half_remainder_budget ===
+          false &&
+        row.terminal_partition_directed_rounding_provenance_verified ===
+          true &&
+        row.terminal_partition_reuses_source_map_domain === true &&
+        row.terminal_partition_preserves_source_map_radius === true &&
+        row.source_map_boundary_replay_reaches_provider_row === true &&
+        row.terminal_s37_transport_width_fits_remainder_budget === true &&
+        row.terminal_s37_transport_half_width_fits_half_remainder_budget ===
+          true &&
+        row.terminal_s37_transport_abs_upper_fits_half_remainder_budget ===
+          true &&
+        row.terminal_s37_transport_numerator_width_realization_available ===
+          true &&
+        row.terminal_s37_transport_certifies_dependency_preserving_division ===
+          false &&
+        row.row_status ===
+          "terminal-n38-s37-refined-numerator-width-fits-row-local-s37-remainder-budget-division-open" &&
+        row.claim_boundary.defines_terminal_s37_transport_replay_only ===
+          true &&
+        row.claim_boundary.certifies_expression_level_n38_provider === false &&
+        row.claim_boundary.certifies_s37_dependency_preserving_division ===
+          false &&
+        row.claim_boundary.certifies_shifted_R43_outer_bound === false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  assert.deepEqual(collectTrueCertifies(terminalS37TransportReplay), []);
+  assert.deepEqual(
+    collectExactKeys(terminalS37TransportReplay, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+  const terminalS37DivisionTransport =
+    buildH39RequestedY44TerminalS37DivisionTransportCandidate({
+      terminalS37TransportReplay,
+      producerRowLocalCollarReplay: rowLocalCollarReplay,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44TerminalS37DivisionTransportCandidate(
+      terminalS37DivisionTransport
+    ),
+    []
+  );
+  assert.equal(
+    terminalS37DivisionTransport
+      .terminal_s37_division_transport_available,
+    true
+  );
+  assert.equal(
+    terminalS37DivisionTransport
+      .terminal_s37_division_transport_quotient_width_replay_ready,
+    true
+  );
+  assert.equal(
+    terminalS37DivisionTransport
+      .terminal_s37_division_transport_dependency_preserving_division_certified,
+    false
+  );
+  assert.equal(
+    terminalS37DivisionTransport
+      .terminal_s37_division_transport_provider_certified_directed_rounded,
+    false
+  );
+  assert.equal(
+    terminalS37DivisionTransport
+      .terminal_s37_division_transport_replay_classification,
+    "terminal-n38-source-map-envelope-s37-quotient-width-fits-row-local-h38-target-dependency-proof-open"
+  );
+  assert.equal(
+    terminalS37DivisionTransport
+      .terminal_s37_division_transport_primary_missing_object_kind,
+    "dependency-preserving-s37-division-for-terminal-n38-source-map-envelope"
+  );
+  assert.equal(
+    terminalS37DivisionTransport
+      .terminal_s37_division_transport_blocker_classification,
+    "s37-denominator-dependency-proof-open-after-quotient-width-fit"
+  );
+  assert.equal(
+    terminalS37DivisionTransport
+      .row_local_s37_division_budget_row_count,
+    rowLocalCollarReplay.selected_row_count
+  );
+  assert.equal(
+    terminalS37DivisionTransport
+      .row_local_s37_division_budget_ready_row_count,
+    rowLocalCollarReplay.selected_row_count
+  );
+  assert.equal(
+    terminalS37DivisionTransport
+      .row_local_s37_division_budget_alignment_kind,
+    "selected-row-local-s37-division-budget-all-rows-conservative-not-provider-identity"
+  );
+  assert.ok(
+    terminalS37DivisionTransport
+      .min_row_local_s37_division_solve_slope_abs_lower > 0
+  );
+  assert.ok(
+    terminalS37DivisionTransport
+      .min_row_local_s37_division_target_h38_residual_width > 0
+  );
+  assert.equal(
+    terminalS37DivisionTransport
+      .all_terminal_h_s37_quotient_widths_fit_h38_target,
+    true
+  );
+  assert.equal(
+    terminalS37DivisionTransport
+      .all_terminal_h_s37_quotient_abs_uppers_fit_h38_target_half_width,
+    true
+  );
+  assert.equal(
+    terminalS37DivisionTransport
+      .terminal_s37_division_transport_boundary_row_count,
+    5
+  );
+  assert.equal(
+    terminalS37DivisionTransport
+      .terminal_h_s37_division_transport_row_count,
+    15
+  );
+  const terminalS37DivisionWidthMax = Math.max(
+    ...terminalS37DivisionTransport.terminal_h_s37_division_transport_rows.map(
+      (row) => row.max_terminal_s37_division_h38_residual_width_to_target
+    )
+  );
+  const terminalS37DivisionHalfWidthMax = Math.max(
+    ...terminalS37DivisionTransport.terminal_h_s37_division_transport_rows.map(
+      (row) =>
+        row.max_terminal_s37_division_h38_residual_half_width_to_target
+    )
+  );
+  const terminalS37DivisionAbsUpperMax = Math.max(
+    ...terminalS37DivisionTransport.terminal_h_s37_division_transport_rows.map(
+      (row) =>
+        row
+          .max_terminal_s37_division_h38_residual_abs_upper_to_target_half_width
+    )
+  );
+  numberClose(
+    terminalS37DivisionTransport
+      .max_terminal_s37_division_h38_residual_width_to_target,
+    terminalS37DivisionWidthMax
+  );
+  numberClose(
+    terminalS37DivisionTransport
+      .max_terminal_s37_division_h38_residual_half_width_to_target,
+    terminalS37DivisionHalfWidthMax
+  );
+  numberClose(
+    terminalS37DivisionTransport
+      .max_terminal_s37_division_h38_residual_abs_upper_to_target_half_width,
+    terminalS37DivisionAbsUpperMax
+  );
+  assert.ok(terminalS37DivisionWidthMax >= 0);
+  assert.ok(terminalS37DivisionWidthMax <= 1);
+  assert.ok(terminalS37DivisionHalfWidthMax >= 0);
+  assert.ok(terminalS37DivisionHalfWidthMax <= 1);
+  assert.ok(terminalS37DivisionAbsUpperMax >= 0);
+  assert.ok(terminalS37DivisionAbsUpperMax <= 1);
+  assert.ok(
+    terminalS37DivisionTransport.terminal_s37_division_transport_boundary_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_partition_reuses_source_map_domain === true &&
+        row.terminal_partition_preserves_source_map_radius === true &&
+        row.source_map_boundary_replay_reaches_provider_row === true &&
+        row.source_map_boundary_replay_directed_rounding_provenance_verified ===
+          true &&
+        row.all_terminal_h_s37_quotient_widths_fit_h38_target === true &&
+        row
+          .all_terminal_h_s37_quotient_abs_uppers_fit_h38_target_half_width ===
+          true &&
+        row.all_terminal_h_s37_quotient_width_rows_ready === true &&
+        row.s37_division_transport_replay_reaches_source_map_boundary ===
+          true &&
+        row.s37_division_transport_certifies_dependency_preserving_division ===
+          false &&
+        row.row_status ===
+          "terminal-source-map-boundary-s37-quotient-width-replay-ready-dependency-proof-open" &&
+        row.claim_boundary.certifies_s37_dependency_preserving_division ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  assert.ok(
+    terminalS37DivisionTransport.terminal_h_s37_division_transport_rows.every(
+      (row) =>
+        [37, 36, 35].includes(row.h_index) &&
+        row.terminal_s37_transport_numerator_width_realization_available ===
+          true &&
+        row.terminal_partition_reuses_source_map_domain === true &&
+        row.terminal_partition_preserves_source_map_radius === true &&
+        row.source_map_boundary_replay_reaches_provider_row === true &&
+        row.row_local_s37_division_budget_replay_rows.length ===
+          rowLocalCollarReplay.selected_row_count &&
+        row.terminal_s37_division_quotient_width_fits_all_row_local_h38_targets ===
+          true &&
+        row.terminal_s37_division_quotient_half_width_fits_all_row_local_h38_targets ===
+          true &&
+        row
+          .terminal_s37_division_quotient_abs_upper_fits_all_row_local_h38_half_targets ===
+          true &&
+        row.terminal_s37_division_transport_quotient_width_replay_ready ===
+          true &&
+        row
+          .terminal_s37_division_transport_certifies_dependency_preserving_division ===
+          false &&
+        row.row_local_s37_division_budget_replay_rows.every(
+          (replay) =>
+            replay.terminal_s37_division_h38_residual_width_to_target <= 1 &&
+            replay.terminal_s37_division_h38_residual_half_width_to_target <=
+              1 &&
+            replay
+              .terminal_s37_division_h38_residual_abs_upper_to_target_half_width <=
+              1 &&
+            replay.row_status ===
+              "row-local-s37-division-budget-quotient-replay-fits-h38-target"
+        ) &&
+        row.row_status ===
+          "terminal-n38-s37-quotient-width-fits-row-local-h38-target-dependency-proof-open" &&
+        row.claim_boundary
+          .defines_terminal_s37_division_transport_replay_only === true &&
+        row.claim_boundary.certifies_expression_level_n38_provider === false &&
+        row.claim_boundary.certifies_s37_dependency_preserving_division ===
+          false &&
+        row.claim_boundary.certifies_shifted_R43_outer_bound === false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  assert.deepEqual(collectTrueCertifies(terminalS37DivisionTransport), []);
+  assert.deepEqual(
+    collectExactKeys(
+      terminalS37DivisionTransport,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalS37DenominatorCorrelation =
+    buildH39RequestedY44TerminalS37DenominatorCorrelationCandidate({
+      terminalS37DivisionTransport,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44TerminalS37DenominatorCorrelationCandidate(
+      terminalS37DenominatorCorrelation
+    ),
+    []
+  );
+  assert.equal(
+    terminalS37DenominatorCorrelation
+      .terminal_s37_denominator_correlation_available,
+    true
+  );
+  assert.equal(
+    terminalS37DenominatorCorrelation
+      .terminal_s37_denominator_correlation_independent_interval_quotient_replay_ready,
+    true
+  );
+  assert.equal(
+    terminalS37DenominatorCorrelation
+      .terminal_s37_denominator_correlation_dependency_preserving_division_certified,
+    false
+  );
+  assert.equal(
+    terminalS37DenominatorCorrelation
+      .terminal_s37_denominator_correlation_provider_certified_directed_rounded,
+    false
+  );
+  assert.equal(
+    terminalS37DenominatorCorrelation
+      .terminal_s37_denominator_correlation_replay_classification,
+    "terminal-n38-source-map-envelope-s37-independent-interval-quotient-fits-h38-target-provenance-open"
+  );
+  assert.equal(
+    terminalS37DenominatorCorrelation
+      .terminal_s37_denominator_correlation_primary_missing_object_kind,
+    "directed-rounded-provenance-for-dependency-preserving-s37-division-provider"
+  );
+  assert.equal(
+    terminalS37DenominatorCorrelation
+      .terminal_s37_denominator_correlation_blocker_classification,
+    "s37-directed-rounded-denominator-provenance-open-after-independent-interval-quotient-fit"
+  );
+  assert.equal(
+    terminalS37DenominatorCorrelation
+      .row_local_s37_denominator_correlation_budget_row_count,
+    rowLocalCollarReplay.selected_row_count
+  );
+  assert.equal(
+    terminalS37DenominatorCorrelation
+      .row_local_s37_denominator_correlation_budget_ready_row_count,
+    rowLocalCollarReplay.selected_row_count
+  );
+  assert.equal(
+    terminalS37DenominatorCorrelation
+      .row_local_s37_denominator_correlation_budget_alignment_kind,
+    "selected-row-local-s37-division-budget-all-rows-independent-interval-quotient"
+  );
+  assert.equal(
+    terminalS37DenominatorCorrelation
+      .all_terminal_h_s37_independent_interval_quotients_fit_h38_target,
+    true
+  );
+  assert.equal(
+    terminalS37DenominatorCorrelation
+      .terminal_s37_denominator_correlation_boundary_replay_available,
+    true
+  );
+  assert.equal(
+    terminalS37DenominatorCorrelation
+      .terminal_s37_denominator_correlation_boundary_row_count,
+    5
+  );
+  assert.equal(
+    terminalS37DenominatorCorrelation
+      .terminal_h_s37_denominator_correlation_row_count,
+    15
+  );
+  const terminalS37DenominatorCorrelationWidthMax = Math.max(
+    ...terminalS37DenominatorCorrelation.terminal_h_s37_denominator_correlation_rows.map(
+      (row) => row.max_independent_interval_quotient_width_to_h38_target
+    )
+  );
+  const terminalS37DenominatorCorrelationHalfWidthMax = Math.max(
+    ...terminalS37DenominatorCorrelation.terminal_h_s37_denominator_correlation_rows.map(
+      (row) => row.max_independent_interval_quotient_half_width_to_h38_target
+    )
+  );
+  const terminalS37DenominatorCorrelationAbsUpperMax = Math.max(
+    ...terminalS37DenominatorCorrelation.terminal_h_s37_denominator_correlation_rows.map(
+      (row) =>
+        row
+          .max_independent_interval_quotient_abs_upper_to_h38_target_half_width
+    )
+  );
+  const terminalS37DenominatorCorrelationSurplusMax = Math.max(
+    ...terminalS37DenominatorCorrelation.terminal_h_s37_denominator_correlation_rows.map(
+      (row) => row.max_independent_interval_quotient_width_denominator_surplus
+    )
+  );
+  numberClose(
+    terminalS37DenominatorCorrelation
+      .max_independent_interval_quotient_width_to_h38_target,
+    terminalS37DenominatorCorrelationWidthMax
+  );
+  numberClose(
+    terminalS37DenominatorCorrelation
+      .max_independent_interval_quotient_half_width_to_h38_target,
+    terminalS37DenominatorCorrelationHalfWidthMax
+  );
+  numberClose(
+    terminalS37DenominatorCorrelation
+      .max_independent_interval_quotient_abs_upper_to_h38_target_half_width,
+    terminalS37DenominatorCorrelationAbsUpperMax
+  );
+  numberClose(
+    terminalS37DenominatorCorrelation
+      .max_independent_interval_quotient_width_denominator_surplus,
+    terminalS37DenominatorCorrelationSurplusMax
+  );
+  assert.ok(terminalS37DenominatorCorrelationWidthMax >= 0);
+  assert.ok(terminalS37DenominatorCorrelationWidthMax <= 1);
+  assert.ok(terminalS37DenominatorCorrelationHalfWidthMax >= 0);
+  assert.ok(terminalS37DenominatorCorrelationHalfWidthMax <= 1);
+  assert.ok(terminalS37DenominatorCorrelationAbsUpperMax >= 0);
+  assert.ok(terminalS37DenominatorCorrelationAbsUpperMax <= 1);
+  assert.ok(terminalS37DenominatorCorrelationSurplusMax >= 0);
+  assert.ok(
+    terminalS37DenominatorCorrelation.terminal_s37_denominator_correlation_boundary_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_partition_reuses_source_map_domain === true &&
+        row.terminal_partition_preserves_source_map_radius === true &&
+        row.source_map_boundary_replay_reaches_provider_row === true &&
+        row.source_map_boundary_replay_directed_rounding_provenance_verified ===
+          true &&
+        row.all_terminal_h_s37_independent_interval_quotients_fit_h38_target ===
+          true &&
+        row.all_terminal_h_s37_independent_interval_quotient_rows_ready ===
+          true &&
+        row.s37_denominator_correlation_replay_reaches_source_map_boundary ===
+          true &&
+        row.s37_denominator_correlation_certifies_dependency_preserving_division ===
+          false &&
+        row.row_status ===
+          "terminal-source-map-boundary-s37-independent-interval-quotient-ready-provenance-open" &&
+        row.claim_boundary.certifies_s37_dependency_preserving_division ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  assert.ok(
+    terminalS37DenominatorCorrelation.terminal_h_s37_denominator_correlation_rows.every(
+      (row) =>
+        [37, 36, 35].includes(row.h_index) &&
+        row.terminal_partition_reuses_source_map_domain === true &&
+        row.terminal_partition_preserves_source_map_radius === true &&
+        row.source_map_boundary_replay_reaches_provider_row === true &&
+        row.row_local_s37_denominator_correlation_replay_rows.length ===
+          rowLocalCollarReplay.selected_row_count &&
+        row.all_row_local_s37_independent_interval_quotients_available ===
+          true &&
+        row.all_row_local_s37_independent_interval_quotients_fit_h38_target ===
+          true &&
+        row.terminal_s37_denominator_correlation_replay_ready === true &&
+        row
+          .terminal_s37_denominator_correlation_certifies_dependency_preserving_division ===
+          false &&
+        row.row_local_s37_denominator_correlation_replay_rows.every(
+          (replay) =>
+            ["positive", "negative"].includes(replay.solve_slope_sign) &&
+            replay.independent_interval_quotient_width_to_h38_target <= 1 &&
+            replay.independent_interval_quotient_half_width_to_h38_target <=
+              1 &&
+            replay
+              .independent_interval_quotient_abs_upper_to_h38_target_half_width <=
+              1 &&
+            replay.independent_interval_quotient_width_fits_h38_target ===
+              true &&
+            replay.independent_interval_quotient_half_width_fits_h38_target ===
+              true &&
+            replay
+              .independent_interval_quotient_abs_upper_fits_h38_target_half_width ===
+              true &&
+            replay.row_status ===
+              "row-local-s37-independent-interval-quotient-fits-h38-target"
+        ) &&
+        row.row_status ===
+          "terminal-n38-s37-independent-interval-quotient-fits-row-local-h38-target-provenance-open" &&
+        row.claim_boundary
+          .defines_terminal_s37_denominator_correlation_replay_only ===
+          true &&
+        row.claim_boundary.certifies_expression_level_n38_provider === false &&
+        row.claim_boundary.certifies_s37_dependency_preserving_division ===
+          false &&
+        row.claim_boundary.certifies_shifted_R43_outer_bound === false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  assert.deepEqual(collectTrueCertifies(terminalS37DenominatorCorrelation), []);
+  assert.deepEqual(
+    collectExactKeys(
+      terminalS37DenominatorCorrelation,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalS37DivisionProvenanceLedger =
+    buildH39RequestedY44TerminalS37DivisionProvenanceLedgerCandidate({
+      terminalS37DenominatorCorrelation,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44TerminalS37DivisionProvenanceLedgerCandidate(
+      terminalS37DivisionProvenanceLedger
+    ),
+    []
+  );
+  assert.equal(
+    terminalS37DivisionProvenanceLedger
+      .terminal_s37_division_provenance_ledger_available,
+    true
+  );
+  assert.equal(
+    terminalS37DivisionProvenanceLedger
+      .terminal_s37_division_provenance_ledger_complete,
+    true
+  );
+  assert.equal(
+    terminalS37DivisionProvenanceLedger
+      .terminal_s37_division_same_construction_provider_identity_witness_available,
+    false
+  );
+  assert.equal(
+    terminalS37DivisionProvenanceLedger
+      .terminal_s37_division_dependency_preserving_provider_certified,
+    false
+  );
+  assert.equal(
+    terminalS37DivisionProvenanceLedger
+      .terminal_s37_division_provider_certified_directed_rounded,
+    false
+  );
+  assert.equal(
+    terminalS37DivisionProvenanceLedger
+      .terminal_s37_division_provenance_replay_classification,
+    "terminal-n38-source-map-envelope-s37-division-provenance-ledger-complete-provider-identity-open"
+  );
+  assert.equal(
+    terminalS37DivisionProvenanceLedger
+      .terminal_s37_division_provenance_primary_missing_object_kind,
+    "same-construction-directed-rounded-n38-s37-provider-identity-witness"
+  );
+  assert.equal(
+    terminalS37DivisionProvenanceLedger
+      .terminal_s37_division_provenance_blocker_classification,
+    "s37-same-construction-provider-identity-open-after-provenance-ledger"
+  );
+  assert.equal(
+    terminalS37DivisionProvenanceLedger
+      .row_local_s37_division_provenance_budget_row_count,
+    rowLocalCollarReplay.selected_row_count
+  );
+  assert.equal(
+    terminalS37DivisionProvenanceLedger
+      .row_local_s37_division_provenance_budget_ready_row_count,
+    rowLocalCollarReplay.selected_row_count
+  );
+  assert.equal(
+    terminalS37DivisionProvenanceLedger
+      .all_terminal_h_s37_division_provenance_rows_complete,
+    true
+  );
+  assert.equal(
+    terminalS37DivisionProvenanceLedger
+      .terminal_s37_division_provenance_boundary_replay_available,
+    true
+  );
+  assert.equal(
+    terminalS37DivisionProvenanceLedger
+      .terminal_s37_division_provenance_boundary_row_count,
+    5
+  );
+  assert.equal(
+    terminalS37DivisionProvenanceLedger
+      .terminal_h_s37_division_provenance_row_count,
+    15
+  );
+  assert.ok(
+    terminalS37DivisionProvenanceLedger.terminal_s37_division_provenance_boundary_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_partition_reuses_source_map_domain === true &&
+        row.terminal_partition_preserves_source_map_radius === true &&
+        row.source_map_boundary_replay_reaches_provider_row === true &&
+        row.source_map_boundary_replay_directed_rounding_provenance_verified ===
+          true &&
+        row.s37_denominator_correlation_replay_reaches_source_map_boundary ===
+          true &&
+        row.all_terminal_h_s37_division_provenance_rows_complete === true &&
+        row
+          .terminal_s37_division_provenance_ledger_reaches_source_map_boundary ===
+          true &&
+        row.same_construction_provider_identity_witness_available === false &&
+        row.certifies_s37_dependency_preserving_division === false &&
+        row.row_status ===
+          "terminal-source-map-boundary-s37-division-provenance-ledger-complete-provider-identity-open" &&
+        row.claim_boundary.certifies_s37_dependency_preserving_division ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  assert.ok(
+    terminalS37DivisionProvenanceLedger.terminal_h_s37_division_provenance_rows.every(
+      (row) =>
+        [37, 36, 35].includes(row.h_index) &&
+        row.terminal_s37_denominator_correlation_replay_ready === true &&
+        row.terminal_partition_reuses_source_map_domain === true &&
+        row.terminal_partition_preserves_source_map_radius === true &&
+        row.source_map_boundary_replay_reaches_provider_row === true &&
+        row.source_map_boundary_replay_directed_rounding_provenance_verified ===
+          true &&
+        row.row_local_s37_division_provenance_replay_rows.length ===
+          rowLocalCollarReplay.selected_row_count &&
+        row.all_row_local_s37_division_provenance_replay_rows_complete ===
+          true &&
+        row.terminal_s37_division_provenance_ledger_complete === true &&
+        row.same_construction_provider_identity_witness_available === false &&
+        row.certifies_s37_dependency_preserving_division === false &&
+        row.row_local_s37_division_provenance_replay_rows.every(
+          (replay) =>
+            replay.terminal_row_identity_matches === true &&
+            replay.row_local_budget_identity_available === true &&
+            replay.terminal_s37_numerator_matches_terminal_row === true &&
+            ["positive", "negative"].includes(replay.solve_slope_sign) &&
+            replay.solve_slope_nonzero_denominator_verified === true &&
+            replay.solve_slope_abs_lower_floor_matches_interval === true &&
+            replay.solve_slope_abs_upper_covers_interval === true &&
+            replay.recomputed_quotient_matches_recorded === true &&
+            replay.independent_interval_quotient_fits_h38_target === true &&
+            replay.terminal_s37_division_row_provenance_ledger_complete ===
+              true &&
+            replay.same_construction_provider_identity_witness_available ===
+              false &&
+            replay.certifies_s37_dependency_preserving_division === false &&
+            replay.row_status ===
+              "row-local-s37-division-provenance-ledger-complete-provider-identity-open"
+        ) &&
+        row.row_status ===
+          "terminal-n38-s37-division-provenance-ledger-complete-provider-identity-open" &&
+        row.claim_boundary
+          .defines_terminal_s37_division_provenance_ledger_only === true &&
+        row.claim_boundary.certifies_expression_level_n38_provider === false &&
+        row.claim_boundary.certifies_s37_dependency_preserving_division ===
+          false &&
+        row.claim_boundary.certifies_shifted_R43_outer_bound === false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalS37DivisionProvenanceLedger),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalS37DivisionProvenanceLedger,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalS37ProviderIdentityMissingFields = [
+    "shared_source_cell_id",
+    "shared_provider_provenance",
+    "shared_dependency_trace",
+    "shared_dependency_witness",
+    "same_construction_dependency_preservation_statement",
+  ];
+  const terminalS37ProviderIdentityAvailableLedgerFields = [
+    "terminal_h_row_identity",
+    "row_local_budget_identity",
+    "same_domain_source_map_boundary",
+    "same_radius_source_map_boundary",
+    "nonzero_s37_denominator",
+    "exact_outward_interval_quotient_replay",
+  ];
+  const terminalS37SharedIdentityMaterializableRowLocalFields = [
+    "row_local_source_cell_id_candidate",
+    "row_local_source_domain_context",
+    "row_local_signed_source_sum_provider_provenance_candidate",
+    "row_local_dependency_trace_candidate",
+    "row_local_same_domain_dependency_checks",
+    "division_ledger_quotient_replay_substrate",
+  ];
+  const terminalS37ProviderIdentityWitnessAttempt =
+    buildH39RequestedY44TerminalS37ProviderIdentityWitnessAttemptCandidate({
+      terminalS37DivisionProvenanceLedger,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44TerminalS37ProviderIdentityWitnessAttemptCandidate(
+      terminalS37ProviderIdentityWitnessAttempt
+    ),
+    []
+  );
+  assert.equal(
+    terminalS37ProviderIdentityWitnessAttempt
+      .terminal_s37_provider_identity_witness_attempt_available,
+    true
+  );
+  assert.equal(
+    terminalS37ProviderIdentityWitnessAttempt
+      .terminal_s37_provider_identity_witness_attempt_ready,
+    true
+  );
+  assert.equal(
+    terminalS37ProviderIdentityWitnessAttempt
+      .all_terminal_h_s37_provider_identity_witness_attempt_rows_ready,
+    true
+  );
+  assert.equal(
+    terminalS37ProviderIdentityWitnessAttempt
+      .terminal_s37_provider_identity_witness_boundary_replay_available,
+    true
+  );
+  assert.equal(
+    terminalS37ProviderIdentityWitnessAttempt
+      .all_required_shared_identity_fields_available,
+    false
+  );
+  assert.equal(
+    terminalS37ProviderIdentityWitnessAttempt
+      .terminal_s37_same_construction_provider_identity_witness_available,
+    false
+  );
+  assert.equal(
+    terminalS37ProviderIdentityWitnessAttempt
+      .terminal_s37_dependency_preserving_division_provider_certified,
+    false
+  );
+  assert.equal(
+    terminalS37ProviderIdentityWitnessAttempt
+      .terminal_s37_provider_identity_witness_attempt_classification,
+    "terminal-n38-source-map-envelope-s37-provider-identity-witness-open-missing-shared-construction-fields"
+  );
+  assert.equal(
+    terminalS37ProviderIdentityWitnessAttempt
+      .terminal_s37_provider_identity_witness_primary_missing_object_kind,
+    "shared-source-cell-provider-provenance-dependency-trace-and-witness"
+  );
+  assert.equal(
+    terminalS37ProviderIdentityWitnessAttempt
+      .terminal_s37_provider_identity_witness_blocker_classification,
+    "s37-shared-construction-identity-fields-missing-after-provider-identity-attempt"
+  );
+  assert.deepEqual(
+    terminalS37ProviderIdentityWitnessAttempt.required_shared_identity_field_kinds,
+    terminalS37ProviderIdentityMissingFields
+  );
+  assert.deepEqual(
+    terminalS37ProviderIdentityWitnessAttempt.available_ledger_field_kinds,
+    terminalS37ProviderIdentityAvailableLedgerFields
+  );
+  assert.deepEqual(
+    terminalS37ProviderIdentityWitnessAttempt.missing_shared_identity_field_kinds,
+    terminalS37ProviderIdentityMissingFields
+  );
+  assert.equal(
+    terminalS37ProviderIdentityWitnessAttempt
+      .missing_shared_identity_field_count,
+    terminalS37ProviderIdentityMissingFields.length
+  );
+  assert.equal(
+    terminalS37ProviderIdentityWitnessAttempt
+      .terminal_s37_provider_identity_witness_boundary_row_count,
+    5
+  );
+  assert.equal(
+    terminalS37ProviderIdentityWitnessAttempt
+      .terminal_h_s37_provider_identity_witness_row_count,
+    15
+  );
+  assert.ok(
+    terminalS37ProviderIdentityWitnessAttempt.terminal_s37_provider_identity_witness_boundary_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_partition_reuses_source_map_domain === true &&
+        row.terminal_partition_preserves_source_map_radius === true &&
+        row.source_map_boundary_replay_reaches_provider_row === true &&
+        row.source_map_boundary_replay_directed_rounding_provenance_verified ===
+          true &&
+        row
+          .terminal_s37_division_provenance_ledger_reaches_source_map_boundary ===
+          true &&
+        row
+          .all_terminal_h_s37_provider_identity_witness_attempt_rows_ready ===
+          true &&
+        row.all_required_shared_identity_fields_available === false &&
+        row.same_construction_provider_identity_witness_available === false &&
+        row.dependency_preserving_s37_division_provider_certified === false &&
+        row
+          .terminal_s37_provider_identity_witness_attempt_reaches_source_map_boundary ===
+          true &&
+        row.row_status ===
+          "terminal-source-map-boundary-s37-provider-identity-witness-open-missing-shared-construction-fields" &&
+        row.claim_boundary.certifies_s37_dependency_preserving_division ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  assert.ok(
+    terminalS37ProviderIdentityWitnessAttempt.terminal_h_s37_provider_identity_witness_rows.every(
+      (row) =>
+        [37, 36, 35].includes(row.h_index) &&
+        row.terminal_s37_division_provenance_ledger_complete === true &&
+        row.terminal_partition_reuses_source_map_domain === true &&
+        row.terminal_partition_preserves_source_map_radius === true &&
+        row.source_map_boundary_replay_reaches_provider_row === true &&
+        row.source_map_boundary_replay_directed_rounding_provenance_verified ===
+          true &&
+        row.all_required_shared_identity_fields_available === false &&
+        row.same_construction_provider_identity_witness_available === false &&
+        row.dependency_preserving_s37_division_provider_certified === false &&
+        row.terminal_s37_provider_identity_witness_attempt_ready === true &&
+        row.row_local_s37_provider_identity_witness_attempt_rows.every(
+          (replay) =>
+            replay.available_ledger_checks.terminal_h_row_identity === true &&
+            replay.available_ledger_checks.row_local_budget_identity ===
+              true &&
+            replay.available_ledger_checks.same_domain_source_map_boundary ===
+              true &&
+            replay.available_ledger_checks.same_radius_source_map_boundary ===
+              true &&
+            replay.available_ledger_checks.nonzero_s37_denominator === true &&
+            replay.available_ledger_checks
+              .exact_outward_interval_quotient_replay === true &&
+            replay.available_ledger_check_count ===
+              terminalS37ProviderIdentityAvailableLedgerFields.length &&
+            replay.missing_shared_identity_field_count ===
+              terminalS37ProviderIdentityMissingFields.length &&
+            replay.shared_source_cell_id_available === false &&
+            replay.shared_provider_provenance_available === false &&
+            replay.shared_dependency_trace_available === false &&
+            replay.shared_dependency_witness_available === false &&
+            replay
+              .same_construction_dependency_preservation_statement_available ===
+              false &&
+            replay.same_construction_provider_identity_witness_available ===
+              false &&
+            replay.dependency_preserving_s37_division_provider_certified ===
+              false &&
+            replay.terminal_s37_provider_identity_witness_attempt_ready ===
+              true &&
+            replay.row_status ===
+              "row-local-s37-provider-identity-witness-open-missing-shared-construction-fields"
+        ) &&
+        row.row_status ===
+          "terminal-n38-s37-provider-identity-witness-open-missing-shared-construction-fields" &&
+        row.claim_boundary
+          .defines_terminal_s37_provider_identity_witness_attempt_only ===
+          true &&
+        row.claim_boundary.certifies_expression_level_n38_provider === false &&
+        row.claim_boundary.certifies_s37_dependency_preserving_division ===
+          false &&
+        row.claim_boundary.certifies_shifted_R43_outer_bound === false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  const terminalS37SharedIdentityFieldMaterializationAttempt =
+    buildH39RequestedY44TerminalS37SharedIdentityFieldMaterializationAttemptCandidate(
+      {
+        terminalS37ProviderIdentityWitnessAttempt,
+        producerRowLocalCollarReplay: rowLocalCollarReplay,
+        signedSourceSumDerivativeProvider,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44TerminalS37SharedIdentityFieldMaterializationAttemptCandidate(
+      terminalS37SharedIdentityFieldMaterializationAttempt
+    ),
+    []
+  );
+  assert.equal(
+    terminalS37SharedIdentityFieldMaterializationAttempt
+      .terminal_s37_shared_identity_field_materialization_attempt_available,
+    true
+  );
+  assert.equal(
+    terminalS37SharedIdentityFieldMaterializationAttempt
+      .terminal_s37_shared_identity_field_materialization_attempt_ready,
+    true
+  );
+  assert.equal(
+    terminalS37SharedIdentityFieldMaterializationAttempt
+      .all_terminal_h_s37_shared_identity_field_materialization_rows_ready,
+    true
+  );
+  assert.equal(
+    terminalS37SharedIdentityFieldMaterializationAttempt
+      .terminal_s37_shared_identity_field_materialization_boundary_replay_available,
+    true
+  );
+  assert.equal(
+    terminalS37SharedIdentityFieldMaterializationAttempt
+      .all_row_local_source_cell_ids_materialized,
+    true
+  );
+  assert.equal(
+    terminalS37SharedIdentityFieldMaterializationAttempt
+      .all_row_local_dependency_traces_materialized,
+    true
+  );
+  assert.equal(
+    terminalS37SharedIdentityFieldMaterializationAttempt
+      .all_row_local_same_domain_dependency_checks_materialized,
+    true
+  );
+  assert.equal(
+    terminalS37SharedIdentityFieldMaterializationAttempt
+      .all_division_ledger_quotient_replay_substrates_preserved,
+    true
+  );
+  assert.equal(
+    terminalS37SharedIdentityFieldMaterializationAttempt
+      .all_terminal_shared_construction_fields_available,
+    false
+  );
+  assert.equal(
+    terminalS37SharedIdentityFieldMaterializationAttempt
+      .terminal_s37_same_construction_provider_identity_witness_available,
+    false
+  );
+  assert.equal(
+    terminalS37SharedIdentityFieldMaterializationAttempt
+      .terminal_s37_dependency_preserving_division_provider_certified,
+    false
+  );
+  assert.equal(
+    terminalS37SharedIdentityFieldMaterializationAttempt
+      .terminal_s37_shared_identity_field_materialization_classification,
+    "terminal-n38-source-map-envelope-s37-row-local-identity-fields-materialized-terminal-shared-witness-open"
+  );
+  assert.equal(
+    terminalS37SharedIdentityFieldMaterializationAttempt
+      .terminal_s37_shared_identity_primary_missing_object_kind,
+    "terminal-same-construction-source-cell-binding-provider-provenance-dependency-witness"
+  );
+  assert.equal(
+    terminalS37SharedIdentityFieldMaterializationAttempt
+      .terminal_s37_shared_identity_blocker_classification,
+    "s37-terminal-same-construction-identity-binding-missing-after-row-local-field-materialization"
+  );
+  assert.deepEqual(
+    terminalS37SharedIdentityFieldMaterializationAttempt
+      .materializable_row_local_identity_field_kinds,
+    terminalS37SharedIdentityMaterializableRowLocalFields
+  );
+  assert.deepEqual(
+    terminalS37SharedIdentityFieldMaterializationAttempt
+      .remaining_shared_identity_field_kinds,
+    terminalS37ProviderIdentityMissingFields
+  );
+  assert.equal(
+    terminalS37SharedIdentityFieldMaterializationAttempt
+      .remaining_shared_identity_field_count,
+    terminalS37ProviderIdentityMissingFields.length
+  );
+  assert.equal(
+    terminalS37SharedIdentityFieldMaterializationAttempt
+      .row_local_source_cell_id_candidate_count,
+    rowLocalCollarReplay.selected_row_count
+  );
+  assert.equal(
+    terminalS37SharedIdentityFieldMaterializationAttempt
+      .terminal_s37_shared_identity_field_materialization_boundary_row_count,
+    5
+  );
+  assert.equal(
+    terminalS37SharedIdentityFieldMaterializationAttempt
+      .terminal_h_s37_shared_identity_field_materialization_row_count,
+    15
+  );
+  assert.ok(
+    terminalS37SharedIdentityFieldMaterializationAttempt.terminal_s37_shared_identity_field_materialization_boundary_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_partition_reuses_source_map_domain === true &&
+        row.terminal_partition_preserves_source_map_radius === true &&
+        row.source_map_boundary_replay_reaches_provider_row === true &&
+        row
+          .terminal_s37_provider_identity_witness_attempt_reaches_source_map_boundary ===
+          true &&
+        row
+          .all_terminal_h_s37_shared_identity_field_materialization_rows_ready ===
+          true &&
+        row.all_row_local_identity_fields_materialized === true &&
+        row.all_terminal_shared_construction_fields_available === false &&
+        row.same_construction_provider_identity_witness_available === false &&
+        row.dependency_preserving_s37_division_provider_certified === false &&
+        row
+          .terminal_s37_shared_identity_field_materialization_reaches_source_map_boundary ===
+          true &&
+        row.row_status ===
+          "terminal-source-map-boundary-s37-row-local-identity-fields-materialized-terminal-shared-witness-open" &&
+        row.claim_boundary
+          .defines_terminal_s37_shared_identity_field_materialization_attempt_only ===
+          true &&
+        row.claim_boundary.certifies_s37_dependency_preserving_division ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  assert.ok(
+    terminalS37SharedIdentityFieldMaterializationAttempt.terminal_h_s37_shared_identity_field_materialization_rows.every(
+      (row) =>
+        [37, 36, 35].includes(row.h_index) &&
+        row.terminal_s37_provider_identity_witness_attempt_ready === true &&
+        row.terminal_partition_reuses_source_map_domain === true &&
+        row.terminal_partition_preserves_source_map_radius === true &&
+        row.source_map_boundary_replay_reaches_provider_row === true &&
+        row.row_local_source_cell_id_candidate_count ===
+          rowLocalCollarReplay.selected_row_count &&
+        row.all_row_local_identity_fields_materialized === true &&
+        row.all_terminal_shared_construction_fields_available === false &&
+        row.same_construction_provider_identity_witness_available === false &&
+        row.dependency_preserving_s37_division_provider_certified === false &&
+        row
+          .terminal_s37_shared_identity_field_materialization_attempt_ready ===
+          true &&
+        row.row_local_s37_shared_identity_field_materialization_rows.every(
+          (replay) =>
+            replay.row_local_source_cell_id_candidate ===
+              replay.row_local_budget_cell_id &&
+            replay.row_local_source_cell_id_candidate_available === true &&
+            replay.row_local_source_domain_context_available === true &&
+            replay
+              .row_local_signed_source_sum_provider_provenance_candidate_available ===
+              true &&
+            replay.row_local_dependency_trace_candidate_available === true &&
+            replay
+              .row_local_same_domain_dependency_checks_materialized === true &&
+            replay
+              .division_ledger_quotient_replay_substrate_materialized ===
+              true &&
+            replay.materialized_row_local_identity_field_count ===
+              terminalS37SharedIdentityMaterializableRowLocalFields.length &&
+            replay.remaining_shared_identity_field_count ===
+              terminalS37ProviderIdentityMissingFields.length &&
+            replay.terminal_shared_source_cell_id_available === false &&
+            replay.shared_provider_provenance_available === false &&
+            replay.shared_dependency_trace_available === false &&
+            replay.shared_dependency_witness_available === false &&
+            replay
+              .same_construction_dependency_preservation_statement_available ===
+              false &&
+            replay.same_construction_provider_identity_witness_available ===
+              false &&
+            replay.dependency_preserving_s37_division_provider_certified ===
+              false &&
+            replay.row_local_identity_field_materialization_ready === true &&
+            replay.row_status ===
+              "row-local-s37-identity-fields-materialized-terminal-shared-witness-open"
+        ) &&
+        row.row_status ===
+          "terminal-n38-s37-row-local-identity-fields-materialized-terminal-shared-witness-open" &&
+        row.claim_boundary
+          .defines_terminal_s37_shared_identity_field_materialization_attempt_only ===
+          true &&
+        row.claim_boundary.certifies_expression_level_n38_provider === false &&
+        row.claim_boundary.certifies_s37_dependency_preserving_division ===
+          false &&
+        row.claim_boundary.certifies_shifted_R43_outer_bound === false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  const terminalS37SourceCellBindingFanout =
+    buildH39RequestedY44TerminalS37SourceCellBindingFanoutCandidate({
+      terminalS37SharedIdentityFieldMaterializationAttempt,
+      terminalAffineEndpointProviderCandidate,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44TerminalS37SourceCellBindingFanoutCandidate(
+      terminalS37SourceCellBindingFanout
+    ),
+    []
+  );
+  assert.equal(
+    terminalS37SourceCellBindingFanout
+      .terminal_s37_source_cell_binding_fanout_attempt_available,
+    true
+  );
+  assert.equal(
+    terminalS37SourceCellBindingFanout
+      .terminal_s37_source_cell_binding_fanout_attempt_ready,
+    true
+  );
+  assert.equal(
+    terminalS37SourceCellBindingFanout
+      .all_terminal_h_source_cell_unique_matches_available,
+    false
+  );
+  assert.equal(
+    terminalS37SourceCellBindingFanout
+      .any_terminal_h_source_cell_unique_match_available,
+    true
+  );
+  assert.equal(
+    terminalS37SourceCellBindingFanout
+      .all_terminal_h_source_cell_bindings_classified,
+    true
+  );
+  assert.equal(
+    terminalS37SourceCellBindingFanout
+      .terminal_h_source_cell_unique_match_row_count,
+    6
+  );
+  assert.equal(
+    terminalS37SourceCellBindingFanout
+      .terminal_h_source_cell_missing_from_s37_budget_row_count,
+    9
+  );
+  assert.equal(
+    terminalS37SourceCellBindingFanout
+      .all_terminal_h_s37_budget_replays_one_to_one,
+    false
+  );
+  assert.equal(
+    terminalS37SourceCellBindingFanout
+      .all_terminal_h_s37_budget_replays_have_nonmatching_source_cell_fanout,
+    true
+  );
+  assert.equal(
+    terminalS37SourceCellBindingFanout
+      .terminal_s37_source_cell_binding_boundary_replay_available,
+    true
+  );
+  assert.equal(
+    terminalS37SourceCellBindingFanout
+      .min_matching_terminal_source_cell_replay_row_count,
+    0
+  );
+  assert.equal(
+    terminalS37SourceCellBindingFanout
+      .max_matching_terminal_source_cell_replay_row_count,
+    1
+  );
+  assert.equal(
+    terminalS37SourceCellBindingFanout
+      .min_nonmatching_s37_budget_fanout_row_count,
+    rowLocalCollarReplay.selected_row_count - 1
+  );
+  assert.equal(
+    terminalS37SourceCellBindingFanout
+      .max_nonmatching_s37_budget_fanout_row_count,
+    rowLocalCollarReplay.selected_row_count
+  );
+  assert.equal(
+    terminalS37SourceCellBindingFanout
+      .same_construction_source_cell_binding_certified,
+    false
+  );
+  assert.equal(
+    terminalS37SourceCellBindingFanout
+      .terminal_s37_fanout_dependency_witness_available,
+    false
+  );
+  assert.equal(
+    terminalS37SourceCellBindingFanout
+      .terminal_s37_same_construction_provider_identity_witness_available,
+    false
+  );
+  assert.equal(
+    terminalS37SourceCellBindingFanout
+      .terminal_s37_dependency_preserving_division_provider_certified,
+    false
+  );
+  assert.equal(
+    terminalS37SourceCellBindingFanout
+      .terminal_s37_source_cell_binding_fanout_classification,
+    "terminal-source-cell-partial-match-s37-budget-fanout-open"
+  );
+  assert.equal(
+    terminalS37SourceCellBindingFanout
+      .terminal_s37_source_cell_binding_primary_missing_object_kind,
+    "complete-terminal-n38-s37-source-cell-denominator-binding-or-fanout-dependency-witness"
+  );
+  assert.equal(
+    terminalS37SourceCellBindingFanout
+      .terminal_s37_source_cell_binding_blocker_classification,
+    "s37-row-local-denominator-budget-fanout-and-terminal-source-cell-coverage-gap"
+  );
+  assert.equal(
+    terminalS37SourceCellBindingFanout
+      .terminal_s37_source_cell_binding_boundary_row_count,
+    5
+  );
+  assert.equal(
+    terminalS37SourceCellBindingFanout
+      .terminal_h_s37_source_cell_binding_row_count,
+    15
+  );
+  assert.ok(
+    terminalS37SourceCellBindingFanout.terminal_s37_source_cell_binding_boundary_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        typeof row.terminal_graph_source_cell_id === "string" &&
+        row.terminal_s37_shared_identity_field_materialization_reaches_source_map_boundary ===
+          true &&
+        typeof row.all_terminal_h_source_cell_unique_matches_available ===
+          "boolean" &&
+        row.all_terminal_h_source_cell_bindings_classified === true &&
+        row.all_terminal_h_s37_budget_replays_one_to_one === false &&
+        row
+          .all_terminal_h_s37_budget_replays_have_nonmatching_source_cell_fanout ===
+          true &&
+        row.same_construction_source_cell_binding_certified === false &&
+        row.terminal_s37_fanout_dependency_witness_available === false &&
+        row.same_construction_provider_identity_witness_available === false &&
+        row.dependency_preserving_s37_division_provider_certified === false &&
+        row.terminal_s37_source_cell_binding_fanout_reaches_source_map_boundary ===
+          true &&
+        [
+          "terminal-source-map-boundary-source-cell-match-present-s37-budget-fanout-open",
+          "terminal-source-map-boundary-source-cell-coverage-gap-s37-budget-fanout-open",
+        ].includes(row.row_status) &&
+        row.claim_boundary
+          .defines_terminal_s37_source_cell_binding_fanout_only === true &&
+        row.claim_boundary.certifies_s37_dependency_preserving_division ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  assert.ok(
+    terminalS37SourceCellBindingFanout.terminal_h_s37_source_cell_binding_rows.every(
+      (row) =>
+        [37, 36, 35].includes(row.h_index) &&
+        typeof row.terminal_graph_source_cell_id === "string" &&
+        row.terminal_source_cell_id_available === true &&
+        row.row_local_s37_budget_replay_row_count ===
+          rowLocalCollarReplay.selected_row_count &&
+        [0, 1].includes(row.matching_terminal_source_cell_replay_row_count) &&
+        row.nonmatching_s37_budget_fanout_row_count ===
+          rowLocalCollarReplay.selected_row_count -
+            row.matching_terminal_source_cell_replay_row_count &&
+        [0, 1].includes(row.matched_row_local_source_cell_ids.length) &&
+        (row.matched_row_local_source_cell_ids.length === 0 ||
+          row.matched_row_local_source_cell_ids[0] ===
+            row.terminal_graph_source_cell_id) &&
+        row.nonmatching_row_local_source_cell_ids.length ===
+          row.nonmatching_s37_budget_fanout_row_count &&
+        row.terminal_source_cell_binding_unique_match_available ===
+          (row.matching_terminal_source_cell_replay_row_count === 1) &&
+        row.matched_row_local_source_cell_ids.length ===
+          row.matching_terminal_source_cell_replay_row_count &&
+        (row.matching_terminal_source_cell_replay_row_count === 1
+          ? row.materialized_source_cell_binding_field_kinds.length === 2
+          : row.materialized_source_cell_binding_field_kinds.length === 0) &&
+        row.remaining_source_cell_binding_field_kinds.length === 2 &&
+        row.terminal_source_cell_missing_from_s37_budget_replay ===
+          (row.matching_terminal_source_cell_replay_row_count === 0) &&
+        row
+          .terminal_s37_budget_replay_is_one_to_one_with_terminal_source_cell ===
+          false &&
+        row.terminal_s37_budget_replay_has_nonmatching_source_cell_fanout ===
+          true &&
+        row.same_construction_source_cell_binding_certified === false &&
+        row.terminal_s37_fanout_dependency_witness_available === false &&
+        row.same_construction_provider_identity_witness_available === false &&
+        row.dependency_preserving_s37_division_provider_certified === false &&
+        [
+          "terminal-source-cell-unique-match-present-s37-budget-fanout-open",
+          "terminal-source-cell-not-present-in-s37-budget-fanout-open",
+        ].includes(row.row_status) &&
+        row.claim_boundary
+          .defines_terminal_s37_source_cell_binding_fanout_only === true &&
+        row.claim_boundary.certifies_expression_level_n38_provider === false &&
+        row.claim_boundary.certifies_s37_dependency_preserving_division ===
+          false &&
+        row.claim_boundary.certifies_shifted_R43_outer_bound === false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  const terminalS37SourceCellCoverageLiftReadiness =
+    buildH39RequestedY44TerminalS37SourceCellCoverageLiftReadinessCandidate({
+      terminalS37SourceCellBindingFanout,
+      requestedY44ContinuousXiZetaProducerImageTarget:
+        route.requested_y44_continuous_xi_zeta_producer_image_target,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44TerminalS37SourceCellCoverageLiftReadinessCandidate(
+      terminalS37SourceCellCoverageLiftReadiness
+    ),
+    []
+  );
+  assert.equal(
+    terminalS37SourceCellCoverageLiftReadiness
+      .terminal_source_cell_coverage_lift_attempt_available,
+    true
+  );
+  assert.equal(
+    terminalS37SourceCellCoverageLiftReadiness
+      .terminal_source_cell_coverage_lift_attempt_ready,
+    true
+  );
+  assert.equal(
+    terminalS37SourceCellCoverageLiftReadiness.terminal_source_cell_count,
+    5
+  );
+  assert.deepEqual(
+    terminalS37SourceCellCoverageLiftReadiness.terminal_source_cell_ids,
+    [
+      "speed.0.first-y",
+      "speed.1.first-y",
+      "speed.2.first-y",
+      "speed.3.first-y",
+      "speed.4.first-y",
+    ]
+  );
+  assert.deepEqual(
+    terminalS37SourceCellCoverageLiftReadiness
+      .selected_s37_denominator_source_cell_ids,
+    ["speed.0.first-y", "speed.1.first-y"]
+  );
+  assert.deepEqual(
+    terminalS37SourceCellCoverageLiftReadiness.upstream_xi_zeta_source_cell_ids,
+    [
+      "speed.0.first-y",
+      "speed.1.first-y",
+      "speed.2.first-y",
+      "speed.3.first-y",
+      "speed.4.first-y",
+    ]
+  );
+  assert.deepEqual(
+    terminalS37SourceCellCoverageLiftReadiness
+      .upstream_row_local_producer_target_source_cell_ids,
+    ["speed.0.first-y", "speed.1.first-y"]
+  );
+  assert.equal(
+    terminalS37SourceCellCoverageLiftReadiness
+      .selected_terminal_source_cell_denominator_coverage_count,
+    2
+  );
+  assert.equal(
+    terminalS37SourceCellCoverageLiftReadiness
+      .upstream_visible_terminal_source_cell_count,
+    5
+  );
+  assert.equal(
+    terminalS37SourceCellCoverageLiftReadiness
+      .upstream_row_local_target_terminal_source_cell_count,
+    2
+  );
+  assert.deepEqual(
+    terminalS37SourceCellCoverageLiftReadiness
+      .missing_selected_s37_denominator_source_cell_ids,
+    ["speed.2.first-y", "speed.3.first-y", "speed.4.first-y"]
+  );
+  assert.deepEqual(
+    terminalS37SourceCellCoverageLiftReadiness
+      .missing_upstream_xi_zeta_source_cell_ids,
+    []
+  );
+  assert.deepEqual(
+    terminalS37SourceCellCoverageLiftReadiness
+      .missing_upstream_row_local_producer_target_source_cell_ids,
+    ["speed.2.first-y", "speed.3.first-y", "speed.4.first-y"]
+  );
+  assert.equal(
+    terminalS37SourceCellCoverageLiftReadiness
+      .selected_s37_denominator_coverage_complete,
+    false
+  );
+  assert.equal(
+    terminalS37SourceCellCoverageLiftReadiness
+      .upstream_terminal_source_cell_visibility_complete,
+    true
+  );
+  assert.equal(
+    terminalS37SourceCellCoverageLiftReadiness
+      .upstream_row_local_producer_target_coverage_complete,
+    false
+  );
+  assert.equal(
+    terminalS37SourceCellCoverageLiftReadiness
+      .complete_terminal_source_cell_denominator_coverage_certified,
+    false
+  );
+  assert.equal(
+    terminalS37SourceCellCoverageLiftReadiness
+      .same_construction_source_cell_binding_certified,
+    false
+  );
+  assert.equal(
+    terminalS37SourceCellCoverageLiftReadiness
+      .terminal_s37_fanout_dependency_witness_available,
+    false
+  );
+  assert.equal(
+    terminalS37SourceCellCoverageLiftReadiness
+      .terminal_s37_dependency_preserving_division_provider_certified,
+    false
+  );
+  assert.equal(
+    terminalS37SourceCellCoverageLiftReadiness
+      .terminal_s37_source_cell_coverage_lift_classification,
+    "terminal-source-cell-upstream-visibility-complete-row-local-s37-denominator-coverage-missing"
+  );
+  assert.equal(
+    terminalS37SourceCellCoverageLiftReadiness
+      .terminal_s37_source_cell_coverage_lift_primary_missing_object_kind,
+    "row-local-s37-denominator-target-and-provenance-rows-for-all-terminal-source-cells"
+  );
+  assert.equal(
+    terminalS37SourceCellCoverageLiftReadiness
+      .terminal_s37_source_cell_coverage_lift_blocker_classification,
+    "terminal-source-cell-coverage-lift-blocked-by-selected-row-local-s37-budget-row-subset"
+  );
+  assert.equal(
+    terminalS37SourceCellCoverageLiftReadiness
+      .terminal_s37_source_cell_coverage_lift_boundary_row_count,
+    5
+  );
+  assert.ok(
+    terminalS37SourceCellCoverageLiftReadiness.terminal_s37_source_cell_coverage_lift_boundary_rows.every(
+      (row, index) => {
+        const selectedCell = index < rowLocalCollarReplay.selected_row_count;
+        return (
+          row.node_index === index &&
+          row.terminal_graph_source_cell_id === `speed.${index}.first-y` &&
+          row.selected_s37_denominator_cell_count ===
+            rowLocalCollarReplay.selected_row_count &&
+          row.terminal_h_source_cell_binding_row_count === 3 &&
+          row.selected_s37_denominator_h_row_match_count ===
+            (selectedCell ? 3 : 0) &&
+          row.selected_s37_denominator_h_row_missing_count ===
+            (selectedCell ? 0 : 3) &&
+          row.selected_s37_denominator_coverage_present === selectedCell &&
+          row.selected_s37_denominator_coverage_missing === !selectedCell &&
+          row.upstream_xi_zeta_source_cell_visible === true &&
+          row.upstream_xi_zeta_partition_cell_count ===
+            route.residual_coordinate_partition_count &&
+          row.upstream_xi_zeta_partitions_have_residual_budget === true &&
+          row.upstream_row_local_producer_target_partition_count ===
+            (selectedCell ? route.residual_coordinate_partition_count : 0) &&
+          row.upstream_row_local_producer_target_available === selectedCell &&
+          row.upstream_row_local_s37_denominator_target_available ===
+            selectedCell &&
+          row.complete_terminal_source_cell_denominator_coverage_certified ===
+            false &&
+          row.same_construction_source_cell_binding_certified === false &&
+          row.terminal_s37_fanout_dependency_witness_available === false &&
+          row.dependency_preserving_s37_division_provider_certified ===
+            false &&
+          row.row_status ===
+            (selectedCell
+              ? "terminal-source-cell-selected-s37-denominator-coverage-present"
+              : "terminal-source-cell-upstream-visible-row-local-s37-denominator-target-missing") &&
+          row.claim_boundary
+            .defines_terminal_s37_source_cell_coverage_lift_readiness_only ===
+            true &&
+          row.claim_boundary
+            .certifies_complete_terminal_source_cell_denominator_coverage ===
+            false &&
+          row.claim_boundary.certifies_s37_dependency_preserving_division ===
+            false &&
+          row.claim_boundary.certifies_directed_rounded_shared_domain === false
+        );
+      }
+    )
+  );
+  const terminalS37FiveNodeDenominatorLiftAudit =
+    buildH39RequestedY44TerminalS37FiveNodeDenominatorLiftAuditCandidate({
+      terminalS37SourceCellCoverageLiftReadiness,
+      sourceMapResidualCovarianceTarget,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44TerminalS37FiveNodeDenominatorLiftAuditCandidate(
+      terminalS37FiveNodeDenominatorLiftAudit
+    ),
+    []
+  );
+  assert.equal(
+    terminalS37FiveNodeDenominatorLiftAudit
+      .terminal_s37_five_node_denominator_lift_audit_attempt_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveNodeDenominatorLiftAudit
+      .terminal_s37_five_node_denominator_lift_audit_attempt_ready,
+    true
+  );
+  assert.deepEqual(
+    terminalS37FiveNodeDenominatorLiftAudit.terminal_source_cell_ids,
+    [
+      "speed.0.first-y",
+      "speed.1.first-y",
+      "speed.2.first-y",
+      "speed.3.first-y",
+      "speed.4.first-y",
+    ]
+  );
+  assert.deepEqual(
+    terminalS37FiveNodeDenominatorLiftAudit
+      .selected_s37_denominator_source_cell_ids,
+    ["speed.0.first-y", "speed.1.first-y"]
+  );
+  assert.deepEqual(
+    terminalS37FiveNodeDenominatorLiftAudit
+      .missing_selected_s37_denominator_source_cell_ids,
+    ["speed.2.first-y", "speed.3.first-y", "speed.4.first-y"]
+  );
+  assert.equal(
+    terminalS37FiveNodeDenominatorLiftAudit
+      .source_map_five_node_row_family_count,
+    4
+  );
+  assert.deepEqual(
+    terminalS37FiveNodeDenominatorLiftAudit
+      .source_map_five_node_row_families,
+    [
+      "source_map_residual_shared_stream_five_node_quotient_source_radius_budget",
+      "source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit",
+      "source_map_residual_shared_stream_five_node_signed_radius_contraction_budget",
+      "source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target",
+    ]
+  );
+  assert.equal(
+    terminalS37FiveNodeDenominatorLiftAudit
+      .all_terminal_source_cells_have_five_node_source_budget_rows,
+    true
+  );
+  assert.equal(
+    terminalS37FiveNodeDenominatorLiftAudit
+      .all_missing_selected_denominator_cells_have_five_node_source_budget_rows,
+    true
+  );
+  assert.equal(
+    terminalS37FiveNodeDenominatorLiftAudit
+      .any_source_map_rows_have_s37_solve_slope_interval,
+    false
+  );
+  assert.equal(
+    terminalS37FiveNodeDenominatorLiftAudit
+      .any_source_map_rows_have_row_local_s37_denominator_target_fields,
+    false
+  );
+  assert.equal(
+    terminalS37FiveNodeDenominatorLiftAudit
+      .any_source_map_rows_have_nonzero_s37_denominator_check,
+    false
+  );
+  assert.equal(
+    terminalS37FiveNodeDenominatorLiftAudit
+      .any_source_map_rows_have_row_local_s37_denominator_provenance,
+    false
+  );
+  assert.equal(
+    terminalS37FiveNodeDenominatorLiftAudit
+      .all_missing_selected_denominator_cells_have_s37_denominator_lift_fields,
+    false
+  );
+  assert.equal(
+    terminalS37FiveNodeDenominatorLiftAudit
+      .source_map_h38_source_provenance_bridge_available,
+    true
+  );
+  assert.equal(
+    terminalS37FiveNodeDenominatorLiftAudit
+      .source_map_h38_source_provenance_bridge_s37_division_is_primary_blocker,
+    false
+  );
+  assert.equal(
+    terminalS37FiveNodeDenominatorLiftAudit
+      .source_map_h38_source_provenance_bridge_primary_missing_object_kind,
+    "directed-rounded-same-domain-expression-level-n38-source-map-residual-envelope"
+  );
+  assert.equal(
+    terminalS37FiveNodeDenominatorLiftAudit
+      .complete_terminal_source_cell_denominator_coverage_certified,
+    false
+  );
+  assert.equal(
+    terminalS37FiveNodeDenominatorLiftAudit
+      .terminal_s37_dependency_preserving_division_provider_certified,
+    false
+  );
+  assert.equal(
+    terminalS37FiveNodeDenominatorLiftAudit
+      .terminal_s37_five_node_denominator_lift_classification,
+    "terminal-source-cell-five-node-source-budget-complete-s37-denominator-lift-fields-missing"
+  );
+  assert.equal(
+    terminalS37FiveNodeDenominatorLiftAudit
+      .terminal_s37_five_node_denominator_lift_primary_missing_object_kind,
+    "row-local-s37-solve-slope-nonzero-denominator-and-provenance-rows-for-upstream-visible-terminal-source-cells"
+  );
+  assert.equal(
+    terminalS37FiveNodeDenominatorLiftAudit
+      .terminal_s37_five_node_denominator_lift_blocker_classification,
+    "five-node-source-map-budget-does-not-materialize-row-local-s37-denominator-lift"
+  );
+  assert.equal(
+    terminalS37FiveNodeDenominatorLiftAudit
+      .terminal_s37_five_node_denominator_lift_boundary_row_count,
+    5
+  );
+  assert.ok(
+    terminalS37FiveNodeDenominatorLiftAudit.terminal_s37_five_node_denominator_lift_boundary_rows.every(
+      (row, index) => {
+        const selectedCell = index < rowLocalCollarReplay.selected_row_count;
+        return (
+          row.node_index === index &&
+          row.terminal_graph_source_cell_id === `speed.${index}.first-y` &&
+          row.terminal_source_cell_selected_s37_denominator_coverage_present ===
+            selectedCell &&
+          row
+            .terminal_source_cell_selected_s37_denominator_coverage_missing ===
+            !selectedCell &&
+          row.source_map_five_node_source_budget_rows_present === true &&
+          row.source_map_five_node_row_family_count === 4 &&
+          row.source_map_five_node_row_families.length === 4 &&
+          row.source_map_five_node_row_families.every(
+            (familyRow) =>
+              familyRow.row_present === true &&
+              typeof familyRow.row_kind === "string" &&
+              typeof familyRow.tightest_budget_cell_id === "string" &&
+              familyRow.row_has_s37_solve_slope_interval === false &&
+              familyRow
+                .row_has_row_local_s37_denominator_target_fields ===
+                false &&
+              familyRow.row_has_nonzero_s37_denominator_check === false &&
+              familyRow.row_has_row_local_s37_denominator_provenance === false
+          ) &&
+          row.source_map_h38_provenance_bridge_row_present === true &&
+          row.source_map_h38_provenance_bridge_row_status ===
+            "h39-provider-row-ready-waits-on-expression-level-n38-source-provenance" &&
+          row
+            .source_map_h38_provenance_bridge_carries_s37_division_obligation ===
+            true &&
+          row.source_map_rows_have_s37_solve_slope_interval === false &&
+          row
+            .source_map_rows_have_row_local_s37_denominator_target_fields ===
+            false &&
+          row.source_map_rows_have_nonzero_s37_denominator_check === false &&
+          row.source_map_rows_have_row_local_s37_denominator_provenance ===
+            false &&
+          row
+            .source_map_rows_materialize_complete_s37_denominator_lift_fields ===
+            false &&
+          row.source_map_provider_boundary_reached === true &&
+          row.complete_terminal_source_cell_denominator_coverage_certified ===
+            false &&
+          row.dependency_preserving_s37_division_provider_certified ===
+            false &&
+          row.row_status ===
+            (selectedCell
+              ? "terminal-source-cell-selected-s37-denominator-and-five-node-source-budget-present"
+              : "terminal-source-cell-five-node-source-budget-present-s37-denominator-lift-fields-missing") &&
+          row.claim_boundary
+            .defines_terminal_s37_five_node_denominator_lift_audit_only ===
+            true &&
+          row.claim_boundary
+            .certifies_complete_terminal_source_cell_denominator_coverage ===
+            false &&
+          row.claim_boundary.certifies_s37_dependency_preserving_division ===
+            false &&
+          row.claim_boundary.certifies_directed_rounded_shared_domain === false
+        );
+      }
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalS37FiveNodeDenominatorLiftAudit),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalS37FiveNodeDenominatorLiftAudit,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalS37SourceCellCoverageLiftReadiness),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalS37SourceCellCoverageLiftReadiness,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalS37SourceCellBindingFanout),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalS37SourceCellBindingFanout,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalS37SharedIdentityFieldMaterializationAttempt),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalS37SharedIdentityFieldMaterializationAttempt,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalS37ProviderIdentityWitnessAttempt),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalS37ProviderIdentityWitnessAttempt,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
   );
   assert.deepEqual(
     collectTrueCertifies(terminalAffineEndpointProviderCandidate),

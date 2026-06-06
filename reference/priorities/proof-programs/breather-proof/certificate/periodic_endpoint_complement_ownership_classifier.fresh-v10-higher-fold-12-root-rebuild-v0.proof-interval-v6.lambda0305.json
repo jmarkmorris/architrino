@@ -1,0 +1,771 @@
+{
+  "schema": "breather-higher-fold-periodic-endpoint-complement-ownership-classifier-v1",
+  "packet_id": "fresh-v10-higher-fold-12-root-rebuild-v0",
+  "route": "fresh-v10 higher-fold null-coordinate preledger closure",
+  "status": "periodic_endpoint_complement_ownership_classifier_fail_closed_source_lift_endpoint_ownership_absent_no_row_consumption",
+  "theorem_target": "Null-Coordinate Causal Pre-Ledger",
+  "claim_level": "priority-only row classifier for the 8 periodic endpoint/complement rows; no endpoint ownership proof, no complement closure, no row consumption",
+  "preledger_pass": false,
+  "updates_live_ledger": false,
+  "branch_chart_authorized": false,
+  "emits_candidate_artifacts": false,
+  "emits_proof_interval_replay": false,
+  "emits_topology_recertification": false,
+  "source_artifacts": {
+    "higher_fold_proof_interval_v6_ledger": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/causal_ledger.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.json",
+      "basename": "causal_ledger.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.json",
+      "present": true,
+      "sha256": "0d774bb9e3e664d6749ef120a5805a4eeef7b19fdf412432201ea49a2b96f4a5"
+    },
+    "preledger_row_family_classifier": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/preledger_row_family_classifier.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+      "basename": "preledger_row_family_classifier.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+      "present": true,
+      "sha256": "e28c017b4fd8a16ed5eb4c1be765c0a99288a60db1b54c88df501ac5e2e84e0b"
+    },
+    "higher_fold_root_tube_audit": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fresh_v10_higher_fold_root_tube_certificate.v0.json",
+      "basename": "fresh_v10_higher_fold_root_tube_certificate.v0.json",
+      "present": true,
+      "sha256": "d4227cbf19e631e88e4e08b13bf2f99de6bd926ca91d9485ec6a8a20864746d1"
+    }
+  },
+  "root_tube_periodic_endpoint_policy": "The root-count audit supplies 12 interior higher-fold root tubes, but no periodic endpoint/complement ownership certificate is imported by this classifier.",
+  "classifier_rule": "A periodic endpoint/complement row can be unblocked only by proof-grade periodic source-lift consistency plus either periodic endpoint ownership or periodic complement closure, with endpoint no-double-counting and branch-reuse exclusion. The current v6 data only identify the seam rows and their overlap/touching ranges.",
+  "periodic_endpoint_complement_rows": [
+    {
+      "row_id": "R_u_A00_A12",
+      "ledger": "u",
+      "receiver_interval": "A00",
+      "source_interval": "A12",
+      "receiver_interval_type": "regular",
+      "source_interval_type": "regular",
+      "receiver_velocity_class": "sub",
+      "source_velocity_class": "sub",
+      "source_lift_periods": -1,
+      "receiver_theta_range": [
+        "0",
+        "0.0115469919352606"
+      ],
+      "source_theta_range": [
+        "0.907780132558234",
+        "1"
+      ],
+      "receiver_time_range_q": {
+        "lo": {
+          "num": "0",
+          "den": "1"
+        },
+        "hi": {
+          "num": "18137972517438838921087777",
+          "den": "250000000000000000000000000"
+        },
+        "display": [
+          "0",
+          "0.072551890069755"
+        ]
+      },
+      "source_time_range_q": {
+        "lo": {
+          "num": "-14485862903504784636791997",
+          "den": "25000000000000000000000000"
+        },
+        "hi": {
+          "num": "0",
+          "den": "1"
+        },
+        "display": [
+          "-0.579434516140191",
+          "0"
+        ]
+      },
+      "receiver_range": [
+        "-1.244922849112822",
+        "-1.139651770130741"
+      ],
+      "source_range": [
+        "-2.071877499042035",
+        "-1.243584217514508"
+      ],
+      "diagnostic_overlap_range": [
+        -1.24492284911282,
+        -1.24358421751451
+      ],
+      "diagnostic_overlap_width": 0.00133863159830994,
+      "receiver_monotone_floor": "6.783605147039184",
+      "range_gap_display": "0",
+      "failure_code": "trig_range_overlap_periodic_seam_endpoint_ownership_required",
+      "failure_reasons": [
+        "row_specific_trig_ranges_overlap_or_touch",
+        "periodic_source_lift_requires_endpoint_or_complement_ownership",
+        "row_not_promoted_to_simple_root"
+      ],
+      "required_fields_present": {
+        "periodic_endpoint_complement_row_identified": true,
+        "periodic_source_lift_applied": true,
+        "row_specific_trig_ranges_overlap_or_touch": true,
+        "periodic_source_lift_requires_endpoint_or_complement_ownership": true,
+        "periodic_source_lift_consistency_proven": false,
+        "periodic_endpoint_ownership_certificate_present": false,
+        "periodic_complement_closure_certificate_present": false,
+        "endpoint_no_double_counting_certificate_present": false,
+        "periodic_branch_reuse_exclusion_present": false,
+        "periodic_row_consumption_authorized": false
+      },
+      "first_missing_field": "periodic_source_lift_consistency_proven",
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The row-specific trigonometric ranges overlap or touch across the periodic seam, and the lifted source interval requires periodic endpoint/complement ownership before the row can be consumed."
+    },
+    {
+      "row_id": "R_w_A00_A12",
+      "ledger": "w",
+      "receiver_interval": "A00",
+      "source_interval": "A12",
+      "receiver_interval_type": "regular",
+      "source_interval_type": "regular",
+      "receiver_velocity_class": "sub",
+      "source_velocity_class": "sub",
+      "source_lift_periods": -1,
+      "receiver_theta_range": [
+        "0",
+        "0.0115469919352606"
+      ],
+      "source_theta_range": [
+        "0.907780132558234",
+        "1"
+      ],
+      "receiver_time_range_q": {
+        "lo": {
+          "num": "0",
+          "den": "1"
+        },
+        "hi": {
+          "num": "18137972517438838921087777",
+          "den": "250000000000000000000000000"
+        },
+        "display": [
+          "0",
+          "0.072551890069755"
+        ]
+      },
+      "source_time_range_q": {
+        "lo": {
+          "num": "-14485862903504784636791997",
+          "den": "25000000000000000000000000"
+        },
+        "hi": {
+          "num": "0",
+          "den": "1"
+        },
+        "display": [
+          "-0.579434516140191",
+          "0"
+        ]
+      },
+      "receiver_range": [
+        "1.244382329125783",
+        "1.286930906236666"
+      ],
+      "source_range": [
+        "0.898579078806898",
+        "1.248273225134455"
+      ],
+      "diagnostic_overlap_range": [
+        1.24438232912578,
+        1.24827322513446
+      ],
+      "diagnostic_overlap_width": 0.00389089600867987,
+      "receiver_monotone_floor": "0.62229093126849",
+      "range_gap_display": "0",
+      "failure_code": "trig_range_overlap_periodic_seam_endpoint_ownership_required",
+      "failure_reasons": [
+        "row_specific_trig_ranges_overlap_or_touch",
+        "periodic_source_lift_requires_endpoint_or_complement_ownership",
+        "row_not_promoted_to_simple_root"
+      ],
+      "required_fields_present": {
+        "periodic_endpoint_complement_row_identified": true,
+        "periodic_source_lift_applied": true,
+        "row_specific_trig_ranges_overlap_or_touch": true,
+        "periodic_source_lift_requires_endpoint_or_complement_ownership": true,
+        "periodic_source_lift_consistency_proven": false,
+        "periodic_endpoint_ownership_certificate_present": false,
+        "periodic_complement_closure_certificate_present": false,
+        "endpoint_no_double_counting_certificate_present": false,
+        "periodic_branch_reuse_exclusion_present": false,
+        "periodic_row_consumption_authorized": false
+      },
+      "first_missing_field": "periodic_source_lift_consistency_proven",
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The row-specific trigonometric ranges overlap or touch across the periodic seam, and the lifted source interval requires periodic endpoint/complement ownership before the row can be consumed."
+    },
+    {
+      "row_id": "R_w_A01_A12",
+      "ledger": "w",
+      "receiver_interval": "A01",
+      "source_interval": "A12",
+      "receiver_interval_type": "regular",
+      "source_interval_type": "regular",
+      "receiver_velocity_class": "super",
+      "source_velocity_class": "sub",
+      "source_lift_periods": -1,
+      "receiver_theta_range": [
+        "0.0195469919352606",
+        "0.0525392322026566"
+      ],
+      "source_theta_range": [
+        "0.907780132558234",
+        "1"
+      ],
+      "receiver_time_range_q": {
+        "lo": {
+          "num": "30704343131798838921087777",
+          "den": "250000000000000000000000000"
+        },
+        "hi": {
+          "num": "82528432956562564320763597",
+          "den": "250000000000000000000000000"
+        },
+        "display": [
+          "0.122817372527195",
+          "0.33011373182625"
+        ]
+      },
+      "source_time_range_q": {
+        "lo": {
+          "num": "-14485862903504784636791997",
+          "den": "25000000000000000000000000"
+        },
+        "hi": {
+          "num": "0",
+          "den": "1"
+        },
+        "display": [
+          "-0.579434516140191",
+          "0"
+        ]
+      },
+      "receiver_range": [
+        "1.195511146100842",
+        "1.292271284964382"
+      ],
+      "source_range": [
+        "0.898579078806898",
+        "1.248273225134455"
+      ],
+      "diagnostic_overlap_range": [
+        1.19551114610084,
+        1.24827322513446
+      ],
+      "diagnostic_overlap_width": 0.0527620790336198,
+      "receiver_monotone_floor": "0.276846127252786",
+      "range_gap_display": "0",
+      "failure_code": "trig_range_overlap_periodic_seam_endpoint_ownership_required",
+      "failure_reasons": [
+        "row_specific_trig_ranges_overlap_or_touch",
+        "periodic_source_lift_requires_endpoint_or_complement_ownership",
+        "row_not_promoted_to_simple_root"
+      ],
+      "required_fields_present": {
+        "periodic_endpoint_complement_row_identified": true,
+        "periodic_source_lift_applied": true,
+        "row_specific_trig_ranges_overlap_or_touch": true,
+        "periodic_source_lift_requires_endpoint_or_complement_ownership": true,
+        "periodic_source_lift_consistency_proven": false,
+        "periodic_endpoint_ownership_certificate_present": false,
+        "periodic_complement_closure_certificate_present": false,
+        "endpoint_no_double_counting_certificate_present": false,
+        "periodic_branch_reuse_exclusion_present": false,
+        "periodic_row_consumption_authorized": false
+      },
+      "first_missing_field": "periodic_source_lift_consistency_proven",
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The row-specific trigonometric ranges overlap or touch across the periodic seam, and the lifted source interval requires periodic endpoint/complement ownership before the row can be consumed."
+    },
+    {
+      "row_id": "R_w_A02_A12",
+      "ledger": "w",
+      "receiver_interval": "A02",
+      "source_interval": "A12",
+      "receiver_interval_type": "regular",
+      "source_interval_type": "regular",
+      "receiver_velocity_class": "sub",
+      "source_velocity_class": "sub",
+      "source_lift_periods": -1,
+      "receiver_theta_range": [
+        "0.0605392322026566",
+        "0.123583617650084"
+      ],
+      "source_theta_range": [
+        "0.907780132558234",
+        "1"
+      ],
+      "receiver_time_range_q": {
+        "lo": {
+          "num": "95094803570922564320763597",
+          "den": "250000000000000000000000000"
+        },
+        "hi": {
+          "num": "9706234632839483841160039",
+          "den": "12500000000000000000000000"
+        },
+        "display": [
+          "0.38037921428369",
+          "0.776498770627158"
+        ]
+      },
+      "source_time_range_q": {
+        "lo": {
+          "num": "-14485862903504784636791997",
+          "den": "25000000000000000000000000"
+        },
+        "hi": {
+          "num": "0",
+          "den": "1"
+        },
+        "display": [
+          "-0.579434516140191",
+          "0"
+        ]
+      },
+      "receiver_range": [
+        "1.192601678468124",
+        "1.561013541507543"
+      ],
+      "source_range": [
+        "0.898579078806898",
+        "1.248273225134455"
+      ],
+      "diagnostic_overlap_range": [
+        1.19260167846812,
+        1.24827322513446
+      ],
+      "diagnostic_overlap_width": 0.05567154666634,
+      "receiver_monotone_floor": "0.308805503552539",
+      "range_gap_display": "0",
+      "failure_code": "trig_range_overlap_periodic_seam_endpoint_ownership_required",
+      "failure_reasons": [
+        "row_specific_trig_ranges_overlap_or_touch",
+        "periodic_source_lift_requires_endpoint_or_complement_ownership",
+        "row_not_promoted_to_simple_root"
+      ],
+      "required_fields_present": {
+        "periodic_endpoint_complement_row_identified": true,
+        "periodic_source_lift_applied": true,
+        "row_specific_trig_ranges_overlap_or_touch": true,
+        "periodic_source_lift_requires_endpoint_or_complement_ownership": true,
+        "periodic_source_lift_consistency_proven": false,
+        "periodic_endpoint_ownership_certificate_present": false,
+        "periodic_complement_closure_certificate_present": false,
+        "endpoint_no_double_counting_certificate_present": false,
+        "periodic_branch_reuse_exclusion_present": false,
+        "periodic_row_consumption_authorized": false
+      },
+      "first_missing_field": "periodic_source_lift_consistency_proven",
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The row-specific trigonometric ranges overlap or touch across the periodic seam, and the lifted source interval requires periodic endpoint/complement ownership before the row can be consumed."
+    },
+    {
+      "row_id": "R_w_A03_A12",
+      "ledger": "w",
+      "receiver_interval": "A03",
+      "source_interval": "A12",
+      "receiver_interval_type": "regular",
+      "source_interval_type": "regular",
+      "receiver_velocity_class": "super",
+      "source_velocity_class": "sub",
+      "source_lift_periods": -1,
+      "receiver_theta_range": [
+        "0.131583617650084",
+        "0.236031876245625"
+      ],
+      "source_theta_range": [
+        "0.907780132558234",
+        "1"
+      ],
+      "receiver_time_range_q": {
+        "lo": {
+          "num": "10334553163557483841160039",
+          "den": "12500000000000000000000000"
+        },
+        "hi": {
+          "num": "118642561348211124860487",
+          "den": "80000000000000000000000"
+        },
+        "display": [
+          "0.826764253084598",
+          "1.483032016852639"
+        ]
+      },
+      "source_time_range_q": {
+        "lo": {
+          "num": "-14485862903504784636791997",
+          "den": "25000000000000000000000000"
+        },
+        "hi": {
+          "num": "0",
+          "den": "1"
+        },
+        "display": [
+          "-0.579434516140191",
+          "0"
+        ]
+      },
+      "receiver_range": [
+        "1.080991748943163",
+        "1.570651298418142"
+      ],
+      "source_range": [
+        "0.898579078806898",
+        "1.248273225134455"
+      ],
+      "diagnostic_overlap_range": [
+        1.08099174894316,
+        1.24827322513446
+      ],
+      "diagnostic_overlap_width": 0.1672814761913,
+      "receiver_monotone_floor": "0.308537811457118",
+      "range_gap_display": "0",
+      "failure_code": "trig_range_overlap_periodic_seam_endpoint_ownership_required",
+      "failure_reasons": [
+        "row_specific_trig_ranges_overlap_or_touch",
+        "periodic_source_lift_requires_endpoint_or_complement_ownership",
+        "row_not_promoted_to_simple_root"
+      ],
+      "required_fields_present": {
+        "periodic_endpoint_complement_row_identified": true,
+        "periodic_source_lift_applied": true,
+        "row_specific_trig_ranges_overlap_or_touch": true,
+        "periodic_source_lift_requires_endpoint_or_complement_ownership": true,
+        "periodic_source_lift_consistency_proven": false,
+        "periodic_endpoint_ownership_certificate_present": false,
+        "periodic_complement_closure_certificate_present": false,
+        "endpoint_no_double_counting_certificate_present": false,
+        "periodic_branch_reuse_exclusion_present": false,
+        "periodic_row_consumption_authorized": false
+      },
+      "first_missing_field": "periodic_source_lift_consistency_proven",
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The row-specific trigonometric ranges overlap or touch across the periodic seam, and the lifted source interval requires periodic endpoint/complement ownership before the row can be consumed."
+    },
+    {
+      "row_id": "R_w_A04_A12",
+      "ledger": "w",
+      "receiver_interval": "A04",
+      "source_interval": "A12",
+      "receiver_interval_type": "regular",
+      "source_interval_type": "regular",
+      "receiver_velocity_class": "sub",
+      "source_velocity_class": "sub",
+      "source_lift_periods": -1,
+      "receiver_theta_range": [
+        "0.244031876245625",
+        "0.328416382350065"
+      ],
+      "source_theta_range": [
+        "0.907780132558234",
+        "1"
+      ],
+      "receiver_time_range_q": {
+        "lo": {
+          "num": "122663799944806324860487",
+          "den": "80000000000000000000000"
+        },
+        "hi": {
+          "num": "20635009882191374873179667",
+          "den": "10000000000000000000000000"
+        },
+        "display": [
+          "1.533297499310079",
+          "2.063500988219137"
+        ]
+      },
+      "source_time_range_q": {
+        "lo": {
+          "num": "-14485862903504784636791997",
+          "den": "25000000000000000000000000"
+        },
+        "hi": {
+          "num": "0",
+          "den": "1"
+        },
+        "display": [
+          "-0.579434516140191",
+          "0"
+        ]
+      },
+      "receiver_range": [
+        "1.083114213732032",
+        "1.354604238092983"
+      ],
+      "source_range": [
+        "0.898579078806898",
+        "1.248273225134455"
+      ],
+      "diagnostic_overlap_range": [
+        1.08311421373203,
+        1.24827322513446
+      ],
+      "diagnostic_overlap_width": 0.16515901140243,
+      "receiver_monotone_floor": "0.146075843070759",
+      "range_gap_display": "0",
+      "failure_code": "trig_range_overlap_periodic_seam_endpoint_ownership_required",
+      "failure_reasons": [
+        "row_specific_trig_ranges_overlap_or_touch",
+        "periodic_source_lift_requires_endpoint_or_complement_ownership",
+        "row_not_promoted_to_simple_root"
+      ],
+      "required_fields_present": {
+        "periodic_endpoint_complement_row_identified": true,
+        "periodic_source_lift_applied": true,
+        "row_specific_trig_ranges_overlap_or_touch": true,
+        "periodic_source_lift_requires_endpoint_or_complement_ownership": true,
+        "periodic_source_lift_consistency_proven": false,
+        "periodic_endpoint_ownership_certificate_present": false,
+        "periodic_complement_closure_certificate_present": false,
+        "endpoint_no_double_counting_certificate_present": false,
+        "periodic_branch_reuse_exclusion_present": false,
+        "periodic_row_consumption_authorized": false
+      },
+      "first_missing_field": "periodic_source_lift_consistency_proven",
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The row-specific trigonometric ranges overlap or touch across the periodic seam, and the lifted source interval requires periodic endpoint/complement ownership before the row can be consumed."
+    },
+    {
+      "row_id": "R_w_A05_A12",
+      "ledger": "w",
+      "receiver_interval": "A05",
+      "source_interval": "A12",
+      "receiver_interval_type": "regular",
+      "source_interval_type": "regular",
+      "receiver_velocity_class": "super",
+      "source_velocity_class": "sub",
+      "source_lift_periods": -1,
+      "receiver_theta_range": [
+        "0.336416382350065",
+        "0.399780132558234"
+      ],
+      "source_theta_range": [
+        "0.907780132558234",
+        "1"
+      ],
+      "receiver_time_range_q": {
+        "lo": {
+          "num": "21137664706765774873179667",
+          "den": "10000000000000000000000000"
+        },
+        "hi": {
+          "num": "62797316374809215363208003",
+          "den": "25000000000000000000000000"
+        },
+        "display": [
+          "2.113766470676577",
+          "2.511892654992368"
+        ]
+      },
+      "source_time_range_q": {
+        "lo": {
+          "num": "-14485862903504784636791997",
+          "den": "25000000000000000000000000"
+        },
+        "hi": {
+          "num": "0",
+          "den": "1"
+        },
+        "display": [
+          "-0.579434516140191",
+          "0"
+        ]
+      },
+      "receiver_range": [
+        "1.071118662072001",
+        "1.349201397228998"
+      ],
+      "source_range": [
+        "0.898579078806898",
+        "1.248273225134455"
+      ],
+      "diagnostic_overlap_range": [
+        1.071118662072,
+        1.24827322513446
+      ],
+      "diagnostic_overlap_width": 0.17715456306246,
+      "receiver_monotone_floor": "0.360385574069267",
+      "range_gap_display": "0",
+      "failure_code": "trig_range_overlap_periodic_seam_endpoint_ownership_required",
+      "failure_reasons": [
+        "row_specific_trig_ranges_overlap_or_touch",
+        "periodic_source_lift_requires_endpoint_or_complement_ownership",
+        "row_not_promoted_to_simple_root"
+      ],
+      "required_fields_present": {
+        "periodic_endpoint_complement_row_identified": true,
+        "periodic_source_lift_applied": true,
+        "row_specific_trig_ranges_overlap_or_touch": true,
+        "periodic_source_lift_requires_endpoint_or_complement_ownership": true,
+        "periodic_source_lift_consistency_proven": false,
+        "periodic_endpoint_ownership_certificate_present": false,
+        "periodic_complement_closure_certificate_present": false,
+        "endpoint_no_double_counting_certificate_present": false,
+        "periodic_branch_reuse_exclusion_present": false,
+        "periodic_row_consumption_authorized": false
+      },
+      "first_missing_field": "periodic_source_lift_consistency_proven",
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The row-specific trigonometric ranges overlap or touch across the periodic seam, and the lifted source interval requires periodic endpoint/complement ownership before the row can be consumed."
+    },
+    {
+      "row_id": "R_w_A06_A12",
+      "ledger": "w",
+      "receiver_interval": "A06",
+      "source_interval": "A12",
+      "receiver_interval_type": "regular",
+      "source_interval_type": "regular",
+      "receiver_velocity_class": "sub",
+      "source_velocity_class": "sub",
+      "source_lift_periods": -1,
+      "receiver_theta_range": [
+        "0.407780132558234",
+        "0.51154699193526"
+      ],
+      "source_theta_range": [
+        "0.907780132558234",
+        "1"
+      ],
+      "receiver_time_range_q": {
+        "lo": {
+          "num": "64053953436245215363208003",
+          "den": "25000000000000000000000000"
+        },
+        "hi": {
+          "num": "8035361359149378964432917",
+          "den": "2500000000000000000000000"
+        },
+        "display": [
+          "2.562158137449808",
+          "3.214144543659751"
+        ]
+      },
+      "source_time_range_q": {
+        "lo": {
+          "num": "-14485862903504784636791997",
+          "den": "25000000000000000000000000"
+        },
+        "hi": {
+          "num": "0",
+          "den": "1"
+        },
+        "display": [
+          "-0.579434516140191",
+          "0"
+        ]
+      },
+      "receiver_range": [
+        "1.068116638467725",
+        "2.003525531405785"
+      ],
+      "source_range": [
+        "0.898579078806898",
+        "1.248273225134455"
+      ],
+      "diagnostic_overlap_range": [
+        1.06811663846772,
+        1.24827322513446
+      ],
+      "diagnostic_overlap_width": 0.18015658666674,
+      "receiver_monotone_floor": "0.584417514426035",
+      "range_gap_display": "0",
+      "failure_code": "trig_range_overlap_periodic_seam_endpoint_ownership_required",
+      "failure_reasons": [
+        "row_specific_trig_ranges_overlap_or_touch",
+        "periodic_source_lift_requires_endpoint_or_complement_ownership",
+        "row_not_promoted_to_simple_root"
+      ],
+      "required_fields_present": {
+        "periodic_endpoint_complement_row_identified": true,
+        "periodic_source_lift_applied": true,
+        "row_specific_trig_ranges_overlap_or_touch": true,
+        "periodic_source_lift_requires_endpoint_or_complement_ownership": true,
+        "periodic_source_lift_consistency_proven": false,
+        "periodic_endpoint_ownership_certificate_present": false,
+        "periodic_complement_closure_certificate_present": false,
+        "endpoint_no_double_counting_certificate_present": false,
+        "periodic_branch_reuse_exclusion_present": false,
+        "periodic_row_consumption_authorized": false
+      },
+      "first_missing_field": "periodic_source_lift_consistency_proven",
+      "row_consumed": false,
+      "branch_chart_authorized": false,
+      "obstruction": "The row-specific trigonometric ranges overlap or touch across the periodic seam, and the lifted source interval requires periodic endpoint/complement ownership before the row can be consumed."
+    }
+  ],
+  "summary": {
+    "periodic_endpoint_complement_rows": 8,
+    "row_family_rows": 8,
+    "source_lift_minus_one_rows": 8,
+    "source_intervals": [
+      "A12"
+    ],
+    "receiver_intervals": [
+      "A00",
+      "A01",
+      "A02",
+      "A03",
+      "A04",
+      "A05",
+      "A06"
+    ],
+    "ledger_counts": {
+      "u": 1,
+      "w": 7
+    },
+    "receiver_velocity_class_counts": {
+      "sub": 5,
+      "super": 3
+    },
+    "source_velocity_class_counts": {
+      "sub": 8
+    },
+    "range_overlap_or_touch_rows": 8,
+    "periodic_source_lift_requires_endpoint_or_complement_ownership_rows": 8,
+    "periodic_source_lift_consistency_proven_rows": 0,
+    "periodic_endpoint_ownership_certificate_rows": 0,
+    "periodic_complement_closure_certificate_rows": 0,
+    "endpoint_no_double_counting_certificate_rows": 0,
+    "periodic_branch_reuse_exclusion_rows": 0,
+    "rows_unblocked": 0,
+    "row_consumption_count": 0,
+    "branch_chart_authorized_rows": 0,
+    "min_diagnostic_overlap_width": 0.00133863159830994,
+    "max_diagnostic_overlap_width": 0.18015658666674,
+    "first_missing_field_counts": {
+      "periodic_source_lift_consistency_proven": 8
+    }
+  },
+  "next_certificate_handoff": {
+    "artifact_target": "periodic_source_lift_consistency_proven / periodic_endpoint_ownership_certificate_present / periodic_complement_closure_certificate_present",
+    "continuation_class": "mechanical endpoint/complement ownership certificate; no proof-rule or constructor-basis decision is required by this classifier",
+    "fail_closed_stop_conditions": [
+      "Do not consume periodic endpoint/complement rows from row-specific trigonometric overlap or source-lift metadata alone.",
+      "Do not treat the 12-root topology certificate as periodic endpoint ownership.",
+      "Do not set preledger_pass, updates_live_ledger, row_consumed, or branch_chart_authorized from this classifier."
+    ]
+  },
+  "authorization_lock": {
+    "preledger_pass_rows": 0,
+    "row_consumption_count": 0,
+    "branch_chart_authorized_rows": 0,
+    "preledger_pass_authorized": false,
+    "row_consumption_authorized": false,
+    "branch_chart_authorized": false
+  },
+  "capture_decision": "Priority-only. This classifier proves no periodic source-lift consistency, endpoint ownership, complement closure, no-double-counting, row consumption, live-ledger update, or branch-chart authorization."
+}

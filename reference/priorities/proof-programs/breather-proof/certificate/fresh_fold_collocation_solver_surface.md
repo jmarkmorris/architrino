@@ -346,6 +346,31 @@ scanner finds a strict tangent witness with minimum post-margin surplus
 `0.99975381569729`. This is still not a solved candidate, not an interval
 certificate, not a pre-ledger pass, and not branch-chart authorization.
 
+The fresh-v10 higher-fold row-burden classifiers now separate the residual
+preledger blocker into fail-closed worklists. The periodic endpoint/complement
+ownership classifier isolates the 8 seam rows with source interval `A12`,
+source lift `-1`, and row-specific overlap/touching, but records 0 / 8
+source-lift consistency proofs, endpoint ownership certificates, complement
+closure certificates, no-double-counting certificates, branch-reuse exclusions,
+or consumed rows. The higher-fold layer same-packet field readiness classifier
+isolates the 112 fold-layer rows over `Sigma_hf_01` through `Sigma_hf_12`; it
+records 0 / 112 rows with `higher_fold_layer_atlas_ref`, `alpha_floor`,
+`exit_floor`, `same_packet_fold_impulse_or_direct_quadrature_bound`,
+`fold_layer_parity_record`, or `parent_complement_consumption_ref`. The
+higher-fold layer atlas-ref source candidate classifier then constructs 12 / 12
+candidate atlas source refs and assigns candidate refs to 112 / 112 fold-layer
+rows, while keeping 0 / 112 accepted `higher_fold_layer_atlas_ref`,
+`alpha_floor`, `exit_floor`,
+`same_packet_fold_impulse_or_direct_quadrature_bound`,
+`fold_layer_parity_record`, or `parent_complement_consumption_ref`. The
+accepted atlas-ref obligation classifier then records complete candidate source
+evidence for 12 / 12 separator refs and 112 / 112 rows, but keeps 0 / 112
+accepted `higher_fold_layer_atlas_ref`, 0 / 112
+`higher_fold_separator_layer_certificate` rows, 0 accepted fold-layer rows, and
+0 consumed rows. All four classifiers keep `preledger_pass=false`,
+`updates_live_ledger=false`, row consumption 0, and no branch-chart
+authorization.
+
 The one-leaf fold-coordinate candidate-change theorem attempt is recorded in
 `one_leaf_fold_coordinate_collocation_candidate_change_theorem_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
 and
@@ -596,6 +621,21 @@ budgets at `lambda=0.305`, with shared active-endpoint threshold
 authorization. It consumes 0 rows and emits no candidate artifacts, topology
 recertification, or proof-interval replay of its own.
 
+The preledger row-family classifier is recorded in
+`preledger_row_family_classifier.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json`
+and
+`preledger_row_family_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`.
+It classifies the 162 proof-interval v6 split-required rows into 42 regular
+source-cover parent-complement rows, 8 periodic endpoint/complement rows, and
+112 higher-fold layer rows. The `lambda=0.305` replay improves v6
+receiver-cover certified cells by 10 and reduces structural misses by 12, but
+it does not reduce the split-required row count, complete any receiver-cover
+parent row, accept any fold-layer row, pass the preledger, update the live
+ledger, or authorize a branch chart. The classifier selects the regular
+source-cover one-leaf interval-certificate route as the most promising
+non-rule-blocked certificate target. It consumes 0 rows and emits no candidate
+artifacts, topology recertification, or proof-interval replay of its own.
+
 The one-leaf boundary-opening interval-certificate attempt is recorded in
 `one_leaf_boundary_opening_interval_certificate_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`
 and
@@ -701,6 +741,60 @@ derivative formulas, outward rounding rules, residual interval bounds,
 no-switch rows, active-endpoint enclosures, candidate artifacts,
 proof-interval replay rows, preledger passes, or consumed rows are
 constructed.
+
+The one-leaf proof-data readiness classifier is recorded in
+`one_leaf_proof_data_readiness_classifier.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json`
+and
+`one_leaf_proof_data_readiness_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`.
+It imports the row-family classifier and the active-endpoint interval stack,
+then reduces the three screened regular source-cover rows to first missing
+proof-data fields. All three rows are sampled-positive and have proof-data
+targets declared, but all three first block at
+`source_endpoint_interval_box_constructed`; the first source-layer dependency
+blocker is `source_endpoint_boundary_binding_constructed`, and the residual
+source-data audit still first blocks at `source_endpoint_residual_formula_present`.
+The handoff target is an endpoint-box/residual-function pair certificate. It
+keeps `preledger_pass=false`, `updates_live_ledger=false`,
+`branch_chart_authorized=false`, emits no candidate artifacts, and consumes
+0 rows.
+
+The endpoint-box/residual-function pair certificate attempt is recorded in
+`one_leaf_endpoint_box_residual_function_pair_certificate_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json`
+and
+`one_leaf_endpoint_box_residual_function_pair_certificate_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`.
+It imports the readiness classifier, endpoint interval-box/no-switch attempt,
+residual-function-on-box source-layer attempt, and the endpoint-functional
+stack through binding contract/full-binding/carrier admission. It verifies
+4 / 4 first endpoint-boundary-binding primitives, witness-object
+endpoint-boundary-binding refs, endpoint value-binding maps, and endpoint
+values bound to boundary bindings, plus 3 / 3 row primitive/ref/value-map
+pairs. It still constructs 0 / 4 binding contracts, witness-object contract
+links, full endpoint boundary bindings, carrier admissions, endpoint
+motion/evaluation maps, and 0 / 3 endpoint interval-box pairs,
+residual-function pairs, residual interval-bound pairs, pair certificates,
+preledger passes, consumed rows, live-ledger updates, or branch-chart
+authorizations. The current certificate-side blocker is
+`binding_contract_satisfied`, with symmetric `witness_object_has_contract_link`
+absent.
+
+The one-leaf binding-contract satisfaction dependency classifier is recorded in
+`one_leaf_binding_contract_satisfaction_dependency_classifier.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json`
+and
+`one_leaf_binding_contract_satisfaction_dependency_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`.
+It imports the endpoint-box attempt, no-contract-link proof chain, target
+ref/value promotion-rule attempt, and terminal constructor-basis attempt. The
+classifier preserves 4 / 4 endpoint value-binding maps, 4 / 4 binding-contract
+tests, 6 target ref/value source equations, 6 value-map bindings, 4 / 4
+constructor-basis source scopes, and 3 / 3 row constructor-basis source-scope
+pairs, but records 0 / 4 no-contract-link premise proofs, proof-grade target
+ref/value packages, promotion rules, predicate-symbol constructor bases,
+argument-sort constructor bases, judgment-codomain constructor bases,
+endpoint-localization rules, constructor-basis soundness proofs,
+constructor-basis derivations, binding contracts, witness-object contract
+links, preledger passes, consumed rows, live-ledger updates, or branch-chart
+authorizations. The route collides with the stopped constructor-basis blocker
+at `predicate_symbol_constructor_basis_present` and remains fail-closed unless
+new proof-grade constructor-basis evidence appears or the lane pivots.
 
 The fold-coordinate endpoint-functional boundary-binding motion/evaluation
 construction attempt is recorded in

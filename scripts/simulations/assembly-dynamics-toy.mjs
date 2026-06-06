@@ -24,6 +24,10 @@ export const DEFAULTS = {
   shellRadius: 1,
   minDelay: 0.035,
   memoryDepth: 4,
+  historyMode: "adaptive",
+  historyMargin: 1,
+  historySafetyFactor: 2,
+  historyMaxDepth: 0,
   rootHaltPolicy: "partner",
   out: null,
   csv: null,
@@ -55,6 +59,9 @@ function parseArgs(argv) {
     "shellRadius",
     "minDelay",
     "memoryDepth",
+    "historyMargin",
+    "historySafetyFactor",
+    "historyMaxDepth",
   ]);
 
   for (let i = 0; i < argv.length; i += 1) {
@@ -89,16 +96,17 @@ function parseArgs(argv) {
   if (args.particles < 2) {
     throw new Error("--particles must be at least 2.");
   }
-  for (const key of ["dt", "radius", "cf", "jacobianFloor", "memoryDepth"]) {
+  for (const key of ["dt", "radius", "cf", "jacobianFloor", "memoryDepth", "historySafetyFactor"]) {
     if (args[key] <= 0) {
       throw new Error(`--${kebabCase(key)} must be positive.`);
     }
   }
-  for (const key of ["kappa", "selfHitGain", "softening", "maxAcceleration", "shellK", "shellRadius", "minDelay"]) {
+  for (const key of ["kappa", "selfHitGain", "softening", "maxAcceleration", "shellK", "shellRadius", "minDelay", "historyMargin", "historyMaxDepth"]) {
     if (args[key] < 0) {
       throw new Error(`--${kebabCase(key)} must be nonnegative.`);
     }
   }
+  validateHistoryMode(args.historyMode);
   validateRootHaltPolicy(args.rootHaltPolicy);
   return args;
 }
@@ -129,6 +137,10 @@ function optionKey(key) {
     shellradius: "shellRadius",
     mindelay: "minDelay",
     memorydepth: "memoryDepth",
+    historymode: "historyMode",
+    historymargin: "historyMargin",
+    historysafetyfactor: "historySafetyFactor",
+    historymaxdepth: "historyMaxDepth",
     roothaltpolicy: "rootHaltPolicy",
   };
   return aliases[key] ?? key;
@@ -160,6 +172,12 @@ function validateRootHaltPolicy(policy) {
   }
 }
 
+function validateHistoryMode(mode) {
+  if (!["deep", "adaptive", "fixed"].includes(mode)) {
+    throw new Error("--history-mode must be one of: deep, adaptive, fixed.");
+  }
+}
+
 function printHelp() {
   console.log(`Usage: node scripts/simulations/assembly-dynamics-toy.mjs [options]
 
@@ -182,7 +200,12 @@ Options:
   --shell-k X            Toy shell-radius restoring coefficient. Default: ${DEFAULTS.shellK}
   --shell-radius X       Target shell radius for the toy restoring term. Default: ${DEFAULTS.shellRadius}
   --min-delay X          Minimum accepted causal delay. Default: ${DEFAULTS.minDelay}
-  --memory-depth X       Negative-time rotating-ring history depth. Default: ${DEFAULTS.memoryDepth}
+  --memory-depth X       Initial negative-time rotating-ring history depth; fixed-mode buffer depth. Default: ${DEFAULTS.memoryDepth}
+  --history-mode X       Retained causal history: deep, adaptive, fixed. Default: ${DEFAULTS.historyMode}
+  --history-margin X     Extra seconds retained beyond the adaptive causal-delay estimate. Default: ${DEFAULTS.historyMargin}
+  --history-safety-factor X
+                          Multiplier on current pairwise light-delay estimate in adaptive mode. Default: ${DEFAULTS.historySafetyFactor}
+  --history-max-depth X  Optional cap on retained history depth; 0 means uncapped. Default: ${DEFAULTS.historyMaxDepth}
   --root-halt-policy X   Halt on unresolved roots: partner, all, none. Default: ${DEFAULTS.rootHaltPolicy}
   --out PATH             Write JSON output instead of stdout.
   --csv PATH             Write sampled frames as CSV.
@@ -191,7 +214,7 @@ Options:
   --help                 Show this help.
 
 This is a visualization-first toy model. It assumes the Master EOM exists,
-uses a finite delayed causal-root lookup, and reports diagnostics instead of
+uses an adaptive/deep delayed causal-root lookup, and reports diagnostics instead of
 claiming proof closure or a certified branch chart.`);
 }
 
@@ -268,6 +291,59 @@ function buildInitialHistory(state, config) {
   }
   history.push(cloneState(state));
   return history;
+}
+
+function maxPairDistance(positions) {
+  let maxDistance = 0;
+  for (let i = 0; i < positions.length; i += 1) {
+    for (let j = 0; j < positions.length; j += 1) {
+      maxDistance = Math.max(maxDistance, norm(sub(positions[i], positions[j])));
+    }
+  }
+  return maxDistance;
+}
+
+function adaptiveHistoryDepth(state, config) {
+  const pairLightDelay = maxPairDistance(state.positions) / config.cf;
+  return Math.max(
+    config.memoryDepth,
+    config.minDelay,
+    pairLightDelay * config.historySafetyFactor + config.historyMargin + config.dt
+  );
+}
+
+function targetHistoryDepth(state, config) {
+  if (config.historyMode === "fixed") {
+    return config.memoryDepth;
+  }
+  const adaptiveDepth = adaptiveHistoryDepth(state, config);
+  if (config.historyMaxDepth > 0) {
+    return Math.min(adaptiveDepth, config.historyMaxDepth);
+  }
+  return adaptiveDepth;
+}
+
+function extendPrehistory(history, earliestTime, config) {
+  while (history[0].t > earliestTime) {
+    const t = history[0].t - config.dt;
+    history.unshift(rotatingRingFrame(t, config));
+  }
+}
+
+function prepareHistoryForSearch(history, state, config) {
+  if (config.historyMode === "fixed") {
+    return;
+  }
+  const targetDepth = targetHistoryDepth(state, config);
+  extendPrehistory(history, state.t - targetDepth - config.dt, config);
+}
+
+function maintainHistory(history, state, config) {
+  if (config.historyMode === "deep" && config.historyMaxDepth <= 0) {
+    return;
+  }
+  const targetDepth = config.historyMode === "deep" ? config.historyMaxDepth : targetHistoryDepth(state, config);
+  trimHistory(history, state.t - targetDepth - config.dt);
 }
 
 function rotatingRingFrame(t, config) {
@@ -396,6 +472,8 @@ function findMostRecentRoot(history, receiverPosition, receiverId, sourceId, t, 
   let lastNewerResidual = null;
   let oldestResidual = null;
   let oldestDelay = null;
+  const historyOldest = history[0];
+  const historyNewest = history[history.length - 1];
   for (let k = history.length - 1; k >= 1; k -= 1) {
     const newer = history[k];
     const older = history[k - 1];
@@ -446,7 +524,13 @@ function findMostRecentRoot(history, receiverPosition, receiverId, sourceId, t, 
   }
 
   if (lastNewerResidual === null) {
-    return { unresolved: true, reason: "insufficient_history_after_min_delay" };
+    return {
+      unresolved: true,
+      reason: "insufficient_history_after_min_delay",
+      history_oldest_t: historyOldest?.t ?? null,
+      history_newest_t: historyNewest?.t ?? null,
+      history_frame_count: history.length,
+    };
   }
   return {
     unresolved: true,
@@ -454,6 +538,9 @@ function findMostRecentRoot(history, receiverPosition, receiverId, sourceId, t, 
     residual: lastNewerResidual,
     oldest_residual: oldestResidual,
     oldest_delay: oldestDelay,
+    history_oldest_t: historyOldest?.t ?? null,
+    history_newest_t: historyNewest?.t ?? null,
+    history_frame_count: history.length,
   };
 }
 
@@ -477,6 +564,9 @@ function accelerations(state, history, config, charges) {
     partner_unresolved_roots: 0,
     self_unresolved_roots: 0,
     first_unresolved_root: null,
+    root_failure_reasons: {},
+    partner_root_failure_reasons: {},
+    self_root_failure_reasons: {},
     min_abs_jacobian: null,
     max_hit_weight: 0,
   };
@@ -495,11 +585,17 @@ function accelerations(state, history, config, charges) {
           residual: root?.residual ?? null,
           oldest_residual: root?.oldest_residual ?? null,
           oldest_delay: root?.oldest_delay ?? null,
+          history_oldest_t: root?.history_oldest_t ?? null,
+          history_newest_t: root?.history_newest_t ?? null,
+          history_frame_count: root?.history_frame_count ?? history.length,
         };
+        incrementCount(hitStats.root_failure_reasons, detail.reason);
         if (i === j) {
           hitStats.self_unresolved_roots += 1;
+          incrementCount(hitStats.self_root_failure_reasons, detail.reason);
         } else {
           hitStats.partner_unresolved_roots += 1;
+          incrementCount(hitStats.partner_root_failure_reasons, detail.reason);
         }
         if (!hitStats.first_unresolved_root) {
           hitStats.first_unresolved_root = detail;
@@ -560,6 +656,7 @@ function accelerations(state, history, config, charges) {
 }
 
 function step(state, history, config, charges) {
+  prepareHistoryForSearch(history, state, config);
   const before = accelerations(state, history, config, charges);
   if (before.halt) {
     return { state, hitStats: before.hitStats, halt: before.halt };
@@ -575,7 +672,7 @@ function step(state, history, config, charges) {
   };
 
   history.push(cloneState(predicted));
-  trimHistory(history, predicted.t - config.memoryDepth - config.dt);
+  maintainHistory(history, predicted, config);
 
   return { state: predicted, hitStats: before.hitStats };
 }
@@ -584,6 +681,10 @@ function trimHistory(history, oldestTime) {
   while (history.length > 2 && history[1].t < oldestTime) {
     history.shift();
   }
+}
+
+function incrementCount(counts, key) {
+  counts[key] = (counts[key] ?? 0) + 1;
 }
 
 function summarizeDrift(initial, final) {
@@ -599,6 +700,7 @@ function summarizeDrift(initial, final) {
 
 export function run(inputConfig = {}) {
   const config = { ...DEFAULTS, ...inputConfig };
+  validateHistoryMode(config.historyMode);
   validateRootHaltPolicy(config.rootHaltPolicy);
   let state = initialState(config);
   const charges = polarities(config.particles);
@@ -615,6 +717,9 @@ export function run(inputConfig = {}) {
     total_unresolved_roots: 0,
     total_partner_unresolved_roots: 0,
     total_self_unresolved_roots: 0,
+    root_failure_reasons: {},
+    partner_root_failure_reasons: {},
+    self_root_failure_reasons: {},
     steps_with_self_hits: 0,
     min_abs_jacobian: null,
     max_hit_weight: 0,
@@ -651,7 +756,7 @@ export function run(inputConfig = {}) {
   return {
     model: {
       name: "assembly-dynamics-toy",
-      assumption: "EOM=true; this script uses a regularized finite-history branch-sum surrogate.",
+      assumption: "EOM=true; this script uses a regularized adaptive/deep-history branch-sum surrogate.",
       limitations: [
         "No certified branch chart.",
         "Only the most recent causal root per source-receiver pair is retained.",
@@ -685,6 +790,7 @@ export function run(inputConfig = {}) {
       final: summarizeFrame(finalFrame),
       drift: summarizeDrift(initialFrame, finalFrame),
       aggregate_hit_stats: aggregateHitStats,
+      history: summarizeHistory(history, config),
     },
     frames,
   };
@@ -697,6 +803,15 @@ function updateAggregateHitStats(aggregate, hitStats) {
   aggregate.total_unresolved_roots += hitStats.unresolved_roots;
   aggregate.total_partner_unresolved_roots += hitStats.partner_unresolved_roots;
   aggregate.total_self_unresolved_roots += hitStats.self_unresolved_roots;
+  for (const [reason, count] of Object.entries(hitStats.root_failure_reasons ?? {})) {
+    aggregate.root_failure_reasons[reason] = (aggregate.root_failure_reasons[reason] ?? 0) + count;
+  }
+  for (const [reason, count] of Object.entries(hitStats.partner_root_failure_reasons ?? {})) {
+    aggregate.partner_root_failure_reasons[reason] = (aggregate.partner_root_failure_reasons[reason] ?? 0) + count;
+  }
+  for (const [reason, count] of Object.entries(hitStats.self_root_failure_reasons ?? {})) {
+    aggregate.self_root_failure_reasons[reason] = (aggregate.self_root_failure_reasons[reason] ?? 0) + count;
+  }
   if (hitStats.self_hits > 0) {
     aggregate.steps_with_self_hits += 1;
   }
@@ -716,6 +831,22 @@ function summarizeFrame(frame) {
     shell_radius: frame.shell_radius,
     conserved_quantities: frame.conserved_quantities,
     hit_stats: frame.hit_stats,
+  };
+}
+
+function summarizeHistory(history, config) {
+  const oldest = history[0];
+  const newest = history[history.length - 1];
+  return {
+    mode: config.historyMode,
+    frame_count: history.length,
+    oldest_t: oldest?.t ?? null,
+    newest_t: newest?.t ?? null,
+    retained_depth: oldest && newest ? newest.t - oldest.t : null,
+    initial_prehistory_depth: config.memoryDepth,
+    adaptive_margin: config.historyMargin,
+    adaptive_safety_factor: config.historySafetyFactor,
+    max_depth: config.historyMaxDepth,
   };
 }
 

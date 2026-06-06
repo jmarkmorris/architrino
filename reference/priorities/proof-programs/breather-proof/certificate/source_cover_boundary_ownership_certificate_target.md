@@ -110,6 +110,19 @@ convention, those rows may be consumed as `simple_root` without branch reuse or
 double-counting. No branch chart is authorized until the remaining 8
 endpoint/complement rows and 112 fold-layer rows also close.
 
+Parallel fold-layer update: the higher-fold layer atlas-ref source candidate
+classifier constructs 12 / 12 candidate atlas source refs and assigns candidate
+refs to 112 / 112 fold-layer rows, but it records 0 / 112 accepted
+`higher_fold_layer_atlas_ref`, `alpha_floor`, `exit_floor`,
+`same_packet_fold_impulse_or_direct_quadrature_bound`,
+`fold_layer_parity_record`, or `parent_complement_consumption_ref`. This does
+not change the source-cover theorem target. The accepted atlas-ref obligation
+classifier verifies complete candidate source evidence for those 12 separator
+refs and 112 rows, but fail-closes at
+`higher_fold_separator_layer_certificate_absent`: 0 / 112 accepted
+`higher_fold_layer_atlas_ref`, 0 / 112 separator-layer certificates, 0 consumed
+rows, and no branch-chart authorization.
+
 ## First Probe Rows
 
 The smallest boundary burdens are the natural first probes:
