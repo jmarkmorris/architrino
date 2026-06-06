@@ -65,7 +65,7 @@ Electra and Poz roll one ball again along the route. Show a calm repeating path:
 
 ### Backmatter Activity
 
-A clean text-free activity scene for adult-led play: Electra and Poz sit by a simple continuous purple floor route with a flat start, one low rounded hill, and one shallow saucer-like dip, all aligned so a ball could roll across the same path. Do not make a raised slide, trough, spoon, bowl, chute, bridge, or separate toy object. A grown-up hand may be visible only as a small supporting hand placing the red ball at the flat start, but the hand must not cover the ball or become the main subject. The red and blue balls are both visible for repeating and comparing.
+A clean text-free activity scene for adult-led play: Electra and Poz sit by a simple continuous purple floor-contour route with a flat start, one low rounded hill, and one shallow open dip, all aligned so a ball could roll across the same path after a gentle push. The route is a floor feature, not a separate prop. Do not make a raised slide, trough, spoon, bowl, chute, bridge, track toy, or disconnected object. A grown-up hand may be visible only as a small supporting hand placing the red ball at the flat start, but the hand must not cover the ball or become the main subject. The red and blue balls are both visible for repeating and comparing.
 
 ## Notes Before Generation
 

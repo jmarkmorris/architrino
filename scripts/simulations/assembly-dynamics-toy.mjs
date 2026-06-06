@@ -17,12 +17,12 @@ export const DEFAULTS = {
   cf: 1,
   kappa: 0.02,
   selfHitGain: 0.35,
-  softening: 0.08,
   jacobianFloor: 0.08,
   maxAcceleration: 18,
   shellK: 0.35,
   shellRadius: 1,
   minDelay: 0.035,
+  singularityTolerance: 1e-12,
   memoryDepth: 4,
   historyMode: "adaptive",
   historyMargin: 1,
@@ -52,12 +52,12 @@ function parseArgs(argv) {
     "cf",
     "kappa",
     "selfHitGain",
-    "softening",
     "jacobianFloor",
     "maxAcceleration",
     "shellK",
     "shellRadius",
     "minDelay",
+    "singularityTolerance",
     "memoryDepth",
     "historyMargin",
     "historySafetyFactor",
@@ -101,7 +101,7 @@ function parseArgs(argv) {
       throw new Error(`--${kebabCase(key)} must be positive.`);
     }
   }
-  for (const key of ["kappa", "selfHitGain", "softening", "maxAcceleration", "shellK", "shellRadius", "minDelay", "historyMargin", "historyMaxDepth"]) {
+  for (const key of ["kappa", "selfHitGain", "maxAcceleration", "shellK", "shellRadius", "minDelay", "singularityTolerance", "historyMargin", "historyMaxDepth"]) {
     if (args[key] < 0) {
       throw new Error(`--${kebabCase(key)} must be nonnegative.`);
     }
@@ -130,12 +130,12 @@ function optionKey(key) {
     drifty: "driftY",
     kappa: "kappa",
     selfhitgain: "selfHitGain",
-    softening: "softening",
     jacobianfloor: "jacobianFloor",
     maxacceleration: "maxAcceleration",
     shellk: "shellK",
     shellradius: "shellRadius",
     mindelay: "minDelay",
+    singularitytolerance: "singularityTolerance",
     memorydepth: "memoryDepth",
     historymode: "historyMode",
     historymargin: "historyMargin",
@@ -194,12 +194,13 @@ Options:
   --cf X                 Field speed c_f. Default: ${DEFAULTS.cf}
   --kappa X              Delayed-hit coupling. Default: ${DEFAULTS.kappa}
   --self-hit-gain X      Same-source contribution multiplier. Default: ${DEFAULTS.selfHitGain}
-  --softening X          Distance softening eta; use 0 to disable. Default: ${DEFAULTS.softening}
   --jacobian-floor X     Minimum |J| used in the regularized hit weight. Default: ${DEFAULTS.jacobianFloor}
   --max-acceleration X   Per-particle acceleration cap. Default: ${DEFAULTS.maxAcceleration}
   --shell-k X            Toy shell-radius restoring coefficient. Default: ${DEFAULTS.shellK}
   --shell-radius X       Target shell radius for the toy restoring term. Default: ${DEFAULTS.shellRadius}
   --min-delay X          Minimum accepted same-source causal delay. Partner roots may use zero delay. Default: ${DEFAULTS.minDelay}
+  --singularity-tolerance X
+                          Halt when a causal-root distance is at or below this arithmetic singularity tolerance. Default: ${DEFAULTS.singularityTolerance}
   --memory-depth X       Initial negative-time rotating-ring history depth; fixed-mode buffer depth. Default: ${DEFAULTS.memoryDepth}
   --history-mode X       Retained causal history: deep, adaptive, fixed. Default: ${DEFAULTS.historyMode}
   --history-margin X     Extra seconds retained beyond the adaptive causal-delay estimate. Default: ${DEFAULTS.historyMargin}
@@ -352,7 +353,7 @@ function rotatingRingFrame(t, config) {
   const drift = [config.driftX, config.driftY];
   const center = mul(drift, t);
   const omega = config.tangentialSpeed / config.radius;
-  const radius = Math.max(config.radius + config.radialSpeed * t, config.softening);
+  const radius = Math.max(config.radius + config.radialSpeed * t, 0);
 
   for (let i = 0; i < config.particles; i += 1) {
     const theta0 = (2 * Math.PI * i) / config.particles;
@@ -422,7 +423,7 @@ function conservedQuantities(state, config, charges) {
   for (let i = 0; i < state.positions.length; i += 1) {
     for (let j = i + 1; j < state.positions.length; j += 1) {
       const d = sub(state.positions[i], state.positions[j]);
-      const r = Math.sqrt(dot(d, d) + config.softening ** 2);
+      const r = Math.sqrt(dot(d, d));
       equalTimePotential += (config.kappa * charges[i] * charges[j]) / r;
     }
   }
@@ -548,7 +549,7 @@ function minimumAcceptedRootDelay(receiverId, sourceId, config) {
   return receiverId === sourceId ? config.minDelay : 0;
 }
 
-function shouldHaltForUnresolvedRoot(config, receiverId, sourceId) {
+function shouldHaltForRequiredRoot(config, receiverId, sourceId) {
   if (config.rootHaltPolicy === "none") {
     return false;
   }
@@ -574,7 +575,7 @@ function accelerations(state, history, config, charges) {
     min_abs_jacobian: null,
     max_hit_weight: 0,
   };
-  const unresolvedRequiredRoots = [];
+  const requiredRootFailures = [];
 
   for (let i = 0; i < state.positions.length; i += 1) {
     for (let j = 0; j < state.positions.length; j += 1) {
@@ -605,25 +606,56 @@ function accelerations(state, history, config, charges) {
         if (!hitStats.first_unresolved_root) {
           hitStats.first_unresolved_root = detail;
         }
-        if (shouldHaltForUnresolvedRoot(config, i, j)) {
-          unresolvedRequiredRoots.push(detail);
+        if (shouldHaltForRequiredRoot(config, i, j)) {
+          requiredRootFailures.push({
+            code: "UNRESOLVED_CAUSAL_ROOT",
+            ...detail,
+          });
         }
         continue;
       }
 
       const displacement = sub(state.positions[i], root.position);
       const distance = norm(displacement);
-      if (distance <= 1e-12) {
+      if (distance <= config.singularityTolerance) {
+        const detail = {
+          receiver_id: i,
+          source_id: j,
+          root_kind: i === j ? "self" : "partner",
+          reason: "singular_causal_root",
+          distance,
+          singularity_tolerance: config.singularityTolerance,
+          root_t: root.t,
+          root_position: root.position,
+          receiver_position: state.positions[i],
+        };
+        hitStats.unresolved_roots += 1;
+        incrementCount(hitStats.root_failure_reasons, detail.reason);
+        if (i === j) {
+          hitStats.self_unresolved_roots += 1;
+          incrementCount(hitStats.self_root_failure_reasons, detail.reason);
+        } else {
+          hitStats.partner_unresolved_roots += 1;
+          incrementCount(hitStats.partner_root_failure_reasons, detail.reason);
+        }
+        if (!hitStats.first_unresolved_root) {
+          hitStats.first_unresolved_root = detail;
+        }
+        if (shouldHaltForRequiredRoot(config, i, j)) {
+          requiredRootFailures.push({
+            code: "SINGULAR_CAUSAL_ROOT",
+            ...detail,
+          });
+        }
         continue;
       }
       const unit = mul(displacement, 1 / distance);
       const jacobian = 1 - dot(root.velocity, unit) / config.cf;
       const absJacobian = Math.abs(jacobian);
       const weight = 1 / Math.max(absJacobian, config.jacobianFloor);
-      const softenedDistanceSquared = distance ** 2 + config.softening ** 2;
       const sourceGain = i === j ? config.selfHitGain : 1;
       const gain = (config.kappa * charges[i] * charges[j] * sourceGain * weight) /
-        softenedDistanceSquared;
+        distance ** 2;
       acc[i] = add(acc[i], mul(unit, gain));
 
       if (i === j) {
@@ -651,10 +683,13 @@ function accelerations(state, history, config, charges) {
   return {
     accelerations: acc.map((a) => clampVector(a, config.maxAcceleration)),
     hitStats,
-    halt: unresolvedRequiredRoots.length > 0
+    halt: requiredRootFailures.length > 0
       ? {
-          code: "UNRESOLVED_CAUSAL_ROOT",
-          unresolved_roots: unresolvedRequiredRoots,
+          code: requiredRootFailures.every((failure) => failure.code === requiredRootFailures[0].code)
+            ? requiredRootFailures[0].code
+            : "CAUSAL_ROOT_FAILURE",
+          root_failures: requiredRootFailures,
+          unresolved_roots: requiredRootFailures.filter((failure) => failure.code === "UNRESOLVED_CAUSAL_ROOT"),
         }
       : null,
   };
@@ -737,10 +772,11 @@ export function run(inputConfig = {}) {
     if (result.halt) {
       error = {
         code: result.halt.code,
-        message: `Simulation halted at t=${state.t}: unresolved required causal root under rootHaltPolicy=${config.rootHaltPolicy}.`,
+        message: `Simulation halted at t=${state.t}: required causal-root failure under rootHaltPolicy=${config.rootHaltPolicy}.`,
         t: state.t,
         attempted_step: n,
         root_halt_policy: config.rootHaltPolicy,
+        root_failures: result.halt.root_failures,
         unresolved_roots: result.halt.unresolved_roots,
       };
       const haltedFrame = frameDiagnostics(state, config, charges, latestHitStats);
@@ -766,6 +802,7 @@ export function run(inputConfig = {}) {
         "No certified branch chart.",
         "Only the most recent causal root per source-receiver pair is retained.",
         "Unresolved root diagnostics mean the finite history search did not resolve a branch; they are numerical-search failures, not physics events.",
+        "No distance softening is applied in the pair force; arithmetic singular causal roots halt the run.",
         "Negative-time history is initialized as a rotating ring with optional radial speed, then replaced by simulated history.",
         "The shell-radius term is a toy assembly-level response used for visualization stability.",
         "The reported conserved quantities are diagnostics, not exact conserved theorem objects.",
@@ -781,7 +818,7 @@ export function run(inputConfig = {}) {
       },
       equations: [
         "g_ij(t,t0) = ||x_i(t) - x_j(t0)|| - c_f (t - t0) = 0",
-        "a_ij = kappa q_i q_j rhat_ij / ((r_ij^2 + eta^2) max(|J_ij|, J_floor))",
+        "a_ij = kappa q_i q_j rhat_ij / (r_ij^2 max(|J_ij|, J_floor))",
         "a_i = sum_j a_ij + a_shell,i",
         "a_shell,i = -k_shell (||x_i-X|| - R0) (x_i-X)/||x_i-X||",
       ],

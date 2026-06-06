@@ -35,12 +35,12 @@ const RUN_KEYS = new Set([
   "cf",
   "kappa",
   "selfHitGain",
-  "softening",
   "jacobianFloor",
   "maxAcceleration",
   "shellK",
   "shellRadius",
   "minDelay",
+  "singularityTolerance",
   "memoryDepth",
   "historyMode",
   "historyMargin",
@@ -204,7 +204,7 @@ function validateRunConfig(args) {
       throw new Error(`--${kebabCase(key)} must be positive.`);
     }
   }
-  for (const key of ["softening", "maxAcceleration", "shellK", "shellRadius", "minDelay", "historyMargin", "historyMaxDepth"]) {
+  for (const key of ["maxAcceleration", "shellK", "shellRadius", "minDelay", "singularityTolerance", "historyMargin", "historyMaxDepth"]) {
     if (args[key] < 0) {
       throw new Error(`--${kebabCase(key)} must be nonnegative.`);
     }
@@ -234,10 +234,11 @@ Convergence options:
 
 Simulation options mirror assembly-dynamics-toy.mjs, including:
   --particles, --radius, --radial-speed, --tangential-speed, --drift-x,
-  --drift-y, --cf, --kappa, --self-hit-gain, --softening,
+  --drift-y, --cf, --kappa, --self-hit-gain,
   --jacobian-floor, --max-acceleration, --shell-k, --shell-radius,
-  --min-delay, --memory-depth, --history-mode, --history-margin,
-  --history-safety-factor, --history-max-depth, --root-halt-policy.`);
+  --min-delay, --singularity-tolerance, --memory-depth, --history-mode,
+  --history-margin, --history-safety-factor, --history-max-depth,
+  --root-halt-policy.`);
 }
 
 function runConfigFromArgs(args, dt, steps, stride) {
@@ -352,7 +353,13 @@ function summarizeRun(result, level, dt, steps, stride, horizon, args) {
 
 function classifyRunOutcome(result, minRecord, args) {
   if (!result.completed) {
-    return result.error?.code === "UNRESOLVED_CAUSAL_ROOT" ? "root_unresolved_halt" : "halted";
+    if (result.error?.code === "UNRESOLVED_CAUSAL_ROOT") {
+      return "root_unresolved_halt";
+    }
+    if (result.error?.code === "SINGULAR_CAUSAL_ROOT") {
+      return "singular_causal_root_halt";
+    }
+    return "halted";
   }
   const initialRadius = result.summary.initial.shell_radius;
   const finalRadius = result.summary.final.shell_radius;
@@ -360,9 +367,6 @@ function classifyRunOutcome(result, minRecord, args) {
   const minRatio = minRecord.radius / initialRadius;
   const turnedAround = minRecord.t < result.summary.final.t && finalRadius / Math.max(minRecord.radius, 1e-12) >= args.turnaroundRatio;
 
-  if (args.softening > 0 && minRecord.radius <= args.softening) {
-    return "softening_floor";
-  }
   if (finalRatio <= args.captureRatio && Math.abs(result.summary.final.t - minRecord.t) <= result.config.dt * result.config.stride) {
     return "sustained_inward";
   }
@@ -389,9 +393,8 @@ function compareRuns(coarse, fine, coarseResult, fineResult, args, haltTimeToler
   const haltTimeDelta = coarse.halt_time !== null || fine.halt_time !== null
     ? Math.abs((coarse.halt_time ?? coarse.final_time) - (fine.halt_time ?? fine.final_time))
     : 0;
-  const minRadiusSofteningZone = inSharedSofteningZone(coarse, fine, args);
   const finalRadiusStable = finalRadiusRelDelta <= args.radiusTolerance;
-  const minRadiusStable = minRadiusRelDelta <= args.radiusTolerance || minRadiusSofteningZone;
+  const minRadiusStable = minRadiusRelDelta <= args.radiusTolerance;
   const radiusStable = finalRadiusStable && minRadiusStable;
   const pathStable = path.path_rms_normalized <= args.pathTolerance;
   const haltStable = haltTimeDelta <= haltTimeTolerance;
@@ -415,20 +418,11 @@ function compareRuns(coarse, fine, coarseResult, fineResult, args, haltTimeToler
     same_outcome: sameOutcome,
     same_error_code: sameErrorCode,
     same_partner_root_failure_reasons: samePartnerFailureReasons,
-    min_radius_softening_zone: minRadiusSofteningZone,
     final_radius_relative_delta: finalRadiusRelDelta,
     min_radius_relative_delta: minRadiusRelDelta,
     halt_time_delta: haltTimeDelta,
     ...path,
   };
-}
-
-function inSharedSofteningZone(coarse, fine, args) {
-  return args.softening > 0 &&
-    coarse.outcome === "softening_floor" &&
-    fine.outcome === "softening_floor" &&
-    coarse.min_radius <= args.softening &&
-    fine.min_radius <= args.softening;
 }
 
 function classifyConvergence(runs, comparisons) {

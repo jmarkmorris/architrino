@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-06-06T17:34:52.304755+00:00",
+  "generated_at": "2026-06-06T17:43:05.292984+00:00",
   "root": "reference/outreach/childrens-books",
   "total_source_images": 22,
   "generation_order": [
@@ -761,7 +761,7 @@
       "lesson": "Back-matter activity image.",
       "geometry": "Use the geometry already introduced in the story at activity scale.",
       "background_concepts": "Adult/teacher support image; keep it text-free.",
-      "prompt": "Back-matter activity source image for Roll, Turn, Again. Show one clean, text-free activity scene for: Electra and Poz sit by a simple continuous purple floor route: a flat start, one low rounded hill, and one shallow saucer-like dip, all aligned so a ball could roll across the same path. Do not make a raised slide, trough, spoon, bowl, chute, bridge, or separate toy object. A grown-up hand may be visible only as a small supporting hand placing the red ball at the flat start, but the hand must not cover the ball or become the main subject. The red and blue balls are both visible for repeating and comparing.. Approved children's-book exemplar style, natural human skin and hair, informal play, white page space, black expressive linework, white/purple scenery and tools, and red/blue/purple AAA geometry only where it teaches the activity. No in-image text, captions, labels, equations, watermark, or logo.",
+      "prompt": "Back-matter activity source image for Roll, Turn, Again. Show one clean, text-free activity scene for: Electra and Poz sit by a simple continuous purple floor-contour route: a flat start, one low rounded hill, and one shallow open dip, all aligned so a ball could roll across the same path after a gentle push. The route is a floor feature, not a separate prop. Do not make a raised slide, trough, spoon, bowl, chute, bridge, track toy, or disconnected object. A grown-up hand may be visible only as a small supporting hand placing the red ball at the flat start, but the hand must not cover the ball or become the main subject. The red and blue balls are both visible for repeating and comparing.. Approved children's-book exemplar style, natural human skin and hair, informal play, white page space, black expressive linework, white/purple scenery and tools, and red/blue/purple AAA geometry only where it teaches the activity. No in-image text, captions, labels, equations, watermark, or logo.",
       "palette_rule": "Use only pure red, pure blue, red-blue purples, white, and black for non-human visual systems and AAA geometry. Keep scenery, clothing, and tools in white/purple/black unless a red or blue mark is explicitly part of the physics geometry. Human skin and hair may use natural tones.",
       "text_rule": "No in-image text, captions, labels, equations, watermark, or logo.",
       "aspect": "landscape_3x2_source",

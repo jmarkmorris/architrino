@@ -222,6 +222,9 @@ export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SIGNED_RADIUS_SO
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_CERTIFICATE_ATTEMPT_CANDIDATE_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-signed-radius-source-provenance-certificate-attempt-candidate/v1";
 
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_EMITTER_IDENTITY_ATTEMPT_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-signed-radius-source-provenance-emitter-identity-attempt-candidate/v1";
+
 const H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS = Object.freeze([
   "delta_squared_speed",
   "sin_phi",
@@ -71417,6 +71420,653 @@ export function validateH39RequestedY44SignedRadiusSourceProvenanceCertificateAt
     !validClaimBoundary(artifact?.claim_boundary)
   ) {
     errors.push("signed-radius source-provenance certificate attempt must keep broad closure claims open");
+  }
+  return errors;
+}
+
+export function buildH39RequestedY44SignedRadiusSourceProvenanceEmitterIdentityAttemptCandidate({
+  sourceTermProducerImagePrimitiveAudit,
+  sourceTermTransportFit,
+  signedRadiusSourceProvenanceCertificateAttempt,
+} = {}) {
+  const emitterIdentityCheckKinds = [
+    "source_term_producer_image_primitive_audit_verified",
+    "source_term_transport_fit_verified",
+    "signed_radius_certificate_attempt_verified",
+    "primitive_residual_sum_rows_available",
+    "certificate_attempt_rows_available",
+    "homothetic_transport_rows_available",
+    "certificate_interval_is_proper_subinterval_of_primitive_sum",
+    "homothetic_transport_interval_matches_certificate_interval",
+    "direct_primitive_sum_identity_fails",
+    "subinterval_contraction_gap_quantified",
+    "emitter_required_fields_still_missing",
+    "no_emitter_claim_present",
+  ];
+  const primitiveRows =
+    sourceTermProducerImagePrimitiveAudit
+      ?.source_term_producer_image_primitive_rows ?? [];
+  const transportRows =
+    sourceTermTransportFit?.centered_homothetic_transport_bridge_rows ?? [];
+  const certificateRows =
+    signedRadiusSourceProvenanceCertificateAttempt
+      ?.signed_radius_source_provenance_certificate_attempt_rows ?? [];
+  const primitiveRowsByNode = new Map(
+    primitiveRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const transportRowsByNode = new Map(
+    transportRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const intervalWidth = (interval) =>
+    Array.isArray(interval) && interval.length === 2
+      ? Number(interval[1]) - Number(interval[0])
+      : null;
+  const intervalMidpoint = (interval) =>
+    Array.isArray(interval) && interval.length === 2
+      ? (Number(interval[0]) + Number(interval[1])) / 2
+      : null;
+  const intervalHalfWidth = (interval) => {
+    const width = intervalWidth(interval);
+    return Number.isFinite(width) ? width / 2 : null;
+  };
+  const primitiveAuditVerified =
+    sourceTermProducerImagePrimitiveAudit?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PROVENANCE_PRIMITIVE_AUDIT_CANDIDATE_SCHEMA &&
+    sourceTermProducerImagePrimitiveAudit
+      ?.source_term_producer_image_provenance_primitive_audit_verified ===
+      true &&
+    sourceTermProducerImagePrimitiveAudit
+      ?.source_term_producer_image_provenance_certified_directed_rounded ===
+      false;
+  const sourceTermTransportFitVerified =
+    sourceTermTransportFit?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_TRANSPORT_FIT_CANDIDATE_SCHEMA &&
+    sourceTermTransportFit?.source_term_transport_fit_attempt_verified ===
+      true &&
+    sourceTermTransportFit
+      ?.centered_homothetic_source_term_transport_surface_verified === true &&
+    sourceTermTransportFit
+      ?.centered_homothetic_transport_reduces_to_signed_radius_source_provenance ===
+      true &&
+    sourceTermTransportFit?.source_term_transport_fit_certified_directed_rounded ===
+      false;
+  const certificateAttemptVerified =
+    signedRadiusSourceProvenanceCertificateAttempt?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_CERTIFICATE_ATTEMPT_CANDIDATE_SCHEMA &&
+    signedRadiusSourceProvenanceCertificateAttempt
+      ?.signed_radius_source_provenance_certificate_attempt_verified ===
+      true &&
+    signedRadiusSourceProvenanceCertificateAttempt
+      ?.signed_radius_source_provenance_certificate_certified_directed_rounded ===
+      false;
+  const rows = certificateRows.map((certificateRow) => {
+    const nodeIndex = Number(certificateRow?.node_index);
+    const primitiveRow = primitiveRowsByNode.get(nodeIndex) ?? null;
+    const transportRow = transportRowsByNode.get(nodeIndex) ?? null;
+    const primitiveResidualSumInterval = finiteOrderedIntervalOrNull(
+      primitiveRow?.replayed_source_term_residual_sum_interval ??
+        primitiveRow?.signed_residual_interval
+    );
+    const certificateSignedInterval = finiteOrderedIntervalOrNull(
+      certificateRow?.certificate_attempt_signed_source_provenance_interval
+    );
+    const certificateWeightedInterval = finiteOrderedIntervalOrNull(
+      certificateRow?.certificate_attempt_weighted_source_provenance_interval
+    );
+    const transportSignedInterval = finiteOrderedIntervalOrNull(
+      transportRow?.directed_rounded_signed_residual_interval
+    );
+    const transportWeightedInterval = finiteOrderedIntervalOrNull(
+      transportRow?.directed_rounded_weighted_residual_interval
+    );
+    const primitiveMidpoint = intervalMidpoint(primitiveResidualSumInterval);
+    const certificateMidpoint = intervalMidpoint(certificateSignedInterval);
+    const primitiveHalfWidth = intervalHalfWidth(primitiveResidualSumInterval);
+    const certificateHalfWidth = intervalHalfWidth(certificateSignedInterval);
+    const directIdentityHolds =
+      primitiveResidualSumInterval !== null &&
+      certificateSignedInterval !== null &&
+      h39RequestedY44SameInterval(
+        primitiveResidualSumInterval,
+        certificateSignedInterval
+      );
+    const certificateInsidePrimitive =
+      primitiveResidualSumInterval !== null &&
+      certificateSignedInterval !== null &&
+      intervalContainsInterval(
+        primitiveResidualSumInterval,
+        certificateSignedInterval
+      );
+    const properSubinterval =
+      certificateInsidePrimitive && directIdentityHolds === false;
+    const endpointGap =
+      primitiveResidualSumInterval !== null && certificateSignedInterval !== null
+        ? intervalEndpointRelativeGap(
+            primitiveResidualSumInterval,
+            certificateSignedInterval
+          )
+        : null;
+    const midpointAbsGap =
+      Number.isFinite(primitiveMidpoint) && Number.isFinite(certificateMidpoint)
+        ? Math.abs(primitiveMidpoint - certificateMidpoint)
+        : null;
+    const certificateToPrimitiveHalfWidthRatio =
+      finitePositive(primitiveHalfWidth) && finiteNonnegative(certificateHalfWidth)
+        ? Number(certificateHalfWidth) / Number(primitiveHalfWidth)
+        : null;
+    const primitiveToCertificateHalfWidthRatio =
+      finitePositive(certificateHalfWidth) && finiteNonnegative(primitiveHalfWidth)
+        ? Number(primitiveHalfWidth) / Number(certificateHalfWidth)
+        : null;
+    const transportMatchesCertificate =
+      certificateSignedInterval !== null &&
+      transportSignedInterval !== null &&
+      h39RequestedY44SameInterval(
+        certificateSignedInterval,
+        transportSignedInterval
+      );
+    const weightedTransportMatchesCertificate =
+      certificateWeightedInterval !== null &&
+      transportWeightedInterval !== null &&
+      h39RequestedY44SameInterval(
+        certificateWeightedInterval,
+        transportWeightedInterval
+      );
+    const missingEmitterFields =
+      certificateRow?.source_provenance_certificate_missing_fields ?? [];
+    const rowChecks = {
+      primitive_residual_sum_available:
+        primitiveResidualSumInterval !== null &&
+        primitiveRow?.row_audit_verifies_primitive_gap === true,
+      certificate_attempt_row_available:
+        certificateSignedInterval !== null &&
+        certificateWeightedInterval !== null &&
+        certificateRow?.row_replays_signed_radius_certificate_attempt_boundary ===
+          true,
+      homothetic_transport_row_available:
+        transportSignedInterval !== null &&
+        transportWeightedInterval !== null &&
+        transportRow?.row_reduces_term_width_to_signed_radius_source_provenance ===
+          true,
+      certificate_interval_is_proper_subinterval_of_primitive_sum:
+        properSubinterval,
+      homothetic_transport_signed_interval_matches_certificate_interval:
+        transportMatchesCertificate,
+      homothetic_transport_weighted_interval_matches_certificate_interval:
+        weightedTransportMatchesCertificate,
+      direct_primitive_sum_identity_fails:
+        directIdentityHolds === false &&
+        finiteNonnegative(endpointGap) &&
+        Number(endpointGap) > 0,
+      subinterval_contraction_gap_quantified:
+        finiteNonnegative(endpointGap) &&
+        Number(endpointGap) > 0 &&
+        finiteNonnegative(midpointAbsGap) &&
+        finitePositive(certificateToPrimitiveHalfWidthRatio) &&
+        Number(certificateToPrimitiveHalfWidthRatio) < 1 &&
+        finitePositive(primitiveToCertificateHalfWidthRatio) &&
+        Number(primitiveToCertificateHalfWidthRatio) > 1,
+      emitter_required_fields_still_missing:
+        Array.isArray(missingEmitterFields) &&
+        missingEmitterFields.length ===
+          H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_CERTIFICATE_EMITTER_REQUIRED_FIELDS.length,
+      no_emitter_claim_present:
+        primitiveRow?.row_certifies_source_term_producer_image_primitive ===
+          false &&
+        transportRow?.claim_boundary
+          ?.certifies_source_inputs_as_directed_rounded_same_domain === false &&
+        certificateRow?.row_certifies_signed_radius_source_provenance === false,
+    };
+    const rowVerified = Object.values(rowChecks).every(
+      (value) => value === true
+    );
+    return {
+      node_index: Number.isInteger(nodeIndex) ? nodeIndex : null,
+      xi_midpoint: certificateRow?.xi_midpoint ?? null,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      source_provenance_emitter_identity_attempt_row_kind:
+        "signed-radius-source-provenance-emitter-identity-attempt-row",
+      provider_row_source_kind:
+        certificateRow?.provider_row_source_kind ?? null,
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      zero_source_terms: [...H38_SOURCE_TERM_ZERO_KEYS],
+      primitive_residual_sum_interval: primitiveResidualSumInterval,
+      signed_radius_certificate_interval: certificateSignedInterval,
+      weighted_signed_radius_certificate_interval:
+        certificateWeightedInterval,
+      homothetic_transport_signed_interval: transportSignedInterval,
+      homothetic_transport_weighted_interval: transportWeightedInterval,
+      primitive_residual_sum_midpoint: primitiveMidpoint,
+      signed_radius_certificate_midpoint: certificateMidpoint,
+      primitive_residual_sum_half_width: primitiveHalfWidth,
+      signed_radius_certificate_half_width: certificateHalfWidth,
+      primitive_to_certificate_endpoint_relative_gap: endpointGap,
+      primitive_to_certificate_midpoint_abs_gap: midpointAbsGap,
+      certificate_to_primitive_half_width_ratio:
+        certificateToPrimitiveHalfWidthRatio,
+      primitive_to_certificate_half_width_ratio:
+        primitiveToCertificateHalfWidthRatio,
+      primitive_residual_sum_contains_certificate_interval:
+        certificateInsidePrimitive,
+      certificate_interval_is_proper_subinterval_of_primitive_sum:
+        properSubinterval,
+      direct_primitive_sum_identity_holds: directIdentityHolds,
+      homothetic_transport_interval_matches_certificate_interval:
+        transportMatchesCertificate,
+      weighted_homothetic_transport_interval_matches_certificate_interval:
+        weightedTransportMatchesCertificate,
+      source_provenance_emitter_required_fields: [
+        ...H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_CERTIFICATE_EMITTER_REQUIRED_FIELDS,
+      ],
+      source_provenance_emitter_missing_fields: [...missingEmitterFields],
+      source_provenance_emitter_fields_present:
+        missingEmitterFields.length === 0,
+      identity_mismatch_kind:
+        directIdentityHolds === true
+          ? null
+          : "primitive-residual-sum-is-wider-than-signed-radius-certificate-interval",
+      row_check_kinds: Object.keys(rowChecks),
+      row_checks: rowChecks,
+      row_reduces_emitter_identity_to_subinterval_primitive:
+        rowVerified,
+      row_materializes_source_provenance_emitter: false,
+      row_status: rowVerified
+        ? "signed-radius-emitter-identity-reduces-to-subinterval-emitter-primitive-open"
+        : "signed-radius-source-provenance-emitter-identity-attempt-row-open",
+      claim_boundary: {
+        defines_signed_radius_source_provenance_emitter_identity_attempt_only:
+          true,
+        certifies_signed_radius_source_provenance: false,
+        certifies_source_inputs_as_directed_rounded_same_domain: false,
+        certifies_expression_level_n38_provider: false,
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_terminal_row_provider_enclosure: false,
+        certifies_terminal_graph_remainder_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  });
+  const allPrimitiveRowsAvailable =
+    rows.length === 5 &&
+    rows.every((row) => row.row_checks.primitive_residual_sum_available === true);
+  const allCertificateRowsAvailable =
+    rows.length === 5 &&
+    rows.every((row) => row.row_checks.certificate_attempt_row_available === true);
+  const allHomotheticRowsAvailable =
+    rows.length === 5 &&
+    rows.every((row) => row.row_checks.homothetic_transport_row_available === true);
+  const allCertificateIntervalsProperSubintervals =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.certificate_interval_is_proper_subinterval_of_primitive_sum === true
+    );
+  const allHomotheticIntervalsMatchCertificate =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.homothetic_transport_interval_matches_certificate_interval ===
+          true &&
+        row
+          .weighted_homothetic_transport_interval_matches_certificate_interval ===
+          true
+    );
+  const allDirectPrimitiveIdentitiesFail =
+    rows.length === 5 &&
+    rows.every((row) => row.direct_primitive_sum_identity_holds === false);
+  const allSubintervalContractionGapsQuantified =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        finiteNonnegative(
+          row.primitive_to_certificate_endpoint_relative_gap
+        ) &&
+        Number(row.primitive_to_certificate_endpoint_relative_gap) > 0 &&
+        finitePositive(row.certificate_to_primitive_half_width_ratio) &&
+        Number(row.certificate_to_primitive_half_width_ratio) < 1 &&
+        finitePositive(row.primitive_to_certificate_half_width_ratio) &&
+        Number(row.primitive_to_certificate_half_width_ratio) > 1
+    );
+  const allEmitterFieldsStillMissing =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.source_provenance_emitter_fields_present === false &&
+        row.source_provenance_emitter_missing_fields.length ===
+          H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_CERTIFICATE_EMITTER_REQUIRED_FIELDS.length
+    );
+  const noEmitterClaimPresent =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.row_materializes_source_provenance_emitter === false &&
+        row.row_checks.no_emitter_claim_present === true
+    );
+  const emitterIdentityChecks = {
+    source_term_producer_image_primitive_audit_verified:
+      primitiveAuditVerified,
+    source_term_transport_fit_verified: sourceTermTransportFitVerified,
+    signed_radius_certificate_attempt_verified: certificateAttemptVerified,
+    primitive_residual_sum_rows_available: allPrimitiveRowsAvailable,
+    certificate_attempt_rows_available: allCertificateRowsAvailable,
+    homothetic_transport_rows_available: allHomotheticRowsAvailable,
+    certificate_interval_is_proper_subinterval_of_primitive_sum:
+      allCertificateIntervalsProperSubintervals,
+    homothetic_transport_interval_matches_certificate_interval:
+      allHomotheticIntervalsMatchCertificate,
+    direct_primitive_sum_identity_fails: allDirectPrimitiveIdentitiesFail,
+    subinterval_contraction_gap_quantified:
+      allSubintervalContractionGapsQuantified,
+    emitter_required_fields_still_missing: allEmitterFieldsStillMissing,
+    no_emitter_claim_present: noEmitterClaimPresent,
+  };
+  const emitterIdentityAttemptVerified =
+    Object.values(emitterIdentityChecks).every((value) => value === true) &&
+    rows.every(
+      (row) =>
+        row.row_status ===
+        "signed-radius-emitter-identity-reduces-to-subinterval-emitter-primitive-open"
+    );
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_EMITTER_IDENTITY_ATTEMPT_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-signed-radius-source-provenance-emitter-identity-attempt-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-signed-radius-source-provenance-emitter-identity-attempt",
+    target_kind:
+      "candidate-requested-y44-signed-radius-source-provenance-emitter-identity-attempt",
+    source_term_producer_image_primitive_audit_schema:
+      sourceTermProducerImagePrimitiveAudit?.schema ?? null,
+    source_term_transport_fit_schema: sourceTermTransportFit?.schema ?? null,
+    signed_radius_source_provenance_certificate_attempt_schema:
+      signedRadiusSourceProvenanceCertificateAttempt?.schema ?? null,
+    proof_status: emitterIdentityAttemptVerified
+      ? "candidate-signed-radius-emitter-identity-reduced-to-subinterval-emitter-primitive-open"
+      : "candidate-signed-radius-source-provenance-emitter-identity-attempt-open",
+    emitter_identity_attempt_kind:
+      "primitive-residual-sum-to-signed-radius-source-provenance-emitter-identity-attempt",
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    source_terms_preserved_signed_together: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    zero_source_terms: [...H38_SOURCE_TERM_ZERO_KEYS],
+    source_provenance_emitter_identity_check_kinds: [
+      ...emitterIdentityCheckKinds,
+    ],
+    source_provenance_emitter_identity_checks: emitterIdentityChecks,
+    source_provenance_emitter_identity_attempt_verified:
+      emitterIdentityAttemptVerified,
+    source_provenance_emitter_identity_attempt_available:
+      emitterIdentityAttemptVerified,
+    source_provenance_emitter_materialized: false,
+    source_provenance_emitter_certified_directed_rounded: false,
+    source_provenance_emitter_identity_direct_interval_equality: false,
+    source_provenance_emitter_identity_row_count: rows.length,
+    source_provenance_emitter_identity_attempt_rows: rows,
+    all_certificate_intervals_are_proper_subintervals_of_primitive_sums:
+      allCertificateIntervalsProperSubintervals,
+    all_homothetic_transport_intervals_match_certificate_intervals:
+      allHomotheticIntervalsMatchCertificate,
+    all_direct_primitive_sum_identities_fail:
+      allDirectPrimitiveIdentitiesFail,
+    all_subinterval_contraction_gaps_quantified:
+      allSubintervalContractionGapsQuantified,
+    all_emitter_required_fields_still_missing:
+      allEmitterFieldsStillMissing,
+    source_provenance_emitter_identity_classification:
+      emitterIdentityAttemptVerified
+        ? "primitive-residual-sum-to-signed-radius-envelope-reduces-to-subinterval-emitter-primitive-open"
+        : "signed-radius-source-provenance-emitter-identity-attempt-open",
+    source_provenance_emitter_identity_blocker_classification:
+      emitterIdentityAttemptVerified
+        ? "directed-rounded-subinterval-emitter-primitive-absent-after-primitive-sum-identity-attempt"
+        : "signed-radius-source-provenance-emitter-identity-attempt-open",
+    source_provenance_emitter_identity_primary_missing_object_kind:
+      "directed-rounded-same-domain-signed-radius-subinterval-emitter-primitive",
+    next_certificate_object:
+      "directed-rounded same-domain subinterval emitter primitive mapping the primitive expression-level N38 residual-sum interval to the accepted signed-radius envelope interval with outward-rounding provenance",
+    candidate_certificate_route:
+      "The primitive source-term residual sum contains the accepted signed-radius certificate interval on every node, and the centered homothetic transport bridge matches that signed-radius interval. A direct emitter identity from the primitive residual sum to the signed-radius certificate interval fails: the certificate interval is a proper subinterval with a nonzero endpoint gap and a strict half-width contraction. The next mathematical object is therefore not another boundary replay; it is a directed-rounded same-domain subinterval emitter primitive carrying the contraction/outward-rounding provenance.",
+    claim_boundary: {
+      defines_signed_radius_source_provenance_emitter_identity_attempt_only:
+        true,
+      certifies_signed_radius_source_provenance: false,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_expression_level_n38_provider: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_terminal_row_provider_enclosure: false,
+      certifies_terminal_graph_remainder_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+export function validateH39RequestedY44SignedRadiusSourceProvenanceEmitterIdentityAttemptCandidate(
+  artifact
+) {
+  const errors = [];
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const sameZeroTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H38_SOURCE_TERM_ZERO_KEYS.length &&
+    H38_SOURCE_TERM_ZERO_KEYS.every((term, index) => terms[index] === term);
+  const sameStringSet = (left, right) =>
+    Array.isArray(left) &&
+    left.length === right.length &&
+    right.every((value) => left.includes(value));
+  const hasOrderedFiniteInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    Number.isFinite(Number(interval[0])) &&
+    Number.isFinite(Number(interval[1])) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const validClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_signed_radius_source_provenance_emitter_identity_attempt_only ===
+      true &&
+    claimBoundary?.certifies_signed_radius_source_provenance === false &&
+    claimBoundary?.certifies_source_inputs_as_directed_rounded_same_domain ===
+      false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_n38_fourth_derivative_bound === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const expectedCheckKinds = [
+    "source_term_producer_image_primitive_audit_verified",
+    "source_term_transport_fit_verified",
+    "signed_radius_certificate_attempt_verified",
+    "primitive_residual_sum_rows_available",
+    "certificate_attempt_rows_available",
+    "homothetic_transport_rows_available",
+    "certificate_interval_is_proper_subinterval_of_primitive_sum",
+    "homothetic_transport_interval_matches_certificate_interval",
+    "direct_primitive_sum_identity_fails",
+    "subinterval_contraction_gap_quantified",
+    "emitter_required_fields_still_missing",
+    "no_emitter_claim_present",
+  ];
+  const expectedRowCheckKinds = [
+    "primitive_residual_sum_available",
+    "certificate_attempt_row_available",
+    "homothetic_transport_row_available",
+    "certificate_interval_is_proper_subinterval_of_primitive_sum",
+    "homothetic_transport_signed_interval_matches_certificate_interval",
+    "homothetic_transport_weighted_interval_matches_certificate_interval",
+    "direct_primitive_sum_identity_fails",
+    "subinterval_contraction_gap_quantified",
+    "emitter_required_fields_still_missing",
+    "no_emitter_claim_present",
+  ];
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_EMITTER_IDENTITY_ATTEMPT_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 requested-y44 signed-radius source-provenance emitter identity attempt candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-signed-radius-source-provenance-emitter-identity-attempt-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-signed-radius-source-provenance-emitter-identity-attempt" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-signed-radius-source-provenance-emitter-identity-attempt" ||
+    artifact?.source_term_producer_image_primitive_audit_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PROVENANCE_PRIMITIVE_AUDIT_CANDIDATE_SCHEMA ||
+    artifact?.source_term_transport_fit_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_TRANSPORT_FIT_CANDIDATE_SCHEMA ||
+    artifact?.signed_radius_source_provenance_certificate_attempt_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_CERTIFICATE_ATTEMPT_CANDIDATE_SCHEMA ||
+    artifact?.proof_status !==
+      "candidate-signed-radius-emitter-identity-reduced-to-subinterval-emitter-primitive-open" ||
+    artifact?.emitter_identity_attempt_kind !==
+      "primitive-residual-sum-to-signed-radius-source-provenance-emitter-identity-attempt" ||
+    artifact?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    !sameTerms(artifact?.source_terms_preserved_signed_together) ||
+    !sameZeroTerms(artifact?.zero_source_terms) ||
+    !sameStringSet(
+      artifact?.source_provenance_emitter_identity_check_kinds,
+      expectedCheckKinds
+    )
+  ) {
+    errors.push("signed-radius source-provenance emitter identity metadata must identify the primitive-sum attempt");
+  }
+  if (
+    expectedCheckKinds.some(
+      (kind) =>
+        artifact?.source_provenance_emitter_identity_checks?.[kind] !== true
+    ) ||
+    artifact?.source_provenance_emitter_identity_attempt_verified !== true ||
+    artifact?.source_provenance_emitter_identity_attempt_available !== true ||
+    artifact?.source_provenance_emitter_materialized !== false ||
+    artifact?.source_provenance_emitter_certified_directed_rounded !== false ||
+    artifact?.source_provenance_emitter_identity_direct_interval_equality !==
+      false ||
+    artifact?.source_provenance_emitter_identity_row_count !== 5 ||
+    artifact
+      ?.all_certificate_intervals_are_proper_subintervals_of_primitive_sums !==
+      true ||
+    artifact
+      ?.all_homothetic_transport_intervals_match_certificate_intervals !==
+      true ||
+    artifact?.all_direct_primitive_sum_identities_fail !== true ||
+    artifact?.all_subinterval_contraction_gaps_quantified !== true ||
+    artifact?.all_emitter_required_fields_still_missing !== true ||
+    artifact?.source_provenance_emitter_identity_classification !==
+      "primitive-residual-sum-to-signed-radius-envelope-reduces-to-subinterval-emitter-primitive-open" ||
+    artifact?.source_provenance_emitter_identity_blocker_classification !==
+      "directed-rounded-subinterval-emitter-primitive-absent-after-primitive-sum-identity-attempt" ||
+    artifact?.source_provenance_emitter_identity_primary_missing_object_kind !==
+      "directed-rounded-same-domain-signed-radius-subinterval-emitter-primitive"
+  ) {
+    errors.push("signed-radius source-provenance emitter identity aggregate must reduce to a subinterval emitter primitive");
+  }
+  const rows = artifact?.source_provenance_emitter_identity_attempt_rows ?? [];
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== 5 ||
+    !rows.every(
+      (row, index) =>
+        row?.node_index === index &&
+        Number.isFinite(Number(row?.xi_midpoint)) &&
+        row?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+        row?.required_xi_derivative_order === 4 &&
+        row?.source_provenance_emitter_identity_attempt_row_kind ===
+          "signed-radius-source-provenance-emitter-identity-attempt-row" &&
+        row?.provider_row_source_kind ===
+          "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+        sameTerms(row?.source_terms_preserved_signed_together) &&
+        sameZeroTerms(row?.zero_source_terms) &&
+        hasOrderedFiniteInterval(row?.primitive_residual_sum_interval) &&
+        hasOrderedFiniteInterval(row?.signed_radius_certificate_interval) &&
+        hasOrderedFiniteInterval(
+          row?.weighted_signed_radius_certificate_interval
+        ) &&
+        hasOrderedFiniteInterval(row?.homothetic_transport_signed_interval) &&
+        hasOrderedFiniteInterval(row?.homothetic_transport_weighted_interval) &&
+        Number.isFinite(Number(row?.primitive_residual_sum_midpoint)) &&
+        Number.isFinite(Number(row?.signed_radius_certificate_midpoint)) &&
+        finitePositive(row?.primitive_residual_sum_half_width) &&
+        finitePositive(row?.signed_radius_certificate_half_width) &&
+        finiteNonnegative(
+          row?.primitive_to_certificate_endpoint_relative_gap
+        ) &&
+        Number(row.primitive_to_certificate_endpoint_relative_gap) > 0 &&
+        finiteNonnegative(row?.primitive_to_certificate_midpoint_abs_gap) &&
+        finitePositive(row?.certificate_to_primitive_half_width_ratio) &&
+        Number(row.certificate_to_primitive_half_width_ratio) < 1 &&
+        finitePositive(row?.primitive_to_certificate_half_width_ratio) &&
+        Number(row.primitive_to_certificate_half_width_ratio) > 1 &&
+        row?.primitive_residual_sum_contains_certificate_interval === true &&
+        row
+          ?.certificate_interval_is_proper_subinterval_of_primitive_sum ===
+          true &&
+        row?.direct_primitive_sum_identity_holds === false &&
+        row
+          ?.homothetic_transport_interval_matches_certificate_interval ===
+          true &&
+        row
+          ?.weighted_homothetic_transport_interval_matches_certificate_interval ===
+          true &&
+        sameStringSet(
+          row?.source_provenance_emitter_required_fields,
+          H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_CERTIFICATE_EMITTER_REQUIRED_FIELDS
+        ) &&
+        sameStringSet(
+          row?.source_provenance_emitter_missing_fields,
+          H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_CERTIFICATE_EMITTER_REQUIRED_FIELDS
+        ) &&
+        row?.source_provenance_emitter_fields_present === false &&
+        row?.identity_mismatch_kind ===
+          "primitive-residual-sum-is-wider-than-signed-radius-certificate-interval" &&
+        sameStringSet(row?.row_check_kinds, expectedRowCheckKinds) &&
+        expectedRowCheckKinds.every(
+          (kind) => row?.row_checks?.[kind] === true
+        ) &&
+        row?.row_reduces_emitter_identity_to_subinterval_primitive === true &&
+        row?.row_materializes_source_provenance_emitter === false &&
+        row?.row_status ===
+          "signed-radius-emitter-identity-reduces-to-subinterval-emitter-primitive-open"
+    )
+  ) {
+    errors.push("signed-radius source-provenance emitter identity rows must expose the primitive-sum subinterval gap");
+  } else {
+    rows.forEach((row, index) => {
+      if (!validClaimBoundary(row?.claim_boundary)) {
+        errors.push(`signed-radius source-provenance emitter identity row ${index} must keep broad closure flags open`);
+      }
+    });
+  }
+  if (
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string" ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("signed-radius source-provenance emitter identity attempt must keep broad closure claims open");
   }
   return errors;
 }

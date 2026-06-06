@@ -11,10 +11,10 @@ const BASIN_DEFAULTS = {
   steps: 5000,
   dt: 0.01,
   stride: 25,
-  softening: DEFAULTS.softening,
-  softeningRadius: 0.16,
+  closePassRadius: 0.16,
   jacobianFloor: DEFAULTS.jacobianFloor,
   maxAcceleration: DEFAULTS.maxAcceleration,
+  singularityTolerance: DEFAULTS.singularityTolerance,
   memoryDepth: DEFAULTS.memoryDepth,
   historyMode: DEFAULTS.historyMode,
   historyMargin: DEFAULTS.historyMargin,
@@ -33,13 +33,14 @@ const BASIN_DEFAULTS = {
 };
 
 const CLASS_COLORS = {
-  softening_floor: "#7f1d1d",
+  close_pass: "#7f1d1d",
   sustained_inward: "#0f766e",
   inward_turnaround: "#ca8a04",
   near_circular: "#64748b",
   spin_out: "#c2410c",
   weak_change: "#7c3aed",
   root_unresolved_halt: "#111827",
+  singular_causal_root_halt: "#be123c",
 };
 
 function parseArgs(argv) {
@@ -48,10 +49,10 @@ function parseArgs(argv) {
     "steps",
     "dt",
     "stride",
-    "softening",
-    "softeningRadius",
+    "closePassRadius",
     "jacobianFloor",
     "maxAcceleration",
+    "singularityTolerance",
     "memoryDepth",
     "historyMargin",
     "historySafetyFactor",
@@ -91,7 +92,7 @@ function parseArgs(argv) {
   if (args.dt <= 0) {
     throw new Error("--dt must be positive.");
   }
-  for (const key of ["softeningRadius", "softening", "captureRatio", "inwardRatio", "escapeRatio", "turnaroundRatio"]) {
+  for (const key of ["closePassRadius", "singularityTolerance", "captureRatio", "inwardRatio", "escapeRatio", "turnaroundRatio"]) {
     if (args[key] < 0) {
       throw new Error(`--${kebabCase(key)} must be nonnegative.`);
     }
@@ -125,10 +126,10 @@ function optionKey(key) {
     pretty: "pretty",
     radialspeeds: "radialSpeeds",
     tangentialspeeds: "tangentialSpeeds",
-    softening: "softening",
-    softeningradius: "softeningRadius",
+    closepassradius: "closePassRadius",
     jacobianfloor: "jacobianFloor",
     maxacceleration: "maxAcceleration",
+    singularitytolerance: "singularityTolerance",
     memorydepth: "memoryDepth",
     historymode: "historyMode",
     historymargin: "historyMargin",
@@ -221,10 +222,10 @@ Options:
   --steps N                  Steps per run. Default: ${BASIN_DEFAULTS.steps}
   --dt X                     Absolute-time step. Default: ${BASIN_DEFAULTS.dt}
   --stride N                 Stored-frame stride. Default: ${BASIN_DEFAULTS.stride}
-  --softening X              Distance softening eta passed to each run. Use 0 to disable. Default: ${BASIN_DEFAULTS.softening}
-  --softening-radius X       Close-approach classifier threshold. Use 0 to disable. Default: ${BASIN_DEFAULTS.softeningRadius}
+  --close-pass-radius X      Close-approach classifier threshold. Use 0 to disable. Default: ${BASIN_DEFAULTS.closePassRadius}
   --jacobian-floor X         Minimum |J| in hit weight; keep tiny positive unless handling caustics. Default: ${BASIN_DEFAULTS.jacobianFloor}
   --max-acceleration X       Per-particle acceleration cap. Default: ${BASIN_DEFAULTS.maxAcceleration}
+  --singularity-tolerance X  Halt each run when a causal-root distance is at or below this arithmetic singularity tolerance. Default: ${BASIN_DEFAULTS.singularityTolerance}
   --memory-depth X           Initial prehistory depth; fixed-mode buffer depth. Default: ${BASIN_DEFAULTS.memoryDepth}
   --history-mode X           Retained causal history: deep, adaptive, fixed. Default: ${BASIN_DEFAULTS.historyMode}
   --history-margin X         Extra seconds retained beyond adaptive causal-delay estimate. Default: ${BASIN_DEFAULTS.historyMargin}
@@ -292,15 +293,21 @@ function fitLogSpiral(points) {
 
 function classifyRun(metrics, args) {
   if (metrics.error_code) {
-    return "root_unresolved_halt";
+    if (metrics.error_code === "UNRESOLVED_CAUSAL_ROOT") {
+      return "root_unresolved_halt";
+    }
+    if (metrics.error_code === "SINGULAR_CAUSAL_ROOT") {
+      return "singular_causal_root_halt";
+    }
+    return "halted";
   }
   const finalRatio = metrics.final_radius / metrics.initial_radius;
   const minRatio = metrics.min_radius / metrics.initial_radius;
   const turnedAround = metrics.min_index < metrics.frame_count - 1 &&
     metrics.final_radius / metrics.min_radius >= args.turnaroundRatio;
 
-  if (args.softeningRadius > 0 && metrics.min_radius <= args.softeningRadius) {
-    return "softening_floor";
+  if (args.closePassRadius > 0 && metrics.min_radius <= args.closePassRadius) {
+    return "close_pass";
   }
   if (finalRatio <= args.captureRatio && metrics.min_index >= metrics.frame_count - 3) {
     return "sustained_inward";
@@ -397,9 +404,9 @@ function runBasinMap(args) {
           driftX: 0,
           driftY: 0,
           shellK: 0,
-          softening: args.softening,
           jacobianFloor: args.jacobianFloor,
           maxAcceleration: args.maxAcceleration,
+          singularityTolerance: args.singularityTolerance,
           memoryDepth: args.memoryDepth,
           historyMode: args.historyMode,
           historyMargin: args.historyMargin,
@@ -445,10 +452,10 @@ function runBasinMap(args) {
       steps: args.steps,
       dt: args.dt,
       stride: args.stride,
-      softeningRadius: args.softeningRadius,
-      softening: args.softening,
+      closePassRadius: args.closePassRadius,
       jacobianFloor: args.jacobianFloor,
       maxAcceleration: args.maxAcceleration,
+      singularityTolerance: args.singularityTolerance,
       memoryDepth: args.memoryDepth,
       historyMode: args.historyMode,
       historyMargin: args.historyMargin,
