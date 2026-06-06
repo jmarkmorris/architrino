@@ -438,6 +438,56 @@ branch chart. The remaining blockers are
 `fixed_parameter_separator_aggregate_to_same_packet_fold_impulse_or_direct_quadrature_bound_acceptance_rule_absent`,
 `parent_complement_consumption_ref_absent`, and
 `higher_fold_separator_layer_certificate_absent`.
+The accepted atlas-ref source-certificate attempt,
+`higher_fold_layer_accepted_atlas_ref_source_certificate_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then certifies the atlas-source side without promoting it to an accepted atlas
+ref: 12 / 12 separator atlas source certificates and 112 / 112 row
+source-certificate associations are constructed from complete same-packet
+candidate atlas evidence, while 0 accepted `higher_fold_layer_atlas_ref` refs,
+0 `higher_fold_separator_layer_certificate` fields, and 0 row consumptions
+remain.
+The accepted atlas-ref derivation-bridge attempt,
+`higher_fold_layer_accepted_atlas_ref_derivation_bridge_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then sharpens that boundary: 12 / 12 separator atlas source certificates and
+112 / 112 row source-certificate associations are present, but 0 / 112
+accepted-atlas derivation bridges and 0 / 112 accepted
+`higher_fold_layer_atlas_ref` refs are present. It records
+`accepted_atlas_ref_source_certificate_to_accepted_field_derivation_bridge_absent`
+as the first bridge blocker and consumes 0 rows.
+The separator-certificate readiness frontier classifier,
+`higher_fold_layer_separator_certificate_readiness_frontier_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then consolidates the current fold-layer frontier: 112 / 112 complete child
+proof-grade refs, 112 / 112 atlas source-certificate row associations, 12 / 12
+separator aggregate triples, and 112 / 112 parent row-association anchors are
+present. It still records 0 accepted atlas refs, 0 source-packet acceptance
+rules, 0 accepted impulse/direct-quadrature source packets, 0
+`parent_complement_consumption_ref` fields, 0 separator certificates, 0 row
+consumption, `preledger_pass=false`, no live-ledger update, and no branch-chart
+authorization.
+The separator-certificate assembly dependency classifier,
+`higher_fold_layer_separator_certificate_assembly_dependency_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then combines that frontier with the accepted-atlas derivation-bridge attempt
+and impulse-bound source-packet acceptance dependency classifier. It records the
+assembly matrix after the frontier: 112 / 112 child proof-grade rows, atlas
+source-certificate rows, separator aggregate rows, and parent row-association
+anchors are ready, but 0 / 112 accepted-atlas derivation bridges, 0 / 112
+accepted `higher_fold_layer_atlas_ref` refs, 0 / 12 accepted
+impulse/direct-quadrature source packets, 0 / 112
+`parent_complement_consumption_ref` fields, and 0 / 112 separator certificates
+are present.
+The same-packet fixed-parameter aggregate accepted-constants conformance
+classifier,
+`higher_fold_layer_same_packet_fixed_parameter_aggregate_accepted_constants_conformance_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then tests the accepted constants artifact route before requesting a new
+source-packet acceptance rule. It confirms 12 / 12 higher-fold separator
+aggregate fields and 112 / 112 row enclosures are present, but the existing
+constants contract/fallback notes are scoped to
+`seed-doubled-four-arc-cosine-template-v0`,
+`preledger-separator-level-split-v1`, `Sigma_1` through `Sigma_4`, and 16 fold
+rows. The live packet is `fresh-v10-higher-fold-12-root-rebuild-v0`,
+`Sigma_hf_01` through `Sigma_hf_12`, and 112 fold-layer rows, so the accepted
+constants conformance count remains 0 and the source-packet acceptance blocker
+remains live.
 The nonlinear fold-coordinate collocation tangent-matrix screen,
 `gap_opening_fresh_v10_fold_coordinate_collocation_report.nonlinear-v0.md`,
 now packages the first executable collocation-surface test: 3 homogeneous

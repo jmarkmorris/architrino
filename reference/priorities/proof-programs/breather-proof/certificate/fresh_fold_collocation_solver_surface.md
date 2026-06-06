@@ -522,7 +522,36 @@ certificates with 0 source-certificate-ref-as-proof-ref reuse, inherits 112 /
 `fold_layer_parity_record` refs, and leaves 0 child proof-grade ref obligations
 after exit-floor derivation. It still constructs 0
 `higher_fold_separator_layer_certificate` fields and consumes 0 rows.
-All twenty-five classifier/attempt artifacts keep `preledger_pass=false`,
+The accepted atlas-ref source-certificate attempt then constructs 12 / 12
+separator atlas source certificates and 112 / 112 row source-certificate
+associations from complete same-packet candidate atlas evidence, but still
+constructs 0 accepted `higher_fold_layer_atlas_ref` refs. The accepted
+atlas-ref derivation-bridge attempt then keeps those 12 / 12 separator source
+certificates and 112 / 112 row source-certificate associations source-side
+only: 0 / 112 accepted-atlas derivation bridges and 0 / 112 accepted
+`higher_fold_layer_atlas_ref` refs are present, with 0 row consumption. The
+separator-certificate readiness frontier classifier then records the current
+frontier: 112 / 112 child proof-grade refs, 112 / 112 atlas source-certificate
+row associations, 12 / 12 separator aggregate triples, and 112 / 112 parent
+row-association anchors are present, while accepted atlas refs,
+source-packet acceptance rules, accepted impulse/direct-quadrature source
+packets, parent-complement consumption refs, and separator certificates remain
+0. The separator-certificate assembly dependency classifier then combines that
+frontier with the accepted-atlas derivation-bridge attempt and impulse-bound
+source-packet acceptance dependency classifier, recording the assembly matrix:
+112 / 112 child proof-grade rows, atlas source-certificate rows, separator
+aggregate rows, and parent row-association anchors are ready, but 0 / 112
+accepted-atlas derivation bridges, 0 / 112 accepted atlas refs, 0 / 12 accepted
+impulse/direct-quadrature source packets, 0 / 112 parent-complement consumption
+refs, and 0 / 112 separator certificates are present. The same-packet
+fixed-parameter aggregate accepted-constants conformance classifier then tests
+the accepted constants artifact route and fails closed on packet identity:
+12 / 12 separator aggregate fields and 112 / 112 row enclosures are present,
+but the existing constants contract/fallback notes are scoped to
+`seed-doubled-four-arc-cosine-template-v0`, `Sigma_1` through `Sigma_4`, and 16
+fold rows rather than this higher-fold packet, `Sigma_hf_01` through
+`Sigma_hf_12`, and 112 fold-layer rows.
+All thirty classifier/attempt artifacts keep `preledger_pass=false`,
 `updates_live_ledger=false`, row consumption 0, and no branch-chart
 authorization.
 

@@ -515,8 +515,25 @@ The next solver should therefore:
    proof-grade `exit_floor` refs from those source certificates with 0
    source-certificate-ref-as-proof-ref reuse, so all 112 / 112 fold-layer row
    associations now carry proof-grade `alpha_floor`, `exit_floor`, and
-   `fold_layer_parity_record` refs while the separator certificate remains
-   absent;
+   `fold_layer_parity_record` refs. The accepted atlas-ref source-certificate
+   attempt then constructs 12 / 12 separator atlas source certificates and
+   112 / 112 row source-certificate associations. The accepted atlas-ref
+   derivation-bridge attempt then records 0 / 112 accepted-atlas derivation
+   bridges and 0 / 112 accepted `higher_fold_layer_atlas_ref` refs, and the
+   separator-certificate readiness frontier classifier consolidates those
+   source-side facts with 12 / 12 separator aggregate triples and 112 / 112
+   parent row-association anchors. The separator-certificate assembly
+   dependency classifier then records the combined assembly matrix above that
+   frontier: 112 / 112 child proof-grade rows, atlas source-certificate rows,
+   separator aggregate rows, and parent row-association anchors are ready,
+   while accepted atlas refs, source-packet acceptance rules, accepted
+   impulse/direct-quadrature source packets, parent-complement consumption
+   refs, and the separator certificate remain absent. The same-packet
+   fixed-parameter aggregate accepted-constants conformance classifier then
+   tests the accepted constants artifact route and fails closed on packet
+   identity: the existing constants contract/fallback notes are seed-packet
+   `Sigma_1` through `Sigma_4` artifacts, not accepted higher-fold constants
+   for `Sigma_hf_01` through `Sigma_hf_12`;
 4. assemble the signed gap derivative matrix $A$ for the selected orientations
    above;
 5. keep the structural constraint matrix $B=DC(\mathbf a_0)$, including section,

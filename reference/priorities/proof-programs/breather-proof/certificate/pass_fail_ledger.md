@@ -1146,6 +1146,11 @@ and
 | Sidecar proof attempt: higher-fold layer fold-layer parity-record root-tube topology derivation | `higher_fold_layer_fold_layer_parity_record_root_tube_topology_proof_grade_derivation_attempt_fail_closed_alpha_and_parity_refs_constructed_exit_blocked_no_row_consumption` | `fresh-v10-higher-fold-layer-fold-layer-parity-record-root-tube-topology-proof-grade-derivation-attempt.mjs`, `higher_fold_layer_fold_layer_parity_record_root_tube_topology_proof_grade_derivation_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json`, and `higher_fold_layer_fold_layer_parity_record_root_tube_topology_proof_grade_derivation_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`; script hash `f66997c6c7187b117c033f4d13f62ed503bcba1391aacecf1159cf1e42544512`, JSON hash `aa5d3df3e66edf796089676b2fe7176980f0f56c71674f1442c535eed4912581`, report hash `78f16079f63d4794e728386012c6ee046261ced90d74b73675ac47185118ad26`; the attempt imports the derivation source-data proof attempt, alpha-floor proof-grade derivation attempt, source-certificate bridge attempt, root-tube interval certificate, and proof-field dependency classifier. | It verifies 12 / 12 one-root separator tubes, 12 / 12 endpoint sign-change certificates, 12 / 12 complement no-extra-root profiles, and 0 failing derivative-piece profiles, then constructs 112 / 112 proof-grade `fold_layer_parity_record` refs and 112 / 112 complete proof-grade parity delta rows with 0 source-ref-as-proof-ref reuse. It inherits 112 / 112 proof-grade `alpha_floor` refs, keeps 0 / 112 proof-grade `exit_floor` refs, 0 `higher_fold_separator_layer_certificate` fields, 0 row consumptions, `preledger_pass=false`, `updates_live_ledger=false`, and no branch-chart authorization. The remaining child-field blockers are `exit_floor_proof_grade_source_certificate_absent` and `proof_grade_exit_floor_derivation_absent`; accepted atlas-ref, impulse/direct-quadrature, parent-complement consumption, and separator-certificate fields remain separately absent. |
 | Sidecar proof attempt: higher-fold layer exit-floor interval-width source certificate | `higher_fold_layer_exit_floor_interval_width_source_certificate_attempt_fail_closed_exit_source_certificates_constructed_exit_refs_absent_no_row_consumption` | `fresh-v10-higher-fold-layer-exit-floor-interval-width-source-certificate-attempt.mjs`, `higher_fold_layer_exit_floor_interval_width_source_certificate_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json`, and `higher_fold_layer_exit_floor_interval_width_source_certificate_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`; script hash `a9b9a64e852cc6c710fc2453e1f257bd9ff856952fc9776cda058349b1ddf821`, JSON hash `672c6eed188410dd2d390c578e5fa7393874171d3a3cd75ac849bd8b055221ad`, report hash `ba2bcd6140d63637f3bac193aec1903de58a8450065c5460dd7a5c24eb70cdb0`; the attempt imports the child-field interval diagnostic, derivation source-data proof attempt, parity proof-grade derivation attempt, source-certificate bridge attempt, and proof-field dependency classifier. | It checks same-packet layer/input-screen/mesh interval widths, exact `1/125` source width, positive, equal, and at-least-source-width `t` widths, source-data width equality, candidate/source field coverage, absent prior exit proof refs, and distinct `proof_source_certificate_ref` handles. It constructs 112 / 112 proof-grade `exit_floor` interval-width source certificates with 0 source-ref-as-source-certificate reuse, inherits 112 / 112 proof-grade `alpha_floor` refs and 112 / 112 proof-grade `fold_layer_parity_record` refs, and keeps 0 / 112 proof-grade `exit_floor` refs, 0 complete child-field rows, 0 `higher_fold_separator_layer_certificate` fields, 0 row consumptions, `preledger_pass=false`, `updates_live_ledger=false`, and no branch-chart authorization. The remaining child-field blocker is `exit_floor_source_certificate_to_child_field_derivation_bridge_absent`; accepted atlas-ref, impulse/direct-quadrature, parent-complement consumption, and separator-certificate fields remain separately absent. |
 | Sidecar proof attempt: higher-fold layer exit-floor interval-width proof-grade derivation | `higher_fold_layer_exit_floor_interval_width_proof_grade_derivation_attempt_fail_closed_all_child_refs_constructed_separator_blocked_no_row_consumption` | `fresh-v10-higher-fold-layer-exit-floor-interval-width-proof-grade-derivation-attempt.mjs`, `higher_fold_layer_exit_floor_interval_width_proof_grade_derivation_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json`, and `higher_fold_layer_exit_floor_interval_width_proof_grade_derivation_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`; script hash `101c03050b4ed4ce3b640b41eb8d0477a57f893f201e3bd407f10e28b3c5d017`, JSON hash `694bd2f7b79b1d616ddd361a945ce3c6fa78fb688243fac98b783b782b41eb0f`, report hash `ed44d31d940f069356f905b0a618cb1a479534a1c3d1ce70159ad73d458b3fe0`; the attempt imports the exit-floor source-certificate attempt, parity proof-grade derivation attempt, and proof-field dependency classifier. | It constructs fresh proof-grade `exit_floor` derivation refs and proof-grade `exit_floor` refs from 112 / 112 proof-grade interval-width source certificates with 0 source-certificate-ref-as-proof-ref reuse. It inherits 112 / 112 proof-grade `alpha_floor` refs and 112 / 112 proof-grade `fold_layer_parity_record` refs, leaves 0 child proof-grade ref obligations after exit-floor derivation, keeps 0 `higher_fold_separator_layer_certificate` fields, consumes 0 rows, keeps `preledger_pass=false`, keeps `updates_live_ledger=false`, and authorizes no branch chart. The remaining blockers are `accepted_higher_fold_layer_atlas_ref_derivation_absent`, `fixed_parameter_separator_aggregate_to_same_packet_fold_impulse_or_direct_quadrature_bound_acceptance_rule_absent`, `parent_complement_consumption_ref_absent`, and `higher_fold_separator_layer_certificate_absent`. |
+| Sidecar proof attempt: higher-fold layer accepted atlas-ref source certificate | `higher_fold_layer_accepted_atlas_ref_source_certificate_attempt_fail_closed_atlas_source_certificates_constructed_accepted_refs_absent_no_row_consumption` | `fresh-v10-higher-fold-layer-accepted-atlas-ref-source-certificate-attempt.mjs`, `higher_fold_layer_accepted_atlas_ref_source_certificate_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json`, and `higher_fold_layer_accepted_atlas_ref_source_certificate_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`; script hash `e236d7ac7308bf5237617480371a870aedc05da367515f5d38d8446a377ec456`, JSON hash `998035d8ca7a8ac7196178fe7de5772e69bbafeb09c9b44d4abe679ad28489b7`, report hash `bbb37e6587fa3c22f7f572244b3187abca881a92115077733a8c8b8840aa6f7e`; the attempt imports the atlas-ref materialization attempt, accepted-atlas obligation classifier, exit-floor proof-grade derivation attempt, and proof-field dependency classifier. | It constructs 12 / 12 separator atlas source certificates and 112 / 112 row source-certificate associations from complete same-packet candidate atlas evidence with 0 source-ref-as-source-certificate reuse. It keeps 0 accepted `higher_fold_layer_atlas_ref` refs, 0 accepted atlas-ref derivations, 0 `same_packet_fold_impulse_or_direct_quadrature_bound` fields, 0 `parent_complement_consumption_ref` fields, 0 `higher_fold_separator_layer_certificate` fields, consumes 0 rows, keeps `preledger_pass=false`, keeps `updates_live_ledger=false`, and authorizes no branch chart. The remaining blockers are `accepted_higher_fold_layer_atlas_ref_derivation_absent`, `fixed_parameter_separator_aggregate_to_same_packet_fold_impulse_or_direct_quadrature_bound_acceptance_rule_absent`, `parent_complement_consumption_ref_absent`, and `higher_fold_separator_layer_certificate_absent`. |
+| Sidecar bridge attempt: higher-fold layer accepted atlas-ref derivation bridge | `higher_fold_layer_accepted_atlas_ref_derivation_bridge_attempt_fail_closed_atlas_source_certificates_present_derivation_bridge_absent_no_row_consumption` | `fresh-v10-higher-fold-layer-accepted-atlas-ref-derivation-bridge-attempt.mjs`, `higher_fold_layer_accepted_atlas_ref_derivation_bridge_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json`, and `higher_fold_layer_accepted_atlas_ref_derivation_bridge_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`; script hash `e701cd48ea24e4016f675c6021698cb113404f479a1b06a462380443718233f6`, JSON hash `dabb4de4c9b6290a1fd1af2d0272d0c74df2a21a814bb5318d93d47091e4f1a0`, report hash `d0cc4da80f0505f9717e3cd0ba2ceb5a70fbb6020c8d2b0c11670e70fdc58087`; the attempt imports the accepted atlas-ref source-certificate attempt, separator-certificate readiness frontier classifier, accepted-atlas obligation classifier, and proof-field dependency classifier. | It records 12 / 12 separator atlas source certificates and 112 / 112 row source-certificate associations present, but 0 / 112 accepted-atlas derivation bridges, 0 / 112 accepted `higher_fold_layer_atlas_ref` refs, 0 source-certificate-ref-as-accepted-ref reuse, 0 accepted impulse/direct-quadrature source packets, 0 `parent_complement_consumption_ref` fields, and 0 `higher_fold_separator_layer_certificate` fields. It keeps 112 / 112 complete child proof-grade refs, consumes 0 rows, keeps `preledger_pass=false`, keeps `updates_live_ledger=false`, and authorizes no branch chart. The sharpened bridge blocker is `accepted_atlas_ref_source_certificate_to_accepted_field_derivation_bridge_absent`; the accepted-field blocker remains `accepted_higher_fold_layer_atlas_ref_derivation_absent`. |
+| Sidecar classifier: higher-fold layer separator-certificate readiness frontier | `higher_fold_layer_separator_certificate_readiness_frontier_classifier_fail_closed_child_refs_complete_aggregate_present_atlas_impulse_parent_locks_absent_no_row_consumption` | `fresh-v10-higher-fold-layer-separator-certificate-readiness-frontier-classifier.mjs`, `higher_fold_layer_separator_certificate_readiness_frontier_classifier.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json`, and `higher_fold_layer_separator_certificate_readiness_frontier_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`; script hash `290170914b7d854a0b9000646c7bdfbd687bd3517f779b5efabd8c114be70740`, JSON hash `d7ced5ac1486af8e211ef60d316d7ad0d9564b0a8538988abebb5a98916b7fc8`, report hash `c6b1dcb5711ce56ac31efd8d84e2c9a186454cb36b3a0b358b8e71bdcf383a80`; the classifier imports the exit-floor proof-grade derivation attempt, accepted-atlas source-certificate attempt, separator aggregate certificate attempt, impulse-bound source-packet acceptance dependency classifier, atlas materialization attempt, accepted-atlas obligation classifier, proof-field dependency classifier, and preledger row-family classifier. | It consolidates 162 = 42 regular + 8 periodic + 112 higher-fold row-family counts, 112 / 112 complete child proof-grade refs, 112 / 112 atlas source-certificate row associations, 12 / 12 separator aggregate triples, and 112 / 112 parent row-association anchors. It keeps 0 accepted atlas refs, 0 source-packet acceptance rules, 0 accepted impulse/direct-quadrature source packets, 0 `parent_complement_consumption_ref` fields, 0 `higher_fold_separator_layer_certificate` fields, 0 accepted fold-layer rows, 0 row consumption, `preledger_pass=false`, `updates_live_ledger=false`, and no branch-chart authorization. |
+| Sidecar classifier: higher-fold layer separator-certificate assembly dependency | `higher_fold_layer_separator_certificate_assembly_dependency_classifier_fail_closed_child_refs_complete_atlas_bridge_impulse_acceptance_parent_consumption_absent_no_row_consumption` | `fresh-v10-higher-fold-layer-separator-certificate-assembly-dependency-classifier.mjs`, `higher_fold_layer_separator_certificate_assembly_dependency_classifier.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json`, and `higher_fold_layer_separator_certificate_assembly_dependency_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`; script hash `0589e04f33804dfbca3ef0501805a5f907ee258509083c2d1547d12636b5e841`, JSON hash `2a332a960c8e6b14ad4c7a0f3e4c9e2b9d2cb899e53fa92416adba5750cf75ab`, report hash `e0417a5053fe49eeea254659461f142212d7e316bd6a282ba67e9f13d73a6cb8`; the classifier imports the separator-certificate readiness frontier classifier, accepted-atlas derivation-bridge attempt, and same-packet impulse-bound source-packet acceptance dependency classifier. | It records 112 / 112 complete child proof-grade refs, 112 / 112 atlas source certificates, 112 / 112 separator aggregate fields, and 112 / 112 parent row-association anchors, but 0 / 112 accepted-atlas derivation bridges, 0 / 112 accepted `higher_fold_layer_atlas_ref` refs, 0 / 12 accepted impulse/direct-quadrature source packets, 0 / 112 `parent_complement_consumption_ref` fields, and 0 / 112 `higher_fold_separator_layer_certificate` fields. It consumes 0 rows, keeps `preledger_pass=false`, keeps `updates_live_ledger=false`, and authorizes no branch chart. The assembly blockers are `accepted_atlas_ref_source_certificate_to_accepted_field_derivation_bridge_absent`, `fixed_parameter_separator_aggregate_to_same_packet_fold_impulse_or_direct_quadrature_bound_acceptance_rule_absent`, `parent_complement_consumption_ref_absent`, and `higher_fold_separator_layer_certificate_absent`. |
+| Sidecar classifier: higher-fold layer same-packet fixed-parameter aggregate accepted constants conformance | `higher_fold_layer_same_packet_fixed_parameter_aggregate_accepted_constants_conformance_classifier_fail_closed_aggregate_present_existing_constants_contract_packet_mismatch_no_source_packet_acceptance_no_row_consumption` | `fresh-v10-higher-fold-layer-same-packet-fixed-parameter-aggregate-accepted-constants-conformance-classifier.mjs`, `higher_fold_layer_same_packet_fixed_parameter_aggregate_accepted_constants_conformance_classifier.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json`, and `higher_fold_layer_same_packet_fixed_parameter_aggregate_accepted_constants_conformance_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`; script hash `84c6c011141788a961cfe8416d449d9a31e81707d31edd60540bb1f9b52a51af`, JSON hash `6855a9e300e845a9bc5c016e9ada7a51b51d68e9bc463c409212623dca4fdab0`, report hash `66b4c178da29b5f13623475a93205b0b20c24afb97976e2fdf723c58d777e5b7`; the classifier imports the separator aggregate certificate attempt, impulse-bound source-packet acceptance dependency classifier, separator-certificate readiness frontier classifier, separator proof-field dependency classifier, fold interval constants contract, and full-interval fallback legality note. | It confirms 12 / 12 higher-fold separator aggregate fields and 112 / 112 row enclosures are present, but the existing constants contract/fallback notes are scoped to `seed-doubled-four-arc-cosine-template-v0`, `preledger-separator-level-split-v1`, `Sigma_1` through `Sigma_4`, and 16 fold rows rather than `fresh-v10-higher-fold-12-root-rebuild-v0`, `Sigma_hf_01` through `Sigma_hf_12`, and 112 fold-layer rows. It records 0 accepted constants conformance, 0 source-packet acceptance rules, 0 accepted impulse/direct-quadrature source packets, 0 `higher_fold_separator_layer_certificate` fields, 0 row consumption, `preledger_pass=false`, `updates_live_ledger=false`, and no branch-chart authorization. |
 | Seed-chart gate 3: active branch-chart certification | `blocked` and `absent` | `branch_chart.json` is absent; the fresh sidecar preledger records `branch_chart_authorized=false`. | Requires a passed proof-grade fresh preledger. No simple-root branch chart may be built from a diagnostic input screen or from a fail-closed range-empty attempt. |
 | Seed-chart row | `blocked` and `absent` | `seed_chart_interval_report.md` is absent. | Requires `branch_chart.json`, packet identity check, pre-ledger consumption, branch-chart authorization, strict seed margins, and finite sensitivities. |
 | Coupled-corridor row | `pending` and artifacts `absent` | No corridor artifacts are present. | Depends on seed-chart row. |
@@ -1559,30 +1564,32 @@ These parent rows have accepted simple-root interiors, but their boundary leftov
 
 ## Latest Certificate-Side Artifact
 
-`higher_fold_layer_exit_floor_interval_width_proof_grade_derivation_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`
-is the current fail-closed higher-fold layer exit-floor proof-grade derivation
-handoff. It is generated by
-`fresh-v10-higher-fold-layer-exit-floor-interval-width-proof-grade-derivation-attempt.mjs`
+`higher_fold_layer_same_packet_fixed_parameter_aggregate_accepted_constants_conformance_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`
+is the current fail-closed higher-fold layer same-packet fixed-parameter
+aggregate accepted-constants conformance handoff. It is generated by
+`fresh-v10-higher-fold-layer-same-packet-fixed-parameter-aggregate-accepted-constants-conformance-classifier.mjs`
 with script hash
-`101c03050b4ed4ce3b640b41eb8d0477a57f893f201e3bd407f10e28b3c5d017`, JSON hash
-`694bd2f7b79b1d616ddd361a945ce3c6fa78fb688243fac98b783b782b41eb0f`, and
+`84c6c011141788a961cfe8416d449d9a31e81707d31edd60540bb1f9b52a51af`, JSON hash
+`6855a9e300e845a9bc5c016e9ada7a51b51d68e9bc463c409212623dca4fdab0`, and
 report hash
-`ed44d31d940f069356f905b0a618cb1a479534a1c3d1ce70159ad73d458b3fe0`. The
-attempt imports the exit-floor source-certificate attempt, fold-layer
-parity-record proof-grade derivation attempt, and separator proof-field
-dependency classifier. It constructs fresh proof-grade `exit_floor` derivation
-refs and proof-grade `exit_floor` refs from 112 / 112 proof-grade interval-width
-source certificates with 0 source-certificate-ref-as-proof-ref reuse, while
-inheriting 112 / 112 proof-grade `alpha_floor` refs and 112 / 112 proof-grade
-`fold_layer_parity_record` refs.
+`66b4c178da29b5f13623475a93205b0b20c24afb97976e2fdf723c58d777e5b7`. The
+classifier imports the separator aggregate certificate attempt,
+impulse-bound source-packet acceptance dependency classifier,
+separator-certificate readiness frontier classifier, separator proof-field
+dependency classifier, fold interval constants contract, and full-interval
+fallback legality note.
 
-The artifact remains fail-closed for the preledger: it constructs 0
-`higher_fold_separator_layer_certificate` fields, consumes 0 rows,
-`preledger_pass=false`, no live-ledger updates, and no branch-chart
-authorizations. The child-field proof-grade ref obligations are now 0 after
-exit-floor derivation, but accepted atlas-ref, impulse/direct-quadrature,
-parent-complement consumption, and separator certificate fields remain
-separately absent.
+The artifact sharpens the impulse/source-packet side before any proof-rule
+decision: 12 / 12 higher-fold separator aggregate fields and 112 / 112 row
+enclosures are present, but the existing constants contract/fallback notes are
+scoped to `seed-doubled-four-arc-cosine-template-v0`,
+`preledger-separator-level-split-v1`, `Sigma_1` through `Sigma_4`, and 16 fold
+rows rather than `fresh-v10-higher-fold-12-root-rebuild-v0`, `Sigma_hf_01`
+through `Sigma_hf_12`, and 112 fold-layer rows. It records 0 accepted constants
+conformance, 0 source-packet acceptance rules, 0 accepted impulse/direct
+quadrature source packets, 0 `higher_fold_separator_layer_certificate` fields,
+0 row consumptions, `preledger_pass=false`, no live-ledger updates, and no
+branch-chart authorizations.
 
 The regular source-cover one-leaf route remains fail-closed at the prior
 binding-contract satisfaction dependency classifier: it collides with the
@@ -1649,28 +1656,33 @@ are present, but source-lift consistency, endpoint ownership, complement
 closure, no-double-counting, branch-reuse exclusion, and row consumption are
 all 0 / 8. The higher-fold layer same-packet impulse-bound source-packet
 acceptance dependency classifier is the impulse/direct-quadrature acceptance
-handoff. It records
-12 / 12 separator aggregate fields present, but 0 / 12 source-packet acceptance
-rules and 0 accepted `same_packet_fold_impulse_or_direct_quadrature_bound`
-source packets. The exit-floor interval-width proof-grade derivation attempt is
-now the mechanical fold-layer child-field handoff: 112 / 112 row associations
-have proof-grade `alpha_floor` refs, 112 / 112 have proof-grade
-`fold_layer_parity_record` refs, 112 / 112 have complete proof-grade parity
-delta rows, and 112 / 112 have proof-grade `exit_floor` refs with 0
-source-certificate-ref-as-proof-ref reuse. The next mechanical fold-layer
-artifacts must still derive accepted `higher_fold_layer_atlas_ref`,
-parent-complement consumption refs, and a
-`higher_fold_separator_layer_certificate`. The
-`same_packet_fold_impulse_or_direct_quadrature_bound` child field still
-requires an explicit acceptance rule or accepted constants artifact for the
-fixed-parameter aggregate artifact, or an alternate accepted source-packet
-route, before it can feed a `higher_fold_separator_layer_certificate` packet for
-`Sigma_hf_01` through `Sigma_hf_12`. If accepting the aggregate fields requires
-a new proof rule or primitive-acceptance decision rather than same-packet
-interval evidence, the impulse route remains proof-rule blocked for
-promotion; until the child fields and separator certificate are accepted, no
-fold-layer row, periodic seam row, regular source-cover row, live-ledger update,
-or branch chart is authorized. The
+handoff. It records 12 / 12 separator aggregate fields present, but 0 / 12
+source-packet acceptance rules and 0 accepted
+`same_packet_fold_impulse_or_direct_quadrature_bound` source packets. The
+separator-certificate readiness frontier classifier remains the broad
+mechanical fold-layer frontier: 112 / 112 row associations have complete
+proof-grade child refs, 112 / 112 have accepted-atlas source-certificate row
+associations, 12 / 12 separator profiles have separator aggregate triples, and
+112 / 112 row associations have parent row-association anchors. The accepted
+atlas-ref derivation-bridge attempt sharpens the atlas side of that frontier:
+the source certificates are present, but 0 / 112 accepted-atlas derivation
+bridges and 0 / 112 accepted `higher_fold_layer_atlas_ref` refs are present.
+The separator-certificate assembly dependency classifier shows those ready
+source-side fields still do not assemble into a separator certificate. The
+same-packet fixed-parameter aggregate accepted-constants conformance classifier
+tests the accepted constants route and fails closed on packet identity: the
+existing constants contract/fallback notes are seed-packet `Sigma_1` through
+`Sigma_4` artifacts, not accepted higher-fold constants for `Sigma_hf_01`
+through `Sigma_hf_12`. The next mechanical fold-layer artifacts must still
+derive accepted `higher_fold_layer_atlas_ref` refs, accepted
+`same_packet_fold_impulse_or_direct_quadrature_bound` source packets,
+`parent_complement_consumption_ref` fields, and a
+`higher_fold_separator_layer_certificate`. The impulse/source-packet route now
+requires either an accepted higher-fold constants artifact on the live packet or
+an explicit source-packet acceptance rule; until accepted atlas refs, accepted
+impulse/direct-quadrature source packets, parent-complement consumption refs,
+and separator certificates are present, no fold-layer row, periodic seam row,
+regular source-cover row, live-ledger update, or branch chart is authorized. The
 nonlinear fold-coordinate collocation
 tangent-matrix screen now supplies a feasible declared tangent surface with
 fold-coordinate columns and positive one-leaf boundary-opening guard data, but

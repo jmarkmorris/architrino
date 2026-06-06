@@ -219,6 +219,9 @@ export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_TRAN
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_ENVELOPE_CANDIDATE_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-signed-radius-source-provenance-envelope-candidate/v1";
 
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_CERTIFICATE_ATTEMPT_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-signed-radius-source-provenance-certificate-attempt-candidate/v1";
+
 const H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS = Object.freeze([
   "delta_squared_speed",
   "sin_phi",
@@ -248,6 +251,23 @@ const H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PRIMITIVE_REQUIRED_FIELDS =
     "source_term_residual_rows[].source_term_producer_image_radius",
     "source_term_residual_rows[].source_term_outward_rounding_primitive",
     "source_term_residual_rows[].claim_boundary.certifies_source_term_as_directed_rounded_same_domain",
+  ]);
+
+const H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_REQUIRED_FIELDS =
+  Object.freeze([
+    "signed_radius_provider_acceptance_rows[].claim_boundary.certifies_source_inputs_as_directed_rounded_same_domain",
+    "signed_radius_provider_acceptance_rows[].claim_boundary.certifies_directed_rounded_shared_domain",
+    "directed_provider_verifier.provider_verification_rows[].provider_certifies_directed_rounded_shared_domain",
+    "source_term_transport_fit.centered_homothetic_transport_bridge_rows[].claim_boundary.certifies_source_inputs_as_directed_rounded_same_domain",
+  ]);
+
+const H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_CERTIFICATE_EMITTER_REQUIRED_FIELDS =
+  Object.freeze([
+    ...H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_REQUIRED_FIELDS,
+    ...H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PRIMITIVE_REQUIRED_FIELDS,
+    "directed_rounded_shared_domain_provider_boundary_replay_rows[].source_term_provider_probe_rows_certify_directed_rounded_source",
+    "directed_rounded_shared_domain_provider_boundary_replay_rows[].source_term_provider_probe_term_width_realization_closed",
+    "source_map_residual_h38_source_provenance_bridge_rows[].claim_boundary.certifies_source_inputs_as_directed_rounded_same_domain",
   ]);
 
 const H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_TRACE_RETENTION_FIELDS =
@@ -70030,10 +70050,7 @@ export function buildH39RequestedY44SignedRadiusSourceProvenanceEnvelopeCandidat
     "no_signed_radius_row_certifies_directed_source",
   ];
   const requiredProvenanceFields = [
-    "signed_radius_provider_acceptance_rows[].claim_boundary.certifies_source_inputs_as_directed_rounded_same_domain",
-    "signed_radius_provider_acceptance_rows[].claim_boundary.certifies_directed_rounded_shared_domain",
-    "directed_provider_verifier.provider_verification_rows[].provider_certifies_directed_rounded_shared_domain",
-    "source_term_transport_fit.centered_homothetic_transport_bridge_rows[].claim_boundary.certifies_source_inputs_as_directed_rounded_same_domain",
+    ...H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_REQUIRED_FIELDS,
   ];
   const acceptanceTarget =
     sourceMapResidualCovarianceTarget
@@ -70232,9 +70249,9 @@ export function buildH39RequestedY44SignedRadiusSourceProvenanceEnvelopeCandidat
         verifierRow?.provider_source_kind_matches_required === true &&
         verifierRow?.matches_same_domain_contract === true &&
         verifierRow?.matches_same_radius_contract === true &&
-        verifierRow?.weighted_provider_interval_contained_in_screened_target ===
+        verifierRow?.signed_provider_interval_contained_in_screened_target ===
           true &&
-        verifierRow?.coefficient_provider_interval_contained_in_screened_target ===
+        verifierRow?.weighted_provider_interval_contained_in_screened_target ===
           true &&
         verifierRow?.provider_certifies_directed_rounded_shared_domain ===
           false,
@@ -70528,10 +70545,7 @@ export function validateH39RequestedY44SignedRadiusSourceProvenanceEnvelopeCandi
     claimBoundary?.certifies_directed_rounded_shared_domain === false &&
     claimBoundary?.retained_branch === false;
   const expectedRequiredFields = [
-    "signed_radius_provider_acceptance_rows[].claim_boundary.certifies_source_inputs_as_directed_rounded_same_domain",
-    "signed_radius_provider_acceptance_rows[].claim_boundary.certifies_directed_rounded_shared_domain",
-    "directed_provider_verifier.provider_verification_rows[].provider_certifies_directed_rounded_shared_domain",
-    "source_term_transport_fit.centered_homothetic_transport_bridge_rows[].claim_boundary.certifies_source_inputs_as_directed_rounded_same_domain",
+    ...H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_REQUIRED_FIELDS,
   ];
   const expectedCheckKinds = [
     "source_map_residual_target_available",
@@ -70692,6 +70706,717 @@ export function validateH39RequestedY44SignedRadiusSourceProvenanceEnvelopeCandi
     !validClaimBoundary(artifact?.claim_boundary)
   ) {
     errors.push("signed-radius source-provenance envelope must keep broad closure claims open");
+  }
+  return errors;
+}
+
+export function buildH39RequestedY44SignedRadiusSourceProvenanceCertificateAttemptCandidate({
+  sourceMapResidualCovarianceTarget,
+  directedRoundedSharedDomainProviderBoundaryReplay,
+  sourceTermProducerImagePrimitiveAudit,
+  signedRadiusSourceProvenanceEnvelope,
+} = {}) {
+  const certificateAttemptCheckKinds = [
+    "source_map_residual_target_available",
+    "signed_radius_source_provenance_envelope_verified",
+    "source_term_producer_image_primitive_audit_verified",
+    "directed_rounded_boundary_replay_verified",
+    "h38_source_provenance_bridge_rows_ready",
+    "certificate_rows_replay_signed_radius_envelope",
+    "certificate_rows_match_h38_bridge_boundary",
+    "certificate_rows_replay_lagrange_radius_weight",
+    "certificate_rows_fit_source_map_verifier_boundary",
+    "certificate_emitter_required_fields_not_satisfied",
+    "no_certificate_attempt_row_certifies_source_provenance",
+  ];
+  const requiredEmitterFields = [
+    ...H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_CERTIFICATE_EMITTER_REQUIRED_FIELDS,
+  ];
+  const envelopeRows =
+    signedRadiusSourceProvenanceEnvelope
+      ?.signed_radius_source_provenance_envelope_rows ?? [];
+  const primitiveRows =
+    sourceTermProducerImagePrimitiveAudit
+      ?.source_term_producer_image_primitive_rows ?? [];
+  const h38BridgeRows =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_h38_source_provenance_bridge_rows ?? [];
+  const boundaryReplayRows =
+    directedRoundedSharedDomainProviderBoundaryReplay
+      ?.directed_rounded_shared_domain_provider_boundary_replay_rows ?? [];
+  const primitiveRowsByNode = new Map(
+    primitiveRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const h38BridgeRowsByNode = new Map(
+    h38BridgeRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const boundaryReplayRowsByNode = new Map(
+    boundaryReplayRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const sourceMapResidualTargetAvailable =
+    sourceMapResidualCovarianceTarget?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_MAP_RESIDUAL_COVARIANCE_TARGET_SCHEMA &&
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_h38_source_provenance_bridge_available === true;
+  const signedRadiusEnvelopeVerified =
+    signedRadiusSourceProvenanceEnvelope?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_ENVELOPE_CANDIDATE_SCHEMA &&
+    signedRadiusSourceProvenanceEnvelope
+      ?.signed_radius_source_provenance_envelope_verified === true &&
+    signedRadiusSourceProvenanceEnvelope
+      ?.signed_radius_source_provenance_envelope_available === true &&
+    signedRadiusSourceProvenanceEnvelope
+      ?.signed_radius_source_provenance_envelope_certified_directed_rounded ===
+      false;
+  const sourceTermPrimitiveAuditVerified =
+    sourceTermProducerImagePrimitiveAudit?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PROVENANCE_PRIMITIVE_AUDIT_CANDIDATE_SCHEMA &&
+    sourceTermProducerImagePrimitiveAudit
+      ?.source_term_producer_image_provenance_primitive_audit_verified ===
+      true &&
+    sourceTermProducerImagePrimitiveAudit
+      ?.source_term_producer_image_provenance_certified_directed_rounded ===
+      false;
+  const directedRoundedBoundaryReplayVerified =
+    directedRoundedSharedDomainProviderBoundaryReplay?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_DIRECTED_ROUNDED_SHARED_DOMAIN_PROVIDER_BOUNDARY_REPLAY_CANDIDATE_SCHEMA &&
+    directedRoundedSharedDomainProviderBoundaryReplay
+      ?.directed_rounded_shared_domain_provider_boundary_replay_verified ===
+      true &&
+    directedRoundedSharedDomainProviderBoundaryReplay
+      ?.directed_rounded_shared_domain_provider_certified === false;
+  const h38SourceProvenanceBridgeRowsReady =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_h38_source_provenance_bridge_available === true &&
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_h38_source_provenance_bridge_provider_rows_ready ===
+      true &&
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_h38_source_provenance_bridge_primary_missing_object_kind ===
+      "directed-rounded-same-domain-expression-level-n38-source-map-residual-envelope" &&
+    Array.isArray(h38BridgeRows) &&
+    h38BridgeRows.length === 5;
+  const rows = envelopeRows.map((envelopeRow) => {
+    const nodeIndex = Number(envelopeRow?.node_index);
+    const primitiveRow = primitiveRowsByNode.get(nodeIndex) ?? null;
+    const h38BridgeRow = h38BridgeRowsByNode.get(nodeIndex) ?? null;
+    const boundaryReplayRow = boundaryReplayRowsByNode.get(nodeIndex) ?? null;
+    const signedEnvelopeInterval = finiteOrderedIntervalOrNull(
+      envelopeRow?.signed_radius_source_provenance_envelope_interval
+    );
+    const weightedEnvelopeInterval = finiteOrderedIntervalOrNull(
+      envelopeRow?.weighted_signed_radius_source_provenance_envelope_interval
+    );
+    const h38SignedInterval = finiteOrderedIntervalOrNull(
+      h38BridgeRow?.directed_rounded_signed_residual_interval
+    );
+    const h38WeightedInterval = finiteOrderedIntervalOrNull(
+      h38BridgeRow?.directed_rounded_weighted_signed_residual_interval ??
+        h38BridgeRow?.directed_rounded_weighted_residual_interval
+    );
+    const signedMatchesH38 =
+      signedEnvelopeInterval !== null &&
+      h38SignedInterval !== null &&
+      h39RequestedY44SameInterval(
+        signedEnvelopeInterval,
+        h38SignedInterval
+      );
+    const weightedMatchesH38 =
+      weightedEnvelopeInterval !== null &&
+      h38WeightedInterval !== null &&
+      h39RequestedY44SameInterval(
+        weightedEnvelopeInterval,
+        h38WeightedInterval
+      );
+    const emitterFieldPresenceChecks = {
+      "signed_radius_provider_acceptance_rows[].claim_boundary.certifies_source_inputs_as_directed_rounded_same_domain":
+        envelopeRow?.source_provenance_field_presence_checks?.[
+          "signed_radius_provider_acceptance_rows[].claim_boundary.certifies_source_inputs_as_directed_rounded_same_domain"
+        ] === true,
+      "signed_radius_provider_acceptance_rows[].claim_boundary.certifies_directed_rounded_shared_domain":
+        envelopeRow?.source_provenance_field_presence_checks?.[
+          "signed_radius_provider_acceptance_rows[].claim_boundary.certifies_directed_rounded_shared_domain"
+        ] === true,
+      "directed_provider_verifier.provider_verification_rows[].provider_certifies_directed_rounded_shared_domain":
+        envelopeRow?.source_provenance_field_presence_checks?.[
+          "directed_provider_verifier.provider_verification_rows[].provider_certifies_directed_rounded_shared_domain"
+        ] === true,
+      "source_term_transport_fit.centered_homothetic_transport_bridge_rows[].claim_boundary.certifies_source_inputs_as_directed_rounded_same_domain":
+        envelopeRow?.source_provenance_field_presence_checks?.[
+          "source_term_transport_fit.centered_homothetic_transport_bridge_rows[].claim_boundary.certifies_source_inputs_as_directed_rounded_same_domain"
+        ] === true,
+      "source_term_residual_rows[].directed_rounded_source_term_interval":
+        primitiveRow?.producer_image_primitive_field_presence_checks?.[
+          "source_term_residual_rows[].directed_rounded_source_term_interval"
+        ] === true,
+      "source_term_residual_rows[].directed_rounded_source_term_residual_interval":
+        primitiveRow?.producer_image_primitive_field_presence_checks?.[
+          "source_term_residual_rows[].directed_rounded_source_term_residual_interval"
+        ] === true,
+      "source_term_residual_rows[].source_term_producer_image_domain":
+        primitiveRow?.producer_image_primitive_field_presence_checks?.[
+          "source_term_residual_rows[].source_term_producer_image_domain"
+        ] === true,
+      "source_term_residual_rows[].source_term_producer_image_radius":
+        primitiveRow?.producer_image_primitive_field_presence_checks?.[
+          "source_term_residual_rows[].source_term_producer_image_radius"
+        ] === true,
+      "source_term_residual_rows[].source_term_outward_rounding_primitive":
+        primitiveRow?.producer_image_primitive_field_presence_checks?.[
+          "source_term_residual_rows[].source_term_outward_rounding_primitive"
+        ] === true,
+      "source_term_residual_rows[].claim_boundary.certifies_source_term_as_directed_rounded_same_domain":
+        primitiveRow?.producer_image_primitive_field_presence_checks?.[
+          "source_term_residual_rows[].claim_boundary.certifies_source_term_as_directed_rounded_same_domain"
+        ] === true,
+      "directed_rounded_shared_domain_provider_boundary_replay_rows[].source_term_provider_probe_rows_certify_directed_rounded_source":
+        boundaryReplayRow
+          ?.source_term_provider_probe_rows_certify_directed_rounded_source ===
+        true,
+      "directed_rounded_shared_domain_provider_boundary_replay_rows[].source_term_provider_probe_term_width_realization_closed":
+        boundaryReplayRow
+          ?.source_term_provider_probe_term_width_realization_closed === true,
+      "source_map_residual_h38_source_provenance_bridge_rows[].claim_boundary.certifies_source_inputs_as_directed_rounded_same_domain":
+        h38BridgeRow?.claim_boundary
+          ?.certifies_source_inputs_as_directed_rounded_same_domain === true,
+    };
+    const missingEmitterFields = Object.entries(emitterFieldPresenceChecks)
+      .filter(([, present]) => present !== true)
+      .map(([field]) => field);
+    const rowChecks = {
+      signed_radius_envelope_row_verified:
+        envelopeRow?.row_replays_signed_radius_envelope_boundary === true &&
+        envelopeRow?.row_certifies_signed_radius_source_provenance === false,
+      source_term_primitive_audit_row_verified:
+        primitiveRow?.row_audit_verifies_primitive_gap === true &&
+        primitiveRow?.row_certifies_source_term_producer_image_primitive ===
+          false,
+      directed_rounded_boundary_replay_row_verified:
+        boundaryReplayRow
+          ?.directed_rounded_shared_domain_provider_boundary_replay_verified ===
+          true &&
+        boundaryReplayRow?.directed_rounded_shared_domain_provider_certified ===
+          false,
+      h38_bridge_row_reaches_verifier_boundary:
+        h38BridgeRow?.row_status ===
+          "h39-provider-row-ready-waits-on-expression-level-n38-source-provenance" &&
+        h38BridgeRow?.provider_row_reaches_h39_verifier_boundary === true,
+      certificate_attempt_signed_interval_replays_envelope:
+        signedEnvelopeInterval !== null,
+      certificate_attempt_weighted_interval_replays_envelope:
+        weightedEnvelopeInterval !== null,
+      certificate_attempt_signed_interval_matches_h38_bridge_boundary:
+        signedMatchesH38,
+      certificate_attempt_weighted_interval_matches_h38_bridge_boundary:
+        weightedMatchesH38,
+      certificate_attempt_weighted_interval_replays_lagrange_radius_weight:
+        envelopeRow?.weighted_envelope_replays_lagrange_radius_weight === true,
+      certificate_attempt_fits_source_map_verifier_boundary:
+        envelopeRow?.row_replays_signed_radius_envelope_boundary === true &&
+        h38BridgeRow?.provider_row_reaches_h39_verifier_boundary === true &&
+        boundaryReplayRow
+          ?.directed_rounded_shared_domain_provider_boundary_replay_verified ===
+          true,
+      certificate_emitter_required_fields_not_satisfied:
+        missingEmitterFields.length === requiredEmitterFields.length,
+      no_certificate_attempt_row_certifies_source_provenance:
+        envelopeRow?.row_certifies_signed_radius_source_provenance === false &&
+        primitiveRow?.row_certifies_source_term_producer_image_primitive ===
+          false &&
+        boundaryReplayRow?.directed_rounded_shared_domain_provider_certified ===
+          false &&
+        h38BridgeRow?.claim_boundary
+          ?.certifies_source_inputs_as_directed_rounded_same_domain === false,
+    };
+    const rowVerified = Object.values(rowChecks).every(
+      (value) => value === true
+    );
+    return {
+      node_index: Number.isInteger(nodeIndex) ? nodeIndex : null,
+      xi_midpoint: envelopeRow?.xi_midpoint ?? null,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      signed_radius_source_provenance_certificate_attempt_row_kind:
+        "signed-radius-source-provenance-certificate-attempt-row",
+      provider_row_source_kind:
+        envelopeRow?.provider_row_source_kind ?? null,
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      zero_source_terms: [...H38_SOURCE_TERM_ZERO_KEYS],
+      certificate_attempt_signed_source_provenance_interval:
+        signedEnvelopeInterval,
+      certificate_attempt_weighted_source_provenance_interval:
+        weightedEnvelopeInterval,
+      signed_radius_envelope_interval: signedEnvelopeInterval,
+      weighted_signed_radius_envelope_interval: weightedEnvelopeInterval,
+      h38_bridge_signed_residual_interval: h38SignedInterval,
+      h38_bridge_weighted_residual_interval: h38WeightedInterval,
+      signed_interval_matches_h38_bridge_boundary: signedMatchesH38,
+      weighted_interval_matches_h38_bridge_boundary: weightedMatchesH38,
+      weighted_interval_replays_lagrange_radius_weight:
+        envelopeRow?.weighted_envelope_replays_lagrange_radius_weight === true,
+      source_map_verifier_boundary_reached:
+        rowChecks.certificate_attempt_fits_source_map_verifier_boundary,
+      source_term_primitive_audit_row_status:
+        primitiveRow?.row_status ?? null,
+      h38_source_provenance_bridge_row_status:
+        h38BridgeRow?.row_status ?? null,
+      directed_rounded_boundary_replay_row_status:
+        boundaryReplayRow?.row_status ?? null,
+      source_provenance_certificate_required_fields: [
+        ...requiredEmitterFields,
+      ],
+      source_provenance_certificate_field_presence_checks:
+        emitterFieldPresenceChecks,
+      source_provenance_certificate_missing_fields: missingEmitterFields,
+      source_provenance_certificate_fields_present:
+        missingEmitterFields.length === 0,
+      row_check_kinds: Object.keys(rowChecks),
+      row_checks: rowChecks,
+      row_replays_signed_radius_certificate_attempt_boundary:
+        rowVerified,
+      row_certifies_signed_radius_source_provenance: false,
+      row_status: rowVerified
+        ? "signed-radius-source-provenance-certificate-attempt-reaches-boundary-emitter-fields-missing"
+        : "signed-radius-source-provenance-certificate-attempt-row-open",
+      claim_boundary: {
+        defines_signed_radius_source_provenance_certificate_attempt_only:
+          true,
+        certifies_signed_radius_source_provenance: false,
+        certifies_source_inputs_as_directed_rounded_same_domain: false,
+        certifies_expression_level_n38_provider: false,
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_terminal_row_provider_enclosure: false,
+        certifies_terminal_graph_remainder_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  });
+  const allRowsReplaySignedRadiusEnvelope =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.row_checks.signed_radius_envelope_row_verified === true &&
+        row.row_checks
+          .certificate_attempt_signed_interval_replays_envelope === true &&
+        row.row_checks
+          .certificate_attempt_weighted_interval_replays_envelope === true
+    );
+  const allRowsMatchH38BridgeBoundary =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.signed_interval_matches_h38_bridge_boundary === true &&
+        row.weighted_interval_matches_h38_bridge_boundary === true &&
+        row.row_checks.h38_bridge_row_reaches_verifier_boundary === true
+    );
+  const allRowsReplayLagrangeRadiusWeight =
+    rows.length === 5 &&
+    rows.every(
+      (row) => row.weighted_interval_replays_lagrange_radius_weight === true
+    );
+  const allRowsFitSourceMapVerifierBoundary =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.source_map_verifier_boundary_reached === true &&
+        row.row_checks.directed_rounded_boundary_replay_row_verified === true
+    );
+  const allEmitterRequiredFieldsNotSatisfied =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.source_provenance_certificate_fields_present === false &&
+        row.source_provenance_certificate_missing_fields.length ===
+          requiredEmitterFields.length &&
+        requiredEmitterFields.every((field) =>
+          row.source_provenance_certificate_missing_fields.includes(field)
+        )
+    );
+  const noRowsCertifySourceProvenance =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.row_certifies_signed_radius_source_provenance === false &&
+        row.row_checks
+          .no_certificate_attempt_row_certifies_source_provenance === true
+    );
+  const certificateAttemptChecks = {
+    source_map_residual_target_available:
+      sourceMapResidualTargetAvailable,
+    signed_radius_source_provenance_envelope_verified:
+      signedRadiusEnvelopeVerified,
+    source_term_producer_image_primitive_audit_verified:
+      sourceTermPrimitiveAuditVerified,
+    directed_rounded_boundary_replay_verified:
+      directedRoundedBoundaryReplayVerified,
+    h38_source_provenance_bridge_rows_ready:
+      h38SourceProvenanceBridgeRowsReady,
+    certificate_rows_replay_signed_radius_envelope:
+      allRowsReplaySignedRadiusEnvelope,
+    certificate_rows_match_h38_bridge_boundary:
+      allRowsMatchH38BridgeBoundary,
+    certificate_rows_replay_lagrange_radius_weight:
+      allRowsReplayLagrangeRadiusWeight,
+    certificate_rows_fit_source_map_verifier_boundary:
+      allRowsFitSourceMapVerifierBoundary,
+    certificate_emitter_required_fields_not_satisfied:
+      allEmitterRequiredFieldsNotSatisfied,
+    no_certificate_attempt_row_certifies_source_provenance:
+      noRowsCertifySourceProvenance,
+  };
+  const certificateAttemptVerified =
+    Object.values(certificateAttemptChecks).every((value) => value === true) &&
+    rows.every(
+      (row) =>
+        row.row_status ===
+        "signed-radius-source-provenance-certificate-attempt-reaches-boundary-emitter-fields-missing"
+    );
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_CERTIFICATE_ATTEMPT_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-signed-radius-source-provenance-certificate-attempt-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-signed-radius-source-provenance-certificate-attempt",
+    target_kind:
+      "candidate-requested-y44-signed-radius-source-provenance-certificate-attempt",
+    source_map_residual_target_schema:
+      sourceMapResidualCovarianceTarget?.schema ?? null,
+    directed_rounded_provider_boundary_replay_schema:
+      directedRoundedSharedDomainProviderBoundaryReplay?.schema ?? null,
+    source_term_producer_image_primitive_audit_schema:
+      sourceTermProducerImagePrimitiveAudit?.schema ?? null,
+    signed_radius_source_provenance_envelope_schema:
+      signedRadiusSourceProvenanceEnvelope?.schema ?? null,
+    proof_status: certificateAttemptVerified
+      ? "candidate-signed-radius-source-provenance-certificate-attempt-replayed-emitter-fields-missing"
+      : "candidate-signed-radius-source-provenance-certificate-attempt-open",
+    certificate_attempt_kind:
+      "signed-radius-envelope-to-source-map-provider-boundary-certificate-attempt",
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    source_terms_preserved_signed_together: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    zero_source_terms: [...H38_SOURCE_TERM_ZERO_KEYS],
+    signed_radius_source_provenance_certificate_required_fields: [
+      ...requiredEmitterFields,
+    ],
+    signed_radius_source_provenance_certificate_check_kinds: [
+      ...certificateAttemptCheckKinds,
+    ],
+    signed_radius_source_provenance_certificate_checks:
+      certificateAttemptChecks,
+    signed_radius_source_provenance_certificate_attempt_verified:
+      certificateAttemptVerified,
+    signed_radius_source_provenance_certificate_attempt_available:
+      certificateAttemptVerified,
+    signed_radius_source_provenance_certificate_certified_directed_rounded:
+      false,
+    signed_radius_source_provenance_certificate_fields_present: false,
+    signed_radius_source_provenance_certificate_missing_field_count:
+      requiredEmitterFields.length,
+    signed_radius_source_provenance_certificate_missing_fields: [
+      ...requiredEmitterFields,
+    ],
+    signed_radius_source_provenance_certificate_row_count: rows.length,
+    signed_radius_source_provenance_certificate_attempt_rows: rows,
+    all_certificate_rows_replay_signed_radius_envelope:
+      allRowsReplaySignedRadiusEnvelope,
+    all_certificate_rows_match_h38_bridge_boundary:
+      allRowsMatchH38BridgeBoundary,
+    all_certificate_rows_replay_lagrange_radius_weight:
+      allRowsReplayLagrangeRadiusWeight,
+    all_certificate_rows_fit_source_map_verifier_boundary:
+      allRowsFitSourceMapVerifierBoundary,
+    all_certificate_rows_have_emitter_fields_not_satisfied:
+      allEmitterRequiredFieldsNotSatisfied,
+    all_certificate_rows_keep_source_provenance_open:
+      noRowsCertifySourceProvenance,
+    source_provenance_certificate_absence_is_only_open_condition:
+      certificateAttemptVerified,
+    s37_division_is_primary_blocker: false,
+    s37_division_remains_dependent_obligation: true,
+    signed_radius_source_provenance_certificate_classification:
+      certificateAttemptVerified
+        ? "signed-radius-source-provenance-certificate-attempt-replays-source-map-boundary-emitter-fields-missing"
+        : "signed-radius-source-provenance-certificate-attempt-open",
+    signed_radius_source_provenance_certificate_blocker_classification:
+      certificateAttemptVerified
+        ? "directed-rounded-source-provenance-emitter-fields-absent-after-certificate-attempt"
+        : "signed-radius-source-provenance-certificate-attempt-open",
+    signed_radius_source_provenance_certificate_primary_missing_object_kind:
+      "directed-rounded-same-domain-source-provenance-emitter-for-signed-radius-envelope",
+    next_certificate_object:
+      "directed-rounded same-domain source-provenance emitter fields for the signed-radius envelope rows, including source-term producer-image primitive fields and source-map boundary certification flags",
+    candidate_certificate_route:
+      "Replay the accepted signed-radius envelope rows through the H38 source-provenance bridge and the directed-rounded shared-domain provider boundary replay. The signed and weighted certificate-attempt intervals match the source-map boundary rows, still replay the Lagrange radius weight, and fit the verifier boundary. The attempt cannot certify directed-rounded source provenance because every row still lacks the emitter fields tying the source-term producer-image primitive, terminal boundary replay, acceptance rows, verifier rows, transport rows, and H38 bridge rows into one same-domain directed-rounded source-provenance object.",
+    claim_boundary: {
+      defines_signed_radius_source_provenance_certificate_attempt_only:
+        true,
+      certifies_signed_radius_source_provenance: false,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_expression_level_n38_provider: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_terminal_row_provider_enclosure: false,
+      certifies_terminal_graph_remainder_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+export function validateH39RequestedY44SignedRadiusSourceProvenanceCertificateAttemptCandidate(
+  artifact
+) {
+  const errors = [];
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const sameZeroTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H38_SOURCE_TERM_ZERO_KEYS.length &&
+    H38_SOURCE_TERM_ZERO_KEYS.every((term, index) => terms[index] === term);
+  const sameStringSet = (left, right) =>
+    Array.isArray(left) &&
+    left.length === right.length &&
+    right.every((value) => left.includes(value));
+  const hasOrderedFiniteInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    Number.isFinite(Number(interval[0])) &&
+    Number.isFinite(Number(interval[1])) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const validClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_signed_radius_source_provenance_certificate_attempt_only ===
+      true &&
+    claimBoundary?.certifies_signed_radius_source_provenance === false &&
+    claimBoundary?.certifies_source_inputs_as_directed_rounded_same_domain ===
+      false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_n38_fourth_derivative_bound === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const expectedRequiredFields = [
+    ...H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_CERTIFICATE_EMITTER_REQUIRED_FIELDS,
+  ];
+  const expectedCheckKinds = [
+    "source_map_residual_target_available",
+    "signed_radius_source_provenance_envelope_verified",
+    "source_term_producer_image_primitive_audit_verified",
+    "directed_rounded_boundary_replay_verified",
+    "h38_source_provenance_bridge_rows_ready",
+    "certificate_rows_replay_signed_radius_envelope",
+    "certificate_rows_match_h38_bridge_boundary",
+    "certificate_rows_replay_lagrange_radius_weight",
+    "certificate_rows_fit_source_map_verifier_boundary",
+    "certificate_emitter_required_fields_not_satisfied",
+    "no_certificate_attempt_row_certifies_source_provenance",
+  ];
+  const expectedRowCheckKinds = [
+    "signed_radius_envelope_row_verified",
+    "source_term_primitive_audit_row_verified",
+    "directed_rounded_boundary_replay_row_verified",
+    "h38_bridge_row_reaches_verifier_boundary",
+    "certificate_attempt_signed_interval_replays_envelope",
+    "certificate_attempt_weighted_interval_replays_envelope",
+    "certificate_attempt_signed_interval_matches_h38_bridge_boundary",
+    "certificate_attempt_weighted_interval_matches_h38_bridge_boundary",
+    "certificate_attempt_weighted_interval_replays_lagrange_radius_weight",
+    "certificate_attempt_fits_source_map_verifier_boundary",
+    "certificate_emitter_required_fields_not_satisfied",
+    "no_certificate_attempt_row_certifies_source_provenance",
+  ];
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_CERTIFICATE_ATTEMPT_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 requested-y44 signed-radius source-provenance certificate attempt candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-signed-radius-source-provenance-certificate-attempt-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-signed-radius-source-provenance-certificate-attempt" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-signed-radius-source-provenance-certificate-attempt" ||
+    artifact?.source_map_residual_target_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_MAP_RESIDUAL_COVARIANCE_TARGET_SCHEMA ||
+    artifact?.directed_rounded_provider_boundary_replay_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_DIRECTED_ROUNDED_SHARED_DOMAIN_PROVIDER_BOUNDARY_REPLAY_CANDIDATE_SCHEMA ||
+    artifact?.source_term_producer_image_primitive_audit_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PROVENANCE_PRIMITIVE_AUDIT_CANDIDATE_SCHEMA ||
+    artifact?.signed_radius_source_provenance_envelope_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_ENVELOPE_CANDIDATE_SCHEMA ||
+    artifact?.proof_status !==
+      "candidate-signed-radius-source-provenance-certificate-attempt-replayed-emitter-fields-missing" ||
+    artifact?.certificate_attempt_kind !==
+      "signed-radius-envelope-to-source-map-provider-boundary-certificate-attempt" ||
+    artifact?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    !sameTerms(artifact?.source_terms_preserved_signed_together) ||
+    !sameZeroTerms(artifact?.zero_source_terms) ||
+    !sameStringSet(
+      artifact?.signed_radius_source_provenance_certificate_required_fields,
+      expectedRequiredFields
+    ) ||
+    !sameStringSet(
+      artifact?.signed_radius_source_provenance_certificate_check_kinds,
+      expectedCheckKinds
+    )
+  ) {
+    errors.push("signed-radius source-provenance certificate attempt metadata must identify the boundary replay");
+  }
+  if (
+    expectedCheckKinds.some(
+      (kind) =>
+        artifact?.signed_radius_source_provenance_certificate_checks?.[kind] !==
+        true
+    ) ||
+    artifact
+      ?.signed_radius_source_provenance_certificate_attempt_verified !==
+      true ||
+    artifact
+      ?.signed_radius_source_provenance_certificate_attempt_available !==
+      true ||
+    artifact
+      ?.signed_radius_source_provenance_certificate_certified_directed_rounded !==
+      false ||
+    artifact?.signed_radius_source_provenance_certificate_fields_present !==
+      false ||
+    artifact?.signed_radius_source_provenance_certificate_missing_field_count !==
+      expectedRequiredFields.length ||
+    !sameStringSet(
+      artifact?.signed_radius_source_provenance_certificate_missing_fields,
+      expectedRequiredFields
+    ) ||
+    artifact?.signed_radius_source_provenance_certificate_row_count !== 5 ||
+    artifact?.all_certificate_rows_replay_signed_radius_envelope !== true ||
+    artifact?.all_certificate_rows_match_h38_bridge_boundary !== true ||
+    artifact?.all_certificate_rows_replay_lagrange_radius_weight !== true ||
+    artifact?.all_certificate_rows_fit_source_map_verifier_boundary !== true ||
+    artifact?.all_certificate_rows_have_emitter_fields_not_satisfied !==
+      true ||
+    artifact?.all_certificate_rows_keep_source_provenance_open !== true ||
+    artifact
+      ?.source_provenance_certificate_absence_is_only_open_condition !==
+      true ||
+    artifact?.s37_division_is_primary_blocker !== false ||
+    artifact?.s37_division_remains_dependent_obligation !== true ||
+    artifact
+      ?.signed_radius_source_provenance_certificate_classification !==
+      "signed-radius-source-provenance-certificate-attempt-replays-source-map-boundary-emitter-fields-missing" ||
+    artifact
+      ?.signed_radius_source_provenance_certificate_blocker_classification !==
+      "directed-rounded-source-provenance-emitter-fields-absent-after-certificate-attempt" ||
+    artifact
+      ?.signed_radius_source_provenance_certificate_primary_missing_object_kind !==
+      "directed-rounded-same-domain-source-provenance-emitter-for-signed-radius-envelope"
+  ) {
+    errors.push("signed-radius source-provenance certificate attempt aggregate must replay the boundary and keep certification open");
+  }
+  const rows =
+    artifact?.signed_radius_source_provenance_certificate_attempt_rows ?? [];
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== 5 ||
+    !rows.every(
+      (row, index) =>
+        row?.node_index === index &&
+        Number.isFinite(Number(row?.xi_midpoint)) &&
+        row?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+        row?.required_xi_derivative_order === 4 &&
+        row?.signed_radius_source_provenance_certificate_attempt_row_kind ===
+          "signed-radius-source-provenance-certificate-attempt-row" &&
+        row?.provider_row_source_kind ===
+          "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+        sameTerms(row?.source_terms_preserved_signed_together) &&
+        sameZeroTerms(row?.zero_source_terms) &&
+        hasOrderedFiniteInterval(
+          row?.certificate_attempt_signed_source_provenance_interval
+        ) &&
+        hasOrderedFiniteInterval(
+          row?.certificate_attempt_weighted_source_provenance_interval
+        ) &&
+        hasOrderedFiniteInterval(row?.signed_radius_envelope_interval) &&
+        hasOrderedFiniteInterval(row?.weighted_signed_radius_envelope_interval) &&
+        hasOrderedFiniteInterval(row?.h38_bridge_signed_residual_interval) &&
+        hasOrderedFiniteInterval(row?.h38_bridge_weighted_residual_interval) &&
+        h39RequestedY44SameInterval(
+          row.certificate_attempt_signed_source_provenance_interval,
+          row.signed_radius_envelope_interval
+        ) &&
+        h39RequestedY44SameInterval(
+          row.certificate_attempt_weighted_source_provenance_interval,
+          row.weighted_signed_radius_envelope_interval
+        ) &&
+        row?.signed_interval_matches_h38_bridge_boundary === true &&
+        row?.weighted_interval_matches_h38_bridge_boundary === true &&
+        row?.weighted_interval_replays_lagrange_radius_weight === true &&
+        row?.source_map_verifier_boundary_reached === true &&
+        row?.source_term_primitive_audit_row_status ===
+          "source-term-producer-image-intervals-present-primitive-provenance-open" &&
+        row?.h38_source_provenance_bridge_row_status ===
+          "h39-provider-row-ready-waits-on-expression-level-n38-source-provenance" &&
+        row?.directed_rounded_boundary_replay_row_status ===
+          "directed-rounded-boundary-replay-reaches-source-map-provider-source-term-certification-open" &&
+        sameStringSet(
+          row?.source_provenance_certificate_required_fields,
+          expectedRequiredFields
+        ) &&
+        sameStringSet(
+          row?.source_provenance_certificate_missing_fields,
+          expectedRequiredFields
+        ) &&
+        row?.source_provenance_certificate_fields_present === false &&
+        Object.values(
+          row?.source_provenance_certificate_field_presence_checks ?? {}
+        ).every((value) => value === false) &&
+        sameStringSet(row?.row_check_kinds, expectedRowCheckKinds) &&
+        expectedRowCheckKinds.every(
+          (kind) => row?.row_checks?.[kind] === true
+        ) &&
+        row?.row_replays_signed_radius_certificate_attempt_boundary === true &&
+        row?.row_certifies_signed_radius_source_provenance === false &&
+        row?.row_status ===
+          "signed-radius-source-provenance-certificate-attempt-reaches-boundary-emitter-fields-missing"
+    )
+  ) {
+    errors.push("signed-radius source-provenance certificate attempt rows must replay boundary intervals and expose missing emitter fields");
+  } else {
+    rows.forEach((row, index) => {
+      if (!validClaimBoundary(row?.claim_boundary)) {
+        errors.push(`signed-radius source-provenance certificate attempt row ${index} must keep broad closure flags open`);
+      }
+    });
+  }
+  if (
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string" ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("signed-radius source-provenance certificate attempt must keep broad closure claims open");
   }
   return errors;
 }

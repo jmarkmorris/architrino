@@ -289,10 +289,32 @@ proof-grade derivation attempt then constructs 112 / 112 proof-grade
 `exit_floor` refs from those source certificates with 0
 source-certificate-ref-as-proof-ref reuse, so all 112 / 112 fold-layer row
 associations now carry proof-grade `alpha_floor`, `exit_floor`, and
-`fold_layer_parity_record` refs. Separator certificates, row consumption,
-`preledger_pass`, live-ledger updates, and branch-chart authorization remain at
-0. This improves the parallel fold-layer field ledger but still does not change
-the source-cover theorem target or authorize source-cover row consumption.
+`fold_layer_parity_record` refs. The accepted atlas-ref source-certificate
+attempt then constructs 12 / 12 separator atlas source certificates and 112 /
+112 row source-certificate associations. The accepted atlas-ref
+derivation-bridge attempt then records that those source certificates still
+provide 0 / 112 accepted-atlas derivation bridges and 0 / 112 accepted
+`higher_fold_layer_atlas_ref` refs, and the separator-certificate readiness
+frontier classifier consolidates those source-side facts with 12 / 12
+separator aggregate triples and 112 / 112 parent row-association anchors.
+The separator-certificate assembly dependency classifier then records the
+combined assembly matrix above that frontier: child proof-grade refs, atlas
+source certificates, separator aggregate fields, and parent row-association
+anchors are present for all 112 / 112 rows, but accepted-atlas derivation
+bridges, accepted atlas refs, accepted impulse/direct-quadrature source
+packets, parent-complement consumption refs, and separator certificates remain
+absent. The same-packet fixed-parameter aggregate accepted-constants
+conformance classifier then tests the accepted constants artifact route and
+fails closed because the existing constants contract/fallback notes are scoped
+to the seed packet, `Sigma_1` through `Sigma_4`, and 16 fold rows rather than
+the higher-fold packet, `Sigma_hf_01` through `Sigma_hf_12`, and 112 fold-layer
+rows.
+Accepted atlas refs, source-packet acceptance rules, accepted
+impulse/direct-quadrature source packets, parent-complement consumption refs,
+separator certificates, row consumption, `preledger_pass`, live-ledger updates,
+and branch-chart authorization remain at 0. This improves the parallel
+fold-layer field ledger but still does not change the source-cover theorem
+target or authorize source-cover row consumption.
 
 ## First Probe Rows
 

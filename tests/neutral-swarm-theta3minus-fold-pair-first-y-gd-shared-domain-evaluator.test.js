@@ -63,6 +63,7 @@ import {
   buildH39RequestedY44SourceTermProducerImageProvenancePrimitiveAuditCandidate,
   buildH39RequestedY44SourceTermTransportFitCandidate,
   buildH39RequestedY44SignedRadiusSourceProvenanceEnvelopeCandidate,
+  buildH39RequestedY44SignedRadiusSourceProvenanceCertificateAttemptCandidate,
   buildH39RequestedY44RowLocalN38SignedSourceSumDerivativeProviderCandidate,
   validateH39CorrelatedResidualWidthDiagnostic,
   validateH39H38NumeratorGraphLocalPartitionDiagnostic,
@@ -122,6 +123,7 @@ import {
   validateH39RequestedY44SourceTermProducerImageProvenancePrimitiveAuditCandidate,
   validateH39RequestedY44SourceTermTransportFitCandidate,
   validateH39RequestedY44SignedRadiusSourceProvenanceEnvelopeCandidate,
+  validateH39RequestedY44SignedRadiusSourceProvenanceCertificateAttemptCandidate,
   validateH39RequestedY44RowLocalN38SignedSourceSumDerivativeProvider,
   validateH39RequestedY44SignedSourceSumDerivativeAllocationTarget,
   validateH39RequestedY44SourceMapResidualCovarianceTarget,
@@ -15200,6 +15202,162 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
         row.row_status ===
           "signed-radius-envelope-replays-boundary-source-provenance-open"
     )
+  );
+  const signedRadiusSourceProvenanceCertificateAttempt =
+    buildH39RequestedY44SignedRadiusSourceProvenanceCertificateAttemptCandidate({
+      sourceMapResidualCovarianceTarget,
+      directedRoundedSharedDomainProviderBoundaryReplay,
+      sourceTermProducerImagePrimitiveAudit,
+      signedRadiusSourceProvenanceEnvelope,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44SignedRadiusSourceProvenanceCertificateAttemptCandidate(
+      signedRadiusSourceProvenanceCertificateAttempt
+    ),
+    []
+  );
+  const signedRadiusSourceProvenanceCertificateRequiredFields = [
+    ...signedRadiusSourceProvenanceRequiredFields,
+    ...sourceTermProducerImagePrimitiveRequiredFields,
+    "directed_rounded_shared_domain_provider_boundary_replay_rows[].source_term_provider_probe_rows_certify_directed_rounded_source",
+    "directed_rounded_shared_domain_provider_boundary_replay_rows[].source_term_provider_probe_term_width_realization_closed",
+    "source_map_residual_h38_source_provenance_bridge_rows[].claim_boundary.certifies_source_inputs_as_directed_rounded_same_domain",
+  ];
+  assert.equal(
+    signedRadiusSourceProvenanceCertificateAttempt
+      .signed_radius_source_provenance_certificate_attempt_verified,
+    true
+  );
+  assert.equal(
+    signedRadiusSourceProvenanceCertificateAttempt
+      .signed_radius_source_provenance_certificate_attempt_available,
+    true
+  );
+  assert.equal(
+    signedRadiusSourceProvenanceCertificateAttempt
+      .signed_radius_source_provenance_certificate_certified_directed_rounded,
+    false
+  );
+  assert.equal(
+    signedRadiusSourceProvenanceCertificateAttempt
+      .signed_radius_source_provenance_certificate_fields_present,
+    false
+  );
+  assert.equal(
+    signedRadiusSourceProvenanceCertificateAttempt
+      .source_provenance_certificate_absence_is_only_open_condition,
+    true
+  );
+  assert.equal(
+    signedRadiusSourceProvenanceCertificateAttempt
+      .s37_division_is_primary_blocker,
+    false
+  );
+  assert.equal(
+    signedRadiusSourceProvenanceCertificateAttempt
+      .s37_division_remains_dependent_obligation,
+    true
+  );
+  assert.equal(
+    signedRadiusSourceProvenanceCertificateAttempt
+      .signed_radius_source_provenance_certificate_classification,
+    "signed-radius-source-provenance-certificate-attempt-replays-source-map-boundary-emitter-fields-missing"
+  );
+  assert.equal(
+    signedRadiusSourceProvenanceCertificateAttempt
+      .signed_radius_source_provenance_certificate_blocker_classification,
+    "directed-rounded-source-provenance-emitter-fields-absent-after-certificate-attempt"
+  );
+  assert.equal(
+    signedRadiusSourceProvenanceCertificateAttempt
+      .signed_radius_source_provenance_certificate_primary_missing_object_kind,
+    "directed-rounded-same-domain-source-provenance-emitter-for-signed-radius-envelope"
+  );
+  assert.deepEqual(
+    signedRadiusSourceProvenanceCertificateAttempt
+      .signed_radius_source_provenance_certificate_required_fields,
+    signedRadiusSourceProvenanceCertificateRequiredFields
+  );
+  assert.deepEqual(
+    signedRadiusSourceProvenanceCertificateAttempt
+      .signed_radius_source_provenance_certificate_check_kinds,
+    [
+      "source_map_residual_target_available",
+      "signed_radius_source_provenance_envelope_verified",
+      "source_term_producer_image_primitive_audit_verified",
+      "directed_rounded_boundary_replay_verified",
+      "h38_source_provenance_bridge_rows_ready",
+      "certificate_rows_replay_signed_radius_envelope",
+      "certificate_rows_match_h38_bridge_boundary",
+      "certificate_rows_replay_lagrange_radius_weight",
+      "certificate_rows_fit_source_map_verifier_boundary",
+      "certificate_emitter_required_fields_not_satisfied",
+      "no_certificate_attempt_row_certifies_source_provenance",
+    ]
+  );
+  assert.ok(
+    Object.values(
+      signedRadiusSourceProvenanceCertificateAttempt
+        .signed_radius_source_provenance_certificate_checks
+    ).every((value) => value === true)
+  );
+  assert.equal(
+    signedRadiusSourceProvenanceCertificateAttempt
+      .signed_radius_source_provenance_certificate_row_count,
+    5
+  );
+  assert.ok(
+    signedRadiusSourceProvenanceCertificateAttempt.signed_radius_source_provenance_certificate_attempt_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.signed_radius_source_provenance_certificate_attempt_row_kind ===
+          "signed-radius-source-provenance-certificate-attempt-row" &&
+        row.provider_row_source_kind ===
+          "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+        row.signed_interval_matches_h38_bridge_boundary === true &&
+        row.weighted_interval_matches_h38_bridge_boundary === true &&
+        row.weighted_interval_replays_lagrange_radius_weight === true &&
+        row.source_map_verifier_boundary_reached === true &&
+        row.source_term_primitive_audit_row_status ===
+          "source-term-producer-image-intervals-present-primitive-provenance-open" &&
+        row.h38_source_provenance_bridge_row_status ===
+          "h39-provider-row-ready-waits-on-expression-level-n38-source-provenance" &&
+        row.directed_rounded_boundary_replay_row_status ===
+          "directed-rounded-boundary-replay-reaches-source-map-provider-source-term-certification-open" &&
+        row.source_provenance_certificate_fields_present === false &&
+        row.source_provenance_certificate_missing_fields.length ===
+          signedRadiusSourceProvenanceCertificateRequiredFields.length &&
+        row.source_provenance_certificate_missing_fields.every((field) =>
+          signedRadiusSourceProvenanceCertificateRequiredFields.includes(field)
+        ) &&
+        Object.values(
+          row.source_provenance_certificate_field_presence_checks
+        ).every((value) => value === false) &&
+        Object.values(row.row_checks).every((value) => value === true) &&
+        row.row_replays_signed_radius_certificate_attempt_boundary === true &&
+        row.row_certifies_signed_radius_source_provenance === false &&
+        row.claim_boundary
+          .certifies_signed_radius_source_provenance === false &&
+        row.claim_boundary
+          .certifies_source_inputs_as_directed_rounded_same_domain === false &&
+        row.claim_boundary.certifies_expression_level_n38_provider ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain ===
+          false &&
+        row.row_status ===
+          "signed-radius-source-provenance-certificate-attempt-reaches-boundary-emitter-fields-missing"
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(signedRadiusSourceProvenanceCertificateAttempt),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      signedRadiusSourceProvenanceCertificateAttempt,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
   );
   assert.deepEqual(
     collectTrueCertifies(signedRadiusSourceProvenanceEnvelope),

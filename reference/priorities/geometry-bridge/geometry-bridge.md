@@ -3504,6 +3504,31 @@ next true object is the directed-rounded same-domain signed-radius
 source-provenance envelope for the expression-level $N_{38}$ source-map
 residual after centered homothetic source-term transport.
 
+`buildH39RequestedY44SignedRadiusSourceProvenanceEnvelopeCandidate` now builds
+that object as an executable envelope audit. It verifies that the
+quotient-compatible signed and weighted residual intervals match the centered
+homothetic transport bridge, sit inside the expression-level live residual
+intervals, replay the Lagrange radius weight, fit the numerator budget, and
+reach the same-domain/same-radius source-map verifier boundary. This is a real
+boundary advance, not a provider certificate. The remaining failure is now
+row-local and explicit: the acceptance rows, verifier rows, and transport
+bridge rows still lack the directed-rounded same-domain source-provenance
+certification fields. The next proof object is therefore the certificate that
+emits those signed-radius envelope rows as directed-rounded source provenance,
+not another interval-width contraction or terminal replay.
+
+`buildH39RequestedY44SignedRadiusSourceProvenanceCertificateAttemptCandidate`
+now attacks that certificate directly. It replays the accepted signed-radius
+envelope rows through the H38 source-provenance bridge and the existing
+directed-rounded shared-domain provider boundary replay. The candidate
+certificate intervals match the source-map boundary rows, still replay the
+Lagrange radius weight, and fit the verifier boundary. The attempt still fails
+closed: every row lacks the emitter fields tying the source-term producer-image
+primitive, terminal boundary replay, acceptance rows, verifier rows, transport
+rows, and H38 bridge rows into one directed-rounded same-domain
+source-provenance object. The next true blocker is that emitter, not another
+signed-radius interval contraction.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.
