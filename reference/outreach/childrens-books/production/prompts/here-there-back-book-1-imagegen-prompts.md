@@ -24,7 +24,7 @@ Geometry: restricted red/blue/purple geometry only on the balls and soft dotted 
 
 ## Spread 1
 
-Primary request: Electra and Poz sit close together on a white blanket with purple trim. A red ball rests in front of them, clearly visible and uncovered. The composition makes three simple places readable: Electra here, Poz here, ball here.
+Primary request: Electra and Poz sit close together on a white blanket with purple trim. A red ball rests in front of them, clearly visible and uncovered. Both children are visibly looking down at the red ball, with their heads and eyes aimed at the ball. The composition makes three simple places readable: Electra here, Poz here, ball here.
 
 Geometry: no formal diagram; simply make three clear visual positions on the page: Electra, Poz, and the red ball.
 

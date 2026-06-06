@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-06-06T16:53:52.979931+00:00",
+  "generated_at": "2026-06-06T17:04:20.133836+00:00",
   "root": "reference/outreach/childrens-books",
   "total_source_images": 22,
   "generation_order": [
@@ -81,7 +81,7 @@
       "lesson": "The children and the ball are somewhere.",
       "geometry": "Electra, Poz, and one ball each occupy clear, separate places.",
       "background_concepts": "Here, presence, shared attention.",
-      "prompt": "Electra and Poz sit close together on a white blanket with purple trim. A red ball rests in front of them, clearly visible and uncovered. The composition makes three simple places readable: Electra here, Poz here, ball here. Natural skin and hair, white/purple clothing, white playroom, black expressive linework, no arrows, no labels, no in-image text.",
+      "prompt": "Electra and Poz sit close together on a white blanket with purple trim. A red ball rests in front of them, clearly visible and uncovered. Both children are visibly looking down at the red ball, with their heads and eyes aimed at the ball. The composition makes three simple places readable: Electra here, Poz here, ball here. Natural skin and hair, white/purple clothing, white playroom, black expressive linework, no arrows, no labels, no in-image text.",
       "palette_rule": "Use only pure red, pure blue, red-blue purples, white, and black for non-human visual systems and AAA geometry. Keep scenery, clothing, and tools in white/purple/black unless a red or blue mark is explicitly part of the physics geometry. Human skin and hair may use natural tones.",
       "text_rule": "No in-image text, captions, labels, equations, watermark, or logo.",
       "aspect": "landscape_3x2_source",

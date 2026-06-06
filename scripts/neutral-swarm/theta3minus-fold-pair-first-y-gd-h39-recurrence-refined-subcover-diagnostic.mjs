@@ -70010,6 +70010,692 @@ export function validateH39RequestedY44SourceTermTransportFitCandidate(
   return errors;
 }
 
+export function buildH39RequestedY44SignedRadiusSourceProvenanceEnvelopeCandidate({
+  sourceMapResidualCovarianceTarget,
+  expressionN38SourceMapResidualEnvelopeProvenanceAudit,
+  sourceTermTransportFit,
+} = {}) {
+  const envelopeCheckKinds = [
+    "source_map_residual_target_available",
+    "expression_envelope_identity_verified",
+    "centered_homothetic_transport_fit_verified",
+    "signed_radius_acceptance_target_available",
+    "signed_radius_acceptance_reaches_source_only_failure",
+    "signed_radius_rows_match_transport_bridge",
+    "signed_radius_envelope_intervals_inside_expression_live_residuals",
+    "weighted_envelope_intervals_inside_expression_live_residuals",
+    "weighted_envelope_replays_lagrange_radius_weight",
+    "directed_provider_verifier_reaches_source_only_failure",
+    "directed_rounded_source_provenance_fields_absent",
+    "no_signed_radius_row_certifies_directed_source",
+  ];
+  const requiredProvenanceFields = [
+    "signed_radius_provider_acceptance_rows[].claim_boundary.certifies_source_inputs_as_directed_rounded_same_domain",
+    "signed_radius_provider_acceptance_rows[].claim_boundary.certifies_directed_rounded_shared_domain",
+    "directed_provider_verifier.provider_verification_rows[].provider_certifies_directed_rounded_shared_domain",
+    "source_term_transport_fit.centered_homothetic_transport_bridge_rows[].claim_boundary.certifies_source_inputs_as_directed_rounded_same_domain",
+  ];
+  const acceptanceTarget =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target ??
+    null;
+  const acceptanceRows =
+    acceptanceTarget?.signed_radius_provider_acceptance_rows ?? [];
+  const verifier = acceptanceTarget?.directed_provider_verifier ?? null;
+  const verifierRows = verifier?.provider_verification_rows ?? [];
+  const expressionRows =
+    expressionN38SourceMapResidualEnvelopeProvenanceAudit
+      ?.expression_envelope_provenance_rows ?? [];
+  const transportRows =
+    sourceTermTransportFit?.centered_homothetic_transport_bridge_rows ?? [];
+  const verifierRowsByNode = new Map(
+    verifierRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const expressionRowsByNode = new Map(
+    expressionRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const transportRowsByNode = new Map(
+    transportRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const sourceTargetAvailable =
+    sourceMapResidualCovarianceTarget?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_MAP_RESIDUAL_COVARIANCE_TARGET_SCHEMA ||
+    sourceMapResidualCovarianceTarget?.target_kind ===
+      "candidate-requested-y44-source-map-residual-covariance-target";
+  const expressionEnvelopeIdentityVerified =
+    expressionN38SourceMapResidualEnvelopeProvenanceAudit
+      ?.expression_n38_source_map_residual_identity_verified === true &&
+    expressionN38SourceMapResidualEnvelopeProvenanceAudit
+      ?.expression_n38_source_map_residual_envelope_source_provenance_available ===
+      false &&
+    expressionN38SourceMapResidualEnvelopeProvenanceAudit
+      ?.expression_n38_source_map_residual_envelope_certified_directed_rounded ===
+      false;
+  const centeredHomotheticTransportFitVerified =
+    sourceTermTransportFit
+      ?.centered_homothetic_source_term_transport_surface_verified === true &&
+    sourceTermTransportFit
+      ?.centered_homothetic_transport_reduces_to_signed_radius_source_provenance ===
+      true &&
+    sourceTermTransportFit?.directed_rounded_source_provenance_still_open ===
+      true &&
+    sourceTermTransportFit?.source_term_transport_fit_certified_directed_rounded ===
+      false;
+  const signedRadiusAcceptanceTargetAvailable =
+    acceptanceTarget?.target_kind ===
+      "candidate-requested-y44-shared-source-map-signed-radius-provider-acceptance-target" &&
+    acceptanceTarget?.signed_radius_provider_acceptance_rows_available ===
+      true &&
+    Array.isArray(acceptanceRows) &&
+    acceptanceRows.length === 5 &&
+    verifier?.target_kind ===
+      "candidate-requested-y44-shared-source-map-five-node-directed-provider-verifier";
+  const signedRadiusAcceptanceReachesSourceOnlyFailure =
+    acceptanceTarget?.provider_target_reaches_verifier_with_source_only_failure ===
+      true &&
+    acceptanceTarget?.all_provider_rows_match_same_domain_same_radius === true &&
+    acceptanceTarget?.all_provider_rows_match_required_source_kind === true &&
+    acceptanceTarget?.all_provider_intervals_subset_screened_targets === true &&
+    acceptanceTarget?.all_quotient_compatible_intervals_fit_numerator_budget ===
+      true &&
+    acceptanceTarget
+      ?.all_quotient_compatible_weighted_intervals_match_radius_weight ===
+      true &&
+    acceptanceTarget?.all_provider_rows_have_directed_rounded_source === false;
+  const directedProviderVerifierReachesSourceOnlyFailure =
+    verifier?.all_provider_rows_match_same_domain_contract === true &&
+    verifier?.all_provider_rows_match_same_radius_contract === true &&
+    verifier?.all_provider_intervals_subset_screened_targets === true &&
+    verifier?.all_provider_rows_have_directed_rounded_source === false;
+  const rows = acceptanceRows.map((acceptanceRow) => {
+    const nodeIndex = Number(acceptanceRow?.node_index);
+    const verifierRow = verifierRowsByNode.get(nodeIndex) ?? null;
+    const expressionRow = expressionRowsByNode.get(nodeIndex) ?? null;
+    const transportRow = transportRowsByNode.get(nodeIndex) ?? null;
+    const signedEnvelopeInterval = finiteOrderedIntervalOrNull(
+      acceptanceRow?.directed_rounded_signed_residual_interval
+    );
+    const weightedEnvelopeInterval = finiteOrderedIntervalOrNull(
+      acceptanceRow?.directed_rounded_weighted_residual_interval
+    );
+    const expressionLiveSignedInterval = finiteOrderedIntervalOrNull(
+      expressionRow?.signed_residual_interval
+    );
+    const expressionLiveWeightedInterval = finiteOrderedIntervalOrNull(
+      expressionRow?.weighted_signed_residual_interval
+    );
+    const screenedSignedTarget = finiteOrderedIntervalOrNull(
+      acceptanceRow?.screened_signed_residual_target_interval
+    );
+    const screenedWeightedTarget = finiteOrderedIntervalOrNull(
+      acceptanceRow?.screened_weighted_residual_target_interval
+    );
+    const transportSignedInterval = finiteOrderedIntervalOrNull(
+      transportRow?.directed_rounded_signed_residual_interval
+    );
+    const transportWeightedInterval = finiteOrderedIntervalOrNull(
+      transportRow?.directed_rounded_weighted_residual_interval
+    );
+    const lagrangeWeight = Number(
+      acceptanceRow?.lagrange_fourth_derivative_weight
+    );
+    const weightedFromSigned =
+      signedEnvelopeInterval !== null && Number.isFinite(lagrangeWeight)
+        ? root.scaleInterval(signedEnvelopeInterval, lagrangeWeight)
+        : null;
+    const signedInsideExpression =
+      expressionLiveSignedInterval !== null &&
+      signedEnvelopeInterval !== null &&
+      intervalContainsInterval(
+        expressionLiveSignedInterval,
+        signedEnvelopeInterval
+      );
+    const weightedInsideExpression =
+      expressionLiveWeightedInterval !== null &&
+      weightedEnvelopeInterval !== null &&
+      intervalContainsInterval(
+        expressionLiveWeightedInterval,
+        weightedEnvelopeInterval
+      );
+    const signedMatchesTransport =
+      signedEnvelopeInterval !== null &&
+      transportSignedInterval !== null &&
+      h39RequestedY44SameInterval(
+        signedEnvelopeInterval,
+        transportSignedInterval
+      );
+    const weightedMatchesTransport =
+      weightedEnvelopeInterval !== null &&
+      transportWeightedInterval !== null &&
+      h39RequestedY44SameInterval(
+        weightedEnvelopeInterval,
+        transportWeightedInterval
+      );
+    const weightedReplaysLagrange =
+      weightedEnvelopeInterval !== null &&
+      weightedFromSigned !== null &&
+      h39RequestedY44SameInterval(
+        weightedEnvelopeInterval,
+        weightedFromSigned
+      );
+    const fieldPresenceChecks = {
+      "signed_radius_provider_acceptance_rows[].claim_boundary.certifies_source_inputs_as_directed_rounded_same_domain":
+        acceptanceRow?.claim_boundary
+          ?.certifies_source_inputs_as_directed_rounded_same_domain === true,
+      "signed_radius_provider_acceptance_rows[].claim_boundary.certifies_directed_rounded_shared_domain":
+        acceptanceRow?.claim_boundary
+          ?.certifies_directed_rounded_shared_domain === true,
+      "directed_provider_verifier.provider_verification_rows[].provider_certifies_directed_rounded_shared_domain":
+        verifierRow?.provider_certifies_directed_rounded_shared_domain === true,
+      "source_term_transport_fit.centered_homothetic_transport_bridge_rows[].claim_boundary.certifies_source_inputs_as_directed_rounded_same_domain":
+        transportRow?.claim_boundary
+          ?.certifies_source_inputs_as_directed_rounded_same_domain === true,
+    };
+    const missingFields = Object.entries(fieldPresenceChecks)
+      .filter(([, present]) => present !== true)
+      .map(([field]) => field);
+    const rowChecks = {
+      signed_radius_acceptance_row_available:
+        Number.isInteger(nodeIndex) &&
+        signedEnvelopeInterval !== null &&
+        weightedEnvelopeInterval !== null,
+      signed_radius_row_matches_same_domain_same_radius_boundary:
+        acceptanceRow?.provider_row_source_kind ===
+          "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+        acceptanceRow?.quotient_compatible_signed_interval_subset_screened_target ===
+          true &&
+        acceptanceRow
+          ?.quotient_compatible_weighted_interval_subset_screened_target ===
+          true,
+      signed_radius_row_fits_numerator_budget:
+        acceptanceRow?.quotient_compatible_signed_interval_fits_numerator_budget ===
+          true &&
+        finiteNonnegative(acceptanceRow?.signed_provider_interval_abs_upper) &&
+        finitePositive(acceptanceRow?.numerator_allowed_absolute_half_width) &&
+        Number(acceptanceRow.signed_provider_interval_abs_upper) <=
+          Number(acceptanceRow.numerator_allowed_absolute_half_width),
+      signed_envelope_matches_transport_bridge: signedMatchesTransport,
+      weighted_envelope_matches_transport_bridge: weightedMatchesTransport,
+      signed_envelope_inside_expression_live_residual:
+        signedInsideExpression,
+      weighted_envelope_inside_expression_live_residual:
+        weightedInsideExpression,
+      weighted_envelope_replays_lagrange_radius_weight:
+        weightedReplaysLagrange,
+      verifier_row_reaches_boundary_except_source_provenance:
+        verifierRow?.provider_source_kind_matches_required === true &&
+        verifierRow?.matches_same_domain_contract === true &&
+        verifierRow?.matches_same_radius_contract === true &&
+        verifierRow?.weighted_provider_interval_contained_in_screened_target ===
+          true &&
+        verifierRow?.coefficient_provider_interval_contained_in_screened_target ===
+          true &&
+        verifierRow?.provider_certifies_directed_rounded_shared_domain ===
+          false,
+      expression_row_contains_envelope:
+        expressionRow?.row_verifies_expression_residual_identity === true &&
+        expressionRow?.row_certifies_expression_source_provenance === false &&
+        signedInsideExpression &&
+        weightedInsideExpression,
+      directed_rounded_source_provenance_fields_absent:
+        missingFields.length === requiredProvenanceFields.length,
+      no_row_certifies_directed_source:
+        acceptanceRow?.claim_boundary
+          ?.certifies_source_inputs_as_directed_rounded_same_domain === false &&
+        verifierRow?.provider_certifies_directed_rounded_shared_domain ===
+          false &&
+        transportRow?.claim_boundary
+          ?.certifies_source_inputs_as_directed_rounded_same_domain === false,
+    };
+    const rowVerified = Object.values(rowChecks).every(
+      (value) => value === true
+    );
+    return {
+      node_index: Number.isInteger(nodeIndex) ? nodeIndex : null,
+      xi_midpoint: acceptanceRow?.xi_midpoint ?? null,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      signed_radius_source_provenance_envelope_row_kind:
+        "signed-radius-source-provenance-envelope-absence-row",
+      provider_row_source_kind:
+        acceptanceRow?.provider_row_source_kind ?? null,
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      zero_source_terms: ["constant_minus_two"],
+      signed_radius_source_provenance_envelope_interval:
+        signedEnvelopeInterval,
+      weighted_signed_radius_source_provenance_envelope_interval:
+        weightedEnvelopeInterval,
+      expression_live_signed_residual_interval:
+        expressionLiveSignedInterval,
+      expression_live_weighted_residual_interval:
+        expressionLiveWeightedInterval,
+      screened_signed_residual_target_interval: screenedSignedTarget,
+      screened_weighted_residual_target_interval: screenedWeightedTarget,
+      transport_bridge_signed_residual_interval: transportSignedInterval,
+      transport_bridge_weighted_residual_interval:
+        transportWeightedInterval,
+      signed_envelope_to_expression_live_endpoint_relative_gap:
+        signedEnvelopeInterval !== null && expressionLiveSignedInterval !== null
+          ? intervalEndpointRelativeGap(
+              signedEnvelopeInterval,
+              expressionLiveSignedInterval
+            )
+          : null,
+      weighted_envelope_to_expression_live_endpoint_relative_gap:
+        weightedEnvelopeInterval !== null &&
+        expressionLiveWeightedInterval !== null
+          ? intervalEndpointRelativeGap(
+              weightedEnvelopeInterval,
+              expressionLiveWeightedInterval
+            )
+          : null,
+      signed_envelope_matches_transport_bridge: signedMatchesTransport,
+      weighted_envelope_matches_transport_bridge: weightedMatchesTransport,
+      signed_envelope_inside_expression_live_residual:
+        signedInsideExpression,
+      weighted_envelope_inside_expression_live_residual:
+        weightedInsideExpression,
+      weighted_envelope_replays_lagrange_radius_weight:
+        weightedReplaysLagrange,
+      verifier_row_provider_certifies_directed_rounded_shared_domain:
+        verifierRow?.provider_certifies_directed_rounded_shared_domain ??
+        null,
+      source_provenance_required_fields: [...requiredProvenanceFields],
+      source_provenance_field_presence_checks: fieldPresenceChecks,
+      source_provenance_missing_fields: missingFields,
+      source_provenance_fields_present: missingFields.length === 0,
+      row_check_kinds: Object.keys(rowChecks),
+      row_checks: rowChecks,
+      row_replays_signed_radius_envelope_boundary: rowVerified,
+      row_certifies_signed_radius_source_provenance: false,
+      row_status: rowVerified
+        ? "signed-radius-envelope-replays-boundary-source-provenance-open"
+        : "signed-radius-source-provenance-envelope-row-open",
+      claim_boundary: {
+        defines_signed_radius_source_provenance_envelope_only: true,
+        certifies_signed_radius_source_provenance: false,
+        certifies_source_inputs_as_directed_rounded_same_domain: false,
+        certifies_expression_level_n38_provider: false,
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_terminal_row_provider_enclosure: false,
+        certifies_terminal_graph_remainder_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  });
+  const allRowsReplayTransport =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.signed_envelope_matches_transport_bridge === true &&
+        row.weighted_envelope_matches_transport_bridge === true
+    );
+  const allRowsInsideExpressionLiveResiduals =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.signed_envelope_inside_expression_live_residual === true &&
+        row.weighted_envelope_inside_expression_live_residual === true
+    );
+  const allRowsReplayLagrangeRadiusWeight =
+    rows.length === 5 &&
+    rows.every(
+      (row) => row.weighted_envelope_replays_lagrange_radius_weight === true
+    );
+  const allRowsHaveProvenanceFieldsAbsent =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.source_provenance_fields_present === false &&
+        row.source_provenance_missing_fields.length ===
+          requiredProvenanceFields.length
+    );
+  const allRowsCertifyNoDirectedSource =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.row_certifies_signed_radius_source_provenance === false &&
+        row.verifier_row_provider_certifies_directed_rounded_shared_domain ===
+          false
+    );
+  const allRowsReplayEnvelopeBoundary =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.row_status ===
+        "signed-radius-envelope-replays-boundary-source-provenance-open"
+    );
+  const envelopeChecks = {
+    source_map_residual_target_available: sourceTargetAvailable,
+    expression_envelope_identity_verified:
+      expressionEnvelopeIdentityVerified,
+    centered_homothetic_transport_fit_verified:
+      centeredHomotheticTransportFitVerified,
+    signed_radius_acceptance_target_available:
+      signedRadiusAcceptanceTargetAvailable,
+    signed_radius_acceptance_reaches_source_only_failure:
+      signedRadiusAcceptanceReachesSourceOnlyFailure,
+    signed_radius_rows_match_transport_bridge: allRowsReplayTransport,
+    signed_radius_envelope_intervals_inside_expression_live_residuals:
+      allRowsInsideExpressionLiveResiduals,
+    weighted_envelope_intervals_inside_expression_live_residuals:
+      allRowsInsideExpressionLiveResiduals,
+    weighted_envelope_replays_lagrange_radius_weight:
+      allRowsReplayLagrangeRadiusWeight,
+    directed_provider_verifier_reaches_source_only_failure:
+      directedProviderVerifierReachesSourceOnlyFailure,
+    directed_rounded_source_provenance_fields_absent:
+      allRowsHaveProvenanceFieldsAbsent,
+    no_signed_radius_row_certifies_directed_source:
+      allRowsCertifyNoDirectedSource,
+  };
+  const envelopeVerified =
+    Object.values(envelopeChecks).every((value) => value === true) &&
+    allRowsReplayEnvelopeBoundary;
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_ENVELOPE_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-signed-radius-source-provenance-envelope-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-signed-radius-source-provenance-envelope",
+    target_kind:
+      "candidate-requested-y44-signed-radius-source-provenance-envelope",
+    source_map_residual_target_schema:
+      sourceMapResidualCovarianceTarget?.schema ?? null,
+    expression_n38_source_map_residual_envelope_provenance_audit_schema:
+      expressionN38SourceMapResidualEnvelopeProvenanceAudit?.schema ?? null,
+    source_term_transport_fit_schema: sourceTermTransportFit?.schema ?? null,
+    proof_status: envelopeVerified
+      ? "candidate-signed-radius-envelope-boundary-replayed-source-provenance-open"
+      : "candidate-signed-radius-source-provenance-envelope-open",
+    envelope_kind:
+      "expression-n38-source-map-residual-signed-radius-source-provenance-envelope",
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    source_terms_preserved_signed_together: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    zero_source_terms: ["constant_minus_two"],
+    signed_radius_source_provenance_required_fields: [
+      ...requiredProvenanceFields,
+    ],
+    signed_radius_source_provenance_envelope_check_kinds: [
+      ...envelopeCheckKinds,
+    ],
+    signed_radius_source_provenance_envelope_checks:
+      envelopeChecks,
+    signed_radius_source_provenance_envelope_verified:
+      envelopeVerified,
+    signed_radius_source_provenance_envelope_available:
+      envelopeVerified,
+    signed_radius_source_provenance_envelope_certified_directed_rounded:
+      false,
+    signed_radius_source_provenance_fields_present: false,
+    signed_radius_source_provenance_missing_field_count:
+      requiredProvenanceFields.length,
+    signed_radius_envelope_row_count: rows.length,
+    signed_radius_source_provenance_envelope_rows: rows,
+    all_signed_radius_envelope_rows_replay_transport_bridge:
+      allRowsReplayTransport,
+    all_signed_radius_envelope_rows_inside_expression_live_residuals:
+      allRowsInsideExpressionLiveResiduals,
+    all_signed_radius_envelope_rows_replay_lagrange_radius_weight:
+      allRowsReplayLagrangeRadiusWeight,
+    all_signed_radius_envelope_rows_have_provenance_fields_absent:
+      allRowsHaveProvenanceFieldsAbsent,
+    all_signed_radius_envelope_rows_reach_verifier_boundary:
+      allRowsReplayEnvelopeBoundary,
+    source_provenance_absence_is_only_open_verifier_condition:
+      directedProviderVerifierReachesSourceOnlyFailure &&
+      signedRadiusAcceptanceReachesSourceOnlyFailure &&
+      allRowsHaveProvenanceFieldsAbsent,
+    s37_division_is_primary_blocker: false,
+    s37_division_remains_dependent_obligation: true,
+    signed_radius_source_provenance_envelope_classification:
+      envelopeVerified
+        ? "signed-radius-envelope-boundary-replayed-directed-source-provenance-open"
+        : "signed-radius-source-provenance-envelope-open",
+    signed_radius_source_provenance_envelope_blocker_classification:
+      envelopeVerified
+        ? "directed-rounded-source-provenance-certification-fields-absent-after-signed-radius-envelope-replay"
+        : "signed-radius-source-provenance-envelope-open",
+    signed_radius_source_provenance_envelope_primary_missing_object_kind:
+      "directed-rounded-same-domain-source-provenance-certificate-for-signed-radius-envelope",
+    next_certificate_object:
+      "directed-rounded same-domain source-provenance certificate for the signed-radius expression-level N38 source-map residual envelope emitted after centered homothetic source-term transport",
+    candidate_certificate_route:
+      "The signed-radius envelope now replays through the source-map verifier boundary: the quotient-compatible signed and weighted residual intervals match the centered homothetic transport bridge, sit inside the expression-level live residual intervals, replay the Lagrange radius weight, satisfy the numerator budget, and match the same-domain and same-radius contracts. The remaining failure is exact and row-local: neither the acceptance rows, the directed-provider verifier rows, nor the transport bridge rows provide a directed-rounded same-domain source-provenance certification field.",
+    claim_boundary: {
+      defines_signed_radius_source_provenance_envelope_only: true,
+      certifies_signed_radius_source_provenance: false,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_expression_level_n38_provider: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_terminal_row_provider_enclosure: false,
+      certifies_terminal_graph_remainder_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+export function validateH39RequestedY44SignedRadiusSourceProvenanceEnvelopeCandidate(
+  artifact
+) {
+  const errors = [];
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const sameStringSet = (left, right) =>
+    Array.isArray(left) &&
+    left.length === right.length &&
+    right.every((value) => left.includes(value));
+  const hasOrderedFiniteInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    Number.isFinite(Number(interval[0])) &&
+    Number.isFinite(Number(interval[1])) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const validClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_signed_radius_source_provenance_envelope_only === true &&
+    claimBoundary?.certifies_signed_radius_source_provenance === false &&
+    claimBoundary?.certifies_source_inputs_as_directed_rounded_same_domain ===
+      false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_n38_fourth_derivative_bound === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const expectedRequiredFields = [
+    "signed_radius_provider_acceptance_rows[].claim_boundary.certifies_source_inputs_as_directed_rounded_same_domain",
+    "signed_radius_provider_acceptance_rows[].claim_boundary.certifies_directed_rounded_shared_domain",
+    "directed_provider_verifier.provider_verification_rows[].provider_certifies_directed_rounded_shared_domain",
+    "source_term_transport_fit.centered_homothetic_transport_bridge_rows[].claim_boundary.certifies_source_inputs_as_directed_rounded_same_domain",
+  ];
+  const expectedCheckKinds = [
+    "source_map_residual_target_available",
+    "expression_envelope_identity_verified",
+    "centered_homothetic_transport_fit_verified",
+    "signed_radius_acceptance_target_available",
+    "signed_radius_acceptance_reaches_source_only_failure",
+    "signed_radius_rows_match_transport_bridge",
+    "signed_radius_envelope_intervals_inside_expression_live_residuals",
+    "weighted_envelope_intervals_inside_expression_live_residuals",
+    "weighted_envelope_replays_lagrange_radius_weight",
+    "directed_provider_verifier_reaches_source_only_failure",
+    "directed_rounded_source_provenance_fields_absent",
+    "no_signed_radius_row_certifies_directed_source",
+  ];
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_ENVELOPE_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 requested-y44 signed-radius source-provenance envelope candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-signed-radius-source-provenance-envelope-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-signed-radius-source-provenance-envelope" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-signed-radius-source-provenance-envelope" ||
+    artifact?.expression_n38_source_map_residual_envelope_provenance_audit_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_EXPRESSION_N38_SOURCE_MAP_RESIDUAL_ENVELOPE_PROVENANCE_AUDIT_CANDIDATE_SCHEMA ||
+    artifact?.source_term_transport_fit_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_TRANSPORT_FIT_CANDIDATE_SCHEMA ||
+    artifact?.proof_status !==
+      "candidate-signed-radius-envelope-boundary-replayed-source-provenance-open" ||
+    artifact?.envelope_kind !==
+      "expression-n38-source-map-residual-signed-radius-source-provenance-envelope" ||
+    artifact?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    !sameTerms(artifact?.source_terms_preserved_signed_together) ||
+    !Array.isArray(artifact?.zero_source_terms) ||
+    artifact.zero_source_terms.length !== 1 ||
+    artifact.zero_source_terms[0] !== "constant_minus_two" ||
+    !sameStringSet(
+      artifact?.signed_radius_source_provenance_required_fields,
+      expectedRequiredFields
+    ) ||
+    !sameStringSet(
+      artifact?.signed_radius_source_provenance_envelope_check_kinds,
+      expectedCheckKinds
+    )
+  ) {
+    errors.push("signed-radius source-provenance envelope metadata must identify the boundary replay");
+  }
+  if (
+    expectedCheckKinds.some(
+      (kind) =>
+        artifact?.signed_radius_source_provenance_envelope_checks?.[kind] !==
+        true
+    ) ||
+    artifact?.signed_radius_source_provenance_envelope_verified !== true ||
+    artifact?.signed_radius_source_provenance_envelope_available !== true ||
+    artifact
+      ?.signed_radius_source_provenance_envelope_certified_directed_rounded !==
+      false ||
+    artifact?.signed_radius_source_provenance_fields_present !== false ||
+    artifact?.signed_radius_source_provenance_missing_field_count !==
+      expectedRequiredFields.length ||
+    artifact?.signed_radius_envelope_row_count !== 5 ||
+    artifact?.all_signed_radius_envelope_rows_replay_transport_bridge !==
+      true ||
+    artifact
+      ?.all_signed_radius_envelope_rows_inside_expression_live_residuals !==
+      true ||
+    artifact?.all_signed_radius_envelope_rows_replay_lagrange_radius_weight !==
+      true ||
+    artifact
+      ?.all_signed_radius_envelope_rows_have_provenance_fields_absent !==
+      true ||
+    artifact?.all_signed_radius_envelope_rows_reach_verifier_boundary !==
+      true ||
+    artifact?.source_provenance_absence_is_only_open_verifier_condition !==
+      true ||
+    artifact?.s37_division_is_primary_blocker !== false ||
+    artifact?.s37_division_remains_dependent_obligation !== true ||
+    artifact?.signed_radius_source_provenance_envelope_classification !==
+      "signed-radius-envelope-boundary-replayed-directed-source-provenance-open" ||
+    artifact?.signed_radius_source_provenance_envelope_blocker_classification !==
+      "directed-rounded-source-provenance-certification-fields-absent-after-signed-radius-envelope-replay" ||
+    artifact?.signed_radius_source_provenance_envelope_primary_missing_object_kind !==
+      "directed-rounded-same-domain-source-provenance-certificate-for-signed-radius-envelope"
+  ) {
+    errors.push("signed-radius source-provenance envelope aggregate must replay the boundary while keeping certification open");
+  }
+  const rows =
+    artifact?.signed_radius_source_provenance_envelope_rows ?? [];
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== 5 ||
+    !rows.every(
+      (row, index) =>
+        row?.node_index === index &&
+        Number.isFinite(Number(row?.xi_midpoint)) &&
+        row?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+        row?.required_xi_derivative_order === 4 &&
+        row?.signed_radius_source_provenance_envelope_row_kind ===
+          "signed-radius-source-provenance-envelope-absence-row" &&
+        row?.provider_row_source_kind ===
+          "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+        sameTerms(row?.source_terms_preserved_signed_together) &&
+        Array.isArray(row?.zero_source_terms) &&
+        row.zero_source_terms[0] === "constant_minus_two" &&
+        hasOrderedFiniteInterval(
+          row?.signed_radius_source_provenance_envelope_interval
+        ) &&
+        hasOrderedFiniteInterval(
+          row?.weighted_signed_radius_source_provenance_envelope_interval
+        ) &&
+        hasOrderedFiniteInterval(row?.expression_live_signed_residual_interval) &&
+        hasOrderedFiniteInterval(row?.expression_live_weighted_residual_interval) &&
+        hasOrderedFiniteInterval(row?.screened_signed_residual_target_interval) &&
+        hasOrderedFiniteInterval(row?.screened_weighted_residual_target_interval) &&
+        hasOrderedFiniteInterval(row?.transport_bridge_signed_residual_interval) &&
+        hasOrderedFiniteInterval(row?.transport_bridge_weighted_residual_interval) &&
+        finiteNonnegative(
+          row?.signed_envelope_to_expression_live_endpoint_relative_gap
+        ) &&
+        finiteNonnegative(
+          row?.weighted_envelope_to_expression_live_endpoint_relative_gap
+        ) &&
+        row?.signed_envelope_matches_transport_bridge === true &&
+        row?.weighted_envelope_matches_transport_bridge === true &&
+        row?.signed_envelope_inside_expression_live_residual === true &&
+        row?.weighted_envelope_inside_expression_live_residual === true &&
+        row?.weighted_envelope_replays_lagrange_radius_weight === true &&
+        row?.verifier_row_provider_certifies_directed_rounded_shared_domain ===
+          false &&
+        sameStringSet(row?.source_provenance_required_fields, expectedRequiredFields) &&
+        sameStringSet(row?.source_provenance_missing_fields, expectedRequiredFields) &&
+        row?.source_provenance_fields_present === false &&
+        Object.values(row?.source_provenance_field_presence_checks ?? {}).every(
+          (value) => value === false
+        ) &&
+        Array.isArray(row?.row_check_kinds) &&
+        row.row_check_kinds.length > 0 &&
+        Object.values(row?.row_checks ?? {}).every((value) => value === true) &&
+        row?.row_replays_signed_radius_envelope_boundary === true &&
+        row?.row_certifies_signed_radius_source_provenance === false &&
+        row?.row_status ===
+          "signed-radius-envelope-replays-boundary-source-provenance-open" &&
+        validClaimBoundary(row?.claim_boundary)
+    )
+  ) {
+    errors.push("signed-radius source-provenance envelope rows must replay intervals and prove the source-provenance absence");
+  }
+  if (
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string" ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("signed-radius source-provenance envelope must keep broad closure claims open");
+  }
+  return errors;
+}
+
 export function validateH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffold(
   artifact
 ) {

@@ -70,7 +70,7 @@ Here, presence, shared attention.
 
 Illustration prompt:
 
-> Electra and Poz sit close together on a white blanket with purple trim. A red ball rests in front of them, clearly visible and uncovered. The composition makes three simple places readable: Electra here, Poz here, ball here. Natural skin and hair, white/purple clothing, white playroom, black expressive linework, no arrows, no labels, no in-image text.
+> Electra and Poz sit close together on a white blanket with purple trim. A red ball rests in front of them, clearly visible and uncovered. Both children are visibly looking down at the red ball, with their heads and eyes aimed at the ball. The composition makes three simple places readable: Electra here, Poz here, ball here. Natural skin and hair, white/purple clothing, white playroom, black expressive linework, no arrows, no labels, no in-image text.
 
 ### Spread 2: Look
 
