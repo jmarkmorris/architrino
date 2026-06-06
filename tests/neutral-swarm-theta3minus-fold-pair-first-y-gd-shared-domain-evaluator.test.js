@@ -69,6 +69,11 @@ import {
   buildH39RequestedY44SourceTermProducerImageProvenanceFieldAttemptCandidate,
   buildH39RequestedY44SourceTermProducerImageEnclosureIdentityAttemptCandidate,
   buildH39RequestedY44SourceTermProducerImageProjectedSlotVariationBoundTargetCandidate,
+  buildH39RequestedY44SourceTermProducerImageAnchorPreservingCenterAllocationAttemptCandidate,
+  buildH39RequestedY44SourceTermProducerImageAnchorPreservingVariationBoundTargetCandidate,
+  buildH39RequestedY44TerminalHBudgetToSourceTermVariationReplayCandidate,
+  buildH39RequestedY44TerminalHCoupledVariationCancellationScreenCandidate,
+  buildH39RequestedY44TerminalHCoupledProducerSumEnclosureTargetCandidate,
   buildH39RequestedY44RowLocalN38SignedSourceSumDerivativeProviderCandidate,
   validateH39CorrelatedResidualWidthDiagnostic,
   validateH39H38NumeratorGraphLocalPartitionDiagnostic,
@@ -134,6 +139,11 @@ import {
   validateH39RequestedY44SourceTermProducerImageProvenanceFieldAttemptCandidate,
   validateH39RequestedY44SourceTermProducerImageEnclosureIdentityAttemptCandidate,
   validateH39RequestedY44SourceTermProducerImageProjectedSlotVariationBoundTargetCandidate,
+  validateH39RequestedY44SourceTermProducerImageAnchorPreservingCenterAllocationAttemptCandidate,
+  validateH39RequestedY44SourceTermProducerImageAnchorPreservingVariationBoundTargetCandidate,
+  validateH39RequestedY44TerminalHBudgetToSourceTermVariationReplayCandidate,
+  validateH39RequestedY44TerminalHCoupledVariationCancellationScreenCandidate,
+  validateH39RequestedY44TerminalHCoupledProducerSumEnclosureTargetCandidate,
   validateH39RequestedY44RowLocalN38SignedSourceSumDerivativeProvider,
   validateH39RequestedY44SignedSourceSumDerivativeAllocationTarget,
   validateH39RequestedY44SourceMapResidualCovarianceTarget,
@@ -16296,6 +16306,931 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   assert.deepEqual(
     collectExactKeys(
       sourceTermProducerImageProjectedSlotVariationBoundTarget,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const sourceTermProducerImageAnchorPreservingCenterAllocationAttempt =
+    buildH39RequestedY44SourceTermProducerImageAnchorPreservingCenterAllocationAttemptCandidate(
+      {
+        sourceTermProducerImageProvenanceFieldAttempt,
+        sourceTermProducerImageProjectedSlotVariationBoundTarget,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44SourceTermProducerImageAnchorPreservingCenterAllocationAttemptCandidate(
+      sourceTermProducerImageAnchorPreservingCenterAllocationAttempt
+    ),
+    []
+  );
+  assert.equal(
+    sourceTermProducerImageAnchorPreservingCenterAllocationAttempt
+      .source_term_anchor_preserving_center_allocation_attempt_verified,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImageAnchorPreservingCenterAllocationAttempt
+      .source_term_anchor_preserving_center_allocation_certified,
+    false
+  );
+  assert.equal(
+    sourceTermProducerImageAnchorPreservingCenterAllocationAttempt
+      .source_term_producer_image_certified_directed_rounded,
+    false
+  );
+  assert.equal(
+    sourceTermProducerImageAnchorPreservingCenterAllocationAttempt
+      .all_rows_signed_radius_center_shift_inside_anchor_admissible_sum,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImageAnchorPreservingCenterAllocationAttempt
+      .all_anchor_preserving_slots_contain_midpoint_zero,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImageAnchorPreservingCenterAllocationAttempt
+      .all_anchor_preserving_residual_sums_contain_signed_radius_certificates,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImageAnchorPreservingCenterAllocationAttempt
+      .all_rows_preserve_same_domain_and_radius_boundaries,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImageAnchorPreservingCenterAllocationAttempt
+      .all_source_term_anchor_preserving_allocation_claims_remain_open,
+    true
+  );
+  assert.ok(
+    sourceTermProducerImageAnchorPreservingCenterAllocationAttempt
+      .max_anchor_admissible_center_shift_sum_membership_gap >= 0
+  );
+  assert.ok(
+    sourceTermProducerImageAnchorPreservingCenterAllocationAttempt
+      .max_anchor_preserving_allocation_sum_to_signed_radius_center_shift_abs_gap <=
+      1e-10
+  );
+  assert.equal(
+    sourceTermProducerImageAnchorPreservingCenterAllocationAttempt
+      .source_term_anchor_preserving_center_allocation_attempt_row_count,
+    5
+  );
+  assert.equal(
+    sourceTermProducerImageAnchorPreservingCenterAllocationAttempt
+      .source_term_anchor_preserving_center_allocation_term_row_count,
+    15
+  );
+  assert.equal(
+    sourceTermProducerImageAnchorPreservingCenterAllocationAttempt
+      .source_term_anchor_preserving_center_allocation_attempt_classification,
+    "anchor-preserving-center-allocation-materialized-source-enclosure-open"
+  );
+  assert.equal(
+    sourceTermProducerImageAnchorPreservingCenterAllocationAttempt
+      .source_term_anchor_preserving_center_allocation_blocker_classification,
+    "directed-rounded-same-domain-source-term-variation-bound-needed-after-anchor-allocation"
+  );
+  assert.equal(
+    sourceTermProducerImageAnchorPreservingCenterAllocationAttempt
+      .source_term_anchor_preserving_center_allocation_primary_missing_object_kind,
+    "directed-rounded-same-domain-source-term-variation-bound"
+  );
+  assert.deepEqual(
+    sourceTermProducerImageAnchorPreservingCenterAllocationAttempt
+      .source_term_anchor_preserving_center_allocation_attempt_check_kinds,
+    [
+      "source_term_producer_image_field_attempt_verified",
+      "projected_slot_anchor_defect_verified",
+      "anchor_admissible_center_shift_intervals_materialized",
+      "signed_radius_center_shift_sum_membership_checked",
+      "anchor_preserving_center_allocations_materialized",
+      "anchor_preserving_slots_contain_midpoint_zero",
+      "anchor_preserving_residual_sums_contain_signed_radius_certificates",
+      "same_domain_and_radius_boundaries_preserved",
+      "anchor_preserving_slots_do_not_certify_source_enclosure",
+      "source_term_anchor_preserving_allocation_claims_remain_open",
+    ]
+  );
+  assert.ok(
+    Object.values(
+      sourceTermProducerImageAnchorPreservingCenterAllocationAttempt
+        .source_term_anchor_preserving_center_allocation_attempt_checks
+    ).every((value) => value === true)
+  );
+  assert.ok(
+    sourceTermProducerImageAnchorPreservingCenterAllocationAttempt.source_term_anchor_preserving_center_allocation_attempt_rows.every(
+      (row, index) => {
+        const allocationSum = row.anchor_preserving_source_term_rows.reduce(
+          (sum, termRow) =>
+            sum + Number(termRow.anchor_preserving_center_shift_allocation),
+          0
+        );
+        return (
+          row.node_index === index &&
+          row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+          row.signed_radius_center_shift_inside_anchor_admissible_sum ===
+            true &&
+          Math.abs(allocationSum - row.signed_radius_center_shift_required) <=
+            1e-10 &&
+          row.source_term_anchor_admissible_center_shift_rows.length === 3 &&
+          row.source_term_anchor_admissible_center_shift_rows.every(
+            (termRow) =>
+              Array.isArray(termRow.anchor_admissible_center_shift_interval) &&
+              termRow.anchor_admissible_center_shift_interval.length === 2 &&
+              termRow.signed_radius_subinterval_contraction_scale > 0 &&
+              termRow.signed_radius_subinterval_contraction_scale < 1 &&
+              termRow.contracted_source_term_residual_half_width > 0
+          ) &&
+          row.anchor_preserving_source_term_rows.length === 3 &&
+          row.anchor_preserving_source_term_rows.every(
+            (termRow, termIndex) => {
+              const admissible =
+                row.source_term_anchor_admissible_center_shift_rows[termIndex]
+                  .anchor_admissible_center_shift_interval;
+              return (
+                termRow.anchor_preserving_center_shift_allocation >=
+                  admissible[0] - 1e-10 &&
+                termRow.anchor_preserving_center_shift_allocation <=
+                  admissible[1] + 1e-10 &&
+                termRow.anchor_preserving_residual_slot_contains_zero ===
+                  true &&
+                termRow.anchor_preserving_value_slot_contains_midpoint ===
+                  true &&
+                termRow.source_term_producer_image_domain
+                  .same_domain_source_cell === `speed.${index}.first-y` &&
+                termRow.source_term_producer_image_domain
+                  .terminal_graph_cell_id === `speed.${index}.first-y` &&
+                termRow.source_term_producer_image_radius > 0 &&
+                termRow.certifies_source_term_as_directed_rounded_same_domain ===
+                  false &&
+                termRow.claim_boundary
+                  .certifies_source_term_center_allocation === false &&
+                termRow.claim_boundary
+                  .certifies_source_term_as_directed_rounded_same_domain ===
+                  false &&
+                termRow.claim_boundary.certifies_directed_rounded_shared_domain ===
+                  false
+              );
+            }
+          ) &&
+          row.anchor_preserving_projected_residual_sum_contains_signed_radius_certificate ===
+            true &&
+          row.anchor_preserving_projected_residual_sum_to_primitive_half_width_ratio >
+            0 &&
+          row.anchor_preserving_projected_residual_sum_to_primitive_half_width_ratio <
+            1 &&
+          Object.values(row.row_checks).every((value) => value === true) &&
+          row
+            .row_source_term_anchor_preserving_center_allocation_attempt_verified ===
+            true &&
+          row.row_certifies_source_term_anchor_preserving_center_allocation ===
+            false &&
+          row.claim_boundary.certifies_source_term_center_allocation ===
+            false &&
+          row.claim_boundary
+            .certifies_source_inputs_as_directed_rounded_same_domain ===
+            false &&
+          row.claim_boundary.certifies_expression_level_n38_provider ===
+            false &&
+          row.claim_boundary.certifies_directed_rounded_shared_domain ===
+            false &&
+          row.row_status ===
+            "source-term-anchor-preserving-center-allocation-materialized-certification-open"
+        );
+      }
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      sourceTermProducerImageAnchorPreservingCenterAllocationAttempt
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      sourceTermProducerImageAnchorPreservingCenterAllocationAttempt,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const sourceTermProducerImageAnchorPreservingVariationBoundTarget =
+    buildH39RequestedY44SourceTermProducerImageAnchorPreservingVariationBoundTargetCandidate(
+      {
+        sourceTermProducerImageAnchorPreservingCenterAllocationAttempt,
+        sourceTermProducerImageEnclosureIdentityAttempt,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44SourceTermProducerImageAnchorPreservingVariationBoundTargetCandidate(
+      sourceTermProducerImageAnchorPreservingVariationBoundTarget
+    ),
+    []
+  );
+  assert.equal(
+    sourceTermProducerImageAnchorPreservingVariationBoundTarget
+      .source_term_anchor_preserving_variation_bound_target_verified,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImageAnchorPreservingVariationBoundTarget
+      .source_term_anchor_preserving_variation_bound_target_certified,
+    false
+  );
+  assert.equal(
+    sourceTermProducerImageAnchorPreservingVariationBoundTarget
+      .directed_rounded_same_domain_source_term_variation_bound_available,
+    false
+  );
+  assert.equal(
+    sourceTermProducerImageAnchorPreservingVariationBoundTarget
+      .all_anchor_preserving_variation_bound_targets_positive,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImageAnchorPreservingVariationBoundTarget
+      .all_available_expression_envelopes_exceed_anchor_preserving_variation_targets,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImageAnchorPreservingVariationBoundTarget
+      .all_available_retained_trace_envelopes_exceed_anchor_preserving_variation_targets,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImageAnchorPreservingVariationBoundTarget
+      .all_source_term_anchor_preserving_variation_bound_claims_remain_open,
+    true
+  );
+  assert.ok(
+    sourceTermProducerImageAnchorPreservingVariationBoundTarget
+      .min_anchor_preserving_allowable_same_domain_source_term_variation_bound >
+      0
+  );
+  assert.ok(
+    sourceTermProducerImageAnchorPreservingVariationBoundTarget
+      .max_expression_half_width_to_anchor_preserving_variation_bound_ratio > 1
+  );
+  assert.ok(
+    sourceTermProducerImageAnchorPreservingVariationBoundTarget
+      .max_retained_trace_half_width_to_anchor_preserving_variation_bound_ratio >
+      1
+  );
+  assert.equal(
+    sourceTermProducerImageAnchorPreservingVariationBoundTarget
+      .source_term_anchor_preserving_variation_bound_target_row_count,
+    5
+  );
+  assert.equal(
+    sourceTermProducerImageAnchorPreservingVariationBoundTarget
+      .source_term_anchor_preserving_variation_bound_term_row_count,
+    15
+  );
+  assert.equal(
+    sourceTermProducerImageAnchorPreservingVariationBoundTarget
+      .source_term_anchor_preserving_variation_bound_target_classification,
+    "anchor-preserving-variation-bound-targets-materialized"
+  );
+  assert.equal(
+    sourceTermProducerImageAnchorPreservingVariationBoundTarget
+      .source_term_anchor_preserving_variation_bound_target_blocker_classification,
+    "directed-rounded-same-domain-source-term-variation-bound-absent-after-anchor-preserving-targets"
+  );
+  assert.equal(
+    sourceTermProducerImageAnchorPreservingVariationBoundTarget
+      .source_term_anchor_preserving_variation_bound_target_primary_missing_object_kind,
+    "directed-rounded-same-domain-source-term-variation-bound"
+  );
+  assert.deepEqual(
+    sourceTermProducerImageAnchorPreservingVariationBoundTarget
+      .source_term_anchor_preserving_variation_bound_target_check_kinds,
+    [
+      "anchor_preserving_center_allocation_attempt_verified",
+      "source_term_enclosure_identity_attempt_verified",
+      "anchor_preserving_slots_available",
+      "midpoint_zero_anchor_margins_quantified",
+      "anchor_preserving_variation_bound_targets_positive",
+      "available_expression_envelope_widths_compared_to_targets",
+      "available_retained_trace_widths_compared_to_targets",
+      "no_existing_directed_rounded_variation_bound_available",
+      "same_domain_and_radius_boundaries_preserved",
+      "anchor_preserving_variation_bound_claims_remain_open",
+    ]
+  );
+  assert.ok(
+    Object.values(
+      sourceTermProducerImageAnchorPreservingVariationBoundTarget
+        .source_term_anchor_preserving_variation_bound_target_checks
+    ).every((value) => value === true)
+  );
+  assert.ok(
+    sourceTermProducerImageAnchorPreservingVariationBoundTarget.source_term_anchor_preserving_variation_bound_target_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.anchor_preserving_center_allocation_row_status ===
+          "source-term-anchor-preserving-center-allocation-materialized-certification-open" &&
+        row.row_all_anchor_preserving_variation_bound_targets_positive ===
+          true &&
+        row.row_all_available_expression_envelopes_exceed_anchor_preserving_variation_targets ===
+          true &&
+        row.row_all_available_retained_trace_envelopes_exceed_anchor_preserving_variation_targets ===
+          true &&
+        row.row_min_anchor_preserving_allowable_same_domain_source_term_variation_bound >
+          0 &&
+        row.row_max_expression_half_width_to_anchor_preserving_variation_bound_ratio >
+          1 &&
+        row.row_max_retained_trace_half_width_to_anchor_preserving_variation_bound_ratio >
+          1 &&
+        row.source_term_anchor_preserving_variation_bound_term_rows.length ===
+          3 &&
+        row.source_term_anchor_preserving_variation_bound_term_rows.every(
+          (termRow) =>
+            termRow.anchor_preserving_variation_bound_target_positive ===
+              true &&
+            termRow
+              .anchor_preserving_allowable_same_domain_source_term_variation_bound >
+              0 &&
+            termRow
+              .anchor_preserving_residual_zero_containment_margin
+              .contains_point === true &&
+            termRow
+              .anchor_preserving_value_midpoint_containment_margin
+              .contains_point === true &&
+            termRow
+              .current_expression_envelope_fits_anchor_preserving_variation_bound_target ===
+              false &&
+            termRow
+              .current_retained_trace_envelope_fits_anchor_preserving_variation_bound_target ===
+              false &&
+            termRow
+              .current_expression_envelope_exceeds_anchor_preserving_variation_bound_target ===
+              true &&
+            termRow
+              .current_retained_trace_envelope_exceeds_anchor_preserving_variation_bound_target ===
+              true &&
+            termRow
+              .directed_rounded_same_domain_source_term_variation_bound_available ===
+              false &&
+            termRow.anchor_preserving_variation_bound_target_certified ===
+              false &&
+            termRow.claim_boundary
+              .certifies_source_term_as_directed_rounded_same_domain ===
+              false &&
+            termRow.claim_boundary.certifies_source_term_variation_bound ===
+              false &&
+            termRow.claim_boundary.certifies_directed_rounded_shared_domain ===
+              false
+        ) &&
+        Object.values(row.row_checks).every((value) => value === true) &&
+        row.row_source_term_anchor_preserving_variation_bound_target_verified ===
+          true &&
+        row.row_certifies_source_term_anchor_preserving_variation_bound ===
+          false &&
+        row.claim_boundary.certifies_source_term_variation_bound === false &&
+        row.claim_boundary
+          .certifies_source_inputs_as_directed_rounded_same_domain ===
+          false &&
+        row.claim_boundary.certifies_expression_level_n38_provider ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain ===
+          false &&
+        row.row_status ===
+          "source-term-anchor-preserving-variation-bound-targets-materialized-certification-open"
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      sourceTermProducerImageAnchorPreservingVariationBoundTarget
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      sourceTermProducerImageAnchorPreservingVariationBoundTarget,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalHBudgetToSourceTermVariationReplay =
+    buildH39RequestedY44TerminalHBudgetToSourceTermVariationReplayCandidate({
+      terminalAffineEndpointProviderCandidate,
+      sourceTermProducerImageAnchorPreservingVariationBoundTarget,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44TerminalHBudgetToSourceTermVariationReplayCandidate(
+      terminalHBudgetToSourceTermVariationReplay
+    ),
+    []
+  );
+  assert.equal(
+    terminalHBudgetToSourceTermVariationReplay
+      .terminal_h_budget_to_source_term_variation_replay_verified,
+    true
+  );
+  assert.equal(
+    terminalHBudgetToSourceTermVariationReplay
+      .terminal_h_budget_to_source_term_variation_replay_certified_directed_rounded,
+    false
+  );
+  assert.equal(
+    terminalHBudgetToSourceTermVariationReplay
+      .terminal_h_to_source_term_identity_available,
+    false
+  );
+  assert.equal(
+    terminalHBudgetToSourceTermVariationReplay
+      .terminal_h_budget_numerically_fits_some_source_term_assignment,
+    false
+  );
+  assert.equal(
+    terminalHBudgetToSourceTermVariationReplay
+      .all_terminal_h_to_source_term_permutation_ratios_quantified,
+    true
+  );
+  assert.equal(
+    terminalHBudgetToSourceTermVariationReplay
+      .terminal_h_budget_to_source_term_variation_replay_row_count,
+    5
+  );
+  assert.equal(
+    terminalHBudgetToSourceTermVariationReplay
+      .terminal_h_to_source_term_permutation_row_count,
+    30
+  );
+  assert.equal(
+    terminalHBudgetToSourceTermVariationReplay
+      .terminal_h_to_source_term_assignment_row_count,
+    90
+  );
+  assert.equal(
+    terminalHBudgetToSourceTermVariationReplay
+      .terminal_h_budget_to_source_term_variation_replay_classification,
+    "terminal-h-budget-still-exceeds-anchor-preserving-source-term-targets"
+  );
+  assert.equal(
+    terminalHBudgetToSourceTermVariationReplay
+      .terminal_h_budget_to_source_term_variation_replay_blocker_classification,
+    "source-term-variation-bound-still-narrower-than-terminal-h-budget"
+  );
+  assert.equal(
+    terminalHBudgetToSourceTermVariationReplay
+      .terminal_h_budget_to_source_term_variation_replay_primary_missing_object_kind,
+    "narrower-directed-rounded-same-domain-source-term-variation-bound-or-terminal-h-source-term-identity"
+  );
+  assert.ok(
+    Number.isFinite(
+      terminalHBudgetToSourceTermVariationReplay
+        .min_terminal_h_variation_bound_to_anchor_preserving_target_ratio
+    ) &&
+      terminalHBudgetToSourceTermVariationReplay
+        .min_terminal_h_variation_bound_to_anchor_preserving_target_ratio >= 0
+  );
+  assert.ok(
+    Number.isFinite(
+      terminalHBudgetToSourceTermVariationReplay
+        .max_terminal_h_variation_bound_to_anchor_preserving_target_ratio
+    ) &&
+      terminalHBudgetToSourceTermVariationReplay
+        .max_terminal_h_variation_bound_to_anchor_preserving_target_ratio >=
+        terminalHBudgetToSourceTermVariationReplay
+          .min_terminal_h_variation_bound_to_anchor_preserving_target_ratio
+  );
+  assert.ok(
+    terminalHBudgetToSourceTermVariationReplay.terminal_h_budget_to_source_term_variation_replay_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_h_to_source_term_identity_available === false &&
+        row.terminal_h_budget_rows.length === 3 &&
+        row.terminal_h_budget_rows.every(
+          (hRow) =>
+            [37, 36, 35].includes(hRow.terminal_h_index) &&
+            hRow.terminal_h_partition_directed_rounding_provenance_verified ===
+              true &&
+            hRow.terminal_h_projected_residual_fits_terminal_affine_budget ===
+              true &&
+            hRow.terminal_h_projected_half_width_fits_terminal_affine_budget ===
+              true &&
+            hRow.terminal_h_projected_interval_contained_by_candidate_budget ===
+              true &&
+            Number.isFinite(
+              hRow.terminal_h_variation_bound_upper_for_source_term_screen
+            ) &&
+            hRow.terminal_h_variation_bound_upper_for_source_term_screen >= 0
+        ) &&
+        row.source_term_anchor_preserving_variation_target_rows.length === 3 &&
+        row.source_term_anchor_preserving_variation_target_rows.every(
+          (termRow) =>
+            [
+              "delta_squared_speed",
+              "sin_phi",
+              "sin_delta",
+            ].includes(termRow.term) &&
+            termRow.anchor_preserving_variation_bound_target_positive === true &&
+            termRow
+              .anchor_preserving_allowable_same_domain_source_term_variation_bound >
+              0
+        ) &&
+        row.terminal_h_to_source_term_permutation_rows.length === 6 &&
+        row.terminal_h_to_source_term_permutation_rows.every(
+          (permutationRow) =>
+            permutationRow.terminal_h_to_source_term_assignment_kind ===
+              "candidate-bijection-screen-no-canonical-identity" &&
+            permutationRow.assignment_rows.length === 3 &&
+            permutationRow.assignment_rows.every(
+              (assignment) =>
+                [37, 36, 35].includes(assignment.terminal_h_index) &&
+                [
+                  "delta_squared_speed",
+                  "sin_phi",
+                  "sin_delta",
+                ].includes(assignment.assigned_source_term) &&
+                assignment
+                  .anchor_preserving_allowable_same_domain_source_term_variation_bound >
+                  0 &&
+                Number.isFinite(
+                  assignment
+                    .terminal_h_variation_bound_to_anchor_preserving_target_ratio
+                ) &&
+                typeof assignment
+                  .terminal_h_budget_fits_assigned_source_term_variation_target ===
+                  "boolean"
+            ) &&
+            Number.isFinite(
+              permutationRow
+                .permutation_max_terminal_h_variation_bound_to_anchor_preserving_target_ratio
+            ) &&
+            typeof permutationRow
+              .permutation_fits_anchor_preserving_source_term_variation_targets ===
+              "boolean"
+        ) &&
+        Object.values(row.row_checks).every((value) => value === true) &&
+        row.row_terminal_h_budget_to_source_term_variation_replay_verified ===
+          true &&
+        row.row_certifies_terminal_h_to_source_term_variation_replay === false &&
+        row.claim_boundary.certifies_terminal_h_to_source_term_identity ===
+          false &&
+        row.claim_boundary.certifies_source_term_variation_bound === false &&
+        row.claim_boundary
+          .certifies_source_inputs_as_directed_rounded_same_domain === false &&
+        row.claim_boundary.certifies_expression_level_n38_provider === false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalHBudgetToSourceTermVariationReplay),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalHBudgetToSourceTermVariationReplay,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalHCoupledVariationCancellationScreen =
+    buildH39RequestedY44TerminalHCoupledVariationCancellationScreenCandidate({
+      terminalAffineEndpointProviderCandidate,
+      terminalSharedResidualAffineZetaProviderReplayDiagnostic: diagnostic,
+      sourceTermProducerImageAnchorPreservingCenterAllocationAttempt,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44TerminalHCoupledVariationCancellationScreenCandidate(
+      terminalHCoupledVariationCancellationScreen
+    ),
+    []
+  );
+  assert.equal(
+    terminalHCoupledVariationCancellationScreen
+      .terminal_h_coupled_variation_cancellation_screen_verified,
+    true
+  );
+  assert.equal(
+    terminalHCoupledVariationCancellationScreen
+      .terminal_h_coupled_variation_cancellation_screen_certified_directed_rounded,
+    false
+  );
+  assert.equal(
+    terminalHCoupledVariationCancellationScreen
+      .terminal_h_to_source_term_identity_available,
+    false
+  );
+  assert.equal(
+    terminalHCoupledVariationCancellationScreen
+      .coupled_terminal_h_provider_summary_ready,
+    true
+  );
+  assert.equal(
+    terminalHCoupledVariationCancellationScreen
+      .coupled_terminal_h_provider_uses_shared_zeta_endpoint_partition,
+    true
+  );
+  assert.equal(
+    terminalHCoupledVariationCancellationScreen
+      .coupled_terminal_h_provider_does_not_export_independent_h35_h37_box,
+    true
+  );
+  assert.equal(
+    typeof terminalHCoupledVariationCancellationScreen
+      .all_terminal_h_signed_producer_sums_no_wider_than_independent_half_width_sum,
+    "boolean"
+  );
+  assert.equal(
+    terminalHCoupledVariationCancellationScreen
+      .all_terminal_h_signed_residual_sums_fit_anchor_preserving_residual_sum_budget,
+    false
+  );
+  assert.equal(
+    terminalHCoupledVariationCancellationScreen
+      .all_terminal_h_signed_producer_sums_fit_anchor_preserving_residual_sum_budget,
+    false
+  );
+  assert.equal(
+    terminalHCoupledVariationCancellationScreen
+      .terminal_h_coupled_variation_cancellation_screen_row_count,
+    5
+  );
+  assert.equal(
+    terminalHCoupledVariationCancellationScreen
+      .terminal_h_coupled_variation_cancellation_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalHCoupledVariationCancellationScreen
+      .terminal_h_coupled_variation_cancellation_screen_classification,
+    "terminal-h-coupled-signed-sums-still-exceed-anchor-residual-sum-budget"
+  );
+  assert.equal(
+    terminalHCoupledVariationCancellationScreen
+      .terminal_h_coupled_variation_cancellation_blocker_classification,
+    "narrower-directed-rounded-coupled-terminal-h-variation-bound-needed"
+  );
+  assert.equal(
+    terminalHCoupledVariationCancellationScreen
+      .terminal_h_coupled_variation_cancellation_primary_missing_object_kind,
+    "narrower-directed-rounded-coupled-terminal-h-variation-bound"
+  );
+  assert.ok(
+    Number.isFinite(
+      terminalHCoupledVariationCancellationScreen
+        .max_terminal_h_signed_producer_sum_half_width_to_anchor_sum_half_width_ratio
+    ) &&
+      terminalHCoupledVariationCancellationScreen
+        .max_terminal_h_signed_producer_sum_half_width_to_anchor_sum_half_width_ratio >=
+        0
+  );
+  assert.ok(
+    terminalHCoupledVariationCancellationScreen.terminal_h_coupled_variation_cancellation_screen_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_h_to_source_term_identity_available === false &&
+        row.coupled_terminal_h_provider_summary_kind ===
+          "candidate-coupled-xi-zeta-terminal-residual-provider-summary" &&
+        row.coupled_terminal_h_provider_kind ===
+          "candidate-terminal-shared-residual-affine-zeta-endpoint-provider" &&
+        row.coupled_terminal_h_provider_uses_shared_zeta_endpoint_partition ===
+          true &&
+        row
+          .coupled_terminal_h_provider_does_not_export_independent_h35_h37_box ===
+          true &&
+        row.terminal_h_signed_rows.length === 3 &&
+        row.terminal_h_signed_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            Array.isArray(
+              terminalRow.binary64_outward_scaled_residual_interval
+            ) &&
+            Array.isArray(terminalRow.projected_producer_interval_bound) &&
+            terminalRow
+              .terminal_partition_directed_rounding_provenance_verified ===
+              true &&
+            terminalRow.projected_residual_fits_terminal_affine_budget ===
+              true &&
+            terminalRow.projected_half_width_fits_terminal_affine_budget ===
+              true &&
+            terminalRow.projected_interval_contained_by_candidate_budget ===
+              true
+        ) &&
+        Array.isArray(row.terminal_h_signed_residual_sum_interval) &&
+        Array.isArray(row.terminal_h_signed_producer_sum_interval) &&
+        Array.isArray(
+          row.anchor_preserving_projected_source_term_residual_sum_interval
+        ) &&
+        Number.isFinite(
+          row
+            .terminal_h_signed_producer_sum_half_width_to_anchor_sum_half_width_ratio
+        ) &&
+        typeof row
+          .terminal_h_signed_residual_sum_contained_by_anchor_preserving_residual_sum_budget ===
+          "boolean" &&
+        typeof row
+          .terminal_h_signed_producer_sum_contained_by_anchor_preserving_residual_sum_budget ===
+          "boolean" &&
+        Object.values(row.row_checks).every((value) => value === true) &&
+        row
+          .row_terminal_h_coupled_variation_cancellation_screen_verified ===
+          true &&
+        row.row_certifies_terminal_h_coupled_variation_cancellation ===
+          false &&
+        row.claim_boundary.certifies_terminal_h_to_source_term_identity ===
+          false &&
+        row.claim_boundary.certifies_terminal_h_coupled_variation_cancellation ===
+          false &&
+        row.claim_boundary.certifies_source_term_variation_bound === false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalHCoupledVariationCancellationScreen),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalHCoupledVariationCancellationScreen,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalHCoupledProducerSumEnclosureTarget =
+    buildH39RequestedY44TerminalHCoupledProducerSumEnclosureTargetCandidate({
+      terminalHCoupledVariationCancellationScreen,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44TerminalHCoupledProducerSumEnclosureTargetCandidate(
+      terminalHCoupledProducerSumEnclosureTarget
+    ),
+    []
+  );
+  assert.equal(
+    terminalHCoupledProducerSumEnclosureTarget
+      .terminal_h_coupled_producer_sum_enclosure_target_verified,
+    true
+  );
+  assert.equal(
+    terminalHCoupledProducerSumEnclosureTarget
+      .terminal_h_coupled_producer_sum_enclosure_target_certified_directed_rounded,
+    false
+  );
+  assert.equal(
+    terminalHCoupledProducerSumEnclosureTarget
+      .terminal_h_to_source_term_identity_available,
+    false
+  );
+  assert.equal(
+    terminalHCoupledProducerSumEnclosureTarget
+      .terminal_h_coupled_producer_sum_enclosure_target_row_count,
+    5
+  );
+  assert.equal(
+    terminalHCoupledProducerSumEnclosureTarget
+      .all_terminal_h_coupled_producer_sums_already_fit_anchor_residual_sum_budget,
+    false
+  );
+  assert.equal(
+    typeof terminalHCoupledProducerSumEnclosureTarget
+      .all_terminal_h_coupled_producer_sum_centers_inside_anchor_residual_sum_budget,
+    "boolean"
+  );
+  assert.equal(
+    typeof terminalHCoupledProducerSumEnclosureTarget
+      .any_terminal_h_coupled_producer_sum_center_gap_blocks_width_only_refinement,
+    "boolean"
+  );
+  assert.equal(
+    typeof terminalHCoupledProducerSumEnclosureTarget
+      .all_terminal_h_coupled_producer_sum_center_preserving_targets_positive,
+    "boolean"
+  );
+  assert.ok(
+    Number.isFinite(
+      terminalHCoupledProducerSumEnclosureTarget
+        .min_center_preserving_required_producer_sum_half_width_scale
+    ) &&
+      terminalHCoupledProducerSumEnclosureTarget
+        .min_center_preserving_required_producer_sum_half_width_scale >= 0
+  );
+  assert.ok(
+    Number.isFinite(
+      terminalHCoupledProducerSumEnclosureTarget
+        .max_center_preserving_required_producer_sum_half_width_scale
+    ) &&
+      terminalHCoupledProducerSumEnclosureTarget
+        .max_center_preserving_required_producer_sum_half_width_scale >=
+        terminalHCoupledProducerSumEnclosureTarget
+          .min_center_preserving_required_producer_sum_half_width_scale
+  );
+  assert.ok(
+    Number.isFinite(
+      terminalHCoupledProducerSumEnclosureTarget
+        .max_terminal_h_signed_producer_sum_center_gap_to_anchor_half_width_ratio
+    ) &&
+      terminalHCoupledProducerSumEnclosureTarget
+        .max_terminal_h_signed_producer_sum_center_gap_to_anchor_half_width_ratio >=
+        0
+  );
+  if (
+    terminalHCoupledProducerSumEnclosureTarget
+      .all_terminal_h_coupled_producer_sum_center_preserving_targets_positive
+  ) {
+    assert.equal(
+      terminalHCoupledProducerSumEnclosureTarget
+        .terminal_h_coupled_producer_sum_enclosure_target_classification,
+      "terminal-h-coupled-producer-sum-width-refinement-target-materialized"
+    );
+    assert.equal(
+      terminalHCoupledProducerSumEnclosureTarget
+        .terminal_h_coupled_producer_sum_enclosure_target_blocker_classification,
+      "directed-rounded-coupled-terminal-h-producer-sum-half-width-refinement-needed"
+    );
+    assert.ok(
+      terminalHCoupledProducerSumEnclosureTarget
+        .max_center_preserving_required_producer_sum_half_width_scale > 0 &&
+        terminalHCoupledProducerSumEnclosureTarget
+          .max_center_preserving_required_producer_sum_half_width_scale < 1
+    );
+  } else if (
+    terminalHCoupledProducerSumEnclosureTarget
+      .any_terminal_h_coupled_producer_sum_center_gap_blocks_width_only_refinement
+  ) {
+    assert.equal(
+      terminalHCoupledProducerSumEnclosureTarget
+        .terminal_h_coupled_producer_sum_enclosure_target_classification,
+      "terminal-h-coupled-producer-sum-center-gap-blocks-width-only-refinement"
+    );
+    assert.equal(
+      terminalHCoupledProducerSumEnclosureTarget
+        .terminal_h_coupled_producer_sum_enclosure_target_blocker_classification,
+      "terminal-h-to-source-map-signed-sum-center-identity-needed-before-width-refinement"
+    );
+  } else {
+    assert.equal(
+      terminalHCoupledProducerSumEnclosureTarget
+        .terminal_h_coupled_producer_sum_enclosure_target_classification,
+      "terminal-h-coupled-producer-sum-zero-width-only-center-target"
+    );
+  }
+  assert.ok(
+    terminalHCoupledProducerSumEnclosureTarget.terminal_h_coupled_producer_sum_enclosure_target_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_h_to_source_term_identity_available === false &&
+        row.coupled_variation_screen_row_status ===
+          "terminal-h-coupled-signed-sums-exceed-anchor-residual-sum-budget" &&
+        Array.isArray(row.terminal_h_signed_producer_sum_interval) &&
+        Array.isArray(
+          row.anchor_preserving_projected_source_term_residual_sum_interval
+        ) &&
+        Number.isFinite(row.terminal_h_signed_producer_sum_center) &&
+        Number.isFinite(
+          row.anchor_preserving_projected_residual_sum_center
+        ) &&
+        Number.isFinite(
+          row.terminal_h_signed_producer_sum_center_gap_to_anchor_center
+        ) &&
+        row.terminal_h_signed_producer_sum_center_gap_to_anchor_center >= 0 &&
+        Number.isFinite(
+          row
+            .center_preserving_allowable_producer_sum_half_width_after_center_gap
+        ) &&
+        row
+          .center_preserving_allowable_producer_sum_half_width_after_center_gap >=
+          0 &&
+        Number.isFinite(
+          row.center_preserving_required_producer_sum_half_width_scale
+        ) &&
+        row.center_preserving_required_producer_sum_half_width_scale >= 0 &&
+        typeof row
+          .terminal_h_signed_producer_sum_center_inside_anchor_residual_sum_budget ===
+          "boolean" &&
+        typeof row
+          .terminal_h_signed_producer_sum_center_gap_exceeds_anchor_half_width ===
+          "boolean" &&
+        typeof row.center_preserving_producer_sum_enclosure_target_positive ===
+          "boolean" &&
+        Object.values(row.row_checks).every((value) => value === true) &&
+        row.row_terminal_h_coupled_producer_sum_enclosure_target_verified ===
+          true &&
+        row.row_certifies_terminal_h_coupled_producer_sum_enclosure ===
+          false &&
+        row.claim_boundary
+          .certifies_terminal_h_coupled_producer_sum_enclosure === false &&
+        row.claim_boundary.certifies_terminal_h_to_source_term_identity ===
+          false &&
+        row.claim_boundary.certifies_expression_level_n38_provider === false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalHCoupledProducerSumEnclosureTarget),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalHCoupledProducerSumEnclosureTarget,
       FORBIDDEN_FIXED_SPEED_KEYS
     ),
     []

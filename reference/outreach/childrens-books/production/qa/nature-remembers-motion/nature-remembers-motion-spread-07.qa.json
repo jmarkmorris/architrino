@@ -7,8 +7,8 @@
     "width": 1536,
     "height": 1024,
     "aspect_ratio": 1.5,
-    "saturated_non_palette_fraction": 0.0,
-    "palette_flag": false
+    "saturated_non_palette_fraction": 0.4723,
+    "palette_flag": true
   },
   "manual_checklist": {
     "palette": "pending",

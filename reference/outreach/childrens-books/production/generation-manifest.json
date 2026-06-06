@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-06-06T19:12:15.243474+00:00",
+  "generated_at": "2026-06-06T21:32:54.049925+00:00",
   "root": "reference/outreach/childrens-books",
   "total_source_images": 36,
   "generation_order": [
@@ -40,6 +40,7 @@
       "story_spreads": 12,
       "cover_count": 1,
       "back_matter_count": 1,
+      "back_matter_story_text": "Make a trail.\nFollow it.\nAgain.",
       "target_source_images": 14,
       "manifest_entries": 14
     }
@@ -1245,7 +1246,7 @@
       "sequence": 1,
       "label": "Back Matter Activity 1",
       "source_markdown": "nature-remembers-motion.md",
-      "story_text": "Electra and Poz sit by a white play surface while a grown-up hand gently makes a simple purple ribbon trace or places the red ball at the start of a purple trail. The red and blue balls are both visible for repeating and comparing. A shallow white water tray with one small set of purple-blue rings may sit nearby, but it must not crowd the main ribbon/ball trace. Keep all traces physical and visible; no arrows, no labels, no symbols, no abstract panels.",
+      "story_text": "Make a trail.\nFollow it.\nAgain.",
       "lesson": "Back-matter activity image.",
       "geometry": "Use the geometry already introduced in the story at activity scale.",
       "background_concepts": "Adult/teacher support image; keep it text-free.",

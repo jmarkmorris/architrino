@@ -3174,6 +3174,57 @@ does not certify the source-term producer image; it sharpens the next proof
 object to a same-domain projected-slot midpoint/zero anchor identity, followed
 by a directed-rounded same-domain source-term variation bound that fits inside
 the recorded positive margins.
+\texttt{buildH39RequestedY44SourceTermProducerImageAnchorPreservingCenterAllocationAttemptCandidate}
+now solves that anchor-allocation subproblem at candidate level. For each row,
+it forms the termwise admissible center-shift intervals
+$[-c_i-\lambda h_i,-c_i+\lambda h_i]$ from the source-term residual center
+$c_i$, source half-width $h_i$, and signed-radius contraction scale $\lambda$,
+then checks the signed-radius total center shift against their Minkowski sum.
+The executable replay succeeds on all five rows and constructs allocations
+whose contracted residual slots contain residual zero while the residual sum
+still contains the signed-radius certificate. This removes the immediate
+midpoint/zero anchor defect but does not certify the source-term producer
+image; the next proof object is a directed-rounded same-domain source-term
+variation bound for the anchor-preserving allocated slots.
+\texttt{buildH39RequestedY44SourceTermProducerImageAnchorPreservingVariationBoundTargetCandidate}
+now computes the margin target for those anchor-preserving slots. For each
+allocated term slot, it measures the endpoint margin from residual zero and
+the source-term midpoint, records the smaller margin as the maximum allowable
+same-domain source-term variation bound, and compares the available expression
+and retained-trace half-width witnesses against that margin. The executable
+replay succeeds on all fifteen terms: every anchor-preserving slot has a
+positive variation-bound target, while the current expression and retained-trace
+witnesses still exceed those targets. This sharpens the next proof object to a
+directed-rounded same-domain source-term variation bound no larger than the
+recorded anchor-preserving margins.
+\texttt{buildH39RequestedY44TerminalHBudgetToSourceTermVariationReplayCandidate}
+now tests whether the directed-rounded terminal affine endpoint partition can
+serve as that narrower variation object. It joins the five terminal source-map
+boundary replay rows to the five anchor-preserving source-term target rows,
+preserves the same-domain and same-radius flags, and exhausts all six bijections
+from $h_{37},h_{36},h_{35}$ to
+\texttt{delta_squared_speed}, \texttt{sin_phi}, and \texttt{sin_delta}. The
+screen quantifies all ninety terminal-\texttt{h} assignment ratios and keeps
+the candidate fail-closed. The result is still a miss: no bijection fits the
+recorded source-term variation targets. The blocker has moved from a raw
+terminal producer interval excess to a specific terminal-\texttt{h} versus
+source-term variation-width excess under every same-domain assignment. The next
+proof object is therefore a narrower directed-rounded same-domain variation
+bound, or a real terminal-\texttt{h} to source-term identity that changes this
+comparison without breaking the same-domain radius.
+\texttt{buildH39RequestedY44TerminalHCoupledVariationCancellationScreenCandidate}
+now tests the signed coupled alternative before another independent
+all-bijection packet. It consumes the coupled \texttt{xi,zeta} terminal residual
+provider summary, requires the
+\texttt{terminal-shared-residual-affine-zeta-endpoint} dependency provenance,
+checks that the route does not export an independent $h_{35}$-$h_{37}$ box, and
+compares the signed terminal $h_{37},h_{36},h_{35}$ residual and producer sums
+against the aggregate anchor-preserving source-term residual-sum budget. The
+result is still a miss: the focused replay shows that neither signed terminal
+sum fits the aggregate anchor-preserving residual-sum budget. The blocker is
+therefore sharper than a term-assignment ambiguity. The next proof object is a
+narrower directed-rounded same-domain coupled terminal-\texttt{h} variation
+bound or a dependency-preserving producer-sum enclosure.
 \texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
 now also probes a shared terminal-residual coordinate for
 $h_{37},h_{36},h_{35}$. Instead of assigning independent residual hulls to the

@@ -10,7 +10,7 @@
 - source image: present
 - dimensions: 1536 x 1024
 - aspect ratio: 1.5
-- saturated non-palette fraction: 0.8477
+- saturated non-palette fraction: 0.3969
 - palette flag: True
 
 ## Manual Checklist

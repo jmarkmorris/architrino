@@ -517,6 +517,97 @@ exact-arithmetic consistency classifications. It keeps accepted interval-certifi
 constants statuses, source-packet acceptance rules, parent-complement consumption
 refs, separator certificates, row consumption, `preledger_pass`, live-ledger
 updates, and branch-chart authorization at 0.
+The candidate-live higher-fold constants accepted-status obstruction classifier,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_obstruction_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then records that the accepted-status precondition profile is complete for
+12 / 12 separators and 112 / 112 rows, with 6 / 6 current consistency-source
+hash locks and 5 / 5 retained materialization source-hash locks. It keeps
+accepted interval-certified constants statuses, source-packet acceptance rules,
+accepted impulse/direct-quadrature source packets, parent-complement consumption
+refs, separator certificates, row consumption, `preledger_pass`, live-ledger
+updates, and branch-chart authorization at 0. The first accepted-status
+obstruction is `accepted_interval_certified_constants_status_absent`; no
+primitive accepted-status or source-packet acceptance decision is made.
+The candidate-live higher-fold constants accepted interval-certified status
+derivation source-data obligation classifier,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_interval_certified_status_derivation_source_data_obligation_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then verifies 1 / 1 obstruction source-hash locks, retains 6 / 6 current
+consistency-source hash locks and 5 / 5 materialization source-hash locks, and
+records 12 / 12 separator plus 112 / 112 row derivation-source evidence
+profiles complete. It keeps proof-grade accepted-status derivation refs, status
+refs, status derivations, status rules, soundness proofs, endpoint
+applications, accepted constants conformance derivations, source-packet
+acceptance rules, accepted impulse/direct-quadrature source packets, row
+consumption, `preledger_pass`, live-ledger updates, and branch-chart
+authorization at 0. The first derivation-obligation blocker is
+`accepted_interval_certified_constants_status_proof_grade_derivation_ref_absent`;
+no primitive accepted-status or source-packet acceptance decision is made.
+The candidate-live higher-fold constants accepted interval-certified status
+source-certificate-to-proof-grade-derivation bridge attempt,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_interval_certified_status_source_certificate_to_proof_grade_derivation_bridge_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then verifies 9 / 9 source-data obligation source-hash locks and preserves
+12 / 12 separator plus 112 / 112 row derivation-source evidence profiles
+complete, but finds 0 / 12 separator accepted-status derivation bridges ready
+and constructs 0 accepted interval-certified constants status refs. It records
+72 missing separator bridge criteria and 672 missing row bridge criteria, with
+the first bridge blocker
+`accepted_interval_certified_constants_status_proof_grade_derivation_ref_absent`.
+It introduces no proof rule, primitive accepted-status rule, source-packet
+acceptance rule, row consumption, live-ledger update, or branch-chart
+authorization.
+The candidate-live higher-fold constants accepted interval-certified status
+bridge prerequisite frontier classifier,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_interval_certified_status_bridge_prerequisite_frontier_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then verifies 4 / 4 frontier source-hash locks, retains 9 / 9 bridge
+source-hash locks, and preserves 12 / 12 separator plus 112 / 112 row
+derivation-source evidence profiles complete. It partitions the current stop
+into the proof-grade bridge route and the primitive/source-packet route, with
+0 / 12 separator proof-grade bridge routes ready, 0 / 12 separator primitive
+source-packet routes ready, 0 mechanical continuations from current inputs,
+72 missing separator proof-grade bridge prerequisites, 24 missing separator
+primitive acceptance prerequisites, and 896 missing row frontier prerequisites.
+The first frontier blocker is
+`accepted_interval_certified_constants_status_proof_grade_derivation_ref_absent`;
+the source-packet decision blocker is
+`fixed_parameter_separator_aggregate_to_same_packet_fold_impulse_or_direct_quadrature_bound_acceptance_rule_absent`.
+It introduces no accepted interval-certified constants status, source-packet
+acceptance rule, row consumption, live-ledger update, or branch-chart
+authorization.
+The candidate-live higher-fold constants accepted interval-certified status
+proof-grade evidence dependency classifier,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_interval_certified_status_proof_grade_evidence_dependency_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then verifies 9 / 9 bridge-locked source-hash locks and scans 238 certificate
+JSON files for compatible proof-grade accepted-status evidence. It finds 0
+compatible proof-grade evidence files, records 72 separator proof-grade evidence
+slots and 672 row proof-grade evidence slots with 0 slots filled, and preserves
+the seed constants contract mismatch between
+`seed-doubled-four-arc-cosine-template-v0` / `Sigma_1_through_Sigma_4` / 16
+rows and `fresh-v10-higher-fold-12-root-rebuild-v0` /
+`Sigma_hf_01_through_Sigma_hf_12` / 112 rows. The first evidence dependency
+blocker is
+`compatible_proof_grade_accepted_interval_certified_constants_status_evidence_absent`.
+It introduces no accepted interval-certified constants status, source-packet
+acceptance rule, row consumption, live-ledger update, or branch-chart
+authorization.
+The candidate-live higher-fold constants accepted interval-certified status
+primitive source-packet acceptance evidence dependency classifier,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_interval_certified_status_primitive_source_packet_acceptance_evidence_dependency_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then verifies 5 / 5 source-packet route source-hash locks, retains 4 / 4
+frontier source-hash locks and 9 / 9 bridge-locked source-hash locks, and
+scans 239 certificate JSON files for compatible primitive/source-packet
+acceptance evidence. It finds 0 compatible source-packet acceptance evidence
+files, records 24 separator source-packet acceptance evidence slots and 224 row
+source-packet acceptance evidence slots with 0 slots filled, and preserves
+12 / 12 separator plus 112 / 112 row aggregate evidence profiles complete. The
+first source-packet acceptance evidence blocker is
+`compatible_source_packet_acceptance_evidence_absent`; the acceptance-rule
+blocker remains
+`fixed_parameter_separator_aggregate_to_same_packet_fold_impulse_or_direct_quadrature_bound_acceptance_rule_absent`;
+the accepted source-packet blocker remains
+`accepted_same_packet_fold_impulse_or_direct_quadrature_source_packet_absent`.
+It introduces no source-packet acceptance rule, accepted source packet,
+accepted interval-certified constants status, row consumption, live-ledger
+update, or branch-chart authorization.
 The nonlinear fold-coordinate collocation tangent-matrix screen,
 `gap_opening_fresh_v10_fold_coordinate_collocation_report.nonlinear-v0.md`,
 now packages the first executable collocation-surface test: 3 homogeneous

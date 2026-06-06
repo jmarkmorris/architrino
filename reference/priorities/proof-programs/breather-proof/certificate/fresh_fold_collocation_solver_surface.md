@@ -575,7 +575,80 @@ higher-fold constants artifacts, 0 accepted interval-certified constants
 statuses, 0 source-packet acceptance rules, 0 accepted impulse/direct-quadrature
 source packets, 0 `parent_complement_consumption_ref` fields, and 0 separator
 certificates.
-All thirty-three classifier/attempt artifacts keep `preledger_pass=false`,
+The candidate-live higher-fold constants accepted-status obstruction classifier
+then verifies 6 / 6 current consistency-source hash locks, retains 5 / 5
+materialization source-hash locks, and records 12 / 12 separator plus
+112 / 112 row accepted-status precondition profiles complete. It still records
+0 accepted interval-certified constants statuses, 0 source-packet acceptance
+rules, 0 accepted impulse/direct-quadrature source packets, 0
+`parent_complement_consumption_ref` fields, and 0 separator certificates. The
+first accepted-status obstruction is
+`accepted_interval_certified_constants_status_absent`; no primitive
+accepted-status or source-packet acceptance decision is made.
+The candidate-live higher-fold constants accepted interval-certified status
+derivation source-data obligation classifier then verifies 1 / 1 obstruction
+source-hash locks, retains 6 / 6 current consistency-source hash locks and
+5 / 5 materialization source-hash locks, and records 12 / 12 separator plus
+112 / 112 row derivation-source evidence profiles complete. It still records
+0 proof-grade accepted-status derivation refs, 0 status refs, 0 status
+derivations, 0 status rules, 0 soundness proofs, 0 endpoint applications, 0
+accepted constants conformance derivations, 0 source-packet acceptance rules,
+and 0 accepted impulse/direct-quadrature source packets. The first
+derivation-obligation blocker is
+`accepted_interval_certified_constants_status_proof_grade_derivation_ref_absent`;
+no primitive accepted-status or source-packet acceptance decision is made.
+The candidate-live higher-fold constants accepted interval-certified status
+source-certificate-to-proof-grade-derivation bridge attempt then verifies
+9 / 9 source-data obligation source-hash locks, preserves 12 / 12 separator
+plus 112 / 112 row derivation-source evidence profiles complete, but finds
+0 / 12 separator accepted-status derivation bridges ready, constructs 0
+accepted interval-certified constants status refs, and records 72 missing
+separator bridge criteria plus 672 missing row bridge criteria. The first
+bridge blocker is
+`accepted_interval_certified_constants_status_proof_grade_derivation_ref_absent`;
+no proof rule, primitive accepted-status rule, or source-packet acceptance rule
+is introduced.
+The candidate-live higher-fold constants accepted interval-certified status
+bridge prerequisite frontier classifier now partitions the current stop into
+proof-grade bridge prerequisites and primitive/source-packet acceptance
+prerequisites. It verifies 4 / 4 frontier source-hash locks, retains 9 / 9
+bridge source-hash locks, preserves 12 / 12 separator plus 112 / 112 row
+derivation-source evidence profiles complete, but records 0 proof-grade bridge
+routes ready, 0 primitive source-packet routes ready, 0 mechanical
+continuations from current inputs, 72 missing separator proof-grade bridge
+prerequisites, 24 missing separator primitive acceptance prerequisites, and 896
+missing row frontier prerequisites. The first frontier blocker is
+`accepted_interval_certified_constants_status_proof_grade_derivation_ref_absent`;
+the source-packet decision blocker is
+`fixed_parameter_separator_aggregate_to_same_packet_fold_impulse_or_direct_quadrature_bound_acceptance_rule_absent`.
+The candidate-live higher-fold constants accepted interval-certified status
+proof-grade evidence dependency classifier then verifies 9 / 9 bridge-locked
+source-hash locks and scans 238 certificate JSON files for compatible
+proof-grade accepted-status evidence. It finds 0 compatible proof-grade
+evidence files, records 72 separator proof-grade evidence slots and 672 row
+proof-grade evidence slots with 0 slots filled, and preserves the seed constants
+contract mismatch between `seed-doubled-four-arc-cosine-template-v0` /
+`Sigma_1_through_Sigma_4` / 16 rows and
+`fresh-v10-higher-fold-12-root-rebuild-v0` /
+`Sigma_hf_01_through_Sigma_hf_12` / 112 rows. The first evidence dependency
+blocker is
+`compatible_proof_grade_accepted_interval_certified_constants_status_evidence_absent`.
+The candidate-live higher-fold constants accepted interval-certified status
+primitive source-packet acceptance evidence dependency classifier then verifies
+5 / 5 source-packet route source-hash locks, retains 4 / 4 frontier source-hash
+locks and 9 / 9 bridge-locked source-hash locks, and scans 239 certificate JSON
+files for compatible primitive/source-packet acceptance evidence. It finds 0
+compatible source-packet acceptance evidence files, records 24 separator
+source-packet acceptance evidence slots and 224 row source-packet acceptance
+evidence slots with 0 slots filled, and preserves 12 / 12 separator plus
+112 / 112 row aggregate evidence profiles complete. The first source-packet
+acceptance evidence blocker is
+`compatible_source_packet_acceptance_evidence_absent`; the acceptance-rule
+blocker remains
+`fixed_parameter_separator_aggregate_to_same_packet_fold_impulse_or_direct_quadrature_bound_acceptance_rule_absent`;
+the accepted source-packet blocker remains
+`accepted_same_packet_fold_impulse_or_direct_quadrature_source_packet_absent`.
+All thirty-nine classifier/attempt artifacts keep `preledger_pass=false`,
 `updates_live_ledger=false`, row consumption 0, and no branch-chart
 authorization.
 

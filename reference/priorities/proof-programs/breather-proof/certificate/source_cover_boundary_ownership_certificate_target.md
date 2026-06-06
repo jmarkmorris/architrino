@@ -325,6 +325,73 @@ verifies 5 / 5 materialization source-hash locks, 12 / 12 separator exact-field
 and exact-arithmetic consistency classifications, and 112 / 112 row exact-field
 and exact-arithmetic consistency classifications, while accepted
 interval-certified constants statuses remain absent.
+The candidate-live higher-fold constants accepted-status obstruction classifier
+then verifies 6 / 6 current consistency-source hash locks, retains 5 / 5
+materialization source-hash locks, and records 12 / 12 separator plus
+112 / 112 row accepted-status precondition profiles complete, while accepted
+interval-certified constants statuses remain absent. The first accepted-status
+obstruction is `accepted_interval_certified_constants_status_absent`; no
+primitive accepted-status or source-packet acceptance decision is made.
+The candidate-live higher-fold constants accepted interval-certified status
+derivation source-data obligation classifier then verifies 1 / 1 obstruction
+source-hash locks, retains 6 / 6 current consistency-source hash locks and
+5 / 5 materialization source-hash locks, and records 12 / 12 separator plus
+112 / 112 row derivation-source evidence profiles complete, while proof-grade
+accepted-status derivation refs, status refs, status derivations, status rules,
+soundness proofs, endpoint applications, accepted constants conformance
+derivations, source-packet acceptance rules, and accepted
+impulse/direct-quadrature source packets remain absent. The first
+derivation-obligation blocker is
+`accepted_interval_certified_constants_status_proof_grade_derivation_ref_absent`;
+no primitive accepted-status or source-packet acceptance decision is made.
+The candidate-live higher-fold constants accepted interval-certified status
+source-certificate-to-proof-grade-derivation bridge attempt then verifies
+9 / 9 source-data obligation source-hash locks and preserves 12 / 12 separator
+plus 112 / 112 row derivation-source evidence profiles complete, while
+bridge-ready accepted-status derivations, accepted interval-certified constants
+status refs, proof rules, primitive accepted-status rules, source-packet
+acceptance rules, row consumption, live-ledger updates, and branch-chart
+authorization remain absent. The first bridge blocker is
+`accepted_interval_certified_constants_status_proof_grade_derivation_ref_absent`.
+The candidate-live higher-fold constants accepted interval-certified status
+bridge prerequisite frontier classifier then verifies 4 / 4 frontier
+source-hash locks, retains 9 / 9 bridge source-hash locks, and partitions the
+current stop into proof-grade bridge prerequisites and primitive/source-packet
+acceptance prerequisites. It records 0 proof-grade bridge routes ready,
+0 primitive source-packet routes ready, 0 mechanical continuations from current
+inputs, 72 missing separator proof-grade bridge prerequisites, 24 missing
+separator primitive acceptance prerequisites, and 896 missing row frontier
+prerequisites. The first frontier blocker is
+`accepted_interval_certified_constants_status_proof_grade_derivation_ref_absent`;
+the source-packet decision blocker is
+`fixed_parameter_separator_aggregate_to_same_packet_fold_impulse_or_direct_quadrature_bound_acceptance_rule_absent`.
+The candidate-live higher-fold constants accepted interval-certified status
+proof-grade evidence dependency classifier then verifies 9 / 9 bridge-locked
+source-hash locks and scans 238 certificate JSON files for compatible
+proof-grade accepted-status evidence. It finds 0 compatible proof-grade
+evidence files, records 72 separator proof-grade evidence slots and 672 row
+proof-grade evidence slots with 0 slots filled, and preserves the seed constants
+contract mismatch between `seed-doubled-four-arc-cosine-template-v0` /
+`Sigma_1_through_Sigma_4` / 16 rows and
+`fresh-v10-higher-fold-12-root-rebuild-v0` /
+`Sigma_hf_01_through_Sigma_hf_12` / 112 rows. The first evidence dependency
+blocker is
+`compatible_proof_grade_accepted_interval_certified_constants_status_evidence_absent`.
+The candidate-live higher-fold constants accepted interval-certified status
+primitive source-packet acceptance evidence dependency classifier then verifies
+5 / 5 source-packet route source-hash locks, retains 4 / 4 frontier source-hash
+locks and 9 / 9 bridge-locked source-hash locks, and scans 239 certificate JSON
+files for compatible primitive/source-packet acceptance evidence. It finds 0
+compatible source-packet acceptance evidence files, records 24 separator
+source-packet acceptance evidence slots and 224 row source-packet acceptance
+evidence slots with 0 slots filled, and preserves 12 / 12 separator plus
+112 / 112 row aggregate evidence profiles complete. The first source-packet
+acceptance evidence blocker is
+`compatible_source_packet_acceptance_evidence_absent`; the acceptance-rule
+blocker remains
+`fixed_parameter_separator_aggregate_to_same_packet_fold_impulse_or_direct_quadrature_bound_acceptance_rule_absent`;
+the accepted source-packet blocker remains
+`accepted_same_packet_fold_impulse_or_direct_quadrature_source_packet_absent`.
 Accepted atlas refs, source-packet acceptance rules, accepted
 impulse/direct-quadrature source packets, parent-complement consumption refs,
 separator certificates, row consumption, `preledger_pass`, live-ledger updates,

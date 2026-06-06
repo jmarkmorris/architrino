@@ -42,6 +42,7 @@ BOOKS = [
         "story_spreads": 12,
         "cover_count": 1,
         "back_matter_count": 1,
+        "back_matter_story_text": "Make a trail.\nFollow it.\nAgain.",
     },
 ]
 

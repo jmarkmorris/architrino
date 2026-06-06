@@ -22,8 +22,8 @@ Build a continuously animated 2-D dynamical geometry visualizer for orbiting par
 - Delayed-potential overlay can be toggled live without pausing.
 - Always use delayed potentials from the actual emission point at the actual emission time (no instantaneous field shortcuts).
 - Architrino markers: electrino as a small pure-blue circle (RGB 0,0,255), positrino as a small pure-red circle (RGB 255,0,0); emitter markers are visually distinct (e.g., baby blue for electrino emitters, pink for positrino emitters).
-- Field color equals the per-pixel superposition of red and blue contributions; neutral potential ($0$) renders as pure purple.
-- Non-neutral pixels shade proportionally to net superposition with linear scaling initially; logarithmic scaling is deferred (future toggle).
+- For sim2 only, the zero-field background renders as white. Non-zero signed field contributions tint away from white according to the active color falloff, with positrino contributions shifting the field toward red and electrino contributions shifting it toward blue.
+- Non-zero pixels shade proportionally to net superposition with the selected field scaling mode.
 - Draw orbits, rays/history lines, causal shells, and thin white hit connectors (RGB 255,255,255) from emitter to receiver.
 
 ## Controls and kinematics
@@ -88,7 +88,7 @@ Options (updated for predefined paths and optional precomputed frames):
 - Memory budget: assume ~24 GB available; allow using a reasonable fraction for frame caching, with optional streaming/tiling if needed.
 
 # Validation
-- Verify neutrality renders as pure purple at zero superposition.
+- Verify the sim2 zero-field background renders as white.
 - Sanity-check angular measurements (receiver angle vs. hit angle) on the default unit-circle path.
 - Confirm hit logging strength follows $1/r^2$ and matches visual hit connectors.
 - Smoke-test frame export (PNG/JPG) and fps selection without desynchronization between field and overlays.

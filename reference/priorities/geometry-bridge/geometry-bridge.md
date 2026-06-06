@@ -3594,6 +3594,64 @@ a same-domain projected-slot midpoint/zero anchor identity, after which the
 remaining positive-margin slots can be tested against a directed-rounded
 same-domain source-term variation bound.
 
+`buildH39RequestedY44SourceTermProducerImageAnchorPreservingCenterAllocationAttemptCandidate`
+now discharges that anchor-allocation subproblem at candidate level. For each
+row it builds the three anchor-admissible center-shift intervals
+$[-c_i-\lambda h_i,-c_i+\lambda h_i]$ from the source-term residual center
+$c_i$, source half-width $h_i$, and signed-radius contraction scale $\lambda$,
+then checks whether the signed-radius total center shift lies in their
+Minkowski sum. The executable replay succeeds on all five rows and constructs
+term allocations whose contracted residual slots contain residual zero while
+their residual sum still contains the signed-radius certificate interval. This
+does not certify the source-term producer image, but it removes the midpoint/zero
+anchor defect as the immediate blocker. The next true object is again a
+directed-rounded same-domain source-term variation bound for the
+anchor-preserving allocated slots.
+
+`buildH39RequestedY44SourceTermProducerImageAnchorPreservingVariationBoundTargetCandidate`
+now computes that target surface for the anchor-preserving slots. For each
+allocated term slot it measures the endpoint margins from residual zero and
+the source-term midpoint, records the smaller margin as the maximum allowable
+same-domain source-term variation bound, and compares the available expression
+and retained-trace half-width witnesses against that margin. The executable
+replay succeeds on all fifteen terms: every anchor-preserving slot has a
+positive variation-bound target, but the current expression and retained-trace
+witnesses are still wider than those targets. The next blocker is therefore a
+directed-rounded same-domain source-term variation bound no larger than the
+recorded anchor-preserving margins, not another center-allocation repair.
+
+`buildH39RequestedY44TerminalHBudgetToSourceTermVariationReplayCandidate` now
+replays the directed-rounded terminal affine endpoint partition against those
+anchor-preserving source-term variation targets without choosing an
+$h_{37},h_{36},h_{35}$ to source-term identity. It joins the five terminal
+source-map boundary rows to the five source-term target rows, preserves the
+same-domain and same-radius flags, and exhausts all six bijections from
+$h_{37},h_{36},h_{35}$ to `delta_squared_speed`, `sin_phi`, and `sin_delta`.
+The executable screen quantifies all ninety assignment ratios and keeps every
+closure claim false. The result is still negative: no terminal-`h` assignment
+fits the recorded anchor-preserving variation targets. The blocker has therefore
+shrunk from an unlocalized producer-width failure to a concrete all-bijection
+terminal-`h` versus source-term variation-width miss. The next true object is a
+narrower directed-rounded same-domain source-term or terminal-`h` variation
+bound, potentially with a real terminal-`h` to source-term identity that changes
+the comparison; the present packet does not certify that identity.
+
+`buildH39RequestedY44TerminalHCoupledVariationCancellationScreenCandidate` now
+tests whether the previous miss is only an artifact of assigning independent
+terminal rows to individual source terms. It consumes the coupled
+`xi,zeta` terminal residual provider summary, requires the existing
+`terminal-shared-residual-affine-zeta-endpoint` dependency provenance, verifies
+that the coupled route does not export an independent $h_{35}$-$h_{37}$ box, and
+then compares the signed sums of the terminal $h_{37},h_{36},h_{35}$ residual
+and producer intervals with the aggregate anchor-preserving source-term
+residual-sum budget. The focused replay remains negative: neither the signed
+terminal residual sum nor the signed terminal producer sum fits the aggregate
+anchor-preserving residual-sum budget. This rules out a simple signed-sum
+cancellation rescue inside the current directed-rounded terminal partition. The
+next true object is a narrower directed-rounded same-domain coupled
+$h_{37},h_{36},h_{35}$ variation bound or a dependency-preserving producer-sum
+enclosure, not another independent all-bijection screen.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.
