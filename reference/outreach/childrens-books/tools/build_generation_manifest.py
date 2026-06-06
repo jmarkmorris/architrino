@@ -34,6 +34,15 @@ BOOKS = [
         "back_matter_count": 1,
         "back_matter_story_text": "Roll.\nTurn.\nAgain.",
     },
+    {
+        "slug": "nature-remembers-motion",
+        "title": "Nature Remembers Motion",
+        "book_number": 3,
+        "age_band": "2-3",
+        "story_spreads": 12,
+        "cover_count": 1,
+        "back_matter_count": 1,
+    },
 ]
 
 PALETTE_RULE = (

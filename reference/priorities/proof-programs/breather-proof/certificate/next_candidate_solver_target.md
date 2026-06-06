@@ -488,6 +488,35 @@ rows. The live packet is `fresh-v10-higher-fold-12-root-rebuild-v0`,
 `Sigma_hf_01` through `Sigma_hf_12`, and 112 fold-layer rows, so the accepted
 constants conformance count remains 0 and the source-packet acceptance blocker
 remains live.
+The higher-fold constants artifact field obligation classifier,
+`higher_fold_layer_same_packet_higher_fold_constants_artifact_field_obligation_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then freezes the live accepted-constants target fields without accepting them:
+12 / 12 separator profiles and 112 / 112 rows have live packet identity,
+`M_delta`, `Gamma/g`, row projection/source-slice coverage, dual-mollified row
+integrand interval enclosures, row impulse enclosures, and separator aggregate
+fields. It records 0 accepted constants artifacts, 0 accepted constants
+statuses, 0 accepted constants conformance, 0 accepted
+`higher_fold_layer_atlas_ref` refs, 0 source-packet acceptance rules, 0 accepted
+impulse/direct-quadrature source packets, 0 `parent_complement_consumption_ref`
+fields, 0 separator certificates, and 0 row consumption.
+The candidate-live higher-fold constants artifact materialization attempt,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_artifact_materialization_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then packages those same exact interval fields into 1 candidate/live same-packet
+higher-fold constants artifact with 12 / 12 separator constants entries and
+112 / 112 row associations. It keeps 0 accepted higher-fold constants artifacts,
+0 accepted interval-certified constants statuses, 0 source-packet acceptance
+rules, 0 accepted impulse/direct-quadrature source packets, 0
+`parent_complement_consumption_ref` fields, 0 separator certificates, and 0 row
+consumption.
+The candidate-live higher-fold constants artifact consistency classifier,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_artifact_consistency_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then verifies the materialized artifact against the same-packet sources: 5 / 5
+source-hash locks, 12 / 12 separator exact-field and exact-arithmetic
+consistency classifications, and 112 / 112 row exact-field and
+exact-arithmetic consistency classifications. It keeps accepted interval-certified
+constants statuses, source-packet acceptance rules, parent-complement consumption
+refs, separator certificates, row consumption, `preledger_pass`, live-ledger
+updates, and branch-chart authorization at 0.
 The nonlinear fold-coordinate collocation tangent-matrix screen,
 `gap_opening_fresh_v10_fold_coordinate_collocation_report.nonlinear-v0.md`,
 now packages the first executable collocation-surface test: 3 homogeneous

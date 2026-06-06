@@ -534,6 +534,28 @@ The next solver should therefore:
    identity: the existing constants contract/fallback notes are seed-packet
    `Sigma_1` through `Sigma_4` artifacts, not accepted higher-fold constants
    for `Sigma_hf_01` through `Sigma_hf_12`;
+   the higher-fold constants artifact field obligation classifier then freezes
+   the live accepted-constants target fields without accepting them: all
+   12 / 12 separator profiles and 112 / 112 rows carry live packet identity,
+   `M_delta`, `Gamma/g`, row projection/source-slice coverage,
+   dual-mollified row integrand interval enclosures, row impulse enclosures,
+   and separator aggregate fields, while accepted constants artifacts,
+   accepted constants statuses, accepted atlas refs, source-packet acceptance
+   rules, accepted impulse/direct-quadrature source packets,
+   parent-complement consumption refs, separator certificates, row consumption,
+   `preledger_pass`, live-ledger updates, and branch-chart authorization remain
+   absent; the candidate-live higher-fold constants artifact materialization
+   attempt packages those exact interval fields into 1 candidate/live same-packet
+   higher-fold constants artifact with 12 / 12 separator constants entries and
+   112 / 112 row associations, while accepted interval-certified constants
+   statuses, source-packet acceptance rules, row consumption, `preledger_pass`,
+   live-ledger updates, and branch-chart authorization remain absent; the
+   candidate-live higher-fold constants artifact consistency classifier verifies
+   5 / 5 materialization source-hash locks, 12 / 12 separator exact-field and
+   exact-arithmetic consistency classifications, and 112 / 112 row exact-field
+   and exact-arithmetic consistency classifications, while accepted
+   interval-certified constants statuses and source-packet acceptance rules
+   remain absent;
 4. assemble the signed gap derivative matrix $A$ for the selected orientations
    above;
 5. keep the structural constraint matrix $B=DC(\mathbf a_0)$, including section,

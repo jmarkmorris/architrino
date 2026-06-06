@@ -3113,6 +3113,67 @@ primitive, terminal boundary replay, acceptance rows, verifier rows, transport
 rows, and H38 bridge rows into one directed-rounded same-domain
 source-provenance object. The next true blocker is that emitter, not another
 signed-radius interval contraction.
+\texttt{buildH39RequestedY44SignedRadiusSourceProvenanceEmitterIdentityAttemptCandidate}
+attacks the emitter identity itself. It compares the primitive expression-level
+$N_{38}$ source-term residual-sum interval against the accepted signed-radius
+certificate interval on each node. The primitive residual-sum interval contains
+the signed-radius certificate interval, and the centered homothetic transport
+bridge matches the signed-radius interval. A direct primitive-sum emitter
+identity fails, however: every signed-radius certificate interval is a proper
+subinterval of the primitive residual sum with a quantified endpoint and
+half-width contraction gap.
+\texttt{buildH39RequestedY44SignedRadiusSubintervalEmitterPrimitiveCandidate}
+now materializes that row-local subinterval primitive at candidate level. For
+each node it defines the centered affine contraction from the primitive
+residual-sum center to the signed-radius certificate center, with contraction
+scale equal to the signed-radius half-width divided by the primitive
+half-width. Existing binary64 outward interval primitives then map the primitive
+residual-sum interval to an outward image that contains the accepted
+signed-radius certificate interval while remaining strictly width-contracted on
+the same source cell and without increasing the radius boundary. This is still
+not a source-provenance certificate: the primitive keeps all source-input and
+shared domain certification claims false because the directed-rounded
+source-term producer-image provenance fields are still absent.
+\texttt{buildH39RequestedY44SourceTermProducerImageProvenanceFieldAttemptCandidate}
+now attacks those fields directly. For each of the five expression-level
+$N_{38}$ source-map nodes, it distributes the signed-radius center shift across
+the three source-term residual intervals in proportion to term half-width and
+applies the same centered-affine contraction scale used by the subinterval
+primitive. The executable packet emits fifteen candidate term-field slots with
+directed-rounded source-term value intervals, residual intervals, same-domain
+field-domain metadata, radius values, and outward-rounding primitive metadata.
+Their residual sums contain the accepted signed-radius certificates and remain
+strictly width-contracted on the same source cells. This is a real narrowing of
+the obstruction, but not certification: every projected term image is a strict
+subinterval of the live expression source-term interval, so the next proof
+object is the source-enclosure identity proving those field slots are valid
+same-domain producer-image enclosures.
+\texttt{buildH39RequestedY44SourceTermProducerImageEnclosureIdentityAttemptCandidate}
+now tests that identity directly against the strongest same-domain witnesses
+available in the packet. It replays all fifteen projected term slots against
+the live expression source-term value and residual intervals, the retained
+H0-H34 trace intervals, and the zero-constant nonconstant term intervals, while
+also checking midpoint and residual-zero point witnesses. The result is
+fail-closed but sharper: the projected slots remain valid allocated
+subintervals, yet every projected slot fails to enclose the available
+expression term envelope, and the retained trace checks remain negative
+controls. The executable artifact records the endpoint expansion and half-width
+expansion needed for enclosure. The next true blocker is therefore a
+directed-rounded same-domain narrower source-term image bound, or a dependency
+theorem proving the true producer image lies inside the projected strict
+subinterval slots.
+\texttt{buildH39RequestedY44SourceTermProducerImageProjectedSlotVariationBoundTargetCandidate}
+now turns that narrower-image blocker into explicit row-local targets. For
+each projected source-term slot, it measures the endpoint margin from the
+expression midpoint and residual-zero witness to the projected slot and records
+the smaller margin as the maximum same-domain source-term variation bound that
+could certify the projected slot. The current packet exposes an earlier
+obstruction: at least one projected slot does not contain the midpoint/residual-zero
+anchor, so the variation-bound route cannot yet be applied uniformly. This
+does not certify the source-term producer image; it sharpens the next proof
+object to a same-domain projected-slot midpoint/zero anchor identity, followed
+by a directed-rounded same-domain source-term variation bound that fits inside
+the recorded positive margins.
 \texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
 now also probes a shared terminal-residual coordinate for
 $h_{37},h_{36},h_{35}$. Instead of assigning independent residual hulls to the

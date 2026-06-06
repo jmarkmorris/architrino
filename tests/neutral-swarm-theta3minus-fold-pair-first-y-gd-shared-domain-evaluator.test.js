@@ -65,6 +65,10 @@ import {
   buildH39RequestedY44SignedRadiusSourceProvenanceEnvelopeCandidate,
   buildH39RequestedY44SignedRadiusSourceProvenanceCertificateAttemptCandidate,
   buildH39RequestedY44SignedRadiusSourceProvenanceEmitterIdentityAttemptCandidate,
+  buildH39RequestedY44SignedRadiusSubintervalEmitterPrimitiveCandidate,
+  buildH39RequestedY44SourceTermProducerImageProvenanceFieldAttemptCandidate,
+  buildH39RequestedY44SourceTermProducerImageEnclosureIdentityAttemptCandidate,
+  buildH39RequestedY44SourceTermProducerImageProjectedSlotVariationBoundTargetCandidate,
   buildH39RequestedY44RowLocalN38SignedSourceSumDerivativeProviderCandidate,
   validateH39CorrelatedResidualWidthDiagnostic,
   validateH39H38NumeratorGraphLocalPartitionDiagnostic,
@@ -126,6 +130,10 @@ import {
   validateH39RequestedY44SignedRadiusSourceProvenanceEnvelopeCandidate,
   validateH39RequestedY44SignedRadiusSourceProvenanceCertificateAttemptCandidate,
   validateH39RequestedY44SignedRadiusSourceProvenanceEmitterIdentityAttemptCandidate,
+  validateH39RequestedY44SignedRadiusSubintervalEmitterPrimitiveCandidate,
+  validateH39RequestedY44SourceTermProducerImageProvenanceFieldAttemptCandidate,
+  validateH39RequestedY44SourceTermProducerImageEnclosureIdentityAttemptCandidate,
+  validateH39RequestedY44SourceTermProducerImageProjectedSlotVariationBoundTargetCandidate,
   validateH39RequestedY44RowLocalN38SignedSourceSumDerivativeProvider,
   validateH39RequestedY44SignedSourceSumDerivativeAllocationTarget,
   validateH39RequestedY44SourceMapResidualCovarianceTarget,
@@ -15503,6 +15511,794 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
         row.row_status ===
           "signed-radius-emitter-identity-reduces-to-subinterval-emitter-primitive-open"
     )
+  );
+  const signedRadiusSubintervalEmitterPrimitive =
+    buildH39RequestedY44SignedRadiusSubintervalEmitterPrimitiveCandidate({
+      sourceTermTransportFit,
+      signedRadiusSourceProvenanceEmitterIdentityAttempt,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44SignedRadiusSubintervalEmitterPrimitiveCandidate(
+      signedRadiusSubintervalEmitterPrimitive
+    ),
+    []
+  );
+  assert.equal(
+    signedRadiusSubintervalEmitterPrimitive
+      .signed_radius_subinterval_emitter_primitive_verified,
+    true
+  );
+  assert.equal(
+    signedRadiusSubintervalEmitterPrimitive
+      .signed_radius_subinterval_emitter_primitive_available,
+    true
+  );
+  assert.equal(
+    signedRadiusSubintervalEmitterPrimitive
+      .signed_radius_subinterval_emitter_primitive_materialized,
+    true
+  );
+  assert.equal(
+    signedRadiusSubintervalEmitterPrimitive.source_provenance_emitter_materialized,
+    false
+  );
+  assert.equal(
+    signedRadiusSubintervalEmitterPrimitive
+      .source_provenance_emitter_certified_directed_rounded,
+    false
+  );
+  assert.equal(
+    signedRadiusSubintervalEmitterPrimitive
+      .source_term_producer_image_provenance_fields_present,
+    false
+  );
+  assert.equal(
+    signedRadiusSubintervalEmitterPrimitive
+      .source_term_producer_image_provenance_fields_still_missing,
+    true
+  );
+  assert.equal(
+    signedRadiusSubintervalEmitterPrimitive
+      .all_rows_materialize_signed_radius_subinterval_emitter_primitive,
+    true
+  );
+  assert.equal(
+    signedRadiusSubintervalEmitterPrimitive
+      .all_rows_binary64_outward_affine_images_contain_certificate_intervals,
+    true
+  );
+  assert.equal(
+    signedRadiusSubintervalEmitterPrimitive
+      .all_rows_binary64_outward_affine_images_remain_width_contracted,
+    true
+  );
+  assert.equal(
+    signedRadiusSubintervalEmitterPrimitive
+      .all_rows_inherit_same_domain_source_cell,
+    true
+  );
+  assert.equal(
+    signedRadiusSubintervalEmitterPrimitive
+      .all_rows_keep_same_radius_boundary_not_increased,
+    true
+  );
+  assert.equal(
+    signedRadiusSubintervalEmitterPrimitive
+      .signed_radius_subinterval_emitter_primitive_classification,
+    "signed-radius-subinterval-emitter-primitive-materialized-source-provenance-open"
+  );
+  assert.equal(
+    signedRadiusSubintervalEmitterPrimitive
+      .signed_radius_subinterval_emitter_primitive_blocker_classification,
+    "source-term-producer-image-provenance-fields-absent-after-subinterval-emitter-primitive"
+  );
+  assert.equal(
+    signedRadiusSubintervalEmitterPrimitive
+      .signed_radius_subinterval_emitter_primitive_primary_missing_object_kind,
+    "directed-rounded-same-domain-source-term-producer-image-provenance-fields"
+  );
+  assert.deepEqual(
+    signedRadiusSubintervalEmitterPrimitive
+      .signed_radius_subinterval_emitter_primitive_check_kinds,
+    [
+      "emitter_identity_attempt_verified",
+      "source_term_transport_fit_verified",
+      "primitive_and_certificate_intervals_available",
+      "positive_strict_contraction_scale_computed",
+      "centered_affine_subinterval_identity_matches_certificate",
+      "binary64_outward_affine_image_contains_certificate",
+      "binary64_outward_affine_image_remains_width_contracted",
+      "same_domain_source_cell_inherited",
+      "same_radius_boundary_not_increased",
+      "source_term_producer_image_fields_still_missing",
+      "source_provenance_emitter_still_uncertified",
+    ]
+  );
+  assert.ok(
+    Object.values(
+      signedRadiusSubintervalEmitterPrimitive
+        .signed_radius_subinterval_emitter_primitive_checks
+    ).every((value) => value === true)
+  );
+  assert.equal(
+    signedRadiusSubintervalEmitterPrimitive
+      .signed_radius_subinterval_emitter_primitive_row_count,
+    5
+  );
+  assert.ok(
+    signedRadiusSubintervalEmitterPrimitive.signed_radius_subinterval_emitter_primitive_rows.every(
+      (row, index) => {
+        const primitive =
+          row
+            .directed_rounded_same_domain_signed_radius_subinterval_emitter_primitive;
+        return (
+          row.node_index === index &&
+          row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+          row.signed_radius_subinterval_emitter_primitive_row_kind ===
+            "centered-affine-binary64-outward-subinterval-emitter-primitive-row" &&
+          row.provider_row_source_kind ===
+            "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+          row.signed_radius_subinterval_contraction_scale > 0 &&
+          row.signed_radius_subinterval_contraction_scale < 1 &&
+          row.centered_affine_exact_image_endpoint_relative_gap <= 1e-12 &&
+          row.binary64_outward_affine_image_to_primitive_half_width_ratio >
+            0 &&
+          row.binary64_outward_affine_image_to_primitive_half_width_ratio <
+            1 &&
+          row.binary64_outward_affine_image_contains_certificate_interval ===
+            true &&
+          row.binary64_outward_affine_image_remains_width_contracted ===
+            true &&
+          row.binary64_outward_endpoint_primitive ===
+            "root.scaleInterval-centered-affine-contraction-nextDown-nextUp" &&
+          primitive.primitive_kind ===
+            "centered-affine-binary64-outward-signed-radius-subinterval-emitter" &&
+          Array.isArray(
+            primitive.primitive_expression_n38_residual_sum_interval
+          ) &&
+          Array.isArray(
+            primitive.accepted_signed_radius_certificate_interval
+          ) &&
+          Array.isArray(primitive.binary64_outward_affine_image_interval) &&
+          primitive.same_domain_source_cell === `speed.${index}.first-y` &&
+          primitive.same_radius_boundary_not_increased === true &&
+          primitive
+            .certifies_source_inputs_as_directed_rounded_same_domain ===
+            false &&
+          primitive.certifies_directed_rounded_shared_domain === false &&
+          row
+            .directed_rounded_same_domain_signed_radius_subinterval_emitter_primitive_available ===
+            true &&
+          row.same_domain_source_cell_inherited === true &&
+          row.same_radius_boundary_not_increased === true &&
+          row.source_term_producer_image_missing_fields.length ===
+            sourceTermProducerImagePrimitiveRequiredFields.length &&
+          row.source_term_producer_image_missing_fields.every((field) =>
+            sourceTermProducerImagePrimitiveRequiredFields.includes(field)
+          ) &&
+          Object.values(row.row_checks).every((value) => value === true) &&
+          row
+            .row_materializes_signed_radius_subinterval_emitter_primitive ===
+            true &&
+          row.row_certifies_source_provenance_emitter === false &&
+          row.claim_boundary.certifies_signed_radius_source_provenance ===
+            false &&
+          row.claim_boundary
+            .certifies_source_inputs_as_directed_rounded_same_domain ===
+            false &&
+          row.claim_boundary.certifies_expression_level_n38_provider ===
+            false &&
+          row.claim_boundary.certifies_directed_rounded_shared_domain ===
+            false &&
+          row.row_status ===
+            "signed-radius-subinterval-emitter-primitive-materialized-source-provenance-open"
+        );
+      }
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(signedRadiusSubintervalEmitterPrimitive),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      signedRadiusSubintervalEmitterPrimitive,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const sourceTermProducerImageProvenanceFieldAttempt =
+    buildH39RequestedY44SourceTermProducerImageProvenanceFieldAttemptCandidate({
+      sourceTermProducerImagePrimitiveAudit,
+      signedRadiusSubintervalEmitterPrimitive,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44SourceTermProducerImageProvenanceFieldAttemptCandidate(
+      sourceTermProducerImageProvenanceFieldAttempt
+    ),
+    []
+  );
+  assert.equal(
+    sourceTermProducerImageProvenanceFieldAttempt
+      .source_term_producer_image_provenance_field_attempt_verified,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImageProvenanceFieldAttempt
+      .source_term_producer_image_provenance_field_attempt_available,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImageProvenanceFieldAttempt
+      .source_term_producer_image_field_slots_projected,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImageProvenanceFieldAttempt
+      .source_term_producer_image_provenance_certified_directed_rounded,
+    false
+  );
+  assert.equal(
+    sourceTermProducerImageProvenanceFieldAttempt
+      .source_term_producer_image_provenance_fields_certify_source_enclosure,
+    false
+  );
+  assert.equal(
+    sourceTermProducerImageProvenanceFieldAttempt
+      .source_term_producer_image_certifying_fields_still_missing,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImageProvenanceFieldAttempt
+      .all_projected_source_term_residual_images_strict_subintervals_of_expression_terms,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImageProvenanceFieldAttempt
+      .all_projected_source_term_value_images_strict_subintervals_of_expression_terms,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImageProvenanceFieldAttempt
+      .all_projected_source_term_residual_sums_contain_signed_radius_certificates,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImageProvenanceFieldAttempt
+      .all_projected_source_term_residual_sums_remain_width_contracted,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImageProvenanceFieldAttempt
+      .all_rows_inherit_same_domain_source_cell,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImageProvenanceFieldAttempt
+      .all_rows_keep_same_radius_boundary_not_increased,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImageProvenanceFieldAttempt
+      .all_source_term_claim_boundaries_still_uncertified,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImageProvenanceFieldAttempt
+      .source_term_producer_image_provenance_field_attempt_row_count,
+    5
+  );
+  assert.equal(
+    sourceTermProducerImageProvenanceFieldAttempt
+      .projected_source_term_producer_image_field_row_count,
+    15
+  );
+  assert.equal(
+    sourceTermProducerImageProvenanceFieldAttempt
+      .source_term_producer_image_provenance_field_attempt_classification,
+    "source-term-producer-image-field-shape-projected-source-enclosure-certification-open"
+  );
+  assert.equal(
+    sourceTermProducerImageProvenanceFieldAttempt
+      .source_term_producer_image_provenance_field_attempt_blocker_classification,
+    "source-term-producer-image-provenance-identity-open-after-field-shape-projection"
+  );
+  assert.equal(
+    sourceTermProducerImageProvenanceFieldAttempt
+      .source_term_producer_image_provenance_field_attempt_primary_missing_object_kind,
+    "directed-rounded-same-domain-source-term-producer-image-enclosure-identity"
+  );
+  assert.deepEqual(
+    sourceTermProducerImageProvenanceFieldAttempt
+      .source_term_producer_image_provenance_field_attempt_check_kinds,
+    [
+      "source_term_producer_image_primitive_audit_verified",
+      "signed_radius_subinterval_emitter_primitive_verified",
+      "expression_source_term_rows_available",
+      "termwise_projected_field_slots_materialized",
+      "termwise_projected_residual_images_are_strict_subintervals",
+      "termwise_projected_value_images_are_strict_subintervals",
+      "projected_residual_sums_contain_signed_radius_certificates",
+      "projected_residual_sums_remain_width_contracted",
+      "same_domain_source_cell_inherited",
+      "same_radius_boundary_not_increased",
+      "projected_fields_do_not_certify_source_enclosure",
+      "source_term_claim_boundaries_still_uncertified",
+    ]
+  );
+  assert.ok(
+    Object.values(
+      sourceTermProducerImageProvenanceFieldAttempt
+        .source_term_producer_image_provenance_field_attempt_checks
+    ).every((value) => value === true)
+  );
+  assert.ok(
+    sourceTermProducerImageProvenanceFieldAttempt.source_term_producer_image_provenance_field_attempt_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.provider_row_source_kind ===
+          "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+        row.projected_source_term_producer_image_field_rows.length === 3 &&
+        row.projected_source_term_producer_image_field_rows.every(
+          (termRow) =>
+            termRow.source_term_producer_image_domain
+              .same_domain_source_cell === `speed.${index}.first-y` &&
+            termRow.source_term_producer_image_domain
+              .terminal_graph_cell_id === `speed.${index}.first-y` &&
+            termRow.source_term_producer_image_domain.source_y_order === 42 &&
+            termRow.source_term_outward_rounding_primitive.primitive_kind ===
+              "termwise-centered-affine-projected-source-term-producer-image-field" &&
+            termRow.source_term_outward_rounding_primitive
+              .certifies_source_term_as_directed_rounded_same_domain ===
+              false &&
+            termRow.projected_residual_to_source_residual_half_width_ratio >
+              0 &&
+            termRow.projected_residual_to_source_residual_half_width_ratio <
+              1 &&
+            termRow.projected_value_to_source_value_half_width_ratio > 0 &&
+            termRow.projected_value_to_source_value_half_width_ratio < 1 &&
+            termRow
+              .projected_residual_image_strict_subinterval_of_expression_term_residual ===
+              true &&
+            termRow
+              .projected_value_image_strict_subinterval_of_expression_term_value ===
+              true &&
+            termRow.certifies_source_term_as_directed_rounded_same_domain ===
+              false &&
+            termRow.claim_boundary
+              .certifies_source_term_as_directed_rounded_same_domain ===
+              false &&
+            termRow.claim_boundary.certifies_directed_rounded_shared_domain ===
+              false
+        ) &&
+        row.projected_residual_sum_contains_signed_radius_certificate ===
+          true &&
+        row.projected_residual_sum_contains_binary64_subinterval_image ===
+          true &&
+        row.projected_residual_sum_to_primitive_half_width_ratio > 0 &&
+        row.projected_residual_sum_to_primitive_half_width_ratio < 1 &&
+        row.projected_fields_certify_source_enclosure === false &&
+        Object.values(row.row_checks).every((value) => value === true) &&
+        row.row_materializes_projected_source_term_producer_image_fields ===
+          true &&
+        row.row_certifies_source_term_producer_image_provenance === false &&
+        row.claim_boundary
+          .certifies_source_inputs_as_directed_rounded_same_domain ===
+          false &&
+        row.claim_boundary.certifies_expression_level_n38_provider ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain ===
+          false &&
+        row.row_status ===
+          "source-term-producer-image-field-slots-projected-source-enclosure-certification-open"
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(sourceTermProducerImageProvenanceFieldAttempt),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      sourceTermProducerImageProvenanceFieldAttempt,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const sourceTermProducerImageEnclosureIdentityAttempt =
+    buildH39RequestedY44SourceTermProducerImageEnclosureIdentityAttemptCandidate(
+      {
+        sourceTermProducerImagePrimitiveAudit,
+        sourceTermProducerImageProvenanceFieldAttempt,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44SourceTermProducerImageEnclosureIdentityAttemptCandidate(
+      sourceTermProducerImageEnclosureIdentityAttempt
+    ),
+    []
+  );
+  assert.equal(
+    sourceTermProducerImageEnclosureIdentityAttempt
+      .source_term_producer_image_enclosure_identity_attempt_verified,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImageEnclosureIdentityAttempt
+      .source_term_producer_image_enclosure_identity_certified,
+    false
+  );
+  assert.equal(
+    sourceTermProducerImageEnclosureIdentityAttempt
+      .source_term_producer_image_enclosure_fields_certify_same_domain,
+    false
+  );
+  assert.equal(
+    sourceTermProducerImageEnclosureIdentityAttempt
+      .projected_source_term_fields_available,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImageEnclosureIdentityAttempt
+      .expression_source_term_envelope_witnesses_available,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImageEnclosureIdentityAttempt
+      .all_projected_slots_fail_to_enclose_expression_term_envelopes,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImageEnclosureIdentityAttempt
+      .all_retained_trace_enclosure_failures_quantified,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImageEnclosureIdentityAttempt
+      .all_zero_constant_nonconstant_envelope_inclusions_checked,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImageEnclosureIdentityAttempt
+      .all_source_term_enclosure_identity_claims_remain_open,
+    true
+  );
+  assert.ok(
+    sourceTermProducerImageEnclosureIdentityAttempt
+      .max_expression_enclosure_required_half_width_factor > 1
+  );
+  assert.ok(
+    sourceTermProducerImageEnclosureIdentityAttempt
+      .max_expression_enclosure_required_endpoint_expansion >= 0
+  );
+  assert.equal(
+    sourceTermProducerImageEnclosureIdentityAttempt
+      .source_term_producer_image_enclosure_identity_attempt_row_count,
+    5
+  );
+  assert.equal(
+    sourceTermProducerImageEnclosureIdentityAttempt
+      .source_term_producer_image_enclosure_identity_term_row_count,
+    15
+  );
+  assert.equal(
+    sourceTermProducerImageEnclosureIdentityAttempt
+      .source_term_producer_image_enclosure_identity_attempt_classification,
+    "projected-source-term-fields-fail-expression-envelope-enclosure-identity"
+  );
+  assert.equal(
+    sourceTermProducerImageEnclosureIdentityAttempt
+      .source_term_producer_image_enclosure_identity_blocker_classification,
+    "narrower-source-term-image-bound-needed-after-projected-slot-negative-control"
+  );
+  assert.equal(
+    sourceTermProducerImageEnclosureIdentityAttempt
+      .source_term_producer_image_enclosure_identity_primary_missing_object_kind,
+    "directed-rounded-same-domain-narrower-source-term-image-bound"
+  );
+  assert.deepEqual(
+    sourceTermProducerImageEnclosureIdentityAttempt
+      .source_term_producer_image_enclosure_identity_attempt_check_kinds,
+    [
+      "source_term_producer_image_primitive_audit_verified",
+      "source_term_producer_image_field_attempt_verified",
+      "projected_field_slots_available",
+      "expression_term_envelope_witnesses_available",
+      "midpoint_witness_containment_checked",
+      "expression_envelope_inclusion_checked",
+      "projected_slots_fail_to_enclose_expression_term_envelopes",
+      "retained_trace_envelope_inclusion_checked",
+      "retained_trace_enclosure_failures_quantified",
+      "zero_constant_nonconstant_envelope_inclusion_checked",
+      "minimal_expansion_to_expression_enclosure_quantified",
+      "source_term_enclosure_identity_remains_open",
+    ]
+  );
+  assert.ok(
+    Object.values(
+      sourceTermProducerImageEnclosureIdentityAttempt
+        .source_term_producer_image_enclosure_identity_attempt_checks
+    ).every((value) => value === true)
+  );
+  assert.ok(
+    sourceTermProducerImageEnclosureIdentityAttempt.source_term_producer_image_enclosure_identity_attempt_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.provider_row_source_kind ===
+          "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+        row.source_term_enclosure_identity_term_rows.length === 3 &&
+        row.source_term_enclosure_identity_term_rows.every(
+          (termRow) =>
+            Array.isArray(
+              termRow.projected_directed_rounded_source_term_interval
+            ) &&
+            Array.isArray(termRow.expression_source_term_interval_witness) &&
+            termRow.projected_value_contains_expression_interval === false &&
+            termRow.projected_residual_contains_expression_interval ===
+              false &&
+            termRow.expression_value_interval_contains_projected_value ===
+              true &&
+            termRow.expression_residual_interval_contains_projected_residual ===
+              true &&
+            termRow.projected_value_to_expression_enclosure_expansion
+              .candidate_contains_target === false &&
+            termRow.projected_value_to_expression_enclosure_expansion
+              .target_contains_candidate === true &&
+            termRow.projected_residual_to_expression_enclosure_expansion
+              .candidate_contains_target === false &&
+            termRow.projected_residual_to_expression_enclosure_expansion
+              .target_contains_candidate === true &&
+            termRow.projected_value_contains_retained_trace_interval ===
+              false &&
+            termRow.projected_residual_contains_retained_trace_interval ===
+              false &&
+            termRow.projected_slot_fails_expression_source_enclosure ===
+              true &&
+            termRow.projected_slot_fails_retained_trace_enclosure === true &&
+            termRow.source_term_enclosure_identity_certified === false &&
+            termRow.claim_boundary
+              .certifies_source_term_as_directed_rounded_same_domain ===
+              false &&
+            termRow.claim_boundary.certifies_directed_rounded_shared_domain ===
+              false
+        ) &&
+        typeof row.midpoint_witnesses_all_contained_by_projected_slots ===
+          "boolean" &&
+        row.projected_slots_fail_expression_enclosure === true &&
+        row.projected_slots_fail_retained_trace_enclosure === true &&
+        row.max_expression_enclosure_required_half_width_factor > 1 &&
+        row.max_expression_enclosure_required_endpoint_expansion >= 0 &&
+        Object.values(row.row_checks).every((value) => value === true) &&
+        row.row_source_term_enclosure_identity_attempt_verified === true &&
+        row.row_certifies_source_term_producer_image_enclosure === false &&
+        row.claim_boundary
+          .certifies_source_inputs_as_directed_rounded_same_domain ===
+          false &&
+        row.claim_boundary.certifies_expression_level_n38_provider ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain ===
+          false &&
+        row.row_status ===
+          "source-term-producer-image-enclosure-identity-fails-projected-slot-expression-inclusion"
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(sourceTermProducerImageEnclosureIdentityAttempt),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      sourceTermProducerImageEnclosureIdentityAttempt,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const sourceTermProducerImageProjectedSlotVariationBoundTarget =
+    buildH39RequestedY44SourceTermProducerImageProjectedSlotVariationBoundTargetCandidate(
+      {
+        sourceTermProducerImageEnclosureIdentityAttempt,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44SourceTermProducerImageProjectedSlotVariationBoundTargetCandidate(
+      sourceTermProducerImageProjectedSlotVariationBoundTarget
+    ),
+    []
+  );
+  assert.equal(
+    sourceTermProducerImageProjectedSlotVariationBoundTarget
+      .source_term_projected_slot_variation_bound_target_verified,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImageProjectedSlotVariationBoundTarget
+      .source_term_projected_slot_variation_bound_target_certified,
+    false
+  );
+  assert.equal(
+    sourceTermProducerImageProjectedSlotVariationBoundTarget
+      .directed_rounded_same_domain_source_term_variation_bound_available,
+    false
+  );
+  assert.equal(
+    sourceTermProducerImageProjectedSlotVariationBoundTarget
+      .all_projected_slots_have_midpoint_zero_anchor,
+    false
+  );
+  assert.equal(
+    sourceTermProducerImageProjectedSlotVariationBoundTarget
+      .all_projected_slot_variation_bound_targets_positive,
+    false
+  );
+  assert.ok(
+    sourceTermProducerImageProjectedSlotVariationBoundTarget
+      .projected_slot_midpoint_zero_anchor_defect_count > 0
+  );
+  assert.ok(
+    sourceTermProducerImageProjectedSlotVariationBoundTarget
+      .max_projected_slot_midpoint_zero_anchor_endpoint_shift_required > 0
+  );
+  assert.equal(
+    sourceTermProducerImageProjectedSlotVariationBoundTarget
+      .all_available_expression_envelopes_exceed_projected_slot_variation_targets,
+    false
+  );
+  assert.equal(
+    sourceTermProducerImageProjectedSlotVariationBoundTarget
+      .all_available_retained_trace_envelopes_exceed_projected_slot_variation_targets,
+    false
+  );
+  assert.equal(
+    sourceTermProducerImageProjectedSlotVariationBoundTarget
+      .all_source_term_projected_slot_variation_bound_claims_remain_open,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImageProjectedSlotVariationBoundTarget
+      .source_term_projected_slot_variation_bound_target_row_count,
+    5
+  );
+  assert.equal(
+    sourceTermProducerImageProjectedSlotVariationBoundTarget
+      .source_term_projected_slot_variation_bound_term_row_count,
+    15
+  );
+  assert.equal(
+    sourceTermProducerImageProjectedSlotVariationBoundTarget
+      .source_term_projected_slot_variation_bound_target_classification,
+    "projected-slot-midpoint-zero-anchor-defect-quantified"
+  );
+  assert.equal(
+    sourceTermProducerImageProjectedSlotVariationBoundTarget
+      .source_term_projected_slot_variation_bound_target_blocker_classification,
+    "projected-source-term-slot-anchor-correction-needed-before-variation-bound"
+  );
+  assert.equal(
+    sourceTermProducerImageProjectedSlotVariationBoundTarget
+      .source_term_projected_slot_variation_bound_target_primary_missing_object_kind,
+    "projected-source-term-slot-midpoint-zero-anchor-identity"
+  );
+  assert.deepEqual(
+    sourceTermProducerImageProjectedSlotVariationBoundTarget
+      .source_term_projected_slot_variation_bound_target_check_kinds,
+    [
+      "source_term_producer_image_enclosure_identity_attempt_verified",
+      "source_term_enclosure_identity_remains_uncertified",
+      "projected_slot_rows_available",
+      "midpoint_zero_anchor_margins_quantified",
+      "projected_slot_variation_bound_targets_quantified",
+      "available_expression_envelope_widths_compared_to_targets",
+      "available_retained_trace_widths_compared_to_targets",
+      "no_existing_directed_rounded_variation_bound_available",
+      "same_domain_and_radius_boundaries_preserved",
+      "source_term_projected_slot_variation_bound_claims_remain_open",
+    ]
+  );
+  assert.ok(
+    Object.values(
+      sourceTermProducerImageProjectedSlotVariationBoundTarget
+        .source_term_projected_slot_variation_bound_target_checks
+    ).every((value) => value === true)
+  );
+  assert.ok(
+    sourceTermProducerImageProjectedSlotVariationBoundTarget.source_term_projected_slot_variation_bound_target_rows.every(
+      (row, index) => {
+        const termRows =
+          row.source_term_projected_slot_variation_bound_term_rows;
+        const anchorDefectCount = termRows.filter(
+          (termRow) =>
+            termRow.projected_slot_has_midpoint_zero_anchor === false
+        ).length;
+        return (
+          row.node_index === index &&
+          row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+          row.provider_row_source_kind ===
+            "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+          typeof row.row_all_projected_slots_have_midpoint_zero_anchor ===
+            "boolean" &&
+          typeof row
+            .row_all_projected_slot_variation_bound_targets_positive ===
+            "boolean" &&
+          row.row_projected_slot_midpoint_zero_anchor_defect_count ===
+            anchorDefectCount &&
+          row.row_max_projected_slot_midpoint_zero_anchor_endpoint_shift_required >=
+            0 &&
+          termRows.length === 3 &&
+          termRows.every(
+            (termRow) =>
+              typeof termRow.projected_slot_has_midpoint_zero_anchor ===
+                "boolean" &&
+              termRow.projected_slot_midpoint_zero_anchor_endpoint_shift_required >=
+                0 &&
+              (termRow.projected_slot_has_midpoint_zero_anchor === true
+                ? termRow.projected_slot_variation_bound_target_positive ===
+                    true &&
+                  termRow
+                    .projected_slot_allowable_same_domain_source_term_variation_bound >
+                    0 &&
+                  termRow.projected_slot_midpoint_zero_anchor_defect_kind ===
+                    "none" &&
+                  termRow
+                    .current_expression_envelope_fits_projected_slot_variation_bound_target ===
+                    false &&
+                  termRow
+                    .current_retained_trace_envelope_fits_projected_slot_variation_bound_target ===
+                    false
+                : termRow.projected_slot_variation_bound_target_positive ===
+                    false &&
+                  termRow
+                    .projected_slot_midpoint_zero_anchor_endpoint_shift_required >
+                    0 &&
+                  termRow.projected_slot_midpoint_zero_anchor_defect_kind ===
+                    "midpoint-or-residual-zero-outside-projected-slot") &&
+              termRow
+                .directed_rounded_same_domain_source_term_variation_bound_available ===
+                false &&
+              termRow
+                .source_term_projected_slot_variation_bound_target_certified ===
+                false &&
+              termRow.claim_boundary
+                .certifies_source_term_as_directed_rounded_same_domain ===
+                false &&
+              termRow.claim_boundary.certifies_source_term_variation_bound ===
+                false &&
+              termRow.claim_boundary.certifies_directed_rounded_shared_domain ===
+                false
+          ) &&
+          Object.values(row.row_checks).every((value) => value === true) &&
+          row.row_source_term_projected_slot_variation_bound_target_verified ===
+            true &&
+          row.row_certifies_source_term_projected_slot_variation_bound_target ===
+            false &&
+          row.claim_boundary.certifies_source_term_variation_bound === false &&
+          row.claim_boundary
+            .certifies_source_inputs_as_directed_rounded_same_domain ===
+            false &&
+          row.claim_boundary.certifies_expression_level_n38_provider ===
+            false &&
+          row.claim_boundary.certifies_directed_rounded_shared_domain ===
+            false &&
+          row.row_status ===
+            (anchorDefectCount > 0
+              ? "source-term-projected-slot-anchor-defect-quantified-certification-open"
+              : "source-term-projected-slot-variation-bound-targets-materialized-certification-open")
+        );
+      }
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      sourceTermProducerImageProjectedSlotVariationBoundTarget
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      sourceTermProducerImageProjectedSlotVariationBoundTarget,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
   );
   assert.deepEqual(
     collectTrueCertifies(signedRadiusSourceProvenanceEmitterIdentityAttempt),

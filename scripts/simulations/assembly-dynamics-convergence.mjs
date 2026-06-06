@@ -41,6 +41,7 @@ const RUN_KEYS = new Set([
   "shellRadius",
   "minDelay",
   "singularityTolerance",
+  "rootTolerance",
   "memoryDepth",
   "historyMode",
   "historyMargin",
@@ -199,12 +200,12 @@ function validateRunConfig(args) {
   if (args.particles < 2) {
     throw new Error("--particles must be at least 2.");
   }
-  for (const key of ["radius", "cf", "jacobianFloor", "memoryDepth", "historySafetyFactor"]) {
+  for (const key of ["radius", "cf", "memoryDepth", "historySafetyFactor"]) {
     if (args[key] <= 0) {
       throw new Error(`--${kebabCase(key)} must be positive.`);
     }
   }
-  for (const key of ["maxAcceleration", "shellK", "shellRadius", "minDelay", "singularityTolerance", "historyMargin", "historyMaxDepth"]) {
+  for (const key of ["jacobianFloor", "maxAcceleration", "shellK", "shellRadius", "minDelay", "singularityTolerance", "rootTolerance", "historyMargin", "historyMaxDepth"]) {
     if (args[key] < 0) {
       throw new Error(`--${kebabCase(key)} must be nonnegative.`);
     }
@@ -236,9 +237,9 @@ Simulation options mirror assembly-dynamics-toy.mjs, including:
   --particles, --radius, --radial-speed, --tangential-speed, --drift-x,
   --drift-y, --cf, --kappa, --self-hit-gain,
   --jacobian-floor, --max-acceleration, --shell-k, --shell-radius,
-  --min-delay, --singularity-tolerance, --memory-depth, --history-mode,
-  --history-margin, --history-safety-factor, --history-max-depth,
-  --root-halt-policy.`);
+  --min-delay, --singularity-tolerance, --root-tolerance, --memory-depth,
+  --history-mode, --history-margin, --history-safety-factor,
+  --history-max-depth, --root-halt-policy.`);
 }
 
 function runConfigFromArgs(args, dt, steps, stride) {
@@ -345,6 +346,8 @@ function summarizeRun(result, level, dt, steps, stride, horizon, args) {
     root_failure_reasons: aggregate.root_failure_reasons,
     partner_root_failure_reasons: aggregate.partner_root_failure_reasons,
     self_root_failure_reasons: aggregate.self_root_failure_reasons,
+    max_roots_per_pair: aggregate.max_roots_per_pair,
+    max_abs_acceleration: aggregate.max_abs_acceleration,
     history: result.summary.history,
     frame_count: frames.length,
     initial_radius: initial.shell_radius,
@@ -353,13 +356,7 @@ function summarizeRun(result, level, dt, steps, stride, horizon, args) {
 
 function classifyRunOutcome(result, minRecord, args) {
   if (!result.completed) {
-    if (result.error?.code === "UNRESOLVED_CAUSAL_ROOT") {
-      return "root_unresolved_halt";
-    }
-    if (result.error?.code === "SINGULAR_CAUSAL_ROOT") {
-      return "singular_causal_root_halt";
-    }
-    return "halted";
+    return classifyHaltOutcome(result.error?.code);
   }
   const initialRadius = result.summary.initial.shell_radius;
   const finalRadius = result.summary.final.shell_radius;
@@ -370,16 +367,35 @@ function classifyRunOutcome(result, minRecord, args) {
   if (finalRatio <= args.captureRatio && Math.abs(result.summary.final.t - minRecord.t) <= result.config.dt * result.config.stride) {
     return "sustained_inward";
   }
+  if (finalRatio >= args.escapeRatio) {
+    return "outward_escape";
+  }
   if (minRatio <= args.inwardRatio && turnedAround) {
     return "inward_turnaround";
-  }
-  if (finalRatio >= args.escapeRatio) {
-    return "spin_out";
   }
   if (Math.abs(finalRatio - 1) <= 0.1 && minRatio > args.inwardRatio) {
     return "near_circular";
   }
   return "weak_change";
+}
+
+function classifyHaltOutcome(code) {
+  if (code === "UNRESOLVED_CAUSAL_ROOT") {
+    return "root_unresolved_halt";
+  }
+  if (code === "SINGULAR_CAUSAL_ROOT") {
+    return "singular_causal_root_halt";
+  }
+  if (code === "JACOBIAN_FLOOR_VIOLATION") {
+    return "jacobian_floor_halt";
+  }
+  if (code === "ACCELERATION_LIMIT_EXCEEDED") {
+    return "acceleration_limit_halt";
+  }
+  if (code === "NONFINITE_ACCELERATION" || code === "NONFINITE_STATE") {
+    return "nonfinite_halt";
+  }
+  return "halted";
 }
 
 function compareRuns(coarse, fine, coarseResult, fineResult, args, haltTimeTolerance) {
@@ -554,6 +570,8 @@ function writeCsv(result, args) {
     "error_code",
     "halt_time",
     "total_partner_unresolved_roots",
+    "max_roots_per_pair",
+    "max_abs_acceleration",
     "partner_root_failure_reasons",
     "history_mode",
     "history_frame_count",

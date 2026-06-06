@@ -1,0 +1,282 @@
+[
+  {
+    "id": "nature-remembers-motion-cover",
+    "book_slug": "nature-remembers-motion",
+    "source_png": "reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-cover.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.846,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "nature-remembers-motion-spread-01",
+    "book_slug": "nature-remembers-motion",
+    "source_png": "reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-spread-01.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.6817,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "nature-remembers-motion-spread-02",
+    "book_slug": "nature-remembers-motion",
+    "source_png": "reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-spread-02.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.8663,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "nature-remembers-motion-spread-03",
+    "book_slug": "nature-remembers-motion",
+    "source_png": "reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-spread-03.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.8423,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "nature-remembers-motion-spread-04",
+    "book_slug": "nature-remembers-motion",
+    "source_png": "reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-spread-04.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.5229,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "nature-remembers-motion-spread-05",
+    "book_slug": "nature-remembers-motion",
+    "source_png": "reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-spread-05.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.6796,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "nature-remembers-motion-spread-06",
+    "book_slug": "nature-remembers-motion",
+    "source_png": "reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-spread-06.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.7903,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "nature-remembers-motion-spread-07",
+    "book_slug": "nature-remembers-motion",
+    "source_png": "reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-spread-07.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.0,
+      "palette_flag": false
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "nature-remembers-motion-spread-08",
+    "book_slug": "nature-remembers-motion",
+    "source_png": "reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-spread-08.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.8373,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "nature-remembers-motion-spread-09",
+    "book_slug": "nature-remembers-motion",
+    "source_png": "reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-spread-09.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.9973,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "nature-remembers-motion-spread-10",
+    "book_slug": "nature-remembers-motion",
+    "source_png": "reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-spread-10.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.8477,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "nature-remembers-motion-spread-11",
+    "book_slug": "nature-remembers-motion",
+    "source_png": "reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-spread-11.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.3703,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "nature-remembers-motion-spread-12",
+    "book_slug": "nature-remembers-motion",
+    "source_png": "reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-spread-12.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.9465,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "nature-remembers-motion-backmatter-01",
+    "book_slug": "nature-remembers-motion",
+    "source_png": "reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-backmatter-01.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.8892,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  }
+]

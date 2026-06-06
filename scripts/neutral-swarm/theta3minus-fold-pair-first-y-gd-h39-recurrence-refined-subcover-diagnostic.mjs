@@ -225,6 +225,18 @@ export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SIGNED_RADIUS_SO
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_EMITTER_IDENTITY_ATTEMPT_CANDIDATE_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-signed-radius-source-provenance-emitter-identity-attempt-candidate/v1";
 
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SIGNED_RADIUS_SUBINTERVAL_EMITTER_PRIMITIVE_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-signed-radius-subinterval-emitter-primitive-candidate/v1";
+
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PROVENANCE_FIELD_ATTEMPT_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-source-term-producer-image-provenance-field-attempt-candidate/v1";
+
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_ENCLOSURE_IDENTITY_ATTEMPT_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-source-term-producer-image-enclosure-identity-attempt-candidate/v1";
+
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PROJECTED_SLOT_VARIATION_BOUND_TARGET_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-source-term-producer-image-projected-slot-variation-bound-target-candidate/v1";
+
 const H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS = Object.freeze([
   "delta_squared_speed",
   "sin_phi",
@@ -72067,6 +72079,3780 @@ export function validateH39RequestedY44SignedRadiusSourceProvenanceEmitterIdenti
     !validClaimBoundary(artifact?.claim_boundary)
   ) {
     errors.push("signed-radius source-provenance emitter identity attempt must keep broad closure claims open");
+  }
+  return errors;
+}
+
+export function buildH39RequestedY44SignedRadiusSubintervalEmitterPrimitiveCandidate({
+  sourceTermTransportFit,
+  signedRadiusSourceProvenanceEmitterIdentityAttempt,
+} = {}) {
+  const primitiveCheckKinds = [
+    "emitter_identity_attempt_verified",
+    "source_term_transport_fit_verified",
+    "primitive_and_certificate_intervals_available",
+    "positive_strict_contraction_scale_computed",
+    "centered_affine_subinterval_identity_matches_certificate",
+    "binary64_outward_affine_image_contains_certificate",
+    "binary64_outward_affine_image_remains_width_contracted",
+    "same_domain_source_cell_inherited",
+    "same_radius_boundary_not_increased",
+    "source_term_producer_image_fields_still_missing",
+    "source_provenance_emitter_still_uncertified",
+  ];
+  const identityRows =
+    signedRadiusSourceProvenanceEmitterIdentityAttempt
+      ?.source_provenance_emitter_identity_attempt_rows ?? [];
+  const transportRows =
+    sourceTermTransportFit?.centered_homothetic_transport_bridge_rows ?? [];
+  const transportRowsByNode = new Map(
+    transportRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const emitterIdentityAttemptVerified =
+    signedRadiusSourceProvenanceEmitterIdentityAttempt?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_EMITTER_IDENTITY_ATTEMPT_CANDIDATE_SCHEMA &&
+    signedRadiusSourceProvenanceEmitterIdentityAttempt
+      ?.source_provenance_emitter_identity_attempt_verified === true &&
+    signedRadiusSourceProvenanceEmitterIdentityAttempt
+      ?.source_provenance_emitter_materialized === false &&
+    signedRadiusSourceProvenanceEmitterIdentityAttempt
+      ?.source_provenance_emitter_certified_directed_rounded === false;
+  const sourceTermTransportFitVerified =
+    sourceTermTransportFit?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_TRANSPORT_FIT_CANDIDATE_SCHEMA &&
+    sourceTermTransportFit?.source_term_transport_fit_attempt_verified ===
+      true &&
+    sourceTermTransportFit
+      ?.centered_homothetic_transport_reduces_to_signed_radius_source_provenance ===
+      true &&
+    sourceTermTransportFit?.source_term_transport_fit_certified_directed_rounded ===
+      false;
+  const affineImage = ({
+    sourceInterval,
+    sourceCenter,
+    targetCenter,
+    contractionScale,
+  }) => {
+    const source = finiteOrderedIntervalOrNull(sourceInterval);
+    if (
+      source === null ||
+      !Number.isFinite(sourceCenter) ||
+      !Number.isFinite(targetCenter) ||
+      !Number.isFinite(contractionScale)
+    ) {
+      return null;
+    }
+    const centered = root.subtractIntervals(
+      source,
+      root.pointInterval(sourceCenter)
+    );
+    const contracted = root.scaleInterval(centered, contractionScale);
+    return root.addIntervals(contracted, root.pointInterval(targetCenter));
+  };
+  const algebraicAffineImage = ({
+    sourceInterval,
+    sourceCenter,
+    targetCenter,
+    contractionScale,
+  }) => {
+    const source = finiteOrderedIntervalOrNull(sourceInterval);
+    if (
+      source === null ||
+      !Number.isFinite(sourceCenter) ||
+      !Number.isFinite(targetCenter) ||
+      !Number.isFinite(contractionScale)
+    ) {
+      return null;
+    }
+    return [
+      targetCenter + contractionScale * (source[0] - sourceCenter),
+      targetCenter + contractionScale * (source[1] - sourceCenter),
+    ];
+  };
+  const rows = identityRows.map((identityRow) => {
+    const nodeIndex = Number(identityRow?.node_index);
+    const transportRow = transportRowsByNode.get(nodeIndex) ?? null;
+    const primitiveInterval = finiteOrderedIntervalOrNull(
+      identityRow?.primitive_residual_sum_interval
+    );
+    const certificateInterval = finiteOrderedIntervalOrNull(
+      identityRow?.signed_radius_certificate_interval
+    );
+    const primitiveCenter =
+      primitiveInterval === null ? null : intervalMidpoint(primitiveInterval);
+    const certificateCenter =
+      certificateInterval === null
+        ? null
+        : intervalMidpoint(certificateInterval);
+    const primitiveHalfWidth =
+      primitiveInterval === null ? null : intervalHalfWidth(primitiveInterval);
+    const certificateHalfWidth =
+      certificateInterval === null
+        ? null
+        : intervalHalfWidth(certificateInterval);
+    const contractionScale =
+      finitePositive(primitiveHalfWidth) && finiteNonnegative(certificateHalfWidth)
+        ? Number(certificateHalfWidth) / Number(primitiveHalfWidth)
+        : null;
+    const algebraicImage = affineImage({
+      sourceInterval: primitiveInterval,
+      sourceCenter: Number(primitiveCenter),
+      targetCenter: Number(certificateCenter),
+      contractionScale: Number(contractionScale),
+    });
+    const exactAlgebraicImage = algebraicAffineImage({
+      sourceInterval: primitiveInterval,
+      sourceCenter: Number(primitiveCenter),
+      targetCenter: Number(certificateCenter),
+      contractionScale: Number(contractionScale),
+    });
+    const algebraicEndpointGap =
+      exactAlgebraicImage !== null && certificateInterval !== null
+        ? intervalEndpointRelativeGap(exactAlgebraicImage, certificateInterval)
+        : null;
+    const binary64EndpointGap =
+      algebraicImage !== null && certificateInterval !== null
+        ? intervalEndpointRelativeGap(algebraicImage, certificateInterval)
+        : null;
+    const binary64ImageHalfWidth =
+      algebraicImage === null ? null : intervalHalfWidth(algebraicImage);
+    const binary64ToPrimitiveHalfWidthRatio =
+      finitePositive(primitiveHalfWidth) &&
+      finiteNonnegative(binary64ImageHalfWidth)
+        ? Number(binary64ImageHalfWidth) / Number(primitiveHalfWidth)
+        : null;
+    const sourceTermFieldsStillMissing =
+      Array.isArray(identityRow?.source_provenance_emitter_missing_fields) &&
+      H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PRIMITIVE_REQUIRED_FIELDS.every(
+        (field) =>
+          identityRow.source_provenance_emitter_missing_fields.includes(field)
+      );
+    const rowChecks = {
+      primitive_and_certificate_intervals_available:
+        primitiveInterval !== null &&
+        certificateInterval !== null &&
+        identityRow
+          ?.certificate_interval_is_proper_subinterval_of_primitive_sum ===
+          true,
+      positive_strict_contraction_scale_computed:
+        finitePositive(contractionScale) && Number(contractionScale) < 1,
+      centered_affine_subinterval_identity_matches_certificate:
+        exactAlgebraicImage !== null &&
+        certificateInterval !== null &&
+        finiteNonnegative(algebraicEndpointGap) &&
+        Number(algebraicEndpointGap) <= 1e-12,
+      binary64_outward_affine_image_contains_certificate:
+        algebraicImage !== null &&
+        certificateInterval !== null &&
+        intervalContainsInterval(algebraicImage, certificateInterval),
+      binary64_outward_affine_image_remains_width_contracted:
+        finitePositive(binary64ToPrimitiveHalfWidthRatio) &&
+        Number(binary64ToPrimitiveHalfWidthRatio) < 1,
+      same_domain_source_cell_inherited:
+        typeof transportRow?.terminal_graph_cell_id === "string" &&
+        transportRow?.provider_row_source_kind ===
+          identityRow?.provider_row_source_kind,
+      same_radius_boundary_not_increased:
+        finitePositive(primitiveHalfWidth) &&
+        finiteNonnegative(binary64ImageHalfWidth) &&
+        Number(binary64ImageHalfWidth) < Number(primitiveHalfWidth),
+      source_term_producer_image_fields_still_missing:
+        sourceTermFieldsStillMissing,
+      source_provenance_emitter_still_uncertified:
+        identityRow?.row_materializes_source_provenance_emitter === false &&
+        identityRow?.claim_boundary
+          ?.certifies_source_inputs_as_directed_rounded_same_domain === false &&
+        identityRow?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+          false,
+    };
+    const rowMaterializesPrimitive = Object.values(rowChecks).every(
+      (value) => value === true
+    );
+    return {
+      node_index: Number.isInteger(nodeIndex) ? nodeIndex : null,
+      xi_midpoint: identityRow?.xi_midpoint ?? null,
+      terminal_graph_cell_id: transportRow?.terminal_graph_cell_id ?? null,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      signed_radius_subinterval_emitter_primitive_row_kind:
+        "centered-affine-binary64-outward-subinterval-emitter-primitive-row",
+      provider_row_source_kind: identityRow?.provider_row_source_kind ?? null,
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      zero_source_terms: [...H38_SOURCE_TERM_ZERO_KEYS],
+      primitive_residual_sum_interval: primitiveInterval,
+      signed_radius_certificate_interval: certificateInterval,
+      primitive_residual_sum_center: primitiveCenter,
+      signed_radius_certificate_center: certificateCenter,
+      primitive_residual_sum_half_width: primitiveHalfWidth,
+      signed_radius_certificate_half_width: certificateHalfWidth,
+      signed_radius_subinterval_contraction_scale: contractionScale,
+      signed_radius_subinterval_affine_identity:
+        "signed_radius_center + contraction_scale * (primitive_residual_sum - primitive_residual_sum_center)",
+      centered_affine_exact_image_interval: exactAlgebraicImage,
+      binary64_outward_affine_image_interval: algebraicImage,
+      binary64_outward_affine_image_half_width: binary64ImageHalfWidth,
+      centered_affine_exact_image_endpoint_relative_gap:
+        algebraicEndpointGap,
+      binary64_outward_affine_image_endpoint_relative_gap:
+        binary64EndpointGap,
+      binary64_outward_affine_image_to_primitive_half_width_ratio:
+        binary64ToPrimitiveHalfWidthRatio,
+      binary64_outward_affine_image_contains_certificate_interval:
+        rowChecks.binary64_outward_affine_image_contains_certificate,
+      binary64_outward_affine_image_remains_width_contracted:
+        rowChecks.binary64_outward_affine_image_remains_width_contracted,
+      subinterval_emitter_arithmetic_primitive:
+        "root.subtractIntervals + root.scaleInterval + root.addIntervals",
+      binary64_outward_endpoint_primitive:
+        "root.scaleInterval-centered-affine-contraction-nextDown-nextUp",
+      directed_rounded_same_domain_signed_radius_subinterval_emitter_primitive:
+        rowMaterializesPrimitive
+          ? {
+              primitive_kind:
+                "centered-affine-binary64-outward-signed-radius-subinterval-emitter",
+              primitive_expression_n38_residual_sum_interval:
+                primitiveInterval,
+              accepted_signed_radius_certificate_interval:
+                certificateInterval,
+              contraction_scale: contractionScale,
+              primitive_residual_sum_center: primitiveCenter,
+              signed_radius_certificate_center: certificateCenter,
+              binary64_outward_affine_image_interval: algebraicImage,
+              binary64_outward_endpoint_primitive:
+                "root.scaleInterval-centered-affine-contraction-nextDown-nextUp",
+              same_domain_source_cell:
+                transportRow?.terminal_graph_cell_id ?? null,
+              same_radius_boundary_not_increased:
+                rowChecks.same_radius_boundary_not_increased,
+              certifies_source_inputs_as_directed_rounded_same_domain: false,
+              certifies_directed_rounded_shared_domain: false,
+            }
+          : null,
+      directed_rounded_same_domain_signed_radius_subinterval_emitter_primitive_available:
+        rowMaterializesPrimitive,
+      same_domain_source_cell_inherited:
+        rowChecks.same_domain_source_cell_inherited,
+      same_radius_boundary_not_increased:
+        rowChecks.same_radius_boundary_not_increased,
+      source_term_producer_image_required_fields: [
+        ...H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PRIMITIVE_REQUIRED_FIELDS,
+      ],
+      source_term_producer_image_missing_fields:
+        H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PRIMITIVE_REQUIRED_FIELDS.filter(
+          (field) =>
+            identityRow?.source_provenance_emitter_missing_fields?.includes(
+              field
+            )
+        ),
+      row_check_kinds: Object.keys(rowChecks),
+      row_checks: rowChecks,
+      row_materializes_signed_radius_subinterval_emitter_primitive:
+        rowMaterializesPrimitive,
+      row_certifies_source_provenance_emitter: false,
+      row_status: rowMaterializesPrimitive
+        ? "signed-radius-subinterval-emitter-primitive-materialized-source-provenance-open"
+        : "signed-radius-subinterval-emitter-primitive-row-open",
+      claim_boundary: {
+        defines_signed_radius_subinterval_emitter_primitive_only: true,
+        certifies_signed_radius_source_provenance: false,
+        certifies_source_inputs_as_directed_rounded_same_domain: false,
+        certifies_expression_level_n38_provider: false,
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_terminal_row_provider_enclosure: false,
+        certifies_terminal_graph_remainder_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  });
+  const allRowsMaterializeSubintervalPrimitive =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.row_materializes_signed_radius_subinterval_emitter_primitive ===
+        true
+    );
+  const allRowsInheritSameDomain =
+    rows.length === 5 &&
+    rows.every((row) => row.same_domain_source_cell_inherited === true);
+  const allRowsPreserveSameRadiusBoundary =
+    rows.length === 5 &&
+    rows.every((row) => row.same_radius_boundary_not_increased === true);
+  const allRowsKeepSourceProvenanceOpen =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.row_certifies_source_provenance_emitter === false &&
+        row.row_checks.source_term_producer_image_fields_still_missing ===
+          true &&
+        row.row_checks.source_provenance_emitter_still_uncertified === true
+    );
+  const primitiveChecks = {
+    emitter_identity_attempt_verified: emitterIdentityAttemptVerified,
+    source_term_transport_fit_verified: sourceTermTransportFitVerified,
+    primitive_and_certificate_intervals_available:
+      rows.length === 5 &&
+      rows.every(
+        (row) =>
+          row.row_checks.primitive_and_certificate_intervals_available === true
+      ),
+    positive_strict_contraction_scale_computed:
+      rows.length === 5 &&
+      rows.every(
+        (row) =>
+          row.row_checks.positive_strict_contraction_scale_computed === true
+      ),
+    centered_affine_subinterval_identity_matches_certificate:
+      rows.length === 5 &&
+      rows.every(
+        (row) =>
+          row.row_checks
+            .centered_affine_subinterval_identity_matches_certificate === true
+      ),
+    binary64_outward_affine_image_contains_certificate:
+      rows.length === 5 &&
+      rows.every(
+        (row) =>
+          row.row_checks
+            .binary64_outward_affine_image_contains_certificate === true
+      ),
+    binary64_outward_affine_image_remains_width_contracted:
+      rows.length === 5 &&
+      rows.every(
+        (row) =>
+          row.row_checks
+            .binary64_outward_affine_image_remains_width_contracted === true
+      ),
+    same_domain_source_cell_inherited: allRowsInheritSameDomain,
+    same_radius_boundary_not_increased: allRowsPreserveSameRadiusBoundary,
+    source_term_producer_image_fields_still_missing:
+      allRowsKeepSourceProvenanceOpen,
+    source_provenance_emitter_still_uncertified:
+      allRowsKeepSourceProvenanceOpen,
+  };
+  const primitiveVerified =
+    Object.values(primitiveChecks).every((value) => value === true) &&
+    allRowsMaterializeSubintervalPrimitive;
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SIGNED_RADIUS_SUBINTERVAL_EMITTER_PRIMITIVE_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-signed-radius-subinterval-emitter-primitive-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-signed-radius-subinterval-emitter-primitive",
+    target_kind:
+      "candidate-requested-y44-signed-radius-subinterval-emitter-primitive",
+    source_term_transport_fit_schema: sourceTermTransportFit?.schema ?? null,
+    signed_radius_source_provenance_emitter_identity_attempt_schema:
+      signedRadiusSourceProvenanceEmitterIdentityAttempt?.schema ?? null,
+    proof_status: primitiveVerified
+      ? "candidate-signed-radius-subinterval-emitter-primitive-materialized-source-provenance-open"
+      : "candidate-signed-radius-subinterval-emitter-primitive-open",
+    primitive_kind:
+      "centered-affine-binary64-outward-signed-radius-subinterval-emitter",
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    source_terms_preserved_signed_together: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    zero_source_terms: [...H38_SOURCE_TERM_ZERO_KEYS],
+    signed_radius_subinterval_emitter_primitive_check_kinds: [
+      ...primitiveCheckKinds,
+    ],
+    signed_radius_subinterval_emitter_primitive_checks: primitiveChecks,
+    signed_radius_subinterval_emitter_primitive_verified: primitiveVerified,
+    signed_radius_subinterval_emitter_primitive_available:
+      primitiveVerified,
+    signed_radius_subinterval_emitter_primitive_materialized:
+      primitiveVerified,
+    source_provenance_emitter_materialized: false,
+    source_provenance_emitter_certified_directed_rounded: false,
+    source_term_producer_image_provenance_fields_present: false,
+    source_term_producer_image_provenance_fields_still_missing:
+      allRowsKeepSourceProvenanceOpen,
+    all_rows_materialize_signed_radius_subinterval_emitter_primitive:
+      allRowsMaterializeSubintervalPrimitive,
+    all_rows_binary64_outward_affine_images_contain_certificate_intervals:
+      rows.length === 5 &&
+      rows.every(
+        (row) =>
+          row.binary64_outward_affine_image_contains_certificate_interval ===
+          true
+      ),
+    all_rows_binary64_outward_affine_images_remain_width_contracted:
+      rows.length === 5 &&
+      rows.every(
+        (row) =>
+          row.binary64_outward_affine_image_remains_width_contracted === true
+      ),
+    all_rows_inherit_same_domain_source_cell: allRowsInheritSameDomain,
+    all_rows_keep_same_radius_boundary_not_increased:
+      allRowsPreserveSameRadiusBoundary,
+    signed_radius_subinterval_emitter_primitive_row_count: rows.length,
+    signed_radius_subinterval_emitter_primitive_rows: rows,
+    signed_radius_subinterval_emitter_primitive_classification:
+      primitiveVerified
+        ? "signed-radius-subinterval-emitter-primitive-materialized-source-provenance-open"
+        : "signed-radius-subinterval-emitter-primitive-open",
+    signed_radius_subinterval_emitter_primitive_blocker_classification:
+      primitiveVerified
+        ? "source-term-producer-image-provenance-fields-absent-after-subinterval-emitter-primitive"
+        : "signed-radius-subinterval-emitter-primitive-open",
+    signed_radius_subinterval_emitter_primitive_primary_missing_object_kind:
+      primitiveVerified
+        ? "directed-rounded-same-domain-source-term-producer-image-provenance-fields"
+        : "directed-rounded-same-domain-signed-radius-subinterval-emitter-primitive",
+    next_certificate_object:
+      "directed-rounded same-domain source-term producer-image provenance fields binding the centered-affine subinterval primitive to the expression-level N38 source-term residual rows",
+    candidate_certificate_route:
+      "For each provider row, use the primitive residual-sum midpoint and the signed-radius certificate midpoint to define a centered affine contraction. The contraction scale is the signed-radius certificate half-width divided by the primitive residual-sum half-width. Binary64 outward endpoint arithmetic maps the primitive residual-sum interval to an interval that contains the accepted signed-radius certificate interval while retaining strict width contraction and the same source cell. This materializes the row-local subinterval emitter primitive, but it does not certify source provenance because the directed-rounded source-term producer-image primitive fields are still absent.",
+    claim_boundary: {
+      defines_signed_radius_subinterval_emitter_primitive_only: true,
+      certifies_signed_radius_source_provenance: false,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_expression_level_n38_provider: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_terminal_row_provider_enclosure: false,
+      certifies_terminal_graph_remainder_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+export function validateH39RequestedY44SignedRadiusSubintervalEmitterPrimitiveCandidate(
+  artifact
+) {
+  const errors = [];
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const sameZeroTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H38_SOURCE_TERM_ZERO_KEYS.length &&
+    H38_SOURCE_TERM_ZERO_KEYS.every((term, index) => terms[index] === term);
+  const sameStringSet = (left, right) =>
+    Array.isArray(left) &&
+    left.length === right.length &&
+    right.every((value) => left.includes(value));
+  const hasOrderedFiniteInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    Number.isFinite(Number(interval[0])) &&
+    Number.isFinite(Number(interval[1])) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const validClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_signed_radius_subinterval_emitter_primitive_only === true &&
+    claimBoundary?.certifies_signed_radius_source_provenance === false &&
+    claimBoundary?.certifies_source_inputs_as_directed_rounded_same_domain ===
+      false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_n38_fourth_derivative_bound === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const expectedCheckKinds = [
+    "emitter_identity_attempt_verified",
+    "source_term_transport_fit_verified",
+    "primitive_and_certificate_intervals_available",
+    "positive_strict_contraction_scale_computed",
+    "centered_affine_subinterval_identity_matches_certificate",
+    "binary64_outward_affine_image_contains_certificate",
+    "binary64_outward_affine_image_remains_width_contracted",
+    "same_domain_source_cell_inherited",
+    "same_radius_boundary_not_increased",
+    "source_term_producer_image_fields_still_missing",
+    "source_provenance_emitter_still_uncertified",
+  ];
+  const expectedRowCheckKinds = expectedCheckKinds.slice(2);
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SIGNED_RADIUS_SUBINTERVAL_EMITTER_PRIMITIVE_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 requested-y44 signed-radius subinterval emitter primitive candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-signed-radius-subinterval-emitter-primitive-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-signed-radius-subinterval-emitter-primitive" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-signed-radius-subinterval-emitter-primitive" ||
+    artifact?.source_term_transport_fit_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_TRANSPORT_FIT_CANDIDATE_SCHEMA ||
+    artifact?.signed_radius_source_provenance_emitter_identity_attempt_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_EMITTER_IDENTITY_ATTEMPT_CANDIDATE_SCHEMA ||
+    artifact?.proof_status !==
+      "candidate-signed-radius-subinterval-emitter-primitive-materialized-source-provenance-open" ||
+    artifact?.primitive_kind !==
+      "centered-affine-binary64-outward-signed-radius-subinterval-emitter" ||
+    artifact?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    !sameTerms(artifact?.source_terms_preserved_signed_together) ||
+    !sameZeroTerms(artifact?.zero_source_terms) ||
+    !sameStringSet(
+      artifact?.signed_radius_subinterval_emitter_primitive_check_kinds,
+      expectedCheckKinds
+    )
+  ) {
+    errors.push("signed-radius subinterval emitter primitive metadata must identify the centered affine contraction");
+  }
+  if (
+    expectedCheckKinds.some(
+      (kind) =>
+        artifact?.signed_radius_subinterval_emitter_primitive_checks?.[kind] !==
+        true
+    ) ||
+    artifact?.signed_radius_subinterval_emitter_primitive_verified !== true ||
+    artifact?.signed_radius_subinterval_emitter_primitive_available !== true ||
+    artifact?.signed_radius_subinterval_emitter_primitive_materialized !==
+      true ||
+    artifact?.source_provenance_emitter_materialized !== false ||
+    artifact?.source_provenance_emitter_certified_directed_rounded !== false ||
+    artifact?.source_term_producer_image_provenance_fields_present !== false ||
+    artifact?.source_term_producer_image_provenance_fields_still_missing !==
+      true ||
+    artifact
+      ?.all_rows_materialize_signed_radius_subinterval_emitter_primitive !==
+      true ||
+    artifact
+      ?.all_rows_binary64_outward_affine_images_contain_certificate_intervals !==
+      true ||
+    artifact
+      ?.all_rows_binary64_outward_affine_images_remain_width_contracted !==
+      true ||
+    artifact?.all_rows_inherit_same_domain_source_cell !== true ||
+    artifact?.all_rows_keep_same_radius_boundary_not_increased !== true ||
+    artifact?.signed_radius_subinterval_emitter_primitive_row_count !== 5 ||
+    artifact?.signed_radius_subinterval_emitter_primitive_classification !==
+      "signed-radius-subinterval-emitter-primitive-materialized-source-provenance-open" ||
+    artifact?.signed_radius_subinterval_emitter_primitive_blocker_classification !==
+      "source-term-producer-image-provenance-fields-absent-after-subinterval-emitter-primitive" ||
+    artifact?.signed_radius_subinterval_emitter_primitive_primary_missing_object_kind !==
+      "directed-rounded-same-domain-source-term-producer-image-provenance-fields"
+  ) {
+    errors.push("signed-radius subinterval emitter primitive aggregate must materialize only the contraction primitive");
+  }
+  const rows = artifact?.signed_radius_subinterval_emitter_primitive_rows ?? [];
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== 5 ||
+    !rows.every(
+      (row, index) =>
+        row?.node_index === index &&
+        Number.isFinite(Number(row?.xi_midpoint)) &&
+        row?.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+        row?.required_xi_derivative_order === 4 &&
+        row?.signed_radius_subinterval_emitter_primitive_row_kind ===
+          "centered-affine-binary64-outward-subinterval-emitter-primitive-row" &&
+        row?.provider_row_source_kind ===
+          "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+        sameTerms(row?.source_terms_preserved_signed_together) &&
+        sameZeroTerms(row?.zero_source_terms) &&
+        hasOrderedFiniteInterval(row?.primitive_residual_sum_interval) &&
+        hasOrderedFiniteInterval(row?.signed_radius_certificate_interval) &&
+        Number.isFinite(Number(row?.primitive_residual_sum_center)) &&
+        Number.isFinite(Number(row?.signed_radius_certificate_center)) &&
+        finitePositive(row?.primitive_residual_sum_half_width) &&
+        finitePositive(row?.signed_radius_certificate_half_width) &&
+        finitePositive(row?.signed_radius_subinterval_contraction_scale) &&
+        Number(row.signed_radius_subinterval_contraction_scale) < 1 &&
+        row?.signed_radius_subinterval_affine_identity ===
+          "signed_radius_center + contraction_scale * (primitive_residual_sum - primitive_residual_sum_center)" &&
+        hasOrderedFiniteInterval(row?.centered_affine_exact_image_interval) &&
+        hasOrderedFiniteInterval(row?.binary64_outward_affine_image_interval) &&
+        finitePositive(row?.binary64_outward_affine_image_half_width) &&
+        finiteNonnegative(
+          row?.centered_affine_exact_image_endpoint_relative_gap
+        ) &&
+        Number(row.centered_affine_exact_image_endpoint_relative_gap) <=
+          1e-12 &&
+        finiteNonnegative(
+          row?.binary64_outward_affine_image_endpoint_relative_gap
+        ) &&
+        finitePositive(
+          row?.binary64_outward_affine_image_to_primitive_half_width_ratio
+        ) &&
+        Number(
+          row.binary64_outward_affine_image_to_primitive_half_width_ratio
+        ) < 1 &&
+        row?.binary64_outward_affine_image_contains_certificate_interval ===
+          true &&
+        row?.binary64_outward_affine_image_remains_width_contracted === true &&
+        row?.subinterval_emitter_arithmetic_primitive ===
+          "root.subtractIntervals + root.scaleInterval + root.addIntervals" &&
+        row?.binary64_outward_endpoint_primitive ===
+          "root.scaleInterval-centered-affine-contraction-nextDown-nextUp" &&
+        row
+          ?.directed_rounded_same_domain_signed_radius_subinterval_emitter_primitive
+          ?.primitive_kind ===
+          "centered-affine-binary64-outward-signed-radius-subinterval-emitter" &&
+        hasOrderedFiniteInterval(
+          row
+            .directed_rounded_same_domain_signed_radius_subinterval_emitter_primitive
+            .primitive_expression_n38_residual_sum_interval
+        ) &&
+        hasOrderedFiniteInterval(
+          row
+            .directed_rounded_same_domain_signed_radius_subinterval_emitter_primitive
+            .accepted_signed_radius_certificate_interval
+        ) &&
+        hasOrderedFiniteInterval(
+          row
+            .directed_rounded_same_domain_signed_radius_subinterval_emitter_primitive
+            .binary64_outward_affine_image_interval
+        ) &&
+        row
+          .directed_rounded_same_domain_signed_radius_subinterval_emitter_primitive
+          .same_domain_source_cell === `speed.${index}.first-y` &&
+        row
+          .directed_rounded_same_domain_signed_radius_subinterval_emitter_primitive
+          .same_radius_boundary_not_increased === true &&
+        row
+          .directed_rounded_same_domain_signed_radius_subinterval_emitter_primitive
+          .certifies_source_inputs_as_directed_rounded_same_domain === false &&
+        row
+          .directed_rounded_same_domain_signed_radius_subinterval_emitter_primitive
+          .certifies_directed_rounded_shared_domain === false &&
+        row
+          ?.directed_rounded_same_domain_signed_radius_subinterval_emitter_primitive_available ===
+          true &&
+        row?.same_domain_source_cell_inherited === true &&
+        row?.same_radius_boundary_not_increased === true &&
+        sameStringSet(
+          row?.source_term_producer_image_required_fields,
+          H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PRIMITIVE_REQUIRED_FIELDS
+        ) &&
+        sameStringSet(
+          row?.source_term_producer_image_missing_fields,
+          H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PRIMITIVE_REQUIRED_FIELDS
+        ) &&
+        sameStringSet(row?.row_check_kinds, expectedRowCheckKinds) &&
+        expectedRowCheckKinds.every(
+          (kind) => row?.row_checks?.[kind] === true
+        ) &&
+        row?.row_materializes_signed_radius_subinterval_emitter_primitive ===
+          true &&
+        row?.row_certifies_source_provenance_emitter === false &&
+        row?.row_status ===
+          "signed-radius-subinterval-emitter-primitive-materialized-source-provenance-open"
+    )
+  ) {
+    errors.push("signed-radius subinterval emitter primitive rows must expose a binary64 outward centered affine contraction");
+  } else {
+    rows.forEach((row, index) => {
+      if (!validClaimBoundary(row?.claim_boundary)) {
+        errors.push(`signed-radius subinterval emitter primitive row ${index} must keep broad closure flags open`);
+      }
+    });
+  }
+  if (
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string" ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("signed-radius subinterval emitter primitive must keep broad closure claims open");
+  }
+  return errors;
+}
+
+export function buildH39RequestedY44SourceTermProducerImageProvenanceFieldAttemptCandidate({
+  sourceTermProducerImagePrimitiveAudit,
+  signedRadiusSubintervalEmitterPrimitive,
+} = {}) {
+  const attemptCheckKinds = [
+    "source_term_producer_image_primitive_audit_verified",
+    "signed_radius_subinterval_emitter_primitive_verified",
+    "expression_source_term_rows_available",
+    "termwise_projected_field_slots_materialized",
+    "termwise_projected_residual_images_are_strict_subintervals",
+    "termwise_projected_value_images_are_strict_subintervals",
+    "projected_residual_sums_contain_signed_radius_certificates",
+    "projected_residual_sums_remain_width_contracted",
+    "same_domain_source_cell_inherited",
+    "same_radius_boundary_not_increased",
+    "projected_fields_do_not_certify_source_enclosure",
+    "source_term_claim_boundaries_still_uncertified",
+  ];
+  const auditRows =
+    sourceTermProducerImagePrimitiveAudit
+      ?.source_term_producer_image_primitive_rows ?? [];
+  const subintervalRows =
+    signedRadiusSubintervalEmitterPrimitive
+      ?.signed_radius_subinterval_emitter_primitive_rows ?? [];
+  const subintervalRowsByNode = new Map(
+    subintervalRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const primitiveAuditVerified =
+    sourceTermProducerImagePrimitiveAudit?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PROVENANCE_PRIMITIVE_AUDIT_CANDIDATE_SCHEMA &&
+    sourceTermProducerImagePrimitiveAudit
+      ?.source_term_producer_image_provenance_primitive_audit_verified ===
+      true &&
+    sourceTermProducerImagePrimitiveAudit
+      ?.source_term_producer_image_provenance_certified_directed_rounded ===
+      false;
+  const subintervalPrimitiveVerified =
+    signedRadiusSubintervalEmitterPrimitive?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SIGNED_RADIUS_SUBINTERVAL_EMITTER_PRIMITIVE_CANDIDATE_SCHEMA &&
+    signedRadiusSubintervalEmitterPrimitive
+      ?.signed_radius_subinterval_emitter_primitive_verified === true &&
+    signedRadiusSubintervalEmitterPrimitive
+      ?.source_provenance_emitter_certified_directed_rounded === false;
+  const affineImage = ({
+    sourceInterval,
+    sourceCenter,
+    targetCenter,
+    contractionScale,
+  }) => {
+    const source = finiteOrderedIntervalOrNull(sourceInterval);
+    if (
+      source === null ||
+      !Number.isFinite(sourceCenter) ||
+      !Number.isFinite(targetCenter) ||
+      !Number.isFinite(contractionScale)
+    ) {
+      return null;
+    }
+    const centered = root.subtractIntervals(
+      source,
+      root.pointInterval(sourceCenter)
+    );
+    const contracted = root.scaleInterval(centered, contractionScale);
+    return root.addIntervals(contracted, root.pointInterval(targetCenter));
+  };
+  const rows = auditRows.map((auditRow) => {
+    const nodeIndex = Number(auditRow?.node_index);
+    const subintervalRow = subintervalRowsByNode.get(nodeIndex) ?? null;
+    const sourceTermRows = Array.isArray(auditRow?.source_term_residual_rows)
+      ? H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.map((term) =>
+          auditRow.source_term_residual_rows.find(
+            (termRow) => termRow?.term === term
+          )
+        )
+      : [];
+    const sourceTermRowsAvailable =
+      sourceTermRows.length ===
+        H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+      sourceTermRows.every((termRow) => termRow !== undefined);
+    const termResidualIntervals = sourceTermRows.map((termRow) =>
+      finiteOrderedIntervalOrNull(termRow?.residual_interval)
+    );
+    const termValueIntervals = sourceTermRows.map((termRow) =>
+      finiteOrderedIntervalOrNull(termRow?.value_interval)
+    );
+    const termMidpoints = sourceTermRows.map((termRow) =>
+      Number(termRow?.midpoint_value)
+    );
+    const termResidualCenters = termResidualIntervals.map((interval) =>
+      interval === null ? null : intervalMidpoint(interval)
+    );
+    const termResidualHalfWidths = termResidualIntervals.map((interval) =>
+      interval === null ? null : intervalHalfWidth(interval)
+    );
+    const termResidualCenterSum = termResidualCenters.every(Number.isFinite)
+      ? termResidualCenters.reduce((sum, value) => sum + Number(value), 0)
+      : null;
+    const termResidualHalfWidthSum = termResidualHalfWidths.every(
+      finiteNonnegative
+    )
+      ? termResidualHalfWidths.reduce((sum, value) => sum + Number(value), 0)
+      : null;
+    const primitiveInterval = finiteOrderedIntervalOrNull(
+      subintervalRow?.primitive_residual_sum_interval
+    );
+    const signedRadiusCertificateInterval = finiteOrderedIntervalOrNull(
+      subintervalRow?.signed_radius_certificate_interval
+    );
+    const binary64SubintervalImage = finiteOrderedIntervalOrNull(
+      subintervalRow?.binary64_outward_affine_image_interval
+    );
+    const primitiveCenter = Number(
+      subintervalRow?.primitive_residual_sum_center
+    );
+    const signedRadiusCenter = Number(
+      subintervalRow?.signed_radius_certificate_center
+    );
+    const contractionScale = Number(
+      subintervalRow?.signed_radius_subinterval_contraction_scale
+    );
+    const primitiveHalfWidth = Number(
+      subintervalRow?.primitive_residual_sum_half_width
+    );
+    const signedRadiusHalfWidth = Number(
+      subintervalRow?.signed_radius_certificate_half_width
+    );
+    const centerShift =
+      Number.isFinite(signedRadiusCenter) &&
+      Number.isFinite(termResidualCenterSum)
+        ? signedRadiusCenter - Number(termResidualCenterSum)
+        : null;
+    const projectedTermRows = sourceTermRows.map((termRow, termIndex) => {
+      const term = termRow?.term ?? null;
+      const valueInterval = termValueIntervals[termIndex];
+      const residualInterval = termResidualIntervals[termIndex];
+      const residualCenter = termResidualCenters[termIndex];
+      const residualHalfWidth = termResidualHalfWidths[termIndex];
+      const midpointValue = termMidpoints[termIndex];
+      const centerAllocationWeight =
+        finitePositive(termResidualHalfWidthSum) &&
+        finiteNonnegative(residualHalfWidth)
+          ? Number(residualHalfWidth) / Number(termResidualHalfWidthSum)
+          : null;
+      const projectedResidualCenter =
+        Number.isFinite(residualCenter) &&
+        Number.isFinite(centerShift) &&
+        Number.isFinite(centerAllocationWeight)
+          ? Number(residualCenter) +
+            Number(centerShift) * Number(centerAllocationWeight)
+          : null;
+      const projectedResidualInterval = affineImage({
+        sourceInterval: residualInterval,
+        sourceCenter: Number(residualCenter),
+        targetCenter: Number(projectedResidualCenter),
+        contractionScale,
+      });
+      const projectedValueInterval =
+        projectedResidualInterval !== null && Number.isFinite(midpointValue)
+          ? root.addIntervals(
+              projectedResidualInterval,
+              root.pointInterval(midpointValue)
+            )
+          : null;
+      const projectedResidualHalfWidth =
+        projectedResidualInterval === null
+          ? null
+          : intervalHalfWidth(projectedResidualInterval);
+      const projectedValueHalfWidth =
+        projectedValueInterval === null
+          ? null
+          : intervalHalfWidth(projectedValueInterval);
+      const valueHalfWidth =
+        valueInterval === null ? null : intervalHalfWidth(valueInterval);
+      const projectedResidualInsideSource =
+        residualInterval !== null &&
+        projectedResidualInterval !== null &&
+        intervalContainsInterval(residualInterval, projectedResidualInterval);
+      const projectedResidualContainsSource =
+        residualInterval !== null &&
+        projectedResidualInterval !== null &&
+        intervalContainsInterval(projectedResidualInterval, residualInterval);
+      const projectedValueInsideSource =
+        valueInterval !== null &&
+        projectedValueInterval !== null &&
+        intervalContainsInterval(valueInterval, projectedValueInterval);
+      const projectedValueContainsSource =
+        valueInterval !== null &&
+        projectedValueInterval !== null &&
+        intervalContainsInterval(projectedValueInterval, valueInterval);
+      const residualWidthRatio =
+        finitePositive(residualHalfWidth) &&
+        finiteNonnegative(projectedResidualHalfWidth)
+          ? Number(projectedResidualHalfWidth) / Number(residualHalfWidth)
+          : null;
+      const valueWidthRatio =
+        finitePositive(valueHalfWidth) &&
+        finiteNonnegative(projectedValueHalfWidth)
+          ? Number(projectedValueHalfWidth) / Number(valueHalfWidth)
+          : null;
+      const termFieldSlotsMaterialized =
+        projectedResidualInterval !== null &&
+        projectedValueInterval !== null &&
+        finitePositive(projectedResidualHalfWidth) &&
+        finitePositive(projectedValueHalfWidth) &&
+        Number.isFinite(projectedResidualCenter) &&
+        Number.isFinite(centerAllocationWeight);
+      return {
+        term,
+        source_term_value_interval: valueInterval,
+        source_term_residual_interval: residualInterval,
+        source_term_midpoint_value: Number.isFinite(midpointValue)
+          ? midpointValue
+          : null,
+        source_term_residual_center: Number.isFinite(residualCenter)
+          ? residualCenter
+          : null,
+        source_term_residual_half_width: finiteNonnegative(residualHalfWidth)
+          ? residualHalfWidth
+          : null,
+        signed_radius_center_shift_allocation_weight:
+          centerAllocationWeight,
+        projected_source_term_residual_center:
+          projectedResidualCenter,
+        directed_rounded_source_term_residual_interval:
+          projectedResidualInterval,
+        directed_rounded_source_term_interval: projectedValueInterval,
+        source_term_producer_image_domain: {
+          provider_row_source_kind:
+            subintervalRow?.provider_row_source_kind ?? null,
+          same_domain_source_cell:
+            subintervalRow?.terminal_graph_cell_id ?? null,
+          terminal_graph_cell_id:
+            subintervalRow?.terminal_graph_cell_id ?? null,
+          source_y_order: H38_NUMERATOR_Y_ORDER,
+          required_xi_derivative_order: 4,
+          term,
+        },
+        source_term_producer_image_radius:
+          projectedResidualHalfWidth,
+        source_term_outward_rounding_primitive: {
+          primitive_kind:
+            "termwise-centered-affine-projected-source-term-producer-image-field",
+          operation:
+            "root.subtractIntervals + root.scaleInterval + root.addIntervals + root.pointInterval-midpoint-lift",
+          contraction_scale: contractionScale,
+          certifies_source_term_as_directed_rounded_same_domain: false,
+        },
+        projected_source_term_value_half_width:
+          projectedValueHalfWidth,
+        projected_source_term_residual_half_width:
+          projectedResidualHalfWidth,
+        projected_residual_to_source_residual_half_width_ratio:
+          residualWidthRatio,
+        projected_value_to_source_value_half_width_ratio:
+          valueWidthRatio,
+        projected_residual_image_inside_expression_term_residual:
+          projectedResidualInsideSource,
+        projected_residual_image_contains_expression_term_residual:
+          projectedResidualContainsSource,
+        projected_residual_image_strict_subinterval_of_expression_term_residual:
+          projectedResidualInsideSource &&
+          projectedResidualContainsSource === false &&
+          finitePositive(residualWidthRatio) &&
+          Number(residualWidthRatio) < 1,
+        projected_value_image_inside_expression_term_value:
+          projectedValueInsideSource,
+        projected_value_image_contains_expression_term_value:
+          projectedValueContainsSource,
+        projected_value_image_strict_subinterval_of_expression_term_value:
+          projectedValueInsideSource &&
+          projectedValueContainsSource === false &&
+          finitePositive(valueWidthRatio) &&
+          Number(valueWidthRatio) < 1,
+        candidate_field_slots_materialized: termFieldSlotsMaterialized,
+        certifies_source_term_as_directed_rounded_same_domain: false,
+        claim_boundary: {
+          defines_source_term_producer_image_field_attempt_only: true,
+          certifies_source_term_as_directed_rounded_same_domain: false,
+          certifies_source_term_producer_image_primitive: false,
+          certifies_source_inputs_as_directed_rounded_same_domain: false,
+          certifies_expression_level_n38_provider: false,
+          certifies_n38_fourth_derivative_bound: false,
+          certifies_terminal_row_provider_enclosure: false,
+          certifies_terminal_graph_remainder_bound: false,
+          certifies_s37_dependency_preserving_division: false,
+          certifies_shifted_R43_outer_bound: false,
+          certifies_directed_rounded_shared_domain: false,
+          retained_branch: false,
+        },
+      };
+    });
+    const projectedResidualIntervals = projectedTermRows.map((termRow) =>
+      finiteOrderedIntervalOrNull(
+        termRow?.directed_rounded_source_term_residual_interval
+      )
+    );
+    const projectedValueIntervals = projectedTermRows.map((termRow) =>
+      finiteOrderedIntervalOrNull(termRow?.directed_rounded_source_term_interval)
+    );
+    const projectedResidualSum = projectedResidualIntervals.every(
+      (interval) => interval !== null
+    )
+      ? sumIntervals(projectedResidualIntervals)
+      : null;
+    const projectedValueSum = projectedValueIntervals.every(
+      (interval) => interval !== null
+    )
+      ? sumIntervals(projectedValueIntervals)
+      : null;
+    const projectedResidualSumHalfWidth =
+      projectedResidualSum === null ? null : intervalHalfWidth(projectedResidualSum);
+    const projectedResidualSumToPrimitiveHalfWidthRatio =
+      finitePositive(primitiveHalfWidth) &&
+      finiteNonnegative(projectedResidualSumHalfWidth)
+        ? Number(projectedResidualSumHalfWidth) / Number(primitiveHalfWidth)
+        : null;
+    const projectedSumContainsCertificate =
+      projectedResidualSum !== null &&
+      signedRadiusCertificateInterval !== null &&
+      intervalContainsInterval(
+        projectedResidualSum,
+        signedRadiusCertificateInterval
+      );
+    const projectedSumContainsSubintervalImage =
+      projectedResidualSum !== null &&
+      binary64SubintervalImage !== null &&
+      intervalContainsInterval(projectedResidualSum, binary64SubintervalImage);
+    const projectedSumEndpointGap =
+      projectedResidualSum !== null && signedRadiusCertificateInterval !== null
+        ? intervalEndpointRelativeGap(
+            projectedResidualSum,
+            signedRadiusCertificateInterval
+          )
+        : null;
+    const termResidualStrictSubintervals = projectedTermRows.every(
+      (termRow) =>
+        termRow
+          ?.projected_residual_image_strict_subinterval_of_expression_term_residual ===
+        true
+    );
+    const termValueStrictSubintervals = projectedTermRows.every(
+      (termRow) =>
+        termRow
+          ?.projected_value_image_strict_subinterval_of_expression_term_value ===
+        true
+    );
+    const termFieldSlotsMaterialized = projectedTermRows.every(
+      (termRow) => termRow?.candidate_field_slots_materialized === true
+    );
+    const termClaimBoundariesUncertified = projectedTermRows.every(
+      (termRow) =>
+        termRow?.certifies_source_term_as_directed_rounded_same_domain ===
+          false &&
+        termRow?.claim_boundary
+          ?.certifies_source_term_as_directed_rounded_same_domain === false &&
+        termRow?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+          false
+    );
+    const rowChecks = {
+      expression_source_term_rows_available:
+        sourceTermRowsAvailable &&
+        termResidualIntervals.every((interval) => interval !== null) &&
+        termValueIntervals.every((interval) => interval !== null) &&
+        termMidpoints.every(Number.isFinite),
+      termwise_projected_field_slots_materialized:
+        termFieldSlotsMaterialized,
+      termwise_projected_residual_images_are_strict_subintervals:
+        termResidualStrictSubintervals,
+      termwise_projected_value_images_are_strict_subintervals:
+        termValueStrictSubintervals,
+      projected_residual_sum_contains_signed_radius_certificate:
+        projectedSumContainsCertificate,
+      projected_residual_sum_contains_binary64_subinterval_image:
+        projectedSumContainsSubintervalImage,
+      projected_residual_sum_remains_width_contracted:
+        finitePositive(projectedResidualSumToPrimitiveHalfWidthRatio) &&
+        Number(projectedResidualSumToPrimitiveHalfWidthRatio) < 1,
+      same_domain_source_cell_inherited:
+        typeof subintervalRow?.terminal_graph_cell_id === "string" &&
+        subintervalRow?.same_domain_source_cell_inherited === true,
+      same_radius_boundary_not_increased:
+        finitePositive(projectedResidualSumToPrimitiveHalfWidthRatio) &&
+        Number(projectedResidualSumToPrimitiveHalfWidthRatio) < 1 &&
+        subintervalRow?.same_radius_boundary_not_increased === true,
+      projected_fields_do_not_certify_source_enclosure:
+        termResidualStrictSubintervals &&
+        termValueStrictSubintervals &&
+        projectedTermRows.every(
+          (termRow) =>
+            termRow
+              ?.projected_residual_image_contains_expression_term_residual ===
+              false &&
+            termRow?.projected_value_image_contains_expression_term_value ===
+              false
+        ),
+      source_term_claim_boundaries_still_uncertified:
+        termClaimBoundariesUncertified,
+    };
+    const rowMaterializesFieldAttempt = Object.values(rowChecks).every(
+      (value) => value === true
+    );
+    const primitiveCenterGap =
+      Number.isFinite(termResidualCenterSum) && Number.isFinite(primitiveCenter)
+        ? Math.abs(Number(termResidualCenterSum) - Number(primitiveCenter))
+        : null;
+    const primitiveHalfWidthGap =
+      Number.isFinite(termResidualHalfWidthSum) &&
+      Number.isFinite(primitiveHalfWidth)
+        ? Math.abs(Number(termResidualHalfWidthSum) - Number(primitiveHalfWidth))
+        : null;
+    return {
+      node_index: Number.isInteger(nodeIndex) ? nodeIndex : null,
+      xi_midpoint: auditRow?.xi_midpoint ?? null,
+      terminal_graph_cell_id:
+        subintervalRow?.terminal_graph_cell_id ?? null,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      source_term_producer_image_field_attempt_row_kind:
+        "termwise-centered-affine-projected-source-term-producer-image-field-row",
+      provider_row_source_kind:
+        subintervalRow?.provider_row_source_kind ?? null,
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      zero_source_terms: [...H38_SOURCE_TERM_ZERO_KEYS],
+      source_term_producer_image_required_fields: [
+        ...H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PRIMITIVE_REQUIRED_FIELDS,
+      ],
+      primitive_residual_sum_interval: primitiveInterval,
+      signed_radius_certificate_interval:
+        signedRadiusCertificateInterval,
+      binary64_subinterval_emitter_image_interval:
+        binary64SubintervalImage,
+      primitive_residual_sum_center: Number.isFinite(primitiveCenter)
+        ? primitiveCenter
+        : null,
+      source_term_residual_center_sum: termResidualCenterSum,
+      source_term_residual_center_sum_to_primitive_center_abs_gap:
+        primitiveCenterGap,
+      primitive_residual_sum_half_width: Number.isFinite(primitiveHalfWidth)
+        ? primitiveHalfWidth
+        : null,
+      source_term_residual_half_width_sum: termResidualHalfWidthSum,
+      source_term_residual_half_width_sum_to_primitive_half_width_abs_gap:
+        primitiveHalfWidthGap,
+      signed_radius_certificate_center: Number.isFinite(signedRadiusCenter)
+        ? signedRadiusCenter
+        : null,
+      signed_radius_certificate_half_width: Number.isFinite(
+        signedRadiusHalfWidth
+      )
+        ? signedRadiusHalfWidth
+        : null,
+      signed_radius_subinterval_contraction_scale: Number.isFinite(
+        contractionScale
+      )
+        ? contractionScale
+        : null,
+      signed_radius_center_shift_allocated_across_terms:
+        centerShift,
+      projected_source_term_producer_image_field_rows:
+        projectedTermRows,
+      projected_source_term_residual_sum_interval:
+        projectedResidualSum,
+      projected_source_term_value_sum_interval: projectedValueSum,
+      projected_residual_sum_half_width:
+        projectedResidualSumHalfWidth,
+      projected_residual_sum_to_primitive_half_width_ratio:
+        projectedResidualSumToPrimitiveHalfWidthRatio,
+      projected_residual_sum_to_signed_radius_certificate_endpoint_relative_gap:
+        projectedSumEndpointGap,
+      projected_residual_sum_contains_signed_radius_certificate:
+        projectedSumContainsCertificate,
+      projected_residual_sum_contains_binary64_subinterval_image:
+        projectedSumContainsSubintervalImage,
+      projected_residual_sum_remains_width_contracted:
+        rowChecks.projected_residual_sum_remains_width_contracted,
+      projected_source_term_field_slots_materialized:
+        termFieldSlotsMaterialized,
+      projected_source_term_residual_images_strict_subintervals:
+        termResidualStrictSubintervals,
+      projected_source_term_value_images_strict_subintervals:
+        termValueStrictSubintervals,
+      projected_fields_certify_source_enclosure: false,
+      row_check_kinds: Object.keys(rowChecks),
+      row_checks: rowChecks,
+      row_materializes_projected_source_term_producer_image_fields:
+        rowMaterializesFieldAttempt,
+      row_certifies_source_term_producer_image_provenance: false,
+      row_status: rowMaterializesFieldAttempt
+        ? "source-term-producer-image-field-slots-projected-source-enclosure-certification-open"
+        : "source-term-producer-image-provenance-field-attempt-row-open",
+      claim_boundary: {
+        defines_source_term_producer_image_provenance_field_attempt_only: true,
+        certifies_source_term_producer_image_primitive: false,
+        certifies_source_inputs_as_directed_rounded_same_domain: false,
+        certifies_expression_level_n38_provider: false,
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_terminal_row_provider_enclosure: false,
+        certifies_terminal_graph_remainder_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  });
+  const allRowsMaterializeProjectedFields =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.row_materializes_projected_source_term_producer_image_fields ===
+        true
+    );
+  const allRowsHaveSourceTermRows =
+    rows.length === 5 &&
+    rows.every((row) => row.row_checks.expression_source_term_rows_available);
+  const allRowsTermFieldSlotsMaterialized =
+    rows.length === 5 &&
+    rows.every(
+      (row) => row.row_checks.termwise_projected_field_slots_materialized
+    );
+  const allRowsResidualImagesStrictSubintervals =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.row_checks
+          .termwise_projected_residual_images_are_strict_subintervals === true
+    );
+  const allRowsValueImagesStrictSubintervals =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.row_checks
+          .termwise_projected_value_images_are_strict_subintervals === true
+    );
+  const allRowsProjectedSumsContainCertificates =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.projected_residual_sum_contains_signed_radius_certificate === true
+    );
+  const allRowsProjectedSumsRemainContracted =
+    rows.length === 5 &&
+    rows.every(
+      (row) => row.projected_residual_sum_remains_width_contracted === true
+    );
+  const allRowsInheritSameDomain =
+    rows.length === 5 &&
+    rows.every((row) => row.row_checks.same_domain_source_cell_inherited);
+  const allRowsPreserveSameRadius =
+    rows.length === 5 &&
+    rows.every((row) => row.row_checks.same_radius_boundary_not_increased);
+  const allRowsDoNotCertifySourceEnclosure =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.projected_fields_certify_source_enclosure === false &&
+        row.row_checks.projected_fields_do_not_certify_source_enclosure ===
+          true
+    );
+  const allSourceTermClaimBoundariesUncertified =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.row_certifies_source_term_producer_image_provenance === false &&
+        row.row_checks.source_term_claim_boundaries_still_uncertified === true
+    );
+  const attemptChecks = {
+    source_term_producer_image_primitive_audit_verified:
+      primitiveAuditVerified,
+    signed_radius_subinterval_emitter_primitive_verified:
+      subintervalPrimitiveVerified,
+    expression_source_term_rows_available: allRowsHaveSourceTermRows,
+    termwise_projected_field_slots_materialized:
+      allRowsTermFieldSlotsMaterialized,
+    termwise_projected_residual_images_are_strict_subintervals:
+      allRowsResidualImagesStrictSubintervals,
+    termwise_projected_value_images_are_strict_subintervals:
+      allRowsValueImagesStrictSubintervals,
+    projected_residual_sums_contain_signed_radius_certificates:
+      allRowsProjectedSumsContainCertificates,
+    projected_residual_sums_remain_width_contracted:
+      allRowsProjectedSumsRemainContracted,
+    same_domain_source_cell_inherited: allRowsInheritSameDomain,
+    same_radius_boundary_not_increased: allRowsPreserveSameRadius,
+    projected_fields_do_not_certify_source_enclosure:
+      allRowsDoNotCertifySourceEnclosure,
+    source_term_claim_boundaries_still_uncertified:
+      allSourceTermClaimBoundariesUncertified,
+  };
+  const attemptVerified =
+    Object.values(attemptChecks).every((value) => value === true) &&
+    allRowsMaterializeProjectedFields;
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PROVENANCE_FIELD_ATTEMPT_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-source-term-producer-image-provenance-field-attempt-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-source-term-producer-image-provenance-field-attempt",
+    target_kind:
+      "candidate-requested-y44-source-term-producer-image-provenance-field-attempt",
+    source_term_producer_image_primitive_audit_schema:
+      sourceTermProducerImagePrimitiveAudit?.schema ?? null,
+    signed_radius_subinterval_emitter_primitive_schema:
+      signedRadiusSubintervalEmitterPrimitive?.schema ?? null,
+    proof_status: attemptVerified
+      ? "candidate-source-term-producer-image-field-slots-projected-source-enclosure-certification-open"
+      : "candidate-source-term-producer-image-provenance-field-attempt-open",
+    field_attempt_kind:
+      "termwise-centered-affine-projection-from-signed-radius-subinterval-primitive",
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    source_terms_preserved_signed_together: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    zero_source_terms: [...H38_SOURCE_TERM_ZERO_KEYS],
+    source_term_producer_image_required_fields: [
+      ...H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PRIMITIVE_REQUIRED_FIELDS,
+    ],
+    source_term_producer_image_provenance_field_attempt_check_kinds: [
+      ...attemptCheckKinds,
+    ],
+    source_term_producer_image_provenance_field_attempt_checks:
+      attemptChecks,
+    source_term_producer_image_provenance_field_attempt_verified:
+      attemptVerified,
+    source_term_producer_image_provenance_field_attempt_available:
+      attemptVerified,
+    source_term_producer_image_field_slots_projected:
+      allRowsTermFieldSlotsMaterialized,
+    source_term_producer_image_provenance_certified_directed_rounded:
+      false,
+    source_term_producer_image_provenance_fields_certify_source_enclosure:
+      false,
+    source_term_producer_image_certifying_fields_still_missing:
+      allRowsDoNotCertifySourceEnclosure &&
+      allSourceTermClaimBoundariesUncertified,
+    all_projected_source_term_residual_images_strict_subintervals_of_expression_terms:
+      allRowsResidualImagesStrictSubintervals,
+    all_projected_source_term_value_images_strict_subintervals_of_expression_terms:
+      allRowsValueImagesStrictSubintervals,
+    all_projected_source_term_residual_sums_contain_signed_radius_certificates:
+      allRowsProjectedSumsContainCertificates,
+    all_projected_source_term_residual_sums_remain_width_contracted:
+      allRowsProjectedSumsRemainContracted,
+    all_rows_inherit_same_domain_source_cell: allRowsInheritSameDomain,
+    all_rows_keep_same_radius_boundary_not_increased:
+      allRowsPreserveSameRadius,
+    all_source_term_claim_boundaries_still_uncertified:
+      allSourceTermClaimBoundariesUncertified,
+    source_term_producer_image_provenance_field_attempt_row_count:
+      rows.length,
+    projected_source_term_producer_image_field_row_count:
+      rows.reduce(
+        (sum, row) =>
+          sum +
+          (Array.isArray(row.projected_source_term_producer_image_field_rows)
+            ? row.projected_source_term_producer_image_field_rows.length
+            : 0),
+        0
+      ),
+    source_term_producer_image_provenance_field_attempt_rows:
+      rows,
+    source_term_producer_image_provenance_field_attempt_classification:
+      attemptVerified
+        ? "source-term-producer-image-field-shape-projected-source-enclosure-certification-open"
+        : "source-term-producer-image-provenance-field-attempt-open",
+    source_term_producer_image_provenance_field_attempt_blocker_classification:
+      attemptVerified
+        ? "source-term-producer-image-provenance-identity-open-after-field-shape-projection"
+        : "source-term-producer-image-provenance-field-attempt-open",
+    source_term_producer_image_provenance_field_attempt_primary_missing_object_kind:
+      attemptVerified
+        ? "directed-rounded-same-domain-source-term-producer-image-enclosure-identity"
+        : "directed-rounded-same-domain-source-term-producer-image-provenance-fields",
+    next_certificate_object:
+      "directed-rounded same-domain source-term producer-image enclosure identity proving the projected term fields are valid producer images rather than strict subinterval allocations",
+    candidate_certificate_route:
+      "For each expression-level N38 source-map node, distribute the signed-radius subinterval emitter's center shift across the three source-term residual intervals in proportion to each term half-width, then apply the same centered-affine contraction scale to each term. The projected directed-rounded term slots sum to an interval containing the accepted signed-radius certificate and stay inside the same source cell with a smaller radius. This advances the missing field shape, but it remains non-certifying because every projected term image is a strict subinterval of the expression-level source-term interval; a separate source-term producer-image enclosure identity is still required before the fields can certify directed-rounded same-domain source provenance.",
+    claim_boundary: {
+      defines_source_term_producer_image_provenance_field_attempt_only: true,
+      certifies_source_term_producer_image_primitive: false,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_expression_level_n38_provider: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_terminal_row_provider_enclosure: false,
+      certifies_terminal_graph_remainder_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+export function validateH39RequestedY44SourceTermProducerImageProvenanceFieldAttemptCandidate(
+  artifact
+) {
+  const errors = [];
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const sameZeroTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H38_SOURCE_TERM_ZERO_KEYS.length &&
+    H38_SOURCE_TERM_ZERO_KEYS.every((term, index) => terms[index] === term);
+  const sameStringSet = (left, right) =>
+    Array.isArray(left) &&
+    left.length === right.length &&
+    right.every((value) => left.includes(value));
+  const hasOrderedFiniteInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    Number.isFinite(Number(interval[0])) &&
+    Number.isFinite(Number(interval[1])) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const validClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_source_term_producer_image_provenance_field_attempt_only ===
+      true &&
+    claimBoundary?.certifies_source_term_producer_image_primitive === false &&
+    claimBoundary?.certifies_source_inputs_as_directed_rounded_same_domain ===
+      false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_n38_fourth_derivative_bound === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const validTermClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_source_term_producer_image_field_attempt_only === true &&
+    claimBoundary?.certifies_source_term_as_directed_rounded_same_domain ===
+      false &&
+    claimBoundary?.certifies_source_term_producer_image_primitive === false &&
+    claimBoundary?.certifies_source_inputs_as_directed_rounded_same_domain ===
+      false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_n38_fourth_derivative_bound === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const expectedCheckKinds = [
+    "source_term_producer_image_primitive_audit_verified",
+    "signed_radius_subinterval_emitter_primitive_verified",
+    "expression_source_term_rows_available",
+    "termwise_projected_field_slots_materialized",
+    "termwise_projected_residual_images_are_strict_subintervals",
+    "termwise_projected_value_images_are_strict_subintervals",
+    "projected_residual_sums_contain_signed_radius_certificates",
+    "projected_residual_sums_remain_width_contracted",
+    "same_domain_source_cell_inherited",
+    "same_radius_boundary_not_increased",
+    "projected_fields_do_not_certify_source_enclosure",
+    "source_term_claim_boundaries_still_uncertified",
+  ];
+  const expectedRowCheckKinds = [
+    "expression_source_term_rows_available",
+    "termwise_projected_field_slots_materialized",
+    "termwise_projected_residual_images_are_strict_subintervals",
+    "termwise_projected_value_images_are_strict_subintervals",
+    "projected_residual_sum_contains_signed_radius_certificate",
+    "projected_residual_sum_contains_binary64_subinterval_image",
+    "projected_residual_sum_remains_width_contracted",
+    "same_domain_source_cell_inherited",
+    "same_radius_boundary_not_increased",
+    "projected_fields_do_not_certify_source_enclosure",
+    "source_term_claim_boundaries_still_uncertified",
+  ];
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PROVENANCE_FIELD_ATTEMPT_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 requested-y44 source-term producer-image provenance field attempt candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-source-term-producer-image-provenance-field-attempt-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-source-term-producer-image-provenance-field-attempt" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-source-term-producer-image-provenance-field-attempt" ||
+    artifact?.source_term_producer_image_primitive_audit_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PROVENANCE_PRIMITIVE_AUDIT_CANDIDATE_SCHEMA ||
+    artifact?.signed_radius_subinterval_emitter_primitive_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SIGNED_RADIUS_SUBINTERVAL_EMITTER_PRIMITIVE_CANDIDATE_SCHEMA ||
+    artifact?.proof_status !==
+      "candidate-source-term-producer-image-field-slots-projected-source-enclosure-certification-open" ||
+    artifact?.field_attempt_kind !==
+      "termwise-centered-affine-projection-from-signed-radius-subinterval-primitive" ||
+    artifact?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    !sameTerms(artifact?.source_terms_preserved_signed_together) ||
+    !sameZeroTerms(artifact?.zero_source_terms) ||
+    !sameStringSet(
+      artifact?.source_term_producer_image_required_fields,
+      H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PRIMITIVE_REQUIRED_FIELDS
+    ) ||
+    !sameStringSet(
+      artifact?.source_term_producer_image_provenance_field_attempt_check_kinds,
+      expectedCheckKinds
+    )
+  ) {
+    errors.push("source-term producer-image provenance field attempt metadata must identify the termwise projection");
+  }
+  if (
+    expectedCheckKinds.some(
+      (kind) =>
+        artifact?.source_term_producer_image_provenance_field_attempt_checks?.[
+          kind
+        ] !== true
+    ) ||
+    artifact?.source_term_producer_image_provenance_field_attempt_verified !==
+      true ||
+    artifact?.source_term_producer_image_provenance_field_attempt_available !==
+      true ||
+    artifact?.source_term_producer_image_field_slots_projected !== true ||
+    artifact
+      ?.source_term_producer_image_provenance_certified_directed_rounded !==
+      false ||
+    artifact
+      ?.source_term_producer_image_provenance_fields_certify_source_enclosure !==
+      false ||
+    artifact?.source_term_producer_image_certifying_fields_still_missing !==
+      true ||
+    artifact
+      ?.all_projected_source_term_residual_images_strict_subintervals_of_expression_terms !==
+      true ||
+    artifact
+      ?.all_projected_source_term_value_images_strict_subintervals_of_expression_terms !==
+      true ||
+    artifact
+      ?.all_projected_source_term_residual_sums_contain_signed_radius_certificates !==
+      true ||
+    artifact?.all_projected_source_term_residual_sums_remain_width_contracted !==
+      true ||
+    artifact?.all_rows_inherit_same_domain_source_cell !== true ||
+    artifact?.all_rows_keep_same_radius_boundary_not_increased !== true ||
+    artifact?.all_source_term_claim_boundaries_still_uncertified !== true ||
+    artifact?.source_term_producer_image_provenance_field_attempt_row_count !==
+      5 ||
+    artifact?.projected_source_term_producer_image_field_row_count !== 15 ||
+    artifact?.source_term_producer_image_provenance_field_attempt_classification !==
+      "source-term-producer-image-field-shape-projected-source-enclosure-certification-open" ||
+    artifact
+      ?.source_term_producer_image_provenance_field_attempt_blocker_classification !==
+      "source-term-producer-image-provenance-identity-open-after-field-shape-projection" ||
+    artifact
+      ?.source_term_producer_image_provenance_field_attempt_primary_missing_object_kind !==
+      "directed-rounded-same-domain-source-term-producer-image-enclosure-identity"
+  ) {
+    errors.push("source-term producer-image provenance field attempt aggregate must project field slots while keeping certification open");
+  }
+  const rows =
+    artifact?.source_term_producer_image_provenance_field_attempt_rows ?? [];
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== 5 ||
+    !rows.every(
+      (row, index) =>
+        row?.node_index === index &&
+        Number.isFinite(Number(row?.xi_midpoint)) &&
+        row?.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+        row?.required_xi_derivative_order === 4 &&
+        row?.source_term_producer_image_field_attempt_row_kind ===
+          "termwise-centered-affine-projected-source-term-producer-image-field-row" &&
+        row?.provider_row_source_kind ===
+          "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+        sameTerms(row?.source_terms_preserved_signed_together) &&
+        sameZeroTerms(row?.zero_source_terms) &&
+        sameStringSet(
+          row?.source_term_producer_image_required_fields,
+          H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PRIMITIVE_REQUIRED_FIELDS
+        ) &&
+        hasOrderedFiniteInterval(row?.primitive_residual_sum_interval) &&
+        hasOrderedFiniteInterval(row?.signed_radius_certificate_interval) &&
+        hasOrderedFiniteInterval(
+          row?.binary64_subinterval_emitter_image_interval
+        ) &&
+        Number.isFinite(Number(row?.primitive_residual_sum_center)) &&
+        Number.isFinite(Number(row?.source_term_residual_center_sum)) &&
+        finiteNonnegative(
+          row?.source_term_residual_center_sum_to_primitive_center_abs_gap
+        ) &&
+        finitePositive(row?.primitive_residual_sum_half_width) &&
+        finitePositive(row?.source_term_residual_half_width_sum) &&
+        finiteNonnegative(
+          row
+            ?.source_term_residual_half_width_sum_to_primitive_half_width_abs_gap
+        ) &&
+        Number.isFinite(Number(row?.signed_radius_certificate_center)) &&
+        finitePositive(row?.signed_radius_certificate_half_width) &&
+        finitePositive(row?.signed_radius_subinterval_contraction_scale) &&
+        Number(row.signed_radius_subinterval_contraction_scale) < 1 &&
+        Number.isFinite(
+          Number(row?.signed_radius_center_shift_allocated_across_terms)
+        ) &&
+        Array.isArray(row?.projected_source_term_producer_image_field_rows) &&
+        row.projected_source_term_producer_image_field_rows.length ===
+          H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+        row.projected_source_term_producer_image_field_rows.every(
+          (termRow, termIndex) =>
+            termRow?.term ===
+              H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS[termIndex] &&
+            hasOrderedFiniteInterval(termRow?.source_term_value_interval) &&
+            hasOrderedFiniteInterval(termRow?.source_term_residual_interval) &&
+            Number.isFinite(Number(termRow?.source_term_midpoint_value)) &&
+            Number.isFinite(Number(termRow?.source_term_residual_center)) &&
+            finitePositive(termRow?.source_term_residual_half_width) &&
+            finiteNonnegative(
+              termRow?.signed_radius_center_shift_allocation_weight
+            ) &&
+            Number(termRow.signed_radius_center_shift_allocation_weight) <= 1 &&
+            Number.isFinite(
+              Number(termRow?.projected_source_term_residual_center)
+            ) &&
+            hasOrderedFiniteInterval(
+              termRow?.directed_rounded_source_term_residual_interval
+            ) &&
+            hasOrderedFiniteInterval(
+              termRow?.directed_rounded_source_term_interval
+            ) &&
+            termRow?.source_term_producer_image_domain
+              ?.provider_row_source_kind ===
+              "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+            termRow?.source_term_producer_image_domain
+              ?.same_domain_source_cell === `speed.${index}.first-y` &&
+            termRow?.source_term_producer_image_domain
+              ?.terminal_graph_cell_id === `speed.${index}.first-y` &&
+            termRow?.source_term_producer_image_domain?.source_y_order ===
+              H38_NUMERATOR_Y_ORDER &&
+            termRow?.source_term_producer_image_domain
+              ?.required_xi_derivative_order === 4 &&
+            termRow?.source_term_producer_image_domain?.term === termRow.term &&
+            finitePositive(termRow?.source_term_producer_image_radius) &&
+            termRow?.source_term_outward_rounding_primitive?.primitive_kind ===
+              "termwise-centered-affine-projected-source-term-producer-image-field" &&
+            termRow?.source_term_outward_rounding_primitive
+              ?.certifies_source_term_as_directed_rounded_same_domain ===
+              false &&
+            finitePositive(termRow?.projected_source_term_value_half_width) &&
+            finitePositive(termRow?.projected_source_term_residual_half_width) &&
+            finitePositive(
+              termRow
+                ?.projected_residual_to_source_residual_half_width_ratio
+            ) &&
+            Number(
+              termRow.projected_residual_to_source_residual_half_width_ratio
+            ) < 1 &&
+            finitePositive(
+              termRow?.projected_value_to_source_value_half_width_ratio
+            ) &&
+            Number(termRow.projected_value_to_source_value_half_width_ratio) <
+              1 &&
+            termRow
+              ?.projected_residual_image_inside_expression_term_residual ===
+              true &&
+            termRow
+              ?.projected_residual_image_contains_expression_term_residual ===
+              false &&
+            termRow
+              ?.projected_residual_image_strict_subinterval_of_expression_term_residual ===
+              true &&
+            termRow?.projected_value_image_inside_expression_term_value ===
+              true &&
+            termRow?.projected_value_image_contains_expression_term_value ===
+              false &&
+            termRow
+              ?.projected_value_image_strict_subinterval_of_expression_term_value ===
+              true &&
+            termRow?.candidate_field_slots_materialized === true &&
+            termRow?.certifies_source_term_as_directed_rounded_same_domain ===
+              false &&
+            validTermClaimBoundary(termRow?.claim_boundary)
+        ) &&
+        hasOrderedFiniteInterval(row?.projected_source_term_residual_sum_interval) &&
+        hasOrderedFiniteInterval(row?.projected_source_term_value_sum_interval) &&
+        finitePositive(row?.projected_residual_sum_half_width) &&
+        finitePositive(
+          row?.projected_residual_sum_to_primitive_half_width_ratio
+        ) &&
+        Number(row.projected_residual_sum_to_primitive_half_width_ratio) <
+          1 &&
+        finiteNonnegative(
+          row
+            ?.projected_residual_sum_to_signed_radius_certificate_endpoint_relative_gap
+        ) &&
+        row?.projected_residual_sum_contains_signed_radius_certificate ===
+          true &&
+        row?.projected_residual_sum_contains_binary64_subinterval_image ===
+          true &&
+        row?.projected_residual_sum_remains_width_contracted === true &&
+        row?.projected_source_term_field_slots_materialized === true &&
+        row?.projected_source_term_residual_images_strict_subintervals ===
+          true &&
+        row?.projected_source_term_value_images_strict_subintervals ===
+          true &&
+        row?.projected_fields_certify_source_enclosure === false &&
+        sameStringSet(row?.row_check_kinds, expectedRowCheckKinds) &&
+        expectedRowCheckKinds.every(
+          (kind) => row?.row_checks?.[kind] === true
+        ) &&
+        row
+          ?.row_materializes_projected_source_term_producer_image_fields ===
+          true &&
+        row?.row_certifies_source_term_producer_image_provenance === false &&
+        row?.row_status ===
+          "source-term-producer-image-field-slots-projected-source-enclosure-certification-open"
+    )
+  ) {
+    errors.push("source-term producer-image provenance field attempt rows must expose projected term fields without certifying source provenance");
+  } else {
+    rows.forEach((row, index) => {
+      if (!validClaimBoundary(row?.claim_boundary)) {
+        errors.push(`source-term producer-image provenance field attempt row ${index} must keep broad closure flags open`);
+      }
+    });
+  }
+  if (
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string" ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("source-term producer-image provenance field attempt must keep broad closure claims open");
+  }
+  return errors;
+}
+
+export function buildH39RequestedY44SourceTermProducerImageEnclosureIdentityAttemptCandidate({
+  sourceTermProducerImagePrimitiveAudit,
+  sourceTermProducerImageProvenanceFieldAttempt,
+} = {}) {
+  const attemptCheckKinds = [
+    "source_term_producer_image_primitive_audit_verified",
+    "source_term_producer_image_field_attempt_verified",
+    "projected_field_slots_available",
+    "expression_term_envelope_witnesses_available",
+    "midpoint_witness_containment_checked",
+    "expression_envelope_inclusion_checked",
+    "projected_slots_fail_to_enclose_expression_term_envelopes",
+    "retained_trace_envelope_inclusion_checked",
+    "retained_trace_enclosure_failures_quantified",
+    "zero_constant_nonconstant_envelope_inclusion_checked",
+    "minimal_expansion_to_expression_enclosure_quantified",
+    "source_term_enclosure_identity_remains_open",
+  ];
+  const primitiveRows =
+    sourceTermProducerImagePrimitiveAudit
+      ?.source_term_producer_image_primitive_rows ?? [];
+  const fieldAttemptRows =
+    sourceTermProducerImageProvenanceFieldAttempt
+      ?.source_term_producer_image_provenance_field_attempt_rows ?? [];
+  const primitiveRowsByNode = new Map(
+    primitiveRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const primitiveAuditVerified =
+    sourceTermProducerImagePrimitiveAudit?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PROVENANCE_PRIMITIVE_AUDIT_CANDIDATE_SCHEMA &&
+    sourceTermProducerImagePrimitiveAudit
+      ?.source_term_producer_image_provenance_primitive_audit_verified ===
+      true &&
+    sourceTermProducerImagePrimitiveAudit
+      ?.source_term_producer_image_provenance_certified_directed_rounded ===
+      false;
+  const fieldAttemptVerified =
+    sourceTermProducerImageProvenanceFieldAttempt?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PROVENANCE_FIELD_ATTEMPT_CANDIDATE_SCHEMA &&
+    sourceTermProducerImageProvenanceFieldAttempt
+      ?.source_term_producer_image_provenance_field_attempt_verified ===
+      true &&
+    sourceTermProducerImageProvenanceFieldAttempt
+      ?.source_term_producer_image_provenance_certified_directed_rounded ===
+      false &&
+    sourceTermProducerImageProvenanceFieldAttempt
+      ?.source_term_producer_image_provenance_fields_certify_source_enclosure ===
+      false;
+  const containmentExpansion = (candidateOuter, targetInner) => {
+    const candidate = finiteOrderedIntervalOrNull(candidateOuter);
+    const target = finiteOrderedIntervalOrNull(targetInner);
+    if (candidate === null || target === null) {
+      return null;
+    }
+    const leftExpansion = Math.max(0, candidate[0] - target[0]);
+    const rightExpansion = Math.max(0, target[1] - candidate[1]);
+    const maxEndpointExpansion = Math.max(leftExpansion, rightExpansion);
+    const candidateHalfWidth = intervalHalfWidth(candidate);
+    const targetHalfWidth = intervalHalfWidth(target);
+    return {
+      candidate_interval: candidate,
+      target_interval: target,
+      candidate_contains_target: intervalContainsInterval(candidate, target),
+      target_contains_candidate: intervalContainsInterval(target, candidate),
+      left_expansion_required: leftExpansion,
+      right_expansion_required: rightExpansion,
+      max_endpoint_expansion_required: maxEndpointExpansion,
+      candidate_half_width: candidateHalfWidth,
+      target_half_width: targetHalfWidth,
+      target_to_candidate_half_width_ratio:
+        finitePositive(candidateHalfWidth) && finiteNonnegative(targetHalfWidth)
+          ? Number(targetHalfWidth) / Number(candidateHalfWidth)
+          : null,
+      endpoint_relative_gap: intervalEndpointRelativeGap(candidate, target),
+    };
+  };
+  const pointContained = (interval, value) => {
+    const resolved = finiteOrderedIntervalOrNull(interval);
+    const numeric = Number(value);
+    return (
+      resolved !== null &&
+      Number.isFinite(numeric) &&
+      resolved[0] <= numeric &&
+      resolved[1] >= numeric
+    );
+  };
+  const rows = fieldAttemptRows.map((fieldRow) => {
+    const nodeIndex = Number(fieldRow?.node_index);
+    const primitiveRow = primitiveRowsByNode.get(nodeIndex) ?? null;
+    const expressionRowsByTerm = new Map(
+      (primitiveRow?.source_term_residual_rows ?? [])
+        .filter((termRow) => typeof termRow?.term === "string")
+        .map((termRow) => [termRow.term, termRow])
+    );
+    const retainedRowsByTerm = new Map(
+      (primitiveRow?.retained_trace_term_replay_rows ?? [])
+        .filter((termRow) => typeof termRow?.term === "string")
+        .map((termRow) => [termRow.term, termRow])
+    );
+    const projectedRows = Array.isArray(
+      fieldRow?.projected_source_term_producer_image_field_rows
+    )
+      ? H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.map((term) =>
+          fieldRow.projected_source_term_producer_image_field_rows.find(
+            (termRow) => termRow?.term === term
+          )
+        )
+      : [];
+    const identityTermRows = projectedRows.map((projectedTermRow) => {
+      const term = projectedTermRow?.term ?? null;
+      const expressionTermRow = expressionRowsByTerm.get(term) ?? null;
+      const retainedTermRow = retainedRowsByTerm.get(term) ?? null;
+      const projectedValueInterval = finiteOrderedIntervalOrNull(
+        projectedTermRow?.directed_rounded_source_term_interval
+      );
+      const projectedResidualInterval = finiteOrderedIntervalOrNull(
+        projectedTermRow?.directed_rounded_source_term_residual_interval
+      );
+      const expressionValueInterval = finiteOrderedIntervalOrNull(
+        expressionTermRow?.value_interval
+      );
+      const expressionResidualInterval = finiteOrderedIntervalOrNull(
+        expressionTermRow?.residual_interval
+      );
+      const retainedTraceValueInterval = finiteOrderedIntervalOrNull(
+        retainedTermRow?.retained_trace_value_interval
+      );
+      const retainedTraceResidualInterval = finiteOrderedIntervalOrNull(
+        retainedTermRow?.retained_trace_residual_interval
+      );
+      const retainedZeroConstantNonconstantInterval =
+        finiteOrderedIntervalOrNull(
+          retainedTermRow?.retained_zero_constant_nonconstant_interval
+        );
+      const midpointValue = Number(expressionTermRow?.midpoint_value);
+      const expressionValueExpansion = containmentExpansion(
+        projectedValueInterval,
+        expressionValueInterval
+      );
+      const expressionResidualExpansion = containmentExpansion(
+        projectedResidualInterval,
+        expressionResidualInterval
+      );
+      const retainedTraceValueExpansion = containmentExpansion(
+        projectedValueInterval,
+        retainedTraceValueInterval
+      );
+      const retainedTraceResidualExpansion = containmentExpansion(
+        projectedResidualInterval,
+        retainedTraceResidualInterval
+      );
+      const zeroConstantNonconstantExpansion = containmentExpansion(
+        projectedValueInterval,
+        retainedZeroConstantNonconstantInterval
+      );
+      const projectedValueContainsMidpoint = pointContained(
+        projectedValueInterval,
+        midpointValue
+      );
+      const projectedResidualContainsZero = pointContained(
+        projectedResidualInterval,
+        0
+      );
+      const expressionEnvelopeAvailable =
+        expressionValueInterval !== null && expressionResidualInterval !== null;
+      const retainedTraceEnvelopeAvailable =
+        retainedTraceValueInterval !== null &&
+        retainedTraceResidualInterval !== null;
+      const zeroConstantEnvelopeAvailable =
+        retainedZeroConstantNonconstantInterval !== null;
+      const projectedSlotsAvailable =
+        projectedValueInterval !== null && projectedResidualInterval !== null;
+      const expressionEnclosureFails =
+        expressionValueExpansion?.candidate_contains_target === false ||
+        expressionResidualExpansion?.candidate_contains_target === false;
+      const retainedTraceEnclosureFails =
+        retainedTraceEnvelopeAvailable &&
+        (retainedTraceValueExpansion?.candidate_contains_target === false ||
+          retainedTraceResidualExpansion?.candidate_contains_target === false);
+      return {
+        term,
+        projected_directed_rounded_source_term_interval:
+          projectedValueInterval,
+        projected_directed_rounded_source_term_residual_interval:
+          projectedResidualInterval,
+        expression_source_term_interval_witness:
+          expressionValueInterval,
+        expression_source_term_residual_interval_witness:
+          expressionResidualInterval,
+        expression_source_term_midpoint_witness:
+          Number.isFinite(midpointValue) ? midpointValue : null,
+        retained_trace_source_term_interval_witness:
+          retainedTraceValueInterval,
+        retained_trace_source_term_residual_interval_witness:
+          retainedTraceResidualInterval,
+        retained_zero_constant_nonconstant_interval_witness:
+          retainedZeroConstantNonconstantInterval,
+        projected_value_contains_midpoint_witness:
+          projectedValueContainsMidpoint,
+        projected_residual_contains_zero_witness:
+          projectedResidualContainsZero,
+        projected_value_contains_expression_interval:
+          expressionValueExpansion?.candidate_contains_target ?? null,
+        projected_residual_contains_expression_interval:
+          expressionResidualExpansion?.candidate_contains_target ?? null,
+        expression_value_interval_contains_projected_value:
+          expressionValueExpansion?.target_contains_candidate ?? null,
+        expression_residual_interval_contains_projected_residual:
+          expressionResidualExpansion?.target_contains_candidate ?? null,
+        projected_value_to_expression_enclosure_expansion:
+          expressionValueExpansion,
+        projected_residual_to_expression_enclosure_expansion:
+          expressionResidualExpansion,
+        projected_value_contains_retained_trace_interval:
+          retainedTraceValueExpansion?.candidate_contains_target ?? null,
+        projected_residual_contains_retained_trace_interval:
+          retainedTraceResidualExpansion?.candidate_contains_target ?? null,
+        projected_value_to_retained_trace_enclosure_expansion:
+          retainedTraceValueExpansion,
+        projected_residual_to_retained_trace_enclosure_expansion:
+          retainedTraceResidualExpansion,
+        projected_value_contains_zero_constant_nonconstant_interval:
+          zeroConstantNonconstantExpansion?.candidate_contains_target ?? null,
+        projected_value_to_zero_constant_nonconstant_enclosure_expansion:
+          zeroConstantNonconstantExpansion,
+        expression_envelope_witness_available:
+          expressionEnvelopeAvailable,
+        retained_trace_envelope_witness_available:
+          retainedTraceEnvelopeAvailable,
+        zero_constant_nonconstant_envelope_witness_available:
+          zeroConstantEnvelopeAvailable,
+        projected_field_slot_available: projectedSlotsAvailable,
+        projected_slot_fails_expression_source_enclosure:
+          expressionEnclosureFails,
+        projected_slot_fails_retained_trace_enclosure:
+          retainedTraceEnclosureFails,
+        source_term_enclosure_identity_certified: false,
+        claim_boundary: {
+          defines_source_term_producer_image_enclosure_identity_attempt_only:
+            true,
+          certifies_source_term_as_directed_rounded_same_domain: false,
+          certifies_source_term_producer_image_primitive: false,
+          certifies_source_inputs_as_directed_rounded_same_domain: false,
+          certifies_expression_level_n38_provider: false,
+          certifies_n38_fourth_derivative_bound: false,
+          certifies_terminal_row_provider_enclosure: false,
+          certifies_terminal_graph_remainder_bound: false,
+          certifies_s37_dependency_preserving_division: false,
+          certifies_shifted_R43_outer_bound: false,
+          certifies_directed_rounded_shared_domain: false,
+          retained_branch: false,
+        },
+      };
+    });
+    const rowProjectedSlotsAvailable =
+      identityTermRows.length ===
+        H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+      identityTermRows.every(
+        (termRow) => termRow.projected_field_slot_available === true
+      );
+    const rowExpressionWitnessesAvailable =
+      identityTermRows.length ===
+        H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+      identityTermRows.every(
+        (termRow) => termRow.expression_envelope_witness_available === true
+      );
+    const rowMidpointWitnessesChecked =
+      identityTermRows.length ===
+        H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+      identityTermRows.every(
+        (termRow) =>
+          typeof termRow.projected_value_contains_midpoint_witness ===
+            "boolean" &&
+          typeof termRow.projected_residual_contains_zero_witness ===
+            "boolean"
+      );
+    const rowExpressionInclusionChecked =
+      rowExpressionWitnessesAvailable &&
+      identityTermRows.every(
+        (termRow) =>
+          typeof termRow.projected_value_contains_expression_interval ===
+            "boolean" &&
+          typeof termRow.projected_residual_contains_expression_interval ===
+            "boolean" &&
+          finiteNonnegative(
+            termRow.projected_value_to_expression_enclosure_expansion
+              ?.max_endpoint_expansion_required
+          ) &&
+          finiteNonnegative(
+            termRow.projected_residual_to_expression_enclosure_expansion
+              ?.max_endpoint_expansion_required
+          )
+      );
+    const rowProjectedSlotsFailExpressionEnclosure =
+      rowExpressionInclusionChecked &&
+      identityTermRows.every(
+        (termRow) =>
+          termRow.projected_slot_fails_expression_source_enclosure === true
+      );
+    const rowRetainedTraceInclusionChecked =
+      identityTermRows.every(
+        (termRow) =>
+          termRow.retained_trace_envelope_witness_available === true &&
+          typeof termRow.projected_value_contains_retained_trace_interval ===
+            "boolean" &&
+          typeof termRow.projected_residual_contains_retained_trace_interval ===
+            "boolean"
+      );
+    const rowRetainedTraceFailuresQuantified =
+      rowRetainedTraceInclusionChecked &&
+      identityTermRows.every(
+        (termRow) =>
+          termRow.projected_slot_fails_retained_trace_enclosure === true &&
+          finiteNonnegative(
+            termRow.projected_value_to_retained_trace_enclosure_expansion
+              ?.max_endpoint_expansion_required
+          ) &&
+          finiteNonnegative(
+            termRow.projected_residual_to_retained_trace_enclosure_expansion
+              ?.max_endpoint_expansion_required
+          )
+      );
+    const rowZeroConstantInclusionChecked = identityTermRows.every(
+      (termRow) =>
+        termRow.zero_constant_nonconstant_envelope_witness_available ===
+          true &&
+        typeof termRow
+          .projected_value_contains_zero_constant_nonconstant_interval ===
+          "boolean" &&
+        finiteNonnegative(
+          termRow.projected_value_to_zero_constant_nonconstant_enclosure_expansion
+            ?.max_endpoint_expansion_required
+        )
+    );
+    const expressionExpansionValues = identityTermRows.flatMap((termRow) => [
+      termRow.projected_value_to_expression_enclosure_expansion
+        ?.target_to_candidate_half_width_ratio,
+      termRow.projected_residual_to_expression_enclosure_expansion
+        ?.target_to_candidate_half_width_ratio,
+    ]);
+    const maxExpressionExpansionFactor = finiteMaximum(
+      expressionExpansionValues
+    );
+    const maxExpressionEndpointExpansion = finiteMaximum(
+      identityTermRows.flatMap((termRow) => [
+        termRow.projected_value_to_expression_enclosure_expansion
+          ?.max_endpoint_expansion_required,
+        termRow.projected_residual_to_expression_enclosure_expansion
+          ?.max_endpoint_expansion_required,
+      ])
+    );
+    const rowChecks = {
+      projected_field_slots_available: rowProjectedSlotsAvailable,
+      expression_term_envelope_witnesses_available:
+        rowExpressionWitnessesAvailable,
+      midpoint_witness_containment_checked: rowMidpointWitnessesChecked,
+      expression_envelope_inclusion_checked:
+        rowExpressionInclusionChecked,
+      projected_slots_fail_to_enclose_expression_term_envelopes:
+        rowProjectedSlotsFailExpressionEnclosure,
+      retained_trace_envelope_inclusion_checked:
+        rowRetainedTraceInclusionChecked,
+      retained_trace_enclosure_failures_quantified:
+        rowRetainedTraceFailuresQuantified,
+      zero_constant_nonconstant_envelope_inclusion_checked:
+        rowZeroConstantInclusionChecked,
+      minimal_expansion_to_expression_enclosure_quantified:
+        finitePositive(maxExpressionExpansionFactor) &&
+        finiteNonnegative(maxExpressionEndpointExpansion),
+      source_term_enclosure_identity_remains_open:
+        rowProjectedSlotsFailExpressionEnclosure &&
+        identityTermRows.every(
+          (termRow) =>
+            termRow.source_term_enclosure_identity_certified === false &&
+            termRow.claim_boundary
+              ?.certifies_source_term_as_directed_rounded_same_domain ===
+              false &&
+            termRow.claim_boundary?.certifies_directed_rounded_shared_domain ===
+              false
+        ),
+    };
+    const rowAttemptVerified = Object.values(rowChecks).every(
+      (value) => value === true
+    );
+    return {
+      node_index: Number.isInteger(nodeIndex) ? nodeIndex : null,
+      xi_midpoint: fieldRow?.xi_midpoint ?? null,
+      terminal_graph_cell_id: fieldRow?.terminal_graph_cell_id ?? null,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      source_term_producer_image_enclosure_identity_attempt_row_kind:
+        "projected-source-term-field-enclosure-identity-attempt-row",
+      provider_row_source_kind: fieldRow?.provider_row_source_kind ?? null,
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      zero_source_terms: [...H38_SOURCE_TERM_ZERO_KEYS],
+      projected_field_attempt_row_status: fieldRow?.row_status ?? null,
+      source_term_enclosure_identity_term_rows: identityTermRows,
+      midpoint_witnesses_all_contained_by_projected_slots:
+        identityTermRows.every(
+          (termRow) =>
+            termRow.projected_value_contains_midpoint_witness === true &&
+            termRow.projected_residual_contains_zero_witness === true
+        ),
+      projected_slots_fail_expression_enclosure:
+        rowProjectedSlotsFailExpressionEnclosure,
+      projected_slots_fail_retained_trace_enclosure:
+        rowRetainedTraceFailuresQuantified,
+      max_expression_enclosure_required_half_width_factor:
+        maxExpressionExpansionFactor,
+      max_expression_enclosure_required_endpoint_expansion:
+        maxExpressionEndpointExpansion,
+      row_check_kinds: Object.keys(rowChecks),
+      row_checks: rowChecks,
+      row_source_term_enclosure_identity_attempt_verified:
+        rowAttemptVerified,
+      row_certifies_source_term_producer_image_enclosure: false,
+      row_status: rowAttemptVerified
+        ? "source-term-producer-image-enclosure-identity-fails-projected-slot-expression-inclusion"
+        : "source-term-producer-image-enclosure-identity-attempt-row-open",
+      claim_boundary: {
+        defines_source_term_producer_image_enclosure_identity_attempt_only:
+          true,
+        certifies_source_term_producer_image_primitive: false,
+        certifies_source_inputs_as_directed_rounded_same_domain: false,
+        certifies_expression_level_n38_provider: false,
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_terminal_row_provider_enclosure: false,
+        certifies_terminal_graph_remainder_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  });
+  const allRowsAttemptVerified =
+    rows.length === 5 &&
+    rows.every(
+      (row) => row.row_source_term_enclosure_identity_attempt_verified === true
+    );
+  const allRowsProjectedSlotsAvailable =
+    rows.length === 5 &&
+    rows.every((row) => row.row_checks.projected_field_slots_available);
+  const allRowsExpressionWitnessesAvailable =
+    rows.length === 5 &&
+    rows.every(
+      (row) => row.row_checks.expression_term_envelope_witnesses_available
+    );
+  const allRowsMidpointContainmentChecked =
+    rows.length === 5 &&
+    rows.every((row) => row.row_checks.midpoint_witness_containment_checked);
+  const allRowsExpressionInclusionChecked =
+    rows.length === 5 &&
+    rows.every((row) => row.row_checks.expression_envelope_inclusion_checked);
+  const allRowsFailExpressionEnclosure =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.row_checks
+          .projected_slots_fail_to_enclose_expression_term_envelopes === true
+    );
+  const allRowsRetainedTraceInclusionChecked =
+    rows.length === 5 &&
+    rows.every(
+      (row) => row.row_checks.retained_trace_envelope_inclusion_checked
+    );
+  const allRowsRetainedTraceFailuresQuantified =
+    rows.length === 5 &&
+    rows.every(
+      (row) => row.row_checks.retained_trace_enclosure_failures_quantified
+    );
+  const allRowsZeroConstantInclusionChecked =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.row_checks.zero_constant_nonconstant_envelope_inclusion_checked
+    );
+  const allRowsQuantifyExpansion =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.row_checks.minimal_expansion_to_expression_enclosure_quantified
+    );
+  const allRowsKeepIdentityOpen =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.row_checks.source_term_enclosure_identity_remains_open === true &&
+        row.row_certifies_source_term_producer_image_enclosure === false
+    );
+  const attemptChecks = {
+    source_term_producer_image_primitive_audit_verified:
+      primitiveAuditVerified,
+    source_term_producer_image_field_attempt_verified:
+      fieldAttemptVerified,
+    projected_field_slots_available: allRowsProjectedSlotsAvailable,
+    expression_term_envelope_witnesses_available:
+      allRowsExpressionWitnessesAvailable,
+    midpoint_witness_containment_checked:
+      allRowsMidpointContainmentChecked,
+    expression_envelope_inclusion_checked:
+      allRowsExpressionInclusionChecked,
+    projected_slots_fail_to_enclose_expression_term_envelopes:
+      allRowsFailExpressionEnclosure,
+    retained_trace_envelope_inclusion_checked:
+      allRowsRetainedTraceInclusionChecked,
+    retained_trace_enclosure_failures_quantified:
+      allRowsRetainedTraceFailuresQuantified,
+    zero_constant_nonconstant_envelope_inclusion_checked:
+      allRowsZeroConstantInclusionChecked,
+    minimal_expansion_to_expression_enclosure_quantified:
+      allRowsQuantifyExpansion,
+    source_term_enclosure_identity_remains_open:
+      allRowsKeepIdentityOpen,
+  };
+  const attemptVerified =
+    Object.values(attemptChecks).every((value) => value === true) &&
+    allRowsAttemptVerified;
+  const maxRequiredExpansionFactor = finiteMaximum(
+    rows.map((row) => row.max_expression_enclosure_required_half_width_factor)
+  );
+  const maxRequiredEndpointExpansion = finiteMaximum(
+    rows.map((row) => row.max_expression_enclosure_required_endpoint_expansion)
+  );
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_ENCLOSURE_IDENTITY_ATTEMPT_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-source-term-producer-image-enclosure-identity-attempt-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-source-term-producer-image-enclosure-identity-attempt",
+    target_kind:
+      "candidate-requested-y44-source-term-producer-image-enclosure-identity-attempt",
+    source_term_producer_image_primitive_audit_schema:
+      sourceTermProducerImagePrimitiveAudit?.schema ?? null,
+    source_term_producer_image_provenance_field_attempt_schema:
+      sourceTermProducerImageProvenanceFieldAttempt?.schema ?? null,
+    proof_status: attemptVerified
+      ? "candidate-source-term-producer-image-enclosure-identity-failed-with-quantified-projected-slot-gap"
+      : "candidate-source-term-producer-image-enclosure-identity-attempt-open",
+    enclosure_identity_attempt_kind:
+      "projected-term-field-slot-against-expression-source-envelope-witness",
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    source_terms_preserved_signed_together: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    zero_source_terms: [...H38_SOURCE_TERM_ZERO_KEYS],
+    source_term_producer_image_required_fields: [
+      ...H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PRIMITIVE_REQUIRED_FIELDS,
+    ],
+    source_term_producer_image_enclosure_identity_attempt_check_kinds: [
+      ...attemptCheckKinds,
+    ],
+    source_term_producer_image_enclosure_identity_attempt_checks:
+      attemptChecks,
+    source_term_producer_image_enclosure_identity_attempt_verified:
+      attemptVerified,
+    source_term_producer_image_enclosure_identity_certified:
+      false,
+    source_term_producer_image_enclosure_fields_certify_same_domain:
+      false,
+    projected_source_term_fields_available:
+      allRowsProjectedSlotsAvailable,
+    expression_source_term_envelope_witnesses_available:
+      allRowsExpressionWitnessesAvailable,
+    all_projected_slots_fail_to_enclose_expression_term_envelopes:
+      allRowsFailExpressionEnclosure,
+    all_retained_trace_enclosure_failures_quantified:
+      allRowsRetainedTraceFailuresQuantified,
+    all_zero_constant_nonconstant_envelope_inclusions_checked:
+      allRowsZeroConstantInclusionChecked,
+    all_source_term_enclosure_identity_claims_remain_open:
+      allRowsKeepIdentityOpen,
+    max_expression_enclosure_required_half_width_factor:
+      maxRequiredExpansionFactor,
+    max_expression_enclosure_required_endpoint_expansion:
+      maxRequiredEndpointExpansion,
+    source_term_producer_image_enclosure_identity_attempt_row_count:
+      rows.length,
+    source_term_producer_image_enclosure_identity_term_row_count:
+      rows.reduce(
+        (sum, row) =>
+          sum +
+          (Array.isArray(row.source_term_enclosure_identity_term_rows)
+            ? row.source_term_enclosure_identity_term_rows.length
+            : 0),
+        0
+      ),
+    source_term_producer_image_enclosure_identity_attempt_rows:
+      rows,
+    source_term_producer_image_enclosure_identity_attempt_classification:
+      attemptVerified
+        ? "projected-source-term-fields-fail-expression-envelope-enclosure-identity"
+        : "source-term-producer-image-enclosure-identity-attempt-open",
+    source_term_producer_image_enclosure_identity_blocker_classification:
+      attemptVerified
+        ? "narrower-source-term-image-bound-needed-after-projected-slot-negative-control"
+        : "source-term-producer-image-enclosure-identity-attempt-open",
+    source_term_producer_image_enclosure_identity_primary_missing_object_kind:
+      attemptVerified
+        ? "directed-rounded-same-domain-narrower-source-term-image-bound"
+        : "directed-rounded-same-domain-source-term-producer-image-enclosure-identity",
+    next_certificate_object:
+      "directed-rounded same-domain narrower source-term image bound, or a dependency theorem proving the true source-term producer image lies inside the projected strict subinterval slots",
+    candidate_certificate_route:
+      "The projected source-term field slots have the right same-domain shape and their sums reach the signed-radius residual target, but the available same-domain expression source-term intervals remain the strongest producer-image witnesses. Replaying the projected slots against those witnesses fails termwise: every projected slot is a strict subinterval rather than an enclosure. Retained H0-H34 trace and zero-constant nonconstant witnesses are also checked as negative controls. The next proof object is no longer a missing field record; it is a narrower same-domain source-term image bound or a dependency theorem locating the true producer image inside the projected slots.",
+    claim_boundary: {
+      defines_source_term_producer_image_enclosure_identity_attempt_only: true,
+      certifies_source_term_producer_image_primitive: false,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_expression_level_n38_provider: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_terminal_row_provider_enclosure: false,
+      certifies_terminal_graph_remainder_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+export function validateH39RequestedY44SourceTermProducerImageEnclosureIdentityAttemptCandidate(
+  artifact
+) {
+  const errors = [];
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const sameZeroTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H38_SOURCE_TERM_ZERO_KEYS.length &&
+    H38_SOURCE_TERM_ZERO_KEYS.every((term, index) => terms[index] === term);
+  const sameStringSet = (left, right) =>
+    Array.isArray(left) &&
+    left.length === right.length &&
+    right.every((value) => left.includes(value));
+  const hasOrderedFiniteInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    Number.isFinite(Number(interval[0])) &&
+    Number.isFinite(Number(interval[1])) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const validExpansion = (expansion) =>
+    hasOrderedFiniteInterval(expansion?.candidate_interval) &&
+    hasOrderedFiniteInterval(expansion?.target_interval) &&
+    typeof expansion?.candidate_contains_target === "boolean" &&
+    typeof expansion?.target_contains_candidate === "boolean" &&
+    finiteNonnegative(expansion?.left_expansion_required) &&
+    finiteNonnegative(expansion?.right_expansion_required) &&
+    finiteNonnegative(expansion?.max_endpoint_expansion_required) &&
+    finiteNonnegative(expansion?.candidate_half_width) &&
+    finiteNonnegative(expansion?.target_half_width) &&
+    finiteNonnegative(expansion?.target_to_candidate_half_width_ratio) &&
+    finiteNonnegative(expansion?.endpoint_relative_gap);
+  const validClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_source_term_producer_image_enclosure_identity_attempt_only ===
+      true &&
+    claimBoundary?.certifies_source_term_producer_image_primitive === false &&
+    claimBoundary?.certifies_source_inputs_as_directed_rounded_same_domain ===
+      false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_n38_fourth_derivative_bound === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const validTermClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_source_term_producer_image_enclosure_identity_attempt_only ===
+      true &&
+    claimBoundary?.certifies_source_term_as_directed_rounded_same_domain ===
+      false &&
+    claimBoundary?.certifies_source_term_producer_image_primitive === false &&
+    claimBoundary?.certifies_source_inputs_as_directed_rounded_same_domain ===
+      false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_n38_fourth_derivative_bound === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const expectedCheckKinds = [
+    "source_term_producer_image_primitive_audit_verified",
+    "source_term_producer_image_field_attempt_verified",
+    "projected_field_slots_available",
+    "expression_term_envelope_witnesses_available",
+    "midpoint_witness_containment_checked",
+    "expression_envelope_inclusion_checked",
+    "projected_slots_fail_to_enclose_expression_term_envelopes",
+    "retained_trace_envelope_inclusion_checked",
+    "retained_trace_enclosure_failures_quantified",
+    "zero_constant_nonconstant_envelope_inclusion_checked",
+    "minimal_expansion_to_expression_enclosure_quantified",
+    "source_term_enclosure_identity_remains_open",
+  ];
+  const expectedRowCheckKinds = expectedCheckKinds.slice(2);
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_ENCLOSURE_IDENTITY_ATTEMPT_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 requested-y44 source-term producer-image enclosure identity attempt candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-source-term-producer-image-enclosure-identity-attempt-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-source-term-producer-image-enclosure-identity-attempt" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-source-term-producer-image-enclosure-identity-attempt" ||
+    artifact?.source_term_producer_image_primitive_audit_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PROVENANCE_PRIMITIVE_AUDIT_CANDIDATE_SCHEMA ||
+    artifact?.source_term_producer_image_provenance_field_attempt_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PROVENANCE_FIELD_ATTEMPT_CANDIDATE_SCHEMA ||
+    artifact?.proof_status !==
+      "candidate-source-term-producer-image-enclosure-identity-failed-with-quantified-projected-slot-gap" ||
+    artifact?.enclosure_identity_attempt_kind !==
+      "projected-term-field-slot-against-expression-source-envelope-witness" ||
+    artifact?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    !sameTerms(artifact?.source_terms_preserved_signed_together) ||
+    !sameZeroTerms(artifact?.zero_source_terms) ||
+    !sameStringSet(
+      artifact?.source_term_producer_image_required_fields,
+      H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PRIMITIVE_REQUIRED_FIELDS
+    ) ||
+    !sameStringSet(
+      artifact?.source_term_producer_image_enclosure_identity_attempt_check_kinds,
+      expectedCheckKinds
+    )
+  ) {
+    errors.push("source-term producer-image enclosure identity attempt metadata must identify the projected-slot enclosure test");
+  }
+  if (
+    expectedCheckKinds.some(
+      (kind) =>
+        artifact?.source_term_producer_image_enclosure_identity_attempt_checks?.[
+          kind
+        ] !== true
+    ) ||
+    artifact?.source_term_producer_image_enclosure_identity_attempt_verified !==
+      true ||
+    artifact?.source_term_producer_image_enclosure_identity_certified !==
+      false ||
+    artifact
+      ?.source_term_producer_image_enclosure_fields_certify_same_domain !==
+      false ||
+    artifact?.projected_source_term_fields_available !== true ||
+    artifact?.expression_source_term_envelope_witnesses_available !== true ||
+    artifact
+      ?.all_projected_slots_fail_to_enclose_expression_term_envelopes !==
+      true ||
+    artifact?.all_retained_trace_enclosure_failures_quantified !== true ||
+    artifact
+      ?.all_zero_constant_nonconstant_envelope_inclusions_checked !== true ||
+    artifact?.all_source_term_enclosure_identity_claims_remain_open !==
+      true ||
+    !finitePositive(
+      artifact?.max_expression_enclosure_required_half_width_factor
+    ) ||
+    Number(artifact.max_expression_enclosure_required_half_width_factor) <=
+      1 ||
+    !finiteNonnegative(
+      artifact?.max_expression_enclosure_required_endpoint_expansion
+    ) ||
+    artifact
+      ?.source_term_producer_image_enclosure_identity_attempt_row_count !==
+      5 ||
+    artifact
+      ?.source_term_producer_image_enclosure_identity_term_row_count !== 15 ||
+    artifact
+      ?.source_term_producer_image_enclosure_identity_attempt_classification !==
+      "projected-source-term-fields-fail-expression-envelope-enclosure-identity" ||
+    artifact
+      ?.source_term_producer_image_enclosure_identity_blocker_classification !==
+      "narrower-source-term-image-bound-needed-after-projected-slot-negative-control" ||
+    artifact
+      ?.source_term_producer_image_enclosure_identity_primary_missing_object_kind !==
+      "directed-rounded-same-domain-narrower-source-term-image-bound"
+  ) {
+    errors.push("source-term producer-image enclosure identity attempt aggregate must fail closed with quantified projected-slot gap");
+  }
+  const rows =
+    artifact?.source_term_producer_image_enclosure_identity_attempt_rows ?? [];
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== 5 ||
+    !rows.every(
+      (row, index) =>
+        row?.node_index === index &&
+        Number.isFinite(Number(row?.xi_midpoint)) &&
+        row?.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+        row?.required_xi_derivative_order === 4 &&
+        row
+          ?.source_term_producer_image_enclosure_identity_attempt_row_kind ===
+          "projected-source-term-field-enclosure-identity-attempt-row" &&
+        row?.provider_row_source_kind ===
+          "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+        sameTerms(row?.source_terms_preserved_signed_together) &&
+        sameZeroTerms(row?.zero_source_terms) &&
+        row?.projected_field_attempt_row_status ===
+          "source-term-producer-image-field-slots-projected-source-enclosure-certification-open" &&
+        Array.isArray(row?.source_term_enclosure_identity_term_rows) &&
+        row.source_term_enclosure_identity_term_rows.length ===
+          H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+        row.source_term_enclosure_identity_term_rows.every(
+          (termRow, termIndex) =>
+            termRow?.term ===
+              H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS[termIndex] &&
+            hasOrderedFiniteInterval(
+              termRow?.projected_directed_rounded_source_term_interval
+            ) &&
+            hasOrderedFiniteInterval(
+              termRow
+                ?.projected_directed_rounded_source_term_residual_interval
+            ) &&
+            hasOrderedFiniteInterval(
+              termRow?.expression_source_term_interval_witness
+            ) &&
+            hasOrderedFiniteInterval(
+              termRow?.expression_source_term_residual_interval_witness
+            ) &&
+            Number.isFinite(
+              Number(termRow?.expression_source_term_midpoint_witness)
+            ) &&
+            hasOrderedFiniteInterval(
+              termRow?.retained_trace_source_term_interval_witness
+            ) &&
+            hasOrderedFiniteInterval(
+              termRow?.retained_trace_source_term_residual_interval_witness
+            ) &&
+            hasOrderedFiniteInterval(
+              termRow?.retained_zero_constant_nonconstant_interval_witness
+            ) &&
+            typeof termRow?.projected_value_contains_midpoint_witness ===
+              "boolean" &&
+            typeof termRow?.projected_residual_contains_zero_witness ===
+              "boolean" &&
+            termRow?.projected_value_contains_expression_interval === false &&
+            termRow?.projected_residual_contains_expression_interval ===
+              false &&
+            termRow?.expression_value_interval_contains_projected_value ===
+              true &&
+            termRow
+              ?.expression_residual_interval_contains_projected_residual ===
+              true &&
+            validExpansion(
+              termRow?.projected_value_to_expression_enclosure_expansion
+            ) &&
+            validExpansion(
+              termRow
+                ?.projected_residual_to_expression_enclosure_expansion
+            ) &&
+            termRow?.projected_value_contains_retained_trace_interval ===
+              false &&
+            termRow?.projected_residual_contains_retained_trace_interval ===
+              false &&
+            validExpansion(
+              termRow?.projected_value_to_retained_trace_enclosure_expansion
+            ) &&
+            validExpansion(
+              termRow
+                ?.projected_residual_to_retained_trace_enclosure_expansion
+            ) &&
+            typeof termRow
+              ?.projected_value_contains_zero_constant_nonconstant_interval ===
+              "boolean" &&
+            validExpansion(
+              termRow
+                ?.projected_value_to_zero_constant_nonconstant_enclosure_expansion
+            ) &&
+            termRow?.expression_envelope_witness_available === true &&
+            termRow?.retained_trace_envelope_witness_available === true &&
+            termRow
+              ?.zero_constant_nonconstant_envelope_witness_available ===
+              true &&
+            termRow?.projected_field_slot_available === true &&
+            termRow?.projected_slot_fails_expression_source_enclosure ===
+              true &&
+            termRow?.projected_slot_fails_retained_trace_enclosure ===
+              true &&
+            termRow?.source_term_enclosure_identity_certified === false &&
+            validTermClaimBoundary(termRow?.claim_boundary)
+        ) &&
+        typeof row?.midpoint_witnesses_all_contained_by_projected_slots ===
+          "boolean" &&
+        row?.projected_slots_fail_expression_enclosure === true &&
+        row?.projected_slots_fail_retained_trace_enclosure === true &&
+        finitePositive(
+          row?.max_expression_enclosure_required_half_width_factor
+        ) &&
+        Number(row.max_expression_enclosure_required_half_width_factor) >
+          1 &&
+        finiteNonnegative(
+          row?.max_expression_enclosure_required_endpoint_expansion
+        ) &&
+        sameStringSet(row?.row_check_kinds, expectedRowCheckKinds) &&
+        expectedRowCheckKinds.every(
+          (kind) => row?.row_checks?.[kind] === true
+        ) &&
+        row?.row_source_term_enclosure_identity_attempt_verified === true &&
+        row?.row_certifies_source_term_producer_image_enclosure === false &&
+        row?.row_status ===
+          "source-term-producer-image-enclosure-identity-fails-projected-slot-expression-inclusion"
+    )
+  ) {
+    errors.push("source-term producer-image enclosure identity attempt rows must expose quantified negative-control gaps");
+  } else {
+    rows.forEach((row, index) => {
+      if (!validClaimBoundary(row?.claim_boundary)) {
+        errors.push(`source-term producer-image enclosure identity attempt row ${index} must keep broad closure flags open`);
+      }
+    });
+  }
+  if (
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string" ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("source-term producer-image enclosure identity attempt must keep broad closure claims open");
+  }
+  return errors;
+}
+
+export function buildH39RequestedY44SourceTermProducerImageProjectedSlotVariationBoundTargetCandidate({
+  sourceTermProducerImageEnclosureIdentityAttempt,
+} = {}) {
+  const targetCheckKinds = [
+    "source_term_producer_image_enclosure_identity_attempt_verified",
+    "source_term_enclosure_identity_remains_uncertified",
+    "projected_slot_rows_available",
+    "midpoint_zero_anchor_margins_quantified",
+    "projected_slot_variation_bound_targets_quantified",
+    "available_expression_envelope_widths_compared_to_targets",
+    "available_retained_trace_widths_compared_to_targets",
+    "no_existing_directed_rounded_variation_bound_available",
+    "same_domain_and_radius_boundaries_preserved",
+    "source_term_projected_slot_variation_bound_claims_remain_open",
+  ];
+  const enclosureIdentityVerified =
+    sourceTermProducerImageEnclosureIdentityAttempt?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_ENCLOSURE_IDENTITY_ATTEMPT_CANDIDATE_SCHEMA &&
+    sourceTermProducerImageEnclosureIdentityAttempt
+      ?.source_term_producer_image_enclosure_identity_attempt_verified ===
+      true &&
+    sourceTermProducerImageEnclosureIdentityAttempt
+      ?.source_term_producer_image_enclosure_identity_certified === false &&
+    sourceTermProducerImageEnclosureIdentityAttempt
+      ?.source_term_producer_image_enclosure_fields_certify_same_domain ===
+      false;
+  const enclosureIdentityRows =
+    sourceTermProducerImageEnclosureIdentityAttempt
+      ?.source_term_producer_image_enclosure_identity_attempt_rows ?? [];
+  const pointContainmentMargin = (interval, point) => {
+    const resolved = finiteOrderedIntervalOrNull(interval);
+    const numericPoint = Number(point);
+    if (resolved === null || !Number.isFinite(numericPoint)) {
+      return null;
+    }
+    const leftMargin = numericPoint - resolved[0];
+    const rightMargin = resolved[1] - numericPoint;
+    const containsPoint = leftMargin >= 0 && rightMargin >= 0;
+    return {
+      interval: resolved,
+      point: numericPoint,
+      contains_point: containsPoint,
+      left_margin: leftMargin,
+      right_margin: rightMargin,
+      min_containment_margin: containsPoint
+        ? Math.min(leftMargin, rightMargin)
+        : null,
+      endpoint_shift_required_to_contain_point: containsPoint
+        ? 0
+        : Math.max(resolved[0] - numericPoint, numericPoint - resolved[1], 0),
+      interval_half_width: intervalHalfWidth(resolved),
+    };
+  };
+  const halfWidthOrNull = (interval) => {
+    const resolved = finiteOrderedIntervalOrNull(interval);
+    return resolved === null ? null : intervalHalfWidth(resolved);
+  };
+  const ratioOrNull = (numerator, denominator) =>
+    finiteNonnegative(numerator) && finitePositive(denominator)
+      ? Number(numerator) / Number(denominator)
+      : null;
+  const rows = enclosureIdentityRows.map((identityRow) => {
+    const nodeIndex = Number(identityRow?.node_index);
+    const termRows = Array.isArray(
+      identityRow?.source_term_enclosure_identity_term_rows
+    )
+      ? H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.map((term) =>
+          identityRow.source_term_enclosure_identity_term_rows.find(
+            (termRow) => termRow?.term === term
+          )
+        )
+      : [];
+    const variationBoundTermRows = termRows.map((termRow) => {
+      const projectedValueInterval = finiteOrderedIntervalOrNull(
+        termRow?.projected_directed_rounded_source_term_interval
+      );
+      const projectedResidualInterval = finiteOrderedIntervalOrNull(
+        termRow?.projected_directed_rounded_source_term_residual_interval
+      );
+      const expressionValueInterval = finiteOrderedIntervalOrNull(
+        termRow?.expression_source_term_interval_witness
+      );
+      const expressionResidualInterval = finiteOrderedIntervalOrNull(
+        termRow?.expression_source_term_residual_interval_witness
+      );
+      const retainedTraceValueInterval = finiteOrderedIntervalOrNull(
+        termRow?.retained_trace_source_term_interval_witness
+      );
+      const retainedTraceResidualInterval = finiteOrderedIntervalOrNull(
+        termRow?.retained_trace_source_term_residual_interval_witness
+      );
+      const midpointValue = Number(termRow?.expression_source_term_midpoint_witness);
+      const valueMidpointMargin = pointContainmentMargin(
+        projectedValueInterval,
+        midpointValue
+      );
+      const residualZeroMargin = pointContainmentMargin(
+        projectedResidualInterval,
+        0
+      );
+      const projectedValueHalfWidth = halfWidthOrNull(projectedValueInterval);
+      const projectedResidualHalfWidth = halfWidthOrNull(
+        projectedResidualInterval
+      );
+      const expressionValueHalfWidth = halfWidthOrNull(expressionValueInterval);
+      const expressionResidualHalfWidth = halfWidthOrNull(
+        expressionResidualInterval
+      );
+      const retainedTraceValueHalfWidth = halfWidthOrNull(
+        retainedTraceValueInterval
+      );
+      const retainedTraceResidualHalfWidth = halfWidthOrNull(
+        retainedTraceResidualInterval
+      );
+      const anchorContained =
+        valueMidpointMargin?.contains_point === true &&
+        residualZeroMargin?.contains_point === true;
+      const anchorEndpointShiftRequired = Math.max(
+        Number(
+          valueMidpointMargin?.endpoint_shift_required_to_contain_point ?? 0
+        ),
+        Number(
+          residualZeroMargin?.endpoint_shift_required_to_contain_point ?? 0
+        )
+      );
+      const allowableVariationBound = anchorContained
+        ? finiteMinimum([
+            valueMidpointMargin?.min_containment_margin,
+            residualZeroMargin?.min_containment_margin,
+          ])
+        : null;
+      const expressionValueRatio = ratioOrNull(
+        expressionValueHalfWidth,
+        allowableVariationBound
+      );
+      const expressionResidualRatio = ratioOrNull(
+        expressionResidualHalfWidth,
+        allowableVariationBound
+      );
+      const retainedTraceValueRatio = ratioOrNull(
+        retainedTraceValueHalfWidth,
+        allowableVariationBound
+      );
+      const retainedTraceResidualRatio = ratioOrNull(
+        retainedTraceResidualHalfWidth,
+        allowableVariationBound
+      );
+      const projectedSlotTargetPositive =
+        finitePositive(allowableVariationBound);
+      const expressionWidthsCompared =
+        projectedSlotTargetPositive &&
+        finiteNonnegative(expressionValueRatio) &&
+        finiteNonnegative(expressionResidualRatio);
+      const retainedTraceWidthsCompared =
+        projectedSlotTargetPositive &&
+        finiteNonnegative(retainedTraceValueRatio) &&
+        finiteNonnegative(retainedTraceResidualRatio);
+      const expressionEnvelopeFitsTarget =
+        expressionWidthsCompared &&
+        Number(expressionValueRatio) <= 1 &&
+        Number(expressionResidualRatio) <= 1;
+      const retainedTraceEnvelopeFitsTarget =
+        retainedTraceWidthsCompared &&
+        Number(retainedTraceValueRatio) <= 1 &&
+        Number(retainedTraceResidualRatio) <= 1;
+      const expressionEnvelopeExceedsTarget =
+        expressionWidthsCompared &&
+        Number(expressionValueRatio) > 1 &&
+        Number(expressionResidualRatio) > 1;
+      const retainedTraceEnvelopeExceedsTarget =
+        retainedTraceWidthsCompared &&
+        Number(retainedTraceValueRatio) > 1 &&
+        Number(retainedTraceResidualRatio) > 1;
+      const sameRadiusBoundaryPreserved =
+        projectedSlotTargetPositive &&
+        finitePositive(projectedValueHalfWidth) &&
+        finitePositive(projectedResidualHalfWidth) &&
+        Number(allowableVariationBound) <=
+          Math.min(projectedValueHalfWidth, projectedResidualHalfWidth);
+      return {
+        term: termRow?.term ?? null,
+        projected_directed_rounded_source_term_interval:
+          projectedValueInterval,
+        projected_directed_rounded_source_term_residual_interval:
+          projectedResidualInterval,
+        expression_source_term_interval_witness:
+          expressionValueInterval,
+        expression_source_term_residual_interval_witness:
+          expressionResidualInterval,
+        retained_trace_source_term_interval_witness:
+          retainedTraceValueInterval,
+        retained_trace_source_term_residual_interval_witness:
+          retainedTraceResidualInterval,
+        expression_source_term_midpoint_witness:
+          Number.isFinite(midpointValue) ? midpointValue : null,
+        projected_value_midpoint_containment_margin:
+          valueMidpointMargin,
+        projected_residual_zero_containment_margin:
+          residualZeroMargin,
+        projected_slot_has_midpoint_zero_anchor:
+          anchorContained,
+        projected_slot_midpoint_zero_anchor_endpoint_shift_required:
+          anchorEndpointShiftRequired,
+        projected_slot_midpoint_zero_anchor_defect_kind: anchorContained
+          ? "none"
+          : "midpoint-or-residual-zero-outside-projected-slot",
+        projected_slot_allowable_same_domain_source_term_variation_bound:
+          allowableVariationBound,
+        projected_slot_variation_bound_target_positive:
+          projectedSlotTargetPositive,
+        projected_value_half_width_budget: projectedValueHalfWidth,
+        projected_residual_half_width_budget:
+          projectedResidualHalfWidth,
+        expression_value_half_width_witness: expressionValueHalfWidth,
+        expression_residual_half_width_witness:
+          expressionResidualHalfWidth,
+        retained_trace_value_half_width_witness:
+          retainedTraceValueHalfWidth,
+        retained_trace_residual_half_width_witness:
+          retainedTraceResidualHalfWidth,
+        expression_value_half_width_to_projected_slot_variation_bound_ratio:
+          expressionValueRatio,
+        expression_residual_half_width_to_projected_slot_variation_bound_ratio:
+          expressionResidualRatio,
+        retained_trace_value_half_width_to_projected_slot_variation_bound_ratio:
+          retainedTraceValueRatio,
+        retained_trace_residual_half_width_to_projected_slot_variation_bound_ratio:
+          retainedTraceResidualRatio,
+        current_expression_envelope_fits_projected_slot_variation_bound_target:
+          expressionEnvelopeFitsTarget,
+        current_retained_trace_envelope_fits_projected_slot_variation_bound_target:
+          retainedTraceEnvelopeFitsTarget,
+        current_expression_envelope_exceeds_projected_slot_variation_bound_target:
+          expressionEnvelopeExceedsTarget,
+        current_retained_trace_envelope_exceeds_projected_slot_variation_bound_target:
+          retainedTraceEnvelopeExceedsTarget,
+        same_radius_boundary_preserved_by_variation_bound_target:
+          sameRadiusBoundaryPreserved,
+        directed_rounded_same_domain_source_term_variation_bound_available:
+          false,
+        source_term_projected_slot_variation_bound_target_certified:
+          false,
+        variation_bound_sufficient_condition:
+          "If a future directed-rounded same-domain source-term producer-image variation bound around the expression midpoint is no larger than projected_slot_allowable_same_domain_source_term_variation_bound, then the term image lies inside the projected source-term slot.",
+        claim_boundary: {
+          defines_source_term_producer_image_projected_slot_variation_bound_target_only:
+            true,
+          certifies_source_term_as_directed_rounded_same_domain: false,
+          certifies_source_term_variation_bound: false,
+          certifies_source_term_producer_image_primitive: false,
+          certifies_source_inputs_as_directed_rounded_same_domain: false,
+          certifies_expression_level_n38_provider: false,
+          certifies_n38_fourth_derivative_bound: false,
+          certifies_terminal_row_provider_enclosure: false,
+          certifies_terminal_graph_remainder_bound: false,
+          certifies_s37_dependency_preserving_division: false,
+          certifies_shifted_R43_outer_bound: false,
+          certifies_directed_rounded_shared_domain: false,
+          retained_branch: false,
+        },
+      };
+    });
+    const rowProjectedSlotRowsAvailable =
+      variationBoundTermRows.length ===
+        H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+      variationBoundTermRows.every(
+        (termRow) =>
+          termRow.projected_directed_rounded_source_term_interval !== null &&
+          termRow.projected_directed_rounded_source_term_residual_interval !==
+            null
+      );
+    const rowMarginsQuantified =
+      variationBoundTermRows.length ===
+        H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+      variationBoundTermRows.every(
+        (termRow) =>
+          termRow.projected_value_midpoint_containment_margin !== null &&
+          termRow.projected_residual_zero_containment_margin !== null
+      );
+    const rowVariationTargetsQuantified =
+      variationBoundTermRows.length ===
+        H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+      variationBoundTermRows.every(
+        (termRow) =>
+          typeof termRow.projected_slot_has_midpoint_zero_anchor ===
+            "boolean" &&
+          (termRow.projected_slot_has_midpoint_zero_anchor === false ||
+            finitePositive(
+              termRow
+                .projected_slot_allowable_same_domain_source_term_variation_bound
+            ))
+      );
+    const rowExpressionWidthsCompared =
+      variationBoundTermRows.every(
+        (termRow) =>
+          termRow.projected_slot_has_midpoint_zero_anchor === false ||
+          (finiteNonnegative(
+            termRow
+              .expression_value_half_width_to_projected_slot_variation_bound_ratio
+          ) &&
+            finiteNonnegative(
+              termRow
+                .expression_residual_half_width_to_projected_slot_variation_bound_ratio
+            ))
+      );
+    const rowRetainedTraceWidthsCompared =
+      variationBoundTermRows.every(
+        (termRow) =>
+          termRow.projected_slot_has_midpoint_zero_anchor === false ||
+          (finiteNonnegative(
+            termRow
+              .retained_trace_value_half_width_to_projected_slot_variation_bound_ratio
+          ) &&
+            finiteNonnegative(
+              termRow
+                .retained_trace_residual_half_width_to_projected_slot_variation_bound_ratio
+            ))
+      );
+    const rowAllAnchors =
+      variationBoundTermRows.length ===
+        H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+      variationBoundTermRows.every(
+        (termRow) => termRow.projected_slot_has_midpoint_zero_anchor === true
+      );
+    const rowAllTargetsPositive =
+      variationBoundTermRows.length ===
+        H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+      variationBoundTermRows.every(
+        (termRow) =>
+          termRow.projected_slot_variation_bound_target_positive === true
+      );
+    const rowAnchorDefectCount = variationBoundTermRows.filter(
+      (termRow) => termRow.projected_slot_has_midpoint_zero_anchor === false
+    ).length;
+    const rowMaxAnchorEndpointShiftRequired = finiteMaximum(
+      variationBoundTermRows.map(
+        (termRow) =>
+          termRow
+            .projected_slot_midpoint_zero_anchor_endpoint_shift_required
+      )
+    );
+    const rowAllExpressionEnvelopesExceedTargets =
+      rowAllTargetsPositive &&
+      variationBoundTermRows.every(
+        (termRow) =>
+          termRow
+            .current_expression_envelope_exceeds_projected_slot_variation_bound_target ===
+          true
+      );
+    const rowAllRetainedTraceEnvelopesExceedTargets =
+      rowAllTargetsPositive &&
+      variationBoundTermRows.every(
+        (termRow) =>
+          termRow
+            .current_retained_trace_envelope_exceeds_projected_slot_variation_bound_target ===
+          true
+      );
+    const rowSameDomainRadiusPreserved =
+      identityRow?.terminal_graph_cell_id === `speed.${nodeIndex}.first-y` &&
+      variationBoundTermRows.every(
+        (termRow) =>
+          termRow.projected_slot_has_midpoint_zero_anchor === false ||
+          termRow.same_radius_boundary_preserved_by_variation_bound_target ===
+            true
+      );
+    const rowNoDirectedRoundedVariationBoundAvailable =
+      variationBoundTermRows.every(
+        (termRow) =>
+          termRow
+            .directed_rounded_same_domain_source_term_variation_bound_available ===
+            false &&
+          termRow.source_term_projected_slot_variation_bound_target_certified ===
+            false
+      );
+    const rowClaimsRemainOpen =
+      rowNoDirectedRoundedVariationBoundAvailable &&
+      variationBoundTermRows.every(
+        (termRow) =>
+          termRow.claim_boundary
+            ?.certifies_source_term_as_directed_rounded_same_domain ===
+            false &&
+          termRow.claim_boundary?.certifies_source_term_variation_bound ===
+            false &&
+          termRow.claim_boundary?.certifies_directed_rounded_shared_domain ===
+            false
+      );
+    const rowChecks = {
+      projected_slot_rows_available: rowProjectedSlotRowsAvailable,
+      midpoint_zero_anchor_margins_quantified: rowMarginsQuantified,
+      projected_slot_variation_bound_targets_quantified:
+        rowVariationTargetsQuantified,
+      available_expression_envelope_widths_compared_to_targets:
+        rowExpressionWidthsCompared,
+      available_retained_trace_widths_compared_to_targets:
+        rowRetainedTraceWidthsCompared,
+      no_existing_directed_rounded_variation_bound_available:
+        rowNoDirectedRoundedVariationBoundAvailable,
+      same_domain_and_radius_boundaries_preserved:
+        rowSameDomainRadiusPreserved,
+      source_term_projected_slot_variation_bound_claims_remain_open:
+        rowClaimsRemainOpen,
+    };
+    const rowVerified = Object.values(rowChecks).every(
+      (value) => value === true
+    );
+    return {
+      node_index: Number.isInteger(nodeIndex) ? nodeIndex : null,
+      xi_midpoint: identityRow?.xi_midpoint ?? null,
+      terminal_graph_cell_id: identityRow?.terminal_graph_cell_id ?? null,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      source_term_projected_slot_variation_bound_target_row_kind:
+        "projected-source-term-slot-midpoint-zero-variation-bound-target-row",
+      provider_row_source_kind: identityRow?.provider_row_source_kind ?? null,
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      zero_source_terms: [...H38_SOURCE_TERM_ZERO_KEYS],
+      enclosure_identity_attempt_row_status: identityRow?.row_status ?? null,
+      source_term_projected_slot_variation_bound_term_rows:
+        variationBoundTermRows,
+      row_all_projected_slots_have_midpoint_zero_anchor: rowAllAnchors,
+      row_all_projected_slot_variation_bound_targets_positive:
+        rowAllTargetsPositive,
+      row_projected_slot_midpoint_zero_anchor_defect_count:
+        rowAnchorDefectCount,
+      row_max_projected_slot_midpoint_zero_anchor_endpoint_shift_required:
+        rowMaxAnchorEndpointShiftRequired,
+      row_all_available_expression_envelopes_exceed_projected_slot_variation_targets:
+        rowAllExpressionEnvelopesExceedTargets,
+      row_all_available_retained_trace_envelopes_exceed_projected_slot_variation_targets:
+        rowAllRetainedTraceEnvelopesExceedTargets,
+      row_min_projected_slot_allowable_same_domain_source_term_variation_bound:
+        finiteMinimum(
+          variationBoundTermRows.map(
+            (termRow) =>
+              termRow
+                .projected_slot_allowable_same_domain_source_term_variation_bound
+          )
+        ),
+      row_max_expression_half_width_to_projected_slot_variation_bound_ratio:
+        finiteMaximum(
+          variationBoundTermRows.flatMap((termRow) => [
+            termRow
+              .expression_value_half_width_to_projected_slot_variation_bound_ratio,
+            termRow
+              .expression_residual_half_width_to_projected_slot_variation_bound_ratio,
+          ])
+        ),
+      row_max_retained_trace_half_width_to_projected_slot_variation_bound_ratio:
+        finiteMaximum(
+          variationBoundTermRows.flatMap((termRow) => [
+            termRow
+              .retained_trace_value_half_width_to_projected_slot_variation_bound_ratio,
+            termRow
+              .retained_trace_residual_half_width_to_projected_slot_variation_bound_ratio,
+          ])
+        ),
+      row_check_kinds: Object.keys(rowChecks),
+      row_checks: rowChecks,
+      row_source_term_projected_slot_variation_bound_target_verified:
+        rowVerified,
+      row_certifies_source_term_projected_slot_variation_bound_target:
+        false,
+      row_status: rowVerified
+        ? rowAllTargetsPositive
+          ? "source-term-projected-slot-variation-bound-targets-materialized-certification-open"
+          : "source-term-projected-slot-anchor-defect-quantified-certification-open"
+        : "source-term-projected-slot-variation-bound-target-row-open",
+      claim_boundary: {
+        defines_source_term_producer_image_projected_slot_variation_bound_target_only:
+          true,
+        certifies_source_term_variation_bound: false,
+        certifies_source_term_producer_image_primitive: false,
+        certifies_source_inputs_as_directed_rounded_same_domain: false,
+        certifies_expression_level_n38_provider: false,
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_terminal_row_provider_enclosure: false,
+        certifies_terminal_graph_remainder_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  });
+  const rowsVerified =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.row_source_term_projected_slot_variation_bound_target_verified ===
+        true
+    );
+  const allAnchors =
+    rows.length === 5 &&
+    rows.every(
+      (row) => row.row_all_projected_slots_have_midpoint_zero_anchor === true
+    );
+  const allTargetsPositive =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.row_all_projected_slot_variation_bound_targets_positive === true
+    );
+  const anchorDefectCount = rows.reduce(
+    (sum, row) =>
+      sum +
+      Number(row.row_projected_slot_midpoint_zero_anchor_defect_count ?? 0),
+    0
+  );
+  const maxAnchorEndpointShiftRequired = finiteMaximum(
+    rows.map(
+      (row) =>
+        row
+          .row_max_projected_slot_midpoint_zero_anchor_endpoint_shift_required
+    )
+  );
+  const allExpressionEnvelopesExceedTargets =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row
+          .row_all_available_expression_envelopes_exceed_projected_slot_variation_targets ===
+        true
+    );
+  const allRetainedTraceEnvelopesExceedTargets =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row
+          .row_all_available_retained_trace_envelopes_exceed_projected_slot_variation_targets ===
+        true
+    );
+  const allNoDirectedRoundedVariationBoundAvailable =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.row_checks
+          ?.no_existing_directed_rounded_variation_bound_available === true
+    );
+  const allSameDomainRadiusPreserved =
+    rows.length === 5 &&
+    rows.every(
+      (row) => row.row_checks?.same_domain_and_radius_boundaries_preserved
+    );
+  const allClaimsRemainOpen =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.row_checks
+          ?.source_term_projected_slot_variation_bound_claims_remain_open ===
+        true
+    );
+  const aggregateChecks = {
+    source_term_producer_image_enclosure_identity_attempt_verified:
+      enclosureIdentityVerified,
+    source_term_enclosure_identity_remains_uncertified:
+      enclosureIdentityVerified &&
+      sourceTermProducerImageEnclosureIdentityAttempt
+        ?.source_term_producer_image_enclosure_identity_certified === false,
+    projected_slot_rows_available:
+      rows.length === 5 &&
+      rows.every((row) => row.row_checks?.projected_slot_rows_available),
+    midpoint_zero_anchor_margins_quantified:
+      rows.length === 5 &&
+      rows.every(
+        (row) =>
+          row.row_checks?.midpoint_zero_anchor_margins_quantified === true
+      ),
+    projected_slot_variation_bound_targets_quantified:
+      rows.length === 5 &&
+      rows.every(
+        (row) =>
+          row.row_checks
+            ?.projected_slot_variation_bound_targets_quantified === true
+      ),
+    available_expression_envelope_widths_compared_to_targets:
+      rows.length === 5 &&
+      rows.every(
+        (row) =>
+          row.row_checks
+            ?.available_expression_envelope_widths_compared_to_targets ===
+          true
+      ),
+    available_retained_trace_widths_compared_to_targets:
+      rows.length === 5 &&
+      rows.every(
+        (row) =>
+          row.row_checks
+            ?.available_retained_trace_widths_compared_to_targets === true
+      ),
+    no_existing_directed_rounded_variation_bound_available:
+      allNoDirectedRoundedVariationBoundAvailable,
+    same_domain_and_radius_boundaries_preserved:
+      allSameDomainRadiusPreserved,
+    source_term_projected_slot_variation_bound_claims_remain_open:
+      allClaimsRemainOpen,
+  };
+  const targetVerified =
+    rowsVerified && Object.values(aggregateChecks).every((value) => value === true);
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PROJECTED_SLOT_VARIATION_BOUND_TARGET_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-source-term-producer-image-projected-slot-variation-bound-target-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-source-term-producer-image-projected-slot-variation-bound-target",
+    target_kind:
+      "candidate-requested-y44-source-term-producer-image-projected-slot-variation-bound-target",
+    source_term_producer_image_enclosure_identity_attempt_schema:
+      sourceTermProducerImageEnclosureIdentityAttempt?.schema ?? null,
+    proof_status: targetVerified
+      ? allTargetsPositive
+        ? "candidate-source-term-projected-slot-variation-bound-targets-materialized-certification-open"
+        : "candidate-source-term-projected-slot-anchor-defect-materialized-certification-open"
+      : "candidate-source-term-projected-slot-variation-bound-target-open",
+    projected_slot_variation_bound_target_kind:
+      "midpoint-zero-anchor-same-domain-variation-bound-condition",
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    source_terms_preserved_signed_together: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    zero_source_terms: [...H38_SOURCE_TERM_ZERO_KEYS],
+    source_term_projected_slot_variation_bound_target_check_kinds: [
+      ...targetCheckKinds,
+    ],
+    source_term_projected_slot_variation_bound_target_checks:
+      aggregateChecks,
+    source_term_projected_slot_variation_bound_target_verified:
+      targetVerified,
+    source_term_projected_slot_variation_bound_target_certified:
+      false,
+    directed_rounded_same_domain_source_term_variation_bound_available:
+      false,
+    all_projected_slots_have_midpoint_zero_anchor: allAnchors,
+    all_projected_slot_variation_bound_targets_positive:
+      allTargetsPositive,
+    projected_slot_midpoint_zero_anchor_defect_count:
+      anchorDefectCount,
+    max_projected_slot_midpoint_zero_anchor_endpoint_shift_required:
+      maxAnchorEndpointShiftRequired,
+    all_available_expression_envelopes_exceed_projected_slot_variation_targets:
+      allExpressionEnvelopesExceedTargets,
+    all_available_retained_trace_envelopes_exceed_projected_slot_variation_targets:
+      allRetainedTraceEnvelopesExceedTargets,
+    all_source_term_projected_slot_variation_bound_claims_remain_open:
+      allClaimsRemainOpen,
+    min_projected_slot_allowable_same_domain_source_term_variation_bound:
+      finiteMinimum(
+        rows.map(
+          (row) =>
+            row
+              .row_min_projected_slot_allowable_same_domain_source_term_variation_bound
+        )
+      ),
+    max_expression_half_width_to_projected_slot_variation_bound_ratio:
+      finiteMaximum(
+        rows.map(
+          (row) =>
+            row
+              .row_max_expression_half_width_to_projected_slot_variation_bound_ratio
+        )
+      ),
+    max_retained_trace_half_width_to_projected_slot_variation_bound_ratio:
+      finiteMaximum(
+        rows.map(
+          (row) =>
+            row
+              .row_max_retained_trace_half_width_to_projected_slot_variation_bound_ratio
+        )
+      ),
+    source_term_projected_slot_variation_bound_target_row_count:
+      rows.length,
+    source_term_projected_slot_variation_bound_term_row_count:
+      rows.reduce(
+        (sum, row) =>
+          sum +
+          (Array.isArray(
+            row.source_term_projected_slot_variation_bound_term_rows
+          )
+            ? row.source_term_projected_slot_variation_bound_term_rows.length
+            : 0),
+        0
+      ),
+    source_term_projected_slot_variation_bound_target_rows:
+      rows,
+    source_term_projected_slot_variation_bound_target_classification:
+      targetVerified
+        ? allTargetsPositive
+          ? "projected-slot-midpoint-zero-variation-bound-targets-materialized"
+          : "projected-slot-midpoint-zero-anchor-defect-quantified"
+        : "source-term-projected-slot-variation-bound-target-open",
+    source_term_projected_slot_variation_bound_target_blocker_classification:
+      targetVerified
+        ? allTargetsPositive
+          ? "directed-rounded-same-domain-source-term-variation-bound-absent-after-numeric-slot-targets"
+          : "projected-source-term-slot-anchor-correction-needed-before-variation-bound"
+        : "source-term-projected-slot-variation-bound-target-open",
+    source_term_projected_slot_variation_bound_target_primary_missing_object_kind:
+      targetVerified
+        ? allTargetsPositive
+          ? "directed-rounded-same-domain-source-term-variation-bound"
+          : "projected-source-term-slot-midpoint-zero-anchor-identity"
+        : "directed-rounded-same-domain-source-term-producer-image-bound",
+    next_certificate_object:
+      allTargetsPositive
+        ? "directed-rounded same-domain source-term variation bound no larger than the recorded projected-slot allowable variation targets"
+        : "same-domain projected-slot midpoint/zero anchor identity before a variation-bound certificate can be applied",
+    candidate_certificate_route:
+      "A source-term projected slot can certify a true same-domain source-term producer image only after a directed-rounded source-term variation bound fits inside the minimum endpoint margin from the expression midpoint and residual zero to that projected slot. This packet records those endpoint margins termwise and compares the available expression and retained-trace envelopes against the resulting numeric target. It does not certify the variation bound or the expression-level provider.",
+    claim_boundary: {
+      defines_source_term_producer_image_projected_slot_variation_bound_target_only:
+        true,
+      certifies_source_term_variation_bound: false,
+      certifies_source_term_producer_image_primitive: false,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_expression_level_n38_provider: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_terminal_row_provider_enclosure: false,
+      certifies_terminal_graph_remainder_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+export function validateH39RequestedY44SourceTermProducerImageProjectedSlotVariationBoundTargetCandidate(
+  artifact
+) {
+  const errors = [];
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const sameZeroTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H38_SOURCE_TERM_ZERO_KEYS.length &&
+    H38_SOURCE_TERM_ZERO_KEYS.every((term, index) => terms[index] === term);
+  const sameStringSet = (left, right) =>
+    Array.isArray(left) &&
+    left.length === right.length &&
+    right.every((value) => left.includes(value));
+  const hasOrderedFiniteInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    Number.isFinite(Number(interval[0])) &&
+    Number.isFinite(Number(interval[1])) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const validPointMargin = (margin) =>
+    hasOrderedFiniteInterval(margin?.interval) &&
+    Number.isFinite(Number(margin?.point)) &&
+    typeof margin?.contains_point === "boolean" &&
+    Number.isFinite(Number(margin?.left_margin)) &&
+    Number.isFinite(Number(margin?.right_margin)) &&
+    (margin.contains_point === false ||
+      finiteNonnegative(margin?.min_containment_margin)) &&
+    finiteNonnegative(margin?.endpoint_shift_required_to_contain_point) &&
+    finiteNonnegative(margin?.interval_half_width);
+  const validTermClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_source_term_producer_image_projected_slot_variation_bound_target_only ===
+      true &&
+    claimBoundary?.certifies_source_term_as_directed_rounded_same_domain ===
+      false &&
+    claimBoundary?.certifies_source_term_variation_bound === false &&
+    claimBoundary?.certifies_source_term_producer_image_primitive === false &&
+    claimBoundary?.certifies_source_inputs_as_directed_rounded_same_domain ===
+      false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_n38_fourth_derivative_bound === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const validRowClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_source_term_producer_image_projected_slot_variation_bound_target_only ===
+      true &&
+    claimBoundary?.certifies_source_term_variation_bound === false &&
+    claimBoundary?.certifies_source_term_producer_image_primitive === false &&
+    claimBoundary?.certifies_source_inputs_as_directed_rounded_same_domain ===
+      false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_n38_fourth_derivative_bound === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const expectedCheckKinds = [
+    "source_term_producer_image_enclosure_identity_attempt_verified",
+    "source_term_enclosure_identity_remains_uncertified",
+    "projected_slot_rows_available",
+    "midpoint_zero_anchor_margins_quantified",
+    "projected_slot_variation_bound_targets_quantified",
+    "available_expression_envelope_widths_compared_to_targets",
+    "available_retained_trace_widths_compared_to_targets",
+    "no_existing_directed_rounded_variation_bound_available",
+    "same_domain_and_radius_boundaries_preserved",
+    "source_term_projected_slot_variation_bound_claims_remain_open",
+  ];
+  const expectedRowCheckKinds = expectedCheckKinds.slice(2);
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PROJECTED_SLOT_VARIATION_BOUND_TARGET_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 requested-y44 source-term projected-slot variation-bound target candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-source-term-producer-image-projected-slot-variation-bound-target-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-source-term-producer-image-projected-slot-variation-bound-target" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-source-term-producer-image-projected-slot-variation-bound-target" ||
+    artifact?.source_term_producer_image_enclosure_identity_attempt_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_ENCLOSURE_IDENTITY_ATTEMPT_CANDIDATE_SCHEMA ||
+    ![
+      "candidate-source-term-projected-slot-variation-bound-targets-materialized-certification-open",
+      "candidate-source-term-projected-slot-anchor-defect-materialized-certification-open",
+      "candidate-source-term-projected-slot-variation-bound-target-open",
+    ].includes(artifact?.proof_status) ||
+    artifact?.projected_slot_variation_bound_target_kind !==
+      "midpoint-zero-anchor-same-domain-variation-bound-condition" ||
+    artifact?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    !sameTerms(artifact?.source_terms_preserved_signed_together) ||
+    !sameZeroTerms(artifact?.zero_source_terms) ||
+    !sameStringSet(
+      artifact?.source_term_projected_slot_variation_bound_target_check_kinds,
+      expectedCheckKinds
+    )
+  ) {
+    errors.push("source-term projected-slot variation-bound target metadata must identify the midpoint/zero variation condition");
+  }
+  if (
+    expectedCheckKinds.some(
+      (kind) =>
+        artifact?.source_term_projected_slot_variation_bound_target_checks?.[
+          kind
+        ] !== true
+    ) ||
+    artifact?.source_term_projected_slot_variation_bound_target_verified !==
+      true ||
+    artifact?.source_term_projected_slot_variation_bound_target_certified !==
+      false ||
+    artifact
+      ?.directed_rounded_same_domain_source_term_variation_bound_available !==
+      false ||
+    typeof artifact?.all_projected_slots_have_midpoint_zero_anchor !==
+      "boolean" ||
+    typeof artifact?.all_projected_slot_variation_bound_targets_positive !==
+      "boolean" ||
+    !Number.isInteger(
+      artifact?.projected_slot_midpoint_zero_anchor_defect_count
+    ) ||
+    !finiteNonnegative(
+      artifact?.max_projected_slot_midpoint_zero_anchor_endpoint_shift_required
+    ) ||
+    typeof artifact
+      ?.all_available_expression_envelopes_exceed_projected_slot_variation_targets !==
+      "boolean" ||
+    typeof artifact
+      ?.all_available_retained_trace_envelopes_exceed_projected_slot_variation_targets !==
+      "boolean" ||
+    artifact
+      ?.all_source_term_projected_slot_variation_bound_claims_remain_open !==
+      true ||
+    artifact
+      ?.source_term_projected_slot_variation_bound_target_row_count !== 5 ||
+    artifact
+      ?.source_term_projected_slot_variation_bound_term_row_count !== 15 ||
+    ![
+      "projected-slot-midpoint-zero-variation-bound-targets-materialized",
+      "projected-slot-midpoint-zero-anchor-defect-quantified",
+      "source-term-projected-slot-variation-bound-target-open",
+    ].includes(
+      artifact
+        ?.source_term_projected_slot_variation_bound_target_classification
+    ) ||
+    ![
+      "directed-rounded-same-domain-source-term-variation-bound-absent-after-numeric-slot-targets",
+      "projected-source-term-slot-anchor-correction-needed-before-variation-bound",
+      "source-term-projected-slot-variation-bound-target-open",
+    ].includes(
+      artifact
+        ?.source_term_projected_slot_variation_bound_target_blocker_classification
+    ) ||
+    ![
+      "directed-rounded-same-domain-source-term-variation-bound",
+      "projected-source-term-slot-midpoint-zero-anchor-identity",
+      "directed-rounded-same-domain-source-term-producer-image-bound",
+    ].includes(
+      artifact
+        ?.source_term_projected_slot_variation_bound_target_primary_missing_object_kind
+    )
+  ) {
+    errors.push("source-term projected-slot variation-bound target aggregate must fail closed with numeric targets or anchor defects");
+  }
+  if (
+    artifact?.all_projected_slot_variation_bound_targets_positive === true &&
+    (!finitePositive(
+      artifact
+        ?.min_projected_slot_allowable_same_domain_source_term_variation_bound
+    ) ||
+      !finitePositive(
+        artifact
+          ?.max_expression_half_width_to_projected_slot_variation_bound_ratio
+      ))
+  ) {
+    errors.push("positive projected-slot variation-bound targets must expose finite aggregate margins and expression ratios");
+  }
+  if (
+    artifact?.all_projected_slot_variation_bound_targets_positive === false &&
+    (!Number.isInteger(
+      artifact?.projected_slot_midpoint_zero_anchor_defect_count
+    ) ||
+      Number(artifact.projected_slot_midpoint_zero_anchor_defect_count) <= 0 ||
+      !finitePositive(
+        artifact
+          ?.max_projected_slot_midpoint_zero_anchor_endpoint_shift_required
+      ))
+  ) {
+    errors.push("anchor-defect projected-slot variation-bound targets must expose a positive defect count and endpoint shift");
+  }
+  const rows =
+    artifact?.source_term_projected_slot_variation_bound_target_rows ?? [];
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== 5 ||
+    !rows.every(
+      (row, index) =>
+        row?.node_index === index &&
+        Number.isFinite(Number(row?.xi_midpoint)) &&
+        row?.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+        row?.required_xi_derivative_order === 4 &&
+        row?.source_term_projected_slot_variation_bound_target_row_kind ===
+          "projected-source-term-slot-midpoint-zero-variation-bound-target-row" &&
+        row?.provider_row_source_kind ===
+          "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+        sameTerms(row?.source_terms_preserved_signed_together) &&
+        sameZeroTerms(row?.zero_source_terms) &&
+        row?.enclosure_identity_attempt_row_status ===
+          "source-term-producer-image-enclosure-identity-fails-projected-slot-expression-inclusion" &&
+        Array.isArray(
+          row?.source_term_projected_slot_variation_bound_term_rows
+        ) &&
+        row.source_term_projected_slot_variation_bound_term_rows.length ===
+          H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+        row.source_term_projected_slot_variation_bound_term_rows.every(
+          (termRow, termIndex) =>
+            termRow?.term ===
+              H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS[termIndex] &&
+            hasOrderedFiniteInterval(
+              termRow?.projected_directed_rounded_source_term_interval
+            ) &&
+            hasOrderedFiniteInterval(
+              termRow
+                ?.projected_directed_rounded_source_term_residual_interval
+            ) &&
+            hasOrderedFiniteInterval(
+              termRow?.expression_source_term_interval_witness
+            ) &&
+            hasOrderedFiniteInterval(
+              termRow?.expression_source_term_residual_interval_witness
+            ) &&
+            hasOrderedFiniteInterval(
+              termRow?.retained_trace_source_term_interval_witness
+            ) &&
+            hasOrderedFiniteInterval(
+              termRow?.retained_trace_source_term_residual_interval_witness
+            ) &&
+            Number.isFinite(
+              Number(termRow?.expression_source_term_midpoint_witness)
+            ) &&
+            validPointMargin(
+              termRow?.projected_value_midpoint_containment_margin
+            ) &&
+            validPointMargin(
+              termRow?.projected_residual_zero_containment_margin
+            ) &&
+            typeof termRow?.projected_slot_has_midpoint_zero_anchor ===
+              "boolean" &&
+            typeof termRow
+              ?.projected_slot_variation_bound_target_positive ===
+              "boolean" &&
+            finiteNonnegative(
+              termRow
+                ?.projected_slot_midpoint_zero_anchor_endpoint_shift_required
+            ) &&
+            [
+              "none",
+              "midpoint-or-residual-zero-outside-projected-slot",
+            ].includes(
+              termRow?.projected_slot_midpoint_zero_anchor_defect_kind
+            ) &&
+            finiteNonnegative(termRow?.projected_value_half_width_budget) &&
+            finiteNonnegative(termRow?.projected_residual_half_width_budget) &&
+            finiteNonnegative(termRow?.expression_value_half_width_witness) &&
+            finiteNonnegative(
+              termRow?.expression_residual_half_width_witness
+            ) &&
+            finiteNonnegative(
+              termRow?.retained_trace_value_half_width_witness
+            ) &&
+            finiteNonnegative(
+              termRow?.retained_trace_residual_half_width_witness
+            ) &&
+            (termRow.projected_slot_has_midpoint_zero_anchor === false ||
+              (finitePositive(
+                termRow
+                  .projected_slot_allowable_same_domain_source_term_variation_bound
+              ) &&
+                finiteNonnegative(
+                  termRow
+                    .expression_value_half_width_to_projected_slot_variation_bound_ratio
+                ) &&
+                finiteNonnegative(
+                  termRow
+                    .expression_residual_half_width_to_projected_slot_variation_bound_ratio
+                ) &&
+                finiteNonnegative(
+                  termRow
+                    .retained_trace_value_half_width_to_projected_slot_variation_bound_ratio
+                ) &&
+                finiteNonnegative(
+                  termRow
+                    .retained_trace_residual_half_width_to_projected_slot_variation_bound_ratio
+                ))) &&
+            typeof termRow
+              ?.current_expression_envelope_fits_projected_slot_variation_bound_target ===
+              "boolean" &&
+            typeof termRow
+              ?.current_retained_trace_envelope_fits_projected_slot_variation_bound_target ===
+              "boolean" &&
+            typeof termRow
+              ?.current_expression_envelope_exceeds_projected_slot_variation_bound_target ===
+              "boolean" &&
+            typeof termRow
+              ?.current_retained_trace_envelope_exceeds_projected_slot_variation_bound_target ===
+              "boolean" &&
+            termRow
+              ?.directed_rounded_same_domain_source_term_variation_bound_available ===
+              false &&
+            termRow
+              ?.source_term_projected_slot_variation_bound_target_certified ===
+              false &&
+            typeof termRow?.variation_bound_sufficient_condition ===
+              "string" &&
+            validTermClaimBoundary(termRow?.claim_boundary)
+        ) &&
+        typeof row?.row_all_projected_slots_have_midpoint_zero_anchor ===
+          "boolean" &&
+        typeof row
+          ?.row_all_projected_slot_variation_bound_targets_positive ===
+          "boolean" &&
+        Number.isInteger(
+          row?.row_projected_slot_midpoint_zero_anchor_defect_count
+        ) &&
+        finiteNonnegative(
+          row?.row_max_projected_slot_midpoint_zero_anchor_endpoint_shift_required
+        ) &&
+        typeof row
+          ?.row_all_available_expression_envelopes_exceed_projected_slot_variation_targets ===
+          "boolean" &&
+        typeof row
+          ?.row_all_available_retained_trace_envelopes_exceed_projected_slot_variation_targets ===
+          "boolean" &&
+        sameStringSet(row?.row_check_kinds, expectedRowCheckKinds) &&
+        expectedRowCheckKinds.every(
+          (kind) => row?.row_checks?.[kind] === true
+        ) &&
+        row?.row_source_term_projected_slot_variation_bound_target_verified ===
+          true &&
+        row
+          ?.row_certifies_source_term_projected_slot_variation_bound_target ===
+          false &&
+        [
+          "source-term-projected-slot-variation-bound-targets-materialized-certification-open",
+          "source-term-projected-slot-anchor-defect-quantified-certification-open",
+          "source-term-projected-slot-variation-bound-target-row-open",
+        ].includes(row?.row_status) &&
+        validRowClaimBoundary(row?.claim_boundary)
+    )
+  ) {
+    errors.push("source-term projected-slot variation-bound target rows must expose termwise margins and keep certification open");
+  }
+  if (
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string" ||
+    !validRowClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("source-term projected-slot variation-bound target must keep broad closure claims open");
   }
   return errors;
 }

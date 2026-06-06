@@ -551,7 +551,31 @@ but the existing constants contract/fallback notes are scoped to
 `seed-doubled-four-arc-cosine-template-v0`, `Sigma_1` through `Sigma_4`, and 16
 fold rows rather than this higher-fold packet, `Sigma_hf_01` through
 `Sigma_hf_12`, and 112 fold-layer rows.
-All thirty classifier/attempt artifacts keep `preledger_pass=false`,
+The higher-fold constants artifact field obligation classifier then freezes the
+live accepted-constants target fields without accepting them: 12 / 12 separator
+profiles and 112 / 112 rows have live packet identity, `M_delta`, `Gamma/g`,
+row projection/source-slice coverage, dual-mollified row integrand interval
+enclosures, row impulse enclosures, and separator aggregate fields. It still
+records 0 accepted constants artifacts, 0 accepted constants statuses, 0
+accepted `higher_fold_layer_atlas_ref` refs, 0 source-packet acceptance rules,
+0 accepted impulse/direct-quadrature source packets, 0
+`parent_complement_consumption_ref` fields, and 0 separator certificates.
+The candidate-live higher-fold constants artifact materialization attempt then
+packages those exact interval fields into 1 candidate/live constants artifact
+with 12 / 12 separator constants entries and 112 / 112 row associations. It
+still records 0 accepted higher-fold constants artifacts, 0 accepted
+interval-certified constants statuses, 0 source-packet acceptance rules, 0
+accepted impulse/direct-quadrature source packets, 0
+`parent_complement_consumption_ref` fields, and 0 separator certificates.
+The candidate-live higher-fold constants artifact consistency classifier then
+verifies 5 / 5 materialization source-hash locks, 12 / 12 separator exact-field
+and exact-arithmetic consistency classifications, and 112 / 112 row exact-field
+and exact-arithmetic consistency classifications. It still records 0 accepted
+higher-fold constants artifacts, 0 accepted interval-certified constants
+statuses, 0 source-packet acceptance rules, 0 accepted impulse/direct-quadrature
+source packets, 0 `parent_complement_consumption_ref` fields, and 0 separator
+certificates.
+All thirty-three classifier/attempt artifacts keep `preledger_pass=false`,
 `updates_live_ledger=false`, row consumption 0, and no branch-chart
 authorization.
 

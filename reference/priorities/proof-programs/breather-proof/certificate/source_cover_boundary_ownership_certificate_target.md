@@ -309,6 +309,22 @@ fails closed because the existing constants contract/fallback notes are scoped
 to the seed packet, `Sigma_1` through `Sigma_4`, and 16 fold rows rather than
 the higher-fold packet, `Sigma_hf_01` through `Sigma_hf_12`, and 112 fold-layer
 rows.
+The higher-fold constants artifact field obligation classifier then freezes the
+live accepted-constants target fields without accepting them: all 12 / 12
+separator profiles and 112 / 112 rows carry live packet identity, `M_delta`,
+`Gamma/g`, row projection/source-slice coverage, dual-mollified row integrand
+interval enclosures, row impulse enclosures, and separator aggregate fields,
+while accepted constants artifacts and accepted constants statuses remain
+absent.
+The candidate-live higher-fold constants artifact materialization attempt then
+packages those fields into 1 candidate/live same-packet higher-fold constants
+artifact with 12 / 12 separator constants entries and 112 / 112 row
+associations, while accepted interval-certified constants statuses remain absent.
+The candidate-live higher-fold constants artifact consistency classifier then
+verifies 5 / 5 materialization source-hash locks, 12 / 12 separator exact-field
+and exact-arithmetic consistency classifications, and 112 / 112 row exact-field
+and exact-arithmetic consistency classifications, while accepted
+interval-certified constants statuses remain absent.
 Accepted atlas refs, source-packet acceptance rules, accepted
 impulse/direct-quadrature source packets, parent-complement consumption refs,
 separator certificates, row consumption, `preledger_pass`, live-ledger updates,
