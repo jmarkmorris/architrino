@@ -460,6 +460,59 @@ The next solver should therefore:
    and no branch-chart authorization. The current child-field blocker is
    `child_field_source_ref_handle_not_proof_grade_ref` plus
    `candidate_parity_delta_record_not_proof_grade_ref`;
+   the derivation source-data proof attempt then packages complete
+   derivation-source-data records for `alpha_floor`, `exit_floor`, and
+   `fold_layer_parity_record` for 12 / 12 separator profiles and 112 / 112
+   rows. It preserves 12 / 12 candidate parity delta records and 112 / 112
+   row-level candidate parity delta associations, while keeping 0 proof-grade
+   child refs, 0 proof-grade parity delta fields, 0 row consumption,
+   `preledger_pass=false`, and no branch-chart authorization. The current
+   child-field blocker is complete derivation source data that still is not a
+   `proof_grade_ref`: `child_field_source_ref_handle_not_proof_grade_ref` plus
+   `candidate_parity_delta_record_not_proof_grade_ref`;
+   the source-data proof-grade ref obligation classifier then counts
+   336 missing child-field `proof_grade_ref` obligations and 448 missing
+   proof-grade parity delta field obligations across 112 / 112 rows, while
+   keeping 12 / 12 candidate parity delta records and 112 / 112 row-level
+   candidate parity delta associations source-side only, 0 proof-grade child
+   refs, 0 proof-grade parity delta rows, 0 row consumption,
+   `preledger_pass=false`, and no branch-chart authorization. The current
+   child-field blocker is counted proof-grade obligations still unsatisfied:
+   `child_field_source_ref_handle_not_proof_grade_ref` plus
+   `candidate_parity_delta_record_not_proof_grade_ref`;
+   the proof-grade derivation application attempt then applies a strict
+   existing-proof-grade-derivation-ref test to those obligations, constructing
+   0 proof-grade `alpha_floor` refs, 0 proof-grade `exit_floor` refs,
+   0 proof-grade `fold_layer_parity_record` refs, and 0 proof-grade parity
+   delta rows across the same 112 rows. The current child-field blocker is no
+   imported proof-grade child derivation ref:
+   `proof_grade_alpha_floor_derivation_absent`,
+   `proof_grade_exit_floor_derivation_absent`,
+   `proof_grade_fold_layer_parity_record_absent`, and
+   `proof_grade_fold_layer_parity_record_delta_fields_absent`;
+   the source-certificate bridge attempt then records available root-tube
+   source certificates for 112 / 112 alpha-floor row associations and
+   112 / 112 fold-layer parity row associations, plus 112 / 112 exit candidate
+   interval-width sources, while constructing 0 generic
+   source-certificate-to-child-field derivation bridges; the alpha-floor
+   root-tube derivative-floor
+   proof-grade derivation attempt then constructs 112 / 112 proof-grade
+   `alpha_floor` refs from 12 / 12 one-root separator tubes, 12 / 12 positive
+   derivative floors, 0 failing derivative-piece profiles, and 112 / 112 exact
+   source-data/root-tube rational matches, with 0 source-ref-as-proof-ref reuse.
+   It still constructs 0 proof-grade `exit_floor` refs, 0 proof-grade
+   `fold_layer_parity_record` refs, and 0 proof-grade parity delta rows; the
+   fold-layer parity-record root-tube topology proof-grade derivation attempt
+   then constructs 112 / 112 proof-grade `fold_layer_parity_record` refs and
+   112 / 112 complete proof-grade parity delta rows from 12 / 12 one-root
+   separator tubes, 12 / 12 endpoint sign-change certificates, 12 / 12
+   complement no-extra-root profiles, and 0 failing derivative-piece profiles,
+   with 0 source-ref-as-proof-ref reuse. It still constructs 0 proof-grade
+   `exit_floor` refs; the exit-floor interval-width source-certificate attempt
+   then constructs 112 / 112 proof-grade `exit_floor` source certificates from
+   exact same-packet interval-width checks and distinct
+   `proof_source_certificate_ref` handles, while still constructing 0
+   proof-grade `exit_floor` refs;
 4. assemble the signed gap derivative matrix $A$ for the selected orientations
    above;
 5. keep the structural constraint matrix $B=DC(\mathbf a_0)$, including section,

@@ -10,7 +10,7 @@ Wonder question: Where did it go?
 
 Discovery sentence: Things can be here, go there, and come back.
 
-Text status: Book 1 production-prompt draft; source images not yet generated for the Electra/Poz version.
+Text status: Book 1 first-draft production pages generated; source-image QA pending review.
 
 ## Book Promise
 

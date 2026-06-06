@@ -249,6 +249,46 @@ candidate parity delta records and 112 / 112 row-level candidate parity delta
 associations, while keeping 0 proof-grade child fields, 0 proof-grade parity
 delta fields, 0 row consumption, `preledger_pass=false`, no live-ledger update,
 and no branch-chart authorization.
+The child-field derivation source-data proof attempt then packages those handles
+as complete derivation-source-data records for `alpha_floor`, `exit_floor`, and
+`fold_layer_parity_record` for 12 / 12 separator profiles and 112 / 112 rows.
+It preserves 12 / 12 candidate parity delta records and 112 / 112 row-level
+candidate parity delta associations, while keeping 0 proof-grade child refs,
+0 proof-grade parity delta fields, 0 row consumption, `preledger_pass=false`, no
+live-ledger update, and no branch-chart authorization.
+The child-field source-data proof-grade ref obligation classifier then counts
+336 missing child-field `proof_grade_ref` obligations and 448 missing
+proof-grade parity delta field obligations across the same 112 rows. It keeps
+candidate parity delta data source-side only and keeps 0 proof-grade child refs,
+0 proof-grade parity delta rows, 0 row consumption, `preledger_pass=false`, no
+live-ledger update, and no branch-chart authorization.
+The child-field proof-grade derivation application attempt then applies a
+strict existing-proof-grade-derivation-ref test to those counted obligations.
+It constructs 0 proof-grade `alpha_floor` refs, 0 proof-grade `exit_floor` refs,
+0 proof-grade `fold_layer_parity_record` refs, and 0 proof-grade parity delta
+rows across the same 112 rows. It consumes no rows, keeps
+`preledger_pass=false`, keeps live-ledger update false, and authorizes no branch
+chart. This sharpens the parallel fold-layer child-field handoff but still does
+not change the source-cover theorem target or authorize source-cover row
+consumption.
+The source-certificate bridge attempt then records the source-side split for
+the fold-layer child fields: 112 / 112 alpha-floor root-tube derivative-floor
+source certificates, 112 / 112 exit candidate interval-width sources, and
+112 / 112 fold-layer parity root-tube topology source certificates, but 0
+generic source-certificate-to-child-field derivation bridges. The alpha-floor
+root-tube derivative-floor proof-grade derivation attempt then constructs
+112 / 112 proof-grade `alpha_floor` refs from exact root-tube certificate facts
+with 0 source-ref-as-proof-ref reuse. The fold-layer parity-record root-tube
+topology proof-grade derivation attempt then constructs 112 / 112 proof-grade
+`fold_layer_parity_record` refs and 112 / 112 complete proof-grade parity delta
+rows from the one-root/complement topology certificate, again with 0
+source-ref-as-proof-ref reuse. The exit-floor interval-width source-certificate
+attempt then constructs 112 / 112 proof-grade `exit_floor` source certificates
+from exact same-packet interval-width checks, but still constructs 0 proof-grade
+`exit_floor` refs. Separator certificates, row consumption, `preledger_pass`,
+live-ledger updates, and branch-chart authorization remain at 0. This improves
+the parallel fold-layer field ledger but still does not change the source-cover
+theorem target or authorize source-cover row consumption.
 
 ## First Probe Rows
 

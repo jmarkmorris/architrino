@@ -58,6 +58,9 @@ import {
   buildH39RequestedY44TerminalS37FiveCellDependencyPreservingDivisionProviderCertificateCandidate,
   buildH39RequestedY44TerminalRowProviderEnclosureWitnessCandidate,
   buildH39RequestedY44DirectedRoundedSharedDomainProviderBoundaryReplayCandidate,
+  buildH39RequestedY44SourceTermRealizationProvenanceBridgeCandidate,
+  buildH39RequestedY44ExpressionN38SourceMapResidualEnvelopeProvenanceAuditCandidate,
+  buildH39RequestedY44SourceTermProducerImageProvenancePrimitiveAuditCandidate,
   buildH39RequestedY44RowLocalN38SignedSourceSumDerivativeProviderCandidate,
   validateH39CorrelatedResidualWidthDiagnostic,
   validateH39H38NumeratorGraphLocalPartitionDiagnostic,
@@ -112,6 +115,9 @@ import {
   validateH39RequestedY44TerminalS37FiveCellDependencyPreservingDivisionProviderCertificateCandidate,
   validateH39RequestedY44TerminalRowProviderEnclosureWitnessCandidate,
   validateH39RequestedY44DirectedRoundedSharedDomainProviderBoundaryReplayCandidate,
+  validateH39RequestedY44SourceTermRealizationProvenanceBridgeCandidate,
+  validateH39RequestedY44ExpressionN38SourceMapResidualEnvelopeProvenanceAuditCandidate,
+  validateH39RequestedY44SourceTermProducerImageProvenancePrimitiveAuditCandidate,
   validateH39RequestedY44RowLocalN38SignedSourceSumDerivativeProvider,
   validateH39RequestedY44SignedSourceSumDerivativeAllocationTarget,
   validateH39RequestedY44SourceMapResidualCovarianceTarget,
@@ -14285,6 +14291,622 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   assert.deepEqual(
     collectExactKeys(
       directedRoundedSharedDomainProviderBoundaryReplay,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const sourceTermRealizationProvenanceBridge =
+    buildH39RequestedY44SourceTermRealizationProvenanceBridgeCandidate({
+      sourceMapResidualCovarianceTarget,
+      n38SourceMapEnvelopeReadiness,
+      directedRoundedSharedDomainProviderBoundaryReplay,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44SourceTermRealizationProvenanceBridgeCandidate(
+      sourceTermRealizationProvenanceBridge
+    ),
+    []
+  );
+  assert.equal(
+    sourceTermRealizationProvenanceBridge
+      .source_term_provider_probe_term_width_realization_open,
+    true
+  );
+  assert.equal(
+    sourceTermRealizationProvenanceBridge
+      .source_term_provider_term_width_realization_reduced_to_signed_radius_source_provenance,
+    true
+  );
+  assert.equal(
+    sourceTermRealizationProvenanceBridge
+      .source_term_provider_term_width_realization_is_primary_blocker,
+    false
+  );
+  assert.equal(
+    sourceTermRealizationProvenanceBridge
+      .source_term_provider_directed_source_certification_open,
+    true
+  );
+  assert.equal(
+    sourceTermRealizationProvenanceBridge
+      .expression_level_n38_source_map_residual_envelope_open,
+    true
+  );
+  assert.deepEqual(
+    sourceTermRealizationProvenanceBridge
+      .source_term_realization_bridge_check_kinds,
+    [
+      "source_term_provider_probe_reaches_aggregate_boundary",
+      "source_term_provider_probe_term_width_open",
+      "source_term_realization_reduces_to_homothetic_contraction",
+      "homothetic_normal_form_reconstructs_provider_terms",
+      "homothetic_scalar_factorization_verified",
+      "scalar_provider_target_reduces_to_two_sources",
+      "quotient_envelope_reduces_to_source_interval_inclusion",
+      "quotient_source_inclusion_reduces_to_relative_radius_provider",
+      "quotient_source_radius_budget_reduces_to_absolute_source_radii",
+      "signed_numerator_budget_route_available",
+      "signed_radius_quotient_compatible_target_ready",
+      "signed_radius_acceptance_reaches_verifier_boundary",
+      "h38_source_provenance_bridge_rows_ready",
+      "n38_source_map_readiness_boundary_ready",
+      "terminal_boundary_replay_verified",
+    ]
+  );
+  assert.ok(
+    Object.values(
+      sourceTermRealizationProvenanceBridge
+        .source_term_realization_bridge_checks
+    ).every((value) => value === true)
+  );
+  assert.deepEqual(
+    sourceTermRealizationProvenanceBridge
+      .remaining_source_certification_blocker_kinds,
+    [
+      "directed_rounded_source_provenance_open",
+      "expression_level_n38_source_map_residual_envelope_open",
+    ]
+  );
+  assert.equal(
+    sourceTermRealizationProvenanceBridge
+      .source_term_realization_provenance_bridge_verified,
+    true
+  );
+  assert.equal(
+    sourceTermRealizationProvenanceBridge
+      .source_term_realization_provenance_bridge_certified_directed_rounded,
+    false
+  );
+  assert.equal(
+    sourceTermRealizationProvenanceBridge
+      .source_term_realization_provenance_bridge_classification,
+    "source-term-realization-reduces-to-signed-radius-provenance-source-envelope-open"
+  );
+  assert.equal(
+    sourceTermRealizationProvenanceBridge
+      .source_term_realization_blocker_classification,
+    "expression-level-n38-source-map-residual-envelope-open-after-source-term-realization-bridge"
+  );
+  assert.equal(
+    sourceTermRealizationProvenanceBridge
+      .source_term_realization_provenance_bridge_row_count,
+    5
+  );
+  assert.ok(
+    sourceTermRealizationProvenanceBridge.source_term_realization_provenance_bridge_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.provider_row_source_kind ===
+          "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+        row.source_term_provider_probe_row_status ===
+          "candidate-source-term-provider-row-fits-center-aware-target-source-certification-open" &&
+        row.signed_radius_acceptance_row_status ===
+          "candidate-quotient-compatible-provider-target-contained-source-certification-open" &&
+        row.h38_source_provenance_bridge_row_status ===
+          "h39-provider-row-ready-waits-on-expression-level-n38-source-provenance" &&
+        row.n38_readiness_row_status ===
+          "h39-source-map-obligation-compatible-with-terminal-affine-endpoint-route-producer-interval-width-open" &&
+        row.terminal_boundary_replay_row_status ===
+          "directed-rounded-boundary-replay-reaches-source-map-provider-source-term-certification-open" &&
+        Object.values(row.row_checks).every((value) => value === true) &&
+        row.row_reduces_term_width_to_signed_radius_source_provenance ===
+          true &&
+        row.source_term_provider_directed_source_certification_open === true &&
+        row.expression_level_n38_source_envelope_open === true &&
+        row.claim_boundary
+          .certifies_source_term_provider_realization === false &&
+        row.claim_boundary
+          .certifies_source_inputs_as_directed_rounded_same_domain === false &&
+        row.claim_boundary.certifies_expression_level_n38_provider ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain ===
+          false &&
+        row.row_status ===
+          "source-term-realization-reduced-to-signed-radius-source-provenance-open"
+    )
+  );
+  assert.equal(
+    sourceTermRealizationProvenanceBridge.claim_boundary
+      .defines_source_term_realization_provenance_bridge_only,
+    true
+  );
+  assert.equal(
+    sourceTermRealizationProvenanceBridge.claim_boundary
+      .certifies_source_term_provider_realization,
+    false
+  );
+  assert.equal(
+    sourceTermRealizationProvenanceBridge.claim_boundary
+      .certifies_source_inputs_as_directed_rounded_same_domain,
+    false
+  );
+  assert.equal(
+    sourceTermRealizationProvenanceBridge.claim_boundary
+      .certifies_expression_level_n38_provider,
+    false
+  );
+  assert.equal(
+    sourceTermRealizationProvenanceBridge.claim_boundary
+      .certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.deepEqual(
+    collectTrueCertifies(sourceTermRealizationProvenanceBridge),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      sourceTermRealizationProvenanceBridge,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const expressionN38SourceMapResidualEnvelopeProvenanceAudit =
+    buildH39RequestedY44ExpressionN38SourceMapResidualEnvelopeProvenanceAuditCandidate(
+      {
+        sourceMapResidualCovarianceTarget,
+        sourceTermRealizationProvenanceBridge,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44ExpressionN38SourceMapResidualEnvelopeProvenanceAuditCandidate(
+      expressionN38SourceMapResidualEnvelopeProvenanceAudit
+    ),
+    []
+  );
+  assert.equal(
+    expressionN38SourceMapResidualEnvelopeProvenanceAudit
+      .expression_n38_source_map_residual_term_sum_identity_verified,
+    true
+  );
+  assert.equal(
+    expressionN38SourceMapResidualEnvelopeProvenanceAudit
+      .expression_n38_source_map_residual_weighted_identity_verified,
+    true
+  );
+  assert.equal(
+    expressionN38SourceMapResidualEnvelopeProvenanceAudit
+      .expression_n38_source_map_residual_identity_verified,
+    true
+  );
+  assert.equal(
+    expressionN38SourceMapResidualEnvelopeProvenanceAudit
+      .expression_n38_source_map_residual_envelope_source_provenance_available,
+    false
+  );
+  assert.equal(
+    expressionN38SourceMapResidualEnvelopeProvenanceAudit
+      .expression_n38_source_map_residual_envelope_certified_directed_rounded,
+    false
+  );
+  assert.equal(
+    expressionN38SourceMapResidualEnvelopeProvenanceAudit
+      .expression_n38_source_map_residual_envelope_open,
+    true
+  );
+  assert.deepEqual(
+    expressionN38SourceMapResidualEnvelopeProvenanceAudit
+      .expression_envelope_provenance_audit_check_kinds,
+    [
+      "trace_anchor_rows_match_selected_source_rows",
+      "trace_anchor_eliminates_constant_minus_two",
+      "trace_anchor_keeps_directed_source_open",
+      "shared_stream_has_one_h38_source_map_residual",
+      "h38_source_provenance_bridge_reduces_to_expression_envelope",
+      "source_term_realization_bridge_verified",
+      "signed_radius_acceptance_reaches_boundary",
+      "expression_residual_term_sum_identities_close",
+      "expression_residual_weighted_identities_close",
+      "no_existing_trace_anchor_certifies_directed_source",
+      "no_existing_acceptance_row_certifies_directed_source",
+      "no_existing_bridge_row_certifies_directed_source",
+    ]
+  );
+  assert.ok(
+    Object.values(
+      expressionN38SourceMapResidualEnvelopeProvenanceAudit
+        .expression_envelope_provenance_audit_checks
+    ).every((value) => value === true)
+  );
+  assert.deepEqual(
+    expressionN38SourceMapResidualEnvelopeProvenanceAudit
+      .remaining_expression_envelope_blocker_kinds,
+    [
+      "directed_rounded_same_domain_source_term_producer_image_provenance_open",
+      "expression_level_n38_source_map_residual_envelope_open",
+    ]
+  );
+  assert.equal(
+    expressionN38SourceMapResidualEnvelopeProvenanceAudit
+      .expression_n38_source_map_residual_envelope_classification,
+    "expression-n38-source-map-residual-arithmetic-closed-source-provenance-open"
+  );
+  assert.equal(
+    expressionN38SourceMapResidualEnvelopeProvenanceAudit
+      .expression_n38_source_map_residual_envelope_blocker_classification,
+    "directed-rounded-source-term-producer-image-provenance-open-after-expression-residual-identities"
+  );
+  assert.equal(
+    expressionN38SourceMapResidualEnvelopeProvenanceAudit
+      .expression_n38_source_map_residual_envelope_primary_missing_object_kind,
+    "directed-rounded-same-domain-source-term-producer-image-provenance"
+  );
+  assert.equal(
+    expressionN38SourceMapResidualEnvelopeProvenanceAudit
+      .expression_envelope_provenance_row_count,
+    5
+  );
+  assert.ok(
+    expressionN38SourceMapResidualEnvelopeProvenanceAudit.expression_envelope_provenance_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.expression_envelope_provenance_row_kind ===
+          "expression-n38-source-map-residual-term-identity-source-provenance-row" &&
+        row.source_terms_preserved_signed_together.includes(
+          "delta_squared_speed"
+        ) &&
+        row.source_terms_preserved_signed_together.includes("sin_phi") &&
+        row.source_terms_preserved_signed_together.includes("sin_delta") &&
+        row.source_term_residual_sum_endpoint_relative_gap <= 1e-12 &&
+        row.weighted_source_term_sum_endpoint_relative_gap <= 1e-12 &&
+        row.quotient_compatible_signed_interval_subset_of_live_residual ===
+          true &&
+        row.quotient_compatible_weighted_interval_subset_of_live_residual ===
+          true &&
+        Object.values(row.row_checks).every((value) => value === true) &&
+        row.expression_source_provenance_available === false &&
+        row.expression_source_provenance_missing_object_kind ===
+          "directed-rounded-same-domain-source-term-producer-image-provenance" &&
+        row.row_verifies_expression_residual_identity === true &&
+        row.row_certifies_expression_source_provenance === false &&
+        row.claim_boundary
+          .certifies_source_inputs_as_directed_rounded_same_domain === false &&
+        row.claim_boundary.certifies_expression_level_n38_provider ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain ===
+          false &&
+        row.row_status ===
+          "expression-n38-source-map-residual-identity-closed-source-provenance-open"
+    )
+  );
+  assert.equal(
+    expressionN38SourceMapResidualEnvelopeProvenanceAudit.claim_boundary
+      .defines_expression_n38_source_map_residual_envelope_provenance_audit_only,
+    true
+  );
+  assert.equal(
+    expressionN38SourceMapResidualEnvelopeProvenanceAudit.claim_boundary
+      .certifies_expression_level_n38_provider,
+    false
+  );
+  assert.equal(
+    expressionN38SourceMapResidualEnvelopeProvenanceAudit.claim_boundary
+      .certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      expressionN38SourceMapResidualEnvelopeProvenanceAudit
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      expressionN38SourceMapResidualEnvelopeProvenanceAudit,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const sourceTermProducerImagePrimitiveAudit =
+    buildH39RequestedY44SourceTermProducerImageProvenancePrimitiveAuditCandidate(
+      {
+        sourceMapResidualCovarianceTarget,
+        expressionN38SourceMapResidualEnvelopeProvenanceAudit,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44SourceTermProducerImageProvenancePrimitiveAuditCandidate(
+      sourceTermProducerImagePrimitiveAudit
+    ),
+    []
+  );
+  const sourceTermProducerImagePrimitiveRequiredFields = [
+    "source_term_residual_rows[].directed_rounded_source_term_interval",
+    "source_term_residual_rows[].directed_rounded_source_term_residual_interval",
+    "source_term_residual_rows[].source_term_producer_image_domain",
+    "source_term_residual_rows[].source_term_producer_image_radius",
+    "source_term_residual_rows[].source_term_outward_rounding_primitive",
+    "source_term_residual_rows[].claim_boundary.certifies_source_term_as_directed_rounded_same_domain",
+  ];
+  const sourceTermProducerImageTraceRetentionFields = [
+    "source_map_residual_trace_anchor_rows[].source_term_trace_rows",
+    "source_map_residual_trace_anchor_rows[].source_term_zero_constant_rows",
+  ];
+  assert.equal(
+    sourceTermProducerImagePrimitiveAudit
+      .source_term_producer_image_trace_summary_available,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImagePrimitiveAudit
+      .source_term_producer_image_zero_constant_removed,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImagePrimitiveAudit
+      .source_term_intervals_present_for_three_terms,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImagePrimitiveAudit
+      .source_term_residual_intervals_present_for_three_terms,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImagePrimitiveAudit
+      .source_term_intervals_replay_expression_residual_identity,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImagePrimitiveAudit
+      .retained_h0_h34_trace_direct_value_replay_fails,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImagePrimitiveAudit
+      .retained_h0_h34_trace_direct_residual_replay_fails,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImagePrimitiveAudit
+      .retained_zero_constant_trace_direct_replay_fails,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImagePrimitiveAudit
+      .retained_h0_h34_trace_replays_source_term_intervals,
+    false
+  );
+  assert.equal(
+    sourceTermProducerImagePrimitiveAudit
+      .retained_h0_h34_trace_replays_source_term_residuals,
+    false
+  );
+  assert.equal(
+    sourceTermProducerImagePrimitiveAudit
+      .retained_zero_constant_trace_replays_nonconstant_terms,
+    false
+  );
+  assert.equal(
+    sourceTermProducerImagePrimitiveAudit
+      .full_h0_h34_producer_image_trace_retained_in_source_map_target,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImagePrimitiveAudit
+      .source_term_directed_rounded_provenance_fields_present,
+    false
+  );
+  assert.equal(
+    sourceTermProducerImagePrimitiveAudit
+      .source_term_directed_rounded_provenance_retained_in_source_map_target,
+    false
+  );
+  assert.equal(
+    sourceTermProducerImagePrimitiveAudit
+      .source_term_producer_image_provenance_primitive_audit_verified,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImagePrimitiveAudit
+      .source_term_producer_image_provenance_certified_directed_rounded,
+    false
+  );
+  assert.deepEqual(
+    sourceTermProducerImagePrimitiveAudit
+      .source_term_producer_image_primitive_required_fields,
+    sourceTermProducerImagePrimitiveRequiredFields
+  );
+  assert.deepEqual(
+    sourceTermProducerImagePrimitiveAudit
+      .source_term_producer_image_primitive_audit_check_kinds,
+    [
+      "trace_anchor_summary_available",
+      "trace_anchor_eliminates_constant_minus_two",
+      "trace_anchor_keeps_directed_source_open",
+      "source_term_rows_present_for_three_terms",
+      "source_term_value_intervals_present_for_three_terms",
+      "source_term_residual_intervals_present_for_three_terms",
+      "source_term_value_sums_replay_signed_source_term_intervals",
+      "source_term_residual_sums_replay_expression_residuals",
+      "expression_residual_audit_already_closed",
+      "full_h0_h34_producer_image_trace_retained",
+      "retained_h0_h34_trace_direct_value_replay_fails",
+      "retained_h0_h34_trace_direct_residual_replay_fails",
+      "retained_zero_constant_trace_direct_replay_fails",
+      "directed_rounded_primitive_fields_absent",
+      "no_source_term_producer_image_certification_claim_present",
+    ]
+  );
+  assert.ok(
+    Object.values(
+      sourceTermProducerImagePrimitiveAudit
+        .source_term_producer_image_primitive_audit_checks
+    ).every((value) => value === true)
+  );
+  assert.deepEqual(
+    sourceTermProducerImagePrimitiveAudit
+      .remaining_source_term_producer_image_blocker_kinds,
+    [
+      "directed_rounded_same_domain_source_term_producer_image_primitive_open",
+      "expression_level_n38_source_map_residual_envelope_open",
+    ]
+  );
+  assert.equal(
+    sourceTermProducerImagePrimitiveAudit
+      .source_term_producer_image_provenance_classification,
+    "retained-h0-h34-source-term-trace-direct-replay-fails-expression-source-primitive-open"
+  );
+  assert.equal(
+    sourceTermProducerImagePrimitiveAudit
+      .source_term_producer_image_provenance_blocker_classification,
+    "source-term-directed-rounded-primitive-fields-absent-after-retained-trace-replay"
+  );
+  assert.equal(
+    sourceTermProducerImagePrimitiveAudit
+      .source_term_producer_image_provenance_primary_missing_object_kind,
+    "directed-rounded-same-domain-source-term-producer-image-primitive"
+  );
+  assert.equal(
+    sourceTermProducerImagePrimitiveAudit
+      .source_term_producer_image_primitive_row_count,
+    5
+  );
+  assert.ok(
+    sourceTermProducerImagePrimitiveAudit.source_term_producer_image_primitive_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.source_term_producer_image_primitive_row_kind ===
+          "source-term-producer-image-primitive-absence-audit-row" &&
+        row.source_terms_requiring_directed_rounded_producer_image_trust.includes(
+          "delta_squared_speed"
+        ) &&
+        row.source_terms_requiring_directed_rounded_producer_image_trust.includes(
+          "sin_phi"
+        ) &&
+        row.source_terms_requiring_directed_rounded_producer_image_trust.includes(
+          "sin_delta"
+        ) &&
+        row.source_term_residual_rows.length === 3 &&
+        row.source_term_residual_rows.every(
+          (termRow) =>
+            Array.isArray(termRow.value_interval) &&
+            termRow.value_interval.length === 2 &&
+            Number.isFinite(termRow.value_interval[0]) &&
+            Number.isFinite(termRow.value_interval[1]) &&
+            Array.isArray(termRow.residual_interval) &&
+            termRow.residual_interval.length === 2 &&
+            Number.isFinite(termRow.residual_interval[0]) &&
+            Number.isFinite(termRow.residual_interval[1])
+        ) &&
+        row.source_term_value_sum_endpoint_relative_gap <= 1e-12 &&
+        row.source_term_residual_sum_endpoint_relative_gap <= 1e-12 &&
+        row.trace_anchor_summary_only_available === false &&
+        row.trace_anchor_retained_trace_rows_available === true &&
+        row.retained_trace_value_intervals_match_source_term_rows === false &&
+        row.retained_trace_residual_intervals_match_source_term_rows ===
+          false &&
+        row.retained_zero_constant_intervals_match_source_term_rows ===
+          false &&
+        row.retained_trace_value_interval_direct_replay_mismatch_detected ===
+          true &&
+        row
+          .retained_trace_residual_interval_direct_replay_mismatch_detected ===
+          true &&
+        row
+          .retained_zero_constant_interval_direct_replay_mismatch_detected ===
+          true &&
+        row.retained_zero_constant_row_removes_constant_minus_two === true &&
+        row.retained_trace_term_replay_rows.length === 3 &&
+        row.retained_trace_term_replay_rows.every(
+          (termReplayRow) =>
+            Array.isArray(termReplayRow.source_term_value_interval) &&
+            Array.isArray(termReplayRow.retained_trace_value_interval) &&
+            Array.isArray(
+              termReplayRow.retained_zero_constant_nonconstant_interval
+            ) &&
+            Array.isArray(termReplayRow.source_term_residual_interval) &&
+            Array.isArray(termReplayRow.retained_trace_residual_interval) &&
+            termReplayRow.trace_value_interval_endpoint_relative_gap <=
+              1 &&
+            termReplayRow.trace_value_interval_endpoint_relative_gap > 0.9 &&
+            termReplayRow.zero_constant_value_interval_endpoint_relative_gap <=
+              1 &&
+            termReplayRow.zero_constant_value_interval_endpoint_relative_gap >
+              0.9 &&
+            termReplayRow.trace_midpoint_abs_gap > 0 &&
+            termReplayRow.trace_residual_interval_endpoint_relative_gap <=
+              1 &&
+            termReplayRow.trace_residual_interval_endpoint_relative_gap > 0.9
+        ) &&
+        sourceTermProducerImagePrimitiveRequiredFields.every(
+          (field) =>
+            row.producer_image_primitive_field_presence_checks[field] ===
+              false &&
+            row.producer_image_primitive_missing_fields.includes(field)
+        ) &&
+        sourceTermProducerImageTraceRetentionFields.every((field) =>
+          row.producer_image_trace_retention_fields.includes(field)
+        ) &&
+        Object.values(row.row_positive_checks).every(
+          (value) => value === true
+        ) &&
+        Object.values(row.row_absence_checks).every(
+          (value) => value === true
+        ) &&
+        row.source_term_directed_rounded_provenance_fields_present === false &&
+        row.full_h0_h34_producer_image_trace_retained_in_source_map_target ===
+          true &&
+        row.row_audit_verifies_primitive_gap === true &&
+        row.row_certifies_source_term_producer_image_primitive === false &&
+        row.claim_boundary
+          .certifies_source_term_producer_image_primitive === false &&
+        row.claim_boundary
+          .certifies_source_inputs_as_directed_rounded_same_domain === false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain ===
+          false &&
+        row.row_status ===
+          "source-term-producer-image-intervals-present-primitive-provenance-open"
+    )
+  );
+  assert.equal(
+    sourceTermProducerImagePrimitiveAudit.claim_boundary
+      .defines_source_term_producer_image_provenance_primitive_audit_only,
+    true
+  );
+  assert.equal(
+    sourceTermProducerImagePrimitiveAudit.claim_boundary
+      .certifies_source_term_producer_image_primitive,
+    false
+  );
+  assert.equal(
+    sourceTermProducerImagePrimitiveAudit.claim_boundary
+      .certifies_expression_level_n38_provider,
+    false
+  );
+  assert.equal(
+    sourceTermProducerImagePrimitiveAudit.claim_boundary
+      .certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.deepEqual(
+    collectTrueCertifies(sourceTermProducerImagePrimitiveAudit),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      sourceTermProducerImagePrimitiveAudit,
       FORBIDDEN_FIXED_SPEED_KEYS
     ),
     []

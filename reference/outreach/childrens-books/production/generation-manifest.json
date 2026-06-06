@@ -1,10 +1,11 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-06-06T15:20:52.981469+00:00",
+  "generated_at": "2026-06-06T16:32:47.958908+00:00",
   "root": "reference/outreach/childrens-books",
-  "total_source_images": 10,
+  "total_source_images": 22,
   "generation_order": [
-    "here-there-back"
+    "here-there-back",
+    "roll-turn-again"
   ],
   "books": [
     {
@@ -17,6 +18,18 @@
       "back_matter_count": 1,
       "target_source_images": 10,
       "manifest_entries": 10
+    },
+    {
+      "slug": "roll-turn-again",
+      "title": "Roll, Turn, Again",
+      "book_number": 2,
+      "age_band": "1-2",
+      "story_spreads": 10,
+      "cover_count": 1,
+      "back_matter_count": 1,
+      "back_matter_story_text": "Roll.\nTurn.\nAgain.",
+      "target_source_images": 12,
+      "manifest_entries": 12
     }
   ],
   "entries": [
@@ -47,11 +60,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/here-there-back/9x16/here-there-back-cover.png"
       },
       "status": {
-        "source_image": "planned",
+        "source_image": "generated",
         "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -81,11 +94,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/here-there-back/9x16/here-there-back-spread-01.png"
       },
       "status": {
-        "source_image": "planned",
+        "source_image": "generated",
         "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -115,11 +128,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/here-there-back/9x16/here-there-back-spread-02.png"
       },
       "status": {
-        "source_image": "planned",
+        "source_image": "generated",
         "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -149,11 +162,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/here-there-back/9x16/here-there-back-spread-03.png"
       },
       "status": {
-        "source_image": "planned",
+        "source_image": "generated",
         "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -183,11 +196,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/here-there-back/9x16/here-there-back-spread-04.png"
       },
       "status": {
-        "source_image": "planned",
+        "source_image": "generated",
         "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -217,11 +230,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/here-there-back/9x16/here-there-back-spread-05.png"
       },
       "status": {
-        "source_image": "planned",
+        "source_image": "generated",
         "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -251,11 +264,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/here-there-back/9x16/here-there-back-spread-06.png"
       },
       "status": {
-        "source_image": "planned",
+        "source_image": "generated",
         "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -285,11 +298,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/here-there-back/9x16/here-there-back-spread-07.png"
       },
       "status": {
-        "source_image": "planned",
+        "source_image": "generated",
         "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -319,11 +332,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/here-there-back/9x16/here-there-back-spread-08.png"
       },
       "status": {
-        "source_image": "planned",
+        "source_image": "generated",
         "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -351,6 +364,414 @@
         "page_landscape_png": "reference/outreach/childrens-books/production/pages/here-there-back/landscape/here-there-back-backmatter-01.png",
         "derivative_4x5_png": "reference/outreach/childrens-books/production/derivatives/here-there-back/4x5/here-there-back-backmatter-01.png",
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/here-there-back/9x16/here-there-back-backmatter-01.png"
+      },
+      "status": {
+        "source_image": "generated",
+        "qa": "pending",
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
+      }
+    },
+    {
+      "id": "roll-turn-again-cover",
+      "book_slug": "roll-turn-again",
+      "book_title": "Roll, Turn, Again",
+      "book_number": 2,
+      "age_band": "1-2",
+      "source_markdown": "roll-turn-again.md",
+      "kind": "cover",
+      "sequence": 0,
+      "label": "Cover",
+      "story_text": "Roll, Turn, Again",
+      "lesson": "Cover key art introduces rolling, turning, and repeating without text.",
+      "geometry": "Use a low rounded hill, a shallow dip, and one faint dotted path that rolls forward, turns gently, and loops back for repetition. Keep the children natural human children rather than symbols.",
+      "background_concepts": "Rolling, turn, return, repeat, compare.",
+      "prompt": "Electra and Poz sit on a clear white floor with a red ball and a blue ball nearby. A small rounded purple hill and a shallow purple dip sit along a simple floor route. One faint dotted purple path rolls forward, turns gently, and loops back for again. The scene introduces rolling, turning, and repeating without text. Natural human skin and hair, white and lavender/purple play clothes, generous white paper space, black expressive linework, soft purple shadows, restricted red/blue/purple geometry only on balls, route, hill, dip, and shadows, no arrows, no labels, no captions, no in-image text.",
+      "palette_rule": "Use only pure red, pure blue, red-blue purples, white, and black for non-human visual systems and AAA geometry. Keep scenery, clothing, and tools in white/purple/black unless a red or blue mark is explicitly part of the physics geometry. Human skin and hair may use natural tones.",
+      "text_rule": "No in-image text, captions, labels, equations, watermark, or logo.",
+      "aspect": "landscape_3x2_source",
+      "paths": {
+        "source_png": "reference/outreach/childrens-books/production/source/roll-turn-again/roll-turn-again-cover.png",
+        "qa_json": "reference/outreach/childrens-books/production/qa/roll-turn-again/roll-turn-again-cover.qa.json",
+        "qa_markdown": "reference/outreach/childrens-books/production/qa/roll-turn-again/roll-turn-again-cover.qa.md",
+        "page_landscape_png": "reference/outreach/childrens-books/production/pages/roll-turn-again/landscape/roll-turn-again-cover.png",
+        "derivative_4x5_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/4x5/roll-turn-again-cover.png",
+        "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-cover.png"
+      },
+      "status": {
+        "source_image": "planned",
+        "qa": "pending",
+        "page_layout": "pending",
+        "derivative_4x5": "pending",
+        "derivative_9x16": "pending"
+      }
+    },
+    {
+      "id": "roll-turn-again-spread-01",
+      "book_slug": "roll-turn-again",
+      "book_title": "Roll, Turn, Again",
+      "book_number": 2,
+      "age_band": "1-2",
+      "source_markdown": "roll-turn-again.md",
+      "kind": "story_spread",
+      "sequence": 1,
+      "label": "Ready",
+      "story_text": "The floor is ready.\n\nThe red ball is still.",
+      "lesson": "A clear space gives the ball a place to move.",
+      "geometry": "The red ball is still at the start of an open route.",
+      "background_concepts": "Ready, stillness, start place, open path.",
+      "prompt": "The floor is clear and ready. A pure red ball sits still near Electra and Poz on the white floor. Keep the space open so the ball has a visible place to move. Electra is a toddler girl with medium-brown skin, dark curly hair in two small puffs, and white-and-lavender play clothes. Poz is a toddler boy with light-brown skin, short straight dark hair, and white-and-purple play clothes. Simple toddler board-book scene, generous white paper space, black expressive linework, soft purple shadows, no tiled surface, no grid, no extra toys, no arrows, no labels, no captions, no in-image text.",
+      "palette_rule": "Use only pure red, pure blue, red-blue purples, white, and black for non-human visual systems and AAA geometry. Keep scenery, clothing, and tools in white/purple/black unless a red or blue mark is explicitly part of the physics geometry. Human skin and hair may use natural tones.",
+      "text_rule": "No in-image text, captions, labels, equations, watermark, or logo.",
+      "aspect": "landscape_3x2_source",
+      "paths": {
+        "source_png": "reference/outreach/childrens-books/production/source/roll-turn-again/roll-turn-again-spread-01.png",
+        "qa_json": "reference/outreach/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-01.qa.json",
+        "qa_markdown": "reference/outreach/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-01.qa.md",
+        "page_landscape_png": "reference/outreach/childrens-books/production/pages/roll-turn-again/landscape/roll-turn-again-spread-01.png",
+        "derivative_4x5_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/4x5/roll-turn-again-spread-01.png",
+        "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-01.png"
+      },
+      "status": {
+        "source_image": "planned",
+        "qa": "pending",
+        "page_layout": "pending",
+        "derivative_4x5": "pending",
+        "derivative_9x16": "pending"
+      }
+    },
+    {
+      "id": "roll-turn-again-spread-02",
+      "book_slug": "roll-turn-again",
+      "book_title": "Roll, Turn, Again",
+      "book_number": 2,
+      "age_band": "1-2",
+      "source_markdown": "roll-turn-again.md",
+      "kind": "story_spread",
+      "sequence": 2,
+      "label": "Gentle Push",
+      "story_text": "Electra gives one soft push.\n\nRoll, ball, roll.",
+      "lesson": "Motion can begin from a push.",
+      "geometry": "The push begins the red ball's route, with one or two earlier-position dots behind it.",
+      "background_concepts": "Push, beginning motion, earlier position, path start.",
+      "prompt": "Electra gives the pure red ball one soft push with her hand. Poz watches nearby. Show the ball just beginning to move, with one or two very faint purple dots behind it. Keep the red ball clear, round, visible, and uncovered. Simple white floor, natural toddler proportions, white and lavender/purple clothing, black expressive linework, soft purple shadows, no arrows, no labels, no captions, no in-image text, no extra characters, no busy background.",
+      "palette_rule": "Use only pure red, pure blue, red-blue purples, white, and black for non-human visual systems and AAA geometry. Keep scenery, clothing, and tools in white/purple/black unless a red or blue mark is explicitly part of the physics geometry. Human skin and hair may use natural tones.",
+      "text_rule": "No in-image text, captions, labels, equations, watermark, or logo.",
+      "aspect": "landscape_3x2_source",
+      "paths": {
+        "source_png": "reference/outreach/childrens-books/production/source/roll-turn-again/roll-turn-again-spread-02.png",
+        "qa_json": "reference/outreach/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-02.qa.json",
+        "qa_markdown": "reference/outreach/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-02.qa.md",
+        "page_landscape_png": "reference/outreach/childrens-books/production/pages/roll-turn-again/landscape/roll-turn-again-spread-02.png",
+        "derivative_4x5_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/4x5/roll-turn-again-spread-02.png",
+        "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-02.png"
+      },
+      "status": {
+        "source_image": "planned",
+        "qa": "pending",
+        "page_layout": "pending",
+        "derivative_4x5": "pending",
+        "derivative_9x16": "pending"
+      }
+    },
+    {
+      "id": "roll-turn-again-spread-03",
+      "book_slug": "roll-turn-again",
+      "book_title": "Roll, Turn, Again",
+      "book_number": 2,
+      "age_band": "1-2",
+      "source_markdown": "roll-turn-again.md",
+      "kind": "story_spread",
+      "sequence": 3,
+      "label": "The Path",
+      "story_text": "The ball does not hop.\n\nIt follows a path.",
+      "lesson": "The route matters.",
+      "geometry": "The red ball follows a smooth route on the floor, with a dotted purple path behind it.",
+      "background_concepts": "Rolling, route, path, continuous motion.",
+      "prompt": "The pure red ball rolls along a smooth floor route. It does not hop. Show a simple dotted purple path behind the ball, with Electra and Poz watching from the side. Keep the floor white and open, with no tiled surface and no grid. Keep the ball round, readable, and easy to point to. Natural human skin and hair, white and lavender/purple clothing, black expressive linework, soft purple shadows, no arrows, no labels, no captions, no in-image text.",
+      "palette_rule": "Use only pure red, pure blue, red-blue purples, white, and black for non-human visual systems and AAA geometry. Keep scenery, clothing, and tools in white/purple/black unless a red or blue mark is explicitly part of the physics geometry. Human skin and hair may use natural tones.",
+      "text_rule": "No in-image text, captions, labels, equations, watermark, or logo.",
+      "aspect": "landscape_3x2_source",
+      "paths": {
+        "source_png": "reference/outreach/childrens-books/production/source/roll-turn-again/roll-turn-again-spread-03.png",
+        "qa_json": "reference/outreach/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-03.qa.json",
+        "qa_markdown": "reference/outreach/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-03.qa.md",
+        "page_landscape_png": "reference/outreach/childrens-books/production/pages/roll-turn-again/landscape/roll-turn-again-spread-03.png",
+        "derivative_4x5_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/4x5/roll-turn-again-spread-03.png",
+        "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-03.png"
+      },
+      "status": {
+        "source_image": "planned",
+        "qa": "pending",
+        "page_layout": "pending",
+        "derivative_4x5": "pending",
+        "derivative_9x16": "pending"
+      }
+    },
+    {
+      "id": "roll-turn-again-spread-04",
+      "book_slug": "roll-turn-again",
+      "book_title": "Roll, Turn, Again",
+      "book_number": 2,
+      "age_band": "1-2",
+      "source_markdown": "roll-turn-again.md",
+      "kind": "story_spread",
+      "sequence": 4,
+      "label": "The Hill",
+      "story_text": "Up the little hill.\n\nSlow, slow, slow.",
+      "lesson": "A small hill can change motion.",
+      "geometry": "The red ball is partway up a low rounded purple hill, making slowing visible.",
+      "background_concepts": "Hill, upward path, slowing, changed motion.",
+      "prompt": "The pure red ball rolls up a small rounded purple hill on the white floor. The ball is partway up the hill, slowing. Electra and Poz watch closely from the side. Keep the hill low, safe, smooth, and board-book simple. Use only white, black, pure red, pure blue if needed, and red-blue purples for non-human elements. Natural human skin and hair, white and lavender/purple clothing, black expressive linework, soft purple shadows, no arrows, no labels, no captions, no in-image text, no extra toys.",
+      "palette_rule": "Use only pure red, pure blue, red-blue purples, white, and black for non-human visual systems and AAA geometry. Keep scenery, clothing, and tools in white/purple/black unless a red or blue mark is explicitly part of the physics geometry. Human skin and hair may use natural tones.",
+      "text_rule": "No in-image text, captions, labels, equations, watermark, or logo.",
+      "aspect": "landscape_3x2_source",
+      "paths": {
+        "source_png": "reference/outreach/childrens-books/production/source/roll-turn-again/roll-turn-again-spread-04.png",
+        "qa_json": "reference/outreach/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-04.qa.json",
+        "qa_markdown": "reference/outreach/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-04.qa.md",
+        "page_landscape_png": "reference/outreach/childrens-books/production/pages/roll-turn-again/landscape/roll-turn-again-spread-04.png",
+        "derivative_4x5_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/4x5/roll-turn-again-spread-04.png",
+        "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-04.png"
+      },
+      "status": {
+        "source_image": "planned",
+        "qa": "pending",
+        "page_layout": "pending",
+        "derivative_4x5": "pending",
+        "derivative_9x16": "pending"
+      }
+    },
+    {
+      "id": "roll-turn-again-spread-05",
+      "book_slug": "roll-turn-again",
+      "book_title": "Roll, Turn, Again",
+      "book_number": 2,
+      "age_band": "1-2",
+      "source_markdown": "roll-turn-again.md",
+      "kind": "story_spread",
+      "sequence": 5,
+      "label": "The Turn",
+      "story_text": "The path turns.\n\nThe ball turns too.",
+      "lesson": "The ball follows the shape it meets.",
+      "geometry": "The floor route curves gently, and the red ball follows that curve.",
+      "background_concepts": "Turn, curved path, path-following, direction change.",
+      "prompt": "The floor route curves gently, and the pure red ball follows the curve. Show the path turning with soft purple dots so the ball's turn is easy to see without arrows. Electra and Poz watch from the side, focused on the ball. White floor, generous white paper space, black expressive linework, soft purple shadows, natural skin and hair, white and lavender/purple play clothes, no labels, no captions, no letters, no numbers, no watermark, no logo, no busy background.",
+      "palette_rule": "Use only pure red, pure blue, red-blue purples, white, and black for non-human visual systems and AAA geometry. Keep scenery, clothing, and tools in white/purple/black unless a red or blue mark is explicitly part of the physics geometry. Human skin and hair may use natural tones.",
+      "text_rule": "No in-image text, captions, labels, equations, watermark, or logo.",
+      "aspect": "landscape_3x2_source",
+      "paths": {
+        "source_png": "reference/outreach/childrens-books/production/source/roll-turn-again/roll-turn-again-spread-05.png",
+        "qa_json": "reference/outreach/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-05.qa.json",
+        "qa_markdown": "reference/outreach/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-05.qa.md",
+        "page_landscape_png": "reference/outreach/childrens-books/production/pages/roll-turn-again/landscape/roll-turn-again-spread-05.png",
+        "derivative_4x5_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/4x5/roll-turn-again-spread-05.png",
+        "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-05.png"
+      },
+      "status": {
+        "source_image": "planned",
+        "qa": "pending",
+        "page_layout": "pending",
+        "derivative_4x5": "pending",
+        "derivative_9x16": "pending"
+      }
+    },
+    {
+      "id": "roll-turn-again-spread-06",
+      "book_slug": "roll-turn-again",
+      "book_title": "Roll, Turn, Again",
+      "book_number": 2,
+      "age_band": "1-2",
+      "source_markdown": "roll-turn-again.md",
+      "kind": "story_spread",
+      "sequence": 6,
+      "label": "The Dip",
+      "story_text": "Down in the little dip.\n\nRound and round.",
+      "lesson": "A dip can hold motion for a moment.",
+      "geometry": "The red ball rolls down into a shallow purple dip and follows a small curved path inside it.",
+      "background_concepts": "Dip, circular motion, temporary holding, curved route.",
+      "prompt": "The pure red ball rolls down into a shallow purple dip and circles gently inside it. Show a small curved dotted purple path around the dip. Keep the dip friendly, soft, shallow, and not like a hole. Electra and Poz watch nearby. Simple toddler board-book scene with white floor, generous white paper space, black expressive linework, soft purple shadows, natural human skin and hair, white and lavender/purple clothing, no arrows, no labels, no captions, no in-image text.",
+      "palette_rule": "Use only pure red, pure blue, red-blue purples, white, and black for non-human visual systems and AAA geometry. Keep scenery, clothing, and tools in white/purple/black unless a red or blue mark is explicitly part of the physics geometry. Human skin and hair may use natural tones.",
+      "text_rule": "No in-image text, captions, labels, equations, watermark, or logo.",
+      "aspect": "landscape_3x2_source",
+      "paths": {
+        "source_png": "reference/outreach/childrens-books/production/source/roll-turn-again/roll-turn-again-spread-06.png",
+        "qa_json": "reference/outreach/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-06.qa.json",
+        "qa_markdown": "reference/outreach/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-06.qa.md",
+        "page_landscape_png": "reference/outreach/childrens-books/production/pages/roll-turn-again/landscape/roll-turn-again-spread-06.png",
+        "derivative_4x5_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/4x5/roll-turn-again-spread-06.png",
+        "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-06.png"
+      },
+      "status": {
+        "source_image": "planned",
+        "qa": "pending",
+        "page_layout": "pending",
+        "derivative_4x5": "pending",
+        "derivative_9x16": "pending"
+      }
+    },
+    {
+      "id": "roll-turn-again-spread-07",
+      "book_slug": "roll-turn-again",
+      "book_title": "Roll, Turn, Again",
+      "book_number": 2,
+      "age_band": "1-2",
+      "source_markdown": "roll-turn-again.md",
+      "kind": "story_spread",
+      "sequence": 7,
+      "label": "Stop",
+      "story_text": "Poz catches the ball.\n\nStop, little ball.",
+      "lesson": "A hand can end the path.",
+      "geometry": "The dotted path ends at Poz's hands as he catches the red ball.",
+      "background_concepts": "Stop, catch, route ending, hand interaction.",
+      "prompt": "Poz catches the pure red ball with both hands at the end of the path. Electra smiles nearby. The dotted purple path stops at Poz's hands. Keep the red ball uncovered, round, visible, and easy to point to. White floor, generous white paper space, black expressive linework, soft purple shadows, natural human skin and hair, simple white and lavender/purple clothing, no arrows, no labels, no captions, no in-image text, no extra characters.",
+      "palette_rule": "Use only pure red, pure blue, red-blue purples, white, and black for non-human visual systems and AAA geometry. Keep scenery, clothing, and tools in white/purple/black unless a red or blue mark is explicitly part of the physics geometry. Human skin and hair may use natural tones.",
+      "text_rule": "No in-image text, captions, labels, equations, watermark, or logo.",
+      "aspect": "landscape_3x2_source",
+      "paths": {
+        "source_png": "reference/outreach/childrens-books/production/source/roll-turn-again/roll-turn-again-spread-07.png",
+        "qa_json": "reference/outreach/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-07.qa.json",
+        "qa_markdown": "reference/outreach/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-07.qa.md",
+        "page_landscape_png": "reference/outreach/childrens-books/production/pages/roll-turn-again/landscape/roll-turn-again-spread-07.png",
+        "derivative_4x5_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/4x5/roll-turn-again-spread-07.png",
+        "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-07.png"
+      },
+      "status": {
+        "source_image": "planned",
+        "qa": "pending",
+        "page_layout": "pending",
+        "derivative_4x5": "pending",
+        "derivative_9x16": "pending"
+      }
+    },
+    {
+      "id": "roll-turn-again-spread-08",
+      "book_slug": "roll-turn-again",
+      "book_title": "Roll, Turn, Again",
+      "book_number": 2,
+      "age_band": "1-2",
+      "source_markdown": "roll-turn-again.md",
+      "kind": "story_spread",
+      "sequence": 8,
+      "label": "Blue Ball",
+      "story_text": "Now the blue ball is still.\n\nWill it go the same way?",
+      "lesson": "Trying again makes a question.",
+      "geometry": "The blue ball is still at the start of the route, with the old red-ball path only as a faint memory.",
+      "background_concepts": "Repeat, question, second trial, memory path.",
+      "prompt": "Now a pure blue ball sits still at the start of the clear white floor route. Electra and Poz look at it with a question-like expression. The old red-ball path appears as a very faint purple memory in the background. Keep the blue ball clear, round, visible, and uncovered. Natural human skin and hair, white and lavender/purple clothing, black expressive linework, soft purple shadows, no tiled floor, no grid, no arrows, no labels, no captions, no in-image text.",
+      "palette_rule": "Use only pure red, pure blue, red-blue purples, white, and black for non-human visual systems and AAA geometry. Keep scenery, clothing, and tools in white/purple/black unless a red or blue mark is explicitly part of the physics geometry. Human skin and hair may use natural tones.",
+      "text_rule": "No in-image text, captions, labels, equations, watermark, or logo.",
+      "aspect": "landscape_3x2_source",
+      "paths": {
+        "source_png": "reference/outreach/childrens-books/production/source/roll-turn-again/roll-turn-again-spread-08.png",
+        "qa_json": "reference/outreach/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-08.qa.json",
+        "qa_markdown": "reference/outreach/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-08.qa.md",
+        "page_landscape_png": "reference/outreach/childrens-books/production/pages/roll-turn-again/landscape/roll-turn-again-spread-08.png",
+        "derivative_4x5_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/4x5/roll-turn-again-spread-08.png",
+        "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-08.png"
+      },
+      "status": {
+        "source_image": "planned",
+        "qa": "pending",
+        "page_layout": "pending",
+        "derivative_4x5": "pending",
+        "derivative_9x16": "pending"
+      }
+    },
+    {
+      "id": "roll-turn-again-spread-09",
+      "book_slug": "roll-turn-again",
+      "book_title": "Roll, Turn, Again",
+      "book_number": 2,
+      "age_band": "1-2",
+      "source_markdown": "roll-turn-again.md",
+      "kind": "story_spread",
+      "sequence": 9,
+      "label": "Compare",
+      "story_text": "Red went this way.\n\nBlue went that way.",
+      "lesson": "Two paths can be compared.",
+      "geometry": "The red ball's earlier path and the blue ball's newer path appear side by side as simple dotted curves.",
+      "background_concepts": "Compare, two trials, different end places, path memory.",
+      "prompt": "Show the pure red ball's earlier path and the pure blue ball's newer path side by side on the white floor. Both paths are simple dotted purple curves, with the red and blue balls at different end places. Electra and Poz compare the two routes by looking, not by pointing at text. Keep both balls clear, round, visible, and easy to point to. Natural human skin and hair, white and lavender/purple clothing, generous white paper space, black expressive linework, soft purple shadows, no arrows, no labels, no captions, no letters, no numbers, no grid.",
+      "palette_rule": "Use only pure red, pure blue, red-blue purples, white, and black for non-human visual systems and AAA geometry. Keep scenery, clothing, and tools in white/purple/black unless a red or blue mark is explicitly part of the physics geometry. Human skin and hair may use natural tones.",
+      "text_rule": "No in-image text, captions, labels, equations, watermark, or logo.",
+      "aspect": "landscape_3x2_source",
+      "paths": {
+        "source_png": "reference/outreach/childrens-books/production/source/roll-turn-again/roll-turn-again-spread-09.png",
+        "qa_json": "reference/outreach/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-09.qa.json",
+        "qa_markdown": "reference/outreach/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-09.qa.md",
+        "page_landscape_png": "reference/outreach/childrens-books/production/pages/roll-turn-again/landscape/roll-turn-again-spread-09.png",
+        "derivative_4x5_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/4x5/roll-turn-again-spread-09.png",
+        "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-09.png"
+      },
+      "status": {
+        "source_image": "planned",
+        "qa": "pending",
+        "page_layout": "pending",
+        "derivative_4x5": "pending",
+        "derivative_9x16": "pending"
+      }
+    },
+    {
+      "id": "roll-turn-again-spread-10",
+      "book_slug": "roll-turn-again",
+      "book_title": "Roll, Turn, Again",
+      "book_number": 2,
+      "age_band": "1-2",
+      "source_markdown": "roll-turn-again.md",
+      "kind": "story_spread",
+      "sequence": 10,
+      "label": "Again",
+      "story_text": "Roll.\n\nTurn.\n\nAgain.\n\nWe learned the path.",
+      "lesson": "Repeated play reveals the route.",
+      "geometry": "A calm repeated path shows roll, turn, and return, with older and newer dotted traces.",
+      "background_concepts": "Repeat, roll, turn, return, learned route.",
+      "prompt": "Electra and Poz roll one ball again along the route. Show a calm repeating path: roll, turn, return. Use two soft dotted purple path traces, one older and one newer, with the pure red ball and pure blue ball nearby. Keep the scene simple, calm, and complete, with generous white paper space, black expressive linework, soft purple shadows, natural human skin and hair, white and lavender/purple clothing, no arrows, no labels, no captions, no in-image text, no busy background.",
+      "palette_rule": "Use only pure red, pure blue, red-blue purples, white, and black for non-human visual systems and AAA geometry. Keep scenery, clothing, and tools in white/purple/black unless a red or blue mark is explicitly part of the physics geometry. Human skin and hair may use natural tones.",
+      "text_rule": "No in-image text, captions, labels, equations, watermark, or logo.",
+      "aspect": "landscape_3x2_source",
+      "paths": {
+        "source_png": "reference/outreach/childrens-books/production/source/roll-turn-again/roll-turn-again-spread-10.png",
+        "qa_json": "reference/outreach/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-10.qa.json",
+        "qa_markdown": "reference/outreach/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-10.qa.md",
+        "page_landscape_png": "reference/outreach/childrens-books/production/pages/roll-turn-again/landscape/roll-turn-again-spread-10.png",
+        "derivative_4x5_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/4x5/roll-turn-again-spread-10.png",
+        "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-10.png"
+      },
+      "status": {
+        "source_image": "planned",
+        "qa": "pending",
+        "page_layout": "pending",
+        "derivative_4x5": "pending",
+        "derivative_9x16": "pending"
+      }
+    },
+    {
+      "id": "roll-turn-again-backmatter-01",
+      "book_slug": "roll-turn-again",
+      "book_title": "Roll, Turn, Again",
+      "book_number": 2,
+      "age_band": "1-2",
+      "kind": "back_matter_activity",
+      "sequence": 1,
+      "label": "Back Matter Activity 1",
+      "source_markdown": "roll-turn-again.md",
+      "story_text": "Roll.\nTurn.\nAgain.",
+      "lesson": "Back-matter activity image.",
+      "geometry": "Use the geometry already introduced in the story at activity scale.",
+      "background_concepts": "Adult/teacher support image; keep it text-free.",
+      "prompt": "Back-matter activity source image for Roll, Turn, Again. Show one clean, text-free activity scene for: Electra and Poz sit by a simple low purple ramp with one rounded hill and one shallow dip. A grown-up hand may be visible only as a small supporting hand placing the red ball at the start, but the hand must not cover the ball or become the main subject. The red and blue balls are both visible for repeating and comparing.. Approved children's-book exemplar style, natural human skin and hair, informal play, white page space, black expressive linework, white/purple scenery and tools, and red/blue/purple AAA geometry only where it teaches the activity. No in-image text, captions, labels, equations, watermark, or logo.",
+      "palette_rule": "Use only pure red, pure blue, red-blue purples, white, and black for non-human visual systems and AAA geometry. Keep scenery, clothing, and tools in white/purple/black unless a red or blue mark is explicitly part of the physics geometry. Human skin and hair may use natural tones.",
+      "text_rule": "No in-image text, captions, labels, equations, watermark, or logo.",
+      "aspect": "landscape_3x2_source",
+      "paths": {
+        "source_png": "reference/outreach/childrens-books/production/source/roll-turn-again/roll-turn-again-backmatter-01.png",
+        "qa_json": "reference/outreach/childrens-books/production/qa/roll-turn-again/roll-turn-again-backmatter-01.qa.json",
+        "qa_markdown": "reference/outreach/childrens-books/production/qa/roll-turn-again/roll-turn-again-backmatter-01.qa.md",
+        "page_landscape_png": "reference/outreach/childrens-books/production/pages/roll-turn-again/landscape/roll-turn-again-backmatter-01.png",
+        "derivative_4x5_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/4x5/roll-turn-again-backmatter-01.png",
+        "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-backmatter-01.png"
       },
       "status": {
         "source_image": "planned",

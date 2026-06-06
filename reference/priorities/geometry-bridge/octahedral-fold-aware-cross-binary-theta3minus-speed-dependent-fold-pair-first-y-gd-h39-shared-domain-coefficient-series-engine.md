@@ -3044,6 +3044,43 @@ source-map rows. It does not certify the directed-rounded shared-domain
 provider: the executable blocker is now the source-term provider side, where
 directed-rounded source certification remains false and term-width realization
 remains open.
+\texttt{buildH39RequestedY44SourceTermRealizationProvenanceBridgeCandidate}
+now disambiguates that source-term side. It replays the shaped source-term
+provider through the centered homothetic contraction, scalar quotient,
+quotient-source radius budget, quotient-compatible signed-radius acceptance
+target, H38 source provenance bridge, $N_{38}$ readiness rows, and terminal
+boundary replay. All five nodes reduce the term-width realization burden to
+signed-radius source provenance. This does not certify the directed-rounded
+source provider; it changes the executable blocker to the directed-rounded
+same-domain expression-level $N_{38}$ source-map residual envelope before
+dependent $S_{37}$ transport.
+\texttt{buildH39RequestedY44ExpressionN38SourceMapResidualEnvelopeProvenanceAuditCandidate}
+now attacks that envelope directly. The audit verifies, on the same five-node
+stream, that the `delta_squared_speed + sin_phi + sin_delta` term residual
+intervals sum to the expression-level $N_{38}$ source-map residual and that
+their Lagrange-weighted sums replay the weighted residual rows. The
+quotient-compatible signed-radius target is a contained subinterval of those
+live residual intervals. The packet therefore fails closed at a sharper
+object: no current trace anchor, acceptance row, or bridge row certifies
+directed-rounded same-domain producer-image provenance for the three source
+terms.
+\texttt{buildH39RequestedY44SourceTermProducerImageProvenancePrimitiveAuditCandidate}
+now probes that three-term producer-image object directly. It verifies that the
+current H39 source-map residual target retains finite value intervals, midpoint
+data, and residual intervals for `delta_squared_speed`, `sin_phi`, and
+`sin_delta`; the three value intervals replay the signed source-term interval
+sum, the three residual intervals replay the expression-level $N_{38}$ residual
+identity, and the `constant_minus_two` term remains removed from the trust
+burden. The target now also retains focused H0-H34 source-term trace rows and
+zero-constant rows inside the source-map trace anchor. Directly identifying
+those retained H0-H34 rows with the expression-level H39 source-term rows
+fails: the retained value, residual, and zero-constant nonconstant intervals
+have large endpoint gaps against the H39 term rows. The next executable blocker
+is therefore a same-domain transport identity from the retained H0-H34
+source-term trace surface to the expression-level $N_{38}$ source-map residual
+term surface, followed by the still-missing directed-rounded term interval,
+source-domain, source-radius, outward endpoint-rounding, and per-term
+certification fields.
 \texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
 now also probes a shared terminal-residual coordinate for
 $h_{37},h_{36},h_{35}$. Instead of assigning independent residual hulls to the

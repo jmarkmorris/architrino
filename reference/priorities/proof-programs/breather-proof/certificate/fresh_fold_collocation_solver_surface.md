@@ -471,8 +471,51 @@ handles for all three child fields for 12 / 12 separator profiles and 112 / 112
 rows. It also records 12 / 12 candidate parity delta records and 112 / 112
 row-level candidate parity delta associations while keeping proof-grade refs,
 proof-grade parity delta fields, and row consumption at 0.
-All seventeen
-classifier/attempt artifacts keep `preledger_pass=false`,
+The child-field derivation source-data proof attempt then packages those handles
+as complete derivation-source-data records for all three child fields for
+12 / 12 separator profiles and 112 / 112 rows. It preserves the 12 / 12
+candidate parity delta records and 112 / 112 row-level candidate parity delta
+associations while keeping proof-grade refs, proof-grade parity delta fields,
+and row consumption at 0.
+The child-field source-data proof-grade ref obligation classifier then counts
+336 missing child-field `proof_grade_ref` obligations and 448 missing
+proof-grade parity delta field obligations across the same 112 rows, while
+keeping candidate parity data source-side only and row consumption at 0.
+The child-field proof-grade derivation application attempt then applies a
+strict existing-proof-grade-derivation-ref test to those counted obligations,
+constructing 0 proof-grade `alpha_floor` refs, 0 proof-grade `exit_floor` refs,
+0 proof-grade `fold_layer_parity_record` refs, and 0 proof-grade parity delta
+rows across the same 112 rows. Its first child-field blockers are
+`proof_grade_alpha_floor_derivation_absent`,
+`proof_grade_exit_floor_derivation_absent`,
+`proof_grade_fold_layer_parity_record_absent`, and
+`proof_grade_fold_layer_parity_record_delta_fields_absent`.
+The source-certificate bridge attempt then records available root-tube
+source certificates for the alpha-floor and fold-layer parity routes, plus exit
+candidate interval-width source data, while constructing 0 generic
+source-certificate-to-child-field derivation bridges. The alpha-floor
+root-tube derivative-floor proof-grade derivation attempt then closes the
+alpha-floor child-field layer: 12 / 12 one-root separator tubes, 12 / 12
+positive derivative floors, 0 failing derivative-piece profiles, and 112 / 112
+exact source-data/root-tube rational matches construct 112 / 112 proof-grade
+`alpha_floor` refs with 0 source-ref-as-proof-ref reuse. It still constructs
+0 proof-grade `exit_floor` refs, 0 proof-grade `fold_layer_parity_record` refs,
+and 0 proof-grade parity delta rows.
+The fold-layer parity-record root-tube topology proof-grade derivation attempt
+then closes the parity child-field layer: 12 / 12 one-root separator tubes,
+12 / 12 endpoint sign-change certificates, 12 / 12 complement no-extra-root
+profiles, and 0 failing derivative-piece profiles construct 112 / 112
+proof-grade `fold_layer_parity_record` refs and 112 / 112 complete proof-grade
+parity delta rows with 0 source-ref-as-proof-ref reuse. It inherits 112 / 112
+proof-grade `alpha_floor` refs and still constructs 0 proof-grade `exit_floor`
+refs.
+The exit-floor interval-width source-certificate attempt then reduces the
+exit-source layer: exact same-packet interval-width checks construct 112 / 112
+proof-grade `exit_floor` source certificates with 0
+source-ref-as-source-certificate reuse. It still constructs 0 proof-grade
+`exit_floor` refs and 0 complete child-field rows; the next child-field blocker
+is `exit_floor_source_certificate_to_child_field_derivation_bridge_absent`.
+All twenty-four classifier/attempt artifacts keep `preledger_pass=false`,
 `updates_live_ledger=false`, row consumption 0, and no branch-chart
 authorization.
 

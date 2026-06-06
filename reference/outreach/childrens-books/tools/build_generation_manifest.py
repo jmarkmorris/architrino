@@ -24,6 +24,16 @@ BOOKS = [
         "cover_count": 1,
         "back_matter_count": 1,
     },
+    {
+        "slug": "roll-turn-again",
+        "title": "Roll, Turn, Again",
+        "book_number": 2,
+        "age_band": "1-2",
+        "story_spreads": 10,
+        "cover_count": 1,
+        "back_matter_count": 1,
+        "back_matter_story_text": "Roll.\nTurn.\nAgain.",
+    },
 ]
 
 PALETTE_RULE = (
@@ -139,11 +149,6 @@ def parse_sections(md: str) -> list[dict]:
 
 
 def extract_activity_lines(md: str) -> list[str]:
-    lines: list[str] = []
-    for match in re.finditer(r"(?m)^\d+\.\s+(.+)$", md):
-        lines.append(match.group(1).strip())
-    if lines:
-        return lines
     activity = field(md, "### Activity", ["\n\n### ", "\n\n## "])
     compact = " ".join(
         line.strip().lstrip("> ").strip()
@@ -152,6 +157,12 @@ def extract_activity_lines(md: str) -> list[str]:
     )
     if compact:
         return [compact]
+
+    lines: list[str] = []
+    for match in re.finditer(r"(?m)^\d+\.\s+(.+)$", md):
+        lines.append(match.group(1).strip())
+    if lines:
+        return lines
     return []
 
 
@@ -175,7 +186,10 @@ def back_matter_entry(book: dict, index: int, activity: str) -> dict:
         "sequence": index,
         "label": f"Back Matter Activity {index}",
         "source_markdown": f"{slug}.md",
-        "story_text": activity if book["slug"] != "here-there-back" else "Here.\nThere.\nBack.\nAgain.",
+        "story_text": book.get(
+            "back_matter_story_text",
+            activity if book["slug"] != "here-there-back" else "Here.\nThere.\nBack.\nAgain.",
+        ),
         "lesson": "Back-matter activity image.",
         "geometry": "Use the geometry already introduced in the story at activity scale.",
         "background_concepts": "Adult/teacher support image; keep it text-free.",

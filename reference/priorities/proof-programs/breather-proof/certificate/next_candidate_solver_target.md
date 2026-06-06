@@ -322,6 +322,106 @@ and no branch-chart authorization. The current child-field blocker is
 `candidate_parity_delta_record_not_proof_grade_ref`; accepted atlas-ref,
 impulse/direct-quadrature, parent-complement consumption, and separator
 certificate fields remain separately absent.
+The child-field derivation source-data proof attempt,
+`higher_fold_layer_alpha_exit_parity_child_field_derivation_source_data_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then packages the source-ref handles into complete derivation-source-data
+records for `alpha_floor`, `exit_floor`, and `fold_layer_parity_record` for
+12 / 12 separator profiles and 112 / 112 fold-layer rows. It preserves
+12 / 12 candidate parity delta records and 112 / 112 row-level candidate
+parity delta associations, while keeping 0 proof-grade child refs,
+0 proof-grade parity delta fields, 0 consumed rows, `preledger_pass=false`, no
+live-ledger update, and no branch-chart authorization. The current child-field
+blocker is complete derivation source data that still is not a
+`proof_grade_ref`: `child_field_source_ref_handle_not_proof_grade_ref` plus
+`candidate_parity_delta_record_not_proof_grade_ref`; accepted atlas-ref,
+impulse/direct-quadrature, parent-complement consumption, and separator
+certificate fields remain separately absent.
+The child-field source-data proof-grade ref obligation classifier,
+`higher_fold_layer_alpha_exit_parity_child_field_source_data_proof_grade_ref_obligation_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then counts the remaining proof-grade obligations without promoting any field:
+336 missing child-field `proof_grade_ref` obligations and 448 missing
+proof-grade parity delta field obligations across 112 / 112 fold-layer rows. It
+keeps 12 / 12 candidate parity delta records and 112 / 112 row-level candidate
+parity delta associations source-side only, with 0 proof-grade child refs,
+0 proof-grade parity delta rows, 0 consumed rows, `preledger_pass=false`, no
+live-ledger update, and no branch-chart authorization. The current child-field
+blocker is counted proof-grade obligations still unsatisfied:
+`child_field_source_ref_handle_not_proof_grade_ref` plus
+`candidate_parity_delta_record_not_proof_grade_ref`; accepted atlas-ref,
+impulse/direct-quadrature, parent-complement consumption, and separator
+certificate fields remain separately absent.
+The child-field proof-grade derivation application attempt,
+`higher_fold_layer_alpha_exit_parity_child_field_proof_grade_derivation_application_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then applies a strict existing-proof-grade-derivation-ref test to those counted
+obligations. It covers the same 12 / 12 separator profiles and 112 / 112
+fold-layer rows with complete derivation source data, but constructs
+0 proof-grade `alpha_floor` refs, 0 proof-grade `exit_floor` refs,
+0 proof-grade `fold_layer_parity_record` refs, and 0 proof-grade parity delta
+rows. It consumes 0 rows, keeps `preledger_pass=false`, keeps live-ledger update
+false, and authorizes no branch chart. The current child-field blocker is no
+imported proof-grade child derivation ref:
+`proof_grade_alpha_floor_derivation_absent`,
+`proof_grade_exit_floor_derivation_absent`,
+`proof_grade_fold_layer_parity_record_absent`, and
+`proof_grade_fold_layer_parity_record_delta_fields_absent`; accepted atlas-ref,
+impulse/direct-quadrature, parent-complement consumption, and separator
+certificate fields remain separately absent.
+The source-certificate bridge attempt,
+`higher_fold_layer_alpha_exit_parity_child_field_source_certificate_to_proof_grade_derivation_bridge_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then separates available source certificates from absent generic bridge
+derivations. It records 112 / 112 alpha-floor root-tube derivative-floor source
+certificates, 112 / 112 exit candidate interval-width sources, and 112 / 112
+fold-layer parity root-tube topology source certificates, but 0 generic
+source-certificate-to-child-field derivation bridges, 0 proof-grade child
+derivation refs, and 0 proof-grade parity delta fields.
+The alpha-floor root-tube derivative-floor proof-grade derivation attempt,
+`higher_fold_layer_alpha_floor_root_tube_derivative_floor_proof_grade_derivation_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then discharges the alpha-floor child-field layer directly from the passed
+root-tube derivative-floor interval certificate. It verifies 12 / 12 one-root
+separator tubes, 12 / 12 positive derivative floors, 0 failing derivative-piece
+profiles, and 112 / 112 exact source-data/root-tube rational matches, then
+constructs 112 / 112 proof-grade `alpha_floor` refs with 0
+source-ref-as-proof-ref reuse. It still constructs 0 proof-grade `exit_floor` refs, 0 proof-grade
+`fold_layer_parity_record` refs, 0 proof-grade parity delta rows, consumes 0
+rows, keeps `preledger_pass=false`, keeps live-ledger update false, and
+authorizes no branch chart. The current child-field blockers are
+`exit_floor_proof_grade_source_certificate_absent`,
+`proof_grade_exit_floor_derivation_absent`,
+`proof_grade_fold_layer_parity_record_absent`, and
+`proof_grade_fold_layer_parity_record_delta_fields_absent`; accepted atlas-ref,
+impulse/direct-quadrature, parent-complement consumption, and separator
+certificate fields remain separately absent.
+The fold-layer parity-record root-tube topology proof-grade derivation attempt,
+`higher_fold_layer_fold_layer_parity_record_root_tube_topology_proof_grade_derivation_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then discharges the parity-record child-field layer directly from the passed
+root-tube one-root and complement no-extra-root interval certificate. It
+verifies 12 / 12 one-root separator tubes, 12 / 12 endpoint sign-change
+certificates, 12 / 12 complement no-extra-root profiles, and 0 failing
+derivative-piece profiles, then constructs 112 / 112 proof-grade
+`fold_layer_parity_record` refs and 112 / 112 complete proof-grade parity delta
+rows with 0 source-ref-as-proof-ref reuse. It inherits 112 / 112 proof-grade
+`alpha_floor` refs, still constructs 0 proof-grade `exit_floor` refs, consumes
+0 rows, keeps `preledger_pass=false`, keeps live-ledger update false, and
+authorizes no branch chart. The current child-field blockers are
+`exit_floor_proof_grade_source_certificate_absent` and
+`proof_grade_exit_floor_derivation_absent`; accepted atlas-ref,
+impulse/direct-quadrature, parent-complement consumption, and separator
+certificate fields remain separately absent.
+The exit-floor interval-width source-certificate attempt,
+`higher_fold_layer_exit_floor_interval_width_source_certificate_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then reduces the exit source-certificate blocker without deriving the
+child-field proof ref. It checks same-packet layer/input-screen/mesh interval
+widths, exact `1/125` source width, positive `t` widths, source-data matches,
+and distinct `proof_source_certificate_ref` handles, then constructs 112 / 112
+proof-grade `exit_floor` interval-width source certificates with 0
+source-ref-as-source-certificate reuse. It inherits 112 / 112 proof-grade
+`alpha_floor` refs and 112 / 112 proof-grade `fold_layer_parity_record` refs,
+still constructs 0 proof-grade `exit_floor` refs, consumes 0 rows, keeps
+`preledger_pass=false`, keeps live-ledger update false, and authorizes no
+branch chart. The current child-field blocker is
+`exit_floor_source_certificate_to_child_field_derivation_bridge_absent`;
+accepted atlas-ref, impulse/direct-quadrature, parent-complement consumption,
+and separator certificate fields remain separately absent.
 The nonlinear fold-coordinate collocation tangent-matrix screen,
 `gap_opening_fresh_v10_fold_coordinate_collocation_report.nonlinear-v0.md`,
 now packages the first executable collocation-surface test: 3 homogeneous
