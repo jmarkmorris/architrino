@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-06-06T16:32:47.958908+00:00",
+  "generated_at": "2026-06-06T16:53:52.979931+00:00",
   "root": "reference/outreach/childrens-books",
   "total_source_images": 22,
   "generation_order": [
@@ -400,11 +400,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-cover.png"
       },
       "status": {
-        "source_image": "planned",
+        "source_image": "generated",
         "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -434,11 +434,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-01.png"
       },
       "status": {
-        "source_image": "planned",
+        "source_image": "generated",
         "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -468,11 +468,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-02.png"
       },
       "status": {
-        "source_image": "planned",
+        "source_image": "generated",
         "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -502,11 +502,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-03.png"
       },
       "status": {
-        "source_image": "planned",
+        "source_image": "generated",
         "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -536,11 +536,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-04.png"
       },
       "status": {
-        "source_image": "planned",
+        "source_image": "generated",
         "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -570,11 +570,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-05.png"
       },
       "status": {
-        "source_image": "planned",
+        "source_image": "generated",
         "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -604,11 +604,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-06.png"
       },
       "status": {
-        "source_image": "planned",
+        "source_image": "generated",
         "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -638,11 +638,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-07.png"
       },
       "status": {
-        "source_image": "planned",
+        "source_image": "generated",
         "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -672,11 +672,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-08.png"
       },
       "status": {
-        "source_image": "planned",
+        "source_image": "generated",
         "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -706,11 +706,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-09.png"
       },
       "status": {
-        "source_image": "planned",
+        "source_image": "generated",
         "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -740,11 +740,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-10.png"
       },
       "status": {
-        "source_image": "planned",
+        "source_image": "generated",
         "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     },
     {
@@ -774,11 +774,11 @@
         "derivative_9x16_png": "reference/outreach/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-backmatter-01.png"
       },
       "status": {
-        "source_image": "planned",
+        "source_image": "generated",
         "qa": "pending",
-        "page_layout": "pending",
-        "derivative_4x5": "pending",
-        "derivative_9x16": "pending"
+        "page_layout": "exported",
+        "derivative_4x5": "exported",
+        "derivative_9x16": "exported"
       }
     }
   ]

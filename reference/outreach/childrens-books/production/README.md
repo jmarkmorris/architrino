@@ -13,6 +13,7 @@ This folder contains generated production artifacts for the children's book work
 Current production status:
 
 - `here-there-back`: 10 Electra/Poz source images generated; landscape pages, first-draft PDF, 4:5 derivatives, and 9:16 derivatives exported; QA is pending operator review.
+- `roll-turn-again`: 12 Electra/Poz source images generated; landscape pages, first-draft PDF, 4:5 derivatives, 9:16 derivatives, and review contact sheet exported; QA is pending operator review.
 - Other books have no current production images after the Electra/Poz manuscript refresh. Add them back to `generation-manifest.json` only after their current image prompts are approved.
 
 Production target for the manuscript line:

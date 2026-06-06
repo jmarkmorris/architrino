@@ -216,6 +216,9 @@ export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_PROD
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_TRANSPORT_FIT_CANDIDATE_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-source-term-transport-fit-candidate/v1";
 
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SIGNED_RADIUS_SOURCE_PROVENANCE_ENVELOPE_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-signed-radius-source-provenance-envelope-candidate/v1";
+
 const H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS = Object.freeze([
   "delta_squared_speed",
   "sin_phi",
@@ -69221,6 +69224,788 @@ export function validateH39RequestedY44SourceTermProducerImageProvenancePrimitiv
     !validClaimBoundary(artifact?.claim_boundary)
   ) {
     errors.push("source-term producer-image primitive audit must keep broad closure claims open");
+  }
+  return errors;
+}
+
+export function buildH39RequestedY44SourceTermTransportFitCandidate({
+  sourceTermProducerImagePrimitiveAudit,
+  sourceTermRealizationProvenanceBridge,
+} = {}) {
+  const fitCheckKinds = [
+    "primitive_audit_verified",
+    "retained_trace_direct_replay_failed",
+    "transport_samples_available",
+    "termwise_scalar_midpoint_fit_computed",
+    "termwise_affine_midpoint_fit_computed",
+    "termwise_affine_value_interval_transport_checked",
+    "termwise_affine_residual_interval_transport_checked",
+    "termwise_affine_transport_checked_as_negative_control",
+    "source_term_realization_bridge_verified",
+    "centered_homothetic_transport_surface_verified",
+    "homothetic_scalar_quotient_route_verified",
+    "all_homothetic_bridge_rows_reduce_width",
+    "directed_rounded_primitive_fields_still_absent",
+    "directed_rounded_source_provenance_still_open",
+  ];
+  const homotheticRouteCheckKinds = [
+    "source_term_realization_reduces_to_homothetic_contraction",
+    "homothetic_normal_form_reconstructs_provider_terms",
+    "homothetic_scalar_factorization_verified",
+    "scalar_provider_target_reduces_to_two_sources",
+    "quotient_envelope_reduces_to_source_interval_inclusion",
+    "quotient_source_inclusion_reduces_to_relative_radius_provider",
+    "quotient_source_radius_budget_reduces_to_absolute_source_radii",
+    "signed_radius_quotient_compatible_target_ready",
+    "signed_radius_acceptance_reaches_verifier_boundary",
+  ];
+  const directReplayFailed =
+    sourceTermProducerImagePrimitiveAudit
+      ?.retained_h0_h34_trace_direct_value_replay_fails === true &&
+    sourceTermProducerImagePrimitiveAudit
+      ?.retained_h0_h34_trace_direct_residual_replay_fails === true &&
+    sourceTermProducerImagePrimitiveAudit
+      ?.retained_zero_constant_trace_direct_replay_fails === true;
+  const primitiveAuditVerified =
+    sourceTermProducerImagePrimitiveAudit
+      ?.source_term_producer_image_provenance_primitive_audit_verified ===
+      true &&
+    sourceTermProducerImagePrimitiveAudit
+      ?.source_term_producer_image_provenance_certified_directed_rounded ===
+      false;
+  const primitiveFieldsAbsent =
+    sourceTermProducerImagePrimitiveAudit
+      ?.source_term_directed_rounded_provenance_fields_present === false &&
+    sourceTermProducerImagePrimitiveAudit
+      ?.source_term_directed_rounded_provenance_retained_in_source_map_target ===
+      false;
+  const realizationBridgeChecks =
+    sourceTermRealizationProvenanceBridge
+      ?.source_term_realization_bridge_checks ?? {};
+  const sourceTermRealizationBridgeVerified =
+    sourceTermRealizationProvenanceBridge
+      ?.source_term_realization_provenance_bridge_verified === true &&
+    sourceTermRealizationProvenanceBridge
+      ?.source_term_realization_provenance_bridge_certified_directed_rounded ===
+      false &&
+    sourceTermRealizationProvenanceBridge
+      ?.source_term_provider_term_width_realization_reduced_to_signed_radius_source_provenance ===
+      true &&
+    sourceTermRealizationProvenanceBridge
+      ?.expression_level_n38_source_map_residual_envelope_open === true;
+  const homotheticScalarQuotientRouteVerified =
+    homotheticRouteCheckKinds.every(
+      (kind) => realizationBridgeChecks?.[kind] === true
+    );
+  const bridgeRows =
+    sourceTermRealizationProvenanceBridge
+      ?.source_term_realization_provenance_bridge_rows ?? [];
+  const homotheticTransportBridgeRows = bridgeRows.map((row) => ({
+    node_index: row?.node_index ?? null,
+    xi_midpoint: row?.xi_midpoint ?? null,
+    terminal_graph_cell_id: row?.terminal_graph_cell_id ?? null,
+    source_term_transport_row_kind:
+      "centered-homothetic-source-term-transport-bridge-row",
+    source_terms_preserved_signed_together: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    provider_row_source_kind: row?.provider_row_source_kind ?? null,
+    source_term_provider_probe_row_status:
+      row?.source_term_provider_probe_row_status ?? null,
+    signed_radius_acceptance_row_status:
+      row?.signed_radius_acceptance_row_status ?? null,
+    directed_rounded_signed_residual_interval:
+      finiteOrderedIntervalOrNull(
+        row?.directed_rounded_signed_residual_interval
+      ) ?? null,
+    directed_rounded_weighted_residual_interval:
+      finiteOrderedIntervalOrNull(
+        row?.directed_rounded_weighted_residual_interval
+      ) ?? null,
+    signed_provider_interval_abs_upper:
+      row?.signed_provider_interval_abs_upper ?? null,
+    numerator_allowed_absolute_half_width:
+      row?.numerator_allowed_absolute_half_width ?? null,
+    row_check_kinds: Array.isArray(row?.row_check_kinds)
+      ? [...row.row_check_kinds]
+      : [],
+    row_checks: { ...(row?.row_checks ?? {}) },
+    row_reduces_term_width_to_signed_radius_source_provenance:
+      row?.row_reduces_term_width_to_signed_radius_source_provenance === true,
+    source_term_provider_directed_source_certification_open:
+      row?.source_term_provider_directed_source_certification_open === true,
+    expression_level_n38_source_envelope_open:
+      row?.expression_level_n38_source_envelope_open === true,
+    row_status:
+      row?.row_reduces_term_width_to_signed_radius_source_provenance === true
+        ? "centered-homothetic-transport-reduces-row-to-signed-radius-source-provenance-open"
+        : "centered-homothetic-transport-row-open",
+    claim_boundary: {
+      defines_source_term_transport_fit_only: true,
+      certifies_source_term_transport_identity: false,
+      certifies_source_term_producer_image_primitive: false,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_expression_level_n38_provider: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_terminal_row_provider_enclosure: false,
+      certifies_terminal_graph_remainder_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  }));
+  const allHomotheticBridgeRowsReduceWidth =
+    homotheticTransportBridgeRows.length === 5 &&
+    homotheticTransportBridgeRows.every(
+      (row) =>
+        row.row_reduces_term_width_to_signed_radius_source_provenance ===
+          true &&
+        row.source_term_provider_directed_source_certification_open === true &&
+        row.expression_level_n38_source_envelope_open === true &&
+        Object.values(row.row_checks).every((value) => value === true)
+    );
+  const centeredHomotheticTransportSurfaceVerified =
+    sourceTermRealizationBridgeVerified &&
+    homotheticScalarQuotientRouteVerified &&
+    allHomotheticBridgeRowsReduceWidth;
+  const directedRoundedSourceProvenanceStillOpen =
+    sourceTermRealizationProvenanceBridge
+      ?.source_term_provider_directed_source_certification_open === true &&
+    sourceTermRealizationProvenanceBridge
+      ?.expression_level_n38_source_map_residual_envelope_open === true &&
+    sourceTermRealizationProvenanceBridge
+      ?.source_term_realization_provenance_bridge_certified_directed_rounded ===
+      false;
+  const sourceRows =
+    sourceTermProducerImagePrimitiveAudit
+      ?.source_term_producer_image_primitive_rows ?? [];
+  const finiteMaxAbs = (values) => {
+    const finiteValues = values
+      .map((value) => Math.abs(Number(value)))
+      .filter((value) => Number.isFinite(value));
+    return finiteValues.length > 0 ? Math.max(...finiteValues) : null;
+  };
+  const intervalTransport = (interval, scale, offset = 0) => {
+    const resolved = finiteOrderedIntervalOrNull(interval);
+    if (resolved === null || !Number.isFinite(scale) || !Number.isFinite(offset)) {
+      return null;
+    }
+    const scaled = root.scaleInterval(resolved, scale);
+    return [scaled[0] + offset, scaled[1] + offset];
+  };
+  const midpointFitRows = H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.map(
+    (term) => {
+      const samples = sourceRows
+        .map((row) => {
+          const replayRow = Array.isArray(row?.retained_trace_term_replay_rows)
+            ? row.retained_trace_term_replay_rows.find(
+                (entry) => entry?.term === term
+              )
+            : null;
+          return replayRow === null || replayRow === undefined
+            ? null
+            : {
+                node_index: row?.node_index ?? null,
+                term,
+                source_term_midpoint_value: Number(
+                  replayRow.source_term_midpoint_value
+                ),
+                retained_trace_midpoint_value: Number(
+                  replayRow.retained_trace_midpoint_value
+                ),
+                source_term_value_interval:
+                  finiteOrderedIntervalOrNull(
+                    replayRow.source_term_value_interval
+                  ) ?? null,
+                retained_trace_value_interval:
+                  finiteOrderedIntervalOrNull(
+                    replayRow.retained_trace_value_interval
+                  ) ?? null,
+                source_term_residual_interval:
+                  finiteOrderedIntervalOrNull(
+                    replayRow.source_term_residual_interval
+                  ) ?? null,
+                retained_trace_residual_interval:
+                  finiteOrderedIntervalOrNull(
+                    replayRow.retained_trace_residual_interval
+                  ) ?? null,
+              };
+        })
+        .filter(
+          (sample) =>
+            sample !== null &&
+            Number.isFinite(sample.source_term_midpoint_value) &&
+            Number.isFinite(sample.retained_trace_midpoint_value) &&
+            sample.source_term_value_interval !== null &&
+            sample.retained_trace_value_interval !== null &&
+            sample.source_term_residual_interval !== null &&
+            sample.retained_trace_residual_interval !== null
+        );
+      const x = samples.map((sample) => sample.retained_trace_midpoint_value);
+      const y = samples.map((sample) => sample.source_term_midpoint_value);
+      const yScale = finiteMaxAbs(y) ?? 1;
+      const sumXX = x.reduce((sum, value) => sum + value * value, 0);
+      const sumXY = x.reduce((sum, value, index) => sum + value * y[index], 0);
+      const scalarScale = sumXX !== 0 ? sumXY / sumXX : null;
+      const scalarResiduals =
+        scalarScale === null
+          ? []
+          : samples.map((sample) => {
+              const fitted =
+                scalarScale * sample.retained_trace_midpoint_value;
+              const residual = sample.source_term_midpoint_value - fitted;
+              return {
+                node_index: sample.node_index,
+                fitted_midpoint_value: fitted,
+                midpoint_residual: residual,
+                midpoint_relative_residual:
+                  Math.abs(residual) / Math.max(1, yScale),
+              };
+            });
+      const meanX =
+        x.length > 0
+          ? x.reduce((sum, value) => sum + value, 0) / x.length
+          : null;
+      const meanY =
+        y.length > 0
+          ? y.reduce((sum, value) => sum + value, 0) / y.length
+          : null;
+      const affineDenominator =
+        meanX === null
+          ? null
+          : x.reduce((sum, value) => sum + (value - meanX) ** 2, 0);
+      const affineScale =
+        affineDenominator !== null && affineDenominator !== 0
+          ? x.reduce(
+              (sum, value, index) =>
+                sum + (value - meanX) * (y[index] - meanY),
+              0
+            ) / affineDenominator
+          : null;
+      const affineOffset =
+        affineScale !== null && meanX !== null && meanY !== null
+          ? meanY - affineScale * meanX
+          : null;
+      const affineSampleRows =
+        affineScale === null || affineOffset === null
+          ? []
+          : samples.map((sample) => {
+              const fitted =
+                affineScale * sample.retained_trace_midpoint_value +
+                affineOffset;
+              const residual = sample.source_term_midpoint_value - fitted;
+              const transportedValueInterval = intervalTransport(
+                sample.retained_trace_value_interval,
+                affineScale,
+                affineOffset
+              );
+              const transportedResidualInterval = intervalTransport(
+                sample.retained_trace_residual_interval,
+                affineScale,
+                0
+              );
+              const valueIntervalGap =
+                transportedValueInterval !== null
+                  ? intervalEndpointRelativeGap(
+                      transportedValueInterval,
+                      sample.source_term_value_interval
+                    )
+                  : null;
+              const residualIntervalGap =
+                transportedResidualInterval !== null
+                  ? intervalEndpointRelativeGap(
+                      transportedResidualInterval,
+                      sample.source_term_residual_interval
+                    )
+                  : null;
+              return {
+                node_index: sample.node_index,
+                fitted_midpoint_value: fitted,
+                midpoint_residual: residual,
+                midpoint_relative_residual:
+                  Math.abs(residual) / Math.max(1, yScale),
+                affine_transported_value_interval: transportedValueInterval,
+                value_interval_endpoint_relative_gap: valueIntervalGap,
+                affine_transported_residual_interval:
+                  transportedResidualInterval,
+                residual_interval_endpoint_relative_gap: residualIntervalGap,
+              };
+            });
+      const scalarMaxRelativeResidual = finiteMaximum(
+        scalarResiduals.map((row) => row.midpoint_relative_residual)
+      );
+      const affineMaxRelativeResidual = finiteMaximum(
+        affineSampleRows.map((row) => row.midpoint_relative_residual)
+      );
+      const affineValueIntervalMaxGap = finiteMaximum(
+        affineSampleRows.map((row) => row.value_interval_endpoint_relative_gap)
+      );
+      const affineResidualIntervalMaxGap = finiteMaximum(
+        affineSampleRows.map(
+          (row) => row.residual_interval_endpoint_relative_gap
+        )
+      );
+      const scalarMidpointFitCloses =
+        finiteNonnegative(scalarMaxRelativeResidual) &&
+        Number(scalarMaxRelativeResidual) <= 1e-12;
+      const affineMidpointFitCloses =
+        finiteNonnegative(affineMaxRelativeResidual) &&
+        Number(affineMaxRelativeResidual) <= 1e-12;
+      const affineValueTransportCloses =
+        finiteNonnegative(affineValueIntervalMaxGap) &&
+        Number(affineValueIntervalMaxGap) <= 1e-12;
+      const affineResidualTransportCloses =
+        finiteNonnegative(affineResidualIntervalMaxGap) &&
+        Number(affineResidualIntervalMaxGap) <= 1e-12;
+      return {
+        term,
+        sample_count: samples.length,
+        scalar_midpoint_transport_scale: scalarScale,
+        scalar_midpoint_max_relative_residual: scalarMaxRelativeResidual,
+        scalar_midpoint_fit_closes: scalarMidpointFitCloses,
+        affine_midpoint_transport_scale: affineScale,
+        affine_midpoint_transport_offset: affineOffset,
+        affine_midpoint_max_relative_residual: affineMaxRelativeResidual,
+        affine_midpoint_fit_closes: affineMidpointFitCloses,
+        affine_value_interval_transport_max_endpoint_relative_gap:
+          affineValueIntervalMaxGap,
+        affine_value_interval_transport_closes:
+          affineValueTransportCloses,
+        affine_residual_interval_transport_max_endpoint_relative_gap:
+          affineResidualIntervalMaxGap,
+        affine_residual_interval_transport_closes:
+          affineResidualTransportCloses,
+        affine_transport_closes_same_domain_term:
+          affineMidpointFitCloses &&
+          affineValueTransportCloses &&
+          affineResidualTransportCloses,
+        scalar_midpoint_residual_rows: scalarResiduals,
+        affine_transport_sample_rows: affineSampleRows,
+        row_status:
+          affineMidpointFitCloses &&
+          affineValueTransportCloses &&
+          affineResidualTransportCloses
+            ? "source-term-affine-transport-fit-closes-term-candidate"
+            : affineMidpointFitCloses
+              ? "source-term-affine-midpoint-fit-closes-interval-transport-open"
+              : "source-term-affine-transport-fit-open",
+      };
+    }
+  );
+  const transportSamplesAvailable =
+    midpointFitRows.length ===
+      H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    midpointFitRows.every((row) => row.sample_count === 5);
+  const scalarFitComputed =
+    transportSamplesAvailable &&
+    midpointFitRows.every((row) =>
+      Number.isFinite(Number(row.scalar_midpoint_transport_scale))
+    );
+  const affineFitComputed =
+    transportSamplesAvailable &&
+    midpointFitRows.every(
+      (row) =>
+        Number.isFinite(Number(row.affine_midpoint_transport_scale)) &&
+        Number.isFinite(Number(row.affine_midpoint_transport_offset))
+    );
+  const affineValueTransportChecked =
+    affineFitComputed &&
+    midpointFitRows.every((row) =>
+      finiteNonnegative(
+        row.affine_value_interval_transport_max_endpoint_relative_gap
+      )
+    );
+  const affineResidualTransportChecked =
+    affineFitComputed &&
+    midpointFitRows.every((row) =>
+      finiteNonnegative(
+        row.affine_residual_interval_transport_max_endpoint_relative_gap
+      )
+    );
+  const allScalarMidpointFitsClose =
+    scalarFitComputed &&
+    midpointFitRows.every((row) => row.scalar_midpoint_fit_closes === true);
+  const allAffineMidpointFitsClose =
+    affineFitComputed &&
+    midpointFitRows.every((row) => row.affine_midpoint_fit_closes === true);
+  const allAffineValueTransportsClose =
+    affineValueTransportChecked &&
+    midpointFitRows.every(
+      (row) => row.affine_value_interval_transport_closes === true
+    );
+  const allAffineResidualTransportsClose =
+    affineResidualTransportChecked &&
+    midpointFitRows.every(
+      (row) => row.affine_residual_interval_transport_closes === true
+    );
+  const allAffineTermTransportsClose =
+    allAffineMidpointFitsClose &&
+    allAffineValueTransportsClose &&
+    allAffineResidualTransportsClose;
+  const affineTransportCheckedAsNegativeControl =
+    affineValueTransportChecked &&
+    affineResidualTransportChecked &&
+    allAffineTermTransportsClose === false;
+  const fitChecks = {
+    primitive_audit_verified: primitiveAuditVerified,
+    retained_trace_direct_replay_failed: directReplayFailed,
+    transport_samples_available: transportSamplesAvailable,
+    termwise_scalar_midpoint_fit_computed: scalarFitComputed,
+    termwise_affine_midpoint_fit_computed: affineFitComputed,
+    termwise_affine_value_interval_transport_checked:
+      affineValueTransportChecked,
+    termwise_affine_residual_interval_transport_checked:
+      affineResidualTransportChecked,
+    termwise_affine_transport_checked_as_negative_control:
+      affineTransportCheckedAsNegativeControl,
+    source_term_realization_bridge_verified:
+      sourceTermRealizationBridgeVerified,
+    centered_homothetic_transport_surface_verified:
+      centeredHomotheticTransportSurfaceVerified,
+    homothetic_scalar_quotient_route_verified:
+      homotheticScalarQuotientRouteVerified,
+    all_homothetic_bridge_rows_reduce_width:
+      allHomotheticBridgeRowsReduceWidth,
+    directed_rounded_primitive_fields_still_absent: primitiveFieldsAbsent,
+    directed_rounded_source_provenance_still_open:
+      directedRoundedSourceProvenanceStillOpen,
+  };
+  const fitAttemptVerified = Object.values(fitChecks).every(
+    (value) => value === true
+  );
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_TRANSPORT_FIT_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-source-term-transport-fit-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-source-term-transport-fit",
+    target_kind: "candidate-requested-y44-source-term-transport-fit",
+    source_term_producer_image_primitive_audit_schema:
+      sourceTermProducerImagePrimitiveAudit?.schema ?? null,
+    source_term_realization_bridge_schema:
+      sourceTermRealizationProvenanceBridge?.schema ?? null,
+    proof_status: fitAttemptVerified
+      ? "candidate-centered-homothetic-transport-reduces-to-source-provenance-open"
+      : "candidate-source-term-transport-fit-input-open",
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    source_terms_requiring_directed_rounded_producer_image_trust: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    homothetic_transport_route_check_kinds: [
+      ...homotheticRouteCheckKinds,
+    ],
+    source_term_transport_fit_check_kinds: [...fitCheckKinds],
+    source_term_transport_fit_checks: fitChecks,
+    source_term_transport_fit_attempt_verified: fitAttemptVerified,
+    termwise_transport_fit_row_count: midpointFitRows.length,
+    termwise_transport_fit_rows: midpointFitRows,
+    all_termwise_scalar_midpoint_fits_close: allScalarMidpointFitsClose,
+    all_termwise_affine_midpoint_fits_close: allAffineMidpointFitsClose,
+    all_termwise_affine_value_interval_transports_close:
+      allAffineValueTransportsClose,
+    all_termwise_affine_residual_interval_transports_close:
+      allAffineResidualTransportsClose,
+    all_termwise_affine_transports_close_same_domain:
+      allAffineTermTransportsClose,
+    termwise_affine_transport_is_primary_route: false,
+    termwise_affine_transport_negative_control_checked:
+      affineTransportCheckedAsNegativeControl,
+    centered_homothetic_transport_bridge_row_count:
+      homotheticTransportBridgeRows.length,
+    centered_homothetic_transport_bridge_rows:
+      homotheticTransportBridgeRows,
+    centered_homothetic_source_term_transport_surface_verified:
+      centeredHomotheticTransportSurfaceVerified,
+    centered_homothetic_transport_reduces_to_signed_radius_source_provenance:
+      centeredHomotheticTransportSurfaceVerified,
+    directed_rounded_source_provenance_still_open:
+      directedRoundedSourceProvenanceStillOpen,
+    source_term_transport_fit_certified_directed_rounded: false,
+    source_term_transport_fit_closes_same_domain_replay:
+      centeredHomotheticTransportSurfaceVerified,
+    source_term_transport_fit_classification:
+      centeredHomotheticTransportSurfaceVerified
+        ? "centered-homothetic-source-term-transport-reduces-same-domain-replay-to-signed-radius-source-provenance-open"
+        : allAffineTermTransportsClose
+          ? "source-term-affine-transport-fits-same-domain-replay-directed-primitive-open"
+          : allAffineMidpointFitsClose
+            ? "source-term-affine-midpoint-transport-fits-interval-transport-open"
+            : "source-term-affine-transport-fit-open",
+    source_term_transport_fit_blocker_classification:
+      centeredHomotheticTransportSurfaceVerified
+        ? "directed-rounded-source-provenance-open-after-centered-homothetic-transport"
+        : allAffineTermTransportsClose
+          ? "directed-rounded-source-term-primitive-fields-open-after-transport-fit"
+          : "same-domain-source-term-transport-identity-open-after-affine-fit-attempt",
+    source_term_transport_fit_primary_missing_object_kind:
+      centeredHomotheticTransportSurfaceVerified
+        ? "directed-rounded-same-domain-signed-radius-source-provenance"
+        : allAffineTermTransportsClose
+          ? "directed-rounded-same-domain-source-term-producer-image-primitive-fields"
+          : "same-domain-source-term-transport-identity",
+    next_certificate_object: centeredHomotheticTransportSurfaceVerified
+      ? "directed-rounded same-domain signed-radius source-provenance envelope for the expression-level N38 source-map residual after centered homothetic source-term transport"
+      : allAffineTermTransportsClose
+        ? "directed-rounded source-term producer-image primitive fields for the affine-transported expression-level N38 source terms"
+        : "non-affine or coefficient-aware same-domain source-term transport identity from retained H0-H34 trace rows to expression-level N38 source-map residual term rows",
+    candidate_certificate_route:
+      "The retained H0-H34 trace rows do not directly replay the expression-level H39 source-term rows, and the termwise affine map is only a finite negative control. The executable transport surface that reaches the source-map boundary is the centered homothetic contraction already carried by the source-term realization bridge: it reconstructs the provider terms, factors the node-local scalar quotient, and reduces all five rows to signed-radius source provenance. The packet remains non-certifying because the directed-rounded same-domain signed-radius source-provenance envelope is still absent.",
+    claim_boundary: {
+      defines_source_term_transport_fit_only: true,
+      certifies_source_term_transport_identity: false,
+      certifies_source_term_producer_image_primitive: false,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_expression_level_n38_provider: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_terminal_row_provider_enclosure: false,
+      certifies_terminal_graph_remainder_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+export function validateH39RequestedY44SourceTermTransportFitCandidate(
+  artifact
+) {
+  const errors = [];
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const sameStringSet = (left, right) =>
+    Array.isArray(left) &&
+    left.length === right.length &&
+    right.every((value) => left.includes(value));
+  const hasOrderedFiniteInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    Number.isFinite(Number(interval[0])) &&
+    Number.isFinite(Number(interval[1])) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const validClaimBoundary = (claimBoundary) =>
+    claimBoundary?.defines_source_term_transport_fit_only === true &&
+    claimBoundary?.certifies_source_term_transport_identity === false &&
+    claimBoundary?.certifies_source_term_producer_image_primitive === false &&
+    claimBoundary?.certifies_source_inputs_as_directed_rounded_same_domain ===
+      false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_n38_fourth_derivative_bound === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const expectedFitCheckKinds = [
+    "primitive_audit_verified",
+    "retained_trace_direct_replay_failed",
+    "transport_samples_available",
+    "termwise_scalar_midpoint_fit_computed",
+    "termwise_affine_midpoint_fit_computed",
+    "termwise_affine_value_interval_transport_checked",
+    "termwise_affine_residual_interval_transport_checked",
+    "termwise_affine_transport_checked_as_negative_control",
+    "source_term_realization_bridge_verified",
+    "centered_homothetic_transport_surface_verified",
+    "homothetic_scalar_quotient_route_verified",
+    "all_homothetic_bridge_rows_reduce_width",
+    "directed_rounded_primitive_fields_still_absent",
+    "directed_rounded_source_provenance_still_open",
+  ];
+  const expectedHomotheticRouteCheckKinds = [
+    "source_term_realization_reduces_to_homothetic_contraction",
+    "homothetic_normal_form_reconstructs_provider_terms",
+    "homothetic_scalar_factorization_verified",
+    "scalar_provider_target_reduces_to_two_sources",
+    "quotient_envelope_reduces_to_source_interval_inclusion",
+    "quotient_source_inclusion_reduces_to_relative_radius_provider",
+    "quotient_source_radius_budget_reduces_to_absolute_source_radii",
+    "signed_radius_quotient_compatible_target_ready",
+    "signed_radius_acceptance_reaches_verifier_boundary",
+  ];
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_TRANSPORT_FIT_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 requested-y44 source-term transport fit candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-source-term-transport-fit-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-source-term-transport-fit" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-source-term-transport-fit" ||
+    artifact?.source_term_producer_image_primitive_audit_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_PRODUCER_IMAGE_PROVENANCE_PRIMITIVE_AUDIT_CANDIDATE_SCHEMA ||
+    artifact?.source_term_realization_bridge_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_REALIZATION_PROVENANCE_BRIDGE_CANDIDATE_SCHEMA ||
+    artifact?.proof_status !==
+      "candidate-centered-homothetic-transport-reduces-to-source-provenance-open" ||
+    artifact?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    !sameTerms(
+      artifact?.source_terms_requiring_directed_rounded_producer_image_trust
+    ) ||
+    !sameStringSet(
+      artifact?.homothetic_transport_route_check_kinds,
+      expectedHomotheticRouteCheckKinds
+    ) ||
+    !sameStringSet(
+      artifact?.source_term_transport_fit_check_kinds,
+      expectedFitCheckKinds
+    )
+  ) {
+    errors.push("source-term transport fit metadata must identify the fit attempt");
+  }
+  if (
+    expectedFitCheckKinds.some(
+      (kind) => artifact?.source_term_transport_fit_checks?.[kind] !== true
+    ) ||
+    artifact?.source_term_transport_fit_attempt_verified !== true ||
+    artifact?.termwise_transport_fit_row_count !==
+      H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length ||
+    typeof artifact?.all_termwise_scalar_midpoint_fits_close !== "boolean" ||
+    typeof artifact?.all_termwise_affine_midpoint_fits_close !== "boolean" ||
+    typeof artifact?.all_termwise_affine_value_interval_transports_close !==
+      "boolean" ||
+    typeof artifact?.all_termwise_affine_residual_interval_transports_close !==
+      "boolean" ||
+    artifact?.all_termwise_affine_transports_close_same_domain !== false ||
+    artifact?.termwise_affine_transport_is_primary_route !== false ||
+    artifact?.termwise_affine_transport_negative_control_checked !== true ||
+    artifact?.centered_homothetic_transport_bridge_row_count !== 5 ||
+    artifact?.centered_homothetic_source_term_transport_surface_verified !==
+      true ||
+    artifact
+      ?.centered_homothetic_transport_reduces_to_signed_radius_source_provenance !==
+      true ||
+    artifact?.directed_rounded_source_provenance_still_open !== true ||
+    artifact?.source_term_transport_fit_certified_directed_rounded !== false ||
+    artifact?.source_term_transport_fit_closes_same_domain_replay !== true ||
+    typeof artifact?.source_term_transport_fit_classification !== "string" ||
+    typeof artifact?.source_term_transport_fit_blocker_classification !==
+      "string" ||
+    typeof artifact?.source_term_transport_fit_primary_missing_object_kind !==
+      "string"
+  ) {
+    errors.push("source-term transport fit aggregate must be finite and non-certifying");
+  }
+  const rows = artifact?.termwise_transport_fit_rows ?? [];
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length ||
+    !rows.every(
+      (row, index) =>
+        row?.term === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS[index] &&
+        row?.sample_count === 5 &&
+        Number.isFinite(Number(row?.scalar_midpoint_transport_scale)) &&
+        finiteNonnegative(row?.scalar_midpoint_max_relative_residual) &&
+        typeof row?.scalar_midpoint_fit_closes === "boolean" &&
+        Number.isFinite(Number(row?.affine_midpoint_transport_scale)) &&
+        Number.isFinite(Number(row?.affine_midpoint_transport_offset)) &&
+        finiteNonnegative(row?.affine_midpoint_max_relative_residual) &&
+        typeof row?.affine_midpoint_fit_closes === "boolean" &&
+        finiteNonnegative(
+          row?.affine_value_interval_transport_max_endpoint_relative_gap
+        ) &&
+        typeof row?.affine_value_interval_transport_closes === "boolean" &&
+        finiteNonnegative(
+          row?.affine_residual_interval_transport_max_endpoint_relative_gap
+        ) &&
+        typeof row?.affine_residual_interval_transport_closes === "boolean" &&
+        typeof row?.affine_transport_closes_same_domain_term === "boolean" &&
+        Array.isArray(row?.scalar_midpoint_residual_rows) &&
+        row.scalar_midpoint_residual_rows.length === 5 &&
+        row.scalar_midpoint_residual_rows.every(
+          (sampleRow) =>
+            Number.isInteger(sampleRow?.node_index) &&
+            Number.isFinite(Number(sampleRow?.fitted_midpoint_value)) &&
+            Number.isFinite(Number(sampleRow?.midpoint_residual)) &&
+            finiteNonnegative(sampleRow?.midpoint_relative_residual)
+        ) &&
+        Array.isArray(row?.affine_transport_sample_rows) &&
+        row.affine_transport_sample_rows.length === 5 &&
+        row.affine_transport_sample_rows.every(
+          (sampleRow) =>
+            Number.isInteger(sampleRow?.node_index) &&
+            Number.isFinite(Number(sampleRow?.fitted_midpoint_value)) &&
+            Number.isFinite(Number(sampleRow?.midpoint_residual)) &&
+            finiteNonnegative(sampleRow?.midpoint_relative_residual) &&
+            hasOrderedFiniteInterval(
+              sampleRow?.affine_transported_value_interval
+            ) &&
+            finiteNonnegative(
+              sampleRow?.value_interval_endpoint_relative_gap
+            ) &&
+            hasOrderedFiniteInterval(
+              sampleRow?.affine_transported_residual_interval
+            ) &&
+            finiteNonnegative(
+              sampleRow?.residual_interval_endpoint_relative_gap
+            )
+        ) &&
+        [
+          "source-term-affine-transport-fit-closes-term-candidate",
+          "source-term-affine-midpoint-fit-closes-interval-transport-open",
+          "source-term-affine-transport-fit-open",
+        ].includes(row?.row_status)
+    )
+  ) {
+    errors.push("source-term transport fit rows must have finite scalar and affine fit diagnostics");
+  }
+  const homotheticRows =
+    artifact?.centered_homothetic_transport_bridge_rows ?? [];
+  if (
+    !Array.isArray(homotheticRows) ||
+    homotheticRows.length !== 5 ||
+    !homotheticRows.every(
+      (row, index) =>
+        row?.node_index === index &&
+        row?.source_term_transport_row_kind ===
+          "centered-homothetic-source-term-transport-bridge-row" &&
+        sameTerms(row?.source_terms_preserved_signed_together) &&
+        row?.provider_row_source_kind ===
+          "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+        row?.source_term_provider_probe_row_status ===
+          "candidate-source-term-provider-row-fits-center-aware-target-source-certification-open" &&
+        row?.signed_radius_acceptance_row_status ===
+          "candidate-quotient-compatible-provider-target-contained-source-certification-open" &&
+        hasOrderedFiniteInterval(row?.directed_rounded_signed_residual_interval) &&
+        hasOrderedFiniteInterval(
+          row?.directed_rounded_weighted_residual_interval
+        ) &&
+        finiteNonnegative(row?.signed_provider_interval_abs_upper) &&
+        finiteNonnegative(row?.numerator_allowed_absolute_half_width) &&
+        Array.isArray(row?.row_check_kinds) &&
+        row.row_check_kinds.length > 0 &&
+        Object.values(row?.row_checks ?? {}).every((value) => value === true) &&
+        row?.row_reduces_term_width_to_signed_radius_source_provenance ===
+          true &&
+        row?.source_term_provider_directed_source_certification_open ===
+          true &&
+        row?.expression_level_n38_source_envelope_open === true &&
+        row?.row_status ===
+          "centered-homothetic-transport-reduces-row-to-signed-radius-source-provenance-open" &&
+        validClaimBoundary(row?.claim_boundary)
+    )
+  ) {
+    errors.push("source-term transport fit homothetic bridge rows must reduce to signed-radius source provenance without certification");
+  }
+  if (
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string" ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("source-term transport fit must keep broad closure claims open");
   }
   return errors;
 }

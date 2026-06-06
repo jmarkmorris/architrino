@@ -61,6 +61,7 @@ import {
   buildH39RequestedY44SourceTermRealizationProvenanceBridgeCandidate,
   buildH39RequestedY44ExpressionN38SourceMapResidualEnvelopeProvenanceAuditCandidate,
   buildH39RequestedY44SourceTermProducerImageProvenancePrimitiveAuditCandidate,
+  buildH39RequestedY44SourceTermTransportFitCandidate,
   buildH39RequestedY44RowLocalN38SignedSourceSumDerivativeProviderCandidate,
   validateH39CorrelatedResidualWidthDiagnostic,
   validateH39H38NumeratorGraphLocalPartitionDiagnostic,
@@ -118,6 +119,7 @@ import {
   validateH39RequestedY44SourceTermRealizationProvenanceBridgeCandidate,
   validateH39RequestedY44ExpressionN38SourceMapResidualEnvelopeProvenanceAuditCandidate,
   validateH39RequestedY44SourceTermProducerImageProvenancePrimitiveAuditCandidate,
+  validateH39RequestedY44SourceTermTransportFitCandidate,
   validateH39RequestedY44RowLocalN38SignedSourceSumDerivativeProvider,
   validateH39RequestedY44SignedSourceSumDerivativeAllocationTarget,
   validateH39RequestedY44SourceMapResidualCovarianceTarget,
@@ -14907,6 +14909,152 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   assert.deepEqual(
     collectExactKeys(
       sourceTermProducerImagePrimitiveAudit,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const sourceTermTransportFit =
+    buildH39RequestedY44SourceTermTransportFitCandidate({
+      sourceTermProducerImagePrimitiveAudit,
+      sourceTermRealizationProvenanceBridge,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44SourceTermTransportFitCandidate(
+      sourceTermTransportFit
+    ),
+    []
+  );
+  assert.equal(
+    sourceTermTransportFit
+      .source_term_transport_fit_attempt_verified,
+    true
+  );
+  assert.equal(
+    sourceTermTransportFit
+      .centered_homothetic_source_term_transport_surface_verified,
+    true
+  );
+  assert.equal(
+    sourceTermTransportFit
+      .centered_homothetic_transport_reduces_to_signed_radius_source_provenance,
+    true
+  );
+  assert.equal(
+    sourceTermTransportFit
+      .directed_rounded_source_provenance_still_open,
+    true
+  );
+  assert.equal(
+    sourceTermTransportFit.termwise_affine_transport_is_primary_route,
+    false
+  );
+  assert.equal(
+    sourceTermTransportFit
+      .termwise_affine_transport_negative_control_checked,
+    true
+  );
+  assert.equal(
+    sourceTermTransportFit.all_termwise_affine_transports_close_same_domain,
+    false
+  );
+  assert.equal(
+    sourceTermTransportFit
+      .source_term_transport_fit_certified_directed_rounded,
+    false
+  );
+  assert.equal(
+    sourceTermTransportFit.source_term_transport_fit_closes_same_domain_replay,
+    true
+  );
+  assert.equal(
+    sourceTermTransportFit.source_term_transport_fit_classification,
+    "centered-homothetic-source-term-transport-reduces-same-domain-replay-to-signed-radius-source-provenance-open"
+  );
+  assert.equal(
+    sourceTermTransportFit.source_term_transport_fit_blocker_classification,
+    "directed-rounded-source-provenance-open-after-centered-homothetic-transport"
+  );
+  assert.equal(
+    sourceTermTransportFit
+      .source_term_transport_fit_primary_missing_object_kind,
+    "directed-rounded-same-domain-signed-radius-source-provenance"
+  );
+  assert.deepEqual(
+    sourceTermTransportFit.source_term_transport_fit_check_kinds,
+    [
+      "primitive_audit_verified",
+      "retained_trace_direct_replay_failed",
+      "transport_samples_available",
+      "termwise_scalar_midpoint_fit_computed",
+      "termwise_affine_midpoint_fit_computed",
+      "termwise_affine_value_interval_transport_checked",
+      "termwise_affine_residual_interval_transport_checked",
+      "termwise_affine_transport_checked_as_negative_control",
+      "source_term_realization_bridge_verified",
+      "centered_homothetic_transport_surface_verified",
+      "homothetic_scalar_quotient_route_verified",
+      "all_homothetic_bridge_rows_reduce_width",
+      "directed_rounded_primitive_fields_still_absent",
+      "directed_rounded_source_provenance_still_open",
+    ]
+  );
+  assert.ok(
+    Object.values(
+      sourceTermTransportFit.source_term_transport_fit_checks
+    ).every((value) => value === true)
+  );
+  assert.deepEqual(
+    sourceTermTransportFit.homothetic_transport_route_check_kinds,
+    [
+      "source_term_realization_reduces_to_homothetic_contraction",
+      "homothetic_normal_form_reconstructs_provider_terms",
+      "homothetic_scalar_factorization_verified",
+      "scalar_provider_target_reduces_to_two_sources",
+      "quotient_envelope_reduces_to_source_interval_inclusion",
+      "quotient_source_inclusion_reduces_to_relative_radius_provider",
+      "quotient_source_radius_budget_reduces_to_absolute_source_radii",
+      "signed_radius_quotient_compatible_target_ready",
+      "signed_radius_acceptance_reaches_verifier_boundary",
+    ]
+  );
+  assert.equal(
+    sourceTermTransportFit.centered_homothetic_transport_bridge_row_count,
+    5
+  );
+  assert.ok(
+    sourceTermTransportFit.centered_homothetic_transport_bridge_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.source_term_transport_row_kind ===
+          "centered-homothetic-source-term-transport-bridge-row" &&
+        row.provider_row_source_kind ===
+          "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+        row.source_term_provider_probe_row_status ===
+          "candidate-source-term-provider-row-fits-center-aware-target-source-certification-open" &&
+        row.signed_radius_acceptance_row_status ===
+          "candidate-quotient-compatible-provider-target-contained-source-certification-open" &&
+        Object.values(row.row_checks).every((value) => value === true) &&
+        row.row_reduces_term_width_to_signed_radius_source_provenance ===
+          true &&
+        row.source_term_provider_directed_source_certification_open ===
+          true &&
+        row.expression_level_n38_source_envelope_open === true &&
+        row.claim_boundary.certifies_source_term_transport_identity ===
+          false &&
+        row.claim_boundary
+          .certifies_source_inputs_as_directed_rounded_same_domain === false &&
+        row.claim_boundary.certifies_expression_level_n38_provider ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain ===
+          false &&
+        row.row_status ===
+          "centered-homothetic-transport-reduces-row-to-signed-radius-source-provenance-open"
+    )
+  );
+  assert.deepEqual(collectTrueCertifies(sourceTermTransportFit), []);
+  assert.deepEqual(
+    collectExactKeys(
+      sourceTermTransportFit,
       FORBIDDEN_FIXED_SPEED_KEYS
     ),
     []

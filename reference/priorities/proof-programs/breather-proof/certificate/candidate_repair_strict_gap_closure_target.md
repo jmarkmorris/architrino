@@ -507,12 +507,16 @@ The next solver should therefore:
    112 / 112 complete proof-grade parity delta rows from 12 / 12 one-root
    separator tubes, 12 / 12 endpoint sign-change certificates, 12 / 12
    complement no-extra-root profiles, and 0 failing derivative-piece profiles,
-   with 0 source-ref-as-proof-ref reuse. It still constructs 0 proof-grade
-   `exit_floor` refs; the exit-floor interval-width source-certificate attempt
-   then constructs 112 / 112 proof-grade `exit_floor` source certificates from
-   exact same-packet interval-width checks and distinct
-   `proof_source_certificate_ref` handles, while still constructing 0
-   proof-grade `exit_floor` refs;
+   with 0 source-ref-as-proof-ref reuse. The exit-floor interval-width
+   source-certificate attempt then constructs 112 / 112 proof-grade
+   `exit_floor` source certificates from exact same-packet interval-width
+   checks and distinct `proof_source_certificate_ref` handles. The exit-floor
+   interval-width proof-grade derivation attempt then constructs 112 / 112
+   proof-grade `exit_floor` refs from those source certificates with 0
+   source-certificate-ref-as-proof-ref reuse, so all 112 / 112 fold-layer row
+   associations now carry proof-grade `alpha_floor`, `exit_floor`, and
+   `fold_layer_parity_record` refs while the separator certificate remains
+   absent;
 4. assemble the signed gap derivative matrix $A$ for the selected orientations
    above;
 5. keep the structural constraint matrix $B=DC(\mathbf a_0)$, including section,

@@ -199,7 +199,7 @@ Options:
   --max-acceleration X   Per-particle acceleration cap. Default: ${DEFAULTS.maxAcceleration}
   --shell-k X            Toy shell-radius restoring coefficient. Default: ${DEFAULTS.shellK}
   --shell-radius X       Target shell radius for the toy restoring term. Default: ${DEFAULTS.shellRadius}
-  --min-delay X          Minimum accepted causal delay. Default: ${DEFAULTS.minDelay}
+  --min-delay X          Minimum accepted same-source causal delay. Partner roots may use zero delay. Default: ${DEFAULTS.minDelay}
   --memory-depth X       Initial negative-time rotating-ring history depth; fixed-mode buffer depth. Default: ${DEFAULTS.memoryDepth}
   --history-mode X       Retained causal history: deep, adaptive, fixed. Default: ${DEFAULTS.historyMode}
   --history-margin X     Extra seconds retained beyond the adaptive causal-delay estimate. Default: ${DEFAULTS.historyMargin}
@@ -472,6 +472,7 @@ function findMostRecentRoot(history, receiverPosition, receiverId, sourceId, t, 
   let lastNewerResidual = null;
   let oldestResidual = null;
   let oldestDelay = null;
+  const minAcceptedDelay = minimumAcceptedRootDelay(receiverId, sourceId, config);
   const historyOldest = history[0];
   const historyNewest = history[history.length - 1];
   for (let k = history.length - 1; k >= 1; k -= 1) {
@@ -479,10 +480,7 @@ function findMostRecentRoot(history, receiverPosition, receiverId, sourceId, t, 
     const older = history[k - 1];
     const newerDelay = t - newer.t;
     const olderDelay = t - older.t;
-    if (newerDelay < config.minDelay && olderDelay < config.minDelay) {
-      continue;
-    }
-    if (receiverId === sourceId && newerDelay < config.minDelay) {
+    if (newerDelay < minAcceptedDelay && olderDelay < minAcceptedDelay) {
       continue;
     }
 
@@ -494,7 +492,7 @@ function findMostRecentRoot(history, receiverPosition, receiverId, sourceId, t, 
     oldestResidual = gOld;
     oldestDelay = olderDelay;
 
-    if (Math.abs(gNew) < 1e-12 && newerDelay >= config.minDelay) {
+    if (Math.abs(gNew) < 1e-12 && newerDelay >= minAcceptedDelay) {
       return {
         ...newerSource,
         delay: newerDelay,
@@ -511,7 +509,7 @@ function findMostRecentRoot(history, receiverPosition, receiverId, sourceId, t, 
       const u = gNew / (gNew - gOld);
       const source = interpolateSource(newer, older, sourceId, u);
       const delay = t - source.t;
-      if (delay < config.minDelay) {
+      if (delay < minAcceptedDelay) {
         continue;
       }
       return {
@@ -527,6 +525,7 @@ function findMostRecentRoot(history, receiverPosition, receiverId, sourceId, t, 
     return {
       unresolved: true,
       reason: "insufficient_history_after_min_delay",
+      min_accepted_delay: minAcceptedDelay,
       history_oldest_t: historyOldest?.t ?? null,
       history_newest_t: historyNewest?.t ?? null,
       history_frame_count: history.length,
@@ -538,10 +537,15 @@ function findMostRecentRoot(history, receiverPosition, receiverId, sourceId, t, 
     residual: lastNewerResidual,
     oldest_residual: oldestResidual,
     oldest_delay: oldestDelay,
+    min_accepted_delay: minAcceptedDelay,
     history_oldest_t: historyOldest?.t ?? null,
     history_newest_t: historyNewest?.t ?? null,
     history_frame_count: history.length,
   };
+}
+
+function minimumAcceptedRootDelay(receiverId, sourceId, config) {
+  return receiverId === sourceId ? config.minDelay : 0;
 }
 
 function shouldHaltForUnresolvedRoot(config, receiverId, sourceId) {
@@ -585,6 +589,7 @@ function accelerations(state, history, config, charges) {
           residual: root?.residual ?? null,
           oldest_residual: root?.oldest_residual ?? null,
           oldest_delay: root?.oldest_delay ?? null,
+          min_accepted_delay: root?.min_accepted_delay ?? minimumAcceptedRootDelay(i, j, config),
           history_oldest_t: root?.history_oldest_t ?? null,
           history_newest_t: root?.history_newest_t ?? null,
           history_frame_count: root?.history_frame_count ?? history.length,

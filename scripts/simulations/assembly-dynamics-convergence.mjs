@@ -389,7 +389,10 @@ function compareRuns(coarse, fine, coarseResult, fineResult, args, haltTimeToler
   const haltTimeDelta = coarse.halt_time !== null || fine.halt_time !== null
     ? Math.abs((coarse.halt_time ?? coarse.final_time) - (fine.halt_time ?? fine.final_time))
     : 0;
-  const radiusStable = finalRadiusRelDelta <= args.radiusTolerance && minRadiusRelDelta <= args.radiusTolerance;
+  const minRadiusSofteningZone = inSharedSofteningZone(coarse, fine, args);
+  const finalRadiusStable = finalRadiusRelDelta <= args.radiusTolerance;
+  const minRadiusStable = minRadiusRelDelta <= args.radiusTolerance || minRadiusSofteningZone;
+  const radiusStable = finalRadiusStable && minRadiusStable;
   const pathStable = path.path_rms_normalized <= args.pathTolerance;
   const haltStable = haltTimeDelta <= haltTimeTolerance;
   const passes = sameOutcome && sameErrorCode && samePartnerFailureReasons && radiusStable && pathStable && haltStable;
@@ -397,7 +400,8 @@ function compareRuns(coarse, fine, coarseResult, fineResult, args, haltTimeToler
   if (!sameOutcome) reasons.push("outcome_changed");
   if (!sameErrorCode) reasons.push("error_code_changed");
   if (!samePartnerFailureReasons) reasons.push("partner_root_failure_reasons_changed");
-  if (!radiusStable) reasons.push("radius_delta_exceeds_tolerance");
+  if (!finalRadiusStable) reasons.push("final_radius_delta_exceeds_tolerance");
+  if (!minRadiusStable) reasons.push("min_radius_delta_exceeds_tolerance");
   if (!pathStable) reasons.push("path_delta_exceeds_tolerance");
   if (!haltStable) reasons.push("halt_time_delta_exceeds_tolerance");
 
@@ -411,11 +415,20 @@ function compareRuns(coarse, fine, coarseResult, fineResult, args, haltTimeToler
     same_outcome: sameOutcome,
     same_error_code: sameErrorCode,
     same_partner_root_failure_reasons: samePartnerFailureReasons,
+    min_radius_softening_zone: minRadiusSofteningZone,
     final_radius_relative_delta: finalRadiusRelDelta,
     min_radius_relative_delta: minRadiusRelDelta,
     halt_time_delta: haltTimeDelta,
     ...path,
   };
+}
+
+function inSharedSofteningZone(coarse, fine, args) {
+  return args.softening > 0 &&
+    coarse.outcome === "softening_floor" &&
+    fine.outcome === "softening_floor" &&
+    coarse.min_radius <= args.softening &&
+    fine.min_radius <= args.softening;
 }
 
 function classifyConvergence(runs, comparisons) {

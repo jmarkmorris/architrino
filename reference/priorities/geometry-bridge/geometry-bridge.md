@@ -3488,11 +3488,21 @@ zero-constant rows inside the source-map trace anchor. Directly identifying
 those retained H0-H34 rows with the expression-level H39 source-term rows fails:
 the retained value, residual, and zero-constant nonconstant intervals have
 large endpoint gaps against the H39 term rows. The next executable blocker is
-therefore a same-domain transport identity from the retained H0-H34
-source-term trace surface to the expression-level $N_{38}$ source-map residual
-term surface, followed by the still-missing directed-rounded term interval,
-source-domain, source-radius, outward endpoint-rounding, and per-term
-certification fields.
+therefore not a direct retained-trace equality.
+
+`buildH39RequestedY44SourceTermTransportFitCandidate` now attacks that transport
+object. It computes termwise scalar and affine midpoint/interval fits from the
+retained H0-H34 source-term trace rows to the expression-level H39 source-term
+rows, but treats them only as a finite negative control: the affine interval
+transport does not close. The positive executable route is the existing
+centered homothetic source-term contraction bridge. Its normal-form,
+scalar-factorization, scalar-provider-target, quotient-envelope,
+quotient-source, source-radius, and signed-radius acceptance checks replay all
+five rows to signed-radius source provenance on the same domain and radius
+contract. This still does not certify a directed-rounded source provider. The
+next true object is the directed-rounded same-domain signed-radius
+source-provenance envelope for the expression-level $N_{38}$ source-map
+residual after centered homothetic source-term transport.
 
 ## Current Classification
 

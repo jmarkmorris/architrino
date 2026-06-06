@@ -422,6 +422,22 @@ branch chart. The current child-field blocker is
 `exit_floor_source_certificate_to_child_field_derivation_bridge_absent`;
 accepted atlas-ref, impulse/direct-quadrature, parent-complement consumption,
 and separator certificate fields remain separately absent.
+The exit-floor interval-width proof-grade derivation attempt,
+`higher_fold_layer_exit_floor_interval_width_proof_grade_derivation_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then reduces the exit proof-ref blocker by deriving fresh proof-grade
+`exit_floor` refs from the proof-grade interval-width source certificates
+without reusing any `proof_source_certificate_ref` as a `proof_grade_ref`. It
+inherits 112 / 112 proof-grade `alpha_floor` refs and 112 / 112 proof-grade
+`fold_layer_parity_record` refs, constructs 112 / 112 proof-grade
+`exit_floor` refs, and leaves 0 child proof-grade ref obligations after
+exit-floor derivation. It still constructs 0
+`higher_fold_separator_layer_certificate` fields, consumes 0 rows, keeps
+`preledger_pass=false`, keeps live-ledger update false, and authorizes no
+branch chart. The remaining blockers are
+`accepted_higher_fold_layer_atlas_ref_derivation_absent`,
+`fixed_parameter_separator_aggregate_to_same_packet_fold_impulse_or_direct_quadrature_bound_acceptance_rule_absent`,
+`parent_complement_consumption_ref_absent`, and
+`higher_fold_separator_layer_certificate_absent`.
 The nonlinear fold-coordinate collocation tangent-matrix screen,
 `gap_opening_fresh_v10_fold_coordinate_collocation_report.nonlinear-v0.md`,
 now packages the first executable collocation-surface test: 3 homogeneous

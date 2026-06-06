@@ -515,7 +515,14 @@ proof-grade `exit_floor` source certificates with 0
 source-ref-as-source-certificate reuse. It still constructs 0 proof-grade
 `exit_floor` refs and 0 complete child-field rows; the next child-field blocker
 is `exit_floor_source_certificate_to_child_field_derivation_bridge_absent`.
-All twenty-four classifier/attempt artifacts keep `preledger_pass=false`,
+The exit-floor interval-width proof-grade derivation attempt then constructs
+112 / 112 proof-grade `exit_floor` refs from those proof-grade source
+certificates with 0 source-certificate-ref-as-proof-ref reuse, inherits 112 /
+112 proof-grade `alpha_floor` refs and 112 / 112 proof-grade
+`fold_layer_parity_record` refs, and leaves 0 child proof-grade ref obligations
+after exit-floor derivation. It still constructs 0
+`higher_fold_separator_layer_certificate` fields and consumes 0 rows.
+All twenty-five classifier/attempt artifacts keep `preledger_pass=false`,
 `updates_live_ledger=false`, row consumption 0, and no branch-chart
 authorization.
 

@@ -284,11 +284,15 @@ topology proof-grade derivation attempt then constructs 112 / 112 proof-grade
 rows from the one-root/complement topology certificate, again with 0
 source-ref-as-proof-ref reuse. The exit-floor interval-width source-certificate
 attempt then constructs 112 / 112 proof-grade `exit_floor` source certificates
-from exact same-packet interval-width checks, but still constructs 0 proof-grade
-`exit_floor` refs. Separator certificates, row consumption, `preledger_pass`,
-live-ledger updates, and branch-chart authorization remain at 0. This improves
-the parallel fold-layer field ledger but still does not change the source-cover
-theorem target or authorize source-cover row consumption.
+from exact same-packet interval-width checks. The exit-floor interval-width
+proof-grade derivation attempt then constructs 112 / 112 proof-grade
+`exit_floor` refs from those source certificates with 0
+source-certificate-ref-as-proof-ref reuse, so all 112 / 112 fold-layer row
+associations now carry proof-grade `alpha_floor`, `exit_floor`, and
+`fold_layer_parity_record` refs. Separator certificates, row consumption,
+`preledger_pass`, live-ledger updates, and branch-chart authorization remain at
+0. This improves the parallel fold-layer field ledger but still does not change
+the source-cover theorem target or authorize source-cover row consumption.
 
 ## First Probe Rows
 
