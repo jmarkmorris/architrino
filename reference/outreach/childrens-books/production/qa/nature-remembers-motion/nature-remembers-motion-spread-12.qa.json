@@ -7,14 +7,14 @@
     "width": 1536,
     "height": 1024,
     "aspect_ratio": 1.5,
-    "saturated_non_palette_fraction": 0.3899,
+    "saturated_non_palette_fraction": 0.9465,
     "palette_flag": true
   },
   "manual_checklist": {
-    "palette": "approved",
-    "no_in_image_text": "approved",
-    "one_continuous_scene": "approved",
-    "correct_geometry": "approved"
+    "palette": "pending",
+    "no_in_image_text": "pending",
+    "one_continuous_scene": "pending",
+    "correct_geometry": "pending"
   },
-  "decision": "approved"
+  "decision": "pending"
 }

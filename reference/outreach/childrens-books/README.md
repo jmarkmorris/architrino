@@ -1,9 +1,11 @@
 # Children's Book Series
 
-This folder develops child-facing outreach books derived from [early-learning.md](../early-learning.md). These are working manuscripts, not textbook chapters. The overall story is **The Wonder of Nature and the Universe**: each book should follow a child or learner seeking knowledge and discovering one new thing about nature or the universe. The concept progression is controlled by [story-design.md](story-design.md). The visual system is controlled by [style-guide.md](style-guide.md), with approved image direction recorded in [exemplars.md](exemplars.md) and selected reverse-band story-text placement recorded in [text-layout-proposals.md](text-layout-proposals.md). Each book should keep the same three commitments:
+This folder develops child-facing outreach books derived from [early-learning.md](../early-learning.md). These are working manuscripts, not textbook chapters. The overall story is **The Wonder of Nature and the Universe**: Electra and Poz seek knowledge together and discover one new thing about nature or the universe in each book. The concept progression is controlled by [story-design.md](story-design.md). The visual system is controlled by [style-guide.md](style-guide.md), with approved image direction recorded in [exemplars.md](exemplars.md) and selected reverse-band story-text placement recorded in [text-layout-proposals.md](text-layout-proposals.md). Each book should keep the same three commitments:
 
 - the story is emotionally simple enough for the target age;
 - the plot begins from a wonder question and resolves in a concrete discovery;
+- Electra and Poz are recurring children; either child may wonder, try, notice, be surprised, or state the discovery;
+- Electra and Poz are not architrinos, polarity symbols, or fixed personality roles;
 - the youngest books teach here/there, now/next, path, and return with a real visible ball as the focal object, not abstract pointing;
 - puzzles are posed as mental prompts about the scene, not as requests to write a book or story;
 - the lesson preserves the $\mathbb{A}\mathbb{A}\mathbb{A}$ level distinction between substrate ontology, assembly behavior, and observer-level description;
@@ -37,7 +39,7 @@ A hypothetical Books `17-32` extension may later continue the numbered style int
 | 4 | 3-4 | [Again Makes A Pattern](again-makes-a-pattern.md) | Repeated paths can make patterns; near/far matters; overlap can be seen. |
 | 5 | 4-5 | [What Changed?](what-changed.md) | Predict; change one thing; compare what happened. |
 | 6 | 5-6 | [The Message That Traveled](the-message-that-traveled.md) | Messages take time to arrive; source place matters; received messages can change a path. |
-| 7 | 6-7 | [Farther Takes Longer](farther-takes-longer.md) | Farther messages arrive later; direction matters; a line of action connects source and receiver. |
+| 7 | 6-7 | [Farther Takes Longer](farther-takes-longer.md) | Farther messages arrive later; direction matters; a line of action connects start and arrival. |
 | 8 | 7-8 | [Patterns That Hold](patterns-that-hold.md) | Many lawful messages can fit; fit can make a stable pattern; stable does not mean motionless. |
 | 9 | 8-9 | [The Tiny Transceivers](the-tiny-transceivers.md) | Two fundamental sender-receiver kinds; each keeps a path; each emits and receives. |
 | 10 | 9-10 | [The Waves They Send](the-waves-they-send.md) | Emission creates a traveling potential wave; reception changes the next path; line of action gives direction. |
@@ -62,7 +64,7 @@ Use a consistent visual grammar across the series:
 
 - **architrinos:** tiny luminous point transceivers with persistent identity, never generic "particles" floating without path history;
 - **causal wakes:** translucent expanding causal isochrons, usually curved arcs or rings whose centers remember earlier source positions;
-- **line of action:** a clean source-to-receiver arrow or glow path when an influence is received;
+- **line of action:** a clean earlier-source-to-arrival arrow or glow path when an influence is received;
 - **Noether sea:** a subtle ambient lattice or dusting of neutral assembly motifs in the background, not empty darkness;
 - **assemblies:** stable patterns of several point transceivers held in geometric relation;
 - **observer-level descriptions:** classroom drawings, clocks, rulers, wave pictures, curved spacetime grids, or maps that are visibly later summaries, not the deepest objects.

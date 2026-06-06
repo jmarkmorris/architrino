@@ -34,11 +34,11 @@ Read-aloud title:
 
 Read-aloud text:
 
-> Ari watched the detector click.
+> Electra watched the detector click.
 >
 > "Did looking do something?"
 
-Discovery:
+Editor note:
 
 Measurement becomes a physical question.
 
@@ -46,13 +46,13 @@ Measurement becomes a physical question.
 
 Read-aloud text:
 
-> Dr. Sol tapped the detector case.
+> Poz tapped the detector case.
 >
 > "This is not outside nature.
 >
 > It is made of matter too."
 
-Discovery:
+Editor note:
 
 The measuring device participates in the event.
 
@@ -64,7 +64,7 @@ Read-aloud text:
 >
 > The device changed.
 
-Discovery:
+Editor note:
 
 Measurement begins with interaction.
 
@@ -74,9 +74,9 @@ Read-aloud text:
 
 > The pointer tipped left.
 >
-> The mark stayed.
+> Left stayed.
 
-Discovery:
+Editor note:
 
 A physical change can become readable.
 
@@ -84,11 +84,11 @@ A physical change can become readable.
 
 Read-aloud text:
 
-> Mira wrote down the mark.
+> Poz wrote down left.
 >
 > "Now we have a record."
 
-Discovery:
+Editor note:
 
 A record is a stable physical outcome.
 
@@ -98,11 +98,11 @@ Read-aloud text:
 
 > "The record is not only in my head,"
 >
-> Mira said.
+> Electra said.
 >
 > "It is on the device."
 
-Discovery:
+Editor note:
 
 Observation is tied to physical state.
 
@@ -114,7 +114,7 @@ Read-aloud text:
 >
 > A tiny difference could choose the side.
 
-Discovery:
+Editor note:
 
 Book 13's threshold logic enters measurement.
 
@@ -126,7 +126,7 @@ Read-aloud text:
 >
 > the result could be read again.
 
-Discovery:
+Editor note:
 
 Settling makes a stable branch-like record.
 
@@ -138,7 +138,7 @@ Read-aloud text:
 >
 > the quiet medium was still present.
 
-Discovery:
+Editor note:
 
 Measurement happens within medium context.
 
@@ -146,13 +146,13 @@ Measurement happens within medium context.
 
 Read-aloud text:
 
-> "We call that surrounding context the Noether sea,"
+> The lab card said:
 >
-> Dr. Sol said.
+> Noether sea.
 >
 > "It is quiet, not absent."
 
-Discovery:
+Editor note:
 
 The canonical term is introduced.
 
@@ -170,7 +170,7 @@ Read-aloud text:
 >
 > Nothing stood outside the event.
 
-Discovery:
+Editor note:
 
 Measurement belongs inside physics.
 
@@ -178,11 +178,11 @@ Measurement belongs inside physics.
 
 Read-aloud text:
 
-> Ari drew a map of the result.
+> Electra drew a map of the result.
 >
 > "The map came after the interaction."
 
-Discovery:
+Editor note:
 
 Observer-level description follows physical record formation.
 
@@ -196,7 +196,7 @@ Read-aloud text:
 >
 > "What can we claim?"
 
-Discovery:
+Editor note:
 
 Measurement teaches claim discipline.
 
@@ -210,7 +210,7 @@ Read-aloud text:
 >
 > A record is made in the world.
 
-Discovery:
+Editor note:
 
 Measurement becomes lawful physical record formation.
 

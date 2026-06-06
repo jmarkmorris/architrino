@@ -24,7 +24,7 @@ The stories should be fun first: play, experiments, motion, puzzles, chase games
 Puzzles in this series are mental puzzles, not creative-writing assignments. A puzzle should ask the reader to notice, predict, choose, compare, or infer from the scene:
 
 - Which path will the ball take?
-- Which mark came first?
+- Which dot came first?
 - Which message arrives first?
 - What changed when one thing moved?
 - Which outcome fits the surface?
@@ -164,7 +164,7 @@ Level 2 scenes should not introduce new teaching goals casually. Each scene shou
 | 4 | 3-4 | [Again Makes A Pattern](again-makes-a-pattern.md) | Arc 1 capstone: repeated path becomes visible pattern. | Repeated paths can make patterns; near/far matters; overlap can be seen. |
 | 5 | 4-5 | [What Changed?](what-changed.md) | Pre-K bridge from observation to prediction. | Try, change one thing, compare what happened. |
 | 6 | 5-6 | [The Message That Traveled](the-message-that-traveled.md) | Kindergarten message-and-delay book. | Messages take time to arrive; source place matters; received messages can change a path. |
-| 7 | 6-7 | [Farther Takes Longer](farther-takes-longer.md) | Distance, direction, and field-speed intuition. | Farther messages arrive later; direction matters; a line of action connects source and receiver. |
+| 7 | 6-7 | [Farther Takes Longer](farther-takes-longer.md) | Distance, direction, and field-speed intuition. | Farther messages arrive later; direction matters; a line of action connects start and arrival. |
 | 8 | 7-8 | [Patterns That Hold](patterns-that-hold.md) | Arc 2 capstone: stable pattern becomes the bridge to assembly. | Many lawful messages can fit; fit can make a stable pattern; stable does not mean motionless. |
 | 9 | 8-9 | [The Tiny Transceivers](the-tiny-transceivers.md) | First explicit tiny sender-receiver book. | Two fundamental sender-receiver kinds; each keeps a path; each emits and receives. |
 | 10 | 9-10 | [The Waves They Send](the-waves-they-send.md) | Potential-wave and reception book. | Emission creates a traveling potential wave; reception changes the next path; line of action gives direction. |
@@ -235,7 +235,7 @@ Generation order:
 
 ## Framing To Avoid
 
-Avoid social overtones. The series should not use the physics palette, polarity, named architrinos, or assembly behavior as metaphors for human groups, personality types, social identity, conflict, morality, or belonging.
+Avoid social overtones. The series should not use the physics palette, polarity, architrino behavior, or assembly behavior as metaphors for human groups, personality types, social identity, conflict, morality, or belonging.
 
 Do not map:
 
@@ -281,7 +281,7 @@ For Books 1-8, use motion language:
 
 For Books 9-11, introduce `response type`:
 
-> Electra and Poz have different response types. Their waves do not mean good or bad. They tell the next path how to bend.
+> The red kind and the blue kind have different response types. Their waves do not mean good or bad. They tell the next path how to bend.
 
 For Books 12+, connect the metaphor back to formal language:
 
@@ -319,29 +319,29 @@ Mathematical bridge for older readers:
 
 For a point at position $x(t)$ relative to a source position $s$, the child-facing idea becomes the older mathematical idea that the distance $r(t)=\|x(t)-s\|$ is decreasing, increasing, or momentarily balanced.
 
-## Named Architrinos
+## Recurring Child Cast
 
-Named architrinos can help children remember the two fundamental entity types, but they should be introduced only after the child understands send/receive behavior.
+Electra and Poz are the recurring human children across the manuscript line. They are the knowledge-seeking pair, not architrino names, polarity symbols, or fixed personality roles. Either child may wonder, try, notice, be surprised, make a wrong guess, change direction, or state the discovery.
 
 Recommended timing:
 
-- Books 1-5: no named architrinos. Use "tiny dots," "tiny senders," "red kind," and "blue kind."
-- Books 6-8: optional first names at the end or in a side activity, not as the main story engine.
-- Books 9-11: introduce named architrinos as recurring demonstration characters.
-- Books 12+: use the names only as mnemonic aids while moving toward canonical terms.
+- Books 1-4: Electra and Poz learn with red and blue balls, trails, water, shadows, and repeated paths.
+- Books 5-8: Electra and Poz apply those skills to simple experiments, claps, bells, ropes, toy boats, wakes, and stable moving patterns.
+- Books 9-12: Electra and Poz use lab screens, red/blue points, arrows, balls, hills, snowboards, moguls, dips, and ridges.
+- Books 13-16: Electra and Poz use threshold setups, detectors, maps, wake-crossing, cards, and recovered-world tools.
 
-Working names:
+Human cast:
 
-| Story name | Color | Canonical role | Use |
-| --- | --- | --- | --- |
-| Electra | Blue | One architrino polarity type | Child-facing mnemonic for polarity B. |
-| Poz | Red | Opposite architrino polarity type | Child-facing mnemonic for polarity A. |
+| Story name | Story role | Use |
+| --- | --- | --- |
+| Electra | Recurring child | May wonder, try, notice, draw, test, or state the discovery. |
+| Poz | Recurring child | May wonder, try, notice, draw, test, or state the discovery. |
 
-Use `Electra` and `Poz` as named examples, not as the official ontology. The canonical term remains `architrino`, with intrinsic polarity. The names should never imply personality, moral role, gender role, or social identity. They are handles for two fundamental entity types.
+Use `Electra` and `Poz` for the human children only. The canonical term for the fundamental entity remains `architrino`, with intrinsic polarity. Do not name red and blue architrinos Electra or Poz, because that would map human identity onto polarity.
 
-Preferred introduction sentence for Books 9-11:
+Preferred cast rule:
 
-> In our story, we call one blue architrino Electra and one red architrino Poz. The names help us follow them, but what matters is what they do: each keeps a path, sends potential waves, and receives waves from others.
+> Electra and Poz are children learning together. Red and blue belong to the balls, paths, and architrino geometry, not to the children's identities.
 
 ## Concept Ladder
 
@@ -370,22 +370,22 @@ Each initial-line book has a wonder question, a knowledge-seeking story, and a s
 
 | Book | Developmental target | Wonder question | Knowledge-seeking story | Level 1 lessons | $\mathbb{A}\mathbb{A}\mathbb{A}$ advance |
 | --- | --- | --- | --- | --- | --- |
-| 1 | 0-1 | Where did it go? | A caregiver reads, presents a real red or blue ball so Little One can see it clearly, and gently rolls the ball while Little One sees here, there, and back. | I am here; the ball is there; motion can return. | Position and path appear through shared attention to the ball before formal words. |
-| 2 | 1-2 | Why does the ball go that way? | A toddler and caregiver roll a ball across a simple surface, turn it, stop it, and roll again. | Rolling follows a path; a turn changes the path; again lets the child compare. | Repeated path becomes visible experience. |
-| 3 | 2-3 | How can we tell something moved? | A child notices trails from balls, hands, knees, shadows, ripples, and tracks. | Motion leaves traces; before and after order the trace; a path can be followed. | Path-history begins as visible memory. |
-| 4 | 3-4 | What happens if we do it again? | A child repeats a rolling or walking game and sees a pattern grow from many runs. | Repetition can make a pattern; near and far change the pattern; overlaps can be seen. | Repeated histories prepare superposition without naming it. |
-| 5 | 4-5 | What changed? | A pre-K child changes one thing in a simple game and asks what changed. | Predict; change one thing; compare what happened. | Controlled variation prepares experiment and model discipline. |
-| 6 | 5-6 | How can a message arrive later? | A kindergarten child sends claps, ripples, and ball messages that arrive later. | Messages take time; source place matters; arrival can change motion. | First causal-delay story. |
-| 7 | 6-7 | Why does farther take longer? | Children move signal sources farther away and change direction. | Farther takes longer; direction matters; source and receiver define a line. | Field-speed and line-of-action intuition. |
-| 8 | 7-8 | How can moving things make a pattern that holds? | A set of moving beads or balls finds a pattern that keeps reappearing. | Many lawful messages can fit; fitting can hold a pattern; stable does not mean still. | First assembly intuition. |
+| 1 | 0-1 | Where did it go? | Electra and Poz share attention with a real red or blue ball and see here, there, and back. | I am here; the ball is there; motion can return. | Position and path appear through shared attention to the ball before formal words. |
+| 2 | 1-2 | Why does the ball go that way? | Electra and Poz roll a ball across a clear space, turn it, stop it, and roll again. | Rolling follows a path; a turn changes the path; again lets the child compare. | Repeated path becomes visible experience. |
+| 3 | 2-3 | How can we tell something moved? | Electra and Poz notice trails from balls, ribbons, water, shadows, ripples, and tracks. | Motion leaves traces; before and after order the trace; a path can be followed. | Path-history begins as visible memory. |
+| 4 | 3-4 | What happens if we do it again? | Electra and Poz repeat a rolling or walking game and see a pattern grow from many runs. | Repetition can make a pattern; near and far change the pattern; overlaps can be seen. | Repeated histories prepare superposition without naming it. |
+| 5 | 4-5 | What changed? | Electra and Poz change one thing in a simple game and ask what changed. | Predict; change one thing; compare what happened. | Controlled variation prepares experiment and model discipline. |
+| 6 | 5-6 | How can a message arrive later? | Electra and Poz send claps, ripples, bells, and toy-boat wakes that arrive later. | Messages take time; source place matters; arrival can change motion. | First causal-delay story. |
+| 7 | 6-7 | Why does farther take longer? | Electra and Poz move signal starts farther away and change the arrival direction. | Farther takes longer; direction matters; start and arrival define a line. | Field-speed and line-of-action intuition. |
+| 8 | 7-8 | How can moving things make a pattern that holds? | Electra and Poz find moving bead and ball patterns that keep reappearing. | Many lawful messages can fit; fitting can hold a pattern; stable does not mean still. | First assembly intuition. |
 | 9 | 8-9 | What are the tiny sender-receivers in nature? | The story introduces tiny sender-receivers as trackable red and blue point entities. | There are two tiny kinds; each keeps a path; each can send and receive. | First explicit architrino-facing ontology, still child-facing. |
-| 10 | 9-10 | What do the tiny sender-receivers send? | A tabletop simulation shows emitted waves traveling from old source positions to receivers. | Emission creates a traveling potential wave; reception changes the next path; direction comes from the line of action. | Potential waves and reception. |
-| 11 | 10-11 | What happens when many messages arrive together? | Several messages arrive at one receiver and combine into one path change. | Many received influences add; the sum changes acceleration; assemblies can form. | Superposition, acceleration, and assembly. |
-| 12 | 11-12 | Why do paths bend toward some places? | A ball moves through hills, dips, ridges, and basins on a potential landscape. | A path moves through a landscape; slopes guide outcomes; basins and ridges matter. | Potential landscape as physical geometry. |
+| 10 | 9-10 | What do the tiny sender-receivers send? | A tabletop simulation shows emitted waves traveling from old source positions to later arrivals. | Emission creates a traveling potential wave; reception changes the next path; direction comes from the line of action. | Potential waves and reception. |
+| 11 | 10-11 | What happens when many messages arrive together? | Several messages arrive at one path and combine into one path change. | Many received influences add; the sum changes acceleration; assemblies can form. | Superposition, acceleration, and assembly. |
+| 12 | 11-12 | Why do paths bend toward some places? | A ball moves through hills, dips, ridges, and basins, then the same idea appears in snowboarding over moguls. | A path moves through a landscape; slopes guide outcomes; basins and ridges matter. | Potential landscape as physical geometry. |
 | 13 | 12-13 | Why can tiny differences matter? | A threshold experiment shows nearby starts settling into different lawful outcomes. | Small differences can matter; thresholds choose among lawful paths; settling basins record outcomes. | Deterministic multistability. |
 | 14 | 13-14 | How does looking make a record? | A measurement setup makes a record and shows that the measuring device is part of the event. | Measurement is physical interaction; records form in matter; the surrounding medium is not empty. | Measurement interaction and Noether sea context. |
-| 15 | 14-15 | Which old messages can reach now? | Students run a delayed-interaction simulator and ask which past waves can arrive now. | Present motion depends on admissible path-history; field speed selects arrivals; self-action can occur. | Causal-root ledger and first master-equation intuition. |
-| 16 | 15-16 | How does the familiar universe appear from the deeper architecture? | Older students ask how clocks, rulers, light-like channels, mass behavior, records, and effective spacetime geometry can be recovered from the deeper architecture. | Assemblies support observer tools; familiar physics is recovered; claim levels matter. | Recovery discipline: effective spacetime geometry, photon channel, mass-map targets. |
+| 15 | 14-15 | Which old messages can reach now? | Electra and Poz run a delayed-interaction simulator and compare it with a boat crossing its own wake. | Present motion depends on admissible path-history; field speed selects arrivals; self-action can occur. | Causal-root ledger and first master-equation intuition. |
+| 16 | 15-16 | How does the familiar universe appear from the deeper architecture? | Electra and Poz ask how clocks, rulers, light-like channels, mass behavior, records, and effective spacetime geometry can be recovered from the deeper architecture. | Assemblies support observer tools; familiar physics is recovered; claim levels matter. | Recovery discipline: effective spacetime geometry, photon channel, mass-map targets. |
 
 ### Text-Only Manuscript Set
 

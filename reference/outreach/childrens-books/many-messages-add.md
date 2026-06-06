@@ -16,7 +16,7 @@ Text status: text-only manuscript draft; no image prompts in this pass.
 
 This book teaches:
 
-1. Several influences can arrive at one receiver.
+1. Several influences can arrive at one path.
 2. The received influences add.
 3. The combined influence changes acceleration and can support assemblies.
 
@@ -30,7 +30,7 @@ Read-aloud title:
 
 > Many Messages Add
 
-### Spread 1: One Receiver
+### Spread 1: One Path
 
 Read-aloud text:
 
@@ -38,9 +38,9 @@ Read-aloud text:
 >
 > Three waves were on the way.
 
-Discovery:
+Editor note:
 
-One receiver can have many incoming influences.
+One path can have many incoming influences.
 
 ### Spread 2: First Arrival
 
@@ -50,7 +50,7 @@ Read-aloud text:
 >
 > The path bent a little.
 
-Discovery:
+Editor note:
 
 One arrival contributes one path change.
 
@@ -62,7 +62,7 @@ Read-aloud text:
 >
 > The bend changed again.
 
-Discovery:
+Editor note:
 
 Another influence adds to the result.
 
@@ -74,7 +74,7 @@ Read-aloud text:
 >
 > Now the next path was different.
 
-Discovery:
+Editor note:
 
 Direction matters in the sum.
 
@@ -82,13 +82,13 @@ Direction matters in the sum.
 
 Read-aloud text:
 
-> Ari drew one arrow.
+> Electra drew one arrow.
 >
-> Mira drew another.
+> Poz drew another.
 >
-> Tomas drew the total.
+> Electra drew the total.
 
-Discovery:
+Editor note:
 
 Vector-like addition gives a child-facing model.
 
@@ -100,7 +100,7 @@ Read-aloud text:
 >
 > The path barely changed.
 
-Discovery:
+Editor note:
 
 Some influences can cancel.
 
@@ -112,7 +112,7 @@ Read-aloud text:
 >
 > The path bent more.
 
-Discovery:
+Editor note:
 
 Some influences reinforce.
 
@@ -124,7 +124,7 @@ Read-aloud text:
 >
 > The path curved sideways.
 
-Discovery:
+Editor note:
 
 The sum sets direction of acceleration.
 
@@ -134,11 +134,11 @@ Read-aloud text:
 
 > "Velocity says how it moves now,"
 >
-> Dr. Sol said.
+> Poz read.
 >
 > "Acceleration says how that motion changes."
 
-Discovery:
+Editor note:
 
 The book introduces acceleration in plain language.
 
@@ -148,9 +148,9 @@ Read-aloud text:
 
 > The screen filled with arrivals.
 >
-> Every receiver answered the total it received.
+> Every path answered the total it received.
 
-Discovery:
+Editor note:
 
 Many-body influence can still be lawful.
 
@@ -162,7 +162,7 @@ Read-aloud text:
 >
 > A small pattern appeared.
 
-Discovery:
+Editor note:
 
 Combined influences can support repeated relation.
 
@@ -174,7 +174,7 @@ Read-aloud text:
 >
 > The relation held.
 
-Discovery:
+Editor note:
 
 Assembly returns at a more explicit level.
 
@@ -184,11 +184,11 @@ Read-aloud text:
 
 > "It looks like one thing,"
 >
-> Mira said.
+> Electra said.
 >
 > "But many messages help it hold."
 
-Discovery:
+Editor note:
 
 Higher-level appearance can arise from lower-level interaction.
 
@@ -202,10 +202,10 @@ Read-aloud text:
 >
 > Their sum can bend the next path.
 
-Discovery:
+Editor note:
 
 Superposition becomes the bridge to assembly.
 
 ## Parent Note
 
-This book uses `add` as the child-facing form of superposition. Avoid making the addition mystical: each received influence has direction and contribution, and the receiver answers the combined result.
+This book uses `add` as the child-facing form of superposition. Avoid making the addition mystical: each received influence has direction and contribution, and the path answers the combined result.

@@ -34,13 +34,13 @@ Read-aloud title:
 
 Read-aloud text:
 
-> Mira, Tomas, and Ari opened the message lab.
+> Electra and Poz opened the message lab.
 >
 > Their question was small and enormous:
 >
 > What sends the deepest messages?
 
-Discovery:
+Editor note:
 
 The story moves from everyday messages to fundamental senders.
 
@@ -48,13 +48,13 @@ The story moves from everyday messages to fundamental senders.
 
 Read-aloud text:
 
-> Dr. Sol placed one red point on the screen.
+> Electra placed one red point on the screen.
 >
 > It moved.
 >
-> Its path stayed trackable.
+> They could follow its path.
 
-Discovery:
+Editor note:
 
 The tiny entity has persistent identity through motion.
 
@@ -62,13 +62,13 @@ The tiny entity has persistent identity through motion.
 
 Read-aloud text:
 
-> Then Dr. Sol placed one blue point.
+> Then Poz placed one blue point.
 >
 > "This is the other kind,"
 >
-> she said.
+> Poz said.
 
-Discovery:
+Editor note:
 
 The ontology has two fundamental polarities.
 
@@ -76,13 +76,13 @@ The ontology has two fundamental polarities.
 
 Read-aloud text:
 
-> "We call each tiny point an architrino,"
+> A card on the screen said:
 >
-> Dr. Sol said.
+> architrino.
 >
-> Ari wrote the word slowly.
+> Electra read the word slowly.
 
-Discovery:
+Editor note:
 
 The child meets the canonical term.
 
@@ -94,21 +94,21 @@ Read-aloud text:
 >
 > From its old place, a message began.
 
-Discovery:
+Editor note:
 
 An architrino transmits from its path-history.
 
-### Spread 6: Receiver
+### Spread 6: Answer
 
 Read-aloud text:
 
-> The blue architrino waited.
+> The blue architrino crossed the screen.
 >
 > When the message reached it,
 >
 > its path changed.
 
-Discovery:
+Editor note:
 
 Reception changes future motion.
 
@@ -118,11 +118,11 @@ Read-aloud text:
 
 > "It is not just a flash,"
 >
-> Mira said.
+> Poz said.
 >
 > "It has a before and after."
 
-Discovery:
+Editor note:
 
 The entity is tracked through its worldline-like path.
 
@@ -134,7 +134,7 @@ Read-aloud text:
 >
 > Their paths bent differently.
 
-Discovery:
+Editor note:
 
 Polarity matters.
 
@@ -146,7 +146,7 @@ Read-aloud text:
 >
 > The children called it toward.
 
-Discovery:
+Editor note:
 
 Reception can pull a path inward.
 
@@ -158,7 +158,7 @@ Read-aloud text:
 >
 > The children called it away.
 
-Discovery:
+Editor note:
 
 Reception can push a path outward.
 
@@ -168,11 +168,11 @@ Read-aloud text:
 
 > "Red is not angry,"
 >
-> Dr. Sol said.
+> Electra said.
 >
 > "Blue is not calm."
 
-Discovery:
+Editor note:
 
 Polarity is physics, not personality.
 
@@ -184,7 +184,7 @@ Read-aloud text:
 >
 > Every one kept its own path.
 
-Discovery:
+Editor note:
 
 Many entities can be tracked together.
 
@@ -198,7 +198,7 @@ Read-aloud text:
 >
 > The room became a web of messages.
 
-Discovery:
+Editor note:
 
 Transceiver means both sender and receiver.
 
@@ -208,11 +208,11 @@ Read-aloud text:
 
 > "Tiny does not mean simple,"
 >
-> Tomas said.
+> Poz said.
 >
 > "Tiny can carry the rules."
 
-Discovery:
+Editor note:
 
 The deep actors of the series are now named.
 

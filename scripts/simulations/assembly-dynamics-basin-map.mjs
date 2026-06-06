@@ -11,10 +11,17 @@ const BASIN_DEFAULTS = {
   steps: 5000,
   dt: 0.01,
   stride: 25,
-  softening: DEFAULTS.softening,
-  softeningRadius: 0.16,
+  closePassRadius: 0.16,
   jacobianFloor: DEFAULTS.jacobianFloor,
   maxAcceleration: DEFAULTS.maxAcceleration,
+  singularityTolerance: DEFAULTS.singularityTolerance,
+  rootTolerance: DEFAULTS.rootTolerance,
+  memoryDepth: DEFAULTS.memoryDepth,
+  historyMode: DEFAULTS.historyMode,
+  historyMargin: DEFAULTS.historyMargin,
+  historySafetyFactor: DEFAULTS.historySafetyFactor,
+  historyMaxDepth: DEFAULTS.historyMaxDepth,
+  rootHaltPolicy: DEFAULTS.rootHaltPolicy,
   captureRatio: 0.75,
   inwardRatio: 0.9,
   escapeRatio: 1.5,
@@ -27,12 +34,18 @@ const BASIN_DEFAULTS = {
 };
 
 const CLASS_COLORS = {
-  softening_floor: "#7f1d1d",
+  close_pass: "#7f1d1d",
   sustained_inward: "#0f766e",
   inward_turnaround: "#ca8a04",
   near_circular: "#64748b",
-  spin_out: "#c2410c",
+  outward_escape: "#c2410c",
   weak_change: "#7c3aed",
+  root_unresolved_halt: "#111827",
+  singular_causal_root_halt: "#be123c",
+  jacobian_floor_halt: "#4c1d95",
+  acceleration_limit_halt: "#9f1239",
+  nonfinite_halt: "#0f172a",
+  halted: "#334155",
 };
 
 function parseArgs(argv) {
@@ -41,10 +54,15 @@ function parseArgs(argv) {
     "steps",
     "dt",
     "stride",
-    "softening",
-    "softeningRadius",
+    "closePassRadius",
     "jacobianFloor",
     "maxAcceleration",
+    "singularityTolerance",
+    "rootTolerance",
+    "memoryDepth",
+    "historyMargin",
+    "historySafetyFactor",
+    "historyMaxDepth",
     "captureRatio",
     "inwardRatio",
     "escapeRatio",
@@ -80,16 +98,23 @@ function parseArgs(argv) {
   if (args.dt <= 0) {
     throw new Error("--dt must be positive.");
   }
-  for (const key of ["softeningRadius", "softening", "captureRatio", "inwardRatio", "escapeRatio", "turnaroundRatio"]) {
+  for (const key of ["closePassRadius", "jacobianFloor", "maxAcceleration", "singularityTolerance", "rootTolerance", "captureRatio", "inwardRatio", "escapeRatio", "turnaroundRatio"]) {
     if (args[key] < 0) {
       throw new Error(`--${kebabCase(key)} must be nonnegative.`);
     }
   }
-  for (const key of ["jacobianFloor", "maxAcceleration"]) {
+  for (const key of ["memoryDepth", "historySafetyFactor"]) {
     if (args[key] <= 0) {
       throw new Error(`--${kebabCase(key)} must be positive.`);
     }
   }
+  for (const key of ["historyMargin", "historyMaxDepth"]) {
+    if (args[key] < 0) {
+      throw new Error(`--${kebabCase(key)} must be nonnegative.`);
+    }
+  }
+  validateHistoryMode(args.historyMode);
+  validateRootHaltPolicy(args.rootHaltPolicy);
   return args;
 }
 
@@ -107,10 +132,17 @@ function optionKey(key) {
     pretty: "pretty",
     radialspeeds: "radialSpeeds",
     tangentialspeeds: "tangentialSpeeds",
-    softening: "softening",
-    softeningradius: "softeningRadius",
+    closepassradius: "closePassRadius",
     jacobianfloor: "jacobianFloor",
     maxacceleration: "maxAcceleration",
+    singularitytolerance: "singularityTolerance",
+    roottolerance: "rootTolerance",
+    memorydepth: "memoryDepth",
+    historymode: "historyMode",
+    historymargin: "historyMargin",
+    historysafetyfactor: "historySafetyFactor",
+    historymaxdepth: "historyMaxDepth",
+    roothaltpolicy: "rootHaltPolicy",
     captureratio: "captureRatio",
     inwardratio: "inwardRatio",
     escaperatio: "escapeRatio",
@@ -137,6 +169,18 @@ function positiveInteger(value, label) {
     throw new Error(`${label} must be a positive integer.`);
   }
   return number;
+}
+
+function validateRootHaltPolicy(policy) {
+  if (!["partner", "all", "none"].includes(policy)) {
+    throw new Error("--root-halt-policy must be one of: partner, all, none.");
+  }
+}
+
+function validateHistoryMode(mode) {
+  if (!["deep", "adaptive", "fixed"].includes(mode)) {
+    throw new Error("--history-mode must be one of: deep, adaptive, fixed.");
+  }
 }
 
 function parseSweep(value, label) {
@@ -185,13 +229,20 @@ Options:
   --steps N                  Steps per run. Default: ${BASIN_DEFAULTS.steps}
   --dt X                     Absolute-time step. Default: ${BASIN_DEFAULTS.dt}
   --stride N                 Stored-frame stride. Default: ${BASIN_DEFAULTS.stride}
-  --softening X              Distance softening eta passed to each run. Use 0 to disable. Default: ${BASIN_DEFAULTS.softening}
-  --softening-radius X       Close-approach classifier threshold. Use 0 to disable. Default: ${BASIN_DEFAULTS.softeningRadius}
-  --jacobian-floor X         Minimum |J| in hit weight; keep tiny positive unless handling caustics. Default: ${BASIN_DEFAULTS.jacobianFloor}
-  --max-acceleration X       Per-particle acceleration cap. Default: ${BASIN_DEFAULTS.maxAcceleration}
+  --close-pass-radius X      Close-approach classifier threshold. Use 0 to disable. Default: ${BASIN_DEFAULTS.closePassRadius}
+  --jacobian-floor X         Minimum accepted |J| branch threshold; violation halts. Use 0 to disable. Default: ${BASIN_DEFAULTS.jacobianFloor}
+  --max-acceleration X       Optional acceleration magnitude halt threshold. Use 0 to disable. Default: ${BASIN_DEFAULTS.maxAcceleration}
+  --singularity-tolerance X  Halt each run when a causal-root distance is at or below this arithmetic singularity tolerance. Default: ${BASIN_DEFAULTS.singularityTolerance}
+  --root-tolerance X         Residual tolerance for detecting discrete causal roots. Default: ${BASIN_DEFAULTS.rootTolerance}
+  --memory-depth X           Initial prehistory depth; fixed-mode buffer depth. Default: ${BASIN_DEFAULTS.memoryDepth}
+  --history-mode X           Retained causal history: deep, adaptive, fixed. Default: ${BASIN_DEFAULTS.historyMode}
+  --history-margin X         Extra seconds retained beyond adaptive causal-delay estimate. Default: ${BASIN_DEFAULTS.historyMargin}
+  --history-safety-factor X  Multiplier on pairwise light-delay estimate in adaptive mode. Default: ${BASIN_DEFAULTS.historySafetyFactor}
+  --history-max-depth X      Optional cap on retained history depth; 0 means uncapped. Default: ${BASIN_DEFAULTS.historyMaxDepth}
+  --root-halt-policy X       Halt each run on required branch failures: partner, all, none. Default: ${BASIN_DEFAULTS.rootHaltPolicy}
   --capture-ratio X          Final/initial radius ratio for sustained_inward. Default: ${BASIN_DEFAULTS.captureRatio}
   --inward-ratio X           Minimum/initial radius ratio for inward leg. Default: ${BASIN_DEFAULTS.inwardRatio}
-  --escape-ratio X           Final/initial radius ratio for spin_out. Default: ${BASIN_DEFAULTS.escapeRatio}
+  --escape-ratio X           Final/initial radius ratio for outward_escape. Default: ${BASIN_DEFAULTS.escapeRatio}
   --turnaround-ratio X       Final/min radius ratio for turnaround. Default: ${BASIN_DEFAULTS.turnaroundRatio}
   --out PATH                 Write JSON. Default: ${BASIN_DEFAULTS.out}
   --csv PATH                 Write CSV. Default: ${BASIN_DEFAULTS.csv}
@@ -249,27 +300,49 @@ function fitLogSpiral(points) {
 }
 
 function classifyRun(metrics, args) {
+  if (metrics.error_code) {
+    return classifyHaltOutcome(metrics.error_code);
+  }
   const finalRatio = metrics.final_radius / metrics.initial_radius;
   const minRatio = metrics.min_radius / metrics.initial_radius;
   const turnedAround = metrics.min_index < metrics.frame_count - 1 &&
     metrics.final_radius / metrics.min_radius >= args.turnaroundRatio;
 
-  if (args.softeningRadius > 0 && metrics.min_radius <= args.softeningRadius) {
-    return "softening_floor";
+  if (args.closePassRadius > 0 && metrics.min_radius <= args.closePassRadius) {
+    return "close_pass";
   }
   if (finalRatio <= args.captureRatio && metrics.min_index >= metrics.frame_count - 3) {
     return "sustained_inward";
   }
+  if (finalRatio >= args.escapeRatio || (metrics.partner_root_unresolved_time !== null && finalRatio > 1)) {
+    return "outward_escape";
+  }
   if (minRatio <= args.inwardRatio && turnedAround) {
     return "inward_turnaround";
-  }
-  if (finalRatio >= args.escapeRatio || (metrics.partner_root_loss_time !== null && finalRatio > 1)) {
-    return "spin_out";
   }
   if (Math.abs(finalRatio - 1) <= 0.1 && minRatio > args.inwardRatio) {
     return "near_circular";
   }
   return "weak_change";
+}
+
+function classifyHaltOutcome(code) {
+  if (code === "UNRESOLVED_CAUSAL_ROOT") {
+    return "root_unresolved_halt";
+  }
+  if (code === "SINGULAR_CAUSAL_ROOT") {
+    return "singular_causal_root_halt";
+  }
+  if (code === "JACOBIAN_FLOOR_VIOLATION") {
+    return "jacobian_floor_halt";
+  }
+  if (code === "ACCELERATION_LIMIT_EXCEEDED") {
+    return "acceleration_limit_halt";
+  }
+  if (code === "NONFINITE_ACCELERATION" || code === "NONFINITE_STATE") {
+    return "nonfinite_halt";
+  }
+  return "halted";
 }
 
 function analyzeRun(result, inputs, args) {
@@ -280,13 +353,11 @@ function analyzeRun(result, inputs, args) {
     t: frame.t,
     theta: theta[index],
     radius: frame.shell_radius,
-    partner_hits: frame.hit_stats?.partner_hits ?? null,
+    partner_unresolved_roots: frame.hit_stats?.partner_unresolved_roots ?? 0,
   }));
   const minRecord = radiusRecords.reduce((best, record) => record.radius < best.radius ? record : best, radiusRecords[0]);
   const maxRecord = radiusRecords.reduce((best, record) => record.radius > best.radius ? record : best, radiusRecords[0]);
-  const firstRootLoss = radiusRecords.find((record, index) =>
-    index > 0 && record.partner_hits === 0 && radiusRecords[index - 1].partner_hits !== 0
-  );
+  const firstUnresolvedPartnerRoot = radiusRecords.find((record) => record.partner_unresolved_roots > 0);
   const inwardPoints = radiusRecords.slice(0, minRecord.index + 1);
   const inwardFit = fitLogSpiral(inwardPoints);
   const fullFit = fitLogSpiral(radiusRecords);
@@ -302,10 +373,26 @@ function analyzeRun(result, inputs, args) {
     max_radius: maxRecord.radius,
     final_theta: radiusRecords[radiusRecords.length - 1].theta,
     frame_count: frames.length,
-    partner_root_loss_time: firstRootLoss?.t ?? null,
+    completed: result.completed,
+    error_code: result.error?.code ?? null,
+    error_message: result.error?.message ?? null,
+    halt_time: result.error?.t ?? null,
+    halt_attempted_step: result.error?.attempted_step ?? null,
+    partner_root_unresolved_time: firstUnresolvedPartnerRoot?.t ?? null,
+    history_mode: result.summary.history.mode,
+    history_frame_count: result.summary.history.frame_count,
+    history_oldest_t: result.summary.history.oldest_t,
+    history_retained_depth: result.summary.history.retained_depth,
     total_partner_hits: result.summary.aggregate_hit_stats.total_partner_hits,
     total_self_hits: result.summary.aggregate_hit_stats.total_self_hits,
-    total_missed_roots: result.summary.aggregate_hit_stats.total_missed_roots,
+    total_unresolved_roots: result.summary.aggregate_hit_stats.total_unresolved_roots,
+    total_partner_unresolved_roots: result.summary.aggregate_hit_stats.total_partner_unresolved_roots,
+    total_self_unresolved_roots: result.summary.aggregate_hit_stats.total_self_unresolved_roots,
+    max_roots_per_pair: result.summary.aggregate_hit_stats.max_roots_per_pair,
+    max_abs_acceleration: result.summary.aggregate_hit_stats.max_abs_acceleration,
+    root_failure_reasons: JSON.stringify(result.summary.aggregate_hit_stats.root_failure_reasons),
+    partner_root_failure_reasons: JSON.stringify(result.summary.aggregate_hit_stats.partner_root_failure_reasons),
+    self_root_failure_reasons: JSON.stringify(result.summary.aggregate_hit_stats.self_root_failure_reasons),
     delta_energy_proxy: result.summary.drift.delta_energy_proxy,
     delta_angular_momentum_z: result.summary.drift.delta_angular_momentum_z,
     inward_fit_A: inwardFit?.A ?? null,
@@ -340,9 +427,16 @@ function runBasinMap(args) {
           driftX: 0,
           driftY: 0,
           shellK: 0,
-          softening: args.softening,
           jacobianFloor: args.jacobianFloor,
           maxAcceleration: args.maxAcceleration,
+          singularityTolerance: args.singularityTolerance,
+          rootTolerance: args.rootTolerance,
+          memoryDepth: args.memoryDepth,
+          historyMode: args.historyMode,
+          historyMargin: args.historyMargin,
+          historySafetyFactor: args.historySafetyFactor,
+          historyMaxDepth: args.historyMaxDepth,
+          rootHaltPolicy: args.rootHaltPolicy,
           steps: args.steps,
           dt: args.dt,
           stride: args.stride,
@@ -382,10 +476,17 @@ function runBasinMap(args) {
       steps: args.steps,
       dt: args.dt,
       stride: args.stride,
-      softeningRadius: args.softeningRadius,
-      softening: args.softening,
+      closePassRadius: args.closePassRadius,
       jacobianFloor: args.jacobianFloor,
       maxAcceleration: args.maxAcceleration,
+      singularityTolerance: args.singularityTolerance,
+      rootTolerance: args.rootTolerance,
+      memoryDepth: args.memoryDepth,
+      historyMode: args.historyMode,
+      historyMargin: args.historyMargin,
+      historySafetyFactor: args.historySafetyFactor,
+      historyMaxDepth: args.historyMaxDepth,
+      rootHaltPolicy: args.rootHaltPolicy,
       captureRatio: args.captureRatio,
       inwardRatio: args.inwardRatio,
       escapeRatio: args.escapeRatio,
@@ -437,9 +538,25 @@ function writeCsv(result, args) {
     "min_radius_time",
     "min_radius_theta",
     "max_radius",
-    "partner_root_loss_time",
+    "completed",
+    "error_code",
+    "error_message",
+    "halt_time",
+    "halt_attempted_step",
+    "partner_root_unresolved_time",
+    "history_mode",
+    "history_frame_count",
+    "history_oldest_t",
+    "history_retained_depth",
     "total_partner_hits",
-    "total_missed_roots",
+    "total_unresolved_roots",
+    "total_partner_unresolved_roots",
+    "total_self_unresolved_roots",
+    "max_roots_per_pair",
+    "max_abs_acceleration",
+    "root_failure_reasons",
+    "partner_root_failure_reasons",
+    "self_root_failure_reasons",
     "delta_energy_proxy",
     "delta_angular_momentum_z",
     "inward_fit_A",
@@ -451,9 +568,17 @@ function writeCsv(result, args) {
   ];
   const rows = [headers.join(",")];
   for (const row of result.rows) {
-    rows.push(headers.map((header) => row[header] ?? "").join(","));
+    rows.push(headers.map((header) => csvCell(row[header] ?? "")).join(","));
   }
   fs.writeFileSync(args.csv, `${rows.join("\n")}\n`);
+}
+
+function csvCell(value) {
+  const text = String(value);
+  if (/[",\n\r]/.test(text)) {
+    return `"${text.replaceAll("\"", "\"\"")}"`;
+  }
+  return text;
 }
 
 function writeSvg(result, args) {
@@ -547,6 +672,18 @@ function main() {
       rows: result.rows.length,
       deepest: result.deepest.slice(0, 3),
     }, null, 2));
+  }
+  const haltedRuns = [
+    "root_unresolved_halt",
+    "singular_causal_root_halt",
+    "jacobian_floor_halt",
+    "acceleration_limit_halt",
+    "nonfinite_halt",
+    "halted",
+  ].reduce((sum, key) => sum + (result.counts[key] ?? 0), 0);
+  if (haltedRuns > 0) {
+    console.error(`ASSEMBLY_DYNAMICS_HALTS: ${haltedRuns} run(s) halted before completing the requested horizon.`);
+    process.exitCode = 1;
   }
 }
 

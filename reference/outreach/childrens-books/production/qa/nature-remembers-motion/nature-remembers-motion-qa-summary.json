@@ -8,16 +8,16 @@
       "width": 1536,
       "height": 1024,
       "aspect_ratio": 1.5,
-      "saturated_non_palette_fraction": 0.4498,
+      "saturated_non_palette_fraction": 0.846,
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "approved",
-      "no_in_image_text": "approved",
-      "one_continuous_scene": "approved",
-      "correct_geometry": "approved"
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
     },
-    "decision": "approved"
+    "decision": "pending"
   },
   {
     "id": "nature-remembers-motion-spread-01",
@@ -28,16 +28,16 @@
       "width": 1536,
       "height": 1024,
       "aspect_ratio": 1.5,
-      "saturated_non_palette_fraction": 0.3726,
+      "saturated_non_palette_fraction": 0.6817,
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "approved",
-      "no_in_image_text": "approved",
-      "one_continuous_scene": "approved",
-      "correct_geometry": "approved"
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
     },
-    "decision": "approved"
+    "decision": "pending"
   },
   {
     "id": "nature-remembers-motion-spread-02",
@@ -48,16 +48,16 @@
       "width": 1536,
       "height": 1024,
       "aspect_ratio": 1.5,
-      "saturated_non_palette_fraction": 0.3318,
+      "saturated_non_palette_fraction": 0.8663,
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "approved",
-      "no_in_image_text": "approved",
-      "one_continuous_scene": "approved",
-      "correct_geometry": "approved"
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
     },
-    "decision": "approved"
+    "decision": "pending"
   },
   {
     "id": "nature-remembers-motion-spread-03",
@@ -68,16 +68,16 @@
       "width": 1536,
       "height": 1024,
       "aspect_ratio": 1.5,
-      "saturated_non_palette_fraction": 0.3702,
+      "saturated_non_palette_fraction": 0.8423,
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "approved",
-      "no_in_image_text": "approved",
-      "one_continuous_scene": "approved",
-      "correct_geometry": "approved"
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
     },
-    "decision": "approved"
+    "decision": "pending"
   },
   {
     "id": "nature-remembers-motion-spread-04",
@@ -88,16 +88,16 @@
       "width": 1536,
       "height": 1024,
       "aspect_ratio": 1.5,
-      "saturated_non_palette_fraction": 0.4394,
+      "saturated_non_palette_fraction": 0.5229,
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "approved",
-      "no_in_image_text": "approved",
-      "one_continuous_scene": "approved",
-      "correct_geometry": "approved"
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
     },
-    "decision": "approved"
+    "decision": "pending"
   },
   {
     "id": "nature-remembers-motion-spread-05",
@@ -108,16 +108,16 @@
       "width": 1536,
       "height": 1024,
       "aspect_ratio": 1.5,
-      "saturated_non_palette_fraction": 0.3095,
+      "saturated_non_palette_fraction": 0.6796,
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "approved",
-      "no_in_image_text": "approved",
-      "one_continuous_scene": "approved",
-      "correct_geometry": "approved"
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
     },
-    "decision": "approved"
+    "decision": "pending"
   },
   {
     "id": "nature-remembers-motion-spread-06",
@@ -128,16 +128,16 @@
       "width": 1536,
       "height": 1024,
       "aspect_ratio": 1.5,
-      "saturated_non_palette_fraction": 0.642,
+      "saturated_non_palette_fraction": 0.7903,
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "approved",
-      "no_in_image_text": "approved",
-      "one_continuous_scene": "approved",
-      "correct_geometry": "approved"
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
     },
-    "decision": "approved"
+    "decision": "pending"
   },
   {
     "id": "nature-remembers-motion-spread-07",
@@ -148,16 +148,16 @@
       "width": 1536,
       "height": 1024,
       "aspect_ratio": 1.5,
-      "saturated_non_palette_fraction": 0.5339,
-      "palette_flag": true
+      "saturated_non_palette_fraction": 0.0,
+      "palette_flag": false
     },
     "manual_checklist": {
-      "palette": "approved",
-      "no_in_image_text": "approved",
-      "one_continuous_scene": "approved",
-      "correct_geometry": "approved"
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
     },
-    "decision": "approved"
+    "decision": "pending"
   },
   {
     "id": "nature-remembers-motion-spread-08",
@@ -168,16 +168,16 @@
       "width": 1536,
       "height": 1024,
       "aspect_ratio": 1.5,
-      "saturated_non_palette_fraction": 0.4752,
+      "saturated_non_palette_fraction": 0.8373,
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "approved",
-      "no_in_image_text": "approved",
-      "one_continuous_scene": "approved",
-      "correct_geometry": "approved"
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
     },
-    "decision": "approved"
+    "decision": "pending"
   },
   {
     "id": "nature-remembers-motion-spread-09",
@@ -188,16 +188,16 @@
       "width": 1536,
       "height": 1024,
       "aspect_ratio": 1.5,
-      "saturated_non_palette_fraction": 0.3842,
+      "saturated_non_palette_fraction": 0.9973,
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "approved",
-      "no_in_image_text": "approved",
-      "one_continuous_scene": "approved",
-      "correct_geometry": "approved"
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
     },
-    "decision": "approved"
+    "decision": "pending"
   },
   {
     "id": "nature-remembers-motion-spread-10",
@@ -208,16 +208,16 @@
       "width": 1536,
       "height": 1024,
       "aspect_ratio": 1.5,
-      "saturated_non_palette_fraction": 0.3682,
+      "saturated_non_palette_fraction": 0.8477,
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "approved",
-      "no_in_image_text": "approved",
-      "one_continuous_scene": "approved",
-      "correct_geometry": "approved"
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
     },
-    "decision": "approved"
+    "decision": "pending"
   },
   {
     "id": "nature-remembers-motion-spread-11",
@@ -228,16 +228,16 @@
       "width": 1536,
       "height": 1024,
       "aspect_ratio": 1.5,
-      "saturated_non_palette_fraction": 0.3404,
+      "saturated_non_palette_fraction": 0.3703,
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "approved",
-      "no_in_image_text": "approved",
-      "one_continuous_scene": "approved",
-      "correct_geometry": "approved"
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
     },
-    "decision": "approved"
+    "decision": "pending"
   },
   {
     "id": "nature-remembers-motion-spread-12",
@@ -248,16 +248,16 @@
       "width": 1536,
       "height": 1024,
       "aspect_ratio": 1.5,
-      "saturated_non_palette_fraction": 0.3899,
+      "saturated_non_palette_fraction": 0.9465,
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "approved",
-      "no_in_image_text": "approved",
-      "one_continuous_scene": "approved",
-      "correct_geometry": "approved"
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
     },
-    "decision": "approved"
+    "decision": "pending"
   },
   {
     "id": "nature-remembers-motion-backmatter-01",
@@ -268,35 +268,15 @@
       "width": 1536,
       "height": 1024,
       "aspect_ratio": 1.5,
-      "saturated_non_palette_fraction": 0.4446,
+      "saturated_non_palette_fraction": 0.8892,
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "approved",
-      "no_in_image_text": "approved",
-      "one_continuous_scene": "approved",
-      "correct_geometry": "approved"
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
     },
-    "decision": "approved"
-  },
-  {
-    "id": "nature-remembers-motion-backmatter-02",
-    "book_slug": "nature-remembers-motion",
-    "source_png": "reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-backmatter-02.png",
-    "exists": true,
-    "automated": {
-      "width": 1536,
-      "height": 1024,
-      "aspect_ratio": 1.5,
-      "saturated_non_palette_fraction": 0.3913,
-      "palette_flag": true
-    },
-    "manual_checklist": {
-      "palette": "approved",
-      "no_in_image_text": "approved",
-      "one_continuous_scene": "approved",
-      "correct_geometry": "approved"
-    },
-    "decision": "approved"
+    "decision": "pending"
   }
 ]

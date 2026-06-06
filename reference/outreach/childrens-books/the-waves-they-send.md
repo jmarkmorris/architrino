@@ -36,9 +36,9 @@ Read-aloud text:
 
 > The red architrino moved on.
 >
-> Dr. Sol marked where it had been.
+> Electra drew a dot where it had been.
 
-Discovery:
+Editor note:
 
 Emission is tied to prior position.
 
@@ -50,7 +50,7 @@ Read-aloud text:
 >
 > a wave began to travel.
 
-Discovery:
+Editor note:
 
 A source can send after it has moved on.
 
@@ -60,13 +60,13 @@ Read-aloud text:
 
 > "Is it sound?"
 >
-> Ari asked.
+> Poz asked.
 >
-> "No," Dr. Sol said.
+> Electra looked at the lab card.
 >
 > "It is a potential wave."
 
-Discovery:
+Editor note:
 
 The analogy is limited; the canonical term is introduced.
 
@@ -78,11 +78,11 @@ Read-aloud text:
 >
 > It did not fill the whole screen at once.
 
-Discovery:
+Editor note:
 
 Potential waves propagate at finite field speed.
 
-### Spread 5: The Receiver Waits
+### Spread 5: Not There Yet
 
 Read-aloud text:
 
@@ -90,7 +90,7 @@ Read-aloud text:
 >
 > The wave had not reached it yet.
 
-Discovery:
+Editor note:
 
 Not-yet-arrived influences do not act now.
 
@@ -102,7 +102,7 @@ Read-aloud text:
 >
 > The blue path bent.
 
-Discovery:
+Editor note:
 
 Reception changes subsequent motion.
 
@@ -110,15 +110,15 @@ Reception changes subsequent motion.
 
 Read-aloud text:
 
-> Mira drew from source mark to receiver.
+> Poz drew from the old dot to the blue path.
 >
 > "The bend has a direction."
 
-Discovery:
+Editor note:
 
-The source-receiver relation gives a line of action.
+The old-place-to-arrival relation gives a line of action.
 
-### Spread 8: Old Source, New Receiver
+### Spread 8: Old Source, New Arrival
 
 Read-aloud text:
 
@@ -126,7 +126,7 @@ Read-aloud text:
 >
 > The old emission still arrived.
 
-Discovery:
+Editor note:
 
 Present action depends on past source position.
 
@@ -136,9 +136,9 @@ Read-aloud text:
 
 > A red source sent a red wave.
 >
-> The receiver answered when it arrived.
+> The blue path bent when it arrived.
 
-Discovery:
+Editor note:
 
 Source polarity belongs to the emitted influence.
 
@@ -150,7 +150,7 @@ Read-aloud text:
 >
 > The next bend was different.
 
-Discovery:
+Editor note:
 
 Polarity changes the response.
 
@@ -162,7 +162,7 @@ Read-aloud text:
 >
 > Many waves were on the way.
 
-Discovery:
+Editor note:
 
 Path-history becomes a set of possible emissions.
 
@@ -170,11 +170,11 @@ Path-history becomes a set of possible emissions.
 
 Read-aloud text:
 
-> Tomas paused the model.
+> Electra paused the model.
 >
-> "Which wave reaches the receiver now?"
+> "Which wave reaches the blue path now?"
 
-Discovery:
+Editor note:
 
 Arrival selection becomes a central question.
 
@@ -182,11 +182,11 @@ Arrival selection becomes a central question.
 
 Read-aloud text:
 
-> The receiver did not choose freely.
+> The blue point did not choose freely.
 >
 > Its next path answered the arrival.
 
-Discovery:
+Editor note:
 
 Reception constrains next motion.
 
@@ -198,9 +198,9 @@ Read-aloud text:
 >
 > The waves travel.
 >
-> The receivers answer.
+> The blue paths answer.
 
-Discovery:
+Editor note:
 
 Potential-wave transmission is now part of the story.
 

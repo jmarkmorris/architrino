@@ -2,22 +2,22 @@
 
 - id: `nature-remembers-motion-spread-02`
 - source: `reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-spread-02.png`
-- lesson: Motion changes position over time.
-- geometry: The ball's earlier places are shown as small fading dots.
+- lesson: Motion carries the ball from one place to another.
+- geometry: The red ball has moved forward and leaves a faint purple trail behind it.
 
 ## Automated Checks
 
 - source image: present
 - dimensions: 1536 x 1024
 - aspect ratio: 1.5
-- saturated non-palette fraction: 0.3318
+- saturated non-palette fraction: 0.8663
 - palette flag: True
 
 ## Manual Checklist
 
-- [x] Palette follows the style guide.
-- [x] No in-image text, captions, labels, equations, watermark, or logo.
-- [x] One continuous scene, not a contact sheet or inset diagram collection.
-- [x] Geometry teaches the stated lesson.
+- [ ] Palette follows the style guide.
+- [ ] No in-image text, captions, labels, equations, watermark, or logo.
+- [ ] One continuous scene, not a contact sheet or inset diagram collection.
+- [ ] Geometry teaches the stated lesson.
 
-Decision: approved
+Decision: pending

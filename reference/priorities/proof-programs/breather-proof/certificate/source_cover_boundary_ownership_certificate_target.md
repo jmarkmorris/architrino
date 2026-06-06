@@ -110,6 +110,228 @@ convention, those rows may be consumed as `simple_root` without branch reuse or
 double-counting. No branch chart is authorized until the remaining 8
 endpoint/complement rows and 112 fold-layer rows also close.
 
+Parallel fold-layer update: the higher-fold layer atlas-ref source candidate
+classifier constructs 12 / 12 candidate atlas source refs and assigns candidate
+refs to 112 / 112 fold-layer rows, but it records 0 / 112 accepted
+`higher_fold_layer_atlas_ref`, `alpha_floor`, `exit_floor`,
+`same_packet_fold_impulse_or_direct_quadrature_bound`,
+`fold_layer_parity_record`, or `parent_complement_consumption_ref`. This does
+not change the source-cover theorem target. The accepted atlas-ref obligation
+classifier verifies complete candidate source evidence for those 12 separator
+refs and 112 rows, but fail-closes at
+`higher_fold_separator_layer_certificate_absent`: 0 / 112 accepted
+`higher_fold_layer_atlas_ref`, 0 / 112 separator-layer certificates, 0 consumed
+rows, and no branch-chart authorization. The separator-certificate attempt then
+rejects the inspected `fold_impulse_constants.json` source for all 12 separator
+refs as wrong-packet, non-interval-certified, not accepted, and non-matching
+for `Sigma_hf_*`; it does not change the source-cover theorem target and does
+not authorize row consumption or a branch chart.
+The separator source-field readiness classifier then records the positive
+source-side fact without promoting it: 12 / 12 separator profiles and 112 / 112
+fold-layer rows have complete candidate interval source fields, including
+same-packet layer geometry, input-screen intervals, mesh intervals, root-tube
+one-root interval sources, derivative-floor sources, and the no-extra-root
+complement packet. It still records 0 / 112
+`higher_fold_separator_layer_certificate`, accepted `higher_fold_layer_atlas_ref`,
+`alpha_floor`, `exit_floor`,
+`same_packet_fold_impulse_or_direct_quadrature_bound`,
+`fold_layer_parity_record`, or `parent_complement_consumption_ref`, so it does
+not change the source-cover theorem target and does not authorize row
+consumption or a branch chart.
+The separator proof-field dependency classifier then sharpens the parallel
+fold-layer handoff without promoting it: 12 / 12 accepted atlas-ref,
+alpha-floor, exit-floor, fold-layer parity, and parent row-association targets
+have candidate anchors, but 0 / 12 separator profiles have a same-packet
+impulse/direct-quadrature source packet or any proof-grade child field. The
+same-packet impulse/direct-quadrature source-packet attempt then reduces that
+absent-source-packet blocker to same-packet full input-screen row-rectangle
+interval sources and row projection/source-slice candidates for 112 / 112 rows
+and 12 / 12 separator layers, while preserving 0 accepted coverage
+certificates, dual-mollified row integrand interval enclosures, direct
+quadrature enclosures, row impulse enclosures, mollifier or direct-quadrature
+route declarations, certified `M_delta` or `Gamma/g` coupling fields, or
+accepted source packets. The first missing source-packet checklist field is
+`mollifier_or_direct_quadrature_route_declaration_absent`; the first reduced
+fold-layer blocker is
+`row_projection_source_slice_coverage_certificate_absent`,
+which does not change the source-cover theorem target and does not authorize
+row consumption or a branch chart.
+The same-packet impulse route-declaration attempt then declares
+`mollifier_norm_full_input_screen_rectangle_fallback` as the candidate route
+for those 12 separator layers and 112 fold-layer rows, with candidate `E_B`,
+`S_B(t)`, `L_r_B`, and `L_s_B` bindings from full input-screen row rectangles.
+It records 0 accepted route declarations, 0 same-packet `M_delta` certificates,
+0 `Gamma/g` coupling certificates, 0 accepted row projection/source-slice
+coverage certificates, 0 row enclosures, 0 accepted source packets, 0 row
+consumptions, `preledger_pass=false`, no live-ledger update, and no branch-chart
+authorization. The first source-packet blocker after route declaration is
+`M_delta_interval_certified_absent`; this does not change the source-cover
+theorem target and does not authorize row consumption or a branch chart.
+The same-packet mollifier `M_delta` certificate attempt then certifies
+`M_delta=15/16` and `delta_eta_sup_norm=375/8` by exact rational arithmetic for
+12 / 12 separator layers and 112 / 112 fold-layer rows. It records 0 `Gamma/g`
+coupling certificates, 0 accepted row projection/source-slice coverage
+certificates, 0 row enclosures, 0 accepted source packets, 0 row consumptions,
+`preledger_pass=false`, no live-ledger update, and no branch-chart
+authorization. The first source-packet blocker after this artifact is
+`Gamma_g_coupling_certified_absent`; this still does not change the source-cover
+theorem target and does not authorize row consumption or a branch chart.
+The same-packet mollifier coupling certificate attempt then certifies
+`Gamma=g=1` for 12 / 12 separator layers and 112 / 112 fold-layer rows while
+carrying the `M_delta` certificate forward. It records 0 accepted row
+projection/source-slice coverage certificates, 0 row enclosures, 0 accepted
+source packets, 0 row consumptions, `preledger_pass=false`, no live-ledger
+update, and no branch-chart authorization. The first source-packet blocker after
+this artifact is `row_projection_source_slice_coverage_certificate_absent`;
+this still does not change the source-cover theorem target and does not
+authorize row consumption or a branch chart.
+The same-packet row coverage certificate attempt then certifies full
+input-screen rectangle equality coverage for 12 / 12 separator layers and
+112 / 112 fold-layer rows by joining the source-packet rows, route
+declarations, and coupling rows by `row_id`. It records 0 row-tube eta-sqrt
+scaling certificates, 0 row enclosures, 0 accepted source packets, 0 row
+consumptions, `preledger_pass=false`, no live-ledger update, and no
+branch-chart authorization. The first source-packet blocker after this artifact
+is `dual_mollified_row_integrand_interval_enclosure_absent`; this still does
+not change the source-cover theorem target and does not authorize row
+consumption or a branch chart.
+The same-packet row enclosure certificate attempt then applies the
+mollifier-norm full-input-screen rectangle fallback with exact row bound
+constant `18750`. It certifies 112 / 112 dual-mollified row integrand interval
+enclosures, row acceleration ceilings, and row impulse ceilings, while recording
+0 row-tube eta-sqrt scaling certificates, 0 direct-quadrature row impulse
+enclosures, 0 separator aggregate fields, 0 accepted source packets, 0 row
+consumptions, `preledger_pass=false`, no live-ledger update, and no branch-chart
+authorization. The first source-packet blocker after this artifact is
+`separator_aggregate_C_Sigma_present_absent`; this still does not change the
+source-cover theorem target and does not authorize row consumption or a branch
+chart.
+The same-packet separator aggregate certificate attempt then constructs 12 / 12
+separator aggregate `C_Sigma`, `A_Sigma_eta_epsilon_c`, and
+`I_fold_eta_epsilon_c_Sigma` fields from the row enclosures, while recording 0
+accepted `same_packet_fold_impulse_or_direct_quadrature_bound` source packets, 0
+`higher_fold_separator_layer_certificate` fields, 0 row consumptions,
+`preledger_pass=false`, no live-ledger update, and no branch-chart
+authorization. The first source-packet blocker after this artifact is
+`same_packet_fold_impulse_or_direct_quadrature_bound_source_packet_absent`; this
+still does not change the source-cover theorem target and does not authorize row
+consumption or a branch chart.
+The same-packet impulse-bound source-packet acceptance dependency classifier
+then confirms that 12 / 12 separator aggregate fields are present while 0 / 12
+source-packet acceptance rules are present. It records 0 accepted
+`same_packet_fold_impulse_or_direct_quadrature_bound` source packets, 0
+`higher_fold_separator_layer_certificate` fields, 0 row consumptions,
+`preledger_pass=false`, no live-ledger update, and no branch-chart
+authorization. The first source-packet blocker after this artifact is
+`fixed_parameter_separator_aggregate_to_same_packet_fold_impulse_or_direct_quadrature_bound_acceptance_rule_absent`;
+this still does not change the source-cover theorem target and does not
+authorize row consumption or a branch chart.
+The alpha/exit/parity child-field interval diagnostic then records 12 / 12
+separator profiles and 112 / 112 fold-layer rows with candidate `alpha_floor`,
+`exit_floor`, and `fold_layer_parity_record` sources, including minimum
+candidate alpha source `20.353739080283133119` and minimum exit-source rectangle
+width `0.008`. It proves no proof-grade child fields, consumes no rows, keeps
+`preledger_pass=false`, keeps live-ledger update false, and authorizes no branch
+chart. This sharpens the fold-layer child-field handoff but still does not
+change the source-cover theorem target or authorize source-cover row
+consumption.
+The child-field derivation attempt then sharpens the same handoff to 0 fresh
+`alpha_floor` proof refs, 0 fresh `exit_floor` proof refs, 0 fresh
+`fold_layer_parity_record` proof refs, and 0 fresh parity delta fields
+`delta_root_count`, `delta_signed_degree`, `local_even_jump`, and
+`parity_status`; stale seed-packet static parity data is rejected. This also
+consumes no rows, keeps `preledger_pass=false`, keeps live-ledger update false,
+and authorizes no branch chart.
+The child-field source-ref manifest then records deterministic `source_ref`
+handles for `alpha_floor`, `exit_floor`, and `fold_layer_parity_record` evidence
+for 12 / 12 separator profiles and 112 / 112 rows. It also records 12 / 12
+candidate parity delta records and 112 / 112 row-level candidate parity delta
+associations, while keeping 0 proof-grade child fields, 0 proof-grade parity
+delta fields, 0 row consumption, `preledger_pass=false`, no live-ledger update,
+and no branch-chart authorization.
+The child-field derivation source-data proof attempt then packages those handles
+as complete derivation-source-data records for `alpha_floor`, `exit_floor`, and
+`fold_layer_parity_record` for 12 / 12 separator profiles and 112 / 112 rows.
+It preserves 12 / 12 candidate parity delta records and 112 / 112 row-level
+candidate parity delta associations, while keeping 0 proof-grade child refs,
+0 proof-grade parity delta fields, 0 row consumption, `preledger_pass=false`, no
+live-ledger update, and no branch-chart authorization.
+The child-field source-data proof-grade ref obligation classifier then counts
+336 missing child-field `proof_grade_ref` obligations and 448 missing
+proof-grade parity delta field obligations across the same 112 rows. It keeps
+candidate parity delta data source-side only and keeps 0 proof-grade child refs,
+0 proof-grade parity delta rows, 0 row consumption, `preledger_pass=false`, no
+live-ledger update, and no branch-chart authorization.
+The child-field proof-grade derivation application attempt then applies a
+strict existing-proof-grade-derivation-ref test to those counted obligations.
+It constructs 0 proof-grade `alpha_floor` refs, 0 proof-grade `exit_floor` refs,
+0 proof-grade `fold_layer_parity_record` refs, and 0 proof-grade parity delta
+rows across the same 112 rows. It consumes no rows, keeps
+`preledger_pass=false`, keeps live-ledger update false, and authorizes no branch
+chart. This sharpens the parallel fold-layer child-field handoff but still does
+not change the source-cover theorem target or authorize source-cover row
+consumption.
+The source-certificate bridge attempt then records the source-side split for
+the fold-layer child fields: 112 / 112 alpha-floor root-tube derivative-floor
+source certificates, 112 / 112 exit candidate interval-width sources, and
+112 / 112 fold-layer parity root-tube topology source certificates, but 0
+generic source-certificate-to-child-field derivation bridges. The alpha-floor
+root-tube derivative-floor proof-grade derivation attempt then constructs
+112 / 112 proof-grade `alpha_floor` refs from exact root-tube certificate facts
+with 0 source-ref-as-proof-ref reuse. The fold-layer parity-record root-tube
+topology proof-grade derivation attempt then constructs 112 / 112 proof-grade
+`fold_layer_parity_record` refs and 112 / 112 complete proof-grade parity delta
+rows from the one-root/complement topology certificate, again with 0
+source-ref-as-proof-ref reuse. The exit-floor interval-width source-certificate
+attempt then constructs 112 / 112 proof-grade `exit_floor` source certificates
+from exact same-packet interval-width checks. The exit-floor interval-width
+proof-grade derivation attempt then constructs 112 / 112 proof-grade
+`exit_floor` refs from those source certificates with 0
+source-certificate-ref-as-proof-ref reuse, so all 112 / 112 fold-layer row
+associations now carry proof-grade `alpha_floor`, `exit_floor`, and
+`fold_layer_parity_record` refs. The accepted atlas-ref source-certificate
+attempt then constructs 12 / 12 separator atlas source certificates and 112 /
+112 row source-certificate associations. The accepted atlas-ref
+derivation-bridge attempt then records that those source certificates still
+provide 0 / 112 accepted-atlas derivation bridges and 0 / 112 accepted
+`higher_fold_layer_atlas_ref` refs, and the separator-certificate readiness
+frontier classifier consolidates those source-side facts with 12 / 12
+separator aggregate triples and 112 / 112 parent row-association anchors.
+The separator-certificate assembly dependency classifier then records the
+combined assembly matrix above that frontier: child proof-grade refs, atlas
+source certificates, separator aggregate fields, and parent row-association
+anchors are present for all 112 / 112 rows, but accepted-atlas derivation
+bridges, accepted atlas refs, accepted impulse/direct-quadrature source
+packets, parent-complement consumption refs, and separator certificates remain
+absent. The same-packet fixed-parameter aggregate accepted-constants
+conformance classifier then tests the accepted constants artifact route and
+fails closed because the existing constants contract/fallback notes are scoped
+to the seed packet, `Sigma_1` through `Sigma_4`, and 16 fold rows rather than
+the higher-fold packet, `Sigma_hf_01` through `Sigma_hf_12`, and 112 fold-layer
+rows.
+The higher-fold constants artifact field obligation classifier then freezes the
+live accepted-constants target fields without accepting them: all 12 / 12
+separator profiles and 112 / 112 rows carry live packet identity, `M_delta`,
+`Gamma/g`, row projection/source-slice coverage, dual-mollified row integrand
+interval enclosures, row impulse enclosures, and separator aggregate fields,
+while accepted constants artifacts and accepted constants statuses remain
+absent.
+The candidate-live higher-fold constants artifact materialization attempt then
+packages those fields into 1 candidate/live same-packet higher-fold constants
+artifact with 12 / 12 separator constants entries and 112 / 112 row
+associations, while accepted interval-certified constants statuses remain absent.
+The candidate-live higher-fold constants artifact consistency classifier then
+verifies 5 / 5 materialization source-hash locks, 12 / 12 separator exact-field
+and exact-arithmetic consistency classifications, and 112 / 112 row exact-field
+and exact-arithmetic consistency classifications, while accepted
+interval-certified constants statuses remain absent.
+Accepted atlas refs, source-packet acceptance rules, accepted
+impulse/direct-quadrature source packets, parent-complement consumption refs,
+separator certificates, row consumption, `preledger_pass`, live-ledger updates,
+and branch-chart authorization remain at 0. This improves the parallel
+fold-layer field ledger but still does not change the source-cover theorem
+target or authorize source-cover row consumption.
+
 ## First Probe Rows
 
 The smallest boundary burdens are the natural first probes:
@@ -1175,6 +1397,112 @@ applications, derivations, target ref/value object-domain definitions,
 interpretation rules, definition bridges, promotion rules, proof-grade target
 ref/value equation packages, row consumption, or branch-chart authorization. It
 remains source-cover route material only and adds no boundary-ownership pass
+rule.
+
+The independent target ref/value source-equation to target ref/value
+object-domain membership-predicate proof attempt,
+`fold_coordinate_endpoint_functional_independent_target_ref_value_source_equation_to_target_ref_value_object_domain_membership_predicate_without_contract_link_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests the first membership-predicate blocker below that object-domain
+definition packet. It preserves 4 / 4 parent inputs, definition source-data
+bundles, target ref/value source payloads, source-equation sets,
+endpoint-value-map certifications, no-link guards, primitive-domain-definition
+acceptance rejections, primitive membership-predicate acceptance rejections, and
+membership-predicate source scopes, with 6 / 6 target ref/value source
+equations, 6 value-map bindings, and 3 / 3 row membership-predicate source-scope
+pairs. It records 0 / 4 predicate signatures, positive membership clauses,
+source-handle nonmembership clauses, target-note nonmembership clauses,
+payload-match nonmembership clauses, endpoint-value-map certification
+nonmembership clauses, no-link-guard nonmembership clauses, soundness proofs,
+endpoint applications, derivations, membership predicates, constructors, target
+ref/value object-domain definitions, interpretation rules, definition bridges,
+promotion rules, proof-grade target ref/value equation packages, row
+consumption, or branch-chart authorization. It remains source-cover route
+material only and adds no boundary-ownership pass rule.
+
+The independent target ref/value object-domain membership-predicate signature
+proof attempt,
+`fold_coordinate_endpoint_functional_target_ref_value_object_domain_membership_predicate_signature_without_contract_link_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests the first typed-signature blocker below that membership-predicate
+packet. It preserves 4 / 4 parent membership-predicate inputs,
+membership-predicate source scopes, primitive signature acceptance rejections,
+and membership-predicate-signature source scopes, with 6 / 6 target ref/value
+source equations, 6 value-map bindings, and 3 / 3 row signature source-scope
+pairs. It records 0 / 4 predicate signatures, predicate symbols, domain sorts,
+codomain sorts, target-object argument-sort rules, non-argument-sort exclusion
+rules, no-contract-link premise absence proofs, signature derivations, positive
+membership clauses, membership predicates, target ref/value object-domain
+definitions, row consumption, or branch-chart authorization. It remains
+source-cover route material only and adds no boundary-ownership pass rule.
+
+The matching target note,
+`fold_coordinate_endpoint_functional_target_ref_value_object_domain_membership_predicate_signature_without_contract_link_target.md`,
+states the packet-local candidate convention
+`is_target_ref_value_object_e : target_ref_value_object_argument_e -> truth_value_judgment`.
+It remains source-cover route material only: the convention does not mark the
+signature, proof-grade symbol/domain/codomain declarations, argument-sort proof,
+five non-argument-sort exclusion proofs, no-contract-link premise absence
+proof, signature derivation, positive membership clause, membership predicate,
+row consumption, or branch-chart authorization present. It adds no
+boundary-ownership pass rule and leaves primitive signature acceptance outside
+this packet.
+
+The derivation route below that note has now been tested by
+`fold_coordinate_endpoint_functional_target_ref_value_object_domain_membership_predicate_signature_without_contract_link_definition_source_data_derivation_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It imports the parent signature proof attempt and target note, preserves 4 / 4
+target-note hash matches, candidate symbol/sort conventions,
+definition-source-data routes, primitive signature acceptance rejections, and
+signature-derivation source scopes, plus 6 / 6 target ref/value source
+equations, 6 value-map bindings, and 3 / 3 row signature-derivation
+source-scope pairs. It records 0 / 4 proof-grade predicate symbols, domain
+sorts, codomain sorts, argument-sort proofs, non-argument-sort exclusion
+proofs, no-contract-link premise absence proofs, signature derivations,
+proof-grade signatures, positive membership clauses, membership predicates,
+row consumption, or branch-chart authorization. It remains source-cover route
+material only and adds no boundary-ownership pass rule.
+
+The proof-grade declaration route below that blocker is now isolated by
+`fold_coordinate_endpoint_functional_target_ref_value_object_domain_membership_predicate_signature_declaration_without_contract_link_target.md`
+and tested by
+`target_ref_value_object_domain_membership_predicate_signature_declaration_definition_source_data_derivation_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It preserves 4 / 4 declaration source scopes, target-note hash matches,
+declaration obligations, definition-source-data routes, no-link guards, and
+primitive declaration acceptance rejections, plus 6 / 6 source equations, 6
+value-map bindings, and 3 / 3 row declaration source-scope pairs. It records
+0 / 4 proof-grade symbol declarations, domain-sort declarations, codomain-sort
+declarations, primitive declaration acceptances, argument-sort proofs,
+no-contract-link premise absence proofs, signature derivations, proof-grade
+signatures, row consumption, or branch-chart authorization. It remains
+source-cover route material only and adds no boundary-ownership pass rule.
+
+The next non-primitive route below that declaration proof attempt is now
+isolated by
+`fold_coordinate_endpoint_functional_target_ref_value_object_domain_membership_predicate_signature_declaration_formation_rule_without_contract_link_target.md`
+and tested by
+`target_ref_value_object_domain_membership_predicate_signature_declaration_formation_rule_without_contract_link_definition_source_data_derivation_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It preserves 4 / 4 formation-rule source scopes, target-note hash matches,
+formation-rule obligations, definition-source-data routes, no-link guards, and
+primitive declaration acceptance rejections, plus 6 / 6 source equations, 6
+value-map bindings, and 3 / 3 row formation-rule source-scope pairs. It records
+0 / 4 declaration formation rules, symbol formation rules, domain-sort
+formation rules, codomain-sort formation rules, formation-rule soundness proofs,
+formation-rule derivations, proof-grade symbol declarations, domain-sort
+declarations, codomain-sort declarations, row consumption, or branch-chart
+authorization. It remains source-cover route material only and adds no
+boundary-ownership pass rule.
+
+The constructor evidence needed below that formation-rule gap is now isolated by
+`fold_coordinate_endpoint_functional_target_ref_value_object_domain_membership_predicate_signature_declaration_formation_constructor_basis_without_contract_link_target.md`
+and tested by
+`target_ref_value_object_domain_membership_predicate_signature_formation_constructor_basis_derivation_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It preserves 4 / 4 constructor-basis source scopes, target-note hash matches,
+constructor-basis obligations, definition-source-data routes, no-link guards,
+and primitive formation-rule acceptance rejections, plus 6 / 6 source equations,
+6 value-map bindings, and 3 / 3 row constructor-basis source-scope pairs. It
+records 0 / 4 predicate-symbol constructor bases, argument-sort constructor
+bases, judgment-codomain constructor bases, endpoint-localization rules,
+constructor-basis soundness proofs, constructor-basis derivations, formation
+rules, proof-grade declarations, row consumption, or branch-chart authorization.
+It remains source-cover route material only and adds no boundary-ownership pass
 rule.
 
 ## Capture Decision

@@ -8,16 +8,16 @@
       "width": 1536,
       "height": 1024,
       "aspect_ratio": 1.5,
-      "saturated_non_palette_fraction": 0.5245,
+      "saturated_non_palette_fraction": 0.4202,
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "approved",
-      "no_in_image_text": "approved",
-      "one_continuous_scene": "approved",
-      "correct_geometry": "approved"
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
     },
-    "decision": "approved"
+    "decision": "pending"
   },
   {
     "id": "here-there-back-spread-01",
@@ -28,16 +28,16 @@
       "width": 1536,
       "height": 1024,
       "aspect_ratio": 1.5,
-      "saturated_non_palette_fraction": 0.5856,
+      "saturated_non_palette_fraction": 0.4566,
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "approved",
-      "no_in_image_text": "approved",
-      "one_continuous_scene": "approved",
-      "correct_geometry": "approved"
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
     },
-    "decision": "approved"
+    "decision": "pending"
   },
   {
     "id": "here-there-back-spread-02",
@@ -48,16 +48,16 @@
       "width": 1536,
       "height": 1024,
       "aspect_ratio": 1.5,
-      "saturated_non_palette_fraction": 0.4772,
+      "saturated_non_palette_fraction": 0.5456,
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "approved",
-      "no_in_image_text": "approved",
-      "one_continuous_scene": "approved",
-      "correct_geometry": "approved"
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
     },
-    "decision": "approved"
+    "decision": "pending"
   },
   {
     "id": "here-there-back-spread-03",
@@ -68,16 +68,16 @@
       "width": 1536,
       "height": 1024,
       "aspect_ratio": 1.5,
-      "saturated_non_palette_fraction": 0.4633,
+      "saturated_non_palette_fraction": 0.5592,
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "approved",
-      "no_in_image_text": "approved",
-      "one_continuous_scene": "approved",
-      "correct_geometry": "approved"
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
     },
-    "decision": "approved"
+    "decision": "pending"
   },
   {
     "id": "here-there-back-spread-04",
@@ -88,16 +88,16 @@
       "width": 1536,
       "height": 1024,
       "aspect_ratio": 1.5,
-      "saturated_non_palette_fraction": 0.5342,
+      "saturated_non_palette_fraction": 0.5362,
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "approved",
-      "no_in_image_text": "approved",
-      "one_continuous_scene": "approved",
-      "correct_geometry": "approved"
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
     },
-    "decision": "approved"
+    "decision": "pending"
   },
   {
     "id": "here-there-back-spread-05",
@@ -108,16 +108,16 @@
       "width": 1536,
       "height": 1024,
       "aspect_ratio": 1.5,
-      "saturated_non_palette_fraction": 0.4923,
+      "saturated_non_palette_fraction": 0.6638,
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "approved",
-      "no_in_image_text": "approved",
-      "one_continuous_scene": "approved",
-      "correct_geometry": "approved"
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
     },
-    "decision": "approved"
+    "decision": "pending"
   },
   {
     "id": "here-there-back-spread-06",
@@ -128,16 +128,16 @@
       "width": 1536,
       "height": 1024,
       "aspect_ratio": 1.5,
-      "saturated_non_palette_fraction": 0.465,
+      "saturated_non_palette_fraction": 0.5259,
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "approved",
-      "no_in_image_text": "approved",
-      "one_continuous_scene": "approved",
-      "correct_geometry": "approved"
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
     },
-    "decision": "approved"
+    "decision": "pending"
   },
   {
     "id": "here-there-back-spread-07",
@@ -148,16 +148,16 @@
       "width": 1536,
       "height": 1024,
       "aspect_ratio": 1.5,
-      "saturated_non_palette_fraction": 0.4622,
+      "saturated_non_palette_fraction": 0.5195,
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "approved",
-      "no_in_image_text": "approved",
-      "one_continuous_scene": "approved",
-      "correct_geometry": "approved"
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
     },
-    "decision": "approved"
+    "decision": "pending"
   },
   {
     "id": "here-there-back-spread-08",
@@ -168,16 +168,16 @@
       "width": 1536,
       "height": 1024,
       "aspect_ratio": 1.5,
-      "saturated_non_palette_fraction": 0.4967,
+      "saturated_non_palette_fraction": 0.4655,
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "approved",
-      "no_in_image_text": "approved",
-      "one_continuous_scene": "approved",
-      "correct_geometry": "approved"
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
     },
-    "decision": "approved"
+    "decision": "pending"
   },
   {
     "id": "here-there-back-backmatter-01",
@@ -188,15 +188,15 @@
       "width": 1536,
       "height": 1024,
       "aspect_ratio": 1.5,
-      "saturated_non_palette_fraction": 0.4727,
+      "saturated_non_palette_fraction": 0.5027,
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "approved",
-      "no_in_image_text": "approved",
-      "one_continuous_scene": "approved",
-      "correct_geometry": "approved"
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
     },
-    "decision": "approved"
+    "decision": "pending"
   }
 ]

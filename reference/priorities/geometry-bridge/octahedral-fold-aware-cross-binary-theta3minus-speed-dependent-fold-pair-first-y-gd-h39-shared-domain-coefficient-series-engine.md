@@ -2757,6 +2757,423 @@ certify a terminal provider enclosure. It does, however, sharpen the blocker:
 ordinary brute partitioning is a large local job, while the higher-value route
 remains a dependency-preserving terminal graph remainder or directed-rounded
 producer-image enclosure for $h_{37},h_{36},h_{35}$.
+\texttt{buildH39RequestedY44TerminalAffineEndpointProviderCandidate} now turns
+the refinement scale into a narrow integer local producer-partition
+realization. It keeps the raw terminal intervals marked open, but it assigns
+each terminal row the same integer local subcell count $k$, scales each
+recorded terminal residual interval and terminal producer half-width by the
+rational width factor $1/k$ using the existing binary64
+\texttt{nextDown}/\texttt{nextUp} interval primitive, and checks that all
+fifteen $h_{37},h_{36},h_{35}$ rows fit the terminal-affine endpoint budget
+after outward scaling. The same packet then replays those provider-shaped rows
+through the existing $N_{38}$ source-map boundary with terminal
+directed-rounding provenance verified. This is not a full terminal provider or
+H39 closure certificate; it changes the next blocker from finding an
+outward-rounded terminal producer partition to dependency-preserving
+$S_{37}$ transport of the directed-rounded terminal $N_{38}$ source-map
+envelope into the five H39 source-map provider rows.
+\texttt{buildH39RequestedY44TerminalS37TransportReplayCandidate} now tests that
+next stage at numerator-width level. It consumes the terminal-affine endpoint
+provider candidate plus the selected row-local $S_{37}$ collar replay, measures
+that the terminal-affine partition is still too wide for the conservative
+row-local same-domain $S_{37}$ remainder budget by a factor
+$2.3331929237700406\times 10^4$ on the focused fixture, and records the
+additional same-domain integer refinement $k=23332$. Applying that further
+binary64 outward-scaled terminal subpartition brings all fifteen
+$h_{37},h_{36},h_{35}$ terminal numerator-width rows under the row-local
+$S_{37}$ remainder budget while preserving the five source-map boundary rows'
+same-domain and same-radius contract. This remains a candidate replay, not a
+dependency-preserving $S_{37}$ division certificate; the remaining proof object
+is the division transport witness through the inherited solve-slope interval.
+\texttt{buildH39RequestedY44TerminalS37DivisionTransportCandidate} now carries
+that witness to quotient-width level without upgrading the claim. It divides
+each outward-rounded terminal $h_{37},h_{36},h_{35}$ numerator width,
+half-width, and absolute upper bound by every selected row-local solve-slope
+lower bound, then checks the induced $h_{38}$ residual width against that
+same row's target. All fifteen terminal rows fit all selected row-local
+$h_{38}$ quotient-width targets, and all five source-map boundary rows still
+preserve the same-domain and same-radius contract. The live blocker is
+therefore no longer terminal producer width, $S_{37}$ numerator width, or
+solve-slope quotient width. It is the denominator-correlation proof that keeps
+the terminal $N_{38}$ numerator interval and its same-domain $S_{37}$ slope
+interval dependent inside a directed-rounded provider certificate.
+\texttt{buildH39RequestedY44TerminalS37DenominatorCorrelationCandidate} now
+tests that denominator-correlation step at independent interval-quotient level.
+It consumes the terminal $S_{37}$ quotient-width transport, divides each
+same-domain outward terminal $N_{38}$ numerator interval by each selected
+row-local solve-slope interval with outward interval arithmetic, and replays
+the quotient against the same row-local $h_{38}$ targets. On the focused
+provider-boundary replay, all fifteen $h_{37},h_{36},h_{35}$ terminal rows fit
+every selected target under the full interval quotient, and all five
+source-map boundary rows still preserve same-domain and same-radius status.
+This is still not a dependency-preserving $S_{37}$ division certificate; it
+changes the live blocker from quotient width or denominator-variation surplus
+to directed-rounded provenance for a same-construction numerator/denominator
+division provider.
+\texttt{buildH39RequestedY44TerminalS37DivisionProvenanceLedgerCandidate} now
+turns that provenance burden into a row-level ledger. It consumes the
+denominator-correlation packet and checks terminal $h$-row identity, selected
+row-local budget identity, stable nonzero solve-slope sign, exact recomputation
+of the outward quotient interval, and continuity through the five source-map
+boundary rows. The focused provider-boundary replay completes the ledger for
+all fifteen terminal quotient rows and all five boundary rows while keeping
+dependency-preserving $S_{37}$ division, directed-rounded shared-domain
+provider certification, shifted $R_{\varepsilon,43}$ closure, and retained
+branch status false. The live blocker is now the same-construction
+directed-rounded provider-identity witness: the proof must show that the
+terminal $N_{38}$ numerator interval and $S_{37}$ solve-slope interval are
+generated by one dependency-preserving construction, not merely by two
+compatible same-domain interval rows.
+\texttt{buildH39RequestedY44TerminalS37ProviderIdentityWitnessAttemptCandidate}
+now audits that identity witness directly. It consumes the provenance ledger
+and confirms the available substrate fields: terminal $h$-row identity,
+selected row-local budget identity, same-domain and same-radius source-map
+boundary replay, nonzero $S_{37}$ denominator, and exact outward quotient
+recomputation. The focused provider-boundary replay validates those checks on
+all fifteen terminal quotient rows and all five boundary rows, then fails
+closed on the missing shared-construction fields
+\texttt{shared\_source\_cell\_id}, \texttt{shared\_provider\_provenance},
+\texttt{shared\_dependency\_trace}, \texttt{shared\_dependency\_witness}, and
+\texttt{same\_construction\_dependency\_preservation\_statement}. The next
+executable proof object must therefore propagate those identity fields through
+the requested-y44 terminal $N_{38}/S_{37}$ construction before the
+dependency-preserving division provider can be certified.
+\texttt{buildH39RequestedY44TerminalS37SharedIdentityFieldMaterializationAttemptCandidate}
+now performs the row-local part of that propagation. It consumes the
+provider-identity witness attempt, selected row-local collar replay, and signed
+source-sum derivative provider, then binds each terminal quotient replay row to
+the row-local source \texttt{cell\_id}, speed interval, $\xi$ interval, source
+subcover row, signed-source dependency chain, same-domain dependency checks,
+and completed quotient-ledger substrate. The focused provider-boundary replay
+validates those row-local handoff fields on all fifteen terminal quotient rows
+and all five boundary rows. It remains candidate-only: the terminal
+same-construction source-cell binding, provider provenance, dependency
+witness, and dependency-preservation statement are still not propagated, so
+dependency-preserving $S_{37}$ division and directed-rounded shared-domain
+provider certification remain false.
+\texttt{buildH39RequestedY44TerminalS37SourceCellBindingFanoutCandidate}
+now compares the terminal graph \texttt{cell\_id} supplied by the
+terminal-affine endpoint provider with the row-local $S_{37}$ budget cells
+materialized by that handoff. Six terminal $h$ rows have exactly one matching
+row-local replay cell, while nine terminal $h$ rows have terminal graph source
+cells absent from the selected row-local $S_{37}$ budget replay. Every terminal
+row still carries nonmatching row-local budget fanout. This does not certify
+same-construction division. The next proof object must supply complete
+terminal source-cell denominator coverage and bind the denominator to the
+matching terminal source cell, or supply a dependency witness proving that the
+all-row fanout preserves one construction.
+\texttt{buildH39RequestedY44TerminalS37SourceCellCoverageLiftReadinessCandidate}
+then checks whether the missing terminal source cells are absent upstream or
+only absent from the selected row-local $S_{37}$ denominator replay. The result
+is a sharper fail-closed classification: the upstream requested-y44
+$\xi,\zeta$ producer target sees all five terminal source cells, but the
+row-local $S_{37}$ denominator/provenance chain still carries only
+\texttt{speed.0.first-y} and \texttt{speed.1.first-y}. The source cells
+\texttt{speed.2.first-y}, \texttt{speed.3.first-y}, and
+\texttt{speed.4.first-y} are upstream-visible but lack row-local $S_{37}$
+denominator target and provenance rows. The next proof object is therefore a
+true five-cell row-local $S_{37}$ denominator/provenance lift, or a dependency
+witness proving that the selected two-cell denominator fanout is one same
+construction.
+\texttt{buildH39RequestedY44TerminalS37FiveNodeDenominatorLiftAuditCandidate}
+then checks the tempting five-node source-map lift route directly. It replays
+the five terminal source cells against the quotient source-radius budget,
+signed numerator source-budget fit, signed radius contraction budget, and
+signed radius provider acceptance target. All four five-node source-budget
+families are present for all five terminal source cells and reach the H38
+source-map provider boundary, but they do not contain row-local $S_{37}$
+solve-slope intervals, nonzero denominator checks, denominator target rows, or
+denominator provenance rows. Thus the upstream source-map budget coverage is
+complete, but terminal $S_{37}$ denominator realization remains missing for
+\texttt{speed.2.first-y}, \texttt{speed.3.first-y}, and
+\texttt{speed.4.first-y}.
+\texttt{buildH39RequestedY44TerminalS37RowLocalCollarSelectionSurfaceAuditCandidate}
+then checks the selected row-local collar replay itself. It compares the five
+terminal source cells against the de-duplicated
+\texttt{producer\_row\_local\_collar\_replay.row\_replays} surface and finds
+that the exposed row-local $S_{37}$ denominator surface carries solve-slope,
+nonzero-denominator, denominator-target, and provenance context only for
+\texttt{speed.0.first-y} and \texttt{speed.1.first-y}. No nonselected
+row-local $S_{37}$ denominator rows are exposed for
+\texttt{speed.2.first-y}, \texttt{speed.3.first-y}, or
+\texttt{speed.4.first-y}, even though the five-node source-map budget reaches
+all five terminal cells. The next true proof object is therefore a five-cell
+row-local $S_{37}$ denominator collar surface, or a same-construction fanout
+witness proving that the selected two-cell surface transports the remaining
+terminal cells without changing domain or radius.
+\texttt{buildH39RequestedY44TerminalS37FiveCellDenominatorReadinessSurfaceCandidate}
+then exposes the all-producer-sample row-local safety-search
+denominator-readiness surface for all five terminal source cells. The missing
+cells \texttt{speed.2.first-y}, \texttt{speed.3.first-y}, and
+\texttt{speed.4.first-y} now carry candidate solve-slope intervals,
+nonzero-denominator checks, denominator-target widths, and same-domain
+provenance context from the row-local replay, and each row reaches the existing
+source-map provider boundary. This changes the blocker: the selected
+provider-identity surface is still only the two selected rows, and there is
+still no dependency-preserving $S_{37}$ division provider or same-construction
+source-cell witness. The next true proof object is therefore the $S_{37}$
+division/provider-identity witness, not another five-node source budget lift.
+\texttt{buildH39RequestedY44TerminalS37FiveCellDivisionDependencyWitnessAttemptCandidate}
+then consumes the five-cell readiness surface and the terminal $S_{37}$
+transport replay as a matched-cell quotient attempt. Each terminal source cell
+uses only its own row-local solve-slope interval and denominator target, so the
+fifteen terminal $h_{37}$, $h_{36}$, and $h_{35}$ numerator rows now have a
+one-to-one source-cell denominator-readiness match. Both the width-ratio replay
+and the independent interval quotient replay fit the matched $h_{38}$ targets
+and reach the existing source-map boundary. This is still not
+dependency-preserving $S_{37}$ division: the same-construction dependency
+witness and directed-rounded provider-identity certificate remain missing.
+\texttt{buildH39RequestedY44TerminalS37FiveCellSameConstructionDependencyFieldAuditCandidate}
+then audits the matched quotient substrate against the required
+same-construction identity fields. It materializes
+\texttt{shared\_source\_cell\_id} for all fifteen terminal $h_{37}$,
+$h_{36}$, and $h_{35}$ rows because each terminal source cell is one-to-one
+matched to its row-local $S_{37}$ denominator-readiness row. It also records
+separate numerator provenance and separate denominator provenance on the same
+source cell. It deliberately leaves shared provider provenance, shared
+dependency trace, shared dependency witness, and the same-construction
+dependency-preservation statement missing. The blocker is therefore narrower:
+produce a shared provenance, trace, witness, and preservation object that binds
+numerator and denominator as one directed-rounded dependency construction.
+\texttt{buildH39RequestedY44TerminalS37FiveCellSharedProvenanceComponentAuditCandidate}
+now assembles the safe part of that object without promoting it to a provider
+certificate. For every terminal $h$ row, it packages the matched terminal
+$N_{38}$ numerator interval, row-local $S_{37}$ solve-slope interval,
+independent quotient replay, same-domain boundary, same-radius boundary, and
+source-map directed-rounding provenance into a shared-source-cell provenance
+component. The component is available for all fifteen terminal rows and all
+five source-map boundary rows. It is still not
+\texttt{shared\_provider\_provenance}: the shared dependency trace, shared
+dependency witness, and same-construction dependency-preservation statement
+remain absent, so dependency-preserving $S_{37}$ division remains open.
+\texttt{buildH39RequestedY44TerminalS37FiveCellSharedDependencyTraceAuditCandidate}
+then promotes the ordered trace over that component without claiming a witness.
+For every terminal $h$ row, the trace records the shared source-cell binding,
+terminal $N_{38}$ numerator interval, row-local $S_{37}$ solve-slope interval,
+independent quotient replay, same-domain source-map boundary, same-radius
+source-map boundary, and directed-rounding provenance edge. The trace is
+available for all fifteen terminal rows and all five boundary rows. The blocker
+is now narrower again: a shared dependency witness and same-construction
+dependency-preservation statement must prove that this traced numerator and
+denominator construction survives $S_{37}$ division as one dependency-preserving
+provider.
+\texttt{buildH39RequestedY44TerminalS37FiveCellSharedDependencyWitnessAuditCandidate}
+then turns that trace into a witness without certifying division. For every
+terminal $h$ row, it verifies trace order, shared source-cell consistency,
+terminal $N_{38}$ numerator interval availability, row-local $S_{37}$
+solve-slope availability, exact recomputation of the independent quotient
+replay, quotient boundedness against the $h_{38}$ target, same-domain boundary
+continuity, same-radius boundary continuity, and source-map directed-rounding
+provenance continuity. The witness is available for all fifteen terminal rows
+and all five boundary rows. The remaining blocker is the same-construction
+dependency-preservation statement and full shared provider provenance object;
+until that statement is executable, dependency-preserving $S_{37}$ division
+remains open.
+\texttt{buildH39RequestedY44TerminalS37FiveCellSameConstructionPreservationStatementAuditCandidate}
+now makes that preservation statement executable without promoting it to full
+provider provenance. For every terminal $h$ row, it preserves the witnessed
+same source-cell binding, shared provider-provenance component context, ordered
+trace witness, exact independent quotient recomputation, quotient boundedness
+against the $h_{38}$ target, same-domain boundary, same-radius boundary, and
+source-map directed-rounding provenance. The statement is available for all
+fifteen terminal rows and all five boundary rows. The only remaining shared
+identity field is \texttt{shared\_provider\_provenance}; until that full object
+is assembled and checked, dependency-preserving $S_{37}$ division and provider
+identity certification remain open.
+\texttt{buildH39RequestedY44TerminalS37FiveCellSharedProviderProvenanceAuditCandidate}
+then assembles that full shared provider provenance object without certifying
+provider identity. For every terminal $h$ row, it binds the shared source-cell
+identity, shared provider-provenance component context, shared dependency
+trace, shared dependency witness, same-construction preservation statement,
+exact quotient recomputation, $h_{38}$ quotient bound, same-domain boundary,
+same-radius boundary, and source-map directed-rounding provenance into one
+candidate \texttt{shared\_provider\_provenance} object. All required shared
+identity fields are now materialized for all fifteen terminal rows and all five
+boundary rows. The next blocker is therefore the same-construction
+provider-identity witness; dependency-preserving $S_{37}$ division remains
+uncertified until that witness is executable.
+\texttt{buildH39RequestedY44TerminalS37FiveCellSameConstructionProviderIdentityWitnessAuditCandidate}
+now turns that full shared provider provenance object into an executable
+same-construction provider-identity witness without certifying $S_{37}$
+division. For every terminal $h$ row, it rechecks the shared source-cell
+identity, shared provider-provenance component context, shared dependency
+trace, shared dependency witness, same-construction preservation statement,
+exact independent quotient recomputation, $h_{38}$ quotient bound, same-domain
+boundary, same-radius boundary, and source-map directed-rounding provenance
+inside the witness surface. The witness is available for all fifteen terminal
+rows and all five boundary rows. The next blocker is the dependency-preserving
+$S_{37}$ division provider certificate over that witness; shifted
+$R_{\varepsilon,43}$ closure, retained branch, and directed-rounded
+shared-domain provider certification remain open.
+\texttt{buildH39RequestedY44TerminalS37FiveCellDependencyPreservingDivisionProviderCertificateCandidate}
+now joins the matched-cell $S_{37}$ division substrate to the
+same-construction provider-identity witness row by row. The certificate checks
+the same terminal node, same terminal $h$ row, same source cell, same
+row-local budget row, same terminal graph interval, exact independent quotient
+agreement, $h_{38}$ quotient target fit, same-domain boundary, same-radius
+boundary, directed-rounding provenance, and source-map boundary replay. The
+local \texttt{dependency\_preserving\_s37\_division\_provider\_certified}
+flag is true for all fifteen terminal rows and all five boundary rows. The
+packet remains certificate-only: expression-level $N_{38}$ provider closure,
+terminal row provider enclosure, shifted $R_{\varepsilon,43}$ closure,
+retained branch, and directed-rounded shared-domain provider certification
+remain open.
+\texttt{buildH39RequestedY44TerminalRowProviderEnclosureWitnessCandidate}
+now joins the binary64 outward-rounded terminal producer partition rows to
+that local $S_{37}$ division provider certificate. The witness checks the same
+terminal node, same terminal $h$ row, same source cell, same terminal graph
+interval, terminal-affine budget containment, projected residual and half-width
+budget fit, arithmetic provenance, outward-rounding primitive availability,
+directed-rounding provenance inheritance, $S_{37}$ quotient fit, same-domain
+boundary, same-radius boundary, and source-map boundary replay. The local
+\texttt{terminal\_row\_provider\_enclosure\_certified} flag is true for all
+fifteen terminal rows and all five boundary rows. The packet remains
+witness-only: expression-level $N_{38}$ provider closure, terminal graph
+remainder closure, shifted $R_{\varepsilon,43}$ closure, retained branch, and
+directed-rounded shared-domain provider certification remain open.
+\texttt{buildH39RequestedY44DirectedRoundedSharedDomainProviderBoundaryReplayCandidate}
+now tests the actual same-domain provider boundary replay from the terminal-row
+enclosure witness into the existing $N_{38}$ source-map envelope readiness
+rows. The replay verifies the same five provider rows, same terminal source
+cells, verifier-boundary reachability, terminal-row enclosure boundary replay,
+terminal $h$-row enclosure availability, source-term provider same-domain and
+same-radius contracts, terminal-affine route readiness, terminal-row
+directed-rounding provenance, and provider midpoint containment in the
+terminal graph interval. The local boundary replay is verified for all five
+source-map rows. It does not certify the directed-rounded shared-domain
+provider: the executable blocker is now the source-term provider side, where
+directed-rounded source certification remains false and term-width realization
+remains open.
+\texttt{buildH39RequestedY44SourceTermRealizationProvenanceBridgeCandidate}
+now disambiguates that source-term side. It replays the shaped source-term
+provider through the centered homothetic contraction, scalar quotient,
+quotient-source radius budget, quotient-compatible signed-radius acceptance
+target, H38 source provenance bridge, $N_{38}$ readiness rows, and terminal
+boundary replay. All five nodes reduce the term-width realization burden to
+signed-radius source provenance. This does not certify the directed-rounded
+source provider; it changes the executable blocker to the directed-rounded
+same-domain expression-level $N_{38}$ source-map residual envelope before
+dependent $S_{37}$ transport.
+\texttt{buildH39RequestedY44ExpressionN38SourceMapResidualEnvelopeProvenanceAuditCandidate}
+now attacks that envelope directly. The audit verifies, on the same five-node
+stream, that the `delta_squared_speed + sin_phi + sin_delta` term residual
+intervals sum to the expression-level $N_{38}$ source-map residual and that
+their Lagrange-weighted sums replay the weighted residual rows. The
+quotient-compatible signed-radius target is a contained subinterval of those
+live residual intervals. The packet therefore fails closed at a sharper
+object: no current trace anchor, acceptance row, or bridge row certifies
+directed-rounded same-domain producer-image provenance for the three source
+terms.
+\texttt{buildH39RequestedY44SourceTermProducerImageProvenancePrimitiveAuditCandidate}
+now probes that three-term producer-image object directly. It verifies that the
+current H39 source-map residual target retains finite value intervals, midpoint
+data, and residual intervals for `delta_squared_speed`, `sin_phi`, and
+`sin_delta`; the three value intervals replay the signed source-term interval
+sum, the three residual intervals replay the expression-level $N_{38}$ residual
+identity, and the `constant_minus_two` term remains removed from the trust
+burden. The target now also retains focused H0-H34 source-term trace rows and
+zero-constant rows inside the source-map trace anchor. Directly identifying
+those retained H0-H34 rows with the expression-level H39 source-term rows
+fails: the retained value, residual, and zero-constant nonconstant intervals
+have large endpoint gaps against the H39 term rows. The next executable blocker
+is therefore not a direct retained-trace equality.
+\texttt{buildH39RequestedY44SourceTermTransportFitCandidate}
+now attacks that transport object. It computes termwise scalar and affine
+midpoint/interval fits from the retained H0-H34 source-term trace rows to the
+expression-level H39 source-term rows, but treats them only as a finite
+negative control: the affine interval transport does not close. The positive
+executable route is the existing centered homothetic source-term contraction
+bridge. Its normal-form, scalar-factorization, scalar-provider-target,
+quotient-envelope, quotient-source, source-radius, and signed-radius
+acceptance checks replay all five rows to signed-radius source provenance on
+the same domain and radius contract. This still does not certify a
+directed-rounded source provider. The next true object is the directed-rounded
+same-domain signed-radius source-provenance envelope for the expression-level
+$N_{38}$ source-map residual after centered homothetic source-term transport.
+\texttt{buildH39RequestedY44SignedRadiusSourceProvenanceEnvelopeCandidate}
+now builds that object as an executable envelope audit. It verifies that the
+quotient-compatible signed and weighted residual intervals match the centered
+homothetic transport bridge, sit inside the expression-level live residual
+intervals, replay the Lagrange radius weight, fit the numerator budget, and
+reach the same-domain/same-radius source-map verifier boundary. This is a real
+boundary advance, not a provider certificate. The remaining failure is now
+row-local and explicit: the acceptance rows, verifier rows, and transport
+bridge rows still lack the directed-rounded same-domain source-provenance
+certification fields. The next proof object is therefore the certificate that
+emits those signed-radius envelope rows as directed-rounded source provenance,
+not another interval-width contraction or terminal replay.
+\texttt{buildH39RequestedY44SignedRadiusSourceProvenanceCertificateAttemptCandidate}
+now attacks that certificate directly. It replays the accepted signed-radius
+envelope rows through the H38 source-provenance bridge and the existing
+directed-rounded shared-domain provider boundary replay. The candidate
+certificate intervals match the source-map boundary rows, still replay the
+Lagrange radius weight, and fit the verifier boundary. The attempt still fails
+closed: every row lacks the emitter fields tying the source-term producer-image
+primitive, terminal boundary replay, acceptance rows, verifier rows, transport
+rows, and H38 bridge rows into one directed-rounded same-domain
+source-provenance object. The next true blocker is that emitter, not another
+signed-radius interval contraction.
+\texttt{buildH39RequestedY44SignedRadiusSourceProvenanceEmitterIdentityAttemptCandidate}
+attacks the emitter identity itself. It compares the primitive expression-level
+$N_{38}$ source-term residual-sum interval against the accepted signed-radius
+certificate interval on each node. The primitive residual-sum interval contains
+the signed-radius certificate interval, and the centered homothetic transport
+bridge matches the signed-radius interval. A direct primitive-sum emitter
+identity fails, however: every signed-radius certificate interval is a proper
+subinterval of the primitive residual sum with a quantified endpoint and
+half-width contraction gap.
+\texttt{buildH39RequestedY44SignedRadiusSubintervalEmitterPrimitiveCandidate}
+now materializes that row-local subinterval primitive at candidate level. For
+each node it defines the centered affine contraction from the primitive
+residual-sum center to the signed-radius certificate center, with contraction
+scale equal to the signed-radius half-width divided by the primitive
+half-width. Existing binary64 outward interval primitives then map the primitive
+residual-sum interval to an outward image that contains the accepted
+signed-radius certificate interval while remaining strictly width-contracted on
+the same source cell and without increasing the radius boundary. This is still
+not a source-provenance certificate: the primitive keeps all source-input and
+shared domain certification claims false because the directed-rounded
+source-term producer-image provenance fields are still absent.
+\texttt{buildH39RequestedY44SourceTermProducerImageProvenanceFieldAttemptCandidate}
+now attacks those fields directly. For each of the five expression-level
+$N_{38}$ source-map nodes, it distributes the signed-radius center shift across
+the three source-term residual intervals in proportion to term half-width and
+applies the same centered-affine contraction scale used by the subinterval
+primitive. The executable packet emits fifteen candidate term-field slots with
+directed-rounded source-term value intervals, residual intervals, same-domain
+field-domain metadata, radius values, and outward-rounding primitive metadata.
+Their residual sums contain the accepted signed-radius certificates and remain
+strictly width-contracted on the same source cells. This is a real narrowing of
+the obstruction, but not certification: every projected term image is a strict
+subinterval of the live expression source-term interval, so the next proof
+object is the source-enclosure identity proving those field slots are valid
+same-domain producer-image enclosures.
+\texttt{buildH39RequestedY44SourceTermProducerImageEnclosureIdentityAttemptCandidate}
+now tests that identity directly against the strongest same-domain witnesses
+available in the packet. It replays all fifteen projected term slots against
+the live expression source-term value and residual intervals, the retained
+H0-H34 trace intervals, and the zero-constant nonconstant term intervals, while
+also checking midpoint and residual-zero point witnesses. The result is
+fail-closed but sharper: the projected slots remain valid allocated
+subintervals, yet every projected slot fails to enclose the available
+expression term envelope, and the retained trace checks remain negative
+controls. The executable artifact records the endpoint expansion and half-width
+expansion needed for enclosure. The next true blocker is therefore a
+directed-rounded same-domain narrower source-term image bound, or a dependency
+theorem proving the true producer image lies inside the projected strict
+subinterval slots.
+\texttt{buildH39RequestedY44SourceTermProducerImageProjectedSlotVariationBoundTargetCandidate}
+now turns that narrower-image blocker into explicit row-local targets. For
+each projected source-term slot, it measures the endpoint margin from the
+expression midpoint and residual-zero witness to the projected slot and records
+the smaller margin as the maximum same-domain source-term variation bound that
+could certify the projected slot. The current packet exposes an earlier
+obstruction: at least one projected slot does not contain the midpoint/residual-zero
+anchor, so the variation-bound route cannot yet be applied uniformly. This
+does not certify the source-term producer image; it sharpens the next proof
+object to a same-domain projected-slot midpoint/zero anchor identity, followed
+by a directed-rounded same-domain source-term variation bound that fits inside
+the recorded positive margins.
 \texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
 now also probes a shared terminal-residual coordinate for
 $h_{37},h_{36},h_{35}$. Instead of assigning independent residual hulls to the

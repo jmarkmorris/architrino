@@ -34,13 +34,13 @@ Read-aloud title:
 
 Read-aloud text:
 
-> Mira placed a clock on the table.
+> Electra placed a clock on the table.
 >
-> Tomas placed a ruler beside it.
+> Poz placed a ruler beside it.
 >
-> Ari placed a prism near the light.
+> Electra placed a prism near the light.
 
-Discovery:
+Editor note:
 
 The familiar tools of physics become questions.
 
@@ -50,11 +50,11 @@ Read-aloud text:
 
 > "These are not where our deepest story begins,"
 >
-> Dr. Sol said.
+> Poz said.
 >
 > "They are things the architecture must recover."
 
-Discovery:
+Editor note:
 
 Recovery replaces assumption.
 
@@ -72,7 +72,7 @@ Read-aloud text:
 >
 > and bent paths.
 
-Discovery:
+Editor note:
 
 The capstone starts from the substrate side.
 
@@ -86,7 +86,7 @@ Read-aloud text:
 >
 > The relation held.
 
-Discovery:
+Editor note:
 
 Assemblies can persist through ongoing dynamics.
 
@@ -98,7 +98,7 @@ Read-aloud text:
 >
 > The larger pattern held too.
 
-Discovery:
+Editor note:
 
 Structure can build in levels.
 
@@ -110,7 +110,7 @@ Read-aloud text:
 >
 > Quiet structure filled the gaps.
 
-Discovery:
+Editor note:
 
 The Noether sea is context, not emptiness.
 
@@ -118,11 +118,11 @@ The Noether sea is context, not emptiness.
 
 Read-aloud text:
 
-> Ari tapped one assembly.
+> Electra tapped one assembly.
 >
 > The quiet medium answered.
 
-Discovery:
+Editor note:
 
 Medium response can carry influence.
 
@@ -134,7 +134,7 @@ Read-aloud text:
 >
 > It found a channel.
 
-Discovery:
+Editor note:
 
 Signal channels are recovered structures.
 
@@ -146,9 +146,9 @@ Read-aloud text:
 >
 > "That could become clocklike,"
 >
-> Mira said.
+> Electra said.
 
-Discovery:
+Editor note:
 
 Regular assembly behavior can support timekeeping.
 
@@ -160,9 +160,9 @@ Read-aloud text:
 >
 > "That could become rulerlike,"
 >
-> Tomas said.
+> Poz said.
 
-Discovery:
+Editor note:
 
 Stable spacing can support measurement of length.
 
@@ -176,7 +176,7 @@ Read-aloud text:
 >
 > not as a little ball.
 
-Discovery:
+Editor note:
 
 Photon-like behavior is a recovery target.
 
@@ -184,11 +184,11 @@ Photon-like behavior is a recovery target.
 
 Read-aloud text:
 
-> Dr. Sol laid a soft grid over the scene.
+> Poz laid a soft grid over the scene.
 >
 > "This grid is a description of what larger travelers would measure."
 
-Discovery:
+Editor note:
 
 Effective spacetime geometry describes observer-level behavior.
 
@@ -198,13 +198,11 @@ Read-aloud text:
 
 > "Why do some patterns resist change more?"
 >
-> Ari asked.
->
-> Dr. Sol smiled.
+> Electra asked.
 >
 > "That is a mass-map question."
 
-Discovery:
+Editor note:
 
 Mass becomes a derived target, not a primitive label.
 
@@ -218,7 +216,7 @@ Read-aloud text:
 >
 > Now there was a record.
 
-Discovery:
+Editor note:
 
 Measurement records are physical outcomes.
 
@@ -226,15 +224,15 @@ Measurement records are physical outcomes.
 
 Read-aloud text:
 
-> Mira wrote observed.
+> Electra wrote observed.
 >
-> Tomas wrote simulated.
+> Poz wrote simulated.
 >
-> Ari wrote derived.
+> Electra wrote derived.
 >
-> Dr. Sol left one card marked open.
+> Poz wrote open on one card.
 
-Discovery:
+Editor note:
 
 Scientific honesty requires claim levels.
 
@@ -254,9 +252,9 @@ Read-aloud text:
 >
 > Records.
 >
-> They waited at the recovered end of the table.
+> They belonged at the recovered end of the table.
 
-Discovery:
+Editor note:
 
 The familiar universe is a target of recovery.
 
@@ -266,11 +264,11 @@ Read-aloud text:
 
 > "If this architecture is right,"
 >
-> Mira said,
+> Electra said,
 >
 > "it must recover the world we measure."
 
-Discovery:
+Editor note:
 
 The capstone names the burden of the theory.
 
@@ -282,7 +280,7 @@ Read-aloud text:
 >
 > It gave the wonder better questions.
 
-Discovery:
+Editor note:
 
 Knowledge-seeking remains open and disciplined.
 

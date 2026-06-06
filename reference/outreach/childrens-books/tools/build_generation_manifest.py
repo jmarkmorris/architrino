@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 import re
+import argparse
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -12,7 +13,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "production" / "generation-manifest.json"
 
-# Books with generated image artifacts managed by this manifest.
+# Books with current source-generation prompt approval managed by this manifest.
 BOOKS = [
     {
         "slug": "here-there-back",
@@ -24,58 +25,23 @@ BOOKS = [
         "back_matter_count": 1,
     },
     {
+        "slug": "roll-turn-again",
+        "title": "Roll, Turn, Again",
+        "book_number": 2,
+        "age_band": "1-2",
+        "story_spreads": 10,
+        "cover_count": 1,
+        "back_matter_count": 1,
+        "back_matter_story_text": "Roll.\nTurn.\nAgain.",
+    },
+    {
         "slug": "nature-remembers-motion",
         "title": "Nature Remembers Motion",
         "book_number": 3,
         "age_band": "2-3",
         "story_spreads": 12,
         "cover_count": 1,
-        "back_matter_count": 2,
-    },
-    {
-        "slug": "the-message-that-traveled",
-        "title": "The Message That Traveled",
-        "book_number": 6,
-        "age_band": "5-6",
-        "story_spreads": 16,
-        "cover_count": 1,
-        "back_matter_count": 2,
-    },
-    {
-        "slug": "the-tiny-transceivers",
-        "title": "The Tiny Transceivers",
-        "book_number": 9,
-        "age_band": "8-9",
-        "story_spreads": 18,
-        "cover_count": 1,
-        "back_matter_count": 3,
-    },
-    {
-        "slug": "the-balance-point",
-        "title": "The Balance Point",
-        "book_number": 12,
-        "age_band": "11-12",
-        "story_spreads": 18,
-        "cover_count": 1,
-        "back_matter_count": 4,
-    },
-    {
-        "slug": "the-history-that-pushes-now",
-        "title": "The History That Pushes Now",
-        "book_number": 15,
-        "age_band": "14-15",
-        "story_spreads": 20,
-        "cover_count": 1,
-        "back_matter_count": 5,
-    },
-    {
-        "slug": "the-world-we-recover",
-        "title": "The World We Recover",
-        "book_number": 16,
-        "age_band": "15-16",
-        "story_spreads": 20,
-        "cover_count": 1,
-        "back_matter_count": 6,
+        "back_matter_count": 1,
     },
 ]
 
@@ -114,16 +80,32 @@ def field(text: str, start_label: str, end_labels: list[str]) -> str:
     return text[start:end].strip()
 
 
+def field_any(text: str, start_labels: list[str], end_labels: list[str]) -> str:
+    for start_label in start_labels:
+        value = field(text, start_label, end_labels)
+        if value:
+            return value
+    return ""
+
+
 def prompt_from_section(section: str) -> str:
     block = field(section, "Illustration prompt:", ["\n### ", "\n## "])
     return strip_blockquote(block)
 
 
 def section_story_text(section: str) -> str:
-    title_block = field(section, "Read-aloud title:", ["\n\nLesson:"])
+    story_end_labels = [
+        "\n\nLesson:",
+        "\n\nEditor note:",
+        "\n\n$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ geometry:",
+        "\n\nGeometry:",
+        "\n\nBackground concepts:",
+        "\n\nIllustration prompt:",
+    ]
+    title_block = field(section, "Read-aloud title:", story_end_labels)
     if title_block:
         return strip_blockquote(title_block)
-    text_block = field(section, "Read-aloud text:", ["\n\nLesson:"])
+    text_block = field(section, "Read-aloud text:", story_end_labels)
     return strip_blockquote(text_block)
 
 
@@ -153,11 +135,20 @@ def parse_sections(md: str) -> list[dict]:
                 "sequence": sequence,
                 "label": label,
                 "story_text": section_story_text(body),
-                "lesson": field(body, "Lesson:", ["\n\n$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ geometry:"]),
-                "geometry": field(
+                "lesson": field_any(
                     body,
-                    "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ geometry:",
-                    ["\n\nBackground concepts:"],
+                    ["Lesson:", "Editor note:"],
+                    [
+                        "\n\n$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ geometry:",
+                        "\n\nGeometry:",
+                        "\n\nBackground concepts:",
+                        "\n\nIllustration prompt:",
+                    ],
+                ),
+                "geometry": field_any(
+                    body,
+                    ["$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ geometry:", "Geometry:"],
+                    ["\n\nBackground concepts:", "\n\nIllustration prompt:"],
                 ),
                 "background_concepts": field(body, "Background concepts:", ["\n\nIllustration prompt:"]),
                 "prompt": prompt,
@@ -167,11 +158,6 @@ def parse_sections(md: str) -> list[dict]:
 
 
 def extract_activity_lines(md: str) -> list[str]:
-    lines: list[str] = []
-    for match in re.finditer(r"(?m)^\d+\.\s+(.+)$", md):
-        lines.append(match.group(1).strip())
-    if lines:
-        return lines
     activity = field(md, "### Activity", ["\n\n### ", "\n\n## "])
     compact = " ".join(
         line.strip().lstrip("> ").strip()
@@ -180,6 +166,12 @@ def extract_activity_lines(md: str) -> list[str]:
     )
     if compact:
         return [compact]
+
+    lines: list[str] = []
+    for match in re.finditer(r"(?m)^\d+\.\s+(.+)$", md):
+        lines.append(match.group(1).strip())
+    if lines:
+        return lines
     return []
 
 
@@ -203,7 +195,10 @@ def back_matter_entry(book: dict, index: int, activity: str) -> dict:
         "sequence": index,
         "label": f"Back Matter Activity {index}",
         "source_markdown": f"{slug}.md",
-        "story_text": activity if book["slug"] != "here-there-back" else "Here.\nThere.\nBack.\nAgain.",
+        "story_text": book.get(
+            "back_matter_story_text",
+            activity if book["slug"] != "here-there-back" else "Here.\nThere.\nBack.\nAgain.",
+        ),
         "lesson": "Back-matter activity image.",
         "geometry": "Use the geometry already introduced in the story at activity scale.",
         "background_concepts": "Adult/teacher support image; keep it text-free.",
@@ -253,75 +248,120 @@ def status_for(paths: dict) -> dict:
     }
 
 
+def build_book_entries(book: dict) -> tuple[dict, list[dict]]:
+    md_path = ROOT / f"{book['slug']}.md"
+    md = md_path.read_text()
+    sections = parse_sections(md)
+    expected_prompt_count = book["cover_count"] + book["story_spreads"]
+    if len(sections) != expected_prompt_count:
+        raise SystemExit(
+            f"{book['slug']}: expected {expected_prompt_count} cover/story prompts, found {len(sections)}"
+        )
+
+    book_entries = []
+    for section in sections:
+        eid = f"{book['slug']}-cover" if section["kind"] == "cover" else f"{book['slug']}-spread-{section['sequence']:02d}"
+        entry = {
+            "id": eid,
+            "book_slug": book["slug"],
+            "book_title": book["title"],
+            "book_number": book["book_number"],
+            "age_band": book["age_band"],
+            "source_markdown": f"{book['slug']}.md",
+            **section,
+        }
+        book_entries.append(entry)
+
+    activities = extract_activity_lines(md)
+    if not activities:
+        activities = ["teacher-led review activity using the story's physical play materials"]
+    for idx in range(1, book["back_matter_count"] + 1):
+        activity = activities[(idx - 1) % len(activities)]
+        book_entries.append(back_matter_entry(book, idx, activity))
+
+    for entry in book_entries:
+        entry["palette_rule"] = PALETTE_RULE
+        entry["text_rule"] = TEXT_RULE
+        entry["aspect"] = "landscape_3x2_source"
+        entry["paths"] = entry_paths(entry)
+        entry["status"] = status_for(entry["paths"])
+
+    book_out = {
+        **book,
+        "target_source_images": book["cover_count"] + book["story_spreads"] + book["back_matter_count"],
+        "manifest_entries": len(book_entries),
+    }
+    return book_out, book_entries
+
+
 def build_manifest() -> dict:
     entries = []
     books_out = []
     for book in BOOKS:
-        md_path = ROOT / f"{book['slug']}.md"
-        md = md_path.read_text()
-        sections = parse_sections(md)
-        expected_prompt_count = book["cover_count"] + book["story_spreads"]
-        if len(sections) != expected_prompt_count:
-            raise SystemExit(
-                f"{book['slug']}: expected {expected_prompt_count} cover/story prompts, found {len(sections)}"
-            )
-
-        book_entries = []
-        for section in sections:
-            eid = f"{book['slug']}-cover" if section["kind"] == "cover" else f"{book['slug']}-spread-{section['sequence']:02d}"
-            entry = {
-                "id": eid,
-                "book_slug": book["slug"],
-                "book_title": book["title"],
-                "book_number": book["book_number"],
-                "age_band": book["age_band"],
-                "source_markdown": f"{book['slug']}.md",
-                **section,
-            }
-            book_entries.append(entry)
-
-        activities = extract_activity_lines(md)
-        if not activities:
-            activities = ["teacher-led review activity using the story's physical play materials"]
-        for idx in range(1, book["back_matter_count"] + 1):
-            activity = activities[(idx - 1) % len(activities)]
-            book_entries.append(back_matter_entry(book, idx, activity))
-
-        for entry in book_entries:
-            entry["palette_rule"] = PALETTE_RULE
-            entry["text_rule"] = TEXT_RULE
-            entry["aspect"] = "landscape_3x2_source"
-            entry["paths"] = entry_paths(entry)
-            entry["status"] = status_for(entry["paths"])
-
+        book_out, book_entries = build_book_entries(book)
         entries.extend(book_entries)
-        books_out.append(
-            {
-                **book,
-                "target_source_images": book["cover_count"] + book["story_spreads"] + book["back_matter_count"],
-                "manifest_entries": len(book_entries),
-            }
-        )
+        books_out.append(book_out)
 
-    # Keep the generated manifest internally consistent with this book list.
     total = sum(book["target_source_images"] for book in books_out)
-    if total != 142 or len(entries) != 142:
+    if len(entries) != total:
         raise SystemExit(f"manifest count mismatch: books={total}, entries={len(entries)}")
 
     return {
         "schema_version": 1,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "root": "reference/outreach/childrens-books",
-        "total_source_images": 142,
+        "total_source_images": total,
         "generation_order": [book["slug"] for book in BOOKS],
         "books": books_out,
         "entries": entries,
     }
 
 
+def refresh_manifest_book(book_slug: str) -> dict:
+    book = next((candidate for candidate in BOOKS if candidate["slug"] == book_slug), None)
+    if not book:
+        raise SystemExit(f"unknown book slug: {book_slug}")
+    if not OUT.exists():
+        raise SystemExit(f"cannot refresh {book_slug}: manifest missing at {OUT}")
+
+    manifest = json.loads(OUT.read_text())
+    book_out, book_entries = build_book_entries(book)
+    manifest["generated_at"] = datetime.now(timezone.utc).isoformat()
+
+    existing_books = manifest.get("books", [])
+    replaced = False
+    for index, existing_book in enumerate(existing_books):
+        if existing_book.get("slug") == book_slug:
+            existing_books[index] = book_out
+            replaced = True
+            break
+    if not replaced:
+        existing_books.append(book_out)
+    manifest["books"] = existing_books
+
+    entries_by_book: dict[str, list[dict]] = {}
+    for entry in manifest.get("entries", []):
+        slug = entry.get("book_slug")
+        if slug != book_slug:
+            entries_by_book.setdefault(slug, []).append(entry)
+    entries_by_book[book_slug] = book_entries
+
+    ordered_entries: list[dict] = []
+    for slug in manifest.get("generation_order", []):
+        ordered_entries.extend(entries_by_book.pop(slug, []))
+    for slug in sorted(entries_by_book):
+        ordered_entries.extend(entries_by_book[slug])
+    manifest["entries"] = ordered_entries
+    return manifest
+
+
 def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--book", help="Refresh only one book in the existing manifest")
+    args = parser.parse_args()
+
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    manifest = build_manifest()
+    manifest = refresh_manifest_book(args.book) if args.book else build_manifest()
     OUT.write_text(json.dumps(manifest, indent=2) + "\n")
     print(f"wrote {OUT.relative_to(ROOT.parents[2])}")
     print(f"entries: {len(manifest['entries'])}")

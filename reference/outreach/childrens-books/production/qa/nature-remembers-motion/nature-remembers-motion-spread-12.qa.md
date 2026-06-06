@@ -2,22 +2,22 @@
 
 - id: `nature-remembers-motion-spread-12`
 - source: `reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-spread-12.png`
-- lesson: Close the book by tying motion and memory together.
-- geometry: All earlier visual motifs appear softly: path dots, rings, return overlap, quiet specks.
+- lesson: Motion can leave readable history.
+- geometry: All traces remain visible after movement stops.
 
 ## Automated Checks
 
 - source image: present
 - dimensions: 1536 x 1024
 - aspect ratio: 1.5
-- saturated non-palette fraction: 0.3899
+- saturated non-palette fraction: 0.9465
 - palette flag: True
 
 ## Manual Checklist
 
-- [x] Palette follows the style guide.
-- [x] No in-image text, captions, labels, equations, watermark, or logo.
-- [x] One continuous scene, not a contact sheet or inset diagram collection.
-- [x] Geometry teaches the stated lesson.
+- [ ] Palette follows the style guide.
+- [ ] No in-image text, captions, labels, equations, watermark, or logo.
+- [ ] One continuous scene, not a contact sheet or inset diagram collection.
+- [ ] Geometry teaches the stated lesson.
 
-Decision: approved
+Decision: pending

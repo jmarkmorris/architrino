@@ -34,11 +34,11 @@ Read-aloud title:
 
 Read-aloud text:
 
-> Mira set three beads on strings.
+> Electra set three beads on strings.
 >
-> Tomas gave one bead a gentle push.
+> Poz gave one bead a gentle push.
 
-Discovery:
+Editor note:
 
 Many moving parts can be watched together.
 
@@ -50,7 +50,7 @@ Read-aloud text:
 >
 > The pattern broke apart.
 
-Discovery:
+Editor note:
 
 Not every motion holds together.
 
@@ -62,7 +62,7 @@ Read-aloud text:
 >
 > Nothing interesting lasted.
 
-Discovery:
+Editor note:
 
 Holding a pattern can require the right amount of motion.
 
@@ -70,13 +70,13 @@ Holding a pattern can require the right amount of motion.
 
 Read-aloud text:
 
-> Ari tried a smaller push.
+> Electra tried a smaller push.
 >
 > The beads moved.
 >
 > Then moved again together.
 
-Discovery:
+Editor note:
 
 Some conditions support repeated relation.
 
@@ -92,7 +92,7 @@ Read-aloud text:
 >
 > The pattern came back.
 
-Discovery:
+Editor note:
 
 Repeated relation can be recognized.
 
@@ -102,11 +102,11 @@ Read-aloud text:
 
 > "It is holding,"
 >
-> Mira said.
+> Poz said.
 >
 > "But nothing is frozen."
 
-Discovery:
+Editor note:
 
 Stable does not mean still.
 
@@ -118,7 +118,7 @@ Read-aloud text:
 >
 > Each answer came at the right time.
 
-Discovery:
+Editor note:
 
 Mutual influence can fit into a pattern.
 
@@ -126,11 +126,11 @@ Mutual influence can fit into a pattern.
 
 Read-aloud text:
 
-> Tomas moved one bead farther away.
+> Poz moved one bead farther away.
 >
 > The old rhythm faded.
 
-Discovery:
+Editor note:
 
 Spacing matters for stable pattern.
 
@@ -138,11 +138,11 @@ Spacing matters for stable pattern.
 
 Read-aloud text:
 
-> Ari moved it back.
+> Electra moved it back.
 >
 > The rhythm returned.
 
-Discovery:
+Editor note:
 
 Restoring relation can restore the pattern.
 
@@ -150,11 +150,11 @@ Restoring relation can restore the pattern.
 
 Read-aloud text:
 
-> Dr. Sol watched.
+> Electra watched.
 >
-> "Later, we will call this kind of holding an assembly."
+> "Later, we can call this kind of holding an assembly."
 
-Discovery:
+Editor note:
 
 The canonical idea is introduced lightly.
 
@@ -168,7 +168,7 @@ Read-aloud text:
 >
 > Then five.
 
-Discovery:
+Editor note:
 
 Assemblies can grow in complexity.
 
@@ -182,7 +182,7 @@ Read-aloud text:
 >
 > Nature can build with motion.
 
-Discovery:
+Editor note:
 
 The series now has the bridge from messages to assemblies.
 

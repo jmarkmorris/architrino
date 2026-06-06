@@ -10,15 +10,12 @@ This folder contains generated production artifacts for the children's book work
 - `derivatives/<book>/4x5/` contains feed portrait exports.
 - `derivatives/<book>/9x16/` contains YouTube Shorts/TikTok exports.
 
-Generated first-draft books:
+Current production status:
 
-- `here-there-back`: 10 source images generated, QA approved, 10 landscape pages exported, 10 feed portrait derivatives exported, and 10 short-video derivatives exported.
-- `nature-remembers-motion`: 15 source images generated, QA approved, 15 landscape pages exported, 15 feed portrait derivatives exported, and 15 short-video derivatives exported.
-- `the-message-that-traveled`: 19 source images generated, QA approved, 19 landscape pages exported, 19 feed portrait derivatives exported, and 19 short-video derivatives exported.
-- `the-tiny-transceivers`: 22 source images generated, QA approved, 22 landscape pages exported, 22 feed portrait derivatives exported, and 22 short-video derivatives exported.
-- `the-balance-point`: 23 source images generated, QA approved, 23 landscape pages exported, 23 feed portrait derivatives exported, and 23 short-video derivatives exported.
-- `the-history-that-pushes-now`: 26 source images generated, QA approved, 26 landscape pages exported, 26 feed portrait derivatives exported, and 26 short-video derivatives exported.
-- `the-world-we-recover`: 27 source images generated, QA approved, 27 landscape pages exported, 27 feed portrait derivatives exported, and 27 short-video derivatives exported.
+- `here-there-back`: 10 Electra/Poz source images generated; landscape pages, first-draft PDF, 4:5 derivatives, and 9:16 derivatives exported; QA is pending operator review.
+- `roll-turn-again`: 12 Electra/Poz source images generated; landscape pages, first-draft PDF, 4:5 derivatives, 9:16 derivatives, and review contact sheet exported; QA is pending operator review.
+- `nature-remembers-motion`: 14 Electra/Poz source images generated; landscape pages, first-draft PDF, 4:5 derivatives, and 9:16 derivatives exported; QA is pending operator review.
+- Other books have no current production images after the Electra/Poz manuscript refresh. Add them back to `generation-manifest.json` only after their current image prompts are approved.
 
 Production target for the manuscript line:
 

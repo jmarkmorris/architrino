@@ -10,14 +10,14 @@
 - source image: present
 - dimensions: 1536 x 1024
 - aspect ratio: 1.5
-- saturated non-palette fraction: 0.4727
+- saturated non-palette fraction: 0.5027
 - palette flag: True
 
 ## Manual Checklist
 
-- [x] Palette follows the style guide.
-- [x] No in-image text, captions, labels, equations, watermark, or logo.
-- [x] One continuous scene, not a contact sheet or inset diagram collection.
-- [x] Geometry teaches the stated lesson.
+- [ ] Palette follows the style guide.
+- [ ] No in-image text, captions, labels, equations, watermark, or logo.
+- [ ] One continuous scene, not a contact sheet or inset diagram collection.
+- [ ] Geometry teaches the stated lesson.
 
-Decision: approved
+Decision: pending

@@ -2,22 +2,22 @@
 
 - id: `nature-remembers-motion-spread-03`
 - source: `reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-spread-03.png`
-- lesson: The current object and earlier path are distinct.
-- geometry: The ball is separated from the trail of earlier positions.
+- lesson: A trace can remain after motion has moved on.
+- geometry: The red ball has moved on; the trail remains nearer to Electra and Poz.
 
 ## Automated Checks
 
 - source image: present
 - dimensions: 1536 x 1024
 - aspect ratio: 1.5
-- saturated non-palette fraction: 0.3702
+- saturated non-palette fraction: 0.8423
 - palette flag: True
 
 ## Manual Checklist
 
-- [x] Palette follows the style guide.
-- [x] No in-image text, captions, labels, equations, watermark, or logo.
-- [x] One continuous scene, not a contact sheet or inset diagram collection.
-- [x] Geometry teaches the stated lesson.
+- [ ] Palette follows the style guide.
+- [ ] No in-image text, captions, labels, equations, watermark, or logo.
+- [ ] One continuous scene, not a contact sheet or inset diagram collection.
+- [ ] Geometry teaches the stated lesson.
 
-Decision: approved
+Decision: pending

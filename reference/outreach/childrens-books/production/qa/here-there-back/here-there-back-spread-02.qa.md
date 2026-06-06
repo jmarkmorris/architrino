@@ -1,23 +1,23 @@
-# QA: There
+# QA: Look
 
 - id: `here-there-back-spread-02`
 - source: `reference/outreach/childrens-books/production/source/here-there-back/here-there-back-spread-02.png`
-- lesson: Introduce there as a reachable place distinct from here.
-- geometry: The ball has a faint purple halo; no path line yet.
+- lesson: There can be different from here.
+- geometry: The red ball and blue ball are distinct objects at distinct positions.
 
 ## Automated Checks
 
 - source image: present
 - dimensions: 1536 x 1024
 - aspect ratio: 1.5
-- saturated non-palette fraction: 0.4772
+- saturated non-palette fraction: 0.5456
 - palette flag: True
 
 ## Manual Checklist
 
-- [x] Palette follows the style guide.
-- [x] No in-image text, captions, labels, equations, watermark, or logo.
-- [x] One continuous scene, not a contact sheet or inset diagram collection.
-- [x] Geometry teaches the stated lesson.
+- [ ] Palette follows the style guide.
+- [ ] No in-image text, captions, labels, equations, watermark, or logo.
+- [ ] One continuous scene, not a contact sheet or inset diagram collection.
+- [ ] Geometry teaches the stated lesson.
 
-Decision: approved
+Decision: pending
