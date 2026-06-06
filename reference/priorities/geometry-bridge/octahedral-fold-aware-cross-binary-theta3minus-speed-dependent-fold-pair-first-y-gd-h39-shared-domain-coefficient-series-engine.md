@@ -2757,6 +2757,20 @@ certify a terminal provider enclosure. It does, however, sharpen the blocker:
 ordinary brute partitioning is a large local job, while the higher-value route
 remains a dependency-preserving terminal graph remainder or directed-rounded
 producer-image enclosure for $h_{37},h_{36},h_{35}$.
+\texttt{buildH39RequestedY44TerminalAffineEndpointProviderCandidate} now turns
+the refinement scale into a narrow integer local producer-partition
+realization. It keeps the raw terminal intervals marked open, but it assigns
+each terminal row the same integer local subcell count $k$, scales each
+recorded terminal residual interval and terminal producer half-width by the
+rational width factor $1/k$, and checks that all fifteen
+$h_{37},h_{36},h_{35}$ rows fit the terminal-affine endpoint budget. The same
+packet then replays those provider-shaped rows through the existing $N_{38}$
+source-map boundary with arithmetic provenance verified and directed-rounding
+provenance still false. This is not a terminal provider certificate; it
+changes the next blocker from finding a half-width target to supplying an
+outward-rounded interval endpoint primitive that makes the integer same-domain
+terminal producer partition valid directed-rounded source data before
+$S_{37}$ division.
 \texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
 now also probes a shared terminal-residual coordinate for
 $h_{37},h_{36},h_{35}$. Instead of assigning independent residual hulls to the

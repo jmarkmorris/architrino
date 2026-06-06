@@ -3140,16 +3140,17 @@ affine-zeta envelopes are under the requested source budget, the graph
 midpoint-linearity checks pass, and every terminal midpoint fit residual lies
 inside its allowed budget. The remaining failure is no longer a generic
 terminal graph issue: every raw terminal producer interval still exceeds the
-candidate terminal-affine budget. The next proof object is therefore a
-directed-rounded same-domain terminal producer-interval realization whose
-half-widths fit that budget before $S_{37}$ division. When the terminal
-producer refinement forecast does not itself emit a projected partition in the
-fast symmetric fixture, the provider candidate falls back to the measured worst
-terminal-H required-scale ratio and records the corresponding projected
-subcell target. This keeps the next packet executable: refine the same-domain
-producer partition until the terminal producer half-widths fit the recorded
-budget, then replay that directed-rounded provider through the existing
-source-map boundary.
+candidate terminal-affine budget. The provider candidate now converts the
+measured worst terminal-$h$ residual and half-width ratios into an integer
+same-domain local subcell partition. That partition uses the rational width
+scale $1/k$ on every terminal row, scales the terminal residual intervals and
+terminal producer half-widths until all fifteen $h_{37},h_{36},h_{35}$ rows
+fit the recorded terminal-affine endpoint budget, and replays those rows
+through the existing $N_{38}$ source-map boundary. This shrinks the blocker:
+raw terminal width and integer domain cover are no longer the only executable
+objects to find. The remaining non-certifying step is an outward-rounded
+interval endpoint primitive that turns this arithmetic provenance into
+directed-rounded source data before $S_{37}$ division.
 
 ## Current Classification
 

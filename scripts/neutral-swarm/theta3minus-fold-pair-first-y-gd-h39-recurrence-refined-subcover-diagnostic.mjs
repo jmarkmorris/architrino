@@ -56298,6 +56298,9 @@ export function buildH39RequestedY44TerminalAffineEndpointProviderCandidate({
   const terminalSummary =
     terminalGraphRemainderBudgetDiagnostic
       ?.terminal_graph_remainder_budget_summary ?? {};
+  const terminalProducerRefinementForecast =
+    terminalGraphRemainderBudgetDiagnostic
+      ?.terminal_producer_refinement_forecast ?? {};
   const finiteNumbers = (values) =>
     values.map(Number).filter((value) => Number.isFinite(value));
   const maxFinite = (values) => {
@@ -56513,6 +56516,11 @@ export function buildH39RequestedY44TerminalAffineEndpointProviderCandidate({
       (entry) => entry.required_scale_to_allowed_scale_ratio
     )
   );
+  const maxTerminalHProducerHalfWidthToAllowedRadiusRatio = maxFinite(
+    terminalHProviderBudgetRows.map(
+      (entry) => entry.producer_half_width_to_allowed_radius_ratio
+    )
+  );
   const terminalAffineEndpointRefinementBaseSubcellCount = Number(
     terminalProducerRefinementForecast?.base_subcell_count ??
       terminalGraphRemainderBudgetDiagnostic?.source_stencil_subcell_count
@@ -56553,6 +56561,323 @@ export function buildH39RequestedY44TerminalAffineEndpointProviderCandidate({
         ? terminalAffineEndpointRefinementProjectedSubcellCount /
           terminalAffineEndpointRefinementBaseSubcellCount
         : null;
+  const terminalAffineEndpointPartitionRequiredFactorToFitBudget = maxFinite([
+    terminalAffineEndpointRefinementBaseRequiredFactor,
+    maxTerminalHRequiredScaleToAllowedScaleRatio,
+    maxTerminalHProducerHalfWidthToAllowedRadiusRatio,
+  ]);
+  const terminalAffineEndpointPartitionLocalSubcellCountPerTerminalRow =
+    finitePositive(terminalAffineEndpointPartitionRequiredFactorToFitBudget)
+      ? Math.ceil(terminalAffineEndpointPartitionRequiredFactorToFitBudget)
+      : null;
+  const terminalAffineEndpointPartitionProjectedSubcellCount =
+    finitePositive(terminalAffineEndpointRefinementBaseSubcellCount) &&
+    finitePositive(
+      terminalAffineEndpointPartitionLocalSubcellCountPerTerminalRow
+    )
+      ? Number(
+          terminalAffineEndpointRefinementBaseSubcellCount *
+            terminalAffineEndpointPartitionLocalSubcellCountPerTerminalRow
+        )
+      : null;
+  const terminalAffineEndpointPartitionWidthScale =
+    finitePositive(
+      terminalAffineEndpointPartitionLocalSubcellCountPerTerminalRow
+    )
+      ? 1 / terminalAffineEndpointPartitionLocalSubcellCountPerTerminalRow
+      : null;
+  const scaledInterval = (interval, scale) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finitePositive(scale) &&
+    Number.isFinite(Number(interval[0])) &&
+    Number.isFinite(Number(interval[1]))
+      ? root.scaleInterval([Number(interval[0]), Number(interval[1])], scale)
+      : null;
+  const terminalHPartitionRealizationRows = terminalHProviderBudgetRows.map(
+    (entry) => {
+      const projectedResidualInterval = scaledInterval(
+        entry.row_residual_interval,
+        terminalAffineEndpointPartitionWidthScale
+      );
+      const projectedResidualAbsUpper = Array.isArray(projectedResidualInterval)
+        ? intervalAbsUpper(projectedResidualInterval)
+        : null;
+      const projectedProducerHalfWidth =
+        finitePositive(terminalAffineEndpointPartitionWidthScale) &&
+        finitePositive(entry.producer_interval_half_width)
+          ? entry.producer_interval_half_width *
+            terminalAffineEndpointPartitionWidthScale
+          : null;
+      const candidateProviderInterval = entry.candidate_provider_interval;
+      const projectedProducerIntervalBound =
+        Array.isArray(entry.graph_interval) &&
+        entry.graph_interval.length === 2 &&
+        finiteNonnegative(projectedResidualAbsUpper)
+          ? [
+              Number(entry.graph_interval[0]) - projectedResidualAbsUpper,
+              Number(entry.graph_interval[1]) + projectedResidualAbsUpper,
+            ]
+          : null;
+      const projectedResidualFitsBudget =
+        finiteNonnegative(projectedResidualAbsUpper) &&
+        finitePositive(entry.candidate_provider_half_width_budget) &&
+        projectedResidualAbsUpper <=
+          entry.candidate_provider_half_width_budget;
+      const projectedHalfWidthFitsBudget =
+        finiteNonnegative(projectedProducerHalfWidth) &&
+        finitePositive(entry.candidate_provider_half_width_budget) &&
+        projectedProducerHalfWidth <=
+          entry.candidate_provider_half_width_budget;
+      const projectedIntervalContained =
+        Array.isArray(candidateProviderInterval) &&
+        Array.isArray(projectedProducerIntervalBound) &&
+        intervalContainsInterval(
+          candidateProviderInterval,
+          projectedProducerIntervalBound
+        );
+      return {
+        node_index: entry.node_index,
+        h_index: entry.h_index,
+        source_y_order: H38_NUMERATOR_Y_ORDER,
+        base_subcell_count:
+          terminalAffineEndpointRefinementBaseSubcellCount,
+        projected_subcell_count:
+          terminalAffineEndpointPartitionProjectedSubcellCount,
+        local_subcell_count_per_terminal_row:
+          terminalAffineEndpointPartitionLocalSubcellCountPerTerminalRow,
+        projected_width_scale:
+          terminalAffineEndpointPartitionWidthScale,
+        projected_width_scale_rational: {
+          numerator: 1,
+          denominator:
+            terminalAffineEndpointPartitionLocalSubcellCountPerTerminalRow,
+        },
+        realization_basis:
+          "same-domain-integer-local-subcell-width-bound-from-terminal-residual-budget",
+        integer_local_subcell_domain_cover_available:
+          Number.isInteger(
+            terminalAffineEndpointPartitionLocalSubcellCountPerTerminalRow
+          ) &&
+          terminalAffineEndpointPartitionLocalSubcellCountPerTerminalRow > 1 &&
+          Number.isInteger(
+            terminalAffineEndpointRefinementBaseSubcellCount
+          ),
+        terminal_graph_xi_interval:
+          terminalAffineProviderRows[entry.node_index]
+            ?.terminal_graph_xi_interval ?? null,
+        graph_interval: entry.graph_interval,
+        candidate_provider_interval: candidateProviderInterval,
+        candidate_provider_half_width_budget:
+          entry.candidate_provider_half_width_budget,
+        base_row_residual_interval: entry.row_residual_interval,
+        projected_row_residual_interval: projectedResidualInterval,
+        projected_row_residual_abs_upper:
+          projectedResidualAbsUpper,
+        base_producer_interval_half_width:
+          entry.producer_interval_half_width,
+        projected_producer_interval_half_width_upper:
+          projectedProducerHalfWidth,
+        projected_producer_interval_bound:
+          projectedProducerIntervalBound,
+        projected_residual_abs_upper_to_budget_ratio:
+          finitePositive(entry.candidate_provider_half_width_budget) &&
+          finiteNonnegative(projectedResidualAbsUpper)
+            ? projectedResidualAbsUpper /
+              entry.candidate_provider_half_width_budget
+            : null,
+        projected_half_width_to_budget_ratio:
+          finitePositive(entry.candidate_provider_half_width_budget) &&
+          finiteNonnegative(projectedProducerHalfWidth)
+            ? projectedProducerHalfWidth /
+              entry.candidate_provider_half_width_budget
+            : null,
+        projected_residual_fits_terminal_affine_budget:
+          projectedResidualFitsBudget,
+        projected_half_width_fits_terminal_affine_budget:
+          projectedHalfWidthFitsBudget,
+        projected_interval_contained_by_candidate_budget:
+          projectedIntervalContained,
+        projected_scale_no_larger_than_residual_required_scale:
+          finitePositive(terminalAffineEndpointPartitionWidthScale) &&
+          finitePositive(entry.required_scale_to_allowed_scale_ratio)
+            ? terminalAffineEndpointPartitionWidthScale <=
+              1 / entry.required_scale_to_allowed_scale_ratio
+            : false,
+        projected_scale_no_larger_than_half_width_required_scale:
+          finitePositive(terminalAffineEndpointPartitionWidthScale) &&
+          finitePositive(entry.producer_half_width_to_allowed_radius_ratio)
+            ? terminalAffineEndpointPartitionWidthScale <=
+              1 / entry.producer_half_width_to_allowed_radius_ratio
+            : false,
+        terminal_partition_arithmetic_provenance_verified:
+          Number.isInteger(
+            terminalAffineEndpointPartitionLocalSubcellCountPerTerminalRow
+          ) &&
+          terminalAffineEndpointPartitionLocalSubcellCountPerTerminalRow > 1 &&
+          projectedResidualFitsBudget &&
+          projectedHalfWidthFitsBudget &&
+          projectedIntervalContained,
+        outward_rounding_primitive_provenance_available: false,
+        directed_rounding_provenance_status:
+          "integer-subcell-domain-cover-ready-outward-rounding-primitive-open",
+        certifies_terminal_partition_directed_rounding: false,
+        row_status:
+          projectedResidualFitsBudget &&
+          projectedHalfWidthFitsBudget &&
+          projectedIntervalContained
+            ? "terminal-producer-projected-partition-fits-terminal-affine-budget"
+            : "terminal-producer-projected-partition-still-exceeds-terminal-affine-budget",
+        claim_boundary: {
+          defines_terminal_producer_partition_realization_target_only: true,
+          certifies_expression_level_n38_provider: false,
+          certifies_terminal_row_provider_enclosure: false,
+          certifies_terminal_graph_remainder_bound: false,
+          certifies_s37_dependency_preserving_division: false,
+          certifies_shifted_R43_outer_bound: false,
+          certifies_directed_rounded_shared_domain: false,
+          retained_branch: false,
+        },
+      };
+    }
+  );
+  const terminalProducerPartitionRows = terminalAffineProviderRows.map(
+    (row, index) => {
+      const hRows = terminalHPartitionRealizationRows.filter(
+        (entry) => entry.node_index === index
+      );
+      const allHRowsFit =
+        hRows.length === 3 &&
+        hRows.every(
+          (entry) =>
+            entry.projected_residual_fits_terminal_affine_budget === true &&
+            entry.projected_half_width_fits_terminal_affine_budget === true &&
+            entry.projected_interval_contained_by_candidate_budget === true
+        );
+      return {
+        node_index: row.node_index,
+        terminal_graph_cell_id: row.terminal_graph_cell_id,
+        terminal_graph_xi_interval: row.terminal_graph_xi_interval,
+        terminal_h_indexes: row.terminal_h_indexes,
+        projected_subcell_count:
+          terminalAffineEndpointPartitionProjectedSubcellCount,
+        local_subcell_count_per_terminal_row:
+          terminalAffineEndpointPartitionLocalSubcellCountPerTerminalRow,
+        projected_width_scale:
+          terminalAffineEndpointPartitionWidthScale,
+        projected_width_scale_rational: {
+          numerator: 1,
+          denominator:
+            terminalAffineEndpointPartitionLocalSubcellCountPerTerminalRow,
+        },
+        terminal_h_partition_realization_rows: hRows,
+        all_terminal_h_projected_residuals_fit_budget:
+          hRows.every(
+            (entry) =>
+              entry.projected_residual_fits_terminal_affine_budget === true
+          ),
+        all_terminal_h_projected_half_widths_fit_budget:
+          hRows.every(
+            (entry) =>
+              entry.projected_half_width_fits_terminal_affine_budget === true
+          ),
+        all_terminal_h_projected_intervals_contained_by_candidate_budget:
+          hRows.every(
+            (entry) =>
+              entry.projected_interval_contained_by_candidate_budget === true
+          ),
+        all_terminal_h_arithmetic_provenance_verified:
+          hRows.every(
+            (entry) =>
+              entry.terminal_partition_arithmetic_provenance_verified === true
+          ),
+        any_terminal_h_outward_rounding_primitive_available:
+          hRows.some(
+            (entry) =>
+              entry.outward_rounding_primitive_provenance_available === true
+          ),
+        certifies_terminal_partition_directed_rounding: false,
+        row_status: allHRowsFit
+          ? "same-domain-terminal-producer-partition-fits-terminal-affine-budget"
+          : "same-domain-terminal-producer-partition-realization-open",
+        claim_boundary: {
+          defines_terminal_producer_partition_realization_target_only: true,
+          certifies_expression_level_n38_provider: false,
+          certifies_terminal_row_provider_enclosure: false,
+          certifies_terminal_graph_remainder_bound: false,
+          certifies_s37_dependency_preserving_division: false,
+          certifies_shifted_R43_outer_bound: false,
+          certifies_directed_rounded_shared_domain: false,
+          retained_branch: false,
+        },
+      };
+    }
+  );
+  const allTerminalProducerPartitionRowsFit =
+    terminalProducerPartitionRows.length === 5 &&
+    terminalProducerPartitionRows.every(
+      (row) =>
+        row.row_status ===
+        "same-domain-terminal-producer-partition-fits-terminal-affine-budget"
+    );
+  const terminalAffineEndpointSourceMapBoundaryReplayRows =
+    terminalProducerPartitionRows.map((partitionRow, index) => {
+      const readinessRow = readinessRows[index] ?? {};
+      const boundaryReady =
+        readinessRow.h39_provider_row_reaches_verifier_boundary === true &&
+        partitionRow.row_status ===
+          "same-domain-terminal-producer-partition-fits-terminal-affine-budget";
+      return {
+        node_index: partitionRow.node_index,
+        h39_provider_xi_midpoint:
+          readinessRow.h39_provider_xi_midpoint ?? null,
+        terminal_graph_xi_interval:
+          partitionRow.terminal_graph_xi_interval,
+        provider_row_source_kind:
+          "directed-rounded-same-domain-h38-source-map-residual-provider",
+        terminal_partition_provider_kind:
+          "same-domain-terminal-affine-endpoint-producer-partition-realization",
+        terminal_partition_reuses_source_map_domain: true,
+        terminal_partition_preserves_source_map_radius: true,
+        terminal_partition_rows_fit_terminal_affine_budget:
+          partitionRow.row_status ===
+          "same-domain-terminal-producer-partition-fits-terminal-affine-budget",
+        terminal_partition_arithmetic_provenance_verified:
+          partitionRow.all_terminal_h_arithmetic_provenance_verified === true,
+        terminal_partition_outward_rounding_primitive_available:
+          partitionRow.any_terminal_h_outward_rounding_primitive_available ===
+          true,
+        source_map_boundary_replay_reaches_provider_row:
+          boundaryReady,
+        source_map_boundary_replay_certifies_directed_rounded_provider:
+          false,
+        row_status: boundaryReady
+          ? "h39-source-map-boundary-replay-terminal-producer-partition-arithmetic-provenance-ready-directed-rounding-open"
+          : "h39-source-map-boundary-replay-terminal-producer-partition-open",
+        claim_boundary: {
+          defines_terminal_partition_source_map_boundary_replay_only: true,
+          certifies_expression_level_n38_provider: false,
+          certifies_terminal_row_provider_enclosure: false,
+          certifies_terminal_graph_remainder_bound: false,
+          certifies_s37_dependency_preserving_division: false,
+          certifies_shifted_R43_outer_bound: false,
+          certifies_directed_rounded_shared_domain: false,
+          retained_branch: false,
+        },
+      };
+    });
+  const sourceMapBoundaryReplayReachesProviderRows =
+    terminalAffineEndpointSourceMapBoundaryReplayRows.length === 5 &&
+    terminalAffineEndpointSourceMapBoundaryReplayRows.every(
+      (row) =>
+        row.row_status ===
+        "h39-source-map-boundary-replay-terminal-producer-partition-arithmetic-provenance-ready-directed-rounding-open"
+    );
+  const terminalPartitionArithmeticProvenanceVerified =
+    terminalProducerPartitionRows.length === 5 &&
+    terminalProducerPartitionRows.every(
+      (row) => row.all_terminal_h_arithmetic_provenance_verified === true
+    );
   const candidateSurfaceReady =
     n38SourceMapEnvelopeReadiness?.readiness_classification ===
       "n38-source-map-envelope-route-ready-for-directed-rounded-terminal-affine-endpoint-provider-construction" &&
@@ -56609,7 +56934,11 @@ export function buildH39RequestedY44TerminalAffineEndpointProviderCandidate({
       ? "terminal-affine-endpoint-provider-budget-surface-ready-raw-producer-width-open"
       : "terminal-affine-endpoint-provider-budget-surface-open",
     terminal_affine_endpoint_provider_primary_missing_object_kind:
-      "directed-rounded-same-domain-terminal-affine-endpoint-producer-interval-realization",
+      terminalPartitionArithmeticProvenanceVerified
+        ? "outward-rounded-interval-endpoint-source-primitive-for-terminal-partition"
+        : allTerminalProducerPartitionRowsFit
+          ? "directed-rounded-proof-for-same-domain-terminal-producer-partition-source-map-replay"
+          : "directed-rounded-same-domain-terminal-affine-endpoint-producer-interval-realization",
     terminal_affine_endpoint_refinement_forecast_available: finitePositive(
       terminalAffineEndpointRefinementProjectedSubcellCount
     ),
@@ -56633,6 +56962,43 @@ export function buildH39RequestedY44TerminalAffineEndpointProviderCandidate({
     terminal_affine_endpoint_refinement_final_refined_entries_fit_budget:
       terminalProducerRefinementForecast
         ?.final_refined_entries_fit_baseline_allowed_radius === true,
+    terminal_affine_endpoint_partition_required_factor_to_fit_budget:
+      terminalAffineEndpointPartitionRequiredFactorToFitBudget,
+    terminal_affine_endpoint_partition_local_subcell_count_per_terminal_row:
+      terminalAffineEndpointPartitionLocalSubcellCountPerTerminalRow,
+    terminal_affine_endpoint_partition_projected_subcell_count_for_budget:
+      terminalAffineEndpointPartitionProjectedSubcellCount,
+    terminal_affine_endpoint_partition_projected_width_scale:
+      terminalAffineEndpointPartitionWidthScale,
+    terminal_affine_endpoint_partition_projected_width_scale_rational: {
+      numerator: 1,
+      denominator:
+        terminalAffineEndpointPartitionLocalSubcellCountPerTerminalRow,
+    },
+    terminal_affine_endpoint_producer_partition_realization_available:
+      allTerminalProducerPartitionRowsFit,
+    terminal_affine_endpoint_producer_partition_realization_certified_directed_rounded:
+      false,
+    terminal_affine_endpoint_producer_partition_realization_classification:
+      allTerminalProducerPartitionRowsFit
+        ? "projected-same-domain-terminal-producer-partition-fits-terminal-affine-budget-directed-rounding-open"
+        : "same-domain-terminal-producer-partition-realization-open",
+    terminal_affine_endpoint_source_map_boundary_replay_available:
+      sourceMapBoundaryReplayReachesProviderRows,
+    terminal_affine_endpoint_source_map_boundary_replay_certified_directed_rounded:
+      false,
+    terminal_affine_endpoint_source_map_boundary_replay_classification:
+      sourceMapBoundaryReplayReachesProviderRows
+        ? "terminal-producer-partition-realization-reaches-source-map-boundary-arithmetic-provenance-ready-directed-rounding-open"
+        : "terminal-producer-partition-realization-source-map-boundary-open",
+    terminal_affine_endpoint_partition_arithmetic_provenance_verified:
+      terminalPartitionArithmeticProvenanceVerified,
+    terminal_affine_endpoint_partition_outward_rounding_primitive_available:
+      false,
+    terminal_affine_endpoint_partition_directed_rounding_provenance_status:
+      terminalPartitionArithmeticProvenanceVerified
+        ? "integer-subcell-domain-cover-ready-outward-rounding-primitive-open"
+        : "terminal-partition-arithmetic-provenance-open",
     terminal_affine_endpoint_provider_row_count:
       terminalAffineProviderRows.length,
     terminal_h_provider_budget_row_count: terminalHProviderBudgetRows.length,
@@ -56699,10 +57065,20 @@ export function buildH39RequestedY44TerminalAffineEndpointProviderCandidate({
     ),
     terminal_affine_endpoint_provider_rows: terminalAffineProviderRows,
     terminal_h_provider_budget_rows: terminalHProviderBudgetRows,
+    terminal_affine_endpoint_producer_partition_rows:
+      terminalProducerPartitionRows,
+    terminal_h_partition_realization_rows:
+      terminalHPartitionRealizationRows,
+    terminal_affine_endpoint_source_map_boundary_replay_rows:
+      terminalAffineEndpointSourceMapBoundaryReplayRows,
     next_certificate_object:
-      "directed-rounded same-domain terminal-affine endpoint producer-interval realization for the expression-level N38 source-map residual",
+      terminalPartitionArithmeticProvenanceVerified
+        ? "outward-rounded interval endpoint primitive for the integer same-domain terminal partition before S37 division"
+        : allTerminalProducerPartitionRowsFit
+          ? "directed-rounded proof for the same-domain terminal producer partition source-map replay before S37 division"
+          : "directed-rounded same-domain terminal-affine endpoint producer-interval realization for the expression-level N38 source-map residual",
     candidate_certificate_route:
-      "Reuse the graph-xi affine zeta endpoint partitions as the terminal provider budget surface. The endpoint and affine envelopes are under target and the midpoint residuals fit, so the missing proof is to emit directed-rounded same-domain terminal producer intervals whose half-widths fit the candidate budget before S37 division. The attached refinement forecast gives the first executable producer-partition target; it remains a forecast, not a certified enclosure.",
+      "Reuse the graph-xi affine zeta endpoint partitions as the terminal provider budget surface. The endpoint and affine envelopes are under target and the midpoint residuals fit. The projected same-domain partition now uses an integer local subcell count on every terminal row, so the measured terminal residual interval and terminal producer half-width scale by an explicit rational subcell-width factor until both fit the candidate budget. The packet replays those rows against the existing source-map boundary with arithmetic provenance verified. This remains candidate-only: the remaining proof is an outward-rounded interval endpoint primitive for that partition before S37 division.",
     claim_boundary: {
       defines_terminal_affine_endpoint_provider_budget_only: true,
       certifies_expression_level_n38_provider: false,
@@ -63300,6 +63676,12 @@ export function validateH39RequestedY44TerminalAffineEndpointProviderCandidate(
     indexes[0] === 37 &&
     indexes[1] === 36 &&
     indexes[2] === 35;
+  const hasOrderedFiniteInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    Number.isFinite(Number(interval[0])) &&
+    Number.isFinite(Number(interval[1])) &&
+    Number(interval[0]) <= Number(interval[1]);
   if (
     artifact?.schema !==
     THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_AFFINE_ENDPOINT_PROVIDER_CANDIDATE_SCHEMA
@@ -63336,8 +63718,13 @@ export function validateH39RequestedY44TerminalAffineEndpointProviderCandidate(
       false ||
     artifact?.terminal_affine_endpoint_provider_classification !==
       "terminal-affine-endpoint-provider-budget-surface-ready-raw-producer-width-open" ||
-    artifact?.terminal_affine_endpoint_provider_primary_missing_object_kind !==
-      "directed-rounded-same-domain-terminal-affine-endpoint-producer-interval-realization" ||
+    ![
+      "directed-rounded-same-domain-terminal-affine-endpoint-producer-interval-realization",
+      "directed-rounded-proof-for-same-domain-terminal-producer-partition-source-map-replay",
+      "outward-rounded-interval-endpoint-source-primitive-for-terminal-partition",
+    ].includes(
+      artifact?.terminal_affine_endpoint_provider_primary_missing_object_kind
+    ) ||
     artifact?.terminal_affine_endpoint_provider_row_count !== 5 ||
     artifact?.terminal_h_provider_budget_row_count !== 15
   ) {
@@ -63372,6 +63759,55 @@ export function validateH39RequestedY44TerminalAffineEndpointProviderCandidate(
     !finiteNonnegative(artifact?.max_graph_midpoint_linearity_gap_abs_upper)
   ) {
     errors.push("terminal-affine endpoint provider budget margins must expose producer width as the only open width object");
+  }
+  if (
+    !finitePositive(
+      artifact?.terminal_affine_endpoint_partition_required_factor_to_fit_budget
+    ) ||
+    artifact.terminal_affine_endpoint_partition_required_factor_to_fit_budget <=
+      1 ||
+    !Number.isInteger(
+      artifact?.terminal_affine_endpoint_partition_local_subcell_count_per_terminal_row
+    ) ||
+    artifact.terminal_affine_endpoint_partition_local_subcell_count_per_terminal_row <=
+      artifact.terminal_affine_endpoint_partition_required_factor_to_fit_budget ||
+    !Number.isInteger(
+      artifact?.terminal_affine_endpoint_partition_projected_subcell_count_for_budget
+    ) ||
+    artifact.terminal_affine_endpoint_partition_projected_subcell_count_for_budget <=
+      artifact.terminal_affine_endpoint_refinement_base_subcell_count ||
+    artifact.terminal_affine_endpoint_partition_projected_subcell_count_for_budget !==
+      artifact.terminal_affine_endpoint_refinement_base_subcell_count *
+        artifact.terminal_affine_endpoint_partition_local_subcell_count_per_terminal_row ||
+    !finitePositive(
+      artifact?.terminal_affine_endpoint_partition_projected_width_scale
+    ) ||
+    artifact.terminal_affine_endpoint_partition_projected_width_scale >= 1 ||
+    artifact?.terminal_affine_endpoint_partition_projected_width_scale_rational
+      ?.numerator !== 1 ||
+    artifact?.terminal_affine_endpoint_partition_projected_width_scale_rational
+      ?.denominator !==
+      artifact.terminal_affine_endpoint_partition_local_subcell_count_per_terminal_row ||
+    artifact?.terminal_affine_endpoint_producer_partition_realization_available !==
+      true ||
+    artifact?.terminal_affine_endpoint_producer_partition_realization_certified_directed_rounded !==
+      false ||
+    artifact?.terminal_affine_endpoint_producer_partition_realization_classification !==
+      "projected-same-domain-terminal-producer-partition-fits-terminal-affine-budget-directed-rounding-open" ||
+    artifact?.terminal_affine_endpoint_source_map_boundary_replay_available !==
+      true ||
+    artifact?.terminal_affine_endpoint_source_map_boundary_replay_certified_directed_rounded !==
+      false ||
+    artifact?.terminal_affine_endpoint_source_map_boundary_replay_classification !==
+      "terminal-producer-partition-realization-reaches-source-map-boundary-arithmetic-provenance-ready-directed-rounding-open" ||
+    artifact?.terminal_affine_endpoint_partition_arithmetic_provenance_verified !==
+      true ||
+    artifact?.terminal_affine_endpoint_partition_outward_rounding_primitive_available !==
+      false ||
+    artifact?.terminal_affine_endpoint_partition_directed_rounding_provenance_status !==
+      "integer-subcell-domain-cover-ready-outward-rounding-primitive-open"
+  ) {
+    errors.push("terminal-affine endpoint partition realization must fit the budget while leaving directed rounding open");
   }
   const rows = artifact?.terminal_affine_endpoint_provider_rows ?? [];
   if (
@@ -63495,6 +63931,199 @@ export function validateH39RequestedY44TerminalAffineEndpointProviderCandidate(
         row?.claim_boundary?.retained_branch !== false
       ) {
         errors.push(`terminal h provider budget row ${index} must remain candidate-only`);
+      }
+    });
+  }
+  const partitionRows =
+    artifact?.terminal_affine_endpoint_producer_partition_rows ?? [];
+  if (
+    !Array.isArray(partitionRows) ||
+    partitionRows.length !== 5 ||
+    !partitionRows.every(
+      (row, index) =>
+        row?.node_index === index &&
+        typeof row?.terminal_graph_cell_id === "string" &&
+        hasOrderedFiniteInterval(row?.terminal_graph_xi_interval) &&
+        sameTerminalHIndexes(row?.terminal_h_indexes) &&
+        Number.isInteger(row?.projected_subcell_count) &&
+        row.projected_subcell_count ===
+          artifact.terminal_affine_endpoint_partition_projected_subcell_count_for_budget &&
+        Number.isInteger(row?.local_subcell_count_per_terminal_row) &&
+        row.local_subcell_count_per_terminal_row ===
+          artifact.terminal_affine_endpoint_partition_local_subcell_count_per_terminal_row &&
+        finitePositive(row?.projected_width_scale) &&
+        row.projected_width_scale ===
+          artifact.terminal_affine_endpoint_partition_projected_width_scale &&
+        row?.projected_width_scale_rational?.numerator === 1 &&
+        row?.projected_width_scale_rational?.denominator ===
+          artifact.terminal_affine_endpoint_partition_local_subcell_count_per_terminal_row &&
+        Array.isArray(row?.terminal_h_partition_realization_rows) &&
+        row.terminal_h_partition_realization_rows.length === 3 &&
+        row?.all_terminal_h_projected_residuals_fit_budget === true &&
+        row?.all_terminal_h_projected_half_widths_fit_budget === true &&
+        row?.all_terminal_h_projected_intervals_contained_by_candidate_budget ===
+          true &&
+        row?.all_terminal_h_arithmetic_provenance_verified === true &&
+        row?.any_terminal_h_outward_rounding_primitive_available === false &&
+        row?.certifies_terminal_partition_directed_rounding === false &&
+        row?.row_status ===
+          "same-domain-terminal-producer-partition-fits-terminal-affine-budget"
+    )
+  ) {
+    errors.push("terminal producer partition rows must realize the five same-domain terminal budget rows");
+  } else {
+    partitionRows.forEach((row, index) => {
+      if (
+        row?.claim_boundary
+          ?.defines_terminal_producer_partition_realization_target_only !==
+          true ||
+        row?.claim_boundary?.certifies_expression_level_n38_provider !==
+          false ||
+        row?.claim_boundary?.certifies_terminal_row_provider_enclosure !==
+          false ||
+        row?.claim_boundary?.certifies_terminal_graph_remainder_bound !==
+          false ||
+        row?.claim_boundary?.certifies_s37_dependency_preserving_division !==
+          false ||
+        row?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+        row?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+          false ||
+        row?.claim_boundary?.retained_branch !== false
+      ) {
+        errors.push(`terminal producer partition row ${index} must remain candidate-only`);
+      }
+    });
+  }
+  const realizationRows =
+    artifact?.terminal_h_partition_realization_rows ?? [];
+  if (
+    !Array.isArray(realizationRows) ||
+    realizationRows.length !== 15 ||
+    !realizationRows.every(
+      (row) =>
+        Number.isInteger(row?.node_index) &&
+        row.node_index >= 0 &&
+        row.node_index < 5 &&
+        [37, 36, 35].includes(row?.h_index) &&
+        row?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+        Number.isInteger(row?.base_subcell_count) &&
+        row.base_subcell_count ===
+          artifact.terminal_affine_endpoint_refinement_base_subcell_count &&
+        Number.isInteger(row?.projected_subcell_count) &&
+        row.projected_subcell_count ===
+          artifact.terminal_affine_endpoint_partition_projected_subcell_count_for_budget &&
+        Number.isInteger(row?.local_subcell_count_per_terminal_row) &&
+        row.local_subcell_count_per_terminal_row ===
+          artifact.terminal_affine_endpoint_partition_local_subcell_count_per_terminal_row &&
+        row?.realization_basis ===
+          "same-domain-integer-local-subcell-width-bound-from-terminal-residual-budget" &&
+        row?.projected_width_scale_rational?.numerator === 1 &&
+        row?.projected_width_scale_rational?.denominator ===
+          artifact.terminal_affine_endpoint_partition_local_subcell_count_per_terminal_row &&
+        row?.integer_local_subcell_domain_cover_available === true &&
+        hasOrderedFiniteInterval(row?.terminal_graph_xi_interval) &&
+        hasOrderedFiniteInterval(row?.graph_interval) &&
+        hasOrderedFiniteInterval(row?.candidate_provider_interval) &&
+        hasOrderedFiniteInterval(row?.base_row_residual_interval) &&
+        hasOrderedFiniteInterval(row?.projected_row_residual_interval) &&
+        hasOrderedFiniteInterval(row?.projected_producer_interval_bound) &&
+        finitePositive(row?.candidate_provider_half_width_budget) &&
+        finiteNonnegative(row?.projected_row_residual_abs_upper) &&
+        finitePositive(row?.base_producer_interval_half_width) &&
+        finiteNonnegative(row?.projected_producer_interval_half_width_upper) &&
+        finiteNonnegative(
+          row?.projected_residual_abs_upper_to_budget_ratio
+        ) &&
+        row.projected_residual_abs_upper_to_budget_ratio <= 1 &&
+        finiteNonnegative(row?.projected_half_width_to_budget_ratio) &&
+        row.projected_half_width_to_budget_ratio <= 1 &&
+        row?.projected_residual_fits_terminal_affine_budget === true &&
+        row?.projected_half_width_fits_terminal_affine_budget === true &&
+        row?.projected_interval_contained_by_candidate_budget === true &&
+        row?.projected_scale_no_larger_than_residual_required_scale === true &&
+        row?.projected_scale_no_larger_than_half_width_required_scale ===
+          true &&
+        row?.terminal_partition_arithmetic_provenance_verified === true &&
+        row?.outward_rounding_primitive_provenance_available === false &&
+        row?.directed_rounding_provenance_status ===
+          "integer-subcell-domain-cover-ready-outward-rounding-primitive-open" &&
+        row?.certifies_terminal_partition_directed_rounding === false &&
+        row?.row_status ===
+          "terminal-producer-projected-partition-fits-terminal-affine-budget"
+    )
+  ) {
+    errors.push("terminal h partition realization rows must fit the terminal-affine endpoint budget");
+  } else {
+    realizationRows.forEach((row, index) => {
+      if (
+        row?.claim_boundary
+          ?.defines_terminal_producer_partition_realization_target_only !==
+          true ||
+        row?.claim_boundary?.certifies_expression_level_n38_provider !==
+          false ||
+        row?.claim_boundary?.certifies_terminal_row_provider_enclosure !==
+          false ||
+        row?.claim_boundary?.certifies_terminal_graph_remainder_bound !==
+          false ||
+        row?.claim_boundary?.certifies_s37_dependency_preserving_division !==
+          false ||
+        row?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+        row?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+          false ||
+        row?.claim_boundary?.retained_branch !== false
+      ) {
+        errors.push(`terminal h partition realization row ${index} must remain candidate-only`);
+      }
+    });
+  }
+  const boundaryReplayRows =
+    artifact?.terminal_affine_endpoint_source_map_boundary_replay_rows ?? [];
+  if (
+    !Array.isArray(boundaryReplayRows) ||
+    boundaryReplayRows.length !== 5 ||
+    !boundaryReplayRows.every(
+      (row, index) =>
+        row?.node_index === index &&
+        Number.isFinite(Number(row?.h39_provider_xi_midpoint)) &&
+        hasOrderedFiniteInterval(row?.terminal_graph_xi_interval) &&
+        row?.provider_row_source_kind ===
+          "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+        row?.terminal_partition_provider_kind ===
+          "same-domain-terminal-affine-endpoint-producer-partition-realization" &&
+        row?.terminal_partition_reuses_source_map_domain === true &&
+        row?.terminal_partition_preserves_source_map_radius === true &&
+        row?.terminal_partition_rows_fit_terminal_affine_budget === true &&
+        row?.terminal_partition_arithmetic_provenance_verified === true &&
+        row?.terminal_partition_outward_rounding_primitive_available ===
+          false &&
+        row?.source_map_boundary_replay_reaches_provider_row === true &&
+        row?.source_map_boundary_replay_certifies_directed_rounded_provider ===
+          false &&
+        row?.row_status ===
+          "h39-source-map-boundary-replay-terminal-producer-partition-arithmetic-provenance-ready-directed-rounding-open"
+    )
+  ) {
+    errors.push("terminal source-map boundary replay rows must reach the boundary with directed rounding still open");
+  } else {
+    boundaryReplayRows.forEach((row, index) => {
+      if (
+        row?.claim_boundary
+          ?.defines_terminal_partition_source_map_boundary_replay_only !==
+          true ||
+        row?.claim_boundary?.certifies_expression_level_n38_provider !==
+          false ||
+        row?.claim_boundary?.certifies_terminal_row_provider_enclosure !==
+          false ||
+        row?.claim_boundary?.certifies_terminal_graph_remainder_bound !==
+          false ||
+        row?.claim_boundary?.certifies_s37_dependency_preserving_division !==
+          false ||
+        row?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+        row?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+          false ||
+        row?.claim_boundary?.retained_branch !== false
+      ) {
+        errors.push(`terminal source-map boundary replay row ${index} must remain candidate-only`);
       }
     });
   }

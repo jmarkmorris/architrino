@@ -9563,7 +9563,7 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   );
   assert.equal(
     terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_provider_primary_missing_object_kind,
-    "directed-rounded-same-domain-terminal-affine-endpoint-producer-interval-realization"
+    "outward-rounded-interval-endpoint-source-primitive-for-terminal-partition"
   );
   assert.equal(
     terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_refinement_forecast_available,
@@ -9588,6 +9588,75 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   assert.equal(
     terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_refinement_final_refined_entries_fit_budget,
     false
+  );
+  assert.ok(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_partition_required_factor_to_fit_budget >
+      1
+  );
+  assert.ok(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_partition_local_subcell_count_per_terminal_row >
+      terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_partition_required_factor_to_fit_budget
+  );
+  assert.ok(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_partition_projected_subcell_count_for_budget >
+      terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_refinement_base_subcell_count
+  );
+  assert.equal(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_partition_projected_subcell_count_for_budget,
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_refinement_base_subcell_count *
+      terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_partition_local_subcell_count_per_terminal_row
+  );
+  assert.ok(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_partition_projected_width_scale >
+      0
+  );
+  assert.ok(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_partition_projected_width_scale <
+      1
+  );
+  assert.deepEqual(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_partition_projected_width_scale_rational,
+    {
+      numerator: 1,
+      denominator:
+        terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_partition_local_subcell_count_per_terminal_row,
+    }
+  );
+  assert.equal(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_producer_partition_realization_available,
+    true
+  );
+  assert.equal(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_producer_partition_realization_certified_directed_rounded,
+    false
+  );
+  assert.equal(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_producer_partition_realization_classification,
+    "projected-same-domain-terminal-producer-partition-fits-terminal-affine-budget-directed-rounding-open"
+  );
+  assert.equal(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_source_map_boundary_replay_available,
+    true
+  );
+  assert.equal(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_source_map_boundary_replay_certified_directed_rounded,
+    false
+  );
+  assert.equal(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_source_map_boundary_replay_classification,
+    "terminal-producer-partition-realization-reaches-source-map-boundary-arithmetic-provenance-ready-directed-rounding-open"
+  );
+  assert.equal(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_partition_arithmetic_provenance_verified,
+    true
+  );
+  assert.equal(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_partition_outward_rounding_primitive_available,
+    false
+  );
+  assert.equal(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_partition_directed_rounding_provenance_status,
+    "integer-subcell-domain-cover-ready-outward-rounding-primitive-open"
   );
   assert.equal(
     terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_provider_row_count,
@@ -9658,6 +9727,108 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
         row.raw_producer_interval_contained_by_candidate_budget === false &&
         row.provider_budget_realization_status ===
           "raw-producer-interval-exceeds-terminal-affine-budget"
+    )
+  );
+  assert.equal(
+    terminalAffineEndpointProviderCandidate
+      .terminal_affine_endpoint_producer_partition_rows.length,
+    5
+  );
+  assert.ok(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_producer_partition_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.projected_subcell_count ===
+          terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_partition_projected_subcell_count_for_budget &&
+        row.local_subcell_count_per_terminal_row ===
+          terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_partition_local_subcell_count_per_terminal_row &&
+        row.projected_width_scale ===
+          terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_partition_projected_width_scale &&
+        row.projected_width_scale_rational.numerator === 1 &&
+        row.projected_width_scale_rational.denominator ===
+          terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_partition_local_subcell_count_per_terminal_row &&
+        row.all_terminal_h_projected_residuals_fit_budget === true &&
+        row.all_terminal_h_projected_half_widths_fit_budget === true &&
+        row.all_terminal_h_projected_intervals_contained_by_candidate_budget ===
+          true &&
+        row.all_terminal_h_arithmetic_provenance_verified === true &&
+        row.any_terminal_h_outward_rounding_primitive_available === false &&
+        row.certifies_terminal_partition_directed_rounding === false &&
+        row.terminal_h_partition_realization_rows.length === 3 &&
+        row.row_status ===
+          "same-domain-terminal-producer-partition-fits-terminal-affine-budget" &&
+        row.claim_boundary.certifies_expression_level_n38_provider ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  assert.equal(
+    terminalAffineEndpointProviderCandidate
+      .terminal_h_partition_realization_rows.length,
+    15
+  );
+  assert.ok(
+    terminalAffineEndpointProviderCandidate.terminal_h_partition_realization_rows.every(
+      (row) =>
+        [37, 36, 35].includes(row.h_index) &&
+        row.realization_basis ===
+          "same-domain-integer-local-subcell-width-bound-from-terminal-residual-budget" &&
+        row.local_subcell_count_per_terminal_row ===
+          terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_partition_local_subcell_count_per_terminal_row &&
+        row.projected_width_scale_rational.numerator === 1 &&
+        row.projected_width_scale_rational.denominator ===
+          terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_partition_local_subcell_count_per_terminal_row &&
+        row.integer_local_subcell_domain_cover_available === true &&
+        row.projected_residual_abs_upper_to_budget_ratio <= 1 &&
+        row.projected_half_width_to_budget_ratio <= 1 &&
+        row.projected_residual_fits_terminal_affine_budget === true &&
+        row.projected_half_width_fits_terminal_affine_budget === true &&
+        row.projected_interval_contained_by_candidate_budget === true &&
+        row.projected_scale_no_larger_than_residual_required_scale === true &&
+        row.projected_scale_no_larger_than_half_width_required_scale ===
+          true &&
+        row.terminal_partition_arithmetic_provenance_verified === true &&
+        row.outward_rounding_primitive_provenance_available === false &&
+        row.directed_rounding_provenance_status ===
+          "integer-subcell-domain-cover-ready-outward-rounding-primitive-open" &&
+        row.certifies_terminal_partition_directed_rounding === false &&
+        row.row_status ===
+          "terminal-producer-projected-partition-fits-terminal-affine-budget" &&
+        row.claim_boundary.certifies_expression_level_n38_provider ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  assert.equal(
+    terminalAffineEndpointProviderCandidate
+      .terminal_affine_endpoint_source_map_boundary_replay_rows.length,
+    5
+  );
+  assert.ok(
+    terminalAffineEndpointProviderCandidate.terminal_affine_endpoint_source_map_boundary_replay_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.provider_row_source_kind ===
+          "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+        row.terminal_partition_provider_kind ===
+          "same-domain-terminal-affine-endpoint-producer-partition-realization" &&
+        row.terminal_partition_reuses_source_map_domain === true &&
+        row.terminal_partition_preserves_source_map_radius === true &&
+        row.terminal_partition_rows_fit_terminal_affine_budget === true &&
+        row.terminal_partition_arithmetic_provenance_verified === true &&
+        row.terminal_partition_outward_rounding_primitive_available ===
+          false &&
+        row.source_map_boundary_replay_reaches_provider_row === true &&
+        row.source_map_boundary_replay_certifies_directed_rounded_provider ===
+          false &&
+        row.row_status ===
+          "h39-source-map-boundary-replay-terminal-producer-partition-arithmetic-provenance-ready-directed-rounding-open" &&
+        row.claim_boundary.certifies_expression_level_n38_provider ===
+          false &&
+        row.claim_boundary.certifies_s37_dependency_preserving_division ===
+          false &&
+        row.claim_boundary.certifies_shifted_R43_outer_bound === false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
     )
   );
   assert.deepEqual(

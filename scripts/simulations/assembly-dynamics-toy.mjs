@@ -24,6 +24,7 @@ export const DEFAULTS = {
   shellRadius: 1,
   minDelay: 0.035,
   memoryDepth: 4,
+  rootHaltPolicy: "partner",
   out: null,
   csv: null,
   svg: null,
@@ -98,6 +99,7 @@ function parseArgs(argv) {
       throw new Error(`--${kebabCase(key)} must be nonnegative.`);
     }
   }
+  validateRootHaltPolicy(args.rootHaltPolicy);
   return args;
 }
 
@@ -127,6 +129,7 @@ function optionKey(key) {
     shellradius: "shellRadius",
     mindelay: "minDelay",
     memorydepth: "memoryDepth",
+    roothaltpolicy: "rootHaltPolicy",
   };
   return aliases[key] ?? key;
 }
@@ -149,6 +152,12 @@ function positiveInteger(value, label) {
     throw new Error(`${label} must be a positive integer.`);
   }
   return number;
+}
+
+function validateRootHaltPolicy(policy) {
+  if (!["partner", "all", "none"].includes(policy)) {
+    throw new Error("--root-halt-policy must be one of: partner, all, none.");
+  }
 }
 
 function printHelp() {
@@ -174,6 +183,7 @@ Options:
   --shell-radius X       Target shell radius for the toy restoring term. Default: ${DEFAULTS.shellRadius}
   --min-delay X          Minimum accepted causal delay. Default: ${DEFAULTS.minDelay}
   --memory-depth X       Negative-time rotating-ring history depth. Default: ${DEFAULTS.memoryDepth}
+  --root-halt-policy X   Halt on unresolved roots: partner, all, none. Default: ${DEFAULTS.rootHaltPolicy}
   --out PATH             Write JSON output instead of stdout.
   --csv PATH             Write sampled frames as CSV.
   --svg PATH             Write a trajectory SVG.
@@ -384,6 +394,8 @@ function interpolateSource(newer, older, sourceId, u) {
 
 function findMostRecentRoot(history, receiverPosition, receiverId, sourceId, t, config) {
   let lastNewerResidual = null;
+  let oldestResidual = null;
+  let oldestDelay = null;
   for (let k = history.length - 1; k >= 1; k -= 1) {
     const newer = history[k];
     const older = history[k - 1];
@@ -401,6 +413,8 @@ function findMostRecentRoot(history, receiverPosition, receiverId, sourceId, t, 
     const gNew = causalResidual(receiverPosition, newerSource, t, config.cf);
     const gOld = causalResidual(receiverPosition, olderSource, t, config.cf);
     lastNewerResidual = gNew;
+    oldestResidual = gOld;
+    oldestDelay = olderDelay;
 
     if (Math.abs(gNew) < 1e-12 && newerDelay >= config.minDelay) {
       return {
@@ -431,7 +445,26 @@ function findMostRecentRoot(history, receiverPosition, receiverId, sourceId, t, 
     }
   }
 
-  return lastNewerResidual === null ? null : { missed: true, residual: lastNewerResidual };
+  if (lastNewerResidual === null) {
+    return { unresolved: true, reason: "insufficient_history_after_min_delay" };
+  }
+  return {
+    unresolved: true,
+    reason: oldestResidual !== null && oldestResidual > 0 ? "history_exhausted" : "unbracketed_root",
+    residual: lastNewerResidual,
+    oldest_residual: oldestResidual,
+    oldest_delay: oldestDelay,
+  };
+}
+
+function shouldHaltForUnresolvedRoot(config, receiverId, sourceId) {
+  if (config.rootHaltPolicy === "none") {
+    return false;
+  }
+  if (config.rootHaltPolicy === "all") {
+    return true;
+  }
+  return receiverId !== sourceId;
 }
 
 function accelerations(state, history, config, charges) {
@@ -440,16 +473,40 @@ function accelerations(state, history, config, charges) {
   const hitStats = {
     partner_hits: 0,
     self_hits: 0,
-    missed_roots: 0,
+    unresolved_roots: 0,
+    partner_unresolved_roots: 0,
+    self_unresolved_roots: 0,
+    first_unresolved_root: null,
     min_abs_jacobian: null,
     max_hit_weight: 0,
   };
+  const unresolvedRequiredRoots = [];
 
   for (let i = 0; i < state.positions.length; i += 1) {
     for (let j = 0; j < state.positions.length; j += 1) {
       const root = findMostRecentRoot(history, state.positions[i], i, j, state.t, config);
-      if (!root || root.missed) {
-        hitStats.missed_roots += 1;
+      if (!root || root.unresolved) {
+        hitStats.unresolved_roots += 1;
+        const detail = {
+          receiver_id: i,
+          source_id: j,
+          root_kind: i === j ? "self" : "partner",
+          reason: root?.reason ?? "unresolved_root",
+          residual: root?.residual ?? null,
+          oldest_residual: root?.oldest_residual ?? null,
+          oldest_delay: root?.oldest_delay ?? null,
+        };
+        if (i === j) {
+          hitStats.self_unresolved_roots += 1;
+        } else {
+          hitStats.partner_unresolved_roots += 1;
+        }
+        if (!hitStats.first_unresolved_root) {
+          hitStats.first_unresolved_root = detail;
+        }
+        if (shouldHaltForUnresolvedRoot(config, i, j)) {
+          unresolvedRequiredRoots.push(detail);
+        }
         continue;
       }
 
@@ -493,11 +550,20 @@ function accelerations(state, history, config, charges) {
   return {
     accelerations: acc.map((a) => clampVector(a, config.maxAcceleration)),
     hitStats,
+    halt: unresolvedRequiredRoots.length > 0
+      ? {
+          code: "UNRESOLVED_CAUSAL_ROOT",
+          unresolved_roots: unresolvedRequiredRoots,
+        }
+      : null,
   };
 }
 
 function step(state, history, config, charges) {
   const before = accelerations(state, history, config, charges);
+  if (before.halt) {
+    return { state, hitStats: before.hitStats, halt: before.halt };
+  }
   const predicted = {
     t: state.t + config.dt,
     positions: state.positions.map((position, i) =>
@@ -533,6 +599,7 @@ function summarizeDrift(initial, final) {
 
 export function run(inputConfig = {}) {
   const config = { ...DEFAULTS, ...inputConfig };
+  validateRootHaltPolicy(config.rootHaltPolicy);
   let state = initialState(config);
   const charges = polarities(config.particles);
   const history = buildInitialHistory(state, config);
@@ -540,11 +607,14 @@ export function run(inputConfig = {}) {
   const initialFrame = frameDiagnostics(state, config, charges, null);
   frames.push(initialFrame);
   let latestHitStats = null;
+  let error = null;
   const aggregateHitStats = {
     steps: 0,
     total_partner_hits: 0,
     total_self_hits: 0,
-    total_missed_roots: 0,
+    total_unresolved_roots: 0,
+    total_partner_unresolved_roots: 0,
+    total_self_unresolved_roots: 0,
     steps_with_self_hits: 0,
     min_abs_jacobian: null,
     max_hit_weight: 0,
@@ -552,9 +622,26 @@ export function run(inputConfig = {}) {
 
   for (let n = 1; n <= config.steps; n += 1) {
     const result = step(state, history, config, charges);
-    state = result.state;
     latestHitStats = result.hitStats;
     updateAggregateHitStats(aggregateHitStats, latestHitStats);
+    if (result.halt) {
+      error = {
+        code: result.halt.code,
+        message: `Simulation halted at t=${state.t}: unresolved required causal root under rootHaltPolicy=${config.rootHaltPolicy}.`,
+        t: state.t,
+        attempted_step: n,
+        root_halt_policy: config.rootHaltPolicy,
+        unresolved_roots: result.halt.unresolved_roots,
+      };
+      const haltedFrame = frameDiagnostics(state, config, charges, latestHitStats);
+      if (frames[frames.length - 1]?.t === haltedFrame.t) {
+        frames[frames.length - 1] = haltedFrame;
+      } else {
+        frames.push(haltedFrame);
+      }
+      break;
+    }
+    state = result.state;
     if (n % config.stride === 0 || n === config.steps) {
       frames.push(frameDiagnostics(state, config, charges, latestHitStats));
     }
@@ -568,6 +655,7 @@ export function run(inputConfig = {}) {
       limitations: [
         "No certified branch chart.",
         "Only the most recent causal root per source-receiver pair is retained.",
+        "Unresolved root diagnostics mean the finite history search did not resolve a branch; they are numerical-search failures, not physics events.",
         "Negative-time history is initialized as a rotating ring with optional radial speed, then replaced by simulated history.",
         "The shell-radius term is a toy assembly-level response used for visualization stability.",
         "The reported conserved quantities are diagnostics, not exact conserved theorem objects.",
@@ -589,7 +677,10 @@ export function run(inputConfig = {}) {
       ],
     },
     config,
+    completed: error === null,
+    error,
     summary: {
+      status: error === null ? "completed" : "halted",
       initial: summarizeFrame(initialFrame),
       final: summarizeFrame(finalFrame),
       drift: summarizeDrift(initialFrame, finalFrame),
@@ -603,7 +694,9 @@ function updateAggregateHitStats(aggregate, hitStats) {
   aggregate.steps += 1;
   aggregate.total_partner_hits += hitStats.partner_hits;
   aggregate.total_self_hits += hitStats.self_hits;
-  aggregate.total_missed_roots += hitStats.missed_roots;
+  aggregate.total_unresolved_roots += hitStats.unresolved_roots;
+  aggregate.total_partner_unresolved_roots += hitStats.partner_unresolved_roots;
+  aggregate.total_self_unresolved_roots += hitStats.self_unresolved_roots;
   if (hitStats.self_hits > 0) {
     aggregate.steps_with_self_hits += 1;
   }
@@ -640,7 +733,7 @@ function writeCsv(result, csvPath) {
     return;
   }
   const rows = [
-    "t,id,q,x,y,vx,vy,phase,radial_velocity,angular_velocity,shell_radius,energy_proxy,momentum_x,momentum_y,angular_momentum_z,partner_hits,self_hits,min_abs_jacobian",
+    "t,id,q,x,y,vx,vy,phase,radial_velocity,angular_velocity,shell_radius,energy_proxy,momentum_x,momentum_y,angular_momentum_z,partner_hits,self_hits,partner_unresolved_roots,self_unresolved_roots,unresolved_roots,min_abs_jacobian",
   ];
   for (const frame of result.frames) {
     for (const particle of frame.particles) {
@@ -663,6 +756,9 @@ function writeCsv(result, csvPath) {
           frame.conserved_quantities.angular_momentum_z,
           frame.hit_stats?.partner_hits ?? "",
           frame.hit_stats?.self_hits ?? "",
+          frame.hit_stats?.partner_unresolved_roots ?? "",
+          frame.hit_stats?.self_unresolved_roots ?? "",
+          frame.hit_stats?.unresolved_roots ?? "",
           frame.hit_stats?.min_abs_jacobian ?? "",
         ].join(",")
       );
@@ -725,7 +821,7 @@ export function writeSvg(result, svgPath) {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-label="Architrino assembly dynamics toy trajectory">
   <rect width="100%" height="100%" fill="#f8fafc"/>
   <text x="24" y="32" font-family="system-ui, sans-serif" font-size="18" fill="#111827">Assembly dynamics toy: delayed causal-root branch-sum surrogate</text>
-  <text x="24" y="56" font-family="system-ui, sans-serif" font-size="12" fill="#475569">final t=${final.t.toFixed(3)}, shell radius=${final.shell_radius.toFixed(4)}, energy proxy=${final.conserved_quantities.energy_proxy.toFixed(6)}</text>
+  <text x="24" y="56" font-family="system-ui, sans-serif" font-size="12" fill="#475569">status=${result.summary.status}, final t=${final.t.toFixed(3)}, shell radius=${final.shell_radius.toFixed(4)}, energy proxy=${final.conserved_quantities.energy_proxy.toFixed(6)}</text>
   ${paths}
   <polyline points="${centerPath}" fill="none" stroke="#111827" stroke-width="2.4" stroke-dasharray="6 5"><title>assembly center</title></polyline>
   ${finalMarks}
@@ -749,6 +845,10 @@ export function main() {
   writeCsv(result, config.csv);
   writeSvg(result, config.svg);
   writeJson(result, config);
+  if (result.error) {
+    console.error(`${result.error.code}: ${result.error.message}`);
+    process.exitCode = 1;
+  }
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

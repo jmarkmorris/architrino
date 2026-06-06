@@ -15,6 +15,7 @@ const BASIN_DEFAULTS = {
   softeningRadius: 0.16,
   jacobianFloor: DEFAULTS.jacobianFloor,
   maxAcceleration: DEFAULTS.maxAcceleration,
+  rootHaltPolicy: DEFAULTS.rootHaltPolicy,
   captureRatio: 0.75,
   inwardRatio: 0.9,
   escapeRatio: 1.5,
@@ -33,6 +34,7 @@ const CLASS_COLORS = {
   near_circular: "#64748b",
   spin_out: "#c2410c",
   weak_change: "#7c3aed",
+  root_unresolved_halt: "#111827",
 };
 
 function parseArgs(argv) {
@@ -90,6 +92,7 @@ function parseArgs(argv) {
       throw new Error(`--${kebabCase(key)} must be positive.`);
     }
   }
+  validateRootHaltPolicy(args.rootHaltPolicy);
   return args;
 }
 
@@ -111,6 +114,7 @@ function optionKey(key) {
     softeningradius: "softeningRadius",
     jacobianfloor: "jacobianFloor",
     maxacceleration: "maxAcceleration",
+    roothaltpolicy: "rootHaltPolicy",
     captureratio: "captureRatio",
     inwardratio: "inwardRatio",
     escaperatio: "escapeRatio",
@@ -137,6 +141,12 @@ function positiveInteger(value, label) {
     throw new Error(`${label} must be a positive integer.`);
   }
   return number;
+}
+
+function validateRootHaltPolicy(policy) {
+  if (!["partner", "all", "none"].includes(policy)) {
+    throw new Error("--root-halt-policy must be one of: partner, all, none.");
+  }
 }
 
 function parseSweep(value, label) {
@@ -189,6 +199,7 @@ Options:
   --softening-radius X       Close-approach classifier threshold. Use 0 to disable. Default: ${BASIN_DEFAULTS.softeningRadius}
   --jacobian-floor X         Minimum |J| in hit weight; keep tiny positive unless handling caustics. Default: ${BASIN_DEFAULTS.jacobianFloor}
   --max-acceleration X       Per-particle acceleration cap. Default: ${BASIN_DEFAULTS.maxAcceleration}
+  --root-halt-policy X       Halt each run on unresolved roots: partner, all, none. Default: ${BASIN_DEFAULTS.rootHaltPolicy}
   --capture-ratio X          Final/initial radius ratio for sustained_inward. Default: ${BASIN_DEFAULTS.captureRatio}
   --inward-ratio X           Minimum/initial radius ratio for inward leg. Default: ${BASIN_DEFAULTS.inwardRatio}
   --escape-ratio X           Final/initial radius ratio for spin_out. Default: ${BASIN_DEFAULTS.escapeRatio}
@@ -249,6 +260,9 @@ function fitLogSpiral(points) {
 }
 
 function classifyRun(metrics, args) {
+  if (metrics.error_code) {
+    return "root_unresolved_halt";
+  }
   const finalRatio = metrics.final_radius / metrics.initial_radius;
   const minRatio = metrics.min_radius / metrics.initial_radius;
   const turnedAround = metrics.min_index < metrics.frame_count - 1 &&
@@ -263,7 +277,7 @@ function classifyRun(metrics, args) {
   if (minRatio <= args.inwardRatio && turnedAround) {
     return "inward_turnaround";
   }
-  if (finalRatio >= args.escapeRatio || (metrics.partner_root_loss_time !== null && finalRatio > 1)) {
+  if (finalRatio >= args.escapeRatio || (metrics.partner_root_unresolved_time !== null && finalRatio > 1)) {
     return "spin_out";
   }
   if (Math.abs(finalRatio - 1) <= 0.1 && minRatio > args.inwardRatio) {
@@ -280,13 +294,11 @@ function analyzeRun(result, inputs, args) {
     t: frame.t,
     theta: theta[index],
     radius: frame.shell_radius,
-    partner_hits: frame.hit_stats?.partner_hits ?? null,
+    partner_unresolved_roots: frame.hit_stats?.partner_unresolved_roots ?? 0,
   }));
   const minRecord = radiusRecords.reduce((best, record) => record.radius < best.radius ? record : best, radiusRecords[0]);
   const maxRecord = radiusRecords.reduce((best, record) => record.radius > best.radius ? record : best, radiusRecords[0]);
-  const firstRootLoss = radiusRecords.find((record, index) =>
-    index > 0 && record.partner_hits === 0 && radiusRecords[index - 1].partner_hits !== 0
-  );
+  const firstUnresolvedPartnerRoot = radiusRecords.find((record) => record.partner_unresolved_roots > 0);
   const inwardPoints = radiusRecords.slice(0, minRecord.index + 1);
   const inwardFit = fitLogSpiral(inwardPoints);
   const fullFit = fitLogSpiral(radiusRecords);
@@ -302,10 +314,17 @@ function analyzeRun(result, inputs, args) {
     max_radius: maxRecord.radius,
     final_theta: radiusRecords[radiusRecords.length - 1].theta,
     frame_count: frames.length,
-    partner_root_loss_time: firstRootLoss?.t ?? null,
+    completed: result.completed,
+    error_code: result.error?.code ?? null,
+    error_message: result.error?.message ?? null,
+    halt_time: result.error?.t ?? null,
+    halt_attempted_step: result.error?.attempted_step ?? null,
+    partner_root_unresolved_time: firstUnresolvedPartnerRoot?.t ?? null,
     total_partner_hits: result.summary.aggregate_hit_stats.total_partner_hits,
     total_self_hits: result.summary.aggregate_hit_stats.total_self_hits,
-    total_missed_roots: result.summary.aggregate_hit_stats.total_missed_roots,
+    total_unresolved_roots: result.summary.aggregate_hit_stats.total_unresolved_roots,
+    total_partner_unresolved_roots: result.summary.aggregate_hit_stats.total_partner_unresolved_roots,
+    total_self_unresolved_roots: result.summary.aggregate_hit_stats.total_self_unresolved_roots,
     delta_energy_proxy: result.summary.drift.delta_energy_proxy,
     delta_angular_momentum_z: result.summary.drift.delta_angular_momentum_z,
     inward_fit_A: inwardFit?.A ?? null,
@@ -343,6 +362,7 @@ function runBasinMap(args) {
           softening: args.softening,
           jacobianFloor: args.jacobianFloor,
           maxAcceleration: args.maxAcceleration,
+          rootHaltPolicy: args.rootHaltPolicy,
           steps: args.steps,
           dt: args.dt,
           stride: args.stride,
@@ -386,6 +406,7 @@ function runBasinMap(args) {
       softening: args.softening,
       jacobianFloor: args.jacobianFloor,
       maxAcceleration: args.maxAcceleration,
+      rootHaltPolicy: args.rootHaltPolicy,
       captureRatio: args.captureRatio,
       inwardRatio: args.inwardRatio,
       escapeRatio: args.escapeRatio,
@@ -437,9 +458,16 @@ function writeCsv(result, args) {
     "min_radius_time",
     "min_radius_theta",
     "max_radius",
-    "partner_root_loss_time",
+    "completed",
+    "error_code",
+    "error_message",
+    "halt_time",
+    "halt_attempted_step",
+    "partner_root_unresolved_time",
     "total_partner_hits",
-    "total_missed_roots",
+    "total_unresolved_roots",
+    "total_partner_unresolved_roots",
+    "total_self_unresolved_roots",
     "delta_energy_proxy",
     "delta_angular_momentum_z",
     "inward_fit_A",
@@ -547,6 +575,10 @@ function main() {
       rows: result.rows.length,
       deepest: result.deepest.slice(0, 3),
     }, null, 2));
+  }
+  if ((result.counts.root_unresolved_halt ?? 0) > 0) {
+    console.error(`UNRESOLVED_CAUSAL_ROOT: ${result.counts.root_unresolved_halt} run(s) halted before completing the requested horizon.`);
+    process.exitCode = 1;
   }
 }
 

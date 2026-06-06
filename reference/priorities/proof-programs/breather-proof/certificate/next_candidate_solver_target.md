@@ -1128,6 +1128,165 @@ authorization. The first exact blockers are
 `target_ref_value_object_domain_endpoint_application_present`,
 `target_ref_value_object_domain_definition_derivation_present`, and
 `target_ref_value_object_domain_defined`.
+The independent target ref/value source-equation to target ref/value
+object-domain membership-predicate proof attempt,
+`fold_coordinate_endpoint_functional_independent_target_ref_value_source_equation_to_target_ref_value_object_domain_membership_predicate_without_contract_link_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+then tests the first membership-predicate blocker below that object-domain
+definition packet. It preserves 4 / 4 parent inputs, parent object-domain
+source scopes, definition source-data bundles, target ref/value source payloads,
+source-equation sets, source-equation-only guards, endpoint-value-map
+certifications, payload matches, contract-link non-import guards, no-link
+guards, contract-link exclusions, primitive-domain-definition-acceptance
+rejections, primitive membership-predicate acceptance rejections, and
+membership-predicate source scopes. The packet covers 6 / 6 target ref/value
+source equations, 6 value-map bindings, and 3 / 3 row membership-predicate
+source-scope pairs, but records 0 / 4 predicate signatures, positive membership
+clauses, source-handle nonmembership clauses, target-note nonmembership clauses,
+payload-match nonmembership clauses, endpoint-value-map certification
+nonmembership clauses, no-link-guard nonmembership clauses, soundness proofs,
+endpoint applications, derivations, membership predicates, constructors, target
+ref/value object-domain definitions, interpretation rules, definition bridges,
+promotion rules, proof-grade target ref/value packages, row consumption, or
+branch-chart authorization. The first exact blockers are
+`target_ref_value_object_domain_membership_predicate_signature_present`,
+`target_ref_value_object_positive_membership_clause_present`,
+`source_equation_handle_nonmembership_clause_present`,
+`target_note_nonmembership_clause_present`,
+`payload_match_nonmembership_clause_present`,
+`endpoint_value_map_certification_nonmembership_clause_present`,
+`no_link_guard_nonmembership_clause_present`,
+`membership_predicate_soundness_present`,
+`membership_predicate_endpoint_application_present`,
+`membership_predicate_derivation_from_definition_source_data_present`, and
+`target_ref_value_object_domain_membership_predicate_present`.
+
+The independent target ref/value object-domain membership-predicate signature
+proof attempt,
+`fold_coordinate_endpoint_functional_target_ref_value_object_domain_membership_predicate_signature_without_contract_link_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+tests the first typed-signature blocker below that membership-predicate packet.
+It preserves 4 / 4 parent membership-predicate inputs,
+membership-predicate source scopes, primitive signature acceptance rejections,
+and membership-predicate-signature source scopes. The packet covers 6 / 6
+target ref/value source equations, 6 value-map bindings, and 3 / 3 row
+signature source-scope pairs, but records 0 / 4 predicate signatures, predicate
+symbols, domain sorts, codomain sorts, target-object argument-sort rules,
+source-handle, target-note, payload-match, endpoint-value-map-certification,
+and no-link-guard non-argument-sort rules, no-contract-link premise absence
+proofs, signature derivations, positive membership clauses, membership
+predicates, target ref/value object-domain definitions, row consumption, or
+branch-chart authorization. The first exact blockers are
+`target_ref_value_object_domain_membership_predicate_signature_present`,
+`membership_predicate_signature_symbol_declared`,
+`membership_predicate_signature_domain_sort_declared`,
+`membership_predicate_signature_codomain_sort_declared`,
+`target_ref_value_object_argument_sort_present`,
+`source_equation_handle_non_argument_sort_present`,
+`target_note_non_argument_sort_present`,
+`payload_match_non_argument_sort_present`,
+`endpoint_value_map_certification_non_argument_sort_present`,
+`no_link_guard_non_argument_sort_present`,
+`signature_no_contract_link_premise_absence_proven`, and
+`membership_predicate_signature_derivation_from_definition_source_data_present`.
+
+The matching target note,
+`fold_coordinate_endpoint_functional_target_ref_value_object_domain_membership_predicate_signature_without_contract_link_target.md`,
+now states the packet-local candidate convention
+`is_target_ref_value_object_e : target_ref_value_object_argument_e -> truth_value_judgment`
+for that blocker. The note is priority-only: symbol, domain-sort, and
+codomain-sort declarations are target-note conventions only, not proof
+evidence, and it keeps 0 / 4 predicate signatures, argument-sort proofs, five
+non-argument-sort exclusion proofs, no-contract-link premise absence proofs,
+signature derivations, positive membership clauses, membership predicates, row
+consumption, and branch-chart authorization. The next signature action is a
+derivation-from-definition-source-data proof attempt; accepting the convention
+as a primitive signature remains outside this packet.
+
+That safe route has now been tested by
+`fold_coordinate_endpoint_functional_target_ref_value_object_domain_membership_predicate_signature_without_contract_link_definition_source_data_derivation_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+The proof attempt imports the parent signature proof attempt and target note,
+records 4 / 4 target-note inputs, target-note hash matches, candidate
+symbol/sort conventions, definition-source-data routes, primitive signature
+acceptance rejections, and signature-derivation source scopes, with 6 / 6
+target ref/value source equations, 6 value-map bindings, and 3 / 3 row
+signature-derivation source-scope pairs. It keeps 0 / 4 proof-grade predicate
+symbols, domain sorts, codomain sorts, argument-sort proofs,
+non-argument-sort exclusion proofs, no-contract-link premise absence proofs,
+signature derivations, proof-grade signatures, positive membership clauses,
+membership predicates, row consumption, or branch-chart authorization. The
+first exact blockers are `membership_predicate_signature_symbol_declared`,
+`membership_predicate_signature_domain_sort_declared`,
+`membership_predicate_signature_codomain_sort_declared`,
+`target_ref_value_object_argument_sort_present`,
+`source_equation_handle_non_argument_sort_present`,
+`target_note_non_argument_sort_present`, `payload_match_non_argument_sort_present`,
+`endpoint_value_map_certification_non_argument_sort_present`,
+`no_link_guard_non_argument_sort_present`,
+`signature_no_contract_link_premise_absence_proven`,
+`membership_predicate_signature_derivation_from_definition_source_data_present`,
+and `target_ref_value_object_domain_membership_predicate_signature_present`.
+
+The proof-grade declaration route below that blocker is now isolated by
+`fold_coordinate_endpoint_functional_target_ref_value_object_domain_membership_predicate_signature_declaration_without_contract_link_target.md`
+and tested by
+`target_ref_value_object_domain_membership_predicate_signature_declaration_definition_source_data_derivation_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+The proof attempt preserves 4 / 4 declaration-target-note inputs, target-note
+hash matches, declaration obligations, signature-declaration source scopes,
+definition source-data bundles, source-equation sets, no-link guards, primitive
+signature acceptance rejections, and primitive declaration acceptance
+rejections, with 6 / 6 source equations, 6 value-map bindings, and 3 / 3 row
+declaration source-scope pairs. It records 0 / 4 proof-grade symbol
+declarations, domain-sort declarations, codomain-sort declarations, primitive
+declaration acceptances, argument-sort proofs, no-contract-link premise absence
+proofs, signature derivations, proof-grade signatures, row consumption, or
+branch-chart authorization. The first exact blockers are
+`membership_predicate_signature_symbol_declared`,
+`membership_predicate_signature_domain_sort_declared`,
+`membership_predicate_signature_codomain_sort_declared`,
+`target_ref_value_object_argument_sort_present`,
+`signature_no_contract_link_premise_absence_proven`,
+`membership_predicate_signature_derivation_from_definition_source_data_present`,
+and `target_ref_value_object_domain_membership_predicate_signature_present`.
+
+The next non-primitive route below the declaration proof attempt is now isolated
+by
+`fold_coordinate_endpoint_functional_target_ref_value_object_domain_membership_predicate_signature_declaration_formation_rule_without_contract_link_target.md`
+and tested by
+`target_ref_value_object_domain_membership_predicate_signature_declaration_formation_rule_without_contract_link_definition_source_data_derivation_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It preserves 4 / 4 formation-rule source scopes, target-note hash matches,
+formation-rule obligations, definition-source-data routes, no-link guards, and
+primitive declaration acceptance rejections, plus 6 / 6 source equations, 6
+value-map bindings, and 3 / 3 row formation-rule source-scope pairs. It records
+0 / 4 declaration formation rules, symbol formation rules, domain-sort
+formation rules, codomain-sort formation rules, formation-rule soundness proofs,
+formation-rule derivations, proof-grade symbol declarations, domain-sort
+declarations, codomain-sort declarations, argument-sort proofs, signature
+derivations, proof-grade signatures, row consumption, or branch-chart
+authorization. The first exact blockers are
+`membership_predicate_signature_declaration_formation_rule_present`,
+`membership_predicate_signature_symbol_formation_rule_present`,
+`membership_predicate_signature_domain_sort_formation_rule_present`,
+`membership_predicate_signature_codomain_sort_formation_rule_present`,
+`formation_rule_soundness_without_contract_link_present`, and
+`formation_rule_derivation_from_definition_source_data_present`.
+The constructor evidence needed below that formation-rule blocker is now
+isolated by
+`fold_coordinate_endpoint_functional_target_ref_value_object_domain_membership_predicate_signature_declaration_formation_constructor_basis_without_contract_link_target.md`
+and tested by
+`target_ref_value_object_domain_membership_predicate_signature_formation_constructor_basis_derivation_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It preserves 4 / 4 constructor-basis source scopes, target-note hash matches,
+constructor-basis obligations, definition-source-data routes, no-link guards,
+and primitive formation-rule acceptance rejections, plus 6 / 6 source equations,
+6 value-map bindings, and 3 / 3 row constructor-basis source-scope pairs. It
+records 0 / 4 predicate-symbol constructor bases, argument-sort constructor
+bases, judgment-codomain constructor bases, endpoint-localization rules,
+constructor-basis soundness proofs, constructor-basis derivations, formation
+rules, proof-grade declarations, row consumption, or branch-chart authorization.
+The first exact blockers are `predicate_symbol_constructor_basis_present`,
+`argument_sort_constructor_basis_present`,
+`judgment_codomain_constructor_basis_present`,
+`endpoint_localization_rule_present`,
+`constructor_basis_soundness_without_contract_link_present`, and
+`constructor_basis_derivation_from_definition_source_data_present`.
 The remaining branches are periodic
 endpoint/complement ownership for the 8 lift rows and fold-layer certificate
 closure for the 112 fold-layer rows now grouped by

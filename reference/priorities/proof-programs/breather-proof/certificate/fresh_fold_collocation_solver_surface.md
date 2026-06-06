@@ -1507,6 +1507,112 @@ derivations, target ref/value object-domain definitions, interpretation rules,
 definition bridges, promotion rules, proof-grade target ref/value packages, row
 consumption, or branch-chart authorization.
 
+The independent target ref/value source-equation to target ref/value
+object-domain membership-predicate proof attempt,
+`fold_coordinate_endpoint_functional_independent_target_ref_value_source_equation_to_target_ref_value_object_domain_membership_predicate_without_contract_link_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+tests the first membership-predicate blocker below that object-domain
+definition packet. It preserves 4 / 4 parent inputs, definition source-data
+bundles, target ref/value source payloads, source-equation sets,
+endpoint-value-map certifications, no-link guards, primitive-domain-definition
+acceptance rejections, primitive membership-predicate acceptance rejections, and
+membership-predicate source scopes. It covers 6 / 6 target ref/value source
+equations, 6 value-map bindings, and 3 / 3 row membership-predicate source-scope
+pairs, but records 0 / 4 predicate signatures, positive membership clauses,
+source-handle nonmembership clauses, target-note nonmembership clauses,
+payload-match nonmembership clauses, endpoint-value-map certification
+nonmembership clauses, no-link-guard nonmembership clauses, soundness proofs,
+endpoint applications, derivations, membership predicates, constructors, target
+ref/value object-domain definitions, interpretation rules, definition bridges,
+promotion rules, proof-grade target ref/value packages, row consumption, or
+branch-chart authorization.
+
+The independent target ref/value object-domain membership-predicate signature
+proof attempt,
+`fold_coordinate_endpoint_functional_target_ref_value_object_domain_membership_predicate_signature_without_contract_link_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`,
+tests the first typed-signature blocker below that membership-predicate packet.
+It preserves 4 / 4 parent membership-predicate inputs,
+membership-predicate source scopes, primitive signature acceptance rejections,
+and membership-predicate-signature source scopes, with 6 / 6 target ref/value
+source equations, 6 value-map bindings, and 3 / 3 row signature source-scope
+pairs. It records 0 / 4 predicate signatures, predicate symbols, domain sorts,
+codomain sorts, target-object argument-sort rules, non-argument-sort exclusion
+rules, no-contract-link premise absence proofs, signature derivations, positive
+membership clauses, membership predicates, target ref/value object-domain
+definitions, row consumption, or branch-chart authorization.
+
+The matching target note,
+`fold_coordinate_endpoint_functional_target_ref_value_object_domain_membership_predicate_signature_without_contract_link_target.md`,
+states the packet-local candidate convention
+`is_target_ref_value_object_e : target_ref_value_object_argument_e -> truth_value_judgment`.
+It remains priority-only and fail-closed: the convention does not mark the
+signature, proof-grade symbol/domain/codomain declarations, argument-sort proof,
+five non-argument-sort exclusion proofs, no-contract-link premise absence
+proof, signature derivation, positive membership clause, membership predicate,
+row consumption, or branch-chart authorization present. Its next safe route is
+a derivation-from-definition-source-data proof attempt, not primitive signature
+acceptance.
+
+That derivation route has now been tested by
+`fold_coordinate_endpoint_functional_target_ref_value_object_domain_membership_predicate_signature_without_contract_link_definition_source_data_derivation_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It imports the parent signature proof attempt and target note, preserves 4 / 4
+target-note hash matches, candidate symbol/sort conventions,
+definition-source-data routes, primitive signature acceptance rejections, and
+signature-derivation source scopes, plus 6 / 6 target ref/value source
+equations, 6 value-map bindings, and 3 / 3 row signature-derivation
+source-scope pairs. It records 0 / 4 proof-grade predicate symbols, domain
+sorts, codomain sorts, argument-sort proofs, non-argument-sort exclusion
+proofs, no-contract-link premise absence proofs, signature derivations,
+proof-grade signatures, positive membership clauses, membership predicates,
+row consumption, or branch-chart authorization. The route therefore confirms
+that the target-note convention is not yet proof-grade signature evidence.
+
+The proof-grade declaration route below that blocker is now isolated by
+`fold_coordinate_endpoint_functional_target_ref_value_object_domain_membership_predicate_signature_declaration_without_contract_link_target.md`
+and tested by
+`target_ref_value_object_domain_membership_predicate_signature_declaration_definition_source_data_derivation_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It preserves 4 / 4 declaration source scopes, target-note hash matches,
+declaration obligations, definition-source-data routes, no-link guards, and
+primitive declaration acceptance rejections, plus 6 / 6 source equations, 6
+value-map bindings, and 3 / 3 row declaration source-scope pairs. It records
+0 / 4 proof-grade symbol declarations, domain-sort declarations, codomain-sort
+declarations, primitive declaration acceptances, argument-sort proofs,
+no-contract-link premise absence proofs, signature derivations, proof-grade
+signatures, row consumption, or branch-chart authorization. The route therefore
+confirms that naming the symbol and sorts remains target material, not
+proof-grade declaration evidence.
+
+The next non-primitive route below that declaration proof attempt is now
+isolated by
+`fold_coordinate_endpoint_functional_target_ref_value_object_domain_membership_predicate_signature_declaration_formation_rule_without_contract_link_target.md`
+and tested by
+`target_ref_value_object_domain_membership_predicate_signature_declaration_formation_rule_without_contract_link_definition_source_data_derivation_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It preserves 4 / 4 formation-rule source scopes, target-note hash matches,
+formation-rule obligations, definition-source-data routes, no-link guards, and
+primitive declaration acceptance rejections, plus 6 / 6 source equations, 6
+value-map bindings, and 3 / 3 row formation-rule source-scope pairs. It records
+0 / 4 declaration formation rules, symbol formation rules, domain-sort
+formation rules, codomain-sort formation rules, formation-rule soundness proofs,
+formation-rule derivations, proof-grade symbol declarations, domain-sort
+declarations, codomain-sort declarations, row consumption, or branch-chart
+authorization. The route therefore confirms that the missing declaration
+evidence is a proof-grade formation-rule gap, not a naming, payload, map, or
+guard-data gap.
+
+The constructor evidence needed below that formation-rule gap is now isolated by
+`fold_coordinate_endpoint_functional_target_ref_value_object_domain_membership_predicate_signature_declaration_formation_constructor_basis_without_contract_link_target.md`
+and tested by
+`target_ref_value_object_domain_membership_predicate_signature_formation_constructor_basis_derivation_proof_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`.
+It preserves 4 / 4 constructor-basis source scopes, target-note hash matches,
+constructor-basis obligations, definition-source-data routes, no-link guards,
+and primitive formation-rule acceptance rejections, plus 6 / 6 source equations,
+6 value-map bindings, and 3 / 3 row constructor-basis source-scope pairs. It
+records 0 / 4 predicate-symbol constructor bases, argument-sort constructor
+bases, judgment-codomain constructor bases, endpoint-localization rules,
+constructor-basis soundness proofs, constructor-basis derivations, formation
+rules, proof-grade declarations, row consumption, or branch-chart authorization.
+The route confirms that the missing formation rule is a constructor-basis gap,
+not an available source-scope gap.
+
 ## Pre-Ledger Stop Condition
 
 Stop before branch-chart construction unless every pre-ledger row satisfies
