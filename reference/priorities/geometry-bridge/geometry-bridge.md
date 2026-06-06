@@ -3440,6 +3440,20 @@ expression-level $N_{38}$ provider closure, terminal graph remainder closure,
 shifted $R_{\varepsilon,43}$ closure, retained branch, and directed-rounded
 shared-domain provider certification remain open.
 
+`buildH39RequestedY44DirectedRoundedSharedDomainProviderBoundaryReplayCandidate`
+now tests the actual same-domain provider boundary replay from the terminal-row
+enclosure witness into the existing $N_{38}$ source-map envelope readiness
+rows. The replay verifies the same five provider rows, same terminal source
+cells, verifier-boundary reachability, terminal-row enclosure boundary replay,
+terminal $h$-row enclosure availability, source-term provider same-domain and
+same-radius contracts, terminal-affine route readiness, terminal-row
+directed-rounding provenance, and provider midpoint containment in the
+terminal graph interval. The local boundary replay is verified for all five
+source-map rows. It does not certify the directed-rounded shared-domain
+provider: the executable blocker is now the source-term provider side, where
+directed-rounded source certification remains false and term-width realization
+remains open.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.

@@ -57,6 +57,7 @@ import {
   buildH39RequestedY44TerminalS37FiveCellSameConstructionProviderIdentityWitnessAuditCandidate,
   buildH39RequestedY44TerminalS37FiveCellDependencyPreservingDivisionProviderCertificateCandidate,
   buildH39RequestedY44TerminalRowProviderEnclosureWitnessCandidate,
+  buildH39RequestedY44DirectedRoundedSharedDomainProviderBoundaryReplayCandidate,
   buildH39RequestedY44RowLocalN38SignedSourceSumDerivativeProviderCandidate,
   validateH39CorrelatedResidualWidthDiagnostic,
   validateH39H38NumeratorGraphLocalPartitionDiagnostic,
@@ -110,6 +111,7 @@ import {
   validateH39RequestedY44TerminalS37FiveCellSameConstructionProviderIdentityWitnessAuditCandidate,
   validateH39RequestedY44TerminalS37FiveCellDependencyPreservingDivisionProviderCertificateCandidate,
   validateH39RequestedY44TerminalRowProviderEnclosureWitnessCandidate,
+  validateH39RequestedY44DirectedRoundedSharedDomainProviderBoundaryReplayCandidate,
   validateH39RequestedY44RowLocalN38SignedSourceSumDerivativeProvider,
   validateH39RequestedY44SignedSourceSumDerivativeAllocationTarget,
   validateH39RequestedY44SourceMapResidualCovarianceTarget,
@@ -14130,6 +14132,159 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   assert.deepEqual(
     collectExactKeys(
       terminalRowProviderEnclosureWitness,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const directedRoundedSharedDomainProviderBoundaryReplay =
+    buildH39RequestedY44DirectedRoundedSharedDomainProviderBoundaryReplayCandidate(
+      {
+        n38SourceMapEnvelopeReadiness,
+        terminalRowProviderEnclosureWitness,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44DirectedRoundedSharedDomainProviderBoundaryReplayCandidate(
+      directedRoundedSharedDomainProviderBoundaryReplay
+    ),
+    []
+  );
+  assert.equal(
+    directedRoundedSharedDomainProviderBoundaryReplay
+      .directed_rounded_shared_domain_provider_boundary_replay_available,
+    true
+  );
+  assert.equal(
+    directedRoundedSharedDomainProviderBoundaryReplay
+      .directed_rounded_shared_domain_provider_boundary_replay_verified,
+    true
+  );
+  assert.equal(
+    directedRoundedSharedDomainProviderBoundaryReplay
+      .directed_rounded_shared_domain_provider_certified,
+    false
+  );
+  assert.equal(
+    directedRoundedSharedDomainProviderBoundaryReplay
+      .source_term_provider_probe_rows_certify_directed_rounded_source,
+    false
+  );
+  assert.equal(
+    directedRoundedSharedDomainProviderBoundaryReplay
+      .source_term_provider_probe_term_width_realization_closed,
+    false
+  );
+  assert.deepEqual(
+    directedRoundedSharedDomainProviderBoundaryReplay
+      .directed_rounded_shared_domain_provider_boundary_replay_check_kinds,
+    [
+      "source_map_envelope_readiness_ready",
+      "terminal_row_provider_enclosure_ready",
+      "same_five_node_provider_row_matched",
+      "same_terminal_source_cell_matched",
+      "provider_row_reaches_verifier_boundary",
+      "terminal_enclosure_reaches_source_map_boundary",
+      "terminal_enclosure_h_rows_certified",
+      "provider_probe_uses_required_source_kind",
+      "provider_probe_fits_center_aware_target",
+      "source_term_provider_probe_same_domain_contract_ready",
+      "source_term_provider_probe_same_radius_contract_ready",
+      "terminal_graph_route_affine_endpoint_ready",
+      "terminal_graph_midpoint_residual_budget_ready",
+      "terminal_row_enclosure_supplies_directed_rounding_provenance",
+      "terminal_row_enclosure_same_domain_boundary_verified",
+      "terminal_row_enclosure_same_radius_boundary_verified",
+      "provider_midpoints_inside_terminal_graph_interval",
+    ]
+  );
+  assert.deepEqual(
+    directedRoundedSharedDomainProviderBoundaryReplay
+      .open_provider_certification_blocker_kinds,
+    [
+      "source_term_provider_directed_source_certification_open",
+      "source_term_provider_term_width_realization_open",
+    ]
+  );
+  assert.equal(
+    directedRoundedSharedDomainProviderBoundaryReplay
+      .directed_rounded_shared_domain_provider_boundary_replay_classification,
+    "boundary-replay-reaches-source-map-provider-source-term-certification-open"
+  );
+  assert.equal(
+    directedRoundedSharedDomainProviderBoundaryReplay
+      .directed_rounded_shared_domain_provider_blocker_classification,
+    "source-term-provider-directed-rounded-certification-open-after-boundary-replay"
+  );
+  assert.equal(
+    directedRoundedSharedDomainProviderBoundaryReplay
+      .directed_rounded_shared_domain_provider_boundary_row_count,
+    5
+  );
+  assert.ok(
+    directedRoundedSharedDomainProviderBoundaryReplay.directed_rounded_shared_domain_provider_boundary_replay_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.shared_source_cell_id === `speed.${index}.first-y` &&
+        row.terminal_graph_source_cell_id === `speed.${index}.first-y` &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.provider_row_source_kind ===
+          "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+        row.directed_rounded_shared_domain_provider_boundary_replay_check_count ===
+          17 &&
+        Object.values(
+          row.directed_rounded_shared_domain_provider_boundary_replay_checks
+        ).every((value) => value === true) &&
+        row.provider_certification_blockers
+          .source_term_provider_directed_source_certification_open === true &&
+        row.provider_certification_blockers
+          .source_term_provider_term_width_realization_open === true &&
+        row.open_provider_certification_blocker_count === 2 &&
+        row.source_term_provider_probe_same_domain_contract_ready === true &&
+        row.source_term_provider_probe_same_radius_contract_ready === true &&
+        row
+          .source_term_provider_probe_rows_certify_directed_rounded_source ===
+          false &&
+        row.source_term_provider_probe_term_width_realization_closed ===
+          false &&
+        row
+          .terminal_row_enclosure_supplies_directed_rounded_terminal_provider ===
+          true &&
+        row.terminal_row_enclosure_boundary_replay_verified === true &&
+        row
+          .directed_rounded_shared_domain_provider_boundary_replay_verified ===
+          true &&
+        row.directed_rounded_shared_domain_provider_certified === false &&
+        row.claim_boundary.certifies_expression_level_n38_provider === false &&
+        row.claim_boundary.certifies_terminal_row_provider_enclosure ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain ===
+          false &&
+        row.row_status ===
+          "directed-rounded-boundary-replay-reaches-source-map-provider-source-term-certification-open"
+    )
+  );
+  assert.equal(
+    directedRoundedSharedDomainProviderBoundaryReplay.claim_boundary
+      .defines_directed_rounded_shared_domain_provider_boundary_replay_only,
+    true
+  );
+  assert.equal(
+    directedRoundedSharedDomainProviderBoundaryReplay.claim_boundary
+      .certifies_expression_level_n38_provider,
+    false
+  );
+  assert.equal(
+    directedRoundedSharedDomainProviderBoundaryReplay.claim_boundary
+      .certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.deepEqual(
+    collectTrueCertifies(directedRoundedSharedDomainProviderBoundaryReplay),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      directedRoundedSharedDomainProviderBoundaryReplay,
       FORBIDDEN_FIXED_SPEED_KEYS
     ),
     []

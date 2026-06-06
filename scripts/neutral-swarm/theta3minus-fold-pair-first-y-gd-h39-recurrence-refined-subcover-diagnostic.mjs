@@ -201,6 +201,12 @@ export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_S37_FIV
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_ROW_PROVIDER_ENCLOSURE_WITNESS_CANDIDATE_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-row-provider-enclosure-witness-candidate/v1";
 
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_DIRECTED_ROUNDED_SHARED_DOMAIN_PROVIDER_BOUNDARY_REPLAY_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-directed-rounded-shared-domain-provider-boundary-replay-candidate/v1";
+
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_REALIZATION_PROVENANCE_BRIDGE_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-source-term-realization-provenance-bridge-candidate/v1";
+
 const H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS = Object.freeze([
   "delta_squared_speed",
   "sin_phi",
@@ -66578,6 +66584,875 @@ export function buildH39RequestedY44TerminalRowProviderEnclosureWitnessCandidate
   };
 }
 
+export function buildH39RequestedY44DirectedRoundedSharedDomainProviderBoundaryReplayCandidate({
+  n38SourceMapEnvelopeReadiness,
+  terminalRowProviderEnclosureWitness,
+} = {}) {
+  const boundaryReplayCheckKinds = [
+    "source_map_envelope_readiness_ready",
+    "terminal_row_provider_enclosure_ready",
+    "same_five_node_provider_row_matched",
+    "same_terminal_source_cell_matched",
+    "provider_row_reaches_verifier_boundary",
+    "terminal_enclosure_reaches_source_map_boundary",
+    "terminal_enclosure_h_rows_certified",
+    "provider_probe_uses_required_source_kind",
+    "provider_probe_fits_center_aware_target",
+    "source_term_provider_probe_same_domain_contract_ready",
+    "source_term_provider_probe_same_radius_contract_ready",
+    "terminal_graph_route_affine_endpoint_ready",
+    "terminal_graph_midpoint_residual_budget_ready",
+    "terminal_row_enclosure_supplies_directed_rounding_provenance",
+    "terminal_row_enclosure_same_domain_boundary_verified",
+    "terminal_row_enclosure_same_radius_boundary_verified",
+    "provider_midpoints_inside_terminal_graph_interval",
+  ];
+  const providerCertificationBlockerKinds = [
+    "source_term_provider_directed_source_certification_open",
+    "source_term_provider_term_width_realization_open",
+  ];
+  const readinessRows =
+    n38SourceMapEnvelopeReadiness?.provider_readiness_rows ?? [];
+  const enclosureBoundaryRows =
+    terminalRowProviderEnclosureWitness
+      ?.terminal_row_provider_enclosure_boundary_rows ?? [];
+  const enclosureHRows =
+    terminalRowProviderEnclosureWitness
+      ?.terminal_h_terminal_row_provider_enclosure_rows ?? [];
+  const enclosureBoundaryRowsByNodeIndex = new Map(
+    enclosureBoundaryRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [row.node_index, row])
+  );
+  const enclosureHRowsByNodeIndex = new Map();
+  enclosureHRows.forEach((row) => {
+    if (!Number.isInteger(row?.terminal_node_index)) {
+      return;
+    }
+    const rows = enclosureHRowsByNodeIndex.get(row.terminal_node_index) ?? [];
+    rows.push(row);
+    enclosureHRowsByNodeIndex.set(row.terminal_node_index, rows);
+  });
+  const sourceMapEnvelopeReadinessReady =
+    n38SourceMapEnvelopeReadiness?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_N38_SOURCE_MAP_ENVELOPE_READINESS_SCHEMA &&
+    n38SourceMapEnvelopeReadiness?.readiness_classification ===
+      "n38-source-map-envelope-route-ready-for-directed-rounded-terminal-affine-endpoint-provider-construction" &&
+    n38SourceMapEnvelopeReadiness?.source_map_bridge_provider_rows_ready ===
+      true &&
+    n38SourceMapEnvelopeReadiness?.same_five_node_route_available === true;
+  const terminalRowProviderEnclosureReady =
+    terminalRowProviderEnclosureWitness?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_ROW_PROVIDER_ENCLOSURE_WITNESS_CANDIDATE_SCHEMA &&
+    terminalRowProviderEnclosureWitness?.terminal_row_provider_enclosure_ready ===
+      true &&
+    terminalRowProviderEnclosureWitness
+      ?.terminal_row_provider_enclosure_certified === true;
+  const sourceTermProviderSameDomainReady =
+    n38SourceMapEnvelopeReadiness
+      ?.source_term_provider_probe_rows_match_same_domain_contract === true;
+  const sourceTermProviderSameRadiusReady =
+    n38SourceMapEnvelopeReadiness
+      ?.source_term_provider_probe_rows_match_same_radius_contract === true;
+  const sourceTermProviderDirectedSourceCertified =
+    n38SourceMapEnvelopeReadiness
+      ?.source_term_provider_probe_rows_certify_directed_rounded_source ===
+      true;
+  const sourceTermProviderTermWidthRealizationClosed =
+    n38SourceMapEnvelopeReadiness
+      ?.source_term_provider_probe_term_width_realization_open === false;
+  const replayRows = readinessRows.map((readinessRow) => {
+    const boundaryRow =
+      enclosureBoundaryRowsByNodeIndex.get(readinessRow?.node_index) ?? null;
+    const hRows = enclosureHRowsByNodeIndex.get(readinessRow?.node_index) ?? [];
+    const sameFiveNodeProviderRowMatched =
+      boundaryRow !== null &&
+      readinessRow?.node_index === boundaryRow?.node_index;
+    const sameTerminalSourceCellMatched =
+      typeof readinessRow?.terminal_graph_cell_id === "string" &&
+      readinessRow.terminal_graph_cell_id === boundaryRow?.shared_source_cell_id &&
+      readinessRow.terminal_graph_cell_id ===
+        boundaryRow?.terminal_graph_source_cell_id;
+    const terminalEnclosureHRowsCertified =
+      hRows.length === 3 &&
+      hRows.every(
+        (row) => row.terminal_row_provider_enclosure_certified === true
+      );
+    const terminalRowEnclosureDirectedRoundingProvenance =
+      boundaryRow?.terminal_affine_source_map_boundary_ready === true &&
+      hRows.length === 3 &&
+      hRows.every(
+        (row) =>
+          row.terminal_partition_directed_rounding_provenance_verified === true
+      );
+    const terminalRowEnclosureSameDomainBoundary =
+      boundaryRow?.terminal_affine_source_map_boundary_ready === true &&
+      hRows.length === 3 &&
+      hRows.every((row) => row.same_domain_boundary_inherited === true);
+    const terminalRowEnclosureSameRadiusBoundary =
+      boundaryRow?.terminal_affine_source_map_boundary_ready === true &&
+      hRows.length === 3 &&
+      hRows.every((row) => row.same_radius_boundary_inherited === true);
+    const providerMidpointsInsideTerminalGraphInterval =
+      intervalContainsNumber(
+        boundaryRow?.terminal_graph_xi_interval,
+        readinessRow?.terminal_graph_xi_midpoint
+      ) &&
+      intervalContainsNumber(
+        boundaryRow?.terminal_graph_xi_interval,
+        readinessRow?.h39_provider_xi_midpoint
+      );
+    const boundaryReplayChecks = {
+      source_map_envelope_readiness_ready:
+        sourceMapEnvelopeReadinessReady,
+      terminal_row_provider_enclosure_ready:
+        terminalRowProviderEnclosureReady,
+      same_five_node_provider_row_matched:
+        sameFiveNodeProviderRowMatched,
+      same_terminal_source_cell_matched:
+        sameTerminalSourceCellMatched,
+      provider_row_reaches_verifier_boundary:
+        readinessRow?.h39_provider_row_reaches_verifier_boundary === true,
+      terminal_enclosure_reaches_source_map_boundary:
+        boundaryRow?.terminal_row_provider_enclosure_reaches_source_map_boundary ===
+        true,
+      terminal_enclosure_h_rows_certified:
+        terminalEnclosureHRowsCertified,
+      provider_probe_uses_required_source_kind:
+        readinessRow?.provider_probe_row_source_kind ===
+        "directed-rounded-same-domain-h38-source-map-residual-provider",
+      provider_probe_fits_center_aware_target:
+        readinessRow?.provider_probe_row_fits_center_aware_target === true,
+      source_term_provider_probe_same_domain_contract_ready:
+        sourceTermProviderSameDomainReady,
+      source_term_provider_probe_same_radius_contract_ready:
+        sourceTermProviderSameRadiusReady,
+      terminal_graph_route_affine_endpoint_ready:
+        readinessRow?.terminal_graph_row_affine_endpoint_route_ready === true,
+      terminal_graph_midpoint_residual_budget_ready:
+        readinessRow
+          ?.terminal_graph_row_midpoint_residual_inside_allowed_budget ===
+        true,
+      terminal_row_enclosure_supplies_directed_rounding_provenance:
+        terminalRowEnclosureDirectedRoundingProvenance,
+      terminal_row_enclosure_same_domain_boundary_verified:
+        terminalRowEnclosureSameDomainBoundary,
+      terminal_row_enclosure_same_radius_boundary_verified:
+        terminalRowEnclosureSameRadiusBoundary,
+      provider_midpoints_inside_terminal_graph_interval:
+        providerMidpointsInsideTerminalGraphInterval,
+    };
+    const boundaryReplayVerified = Object.values(boundaryReplayChecks).every(
+      (value) => value === true
+    );
+    const certificationBlockers = {
+      source_term_provider_directed_source_certification_open:
+        sourceTermProviderDirectedSourceCertified !== true ||
+        readinessRow?.provider_probe_row_certifies_directed_rounded_source !==
+          true,
+      source_term_provider_term_width_realization_open:
+        !sourceTermProviderTermWidthRealizationClosed,
+    };
+    const openCertificationBlockers = Object.entries(certificationBlockers)
+      .filter(([, open]) => open === true)
+      .map(([kind]) => kind);
+    const providerCertified =
+      boundaryReplayVerified && openCertificationBlockers.length === 0;
+    return {
+      node_index: readinessRow?.node_index ?? null,
+      shared_source_cell_id: boundaryRow?.shared_source_cell_id ?? null,
+      terminal_graph_source_cell_id:
+        boundaryRow?.terminal_graph_source_cell_id ?? null,
+      terminal_graph_cell_id: readinessRow?.terminal_graph_cell_id ?? null,
+      h39_provider_xi_midpoint:
+        readinessRow?.h39_provider_xi_midpoint ?? null,
+      terminal_graph_xi_midpoint:
+        readinessRow?.terminal_graph_xi_midpoint ?? null,
+      terminal_graph_xi_interval:
+        boundaryRow?.terminal_graph_xi_interval ?? null,
+      provider_row_source_kind:
+        readinessRow?.provider_probe_row_source_kind ?? null,
+      provider_probe_row_status:
+        readinessRow?.provider_probe_row_status ?? null,
+      directed_rounded_shared_domain_provider_boundary_replay_kind:
+        "terminal-row-enclosure-to-n38-source-map-readiness-boundary-replay",
+      directed_rounded_shared_domain_provider_boundary_replay_check_kinds: [
+        ...boundaryReplayCheckKinds,
+      ],
+      directed_rounded_shared_domain_provider_boundary_replay_check_count:
+        boundaryReplayCheckKinds.length,
+      directed_rounded_shared_domain_provider_boundary_replay_checks:
+        boundaryReplayChecks,
+      provider_certification_blocker_kinds: [
+        ...providerCertificationBlockerKinds,
+      ],
+      provider_certification_blockers: certificationBlockers,
+      open_provider_certification_blocker_kinds:
+        openCertificationBlockers,
+      open_provider_certification_blocker_count:
+        openCertificationBlockers.length,
+      source_term_provider_probe_same_domain_contract_ready:
+        sourceTermProviderSameDomainReady,
+      source_term_provider_probe_same_radius_contract_ready:
+        sourceTermProviderSameRadiusReady,
+      source_term_provider_probe_rows_certify_directed_rounded_source:
+        sourceTermProviderDirectedSourceCertified,
+      source_term_provider_probe_term_width_realization_closed:
+        sourceTermProviderTermWidthRealizationClosed,
+      terminal_row_enclosure_supplies_directed_rounded_terminal_provider:
+        terminalRowEnclosureDirectedRoundingProvenance,
+      terminal_row_enclosure_boundary_replay_verified:
+        boundaryRow?.terminal_row_provider_enclosure_reaches_source_map_boundary ===
+        true,
+      directed_rounded_shared_domain_provider_boundary_replay_verified:
+        boundaryReplayVerified,
+      directed_rounded_shared_domain_provider_certified: providerCertified,
+      row_status: providerCertified
+        ? "directed-rounded-shared-domain-provider-certified"
+        : boundaryReplayVerified
+          ? "directed-rounded-boundary-replay-reaches-source-map-provider-source-term-certification-open"
+          : "directed-rounded-boundary-replay-open",
+      claim_boundary: {
+        defines_directed_rounded_shared_domain_provider_boundary_replay_only:
+          true,
+        certifies_expression_level_n38_provider: false,
+        certifies_terminal_row_provider_enclosure: false,
+        certifies_terminal_graph_remainder_bound: false,
+        certifies_complete_terminal_source_cell_denominator_coverage: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  });
+  const allBoundaryReplaysVerified =
+    replayRows.length === 5 &&
+    replayRows.every(
+      (row) =>
+        row.directed_rounded_shared_domain_provider_boundary_replay_verified ===
+        true
+    );
+  const allProviderRowsCertified =
+    replayRows.length === 5 &&
+    replayRows.every(
+      (row) => row.directed_rounded_shared_domain_provider_certified === true
+    );
+  const openBlockerKinds = [
+    ...new Set(
+      replayRows.flatMap(
+        (row) => row.open_provider_certification_blocker_kinds ?? []
+      )
+    ),
+  ];
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_DIRECTED_ROUNDED_SHARED_DOMAIN_PROVIDER_BOUNDARY_REPLAY_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-directed-rounded-shared-domain-provider-boundary-replay-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-directed-rounded-shared-domain-provider-boundary-replay",
+    target_kind:
+      "candidate-requested-y44-directed-rounded-shared-domain-provider-boundary-replay",
+    n38_source_map_envelope_readiness_schema:
+      n38SourceMapEnvelopeReadiness?.schema ?? null,
+    terminal_row_provider_enclosure_witness_schema:
+      terminalRowProviderEnclosureWitness?.schema ?? null,
+    proof_status: allProviderRowsCertified
+      ? "candidate-directed-rounded-shared-domain-provider-certified"
+      : allBoundaryReplaysVerified
+        ? "candidate-boundary-replay-verified-source-term-provider-certification-open"
+        : "candidate-directed-rounded-shared-domain-provider-boundary-replay-open",
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    source_terms_preserved_signed_together: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    directed_rounded_shared_domain_provider_boundary_replay_check_kinds: [
+      ...boundaryReplayCheckKinds,
+    ],
+    provider_certification_blocker_kinds: [
+      ...providerCertificationBlockerKinds,
+    ],
+    source_map_envelope_readiness_ready: sourceMapEnvelopeReadinessReady,
+    terminal_row_provider_enclosure_ready:
+      terminalRowProviderEnclosureReady,
+    directed_rounded_shared_domain_provider_boundary_replay_available:
+      sourceMapEnvelopeReadinessReady && terminalRowProviderEnclosureReady,
+    directed_rounded_shared_domain_provider_boundary_replay_verified:
+      allBoundaryReplaysVerified,
+    directed_rounded_shared_domain_provider_certified:
+      allProviderRowsCertified,
+    source_term_provider_probe_same_domain_contract_ready:
+      sourceTermProviderSameDomainReady,
+    source_term_provider_probe_same_radius_contract_ready:
+      sourceTermProviderSameRadiusReady,
+    source_term_provider_probe_rows_certify_directed_rounded_source:
+      sourceTermProviderDirectedSourceCertified,
+    source_term_provider_probe_term_width_realization_closed:
+      sourceTermProviderTermWidthRealizationClosed,
+    open_provider_certification_blocker_kinds: openBlockerKinds,
+    open_provider_certification_blocker_count: openBlockerKinds.length,
+    directed_rounded_shared_domain_provider_boundary_replay_classification:
+      allProviderRowsCertified
+        ? "directed-rounded-shared-domain-provider-certified"
+        : allBoundaryReplaysVerified
+          ? "boundary-replay-reaches-source-map-provider-source-term-certification-open"
+          : "directed-rounded-shared-domain-provider-boundary-replay-open",
+    directed_rounded_shared_domain_provider_primary_missing_object_kind:
+      allProviderRowsCertified
+        ? null
+        : "directed-rounded-source-term-provider-width-realization",
+    directed_rounded_shared_domain_provider_blocker_classification:
+      allProviderRowsCertified
+        ? "directed-rounded-shared-domain-provider-certified"
+        : allBoundaryReplaysVerified
+          ? "source-term-provider-directed-rounded-certification-open-after-boundary-replay"
+          : "directed-rounded-shared-domain-provider-boundary-replay-open",
+    directed_rounded_shared_domain_provider_boundary_row_count:
+      replayRows.length,
+    directed_rounded_shared_domain_provider_boundary_replay_rows:
+      replayRows,
+    next_certificate_object:
+      "directed-rounded source-term provider width realization for the source-map residual producer rows",
+    candidate_certificate_route:
+      "The terminal-row enclosure witness now replays into the five source-map readiness provider rows on the same source cells and provider boundary. The remaining certification burden is the source-term provider side: the readiness probe still reports directed-rounded source certification false and term-width realization open, so the expression-level N38 source-map provider remains uncertified.",
+    claim_boundary: {
+      defines_directed_rounded_shared_domain_provider_boundary_replay_only:
+        true,
+      certifies_expression_level_n38_provider: false,
+      certifies_terminal_row_provider_enclosure: false,
+      certifies_terminal_graph_remainder_bound: false,
+      certifies_complete_terminal_source_cell_denominator_coverage: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+export function buildH39RequestedY44SourceTermRealizationProvenanceBridgeCandidate({
+  sourceMapResidualCovarianceTarget,
+  n38SourceMapEnvelopeReadiness,
+  directedRoundedSharedDomainProviderBoundaryReplay,
+} = {}) {
+  const bridgeCheckKinds = [
+    "source_term_provider_probe_reaches_aggregate_boundary",
+    "source_term_provider_probe_term_width_open",
+    "source_term_realization_reduces_to_homothetic_contraction",
+    "homothetic_normal_form_reconstructs_provider_terms",
+    "homothetic_scalar_factorization_verified",
+    "scalar_provider_target_reduces_to_two_sources",
+    "quotient_envelope_reduces_to_source_interval_inclusion",
+    "quotient_source_inclusion_reduces_to_relative_radius_provider",
+    "quotient_source_radius_budget_reduces_to_absolute_source_radii",
+    "signed_numerator_current_shape_radius_fits_budget",
+    "signed_radius_contraction_budget_ready",
+    "signed_radius_acceptance_reaches_verifier_boundary",
+    "h38_source_provenance_bridge_rows_ready",
+    "n38_source_map_readiness_boundary_ready",
+    "terminal_boundary_replay_verified",
+  ];
+  const remainingBlockerKinds = [
+    "directed_rounded_source_provenance_open",
+    "expression_level_n38_source_map_residual_envelope_open",
+  ];
+  const sourceTermProviderProbe =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_shared_stream_five_node_source_term_provider_probe ??
+    null;
+  const sourceTermProviderRows =
+    sourceTermProviderProbe?.source_term_provider_probe_rows ?? [];
+  const sourceTermRealizationSlack =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_shared_stream_five_node_source_term_realization_slack_diagnostic ??
+    null;
+  const homotheticNormalForm =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_shared_stream_five_node_homothetic_source_term_contraction_normal_form ??
+    null;
+  const homotheticScalarFactorization =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_factorization ??
+    null;
+  const scalarProviderTarget =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_provider_target ??
+    null;
+  const quotientEnvelope =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_shared_stream_five_node_homothetic_contraction_scalar_quotient_envelope ??
+    null;
+  const quotientSourceInclusion =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_shared_stream_five_node_quotient_source_inclusion_bridge ??
+    null;
+  const quotientSourceRadiusBudget =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_shared_stream_five_node_quotient_source_radius_budget ??
+    null;
+  const signedNumeratorBudgetFit =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_shared_stream_five_node_signed_numerator_source_budget_fit ??
+    null;
+  const signedRadiusContractionBudget =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_shared_stream_five_node_signed_radius_contraction_budget ??
+    null;
+  const signedRadiusAcceptanceTarget =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_shared_stream_five_node_signed_radius_provider_acceptance_target ??
+    null;
+  const signedRadiusAcceptanceRows =
+    signedRadiusAcceptanceTarget?.signed_radius_provider_acceptance_rows ?? [];
+  const h38SourceProvenanceRows =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_h38_source_provenance_bridge_rows ?? [];
+  const n38ReadinessRows =
+    n38SourceMapEnvelopeReadiness?.provider_readiness_rows ?? [];
+  const boundaryReplayRows =
+    directedRoundedSharedDomainProviderBoundaryReplay
+      ?.directed_rounded_shared_domain_provider_boundary_replay_rows ?? [];
+  const sourceTermProviderRowsByNode = new Map(
+    sourceTermProviderRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const h38SourceProvenanceRowsByNode = new Map(
+    h38SourceProvenanceRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const n38ReadinessRowsByNode = new Map(
+    n38ReadinessRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const boundaryReplayRowsByNode = new Map(
+    boundaryReplayRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const sourceTermProviderBoundaryReady =
+    sourceTermProviderProbe?.target_kind ===
+      "candidate-requested-y44-shared-source-map-source-term-provider-probe" &&
+    sourceTermProviderProbe?.source_term_provider_probe_rows_available ===
+      true &&
+    sourceTermProviderProbe
+      ?.source_term_provider_reaches_aggregate_verifier_claim_boundary ===
+      true &&
+    sourceTermProviderProbe
+      ?.source_term_provider_rows_match_same_domain_contract === true &&
+    sourceTermProviderProbe
+      ?.source_term_provider_rows_match_same_radius_contract === true &&
+    sourceTermProviderProbe
+      ?.source_term_provider_intervals_subset_screened_targets === true &&
+    sourceTermProviderProbe?.source_term_provider_rows_use_required_source_kind ===
+      true;
+  const sourceTermProviderTermWidthOpen =
+    sourceTermProviderProbe?.source_term_provider_term_width_realization_open ===
+    true;
+  const sourceTermRealizationReducesToHomothetic =
+    sourceTermRealizationSlack?.realization_slack_classification ===
+      "source-term-realization-reduces-to-centered-homothetic-width-contraction" &&
+    sourceTermRealizationSlack
+      ?.all_shaped_term_intervals_centered_subintervals_of_original_source_terms ===
+      true &&
+    sourceTermRealizationSlack
+      ?.all_term_centers_preserved_from_precertificate === true &&
+    sourceTermRealizationSlack
+      ?.all_rows_share_termwise_contraction_within_binary64_tolerance === true;
+  const homotheticNormalFormVerified =
+    homotheticNormalForm?.homothetic_contraction_classification ===
+      "source-term-provider-target-reduces-to-node-local-homothetic-contraction-normal-form" &&
+    homotheticNormalForm?.all_rows_have_common_node_contraction === true &&
+    homotheticNormalForm
+      ?.all_rows_reconstruct_shaped_terms_from_node_contraction === true &&
+    homotheticNormalForm?.all_rows_contract_source_term_sum_interval === true &&
+    homotheticNormalForm?.all_rows_match_provider_shaped_signed_interval === true;
+  const scalarFactorizationVerified =
+    homotheticScalarFactorization
+      ?.homothetic_contraction_scalar_factorization_classification ===
+      "homothetic-contraction-reduces-to-center-aware-width-over-live-source-width-scalar" &&
+    homotheticScalarFactorization?.all_rows_factorize_normal_form_lambda ===
+      true &&
+    homotheticScalarFactorization?.all_rows_factorize_inverse_contraction ===
+      true &&
+    homotheticScalarFactorization
+      ?.all_rows_endpoint_margin_reconstructs_contracted_sum_half_width ===
+      true &&
+    homotheticScalarFactorization?.all_rows_provider_shaped_sum_reconstructed ===
+      true;
+  const scalarProviderTargetReduces =
+    scalarProviderTarget
+      ?.homothetic_contraction_scalar_provider_target_classification ===
+      "homothetic-contraction-scalar-certificate-reduces-to-directed-rounded-numerator-denominator-provider" &&
+    scalarProviderTarget?.all_rows_reconstruct_available_half_width_numerator ===
+      true &&
+    scalarProviderTarget?.all_rows_reconstruct_original_half_width_denominator ===
+      true &&
+    scalarProviderTarget?.all_rows_reconstruct_factorized_lambda_from_provider_sources ===
+      true &&
+    scalarProviderTarget?.all_rows_reduce_scalar_certificate_to_two_source_quantities ===
+      true &&
+    scalarProviderTarget?.all_rows_meet_candidate_quotient_tolerance_route ===
+      true;
+  const quotientEnvelopeReduces =
+    quotientEnvelope
+      ?.homothetic_contraction_scalar_quotient_envelope_classification ===
+      "homothetic-contraction-scalar-quotient-envelope-reduces-to-directed-rounded-source-interval-inclusion" &&
+    quotientEnvelope?.all_rows_have_positive_numerator_denominator_envelopes ===
+      true &&
+    quotientEnvelope?.all_rows_quotient_interval_contains_factorized_lambda ===
+      true &&
+    quotientEnvelope?.all_rows_quotient_interval_contains_normal_form_lambda ===
+      true &&
+    quotientEnvelope?.all_rows_quotient_relative_radius_within_scalar_tolerance ===
+      true;
+  const quotientSourceInclusionReduces =
+    quotientSourceInclusion?.quotient_source_inclusion_bridge_classification ===
+      "quotient-source-inclusion-bridge-reduces-to-directed-rounded-relative-radius-provider" &&
+    quotientSourceInclusion
+      ?.all_rows_provider_quantities_inside_quotient_source_intervals === true &&
+    quotientSourceInclusion?.all_rows_provider_sources_reconstruct_quotient_centers ===
+      true &&
+    quotientSourceInclusion
+      ?.all_rows_original_term_widths_match_quotient_denominator === true;
+  const quotientSourceRadiusBudgetReady =
+    quotientSourceRadiusBudget?.quotient_source_radius_budget_classification ===
+      "quotient-source-radius-budget-reduces-provider-certificate-to-absolute-source-radii" &&
+    quotientSourceRadiusBudget?.all_rows_have_positive_absolute_source_quantity_budgets ===
+      true &&
+    quotientSourceRadiusBudget?.all_rows_term_budgets_sum_to_denominator_budget ===
+      true &&
+    quotientSourceRadiusBudget
+      ?.all_rows_absolute_budget_reduce_to_directed_rounded_provider_target ===
+      true;
+  const signedNumeratorCurrentShapeFits =
+    signedNumeratorBudgetFit
+      ?.all_current_shape_signed_radii_fit_numerator_absolute_budget === true;
+  const signedRadiusBudgetReady =
+    signedRadiusContractionBudget
+      ?.all_quotient_compatible_targets_subset_current_shape_and_numerator_budget ===
+      true &&
+    signedRadiusContractionBudget
+      ?.all_center_aware_signed_half_widths_fit_numerator_budget === true;
+  const signedRadiusAcceptanceReady =
+    signedRadiusAcceptanceTarget
+      ?.provider_target_reaches_verifier_with_source_only_failure === true &&
+    signedRadiusAcceptanceTarget?.all_provider_rows_match_same_domain_same_radius ===
+      true &&
+    signedRadiusAcceptanceTarget?.all_provider_rows_match_required_source_kind ===
+      true &&
+    signedRadiusAcceptanceTarget?.all_provider_intervals_subset_screened_targets ===
+      true &&
+    signedRadiusAcceptanceTarget
+      ?.all_quotient_compatible_intervals_fit_numerator_budget === true &&
+    signedRadiusAcceptanceTarget
+      ?.all_quotient_compatible_weighted_intervals_match_radius_weight === true &&
+    signedRadiusAcceptanceTarget?.all_provider_rows_have_directed_rounded_source ===
+      false;
+  const h38SourceBridgeReady =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_h38_source_provenance_bridge_available === true &&
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_h38_source_provenance_bridge_provider_rows_ready ===
+      true &&
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_h38_source_provenance_bridge_acceptance_target_ready ===
+      true &&
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_h38_source_provenance_bridge_classification ===
+      "h39-source-map-provenance-reduced-to-expression-level-n38-envelope-before-s37-division";
+  const n38ReadinessReady =
+    n38SourceMapEnvelopeReadiness?.readiness_classification ===
+      "n38-source-map-envelope-route-ready-for-directed-rounded-terminal-affine-endpoint-provider-construction" &&
+    n38SourceMapEnvelopeReadiness?.source_map_bridge_provider_rows_ready ===
+      true &&
+    n38SourceMapEnvelopeReadiness
+      ?.source_term_provider_probe_term_width_realization_open === true &&
+    n38SourceMapEnvelopeReadiness
+      ?.source_term_provider_probe_rows_certify_directed_rounded_source ===
+      false;
+  const terminalBoundaryReplayVerified =
+    directedRoundedSharedDomainProviderBoundaryReplay
+      ?.directed_rounded_shared_domain_provider_boundary_replay_verified ===
+      true &&
+    directedRoundedSharedDomainProviderBoundaryReplay
+      ?.directed_rounded_shared_domain_provider_certified === false;
+  const rows = signedRadiusAcceptanceRows.map((acceptanceRow) => {
+    const nodeIndex = Number(acceptanceRow?.node_index);
+    const providerProbeRow = sourceTermProviderRowsByNode.get(nodeIndex) ?? null;
+    const bridgeRow = h38SourceProvenanceRowsByNode.get(nodeIndex) ?? null;
+    const readinessRow = n38ReadinessRowsByNode.get(nodeIndex) ?? null;
+    const boundaryReplayRow = boundaryReplayRowsByNode.get(nodeIndex) ?? null;
+    const weightedFromSigned =
+      finiteOrderedIntervalOrNull(
+        acceptanceRow?.directed_rounded_signed_residual_interval
+      ) === null ||
+      !Number.isFinite(Number(acceptanceRow?.lagrange_fourth_derivative_weight))
+        ? null
+        : root.scaleInterval(
+            acceptanceRow.directed_rounded_signed_residual_interval,
+            acceptanceRow.lagrange_fourth_derivative_weight
+          );
+    const rowChecks = {
+      node_index_matches:
+        Number.isInteger(nodeIndex) &&
+        providerProbeRow?.node_index === nodeIndex &&
+        bridgeRow?.node_index === nodeIndex &&
+        readinessRow?.node_index === nodeIndex &&
+        boundaryReplayRow?.node_index === nodeIndex,
+      source_terms_match:
+        h39RequestedY44SameSourceTerms(
+          acceptanceRow?.source_terms_preserved_signed_together
+        ) &&
+        h39RequestedY44SameSourceTerms(
+          bridgeRow?.source_terms_preserved_signed_together
+        ),
+      zero_terms_match:
+        Array.isArray(acceptanceRow?.zero_source_terms) &&
+        acceptanceRow.zero_source_terms.length ===
+          H38_SOURCE_TERM_ZERO_KEYS.length &&
+        H38_SOURCE_TERM_ZERO_KEYS.every(
+          (term, index) => acceptanceRow.zero_source_terms[index] === term
+        ) &&
+        Array.isArray(bridgeRow?.zero_source_terms) &&
+        bridgeRow.zero_source_terms.length === H38_SOURCE_TERM_ZERO_KEYS.length &&
+        H38_SOURCE_TERM_ZERO_KEYS.every(
+          (term, index) => bridgeRow.zero_source_terms[index] === term
+        ),
+      signed_radius_acceptance_row_ready:
+        acceptanceRow?.row_status ===
+          "candidate-quotient-compatible-provider-target-contained-source-certification-open" &&
+        acceptanceRow?.quotient_compatible_signed_interval_subset_screened_target ===
+          true &&
+        acceptanceRow?.quotient_compatible_weighted_interval_subset_screened_target ===
+          true &&
+        acceptanceRow?.quotient_compatible_signed_interval_fits_numerator_budget ===
+          true &&
+        acceptanceRow
+          ?.quotient_compatible_weighted_interval_matches_radius_weight === true,
+      weighted_interval_replays_signed_radius:
+        weightedFromSigned !== null &&
+        h39RequestedY44SameInterval(
+          weightedFromSigned,
+          acceptanceRow?.directed_rounded_weighted_residual_interval
+        ),
+      provider_probe_row_keeps_term_width_open:
+        providerProbeRow?.row_status ===
+          "candidate-source-term-provider-row-fits-center-aware-target-source-certification-open" &&
+        providerProbeRow?.claim_boundary
+          ?.certifies_source_inputs_as_directed_rounded_same_domain === false,
+      h38_bridge_row_ready:
+        bridgeRow?.provider_row_reaches_h39_verifier_boundary === true &&
+        bridgeRow?.row_status ===
+          "h39-provider-row-ready-waits-on-expression-level-n38-source-provenance" &&
+        bridgeRow?.claim_boundary
+          ?.certifies_h38_source_provenance_factorization_only === true &&
+        bridgeRow?.claim_boundary
+          ?.certifies_source_inputs_as_directed_rounded_same_domain === false,
+      n38_readiness_row_ready:
+        readinessRow?.h39_provider_row_reaches_verifier_boundary === true &&
+        readinessRow?.provider_probe_row_fits_center_aware_target === true &&
+        readinessRow?.provider_probe_row_certifies_directed_rounded_source ===
+          false,
+      terminal_boundary_replay_row_verified:
+        boundaryReplayRow
+          ?.directed_rounded_shared_domain_provider_boundary_replay_verified ===
+          true &&
+        boundaryReplayRow?.directed_rounded_shared_domain_provider_certified ===
+          false,
+    };
+    const rowReducesToSourceProvenance = Object.values(rowChecks).every(
+      (value) => value === true
+    );
+    return {
+      node_index: Number.isInteger(nodeIndex) ? nodeIndex : null,
+      xi_midpoint: acceptanceRow?.xi_midpoint ?? null,
+      terminal_graph_cell_id: readinessRow?.terminal_graph_cell_id ?? null,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      source_term_realization_provenance_row_kind:
+        "source-term-realization-to-signed-radius-provenance-row",
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      zero_source_terms: [...H38_SOURCE_TERM_ZERO_KEYS],
+      provider_row_source_kind:
+        acceptanceRow?.provider_row_source_kind ?? null,
+      source_term_provider_probe_row_status:
+        providerProbeRow?.row_status ?? null,
+      signed_radius_acceptance_row_status:
+        acceptanceRow?.row_status ?? null,
+      h38_source_provenance_bridge_row_status:
+        bridgeRow?.row_status ?? null,
+      n38_readiness_row_status: readinessRow?.row_status ?? null,
+      terminal_boundary_replay_row_status:
+        boundaryReplayRow?.row_status ?? null,
+      directed_rounded_signed_residual_interval:
+        acceptanceRow?.directed_rounded_signed_residual_interval ?? null,
+      directed_rounded_weighted_residual_interval:
+        acceptanceRow?.directed_rounded_weighted_residual_interval ?? null,
+      signed_provider_interval_abs_upper:
+        acceptanceRow?.signed_provider_interval_abs_upper ?? null,
+      numerator_allowed_absolute_half_width:
+        acceptanceRow?.numerator_allowed_absolute_half_width ?? null,
+      quotient_compatible_signed_interval_fits_numerator_budget:
+        acceptanceRow?.quotient_compatible_signed_interval_fits_numerator_budget ===
+        true,
+      row_check_kinds: Object.keys(rowChecks),
+      row_checks: rowChecks,
+      row_reduces_term_width_to_signed_radius_source_provenance:
+        rowReducesToSourceProvenance,
+      source_term_provider_directed_source_certification_open: true,
+      expression_level_n38_source_envelope_open: true,
+      row_status: rowReducesToSourceProvenance
+        ? "source-term-realization-reduced-to-signed-radius-source-provenance-open"
+        : "source-term-realization-provenance-bridge-row-open",
+      claim_boundary: {
+        defines_source_term_realization_provenance_bridge_only: true,
+        certifies_source_term_provider_realization: false,
+        certifies_source_inputs_as_directed_rounded_same_domain: false,
+        certifies_expression_level_n38_provider: false,
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_terminal_row_provider_enclosure: false,
+        certifies_terminal_graph_remainder_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  });
+  const allRowsReduceToSourceProvenance =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row.row_reduces_term_width_to_signed_radius_source_provenance === true
+    );
+  const bridgeChecks = {
+    source_term_provider_probe_reaches_aggregate_boundary:
+      sourceTermProviderBoundaryReady,
+    source_term_provider_probe_term_width_open:
+      sourceTermProviderTermWidthOpen,
+    source_term_realization_reduces_to_homothetic_contraction:
+      sourceTermRealizationReducesToHomothetic,
+    homothetic_normal_form_reconstructs_provider_terms:
+      homotheticNormalFormVerified,
+    homothetic_scalar_factorization_verified:
+      scalarFactorizationVerified,
+    scalar_provider_target_reduces_to_two_sources:
+      scalarProviderTargetReduces,
+    quotient_envelope_reduces_to_source_interval_inclusion:
+      quotientEnvelopeReduces,
+    quotient_source_inclusion_reduces_to_relative_radius_provider:
+      quotientSourceInclusionReduces,
+    quotient_source_radius_budget_reduces_to_absolute_source_radii:
+      quotientSourceRadiusBudgetReady,
+    signed_numerator_current_shape_radius_fits_budget:
+      signedNumeratorCurrentShapeFits,
+    signed_radius_contraction_budget_ready: signedRadiusBudgetReady,
+    signed_radius_acceptance_reaches_verifier_boundary:
+      signedRadiusAcceptanceReady,
+    h38_source_provenance_bridge_rows_ready: h38SourceBridgeReady,
+    n38_source_map_readiness_boundary_ready: n38ReadinessReady,
+    terminal_boundary_replay_verified: terminalBoundaryReplayVerified,
+  };
+  const bridgeVerified =
+    Object.values(bridgeChecks).every((value) => value === true) &&
+    allRowsReduceToSourceProvenance;
+  const sourceCertificationOpen =
+    sourceTermProviderProbe?.source_term_provider_rows_certify_directed_rounded_source ===
+      false &&
+    signedRadiusAcceptanceTarget?.all_provider_rows_have_directed_rounded_source ===
+      false &&
+    n38SourceMapEnvelopeReadiness
+      ?.source_term_provider_probe_rows_certify_directed_rounded_source ===
+      false;
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_TERM_REALIZATION_PROVENANCE_BRIDGE_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-source-term-realization-provenance-bridge-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-source-term-realization-provenance-bridge",
+    target_kind:
+      "candidate-requested-y44-source-term-realization-provenance-bridge",
+    source_map_residual_target_schema:
+      sourceMapResidualCovarianceTarget?.schema ?? null,
+    n38_source_map_envelope_readiness_schema:
+      n38SourceMapEnvelopeReadiness?.schema ?? null,
+    directed_rounded_provider_boundary_replay_schema:
+      directedRoundedSharedDomainProviderBoundaryReplay?.schema ?? null,
+    proof_status: bridgeVerified
+      ? "candidate-source-term-realization-reduced-to-source-provenance-open"
+      : "candidate-source-term-realization-provenance-bridge-open",
+    bridge_kind:
+      "source-term-width-realization-to-signed-radius-source-provenance-bridge",
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    source_terms_preserved_signed_together: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    zero_source_terms: [...H38_SOURCE_TERM_ZERO_KEYS],
+    source_term_realization_bridge_check_kinds: [...bridgeCheckKinds],
+    source_term_realization_bridge_checks: bridgeChecks,
+    remaining_source_certification_blocker_kinds: [
+      ...remainingBlockerKinds,
+    ],
+    source_term_provider_probe_term_width_realization_open:
+      sourceTermProviderTermWidthOpen,
+    source_term_provider_term_width_realization_reduced_to_signed_radius_source_provenance:
+      bridgeVerified,
+    source_term_provider_term_width_realization_is_primary_blocker:
+      false,
+    source_term_provider_directed_source_certification_open:
+      sourceCertificationOpen,
+    expression_level_n38_source_map_residual_envelope_open:
+      bridgeVerified && sourceCertificationOpen,
+    s37_division_is_primary_blocker: false,
+    s37_division_remains_dependent_obligation: true,
+    source_term_realization_provenance_bridge_rows_available:
+      rows.length === 5,
+    source_term_realization_provenance_bridge_row_count: rows.length,
+    source_term_realization_provenance_bridge_rows: rows,
+    all_source_term_realization_rows_reduce_to_signed_radius_source_provenance:
+      allRowsReduceToSourceProvenance,
+    source_term_realization_provenance_bridge_verified: bridgeVerified,
+    source_term_realization_provenance_bridge_certified_directed_rounded:
+      false,
+    source_term_realization_provenance_bridge_classification:
+      bridgeVerified
+        ? "source-term-realization-reduces-to-signed-radius-provenance-source-envelope-open"
+        : "source-term-realization-provenance-bridge-open",
+    source_term_realization_primary_missing_object_kind:
+      "directed-rounded-same-domain-expression-level-n38-source-map-residual-envelope",
+    source_term_realization_blocker_classification:
+      bridgeVerified
+        ? "expression-level-n38-source-map-residual-envelope-open-after-source-term-realization-bridge"
+        : "source-term-realization-provenance-bridge-open",
+    next_certificate_object:
+      "directed-rounded same-domain expression-level N38 source-map residual envelope for delta_squared_speed, sin_phi, and sin_delta, before dependency-preserving S37 transport",
+    candidate_certificate_route:
+      "The shaped source-term provider remains open as a term-preserving provider, but the executable homothetic, scalar quotient, source-radius, and signed-radius acceptance rows show that the width realization needed by the H39 source-map boundary reduces to one signed-radius source-provenance envelope. The remaining certification object is the directed-rounded same-domain expression-level N38 source-map residual envelope, not another term-split algebra replay.",
+    claim_boundary: {
+      defines_source_term_realization_provenance_bridge_only: true,
+      certifies_source_term_provider_realization: false,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_expression_level_n38_provider: false,
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_terminal_row_provider_enclosure: false,
+      certifies_terminal_graph_remainder_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
 export function validateH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffold(
   artifact
 ) {
@@ -80078,6 +80953,231 @@ export function validateH39RequestedY44TerminalRowProviderEnclosureWitnessCandid
     !validClaimBoundary(artifact?.claim_boundary)
   ) {
     errors.push("terminal row provider enclosure witness must keep broad closure claims open");
+  }
+  return errors;
+}
+
+export function validateH39RequestedY44DirectedRoundedSharedDomainProviderBoundaryReplayCandidate(
+  artifact
+) {
+  const errors = [];
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const sameStringSet = (left, right) =>
+    Array.isArray(left) &&
+    left.length === right.length &&
+    right.every((value) => left.includes(value));
+  const hasOrderedFiniteInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    Number.isFinite(Number(interval[0])) &&
+    Number.isFinite(Number(interval[1])) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const validClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_directed_rounded_shared_domain_provider_boundary_replay_only ===
+      true &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary
+      ?.certifies_complete_terminal_source_cell_denominator_coverage ===
+      false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const expectedCheckKinds = [
+    "source_map_envelope_readiness_ready",
+    "terminal_row_provider_enclosure_ready",
+    "same_five_node_provider_row_matched",
+    "same_terminal_source_cell_matched",
+    "provider_row_reaches_verifier_boundary",
+    "terminal_enclosure_reaches_source_map_boundary",
+    "terminal_enclosure_h_rows_certified",
+    "provider_probe_uses_required_source_kind",
+    "provider_probe_fits_center_aware_target",
+    "source_term_provider_probe_same_domain_contract_ready",
+    "source_term_provider_probe_same_radius_contract_ready",
+    "terminal_graph_route_affine_endpoint_ready",
+    "terminal_graph_midpoint_residual_budget_ready",
+    "terminal_row_enclosure_supplies_directed_rounding_provenance",
+    "terminal_row_enclosure_same_domain_boundary_verified",
+    "terminal_row_enclosure_same_radius_boundary_verified",
+    "provider_midpoints_inside_terminal_graph_interval",
+  ];
+  const expectedBlockerKinds = [
+    "source_term_provider_directed_source_certification_open",
+    "source_term_provider_term_width_realization_open",
+  ];
+  const expectedTerminalCellIds = [
+    "speed.0.first-y",
+    "speed.1.first-y",
+    "speed.2.first-y",
+    "speed.3.first-y",
+    "speed.4.first-y",
+  ];
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_DIRECTED_ROUNDED_SHARED_DOMAIN_PROVIDER_BOUNDARY_REPLAY_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 requested-y44 directed-rounded shared-domain provider boundary replay candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-directed-rounded-shared-domain-provider-boundary-replay-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-directed-rounded-shared-domain-provider-boundary-replay" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-directed-rounded-shared-domain-provider-boundary-replay" ||
+    artifact?.n38_source_map_envelope_readiness_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_N38_SOURCE_MAP_ENVELOPE_READINESS_SCHEMA ||
+    artifact?.terminal_row_provider_enclosure_witness_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_ROW_PROVIDER_ENCLOSURE_WITNESS_CANDIDATE_SCHEMA ||
+    artifact?.proof_status !==
+      "candidate-boundary-replay-verified-source-term-provider-certification-open" ||
+    artifact?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    !sameTerms(artifact?.source_terms_preserved_signed_together) ||
+    !sameStringSet(
+      artifact
+        ?.directed_rounded_shared_domain_provider_boundary_replay_check_kinds,
+      expectedCheckKinds
+    ) ||
+    !sameStringSet(
+      artifact?.provider_certification_blocker_kinds,
+      expectedBlockerKinds
+    )
+  ) {
+    errors.push("directed-rounded provider boundary replay metadata must identify the source-map boundary route");
+  }
+  if (
+    artifact?.source_map_envelope_readiness_ready !== true ||
+    artifact?.terminal_row_provider_enclosure_ready !== true ||
+    artifact
+      ?.directed_rounded_shared_domain_provider_boundary_replay_available !==
+      true ||
+    artifact
+      ?.directed_rounded_shared_domain_provider_boundary_replay_verified !==
+      true ||
+    artifact?.directed_rounded_shared_domain_provider_certified !== false ||
+    artifact?.source_term_provider_probe_same_domain_contract_ready !== true ||
+    artifact?.source_term_provider_probe_same_radius_contract_ready !== true ||
+    artifact?.source_term_provider_probe_rows_certify_directed_rounded_source !==
+      false ||
+    artifact?.source_term_provider_probe_term_width_realization_closed !==
+      false ||
+    !sameStringSet(
+      artifact?.open_provider_certification_blocker_kinds,
+      expectedBlockerKinds
+    ) ||
+    artifact?.open_provider_certification_blocker_count !==
+      expectedBlockerKinds.length ||
+    artifact
+      ?.directed_rounded_shared_domain_provider_boundary_replay_classification !==
+      "boundary-replay-reaches-source-map-provider-source-term-certification-open" ||
+    artifact
+      ?.directed_rounded_shared_domain_provider_primary_missing_object_kind !==
+      "directed-rounded-source-term-provider-width-realization" ||
+    artifact
+      ?.directed_rounded_shared_domain_provider_blocker_classification !==
+      "source-term-provider-directed-rounded-certification-open-after-boundary-replay" ||
+    artifact?.directed_rounded_shared_domain_provider_boundary_row_count !== 5
+  ) {
+    errors.push("directed-rounded provider boundary replay aggregate must verify boundary replay while keeping source-term certification open");
+  }
+  const rows =
+    artifact?.directed_rounded_shared_domain_provider_boundary_replay_rows ??
+    [];
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== 5 ||
+    !rows.every(
+      (row, index) =>
+        row?.node_index === index &&
+        row?.shared_source_cell_id === expectedTerminalCellIds[index] &&
+        row?.terminal_graph_source_cell_id === expectedTerminalCellIds[index] &&
+        row?.terminal_graph_cell_id === expectedTerminalCellIds[index] &&
+        Number.isFinite(Number(row?.h39_provider_xi_midpoint)) &&
+        Number.isFinite(Number(row?.terminal_graph_xi_midpoint)) &&
+        hasOrderedFiniteInterval(row?.terminal_graph_xi_interval) &&
+        intervalContainsNumber(
+          row.terminal_graph_xi_interval,
+          row.h39_provider_xi_midpoint
+        ) &&
+        intervalContainsNumber(
+          row.terminal_graph_xi_interval,
+          row.terminal_graph_xi_midpoint
+        ) &&
+        row?.provider_row_source_kind ===
+          "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+        row?.provider_probe_row_status ===
+          "candidate-source-term-provider-row-fits-center-aware-target-source-certification-open" &&
+        row?.directed_rounded_shared_domain_provider_boundary_replay_kind ===
+          "terminal-row-enclosure-to-n38-source-map-readiness-boundary-replay" &&
+        sameStringSet(
+          row?.directed_rounded_shared_domain_provider_boundary_replay_check_kinds,
+          expectedCheckKinds
+        ) &&
+        row?.directed_rounded_shared_domain_provider_boundary_replay_check_count ===
+          expectedCheckKinds.length &&
+        expectedCheckKinds.every(
+          (kind) =>
+            row
+              ?.directed_rounded_shared_domain_provider_boundary_replay_checks?.[
+              kind
+            ] === true
+        ) &&
+        sameStringSet(
+          row?.provider_certification_blocker_kinds,
+          expectedBlockerKinds
+        ) &&
+        row?.provider_certification_blockers
+          ?.source_term_provider_directed_source_certification_open === true &&
+        row?.provider_certification_blockers
+          ?.source_term_provider_term_width_realization_open === true &&
+        sameStringSet(
+          row?.open_provider_certification_blocker_kinds,
+          expectedBlockerKinds
+        ) &&
+        row?.open_provider_certification_blocker_count ===
+          expectedBlockerKinds.length &&
+        row?.source_term_provider_probe_same_domain_contract_ready === true &&
+        row?.source_term_provider_probe_same_radius_contract_ready === true &&
+        row?.source_term_provider_probe_rows_certify_directed_rounded_source ===
+          false &&
+        row?.source_term_provider_probe_term_width_realization_closed ===
+          false &&
+        row
+          ?.terminal_row_enclosure_supplies_directed_rounded_terminal_provider ===
+          true &&
+        row?.terminal_row_enclosure_boundary_replay_verified === true &&
+        row
+          ?.directed_rounded_shared_domain_provider_boundary_replay_verified ===
+          true &&
+        row?.directed_rounded_shared_domain_provider_certified === false &&
+        row?.row_status ===
+          "directed-rounded-boundary-replay-reaches-source-map-provider-source-term-certification-open"
+    )
+  ) {
+    errors.push("directed-rounded provider boundary replay rows must prove the boundary replay and expose source-term blockers");
+  } else {
+    rows.forEach((row, index) => {
+      if (!validClaimBoundary(row?.claim_boundary)) {
+        errors.push(`directed-rounded provider boundary replay row ${index} must keep broad closure flags open`);
+      }
+    });
+  }
+  if (
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string" ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("directed-rounded provider boundary replay candidate must keep broad closure claims open");
   }
   return errors;
 }

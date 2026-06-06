@@ -24,7 +24,7 @@ The stories should be fun first: play, experiments, motion, puzzles, chase games
 Puzzles in this series are mental puzzles, not creative-writing assignments. A puzzle should ask the reader to notice, predict, choose, compare, or infer from the scene:
 
 - Which path will the ball take?
-- Which mark came first?
+- Which dot came first?
 - Which message arrives first?
 - What changed when one thing moved?
 - Which outcome fits the surface?

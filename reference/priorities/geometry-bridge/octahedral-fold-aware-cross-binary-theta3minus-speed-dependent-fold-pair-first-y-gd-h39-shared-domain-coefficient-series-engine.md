@@ -3031,6 +3031,19 @@ fifteen terminal rows and all five boundary rows. The packet remains
 witness-only: expression-level $N_{38}$ provider closure, terminal graph
 remainder closure, shifted $R_{\varepsilon,43}$ closure, retained branch, and
 directed-rounded shared-domain provider certification remain open.
+\texttt{buildH39RequestedY44DirectedRoundedSharedDomainProviderBoundaryReplayCandidate}
+now tests the actual same-domain provider boundary replay from the terminal-row
+enclosure witness into the existing $N_{38}$ source-map envelope readiness
+rows. The replay verifies the same five provider rows, same terminal source
+cells, verifier-boundary reachability, terminal-row enclosure boundary replay,
+terminal $h$-row enclosure availability, source-term provider same-domain and
+same-radius contracts, terminal-affine route readiness, terminal-row
+directed-rounding provenance, and provider midpoint containment in the
+terminal graph interval. The local boundary replay is verified for all five
+source-map rows. It does not certify the directed-rounded shared-domain
+provider: the executable blocker is now the source-term provider side, where
+directed-rounded source certification remains false and term-width realization
+remains open.
 \texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
 now also probes a shared terminal-residual coordinate for
 $h_{37},h_{36},h_{35}$. Instead of assigning independent residual hulls to the
