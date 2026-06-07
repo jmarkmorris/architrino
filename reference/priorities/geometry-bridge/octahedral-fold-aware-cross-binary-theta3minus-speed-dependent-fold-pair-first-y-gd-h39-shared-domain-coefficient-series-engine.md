@@ -3526,6 +3526,44 @@ centered-residual source object, expression-level $N_{38}$ provider,
 $S_{37}$ division, shifted $R_{\varepsilon,43}$ closure, retained branch, or
 directed-rounded provider.
 
+\texttt{buildH39RequestedY44TerminalProportionalCommonNormalizerLawRefutationCandidate}
+now checks the finite proportional common-normalizer law directly. The
+candidate tests the only available contradiction route: finite
+$r_b=\lambda s_b$ implies $r_-+r_+=\lambda(s_-+s_+)$, so an exact
+same-domain identity $s_-+s_+=0$ together with a nonzero aggregate residual
+would refute the route. Executable validation records aggregate residual
+zero-exclusion status, fifteen zero-crossing denominator intervals, fifteen
+same-$g$ formal branch identity witnesses, and fifteen missing branch-resolved
+centered-residual source objects. It also records that the exact same-domain
+identity $s_-+s_+=0$ is not currently proven by the packet surface;
+zero-crossing denominator intervals are not enough. Therefore the finite
+proportional law is not refuted here, and the next proof object is a
+same-domain denominator-free branch-residual source-object identity that
+preserves $r_-+r_+=R$ on the same five terminal graph cells and
+$h_{37},h_{36},h_{35}$ rows without dividing by $s_-+s_+$. This remains
+priority-only and candidate-only; it certifies no terminal witness
+realization, terminal-row provider object replay, branch-resolved
+centered-residual source object, expression-level $N_{38}$ provider,
+$S_{37}$ division, shifted $R_{\varepsilon,43}$ closure, retained branch, or
+directed-rounded provider.
+
+\texttt{buildH39RequestedY44TerminalDenominatorFreeBranchResidualSourceObjectIdentityAttemptCandidate}
+turns that handoff into the denominator-free branch-residual source-object
+attempt. It replaces the unavailable quotient $R s_b/(s_-+s_+)$ by the
+rank-one branch family $r_-=R/2+t$, $r_+=R/2-t$, preserving
+$r_-+r_+=R$ without dividing by the zero-crossing common normalizer.
+Executable validation emits the canonical symmetric $t=0$ candidate on all
+fifteen terminal rows and thirty branch rows, and every candidate branch-pair
+sums back to the aggregate residual on the same five terminal graph cells and
+$h_{37},h_{36},h_{35}$ rows. The current status is still an open attempt: the
+source identity determining $t$ is missing, so the symmetric candidate is not a
+certified branch-resolved centered-residual source object. This remains
+priority-only and candidate-only; it certifies no terminal witness
+realization, terminal-row provider object replay, branch-resolved
+centered-residual source object, expression-level $N_{38}$ provider,
+$S_{37}$ division, shifted $R_{\varepsilon,43}$ closure, retained branch, or
+directed-rounded provider.
+
 \texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
 now also probes a shared terminal-residual coordinate for
 $h_{37},h_{36},h_{35}$. Instead of assigning independent residual hulls to the

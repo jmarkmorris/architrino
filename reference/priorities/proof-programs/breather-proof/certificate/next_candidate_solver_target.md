@@ -980,6 +980,46 @@ as derivation-proof objects. The narrowed live blocker is
 It constructs no source-packet acceptance rule, accepted source packet,
 accepted status, row consumption, live-ledger update, or branch-chart
 authorization.
+The source-packet acceptance rule derivation-proof object contract target
+packet,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_source_packet_rule_derivation_proof_object_contract_target_packet_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then declares the exact proof-object contract above that absence state. It
+verifies 2 / 2 direct source-hash locks against the absence classifier and the
+source-data readiness classifier, retains the 266-file current-pool scan with 0
+compatible derivation-proof objects, and declares 124 contract target slots
+with 8 required fields per slot. It satisfies 0 / 124 contract target slots and
+0 / 992 contract field slots. The narrowed live blocker is
+`source_packet_acceptance_rule_derivation_proof_object_contract_unfilled`. It
+constructs no derivation proof, proof rule, source-packet acceptance rule,
+accepted source packet, accepted status, row consumption, live-ledger update, or
+branch-chart authorization.
+The source-packet acceptance rule derivation-proof object contract-target
+satisfaction attempt,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_source_packet_rule_derivation_proof_object_contract_target_satisfaction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then tests that contract target without satisfying it. It verifies 5 / 5 direct
+source-hash locks against the contract target, current-pool absence,
+source-data readiness, derivation-proof target, and kernel/binding split
+artifacts, preserves 124 / 124 ready derivation source-data records, and records
+868 / 992 source-available contract-field slots. Contract satisfaction remains
+0 / 124 targets and 0 / 992 proof-object contract fields because every
+`rule_kernel_derivation_payload` field is absent. The narrowed live blocker is
+`source_packet_acceptance_rule_derivation_proof_object_rule_kernel_derivation_payload_absent`.
+It constructs no derivation proof, proof rule, source-packet acceptance rule,
+accepted source packet, accepted status, row consumption, live-ledger update, or
+branch-chart authorization.
+The rule-kernel derivation payload construction attempt,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_rule_kernel_payload_construction_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then tests only that missing payload layer. It verifies 3 / 3 direct
+source-hash locks against the contract-target satisfaction attempt, contract
+target packet, and kernel/binding split classifier. It declares 124
+`rule_kernel_derivation_payload` construction targets and records 744 / 868
+source-available payload-construction fields, but constructs 0 / 124 payloads
+because 0 / 124 `proof_grade_derivation_schema` fields are source-available.
+The narrowed live blocker is
+`source_packet_acceptance_rule_derivation_proof_object_rule_kernel_derivation_payload_proof_grade_derivation_schema_absent`.
+It constructs no rule-kernel derivation payload, derivation proof, proof rule,
+source-packet acceptance rule, accepted source packet, accepted status, row
+consumption, live-ledger update, or branch-chart authorization.
 The nonlinear fold-coordinate collocation tangent-matrix screen,
 `gap_opening_fresh_v10_fold_coordinate_collocation_report.nonlinear-v0.md`,
 now packages the first executable collocation-surface test: 3 homogeneous

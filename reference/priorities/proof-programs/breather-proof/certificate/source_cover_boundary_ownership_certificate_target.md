@@ -682,6 +682,42 @@ accepted statuses, route decisions, proof-rule decisions, primitive-acceptance
 decisions, source-packet acceptance decisions, row consumption,
 `preledger_pass`, live-ledger updates, and branch-chart authorization at 0 /
 false.
+The source-packet acceptance rule derivation-proof object contract target packet
+then declares the required proof-object contract without filling it. It verifies
+2 / 2 direct source-hash locks against the absence classifier and source-data
+readiness classifier, retains the 266-file current-pool scan with 0 compatible
+derivation-proof objects, and declares 124 contract target slots with 8
+required fields per slot. It satisfies 0 / 124 contract target slots and 0 /
+992 contract field slots, and keeps source-packet acceptance rules, accepted
+source packets, accepted statuses, route decisions, proof-rule decisions,
+primitive-acceptance decisions, source-packet acceptance decisions, row
+consumption, `preledger_pass`, live-ledger updates, and branch-chart
+authorization at 0 / false.
+The source-packet acceptance rule derivation-proof object contract-target
+satisfaction attempt then narrows that unfilled contract without accepting it.
+It verifies 5 / 5 direct source-hash locks against the contract target,
+current-pool absence classifier, source-data readiness classifier,
+derivation-proof target packet, and kernel/binding split classifier. It records
+868 / 992 source-available contract-field slots, but keeps 0 / 124 contract
+targets and 0 / 992 proof-object contract fields satisfied because 0 / 124
+`rule_kernel_derivation_payload` fields are present. The exact blocker is
+`source_packet_acceptance_rule_derivation_proof_object_rule_kernel_derivation_payload_absent`;
+source-packet acceptance rules, accepted source packets, accepted statuses,
+route decisions, proof-rule decisions, primitive-acceptance decisions,
+source-packet acceptance decisions, row consumption, `preledger_pass`,
+live-ledger updates, and branch-chart authorization remain 0 / false.
+The follow-on rule-kernel derivation payload construction attempt verifies
+3 / 3 direct source-hash locks, declares 124 payload construction targets, and
+records 744 / 868 source-available payload-construction fields, but constructs
+0 / 124 `rule_kernel_derivation_payload` objects because 0 / 124
+`proof_grade_derivation_schema` fields are source-available. The exact blocker
+is
+`source_packet_acceptance_rule_derivation_proof_object_rule_kernel_derivation_payload_proof_grade_derivation_schema_absent`;
+derivation proofs, proof rules, source-packet acceptance rules, accepted source
+packets, accepted statuses, route decisions, proof-rule decisions,
+primitive-acceptance decisions, source-packet acceptance decisions, row
+consumption, `preledger_pass`, live-ledger updates, and branch-chart
+authorization remain 0 / false.
 Accepted atlas refs, source-packet acceptance rules, accepted
 impulse/direct-quadrature source packets, parent-complement consumption refs,
 separator certificates, row consumption, `preledger_pass`, live-ledger updates,

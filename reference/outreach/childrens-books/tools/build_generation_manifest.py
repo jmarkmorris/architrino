@@ -54,6 +54,16 @@ BOOKS = [
         "back_matter_count": 1,
         "back_matter_story_text": "Roll again.\nFind the pattern.",
     },
+    {
+        "slug": "what-changed",
+        "title": "What Changed?",
+        "book_number": 5,
+        "age_band": "4-5",
+        "story_spreads": 12,
+        "cover_count": 1,
+        "back_matter_count": 1,
+        "back_matter_story_text": "Change one thing.\nCompare what happened.",
+    },
 ]
 
 PALETTE_RULE = (

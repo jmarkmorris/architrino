@@ -3976,6 +3976,44 @@ centered-residual source object, expression-level $N_{38}$ provider,
 $S_{37}$ division, shifted $R_{\varepsilon,43}$ closure, retained branch, or
 directed-rounded provider.
 
+`buildH39RequestedY44TerminalProportionalCommonNormalizerLawRefutationCandidate`
+now attacks the finite proportional common-normalizer law itself. It checks
+the only available contradiction route: if $r_b=\lambda s_b$ with finite
+$\lambda$, then $r_-+r_+=\lambda(s_-+s_+)$, so an exact identity
+$s_-+s_+=0$ plus a nonzero aggregate residual would refute that route. The
+executable packet records the useful half of this test: aggregate residual
+zero-exclusion status is explicit, all fifteen denominator intervals contain
+zero, all fifteen rows carry the same-$g$ formal branch identity witness, and
+all fifteen branch-resolved source objects remain missing. It also records the
+decisive missing precondition: the current packets do not prove an exact
+same-domain identity $s_-+s_+=0$; they expose zero-crossing denominator
+intervals. Consequently the finite proportional law is not refuted here. The
+next proof object remains a same-domain denominator-free
+branch-residual source-object identity preserving $r_-+r_+=R$ on the same
+five terminal graph cells and $h_{37},h_{36},h_{35}$ rows without dividing by
+$s_-+s_+$. The packet remains priority-only and candidate-only; it certifies
+no terminal witness realization, terminal-row provider object replay,
+branch-resolved centered-residual source object, expression-level $N_{38}$
+provider, $S_{37}$ division, shifted $R_{\varepsilon,43}$ closure, retained
+branch, or directed-rounded provider.
+
+`buildH39RequestedY44TerminalDenominatorFreeBranchResidualSourceObjectIdentityAttemptCandidate`
+turns that handoff into the denominator-free branch-residual source-object
+attempt. It replaces the unavailable quotient $R s_b/(s_-+s_+)$ by the
+rank-one branch family $r_-=R/2+t$, $r_+=R/2-t$, so
+$r_-+r_+=R$ is preserved without dividing by the zero-crossing common
+normalizer. Executable validation emits the canonical symmetric $t=0$
+candidate on all fifteen terminal rows and thirty branch rows, and every
+candidate branch-pair sums back to the aggregate residual on the same five
+terminal graph cells and $h_{37},h_{36},h_{35}$ rows. The current status is
+still an open attempt: the source identity determining $t$ is missing, so the
+symmetric candidate is not a certified branch-resolved centered-residual
+source object. The packet remains priority-only and candidate-only; it
+certifies no terminal witness realization, terminal-row provider object
+replay, branch-resolved centered-residual source object, expression-level
+$N_{38}$ provider, $S_{37}$ division, shifted $R_{\varepsilon,43}$ closure,
+retained branch, or directed-rounded provider.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.

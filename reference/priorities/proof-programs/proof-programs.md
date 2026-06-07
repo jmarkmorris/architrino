@@ -395,17 +395,29 @@ locks, preserves the 12-separator and 112-row scope, and records 124 / 124
 derivation source-data records ready. It still satisfies 0 / 124 derivation
 proof objects and rejects both derivation-proof target packets and derivation
 source-data records as derivation proofs. The follow-on current-pool absence
-classifier is now the latest fresh-v10 higher-fold accepted-status lane
-handoff. It imports that source-data readiness classifier, verifies 1 / 1 direct
+classifier imports that source-data readiness classifier, verifies 1 / 1 direct
 source-hash lock, scans 266 certificate JSON files including 32 accepted-status
 lane files, proves all 32 accepted-status lane files remain fail-closed, and
 finds 0 compatible `source_packet_acceptance_rule_derivation_proof` objects.
 It keeps 124 / 124 derivation source-data records ready while satisfying 0 /
-124 derivation proof object slots. It constructs 0 accepted statuses, 0
-source-packet acceptance rules, and 0 accepted source packets, makes no route,
-proof-rule, primitive-acceptance, or source-packet acceptance decision, consumes
-0 rows, and leaves `preledger_pass=false`, `updates_live_ledger=false`, and
-branch-chart authorization false.
+124 derivation proof object slots. The derivation-proof object contract target
+packet imports the current-pool absence classifier and the source-data
+readiness classifier, verifies 2 / 2 direct source-hash locks, declares 124
+contract target slots with 8 required fields per slot, and satisfies 0 / 992
+contract field slots. The fresh-v10 higher-fold accepted-status lane now has a
+rule-kernel derivation payload construction attempt as the latest handoff. It
+imports the contract-target satisfaction attempt, contract target packet, and
+kernel/binding split classifier, verifies 3 / 3 direct source-hash locks, and
+declares 124 `rule_kernel_derivation_payload` construction targets. It records
+744 / 868 source-available payload-construction fields but constructs 0 / 124
+payloads because every `proof_grade_derivation_schema` field is absent. The
+sharpened blocker is
+`source_packet_acceptance_rule_derivation_proof_object_rule_kernel_derivation_payload_proof_grade_derivation_schema_absent`.
+It constructs 0 accepted statuses, 0 source-packet acceptance rules, 0 accepted
+source packets, 0 derivation proofs, and 0 rule-kernel derivation payloads,
+makes no route, proof-rule, primitive-acceptance, or source-packet acceptance
+decision, consumes 0 rows, and leaves `preledger_pass=false`,
+`updates_live_ledger=false`, and branch-chart authorization false.
 
 Promotion-gate update: the ref/value non-domain carrier-pair theorem attempt is
 now the latest endpoint proof packet after the independent constructed

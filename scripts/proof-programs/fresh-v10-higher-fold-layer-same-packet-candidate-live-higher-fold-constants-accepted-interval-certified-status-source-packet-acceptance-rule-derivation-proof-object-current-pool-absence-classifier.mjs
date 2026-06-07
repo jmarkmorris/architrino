@@ -71,6 +71,12 @@ const DOWNSTREAM_BASENAME_KEYS = {
     `higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_interval_certified_status_route_evidence_object_terminal_obligation_classifier.${PACKET_ID}.proof-interval-v6.lambda0305.json`,
 };
 
+const DOWNSTREAM_OUTPUT_JSON_BASENAMES = new Set([
+  `higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_source_packet_rule_derivation_proof_object_contract_target_packet.${PACKET_ID}.proof-interval-v6.lambda0305.json`,
+  `higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_source_packet_rule_derivation_proof_object_contract_target_satisfaction_attempt.${PACKET_ID}.proof-interval-v6.lambda0305.json`,
+  `higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_rule_kernel_payload_construction_attempt.${PACKET_ID}.proof-interval-v6.lambda0305.json`,
+]);
+
 const REJECTION_BUCKETS = [
   "packet_identity_mismatch",
   "not_source_packet_acceptance_rule_derivation_proof_object",
@@ -363,7 +369,7 @@ function rejectionBucketsForPoolRecord(basename, parsed, text, compatible) {
 
 function analyzePoolFile(filePath, outputBasename) {
   const basename = path.basename(filePath);
-  if (basename === outputBasename) {
+  if (basename === outputBasename || DOWNSTREAM_OUTPUT_JSON_BASENAMES.has(basename)) {
     return null;
   }
   const text = fs.readFileSync(filePath, "utf8");
