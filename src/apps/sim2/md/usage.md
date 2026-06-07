@@ -53,7 +53,6 @@ python -m pyinstrument -r text sim2/orbits.py --run sim2/circle.json
 - `format_version` (int): Version marker for future migrations.
 - `hz` (int): Simulation frequency in Hz.
 - `field_speed` (float): Field propagation speed.
-- `max_force` (float): Clamp for physics impulse magnitude (prevents blow-ups).
 - `world_size` (float): Full width/height of the square world domain in world units. (Preferred.)
 - `domain_half_extent` (float): Half extent of square domain, in world units (use instead of `world_size` if you want half-size directly).
 - `speed_multiplier` (float): Default path speed multiplier.

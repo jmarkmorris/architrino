@@ -325,6 +325,363 @@ verifies 5 / 5 materialization source-hash locks, 12 / 12 separator exact-field
 and exact-arithmetic consistency classifications, and 112 / 112 row exact-field
 and exact-arithmetic consistency classifications, while accepted
 interval-certified constants statuses remain absent.
+The candidate-live higher-fold constants accepted-status obstruction classifier
+then verifies 6 / 6 current consistency-source hash locks, retains 5 / 5
+materialization source-hash locks, and records 12 / 12 separator plus
+112 / 112 row accepted-status precondition profiles complete, while accepted
+interval-certified constants statuses remain absent. The first accepted-status
+obstruction is `accepted_interval_certified_constants_status_absent`; no
+primitive accepted-status or source-packet acceptance decision is made.
+The candidate-live higher-fold constants accepted interval-certified status
+derivation source-data obligation classifier then verifies 1 / 1 obstruction
+source-hash locks, retains 6 / 6 current consistency-source hash locks and
+5 / 5 materialization source-hash locks, and records 12 / 12 separator plus
+112 / 112 row derivation-source evidence profiles complete, while proof-grade
+accepted-status derivation refs, status refs, status derivations, status rules,
+soundness proofs, endpoint applications, accepted constants conformance
+derivations, source-packet acceptance rules, and accepted
+impulse/direct-quadrature source packets remain absent. The first
+derivation-obligation blocker is
+`accepted_interval_certified_constants_status_proof_grade_derivation_ref_absent`;
+no primitive accepted-status or source-packet acceptance decision is made.
+The candidate-live higher-fold constants accepted interval-certified status
+source-certificate-to-proof-grade-derivation bridge attempt then verifies
+9 / 9 source-data obligation source-hash locks and preserves 12 / 12 separator
+plus 112 / 112 row derivation-source evidence profiles complete, while
+bridge-ready accepted-status derivations, accepted interval-certified constants
+status refs, proof rules, primitive accepted-status rules, source-packet
+acceptance rules, row consumption, live-ledger updates, and branch-chart
+authorization remain absent. The first bridge blocker is
+`accepted_interval_certified_constants_status_proof_grade_derivation_ref_absent`.
+The candidate-live higher-fold constants accepted interval-certified status
+bridge prerequisite frontier classifier then verifies 4 / 4 frontier
+source-hash locks, retains 9 / 9 bridge source-hash locks, and partitions the
+current stop into proof-grade bridge prerequisites and primitive/source-packet
+acceptance prerequisites. It records 0 proof-grade bridge routes ready,
+0 primitive source-packet routes ready, 0 mechanical continuations from current
+inputs, 72 missing separator proof-grade bridge prerequisites, 24 missing
+separator primitive acceptance prerequisites, and 896 missing row frontier
+prerequisites. The first frontier blocker is
+`accepted_interval_certified_constants_status_proof_grade_derivation_ref_absent`;
+the source-packet decision blocker is
+`fixed_parameter_separator_aggregate_to_same_packet_fold_impulse_or_direct_quadrature_bound_acceptance_rule_absent`.
+The candidate-live higher-fold constants accepted interval-certified status
+proof-grade evidence dependency classifier then verifies 9 / 9 bridge-locked
+source-hash locks and scans 238 certificate JSON files for compatible
+proof-grade accepted-status evidence. It finds 0 compatible proof-grade
+evidence files, records 72 separator proof-grade evidence slots and 672 row
+proof-grade evidence slots with 0 slots filled, and preserves the seed constants
+contract mismatch between `seed-doubled-four-arc-cosine-template-v0` /
+`Sigma_1_through_Sigma_4` / 16 rows and
+`fresh-v10-higher-fold-12-root-rebuild-v0` /
+`Sigma_hf_01_through_Sigma_hf_12` / 112 rows. The first evidence dependency
+blocker is
+`compatible_proof_grade_accepted_interval_certified_constants_status_evidence_absent`.
+The candidate-live higher-fold constants accepted interval-certified status
+primitive source-packet acceptance evidence dependency classifier then verifies
+5 / 5 source-packet route source-hash locks, retains 4 / 4 frontier source-hash
+locks and 9 / 9 bridge-locked source-hash locks, and scans 239 certificate JSON
+files for compatible primitive/source-packet acceptance evidence. It finds 0
+compatible source-packet acceptance evidence files, records 24 separator
+source-packet acceptance evidence slots and 224 row source-packet acceptance
+evidence slots with 0 slots filled, and preserves 12 / 12 separator plus
+112 / 112 row aggregate evidence profiles complete. The first source-packet
+acceptance evidence blocker is
+`compatible_source_packet_acceptance_evidence_absent`; the acceptance-rule
+blocker remains
+`fixed_parameter_separator_aggregate_to_same_packet_fold_impulse_or_direct_quadrature_bound_acceptance_rule_absent`;
+the accepted source-packet blocker remains
+`accepted_same_packet_fold_impulse_or_direct_quadrature_source_packet_absent`.
+The candidate-live higher-fold constants accepted interval-certified status
+current certificate-pool route exhaustion closure classifier then combines the
+proof-grade evidence dependency classifier, primitive source-packet acceptance
+evidence dependency classifier, and bridge prerequisite frontier classifier into
+a priority-only current-pool snapshot. It verifies 3 / 3 direct
+route-exhaustion source-hash locks, retains 4 / 4 frontier, 9 / 9
+bridge-locked, and 5 / 5 source-packet route source-hash locks, scans 240
+current certificate-pool JSON files before its own output, and records 0
+compatible proof-grade accepted-status evidence files plus 0 compatible
+source-packet acceptance evidence files. It records 96 separator combined route
+evidence slots and 896 row combined route evidence slots with 0 slots filled
+and 0 mechanical continuations from the current pool. This does not change the
+regular source-cover theorem target, does not authorize source-cover row
+consumption, and makes no proof-rule or primitive-acceptance decision.
+The candidate-live higher-fold constants accepted interval-certified status
+decision-frontier obligation classifier then locks the exact external inputs
+needed to continue. It verifies 4 / 4 direct source-hash locks, retains the
+3 / 3 route-exhaustion, 4 / 4 frontier, 9 / 9 bridge-locked, and 5 / 5
+source-packet route locks, and reduces the blocker to 2 explicit decision
+frontiers: proof-grade accepted-status evidence construction or
+primitive/source-packet acceptance. It records 6 proof-grade obligation
+families and 2 primitive/source-packet obligation families, 96 separator and
+896 row combined decision-frontier obligation slots, 0 slots filled, 0
+mechanical continuations from the current pool, 0 rule decisions made, 0
+primitive-acceptance decisions made, 0 accepted statuses, 0 source-packet
+acceptance rules, 0 accepted source packets, and 0 row consumption.
+The candidate-live higher-fold constants accepted interval-certified status
+decision-frontier route-handoff contract classifier then turns those two
+frontiers into two explicit route-handoff contracts. It verifies 4 / 4 direct
+source-hash locks, retains the 3 / 3 route-exhaustion, 4 / 4 frontier, 9 / 9
+bridge-locked, and 5 / 5 source-packet route locks, scans 242 current
+certificate-pool JSON files before its own output, and records 0 / 2 contracts
+satisfied, 0 compatible proof-grade current-pool evidence files, 0 compatible
+source-packet acceptance current-pool evidence files, 96 separator and 896 row
+combined route-handoff contract slots, all missing, 0 mechanical continuations
+from the current pool, 0 route decisions made, 0 proof-rule decisions made, 0
+primitive-acceptance decisions made, 0 accepted statuses, 0 source-packet
+acceptance rules, 0 accepted source packets, and 0 row consumption.
+The candidate-live higher-fold constants accepted interval-certified status
+proof-grade route-input target packet then expands the proof-grade
+accepted-status handoff contract without choosing that route. It records
+1 proof-grade route-input target with 6 fields, 72 separator and 672 row
+proof-grade route-input target slots, all missing, 0 compatible proof-grade
+current-pool evidence files, 0 route decisions made, 0 proof-rule decisions
+made, 0 primitive-acceptance decisions made, 0 accepted statuses, 0
+source-packet acceptance rules, 0 accepted source packets, and 0 row
+consumption.
+The candidate-live higher-fold constants accepted interval-certified status
+primitive source-packet route narrowing classifier then narrows the
+primitive/source-packet route to two absent route inputs while preserving
+complete aggregate inputs. It records 12 / 12 separator plus 112 / 112 row
+aggregate input profiles complete, 1 primitive/source-packet route-input target
+with 2 fields, 24 separator and 224 row primitive route-input target slots,
+all missing, 0 compatible source-packet acceptance evidence files, 0 route
+decisions made, 0 proof-rule decisions made, 0 primitive-acceptance decisions
+made, 0 source-packet acceptance rules, 0 accepted source packets, 0 accepted
+statuses, and 0 row consumption.
+The candidate-live higher-fold constants accepted interval-certified status
+source-packet acceptance rule target packet then isolates the rule side of that
+primitive route. It records 1 `source_packet_acceptance_rule` target above
+complete aggregate inputs, 12 separator and 112 row rule-target slots, all
+missing, 0 source-packet acceptance rules, 0 accepted source packets,
+0 accepted statuses, 0 route decisions made, 0 proof-rule decisions made,
+0 primitive-acceptance decisions made, and 0 row consumption.
+The candidate-live higher-fold constants accepted interval-certified status
+route-input disjunction closure handoff classifier then packages the current
+OR boundary. It records 1 route-input disjunction, 0 disjunctions satisfied,
+8 combined route-input fields, 96 separator slots, 896 row slots, 992 total
+combined route-input slots, all missing, 0 compatible proof-grade current-pool
+evidence files, 0 compatible source-packet acceptance current-pool evidence
+files, 0 route decisions made, 0 proof-rule decisions made,
+0 primitive-acceptance decisions made, 0 source-packet acceptance rules,
+0 accepted source packets, 0 accepted statuses, and 0 row consumption.
+The candidate-live higher-fold constants accepted interval-certified status
+current-pool route-input disjunction exhaustion obligation packet then records
+the terminal current-pool handoff: 247 current-pool JSON files scanned,
+14 / 14 accepted-status-lane artifacts fail-closed, 0 non-fail-closed
+accepted-status-lane artifacts, 0 non-fail-closed source-packet acceptance
+rule files, 0 `preledger_pass=true` files, 0 live-ledger update files, 0
+branch-chart authorization files, 0 positive row-consumption files, and 0
+constructed accepted interval-certified constants status files. It declares
+3 terminal route obligations and satisfies 0.
+The route-input first-blocker handoff classifier then proves the first
+blockers are uniform: `accepted_interval_certified_constants_status_proof_grade_derivation_ref_evidence_absent`
+on 12 / 12 separators and 112 / 112 rows for the proof-grade branch, and
+`fixed_parameter_separator_aggregate_to_same_packet_fold_impulse_or_direct_quadrature_bound_acceptance_rule_absent`
+plus `accepted_same_packet_fold_impulse_or_direct_quadrature_source_packet_absent`
+on 12 / 12 separators and 112 / 112 rows for the primitive/source-packet
+branch. It makes no route, proof-rule, primitive-acceptance,
+source-packet acceptance, or row-consumption decision.
+The proof-grade derivation-ref evidence target packet then narrows the
+proof-grade branch to the first missing route-input field only:
+`accepted_interval_certified_constants_status_proof_grade_derivation_ref`.
+It declares 12 separator and 112 row derivation-ref evidence target slots,
+satisfies 0, finds 0 compatible proof-grade status evidence files and 0
+compatible derivation-ref evidence refs, and makes no route, proof-rule,
+primitive-acceptance, source-packet acceptance, accepted-status, or
+row-consumption decision.
+The proof-grade derivation-ref evidence absence classifier then proves that
+this declared target remains an obligation, not a derivation-ref evidence
+object. It records 12 separator and 112 row absence profiles, 124 absence
+slots, 0 slots with a compatible derivation-ref evidence object, 124 missing
+evidence-object slots, 124 target-packet-as-evidence rejections, 124
+dependency-record-as-evidence rejections, 0 compatible derivation-ref evidence
+refs, and 0 derivation-ref evidence objects found. It makes no route,
+proof-rule, primitive-acceptance, source-packet acceptance, accepted-status, or
+row-consumption decision.
+The proof-grade derivation-ref application attempt then tests whether the
+declared target can be applied from current source-certificate/source-data
+handles. It verifies 5 / 5 direct source-hash locks, tests 124 handles, rejects
+124 source-certificate-handle-as-derivation-ref applications, authorizes
+0 proof-grade derivation-ref applications, constructs 0 accepted-status
+proof-grade derivation refs, 0 accepted-status refs, and 0 accepted statuses.
+The first application blocker is
+`proof_grade_derivation_ref_evidence_object_absent`; it makes no proof-rule,
+route, primitive-acceptance, source-packet acceptance, accepted-status, or
+row-consumption decision.
+The proof-grade derivation-ref current-pool evidence absence classifier then
+scans the certificate JSON pool after the downstream derivation-ref target,
+absence, and application outputs exist. It records 252 certificate JSON files
+scanned, 17 / 17 accepted-status-lane JSON files fail-closed, 0 non-fail-closed
+accepted-status-lane JSON files, 0 compatible proof-grade derivation-ref
+evidence objects, 0 compatible derivation-ref evidence refs, and 124
+current-pool evidence absence profiles. The first current-pool evidence absence
+blocker remains `proof_grade_derivation_ref_evidence_object_absent`, and it
+makes no proof-rule, route, primitive-acceptance, source-packet acceptance,
+accepted-status, or row-consumption decision.
+The proof-grade derivation-ref evidence-object contract target packet,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_interval_certified_status_proof_grade_derivation_ref_evidence_object_contract_target_packet_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then makes the missing proof-grade branch object explicit. It verifies 6 / 6
+direct source-hash locks, scans 253 certificate JSON files, records 18 / 18
+accepted-status-lane JSON files fail-closed and 0 non-fail-closed, declares 124
+`proof_grade_derivation_ref_evidence_object` contract slots for
+`accepted_interval_certified_constants_status_proof_grade_derivation_ref`,
+satisfies 0, rejects 124 source-certificate handles as derivation refs, and
+constructs 0 accepted-status proof-grade derivation refs, 0 accepted-status refs,
+and 0 accepted statuses. It keeps all proof-rule, route, primitive-acceptance,
+source-packet acceptance, accepted-status, and row-consumption counters at 0.
+The primitive source-packet route evidence-object contract target packet then
+makes the missing primitive/source-packet branch objects explicit. It verifies
+6 / 6 direct source-hash locks, scans 254 certificate JSON files, records
+19 / 19 accepted-status-lane JSON files fail-closed and 0 non-fail-closed,
+declares 248 contract slots for `source_packet_acceptance_rule` and
+`accepted_same_packet_fold_impulse_or_direct_quadrature_source_packet`,
+satisfies 0 slots, finds 0 compatible primitive/source-packet route-input refs,
+and keeps all proof-rule, route, primitive-acceptance, source-packet acceptance,
+accepted-status, and row-consumption counters at 0.
+The route evidence-object contract disjunction exhaustion classifier then
+combines the proof-grade and primitive/source-packet branch contracts. It verifies
+3 / 3 direct source-hash locks, scans 255 certificate JSON files, records 20 / 20
+accepted-status-lane JSON files fail-closed and 0 non-fail-closed, declares 372
+route evidence-object contract slots, satisfies 0 slots, finds 0 compatible
+route evidence-object refs, and keeps all proof-rule, route,
+primitive-acceptance, source-packet acceptance, accepted-status, and
+row-consumption counters at 0.
+The primitive source-packet route evidence-object application attempt then tests
+the live primitive/source-packet branch application boundary. It verifies 8 / 8
+direct source-hash locks, scans 256 certificate JSON files, records 21 / 21
+accepted-status-lane JSON files fail-closed and 0 non-fail-closed, attempts 248
+route evidence-object applications, authorizes 0, rejects 124 source-packet
+acceptance rule target-packet-as-rule applications, rejects 124 complete
+aggregate-input-as-accepted-source-packet applications, and keeps all proof-rule,
+route, primitive-acceptance, source-packet acceptance, accepted-status, and
+row-consumption counters at 0.
+The route evidence-object application exhaustion classifier then combines the
+proof-grade and primitive/source-packet application attempts. It verifies 6 / 6
+direct source-hash locks, scans 257 certificate JSON files, records 22 / 22
+accepted-status-lane JSON files fail-closed and 0 non-fail-closed, attempts 372
+route evidence-object applications, authorizes 0, rejects 124
+source-certificate-handle-as-derivation-ref applications, rejects 124
+source-packet acceptance rule target-packet-as-rule applications, rejects 124
+complete aggregate-input-as-accepted-source-packet applications, and keeps all
+proof-rule, route, primitive-acceptance, source-packet acceptance,
+accepted-status, and row-consumption counters at 0.
+The route evidence-object terminal obligation classifier then locks the terminal
+handoff after application exhaustion. It verifies 6 / 6 direct source-hash
+locks, scans 258 certificate JSON files, records 23 / 23 accepted-status-lane
+JSON files fail-closed and 0 non-fail-closed, declares 3 allowed external route
+input families and 372 allowed route-input obligation slots, satisfies 0 slots,
+finds 0 compatible proof-grade derivation-ref evidence-object files, 0
+compatible source-packet acceptance rule files, 0 compatible accepted
+source-packet files, and 0 total allowed route input refs, and keeps all
+proof-rule, route, primitive-acceptance, source-packet acceptance,
+accepted-status, and row-consumption counters at 0.
+The route evidence-object terminal decision-frontier classifier then orders the
+allowed route-input families without accepting any of them. It verifies 7 / 7
+direct source-hash locks, scans 259 certificate JSON files, records 24 / 24
+accepted-status-lane JSON files fail-closed and 0 non-fail-closed, declares 2
+terminal decision-frontier classes and 3 ranked allowed route-input families,
+satisfies 0 / 372 terminal decision-frontier slots, finds 0 allowed route-input
+refs, and ranks
+`source_packet_acceptance_rule_for_live_same_packet_separator_aggregate_family`
+first because 12 / 12 separators and 112 / 112 rows retain complete aggregate
+inputs while the rule remains absent. It keeps source-packet acceptance rules,
+accepted source packets, accepted statuses, route decisions, proof-rule
+decisions, primitive-acceptance decisions, source-packet acceptance decisions,
+row consumption, `preledger_pass`, live-ledger updates, and branch-chart
+authorization at 0 / false.
+The source-packet acceptance rule construction-frontier classifier then locks
+that rank-1 family as the current rule-construction frontier without accepting
+it. It verifies 7 / 7 direct source-hash locks, scans 260 certificate JSON
+files, records 25 / 25 accepted-status-lane JSON files fail-closed and 0
+non-fail-closed, retains 12 / 12 separator and 112 / 112 row aggregate inputs,
+satisfies 0 / 124 rule-construction frontier slots, finds 0 compatible
+source-packet acceptance rule files, 0 accepted constants conformance files, 0
+compatible accepted source-packet files, and 0 rule-construction input refs, and
+preserves 124 source-packet acceptance rule target-packet-as-rule plus 124
+complete aggregate-input-as-accepted-source-packet rejections. It keeps
+source-packet acceptance rules, accepted source packets, accepted statuses,
+route decisions, proof-rule decisions, primitive-acceptance decisions,
+source-packet acceptance decisions, row consumption, `preledger_pass`,
+live-ledger updates, and branch-chart authorization at 0 / false.
+The source-packet acceptance rule proof-obligation dependency classifier then
+separates the complete source-material side from the missing proof-rule side
+without accepting either route. It verifies 7 / 7 direct source-hash locks,
+scans 261 certificate JSON files, records 26 / 26 accepted-status-lane JSON
+files fail-closed and 0 non-fail-closed, preserves 124 / 124 source-material
+and exact-consistency premise slots ready, and satisfies 0 / 124 source-packet
+acceptance rule proof-obligation slots. It records 0 / 124 rule
+derivation-proof slots, 0 / 124 rule soundness-proof slots, 0 / 124
+endpoint-application proof slots, 0 / 124 accepted-constants conformance
+slots, and 0 / 248 compatible source-packet acceptance evidence slots filled.
+It keeps source-packet acceptance rules, accepted source packets, accepted
+statuses, route decisions, proof-rule decisions, primitive-acceptance
+decisions, source-packet acceptance decisions, row consumption,
+`preledger_pass`, live-ledger updates, and branch-chart authorization at
+0 / false.
+The source-packet acceptance rule proof-obligation blocker-vector handoff
+classifier then freezes those missing rule/acceptance obligations into one
+compact six-class handoff. It verifies 1 / 1 direct source-hash lock, retains
+the proof-obligation dependency classifier's 7 / 7 locks, preserves the
+12-separator and 112-row scope, and records 124 / 124 source-material and
+exact-consistency premise slots ready while the rule target remains 0 / 124
+satisfied. The six blocker classes remain uniformly unsatisfied: 0 / 124
+derivation-proof slots, 0 / 124 soundness-proof slots, 0 / 124
+endpoint-application proof slots, 0 / 124 accepted-constants conformance slots,
+0 / 248 compatible source-packet acceptance evidence slots, and 0 / 124
+accepted source-packet slots. It keeps source-packet acceptance rules, accepted
+source packets, accepted statuses, route decisions, proof-rule decisions,
+primitive-acceptance decisions, source-packet acceptance decisions, row
+consumption, `preledger_pass`, live-ledger updates, and branch-chart
+authorization at 0 / false.
+The source-packet acceptance rule kernel/binding split classifier then orders
+that six-class handoff without accepting it. It verifies 1 / 1 direct
+source-hash lock, retains the blocker-vector classifier's 1 / 1 lock and the
+proof-obligation dependency classifier's 7 / 7 locks, preserves the
+12-separator and 112-row scope, and separates the missing obligations into
+3 rule-kernel classes and 3 binding/evidence classes. The rule-kernel group has
+0 / 372 slots satisfied; the binding/evidence group has 0 / 496 slots
+satisfied; total split-obligation satisfaction is 0 / 868. It keeps
+source-packet acceptance rules, accepted source packets, accepted statuses,
+route decisions, proof-rule decisions, primitive-acceptance decisions,
+source-packet acceptance decisions, row consumption, `preledger_pass`,
+live-ledger updates, and branch-chart authorization at 0 / false.
+The source-packet acceptance rule derivation-proof target packet then fixes the
+first rule-kernel target without constructing it. It verifies 2 / 2 direct
+source-hash locks against the kernel/binding split and the source-packet
+acceptance rule target packet, retains the split's 1 / 1 lock, the rule-target
+packet's 3 / 3 locks, and the proof-obligation dependency classifier's 7 / 7
+locks, and declares 124 derivation-proof target slots with 0 satisfied. It
+keeps the source-packet acceptance rule target at 0 / 124 satisfied,
+rule-kernel obligations at 0 / 372 satisfied, downstream rule-kernel slots
+waiting on derivation proof at 0 / 248, and binding/evidence obligations at
+0 / 496. It keeps source-packet acceptance rules, accepted source packets,
+accepted statuses, route decisions, proof-rule decisions, primitive-acceptance
+decisions, source-packet acceptance decisions, row consumption, `preledger_pass`,
+live-ledger updates, and branch-chart authorization at 0 / false.
+The source-packet acceptance rule derivation-proof source-data readiness
+classifier then separates source-data readiness from proof construction. It
+verifies 1 / 1 direct source-hash lock against the derivation-proof target
+packet, retains the target packet's 2 / 2 locks, and records 124 / 124
+derivation source-data records ready across 12 separator and 112 row profiles.
+It satisfies 0 / 124 derivation proof objects, rejects target packets and
+derivation source-data records as derivation proofs, and keeps source-packet
+acceptance rules, accepted source packets, accepted statuses, route decisions,
+proof-rule decisions, primitive-acceptance decisions, source-packet acceptance
+decisions, row consumption, `preledger_pass`, live-ledger updates, and
+branch-chart authorization at 0 / false.
+The source-packet acceptance rule derivation-proof object current-pool absence
+classifier then checks whether that missing proof object is already present in
+the certificate pool. It verifies 1 / 1 direct source-hash lock, scans 266
+certificate JSON files, records 32 / 32 accepted-status lane JSON files
+fail-closed, and finds 0 compatible
+`source_packet_acceptance_rule_derivation_proof` objects. It preserves 124 /
+124 ready derivation source-data records, satisfies 0 / 124 derivation proof
+object slots, and keeps source-packet acceptance rules, accepted source packets,
+accepted statuses, route decisions, proof-rule decisions, primitive-acceptance
+decisions, source-packet acceptance decisions, row consumption,
+`preledger_pass`, live-ledger updates, and branch-chart authorization at 0 /
+false.
 Accepted atlas refs, source-packet acceptance rules, accepted
 impulse/direct-quadrature source packets, parent-complement consumption refs,
 separator certificates, row consumption, `preledger_pass`, live-ledger updates,

@@ -42,6 +42,17 @@ BOOKS = [
         "story_spreads": 12,
         "cover_count": 1,
         "back_matter_count": 1,
+        "back_matter_story_text": "Make a trail.\nFollow it.\nAgain.",
+    },
+    {
+        "slug": "again-makes-a-pattern",
+        "title": "Again Makes A Pattern",
+        "book_number": 4,
+        "age_band": "3-4",
+        "story_spreads": 12,
+        "cover_count": 1,
+        "back_matter_count": 1,
+        "back_matter_story_text": "Roll again.\nFind the pattern.",
     },
 ]
 

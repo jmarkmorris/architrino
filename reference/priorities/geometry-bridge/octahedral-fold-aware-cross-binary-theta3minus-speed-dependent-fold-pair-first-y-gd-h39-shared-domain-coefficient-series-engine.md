@@ -3174,6 +3174,358 @@ does not certify the source-term producer image; it sharpens the next proof
 object to a same-domain projected-slot midpoint/zero anchor identity, followed
 by a directed-rounded same-domain source-term variation bound that fits inside
 the recorded positive margins.
+\texttt{buildH39RequestedY44SourceTermProducerImageAnchorPreservingCenterAllocationAttemptCandidate}
+now solves that anchor-allocation subproblem at candidate level. For each row,
+it forms the termwise admissible center-shift intervals
+$[-c_i-\lambda h_i,-c_i+\lambda h_i]$ from the source-term residual center
+$c_i$, source half-width $h_i$, and signed-radius contraction scale $\lambda$,
+then checks the signed-radius total center shift against their Minkowski sum.
+The executable replay succeeds on all five rows and constructs allocations
+whose contracted residual slots contain residual zero while the residual sum
+still contains the signed-radius certificate. This removes the immediate
+midpoint/zero anchor defect but does not certify the source-term producer
+image; the next proof object is a directed-rounded same-domain source-term
+variation bound for the anchor-preserving allocated slots.
+\texttt{buildH39RequestedY44SourceTermProducerImageAnchorPreservingVariationBoundTargetCandidate}
+now computes the margin target for those anchor-preserving slots. For each
+allocated term slot, it measures the endpoint margin from residual zero and
+the source-term midpoint, records the smaller margin as the maximum allowable
+same-domain source-term variation bound, and compares the available expression
+and retained-trace half-width witnesses against that margin. The executable
+replay succeeds on all fifteen terms: every anchor-preserving slot has a
+positive variation-bound target, while the current expression and retained-trace
+witnesses still exceed those targets. This sharpens the next proof object to a
+directed-rounded same-domain source-term variation bound no larger than the
+recorded anchor-preserving margins.
+\texttt{buildH39RequestedY44TerminalHBudgetToSourceTermVariationReplayCandidate}
+now tests whether the directed-rounded terminal affine endpoint partition can
+serve as that narrower variation object. It joins the five terminal source-map
+boundary replay rows to the five anchor-preserving source-term target rows,
+preserves the same-domain and same-radius flags, and exhausts all six bijections
+from $h_{37},h_{36},h_{35}$ to
+\texttt{delta_squared_speed}, \texttt{sin_phi}, and \texttt{sin_delta}. The
+screen quantifies all ninety terminal-\texttt{h} assignment ratios and keeps
+the candidate fail-closed. The result is still a miss: no bijection fits the
+recorded source-term variation targets. The blocker has moved from a raw
+terminal producer interval excess to a specific terminal-\texttt{h} versus
+source-term variation-width excess under every same-domain assignment. The next
+proof object is therefore a narrower directed-rounded same-domain variation
+bound, or a real terminal-\texttt{h} to source-term identity that changes this
+comparison without breaking the same-domain radius.
+\texttt{buildH39RequestedY44TerminalHCoupledVariationCancellationScreenCandidate}
+now tests the signed coupled alternative before another independent
+all-bijection packet. It consumes the coupled \texttt{xi,zeta} terminal residual
+provider summary, requires the
+\texttt{terminal-shared-residual-affine-zeta-endpoint} dependency provenance,
+checks that the route does not export an independent $h_{35}$-$h_{37}$ box, and
+compares the signed terminal $h_{37},h_{36},h_{35}$ residual and producer sums
+against the aggregate anchor-preserving source-term residual-sum budget. The
+result is still a miss: the focused replay shows that neither signed terminal
+sum fits the aggregate anchor-preserving residual-sum budget. The blocker is
+therefore sharper than a term-assignment ambiguity. The next proof object is a
+narrower directed-rounded same-domain coupled terminal-\texttt{h} variation
+bound or a dependency-preserving producer-sum enclosure.
+\texttt{buildH39RequestedY44TerminalHCoupledProducerSumEnclosureTargetCandidate}
+now checks whether the producer-sum side of that miss can be repaired by pure
+half-width refinement. It compares the signed terminal producer-sum midpoint
+with the anchor-preserving source-term residual-sum midpoint on each same-domain
+row, then records the remaining center-preserving half-width. The focused
+packet is negative in a stronger way: the center-preserving producer half-width
+scale has minimum and maximum $0$, and the worst center gap is about
+$2.197630829585465\times10^6$ times the anchor half-width. Thus a finer
+terminal partition cannot close the replay while the present producer-sum
+center is retained. The next proof object has changed from a width-only
+enclosure to a same-domain signed-sum center identity from the coupled terminal
+$h_{37},h_{36},h_{35}$ producer sum into the source-map residual budget.
+\texttt{buildH39RequestedY44TerminalHCoupledProducerCenterIdentityDecompositionCandidate}
+now splits that center identity target into residual-center and
+producer-transform pieces. The signed terminal residual-sum center is not
+uniformly bad: at least one row is inside the anchor residual-sum budget, while
+at least one row is outside, with worst residual-center gap about
+$1.2182069616588793$ anchor half-widths. The producer side is far larger:
+worst producer-sum center gap is about
+$2.197630829585465\times10^6$ anchor half-widths, and the producer-transform
+center drift from terminal residual sum to terminal producer sum is about
+$2.197630228046393\times10^6$ anchor half-widths. The blocker is therefore a
+mixed same-domain center identity, dominated by producer-transform center
+drift but still carrying a small residual-center obligation on the rows outside
+the anchor budget.
+\texttt{buildH39RequestedY44TerminalHProducerTransformCenterDriftDecompositionCandidate}
+then decomposes that dominant producer-transform center drift across
+$h_{37},h_{36},h_{35}$. The terminal row drifts replay the aggregate drift with
+worst relative sum gap about $9.665756625456157\times10^{-11}$. This does not
+certify a provider, but it changes the blocker from an undifferentiated
+producer-transform drift to a coupled terminal-$h$ center identity. The
+dominant drift row is $h_{37}$ on every node, with worst terminal drift about
+$2.543863572411168\times10^6$ anchor half-widths. It is not a single-row
+closure target: $h_{37}$ contributes only about $0.8802005052099862$ of the
+terminal-$h$ absolute drift sum, and its signed contribution is about
+$1.1575588962408225$ times the aggregate magnitude, with opposite-sign
+$h_{35}$ and $h_{36}$ terms providing the cancellation needed to reach the
+aggregate. The next proof packet should therefore derive the coupled
+$h_{37},h_{36},h_{35}$ producer-transform center identity on the same domain
+and radius.
+\texttt{buildH39RequestedY44TerminalHProducerTransformCoupledCenterIdentityAttemptCandidate}
+now performs the first direct identity reduction. Since the projected terminal
+producer bound is the graph interval expanded symmetrically by the projected
+residual radius, its center is the terminal graph midpoint. The measured
+center drift is therefore
+$\operatorname{mid}(\text{graph})-\operatorname{mid}(\text{projected residual})$
+on the same terminal graph $\xi$ interval. The packet fits an
+aggregate-preserving signed-share vector
+$(\alpha_{37},\alpha_{36},\alpha_{35})$ satisfying
+$\alpha_{37}+\alpha_{36}+\alpha_{35}=1$, with
+$\alpha_{37}=1.1575515258827325$,
+$\alpha_{36}=-0.004916267021898505$, and
+$\alpha_{35}=-0.1526352588608338$. This rank-one signed-share law shrinks the
+worst prior drift-to-anchor scale by at least about
+$1.5705599132131122\times10^5$, but it still leaves a worst residual of about
+$16.1963259669024$ anchor half-widths. Thus the center blocker has narrowed
+from a raw coupled terminal drift to a same-domain signed-share residual
+identity. The next low-complexity comparison is the terminal successor scalar
+chain $Q_{D,35}+36Q_{G,35}$, $Q_{D,36}+37Q_{G,36}$, and
+$Q_{D,37}+38Q_{G,37}$; that comparison remains candidate-only until replayed
+executablely through the provider-boundary test.
+\texttt{buildH39RequestedY44TerminalHSuccessorScalarChainResidualComparisonCandidate}
+now performs that replay in the focused provider-boundary test. It projects
+the aggregate-preserving signed-share residual vector
+$(r_{37},r_{36},r_{35})$ onto the centered successor-scalar weights
+$(38,37,36)-37(1,1,1)=(1,0,-1)$, with the residual zero-sum audit scaled to
+the aggregate producer-transform center already used by the signed-share
+packet. This turns the prior worst residual of about $16.1963259669024$
+anchor half-widths into a worst orthogonal residual of
+$0.5573205782530721$ anchor half-widths, with minimum compression
+$12.958915028610717$. This is not a directed-rounded provider certificate,
+terminal-$h$ identity, source-term producer-image certificate, or
+expression-level $N_{38}$ provider certificate. The next missing proof object
+is the same-domain directed-rounded terminal successor-scalar centered
+residual identity needed to install the measured projection as a source-map
+provider object.
+\texttt{buildH39RequestedY44TerminalSuccessorScalarProviderBoundaryIdentityAttemptCandidate}
+now checks that installation boundary explicitly. It pairs the
+successor-scalar centered residual rows with the existing terminal-affine
+endpoint source-map boundary replay rows on the same five node domains. The
+pre-projection signed-share residual remains outside the provider budget, but
+the centered successor-scalar witness reaches the boundary: worst
+after-projection ratio is still $0.5573205782530721$, so the minimum provider
+budget slack ratio is about $0.4426794217469279$, and all terminal partition
+rows already fit the terminal-affine budget with boundary replay provenance.
+This remains candidate-only; no expression-level provider, terminal-$h$
+identity, $S_{37}$ division, shifted $R_{\varepsilon,43}$ closure, or retained
+branch is certified. The next proof object is to import or derive the
+executable $Q_D+(k+1)Q_G$ successor identities into the H39 same-domain
+terminal successor-scalar centered residual identity.
+\texttt{buildH39RequestedY44TerminalSuccessorCoefficientIdentityImportAttemptCandidate}
+now imports that evidence into the same provider-boundary replay without
+promoting the provider. It takes the H35/H36/H37 successor coefficient
+certificates, selects the same five terminal cells, and records the fifteen
+terminal witnesses
+$Q_{D,37}+38Q_{G,37}$, $Q_{D,36}+37Q_{G,36}$, and
+$Q_{D,35}+36Q_{G,35}$ for $h_{37}$, $h_{36}$, and $h_{35}$. All imported
+identity intervals contain zero and their weights match the centered
+successor-scalar handoff $(1,0,-1)$. This remains a basis-bridge attempt, not
+a terminal successor-scalar residual identity certificate: the next true
+blocker is the same-domain derivation carrying those predecessor coefficient
+identities into the H39 terminal successor-scalar centered residual vector.
+\texttt{buildH39RequestedY44TerminalSuccessorCoefficientBasisBridgeAttemptCandidate}
+now tests that bridge directly. It multiplies the imported coefficient
+identity intervals by the centered weights $(1,0,-1)$ and compares them with
+the measured H39 centered projection vector on the same five terminal cells.
+The centered projection is contained in those weighted intervals for all
+fifteen terminal rows, and the zero $h_{36}$ row matches the zero weight. This
+does not certify the bridge, because the two nonzero-weight identity intervals
+cross zero and therefore do not provide a directed-rounded nonzero normalizer
+or division. The next true blocker is a same-domain nonzero
+successor-coefficient basis normalizer or derivative identity, not another
+provider-boundary replay.
+\texttt{buildH39RequestedY44TerminalSuccessorCoefficientNormalizerSourceAttemptCandidate}
+now resolves whether that nonzero source is missing. It consumes the same
+basis-bridge attempt and the H35/H36/H37 successor coefficient certificate
+branch rows, recording the target solve-slope interval, sign, and clearance
+fields for $h_{37}$, $h_{36}$, and $h_{35}$ on the same five terminal cells.
+All thirty branch-resolved solve-slope intervals are separated from zero, so
+the branch-level normalizer source exists. The branch-collapsed solve-slope
+hulls still cross zero on every terminal row, so a branch-agnostic scalar
+normalizer remains unavailable. The blocker has changed form: the missing
+proof object is a branch-resolved successor-coefficient normalizer composition
+identity from branch solve slopes into the pair-summed centered coefficient
+basis. This remains candidate-only and certifies no basis bridge, terminal
+successor scalar residual identity, expression-level provider, $S_{37}$
+division, shifted $R_{\varepsilon,43}$ closure, retained branch, or
+directed-rounded provider.
+\texttt{buildH39RequestedY44TerminalSuccessorCoefficientBranchResolvedNormalizerCompositionAttemptCandidate}
+now extracts the branch-resolved coefficient-identity source that was only
+implicit in the direct predecessor certificates. The certificate rows emit the
+relevant branch $G$ coefficient streams, and the transformed $D$ stream is
+defined by $D_m=(1-m)G_m$. For the terminal identities $m=h+2$, so each branch
+has the formal same-$G$ cancellation $D_m+(h+1)G_m=0$. The candidate records
+that identity on all thirty branch rows and checks that the pair-summed formal
+identity refines the imported $Q_D+(h+1)Q_G$ intervals. This removes the
+branch-level coefficient-transform ambiguity. The remaining blocker is not the
+coefficient identity source; it is the missing same-domain H39 centered
+residual branch-split composition map from branch residual components into the
+separated solve-slope normalizers and same-$G$ coefficient identities. This
+packet remains candidate-only and certifies no basis bridge, terminal
+successor scalar residual identity, expression-level provider, $S_{37}$
+division, shifted $R_{\varepsilon,43}$ closure, retained branch, or
+directed-rounded provider.
+\texttt{buildH39RequestedY44TerminalSuccessorCenteredResidualBranchSplitRankAttemptCandidate}
+now tests that missing split map as a linear rank problem. It reuses the
+measured H39 centered projected residual from the basis-bridge attempt and the
+branch-resolved normalizer composition rows, then records the same-domain
+terminal equation $r_-+r_+=R$. The current executable evidence gives one
+aggregate equation for two branch residual components on each terminal row:
+over five nodes and the $h_{37}$, $h_{36}$, and $h_{35}$ rows this is thirty
+branch unknowns, fifteen equations, rank fifteen, and free dimension fifteen.
+The symmetric split $(R/2,R/2)$ is only a non-certifying placeholder, because
+the branch-antisymmetric coordinate $t$ in $(R/2+t,R/2-t)$ is still free. The
+blocker is now the same-domain branch-antisymmetric centered-residual
+coordinate or moment, not the same-$G$ coefficient identity source. This packet
+remains candidate-only and certifies no centered residual branch split,
+branch-resolved normalizer composition, basis bridge, terminal successor scalar
+residual identity, expression-level provider, $S_{37}$ division, shifted
+$R_{\varepsilon,43}$ closure, retained branch, or directed-rounded provider.
+\texttt{buildH39RequestedY44TerminalSuccessorBranchAntisymmetricCommonNormalizerAttemptCandidate}
+now tests the natural common-normalizer branch split
+$r_b=\lambda s_b$, $\lambda=R/(s_-+s_+)$, and
+$t=R(s_- - s_+)/(2(s_-+s_+))$ on the same terminal rows. The source
+normalizers are not the collapsed two-branch hull; they are the actual
+branch-resolved \texttt{solve_slope_interval} rows from the terminal
+normalizer composition packet. The executable packet records the slope-sum
+denominator $s_-+s_+$ and slope difference $s_- - s_+$ for all fifteen
+terminal rows, counts which denominator intervals are separated from zero,
+and emits candidate $\lambda$ and $t$ intervals only where interval division
+is available. A zero-crossing denominator leaves the blocker at the nonzero
+same-domain common-normalizer denominator, while separated denominators move
+the blocker to the missing proof of the common-normalizer branch-residual law.
+This packet remains candidate-only and certifies no common-normalizer law,
+centered residual branch split, branch-resolved residual components,
+branch-resolved normalizer composition, basis bridge, terminal successor
+scalar residual identity, expression-level provider, $S_{37}$ division,
+shifted $R_{\varepsilon,43}$ closure, retained branch, or directed-rounded
+provider.
+\texttt{buildH39RequestedY44TerminalSuccessorBranchAntisymmetricCommonNormalizerBoundaryReplayCandidate}
+now connects that attempt to the live source-map boundary. It consumes the
+common-normalizer attempt, the terminal successor-scalar provider-boundary
+handoff, and the direct directed-rounded shared-domain provider-boundary
+replay. The packet records the actual denominator classification for all
+fifteen terminal rows, emits branch-residual candidate rows only where the
+same-domain division by $s_-+s_+$ is available, and checks whether their
+candidate sum encloses the aggregate centered residual while the provider
+handoff stays inside budget. This proves only that the same-domain boundary
+is reached by the common-normalizer replay data; it does not certify the
+common-normalizer branch-residual law, source-term width realization,
+expression-level $N_{38}$ provider, $S_{37}$ division, shifted
+$R_{\varepsilon,43}$ closure, retained branch, or directed-rounded provider.
+The next blocker is therefore the branch-residual law itself on denominator
+available rows, or a replacement branch-antisymmetric moment if a denominator
+remains unavailable.
+\texttt{buildH39RequestedY44TerminalSuccessorBranchResidualCommonNormalizerLawProbeCandidate}
+now turns that blocker into an executable same-domain law probe. It consumes
+the common-normalizer boundary replay, the centered-residual branch-split rank
+attempt, and the source-map residual covariance target. For each terminal row
+it compares the common-normalizer $\lambda$ interval against the
+source-covariance homothetic quotient $\lambda$ interval, records denominator
+availability, checks whether the candidate branch-residual sum reconstructs
+the aggregate centered residual, and carries forward the thirty branch
+unknowns, fifteen aggregate equations, rank fifteen, and free dimension
+fifteen from the split-rank attempt. The blocker is no longer merely that the
+source-map boundary is open: the executable alternatives are now a nonzero
+same-domain denominator proof, a common-normalizer/source-covariance
+$\lambda$ identity, a branch-resolved centered-residual source object, or
+candidate branch-residual sum tightening. This remains priority-only and
+candidate-only; it certifies no common-normalizer law, centered residual
+branch split, source-term width realization, expression-level $N_{38}$
+provider, $S_{37}$ division, shifted $R_{\varepsilon,43}$ closure, retained
+branch, or directed-rounded provider.
+\texttt{buildH39RequestedY44TerminalSuccessorBranchResolvedCenteredResidualSourceObjectProjectionCandidate}
+now attacks the missing branch-resolved centered-residual source object
+directly. It intersects each terminal common-normalizer $\lambda$ interval
+with the node-local source-covariance homothetic quotient $\lambda$ interval
+and multiplies the intersection by the branch solve-slope interval $s_b$.
+The output is a thirty-row source-covariance-constrained branch residual
+projection candidate. The packet records lambda-intersection availability,
+projected branch-row availability, whether the projected two-branch sum still
+contains the aggregate centered residual, and whether the projected sum is no
+wider than the earlier common-normalizer branch-sum candidate. This narrows
+the missing-object problem to a concrete same-domain projection identity:
+either the denominator or $\lambda$ intersection still blocks the route, the
+projected sum needs tightening, or the remaining proof is that
+$r_b=\lambda s_b$ is the branch-resolved centered-residual source object. This
+remains priority-only and candidate-only; it certifies no branch-resolved
+centered-residual component, common-normalizer law, centered residual branch
+split, expression-level $N_{38}$ provider, $S_{37}$ division, shifted
+$R_{\varepsilon,43}$ closure, retained branch, or directed-rounded provider.
+\texttt{buildH39RequestedY44TerminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttemptCandidate}
+now separates the aggregate identity from the unproven branch source object.
+For denominator-available terminal rows, it records the barycentric formula
+$r_b=R s_b/(s_-+s_+)$ and the symbolic identity $r_-+r_+=R$. The packet then
+checks whether the interval replay contains the aggregate centered residual,
+whether the source-covariance quotient $\lambda$ contains the
+common-normalizer $\lambda$, and whether the source-covariance constrained
+projection still preserves the aggregate. This narrows the next proof target:
+the algebraic aggregate-preserving split is executable, but closure still
+needs either source-covariance $\lambda$ containment or a same-domain proof
+that the barycentric branch row is the actual branch-resolved centered
+residual. This remains priority-only and candidate-only; it certifies no
+branch-resolved centered-residual component, common-normalizer law, centered
+residual branch split, expression-level $N_{38}$ provider, $S_{37}$ division,
+shifted $R_{\varepsilon,43}$ closure, retained branch, or directed-rounded
+provider.
+\texttt{buildH39RequestedY44TerminalSuccessorBarycentricToSuccessorScalarHandoffAttemptCandidate}
+now compares that barycentric aggregate coordinate with the terminal
+successor-scalar centered projection before the provider-boundary remainder is
+used. On the same five terminal graph cells and the same
+$h_{37},h_{36},h_{35}$ rows, it records whether $R$ matches the
+successor-scalar centered projected residual, whether the orthogonal
+successor-scalar remainder fits the provider-boundary budget, whether the
+common-normalizer denominator is available, and whether source-covariance
+$\lambda$ containment is present. The executable replay validates all fifteen
+matches between $R$ and the successor-scalar centered projection, and all
+fifteen orthogonal remainders fit the provider-boundary budget. This narrows
+the live handoff: the centered-projection coordinate is no longer the missing
+identity, while the remaining proof still has to identify the barycentric
+branch row with the actual branch-resolved centered-residual source object.
+This remains priority-only and candidate-only; it certifies no
+successor-scalar identity, branch-resolved centered-residual source object,
+expression-level $N_{38}$ provider, $S_{37}$ division, shifted
+$R_{\varepsilon,43}$ closure, retained branch, or directed-rounded provider.
+\texttt{buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandidate}
+now compares the terminal-row enclosure witness against the source-map
+provider object on the same node, terminal $h$ row, branch, domain, and radius
+rows. It records branch interval equality, overlap, containment, endpoint
+gaps, and half-width ratios separately, then carries forward the
+successor-scalar provider-boundary handoff together with projection-sum replay
+and source-covariance $\lambda$ containment status. The validated packet now
+shows that the replay surface is executable, but all thirty terminal-witness
+branch intervals are unavailable. Branch containment against the source-map
+provider object is therefore not yet the live comparison; the next object is
+denominator-available same-domain terminal witness intervals. This remains
+priority-only and candidate-only; it certifies no terminal-row provider object
+replay, branch-resolved centered-residual source object, expression-level
+$N_{38}$ provider, $S_{37}$ division, shifted $R_{\varepsilon,43}$ closure,
+retained branch, or directed-rounded provider.
+
+\texttt{buildH39RequestedY44TerminalWitnessDenominatorRealizationAttemptCandidate}
+now threads the common-normalizer denominator $s_-+s_+$ into the terminal-row
+provider-object replay boundary. It consumes the common-normalizer attempt,
+the branch-residual common-normalizer law probe, the barycentric source-object
+attempt, and the terminal-row provider-object replay on the same five terminal
+graph cells and the same $h_{37},h_{36},h_{35}$ rows. Executable validation
+records five node rows, fifteen terminal rows, and thirty branch-slope rows.
+The current result is exact: zero denominator-available terminal rows, fifteen
+zero-crossing denominator rows, fifteen same-$g$ formal cancellation witnesses,
+fifteen terminal rows blocked by the denominator/source-object boundary,
+fifteen missing branch-resolved centered-residual source objects, and zero
+available terminal-witness branch intervals. This turns the next proof object
+from producer-width refinement into a same-domain denominator-free terminal
+branch-residual source-object identity replacing $R s_b/(s_-+s_+)$. This
+remains priority-only and candidate-only; it certifies no terminal witness
+realization, terminal-row provider object replay, branch-resolved
+centered-residual source object, expression-level $N_{38}$ provider,
+$S_{37}$ division, shifted $R_{\varepsilon,43}$ closure, retained branch, or
+directed-rounded provider.
+
 \texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
 now also probes a shared terminal-residual coordinate for
 $h_{37},h_{36},h_{35}$. Instead of assigning independent residual hulls to the
