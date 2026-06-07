@@ -3680,6 +3680,207 @@ producer-transform center drift from terminal residual sum to terminal producer
 sum, while also closing the residual-sum center rows that still sit just
 outside the anchor budget.
 
+`buildH39RequestedY44TerminalHProducerTransformCenterDriftDecompositionCandidate`
+now decomposes the dominant producer-transform center drift across the
+terminal $h_{37},h_{36},h_{35}$ rows themselves. The three terminal row drifts
+replay the aggregate coupled producer-transform drift with worst relative
+sum gap about $9.665756625456157\times10^{-11}$, so the diagnostic is now
+measuring the actual row-level center-drift accounting rather than only the
+aggregate miss. The result is still not a directed-rounded provider
+certificate. The dominant row is $h_{37}$ on all five nodes, with worst
+terminal drift about $2.543863572411168\times10^6$ anchor half-widths, but it
+accounts for only about $0.8802005052099862$ of the terminal-$h$ absolute
+drift sum. Its signed contribution is about $1.1575588962408225$ times the
+aggregate drift magnitude and is partly cancelled by the opposite-sign
+$h_{35}$ and $h_{36}$ rows. The next true blocker has therefore sharpened
+again: prove a coupled terminal-$h$ producer-transform center identity, not a
+width-only refinement and not a single terminal-$h$ correction.
+
+`buildH39RequestedY44TerminalHProducerTransformCoupledCenterIdentityAttemptCandidate`
+now tests the first direct center-identity reduction. Because the terminal
+producer bound is the terminal graph interval plus a symmetric residual
+expansion, its center is the graph midpoint, so each row drift is
+$\operatorname{mid}(\text{graph})-\operatorname{mid}(\text{projected residual})$
+on the same terminal graph $\xi$ interval. The packet fits a single
+aggregate-preserving signed-share vector
+$(\alpha_{37},\alpha_{36},\alpha_{35})$ with
+$\alpha_{37}+\alpha_{36}+\alpha_{35}=1$:
+$\alpha_{37}=1.1575515258827325$,
+$\alpha_{36}=-0.004916267021898505$, and
+$\alpha_{35}=-0.1526352588608338$. This is a real reduction: it shrinks the
+previous worst center-drift scale by at least about
+$1.5705599132131122\times10^5$. It still does not fit the anchor budget: the
+worst fitted residual is
+about $16.1963259669024$ anchor half-widths. The next blocker is therefore no
+longer the full $2.5\times10^6$-scale terminal drift, but a same-domain
+rank-one signed-share residual identity, likely to be compared next against
+the terminal successor scalar identities $Q_{D,35}+36Q_{G,35}$,
+$Q_{D,36}+37Q_{G,36}$, and $Q_{D,37}+38Q_{G,37}$.
+
+`buildH39RequestedY44TerminalHSuccessorScalarChainResidualComparisonCandidate`
+now performs that comparison executablely inside the same focused
+provider-boundary replay. It projects the aggregate-preserving signed-share
+residual vector $(r_{37},r_{36},r_{35})$ onto the centered successor-scalar
+weight vector $(38,37,36)-37(1,1,1)=(1,0,-1)$, while auditing the residual
+sum against the same aggregate producer-transform center scale used by the
+signed-share packet. This is a stronger reduction: every orthogonal residual
+after projection is inside the anchor budget, with worst ratio
+$0.5573205782530721$ anchor half-widths and minimum compression
+$12.958915028610717$ relative to the rank-one signed-share residual. The
+packet still certifies no directed-rounded provider, terminal-$h$ identity,
+source-term producer image, or expression-level $N_{38}$ provider. The next
+true blocker is the same-domain directed-rounded terminal successor-scalar
+centered residual identity that would turn this measured projection into a
+source-map provider object.
+
+`buildH39RequestedY44TerminalSuccessorScalarProviderBoundaryIdentityAttemptCandidate`
+now performs that provider-boundary handoff check directly. It consumes the
+successor-scalar centered residual comparison and pairs each same-domain node
+with the existing terminal-affine endpoint source-map boundary replay rows.
+Executablely, the pre-projection signed-share residual still exceeds the
+provider budget, but the successor-scalar centered residual witness reaches
+the boundary: the worst after-projection ratio remains
+$0.5573205782530721$, leaving at least about $0.4426794217469279$ provider
+budget slack, and all source-map boundary rows are reached with terminal
+partition provenance ready. This is still not a provider certificate. The
+missing proof object has sharpened again: import or derive the executable
+$Q_D+(k+1)Q_G$ successor identities into an H39 same-domain terminal
+successor-scalar centered residual identity.
+
+`buildH39RequestedY44TerminalSuccessorCoefficientIdentityImportAttemptCandidate`
+now performs that import as a candidate-only proof packet. It consumes the
+successor-scalar provider-boundary handoff plus the directed-rounded
+H35/H36/H37 successor coefficient certificates, extracts the matching
+`speed.0.first-y` through `speed.4.first-y` rows, and records fifteen
+terminal identity witnesses for $h_{37}$, $h_{36}$, and $h_{35}$:
+$Q_{D,37}+38Q_{G,37}$, $Q_{D,36}+37Q_{G,36}$, and
+$Q_{D,35}+36Q_{G,35}$. Each imported identity interval contains zero and the
+weights match the same centered provider-boundary handoff
+$(1,0,-1)$. The packet deliberately does not certify the terminal successor
+scalar residual identity or the expression-level provider. The blocker has
+therefore changed form: the missing mathematical object is now the
+same-domain basis bridge from those predecessor successor coefficient
+identities to the H39 terminal successor-scalar centered residual vector.
+
+`buildH39RequestedY44TerminalSuccessorCoefficientBasisBridgeAttemptCandidate`
+now tests the most direct same-domain bridge. It weights the imported
+$Q_D+(k+1)Q_G$ identity intervals by the centered successor-scalar vector
+$(1,0,-1)$ and compares them with the measured H39 centered projection vector
+on the same five terminal cells. The measured centered projection lies inside
+the weighted identity intervals on all fifteen terminal rows, including the
+zero $h_{36}$ row. The attempt still fails to become a certificate because
+the two nonzero-weight identity intervals cross zero, so no directed-rounded
+nonzero normalizer or division is available. The next true blocker is now a
+same-domain nonzero successor-coefficient basis normalizer or derivative
+identity, not another provider-boundary wrapper.
+
+`buildH39RequestedY44TerminalSuccessorCoefficientNormalizerSourceAttemptCandidate`
+now narrows that blocker. It replays the same five terminal cells through the
+H35/H36/H37 successor coefficient certificate branch rows and records the
+target solve-slope interval, sign, and clearance fields for $h_{37}$,
+$h_{36}$, and $h_{35}$. All thirty branch-resolved solve-slope intervals are
+separated from zero, so the nonzero normalizer source exists at branch level.
+However, each two-branch collapsed solve-slope hull crosses zero, so a
+branch-agnostic scalar normalizer remains unavailable. The next true blocker
+is therefore sharper: derive a branch-resolved successor-coefficient
+normalizer composition identity carrying those branch solve slopes into the
+pair-summed centered coefficient basis. This remains candidate-only and does
+not certify the basis bridge, terminal successor scalar residual identity,
+expression-level provider, $S_{37}$ division, shifted $R_{\varepsilon,43}$
+closure, retained branch, or directed-rounded provider.
+
+`buildH39RequestedY44TerminalSuccessorCoefficientBranchResolvedNormalizerCompositionAttemptCandidate`
+now proves the branch-resolved coefficient-identity source that was implicit in
+the predecessor certificates. Each branch row emits the relevant
+`G_branch_coefficients_y0_to_yN` stream, and the certificate construction uses
+the same linear transform $D_m=(1-m)G_m$. For the terminal identities
+$m=h+2$, so the formal same-$G$ branch identity
+$D_m+(h+1)G_m=0$ holds on all thirty branch rows and the pair-summed formal
+identity refines the imported $Q_D+(h+1)Q_G$ intervals. This removes the
+branch-level coefficient-transform ambiguity. The packet still does not
+certify the H39 centered residual identity because the centered residual vector
+is emitted only as terminal-row aggregate data, not as branch-resolved residual
+components. The next true blocker is now a same-domain H39 centered-residual
+branch-split composition map that connects those branch components to the
+separated solve-slope normalizer sources and same-$G$ coefficient identities.
+
+`buildH39RequestedY44TerminalSuccessorCenteredResidualBranchSplitRankAttemptCandidate`
+now sharpens that blocker algebraically. It couples the measured H39 centered
+projected residual from the basis-bridge attempt to the branch-resolved
+normalizer composition rows and records the same-domain split equation
+$r_-+r_+=R$ for each terminal row. The current evidence supplies one
+aggregate equation for two branch residual components: across the five nodes
+and the $h_{37}$, $h_{36}$, and $h_{35}$ rows, the packet records thirty
+branch unknowns, fifteen aggregate equations, rank fifteen, and free dimension
+fifteen. The symmetric split $(R/2,R/2)$ is recorded only as a non-certifying
+placeholder because the branch-antisymmetric coordinate $t$ in
+$(R/2+t,R/2-t)$ remains unconstrained. The missing proof object is therefore
+no longer just a generic composition map; it is a same-domain
+branch-antisymmetric centered-residual coordinate or moment. This packet
+remains candidate-only and does not certify the centered residual branch split,
+branch-resolved normalizer composition, basis bridge, terminal successor scalar
+residual identity, expression-level provider, $S_{37}$ division, shifted
+$R_{\varepsilon,43}$ closure, retained branch, or directed-rounded provider.
+
+`buildH39RequestedY44TerminalSuccessorBranchAntisymmetricCommonNormalizerAttemptCandidate`
+now attacks that free coordinate directly instead of adding another provider
+wrapper. It tests the same-domain common-normalizer identity
+$r_b=\lambda s_b$ with $\lambda=R/(s_-+s_+)$ and
+$t=R(s_- - s_+)/(2(s_-+s_+))$, where $s_-$ and $s_+$ are the actual
+branch-resolved `solve_slope_interval` rows from the terminal normalizer
+composition packet. The artifact records the branch slope-sum and
+slope-difference intervals on all fifteen terminal rows, counts which
+$s_-+s_+$ denominators are separated from zero, and emits $\lambda$ and $t$
+candidate intervals only where the same-domain denominator division is
+available. If any denominator crosses zero, the blocker is the nonzero
+same-domain common-normalizer denominator or a different
+branch-antisymmetric moment; if all denominators are separated, the blocker
+advances to proving the common-normalizer branch-residual law itself. This
+packet remains candidate-only and does not certify the common-normalizer law,
+the centered residual branch split, branch-resolved residual components, the
+branch-resolved normalizer composition, the basis bridge, terminal successor
+scalar residual identity, expression-level provider, $S_{37}$ division,
+shifted $R_{\varepsilon,43}$ closure, retained branch, or directed-rounded
+provider.
+
+`buildH39RequestedY44TerminalSuccessorBranchAntisymmetricCommonNormalizerBoundaryReplayCandidate`
+now replays that common-normalizer attempt through the existing source-map
+boundary instead of adding another upstream wrapper. It consumes the
+branch-antisymmetric common-normalizer attempt, the terminal successor-scalar
+provider-boundary handoff, and the direct directed-rounded shared-domain
+provider-boundary replay. For each of the fifteen terminal rows it records the
+actual $s_-+s_+$ denominator classification, emits branch-residual candidate
+rows only where the common-normalizer division is available, and compares the
+candidate branch-residual sum with the aggregate centered residual and the
+already reached provider-boundary budget. The source-map boundary is reached
+on the same domain and radius, but the packet deliberately keeps the
+common-normalizer law, source-term width realization, expression-level
+$N_{38}$ provider, shifted $R_{\varepsilon,43}$ closure, retained branch, and
+directed-rounded provider certification open. The next true blocker is the
+same-domain proof of the common-normalizer branch-residual law when the
+denominator is available, or an alternate branch-antisymmetric moment if a
+denominator row remains unavailable.
+
+`buildH39RequestedY44TerminalSuccessorBranchResidualCommonNormalizerLawProbeCandidate`
+now tests that replay against the strongest same-domain source-covariance
+evidence already available in the H39 chain. It consumes the common-normalizer
+boundary replay, the centered-residual branch-split rank attempt, and the
+source-map residual covariance target, then compares each terminal-row
+common-normalizer $\lambda$ interval with the source-covariance homothetic
+quotient $\lambda$ interval. The packet also records denominator availability,
+candidate branch-residual aggregate reconstruction, the thirty branch
+residual unknowns, the fifteen aggregate equations, rank fifteen, and free
+dimension fifteen. This changes the blocker from a generic directed-rounded
+provider-boundary replay to a fail-closed common-normalizer branch-residual
+law probe: either prove the nonzero same-domain denominator, prove the
+common-normalizer $\lambda$ identity with the source-covariance quotient,
+supply the missing branch-resolved centered-residual source object, or tighten
+the candidate branch-residual sum. The current packet remains priority-only
+and candidate-only; it certifies no common-normalizer law, branch split,
+source-term width realization, expression-level $N_{38}$ provider,
+$S_{37}$ division, shifted $R_{\varepsilon,43}$ closure, retained branch, or
+directed-rounded provider.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.

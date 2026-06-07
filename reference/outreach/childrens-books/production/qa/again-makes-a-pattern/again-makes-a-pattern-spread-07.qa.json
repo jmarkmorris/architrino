@@ -1,0 +1,20 @@
+{
+  "id": "again-makes-a-pattern-spread-07",
+  "book_slug": "again-makes-a-pattern",
+  "source_png": "reference/outreach/childrens-books/production/source/again-makes-a-pattern/again-makes-a-pattern-spread-07.png",
+  "exists": true,
+  "automated": {
+    "width": 1536,
+    "height": 1024,
+    "aspect_ratio": 1.5,
+    "saturated_non_palette_fraction": 0.4779,
+    "palette_flag": true
+  },
+  "manual_checklist": {
+    "palette": "pending",
+    "no_in_image_text": "pending",
+    "one_continuous_scene": "pending",
+    "correct_geometry": "pending"
+  },
+  "decision": "pending"
+}
