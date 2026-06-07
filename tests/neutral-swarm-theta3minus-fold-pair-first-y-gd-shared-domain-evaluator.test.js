@@ -74,6 +74,7 @@ import {
   buildH39RequestedY44TerminalHBudgetToSourceTermVariationReplayCandidate,
   buildH39RequestedY44TerminalHCoupledVariationCancellationScreenCandidate,
   buildH39RequestedY44TerminalHCoupledProducerSumEnclosureTargetCandidate,
+  buildH39RequestedY44TerminalHCoupledProducerCenterIdentityDecompositionCandidate,
   buildH39RequestedY44RowLocalN38SignedSourceSumDerivativeProviderCandidate,
   validateH39CorrelatedResidualWidthDiagnostic,
   validateH39H38NumeratorGraphLocalPartitionDiagnostic,
@@ -144,6 +145,7 @@ import {
   validateH39RequestedY44TerminalHBudgetToSourceTermVariationReplayCandidate,
   validateH39RequestedY44TerminalHCoupledVariationCancellationScreenCandidate,
   validateH39RequestedY44TerminalHCoupledProducerSumEnclosureTargetCandidate,
+  validateH39RequestedY44TerminalHCoupledProducerCenterIdentityDecompositionCandidate,
   validateH39RequestedY44RowLocalN38SignedSourceSumDerivativeProvider,
   validateH39RequestedY44SignedSourceSumDerivativeAllocationTarget,
   validateH39RequestedY44SourceMapResidualCovarianceTarget,
@@ -17095,14 +17097,19 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
     "boolean"
   );
   assert.equal(
-    typeof terminalHCoupledProducerSumEnclosureTarget
-      .any_terminal_h_coupled_producer_sum_center_gap_blocks_width_only_refinement,
-    "boolean"
+    terminalHCoupledProducerSumEnclosureTarget
+      .all_terminal_h_coupled_producer_sum_centers_inside_anchor_residual_sum_budget,
+    false
   );
   assert.equal(
-    typeof terminalHCoupledProducerSumEnclosureTarget
+    terminalHCoupledProducerSumEnclosureTarget
+      .any_terminal_h_coupled_producer_sum_center_gap_blocks_width_only_refinement,
+    true
+  );
+  assert.equal(
+    terminalHCoupledProducerSumEnclosureTarget
       .all_terminal_h_coupled_producer_sum_center_preserving_targets_positive,
-    "boolean"
+    false
   );
   assert.ok(
     Number.isFinite(
@@ -17131,47 +17138,46 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
         .max_terminal_h_signed_producer_sum_center_gap_to_anchor_half_width_ratio >=
         0
   );
-  if (
+  assert.equal(
     terminalHCoupledProducerSumEnclosureTarget
-      .all_terminal_h_coupled_producer_sum_center_preserving_targets_positive
-  ) {
-    assert.equal(
-      terminalHCoupledProducerSumEnclosureTarget
-        .terminal_h_coupled_producer_sum_enclosure_target_classification,
-      "terminal-h-coupled-producer-sum-width-refinement-target-materialized"
-    );
-    assert.equal(
-      terminalHCoupledProducerSumEnclosureTarget
-        .terminal_h_coupled_producer_sum_enclosure_target_blocker_classification,
-      "directed-rounded-coupled-terminal-h-producer-sum-half-width-refinement-needed"
-    );
-    assert.ok(
-      terminalHCoupledProducerSumEnclosureTarget
-        .max_center_preserving_required_producer_sum_half_width_scale > 0 &&
-        terminalHCoupledProducerSumEnclosureTarget
-          .max_center_preserving_required_producer_sum_half_width_scale < 1
-    );
-  } else if (
+      .min_center_preserving_required_producer_sum_half_width_scale,
+    0
+  );
+  assert.equal(
     terminalHCoupledProducerSumEnclosureTarget
-      .any_terminal_h_coupled_producer_sum_center_gap_blocks_width_only_refinement
-  ) {
-    assert.equal(
-      terminalHCoupledProducerSumEnclosureTarget
-        .terminal_h_coupled_producer_sum_enclosure_target_classification,
-      "terminal-h-coupled-producer-sum-center-gap-blocks-width-only-refinement"
-    );
-    assert.equal(
-      terminalHCoupledProducerSumEnclosureTarget
-        .terminal_h_coupled_producer_sum_enclosure_target_blocker_classification,
-      "terminal-h-to-source-map-signed-sum-center-identity-needed-before-width-refinement"
-    );
-  } else {
-    assert.equal(
-      terminalHCoupledProducerSumEnclosureTarget
-        .terminal_h_coupled_producer_sum_enclosure_target_classification,
-      "terminal-h-coupled-producer-sum-zero-width-only-center-target"
-    );
-  }
+      .max_center_preserving_required_producer_sum_half_width_scale,
+    0
+  );
+  assert.equal(
+    terminalHCoupledProducerSumEnclosureTarget
+      .min_center_preserving_candidate_uniform_width_refinement_factor,
+    null
+  );
+  assert.equal(
+    terminalHCoupledProducerSumEnclosureTarget
+      .max_center_preserving_candidate_uniform_width_refinement_factor,
+    null
+  );
+  assert.ok(
+    terminalHCoupledProducerSumEnclosureTarget
+      .max_terminal_h_signed_producer_sum_center_gap_to_anchor_half_width_ratio >
+      2_000_000
+  );
+  assert.equal(
+    terminalHCoupledProducerSumEnclosureTarget
+      .terminal_h_coupled_producer_sum_enclosure_target_classification,
+    "terminal-h-coupled-producer-sum-center-gap-blocks-width-only-refinement"
+  );
+  assert.equal(
+    terminalHCoupledProducerSumEnclosureTarget
+      .terminal_h_coupled_producer_sum_enclosure_target_blocker_classification,
+    "terminal-h-to-source-map-signed-sum-center-identity-needed-before-width-refinement"
+  );
+  assert.equal(
+    terminalHCoupledProducerSumEnclosureTarget
+      .terminal_h_coupled_producer_sum_enclosure_target_primary_missing_object_kind,
+    "terminal-h-to-source-map-signed-sum-center-identity"
+  );
   assert.ok(
     terminalHCoupledProducerSumEnclosureTarget.terminal_h_coupled_producer_sum_enclosure_target_rows.every(
       (row, index) =>
@@ -17231,6 +17237,231 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   assert.deepEqual(
     collectExactKeys(
       terminalHCoupledProducerSumEnclosureTarget,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalHCoupledProducerCenterIdentityDecomposition =
+    buildH39RequestedY44TerminalHCoupledProducerCenterIdentityDecompositionCandidate(
+      {
+        terminalHCoupledVariationCancellationScreen,
+        terminalHCoupledProducerSumEnclosureTarget,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44TerminalHCoupledProducerCenterIdentityDecompositionCandidate(
+      terminalHCoupledProducerCenterIdentityDecomposition
+    ),
+    []
+  );
+  assert.equal(
+    terminalHCoupledProducerCenterIdentityDecomposition
+      .terminal_h_coupled_producer_center_identity_decomposition_verified,
+    true
+  );
+  assert.equal(
+    terminalHCoupledProducerCenterIdentityDecomposition
+      .terminal_h_coupled_producer_center_identity_decomposition_certified,
+    false
+  );
+  assert.equal(
+    terminalHCoupledProducerCenterIdentityDecomposition
+      .terminal_h_to_source_term_identity_available,
+    false
+  );
+  assert.equal(
+    terminalHCoupledProducerCenterIdentityDecomposition
+      .terminal_h_coupled_producer_center_identity_decomposition_row_count,
+    5
+  );
+  assert.equal(
+    typeof terminalHCoupledProducerCenterIdentityDecomposition
+      .all_terminal_h_signed_residual_sum_centers_inside_anchor_residual_sum_budget,
+    "boolean"
+  );
+  assert.equal(
+    terminalHCoupledProducerCenterIdentityDecomposition
+      .all_terminal_h_signed_residual_sum_centers_inside_anchor_residual_sum_budget,
+    false
+  );
+  assert.equal(
+    typeof terminalHCoupledProducerCenterIdentityDecomposition
+      .all_terminal_h_signed_producer_sum_centers_inside_anchor_residual_sum_budget,
+    "boolean"
+  );
+  assert.equal(
+    terminalHCoupledProducerCenterIdentityDecomposition
+      .all_terminal_h_signed_producer_sum_centers_inside_anchor_residual_sum_budget,
+    false
+  );
+  assert.equal(
+    typeof terminalHCoupledProducerCenterIdentityDecomposition
+      .any_terminal_h_signed_residual_sum_center_gap_exceeds_anchor_half_width,
+    "boolean"
+  );
+  assert.equal(
+    terminalHCoupledProducerCenterIdentityDecomposition
+      .any_terminal_h_signed_residual_sum_center_gap_exceeds_anchor_half_width,
+    true
+  );
+  assert.equal(
+    typeof terminalHCoupledProducerCenterIdentityDecomposition
+      .any_terminal_h_signed_producer_transform_center_drift_exceeds_anchor_half_width,
+    "boolean"
+  );
+  assert.equal(
+    terminalHCoupledProducerCenterIdentityDecomposition
+      .any_terminal_h_signed_producer_transform_center_drift_exceeds_anchor_half_width,
+    true
+  );
+  assert.equal(
+    terminalHCoupledProducerCenterIdentityDecomposition
+      .all_terminal_h_signed_residual_and_producer_sum_centers_miss_anchor_budget,
+    false
+  );
+  assert.ok(
+    Number.isFinite(
+      terminalHCoupledProducerCenterIdentityDecomposition
+        .max_terminal_h_signed_residual_sum_center_gap_to_anchor_half_width_ratio
+    ) &&
+      terminalHCoupledProducerCenterIdentityDecomposition
+        .max_terminal_h_signed_residual_sum_center_gap_to_anchor_half_width_ratio >=
+        0
+  );
+  assert.ok(
+    Number.isFinite(
+      terminalHCoupledProducerCenterIdentityDecomposition
+        .max_terminal_h_signed_producer_sum_center_gap_to_anchor_half_width_ratio
+    ) &&
+      terminalHCoupledProducerCenterIdentityDecomposition
+        .max_terminal_h_signed_producer_sum_center_gap_to_anchor_half_width_ratio >=
+        0
+  );
+  assert.ok(
+    Number.isFinite(
+      terminalHCoupledProducerCenterIdentityDecomposition
+        .max_terminal_h_signed_producer_transform_center_drift_to_anchor_half_width_ratio
+    ) &&
+      terminalHCoupledProducerCenterIdentityDecomposition
+        .max_terminal_h_signed_producer_transform_center_drift_to_anchor_half_width_ratio >=
+        0
+  );
+  assert.ok(
+    terminalHCoupledProducerCenterIdentityDecomposition
+      .max_terminal_h_signed_residual_sum_center_gap_to_anchor_half_width_ratio >
+      1
+  );
+  assert.ok(
+    terminalHCoupledProducerCenterIdentityDecomposition
+      .max_terminal_h_signed_producer_sum_center_gap_to_anchor_half_width_ratio >
+      2_000_000
+  );
+  assert.ok(
+    terminalHCoupledProducerCenterIdentityDecomposition
+      .max_terminal_h_signed_producer_transform_center_drift_to_anchor_half_width_ratio >
+      2_000_000
+  );
+  assert.equal(
+    terminalHCoupledProducerCenterIdentityDecomposition
+      .terminal_h_coupled_producer_center_identity_decomposition_classification,
+    "mixed-terminal-h-coupled-producer-center-identity-obstruction"
+  );
+  assert.equal(
+    terminalHCoupledProducerCenterIdentityDecomposition
+      .terminal_h_coupled_producer_center_identity_decomposition_blocker_classification,
+    "mixed-terminal-h-coupled-producer-center-identity-obstruction"
+  );
+  assert.equal(
+    terminalHCoupledProducerCenterIdentityDecomposition
+      .terminal_h_coupled_producer_center_identity_decomposition_primary_missing_object_kind,
+    "mixed-terminal-h-coupled-producer-center-identity"
+  );
+  assert.ok(
+    terminalHCoupledProducerCenterIdentityDecomposition.terminal_h_coupled_producer_center_identity_decomposition_rows.some(
+      (row) =>
+        row
+          .terminal_h_signed_residual_sum_center_inside_anchor_residual_sum_budget ===
+        true
+    )
+  );
+  assert.ok(
+    terminalHCoupledProducerCenterIdentityDecomposition.terminal_h_coupled_producer_center_identity_decomposition_rows.some(
+      (row) =>
+        row
+          .terminal_h_signed_residual_sum_center_inside_anchor_residual_sum_budget ===
+        false
+    )
+  );
+  assert.ok(
+    terminalHCoupledProducerCenterIdentityDecomposition.terminal_h_coupled_producer_center_identity_decomposition_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_h_to_source_term_identity_available === false &&
+        row.coupled_variation_screen_row_status ===
+          "terminal-h-coupled-signed-sums-exceed-anchor-residual-sum-budget" &&
+        row.producer_sum_enclosure_target_row_status ===
+          "terminal-h-coupled-producer-sum-center-gap-blocks-width-only-refinement" &&
+        Array.isArray(row.terminal_h_signed_residual_sum_interval) &&
+        Array.isArray(row.terminal_h_signed_producer_sum_interval) &&
+        Array.isArray(
+          row.anchor_preserving_projected_source_term_residual_sum_interval
+        ) &&
+        Number.isFinite(row.terminal_h_signed_residual_sum_center) &&
+        Number.isFinite(row.terminal_h_signed_producer_sum_center) &&
+        Number.isFinite(
+          row.anchor_preserving_projected_residual_sum_center
+        ) &&
+        Number.isFinite(
+          row.terminal_h_signed_residual_sum_center_minus_anchor_center
+        ) &&
+        Number.isFinite(
+          row.terminal_h_signed_producer_sum_center_minus_anchor_center
+        ) &&
+        Number.isFinite(
+          row.terminal_h_signed_producer_center_minus_residual_center
+        ) &&
+        Number.isFinite(row.terminal_h_signed_residual_sum_center_gap_abs) &&
+        row.terminal_h_signed_residual_sum_center_gap_abs >= 0 &&
+        Number.isFinite(row.terminal_h_signed_producer_sum_center_gap_abs) &&
+        row.terminal_h_signed_producer_sum_center_gap_abs >= 0 &&
+        Number.isFinite(
+          row.terminal_h_signed_producer_transform_center_drift_abs
+        ) &&
+        row.terminal_h_signed_producer_transform_center_drift_abs >= 0 &&
+        typeof row
+          .terminal_h_signed_residual_sum_center_inside_anchor_residual_sum_budget ===
+          "boolean" &&
+        typeof row
+          .terminal_h_signed_producer_sum_center_inside_anchor_residual_sum_budget ===
+          "boolean" &&
+        typeof row
+          .terminal_h_signed_residual_sum_center_gap_exceeds_anchor_half_width ===
+          "boolean" &&
+        typeof row
+          .terminal_h_signed_producer_transform_center_drift_exceeds_anchor_half_width ===
+          "boolean" &&
+        Object.values(row.row_checks).every((value) => value === true) &&
+        row
+          .row_terminal_h_coupled_producer_center_identity_decomposition_verified ===
+          true &&
+        row.row_certifies_terminal_h_coupled_producer_center_identity ===
+          false &&
+        row.claim_boundary
+          .certifies_terminal_h_coupled_producer_center_identity === false &&
+        row.claim_boundary.certifies_terminal_h_to_source_term_identity ===
+          false &&
+        row.claim_boundary.certifies_expression_level_n38_provider === false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalHCoupledProducerCenterIdentityDecomposition),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalHCoupledProducerCenterIdentityDecomposition,
       FORBIDDEN_FIXED_SPEED_KEYS
     ),
     []

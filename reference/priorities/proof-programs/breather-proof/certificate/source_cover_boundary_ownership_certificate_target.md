@@ -392,6 +392,32 @@ blocker remains
 `fixed_parameter_separator_aggregate_to_same_packet_fold_impulse_or_direct_quadrature_bound_acceptance_rule_absent`;
 the accepted source-packet blocker remains
 `accepted_same_packet_fold_impulse_or_direct_quadrature_source_packet_absent`.
+The candidate-live higher-fold constants accepted interval-certified status
+current certificate-pool route exhaustion closure classifier then combines the
+proof-grade evidence dependency classifier, primitive source-packet acceptance
+evidence dependency classifier, and bridge prerequisite frontier classifier into
+a priority-only current-pool snapshot. It verifies 3 / 3 direct
+route-exhaustion source-hash locks, retains 4 / 4 frontier, 9 / 9
+bridge-locked, and 5 / 5 source-packet route source-hash locks, scans 240
+current certificate-pool JSON files before its own output, and records 0
+compatible proof-grade accepted-status evidence files plus 0 compatible
+source-packet acceptance evidence files. It records 96 separator combined route
+evidence slots and 896 row combined route evidence slots with 0 slots filled
+and 0 mechanical continuations from the current pool. This does not change the
+regular source-cover theorem target, does not authorize source-cover row
+consumption, and makes no proof-rule or primitive-acceptance decision.
+The candidate-live higher-fold constants accepted interval-certified status
+decision-frontier obligation classifier then locks the exact external inputs
+needed to continue. It verifies 4 / 4 direct source-hash locks, retains the
+3 / 3 route-exhaustion, 4 / 4 frontier, 9 / 9 bridge-locked, and 5 / 5
+source-packet route locks, and reduces the blocker to 2 explicit decision
+frontiers: proof-grade accepted-status evidence construction or
+primitive/source-packet acceptance. It records 6 proof-grade obligation
+families and 2 primitive/source-packet obligation families, 96 separator and
+896 row combined decision-frontier obligation slots, 0 slots filled, 0
+mechanical continuations from the current pool, 0 rule decisions made, 0
+primitive-acceptance decisions made, 0 accepted statuses, 0 source-packet
+acceptance rules, 0 accepted source packets, and 0 row consumption.
 Accepted atlas refs, source-packet acceptance rules, accepted
 impulse/direct-quadrature source packets, parent-complement consumption refs,
 separator certificates, row consumption, `preledger_pass`, live-ledger updates,

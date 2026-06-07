@@ -608,6 +608,36 @@ the accepted source-packet blocker remains
 It introduces no source-packet acceptance rule, accepted source packet,
 accepted interval-certified constants status, row consumption, live-ledger
 update, or branch-chart authorization.
+The candidate-live higher-fold constants accepted interval-certified status
+current certificate-pool route exhaustion closure classifier,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_interval_certified_status_current_certificate_pool_route_exhaustion_closure_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then combines the proof-grade evidence dependency classifier, primitive
+source-packet acceptance evidence dependency classifier, and bridge prerequisite
+frontier classifier into a priority-only current-pool snapshot. It verifies
+3 / 3 direct route-exhaustion source-hash locks, retains 4 / 4 frontier,
+9 / 9 bridge-locked, and 5 / 5 source-packet route source-hash locks, scans
+240 current certificate-pool JSON files before its own output, and records 0
+compatible proof-grade accepted-status evidence files plus 0 compatible
+source-packet acceptance evidence files. It records 96 separator combined route
+evidence slots and 896 row combined route evidence slots with 0 slots filled,
+0 mechanical continuations from the current pool, 0 accepted interval-certified
+constants statuses, 0 source-packet acceptance rules, 0 accepted source
+packets, and 0 row consumption. It does not change the regular source-cover
+theorem target and makes no proof-rule or primitive-acceptance decision.
+The candidate-live higher-fold constants accepted interval-certified status
+decision-frontier obligation classifier,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_interval_certified_status_decision_frontier_obligation_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then locks the exact external inputs needed to continue. It verifies 4 / 4
+direct source-hash locks, retains the 3 / 3 route-exhaustion, 4 / 4 frontier,
+9 / 9 bridge-locked, and 5 / 5 source-packet route locks, and reduces the
+blocker to 2 explicit decision frontiers: proof-grade accepted-status evidence
+construction or primitive/source-packet acceptance. It records 6 proof-grade
+obligation families and 2 primitive/source-packet obligation families, 96
+separator and 896 row combined decision-frontier obligation slots, 0 slots
+filled, 0 mechanical continuations from the current pool, 0 rule decisions
+made, 0 primitive-acceptance decisions made, 0 accepted interval-certified
+constants statuses, 0 source-packet acceptance rules, 0 accepted source
+packets, and 0 row consumption.
 The nonlinear fold-coordinate collocation tangent-matrix screen,
 `gap_opening_fresh_v10_fold_coordinate_collocation_report.nonlinear-v0.md`,
 now packages the first executable collocation-surface test: 3 homogeneous

@@ -252,6 +252,9 @@ export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_H_COUPL
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_H_COUPLED_PRODUCER_SUM_ENCLOSURE_TARGET_CANDIDATE_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-h-coupled-producer-sum-enclosure-target-candidate/v1";
 
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_H_COUPLED_PRODUCER_CENTER_IDENTITY_DECOMPOSITION_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-h-coupled-producer-center-identity-decomposition-candidate/v1";
+
 const H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS = Object.freeze([
   "delta_squared_speed",
   "sin_phi",
@@ -80323,6 +80326,840 @@ export function validateH39RequestedY44TerminalHCoupledProducerSumEnclosureTarge
     !validClaimBoundary(artifact?.claim_boundary)
   ) {
     errors.push("terminal h coupled producer-sum enclosure target must keep broad closure claims open");
+  }
+  return errors;
+}
+
+export function buildH39RequestedY44TerminalHCoupledProducerCenterIdentityDecompositionCandidate({
+  terminalHCoupledVariationCancellationScreen,
+  terminalHCoupledProducerSumEnclosureTarget,
+} = {}) {
+  const terminalHIndexes = [37, 36, 35];
+  const checkKinds = [
+    "terminal_h_coupled_variation_screen_ready",
+    "terminal_h_coupled_producer_sum_enclosure_target_ready",
+    "terminal_h_signed_sum_intervals_available",
+    "terminal_h_signed_sum_centers_measured",
+    "producer_center_gap_decomposed",
+    "same_domain_and_radius_boundaries_preserved",
+    "terminal_h_coupled_producer_center_identity_claims_remain_open",
+  ];
+  const screenReady =
+    terminalHCoupledVariationCancellationScreen?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_H_COUPLED_VARIATION_CANCELLATION_SCREEN_CANDIDATE_SCHEMA &&
+    terminalHCoupledVariationCancellationScreen
+      ?.terminal_h_coupled_variation_cancellation_screen_verified === true &&
+    terminalHCoupledVariationCancellationScreen
+      ?.terminal_h_coupled_variation_cancellation_screen_certified_directed_rounded ===
+      false;
+  const targetReady =
+    terminalHCoupledProducerSumEnclosureTarget?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_H_COUPLED_PRODUCER_SUM_ENCLOSURE_TARGET_CANDIDATE_SCHEMA &&
+    terminalHCoupledProducerSumEnclosureTarget
+      ?.terminal_h_coupled_producer_sum_enclosure_target_verified === true &&
+    terminalHCoupledProducerSumEnclosureTarget
+      ?.terminal_h_coupled_producer_sum_enclosure_target_certified_directed_rounded ===
+      false;
+  const ratioOrNull = (numerator, denominator) =>
+    finiteNonnegative(numerator) && finitePositive(denominator)
+      ? Number(numerator) / Number(denominator)
+      : null;
+  const intervalContainsPoint = (interval, point) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    Number.isFinite(Number(point)) &&
+    Number(interval[0]) <= Number(point) &&
+    Number(point) <= Number(interval[1]);
+  const validPriorScreenClaimBoundary = (claimBoundary) =>
+    claimBoundary?.defines_terminal_h_coupled_variation_cancellation_screen_only ===
+      true &&
+    claimBoundary?.certifies_terminal_h_to_source_term_identity === false &&
+    claimBoundary?.certifies_terminal_h_coupled_variation_cancellation ===
+      false &&
+    claimBoundary?.certifies_source_term_variation_bound === false &&
+    claimBoundary?.certifies_source_term_producer_image_primitive === false &&
+    claimBoundary?.certifies_source_inputs_as_directed_rounded_same_domain ===
+      false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const validPriorTargetClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_terminal_h_coupled_producer_sum_enclosure_target_only ===
+      true &&
+    claimBoundary?.certifies_terminal_h_to_source_term_identity === false &&
+    claimBoundary?.certifies_terminal_h_coupled_variation_cancellation ===
+      false &&
+    claimBoundary
+      ?.certifies_terminal_h_coupled_producer_sum_enclosure === false &&
+    claimBoundary?.certifies_source_term_variation_bound === false &&
+    claimBoundary?.certifies_source_term_producer_image_primitive === false &&
+    claimBoundary?.certifies_source_inputs_as_directed_rounded_same_domain ===
+      false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const signedDirection = (value) => {
+    const resolved = Number(value);
+    if (!Number.isFinite(resolved) || resolved === 0) {
+      return "zero-or-unresolved";
+    }
+    return resolved > 0 ? "positive" : "negative";
+  };
+  const screenRows =
+    terminalHCoupledVariationCancellationScreen
+      ?.terminal_h_coupled_variation_cancellation_screen_rows ?? [];
+  const targetRows =
+    terminalHCoupledProducerSumEnclosureTarget
+      ?.terminal_h_coupled_producer_sum_enclosure_target_rows ?? [];
+  const rows = Array.from({ length: 5 }, (_, nodeIndex) => {
+    const screenRow =
+      screenRows.find((row) => Number(row?.node_index) === nodeIndex) ?? null;
+    const targetRow =
+      targetRows.find((row) => Number(row?.node_index) === nodeIndex) ?? null;
+    const residualSumInterval = finiteOrderedIntervalOrNull(
+      screenRow?.terminal_h_signed_residual_sum_interval
+    );
+    const producerSumInterval = finiteOrderedIntervalOrNull(
+      screenRow?.terminal_h_signed_producer_sum_interval
+    );
+    const anchorResidualSumInterval = finiteOrderedIntervalOrNull(
+      screenRow?.anchor_preserving_projected_source_term_residual_sum_interval
+    );
+    const residualCenter =
+      residualSumInterval === null ? null : intervalMidpoint(residualSumInterval);
+    const producerCenter =
+      producerSumInterval === null ? null : intervalMidpoint(producerSumInterval);
+    const anchorCenter =
+      anchorResidualSumInterval === null
+        ? null
+        : intervalMidpoint(anchorResidualSumInterval);
+    const anchorHalfWidth =
+      anchorResidualSumInterval === null
+        ? null
+        : intervalHalfWidth(anchorResidualSumInterval);
+    const residualCenterSignedGap =
+      Number.isFinite(Number(residualCenter)) &&
+      Number.isFinite(Number(anchorCenter))
+        ? Number(residualCenter) - Number(anchorCenter)
+        : null;
+    const producerCenterSignedGap =
+      Number.isFinite(Number(producerCenter)) &&
+      Number.isFinite(Number(anchorCenter))
+        ? Number(producerCenter) - Number(anchorCenter)
+        : null;
+    const producerTransformCenterDrift =
+      Number.isFinite(Number(producerCenter)) &&
+      Number.isFinite(Number(residualCenter))
+        ? Number(producerCenter) - Number(residualCenter)
+        : null;
+    const residualCenterAbsGap = Number.isFinite(Number(residualCenterSignedGap))
+      ? Math.abs(Number(residualCenterSignedGap))
+      : null;
+    const producerCenterAbsGap = Number.isFinite(Number(producerCenterSignedGap))
+      ? Math.abs(Number(producerCenterSignedGap))
+      : null;
+    const producerTransformCenterDriftAbs = Number.isFinite(
+      Number(producerTransformCenterDrift)
+    )
+      ? Math.abs(Number(producerTransformCenterDrift))
+      : null;
+    const residualCenterInsideAnchor =
+      anchorResidualSumInterval !== null &&
+      Number.isFinite(Number(residualCenter)) &&
+      intervalContainsPoint(anchorResidualSumInterval, residualCenter);
+    const producerCenterInsideAnchor =
+      anchorResidualSumInterval !== null &&
+      Number.isFinite(Number(producerCenter)) &&
+      intervalContainsPoint(anchorResidualSumInterval, producerCenter);
+    const residualCenterGapExceedsAnchorHalfWidth =
+      finiteNonnegative(residualCenterAbsGap) &&
+      finiteNonnegative(anchorHalfWidth)
+        ? Number(residualCenterAbsGap) > Number(anchorHalfWidth)
+        : null;
+    const producerTransformDriftExceedsAnchorHalfWidth =
+      finiteNonnegative(producerTransformCenterDriftAbs) &&
+      finiteNonnegative(anchorHalfWidth)
+        ? Number(producerTransformCenterDriftAbs) > Number(anchorHalfWidth)
+        : null;
+    const residualDriftSameDirection =
+      signedDirection(residualCenterSignedGap) !== "zero-or-unresolved" &&
+      signedDirection(producerTransformCenterDrift) !== "zero-or-unresolved"
+        ? signedDirection(residualCenterSignedGap) ===
+          signedDirection(producerTransformCenterDrift)
+        : false;
+    const primaryGapComponent =
+      !finiteNonnegative(producerCenterAbsGap)
+        ? "unresolved"
+        : residualCenterInsideAnchor && !producerCenterInsideAnchor
+          ? "producer-transform-center-drift"
+          : !residualCenterInsideAnchor && producerCenterInsideAnchor
+            ? "residual-center-gap-compensated-by-producer-transform"
+            : finiteNonnegative(residualCenterAbsGap) &&
+                finiteNonnegative(producerTransformCenterDriftAbs) &&
+                Number(residualCenterAbsGap) >=
+                  Number(producerTransformCenterDriftAbs)
+              ? "terminal-residual-sum-center-gap"
+              : "producer-transform-center-drift";
+    const rowChecks = {
+      terminal_h_coupled_variation_screen_ready:
+        screenReady &&
+        screenRow?.row_terminal_h_coupled_variation_cancellation_screen_verified ===
+          true,
+      terminal_h_coupled_producer_sum_enclosure_target_ready:
+        targetReady &&
+        targetRow
+          ?.row_terminal_h_coupled_producer_sum_enclosure_target_verified ===
+          true,
+      terminal_h_signed_sum_intervals_available:
+        residualSumInterval !== null &&
+        producerSumInterval !== null &&
+        anchorResidualSumInterval !== null &&
+        finitePositive(anchorHalfWidth),
+      terminal_h_signed_sum_centers_measured:
+        Number.isFinite(Number(residualCenter)) &&
+        Number.isFinite(Number(producerCenter)) &&
+        Number.isFinite(Number(anchorCenter)),
+      producer_center_gap_decomposed:
+        finiteNonnegative(residualCenterAbsGap) &&
+        finiteNonnegative(producerCenterAbsGap) &&
+        finiteNonnegative(producerTransformCenterDriftAbs) &&
+        finiteNonnegative(
+          ratioOrNull(residualCenterAbsGap, anchorHalfWidth)
+        ) &&
+        finiteNonnegative(
+          ratioOrNull(producerCenterAbsGap, anchorHalfWidth)
+        ) &&
+        finiteNonnegative(
+          ratioOrNull(producerTransformCenterDriftAbs, anchorHalfWidth)
+        ),
+      same_domain_and_radius_boundaries_preserved:
+        screenRow?.row_checks?.same_domain_and_radius_boundaries_preserved ===
+          true &&
+        targetRow?.row_checks?.same_domain_and_radius_boundaries_preserved ===
+          true,
+      terminal_h_coupled_producer_center_identity_claims_remain_open:
+        screenRow?.row_certifies_terminal_h_coupled_variation_cancellation ===
+          false &&
+        targetRow?.row_certifies_terminal_h_coupled_producer_sum_enclosure ===
+          false &&
+        validPriorScreenClaimBoundary(screenRow?.claim_boundary) &&
+        validPriorTargetClaimBoundary(targetRow?.claim_boundary),
+    };
+    const rowVerified = Object.values(rowChecks).every(
+      (value) => value === true
+    );
+    return {
+      node_index: nodeIndex,
+      terminal_graph_cell_id:
+        screenRow?.terminal_graph_cell_id ??
+        targetRow?.terminal_graph_cell_id ??
+        `speed.${nodeIndex}.first-y`,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      terminal_h_coupled_producer_center_identity_decomposition_row_kind:
+        "terminal-h-coupled-producer-center-identity-decomposition-row",
+      terminal_h_indexes: [...terminalHIndexes],
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      terminal_h_to_source_term_identity_available: false,
+      coupled_variation_screen_row_status: screenRow?.row_status ?? null,
+      producer_sum_enclosure_target_row_status: targetRow?.row_status ?? null,
+      terminal_h_signed_residual_sum_interval: residualSumInterval,
+      terminal_h_signed_producer_sum_interval: producerSumInterval,
+      anchor_preserving_projected_source_term_residual_sum_interval:
+        anchorResidualSumInterval,
+      terminal_h_signed_residual_sum_center: residualCenter,
+      terminal_h_signed_producer_sum_center: producerCenter,
+      anchor_preserving_projected_residual_sum_center: anchorCenter,
+      anchor_preserving_projected_residual_sum_half_width: anchorHalfWidth,
+      terminal_h_signed_residual_sum_center_minus_anchor_center:
+        residualCenterSignedGap,
+      terminal_h_signed_producer_sum_center_minus_anchor_center:
+        producerCenterSignedGap,
+      terminal_h_signed_producer_center_minus_residual_center:
+        producerTransformCenterDrift,
+      terminal_h_signed_residual_sum_center_gap_abs: residualCenterAbsGap,
+      terminal_h_signed_producer_sum_center_gap_abs: producerCenterAbsGap,
+      terminal_h_signed_producer_transform_center_drift_abs:
+        producerTransformCenterDriftAbs,
+      terminal_h_signed_residual_sum_center_gap_to_anchor_half_width_ratio:
+        ratioOrNull(residualCenterAbsGap, anchorHalfWidth),
+      terminal_h_signed_producer_sum_center_gap_to_anchor_half_width_ratio:
+        ratioOrNull(producerCenterAbsGap, anchorHalfWidth),
+      terminal_h_signed_producer_transform_center_drift_to_anchor_half_width_ratio:
+        ratioOrNull(producerTransformCenterDriftAbs, anchorHalfWidth),
+      residual_center_gap_abs_share_of_producer_center_gap:
+        ratioOrNull(residualCenterAbsGap, producerCenterAbsGap),
+      producer_transform_center_drift_abs_share_of_producer_center_gap:
+        ratioOrNull(producerTransformCenterDriftAbs, producerCenterAbsGap),
+      terminal_h_signed_residual_sum_center_inside_anchor_residual_sum_budget:
+        residualCenterInsideAnchor,
+      terminal_h_signed_producer_sum_center_inside_anchor_residual_sum_budget:
+        producerCenterInsideAnchor,
+      terminal_h_signed_residual_sum_center_gap_exceeds_anchor_half_width:
+        residualCenterGapExceedsAnchorHalfWidth,
+      terminal_h_signed_producer_transform_center_drift_exceeds_anchor_half_width:
+        producerTransformDriftExceedsAnchorHalfWidth,
+      residual_center_gap_and_producer_transform_drift_same_direction:
+        residualDriftSameDirection,
+      required_residual_sum_center_shift_to_anchor:
+        Number.isFinite(Number(residualCenterSignedGap))
+          ? -Number(residualCenterSignedGap)
+          : null,
+      required_producer_sum_center_shift_to_anchor:
+        Number.isFinite(Number(producerCenterSignedGap))
+          ? -Number(producerCenterSignedGap)
+          : null,
+      required_producer_transform_center_correction_to_residual:
+        Number.isFinite(Number(producerTransformCenterDrift))
+          ? -Number(producerTransformCenterDrift)
+          : null,
+      center_identity_primary_gap_component_kind: primaryGapComponent,
+      row_check_kinds: Object.keys(rowChecks),
+      row_checks: rowChecks,
+      row_terminal_h_coupled_producer_center_identity_decomposition_verified:
+        rowVerified,
+      row_certifies_terminal_h_coupled_producer_center_identity: false,
+      row_status: rowVerified
+        ? producerCenterInsideAnchor && residualCenterInsideAnchor
+          ? "terminal-h-coupled-producer-center-identity-numerically-fits-certification-open"
+          : residualCenterInsideAnchor && !producerCenterInsideAnchor
+            ? "producer-transform-center-drift-blocks-anchor-center"
+            : !residualCenterInsideAnchor && !producerCenterInsideAnchor
+              ? "residual-center-and-producer-transform-centers-both-miss-anchor-budget"
+              : "residual-center-miss-compensated-by-producer-transform-center-drift"
+        : "terminal-h-coupled-producer-center-identity-decomposition-open",
+      claim_boundary: {
+        defines_terminal_h_coupled_producer_center_identity_decomposition_only:
+          true,
+        certifies_terminal_h_to_source_term_identity: false,
+        certifies_terminal_h_coupled_variation_cancellation: false,
+        certifies_terminal_h_coupled_producer_sum_enclosure: false,
+        certifies_terminal_h_coupled_producer_center_identity: false,
+        certifies_source_term_variation_bound: false,
+        certifies_source_term_producer_image_primitive: false,
+        certifies_source_inputs_as_directed_rounded_same_domain: false,
+        certifies_expression_level_n38_provider: false,
+        certifies_terminal_row_provider_enclosure: false,
+        certifies_terminal_graph_remainder_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  });
+  const allRowsVerified =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row
+          .row_terminal_h_coupled_producer_center_identity_decomposition_verified ===
+        true
+    );
+  const allResidualCentersInside =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row
+          .terminal_h_signed_residual_sum_center_inside_anchor_residual_sum_budget ===
+        true
+    );
+  const allProducerCentersInside =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row
+          .terminal_h_signed_producer_sum_center_inside_anchor_residual_sum_budget ===
+        true
+    );
+  const anyResidualCenterGapBlocks =
+    rows.some(
+      (row) =>
+        row
+          .terminal_h_signed_residual_sum_center_gap_exceeds_anchor_half_width ===
+        true
+    );
+  const anyProducerTransformDriftBlocks =
+    rows.some(
+      (row) =>
+        row
+          .terminal_h_signed_producer_transform_center_drift_exceeds_anchor_half_width ===
+        true
+    );
+  const allRowsBothMiss =
+    rows.length === 5 &&
+    rows.every(
+      (row) =>
+        row
+          .terminal_h_signed_residual_sum_center_inside_anchor_residual_sum_budget ===
+          false &&
+        row
+          .terminal_h_signed_producer_sum_center_inside_anchor_residual_sum_budget ===
+          false
+    );
+  const aggregateChecks = {
+    terminal_h_coupled_variation_screen_ready:
+      screenReady &&
+      terminalHCoupledVariationCancellationScreen
+        ?.terminal_h_coupled_variation_cancellation_screen_row_count === 5,
+    terminal_h_coupled_producer_sum_enclosure_target_ready:
+      targetReady &&
+      terminalHCoupledProducerSumEnclosureTarget
+        ?.terminal_h_coupled_producer_sum_enclosure_target_row_count === 5,
+    terminal_h_signed_sum_intervals_available:
+      rows.length === 5 &&
+      rows.every(
+        (row) =>
+          row.row_checks?.terminal_h_signed_sum_intervals_available === true
+      ),
+    terminal_h_signed_sum_centers_measured:
+      rows.length === 5 &&
+      rows.every(
+        (row) =>
+          row.row_checks?.terminal_h_signed_sum_centers_measured === true
+      ),
+    producer_center_gap_decomposed:
+      rows.length === 5 &&
+      rows.every(
+        (row) => row.row_checks?.producer_center_gap_decomposed === true
+      ),
+    same_domain_and_radius_boundaries_preserved:
+      rows.length === 5 &&
+      rows.every(
+        (row) =>
+          row.row_checks?.same_domain_and_radius_boundaries_preserved === true
+      ),
+    terminal_h_coupled_producer_center_identity_claims_remain_open:
+      rows.length === 5 &&
+      rows.every(
+        (row) =>
+          row.row_checks
+            ?.terminal_h_coupled_producer_center_identity_claims_remain_open ===
+          true
+      ),
+  };
+  const decompositionVerified =
+    allRowsVerified && Object.values(aggregateChecks).every((value) => value === true);
+  const classification = decompositionVerified
+    ? allResidualCentersInside && allProducerCentersInside
+      ? "terminal-h-coupled-producer-center-identity-numerically-fits-certification-open"
+      : allResidualCentersInside && !allProducerCentersInside
+        ? "producer-transform-center-drift-blocks-anchor-center"
+        : allRowsBothMiss
+          ? "residual-center-and-producer-transform-centers-both-miss-anchor-budget"
+          : "mixed-terminal-h-coupled-producer-center-identity-obstruction"
+    : "terminal-h-coupled-producer-center-identity-decomposition-open";
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_H_COUPLED_PRODUCER_CENTER_IDENTITY_DECOMPOSITION_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-terminal-h-coupled-producer-center-identity-decomposition-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-terminal-h-coupled-producer-center-identity-decomposition",
+    target_kind:
+      "candidate-requested-y44-terminal-h-coupled-producer-center-identity-decomposition",
+    terminal_h_coupled_variation_screen_schema:
+      terminalHCoupledVariationCancellationScreen?.schema ?? null,
+    terminal_h_coupled_producer_sum_enclosure_target_schema:
+      terminalHCoupledProducerSumEnclosureTarget?.schema ?? null,
+    proof_status:
+      "candidate-terminal-h-coupled-producer-center-identity-decomposition-certification-open",
+    decomposition_kind:
+      "terminal-residual-center-plus-producer-transform-center-drift-to-anchor-budget",
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    terminal_h_indexes: [...terminalHIndexes],
+    source_terms_preserved_signed_together: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    terminal_h_to_source_term_identity_available: false,
+    terminal_h_coupled_producer_center_identity_decomposition_check_kinds: [
+      ...checkKinds,
+    ],
+    terminal_h_coupled_producer_center_identity_decomposition_checks:
+      aggregateChecks,
+    terminal_h_coupled_producer_center_identity_decomposition_verified:
+      decompositionVerified,
+    terminal_h_coupled_producer_center_identity_decomposition_certified:
+      false,
+    terminal_h_coupled_producer_center_identity_decomposition_row_count:
+      rows.length,
+    all_terminal_h_signed_residual_sum_centers_inside_anchor_residual_sum_budget:
+      allResidualCentersInside,
+    all_terminal_h_signed_producer_sum_centers_inside_anchor_residual_sum_budget:
+      allProducerCentersInside,
+    any_terminal_h_signed_residual_sum_center_gap_exceeds_anchor_half_width:
+      anyResidualCenterGapBlocks,
+    any_terminal_h_signed_producer_transform_center_drift_exceeds_anchor_half_width:
+      anyProducerTransformDriftBlocks,
+    all_terminal_h_signed_residual_and_producer_sum_centers_miss_anchor_budget:
+      allRowsBothMiss,
+    max_terminal_h_signed_residual_sum_center_gap_to_anchor_half_width_ratio:
+      finiteMaximum(
+        rows.map(
+          (row) =>
+            row
+              .terminal_h_signed_residual_sum_center_gap_to_anchor_half_width_ratio
+        )
+      ),
+    max_terminal_h_signed_producer_sum_center_gap_to_anchor_half_width_ratio:
+      finiteMaximum(
+        rows.map(
+          (row) =>
+            row
+              .terminal_h_signed_producer_sum_center_gap_to_anchor_half_width_ratio
+        )
+      ),
+    max_terminal_h_signed_producer_transform_center_drift_to_anchor_half_width_ratio:
+      finiteMaximum(
+        rows.map(
+          (row) =>
+            row
+              .terminal_h_signed_producer_transform_center_drift_to_anchor_half_width_ratio
+        )
+      ),
+    terminal_h_coupled_producer_center_identity_decomposition_rows: rows,
+    terminal_h_coupled_producer_center_identity_decomposition_classification:
+      classification,
+    terminal_h_coupled_producer_center_identity_decomposition_blocker_classification:
+      decompositionVerified
+        ? allResidualCentersInside && allProducerCentersInside
+          ? "terminal-h-to-source-map-signed-sum-identity-open-after-center-fit"
+          : allResidualCentersInside && !allProducerCentersInside
+            ? "producer-transform-center-drift-identity-needed"
+            : allRowsBothMiss
+              ? "terminal-residual-center-identity-and-producer-transform-center-drift-identity-needed"
+              : "mixed-terminal-h-coupled-producer-center-identity-obstruction"
+        : "terminal-h-coupled-producer-center-identity-decomposition-open",
+    terminal_h_coupled_producer_center_identity_decomposition_primary_missing_object_kind:
+      decompositionVerified
+        ? allResidualCentersInside && allProducerCentersInside
+          ? "terminal-h-to-source-map-signed-sum-identity"
+          : allResidualCentersInside && !allProducerCentersInside
+            ? "terminal-producer-transform-center-identity"
+            : allRowsBothMiss
+              ? "terminal-residual-sum-center-identity-plus-producer-transform-center-identity"
+              : "mixed-terminal-h-coupled-producer-center-identity"
+        : "terminal-h-coupled-producer-center-identity-decomposition",
+    next_certificate_object:
+      "same-domain center identity decomposing the coupled terminal h37,h36,h35 residual-sum center and producer-transform center drift into the source-map residual budget",
+    candidate_certificate_route:
+      "This diagnostic subtracts centers only. It decomposes the current producer-sum center miss into terminal residual-sum center gap plus producer-transform center drift against the same anchor-preserving source-term residual-sum budget. It does not certify a directed-rounded provider, a source-term producer image, or a terminal h to source-term identity.",
+    claim_boundary: {
+      defines_terminal_h_coupled_producer_center_identity_decomposition_only:
+        true,
+      certifies_terminal_h_to_source_term_identity: false,
+      certifies_terminal_h_coupled_variation_cancellation: false,
+      certifies_terminal_h_coupled_producer_sum_enclosure: false,
+      certifies_terminal_h_coupled_producer_center_identity: false,
+      certifies_source_term_variation_bound: false,
+      certifies_source_term_producer_image_primitive: false,
+      certifies_source_inputs_as_directed_rounded_same_domain: false,
+      certifies_expression_level_n38_provider: false,
+      certifies_terminal_row_provider_enclosure: false,
+      certifies_terminal_graph_remainder_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+export function validateH39RequestedY44TerminalHCoupledProducerCenterIdentityDecompositionCandidate(
+  artifact
+) {
+  const errors = [];
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const sameTerminalHIndexes = (indexes) =>
+    Array.isArray(indexes) &&
+    indexes.length === 3 &&
+    indexes[0] === 37 &&
+    indexes[1] === 36 &&
+    indexes[2] === 35;
+  const sameStringSet = (left, right) =>
+    Array.isArray(left) &&
+    left.length === right.length &&
+    right.every((value) => left.includes(value));
+  const hasOrderedFiniteInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    Number.isFinite(Number(interval[0])) &&
+    Number.isFinite(Number(interval[1])) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const validClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_terminal_h_coupled_producer_center_identity_decomposition_only ===
+      true &&
+    claimBoundary?.certifies_terminal_h_to_source_term_identity === false &&
+    claimBoundary?.certifies_terminal_h_coupled_variation_cancellation ===
+      false &&
+    claimBoundary
+      ?.certifies_terminal_h_coupled_producer_sum_enclosure === false &&
+    claimBoundary
+      ?.certifies_terminal_h_coupled_producer_center_identity === false &&
+    claimBoundary?.certifies_source_term_variation_bound === false &&
+    claimBoundary?.certifies_source_term_producer_image_primitive === false &&
+    claimBoundary?.certifies_source_inputs_as_directed_rounded_same_domain ===
+      false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const expectedCheckKinds = [
+    "terminal_h_coupled_variation_screen_ready",
+    "terminal_h_coupled_producer_sum_enclosure_target_ready",
+    "terminal_h_signed_sum_intervals_available",
+    "terminal_h_signed_sum_centers_measured",
+    "producer_center_gap_decomposed",
+    "same_domain_and_radius_boundaries_preserved",
+    "terminal_h_coupled_producer_center_identity_claims_remain_open",
+  ];
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_H_COUPLED_PRODUCER_CENTER_IDENTITY_DECOMPOSITION_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 requested-y44 terminal h coupled producer center identity decomposition candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-terminal-h-coupled-producer-center-identity-decomposition-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-terminal-h-coupled-producer-center-identity-decomposition" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-terminal-h-coupled-producer-center-identity-decomposition" ||
+    artifact?.terminal_h_coupled_variation_screen_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_H_COUPLED_VARIATION_CANCELLATION_SCREEN_CANDIDATE_SCHEMA ||
+    artifact?.terminal_h_coupled_producer_sum_enclosure_target_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_H_COUPLED_PRODUCER_SUM_ENCLOSURE_TARGET_CANDIDATE_SCHEMA ||
+    artifact?.proof_status !==
+      "candidate-terminal-h-coupled-producer-center-identity-decomposition-certification-open" ||
+    artifact?.decomposition_kind !==
+      "terminal-residual-center-plus-producer-transform-center-drift-to-anchor-budget" ||
+    artifact?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    !sameTerminalHIndexes(artifact?.terminal_h_indexes) ||
+    !sameTerms(artifact?.source_terms_preserved_signed_together) ||
+    artifact?.terminal_h_to_source_term_identity_available !== false ||
+    !sameStringSet(
+      artifact
+        ?.terminal_h_coupled_producer_center_identity_decomposition_check_kinds,
+      expectedCheckKinds
+    )
+  ) {
+    errors.push("terminal h coupled producer center decomposition metadata must identify the center identity split");
+  }
+  if (
+    expectedCheckKinds.some(
+      (kind) =>
+        artifact
+          ?.terminal_h_coupled_producer_center_identity_decomposition_checks?.[
+          kind
+        ] !== true
+    ) ||
+    artifact
+      ?.terminal_h_coupled_producer_center_identity_decomposition_verified !==
+      true ||
+    artifact
+      ?.terminal_h_coupled_producer_center_identity_decomposition_certified !==
+      false ||
+    artifact
+      ?.terminal_h_coupled_producer_center_identity_decomposition_row_count !==
+      5 ||
+    typeof artifact
+      ?.all_terminal_h_signed_residual_sum_centers_inside_anchor_residual_sum_budget !==
+      "boolean" ||
+    typeof artifact
+      ?.all_terminal_h_signed_producer_sum_centers_inside_anchor_residual_sum_budget !==
+      "boolean" ||
+    typeof artifact
+      ?.any_terminal_h_signed_residual_sum_center_gap_exceeds_anchor_half_width !==
+      "boolean" ||
+    typeof artifact
+      ?.any_terminal_h_signed_producer_transform_center_drift_exceeds_anchor_half_width !==
+      "boolean" ||
+    typeof artifact
+      ?.all_terminal_h_signed_residual_and_producer_sum_centers_miss_anchor_budget !==
+      "boolean" ||
+    !finiteNonnegative(
+      artifact
+        ?.max_terminal_h_signed_residual_sum_center_gap_to_anchor_half_width_ratio
+    ) ||
+    !finiteNonnegative(
+      artifact
+        ?.max_terminal_h_signed_producer_sum_center_gap_to_anchor_half_width_ratio
+    ) ||
+    !finiteNonnegative(
+      artifact
+        ?.max_terminal_h_signed_producer_transform_center_drift_to_anchor_half_width_ratio
+    ) ||
+    ![
+      "terminal-h-coupled-producer-center-identity-numerically-fits-certification-open",
+      "producer-transform-center-drift-blocks-anchor-center",
+      "residual-center-and-producer-transform-centers-both-miss-anchor-budget",
+      "mixed-terminal-h-coupled-producer-center-identity-obstruction",
+      "terminal-h-coupled-producer-center-identity-decomposition-open",
+    ].includes(
+      artifact
+        ?.terminal_h_coupled_producer_center_identity_decomposition_classification
+    ) ||
+    ![
+      "terminal-h-to-source-map-signed-sum-identity-open-after-center-fit",
+      "producer-transform-center-drift-identity-needed",
+      "terminal-residual-center-identity-and-producer-transform-center-drift-identity-needed",
+      "mixed-terminal-h-coupled-producer-center-identity-obstruction",
+      "terminal-h-coupled-producer-center-identity-decomposition-open",
+    ].includes(
+      artifact
+        ?.terminal_h_coupled_producer_center_identity_decomposition_blocker_classification
+    ) ||
+    ![
+      "terminal-h-to-source-map-signed-sum-identity",
+      "terminal-producer-transform-center-identity",
+      "terminal-residual-sum-center-identity-plus-producer-transform-center-identity",
+      "mixed-terminal-h-coupled-producer-center-identity",
+      "terminal-h-coupled-producer-center-identity-decomposition",
+    ].includes(
+      artifact
+        ?.terminal_h_coupled_producer_center_identity_decomposition_primary_missing_object_kind
+    )
+  ) {
+    errors.push("terminal h coupled producer center decomposition aggregate must quantify the center obstruction and remain uncertified");
+  }
+  const rows =
+    artifact?.terminal_h_coupled_producer_center_identity_decomposition_rows ??
+    [];
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== 5 ||
+    !rows.every(
+      (row, index) =>
+        row?.node_index === index &&
+        row?.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+        row?.required_xi_derivative_order === 4 &&
+        row
+          ?.terminal_h_coupled_producer_center_identity_decomposition_row_kind ===
+          "terminal-h-coupled-producer-center-identity-decomposition-row" &&
+        sameTerminalHIndexes(row?.terminal_h_indexes) &&
+        sameTerms(row?.source_terms_preserved_signed_together) &&
+        row?.terminal_h_to_source_term_identity_available === false &&
+        hasOrderedFiniteInterval(row?.terminal_h_signed_residual_sum_interval) &&
+        hasOrderedFiniteInterval(row?.terminal_h_signed_producer_sum_interval) &&
+        hasOrderedFiniteInterval(
+          row?.anchor_preserving_projected_source_term_residual_sum_interval
+        ) &&
+        Number.isFinite(Number(row?.terminal_h_signed_residual_sum_center)) &&
+        Number.isFinite(Number(row?.terminal_h_signed_producer_sum_center)) &&
+        Number.isFinite(
+          Number(row?.anchor_preserving_projected_residual_sum_center)
+        ) &&
+        finitePositive(
+          row?.anchor_preserving_projected_residual_sum_half_width
+        ) &&
+        Number.isFinite(
+          Number(row?.terminal_h_signed_residual_sum_center_minus_anchor_center)
+        ) &&
+        Number.isFinite(
+          Number(row?.terminal_h_signed_producer_sum_center_minus_anchor_center)
+        ) &&
+        Number.isFinite(
+          Number(row?.terminal_h_signed_producer_center_minus_residual_center)
+        ) &&
+        finiteNonnegative(row?.terminal_h_signed_residual_sum_center_gap_abs) &&
+        finiteNonnegative(row?.terminal_h_signed_producer_sum_center_gap_abs) &&
+        finiteNonnegative(
+          row?.terminal_h_signed_producer_transform_center_drift_abs
+        ) &&
+        finiteNonnegative(
+          row
+            ?.terminal_h_signed_residual_sum_center_gap_to_anchor_half_width_ratio
+        ) &&
+        finiteNonnegative(
+          row
+            ?.terminal_h_signed_producer_sum_center_gap_to_anchor_half_width_ratio
+        ) &&
+        finiteNonnegative(
+          row
+            ?.terminal_h_signed_producer_transform_center_drift_to_anchor_half_width_ratio
+        ) &&
+        finiteNonnegative(
+          row?.residual_center_gap_abs_share_of_producer_center_gap
+        ) &&
+        finiteNonnegative(
+          row?.producer_transform_center_drift_abs_share_of_producer_center_gap
+        ) &&
+        typeof row
+          ?.terminal_h_signed_residual_sum_center_inside_anchor_residual_sum_budget ===
+          "boolean" &&
+        typeof row
+          ?.terminal_h_signed_producer_sum_center_inside_anchor_residual_sum_budget ===
+          "boolean" &&
+        typeof row
+          ?.terminal_h_signed_residual_sum_center_gap_exceeds_anchor_half_width ===
+          "boolean" &&
+        typeof row
+          ?.terminal_h_signed_producer_transform_center_drift_exceeds_anchor_half_width ===
+          "boolean" &&
+        typeof row?.residual_center_gap_and_producer_transform_drift_same_direction ===
+          "boolean" &&
+        Number.isFinite(Number(row?.required_residual_sum_center_shift_to_anchor)) &&
+        Number.isFinite(Number(row?.required_producer_sum_center_shift_to_anchor)) &&
+        Number.isFinite(
+          Number(row?.required_producer_transform_center_correction_to_residual)
+        ) &&
+        [
+          "terminal-residual-sum-center-gap",
+          "producer-transform-center-drift",
+          "residual-center-gap-compensated-by-producer-transform",
+          "unresolved",
+        ].includes(row?.center_identity_primary_gap_component_kind) &&
+        sameStringSet(row?.row_check_kinds, expectedCheckKinds) &&
+        expectedCheckKinds.every(
+          (kind) => row?.row_checks?.[kind] === true
+        ) &&
+        row
+          ?.row_terminal_h_coupled_producer_center_identity_decomposition_verified ===
+          true &&
+        row?.row_certifies_terminal_h_coupled_producer_center_identity ===
+          false &&
+        [
+          "terminal-h-coupled-producer-center-identity-numerically-fits-certification-open",
+          "producer-transform-center-drift-blocks-anchor-center",
+          "residual-center-and-producer-transform-centers-both-miss-anchor-budget",
+          "residual-center-miss-compensated-by-producer-transform-center-drift",
+          "terminal-h-coupled-producer-center-identity-decomposition-open",
+        ].includes(row?.row_status) &&
+        validClaimBoundary(row?.claim_boundary)
+    )
+  ) {
+    errors.push("terminal h coupled producer center decomposition rows must quantify residual centers, producer centers, and producer-transform drift");
+  }
+  if (
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string" ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("terminal h coupled producer center decomposition must keep broad closure claims open");
   }
   return errors;
 }

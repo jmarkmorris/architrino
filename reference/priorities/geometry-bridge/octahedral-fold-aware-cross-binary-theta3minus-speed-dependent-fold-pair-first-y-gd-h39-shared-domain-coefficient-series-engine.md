@@ -3225,6 +3225,31 @@ sum fits the aggregate anchor-preserving residual-sum budget. The blocker is
 therefore sharper than a term-assignment ambiguity. The next proof object is a
 narrower directed-rounded same-domain coupled terminal-\texttt{h} variation
 bound or a dependency-preserving producer-sum enclosure.
+\texttt{buildH39RequestedY44TerminalHCoupledProducerSumEnclosureTargetCandidate}
+now checks whether the producer-sum side of that miss can be repaired by pure
+half-width refinement. It compares the signed terminal producer-sum midpoint
+with the anchor-preserving source-term residual-sum midpoint on each same-domain
+row, then records the remaining center-preserving half-width. The focused
+packet is negative in a stronger way: the center-preserving producer half-width
+scale has minimum and maximum $0$, and the worst center gap is about
+$2.197630829585465\times10^6$ times the anchor half-width. Thus a finer
+terminal partition cannot close the replay while the present producer-sum
+center is retained. The next proof object has changed from a width-only
+enclosure to a same-domain signed-sum center identity from the coupled terminal
+$h_{37},h_{36},h_{35}$ producer sum into the source-map residual budget.
+\texttt{buildH39RequestedY44TerminalHCoupledProducerCenterIdentityDecompositionCandidate}
+now splits that center identity target into residual-center and
+producer-transform pieces. The signed terminal residual-sum center is not
+uniformly bad: at least one row is inside the anchor residual-sum budget, while
+at least one row is outside, with worst residual-center gap about
+$1.2182069616588793$ anchor half-widths. The producer side is far larger:
+worst producer-sum center gap is about
+$2.197630829585465\times10^6$ anchor half-widths, and the producer-transform
+center drift from terminal residual sum to terminal producer sum is about
+$2.197630228046393\times10^6$ anchor half-widths. The blocker is therefore a
+mixed same-domain center identity, dominated by producer-transform center
+drift but still carrying a small residual-center obligation on the rows outside
+the anchor budget.
 \texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
 now also probes a shared terminal-residual coordinate for
 $h_{37},h_{36},h_{35}$. Instead of assigning independent residual hulls to the

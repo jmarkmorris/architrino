@@ -3652,6 +3652,34 @@ next true object is a narrower directed-rounded same-domain coupled
 $h_{37},h_{36},h_{35}$ variation bound or a dependency-preserving producer-sum
 enclosure, not another independent all-bijection screen.
 
+`buildH39RequestedY44TerminalHCoupledProducerSumEnclosureTargetCandidate` now
+tests whether that producer-sum miss is width-only. It compares, row by row,
+the midpoint and half-width of the signed terminal producer-sum interval against
+the anchor-preserving source-term residual-sum interval. The measured result is
+not a positive refinement target: every center-preserving producer half-width
+scale collapses to zero, and the worst producer-sum center gap is about
+$2.197630829585465\times10^6$ times the anchor half-width. Thus partition
+refinement alone cannot close the current replay while preserving the measured
+producer-sum center. The next true blocker is a same-domain signed-sum center
+identity from the coupled terminal $h_{37},h_{36},h_{35}$ producer sum into the
+source-map residual budget, before half-width refinement can matter.
+
+`buildH39RequestedY44TerminalHCoupledProducerCenterIdentityDecompositionCandidate`
+now decomposes that center miss. It compares the signed terminal residual-sum
+center, the signed terminal producer-sum center, and the anchor-preserving
+source-term residual-sum center on the same five rows. The obstruction is
+mixed rather than a single clean residual-center failure: some terminal
+residual-sum centers already lie inside the anchor residual-sum budget and some
+do not. The worst residual-center gap is only about
+$1.2182069616588793$ anchor half-widths, while the worst producer-sum center
+gap is about $2.197630829585465\times10^6$ anchor half-widths and the worst
+producer-transform center drift is about
+$2.197630228046393\times10^6$ anchor half-widths. The next true blocker is
+therefore a mixed same-domain center identity: first control the dominant
+producer-transform center drift from terminal residual sum to terminal producer
+sum, while also closing the residual-sum center rows that still sit just
+outside the anchor budget.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.
