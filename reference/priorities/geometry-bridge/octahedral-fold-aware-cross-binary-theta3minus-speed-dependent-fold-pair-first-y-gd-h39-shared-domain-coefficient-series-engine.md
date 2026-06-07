@@ -3438,6 +3438,73 @@ candidate-only; it certifies no common-normalizer law, centered residual
 branch split, source-term width realization, expression-level $N_{38}$
 provider, $S_{37}$ division, shifted $R_{\varepsilon,43}$ closure, retained
 branch, or directed-rounded provider.
+\texttt{buildH39RequestedY44TerminalSuccessorBranchResolvedCenteredResidualSourceObjectProjectionCandidate}
+now attacks the missing branch-resolved centered-residual source object
+directly. It intersects each terminal common-normalizer $\lambda$ interval
+with the node-local source-covariance homothetic quotient $\lambda$ interval
+and multiplies the intersection by the branch solve-slope interval $s_b$.
+The output is a thirty-row source-covariance-constrained branch residual
+projection candidate. The packet records lambda-intersection availability,
+projected branch-row availability, whether the projected two-branch sum still
+contains the aggregate centered residual, and whether the projected sum is no
+wider than the earlier common-normalizer branch-sum candidate. This narrows
+the missing-object problem to a concrete same-domain projection identity:
+either the denominator or $\lambda$ intersection still blocks the route, the
+projected sum needs tightening, or the remaining proof is that
+$r_b=\lambda s_b$ is the branch-resolved centered-residual source object. This
+remains priority-only and candidate-only; it certifies no branch-resolved
+centered-residual component, common-normalizer law, centered residual branch
+split, expression-level $N_{38}$ provider, $S_{37}$ division, shifted
+$R_{\varepsilon,43}$ closure, retained branch, or directed-rounded provider.
+\texttt{buildH39RequestedY44TerminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttemptCandidate}
+now separates the aggregate identity from the unproven branch source object.
+For denominator-available terminal rows, it records the barycentric formula
+$r_b=R s_b/(s_-+s_+)$ and the symbolic identity $r_-+r_+=R$. The packet then
+checks whether the interval replay contains the aggregate centered residual,
+whether the source-covariance quotient $\lambda$ contains the
+common-normalizer $\lambda$, and whether the source-covariance constrained
+projection still preserves the aggregate. This narrows the next proof target:
+the algebraic aggregate-preserving split is executable, but closure still
+needs either source-covariance $\lambda$ containment or a same-domain proof
+that the barycentric branch row is the actual branch-resolved centered
+residual. This remains priority-only and candidate-only; it certifies no
+branch-resolved centered-residual component, common-normalizer law, centered
+residual branch split, expression-level $N_{38}$ provider, $S_{37}$ division,
+shifted $R_{\varepsilon,43}$ closure, retained branch, or directed-rounded
+provider.
+\texttt{buildH39RequestedY44TerminalSuccessorBarycentricToSuccessorScalarHandoffAttemptCandidate}
+now compares that barycentric aggregate coordinate with the terminal
+successor-scalar centered projection before the provider-boundary remainder is
+used. On the same five terminal graph cells and the same
+$h_{37},h_{36},h_{35}$ rows, it records whether $R$ matches the
+successor-scalar centered projected residual, whether the orthogonal
+successor-scalar remainder fits the provider-boundary budget, whether the
+common-normalizer denominator is available, and whether source-covariance
+$\lambda$ containment is present. The executable replay validates all fifteen
+matches between $R$ and the successor-scalar centered projection, and all
+fifteen orthogonal remainders fit the provider-boundary budget. This narrows
+the live handoff: the centered-projection coordinate is no longer the missing
+identity, while the remaining proof still has to identify the barycentric
+branch row with the actual branch-resolved centered-residual source object.
+This remains priority-only and candidate-only; it certifies no
+successor-scalar identity, branch-resolved centered-residual source object,
+expression-level $N_{38}$ provider, $S_{37}$ division, shifted
+$R_{\varepsilon,43}$ closure, retained branch, or directed-rounded provider.
+\texttt{buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandidate}
+now compares the terminal-row enclosure witness against the source-map
+provider object on the same node, terminal $h$ row, branch, domain, and radius
+rows. It records branch interval equality, overlap, containment, endpoint
+gaps, and half-width ratios separately, then carries forward the
+successor-scalar provider-boundary handoff together with projection-sum replay
+and source-covariance $\lambda$ containment status. The validated packet now
+shows that the replay surface is executable, but all thirty terminal-witness
+branch intervals are unavailable. Branch containment against the source-map
+provider object is therefore not yet the live comparison; the next object is
+denominator-available same-domain terminal witness intervals. This remains
+priority-only and candidate-only; it certifies no terminal-row provider object
+replay, branch-resolved centered-residual source object, expression-level
+$N_{38}$ provider, $S_{37}$ division, shifted $R_{\varepsilon,43}$ closure,
+retained branch, or directed-rounded provider.
 \texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
 now also probes a shared terminal-residual coordinate for
 $h_{37},h_{36},h_{35}$. Instead of assigning independent residual hulls to the

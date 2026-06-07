@@ -87,6 +87,10 @@ import {
   buildH39RequestedY44TerminalSuccessorBranchAntisymmetricCommonNormalizerAttemptCandidate,
   buildH39RequestedY44TerminalSuccessorBranchAntisymmetricCommonNormalizerBoundaryReplayCandidate,
   buildH39RequestedY44TerminalSuccessorBranchResidualCommonNormalizerLawProbeCandidate,
+  buildH39RequestedY44TerminalSuccessorBranchResolvedCenteredResidualSourceObjectProjectionCandidate,
+  buildH39RequestedY44TerminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttemptCandidate,
+  buildH39RequestedY44TerminalSuccessorBarycentricToSuccessorScalarHandoffAttemptCandidate,
+  buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandidate,
   buildH39RequestedY44RowLocalN38SignedSourceSumDerivativeProviderCandidate,
   validateH39CorrelatedResidualWidthDiagnostic,
   validateH39H38NumeratorGraphLocalPartitionDiagnostic,
@@ -170,6 +174,10 @@ import {
   validateH39RequestedY44TerminalSuccessorBranchAntisymmetricCommonNormalizerAttemptCandidate,
   validateH39RequestedY44TerminalSuccessorBranchAntisymmetricCommonNormalizerBoundaryReplayCandidate,
   validateH39RequestedY44TerminalSuccessorBranchResidualCommonNormalizerLawProbeCandidate,
+  validateH39RequestedY44TerminalSuccessorBranchResolvedCenteredResidualSourceObjectProjectionCandidate,
+  validateH39RequestedY44TerminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttemptCandidate,
+  validateH39RequestedY44TerminalSuccessorBarycentricToSuccessorScalarHandoffAttemptCandidate,
+  validateH39RequestedY44TerminalRowProviderObjectReplayAttemptCandidate,
   validateH39RequestedY44RowLocalN38SignedSourceSumDerivativeProvider,
   validateH39RequestedY44SignedSourceSumDerivativeAllocationTarget,
   validateH39RequestedY44SourceMapResidualCovarianceTarget,
@@ -19918,6 +19926,1086 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   assert.deepEqual(
     collectExactKeys(
       terminalSuccessorBranchResidualCommonNormalizerLawProbe,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection =
+    buildH39RequestedY44TerminalSuccessorBranchResolvedCenteredResidualSourceObjectProjectionCandidate(
+      {
+        terminalSuccessorBranchResidualCommonNormalizerLawProbe,
+        terminalSuccessorBranchAntisymmetricCommonNormalizerAttempt,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44TerminalSuccessorBranchResolvedCenteredResidualSourceObjectProjectionCandidate(
+      terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection
+    ),
+    []
+  );
+  assert.equal(
+    terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection
+      .terminal_successor_branch_resolved_centered_residual_source_object_projection_verified,
+    true
+  );
+  assert.equal(
+    terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection
+      .terminal_successor_branch_resolved_centered_residual_source_object_projection_certified,
+    false
+  );
+  assert.equal(
+    terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection
+      .terminal_successor_branch_resolved_centered_residual_source_object_projection_row_count,
+    5
+  );
+  assert.equal(
+    terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection
+      .terminal_successor_branch_resolved_centered_residual_source_object_projection_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection
+      .branch_resolved_centered_residual_source_object_projection_candidate_row_count,
+    30
+  );
+  assert.equal(
+    terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection
+      .lambda_intersection_available_terminal_row_count +
+      terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection
+        .lambda_intersection_missing_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection
+      .source_covariance_projection_candidate_available_terminal_row_count +
+      terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection
+        .source_covariance_projection_candidate_missing_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection
+      .all_source_covariance_common_normalizer_lambda_intersections_available,
+    terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection
+      .lambda_intersection_available_terminal_row_count === 15
+  );
+  assert.equal(
+    terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection
+      .all_source_covariance_projection_candidates_available,
+    terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection
+      .source_covariance_projection_candidate_available_terminal_row_count === 15
+  );
+  assert.equal(
+    terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection
+      .common_normalizer_branch_residual_law_proven,
+    false
+  );
+  assert.equal(
+    terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection
+      .centered_residual_branch_split_available,
+    false
+  );
+  assert.equal(
+    terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection
+      .branch_resolved_centered_residual_components_available,
+    false
+  );
+  assert.equal(
+    terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection
+      .branch_resolved_centered_residual_source_object_projection_certified,
+    false
+  );
+  assert.equal(
+    terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection
+      .expression_level_n38_provider_certified,
+    false
+  );
+  assert.ok(
+    [
+      "branch-resolved-centered-residual-source-object-denominator-open",
+      "branch-resolved-centered-residual-source-object-lambda-intersection-open",
+      "branch-resolved-centered-residual-source-object-projection-candidate-realized-law-unproven",
+      "branch-resolved-centered-residual-source-object-projection-sum-open",
+    ].includes(
+      terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection
+        .terminal_successor_branch_resolved_centered_residual_source_object_projection_classification
+    )
+  );
+  assert.ok(
+    terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection.terminal_successor_branch_resolved_centered_residual_source_object_projection_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_successor_branch_resolved_centered_residual_source_object_projection_row_count ===
+          3 &&
+        row.branch_resolved_centered_residual_source_object_projection_candidate_row_count ===
+          6 &&
+        row.lambda_intersection_available_terminal_row_count +
+          row.lambda_intersection_missing_terminal_row_count === 3 &&
+        row.source_covariance_projection_candidate_available_terminal_row_count +
+          row.source_covariance_projection_candidate_missing_terminal_row_count ===
+          3 &&
+        row.common_normalizer_branch_residual_law_proven === false &&
+        row.centered_residual_branch_split_available === false &&
+        row.branch_resolved_centered_residual_components_available === false &&
+        row.row_terminal_successor_branch_resolved_centered_residual_source_object_projection_verified ===
+          true &&
+        row.row_certifies_terminal_successor_branch_antisymmetric_common_normalizer ===
+          false &&
+        row.row_certifies_terminal_successor_centered_residual_branch_split ===
+          false &&
+        row.row_certifies_branch_resolved_centered_residual_component ===
+          false &&
+        row.claim_boundary
+          .certifies_terminal_successor_branch_antisymmetric_common_normalizer ===
+          false &&
+        row.claim_boundary
+          .certifies_terminal_successor_centered_residual_branch_split ===
+          false &&
+        row.claim_boundary
+          .certifies_branch_resolved_centered_residual_component === false &&
+        row.claim_boundary
+          .certifies_branch_resolved_centered_residual_source_object === false &&
+        row.claim_boundary.certifies_expression_level_n38_provider === false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false &&
+        row.terminal_successor_branch_resolved_centered_residual_source_object_projection_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_graph_cell_id ===
+              `speed.${index}.first-y` &&
+            Array.isArray(
+              terminalRow.source_covariance_quotient_lambda_interval
+            ) &&
+            terminalRow.source_covariance_quotient_lambda_interval.length ===
+              2 &&
+            (terminalRow.common_normalizer_division_available === true
+              ? Array.isArray(terminalRow.common_normalizer_lambda_interval)
+              : terminalRow.common_normalizer_lambda_interval === null) &&
+            (terminalRow
+              .source_covariance_common_normalizer_lambda_intersection_available ===
+            true
+              ? Array.isArray(
+                  terminalRow
+                    .source_covariance_common_normalizer_lambda_intersection_interval
+                ) &&
+                terminalRow.source_covariance_projection_candidate_available ===
+                  true &&
+                Array.isArray(
+                  terminalRow.source_covariance_projection_candidate_sum_interval
+                ) &&
+                typeof terminalRow
+                  .source_covariance_projection_candidate_sum_contains_aggregate ===
+                  "boolean"
+              : terminalRow
+                  .source_covariance_common_normalizer_lambda_intersection_interval ===
+                  null &&
+                terminalRow.source_covariance_projection_candidate_available ===
+                  false &&
+                terminalRow.source_covariance_projection_candidate_sum_interval ===
+                  null) &&
+            terminalRow.common_normalizer_branch_residual_law_proven ===
+              false &&
+            terminalRow.centered_residual_branch_split_available === false &&
+            terminalRow.branch_resolved_centered_residual_components_available ===
+              false &&
+            terminalRow
+              .branch_resolved_centered_residual_source_object_projection_certified ===
+              false &&
+            terminalRow
+              .row_terminal_successor_branch_resolved_centered_residual_source_object_projection_verified ===
+              true &&
+            terminalRow
+              .row_certifies_terminal_successor_branch_antisymmetric_common_normalizer ===
+              false &&
+            terminalRow
+              .row_certifies_terminal_successor_centered_residual_branch_split ===
+              false &&
+            terminalRow
+              .row_certifies_branch_resolved_centered_residual_component ===
+              false &&
+            terminalRow.claim_boundary
+              .certifies_terminal_successor_branch_antisymmetric_common_normalizer ===
+              false &&
+            terminalRow.claim_boundary
+              .certifies_terminal_successor_centered_residual_branch_split ===
+              false &&
+            terminalRow.claim_boundary
+              .certifies_branch_resolved_centered_residual_component === false &&
+            terminalRow.claim_boundary
+              .certifies_branch_resolved_centered_residual_source_object ===
+              false &&
+            terminalRow.claim_boundary.certifies_expression_level_n38_provider ===
+              false &&
+            terminalRow.claim_boundary.certifies_directed_rounded_shared_domain ===
+              false &&
+            terminalRow.branch_resolved_centered_residual_source_object_projection_rows.every(
+              (branchRow) =>
+                ["-", "+"].includes(branchRow.branch) &&
+                Array.isArray(branchRow.solve_slope_interval) &&
+                branchRow.solve_slope_interval.length === 2 &&
+                branchRow.solve_slope_interval_separated_from_zero === true &&
+                branchRow
+                  .branch_resolved_nonzero_normalizer_source_available ===
+                  true &&
+                branchRow.same_g_formal_identity_exact_zero === true &&
+                (terminalRow
+                  .source_covariance_common_normalizer_lambda_intersection_available ===
+                true
+                  ? Array.isArray(
+                      branchRow
+                        .source_covariance_constrained_branch_residual_candidate_interval
+                    ) &&
+                    branchRow
+                      .source_covariance_constrained_branch_residual_candidate_available ===
+                      true
+                  : branchRow
+                      .source_covariance_constrained_branch_residual_candidate_interval ===
+                      null &&
+                    branchRow
+                      .source_covariance_constrained_branch_residual_candidate_available ===
+                      false) &&
+                branchRow
+                  .branch_resolved_centered_residual_component_available ===
+                  false &&
+                branchRow
+                  .branch_resolved_centered_residual_source_object_certified ===
+                  false &&
+                branchRow
+                  .row_certifies_branch_resolved_centered_residual_component ===
+                  false
+            )
+        )
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt =
+    buildH39RequestedY44TerminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttemptCandidate(
+      {
+        terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection,
+        terminalSuccessorBranchAntisymmetricCommonNormalizerAttempt,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44TerminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttemptCandidate(
+      terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+    ),
+    []
+  );
+  assert.equal(
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      .terminal_successor_barycentric_branch_residual_source_object_identity_attempt_verified,
+    true
+  );
+  assert.equal(
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      .terminal_successor_barycentric_branch_residual_source_object_identity_attempt_certified,
+    false
+  );
+  assert.equal(
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      .terminal_successor_barycentric_branch_residual_source_object_identity_attempt_row_count,
+    5
+  );
+  assert.equal(
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      .terminal_successor_barycentric_branch_residual_source_object_identity_attempt_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      .barycentric_branch_residual_source_object_identity_branch_row_count,
+    30
+  );
+  assert.equal(
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      .barycentric_denominator_available_terminal_row_count,
+    terminalSuccessorBranchAntisymmetricCommonNormalizerAttempt
+      .common_normalizer_division_available_terminal_row_count
+  );
+  assert.equal(
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      .barycentric_symbolic_aggregate_identity_verified_terminal_row_count,
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      .barycentric_denominator_available_terminal_row_count
+  );
+  assert.equal(
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      .all_barycentric_symbolic_aggregate_identities_verified,
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      .barycentric_symbolic_aggregate_identity_verified_terminal_row_count ===
+      15
+  );
+  assert.equal(
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      .all_barycentric_interval_replays_contain_aggregate,
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      .barycentric_interval_replay_contains_aggregate_terminal_row_count === 15
+  );
+  assert.equal(
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      .all_source_covariance_lambdas_contain_common_normalizer_lambda,
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      .source_covariance_lambda_contains_common_normalizer_lambda_terminal_row_count ===
+      15
+  );
+  assert.equal(
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      .common_normalizer_branch_residual_law_proven,
+    false
+  );
+  assert.equal(
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      .centered_residual_branch_split_available,
+    false
+  );
+  assert.equal(
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      .branch_resolved_centered_residual_components_available,
+    false
+  );
+  assert.equal(
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      .branch_resolved_centered_residual_source_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      .expression_level_n38_provider_certified,
+    false
+  );
+  assert.ok(
+    [
+      "barycentric-branch-residual-source-object-denominator-open",
+      "barycentric-branch-residual-interval-replay-open",
+      "barycentric-source-object-source-covariance-lambda-containment-open",
+      "barycentric-source-object-aggregate-identity-realized-actual-source-proof-open",
+      "barycentric-source-object-source-covariance-projection-sum-open",
+    ].includes(
+      terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+        .terminal_successor_barycentric_branch_residual_source_object_identity_attempt_classification
+    )
+  );
+  assert.ok(
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt.terminal_successor_barycentric_branch_residual_source_object_identity_attempt_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_successor_barycentric_branch_residual_source_object_identity_attempt_row_count ===
+          3 &&
+        row.barycentric_branch_residual_source_object_identity_branch_row_count ===
+          6 &&
+        row.common_normalizer_branch_residual_law_proven === false &&
+        row.centered_residual_branch_split_available === false &&
+        row.branch_resolved_centered_residual_components_available === false &&
+        row.branch_resolved_centered_residual_source_object_certified ===
+          false &&
+        row.row_terminal_successor_barycentric_branch_residual_source_object_identity_attempt_verified ===
+          true &&
+        row.row_certifies_barycentric_branch_residual_aggregate_identity ===
+          false &&
+        row.row_certifies_terminal_successor_branch_antisymmetric_common_normalizer ===
+          false &&
+        row.row_certifies_terminal_successor_centered_residual_branch_split ===
+          false &&
+        row.row_certifies_branch_resolved_centered_residual_component ===
+          false &&
+        row.claim_boundary
+          .certifies_barycentric_branch_residual_aggregate_identity === false &&
+        row.claim_boundary
+          .certifies_terminal_successor_branch_antisymmetric_common_normalizer ===
+          false &&
+        row.claim_boundary
+          .certifies_terminal_successor_centered_residual_branch_split ===
+          false &&
+        row.claim_boundary
+          .certifies_branch_resolved_centered_residual_component === false &&
+        row.claim_boundary
+          .certifies_branch_resolved_centered_residual_source_object === false &&
+        row.claim_boundary.certifies_expression_level_n38_provider === false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false &&
+        row.terminal_successor_barycentric_branch_residual_source_object_identity_attempt_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_graph_cell_id ===
+              `speed.${index}.first-y` &&
+            terminalRow.barycentric_branch_residual_source_object_identity ===
+              "r_b=R*s_b/(s_-+s_+); r_-+r_+=R when s_-+s_+ != 0" &&
+            Array.isArray(terminalRow.branch_solve_slope_sum_interval) &&
+            terminalRow.branch_solve_slope_sum_interval.length === 2 &&
+            (terminalRow.branch_solve_slope_sum_interval_separated_from_zero ===
+              true ||
+              terminalRow.branch_solve_slope_sum_interval_contains_zero ===
+                true) &&
+            (terminalRow.common_normalizer_division_available === true
+              ? Array.isArray(terminalRow.common_normalizer_lambda_interval) &&
+                Array.isArray(
+                  terminalRow.barycentric_branch_residual_sum_interval
+                ) &&
+                terminalRow
+                  .barycentric_symbolic_aggregate_identity_verified === true &&
+                typeof terminalRow
+                  .barycentric_interval_replay_contains_aggregate === "boolean"
+              : terminalRow.common_normalizer_lambda_interval === null &&
+                terminalRow.barycentric_branch_residual_sum_interval ===
+                  null &&
+                terminalRow
+                  .barycentric_symbolic_aggregate_identity_verified ===
+                  false) &&
+            typeof terminalRow
+              .source_covariance_lambda_contains_common_normalizer_lambda ===
+              "boolean" &&
+            terminalRow.common_normalizer_branch_residual_law_proven ===
+              false &&
+            terminalRow.centered_residual_branch_split_available === false &&
+            terminalRow.branch_resolved_centered_residual_components_available ===
+              false &&
+            terminalRow.branch_resolved_centered_residual_source_object_certified ===
+              false &&
+            terminalRow
+              .row_terminal_successor_barycentric_branch_residual_source_object_identity_attempt_verified ===
+              true &&
+            terminalRow
+              .row_certifies_barycentric_branch_residual_aggregate_identity ===
+              false &&
+            terminalRow
+              .row_certifies_terminal_successor_branch_antisymmetric_common_normalizer ===
+              false &&
+            terminalRow
+              .row_certifies_terminal_successor_centered_residual_branch_split ===
+              false &&
+            terminalRow
+              .row_certifies_branch_resolved_centered_residual_component ===
+              false &&
+            terminalRow.claim_boundary
+              .certifies_barycentric_branch_residual_aggregate_identity ===
+              false &&
+            terminalRow.claim_boundary
+              .certifies_terminal_successor_branch_antisymmetric_common_normalizer ===
+              false &&
+            terminalRow.claim_boundary
+              .certifies_terminal_successor_centered_residual_branch_split ===
+              false &&
+            terminalRow.claim_boundary
+              .certifies_branch_resolved_centered_residual_component === false &&
+            terminalRow.claim_boundary
+              .certifies_branch_resolved_centered_residual_source_object ===
+              false &&
+            terminalRow.claim_boundary.certifies_expression_level_n38_provider ===
+              false &&
+            terminalRow.claim_boundary.certifies_directed_rounded_shared_domain ===
+              false &&
+            terminalRow.barycentric_branch_residual_source_object_identity_rows.every(
+              (branchRow) =>
+                ["-", "+"].includes(branchRow.branch) &&
+                [
+                  "R*s_-/(s_-+s_+)",
+                  "R*s_+/(s_-+s_+)",
+                ].includes(
+                  branchRow.barycentric_branch_residual_source_object_expression
+                ) &&
+                (terminalRow.common_normalizer_division_available === true
+                  ? Array.isArray(
+                      branchRow.barycentric_branch_residual_candidate_interval
+                    ) &&
+                    branchRow
+                      .barycentric_branch_residual_candidate_available ===
+                      true &&
+                    branchRow
+                      .barycentric_branch_residual_source_object_algebraically_defined ===
+                      true
+                  : branchRow.barycentric_branch_residual_candidate_interval ===
+                      null &&
+                    branchRow
+                      .barycentric_branch_residual_source_object_algebraically_defined ===
+                      false) &&
+                branchRow
+                  .branch_resolved_centered_residual_component_available ===
+                  false &&
+                branchRow
+                  .branch_resolved_centered_residual_source_object_certified ===
+                  false &&
+                branchRow
+                  .row_certifies_branch_resolved_centered_residual_component ===
+                  false
+            )
+        )
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt =
+    buildH39RequestedY44TerminalSuccessorBarycentricToSuccessorScalarHandoffAttemptCandidate(
+      {
+        terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt,
+        terminalHSuccessorScalarChainResidualComparison,
+        terminalSuccessorScalarProviderBoundaryIdentityAttempt,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44TerminalSuccessorBarycentricToSuccessorScalarHandoffAttemptCandidate(
+      terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt
+    ),
+    []
+  );
+  assert.equal(
+    terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt
+      .terminal_successor_barycentric_to_successor_scalar_handoff_attempt_verified,
+    true
+  );
+  assert.equal(
+    terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt
+      .terminal_successor_barycentric_to_successor_scalar_handoff_attempt_certified,
+    false
+  );
+  assert.equal(
+    terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt
+      .terminal_successor_barycentric_to_successor_scalar_handoff_attempt_row_count,
+    5
+  );
+  assert.equal(
+    terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt
+      .terminal_successor_barycentric_to_successor_scalar_handoff_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt
+      .common_normalizer_division_available_terminal_row_count,
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      .barycentric_denominator_available_terminal_row_count
+  );
+  assert.equal(
+    terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt
+      .source_covariance_lambda_contains_common_normalizer_lambda_terminal_row_count,
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      .source_covariance_lambda_contains_common_normalizer_lambda_terminal_row_count
+  );
+  assert.equal(
+    terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt
+      .all_centered_projections_match_barycentric_R,
+    true
+  );
+  assert.equal(
+    terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt
+      .centered_projection_matches_barycentric_R_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt
+      .all_successor_scalar_provider_boundary_remainders_fit,
+    terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt
+      .successor_scalar_provider_boundary_remainder_fits_terminal_row_count ===
+      15
+  );
+  assert.equal(
+    terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt
+      .all_common_normalizer_denominators_available,
+    terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt
+      .common_normalizer_division_available_terminal_row_count === 15
+  );
+  assert.equal(
+    terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt
+      .all_source_covariance_lambdas_contain_common_normalizer_lambda,
+    terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt
+      .source_covariance_lambda_contains_common_normalizer_lambda_terminal_row_count ===
+      15
+  );
+  assert.equal(
+    terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt
+      .successor_scalar_provider_boundary_remainder_fits_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt
+      .branch_resolved_centered_residual_source_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt
+      .terminal_successor_scalar_residual_identity_certified,
+    false
+  );
+  assert.equal(
+    terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt
+      .terminal_successor_scalar_provider_boundary_identity_certified,
+    false
+  );
+  assert.equal(
+    terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt
+      .expression_level_n38_provider_certified,
+    false
+  );
+  assert.ok(
+    [
+      "barycentric-successor-scalar-handoff-denominator-open",
+      "barycentric-successor-scalar-centered-projection-identity-open",
+      "barycentric-successor-scalar-provider-boundary-remainder-open",
+      "barycentric-successor-scalar-source-covariance-lambda-containment-open",
+      "barycentric-successor-scalar-handoff-realized-actual-source-proof-open",
+    ].includes(
+      terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt
+        .terminal_successor_barycentric_to_successor_scalar_handoff_attempt_classification
+    )
+  );
+  assert.ok(
+    terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt.terminal_successor_barycentric_to_successor_scalar_handoff_attempt_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_successor_barycentric_to_successor_scalar_handoff_rows.length ===
+          3 &&
+        row.source_map_boundary_replay_reaches_provider_row === true &&
+        row.source_map_boundary_replay_certifies_directed_rounded_provider ===
+          false &&
+        row.row_terminal_successor_barycentric_to_successor_scalar_handoff_attempt_verified ===
+          true &&
+        row.row_certifies_barycentric_to_successor_scalar_centered_projection_identity ===
+          false &&
+        row.row_certifies_branch_resolved_centered_residual_source_object ===
+          false &&
+        row.row_certifies_terminal_successor_scalar_provider_boundary_identity ===
+          false &&
+        row.claim_boundary
+          .certifies_barycentric_to_successor_scalar_centered_projection_identity ===
+          false &&
+        row.claim_boundary
+          .certifies_branch_resolved_centered_residual_source_object === false &&
+        row.claim_boundary
+          .certifies_terminal_successor_scalar_provider_boundary_identity ===
+          false &&
+        row.claim_boundary.certifies_expression_level_n38_provider === false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false &&
+        row.terminal_successor_barycentric_to_successor_scalar_handoff_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_graph_cell_id ===
+              `speed.${index}.first-y` &&
+            Number.isFinite(
+              Number(terminalRow.barycentric_centered_projected_residual)
+            ) &&
+            Number.isFinite(
+              Number(
+                terminalRow.successor_scalar_centered_projected_residual
+              )
+            ) &&
+            Number.isFinite(
+              Number(terminalRow.centered_projected_residual_difference)
+            ) &&
+            Number.isFinite(
+              Number(terminalRow.centered_projected_residual_relative_gap)
+            ) &&
+            typeof terminalRow
+              .centered_projected_residual_matches_barycentric_R ===
+              "boolean" &&
+            terminalRow.centered_projected_residual_matches_barycentric_R ===
+              true &&
+            typeof terminalRow
+              .source_covariance_lambda_contains_common_normalizer_lambda ===
+              "boolean" &&
+            terminalRow
+              .successor_scalar_centered_residual_inside_provider_budget ===
+              true &&
+            terminalRow.terminal_partition_certifies_directed_rounding ===
+              false &&
+            terminalRow
+              .row_terminal_successor_barycentric_to_successor_scalar_handoff_attempt_verified ===
+              true &&
+            terminalRow
+              .row_certifies_barycentric_to_successor_scalar_centered_projection_identity ===
+              false &&
+            terminalRow
+              .row_certifies_branch_resolved_centered_residual_source_object ===
+              false &&
+            terminalRow
+              .row_certifies_terminal_successor_scalar_provider_boundary_identity ===
+              false
+        )
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalRowProviderObjectReplayAttempt =
+    buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandidate({
+      terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection,
+      terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt,
+      terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt,
+    });
+  const terminalRowProviderObjectReplayValidationErrors =
+    validateH39RequestedY44TerminalRowProviderObjectReplayAttemptCandidate(
+      terminalRowProviderObjectReplayAttempt
+    );
+  if (terminalRowProviderObjectReplayValidationErrors.length !== 0) {
+    const failedProviderReplayRows =
+      terminalRowProviderObjectReplayAttempt.terminal_row_provider_object_replay_rows.filter(
+        (row) => row.row_terminal_row_provider_object_replay_attempt_verified !== true
+      );
+    const failedProviderReplayTerminalRows =
+      terminalRowProviderObjectReplayAttempt.terminal_row_provider_object_replay_rows.flatMap(
+        (row) =>
+          row.terminal_row_provider_object_replay_rows
+            .filter(
+              (terminalRow) =>
+                terminalRow.row_terminal_row_provider_object_replay_attempt_verified !==
+                true
+            )
+            .map((terminalRow) => ({
+              node_index: row.node_index,
+              terminal_h_index: terminalRow.terminal_h_index,
+              row_status: terminalRow.row_status,
+              checks: terminalRow.terminal_row_provider_object_replay_checks,
+              branch_rows:
+                terminalRow.source_map_provider_object_replay_branch_rows,
+            }))
+      );
+    console.error(
+      JSON.stringify(
+        {
+          validation_errors: terminalRowProviderObjectReplayValidationErrors,
+          aggregate_checks:
+            terminalRowProviderObjectReplayAttempt
+              .terminal_row_provider_object_replay_attempt_checks,
+          classification:
+            terminalRowProviderObjectReplayAttempt
+              .terminal_row_provider_object_replay_attempt_classification,
+          counts: {
+            branch_available:
+              terminalRowProviderObjectReplayAttempt
+                .source_map_provider_branch_intervals_available_count,
+            branch_overlap:
+              terminalRowProviderObjectReplayAttempt
+                .source_map_provider_branch_intervals_overlap_terminal_witness_count,
+            branch_subset:
+              terminalRowProviderObjectReplayAttempt
+                .source_map_provider_branch_intervals_subset_terminal_witness_count,
+            terminal_available:
+              terminalRowProviderObjectReplayAttempt
+                .source_map_provider_terminal_rows_available_count,
+            terminal_subset:
+              terminalRowProviderObjectReplayAttempt
+                .source_map_provider_terminal_rows_subset_terminal_witness_count,
+          },
+          failed_row_statuses: failedProviderReplayRows.map((row) => ({
+            node_index: row.node_index,
+            row_status: row.row_status,
+            checks: row.row_checks,
+          })),
+          first_failed_terminal_row:
+            failedProviderReplayTerminalRows[0] ?? null,
+        },
+        null,
+        2
+      )
+    );
+  }
+  assert.deepEqual(
+    terminalRowProviderObjectReplayValidationErrors,
+    []
+  );
+  assert.equal(
+    terminalRowProviderObjectReplayAttempt
+      .terminal_row_provider_object_replay_attempt_verified,
+    true
+  );
+  assert.equal(
+    terminalRowProviderObjectReplayAttempt
+      .terminal_row_provider_object_replay_attempt_certified,
+    false
+  );
+  assert.equal(
+    terminalRowProviderObjectReplayAttempt
+      .terminal_row_provider_object_replay_row_count,
+    5
+  );
+  assert.equal(
+    terminalRowProviderObjectReplayAttempt
+      .terminal_row_provider_object_replay_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalRowProviderObjectReplayAttempt
+      .terminal_row_provider_object_replay_branch_row_count,
+    30
+  );
+  assert.equal(
+    terminalRowProviderObjectReplayAttempt
+      .all_source_map_provider_branch_intervals_overlap_terminal_witness,
+    terminalRowProviderObjectReplayAttempt
+      .source_map_provider_branch_intervals_overlap_terminal_witness_count ===
+      30
+  );
+  assert.equal(
+    terminalRowProviderObjectReplayAttempt
+      .all_source_map_provider_branch_intervals_available,
+    terminalRowProviderObjectReplayAttempt
+      .source_map_provider_branch_intervals_available_count === 30
+  );
+  assert.equal(
+    terminalRowProviderObjectReplayAttempt
+      .all_terminal_witness_branch_intervals_available,
+    terminalRowProviderObjectReplayAttempt
+      .terminal_witness_branch_intervals_available_count === 30
+  );
+  assert.equal(
+    terminalRowProviderObjectReplayAttempt
+      .all_terminal_witness_terminal_rows_available,
+    terminalRowProviderObjectReplayAttempt
+      .terminal_witness_terminal_rows_available_count === 15
+  );
+  assert.equal(
+    terminalRowProviderObjectReplayAttempt
+      .all_source_map_provider_terminal_rows_available,
+    terminalRowProviderObjectReplayAttempt
+      .source_map_provider_terminal_rows_available_count === 15
+  );
+  assert.equal(
+    terminalRowProviderObjectReplayAttempt
+      .all_source_map_provider_branch_intervals_subset_terminal_witness,
+    terminalRowProviderObjectReplayAttempt
+      .source_map_provider_branch_intervals_subset_terminal_witness_count ===
+      30
+  );
+  assert.equal(
+    terminalRowProviderObjectReplayAttempt
+      .all_source_map_provider_terminal_rows_subset_terminal_witness,
+    terminalRowProviderObjectReplayAttempt
+      .source_map_provider_terminal_rows_subset_terminal_witness_count === 15
+  );
+  assert.equal(
+    terminalRowProviderObjectReplayAttempt
+      .centered_projection_matches_barycentric_R_terminal_row_count,
+    terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt
+      .centered_projection_matches_barycentric_R_terminal_row_count
+  );
+  assert.equal(
+    terminalRowProviderObjectReplayAttempt
+      .provider_boundary_remainder_fits_terminal_row_count,
+    terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt
+      .successor_scalar_provider_boundary_remainder_fits_terminal_row_count
+  );
+  assert.equal(
+    terminalRowProviderObjectReplayAttempt
+      .source_covariance_projection_sum_contains_aggregate_terminal_row_count,
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      .source_covariance_projection_sum_contains_aggregate_terminal_row_count
+  );
+  assert.equal(
+    terminalRowProviderObjectReplayAttempt
+      .source_covariance_lambda_contains_common_normalizer_lambda_terminal_row_count,
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      .source_covariance_lambda_contains_common_normalizer_lambda_terminal_row_count
+  );
+  assert.equal(
+    terminalRowProviderObjectReplayAttempt
+      .all_centered_projections_match_barycentric_R,
+    terminalRowProviderObjectReplayAttempt
+      .centered_projection_matches_barycentric_R_terminal_row_count === 15
+  );
+  assert.equal(
+    terminalRowProviderObjectReplayAttempt
+      .all_provider_boundary_remainders_fit,
+    terminalRowProviderObjectReplayAttempt
+      .provider_boundary_remainder_fits_terminal_row_count === 15
+  );
+  assert.equal(
+    terminalRowProviderObjectReplayAttempt
+      .all_source_covariance_projection_sums_contain_aggregate,
+    terminalRowProviderObjectReplayAttempt
+      .source_covariance_projection_sum_contains_aggregate_terminal_row_count ===
+      15
+  );
+  assert.equal(
+    terminalRowProviderObjectReplayAttempt
+      .all_source_covariance_lambdas_contain_common_normalizer_lambda,
+    terminalRowProviderObjectReplayAttempt
+      .source_covariance_lambda_contains_common_normalizer_lambda_terminal_row_count ===
+      15
+  );
+  assert.equal(
+    terminalRowProviderObjectReplayAttempt
+      .terminal_row_provider_object_replay_reaches_provider_boundary,
+    terminalRowProviderObjectReplayAttempt
+      .all_source_map_provider_terminal_rows_subset_terminal_witness &&
+      terminalRowProviderObjectReplayAttempt
+        .all_centered_projections_match_barycentric_R &&
+      terminalRowProviderObjectReplayAttempt.all_provider_boundary_remainders_fit &&
+      terminalRowProviderObjectReplayAttempt
+        .all_source_covariance_projection_sums_contain_aggregate
+  );
+  assert.equal(
+    terminalRowProviderObjectReplayAttempt
+      .terminal_row_provider_object_replay_certified,
+    false
+  );
+  assert.equal(
+    terminalRowProviderObjectReplayAttempt
+      .branch_resolved_centered_residual_source_object_certified,
+    false
+  );
+  assert.equal(
+    terminalRowProviderObjectReplayAttempt
+      .terminal_successor_scalar_provider_boundary_identity_certified,
+    false
+  );
+  assert.equal(
+    terminalRowProviderObjectReplayAttempt.expression_level_n38_provider_certified,
+    false
+  );
+  assert.ok(
+    [
+      "terminal-row-provider-object-replay-denominator-open",
+      "terminal-row-provider-object-replay-provider-object-open",
+      "terminal-row-provider-object-replay-branch-overlap-open",
+      "terminal-row-provider-object-replay-branch-containment-open",
+      "terminal-row-provider-object-replay-provider-boundary-open",
+      "terminal-row-provider-object-replay-projection-sum-open",
+      "terminal-row-provider-object-replay-lambda-containment-open",
+      "terminal-row-provider-object-replay-realized-actual-source-proof-open",
+    ].includes(
+      terminalRowProviderObjectReplayAttempt
+        .terminal_row_provider_object_replay_attempt_classification
+    )
+  );
+  assert.ok(
+    terminalRowProviderObjectReplayAttempt.terminal_row_provider_object_replay_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_row_provider_object_replay_terminal_row_count === 3 &&
+        row.terminal_row_provider_object_replay_branch_row_count === 6 &&
+        row.row_terminal_row_provider_object_replay_attempt_verified === true &&
+        row.row_certifies_terminal_row_provider_object_replay === false &&
+        row.row_certifies_branch_resolved_centered_residual_source_object ===
+          false &&
+        row.row_certifies_terminal_successor_scalar_provider_boundary_identity ===
+          false &&
+        row.claim_boundary
+          .certifies_terminal_row_provider_object_replay === false &&
+        row.claim_boundary
+          .certifies_branch_resolved_centered_residual_source_object === false &&
+        row.claim_boundary
+          .certifies_terminal_successor_scalar_provider_boundary_identity ===
+          false &&
+        row.claim_boundary.certifies_expression_level_n38_provider === false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false &&
+        row.terminal_row_provider_object_replay_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_graph_cell_id ===
+              `speed.${index}.first-y` &&
+            terminalRow.terminal_partition_certifies_directed_rounding ===
+              false &&
+            terminalRow.row_terminal_row_provider_object_replay_attempt_verified ===
+              true &&
+            terminalRow.row_certifies_terminal_row_provider_object_replay ===
+              false &&
+            terminalRow
+              .row_certifies_branch_resolved_centered_residual_source_object ===
+              false &&
+            terminalRow
+              .row_certifies_terminal_successor_scalar_provider_boundary_identity ===
+              false &&
+            terminalRow.source_map_provider_object_replay_branch_rows.length ===
+              2 &&
+            terminalRow.source_map_provider_object_replay_branch_rows.every(
+              (branchRow) =>
+                ["-", "+"].includes(branchRow.branch) &&
+                (branchRow.terminal_witness_interval_available === true
+                  ? Array.isArray(branchRow.terminal_witness_interval) &&
+                    branchRow.terminal_witness_interval.length === 2 &&
+                    Number.isFinite(
+                      Number(branchRow.terminal_witness_interval_half_width)
+                    )
+                  : branchRow.terminal_witness_interval === null &&
+                    branchRow.terminal_witness_interval_half_width === null) &&
+                (branchRow.source_map_provider_object_interval_available ===
+                true
+                  ? Array.isArray(branchRow.source_map_provider_object_interval) &&
+                    branchRow.source_map_provider_object_interval.length ===
+                      2 &&
+                    Number.isFinite(
+                      Number(
+                        branchRow.source_map_provider_object_interval_half_width
+                      )
+                    ) &&
+                    Number.isFinite(
+                      Number(
+                        branchRow
+                          .source_map_provider_to_terminal_witness_half_width_ratio
+                      )
+                    )
+                  : branchRow.source_map_provider_object_interval === null &&
+                    branchRow.source_map_provider_object_interval_half_width ===
+                      null &&
+                    branchRow
+                      .source_map_provider_to_terminal_witness_half_width_ratio ===
+                      null) &&
+                typeof branchRow
+                  .source_map_provider_interval_equals_terminal_witness_interval ===
+                  "boolean" &&
+                typeof branchRow
+                  .source_map_provider_interval_overlaps_terminal_witness_interval ===
+                  "boolean" &&
+                typeof branchRow
+                  .source_map_provider_interval_subset_of_terminal_witness_interval ===
+                  "boolean" &&
+                branchRow
+                  .branch_resolved_centered_residual_source_object_certified ===
+                  false &&
+                branchRow
+                  .row_certifies_branch_resolved_centered_residual_component ===
+                  false &&
+                branchRow.claim_boundary
+                  .certifies_terminal_row_provider_object_replay === false &&
+                branchRow.claim_boundary
+                  .certifies_branch_resolved_centered_residual_source_object ===
+                  false &&
+                branchRow.claim_boundary
+                  .certifies_expression_level_n38_provider === false &&
+                branchRow.claim_boundary
+                  .certifies_directed_rounded_shared_domain === false
+            )
+        )
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalRowProviderObjectReplayAttempt),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalRowProviderObjectReplayAttempt,
       FORBIDDEN_FIXED_SPEED_KEYS
     ),
     []

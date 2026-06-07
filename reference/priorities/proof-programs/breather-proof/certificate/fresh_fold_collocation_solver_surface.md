@@ -824,7 +824,130 @@ rejects 124 source-packet acceptance rule target-packet-as-rule applications,
 rejects 124 complete aggregate-input-as-accepted-source-packet applications, and
 keeps all proof-rule, route, primitive-acceptance, source-packet acceptance,
 accepted-status, and row-consumption counters at 0.
-All fifty-six classifier/attempt/packet artifacts keep `preledger_pass=false`,
+The route evidence-object application exhaustion classifier,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_interval_certified_status_route_evidence_object_application_exhaustion_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then verifies 6 / 6 direct source-hash locks, scans 257 certificate JSON files,
+records 22 / 22 accepted-status-lane JSON files fail-closed and 0
+non-fail-closed, attempts 372 route evidence-object applications, authorizes 0,
+rejects 124 source-certificate-handle-as-derivation-ref applications, rejects
+124 source-packet acceptance rule target-packet-as-rule applications, rejects
+124 complete aggregate-input-as-accepted-source-packet applications, and keeps
+all proof-rule, route, primitive-acceptance, source-packet acceptance,
+accepted-status, and row-consumption counters at 0.
+The route evidence-object terminal obligation classifier,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_interval_certified_status_route_evidence_object_terminal_obligation_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then verifies 6 / 6 direct source-hash locks, scans 258 certificate JSON files,
+records 23 / 23 accepted-status-lane JSON files fail-closed and 0
+non-fail-closed, declares 3 allowed external route input families and 372
+allowed route-input obligation slots, satisfies 0 slots, finds 0 compatible
+proof-grade derivation-ref evidence-object files, 0 compatible source-packet
+acceptance rule files, 0 compatible accepted source-packet files, and 0 total
+allowed route input refs, and keeps all proof-rule, route, primitive-acceptance,
+source-packet acceptance, accepted-status, and row-consumption counters at 0.
+The route evidence-object terminal decision-frontier classifier,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_interval_certified_status_route_evidence_object_terminal_decision_frontier_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then verifies 7 / 7 direct source-hash locks, scans 259 certificate JSON files,
+records 24 / 24 accepted-status-lane JSON files fail-closed and 0
+non-fail-closed, declares 2 terminal decision-frontier classes and 3 ranked
+allowed route-input families, satisfies 0 / 372 terminal decision-frontier
+slots, finds 0 total allowed route-input refs, and ranks
+`source_packet_acceptance_rule_for_live_same_packet_separator_aggregate_family`
+first because 12 / 12 separators and 112 / 112 rows retain complete aggregate
+inputs while the rule remains absent. It constructs 0 source-packet acceptance
+rules, 0 accepted source packets, and 0 accepted statuses, makes 0 route,
+proof-rule, primitive-acceptance, or source-packet acceptance decisions, and
+keeps all accepted-status and row-consumption counters at 0.
+The source-packet acceptance rule construction-frontier classifier,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_interval_certified_status_source_packet_acceptance_rule_construction_frontier_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then verifies 7 / 7 direct source-hash locks, scans 260 certificate JSON files,
+records 25 / 25 accepted-status-lane JSON files fail-closed and 0
+non-fail-closed, locks the rank-1 source-packet acceptance rule target over
+12 / 12 separator and 112 / 112 row aggregate inputs, satisfies 0 / 124
+rule-construction frontier slots, finds 0 compatible source-packet acceptance
+rule files, 0 accepted constants conformance files, 0 compatible accepted
+source-packet files, and 0 rule-construction input refs, and preserves 124
+source-packet acceptance rule target-packet-as-rule plus 124 complete
+aggregate-input-as-accepted-source-packet rejections. It constructs 0
+source-packet acceptance rules, 0 accepted source packets, and 0 accepted
+statuses, makes 0 route, proof-rule, primitive-acceptance, or source-packet
+acceptance decisions, and keeps all accepted-status and row-consumption
+counters at 0.
+The source-packet acceptance rule proof-obligation dependency classifier,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_interval_certified_status_source_packet_acceptance_rule_proof_obligation_dependency_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then verifies 7 / 7 direct source-hash locks, scans 261 certificate JSON files,
+records 26 / 26 accepted-status-lane JSON files fail-closed and 0
+non-fail-closed, preserves 124 / 124 source-material and exact-consistency
+premise slots ready, and satisfies 0 / 124 source-packet acceptance rule
+proof-obligation slots. It records 0 / 124 rule derivation-proof slots, 0 / 124
+rule soundness-proof slots, 0 / 124 endpoint-application proof slots, 0 / 124
+accepted-constants conformance slots, and 0 / 248 compatible source-packet
+acceptance evidence slots filled. It constructs 0 source-packet acceptance
+rules, 0 accepted source packets, and 0 accepted statuses, makes 0 route,
+proof-rule, primitive-acceptance, or source-packet acceptance decisions, and
+keeps all accepted-status and row-consumption counters at 0.
+The source-packet acceptance rule proof-obligation blocker-vector handoff
+classifier,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_source_packet_acceptance_rule_blocker_vector_handoff_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then verifies 1 / 1 direct source-hash lock, retains the proof-obligation
+dependency classifier's 7 / 7 locks, preserves the 12-separator and 112-row
+scope, and records 124 / 124 source-material and exact-consistency premise
+slots ready while the rule target remains 0 / 124 satisfied. The six blocker
+classes remain uniformly unsatisfied: 0 / 124 derivation-proof slots, 0 / 124
+soundness-proof slots, 0 / 124 endpoint-application proof slots, 0 / 124
+accepted-constants conformance slots, 0 / 248 compatible source-packet
+acceptance evidence slots, and 0 / 124 accepted source-packet slots. It
+constructs 0 source-packet acceptance rules, 0 accepted source packets, and
+0 accepted statuses, makes 0 route, proof-rule, primitive-acceptance, or
+source-packet acceptance decisions, and keeps all accepted-status and
+row-consumption counters at 0.
+The source-packet acceptance rule kernel/binding split classifier,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_source_packet_rule_kernel_binding_split_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then verifies 1 / 1 direct source-hash lock, retains the blocker-vector
+classifier's 1 / 1 lock and the proof-obligation dependency classifier's 7 / 7
+locks, preserves the 12-separator and 112-row scope, and splits the six
+unsatisfied blocker classes into 3 rule-kernel obligation classes and 3
+binding/evidence obligation classes. The rule-kernel group has 0 / 372 slots
+satisfied; the binding/evidence group has 0 / 496 slots satisfied; total
+split-obligation satisfaction is 0 / 868. It constructs 0 source-packet
+acceptance rules, 0 accepted source packets, and 0 accepted statuses, makes
+0 route, proof-rule, primitive-acceptance, or source-packet acceptance
+decisions, and keeps all accepted-status and row-consumption counters at 0.
+The source-packet acceptance rule derivation-proof target packet,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_source_packet_rule_derivation_proof_target_packet_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then verifies 2 / 2 direct source-hash locks, retains the kernel/binding split
+classifier's 1 / 1 lock, the source-packet acceptance rule target packet's
+3 / 3 locks, and the proof-obligation dependency classifier's 7 / 7 locks. It
+declares 124 derivation-proof target slots and satisfies 0, while the
+source-packet acceptance rule target remains 0 / 124 satisfied, rule-kernel
+obligations remain 0 / 372 satisfied, downstream rule-kernel slots waiting on
+derivation proof remain 0 / 248, and binding/evidence obligations remain
+0 / 496. It constructs 0 derivation proofs, proof rules, source-packet
+acceptance rules, accepted source packets, and accepted statuses, makes 0 route,
+proof-rule, primitive-acceptance, or source-packet acceptance decisions, and
+keeps all accepted-status and row-consumption counters at 0.
+The source-packet acceptance rule derivation-proof source-data readiness
+classifier,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_source_packet_rule_derivation_proof_source_data_readiness_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then verifies 1 / 1 direct source-hash lock against the derivation-proof target
+packet, retains the target packet's 2 / 2 locks, and records 124 / 124
+derivation source-data records ready across the same 12 separator and 112 row
+profiles. It satisfies 0 / 124 derivation proof objects, rejects target packets
+and derivation source-data records as derivation proofs, constructs 0
+source-packet acceptance rules, 0 accepted source packets, and 0 accepted
+statuses, makes no route, proof-rule, primitive-acceptance, or source-packet
+acceptance decisions, and keeps all accepted-status and row-consumption counters
+at 0.
+The source-packet acceptance rule derivation-proof object current-pool absence
+classifier,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_source_packet_rule_derivation_proof_object_current_pool_absence_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then verifies 1 / 1 direct source-hash lock, scans 266 certificate JSON files,
+records 32 / 32 accepted-status lane JSON files fail-closed, and finds 0
+compatible `source_packet_acceptance_rule_derivation_proof` objects. It
+preserves 124 / 124 ready derivation source-data records, satisfies 0 / 124
+derivation proof object slots, and keeps all proof-rule, source-packet
+acceptance, accepted-status, row-consumption, live-ledger, and branch-chart
+counters at 0 / false.
+All sixty-six classifier/attempt/packet artifacts keep `preledger_pass=false`,
 `updates_live_ledger=false`, row consumption 0, and no branch-chart
 authorization.
 

@@ -304,6 +304,109 @@ These source-mined targets do not change the queue order above. They are compari
 | `planar_bridge` | [planar-bridge-closure](./planar-bridge-closure/planar-bridge-closure.md) and [planar seed packet](./planar-bridge-closure/planar_seed_packet.md) | [planar-bridge-closure](../../../content/markdown/aaa/proof-programs/planar-bridge-closure.md) | The planar bridge is promoted only after the collinear certificate passes, or after a specific collinear obstruction justifies the planar extension. |
 | `proof_program_handoff` | This file | [master-equation-closure](../master-equation-closure/master-equation-closure.md), [swarm](../swarm/swarm.md), and [dyadic-lock](../dyadic-lock/dyadic-lock.md) | Downstream priority links and $\mathbb{A}\mathbb{A}\mathbb{A}$ theorem-program chapters are updated whenever a proof target is promoted, blocked, or retired. |
 
+Promotion-gate update: the candidate-live higher-fold constants accepted
+interval-certified status source-packet acceptance rule construction-frontier
+classifier is now the latest fresh-v10 higher-fold accepted-status handoff. It
+verifies 7 / 7 direct source-hash locks, scans 260 certificate JSON files,
+records 25 / 25 accepted-status-lane JSON files fail-closed, and sharpens the
+rank-1 terminal route input to the missing
+`source_packet_acceptance_rule_for_live_same_packet_separator_aggregate_family`.
+It retains 12 / 12 separator and 112 / 112 row aggregate inputs, satisfies
+0 / 124 rule-construction frontier slots, finds 0 compatible source-packet
+acceptance rule files, 0 accepted constants conformance files, 0 accepted
+source-packet files, and 0 rule-construction input refs. It constructs 0
+accepted statuses, 0 source-packet acceptance rules, and 0 accepted source
+packets, makes no route, proof-rule, primitive-acceptance, or source-packet
+acceptance decision, consumes 0 rows, and leaves `preledger_pass=false`,
+`updates_live_ledger=false`, and branch-chart authorization false.
+
+Promotion-gate update: the candidate-live higher-fold constants accepted
+interval-certified status source-packet acceptance rule proof-obligation
+dependency classifier is the fresh-v10 higher-fold accepted-status handoff that
+separates ready source material from missing rule proof obligations. It verifies
+7 / 7 direct source-hash locks, scans 261 certificate JSON files, records
+26 / 26 accepted-status-lane JSON files fail-closed, preserves 124 / 124
+source-material and exact-consistency premise slots ready, and satisfies
+0 / 124 source-packet acceptance rule proof-obligation slots. It
+records 0 / 124 rule derivation-proof slots, 0 / 124 rule soundness-proof
+slots, 0 / 124 endpoint-application proof slots, 0 / 124 accepted-constants
+conformance slots, and 0 / 248 compatible source-packet acceptance evidence
+slots filled. It finds 0 compatible source-packet acceptance rule files, 0
+accepted constants conformance files, 0 compatible accepted source-packet files,
+and 0 rule proof-obligation input refs. It constructs 0 accepted statuses, 0
+source-packet acceptance rules, and 0 accepted source packets, makes no route,
+proof-rule, primitive-acceptance, or source-packet acceptance decision, consumes
+0 rows, and leaves `preledger_pass=false`, `updates_live_ledger=false`, and
+branch-chart authorization false.
+
+Promotion-gate update: the candidate-live higher-fold constants accepted
+interval-certified status source-packet acceptance rule proof-obligation
+blocker-vector handoff classifier compactly freezes the fresh-v10 higher-fold
+accepted-status lane blocker vector. It verifies 1 / 1 direct source-hash lock, retains
+the proof-obligation dependency classifier's 7 / 7 locks, preserves the
+12-separator and 112-row scope, and records 124 / 124 source-material and
+exact-consistency premise slots ready while the rule target remains 0 / 124
+satisfied. The six blocker classes remain uniformly unsatisfied: 0 / 124
+derivation-proof slots, 0 / 124 soundness-proof slots, 0 / 124
+endpoint-application proof slots, 0 / 124 accepted-constants conformance slots,
+0 / 248 compatible source-packet acceptance evidence slots, and 0 / 124
+accepted source-packet slots. It constructs 0 accepted statuses, 0 source-packet
+acceptance rules, and 0 accepted source packets, makes no route, proof-rule,
+primitive-acceptance, or source-packet acceptance decision, consumes 0 rows, and
+leaves `preledger_pass=false`, `updates_live_ledger=false`, and branch-chart
+authorization false.
+
+Promotion-gate update: the candidate-live higher-fold constants accepted
+interval-certified status source-packet acceptance rule kernel/binding split
+classifier orders the fresh-v10 higher-fold accepted-status lane blocker state.
+It verifies 1 / 1 direct source-hash lock, retains the blocker-vector
+classifier's 1 / 1 lock and the proof-obligation dependency classifier's 7 / 7
+locks, preserves the 12-separator and 112-row scope, and separates the six
+unsatisfied blocker classes into 3 rule-kernel obligation classes and 3
+binding/evidence obligation classes. The rule-kernel group has 0 / 372 slots
+satisfied; the binding/evidence group has 0 / 496 slots satisfied; total
+split-obligation satisfaction is 0 / 868. It constructs 0 accepted statuses, 0
+source-packet acceptance rules, and 0 accepted source packets, makes no route,
+proof-rule, primitive-acceptance, or source-packet acceptance decision, consumes
+0 rows, and leaves `preledger_pass=false`, `updates_live_ledger=false`, and
+branch-chart authorization false.
+
+Promotion-gate update: the candidate-live higher-fold constants accepted
+interval-certified status source-packet acceptance rule derivation-proof target
+packet fixes the first fresh-v10 higher-fold accepted-status lane rule-kernel
+target. It verifies 2 / 2 direct source-hash locks, retains the kernel/binding split
+classifier's 1 / 1 lock, the source-packet acceptance rule target packet's
+3 / 3 locks, and the proof-obligation dependency classifier's 7 / 7 locks. It
+declares 124 derivation-proof target slots for the live same-packet separator
+aggregate family and satisfies 0. The source-packet acceptance rule target
+remains 0 / 124 satisfied; rule-kernel obligations remain 0 / 372 satisfied;
+downstream rule-kernel slots waiting on derivation proof remain 0 / 248; and
+binding/evidence obligations remain 0 / 496. It constructs 0 accepted statuses,
+0 source-packet acceptance rules, and 0 accepted source packets, makes no route,
+proof-rule, primitive-acceptance, or source-packet acceptance decision, consumes
+0 rows, and leaves `preledger_pass=false`, `updates_live_ledger=false`, and
+branch-chart authorization false.
+
+Promotion-gate update: the candidate-live higher-fold constants accepted
+interval-certified status source-packet acceptance rule derivation-proof
+source-data readiness classifier verifies 1 / 1 direct source-hash lock against
+the derivation-proof target packet, retains the target packet's 2 / 2 direct
+locks, preserves the 12-separator and 112-row scope, and records 124 / 124
+derivation source-data records ready. It still satisfies 0 / 124 derivation
+proof objects and rejects both derivation-proof target packets and derivation
+source-data records as derivation proofs. The follow-on current-pool absence
+classifier is now the latest fresh-v10 higher-fold accepted-status lane
+handoff. It imports that source-data readiness classifier, verifies 1 / 1 direct
+source-hash lock, scans 266 certificate JSON files including 32 accepted-status
+lane files, proves all 32 accepted-status lane files remain fail-closed, and
+finds 0 compatible `source_packet_acceptance_rule_derivation_proof` objects.
+It keeps 124 / 124 derivation source-data records ready while satisfying 0 /
+124 derivation proof object slots. It constructs 0 accepted statuses, 0
+source-packet acceptance rules, and 0 accepted source packets, makes no route,
+proof-rule, primitive-acceptance, or source-packet acceptance decision, consumes
+0 rows, and leaves `preledger_pass=false`, `updates_live_ledger=false`, and
+branch-chart authorization false.
+
 Promotion-gate update: the ref/value non-domain carrier-pair theorem attempt is
 now the latest endpoint proof packet after the independent constructed
 witness-object membership theorem attempt. It tests the first exact blocker
@@ -459,6 +562,24 @@ target-packet-as-rule applications, rejects 124 complete
 aggregate-input-as-accepted-source-packet applications, and constructs 0
 source-packet acceptance rules, 0 accepted source packets, and 0 accepted
 statuses.
+The route evidence-object application exhaustion classifier then combines the
+proof-grade derivation-ref and primitive/source-packet application attempts into
+one route application surface. It verifies 6 / 6 direct source-hash locks, scans
+257 certificate JSON files, records 22 / 22 accepted-status-lane JSON files
+fail-closed and 0 non-fail-closed, attempts 372 route evidence-object
+applications, authorizes 0, rejects 124 source-certificate-handle-as-derivation-ref
+applications, rejects 124 source-packet acceptance rule target-packet-as-rule
+applications, rejects 124 complete aggregate-input-as-accepted-source-packet
+applications, and constructs 0 source-packet acceptance rules, 0 accepted source
+packets, and 0 accepted statuses.
+The route evidence-object terminal obligation classifier then locks the terminal
+handoff after application exhaustion. It verifies 6 / 6 direct source-hash
+locks, scans 258 certificate JSON files, records 23 / 23 accepted-status-lane
+JSON files fail-closed and 0 non-fail-closed, declares 3 allowed external route
+input families and 372 allowed route-input obligation slots, satisfies 0 slots,
+finds 0 compatible proof-grade derivation-ref evidence-object files, 0
+compatible source-packet acceptance rule files, 0 compatible accepted
+source-packet files, and 0 total allowed route input refs.
 No accepted interval-certified constants status, source-packet acceptance rule,
 accepted source packet, row consumption, live-ledger update, or branch-chart
 authorization is introduced.
