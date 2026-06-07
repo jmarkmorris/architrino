@@ -3564,6 +3564,29 @@ centered-residual source object, expression-level $N_{38}$ provider,
 $S_{37}$ division, shifted $R_{\varepsilon,43}$ closure, retained branch, or
 directed-rounded provider.
 
+\texttt{buildH39RequestedY44TerminalSourceCovarianceLambdaTCoordinateProjectionAttemptCandidate}
+now attacks the free coordinate $t$ directly rather than adding another replay
+wrapper. It consumes the same-domain common-normalizer law probe,
+branch-antisymmetric common-normalizer rows, and denominator-free
+rank-one-family attempt. On each terminal row it uses the source-covariance
+quotient $\lambda_{\mathrm{source}}$ already present in the law-probe rows and
+forms branch candidates $r_b=\lambda_{\mathrm{source}}s_b$ without dividing by
+$s_-+s_+$. It then records the interval $t=(r_- - r_+)/2$, the branch-sum
+interval $r_-+r_+$, whether that sum contains the measured aggregate residual
+$R$, and whether the resulting $t$ interval contains the symmetric placeholder
+$t=0$. Executable validation emits five node rows, fifteen terminal rows, and
+thirty branch rows, with all source-covariance lambda-only branch candidates
+and all $t$ intervals available. This remains a diagnostic candidate, not a
+source-object proof: the branch-antisymmetric coordinate identity,
+denominator-free branch-residual source-object identity, branch-resolved
+centered-residual source object, expression-level $N_{38}$ provider,
+$S_{37}$ division, shifted $R_{\varepsilon,43}$ closure, retained branch, and
+directed-rounded provider all remain open. The next proof object is a
+same-domain identity proving that the source-covariance lambda-only branch
+projection is the actual branch-resolved centered-residual source object, or a
+corrected scale identity if the recorded branch-sum containment fails on a
+terminal row.
+
 \texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
 now also probes a shared terminal-residual coordinate for
 $h_{37},h_{36},h_{35}$. Instead of assigning independent residual hulls to the

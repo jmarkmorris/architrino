@@ -972,7 +972,33 @@ source-available payload-construction fields, but constructs 0 / 124
 `proof_grade_derivation_schema` field is absent. It keeps all derivation-proof,
 proof-rule, source-packet acceptance, accepted-status, row-consumption,
 live-ledger, and branch-chart counters at 0 / false.
-All sixty-nine classifier/attempt/packet artifacts keep `preledger_pass=false`,
+The proof-grade derivation schema target packet,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_rule_kernel_payload_proof_grade_derivation_schema_target_packet_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then declares 124 schema target slots with 8 fields per slot and satisfies
+0 / 124 target slots and 0 / 992 field slots because the declared
+proof-grade derivation schema is absent. It keeps all schema-construction,
+derivation-proof, proof-rule, source-packet acceptance, accepted-status,
+row-consumption, live-ledger, and branch-chart counters at 0 / false.
+The proof-grade derivation schema current-pool absence classifier,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_rule_kernel_payload_proof_grade_derivation_schema_current_pool_absence_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then scans 271 certificate JSON files, records 37 / 37 accepted-status lane
+JSON files fail-closed, and finds 0 compatible proof-grade derivation schema
+objects. It declares 124 current-pool schema absence slots satisfied while
+retaining 0 / 124 schema target slots and 0 / 992 schema target field slots
+satisfied. It keeps all schema-construction, derivation-proof, proof-rule,
+source-packet acceptance, accepted-status, row-consumption, live-ledger, and
+branch-chart counters at 0 / false.
+The proof-grade derivation schema external-input obligation packet,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_rule_kernel_payload_proof_grade_derivation_schema_external_input_obligation_packet_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then locks the remaining schema as an external input obligation. It verifies
+6 / 6 direct source-hash locks, retains the 271-file current-pool scan,
+records 37 / 37 accepted-status lane JSON files fail-closed, declares 124
+external proof-grade derivation schema obligation slots with 8 fields per slot,
+satisfies 0 / 124 obligation slots and 0 / 992 field slots, and receives
+0 / 124 external schema inputs. It keeps all schema-construction,
+derivation-proof, proof-rule, source-packet acceptance, accepted-status,
+row-consumption, live-ledger, and branch-chart counters at 0 / false.
+All seventy-two classifier/attempt/packet artifacts keep `preledger_pass=false`,
 `updates_live_ledger=false`, row consumption 0, and no branch-chart
 authorization.
 

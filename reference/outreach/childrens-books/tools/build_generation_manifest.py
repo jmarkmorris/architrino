@@ -64,6 +64,28 @@ BOOKS = [
         "back_matter_count": 1,
         "back_matter_story_text": "Change one thing.\nCompare what happened.",
     },
+    {
+        "slug": "the-message-that-traveled",
+        "title": "The Message That Traveled",
+        "book_number": 6,
+        "age_band": "5-6",
+        "story_spreads": 12,
+        "cover_count": 1,
+        "back_matter_count": 2,
+        "back_matter_story_text": "Begin.\nTravel.\nArrive.",
+        "back_matter_activities": [
+            (
+                "Electra and Poz sit apart in a white play space while a grown-up hand taps a small "
+                "white-and-purple bell near Poz. Soft purple sound rings travel from the bell toward "
+                "Electra. Keep the source bell, travel path, and Electra's listening arrival place visible."
+            ),
+            (
+                "Electra and Poz sit beside a shallow white tray of pale purple-blue water while a "
+                "grown-up hand drops a small purple pebble into the water. A ripple travels outward "
+                "and reaches a small paper leaf, moving it gently."
+            ),
+        ],
+    },
 ]
 
 PALETTE_RULE = (
@@ -293,7 +315,7 @@ def build_book_entries(book: dict) -> tuple[dict, list[dict]]:
         }
         book_entries.append(entry)
 
-    activities = extract_activity_lines(md)
+    activities = book.get("back_matter_activities") or extract_activity_lines(md)
     if not activities:
         activities = ["teacher-led review activity using the story's physical play materials"]
     for idx in range(1, book["back_matter_count"] + 1):

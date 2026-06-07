@@ -1020,6 +1020,47 @@ The narrowed live blocker is
 It constructs no rule-kernel derivation payload, derivation proof, proof rule,
 source-packet acceptance rule, accepted source packet, accepted status, row
 consumption, live-ledger update, or branch-chart authorization.
+The proof-grade derivation schema target packet,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_rule_kernel_payload_proof_grade_derivation_schema_target_packet_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then lifts that missing schema layer into an explicit target. It verifies
+4 / 4 direct source-hash locks against the payload construction attempt,
+contract-target satisfaction attempt, contract target packet, and kernel/binding
+split classifier. It declares 124 proof-grade derivation schema target slots
+with 8 fields per slot, but satisfies 0 / 124 target slots and 0 / 992 field
+slots because the declared schema remains absent. The narrowed live blocker is
+`source_packet_acceptance_rule_derivation_proof_object_rule_kernel_derivation_payload_proof_grade_derivation_schema_target_declared_schema_absent`.
+It constructs no proof-grade derivation schema, rule-kernel derivation payload,
+derivation proof, proof rule, source-packet acceptance rule, accepted source
+packet, accepted status, row consumption, live-ledger update, or branch-chart
+authorization.
+The proof-grade derivation schema current-pool absence classifier,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_rule_kernel_payload_proof_grade_derivation_schema_current_pool_absence_classifier_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then tests whether the declared schema target is already present in the
+certificate pool. It verifies 5 / 5 direct source-hash locks, scans 271
+certificate JSON files, records 37 / 37 accepted-status lane JSON files
+fail-closed, and finds 0 compatible proof-grade derivation schema objects. It
+declares 124 current-pool schema absence slots satisfied while retaining
+0 / 124 schema target slots and 0 / 992 schema target field slots satisfied.
+The narrowed live blocker is
+`source_packet_acceptance_rule_derivation_proof_object_rule_kernel_derivation_payload_proof_grade_derivation_schema_absent_from_current_certificate_pool`.
+It constructs no proof-grade derivation schema, rule-kernel derivation payload,
+derivation proof, proof rule, source-packet acceptance rule, accepted source
+packet, accepted status, row consumption, live-ledger update, or branch-chart
+authorization.
+The proof-grade derivation schema external-input obligation packet,
+`higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_rule_kernel_payload_proof_grade_derivation_schema_external_input_obligation_packet_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md`,
+then turns that current-pool absence into an explicit external input
+obligation. It verifies 6 / 6 direct source-hash locks, retains the 271-file
+current-pool scan and 37 / 37 accepted-status lane fail-closed lock, declares
+124 external proof-grade derivation schema obligation slots with 8 fields per
+slot, satisfies 0 / 124 external-input obligation slots and 0 / 992
+external-input field slots, and receives 0 / 124 external schema inputs. The
+narrowed live blocker is
+`source_packet_acceptance_rule_derivation_proof_object_rule_kernel_derivation_payload_proof_grade_derivation_schema_external_input_required`.
+It constructs no proof-grade derivation schema, rule-kernel derivation payload,
+derivation proof, proof rule, source-packet acceptance rule, accepted source
+packet, accepted status, row consumption, live-ledger update, or branch-chart
+authorization.
 The nonlinear fold-coordinate collocation tangent-matrix screen,
 `gap_opening_fresh_v10_fold_coordinate_collocation_report.nonlinear-v0.md`,
 now packages the first executable collocation-surface test: 3 homogeneous

@@ -4014,6 +4014,29 @@ replay, branch-resolved centered-residual source object, expression-level
 $N_{38}$ provider, $S_{37}$ division, shifted $R_{\varepsilon,43}$ closure,
 retained branch, or directed-rounded provider.
 
+`buildH39RequestedY44TerminalSourceCovarianceLambdaTCoordinateProjectionAttemptCandidate`
+now attacks the free coordinate $t$ directly instead of adding another replay
+wrapper. It consumes the same-domain common-normalizer law probe,
+branch-antisymmetric common-normalizer rows, and denominator-free
+rank-one-family attempt. For every terminal row it uses the source-covariance
+quotient $\lambda_{\mathrm{source}}$ already present in the law-probe rows and
+forms branch candidates $r_b=\lambda_{\mathrm{source}}s_b$ without dividing by
+$s_-+s_+$. It then records the interval
+$t=(r_- - r_+)/2$, the branch-sum interval $r_-+r_+$, whether that sum contains
+the measured aggregate residual $R$, and whether the resulting $t$ interval
+contains the symmetric placeholder $t=0$. Executable validation emits five
+node rows, fifteen terminal rows, and thirty branch rows, with all
+source-covariance lambda-only branch candidates and all $t$ intervals
+available. This is still a diagnostic candidate, not a source-object proof:
+the packet keeps the branch-antisymmetric coordinate identity, denominator-free
+branch-residual source-object identity, branch-resolved centered-residual
+source object, expression-level $N_{38}$ provider, $S_{37}$ division, shifted
+$R_{\varepsilon,43}$ closure, retained branch, and directed-rounded provider
+open. The next proof object is a same-domain identity proving that the
+source-covariance lambda-only branch projection is the actual
+branch-resolved centered-residual source object, or else a corrected scale
+identity if the recorded branch-sum containment fails on a terminal row.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.

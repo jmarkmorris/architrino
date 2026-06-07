@@ -404,20 +404,32 @@ It keeps 124 / 124 derivation source-data records ready while satisfying 0 /
 packet imports the current-pool absence classifier and the source-data
 readiness classifier, verifies 2 / 2 direct source-hash locks, declares 124
 contract target slots with 8 required fields per slot, and satisfies 0 / 992
-contract field slots. The fresh-v10 higher-fold accepted-status lane now has a
-rule-kernel derivation payload construction attempt as the latest handoff. It
+contract field slots. The rule-kernel derivation payload construction attempt
 imports the contract-target satisfaction attempt, contract target packet, and
 kernel/binding split classifier, verifies 3 / 3 direct source-hash locks, and
 declares 124 `rule_kernel_derivation_payload` construction targets. It records
 744 / 868 source-available payload-construction fields but constructs 0 / 124
 payloads because every `proof_grade_derivation_schema` field is absent. The
-sharpened blocker is
-`source_packet_acceptance_rule_derivation_proof_object_rule_kernel_derivation_payload_proof_grade_derivation_schema_absent`.
+proof-grade derivation schema target packet imports the payload construction
+attempt, contract-target satisfaction attempt, contract target packet, and
+kernel/binding split classifier, verifies 4 / 4 direct source-hash locks,
+declares 124 proof-grade derivation schema target slots with 8 fields per slot,
+and satisfies 0 / 124 target slots and 0 / 992 field slots. The fresh-v10
+higher-fold accepted-status lane now has a proof-grade derivation schema
+external-input obligation packet as the latest handoff. It imports the
+current-pool absence classifier plus the schema target, payload-construction,
+contract, and kernel/binding sources; verifies 6 / 6 direct source-hash locks;
+retains the 271-file current-pool scan, 37 / 37 accepted-status lane files
+fail-closed, and 0 compatible proof-grade derivation schema objects; and
+declares 124 external proof-grade derivation schema obligation slots with 0
+satisfied and 0 external schema inputs received. The sharpened blocker is
+`source_packet_acceptance_rule_derivation_proof_object_rule_kernel_derivation_payload_proof_grade_derivation_schema_external_input_required`.
 It constructs 0 accepted statuses, 0 source-packet acceptance rules, 0 accepted
-source packets, 0 derivation proofs, and 0 rule-kernel derivation payloads,
-makes no route, proof-rule, primitive-acceptance, or source-packet acceptance
-decision, consumes 0 rows, and leaves `preledger_pass=false`,
-`updates_live_ledger=false`, and branch-chart authorization false.
+source packets, 0 derivation proofs, 0 rule-kernel derivation payloads, and 0
+proof-grade derivation schemata, makes no route, proof-rule,
+primitive-acceptance, or source-packet acceptance decision, consumes 0 rows,
+and leaves `preledger_pass=false`, `updates_live_ledger=false`, and
+branch-chart authorization false.
 
 Promotion-gate update: the ref/value non-domain carrier-pair theorem attempt is
 now the latest endpoint proof packet after the independent constructed

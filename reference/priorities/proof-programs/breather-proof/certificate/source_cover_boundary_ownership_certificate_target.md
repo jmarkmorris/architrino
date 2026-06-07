@@ -718,6 +718,38 @@ packets, accepted statuses, route decisions, proof-rule decisions,
 primitive-acceptance decisions, source-packet acceptance decisions, row
 consumption, `preledger_pass`, live-ledger updates, and branch-chart
 authorization remain 0 / false.
+The follow-on proof-grade derivation schema target packet verifies 4 / 4 direct
+source-hash locks, declares 124 schema target slots with 8 fields per slot, and
+satisfies 0 / 124 target slots and 0 / 992 field slots because the declared
+proof-grade derivation schema is absent. The exact blocker is
+`source_packet_acceptance_rule_derivation_proof_object_rule_kernel_derivation_payload_proof_grade_derivation_schema_target_declared_schema_absent`;
+schema construction, derivation proofs, proof rules, source-packet acceptance
+rules, accepted source packets, accepted statuses, route decisions, proof-rule
+decisions, primitive-acceptance decisions, source-packet acceptance decisions,
+row consumption, `preledger_pass`, live-ledger updates, and branch-chart
+authorization remain 0 / false.
+The follow-on proof-grade derivation schema current-pool absence classifier
+verifies 5 / 5 direct source-hash locks, scans 271 certificate JSON files,
+records 37 / 37 accepted-status lane JSON files fail-closed, and finds 0
+compatible proof-grade derivation schema objects. The exact blocker is
+`source_packet_acceptance_rule_derivation_proof_object_rule_kernel_derivation_payload_proof_grade_derivation_schema_absent_from_current_certificate_pool`;
+schema construction, derivation proofs, proof rules, source-packet acceptance
+rules, accepted source packets, accepted statuses, route decisions, proof-rule
+decisions, primitive-acceptance decisions, source-packet acceptance decisions,
+row consumption, `preledger_pass`, live-ledger updates, and branch-chart
+authorization remain 0 / false.
+The follow-on proof-grade derivation schema external-input obligation packet
+verifies 6 / 6 direct source-hash locks, retains the 271-file current-pool
+scan and 37 / 37 accepted-status lane fail-closed lock, declares 124 external
+proof-grade derivation schema obligation slots with 8 fields per slot, and
+satisfies 0 / 124 obligation slots and 0 / 992 field slots with 0 / 124
+external schema inputs received. The exact blocker is
+`source_packet_acceptance_rule_derivation_proof_object_rule_kernel_derivation_payload_proof_grade_derivation_schema_external_input_required`;
+schema construction, derivation proofs, proof rules, source-packet acceptance
+rules, accepted source packets, accepted statuses, route decisions, proof-rule
+decisions, primitive-acceptance decisions, source-packet acceptance decisions,
+row consumption, `preledger_pass`, live-ledger updates, and branch-chart
+authorization remain 0 / false.
 Accepted atlas refs, source-packet acceptance rules, accepted
 impulse/direct-quadrature source packets, parent-complement consumption refs,
 separator certificates, row consumption, `preledger_pass`, live-ledger updates,
