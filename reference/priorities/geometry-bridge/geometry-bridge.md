@@ -3955,6 +3955,27 @@ branch-resolved centered-residual source object, expression-level $N_{38}$
 provider, $S_{37}$ division, shifted $R_{\varepsilon,43}$ closure, retained
 branch, or directed-rounded provider.
 
+`buildH39RequestedY44TerminalWitnessDenominatorRealizationAttemptCandidate`
+now flattens the same-domain common-normalizer denominator $s_-+s_+$ into the
+terminal-row provider-object replay boundary. It consumes the common-normalizer
+attempt, the branch-residual common-normalizer law probe, the barycentric
+source-object attempt, and the terminal-row provider-object replay. Executable
+validation records five node rows, fifteen terminal rows, and thirty
+branch-slope rows. The live result is exact: zero of fifteen terminal rows have
+denominator-available common-normalizer division, all fifteen denominator
+intervals contain zero, all fifteen zero-crossing rows carry the same-$g$
+formal cancellation witness, all fifteen terminal rows are blocked by the
+denominator/source-object boundary, all fifteen branch-resolved centered
+residual source objects remain missing, and zero of thirty terminal-witness
+branch intervals are available. This changes the blocker from producer-width
+refinement to a same-domain denominator-free terminal branch-residual
+source-object identity replacing $R s_b/(s_-+s_+)$. The packet remains
+priority-only and candidate-only; it certifies no terminal witness
+realization, terminal-row provider object replay, branch-resolved
+centered-residual source object, expression-level $N_{38}$ provider,
+$S_{37}$ division, shifted $R_{\varepsilon,43}$ closure, retained branch, or
+directed-rounded provider.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.

@@ -3505,6 +3505,27 @@ priority-only and candidate-only; it certifies no terminal-row provider object
 replay, branch-resolved centered-residual source object, expression-level
 $N_{38}$ provider, $S_{37}$ division, shifted $R_{\varepsilon,43}$ closure,
 retained branch, or directed-rounded provider.
+
+\texttt{buildH39RequestedY44TerminalWitnessDenominatorRealizationAttemptCandidate}
+now threads the common-normalizer denominator $s_-+s_+$ into the terminal-row
+provider-object replay boundary. It consumes the common-normalizer attempt,
+the branch-residual common-normalizer law probe, the barycentric source-object
+attempt, and the terminal-row provider-object replay on the same five terminal
+graph cells and the same $h_{37},h_{36},h_{35}$ rows. Executable validation
+records five node rows, fifteen terminal rows, and thirty branch-slope rows.
+The current result is exact: zero denominator-available terminal rows, fifteen
+zero-crossing denominator rows, fifteen same-$g$ formal cancellation witnesses,
+fifteen terminal rows blocked by the denominator/source-object boundary,
+fifteen missing branch-resolved centered-residual source objects, and zero
+available terminal-witness branch intervals. This turns the next proof object
+from producer-width refinement into a same-domain denominator-free terminal
+branch-residual source-object identity replacing $R s_b/(s_-+s_+)$. This
+remains priority-only and candidate-only; it certifies no terminal witness
+realization, terminal-row provider object replay, branch-resolved
+centered-residual source object, expression-level $N_{38}$ provider,
+$S_{37}$ division, shifted $R_{\varepsilon,43}$ closure, retained branch, or
+directed-rounded provider.
+
 \texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
 now also probes a shared terminal-residual coordinate for
 $h_{37},h_{36},h_{35}$. Instead of assigning independent residual hulls to the

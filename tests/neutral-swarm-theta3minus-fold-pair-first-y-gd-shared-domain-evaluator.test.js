@@ -91,6 +91,7 @@ import {
   buildH39RequestedY44TerminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttemptCandidate,
   buildH39RequestedY44TerminalSuccessorBarycentricToSuccessorScalarHandoffAttemptCandidate,
   buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandidate,
+  buildH39RequestedY44TerminalWitnessDenominatorRealizationAttemptCandidate,
   buildH39RequestedY44RowLocalN38SignedSourceSumDerivativeProviderCandidate,
   validateH39CorrelatedResidualWidthDiagnostic,
   validateH39H38NumeratorGraphLocalPartitionDiagnostic,
@@ -178,6 +179,7 @@ import {
   validateH39RequestedY44TerminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttemptCandidate,
   validateH39RequestedY44TerminalSuccessorBarycentricToSuccessorScalarHandoffAttemptCandidate,
   validateH39RequestedY44TerminalRowProviderObjectReplayAttemptCandidate,
+  validateH39RequestedY44TerminalWitnessDenominatorRealizationAttemptCandidate,
   validateH39RequestedY44RowLocalN38SignedSourceSumDerivativeProvider,
   validateH39RequestedY44SignedSourceSumDerivativeAllocationTarget,
   validateH39RequestedY44SourceMapResidualCovarianceTarget,
@@ -20998,6 +21000,248 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
             )
         )
     )
+  );
+  const terminalWitnessDenominatorRealizationAttempt =
+    buildH39RequestedY44TerminalWitnessDenominatorRealizationAttemptCandidate({
+      terminalSuccessorBranchAntisymmetricCommonNormalizerAttempt,
+      terminalSuccessorBranchResidualCommonNormalizerLawProbe,
+      terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt,
+      terminalRowProviderObjectReplayAttempt,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44TerminalWitnessDenominatorRealizationAttemptCandidate(
+      terminalWitnessDenominatorRealizationAttempt
+    ),
+    []
+  );
+  assert.equal(
+    terminalWitnessDenominatorRealizationAttempt
+      .terminal_witness_denominator_realization_attempt_verified,
+    true
+  );
+  assert.equal(
+    terminalWitnessDenominatorRealizationAttempt
+      .terminal_witness_denominator_realization_attempt_certified,
+    false
+  );
+  assert.equal(
+    terminalWitnessDenominatorRealizationAttempt
+      .terminal_witness_denominator_realization_row_count,
+    5
+  );
+  assert.equal(
+    terminalWitnessDenominatorRealizationAttempt
+      .terminal_witness_denominator_realization_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalWitnessDenominatorRealizationAttempt
+      .terminal_witness_denominator_realization_branch_row_count,
+    30
+  );
+  assert.equal(
+    terminalWitnessDenominatorRealizationAttempt
+      .common_normalizer_denominator_separated_terminal_row_count +
+      terminalWitnessDenominatorRealizationAttempt
+        .common_normalizer_denominator_zero_crossing_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalWitnessDenominatorRealizationAttempt
+      .common_normalizer_division_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalWitnessDenominatorRealizationAttempt
+      .common_normalizer_division_available_terminal_row_count,
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      .barycentric_denominator_available_terminal_row_count
+  );
+  assert.equal(
+    terminalWitnessDenominatorRealizationAttempt
+      .common_normalizer_denominator_zero_crossing_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalWitnessDenominatorRealizationAttempt
+      .all_common_normalizer_denominators_separated_from_zero,
+    false
+  );
+  assert.equal(
+    terminalWitnessDenominatorRealizationAttempt
+      .all_zero_crossing_denominators_have_structural_cancellation_witness,
+    true
+  );
+  assert.equal(
+    terminalWitnessDenominatorRealizationAttempt
+      .branch_residual_source_object_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalWitnessDenominatorRealizationAttempt
+      .branch_residual_source_object_missing_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalWitnessDenominatorRealizationAttempt
+      .all_branch_residual_source_objects_missing,
+    true
+  );
+  assert.equal(
+    terminalWitnessDenominatorRealizationAttempt
+      .terminal_witness_branch_intervals_available_count,
+    0
+  );
+  assert.equal(
+    terminalWitnessDenominatorRealizationAttempt
+      .terminal_witness_branch_intervals_available_count,
+    terminalRowProviderObjectReplayAttempt
+      .terminal_witness_branch_intervals_available_count
+  );
+  assert.equal(
+    terminalWitnessDenominatorRealizationAttempt
+      .terminal_witness_blocked_by_denominator_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalWitnessDenominatorRealizationAttempt
+      .all_terminal_rows_blocked_by_denominator,
+    true
+  );
+  assert.equal(
+    terminalWitnessDenominatorRealizationAttempt
+      .source_map_provider_branch_intervals_available_count,
+    terminalRowProviderObjectReplayAttempt
+      .source_map_provider_branch_intervals_available_count
+  );
+  assert.equal(
+    terminalWitnessDenominatorRealizationAttempt
+      .all_terminal_witness_branch_intervals_available,
+    false
+  );
+  assert.equal(
+    terminalWitnessDenominatorRealizationAttempt
+      .all_source_map_provider_branch_intervals_available,
+    terminalWitnessDenominatorRealizationAttempt
+      .source_map_provider_branch_intervals_available_count === 30
+  );
+  assert.equal(
+    terminalWitnessDenominatorRealizationAttempt
+      .terminal_witness_denominator_realization_certified,
+    false
+  );
+  assert.equal(
+    terminalWitnessDenominatorRealizationAttempt
+      .terminal_row_provider_object_replay_certified,
+    false
+  );
+  assert.equal(
+    terminalWitnessDenominatorRealizationAttempt
+      .branch_resolved_centered_residual_source_object_certified,
+    false
+  );
+  assert.equal(
+    terminalWitnessDenominatorRealizationAttempt
+      .expression_level_n38_provider_certified,
+    false
+  );
+  assert.equal(
+    terminalWitnessDenominatorRealizationAttempt
+      .terminal_witness_denominator_realization_attempt_classification,
+    "terminal-witness-denominator-zero-contained-denominator-free-identity-needed"
+  );
+  assert.equal(
+    terminalWitnessDenominatorRealizationAttempt
+      .terminal_witness_denominator_realization_attempt_blocker_classification,
+    "same-domain-denominator-free-terminal-branch-residual-source-object-identity-needed"
+  );
+  assert.equal(
+    terminalWitnessDenominatorRealizationAttempt
+      .terminal_witness_denominator_realization_attempt_primary_missing_object_kind,
+    "denominator-free-terminal-branch-residual-source-object-identity"
+  );
+  assert.ok(
+    terminalWitnessDenominatorRealizationAttempt.terminal_witness_denominator_realization_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_witness_denominator_realization_terminal_row_count === 3 &&
+        row.terminal_witness_denominator_realization_branch_row_count === 6 &&
+        row.branch_residual_source_object_available_terminal_row_count === 0 &&
+        row.branch_residual_source_object_missing_terminal_row_count === 3 &&
+        row.row_terminal_witness_denominator_realization_attempt_verified ===
+          true &&
+        row.row_certifies_terminal_witness_denominator_realization === false &&
+        row.row_certifies_terminal_row_provider_object_replay === false &&
+        row.row_certifies_expression_level_n38_provider === false &&
+        row.claim_boundary
+          .certifies_terminal_witness_denominator_realization === false &&
+        row.claim_boundary.certifies_terminal_row_provider_object_replay ===
+          false &&
+        row.claim_boundary
+          .certifies_branch_resolved_centered_residual_source_object === false &&
+        row.claim_boundary.certifies_expression_level_n38_provider === false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false &&
+        row.terminal_witness_denominator_realization_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_graph_cell_id ===
+              `speed.${index}.first-y` &&
+            terminalRow.common_normalizer_denominator_formula ===
+              "s_-+s_+" &&
+            terminalRow.barycentric_branch_residual_source_object_identity ===
+              "r_b=R*s_b/(s_-+s_+); r_-+r_+=R when s_-+s_+ != 0" &&
+            Array.isArray(terminalRow.branch_solve_slope_sum_interval) &&
+            terminalRow.branch_solve_slope_sum_interval.length === 2 &&
+            Number.isFinite(
+              Number(terminalRow.branch_solve_slope_sum_interval_midpoint)
+            ) &&
+            Number.isFinite(
+              Number(terminalRow.branch_solve_slope_sum_interval_half_width)
+            ) &&
+            (terminalRow.branch_solve_slope_sum_interval_separated_from_zero ===
+              true ||
+              terminalRow.branch_solve_slope_sum_interval_contains_zero ===
+                true) &&
+            terminalRow.branch_solve_slope_source_rows.length === 2 &&
+            terminalRow.branch_solve_slope_source_rows.every(
+              (branchRow) =>
+                ["-", "+"].includes(branchRow.branch) &&
+                Array.isArray(branchRow.solve_slope_interval) &&
+                branchRow.solve_slope_interval.length === 2 &&
+                branchRow.solve_slope_interval_separated_from_zero === true &&
+                branchRow
+                  .branch_resolved_nonzero_normalizer_source_available === true
+            ) &&
+            terminalRow.branch_residual_source_object_available === false &&
+            terminalRow.branch_residual_source_object_missing === true &&
+            terminalRow.branch_residual_source_row_recorded_open === true &&
+            typeof terminalRow.terminal_witness_blocked_by_denominator ===
+              "boolean" &&
+            typeof terminalRow.denominator_structural_cancellation_witness ===
+              "boolean" &&
+            terminalRow
+              .row_terminal_witness_denominator_realization_attempt_verified ===
+              true &&
+            terminalRow
+              .row_certifies_terminal_witness_denominator_realization ===
+              false &&
+            terminalRow.row_certifies_terminal_row_provider_object_replay ===
+              false &&
+            terminalRow.row_certifies_expression_level_n38_provider === false
+        )
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalWitnessDenominatorRealizationAttempt),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalWitnessDenominatorRealizationAttempt,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
   );
   assert.deepEqual(
     collectTrueCertifies(terminalRowProviderObjectReplayAttempt),

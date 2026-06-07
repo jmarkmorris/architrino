@@ -97636,6 +97636,1387 @@ export function validateH39RequestedY44TerminalRowProviderObjectReplayAttemptCan
   return errors;
 }
 
+function h39TerminalWitnessDenominatorRealizationAttemptClaimBoundary() {
+  return {
+    defines_terminal_witness_denominator_realization_attempt_only: true,
+    certifies_terminal_witness_denominator_realization: false,
+    certifies_terminal_row_provider_object_replay: false,
+    certifies_barycentric_to_successor_scalar_centered_projection_identity:
+      false,
+    certifies_barycentric_branch_residual_aggregate_identity: false,
+    certifies_branch_resolved_centered_residual_source_object: false,
+    certifies_terminal_successor_scalar_residual_identity: false,
+    certifies_terminal_successor_scalar_provider_boundary_identity: false,
+    certifies_terminal_successor_branch_antisymmetric_common_normalizer: false,
+    certifies_terminal_successor_centered_residual_branch_split: false,
+    certifies_branch_resolved_centered_residual_component: false,
+    certifies_terminal_h_to_source_term_identity: false,
+    certifies_expression_level_n38_provider: false,
+    certifies_terminal_row_provider_enclosure: false,
+    certifies_terminal_graph_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
+export function buildH39RequestedY44TerminalWitnessDenominatorRealizationAttemptCandidate({
+  terminalSuccessorBranchAntisymmetricCommonNormalizerAttempt,
+  terminalSuccessorBranchResidualCommonNormalizerLawProbe,
+  terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt,
+  terminalRowProviderObjectReplayAttempt,
+} = {}) {
+  const terminalHIndexes = [37, 36, 35];
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const numericInterval = (interval) =>
+    finiteOrderedInterval(interval)
+      ? [Number(interval[0]), Number(interval[1])]
+      : null;
+  const intervalContainsZero = (interval) =>
+    finiteOrderedInterval(interval) &&
+    Number(interval[0]) <= 0 &&
+    Number(interval[1]) >= 0;
+  const intervalSeparatedFromZero = (interval) =>
+    finiteOrderedInterval(interval) &&
+    (Number(interval[1]) < 0 || Number(interval[0]) > 0);
+  const intervalHalfWidth = (interval) =>
+    finiteOrderedInterval(interval)
+      ? (Number(interval[1]) - Number(interval[0])) / 2
+      : null;
+  const intervalMidpoint = (interval) =>
+    finiteOrderedInterval(interval)
+      ? (Number(interval[0]) + Number(interval[1])) / 2
+      : null;
+  const zeroClearance = (interval) => {
+    if (!finiteOrderedInterval(interval) || intervalContainsZero(interval)) {
+      return 0;
+    }
+    return Number(interval[0]) > 0
+      ? Number(interval[0])
+      : Math.abs(Number(interval[1]));
+  };
+  const ratioOrNull = (numerator, denominator) =>
+    finiteNumber(numerator) && finiteNumber(denominator) && Number(denominator) > 0
+      ? Number(numerator) / Number(denominator)
+      : null;
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const checkKinds = [
+    "common_normalizer_attempt_ready",
+    "branch_residual_common_normalizer_law_probe_ready",
+    "barycentric_identity_attempt_ready",
+    "terminal_row_provider_object_replay_ready",
+    "same_domain_terminal_rows_aligned",
+    "denominator_geometry_recorded",
+    "branch_residual_source_object_status_recorded",
+    "terminal_witness_availability_recorded",
+    "denominator_realization_kept_fail_closed",
+    "h39_broad_claims_remain_open",
+  ];
+  const terminalCheckKinds = [
+    "common_normalizer_terminal_row_available",
+    "law_probe_terminal_row_available",
+    "barycentric_terminal_row_available",
+    "provider_replay_terminal_row_available",
+    "same_domain_terminal_row_aligned",
+    "denominator_geometry_recorded",
+    "branch_solve_slope_pair_recorded",
+    "branch_residual_source_object_status_recorded",
+    "terminal_witness_availability_recorded",
+    "denominator_realization_kept_fail_closed",
+    "h39_claims_remain_open",
+  ];
+  const commonRows =
+    terminalSuccessorBranchAntisymmetricCommonNormalizerAttempt
+      ?.terminal_successor_branch_antisymmetric_common_normalizer_attempt_rows ??
+    [];
+  const lawProbeRows =
+    terminalSuccessorBranchResidualCommonNormalizerLawProbe
+      ?.terminal_successor_branch_residual_common_normalizer_law_probe_rows ??
+    [];
+  const barycentricRows =
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      ?.terminal_successor_barycentric_branch_residual_source_object_identity_attempt_rows ??
+    [];
+  const providerReplayRows =
+    terminalRowProviderObjectReplayAttempt
+      ?.terminal_row_provider_object_replay_rows ?? [];
+  const commonRowsByNode = new Map(
+    commonRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const lawProbeRowsByNode = new Map(
+    lawProbeRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const barycentricRowsByNode = new Map(
+    barycentricRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const providerReplayRowsByNode = new Map(
+    providerReplayRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const commonReady =
+    terminalSuccessorBranchAntisymmetricCommonNormalizerAttempt?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SUCCESSOR_BRANCH_ANTISYMMETRIC_COMMON_NORMALIZER_ATTEMPT_CANDIDATE_SCHEMA &&
+    terminalSuccessorBranchAntisymmetricCommonNormalizerAttempt
+      ?.terminal_successor_branch_antisymmetric_common_normalizer_attempt_verified ===
+      true &&
+    terminalSuccessorBranchAntisymmetricCommonNormalizerAttempt
+      ?.terminal_successor_branch_antisymmetric_common_normalizer_attempt_certified ===
+      false &&
+    terminalSuccessorBranchAntisymmetricCommonNormalizerAttempt
+      ?.common_normalizer_law_proven === false &&
+    terminalSuccessorBranchAntisymmetricCommonNormalizerAttempt?.claim_boundary
+      ?.certifies_terminal_successor_branch_antisymmetric_common_normalizer ===
+      false &&
+    terminalSuccessorBranchAntisymmetricCommonNormalizerAttempt?.claim_boundary
+      ?.certifies_expression_level_n38_provider === false &&
+    terminalSuccessorBranchAntisymmetricCommonNormalizerAttempt?.claim_boundary
+      ?.certifies_directed_rounded_shared_domain === false;
+  const lawProbeReady =
+    terminalSuccessorBranchResidualCommonNormalizerLawProbe?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SUCCESSOR_BRANCH_RESIDUAL_COMMON_NORMALIZER_LAW_PROBE_CANDIDATE_SCHEMA &&
+    terminalSuccessorBranchResidualCommonNormalizerLawProbe
+      ?.terminal_successor_branch_residual_common_normalizer_law_probe_verified ===
+      true &&
+    terminalSuccessorBranchResidualCommonNormalizerLawProbe
+      ?.terminal_successor_branch_residual_common_normalizer_law_probe_certified ===
+      false &&
+    terminalSuccessorBranchResidualCommonNormalizerLawProbe
+      ?.common_normalizer_branch_residual_law_proven === false &&
+    terminalSuccessorBranchResidualCommonNormalizerLawProbe
+      ?.all_branch_residual_source_objects_missing === true &&
+    terminalSuccessorBranchResidualCommonNormalizerLawProbe?.claim_boundary
+      ?.certifies_terminal_successor_branch_antisymmetric_common_normalizer ===
+      false &&
+    terminalSuccessorBranchResidualCommonNormalizerLawProbe?.claim_boundary
+      ?.certifies_branch_resolved_centered_residual_component === false &&
+    terminalSuccessorBranchResidualCommonNormalizerLawProbe?.claim_boundary
+      ?.certifies_expression_level_n38_provider === false &&
+    terminalSuccessorBranchResidualCommonNormalizerLawProbe?.claim_boundary
+      ?.certifies_directed_rounded_shared_domain === false;
+  const barycentricReady =
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SUCCESSOR_BARYCENTRIC_BRANCH_RESIDUAL_SOURCE_OBJECT_IDENTITY_ATTEMPT_CANDIDATE_SCHEMA &&
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      ?.terminal_successor_barycentric_branch_residual_source_object_identity_attempt_verified ===
+      true &&
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      ?.terminal_successor_barycentric_branch_residual_source_object_identity_attempt_certified ===
+      false &&
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      ?.branch_resolved_centered_residual_source_object_certified === false &&
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      ?.claim_boundary?.certifies_expression_level_n38_provider === false &&
+    terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+      ?.claim_boundary?.certifies_directed_rounded_shared_domain === false;
+  const providerReplayReady =
+    terminalRowProviderObjectReplayAttempt?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_ROW_PROVIDER_OBJECT_REPLAY_ATTEMPT_CANDIDATE_SCHEMA &&
+    terminalRowProviderObjectReplayAttempt
+      ?.terminal_row_provider_object_replay_attempt_verified === true &&
+    terminalRowProviderObjectReplayAttempt
+      ?.terminal_row_provider_object_replay_attempt_certified === false &&
+    terminalRowProviderObjectReplayAttempt
+      ?.terminal_row_provider_object_replay_certified === false &&
+    terminalRowProviderObjectReplayAttempt
+      ?.branch_resolved_centered_residual_source_object_certified === false &&
+    terminalRowProviderObjectReplayAttempt
+      ?.terminal_successor_scalar_provider_boundary_identity_certified ===
+      false &&
+    terminalRowProviderObjectReplayAttempt?.claim_boundary
+      ?.certifies_expression_level_n38_provider === false &&
+    terminalRowProviderObjectReplayAttempt?.claim_boundary
+      ?.certifies_directed_rounded_shared_domain === false;
+  const rows = Array.from({ length: 5 }, (_, nodeIndex) => {
+    const terminalGraphCellId = `speed.${nodeIndex}.first-y`;
+    const commonRow = commonRowsByNode.get(nodeIndex) ?? null;
+    const lawProbeRow = lawProbeRowsByNode.get(nodeIndex) ?? null;
+    const barycentricRow = barycentricRowsByNode.get(nodeIndex) ?? null;
+    const providerReplayRow = providerReplayRowsByNode.get(nodeIndex) ?? null;
+    const commonTerminalRows =
+      commonRow?.terminal_successor_branch_antisymmetric_common_normalizer_rows ??
+      [];
+    const lawProbeTerminalRows =
+      lawProbeRow
+        ?.terminal_successor_branch_residual_common_normalizer_law_probe_rows ??
+      [];
+    const barycentricTerminalRows =
+      barycentricRow
+        ?.terminal_successor_barycentric_branch_residual_source_object_identity_attempt_rows ??
+      [];
+    const providerReplayTerminalRows =
+      providerReplayRow?.terminal_row_provider_object_replay_rows ?? [];
+    const terminalRows =
+      H39_TERMINAL_SUCCESSOR_COEFFICIENT_IDENTITY_IMPORT_SPECS.map((spec) => {
+        const commonTerminalRow =
+          commonTerminalRows.find(
+            (row) => Number(row?.terminal_h_index) === spec.terminal_h_index
+          ) ?? null;
+        const lawProbeTerminalRow =
+          lawProbeTerminalRows.find(
+            (row) => Number(row?.terminal_h_index) === spec.terminal_h_index
+          ) ?? null;
+        const barycentricTerminalRow =
+          barycentricTerminalRows.find(
+            (row) => Number(row?.terminal_h_index) === spec.terminal_h_index
+          ) ?? null;
+        const providerReplayTerminalRow =
+          providerReplayTerminalRows.find(
+            (row) => Number(row?.terminal_h_index) === spec.terminal_h_index
+          ) ?? null;
+        const denominatorInterval = numericInterval(
+          commonTerminalRow?.branch_solve_slope_sum_interval
+        );
+        const denominatorDifferenceInterval = numericInterval(
+          commonTerminalRow?.branch_solve_slope_difference_interval
+        );
+        const halfWidth = intervalHalfWidth(denominatorInterval);
+        const midpoint = intervalMidpoint(denominatorInterval);
+        const absoluteMidpoint = finiteNumber(midpoint)
+          ? Math.abs(Number(midpoint))
+          : null;
+        const denominatorSeparated =
+          commonTerminalRow?.branch_solve_slope_sum_interval_separated_from_zero ===
+          true;
+        const denominatorContainsZero =
+          commonTerminalRow?.branch_solve_slope_sum_interval_contains_zero ===
+          true;
+        const clearance = zeroClearance(denominatorInterval);
+        const midpointHalfWidthRatio = ratioOrNull(absoluteMidpoint, halfWidth);
+        const clearanceHalfWidthRatio = ratioOrNull(clearance, halfWidth);
+        const sourceRows =
+          commonTerminalRow?.branch_solve_slope_source_rows ?? [];
+        const sourceRowsByBranch = new Map(
+          sourceRows
+            .filter((row) => row?.branch === "-" || row?.branch === "+")
+            .map((row) => [row.branch, row])
+        );
+        const branchSlopeRows = ["-", "+"].map((branch) => {
+          const sourceRow = sourceRowsByBranch.get(branch) ?? null;
+          return {
+            branch,
+            solve_slope_interval: numericInterval(
+              sourceRow?.solve_slope_interval
+            ),
+            solve_slope_sign: sourceRow?.solve_slope_sign ?? null,
+            solve_slope_interval_separated_from_zero:
+              sourceRow?.solve_slope_interval_separated_from_zero === true,
+            branch_resolved_nonzero_normalizer_source_available:
+              sourceRow?.branch_resolved_nonzero_normalizer_source_available ===
+              true,
+            same_g_formal_identity_exact_zero:
+              sourceRow?.same_g_formal_identity_exact_zero === true,
+          };
+        });
+        const sameGIdentityPair =
+          branchSlopeRows.length === 2 &&
+          branchSlopeRows.every(
+            (row) => row.same_g_formal_identity_exact_zero === true
+          );
+        const providerReplayBranchRows =
+          providerReplayTerminalRow
+            ?.source_map_provider_object_replay_branch_rows ?? [];
+        const terminalWitnessBranchIntervalsAvailableCount =
+          providerReplayBranchRows.filter(
+            (row) => row?.terminal_witness_interval_available === true
+          ).length;
+        const sourceMapProviderBranchIntervalsAvailableCount =
+          providerReplayBranchRows.filter(
+            (row) => row?.source_map_provider_object_interval_available === true
+          ).length;
+        const branchResidualSourceObjectAvailable =
+          lawProbeTerminalRow?.branch_residual_source_object_available === true;
+        const branchResidualSourceObjectMissing =
+          lawProbeTerminalRow?.branch_residual_source_object_missing === true;
+        const branchResidualSourceRowRecordedOpen =
+          lawProbeTerminalRow?.branch_residual_source_row_recorded_open === true;
+        const lawCandidateReconstructsAggregate =
+          lawProbeTerminalRow
+            ?.common_normalizer_branch_residual_law_candidate_reconstructs_aggregate ===
+          true;
+        const divisionAvailable =
+          commonTerminalRow?.common_normalizer_division_available === true;
+        const barycentricDenominatorAvailable =
+          barycentricTerminalRow?.common_normalizer_division_available === true;
+        const providerReplayDenominatorAvailable =
+          providerReplayTerminalRow?.common_normalizer_division_available === true;
+        const terminalWitnessBlockedByDenominator =
+          !divisionAvailable &&
+          !barycentricDenominatorAvailable &&
+          !providerReplayDenominatorAvailable &&
+          terminalWitnessBranchIntervalsAvailableCount === 0;
+        const structuralCancellationWitness =
+          denominatorContainsZero && sameGIdentityPair && !divisionAvailable;
+        const refinementForecast = denominatorSeparated
+          ? "denominator-separated-division-realization-ready"
+          : structuralCancellationWitness
+            ? "zero-contained-same-g-denominator-free-identity-needed"
+            : denominatorContainsZero
+              ? "zero-contained-directed-subcell-separation-needed"
+              : "denominator-realization-status-open";
+        const terminalChecks = {
+          common_normalizer_terminal_row_available:
+            commonReady &&
+            commonTerminalRow
+              ?.row_terminal_successor_branch_antisymmetric_common_normalizer_attempt_verified ===
+              true,
+          law_probe_terminal_row_available:
+            lawProbeReady &&
+            lawProbeTerminalRow
+              ?.row_terminal_successor_branch_residual_common_normalizer_law_probe_verified ===
+              true,
+          barycentric_terminal_row_available:
+            barycentricReady &&
+            barycentricTerminalRow
+              ?.row_terminal_successor_barycentric_branch_residual_source_object_identity_attempt_verified ===
+              true,
+          provider_replay_terminal_row_available:
+            providerReplayReady &&
+            providerReplayTerminalRow
+              ?.row_terminal_row_provider_object_replay_attempt_verified ===
+              true,
+          same_domain_terminal_row_aligned:
+            commonTerminalRow?.terminal_graph_cell_id ===
+              terminalGraphCellId &&
+            lawProbeTerminalRow?.terminal_graph_cell_id ===
+              terminalGraphCellId &&
+            barycentricTerminalRow?.terminal_graph_cell_id ===
+              terminalGraphCellId &&
+            providerReplayTerminalRow?.terminal_graph_cell_id ===
+              terminalGraphCellId &&
+            commonTerminalRow?.terminal_h_index === spec.terminal_h_index &&
+            lawProbeTerminalRow?.terminal_h_index === spec.terminal_h_index &&
+            barycentricTerminalRow?.terminal_h_index ===
+              spec.terminal_h_index &&
+            providerReplayTerminalRow?.terminal_h_index ===
+              spec.terminal_h_index &&
+            commonTerminalRow?.successor_scalar_identity_weight ===
+              spec.successor_scalar_identity_weight &&
+            lawProbeTerminalRow?.successor_scalar_identity_weight ===
+              spec.successor_scalar_identity_weight &&
+            barycentricTerminalRow?.successor_scalar_identity_weight ===
+              spec.successor_scalar_identity_weight &&
+            providerReplayTerminalRow?.successor_scalar_identity_weight ===
+              spec.successor_scalar_identity_weight &&
+            commonTerminalRow?.centered_successor_scalar_weight ===
+              spec.centered_successor_scalar_weight &&
+            lawProbeTerminalRow?.centered_successor_scalar_weight ===
+              spec.centered_successor_scalar_weight &&
+            barycentricTerminalRow?.centered_successor_scalar_weight ===
+              spec.centered_successor_scalar_weight &&
+            providerReplayTerminalRow?.centered_successor_scalar_weight ===
+              spec.centered_successor_scalar_weight,
+          denominator_geometry_recorded:
+            finiteOrderedInterval(denominatorInterval) &&
+            finiteOrderedInterval(denominatorDifferenceInterval) &&
+            finiteNumber(halfWidth) &&
+            finiteNumber(midpoint) &&
+            finiteNumber(absoluteMidpoint) &&
+            (denominatorSeparated || denominatorContainsZero) &&
+            denominatorSeparated === intervalSeparatedFromZero(denominatorInterval) &&
+            denominatorContainsZero === intervalContainsZero(denominatorInterval),
+          branch_solve_slope_pair_recorded:
+            branchSlopeRows.length === 2 &&
+            branchSlopeRows.every(
+              (row) =>
+                finiteOrderedInterval(row.solve_slope_interval) &&
+                row.solve_slope_interval_separated_from_zero === true &&
+                row.branch_resolved_nonzero_normalizer_source_available === true
+            ),
+          branch_residual_source_object_status_recorded:
+            branchResidualSourceObjectAvailable === false &&
+            branchResidualSourceObjectMissing === true &&
+            branchResidualSourceRowRecordedOpen === true &&
+            lawProbeTerminalRow?.branch_split_free_dimension === 1 &&
+            lawProbeTerminalRow
+              ?.branch_antisymmetric_centered_residual_coordinate_needed === true,
+          terminal_witness_availability_recorded:
+            typeof terminalWitnessBranchIntervalsAvailableCount === "number" &&
+            terminalWitnessBranchIntervalsAvailableCount >= 0 &&
+            terminalWitnessBranchIntervalsAvailableCount <= 2 &&
+            typeof sourceMapProviderBranchIntervalsAvailableCount === "number" &&
+            sourceMapProviderBranchIntervalsAvailableCount >= 0 &&
+            sourceMapProviderBranchIntervalsAvailableCount <= 2,
+          denominator_realization_kept_fail_closed:
+            commonTerminalRow?.common_normalizer_law_proven === false &&
+            lawProbeTerminalRow
+              ?.common_normalizer_branch_residual_law_proven === false &&
+            lawProbeTerminalRow
+              ?.branch_resolved_centered_residual_components_available ===
+              false &&
+            barycentricTerminalRow
+              ?.branch_resolved_centered_residual_source_object_certified ===
+              false &&
+            providerReplayTerminalRow
+              ?.row_certifies_terminal_row_provider_object_replay === false,
+          h39_claims_remain_open:
+            commonTerminalRow?.claim_boundary
+              ?.certifies_terminal_successor_branch_antisymmetric_common_normalizer ===
+              false &&
+            lawProbeTerminalRow?.claim_boundary
+              ?.certifies_branch_resolved_centered_residual_component ===
+              false &&
+            barycentricTerminalRow?.claim_boundary
+              ?.certifies_branch_resolved_centered_residual_source_object ===
+              false &&
+            providerReplayTerminalRow?.claim_boundary
+              ?.certifies_terminal_row_provider_object_replay === false &&
+            providerReplayTerminalRow?.claim_boundary
+              ?.certifies_expression_level_n38_provider === false &&
+            providerReplayTerminalRow?.claim_boundary
+              ?.certifies_directed_rounded_shared_domain === false,
+        };
+        const terminalRowVerified = Object.values(terminalChecks).every(
+          (value) => value === true
+        );
+        return {
+          terminal_h_index: spec.terminal_h_index,
+          source_y_order: H38_NUMERATOR_Y_ORDER,
+          terminal_graph_cell_id: terminalGraphCellId,
+          successor_scalar_identity_weight:
+            spec.successor_scalar_identity_weight,
+          centered_successor_scalar_weight:
+            spec.centered_successor_scalar_weight,
+          common_normalizer_denominator_formula: "s_-+s_+",
+          barycentric_branch_residual_source_object_identity:
+            "r_b=R*s_b/(s_-+s_+); r_-+r_+=R when s_-+s_+ != 0",
+          branch_solve_slope_sum_interval: denominatorInterval,
+          branch_solve_slope_difference_interval:
+            denominatorDifferenceInterval,
+          branch_solve_slope_sum_interval_midpoint: midpoint,
+          branch_solve_slope_sum_interval_half_width: halfWidth,
+          branch_solve_slope_sum_interval_abs_midpoint: absoluteMidpoint,
+          branch_solve_slope_sum_abs_midpoint_to_half_width_ratio:
+            midpointHalfWidthRatio,
+          branch_solve_slope_sum_zero_clearance: clearance,
+          branch_solve_slope_sum_zero_clearance_to_half_width_ratio:
+            clearanceHalfWidthRatio,
+          branch_solve_slope_sum_interval_separated_from_zero:
+            denominatorSeparated,
+          branch_solve_slope_sum_interval_contains_zero:
+            denominatorContainsZero,
+          branch_solve_slope_source_rows: branchSlopeRows,
+          branch_solve_slope_pair_same_g_formal_identity_exact_zero:
+            sameGIdentityPair,
+          common_normalizer_division_available: divisionAvailable,
+          barycentric_denominator_available: barycentricDenominatorAvailable,
+          provider_replay_denominator_available:
+            providerReplayDenominatorAvailable,
+          common_normalizer_lambda_interval: numericInterval(
+            commonTerminalRow?.common_normalizer_lambda_interval
+          ),
+          common_normalizer_branch_residual_law_candidate_reconstructs_aggregate:
+            lawCandidateReconstructsAggregate,
+          branch_residual_source_object_available:
+            branchResidualSourceObjectAvailable,
+          branch_residual_source_object_missing: branchResidualSourceObjectMissing,
+          branch_residual_source_row_recorded_open:
+            branchResidualSourceRowRecordedOpen,
+          terminal_witness_branch_intervals_available_count:
+            terminalWitnessBranchIntervalsAvailableCount,
+          source_map_provider_branch_intervals_available_count:
+            sourceMapProviderBranchIntervalsAvailableCount,
+          terminal_witness_blocked_by_denominator:
+            terminalWitnessBlockedByDenominator,
+          denominator_structural_cancellation_witness:
+            structuralCancellationWitness,
+          denominator_refinement_forecast: refinementForecast,
+          terminal_witness_denominator_realization_attempt_check_kinds: [
+            ...terminalCheckKinds,
+          ],
+          terminal_witness_denominator_realization_attempt_checks:
+            terminalChecks,
+          row_terminal_witness_denominator_realization_attempt_verified:
+            terminalRowVerified,
+          row_certifies_terminal_witness_denominator_realization: false,
+          row_certifies_terminal_row_provider_object_replay: false,
+          row_certifies_expression_level_n38_provider: false,
+          row_status: terminalRowVerified
+            ? divisionAvailable
+              ? "terminal-witness-denominator-separated-law-proof-open"
+              : structuralCancellationWitness
+                ? "terminal-witness-denominator-zero-contained-denominator-free-identity-needed"
+                : denominatorContainsZero
+                  ? "terminal-witness-denominator-zero-contained-subcell-separation-needed"
+                  : "terminal-witness-denominator-realization-open"
+            : "terminal-witness-denominator-realization-attempt-open",
+          claim_boundary:
+            h39TerminalWitnessDenominatorRealizationAttemptClaimBoundary(),
+        };
+      });
+      const rowChecks = {
+      common_normalizer_attempt_ready:
+        commonReady &&
+        commonRow
+          ?.row_terminal_successor_branch_antisymmetric_common_normalizer_attempt_verified ===
+          true,
+      branch_residual_common_normalizer_law_probe_ready:
+        lawProbeReady &&
+        lawProbeRow
+          ?.row_terminal_successor_branch_residual_common_normalizer_law_probe_verified ===
+          true,
+      barycentric_identity_attempt_ready:
+        barycentricReady &&
+        barycentricRow
+          ?.row_terminal_successor_barycentric_branch_residual_source_object_identity_attempt_verified ===
+          true,
+      terminal_row_provider_object_replay_ready:
+        providerReplayReady &&
+        providerReplayRow?.row_terminal_row_provider_object_replay_attempt_verified ===
+          true,
+      same_domain_terminal_rows_aligned: terminalRows.every(
+        (row) =>
+          row.terminal_witness_denominator_realization_attempt_checks
+            ?.same_domain_terminal_row_aligned === true
+      ),
+      denominator_geometry_recorded: terminalRows.every(
+        (row) =>
+          row.terminal_witness_denominator_realization_attempt_checks
+            ?.denominator_geometry_recorded === true
+      ),
+      branch_residual_source_object_status_recorded: terminalRows.every(
+        (row) =>
+          row.terminal_witness_denominator_realization_attempt_checks
+            ?.branch_residual_source_object_status_recorded === true
+      ),
+      terminal_witness_availability_recorded: terminalRows.every(
+        (row) =>
+          row.terminal_witness_denominator_realization_attempt_checks
+            ?.terminal_witness_availability_recorded === true
+      ),
+      denominator_realization_kept_fail_closed: terminalRows.every(
+        (row) =>
+          row.terminal_witness_denominator_realization_attempt_checks
+            ?.denominator_realization_kept_fail_closed === true
+      ),
+      h39_broad_claims_remain_open: terminalRows.every(
+        (row) =>
+          row.terminal_witness_denominator_realization_attempt_checks
+            ?.h39_claims_remain_open === true
+      ),
+    };
+    const rowVerified = Object.values(rowChecks).every(
+      (value) => value === true
+    );
+    return {
+      node_index: nodeIndex,
+      terminal_graph_cell_id: terminalGraphCellId,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      terminal_witness_denominator_realization_attempt_row_kind:
+        "terminal-witness-denominator-realization-attempt-row",
+      terminal_h_indexes: [...terminalHIndexes],
+      terminal_successor_scalar_identity_weights: {
+        h37: 38,
+        h36: 37,
+        h35: 36,
+      },
+      centered_terminal_successor_scalar_identity_weights: {
+        h37: 1,
+        h36: 0,
+        h35: -1,
+      },
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      terminal_witness_denominator_realization_rows: terminalRows,
+      terminal_witness_denominator_realization_terminal_row_count:
+        terminalRows.length,
+      terminal_witness_denominator_realization_branch_row_count:
+        terminalRows.reduce(
+          (total, row) => total + row.branch_solve_slope_source_rows.length,
+          0
+        ),
+      common_normalizer_denominator_separated_terminal_row_count:
+        terminalRows.filter(
+          (row) => row.branch_solve_slope_sum_interval_separated_from_zero
+        ).length,
+      common_normalizer_denominator_zero_crossing_terminal_row_count:
+        terminalRows.filter(
+          (row) => row.branch_solve_slope_sum_interval_contains_zero
+        ).length,
+      common_normalizer_division_available_terminal_row_count:
+        terminalRows.filter((row) => row.common_normalizer_division_available)
+          .length,
+      same_g_formal_identity_exact_zero_terminal_row_count:
+        terminalRows.filter(
+          (row) =>
+            row.branch_solve_slope_pair_same_g_formal_identity_exact_zero ===
+            true
+        ).length,
+      denominator_structural_cancellation_witness_terminal_row_count:
+        terminalRows.filter(
+          (row) => row.denominator_structural_cancellation_witness === true
+        ).length,
+      common_normalizer_law_candidate_reconstructs_aggregate_terminal_row_count:
+        terminalRows.filter(
+          (row) =>
+            row
+              .common_normalizer_branch_residual_law_candidate_reconstructs_aggregate ===
+            true
+        ).length,
+      branch_residual_source_object_available_terminal_row_count:
+        terminalRows.filter((row) => row.branch_residual_source_object_available)
+          .length,
+      branch_residual_source_object_missing_terminal_row_count:
+        terminalRows.filter((row) => row.branch_residual_source_object_missing)
+          .length,
+      terminal_witness_blocked_by_denominator_terminal_row_count:
+        terminalRows.filter(
+          (row) => row.terminal_witness_blocked_by_denominator === true
+        ).length,
+      terminal_witness_branch_intervals_available_count: terminalRows.reduce(
+        (total, row) =>
+          total + row.terminal_witness_branch_intervals_available_count,
+        0
+      ),
+      source_map_provider_branch_intervals_available_count:
+        terminalRows.reduce(
+          (total, row) =>
+            total + row.source_map_provider_branch_intervals_available_count,
+          0
+        ),
+      row_check_kinds: [...checkKinds],
+      row_checks: rowChecks,
+      row_terminal_witness_denominator_realization_attempt_verified:
+        rowVerified,
+      row_certifies_terminal_witness_denominator_realization: false,
+      row_certifies_terminal_row_provider_object_replay: false,
+      row_certifies_expression_level_n38_provider: false,
+      row_status: rowVerified
+        ? terminalRows.some(
+              (row) => row.denominator_structural_cancellation_witness === true
+            )
+          ? "terminal-witness-denominator-zero-contained-denominator-free-identity-needed"
+          : terminalRows.every(
+                (row) => row.common_normalizer_division_available === true
+              )
+            ? "terminal-witness-denominators-separated-law-proof-open"
+            : "terminal-witness-denominator-realization-open"
+        : "terminal-witness-denominator-realization-attempt-open",
+      claim_boundary:
+        h39TerminalWitnessDenominatorRealizationAttemptClaimBoundary(),
+    };
+  });
+  const terminalRowCount = rows.reduce(
+    (total, row) =>
+      total + row.terminal_witness_denominator_realization_terminal_row_count,
+    0
+  );
+  const branchRowCount = rows.reduce(
+    (total, row) =>
+      total + row.terminal_witness_denominator_realization_branch_row_count,
+    0
+  );
+  const denominatorSeparatedCount = rows.reduce(
+    (total, row) =>
+      total + row.common_normalizer_denominator_separated_terminal_row_count,
+    0
+  );
+  const denominatorZeroCrossingCount = rows.reduce(
+    (total, row) =>
+      total + row.common_normalizer_denominator_zero_crossing_terminal_row_count,
+    0
+  );
+  const divisionAvailableCount = rows.reduce(
+    (total, row) =>
+      total + row.common_normalizer_division_available_terminal_row_count,
+    0
+  );
+  const sameGIdentityCount = rows.reduce(
+    (total, row) =>
+      total + row.same_g_formal_identity_exact_zero_terminal_row_count,
+    0
+  );
+  const structuralCancellationCount = rows.reduce(
+    (total, row) =>
+      total + row.denominator_structural_cancellation_witness_terminal_row_count,
+    0
+  );
+  const lawCandidateReconstructsAggregateCount = rows.reduce(
+    (total, row) =>
+      total +
+      row
+        .common_normalizer_law_candidate_reconstructs_aggregate_terminal_row_count,
+    0
+  );
+  const branchResidualSourceObjectAvailableCount = rows.reduce(
+    (total, row) =>
+      total + row.branch_residual_source_object_available_terminal_row_count,
+    0
+  );
+  const branchResidualSourceObjectMissingCount = rows.reduce(
+    (total, row) =>
+      total + row.branch_residual_source_object_missing_terminal_row_count,
+    0
+  );
+  const blockedByDenominatorCount = rows.reduce(
+    (total, row) =>
+      total + row.terminal_witness_blocked_by_denominator_terminal_row_count,
+    0
+  );
+  const terminalWitnessBranchAvailableCount = rows.reduce(
+    (total, row) =>
+      total + row.terminal_witness_branch_intervals_available_count,
+    0
+  );
+  const sourceMapProviderBranchAvailableCount = rows.reduce(
+    (total, row) =>
+      total + row.source_map_provider_branch_intervals_available_count,
+    0
+  );
+  const aggregateChecks = {
+    common_normalizer_attempt_ready: commonReady,
+    branch_residual_common_normalizer_law_probe_ready: lawProbeReady,
+    barycentric_identity_attempt_ready: barycentricReady,
+    terminal_row_provider_object_replay_ready: providerReplayReady,
+    same_domain_terminal_rows_aligned: rows.every(
+      (row) => row.row_checks?.same_domain_terminal_rows_aligned === true
+    ),
+    denominator_geometry_recorded: rows.every(
+      (row) => row.row_checks?.denominator_geometry_recorded === true
+    ),
+    branch_residual_source_object_status_recorded: rows.every(
+      (row) =>
+        row.row_checks?.branch_residual_source_object_status_recorded === true
+    ),
+    terminal_witness_availability_recorded: rows.every(
+      (row) =>
+        row.row_checks?.terminal_witness_availability_recorded === true
+    ),
+    denominator_realization_kept_fail_closed: rows.every(
+      (row) =>
+        row.row_checks?.denominator_realization_kept_fail_closed === true
+    ),
+    h39_broad_claims_remain_open: rows.every(
+      (row) => row.row_checks?.h39_broad_claims_remain_open === true
+    ),
+  };
+  const attemptVerified =
+    rows.length === 5 &&
+    terminalRowCount === 15 &&
+    branchRowCount === 30 &&
+    denominatorSeparatedCount + denominatorZeroCrossingCount === 15 &&
+    branchResidualSourceObjectAvailableCount === 0 &&
+    branchResidualSourceObjectMissingCount === 15 &&
+    rows.every(
+      (row) =>
+        row.row_terminal_witness_denominator_realization_attempt_verified ===
+        true
+    ) &&
+    Object.values(aggregateChecks).every((value) => value === true);
+  const allDenominatorsSeparated =
+    attemptVerified && denominatorSeparatedCount === 15;
+  const allTerminalWitnessBranchIntervalsAvailable =
+    attemptVerified && terminalWitnessBranchAvailableCount === 30;
+  const allSourceMapProviderBranchIntervalsAvailable =
+    attemptVerified && sourceMapProviderBranchAvailableCount === 30;
+  const allZeroCrossingDenominatorsHaveStructuralWitness =
+    attemptVerified &&
+    denominatorZeroCrossingCount > 0 &&
+    structuralCancellationCount === denominatorZeroCrossingCount;
+  const allBranchResidualSourceObjectsMissing =
+    attemptVerified && branchResidualSourceObjectMissingCount === terminalRowCount;
+  const allTerminalRowsBlockedByDenominator =
+    attemptVerified && blockedByDenominatorCount === terminalRowCount;
+  const classification = attemptVerified
+    ? allDenominatorsSeparated && allTerminalWitnessBranchIntervalsAvailable
+      ? "terminal-witness-denominator-realized-provider-replay-open"
+      : allDenominatorsSeparated
+        ? "terminal-witness-denominators-separated-law-proof-open"
+        : allZeroCrossingDenominatorsHaveStructuralWitness
+          ? "terminal-witness-denominator-zero-contained-denominator-free-identity-needed"
+          : denominatorZeroCrossingCount > 0
+            ? "terminal-witness-denominator-zero-contained-subcell-separation-needed"
+            : "terminal-witness-denominator-realization-open"
+    : "terminal-witness-denominator-realization-attempt-open";
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_WITNESS_DENOMINATOR_REALIZATION_ATTEMPT_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-terminal-witness-denominator-realization-attempt-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-terminal-witness-denominator-realization-attempt",
+    target_kind:
+      "candidate-requested-y44-terminal-witness-denominator-realization-attempt",
+    terminal_successor_branch_antisymmetric_common_normalizer_attempt_schema:
+      terminalSuccessorBranchAntisymmetricCommonNormalizerAttempt?.schema ?? null,
+    terminal_successor_branch_residual_common_normalizer_law_probe_schema:
+      terminalSuccessorBranchResidualCommonNormalizerLawProbe?.schema ?? null,
+    terminal_successor_barycentric_branch_residual_source_object_identity_attempt_schema:
+      terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
+        ?.schema ?? null,
+    terminal_row_provider_object_replay_attempt_schema:
+      terminalRowProviderObjectReplayAttempt?.schema ?? null,
+    proof_status: "candidate-terminal-witness-denominator-realization-open",
+    denominator_attempt_kind:
+      "same-domain-common-normalizer-denominator-to-terminal-witness-realization-attempt",
+    common_normalizer_denominator_formula: "s_-+s_+",
+    terminal_witness_identity_requires_denominator:
+      "r_b=R*s_b/(s_-+s_+)",
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    terminal_h_indexes: [...terminalHIndexes],
+    terminal_successor_scalar_identity_weights: {
+      h37: 38,
+      h36: 37,
+      h35: 36,
+    },
+    centered_terminal_successor_scalar_identity_weights: {
+      h37: 1,
+      h36: 0,
+      h35: -1,
+    },
+    source_terms_preserved_signed_together: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    terminal_witness_denominator_realization_attempt_check_kinds: [
+      ...checkKinds,
+    ],
+    terminal_witness_denominator_realization_attempt_checks: aggregateChecks,
+    terminal_witness_denominator_realization_attempt_verified:
+      attemptVerified,
+    terminal_witness_denominator_realization_attempt_certified: false,
+    terminal_witness_denominator_realization_row_count: rows.length,
+    terminal_witness_denominator_realization_terminal_row_count:
+      terminalRowCount,
+    terminal_witness_denominator_realization_branch_row_count: branchRowCount,
+    terminal_witness_denominator_realization_rows: rows,
+    common_normalizer_denominator_separated_terminal_row_count:
+      denominatorSeparatedCount,
+    common_normalizer_denominator_zero_crossing_terminal_row_count:
+      denominatorZeroCrossingCount,
+    common_normalizer_division_available_terminal_row_count:
+      divisionAvailableCount,
+    same_g_formal_identity_exact_zero_terminal_row_count: sameGIdentityCount,
+    denominator_structural_cancellation_witness_terminal_row_count:
+      structuralCancellationCount,
+    common_normalizer_law_candidate_reconstructs_aggregate_terminal_row_count:
+      lawCandidateReconstructsAggregateCount,
+    branch_residual_source_object_available_terminal_row_count:
+      branchResidualSourceObjectAvailableCount,
+    branch_residual_source_object_missing_terminal_row_count:
+      branchResidualSourceObjectMissingCount,
+    terminal_witness_blocked_by_denominator_terminal_row_count:
+      blockedByDenominatorCount,
+    terminal_witness_branch_intervals_available_count:
+      terminalWitnessBranchAvailableCount,
+    source_map_provider_branch_intervals_available_count:
+      sourceMapProviderBranchAvailableCount,
+    all_common_normalizer_denominators_separated_from_zero:
+      allDenominatorsSeparated,
+    any_common_normalizer_denominator_crosses_zero:
+      denominatorZeroCrossingCount > 0,
+    all_zero_crossing_denominators_have_structural_cancellation_witness:
+      allZeroCrossingDenominatorsHaveStructuralWitness,
+    all_branch_residual_source_objects_missing:
+      allBranchResidualSourceObjectsMissing,
+    all_terminal_rows_blocked_by_denominator: allTerminalRowsBlockedByDenominator,
+    all_terminal_witness_branch_intervals_available:
+      allTerminalWitnessBranchIntervalsAvailable,
+    all_source_map_provider_branch_intervals_available:
+      allSourceMapProviderBranchIntervalsAvailable,
+    terminal_witness_denominator_realization_certified: false,
+    terminal_row_provider_object_replay_certified: false,
+    branch_resolved_centered_residual_source_object_certified: false,
+    terminal_successor_scalar_provider_boundary_identity_certified: false,
+    expression_level_n38_provider_certified: false,
+    terminal_witness_denominator_realization_attempt_classification:
+      classification,
+    terminal_witness_denominator_realization_attempt_blocker_classification:
+      attemptVerified
+        ? allDenominatorsSeparated
+          ? "same-domain-common-normalizer-law-proof-needed"
+          : allZeroCrossingDenominatorsHaveStructuralWitness &&
+              allBranchResidualSourceObjectsMissing
+            ? "same-domain-denominator-free-terminal-branch-residual-source-object-identity-needed"
+            : denominatorZeroCrossingCount > 0
+              ? "same-domain-common-normalizer-denominator-subcell-separation-needed"
+              : "same-domain-terminal-witness-denominator-realization-needed"
+        : "terminal-witness-denominator-realization-attempt-open",
+    terminal_witness_denominator_realization_attempt_primary_missing_object_kind:
+      attemptVerified
+        ? allDenominatorsSeparated
+          ? "same-domain-common-normalizer-law-proof"
+          : allZeroCrossingDenominatorsHaveStructuralWitness &&
+              allBranchResidualSourceObjectsMissing
+            ? "denominator-free-terminal-branch-residual-source-object-identity"
+            : denominatorZeroCrossingCount > 0
+              ? "common-normalizer-denominator-subcell-separation"
+              : "terminal-witness-denominator-realization"
+        : "terminal-witness-denominator-realization-attempt",
+    next_certificate_object:
+      !attemptVerified
+        ? "same-domain terminal witness denominator realization artifact"
+        : allDenominatorsSeparated
+          ? "same-domain proof that the separated common-normalizer denominator realizes the terminal branch witness"
+          : allZeroCrossingDenominatorsHaveStructuralWitness &&
+              allBranchResidualSourceObjectsMissing
+            ? "same-domain denominator-free branch-resolved centered-residual source-object identity replacing R*s_b/(s_-+s_+)"
+            : "directed-rounded same-domain subcell separation for s_-+s_+",
+    candidate_certificate_route:
+      "This packet flattens the terminal common-normalizer denominator s_-+s_+ into the terminal-row provider-object replay boundary. It records denominator interval geometry, same-g formal cancellation witnesses, terminal witness interval availability, and source-map provider interval availability on the same node, terminal h, branch, domain, and radius rows. It does not certify the terminal witness, branch-resolved centered residual source object, expression-level N38 provider, S37 division, shifted R43 closure, retained branch, or directed-rounded provider.",
+    claim_boundary:
+      h39TerminalWitnessDenominatorRealizationAttemptClaimBoundary(),
+  };
+}
+
+export function validateH39RequestedY44TerminalWitnessDenominatorRealizationAttemptCandidate(
+  artifact
+) {
+  const errors = [];
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const intervalContainsZero = (interval) =>
+    finiteOrderedInterval(interval) &&
+    Number(interval[0]) <= 0 &&
+    Number(interval[1]) >= 0;
+  const intervalSeparatedFromZero = (interval) =>
+    finiteOrderedInterval(interval) &&
+    (Number(interval[1]) < 0 || Number(interval[0]) > 0);
+  const sameStringSet = (left, right) =>
+    Array.isArray(left) &&
+    left.length === right.length &&
+    right.every((value) => left.includes(value));
+  const sameTerminalHIndexes = (indexes) =>
+    Array.isArray(indexes) &&
+    indexes.length === 3 &&
+    indexes[0] === 37 &&
+    indexes[1] === 36 &&
+    indexes[2] === 35;
+  const sameSuccessorWeights = (weights) =>
+    weights?.h37 === 38 && weights?.h36 === 37 && weights?.h35 === 36;
+  const sameCenteredWeights = (weights) =>
+    weights?.h37 === 1 && weights?.h36 === 0 && weights?.h35 === -1;
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const validClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_terminal_witness_denominator_realization_attempt_only ===
+      true &&
+    claimBoundary?.certifies_terminal_witness_denominator_realization ===
+      false &&
+    claimBoundary?.certifies_terminal_row_provider_object_replay === false &&
+    claimBoundary
+      ?.certifies_barycentric_to_successor_scalar_centered_projection_identity ===
+      false &&
+    claimBoundary?.certifies_barycentric_branch_residual_aggregate_identity ===
+      false &&
+    claimBoundary
+      ?.certifies_branch_resolved_centered_residual_source_object === false &&
+    claimBoundary?.certifies_terminal_successor_scalar_residual_identity ===
+      false &&
+    claimBoundary
+      ?.certifies_terminal_successor_scalar_provider_boundary_identity ===
+      false &&
+    claimBoundary
+      ?.certifies_terminal_successor_branch_antisymmetric_common_normalizer ===
+      false &&
+    claimBoundary
+      ?.certifies_terminal_successor_centered_residual_branch_split ===
+      false &&
+    claimBoundary?.certifies_branch_resolved_centered_residual_component ===
+      false &&
+    claimBoundary?.certifies_terminal_h_to_source_term_identity === false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const expectedCheckKinds = [
+    "common_normalizer_attempt_ready",
+    "branch_residual_common_normalizer_law_probe_ready",
+    "barycentric_identity_attempt_ready",
+    "terminal_row_provider_object_replay_ready",
+    "same_domain_terminal_rows_aligned",
+    "denominator_geometry_recorded",
+    "branch_residual_source_object_status_recorded",
+    "terminal_witness_availability_recorded",
+    "denominator_realization_kept_fail_closed",
+    "h39_broad_claims_remain_open",
+  ];
+  const expectedTerminalCheckKinds = [
+    "common_normalizer_terminal_row_available",
+    "law_probe_terminal_row_available",
+    "barycentric_terminal_row_available",
+    "provider_replay_terminal_row_available",
+    "same_domain_terminal_row_aligned",
+    "denominator_geometry_recorded",
+    "branch_solve_slope_pair_recorded",
+    "branch_residual_source_object_status_recorded",
+    "terminal_witness_availability_recorded",
+    "denominator_realization_kept_fail_closed",
+    "h39_claims_remain_open",
+  ];
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_WITNESS_DENOMINATOR_REALIZATION_ATTEMPT_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 terminal witness denominator realization attempt candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-terminal-witness-denominator-realization-attempt-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-terminal-witness-denominator-realization-attempt" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-terminal-witness-denominator-realization-attempt" ||
+    artifact
+      ?.terminal_successor_branch_antisymmetric_common_normalizer_attempt_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SUCCESSOR_BRANCH_ANTISYMMETRIC_COMMON_NORMALIZER_ATTEMPT_CANDIDATE_SCHEMA ||
+    artifact
+      ?.terminal_successor_branch_residual_common_normalizer_law_probe_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SUCCESSOR_BRANCH_RESIDUAL_COMMON_NORMALIZER_LAW_PROBE_CANDIDATE_SCHEMA ||
+    artifact
+      ?.terminal_successor_barycentric_branch_residual_source_object_identity_attempt_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SUCCESSOR_BARYCENTRIC_BRANCH_RESIDUAL_SOURCE_OBJECT_IDENTITY_ATTEMPT_CANDIDATE_SCHEMA ||
+    artifact?.terminal_row_provider_object_replay_attempt_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_ROW_PROVIDER_OBJECT_REPLAY_ATTEMPT_CANDIDATE_SCHEMA ||
+    artifact?.proof_status !==
+      "candidate-terminal-witness-denominator-realization-open" ||
+    artifact?.denominator_attempt_kind !==
+      "same-domain-common-normalizer-denominator-to-terminal-witness-realization-attempt" ||
+    artifact?.common_normalizer_denominator_formula !== "s_-+s_+" ||
+    artifact?.terminal_witness_identity_requires_denominator !==
+      "r_b=R*s_b/(s_-+s_+)" ||
+    artifact?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    !sameTerminalHIndexes(artifact?.terminal_h_indexes) ||
+    !sameSuccessorWeights(artifact?.terminal_successor_scalar_identity_weights) ||
+    !sameCenteredWeights(
+      artifact?.centered_terminal_successor_scalar_identity_weights
+    ) ||
+    !sameTerms(artifact?.source_terms_preserved_signed_together) ||
+    !sameStringSet(
+      artifact?.terminal_witness_denominator_realization_attempt_check_kinds,
+      expectedCheckKinds
+    )
+  ) {
+    errors.push("terminal witness denominator realization metadata must identify the same-domain denominator path");
+  }
+  if (
+    expectedCheckKinds.some(
+      (kind) =>
+        artifact
+          ?.terminal_witness_denominator_realization_attempt_checks?.[kind] !==
+        true
+    ) ||
+    artifact?.terminal_witness_denominator_realization_attempt_verified !==
+      true ||
+    artifact?.terminal_witness_denominator_realization_attempt_certified !==
+      false ||
+    artifact?.terminal_witness_denominator_realization_row_count !== 5 ||
+    artifact?.terminal_witness_denominator_realization_terminal_row_count !==
+      15 ||
+    artifact?.terminal_witness_denominator_realization_branch_row_count !==
+      30 ||
+    artifact?.common_normalizer_denominator_separated_terminal_row_count +
+      artifact?.common_normalizer_denominator_zero_crossing_terminal_row_count !==
+      15 ||
+    artifact?.common_normalizer_division_available_terminal_row_count < 0 ||
+    artifact?.common_normalizer_division_available_terminal_row_count > 15 ||
+    artifact?.same_g_formal_identity_exact_zero_terminal_row_count < 0 ||
+    artifact?.same_g_formal_identity_exact_zero_terminal_row_count > 15 ||
+    artifact
+      ?.denominator_structural_cancellation_witness_terminal_row_count < 0 ||
+    artifact
+      ?.denominator_structural_cancellation_witness_terminal_row_count > 15 ||
+    artifact
+      ?.common_normalizer_law_candidate_reconstructs_aggregate_terminal_row_count <
+      0 ||
+    artifact
+      ?.common_normalizer_law_candidate_reconstructs_aggregate_terminal_row_count >
+      15 ||
+    artifact?.branch_residual_source_object_available_terminal_row_count !==
+      0 ||
+    artifact?.branch_residual_source_object_missing_terminal_row_count !== 15 ||
+    artifact
+      ?.terminal_witness_blocked_by_denominator_terminal_row_count < 0 ||
+    artifact
+      ?.terminal_witness_blocked_by_denominator_terminal_row_count > 15 ||
+    artifact?.terminal_witness_branch_intervals_available_count < 0 ||
+    artifact?.terminal_witness_branch_intervals_available_count > 30 ||
+    artifact?.source_map_provider_branch_intervals_available_count < 0 ||
+    artifact?.source_map_provider_branch_intervals_available_count > 30 ||
+    typeof artifact
+      ?.all_common_normalizer_denominators_separated_from_zero !==
+      "boolean" ||
+    typeof artifact?.any_common_normalizer_denominator_crosses_zero !==
+      "boolean" ||
+    typeof artifact
+      ?.all_zero_crossing_denominators_have_structural_cancellation_witness !==
+      "boolean" ||
+    artifact?.all_branch_residual_source_objects_missing !== true ||
+    typeof artifact?.all_terminal_rows_blocked_by_denominator !== "boolean" ||
+    typeof artifact?.all_terminal_witness_branch_intervals_available !==
+      "boolean" ||
+    typeof artifact?.all_source_map_provider_branch_intervals_available !==
+      "boolean" ||
+    artifact?.terminal_witness_denominator_realization_certified !== false ||
+    artifact?.terminal_row_provider_object_replay_certified !== false ||
+    artifact?.branch_resolved_centered_residual_source_object_certified !==
+      false ||
+    artifact
+      ?.terminal_successor_scalar_provider_boundary_identity_certified !==
+      false ||
+    artifact?.expression_level_n38_provider_certified !== false ||
+    ![
+      "terminal-witness-denominator-realized-provider-replay-open",
+      "terminal-witness-denominators-separated-law-proof-open",
+      "terminal-witness-denominator-zero-contained-denominator-free-identity-needed",
+      "terminal-witness-denominator-zero-contained-subcell-separation-needed",
+      "terminal-witness-denominator-realization-open",
+      "terminal-witness-denominator-realization-attempt-open",
+    ].includes(
+      artifact?.terminal_witness_denominator_realization_attempt_classification
+    ) ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("terminal witness denominator realization aggregate must fail closed");
+  }
+  const rows =
+    artifact?.terminal_witness_denominator_realization_rows ?? [];
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== 5 ||
+    !rows.every((row, index) => {
+      const terminalRows =
+        row?.terminal_witness_denominator_realization_rows ?? [];
+      return (
+        row?.node_index === index &&
+        row?.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+        row?.required_xi_derivative_order === 4 &&
+        row?.terminal_witness_denominator_realization_attempt_row_kind ===
+          "terminal-witness-denominator-realization-attempt-row" &&
+        sameTerminalHIndexes(row?.terminal_h_indexes) &&
+        sameSuccessorWeights(row?.terminal_successor_scalar_identity_weights) &&
+        sameCenteredWeights(
+          row?.centered_terminal_successor_scalar_identity_weights
+        ) &&
+        sameTerms(row?.source_terms_preserved_signed_together) &&
+        Array.isArray(terminalRows) &&
+        terminalRows.length === 3 &&
+        terminalRows.every((terminalRow, terminalIndex) => {
+          const spec =
+            H39_TERMINAL_SUCCESSOR_COEFFICIENT_IDENTITY_IMPORT_SPECS[
+              terminalIndex
+            ];
+          const branchRows = terminalRow?.branch_solve_slope_source_rows ?? [];
+          const denominatorInterval =
+            terminalRow?.branch_solve_slope_sum_interval;
+          const separated = intervalSeparatedFromZero(denominatorInterval);
+          const containsZero = intervalContainsZero(denominatorInterval);
+          return (
+            terminalRow?.terminal_h_index === spec.terminal_h_index &&
+            terminalRow?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+            terminalRow?.terminal_graph_cell_id ===
+              `speed.${index}.first-y` &&
+            terminalRow?.successor_scalar_identity_weight ===
+              spec.successor_scalar_identity_weight &&
+            terminalRow?.centered_successor_scalar_weight ===
+              spec.centered_successor_scalar_weight &&
+            terminalRow?.common_normalizer_denominator_formula ===
+              "s_-+s_+" &&
+            terminalRow?.barycentric_branch_residual_source_object_identity ===
+              "r_b=R*s_b/(s_-+s_+); r_-+r_+=R when s_-+s_+ != 0" &&
+            finiteOrderedInterval(denominatorInterval) &&
+            finiteOrderedInterval(
+              terminalRow?.branch_solve_slope_difference_interval
+            ) &&
+            finiteNumber(terminalRow?.branch_solve_slope_sum_interval_midpoint) &&
+            finiteNumber(
+              terminalRow?.branch_solve_slope_sum_interval_half_width
+            ) &&
+            finiteNumber(
+              terminalRow?.branch_solve_slope_sum_interval_abs_midpoint
+            ) &&
+            (terminalRow
+              ?.branch_solve_slope_sum_abs_midpoint_to_half_width_ratio ===
+              null ||
+              finiteNumber(
+                terminalRow
+                  .branch_solve_slope_sum_abs_midpoint_to_half_width_ratio
+              )) &&
+            finiteNumber(terminalRow?.branch_solve_slope_sum_zero_clearance) &&
+            (terminalRow
+              ?.branch_solve_slope_sum_zero_clearance_to_half_width_ratio ===
+              null ||
+              finiteNumber(
+                terminalRow
+                  .branch_solve_slope_sum_zero_clearance_to_half_width_ratio
+              )) &&
+            terminalRow
+              ?.branch_solve_slope_sum_interval_separated_from_zero ===
+              separated &&
+            terminalRow?.branch_solve_slope_sum_interval_contains_zero ===
+              containsZero &&
+            Array.isArray(branchRows) &&
+            branchRows.length === 2 &&
+            branchRows.every(
+              (branchRow) =>
+                ["-", "+"].includes(branchRow?.branch) &&
+                finiteOrderedInterval(branchRow?.solve_slope_interval) &&
+                typeof branchRow?.solve_slope_sign === "string" &&
+                branchRow?.solve_slope_interval_separated_from_zero ===
+                  true &&
+                branchRow
+                  ?.branch_resolved_nonzero_normalizer_source_available ===
+                  true &&
+                typeof branchRow?.same_g_formal_identity_exact_zero ===
+                  "boolean"
+            ) &&
+            typeof terminalRow
+              ?.branch_solve_slope_pair_same_g_formal_identity_exact_zero ===
+              "boolean" &&
+            typeof terminalRow?.common_normalizer_division_available ===
+              "boolean" &&
+            typeof terminalRow?.barycentric_denominator_available ===
+              "boolean" &&
+            typeof terminalRow?.provider_replay_denominator_available ===
+              "boolean" &&
+            (terminalRow?.common_normalizer_division_available === true
+              ? finiteOrderedInterval(terminalRow?.common_normalizer_lambda_interval)
+              : terminalRow?.common_normalizer_lambda_interval === null) &&
+            typeof terminalRow
+              ?.common_normalizer_branch_residual_law_candidate_reconstructs_aggregate ===
+              "boolean" &&
+            terminalRow?.branch_residual_source_object_available === false &&
+            terminalRow?.branch_residual_source_object_missing === true &&
+            terminalRow?.branch_residual_source_row_recorded_open === true &&
+            terminalRow?.terminal_witness_branch_intervals_available_count >=
+              0 &&
+            terminalRow?.terminal_witness_branch_intervals_available_count <=
+              2 &&
+            terminalRow?.source_map_provider_branch_intervals_available_count >=
+              0 &&
+            terminalRow?.source_map_provider_branch_intervals_available_count <=
+              2 &&
+            typeof terminalRow?.terminal_witness_blocked_by_denominator ===
+              "boolean" &&
+            typeof terminalRow?.denominator_structural_cancellation_witness ===
+              "boolean" &&
+            [
+              "denominator-separated-division-realization-ready",
+              "zero-contained-same-g-denominator-free-identity-needed",
+              "zero-contained-directed-subcell-separation-needed",
+              "denominator-realization-status-open",
+            ].includes(terminalRow?.denominator_refinement_forecast) &&
+            sameStringSet(
+              terminalRow
+                ?.terminal_witness_denominator_realization_attempt_check_kinds,
+              expectedTerminalCheckKinds
+            ) &&
+            expectedTerminalCheckKinds.every(
+              (kind) =>
+                terminalRow
+                  ?.terminal_witness_denominator_realization_attempt_checks?.[
+                  kind
+                ] === true
+            ) &&
+            terminalRow
+              ?.row_terminal_witness_denominator_realization_attempt_verified ===
+              true &&
+            terminalRow
+              ?.row_certifies_terminal_witness_denominator_realization ===
+              false &&
+            terminalRow?.row_certifies_terminal_row_provider_object_replay ===
+              false &&
+            terminalRow?.row_certifies_expression_level_n38_provider ===
+              false &&
+            [
+              "terminal-witness-denominator-separated-law-proof-open",
+              "terminal-witness-denominator-zero-contained-denominator-free-identity-needed",
+              "terminal-witness-denominator-zero-contained-subcell-separation-needed",
+              "terminal-witness-denominator-realization-open",
+              "terminal-witness-denominator-realization-attempt-open",
+            ].includes(terminalRow?.row_status) &&
+            validClaimBoundary(terminalRow?.claim_boundary)
+          );
+        }) &&
+        row?.terminal_witness_denominator_realization_terminal_row_count ===
+          3 &&
+        row?.terminal_witness_denominator_realization_branch_row_count === 6 &&
+        row?.common_normalizer_denominator_separated_terminal_row_count +
+          row.common_normalizer_denominator_zero_crossing_terminal_row_count ===
+          3 &&
+        row?.common_normalizer_division_available_terminal_row_count >= 0 &&
+        row?.common_normalizer_division_available_terminal_row_count <= 3 &&
+        row?.same_g_formal_identity_exact_zero_terminal_row_count >= 0 &&
+        row?.same_g_formal_identity_exact_zero_terminal_row_count <= 3 &&
+        row?.denominator_structural_cancellation_witness_terminal_row_count >=
+          0 &&
+        row?.denominator_structural_cancellation_witness_terminal_row_count <=
+          3 &&
+        row
+          ?.common_normalizer_law_candidate_reconstructs_aggregate_terminal_row_count >=
+          0 &&
+        row
+          ?.common_normalizer_law_candidate_reconstructs_aggregate_terminal_row_count <=
+          3 &&
+        row?.branch_residual_source_object_available_terminal_row_count === 0 &&
+        row?.branch_residual_source_object_missing_terminal_row_count === 3 &&
+        row?.terminal_witness_blocked_by_denominator_terminal_row_count >= 0 &&
+        row?.terminal_witness_blocked_by_denominator_terminal_row_count <= 3 &&
+        row?.terminal_witness_branch_intervals_available_count >= 0 &&
+        row?.terminal_witness_branch_intervals_available_count <= 6 &&
+        row?.source_map_provider_branch_intervals_available_count >= 0 &&
+        row?.source_map_provider_branch_intervals_available_count <= 6 &&
+        sameStringSet(row?.row_check_kinds, expectedCheckKinds) &&
+        expectedCheckKinds.every((kind) => row?.row_checks?.[kind] === true) &&
+        row
+          ?.row_terminal_witness_denominator_realization_attempt_verified ===
+          true &&
+        row?.row_certifies_terminal_witness_denominator_realization === false &&
+        row?.row_certifies_terminal_row_provider_object_replay === false &&
+        row?.row_certifies_expression_level_n38_provider === false &&
+        validClaimBoundary(row?.claim_boundary)
+      );
+    })
+  ) {
+    errors.push("terminal witness denominator realization rows must carry denominator geometry into terminal witness availability");
+  }
+  if (
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string" ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("terminal witness denominator realization attempt must keep broad closure claims open");
+  }
+  return errors;
+}
+
 export function validateH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffold(
   artifact
 ) {
