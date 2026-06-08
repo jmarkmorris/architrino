@@ -97,6 +97,9 @@ import {
   buildH39RequestedY44TerminalSourceCovarianceLambdaTCoordinateProjectionAttemptCandidate,
   buildH39RequestedY44TerminalSourceCovarianceLambdaProviderObjectReplayAuditCandidate,
   buildH39RequestedY44TerminalSourceCovarianceAdjointMomentumBalanceAttemptCandidate,
+  buildH39RequestedY44TerminalSourceCovarianceBranchExchangeSymmetryAttemptCandidate,
+  buildH39RequestedY44TerminalSourceCovarianceScaleVirialIdentityAttemptCandidate,
+  buildH39RequestedY44TerminalSourceCovarianceCrossBranchWronskianDiagnosticCandidate,
   buildH39RequestedY44RowLocalN38SignedSourceSumDerivativeProviderCandidate,
   validateH39CorrelatedResidualWidthDiagnostic,
   validateH39H38NumeratorGraphLocalPartitionDiagnostic,
@@ -190,6 +193,9 @@ import {
   validateH39RequestedY44TerminalSourceCovarianceLambdaTCoordinateProjectionAttemptCandidate,
   validateH39RequestedY44TerminalSourceCovarianceLambdaProviderObjectReplayAuditCandidate,
   validateH39RequestedY44TerminalSourceCovarianceAdjointMomentumBalanceAttemptCandidate,
+  validateH39RequestedY44TerminalSourceCovarianceBranchExchangeSymmetryAttemptCandidate,
+  validateH39RequestedY44TerminalSourceCovarianceScaleVirialIdentityAttemptCandidate,
+  validateH39RequestedY44TerminalSourceCovarianceCrossBranchWronskianDiagnosticCandidate,
   validateH39RequestedY44RowLocalN38SignedSourceSumDerivativeProvider,
   validateH39RequestedY44SignedSourceSumDerivativeAllocationTarget,
   validateH39RequestedY44SourceMapResidualCovarianceTarget,
@@ -22542,6 +22548,941 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   assert.deepEqual(
     collectExactKeys(
       terminalSourceCovarianceAdjointMomentumBalanceAttempt,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalSourceCovarianceBranchExchangeSymmetryAttempt =
+    buildH39RequestedY44TerminalSourceCovarianceBranchExchangeSymmetryAttemptCandidate({
+      terminalSourceCovarianceLambdaTCoordinateProjectionAttempt,
+      terminalSourceCovarianceLambdaProviderObjectReplayAudit,
+      terminalSourceCovarianceAdjointMomentumBalanceAttempt,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44TerminalSourceCovarianceBranchExchangeSymmetryAttemptCandidate(
+      terminalSourceCovarianceBranchExchangeSymmetryAttempt
+    ),
+    []
+  );
+  assert.equal(
+    terminalSourceCovarianceBranchExchangeSymmetryAttempt
+      .terminal_source_covariance_branch_exchange_symmetry_attempt_verified,
+    true
+  );
+  assert.equal(
+    terminalSourceCovarianceBranchExchangeSymmetryAttempt
+      .terminal_source_covariance_branch_exchange_symmetry_attempt_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceBranchExchangeSymmetryAttempt
+      .terminal_source_covariance_branch_exchange_symmetry_attempt_row_count,
+    5
+  );
+  assert.equal(
+    terminalSourceCovarianceBranchExchangeSymmetryAttempt
+      .terminal_source_covariance_branch_exchange_symmetry_attempt_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalSourceCovarianceBranchExchangeSymmetryAttempt
+      .terminal_source_covariance_branch_exchange_symmetry_attempt_branch_row_count,
+    30
+  );
+  assert.equal(
+    terminalSourceCovarianceBranchExchangeSymmetryAttempt
+      .lambda_witness_branch_exchange_difference_contains_zero_terminal_row_count,
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .candidate_unit_antisymmetric_momentum_residual_contains_zero_terminal_row_count
+  );
+  assert.equal(
+    terminalSourceCovarianceBranchExchangeSymmetryAttempt
+      .lambda_witness_branch_exchange_fixed_point_refuted_terminal_row_count,
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .candidate_unit_antisymmetric_momentum_law_refuted_terminal_row_count
+  );
+  assert.equal(
+    terminalSourceCovarianceBranchExchangeSymmetryAttempt
+      .all_lambda_witness_branch_exchange_residuals_contain_zero,
+    terminalSourceCovarianceBranchExchangeSymmetryAttempt
+      .lambda_witness_branch_exchange_difference_contains_zero_terminal_row_count ===
+      15
+  );
+  assert.equal(
+    terminalSourceCovarianceBranchExchangeSymmetryAttempt
+      .all_available_provider_object_branch_exchange_residuals_contain_zero,
+    terminalSourceCovarianceBranchExchangeSymmetryAttempt
+      .provider_object_branch_exchange_difference_contains_zero_terminal_row_count ===
+      terminalSourceCovarianceBranchExchangeSymmetryAttempt
+        .provider_object_branch_exchange_difference_available_terminal_row_count
+  );
+  assert.equal(
+    terminalSourceCovarianceBranchExchangeSymmetryAttempt
+      .any_branch_exchange_fixed_point_refuted_by_current_intervals,
+    terminalSourceCovarianceBranchExchangeSymmetryAttempt
+      .solve_slope_branch_exchange_fixed_point_refuted_terminal_row_count >
+      0 ||
+      terminalSourceCovarianceBranchExchangeSymmetryAttempt
+        .lambda_witness_branch_exchange_fixed_point_refuted_terminal_row_count >
+        0 ||
+      terminalSourceCovarianceBranchExchangeSymmetryAttempt
+        .provider_object_branch_exchange_fixed_point_refuted_terminal_row_count >
+        0
+  );
+  assert.equal(
+    terminalSourceCovarianceBranchExchangeSymmetryAttempt
+      .branch_exchange_symmetry_generator_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalSourceCovarianceBranchExchangeSymmetryAttempt
+      .branch_exchange_fixed_point_t_zero_certified_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalSourceCovarianceBranchExchangeSymmetryAttempt
+      .branch_exchange_symmetry_generator_available,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceBranchExchangeSymmetryAttempt
+      .branch_exchange_symmetry_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceBranchExchangeSymmetryAttempt
+      .branch_exchange_fixed_point_t_zero_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceBranchExchangeSymmetryAttempt
+      .branch_antisymmetric_coordinate_identity_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceBranchExchangeSymmetryAttempt
+      .terminal_source_covariance_lambda_provider_object_replay_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceBranchExchangeSymmetryAttempt
+      .branch_resolved_centered_residual_source_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceBranchExchangeSymmetryAttempt
+      .expression_level_n38_provider_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceBranchExchangeSymmetryAttempt
+      .branch_exchange_involution_formula,
+    "sigma(-)=+; sigma(+)=-"
+  );
+  assert.equal(
+    terminalSourceCovarianceBranchExchangeSymmetryAttempt
+      .branch_exchange_fixed_point_formula,
+    "r_-=r_+ iff t=0"
+  );
+  assert.equal(
+    terminalSourceCovarianceBranchExchangeSymmetryAttempt
+      .lambda_witness_exchange_fixed_point_formula,
+    "r_- - r_+=2t"
+  );
+  assert.ok(
+    [
+      "source-covariance-branch-exchange-solve-slope-fixed-point-refuted",
+      "source-covariance-branch-exchange-lambda-fixed-point-refuted",
+      "source-covariance-branch-exchange-provider-object-fixed-point-refuted",
+      "source-covariance-branch-exchange-symmetry-generator-needed",
+      "terminal-source-covariance-branch-exchange-symmetry-attempt-open",
+    ].includes(
+      terminalSourceCovarianceBranchExchangeSymmetryAttempt
+        .terminal_source_covariance_branch_exchange_symmetry_attempt_classification
+    )
+  );
+  assert.ok(
+    [
+      "same-domain-branch-exchange-fixed-point-law-refuted-by-current-terminal-intervals",
+      "same-domain-branch-exchange-symmetry-generator-needed",
+    ].includes(
+      terminalSourceCovarianceBranchExchangeSymmetryAttempt
+        .terminal_source_covariance_branch_exchange_symmetry_attempt_blocker_classification
+    )
+  );
+  assert.ok(
+    [
+      "corrected-branch-exchange-law-or-nonzero-antisymmetric-source",
+      "same-domain-branch-exchange-symmetry-generator",
+    ].includes(
+      terminalSourceCovarianceBranchExchangeSymmetryAttempt
+        .terminal_source_covariance_branch_exchange_symmetry_attempt_primary_missing_object_kind
+    )
+  );
+  assert.ok(
+    terminalSourceCovarianceBranchExchangeSymmetryAttempt.terminal_source_covariance_branch_exchange_symmetry_attempt_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_source_covariance_branch_exchange_symmetry_attempt_terminal_row_count ===
+          3 &&
+        row.terminal_source_covariance_branch_exchange_symmetry_attempt_branch_row_count ===
+          6 &&
+        row.branch_exchange_symmetry_generator_available_terminal_row_count ===
+          0 &&
+        row.branch_exchange_fixed_point_t_zero_certified_terminal_row_count ===
+          0 &&
+        row.row_terminal_source_covariance_branch_exchange_symmetry_attempt_verified ===
+          true &&
+        row.row_certifies_branch_exchange_symmetry === false &&
+        row.row_certifies_branch_exchange_fixed_point_t_zero === false &&
+        row.row_certifies_branch_antisymmetric_coordinate_identity === false &&
+        row.row_certifies_terminal_source_covariance_lambda_provider_object_replay ===
+          false &&
+        row.row_certifies_branch_resolved_centered_residual_source_object ===
+          false &&
+        row.row_certifies_expression_level_n38_provider === false &&
+        row.claim_boundary.certifies_branch_exchange_symmetry === false &&
+        row.claim_boundary.certifies_branch_exchange_fixed_point_t_zero ===
+          false &&
+        row.claim_boundary
+          .certifies_branch_antisymmetric_coordinate_identity === false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false &&
+        row.terminal_source_covariance_branch_exchange_symmetry_attempt_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_graph_cell_id ===
+              `speed.${index}.first-y` &&
+            terminalRow.branch_exchange_involution_formula ===
+              "sigma(-)=+; sigma(+)=-" &&
+            terminalRow.branch_exchange_fixed_point_formula ===
+              "r_-=r_+ iff t=0" &&
+            terminalRow.solve_slope_exchange_fixed_point_formula ===
+              "s_- - s_+=0" &&
+            terminalRow.lambda_witness_exchange_fixed_point_formula ===
+              "r_- - r_+=2t" &&
+            terminalRow.provider_object_exchange_fixed_point_formula ===
+              "P_- - P_+=0" &&
+            Array.isArray(
+              terminalRow.solve_slope_exchange_difference_interval
+            ) &&
+            terminalRow.solve_slope_exchange_difference_interval.length ===
+              2 &&
+            typeof terminalRow
+              .solve_slope_exchange_difference_contains_zero === "boolean" &&
+            typeof terminalRow
+              .solve_slope_branch_exchange_fixed_point_refuted_by_interval ===
+              "boolean" &&
+            Array.isArray(
+              terminalRow.lambda_witness_branch_exchange_difference_interval
+            ) &&
+            terminalRow
+              .lambda_witness_branch_exchange_difference_interval.length ===
+              2 &&
+            typeof terminalRow
+              .lambda_witness_branch_exchange_difference_contains_zero ===
+              "boolean" &&
+            typeof terminalRow
+              .lambda_witness_branch_exchange_fixed_point_refuted_by_interval ===
+              "boolean" &&
+            Array.isArray(terminalRow.two_t_coordinate_interval) &&
+            terminalRow.two_t_coordinate_interval.length === 2 &&
+            typeof terminalRow
+              .provider_object_branch_exchange_difference_interval_available ===
+              "boolean" &&
+            terminalRow.branch_exchange_symmetry_generator_available ===
+              false &&
+            terminalRow.branch_exchange_fixed_point_t_zero_certified ===
+              false &&
+            terminalRow.source_covariance_branch_exchange_symmetry_branch_rows
+              .length === 2 &&
+            terminalRow.source_covariance_branch_exchange_symmetry_branch_rows.every(
+              (branchRow) =>
+                ["-", "+"].includes(branchRow.branch) &&
+                branchRow.branch_exchange_partner_branch ===
+                  (branchRow.branch === "-" ? "+" : "-") &&
+                branchRow.branch_exchange_involution_formula ===
+                  "sigma(-)=+; sigma(+)=-" &&
+                Array.isArray(branchRow.solve_slope_interval) &&
+                branchRow.solve_slope_interval.length === 2 &&
+                Array.isArray(
+                  branchRow.branch_exchange_partner_solve_slope_interval
+                ) &&
+                branchRow.branch_exchange_partner_solve_slope_interval
+                  .length === 2 &&
+                Array.isArray(
+                  branchRow
+                    .source_covariance_lambda_only_branch_residual_candidate_interval
+                ) &&
+                branchRow
+                  .source_covariance_lambda_only_branch_residual_candidate_interval
+                  .length === 2 &&
+                Array.isArray(
+                  branchRow
+                    .branch_exchange_partner_lambda_branch_residual_candidate_interval
+                ) &&
+                branchRow
+                  .branch_exchange_partner_lambda_branch_residual_candidate_interval
+                  .length === 2 &&
+                typeof branchRow.source_map_provider_object_interval_available ===
+                  "boolean" &&
+                typeof branchRow
+                  .branch_exchange_partner_source_map_provider_object_interval_available ===
+                  "boolean" &&
+                branchRow.branch_exchange_symmetry_generator_available ===
+                  false &&
+                branchRow.row_certifies_branch_exchange_symmetry === false &&
+                branchRow.row_certifies_branch_exchange_fixed_point_t_zero ===
+                  false &&
+                branchRow
+                  .row_certifies_branch_resolved_centered_residual_component ===
+                  false
+            ) &&
+            terminalRow
+              .row_terminal_source_covariance_branch_exchange_symmetry_attempt_verified ===
+              true &&
+            terminalRow.row_certifies_branch_exchange_symmetry === false &&
+            terminalRow.row_certifies_branch_exchange_fixed_point_t_zero ===
+              false &&
+            terminalRow
+              .row_certifies_branch_antisymmetric_coordinate_identity ===
+              false &&
+            terminalRow
+              .row_certifies_terminal_source_covariance_lambda_provider_object_replay ===
+              false &&
+            terminalRow
+              .row_certifies_branch_resolved_centered_residual_source_object ===
+              false &&
+            terminalRow.row_certifies_expression_level_n38_provider === false
+        )
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      terminalSourceCovarianceBranchExchangeSymmetryAttempt
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalSourceCovarianceBranchExchangeSymmetryAttempt,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalSourceCovarianceScaleVirialIdentityAttempt =
+    buildH39RequestedY44TerminalSourceCovarianceScaleVirialIdentityAttemptCandidate({
+      terminalSourceCovarianceLambdaTCoordinateProjectionAttempt,
+      terminalSourceCovarianceLambdaProviderObjectReplayAudit,
+      terminalSourceCovarianceAdjointMomentumBalanceAttempt,
+      terminalSourceCovarianceBranchExchangeSymmetryAttempt,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44TerminalSourceCovarianceScaleVirialIdentityAttemptCandidate(
+      terminalSourceCovarianceScaleVirialIdentityAttempt
+    ),
+    []
+  );
+  assert.equal(
+    terminalSourceCovarianceScaleVirialIdentityAttempt
+      .terminal_source_covariance_scale_virial_identity_attempt_verified,
+    true
+  );
+  assert.equal(
+    terminalSourceCovarianceScaleVirialIdentityAttempt
+      .terminal_source_covariance_scale_virial_identity_attempt_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceScaleVirialIdentityAttempt
+      .terminal_source_covariance_scale_virial_identity_attempt_row_count,
+    5
+  );
+  assert.equal(
+    terminalSourceCovarianceScaleVirialIdentityAttempt
+      .terminal_source_covariance_scale_virial_identity_attempt_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalSourceCovarianceScaleVirialIdentityAttempt
+      .terminal_source_covariance_scale_virial_identity_attempt_branch_row_count,
+    30
+  );
+  assert.equal(
+    terminalSourceCovarianceScaleVirialIdentityAttempt
+      .aggregate_scale_virial_branch_sum_replay_residual_contains_zero_terminal_row_count,
+    terminalSourceCovarianceLambdaProviderObjectReplayAudit
+      .source_covariance_lambda_branch_sum_residual_contains_aggregate_interval_zero_terminal_row_count
+  );
+  assert.equal(
+    terminalSourceCovarianceScaleVirialIdentityAttempt
+      .all_aggregate_branch_sum_replay_residuals_contain_zero,
+    terminalSourceCovarianceLambdaProviderObjectReplayAudit
+      .all_source_covariance_lambda_branch_sum_residuals_contain_aggregate_interval_zero
+  );
+  assert.equal(
+    terminalSourceCovarianceScaleVirialIdentityAttempt
+      .all_lambda_shape_branch_sum_replay_residuals_contain_zero,
+    terminalSourceCovarianceScaleVirialIdentityAttempt
+      .lambda_shape_branch_sum_replay_residual_contains_zero_terminal_row_count ===
+      15
+  );
+  assert.equal(
+    terminalSourceCovarianceScaleVirialIdentityAttempt
+      .all_antisymmetric_scale_virial_residuals_contain_zero,
+    terminalSourceCovarianceScaleVirialIdentityAttempt
+      .antisymmetric_scale_virial_residual_contains_zero_terminal_row_count ===
+      15
+  );
+  assert.equal(
+    terminalSourceCovarianceScaleVirialIdentityAttempt
+      .all_lambda_shape_antisymmetric_replay_residuals_contain_zero,
+    terminalSourceCovarianceScaleVirialIdentityAttempt
+      .lambda_shape_antisymmetric_replay_residual_contains_zero_terminal_row_count ===
+      15
+  );
+  assert.equal(
+    terminalSourceCovarianceScaleVirialIdentityAttempt
+      .source_covariance_scale_generator_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalSourceCovarianceScaleVirialIdentityAttempt
+      .source_covariance_homogeneity_degree_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalSourceCovarianceScaleVirialIdentityAttempt
+      .scale_virial_branch_coordinate_determined_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalSourceCovarianceScaleVirialIdentityAttempt
+      .source_covariance_scale_generator_available,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceScaleVirialIdentityAttempt
+      .source_covariance_homogeneity_degree_available,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceScaleVirialIdentityAttempt
+      .scale_virial_branch_coordinate_determined,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceScaleVirialIdentityAttempt
+      .scale_virial_identity_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceScaleVirialIdentityAttempt
+      .source_covariance_lambda_homogeneity_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceScaleVirialIdentityAttempt
+      .branch_exchange_symmetry_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceScaleVirialIdentityAttempt
+      .master_equation_adjoint_momentum_balance_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceScaleVirialIdentityAttempt
+      .terminal_source_covariance_lambda_provider_object_replay_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceScaleVirialIdentityAttempt
+      .branch_resolved_centered_residual_source_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceScaleVirialIdentityAttempt
+      .expression_level_n38_provider_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceScaleVirialIdentityAttempt
+      .scale_virial_aggregate_identity_formula,
+    "lambda_source*(s_-+s_+)-R=0"
+  );
+  assert.equal(
+    terminalSourceCovarianceScaleVirialIdentityAttempt
+      .scale_virial_antisymmetric_identity_formula,
+    "lambda_source*(s_- - s_+)-2t=0"
+  );
+  assert.ok(
+    [
+      "source-covariance-scale-virial-aggregate-residual-open",
+      "source-covariance-scale-virial-antisymmetric-residual-open",
+      "source-covariance-scale-virial-generator-needed",
+      "terminal-source-covariance-scale-virial-identity-attempt-open",
+    ].includes(
+      terminalSourceCovarianceScaleVirialIdentityAttempt
+        .terminal_source_covariance_scale_virial_identity_attempt_classification
+    )
+  );
+  assert.ok(
+    [
+      "same-domain-source-covariance-scale-virial-aggregate-identity-needed",
+      "same-domain-source-covariance-scale-virial-antisymmetric-identity-needed",
+      "same-domain-source-covariance-scale-generator-and-homogeneity-degree-needed",
+    ].includes(
+      terminalSourceCovarianceScaleVirialIdentityAttempt
+        .terminal_source_covariance_scale_virial_identity_attempt_blocker_classification
+    )
+  );
+  assert.ok(
+    terminalSourceCovarianceScaleVirialIdentityAttempt.terminal_source_covariance_scale_virial_identity_attempt_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_source_covariance_scale_virial_identity_attempt_terminal_row_count ===
+          3 &&
+        row.terminal_source_covariance_scale_virial_identity_attempt_branch_row_count ===
+          6 &&
+        row.source_covariance_scale_generator_available_terminal_row_count ===
+          0 &&
+        row.source_covariance_homogeneity_degree_available_terminal_row_count ===
+          0 &&
+        row.scale_virial_branch_coordinate_determined_terminal_row_count ===
+          0 &&
+        row.row_terminal_source_covariance_scale_virial_identity_attempt_verified ===
+          true &&
+        row.row_certifies_scale_virial_identity === false &&
+        row.row_certifies_source_covariance_lambda_homogeneity === false &&
+        row.row_certifies_scale_virial_branch_coordinate === false &&
+        row.row_certifies_terminal_source_covariance_lambda_provider_object_replay ===
+          false &&
+        row.row_certifies_branch_resolved_centered_residual_source_object ===
+          false &&
+        row.row_certifies_expression_level_n38_provider === false &&
+        row.claim_boundary.certifies_scale_virial_identity === false &&
+        row.claim_boundary.certifies_source_covariance_lambda_homogeneity ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false &&
+        row.terminal_source_covariance_scale_virial_identity_attempt_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_graph_cell_id ===
+              `speed.${index}.first-y` &&
+            terminalRow.source_covariance_lambda_only_projection_formula ===
+              "r_b=lambda_source*s_b" &&
+            terminalRow.scale_virial_aggregate_identity_formula ===
+              "lambda_source*(s_-+s_+)-R=0" &&
+            terminalRow.scale_virial_antisymmetric_identity_formula ===
+              "lambda_source*(s_- - s_+)-2t=0" &&
+            Array.isArray(terminalRow.solve_slope_sum_interval) &&
+            terminalRow.solve_slope_sum_interval.length === 2 &&
+            Array.isArray(terminalRow.solve_slope_difference_interval) &&
+            terminalRow.solve_slope_difference_interval.length === 2 &&
+            typeof terminalRow.solve_slope_sum_interval_contains_zero ===
+              "boolean" &&
+            typeof terminalRow
+              .solve_slope_sum_interval_separated_from_zero === "boolean" &&
+            Array.isArray(
+              terminalRow
+                .source_covariance_lambda_times_solve_slope_sum_interval
+            ) &&
+            terminalRow
+              .source_covariance_lambda_times_solve_slope_sum_interval
+              .length === 2 &&
+            Array.isArray(
+              terminalRow
+                .source_covariance_lambda_times_solve_slope_difference_interval
+            ) &&
+            terminalRow
+              .source_covariance_lambda_times_solve_slope_difference_interval
+              .length === 2 &&
+            Array.isArray(
+              terminalRow.aggregate_scale_virial_residual_interval
+            ) &&
+            terminalRow.aggregate_scale_virial_residual_interval.length === 2 &&
+            typeof terminalRow.aggregate_scale_virial_residual_contains_zero ===
+              "boolean" &&
+            Array.isArray(
+              terminalRow.antisymmetric_scale_virial_residual_interval
+            ) &&
+            terminalRow.antisymmetric_scale_virial_residual_interval.length ===
+              2 &&
+            typeof terminalRow
+              .antisymmetric_scale_virial_residual_contains_zero ===
+              "boolean" &&
+            terminalRow.source_covariance_scale_generator_available === false &&
+            terminalRow.source_covariance_homogeneity_degree_available ===
+              false &&
+            terminalRow.scale_virial_branch_coordinate_determined === false &&
+            terminalRow.scale_virial_identity_certified === false &&
+            terminalRow.source_covariance_lambda_homogeneity_certified ===
+              false &&
+            terminalRow.source_covariance_scale_virial_identity_branch_rows
+              .length === 2 &&
+            terminalRow.source_covariance_scale_virial_identity_branch_rows.every(
+              (branchRow) =>
+                ["-", "+"].includes(branchRow.branch) &&
+                Array.isArray(branchRow.solve_slope_interval) &&
+                branchRow.solve_slope_interval.length === 2 &&
+                Array.isArray(
+                  branchRow
+                    .source_covariance_lambda_only_branch_residual_candidate_interval
+                ) &&
+                branchRow
+                  .source_covariance_lambda_only_branch_residual_candidate_interval
+                  .length === 2 &&
+                branchRow
+                  .source_covariance_lambda_only_branch_residual_candidate_available ===
+                  true &&
+                branchRow.source_covariance_scale_generator_weight_interval ===
+                  null &&
+                branchRow
+                  .source_covariance_scale_generator_weight_available ===
+                  false &&
+                branchRow.source_covariance_homogeneity_degree_interval ===
+                  null &&
+                branchRow
+                  .source_covariance_homogeneity_degree_available === false &&
+                branchRow.scale_virial_branch_coordinate_determined ===
+                  false &&
+                branchRow.row_certifies_scale_virial_branch_coordinate ===
+                  false
+            ) &&
+            terminalRow
+              .row_terminal_source_covariance_scale_virial_identity_attempt_verified ===
+              true &&
+            terminalRow.row_certifies_scale_virial_identity === false &&
+            terminalRow
+              .row_certifies_source_covariance_lambda_homogeneity === false &&
+            terminalRow.row_certifies_scale_virial_branch_coordinate ===
+              false &&
+            terminalRow
+              .row_certifies_terminal_source_covariance_lambda_provider_object_replay ===
+              false &&
+            terminalRow
+              .row_certifies_branch_resolved_centered_residual_source_object ===
+              false &&
+            terminalRow.row_certifies_expression_level_n38_provider === false
+        )
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      terminalSourceCovarianceScaleVirialIdentityAttempt
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalSourceCovarianceScaleVirialIdentityAttempt,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalSourceCovarianceCrossBranchWronskianDiagnostic =
+    buildH39RequestedY44TerminalSourceCovarianceCrossBranchWronskianDiagnosticCandidate({
+      terminalSourceCovarianceLambdaTCoordinateProjectionAttempt,
+      terminalSourceCovarianceLambdaProviderObjectReplayAudit,
+      terminalSourceCovarianceScaleVirialIdentityAttempt,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44TerminalSourceCovarianceCrossBranchWronskianDiagnosticCandidate(
+      terminalSourceCovarianceCrossBranchWronskianDiagnostic
+    ),
+    []
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic
+      .terminal_source_covariance_cross_branch_wronskian_diagnostic_verified,
+    true
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic
+      .terminal_source_covariance_cross_branch_wronskian_diagnostic_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic
+      .terminal_source_covariance_cross_branch_wronskian_diagnostic_row_count,
+    5
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic
+      .terminal_source_covariance_cross_branch_wronskian_diagnostic_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic
+      .terminal_source_covariance_cross_branch_wronskian_diagnostic_branch_row_count,
+    30
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic
+      .source_covariance_cross_branch_wronskian_formula,
+    "Delta_cross=r_-*s_+ - r_+*s_-"
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic
+      .source_covariance_cross_branch_wronskian_expanded_formula,
+    "Delta_cross=R*(s_+ - s_-)/2 + t*(s_-+s_+)"
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic
+      .source_covariance_cross_branch_wronskian_t_normal_form_formula,
+    "t=(Delta_cross - R*(s_+ - s_-)/2)/(s_-+s_+)"
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic
+      .lambda_witness_cross_branch_wronskian_contains_zero_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic
+      .lambda_witness_cross_branch_wronskian_refutes_scalar_lambda_terminal_row_count,
+    0
+  );
+  assert.ok(
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic
+      .provider_object_cross_branch_wronskian_available_terminal_row_count >=
+      0
+  );
+  assert.ok(
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic
+      .provider_object_cross_branch_wronskian_available_terminal_row_count <=
+      15
+  );
+  assert.ok(
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic
+      .provider_object_cross_branch_wronskian_contains_zero_terminal_row_count <=
+      terminalSourceCovarianceCrossBranchWronskianDiagnostic
+        .provider_object_cross_branch_wronskian_available_terminal_row_count
+  );
+  assert.ok(
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic
+      .provider_object_cross_branch_wronskian_refutes_scalar_lambda_terminal_row_count <=
+      terminalSourceCovarianceCrossBranchWronskianDiagnostic
+        .provider_object_cross_branch_wronskian_available_terminal_row_count
+  );
+  assert.ok(
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic
+      .cross_wronskian_t_normal_form_denominator_separated_terminal_row_count >=
+      0
+  );
+  assert.ok(
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic
+      .cross_wronskian_t_normal_form_denominator_separated_terminal_row_count <=
+      15
+  );
+  assert.ok(
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic
+      .lambda_witness_cross_branch_wronskian_t_normal_form_available_terminal_row_count <=
+      15
+  );
+  assert.ok(
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic
+      .provider_object_cross_branch_wronskian_t_normal_form_available_terminal_row_count <=
+      terminalSourceCovarianceCrossBranchWronskianDiagnostic
+        .provider_object_cross_branch_wronskian_available_terminal_row_count
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic
+      .source_covariance_cross_wronskian_source_object_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic
+      .cross_branch_wronskian_identity_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic
+      .scalar_lambda_source_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic
+      .tensor_source_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic
+      .dependency_preserving_normal_form_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic
+      .terminal_source_covariance_lambda_provider_object_replay_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic
+      .branch_resolved_centered_residual_source_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic
+      .expression_level_n38_provider_certified,
+    false
+  );
+  assert.ok(
+    [
+      "source-covariance-cross-wronskian-provider-refutes-scalar-lambda",
+      "source-covariance-cross-wronskian-raw-lambda-dependency-loss",
+      "source-covariance-cross-wronskian-denominator-open",
+      "source-covariance-cross-wronskian-normal-form-substitution-needed",
+      "terminal-source-covariance-cross-branch-wronskian-diagnostic-open",
+    ].includes(
+      terminalSourceCovarianceCrossBranchWronskianDiagnostic
+        .terminal_source_covariance_cross_branch_wronskian_diagnostic_classification
+    )
+  );
+  assert.ok(
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic.terminal_source_covariance_cross_branch_wronskian_diagnostic_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_source_covariance_cross_branch_wronskian_diagnostic_terminal_row_count ===
+          3 &&
+        row.terminal_source_covariance_cross_branch_wronskian_diagnostic_branch_row_count ===
+          6 &&
+        row.source_covariance_cross_wronskian_source_object_available_terminal_row_count ===
+          0 &&
+        row.row_terminal_source_covariance_cross_branch_wronskian_diagnostic_verified ===
+          true &&
+        row.row_certifies_cross_branch_wronskian_identity === false &&
+        row.row_certifies_scalar_lambda_source_object === false &&
+        row.row_certifies_tensor_source_object === false &&
+        row.row_certifies_dependency_preserving_normal_form === false &&
+        row.row_certifies_terminal_source_covariance_lambda_provider_object_replay ===
+          false &&
+        row.row_certifies_branch_resolved_centered_residual_source_object ===
+          false &&
+        row.row_certifies_expression_level_n38_provider === false &&
+        row.claim_boundary.certifies_cross_branch_wronskian_identity ===
+          false &&
+        row.claim_boundary.certifies_scalar_lambda_source_object === false &&
+        row.claim_boundary.certifies_tensor_source_object === false &&
+        row.claim_boundary.certifies_dependency_preserving_normal_form ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false &&
+        row.terminal_source_covariance_cross_branch_wronskian_diagnostic_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_graph_cell_id ===
+              `speed.${index}.first-y` &&
+            terminalRow.source_covariance_cross_branch_wronskian_formula ===
+              "Delta_cross=r_-*s_+ - r_+*s_-" &&
+            terminalRow.source_covariance_cross_branch_wronskian_expanded_formula ===
+              "Delta_cross=R*(s_+ - s_-)/2 + t*(s_-+s_+)" &&
+            Array.isArray(
+              terminalRow.lambda_witness_cross_branch_wronskian_interval
+            ) &&
+            terminalRow.lambda_witness_cross_branch_wronskian_interval
+              .length === 2 &&
+            typeof terminalRow
+              .lambda_witness_cross_branch_wronskian_contains_zero ===
+              "boolean" &&
+            typeof terminalRow
+              .provider_object_cross_branch_wronskian_interval_available ===
+              "boolean" &&
+            Array.isArray(terminalRow.solve_slope_sum_interval) &&
+            terminalRow.solve_slope_sum_interval.length === 2 &&
+            Array.isArray(
+              terminalRow.solve_slope_difference_plus_minus_interval
+            ) &&
+            terminalRow.solve_slope_difference_plus_minus_interval.length ===
+              2 &&
+            Array.isArray(
+              terminalRow
+                .half_aggregate_times_solve_slope_difference_plus_minus_interval
+            ) &&
+            terminalRow
+              .half_aggregate_times_solve_slope_difference_plus_minus_interval
+              .length === 2 &&
+            Array.isArray(terminalRow.t_times_solve_slope_sum_interval) &&
+            terminalRow.t_times_solve_slope_sum_interval.length === 2 &&
+            Array.isArray(
+              terminalRow.expanded_rt_cross_branch_wronskian_interval
+            ) &&
+            terminalRow.expanded_rt_cross_branch_wronskian_interval.length ===
+              2 &&
+            Array.isArray(
+              terminalRow
+                .lambda_witness_minus_expanded_rt_cross_branch_wronskian_residual_interval
+            ) &&
+            typeof terminalRow
+              .lambda_witness_minus_expanded_rt_cross_branch_wronskian_residual_contains_zero ===
+              "boolean" &&
+            Array.isArray(
+              terminalRow.cross_wronskian_t_normal_form_denominator_interval
+            ) &&
+            terminalRow.cross_wronskian_t_normal_form_denominator_interval
+              .length === 2 &&
+            typeof terminalRow
+              .cross_wronskian_t_normal_form_denominator_separated_from_zero ===
+              "boolean" &&
+            typeof terminalRow
+              .dependency_preserving_cross_wronskian_normal_form_available ===
+              "boolean" &&
+            terminalRow.source_covariance_cross_wronskian_source_object_available ===
+              false &&
+            terminalRow.scalar_lambda_source_object_certified === false &&
+            terminalRow.tensor_source_object_certified === false &&
+            terminalRow.cross_branch_wronskian_identity_certified === false &&
+            terminalRow.dependency_preserving_normal_form_certified ===
+              false &&
+            terminalRow.source_covariance_cross_branch_wronskian_branch_rows
+              .length === 2 &&
+            terminalRow.source_covariance_cross_branch_wronskian_branch_rows.every(
+              (branchRow) =>
+                ["-", "+"].includes(branchRow.branch) &&
+                Array.isArray(branchRow.solve_slope_interval) &&
+                branchRow.solve_slope_interval.length === 2 &&
+                Array.isArray(
+                  branchRow.lambda_witness_branch_residual_interval
+                ) &&
+                branchRow.lambda_witness_branch_residual_interval.length ===
+                  2 &&
+                branchRow.lambda_witness_branch_residual_interval_available ===
+                  true &&
+                typeof branchRow.source_map_provider_object_interval_available ===
+                  "boolean" &&
+                branchRow.source_covariance_cross_wronskian_source_object_available ===
+                  false &&
+                branchRow.row_certifies_scalar_lambda_source_object === false &&
+                branchRow.row_certifies_tensor_source_object === false
+            ) &&
+            terminalRow
+              .row_terminal_source_covariance_cross_branch_wronskian_diagnostic_verified ===
+              true &&
+            terminalRow.row_certifies_cross_branch_wronskian_identity ===
+              false &&
+            terminalRow.row_certifies_scalar_lambda_source_object === false &&
+            terminalRow.row_certifies_tensor_source_object === false &&
+            terminalRow.row_certifies_dependency_preserving_normal_form ===
+              false &&
+            terminalRow
+              .row_certifies_terminal_source_covariance_lambda_provider_object_replay ===
+              false &&
+            terminalRow
+              .row_certifies_branch_resolved_centered_residual_source_object ===
+              false &&
+            terminalRow.row_certifies_expression_level_n38_provider === false
+        )
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      terminalSourceCovarianceCrossBranchWronskianDiagnostic
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalSourceCovarianceCrossBranchWronskianDiagnostic,
       FORBIDDEN_FIXED_SPEED_KEYS
     ),
     []

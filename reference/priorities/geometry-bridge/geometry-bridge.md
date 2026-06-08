@@ -4081,6 +4081,63 @@ directed-rounded provider open. The next true blocker is therefore the
 same-domain master-equation adjoint branch-weight identity, not another
 terminal interval wrapper.
 
+`buildH39RequestedY44TerminalSourceCovarianceBranchExchangeSymmetryAttemptCandidate`
+tests the second structural lever: whether the terminal branch pair carries a
+same-domain $- \leftrightarrow +$ exchange fixed point. A branch-exchange
+fixed source object would satisfy $r_-=r_+$, equivalently $t=0$. The packet
+therefore consumes the source-covariance lambda $t$-coordinate projection,
+the provider-object replay audit, and the adjoint-momentum target rows, then
+records the solve-slope exchange residual $s_- - s_+$, the lambda witness
+exchange residual $r_- - r_+=2t$, and the provider-object exchange residual
+$P_- - P_+$ when both provider branch intervals are available. It emits five
+node rows, fifteen terminal rows, and thirty branch rows. This packet is
+candidate-only: it certifies no branch-exchange symmetry generator, no
+fixed-point $t=0$ law, no branch-antisymmetric coordinate identity, no actual
+source object, no expression-level $N_{38}$ provider, no $S_{37}$ division, no
+shifted $R_{\varepsilon,43}$ closure, no retained branch, and no
+directed-rounded provider. If the current intervals refute the fixed-point
+law, the next object is a corrected branch-exchange law or a nonzero
+antisymmetric source term; otherwise the next object is the same-domain
+branch-exchange symmetry generator.
+
+`buildH39RequestedY44TerminalSourceCovarianceScaleVirialIdentityAttemptCandidate`
+tests the third structural lever: whether the same lambda-shaped terminal
+source-covariance witness already supports a scale/virial law. It consumes the
+lambda $t$-coordinate projection, provider-object replay audit,
+adjoint-momentum target rows, and branch-exchange rows, then emits five node
+rows, fifteen terminal rows, and thirty branch rows. For each terminal row it
+records the aggregate scale residual
+$\lambda_{\mathrm{source}}(s_-+s_+)-R$, the antisymmetric scale residual
+$\lambda_{\mathrm{source}}(s_- - s_+)-2t$, the replay residuals against the
+already emitted lambda branch sum and branch difference, and the available
+solve-slope shape ratio when $s_-+s_+$ is separated from zero. This remains
+priority-only and candidate-only: zero containment of those residual intervals
+does not derive a virial theorem. The packet records no same-domain scale
+generator $D_{\mathrm{scale}}$, no homogeneity degree, and no determined
+scale/virial branch coordinate, so it certifies no scale/virial identity, no
+source-covariance lambda homogeneity, no actual source object, no
+expression-level $N_{38}$ provider, no $S_{37}$ division, no shifted
+$R_{\varepsilon,43}$ closure, no retained branch, and no directed-rounded
+provider. If the residual rows pass, the next true blocker is the same-domain
+source-covariance scale generator and homogeneity degree.
+
+`buildH39RequestedY44TerminalSourceCovarianceCrossBranchWronskianDiagnosticCandidate`
+executes the council-recommended cross-branch Wronskian diagnostic on the same
+terminal source-covariance rows. It evaluates
+$\Delta_{\mathrm{cross}}=r_-s_+-r_+s_-$ from both the lambda witness and the
+source-map provider-object branch intervals, replays
+$\Delta_{\mathrm{cross}}=R(s_+ - s_-)/2+t(s_-+s_+)$, and records the
+dependency-preserving target
+$t=(\Delta_{\mathrm{cross}}-R(s_+ - s_-)/2)/(s_-+s_+)$ when the denominator is
+separated. This is a diagnostic packet, not a certification packet: it proves
+no scalar-lambda source object, no tensor source object, no cross-Wronskian
+identity, no dependency-preserving normal form, no expression-level $N_{38}$
+provider, no $S_{37}$ division, no shifted $R_{\varepsilon,43}$ closure, no
+retained branch, and no directed-rounded provider. The next true blocker is to
+replay this same-domain normal form through the provider boundary, or replace
+the scalar-lambda witness with an explicitly non-scalar source-covariance
+object if the provider-object Wronskian excludes zero.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.

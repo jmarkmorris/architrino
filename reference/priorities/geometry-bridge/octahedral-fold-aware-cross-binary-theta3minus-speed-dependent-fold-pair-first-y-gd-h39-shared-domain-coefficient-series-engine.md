@@ -3627,6 +3627,61 @@ $R_{\varepsilon,43}$ closure, retained branch, and directed-rounded provider
 open. The next true blocker is the same-domain master-equation adjoint
 branch-weight identity.
 
+\texttt{buildH39RequestedY44TerminalSourceCovarianceBranchExchangeSymmetryAttemptCandidate}
+tests the second structural lever, a same-domain $- \leftrightarrow +$
+branch-exchange fixed point. A fixed source object would require $r_-=r_+$,
+equivalently $t=0$, so the packet records the solve-slope exchange residual
+$s_- - s_+$, the lambda witness exchange residual $r_- - r_+=2t$, and the
+provider-object exchange residual $P_- - P_+$ when both provider branch
+intervals are available. It consumes the source-covariance lambda
+$t$-coordinate projection, provider-object replay audit, and adjoint-momentum
+target rows, emitting five node rows, fifteen terminal rows, and thirty
+branch rows. It certifies no branch-exchange symmetry generator, no
+fixed-point $t=0$ law, no branch-antisymmetric coordinate identity, no actual
+source object, no expression-level $N_{38}$ provider, no $S_{37}$ division, no
+shifted $R_{\varepsilon,43}$ closure, no retained branch, and no
+directed-rounded provider. If the interval audit refutes the fixed-point law,
+the next object is a corrected branch-exchange law or an explicit nonzero
+antisymmetric source term; otherwise the next object is the same-domain
+branch-exchange symmetry generator.
+
+\texttt{buildH39RequestedY44TerminalSourceCovarianceScaleVirialIdentityAttemptCandidate}
+tests the third structural lever, a same-domain scale/virial law for the
+lambda-shaped source-covariance witness. It consumes the lambda
+$t$-coordinate projection, provider-object replay audit, adjoint-momentum
+target rows, and branch-exchange rows, emitting five node rows, fifteen
+terminal rows, and thirty branch rows. On each terminal row it records
+$\lambda_{\mathrm{source}}(s_-+s_+)-R$,
+$\lambda_{\mathrm{source}}(s_- - s_+)-2t$, replay residuals against the
+existing lambda branch sum and branch difference, and a solve-slope shape
+ratio when $s_-+s_+$ is separated from zero. This packet remains
+priority-only and candidate-only. Residual zero containment does not by itself
+derive a virial theorem, and the current executable surface contains no
+same-domain scale generator $D_{\mathrm{scale}}$, no homogeneity degree, and
+no determined scale/virial branch coordinate. It therefore certifies no
+scale/virial identity, no source-covariance lambda homogeneity, no actual
+source object, no expression-level $N_{38}$ provider, no $S_{37}$ division, no
+shifted $R_{\varepsilon,43}$ closure, no retained branch, and no
+directed-rounded provider. If the residual rows pass, the next true blocker is
+the same-domain source-covariance scale generator and homogeneity degree.
+
+\texttt{buildH39RequestedY44TerminalSourceCovarianceCrossBranchWronskianDiagnosticCandidate}
+executes the council-recommended cross-branch Wronskian diagnostic on the same
+terminal source-covariance rows. It evaluates
+$\Delta_{\mathrm{cross}}=r_-s_+-r_+s_-$ from both the lambda witness and the
+source-map provider-object branch intervals, replays
+$\Delta_{\mathrm{cross}}=R(s_+ - s_-)/2+t(s_-+s_+)$, and records the
+dependency-preserving target
+$t=(\Delta_{\mathrm{cross}}-R(s_+ - s_-)/2)/(s_-+s_+)$ when the denominator is
+separated. The packet remains priority-only and candidate-only. It certifies no
+scalar-lambda source object, no tensor source object, no cross-Wronskian
+identity, no dependency-preserving normal form, no expression-level $N_{38}$
+provider, no $S_{37}$ division, no shifted $R_{\varepsilon,43}$ closure, no
+retained branch, and no directed-rounded provider. The next true blocker is to
+replay this same-domain normal form through the provider boundary, or replace
+the scalar-lambda witness with an explicitly non-scalar source-covariance
+object if the provider-object Wronskian excludes zero.
+
 \texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
 now also probes a shared terminal-residual coordinate for
 $h_{37},h_{36},h_{35}$. Instead of assigning independent residual hulls to the

@@ -2,7 +2,11 @@
 
 import fs from "node:fs";
 import path from "node:path";
-import { DEFAULTS, run, writeSvg as writePathSvg } from "./assembly-dynamics-toy.mjs";
+import {
+  DEFAULTS,
+  runAssemblyDynamicsSimulation as run,
+} from "./lib/assembly-dynamics-engine.mjs";
+import { writeSvg as writePathSvg } from "./assembly-dynamics-toy.mjs";
 
 const BASIN_DEFAULTS = {
   radii: "0.8:1.2:0.1",

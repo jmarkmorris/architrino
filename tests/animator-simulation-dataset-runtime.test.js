@@ -50,6 +50,7 @@ test("static animator simulation fixture carries dataset through the animator pr
   const normalizedDocument = normalizeAnimatorSceneDocument(embeddedDocument);
   const dataset = normalizedDocument.metadata.simulationDataset;
 
+  assert.equal(normalizedDocument.scene.mode, "planar-2d");
   assert.equal(dataset.kind, ANIMATOR_SIMULATION_DATASET_KIND);
   assert.equal(dataset.id, "static_two_particle_delay_fixture");
   assert.equal(dataset.simulation.halt.status, "not-run");
@@ -61,10 +62,15 @@ test("static animator simulation fixture carries dataset through the animator pr
     normalizedDocument.assemblies.map((assembly) => assembly.motion?.[0]?.type),
     ["simulation.frame", "simulation.frame"]
   );
-  assert.deepEqual(dataset.frames[0].particles[0].position, [-3.2, -0.8, 0]);
-  assert.deepEqual(dataset.frames[3].particles[0].position, [0.35, 0.95, 0]);
-  assert.deepEqual(dataset.frames[3].particles[1].position, [-0.35, -0.95, 0]);
+  assert.deepEqual(dataset.frames[0].particles[0].position, [-6.4, -1.6, 0]);
+  assert.deepEqual(dataset.frames[3].particles[0].position, [-0.55, 2.35, 0]);
+  assert.deepEqual(dataset.frames[3].particles[1].position, [0.55, -2.35, 0]);
+  assert.equal(dataset.frames[3].diagnostics.minimumSeparation, 4.827);
   assert.equal(normalizedDocument.paths.length, 2);
+  assert.deepEqual(
+    normalizedDocument.paths.map((path) => path.payload?.interpolate),
+    ["spline", "spline"]
+  );
   assert.equal(normalizedDocument.historyTraces.length, 2);
   assert.deepEqual(
     normalizedDocument.historyTraces.map((historyTrace) => historyTrace.style?.linePattern),

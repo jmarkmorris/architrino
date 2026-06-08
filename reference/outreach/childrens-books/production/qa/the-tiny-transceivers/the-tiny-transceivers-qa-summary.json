@@ -1,0 +1,342 @@
+[
+  {
+    "id": "the-tiny-transceivers-cover",
+    "book_slug": "the-tiny-transceivers",
+    "source_png": "reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-cover.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.6007,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "the-tiny-transceivers-spread-01",
+    "book_slug": "the-tiny-transceivers",
+    "source_png": "reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-spread-01.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4961,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "the-tiny-transceivers-spread-02",
+    "book_slug": "the-tiny-transceivers",
+    "source_png": "reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-spread-02.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.5443,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "the-tiny-transceivers-spread-03",
+    "book_slug": "the-tiny-transceivers",
+    "source_png": "reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-spread-03.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4907,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "the-tiny-transceivers-spread-04",
+    "book_slug": "the-tiny-transceivers",
+    "source_png": "reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-spread-04.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.539,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "the-tiny-transceivers-spread-05",
+    "book_slug": "the-tiny-transceivers",
+    "source_png": "reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-spread-05.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.547,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "the-tiny-transceivers-spread-06",
+    "book_slug": "the-tiny-transceivers",
+    "source_png": "reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-spread-06.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.5785,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "the-tiny-transceivers-spread-07",
+    "book_slug": "the-tiny-transceivers",
+    "source_png": "reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-spread-07.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.6011,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "the-tiny-transceivers-spread-08",
+    "book_slug": "the-tiny-transceivers",
+    "source_png": "reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-spread-08.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.5522,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "the-tiny-transceivers-spread-09",
+    "book_slug": "the-tiny-transceivers",
+    "source_png": "reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-spread-09.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.5437,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "the-tiny-transceivers-spread-10",
+    "book_slug": "the-tiny-transceivers",
+    "source_png": "reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-spread-10.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.5353,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "the-tiny-transceivers-spread-11",
+    "book_slug": "the-tiny-transceivers",
+    "source_png": "reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-spread-11.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.5103,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "the-tiny-transceivers-spread-12",
+    "book_slug": "the-tiny-transceivers",
+    "source_png": "reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-spread-12.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.5634,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "the-tiny-transceivers-spread-13",
+    "book_slug": "the-tiny-transceivers",
+    "source_png": "reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-spread-13.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4691,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "the-tiny-transceivers-spread-14",
+    "book_slug": "the-tiny-transceivers",
+    "source_png": "reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-spread-14.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4969,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "the-tiny-transceivers-backmatter-01",
+    "book_slug": "the-tiny-transceivers",
+    "source_png": "reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-backmatter-01.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4748,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "the-tiny-transceivers-backmatter-02",
+    "book_slug": "the-tiny-transceivers",
+    "source_png": "reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-backmatter-02.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4671,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  }
+]

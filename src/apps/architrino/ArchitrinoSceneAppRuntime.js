@@ -163,7 +163,18 @@ import { createAnimatorDocumentWorkspaceRuntime } from "../animator/AnimatorDocu
 import { createAnimatorViewportDisplayRuntime } from "../animator/AnimatorViewportDisplayRuntime.js";
 import { createAnimatorViewportOverlayPillRuntime } from "../animator/AnimatorViewportOverlayPillRuntime.js";
 import { createAnimatorViewportRenderRuntime } from "../animator/AnimatorViewportRenderRuntime.js";
-import { summarizeAnimatorMotionSources } from "../animator/AnimatorMotionSourceRuntime.js";
+import {
+  combineAnimatorMotionSourceKinds,
+  getAnimatorAssemblyMotionSourceKind,
+  getAnimatorHistoryTraceMotionSourceKind,
+  getAnimatorPathMotionSourceKind,
+  isAnimatorMotionSourceVisible,
+  summarizeAnimatorMotionSources,
+} from "../animator/AnimatorMotionSourceRuntime.js";
+import {
+  computeAnimatorPlanarCameraState,
+  getAnimatorInitialViewportProjection,
+} from "../animator/AnimatorPlanarViewportRuntime.js";
 import {
   getAnimatorSimulationDataset,
   getAnimatorSimulationFrameMotion,
@@ -224,6 +235,7 @@ const {
   animatorOverlay,
   animatorViewDesignButton,
   animatorViewAuthoredButton,
+  animatorViewPlanarButton,
   animatorSceneButton,
   animatorClearButton,
   animatorSaveButton,
@@ -932,6 +944,9 @@ function addAnimatorMemberLabel(assemblyId, memberId, color, options = {}) {
   sprite.userData.assemblyId = assemblyId;
   sprite.userData.memberId = memberId;
   sprite.userData.offset = offset;
+  sprite.userData.motionSourceKind = getAnimatorAssemblyMotionSourceKind(
+    getAnimatorDocumentAssemblyById(assemblyId)
+  );
   animatorViewportGroup.add(sprite);
   animatorMemberLabelSprites.push(sprite);
 }
@@ -1132,6 +1147,97 @@ function getAnimatorPathOwnerAssemblyId(path) {
   return path?.metadata?.ownerAssemblyId ?? path?.ownerAssemblyId ?? null;
 }
 
+function getAnimatorDocumentAssemblyById(assemblyId, documentData = animatorCurrentDocument) {
+  if (!assemblyId) {
+    return null;
+  }
+  const assemblies = Array.isArray(documentData?.assemblies) ? documentData.assemblies : [];
+  return assemblies.find((assembly) => assembly?.id === assemblyId) ?? null;
+}
+
+function getAnimatorDocumentPathSourceKind(path, documentData = animatorCurrentDocument) {
+  if (!path) {
+    return "static";
+  }
+  const ownerAssembly = getAnimatorDocumentAssemblyById(
+    getAnimatorPathOwnerAssemblyId(path),
+    documentData
+  );
+  const pathSourceKind = getAnimatorPathMotionSourceKind(path);
+  const assemblySourceKind = getAnimatorAssemblyMotionSourceKind(ownerAssembly);
+  if (pathSourceKind !== "static") {
+    return pathSourceKind;
+  }
+  return combineAnimatorMotionSourceKinds([pathSourceKind, assemblySourceKind]);
+}
+
+function getAnimatorSelectedDocumentPath(documentData = animatorCurrentDocument) {
+  const paths = Array.isArray(documentData?.paths) ? documentData.paths : [];
+  const assemblyDrafts = getAnimatorAssemblyDraftsState();
+  const selectedAssemblyId = getAnimatorSelectedAssemblyIdState() ?? assemblyDrafts[0]?.id ?? null;
+  const selectedOwnedPath =
+    selectedAssemblyId != null
+      ? paths.find((path) => getAnimatorPathOwnerAssemblyId(path) === selectedAssemblyId) ?? null
+      : null;
+  return selectedOwnedPath ?? (paths.length === 1 ? paths[0] : null);
+}
+
+function getAnimatorSelectedPathSourceKind(documentData = animatorCurrentDocument) {
+  const selectedPath = getAnimatorSelectedDocumentPath(documentData);
+  return selectedPath ? getAnimatorDocumentPathSourceKind(selectedPath, documentData) : "authored";
+}
+
+function getAnimatorTransferSourceKind(transfer, assemblyById = new Map()) {
+  const sourceKind = getAnimatorAssemblyMotionSourceKind(
+    assemblyById.get(transfer?.source?.assemblyId)
+  );
+  const targetKind = getAnimatorAssemblyMotionSourceKind(
+    assemblyById.get(transfer?.target?.assemblyId)
+  );
+  return combineAnimatorMotionSourceKinds([sourceKind, targetKind]);
+}
+
+function getAnimatorEnvelopeSourceKind(envelope, assemblyById = new Map()) {
+  const explicitSource = envelope?.metadata?.motionSource;
+  if (explicitSource) {
+    return combineAnimatorMotionSourceKinds([explicitSource]);
+  }
+  if (envelope?.metadata?.simulationFieldShellId) {
+    return "solver-derived";
+  }
+  return getAnimatorAssemblyMotionSourceKind(assemblyById.get(envelope?.assemblyId));
+}
+
+function isAnimatorMotionSourceKindVisible(sourceKind) {
+  return isAnimatorMotionSourceVisible(sourceKind, animatorViewportDisplayRuntime.state);
+}
+
+function isAnimatorThreeObjectMotionSourceVisible(object) {
+  return isAnimatorMotionSourceKindVisible(object?.userData?.motionSourceKind ?? "static");
+}
+
+function isAnimatorPlanarViewportActive() {
+  return animatorViewportModeState.projection === "planar-2d";
+}
+
+function applyAnimatorPlanarViewportCamera(documentData = animatorCurrentDocument) {
+  if (!animatorCamera || !documentData) {
+    return;
+  }
+  const state = computeAnimatorPlanarCameraState(documentData, {
+    aspect: Number(animatorCamera.aspect ?? 1) || 1,
+    verticalFovDegrees: Number(animatorCamera.fov ?? 45) || 45,
+    minDistance: 6,
+  });
+  const position = vectorFromTriplet(state.position);
+  const lookAt = vectorFromTriplet(state.lookAt);
+  const up = vectorFromTriplet(state.up);
+  animatorCamera.position.copy(position);
+  animatorCamera.up.copy(up);
+  animatorCamera.lookAt(lookAt);
+  animatorCameraState.position.copy(position);
+}
+
 function clearAnimatorBackgroundPathLines() {
   animatorBackgroundPathLines.forEach((line) => {
     animatorFrameGroup?.remove(line);
@@ -1162,15 +1268,11 @@ function rebuildAnimatorPathDisplayFromDocument(documentData) {
   const assemblyById = new Map(
     assemblies.map((assembly) => [assembly?.id ?? "", assembly])
   );
-  const assemblyDrafts = getAnimatorAssemblyDraftsState();
-  const selectedAssemblyId = getAnimatorSelectedAssemblyIdState() ?? assemblyDrafts[0]?.id ?? null;
-  const selectedOwnedPath =
-    selectedAssemblyId != null
-      ? paths.find((path) => getAnimatorPathOwnerAssemblyId(path) === selectedAssemblyId) ?? null
-      : null;
-  const selectedPath =
-    selectedOwnedPath ??
-    (paths.length === 1 ? paths[0] : null);
+  const selectedPath = getAnimatorSelectedDocumentPath(documentData);
+  const selectedPathSourceKind = getAnimatorSelectedPathSourceKind(documentData);
+  if (animatorPathLine) {
+    animatorPathLine.userData.motionSourceKind = selectedPathSourceKind;
+  }
   const selectedSamples = sampleAnimatorPath(
     selectedPath?.payload?.points ?? [],
     selectedPath?.payload?.interpolate ?? animatorPathState.interpolate,
@@ -1190,6 +1292,7 @@ function rebuildAnimatorPathDisplayFromDocument(documentData) {
     if (!samples.length) {
       return;
     }
+    const sourceKind = getAnimatorDocumentPathSourceKind(path, documentData);
     const line = new THREE.Line(
       new THREE.BufferGeometry().setFromPoints(samples),
       new THREE.LineBasicMaterial({
@@ -1199,6 +1302,7 @@ function rebuildAnimatorPathDisplayFromDocument(documentData) {
       })
     );
     line.userData.ownerAssemblyId = getAnimatorPathOwnerAssemblyId(path);
+    line.userData.motionSourceKind = sourceKind;
     line.userData.isSelectedPathBackground = path === selectedPath;
     animatorFrameGroup.add(line);
     animatorBackgroundPathLines.push(line);
@@ -1211,6 +1315,7 @@ function rebuildAnimatorPathDisplayFromDocument(documentData) {
       pathPoints.forEach((point, index) => {
         const marker = new THREE.Mesh(animatorPointGeometry, animatorPointMaterial);
         marker.position.copy(vectorFromTriplet(point));
+        marker.userData.motionSourceKind = sourceKind;
         if (!(bareOriginMarker && index === 0)) {
           const labelSprite = createAnimatorPointLabelSprite(labelPrefix);
           labelSprite.position.set(0, 0, 0);
@@ -1232,29 +1337,31 @@ function applyAnimatorViewportDisplayState() {
   const showEnvelopes = isAnimatorViewportDisplayFlagEnabled("showEnvelopes");
   const isObserverViewActive =
     animatorCameraFlightState.preview || animatorViewportModeState.cameraSource === "authored";
-  const showObserverGuidesInViewport = showCameraGuides && !isObserverViewActive;
+  const showObserverGuidesInViewport =
+    showCameraGuides && !isObserverViewActive && !isAnimatorPlanarViewportActive();
   if (animatorPathLine) {
-    animatorPathLine.visible = showTransportPath;
+    animatorPathLine.visible =
+      showTransportPath && isAnimatorThreeObjectMotionSourceVisible(animatorPathLine);
   }
   animatorBackgroundPathLines.forEach((line) => {
-    line.visible = showTransportPath;
+    line.visible = showTransportPath && isAnimatorThreeObjectMotionSourceVisible(line);
   });
   animatorBackgroundPathMarkers.forEach((marker) => {
-    marker.visible = showTransportPath;
+    marker.visible = showTransportPath && isAnimatorThreeObjectMotionSourceVisible(marker);
     const labelSprite = marker.userData?.pointLabelSprite;
     if (labelSprite) {
       labelSprite.visible = true;
     }
   });
   animatorPointMeshes.forEach((mesh) => {
-    mesh.visible = showTransportPath;
+    mesh.visible = showTransportPath && isAnimatorThreeObjectMotionSourceVisible(mesh);
     const labelSprite = mesh.userData?.pointLabelSprite;
     if (labelSprite) {
       labelSprite.visible = true;
     }
   });
   animatorAssemblyMeshes.forEach((mesh) => {
-    mesh.visible = true;
+    mesh.visible = isAnimatorThreeObjectMotionSourceVisible(mesh);
     mesh.traverse?.((child) => {
       const labelSprite = child.userData?.pointLabelSprite;
       if (labelSprite) {
@@ -1265,6 +1372,18 @@ function applyAnimatorViewportDisplayState() {
         structureBadgeSprite.visible = showLabels;
       }
     });
+  });
+  animatorShellMeshes.forEach((mesh) => {
+    mesh.visible = isAnimatorThreeObjectMotionSourceVisible(mesh);
+  });
+  animatorOrbitTraceLines.forEach((line) => {
+    line.visible = isAnimatorThreeObjectMotionSourceVisible(line);
+  });
+  animatorAxisGuideLines.forEach((line) => {
+    line.visible = isAnimatorThreeObjectMotionSourceVisible(line);
+  });
+  animatorOrbitParticleMeshes.forEach((mesh) => {
+    mesh.visible = isAnimatorThreeObjectMotionSourceVisible(mesh);
   });
   if (animatorDocumentCameraPathLine) {
     animatorDocumentCameraPathLine.visible = showObserverGuidesInViewport;
@@ -1285,10 +1404,10 @@ function applyAnimatorViewportDisplayState() {
     animatorCameraFlightGroup.visible = showObserverGuidesInViewport;
   }
   animatorHistoryTraceLines.forEach((line) => {
-    line.visible = showHistoryTraces;
+    line.visible = showHistoryTraces && isAnimatorThreeObjectMotionSourceVisible(line);
   });
   animatorEnvelopeMeshes.forEach((mesh) => {
-    mesh.visible = showEnvelopes;
+    mesh.visible = showEnvelopes && isAnimatorThreeObjectMotionSourceVisible(mesh);
   });
   animatorCameraWaypointMeshes.forEach((mesh) => {
     const labelSprite = mesh.userData?.labelSprite;
@@ -1297,7 +1416,12 @@ function applyAnimatorViewportDisplayState() {
     }
   });
   animatorMemberLabelSprites.forEach((sprite) => {
-    sprite.visible = showLabels;
+    sprite.visible = showLabels && isAnimatorThreeObjectMotionSourceVisible(sprite);
+  });
+  animatorTransferLines.forEach((line) => {
+    line.visible =
+      line?.userData?.visibleByMotionState !== false &&
+      isAnimatorThreeObjectMotionSourceVisible(line);
   });
   updateAnimatorHudViewportToggleState();
 }
@@ -1762,6 +1886,7 @@ function rebuildAnimatorControlPoints() {
   }
   const selectedAssembly = getAnimatorSelectedAssembly();
   const bareOriginMarker = isAnimatorBareArchitrinoAssembly(selectedAssembly);
+  const sourceKind = getAnimatorSelectedPathSourceKind();
   animatorPointMeshes.forEach((mesh) => {
     disposeAnimatorMarkerHandle(mesh);
     animatorFrameGroup.remove(mesh);
@@ -1771,6 +1896,7 @@ function rebuildAnimatorControlPoints() {
     mesh.position.copy(point);
     mesh.renderOrder = 12;
     mesh.userData.pointIndex = index;
+    mesh.userData.motionSourceKind = sourceKind;
     if (!(bareOriginMarker && index === 0)) {
       const labelSprite = createAnimatorPointLabelSprite(getAnimatorSelectedAssemblyLetter());
       labelSprite.position.set(0, 0, 0);
@@ -1804,6 +1930,69 @@ function sampleAnimatorPath(points, interpolate = "spline", closed = false) {
     return [...source, source[0].clone()];
   }
   return source;
+}
+
+function getAnimatorSimulationDatasetTimeWindow(dataset) {
+  const explicitStart = Number(dataset?.simulation?.time?.start);
+  const explicitEnd = Number(dataset?.simulation?.time?.end);
+  if (Number.isFinite(explicitStart) && Number.isFinite(explicitEnd) && explicitEnd > explicitStart) {
+    return { start: explicitStart, end: explicitEnd };
+  }
+  const frameTimes = Array.isArray(dataset?.frames)
+    ? dataset.frames
+        .map((frame) => Number(frame?.t))
+        .filter((time) => Number.isFinite(time))
+        .sort((left, right) => left - right)
+    : [];
+  if (frameTimes.length >= 2) {
+    return { start: frameTimes[0], end: frameTimes[frameTimes.length - 1] };
+  }
+  return { start: 0, end: 1 };
+}
+
+function getAnimatorSimulationDatasetProgress(dataset, timeSeconds) {
+  const timeWindow = getAnimatorSimulationDatasetTimeWindow(dataset);
+  const duration = Math.max(0.000001, timeWindow.end - timeWindow.start);
+  return clamp((Number(timeSeconds) - timeWindow.start) / duration, 0, 1);
+}
+
+function getAnimatorSolverPathForAssembly(paths = [], assemblyId = null, particleId = "") {
+  const normalizedParticleId = String(particleId ?? "").trim();
+  return (
+    paths.find((path) => {
+      if (getAnimatorDocumentPathSourceKind(path) !== "solver-derived") {
+        return false;
+      }
+      if (assemblyId && getAnimatorPathOwnerAssemblyId(path) === assemblyId) {
+        return true;
+      }
+      return (
+        normalizedParticleId &&
+        String(path?.metadata?.simulationParticleId ?? "").trim() === normalizedParticleId
+      );
+    }) ?? null
+  );
+}
+
+function getAnimatorVisiblePathSamples(path, normalizedT) {
+  const points = Array.isArray(path?.payload?.points) ? path.payload.points : [];
+  if (!points.length) {
+    return [];
+  }
+  const sampledPoints = sampleAnimatorPath(
+    points,
+    path?.payload?.interpolate ?? "spline",
+    !!path?.payload?.closed
+  );
+  if (sampledPoints.length < 2) {
+    return sampledPoints;
+  }
+  const maxIndex = clamp(
+    Math.round(clamp(normalizedT, 0, 1) * (sampledPoints.length - 1)),
+    1,
+    sampledPoints.length - 1
+  );
+  return sampledPoints.slice(0, maxIndex + 1);
 }
 
 function updateAnimatorPathGeometry(points = animatorPathState.points) {
@@ -2609,7 +2798,9 @@ function applyAnimatorStageVisualState(documentData, timeSeconds) {
     const transferId = String(transfer?.id ?? "").trim();
     const stageAction = String(stage?.action ?? "").trim().toLowerCase();
     const isHighlighted = transferId && stageTransferIds.has(transferId);
-    if (stageAction === "setup") {
+    const showMotionSource = isAnimatorThreeObjectMotionSourceVisible(line);
+    const showMotionState = line?.userData?.visibleByMotionState !== false;
+    if (stageAction === "setup" || !showMotionSource || !showMotionState) {
       line.visible = false;
       return;
     }
@@ -2680,13 +2871,32 @@ function updateAnimatorAnimatedViewport(timeSeconds) {
     const simulationParticleId = getAnimatorSimulationParticleId(simulationFrameMotion, assembly);
     if (simulationDataset && simulationFrameMotion && simulationParticleId) {
       const simulationTime = getAnimatorSimulationTimeForMotion(motionTime, simulationFrameMotion);
-      const simulationSample = sampleAnimatorSimulationParticleAtTime(
-        simulationDataset,
-        simulationParticleId,
-        simulationTime
+      const solverPath = getAnimatorSolverPathForAssembly(
+        paths,
+        assembly.id,
+        simulationParticleId
       );
-      if (simulationSample?.position) {
-        center = vectorFromTriplet(simulationSample.position);
+      const solverPathPoints = Array.isArray(solverPath?.payload?.points)
+        ? solverPath.payload.points
+        : [];
+      if (solverPathPoints.length) {
+        center = sampleAnimatorPointAt(
+          solverPathPoints,
+          getAnimatorSimulationDatasetProgress(simulationDataset, simulationTime),
+          {
+            interpolate: solverPath?.payload?.interpolate ?? "spline",
+            closed: !!solverPath?.payload?.closed,
+          }
+        );
+      } else {
+        const simulationSample = sampleAnimatorSimulationParticleAtTime(
+          simulationDataset,
+          simulationParticleId,
+          simulationTime
+        );
+        if (simulationSample?.position) {
+          center = vectorFromTriplet(simulationSample.position);
+        }
       }
     } else if (transportMotion?.pathId && pathById.has(transportMotion.pathId)) {
       const path = pathById.get(transportMotion.pathId);
@@ -2721,6 +2931,7 @@ function updateAnimatorAnimatedViewport(timeSeconds) {
     const mesh = animatorAssemblyMeshes[index];
     if (mesh) {
       mesh.position.copy(center);
+      mesh.visible = isAnimatorThreeObjectMotionSourceVisible(mesh);
     }
   });
   animatorAssemblyWorldCenters = new Map(
@@ -2733,6 +2944,7 @@ function updateAnimatorAnimatedViewport(timeSeconds) {
     if (center) {
       mesh.position.copy(center);
     }
+    mesh.visible = isAnimatorThreeObjectMotionSourceVisible(mesh);
   });
 
   animatorEnvelopeMeshes.forEach((mesh) => {
@@ -2741,6 +2953,9 @@ function updateAnimatorAnimatedViewport(timeSeconds) {
     if (center) {
       mesh.position.copy(center);
     }
+    mesh.visible =
+      isAnimatorViewportDisplayFlagEnabled("showEnvelopes") &&
+      isAnimatorThreeObjectMotionSourceVisible(mesh);
   });
 
   animatorOrbitTraceLines.forEach((line) => {
@@ -2749,6 +2964,7 @@ function updateAnimatorAnimatedViewport(timeSeconds) {
     if (center) {
       line.position.copy(center);
     }
+    line.visible = isAnimatorThreeObjectMotionSourceVisible(line);
   });
 
   animatorAxisGuideLines.forEach((line) => {
@@ -2757,10 +2973,12 @@ function updateAnimatorAnimatedViewport(timeSeconds) {
     if (center) {
       line.position.copy(center);
     }
+    line.visible = isAnimatorThreeObjectMotionSourceVisible(line);
   });
 
   animatorHistoryTraceLines.forEach((line) => {
     const showHistoryTraces = isAnimatorViewportDisplayFlagEnabled("showHistoryTraces");
+    const showMotionSource = isAnimatorThreeObjectMotionSourceVisible(line);
     const historyTrace = line.userData.historyTrace;
     const path = historyTrace?.pathId ? pathById.get(historyTrace.pathId) : null;
     const assemblyId = historyTrace?.assemblyId ?? null;
@@ -2777,6 +2995,22 @@ function updateAnimatorAnimatedViewport(timeSeconds) {
         motionTime,
         historyTrace?.source ?? historyTrace
       );
+      if (path && getAnimatorDocumentPathSourceKind(path) === "solver-derived") {
+        const visiblePoints = getAnimatorVisiblePathSamples(
+          path,
+          getAnimatorSimulationDatasetProgress(simulationDataset, traceSimulationTime)
+        );
+        if (visiblePoints.length < 2) {
+          line.visible = false;
+          return;
+        }
+        line.geometry.setFromPoints(visiblePoints);
+        if (line.userData.usesLineDistances) {
+          line.computeLineDistances();
+        }
+        line.visible = showHistoryTraces && showMotionSource;
+        return;
+      }
       const tracePoints = sampleAnimatorSimulationParticleTrail(
         simulationDataset,
         simulationParticleId,
@@ -2790,7 +3024,7 @@ function updateAnimatorAnimatedViewport(timeSeconds) {
       if (line.userData.usesLineDistances) {
         line.computeLineDistances();
       }
-      line.visible = showHistoryTraces;
+      line.visible = showHistoryTraces && showMotionSource;
       return;
     }
     const assemblyCenter = assemblyId ? assemblyCenters.get(assemblyId) : null;
@@ -2829,7 +3063,7 @@ function updateAnimatorAnimatedViewport(timeSeconds) {
     if (line.userData.usesLineDistances) {
       line.computeLineDistances();
     }
-    line.visible = showHistoryTraces;
+    line.visible = showHistoryTraces && showMotionSource;
   });
 
   animatorOrbitParticleMeshes.forEach((mesh) => {
@@ -2837,13 +3071,16 @@ function updateAnimatorAnimatedViewport(timeSeconds) {
     const center = assemblyCenters.get(assemblyId);
     const motion = mesh.userData.motion;
     if (!center || motion?.type !== "orbit.circular") {
+      mesh.visible = false;
       return;
     }
     const offset = getAnimatorOrbitOffsetAtTime(motion, mesh.userData.chargeType, motionTime);
     mesh.position.copy(center).add(offset);
+    mesh.visible = isAnimatorThreeObjectMotionSourceVisible(mesh);
   });
 
   animatorMemberLabelSprites.forEach((sprite) => {
+    const showLabels = isAnimatorViewportDisplayFlagEnabled("showLabels");
     const assemblyId = sprite.userData.assemblyId;
     const memberId = sprite.userData.memberId;
     const anchorPosition = resolveAnimatorTransferEndpointPosition(
@@ -2855,7 +3092,7 @@ function updateAnimatorAnimatedViewport(timeSeconds) {
       sprite.visible = false;
       return;
     }
-    sprite.visible = true;
+    sprite.visible = showLabels && isAnimatorThreeObjectMotionSourceVisible(sprite);
     const offset = vectorFromTriplet(sprite.userData.offset);
     sprite.position.copy(anchorPosition).add(offset);
   });
@@ -2873,13 +3110,15 @@ function updateAnimatorAnimatedViewport(timeSeconds) {
       motionTime
     );
     if (!sourcePoint || !targetPoint) {
+      line.userData.visibleByMotionState = false;
       line.visible = false;
       return;
     }
-    line.visible = true;
     line.geometry.setFromPoints([sourcePoint, targetPoint]);
     line.computeLineDistances();
     const isActiveByTime = transfer?.t == null || Math.abs(timeSeconds - Number(transfer.t)) <= 0.6;
+    line.userData.visibleByMotionState = isActiveByTime;
+    line.visible = isActiveByTime && isAnimatorThreeObjectMotionSourceVisible(line);
     line.material.color.set(0xffd17a);
     line.material.opacity = isActiveByTime ? 0.82 : 0.32;
   });
@@ -2905,7 +3144,7 @@ function updateAnimatorAnimatedViewport(timeSeconds) {
       type: "proxy",
       offset: [localOffset.x, localOffset.y, localOffset.z],
     });
-    mesh.visible = true;
+    mesh.visible = isAnimatorThreeObjectMotionSourceVisible(mesh);
   });
 
   try {
@@ -2916,7 +3155,9 @@ function updateAnimatorAnimatedViewport(timeSeconds) {
   updateAnimatorViewportMediaOverlays(timeSeconds, animatorCurrentDocument);
   applyAnimatorStageVisualState(animatorCurrentDocument, timeSeconds);
 
-  if (animatorCameraFlightState.preview && animatorCamera) {
+  if (isAnimatorPlanarViewportActive()) {
+    applyAnimatorPlanarViewportCamera(animatorCurrentDocument);
+  } else if (animatorCameraFlightState.preview && animatorCamera) {
     const previewCameraState = getAnimatorAutoscaledCameraState(
       getAnimatorPreviewCameraStateAtTime(timeSeconds),
       animatorCurrentDocument,
@@ -3027,6 +3268,9 @@ function addAnimatorShell(center, shell) {
   mesh.add(wireframe);
   mesh.position.copy(center);
   mesh.userData.assemblyId = shell?.assemblyId ?? null;
+  mesh.userData.motionSourceKind = getAnimatorAssemblyMotionSourceKind(
+    getAnimatorDocumentAssemblyById(shell?.assemblyId)
+  );
   animatorViewportGroup?.add(mesh);
   animatorShellMeshes.push(mesh);
 }
@@ -3062,6 +3306,13 @@ function addAnimatorEnvelope(center, envelope) {
   mesh.add(wireframe);
   mesh.position.copy(center);
   mesh.userData.assemblyId = envelope?.assemblyId ?? null;
+  mesh.userData.motionSourceKind = getAnimatorEnvelopeSourceKind(
+    envelope,
+    new Map(
+      (Array.isArray(animatorCurrentDocument?.assemblies) ? animatorCurrentDocument.assemblies : [])
+        .map((assembly) => [assembly?.id, assembly])
+    )
+  );
   animatorViewportGroup?.add(mesh);
   animatorEnvelopeMeshes.push(mesh);
 }
@@ -3090,6 +3341,7 @@ function addAnimatorHistoryTrace(historyTrace) {
   const line = new THREE.Line(new THREE.BufferGeometry(), material);
   line.userData.historyTrace = historyTrace;
   line.userData.usesLineDistances = isDashed;
+  line.userData.motionSourceKind = getAnimatorHistoryTraceMotionSourceKind(historyTrace);
   animatorViewportGroup.add(line);
   animatorHistoryTraceLines.push(line);
 }
@@ -3111,6 +3363,9 @@ function addAnimatorOrbitParticle(center, motion, chargeType, memberId = null) {
   mesh.userData.chargeType = chargeType;
   mesh.userData.phaseOffset = chargeType === "electrino" ? Math.PI : 0;
   mesh.userData.memberId = memberId;
+  mesh.userData.motionSourceKind = getAnimatorAssemblyMotionSourceKind(
+    getAnimatorDocumentAssemblyById(motion?.assemblyId)
+  );
   animatorViewportGroup?.add(mesh);
   animatorOrbitParticleMeshes.push(mesh);
 }
@@ -3133,6 +3388,13 @@ function addAnimatorTransferLine(transfer) {
   const line = new THREE.Line(geometry, material);
   line.computeLineDistances();
   line.userData.transfer = transfer;
+  line.userData.motionSourceKind = getAnimatorTransferSourceKind(
+    transfer,
+    new Map(
+      (Array.isArray(animatorCurrentDocument?.assemblies) ? animatorCurrentDocument.assemblies : [])
+        .map((assembly) => [assembly?.id, assembly])
+    )
+  );
   animatorViewportGroup.add(line);
   animatorTransferLines.push(line);
 }
@@ -3427,6 +3689,7 @@ function addAnimatorAssemblyProxy(center, assembly, index) {
   group.position.copy(center);
   group.userData.assemblyId = assembly?.id ?? null;
   group.userData.assemblyIndex = index;
+  group.userData.motionSourceKind = getAnimatorAssemblyMotionSourceKind(assembly);
   group.userData.draggable = true;
   const isBareArchitrino = isAnimatorBareArchitrinoAssembly(assembly);
   let centerMarker = null;
@@ -3446,6 +3709,7 @@ function addAnimatorAssemblyProxy(center, assembly, index) {
     centerMarker.renderOrder = 12;
     centerMarker.userData.assemblyId = assembly?.id ?? null;
     centerMarker.userData.assemblyIndex = index;
+    centerMarker.userData.motionSourceKind = group.userData.motionSourceKind;
     centerMarker.userData.sceneRole = sceneRole;
     centerMarker.userData.draggable = true;
     centerMarker.userData.isAssemblyCenterMarker = true;
@@ -3507,6 +3771,7 @@ function addAnimatorAssemblyProxy(center, assembly, index) {
       }
       memberDot.userData.assemblyId = assembly?.id ?? null;
       memberDot.userData.memberId = memberId;
+      memberDot.userData.motionSourceKind = group.userData.motionSourceKind;
       memberDot.userData.subassemblyId = "";
       memberDot.userData.draggable = true;
       memberDot.userData.isAnimatorMemberHandle = true;
@@ -3536,6 +3801,7 @@ function addAnimatorAssemblyProxy(center, assembly, index) {
       childMesh.position.copy(childPosition);
       childMesh.userData.assemblyId = assembly?.id ?? null;
       childMesh.userData.subassemblyId = getAnimatorSubassemblyId(child, childIndex);
+      childMesh.userData.motionSourceKind = group.userData.motionSourceKind;
       childMesh.userData.draggable = true;
       childMesh.userData.isAnimatorSubassemblyHandle = true;
       const childHitProxy = createAnimatorMarkerHitProxy(childRadius + 0.1);
@@ -3579,6 +3845,7 @@ function addAnimatorAssemblyProxy(center, assembly, index) {
         memberDot.position.copy(memberOffset);
         memberDot.userData.assemblyId = assembly?.id ?? null;
         memberDot.userData.memberId = memberId;
+        memberDot.userData.motionSourceKind = group.userData.motionSourceKind;
         memberDot.userData.subassemblyId = getAnimatorSubassemblyId(child, childIndex);
         memberDot.userData.draggable = true;
         memberDot.userData.isAnimatorMemberHandle = true;
@@ -3626,6 +3893,7 @@ function addAnimatorAssemblyProxy(center, assembly, index) {
       memberDot.renderOrder = 16;
       memberDot.userData.assemblyId = assembly?.id ?? null;
       memberDot.userData.memberId = memberId;
+      memberDot.userData.motionSourceKind = group.userData.motionSourceKind;
       memberDot.userData.draggable = false;
       memberDot.userData.isAnimatorPersonalityHandle = true;
       const memberHitProxy = createAnimatorMarkerHitProxy(0.16);
@@ -3679,6 +3947,7 @@ function addAnimatorAssemblyProxy(center, assembly, index) {
       memberDot.renderOrder = 15;
       memberDot.userData.assemblyId = assembly?.id ?? null;
       memberDot.userData.memberId = memberId;
+      memberDot.userData.motionSourceKind = group.userData.motionSourceKind;
       memberDot.userData.draggable = true;
       memberDot.userData.isAnimatorMemberHandle = true;
       const memberHitProxy = createAnimatorMarkerHitProxy(0.14);
@@ -3767,6 +4036,13 @@ function updateAnimatorViewportFromDocument(documentData) {
     ? getAnimatorMotionProgress(previousDocument, animatorPlaybackState.playheadSeconds)
     : null;
   animatorCurrentDocument = documentData;
+  if (previousSceneId !== (documentData?.scene?.id ?? null)) {
+    animatorViewportModeState.projection = getAnimatorInitialViewportProjection(documentData);
+    if (animatorViewportModeState.projection === "planar-2d") {
+      animatorViewportModeState.cameraSource = "design";
+    }
+    updateAnimatorViewportModeButtons();
+  }
   updateAnimatorMotionSourcePill(documentData);
   if (!animatorViewportGroup || !animatorPathGeometry) {
     return;
@@ -3823,9 +4099,13 @@ function updateAnimatorViewportFromDocument(documentData) {
         const particleCount = animatorOrbitParticleMeshes.length;
         if (animatorOrbitParticleMeshes[particleCount - 1]) {
           animatorOrbitParticleMeshes[particleCount - 1].userData.assemblyId = assembly.id;
+          animatorOrbitParticleMeshes[particleCount - 1].userData.motionSourceKind =
+            getAnimatorAssemblyMotionSourceKind(assembly);
         }
         if (animatorOrbitParticleMeshes[particleCount - 2]) {
           animatorOrbitParticleMeshes[particleCount - 2].userData.assemblyId = assembly.id;
+          animatorOrbitParticleMeshes[particleCount - 2].userData.motionSourceKind =
+            getAnimatorAssemblyMotionSourceKind(assembly);
         }
       }
     });
@@ -4306,6 +4586,7 @@ const animatorPlaybackTimelineRuntime = createAnimatorPlaybackTimelineRuntime({
   dom: {
     viewDesignButton: animatorViewDesignButton,
     viewAuthoredButton: animatorViewAuthoredButton,
+    viewPlanarButton: animatorViewPlanarButton,
     markerJumpSelect: animatorMarkerJumpSelect,
     markerPrevButton: animatorMarkerPrevButton,
     markerNextButton: animatorMarkerNextButton,
@@ -4325,6 +4606,7 @@ const {
   clearAnimatorEditorPreviewState,
   updateAnimatorViewportModeButtons,
   setAnimatorViewportCameraSource,
+  setAnimatorViewportProjection,
   setAnimatorPlaybackPlayhead,
   startAnimatorPlayback,
   toggleAnimatorPlayback,
@@ -4573,6 +4855,7 @@ const animatorEditorPreviewState = {
 };
 const animatorViewportModeState = {
   cameraSource: "design",
+  projection: "3d",
 };
 const animatorPlaybackState = {
   playing: false,
@@ -6584,6 +6867,7 @@ const animatorAppRuntime = createAnimatorAppRuntime({
     animatorPreviewButton,
     animatorViewDesignButton,
     animatorViewAuthoredButton,
+    animatorViewPlanarButton,
     animatorExportButton,
     animatorLibrarySaveButton,
     animatorRepoSaveButton,
@@ -6627,6 +6911,7 @@ const animatorAppRuntime = createAnimatorAppRuntime({
     stopAnimatorCameraFlightPreview,
     startAnimatorCameraFlightPreview,
     setAnimatorViewportCameraSource,
+    setAnimatorViewportProjection,
     applyAnimatorFrameScaleInput,
     applyAnimatorCameraSpeedInput,
     applyAnimatorCameraRadiusInput,

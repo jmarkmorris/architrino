@@ -11,10 +11,10 @@
     "palette_flag": true
   },
   "manual_checklist": {
-    "palette": "pending",
-    "no_in_image_text": "pending",
-    "one_continuous_scene": "pending",
-    "correct_geometry": "pending"
+    "palette": "approved",
+    "no_in_image_text": "approved",
+    "one_continuous_scene": "approved",
+    "correct_geometry": "approved"
   },
-  "decision": "pending"
+  "decision": "approved"
 }

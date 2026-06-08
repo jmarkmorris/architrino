@@ -3,7 +3,12 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
 import { normalizeAnimatorSceneDocument } from "../src/runtime/Animator2SceneDocumentRuntime.js";
-import { summarizeAnimatorMotionSources } from "../src/apps/animator/AnimatorMotionSourceRuntime.js";
+import {
+  getAnimatorAssemblyMotionSourceKind,
+  getAnimatorPathMotionSourceKind,
+  isAnimatorMotionSourceVisible,
+  summarizeAnimatorMotionSources,
+} from "../src/apps/animator/AnimatorMotionSourceRuntime.js";
 
 function readFixtureDocument() {
   const fixtureUrl = new URL(
@@ -23,6 +28,50 @@ test("animator motion source summary labels solver-derived fixture motion", () =
   assert.equal(summary.hasAuthoredMotion, false);
   assert.match(summary.detail, /Claim: fixture-only/);
   assert.match(summary.detail, /Engine: static-fixture/);
+});
+
+test("animator motion source helpers drive source visibility controls", () => {
+  assert.equal(
+    getAnimatorAssemblyMotionSourceKind({
+      metadata: { motionSource: "solver-derived" },
+      motion: [{ type: "simulation.frame", particleId: "e0" }],
+    }),
+    "solver-derived"
+  );
+  assert.equal(
+    getAnimatorAssemblyMotionSourceKind({
+      motion: [{ type: "path.transport", pathId: "path_a" }],
+    }),
+    "authored"
+  );
+  assert.equal(
+    getAnimatorPathMotionSourceKind({
+      kind: "simulation.sampled_path",
+      payload: { points: [[0, 0, 0], [1, 0, 0]] },
+    }),
+    "solver-derived"
+  );
+  assert.equal(
+    isAnimatorMotionSourceVisible("solver-derived", {
+      showSolverMotion: false,
+      showAuthoredMotion: true,
+    }),
+    false
+  );
+  assert.equal(
+    isAnimatorMotionSourceVisible("authored", {
+      showSolverMotion: true,
+      showAuthoredMotion: false,
+    }),
+    false
+  );
+  assert.equal(
+    isAnimatorMotionSourceVisible("mixed", {
+      showSolverMotion: false,
+      showAuthoredMotion: true,
+    }),
+    true
+  );
 });
 
 test("animator motion source summary separates authored and mixed motion", () => {

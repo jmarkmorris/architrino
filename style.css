@@ -4089,6 +4089,7 @@ body {
   bottom: 8px;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 18px;
   font-size: 11px;
   font-weight: 600;
@@ -4103,7 +4104,7 @@ body {
   align-items: center;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: 18px;
+  gap: 10px 14px;
 }
 
 .animator-motion-source-pill {

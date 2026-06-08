@@ -22,6 +22,14 @@ export function getAnimatorDomElements(documentLike = globalThis.document) {
   const animatorHudPathsToggle = getElementById(documentLike, "animator-hud-paths-toggle");
   const animatorHudHistoryToggle = getElementById(documentLike, "animator-hud-history-toggle");
   const animatorHudEnvelopesToggle = getElementById(documentLike, "animator-hud-envelopes-toggle");
+  const animatorHudSolverMotionToggle = getElementById(
+    documentLike,
+    "animator-hud-solver-motion-toggle"
+  );
+  const animatorHudAuthoredMotionToggle = getElementById(
+    documentLike,
+    "animator-hud-authored-motion-toggle"
+  );
   const animatorHudCameraGuidesToggle = getElementById(
     documentLike,
     "animator-hud-camera-guides-toggle"
@@ -32,6 +40,7 @@ export function getAnimatorDomElements(documentLike = globalThis.document) {
     animatorOverlay,
     animatorViewDesignButton: getElementById(documentLike, "animator-view-design-button"),
     animatorViewAuthoredButton: getElementById(documentLike, "animator-view-authored-button"),
+    animatorViewPlanarButton: getElementById(documentLike, "animator-view-planar-button"),
     animatorSceneButton: getElementById(documentLike, "animator-scene-button"),
     animatorClearButton: getElementById(documentLike, "animator-clear-button"),
     animatorSaveButton: getElementById(documentLike, "animator-save-button"),
@@ -74,6 +83,8 @@ export function getAnimatorDomElements(documentLike = globalThis.document) {
     animatorHudPathsToggle,
     animatorHudHistoryToggle,
     animatorHudEnvelopesToggle,
+    animatorHudSolverMotionToggle,
+    animatorHudAuthoredMotionToggle,
     animatorHudCameraGuidesToggle,
     animatorMotionSourcePill,
     animatorHudViewportToggleBindings: [
@@ -96,6 +107,16 @@ export function getAnimatorDomElements(documentLike = globalThis.document) {
         button: animatorHudEnvelopesToggle,
         key: "showEnvelopes",
         label: "Envelopes",
+      },
+      {
+        button: animatorHudSolverMotionToggle,
+        key: "showSolverMotion",
+        label: "Solver Motion",
+      },
+      {
+        button: animatorHudAuthoredMotionToggle,
+        key: "showAuthoredMotion",
+        label: "Authored Motion",
       },
       {
         button: animatorHudCameraGuidesToggle,

@@ -36,8 +36,8 @@ test("animator simulation playback samples particles from solver frames", () => 
   assert.equal(getAnimatorSimulationParticleId(motion, assembly), "e0");
 
   const sample = sampleAnimatorSimulationParticleAtTime(dataset, "e0", 1.5);
-  assert.deepEqual(roundTriplet(sample.position), [-1.475, 0.435, 0]);
-  assert.deepEqual(roundTriplet(sample.velocity), [1.225, 0.45, 0]);
+  assert.deepEqual(roundTriplet(sample.position), [-3.75, 0.55, 0]);
+  assert.deepEqual(roundTriplet(sample.velocity), [1.9375, 1.3875, 0]);
   assert.equal(sample.frame.fromTime, 1);
   assert.equal(sample.frame.toTime, 2);
   assert.equal(sample.frame.alpha, 0.5);
@@ -51,16 +51,16 @@ test("animator simulation playback returns elapsed trails and frame diagnostics"
   assert.deepEqual(
     trail.map((sample) => roundTriplet(sample.position)),
     [
-      [3.2, 0.8, 0],
-      [2.1, -0.05, 0],
-      [0.85, -0.82, 0],
-      [-0.35, -0.95, 0],
-      [-1, -0.65, 0],
+      [6.4, 1.6, 0],
+      [4.7, 0.25, 0],
+      [2.8, -1.35, 0],
+      [0.55, -2.35, 0],
+      [-0.625, -2.175, 0],
     ]
   );
 
   const frameSample = sampleAnimatorSimulationDatasetAtTime(dataset, 3.1);
   assert.equal(frameSample.particles.length, 2);
   assert.equal(frameSample.diagnostics.partnerHits, 1);
-  assert.equal(frameSample.diagnostics.minimumSeparation, 2.012);
+  assert.equal(frameSample.diagnostics.minimumSeparation, 4.827);
 });

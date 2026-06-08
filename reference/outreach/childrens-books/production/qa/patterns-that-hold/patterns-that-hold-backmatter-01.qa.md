@@ -15,9 +15,9 @@
 
 ## Manual Checklist
 
-- [ ] Palette follows the style guide.
-- [ ] No in-image text, captions, labels, equations, watermark, or logo.
-- [ ] One continuous scene, not a contact sheet or inset diagram collection.
-- [ ] Geometry teaches the stated lesson.
+- [x] Palette follows the style guide.
+- [x] No in-image text, captions, labels, equations, watermark, or logo.
+- [x] One continuous scene, not a contact sheet or inset diagram collection.
+- [x] Geometry teaches the stated lesson.
 
-Decision: pending
+Decision: approved

@@ -110,6 +110,29 @@ BOOKS = [
             ),
         ],
     },
+    {
+        "slug": "the-tiny-transceivers",
+        "title": "The Tiny Transceivers",
+        "book_number": 9,
+        "age_band": "8-9",
+        "story_spreads": 14,
+        "cover_count": 1,
+        "back_matter_count": 2,
+        "back_matter_story_text": "Path.\nSend.\nReceive.",
+        "back_matter_activities": [
+            (
+                "Electra and Poz sit beside a white tabletop lab surface while a small grown-up "
+                "hand places or slides one red point token across the surface. The point leaves "
+                "a short red path trace with older/fainter and newer/fresher positions, showing "
+                "persistent identity through motion"
+            ),
+            (
+                "Electra and Poz watch while a small grown-up hand points to an earlier red "
+                "source position, a soft red wake traveling from it, and a blue point whose path "
+                "bends after the wake arrives"
+            ),
+        ],
+    },
 ]
 
 PALETTE_RULE = (

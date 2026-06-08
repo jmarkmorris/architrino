@@ -4,6 +4,8 @@ const defaultAnimatorViewportDisplayState = Object.freeze({
   showLabels: true,
   showHistoryTraces: true,
   showEnvelopes: true,
+  showSolverMotion: true,
+  showAuthoredMotion: true,
 });
 
 export function createAnimatorViewportDisplayRuntime(options = {}) {

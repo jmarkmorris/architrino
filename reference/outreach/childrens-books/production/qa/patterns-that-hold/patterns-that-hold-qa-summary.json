@@ -12,12 +12,12 @@
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "pending",
-      "no_in_image_text": "pending",
-      "one_continuous_scene": "pending",
-      "correct_geometry": "pending"
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
     },
-    "decision": "pending"
+    "decision": "approved"
   },
   {
     "id": "patterns-that-hold-spread-01",
@@ -32,12 +32,12 @@
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "pending",
-      "no_in_image_text": "pending",
-      "one_continuous_scene": "pending",
-      "correct_geometry": "pending"
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
     },
-    "decision": "pending"
+    "decision": "approved"
   },
   {
     "id": "patterns-that-hold-spread-02",
@@ -52,12 +52,12 @@
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "pending",
-      "no_in_image_text": "pending",
-      "one_continuous_scene": "pending",
-      "correct_geometry": "pending"
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
     },
-    "decision": "pending"
+    "decision": "approved"
   },
   {
     "id": "patterns-that-hold-spread-03",
@@ -72,12 +72,12 @@
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "pending",
-      "no_in_image_text": "pending",
-      "one_continuous_scene": "pending",
-      "correct_geometry": "pending"
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
     },
-    "decision": "pending"
+    "decision": "approved"
   },
   {
     "id": "patterns-that-hold-spread-04",
@@ -92,12 +92,12 @@
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "pending",
-      "no_in_image_text": "pending",
-      "one_continuous_scene": "pending",
-      "correct_geometry": "pending"
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
     },
-    "decision": "pending"
+    "decision": "approved"
   },
   {
     "id": "patterns-that-hold-spread-05",
@@ -112,12 +112,12 @@
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "pending",
-      "no_in_image_text": "pending",
-      "one_continuous_scene": "pending",
-      "correct_geometry": "pending"
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
     },
-    "decision": "pending"
+    "decision": "approved"
   },
   {
     "id": "patterns-that-hold-spread-06",
@@ -132,12 +132,12 @@
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "pending",
-      "no_in_image_text": "pending",
-      "one_continuous_scene": "pending",
-      "correct_geometry": "pending"
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
     },
-    "decision": "pending"
+    "decision": "approved"
   },
   {
     "id": "patterns-that-hold-spread-07",
@@ -152,12 +152,12 @@
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "pending",
-      "no_in_image_text": "pending",
-      "one_continuous_scene": "pending",
-      "correct_geometry": "pending"
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
     },
-    "decision": "pending"
+    "decision": "approved"
   },
   {
     "id": "patterns-that-hold-spread-08",
@@ -172,12 +172,12 @@
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "pending",
-      "no_in_image_text": "pending",
-      "one_continuous_scene": "pending",
-      "correct_geometry": "pending"
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
     },
-    "decision": "pending"
+    "decision": "approved"
   },
   {
     "id": "patterns-that-hold-spread-09",
@@ -192,12 +192,12 @@
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "pending",
-      "no_in_image_text": "pending",
-      "one_continuous_scene": "pending",
-      "correct_geometry": "pending"
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
     },
-    "decision": "pending"
+    "decision": "approved"
   },
   {
     "id": "patterns-that-hold-spread-10",
@@ -212,12 +212,12 @@
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "pending",
-      "no_in_image_text": "pending",
-      "one_continuous_scene": "pending",
-      "correct_geometry": "pending"
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
     },
-    "decision": "pending"
+    "decision": "approved"
   },
   {
     "id": "patterns-that-hold-spread-11",
@@ -232,12 +232,12 @@
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "pending",
-      "no_in_image_text": "pending",
-      "one_continuous_scene": "pending",
-      "correct_geometry": "pending"
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
     },
-    "decision": "pending"
+    "decision": "approved"
   },
   {
     "id": "patterns-that-hold-spread-12",
@@ -252,12 +252,12 @@
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "pending",
-      "no_in_image_text": "pending",
-      "one_continuous_scene": "pending",
-      "correct_geometry": "pending"
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
     },
-    "decision": "pending"
+    "decision": "approved"
   },
   {
     "id": "patterns-that-hold-backmatter-01",
@@ -272,12 +272,12 @@
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "pending",
-      "no_in_image_text": "pending",
-      "one_continuous_scene": "pending",
-      "correct_geometry": "pending"
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
     },
-    "decision": "pending"
+    "decision": "approved"
   },
   {
     "id": "patterns-that-hold-backmatter-02",
@@ -292,11 +292,11 @@
       "palette_flag": true
     },
     "manual_checklist": {
-      "palette": "pending",
-      "no_in_image_text": "pending",
-      "one_continuous_scene": "pending",
-      "correct_geometry": "pending"
+      "palette": "approved",
+      "no_in_image_text": "approved",
+      "one_continuous_scene": "approved",
+      "correct_geometry": "approved"
     },
-    "decision": "pending"
+    "decision": "approved"
   }
 ]
