@@ -3682,6 +3682,29 @@ replay this same-domain normal form through the provider boundary, or replace
 the scalar-lambda witness with an explicitly non-scalar source-covariance
 object if the provider-object Wronskian excludes zero.
 
+\texttt{buildH39RequestedY44TerminalSourceCovarianceCrossWronskianNormalFormProducerCandidate}
+executes that replay as a candidate-only normal-form producer packet. It
+consumes the terminal-affine endpoint provider budget and cross-Wronskian
+diagnostic, records the $s_-+s_+$ denominator status on all fifteen terminal
+rows, reconstructs
+$r_-^{NF}=(Rs_-+W)/(s_-+s_+)$ and
+$r_+^{NF}=(Rs_+-W)/(s_-+s_+)$, compares both branch intervals with the
+terminal-affine endpoint budget, and reuses the existing source-map boundary
+only as a fail-closed replay witness. On the live terminal rows it records zero
+separated $s_-+s_+$ denominators, so the normal-form division is blocked before
+provider-boundary certification. The current executable surface still lacks an
+expression-level shared evaluator for $W=r_-s_+-r_+s_-$; the packet records
+that absence explicitly instead of treating the provider-object or lambda
+Wronskian hull as a certified shared source object. It certifies no
+expression-level shared Wronskian, no cross-Wronskian normal-form producer, no
+scalar-lambda source object, no tensor source object, no expression-level
+$N_{38}$ provider, no $S_{37}$ division, no shifted $R_{\varepsilon,43}$
+closure, no retained branch, and no directed-rounded provider. The active
+blocker is therefore sharper: first separate $s_-+s_+$ on the same terminal
+domain, then build and certify a narrow expression-level shared $W$ interval
+before replaying the normal-form producer or promoting a non-scalar
+source-covariance object.
+
 \texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
 now also probes a shared terminal-residual coordinate for
 $h_{37},h_{36},h_{35}$. Instead of assigning independent residual hulls to the

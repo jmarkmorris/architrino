@@ -42,6 +42,7 @@ export function getAnimatorDomElements(documentLike = globalThis.document) {
     animatorViewAuthoredButton: getElementById(documentLike, "animator-view-authored-button"),
     animatorViewPlanarButton: getElementById(documentLike, "animator-view-planar-button"),
     animatorSceneButton: getElementById(documentLike, "animator-scene-button"),
+    animatorRunSimulationButton: getElementById(documentLike, "animator-run-simulation-button"),
     animatorClearButton: getElementById(documentLike, "animator-clear-button"),
     animatorSaveButton: getElementById(documentLike, "animator-save-button"),
     animatorDocsButton: getElementById(documentLike, "animator-docs-button"),

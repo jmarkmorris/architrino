@@ -27,6 +27,7 @@ test("animator dom runtime collects animator shell elements and bindings", () =>
   elementMap.set("animator-overlay", overlay);
   elementMap.set("animator-canvas", canvas);
   elementMap.set("animator-view-planar-button", { id: "planar" });
+  elementMap.set("animator-run-simulation-button", { id: "run_solver" });
   elementMap.set("animator-hud-labels-toggle", { id: "labels" });
   elementMap.set("animator-hud-paths-toggle", { id: "paths" });
   elementMap.set("animator-hud-history-toggle", { id: "history" });
@@ -46,6 +47,7 @@ test("animator dom runtime collects animator shell elements and bindings", () =>
   assert.equal(dom.animatorCanvas, canvas);
   assert.equal(dom.animatorCanvasWrap, canvasParent);
   assert.equal(dom.animatorViewPlanarButton?.id, "planar");
+  assert.equal(dom.animatorRunSimulationButton?.id, "run_solver");
   assert.equal(dom.animatorTabs.length, 2);
   assert.equal(dom.animatorPanels.length, 1);
   assert.equal(dom.animatorMotionSourcePill?.id, "motion_source");

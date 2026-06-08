@@ -100,6 +100,7 @@ import {
   buildH39RequestedY44TerminalSourceCovarianceBranchExchangeSymmetryAttemptCandidate,
   buildH39RequestedY44TerminalSourceCovarianceScaleVirialIdentityAttemptCandidate,
   buildH39RequestedY44TerminalSourceCovarianceCrossBranchWronskianDiagnosticCandidate,
+  buildH39RequestedY44TerminalSourceCovarianceCrossWronskianNormalFormProducerCandidate,
   buildH39RequestedY44RowLocalN38SignedSourceSumDerivativeProviderCandidate,
   validateH39CorrelatedResidualWidthDiagnostic,
   validateH39H38NumeratorGraphLocalPartitionDiagnostic,
@@ -196,6 +197,7 @@ import {
   validateH39RequestedY44TerminalSourceCovarianceBranchExchangeSymmetryAttemptCandidate,
   validateH39RequestedY44TerminalSourceCovarianceScaleVirialIdentityAttemptCandidate,
   validateH39RequestedY44TerminalSourceCovarianceCrossBranchWronskianDiagnosticCandidate,
+  validateH39RequestedY44TerminalSourceCovarianceCrossWronskianNormalFormProducerCandidate,
   validateH39RequestedY44RowLocalN38SignedSourceSumDerivativeProvider,
   validateH39RequestedY44SignedSourceSumDerivativeAllocationTarget,
   validateH39RequestedY44SourceMapResidualCovarianceTarget,
@@ -23483,6 +23485,275 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   assert.deepEqual(
     collectExactKeys(
       terminalSourceCovarianceCrossBranchWronskianDiagnostic,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalSourceCovarianceCrossWronskianNormalFormProducer =
+    buildH39RequestedY44TerminalSourceCovarianceCrossWronskianNormalFormProducerCandidate({
+      terminalAffineEndpointProviderCandidate,
+      terminalSourceCovarianceCrossBranchWronskianDiagnostic,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44TerminalSourceCovarianceCrossWronskianNormalFormProducerCandidate(
+      terminalSourceCovarianceCrossWronskianNormalFormProducer
+    ),
+    []
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossWronskianNormalFormProducer
+      .terminal_source_covariance_cross_wronskian_normal_form_producer_verified,
+    true
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossWronskianNormalFormProducer
+      .terminal_source_covariance_cross_wronskian_normal_form_producer_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossWronskianNormalFormProducer
+      .terminal_source_covariance_cross_wronskian_normal_form_row_count,
+    5
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossWronskianNormalFormProducer
+      .terminal_source_covariance_cross_wronskian_normal_form_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossWronskianNormalFormProducer
+      .terminal_source_covariance_cross_wronskian_normal_form_branch_row_count,
+    30
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossWronskianNormalFormProducer
+      .source_covariance_cross_wronskian_formula,
+    "W=r_-*s_+ - r_+*s_-"
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossWronskianNormalFormProducer
+      .normal_form_minus_formula,
+    "r_-^NF=(R*s_-+W)/(s_-+s_+)"
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossWronskianNormalFormProducer
+      .normal_form_plus_formula,
+    "r_+^NF=(R*s_+-W)/(s_-+s_+)"
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossWronskianNormalFormProducer
+      .solve_slope_sum_denominator_separated_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossWronskianNormalFormProducer
+      .all_solve_slope_sum_denominators_separated_from_zero,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossWronskianNormalFormProducer
+      .expression_level_shared_wronskian_evaluator_available,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossWronskianNormalFormProducer
+      .expression_level_shared_wronskian_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossWronskianNormalFormProducer
+      .expression_level_shared_wronskian_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossWronskianNormalFormProducer
+      .provider_object_wronskian_source_terminal_row_count +
+      terminalSourceCovarianceCrossWronskianNormalFormProducer
+        .lambda_witness_wronskian_source_terminal_row_count,
+    15
+  );
+  assert.ok(
+    terminalSourceCovarianceCrossWronskianNormalFormProducer
+      .normal_form_wronskian_contains_zero_terminal_row_count +
+      terminalSourceCovarianceCrossWronskianNormalFormProducer
+        .normal_form_wronskian_excludes_zero_terminal_row_count <=
+      15
+  );
+  assert.ok(
+    terminalSourceCovarianceCrossWronskianNormalFormProducer
+      .normal_form_branch_intervals_fit_budget_count >= 0
+  );
+  assert.ok(
+    terminalSourceCovarianceCrossWronskianNormalFormProducer
+      .normal_form_branch_intervals_fit_budget_count <= 30
+  );
+  assert.ok(
+    terminalSourceCovarianceCrossWronskianNormalFormProducer
+      .normal_form_terminal_rows_fit_budget_count >= 0
+  );
+  assert.ok(
+    terminalSourceCovarianceCrossWronskianNormalFormProducer
+      .normal_form_terminal_rows_fit_budget_count <= 15
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossWronskianNormalFormProducer
+      .normal_form_source_map_boundary_replay_certifies_directed_rounded_provider,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossWronskianNormalFormProducer
+      .cross_wronskian_normal_form_producer_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossWronskianNormalFormProducer
+      .cross_branch_wronskian_identity_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossWronskianNormalFormProducer
+      .scalar_lambda_source_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossWronskianNormalFormProducer
+      .tensor_source_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossWronskianNormalFormProducer
+      .dependency_preserving_normal_form_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossWronskianNormalFormProducer
+      .branch_resolved_centered_residual_source_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceCrossWronskianNormalFormProducer
+      .expression_level_n38_provider_certified,
+    false
+  );
+  assert.ok(
+    [
+      "terminal-source-covariance-cross-wronskian-normal-form-producer-open",
+      "source-covariance-cross-wronskian-normal-form-denominator-open",
+      "source-covariance-cross-wronskian-normal-form-producer-open",
+      "source-covariance-cross-wronskian-normal-form-provider-boundary-ready",
+      "source-covariance-cross-wronskian-normal-form-fits-budget-expression-shared-w-open",
+      "source-covariance-cross-wronskian-non-scalar-source-object-needed",
+      "source-covariance-cross-wronskian-sensitivity-refinement-needed",
+      "source-covariance-cross-wronskian-normal-form-budget-open",
+    ].includes(
+      terminalSourceCovarianceCrossWronskianNormalFormProducer
+        .terminal_source_covariance_cross_wronskian_normal_form_producer_classification
+    )
+  );
+  assert.ok(
+    terminalSourceCovarianceCrossWronskianNormalFormProducer.terminal_source_covariance_cross_wronskian_normal_form_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_source_covariance_cross_wronskian_normal_form_terminal_row_count ===
+          3 &&
+        row.terminal_source_covariance_cross_wronskian_normal_form_branch_row_count ===
+          6 &&
+        row.expression_level_shared_wronskian_available_terminal_row_count ===
+          0 &&
+        row.row_terminal_source_covariance_cross_wronskian_normal_form_producer_verified ===
+          true &&
+        row.row_certifies_expression_level_shared_wronskian === false &&
+        row.row_certifies_cross_wronskian_normal_form_producer === false &&
+        row.row_certifies_cross_branch_wronskian_identity === false &&
+        row.row_certifies_scalar_lambda_source_object === false &&
+        row.row_certifies_tensor_source_object === false &&
+        row.row_certifies_directed_rounded_shared_domain === false &&
+        row.claim_boundary.certifies_expression_level_shared_wronskian ===
+          false &&
+        row.claim_boundary.certifies_cross_wronskian_normal_form_producer ===
+          false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false &&
+        row.terminal_source_covariance_cross_wronskian_normal_form_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_graph_cell_id ===
+              `speed.${index}.first-y` &&
+            terminalRow.source_covariance_cross_wronskian_formula ===
+              "W=r_-*s_+ - r_+*s_-" &&
+            terminalRow.normal_form_minus_formula ===
+              "r_-^NF=(R*s_-+W)/(s_-+s_+)" &&
+            terminalRow.normal_form_plus_formula ===
+              "r_+^NF=(R*s_+-W)/(s_-+s_+)" &&
+            Array.isArray(terminalRow.aggregate_centered_residual_interval) &&
+            terminalRow.aggregate_centered_residual_interval.length === 2 &&
+            Array.isArray(terminalRow.solve_slope_sum_denominator_interval) &&
+            terminalRow.solve_slope_sum_denominator_interval.length === 2 &&
+            terminalRow.solve_slope_sum_denominator_separated_from_zero ===
+              false &&
+            terminalRow.expression_level_shared_wronskian_evaluator_available ===
+              false &&
+            terminalRow.expression_level_shared_wronskian_interval === null &&
+            Array.isArray(terminalRow.normal_form_wronskian_interval) &&
+            terminalRow.normal_form_wronskian_interval.length === 2 &&
+            [
+              "provider-object-cross-wronskian",
+              "lambda-witness-cross-wronskian",
+            ].includes(terminalRow.normal_form_wronskian_interval_source_kind) &&
+            typeof terminalRow.normal_form_wronskian_contains_zero ===
+              "boolean" &&
+            typeof terminalRow.normal_form_wronskian_excludes_zero ===
+              "boolean" &&
+            typeof terminalRow.normal_form_producer_available === "boolean" &&
+            Array.isArray(
+              terminalRow.terminal_affine_candidate_provider_interval
+            ) &&
+            terminalRow.terminal_affine_candidate_provider_interval.length ===
+              2 &&
+            typeof terminalRow
+              .all_normal_form_branch_intervals_fit_terminal_affine_endpoint_budget ===
+              "boolean" &&
+            typeof terminalRow
+              .normal_form_source_map_boundary_replay_available ===
+              "boolean" &&
+            terminalRow
+              .normal_form_source_map_boundary_replay_certifies_directed_rounded_provider ===
+              false &&
+            terminalRow.row_certifies_expression_level_shared_wronskian ===
+              false &&
+            terminalRow.row_certifies_cross_wronskian_normal_form_producer ===
+              false &&
+            terminalRow.row_certifies_directed_rounded_shared_domain ===
+              false &&
+            terminalRow.normal_form_branch_rows.length === 2 &&
+            terminalRow.normal_form_branch_rows.every(
+              (branchRow) =>
+                ["-", "+"].includes(branchRow.branch) &&
+                Array.isArray(branchRow.solve_slope_interval) &&
+                branchRow.solve_slope_interval.length === 2 &&
+                Array.isArray(branchRow.normal_form_denominator_interval) &&
+                branchRow.normal_form_denominator_interval.length === 2 &&
+                branchRow.expression_level_shared_wronskian_evaluator_available ===
+                  false &&
+                typeof branchRow
+                  .normal_form_branch_interval_fits_terminal_affine_endpoint_budget ===
+                  "boolean" &&
+                branchRow.certifies_expression_level_shared_wronskian ===
+                  false &&
+                branchRow.certifies_cross_wronskian_normal_form_producer ===
+                  false &&
+                branchRow.certifies_directed_rounded_shared_domain === false
+            )
+        )
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalSourceCovarianceCrossWronskianNormalFormProducer),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalSourceCovarianceCrossWronskianNormalFormProducer,
       FORBIDDEN_FIXED_SPEED_KEYS
     ),
     []

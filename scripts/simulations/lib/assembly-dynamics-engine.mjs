@@ -1,7 +1,7 @@
 import {
   DEFAULTS as LEGACY_DEFAULTS,
   run as runLegacyAssemblyDynamics,
-} from "../assembly-dynamics-toy.mjs";
+} from "./assembly-dynamics-solver.mjs";
 
 export const ASSEMBLY_DYNAMICS_ENGINE_ID = "assembly-dynamics-toy";
 export const ASSEMBLY_DYNAMICS_ENGINE_INTERFACE_VERSION = "0.1.0";

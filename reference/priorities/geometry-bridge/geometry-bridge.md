@@ -4138,6 +4138,29 @@ replay this same-domain normal form through the provider boundary, or replace
 the scalar-lambda witness with an explicitly non-scalar source-covariance
 object if the provider-object Wronskian excludes zero.
 
+`buildH39RequestedY44TerminalSourceCovarianceCrossWronskianNormalFormProducerCandidate`
+turns that diagnostic into the requested terminal normal-form producer packet.
+It consumes the terminal-affine endpoint provider budget and the cross-Wronskian
+diagnostic, records the $s_-+s_+$ denominator status on all fifteen terminal
+rows, reconstructs
+$r_-^{NF}=(Rs_-+W)/(s_-+s_+)$ and
+$r_+^{NF}=(Rs_+-W)/(s_-+s_+)$, and compares both reconstructed branch
+intervals against the terminal-affine endpoint budget before replaying the
+existing same-domain source-map boundary as a fail-closed witness. On the live
+rows this packet records zero denominator-separated rows, so the normal-form
+division is blocked before any provider-boundary certification can be claimed.
+It also records the critical provenance gap: the current executable surface
+still does not supply an expression-level shared evaluator for
+$W=r_-s_+-r_+s_-$. It therefore certifies no expression-level shared Wronskian,
+no cross-Wronskian normal-form producer, no scalar-lambda source object, no
+tensor source object, no expression-level $N_{38}$ provider, no $S_{37}$
+division, no shifted $R_{\varepsilon,43}$ closure, no retained branch, and no
+directed-rounded provider. The next true blocker is now same-domain separation
+of $s_-+s_+$, followed by a narrow expression-level shared $W$ evaluator and
+then either $W$-sensitivity refinement or an explicitly non-scalar
+source-covariance object if the narrowed Wronskian refuses the scalar-lambda
+path.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.

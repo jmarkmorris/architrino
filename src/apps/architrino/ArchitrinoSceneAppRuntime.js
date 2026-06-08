@@ -183,6 +183,10 @@ import {
   sampleAnimatorSimulationParticleAtTime,
   sampleAnimatorSimulationParticleTrail,
 } from "../animator/AnimatorSimulationPlaybackRuntime.js";
+import {
+  createAnimatorSimulationWorkerClient,
+  mergeAnimatorSimulationDatasetIntoDocument,
+} from "../animator/AnimatorSimulationWorkerRuntime.js";
 
 const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
@@ -237,6 +241,7 @@ const {
   animatorViewAuthoredButton,
   animatorViewPlanarButton,
   animatorSceneButton,
+  animatorRunSimulationButton,
   animatorClearButton,
   animatorSaveButton,
   animatorDocsButton,
@@ -4863,6 +4868,21 @@ const animatorPlaybackState = {
   lastTickMs: 0,
 };
 let animatorSupplementalDraftState = {};
+const defaultAnimatorWorkerSimulationConfig = Object.freeze({
+  steps: 120,
+  dt: 0.01,
+  stride: 6,
+  particles: 2,
+  radius: 1,
+  radialSpeed: 0,
+  tangentialSpeed: 0.08,
+  kappa: 0.002,
+  shellK: 0,
+  rootHaltPolicy: "partner",
+});
+const animatorSimulationWorkerClient = createAnimatorSimulationWorkerClient({
+  workerUrl: new URL("../animator/AnimatorSimulationWorker.js", import.meta.url),
+});
 
 const animatorDocumentWorkspaceRuntime = createAnimatorDocumentWorkspaceRuntime({
   documentLike: document,
@@ -4970,6 +4990,78 @@ const {
   deleteAnimatorSceneFromLibrary,
   renderAnimatorJsonPreview,
 } = animatorDocumentWorkspaceRuntime;
+
+function getAnimatorWorkerSimulationConfig(documentData = animatorCurrentDocument, inputConfig = null) {
+  if (inputConfig && typeof inputConfig === "object") {
+    return { ...inputConfig };
+  }
+  const metadataConfig =
+    documentData?.metadata?.simulationWorker?.config ??
+    documentData?.metadata?.simulationRun?.config;
+  if (metadataConfig && typeof metadataConfig === "object") {
+    return { ...metadataConfig };
+  }
+  return { ...defaultAnimatorWorkerSimulationConfig };
+}
+
+function getAnimatorWorkerDatasetOptions(documentData = animatorCurrentDocument, options = {}) {
+  const sceneId = String(documentData?.scene?.id ?? "animator_scene").trim() || "animator_scene";
+  const metadataOptions =
+    documentData?.metadata?.simulationWorker?.datasetOptions ??
+    documentData?.metadata?.simulationRun?.datasetOptions;
+  return {
+    id: `${sceneId}_worker_dataset`,
+    claimLevel: "solver-derived-diagnostic",
+    ...(metadataOptions && typeof metadataOptions === "object" ? metadataOptions : {}),
+    ...(options.datasetOptions && typeof options.datasetOptions === "object"
+      ? options.datasetOptions
+      : {}),
+  };
+}
+
+async function runAnimatorSimulationWorkerFromCurrentDocument(inputConfig = null, options = {}) {
+  const baseDocument =
+    options.baseDocument ??
+    animatorCurrentDocument ??
+    buildAnimatorDocumentData(readAnimatorDraftState());
+  const config = getAnimatorWorkerSimulationConfig(baseDocument, inputConfig);
+  const datasetOptions = getAnimatorWorkerDatasetOptions(baseDocument, options);
+  setAnimatorStatus("Running solver in worker...");
+  const result = await animatorSimulationWorkerClient.run(config, { datasetOptions });
+  const nextDocument = normalizeAnimatorSceneDocument(
+    mergeAnimatorSimulationDatasetIntoDocument(baseDocument, result.dataset, {
+      updateSceneTime: true,
+    })
+  );
+  updateAnimatorViewportFromDocument(nextDocument);
+  if (animatorJsonPreview) {
+    animatorJsonPreview.textContent = JSON.stringify(nextDocument, null, 2);
+  }
+  const frameCount = Array.isArray(result.dataset?.frames) ? result.dataset.frames.length : 0;
+  const status = result.dataset?.simulation?.halt?.status ?? "unknown";
+  const byteLength = result.frameBufferSummary?.byteLength ?? 0;
+  setAnimatorStatus(
+    `Worker simulation ${status}; ${frameCount} frame(s), ${byteLength} typed-buffer byte(s).`
+  );
+  return {
+    ...result,
+    document: nextDocument,
+  };
+}
+
+if (typeof window !== "undefined") {
+  window.runAnimatorSimulationWorker = runAnimatorSimulationWorkerFromCurrentDocument;
+}
+
+if (animatorRunSimulationButton && !animatorRunSimulationButton.dataset.bound) {
+  animatorRunSimulationButton.addEventListener("click", () => {
+    runAnimatorSimulationWorkerFromCurrentDocument().catch((error) => {
+      console.error("animator worker simulation failed.", error);
+      setAnimatorStatus(`Worker simulation failed: ${error?.message ?? error}`);
+    });
+  });
+  animatorRunSimulationButton.dataset.bound = "true";
+}
 
 const levels = new Map();
 const navigationStack = [];

@@ -77,8 +77,8 @@ Each implementation step should follow the same loop:
 3. **Complete: motion-source separation**: add explicit UI/state separation between solver-derived motion and authored motion, including visible provenance, mode labels, and independent source visibility controls.
 4. **Complete: 2-D planar mode**: add an animator view mode for planar simulations, preserving solver-derived diagnostics while allowing a flat 2-D view for cases where the simulation target is planar.
 5. **Complete: solver module extraction**: refactor the useful `scripts/simulations/` behavior behind a reusable module interface while preserving the existing command-line scripts and outputs.
-6. **Current: worker simulation runner**: add a Web Worker runner that can generate or stream simulation frames into animator using typed arrays or another profiled frame-buffer format.
-7. **Field-shell rendering**: port sim2 shell semantics into animator, including expanding emission shells, shell visibility controls, opacity controls, and white zero-field semantics where appropriate.
+6. **Complete: worker simulation runner**: add a Web Worker runner that can generate or stream simulation frames into animator using typed arrays or another profiled frame-buffer format.
+7. **Current: field-shell rendering**: port sim2 shell semantics into animator, including expanding emission shells, shell visibility controls, opacity controls, and white zero-field semantics where appropriate.
 8. **Delayed-hit rendering**: render solver-derived delayed hits with emission points, receiver points, branch/Jacobian diagnostics, hit connectors, and hit-table data.
 9. **Fadeable trails**: add solid and dotted trail rendering for solver-derived paths, with lifetime, opacity, and diagnostic emphasis controls.
 10. **Simulation authoring UI**: add scene setup, particle setup, solver parameters, run/cache controls, and diagnostic panels to the animator authoring surface.
