@@ -31,6 +31,7 @@ test("animator dom runtime collects animator shell elements and bindings", () =>
   elementMap.set("animator-hud-history-toggle", { id: "history" });
   elementMap.set("animator-hud-envelopes-toggle", { id: "envelopes" });
   elementMap.set("animator-hud-camera-guides-toggle", { id: "camera_guides" });
+  elementMap.set("animator-motion-source-pill", { id: "motion_source" });
 
   const dom = getAnimatorDomElements({
     getElementById(id) {
@@ -43,6 +44,7 @@ test("animator dom runtime collects animator shell elements and bindings", () =>
   assert.equal(dom.animatorCanvasWrap, canvasParent);
   assert.equal(dom.animatorTabs.length, 2);
   assert.equal(dom.animatorPanels.length, 1);
+  assert.equal(dom.animatorMotionSourcePill?.id, "motion_source");
   assert.equal(dom.animatorHudViewportToggleBindings.length, 5);
   assert.equal(dom.animatorHudViewportToggleBindings[0]?.key, "showLabels");
   assert.equal(dom.animatorHudViewportToggleBindings[4]?.key, "showCameraGuides");

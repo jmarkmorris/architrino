@@ -96,6 +96,7 @@ import {
   buildH39RequestedY44TerminalDenominatorFreeBranchResidualSourceObjectIdentityAttemptCandidate,
   buildH39RequestedY44TerminalSourceCovarianceLambdaTCoordinateProjectionAttemptCandidate,
   buildH39RequestedY44TerminalSourceCovarianceLambdaProviderObjectReplayAuditCandidate,
+  buildH39RequestedY44TerminalSourceCovarianceAdjointMomentumBalanceAttemptCandidate,
   buildH39RequestedY44RowLocalN38SignedSourceSumDerivativeProviderCandidate,
   validateH39CorrelatedResidualWidthDiagnostic,
   validateH39H38NumeratorGraphLocalPartitionDiagnostic,
@@ -188,6 +189,7 @@ import {
   validateH39RequestedY44TerminalDenominatorFreeBranchResidualSourceObjectIdentityAttemptCandidate,
   validateH39RequestedY44TerminalSourceCovarianceLambdaTCoordinateProjectionAttemptCandidate,
   validateH39RequestedY44TerminalSourceCovarianceLambdaProviderObjectReplayAuditCandidate,
+  validateH39RequestedY44TerminalSourceCovarianceAdjointMomentumBalanceAttemptCandidate,
   validateH39RequestedY44RowLocalN38SignedSourceSumDerivativeProvider,
   validateH39RequestedY44SignedSourceSumDerivativeAllocationTarget,
   validateH39RequestedY44SourceMapResidualCovarianceTarget,
@@ -22227,6 +22229,319 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   assert.deepEqual(
     collectExactKeys(
       terminalSourceCovarianceLambdaProviderObjectReplayAudit,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalSourceCovarianceAdjointMomentumBalanceAttempt =
+    buildH39RequestedY44TerminalSourceCovarianceAdjointMomentumBalanceAttemptCandidate({
+      terminalSourceCovarianceLambdaTCoordinateProjectionAttempt,
+      terminalSourceCovarianceLambdaProviderObjectReplayAudit,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44TerminalSourceCovarianceAdjointMomentumBalanceAttemptCandidate(
+      terminalSourceCovarianceAdjointMomentumBalanceAttempt
+    ),
+    []
+  );
+  assert.equal(
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .terminal_source_covariance_adjoint_momentum_balance_attempt_verified,
+    true
+  );
+  assert.equal(
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .terminal_source_covariance_adjoint_momentum_balance_attempt_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .terminal_source_covariance_adjoint_momentum_balance_attempt_row_count,
+    5
+  );
+  assert.equal(
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .terminal_source_covariance_adjoint_momentum_balance_attempt_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .terminal_source_covariance_adjoint_momentum_balance_attempt_branch_row_count,
+    30
+  );
+  assert.equal(
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .candidate_unit_antisymmetric_momentum_residual_available_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .candidate_unit_antisymmetric_momentum_residual_contains_zero_terminal_row_count,
+    terminalSourceCovarianceLambdaTCoordinateProjectionAttempt
+      .source_covariance_lambda_only_t_coordinate_contains_symmetric_zero_terminal_row_count
+  );
+  assert.equal(
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .all_candidate_unit_antisymmetric_momentum_residuals_contain_zero,
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .candidate_unit_antisymmetric_momentum_residual_contains_zero_terminal_row_count ===
+      15
+  );
+  assert.equal(
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .any_candidate_unit_antisymmetric_momentum_law_refuted_by_lambda_witness,
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .candidate_unit_antisymmetric_momentum_law_refuted_terminal_row_count > 0
+  );
+  assert.equal(
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .master_equation_adjoint_momentum_weight_pair_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .master_equation_adjoint_momentum_rhs_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .t_coordinate_determined_by_adjoint_momentum_balance_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .master_equation_adjoint_momentum_weight_source_available,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .master_equation_adjoint_momentum_rhs_available,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .master_equation_adjoint_momentum_denominator_separated_from_zero,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .t_coordinate_determined_by_adjoint_momentum_balance,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .master_equation_adjoint_momentum_balance_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .candidate_unit_antisymmetric_momentum_law_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .branch_antisymmetric_coordinate_identity_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .terminal_source_covariance_lambda_provider_object_replay_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .branch_resolved_centered_residual_source_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .expression_level_n38_provider_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .generic_adjoint_momentum_balance_formula,
+    "w_-*r_-+w_+*r_+=M"
+  );
+  assert.equal(
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .generic_t_solution_formula,
+    "t=(M-R*(w_-+w_+)/2)/(w_- - w_+)"
+  );
+  assert.equal(
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .candidate_unit_antisymmetric_momentum_residual_formula,
+    "r_- - r_+=2t"
+  );
+  assert.equal(
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .terminal_source_covariance_adjoint_momentum_balance_attempt_blocker_classification,
+    "same-domain-master-equation-adjoint-branch-weight-identity-needed"
+  );
+  assert.equal(
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt
+      .terminal_source_covariance_adjoint_momentum_balance_attempt_primary_missing_object_kind,
+    "master-equation-adjoint-branch-weight-pair-and-moment"
+  );
+  assert.ok(
+    [
+      "source-covariance-unit-antisymmetric-momentum-law-refuted-adjoint-weight-derivation-needed",
+      "source-covariance-unit-antisymmetric-momentum-law-not-refuted-adjoint-weight-derivation-needed",
+      "source-covariance-adjoint-momentum-weight-derivation-needed",
+      "terminal-source-covariance-adjoint-momentum-balance-attempt-open",
+    ].includes(
+      terminalSourceCovarianceAdjointMomentumBalanceAttempt
+        .terminal_source_covariance_adjoint_momentum_balance_attempt_classification
+    )
+  );
+  assert.ok(
+    terminalSourceCovarianceAdjointMomentumBalanceAttempt.terminal_source_covariance_adjoint_momentum_balance_attempt_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_source_covariance_adjoint_momentum_balance_attempt_terminal_row_count ===
+          3 &&
+        row.terminal_source_covariance_adjoint_momentum_balance_attempt_branch_row_count ===
+          6 &&
+        row.candidate_unit_antisymmetric_momentum_residual_available_terminal_row_count ===
+          3 &&
+        row.master_equation_adjoint_momentum_weight_pair_available_terminal_row_count ===
+          0 &&
+        row.master_equation_adjoint_momentum_rhs_available_terminal_row_count ===
+          0 &&
+        row.t_coordinate_determined_by_adjoint_momentum_balance_terminal_row_count ===
+          0 &&
+        row.row_terminal_source_covariance_adjoint_momentum_balance_attempt_verified ===
+          true &&
+        row.row_certifies_master_equation_adjoint_momentum_balance === false &&
+        row.row_certifies_candidate_unit_antisymmetric_momentum_law === false &&
+        row.row_certifies_branch_antisymmetric_coordinate_identity === false &&
+        row.row_certifies_terminal_source_covariance_lambda_provider_object_replay ===
+          false &&
+        row.row_certifies_branch_resolved_centered_residual_source_object ===
+          false &&
+        row.row_certifies_expression_level_n38_provider === false &&
+        row.claim_boundary
+          .certifies_master_equation_adjoint_momentum_balance === false &&
+        row.claim_boundary
+          .certifies_candidate_unit_antisymmetric_momentum_law === false &&
+        row.claim_boundary
+          .certifies_branch_antisymmetric_coordinate_identity === false &&
+        row.claim_boundary.certifies_directed_rounded_shared_domain === false &&
+        row.terminal_source_covariance_adjoint_momentum_balance_attempt_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_graph_cell_id ===
+              `speed.${index}.first-y` &&
+            terminalRow.generic_adjoint_momentum_balance_formula ===
+              "w_-*r_-+w_+*r_+=M" &&
+            terminalRow.generic_t_solution_formula ===
+              "t=(M-R*(w_-+w_+)/2)/(w_- - w_+)" &&
+            terminalRow.candidate_unit_antisymmetric_momentum_balance_formula ===
+              "r_- - r_+=0" &&
+            terminalRow.candidate_unit_antisymmetric_momentum_residual_formula ===
+              "r_- - r_+=2t" &&
+            Array.isArray(
+              terminalRow.source_covariance_lambda_only_branch_difference_interval
+            ) &&
+            terminalRow
+              .source_covariance_lambda_only_branch_difference_interval
+              .length === 2 &&
+            Array.isArray(
+              terminalRow
+                .source_covariance_lambda_only_t_coordinate_candidate_interval
+            ) &&
+            terminalRow
+              .source_covariance_lambda_only_t_coordinate_candidate_interval
+              .length === 2 &&
+            Array.isArray(
+              terminalRow
+                .candidate_unit_antisymmetric_momentum_residual_interval
+            ) &&
+            terminalRow
+              .candidate_unit_antisymmetric_momentum_residual_interval
+              .length === 2 &&
+            typeof terminalRow
+              .candidate_unit_antisymmetric_momentum_residual_contains_zero ===
+              "boolean" &&
+            typeof terminalRow
+              .candidate_unit_antisymmetric_momentum_law_refuted_by_lambda_witness ===
+              "boolean" &&
+            terminalRow.master_equation_adjoint_momentum_weight_pair_available ===
+              false &&
+            terminalRow.master_equation_adjoint_momentum_rhs_interval ===
+              null &&
+            terminalRow.master_equation_adjoint_momentum_rhs_available ===
+              false &&
+            terminalRow.adjoint_momentum_denominator_interval === null &&
+            terminalRow.adjoint_momentum_denominator_separated_from_zero ===
+              false &&
+            terminalRow.t_coordinate_determined_by_adjoint_momentum_balance ===
+              false &&
+            terminalRow.adjoint_momentum_balance_branch_rows.length === 2 &&
+            terminalRow.adjoint_momentum_balance_branch_rows.every(
+              (branchRow) =>
+                ["-", "+"].includes(branchRow.branch) &&
+                Array.isArray(
+                  branchRow
+                    .source_covariance_lambda_only_branch_residual_candidate_interval
+                ) &&
+                branchRow
+                  .source_covariance_lambda_only_branch_residual_candidate_interval
+                  .length === 2 &&
+                branchRow
+                  .source_covariance_lambda_only_branch_residual_candidate_available ===
+                  true &&
+                (branchRow.branch === "-"
+                  ? branchRow.candidate_unit_antisymmetric_momentum_weight === 1
+                  : branchRow.candidate_unit_antisymmetric_momentum_weight ===
+                    -1) &&
+                branchRow.master_equation_adjoint_momentum_weight_interval ===
+                  null &&
+                branchRow
+                  .master_equation_adjoint_momentum_weight_source_available ===
+                  false &&
+                branchRow
+                  .master_equation_adjoint_momentum_weight_derived_from_master_equation ===
+                  false &&
+                branchRow
+                  .branch_resolved_centered_residual_source_object_certified ===
+                  false &&
+                branchRow
+                  .row_certifies_master_equation_adjoint_momentum_weight ===
+                  false
+            ) &&
+            terminalRow
+              .row_terminal_source_covariance_adjoint_momentum_balance_attempt_verified ===
+              true &&
+            terminalRow
+              .row_certifies_master_equation_adjoint_momentum_balance ===
+              false &&
+            terminalRow
+              .row_certifies_candidate_unit_antisymmetric_momentum_law ===
+              false &&
+            terminalRow
+              .row_certifies_branch_antisymmetric_coordinate_identity ===
+              false &&
+            terminalRow
+              .row_certifies_terminal_source_covariance_lambda_provider_object_replay ===
+              false &&
+            terminalRow
+              .row_certifies_branch_resolved_centered_residual_source_object ===
+              false &&
+            terminalRow.row_certifies_expression_level_n38_provider === false
+        )
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      terminalSourceCovarianceAdjointMomentumBalanceAttempt
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalSourceCovarianceAdjointMomentumBalanceAttempt,
       FORBIDDEN_FIXED_SPEED_KEYS
     ),
     []

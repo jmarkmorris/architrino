@@ -4106,6 +4106,36 @@ body {
   gap: 18px;
 }
 
+.animator-motion-source-pill {
+  min-height: 24px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 10px;
+  border: 1px solid rgba(158, 229, 190, 0.26);
+  border-radius: 999px;
+  background: rgba(36, 64, 54, 0.38);
+  color: rgba(221, 255, 235, 0.94);
+  white-space: nowrap;
+}
+
+.animator-motion-source-pill[data-source-kind="authored"] {
+  border-color: rgba(134, 202, 255, 0.24);
+  background: rgba(27, 48, 74, 0.38);
+  color: rgba(224, 242, 255, 0.94);
+}
+
+.animator-motion-source-pill[data-source-kind="mixed"] {
+  border-color: rgba(255, 209, 122, 0.34);
+  background: rgba(79, 57, 30, 0.42);
+  color: rgba(255, 237, 204, 0.96);
+}
+
+.animator-motion-source-pill[data-source-kind="static"] {
+  border-color: rgba(190, 198, 220, 0.22);
+  background: rgba(42, 45, 62, 0.38);
+  color: rgba(236, 240, 255, 0.9);
+}
+
 .animator-canvas-hud-toggle {
   position: relative;
   min-height: 24px;

@@ -21,12 +21,12 @@
           "kind": "simulation_fixture",
           "name": "Animator Simulation Fixture",
           "mode": "3d",
-          "time": {
-            "timeBase": "seconds",
-            "start": 0,
-            "end": 4,
-            "playbackRate": 1,
-            "loop": false
+            "time": {
+              "timeBase": "seconds",
+              "start": 0,
+              "end": 6,
+              "playbackRate": 1,
+              "loop": false
           },
           "view": {
             "cameraSource": "manual"
@@ -41,8 +41,8 @@
             },
             {
               "id": "fixture_hit",
-              "t": 2,
-              "end": 3,
+              "t": 3,
+              "end": 4,
               "kind": "diagnostic",
               "label": "delayed hit sample"
             }
@@ -57,7 +57,7 @@
             "label": "Solver Particle E",
             "sceneRole": "solver_particle",
             "transform": {
-              "position": [-2.4, -0.55, 0]
+              "position": [-3.2, -0.8, 0]
             },
             "metadata": {
               "label": "Solver Particle E",
@@ -83,7 +83,7 @@
             "label": "Solver Particle P",
             "sceneRole": "solver_particle",
             "transform": {
-              "position": [2.4, 0.55, 0]
+              "position": [3.2, 0.8, 0]
             },
             "metadata": {
               "label": "Solver Particle P",
@@ -123,11 +123,13 @@
             },
             "payload": {
               "points": [
-                [-2.4, -0.55, 0],
-                [-1.3, 0.35, 0],
-                [-0.18, 0.72, 0],
-                [1.25, 0.18, 0],
-                [2.25, -0.55, 0]
+                [-3.2, -0.8, 0],
+                [-2.1, 0.05, 0],
+                [-0.85, 0.82, 0],
+                [0.35, 0.95, 0],
+                [1.65, 0.35, 0],
+                [2.65, -0.35, 0],
+                [3.25, -0.82, 0]
               ],
               "interpolate": "spline",
               "closed": false
@@ -150,11 +152,13 @@
             },
             "payload": {
               "points": [
-                [2.4, 0.55, 0],
-                [1.3, -0.35, 0],
-                [0.18, -0.72, 0],
-                [-1.25, -0.18, 0],
-                [-2.25, 0.55, 0]
+                [3.2, 0.8, 0],
+                [2.1, -0.05, 0],
+                [0.85, -0.82, 0],
+                [-0.35, -0.95, 0],
+                [-1.65, -0.35, 0],
+                [-2.65, 0.35, 0],
+                [-3.25, 0.82, 0]
               ],
               "interpolate": "spline",
               "closed": false
@@ -211,33 +215,33 @@
         ],
         "envelopes": [
           {
-            "id": "field_shell_e0_t0_display2",
+            "id": "field_shell_e0_t0_display3",
             "assemblyId": "solver_particle_e",
             "geometry": {
               "kind": "sphere",
-              "radius": 2.59
+              "radius": 3.96
             },
             "style": {
               "color": "#78a8ff",
               "opacity": 0.1
             },
             "metadata": {
-              "simulationFieldShellId": "shell_e0_t0_display2"
+              "simulationFieldShellId": "shell_e0_t0_display3"
             }
           },
           {
-            "id": "field_shell_p0_t1_display3",
+            "id": "field_shell_p0_t1_display4",
             "assemblyId": "solver_particle_p",
             "geometry": {
               "kind": "sphere",
-              "radius": 0.54
+              "radius": 1.58
             },
             "style": {
               "color": "#ff8796",
               "opacity": 0.1
             },
             "metadata": {
-              "simulationFieldShellId": "shell_p0_t1_display3"
+              "simulationFieldShellId": "shell_p0_t1_display4"
             }
           }
         ],
@@ -252,7 +256,7 @@
               "assemblyId": "solver_particle_p",
               "memberId": "p0"
             },
-            "t": 2
+            "t": 3
           }
         ],
         "metadata": {
@@ -280,7 +284,7 @@
               "units": "relative",
               "time": {
                 "start": 0,
-                "end": 4,
+                "end": 6,
                 "dt": 1,
                 "sampleStride": 1
               },
@@ -301,8 +305,8 @@
                 "polarity": -1,
                 "chargeType": "electrino",
                 "initial": {
-                  "position": [-2.4, -0.55, 0],
-                  "velocity": [1.1, 0.9, 0]
+                  "position": [-3.2, -0.8, 0],
+                  "velocity": [1.1, 0.85, 0]
                 },
                 "style": {
                   "color": "#3478ff"
@@ -314,8 +318,8 @@
                 "polarity": 1,
                 "chargeType": "positrino",
                 "initial": {
-                  "position": [2.4, 0.55, 0],
-                  "velocity": [-1.1, -0.9, 0]
+                  "position": [3.2, 0.8, 0],
+                  "velocity": [-1.1, -0.85, 0]
                 },
                 "style": {
                   "color": "#ff4d64"
@@ -328,23 +332,23 @@
                 "particles": [
                   {
                     "id": "e0",
-                    "position": [-2.4, -0.55, 0],
-                    "velocity": [1.1, 0.9, 0],
-                    "phase": -2.916,
-                    "radialVelocity": 1.26,
-                    "angularVelocity": 0.3
+                    "position": [-3.2, -0.8, 0],
+                    "velocity": [1.1, 0.85, 0],
+                    "phase": -2.897,
+                    "radialVelocity": 1.28,
+                    "angularVelocity": 0.22
                   },
                   {
                     "id": "p0",
-                    "position": [2.4, 0.55, 0],
-                    "velocity": [-1.1, -0.9, 0],
-                    "phase": 0.226,
-                    "radialVelocity": -1.26,
-                    "angularVelocity": 0.3
+                    "position": [3.2, 0.8, 0],
+                    "velocity": [-1.1, -0.85, 0],
+                    "phase": 0.245,
+                    "radialVelocity": -1.28,
+                    "angularVelocity": 0.22
                   }
                 ],
                 "diagnostics": {
-                  "shellRadius": 2.462,
+                  "shellRadius": 3.298,
                   "maxAcceleration": 0
                 }
               },
@@ -353,23 +357,23 @@
                 "particles": [
                   {
                     "id": "e0",
-                    "position": [-1.3, 0.35, 0],
-                    "velocity": [1.12, 0.37, 0],
-                    "phase": 2.879,
-                    "radialVelocity": 1.02,
-                    "angularVelocity": -0.62
+                    "position": [-2.1, 0.05, 0],
+                    "velocity": [1.25, 0.77, 0],
+                    "phase": 3.118,
+                    "radialVelocity": 1.23,
+                    "angularVelocity": -0.35
                   },
                   {
                     "id": "p0",
-                    "position": [1.3, -0.35, 0],
-                    "velocity": [-1.12, -0.37, 0],
-                    "phase": -0.263,
-                    "radialVelocity": -1.02,
-                    "angularVelocity": -0.62
+                    "position": [2.1, -0.05, 0],
+                    "velocity": [-1.25, -0.77, 0],
+                    "phase": -0.024,
+                    "radialVelocity": -1.23,
+                    "angularVelocity": -0.35
                   }
                 ],
                 "diagnostics": {
-                  "shellRadius": 1.346,
+                  "shellRadius": 2.101,
                   "maxAcceleration": 0
                 }
               },
@@ -378,25 +382,23 @@
                 "particles": [
                   {
                     "id": "e0",
-                    "position": [-0.18, 0.72, 0],
-                    "velocity": [1.43, -0.54, 0],
-                    "phase": 1.816,
-                    "radialVelocity": -0.78,
-                    "angularVelocity": -2.38
+                    "position": [-0.85, 0.82, 0],
+                    "velocity": [1.2, 0.13, 0],
+                    "phase": 2.374,
+                    "radialVelocity": -0.73,
+                    "angularVelocity": -1.01
                   },
                   {
                     "id": "p0",
-                    "position": [0.18, -0.72, 0],
-                    "velocity": [-1.43, 0.54, 0],
-                    "phase": -1.326,
-                    "radialVelocity": 0.78,
-                    "angularVelocity": -2.38
+                    "position": [0.85, -0.82, 0],
+                    "velocity": [-1.2, -0.13, 0],
+                    "phase": -0.768,
+                    "radialVelocity": 0.73,
+                    "angularVelocity": -1.01
                   }
                 ],
                 "diagnostics": {
-                  "shellRadius": 0.742,
-                  "partnerHits": 1,
-                  "minimumSeparation": 1.484,
+                  "shellRadius": 1.181,
                   "maxAcceleration": 0
                 }
               },
@@ -405,23 +407,25 @@
                 "particles": [
                   {
                     "id": "e0",
-                    "position": [1.25, 0.18, 0],
-                    "velocity": [1, -0.73, 0],
-                    "phase": 0.143,
-                    "radialVelocity": 0.89,
-                    "angularVelocity": -0.74
+                    "position": [0.35, 0.95, 0],
+                    "velocity": [1.3, -0.6, 0],
+                    "phase": 1.218,
+                    "radialVelocity": -0.43,
+                    "angularVelocity": -1.28
                   },
                   {
                     "id": "p0",
-                    "position": [-1.25, -0.18, 0],
-                    "velocity": [-1, 0.73, 0],
-                    "phase": -2.999,
-                    "radialVelocity": -0.89,
-                    "angularVelocity": -0.74
+                    "position": [-0.35, -0.95, 0],
+                    "velocity": [-1.3, 0.6, 0],
+                    "phase": -1.924,
+                    "radialVelocity": 0.43,
+                    "angularVelocity": -1.28
                   }
                 ],
                 "diagnostics": {
-                  "shellRadius": 1.263,
+                  "shellRadius": 1.012,
+                  "partnerHits": 1,
+                  "minimumSeparation": 2.012,
                   "maxAcceleration": 0
                 }
               },
@@ -430,61 +434,111 @@
                 "particles": [
                   {
                     "id": "e0",
-                    "position": [2.25, -0.55, 0],
-                    "velocity": [1, -0.73, 0],
-                    "phase": -0.24,
-                    "radialVelocity": 1.14,
-                    "angularVelocity": -0.22
+                    "position": [1.65, 0.35, 0],
+                    "velocity": [1, -0.7, 0],
+                    "phase": 0.209,
+                    "radialVelocity": 0.83,
+                    "angularVelocity": -0.55
                   },
                   {
                     "id": "p0",
-                    "position": [-2.25, 0.55, 0],
-                    "velocity": [-1, 0.73, 0],
-                    "phase": 2.902,
-                    "radialVelocity": -1.14,
-                    "angularVelocity": -0.22
+                    "position": [-1.65, -0.35, 0],
+                    "velocity": [-1, 0.7, 0],
+                    "phase": -2.932,
+                    "radialVelocity": -0.83,
+                    "angularVelocity": -0.55
                   }
                 ],
                 "diagnostics": {
-                  "shellRadius": 2.316,
+                  "shellRadius": 1.687,
+                  "maxAcceleration": 0
+                }
+              },
+              {
+                "t": 5,
+                "particles": [
+                  {
+                    "id": "e0",
+                    "position": [2.65, -0.35, 0],
+                    "velocity": [0.6, -0.47, 0],
+                    "phase": -0.131,
+                    "radialVelocity": 0.54,
+                    "angularVelocity": -0.16
+                  },
+                  {
+                    "id": "p0",
+                    "position": [-2.65, 0.35, 0],
+                    "velocity": [-0.6, 0.47, 0],
+                    "phase": 3.01,
+                    "radialVelocity": -0.54,
+                    "angularVelocity": -0.16
+                  }
+                ],
+                "diagnostics": {
+                  "shellRadius": 2.673,
+                  "maxAcceleration": 0
+                }
+              },
+              {
+                "t": 6,
+                "particles": [
+                  {
+                    "id": "e0",
+                    "position": [3.25, -0.82, 0],
+                    "velocity": [0.6, -0.47, 0],
+                    "phase": -0.247,
+                    "radialVelocity": 0.7,
+                    "angularVelocity": -0.09
+                  },
+                  {
+                    "id": "p0",
+                    "position": [-3.25, 0.82, 0],
+                    "velocity": [-0.6, 0.47, 0],
+                    "phase": 2.894,
+                    "radialVelocity": -0.7,
+                    "angularVelocity": -0.09
+                  }
+                ],
+                "diagnostics": {
+                  "shellRadius": 3.352,
                   "maxAcceleration": 0
                 }
               }
             ],
             "fieldShells": [
               {
-                "id": "shell_e0_t0_display2",
+                "id": "shell_e0_t0_display3",
                 "emitterId": "e0",
                 "emissionTime": 0,
-                "displayTime": 2,
-                "emissionPosition": [-2.4, -0.55, 0],
-                "radius": 2.59,
+                "displayTime": 3,
+                "emissionPosition": [-3.2, -0.8, 0],
+                "radius": 3.96,
                 "sign": -1,
-                "strength": 0.386,
+                "strength": 0.253,
                 "branchId": "fixture_branch_e0_0"
               },
               {
-                "id": "shell_p0_t1_display3",
+                "id": "shell_p0_t1_display4",
                 "emitterId": "p0",
                 "emissionTime": 1,
-                "displayTime": 3,
-                "emissionPosition": [1.3, -0.35, 0],
-                "radius": 0.54,
+                "displayTime": 4,
+                "emissionPosition": [2.1, -0.05, 0],
+                "radius": 1.58,
                 "sign": 1,
-                "strength": 1.852,
+                "strength": 0.633,
                 "branchId": "fixture_branch_p0_1"
               }
             ],
             "delayedHits": [
               {
-                "id": "hit_e0_to_p0_t2",
+                "id": "hit_e0_to_p0_t3",
                 "emitterId": "e0",
                 "receiverId": "p0",
-                "hitTime": 2,
+                "hitTime": 3,
                 "emissionTime": 0,
-                "emitterEmissionPosition": [-2.4, -0.55, 0],
-                "receiverPosition": [0.18, -0.72, 0],
-                "strength": 0.386,
+                "emitterEmissionPosition": [-3.2, -0.8, 0],
+                "receiverPosition": [-0.35, -0.95, 0],
+                "strength": 0.253,
                 "branchId": "fixture_branch_e0_0",
                 "jacobian": 1,
                 "status": "fixture"

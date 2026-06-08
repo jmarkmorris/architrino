@@ -3609,6 +3609,24 @@ pass, the next blocker is the same-domain actual-source theorem proving
 $r_b=\lambda_{\mathrm{source}}s_b$ is the actual branch-resolved
 centered-residual source object.
 
+\texttt{buildH39RequestedY44TerminalSourceCovarianceAdjointMomentumBalanceAttemptCandidate}
+turns the remaining free branch coordinate into the explicit adjoint/Noether
+momentum-balance target $w_-r_-+w_+r_+=M$. With
+$(r_-,r_+)=(R/2+t,R/2-t)$, any same-domain master-equation adjoint covector
+with $w_- - w_+$ separated from zero would determine
+$t=(M-R(w_-+w_+)/2)/(w_- - w_+)$. The executable packet consumes the
+source-covariance lambda $t$-coordinate projection and provider-object replay
+audit, emits five node rows, fifteen terminal rows, and thirty branch rows,
+and tests the unit antisymmetric law $r_- - r_+=0$ through the residual
+$r_- - r_+=2t$. It certifies no Noether law: the current H39 surface contains
+no master-equation-derived terminal branch weights $w_-$, $w_+$ and no moment
+right-hand side $M$. The packet therefore records zero available adjoint
+weight-pair rows and keeps the branch coordinate, actual source object,
+expression-level $N_{38}$ provider, $S_{37}$ division, shifted
+$R_{\varepsilon,43}$ closure, retained branch, and directed-rounded provider
+open. The next true blocker is the same-domain master-equation adjoint
+branch-weight identity.
+
 \texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
 now also probes a shared terminal-residual coordinate for
 $h_{37},h_{36},h_{35}$. Instead of assigning independent residual hulls to the

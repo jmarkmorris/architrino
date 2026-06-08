@@ -26,6 +26,7 @@ export function getAnimatorDomElements(documentLike = globalThis.document) {
     documentLike,
     "animator-hud-camera-guides-toggle"
   );
+  const animatorMotionSourcePill = getElementById(documentLike, "animator-motion-source-pill");
 
   return {
     animatorOverlay,
@@ -74,6 +75,7 @@ export function getAnimatorDomElements(documentLike = globalThis.document) {
     animatorHudHistoryToggle,
     animatorHudEnvelopesToggle,
     animatorHudCameraGuidesToggle,
+    animatorMotionSourcePill,
     animatorHudViewportToggleBindings: [
       {
         button: animatorHudLabelsToggle,

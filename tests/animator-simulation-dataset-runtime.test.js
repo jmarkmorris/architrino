@@ -53,7 +53,7 @@ test("static animator simulation fixture carries dataset through the animator pr
   assert.equal(dataset.kind, ANIMATOR_SIMULATION_DATASET_KIND);
   assert.equal(dataset.id, "static_two_particle_delay_fixture");
   assert.equal(dataset.simulation.halt.status, "not-run");
-  assert.equal(dataset.frames.length, 5);
+  assert.equal(dataset.frames.length, 7);
   assert.equal(dataset.fieldShells.length, 2);
   assert.equal(dataset.delayedHits.length, 1);
   assert.equal(normalizedDocument.assemblies.length, 2);
@@ -61,9 +61,9 @@ test("static animator simulation fixture carries dataset through the animator pr
     normalizedDocument.assemblies.map((assembly) => assembly.motion?.[0]?.type),
     ["simulation.frame", "simulation.frame"]
   );
-  assert.deepEqual(dataset.frames[0].particles[0].position, [-2.4, -0.55, 0]);
-  assert.deepEqual(dataset.frames[2].particles[0].position, [-0.18, 0.72, 0]);
-  assert.deepEqual(dataset.frames[2].particles[1].position, [0.18, -0.72, 0]);
+  assert.deepEqual(dataset.frames[0].particles[0].position, [-3.2, -0.8, 0]);
+  assert.deepEqual(dataset.frames[3].particles[0].position, [0.35, 0.95, 0]);
+  assert.deepEqual(dataset.frames[3].particles[1].position, [-0.35, -0.95, 0]);
   assert.equal(normalizedDocument.paths.length, 2);
   assert.equal(normalizedDocument.historyTraces.length, 2);
   assert.deepEqual(
@@ -80,7 +80,7 @@ test("static animator simulation fixture carries dataset through the animator pr
     sceneId: "animator_preview",
   });
 
-  assert.equal(previewScene.scene.animator.document.metadata.simulationDataset.frames.length, 5);
+  assert.equal(previewScene.scene.animator.document.metadata.simulationDataset.frames.length, 7);
   assert.deepEqual(
     previewScene.objects.map((object) => object.id),
     ["solver_particle_e", "solver_particle_p"]

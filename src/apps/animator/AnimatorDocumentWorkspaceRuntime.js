@@ -311,7 +311,7 @@ export function createAnimatorDocumentWorkspaceRuntime(options = {}) {
       updateAssemblyDraftByIdState(assemblyDrafts[0]?.id, (assembly) => ({
         ...assembly,
         pathPoints: normalizeAssemblyPathPoints(draftState.pathPoints),
-        pathInterpolate: draftState.pathInterpolate === "polyline" ? "polyline" : "spline",
+        pathInterpolate: draftState.pathInterpolate === "linear" ? "linear" : "spline",
         pathClosed: !!draftState.pathClosed,
       }));
     }

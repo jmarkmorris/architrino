@@ -21,6 +21,10 @@ function normalizePathPoints(points) {
   return source.map((point) => clonePoint(point));
 }
 
+function normalizePathInterpolate(value) {
+  return value === "linear" ? "linear" : "spline";
+}
+
 function getAssemblyLetter(index = 0) {
   let value = Math.max(0, Number(index) || 0);
   let label = "";
@@ -65,7 +69,9 @@ function normalizeAnimatorPaths(rawPaths, rawAssemblies) {
           },
           payload: {
             points,
-            interpolate: rawPath?.payload?.interpolate ?? rawPath?.interpolate ?? "spline",
+            interpolate: normalizePathInterpolate(
+              rawPath?.payload?.interpolate ?? rawPath?.interpolate
+            ),
             closed: !!(rawPath?.payload?.closed ?? rawPath?.closed),
           },
         };
@@ -830,7 +836,7 @@ export function createAnimatorSceneDocument(input = {}, options = {}) {
         },
         payload: {
           points,
-          interpolate: assembly?.pathInterpolate === "polyline" ? "polyline" : "spline",
+          interpolate: normalizePathInterpolate(assembly?.pathInterpolate),
           closed: !!assembly?.pathClosed,
         },
       };

@@ -4061,6 +4061,26 @@ branch fit both pass, the remaining blocker is the same-domain actual-source
 theorem proving that $r_b=\lambda_{\mathrm{source}}s_b$ is the actual
 branch-resolved centered-residual source object.
 
+`buildH39RequestedY44TerminalSourceCovarianceAdjointMomentumBalanceAttemptCandidate`
+turns the free branch-split coordinate into the explicit adjoint/Noether
+momentum-balance target
+$w_-r_-+w_+r_+=M$. Combined with the already recorded family
+$(r_-,r_+)=(R/2+t,R/2-t)$, a same-domain adjoint covector would determine
+$t$ by
+$t=(M-R(w_-+w_+)/2)/(w_- - w_+)$. The packet consumes the source-covariance
+lambda $t$-coordinate projection and the provider-object replay audit, emits
+five node rows, fifteen terminal rows, and thirty branch rows, and records the
+candidate unit antisymmetric test $r_- - r_+=0$ as the interval residual
+$r_- - r_+=2t$. This is not a Noether proof: no master-equation-derived
+terminal branch weights $w_-$, $w_+$ or right-hand side $M$ are present in the
+current executable surface, so the attempt records zero available weight-pair
+rows and keeps the adjoint momentum balance, branch-antisymmetric coordinate
+identity, actual source object, expression-level $N_{38}$ provider,
+$S_{37}$ division, shifted $R_{\varepsilon,43}$ closure, retained branch, and
+directed-rounded provider open. The next true blocker is therefore the
+same-domain master-equation adjoint branch-weight identity, not another
+terminal interval wrapper.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.

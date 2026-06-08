@@ -309,7 +309,7 @@ export function createAnimatorCameraPathRuntime(options = {}) {
     const anchor = Array.isArray(selectedAssembly?.position) ? selectedAssembly.position : [0, 0, 0];
     mutatePathStateState((pathState) => {
       pathState.points = createDefaultPathPoints(anchor).map((point) => vectorFromTriplet(point));
-      pathState.interpolate = dom.pathModeSelect?.value || "spline";
+      pathState.interpolate = dom.pathModeSelect?.value === "linear" ? "linear" : "spline";
       pathState.closed = false;
     });
     setSelectedPointIndexState(null);

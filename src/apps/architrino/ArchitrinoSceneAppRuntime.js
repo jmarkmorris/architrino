@@ -163,6 +163,7 @@ import { createAnimatorDocumentWorkspaceRuntime } from "../animator/AnimatorDocu
 import { createAnimatorViewportDisplayRuntime } from "../animator/AnimatorViewportDisplayRuntime.js";
 import { createAnimatorViewportOverlayPillRuntime } from "../animator/AnimatorViewportOverlayPillRuntime.js";
 import { createAnimatorViewportRenderRuntime } from "../animator/AnimatorViewportRenderRuntime.js";
+import { summarizeAnimatorMotionSources } from "../animator/AnimatorMotionSourceRuntime.js";
 import {
   getAnimatorSimulationDataset,
   getAnimatorSimulationFrameMotion,
@@ -260,6 +261,7 @@ const {
   animatorHudHistoryToggle,
   animatorHudEnvelopesToggle,
   animatorHudCameraGuidesToggle,
+  animatorMotionSourcePill,
   animatorHudViewportToggleBindings,
   animatorPathModeSelect,
   animatorPathResetButton,
@@ -1744,6 +1746,16 @@ function setAnimatorStatus(message) {
   animatorStatus.textContent = message;
 }
 
+function updateAnimatorMotionSourcePill(documentData = animatorCurrentDocument) {
+  if (!animatorMotionSourcePill) {
+    return;
+  }
+  const summary = summarizeAnimatorMotionSources(documentData);
+  animatorMotionSourcePill.textContent = summary.label;
+  animatorMotionSourcePill.dataset.sourceKind = summary.sourceKind;
+  animatorMotionSourcePill.title = summary.detail;
+}
+
 function rebuildAnimatorControlPoints() {
   if (!animatorFrameGroup || !animatorPointGeometry) {
     return;
@@ -1784,7 +1796,7 @@ function sampleAnimatorPath(points, interpolate = "spline", closed = false) {
   if (!source.length) {
     return [];
   }
-  if (interpolate === "spline" && source.length > 2) {
+  if (interpolate !== "linear" && source.length > 2) {
     const curve = new THREE.CatmullRomCurve3(source, closed, "catmullrom", 0.5);
     return curve.getPoints(160);
   }
@@ -3755,6 +3767,7 @@ function updateAnimatorViewportFromDocument(documentData) {
     ? getAnimatorMotionProgress(previousDocument, animatorPlaybackState.playheadSeconds)
     : null;
   animatorCurrentDocument = documentData;
+  updateAnimatorMotionSourcePill(documentData);
   if (!animatorViewportGroup || !animatorPathGeometry) {
     return;
   }
@@ -4654,6 +4667,7 @@ const animatorDocumentWorkspaceRuntime = createAnimatorDocumentWorkspaceRuntime(
     },
     setCurrentDocument: (documentData) => {
       animatorCurrentDocument = documentData;
+      updateAnimatorMotionSourcePill(documentData);
     },
   },
 });

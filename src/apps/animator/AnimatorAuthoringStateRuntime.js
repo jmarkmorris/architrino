@@ -190,7 +190,7 @@ export function createAnimatorAuthoringStateRuntime(options = {}) {
     }
     if (!selectedAssembly) {
       draftStateRuntime.mutatePathStateState?.((currentPathState) => {
-        currentPathState.interpolate = pathModeSelect?.value || "spline";
+        currentPathState.interpolate = pathModeSelect?.value === "linear" ? "linear" : "spline";
         currentPathState.closed = false;
         currentPathState.ownerAssemblyId = null;
         currentPathState.points = [];
@@ -211,7 +211,7 @@ export function createAnimatorAuthoringStateRuntime(options = {}) {
       draftStateRuntime.updateAssemblyDraftByIdState?.(selectedAssembly.id, (assembly) => ({
         ...assembly,
         pathPoints: createDefaultPathPoints(anchor),
-        pathInterpolate: assembly.pathInterpolate === "polyline" ? "polyline" : "spline",
+        pathInterpolate: assembly.pathInterpolate === "linear" ? "linear" : "spline",
         pathClosed: !!assembly.pathClosed,
       }));
       selectedAssembly =
@@ -219,7 +219,7 @@ export function createAnimatorAuthoringStateRuntime(options = {}) {
     }
     draftStateRuntime.mutatePathStateState?.((currentPathState) => {
       currentPathState.interpolate =
-        selectedAssembly?.pathInterpolate === "polyline" ? "polyline" : "spline";
+        selectedAssembly?.pathInterpolate === "linear" ? "linear" : "spline";
       currentPathState.closed = !!selectedAssembly?.pathClosed;
       currentPathState.ownerAssemblyId = selectedAssembly?.id ?? null;
       currentPathState.points = normalizeAssemblyPathPoints(selectedAssembly?.pathPoints).map(

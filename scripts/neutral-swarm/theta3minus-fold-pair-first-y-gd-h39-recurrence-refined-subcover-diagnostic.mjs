@@ -318,6 +318,9 @@ export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SOURCE_
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SOURCE_COVARIANCE_LAMBDA_PROVIDER_OBJECT_REPLAY_AUDIT_CANDIDATE_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-source-covariance-lambda-provider-object-replay-audit-candidate/v1";
 
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SOURCE_COVARIANCE_ADJOINT_MOMENTUM_BALANCE_ATTEMPT_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-source-covariance-adjoint-momentum-balance-attempt-candidate/v1";
+
 const H39_TERMINAL_SUCCESSOR_COEFFICIENT_IDENTITY_IMPORT_SPECS = Object.freeze([
   {
     certificate_key: "h37",
@@ -104017,6 +104020,1241 @@ export function validateH39RequestedY44TerminalSourceCovarianceLambdaProviderObj
     !validClaimBoundary(artifact?.claim_boundary)
   ) {
     errors.push("terminal source-covariance lambda provider-object replay audit must keep broad closure claims open");
+  }
+  return errors;
+}
+
+function h39TerminalSourceCovarianceAdjointMomentumBalanceAttemptClaimBoundary() {
+  return {
+    defines_terminal_source_covariance_adjoint_momentum_balance_attempt_only:
+      true,
+    certifies_master_equation_adjoint_momentum_balance: false,
+    certifies_candidate_unit_antisymmetric_momentum_law: false,
+    certifies_terminal_source_covariance_lambda_branch_sum_identity: false,
+    certifies_terminal_source_covariance_lambda_provider_object_replay: false,
+    certifies_terminal_row_provider_object_replay: false,
+    certifies_branch_antisymmetric_coordinate_identity: false,
+    certifies_denominator_free_branch_residual_source_object_identity: false,
+    certifies_branch_resolved_centered_residual_source_object: false,
+    certifies_terminal_successor_centered_residual_branch_split: false,
+    certifies_branch_resolved_centered_residual_component: false,
+    certifies_terminal_successor_branch_antisymmetric_common_normalizer: false,
+    certifies_terminal_successor_scalar_provider_boundary_identity: false,
+    certifies_terminal_successor_scalar_residual_identity: false,
+    certifies_terminal_h_to_source_term_identity: false,
+    certifies_expression_level_n38_provider: false,
+    certifies_terminal_row_provider_enclosure: false,
+    certifies_terminal_graph_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
+export function buildH39RequestedY44TerminalSourceCovarianceAdjointMomentumBalanceAttemptCandidate({
+  terminalSourceCovarianceLambdaTCoordinateProjectionAttempt,
+  terminalSourceCovarianceLambdaProviderObjectReplayAudit,
+} = {}) {
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const numericInterval = (interval) =>
+    finiteOrderedInterval(interval)
+      ? [Number(interval[0]), Number(interval[1])]
+      : null;
+  const addIntervals = (left, right) =>
+    finiteOrderedInterval(left) && finiteOrderedInterval(right)
+      ? [Number(left[0]) + Number(right[0]), Number(left[1]) + Number(right[1])]
+      : null;
+  const subtractIntervals = (left, right) =>
+    finiteOrderedInterval(left) && finiteOrderedInterval(right)
+      ? [Number(left[0]) - Number(right[1]), Number(left[1]) - Number(right[0])]
+      : null;
+  const scaleInterval = (interval, scalar) => {
+    if (!finiteOrderedInterval(interval) || !finiteNumber(scalar)) {
+      return null;
+    }
+    const products = [
+      Number(interval[0]) * Number(scalar),
+      Number(interval[1]) * Number(scalar),
+    ];
+    return [Math.min(...products), Math.max(...products)];
+  };
+  const intervalContainsValue = (interval, value) =>
+    finiteOrderedInterval(interval) &&
+    finiteNumber(value) &&
+    Number(interval[0]) <= Number(value) &&
+    Number(value) <= Number(interval[1]);
+  const intervalHalfWidth = (interval) =>
+    finiteOrderedInterval(interval)
+      ? (Number(interval[1]) - Number(interval[0])) / 2
+      : null;
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const terminalSpecs = H39_TERMINAL_SUCCESSOR_COEFFICIENT_IDENTITY_IMPORT_SPECS;
+  const genericAdjointFormula = "w_-*r_-+w_+*r_+=M";
+  const genericTFormula = "t=(M-R*(w_-+w_+)/2)/(w_- - w_+)";
+  const genericDenominatorFormula = "w_- - w_+";
+  const unitAntisymmetricFormula = "r_- - r_+=0";
+  const unitResidualFormula = "r_- - r_+=2t";
+  const checkKinds = [
+    "lambda_t_coordinate_projection_attempt_ready",
+    "lambda_provider_object_replay_audit_ready",
+    "same_domain_terminal_rows_aligned",
+    "lambda_branch_residual_rows_recorded",
+    "generic_adjoint_momentum_formula_recorded",
+    "unit_antisymmetric_momentum_residual_recorded",
+    "unit_residual_t_coordinate_link_recorded",
+    "adjoint_momentum_weight_source_recorded_missing",
+    "h39_broad_claims_remain_open",
+  ];
+  const terminalCheckKinds = [
+    "lambda_t_coordinate_terminal_row_available",
+    "lambda_provider_object_replay_terminal_row_available",
+    "same_domain_terminal_row_aligned",
+    "lambda_branch_residual_rows_recorded",
+    "generic_adjoint_momentum_formula_recorded",
+    "unit_antisymmetric_momentum_residual_recorded",
+    "unit_residual_t_coordinate_link_recorded",
+    "adjoint_momentum_weight_source_recorded_missing",
+    "h39_claims_remain_open",
+  ];
+  const lambdaRows =
+    terminalSourceCovarianceLambdaTCoordinateProjectionAttempt
+      ?.terminal_source_covariance_lambda_t_coordinate_projection_rows ?? [];
+  const providerAuditRows =
+    terminalSourceCovarianceLambdaProviderObjectReplayAudit
+      ?.terminal_source_covariance_lambda_provider_object_replay_audit_rows ??
+    [];
+  const lambdaRowsByNode = new Map(
+    lambdaRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const providerAuditRowsByNode = new Map(
+    providerAuditRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const lambdaProjectionReady =
+    terminalSourceCovarianceLambdaTCoordinateProjectionAttempt?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SOURCE_COVARIANCE_LAMBDA_T_COORDINATE_PROJECTION_ATTEMPT_CANDIDATE_SCHEMA &&
+    terminalSourceCovarianceLambdaTCoordinateProjectionAttempt
+      ?.terminal_source_covariance_lambda_t_coordinate_projection_attempt_verified ===
+      true &&
+    terminalSourceCovarianceLambdaTCoordinateProjectionAttempt
+      ?.terminal_source_covariance_lambda_t_coordinate_projection_attempt_certified ===
+      false &&
+    terminalSourceCovarianceLambdaTCoordinateProjectionAttempt
+      ?.all_source_covariance_lambda_only_projection_rows_available === true &&
+    terminalSourceCovarianceLambdaTCoordinateProjectionAttempt
+      ?.all_source_covariance_lambda_only_t_coordinate_rows_available === true &&
+    terminalSourceCovarianceLambdaTCoordinateProjectionAttempt
+      ?.branch_antisymmetric_coordinate_identity_certified === false &&
+    terminalSourceCovarianceLambdaTCoordinateProjectionAttempt
+      ?.branch_resolved_centered_residual_source_object_certified === false &&
+    terminalSourceCovarianceLambdaTCoordinateProjectionAttempt
+      ?.expression_level_n38_provider_certified === false &&
+    terminalSourceCovarianceLambdaTCoordinateProjectionAttempt?.claim_boundary
+      ?.certifies_directed_rounded_shared_domain === false;
+  const providerAuditReady =
+    terminalSourceCovarianceLambdaProviderObjectReplayAudit?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SOURCE_COVARIANCE_LAMBDA_PROVIDER_OBJECT_REPLAY_AUDIT_CANDIDATE_SCHEMA &&
+    terminalSourceCovarianceLambdaProviderObjectReplayAudit
+      ?.terminal_source_covariance_lambda_provider_object_replay_audit_verified ===
+      true &&
+    terminalSourceCovarianceLambdaProviderObjectReplayAudit
+      ?.terminal_source_covariance_lambda_provider_object_replay_audit_certified ===
+      false &&
+    terminalSourceCovarianceLambdaProviderObjectReplayAudit
+      ?.terminal_source_covariance_lambda_branch_sum_identity_certified ===
+      false &&
+    terminalSourceCovarianceLambdaProviderObjectReplayAudit
+      ?.terminal_source_covariance_lambda_provider_object_replay_certified ===
+      false &&
+    terminalSourceCovarianceLambdaProviderObjectReplayAudit
+      ?.terminal_row_provider_object_replay_certified === false &&
+    terminalSourceCovarianceLambdaProviderObjectReplayAudit
+      ?.branch_resolved_centered_residual_source_object_certified === false &&
+    terminalSourceCovarianceLambdaProviderObjectReplayAudit
+      ?.expression_level_n38_provider_certified === false &&
+    terminalSourceCovarianceLambdaProviderObjectReplayAudit?.claim_boundary
+      ?.certifies_directed_rounded_shared_domain === false;
+  const rows = Array.from({ length: 5 }, (_, nodeIndex) => {
+    const terminalGraphCellId = `speed.${nodeIndex}.first-y`;
+    const lambdaRow = lambdaRowsByNode.get(nodeIndex) ?? null;
+    const providerAuditRow = providerAuditRowsByNode.get(nodeIndex) ?? null;
+    const terminalRows = terminalSpecs.map((spec) => {
+      const lambdaTerminalRow =
+        lambdaRow?.terminal_source_covariance_lambda_t_coordinate_projection_rows?.find(
+          (row) => Number(row?.terminal_h_index) === spec.terminal_h_index
+        ) ?? null;
+      const providerAuditTerminalRow =
+        providerAuditRow?.terminal_source_covariance_lambda_provider_object_replay_audit_rows?.find(
+          (row) => Number(row?.terminal_h_index) === spec.terminal_h_index
+        ) ?? null;
+      const lambdaBranchRowsByBranch = new Map(
+        (
+          lambdaTerminalRow
+            ?.source_covariance_lambda_only_branch_residual_candidate_rows ?? []
+        )
+          .filter((row) => row?.branch === "-" || row?.branch === "+")
+          .map((row) => [row.branch, row])
+      );
+      const providerBranchRowsByBranch = new Map(
+        (
+          providerAuditTerminalRow?.lambda_provider_object_replay_branch_rows ??
+          []
+        )
+          .filter((row) => row?.branch === "-" || row?.branch === "+")
+          .map((row) => [row.branch, row])
+      );
+      const branchRows = ["-", "+"].map((branch) => {
+        const lambdaBranchRow = lambdaBranchRowsByBranch.get(branch) ?? null;
+        const providerBranchRow = providerBranchRowsByBranch.get(branch) ?? null;
+        const lambdaResidualInterval = numericInterval(
+          lambdaBranchRow
+            ?.source_covariance_lambda_only_branch_residual_candidate_interval
+        );
+        const unitWeight = branch === "-" ? 1 : -1;
+        return {
+          branch,
+          source_covariance_lambda_only_branch_residual_candidate_interval:
+            lambdaResidualInterval,
+          source_covariance_lambda_only_branch_residual_candidate_available:
+            finiteOrderedInterval(lambdaResidualInterval),
+          candidate_unit_antisymmetric_momentum_weight: unitWeight,
+          candidate_unit_antisymmetric_weighted_residual_interval:
+            scaleInterval(lambdaResidualInterval, unitWeight),
+          master_equation_adjoint_momentum_weight_interval: null,
+          master_equation_adjoint_momentum_weight_source_available: false,
+          master_equation_adjoint_momentum_weight_derived_from_master_equation:
+            false,
+          source_map_provider_object_interval_available:
+            providerBranchRow?.source_map_provider_object_interval_available ===
+            true,
+          lambda_terminal_witness_interval_overlaps_source_map_provider_object_interval:
+            providerBranchRow
+              ?.lambda_terminal_witness_interval_overlaps_source_map_provider_object_interval ===
+            true,
+          lambda_terminal_witness_interval_subset_of_source_map_provider_object_interval:
+            providerBranchRow
+              ?.lambda_terminal_witness_interval_subset_of_source_map_provider_object_interval ===
+            true,
+          branch_resolved_centered_residual_source_object_certified: false,
+          row_certifies_master_equation_adjoint_momentum_weight: false,
+          row_certifies_branch_resolved_centered_residual_component: false,
+          claim_boundary:
+            h39TerminalSourceCovarianceAdjointMomentumBalanceAttemptClaimBoundary(),
+        };
+      });
+      const minusCandidate =
+        branchRows.find((row) => row.branch === "-")
+          ?.source_covariance_lambda_only_branch_residual_candidate_interval ??
+        null;
+      const plusCandidate =
+        branchRows.find((row) => row.branch === "+")
+          ?.source_covariance_lambda_only_branch_residual_candidate_interval ??
+        null;
+      const branchSumInterval =
+        numericInterval(
+          providerAuditTerminalRow
+            ?.source_covariance_lambda_only_branch_sum_interval
+        ) ?? addIntervals(minusCandidate, plusCandidate);
+      const branchDifferenceInterval =
+        numericInterval(
+          lambdaTerminalRow
+            ?.source_covariance_lambda_only_branch_difference_interval
+        ) ?? subtractIntervals(minusCandidate, plusCandidate);
+      const tCoordinateInterval = numericInterval(
+        lambdaTerminalRow
+          ?.source_covariance_lambda_only_t_coordinate_candidate_interval
+      );
+      const twoTCoordinateInterval = scaleInterval(tCoordinateInterval, 2);
+      const unitResidualInterval = branchDifferenceInterval;
+      const unitResidualContainsZero = intervalContainsValue(
+        unitResidualInterval,
+        0
+      );
+      const unitLawRefuted =
+        finiteOrderedInterval(unitResidualInterval) &&
+        unitResidualContainsZero === false;
+      const aggregateResidual = finiteNumber(
+        lambdaTerminalRow?.measured_successor_scalar_centered_projected_residual
+      )
+        ? Number(
+            lambdaTerminalRow.measured_successor_scalar_centered_projected_residual
+          )
+        : null;
+      const aggregateInterval =
+        numericInterval(providerAuditTerminalRow?.aggregate_centered_residual_interval) ??
+        numericInterval(lambdaTerminalRow?.aggregate_centered_residual_interval) ??
+        (finiteNumber(aggregateResidual) ? [aggregateResidual, aggregateResidual] : null);
+      const terminalChecks = {
+        lambda_t_coordinate_terminal_row_available:
+          lambdaProjectionReady &&
+          lambdaTerminalRow
+            ?.row_terminal_source_covariance_lambda_t_coordinate_projection_attempt_verified ===
+            true,
+        lambda_provider_object_replay_terminal_row_available:
+          providerAuditReady &&
+          providerAuditTerminalRow
+            ?.row_terminal_source_covariance_lambda_provider_object_replay_audit_verified ===
+            true,
+        same_domain_terminal_row_aligned:
+          lambdaTerminalRow?.terminal_graph_cell_id === terminalGraphCellId &&
+          providerAuditTerminalRow?.terminal_graph_cell_id ===
+            terminalGraphCellId &&
+          lambdaTerminalRow?.terminal_h_index === spec.terminal_h_index &&
+          providerAuditTerminalRow?.terminal_h_index ===
+            spec.terminal_h_index &&
+          lambdaTerminalRow?.successor_scalar_identity_weight ===
+            spec.successor_scalar_identity_weight &&
+          providerAuditTerminalRow?.successor_scalar_identity_weight ===
+            spec.successor_scalar_identity_weight &&
+          lambdaTerminalRow?.centered_successor_scalar_weight ===
+            spec.centered_successor_scalar_weight &&
+          providerAuditTerminalRow?.centered_successor_scalar_weight ===
+            spec.centered_successor_scalar_weight,
+        lambda_branch_residual_rows_recorded:
+          branchRows.length === 2 &&
+          branchRows.every(
+            (row) =>
+              finiteOrderedInterval(
+                row
+                  .source_covariance_lambda_only_branch_residual_candidate_interval
+              ) &&
+              row
+                .source_covariance_lambda_only_branch_residual_candidate_available ===
+                true &&
+              finiteOrderedInterval(
+                row.candidate_unit_antisymmetric_weighted_residual_interval
+              )
+          ),
+        generic_adjoint_momentum_formula_recorded:
+          genericAdjointFormula === "w_-*r_-+w_+*r_+=M" &&
+          genericTFormula === "t=(M-R*(w_-+w_+)/2)/(w_- - w_+)" &&
+          genericDenominatorFormula === "w_- - w_+",
+        unit_antisymmetric_momentum_residual_recorded:
+          finiteOrderedInterval(unitResidualInterval) &&
+          typeof unitResidualContainsZero === "boolean" &&
+          typeof unitLawRefuted === "boolean",
+        unit_residual_t_coordinate_link_recorded:
+          finiteOrderedInterval(tCoordinateInterval) &&
+          finiteOrderedInterval(twoTCoordinateInterval) &&
+          unitResidualFormula === "r_- - r_+=2t",
+        adjoint_momentum_weight_source_recorded_missing:
+          branchRows.every(
+            (row) =>
+              row.master_equation_adjoint_momentum_weight_interval === null &&
+              row.master_equation_adjoint_momentum_weight_source_available ===
+                false &&
+              row
+                .master_equation_adjoint_momentum_weight_derived_from_master_equation ===
+                false
+          ),
+        h39_claims_remain_open:
+          lambdaTerminalRow?.branch_resolved_centered_residual_source_object_certified ===
+            false &&
+          lambdaTerminalRow?.row_certifies_expression_level_n38_provider ===
+            false &&
+          providerAuditTerminalRow
+            ?.row_certifies_terminal_source_covariance_lambda_branch_sum_identity ===
+            false &&
+          providerAuditTerminalRow
+            ?.row_certifies_terminal_source_covariance_lambda_provider_object_replay ===
+            false &&
+          providerAuditTerminalRow?.row_certifies_terminal_row_provider_object_replay ===
+            false &&
+          providerAuditTerminalRow
+            ?.row_certifies_branch_resolved_centered_residual_source_object ===
+            false &&
+          providerAuditTerminalRow?.claim_boundary
+            ?.certifies_directed_rounded_shared_domain === false,
+      };
+      const terminalRowVerified = Object.values(terminalChecks).every(
+        (value) => value === true
+      );
+      return {
+        terminal_h_index: spec.terminal_h_index,
+        source_y_order: H38_NUMERATOR_Y_ORDER,
+        terminal_graph_cell_id: terminalGraphCellId,
+        successor_scalar_identity_weight:
+          spec.successor_scalar_identity_weight,
+        centered_successor_scalar_weight:
+          spec.centered_successor_scalar_weight,
+        measured_successor_scalar_centered_projected_residual:
+          aggregateResidual,
+        aggregate_centered_residual_interval: aggregateInterval,
+        source_covariance_lambda_only_projection_formula: "r_b=lambda_source*s_b",
+        source_covariance_lambda_branch_sum_identity_formula:
+          "lambda_source*(s_-+s_+)-R=0",
+        branch_split_identity_family:
+          "(r_minus,r_plus)=(R/2+t,R/2-t)",
+        generic_adjoint_momentum_balance_formula: genericAdjointFormula,
+        generic_t_solution_formula: genericTFormula,
+        generic_t_solution_denominator_formula: genericDenominatorFormula,
+        candidate_unit_antisymmetric_momentum_balance_formula:
+          unitAntisymmetricFormula,
+        candidate_unit_antisymmetric_momentum_residual_formula:
+          unitResidualFormula,
+        adjoint_momentum_balance_branch_rows: branchRows,
+        adjoint_momentum_balance_branch_row_count: branchRows.length,
+        source_covariance_lambda_only_branch_sum_interval: branchSumInterval,
+        source_covariance_lambda_only_branch_difference_interval:
+          branchDifferenceInterval,
+        source_covariance_lambda_only_t_coordinate_candidate_interval:
+          tCoordinateInterval,
+        candidate_unit_antisymmetric_momentum_residual_interval:
+          unitResidualInterval,
+        candidate_unit_antisymmetric_momentum_residual_half_width:
+          intervalHalfWidth(unitResidualInterval),
+        candidate_unit_antisymmetric_momentum_residual_contains_zero:
+          unitResidualContainsZero,
+        candidate_unit_antisymmetric_momentum_law_refuted_by_lambda_witness:
+          unitLawRefuted,
+        two_t_coordinate_interval: twoTCoordinateInterval,
+        master_equation_adjoint_momentum_weight_pair_available: false,
+        master_equation_adjoint_momentum_rhs_interval: null,
+        master_equation_adjoint_momentum_rhs_available: false,
+        adjoint_momentum_denominator_interval: null,
+        adjoint_momentum_denominator_separated_from_zero: false,
+        t_coordinate_determined_by_adjoint_momentum_balance: false,
+        terminal_source_covariance_adjoint_momentum_balance_attempt_check_kinds:
+          [...terminalCheckKinds],
+        terminal_source_covariance_adjoint_momentum_balance_attempt_checks:
+          terminalChecks,
+        row_terminal_source_covariance_adjoint_momentum_balance_attempt_verified:
+          terminalRowVerified,
+        row_certifies_master_equation_adjoint_momentum_balance: false,
+        row_certifies_candidate_unit_antisymmetric_momentum_law: false,
+        row_certifies_branch_antisymmetric_coordinate_identity: false,
+        row_certifies_terminal_source_covariance_lambda_provider_object_replay:
+          false,
+        row_certifies_branch_resolved_centered_residual_source_object: false,
+        row_certifies_expression_level_n38_provider: false,
+        row_status: terminalRowVerified
+          ? unitLawRefuted
+            ? "source-covariance-unit-antisymmetric-momentum-law-refuted-adjoint-weight-derivation-needed"
+            : unitResidualContainsZero
+              ? "source-covariance-unit-antisymmetric-momentum-law-not-refuted-adjoint-weight-derivation-needed"
+              : "source-covariance-adjoint-momentum-weight-derivation-needed"
+          : "terminal-source-covariance-adjoint-momentum-balance-attempt-open",
+        claim_boundary:
+          h39TerminalSourceCovarianceAdjointMomentumBalanceAttemptClaimBoundary(),
+      };
+    });
+    const branchRows = terminalRows.flatMap(
+      (row) => row.adjoint_momentum_balance_branch_rows
+    );
+    const rowChecks = {
+      lambda_t_coordinate_projection_attempt_ready:
+        lambdaProjectionReady &&
+        lambdaRow
+          ?.row_terminal_source_covariance_lambda_t_coordinate_projection_attempt_verified ===
+          true,
+      lambda_provider_object_replay_audit_ready:
+        providerAuditReady &&
+        providerAuditRow
+          ?.row_terminal_source_covariance_lambda_provider_object_replay_audit_verified ===
+          true,
+      same_domain_terminal_rows_aligned: terminalRows.every(
+        (row) =>
+          row
+            .terminal_source_covariance_adjoint_momentum_balance_attempt_checks
+            ?.same_domain_terminal_row_aligned === true
+      ),
+      lambda_branch_residual_rows_recorded: terminalRows.every(
+        (row) =>
+          row
+            .terminal_source_covariance_adjoint_momentum_balance_attempt_checks
+            ?.lambda_branch_residual_rows_recorded === true
+      ),
+      generic_adjoint_momentum_formula_recorded: terminalRows.every(
+        (row) =>
+          row
+            .terminal_source_covariance_adjoint_momentum_balance_attempt_checks
+            ?.generic_adjoint_momentum_formula_recorded === true
+      ),
+      unit_antisymmetric_momentum_residual_recorded: terminalRows.every(
+        (row) =>
+          row
+            .terminal_source_covariance_adjoint_momentum_balance_attempt_checks
+            ?.unit_antisymmetric_momentum_residual_recorded === true
+      ),
+      unit_residual_t_coordinate_link_recorded: terminalRows.every(
+        (row) =>
+          row
+            .terminal_source_covariance_adjoint_momentum_balance_attempt_checks
+            ?.unit_residual_t_coordinate_link_recorded === true
+      ),
+      adjoint_momentum_weight_source_recorded_missing: terminalRows.every(
+        (row) =>
+          row
+            .terminal_source_covariance_adjoint_momentum_balance_attempt_checks
+            ?.adjoint_momentum_weight_source_recorded_missing === true
+      ),
+      h39_broad_claims_remain_open: terminalRows.every(
+        (row) =>
+          row
+            .terminal_source_covariance_adjoint_momentum_balance_attempt_checks
+            ?.h39_claims_remain_open === true
+      ),
+    };
+    const rowVerified = Object.values(rowChecks).every(
+      (value) => value === true
+    );
+    return {
+      node_index: nodeIndex,
+      terminal_graph_cell_id: terminalGraphCellId,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      terminal_source_covariance_adjoint_momentum_balance_attempt_row_kind:
+        "terminal-source-covariance-adjoint-momentum-balance-attempt-row",
+      terminal_h_indexes: terminalSpecs.map((spec) => spec.terminal_h_index),
+      terminal_successor_scalar_identity_weights:
+        lambdaRow?.terminal_successor_scalar_identity_weights ??
+        providerAuditRow?.terminal_successor_scalar_identity_weights ??
+        null,
+      centered_terminal_successor_scalar_identity_weights:
+        lambdaRow?.centered_terminal_successor_scalar_identity_weights ??
+        providerAuditRow?.centered_terminal_successor_scalar_identity_weights ??
+        null,
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      terminal_source_covariance_adjoint_momentum_balance_attempt_rows:
+        terminalRows,
+      terminal_source_covariance_adjoint_momentum_balance_attempt_terminal_row_count:
+        terminalRows.length,
+      terminal_source_covariance_adjoint_momentum_balance_attempt_branch_row_count:
+        branchRows.length,
+      candidate_unit_antisymmetric_momentum_residual_available_terminal_row_count:
+        terminalRows.filter((row) =>
+          finiteOrderedInterval(
+            row.candidate_unit_antisymmetric_momentum_residual_interval
+          )
+        ).length,
+      candidate_unit_antisymmetric_momentum_residual_contains_zero_terminal_row_count:
+        terminalRows.filter(
+          (row) =>
+            row
+              .candidate_unit_antisymmetric_momentum_residual_contains_zero ===
+            true
+        ).length,
+      candidate_unit_antisymmetric_momentum_law_refuted_terminal_row_count:
+        terminalRows.filter(
+          (row) =>
+            row
+              .candidate_unit_antisymmetric_momentum_law_refuted_by_lambda_witness ===
+            true
+        ).length,
+      master_equation_adjoint_momentum_weight_pair_available_terminal_row_count:
+        0,
+      master_equation_adjoint_momentum_rhs_available_terminal_row_count: 0,
+      t_coordinate_determined_by_adjoint_momentum_balance_terminal_row_count:
+        0,
+      row_check_kinds: [...checkKinds],
+      row_checks: rowChecks,
+      row_terminal_source_covariance_adjoint_momentum_balance_attempt_verified:
+        rowVerified,
+      row_certifies_master_equation_adjoint_momentum_balance: false,
+      row_certifies_candidate_unit_antisymmetric_momentum_law: false,
+      row_certifies_branch_antisymmetric_coordinate_identity: false,
+      row_certifies_terminal_source_covariance_lambda_provider_object_replay:
+        false,
+      row_certifies_branch_resolved_centered_residual_source_object: false,
+      row_certifies_expression_level_n38_provider: false,
+      row_status: rowVerified
+        ? terminalRows.some(
+              (row) =>
+                row
+                  .candidate_unit_antisymmetric_momentum_law_refuted_by_lambda_witness ===
+                true
+            )
+          ? "source-covariance-unit-antisymmetric-momentum-law-refuted-adjoint-weight-derivation-needed"
+          : terminalRows.every(
+                (row) =>
+                  row
+                    .candidate_unit_antisymmetric_momentum_residual_contains_zero ===
+                  true
+              )
+            ? "source-covariance-unit-antisymmetric-momentum-law-not-refuted-adjoint-weight-derivation-needed"
+            : "source-covariance-adjoint-momentum-weight-derivation-needed"
+        : "terminal-source-covariance-adjoint-momentum-balance-attempt-open",
+      claim_boundary:
+        h39TerminalSourceCovarianceAdjointMomentumBalanceAttemptClaimBoundary(),
+    };
+  });
+  const terminalRowCount = rows.reduce(
+    (total, row) =>
+      total +
+      row
+        .terminal_source_covariance_adjoint_momentum_balance_attempt_terminal_row_count,
+    0
+  );
+  const branchRowCount = rows.reduce(
+    (total, row) =>
+      total +
+      row
+        .terminal_source_covariance_adjoint_momentum_balance_attempt_branch_row_count,
+    0
+  );
+  const unitResidualAvailableCount = rows.reduce(
+    (total, row) =>
+      total +
+      row
+        .candidate_unit_antisymmetric_momentum_residual_available_terminal_row_count,
+    0
+  );
+  const unitResidualContainsZeroCount = rows.reduce(
+    (total, row) =>
+      total +
+      row
+        .candidate_unit_antisymmetric_momentum_residual_contains_zero_terminal_row_count,
+    0
+  );
+  const unitLawRefutedCount = rows.reduce(
+    (total, row) =>
+      total +
+      row.candidate_unit_antisymmetric_momentum_law_refuted_terminal_row_count,
+    0
+  );
+  const aggregateChecks = {
+    lambda_t_coordinate_projection_attempt_ready: lambdaProjectionReady,
+    lambda_provider_object_replay_audit_ready: providerAuditReady,
+    same_domain_terminal_rows_aligned: rows.every(
+      (row) => row.row_checks?.same_domain_terminal_rows_aligned === true
+    ),
+    lambda_branch_residual_rows_recorded: rows.every(
+      (row) => row.row_checks?.lambda_branch_residual_rows_recorded === true
+    ),
+    generic_adjoint_momentum_formula_recorded: rows.every(
+      (row) =>
+        row.row_checks?.generic_adjoint_momentum_formula_recorded === true
+    ),
+    unit_antisymmetric_momentum_residual_recorded: rows.every(
+      (row) =>
+        row.row_checks?.unit_antisymmetric_momentum_residual_recorded === true
+    ),
+    unit_residual_t_coordinate_link_recorded: rows.every(
+      (row) => row.row_checks?.unit_residual_t_coordinate_link_recorded === true
+    ),
+    adjoint_momentum_weight_source_recorded_missing: rows.every(
+      (row) =>
+        row.row_checks?.adjoint_momentum_weight_source_recorded_missing === true
+    ),
+    h39_broad_claims_remain_open: rows.every(
+      (row) => row.row_checks?.h39_broad_claims_remain_open === true
+    ),
+  };
+  const attemptVerified =
+    rows.length === 5 &&
+    terminalRowCount === 15 &&
+    branchRowCount === 30 &&
+    rows.every(
+      (row) =>
+        row
+          .row_terminal_source_covariance_adjoint_momentum_balance_attempt_verified ===
+        true
+    ) &&
+    Object.values(aggregateChecks).every((value) => value === true);
+  const allUnitResidualsAvailable =
+    attemptVerified && unitResidualAvailableCount === terminalRowCount;
+  const allUnitResidualsContainZero =
+    attemptVerified && unitResidualContainsZeroCount === terminalRowCount;
+  const anyUnitLawRefuted = attemptVerified && unitLawRefutedCount > 0;
+  const classification = attemptVerified
+    ? anyUnitLawRefuted
+      ? "source-covariance-unit-antisymmetric-momentum-law-refuted-adjoint-weight-derivation-needed"
+      : allUnitResidualsContainZero
+        ? "source-covariance-unit-antisymmetric-momentum-law-not-refuted-adjoint-weight-derivation-needed"
+        : "source-covariance-adjoint-momentum-weight-derivation-needed"
+    : "terminal-source-covariance-adjoint-momentum-balance-attempt-open";
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SOURCE_COVARIANCE_ADJOINT_MOMENTUM_BALANCE_ATTEMPT_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-terminal-source-covariance-adjoint-momentum-balance-attempt-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-terminal-source-covariance-adjoint-momentum-balance-attempt",
+    target_kind:
+      "candidate-requested-y44-terminal-source-covariance-adjoint-momentum-balance-attempt",
+    terminal_source_covariance_lambda_t_coordinate_projection_attempt_schema:
+      terminalSourceCovarianceLambdaTCoordinateProjectionAttempt?.schema ?? null,
+    terminal_source_covariance_lambda_provider_object_replay_audit_schema:
+      terminalSourceCovarianceLambdaProviderObjectReplayAudit?.schema ?? null,
+    proof_status:
+      "candidate-terminal-source-covariance-adjoint-momentum-balance-open",
+    adjoint_momentum_balance_kind:
+      "same-domain-terminal-branch-split-adjoint-momentum-balance-target",
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    terminal_h_indexes: terminalSpecs.map((spec) => spec.terminal_h_index),
+    terminal_successor_scalar_identity_weights:
+      terminalSourceCovarianceLambdaTCoordinateProjectionAttempt
+        ?.terminal_successor_scalar_identity_weights ??
+      terminalSourceCovarianceLambdaProviderObjectReplayAudit
+        ?.terminal_successor_scalar_identity_weights ??
+      null,
+    centered_terminal_successor_scalar_identity_weights:
+      terminalSourceCovarianceLambdaTCoordinateProjectionAttempt
+        ?.centered_terminal_successor_scalar_identity_weights ??
+      terminalSourceCovarianceLambdaProviderObjectReplayAudit
+        ?.centered_terminal_successor_scalar_identity_weights ??
+      null,
+    source_terms_preserved_signed_together: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    branch_split_identity_family: "(r_minus,r_plus)=(R/2+t,R/2-t)",
+    generic_adjoint_momentum_balance_formula: genericAdjointFormula,
+    generic_t_solution_formula: genericTFormula,
+    generic_t_solution_denominator_formula: genericDenominatorFormula,
+    candidate_unit_antisymmetric_momentum_balance_formula:
+      unitAntisymmetricFormula,
+    candidate_unit_antisymmetric_momentum_residual_formula:
+      unitResidualFormula,
+    terminal_source_covariance_adjoint_momentum_balance_attempt_check_kinds:
+      [...checkKinds],
+    terminal_source_covariance_adjoint_momentum_balance_attempt_checks:
+      aggregateChecks,
+    terminal_source_covariance_adjoint_momentum_balance_attempt_verified:
+      attemptVerified,
+    terminal_source_covariance_adjoint_momentum_balance_attempt_certified:
+      false,
+    terminal_source_covariance_adjoint_momentum_balance_attempt_row_count:
+      rows.length,
+    terminal_source_covariance_adjoint_momentum_balance_attempt_terminal_row_count:
+      terminalRowCount,
+    terminal_source_covariance_adjoint_momentum_balance_attempt_branch_row_count:
+      branchRowCount,
+    terminal_source_covariance_adjoint_momentum_balance_attempt_rows: rows,
+    candidate_unit_antisymmetric_momentum_residual_available_terminal_row_count:
+      unitResidualAvailableCount,
+    candidate_unit_antisymmetric_momentum_residual_contains_zero_terminal_row_count:
+      unitResidualContainsZeroCount,
+    candidate_unit_antisymmetric_momentum_law_refuted_terminal_row_count:
+      unitLawRefutedCount,
+    master_equation_adjoint_momentum_weight_pair_available_terminal_row_count: 0,
+    master_equation_adjoint_momentum_rhs_available_terminal_row_count: 0,
+    t_coordinate_determined_by_adjoint_momentum_balance_terminal_row_count: 0,
+    all_candidate_unit_antisymmetric_momentum_residuals_available:
+      allUnitResidualsAvailable,
+    all_candidate_unit_antisymmetric_momentum_residuals_contain_zero:
+      allUnitResidualsContainZero,
+    any_candidate_unit_antisymmetric_momentum_law_refuted_by_lambda_witness:
+      anyUnitLawRefuted,
+    master_equation_adjoint_momentum_weight_source_available: false,
+    master_equation_adjoint_momentum_rhs_available: false,
+    master_equation_adjoint_momentum_denominator_separated_from_zero: false,
+    t_coordinate_determined_by_adjoint_momentum_balance: false,
+    master_equation_adjoint_momentum_balance_certified: false,
+    candidate_unit_antisymmetric_momentum_law_certified: false,
+    branch_antisymmetric_coordinate_identity_certified: false,
+    terminal_source_covariance_lambda_provider_object_replay_certified: false,
+    branch_resolved_centered_residual_source_object_certified: false,
+    expression_level_n38_provider_certified: false,
+    terminal_source_covariance_adjoint_momentum_balance_attempt_classification:
+      classification,
+    terminal_source_covariance_adjoint_momentum_balance_attempt_blocker_classification:
+      attemptVerified
+        ? "same-domain-master-equation-adjoint-branch-weight-identity-needed"
+        : "terminal-source-covariance-adjoint-momentum-balance-attempt-open",
+    terminal_source_covariance_adjoint_momentum_balance_attempt_primary_missing_object_kind:
+      attemptVerified
+        ? "master-equation-adjoint-branch-weight-pair-and-moment"
+        : "terminal-source-covariance-adjoint-momentum-balance-attempt",
+    next_certificate_object: attemptVerified
+      ? "same-domain master-equation adjoint covector supplying w_-, w_+, and M with w_- - w_+ separated from zero"
+      : "same-domain terminal source-covariance adjoint momentum balance attempt artifact",
+    candidate_certificate_route:
+      "This packet converts the free terminal branch split (r_minus,r_plus)=(R/2+t,R/2-t) into the adjoint momentum equation w_-*r_-+w_+*r_+=M. If a same-domain master-equation adjoint covector supplies w_-, w_+, and M with w_- - w_+ separated from zero, then t=(M-R*(w_-+w_+)/2)/(w_- - w_+) fixes the branch-antisymmetric coordinate. The packet also tests the simplest unit antisymmetric moment r_- - r_+=0 against the current lambda witness, recording whether each interval contains zero or refutes that law. No master-equation adjoint weights are derived here, so the adjoint balance, branch coordinate, actual branch source object, expression-level N38 provider, S37 division, shifted R43 closure, retained branch, and directed-rounded shared-domain provider remain open.",
+    claim_boundary:
+      h39TerminalSourceCovarianceAdjointMomentumBalanceAttemptClaimBoundary(),
+  };
+}
+
+export function validateH39RequestedY44TerminalSourceCovarianceAdjointMomentumBalanceAttemptCandidate(
+  artifact
+) {
+  const errors = [];
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const sameStringSet = (left, right) =>
+    Array.isArray(left) &&
+    left.length === right.length &&
+    right.every((value) => left.includes(value));
+  const sameTerminalHIndexes = (indexes) =>
+    Array.isArray(indexes) &&
+    indexes.length === 3 &&
+    indexes[0] === 37 &&
+    indexes[1] === 36 &&
+    indexes[2] === 35;
+  const sameSuccessorWeights = (weights) =>
+    weights?.h37 === 38 && weights?.h36 === 37 && weights?.h35 === 36;
+  const sameCenteredWeights = (weights) =>
+    weights?.h37 === 1 && weights?.h36 === 0 && weights?.h35 === -1;
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const validClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_terminal_source_covariance_adjoint_momentum_balance_attempt_only ===
+      true &&
+    claimBoundary?.certifies_master_equation_adjoint_momentum_balance ===
+      false &&
+    claimBoundary?.certifies_candidate_unit_antisymmetric_momentum_law ===
+      false &&
+    claimBoundary
+      ?.certifies_terminal_source_covariance_lambda_branch_sum_identity ===
+      false &&
+    claimBoundary
+      ?.certifies_terminal_source_covariance_lambda_provider_object_replay ===
+      false &&
+    claimBoundary?.certifies_terminal_row_provider_object_replay === false &&
+    claimBoundary?.certifies_branch_antisymmetric_coordinate_identity ===
+      false &&
+    claimBoundary
+      ?.certifies_denominator_free_branch_residual_source_object_identity ===
+      false &&
+    claimBoundary
+      ?.certifies_branch_resolved_centered_residual_source_object === false &&
+    claimBoundary
+      ?.certifies_terminal_successor_centered_residual_branch_split === false &&
+    claimBoundary?.certifies_branch_resolved_centered_residual_component ===
+      false &&
+    claimBoundary
+      ?.certifies_terminal_successor_branch_antisymmetric_common_normalizer ===
+      false &&
+    claimBoundary
+      ?.certifies_terminal_successor_scalar_provider_boundary_identity ===
+      false &&
+    claimBoundary?.certifies_terminal_successor_scalar_residual_identity ===
+      false &&
+    claimBoundary?.certifies_terminal_h_to_source_term_identity === false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const expectedCheckKinds = [
+    "lambda_t_coordinate_projection_attempt_ready",
+    "lambda_provider_object_replay_audit_ready",
+    "same_domain_terminal_rows_aligned",
+    "lambda_branch_residual_rows_recorded",
+    "generic_adjoint_momentum_formula_recorded",
+    "unit_antisymmetric_momentum_residual_recorded",
+    "unit_residual_t_coordinate_link_recorded",
+    "adjoint_momentum_weight_source_recorded_missing",
+    "h39_broad_claims_remain_open",
+  ];
+  const expectedTerminalCheckKinds = [
+    "lambda_t_coordinate_terminal_row_available",
+    "lambda_provider_object_replay_terminal_row_available",
+    "same_domain_terminal_row_aligned",
+    "lambda_branch_residual_rows_recorded",
+    "generic_adjoint_momentum_formula_recorded",
+    "unit_antisymmetric_momentum_residual_recorded",
+    "unit_residual_t_coordinate_link_recorded",
+    "adjoint_momentum_weight_source_recorded_missing",
+    "h39_claims_remain_open",
+  ];
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SOURCE_COVARIANCE_ADJOINT_MOMENTUM_BALANCE_ATTEMPT_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 terminal source-covariance adjoint momentum balance attempt candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-terminal-source-covariance-adjoint-momentum-balance-attempt-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-terminal-source-covariance-adjoint-momentum-balance-attempt" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-terminal-source-covariance-adjoint-momentum-balance-attempt" ||
+    artifact
+      ?.terminal_source_covariance_lambda_t_coordinate_projection_attempt_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SOURCE_COVARIANCE_LAMBDA_T_COORDINATE_PROJECTION_ATTEMPT_CANDIDATE_SCHEMA ||
+    artifact
+      ?.terminal_source_covariance_lambda_provider_object_replay_audit_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SOURCE_COVARIANCE_LAMBDA_PROVIDER_OBJECT_REPLAY_AUDIT_CANDIDATE_SCHEMA ||
+    artifact?.proof_status !==
+      "candidate-terminal-source-covariance-adjoint-momentum-balance-open" ||
+    artifact?.adjoint_momentum_balance_kind !==
+      "same-domain-terminal-branch-split-adjoint-momentum-balance-target" ||
+    artifact?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    !sameTerminalHIndexes(artifact?.terminal_h_indexes) ||
+    !sameSuccessorWeights(artifact?.terminal_successor_scalar_identity_weights) ||
+    !sameCenteredWeights(
+      artifact?.centered_terminal_successor_scalar_identity_weights
+    ) ||
+    !sameTerms(artifact?.source_terms_preserved_signed_together) ||
+    artifact?.branch_split_identity_family !==
+      "(r_minus,r_plus)=(R/2+t,R/2-t)" ||
+    artifact?.generic_adjoint_momentum_balance_formula !==
+      "w_-*r_-+w_+*r_+=M" ||
+    artifact?.generic_t_solution_formula !==
+      "t=(M-R*(w_-+w_+)/2)/(w_- - w_+)" ||
+    artifact?.generic_t_solution_denominator_formula !== "w_- - w_+" ||
+    artifact?.candidate_unit_antisymmetric_momentum_balance_formula !==
+      "r_- - r_+=0" ||
+    artifact?.candidate_unit_antisymmetric_momentum_residual_formula !==
+      "r_- - r_+=2t" ||
+    !sameStringSet(
+      artifact?.terminal_source_covariance_adjoint_momentum_balance_attempt_check_kinds,
+      expectedCheckKinds
+    )
+  ) {
+    errors.push("terminal source-covariance adjoint momentum metadata must identify the branch-split balance target");
+  }
+  if (
+    expectedCheckKinds.some(
+      (kind) =>
+        artifact?.terminal_source_covariance_adjoint_momentum_balance_attempt_checks?.[
+          kind
+        ] !== true
+    ) ||
+    artifact
+      ?.terminal_source_covariance_adjoint_momentum_balance_attempt_verified !==
+      true ||
+    artifact
+      ?.terminal_source_covariance_adjoint_momentum_balance_attempt_certified !==
+      false ||
+    artifact
+      ?.terminal_source_covariance_adjoint_momentum_balance_attempt_row_count !==
+      5 ||
+    artifact
+      ?.terminal_source_covariance_adjoint_momentum_balance_attempt_terminal_row_count !==
+      15 ||
+    artifact
+      ?.terminal_source_covariance_adjoint_momentum_balance_attempt_branch_row_count !==
+      30 ||
+    artifact
+      ?.candidate_unit_antisymmetric_momentum_residual_available_terminal_row_count !==
+      15 ||
+    artifact
+      ?.candidate_unit_antisymmetric_momentum_residual_contains_zero_terminal_row_count <
+      0 ||
+    artifact
+      ?.candidate_unit_antisymmetric_momentum_residual_contains_zero_terminal_row_count >
+      15 ||
+    artifact?.candidate_unit_antisymmetric_momentum_law_refuted_terminal_row_count <
+      0 ||
+    artifact?.candidate_unit_antisymmetric_momentum_law_refuted_terminal_row_count >
+      15 ||
+    artifact
+      ?.master_equation_adjoint_momentum_weight_pair_available_terminal_row_count !==
+      0 ||
+    artifact
+      ?.master_equation_adjoint_momentum_rhs_available_terminal_row_count !==
+      0 ||
+    artifact
+      ?.t_coordinate_determined_by_adjoint_momentum_balance_terminal_row_count !==
+      0 ||
+    artifact?.all_candidate_unit_antisymmetric_momentum_residuals_available !==
+      true ||
+    typeof artifact
+      ?.all_candidate_unit_antisymmetric_momentum_residuals_contain_zero !==
+      "boolean" ||
+    typeof artifact
+      ?.any_candidate_unit_antisymmetric_momentum_law_refuted_by_lambda_witness !==
+      "boolean" ||
+    artifact?.master_equation_adjoint_momentum_weight_source_available !==
+      false ||
+    artifact?.master_equation_adjoint_momentum_rhs_available !== false ||
+    artifact
+      ?.master_equation_adjoint_momentum_denominator_separated_from_zero !==
+      false ||
+    artifact?.t_coordinate_determined_by_adjoint_momentum_balance !== false ||
+    artifact?.master_equation_adjoint_momentum_balance_certified !== false ||
+    artifact?.candidate_unit_antisymmetric_momentum_law_certified !== false ||
+    artifact?.branch_antisymmetric_coordinate_identity_certified !== false ||
+    artifact
+      ?.terminal_source_covariance_lambda_provider_object_replay_certified !==
+      false ||
+    artifact?.branch_resolved_centered_residual_source_object_certified !==
+      false ||
+    artifact?.expression_level_n38_provider_certified !== false ||
+    ![
+      "source-covariance-unit-antisymmetric-momentum-law-refuted-adjoint-weight-derivation-needed",
+      "source-covariance-unit-antisymmetric-momentum-law-not-refuted-adjoint-weight-derivation-needed",
+      "source-covariance-adjoint-momentum-weight-derivation-needed",
+      "terminal-source-covariance-adjoint-momentum-balance-attempt-open",
+    ].includes(
+      artifact
+        ?.terminal_source_covariance_adjoint_momentum_balance_attempt_classification
+    ) ||
+    artifact
+      ?.terminal_source_covariance_adjoint_momentum_balance_attempt_blocker_classification !==
+      "same-domain-master-equation-adjoint-branch-weight-identity-needed" ||
+    artifact
+      ?.terminal_source_covariance_adjoint_momentum_balance_attempt_primary_missing_object_kind !==
+      "master-equation-adjoint-branch-weight-pair-and-moment" ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("terminal source-covariance adjoint momentum aggregate must keep the adjoint weight proof open");
+  }
+  const rows =
+    artifact?.terminal_source_covariance_adjoint_momentum_balance_attempt_rows ??
+    [];
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== 5 ||
+    !rows.every((row, index) => {
+      const terminalRows =
+        row?.terminal_source_covariance_adjoint_momentum_balance_attempt_rows ??
+        [];
+      return (
+        row?.node_index === index &&
+        row?.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+        row?.required_xi_derivative_order === 4 &&
+        row
+          ?.terminal_source_covariance_adjoint_momentum_balance_attempt_row_kind ===
+          "terminal-source-covariance-adjoint-momentum-balance-attempt-row" &&
+        sameTerminalHIndexes(row?.terminal_h_indexes) &&
+        sameSuccessorWeights(row?.terminal_successor_scalar_identity_weights) &&
+        sameCenteredWeights(
+          row?.centered_terminal_successor_scalar_identity_weights
+        ) &&
+        sameTerms(row?.source_terms_preserved_signed_together) &&
+        Array.isArray(terminalRows) &&
+        terminalRows.length === 3 &&
+        terminalRows.every((terminalRow, terminalIndex) => {
+          const spec =
+            H39_TERMINAL_SUCCESSOR_COEFFICIENT_IDENTITY_IMPORT_SPECS[
+              terminalIndex
+            ];
+          const branchRows =
+            terminalRow?.adjoint_momentum_balance_branch_rows ?? [];
+          return (
+            terminalRow?.terminal_h_index === spec.terminal_h_index &&
+            terminalRow?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+            terminalRow?.terminal_graph_cell_id ===
+              `speed.${index}.first-y` &&
+            terminalRow?.successor_scalar_identity_weight ===
+              spec.successor_scalar_identity_weight &&
+            terminalRow?.centered_successor_scalar_weight ===
+              spec.centered_successor_scalar_weight &&
+            finiteNumber(
+              terminalRow?.measured_successor_scalar_centered_projected_residual
+            ) &&
+            finiteOrderedInterval(
+              terminalRow?.aggregate_centered_residual_interval
+            ) &&
+            terminalRow?.source_covariance_lambda_only_projection_formula ===
+              "r_b=lambda_source*s_b" &&
+            terminalRow?.source_covariance_lambda_branch_sum_identity_formula ===
+              "lambda_source*(s_-+s_+)-R=0" &&
+            terminalRow?.branch_split_identity_family ===
+              "(r_minus,r_plus)=(R/2+t,R/2-t)" &&
+            terminalRow?.generic_adjoint_momentum_balance_formula ===
+              "w_-*r_-+w_+*r_+=M" &&
+            terminalRow?.generic_t_solution_formula ===
+              "t=(M-R*(w_-+w_+)/2)/(w_- - w_+)" &&
+            terminalRow?.generic_t_solution_denominator_formula ===
+              "w_- - w_+" &&
+            terminalRow?.candidate_unit_antisymmetric_momentum_balance_formula ===
+              "r_- - r_+=0" &&
+            terminalRow?.candidate_unit_antisymmetric_momentum_residual_formula ===
+              "r_- - r_+=2t" &&
+            Array.isArray(branchRows) &&
+            branchRows.length === 2 &&
+            branchRows.every(
+              (branchRow) =>
+                ["-", "+"].includes(branchRow?.branch) &&
+                finiteOrderedInterval(
+                  branchRow
+                    ?.source_covariance_lambda_only_branch_residual_candidate_interval
+                ) &&
+                branchRow
+                  ?.source_covariance_lambda_only_branch_residual_candidate_available ===
+                  true &&
+                (branchRow?.branch === "-"
+                  ? branchRow?.candidate_unit_antisymmetric_momentum_weight === 1
+                  : branchRow?.candidate_unit_antisymmetric_momentum_weight ===
+                    -1) &&
+                finiteOrderedInterval(
+                  branchRow
+                    ?.candidate_unit_antisymmetric_weighted_residual_interval
+                ) &&
+                branchRow?.master_equation_adjoint_momentum_weight_interval ===
+                  null &&
+                branchRow
+                  ?.master_equation_adjoint_momentum_weight_source_available ===
+                  false &&
+                branchRow
+                  ?.master_equation_adjoint_momentum_weight_derived_from_master_equation ===
+                  false &&
+                typeof branchRow?.source_map_provider_object_interval_available ===
+                  "boolean" &&
+                typeof branchRow
+                  ?.lambda_terminal_witness_interval_overlaps_source_map_provider_object_interval ===
+                  "boolean" &&
+                typeof branchRow
+                  ?.lambda_terminal_witness_interval_subset_of_source_map_provider_object_interval ===
+                  "boolean" &&
+                branchRow
+                  ?.branch_resolved_centered_residual_source_object_certified ===
+                  false &&
+                branchRow
+                  ?.row_certifies_master_equation_adjoint_momentum_weight ===
+                  false &&
+                branchRow
+                  ?.row_certifies_branch_resolved_centered_residual_component ===
+                  false &&
+                validClaimBoundary(branchRow?.claim_boundary)
+            ) &&
+            finiteOrderedInterval(
+              terminalRow
+                ?.source_covariance_lambda_only_branch_sum_interval
+            ) &&
+            finiteOrderedInterval(
+              terminalRow
+                ?.source_covariance_lambda_only_branch_difference_interval
+            ) &&
+            finiteOrderedInterval(
+              terminalRow
+                ?.source_covariance_lambda_only_t_coordinate_candidate_interval
+            ) &&
+            finiteOrderedInterval(
+              terminalRow?.candidate_unit_antisymmetric_momentum_residual_interval
+            ) &&
+            finiteNumber(
+              terminalRow
+                ?.candidate_unit_antisymmetric_momentum_residual_half_width
+            ) &&
+            typeof terminalRow
+              ?.candidate_unit_antisymmetric_momentum_residual_contains_zero ===
+              "boolean" &&
+            typeof terminalRow
+              ?.candidate_unit_antisymmetric_momentum_law_refuted_by_lambda_witness ===
+              "boolean" &&
+            finiteOrderedInterval(terminalRow?.two_t_coordinate_interval) &&
+            terminalRow
+              ?.master_equation_adjoint_momentum_weight_pair_available ===
+              false &&
+            terminalRow?.master_equation_adjoint_momentum_rhs_interval ===
+              null &&
+            terminalRow?.master_equation_adjoint_momentum_rhs_available ===
+              false &&
+            terminalRow?.adjoint_momentum_denominator_interval === null &&
+            terminalRow?.adjoint_momentum_denominator_separated_from_zero ===
+              false &&
+            terminalRow?.t_coordinate_determined_by_adjoint_momentum_balance ===
+              false &&
+            sameStringSet(
+              terminalRow
+                ?.terminal_source_covariance_adjoint_momentum_balance_attempt_check_kinds,
+              expectedTerminalCheckKinds
+            ) &&
+            expectedTerminalCheckKinds.every(
+              (kind) =>
+                terminalRow
+                  ?.terminal_source_covariance_adjoint_momentum_balance_attempt_checks?.[
+                  kind
+                ] === true
+            ) &&
+            terminalRow
+              ?.row_terminal_source_covariance_adjoint_momentum_balance_attempt_verified ===
+              true &&
+            terminalRow
+              ?.row_certifies_master_equation_adjoint_momentum_balance ===
+              false &&
+            terminalRow
+              ?.row_certifies_candidate_unit_antisymmetric_momentum_law ===
+              false &&
+            terminalRow
+              ?.row_certifies_branch_antisymmetric_coordinate_identity ===
+              false &&
+            terminalRow
+              ?.row_certifies_terminal_source_covariance_lambda_provider_object_replay ===
+              false &&
+            terminalRow
+              ?.row_certifies_branch_resolved_centered_residual_source_object ===
+              false &&
+            terminalRow?.row_certifies_expression_level_n38_provider ===
+              false &&
+            validClaimBoundary(terminalRow?.claim_boundary)
+          );
+        }) &&
+        row
+          ?.terminal_source_covariance_adjoint_momentum_balance_attempt_terminal_row_count ===
+          3 &&
+        row
+          ?.terminal_source_covariance_adjoint_momentum_balance_attempt_branch_row_count ===
+          6 &&
+        row
+          ?.candidate_unit_antisymmetric_momentum_residual_available_terminal_row_count ===
+          3 &&
+        row
+          ?.candidate_unit_antisymmetric_momentum_residual_contains_zero_terminal_row_count >=
+          0 &&
+        row
+          ?.candidate_unit_antisymmetric_momentum_residual_contains_zero_terminal_row_count <=
+          3 &&
+        row?.candidate_unit_antisymmetric_momentum_law_refuted_terminal_row_count >=
+          0 &&
+        row?.candidate_unit_antisymmetric_momentum_law_refuted_terminal_row_count <=
+          3 &&
+        row
+          ?.master_equation_adjoint_momentum_weight_pair_available_terminal_row_count ===
+          0 &&
+        row
+          ?.master_equation_adjoint_momentum_rhs_available_terminal_row_count ===
+          0 &&
+        row
+          ?.t_coordinate_determined_by_adjoint_momentum_balance_terminal_row_count ===
+          0 &&
+        sameStringSet(row?.row_check_kinds, expectedCheckKinds) &&
+        expectedCheckKinds.every((kind) => row?.row_checks?.[kind] === true) &&
+        row
+          ?.row_terminal_source_covariance_adjoint_momentum_balance_attempt_verified ===
+          true &&
+        row?.row_certifies_master_equation_adjoint_momentum_balance === false &&
+        row?.row_certifies_candidate_unit_antisymmetric_momentum_law ===
+          false &&
+        row?.row_certifies_branch_antisymmetric_coordinate_identity === false &&
+        row
+          ?.row_certifies_terminal_source_covariance_lambda_provider_object_replay ===
+          false &&
+        row?.row_certifies_branch_resolved_centered_residual_source_object ===
+          false &&
+        row?.row_certifies_expression_level_n38_provider === false &&
+        validClaimBoundary(row?.claim_boundary)
+      );
+    })
+  ) {
+    errors.push("terminal source-covariance adjoint momentum rows must record the generic balance and missing weights");
+  }
+  if (
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string" ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("terminal source-covariance adjoint momentum attempt must keep broad closure claims open");
   }
   return errors;
 }

@@ -264,7 +264,8 @@ export function createAnimatorControlsUiRuntime(deps) {
 
     if (animatorPathModeSelect) {
       animatorPathModeSelect.addEventListener("change", () => {
-        animatorPathState.interpolate = animatorPathModeSelect.value;
+        animatorPathState.interpolate =
+          animatorPathModeSelect.value === "linear" ? "linear" : "spline";
         persistAnimatorPathStateToSelectedAssembly();
         updateAnimatorPathGeometry();
         renderAnimatorJsonPreview();
