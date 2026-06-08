@@ -90,20 +90,73 @@ Nested proof subprograms live under [proof-programs](../proof-programs/proof-pro
 |   17 | Op queue      | [`chapter-authoring`](../chapter-authoring/chapter-authoring.md)                                                | Unified chapter authoring queue and source-material mining                                    |  4.0 |    1.10 |       -8 |     1.08 |   0.75 |  3.56 |    4 |         2 |    3 |     2 |  2.7 | 1.32 |
 |   18 | Workstream    | [`cosmology-closure`](../cosmology-closure/cosmology-closure.md)                                                | Cosmology transfer-function closure                                                           |  3.5 |    1.20 |      -63 |     1.63 |   0.80 |  5.48 |    6 |         7 |    7 |     8 |  7.0 | 0.78 |
 
-## Unranked Candidate And Archive References
+## Operator Burden Triage
 
-These are tracked for visibility, but they are not ranked active workstreams in the scoring table.
+This triage is not a replacement for the score table. It answers a separate
+operator/developer question: which active priorities are likely to become
+extended numerical, interval, simulation, or proof-certificate campaigns, and
+which can produce visible or conceptual progress without another opaque
+mathematical slog. It excludes the already-paused `proof-programs` lane and
+the EOM-facing `master-equation-closure` lane when naming "other" priorities.
+Unscored rows get an operator-triage rank here, prefixed `U`, without being
+promoted into the canonical scoring table.
 
-| Slug or packet | Location | Role | Current disposition |
-| --- | --- | --- | --- |
-| `dark-sector` | [dark-sector.md](../dark-sector/dark-sector.md) | Speculative dark-sector candidate assembly lane for release, transport, redshift, reaction, and visible-channel re-entry hypotheses. | Priority candidate under watchlist review; promote only packets with a boundary condition, event ledger, redshift/re-entry gate, or discriminating observable. |
-| `cross-theory-mapping` | [cross-theory-mapping.md](../cross-theory-mapping/cross-theory-mapping.md) | Priority-candidate lane for observational and experimental benchmark cases whose standard-theory mathematics can sharpen $\mathbb{A}\mathbb{A}\mathbb{A}$ closure work. | Keep unranked until one case supplies a concrete acceptance predicate, closure object, promotion target, and failure mode strong enough to enter a ranked workstream. |
-| `ellipsoid` | [ellipsoid.md](../ellipsoid/ellipsoid.md) | Residual routing surface for old ellipsoid notes plus the nested shell swarm prototype app idea. | Shape-plus-scale deformation is already owned by the corpus; retire this candidate after raw notes and app routing have destinations. |
-| `strong-field hypothesis bank` | [hypothesis-bank.md](../strong-field-closure/hypothesis-bank.md) | Strong-field and Noether swarm hypothesis watchlist. | Merged under `strong-field-closure`; not a ranked top-level workstream. |
-| `deferred` | [legacy-insights.md](../deferred/legacy-insights.md) | Archive and parking lot for non-current material. | Needs a deferred index later. |
-| `3x3` | [3x3.md](../deferred/3x3/3x3.md) | Deferred binary-slot matrix note. | Keep deferred unless a target $\mathbb{A}\mathbb{A}\mathbb{A}$ document is selected. |
-| `phenomenological-heuristics` | [phenomenological-heuristics.md](../dyadic-lock/phenomenological-heuristics.md) | Dyadic resonance lock archive source. | Keep as sibling archive unless a shared archive convention is adopted. |
-| `ideal-core` | [ideal-core.md](../ideal-core/ideal-core.md) | Nested shell swarm prototype app planning and implementation control surface. | Keep outside the theory score table unless app work becomes a validation or authoring dependency. |
+### Likely Numerical Or Proof-Slog Priorities
+
+| Priority rank | Slug or packet | Why this likely becomes a numerical or proof-slog effort |
+| ---: | --- | --- |
+| 2 | [`simulations`](../simulations/simulations.md) | Solver, convergence, regularization, shell numerics, event locks, and branch-chart reruns are the workstream itself. |
+| 4 | [`mass-map`](../mass-map/mass-map.md) | $A_0$ residuals, shielding extraction, exposure coefficients, and mass predictions require branch-chart revision, anti-overfit tests, and numeric or symbolic residual closure. |
+| 5 | [`swarm`](../swarm/swarm.md) | Retained-branch claims depend on causal-root ledgers, Jacobian floors, finite-mode searches, support bands, and live-ledger certificates. |
+| 5a | [`nested-shell-swarm-causal-closure`](../nested-shell-swarm-causal-closure/nested-shell-swarm-causal-closure.md) | This is EOM-adjacent retained-branch work: shell support, causal roots, phase closure, event ledgers, and Lorentz/residual packets. |
+| 6 | [`angular-momentum-spin`](../angular-momentum-spin/angular-momentum-spin.md) | The next useful work is population of branch angular-momentum ledgers, spinor/holonomy rows, photon Gate B substrate rows, apparatus models, and Bell residual gates. |
+| 9 | [`pressure-dependent-noether-sea-constitutive-response`](../mass-map/pressure-dependent-noether-sea-constitutive-response.md) | The packet needs branch-derived pressure response coefficients or disciplined empirical replay; otherwise it becomes local fitting. |
+| 10 | [`transfer-operator-basin-measure`](../quantum-closure/transfer-operator-basin-measure.md) | Even before implementation, operator and invariant-measure closure is high-intuition mathematical work. |
+| 12 | [`standard-model-closure`](../standard-model-closure/standard-model-closure.md) | Quark masses, CKM/PMNS overlap integrals, confinement energetics, weak-sector closure, and nuclear binding are benchmark-heavy derivations. |
+| 13 | [`dyadic-lock`](../dyadic-lock/dyadic-lock.md) | The reduced phase-amplitude map leads directly to fixed-point proofs, numerical demonstrations, and stability tests. |
+| 15 | [`strong-field-closure`](../strong-field-closure/strong-field-closure.md) | Horizon-interface boundary conditions, entropy packets, release channels, and discriminating observables are quantitative closure tasks. |
+| 16 | [`quantum-closure`](../quantum-closure/quantum-closure.md) | Born-rule, detector-response, pair-provenance, Bell, CHSH, and Tsirelson closure need hard tests and explicit state-space machinery. |
+| 18 | [`cosmology-closure`](../cosmology-closure/cosmology-closure.md) | Transfer-function closure against LambdaCDM-scale observables is inherently numerical and benchmark-heavy. |
+| U1 | [`geometry-bridge`](../geometry-bridge/geometry-bridge.md) | The active packets are root-sensitive response, branch-local linearization, bordered inverses, interval/certificate geometry, and response-object population. |
+
+### Lower-Slog Priorities, In Priority Order
+
+| Priority rank | Slug or packet | Why this can advance without another numerical/proof slog |
+| ---: | --- | --- |
+| 7 | [`exposure-quotient-theorem`](../mass-map/exposure-quotient-theorem.md) | Can advance as shared definitions, quotient grammar, theorem targets, and sector handoff rules before numerical coefficients exist. |
+| 8 | [`residual-routing-event-ledger`](../nested-shell-swarm-causal-closure/residual-routing-event-ledger.md) | Can clarify residual-to-channel accounting and event-ledger structure while waiting for concrete retained branches. |
+| 11 | [`validation-gates`](../validation-gates/validation-gates.md) | Can organize acceptance intersections, no-go routing, and failure modes; it only becomes computational when a local result claims promotion. |
+| 14 | [`animator`](../animator/animator.md) | Product/runtime/UI work can produce visible progress through authoring, timeline, canonical-structure, and visualization improvements. |
+| 17 | [`chapter-authoring`](../chapter-authoring/chapter-authoring.md) | Source mining and authoring can proceed as curated writing and organization. |
+| U2 | [`animator-merge`](../animator-merge/animator-merge.md) | Can advance as app architecture, dataset contract, playback bridge, and UI integration if solver extraction is deferred. |
+| U3 | [`ideal-core`](../ideal-core/ideal-core.md) | App-local lesson and visualization work can stay explanatory and inspection-oriented. |
+| U4 | [`cross-theory-mapping`](../cross-theory-mapping/cross-theory-mapping.md) | Can remain benchmark mapping, requirement classification, and acceptance-predicate drafting until one case is promoted. |
+| U5 | [`dark-sector`](../dark-sector/dark-sector.md) | Can remain a watchlist and hypothesis-routing registry until a release-channel or event-ledger packet becomes concrete. |
+| U6 | [`ellipsoid`](../ellipsoid/ellipsoid.md) | Can be retired or routed by documentation review because its shape-plus-scale material is already owned elsewhere. |
+| U7 | [`strong-field hypothesis bank`](../strong-field-closure/hypothesis-bank.md) | Can stay as a watchlist under `strong-field-closure`, separate from quantitative closure. |
+| U8 | [`deferred`](../deferred/legacy-insights.md) | Archive indexing and parking-lot cleanup are organizational. |
+| U9 | [`3x3`](../deferred/3x3/3x3.md) | Deferred binary-slot matrix notes can remain parked unless a target corpus destination is chosen. |
+| U10 | [`phenomenological-heuristics`](../dyadic-lock/phenomenological-heuristics.md) | Archive/source material for dyadic lock can stay sibling reference material rather than an active reduced-map proof. |
+
+## Candidate And Archive References
+
+These are tracked for visibility, but they are not scored active workstreams in
+the main table. Operator-triage ranks below order the previously unranked
+items by practical attention value and slog risk, not by canonical `Value` or
+`ROI`.
+
+| Operator triage rank | Slug or packet | Location | Role | Current disposition |
+| ---: | --- | --- | --- | --- |
+| U1 | `geometry-bridge` | [geometry-bridge.md](../geometry-bridge/geometry-bridge.md) | Proposed active mathematics attack plan for branch-local response, root-sensitive linearization, geometry export, and ADM/Cartan projection. | Treat as high-value but likely proof/certificate heavy; do not start casually when the operator/developer wants a lower-slog lane. |
+| U2 | `animator-merge` | [animator-merge.md](../animator-merge/animator-merge.md) | Direction note for merging useful simulation playback and visual semantics into animator. | Advance through dataset contracts and app integration before solver extraction if the goal is visible progress. |
+| U3 | `ideal-core` | [ideal-core.md](../ideal-core/ideal-core.md) | Nested shell swarm prototype app planning and implementation control surface. | Keep outside the theory score table unless app work becomes a validation, authoring, or proof-inspection dependency. |
+| U4 | `cross-theory-mapping` | [cross-theory-mapping.md](../cross-theory-mapping/cross-theory-mapping.md) | Priority-candidate lane for observational and experimental benchmark cases whose standard-theory mathematics can sharpen $\mathbb{A}\mathbb{A}\mathbb{A}$ closure work. | Keep unscored until one case supplies a concrete acceptance predicate, closure object, promotion target, and failure mode strong enough to enter a ranked workstream. |
+| U5 | `dark-sector` | [dark-sector.md](../dark-sector/dark-sector.md) | Speculative dark-sector candidate assembly lane for release, transport, redshift, reaction, and visible-channel re-entry hypotheses. | Priority candidate under watchlist review; promote only packets with a boundary condition, event ledger, redshift/re-entry gate, or discriminating observable. |
+| U6 | `ellipsoid` | [ellipsoid.md](../ellipsoid/ellipsoid.md) | Residual routing surface for old ellipsoid notes plus the nested shell swarm prototype app idea. | Shape-plus-scale deformation is already owned by the corpus; retire this candidate after raw notes and app routing have destinations. |
+| U7 | `strong-field hypothesis bank` | [hypothesis-bank.md](../strong-field-closure/hypothesis-bank.md) | Strong-field and Noether swarm hypothesis watchlist. | Merged under `strong-field-closure`; not a ranked top-level workstream. |
+| U8 | `deferred` | [legacy-insights.md](../deferred/legacy-insights.md) | Archive and parking lot for non-current material. | Needs a deferred index later. |
+| U9 | `3x3` | [3x3.md](../deferred/3x3/3x3.md) | Deferred binary-slot matrix note. | Keep deferred unless a target $\mathbb{A}\mathbb{A}\mathbb{A}$ document is selected. |
+| U10 | `phenomenological-heuristics` | [phenomenological-heuristics.md](../dyadic-lock/phenomenological-heuristics.md) | Dyadic resonance lock archive source. | Keep as sibling archive unless a shared archive convention is adopted. |
 
 ## Current Focus
 

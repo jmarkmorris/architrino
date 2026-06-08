@@ -1,0 +1,538 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "animator",
+    "title": "animator simulation fixture",
+    "type": "Scene-Diagram",
+    "units": "relative",
+    "hideScaleLabels": true,
+    "wrapLabels": true,
+    "layout": {
+      "type": "rings"
+    },
+    "animator": {
+      "schemaVersion": "0.2.0",
+      "mode": "animator-bridge",
+      "document": {
+        "schemaVersion": "0.1.0",
+        "scene": {
+          "id": "animator_simulation_fixture",
+          "type": "Scene-Composed-Animation",
+          "kind": "simulation_fixture",
+          "name": "Animator Simulation Fixture",
+          "mode": "3d",
+          "time": {
+            "timeBase": "seconds",
+            "start": 0,
+            "end": 4,
+            "playbackRate": 1,
+            "loop": false
+          },
+          "view": {
+            "cameraSource": "manual"
+          },
+          "markers": [
+            {
+              "id": "fixture_start",
+              "t": 0,
+              "end": 1,
+              "kind": "diagnostic",
+              "label": "fixture start"
+            },
+            {
+              "id": "fixture_hit",
+              "t": 2,
+              "end": 3,
+              "kind": "diagnostic",
+              "label": "delayed hit sample"
+            }
+          ],
+          "publication": {
+            "status": "fixture"
+          }
+        },
+        "assemblies": [
+          {
+            "id": "solver_particle_e",
+            "label": "Solver Particle E",
+            "sceneRole": "solver_particle",
+            "transform": {
+              "position": [-2.4, -0.55, 0]
+            },
+            "metadata": {
+              "label": "Solver Particle E",
+              "motionSource": "solver-derived",
+              "simulationParticleId": "e0"
+            },
+            "members": [
+              {
+                "id": "e0",
+                "state": "electrino",
+                "position": [0, 0, 0]
+              }
+            ],
+            "motion": [
+              {
+                "type": "simulation.frame",
+                "particleId": "e0"
+              }
+            ]
+          },
+          {
+            "id": "solver_particle_p",
+            "label": "Solver Particle P",
+            "sceneRole": "solver_particle",
+            "transform": {
+              "position": [2.4, 0.55, 0]
+            },
+            "metadata": {
+              "label": "Solver Particle P",
+              "motionSource": "solver-derived",
+              "simulationParticleId": "p0"
+            },
+            "members": [
+              {
+                "id": "p0",
+                "state": "positrino",
+                "position": [0, 0, 0]
+              }
+            ],
+            "motion": [
+              {
+                "type": "simulation.frame",
+                "particleId": "p0"
+              }
+            ]
+          }
+        ],
+        "paths": [
+          {
+            "id": "solver_path_e0",
+            "kind": "simulation.sampled_path",
+            "frame": {
+              "space": "relative"
+            },
+            "style": {
+              "color": "#3478ff",
+              "opacity": 0.78
+            },
+            "metadata": {
+              "ownerAssemblyId": "solver_particle_e",
+              "motionSource": "solver-derived",
+              "simulationParticleId": "e0"
+            },
+            "payload": {
+              "points": [
+                [-2.4, -0.55, 0],
+                [-1.3, 0.35, 0],
+                [-0.18, 0.72, 0],
+                [1.25, 0.18, 0],
+                [2.25, -0.55, 0]
+              ],
+              "interpolate": "spline",
+              "closed": false
+            }
+          },
+          {
+            "id": "solver_path_p0",
+            "kind": "simulation.sampled_path",
+            "frame": {
+              "space": "relative"
+            },
+            "style": {
+              "color": "#ff4d64",
+              "opacity": 0.78
+            },
+            "metadata": {
+              "ownerAssemblyId": "solver_particle_p",
+              "motionSource": "solver-derived",
+              "simulationParticleId": "p0"
+            },
+            "payload": {
+              "points": [
+                [2.4, 0.55, 0],
+                [1.3, -0.35, 0],
+                [0.18, -0.72, 0],
+                [-1.25, -0.18, 0],
+                [-2.25, 0.55, 0]
+              ],
+              "interpolate": "spline",
+              "closed": false
+            }
+          }
+        ],
+        "historyTraces": [
+          {
+            "id": "solver_trace_e0",
+            "assemblyId": "solver_particle_e",
+            "pathId": "solver_path_e0",
+            "kind": "solver-derived",
+            "source": {
+              "type": "simulation.frames",
+              "particleId": "e0"
+            },
+            "style": {
+              "color": "#ffffff",
+              "opacity": 0.78,
+              "linePattern": "dotted",
+              "dashSize": 0.025,
+              "gapSize": 0.085
+            },
+            "window": {
+              "mode": "full"
+            },
+            "fade": {
+              "mode": "tail"
+            }
+          },
+          {
+            "id": "solver_trace_p0",
+            "assemblyId": "solver_particle_p",
+            "pathId": "solver_path_p0",
+            "kind": "solver-derived",
+            "source": {
+              "type": "simulation.frames",
+              "particleId": "p0"
+            },
+            "style": {
+              "color": "#ffffff",
+              "opacity": 0.78,
+              "linePattern": "dotted",
+              "dashSize": 0.025,
+              "gapSize": 0.085
+            },
+            "window": {
+              "mode": "full"
+            },
+            "fade": {
+              "mode": "tail"
+            }
+          }
+        ],
+        "envelopes": [
+          {
+            "id": "field_shell_e0_t0_display2",
+            "assemblyId": "solver_particle_e",
+            "geometry": {
+              "kind": "sphere",
+              "radius": 2.59
+            },
+            "style": {
+              "color": "#78a8ff",
+              "opacity": 0.1
+            },
+            "metadata": {
+              "simulationFieldShellId": "shell_e0_t0_display2"
+            }
+          },
+          {
+            "id": "field_shell_p0_t1_display3",
+            "assemblyId": "solver_particle_p",
+            "geometry": {
+              "kind": "sphere",
+              "radius": 0.54
+            },
+            "style": {
+              "color": "#ff8796",
+              "opacity": 0.1
+            },
+            "metadata": {
+              "simulationFieldShellId": "shell_p0_t1_display3"
+            }
+          }
+        ],
+        "transfers": [
+          {
+            "id": "delayed_hit_e0_to_p0",
+            "source": {
+              "assemblyId": "solver_particle_e",
+              "memberId": "e0"
+            },
+            "target": {
+              "assemblyId": "solver_particle_p",
+              "memberId": "p0"
+            },
+            "t": 2
+          }
+        ],
+        "metadata": {
+          "source": "animator-simulation-fixture",
+          "motionSource": "solver-derived",
+          "simulationDataset": {
+            "schemaVersion": "0.1.0",
+            "kind": "animator.simulation.dataset",
+            "id": "static_two_particle_delay_fixture",
+            "claimLevel": "fixture-only",
+            "provenance": {
+              "engine": {
+                "id": "static-fixture",
+                "version": "0.1.0",
+                "source": "manual-step-1-fixture"
+              },
+              "sourceReferences": [
+                "src/apps/sim2/orbits.py",
+                "scripts/simulations/assembly-dynamics-toy.mjs"
+              ]
+            },
+            "simulation": {
+              "mode": "planar-2d",
+              "dimensions": 2,
+              "units": "relative",
+              "time": {
+                "start": 0,
+                "end": 4,
+                "dt": 1,
+                "sampleStride": 1
+              },
+              "solver": {
+                "id": "none-static-fixture",
+                "masterEquationOnly": false,
+                "notes": "Static fixture only; no solver was run."
+              },
+              "halt": {
+                "status": "not-run",
+                "reason": "static fixture"
+              }
+            },
+            "particles": [
+              {
+                "id": "e0",
+                "label": "Electrino fixture particle",
+                "polarity": -1,
+                "chargeType": "electrino",
+                "initial": {
+                  "position": [-2.4, -0.55, 0],
+                  "velocity": [1.1, 0.9, 0]
+                },
+                "style": {
+                  "color": "#3478ff"
+                }
+              },
+              {
+                "id": "p0",
+                "label": "Positrino fixture particle",
+                "polarity": 1,
+                "chargeType": "positrino",
+                "initial": {
+                  "position": [2.4, 0.55, 0],
+                  "velocity": [-1.1, -0.9, 0]
+                },
+                "style": {
+                  "color": "#ff4d64"
+                }
+              }
+            ],
+            "frames": [
+              {
+                "t": 0,
+                "particles": [
+                  {
+                    "id": "e0",
+                    "position": [-2.4, -0.55, 0],
+                    "velocity": [1.1, 0.9, 0],
+                    "phase": -2.916,
+                    "radialVelocity": 1.26,
+                    "angularVelocity": 0.3
+                  },
+                  {
+                    "id": "p0",
+                    "position": [2.4, 0.55, 0],
+                    "velocity": [-1.1, -0.9, 0],
+                    "phase": 0.226,
+                    "radialVelocity": -1.26,
+                    "angularVelocity": 0.3
+                  }
+                ],
+                "diagnostics": {
+                  "shellRadius": 2.462,
+                  "maxAcceleration": 0
+                }
+              },
+              {
+                "t": 1,
+                "particles": [
+                  {
+                    "id": "e0",
+                    "position": [-1.3, 0.35, 0],
+                    "velocity": [1.12, 0.37, 0],
+                    "phase": 2.879,
+                    "radialVelocity": 1.02,
+                    "angularVelocity": -0.62
+                  },
+                  {
+                    "id": "p0",
+                    "position": [1.3, -0.35, 0],
+                    "velocity": [-1.12, -0.37, 0],
+                    "phase": -0.263,
+                    "radialVelocity": -1.02,
+                    "angularVelocity": -0.62
+                  }
+                ],
+                "diagnostics": {
+                  "shellRadius": 1.346,
+                  "maxAcceleration": 0
+                }
+              },
+              {
+                "t": 2,
+                "particles": [
+                  {
+                    "id": "e0",
+                    "position": [-0.18, 0.72, 0],
+                    "velocity": [1.43, -0.54, 0],
+                    "phase": 1.816,
+                    "radialVelocity": -0.78,
+                    "angularVelocity": -2.38
+                  },
+                  {
+                    "id": "p0",
+                    "position": [0.18, -0.72, 0],
+                    "velocity": [-1.43, 0.54, 0],
+                    "phase": -1.326,
+                    "radialVelocity": 0.78,
+                    "angularVelocity": -2.38
+                  }
+                ],
+                "diagnostics": {
+                  "shellRadius": 0.742,
+                  "partnerHits": 1,
+                  "minimumSeparation": 1.484,
+                  "maxAcceleration": 0
+                }
+              },
+              {
+                "t": 3,
+                "particles": [
+                  {
+                    "id": "e0",
+                    "position": [1.25, 0.18, 0],
+                    "velocity": [1, -0.73, 0],
+                    "phase": 0.143,
+                    "radialVelocity": 0.89,
+                    "angularVelocity": -0.74
+                  },
+                  {
+                    "id": "p0",
+                    "position": [-1.25, -0.18, 0],
+                    "velocity": [-1, 0.73, 0],
+                    "phase": -2.999,
+                    "radialVelocity": -0.89,
+                    "angularVelocity": -0.74
+                  }
+                ],
+                "diagnostics": {
+                  "shellRadius": 1.263,
+                  "maxAcceleration": 0
+                }
+              },
+              {
+                "t": 4,
+                "particles": [
+                  {
+                    "id": "e0",
+                    "position": [2.25, -0.55, 0],
+                    "velocity": [1, -0.73, 0],
+                    "phase": -0.24,
+                    "radialVelocity": 1.14,
+                    "angularVelocity": -0.22
+                  },
+                  {
+                    "id": "p0",
+                    "position": [-2.25, 0.55, 0],
+                    "velocity": [-1, 0.73, 0],
+                    "phase": 2.902,
+                    "radialVelocity": -1.14,
+                    "angularVelocity": -0.22
+                  }
+                ],
+                "diagnostics": {
+                  "shellRadius": 2.316,
+                  "maxAcceleration": 0
+                }
+              }
+            ],
+            "fieldShells": [
+              {
+                "id": "shell_e0_t0_display2",
+                "emitterId": "e0",
+                "emissionTime": 0,
+                "displayTime": 2,
+                "emissionPosition": [-2.4, -0.55, 0],
+                "radius": 2.59,
+                "sign": -1,
+                "strength": 0.386,
+                "branchId": "fixture_branch_e0_0"
+              },
+              {
+                "id": "shell_p0_t1_display3",
+                "emitterId": "p0",
+                "emissionTime": 1,
+                "displayTime": 3,
+                "emissionPosition": [1.3, -0.35, 0],
+                "radius": 0.54,
+                "sign": 1,
+                "strength": 1.852,
+                "branchId": "fixture_branch_p0_1"
+              }
+            ],
+            "delayedHits": [
+              {
+                "id": "hit_e0_to_p0_t2",
+                "emitterId": "e0",
+                "receiverId": "p0",
+                "hitTime": 2,
+                "emissionTime": 0,
+                "emitterEmissionPosition": [-2.4, -0.55, 0],
+                "receiverPosition": [0.18, -0.72, 0],
+                "strength": 0.386,
+                "branchId": "fixture_branch_e0_0",
+                "jacobian": 1,
+                "status": "fixture"
+              }
+            ],
+            "diagnostics": {
+              "halt": {
+                "status": "not-run",
+                "reason": "static fixture"
+              },
+              "aggregateHitStats": {
+                "partnerHits": 1,
+                "selfHits": 0,
+                "unresolvedRoots": 0,
+                "maxRootsPerPair": 1
+              },
+              "conservedQuantities": {
+                "energyProxy": null,
+                "momentum": [0, 0, 0],
+                "angularMomentum": null
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "objects": [
+    {
+      "id": "animator_simulation_fixture_contract",
+      "label": "Dataset Contract",
+      "radius": 1.05,
+      "color": "#2f6b6f",
+      "labelTitle": "Dataset Contract"
+    },
+    {
+      "id": "animator_simulation_fixture_particles",
+      "label": "Fixture Particles",
+      "radius": 1.05,
+      "color": "#3a5f9f",
+      "labelTitle": "Fixture Particles"
+    },
+    {
+      "id": "animator_simulation_fixture_hits",
+      "label": "Delayed Hit Sample",
+      "radius": 1.05,
+      "color": "#5a1f2e",
+      "labelTitle": "Delayed Hit Sample"
+    }
+  ]
+}

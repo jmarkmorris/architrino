@@ -72,8 +72,8 @@ Each implementation step should follow the same loop:
 
 ## Implementation Roadmap
 
-1. **Dataset contract and fixture**: define the animator simulation dataset schema, including frames, particles, shells, delayed hits, diagnostics, halt status, and provenance. Add one static fixture that animator can load and display without running a solver.
-2. **Playback bridge**: add a dataset playback path in animator so sampled solver frames can drive particle positions, trails, timeline scrubbing, and diagnostics without touching authored-path behavior.
+1. **Complete: dataset contract and fixture**: define the animator simulation dataset schema, including frames, particles, shells, delayed hits, diagnostics, halt status, and provenance. Add one static fixture that animator can load and display without running a solver.
+2. **Current: playback bridge**: add a dataset playback path in animator so sampled solver frames can drive particle positions, trails, timeline scrubbing, and diagnostics without touching authored-path behavior.
 3. **Motion-source separation**: add explicit UI/state separation between solver-derived motion and authored motion, including visible provenance and mode labels.
 4. **2-D planar mode**: add an animator view mode for planar simulations, preserving solver-derived diagnostics while allowing a flat 2-D view for cases where the simulation target is planar.
 5. **Solver module extraction**: refactor the useful `scripts/simulations/` behavior behind a reusable module interface while preserving the existing command-line scripts and outputs.

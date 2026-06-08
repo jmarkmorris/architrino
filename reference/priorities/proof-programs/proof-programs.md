@@ -9,6 +9,30 @@
 - ROI: `5.57`
 - Status: `active`
 
+## Current Stopping Point
+
+As of 2026-06-07, the active fresh-v10 higher-fold null-coordinate preledger
+closure lane is stopped at the candidate-live higher-fold constants
+accepted-status rule-kernel payload proof-grade derivation schema
+external-input obligation packet:
+[report](./breather-proof/certificate/higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_rule_kernel_payload_proof_grade_derivation_schema_external_input_obligation_packet_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md),
+[JSON](./breather-proof/certificate/higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_rule_kernel_payload_proof_grade_derivation_schema_external_input_obligation_packet.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json),
+and
+[script](../../../scripts/proof-programs/fresh-v10-higher-fold-layer-same-packet-candidate-live-higher-fold-constants-accepted-interval-certified-status-rule-kernel-payload-proof-grade-derivation-schema-external-input-obligation-packet.mjs).
+
+The current pool has been scanned and does not contain a compatible proof-grade
+derivation schema. The handoff verifies 6 / 6 direct source-hash locks, retains
+the 271-file current-pool scan, records 37 / 37 accepted-status lane JSON files
+fail-closed, and declares 124 external proof-grade derivation schema obligation
+slots with 0 satisfied and 0 external schema inputs received.
+
+The live blocker is
+`source_packet_acceptance_rule_derivation_proof_object_rule_kernel_derivation_payload_proof_grade_derivation_schema_external_input_required`.
+No proof-rule, primitive-acceptance, source-packet acceptance, accepted-status,
+row-consumption, live-ledger, or branch-chart decision has been made. The lane
+cannot close mechanically from the current certificate pool; closure now needs
+an external compatible proof-grade derivation schema or derivation proof.
+
 ## Task Queue
 
 1. `breather_certificate` — Generate the finite collinear-breather certificate packet and close the conditional Schauder theorem only after the audit passes. Status: `next`. Depends on: none.

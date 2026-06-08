@@ -18,7 +18,8 @@ Current production status:
 - `again-makes-a-pattern`: 14 Electra/Poz source images generated; landscape pages, first-draft PDF, 4:5 derivatives, 9:16 derivatives, and review contact sheet exported; QA is pending operator review.
 - `what-changed`: 14 Electra/Poz source images generated; landscape pages, first-draft PDF, 4:5 derivatives, 9:16 derivatives, and review contact sheet exported; QA is pending operator review.
 - `the-message-that-traveled`: 15 Electra/Poz source images generated; landscape pages, first-draft PDF, 4:5 derivatives, 9:16 derivatives, and review contact sheet exported; QA is pending operator review.
-- Other books have no current production images after the Electra/Poz manuscript refresh. Add them back to `generation-manifest.json` only after their current image prompts are approved.
+- `patterns-that-hold`: 15 Electra/Poz source images generated; landscape pages, first-draft PDF, 4:5 derivatives, 9:16 derivatives, and review contact sheet exported; QA is pending operator review.
+- Books not listed above have no current production images after the Electra/Poz manuscript refresh. Add them back to `generation-manifest.json` only after their current image prompts are approved.
 
 Production target for the manuscript line:
 

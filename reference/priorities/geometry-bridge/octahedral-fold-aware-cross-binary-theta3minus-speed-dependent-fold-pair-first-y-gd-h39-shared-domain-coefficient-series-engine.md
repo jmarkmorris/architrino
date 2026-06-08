@@ -3587,6 +3587,28 @@ projection is the actual branch-resolved centered-residual source object, or a
 corrected scale identity if the recorded branch-sum containment fails on a
 terminal row.
 
+\texttt{buildH39RequestedY44TerminalSourceCovarianceLambdaProviderObjectReplayAuditCandidate}
+turns that lambda-only witness into an executable same-domain replay audit
+against the source-map provider-object rows. It consumes the source-covariance
+lambda $t$-coordinate projection, the direct branch-resolved
+centered-residual source-object projection, and the existing terminal-row
+provider-object replay carrier. On every node, terminal $h$ row, and branch,
+it compares the interval $r_b=\lambda_{\mathrm{source}}s_b$ with the
+source-map provider-object interval and records overlap, subset, endpoint-gap,
+and half-width-ratio data. On every terminal row it also records the residual
+interval $\lambda_{\mathrm{source}}(s_-+s_+)-R$, making the branch-sum
+obstruction an explicit zero-containment audit. Missing provider-object branch
+intervals are represented fail-closed as provider-object-open rows rather than
+as hidden assumptions. This remains priority-only and candidate-only; it
+certifies no source-covariance branch-sum identity, terminal source-covariance
+provider-object replay, terminal-row provider object, branch-resolved
+centered-residual source object, expression-level $N_{38}$ provider,
+$S_{37}$ division, shifted $R_{\varepsilon,43}$ closure, retained branch, or
+directed-rounded provider. If both zero-containment and provider branch fit
+pass, the next blocker is the same-domain actual-source theorem proving
+$r_b=\lambda_{\mathrm{source}}s_b$ is the actual branch-resolved
+centered-residual source object.
+
 \texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
 now also probes a shared terminal-residual coordinate for
 $h_{37},h_{36},h_{35}$. Instead of assigning independent residual hulls to the

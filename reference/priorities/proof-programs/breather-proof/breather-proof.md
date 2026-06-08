@@ -9,6 +9,36 @@
 - ROI: `2.50`
 - Status: `active-closure`
 
+## Current Stopping Point
+
+As of 2026-06-07, the fresh-v10 higher-fold null-coordinate preledger route is
+priority-only and fail-closed at the accepted-status rule-kernel payload
+proof-grade derivation schema external-input obligation packet:
+[report](./certificate/higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_rule_kernel_payload_proof_grade_derivation_schema_external_input_obligation_packet_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.md),
+[JSON](./certificate/higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_rule_kernel_payload_proof_grade_derivation_schema_external_input_obligation_packet.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json),
+and
+[script](../../../../scripts/proof-programs/fresh-v10-higher-fold-layer-same-packet-candidate-live-higher-fold-constants-accepted-interval-certified-status-rule-kernel-payload-proof-grade-derivation-schema-external-input-obligation-packet.mjs).
+
+The packet imports the schema current-pool absence classifier, schema target
+packet, payload construction attempt, contract-target satisfaction attempt,
+contract target packet, and kernel/binding split classifier. It keeps the
+current-pool scan stable at 271 certificate JSON files and 37 / 37
+accepted-status lane JSON files fail-closed, finds 0 compatible proof-grade
+derivation schema objects, and declares 124 external proof-grade derivation
+schema obligation slots with 0 / 124 satisfied and 0 / 124 external schema
+inputs received.
+
+The blocker is
+`source_packet_acceptance_rule_derivation_proof_object_rule_kernel_derivation_payload_proof_grade_derivation_schema_external_input_required`.
+All acceptance and ledger gates remain closed: 0 proof-grade derivation
+schemata, 0 rule-kernel derivation payloads, 0 derivation proofs, 0
+source-packet acceptance rules, 0 accepted source packets, 0 accepted
+interval-certified constants statuses, 0 row consumption, `preledger_pass=false`,
+`updates_live_ledger=false`, and no branch-chart authorization. The next
+closure-relevant input is an external compatible proof-grade derivation schema
+or derivation proof; another current-pool scan would only reproduce the same
+obstruction.
+
 ## Task Queue
 
 1. `candidate_cycle_packet` — Produce `certificate/phi_cyc.json` and `certificate/mesh.json` for one candidate center history, preferably using the fold-adapted fractional basis near field-speed separators or an interval-collocation replacement with the same residual targets. Status: `fresh-successor-artifacts-created`; the rejected cosine template is historical, and `scripts/proof-programs/fresh-fold-shear-candidate-packet.mjs` now emits the fresh phase-shifted fold-shear `phi_cyc`, shifted mesh, diagnostic pre-ledger input screen, and packet report under `fresh-same-packet-fold-shear-seed-v0`. Depends on: none.

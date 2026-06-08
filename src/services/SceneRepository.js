@@ -656,6 +656,13 @@ export class SceneRepository {
 
     const sceneName = this.resolveDisplayTitle(sceneMeta) ?? scenePath;
     const sceneId = sceneMeta.id ?? null;
+    const animatorDocument =
+      sceneMeta.animator &&
+      typeof sceneMeta.animator === "object" &&
+      sceneMeta.animator.document &&
+      typeof sceneMeta.animator.document === "object"
+        ? sceneMeta.animator.document
+        : null;
     const config = {
       layout: nodes.some((node) => node.orbit) ? "orbit" : "static",
       layoutType: rawLayoutType,
@@ -667,6 +674,7 @@ export class SceneRepository {
       links: Array.isArray(data.links) ? data.links : [],
       sceneName,
       sceneId,
+      animatorDocument,
       markdownPath: sceneMarkdown.markdownPath,
       markdownSection: sceneMarkdown.markdownSection,
       markdownColumns: sceneMarkdown.markdownColumns,

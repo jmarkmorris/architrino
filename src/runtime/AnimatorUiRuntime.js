@@ -17,11 +17,13 @@ export function createAnimatorUiRuntime(deps) {
     readAnimatorDraftState,
     buildAnimatorSceneDocument,
     buildAnimatorPreviewSceneData,
+    applyAnimatorSceneDocument,
     jumpToScene,
     setAnimatorStatus,
   } = deps;
 
   let animatorActivePanel = "tree";
+  let embeddedAnimatorDocumentLevelId = null;
 
   function setAnimatorPanel(panelId) {
     if (!animatorOverlay) {
@@ -68,8 +70,25 @@ export function createAnimatorUiRuntime(deps) {
       initAnimatorCanvas();
       deps.setAnimatorNeedsResize(true);
       setAnimatorPanel(animatorActivePanel);
-      renderAnimatorJsonPreview();
+      const embeddedAnimatorDocument =
+        currentLevel?.id && levelConfigs?.[currentLevel.id]?.animatorDocument
+          ? levelConfigs[currentLevel.id].animatorDocument
+          : null;
+      if (
+        embeddedAnimatorDocument &&
+        embeddedAnimatorDocumentLevelId !== currentLevel.id &&
+        typeof applyAnimatorSceneDocument === "function"
+      ) {
+        embeddedAnimatorDocumentLevelId = currentLevel.id;
+        applyAnimatorSceneDocument(embeddedAnimatorDocument, {
+          sourceScenePath: currentLevel.id,
+        });
+      } else if (!embeddedAnimatorDocument) {
+        embeddedAnimatorDocumentLevelId = null;
+        renderAnimatorJsonPreview();
+      }
     } else {
+      embeddedAnimatorDocumentLevelId = null;
       stopAnimatorCameraFlightPreview();
     }
   }

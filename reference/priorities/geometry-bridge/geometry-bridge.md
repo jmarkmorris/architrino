@@ -4037,6 +4037,30 @@ source-covariance lambda-only branch projection is the actual
 branch-resolved centered-residual source object, or else a corrected scale
 identity if the recorded branch-sum containment fails on a terminal row.
 
+`buildH39RequestedY44TerminalSourceCovarianceLambdaProviderObjectReplayAuditCandidate`
+turns that recorded lambda-only witness into an explicit same-domain replay
+audit against the source-map provider-object rows. It consumes the
+source-covariance lambda $t$-coordinate projection, the direct
+branch-resolved centered-residual source-object projection, and the existing
+terminal-row provider-object replay carrier. For each node, terminal $h$ row,
+and branch, it compares the lambda-only interval
+$r_b=\lambda_{\mathrm{source}}s_b$ with the source-map provider-object
+interval and records overlap, subset, endpoint-gap, and half-width-ratio data.
+For each terminal row it also records the residual interval
+$\lambda_{\mathrm{source}}(s_-+s_+)-R$, so the branch-sum obstruction is now
+an executable zero-containment audit rather than an implied count. Missing
+provider-object branch intervals are represented fail-closed as
+provider-object-open rows; they do not become certification failures or hidden
+assumptions. This packet remains priority-only and candidate-only: it
+certifies no source-covariance branch-sum identity, terminal source-covariance
+provider-object replay, terminal-row provider object, branch-resolved
+centered-residual source object, expression-level $N_{38}$ provider,
+$S_{37}$ division, shifted $R_{\varepsilon,43}$ closure, retained branch, or
+directed-rounded provider. If the residual zero-containment and provider
+branch fit both pass, the remaining blocker is the same-domain actual-source
+theorem proving that $r_b=\lambda_{\mathrm{source}}s_b$ is the actual
+branch-resolved centered-residual source object.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.

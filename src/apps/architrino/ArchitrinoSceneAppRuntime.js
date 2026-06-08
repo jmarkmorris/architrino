@@ -57,6 +57,7 @@ import { createAppShellUiRuntime } from "../../runtime/AppShellUiRuntime.js";
 import { createAppSceneChromeRuntime } from "../../runtime/AppSceneChromeRuntime.js";
 import { createSceneHudTooltipRuntime } from "../../runtime/SceneHudTooltipRuntime.js";
 import { wireAnimatorCanvasUiListeners } from "../../runtime/AnimatorCanvasUiRuntime.js";
+import { normalizeAnimatorSceneDocument } from "../../runtime/Animator2SceneDocumentRuntime.js";
 import {
   computeAnimatorViewportAutoscaleCameraState,
   getAnimatorActiveCameraShot,
@@ -162,6 +163,14 @@ import { createAnimatorDocumentWorkspaceRuntime } from "../animator/AnimatorDocu
 import { createAnimatorViewportDisplayRuntime } from "../animator/AnimatorViewportDisplayRuntime.js";
 import { createAnimatorViewportOverlayPillRuntime } from "../animator/AnimatorViewportOverlayPillRuntime.js";
 import { createAnimatorViewportRenderRuntime } from "../animator/AnimatorViewportRenderRuntime.js";
+import {
+  getAnimatorSimulationDataset,
+  getAnimatorSimulationFrameMotion,
+  getAnimatorSimulationParticleId,
+  getAnimatorSimulationTimeForMotion,
+  sampleAnimatorSimulationParticleAtTime,
+  sampleAnimatorSimulationParticleTrail,
+} from "../animator/AnimatorSimulationPlaybackRuntime.js";
 
 const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
@@ -935,6 +944,11 @@ function readNumberInput(input, fallback = 0) {
   }
   const value = Number(input.value);
   return Number.isFinite(value) ? value : fallback;
+}
+
+function normalizePositiveNumber(value, fallback) {
+  const normalized = Number(value);
+  return Number.isFinite(normalized) && normalized > 0 ? normalized : fallback;
 }
 
 function vectorFromTriplet(source) {
@@ -2620,6 +2634,7 @@ function updateAnimatorAnimatedViewport(timeSeconds) {
   const assemblies = Array.isArray(animatorCurrentDocument.assemblies)
     ? animatorCurrentDocument.assemblies
     : [];
+  const simulationDataset = getAnimatorSimulationDataset(animatorCurrentDocument);
   const totalMotionDuration = getAnimatorTotalMotionDuration(animatorCurrentDocument);
   const normalizedSceneT =
     animatorEditorPreviewState.renderMotionProgressOverride != null &&
@@ -2647,9 +2662,21 @@ function updateAnimatorAnimatedViewport(timeSeconds) {
       : assembly.motion
         ? [assembly.motion]
         : [];
+    const simulationFrameMotion = getAnimatorSimulationFrameMotion(assembly);
     const transportMotion = motions.find((motion) => motion?.type === "path.transport");
     let center = computeAnimatorAssemblyBasePosition(assembly, index, assemblies.length, pathById);
-    if (transportMotion?.pathId && pathById.has(transportMotion.pathId)) {
+    const simulationParticleId = getAnimatorSimulationParticleId(simulationFrameMotion, assembly);
+    if (simulationDataset && simulationFrameMotion && simulationParticleId) {
+      const simulationTime = getAnimatorSimulationTimeForMotion(motionTime, simulationFrameMotion);
+      const simulationSample = sampleAnimatorSimulationParticleAtTime(
+        simulationDataset,
+        simulationParticleId,
+        simulationTime
+      );
+      if (simulationSample?.position) {
+        center = vectorFromTriplet(simulationSample.position);
+      }
+    } else if (transportMotion?.pathId && pathById.has(transportMotion.pathId)) {
       const path = pathById.get(transportMotion.pathId);
       const points = Array.isArray(path?.payload?.points) ? path.payload.points : [];
       if (points.length) {
@@ -2721,9 +2748,39 @@ function updateAnimatorAnimatedViewport(timeSeconds) {
   });
 
   animatorHistoryTraceLines.forEach((line) => {
+    const showHistoryTraces = isAnimatorViewportDisplayFlagEnabled("showHistoryTraces");
     const historyTrace = line.userData.historyTrace;
     const path = historyTrace?.pathId ? pathById.get(historyTrace.pathId) : null;
     const assemblyId = historyTrace?.assemblyId ?? null;
+    const assembly = assemblyId ? assemblyById.get(assemblyId) : null;
+    const simulationParticleId = getAnimatorSimulationParticleId(historyTrace, assembly);
+    const usesSimulationFrames =
+      simulationDataset &&
+      simulationParticleId &&
+      (historyTrace?.source?.type === "simulation.frames" ||
+        historyTrace?.kind === "solver-derived" ||
+        !path);
+    if (usesSimulationFrames) {
+      const traceSimulationTime = getAnimatorSimulationTimeForMotion(
+        motionTime,
+        historyTrace?.source ?? historyTrace
+      );
+      const tracePoints = sampleAnimatorSimulationParticleTrail(
+        simulationDataset,
+        simulationParticleId,
+        traceSimulationTime
+      ).map((sample) => vectorFromTriplet(sample.position));
+      if (tracePoints.length < 2) {
+        line.visible = false;
+        return;
+      }
+      line.geometry.setFromPoints(tracePoints);
+      if (line.userData.usesLineDistances) {
+        line.computeLineDistances();
+      }
+      line.visible = showHistoryTraces;
+      return;
+    }
     const assemblyCenter = assemblyId ? assemblyCenters.get(assemblyId) : null;
     const points = Array.isArray(path?.payload?.points) ? path.payload.points : [];
     if (!assemblyCenter || !points.length) {
@@ -2756,8 +2813,11 @@ function updateAnimatorAnimatedViewport(timeSeconds) {
       line.visible = false;
       return;
     }
-    line.visible = true;
     line.geometry.setFromPoints(visiblePoints);
+    if (line.userData.usesLineDistances) {
+      line.computeLineDistances();
+    }
+    line.visible = showHistoryTraces;
   });
 
   animatorOrbitParticleMeshes.forEach((mesh) => {
@@ -2998,15 +3058,26 @@ function addAnimatorHistoryTrace(historyTrace) {
   if (!animatorViewportGroup) {
     return;
   }
-  const line = new THREE.Line(
-    new THREE.BufferGeometry(),
-    new THREE.LineBasicMaterial({
-      color: historyTrace?.style?.color ?? 0x8bdcff,
-      transparent: true,
-      opacity: historyTrace?.style?.opacity ?? 0.42,
-    })
-  );
+  const style = historyTrace?.style ?? {};
+  const linePattern = `${style.linePattern ?? style.pattern ?? "solid"}`.toLowerCase();
+  const isDotted = linePattern === "dotted";
+  const isDashed = isDotted || linePattern === "dashed";
+  const material = isDashed
+    ? new THREE.LineDashedMaterial({
+        color: style.color ?? 0x8bdcff,
+        transparent: true,
+        opacity: style.opacity ?? 0.42,
+        dashSize: normalizePositiveNumber(style.dashSize, isDotted ? 0.025 : 0.14),
+        gapSize: normalizePositiveNumber(style.gapSize, isDotted ? 0.085 : 0.08),
+      })
+    : new THREE.LineBasicMaterial({
+        color: style.color ?? 0x8bdcff,
+        transparent: true,
+        opacity: style.opacity ?? 0.42,
+      });
+  const line = new THREE.Line(new THREE.BufferGeometry(), material);
   line.userData.historyTrace = historyTrace;
+  line.userData.usesLineDistances = isDashed;
   animatorViewportGroup.add(line);
   animatorHistoryTraceLines.push(line);
 }
@@ -6474,6 +6545,17 @@ const animatorAppRuntime = createAnimatorAppRuntime({
     readAnimatorDraftState,
     buildAnimatorSceneDocument: buildAnimatorDocumentData,
     buildAnimatorPreviewSceneData: buildAnimatorPreviewData,
+    applyAnimatorSceneDocument: (documentData, options = {}) => {
+      const normalizedDocument = normalizeAnimatorSceneDocument(documentData);
+      updateAnimatorViewportFromDocument(normalizedDocument);
+      if (animatorJsonPreview) {
+        animatorJsonPreview.textContent = JSON.stringify(normalizedDocument, null, 2);
+      }
+      const sceneName =
+        normalizedDocument?.scene?.name ?? normalizedDocument?.scene?.id ?? "simulation fixture";
+      const sourceScenePath = options?.sourceScenePath ? ` from ${options.sourceScenePath}` : "";
+      setAnimatorStatus(`Loaded ${sceneName}${sourceScenePath}.`);
+    },
     jumpToScene,
     setAnimatorStatus,
     setAnimatorNeedsResize: (value) => {

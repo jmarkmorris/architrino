@@ -1,3 +1,5 @@
+import { normalizeAnimatorSimulationDataset } from "../apps/animator/AnimatorSimulationDatasetRuntime.js";
+
 function roundNumber(value) {
   return Number(Number(value ?? 0).toFixed(3));
 }
@@ -697,6 +699,14 @@ function normalizeAssemblies(rawAssemblies, ownerPathIds = new Map(), primaryPat
 export function normalizeAnimatorSceneDocument(rawDocument = {}) {
   const rawScene = rawDocument.scene ?? {};
   const rawControls = rawScene.controls ?? {};
+  const rawMetadata =
+    rawDocument.metadata && typeof rawDocument.metadata === "object"
+      ? rawDocument.metadata
+      : {};
+  const rawSimulationDataset =
+    rawMetadata.simulationDataset && typeof rawMetadata.simulationDataset === "object"
+      ? rawMetadata.simulationDataset
+      : null;
   const normalizedPaths = normalizeAnimatorPaths(
     rawDocument.paths?.length
       ? rawDocument.paths
@@ -794,7 +804,10 @@ export function normalizeAnimatorSceneDocument(rawDocument = {}) {
     checkpoints: Array.isArray(rawDocument.checkpoints) ? rawDocument.checkpoints : [],
     metadata: {
       source: "animator",
-      ...(rawDocument.metadata ?? {}),
+      ...rawMetadata,
+      ...(rawSimulationDataset
+        ? { simulationDataset: normalizeAnimatorSimulationDataset(rawSimulationDataset) }
+        : {}),
     },
   };
 }

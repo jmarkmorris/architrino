@@ -86,6 +86,30 @@ BOOKS = [
             ),
         ],
     },
+    {
+        "slug": "patterns-that-hold",
+        "title": "Patterns That Hold",
+        "book_number": 8,
+        "age_band": "7-8",
+        "story_spreads": 12,
+        "cover_count": 1,
+        "back_matter_count": 2,
+        "back_matter_story_text": "Move.\nFit.\nHold.",
+        "back_matter_activities": [
+            (
+                "Electra and Poz sit beside a white bead table while a small grown-up hand gives "
+                "one bead a gentle push. Three beads on soft purple strings show older/fainter "
+                "and newer/fresher arc traces returning to a simple repeated relation. Keep the "
+                "grown-up hand small and secondary"
+            ),
+            (
+                "Electra and Poz watch while a small grown-up hand moves one bead farther from a "
+                "three-bead setup. Keep the other beads in place, show the old repeated arcs "
+                "faintly, and show the newer motion trace failing to fit until the spacing is "
+                "restored nearby"
+            ),
+        ],
+    },
 ]
 
 PALETTE_RULE = (
