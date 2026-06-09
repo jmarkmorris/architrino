@@ -33,6 +33,7 @@ test("animator simulation worker core returns a transferable frame buffer", () =
   assert.equal(message.requestId, "worker_core_test");
   assert.equal(message.dataset.id, "worker_core_dataset");
   assert.equal(message.dataset.frames.length, 0);
+  assert.ok(message.dataset.delayedHits.length > 0);
   assert.equal(message.frameBuffer.frameCount, 3);
   assert.equal(message.frameBuffer.positions instanceof Float64Array, true);
   assert.equal(message.stats.completed, true);
@@ -42,6 +43,7 @@ test("animator simulation worker core returns a transferable frame buffer", () =
   );
   assert.equal(hydrated.frames.length, 3);
   assert.deepEqual(hydrated.frames[0].particles[0].position, [1, 0, 0]);
+  assert.equal(hydrated.delayedHits[0].status, "causal-root");
   assert.equal(hydrated.diagnostics.aggregateHitStats.total_partner_hits, 16);
 });
 

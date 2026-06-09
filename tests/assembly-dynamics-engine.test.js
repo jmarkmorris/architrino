@@ -63,5 +63,8 @@ test("assembly dynamics engine module emits animator simulation datasets", () =>
   assert.deepEqual(dataset.frames[0].particles[0].position, [1, 0, 0]);
   assert.equal(dataset.frames[2].diagnostics.partnerHits, 2);
   assert.equal(dataset.fieldShells.length, 0);
+  assert.ok(dataset.delayedHits.length > 0);
+  assert.equal(dataset.delayedHits[0].status, "causal-root");
+  assert.ok(Number.isFinite(dataset.delayedHits[0].jacobian));
   assert.equal(dataset.diagnostics.aggregateHitStats.total_partner_hits, 16);
 });

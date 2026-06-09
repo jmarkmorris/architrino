@@ -77,6 +77,7 @@ export function getAnimatorDomElements(documentLike = globalThis.document) {
     animatorPlayheadScrubInput: getElementById(documentLike, "animator-playhead-scrub"),
     animatorStatus: getElementById(documentLike, "animator-status"),
     animatorJsonPreview: getElementById(documentLike, "animator-json-preview"),
+    animatorDelayedHitTable: getElementById(documentLike, "animator-delayed-hit-table"),
     animatorCanvas,
     animatorCanvasWrap: animatorCanvas?.parentElement ?? null,
     animatorViewportOverlays: getElementById(documentLike, "animator-viewport-overlays"),

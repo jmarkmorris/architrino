@@ -181,6 +181,12 @@ import {
   getAnimatorFieldShellRenderState,
 } from "../animator/AnimatorFieldShellRuntime.js";
 import {
+  createAnimatorDelayedHitsFromPathSamples,
+  createAnimatorDelayedHitTableRows,
+  getAnimatorDelayedHitDiagnosticLabel,
+  getAnimatorDelayedHitRenderState,
+} from "../animator/AnimatorDelayedHitRuntime.js";
+import {
   getAnimatorSimulationDataset,
   getAnimatorSimulationFrameMotion,
   getAnimatorSimulationParticleId,
@@ -274,6 +280,7 @@ const {
   animatorPlayheadScrubInput,
   animatorStatus,
   animatorJsonPreview,
+  animatorDelayedHitTable,
   animatorCanvas,
   animatorCanvasWrap,
   animatorViewportOverlays,
@@ -1432,6 +1439,17 @@ function applyAnimatorViewportDisplayState() {
       mesh?.userData?.visibleByMotionState !== false &&
       isAnimatorThreeObjectMotionSourceVisible(mesh);
   });
+  if (animatorPathHistoryLineSegments) {
+    animatorPathHistoryLineSegments.visible =
+      showHistoryTraces &&
+      animatorPathHistoryLineSegments?.userData?.visibleByMotionState !== false &&
+      isAnimatorThreeObjectMotionSourceVisible(animatorPathHistoryLineSegments);
+  }
+  animatorDelayedHitGroups.forEach((group) => {
+    group.visible =
+      group?.userData?.visibleByMotionState !== false &&
+      isAnimatorThreeObjectMotionSourceVisible(group);
+  });
   animatorCameraWaypointMeshes.forEach((mesh) => {
     const labelSprite = mesh.userData?.labelSprite;
     if (labelSprite) {
@@ -2238,9 +2256,10 @@ function resolveAnimatorAssemblyCenterAtMotionTime(
   return center;
 }
 
-function createAnimatorArchitrinoPotentialFieldShells(
+function createAnimatorArchitrinoPathSamples(
   documentData = animatorCurrentDocument,
-  simulationDataset = null
+  simulationDataset = null,
+  sampleTimes = []
 ) {
   if (!simulationDataset) {
     return [];
@@ -2249,18 +2268,12 @@ function createAnimatorArchitrinoPotentialFieldShells(
   const paths = Array.isArray(documentData?.paths) ? documentData.paths : [];
   const pathById = new Map(paths.map((path) => [path.id, path]));
   const assemblyById = new Map(assemblies.map((assembly) => [assembly.id, assembly]));
-  const emissionTimes = getAnimatorFieldShellEmissionTimesForDocument(
-    documentData,
-    animatorArchitrinoFieldShellEmissionIntervalSeconds
-  );
-  const fieldSpeed = getAnimatorFieldShellSpeed(simulationDataset);
-  const lifetime = 1.6;
-  const shells = [];
+  const samples = [];
 
-  emissionTimes.forEach((emissionTime, sampleIndex) => {
+  sampleTimes.forEach((sampleTime, sampleIndex) => {
     const { motionTime, normalizedSceneT } = getAnimatorMotionSamplingState(
       documentData,
-      emissionTime
+      sampleTime
     );
     const context = {
       assemblies,
@@ -2294,39 +2307,128 @@ function createAnimatorArchitrinoPotentialFieldShells(
           if (!memberId) {
             return;
           }
-          const emissionCenter = assemblyCenter
+          const position = assemblyCenter
             .clone()
             .add(getAnimatorOrbitOffsetAtTime(binary.motion, chargeType, motionTime));
-          const emitterId = `${assembly.id}_${memberId}`;
-          shells.push({
-            id: `architrino_shell_${emitterId}_${sampleIndex}`,
-            emitterId,
-            emissionTime,
-            displayTime: emissionTime + lifetime,
-            emissionPosition: [emissionCenter.x, emissionCenter.y, emissionCenter.z],
-            radius: fieldSpeed * lifetime,
+          samples.push({
+            id: `${assembly.id}_${memberId}`,
+            emitterId: `${assembly.id}_${memberId}`,
+            receiverId: `${assembly.id}_${memberId}`,
+            time: sampleTime,
+            sampleIndex,
+            position: [position.x, position.y, position.z],
             sign,
-            strength: 1,
-            fieldSpeed,
-            branchId: `architrino_shell_sample_${sampleIndex}`,
+            fieldSpeed: getAnimatorFieldShellSpeed(simulationDataset),
             metadata: {
               motionSource: "solver-derived",
-              source: "architrino-emitter-cadence",
               ownerAssemblyId: assembly.id,
               memberId,
               chargeType,
               binaryId: binary?.id ?? "",
               emitterScope: "core-architrino",
-              emissionIntervalSeconds: animatorArchitrinoFieldShellEmissionIntervalSeconds,
-              continuousExpansion: true,
-              fixedEmissionPosition: true,
+              sampleIntervalSeconds: animatorArchitrinoFieldShellEmissionIntervalSeconds,
             },
           });
         });
       });
     });
   });
-  return shells;
+
+  return samples;
+}
+
+function createAnimatorArchitrinoPotentialFieldShells(
+  documentData = animatorCurrentDocument,
+  simulationDataset = null
+) {
+  if (!simulationDataset) {
+    return [];
+  }
+  const emissionTimes = getAnimatorFieldShellEmissionTimesForDocument(
+    documentData,
+    animatorArchitrinoFieldShellEmissionIntervalSeconds
+  );
+  const fieldSpeed = getAnimatorFieldShellSpeed(simulationDataset);
+  const lifetime = 1.6;
+  const samples = createAnimatorArchitrinoPathSamples(
+    documentData,
+    simulationDataset,
+    emissionTimes
+  );
+
+  return samples.map((sample) => ({
+    id: `architrino_shell_${sample.emitterId}_${sample.sampleIndex}`,
+    emitterId: sample.emitterId,
+    emissionTime: sample.time,
+    displayTime: sample.time + lifetime,
+    emissionPosition: sample.position,
+    radius: fieldSpeed * lifetime,
+    sign: sample.sign,
+    strength: 1,
+    fieldSpeed,
+    branchId: `architrino_shell_sample_${sample.sampleIndex}`,
+    metadata: {
+      ...(sample.metadata ?? {}),
+      source: "architrino-emitter-cadence",
+      emissionIntervalSeconds: animatorArchitrinoFieldShellEmissionIntervalSeconds,
+      continuousExpansion: true,
+      fixedEmissionPosition: true,
+    },
+  }));
+}
+
+function createAnimatorArchitrinoPathHistoryDelayedHits(
+  documentData = animatorCurrentDocument,
+  simulationDataset = null,
+  architrinoFieldShells = []
+) {
+  if (!simulationDataset || !architrinoFieldShells.length) {
+    return [];
+  }
+  const sampleTimes = getAnimatorFieldShellEmissionTimesForDocument(
+    documentData,
+    animatorArchitrinoFieldShellEmissionIntervalSeconds
+  );
+  const pathSamples = createAnimatorArchitrinoPathSamples(
+    documentData,
+    simulationDataset,
+    sampleTimes
+  );
+  const receiverTracks = [...pathSamples.reduce((tracks, sample) => {
+    const receiverId = String(sample.receiverId ?? sample.id ?? "").trim();
+    if (!receiverId) {
+      return tracks;
+    }
+    if (!tracks.has(receiverId)) {
+      tracks.set(receiverId, {
+        id: receiverId,
+        receiverId,
+        samples: [],
+        metadata: sample.metadata ?? {},
+      });
+    }
+    tracks.get(receiverId).samples.push({
+      time: sample.time,
+      position: sample.position,
+    });
+    return tracks;
+  }, new Map()).values()];
+  return createAnimatorDelayedHitsFromPathSamples(
+    architrinoFieldShells.map((shell) => ({
+      emitterId: shell.emitterId,
+      time: shell.emissionTime,
+      position: shell.emissionPosition,
+      fieldSpeed: shell.fieldSpeed,
+      metadata: shell.metadata ?? {},
+    })),
+    receiverTracks,
+    {
+      allowSelfHits: false,
+      fieldSpeed: getAnimatorFieldShellSpeed(simulationDataset),
+      tolerance: 0.006,
+      status: "path-history",
+    }
+  );
 }
 
 function createAnimatorArchitrinoFieldShellInstances(
@@ -2501,6 +2603,25 @@ function clearAnimatorViewportVisuals() {
     line.material?.dispose?.();
   });
   animatorHistoryTraceLines = [];
+  if (animatorPathHistoryLineSegments) {
+    animatorViewportGroup?.remove(animatorPathHistoryLineSegments);
+    animatorPathHistoryLineSegments.geometry?.dispose?.();
+    animatorPathHistoryLineSegments.material?.dispose?.();
+    animatorPathHistoryLineSegments = null;
+  }
+  animatorPathHistoryDelayedHits = [];
+  animatorDelayedHitGroups.forEach((group) => {
+    animatorViewportGroup?.remove(group);
+    group.traverse?.((child) => {
+      if (child === group) {
+        return;
+      }
+      child.geometry?.dispose?.();
+      child.material?.map?.dispose?.();
+      child.material?.dispose?.();
+    });
+  });
+  animatorDelayedHitGroups = [];
   animatorTransferLines.forEach((line) => {
     animatorViewportGroup?.remove(line);
     line.geometry?.dispose?.();
@@ -3562,6 +3683,12 @@ function updateAnimatorAnimatedViewport(timeSeconds) {
     sprite.position.copy(anchorPosition).add(offset);
   });
 
+  animatorDelayedHitGroups.forEach((group) => {
+    updateAnimatorDelayedHitVisualState(group, motionTime);
+  });
+  updateAnimatorPathHistoryLineSegments(motionTime);
+  renderAnimatorDelayedHitTable(animatorCurrentDocument, motionTime);
+
   animatorTransferLines.forEach((line) => {
     const transfer = line.userData.transfer;
     const sourcePoint = resolveAnimatorTransferEndpointPosition(
@@ -3856,6 +3983,233 @@ function addAnimatorHistoryTrace(historyTrace) {
   line.userData.motionSourceKind = getAnimatorHistoryTraceMotionSourceKind(historyTrace);
   animatorViewportGroup.add(line);
   animatorHistoryTraceLines.push(line);
+}
+
+function renderAnimatorDelayedHitTable(documentData, timeSeconds) {
+  if (!animatorDelayedHitTable) {
+    return;
+  }
+  const simulationDataset = getAnimatorSimulationDataset(documentData);
+  const rows = createAnimatorDelayedHitTableRows(simulationDataset, timeSeconds);
+  if (!rows.length) {
+    animatorDelayedHitTable.hidden = true;
+    animatorDelayedHitTable.replaceChildren();
+    return;
+  }
+  const rawHits = Array.isArray(simulationDataset?.delayedHits)
+    ? simulationDataset.delayedHits
+    : [];
+  const prioritizedRows = rows
+    .map((row, index) => {
+      const rawHit = rawHits[index] ?? {};
+      const hitTime = Number(rawHit.hitTime ?? rawHit.t ?? row.hitTime ?? 0) || 0;
+      return {
+        row,
+        rank: row.active ? 0 : row.visible ? 1 : 2,
+        distance: Math.abs((Number(timeSeconds) || 0) - hitTime),
+      };
+    })
+    .sort((a, b) => a.rank - b.rank || a.distance - b.distance)
+    .slice(0, 6)
+    .map((entry) => entry.row);
+
+  const title = document.createElement("div");
+  title.className = "animator-delayed-hit-table-title";
+  title.textContent = `Delayed hits (${rows.length})`;
+
+  const table = document.createElement("table");
+  const thead = document.createElement("thead");
+  const headerRow = document.createElement("tr");
+  ["State", "Path", "Branch", "J", "Emit", "Hit"].forEach((label) => {
+    const th = document.createElement("th");
+    th.textContent = label;
+    headerRow.appendChild(th);
+  });
+  thead.appendChild(headerRow);
+  table.appendChild(thead);
+
+  const tbody = document.createElement("tbody");
+  prioritizedRows.forEach((row) => {
+    const tr = document.createElement("tr");
+    tr.classList.toggle("is-active", row.active);
+    [
+      row.stateLabel,
+      `${row.emitterId} > ${row.receiverId}`,
+      row.branchId || row.id,
+      row.jacobianLabel,
+      row.emissionTimeLabel,
+      row.hitTimeLabel,
+    ].forEach((value) => {
+      const td = document.createElement("td");
+      td.textContent = value;
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+
+  animatorDelayedHitTable.replaceChildren(title, table);
+  animatorDelayedHitTable.hidden = false;
+}
+
+function addAnimatorPathHistoryLineSegments(delayedHits = []) {
+  if (!animatorViewportGroup || !Array.isArray(delayedHits) || !delayedHits.length) {
+    return;
+  }
+  const geometry = new THREE.BufferGeometry();
+  const material = new THREE.LineBasicMaterial({
+    color: 0xffffff,
+    transparent: true,
+    opacity: 0.42,
+    depthTest: false,
+    depthWrite: false,
+  });
+  const lineSegments = new THREE.LineSegments(geometry, material);
+  lineSegments.renderOrder = 18;
+  lineSegments.userData.motionSourceKind = "solver-derived";
+  lineSegments.userData.visibleByMotionState = false;
+  lineSegments.userData.isAnimatorPathHistoryLineSegments = true;
+  animatorPathHistoryDelayedHits = delayedHits;
+  animatorPathHistoryLineSegments = lineSegments;
+  animatorViewportGroup.add(lineSegments);
+}
+
+function updateAnimatorPathHistoryLineSegments(timeSeconds) {
+  if (!animatorPathHistoryLineSegments) {
+    return;
+  }
+  const points = [];
+  animatorPathHistoryDelayedHits.forEach((hit) => {
+    const renderState = getAnimatorDelayedHitRenderState(hit, timeSeconds, {
+      fadeOutSeconds: 4.2,
+      activeWindowSeconds: 0.35,
+      baseOpacity: 0.5,
+      strengthOpacityScale: 0.18,
+    });
+    if (!renderState.visible) {
+      return;
+    }
+    points.push(
+      vectorFromTriplet(renderState.sourcePosition),
+      vectorFromTriplet(renderState.connectorEndPosition)
+    );
+  });
+  animatorPathHistoryLineSegments.geometry.setFromPoints(points);
+  const isVisible =
+    points.length > 0 &&
+    isAnimatorViewportDisplayFlagEnabled("showHistoryTraces") &&
+    isAnimatorThreeObjectMotionSourceVisible(animatorPathHistoryLineSegments);
+  animatorPathHistoryLineSegments.userData.visibleByMotionState = points.length > 0;
+  animatorPathHistoryLineSegments.visible = isVisible;
+}
+
+function addAnimatorDelayedHitVisual(delayedHit) {
+  if (!animatorViewportGroup || !delayedHit || typeof delayedHit !== "object") {
+    return;
+  }
+  const renderState = getAnimatorDelayedHitRenderState(
+    delayedHit,
+    delayedHit.emissionTime ?? 0
+  );
+  const connectorGeometry = new THREE.BufferGeometry().setFromPoints([
+    vectorFromTriplet(renderState.sourcePosition),
+    vectorFromTriplet(renderState.connectorEndPosition),
+  ]);
+  const connectorMaterial = new THREE.LineDashedMaterial({
+    color: 0xffffff,
+    transparent: true,
+    opacity: 0,
+    dashSize: 0.11,
+    gapSize: 0.07,
+    depthTest: false,
+    depthWrite: false,
+  });
+  const connector = new THREE.Line(connectorGeometry, connectorMaterial);
+  connector.computeLineDistances();
+  connector.renderOrder = 20;
+
+  const sourceMaterial = new THREE.MeshBasicMaterial({
+    color: 0xffffff,
+    transparent: true,
+    opacity: 0,
+    depthTest: false,
+    depthWrite: false,
+  });
+  const receiverMaterial = new THREE.MeshBasicMaterial({
+    color: 0xffd17a,
+    transparent: true,
+    opacity: 0,
+    depthTest: false,
+    depthWrite: false,
+  });
+  const sourceMarker = new THREE.Mesh(new THREE.SphereGeometry(0.075, 18, 12), sourceMaterial);
+  const receiverMarker = new THREE.Mesh(new THREE.SphereGeometry(0.095, 18, 12), receiverMaterial);
+  sourceMarker.renderOrder = 21;
+  receiverMarker.renderOrder = 21;
+
+  const label = createAnimatorMemberLabelSprite(
+    getAnimatorDelayedHitDiagnosticLabel(delayedHit),
+    "#d9fff1"
+  );
+  label.renderOrder = 22;
+  label.material.opacity = 0;
+
+  const group = new THREE.Group();
+  group.add(connector);
+  group.add(sourceMarker);
+  group.add(receiverMarker);
+  group.add(label);
+  group.visible = false;
+  group.userData.delayedHit = delayedHit;
+  group.userData.motionSourceKind = "solver-derived";
+  group.userData.visibleByMotionState = false;
+  group.userData.connector = connector;
+  group.userData.sourceMarker = sourceMarker;
+  group.userData.receiverMarker = receiverMarker;
+  group.userData.label = label;
+  animatorViewportGroup.add(group);
+  animatorDelayedHitGroups.push(group);
+}
+
+function updateAnimatorDelayedHitVisualState(group, timeSeconds) {
+  const delayedHit = group?.userData?.delayedHit;
+  if (!delayedHit) {
+    return;
+  }
+  const renderState = getAnimatorDelayedHitRenderState(delayedHit, timeSeconds);
+  const sourcePoint = vectorFromTriplet(renderState.sourcePosition);
+  const receiverPoint = vectorFromTriplet(renderState.receiverPosition);
+  const connectorEndPoint = vectorFromTriplet(renderState.connectorEndPosition);
+  const connector = group.userData.connector;
+  if (connector) {
+    connector.geometry.setFromPoints([sourcePoint, connectorEndPoint]);
+    connector.computeLineDistances();
+    connector.material.opacity = renderState.connectorOpacity;
+    connector.material.color.set(renderState.active ? 0xffffff : 0xdff7ff);
+  }
+  const sourceMarker = group.userData.sourceMarker;
+  if (sourceMarker) {
+    sourceMarker.position.copy(sourcePoint);
+    sourceMarker.scale.setScalar(renderState.markerScale);
+    sourceMarker.material.opacity = renderState.sourceOpacity;
+  }
+  const receiverMarker = group.userData.receiverMarker;
+  if (receiverMarker) {
+    receiverMarker.position.copy(receiverPoint);
+    receiverMarker.scale.setScalar(renderState.markerScale);
+    receiverMarker.material.opacity = renderState.receiverOpacity;
+  }
+  const label = group.userData.label;
+  if (label) {
+    const midpoint = sourcePoint.clone().lerp(receiverPoint, 0.5);
+    label.position.copy(midpoint).add(new THREE.Vector3(0, 0.24, 0));
+    label.scale.set(0.48 * renderState.markerScale, 0.14 * renderState.markerScale, 1);
+    label.material.opacity = renderState.active
+      ? Math.min(1, renderState.opacity + 0.24)
+      : renderState.opacity * 0.72;
+  }
+  group.userData.visibleByMotionState = renderState.visible;
+  group.visible = renderState.visible && isAnimatorThreeObjectMotionSourceVisible(group);
 }
 
 function addAnimatorOrbitParticle(center, motion, chargeType, memberId = null) {
@@ -4671,6 +5025,18 @@ function updateAnimatorViewportFromDocument(documentData) {
       });
     });
   }
+  const pathHistoryDelayedHits = createAnimatorArchitrinoPathHistoryDelayedHits(
+    documentData,
+    simulationDataset,
+    architrinoFieldShells
+  );
+  addAnimatorPathHistoryLineSegments(pathHistoryDelayedHits);
+  const delayedHits = Array.isArray(simulationDataset?.delayedHits)
+    ? simulationDataset.delayedHits
+    : [];
+  delayedHits.forEach((delayedHit) => {
+    addAnimatorDelayedHitVisual(delayedHit);
+  });
   const transfers = Array.isArray(documentData?.transfers) ? documentData.transfers : [];
   transfers.forEach((transfer) => {
     addAnimatorTransferLine(transfer);
@@ -4685,6 +5051,7 @@ function updateAnimatorViewportFromDocument(documentData) {
   });
   syncAnimatorViewportMediaOverlays(documentData);
   addAnimatorDocumentCameraVisuals(documentData);
+  renderAnimatorDelayedHitTable(documentData, animatorPlaybackState.playheadSeconds ?? 0);
   applyAnimatorViewportDisplayState();
 
   const timeWindow = getAnimatorSceneTimeWindow(documentData);
@@ -5098,6 +5465,9 @@ let animatorEnvelopeMeshes = [];
 let animatorFieldShellMeshes = [];
 let animatorOrbitTraceLines = [];
 let animatorHistoryTraceLines = [];
+let animatorPathHistoryLineSegments = null;
+let animatorPathHistoryDelayedHits = [];
+let animatorDelayedHitGroups = [];
 let animatorTransferLines = [];
 let animatorAxisGuideLines = [];
 let animatorOrbitParticleMeshes = [];

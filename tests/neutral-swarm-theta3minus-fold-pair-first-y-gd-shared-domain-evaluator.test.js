@@ -104,6 +104,8 @@ import {
   buildH39RequestedY44TerminalSourceCovarianceSolveSlopeSumDenominatorSeparationAuditCandidate,
   buildH39RequestedY44TerminalSourceCovarianceWronskianSingularCompatibilityAuditCandidate,
   buildH39RequestedY44TerminalSourceCovarianceWronskianProductOutcomeClassifierCandidate,
+  buildH39RequestedY44TerminalSourceCovarianceWronskianRankTwoDecompositionCandidate,
+  buildH39RequestedY44TerminalSourceCovarianceWronskianRankTwoProviderReplayCandidate,
   buildH39RequestedY44RowLocalN38SignedSourceSumDerivativeProviderCandidate,
   validateH39CorrelatedResidualWidthDiagnostic,
   validateH39H38NumeratorGraphLocalPartitionDiagnostic,
@@ -204,6 +206,8 @@ import {
   validateH39RequestedY44TerminalSourceCovarianceSolveSlopeSumDenominatorSeparationAuditCandidate,
   validateH39RequestedY44TerminalSourceCovarianceWronskianSingularCompatibilityAuditCandidate,
   validateH39RequestedY44TerminalSourceCovarianceWronskianProductOutcomeClassifierCandidate,
+  validateH39RequestedY44TerminalSourceCovarianceWronskianRankTwoDecompositionCandidate,
+  validateH39RequestedY44TerminalSourceCovarianceWronskianRankTwoProviderReplayCandidate,
   validateH39RequestedY44RowLocalN38SignedSourceSumDerivativeProvider,
   validateH39RequestedY44SignedSourceSumDerivativeAllocationTarget,
   validateH39RequestedY44SourceMapResidualCovarianceTarget,
@@ -24490,6 +24494,528 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
             )
         )
     )
+  );
+  const terminalSourceCovarianceWronskianRankTwoDecomposition =
+    buildH39RequestedY44TerminalSourceCovarianceWronskianRankTwoDecompositionCandidate(
+      {
+        terminalSourceCovarianceWronskianProductOutcomeClassifier,
+        terminalSourceCovarianceCrossBranchWronskianDiagnostic,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44TerminalSourceCovarianceWronskianRankTwoDecompositionCandidate(
+      terminalSourceCovarianceWronskianRankTwoDecomposition
+    ),
+    []
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoDecomposition
+      .terminal_source_covariance_wronskian_rank_two_decomposition_verified,
+    true
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoDecomposition
+      .terminal_source_covariance_wronskian_rank_two_decomposition_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoDecomposition
+      .terminal_source_covariance_wronskian_rank_two_decomposition_row_count,
+    5
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoDecomposition
+      .terminal_source_covariance_wronskian_rank_two_decomposition_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoDecomposition
+      .q_solve_slope_norm_denominator_separated_terminal_row_count +
+      terminalSourceCovarianceWronskianRankTwoDecomposition
+        .q_solve_slope_norm_denominator_zero_crossing_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoDecomposition
+      .provider_object_rank_two_decomposition_available_terminal_row_count >= 0,
+    true
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoDecomposition
+      .provider_object_rank_two_decomposition_available_terminal_row_count <=
+      15,
+    true
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoDecomposition
+      .lambda_witness_rank_two_decomposition_available_terminal_row_count >= 0,
+    true
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoDecomposition
+      .lambda_witness_rank_two_decomposition_available_terminal_row_count <=
+      15,
+    true
+  );
+  assert.ok(
+    [
+      "wronskian-rank-two-decomposition-open",
+      "wronskian-rank-two-q-denominator-open",
+      "wronskian-rank-two-provider-transverse-mu-candidate",
+      "wronskian-rank-two-lambda-transverse-mu-candidate",
+      "wronskian-rank-two-mu-contains-zero",
+    ].includes(
+      terminalSourceCovarianceWronskianRankTwoDecomposition
+        .terminal_source_covariance_wronskian_rank_two_decomposition_classification
+    )
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoDecomposition
+      .rank_two_source_covariance_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoDecomposition
+      .non_scalar_source_covariance_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoDecomposition
+      .scalar_lambda_source_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoDecomposition
+      .q_solve_slope_norm_denominator_separation_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoDecomposition
+      .expression_level_shared_wronskian_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoDecomposition
+      .directed_rounded_shared_domain_provider_certified,
+    false
+  );
+  assert.ok(
+    terminalSourceCovarianceWronskianRankTwoDecomposition.terminal_source_covariance_wronskian_rank_two_decomposition_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_source_covariance_wronskian_rank_two_decomposition_terminal_row_count ===
+          3 &&
+        row.q_solve_slope_norm_denominator_separated_terminal_row_count +
+          row.q_solve_slope_norm_denominator_zero_crossing_terminal_row_count ===
+          3 &&
+        row.row_terminal_source_covariance_wronskian_rank_two_decomposition_verified ===
+          true &&
+        row.row_certifies_rank_two_source_covariance_object === false &&
+        row.row_certifies_non_scalar_source_covariance_object === false &&
+        row.row_certifies_scalar_lambda_source_object === false &&
+        row.row_certifies_q_solve_slope_norm_denominator_separation ===
+          false &&
+        row.row_certifies_expression_level_shared_wronskian === false &&
+        row.row_certifies_directed_rounded_shared_domain === false &&
+        row.terminal_source_covariance_wronskian_rank_two_decomposition_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_graph_cell_id ===
+              `speed.${index}.first-y` &&
+            terminalRow.rank_two_decomposition_formula ===
+              "r=lambda_parallel*(s_-,s_+)+mu*(s_+,-s_-)" &&
+            terminalRow.q_solve_slope_norm_denominator_formula ===
+              "Q=s_-^2+s_+^2" &&
+            Array.isArray(terminalRow.solve_slope_minus_interval) &&
+            terminalRow.solve_slope_minus_interval.length === 2 &&
+            Array.isArray(terminalRow.solve_slope_plus_interval) &&
+            terminalRow.solve_slope_plus_interval.length === 2 &&
+            Array.isArray(
+              terminalRow.q_solve_slope_norm_denominator_interval
+            ) &&
+            terminalRow.q_solve_slope_norm_denominator_interval.length === 2 &&
+            typeof terminalRow
+              .q_solve_slope_norm_denominator_separated_from_zero ===
+              "boolean" &&
+            typeof terminalRow.q_solve_slope_norm_denominator_contains_zero ===
+              "boolean" &&
+            terminalRow.rank_two_source_decomposition_rows.length === 2 &&
+            terminalRow.rank_two_source_decomposition_rows.every(
+              (decompositionRow) =>
+                [
+                  "lambda-witness-branch-residuals",
+                  "provider-object-branch-residuals",
+                ].includes(decompositionRow.decomposition_source_kind) &&
+                typeof decompositionRow.rank_two_decomposition_available ===
+                  "boolean" &&
+                Array.isArray(
+                  decompositionRow.q_solve_slope_norm_denominator_interval
+                ) &&
+                decompositionRow.q_solve_slope_norm_denominator_interval
+                  .length === 2 &&
+                (decompositionRow.rank_two_decomposition_available === true
+                  ? Array.isArray(
+                      decompositionRow.source_residual_wronskian_interval
+                    ) &&
+                    decompositionRow.source_residual_wronskian_interval
+                      .length === 2
+                  : decompositionRow.source_residual_wronskian_interval ===
+                      null ||
+                    (Array.isArray(
+                      decompositionRow.source_residual_wronskian_interval
+                    ) &&
+                      decompositionRow.source_residual_wronskian_interval
+                        .length === 2)) &&
+                decompositionRow.rank_two_reconstruction_branch_rows.length ===
+                  2 &&
+                decompositionRow.rank_two_reconstruction_branch_rows.every(
+                  (branchRow) =>
+                    ["-", "+"].includes(branchRow.branch) &&
+                    typeof branchRow
+                      .rank_two_reconstruction_overlaps_original_residual ===
+                      "boolean" &&
+                    branchRow.certifies_rank_two_source_covariance_object ===
+                      false &&
+                    branchRow.certifies_non_scalar_source_covariance_object ===
+                      false &&
+                    branchRow.certifies_directed_rounded_shared_domain === false
+                ) &&
+                decompositionRow.certifies_rank_two_source_covariance_object ===
+                  false &&
+                decompositionRow.certifies_non_scalar_source_covariance_object ===
+                  false &&
+                decompositionRow.certifies_scalar_lambda_source_object ===
+                  false &&
+                decompositionRow.certifies_expression_level_shared_wronskian ===
+                  false &&
+                decompositionRow.certifies_directed_rounded_shared_domain ===
+                  false
+            ) &&
+            terminalRow.row_certifies_rank_two_source_covariance_object ===
+              false &&
+            terminalRow.row_certifies_non_scalar_source_covariance_object ===
+              false &&
+            terminalRow.row_certifies_scalar_lambda_source_object === false &&
+            terminalRow
+              .row_certifies_q_solve_slope_norm_denominator_separation ===
+              false &&
+            terminalRow.row_certifies_expression_level_shared_wronskian ===
+              false &&
+            terminalRow.row_certifies_directed_rounded_shared_domain === false
+        )
+    )
+  );
+  const terminalSourceCovarianceWronskianRankTwoProviderReplay =
+    buildH39RequestedY44TerminalSourceCovarianceWronskianRankTwoProviderReplayCandidate(
+      {
+        terminalAffineEndpointProviderCandidate,
+        terminalSourceCovarianceWronskianRankTwoDecomposition,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44TerminalSourceCovarianceWronskianRankTwoProviderReplayCandidate(
+      terminalSourceCovarianceWronskianRankTwoProviderReplay
+    ),
+    []
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoProviderReplay
+      .terminal_source_covariance_wronskian_rank_two_provider_replay_verified,
+    true
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoProviderReplay
+      .terminal_source_covariance_wronskian_rank_two_provider_replay_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoProviderReplay
+      .terminal_source_covariance_wronskian_rank_two_provider_replay_row_count,
+    5
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoProviderReplay
+      .terminal_source_covariance_wronskian_rank_two_provider_replay_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoProviderReplay
+      .terminal_source_covariance_wronskian_rank_two_provider_replay_source_row_count,
+    30
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoProviderReplay
+      .terminal_source_covariance_wronskian_rank_two_provider_replay_branch_row_count,
+    60
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoProviderReplay
+      .q_solve_slope_norm_denominator_separated_terminal_row_count +
+      terminalSourceCovarianceWronskianRankTwoProviderReplay
+        .q_solve_slope_norm_denominator_zero_crossing_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoProviderReplay
+      .provider_object_rank_two_provider_replay_available_terminal_row_count >=
+      0,
+    true
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoProviderReplay
+      .provider_object_rank_two_provider_replay_available_terminal_row_count <=
+      15,
+    true
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoProviderReplay
+      .provider_object_rank_two_reconstructed_terminal_rows_fit_budget_count >=
+      0,
+    true
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoProviderReplay
+      .provider_object_rank_two_reconstructed_terminal_rows_fit_budget_count <=
+      15,
+    true
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoProviderReplay
+      .lambda_witness_rank_two_provider_replay_available_terminal_row_count >=
+      0,
+    true
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoProviderReplay
+      .lambda_witness_rank_two_provider_replay_available_terminal_row_count <=
+      15,
+    true
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoProviderReplay
+      .lambda_witness_rank_two_reconstructed_terminal_rows_fit_budget_count >=
+      0,
+    true
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoProviderReplay
+      .lambda_witness_rank_two_reconstructed_terminal_rows_fit_budget_count <=
+      15,
+    true
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoProviderReplay
+      .rank_two_provider_replay_branch_intervals_fit_budget_count >= 0,
+    true
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoProviderReplay
+      .rank_two_provider_replay_branch_intervals_fit_budget_count <= 60,
+    true
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoProviderReplay
+      .rank_two_source_map_boundary_replay_available_source_row_count >= 0,
+    true
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoProviderReplay
+      .rank_two_source_map_boundary_replay_available_source_row_count <= 30,
+    true
+  );
+  assert.ok(
+    [
+      "rank-two-provider-replay-open",
+      "rank-two-provider-replay-q-denominator-open",
+      "rank-two-provider-replay-provider-object-fits-budget-certification-open",
+      "rank-two-provider-replay-provider-object-exceeds-budget-transverse-mu-pressure",
+      "rank-two-provider-replay-lambda-witness-fits-budget-provider-object-open",
+      "rank-two-provider-replay-lambda-witness-transverse-mu-pressure",
+      "rank-two-provider-replay-budget-open",
+    ].includes(
+      terminalSourceCovarianceWronskianRankTwoProviderReplay
+        .terminal_source_covariance_wronskian_rank_two_provider_replay_classification
+    )
+  );
+  assert.ok(
+    [
+      "rank-two-provider-replay-open",
+      "same-domain-solve-slope-norm-denominator-separation-needed",
+      "same-domain-non-scalar-source-covariance-object-certification-needed-before-provider-boundary",
+      "same-domain-non-scalar-source-covariance-object-or-narrow-w-needed",
+      "same-domain-provider-object-rank-two-source-witness-needed",
+      "same-domain-rank-two-w-sensitivity-refinement-needed",
+    ].includes(
+      terminalSourceCovarianceWronskianRankTwoProviderReplay
+        .terminal_source_covariance_wronskian_rank_two_provider_replay_blocker_classification
+    )
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoProviderReplay
+      .rank_two_source_map_boundary_replay_certifies_directed_rounded_provider,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoProviderReplay
+      .rank_two_source_covariance_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoProviderReplay
+      .non_scalar_source_covariance_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoProviderReplay
+      .scalar_lambda_source_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoProviderReplay
+      .q_solve_slope_norm_denominator_separation_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoProviderReplay
+      .expression_level_shared_wronskian_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoProviderReplay
+      .terminal_row_provider_enclosure_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoProviderReplay
+      .expression_level_n38_provider_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianRankTwoProviderReplay
+      .directed_rounded_shared_domain_provider_certified,
+    false
+  );
+  assert.ok(
+    terminalSourceCovarianceWronskianRankTwoProviderReplay.terminal_source_covariance_wronskian_rank_two_provider_replay_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_source_covariance_wronskian_rank_two_provider_replay_terminal_row_count ===
+          3 &&
+        row.terminal_source_covariance_wronskian_rank_two_provider_replay_source_row_count ===
+          6 &&
+        row.terminal_source_covariance_wronskian_rank_two_provider_replay_branch_row_count ===
+          12 &&
+        row.q_solve_slope_norm_denominator_separated_terminal_row_count +
+          row.q_solve_slope_norm_denominator_zero_crossing_terminal_row_count ===
+          3 &&
+        row.row_terminal_source_covariance_wronskian_rank_two_provider_replay_verified ===
+          true &&
+        row.row_certifies_rank_two_source_covariance_object === false &&
+        row.row_certifies_non_scalar_source_covariance_object === false &&
+        row.row_certifies_scalar_lambda_source_object === false &&
+        row.row_certifies_q_solve_slope_norm_denominator_separation ===
+          false &&
+        row.row_certifies_expression_level_shared_wronskian === false &&
+        row.row_certifies_terminal_row_provider_enclosure === false &&
+        row.row_certifies_directed_rounded_shared_domain === false &&
+        row.terminal_source_covariance_wronskian_rank_two_provider_replay_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_graph_cell_id ===
+              `speed.${index}.first-y` &&
+            terminalRow.rank_two_provider_replay_source_row_count === 2 &&
+            terminalRow.rank_two_provider_replay_branch_row_count === 4 &&
+            terminalRow.rank_two_provider_replay_source_rows.every(
+              (sourceRow) =>
+                [
+                  "lambda-witness-branch-residuals",
+                  "provider-object-branch-residuals",
+                ].includes(sourceRow.decomposition_source_kind) &&
+                typeof sourceRow.rank_two_provider_replay_available ===
+                  "boolean" &&
+                sourceRow.rank_two_provider_replay_branch_row_count === 2 &&
+                typeof sourceRow
+                  .all_rank_two_reconstructed_branch_intervals_fit_terminal_affine_budget ===
+                  "boolean" &&
+                typeof sourceRow.rank_two_source_map_boundary_replay_available ===
+                  "boolean" &&
+                sourceRow
+                  .rank_two_source_map_boundary_replay_certifies_directed_rounded_provider ===
+                  false &&
+                sourceRow.certifies_rank_two_source_covariance_object ===
+                  false &&
+                sourceRow.certifies_non_scalar_source_covariance_object ===
+                  false &&
+                sourceRow.certifies_scalar_lambda_source_object === false &&
+                sourceRow.certifies_expression_level_shared_wronskian ===
+                  false &&
+                sourceRow.certifies_terminal_row_provider_enclosure ===
+                  false &&
+                sourceRow.certifies_directed_rounded_shared_domain === false &&
+                sourceRow.rank_two_provider_replay_branch_rows.every(
+                  (branchRow) =>
+                    ["-", "+"].includes(branchRow.branch) &&
+                    typeof branchRow
+                      .rank_two_reconstructed_half_width_fits_terminal_affine_budget ===
+                      "boolean" &&
+                    typeof branchRow
+                      .rank_two_reconstructed_interval_contained_by_terminal_affine_budget ===
+                      "boolean" &&
+                    typeof branchRow
+                      .rank_two_reconstructed_interval_fits_terminal_affine_budget ===
+                      "boolean" &&
+                    branchRow.certifies_rank_two_source_covariance_object ===
+                      false &&
+                    branchRow.certifies_non_scalar_source_covariance_object ===
+                      false &&
+                    branchRow.certifies_terminal_row_provider_enclosure ===
+                      false &&
+                    branchRow.certifies_directed_rounded_shared_domain === false
+                )
+            ) &&
+            terminalRow.row_certifies_rank_two_source_covariance_object ===
+              false &&
+            terminalRow.row_certifies_non_scalar_source_covariance_object ===
+              false &&
+            terminalRow.row_certifies_scalar_lambda_source_object === false &&
+            terminalRow
+              .row_certifies_q_solve_slope_norm_denominator_separation ===
+              false &&
+            terminalRow.row_certifies_expression_level_shared_wronskian ===
+              false &&
+            terminalRow.row_certifies_terminal_row_provider_enclosure ===
+              false &&
+            terminalRow.row_certifies_directed_rounded_shared_domain === false
+        )
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      terminalSourceCovarianceWronskianRankTwoProviderReplay
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalSourceCovarianceWronskianRankTwoProviderReplay,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      terminalSourceCovarianceWronskianRankTwoDecomposition
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalSourceCovarianceWronskianRankTwoDecomposition,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
   );
   assert.deepEqual(
     collectTrueCertifies(

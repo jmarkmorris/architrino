@@ -106,6 +106,10 @@ function normalizeDelayedHit(rawHit = {}, index = 0) {
     branchId: normalizeString(rawHit.branchId, ""),
     jacobian: normalizeNumber(rawHit.jacobian, 0),
     status: normalizeString(rawHit.status, "recorded"),
+    metadata:
+      rawHit.metadata && typeof rawHit.metadata === "object"
+        ? { ...rawHit.metadata }
+        : {},
   };
 }
 

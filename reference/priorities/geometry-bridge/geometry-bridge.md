@@ -4211,6 +4211,43 @@ correlated numerator/denominator evaluator if the product rows remain open, or
 promote a non-scalar source-covariance object if the Wronskian pressure is
 structurally non-scalar.
 
+`buildH39RequestedY44TerminalSourceCovarianceWronskianRankTwoDecompositionCandidate`
+tests the sum-denominator-free branch-source decomposition
+$r=\lambda_{\parallel}s+\mu Js$, with
+$s=(s_-,s_+)$, $Js=(s_+,-s_-)$, and
+$Q=s_-^2+s_+^2$. It records the same-domain $Q$ interval, $Q$ separation and
+zero-crossing counts, the parallel moment
+$r_-s_-+r_+s_+$, the Wronskian component $\mu=W/Q$, and the reconstructed
+branch intervals for both the lambda-witness rows and the provider-object rows
+when available. This avoids division by the singular
+$s_-+s_+$ denominator, but it still uses the currently available Wronskian
+hulls rather than certifying an expression-level shared evaluator for
+$W=r_-s_+-r_+s_-$. The packet certifies no rank-two source-covariance object,
+no non-scalar source-covariance object, no scalar-lambda source object, no
+$Q$ denominator separation, no expression-level shared Wronskian, and no
+directed-rounded provider. If $Q$ is not separated, the next blocker is a
+same-domain solve-slope norm lower bound. If $Q$ is separated and $\mu$
+excludes zero, the scalar-lambda path should not receive another wrapper; the
+next object is a same-domain non-scalar source-covariance provider using
+$\lambda_{\parallel}$ and $\mu$.
+
+`buildH39RequestedY44TerminalSourceCovarianceWronskianRankTwoProviderReplayCandidate`
+now replays those rank-two reconstructed branch intervals against the
+terminal-affine endpoint provider budget. The replay consumes the existing
+terminal-affine provider rows and the rank-two decomposition rows, records
+whether the same-domain and same-radius source-map boundary is reachable for
+each source kind, and counts whether the provider-object and lambda-witness
+rank-two reconstructions fit the endpoint budget. This is a candidate replay,
+not a provider certificate: it certifies no rank-two source-covariance object,
+no non-scalar source-covariance object, no scalar-lambda source object, no
+expression-level shared Wronskian, no $Q$ denominator separation, no terminal
+row provider enclosure, and no directed-rounded shared-domain provider. If the
+provider-object reconstruction fits, the next proof object is a same-domain
+non-scalar source-covariance object using $\lambda_{\parallel}$ and $\mu$
+before the provider boundary can be certified. If it still exceeds the budget,
+the next hard object is Wronskian-sensitive narrowing rather than another
+scalar-lambda wrapper.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.

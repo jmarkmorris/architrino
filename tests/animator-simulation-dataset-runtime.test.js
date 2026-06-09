@@ -42,7 +42,15 @@ test("animator simulation dataset normalizer preserves step-1 contract fields", 
         metadata: { sourceFrameIndex: 0 },
       },
     ],
-    delayedHits: [{ emitter: "e0", receiver: "p0", t: 1, tEmit: 0 }],
+    delayedHits: [
+      {
+        emitter: "e0",
+        receiver: "p0",
+        t: 1,
+        tEmit: 0,
+        metadata: { rootKind: "partner" },
+      },
+    ],
   });
 
   assert.equal(normalized.kind, ANIMATOR_SIMULATION_DATASET_KIND);
@@ -54,6 +62,7 @@ test("animator simulation dataset normalizer preserves step-1 contract fields", 
   assert.equal(normalized.fieldShells[0].style.opacity, 0.12);
   assert.equal(normalized.fieldShells[0].metadata.sourceFrameIndex, 0);
   assert.equal(normalized.delayedHits[0].receiverId, "p0");
+  assert.equal(normalized.delayedHits[0].metadata.rootKind, "partner");
   assert.equal(isAnimatorSimulationDataset(normalized), true);
 });
 

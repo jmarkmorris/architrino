@@ -49,6 +49,56 @@ function frameDiagnostics(frame = {}) {
   };
 }
 
+function formatDatasetIdNumber(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) {
+    return "0";
+  }
+  return number
+    .toFixed(6)
+    .replace(/0+$/u, "")
+    .replace(/\.$/u, "")
+    .replace(/[^0-9a-z]+/giu, "_");
+}
+
+function delayedHitsFromFrame(frame = {}, frameIndex = 0) {
+  const roots = Array.isArray(frame?.hit_stats?.accepted_roots)
+    ? frame.hit_stats.accepted_roots
+    : [];
+  return roots.map((root, rootIndex) => {
+    const receiverId = particleDatasetId(root.receiver_id);
+    const emitterId = particleDatasetId(root.source_id);
+    const distance = Number(root.distance);
+    const weight = Number(root.weight);
+    const strength =
+      Number.isFinite(distance) && distance > 0 && Number.isFinite(weight)
+        ? weight / (distance * distance)
+        : 0;
+    const branchId = `${root.root_kind ?? "root"}_${emitterId}_to_${receiverId}_f${frameIndex}_${rootIndex}`;
+    return {
+      id: `hit_${emitterId}_to_${receiverId}_t${formatDatasetIdNumber(root.hit_t ?? frame.t)}_${rootIndex}`,
+      emitterId,
+      receiverId,
+      hitTime: root.hit_t ?? frame.t ?? 0,
+      emissionTime: root.root_t ?? root.t ?? 0,
+      emitterEmissionPosition: vector2To3(root.source_position),
+      receiverPosition: vector2To3(root.receiver_position),
+      strength,
+      branchId,
+      jacobian: root.jacobian ?? 0,
+      status: "causal-root",
+      metadata: {
+        rootKind: root.root_kind ?? "",
+        delay: root.delay ?? null,
+        distance: root.distance ?? null,
+        absJacobian: root.abs_jacobian ?? null,
+        weight: root.weight ?? null,
+        sourceVelocity: vector2To3(root.source_velocity),
+      },
+    };
+  });
+}
+
 function simulationHalt(result = {}) {
   if (result.completed) {
     return { status: "completed" };
@@ -90,6 +140,7 @@ export function createAnimatorSimulationDatasetFromAssemblyDynamicsResult(
   const initialParticles = Array.isArray(firstFrame.particles)
     ? firstFrame.particles
     : [];
+  const delayedHits = frames.flatMap((frame, index) => delayedHitsFromFrame(frame, index));
 
   return {
     schemaVersion:
@@ -155,7 +206,7 @@ export function createAnimatorSimulationDatasetFromAssemblyDynamicsResult(
       diagnostics: frameDiagnostics(frame),
     })),
     fieldShells: [],
-    delayedHits: [],
+    delayedHits,
     diagnostics: {
       status: result?.summary?.status ?? "unknown",
       completed: !!result?.completed,

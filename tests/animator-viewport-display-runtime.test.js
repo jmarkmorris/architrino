@@ -8,7 +8,7 @@ test("animator viewport display defaults transport paths off", () => {
 
   assert.equal(runtime.isFlagEnabled("showTransportPath"), false);
   assert.equal(runtime.isFlagEnabled("showLabels"), true);
-  assert.equal(runtime.isFlagEnabled("showEnvelopes"), true);
+  assert.equal(runtime.isFlagEnabled("showEnvelopes"), false);
 });
 
 test("animator viewport display toggles can turn transport paths back on", () => {

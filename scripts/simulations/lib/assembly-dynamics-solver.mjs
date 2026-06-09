@@ -485,6 +485,7 @@ function accelerations(state, history, config, charges) {
     max_hit_weight: 0,
     max_roots_per_pair: 0,
     max_abs_acceleration: 0,
+    accepted_roots: [],
   };
   const requiredFailures = [];
 
@@ -553,6 +554,21 @@ function accelerations(state, history, config, charges) {
         } else {
           hitStats.partner_hits += 1;
         }
+        hitStats.accepted_roots.push({
+          receiver_id: i,
+          source_id: j,
+          root_kind: i === j ? "self" : "partner",
+          hit_t: state.t,
+          root_t: root.t,
+          delay: root.delay,
+          source_position: root.position,
+          source_velocity: root.velocity,
+          receiver_position: state.positions[i],
+          distance,
+          jacobian,
+          abs_jacobian: absJacobian,
+          weight,
+        });
         hitStats.min_abs_jacobian =
           hitStats.min_abs_jacobian === null ? absJacobian : Math.min(hitStats.min_abs_jacobian, absJacobian);
         hitStats.max_hit_weight = Math.max(hitStats.max_hit_weight, weight);
