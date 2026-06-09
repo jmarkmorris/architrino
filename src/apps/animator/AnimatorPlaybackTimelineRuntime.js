@@ -1,3 +1,5 @@
+import { normalizeAnimatorViewportProjection } from "./AnimatorPlanarViewportRuntime.js";
+
 export function createAnimatorPlaybackTimelineRuntime(options = {}) {
   const THREE = options.THREE ?? globalThis.THREE;
   const documentLike = options.documentLike ?? globalThis.document;
@@ -71,21 +73,42 @@ export function createAnimatorPlaybackTimelineRuntime(options = {}) {
   }
 
   function updateAnimatorViewportModeButtons() {
-    const isAuthoredView = getViewportModeState().cameraSource === "authored";
+    const viewportModeState = getViewportModeState();
+    const isPlanarView = viewportModeState.projection === "planar-2d";
+    const isAuthoredView = !isPlanarView && viewportModeState.cameraSource === "authored";
+    const isDesignView = !isPlanarView && !isAuthoredView;
     if (dom.viewDesignButton) {
-      dom.viewDesignButton.classList.toggle("is-active", !isAuthoredView);
-      dom.viewDesignButton.setAttribute("aria-pressed", isAuthoredView ? "false" : "true");
+      dom.viewDesignButton.classList.toggle("is-active", isDesignView);
+      dom.viewDesignButton.setAttribute("aria-pressed", isDesignView ? "true" : "false");
     }
     if (dom.viewAuthoredButton) {
       dom.viewAuthoredButton.classList.toggle("is-active", isAuthoredView);
       dom.viewAuthoredButton.setAttribute("aria-pressed", isAuthoredView ? "true" : "false");
     }
+    if (dom.viewPlanarButton) {
+      dom.viewPlanarButton.classList.toggle("is-active", isPlanarView);
+      dom.viewPlanarButton.setAttribute("aria-pressed", isPlanarView ? "true" : "false");
+    }
   }
 
   function setAnimatorViewportCameraSource(source = "design") {
-    getViewportModeState().cameraSource = source === "authored" ? "authored" : "design";
+    const viewportModeState = getViewportModeState();
+    viewportModeState.cameraSource = source === "authored" ? "authored" : "design";
+    viewportModeState.projection = "3d";
     updateAnimatorViewportModeButtons();
     applyViewportDisplayState();
+    updateAnimatedViewport(getPlaybackState().playheadSeconds ?? 0);
+  }
+
+  function setAnimatorViewportProjection(projection = "3d") {
+    const viewportModeState = getViewportModeState();
+    viewportModeState.projection = normalizeAnimatorViewportProjection(projection);
+    if (viewportModeState.projection === "planar-2d") {
+      viewportModeState.cameraSource = "design";
+    }
+    updateAnimatorViewportModeButtons();
+    applyViewportDisplayState();
+    updateAnimatedViewport(getPlaybackState().playheadSeconds ?? 0);
   }
 
   function getAnimatorSortedMarkers(documentData) {
@@ -403,6 +426,7 @@ export function createAnimatorPlaybackTimelineRuntime(options = {}) {
     clearAnimatorEditorPreviewState,
     updateAnimatorViewportModeButtons,
     setAnimatorViewportCameraSource,
+    setAnimatorViewportProjection,
     setAnimatorPlaybackPlayhead,
     startAnimatorPlayback,
     toggleAnimatorPlayback,

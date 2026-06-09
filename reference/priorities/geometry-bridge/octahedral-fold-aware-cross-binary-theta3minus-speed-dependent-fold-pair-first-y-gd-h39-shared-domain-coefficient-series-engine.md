@@ -3526,6 +3526,277 @@ centered-residual source object, expression-level $N_{38}$ provider,
 $S_{37}$ division, shifted $R_{\varepsilon,43}$ closure, retained branch, or
 directed-rounded provider.
 
+\texttt{buildH39RequestedY44TerminalProportionalCommonNormalizerLawRefutationCandidate}
+now checks the finite proportional common-normalizer law directly. The
+candidate tests the only available contradiction route: finite
+$r_b=\lambda s_b$ implies $r_-+r_+=\lambda(s_-+s_+)$, so an exact
+same-domain identity $s_-+s_+=0$ together with a nonzero aggregate residual
+would refute the route. Executable validation records aggregate residual
+zero-exclusion status, fifteen zero-crossing denominator intervals, fifteen
+same-$g$ formal branch identity witnesses, and fifteen missing branch-resolved
+centered-residual source objects. It also records that the exact same-domain
+identity $s_-+s_+=0$ is not currently proven by the packet surface;
+zero-crossing denominator intervals are not enough. Therefore the finite
+proportional law is not refuted here, and the next proof object is a
+same-domain denominator-free branch-residual source-object identity that
+preserves $r_-+r_+=R$ on the same five terminal graph cells and
+$h_{37},h_{36},h_{35}$ rows without dividing by $s_-+s_+$. This remains
+priority-only and candidate-only; it certifies no terminal witness
+realization, terminal-row provider object replay, branch-resolved
+centered-residual source object, expression-level $N_{38}$ provider,
+$S_{37}$ division, shifted $R_{\varepsilon,43}$ closure, retained branch, or
+directed-rounded provider.
+
+\texttt{buildH39RequestedY44TerminalDenominatorFreeBranchResidualSourceObjectIdentityAttemptCandidate}
+turns that handoff into the denominator-free branch-residual source-object
+attempt. It replaces the unavailable quotient $R s_b/(s_-+s_+)$ by the
+rank-one branch family $r_-=R/2+t$, $r_+=R/2-t$, preserving
+$r_-+r_+=R$ without dividing by the zero-crossing common normalizer.
+Executable validation emits the canonical symmetric $t=0$ candidate on all
+fifteen terminal rows and thirty branch rows, and every candidate branch-pair
+sums back to the aggregate residual on the same five terminal graph cells and
+$h_{37},h_{36},h_{35}$ rows. The current status is still an open attempt: the
+source identity determining $t$ is missing, so the symmetric candidate is not a
+certified branch-resolved centered-residual source object. This remains
+priority-only and candidate-only; it certifies no terminal witness
+realization, terminal-row provider object replay, branch-resolved
+centered-residual source object, expression-level $N_{38}$ provider,
+$S_{37}$ division, shifted $R_{\varepsilon,43}$ closure, retained branch, or
+directed-rounded provider.
+
+\texttt{buildH39RequestedY44TerminalSourceCovarianceLambdaTCoordinateProjectionAttemptCandidate}
+now attacks the free coordinate $t$ directly rather than adding another replay
+wrapper. It consumes the same-domain common-normalizer law probe,
+branch-antisymmetric common-normalizer rows, and denominator-free
+rank-one-family attempt. On each terminal row it uses the source-covariance
+quotient $\lambda_{\mathrm{source}}$ already present in the law-probe rows and
+forms branch candidates $r_b=\lambda_{\mathrm{source}}s_b$ without dividing by
+$s_-+s_+$. It then records the interval $t=(r_- - r_+)/2$, the branch-sum
+interval $r_-+r_+$, whether that sum contains the measured aggregate residual
+$R$, and whether the resulting $t$ interval contains the symmetric placeholder
+$t=0$. Executable validation emits five node rows, fifteen terminal rows, and
+thirty branch rows, with all source-covariance lambda-only branch candidates
+and all $t$ intervals available. This remains a diagnostic candidate, not a
+source-object proof: the branch-antisymmetric coordinate identity,
+denominator-free branch-residual source-object identity, branch-resolved
+centered-residual source object, expression-level $N_{38}$ provider,
+$S_{37}$ division, shifted $R_{\varepsilon,43}$ closure, retained branch, and
+directed-rounded provider all remain open. The next proof object is a
+same-domain identity proving that the source-covariance lambda-only branch
+projection is the actual branch-resolved centered-residual source object, or a
+corrected scale identity if the recorded branch-sum containment fails on a
+terminal row.
+
+\texttt{buildH39RequestedY44TerminalSourceCovarianceLambdaProviderObjectReplayAuditCandidate}
+turns that lambda-only witness into an executable same-domain replay audit
+against the source-map provider-object rows. It consumes the source-covariance
+lambda $t$-coordinate projection, the direct branch-resolved
+centered-residual source-object projection, and the existing terminal-row
+provider-object replay carrier. On every node, terminal $h$ row, and branch,
+it compares the interval $r_b=\lambda_{\mathrm{source}}s_b$ with the
+source-map provider-object interval and records overlap, subset, endpoint-gap,
+and half-width-ratio data. On every terminal row it also records the residual
+interval $\lambda_{\mathrm{source}}(s_-+s_+)-R$, making the branch-sum
+obstruction an explicit zero-containment audit. Missing provider-object branch
+intervals are represented fail-closed as provider-object-open rows rather than
+as hidden assumptions. This remains priority-only and candidate-only; it
+certifies no source-covariance branch-sum identity, terminal source-covariance
+provider-object replay, terminal-row provider object, branch-resolved
+centered-residual source object, expression-level $N_{38}$ provider,
+$S_{37}$ division, shifted $R_{\varepsilon,43}$ closure, retained branch, or
+directed-rounded provider. If both zero-containment and provider branch fit
+pass, the next blocker is the same-domain actual-source theorem proving
+$r_b=\lambda_{\mathrm{source}}s_b$ is the actual branch-resolved
+centered-residual source object.
+
+\texttt{buildH39RequestedY44TerminalSourceCovarianceAdjointMomentumBalanceAttemptCandidate}
+turns the remaining free branch coordinate into the explicit adjoint/Noether
+momentum-balance target $w_-r_-+w_+r_+=M$. With
+$(r_-,r_+)=(R/2+t,R/2-t)$, any same-domain master-equation adjoint covector
+with $w_- - w_+$ separated from zero would determine
+$t=(M-R(w_-+w_+)/2)/(w_- - w_+)$. The executable packet consumes the
+source-covariance lambda $t$-coordinate projection and provider-object replay
+audit, emits five node rows, fifteen terminal rows, and thirty branch rows,
+and tests the unit antisymmetric law $r_- - r_+=0$ through the residual
+$r_- - r_+=2t$. It certifies no Noether law: the current H39 surface contains
+no master-equation-derived terminal branch weights $w_-$, $w_+$ and no moment
+right-hand side $M$. The packet therefore records zero available adjoint
+weight-pair rows and keeps the branch coordinate, actual source object,
+expression-level $N_{38}$ provider, $S_{37}$ division, shifted
+$R_{\varepsilon,43}$ closure, retained branch, and directed-rounded provider
+open. The next true blocker is the same-domain master-equation adjoint
+branch-weight identity.
+
+\texttt{buildH39RequestedY44TerminalSourceCovarianceBranchExchangeSymmetryAttemptCandidate}
+tests the second structural lever, a same-domain $- \leftrightarrow +$
+branch-exchange fixed point. A fixed source object would require $r_-=r_+$,
+equivalently $t=0$, so the packet records the solve-slope exchange residual
+$s_- - s_+$, the lambda witness exchange residual $r_- - r_+=2t$, and the
+provider-object exchange residual $P_- - P_+$ when both provider branch
+intervals are available. It consumes the source-covariance lambda
+$t$-coordinate projection, provider-object replay audit, and adjoint-momentum
+target rows, emitting five node rows, fifteen terminal rows, and thirty
+branch rows. It certifies no branch-exchange symmetry generator, no
+fixed-point $t=0$ law, no branch-antisymmetric coordinate identity, no actual
+source object, no expression-level $N_{38}$ provider, no $S_{37}$ division, no
+shifted $R_{\varepsilon,43}$ closure, no retained branch, and no
+directed-rounded provider. If the interval audit refutes the fixed-point law,
+the next object is a corrected branch-exchange law or an explicit nonzero
+antisymmetric source term; otherwise the next object is the same-domain
+branch-exchange symmetry generator.
+
+\texttt{buildH39RequestedY44TerminalSourceCovarianceScaleVirialIdentityAttemptCandidate}
+tests the third structural lever, a same-domain scale/virial law for the
+lambda-shaped source-covariance witness. It consumes the lambda
+$t$-coordinate projection, provider-object replay audit, adjoint-momentum
+target rows, and branch-exchange rows, emitting five node rows, fifteen
+terminal rows, and thirty branch rows. On each terminal row it records
+$\lambda_{\mathrm{source}}(s_-+s_+)-R$,
+$\lambda_{\mathrm{source}}(s_- - s_+)-2t$, replay residuals against the
+existing lambda branch sum and branch difference, and a solve-slope shape
+ratio when $s_-+s_+$ is separated from zero. This packet remains
+priority-only and candidate-only. Residual zero containment does not by itself
+derive a virial theorem, and the current executable surface contains no
+same-domain scale generator $D_{\mathrm{scale}}$, no homogeneity degree, and
+no determined scale/virial branch coordinate. It therefore certifies no
+scale/virial identity, no source-covariance lambda homogeneity, no actual
+source object, no expression-level $N_{38}$ provider, no $S_{37}$ division, no
+shifted $R_{\varepsilon,43}$ closure, no retained branch, and no
+directed-rounded provider. If the residual rows pass, the next true blocker is
+the same-domain source-covariance scale generator and homogeneity degree.
+
+\texttt{buildH39RequestedY44TerminalSourceCovarianceCrossBranchWronskianDiagnosticCandidate}
+executes the council-recommended cross-branch Wronskian diagnostic on the same
+terminal source-covariance rows. It evaluates
+$\Delta_{\mathrm{cross}}=r_-s_+-r_+s_-$ from both the lambda witness and the
+source-map provider-object branch intervals, replays
+$\Delta_{\mathrm{cross}}=R(s_+ - s_-)/2+t(s_-+s_+)$, and records the
+dependency-preserving target
+$t=(\Delta_{\mathrm{cross}}-R(s_+ - s_-)/2)/(s_-+s_+)$ when the denominator is
+separated. The packet remains priority-only and candidate-only. It certifies no
+scalar-lambda source object, no tensor source object, no cross-Wronskian
+identity, no dependency-preserving normal form, no expression-level $N_{38}$
+provider, no $S_{37}$ division, no shifted $R_{\varepsilon,43}$ closure, no
+retained branch, and no directed-rounded provider. The next true blocker is to
+replay this same-domain normal form through the provider boundary, or replace
+the scalar-lambda witness with an explicitly non-scalar source-covariance
+object if the provider-object Wronskian excludes zero.
+
+\texttt{buildH39RequestedY44TerminalSourceCovarianceCrossWronskianNormalFormProducerCandidate}
+executes that replay as a candidate-only normal-form producer packet. It
+consumes the terminal-affine endpoint provider budget and cross-Wronskian
+diagnostic, records the $s_-+s_+$ denominator status on all fifteen terminal
+rows, reconstructs
+$r_-^{NF}=(Rs_-+W)/(s_-+s_+)$ and
+$r_+^{NF}=(Rs_+-W)/(s_-+s_+)$, compares both branch intervals with the
+terminal-affine endpoint budget, and reuses the existing source-map boundary
+only as a fail-closed replay witness. On the live terminal rows it records zero
+separated $s_-+s_+$ denominators, so the normal-form division is blocked before
+provider-boundary certification. The current executable surface still lacks an
+expression-level shared evaluator for $W=r_-s_+-r_+s_-$; the packet records
+that absence explicitly instead of treating the provider-object or lambda
+Wronskian hull as a certified shared source object. It certifies no
+expression-level shared Wronskian, no cross-Wronskian normal-form producer, no
+scalar-lambda source object, no tensor source object, no expression-level
+$N_{38}$ provider, no $S_{37}$ division, no shifted $R_{\varepsilon,43}$
+closure, no retained branch, and no directed-rounded provider. The active
+blocker is therefore sharper: first separate $s_-+s_+$ on the same terminal
+domain, then build and certify a narrow expression-level shared $W$ interval
+before replaying the normal-form producer or promoting a non-scalar
+source-covariance object.
+
+\texttt{buildH39RequestedY44TerminalSourceCovarianceSolveSlopeSumDenominatorSeparationAuditCandidate}
+compares the $s_-+s_+$ denominator from the terminal successor
+common-normalizer attempt with the denominator used by the cross-Wronskian
+normal-form producer on the same fifteen terminal rows. On the live rows the
+two denominator intervals match exactly and both routes keep zero in every
+terminal interval. This sharpens the obstruction: the denominator failure is
+shared across the current same-domain solve-slope routes, not introduced by
+the Wronskian replay. The packet remains priority-only and candidate-only. It
+certifies no denominator separation, no expression-level shared Wronskian, no
+scalar-lambda source object, no tensor source object, no expression-level
+$N_{38}$ provider, no $S_{37}$ division, no shifted $R_{\varepsilon,43}$
+closure, no retained branch, and no directed-rounded provider. The next true
+blocker is a correlated signed lower-bound identity for $s_-+s_+$ or a
+denominator-free normal form; only after that should the narrowed
+expression-level shared $W=r_-s_+-r_+s_-$ interval become the hard object.
+
+\texttt{buildH39RequestedY44TerminalSourceCovarianceWronskianSingularCompatibilityAuditCandidate}
+executes that denominator-free normal-form check without dividing by
+$s_-+s_+$. It records the singular-line compatibility identity
+$W+R(s_- - s_+)/2=(s_-+s_+)t$ and the product identities
+$(s_-+s_+)r_-=Rs_-+W$ and $(s_-+s_+)r_+=Rs_+-W$ on the same fifteen
+terminal rows. It then compares each branch numerator interval with
+$(s_-+s_+)$ times the terminal-affine provider interval, producing thirty
+branch product-space rows. The packet remains priority-only and
+candidate-only. It certifies no denominator separation, no denominator-free
+normal form, no expression-level shared Wronskian, no scalar-lambda source
+object, no tensor or non-scalar source-covariance object, no expression-level
+$N_{38}$ provider, no $S_{37}$ division, no shifted $R_{\varepsilon,43}$
+closure, no retained branch, and no directed-rounded provider. If the
+product-space rows fit, the next true blocker is a same-domain correlated
+divisibility proof by $s_-+s_+$; if they do not fit, the next true blocker is
+a correlated numerator/denominator evaluator for the same denominator-free
+product identity, or a non-scalar source-covariance object if the Wronskian
+pressure remains structurally non-scalar.
+
+\texttt{buildH39RequestedY44TerminalSourceCovarianceWronskianProductOutcomeClassifierCandidate}
+consumes the singular compatibility audit and extracts the exact product-space
+outcome instead of choosing the next route by prose. For each of the thirty
+branch product rows it records the branch numerator interval, the
+$(s_-+s_+)$-times-provider interval, the containment result, the containment
+hull, and the lower/upper endpoint excess. The aggregate output reports
+compatible and open branch counts, compatible and open terminal-row counts,
+whether any singular numerator refutes the compatibility identity, whether
+the Wronskian excludes zero, and the worst endpoint excess. The packet remains
+priority-only and candidate-only. It certifies no product compatibility, no
+correlated divisibility by $s_-+s_+$, no correlated numerator/denominator
+evaluator, no denominator-free normal form, no scalar-lambda source object, no
+tensor or non-scalar source-covariance object, and no directed-rounded
+provider. Its only role is to force the next packet: prove correlated
+divisibility if all product rows are compatible, build a correlated
+numerator/denominator evaluator if the product rows remain open, or promote a
+non-scalar source-covariance object if the Wronskian pressure is structurally
+non-scalar.
+
+\texttt{buildH39RequestedY44TerminalSourceCovarianceWronskianRankTwoDecompositionCandidate}
+tests the sum-denominator-free branch-source decomposition
+$r=\lambda_{\parallel}s+\mu Js$, with
+$s=(s_-,s_+)$, $Js=(s_+,-s_-)$, and
+$Q=s_-^2+s_+^2$. It records the same-domain $Q$ interval, $Q$ separation and
+zero-crossing counts, the parallel moment
+$r_-s_-+r_+s_+$, the Wronskian component $\mu=W/Q$, and the reconstructed
+branch intervals for both the lambda-witness rows and the provider-object rows
+when available. This route avoids division by the singular
+$s_-+s_+$ denominator, but it still uses the currently available Wronskian
+hulls rather than certifying an expression-level shared evaluator for
+$W=r_-s_+-r_+s_-$. The packet remains priority-only and candidate-only. It
+certifies no rank-two source-covariance object, no non-scalar
+source-covariance object, no scalar-lambda source object, no $Q$ denominator
+separation, no expression-level shared Wronskian, and no directed-rounded
+provider. If $Q$ is not separated, the next blocker is a same-domain
+solve-slope norm lower bound. If $Q$ is separated and $\mu$ excludes zero, the
+scalar-lambda path should not receive another wrapper; the next object is a
+same-domain non-scalar source-covariance provider using
+$\lambda_{\parallel}$ and $\mu$.
+
+\texttt{buildH39RequestedY44TerminalSourceCovarianceWronskianRankTwoProviderReplayCandidate}
+now replays those rank-two reconstructed branch intervals against the
+terminal-affine endpoint provider budget. It consumes the existing
+terminal-affine provider rows and the rank-two decomposition rows, records
+whether the same-domain and same-radius source-map boundary is reachable for
+each source kind, and counts whether the provider-object and lambda-witness
+rank-two reconstructions fit the endpoint budget. This remains priority-only
+and candidate-only: it certifies no rank-two source-covariance object, no
+non-scalar source-covariance object, no scalar-lambda source object, no
+expression-level shared Wronskian, no $Q$ denominator separation, no terminal
+row provider enclosure, and no directed-rounded shared-domain provider. If the
+provider-object reconstruction fits, the next proof object is a same-domain
+non-scalar source-covariance object using $\lambda_{\parallel}$ and $\mu$
+before the provider boundary can be certified. If it still exceeds the budget,
+the next hard object is Wronskian-sensitive narrowing rather than another
+scalar-lambda wrapper.
+
 \texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
 now also probes a shared terminal-residual coordinate for
 $h_{37},h_{36},h_{35}$. Instead of assigning independent residual hulls to the

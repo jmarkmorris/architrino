@@ -1,3 +1,5 @@
+import { normalizeAnimatorSimulationDataset } from "../apps/animator/AnimatorSimulationDatasetRuntime.js";
+
 function roundNumber(value) {
   return Number(Number(value ?? 0).toFixed(3));
 }
@@ -17,6 +19,10 @@ function normalizeString(value, fallback) {
 function normalizePathPoints(points) {
   const source = Array.isArray(points) ? points : [];
   return source.map((point) => clonePoint(point));
+}
+
+function normalizePathInterpolate(value) {
+  return value === "linear" ? "linear" : "spline";
 }
 
 function getAssemblyLetter(index = 0) {
@@ -63,7 +69,9 @@ function normalizeAnimatorPaths(rawPaths, rawAssemblies) {
           },
           payload: {
             points,
-            interpolate: rawPath?.payload?.interpolate ?? rawPath?.interpolate ?? "spline",
+            interpolate: normalizePathInterpolate(
+              rawPath?.payload?.interpolate ?? rawPath?.interpolate
+            ),
             closed: !!(rawPath?.payload?.closed ?? rawPath?.closed),
           },
         };
@@ -697,6 +705,14 @@ function normalizeAssemblies(rawAssemblies, ownerPathIds = new Map(), primaryPat
 export function normalizeAnimatorSceneDocument(rawDocument = {}) {
   const rawScene = rawDocument.scene ?? {};
   const rawControls = rawScene.controls ?? {};
+  const rawMetadata =
+    rawDocument.metadata && typeof rawDocument.metadata === "object"
+      ? rawDocument.metadata
+      : {};
+  const rawSimulationDataset =
+    rawMetadata.simulationDataset && typeof rawMetadata.simulationDataset === "object"
+      ? rawMetadata.simulationDataset
+      : null;
   const normalizedPaths = normalizeAnimatorPaths(
     rawDocument.paths?.length
       ? rawDocument.paths
@@ -794,7 +810,10 @@ export function normalizeAnimatorSceneDocument(rawDocument = {}) {
     checkpoints: Array.isArray(rawDocument.checkpoints) ? rawDocument.checkpoints : [],
     metadata: {
       source: "animator",
-      ...(rawDocument.metadata ?? {}),
+      ...rawMetadata,
+      ...(rawSimulationDataset
+        ? { simulationDataset: normalizeAnimatorSimulationDataset(rawSimulationDataset) }
+        : {}),
     },
   };
 }
@@ -817,7 +836,7 @@ export function createAnimatorSceneDocument(input = {}, options = {}) {
         },
         payload: {
           points,
-          interpolate: assembly?.pathInterpolate === "polyline" ? "polyline" : "spline",
+          interpolate: normalizePathInterpolate(assembly?.pathInterpolate),
           closed: !!assembly?.pathClosed,
         },
       };

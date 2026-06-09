@@ -227,9 +227,20 @@
               >
                 Observer
               </button>
+              <button
+                id="animator-view-planar-button"
+                type="button"
+                class="animator-view-toggle-button"
+                aria-pressed="false"
+              >
+                Planar 2D
+              </button>
             </div>
             <button id="animator-scene-button" type="button" aria-label="Open scene controls">
               Scene
+            </button>
+            <button id="animator-run-simulation-button" type="button" aria-label="Run solver simulation">
+              Run Solver
             </button>
             <button id="animator-clear-button" type="button" aria-label="Clear the current scene">
               Clear
@@ -282,24 +293,49 @@
                 <span>Canvas UI</span>
                 <span>Click/Drag: 3D Rotate</span>
                 <span>Right-Click: Scene, Frame, Observer</span>
+                <span id="animator-motion-source-pill" class="animator-motion-source-pill">Motion: Authored</span>
                 <div class="animator-canvas-hud-toggles" role="group" aria-label="Canvas view controls">
                   <button id="animator-hud-labels-toggle" type="button" class="animator-canvas-hud-toggle" aria-pressed="true">
                     Observer Labels
                   </button>
-                  <button id="animator-hud-paths-toggle" type="button" class="animator-canvas-hud-toggle" aria-pressed="true">
+                  <button id="animator-hud-paths-toggle" type="button" class="animator-canvas-hud-toggle" aria-pressed="false">
                     Transport Paths
                   </button>
                   <button id="animator-hud-history-toggle" type="button" class="animator-canvas-hud-toggle" aria-pressed="true">
                     History Traces
                   </button>
-                  <button id="animator-hud-envelopes-toggle" type="button" class="animator-canvas-hud-toggle" aria-pressed="true">
+                  <button id="animator-hud-envelopes-toggle" type="button" class="animator-canvas-hud-toggle" aria-pressed="false">
                     Envelopes
+                  </button>
+                  <label class="animator-canvas-hud-range">
+                    <span>Shell Opacity</span>
+                    <input
+                      id="animator-hud-shell-opacity"
+                      type="range"
+                      min="0"
+                      max="1"
+                      step="0.05"
+                      value="1"
+                      aria-label="Shell opacity"
+                    />
+                  </label>
+                  <button id="animator-hud-solver-motion-toggle" type="button" class="animator-canvas-hud-toggle" aria-pressed="true">
+                    Solver Motion
+                  </button>
+                  <button id="animator-hud-authored-motion-toggle" type="button" class="animator-canvas-hud-toggle" aria-pressed="true">
+                    Authored Motion
                   </button>
                   <button id="animator-hud-camera-guides-toggle" type="button" class="animator-canvas-hud-toggle" aria-pressed="true">
                     Observer Guides
                   </button>
                 </div>
               </div>
+              <div
+                id="animator-delayed-hit-table"
+                class="animator-delayed-hit-table"
+                hidden
+                aria-label="Delayed hit diagnostics"
+              ></div>
             </div>
           </main>
           <div class="animator-store" hidden aria-hidden="true">

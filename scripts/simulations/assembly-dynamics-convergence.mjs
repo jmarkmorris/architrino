@@ -3,7 +3,10 @@
 import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { DEFAULTS, run } from "./assembly-dynamics-toy.mjs";
+import {
+  DEFAULTS,
+  runAssemblyDynamicsSimulation as run,
+} from "./lib/assembly-dynamics-engine.mjs";
 
 const CONVERGENCE_DEFAULTS = {
   baseDt: DEFAULTS.dt,

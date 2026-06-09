@@ -22,16 +22,28 @@ export function getAnimatorDomElements(documentLike = globalThis.document) {
   const animatorHudPathsToggle = getElementById(documentLike, "animator-hud-paths-toggle");
   const animatorHudHistoryToggle = getElementById(documentLike, "animator-hud-history-toggle");
   const animatorHudEnvelopesToggle = getElementById(documentLike, "animator-hud-envelopes-toggle");
+  const animatorHudShellOpacityInput = getElementById(documentLike, "animator-hud-shell-opacity");
+  const animatorHudSolverMotionToggle = getElementById(
+    documentLike,
+    "animator-hud-solver-motion-toggle"
+  );
+  const animatorHudAuthoredMotionToggle = getElementById(
+    documentLike,
+    "animator-hud-authored-motion-toggle"
+  );
   const animatorHudCameraGuidesToggle = getElementById(
     documentLike,
     "animator-hud-camera-guides-toggle"
   );
+  const animatorMotionSourcePill = getElementById(documentLike, "animator-motion-source-pill");
 
   return {
     animatorOverlay,
     animatorViewDesignButton: getElementById(documentLike, "animator-view-design-button"),
     animatorViewAuthoredButton: getElementById(documentLike, "animator-view-authored-button"),
+    animatorViewPlanarButton: getElementById(documentLike, "animator-view-planar-button"),
     animatorSceneButton: getElementById(documentLike, "animator-scene-button"),
+    animatorRunSimulationButton: getElementById(documentLike, "animator-run-simulation-button"),
     animatorClearButton: getElementById(documentLike, "animator-clear-button"),
     animatorSaveButton: getElementById(documentLike, "animator-save-button"),
     animatorDocsButton: getElementById(documentLike, "animator-docs-button"),
@@ -65,6 +77,7 @@ export function getAnimatorDomElements(documentLike = globalThis.document) {
     animatorPlayheadScrubInput: getElementById(documentLike, "animator-playhead-scrub"),
     animatorStatus: getElementById(documentLike, "animator-status"),
     animatorJsonPreview: getElementById(documentLike, "animator-json-preview"),
+    animatorDelayedHitTable: getElementById(documentLike, "animator-delayed-hit-table"),
     animatorCanvas,
     animatorCanvasWrap: animatorCanvas?.parentElement ?? null,
     animatorViewportOverlays: getElementById(documentLike, "animator-viewport-overlays"),
@@ -73,7 +86,11 @@ export function getAnimatorDomElements(documentLike = globalThis.document) {
     animatorHudPathsToggle,
     animatorHudHistoryToggle,
     animatorHudEnvelopesToggle,
+    animatorHudShellOpacityInput,
+    animatorHudSolverMotionToggle,
+    animatorHudAuthoredMotionToggle,
     animatorHudCameraGuidesToggle,
+    animatorMotionSourcePill,
     animatorHudViewportToggleBindings: [
       {
         button: animatorHudLabelsToggle,
@@ -94,6 +111,16 @@ export function getAnimatorDomElements(documentLike = globalThis.document) {
         button: animatorHudEnvelopesToggle,
         key: "showEnvelopes",
         label: "Envelopes",
+      },
+      {
+        button: animatorHudSolverMotionToggle,
+        key: "showSolverMotion",
+        label: "Solver Motion",
+      },
+      {
+        button: animatorHudAuthoredMotionToggle,
+        key: "showAuthoredMotion",
+        label: "Authored Motion",
       },
       {
         button: animatorHudCameraGuidesToggle,

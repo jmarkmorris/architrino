@@ -309,7 +309,7 @@ export function createAnimatorStructureGeometryRuntime(options = {}) {
     }
     const interpolate = options.interpolate ?? "spline";
     const closed = !!options.closed;
-    if (interpolate === "spline" && points.length > 2) {
+    if (interpolate !== "linear" && points.length > 2) {
       const vectors = points.map(([x = 0, y = 0, z = 0]) => new THREE.Vector3(x, y, z));
       const curve = new THREE.CatmullRomCurve3(vectors, closed, "catmullrom", 0.5);
       return curve.getPoint(clampFn(normalizedT, 0, 1));

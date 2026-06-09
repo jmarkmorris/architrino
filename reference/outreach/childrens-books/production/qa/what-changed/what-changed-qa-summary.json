@@ -1,0 +1,282 @@
+[
+  {
+    "id": "what-changed-cover",
+    "book_slug": "what-changed",
+    "source_png": "reference/outreach/childrens-books/production/source/what-changed/what-changed-cover.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.3992,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "what-changed-spread-01",
+    "book_slug": "what-changed",
+    "source_png": "reference/outreach/childrens-books/production/source/what-changed/what-changed-spread-01.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.5744,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "what-changed-spread-02",
+    "book_slug": "what-changed",
+    "source_png": "reference/outreach/childrens-books/production/source/what-changed/what-changed-spread-02.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4266,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "what-changed-spread-03",
+    "book_slug": "what-changed",
+    "source_png": "reference/outreach/childrens-books/production/source/what-changed/what-changed-spread-03.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.5693,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "what-changed-spread-04",
+    "book_slug": "what-changed",
+    "source_png": "reference/outreach/childrens-books/production/source/what-changed/what-changed-spread-04.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4696,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "what-changed-spread-05",
+    "book_slug": "what-changed",
+    "source_png": "reference/outreach/childrens-books/production/source/what-changed/what-changed-spread-05.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4537,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "what-changed-spread-06",
+    "book_slug": "what-changed",
+    "source_png": "reference/outreach/childrens-books/production/source/what-changed/what-changed-spread-06.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4484,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "what-changed-spread-07",
+    "book_slug": "what-changed",
+    "source_png": "reference/outreach/childrens-books/production/source/what-changed/what-changed-spread-07.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.377,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "what-changed-spread-08",
+    "book_slug": "what-changed",
+    "source_png": "reference/outreach/childrens-books/production/source/what-changed/what-changed-spread-08.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4068,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "what-changed-spread-09",
+    "book_slug": "what-changed",
+    "source_png": "reference/outreach/childrens-books/production/source/what-changed/what-changed-spread-09.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.3712,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "what-changed-spread-10",
+    "book_slug": "what-changed",
+    "source_png": "reference/outreach/childrens-books/production/source/what-changed/what-changed-spread-10.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.468,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "what-changed-spread-11",
+    "book_slug": "what-changed",
+    "source_png": "reference/outreach/childrens-books/production/source/what-changed/what-changed-spread-11.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4239,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "what-changed-spread-12",
+    "book_slug": "what-changed",
+    "source_png": "reference/outreach/childrens-books/production/source/what-changed/what-changed-spread-12.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.3717,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "what-changed-backmatter-01",
+    "book_slug": "what-changed",
+    "source_png": "reference/outreach/childrens-books/production/source/what-changed/what-changed-backmatter-01.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4212,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  }
+]

@@ -161,7 +161,6 @@ export function createAnimatorCanvasBootstrapRuntime(options = {}) {
           }
           operations.toggleViewportDisplayFlag?.(key);
           operations.applyViewportDisplayState?.();
-          operations.renderJsonPreview?.();
         });
         button.dataset.bound = "true";
       }

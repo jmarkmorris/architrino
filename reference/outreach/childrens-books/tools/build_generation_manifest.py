@@ -54,6 +54,85 @@ BOOKS = [
         "back_matter_count": 1,
         "back_matter_story_text": "Roll again.\nFind the pattern.",
     },
+    {
+        "slug": "what-changed",
+        "title": "What Changed?",
+        "book_number": 5,
+        "age_band": "4-5",
+        "story_spreads": 12,
+        "cover_count": 1,
+        "back_matter_count": 1,
+        "back_matter_story_text": "Change one thing.\nCompare what happened.",
+    },
+    {
+        "slug": "the-message-that-traveled",
+        "title": "The Message That Traveled",
+        "book_number": 6,
+        "age_band": "5-6",
+        "story_spreads": 12,
+        "cover_count": 1,
+        "back_matter_count": 2,
+        "back_matter_story_text": "Begin.\nTravel.\nArrive.",
+        "back_matter_activities": [
+            (
+                "Electra and Poz sit apart in a white play space while a grown-up hand taps a small "
+                "white-and-purple bell near Poz. Soft purple sound rings travel from the bell toward "
+                "Electra. Keep the source bell, travel path, and Electra's listening arrival place visible."
+            ),
+            (
+                "Electra and Poz sit beside a shallow white tray of pale purple-blue water while a "
+                "grown-up hand drops a small purple pebble into the water. A ripple travels outward "
+                "and reaches a small paper leaf, moving it gently."
+            ),
+        ],
+    },
+    {
+        "slug": "patterns-that-hold",
+        "title": "Patterns That Hold",
+        "book_number": 8,
+        "age_band": "7-8",
+        "story_spreads": 12,
+        "cover_count": 1,
+        "back_matter_count": 2,
+        "back_matter_story_text": "Move.\nFit.\nHold.",
+        "back_matter_activities": [
+            (
+                "Electra and Poz sit beside a white bead table while a small grown-up hand gives "
+                "one bead a gentle push. Three beads on soft purple strings show older/fainter "
+                "and newer/fresher arc traces returning to a simple repeated relation. Keep the "
+                "grown-up hand small and secondary"
+            ),
+            (
+                "Electra and Poz watch while a small grown-up hand moves one bead farther from a "
+                "three-bead setup. Keep the other beads in place, show the old repeated arcs "
+                "faintly, and show the newer motion trace failing to fit until the spacing is "
+                "restored nearby"
+            ),
+        ],
+    },
+    {
+        "slug": "the-tiny-transceivers",
+        "title": "The Tiny Transceivers",
+        "book_number": 9,
+        "age_band": "8-9",
+        "story_spreads": 14,
+        "cover_count": 1,
+        "back_matter_count": 2,
+        "back_matter_story_text": "Path.\nSend.\nReceive.",
+        "back_matter_activities": [
+            (
+                "Electra and Poz sit beside a white tabletop lab surface while a small grown-up "
+                "hand places or slides one red point token across the surface. The point leaves "
+                "a short red path trace with older/fainter and newer/fresher positions, showing "
+                "persistent identity through motion"
+            ),
+            (
+                "Electra and Poz watch while a small grown-up hand points to an earlier red "
+                "source position, a soft red wake traveling from it, and a blue point whose path "
+                "bends after the wake arrives"
+            ),
+        ],
+    },
 ]
 
 PALETTE_RULE = (
@@ -283,7 +362,7 @@ def build_book_entries(book: dict) -> tuple[dict, list[dict]]:
         }
         book_entries.append(entry)
 
-    activities = extract_activity_lines(md)
+    activities = book.get("back_matter_activities") or extract_activity_lines(md)
     if not activities:
         activities = ["teacher-led review activity using the story's physical play materials"]
     for idx in range(1, book["back_matter_count"] + 1):

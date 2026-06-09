@@ -7,6 +7,7 @@ export function createAnimatorControlsUiRuntime(deps) {
     animatorPreviewButton,
     animatorViewDesignButton,
     animatorViewAuthoredButton,
+    animatorViewPlanarButton,
     animatorExportButton,
     animatorLibrarySaveButton,
     animatorRepoSaveButton,
@@ -51,6 +52,7 @@ export function createAnimatorControlsUiRuntime(deps) {
     stopAnimatorCameraFlightPreview,
     startAnimatorCameraFlightPreview,
     setAnimatorViewportCameraSource,
+    setAnimatorViewportProjection,
     applyAnimatorFrameScaleInput,
     applyAnimatorCameraSpeedInput,
     applyAnimatorCameraRadiusInput,
@@ -120,6 +122,15 @@ export function createAnimatorControlsUiRuntime(deps) {
           stopAnimatorCameraFlightPreview();
         }
         setAnimatorViewportCameraSource("authored");
+      });
+    }
+
+    if (animatorViewPlanarButton) {
+      animatorViewPlanarButton.addEventListener("click", () => {
+        if (animatorCameraFlightState.preview) {
+          stopAnimatorCameraFlightPreview();
+        }
+        setAnimatorViewportProjection?.("planar-2d");
       });
     }
 
@@ -264,7 +275,8 @@ export function createAnimatorControlsUiRuntime(deps) {
 
     if (animatorPathModeSelect) {
       animatorPathModeSelect.addEventListener("change", () => {
-        animatorPathState.interpolate = animatorPathModeSelect.value;
+        animatorPathState.interpolate =
+          animatorPathModeSelect.value === "linear" ? "linear" : "spline";
         persistAnimatorPathStateToSelectedAssembly();
         updateAnimatorPathGeometry();
         renderAnimatorJsonPreview();
