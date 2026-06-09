@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
+  createAnimatorFieldShellInstance,
   getAnimatorFieldShellColor,
   getAnimatorFieldShellEmitterPath,
   getAnimatorFieldShellOpacityAtTime,
@@ -51,6 +52,39 @@ test("animator field shell opacity fades after the display window", () => {
   assert.ok(getAnimatorFieldShellOpacityAtTime(shell, 0.5) > 0.15);
 });
 
+test("continuous animator field shells keep expanding after the display window", () => {
+  const earlyShell = {
+    emissionTime: 0,
+    displayTime: 1,
+    fieldSpeed: 1,
+    metadata: { continuousExpansion: true },
+  };
+  const laterShell = {
+    emissionTime: 0.25,
+    displayTime: 1.25,
+    fieldSpeed: 1,
+    metadata: { continuousExpansion: true },
+  };
+
+  assert.equal(getAnimatorFieldShellRadiusAtTime(earlyShell, 2), 2);
+  assert.equal(getAnimatorFieldShellRadiusAtTime(laterShell, 2), 1.75);
+  assert.ok(getAnimatorFieldShellOpacityAtTime(earlyShell, 3, {}, { fadeOutSeconds: 0.5 }) > 0);
+  assert.ok(getAnimatorFieldShellOpacityAtTime(laterShell, 3, {}, { fadeOutSeconds: 0.5 }) > 0);
+  assert.ok(getAnimatorFieldShellOpacityAtTime(earlyShell, 3) < getAnimatorFieldShellOpacityAtTime(earlyShell, 0.5));
+});
+
+test("solver-derived field shells are continuous even without upgraded metadata", () => {
+  const shell = {
+    emissionTime: 0,
+    displayTime: 1,
+    fieldSpeed: 1,
+    metadata: { motionSource: "solver-derived" },
+  };
+
+  assert.equal(getAnimatorFieldShellRadiusAtTime(shell, 3), 3);
+  assert.ok(getAnimatorFieldShellOpacityAtTime(shell, 3, {}, { fadeOutSeconds: 0.5 }) > 0);
+});
+
 test("animator field shells resolve emitter paths by exact id then charge sign", () => {
   const paths = [
     { id: "solver_path_e0", metadata: { simulationParticleId: "e0" } },
@@ -74,4 +108,41 @@ test("animator field shells resolve emitter paths by exact id then charge sign",
     getAnimatorFieldShellEmitterPath({ emitterId: "p1", sign: -1 }, dataset, paths, options)?.id,
     "solver_path_e0"
   );
+});
+
+test("animator field shell instances preserve solver timing while targeting architrino emitters", () => {
+  const instance = createAnimatorFieldShellInstance(
+    {
+      id: "shell_p0_12",
+      emitterId: "p0",
+      emissionTime: 1.25,
+      displayTime: 2.85,
+      emissionPosition: [1, 0, 0],
+      radius: 1.6,
+      sign: 1,
+      metadata: { motionSource: "solver-derived" },
+    },
+    {
+      id: "solver_particle_p_electrino_2",
+      emitterId: "electrino_2",
+      sign: -1,
+      emissionPosition: [4.2, -0.8, 0.4],
+      metadata: {
+        ownerAssemblyId: "solver_particle_p",
+        memberId: "electrino_2",
+        emitterScope: "core-architrino",
+      },
+    }
+  );
+
+  assert.equal(instance.id, "shell_p0_12_solver_particle_p_electrino_2");
+  assert.equal(instance.emitterId, "electrino_2");
+  assert.equal(instance.emissionTime, 1.25);
+  assert.equal(instance.displayTime, 2.85);
+  assert.deepEqual(instance.emissionPosition, [4.2, -0.8, 0.4]);
+  assert.equal(instance.sign, -1);
+  assert.equal(instance.metadata.sourceFieldShellId, "shell_p0_12");
+  assert.equal(instance.metadata.sourceEmitterId, "p0");
+  assert.equal(instance.metadata.fixedEmissionPosition, true);
+  assert.equal(instance.metadata.emitterScope, "core-architrino");
 });

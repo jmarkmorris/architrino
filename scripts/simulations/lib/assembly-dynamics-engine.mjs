@@ -29,65 +29,6 @@ function particleChargeType(q) {
   return "neutral";
 }
 
-function createFieldShellSamples(frames = [], config = {}, options = {}) {
-  if (options.includeFieldShells === false) {
-    return [];
-  }
-  const normalizedFrames = Array.isArray(frames) ? frames : [];
-  if (!normalizedFrames.length) {
-    return [];
-  }
-  const defaultSamplesPerParticle = normalizedFrames.length;
-  const samplesPerParticle = Math.max(
-    1,
-    Math.min(
-      normalizedFrames.length,
-      Math.round(Number(options.fieldShellSamplesPerParticle ?? defaultSamplesPerParticle)) ||
-        defaultSamplesPerParticle
-    )
-  );
-  const frameStep = Math.max(1, Math.ceil(normalizedFrames.length / samplesPerParticle));
-  const fieldSpeed = Number(config.cf ?? DEFAULTS.cf) || 1;
-  const fallbackLifetime = Math.max(
-    Number(config.dt ?? DEFAULTS.dt) * Number(config.stride ?? DEFAULTS.stride) * 8,
-    1.6
-  );
-  const lifetime = Math.max(
-    0.001,
-    Number(options.fieldShellLifetimeSeconds ?? fallbackLifetime) || fallbackLifetime
-  );
-  const shellSamples = [];
-
-  normalizedFrames.forEach((frame, frameIndex) => {
-    if (frameIndex % frameStep !== 0) {
-      return;
-    }
-    const particles = Array.isArray(frame?.particles) ? frame.particles : [];
-    particles.forEach((particle) => {
-      const particleId = particleDatasetId(particle.id);
-      const emissionTime = Number(frame.t ?? frameIndex) || 0;
-      shellSamples.push({
-        id: `shell_${particleId}_${frameIndex}`,
-        emitterId: particleId,
-        emissionTime,
-        displayTime: emissionTime + lifetime,
-        emissionPosition: vector2To3([particle.x, particle.y]),
-        radius: fieldSpeed * lifetime,
-        sign: Number(particle.q ?? 0) || 0,
-        strength: 1,
-        fieldSpeed,
-        branchId: `frame_${frameIndex}`,
-        metadata: {
-          motionSource: "solver-derived",
-          sourceFrameIndex: frameIndex,
-        },
-      });
-    });
-  });
-
-  return shellSamples;
-}
-
 function frameDiagnostics(frame = {}) {
   const conserved = frame.conserved_quantities ?? {};
   const hitStats = frame.hit_stats ?? {};
@@ -213,7 +154,7 @@ export function createAnimatorSimulationDatasetFromAssemblyDynamicsResult(
       })),
       diagnostics: frameDiagnostics(frame),
     })),
-    fieldShells: createFieldShellSamples(frames, config, options),
+    fieldShells: [],
     delayedHits: [],
     diagnostics: {
       status: result?.summary?.status ?? "unknown",

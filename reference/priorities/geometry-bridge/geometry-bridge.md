@@ -4193,6 +4193,24 @@ the next true blocker is a correlated numerator/denominator evaluator for the
 same denominator-free product identity, or a non-scalar source-covariance
 object if the Wronskian pressure remains structurally non-scalar.
 
+`buildH39RequestedY44TerminalSourceCovarianceWronskianProductOutcomeClassifierCandidate`
+consumes the singular compatibility audit and extracts the exact product-space
+outcome instead of choosing the next route by prose. For each of the thirty
+branch product rows it records the branch numerator interval, the
+$(s_-+s_+)$-times-provider interval, the containment result, the containment
+hull, and the lower/upper endpoint excess. The aggregate output reports
+compatible and open branch counts, compatible and open terminal-row counts,
+whether any singular numerator refutes the compatibility identity, whether
+the Wronskian excludes zero, and the worst endpoint excess. It certifies no
+product compatibility, no correlated divisibility by $s_-+s_+$, no correlated
+numerator/denominator evaluator, no denominator-free normal form, no
+scalar-lambda source object, no tensor or non-scalar source-covariance object,
+and no directed-rounded provider. Its only role is to force the next packet:
+prove correlated divisibility if all product rows are compatible, build a
+correlated numerator/denominator evaluator if the product rows remain open, or
+promote a non-scalar source-covariance object if the Wronskian pressure is
+structurally non-scalar.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.

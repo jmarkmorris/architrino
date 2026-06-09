@@ -103,6 +103,7 @@ import {
   buildH39RequestedY44TerminalSourceCovarianceCrossWronskianNormalFormProducerCandidate,
   buildH39RequestedY44TerminalSourceCovarianceSolveSlopeSumDenominatorSeparationAuditCandidate,
   buildH39RequestedY44TerminalSourceCovarianceWronskianSingularCompatibilityAuditCandidate,
+  buildH39RequestedY44TerminalSourceCovarianceWronskianProductOutcomeClassifierCandidate,
   buildH39RequestedY44RowLocalN38SignedSourceSumDerivativeProviderCandidate,
   validateH39CorrelatedResidualWidthDiagnostic,
   validateH39H38NumeratorGraphLocalPartitionDiagnostic,
@@ -202,6 +203,7 @@ import {
   validateH39RequestedY44TerminalSourceCovarianceCrossWronskianNormalFormProducerCandidate,
   validateH39RequestedY44TerminalSourceCovarianceSolveSlopeSumDenominatorSeparationAuditCandidate,
   validateH39RequestedY44TerminalSourceCovarianceWronskianSingularCompatibilityAuditCandidate,
+  validateH39RequestedY44TerminalSourceCovarianceWronskianProductOutcomeClassifierCandidate,
   validateH39RequestedY44RowLocalN38SignedSourceSumDerivativeProvider,
   validateH39RequestedY44SignedSourceSumDerivativeAllocationTarget,
   validateH39RequestedY44SourceMapResidualCovarianceTarget,
@@ -24287,6 +24289,217 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   assert.deepEqual(
     collectExactKeys(
       terminalSourceCovarianceWronskianSingularCompatibilityAudit,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalSourceCovarianceWronskianProductOutcomeClassifier =
+    buildH39RequestedY44TerminalSourceCovarianceWronskianProductOutcomeClassifierCandidate(
+      {
+        terminalSourceCovarianceWronskianSingularCompatibilityAudit,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44TerminalSourceCovarianceWronskianProductOutcomeClassifierCandidate(
+      terminalSourceCovarianceWronskianProductOutcomeClassifier
+    ),
+    []
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProductOutcomeClassifier
+      .terminal_source_covariance_wronskian_product_outcome_classifier_verified,
+    true
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProductOutcomeClassifier
+      .terminal_source_covariance_wronskian_product_outcome_classifier_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProductOutcomeClassifier
+      .terminal_source_covariance_wronskian_product_outcome_classifier_row_count,
+    5
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProductOutcomeClassifier
+      .terminal_source_covariance_wronskian_product_outcome_classifier_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProductOutcomeClassifier
+      .terminal_source_covariance_wronskian_product_outcome_classifier_branch_row_count,
+    30
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProductOutcomeClassifier
+      .product_identity_branch_compatible_count,
+    terminalSourceCovarianceWronskianSingularCompatibilityAudit
+      .product_identity_branch_numerator_contained_by_denominator_times_provider_branch_row_count
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProductOutcomeClassifier
+      .product_identity_branch_compatible_count +
+      terminalSourceCovarianceWronskianProductOutcomeClassifier
+        .product_identity_branch_open_count,
+    30
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProductOutcomeClassifier
+      .product_identity_terminal_row_compatible_count,
+    terminalSourceCovarianceWronskianSingularCompatibilityAudit
+      .product_identity_terminal_rows_provider_product_compatible_count
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProductOutcomeClassifier
+      .product_identity_terminal_row_compatible_count +
+      terminalSourceCovarianceWronskianProductOutcomeClassifier
+        .product_identity_terminal_row_open_count,
+    15
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProductOutcomeClassifier
+      .normal_form_wronskian_excludes_zero_terminal_row_count,
+    terminalSourceCovarianceWronskianSingularCompatibilityAudit
+      .normal_form_wronskian_excludes_zero_terminal_row_count
+  );
+  assert.ok(
+    Number.isFinite(
+      terminalSourceCovarianceWronskianProductOutcomeClassifier
+        .max_product_endpoint_excess
+    )
+  );
+  assert.ok(
+    [
+      "wronskian-product-outcome-refuted-by-singular-numerator",
+      "wronskian-product-outcome-compatible-divisibility-target",
+      "wronskian-product-outcome-open-non-scalar-source-pressure",
+      "wronskian-product-outcome-open-correlated-numerator-denominator-target",
+    ].includes(
+      terminalSourceCovarianceWronskianProductOutcomeClassifier
+        .terminal_source_covariance_wronskian_product_outcome_classifier_classification
+    )
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProductOutcomeClassifier
+      .wronskian_product_compatibility_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProductOutcomeClassifier
+      .correlated_divisibility_by_solve_slope_sum_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProductOutcomeClassifier
+      .correlated_numerator_denominator_evaluator_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProductOutcomeClassifier
+      .non_scalar_source_covariance_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProductOutcomeClassifier
+      .directed_rounded_shared_domain_provider_certified,
+    false
+  );
+  assert.ok(
+    terminalSourceCovarianceWronskianProductOutcomeClassifier.terminal_source_covariance_wronskian_product_outcome_classifier_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_source_covariance_wronskian_product_outcome_classifier_terminal_row_count ===
+          3 &&
+        row.terminal_source_covariance_wronskian_product_outcome_classifier_branch_row_count ===
+          6 &&
+        row.product_identity_branch_compatible_count +
+          row.product_identity_branch_open_count ===
+          6 &&
+        row.product_identity_terminal_row_compatible_count +
+          row.product_identity_terminal_row_open_count ===
+          3 &&
+        Number.isFinite(row.max_product_endpoint_excess) &&
+        row.row_terminal_source_covariance_wronskian_product_outcome_classifier_verified ===
+          true &&
+        row.row_certifies_wronskian_product_compatibility === false &&
+        row.row_certifies_correlated_divisibility_by_solve_slope_sum ===
+          false &&
+        row.row_certifies_correlated_numerator_denominator_evaluator ===
+          false &&
+        row.row_certifies_non_scalar_source_covariance_object === false &&
+        row.row_certifies_directed_rounded_shared_domain === false &&
+        row.terminal_source_covariance_wronskian_product_outcome_classifier_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_graph_cell_id ===
+              `speed.${index}.first-y` &&
+            terminalRow.product_identity_branch_row_count === 2 &&
+            terminalRow.product_identity_branch_compatible_count +
+              terminalRow.product_identity_branch_open_count ===
+              2 &&
+            typeof terminalRow.product_identity_terminal_row_compatible ===
+              "boolean" &&
+            Number.isFinite(terminalRow.worst_product_endpoint_excess) &&
+            terminalRow.row_terminal_source_covariance_wronskian_product_outcome_classifier_verified ===
+              true &&
+            terminalRow.row_certifies_wronskian_product_compatibility ===
+              false &&
+            terminalRow
+              .row_certifies_correlated_divisibility_by_solve_slope_sum ===
+              false &&
+            terminalRow
+              .row_certifies_correlated_numerator_denominator_evaluator ===
+              false &&
+            terminalRow.row_certifies_non_scalar_source_covariance_object ===
+              false &&
+            terminalRow.row_certifies_directed_rounded_shared_domain ===
+              false &&
+            terminalRow.product_identity_branch_rows.every(
+              (branchRow) =>
+                ["-", "+"].includes(branchRow.branch) &&
+                Array.isArray(branchRow.normal_form_numerator_interval) &&
+                branchRow.normal_form_numerator_interval.length === 2 &&
+                Array.isArray(
+                  branchRow
+                    .denominator_times_terminal_affine_provider_interval
+                ) &&
+                branchRow.denominator_times_terminal_affine_provider_interval
+                  .length === 2 &&
+                typeof branchRow
+                  .product_numerator_contained_by_denominator_times_provider ===
+                  "boolean" &&
+                Number.isFinite(branchRow.lower_endpoint_shortfall) &&
+                Number.isFinite(branchRow.upper_endpoint_excess) &&
+                Number.isFinite(branchRow.max_abs_endpoint_excess) &&
+                Number.isFinite(branchRow.total_endpoint_excess) &&
+                typeof branchRow.endpoint_excess_kind === "string" &&
+                Array.isArray(branchRow.product_containment_hull_interval) &&
+                branchRow.product_containment_hull_interval.length === 2 &&
+                branchRow.certifies_wronskian_product_compatibility ===
+                  false &&
+                branchRow
+                  .certifies_correlated_divisibility_by_solve_slope_sum ===
+                  false &&
+                branchRow
+                  .certifies_correlated_numerator_denominator_evaluator ===
+                  false &&
+                branchRow.certifies_non_scalar_source_covariance_object ===
+                  false &&
+                branchRow.certifies_directed_rounded_shared_domain === false
+            )
+        )
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      terminalSourceCovarianceWronskianProductOutcomeClassifier
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalSourceCovarianceWronskianProductOutcomeClassifier,
       FORBIDDEN_FIXED_SPEED_KEYS
     ),
     []

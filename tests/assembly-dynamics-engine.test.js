@@ -62,9 +62,6 @@ test("assembly dynamics engine module emits animator simulation datasets", () =>
   assert.equal(dataset.frames.length, 3);
   assert.deepEqual(dataset.frames[0].particles[0].position, [1, 0, 0]);
   assert.equal(dataset.frames[2].diagnostics.partnerHits, 2);
-  assert.equal(dataset.fieldShells.length, 6);
-  assert.equal(dataset.fieldShells[0].emitterId, "p0");
-  assert.deepEqual(dataset.fieldShells[0].emissionPosition, [1, 0, 0]);
-  assert.equal(dataset.fieldShells[0].fieldSpeed, 1);
+  assert.equal(dataset.fieldShells.length, 0);
   assert.equal(dataset.diagnostics.aggregateHitStats.total_partner_hits, 16);
 });

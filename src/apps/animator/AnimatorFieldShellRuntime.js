@@ -3,6 +3,7 @@ export const DEFAULT_ANIMATOR_FIELD_SHELL_OPTIONS = Object.freeze({
   fadeInSeconds: 0.08,
   fadeOutSeconds: 0.8,
   lifetimeSeconds: 1.6,
+  continuousAgeOpacityHalfLifeSeconds: 1.1,
   opacityScale: 1,
   minVisibleRadius: 0.002,
 });
@@ -32,6 +33,35 @@ function normalizeVector(value = []) {
 
 function getShellStyle(shell = {}) {
   return shell?.style && typeof shell.style === "object" ? shell.style : {};
+}
+
+function getShellMetadata(shell = {}) {
+  return shell?.metadata && typeof shell.metadata === "object" ? shell.metadata : {};
+}
+
+function isContinuousExpansionShell(shell = {}) {
+  const metadata = getShellMetadata(shell);
+  return !!(
+    shell.continuousExpansion ??
+    metadata.continuousExpansion ??
+    metadata.motionSource === "solver-derived"
+  );
+}
+
+export function isAnimatorContinuousExpansionFieldShell(shell = {}) {
+  return isContinuousExpansionShell(shell);
+}
+
+function getContinuousExpansionOpacityScale(ageSeconds = 0, options = {}) {
+  const halfLife = Math.max(
+    0.001,
+    normalizeNumber(
+      options.continuousAgeOpacityHalfLifeSeconds,
+      DEFAULT_ANIMATOR_FIELD_SHELL_OPTIONS.continuousAgeOpacityHalfLifeSeconds
+    )
+  );
+  const normalizedAge = Math.max(0, ageSeconds) / halfLife;
+  return 1 / (1 + normalizedAge * normalizedAge);
 }
 
 export function getAnimatorFieldShellColor(shell = {}) {
@@ -142,6 +172,27 @@ export function getAnimatorFieldShellEmitterPath(fieldShell = {}, dataset = {}, 
   return null;
 }
 
+export function createAnimatorFieldShellInstance(baseShell = {}, instance = {}) {
+  const instanceId = normalizeString(instance.id, "instance");
+  const baseId = normalizeString(baseShell.id, "field_shell");
+  const emitterId = normalizeString(instance.emitterId, baseShell.emitterId ?? baseShell.emitter);
+  const sign = normalizeNumber(instance.sign, getAnimatorFieldShellSign(baseShell));
+  return {
+    ...baseShell,
+    id: `${baseId}_${instanceId}`,
+    emitterId,
+    emissionPosition: normalizeVector(instance.emissionPosition ?? baseShell.emissionPosition ?? baseShell.position),
+    sign,
+    metadata: {
+      ...(baseShell.metadata && typeof baseShell.metadata === "object" ? baseShell.metadata : {}),
+      ...(instance.metadata && typeof instance.metadata === "object" ? instance.metadata : {}),
+      sourceFieldShellId: baseId,
+      sourceEmitterId: normalizeString(baseShell.emitterId ?? baseShell.emitter),
+      fixedEmissionPosition: true,
+    },
+  };
+}
+
 export function getAnimatorFieldShellFieldSpeed(shell = {}, dataset = {}, options = {}) {
   const explicitSpeed = normalizeNumber(shell.fieldSpeed ?? shell.speed, 0);
   if (explicitSpeed > 0) {
@@ -213,18 +264,25 @@ export function getAnimatorFieldShellOpacityAtTime(
     0.001,
     normalizeNumber(options.lifetimeSeconds, DEFAULT_ANIMATOR_FIELD_SHELL_OPTIONS.lifetimeSeconds)
   );
+  const fadeIn = fadeInSeconds > 0 ? Math.min(1, age / fadeInSeconds) : 1;
+  const opacityScale = Math.max(
+    0,
+    normalizeNumber(options.opacityScale, DEFAULT_ANIMATOR_FIELD_SHELL_OPTIONS.opacityScale)
+  );
+  if (isContinuousExpansionShell(shell)) {
+    const ageOpacityScale = getContinuousExpansionOpacityScale(age, options);
+    return Math.max(
+      0,
+      Math.min(1, getAnimatorFieldShellBaseOpacity(shell) * fadeIn * ageOpacityScale * opacityScale)
+    );
+  }
   const displayTime = normalizeNumber(shell.displayTime, emissionTime + fallbackLifetime);
   const fadeOutStart = Math.max(emissionTime, displayTime);
   const visibleUntil = fadeOutStart + fadeOutSeconds;
   if (time > visibleUntil) {
     return 0;
   }
-  const fadeIn = fadeInSeconds > 0 ? Math.min(1, age / fadeInSeconds) : 1;
   const fadeOut = time > fadeOutStart ? Math.max(0, 1 - (time - fadeOutStart) / fadeOutSeconds) : 1;
-  const opacityScale = Math.max(
-    0,
-    normalizeNumber(options.opacityScale, DEFAULT_ANIMATOR_FIELD_SHELL_OPTIONS.opacityScale)
-  );
   return Math.max(0, Math.min(1, getAnimatorFieldShellBaseOpacity(shell) * fadeIn * fadeOut * opacityScale));
 }
 
