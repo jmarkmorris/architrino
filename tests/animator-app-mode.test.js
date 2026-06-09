@@ -20,7 +20,7 @@ test("animator app mode resolves from the standalone window flag", () => {
   assert.equal(isStandaloneAnimatorAppMode("reaction"), false);
 });
 
-test("animator standalone initial scene defaults to the animator scene path", () => {
+test("animator standalone initial scene defaults to the simulation fixture scene path", () => {
   assert.equal(
     getAnimatorInitialScenePath({ requestedScenePath: "", rootScenePath: "content/scenes/root.json" }),
     ANIMATOR_SCENE_PATH

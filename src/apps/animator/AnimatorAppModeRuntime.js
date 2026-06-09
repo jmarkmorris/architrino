@@ -1,5 +1,5 @@
 export const ANIMATOR_APP_MODE = "animator";
-export const ANIMATOR_SCENE_PATH = "content/archive/pdg/animator.json";
+export const ANIMATOR_SCENE_PATH = "content/archive/pdg/animator-simulation-fixture.json";
 export const STANDALONE_ANIMATOR_NAVIGATOR_HREF = "./index.html";
 
 export function getAnimatorAppMode(windowLike = globalThis.window) {
