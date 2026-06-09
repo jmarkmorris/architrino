@@ -78,7 +78,16 @@ function normalizeFieldShell(rawShell = {}, index = 0) {
     radius: normalizeNumber(rawShell.radius, 0),
     sign: normalizeNumber(rawShell.sign ?? rawShell.polarity, 0),
     strength: normalizeNumber(rawShell.strength, 0),
+    fieldSpeed: normalizeNumber(rawShell.fieldSpeed ?? rawShell.cf ?? rawShell.speed, 0),
     branchId: normalizeString(rawShell.branchId, ""),
+    style:
+      rawShell.style && typeof rawShell.style === "object"
+        ? { ...rawShell.style }
+        : {},
+    metadata:
+      rawShell.metadata && typeof rawShell.metadata === "object"
+        ? { ...rawShell.metadata }
+        : {},
   };
 }
 

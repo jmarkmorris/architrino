@@ -176,6 +176,10 @@ import {
   getAnimatorInitialViewportProjection,
 } from "../animator/AnimatorPlanarViewportRuntime.js";
 import {
+  getAnimatorFieldShellEmitterPath,
+  getAnimatorFieldShellRenderState,
+} from "../animator/AnimatorFieldShellRuntime.js";
+import {
   getAnimatorSimulationDataset,
   getAnimatorSimulationFrameMotion,
   getAnimatorSimulationParticleId,
@@ -277,6 +281,7 @@ const {
   animatorHudPathsToggle,
   animatorHudHistoryToggle,
   animatorHudEnvelopesToggle,
+  animatorHudShellOpacityInput,
   animatorHudCameraGuidesToggle,
   animatorMotionSourcePill,
   animatorHudViewportToggleBindings,
@@ -485,6 +490,11 @@ const {
   toggleFlag: toggleAnimatorViewportDisplayFlag,
   updateToggleState: updateAnimatorHudViewportToggleState,
 } = animatorViewportDisplayRuntime;
+const initialAnimatorFieldShellOpacityScale = Number(animatorHudShellOpacityInput?.value ?? 1);
+let animatorFieldShellOpacityScale = Math.max(
+  0,
+  Math.min(1, Number.isFinite(initialAnimatorFieldShellOpacityScale) ? initialAnimatorFieldShellOpacityScale : 1)
+);
 const animatorRenderAssetsRuntime = createAnimatorRenderAssetsRuntime({
   THREE,
   documentLike: document,
@@ -1414,6 +1424,12 @@ function applyAnimatorViewportDisplayState() {
   animatorEnvelopeMeshes.forEach((mesh) => {
     mesh.visible = showEnvelopes && isAnimatorThreeObjectMotionSourceVisible(mesh);
   });
+  animatorFieldShellMeshes.forEach((mesh) => {
+    mesh.visible =
+      showEnvelopes &&
+      mesh?.userData?.visibleByMotionState !== false &&
+      isAnimatorThreeObjectMotionSourceVisible(mesh);
+  });
   animatorCameraWaypointMeshes.forEach((mesh) => {
     const labelSprite = mesh.userData?.labelSprite;
     if (labelSprite) {
@@ -1961,6 +1977,93 @@ function getAnimatorSimulationDatasetProgress(dataset, timeSeconds) {
   return clamp((Number(timeSeconds) - timeWindow.start) / duration, 0, 1);
 }
 
+function getAnimatorChargeSignFromText(value) {
+  const text = String(value ?? "").trim().toLowerCase();
+  if (!text) {
+    return 0;
+  }
+  if (/\belectrino\b|\bnegative\b|^e\d+/.test(text)) {
+    return -1;
+  }
+  if (/\bpositrino\b|\bpositive\b|^p\d+/.test(text)) {
+    return 1;
+  }
+  return 0;
+}
+
+function getAnimatorMemberChargeSign(member, index = 0) {
+  return (
+    getAnimatorChargeSignFromText(getAnimatorMemberState(member)) ||
+    getAnimatorChargeSignFromText(getAnimatorMemberId(member, index))
+  );
+}
+
+function getAnimatorAssemblyChargeSign(assembly) {
+  if (!assembly) {
+    return 0;
+  }
+  const explicitSign = Number(
+    assembly?.metadata?.chargeSign ??
+      assembly?.metadata?.polarity ??
+      assembly?.chargeSign ??
+      assembly?.polarity
+  );
+  if (Number.isFinite(explicitSign) && explicitSign !== 0) {
+    return Math.sign(explicitSign);
+  }
+  const idSign =
+    getAnimatorChargeSignFromText(assembly?.metadata?.simulationParticleId) ||
+    getAnimatorChargeSignFromText(assembly?.id) ||
+    getAnimatorChargeSignFromText(assembly?.label) ||
+    getAnimatorChargeSignFromText(assembly?.name);
+  if (idSign !== 0) {
+    return idSign;
+  }
+  const memberSigns = (Array.isArray(assembly?.members) ? assembly.members : [])
+    .map((member, index) => getAnimatorMemberChargeSign(member, index))
+    .filter((sign) => sign !== 0);
+  if (!memberSigns.length) {
+    return 0;
+  }
+  const signSum = memberSigns.reduce((sum, sign) => sum + sign, 0);
+  return signSum === 0 ? memberSigns[0] : Math.sign(signSum);
+}
+
+function getAnimatorPathChargeSign(path, documentData = animatorCurrentDocument) {
+  const ownerAssembly = getAnimatorDocumentAssemblyById(
+    getAnimatorPathOwnerAssemblyId(path),
+    documentData
+  );
+  return (
+    getAnimatorAssemblyChargeSign(ownerAssembly) ||
+    getAnimatorChargeSignFromText(path?.metadata?.simulationParticleId) ||
+    getAnimatorChargeSignFromText(path?.id)
+  );
+}
+
+function resolveAnimatorFieldShellEmissionCenter(
+  fieldShell,
+  shellState,
+  simulationDataset,
+  documentData = animatorCurrentDocument
+) {
+  const paths = Array.isArray(documentData?.paths) ? documentData.paths : [];
+  const emissionPath = getAnimatorFieldShellEmitterPath(fieldShell, simulationDataset, paths, {
+    isEligiblePath: (path) => getAnimatorDocumentPathSourceKind(path, documentData) === "solver-derived",
+    getPathOwnerAssemblyId: getAnimatorPathOwnerAssemblyId,
+    getPathParticleId: (path) => path?.metadata?.simulationParticleId ?? "",
+    getPathSign: (path) => getAnimatorPathChargeSign(path, documentData),
+  });
+  const points = Array.isArray(emissionPath?.payload?.points) ? emissionPath.payload.points : [];
+  if (points.length) {
+    return sampleAnimatorPointAt(points, getAnimatorSimulationDatasetProgress(simulationDataset, fieldShell?.emissionTime), {
+      interpolate: emissionPath?.payload?.interpolate ?? "spline",
+      closed: !!emissionPath?.payload?.closed,
+    });
+  }
+  return vectorFromTriplet(shellState?.center);
+}
+
 function getAnimatorSolverPathForAssembly(paths = [], assemblyId = null, particleId = "") {
   const normalizedParticleId = String(particleId ?? "").trim();
   return (
@@ -2060,6 +2163,17 @@ function clearAnimatorViewportVisuals() {
     mesh.material?.dispose?.();
   });
   animatorEnvelopeMeshes = [];
+  animatorFieldShellMeshes.forEach((group) => {
+    animatorViewportGroup?.remove(group);
+    group.traverse?.((child) => {
+      if (child === group) {
+        return;
+      }
+      child.geometry?.dispose?.();
+      child.material?.dispose?.();
+    });
+  });
+  animatorFieldShellMeshes = [];
   animatorOrbitTraceLines.forEach((line) => {
     animatorViewportGroup?.remove(line);
     line.geometry?.dispose?.();
@@ -2963,6 +3077,37 @@ function updateAnimatorAnimatedViewport(timeSeconds) {
       isAnimatorThreeObjectMotionSourceVisible(mesh);
   });
 
+  animatorFieldShellMeshes.forEach((group) => {
+    const fieldShell = group.userData.fieldShell;
+    const shellState = getAnimatorFieldShellRenderState(fieldShell, motionTime, simulationDataset, {
+      opacityScale: animatorFieldShellOpacityScale,
+    });
+    group.position.copy(
+      resolveAnimatorFieldShellEmissionCenter(
+        fieldShell,
+        shellState,
+        simulationDataset,
+        animatorCurrentDocument
+      )
+    );
+    group.scale.setScalar(Math.max(0.001, shellState.radius));
+    group.userData.visibleByMotionState = shellState.visible;
+    const surfaceMaterial = group.userData.surfaceMaterial;
+    if (surfaceMaterial) {
+      surfaceMaterial.color.set(shellState.color);
+      surfaceMaterial.opacity = shellState.opacity;
+    }
+    const wireMaterial = group.userData.wireMaterial;
+    if (wireMaterial) {
+      wireMaterial.color.set(shellState.color);
+      wireMaterial.opacity = Math.min(0.42, shellState.opacity * 2.8);
+    }
+    group.visible =
+      isAnimatorViewportDisplayFlagEnabled("showEnvelopes") &&
+      shellState.visible &&
+      isAnimatorThreeObjectMotionSourceVisible(group);
+  });
+
   animatorOrbitTraceLines.forEach((line) => {
     const assemblyId = line.userData.assemblyId;
     const center = assemblyCenters.get(assemblyId);
@@ -3320,6 +3465,51 @@ function addAnimatorEnvelope(center, envelope) {
   );
   animatorViewportGroup?.add(mesh);
   animatorEnvelopeMeshes.push(mesh);
+}
+
+function addAnimatorFieldShell(fieldShell, simulationDataset) {
+  if (!fieldShell || typeof fieldShell !== "object") {
+    return;
+  }
+  const shellState = getAnimatorFieldShellRenderState(fieldShell, fieldShell.emissionTime, simulationDataset, {
+    opacityScale: animatorFieldShellOpacityScale,
+  });
+  const shellCenter = resolveAnimatorFieldShellEmissionCenter(
+    fieldShell,
+    shellState,
+    simulationDataset,
+    animatorCurrentDocument
+  );
+  const geometry = new THREE.SphereGeometry(1, 32, 20);
+  const material = new THREE.MeshBasicMaterial({
+    color: shellState.color,
+    transparent: true,
+    opacity: 0,
+    depthWrite: false,
+    side: THREE.DoubleSide,
+  });
+  const mesh = new THREE.Mesh(geometry, material);
+  const wireframe = new THREE.LineSegments(
+    new THREE.WireframeGeometry(geometry),
+    new THREE.LineBasicMaterial({
+      color: shellState.color,
+      transparent: true,
+      opacity: 0,
+    })
+  );
+  const group = new THREE.Group();
+  group.add(mesh);
+  group.add(wireframe);
+  group.position.copy(shellCenter);
+  group.scale.setScalar(Math.max(0.001, shellState.radius));
+  group.visible = false;
+  group.userData.fieldShell = fieldShell;
+  group.userData.motionSourceKind = "solver-derived";
+  group.userData.visibleByMotionState = false;
+  group.userData.surfaceMaterial = material;
+  group.userData.wireMaterial = wireframe.material;
+  animatorViewportGroup?.add(group);
+  animatorFieldShellMeshes.push(group);
 }
 
 function addAnimatorHistoryTrace(historyTrace) {
@@ -4119,14 +4309,31 @@ function updateAnimatorViewportFromDocument(documentData) {
   historyTraces.forEach((historyTrace) => {
     addAnimatorHistoryTrace(historyTrace);
   });
+  const simulationDataset = getAnimatorSimulationDataset(documentData);
+  const simulationFieldShells = Array.isArray(simulationDataset?.fieldShells)
+    ? simulationDataset.fieldShells
+    : [];
+  const simulationFieldShellIds = new Set(
+    simulationFieldShells.map((shell) => String(shell?.id ?? "")).filter(Boolean)
+  );
   const envelopes = Array.isArray(documentData?.envelopes) ? documentData.envelopes : [];
   envelopes.forEach((envelope) => {
+    const simulationFieldShellId = String(envelope?.metadata?.simulationFieldShellId ?? "");
+    if (
+      simulationFieldShellId &&
+      (simulationFieldShellIds.has(simulationFieldShellId) || simulationFieldShells.length > 0)
+    ) {
+      return;
+    }
     const assemblyIndex = assemblies.findIndex((assembly) => assembly?.id === envelope?.assemblyId);
     const center =
       assemblyIndex >= 0
         ? computeAnimatorAssemblyBasePosition(assemblies[assemblyIndex], assemblyIndex, assemblies.length, pathById)
         : new THREE.Vector3();
     addAnimatorEnvelope(center, envelope);
+  });
+  simulationFieldShells.forEach((fieldShell) => {
+    addAnimatorFieldShell(fieldShell, simulationDataset);
   });
   const transfers = Array.isArray(documentData?.transfers) ? documentData.transfers : [];
   transfers.forEach((transfer) => {
@@ -4552,6 +4759,7 @@ let animatorSubassemblyHandleMeshes = [];
 let animatorAssemblyWorldCenters = new Map();
 let animatorShellMeshes = [];
 let animatorEnvelopeMeshes = [];
+let animatorFieldShellMeshes = [];
 let animatorOrbitTraceLines = [];
 let animatorHistoryTraceLines = [];
 let animatorTransferLines = [];
@@ -4883,6 +5091,23 @@ const defaultAnimatorWorkerSimulationConfig = Object.freeze({
 const animatorSimulationWorkerClient = createAnimatorSimulationWorkerClient({
   workerUrl: new URL("../animator/AnimatorSimulationWorker.js", import.meta.url),
 });
+let animatorSimulationWorkerRunActive = false;
+const animatorRunSimulationButtonLabel = animatorRunSimulationButton?.textContent ?? "Run Solver";
+
+function setAnimatorSimulationWorkerRunActive(isActive) {
+  animatorSimulationWorkerRunActive = Boolean(isActive);
+  if (!animatorRunSimulationButton) {
+    return;
+  }
+  animatorRunSimulationButton.disabled = animatorSimulationWorkerRunActive;
+  animatorRunSimulationButton.setAttribute(
+    "aria-busy",
+    animatorSimulationWorkerRunActive ? "true" : "false"
+  );
+  animatorRunSimulationButton.textContent = animatorSimulationWorkerRunActive
+    ? "Running..."
+    : animatorRunSimulationButtonLabel;
+}
 
 const animatorDocumentWorkspaceRuntime = createAnimatorDocumentWorkspaceRuntime({
   documentLike: document,
@@ -5001,7 +5226,14 @@ function getAnimatorWorkerSimulationConfig(documentData = animatorCurrentDocumen
   if (metadataConfig && typeof metadataConfig === "object") {
     return { ...metadataConfig };
   }
-  return { ...defaultAnimatorWorkerSimulationConfig };
+  const timeWindow = getAnimatorSceneTimeWindow(documentData);
+  const sceneDuration = Math.max(0, Number(timeWindow.end ?? 0) - Number(timeWindow.start ?? 0));
+  const dt = Number(defaultAnimatorWorkerSimulationConfig.dt) || 0.01;
+  const durationSteps = sceneDuration > 0 ? Math.ceil(sceneDuration / dt) : 0;
+  return {
+    ...defaultAnimatorWorkerSimulationConfig,
+    steps: Math.max(defaultAnimatorWorkerSimulationConfig.steps, durationSteps),
+  };
 }
 
 function getAnimatorWorkerDatasetOptions(documentData = animatorCurrentDocument, options = {}) {
@@ -5030,7 +5262,7 @@ async function runAnimatorSimulationWorkerFromCurrentDocument(inputConfig = null
   const result = await animatorSimulationWorkerClient.run(config, { datasetOptions });
   const nextDocument = normalizeAnimatorSceneDocument(
     mergeAnimatorSimulationDatasetIntoDocument(baseDocument, result.dataset, {
-      updateSceneTime: true,
+      updateSceneTime: options.updateSceneTime === true,
     })
   );
   updateAnimatorViewportFromDocument(nextDocument);
@@ -5054,13 +5286,30 @@ if (typeof window !== "undefined") {
 }
 
 if (animatorRunSimulationButton && !animatorRunSimulationButton.dataset.bound) {
-  animatorRunSimulationButton.addEventListener("click", () => {
-    runAnimatorSimulationWorkerFromCurrentDocument().catch((error) => {
+  animatorRunSimulationButton.addEventListener("click", async () => {
+    if (animatorSimulationWorkerRunActive) {
+      return;
+    }
+    setAnimatorSimulationWorkerRunActive(true);
+    try {
+      await runAnimatorSimulationWorkerFromCurrentDocument();
+    } catch (error) {
       console.error("animator worker simulation failed.", error);
       setAnimatorStatus(`Worker simulation failed: ${error?.message ?? error}`);
-    });
+    } finally {
+      setAnimatorSimulationWorkerRunActive(false);
+    }
   });
   animatorRunSimulationButton.dataset.bound = "true";
+}
+
+if (animatorHudShellOpacityInput && !animatorHudShellOpacityInput.dataset.bound) {
+  animatorHudShellOpacityInput.addEventListener("input", () => {
+    animatorFieldShellOpacityScale = clamp(Number(animatorHudShellOpacityInput.value) || 0, 0, 1);
+    updateAnimatorAnimatedViewport(animatorPlaybackState.playheadSeconds);
+    applyAnimatorViewportDisplayState();
+  });
+  animatorHudShellOpacityInput.dataset.bound = "true";
 }
 
 const levels = new Map();

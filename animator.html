@@ -298,7 +298,7 @@
                   <button id="animator-hud-labels-toggle" type="button" class="animator-canvas-hud-toggle" aria-pressed="true">
                     Observer Labels
                   </button>
-                  <button id="animator-hud-paths-toggle" type="button" class="animator-canvas-hud-toggle" aria-pressed="true">
+                  <button id="animator-hud-paths-toggle" type="button" class="animator-canvas-hud-toggle" aria-pressed="false">
                     Transport Paths
                   </button>
                   <button id="animator-hud-history-toggle" type="button" class="animator-canvas-hud-toggle" aria-pressed="true">
@@ -307,6 +307,18 @@
                   <button id="animator-hud-envelopes-toggle" type="button" class="animator-canvas-hud-toggle" aria-pressed="true">
                     Envelopes
                   </button>
+                  <label class="animator-canvas-hud-range">
+                    <span>Shell Opacity</span>
+                    <input
+                      id="animator-hud-shell-opacity"
+                      type="range"
+                      min="0"
+                      max="1"
+                      step="0.05"
+                      value="1"
+                      aria-label="Shell opacity"
+                    />
+                  </label>
                   <button id="animator-hud-solver-motion-toggle" type="button" class="animator-canvas-hud-toggle" aria-pressed="true">
                     Solver Motion
                   </button>

@@ -39,6 +39,8 @@ export function createAnimatorDefaultPathPoints(anchor = [0, 0, 0]) {
 export function createAnimatorDefaultCoreSpec(assemblyId, options = {}) {
   const binaryCount = clampNumber(Math.round(Number(options?.binaryCount ?? 3) || 3), 1, 3);
   const shellUnit = 0.45;
+  const outerShellRadius = shellUnit * 4;
+  const binaryRadiusFractions = [0.7, 0.8, 0.9];
   const planeNormals = [
     [0, 1, 0],
     [1, 0, 0],
@@ -50,12 +52,12 @@ export function createAnimatorDefaultCoreSpec(assemblyId, options = {}) {
       { id: `${assemblyId}_shell_1`, radius: shellUnit, role: "inner", color: "#a9d8ff", opacity: 0.12 },
       { id: `${assemblyId}_shell_2`, radius: shellUnit * 2, role: "middle", color: "#7fb9ff", opacity: 0.1 },
       { id: `${assemblyId}_shell_3`, radius: shellUnit * 3, role: "outer", color: "#5b99ea", opacity: 0.08 },
-      { id: `${assemblyId}_shell_4`, radius: shellUnit * 4, role: "decorator", color: "#365f9f", opacity: 0.05 },
+      { id: `${assemblyId}_shell_4`, radius: outerShellRadius, role: "decorator", color: "#365f9f", opacity: 0.05 },
     ],
     binaries: [
-      { radius: shellUnit, frequencyHz: 0.42, planeNormal: planeNormals[0] },
-      { radius: shellUnit * 2, frequencyHz: 0.26, planeNormal: planeNormals[1] },
-      { radius: shellUnit * 3, frequencyHz: 0.16, planeNormal: planeNormals[2] },
+      { radius: outerShellRadius * binaryRadiusFractions[0], frequencyHz: 0.42, planeNormal: planeNormals[0] },
+      { radius: outerShellRadius * binaryRadiusFractions[1], frequencyHz: 0.26, planeNormal: planeNormals[1] },
+      { radius: outerShellRadius * binaryRadiusFractions[2], frequencyHz: 0.16, planeNormal: planeNormals[2] },
     ].slice(0, binaryCount).map((binary, index) => ({
       id: `${assemblyId}_binary_${index + 1}`,
       motion: {

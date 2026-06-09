@@ -32,6 +32,7 @@ test("animator dom runtime collects animator shell elements and bindings", () =>
   elementMap.set("animator-hud-paths-toggle", { id: "paths" });
   elementMap.set("animator-hud-history-toggle", { id: "history" });
   elementMap.set("animator-hud-envelopes-toggle", { id: "envelopes" });
+  elementMap.set("animator-hud-shell-opacity", { id: "shell_opacity" });
   elementMap.set("animator-hud-solver-motion-toggle", { id: "solver_motion" });
   elementMap.set("animator-hud-authored-motion-toggle", { id: "authored_motion" });
   elementMap.set("animator-hud-camera-guides-toggle", { id: "camera_guides" });
@@ -51,6 +52,7 @@ test("animator dom runtime collects animator shell elements and bindings", () =>
   assert.equal(dom.animatorTabs.length, 2);
   assert.equal(dom.animatorPanels.length, 1);
   assert.equal(dom.animatorMotionSourcePill?.id, "motion_source");
+  assert.equal(dom.animatorHudShellOpacityInput?.id, "shell_opacity");
   assert.equal(dom.animatorHudViewportToggleBindings.length, 7);
   assert.equal(dom.animatorHudViewportToggleBindings[0]?.key, "showLabels");
   assert.equal(dom.animatorHudViewportToggleBindings[4]?.key, "showSolverMotion");

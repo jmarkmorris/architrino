@@ -112,3 +112,36 @@ test("animator simulation worker dataset merges into an animator document", () =
   assert.equal(documentData.metadata.simulationDataset.id, "merge_dataset");
   assert.equal(documentData.metadata.simulationWorker.lastRun.frameCount, 3);
 });
+
+test("animator simulation worker dataset can preserve authored scene timing", () => {
+  const request = createAnimatorSimulationWorkerRunRequest(SMALL_RUN, {
+    requestId: "merge_preserve_time_test",
+    datasetOptions: { id: "merge_preserve_time_dataset" },
+  });
+  const result = hydrateAnimatorSimulationWorkerCompleteMessage(
+    runAnimatorSimulationWorkerRequest(request)
+  );
+  const documentData = mergeAnimatorSimulationDatasetIntoDocument(
+    {
+      scene: {
+        id: "scene_a",
+        name: "Scene A",
+        mode: "3d",
+        time: { start: 0, end: 6, playbackRate: 1 },
+        markers: [
+          { id: "start", t: 0, end: 1, label: "fixture start" },
+          { id: "hit", t: 3, end: 4, label: "delayed hit sample" },
+        ],
+      },
+      metadata: { source: "animator" },
+    },
+    result.dataset,
+    { updateSceneTime: false }
+  );
+
+  assert.equal(documentData.scene.mode, "planar-2d");
+  assert.deepEqual(documentData.scene.time, { start: 0, end: 6, playbackRate: 1 });
+  assert.equal(documentData.scene.markers.length, 2);
+  assert.equal(documentData.scene.markers[1].label, "delayed hit sample");
+  assert.equal(documentData.metadata.simulationDataset.id, "merge_preserve_time_dataset");
+});

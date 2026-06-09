@@ -1,5 +1,5 @@
 const defaultAnimatorViewportDisplayState = Object.freeze({
-  showTransportPath: true,
+  showTransportPath: false,
   showCameraGuides: true,
   showLabels: true,
   showHistoryTraces: true,

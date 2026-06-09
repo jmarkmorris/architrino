@@ -64,12 +64,58 @@
               "motionSource": "solver-derived",
               "simulationParticleId": "e0"
             },
-            "members": [
-              {
-                "id": "e0",
-                "state": "electrino",
-                "position": [0, 0, 0]
+            "core": {
+              "coreType": "noether",
+              "shells": [
+                { "id": "solver_particle_e_shell_1", "radius": 0.45, "role": "inner", "color": "#a9d8ff", "opacity": 0.12 },
+                { "id": "solver_particle_e_shell_2", "radius": 0.9, "role": "middle", "color": "#7fb9ff", "opacity": 0.1 },
+                { "id": "solver_particle_e_shell_3", "radius": 1.35, "role": "outer", "color": "#5b99ea", "opacity": 0.08 },
+                { "id": "solver_particle_e_shell_4", "radius": 1.8, "role": "decorator", "color": "#365f9f", "opacity": 0.05 }
+              ],
+              "binaries": [
+                {
+                  "id": "solver_particle_e_binary_1",
+                  "motion": {
+                    "type": "orbit.circular",
+                    "center": "solver_particle_e",
+                    "radius": 1.26,
+                    "frequencyHz": 0.42,
+                    "planeNormal": [0, 1, 0]
+                  }
+                },
+                {
+                  "id": "solver_particle_e_binary_2",
+                  "motion": {
+                    "type": "orbit.circular",
+                    "center": "solver_particle_e",
+                    "radius": 1.44,
+                    "frequencyHz": 0.26,
+                    "planeNormal": [1, 0, 0]
+                  }
+                },
+                {
+                  "id": "solver_particle_e_binary_3",
+                  "motion": {
+                    "type": "orbit.circular",
+                    "center": "solver_particle_e",
+                    "radius": 1.62,
+                    "frequencyHz": 0.16,
+                    "planeNormal": [0, 0, 1]
+                  }
+                }
+              ],
+              "alignment": {
+                "regime": "3d",
+                "planeNormals": [[0, 1, 0], [1, 0, 0], [0, 0, 1]]
               }
+            },
+            "members": [
+              { "id": "positrino_1", "state": "positrino" },
+              { "id": "electrino_1", "state": "electrino" },
+              { "id": "positrino_2", "state": "positrino" },
+              { "id": "electrino_2", "state": "electrino" },
+              { "id": "positrino_3", "state": "positrino" },
+              { "id": "electrino_3", "state": "electrino" }
             ],
             "motion": [
               {
@@ -90,12 +136,58 @@
               "motionSource": "solver-derived",
               "simulationParticleId": "p0"
             },
-            "members": [
-              {
-                "id": "p0",
-                "state": "positrino",
-                "position": [0, 0, 0]
+            "core": {
+              "coreType": "noether",
+              "shells": [
+                { "id": "solver_particle_p_shell_1", "radius": 0.45, "role": "inner", "color": "#ffd3d8", "opacity": 0.12 },
+                { "id": "solver_particle_p_shell_2", "radius": 0.9, "role": "middle", "color": "#ff9aa7", "opacity": 0.1 },
+                { "id": "solver_particle_p_shell_3", "radius": 1.35, "role": "outer", "color": "#ff6476", "opacity": 0.08 },
+                { "id": "solver_particle_p_shell_4", "radius": 1.8, "role": "decorator", "color": "#a53b4d", "opacity": 0.05 }
+              ],
+              "binaries": [
+                {
+                  "id": "solver_particle_p_binary_1",
+                  "motion": {
+                    "type": "orbit.circular",
+                    "center": "solver_particle_p",
+                    "radius": 1.26,
+                    "frequencyHz": 0.42,
+                    "planeNormal": [0, 1, 0]
+                  }
+                },
+                {
+                  "id": "solver_particle_p_binary_2",
+                  "motion": {
+                    "type": "orbit.circular",
+                    "center": "solver_particle_p",
+                    "radius": 1.44,
+                    "frequencyHz": 0.26,
+                    "planeNormal": [1, 0, 0]
+                  }
+                },
+                {
+                  "id": "solver_particle_p_binary_3",
+                  "motion": {
+                    "type": "orbit.circular",
+                    "center": "solver_particle_p",
+                    "radius": 1.62,
+                    "frequencyHz": 0.16,
+                    "planeNormal": [0, 0, 1]
+                  }
+                }
+              ],
+              "alignment": {
+                "regime": "3d",
+                "planeNormals": [[0, 1, 0], [1, 0, 0], [0, 0, 1]]
               }
+            },
+            "members": [
+              { "id": "positrino_1", "state": "positrino" },
+              { "id": "electrino_1", "state": "electrino" },
+              { "id": "positrino_2", "state": "positrino" },
+              { "id": "electrino_2", "state": "electrino" },
+              { "id": "positrino_3", "state": "positrino" },
+              { "id": "electrino_3", "state": "electrino" }
             ],
             "motion": [
               {
@@ -250,11 +342,11 @@
             "id": "delayed_hit_e0_to_p0",
             "source": {
               "assemblyId": "solver_particle_e",
-              "memberId": "e0"
+              "memberId": "electrino_1"
             },
             "target": {
               "assemblyId": "solver_particle_p",
-              "memberId": "p0"
+              "memberId": "positrino_1"
             },
             "t": 3
           }

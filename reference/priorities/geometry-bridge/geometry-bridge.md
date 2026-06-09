@@ -4161,6 +4161,38 @@ then either $W$-sensitivity refinement or an explicitly non-scalar
 source-covariance object if the narrowed Wronskian refuses the scalar-lambda
 path.
 
+`buildH39RequestedY44TerminalSourceCovarianceSolveSlopeSumDenominatorSeparationAuditCandidate`
+compares the same $s_-+s_+$ denominator used by the terminal successor
+common-normalizer attempt and by the cross-Wronskian normal-form producer on
+the same fifteen terminal rows. On the live rows the two denominator intervals
+match exactly and both routes keep zero in every terminal interval, so the
+normal-form block is not a Wronskian-route artifact. The packet certifies no
+denominator separation, no expression-level shared Wronskian, no scalar-lambda
+source object, no tensor source object, no expression-level $N_{38}$ provider,
+no $S_{37}$ division, no shifted $R_{\varepsilon,43}$ closure, no retained
+branch, and no directed-rounded provider. The next true blocker is a
+same-domain correlated signed lower-bound identity for $s_-+s_+$ or a
+denominator-free normal form; only after that should the narrowed
+expression-level shared $W=r_-s_+-r_+s_-$ interval be attacked.
+
+`buildH39RequestedY44TerminalSourceCovarianceWronskianSingularCompatibilityAuditCandidate`
+executes that denominator-free normal-form check without dividing by
+$s_-+s_+$. It records the singular-line compatibility identity
+$W+R(s_- - s_+)/2=(s_-+s_+)t$ and the product identities
+$(s_-+s_+)r_-=Rs_-+W$ and $(s_-+s_+)r_+=Rs_+-W$ on the same fifteen
+terminal rows. It then compares each branch numerator interval with
+$(s_-+s_+)$ times the terminal-affine provider interval, producing thirty
+branch product-space rows. The packet certifies no denominator separation, no
+denominator-free normal form, no expression-level shared Wronskian, no
+scalar-lambda source object, no tensor or non-scalar source-covariance object,
+no expression-level $N_{38}$ provider, no $S_{37}$ division, no shifted
+$R_{\varepsilon,43}$ closure, no retained branch, and no directed-rounded
+provider. If the product-space rows fit, the next true blocker is a
+same-domain correlated divisibility proof by $s_-+s_+$; if they do not fit,
+the next true blocker is a correlated numerator/denominator evaluator for the
+same denominator-free product identity, or a non-scalar source-covariance
+object if the Wronskian pressure remains structurally non-scalar.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.

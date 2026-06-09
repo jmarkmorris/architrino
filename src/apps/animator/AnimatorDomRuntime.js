@@ -22,6 +22,7 @@ export function getAnimatorDomElements(documentLike = globalThis.document) {
   const animatorHudPathsToggle = getElementById(documentLike, "animator-hud-paths-toggle");
   const animatorHudHistoryToggle = getElementById(documentLike, "animator-hud-history-toggle");
   const animatorHudEnvelopesToggle = getElementById(documentLike, "animator-hud-envelopes-toggle");
+  const animatorHudShellOpacityInput = getElementById(documentLike, "animator-hud-shell-opacity");
   const animatorHudSolverMotionToggle = getElementById(
     documentLike,
     "animator-hud-solver-motion-toggle"
@@ -84,6 +85,7 @@ export function getAnimatorDomElements(documentLike = globalThis.document) {
     animatorHudPathsToggle,
     animatorHudHistoryToggle,
     animatorHudEnvelopesToggle,
+    animatorHudShellOpacityInput,
     animatorHudSolverMotionToggle,
     animatorHudAuthoredMotionToggle,
     animatorHudCameraGuidesToggle,
