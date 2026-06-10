@@ -4323,6 +4323,24 @@ than the already-projected $\mu$ interval. It remains candidate-only and
 certifies no matrix identity, no shared W producer, no source-covariance object,
 no terminal row provider enclosure, and no directed-rounded provider.
 
+`buildH39RequestedY44TerminalSourceCovarianceWronskianWGateProvenanceAuditCandidate`
+now consumes the cross-branch W diagnostic, the direct non-scalar replay, the
+emitted-branch executor, and the emitted-branch matrix/W producer packet. The
+current emitted packet does not reach a true W-overwidth branch or a matrix
+identity branch: all fifteen terminal rows are still `w-gate-open`, and the
+explicit blocker is `same-domain-shared-wronskian-interval-needed`. The
+provenance audit traces this back one step further: the same-domain provider
+object branch residual intervals needed to form
+$W_{\mathrm{provider}}=P_-s_+-P_+s_-$ are not available on the terminal rows.
+Thus the next executable object is not another scalar-$\lambda$ wrapper, not a
+virial identity, and not W-sensitive partitioning yet; it is a direct
+same-domain expression-level provider-object W evaluator that supplies
+$P_-$ and $P_+$ into $W_{\mathrm{provider}}$ before $\mu=W_{\mathrm{provider}}/Q$
+is replayed through the rank-two source-covariance matrix. This packet remains
+candidate-only and certifies no W producer, matrix identity,
+source-covariance object, terminal row provider enclosure, or directed-rounded
+provider.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.

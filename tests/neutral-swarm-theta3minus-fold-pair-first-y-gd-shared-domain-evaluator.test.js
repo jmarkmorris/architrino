@@ -111,6 +111,7 @@ import {
   buildH39RequestedY44TerminalSourceCovarianceWronskianDirectNonScalarProviderReplayCandidate,
   buildH39RequestedY44TerminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutorCandidate,
   buildH39RequestedY44TerminalSourceCovarianceWronskianEmittedBranchMatrixIdentityOrWProducerCandidate,
+  buildH39RequestedY44TerminalSourceCovarianceWronskianWGateProvenanceAuditCandidate,
   buildH39RequestedY44RowLocalN38SignedSourceSumDerivativeProviderCandidate,
   validateH39CorrelatedResidualWidthDiagnostic,
   validateH39H38NumeratorGraphLocalPartitionDiagnostic,
@@ -218,6 +219,7 @@ import {
   validateH39RequestedY44TerminalSourceCovarianceWronskianDirectNonScalarProviderReplayCandidate,
   validateH39RequestedY44TerminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutorCandidate,
   validateH39RequestedY44TerminalSourceCovarianceWronskianEmittedBranchMatrixIdentityOrWProducerCandidate,
+  validateH39RequestedY44TerminalSourceCovarianceWronskianWGateProvenanceAuditCandidate,
   validateH39RequestedY44RowLocalN38SignedSourceSumDerivativeProvider,
   validateH39RequestedY44SignedSourceSumDerivativeAllocationTarget,
   validateH39RequestedY44SourceMapResidualCovarianceTarget,
@@ -25945,6 +25947,8 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   assert.ok(
     [
       "emitted-branch-matrix-identity-or-w-producer-open",
+      "emitted-branch-q-gate-open",
+      "emitted-branch-shared-w-gate-open",
       "emitted-branch-shared-w-producer-target-exceeds-execution-cap",
       "emitted-branch-shared-w-producer-still-exceeds-endpoint-budget",
       "emitted-branch-shared-w-producer-source-map-boundary-open",
@@ -25959,6 +25963,8 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   assert.ok(
     [
       "emitted-branch-matrix-identity-or-w-producer-open",
+      "same-domain-q-denominator-separation-needed",
+      "same-domain-shared-wronskian-interval-needed",
       "same-domain-shared-w-producer-target-exceeds-execution-cap",
       "same-domain-shared-w-producer-still-exceeds-terminal-affine-budget",
       "same-domain-source-map-boundary-replay-needed-after-shared-w-producer-refinement",
@@ -25968,6 +25974,21 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
       terminalSourceCovarianceWronskianEmittedBranchMatrixIdentityOrWProducer
         .emitted_branch_matrix_identity_or_w_producer_blocker_classification
     )
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianEmittedBranchMatrixIdentityOrWProducer
+      .emitted_branch_matrix_identity_or_w_producer_classification,
+    "emitted-branch-shared-w-gate-open"
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianEmittedBranchMatrixIdentityOrWProducer
+      .emitted_branch_matrix_identity_or_w_producer_blocker_classification,
+    "same-domain-shared-wronskian-interval-needed"
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianEmittedBranchMatrixIdentityOrWProducer
+      .w_gate_open_terminal_row_count,
+    15
   );
   assert.equal(
     terminalSourceCovarianceWronskianEmittedBranchMatrixIdentityOrWProducer
@@ -26104,6 +26125,135 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   assert.deepEqual(
     collectExactKeys(
       terminalSourceCovarianceWronskianEmittedBranchMatrixIdentityOrWProducer,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalSourceCovarianceWronskianWGateProvenanceAudit =
+    buildH39RequestedY44TerminalSourceCovarianceWronskianWGateProvenanceAuditCandidate(
+      {
+        terminalSourceCovarianceCrossBranchWronskianDiagnostic,
+        terminalSourceCovarianceWronskianDirectNonScalarProviderReplay,
+        terminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutor,
+        terminalSourceCovarianceWronskianEmittedBranchMatrixIdentityOrWProducer,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44TerminalSourceCovarianceWronskianWGateProvenanceAuditCandidate(
+      terminalSourceCovarianceWronskianWGateProvenanceAudit
+    ),
+    []
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianWGateProvenanceAudit
+      .w_gate_provenance_verified,
+    true
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianWGateProvenanceAudit
+      .w_gate_provenance_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianWGateProvenanceAudit
+      .terminal_source_covariance_wronskian_w_gate_provenance_audit_row_count,
+    5
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianWGateProvenanceAudit
+      .terminal_source_covariance_wronskian_w_gate_provenance_audit_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianWGateProvenanceAudit
+      .w_gate_open_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianWGateProvenanceAudit
+      .w_gate_provenance_classification,
+    "w-gate-provider-object-branch-residuals-needed"
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianWGateProvenanceAudit
+      .w_gate_provenance_blocker_classification,
+    "same-domain-provider-object-branch-residual-intervals-needed-for-W"
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianWGateProvenanceAudit
+      .matrix_provider_identity_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianWGateProvenanceAudit
+      .w_refinement_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianWGateProvenanceAudit
+      .rank_two_source_covariance_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianWGateProvenanceAudit
+      .non_scalar_source_covariance_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianWGateProvenanceAudit
+      .scalar_lambda_source_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianWGateProvenanceAudit
+      .expression_level_shared_wronskian_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianWGateProvenanceAudit
+      .terminal_row_provider_enclosure_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianWGateProvenanceAudit
+      .directed_rounded_shared_domain_provider_certified,
+    false
+  );
+  assert.ok(
+    terminalSourceCovarianceWronskianWGateProvenanceAudit.terminal_source_covariance_wronskian_w_gate_provenance_audit_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_source_covariance_wronskian_w_gate_provenance_audit_terminal_row_count ===
+          3 &&
+        row.row_w_gate_provenance_verified === true &&
+        row.row_certifies_expression_level_shared_wronskian === false &&
+        row.row_certifies_directed_rounded_shared_domain === false &&
+        row.terminal_source_covariance_wronskian_w_gate_provenance_audit_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_graph_cell_id ===
+              `speed.${index}.first-y` &&
+            terminalRow.provider_object_w_formula ===
+              "W_provider=P_-*s_+ - P_+*s_-" &&
+            terminalRow.mu_wedge_formula === "mu=W_provider/Q" &&
+            terminalRow.w_gate_open === true &&
+            terminalRow.w_gate_closed === false &&
+            typeof terminalRow.w_gate_open_reason === "string" &&
+            terminalRow.row_w_gate_provenance_verified === true &&
+            terminalRow.row_certifies_expression_level_shared_wronskian ===
+              false &&
+            terminalRow.row_certifies_directed_rounded_shared_domain === false
+        )
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalSourceCovarianceWronskianWGateProvenanceAudit),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalSourceCovarianceWronskianWGateProvenanceAudit,
       FORBIDDEN_FIXED_SPEED_KEYS
     ),
     []

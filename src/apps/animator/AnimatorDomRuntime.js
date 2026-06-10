@@ -23,6 +23,12 @@ export function getAnimatorDomElements(documentLike = globalThis.document) {
   const animatorHudHistoryToggle = getElementById(documentLike, "animator-hud-history-toggle");
   const animatorHudEnvelopesToggle = getElementById(documentLike, "animator-hud-envelopes-toggle");
   const animatorHudShellOpacityInput = getElementById(documentLike, "animator-hud-shell-opacity");
+  const animatorHudTrailOpacityInput = getElementById(documentLike, "animator-hud-trail-opacity");
+  const animatorHudTrailLifetimeInput = getElementById(documentLike, "animator-hud-trail-lifetime");
+  const animatorHudTrailDiagnosticsToggle = getElementById(
+    documentLike,
+    "animator-hud-trail-diagnostics-toggle"
+  );
   const animatorHudSolverMotionToggle = getElementById(
     documentLike,
     "animator-hud-solver-motion-toggle"
@@ -87,6 +93,9 @@ export function getAnimatorDomElements(documentLike = globalThis.document) {
     animatorHudHistoryToggle,
     animatorHudEnvelopesToggle,
     animatorHudShellOpacityInput,
+    animatorHudTrailOpacityInput,
+    animatorHudTrailLifetimeInput,
+    animatorHudTrailDiagnosticsToggle,
     animatorHudSolverMotionToggle,
     animatorHudAuthoredMotionToggle,
     animatorHudCameraGuidesToggle,
@@ -111,6 +120,11 @@ export function getAnimatorDomElements(documentLike = globalThis.document) {
         button: animatorHudEnvelopesToggle,
         key: "showEnvelopes",
         label: "Envelopes",
+      },
+      {
+        button: animatorHudTrailDiagnosticsToggle,
+        key: "showTrailDiagnostics",
+        label: "Trail Emphasis",
       },
       {
         button: animatorHudSolverMotionToggle,

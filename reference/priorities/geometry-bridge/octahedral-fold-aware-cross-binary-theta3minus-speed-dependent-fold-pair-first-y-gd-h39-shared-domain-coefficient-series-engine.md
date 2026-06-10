@@ -3879,6 +3879,21 @@ and candidate-only: it certifies no matrix identity, no shared W producer, no
 source-covariance object, no terminal row provider enclosure, and no
 directed-rounded provider.
 
+\texttt{buildH39RequestedY44TerminalSourceCovarianceWronskianWGateProvenanceAuditCandidate}
+now traces the emitted branch back to the W gate itself. The current packet
+does not report a true W-overwidth refinement branch and does not move to the
+matrix-provider identity branch. Instead, all fifteen terminal rows remain
+\texttt{w-gate-open}; the emitted-branch blocker is
+\texttt{same-domain-shared-wronskian-interval-needed}. The provenance audit
+identifies the more primitive missing object as the same-domain provider-object
+branch residual pair needed to evaluate
+$W_{\mathrm{provider}}=P_-s_+-P_+s_-$. The next executable object is therefore
+a direct expression-level provider-object W evaluator on the same terminal
+domain, followed by $\mu=W_{\mathrm{provider}}/Q$ and the existing rank-two
+matrix replay. This packet is priority-only and candidate-only: it certifies
+no W producer, no matrix identity, no source-covariance object, no terminal row
+provider enclosure, and no directed-rounded provider.
+
 \texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
 now also probes a shared terminal-residual coordinate for
 $h_{37},h_{36},h_{35}$. Instead of assigning independent residual hulls to the

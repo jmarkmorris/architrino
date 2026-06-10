@@ -1052,7 +1052,7 @@ export function mountIdealCorePrototype(options = {}) {
   const state = {
     view: "all",
     pathsVisible: true,
-    surfaceVisible: true,
+    surfaceVisible: false,
     axesVisible: true,
     frozen: false,
     radius: Number(dom.radiusInput.value) || 1.62,

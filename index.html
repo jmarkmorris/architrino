@@ -308,6 +308,33 @@
                   <button id="animator-hud-history-toggle" type="button" class="animator-canvas-hud-toggle" aria-pressed="true">
                     History Traces
                   </button>
+                  <label class="animator-canvas-hud-range">
+                    <span>Trail Opacity</span>
+                    <input
+                      id="animator-hud-trail-opacity"
+                      type="range"
+                      min="0"
+                      max="1"
+                      step="0.05"
+                      value="1"
+                      aria-label="Trail opacity"
+                    />
+                  </label>
+                  <label class="animator-canvas-hud-range">
+                    <span>Trail Life</span>
+                    <input
+                      id="animator-hud-trail-lifetime"
+                      type="range"
+                      min="0.25"
+                      max="8"
+                      step="0.25"
+                      value="6"
+                      aria-label="Trail lifetime"
+                    />
+                  </label>
+                  <button id="animator-hud-trail-diagnostics-toggle" type="button" class="animator-canvas-hud-toggle" aria-pressed="true">
+                    Trail Emphasis
+                  </button>
                   <button id="animator-hud-envelopes-toggle" type="button" class="animator-canvas-hud-toggle" aria-pressed="false">
                     Envelopes
                   </button>

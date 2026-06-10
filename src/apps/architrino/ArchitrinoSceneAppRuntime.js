@@ -187,6 +187,12 @@ import {
   getAnimatorDelayedHitRenderState,
 } from "../animator/AnimatorDelayedHitRuntime.js";
 import {
+  createAnimatorFadeableTrailSamples,
+  createAnimatorTimedTrailSamples,
+  getAnimatorTrailMaterialOpacity,
+  normalizeAnimatorTrailControls,
+} from "../animator/AnimatorTrailRuntime.js";
+import {
   getAnimatorSimulationDataset,
   getAnimatorSimulationFrameMotion,
   getAnimatorSimulationParticleId,
@@ -290,6 +296,8 @@ const {
   animatorHudHistoryToggle,
   animatorHudEnvelopesToggle,
   animatorHudShellOpacityInput,
+  animatorHudTrailOpacityInput,
+  animatorHudTrailLifetimeInput,
   animatorHudCameraGuidesToggle,
   animatorMotionSourcePill,
   animatorHudViewportToggleBindings,
@@ -502,6 +510,18 @@ const initialAnimatorFieldShellOpacityScale = Number(animatorHudShellOpacityInpu
 let animatorFieldShellOpacityScale = Math.max(
   0,
   Math.min(1, Number.isFinite(initialAnimatorFieldShellOpacityScale) ? initialAnimatorFieldShellOpacityScale : 1)
+);
+const initialAnimatorTrailOpacityScale = Number(animatorHudTrailOpacityInput?.value ?? 1);
+let animatorTrailOpacityScale = clamp(
+  Number.isFinite(initialAnimatorTrailOpacityScale) ? initialAnimatorTrailOpacityScale : 1,
+  0,
+  1
+);
+const initialAnimatorTrailLifetimeSeconds = Number(animatorHudTrailLifetimeInput?.value ?? 6);
+let animatorTrailLifetimeSeconds = clamp(
+  Number.isFinite(initialAnimatorTrailLifetimeSeconds) ? initialAnimatorTrailLifetimeSeconds : 6,
+  0.25,
+  60
 );
 const animatorArchitrinoFieldShellEmissionIntervalSeconds = 0.25;
 const animatorRenderAssetsRuntime = createAnimatorRenderAssetsRuntime({
@@ -1430,6 +1450,7 @@ function applyAnimatorViewportDisplayState() {
     animatorCameraFlightGroup.visible = showObserverGuidesInViewport;
   }
   animatorHistoryTraceLines.forEach((line) => {
+    refreshAnimatorHistoryTraceMaterial(line);
     line.visible = showHistoryTraces && isAnimatorThreeObjectMotionSourceVisible(line);
   });
   animatorEnvelopeMeshes.forEach((mesh) => {
@@ -2522,6 +2543,77 @@ function getAnimatorVisiblePathSamples(path, normalizedT) {
   return sampledPoints.slice(0, maxIndex + 1);
 }
 
+function getAnimatorTrailControlState() {
+  return normalizeAnimatorTrailControls({
+    opacityScale: animatorTrailOpacityScale,
+    lifetimeSeconds: animatorTrailLifetimeSeconds,
+    diagnosticEmphasis: isAnimatorViewportDisplayFlagEnabled("showTrailDiagnostics"),
+  });
+}
+
+function getAnimatorTimedPathTrailSamples(path, simulationDataset) {
+  const points = Array.isArray(path?.payload?.points) ? path.payload.points : [];
+  if (!points.length) {
+    return [];
+  }
+  const sampledPoints = sampleAnimatorPath(
+    points,
+    path?.payload?.interpolate ?? "spline",
+    !!path?.payload?.closed
+  );
+  return createAnimatorTimedTrailSamples(
+    sampledPoints,
+    getAnimatorSimulationDatasetTimeWindow(simulationDataset)
+  );
+}
+
+function refreshAnimatorHistoryTraceMaterial(line, historyTrace = line?.userData?.historyTrace) {
+  if (!line?.material) {
+    return;
+  }
+  const style = historyTrace?.style && typeof historyTrace.style === "object" ? historyTrace.style : {};
+  const controls = getAnimatorTrailControlState();
+  line.material.opacity = getAnimatorTrailMaterialOpacity(historyTrace, controls);
+  line.material.linewidth =
+    normalizePositiveNumber(style.lineWidth ?? style.width, 1) *
+    (controls.diagnosticEmphasis && historyTrace?.kind === "solver-derived" ? 1.35 : 1);
+  line.material.needsUpdate = true;
+}
+
+function setAnimatorHistoryTraceLineSamples(line, trailSamples = []) {
+  if (!line || !Array.isArray(trailSamples) || trailSamples.length < 2) {
+    return false;
+  }
+  const historyTrace = line.userData?.historyTrace ?? {};
+  const style = historyTrace?.style && typeof historyTrace.style === "object" ? historyTrace.style : {};
+  const baseColor = new THREE.Color(style.color ?? 0x8bdcff);
+  const positions = new Float32Array(trailSamples.length * 3);
+  const colors = new Float32Array(trailSamples.length * 3);
+  trailSamples.forEach((sample, index) => {
+    const point = vectorFromTriplet(sample.position);
+    const offset = index * 3;
+    const fade = clamp(Number(sample.fade ?? 1) || 0, 0, 1);
+    positions[offset] = point.x;
+    positions[offset + 1] = point.y;
+    positions[offset + 2] = point.z;
+    colors[offset] = baseColor.r * fade;
+    colors[offset + 1] = baseColor.g * fade;
+    colors[offset + 2] = baseColor.b * fade;
+  });
+  line.geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+  line.geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+  line.geometry.setDrawRange(0, trailSamples.length);
+  line.geometry.computeBoundingSphere();
+  if (line.material) {
+    line.material.vertexColors = true;
+  }
+  refreshAnimatorHistoryTraceMaterial(line, historyTrace);
+  if (line.userData.usesLineDistances) {
+    line.computeLineDistances();
+  }
+  return true;
+}
+
 function updateAnimatorPathGeometry(points = animatorPathState.points) {
   if (!animatorPathGeometry) {
     return [];
@@ -3584,33 +3676,30 @@ function updateAnimatorAnimatedViewport(timeSeconds) {
         historyTrace?.source ?? historyTrace
       );
       if (path && getAnimatorDocumentPathSourceKind(path) === "solver-derived") {
-        const visiblePoints = getAnimatorVisiblePathSamples(
-          path,
-          getAnimatorSimulationDatasetProgress(simulationDataset, traceSimulationTime)
+        const trailSamples = createAnimatorFadeableTrailSamples(
+          getAnimatorTimedPathTrailSamples(path, simulationDataset),
+          traceSimulationTime,
+          getAnimatorTrailControlState()
         );
-        if (visiblePoints.length < 2) {
+        if (!setAnimatorHistoryTraceLineSamples(line, trailSamples)) {
           line.visible = false;
           return;
-        }
-        line.geometry.setFromPoints(visiblePoints);
-        if (line.userData.usesLineDistances) {
-          line.computeLineDistances();
         }
         line.visible = showHistoryTraces && showMotionSource;
         return;
       }
-      const tracePoints = sampleAnimatorSimulationParticleTrail(
-        simulationDataset,
-        simulationParticleId,
-        traceSimulationTime
-      ).map((sample) => vectorFromTriplet(sample.position));
-      if (tracePoints.length < 2) {
+      const trailSamples = createAnimatorFadeableTrailSamples(
+        sampleAnimatorSimulationParticleTrail(
+          simulationDataset,
+          simulationParticleId,
+          traceSimulationTime
+        ),
+        traceSimulationTime,
+        getAnimatorTrailControlState()
+      );
+      if (!setAnimatorHistoryTraceLineSamples(line, trailSamples)) {
         line.visible = false;
         return;
-      }
-      line.geometry.setFromPoints(tracePoints);
-      if (line.userData.usesLineDistances) {
-        line.computeLineDistances();
       }
       line.visible = showHistoryTraces && showMotionSource;
       return;
@@ -3969,15 +4058,19 @@ function addAnimatorHistoryTrace(historyTrace) {
   const material = isDashed
     ? new THREE.LineDashedMaterial({
         color: style.color ?? 0x8bdcff,
+        vertexColors: true,
         transparent: true,
-        opacity: style.opacity ?? 0.42,
+        opacity: getAnimatorTrailMaterialOpacity(historyTrace, getAnimatorTrailControlState()),
+        linewidth: normalizePositiveNumber(style.lineWidth ?? style.width, 1),
         dashSize: normalizePositiveNumber(style.dashSize, isDotted ? 0.025 : 0.14),
         gapSize: normalizePositiveNumber(style.gapSize, isDotted ? 0.085 : 0.08),
       })
     : new THREE.LineBasicMaterial({
         color: style.color ?? 0x8bdcff,
+        vertexColors: true,
         transparent: true,
-        opacity: style.opacity ?? 0.42,
+        opacity: getAnimatorTrailMaterialOpacity(historyTrace, getAnimatorTrailControlState()),
+        linewidth: normalizePositiveNumber(style.lineWidth ?? style.width, 1),
       });
   const line = new THREE.Line(new THREE.BufferGeometry(), material);
   line.userData.historyTrace = historyTrace;
@@ -6021,6 +6114,28 @@ if (animatorHudShellOpacityInput && !animatorHudShellOpacityInput.dataset.bound)
     applyAnimatorViewportDisplayState();
   });
   animatorHudShellOpacityInput.dataset.bound = "true";
+}
+
+if (animatorHudTrailOpacityInput && !animatorHudTrailOpacityInput.dataset.bound) {
+  animatorHudTrailOpacityInput.addEventListener("input", () => {
+    animatorTrailOpacityScale = clamp(Number(animatorHudTrailOpacityInput.value) || 0, 0, 1);
+    updateAnimatorAnimatedViewport(animatorPlaybackState.playheadSeconds);
+    applyAnimatorViewportDisplayState();
+  });
+  animatorHudTrailOpacityInput.dataset.bound = "true";
+}
+
+if (animatorHudTrailLifetimeInput && !animatorHudTrailLifetimeInput.dataset.bound) {
+  animatorHudTrailLifetimeInput.addEventListener("input", () => {
+    animatorTrailLifetimeSeconds = clamp(
+      Number(animatorHudTrailLifetimeInput.value) || 0.25,
+      0.25,
+      60
+    );
+    updateAnimatorAnimatedViewport(animatorPlaybackState.playheadSeconds);
+    applyAnimatorViewportDisplayState();
+  });
+  animatorHudTrailLifetimeInput.dataset.bound = "true";
 }
 
 const levels = new Map();

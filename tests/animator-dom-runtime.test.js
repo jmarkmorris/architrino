@@ -33,6 +33,9 @@ test("animator dom runtime collects animator shell elements and bindings", () =>
   elementMap.set("animator-hud-history-toggle", { id: "history" });
   elementMap.set("animator-hud-envelopes-toggle", { id: "envelopes" });
   elementMap.set("animator-hud-shell-opacity", { id: "shell_opacity" });
+  elementMap.set("animator-hud-trail-opacity", { id: "trail_opacity" });
+  elementMap.set("animator-hud-trail-lifetime", { id: "trail_lifetime" });
+  elementMap.set("animator-hud-trail-diagnostics-toggle", { id: "trail_diagnostics" });
   elementMap.set("animator-hud-solver-motion-toggle", { id: "solver_motion" });
   elementMap.set("animator-hud-authored-motion-toggle", { id: "authored_motion" });
   elementMap.set("animator-hud-camera-guides-toggle", { id: "camera_guides" });
@@ -53,11 +56,14 @@ test("animator dom runtime collects animator shell elements and bindings", () =>
   assert.equal(dom.animatorPanels.length, 1);
   assert.equal(dom.animatorMotionSourcePill?.id, "motion_source");
   assert.equal(dom.animatorHudShellOpacityInput?.id, "shell_opacity");
-  assert.equal(dom.animatorHudViewportToggleBindings.length, 7);
+  assert.equal(dom.animatorHudTrailOpacityInput?.id, "trail_opacity");
+  assert.equal(dom.animatorHudTrailLifetimeInput?.id, "trail_lifetime");
+  assert.equal(dom.animatorHudViewportToggleBindings.length, 8);
   assert.equal(dom.animatorHudViewportToggleBindings[0]?.key, "showLabels");
-  assert.equal(dom.animatorHudViewportToggleBindings[4]?.key, "showSolverMotion");
-  assert.equal(dom.animatorHudViewportToggleBindings[5]?.key, "showAuthoredMotion");
-  assert.equal(dom.animatorHudViewportToggleBindings[6]?.key, "showCameraGuides");
+  assert.equal(dom.animatorHudViewportToggleBindings[4]?.key, "showTrailDiagnostics");
+  assert.equal(dom.animatorHudViewportToggleBindings[5]?.key, "showSolverMotion");
+  assert.equal(dom.animatorHudViewportToggleBindings[6]?.key, "showAuthoredMotion");
+  assert.equal(dom.animatorHudViewportToggleBindings[7]?.key, "showCameraGuides");
 });
 
 test("animator dom runtime exposes animator shell constants", () => {
