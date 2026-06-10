@@ -3863,6 +3863,22 @@ directed-rounded provider. If the narrowed replay still exceeds the endpoint
 budget, the next true blocker is a narrower expression-level shared Wronskian
 producer on the same terminal domain, not another scalar-lambda wrapper.
 
+\texttt{buildH39RequestedY44TerminalSourceCovarianceWronskianEmittedBranchMatrixIdentityOrWProducerCandidate}
+continues only on the branch emitted by that executor. On a matrix-identity
+branch it records the same-domain proof attempt by checking whether
+\texttt{direct\_matrix\_image - provider\_object\_residual} collapses
+branch-by-branch. On a Wronskian-refinement branch it partitions the actual
+shared $W=r_-s_+-r_+s_-$ interval by the recorded W-sensitive subcell count,
+computes $\mu_{\mathrm{sub}}=W_{\mathrm{sub}}/Q$ on the same
+$Q=s_-^2+s_+^2$ interval, and replays
+$r_-=\lambda_{\parallel}s_-+\mu_{\mathrm{sub}}s_+$ and
+$r_+=\lambda_{\parallel}s_+-\mu_{\mathrm{sub}}s_-$ against the endpoint
+budget. This is the first packet in this fork that refines the W producer
+itself rather than the already-projected $\mu$ interval. It is priority-only
+and candidate-only: it certifies no matrix identity, no shared W producer, no
+source-covariance object, no terminal row provider enclosure, and no
+directed-rounded provider.
+
 \texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
 now also probes a shared terminal-residual coordinate for
 $h_{37},h_{36},h_{35}$. Instead of assigning independent residual hulls to the

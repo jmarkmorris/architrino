@@ -4308,6 +4308,21 @@ subcell replay still exceeds the endpoint budget, the next true blocker is a
 narrower expression-level shared Wronskian producer on the same terminal
 domain, not another scalar-lambda wrapper.
 
+`buildH39RequestedY44TerminalSourceCovarianceWronskianEmittedBranchMatrixIdentityOrWProducerCandidate`
+continues only on the emitted branch from the executor. On a matrix-identity
+branch it records the same-domain proof attempt by checking whether
+`direct_matrix_image - provider_object_residual` collapses branch-by-branch. On
+a Wronskian-refinement branch it now partitions the actual shared
+$W=r_-s_+-r_+s_-$ interval by the recorded W-sensitive subcell count, computes
+$\mu_{\mathrm{sub}}=W_{\mathrm{sub}}/Q$ on the same $Q=s_-^2+s_+^2$ interval,
+and replays
+$r_-=\lambda_{\parallel}s_-+\mu_{\mathrm{sub}}s_+$ and
+$r_+=\lambda_{\parallel}s_+-\mu_{\mathrm{sub}}s_-$ against the endpoint budget.
+This is the first packet in this fork that refines the W producer itself rather
+than the already-projected $\mu$ interval. It remains candidate-only and
+certifies no matrix identity, no shared W producer, no source-covariance object,
+no terminal row provider enclosure, and no directed-rounded provider.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.
