@@ -4341,6 +4341,24 @@ candidate-only and certifies no W producer, matrix identity,
 source-covariance object, terminal row provider enclosure, or directed-rounded
 provider.
 
+`buildH39RequestedY44TerminalSourceCovarianceWronskianProviderObjectWExpressionEvaluatorCandidate`
+continues on that reported blocker without adding another scalar-$\lambda$
+wrapper. It attempts to evaluate
+$W_{\mathrm{provider}}=P_-s_+-P_+s_-$ directly from same-domain source-map
+provider-object branch residual intervals and then forms
+$\mu_{\mathrm{provider}}=W_{\mathrm{provider}}/Q$ only when $Q$ is separated
+from zero. The current live rows keep $Q$ separated on all fifteen terminal
+rows, but expose zero complete provider-object branch residual pairs:
+`provider_object_branch_residual_pair_available_terminal_row_count=0`,
+`provider_object_w_expression_evaluated_terminal_row_count=0`, and
+`provider_object_w_expression_missing_branch_pair_terminal_row_count=15`.
+The active blocker has therefore sharpened to
+`same-domain-expression-level-source-map-provider-object-branch-residual-extractor-needed`.
+This packet remains candidate-only and certifies no provider-object branch
+residual extractor, no provider-object W expression, no $\mu$ quotient, no
+matrix identity, no source-covariance object, no terminal row provider
+enclosure, and no directed-rounded provider.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.

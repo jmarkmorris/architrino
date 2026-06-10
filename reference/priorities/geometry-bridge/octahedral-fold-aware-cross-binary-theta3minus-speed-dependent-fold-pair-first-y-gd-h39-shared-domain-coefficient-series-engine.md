@@ -3894,6 +3894,26 @@ matrix replay. This packet is priority-only and candidate-only: it certifies
 no W producer, no matrix identity, no source-covariance object, no terminal row
 provider enclosure, and no directed-rounded provider.
 
+\texttt{buildH39RequestedY44TerminalSourceCovarianceWronskianProviderObjectWExpressionEvaluatorCandidate}
+continues on that emitted blocker without using scalar-$\lambda$ or virial
+work. It evaluates
+$W_{\mathrm{provider}}=P_-s_+-P_+s_-$ only from same-domain source-map
+provider-object branch residual intervals and forms
+$\mu_{\mathrm{provider}}=W_{\mathrm{provider}}/Q$ only when the same
+$Q=s_-^2+s_+^2$ denominator is separated from zero. On the current live rows,
+$Q$ is separated on all fifteen terminal rows, but no complete
+provider-object branch residual pair is available:
+\texttt{provider\_object\_branch\_residual\_pair\_available\_terminal\_row\_count=0},
+\texttt{provider\_object\_w\_expression\_evaluated\_terminal\_row\_count=0},
+and
+\texttt{provider\_object\_w\_expression\_missing\_branch\_pair\_terminal\_row\_count=15}.
+The active blocker is now
+\texttt{same-domain-expression-level-source-map-provider-object-branch-residual-extractor-needed}.
+This packet is priority-only and candidate-only: it certifies no
+provider-object branch residual extractor, no provider-object W expression, no
+$\mu$ quotient, no matrix identity, no source-covariance object, no terminal
+row provider enclosure, and no directed-rounded provider.
+
 \texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
 now also probes a shared terminal-residual coordinate for
 $h_{37},h_{36},h_{35}$. Instead of assigning independent residual hulls to the

@@ -366,6 +366,9 @@ export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SOURCE_
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SOURCE_COVARIANCE_WRONSKIAN_W_GATE_PROVENANCE_AUDIT_CANDIDATE_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-source-covariance-wronskian-w-gate-provenance-audit-candidate/v1";
 
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SOURCE_COVARIANCE_WRONSKIAN_PROVIDER_OBJECT_W_EXPRESSION_EVALUATOR_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-source-covariance-wronskian-provider-object-w-expression-evaluator-candidate/v1";
+
 const H39_TERMINAL_SUCCESSOR_COEFFICIENT_IDENTITY_IMPORT_SPECS = Object.freeze([
   {
     certificate_key: "h37",
@@ -124985,6 +124988,923 @@ export function validateH39RequestedY44TerminalSourceCovarianceWronskianWGatePro
     })
   ) {
     errors.push("W gate provenance rows must trace provider W and mu availability fail-closed");
+  }
+  return errors;
+}
+
+function h39TerminalSourceCovarianceWronskianProviderObjectWExpressionEvaluatorClaimBoundary() {
+  return {
+    defines_terminal_source_covariance_wronskian_provider_object_w_expression_evaluator_only:
+      true,
+    certifies_provider_object_branch_residual_extractor: false,
+    certifies_provider_object_w_expression: false,
+    certifies_provider_object_mu_quotient: false,
+    certifies_matrix_provider_identity: false,
+    certifies_rank_two_source_covariance_object: false,
+    certifies_non_scalar_source_covariance_object: false,
+    certifies_scalar_lambda_source_object: false,
+    certifies_q_solve_slope_norm_denominator_separation: false,
+    certifies_expression_level_shared_wronskian: false,
+    certifies_cross_wronskian_normal_form_producer: false,
+    certifies_cross_branch_wronskian_identity: false,
+    certifies_dependency_preserving_normal_form: false,
+    certifies_terminal_source_covariance_lambda_provider_object_replay: false,
+    certifies_branch_resolved_centered_residual_source_object: false,
+    certifies_expression_level_n38_provider: false,
+    certifies_terminal_row_provider_enclosure: false,
+    certifies_terminal_graph_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
+export function buildH39RequestedY44TerminalSourceCovarianceWronskianProviderObjectWExpressionEvaluatorCandidate({
+  terminalSourceCovarianceCrossBranchWronskianDiagnostic,
+  terminalSourceCovarianceWronskianWGateProvenanceAudit,
+} = {}) {
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const numericInterval = (interval) =>
+    finiteOrderedInterval(interval)
+      ? [Number(interval[0]), Number(interval[1])]
+      : null;
+  const multiplyIntervals = (left, right) => {
+    if (!finiteOrderedInterval(left) || !finiteOrderedInterval(right)) {
+      return null;
+    }
+    const products = [
+      Number(left[0]) * Number(right[0]),
+      Number(left[0]) * Number(right[1]),
+      Number(left[1]) * Number(right[0]),
+      Number(left[1]) * Number(right[1]),
+    ];
+    return [Math.min(...products), Math.max(...products)];
+  };
+  const subtractIntervals = (left, right) =>
+    finiteOrderedInterval(left) && finiteOrderedInterval(right)
+      ? [Number(left[0]) - Number(right[1]), Number(left[1]) - Number(right[0])]
+      : null;
+  const intervalContainsZero = (interval) =>
+    finiteOrderedInterval(interval) &&
+    Number(interval[0]) <= 0 &&
+    Number(interval[1]) >= 0;
+  const intervalSeparatedFromZero = (interval) =>
+    finiteOrderedInterval(interval) && !intervalContainsZero(interval);
+  const divideIntervalsIfSeparated = (numerator, denominator) => {
+    if (!finiteOrderedInterval(numerator) || !intervalSeparatedFromZero(denominator)) {
+      return null;
+    }
+    return numericInterval(
+      root.divideIntervals(numericInterval(numerator), numericInterval(denominator))
+    );
+  };
+  const intervalHalfWidth = (interval) =>
+    finiteOrderedInterval(interval)
+      ? (Number(interval[1]) - Number(interval[0])) / 2
+      : null;
+  const rowsByNode = (rows) =>
+    new Map(
+      (rows ?? [])
+        .filter((row) => Number.isInteger(row?.node_index))
+        .map((row) => [Number(row.node_index), row])
+    );
+  const terminalRowsByH = (rows) =>
+    new Map(
+      (rows ?? [])
+        .filter((row) => Number.isInteger(row?.terminal_h_index))
+        .map((row) => [Number(row.terminal_h_index), row])
+    );
+  const branchRowsByBranch = (rows) =>
+    new Map(
+      (rows ?? [])
+        .filter((row) => row?.branch === "-" || row?.branch === "+")
+        .map((row) => [row.branch, row])
+    );
+  const terminalSpecs = H39_TERMINAL_SUCCESSOR_COEFFICIENT_IDENTITY_IMPORT_SPECS;
+  const providerObjectWFormula = "W_provider=P_-*s_+ - P_+*s_-";
+  const providerObjectMuFormula = "mu_provider=W_provider/Q";
+  const rankTwoReplayFormula =
+    "P_-^rank2=lambda_parallel*s_-+mu_provider*s_+; P_+^rank2=lambda_parallel*s_+-mu_provider*s_-";
+  const branchResidualExtractorTarget =
+    "extract same-domain expression-level source-map provider object branch residual intervals P_- and P_+ before forming W_provider";
+  const crossRowsByNode = rowsByNode(
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic
+      ?.terminal_source_covariance_cross_branch_wronskian_diagnostic_rows
+  );
+  const provenanceRowsByNode = rowsByNode(
+    terminalSourceCovarianceWronskianWGateProvenanceAudit
+      ?.terminal_source_covariance_wronskian_w_gate_provenance_audit_rows
+  );
+  const crossReady =
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SOURCE_COVARIANCE_CROSS_BRANCH_WRONSKIAN_DIAGNOSTIC_CANDIDATE_SCHEMA &&
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic
+      ?.terminal_source_covariance_cross_branch_wronskian_diagnostic_verified ===
+      true &&
+    terminalSourceCovarianceCrossBranchWronskianDiagnostic
+      ?.terminal_source_covariance_cross_branch_wronskian_diagnostic_certified ===
+      false;
+  const provenanceReady =
+    terminalSourceCovarianceWronskianWGateProvenanceAudit?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SOURCE_COVARIANCE_WRONSKIAN_W_GATE_PROVENANCE_AUDIT_CANDIDATE_SCHEMA &&
+    terminalSourceCovarianceWronskianWGateProvenanceAudit
+      ?.w_gate_provenance_verified === true &&
+    terminalSourceCovarianceWronskianWGateProvenanceAudit
+      ?.w_gate_provenance_certified === false;
+  const terminalCheckKinds = [
+    "cross_wronskian_terminal_row_available",
+    "w_gate_provenance_terminal_row_available",
+    "same_domain_terminal_row_aligned",
+    "provider_object_branch_rows_inspected",
+    "provider_object_w_expression_evaluated_fail_closed",
+    "provider_object_mu_quotient_evaluated_fail_closed",
+    "h39_claims_remain_open",
+  ];
+  const checkKinds = [
+    "cross_wronskian_diagnostic_ready",
+    "w_gate_provenance_audit_ready",
+    "same_domain_terminal_rows_aligned",
+    "provider_object_branch_rows_inspected",
+    "provider_object_w_expression_evaluated_fail_closed",
+    "provider_object_mu_quotient_evaluated_fail_closed",
+    "h39_claims_remain_open",
+  ];
+  const rows = Array.from({ length: 5 }, (_, nodeIndex) => {
+    const terminalGraphCellId = `speed.${nodeIndex}.first-y`;
+    const crossRow = crossRowsByNode.get(nodeIndex) ?? null;
+    const provenanceRow = provenanceRowsByNode.get(nodeIndex) ?? null;
+    const crossTerminalRowsByH = terminalRowsByH(
+      crossRow?.terminal_source_covariance_cross_branch_wronskian_diagnostic_rows
+    );
+    const provenanceTerminalRowsByH = terminalRowsByH(
+      provenanceRow
+        ?.terminal_source_covariance_wronskian_w_gate_provenance_audit_rows
+    );
+    const terminalRows = terminalSpecs.map((spec) => {
+      const crossTerminalRow =
+        crossTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const provenanceTerminalRow =
+        provenanceTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const branchRows = branchRowsByBranch(
+        crossTerminalRow?.source_covariance_cross_branch_wronskian_branch_rows
+      );
+      const minusBranchRow = branchRows.get("-") ?? null;
+      const plusBranchRow = branchRows.get("+") ?? null;
+      const minusProviderInterval = numericInterval(
+        minusBranchRow?.source_map_provider_object_interval
+      );
+      const plusProviderInterval = numericInterval(
+        plusBranchRow?.source_map_provider_object_interval
+      );
+      const minusSolveSlopeInterval = numericInterval(
+        minusBranchRow?.solve_slope_interval
+      );
+      const plusSolveSlopeInterval = numericInterval(
+        plusBranchRow?.solve_slope_interval
+      );
+      const minusProviderAvailable =
+        minusBranchRow?.source_map_provider_object_interval_available === true &&
+        finiteOrderedInterval(minusProviderInterval);
+      const plusProviderAvailable =
+        plusBranchRow?.source_map_provider_object_interval_available === true &&
+        finiteOrderedInterval(plusProviderInterval);
+      const providerBranchPairAvailable =
+        minusProviderAvailable && plusProviderAvailable;
+      const qInterval = numericInterval(
+        provenanceTerminalRow?.q_solve_slope_norm_denominator_interval
+      );
+      const qSeparated =
+        provenanceTerminalRow
+          ?.q_solve_slope_norm_denominator_separated_from_zero === true &&
+        intervalSeparatedFromZero(qInterval);
+      const providerObjectWInterval = providerBranchPairAvailable
+        ? subtractIntervals(
+            multiplyIntervals(minusProviderInterval, plusSolveSlopeInterval),
+            multiplyIntervals(plusProviderInterval, minusSolveSlopeInterval)
+          )
+        : null;
+      const providerObjectWAvailable = finiteOrderedInterval(
+        providerObjectWInterval
+      );
+      const providerObjectMuInterval =
+        providerObjectWAvailable && qSeparated
+          ? divideIntervalsIfSeparated(providerObjectWInterval, qInterval)
+          : null;
+      const providerObjectMuAvailable = finiteOrderedInterval(
+        providerObjectMuInterval
+      );
+      const providerObjectWExpressionStatus = providerBranchPairAvailable
+        ? providerObjectWAvailable
+          ? "provider-object-w-expression-evaluated"
+          : "provider-object-w-expression-arithmetic-open"
+        : "provider-object-branch-residual-pair-missing";
+      const terminalSameDomainAligned =
+        crossTerminalRow?.terminal_graph_cell_id === terminalGraphCellId &&
+        provenanceTerminalRow?.terminal_graph_cell_id === terminalGraphCellId &&
+        Number(crossTerminalRow?.terminal_h_index) === spec.terminal_h_index &&
+        Number(provenanceTerminalRow?.terminal_h_index) ===
+          spec.terminal_h_index;
+      const terminalChecks = {
+        cross_wronskian_terminal_row_available:
+          crossReady &&
+          crossTerminalRow
+            ?.row_terminal_source_covariance_cross_branch_wronskian_diagnostic_verified ===
+            true,
+        w_gate_provenance_terminal_row_available:
+          provenanceReady &&
+          provenanceTerminalRow?.row_w_gate_provenance_verified === true,
+        same_domain_terminal_row_aligned: terminalSameDomainAligned,
+        provider_object_branch_rows_inspected:
+          branchRows.size === 2 &&
+          finiteOrderedInterval(minusSolveSlopeInterval) &&
+          finiteOrderedInterval(plusSolveSlopeInterval) &&
+          typeof minusBranchRow?.source_map_provider_object_interval_available ===
+            "boolean" &&
+          typeof plusBranchRow?.source_map_provider_object_interval_available ===
+            "boolean",
+        provider_object_w_expression_evaluated_fail_closed:
+          providerBranchPairAvailable
+            ? providerObjectWAvailable
+            : providerObjectWInterval === null &&
+              providerObjectWAvailable === false,
+        provider_object_mu_quotient_evaluated_fail_closed:
+          providerObjectWAvailable && qSeparated
+            ? providerObjectMuAvailable
+            : providerObjectMuInterval === null &&
+              providerObjectMuAvailable === false,
+        h39_claims_remain_open:
+          crossTerminalRow?.row_certifies_cross_branch_wronskian_identity ===
+            false &&
+          crossTerminalRow?.row_certifies_expression_level_n38_provider ===
+            false &&
+          provenanceTerminalRow?.row_certifies_expression_level_shared_wronskian ===
+            false &&
+          provenanceTerminalRow?.row_certifies_directed_rounded_shared_domain ===
+            false,
+      };
+      const terminalRowVerified = Object.values(terminalChecks).every(
+        (value) => value === true
+      );
+      return {
+        terminal_h_index: spec.terminal_h_index,
+        source_y_order: H38_NUMERATOR_Y_ORDER,
+        terminal_graph_cell_id: terminalGraphCellId,
+        successor_scalar_identity_weight:
+          spec.successor_scalar_identity_weight,
+        centered_successor_scalar_weight:
+          spec.centered_successor_scalar_weight,
+        provider_object_w_formula: providerObjectWFormula,
+        provider_object_mu_formula: providerObjectMuFormula,
+        rank_two_provider_replay_formula: rankTwoReplayFormula,
+        provider_object_branch_residual_extractor_target:
+          branchResidualExtractorTarget,
+        provider_object_minus_branch_residual_interval: minusProviderInterval,
+        provider_object_plus_branch_residual_interval: plusProviderInterval,
+        provider_object_minus_branch_residual_interval_available:
+          minusProviderAvailable,
+        provider_object_plus_branch_residual_interval_available:
+          plusProviderAvailable,
+        provider_object_branch_residual_pair_available:
+          providerBranchPairAvailable,
+        minus_solve_slope_interval: minusSolveSlopeInterval,
+        plus_solve_slope_interval: plusSolveSlopeInterval,
+        q_solve_slope_norm_denominator_interval: qInterval,
+        q_solve_slope_norm_denominator_separated_from_zero: qSeparated,
+        provider_object_w_expression_interval: providerObjectWInterval,
+        provider_object_w_expression_interval_available:
+          providerObjectWAvailable,
+        provider_object_w_expression_interval_half_width:
+          intervalHalfWidth(providerObjectWInterval),
+        provider_object_w_expression_contains_zero:
+          providerObjectWAvailable
+            ? intervalContainsZero(providerObjectWInterval)
+            : false,
+        provider_object_w_expression_refutes_scalar_lambda:
+          providerObjectWAvailable
+            ? intervalContainsZero(providerObjectWInterval) === false
+            : false,
+        provider_object_mu_interval: providerObjectMuInterval,
+        provider_object_mu_interval_available: providerObjectMuAvailable,
+        provider_object_mu_interval_half_width:
+          intervalHalfWidth(providerObjectMuInterval),
+        provider_object_mu_contains_zero: providerObjectMuAvailable
+          ? intervalContainsZero(providerObjectMuInterval)
+          : false,
+        provider_object_w_expression_status: providerObjectWExpressionStatus,
+        provider_object_w_expression_evaluator_check_kinds: [
+          ...terminalCheckKinds,
+        ],
+        provider_object_w_expression_evaluator_checks: terminalChecks,
+        row_provider_object_w_expression_evaluator_verified:
+          terminalRowVerified,
+        row_certifies_provider_object_branch_residual_extractor: false,
+        row_certifies_provider_object_w_expression: false,
+        row_certifies_provider_object_mu_quotient: false,
+        row_certifies_matrix_provider_identity: false,
+        row_certifies_rank_two_source_covariance_object: false,
+        row_certifies_non_scalar_source_covariance_object: false,
+        row_certifies_scalar_lambda_source_object: false,
+        row_certifies_expression_level_shared_wronskian: false,
+        row_certifies_terminal_row_provider_enclosure: false,
+        row_certifies_directed_rounded_shared_domain: false,
+        row_status: terminalRowVerified
+          ? providerObjectWExpressionStatus
+          : "provider-object-w-expression-evaluator-unverified",
+        claim_boundary:
+          h39TerminalSourceCovarianceWronskianProviderObjectWExpressionEvaluatorClaimBoundary(),
+      };
+    });
+    const rowChecks = {
+      cross_wronskian_diagnostic_ready:
+        crossReady &&
+        crossRow
+          ?.row_terminal_source_covariance_cross_branch_wronskian_diagnostic_verified ===
+          true,
+      w_gate_provenance_audit_ready:
+        provenanceReady && provenanceRow?.row_w_gate_provenance_verified === true,
+      same_domain_terminal_rows_aligned: terminalRows.every(
+        (row) =>
+          row.provider_object_w_expression_evaluator_checks
+            ?.same_domain_terminal_row_aligned === true
+      ),
+      provider_object_branch_rows_inspected: terminalRows.every(
+        (row) =>
+          row.provider_object_w_expression_evaluator_checks
+            ?.provider_object_branch_rows_inspected === true
+      ),
+      provider_object_w_expression_evaluated_fail_closed: terminalRows.every(
+        (row) =>
+          row.provider_object_w_expression_evaluator_checks
+            ?.provider_object_w_expression_evaluated_fail_closed === true
+      ),
+      provider_object_mu_quotient_evaluated_fail_closed: terminalRows.every(
+        (row) =>
+          row.provider_object_w_expression_evaluator_checks
+            ?.provider_object_mu_quotient_evaluated_fail_closed === true
+      ),
+      h39_claims_remain_open: terminalRows.every(
+        (row) =>
+          row.provider_object_w_expression_evaluator_checks
+            ?.h39_claims_remain_open === true
+      ),
+    };
+    const rowVerified = Object.values(rowChecks).every(
+      (value) => value === true
+    );
+    return {
+      node_index: nodeIndex,
+      terminal_graph_cell_id: terminalGraphCellId,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      terminal_source_covariance_wronskian_provider_object_w_expression_evaluator_row_kind:
+        "terminal-source-covariance-wronskian-provider-object-w-expression-evaluator-row",
+      terminal_h_indexes: terminalSpecs.map((spec) => spec.terminal_h_index),
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      terminal_source_covariance_wronskian_provider_object_w_expression_evaluator_rows:
+        terminalRows,
+      terminal_source_covariance_wronskian_provider_object_w_expression_evaluator_terminal_row_count:
+        terminalRows.length,
+      provider_object_branch_residual_pair_available_terminal_row_count:
+        terminalRows.filter(
+          (row) => row.provider_object_branch_residual_pair_available
+        ).length,
+      provider_object_w_expression_evaluated_terminal_row_count:
+        terminalRows.filter(
+          (row) => row.provider_object_w_expression_interval_available
+        ).length,
+      provider_object_w_expression_missing_branch_pair_terminal_row_count:
+        terminalRows.filter(
+          (row) => !row.provider_object_branch_residual_pair_available
+        ).length,
+      provider_object_mu_quotient_available_terminal_row_count:
+        terminalRows.filter((row) => row.provider_object_mu_interval_available)
+          .length,
+      q_solve_slope_norm_denominator_separated_terminal_row_count:
+        terminalRows.filter(
+          (row) => row.q_solve_slope_norm_denominator_separated_from_zero
+        ).length,
+      provider_object_w_expression_refutes_scalar_lambda_terminal_row_count:
+        terminalRows.filter(
+          (row) => row.provider_object_w_expression_refutes_scalar_lambda
+        ).length,
+      row_check_kinds: [...checkKinds],
+      row_checks: rowChecks,
+      row_provider_object_w_expression_evaluator_verified: rowVerified,
+      row_certifies_provider_object_branch_residual_extractor: false,
+      row_certifies_provider_object_w_expression: false,
+      row_certifies_provider_object_mu_quotient: false,
+      row_certifies_matrix_provider_identity: false,
+      row_certifies_rank_two_source_covariance_object: false,
+      row_certifies_non_scalar_source_covariance_object: false,
+      row_certifies_scalar_lambda_source_object: false,
+      row_certifies_expression_level_shared_wronskian: false,
+      row_certifies_terminal_row_provider_enclosure: false,
+      row_certifies_directed_rounded_shared_domain: false,
+      row_status: rowVerified
+        ? terminalRows.some(
+              (row) => !row.provider_object_branch_residual_pair_available
+            )
+          ? "provider-object-w-expression-branch-residuals-needed"
+          : terminalRows.some(
+                (row) => !row.provider_object_w_expression_interval_available
+              )
+            ? "provider-object-w-expression-arithmetic-open"
+            : terminalRows.some(
+                  (row) =>
+                    !row.q_solve_slope_norm_denominator_separated_from_zero
+                )
+              ? "provider-object-w-expression-q-denominator-open"
+              : terminalRows.some(
+                    (row) => !row.provider_object_mu_interval_available
+                  )
+                ? "provider-object-w-expression-mu-quotient-open"
+                : "provider-object-w-expression-ready-for-rank-two-replay"
+        : "provider-object-w-expression-evaluator-unverified",
+      claim_boundary:
+        h39TerminalSourceCovarianceWronskianProviderObjectWExpressionEvaluatorClaimBoundary(),
+    };
+  });
+  const terminalRowCount = rows.reduce(
+    (total, row) =>
+      total +
+      row
+        .terminal_source_covariance_wronskian_provider_object_w_expression_evaluator_terminal_row_count,
+    0
+  );
+  const sumRows = (key) =>
+    rows.reduce((total, row) => total + Number(row?.[key] ?? 0), 0);
+  const branchPairAvailableCount = sumRows(
+    "provider_object_branch_residual_pair_available_terminal_row_count"
+  );
+  const wEvaluatedCount = sumRows(
+    "provider_object_w_expression_evaluated_terminal_row_count"
+  );
+  const missingBranchPairCount = sumRows(
+    "provider_object_w_expression_missing_branch_pair_terminal_row_count"
+  );
+  const muAvailableCount = sumRows(
+    "provider_object_mu_quotient_available_terminal_row_count"
+  );
+  const qSeparatedCount = sumRows(
+    "q_solve_slope_norm_denominator_separated_terminal_row_count"
+  );
+  const providerWRefutesScalarCount = sumRows(
+    "provider_object_w_expression_refutes_scalar_lambda_terminal_row_count"
+  );
+  const aggregateChecks = {
+    cross_wronskian_diagnostic_ready: crossReady,
+    w_gate_provenance_audit_ready: provenanceReady,
+    same_domain_terminal_rows_aligned: rows.every(
+      (row) => row.row_checks?.same_domain_terminal_rows_aligned === true
+    ),
+    provider_object_branch_rows_inspected: rows.every(
+      (row) => row.row_checks?.provider_object_branch_rows_inspected === true
+    ),
+    provider_object_w_expression_evaluated_fail_closed: rows.every(
+      (row) =>
+        row.row_checks?.provider_object_w_expression_evaluated_fail_closed ===
+        true
+    ),
+    provider_object_mu_quotient_evaluated_fail_closed: rows.every(
+      (row) =>
+        row.row_checks?.provider_object_mu_quotient_evaluated_fail_closed ===
+        true
+    ),
+    h39_claims_remain_open: rows.every(
+      (row) => row.row_checks?.h39_claims_remain_open === true
+    ),
+  };
+  const packetVerified =
+    rows.length === 5 &&
+    terminalRowCount === 15 &&
+    rows.every(
+      (row) => row.row_provider_object_w_expression_evaluator_verified === true
+    ) &&
+    Object.values(aggregateChecks).every((value) => value === true);
+  const classification = !packetVerified
+    ? "provider-object-w-expression-evaluator-open"
+    : branchPairAvailableCount < terminalRowCount
+      ? "provider-object-w-expression-branch-residuals-needed"
+      : wEvaluatedCount < terminalRowCount
+        ? "provider-object-w-expression-arithmetic-open"
+        : qSeparatedCount < terminalRowCount
+          ? "provider-object-w-expression-q-denominator-open"
+          : muAvailableCount < terminalRowCount
+            ? "provider-object-w-expression-mu-quotient-open"
+            : "provider-object-w-expression-ready-for-rank-two-replay";
+  const blockerClassification =
+    classification === "provider-object-w-expression-branch-residuals-needed"
+      ? "same-domain-expression-level-source-map-provider-object-branch-residual-extractor-needed"
+      : classification === "provider-object-w-expression-arithmetic-open"
+        ? "same-domain-provider-object-W-expression-arithmetic-needed"
+        : classification === "provider-object-w-expression-q-denominator-open"
+          ? "same-domain-Q-denominator-separation-needed-for-mu"
+          : classification === "provider-object-w-expression-mu-quotient-open"
+            ? "same-domain-provider-object-mu-quotient-needed"
+            : classification ===
+                "provider-object-w-expression-ready-for-rank-two-replay"
+              ? "same-domain-rank-two-provider-replay-from-provider-object-W-needed"
+              : classification;
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SOURCE_COVARIANCE_WRONSKIAN_PROVIDER_OBJECT_W_EXPRESSION_EVALUATOR_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-terminal-source-covariance-wronskian-provider-object-w-expression-evaluator-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-terminal-source-covariance-wronskian-provider-object-w-expression-evaluator",
+    target_kind:
+      "candidate-requested-y44-terminal-source-covariance-provider-object-w-expression-evaluator",
+    terminal_source_covariance_cross_branch_wronskian_diagnostic_schema:
+      terminalSourceCovarianceCrossBranchWronskianDiagnostic?.schema ?? null,
+    terminal_source_covariance_wronskian_w_gate_provenance_audit_schema:
+      terminalSourceCovarianceWronskianWGateProvenanceAudit?.schema ?? null,
+    proof_status:
+      "candidate-terminal-source-covariance-provider-object-w-expression-evaluator-open",
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    terminal_h_indexes: terminalSpecs.map((spec) => spec.terminal_h_index),
+    source_terms_preserved_signed_together: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    provider_object_w_formula: providerObjectWFormula,
+    provider_object_mu_formula: providerObjectMuFormula,
+    rank_two_provider_replay_formula: rankTwoReplayFormula,
+    provider_object_branch_residual_extractor_target:
+      branchResidualExtractorTarget,
+    provider_object_w_expression_evaluator_check_kinds: [...checkKinds],
+    provider_object_w_expression_evaluator_checks: aggregateChecks,
+    provider_object_w_expression_evaluator_verified: packetVerified,
+    provider_object_w_expression_evaluator_certified: false,
+    terminal_source_covariance_wronskian_provider_object_w_expression_evaluator_row_count:
+      rows.length,
+    terminal_source_covariance_wronskian_provider_object_w_expression_evaluator_terminal_row_count:
+      terminalRowCount,
+    terminal_source_covariance_wronskian_provider_object_w_expression_evaluator_rows:
+      rows,
+    provider_object_branch_residual_pair_available_terminal_row_count:
+      branchPairAvailableCount,
+    provider_object_w_expression_evaluated_terminal_row_count: wEvaluatedCount,
+    provider_object_w_expression_missing_branch_pair_terminal_row_count:
+      missingBranchPairCount,
+    provider_object_mu_quotient_available_terminal_row_count: muAvailableCount,
+    q_solve_slope_norm_denominator_separated_terminal_row_count:
+      qSeparatedCount,
+    provider_object_w_expression_refutes_scalar_lambda_terminal_row_count:
+      providerWRefutesScalarCount,
+    provider_object_branch_residual_extractor_certified: false,
+    provider_object_w_expression_certified: false,
+    provider_object_mu_quotient_certified: false,
+    matrix_provider_identity_certified: false,
+    w_refinement_certified: false,
+    rank_two_source_covariance_object_certified: false,
+    non_scalar_source_covariance_object_certified: false,
+    scalar_lambda_source_object_certified: false,
+    q_solve_slope_norm_denominator_separation_certified: false,
+    expression_level_shared_wronskian_certified: false,
+    terminal_row_provider_enclosure_certified: false,
+    expression_level_n38_provider_certified: false,
+    directed_rounded_shared_domain_provider_certified: false,
+    provider_object_w_expression_evaluator_classification: classification,
+    provider_object_w_expression_evaluator_blocker_classification:
+      blockerClassification,
+    next_executable_object:
+      blockerClassification ===
+      "same-domain-rank-two-provider-replay-from-provider-object-W-needed"
+        ? "replay lambda_parallel and mu_provider through the same-domain rank-two provider matrix against the terminal-affine endpoint budget"
+        : blockerClassification,
+    candidate_certificate_route:
+      "This packet evaluates W_provider=P_-*s_+ - P_+*s_- only from same-domain source-map provider-object branch residual intervals. If the branch residual pair is absent, it stops at the provider-object branch residual extractor blocker and certifies no W expression, mu quotient, matrix identity, source object, or directed-rounded provider.",
+    claim_boundary:
+      h39TerminalSourceCovarianceWronskianProviderObjectWExpressionEvaluatorClaimBoundary(),
+  };
+}
+
+export function validateH39RequestedY44TerminalSourceCovarianceWronskianProviderObjectWExpressionEvaluatorCandidate(
+  artifact
+) {
+  const errors = [];
+  const sameStringSet = (left, right) =>
+    Array.isArray(left) &&
+    left.length === right.length &&
+    right.every((value) => left.includes(value));
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const sameTerminalHIndexes = (indexes) =>
+    Array.isArray(indexes) &&
+    indexes.length === 3 &&
+    indexes[0] === 37 &&
+    indexes[1] === 36 &&
+    indexes[2] === 35;
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const validClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_terminal_source_covariance_wronskian_provider_object_w_expression_evaluator_only ===
+      true &&
+    claimBoundary?.certifies_provider_object_branch_residual_extractor ===
+      false &&
+    claimBoundary?.certifies_provider_object_w_expression === false &&
+    claimBoundary?.certifies_provider_object_mu_quotient === false &&
+    claimBoundary?.certifies_matrix_provider_identity === false &&
+    claimBoundary?.certifies_rank_two_source_covariance_object === false &&
+    claimBoundary?.certifies_non_scalar_source_covariance_object === false &&
+    claimBoundary?.certifies_scalar_lambda_source_object === false &&
+    claimBoundary?.certifies_expression_level_shared_wronskian === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const expectedCheckKinds = [
+    "cross_wronskian_diagnostic_ready",
+    "w_gate_provenance_audit_ready",
+    "same_domain_terminal_rows_aligned",
+    "provider_object_branch_rows_inspected",
+    "provider_object_w_expression_evaluated_fail_closed",
+    "provider_object_mu_quotient_evaluated_fail_closed",
+    "h39_claims_remain_open",
+  ];
+  const expectedTerminalCheckKinds = [
+    "cross_wronskian_terminal_row_available",
+    "w_gate_provenance_terminal_row_available",
+    "same_domain_terminal_row_aligned",
+    "provider_object_branch_rows_inspected",
+    "provider_object_w_expression_evaluated_fail_closed",
+    "provider_object_mu_quotient_evaluated_fail_closed",
+    "h39_claims_remain_open",
+  ];
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SOURCE_COVARIANCE_WRONSKIAN_PROVIDER_OBJECT_W_EXPRESSION_EVALUATOR_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 terminal source-covariance provider-object W expression evaluator candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-terminal-source-covariance-wronskian-provider-object-w-expression-evaluator-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-terminal-source-covariance-wronskian-provider-object-w-expression-evaluator" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-terminal-source-covariance-provider-object-w-expression-evaluator" ||
+    artifact?.terminal_source_covariance_cross_branch_wronskian_diagnostic_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SOURCE_COVARIANCE_CROSS_BRANCH_WRONSKIAN_DIAGNOSTIC_CANDIDATE_SCHEMA ||
+    artifact
+      ?.terminal_source_covariance_wronskian_w_gate_provenance_audit_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SOURCE_COVARIANCE_WRONSKIAN_W_GATE_PROVENANCE_AUDIT_CANDIDATE_SCHEMA ||
+    artifact?.proof_status !==
+      "candidate-terminal-source-covariance-provider-object-w-expression-evaluator-open" ||
+    artifact?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    !sameTerminalHIndexes(artifact?.terminal_h_indexes) ||
+    !sameTerms(artifact?.source_terms_preserved_signed_together) ||
+    artifact?.provider_object_w_formula !== "W_provider=P_-*s_+ - P_+*s_-" ||
+    artifact?.provider_object_mu_formula !== "mu_provider=W_provider/Q" ||
+    artifact?.rank_two_provider_replay_formula !==
+      "P_-^rank2=lambda_parallel*s_-+mu_provider*s_+; P_+^rank2=lambda_parallel*s_+-mu_provider*s_-" ||
+    typeof artifact?.provider_object_branch_residual_extractor_target !==
+      "string" ||
+    !sameStringSet(
+      artifact?.provider_object_w_expression_evaluator_check_kinds,
+      expectedCheckKinds
+    )
+  ) {
+    errors.push("provider-object W expression evaluator metadata must identify the same-domain packet");
+  }
+  if (
+    expectedCheckKinds.some(
+      (kind) =>
+        artifact?.provider_object_w_expression_evaluator_checks?.[kind] !==
+        true
+    ) ||
+    artifact?.provider_object_w_expression_evaluator_verified !== true ||
+    artifact?.provider_object_w_expression_evaluator_certified !== false ||
+    artifact
+      ?.terminal_source_covariance_wronskian_provider_object_w_expression_evaluator_row_count !==
+      5 ||
+    artifact
+      ?.terminal_source_covariance_wronskian_provider_object_w_expression_evaluator_terminal_row_count !==
+      15 ||
+    artifact
+      ?.provider_object_branch_residual_pair_available_terminal_row_count <
+      0 ||
+    artifact
+      ?.provider_object_branch_residual_pair_available_terminal_row_count >
+      15 ||
+    artifact?.provider_object_w_expression_evaluated_terminal_row_count < 0 ||
+    artifact?.provider_object_w_expression_evaluated_terminal_row_count > 15 ||
+    artifact
+      ?.provider_object_w_expression_missing_branch_pair_terminal_row_count <
+      0 ||
+    artifact
+      ?.provider_object_w_expression_missing_branch_pair_terminal_row_count >
+      15 ||
+    artifact?.provider_object_mu_quotient_available_terminal_row_count < 0 ||
+    artifact?.provider_object_mu_quotient_available_terminal_row_count > 15 ||
+    artifact
+      ?.q_solve_slope_norm_denominator_separated_terminal_row_count <
+      0 ||
+    artifact
+      ?.q_solve_slope_norm_denominator_separated_terminal_row_count >
+      15 ||
+    artifact
+      ?.provider_object_w_expression_refutes_scalar_lambda_terminal_row_count <
+      0 ||
+    artifact
+      ?.provider_object_w_expression_refutes_scalar_lambda_terminal_row_count >
+      artifact?.provider_object_w_expression_evaluated_terminal_row_count ||
+    artifact?.provider_object_branch_residual_extractor_certified !== false ||
+    artifact?.provider_object_w_expression_certified !== false ||
+    artifact?.provider_object_mu_quotient_certified !== false ||
+    artifact?.matrix_provider_identity_certified !== false ||
+    artifact?.w_refinement_certified !== false ||
+    artifact?.rank_two_source_covariance_object_certified !== false ||
+    artifact?.non_scalar_source_covariance_object_certified !== false ||
+    artifact?.scalar_lambda_source_object_certified !== false ||
+    artifact?.q_solve_slope_norm_denominator_separation_certified !== false ||
+    artifact?.expression_level_shared_wronskian_certified !== false ||
+    artifact?.terminal_row_provider_enclosure_certified !== false ||
+    artifact?.expression_level_n38_provider_certified !== false ||
+    artifact?.directed_rounded_shared_domain_provider_certified !== false ||
+    ![
+      "provider-object-w-expression-evaluator-open",
+      "provider-object-w-expression-branch-residuals-needed",
+      "provider-object-w-expression-arithmetic-open",
+      "provider-object-w-expression-q-denominator-open",
+      "provider-object-w-expression-mu-quotient-open",
+      "provider-object-w-expression-ready-for-rank-two-replay",
+    ].includes(artifact?.provider_object_w_expression_evaluator_classification) ||
+    typeof artifact
+      ?.provider_object_w_expression_evaluator_blocker_classification !==
+      "string" ||
+    typeof artifact?.next_executable_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string" ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("provider-object W expression evaluator aggregate must stay candidate-only and count W components");
+  }
+  const rows =
+    artifact
+      ?.terminal_source_covariance_wronskian_provider_object_w_expression_evaluator_rows ??
+    [];
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== 5 ||
+    !rows.every((row, index) => {
+      const terminalRows =
+        row
+          ?.terminal_source_covariance_wronskian_provider_object_w_expression_evaluator_rows ??
+        [];
+      return (
+        row?.node_index === index &&
+        row?.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+        row?.required_xi_derivative_order === 4 &&
+        row
+          ?.terminal_source_covariance_wronskian_provider_object_w_expression_evaluator_row_kind ===
+          "terminal-source-covariance-wronskian-provider-object-w-expression-evaluator-row" &&
+        sameTerminalHIndexes(row?.terminal_h_indexes) &&
+        sameTerms(row?.source_terms_preserved_signed_together) &&
+        row
+          ?.terminal_source_covariance_wronskian_provider_object_w_expression_evaluator_terminal_row_count ===
+          3 &&
+        row?.provider_object_branch_residual_pair_available_terminal_row_count >=
+          0 &&
+        row?.provider_object_branch_residual_pair_available_terminal_row_count <=
+          3 &&
+        row?.provider_object_w_expression_evaluated_terminal_row_count >= 0 &&
+        row?.provider_object_w_expression_evaluated_terminal_row_count <= 3 &&
+        row
+          ?.provider_object_w_expression_missing_branch_pair_terminal_row_count >=
+          0 &&
+        row
+          ?.provider_object_w_expression_missing_branch_pair_terminal_row_count <=
+          3 &&
+        row?.provider_object_mu_quotient_available_terminal_row_count >= 0 &&
+        row?.provider_object_mu_quotient_available_terminal_row_count <= 3 &&
+        row?.q_solve_slope_norm_denominator_separated_terminal_row_count >= 0 &&
+        row?.q_solve_slope_norm_denominator_separated_terminal_row_count <= 3 &&
+        sameStringSet(row?.row_check_kinds, expectedCheckKinds) &&
+        expectedCheckKinds.every((kind) => row?.row_checks?.[kind] === true) &&
+        row?.row_provider_object_w_expression_evaluator_verified === true &&
+        row?.row_certifies_provider_object_w_expression === false &&
+        row?.row_certifies_provider_object_mu_quotient === false &&
+        row?.row_certifies_matrix_provider_identity === false &&
+        row?.row_certifies_expression_level_shared_wronskian === false &&
+        row?.row_certifies_directed_rounded_shared_domain === false &&
+        validClaimBoundary(row?.claim_boundary) &&
+        Array.isArray(terminalRows) &&
+        terminalRows.length === 3 &&
+        terminalRows.every((terminalRow, terminalIndex) => {
+          const spec =
+            H39_TERMINAL_SUCCESSOR_COEFFICIENT_IDENTITY_IMPORT_SPECS[
+              terminalIndex
+            ];
+          return (
+            terminalRow?.terminal_h_index === spec.terminal_h_index &&
+            terminalRow?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+            terminalRow?.terminal_graph_cell_id ===
+              `speed.${index}.first-y` &&
+            terminalRow?.successor_scalar_identity_weight ===
+              spec.successor_scalar_identity_weight &&
+            terminalRow?.centered_successor_scalar_weight ===
+              spec.centered_successor_scalar_weight &&
+            terminalRow?.provider_object_w_formula ===
+              "W_provider=P_-*s_+ - P_+*s_-" &&
+            terminalRow?.provider_object_mu_formula ===
+              "mu_provider=W_provider/Q" &&
+            typeof terminalRow
+              ?.provider_object_branch_residual_extractor_target ===
+              "string" &&
+            typeof terminalRow
+              ?.provider_object_minus_branch_residual_interval_available ===
+              "boolean" &&
+            typeof terminalRow
+              ?.provider_object_plus_branch_residual_interval_available ===
+              "boolean" &&
+            typeof terminalRow
+              ?.provider_object_branch_residual_pair_available ===
+              "boolean" &&
+            finiteOrderedInterval(terminalRow?.minus_solve_slope_interval) &&
+            finiteOrderedInterval(terminalRow?.plus_solve_slope_interval) &&
+            finiteOrderedInterval(
+              terminalRow?.q_solve_slope_norm_denominator_interval
+            ) &&
+            typeof terminalRow
+              ?.q_solve_slope_norm_denominator_separated_from_zero ===
+              "boolean" &&
+            typeof terminalRow
+              ?.provider_object_w_expression_interval_available ===
+              "boolean" &&
+            (terminalRow?.provider_object_w_expression_interval_available ===
+            true
+              ? finiteOrderedInterval(
+                  terminalRow?.provider_object_w_expression_interval
+                ) &&
+                finiteNumber(
+                  terminalRow?.provider_object_w_expression_interval_half_width
+                )
+              : terminalRow?.provider_object_w_expression_interval === null) &&
+            typeof terminalRow
+              ?.provider_object_w_expression_contains_zero === "boolean" &&
+            typeof terminalRow
+              ?.provider_object_w_expression_refutes_scalar_lambda ===
+              "boolean" &&
+            typeof terminalRow?.provider_object_mu_interval_available ===
+              "boolean" &&
+            (terminalRow?.provider_object_mu_interval_available === true
+              ? finiteOrderedInterval(terminalRow?.provider_object_mu_interval) &&
+                finiteNumber(
+                  terminalRow?.provider_object_mu_interval_half_width
+                )
+              : terminalRow?.provider_object_mu_interval === null) &&
+            typeof terminalRow?.provider_object_mu_contains_zero ===
+              "boolean" &&
+            typeof terminalRow?.provider_object_w_expression_status ===
+              "string" &&
+            sameStringSet(
+              terminalRow?.provider_object_w_expression_evaluator_check_kinds,
+              expectedTerminalCheckKinds
+            ) &&
+            expectedTerminalCheckKinds.every(
+              (kind) =>
+                terminalRow?.provider_object_w_expression_evaluator_checks?.[
+                  kind
+                ] === true
+            ) &&
+            terminalRow?.row_provider_object_w_expression_evaluator_verified ===
+              true &&
+            terminalRow?.row_certifies_provider_object_w_expression === false &&
+            terminalRow?.row_certifies_provider_object_mu_quotient === false &&
+            terminalRow?.row_certifies_matrix_provider_identity === false &&
+            terminalRow?.row_certifies_expression_level_shared_wronskian ===
+              false &&
+            terminalRow?.row_certifies_directed_rounded_shared_domain ===
+              false &&
+            validClaimBoundary(terminalRow?.claim_boundary)
+          );
+        })
+      );
+    })
+  ) {
+    errors.push("provider-object W expression evaluator rows must compute W from provider branch residuals or fail closed at the extractor blocker");
   }
   return errors;
 }

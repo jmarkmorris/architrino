@@ -151,12 +151,7 @@ function formatScientific(value) {
   return value.toFixed(3);
 }
 
-function normalizeViewId(value) {
-  const normalized = String(value ?? "all").trim().toLowerCase();
-  return ["all", "inner", "middle", "outer"].includes(normalized) ? normalized : "all";
-}
-
-function computeLorentzState(beta, radius) {
+export function computeLorentzState(beta, radius) {
   const rawBeta = Number(beta);
   const normalizedBeta = clampNumber(Number.isFinite(rawBeta) ? rawBeta : 0, 0, LORENTZ_BETA_MAX);
   const isLightSpeedLimit = normalizedBeta >= 1;
@@ -165,6 +160,12 @@ function computeLorentzState(beta, radius) {
     ? Infinity
     : 1 / Math.sqrt(1 - normalizedBeta * normalizedBeta);
   const xi = isLightSpeedLimit ? 0 : 1 / gamma;
+  const restMass = 1;
+  const restEnergy = restMass;
+  const movementEnergy = isLightSpeedLimit ? Infinity : gamma - restEnergy;
+  const movementMassEquivalent = movementEnergy;
+  const totalEnergy = gamma * restEnergy;
+  const totalMassEquivalent = totalEnergy;
   const rPerp = referenceRadius;
   const rParallel = rPerp * xi;
   const tPlus = isLightSpeedLimit ? Infinity : rParallel / (1 - normalizedBeta);
@@ -179,7 +180,13 @@ function computeLorentzState(beta, radius) {
     rParallel,
     timeRatio: gamma,
     lengthRatio: xi,
-    massEnergyRatio: xi,
+    restEnergyShareFactor: xi,
+    restMass,
+    restEnergy,
+    movementEnergy,
+    movementMassEquivalent,
+    totalEnergy,
+    totalMassEquivalent,
     tPlus,
     tMinus,
     tParallel,
@@ -330,17 +337,8 @@ export function computePotentialContribution(samplePoint, architrino, observatio
   };
 }
 
-export function getSelectedArchitrinos(model, viewId) {
-  const selectedView = normalizeViewId(viewId);
-  if (selectedView === "all") {
-    return model.architrinos;
-  }
-  return model.architrinos.filter((architrino) => architrino.binaryId === selectedView);
-}
-
-export function computePotentialSum(samplePoint, model, viewId, observationTime, options = {}) {
-  const selectedArchitrinos = getSelectedArchitrinos(model, viewId);
-  const contributions = selectedArchitrinos.map((architrino) =>
+export function computePotentialSum(samplePoint, model, observationTime, options = {}) {
+  const contributions = model.architrinos.map((architrino) =>
     computePotentialContribution(samplePoint, architrino, observationTime, options)
   );
   return {
@@ -1018,7 +1016,6 @@ export function mountIdealCorePrototype(options = {}) {
   coreFrame.add(velocityReferenceGroup);
 
   const dom = {
-    viewButtons: [...documentLike.querySelectorAll("[data-view]")],
     pathToggle: queryRequiredElement(documentLike, "#ideal-core-path-toggle"),
     surfaceToggle: queryRequiredElement(documentLike, "#ideal-core-surface-toggle"),
     axesToggle: queryRequiredElement(documentLike, "#ideal-core-axes-toggle"),
@@ -1031,13 +1028,21 @@ export function mountIdealCorePrototype(options = {}) {
     betaOutput: queryRequiredElement(documentLike, "#ideal-core-beta-output"),
     speedInput: queryRequiredElement(documentLike, "#ideal-core-speed-input"),
     speedOutput: queryRequiredElement(documentLike, "#ideal-core-speed-output"),
-    betaLabel: queryRequiredElement(documentLike, "#ideal-core-beta-label"),
-    gammaLabel: queryRequiredElement(documentLike, "#ideal-core-gamma-label"),
-    xiLabel: queryRequiredElement(documentLike, "#ideal-core-xi-label"),
     timeLabel: queryRequiredElement(documentLike, "#ideal-core-time-label"),
     lengthLabel: queryRequiredElement(documentLike, "#ideal-core-length-label"),
-    massLabel: queryRequiredElement(documentLike, "#ideal-core-mass-label"),
-    betaEquation: queryRequiredElement(documentLike, "#ideal-core-beta-equation"),
+    restEnergyShareLabel: queryRequiredElement(
+      documentLike,
+      "#ideal-core-rest-energy-share-label"
+    ),
+    restMassLabel: queryRequiredElement(documentLike, "#ideal-core-rest-mass-label"),
+    restEnergyLabel: queryRequiredElement(documentLike, "#ideal-core-rest-energy-label"),
+    movementEnergyLabel: queryRequiredElement(
+      documentLike,
+      "#ideal-core-movement-energy-label"
+    ),
+    movementMassLabel: queryRequiredElement(documentLike, "#ideal-core-movement-mass-label"),
+    totalEnergyLabel: queryRequiredElement(documentLike, "#ideal-core-total-energy-label"),
+    totalMassLabel: queryRequiredElement(documentLike, "#ideal-core-total-mass-label"),
     gammaEquation: queryRequiredElement(documentLike, "#ideal-core-gamma-equation"),
     xiEquation: queryRequiredElement(documentLike, "#ideal-core-xi-equation"),
     rParallelEquation: queryRequiredElement(documentLike, "#ideal-core-rparallel-equation"),
@@ -1050,13 +1055,12 @@ export function mountIdealCorePrototype(options = {}) {
   const stripContext = dom.stripCanvas.getContext("2d");
 
   const state = {
-    view: "all",
     pathsVisible: true,
     surfaceVisible: false,
     axesVisible: true,
     frozen: false,
     radius: Number(dom.radiusInput.value) || 1.62,
-    beta: Number(dom.betaInput.value) || 0.62,
+    beta: Number.isFinite(Number(dom.betaInput.value)) ? Number(dom.betaInput.value) : 0,
     speed: Number(dom.speedInput.value) || 1,
     modelTime: 0,
     lastFrameTime: performance.now(),
@@ -1126,9 +1130,6 @@ export function mountIdealCorePrototype(options = {}) {
 
   function syncControls() {
     const lorentzState = getCurrentLorentzState();
-    dom.viewButtons.forEach((button) => {
-      setButtonActive(button, button.dataset.view === state.view);
-    });
     setButtonActive(dom.pathToggle, state.pathsVisible);
     setButtonActive(dom.surfaceToggle, state.surfaceVisible);
     setButtonActive(dom.axesToggle, state.axesVisible);
@@ -1137,13 +1138,18 @@ export function mountIdealCorePrototype(options = {}) {
     dom.radiusOutput.value = formatFixed(state.radius, 2);
     dom.betaOutput.value = formatFixed(lorentzState.beta, 3);
     dom.speedOutput.value = formatFixed(state.speed, 2);
-    dom.betaLabel.textContent = formatFixed(lorentzState.beta, 3);
-    dom.gammaLabel.textContent = formatLimitFixed(lorentzState.gamma, 3);
-    dom.xiLabel.textContent = formatFixed(lorentzState.xi, 3);
     dom.timeLabel.textContent = formatLimitFixed(lorentzState.timeRatio, 3);
     dom.lengthLabel.textContent = formatFixed(lorentzState.lengthRatio, 3);
-    dom.massLabel.textContent = formatFixed(lorentzState.massEnergyRatio, 3);
-    dom.betaEquation.textContent = formatFixed(lorentzState.beta, 3);
+    dom.restEnergyShareLabel.textContent = formatFixed(lorentzState.restEnergyShareFactor, 3);
+    dom.restMassLabel.textContent = formatLimitFixed(lorentzState.restMass, 3);
+    dom.restEnergyLabel.textContent = formatLimitFixed(lorentzState.restEnergy, 3);
+    dom.movementEnergyLabel.textContent = formatLimitFixed(lorentzState.movementEnergy, 3);
+    dom.movementMassLabel.textContent = formatLimitFixed(
+      lorentzState.movementMassEquivalent,
+      3
+    );
+    dom.totalEnergyLabel.textContent = formatLimitFixed(lorentzState.totalEnergy, 3);
+    dom.totalMassLabel.textContent = formatLimitFixed(lorentzState.totalMassEquivalent, 3);
     dom.gammaEquation.textContent = formatLimitFixed(lorentzState.gamma, 3);
     dom.xiEquation.textContent = formatFixed(lorentzState.xi, 3);
     dom.rParallelEquation.textContent = formatFixed(lorentzState.rParallel, 3);
@@ -1174,7 +1180,7 @@ export function mountIdealCorePrototype(options = {}) {
       surfacePositions[sampleIndex * 3] = position.x;
       surfacePositions[sampleIndex * 3 + 1] = position.y;
       surfacePositions[sampleIndex * 3 + 2] = position.z;
-      return computePotentialSum(position, model, state.view, state.modelTime, {
+      return computePotentialSum(position, model, state.modelTime, {
         fieldSpeed: 6,
         softening: 0.1,
       }).potential;
@@ -1195,7 +1201,6 @@ export function mountIdealCorePrototype(options = {}) {
     state.samplePotential = computePotentialSum(
       new Three.Vector3(state.radius, 0, 0),
       model,
-      state.view,
       state.modelTime,
       { fieldSpeed: 6, softening: 0.1 }
     ).potential;
@@ -1305,7 +1310,6 @@ export function mountIdealCorePrototype(options = {}) {
   }
 
   function renderTable() {
-    const lorentzState = getCurrentLorentzState();
     const rows = [
       {
         label: "Path radius",
@@ -1333,18 +1337,6 @@ export function mountIdealCorePrototype(options = {}) {
           const degrees = ((state.modelTime * binary.frequencyHz * 360) % 360 + 360) % 360;
           return `${formatFixed(degrees, 0)} deg`;
         }),
-      },
-      {
-        label: "Lorentz axis",
-        values: model.binaries.map(() => `&xi; ${formatFixed(lorentzState.xi, 3)}`),
-      },
-      {
-        label: "Phase closure",
-        values: ["2pi n_I", "2pi n_M", "2pi n_O"],
-      },
-      {
-        label: "Action row",
-        values: ["n_I h", "n_M h", "n_O h"],
       },
     ];
     dom.tableBody.innerHTML = rows
@@ -1393,13 +1385,6 @@ export function mountIdealCorePrototype(options = {}) {
     windowLike.requestAnimationFrame(renderFrame);
   }
 
-  dom.viewButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      state.view = normalizeViewId(button.dataset.view);
-      syncControls();
-      canvas.focus();
-    });
-  });
   dom.pathToggle.addEventListener("click", () => {
     state.pathsVisible = !state.pathsVisible;
     syncControls();

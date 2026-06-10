@@ -112,6 +112,7 @@ import {
   buildH39RequestedY44TerminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutorCandidate,
   buildH39RequestedY44TerminalSourceCovarianceWronskianEmittedBranchMatrixIdentityOrWProducerCandidate,
   buildH39RequestedY44TerminalSourceCovarianceWronskianWGateProvenanceAuditCandidate,
+  buildH39RequestedY44TerminalSourceCovarianceWronskianProviderObjectWExpressionEvaluatorCandidate,
   buildH39RequestedY44RowLocalN38SignedSourceSumDerivativeProviderCandidate,
   validateH39CorrelatedResidualWidthDiagnostic,
   validateH39H38NumeratorGraphLocalPartitionDiagnostic,
@@ -220,6 +221,7 @@ import {
   validateH39RequestedY44TerminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutorCandidate,
   validateH39RequestedY44TerminalSourceCovarianceWronskianEmittedBranchMatrixIdentityOrWProducerCandidate,
   validateH39RequestedY44TerminalSourceCovarianceWronskianWGateProvenanceAuditCandidate,
+  validateH39RequestedY44TerminalSourceCovarianceWronskianProviderObjectWExpressionEvaluatorCandidate,
   validateH39RequestedY44RowLocalN38SignedSourceSumDerivativeProvider,
   validateH39RequestedY44SignedSourceSumDerivativeAllocationTarget,
   validateH39RequestedY44SourceMapResidualCovarianceTarget,
@@ -26254,6 +26256,174 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   assert.deepEqual(
     collectExactKeys(
       terminalSourceCovarianceWronskianWGateProvenanceAudit,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalSourceCovarianceWronskianProviderObjectWExpressionEvaluator =
+    buildH39RequestedY44TerminalSourceCovarianceWronskianProviderObjectWExpressionEvaluatorCandidate(
+      {
+        terminalSourceCovarianceCrossBranchWronskianDiagnostic,
+        terminalSourceCovarianceWronskianWGateProvenanceAudit,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44TerminalSourceCovarianceWronskianProviderObjectWExpressionEvaluatorCandidate(
+      terminalSourceCovarianceWronskianProviderObjectWExpressionEvaluator
+    ),
+    []
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProviderObjectWExpressionEvaluator
+      .provider_object_w_expression_evaluator_verified,
+    true
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProviderObjectWExpressionEvaluator
+      .provider_object_w_expression_evaluator_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProviderObjectWExpressionEvaluator
+      .terminal_source_covariance_wronskian_provider_object_w_expression_evaluator_row_count,
+    5
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProviderObjectWExpressionEvaluator
+      .terminal_source_covariance_wronskian_provider_object_w_expression_evaluator_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProviderObjectWExpressionEvaluator
+      .provider_object_branch_residual_pair_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProviderObjectWExpressionEvaluator
+      .provider_object_w_expression_evaluated_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProviderObjectWExpressionEvaluator
+      .provider_object_w_expression_missing_branch_pair_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProviderObjectWExpressionEvaluator
+      .provider_object_mu_quotient_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProviderObjectWExpressionEvaluator
+      .q_solve_slope_norm_denominator_separated_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProviderObjectWExpressionEvaluator
+      .provider_object_w_expression_evaluator_classification,
+    "provider-object-w-expression-branch-residuals-needed"
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProviderObjectWExpressionEvaluator
+      .provider_object_w_expression_evaluator_blocker_classification,
+    "same-domain-expression-level-source-map-provider-object-branch-residual-extractor-needed"
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProviderObjectWExpressionEvaluator
+      .provider_object_branch_residual_extractor_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProviderObjectWExpressionEvaluator
+      .provider_object_w_expression_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProviderObjectWExpressionEvaluator
+      .provider_object_mu_quotient_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProviderObjectWExpressionEvaluator
+      .matrix_provider_identity_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProviderObjectWExpressionEvaluator
+      .rank_two_source_covariance_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProviderObjectWExpressionEvaluator
+      .non_scalar_source_covariance_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProviderObjectWExpressionEvaluator
+      .scalar_lambda_source_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProviderObjectWExpressionEvaluator
+      .expression_level_shared_wronskian_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProviderObjectWExpressionEvaluator
+      .terminal_row_provider_enclosure_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianProviderObjectWExpressionEvaluator
+      .directed_rounded_shared_domain_provider_certified,
+    false
+  );
+  assert.ok(
+    terminalSourceCovarianceWronskianProviderObjectWExpressionEvaluator.terminal_source_covariance_wronskian_provider_object_w_expression_evaluator_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_source_covariance_wronskian_provider_object_w_expression_evaluator_terminal_row_count ===
+          3 &&
+        row.row_provider_object_w_expression_evaluator_verified === true &&
+        row.row_certifies_provider_object_w_expression === false &&
+        row.row_certifies_directed_rounded_shared_domain === false &&
+        row.terminal_source_covariance_wronskian_provider_object_w_expression_evaluator_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_graph_cell_id ===
+              `speed.${index}.first-y` &&
+            terminalRow.provider_object_w_formula ===
+              "W_provider=P_-*s_+ - P_+*s_-" &&
+            terminalRow.provider_object_mu_formula ===
+              "mu_provider=W_provider/Q" &&
+            terminalRow.provider_object_branch_residual_pair_available ===
+              false &&
+            terminalRow.provider_object_w_expression_interval_available ===
+              false &&
+            terminalRow.provider_object_w_expression_interval === null &&
+            terminalRow.provider_object_mu_interval_available === false &&
+            terminalRow.provider_object_mu_interval === null &&
+            terminalRow.q_solve_slope_norm_denominator_separated_from_zero ===
+              true &&
+            terminalRow.provider_object_w_expression_status ===
+              "provider-object-branch-residual-pair-missing" &&
+            terminalRow.row_provider_object_w_expression_evaluator_verified ===
+              true &&
+            terminalRow.row_certifies_provider_object_w_expression === false &&
+            terminalRow.row_certifies_directed_rounded_shared_domain === false
+        )
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      terminalSourceCovarianceWronskianProviderObjectWExpressionEvaluator
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalSourceCovarianceWronskianProviderObjectWExpressionEvaluator,
       FORBIDDEN_FIXED_SPEED_KEYS
     ),
     []

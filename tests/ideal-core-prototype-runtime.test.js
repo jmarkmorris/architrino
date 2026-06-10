@@ -4,11 +4,11 @@ import assert from "node:assert/strict";
 import * as THREE from "../vendor/three/three.module.js";
 import { solveCircularSelfHitSpan } from "../src/apps/ideal-core/IdealCorePathPotentialProfile.js";
 import {
+  computeLorentzState,
   computePotentialContribution,
   computePotentialSum,
   createIdealCoreModel,
   getOrbitPathTintProfile,
-  getSelectedArchitrinos,
   solveFlightTime,
 } from "../src/apps/ideal-core/IdealCorePrototypeRuntime.js";
 
@@ -31,29 +31,6 @@ test("nested shell swarm prototype model reuses three animator circular binaries
   );
 });
 
-test("selected binary potential is the sum of that binary's two arriving emissions", () => {
-  const model = createIdealCoreModel({ THREE });
-  const samplePoint = new THREE.Vector3(2.4, 0.2, 0.15);
-  const observationTime = 0.7;
-  const options = { fieldSpeed: 6, softening: 0.1 };
-  const innerArchitrinos = getSelectedArchitrinos(model, "inner");
-  const manualInner = innerArchitrinos
-    .map((architrino) =>
-      computePotentialContribution(samplePoint, architrino, observationTime, options)
-    )
-    .reduce((sum, contribution) => sum + contribution.potential, 0);
-  const selectedInner = computePotentialSum(
-    samplePoint,
-    model,
-    "inner",
-    observationTime,
-    options
-  ).potential;
-
-  assert.equal(innerArchitrinos.length, 2);
-  assert.ok(Math.abs(selectedInner - manualInner) < 1e-12);
-});
-
 test("full potential is the six-emission superposition", () => {
   const model = createIdealCoreModel({ THREE });
   const samplePoint = new THREE.Vector3(1.8, -0.4, 0.65);
@@ -64,9 +41,35 @@ test("full potential is the six-emission superposition", () => {
       computePotentialContribution(samplePoint, architrino, observationTime, options)
     )
     .reduce((sum, contribution) => sum + contribution.potential, 0);
-  const total = computePotentialSum(samplePoint, model, "all", observationTime, options).potential;
+  const total = computePotentialSum(samplePoint, model, observationTime, options).potential;
 
   assert.ok(Math.abs(total - manualTotal) < 1e-12);
+});
+
+test("Lorentz energy ledger separates rest, movement, and total energy", () => {
+  const beta = 0.6;
+  const state = computeLorentzState(beta, 1.62);
+
+  assert.equal(state.restMass, 1);
+  assert.equal(state.restEnergy, 1);
+  assert.ok(Math.abs(state.gamma - 1.25) < 1e-12);
+  assert.ok(Math.abs(state.restEnergyShareFactor - 0.8) < 1e-12);
+  assert.ok(Math.abs(state.movementEnergy - 0.25) < 1e-12);
+  assert.ok(Math.abs(state.movementMassEquivalent - 0.25) < 1e-12);
+  assert.ok(Math.abs(state.totalEnergy - 1.25) < 1e-12);
+  assert.ok(Math.abs(state.totalMassEquivalent - 1.25) < 1e-12);
+});
+
+test("Lorentz energy ledger treats beta equals one as a limit state", () => {
+  const state = computeLorentzState(1, 1.62);
+
+  assert.equal(state.restEnergyShareFactor, 0);
+  assert.equal(state.lengthRatio, 0);
+  assert.equal(state.gamma, Infinity);
+  assert.equal(state.movementEnergy, Infinity);
+  assert.equal(state.movementMassEquivalent, Infinity);
+  assert.equal(state.totalEnergy, Infinity);
+  assert.equal(state.totalMassEquivalent, Infinity);
 });
 
 test("flight time solver returns a positive emission delay", () => {

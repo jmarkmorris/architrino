@@ -100,14 +100,7 @@
         width: 352px;
       }
 
-      .ideal-core-segmented {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 6px;
-      }
-
-      .ideal-core-button,
-      .ideal-core-segmented button {
+      .ideal-core-button {
         min-height: 32px;
         border: 1px solid rgba(148, 163, 184, 0.25);
         border-radius: 6px;
@@ -116,13 +109,11 @@
         cursor: pointer;
       }
 
-      .ideal-core-button:hover,
-      .ideal-core-segmented button:hover {
+      .ideal-core-button:hover {
         border-color: rgba(125, 211, 252, 0.58);
       }
 
-      .ideal-core-button.is-active,
-      .ideal-core-segmented button.is-active {
+      .ideal-core-button.is-active {
         border-color: rgba(251, 191, 36, 0.85);
         background: rgba(40, 34, 20, 0.92);
         color: #fff8e6;
@@ -146,14 +137,12 @@
         align-items: center;
       }
 
-      .ideal-core-range-row label,
-      .ideal-core-readout-label {
+      .ideal-core-range-row label {
         color: rgba(203, 213, 225, 0.76);
         font-size: 12px;
       }
 
-      .ideal-core-range-row output,
-      .ideal-core-readout-value {
+      .ideal-core-range-row output {
         color: rgba(238, 243, 255, 0.92);
         font-size: 12px;
         text-align: right;
@@ -162,13 +151,6 @@
       input[type="range"] {
         width: 100%;
         accent-color: #fbbf24;
-      }
-
-      .ideal-core-readout-grid {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        gap: 7px 12px;
-        margin-top: 10px;
       }
 
       .ideal-core-factor-grid {
@@ -189,7 +171,7 @@
         gap: 6px;
       }
 
-      .ideal-core-factor-card.is-mass {
+      .ideal-core-factor-card.is-energy {
         border-color: rgba(251, 191, 36, 0.36);
       }
 
@@ -219,6 +201,57 @@
         font-size: 10px;
         line-height: 1.25;
         overflow-wrap: anywhere;
+      }
+
+      .ideal-core-energy-ledger {
+        margin-top: 10px;
+        padding: 9px;
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        border-radius: 7px;
+        background: rgba(2, 6, 23, 0.5);
+      }
+
+      .ideal-core-energy-ledger header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 8px;
+        margin-bottom: 7px;
+      }
+
+      .ideal-core-energy-ledger h3 {
+        margin: 0;
+        color: rgba(238, 243, 255, 0.95);
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .ideal-core-energy-ledger small {
+        color: rgba(203, 213, 225, 0.62);
+        font-size: 9px;
+        text-align: right;
+      }
+
+      .ideal-core-energy-rows {
+        display: grid;
+        gap: 5px;
+      }
+
+      .ideal-core-energy-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 8px;
+        align-items: baseline;
+        color: rgba(203, 213, 225, 0.78);
+        font-size: 10px;
+        line-height: 1.25;
+      }
+
+      .ideal-core-energy-row output {
+        color: #fef3c7;
+        font-size: 11px;
+        font-weight: 700;
+        white-space: nowrap;
       }
 
       #ideal-core-potential-strip {
@@ -285,6 +318,10 @@
       .ideal-core-equation-divider {
         height: 1px;
         background: rgba(148, 163, 184, 0.16);
+      }
+
+      .ideal-core-closure-detail {
+        display: none;
       }
 
       .ideal-core-status {
@@ -371,6 +408,9 @@
         .ideal-core-equation-stack,
         .ideal-core-factor-card span,
         .ideal-core-factor-card small,
+        .ideal-core-energy-ledger h3,
+        .ideal-core-energy-ledger small,
+        .ideal-core-energy-row,
         .ideal-core-status {
           font-size: 10px;
         }
@@ -391,14 +431,32 @@
           font-size: 16px;
         }
 
-        .ideal-core-segmented,
+        .ideal-core-energy-ledger {
+          margin-top: 7px;
+          padding: 6px;
+        }
+
+        .ideal-core-energy-ledger header {
+          display: block;
+          margin-bottom: 5px;
+        }
+
+        .ideal-core-energy-ledger small {
+          display: block;
+          margin-top: 2px;
+          text-align: left;
+        }
+
+        .ideal-core-energy-rows {
+          gap: 3px;
+        }
+
         .ideal-core-toggle-row,
         .ideal-core-command-row {
           gap: 5px;
         }
 
-        .ideal-core-button,
-        .ideal-core-segmented button {
+        .ideal-core-button {
           min-height: 28px;
           font-size: 11px;
         }
@@ -408,11 +466,8 @@
           gap: 5px;
         }
 
-        .ideal-core-readout-grid,
         .ideal-core-range-row label,
         .ideal-core-range-row output,
-        .ideal-core-readout-label,
-        .ideal-core-readout-value,
         .ideal-core-table {
           font-size: 10px;
         }
@@ -437,19 +492,11 @@
           <span><i style="background:#2dd4bf"></i>&xi; length</span>
           <span><i style="background:#f472b6"></i>&beta; = v / c</span>
         </div>
-        <div class="ideal-core-readout-grid" aria-live="polite">
-          <div class="ideal-core-readout-label">Velocity fraction &beta; = v / c</div>
-          <div id="ideal-core-beta-label" class="ideal-core-readout-value">0.00</div>
-          <div class="ideal-core-readout-label">&gamma;</div>
-          <div id="ideal-core-gamma-label" class="ideal-core-readout-value">1.00</div>
-          <div class="ideal-core-readout-label">&xi; = R<sub>&parallel;</sub> / R<sub>&perp;</sub></div>
-          <div id="ideal-core-xi-label" class="ideal-core-readout-value">1.00</div>
-        </div>
-        <div class="ideal-core-factor-grid" aria-label="Mass time length factors">
-          <div class="ideal-core-factor-card is-mass">
-            <span>Mass from energy</span>
-            <strong id="ideal-core-mass-label">1.000</strong>
-            <small>m = (E / c<sup>3</sup>) &radic;(c<sup>2</sup> - v<sup>2</sup>)</small>
+        <div class="ideal-core-factor-grid" aria-label="Energy time length factors">
+          <div class="ideal-core-factor-card is-energy">
+            <span>Rest energy / total energy</span>
+            <strong id="ideal-core-rest-energy-share-label">1.000</strong>
+            <small>E<sub>0</sub> / E = &radic;(1 - (v/c)<sup>2</sup>) = 1 / &gamma;</small>
           </div>
           <div class="ideal-core-factor-card is-time">
             <span>Relative time</span>
@@ -462,17 +509,43 @@
             <small>L<sub>&parallel;</sub> = L<sub>0</sub> &times; factor</small>
           </div>
         </div>
+        <div class="ideal-core-energy-ledger" aria-label="Energy and mass ledger">
+          <header>
+            <h3>Energy ledger</h3>
+            <small>normalized: m<sub>0</sub> = 1, c = 1</small>
+          </header>
+          <div class="ideal-core-energy-rows">
+            <div class="ideal-core-energy-row">
+              <span>Rest mass m<sub>0</sub></span>
+              <output id="ideal-core-rest-mass-label">1.000</output>
+            </div>
+            <div class="ideal-core-energy-row">
+              <span>Rest energy E<sub>0</sub> = m<sub>0</sub>c<sup>2</sup></span>
+              <output id="ideal-core-rest-energy-label">1.000</output>
+            </div>
+            <div class="ideal-core-energy-row">
+              <span>Movement energy &Delta;E = (&gamma; - 1)m<sub>0</sub>c<sup>2</sup></span>
+              <output id="ideal-core-movement-energy-label">0.000</output>
+            </div>
+            <div class="ideal-core-energy-row">
+              <span>Movement mass equivalent &Delta;E / c<sup>2</sup></span>
+              <output id="ideal-core-movement-mass-label">0.000</output>
+            </div>
+            <div class="ideal-core-energy-row">
+              <span>Total energy E = &gamma;m<sub>0</sub>c<sup>2</sup></span>
+              <output id="ideal-core-total-energy-label">1.000</output>
+            </div>
+            <div class="ideal-core-energy-row">
+              <span>Total mass equivalent E / c<sup>2</sup></span>
+              <output id="ideal-core-total-mass-label">1.000</output>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section class="ideal-core-panel is-upper-right" aria-label="Control panel">
         <h2>Controls</h2>
         <div class="ideal-core-control-stack">
-          <div class="ideal-core-segmented" role="group" aria-label="Field view">
-            <button type="button" data-view="all" class="is-active">Full</button>
-            <button type="button" data-view="inner">Inner</button>
-            <button type="button" data-view="middle">Middle</button>
-            <button type="button" data-view="outer">Outer</button>
-          </div>
           <div class="ideal-core-toggle-row">
             <button id="ideal-core-path-toggle" class="ideal-core-button is-active" type="button">Paths</button>
             <button id="ideal-core-surface-toggle" class="ideal-core-button" type="button">Surface</button>
@@ -486,8 +559,8 @@
           </div>
           <div class="ideal-core-range-row">
             <label for="ideal-core-beta-input">&beta; = v / c</label>
-            <input id="ideal-core-beta-input" type="range" min="0" max="1" step="0.005" value="0.62" />
-            <output id="ideal-core-beta-output" for="ideal-core-beta-input">0.62</output>
+            <input id="ideal-core-beta-input" type="range" min="0" max="1" step="0.005" value="0" />
+            <output id="ideal-core-beta-output" for="ideal-core-beta-input">0.000</output>
           </div>
           <div class="ideal-core-range-row">
             <label for="ideal-core-speed-input">Cycle</label>
@@ -505,31 +578,27 @@
         <h2>Noether Swarm Equations</h2>
         <div class="ideal-core-equation-stack">
           <div class="ideal-core-equation-row">
-            <code>&beta; = v / c</code>
-            <output id="ideal-core-beta-equation">0.62</output>
-          </div>
-          <div class="ideal-core-equation-row">
             <code>&gamma; = 1 / sqrt(1 - (v/c)<sup>2</sup>)</code>
-            <output id="ideal-core-gamma-equation">1.28</output>
+            <output id="ideal-core-gamma-equation">1.000</output>
           </div>
           <div class="ideal-core-equation-row">
             <code>&xi; = R<sub>&parallel;</sub> / R<sub>&perp;</sub> = 1 / &gamma;</code>
-            <output id="ideal-core-xi-equation">0.78</output>
+            <output id="ideal-core-xi-equation">1.000</output>
           </div>
           <div class="ideal-core-equation-row">
             <code>R<sub>&parallel;</sub> = R<sub>&perp;</sub> / &gamma;</code>
-            <output id="ideal-core-rparallel-equation">1.26</output>
+            <output id="ideal-core-rparallel-equation">1.620</output>
           </div>
-          <div class="ideal-core-equation-divider"></div>
-          <div class="ideal-core-cycle-row">
+          <div class="ideal-core-equation-divider ideal-core-closure-detail"></div>
+          <div class="ideal-core-cycle-row ideal-core-closure-detail">
             <code>T<sub>&parallel;</sub> = R<sub>&parallel;</sub>/(c - v) + R<sub>&parallel;</sub>/(c + v)</code>
-            <output id="ideal-core-tparallel-equation">4.15</output>
+            <output id="ideal-core-tparallel-equation">3.240</output>
           </div>
-          <div class="ideal-core-cycle-row">
+          <div class="ideal-core-cycle-row ideal-core-closure-detail">
             <code>T<sub>&perp;</sub> = 2 R<sub>&perp;</sub>&gamma; / c</code>
-            <output id="ideal-core-tperp-equation">4.15</output>
+            <output id="ideal-core-tperp-equation">3.240</output>
           </div>
-          <div class="ideal-core-cycle-row">
+          <div class="ideal-core-cycle-row ideal-core-closure-detail">
             <code>T<sub>&parallel;</sub> - T<sub>&perp;</sub></code>
             <output id="ideal-core-closure-equation">0.00</output>
           </div>
