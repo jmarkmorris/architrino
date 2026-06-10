@@ -1317,12 +1317,14 @@ function rebuildAnimatorPathDisplayFromDocument(documentData) {
       return;
     }
     const sourceKind = getAnimatorDocumentPathSourceKind(path, documentData);
+    const style = path?.style && typeof path.style === "object" ? path.style : {};
+    const opacity = Number(style.opacity);
     const line = new THREE.Line(
       new THREE.BufferGeometry().setFromPoints(samples),
       new THREE.LineBasicMaterial({
-        color: 0x8bdcff,
+        color: style.color ?? 0x8bdcff,
         transparent: true,
-        opacity: 0.28,
+        opacity: Number.isFinite(opacity) ? opacity : 0.28,
       })
     );
     line.userData.ownerAssemblyId = getAnimatorPathOwnerAssemblyId(path);
@@ -4087,6 +4089,9 @@ function updateAnimatorPathHistoryLineSegments(timeSeconds) {
       strengthOpacityScale: 0.18,
     });
     if (!renderState.visible) {
+      return;
+    }
+    if (renderState.travelProgress <= 0.001) {
       return;
     }
     points.push(

@@ -37,12 +37,44 @@ test("animator planar viewport runtime frames the full planar fixture path", () 
   });
 
   assert.equal(cameraState.projection, "planar-2d");
+  assert.deepEqual(cameraState.lookAt, [0, 0, 0]);
+  assert.equal(cameraState.distance, 12);
   assert.equal(Number(cameraState.lookAt[2].toFixed(3)), 0);
   assert.equal(cameraState.position[2] > 6, true);
-  assert.equal(cameraState.bounds.minX <= -6.55, true);
-  assert.equal(cameraState.bounds.maxX >= 6.55, true);
-  assert.equal(cameraState.bounds.minY <= -2.35, true);
-  assert.equal(cameraState.bounds.maxY >= 2.35, true);
+  assert.equal(cameraState.bounds.minX <= -18, true);
+  assert.equal(cameraState.bounds.maxX >= 18, true);
+  assert.equal(cameraState.bounds.minY <= -5.76, true);
+  assert.equal(cameraState.bounds.maxY >= 5.76, true);
+});
+
+test("animator planar viewport runtime honors explicit fixed planar camera state", () => {
+  const cameraState = computeAnimatorPlanarCameraState(
+    {
+      scene: {
+        mode: "planar-2d",
+        view: {
+          planarCamera: {
+            mode: "fixed",
+            lookAt: [1, 2, 0],
+            distance: 9,
+          },
+        },
+      },
+      assemblies: [{ id: "assembly_a", transform: { position: [-100, -100, 0] } }],
+      paths: [{ payload: { points: [[100, 100, 0]] } }],
+    },
+    {
+      aspect: 1,
+      verticalFovDegrees: 45,
+      minDistance: 6,
+    }
+  );
+
+  assert.deepEqual(cameraState.lookAt, [1, 2, 0]);
+  assert.deepEqual(cameraState.position, [1, 2, 9]);
+  assert.equal(cameraState.distance, 9);
+  assert.equal(cameraState.bounds.minX, -100);
+  assert.equal(cameraState.bounds.maxX, 100);
 });
 
 test("animator planar viewport runtime ignores live assembly centers by default", () => {

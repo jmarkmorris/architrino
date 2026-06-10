@@ -3797,6 +3797,54 @@ before the provider boundary can be certified. If it still exceeds the budget,
 the next hard object is Wronskian-sensitive narrowing rather than another
 scalar-lambda wrapper.
 
+\texttt{buildH39RequestedY44TerminalSourceCovarianceWronskianNonScalarSourceObjectForkCandidate}
+is the corresponding fork packet. It extracts the provider-object rank-two
+matrix
+$M=\begin{pmatrix}\lambda_{\parallel}&\mu\\-\mu&\lambda_{\parallel}\end{pmatrix}$
+from the replay rows and checks whether $r=M s$ is ready to become the next
+same-domain source-covariance certificate object. The packet also records the
+worst reconstructed-half-width-to-endpoint-budget ratio and the corresponding
+target scale for $\mu$ when the provider-object reconstruction still exceeds
+the terminal-affine budget. It therefore separates the two legitimate next
+moves: a non-scalar source-covariance certificate if the provider-object matrix
+rows already fit, or Wronskian-sensitive narrowing if they do not. It remains
+priority-only and candidate-only, and certifies no rank-two source-covariance
+object, no non-scalar source-covariance object, no scalar-lambda source object,
+no expression-level shared Wronskian, no terminal row provider enclosure, and
+no directed-rounded provider.
+
+\texttt{buildH39RequestedY44TerminalSourceCovarianceWronskianMatrixOrWRefinementCandidate}
+is the second-stage fork executor. It consumes the non-scalar source-object
+fork and emits one of two next proof obligations for each terminal row. If the
+provider-object matrix row is budget-ready, it records the same-domain matrix
+provider identity obligation for
+$M=\begin{pmatrix}\lambda_{\parallel}&\mu\\-\mu&\lambda_{\parallel}\end{pmatrix}$.
+If the provider-object row still exceeds the terminal-affine endpoint budget,
+it records a shared-Wronskian refinement target with
+\texttt{projected\_W\_subcell\_count=ceil(1/required\_width\_scale)}. This
+turns the fork into an executable next target rather than another
+scalar-lambda wrapper. The packet remains priority-only and candidate-only. It
+certifies no matrix identity, no W refinement, no source-covariance object, no
+expression-level shared Wronskian, and no directed-rounded provider.
+
+\texttt{buildH39RequestedY44TerminalSourceCovarianceWronskianDirectNonScalarProviderReplayCandidate}
+now executes the non-scalar branch directly. It consumes the rank-two
+decomposition for the same-domain solve-slope intervals, the rank-two provider
+replay for same-radius source-map boundary provenance, the non-scalar fork for
+$\lambda_{\parallel}$ and $\mu$, and the matrix-or-W packet for the $Q$ and
+$W$ branch gate. On each terminal row it replays
+$r_-=\lambda_{\parallel}s_-+\mu s_+$ and
+$r_+=\lambda_{\parallel}s_+-\mu s_-$ against the provider-object residual
+rows, the terminal-affine endpoint budget, and the source-map boundary flags.
+The packet is priority-only and candidate-only: it certifies no matrix identity,
+no non-scalar source-covariance object, no scalar-lambda source object, no
+terminal row provider enclosure, and no directed-rounded provider. If the
+matrix-image rows fit and the boundary is reachable, the next blocker is the
+same-domain provider-object matrix identity proof. If the matrix-or-W gate
+emits W refinement or the direct matrix image still exceeds the endpoint budget,
+the next blocker remains shared-Wronskian-sensitive narrowing, not another
+scalar-lambda wrapper.
+
 \texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
 now also probes a shared terminal-residual coordinate for
 $h_{37},h_{36},h_{35}$. Instead of assigning independent residual hulls to the

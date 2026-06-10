@@ -133,6 +133,54 @@ export function computeAnimatorPlanarCameraState(documentData = {}, options = {}
     includePoint(bounds, [0, 0, 0]);
   }
 
+  const explicitCamera =
+    documentData?.view?.planarCamera ??
+    documentData?.scene?.view?.planarCamera ??
+    null;
+  const explicitMode = normalizeString(explicitCamera?.mode, "").toLowerCase();
+  const hasExplicitPlanarCamera =
+    explicitCamera &&
+    typeof explicitCamera === "object" &&
+    (explicitMode === "fixed" ||
+      explicitCamera.distance != null ||
+      explicitCamera.position != null ||
+      explicitCamera.lookAt != null);
+  if (hasExplicitPlanarCamera) {
+    const lookAt = normalizePoint(explicitCamera.lookAt ?? [0, 0, 0]);
+    const position =
+      explicitCamera.position != null
+        ? normalizePoint(explicitCamera.position)
+        : [
+            lookAt[0],
+            lookAt[1],
+            lookAt[2] +
+              Math.max(
+                1,
+                normalizeNumber(explicitCamera.distance, normalizeNumber(options.minDistance, 6))
+              ),
+          ];
+    const distance = Math.hypot(
+      position[0] - lookAt[0],
+      position[1] - lookAt[1],
+      position[2] - lookAt[2]
+    );
+    return {
+      projection: "planar-2d",
+      position,
+      lookAt,
+      up: normalizePoint(explicitCamera.up ?? [0, 1, 0]),
+      distance,
+      bounds: {
+        minX: bounds.minX,
+        maxX: bounds.maxX,
+        minY: bounds.minY,
+        maxY: bounds.maxY,
+        minZ: bounds.minZ,
+        maxZ: bounds.maxZ,
+      },
+    };
+  }
+
   const padding = Math.max(1, normalizeNumber(options.padding, 1.28));
   const verticalFovDegrees = Math.max(10, normalizeNumber(options.verticalFovDegrees, 45));
   const aspect = Math.max(0.25, normalizeNumber(options.aspect, 1));
