@@ -4292,6 +4292,22 @@ and the boundary is reachable, the next blocker is the same-domain
 provider-object matrix identity proof; otherwise the next blocker is the
 recorded shared-Wronskian-sensitive narrowing target.
 
+`buildH39RequestedY44TerminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutorCandidate`
+now executes the branch emitted by that direct replay packet. It does not add a
+scalar-lambda layer. If the emitted branch is the matrix-provider identity
+obligation, it audits the same-domain residual
+`direct_matrix_image - provider_object_residual` branch-by-branch. If the
+emitted branch is Wronskian-sensitive narrowing, it subdivides the
+provider-object $\mu=W/Q$ interval by the recorded projected subcell target and
+replays the non-scalar matrix image on each subcell against the terminal-affine
+endpoint budget. The executor records whether that narrowed replay fits, still
+exceeds, or exceeds the packet execution cap. It remains candidate-only and
+certifies no matrix identity, no W refinement, no source-covariance object, no
+terminal row provider enclosure, and no directed-rounded provider. If the
+subcell replay still exceeds the endpoint budget, the next true blocker is a
+narrower expression-level shared Wronskian producer on the same terminal
+domain, not another scalar-lambda wrapper.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.

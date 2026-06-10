@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#080b12" />
-    <title>Nested Shell Swarm Prototype</title>
+    <title>Noether Swarm Lorentz Map</title>
     <style>
       * {
         box-sizing: border-box;
@@ -80,6 +80,7 @@
       .ideal-core-panel.is-upper-left {
         left: 16px;
         top: 16px;
+        width: 336px;
       }
 
       .ideal-core-panel.is-upper-right {
@@ -90,6 +91,7 @@
       .ideal-core-panel.is-lower-left {
         left: 16px;
         bottom: 16px;
+        width: 380px;
       }
 
       .ideal-core-panel.is-lower-right {
@@ -169,6 +171,56 @@
         margin-top: 10px;
       }
 
+      .ideal-core-factor-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+        margin-top: 12px;
+      }
+
+      .ideal-core-factor-card {
+        min-height: 100px;
+        padding: 8px;
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        border-radius: 7px;
+        background: rgba(15, 23, 42, 0.72);
+        display: grid;
+        align-content: space-between;
+        gap: 6px;
+      }
+
+      .ideal-core-factor-card.is-mass {
+        border-color: rgba(251, 191, 36, 0.36);
+      }
+
+      .ideal-core-factor-card.is-time {
+        border-color: rgba(125, 211, 252, 0.34);
+      }
+
+      .ideal-core-factor-card.is-length {
+        border-color: rgba(45, 212, 191, 0.34);
+      }
+
+      .ideal-core-factor-card span {
+        color: rgba(203, 213, 225, 0.82);
+        font-size: 11px;
+        line-height: 1.2;
+      }
+
+      .ideal-core-factor-card strong {
+        color: #fef3c7;
+        font-size: 21px;
+        font-weight: 700;
+        line-height: 1;
+      }
+
+      .ideal-core-factor-card small {
+        color: rgba(203, 213, 225, 0.7);
+        font-size: 10px;
+        line-height: 1.25;
+        overflow-wrap: anywhere;
+      }
+
       #ideal-core-potential-strip {
         width: 100%;
         height: 84px;
@@ -177,17 +229,72 @@
         background: rgba(2, 6, 23, 0.55);
       }
 
-      .ideal-core-reserved {
-        min-height: 90px;
-        display: grid;
-        align-content: center;
+      .ideal-core-chart-legend {
+        display: flex;
+        flex-wrap: wrap;
         gap: 8px;
+        margin-top: 8px;
+        color: rgba(203, 213, 225, 0.78);
+        font-size: 11px;
+      }
+
+      .ideal-core-chart-legend span {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .ideal-core-chart-legend i {
+        display: inline-block;
+        width: 16px;
+        height: 3px;
+        border-radius: 999px;
+      }
+
+      .ideal-core-equation-stack {
+        display: grid;
+        gap: 9px;
         color: rgba(203, 213, 225, 0.78);
         font-size: 12px;
       }
 
-      .ideal-core-reserved strong {
+      .ideal-core-equation-row,
+      .ideal-core-cycle-row {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        align-items: center;
+        min-height: 24px;
+      }
+
+      .ideal-core-equation-row code,
+      .ideal-core-cycle-row code {
         color: rgba(238, 243, 255, 0.9);
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        font-size: 12px;
+      }
+
+      .ideal-core-equation-row output,
+      .ideal-core-cycle-row output {
+        color: #fef3c7;
+        font-size: 12px;
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .ideal-core-equation-divider {
+        height: 1px;
+        background: rgba(148, 163, 184, 0.16);
+      }
+
+      .ideal-core-status {
+        margin-top: 2px;
+        padding: 7px 8px;
+        border: 1px solid rgba(45, 212, 191, 0.28);
+        border-radius: 6px;
+        background: rgba(20, 83, 80, 0.18);
+        color: rgba(204, 251, 241, 0.88);
+        font-size: 11px;
       }
 
       .ideal-core-table {
@@ -225,6 +332,11 @@
           padding: 8px;
         }
 
+        .ideal-core-panel.is-upper-left,
+        .ideal-core-panel.is-upper-right {
+          width: calc(50vw - 15px);
+        }
+
         .ideal-core-panel h2 {
           margin-bottom: 7px;
           font-size: 11px;
@@ -253,6 +365,30 @@
 
         #ideal-core-potential-strip {
           height: 48px;
+        }
+
+        .ideal-core-chart-legend,
+        .ideal-core-equation-stack,
+        .ideal-core-factor-card span,
+        .ideal-core-factor-card small,
+        .ideal-core-status {
+          font-size: 10px;
+        }
+
+        .ideal-core-factor-grid {
+          grid-template-columns: 1fr;
+          gap: 5px;
+          margin-top: 8px;
+        }
+
+        .ideal-core-factor-card {
+          min-height: 58px;
+          gap: 2px;
+          padding: 6px;
+        }
+
+        .ideal-core-factor-card strong {
+          font-size: 16px;
         }
 
         .ideal-core-segmented,
@@ -290,19 +426,41 @@
   </head>
   <body>
     <main id="ideal-core-app">
-      <canvas id="ideal-core-canvas" tabindex="0" aria-label="Nested shell swarm prototype stage"></canvas>
-      <div class="ideal-core-title">Nested Shell Swarm Prototype</div>
+      <canvas id="ideal-core-canvas" tabindex="0" aria-label="Noether swarm Lorentz map stage"></canvas>
+      <div class="ideal-core-title">Noether Swarm Lorentz Map</div>
 
       <section class="ideal-core-panel is-upper-left" aria-label="Graph zone">
-        <h2>Field Panel</h2>
+        <h2>Lorentz Map</h2>
         <canvas id="ideal-core-potential-strip" width="536" height="168" aria-hidden="true"></canvas>
+        <div class="ideal-core-chart-legend" aria-hidden="true">
+          <span><i style="background:#fbbf24"></i>&gamma; time</span>
+          <span><i style="background:#2dd4bf"></i>&xi; length</span>
+          <span><i style="background:#f472b6"></i>&beta; = v / c</span>
+        </div>
         <div class="ideal-core-readout-grid" aria-live="polite">
-          <div class="ideal-core-readout-label">Selected view</div>
-          <div id="ideal-core-view-label" class="ideal-core-readout-value">Full</div>
-          <div class="ideal-core-readout-label">Surface range</div>
-          <div id="ideal-core-range-label" class="ideal-core-readout-value">0.00</div>
-          <div class="ideal-core-readout-label">Sample sum</div>
-          <div id="ideal-core-sample-label" class="ideal-core-readout-value">0.00</div>
+          <div class="ideal-core-readout-label">Velocity fraction &beta; = v / c</div>
+          <div id="ideal-core-beta-label" class="ideal-core-readout-value">0.00</div>
+          <div class="ideal-core-readout-label">&gamma;</div>
+          <div id="ideal-core-gamma-label" class="ideal-core-readout-value">1.00</div>
+          <div class="ideal-core-readout-label">&xi; = R<sub>&parallel;</sub> / R<sub>&perp;</sub></div>
+          <div id="ideal-core-xi-label" class="ideal-core-readout-value">1.00</div>
+        </div>
+        <div class="ideal-core-factor-grid" aria-label="Mass time length factors">
+          <div class="ideal-core-factor-card is-mass">
+            <span>Mass from energy</span>
+            <strong id="ideal-core-mass-label">1.000</strong>
+            <small>m = (E / c<sup>3</sup>) &radic;(c<sup>2</sup> - v<sup>2</sup>)</small>
+          </div>
+          <div class="ideal-core-factor-card is-time">
+            <span>Relative time</span>
+            <strong id="ideal-core-time-label">1.000</strong>
+            <small>&Delta;t = &Delta;&tau; &times; factor</small>
+          </div>
+          <div class="ideal-core-factor-card is-length">
+            <span>Relative length</span>
+            <strong id="ideal-core-length-label">1.000</strong>
+            <small>L<sub>&parallel;</sub> = L<sub>0</sub> &times; factor</small>
+          </div>
         </div>
       </section>
 
@@ -322,12 +480,17 @@
             <button id="ideal-core-freeze-toggle" class="ideal-core-button" type="button">Freeze</button>
           </div>
           <div class="ideal-core-range-row">
-            <label for="ideal-core-radius-input">Radius</label>
+            <label for="ideal-core-radius-input">Outer orbit</label>
             <input id="ideal-core-radius-input" type="range" min="1.1" max="2.2" step="0.02" value="1.62" />
             <output id="ideal-core-radius-output" for="ideal-core-radius-input">1.62</output>
           </div>
           <div class="ideal-core-range-row">
-            <label for="ideal-core-speed-input">Speed</label>
+            <label for="ideal-core-beta-input">&beta; = v / c</label>
+            <input id="ideal-core-beta-input" type="range" min="0" max="1" step="0.005" value="0.62" />
+            <output id="ideal-core-beta-output" for="ideal-core-beta-input">0.62</output>
+          </div>
+          <div class="ideal-core-range-row">
+            <label for="ideal-core-speed-input">Cycle</label>
             <input id="ideal-core-speed-input" type="range" min="0.2" max="2.4" step="0.05" value="1" />
             <output id="ideal-core-speed-output" for="ideal-core-speed-input">1.00</output>
           </div>
@@ -338,11 +501,41 @@
         </div>
       </section>
 
-      <section class="ideal-core-panel is-lower-left" aria-label="Reserved equation zone">
-        <h2>Reserved Equation Zone</h2>
-        <div class="ideal-core-reserved">
-          <strong>Formula surfaces deferred.</strong>
-          <span>Prototype math is in the design appendix.</span>
+      <section class="ideal-core-panel is-lower-left" aria-label="Lorentz equation zone">
+        <h2>Noether Swarm Equations</h2>
+        <div class="ideal-core-equation-stack">
+          <div class="ideal-core-equation-row">
+            <code>&beta; = v / c</code>
+            <output id="ideal-core-beta-equation">0.62</output>
+          </div>
+          <div class="ideal-core-equation-row">
+            <code>&gamma; = 1 / sqrt(1 - (v/c)<sup>2</sup>)</code>
+            <output id="ideal-core-gamma-equation">1.28</output>
+          </div>
+          <div class="ideal-core-equation-row">
+            <code>&xi; = R<sub>&parallel;</sub> / R<sub>&perp;</sub> = 1 / &gamma;</code>
+            <output id="ideal-core-xi-equation">0.78</output>
+          </div>
+          <div class="ideal-core-equation-row">
+            <code>R<sub>&parallel;</sub> = R<sub>&perp;</sub> / &gamma;</code>
+            <output id="ideal-core-rparallel-equation">1.26</output>
+          </div>
+          <div class="ideal-core-equation-divider"></div>
+          <div class="ideal-core-cycle-row">
+            <code>T<sub>&parallel;</sub> = R<sub>&parallel;</sub>/(c - v) + R<sub>&parallel;</sub>/(c + v)</code>
+            <output id="ideal-core-tparallel-equation">4.15</output>
+          </div>
+          <div class="ideal-core-cycle-row">
+            <code>T<sub>&perp;</sub> = 2 R<sub>&perp;</sub>&gamma; / c</code>
+            <output id="ideal-core-tperp-equation">4.15</output>
+          </div>
+          <div class="ideal-core-cycle-row">
+            <code>T<sub>&parallel;</sub> - T<sub>&perp;</sub></code>
+            <output id="ideal-core-closure-equation">0.00</output>
+          </div>
+          <div class="ideal-core-status">
+            Closure target: the app shows the candidate shared geometry for mass, clock, and ruler response; it is not a proof by itself.
+          </div>
         </div>
       </section>
 

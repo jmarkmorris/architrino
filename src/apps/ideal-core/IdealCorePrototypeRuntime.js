@@ -44,6 +44,9 @@ const SURFACE_LATITUDE_COUNT = 25;
 const SURFACE_LONGITUDE_COUNT = 48;
 const AXIS_REFERENCE_CIRCLE_SEGMENTS = 48;
 const TWO_PI = Math.PI * 2;
+const LORENTZ_BETA_MAX = 1;
+const LORENTZ_CHART_GAMMA_CAP = 6;
+const BINARY_ORBIT_GUIDE_OPACITY = 0.07;
 const ORBIT_PATH_LOG_WIDTH_FLOOR = 0.78;
 const ORBIT_PATH_TRAIL_SEGMENTS = 30;
 const ORBIT_PATH_TRAIL_MAX_ARCS = CHARGE_TYPES.length;
@@ -115,6 +118,28 @@ function formatFixed(value, digits = 2) {
   return value.toFixed(digits);
 }
 
+function formatSignedFixed(value, digits = 4) {
+  if (!Number.isFinite(value)) {
+    return "0";
+  }
+  const threshold = 1 / 10 ** digits;
+  const normalized = Math.abs(value) < threshold ? 0 : value;
+  return normalized.toFixed(digits);
+}
+
+function formatLimitFixed(value, digits = 2) {
+  if (value === Infinity) {
+    return "infinite";
+  }
+  if (value === -Infinity) {
+    return "-infinite";
+  }
+  if (!Number.isFinite(value)) {
+    return "undefined";
+  }
+  return formatFixed(value, digits);
+}
+
 function formatScientific(value) {
   if (!Number.isFinite(value) || value === 0) {
     return "0.00";
@@ -129,6 +154,39 @@ function formatScientific(value) {
 function normalizeViewId(value) {
   const normalized = String(value ?? "all").trim().toLowerCase();
   return ["all", "inner", "middle", "outer"].includes(normalized) ? normalized : "all";
+}
+
+function computeLorentzState(beta, radius) {
+  const rawBeta = Number(beta);
+  const normalizedBeta = clampNumber(Number.isFinite(rawBeta) ? rawBeta : 0, 0, LORENTZ_BETA_MAX);
+  const isLightSpeedLimit = normalizedBeta >= 1;
+  const referenceRadius = Math.max(0.0001, Number(radius) || 1);
+  const gamma = isLightSpeedLimit
+    ? Infinity
+    : 1 / Math.sqrt(1 - normalizedBeta * normalizedBeta);
+  const xi = isLightSpeedLimit ? 0 : 1 / gamma;
+  const rPerp = referenceRadius;
+  const rParallel = rPerp * xi;
+  const tPlus = isLightSpeedLimit ? Infinity : rParallel / (1 - normalizedBeta);
+  const tMinus = isLightSpeedLimit ? 0 : rParallel / (1 + normalizedBeta);
+  const tParallel = isLightSpeedLimit ? Infinity : tPlus + tMinus;
+  const tPerp = isLightSpeedLimit ? Infinity : 2 * rPerp * gamma;
+  return {
+    beta: normalizedBeta,
+    gamma,
+    xi,
+    rPerp,
+    rParallel,
+    timeRatio: gamma,
+    lengthRatio: xi,
+    massEnergyRatio: xi,
+    tPlus,
+    tMinus,
+    tParallel,
+    tPerp,
+    closureResidual: isLightSpeedLimit ? 0 : tParallel - tPerp,
+    isLightSpeedLimit,
+  };
 }
 
 function wrapSignedAngle(value) {
@@ -183,6 +241,7 @@ export function createIdealCoreModel(options = {}) {
   });
   const orbitPathReferenceRadius = Math.max(0.0001, ...binaries.map((binary) => binary.radius));
   binaries.forEach((binary) => {
+    binary.orbitRadiusFraction = binary.radius / orbitPathReferenceRadius;
     binary.orbitPathReferenceRadius = orbitPathReferenceRadius;
     binary.orbitPathWidthScale = getOrbitPathLogWidthScale(
       binary.radius,
@@ -321,9 +380,24 @@ function createOrbitPathLine(Three, binary) {
   const line = new Three.LineSegments(geometry, material);
   line.renderOrder = 8;
   line.userData.binary = binary;
+  line.userData.positions = positions;
   line.userData.angles = angles;
   line.userData.colors = colors;
   return line;
+}
+
+function updateOrbitPathLineGeometry(line) {
+  const binary = line.userData.binary;
+  const positions = line.userData.positions;
+  const angles = line.userData.angles;
+  if (!binary || !positions || !angles) {
+    return;
+  }
+  for (let vertexIndex = 0; vertexIndex < angles.length; vertexIndex += 1) {
+    writeOrbitPathPosition(positions, vertexIndex, binary, angles[vertexIndex], binary.radius);
+  }
+  line.geometry.attributes.position.needsUpdate = true;
+  line.geometry.computeBoundingSphere();
 }
 
 function writeOrbitPathPosition(positions, vertexIndex, binary, angle, radius) {
@@ -629,6 +703,7 @@ function updateOrbitPathTrailRibbon(Three, mesh, timeSeconds, camera) {
 }
 
 function updateOrbitPathVisual(Three, pathVisual, timeSeconds, camera) {
+  updateOrbitPathLineGeometry(pathVisual.userData.pathLine);
   updateOrbitPathColors(Three, pathVisual.userData.pathLine, timeSeconds);
   pathVisual.userData.trailRibbons.forEach((mesh) => {
     updateOrbitPathTrailRibbon(Three, mesh, timeSeconds, camera);
@@ -636,7 +711,7 @@ function updateOrbitPathVisual(Three, pathVisual, timeSeconds, camera) {
 }
 
 function createShellLine(Three, radius, color, opacity) {
-  const geometry = new Three.SphereGeometry(radius, 36, 18);
+  const geometry = new Three.SphereGeometry(1, 36, 18);
   const material = new Three.MeshBasicMaterial({
     color,
     wireframe: true,
@@ -644,7 +719,9 @@ function createShellLine(Three, radius, color, opacity) {
     opacity,
     depthWrite: false,
   });
-  return new Three.Mesh(geometry, material);
+  const mesh = new Three.Mesh(geometry, material);
+  mesh.scale.setScalar(radius);
+  return mesh;
 }
 
 function createAxisReferenceGroup(Three) {
@@ -736,6 +813,80 @@ function updateAxisReferenceGroup(Three, group, radius) {
   axisGeometry.computeBoundingSphere();
 }
 
+function createVelocityReferenceGroup(Three) {
+  const group = new Three.Group();
+  const positions = new Float32Array(4 * 3);
+  const colors = new Float32Array(4 * 3);
+  const geometry = new Three.BufferGeometry();
+  geometry.setAttribute("position", new Three.BufferAttribute(positions, 3));
+  geometry.setAttribute("color", new Three.BufferAttribute(colors, 3));
+  const material = new Three.LineBasicMaterial({
+    transparent: true,
+    opacity: 0.82,
+    vertexColors: true,
+    depthWrite: false,
+  });
+  const lines = new Three.LineSegments(geometry, material);
+  lines.renderOrder = 14;
+  group.add(lines);
+
+  const cone = new Three.Mesh(
+    new Three.ConeGeometry(0.11, 0.28, 24),
+    makeMaterial(Three, "#f472b6", { opacity: 0.9 })
+  );
+  cone.rotation.z = -Math.PI / 2;
+  cone.renderOrder = 15;
+  group.add(cone);
+
+  group.userData.positions = positions;
+  group.userData.colors = colors;
+  group.userData.geometry = geometry;
+  group.userData.cone = cone;
+  return group;
+}
+
+function writeVelocityReferenceColor(colors, vertexIndex, color) {
+  colors[vertexIndex * 3] = color.r;
+  colors[vertexIndex * 3 + 1] = color.g;
+  colors[vertexIndex * 3 + 2] = color.b;
+}
+
+function updateVelocityReferenceGroup(Three, group, radius, lorentzState) {
+  const positions = group.userData.positions;
+  const colors = group.userData.colors;
+  const geometry = group.userData.geometry;
+  const cone = group.userData.cone;
+  const axisLimit = Math.max(0.2, radius * 1.34);
+  const arrowLength = Math.max(0.001, axisLimit * lorentzState.beta);
+  const railColor = new Three.Color("#94a3b8");
+  const arrowColor = new Three.Color("#f472b6");
+
+  positions[0] = -axisLimit;
+  positions[1] = 0;
+  positions[2] = 0;
+  positions[3] = axisLimit;
+  positions[4] = 0;
+  positions[5] = 0;
+  positions[6] = 0;
+  positions[7] = 0;
+  positions[8] = 0;
+  positions[9] = arrowLength;
+  positions[10] = 0;
+  positions[11] = 0;
+
+  writeVelocityReferenceColor(colors, 0, railColor);
+  writeVelocityReferenceColor(colors, 1, railColor);
+  writeVelocityReferenceColor(colors, 2, arrowColor);
+  writeVelocityReferenceColor(colors, 3, arrowColor);
+  geometry.attributes.position.needsUpdate = true;
+  geometry.attributes.color.needsUpdate = true;
+  geometry.computeBoundingSphere();
+
+  cone.visible = lorentzState.beta > 0.02;
+  cone.position.set(arrowLength, 0, 0);
+  cone.scale.setScalar(clampNumber(0.72 + lorentzState.beta * 0.9, 0.72, 1.5));
+}
+
 function createSurfaceSamples(Three) {
   const samples = [];
   for (let latIndex = 0; latIndex < SURFACE_LATITUDE_COUNT; latIndex += 1) {
@@ -811,12 +962,18 @@ export function mountIdealCorePrototype(options = {}) {
   camera.position.set(0, 0, 6.7);
   camera.lookAt(0, 0, 0);
 
+  const coreFrame = new Three.Group();
+  scene.add(coreFrame);
+
   const sphereContents = new Three.Group();
-  scene.add(sphereContents);
+  coreFrame.add(sphereContents);
 
   const shellGroup = new Three.Group();
-  model.coreSpec.shells.slice(0, 3).forEach((shell) => {
-    shellGroup.add(createShellLine(Three, shell.radius, shell.color, Math.max(0.04, shell.opacity)));
+  model.binaries.forEach((binary) => {
+    const guideShell = createShellLine(Three, binary.radius, binary.color, BINARY_ORBIT_GUIDE_OPACITY);
+    guideShell.userData.binary = binary;
+    guideShell.userData.binaryId = binary.id;
+    shellGroup.add(guideShell);
   });
   sphereContents.add(shellGroup);
 
@@ -857,6 +1014,9 @@ export function mountIdealCorePrototype(options = {}) {
   const axisReferenceGroup = createAxisReferenceGroup(Three);
   sphereContents.add(axisReferenceGroup);
 
+  const velocityReferenceGroup = createVelocityReferenceGroup(Three);
+  coreFrame.add(velocityReferenceGroup);
+
   const dom = {
     viewButtons: [...documentLike.querySelectorAll("[data-view]")],
     pathToggle: queryRequiredElement(documentLike, "#ideal-core-path-toggle"),
@@ -867,11 +1027,23 @@ export function mountIdealCorePrototype(options = {}) {
     focusButton: queryRequiredElement(documentLike, "#ideal-core-focus-button"),
     radiusInput: queryRequiredElement(documentLike, "#ideal-core-radius-input"),
     radiusOutput: queryRequiredElement(documentLike, "#ideal-core-radius-output"),
+    betaInput: queryRequiredElement(documentLike, "#ideal-core-beta-input"),
+    betaOutput: queryRequiredElement(documentLike, "#ideal-core-beta-output"),
     speedInput: queryRequiredElement(documentLike, "#ideal-core-speed-input"),
     speedOutput: queryRequiredElement(documentLike, "#ideal-core-speed-output"),
-    viewLabel: queryRequiredElement(documentLike, "#ideal-core-view-label"),
-    rangeLabel: queryRequiredElement(documentLike, "#ideal-core-range-label"),
-    sampleLabel: queryRequiredElement(documentLike, "#ideal-core-sample-label"),
+    betaLabel: queryRequiredElement(documentLike, "#ideal-core-beta-label"),
+    gammaLabel: queryRequiredElement(documentLike, "#ideal-core-gamma-label"),
+    xiLabel: queryRequiredElement(documentLike, "#ideal-core-xi-label"),
+    timeLabel: queryRequiredElement(documentLike, "#ideal-core-time-label"),
+    lengthLabel: queryRequiredElement(documentLike, "#ideal-core-length-label"),
+    massLabel: queryRequiredElement(documentLike, "#ideal-core-mass-label"),
+    betaEquation: queryRequiredElement(documentLike, "#ideal-core-beta-equation"),
+    gammaEquation: queryRequiredElement(documentLike, "#ideal-core-gamma-equation"),
+    xiEquation: queryRequiredElement(documentLike, "#ideal-core-xi-equation"),
+    rParallelEquation: queryRequiredElement(documentLike, "#ideal-core-rparallel-equation"),
+    tParallelEquation: queryRequiredElement(documentLike, "#ideal-core-tparallel-equation"),
+    tPerpEquation: queryRequiredElement(documentLike, "#ideal-core-tperp-equation"),
+    closureEquation: queryRequiredElement(documentLike, "#ideal-core-closure-equation"),
     stripCanvas: queryRequiredElement(documentLike, "#ideal-core-potential-strip"),
     tableBody: queryRequiredElement(documentLike, "#ideal-core-table-body"),
   };
@@ -884,6 +1056,7 @@ export function mountIdealCorePrototype(options = {}) {
     axesVisible: true,
     frozen: false,
     radius: Number(dom.radiusInput.value) || 1.62,
+    beta: Number(dom.betaInput.value) || 0.62,
     speed: Number(dom.speedInput.value) || 1,
     modelTime: 0,
     lastFrameTime: performance.now(),
@@ -892,6 +1065,50 @@ export function mountIdealCorePrototype(options = {}) {
     surfaceRange: { min: 0, max: 0, maxAbs: 1 },
     samplePotential: 0,
   };
+
+  function getCurrentLorentzState() {
+    return computeLorentzState(state.beta, state.radius);
+  }
+
+  function updateBinaryOrbitRadii(referenceRadius) {
+    const nextReferenceRadius = Math.max(0.0001, Number(referenceRadius) || 1);
+    model.binaries.forEach((binary) => {
+      const radiusFraction = Number(binary.orbitRadiusFraction ?? 1) || 1;
+      const nextRadius = nextReferenceRadius * radiusFraction;
+      binary.radius = nextRadius;
+      if (binary.motion) {
+        binary.motion.radius = nextRadius;
+      }
+      binary.speed = nextRadius * TWO_PI * binary.frequencyHz;
+    });
+    const orbitPathReferenceRadius = Math.max(
+      0.0001,
+      ...model.binaries.map((binary) => binary.radius)
+    );
+    model.binaries.forEach((binary) => {
+      binary.orbitPathReferenceRadius = orbitPathReferenceRadius;
+      binary.orbitPathWidthScale = getOrbitPathLogWidthScale(
+        binary.radius,
+        orbitPathReferenceRadius
+      );
+    });
+  }
+
+  function updateOrbitGuideShells() {
+    shellGroup.children.forEach((guideShell) => {
+      const binary = guideShell.userData.binary;
+      if (!binary) {
+        return;
+      }
+      guideShell.scale.setScalar(binary.radius);
+    });
+  }
+
+  function setReferenceRadius(referenceRadius) {
+    state.radius = Math.max(0.0001, Number(referenceRadius) || state.radius);
+    updateBinaryOrbitRadii(state.radius);
+    updateOrbitGuideShells();
+  }
 
   function resize() {
     const rect = canvas.getBoundingClientRect();
@@ -908,6 +1125,7 @@ export function mountIdealCorePrototype(options = {}) {
   }
 
   function syncControls() {
+    const lorentzState = getCurrentLorentzState();
     dom.viewButtons.forEach((button) => {
       setButtonActive(button, button.dataset.view === state.view);
     });
@@ -917,13 +1135,21 @@ export function mountIdealCorePrototype(options = {}) {
     setButtonActive(dom.freezeToggle, state.frozen);
     dom.freezeToggle.textContent = state.frozen ? "Resume" : "Freeze";
     dom.radiusOutput.value = formatFixed(state.radius, 2);
+    dom.betaOutput.value = formatFixed(lorentzState.beta, 3);
     dom.speedOutput.value = formatFixed(state.speed, 2);
-    dom.viewLabel.textContent =
-      BINARY_META.find((binary) => binary.id === state.view)?.label ?? "Full";
-    dom.rangeLabel.textContent = `${formatScientific(state.surfaceRange.min)} to ${formatScientific(
-      state.surfaceRange.max
-    )}`;
-    dom.sampleLabel.textContent = formatScientific(state.samplePotential);
+    dom.betaLabel.textContent = formatFixed(lorentzState.beta, 3);
+    dom.gammaLabel.textContent = formatLimitFixed(lorentzState.gamma, 3);
+    dom.xiLabel.textContent = formatFixed(lorentzState.xi, 3);
+    dom.timeLabel.textContent = formatLimitFixed(lorentzState.timeRatio, 3);
+    dom.lengthLabel.textContent = formatFixed(lorentzState.lengthRatio, 3);
+    dom.massLabel.textContent = formatFixed(lorentzState.massEnergyRatio, 3);
+    dom.betaEquation.textContent = formatFixed(lorentzState.beta, 3);
+    dom.gammaEquation.textContent = formatLimitFixed(lorentzState.gamma, 3);
+    dom.xiEquation.textContent = formatFixed(lorentzState.xi, 3);
+    dom.rParallelEquation.textContent = formatFixed(lorentzState.rParallel, 3);
+    dom.tParallelEquation.textContent = formatLimitFixed(lorentzState.tParallel, 3);
+    dom.tPerpEquation.textContent = formatLimitFixed(lorentzState.tPerp, 3);
+    dom.closureEquation.textContent = formatSignedFixed(lorentzState.closureResidual, 5);
   }
 
   function updateArchitrinoMeshes() {
@@ -979,44 +1205,107 @@ export function mountIdealCorePrototype(options = {}) {
     updateAxisReferenceGroup(Three, axisReferenceGroup, state.radius);
   }
 
-  function drawPotentialStrip() {
+  function updateLorentzGeometry() {
+    const lorentzState = getCurrentLorentzState();
+    sphereContents.scale.set(lorentzState.xi, 1, 1);
+    updateVelocityReferenceGroup(Three, velocityReferenceGroup, state.radius, lorentzState);
+  }
+
+  function drawLorentzChart() {
     if (!stripContext) {
       return;
     }
     const width = dom.stripCanvas.width;
     const height = dom.stripCanvas.height;
     stripContext.clearRect(0, 0, width, height);
-    stripContext.fillStyle = "rgba(2, 6, 23, 0.78)";
+    stripContext.fillStyle = "rgba(2, 6, 23, 0.88)";
     stripContext.fillRect(0, 0, width, height);
-    const values = [];
-    for (let x = 0; x < width; x += 1) {
-      const phi = (x / Math.max(1, width - 1)) * TWO_PI;
-      const sample = new Three.Vector3(
-        Math.cos(phi) * state.radius,
+    const left = 34;
+    const right = width - 14;
+    const top = 14;
+    const bottom = height - 24;
+    const plotWidth = Math.max(1, right - left);
+    const plotHeight = Math.max(1, bottom - top);
+    function chartX(beta) {
+      return left + (clampNumber(beta, 0, LORENTZ_BETA_MAX) / LORENTZ_BETA_MAX) * plotWidth;
+    }
+
+    function chartY(normalized) {
+      return top + (1 - clampNumber(normalized, 0, 1)) * plotHeight;
+    }
+
+    function normalizeGammaForChart(lorentzState) {
+      return clampNumber(
+        (lorentzState.gamma - 1) / Math.max(1, LORENTZ_CHART_GAMMA_CAP - 1),
         0,
-        Math.sin(phi) * state.radius
-      );
-      values.push(
-        computePotentialSum(sample, model, state.view, state.modelTime, {
-          fieldSpeed: 6,
-          softening: 0.1,
-        }).potential
+        1
       );
     }
-    const maxAbs = Math.max(0.0001, ...values.map((value) => Math.abs(value)));
-    values.forEach((value, x) => {
-      stripContext.fillStyle = colorToCanvasFill(colorForPotential(Three, value, maxAbs));
-      stripContext.fillRect(x, 0, 1, height);
-    });
-    stripContext.strokeStyle = "rgba(238, 243, 255, 0.5)";
+
+    stripContext.strokeStyle = "rgba(148, 163, 184, 0.24)";
     stripContext.lineWidth = 1;
+    for (let gridIndex = 0; gridIndex <= 4; gridIndex += 1) {
+      const y = top + (plotHeight * gridIndex) / 4;
+      stripContext.beginPath();
+      stripContext.moveTo(left, y);
+      stripContext.lineTo(right, y);
+      stripContext.stroke();
+    }
+    stripContext.strokeStyle = "rgba(238, 243, 255, 0.46)";
     stripContext.beginPath();
-    stripContext.moveTo(0, height / 2);
-    stripContext.lineTo(width, height / 2);
+    stripContext.moveTo(left, top);
+    stripContext.lineTo(left, bottom);
+    stripContext.lineTo(right, bottom);
     stripContext.stroke();
+
+    function drawCurve(color, resolveNormalized) {
+      stripContext.strokeStyle = color;
+      stripContext.lineWidth = 2.4;
+      stripContext.beginPath();
+      const steps = 160;
+      for (let index = 0; index <= steps; index += 1) {
+        const beta = (index / steps) * LORENTZ_BETA_MAX;
+        const x = chartX(beta);
+        const y = chartY(resolveNormalized(computeLorentzState(beta, state.radius)));
+        if (index === 0) {
+          stripContext.moveTo(x, y);
+        } else {
+          stripContext.lineTo(x, y);
+        }
+      }
+      stripContext.stroke();
+    }
+
+    drawCurve("#fbbf24", normalizeGammaForChart);
+    drawCurve("#2dd4bf", (lorentzState) => lorentzState.xi);
+
+    const current = getCurrentLorentzState();
+    const markerX = chartX(current.beta);
+    stripContext.strokeStyle = "rgba(244, 114, 182, 0.92)";
+    stripContext.lineWidth = 1.5;
+    stripContext.beginPath();
+    stripContext.moveTo(markerX, top);
+    stripContext.lineTo(markerX, bottom);
+    stripContext.stroke();
+    stripContext.fillStyle = "rgba(244, 114, 182, 0.95)";
+    stripContext.beginPath();
+    stripContext.arc(markerX, chartY(current.xi), 3.8, 0, TWO_PI);
+    stripContext.fill();
+    stripContext.fillStyle = "rgba(251, 191, 36, 0.95)";
+    stripContext.beginPath();
+    stripContext.arc(markerX, chartY(normalizeGammaForChart(current)), 3.8, 0, TWO_PI);
+    stripContext.fill();
+
+    stripContext.fillStyle = "rgba(203, 213, 225, 0.82)";
+    stripContext.font = "20px Helvetica Neue, Arial, sans-serif";
+    stripContext.fillText("0", left - 6, height - 6);
+    stripContext.fillText("1.000", right - 48, height - 6);
+    stripContext.fillText("1", 8, chartY(1) + 6);
+    stripContext.fillText("0", 8, bottom + 4);
   }
 
   function renderTable() {
+    const lorentzState = getCurrentLorentzState();
     const rows = [
       {
         label: "Path radius",
@@ -1045,6 +1334,18 @@ export function mountIdealCorePrototype(options = {}) {
           return `${formatFixed(degrees, 0)} deg`;
         }),
       },
+      {
+        label: "Lorentz axis",
+        values: model.binaries.map(() => `&xi; ${formatFixed(lorentzState.xi, 3)}`),
+      },
+      {
+        label: "Phase closure",
+        values: ["2pi n_I", "2pi n_M", "2pi n_O"],
+      },
+      {
+        label: "Action row",
+        values: ["n_I h", "n_M h", "n_O h"],
+      },
     ];
     dom.tableBody.innerHTML = rows
       .map(
@@ -1061,7 +1362,7 @@ export function mountIdealCorePrototype(options = {}) {
   }
 
   function resetRotation() {
-    sphereContents.rotation.set(-0.18, 0.36, 0.04);
+    coreFrame.rotation.set(-0.18, 0.36, 0.04);
   }
 
   function setFrozen(frozen) {
@@ -1084,7 +1385,8 @@ export function mountIdealCorePrototype(options = {}) {
     updateArchitrinoMeshes();
     updateSurface();
     updateAxisReference();
-    drawPotentialStrip();
+    updateLorentzGeometry();
+    drawLorentzChart();
     renderTable();
     syncControls();
     renderer.render(scene, camera);
@@ -1118,7 +1420,11 @@ export function mountIdealCorePrototype(options = {}) {
     canvas.focus();
   });
   dom.radiusInput.addEventListener("input", () => {
-    state.radius = Number(dom.radiusInput.value) || state.radius;
+    setReferenceRadius(dom.radiusInput.value);
+    syncControls();
+  });
+  dom.betaInput.addEventListener("input", () => {
+    state.beta = clampNumber(Number(dom.betaInput.value) || 0, 0, LORENTZ_BETA_MAX);
     syncControls();
   });
   dom.speedInput.addEventListener("input", () => {
@@ -1145,8 +1451,8 @@ export function mountIdealCorePrototype(options = {}) {
     }
     const dx = event.clientX - state.lastPointer.x;
     const dy = event.clientY - state.lastPointer.y;
-    sphereContents.rotation.y += dx * 0.008;
-    sphereContents.rotation.x += dy * 0.008;
+    coreFrame.rotation.y += dx * 0.008;
+    coreFrame.rotation.x += dy * 0.008;
     state.lastPointer = { x: event.clientX, y: event.clientY };
   });
   canvas.addEventListener("pointerup", (event) => {
@@ -1160,22 +1466,22 @@ export function mountIdealCorePrototype(options = {}) {
     const rotationStep = event.shiftKey ? 0.16 : 0.08;
     if (event.key === "ArrowLeft") {
       event.preventDefault();
-      sphereContents.rotation.y -= rotationStep;
+      coreFrame.rotation.y -= rotationStep;
     } else if (event.key === "ArrowRight") {
       event.preventDefault();
-      sphereContents.rotation.y += rotationStep;
+      coreFrame.rotation.y += rotationStep;
     } else if (event.key === "ArrowUp") {
       event.preventDefault();
-      sphereContents.rotation.x -= rotationStep;
+      coreFrame.rotation.x -= rotationStep;
     } else if (event.key === "ArrowDown") {
       event.preventDefault();
-      sphereContents.rotation.x += rotationStep;
+      coreFrame.rotation.x += rotationStep;
     } else if (event.key.toLowerCase() === "q") {
       event.preventDefault();
-      sphereContents.rotation.z += rotationStep;
+      coreFrame.rotation.z += rotationStep;
     } else if (event.key.toLowerCase() === "e") {
       event.preventDefault();
-      sphereContents.rotation.z -= rotationStep;
+      coreFrame.rotation.z -= rotationStep;
     } else if (event.key.toLowerCase() === "r") {
       event.preventDefault();
       resetRotation();
@@ -1187,6 +1493,7 @@ export function mountIdealCorePrototype(options = {}) {
 
   const resizeObserver = new ResizeObserver(resize);
   resizeObserver.observe(canvas);
+  setReferenceRadius(state.radius);
   resetRotation();
   resize();
   syncControls();
@@ -1199,6 +1506,7 @@ export function mountIdealCorePrototype(options = {}) {
     scene,
     camera,
     renderer,
+    coreFrame,
     sphereContents,
     destroy() {
       resizeObserver.disconnect();

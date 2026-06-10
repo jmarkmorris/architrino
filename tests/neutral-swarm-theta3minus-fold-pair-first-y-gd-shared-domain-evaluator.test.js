@@ -109,6 +109,7 @@ import {
   buildH39RequestedY44TerminalSourceCovarianceWronskianNonScalarSourceObjectForkCandidate,
   buildH39RequestedY44TerminalSourceCovarianceWronskianMatrixOrWRefinementCandidate,
   buildH39RequestedY44TerminalSourceCovarianceWronskianDirectNonScalarProviderReplayCandidate,
+  buildH39RequestedY44TerminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutorCandidate,
   buildH39RequestedY44RowLocalN38SignedSourceSumDerivativeProviderCandidate,
   validateH39CorrelatedResidualWidthDiagnostic,
   validateH39H38NumeratorGraphLocalPartitionDiagnostic,
@@ -214,6 +215,7 @@ import {
   validateH39RequestedY44TerminalSourceCovarianceWronskianNonScalarSourceObjectForkCandidate,
   validateH39RequestedY44TerminalSourceCovarianceWronskianMatrixOrWRefinementCandidate,
   validateH39RequestedY44TerminalSourceCovarianceWronskianDirectNonScalarProviderReplayCandidate,
+  validateH39RequestedY44TerminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutorCandidate,
   validateH39RequestedY44RowLocalN38SignedSourceSumDerivativeProvider,
   validateH39RequestedY44SignedSourceSumDerivativeAllocationTarget,
   validateH39RequestedY44SourceMapResidualCovarianceTarget,
@@ -25703,6 +25705,204 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   assert.deepEqual(
     collectExactKeys(
       terminalSourceCovarianceWronskianDirectNonScalarProviderReplay,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutor =
+    buildH39RequestedY44TerminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutorCandidate(
+      {
+        terminalSourceCovarianceWronskianDirectNonScalarProviderReplay,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44TerminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutorCandidate(
+      terminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutor
+    ),
+    []
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutor
+      .direct_replay_emitted_branch_executor_verified,
+    true
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutor
+      .direct_replay_emitted_branch_executor_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutor
+      .terminal_source_covariance_wronskian_direct_replay_emitted_branch_executor_row_count,
+    5
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutor
+      .terminal_source_covariance_wronskian_direct_replay_emitted_branch_executor_terminal_row_count,
+    15
+  );
+  assert.ok(
+    [
+      "direct-replay-emitted-branch-executor-open",
+      "direct-replay-emitted-branch-q-gate-open",
+      "direct-replay-emitted-branch-w-gate-open",
+      "direct-replay-emitted-branch-w-refinement-target-exceeds-executor-cap",
+      "direct-replay-emitted-branch-w-refinement-still-exceeds-endpoint-budget",
+      "direct-replay-emitted-branch-w-refinement-source-map-boundary-open",
+      "direct-replay-emitted-branch-w-refinement-fits-endpoint-budget",
+      "direct-replay-emitted-branch-matrix-provider-identity-audit-open",
+      "direct-replay-emitted-branch-endpoint-budget-open",
+      "direct-replay-emitted-branch-source-map-boundary-open",
+    ].includes(
+      terminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutor
+        .direct_replay_emitted_branch_executor_classification
+    )
+  );
+  assert.ok(
+    [
+      "direct-replay-emitted-branch-executor-open",
+      "same-domain-q-denominator-separation-needed",
+      "same-domain-shared-wronskian-interval-needed",
+      "same-domain-w-refinement-target-exceeds-executor-cap",
+      "same-domain-w-refinement-still-exceeds-terminal-affine-budget",
+      "same-domain-source-map-boundary-replay-needed-after-w-refinement",
+      "same-domain-directed-rounded-provider-certification-needed-after-w-refinement",
+      "same-domain-matrix-provider-identity-proof-needed",
+      "same-domain-direct-non-scalar-provider-endpoint-budget-open",
+      "same-domain-source-map-boundary-non-scalar-provider-replay-needed",
+    ].includes(
+      terminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutor
+        .direct_replay_emitted_branch_executor_blocker_classification
+    )
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutor
+      .matrix_provider_identity_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutor
+      .w_refinement_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutor
+      .rank_two_source_covariance_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutor
+      .non_scalar_source_covariance_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutor
+      .scalar_lambda_source_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutor
+      .expression_level_shared_wronskian_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutor
+      .terminal_row_provider_enclosure_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutor
+      .expression_level_n38_provider_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutor
+      .directed_rounded_shared_domain_provider_certified,
+    false
+  );
+  assert.ok(
+    terminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutor.terminal_source_covariance_wronskian_direct_replay_emitted_branch_executor_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_source_covariance_wronskian_direct_replay_emitted_branch_executor_terminal_row_count ===
+          3 &&
+        row.row_direct_replay_emitted_branch_executor_verified === true &&
+        row.row_certifies_matrix_provider_identity === false &&
+        row.row_certifies_rank_two_source_covariance_object === false &&
+        row.row_certifies_non_scalar_source_covariance_object === false &&
+        row.row_certifies_scalar_lambda_source_object === false &&
+        row.row_certifies_expression_level_shared_wronskian === false &&
+        row.row_certifies_terminal_row_provider_enclosure === false &&
+        row.row_certifies_directed_rounded_shared_domain === false &&
+        row.terminal_source_covariance_wronskian_direct_replay_emitted_branch_executor_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_graph_cell_id ===
+              `speed.${index}.first-y` &&
+            [
+              "q-gate-open",
+              "w-gate-open",
+              "shared-wronskian-refinement-target",
+              "matrix-provider-identity-audit",
+              "source-map-boundary-open",
+              "endpoint-budget-open",
+              "direct-replay-open",
+            ].includes(terminalRow.emitted_branch_kind) &&
+            [
+              "w-refinement-not-selected",
+              "w-refinement-input-open",
+              "w-refinement-target-open",
+              "w-refinement-target-exceeds-executor-cap",
+              "w-refinement-executed-fits-endpoint-budget",
+              "w-refinement-executed-still-exceeds-endpoint-budget",
+            ].includes(terminalRow.w_refinement_execution_status) &&
+            terminalRow.matrix_provider_identity_audit_branch_row_count ===
+              2 &&
+            terminalRow.matrix_provider_identity_audit_branch_rows.every(
+              (branchRow) =>
+                ["-", "+"].includes(branchRow.branch) &&
+                branchRow.certifies_matrix_provider_identity === false &&
+                branchRow.certifies_non_scalar_source_covariance_object ===
+                  false &&
+                branchRow.certifies_terminal_row_provider_enclosure === false &&
+                branchRow.certifies_directed_rounded_shared_domain === false
+            ) &&
+            Number.isInteger(
+              terminalRow.w_refinement_subcell_replay_branch_row_count
+            ) &&
+            terminalRow.w_refinement_subcell_replay_branch_row_count >= 0 &&
+            Number.isInteger(terminalRow.w_refinement_subcell_branch_fit_count) &&
+            terminalRow.w_refinement_subcell_branch_fit_count >= 0 &&
+            terminalRow.w_refinement_subcell_branch_fit_count <=
+              terminalRow.w_refinement_subcell_replay_branch_row_count &&
+            terminalRow.w_refinement_source_map_boundary_replay_certifies_directed_rounded_provider ===
+              false &&
+            terminalRow.matrix_provider_identity_certified === false &&
+            terminalRow.w_refinement_certified === false &&
+            terminalRow.row_certifies_matrix_provider_identity === false &&
+            terminalRow.row_certifies_rank_two_source_covariance_object ===
+              false &&
+            terminalRow.row_certifies_non_scalar_source_covariance_object ===
+              false &&
+            terminalRow.row_certifies_scalar_lambda_source_object === false &&
+            terminalRow.row_certifies_expression_level_shared_wronskian ===
+              false &&
+            terminalRow.row_certifies_terminal_row_provider_enclosure ===
+              false &&
+            terminalRow.row_certifies_directed_rounded_shared_domain === false
+        )
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      terminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutor
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutor,
       FORBIDDEN_FIXED_SPEED_KEYS
     ),
     []

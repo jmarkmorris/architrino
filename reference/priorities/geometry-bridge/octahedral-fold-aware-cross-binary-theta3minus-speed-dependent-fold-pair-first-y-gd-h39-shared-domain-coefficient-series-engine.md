@@ -3845,6 +3845,24 @@ emits W refinement or the direct matrix image still exceeds the endpoint budget,
 the next blocker remains shared-Wronskian-sensitive narrowing, not another
 scalar-lambda wrapper.
 
+\texttt{buildH39RequestedY44TerminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutorCandidate}
+now executes only the branch emitted by the direct non-scalar replay. If the
+emitted branch is the matrix-provider identity obligation, it records the
+same-domain residual audit
+\texttt{direct\_matrix\_image - provider\_object\_residual} on each branch. If
+the emitted branch is Wronskian-sensitive narrowing, it subdivides the
+provider-object $\mu=W/Q$ interval by the recorded projected subcell count and
+replays
+$r_-=\lambda_{\parallel}s_-+\mu s_+$ and
+$r_+=\lambda_{\parallel}s_+-\mu s_-$ on every executed subcell against the
+terminal-affine endpoint budget. It records whether the narrowed replay fits,
+still exceeds, or exceeds the packet execution cap. The packet is priority-only
+and candidate-only: it certifies no matrix identity, no W refinement, no
+source-covariance object, no terminal row provider enclosure, and no
+directed-rounded provider. If the narrowed replay still exceeds the endpoint
+budget, the next true blocker is a narrower expression-level shared Wronskian
+producer on the same terminal domain, not another scalar-lambda wrapper.
+
 \texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
 now also probes a shared terminal-residual coordinate for
 $h_{37},h_{36},h_{35}$. Instead of assigning independent residual hulls to the
