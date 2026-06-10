@@ -20707,6 +20707,7 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
       terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection,
       terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt,
       terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt,
+      terminalSuccessorBranchResidualCommonNormalizerLawProbe,
     });
   const terminalRowProviderObjectReplayValidationErrors =
     validateH39RequestedY44TerminalRowProviderObjectReplayAttemptCandidate(
@@ -20803,6 +20804,21 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
     terminalRowProviderObjectReplayAttempt
       .terminal_row_provider_object_replay_branch_row_count,
     30
+  );
+  assert.equal(
+    terminalRowProviderObjectReplayAttempt
+      .source_map_provider_branch_intervals_available_count,
+    0
+  );
+  assert.equal(
+    terminalRowProviderObjectReplayAttempt
+      .source_map_provider_object_branch_interval_admissible_available_count,
+    0
+  );
+  assert.ok(
+    terminalRowProviderObjectReplayAttempt
+      .source_map_provider_object_branch_interval_candidate_available_count >=
+      0
   );
   assert.equal(
     terminalRowProviderObjectReplayAttempt
@@ -20930,8 +20946,8 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   );
   assert.ok(
     [
-      "terminal-row-provider-object-replay-denominator-open",
       "terminal-row-provider-object-replay-provider-object-open",
+      "terminal-row-provider-object-replay-denominator-open",
       "terminal-row-provider-object-replay-branch-overlap-open",
       "terminal-row-provider-object-replay-branch-containment-open",
       "terminal-row-provider-object-replay-provider-boundary-open",
@@ -20941,6 +20957,20 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
     ].includes(
       terminalRowProviderObjectReplayAttempt
         .terminal_row_provider_object_replay_attempt_classification
+    )
+  );
+  assert.equal(
+    terminalRowProviderObjectReplayAttempt
+      .terminal_row_provider_object_replay_attempt_classification,
+    "terminal-row-provider-object-replay-provider-object-open"
+  );
+  assert.ok(
+    [
+      "same-domain-source-map-provider-object-branch-intervals-needed",
+      "same-domain-actual-source-map-provider-object-branch-intervals-needed-candidates-not-admissible",
+    ].includes(
+      terminalRowProviderObjectReplayAttempt
+        .terminal_row_provider_object_replay_attempt_blocker_classification
     )
   );
   assert.ok(
@@ -20987,6 +21017,44 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
             terminalRow.source_map_provider_object_replay_branch_rows.every(
               (branchRow) =>
                 ["-", "+"].includes(branchRow.branch) &&
+                [
+                  null,
+                  "explicit-source-map-provider-object-branch-interval",
+                ].includes(
+                  branchRow.source_map_provider_object_materialization_source_kind
+                ) &&
+                [
+                  "source-map-provider-object-branch-interval-materialized",
+                  "source-map-provider-object-branch-interval-candidates-rejected",
+                  "source-map-provider-object-branch-interval-missing",
+                ].includes(
+                  branchRow
+                    .source_map_provider_object_branch_interval_materialization_status
+                ) &&
+                branchRow
+                  .source_map_provider_object_branch_interval_candidate_source_count ===
+                  4 &&
+                branchRow
+                  .source_map_provider_object_branch_interval_admissible_available_count ===
+                  0 &&
+                Array.isArray(
+                  branchRow
+                    .source_map_provider_object_branch_interval_materialization_sources
+                ) &&
+                branchRow
+                  .source_map_provider_object_branch_interval_materialization_sources
+                  .length === 4 &&
+                branchRow
+                  .source_map_provider_object_branch_interval_materialization_sources
+                  .every(
+                    (source) =>
+                      typeof source.source_kind === "string" &&
+                      typeof source.source_field === "string" &&
+                      typeof source.interval_available === "boolean" &&
+                      source.admissible_as_source_map_provider_object ===
+                        false &&
+                      typeof source.rejection_reason === "string"
+                  ) &&
                 (branchRow.terminal_witness_interval_available === true
                   ? Array.isArray(branchRow.terminal_witness_interval) &&
                     branchRow.terminal_witness_interval.length === 2 &&
@@ -26321,13 +26389,25 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   );
   assert.equal(
     terminalSourceCovarianceProviderObjectBranchResidualExtractor
+      .source_map_provider_object_branch_interval_admissible_available_count,
+    0
+  );
+  assert.equal(
+    terminalSourceCovarianceProviderObjectBranchResidualExtractor
+      .source_map_provider_object_branch_interval_candidate_available_count,
+    terminalRowProviderObjectReplayAttempt
+      .source_map_provider_object_branch_interval_candidate_available_count
+  );
+  assert.equal(
+    terminalSourceCovarianceProviderObjectBranchResidualExtractor
       .provider_object_branch_residual_extractor_classification,
     "provider-object-branch-residual-extractor-provider-intervals-needed"
   );
   assert.equal(
     terminalSourceCovarianceProviderObjectBranchResidualExtractor
       .provider_object_branch_residual_extractor_blocker_classification,
-    "same-domain-source-map-provider-object-branch-intervals-needed"
+    terminalRowProviderObjectReplayAttempt
+      .terminal_row_provider_object_replay_attempt_blocker_classification
   );
   assert.equal(
     terminalSourceCovarianceProviderObjectBranchResidualExtractor
@@ -26399,6 +26479,26 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
                 branchRow.provider_object_branch_residual_interval_available ===
                   false &&
                 branchRow.provider_object_branch_residual_interval === null &&
+                [
+                  null,
+                  "explicit-source-map-provider-object-branch-interval",
+                ].includes(
+                  branchRow.source_map_provider_object_materialization_source_kind
+                ) &&
+                [
+                  "source-map-provider-object-branch-interval-materialized",
+                  "source-map-provider-object-branch-interval-candidates-rejected",
+                  "source-map-provider-object-branch-interval-missing",
+                ].includes(
+                  branchRow
+                    .source_map_provider_object_branch_interval_materialization_status
+                ) &&
+                branchRow
+                  .source_map_provider_object_branch_interval_candidate_source_count ===
+                  4 &&
+                branchRow
+                  .source_map_provider_object_branch_interval_admissible_available_count ===
+                  0 &&
                 branchRow.terminal_witness_interval_available === false &&
                 branchRow.terminal_witness_interval === null &&
                 branchRow.source_map_provider_object_interval_source ===

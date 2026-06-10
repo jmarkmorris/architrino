@@ -50,6 +50,12 @@ const BINARY_ORBIT_GUIDE_OPACITY = 0.07;
 const ORBIT_PATH_LOG_WIDTH_FLOOR = 0.78;
 const ORBIT_PATH_TRAIL_SEGMENTS = 30;
 const ORBIT_PATH_TRAIL_MAX_ARCS = CHARGE_TYPES.length;
+const ASSEMBLY_MOMENTUM_AXIS_COMPONENT = 1 / Math.sqrt(3);
+const ASSEMBLY_MOMENTUM_AXIS = new THREE.Vector3(
+  ASSEMBLY_MOMENTUM_AXIS_COMPONENT,
+  ASSEMBLY_MOMENTUM_AXIS_COMPONENT,
+  ASSEMBLY_MOMENTUM_AXIS_COMPONENT
+);
 const ORBIT_PATH_TRAIL_LAYERS = [
   {
     role: "headlamp-glow",
@@ -212,6 +218,62 @@ export function getOrbitPathTintProfile(binaryOrId) {
   return resolveOrbitPathTintProfile(binaryOrId);
 }
 
+function cloneOrbitBasis(basis) {
+  return {
+    normal: basis.normal.clone(),
+    u: basis.u.clone(),
+    v: basis.v.clone(),
+  };
+}
+
+export function computeLorentzAlignedOrbitBasis(Three, restBasis, lorentzState) {
+  const xi = clampNumber(Number(lorentzState?.xi ?? 1) || 0, 0, 1);
+  const targetNormal = restBasis.normal
+    .clone()
+    .multiplyScalar(xi)
+    .add(ASSEMBLY_MOMENTUM_AXIS.clone().multiplyScalar(1 - xi));
+  if (targetNormal.lengthSq() <= 0.000001) {
+    targetNormal.copy(restBasis.normal);
+  }
+  targetNormal.normalize();
+  const rotation = new Three.Quaternion().setFromUnitVectors(restBasis.normal, targetNormal);
+  return {
+    normal: targetNormal,
+    u: restBasis.u.clone().applyQuaternion(rotation).normalize(),
+    v: restBasis.v.clone().applyQuaternion(rotation).normalize(),
+  };
+}
+
+export function computeAssemblyMomentumContractionMatrix(Three, lorentzState) {
+  const xi = clampNumber(Number(lorentzState?.xi ?? 1) || 0, 0, 1);
+  const k = xi - 1;
+  const { x, y, z } = ASSEMBLY_MOMENTUM_AXIS;
+  return new Three.Matrix4().set(
+    1 + k * x * x,
+    k * x * y,
+    k * x * z,
+    0,
+    k * y * x,
+    1 + k * y * y,
+    k * y * z,
+    0,
+    k * z * x,
+    k * z * y,
+    1 + k * z * z,
+    0,
+    0,
+    0,
+    0,
+    1
+  );
+}
+
+function setBinaryOrbitBasis(binary, basis) {
+  binary.basis.normal.copy(basis.normal);
+  binary.basis.u.copy(basis.u);
+  binary.basis.v.copy(basis.v);
+}
+
 function getOrbitPathLogWidthScale(radius, referenceRadius) {
   const normalizedRadius = clampNumber(radius / Math.max(0.0001, referenceRadius), 0, 1);
   const compressedRadius = Math.log1p(normalizedRadius * 3) / Math.log1p(3);
@@ -239,6 +301,7 @@ export function createIdealCoreModel(options = {}) {
       binaryIndex: index,
       motion,
       basis,
+      restBasis: cloneOrbitBasis(basis),
       radius,
       frequencyHz,
       speed: radius * TWO_PI * frequencyHz,
@@ -270,11 +333,11 @@ export function createIdealCoreModel(options = {}) {
         fieldSpeedRatio: binary.fieldSpeedRatio,
         fieldSpeedRegime: binary.fieldSpeedRegime,
         positionAt(timeSeconds) {
-          return geometryRuntime.getAnimatorOrbitOffsetAtTime(
-            binary.motion,
-            chargeType,
-            timeSeconds
-          );
+          const angle = getMotionAngle(binary.motion, chargeType, timeSeconds);
+          return binary.basis.u
+            .clone()
+            .multiplyScalar(Math.cos(angle) * binary.radius)
+            .add(binary.basis.v.clone().multiplyScalar(Math.sin(angle) * binary.radius));
         },
         velocityAt(timeSeconds) {
           const angle = getMotionAngle(binary.motion, chargeType, timeSeconds);
@@ -890,6 +953,7 @@ export function mountIdealCorePrototype(options = {}) {
   scene.add(coreFrame);
 
   const sphereContents = new Three.Group();
+  sphereContents.matrixAutoUpdate = false;
   coreFrame.add(sphereContents);
 
   const shellGroup = new Three.Group();
@@ -991,6 +1055,15 @@ export function mountIdealCorePrototype(options = {}) {
 
   function getCurrentLorentzState() {
     return computeLorentzState(state.beta, state.radius);
+  }
+
+  function updateBinaryLorentzBases(lorentzState) {
+    model.binaries.forEach((binary) => {
+      setBinaryOrbitBasis(
+        binary,
+        computeLorentzAlignedOrbitBasis(Three, binary.restBasis, lorentzState)
+      );
+    });
   }
 
   function updateBinaryOrbitRadii(referenceRadius) {
@@ -1130,7 +1203,10 @@ export function mountIdealCorePrototype(options = {}) {
 
   function updateLorentzGeometry() {
     const lorentzState = getCurrentLorentzState();
-    sphereContents.scale.set(lorentzState.xi, 1, 1);
+    updateBinaryLorentzBases(lorentzState);
+    sphereContents.matrix.copy(computeAssemblyMomentumContractionMatrix(Three, lorentzState));
+    sphereContents.matrixWorldNeedsUpdate = true;
+    sphereContents.updateMatrixWorld(true);
   }
 
   function drawLorentzChart() {
@@ -1290,11 +1366,11 @@ export function mountIdealCorePrototype(options = {}) {
       state.modelTime += deltaSeconds * state.speed;
     }
     updateVisibility();
+    updateLorentzGeometry();
     updateOrbitPaths();
     updateArchitrinoMeshes();
     updateSurface();
     updateAxisReference();
-    updateLorentzGeometry();
     drawLorentzChart();
     renderTable();
     syncControls();

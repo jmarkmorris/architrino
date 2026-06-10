@@ -4,6 +4,8 @@ import assert from "node:assert/strict";
 import * as THREE from "../vendor/three/three.module.js";
 import { solveCircularSelfHitSpan } from "../src/apps/ideal-core/IdealCorePathPotentialProfile.js";
 import {
+  computeAssemblyMomentumContractionMatrix,
+  computeLorentzAlignedOrbitBasis,
   computeLorentzState,
   computePotentialContribution,
   computePotentialSum,
@@ -70,6 +72,38 @@ test("Lorentz energy ledger treats beta equals one as a limit state", () => {
   assert.equal(state.movementMassEquivalent, Infinity);
   assert.equal(state.totalEnergy, Infinity);
   assert.equal(state.totalMassEquivalent, Infinity);
+});
+
+test("Lorentz alignment tilts binary angular momentum normals toward assembly momentum", () => {
+  const model = createIdealCoreModel({ THREE });
+  const assemblyMomentum = new THREE.Vector3(1, 1, 1).normalize();
+  const restState = computeLorentzState(0, 1.62);
+  const limitState = computeLorentzState(1, 1.62);
+  const movingState = computeLorentzState(0.8, 1.62);
+
+  model.binaries.forEach((binary) => {
+    const restBasis = computeLorentzAlignedOrbitBasis(THREE, binary.restBasis, restState);
+    const movingBasis = computeLorentzAlignedOrbitBasis(THREE, binary.restBasis, movingState);
+    const limitBasis = computeLorentzAlignedOrbitBasis(THREE, binary.restBasis, limitState);
+
+    assert.ok(restBasis.normal.distanceTo(binary.restBasis.normal) < 1e-12);
+    assert.ok(
+      movingBasis.normal.dot(assemblyMomentum) > binary.restBasis.normal.dot(assemblyMomentum)
+    );
+    assert.ok(limitBasis.normal.distanceTo(assemblyMomentum) < 1e-12);
+  });
+});
+
+test("assembly momentum contraction preserves the final shared orbit plane", () => {
+  const assemblyMomentum = new THREE.Vector3(1, 1, 1).normalize();
+  const limitState = computeLorentzState(1, 1.62);
+  const contraction = computeAssemblyMomentumContractionMatrix(THREE, limitState);
+  const collapsedMomentum = assemblyMomentum.clone().applyMatrix4(contraction);
+  const inPlane = new THREE.Vector3(1, -1, 0).normalize();
+  const contractedInPlane = inPlane.clone().applyMatrix4(contraction);
+
+  assert.ok(collapsedMomentum.length() < 1e-10);
+  assert.ok(contractedInPlane.distanceTo(inPlane) < 1e-10);
 });
 
 test("flight time solver returns a positive emission delay", () => {

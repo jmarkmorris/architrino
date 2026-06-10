@@ -96315,6 +96315,7 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
   terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection,
   terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt,
   terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt,
+  terminalSuccessorBranchResidualCommonNormalizerLawProbe,
 } = {}) {
   const terminalHIndexes = [37, 36, 35];
   const intervalComparisonTolerance = 1e-9;
@@ -96388,7 +96389,9 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
     "source_object_projection_ready",
     "barycentric_terminal_witness_ready",
     "barycentric_successor_scalar_handoff_ready",
+    "common_normalizer_law_probe_ready",
     "same_domain_terminal_rows_aligned",
+    "source_map_provider_object_branch_materialization_recorded",
     "terminal_witness_to_source_map_branch_replay_recorded",
     "successor_scalar_provider_boundary_handoff_recorded",
     "source_covariance_lambda_containment_recorded",
@@ -96398,7 +96401,9 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
     "projection_terminal_row_available",
     "barycentric_terminal_witness_row_available",
     "barycentric_successor_scalar_handoff_terminal_row_available",
+    "common_normalizer_law_probe_terminal_row_available",
     "same_domain_terminal_row_aligned",
+    "source_map_provider_object_branch_materialization_recorded",
     "terminal_witness_to_source_map_branch_replay_recorded",
     "successor_scalar_provider_boundary_handoff_recorded",
     "source_covariance_lambda_containment_recorded",
@@ -96416,6 +96421,10 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
     terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt
       ?.terminal_successor_barycentric_to_successor_scalar_handoff_attempt_rows ??
     [];
+  const lawProbeRows =
+    terminalSuccessorBranchResidualCommonNormalizerLawProbe
+      ?.terminal_successor_branch_residual_common_normalizer_law_probe_rows ??
+    [];
   const projectionRowsByNode = new Map(
     projectionRows
       .filter((row) => Number.isInteger(row?.node_index))
@@ -96428,6 +96437,11 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
   );
   const handoffRowsByNode = new Map(
     handoffRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const lawProbeRowsByNode = new Map(
+    lawProbeRows
       .filter((row) => Number.isInteger(row?.node_index))
       .map((row) => [Number(row.node_index), row])
   );
@@ -96480,11 +96494,31 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
       ?.certifies_expression_level_n38_provider === false &&
     terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt?.claim_boundary
       ?.certifies_directed_rounded_shared_domain === false;
+  const lawProbeReady =
+    terminalSuccessorBranchResidualCommonNormalizerLawProbe?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SUCCESSOR_BRANCH_RESIDUAL_COMMON_NORMALIZER_LAW_PROBE_CANDIDATE_SCHEMA &&
+    terminalSuccessorBranchResidualCommonNormalizerLawProbe
+      ?.terminal_successor_branch_residual_common_normalizer_law_probe_verified ===
+      true &&
+    terminalSuccessorBranchResidualCommonNormalizerLawProbe
+      ?.terminal_successor_branch_residual_common_normalizer_law_probe_certified ===
+      false &&
+    terminalSuccessorBranchResidualCommonNormalizerLawProbe
+      ?.common_normalizer_branch_residual_law_proven === false &&
+    terminalSuccessorBranchResidualCommonNormalizerLawProbe
+      ?.all_branch_residual_source_objects_missing === true &&
+    terminalSuccessorBranchResidualCommonNormalizerLawProbe?.claim_boundary
+      ?.certifies_branch_resolved_centered_residual_component === false &&
+    terminalSuccessorBranchResidualCommonNormalizerLawProbe?.claim_boundary
+      ?.certifies_expression_level_n38_provider === false &&
+    terminalSuccessorBranchResidualCommonNormalizerLawProbe?.claim_boundary
+      ?.certifies_directed_rounded_shared_domain === false;
   const rows = Array.from({ length: 5 }, (_, nodeIndex) => {
     const terminalGraphCellId = `speed.${nodeIndex}.first-y`;
     const projectionRow = projectionRowsByNode.get(nodeIndex) ?? null;
     const barycentricRow = barycentricRowsByNode.get(nodeIndex) ?? null;
     const handoffRow = handoffRowsByNode.get(nodeIndex) ?? null;
+    const lawProbeRow = lawProbeRowsByNode.get(nodeIndex) ?? null;
     const terminalRows = H39_TERMINAL_SUCCESSOR_COEFFICIENT_IDENTITY_IMPORT_SPECS.map(
       (spec) => {
         const projectionTerminalRow =
@@ -96499,6 +96533,11 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
           ) ?? null;
         const handoffTerminalRow =
           handoffRow?.terminal_successor_barycentric_to_successor_scalar_handoff_rows?.find(
+            (candidate) =>
+              Number(candidate?.terminal_h_index) === spec.terminal_h_index
+          ) ?? null;
+        const lawProbeTerminalRow =
+          lawProbeRow?.terminal_successor_branch_residual_common_normalizer_law_probe_rows?.find(
             (candidate) =>
               Number(candidate?.terminal_h_index) === spec.terminal_h_index
           ) ?? null;
@@ -96519,17 +96558,127 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
             .filter((row) => row?.branch === "-" || row?.branch === "+")
             .map((row) => [row.branch, row])
         );
+        const lawProbeBranchRowsByBranch = new Map(
+          (
+            lawProbeTerminalRow
+              ?.common_normalizer_branch_residual_law_candidate_rows ?? []
+          )
+            .filter((row) => row?.branch === "-" || row?.branch === "+")
+            .map((row) => [row.branch, row])
+        );
         const branchRows = ["-", "+"].map((branch) => {
           const projectionBranchRow =
             projectionBranchRowsByBranch.get(branch) ?? null;
           const barycentricBranchRow =
             barycentricBranchRowsByBranch.get(branch) ?? null;
+          const lawProbeBranchRow =
+            lawProbeBranchRowsByBranch.get(branch) ?? null;
           const terminalWitnessInterval = numericInterval(
             barycentricBranchRow?.barycentric_branch_residual_candidate_interval
           );
-          const sourceMapProviderInterval = numericInterval(
+          const scalarProjectionCandidateInterval = numericInterval(
             projectionBranchRow
               ?.source_covariance_constrained_branch_residual_candidate_interval
+          );
+          const commonNormalizerCandidateInterval = numericInterval(
+            lawProbeBranchRow?.common_normalizer_branch_residual_candidate_interval
+          );
+          const explicitProviderObjectInterval =
+            numericInterval(
+              projectionBranchRow?.source_map_provider_object_branch_interval
+            ) ??
+            numericInterval(
+              projectionBranchRow
+                ?.source_map_provider_object_branch_residual_interval
+            ) ??
+            numericInterval(
+              projectionBranchRow?.source_map_provider_object_interval
+            ) ??
+            numericInterval(
+              barycentricBranchRow?.source_map_provider_object_branch_interval
+            ) ??
+            numericInterval(
+              barycentricBranchRow
+                ?.source_map_provider_object_branch_residual_interval
+            ) ??
+            numericInterval(
+              lawProbeBranchRow?.source_map_provider_object_branch_interval
+            ) ??
+            numericInterval(
+              lawProbeBranchRow?.source_map_provider_object_branch_residual_interval
+            );
+          const explicitProviderObjectAvailable = finiteOrderedInterval(
+            explicitProviderObjectInterval
+          );
+          const branchSourceObjectAvailable =
+            lawProbeBranchRow?.branch_centered_residual_component_available ===
+              true ||
+            lawProbeTerminalRow?.branch_residual_source_object_available === true ||
+            projectionTerminalRow
+              ?.branch_resolved_centered_residual_source_object_projection_certified ===
+              true ||
+            barycentricTerminalRow
+              ?.branch_resolved_centered_residual_source_object_certified ===
+              true;
+          const materializationSources = [
+            {
+              source_kind:
+                "explicit-source-map-provider-object-branch-interval",
+              source_field:
+                "source_map_provider_object_branch_interval",
+              interval: explicitProviderObjectInterval,
+              interval_available: explicitProviderObjectAvailable,
+              admissible_as_source_map_provider_object:
+                explicitProviderObjectAvailable && branchSourceObjectAvailable,
+              rejection_reason:
+                explicitProviderObjectAvailable && branchSourceObjectAvailable
+                  ? null
+                  : explicitProviderObjectAvailable
+                    ? "branch-resolved-source-object-proof-missing"
+                    : "explicit-provider-object-branch-interval-missing",
+            },
+            {
+              source_kind: "scalar-source-covariance-projection-candidate",
+              source_field:
+                "source_covariance_constrained_branch_residual_candidate_interval",
+              interval: scalarProjectionCandidateInterval,
+              interval_available: finiteOrderedInterval(
+                scalarProjectionCandidateInterval
+              ),
+              admissible_as_source_map_provider_object: false,
+              rejection_reason:
+                "scalar-lambda-projection-is-not-an-actual-provider-object-branch-interval",
+            },
+            {
+              source_kind: "barycentric-terminal-witness-candidate",
+              source_field: "barycentric_branch_residual_candidate_interval",
+              interval: terminalWitnessInterval,
+              interval_available: finiteOrderedInterval(terminalWitnessInterval),
+              admissible_as_source_map_provider_object: false,
+              rejection_reason:
+                "terminal-witness-candidate-is-not-an-actual-provider-object-branch-interval",
+            },
+            {
+              source_kind: "common-normalizer-law-probe-candidate",
+              source_field:
+                "common_normalizer_branch_residual_candidate_interval",
+              interval: commonNormalizerCandidateInterval,
+              interval_available: finiteOrderedInterval(
+                commonNormalizerCandidateInterval
+              ),
+              admissible_as_source_map_provider_object: false,
+              rejection_reason:
+                "common-normalizer-candidate-has-no-branch-resolved-source-object",
+            },
+          ];
+          const admissibleSource =
+            materializationSources.find(
+              (source) =>
+                source.admissible_as_source_map_provider_object === true &&
+                finiteOrderedInterval(source.interval)
+            ) ?? null;
+          const sourceMapProviderInterval = numericInterval(
+            admissibleSource?.interval
           );
           const terminalWitnessHalfWidth = intervalHalfWidth(
             terminalWitnessInterval
@@ -96537,10 +96686,45 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
           const sourceMapProviderHalfWidth = intervalHalfWidth(
             sourceMapProviderInterval
           );
+          const materializationCandidateIntervalAvailableCount =
+            materializationSources.filter(
+              (source) => source.interval_available === true
+            ).length;
+          const materializationAdmissibleIntervalAvailableCount =
+            materializationSources.filter(
+              (source) =>
+                source.admissible_as_source_map_provider_object === true
+            ).length;
+          const materializationStatus =
+            finiteOrderedInterval(sourceMapProviderInterval)
+              ? "source-map-provider-object-branch-interval-materialized"
+              : materializationCandidateIntervalAvailableCount > 0
+                ? "source-map-provider-object-branch-interval-candidates-rejected"
+                : "source-map-provider-object-branch-interval-missing";
           return {
             branch,
             terminal_witness_interval: terminalWitnessInterval,
             source_map_provider_object_interval: sourceMapProviderInterval,
+            source_map_provider_object_materialization_source_kind:
+              admissibleSource?.source_kind ?? null,
+            source_map_provider_object_branch_interval_materialization_status:
+              materializationStatus,
+            source_map_provider_object_branch_interval_materialization_sources:
+              materializationSources,
+            source_map_provider_object_branch_interval_candidate_source_count:
+              materializationSources.length,
+            source_map_provider_object_branch_interval_candidate_available_count:
+              materializationCandidateIntervalAvailableCount,
+            source_map_provider_object_branch_interval_admissible_available_count:
+              materializationAdmissibleIntervalAvailableCount,
+            scalar_projection_candidate_interval:
+              scalarProjectionCandidateInterval,
+            scalar_projection_candidate_interval_available:
+              finiteOrderedInterval(scalarProjectionCandidateInterval),
+            common_normalizer_candidate_interval:
+              commonNormalizerCandidateInterval,
+            common_normalizer_candidate_interval_available:
+              finiteOrderedInterval(commonNormalizerCandidateInterval),
             terminal_witness_interval_available:
               finiteOrderedInterval(terminalWitnessInterval),
             source_map_provider_object_interval_available:
@@ -96576,6 +96760,45 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
           branchRows.length === 2 &&
           branchRows.every(
             (row) =>
+              row.source_map_provider_object_branch_interval_candidate_source_count ===
+                4 &&
+              row.source_map_provider_object_branch_interval_candidate_available_count >=
+                0 &&
+              row.source_map_provider_object_branch_interval_candidate_available_count <=
+                4 &&
+              row.source_map_provider_object_branch_interval_admissible_available_count >=
+                0 &&
+              row.source_map_provider_object_branch_interval_admissible_available_count <=
+                1 &&
+              [
+                "source-map-provider-object-branch-interval-materialized",
+                "source-map-provider-object-branch-interval-candidates-rejected",
+                "source-map-provider-object-branch-interval-missing",
+              ].includes(
+                row.source_map_provider_object_branch_interval_materialization_status
+              ) &&
+              Array.isArray(
+                row.source_map_provider_object_branch_interval_materialization_sources
+              ) &&
+              row
+                .source_map_provider_object_branch_interval_materialization_sources
+                .length === 4 &&
+              row
+                .source_map_provider_object_branch_interval_materialization_sources
+                .every(
+                  (source) =>
+                    typeof source.source_kind === "string" &&
+                    typeof source.source_field === "string" &&
+                    typeof source.interval_available === "boolean" &&
+                    typeof source.admissible_as_source_map_provider_object ===
+                      "boolean" &&
+                    (source.interval_available === true
+                      ? finiteOrderedInterval(source.interval)
+                      : source.interval === null) &&
+                    (source.admissible_as_source_map_provider_object === true
+                      ? source.rejection_reason === null
+                      : typeof source.rejection_reason === "string")
+                ) &&
               typeof row.terminal_witness_interval_available === "boolean" &&
               (row.terminal_witness_interval_available === true
                 ? finiteOrderedInterval(row.terminal_witness_interval) &&
@@ -96643,6 +96866,11 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
             handoffTerminalRow
               ?.row_terminal_successor_barycentric_to_successor_scalar_handoff_attempt_verified ===
               true,
+          common_normalizer_law_probe_terminal_row_available:
+            lawProbeReady &&
+            lawProbeTerminalRow
+              ?.row_terminal_successor_branch_residual_common_normalizer_law_probe_verified ===
+              true,
           same_domain_terminal_row_aligned:
             projectionTerminalRow?.terminal_graph_cell_id ===
               terminalGraphCellId &&
@@ -96650,22 +96878,43 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
               terminalGraphCellId &&
             handoffTerminalRow?.terminal_graph_cell_id ===
               terminalGraphCellId &&
+            lawProbeTerminalRow?.terminal_graph_cell_id ===
+              terminalGraphCellId &&
             projectionTerminalRow?.terminal_h_index === spec.terminal_h_index &&
             barycentricTerminalRow?.terminal_h_index ===
               spec.terminal_h_index &&
             handoffTerminalRow?.terminal_h_index === spec.terminal_h_index &&
+            lawProbeTerminalRow?.terminal_h_index === spec.terminal_h_index &&
             projectionTerminalRow?.successor_scalar_identity_weight ===
               spec.successor_scalar_identity_weight &&
             barycentricTerminalRow?.successor_scalar_identity_weight ===
               spec.successor_scalar_identity_weight &&
             handoffTerminalRow?.successor_scalar_identity_weight ===
               spec.successor_scalar_identity_weight &&
+            lawProbeTerminalRow?.successor_scalar_identity_weight ===
+              spec.successor_scalar_identity_weight &&
             projectionTerminalRow?.centered_successor_scalar_weight ===
               spec.centered_successor_scalar_weight &&
             barycentricTerminalRow?.centered_successor_scalar_weight ===
               spec.centered_successor_scalar_weight &&
             handoffTerminalRow?.centered_successor_scalar_weight ===
+              spec.centered_successor_scalar_weight &&
+            lawProbeTerminalRow?.centered_successor_scalar_weight ===
               spec.centered_successor_scalar_weight,
+          source_map_provider_object_branch_materialization_recorded:
+            branchReplayRecorded &&
+            lawProbeTerminalRow?.branch_residual_source_object_available ===
+              false &&
+            lawProbeTerminalRow?.branch_residual_source_object_missing ===
+              true &&
+            branchRows.every(
+              (row) =>
+                typeof row
+                  .source_map_provider_object_branch_interval_materialization_status ===
+                  "string" &&
+                row.source_map_provider_object_branch_interval_candidate_source_count ===
+                  4
+            ),
           terminal_witness_to_source_map_branch_replay_recorded:
             branchReplayRecorded,
           successor_scalar_provider_boundary_handoff_recorded:
@@ -96687,6 +96936,12 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
               false &&
             handoffTerminalRow
               ?.row_certifies_branch_resolved_centered_residual_source_object ===
+              false &&
+            lawProbeTerminalRow?.branch_residual_source_object_available ===
+              false &&
+            lawProbeTerminalRow?.branch_residual_source_object_missing ===
+              true &&
+            lawProbeTerminalRow?.common_normalizer_branch_residual_law_proven ===
               false &&
             handoffTerminalRow
               ?.row_certifies_terminal_successor_scalar_provider_boundary_identity ===
@@ -96743,6 +96998,22 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
             branchRows.filter(
               (row) => row.source_map_provider_object_interval_available === true
             ).length,
+          source_map_provider_object_branch_interval_candidate_available_count:
+            branchRows.reduce(
+              (total, row) =>
+                total +
+                row
+                  .source_map_provider_object_branch_interval_candidate_available_count,
+              0
+            ),
+          source_map_provider_object_branch_interval_admissible_available_count:
+            branchRows.reduce(
+              (total, row) =>
+                total +
+                row
+                  .source_map_provider_object_branch_interval_admissible_available_count,
+              0
+            ),
           terminal_row_provider_object_replay_check_kinds: [
             ...terminalCheckKinds,
           ],
@@ -96799,11 +97070,23 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
         handoffRow
           ?.row_terminal_successor_barycentric_to_successor_scalar_handoff_attempt_verified ===
           true,
+      common_normalizer_law_probe_ready:
+        lawProbeReady &&
+        lawProbeRow
+          ?.row_terminal_successor_branch_residual_common_normalizer_law_probe_verified ===
+          true,
       same_domain_terminal_rows_aligned: terminalRows.every(
         (row) =>
           row.terminal_row_provider_object_replay_checks
             ?.same_domain_terminal_row_aligned === true
       ),
+      source_map_provider_object_branch_materialization_recorded:
+        terminalRows.every(
+          (row) =>
+            row.terminal_row_provider_object_replay_checks
+              ?.source_map_provider_object_branch_materialization_recorded ===
+            true
+        ),
       terminal_witness_to_source_map_branch_replay_recorded:
         terminalRows.every(
           (row) =>
@@ -96884,6 +97167,22 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
       source_map_provider_branch_intervals_available_count: branchRows.filter(
         (row) => row.source_map_provider_object_interval_available === true
       ).length,
+      source_map_provider_object_branch_interval_candidate_available_count:
+        terminalRows.reduce(
+          (total, row) =>
+            total +
+            row
+              .source_map_provider_object_branch_interval_candidate_available_count,
+          0
+        ),
+      source_map_provider_object_branch_interval_admissible_available_count:
+        terminalRows.reduce(
+          (total, row) =>
+            total +
+            row
+              .source_map_provider_object_branch_interval_admissible_available_count,
+          0
+        ),
       source_map_provider_terminal_rows_subset_terminal_witness_count:
         terminalRows.filter(
           (row) =>
@@ -96923,12 +97222,12 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
       row_certifies_branch_resolved_centered_residual_source_object: false,
       row_certifies_terminal_successor_scalar_provider_boundary_identity: false,
       row_status: rowVerified
-        ? terminalRows.some((row) => !row.common_normalizer_division_available)
-          ? "terminal-row-provider-object-replay-denominator-open"
-          : branchRows.some(
+        ? branchRows.some(
                 (row) => row.source_map_provider_object_interval_available !== true
               )
             ? "terminal-row-provider-object-replay-provider-object-open"
+          : terminalRows.some((row) => !row.common_normalizer_division_available)
+            ? "terminal-row-provider-object-replay-denominator-open"
           : branchRows.some(
                 (row) =>
                   row
@@ -96994,6 +97293,18 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
     (total, row) => total + row.source_map_provider_branch_intervals_available_count,
     0
   );
+  const materializationCandidateAvailableCount = rows.reduce(
+    (total, row) =>
+      total +
+      row.source_map_provider_object_branch_interval_candidate_available_count,
+    0
+  );
+  const materializationAdmissibleAvailableCount = rows.reduce(
+    (total, row) =>
+      total +
+      row.source_map_provider_object_branch_interval_admissible_available_count,
+    0
+  );
   const terminalWitnessBranchAvailableCount = rows.reduce(
     (total, row) => total + row.terminal_witness_branch_intervals_available_count,
     0
@@ -97037,8 +97348,14 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
     source_object_projection_ready: projectionReady,
     barycentric_terminal_witness_ready: barycentricReady,
     barycentric_successor_scalar_handoff_ready: handoffReady,
+    common_normalizer_law_probe_ready: lawProbeReady,
     same_domain_terminal_rows_aligned: rows.every(
       (row) => row.row_checks?.same_domain_terminal_rows_aligned === true
+    ),
+    source_map_provider_object_branch_materialization_recorded: rows.every(
+      (row) =>
+        row.row_checks
+          ?.source_map_provider_object_branch_materialization_recorded === true
     ),
     terminal_witness_to_source_map_branch_replay_recorded: rows.every(
       (row) =>
@@ -97096,27 +97413,39 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
     allCenteredProjectionsMatch &&
     allProviderBoundaryRemaindersFit &&
     allProjectionSumsContainAggregate;
-  const classification = attemptVerified
-    ? rows.some((row) =>
+  const classification = (() => {
+    if (!attemptVerified) {
+      return "terminal-row-provider-object-replay-attempt-open";
+    }
+    if (!allBranchIntervalsAvailable) {
+      return "terminal-row-provider-object-replay-provider-object-open";
+    }
+    if (
+      rows.some((row) =>
         row.terminal_row_provider_object_replay_rows.some(
           (terminalRow) => !terminalRow.common_normalizer_division_available
         )
       )
-      ? "terminal-row-provider-object-replay-denominator-open"
-      : !allBranchIntervalsAvailable
-        ? "terminal-row-provider-object-replay-provider-object-open"
-      : !allBranchIntervalsOverlap
-        ? "terminal-row-provider-object-replay-branch-overlap-open"
-        : !allBranchIntervalsSubset
-          ? "terminal-row-provider-object-replay-branch-containment-open"
-          : !allProviderBoundaryRemaindersFit
-            ? "terminal-row-provider-object-replay-provider-boundary-open"
-            : !allProjectionSumsContainAggregate
-              ? "terminal-row-provider-object-replay-projection-sum-open"
-              : !allSourceCovarianceLambdasContainCommonNormalizer
-                ? "terminal-row-provider-object-replay-lambda-containment-open"
-                : "terminal-row-provider-object-replay-realized-actual-source-proof-open"
-    : "terminal-row-provider-object-replay-attempt-open";
+    ) {
+      return "terminal-row-provider-object-replay-denominator-open";
+    }
+    if (!allBranchIntervalsOverlap) {
+      return "terminal-row-provider-object-replay-branch-overlap-open";
+    }
+    if (!allBranchIntervalsSubset) {
+      return "terminal-row-provider-object-replay-branch-containment-open";
+    }
+    if (!allProviderBoundaryRemaindersFit) {
+      return "terminal-row-provider-object-replay-provider-boundary-open";
+    }
+    if (!allProjectionSumsContainAggregate) {
+      return "terminal-row-provider-object-replay-projection-sum-open";
+    }
+    if (!allSourceCovarianceLambdasContainCommonNormalizer) {
+      return "terminal-row-provider-object-replay-lambda-containment-open";
+    }
+    return "terminal-row-provider-object-replay-realized-actual-source-proof-open";
+  })();
   return {
     schema:
       THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_ROW_PROVIDER_OBJECT_REPLAY_ATTEMPT_CANDIDATE_SCHEMA,
@@ -97134,6 +97463,8 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
       null,
     terminal_successor_barycentric_to_successor_scalar_handoff_attempt_schema:
       terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt?.schema ?? null,
+    terminal_successor_branch_residual_common_normalizer_law_probe_schema:
+      terminalSuccessorBranchResidualCommonNormalizerLawProbe?.schema ?? null,
     proof_status:
       "candidate-terminal-row-provider-object-replay-certification-open",
     replay_attempt_kind:
@@ -97172,6 +97503,10 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
     terminal_witness_branch_intervals_available_count:
       terminalWitnessBranchAvailableCount,
     source_map_provider_branch_intervals_available_count: branchAvailableCount,
+    source_map_provider_object_branch_interval_candidate_available_count:
+      materializationCandidateAvailableCount,
+    source_map_provider_object_branch_interval_admissible_available_count:
+      materializationAdmissibleAvailableCount,
     source_map_provider_terminal_rows_subset_terminal_witness_count:
       terminalSubsetCount,
     terminal_witness_terminal_rows_available_count:
@@ -97214,7 +97549,9 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
     terminal_row_provider_object_replay_attempt_blocker_classification:
       attemptVerified
         ? !allBranchIntervalsAvailable
-          ? "same-domain-source-map-provider-object-branch-intervals-needed"
+          ? materializationCandidateAvailableCount > 0
+            ? "same-domain-actual-source-map-provider-object-branch-intervals-needed-candidates-not-admissible"
+            : "same-domain-source-map-provider-object-branch-intervals-needed"
           : !allBranchIntervalsOverlap
           ? "same-domain-terminal-witness-source-map-branch-overlap-needed"
           : !allBranchIntervalsSubset
@@ -97230,7 +97567,9 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
     terminal_row_provider_object_replay_attempt_primary_missing_object_kind:
       attemptVerified
         ? !allBranchIntervalsAvailable
-          ? "source-map-provider-object-branch-intervals"
+          ? materializationCandidateAvailableCount > 0
+            ? "actual-source-map-provider-object-branch-intervals-not-candidate-projections"
+            : "source-map-provider-object-branch-intervals"
           : !allBranchIntervalsOverlap
           ? "terminal-witness-source-map-provider-branch-overlap"
           : !allBranchIntervalsSubset
@@ -97246,7 +97585,9 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
     next_certificate_object: !attemptVerified
       ? "same-domain terminal-row provider-object replay artifact"
       : !allBranchIntervalsAvailable
-        ? "same-domain source-map provider-object branch intervals on every terminal row"
+        ? materializationCandidateAvailableCount > 0
+          ? "same-domain proof row materializing actual source-map provider-object branch intervals P_- and P_+ instead of scalar, barycentric, or common-normalizer candidates"
+          : "same-domain source-map provider-object branch intervals on every terminal row"
         : !allBranchIntervalsOverlap
         ? "same-domain proof that each source-map provider branch interval overlaps its terminal-row witness"
         : !allBranchIntervalsSubset
@@ -97259,7 +97600,7 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
                 ? "same-domain source-covariance lambda containment for the common-normalizer lambda"
                 : "same-domain proof that the terminal-row witness is the actual branch-resolved centered residual source object",
     candidate_certificate_route:
-      "This packet compares the terminal-row barycentric branch witness with the source-covariance constrained source-map provider object on the same node, terminal h, branch, domain, and radius rows. It records equality, overlap, and containment separately, then inherits the successor-scalar provider-boundary handoff. It does not certify the branch-resolved centered residual source object, expression-level N38 provider, terminal row provider, S37 division, shifted R43 closure, retained branch, or directed-rounded shared-domain provider.",
+      "This packet first tries to materialize P_- and P_+ from explicit same-domain source-map provider-object branch intervals. Scalar source-covariance projection, barycentric terminal-witness, and common-normalizer law-probe intervals are recorded as inspected candidates but are not admitted as actual provider-object intervals. Only after P_b materializes does it compare the terminal-row branch witness with the provider object and inherit the successor-scalar provider-boundary handoff. It does not certify the branch-resolved centered residual source object, scalar lambda source object, W partition, matrix replay, expression-level N38 provider, terminal row provider, S37 division, shifted R43 closure, retained branch, or directed-rounded shared-domain provider.",
     claim_boundary: h39TerminalRowProviderObjectReplayAttemptClaimBoundary(),
   };
 }
@@ -97332,7 +97673,9 @@ export function validateH39RequestedY44TerminalRowProviderObjectReplayAttemptCan
     "source_object_projection_ready",
     "barycentric_terminal_witness_ready",
     "barycentric_successor_scalar_handoff_ready",
+    "common_normalizer_law_probe_ready",
     "same_domain_terminal_rows_aligned",
+    "source_map_provider_object_branch_materialization_recorded",
     "terminal_witness_to_source_map_branch_replay_recorded",
     "successor_scalar_provider_boundary_handoff_recorded",
     "source_covariance_lambda_containment_recorded",
@@ -97342,7 +97685,9 @@ export function validateH39RequestedY44TerminalRowProviderObjectReplayAttemptCan
     "projection_terminal_row_available",
     "barycentric_terminal_witness_row_available",
     "barycentric_successor_scalar_handoff_terminal_row_available",
+    "common_normalizer_law_probe_terminal_row_available",
     "same_domain_terminal_row_aligned",
+    "source_map_provider_object_branch_materialization_recorded",
     "terminal_witness_to_source_map_branch_replay_recorded",
     "successor_scalar_provider_boundary_handoff_recorded",
     "source_covariance_lambda_containment_recorded",
@@ -97370,6 +97715,9 @@ export function validateH39RequestedY44TerminalRowProviderObjectReplayAttemptCan
     artifact
       ?.terminal_successor_barycentric_to_successor_scalar_handoff_attempt_schema !==
       THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SUCCESSOR_BARYCENTRIC_TO_SUCCESSOR_SCALAR_HANDOFF_ATTEMPT_CANDIDATE_SCHEMA ||
+    artifact
+      ?.terminal_successor_branch_residual_common_normalizer_law_probe_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SUCCESSOR_BRANCH_RESIDUAL_COMMON_NORMALIZER_LAW_PROBE_CANDIDATE_SCHEMA ||
     artifact?.proof_status !==
       "candidate-terminal-row-provider-object-replay-certification-open" ||
     artifact?.replay_attempt_kind !==
@@ -97421,6 +97769,18 @@ export function validateH39RequestedY44TerminalRowProviderObjectReplayAttemptCan
     artifact?.terminal_witness_branch_intervals_available_count > 30 ||
     artifact?.source_map_provider_branch_intervals_available_count < 0 ||
     artifact?.source_map_provider_branch_intervals_available_count > 30 ||
+    artifact
+      ?.source_map_provider_object_branch_interval_candidate_available_count <
+      0 ||
+    artifact
+      ?.source_map_provider_object_branch_interval_candidate_available_count >
+      120 ||
+    artifact
+      ?.source_map_provider_object_branch_interval_admissible_available_count <
+      0 ||
+    artifact
+      ?.source_map_provider_object_branch_interval_admissible_available_count >
+      30 ||
     artifact
       ?.source_map_provider_terminal_rows_subset_terminal_witness_count < 0 ||
     artifact
@@ -97537,6 +97897,79 @@ export function validateH39RequestedY44TerminalRowProviderObjectReplayAttemptCan
             branchRows.every(
               (branchRow) =>
                 ["-", "+"].includes(branchRow?.branch) &&
+                [
+                  null,
+                  "explicit-source-map-provider-object-branch-interval",
+                ].includes(
+                  branchRow?.source_map_provider_object_materialization_source_kind
+                ) &&
+                [
+                  "source-map-provider-object-branch-interval-materialized",
+                  "source-map-provider-object-branch-interval-candidates-rejected",
+                  "source-map-provider-object-branch-interval-missing",
+                ].includes(
+                  branchRow
+                    ?.source_map_provider_object_branch_interval_materialization_status
+                ) &&
+                Array.isArray(
+                  branchRow
+                    ?.source_map_provider_object_branch_interval_materialization_sources
+                ) &&
+                branchRow
+                  .source_map_provider_object_branch_interval_materialization_sources
+                  .length === 4 &&
+                branchRow
+                  .source_map_provider_object_branch_interval_materialization_sources
+                  .every(
+                    (source) =>
+                      typeof source?.source_kind === "string" &&
+                      typeof source?.source_field === "string" &&
+                      typeof source?.interval_available === "boolean" &&
+                      typeof source
+                        ?.admissible_as_source_map_provider_object ===
+                        "boolean" &&
+                      (source?.interval_available === true
+                        ? finiteOrderedInterval(source?.interval)
+                        : source?.interval === null) &&
+                      (source
+                        ?.admissible_as_source_map_provider_object === true
+                        ? source?.rejection_reason === null
+                        : typeof source?.rejection_reason === "string")
+                  ) &&
+                branchRow
+                  ?.source_map_provider_object_branch_interval_candidate_source_count ===
+                  4 &&
+                branchRow
+                  ?.source_map_provider_object_branch_interval_candidate_available_count >=
+                  0 &&
+                branchRow
+                  ?.source_map_provider_object_branch_interval_candidate_available_count <=
+                  4 &&
+                branchRow
+                  ?.source_map_provider_object_branch_interval_admissible_available_count >=
+                  0 &&
+                branchRow
+                  ?.source_map_provider_object_branch_interval_admissible_available_count <=
+                  1 &&
+                typeof branchRow?.scalar_projection_candidate_interval_available ===
+                  "boolean" &&
+                (branchRow?.scalar_projection_candidate_interval_available ===
+                true
+                  ? finiteOrderedInterval(
+                      branchRow?.scalar_projection_candidate_interval
+                    )
+                  : branchRow?.scalar_projection_candidate_interval ===
+                    null) &&
+                typeof branchRow
+                  ?.common_normalizer_candidate_interval_available ===
+                  "boolean" &&
+                (branchRow
+                  ?.common_normalizer_candidate_interval_available === true
+                  ? finiteOrderedInterval(
+                      branchRow?.common_normalizer_candidate_interval
+                    )
+                  : branchRow?.common_normalizer_candidate_interval ===
+                    null) &&
                 typeof branchRow?.terminal_witness_interval_available ===
                   "boolean" &&
                 (branchRow?.terminal_witness_interval_available === true
@@ -97630,6 +98063,18 @@ export function validateH39RequestedY44TerminalRowProviderObjectReplayAttemptCan
               0 &&
             terminalRow?.source_map_provider_branch_intervals_available_count <=
               2 &&
+            terminalRow
+              ?.source_map_provider_object_branch_interval_candidate_available_count >=
+              0 &&
+            terminalRow
+              ?.source_map_provider_object_branch_interval_candidate_available_count <=
+              8 &&
+            terminalRow
+              ?.source_map_provider_object_branch_interval_admissible_available_count >=
+              0 &&
+            terminalRow
+              ?.source_map_provider_object_branch_interval_admissible_available_count <=
+              2 &&
             sameStringSet(
               terminalRow?.terminal_row_provider_object_replay_check_kinds,
               expectedTerminalCheckKinds
@@ -97672,6 +98117,18 @@ export function validateH39RequestedY44TerminalRowProviderObjectReplayAttemptCan
         row?.terminal_witness_branch_intervals_available_count <= 6 &&
         row?.source_map_provider_branch_intervals_available_count >= 0 &&
         row?.source_map_provider_branch_intervals_available_count <= 6 &&
+        row
+          ?.source_map_provider_object_branch_interval_candidate_available_count >=
+          0 &&
+        row
+          ?.source_map_provider_object_branch_interval_candidate_available_count <=
+          24 &&
+        row
+          ?.source_map_provider_object_branch_interval_admissible_available_count >=
+          0 &&
+        row
+          ?.source_map_provider_object_branch_interval_admissible_available_count <=
+          6 &&
         row?.terminal_witness_terminal_rows_available_count >= 0 &&
         row?.terminal_witness_terminal_rows_available_count <= 3 &&
         row?.source_map_provider_terminal_rows_available_count >= 0 &&
@@ -125134,6 +125591,31 @@ export function buildH39RequestedY44TerminalSourceCovarianceProviderObjectBranch
             providerObjectBranchResidualExtractorSource,
           source_map_provider_object_replay_branch_row_available:
             replayBranchRow !== null,
+          source_map_provider_object_materialization_source_kind:
+            replayBranchRow?.source_map_provider_object_materialization_source_kind ??
+            null,
+          source_map_provider_object_branch_interval_materialization_status:
+            replayBranchRow
+              ?.source_map_provider_object_branch_interval_materialization_status ??
+            null,
+          source_map_provider_object_branch_interval_candidate_source_count:
+            Number(
+              replayBranchRow
+                ?.source_map_provider_object_branch_interval_candidate_source_count ??
+                0
+            ),
+          source_map_provider_object_branch_interval_candidate_available_count:
+            Number(
+              replayBranchRow
+                ?.source_map_provider_object_branch_interval_candidate_available_count ??
+                0
+            ),
+          source_map_provider_object_branch_interval_admissible_available_count:
+            Number(
+              replayBranchRow
+                ?.source_map_provider_object_branch_interval_admissible_available_count ??
+                0
+            ),
           source_map_provider_object_interval_half_width: finiteOrNull(
             replayBranchRow?.source_map_provider_object_interval_half_width
           ),
@@ -125177,6 +125659,23 @@ export function buildH39RequestedY44TerminalSourceCovarianceProviderObjectBranch
           (row) =>
             row.source_map_provider_object_replay_branch_row_available ===
               true &&
+            row.source_map_provider_object_branch_interval_candidate_source_count ===
+              4 &&
+            row.source_map_provider_object_branch_interval_candidate_available_count >=
+              0 &&
+            row.source_map_provider_object_branch_interval_candidate_available_count <=
+              4 &&
+            row.source_map_provider_object_branch_interval_admissible_available_count >=
+              0 &&
+            row.source_map_provider_object_branch_interval_admissible_available_count <=
+              1 &&
+            [
+              "source-map-provider-object-branch-interval-materialized",
+              "source-map-provider-object-branch-interval-candidates-rejected",
+              "source-map-provider-object-branch-interval-missing",
+            ].includes(
+              row.source_map_provider_object_branch_interval_materialization_status
+            ) &&
             typeof row.provider_object_branch_residual_interval_available ===
               "boolean" &&
             typeof row.terminal_witness_interval_available === "boolean"
@@ -125255,6 +125754,22 @@ export function buildH39RequestedY44TerminalSourceCovarianceProviderObjectBranch
           providerIntervalAvailableCount,
         terminal_witness_interval_available_branch_row_count:
           terminalWitnessAvailableCount,
+        source_map_provider_object_branch_interval_candidate_available_count:
+          branchRows.reduce(
+            (total, row) =>
+              total +
+              row
+                .source_map_provider_object_branch_interval_candidate_available_count,
+            0
+          ),
+        source_map_provider_object_branch_interval_admissible_available_count:
+          branchRows.reduce(
+            (total, row) =>
+              total +
+              row
+                .source_map_provider_object_branch_interval_admissible_available_count,
+            0
+          ),
         provider_object_branch_residual_pair_available: pairAvailable,
         provider_object_branch_residual_pair_missing: !pairAvailable,
         provider_object_branch_residual_extractor_check_kinds: [
@@ -125347,6 +125862,22 @@ export function buildH39RequestedY44TerminalSourceCovarianceProviderObjectBranch
         terminalRows.filter(
           (row) => row.provider_object_branch_residual_pair_missing === true
         ).length,
+      source_map_provider_object_branch_interval_candidate_available_count:
+        terminalRows.reduce(
+          (total, row) =>
+            total +
+            row
+              .source_map_provider_object_branch_interval_candidate_available_count,
+          0
+        ),
+      source_map_provider_object_branch_interval_admissible_available_count:
+        terminalRows.reduce(
+          (total, row) =>
+            total +
+            row
+              .source_map_provider_object_branch_interval_admissible_available_count,
+          0
+        ),
       row_check_kinds: [...checkKinds],
       row_checks: rowChecks,
       row_provider_object_branch_residual_extractor_verified: rowVerified,
@@ -125399,6 +125930,12 @@ export function buildH39RequestedY44TerminalSourceCovarianceProviderObjectBranch
   const pairMissingCount = sumRows(
     "provider_object_branch_residual_pair_missing_terminal_row_count"
   );
+  const materializationCandidateAvailableCount = sumRows(
+    "source_map_provider_object_branch_interval_candidate_available_count"
+  );
+  const materializationAdmissibleAvailableCount = sumRows(
+    "source_map_provider_object_branch_interval_admissible_available_count"
+  );
   const aggregateChecks = {
     terminal_row_provider_object_replay_ready: replayReady,
     same_domain_terminal_rows_aligned: rows.every(
@@ -125433,7 +125970,9 @@ export function buildH39RequestedY44TerminalSourceCovarianceProviderObjectBranch
   const blockerClassification =
     classification ===
     "provider-object-branch-residual-extractor-provider-intervals-needed"
-      ? "same-domain-source-map-provider-object-branch-intervals-needed"
+      ? terminalRowProviderObjectReplayAttempt
+          ?.terminal_row_provider_object_replay_attempt_blocker_classification ??
+        "same-domain-source-map-provider-object-branch-intervals-needed"
       : classification ===
           "provider-object-branch-residual-extractor-ready-for-provider-object-W"
         ? "same-domain-provider-object-W-expression-replay-needed"
@@ -125481,6 +126020,10 @@ export function buildH39RequestedY44TerminalSourceCovarianceProviderObjectBranch
       pairAvailableCount,
     provider_object_branch_residual_pair_missing_terminal_row_count:
       pairMissingCount,
+    source_map_provider_object_branch_interval_candidate_available_count:
+      materializationCandidateAvailableCount,
+    source_map_provider_object_branch_interval_admissible_available_count:
+      materializationAdmissibleAvailableCount,
     provider_object_w_expression_certified: false,
     provider_object_mu_quotient_certified: false,
     matrix_provider_identity_certified: false,
@@ -125636,6 +126179,18 @@ export function validateH39RequestedY44TerminalSourceCovarianceProviderObjectBra
       ?.provider_object_branch_residual_pair_missing_terminal_row_count >
       15 ||
     artifact
+      ?.source_map_provider_object_branch_interval_candidate_available_count <
+      0 ||
+    artifact
+      ?.source_map_provider_object_branch_interval_candidate_available_count >
+      120 ||
+    artifact
+      ?.source_map_provider_object_branch_interval_admissible_available_count <
+      0 ||
+    artifact
+      ?.source_map_provider_object_branch_interval_admissible_available_count >
+      30 ||
+    artifact
       ?.provider_object_branch_residual_pair_available_terminal_row_count +
       artifact
         ?.provider_object_branch_residual_pair_missing_terminal_row_count !==
@@ -125716,6 +126271,18 @@ export function validateH39RequestedY44TerminalSourceCovarianceProviderObjectBra
         row
           ?.provider_object_branch_residual_pair_missing_terminal_row_count <=
           3 &&
+        row
+          ?.source_map_provider_object_branch_interval_candidate_available_count >=
+          0 &&
+        row
+          ?.source_map_provider_object_branch_interval_candidate_available_count <=
+          24 &&
+        row
+          ?.source_map_provider_object_branch_interval_admissible_available_count >=
+          0 &&
+        row
+          ?.source_map_provider_object_branch_interval_admissible_available_count <=
+          6 &&
         sameStringSet(row?.row_check_kinds, expectedCheckKinds) &&
         expectedCheckKinds.every((kind) => row?.row_checks?.[kind] === true) &&
         row?.row_provider_object_branch_residual_extractor_verified === true &&
@@ -125764,6 +126331,18 @@ export function validateH39RequestedY44TerminalSourceCovarianceProviderObjectBra
             terminalRow?.terminal_witness_interval_available_branch_row_count >=
               0 &&
             terminalRow?.terminal_witness_interval_available_branch_row_count <=
+              2 &&
+            terminalRow
+              ?.source_map_provider_object_branch_interval_candidate_available_count >=
+              0 &&
+            terminalRow
+              ?.source_map_provider_object_branch_interval_candidate_available_count <=
+              8 &&
+            terminalRow
+              ?.source_map_provider_object_branch_interval_admissible_available_count >=
+              0 &&
+            terminalRow
+              ?.source_map_provider_object_branch_interval_admissible_available_count <=
               2 &&
             typeof terminalRow
               ?.provider_object_branch_residual_pair_available === "boolean" &&
@@ -125815,6 +126394,35 @@ export function validateH39RequestedY44TerminalSourceCovarianceProviderObjectBra
                   "terminal-row-provider-object-replay-attempt" &&
                 branchRow?.source_map_provider_object_replay_branch_row_available ===
                   true &&
+                [
+                  null,
+                  "explicit-source-map-provider-object-branch-interval",
+                ].includes(
+                  branchRow?.source_map_provider_object_materialization_source_kind
+                ) &&
+                [
+                  "source-map-provider-object-branch-interval-materialized",
+                  "source-map-provider-object-branch-interval-candidates-rejected",
+                  "source-map-provider-object-branch-interval-missing",
+                ].includes(
+                  branchRow
+                    ?.source_map_provider_object_branch_interval_materialization_status
+                ) &&
+                branchRow
+                  ?.source_map_provider_object_branch_interval_candidate_source_count ===
+                  4 &&
+                branchRow
+                  ?.source_map_provider_object_branch_interval_candidate_available_count >=
+                  0 &&
+                branchRow
+                  ?.source_map_provider_object_branch_interval_candidate_available_count <=
+                  4 &&
+                branchRow
+                  ?.source_map_provider_object_branch_interval_admissible_available_count >=
+                  0 &&
+                branchRow
+                  ?.source_map_provider_object_branch_interval_admissible_available_count <=
+                  1 &&
                 typeof branchRow
                   ?.provider_object_branch_residual_interval_available ===
                   "boolean" &&

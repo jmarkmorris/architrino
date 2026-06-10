@@ -4378,6 +4378,20 @@ remains candidate-only and certifies no extractor, no provider-object W
 expression, no $\mu$ quotient, no matrix identity, no source-covariance object,
 no terminal row provider enclosure, and no directed-rounded provider.
 
+`buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandidate` now
+materializes the `P_b` slot only from explicit same-domain source-map
+provider-object branch intervals. It also records scalar source-covariance
+projection, barycentric terminal-witness, and common-normalizer law-probe rows
+as inspected candidate sources, but rejects them as actual provider-object
+branch intervals unless a branch-resolved source object is available on the
+same terminal row. The focused replay currently leaves
+`source_map_provider_branch_intervals_available_count=0` and
+`source_map_provider_object_branch_interval_admissible_available_count=0`, with
+`terminal-row-provider-object-replay-provider-object-open` as the replay
+classification. Thus the live blocker is not W partitioning, scalar lambda,
+virial work, or matrix replay; it is upstream materialization of finite actual
+provider-object branch intervals $P_-$ and $P_+$ on the terminal rows.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.

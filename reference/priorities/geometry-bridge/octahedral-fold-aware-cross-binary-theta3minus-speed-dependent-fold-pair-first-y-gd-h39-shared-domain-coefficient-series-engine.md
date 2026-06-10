@@ -3935,6 +3935,24 @@ provider-object W expression, no $\mu$ quotient, no matrix identity, no
 source-covariance object, no terminal row provider enclosure, and no
 directed-rounded provider.
 
+\texttt{buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandidate}
+now materializes the \texttt{P\_b} slot only from explicit same-domain
+source-map provider-object branch intervals. It records scalar
+source-covariance projection, barycentric terminal-witness, and
+common-normalizer law-probe rows as inspected candidate sources, but rejects
+them as actual provider-object branch intervals unless a branch-resolved source
+object is available on the same terminal row. The focused replay currently
+leaves
+\texttt{source\_map\_provider\_branch\_intervals\_available\_count=0}
+and
+\texttt{source\_map\_provider\_object\_branch\_interval\_admissible\_available\_count=0},
+with
+\texttt{terminal-row-provider-object-replay-provider-object-open}
+as the replay classification. Thus the live blocker is upstream
+materialization of finite actual provider-object branch intervals $P_-$ and
+$P_+$ on the terminal rows, not W partitioning, scalar lambda, virial work, or
+matrix replay.
+
 \texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
 now also probes a shared terminal-residual coordinate for
 $h_{37},h_{36},h_{35}$. Instead of assigning independent residual hulls to the

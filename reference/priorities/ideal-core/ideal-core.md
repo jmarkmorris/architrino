@@ -37,6 +37,7 @@ The target reader experience is lesson-like rather than decorative. The app shou
 - the contracted axis ratio $\xi=R_\parallel/R_\perp=1/\gamma$;
 - the time-dilation relation $\Delta t=\gamma\Delta\tau$;
 - the length-contraction relation $L_\parallel=L_0/\gamma$;
+- the candidate angular-momentum alignment of the binary normals toward $n=(1,1,1)/\sqrt{3}$;
 - and the candidate Noether swarm spheroid geometry implied by closed return-cycle closure.
 
 ## Current State
@@ -54,7 +55,7 @@ The target reader experience is lesson-like rather than decorative. The app shou
 2. `spheroid_axis_mapping` — Refine the core envelope, binary path radii, and velocity direction into a stable Lorentz spheroid visual grammar. Status: `next`. Depends on: none.
 3. `return_cycle_closure_readout` — Extend the closure-defect readout into a visual timing comparison for longitudinal and transverse return cycles. Status: `pending`. Depends on: `spheroid_axis_mapping`.
 
-Completed 2026-06-10: `lorentz_core_lesson` added a velocity-fraction slider labeled $\beta=v/c$, Lorentz chart, equation stack, a dedicated relative-time / relative-length equation card panel, a normalized energy ledger with $m_0=1$ and $c=1$, contracted-axis spheroid transform, and numeric return-cycle residual. The energy ledger separates rest mass $m_0$, rest energy $E_0=m_0c^2$, movement energy $\Delta E=(\gamma-1)m_0c^2$, movement energy-equivalent mass $\Delta E/c^2$, total energy $E=\gamma m_0c^2$, and total energy-equivalent mass $E/c^2$. The separate rest-envelope overlay was removed because the slider can return to $v/c=0$ for the uncontracted reference state. The slider reaches the $v/c=1$ light-speed limit as a limit state: $\gamma$, relative time, total energy, and movement energy diverge, while contracted length goes to zero.
+Completed 2026-06-10: `lorentz_core_lesson` added a velocity-fraction slider labeled $\beta=v/c$, Lorentz chart, equation stack, a dedicated relative-time / relative-length equation card panel, a normalized energy ledger with $m_0=1$ and $c=1$, directional contracted-axis spheroid transform along $n=(1,1,1)/\sqrt{3}$, velocity-dependent binary angular-momentum alignment toward the same $n$, and numeric return-cycle residual. The energy ledger separates rest mass $m_0$, rest energy $E_0=m_0c^2$, movement energy $\Delta E=(\gamma-1)m_0c^2$, movement energy-equivalent mass $\Delta E/c^2$, total energy $E=\gamma m_0c^2$, and total energy-equivalent mass $E/c^2$. The separate rest-envelope overlay was removed because the slider can return to $v/c=0$ for the uncontracted reference state. The slider reaches the $v/c=1$ light-speed limit as a limit state: $\gamma$, relative time, total energy, and movement energy diverge, while contracted length goes to zero and all binary angular-momentum normals converge to $n$.
 
 ## Top Priority: Lorentz Core Lesson
 
@@ -127,14 +128,16 @@ The primary core view should map Lorentz variables to geometry as follows:
 | $v/c$ | normalized speed | primary lesson slider value |
 | $\gamma$ | Lorentz factor | time-dilation curve and main numeric readout |
 | $R_\perp$ | transverse core radius | unchanged equatorial radius in the Lorentz lesson |
-| $R_\parallel$ | radius along velocity direction | contracted spheroid axis |
+| $R_\parallel$ | radius along the assembly momentum / velocity direction | contracted spheroid axis along $n$ |
 | $\xi=R_\parallel/R_\perp$ | Lorentz axis ratio | length-contraction curve and shape flattening |
+| $n=(1,1,1)/\sqrt{3}$ | assembly momentum and velocity axis | shared contraction axis and convergence target for binary angular-momentum normals |
+| $\ell_i$ | binary angular-momentum normal | rest-orthogonal triad that tilts toward $n$ as $\xi$ decreases |
 | $\Delta\tau$ | proper-time tick | rest-core tick marker |
 | $\Delta t$ | observer-time tick | dilated tick marker |
 | $L_0$ | proper length | rest reference ruler |
 | $L_\parallel$ | observed parallel length | contracted ruler along $v$ |
 
-The default geometry should be a Lorentz-flattened oblate spheroid with its shortened symmetry axis aligned to the velocity vector. If the velocity vector is drawn horizontally, the core should visibly flatten horizontally while the transverse radii remain fixed.
+The default geometry should be a Lorentz-flattened oblate spheroid with its shortened symmetry axis aligned to the assembly momentum / velocity vector $n=(1,1,1)/\sqrt{3}$. A direct-on view down $n$ should show the high-speed binary orbit planes as circles, because their angular-momentum normals converge to the same axis that the spheroid contracts along.
 
 ### Teaching View Requirements
 
@@ -314,7 +317,8 @@ This priority is done when:
 - `ideal-core.html` has a dedicated Lorentz lesson mode or equivalent view state;
 - changing $v/c$ updates the spheroid geometry, time-dilation readout, length-contraction readout, and chart cursor together;
 - the chart displays $\gamma(v/c)$ and $\xi(v/c)$ with active symbolic labels;
-- the central core visibly contracts along the velocity direction according to $R_\parallel=R_\perp/\gamma$;
+- the central core visibly contracts along the assembly momentum / velocity direction $n=(1,1,1)/\sqrt{3}$ according to $R_\parallel=R_\perp/\gamma$;
+- the binary angular-momentum normals remain orthogonal at $v/c=0$ and converge toward $n=(1,1,1)/\sqrt{3}$ as $v/c\to1$;
 - the central view labels the spheroid as the Outer-Binary Lorentz Envelope and does not present it as a solid body filled by the outer binary;
 - the app displays $V_{\mathrm{env}}(v)/V_{\mathrm{env}}(0)=1/\gamma$ in the no-extra-scale lesson state, with the $\lambda^3/\gamma$ extension reserved for scale-channel mode;
 - the teaching view distinguishes one-way legs from return cycles and groups $t_+$ and $t_-$ into $T_\parallel$;
