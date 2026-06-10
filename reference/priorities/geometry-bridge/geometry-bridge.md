@@ -4359,6 +4359,25 @@ residual extractor, no provider-object W expression, no $\mu$ quotient, no
 matrix identity, no source-covariance object, no terminal row provider
 enclosure, and no directed-rounded provider.
 
+`buildH39RequestedY44TerminalSourceCovarianceProviderObjectBranchResidualExtractorCandidate`
+now implements that extractor audit directly against the same-domain
+terminal-row provider-object replay. It emits five node rows, fifteen terminal
+rows, and thirty branch rows naming the candidate branch residuals as $P_-$ and
+$P_+$. On the current live rows, both the source-map provider-object branch
+intervals and the terminal witness intervals are absent at this extractor
+surface:
+`provider_object_branch_residual_interval_available_branch_row_count=0`,
+`terminal_witness_interval_available_branch_row_count=0`,
+`provider_object_branch_residual_pair_available_terminal_row_count=0`, and
+`provider_object_branch_residual_pair_missing_terminal_row_count=15`. The W
+evaluator now consumes this extractor and reports
+`same-domain-source-map-provider-object-branch-intervals-needed`, so the next
+blocker is upstream of W partitioning or matrix replay: materialize same-domain
+source-map provider-object branch intervals on the terminal rows. This packet
+remains candidate-only and certifies no extractor, no provider-object W
+expression, no $\mu$ quotient, no matrix identity, no source-covariance object,
+no terminal row provider enclosure, and no directed-rounded provider.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.

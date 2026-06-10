@@ -112,6 +112,7 @@ import {
   buildH39RequestedY44TerminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutorCandidate,
   buildH39RequestedY44TerminalSourceCovarianceWronskianEmittedBranchMatrixIdentityOrWProducerCandidate,
   buildH39RequestedY44TerminalSourceCovarianceWronskianWGateProvenanceAuditCandidate,
+  buildH39RequestedY44TerminalSourceCovarianceProviderObjectBranchResidualExtractorCandidate,
   buildH39RequestedY44TerminalSourceCovarianceWronskianProviderObjectWExpressionEvaluatorCandidate,
   buildH39RequestedY44RowLocalN38SignedSourceSumDerivativeProviderCandidate,
   validateH39CorrelatedResidualWidthDiagnostic,
@@ -221,6 +222,7 @@ import {
   validateH39RequestedY44TerminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutorCandidate,
   validateH39RequestedY44TerminalSourceCovarianceWronskianEmittedBranchMatrixIdentityOrWProducerCandidate,
   validateH39RequestedY44TerminalSourceCovarianceWronskianWGateProvenanceAuditCandidate,
+  validateH39RequestedY44TerminalSourceCovarianceProviderObjectBranchResidualExtractorCandidate,
   validateH39RequestedY44TerminalSourceCovarianceWronskianProviderObjectWExpressionEvaluatorCandidate,
   validateH39RequestedY44RowLocalN38SignedSourceSumDerivativeProvider,
   validateH39RequestedY44SignedSourceSumDerivativeAllocationTarget,
@@ -26260,11 +26262,176 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
     ),
     []
   );
+  const terminalSourceCovarianceProviderObjectBranchResidualExtractor =
+    buildH39RequestedY44TerminalSourceCovarianceProviderObjectBranchResidualExtractorCandidate(
+      {
+        terminalRowProviderObjectReplayAttempt,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44TerminalSourceCovarianceProviderObjectBranchResidualExtractorCandidate(
+      terminalSourceCovarianceProviderObjectBranchResidualExtractor
+    ),
+    []
+  );
+  assert.equal(
+    terminalSourceCovarianceProviderObjectBranchResidualExtractor
+      .provider_object_branch_residual_extractor_verified,
+    true
+  );
+  assert.equal(
+    terminalSourceCovarianceProviderObjectBranchResidualExtractor
+      .provider_object_branch_residual_extractor_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceProviderObjectBranchResidualExtractor
+      .terminal_source_covariance_provider_object_branch_residual_extractor_row_count,
+    5
+  );
+  assert.equal(
+    terminalSourceCovarianceProviderObjectBranchResidualExtractor
+      .terminal_source_covariance_provider_object_branch_residual_extractor_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalSourceCovarianceProviderObjectBranchResidualExtractor
+      .terminal_source_covariance_provider_object_branch_residual_extractor_branch_row_count,
+    30
+  );
+  assert.equal(
+    terminalSourceCovarianceProviderObjectBranchResidualExtractor
+      .provider_object_branch_residual_interval_available_branch_row_count,
+    0
+  );
+  assert.equal(
+    terminalSourceCovarianceProviderObjectBranchResidualExtractor
+      .terminal_witness_interval_available_branch_row_count,
+    0
+  );
+  assert.equal(
+    terminalSourceCovarianceProviderObjectBranchResidualExtractor
+      .provider_object_branch_residual_pair_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalSourceCovarianceProviderObjectBranchResidualExtractor
+      .provider_object_branch_residual_pair_missing_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalSourceCovarianceProviderObjectBranchResidualExtractor
+      .provider_object_branch_residual_extractor_classification,
+    "provider-object-branch-residual-extractor-provider-intervals-needed"
+  );
+  assert.equal(
+    terminalSourceCovarianceProviderObjectBranchResidualExtractor
+      .provider_object_branch_residual_extractor_blocker_classification,
+    "same-domain-source-map-provider-object-branch-intervals-needed"
+  );
+  assert.equal(
+    terminalSourceCovarianceProviderObjectBranchResidualExtractor
+      .provider_object_w_expression_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceProviderObjectBranchResidualExtractor
+      .matrix_provider_identity_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceProviderObjectBranchResidualExtractor
+      .rank_two_source_covariance_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceProviderObjectBranchResidualExtractor
+      .non_scalar_source_covariance_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceProviderObjectBranchResidualExtractor
+      .scalar_lambda_source_object_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceCovarianceProviderObjectBranchResidualExtractor
+      .directed_rounded_shared_domain_provider_certified,
+    false
+  );
+  assert.ok(
+    terminalSourceCovarianceProviderObjectBranchResidualExtractor.terminal_source_covariance_provider_object_branch_residual_extractor_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_source_covariance_provider_object_branch_residual_extractor_terminal_row_count ===
+          3 &&
+        row.terminal_source_covariance_provider_object_branch_residual_extractor_branch_row_count ===
+          6 &&
+        row.row_provider_object_branch_residual_extractor_verified === true &&
+        row.row_certifies_provider_object_branch_residual_extractor ===
+          false &&
+        row.row_certifies_directed_rounded_shared_domain === false &&
+        row.terminal_source_covariance_provider_object_branch_residual_extractor_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_graph_cell_id ===
+              `speed.${index}.first-y` &&
+            terminalRow.provider_object_branch_residual_extractor_formula ===
+              "P_b=source_map_provider_object_branch_residual_b" &&
+            terminalRow.provider_object_branch_residual_extractor_source ===
+              "terminal-row-provider-object-replay-attempt" &&
+            terminalRow.provider_object_branch_residual_pair_available ===
+              false &&
+            terminalRow.provider_object_branch_residual_pair_missing === true &&
+            terminalRow.row_provider_object_branch_residual_extractor_verified ===
+              true &&
+            terminalRow.row_certifies_provider_object_branch_residual_extractor ===
+              false &&
+            terminalRow.row_certifies_directed_rounded_shared_domain ===
+              false &&
+            terminalRow.provider_object_branch_residual_extractor_branch_rows.every(
+              (branchRow) =>
+                ["-", "+"].includes(branchRow.branch) &&
+                ["P_-", "P_+"].includes(
+                  branchRow.provider_object_branch_residual_symbol
+                ) &&
+                branchRow.provider_object_branch_residual_interval_available ===
+                  false &&
+                branchRow.provider_object_branch_residual_interval === null &&
+                branchRow.terminal_witness_interval_available === false &&
+                branchRow.terminal_witness_interval === null &&
+                branchRow.source_map_provider_object_interval_source ===
+                  "terminal-row-provider-object-replay-attempt" &&
+                branchRow.branch_residual_extractor_status ===
+                  "provider-object-branch-residual-interval-missing" &&
+                branchRow.row_certifies_provider_object_branch_residual_extractor ===
+                  false &&
+                branchRow.row_certifies_directed_rounded_shared_domain ===
+                  false
+            )
+        )
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      terminalSourceCovarianceProviderObjectBranchResidualExtractor
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalSourceCovarianceProviderObjectBranchResidualExtractor,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
   const terminalSourceCovarianceWronskianProviderObjectWExpressionEvaluator =
     buildH39RequestedY44TerminalSourceCovarianceWronskianProviderObjectWExpressionEvaluatorCandidate(
       {
         terminalSourceCovarianceCrossBranchWronskianDiagnostic,
         terminalSourceCovarianceWronskianWGateProvenanceAudit,
+        terminalSourceCovarianceProviderObjectBranchResidualExtractor,
       }
     );
   assert.deepEqual(
@@ -26326,7 +26493,7 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   assert.equal(
     terminalSourceCovarianceWronskianProviderObjectWExpressionEvaluator
       .provider_object_w_expression_evaluator_blocker_classification,
-    "same-domain-expression-level-source-map-provider-object-branch-residual-extractor-needed"
+    "same-domain-source-map-provider-object-branch-intervals-needed"
   );
   assert.equal(
     terminalSourceCovarianceWronskianProviderObjectWExpressionEvaluator
@@ -26397,6 +26564,10 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
               "W_provider=P_-*s_+ - P_+*s_-" &&
             terminalRow.provider_object_mu_formula ===
               "mu_provider=W_provider/Q" &&
+            terminalRow.provider_object_branch_residual_source_kind ===
+              "provider-object-branch-residual-extractor" &&
+            terminalRow.provider_object_branch_residual_extractor_available ===
+              true &&
             terminalRow.provider_object_branch_residual_pair_available ===
               false &&
             terminalRow.provider_object_w_expression_interval_available ===

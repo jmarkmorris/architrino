@@ -811,80 +811,6 @@ function updateAxisReferenceGroup(Three, group, radius) {
   axisGeometry.computeBoundingSphere();
 }
 
-function createVelocityReferenceGroup(Three) {
-  const group = new Three.Group();
-  const positions = new Float32Array(4 * 3);
-  const colors = new Float32Array(4 * 3);
-  const geometry = new Three.BufferGeometry();
-  geometry.setAttribute("position", new Three.BufferAttribute(positions, 3));
-  geometry.setAttribute("color", new Three.BufferAttribute(colors, 3));
-  const material = new Three.LineBasicMaterial({
-    transparent: true,
-    opacity: 0.82,
-    vertexColors: true,
-    depthWrite: false,
-  });
-  const lines = new Three.LineSegments(geometry, material);
-  lines.renderOrder = 14;
-  group.add(lines);
-
-  const cone = new Three.Mesh(
-    new Three.ConeGeometry(0.11, 0.28, 24),
-    makeMaterial(Three, "#f472b6", { opacity: 0.9 })
-  );
-  cone.rotation.z = -Math.PI / 2;
-  cone.renderOrder = 15;
-  group.add(cone);
-
-  group.userData.positions = positions;
-  group.userData.colors = colors;
-  group.userData.geometry = geometry;
-  group.userData.cone = cone;
-  return group;
-}
-
-function writeVelocityReferenceColor(colors, vertexIndex, color) {
-  colors[vertexIndex * 3] = color.r;
-  colors[vertexIndex * 3 + 1] = color.g;
-  colors[vertexIndex * 3 + 2] = color.b;
-}
-
-function updateVelocityReferenceGroup(Three, group, radius, lorentzState) {
-  const positions = group.userData.positions;
-  const colors = group.userData.colors;
-  const geometry = group.userData.geometry;
-  const cone = group.userData.cone;
-  const axisLimit = Math.max(0.2, radius * 1.34);
-  const arrowLength = Math.max(0.001, axisLimit * lorentzState.beta);
-  const railColor = new Three.Color("#94a3b8");
-  const arrowColor = new Three.Color("#f472b6");
-
-  positions[0] = -axisLimit;
-  positions[1] = 0;
-  positions[2] = 0;
-  positions[3] = axisLimit;
-  positions[4] = 0;
-  positions[5] = 0;
-  positions[6] = 0;
-  positions[7] = 0;
-  positions[8] = 0;
-  positions[9] = arrowLength;
-  positions[10] = 0;
-  positions[11] = 0;
-
-  writeVelocityReferenceColor(colors, 0, railColor);
-  writeVelocityReferenceColor(colors, 1, railColor);
-  writeVelocityReferenceColor(colors, 2, arrowColor);
-  writeVelocityReferenceColor(colors, 3, arrowColor);
-  geometry.attributes.position.needsUpdate = true;
-  geometry.attributes.color.needsUpdate = true;
-  geometry.computeBoundingSphere();
-
-  cone.visible = lorentzState.beta > 0.02;
-  cone.position.set(arrowLength, 0, 0);
-  cone.scale.setScalar(clampNumber(0.72 + lorentzState.beta * 0.9, 0.72, 1.5));
-}
-
 function createSurfaceSamples(Three) {
   const samples = [];
   for (let latIndex = 0; latIndex < SURFACE_LATITUDE_COUNT; latIndex += 1) {
@@ -1012,9 +938,6 @@ export function mountIdealCorePrototype(options = {}) {
   const axisReferenceGroup = createAxisReferenceGroup(Three);
   sphereContents.add(axisReferenceGroup);
 
-  const velocityReferenceGroup = createVelocityReferenceGroup(Three);
-  coreFrame.add(velocityReferenceGroup);
-
   const dom = {
     pathToggle: queryRequiredElement(documentLike, "#ideal-core-path-toggle"),
     surfaceToggle: queryRequiredElement(documentLike, "#ideal-core-surface-toggle"),
@@ -1030,10 +953,6 @@ export function mountIdealCorePrototype(options = {}) {
     speedOutput: queryRequiredElement(documentLike, "#ideal-core-speed-output"),
     timeLabel: queryRequiredElement(documentLike, "#ideal-core-time-label"),
     lengthLabel: queryRequiredElement(documentLike, "#ideal-core-length-label"),
-    restEnergyShareLabel: queryRequiredElement(
-      documentLike,
-      "#ideal-core-rest-energy-share-label"
-    ),
     restMassLabel: queryRequiredElement(documentLike, "#ideal-core-rest-mass-label"),
     restEnergyLabel: queryRequiredElement(documentLike, "#ideal-core-rest-energy-label"),
     movementEnergyLabel: queryRequiredElement(
@@ -1140,7 +1059,6 @@ export function mountIdealCorePrototype(options = {}) {
     dom.speedOutput.value = formatFixed(state.speed, 2);
     dom.timeLabel.textContent = formatLimitFixed(lorentzState.timeRatio, 3);
     dom.lengthLabel.textContent = formatFixed(lorentzState.lengthRatio, 3);
-    dom.restEnergyShareLabel.textContent = formatFixed(lorentzState.restEnergyShareFactor, 3);
     dom.restMassLabel.textContent = formatLimitFixed(lorentzState.restMass, 3);
     dom.restEnergyLabel.textContent = formatLimitFixed(lorentzState.restEnergy, 3);
     dom.movementEnergyLabel.textContent = formatLimitFixed(lorentzState.movementEnergy, 3);
@@ -1213,7 +1131,6 @@ export function mountIdealCorePrototype(options = {}) {
   function updateLorentzGeometry() {
     const lorentzState = getCurrentLorentzState();
     sphereContents.scale.set(lorentzState.xi, 1, 1);
-    updateVelocityReferenceGroup(Three, velocityReferenceGroup, state.radius, lorentzState);
   }
 
   function drawLorentzChart() {

@@ -44,7 +44,7 @@ The target reader experience is lesson-like rather than decorative. The app shou
 - The app already has a standalone HTML surface at `ideal-core.html`.
 - The current screen has one central Three.js canvas and four surrounding panels.
 - Existing controls include path/surface/axis toggles, freeze, reset, focus, outer orbit, velocity fraction, and cycle speed.
-- Existing readouts include the Lorentz chart, rest-energy share, relative time, relative length, normalized energy/mass ledger, lower-left equation stack, and a binary-measures table.
+- Existing readouts include the Lorentz chart, relative time, relative length, normalized energy/mass ledger, lower-left equation stack, and a binary-measures table.
 - The lower-left equation zone is reserved and is the natural home for the Lorentz lesson equation stack.
 - The upper-left chart zone is the natural home for velocity fraction $v/c$, $\gamma$, $\xi$, time-dilation, and length-contraction curves.
 
@@ -54,7 +54,7 @@ The target reader experience is lesson-like rather than decorative. The app shou
 2. `spheroid_axis_mapping` — Refine the core envelope, binary path radii, and velocity direction into a stable Lorentz spheroid visual grammar. Status: `next`. Depends on: none.
 3. `return_cycle_closure_readout` — Extend the closure-defect readout into a visual timing comparison for longitudinal and transverse return cycles. Status: `pending`. Depends on: `spheroid_axis_mapping`.
 
-Completed 2026-06-10: `lorentz_core_lesson` added a velocity-fraction slider labeled $\beta=v/c$, Lorentz chart, equation stack, a dedicated rest-energy-share / relative-time / relative-length factor panel, the derived rest-energy share $E_0/E=\sqrt{1-(v/c)^2}=1/\gamma$, a normalized energy ledger with $m_0=1$ and $c=1$, contracted-axis spheroid transform, velocity arrow, and numeric return-cycle residual. The energy ledger separates rest mass $m_0$, rest energy $E_0=m_0c^2$, movement energy $\Delta E=(\gamma-1)m_0c^2$, movement mass equivalent $\Delta E/c^2$, total energy $E=\gamma m_0c^2$, and total mass equivalent $E/c^2$. The separate rest-envelope overlay was removed because the slider can return to $v/c=0$ for the uncontracted reference state. The slider reaches the $v/c=1$ light-speed limit as a limit state: $\gamma$, relative time, total energy, and movement energy diverge, while contracted length and rest-energy share go to zero.
+Completed 2026-06-10: `lorentz_core_lesson` added a velocity-fraction slider labeled $\beta=v/c$, Lorentz chart, equation stack, a dedicated relative-time / relative-length equation card panel, a normalized energy ledger with $m_0=1$ and $c=1$, contracted-axis spheroid transform, and numeric return-cycle residual. The energy ledger separates rest mass $m_0$, rest energy $E_0=m_0c^2$, movement energy $\Delta E=(\gamma-1)m_0c^2$, movement energy-equivalent mass $\Delta E/c^2$, total energy $E=\gamma m_0c^2$, and total energy-equivalent mass $E/c^2$. The separate rest-envelope overlay was removed because the slider can return to $v/c=0$ for the uncontracted reference state. The slider reaches the $v/c=1$ light-speed limit as a limit state: $\gamma$, relative time, total energy, and movement energy diverge, while contracted length goes to zero.
 
 ## Top Priority: Lorentz Core Lesson
 
@@ -122,7 +122,7 @@ The primary core view should map Lorentz variables to geometry as follows:
 
 | Symbol | App Meaning | Visual Role |
 | --- | --- | --- |
-| $v$ | observer-relative core speed | velocity arrow through the core |
+| $v$ | observer-relative core speed | slider value and chart cursor |
 | $c$ | limiting signal speed | fixed reference scale on the chart |
 | $v/c$ | normalized speed | primary lesson slider value |
 | $\gamma$ | Lorentz factor | time-dilation curve and main numeric readout |
