@@ -3,10 +3,10 @@
 ## LLM Instructions
 
 - Keep `Task Queue` ordered as the current Ideal Swarm app work queue, with the most important active item first.
-- Keep this priority file app-facing: runtime access, visualization requirements, lesson flow, controls, charts, and acceptance gates. Its task queue is app-local and is not part of the global theory priority score table unless the operator/developer explicitly selects Ideal Swarm work.
-- Use [../ellipsoid/ideal-swarm.md](../ellipsoid/ideal-swarm.md) as the earlier design brief for the Noether swarm instrument and central spherical viewing model.
-- Use [../../../content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md](../../../content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md) as the current theory bridge for Lorentz-factor quantization, return-cycle closure, and Lorentz spheroid geometry.
-- Do not treat the app as proof by itself; use it to make the candidate geometry, equations, and closure defects visible.
+- Keep this priority file app-facing: runtime access, visualization requirements, lesson flow, controls, charts, document access, and acceptance gates.
+- Keep this workstream app-local and unranked unless the operator/developer explicitly selects Ideal Swarm work or a proof/simulation inspection dependency requires it.
+- Use [effective-metric-deformation.md](effective-metric-deformation.md) and [raw-notes.md](raw-notes.md) only as source packets. Do not treat them as separate active priority lanes.
+- Do not treat the app as proof by itself; use it to make candidate geometry, equations, and closure defects visible.
 
 ## Workstream Metadata
 
@@ -19,68 +19,93 @@
 
 ## Access
 
-- Local dev command: `node scripts/dev/start-local-dev.mjs`
-- Local browser URL: `http://127.0.0.1:5173/ideal-swarm.html`
+- Local dev command: `PORT=5174 node scripts/dev/start-local-dev.mjs`
+- Local browser URL: `http://127.0.0.1:5174/ideal-swarm.html`
 - HTML entrypoint: [ideal-swarm.html](../../../ideal-swarm.html)
 - JavaScript entrypoint: [main.js](../../../src/apps/ideal-swarm/main.js)
 - Runtime module: [IdealSwarmPrototypeRuntime.js](../../../src/apps/ideal-swarm/IdealSwarmPrototypeRuntime.js)
 
 ## Purpose
 
-Ideal Swarm is the interactive Noether swarm visualization app.
+Ideal Swarm is the interactive Noether swarm Lorentz lesson and inspection app.
 
-Its near-term role is to make the Lorentz response of a Noether swarm visually and quantitatively legible: the user should be able to change the relative speed $v$, see the Lorentz factor $\gamma$ update, watch the core geometry become a Lorentz-flattened oblate spheroid, and read the corresponding time-dilation and length-contraction symbols directly on the chart.
+Its near-term role is to make the Lorentz response of a Noether swarm visually and quantitatively legible. The user should be able to change the velocity fraction $\beta=v/c_f$, see the Lorentz factor $\gamma$ update, watch the core geometry become a Lorentz-flattened spheroid, and read the corresponding time-dilation, length-contraction, and energy-ledger symbols directly on the app surface.
 
-The target reader experience is lesson-like rather than decorative. The app should let a reader see that the same velocity fraction $\beta=v/c$ controls:
+The target reader experience is lesson-like rather than decorative. The app should let a reader see that the same velocity fraction $\beta=v/c_f$ controls:
 
-- the Lorentz factor $\gamma=1/\sqrt{1-(v/c)^2}$;
+- the Lorentz factor $\gamma=1/\sqrt{1-\beta^2}$;
 - the contracted axis ratio $\xi=R_\parallel/R_\perp=1/\gamma$;
-- the time-dilation relation $\Delta t=\gamma\Delta\tau$;
-- the length-contraction relation $L_\parallel=L_0/\gamma$;
+- the time-dilation relation $\Delta t=\Delta\tau/\sqrt{1-\beta^2}$;
+- the length-contraction relation $L_\parallel=L_0\sqrt{1-\beta^2}$;
+- the bulk-motion energy ledger with $E_{\mathrm{CM}}=\gamma m_0c_f^2$;
 - the candidate angular-momentum alignment of the binary normals toward $n=(1,1,1)/\sqrt{3}$;
 - and the candidate Noether swarm spheroid geometry implied by closed return-cycle closure.
 
 ## Current State
 
-- The app already has a standalone HTML surface at `ideal-swarm.html`.
-- The current screen has one central Three.js canvas and four surrounding panels.
-- Existing controls include path/surface/axis toggles, freeze, reset, focus, outer orbit, velocity fraction, cycle speed, and direct document buttons for Ideal Swarm Notes, Return-Cycle Lorentz Quantization, and Lorentz Kinematics.
-- Existing readouts include the Lorentz chart, relative time, relative length, normalized energy/mass ledger, lower-left equation stack, markdown document overlay, and a binary-measures table.
-- The lower-left equation zone is reserved and is the natural home for the Lorentz lesson equation stack.
-- The upper-left chart zone is the natural home for velocity fraction $v/c$, $\gamma$, $\xi$, time-dilation, and length-contraction curves.
+- The app has a standalone HTML surface at `ideal-swarm.html`.
+- The application scene links to the standalone app.
+- The app title, controls, chart labels, energy ledger, equation stack, binary-measures table, markdown document overlay, and home navigation are implemented.
+- Direct document buttons open Ideal Swarm Guide, Return-Cycle Lorentz Quantization, and Lorentz Kinematics in the standard markdown overlay.
+- The app uses a central Three.js canvas with surrounding panels for the Lorentz map, controls, equations, and binary measures.
+- The visible shell grammar is translucent nested spheroid surfaces plus architrino paths and wake trails.
+- The surface potential points default on, with poles aligned to the bulk-motion / contraction axis $n$.
+- The velocity slider reaches the $\beta=1$ light-speed limit as a visible limit state.
+- The app uses $c_f$ in the user-facing formulas where the lesson refers to the field-speed reference.
 
 ## Task Queue
 
-1. `symbol_chart_overlay` — Add chart labels and equation callouts that keep the symbols visible while the speed state changes. Status: `active`. Depends on: none.
-2. `spheroid_axis_mapping` — Refine the core envelope, binary path radii, and velocity direction into a stable Lorentz spheroid visual grammar. Status: `next`. Depends on: none.
-3. `return_cycle_closure_readout` — Extend the closure-defect readout into a visual timing comparison for longitudinal and transverse return cycles. Status: `pending`. Depends on: `spheroid_axis_mapping`.
+1. `surface_pole_clarity` — Deduplicate exact pole samples or add explicit paired $+n/-n$ markers so the surface poles read as symmetric despite camera angle and potential coloring. Status: `active`. Depends on: none.
+2. `momentum_frame_view_lock` — Refine the momentum-frame guides and view behavior so side-on spheroid inspection reads as a thickness change along $n$ rather than an apparent axis rotation. Status: `next`. Depends on: none.
+3. `symbol_chart_overlay` — Add compact chart labels and equation callouts that keep $\beta$, $\gamma$, $\xi$, $\Delta t/\Delta\tau$, and $L_\parallel/L_0$ visible while the speed state changes. Status: `next`. Depends on: none.
+4. `return_cycle_closure_readout` — Extend the closure-defect readout into a visual timing comparison for longitudinal and transverse return cycles. Status: `pending`. Depends on: `momentum_frame_view_lock`.
 
-Completed 2026-06-10: `lorentz_core_lesson` added a velocity-fraction slider labeled $\beta=v/c$, Lorentz chart, equation stack, a dedicated relative-time / relative-length equation card panel, a normalized energy ledger with $m_0=1$ and $c=1$, directional contracted-axis spheroid transform along $n=(1,1,1)/\sqrt{3}$, velocity-dependent binary angular-momentum alignment toward the same $n$, direct markdown-overlay access to Return-Cycle Lorentz Quantization and Lorentz Kinematics, and numeric return-cycle residual. The energy ledger separates rest mass $m_0$, rest energy $E_0=m_0c^2$, movement energy $\Delta E=(\gamma-1)m_0c^2$, movement energy-equivalent mass $\Delta E/c^2$, total energy $E=\gamma m_0c^2$, and total energy-equivalent mass $E/c^2$. The separate rest-envelope overlay was removed because the slider can return to $v/c=0$ for the uncontracted reference state. The slider reaches the $v/c=1$ light-speed limit as a limit state: $\gamma$, relative time, total energy, and movement energy diverge, while contracted length goes to zero and all binary angular-momentum normals converge to $n$.
+## Visual Instrument Contract
 
-## Top Priority: Lorentz Core Lesson
+The app is a technical instrument, not a decorative animation. Its central visual should make the relative path behavior of the Noether swarm legible from one screen while leaving enough room for controls, graphs, tables, and model-state readouts.
 
-### Objective
+The visual center is one reserved spherical area. The app may rotate the sphere contents for inspection, but the lesson should remain interpretable in the bulk-momentum frame:
 
-Create a first lesson mode where the user can vary the velocity fraction $\beta=v/c$ and immediately see how Lorentz kinematics maps onto the Noether swarm geometry.
+```text
+bulk-motion axis n
+        ↓
+transverse plane
+        ↓
+Lorentz spheroid thickness along n
+```
+
+The Noether swarm should read as moving architrino paths and potential-response surfaces, not as a solid body. The central area supports both path inspection and spherical test-surface field inspection so path behavior and field behavior remain visually connected.
+
+## Panel Roles
+
+| Zone | Role |
+| --- | --- |
+| Upper-left | Lorentz chart, relative time, relative length, and energy ledger |
+| Upper-right | Main controls, pause/play, reset/focus, document buttons, and sliders |
+| Lower-left | Equation stack and closure statement |
+| Lower-right | Binary-measures table |
+| Center | Rotatable Noether swarm paths, shells, guides, and surface potential layer |
+
+The readout standard is high contrast, short labels, and direct numeric values. Avoid diagnostic clutter that competes with the central core.
+
+## Lorentz Lesson Core
 
 The lesson should answer one visual question:
 
-> If a Noether swarm conforms to Lorentz response, what geometric, timing, and symbolic changes must appear as $v$ increases?
-
-### Core Equations
+> If a Noether swarm conforms to Lorentz response, what geometric, timing, and symbolic changes must appear as $\beta$ increases?
 
 The app should display and update these equations as first-class lesson objects:
 
 $$
-\frac{v}{c}
+\beta=\frac{v}{c_f}
 $$
 
 $$
-\gamma(v/c)=\frac{1}{\sqrt{1-(v/c)^2}}
+\gamma(\beta)=\frac{1}{\sqrt{1-\beta^2}}
 $$
 
 $$
-\xi(v/c)=\frac{R_\parallel}{R_\perp}=\frac{1}{\gamma}
+\xi(\beta)=\frac{R_\parallel}{R_\perp}=\frac{1}{\gamma}
 $$
 
 $$
@@ -88,21 +113,21 @@ R_\parallel=\frac{R_\perp}{\gamma}
 $$
 
 $$
-\Delta t=\gamma\Delta\tau
+\Delta t=\frac{\Delta\tau}{\sqrt{1-\beta^2}}
 $$
 
 $$
-L_\parallel=\frac{L_0}{\gamma}
+L_\parallel=L_0\sqrt{1-\beta^2}
 $$
 
-For the closed return-cycle interpretation, include the longitudinal and transverse timing targets:
+For the closed return-cycle interpretation, reserve the longitudinal and transverse timing targets:
 
 $$
-T_\parallel=\frac{R_\parallel}{c-v}+\frac{R_\parallel}{c+v}
+T_\parallel=\frac{R_\parallel}{c_f-v}+\frac{R_\parallel}{c_f+v}
 $$
 
 $$
-T_\perp=\frac{2R_\perp}{c}\gamma
+T_\perp=\frac{2R_\perp}{c_f}\gamma
 $$
 
 and the closure condition:
@@ -117,39 +142,29 @@ $$
 \frac{R_\parallel}{R_\perp}=\frac{1}{\gamma}
 $$
 
-### Visual Mapping
+## Visual Mapping
 
-The primary core view should map Lorentz variables to geometry as follows:
-
-| Symbol | App Meaning | Visual Role |
+| Symbol | App meaning | Visual role |
 | --- | --- | --- |
-| $v$ | observer-relative core speed | slider value and chart cursor |
-| $c$ | limiting signal speed | fixed reference scale on the chart |
-| $v/c$ | normalized speed | primary lesson slider value |
+| $v$ | observer-relative group speed | slider value and chart cursor |
+| $c_f$ | field-speed reference | fixed denominator in $\beta=v/c_f$ |
+| $\beta=v/c_f$ | normalized speed | primary lesson slider value |
 | $\gamma$ | Lorentz factor | time-dilation curve and main numeric readout |
-| $R_\perp$ | transverse core radius | unchanged equatorial radius in the Lorentz lesson |
-| $R_\parallel$ | radius along the assembly momentum / velocity direction | contracted spheroid axis along $n$ |
-| $\xi=R_\parallel/R_\perp$ | Lorentz axis ratio | length-contraction curve and shape flattening |
-| $n=(1,1,1)/\sqrt{3}$ | assembly momentum and velocity axis | shared contraction axis and convergence target for binary angular-momentum normals |
+| $\xi=1/\gamma$ | Lorentz axis ratio | length-contraction curve and spheroid flattening |
+| $R_\perp$ | transverse core radius | unchanged transverse radius in the default Lorentz lesson |
+| $R_\parallel$ | radius along the group momentum / velocity direction | contracted spheroid axis along $n$ |
+| $n=(1,1,1)/\sqrt{3}$ | group momentum and contraction axis | shared contraction axis and convergence target for binary angular-momentum normals |
 | $\ell_i$ | binary angular-momentum normal | rest-orthogonal triad that tilts toward $n$ as $\xi$ decreases |
 | $\Delta\tau$ | proper-time tick | rest-core tick marker |
 | $\Delta t$ | observer-time tick | dilated tick marker |
 | $L_0$ | proper length | rest reference ruler |
 | $L_\parallel$ | observed parallel length | contracted ruler along $v$ |
 
-The default geometry should be a Lorentz-flattened oblate spheroid with its shortened symmetry axis aligned to the assembly momentum / velocity vector $n=(1,1,1)/\sqrt{3}$. A direct-on view down $n$ should show the high-speed binary orbit planes as circles, because their angular-momentum normals converge to the same axis that the spheroid contracts along.
+The default geometry should be a Lorentz-flattened spheroid with its shortened symmetry axis aligned to $n=(1,1,1)/\sqrt{3}$. A direct-on view down $n$ should show high-speed binary orbit planes as circles because their angular-momentum normals converge to the same axis that the spheroid contracts along.
 
-### Teaching View Requirements
+## Return-Cycle Teaching View
 
-The teaching view should orient the reader around three linked objects:
-
-1. the return cycle;
-2. the tri-binary closure burden;
-3. the outer-binary Lorentz envelope.
-
-#### Return Cycle
-
-The app should define a return cycle as one complete closed causal exchange, not as a one-way signal leg. The lesson should contrast:
+The app should define a return cycle as one complete closed causal exchange, not as a one-way signal leg:
 
 ```text
 one-way leg: A influences B
@@ -159,24 +174,24 @@ return cycle: A influences B, the influence returns, and A re-closes in phase wi
 The longitudinal lesson should show the two unequal one-way legs:
 
 $$
-t_+=\frac{R_\parallel}{c-v},
+t_+=\frac{R_\parallel}{c_f-v},
 \qquad
-t_-=\frac{R_\parallel}{c+v}
+t_-=\frac{R_\parallel}{c_f+v}
 $$
 
 and then group them into the closed return cycle:
 
 $$
-T_\parallel=t_++t_-.
+T_\parallel=t_++t_-
 $$
 
-The visual point is that a clock or ruler is not made from one isolated one-way leg. It is made from a branch that returns with a stable timing, phase, and action ledger.
+The visual point is that a clock or ruler is not made from one isolated one-way leg. It is made from a branch that returns with stable timing, phase, and action ledgers.
 
-#### Binary-Layer Ledger
+## Binary-Layer Ledger
 
-The lesson should make clear that the Lorentz spheroid is the visible outer projection of a deeper coupled core closure.
+The Lorentz spheroid is the visible outer projection of a deeper coupled core closure.
 
-For each binary layer $\ell\in\{I,M,O\}$, display or reserve a row for:
+For each binary layer $\ell\in\{I,M,O\}$, reserve a row for:
 
 $$
 \Delta\phi_\ell=2\pi n_\ell
@@ -201,7 +216,7 @@ with an all-layer action ledger:
 $$
 \Delta I_I+\Delta I_M+\Delta I_O+\Delta I_{\mathrm{wake}}
 =
-\sigma\hbar.
+\sigma\hbar
 $$
 
 The app should avoid implying that the outer binary alone solves Lorentz closure. The intended teaching hierarchy is:
@@ -218,9 +233,9 @@ outer-binary Lorentz envelope
 observer reads clock dilation and ruler contraction
 ```
 
-#### Outer-Binary Lorentz Envelope
+## Outer-Binary Lorentz Envelope
 
-Use **Outer-Binary Lorentz Envelope** as the teaching label for the spheroid. The phrase should mean the visible exclusion envelope exposed by the outer binary, not a solid volume physically filled by the outer binary.
+Use **Outer-Binary Lorentz Envelope** as the teaching label for the visible spheroid. The phrase should mean the visible exclusion envelope exposed by the outer binary, not a solid volume physically filled by the outer binary.
 
 The teaching view should show:
 
@@ -239,23 +254,15 @@ The default no-extra-scale lesson state should keep:
 $$
 R_\perp=R_0,
 \qquad
-R_\parallel=\frac{R_0}{\gamma}.
+R_\parallel=\frac{R_0}{\gamma}
 $$
 
-The relative envelope volume should be displayed as:
-
-$$
-V_{\mathrm{env}}(v)
-=
-\frac{4\pi}{3}R_\perp^2R_\parallel
-$$
-
-and, relative to the rest sphere,
+The relative envelope volume may be displayed as:
 
 $$
 \frac{V_{\mathrm{env}}(v)}{V_{\mathrm{env}}(0)}
 =
-\frac{1}{\gamma}.
+\frac{1}{\gamma}
 $$
 
 If the lesson exposes a separate transverse scale channel, use:
@@ -271,64 +278,45 @@ and:
 $$
 \frac{V_{\mathrm{env}}(v)}{V_{\mathrm{env}}(0)}
 =
-\frac{\lambda^3}{\gamma}.
+\frac{\lambda^3}{\gamma}
 $$
-
-The default chart label should therefore include:
-
-```text
-Outer-Binary Lorentz Envelope
-shape ratio: xi = R_parallel / R_perp = 1 / gamma
-relative envelope volume: V_env(v) / V_env(0) = 1 / gamma
-```
 
 The visual grammar should show outer-binary paths and the translucent envelope together, so the reader sees the spheroid as the relative envelope traced or exposed by the outer binary while still understanding that the hidden inner and middle binary ledgers remain active.
 
-### Lesson Stages
+## Completed App Decisions
 
-The lesson mode should have a compact staged flow:
+- `lorentz_core_lesson` added the velocity-fraction slider, Lorentz chart, relative-time and relative-length equation cards, normalized energy ledger, equation stack, directional spheroid transform along $n$, velocity-dependent binary angular-momentum alignment toward $n$, and the $\beta=1$ limit state.
+- The duplicate rest-envelope overlay was removed because the slider can return to $\beta=0$ for the uncontracted reference state.
+- The individual-binary visibility mode was removed; the app uses the full Noether swarm by default.
+- The lower-left closure-only rows that were not live computed were hidden.
+- The app was linked from the application scene and app-linked documents link back to it.
 
-1. `rest_core` — show $v/c=0$, $\gamma=1$, $R_\parallel=R_\perp$, $\Delta t=\Delta\tau$, and $L_\parallel=L_0$.
-2. `moving_core` — increase $v/c$ and show $\gamma>1$, $R_\parallel<R_\perp$, $\Delta t>\Delta\tau$, and $L_\parallel<L_0$.
-3. `return_cycle` — draw longitudinal and transverse return paths and show how equal closure time requires $\xi=1/\gamma$.
-4. `binary_ledgers` — show that inner, middle, and outer binary return cycles must close together for a stable Noether swarm branch.
-5. `outer_envelope` — label the visible spheroid as the Outer-Binary Lorentz Envelope and show $V_{\mathrm{env}}(v)/V_{\mathrm{env}}(0)$.
-6. `aaa_candidate` — mark the open theory claim: realized Noether swarm branches may admit only closure-compatible Lorentz states rather than an arbitrary continuous deformation.
+## Acceptance Gate
 
-### Chart Requirements
+This priority is healthy when:
 
-The upper-left chart zone should show at least two synchronized curves over $0\leq v/c\leq 1$, with $v/c=1$ shown as the light-speed limit point:
-
-- $\gamma(v/c)$ for time dilation;
-- $\xi(v/c)=1/\gamma(v/c)$ for length contraction.
-
-The current velocity-fraction state should appear as a vertical cursor. The chart should label the active point values:
-
-$$
-v/c,\qquad \gamma,\qquad \xi,\qquad \Delta t/\Delta\tau,\qquad L_\parallel/L_0
-$$
-
-The labels should stay readable at normal desktop zoom and should not require the reader to infer the symbol meanings from surrounding prose.
-
-### Acceptance Gate
-
-This priority is done when:
-
-- `ideal-swarm.html` has a dedicated Lorentz lesson mode or equivalent view state;
-- changing $v/c$ updates the spheroid geometry, time-dilation readout, length-contraction readout, and chart cursor together;
-- the chart displays $\gamma(v/c)$ and $\xi(v/c)$ with active symbolic labels;
-- the central core visibly contracts along the assembly momentum / velocity direction $n=(1,1,1)/\sqrt{3}$ according to $R_\parallel=R_\perp/\gamma$;
-- the binary angular-momentum normals remain orthogonal at $v/c=0$ and converge toward $n=(1,1,1)/\sqrt{3}$ as $v/c\to1$;
-- the central view labels the spheroid as the Outer-Binary Lorentz Envelope and does not present it as a solid body filled by the outer binary;
-- the app displays $V_{\mathrm{env}}(v)/V_{\mathrm{env}}(0)=1/\gamma$ in the no-extra-scale lesson state, with the $\lambda^3/\gamma$ extension reserved for scale-channel mode;
+- changing $\beta$ updates the spheroid geometry, time-dilation readout, length-contraction readout, energy ledger, and chart cursor together;
+- the chart displays $\gamma(\beta)$ and $\xi(\beta)$ with active symbolic labels;
+- the central core visibly contracts along $n=(1,1,1)/\sqrt{3}$ according to $R_\parallel=R_\perp/\gamma$;
+- the binary angular-momentum normals remain orthogonal at $\beta=0$ and converge toward $n=(1,1,1)/\sqrt{3}$ as $\beta\to1$;
+- the surface potential layer uses poles aligned with $n$ and reads symmetrically enough for users to trust the geometry;
+- the central view labels or implies the spheroid as the Outer-Binary Lorentz Envelope and does not present it as a solid body filled by the outer binary;
 - the teaching view distinguishes one-way legs from return cycles and groups $t_+$ and $t_-$ into $T_\parallel$;
-- the teaching view reserves or displays inner, middle, and outer binary ledger rows so the outer envelope is not mistaken for the whole closure burden;
-- the lower-left equation zone explains velocity fraction $v/c$, $\gamma$, $\xi$, $\Delta t$, $\Delta\tau$, $L_0$, and $L_\parallel$ in a lesson sequence;
+- inner, middle, and outer binary ledger rows remain reserved for future computed closure readouts;
+- the equation zone explains $\beta$, $\gamma$, $\xi$, $\Delta t$, $\Delta\tau$, $L_0$, and $L_\parallel$ in a compact lesson sequence;
 - and the app clearly distinguishes established Lorentz kinematics from the $\mathbb{A}\mathbb{A}\mathbb{A}$ candidate claim about Noether swarm branch realization.
+
+## Source Packets
+
+| File | Role | Status |
+| --- | --- | --- |
+| [effective-metric-deformation.md](effective-metric-deformation.md) | Source packet for the broader shape-plus-scale deformation intuition, effective-metric extraction, Planck alignment, cosmology, and strong-field comparisons. | Preserved source material; not a separate active workstream. |
+| [raw-notes.md](raw-notes.md) | Scratch notes on energy accounting, $h$ transfer, frequency mismatch, radiation, temperature, and strong-field questions. | Parked source material; promote only concrete equations, simulation targets, or theorem obligations. |
 
 ## Related Files
 
-- [../ellipsoid/ideal-swarm.md](../ellipsoid/ideal-swarm.md)
+- [../../../ideal-swarm.html](../../../ideal-swarm.html)
+- [../../../src/apps/ideal-swarm/IdealSwarmPrototypeRuntime.js](../../../src/apps/ideal-swarm/IdealSwarmPrototypeRuntime.js)
 - [../../../content/markdown/aaa/archie/ideal-swarm-notes.md](../../../content/markdown/aaa/archie/ideal-swarm-notes.md)
 - [../../../content/markdown/aaa/spacetime/lorentz-kinematics.md](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md)
 - [../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md)

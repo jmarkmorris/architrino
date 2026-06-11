@@ -122,7 +122,6 @@ The derivation-side home for this contract is [transfer-operator-basin-measure](
 | Event-ledger prose | Use [residual-routing-event-ledger](../nested-shell-swarm-causal-closure/residual-routing-event-ledger.md) instead of repeating generic conservation language. | Sector packets still own their required fields and provenance special cases. |
 | Exposure/quotient prose | Use [exposure-quotient-theorem](../mass-map/exposure-quotient-theorem.md) instead of repeating separate visibility rules for mass, weak, color, photon, or vector-corridor sectors. | Sector packets still own their projections, quotients, benchmark recoveries, leakage diagnostics, and failure modes. |
 | Strong-field hypotheses | Keep [hypothesis-bank](../strong-field-closure/hypothesis-bank.md) as a sibling packet under [strong-field-closure](../strong-field-closure/strong-field-closure.md), not a ranked top-level workstream. | Watchlist content remains preserved until each hypothesis is promoted, routed, or explicitly rejected. |
-| Ellipsoid | Treat [ellipsoid](../ellipsoid/ellipsoid.md) as a routing candidate for effective-metric, strong-field, animator, or simulations work rather than a permanent separate theory lane. | Retire only after every sibling file has a destination, parked status, or explicit rejection. |
 
 ## Workstream Product Matrix
 
