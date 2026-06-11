@@ -205,6 +205,7 @@ Plain language: Fix units so the field speed is one; use $\epsilon$ as the basic
 - KaTeX lint:
   - Use `$...$` inline math for short symbols or ratios in prose.
   - Use `$$...$$` display math only for standalone equations.
+  - Display equations are standalone, centered equations rendered from `$$...$$`. Do not add sentence punctuation inside display equations merely to punctuate the surrounding prose. Put commas, periods, and colons in the prose around the equation instead. Keep punctuation only when it is part of the mathematical object itself, such as tuple entries, set-builder clauses, aligned lists, or semicolon-separated state vectors.
   - Treat `\(...\)` and `\[...\]` as compatibility forms for literal examples or renderer-specific validated cases, not as default authoring syntax.
   - For inline inequalities with `<` or `>` in prose, keep them in `$...$` with spaces, for example `$1 < m < n$`.
 
