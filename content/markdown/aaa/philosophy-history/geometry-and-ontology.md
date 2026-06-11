@@ -24,7 +24,7 @@ h_{ij}=\delta_{ij},
 \qquad
 \partial_t h_{ij}=0,
 \qquad
-R^i{}_{jkl}(h)=0.
+R^i{}_{jkl}(h)=0
 $$
 This geometry gives distance, direction, simultaneity slices, and Euclidean differential operators. It does not bend light, slow clocks, store stress, expand, or respond to matter. Those effects belong to the dynamics of architrinos, causal wakes, assemblies, and the Noether sea, then to the observer-level metric reconstructed from them.
 
@@ -42,7 +42,7 @@ n,
 u^i_{\text{sea}},
 e^a{}_i,
 \Pi_{\text{obs}}
-\right).
+\right)
 $$
 Here $S(t)$ is the complete ontic universe state with path-history provenance, $n$ is normalized Noether swarm density, $\chi_{\text{sea}}$ is the Noether sea delay factor, $\sigma^{ab}_{\text{sea}}$ denotes retained stress response, $u^i_{\text{sea}}$ and $e^a{}_i$ are observer-level drift and frame-field channels, and $\Pi_{\text{obs}}$ denotes the clock, ruler, and signal projections used by Physical Observers. The map $\mathcal{G}_{\text{metric}}$ is not a new primitive. It is the constitutive recovery problem: show how one medium and observer record yields the effective metric that passes GR-level tests.
 
@@ -86,7 +86,7 @@ The guiding closure condition is:
 $$
 \text{same substrate and medium record}
 \quad\Longrightarrow\quad
-\text{same clock, ruler, signal, and gravity benchmarks}.
+\text{same clock, ruler, signal, and gravity benchmarks}
 $$
 In technical chapters this becomes a residual such as the effective-metric recovery condition in [Emergent Metric](../spacetime/emergent-metric.md). In philosophy-facing language, the point is that curved-spacetime behavior must arise from one shared constitutive record, not from an interpretive overlay added after the measurements.
 

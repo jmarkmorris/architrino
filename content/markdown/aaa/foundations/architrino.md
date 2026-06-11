@@ -45,11 +45,11 @@ For calculations that need continuity with electric-charge bookkeeping, each arc
 $$
 q_a=\sigma_a\epsilon,
 \qquad
-\sigma_a\in\{-1,+1\},
+\sigma_a\in\{-1,+1\}
 $$
 with magnitude
 $$
-\epsilon=\frac{|e|}{6}.
+\epsilon=\frac{|e|}{6}
 $$
 
 The two polarity names are:
@@ -88,7 +88,7 @@ $$
 =
 \mathcal{O}(\pi S)
 +
-O(\epsilon_{\mathrm{prov}}).
+O(\epsilon_{\mathrm{prov}})
 $$
 The closure condition is that $\epsilon_{\mathrm{prov}}$ remains below the experimental bounds on particle indistinguishability and exchange statistics in the relevant branch. Exact architrino identities remain present in $\mathbb{U}_{\text{now}}$; ordinary particle indistinguishability is recovered only after the Physical Observer projection suppresses label-specific differences.
 
@@ -119,7 +119,7 @@ K\!\left(\mathbf{x},t;\mathbf{s}_a(s),s\right)
 \qquad
 \operatorname{supp}K
 \subseteq
-\left\{\|\mathbf{x}-\mathbf{s}_a(s)\|=c_f(t-s)\right\}.
+\left\{\|\mathbf{x}-\mathbf{s}_a(s)\|=c_f(t-s)\right\}
 $$
 The kernel $K$ is only a schematic placeholder here; the exact causal-root sets, Jacobian weights, kernels, and regularization belong to the dynamics chapter. The ontology claim is the dependency claim: after the source identity, polarity, and path history are fixed, there is no second material inventory or autonomous field state left to specify.
 
@@ -141,11 +141,11 @@ Each architrino traces a worldline
 $$
 \mathbf{s}_a:I_a\subseteq\mathbb{R}\to\mathbb{R}^3,
 \qquad
-t\mapsto\mathbf{s}_a(t),
+t\mapsto\mathbf{s}_a(t)
 $$
 where $I_a$ is an interval of absolute time. It may equal $\mathbb{R}$, or it may be bounded by the domain of a realized cosmological solution. The worldline lies inside the product background
 $$
-\mathcal{M}=\mathbb{R}\times\mathbb{R}^3.
+\mathcal{M}=\mathbb{R}\times\mathbb{R}^3
 $$
 
 The worldline is at least absolutely continuous so that
@@ -191,7 +191,7 @@ Determinism does not imply practical predictability. The dynamics are nonlinear 
 
 A stationary architrino, with
 $$
-\mathbf{v}_a=\mathbf{0},
+\mathbf{v}_a=\mathbf{0}
 $$
 emits a concentric wake stream centered on one fixed point of the Euclidean void. This state is physically distinct from nonzero motion, where wake centers trace a path and the wake stream becomes non-concentric.
 

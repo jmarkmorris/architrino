@@ -20,7 +20,7 @@ v_k = 2\pi f_k r_k = \beta_k c_f,
 \qquad
 0<\beta_k,
 \qquad
-c_f>0.
+c_f>0
 $$
 
 Equivalently,
@@ -29,7 +29,7 @@ f_k=\frac{v_k}{2\pi r_k},
 \qquad
 r_k=\frac{v_k}{2\pi f_k},
 \qquad
-v_k=2\pi f_k r_k.
+v_k=2\pi f_k r_k
 $$
 
 Plain language: for any one ring, if we know any two of frequency, tangential speed, and radius, then the third is fixed.
@@ -42,7 +42,7 @@ In the reduced exterior and horizon-transition branch studied here, the middle b
 $$
 v_M^{\mathrm{car}}=c_f,
 \qquad
-\beta_M^{\mathrm{car}}=1.
+\beta_M^{\mathrm{car}}=1
 $$
 For compact notation, the algebra below writes $v_M=c_f$ and $\beta_M=1$ for this carrier value.
 
@@ -59,7 +59,7 @@ $$
 \int_{t_n^-}^{t_n^+}
 \mathbf{a}_M^{(\eta)}(t)\,dt,
 \qquad
-\left\|\Delta\mathbf{v}_{M,n}\right\|<\infty,
+\left\|\Delta\mathbf{v}_{M,n}\right\|<\infty
 $$
 rather than an infinite-force constraint. These impulse events are candidate mechanical origins for the discrete causal-root ledger steps used in the [energy bookkeeping](energy.md#self-hit-echo-and-discrete-steps-working-note).
 
@@ -72,17 +72,17 @@ Let the outer period be $T_O=\frac{1}{f_O}$. Assume that when the outer ring com
 $$
 m,n\in\mathbb{N},
 \qquad
-1<m<n,
+1<m<n
 $$
 such that
 $$
-\theta_O(t+T_O)=\theta_O(t)+2\pi,
+\theta_O(t+T_O)=\theta_O(t)+2\pi
 $$
 $$
-\theta_M(t+T_O)=\theta_M(t)+2\pi m,
+\theta_M(t+T_O)=\theta_M(t)+2\pi m
 $$
 $$
-\theta_I(t+T_O)=\theta_I(t)+2\pi n.
+\theta_I(t+T_O)=\theta_I(t)+2\pi n
 $$
 
 Therefore $f_O:f_M:f_I = 1:m:n$, with $f_M=m f_O$ and $f_I=n f_O$.
@@ -95,10 +95,10 @@ This is the reduced constant-frequency carrier model. It is a branch-level closu
 
 The lock is not just commensurate in frequency. It also carries fixed relative phase offsets over time. One convenient formulation is
 $$
-\phi_{MO}(t)\equiv \theta_M(t)-m\theta_O(t)=\phi_{MO}^\ast,
+\phi_{MO}(t)\equiv \theta_M(t)-m\theta_O(t)=\phi_{MO}^\ast
 $$
 $$
-\phi_{IO}(t)\equiv \theta_I(t)-n\theta_O(t)=\phi_{IO}^\ast,
+\phi_{IO}(t)\equiv \theta_I(t)-n\theta_O(t)=\phi_{IO}^\ast
 $$
 with constants $\phi_{MO}^\ast,\phi_{IO}^\ast$.
 
@@ -117,7 +117,7 @@ S_L(t)
 =
 \sum_{k\in\{O,M,I\}}\sum_{a=1}^{L}
 A_{k,a}(\beta_k,r_k,\eta,J)\,
-e^{ia(q_k\Omega t+\phi_k)}.
+e^{ia(q_k\Omega t+\phi_k)}
 $$
 The coefficients $A_{k,a}$ are not free fit parameters. They must be extracted from the same finite-$\eta$ branch-strength, branch-Jacobian, and causal-wake ledger used to test the candidate lock.
 They therefore belong to the dynamics of the causal-wake branch chart, even when the resulting signal is later summarized as an effective potential.
@@ -131,13 +131,13 @@ C_L(m,n;\phi)
 \left|
 \sum_{(k,a):\,a q_k=\nu}
 A_{k,a}e^{ia\phi_k}
-\right|^2.
+\right|^2
 $$
 The dyadic claim becomes a theorem target only if $(m,n)=(2,4)$ minimizes this score under the admissible branch equations and retains a positive stability gap.
 
 **Harmonic-overlap lemma.** The score decomposes into resonance blocks labeled by $\nu$. A phase choice can affect cancellation between two layers only when their finite harmonic supports overlap:
 $$
-\nu\in q_k\{1,\ldots,L\}\cap q_j\{1,\ldots,L\}.
+\nu\in q_k\{1,\ldots,L\}\cap q_j\{1,\ldots,L\}
 $$
 If a block has no overlap, its contribution to $C_L$ is phase-independent and cannot select an integer lock. For the dyadic candidate $(m,n)=(2,4)$, the first Outer/Middle overlap is $\nu=2$ via $(O,a=2)$ and $(M,a=1)$; the first all-layer overlap is
 $$
@@ -147,7 +147,7 @@ via $(O,a=4)$, $(M,a=2)$, and $(I,a=1)$. Thus this functional can select $1:2:4$
 $$
 \max(|A_{O,4}|,|A_{M,2}|,|A_{I,1}|)
 \le
-\text{sum of the other two}.
+\text{sum of the other two}
 $$
 The lemma is only a harmonic support statement. It shows where cancellation is possible; it does not show that the branch-derived amplitudes or the return-map stability actually select the dyadic lock.
 
@@ -170,14 +170,14 @@ From Assumptions 1-2 and the exact identity, the middle carrier radius is fixed 
 $$
 r_M=\frac{c_f}{2\pi f_M}
 =
-\frac{c_f}{2\pi m f_O}.
+\frac{c_f}{2\pi m f_O}
 $$
 
 For the outer ring,
 $$
 r_O=\frac{v_O}{2\pi f_O}
 =
-\frac{\beta_O c_f}{2\pi f_O}.
+\frac{\beta_O c_f}{2\pi f_O}
 $$
 Hence
 $$
@@ -185,14 +185,14 @@ $$
 =
 \frac{1}{m\beta_O},
 \qquad
-r_M=\frac{r_O}{m\beta_O}.
+r_M=\frac{r_O}{m\beta_O}
 $$
 
 For the inner ring,
 $$
 r_I=\frac{v_I}{2\pi f_I}
 =
-\frac{\beta_I c_f}{2\pi n f_O},
+\frac{\beta_I c_f}{2\pi n f_O}
 $$
 so
 $$
@@ -200,14 +200,14 @@ $$
 =
 \frac{\beta_I}{n\beta_O},
 \qquad
-r_I=\frac{\beta_I}{n\beta_O}\,r_O.
+r_I=\frac{\beta_I}{n\beta_O}\,r_O
 $$
 
 These are the core radius relations of the chapter:
 $$
 r_M=\frac{r_O}{m\beta_O},
 \qquad
-r_I=\frac{\beta_I}{n\beta_O}\,r_O.
+r_I=\frac{\beta_I}{n\beta_O}\,r_O
 $$
 
 They show that once the integer lock $(1:m:n)$ is fixed, the remaining geometry depends on the outer and inner speed factors $\beta_O$ and $\beta_I$. Thus a frequency hierarchy is not yet a radius hierarchy.
@@ -216,13 +216,13 @@ They show that once the integer lock $(1:m:n)$ is fixed, the remaining geometry 
 
 Under Assumptions 1-2,
 $$
-f_O:f_M:f_I = 1:m:n,
+f_O:f_M:f_I = 1:m:n
 $$
 and
 $$
 r_O:r_M:r_I
 =
-1:\frac{1}{m\beta_O}:\frac{\beta_I}{n\beta_O}.
+1:\frac{1}{m\beta_O}:\frac{\beta_I}{n\beta_O}
 $$
 
 **Proof.** The frequency ratio is exactly Assumption 2. The radius ratios follow from
@@ -239,17 +239,17 @@ If one later chooses the dyadic integers
 $$
 m=2,
 \qquad
-n=4,
+n=4
 $$
 then
 $$
-f_O:f_M:f_I = 1:2:4,
+f_O:f_M:f_I = 1:2:4
 $$
 but the radius ratios become
 $$
 r_O:r_M:r_I
 =
-1:\frac{1}{2\beta_O}:\frac{\beta_I}{4\beta_O}.
+1:\frac{1}{2\beta_O}:\frac{\beta_I}{4\beta_O}
 $$
 
 So the dyadic frequency lock is a viable candidate pattern, but it does **not** by itself imply equal-speed geometry, and it does **not** by itself imply a self-similar radius law unless further assumptions are added.
@@ -287,7 +287,7 @@ This does not yet prove which pair $(m,n)$ wins. It states the criterion that th
 
 The cancellation functional uses a finite harmonic depth
 $$
-L.
+L
 $$
 That truncation must be certified rather than assumed. The useful analogy from renormalization-group reasoning is not that $\mathbb{A}\mathbb{A}\mathbb{A}$ inherits a field-theory RG flow, but that discarded modes must be shown irrelevant for the decision being made.
 
@@ -299,7 +299,7 @@ T_L(m,n)
 \left|
 \sum_{(k,a):\,a q_k=\nu}
 A_{k,a}e^{ia\phi_k}
-\right|^2,
+\right|^2
 $$
 where
 $$
@@ -318,12 +318,12 @@ $$
 $$
 against the truncation error. A lock is selected by the finite calculation only if
 $$
-\Delta C_L>2\varepsilon_L.
+\Delta C_L>2\varepsilon_L
 $$
 
 This turns "higher harmonics are small" into a checkable theorem target tied to the same branch-derived amplitudes used in
 $$
-C_L.
+C_L
 $$
 
 ## Reduced-Theorem Target
@@ -357,7 +357,7 @@ If the minimizer turns out to be $(1,2,4)$, then the dyadic hierarchy would be a
 
 The finite-$\eta$ return-map test should also reject transient near-locks. For a sampled returned-branch trajectory
 $$
-z_i=(\phi_i,a_i,\nu_i,\ell_i)\in\mathcal{S}_{m,n},
+z_i=(\phi_i,a_i,\nu_i,\ell_i)\in\mathcal{S}_{m,n}
 $$
 define a recurrence matrix
 $$
@@ -366,7 +366,7 @@ Q^{(\epsilon)}_{ij}
 \mathbf{1}
 \left[
 d_{\mathcal{S}}(z_i,z_j)<\epsilon
-\right],
+\right]
 $$
 where $d_{\mathcal{S}}$ is the declared branch-chart distance after quotienting the neutral symmetries in $G$. A candidate $1{:}2$ row, or a chained $1{:}2{:}4$ row, is recurrence-positive only if returned-section hits recur at the declared outer-period multiples, the recurrence period agrees with the winding and active-branch ledger, the recurrence structure persists under timestep, history-resolution, and $\eta$ refinement, and nearby trials that fail the non-symmetry Floquet gap do not pass this recurrence check.
 
@@ -374,7 +374,7 @@ where $d_{\mathcal{S}}$ is the declared branch-chart distance after quotienting 
 
 The older $\mathbb{Z}_3$ dipole-cancellation identity can still be kept as a separate symmetry test:
 $$
-1+e^{i2\pi/3}+e^{i4\pi/3}=0.
+1+e^{i2\pi/3}+e^{i4\pi/3}=0
 $$
 
 That identity may help characterize a radiative-stealth phase arrangement of an already-formed lock, but it should not be confused with the frequency-selection assumptions above.

@@ -35,14 +35,14 @@ $$
 =
 \{\,\phi\in\mathcal H_{\eta,h}\mid
 G_\alpha(\Pi_L\phi(0),c)=0\ \text{for all}\ \alpha,
-\ \exists\gamma\in\Gamma_{\mathrm{adm}}(c):\phi\in\mathcal H_\gamma\,\}.
+\ \exists\gamma\in\Gamma_{\mathrm{adm}}(c):\phi\in\mathcal H_\gamma\,\}
 $$
 Here $\mathcal H_\gamma$ denotes the path-history domain associated with the branch chart $\gamma$.
 
 The constrained flow is still the lower-level causal-wake dynamics,
 
 $$
-\frac{dX}{dt}=F_L(X_t),\qquad X_t\in \mathcal K_c,
+\frac{dX}{dt}=F_L(X_t),\qquad X_t\in \mathcal K_c
 $$
 
 where $X_t(\theta)=X(t+\theta)$ is the path-history segment needed by the delayed equation of motion. The equations $G_\alpha=0$ encode the surrounding context as constraints on which lower-level histories are available, not as independent causes outside the architrino dynamics.
@@ -52,13 +52,13 @@ Once the admissible history set is fixed, the same setup gives a compact basin-s
 $$
 B_k^W(c)
 =
-\{\phi\in\mathcal K_c\mid \Pi_{\mathrm{br}}\Phi_T^c(\phi)=k,\ \Phi_s^c(\phi)\in\mathcal K_c\ \text{for }0\le s\le T\}.
+\{\phi\in\mathcal K_c\mid \Pi_{\mathrm{br}}\Phi_T^c(\phi)=k,\ \Phi_s^c(\phi)\in\mathcal K_c\ \text{for }0\le s\le T\}
 $$
 
 The measure $\mu_c$ must come from a declared preparation, return section, coarse-graining, or unresolved Noether sea occupation rule; it is not an external probability assigned after the outcome. With that rule fixed, the context-conditioned branch weight is
 
 $$
-P_c(k)=\mu_c(B_k^W(c)).
+P_c(k)=\mu_c(B_k^W(c))
 $$
 
 For this expression to support stable observer-level inference, the basin partition must be measurable on the declared chart. A useful admissibility target is
@@ -66,7 +66,7 @@ For this expression to support stable observer-level inference, the basin partit
 $$
 \mu_c(\partial B_k^W(c))=0,
 \qquad
-\mu_c\!\left(\mathcal K_c\setminus\bigcup_k B_k^W(c)\right)\le\varepsilon_{\text{esc}}.
+\mu_c\!\left(\mathcal K_c\setminus\bigcup_k B_k^W(c)\right)\le\varepsilon_{\text{esc}}
 $$
 
 Changing $c$ can shift the inferred branch weights $P_c(k)$ by moving basin boundaries, suppressing some causal-root branches, or opening self-hit channels, while the underlying ontology remains the same collection of architrino worldlines and causal wakes.
@@ -80,7 +80,7 @@ For a candidate assembly branch $B_k^W$, a clean opening criterion is
 $$
 \mu_c(B_k^W(c))=0,
 \qquad
-\mu_{c'}(B_k^W(c'))>0.
+\mu_{c'}(B_k^W(c'))>0
 $$
 
 The reverse inequality pattern records branch closure, and partial changes in $\mu_c(B_k^W(c))$ record ordinary reshaping of basin weights. In each case, the context change must be tied to a physical transition rather than to a new ontology outside the architrino dynamics.
@@ -88,7 +88,7 @@ The reverse inequality pattern records branch closure, and partial changes in $\
 A physical transition should be representable as a replayable event
 
 $$
-\mathsf e=(X,I_{\mathsf e},Y_{\mathsf e}),
+\mathsf e=(X,I_{\mathsf e},Y_{\mathsf e})
 $$
 
 where $X$ is the local state and path-history record, $I_{\mathsf e}$ is the finite selected channel set, and $Y_{\mathsf e}$ lists outgoing assemblies, radiation or non-photon shedding, recoil targets, Noether sea updates, remnant states, and provenance records. The corresponding energy row is not an independent emergence law; it is the energy component of the event ledger,
@@ -108,7 +108,7 @@ E_{\mathrm{sea}}
 \sum_{\beta\in Y_{\mathsf e}}\Delta E_\beta
 -
 W_{\partial\Omega}
-=0.
+=0
 $$
 
 Here $K_{\mathrm{mech}}$ is the mechanical kinetic energy of the retained architrino or assembly degrees of freedom, the subscript `retained` marks the degrees of freedom kept inside the subsystem account, and $W_{\partial\Omega}$ is work crossing the retained subsystem boundary. The term $E_{\mathrm{sea}}$ records retained Noether sea energy changes. The no-double-counting rule is explicit: a Noether sea update included in retained $E_{\mathrm{sea}}$ must not also appear as an outgoing row in $Y_{\mathsf e}$, while a Noether sea change exported outside the retained subsystem belongs in $Y_{\mathsf e}$ rather than in retained $E_{\mathrm{sea}}$. If a local potential reconstruction is used, it may replace $E_{\text{wake}}$ as an equivalent work-integral account on the declared window; it must not be added as a second independent energy store without a crosswalk. Radiation, recoil, reaction products, remnant excitation, and unresolved medium updates must be named inside $Y_{\mathsf e}$ and closed through [Reaction Ledger and Channel Closure](../validation/reaction-ledger.md) rather than hidden inside the phrase "emergence." In plain language, a new higher-level branch becomes available because the physical constraints changed, not because a second law or substance was added on top of the lower-level dynamics.
@@ -194,7 +194,7 @@ $$
 =
 \{\,s<t:\|\mathbf{x}_i(t)-\mathbf{x}_i(s)\|=c_f(t-s)\,\}
 \ne
-\varnothing.
+\varnothing
 $$
 If $\|\mathbf{v}_i(u)\|<c_f-\eta$ throughout the interval $[s,t]$, then no self-hit root can occur on that interval, because
 $$
@@ -202,7 +202,7 @@ $$
 \le
 \int_s^t\|\mathbf{v}_i(u)\|\,du
 <
-c_f(t-s).
+c_f(t-s)
 $$
 Thus reaching or exceeding $c_f$ somewhere along the intervening history is a necessary condition for a simple nontrivial self-hit root, apart from the degenerate straight field-speed tangent case excluded by the simple-root assumptions, but it is not sufficient. Curvature, acceleration, and branch geometry determine whether the worldline actually intersects its own emitted causal wake. The exact onset condition is root existence plus transversality, not the scalar inequality $\|\mathbf{v}\|>c_f$ alone.
 

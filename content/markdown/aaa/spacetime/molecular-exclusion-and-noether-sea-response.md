@@ -56,14 +56,14 @@ The kinetic baseline is not just occupied volume; it is also the collision lengt
 $$
 \lambda_m
 \sim
-\frac{1}{\pi d_m^2 n_m},
+\frac{1}{\pi d_m^2 n_m}
 $$
 up to the usual order-one correction for relative molecular motion. A probe of size $L$ is in a continuum regime only when
 $$
 \mathrm{Kn}_m
 \equiv
 \frac{\lambda_m}{L}
-\ll 1.
+\ll 1
 $$
 When $\mathrm{Kn}_m$ is not small, a molecular continuum pressure or viscosity description is a poor model even if the geometric occupancy is tiny.
 
@@ -81,7 +81,7 @@ n_m V_{\mathrm{VdW}},
 \qquad
 \mathcal C_X
 =
-\text{declared coupling record for channel }X.
+\text{declared coupling record for channel }X
 $$
 A low $\phi_{\mathrm{VdW}}$ or high $\mathrm{Kn}_m$ may explain molecular sparsity or gas-kinetic behavior; it is not evidence by itself for transparency of channel $X$.
 

@@ -26,7 +26,7 @@ $$
 H_{\mathrm{eff},X}(R,\hat{\mathbf{k}})
 =
 c_0\,
-\partial_R Z_{\mathrm{prop},X}(R,\hat{\mathbf{k}}),
+\partial_R Z_{\mathrm{prop},X}(R,\hat{\mathbf{k}})
 $$
 
 after endpoint cadence, source-branch changes, and launch geometry are removed. A net positive $\partial_R Z_{\mathrm{prop},X}$ is redward path accumulation; a net negative value is blueward path boosting. Either sign is allowed only when the same Noether sea and photon-exchange ledger also passes the distance, flux, time-dilation, and spectral-coherence checks.
@@ -36,7 +36,7 @@ The sharper local object is the directional transfer coefficient
 $$
 H_{\mathrm{eff},X}(R,\hat{\mathbf{k}})
 =
-c_0\,\alpha_{R,X}(\hat{\mathbf{k}}),
+c_0\,\alpha_{R,X}(\hat{\mathbf{k}})
 $$
 
 with the next correction governed by the local curvature $\mathcal{K}_X(R,\hat{\mathbf{k}})$ of the corrected log-redshift curve. The $H_0$ tension is therefore not only a disagreement between two scalar estimates. In this ontology it is a question about whether early-inferred and late-inferred pipelines are sampling the same local transfer coefficient, the same higher-order redshift curvature, and the same environment-conditioned Noether sea state record.
@@ -50,7 +50,7 @@ Z_{\mathrm{prop},X}
 -\ln\Gamma_{N,E}
 +\ln\Gamma_{N,R}
 +\ln B_X(E)
-+\ln D_v,
++\ln D_v
 $$
 
 so that endpoint cadence, source-branch shifts, and launch motion are not folded into a single apparent $H_0$ offset. Only then should local and early-inferred transfer slopes be compared.
@@ -137,7 +137,7 @@ $$
 \right\|^2
 +\mathcal{R}_{\mathrm{SN/H_0}}(\theta_{\mathrm{sea}})
 +\mathcal{R}_{\mathrm{growth}}(\theta_{\mathrm{sea}})
-+\lambda_{\mathrm{split}}\mathcal{P}_{\mathrm{proj}}.
++\lambda_{\mathrm{split}}\mathcal{P}_{\mathrm{proj}}
 $$
 
 Here $\mathbf b_{\mathrm{BAO}}(z_i)$ contains the reported subset of $D_M/r_d$, $D_H/r_d$, and $D_V/r_d$ for each tracer bin. The last term is not optional bookkeeping. It prevents a branch from fitting a DESI-like distance trend, a Planck-like CMB anchor, and a DES-like growth amplitude by using three incompatible Noether sea projections.
@@ -153,7 +153,7 @@ $$
 \left(
 \delta H(z,\hat{\mathbf{n}}),
 \hat{\mathbf{n}}\cdot\Delta_{\mathrm{dip}}^{X}
-\right).
+\right)
 $$
 
 Here $\delta H(z,\hat{\mathbf{n}})$ is the directional departure from an isotropic inferred transfer slope, and $\Delta_{\mathrm{dip}}^{X}$ is the source-catalogue dipole residual defined in [CMB](CMB.md). Operationally, the Hubble residual should be computed from corrected propagation slopes, for example
@@ -165,7 +165,7 @@ c_0
 \left(
 \alpha_{\mathcal{E},X}(z,\hat{\mathbf{n}})
 -\bar\alpha_X(z)
-\right),
+\right)
 $$
 
 after source, endpoint, and launch factors have been removed. The expected sign and scale of $\mathcal{R}_{H,D}$ must come from the same Noether sea density, delay, and flow variables used by the expansion and growth modules. If the correlation is absent after known survey systematics are controlled, the local-environment explanation for $H_0$ loses support. If the correlation exists but requires a different Noether sea state from the one used for CMB, BAO, or growth, the cosmology branch has split its ontology and fails the shared-closure requirement.
@@ -181,7 +181,7 @@ d_L(z)
 \frac{c_0}{H_{0,\mathrm{eff}}}
 \left[
 z+\frac12(1-q_{0,\mathrm{eff}})z^2+O(z^3)
-\right],
+\right]
 $$
 where $H_{0,\mathrm{eff}}$ and $q_{0,\mathrm{eff}}$ are coefficients of the corrected redshift-transfer map. For the growth side, retain
 $$
@@ -190,7 +190,7 @@ f\sigma_8(z,k)
 \frac{d\ln D(z,k)}{d\ln a_{\mathrm{eff}}}\,
 \sigma_8(z,k),
 \qquad
-S_8=\sigma_8\sqrt{\Omega_m/0.3}.
+S_8=\sigma_8\sqrt{\Omega_m/0.3}
 $$
 A compact shared-state diagnostic is
 $$
@@ -202,7 +202,7 @@ $$
 d_{\mathrm{shared}}\!\left(
 \Pi_{\mathrm{dist}}\theta_{\mathrm{sea}},
 \Pi_{\mathrm{growth}}\theta_{\mathrm{sea}}
-\right).
+\right)
 $$
 A distance improvement that raises the shared-state penalty or worsens $f\sigma_8$ is therefore not a resolution of the tension pair. It is a sign that the fit has separated the background and growth projections.
 
@@ -227,7 +227,7 @@ a_\star(E)
 +
 \lambda_H\mathcal{R}_{H_0S_8}(\theta_{\mathrm{sea}})
 +
-\lambda_{\mathrm{cl}}\mathcal{R}_{\mathrm{cl/gal}}(\theta_{\mathrm{sea}}),
+\lambda_{\mathrm{cl}}\mathcal{R}_{\mathrm{cl/gal}}(\theta_{\mathrm{sea}})
 $$
 
 where $\alpha_E$ is a declared comparison coefficient rather than a fitted afterthought. The cluster-versus-galaxy term $\mathcal{R}_{\mathrm{cl/gal}}$ records whether the same Noether sea state explains any required difference between galaxy-scale and cluster-scale acceleration thresholds. A branch that fits galaxy rotation curves with one $a_\star$, cluster gas with another, and the $H_0/S_8$ pair with a third effective history has not linked the tensions; it has split the Noether sea record.

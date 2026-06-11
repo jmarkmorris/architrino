@@ -21,7 +21,7 @@ $$
 \longrightarrow
 \text{electron-assembly envelope basin}
 \longrightarrow
-\text{observer-level labels }(n,\ell,m).
+\text{observer-level labels }(n,\ell,m)
 $$
 
 The labels $(n,\ell,m)$ are therefore spectral and orbital recovery labels for the effective envelope. They should not be used backward as evidence that the internal nuclear or electron Noether swarm ledgers have already been derived.
@@ -35,7 +35,7 @@ $$
 \qquad
 \ell\in\mathbb N_0,
 \qquad
-m\in\{-\ell,\ldots,\ell\}.
+m\in\{-\ell,\ldots,\ell\}
 $$
 
 Atomic spectra then consume $(n,\ell,m)$ as envelope labels for energy gaps and line strengths. The spectral burden remains the native extraction of the electron-envelope basin, its radial energy functional, and the local clock/rate conversion; the angular lemma does not by itself derive the Rydberg constant or spin-sensitive splittings.
@@ -49,7 +49,7 @@ h\nu_{a\to b}
 =
 E_{\text{env}}(a;\mathcal W_{\text{nuc}},\rho_{\text{NS}},n,\chi_{\text{sea}})
 -
-E_{\text{env}}(b;\mathcal W_{\text{nuc}},\rho_{\text{NS}},n,\chi_{\text{sea}}),
+E_{\text{env}}(b;\mathcal W_{\text{nuc}},\rho_{\text{NS}},n,\chi_{\text{sea}})
 $$
 
 with the local clock/rate conversion applied before comparing to observer frequencies. This keeps the atomic spectrum tied to geometry and causal-wake closure without claiming that the standard orbital postulate has already been derived.
@@ -64,7 +64,7 @@ F_{\mathrm{spec}}
 \Theta_{\mathrm H,\mathrm{spec}}^{(\ell)},
 D_{p,\mathrm{spec}}^{(\ell)},
 D_{e,\mathrm{spec}}^{(\ell)}
-\right].
+\right]
 $$
 
 The first spectral readout target is the pair of local envelope gaps and clock/rate entries
@@ -77,7 +77,7 @@ E_{\text{env}}^{(\ell)}(a),
 E_{\text{env}}^{(\ell)}(b),
 \Gamma_N^{(\ell)},
 \chi_{\text{sea}}^{(\ell)}
-\right),
+\right)
 $$
 
 with $E_{\text{env}}^{(\ell)}$ still depending on $\mathcal W_{\text{nuc}}$, $\rho_{\text{NS}}$, $n$, and $\chi_{\text{sea}}$ in the same declared window. A schematic observer-frequency comparison can then be written as
@@ -90,7 +90,7 @@ $$
 E_{\text{env}}^{(\ell)}(a)
 -
 E_{\text{env}}^{(\ell)}(b)
-}{h},
+}{h}
 $$
 
 where $\Gamma_N^{(\ell)}$ stands for the local cadence-stretch readout and $\left(\Gamma_N^{(\ell)}\right)^{-1}$ is the corresponding clock-rate conversion from [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md#hydrogen-spectral-clock-rate-conversion-target). The spectral scan passes only if the same hydrogen ledger and Noether sea complement produce a stable line readout under admissible refinement:
@@ -118,7 +118,7 @@ $$
 \left(\delta\Gamma_N^{(\ell)}/\Gamma_N^{(\ell)}\right)^2
 }{
 \epsilon_{\Gamma}^2
-}.
+}
 $$
 
 This makes the spectral channel a composite readout, not a separate fitted surface. The clock norm supplies the phase/cadence/delay part, while the envelope-gap term tests whether the same electron branch and proton source envelope recover the line spacing. If the line can be matched only by changing $\Gamma_N^{(\ell)}$, $\chi_{\text{sea}}^{(\ell)}$, or the electron-envelope branch after the transition pair is chosen, the spectral channel has split from the hydrogen boundary scan.
@@ -140,7 +140,7 @@ $$
 \varepsilon_{\mathrm{spec}}
 }
 \le
-\Delta_{\mathrm{spec}}^{\mathrm{tol}}.
+\Delta_{\mathrm{spec}}^{\mathrm{tol}}
 $$
 
 The failure modes are direct: the spectral target fails if $(n,\chi_{\text{sea}})$ collapse into one parameter, if $(n,\ell,m)$ are used as inputs rather than recovered labels, if the proton source envelope is replaced by three free quark sources, or if $R_\infty$ must be fitted independently of the same $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$ record that supplies the line gaps.
@@ -154,7 +154,7 @@ $$
 =
 \frac{1}{n_b^2}
 -
-\frac{1}{n_a^2}.
+\frac{1}{n_a^2}
 $$
 
 For each line in this set, the spectral scan extracts a Rydberg readout from the same channel record:
@@ -166,7 +166,7 @@ $$
 \nu_{a\to b}^{\mathrm{obs},(\ell)}
 }{
 c_{\gamma,0}^{(\ell)}\,\Lambda_{ab}
-},
+}
 $$
 
 where $c_{\gamma,0}^{(\ell)}$ is the local photon-channel speed in the same weak homogeneous reference used for the line comparison. The benchmark is not that the symbol $R_\infty$ is inserted by hand. The target is that the hydrogen line set has one transition-independent readout,
@@ -187,7 +187,7 @@ $$
 \varepsilon_R
 }
 \le
-\Delta_R^{\mathrm{tol}},
+\Delta_R^{\mathrm{tol}}
 $$
 
 after using the same $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$, $\Gamma_N^{(\ell)}$, and $\chi_{\text{sea}}^{(\ell)}$ for every line in the set. The infinite-nuclear-mass limit is then a recovery target,
@@ -196,7 +196,7 @@ $$
 \lim_{M_p/m_e\to\infty}
 \widehat R_{\mathrm H}^{(\ell)}
 =
-R_\infty,
+R_\infty
 $$
 
 with $m_e$ and $M_p$ read as externally exposed mass responses rather than primitive point-particle masses. The finite-hydrogen benchmark may retain the usual reduced-mass correction as an observer-level comparison, but it must not become an independent fitted constant.
@@ -225,7 +225,7 @@ h\nu_{a\to b}^{\mathrm{obs},(\ell)}
 \varepsilon_E
 }
 \le
-\Delta_E^{\mathrm{tol}}.
+\Delta_E^{\mathrm{tol}}
 $$
 
 This residual keeps the spectral benchmark tied to the envelope calculation. It fails if each line requires a separate $R_\infty$ adjustment, if reduced mass, recoil, or clock/rate effects are absorbed into the envelope energy without being named, if $c_{\gamma,0}^{(\ell)}$ is changed between lines, or if the local Noether sea variables are retuned after the line set is chosen. The event-level emission and absorption ledger that tests the same gaps belongs to [Atomic Transition Radiation](../reactions/atomic-transition-radiation.md#hydrogen-line-benchmark-record).
@@ -260,7 +260,7 @@ E_{\mathrm{env}}
 n,
 \chi_{\text{sea}}
 \right)
-\right].
+\right]
 $$
 
 Closed-shell atoms should correspond to large $C_{\mathrm{shell}}$ and weak low-order external envelope multipoles. Transition metals should correspond to several nearby anisotropic electron-envelope branches, especially in $d$-envelope recovery. Iron-group elements add isotope-specific nuclear binding and, in material states, magnetic or lattice branches. The words `closed shell`, `transition metal`, and `iron group` are therefore observer-level summaries until translated into $\mathcal B_e$, $\mathcal W_{\text{nuc}}$, $C_{\mathrm{shell}}$, and any realized bonding or lattice branch.
@@ -282,7 +282,7 @@ $$
 \qquad
 \omega_c
 =
-\frac{eB}{m_*},
+\frac{eB}{m_*}
 $$
 
 where $m_*$ is the material or envelope effective mass when the electron assembly is in a branch environment. This is not a primitive Lorentz-force postulate. It is a test that the envelope branch, effective magnetic-state map, and exposed mass response combine to reproduce the standard spacing in the validated limit.
@@ -292,7 +292,7 @@ Zeeman splitting should remain downstream of the spin ledger, but it gives a use
 $$
 \Delta E_Z
 =
-g_{\mathrm{eff}}\mu_B B.
+g_{\mathrm{eff}}\mu_B B
 $$
 
 The closure burden is to derive $g_{\mathrm{eff}}$ from the completed internal spinor ledger, material branch, and measurement-response model rather than assigning a free spin label. In isolated-atom comparisons this protects fine, hyperfine, and Zeeman recovery from being fitted independently of the base spectral envelope.
@@ -302,7 +302,7 @@ Nuclear recoil-free resonant absorption supplies a separate material-coupled ben
 $$
 E_{\mathrm{recoil}}
 =
-\frac{E_\gamma^2}{2Mc_0^2}.
+\frac{E_\gamma^2}{2Mc_0^2}
 $$
 
 In a solid branch, a recoil-free event is allowed only when the momentum is routed coherently through the material branch with no phonon occupation change in the relevant channel. In ledger form,
@@ -320,7 +320,7 @@ $$
 =
 \sum_s\int_{\mathrm{BZ}}
 \frac{d^3k}{(2\pi)^3}
-\hbar\omega_s(\mathbf k)\Delta N_s(\mathbf k).
+\hbar\omega_s(\mathbf k)\Delta N_s(\mathbf k)
 $$
 
 The recoil-free spectral line is the branch with $\Delta N_s(\mathbf k)=0$ for the emitted or absorbed channel and with recoil assigned to the coherent material response rather than to a single free nucleus. This benchmark connects atomic spectra to [Condensed Matter](condensed-matter.md#lattice-scattering-and-phonon-response) without turning the lattice into a new nuclear source.

@@ -97,11 +97,11 @@ Color charge appears only when the nested shell swarm axes are **not equivalent*
 
 The guiding physical picture is that long-lived assemblies must suppress time-dependent far-field leakage. A useful test state is the equal-phase triad
 $$
-\phi \in \left(0,\frac{2\pi}{3},\frac{4\pi}{3}\right),
+\phi \in \left(0,\frac{2\pi}{3},\frac{4\pi}{3}\right)
 $$
 for which
 $$
-1+e^{i2\pi/3}+e^{i4\pi/3}=0.
+1+e^{i2\pi/3}+e^{i4\pi/3}=0
 $$
 This does not derive the full color algebra by itself, but it gives a clean geometric reason why three-way closure is special: three balanced phase channels can hide the leading dipole signal. In that heuristic sense, color-singlet organization is not just algebraic neutrality but a **stealth condition** that helps the Noether swarm survive without strong radiative leakage.
 
@@ -262,7 +262,7 @@ We must not over‑predict.
 
 The shared branch-selection rule is therefore:
 $$
-F_\star(q,\mathcal{B})\in\{I,II\},\qquad q\in\{d,s,b\},
+F_\star(q,\mathcal{B})\in\{I,II\},\qquad q\in\{d,s,b\}
 $$
 where $\mathcal{B}$ denotes the local branch context: generation tier, hadron boundary conditions, effective forcing window, and Noether sea environment. Once $F_\star$ is selected, its three H/M/L permutations form the red/green/blue triplet for that down-type quark. The other family is a competing branch sector, not an additional observed species.
 
@@ -272,18 +272,18 @@ Fix one down flavor and let $\Omega_I,\Omega_{II}$ be the Family I/II constraine
 
 Define the reduced energy minima
 $$
-E_F^\star \equiv \min_{X\in\Omega_F}\mathcal{E}(X),\qquad F\in\{I,II\},
+E_F^\star \equiv \min_{X\in\Omega_F}\mathcal{E}(X),\qquad F\in\{I,II\}
 $$
 and local Hessians
 $$
-H_F \equiv D^2\mathcal{E}(X_F^\star).
+H_F \equiv D^2\mathcal{E}(X_F^\star)
 $$
 For finite but low effective noise/temperature $T_{\mathrm{eff}}$, use the harmonic free-energy approximation
 $$
 \mathcal{F}_F(T_{\mathrm{eff}})
 =
 E_F^\star+\frac{T_{\mathrm{eff}}}{2}\log\det H_F
-+\mathcal{O}(T_{\mathrm{eff}}^2).
++\mathcal{O}(T_{\mathrm{eff}}^2)
 $$
 
 Linearize the delay dynamics about each minimizer and let
@@ -298,7 +298,7 @@ Assume there exists $F_\star\in\{I,II\}$ such that:
 1. **Local dynamical stability:** $\rho_{F_\star}<1$.
 2. **Competitor exclusion:** either $\rho_{\bar F}\ge 1$ (linearly unstable), or $\rho_{\bar F}<1$ and
 $$
-\Delta\mathcal{F}\equiv \mathcal{F}_{\bar F}-\mathcal{F}_{F_\star}>0.
+\Delta\mathcal{F}\equiv \mathcal{F}_{\bar F}-\mathcal{F}_{F_\star}>0
 $$
 3. **Low-energy regime:** $T_{\mathrm{eff}}\ll \Delta\mathcal{F}$ and forcing amplitude is below the inter-family escape barrier.
 
@@ -306,7 +306,7 @@ Then stationary occupation satisfies
 $$
 \frac{\pi_{\bar F}}{\pi_{F_\star}}
 \lesssim
-\exp\!\left(-\frac{\Delta\mathcal{F}}{T_{\mathrm{eff}}}\right),
+\exp\!\left(-\frac{\Delta\mathcal{F}}{T_{\mathrm{eff}}}\right)
 $$
 so $\pi_{\bar F}\to 0$ as $T_{\mathrm{eff}}\to 0$. Hence exactly one down-family survives as the low-energy ambient family.
 
@@ -315,14 +315,14 @@ so $\pi_{\bar F}\to 0$ as $T_{\mathrm{eff}}\to 0$. Hence exactly one down-family
 **Concrete screening corollary (Family II preference test).**  
 If the reduced minimum can be decomposed as
 $$
-E_F^\star = E_{\text{core},F}+E_{\text{self-hit},F}+E_{\text{strain},F}-s\,N_{Pm}^{(F)},
+E_F^\star = E_{\text{core},F}+E_{\text{self-hit},F}+E_{\text{strain},F}-s\,N_{Pm}^{(F)}
 $$
 with $N_{Pm}^{(I)}=0$, $N_{Pm}^{(II)}=2$, then Family II is selected whenever
 $$
 2s>
 \big(E_{\text{core},II}-E_{\text{core},I}\big)
 +\big(E_{\text{self-hit},II}-E_{\text{self-hit},I}\big)
-+\big(E_{\text{strain},II}-E_{\text{strain},I}\big),
++\big(E_{\text{strain},II}-E_{\text{strain},I}\big)
 $$
 and the stability condition $\rho_{II}<1$ holds.
 
@@ -341,12 +341,12 @@ In that case both families are generically long-lived and comparably populated, 
 
 For any quark flavor $q$, define the color state space
 $$
-\mathcal{H}^{\text{color}}_q \equiv \mathrm{span}\{|q_H\rangle,|q_M\rangle,|q_L\rangle\}\cong\mathbb{C}^3,
+\mathcal{H}^{\text{color}}_q \equiv \mathrm{span}\{|q_H\rangle,|q_M\rangle,|q_L\rangle\}\cong\mathbb{C}^3
 $$
 where $|q_H\rangle,|q_M\rangle,|q_L\rangle$ mean "axis-exceptionality on H/M/L", respectively.
 Fix this ordered basis and identify it with the canonical triplet basis
 $$
-|q_H\rangle\leftrightarrow e_1,\quad |q_M\rangle\leftrightarrow e_2,\quad |q_L\rangle\leftrightarrow e_3.
+|q_H\rangle\leftrightarrow e_1,\quad |q_M\rangle\leftrightarrow e_2,\quad |q_L\rangle\leftrightarrow e_3
 $$
 
 ### Admissible color transformations
@@ -360,7 +360,7 @@ We model internal color reconfiguration by linear maps $U:\mathcal{H}^{\text{col
 
 So the effective color action is represented by
 $$
-U\in SU(3).
+U\in SU(3)
 $$
 
 The usual global phase map $|q\rangle\to e^{i\theta}|q\rangle$ is treated as unobservable gauge redundancy (it does not change which axis is exceptional or relative axis phases).
@@ -373,14 +373,14 @@ Define Hermitian generators:
 $$
 T^{(x)}_{ab}\equiv \frac{1}{2}(E_{ab}+E_{ba}),\qquad
 T^{(y)}_{ab}\equiv -\frac{i}{2}(E_{ab}-E_{ba})
-\quad (a<b),
+\quad (a<b)
 $$
 giving six off-diagonal generators:
 $(HM),(HL),(ML)$ each with $(x,y)$ components.
 Define diagonal generators:
 $$
 H_1\equiv \frac{1}{2}(E_{HH}-E_{MM}),\qquad
-H_2\equiv \frac{1}{2\sqrt{3}}(E_{HH}+E_{MM}-2E_{LL}).
+H_2\equiv \frac{1}{2\sqrt{3}}(E_{HH}+E_{MM}-2E_{LL})
 $$
 These eight matrices are exactly the standard $T^a=\lambda_a/2$ basis up to the explicit relabeling $1\leftrightarrow H$, $2\leftrightarrow M$, $3\leftrightarrow L$.
 
@@ -406,24 +406,24 @@ The branch condition is:
 $$
 \mathcal{H}^{\text{color}}_q\cong 3,\qquad
 \mathcal{H}^{\text{color}}_{\bar q}\cong \bar 3,\qquad
-\mathrm{span}_{\mathbb{R}}\mathcal{B}\cong 8_{\mathrm{adj}},
+\mathrm{span}_{\mathbb{R}}\mathcal{B}\cong 8_{\mathrm{adj}}
 $$
 with the observable closed sectors assembled through the usual singlet-containing products
 $$
 3\otimes\bar 3=1\oplus 8,\qquad
-3\otimes 3\otimes 3\supset 1.
+3\otimes 3\otimes 3\supset 1
 $$
 This does not identify the Eightfold Way flavor octets with color itself. It says that any successful color branch must reproduce the same algebraic fact that eight traceless generators organize an octet-class residual, while native confinement and color-singlet closure still come from axis exceptionality, braid closure, and Noether sea energetics.
 
 Symmetry breaking is then tested as a residual, not promoted to a second color rule. Let $M_{\mathrm{obs}}$ be the observed hadron mass vector for a chosen baryon or meson octet, and let $M_{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)$ be the mass vector predicted after projecting a closed color-singlet assembly onto its flavor and axial-layer labels. The admissible branch must support a decomposition
 $$
-M_{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)=m_0\mathbf{1}+\alpha T_8+\beta D_8+\Delta_{\mathrm{axis}}(\theta),
+M_{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)=m_0\mathbf{1}+\alpha T_8+\beta D_8+\Delta_{\mathrm{axis}}(\theta)
 $$
 where $T_8$ and $D_8$ denote the two octet-breaking directions available to the adjoint classification, and $\Delta_{\mathrm{axis}}(\theta)$ is the native correction from H/M/L regime differences, axial-layer family selection, and braid energy. The recovery residual is
 $$
 \mathcal{R}_{8}
 =\min_{m_0,\alpha,\beta,\theta}
-\left\|M_{\mathrm{obs}}-\left(m_0\mathbf{1}+\alpha T_8+\beta D_8+\Delta_{\mathrm{axis}}(\theta)\right)\right\|.
+\left\|M_{\mathrm{obs}}-\left(m_0\mathbf{1}+\alpha T_8+\beta D_8+\Delta_{\mathrm{axis}}(\theta)\right)\right\|
 $$
 A branch fails this Eightfold-way check if $\mathcal{R}_{8}$ can be made small only by fitting unrelated parameters separately for baryons, mesons, and color confinement, or if $\Delta_{\mathrm{axis}}$ erases the triplet/conjugate-triplet and adjoint structure above. The source signal to preserve is therefore narrow: algebraic classification and Gell-Mann-Okubo-style mass splitting are recovery constraints on the emergent branch, not evidence that the classification algebra is the underlying medium.
 
@@ -437,7 +437,7 @@ T^{(x)}_{HM}
 1&0&0\\
 0&0&0
 \end{pmatrix}
-=\frac{\lambda_1}{2}.
+=\frac{\lambda_1}{2}
 $$
 It continuously rotates exceptionality between H and M while leaving L unchanged at first order. Together with $T^{(y)}_{HM}=\lambda_2/2$, it generates the embedded SU(2) subgroup acting on the $(H,M)$ color plane.
 
@@ -501,7 +501,7 @@ The algebraic SU(3) closure above is necessary but not sufficient for full confi
 
 Energy-side target inherited from the topological program:
 $$
-E_{\mathrm{open}}(L)=\sigma_{\mathrm{eff}}L+E_0+\mathcal{O}(1/L),\qquad \sigma_{\mathrm{eff}}>0,
+E_{\mathrm{open}}(L)=\sigma_{\mathrm{eff}}L+E_0+\mathcal{O}(1/L),\qquad \sigma_{\mathrm{eff}}>0
 $$
 for open color braids/flux sectors, while closed singlet sectors satisfy
 $$
@@ -523,7 +523,7 @@ $$
 \sim
 \exp\!\left[-M_{\mathrm{gap}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)R\right],
 \qquad
-M_{\mathrm{gap}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)>0.
+M_{\mathrm{gap}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)>0
 $$
 This is the mass-gap recovery target for closed strong-sector braids, separate from the open-string tension target.
 
@@ -535,7 +535,7 @@ d_{\sigma}\!\left(\sigma_{\mathrm{eff}}(\theta),\sigma_{\mathrm{QCD}}\right)
 +
 d_{\mathrm{gap}}\!\left(M_{\mathrm{glue}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta),M_{\mathrm{glue}}^{\mathrm{lat}}\right)
 +
-d_{\mathrm{free}}\!\left(O_{\mathrm{color}}(\theta),O_{\mathrm{color}}^{\max}\right),
+d_{\mathrm{free}}\!\left(O_{\mathrm{color}}(\theta),O_{\mathrm{color}}^{\max}\right)
 $$
 where the terms compare the extracted open-sector tension, the lowest closed strong-sector excitation scale, and the predicted free-color signal against the corresponding accepted benchmark or bound. The same branch record must drive all three terms. If $\sigma_{\mathrm{eff}}$, the mass gap, and free-color suppression require independent Noether sea variables or separate color-sector fits, the confinement program has reproduced the appearance of QCD rather than deriving its non-perturbative content.
 

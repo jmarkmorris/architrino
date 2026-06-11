@@ -36,25 +36,25 @@ This is the observer-level mechanism. The $\mathbb{A}\mathbb{A}\mathbb{A}$ layer
 A standard synchrotron power scale is
 
 $$
-P_{\mathrm{syn}} = \frac{4}{3}\sigma_T c\,U_B\,\gamma^2,
+P_{\mathrm{syn}} = \frac{4}{3}\sigma_T c\,U_B\,\gamma^2
 $$
 
 with magnetic energy density
 
 $$
-U_B=\frac{B^2}{8\pi}.
+U_B=\frac{B^2}{8\pi}
 $$
 
 The characteristic photon energy is set by
 
 $$
-E_{\gamma,\mathrm{syn}} \sim h\nu_c \propto \gamma^2 B.
+E_{\gamma,\mathrm{syn}} \sim h\nu_c \propto \gamma^2 B
 $$
 
 For pitch angle $\alpha$, a standard critical-frequency expression is
 
 $$
-\nu_c = \frac{3}{2}\gamma^2\frac{eB}{2\pi m_e c}\sin\alpha.
+\nu_c = \frac{3}{2}\gamma^2\frac{eB}{2\pi m_e c}\sin\alpha
 $$
 
 For isotropic pitch-angle distributions, $\langle\sin\alpha\rangle = \pi/4$, so ensemble-averaged characteristic frequency becomes $\nu_c \approx (3e/4\pi m_e c)\gamma^2 B$.
@@ -62,7 +62,7 @@ For isotropic pitch-angle distributions, $\langle\sin\alpha\rangle = \pi/4$, so 
 An operational energy-loss (cooling) timescale relation is
 
 $$
-\tau_{\mathrm{syn}} \sim \frac{E_e}{P_{\mathrm{syn}}} \propto \frac{1}{\gamma B^2}.
+\tau_{\mathrm{syn}} \sim \frac{E_e}{P_{\mathrm{syn}}} \propto \frac{1}{\gamma B^2}
 $$
 
 Here $\tau_{\mathrm{syn}}$ denotes a characteristic energy-loss timescale ($E/|dE/dt|$), distinct from the instantaneous synchrotron power rate $P_{\mathrm{syn}}$.
@@ -76,7 +76,7 @@ These equations and thresholds are the observer-level scaffold that $\mathbb{A}\
 For power-law injection $N(\gamma) \propto \gamma^{-p}$, the synchrotron emissivity in the slow-cooling regime ($\tau_{\mathrm{syn}} > \tau_{\mathrm{esc}}$) follows
 
 $$
-j_\nu \propto \nu^{-(p-1)/2}, \quad \nu < \nu_{\mathrm{max}},
+j_\nu \propto \nu^{-(p-1)/2}, \quad \nu < \nu_{\mathrm{max}}
 $$
 
 where $\nu_{\mathrm{max}} \propto \gamma_{\mathrm{max}}^2 B$ is the maximum synchrotron frequency set by the highest injected Lorentz factor.
@@ -84,7 +84,7 @@ where $\nu_{\mathrm{max}} \propto \gamma_{\mathrm{max}}^2 B$ is the maximum sync
 In the fast-cooling regime ($\tau_{\mathrm{syn}} < \tau_{\mathrm{esc}}$), electrons cool to a break Lorentz factor
 
 $$
-\gamma_{\mathrm{cool}} \approx \frac{6\pi m_e c}{\sigma_T B^2 t_{\mathrm{esc}}},
+\gamma_{\mathrm{cool}} \approx \frac{6\pi m_e c}{\sigma_T B^2 t_{\mathrm{esc}}}
 $$
 
 and the spectrum develops a characteristic break at $\nu_c(\gamma_{\mathrm{cool}})$ with slopes
@@ -122,7 +122,7 @@ $$
 \longrightarrow
 \text{wake-strain threshold}
 \longrightarrow
-\text{planar-mode photon, medium excitation, recoil, residual internal energy, or pair-channel handoff}.
+\text{planar-mode photon, medium excitation, recoil, residual internal energy, or pair-channel handoff}
 $$
 
 The radiation page writes the retuned transport state as $\mathbf{V}$. In this channel, $\mathbf{V}$ is the Noether swarm velocity-deformation state of the charged assembly during curved transport through $\mathcal{V}_{\mathrm{NS}}$. A channel-local closure mismatch can therefore be written as the derivation target
@@ -134,7 +134,7 @@ $$
 -
 \Theta_a(T;\mathbf{V}_{\text{adiabatic}},G_{\text{grad}},\mathcal{V}_{\mathrm{NS}}),
 \qquad
-a\in\{I,M,O\}.
+a\in\{I,M,O\}
 $$
 
 The corresponding residual norm specializes the shared radiation residual:
@@ -153,7 +153,7 @@ J_{o'j},
 \mathcal{V}_{\mathrm{NS}},
 G_{\text{grad}},
 \mathbf{V}_{\text{curved}}
-\right).
+\right)
 $$
 
 Here $\Gamma_{e^\pm}(t)$ is the charged assembly microstate; $\mathcal{C}_{o'j}(t)$ and $J_{o'j}$ are the active causal-root and Jacobian data; $\mathcal{V}_{\mathrm{NS}}$ is the anisotropic Noether sea state provisionally mapped to the observer-level $B$ field; and $G_{\text{grad}}$ records the gradient forcing that skews delay loops. This equation is not a derivation of synchrotron radiation. It names the residual functional that must later recover the validated frequency, power, cooling-break, and polarization limits.
@@ -173,7 +173,7 @@ J_{\text{loc}}
 \ge
 \mathcal{S}_{\gamma,*},
 \qquad
-E_{\text{exc}}^{\mathrm{syn}}\ge E_{\gamma,\min}.
+E_{\text{exc}}^{\mathrm{syn}}\ge E_{\gamma,\min}
 $$
 
 The wake-strain threshold is therefore the channel's local expression of the planar-mode basin boundary. If the residual is sub-threshold, the event must route energy into medium excitation, recoil, or residual internal energy rather than silently declaring a missing photon. If the threshold is crossed, the emitted photon must still satisfy the standard synchrotron scaling target
@@ -222,7 +222,7 @@ $$
 +
 \mathcal Q_{\mathrm{rem}}^{0},
 \qquad
-\mathcal Q\in\{E,\mathbf p,\mathbf J\}.
+\mathcal Q\in\{E,\mathbf p,\mathbf J\}
 $$
 
 Pair-production cascade vertices close the incoming photon ledger and then recruit identity-routed charged-assembly content from the named target or Noether sea reservoir; they do not treat photon energy alone as an identity source.
@@ -243,7 +243,7 @@ $$
 -
 \psi_{B,\mathrm{eff}}^{\perp}(\mathbf{x})
 \right]
-\right\rangle_{\mathbf{x}\in K}^{1/2},
+\right\rangle_{\mathbf{x}\in K}^{1/2}
 $$
 where $\psi_{\mathrm{syn}}$ is the synthetic linear-polarization angle and $\psi_{B,\mathrm{eff}}^{\perp}$ is the projected field-compression basis expected for the observer-level shock model. The target is not a new free-photon polarization proof; it is a source-scale Gate B consumer. Persistent knot-scale misalignment after Faraday rotation, beam averaging, and turbulent depolarization are accounted for would falsify the directional $B_{\mathrm{eff}}\leftrightarrow\mathcal{V}_{\mathrm{NS}}$ map in that regime.
 - Radiation-zone closure: for the local transverse-acceleration segment with $\mathbf{v}\cdot\mathbf{a}_\perp=0$, axes chosen so $\mathbf{v}$ lies along $z$ and $\mathbf{a}_\perp$ along $x$, and $\beta=\|\mathbf{v}\|/c$, recover the angular target
@@ -258,7 +258,7 @@ $$
 -
 \frac{\sin^2\theta\cos^2\phi}
 {\gamma^2(1-\beta\cos\theta)^2}
-\right],
+\right]
 $$
 
 and the total-power target
@@ -266,7 +266,7 @@ and the total-power target
 $$
 P_{\perp,\mathrm{std}}
 =
-\frac{q^2\gamma^4\|\mathbf{a}_\perp\|^2}{6\pi\epsilon_0c^3}.
+\frac{q^2\gamma^4\|\mathbf{a}_\perp\|^2}{6\pi\epsilon_0c^3}
 $$
 
 The channel residual is
@@ -278,7 +278,7 @@ $$
 \frac{P_{\mathrm{map}}}{P_{\perp,\mathrm{std}}}-1,
 \frac{\nu_{\gamma}^{\mathrm{out}}}{\nu_c}-1,
 \Delta_{\gamma,\mathrm{flux}}
-\right),
+\right)
 $$
 
 with $\Delta_{\gamma,\mathrm{flux}}$ inherited from [Radiation](radiation.md). In validated weak homogeneous limits, all components must tend to zero without retuning the $B\leftrightarrow\mathcal{V}_{\mathrm{NS}}$ map.
@@ -318,7 +318,7 @@ I_{\nu}^{\mathrm{IC}},
 \tau_{\mathrm{syn}},
 \tau_{\mathrm{esc}},
 \Delta_{\mathrm{pol}}^{K}
-\right),
+\right)
 $$
 
 where $I_{\nu}^{\mathrm{syn}}$ and $I_{\nu}^{\mathrm{IC}}$ are the synthetic synchrotron and inverse-Compton maps, $\Pi_{\nu}$ and $\psi_{\nu}$ are the linear-polarization fraction and angle, $\nu_{\mathrm{br}}$ is the cooling-break frequency, and $\Delta_{\mathrm{pol}}^{K}$ is evaluated on knots or shock-compressed regions. A source model passes this benchmark only if the same electron transport, $B_{\mathrm{eff}}\leftrightarrow\mathcal{V}_{\mathrm{NS}}$ map, and photon event ledger recover both the radio synchrotron and X-ray inverse-Compton morphology without separately tuning the field map for each band.
@@ -374,7 +374,7 @@ Any additional dependence of pair yield on local Noether sea state beyond standa
 A minimal cascade-depth diagnostic can be expressed through competing timescale ratios. Define the dimensionless cascade parameter as
 
 $$
-\mathcal{C}_{\mathrm{cas}} \equiv \left(\frac{\tau_{\mathrm{esc}}}{\tau_{\mathrm{syn}}}\right) \left(\frac{L}{L_{\gamma\gamma}}\right),
+\mathcal{C}_{\mathrm{cas}} \equiv \left(\frac{\tau_{\mathrm{esc}}}{\tau_{\mathrm{syn}}}\right) \left(\frac{L}{L_{\gamma\gamma}}\right)
 $$
 
 where
@@ -407,11 +407,11 @@ Z_X^{E\to R}
 Z_{\mathrm{endpoint},X}
 +Z_{\mathrm{source},X}
 +Z_{\mathrm{launch},X}
-+Y_{X,\mathrm{path}}.
++Y_{X,\mathrm{path}}
 $$
 
 $$
-j_{\nu}^{\mathrm{obs}}(R) = (1+z_X)^{-3} \, j_{\nu(1+z_X)}^{\mathrm{em}}(E)\,\mathcal{T}(\nu,E\rightarrow R),
+j_{\nu}^{\mathrm{obs}}(R) = (1+z_X)^{-3} \, j_{\nu(1+z_X)}^{\mathrm{em}}(E)\,\mathcal{T}(\nu,E\rightarrow R)
 $$
 
 Here $\mathcal{T}(\nu,E\rightarrow R)$ is the cumulative transfer function including absorption (for example, $e^{-\tau_{\gamma\gamma}(\nu,z)}$ for pair production on extragalactic background light) and any intervening scattering. The signed $Y_{X,\mathrm{path}}$ term must carry any Compton/Sunyaev-Zeldovich-like frequency exchange rather than being folded into a primitive expansion factor or hidden inside $\mathcal{T}$. For nearby sources ($z_X \ll 1$) with negligible path exchange, $\mathcal{T} \approx 1$.
@@ -425,13 +425,13 @@ $$
 \approx
 \epsilon_0\left(1-\frac{\omega_p^2}{\omega^2}\right),
 \qquad
-\omega_p^2=\frac{n_{\mathrm{car}}q^2}{m\epsilon_0}.
+\omega_p^2=\frac{n_{\mathrm{car}}q^2}{m\epsilon_0}
 $$
 
 For $\omega>\omega_p$, the transparent branch must recover
 
 $$
-\omega^2=\omega_p^2+c^2k^2,
+\omega^2=\omega_p^2+c^2k^2
 $$
 
 while $\omega<\omega_p$ is an evanescent or reflected transport row with $k=i\kappa_{\mathrm{ev}}$ rather than a lost photon ledger. Absorbing conductors use $k=k_1+ik_2$ and add an attenuation factor schematically of the form
@@ -439,7 +439,7 @@ while $\omega<\omega_p$ is an evanescent or reflected transport row with $k=i\ka
 $$
 \mathcal{T}_{\mathrm{abs}}(\omega)
 =
-\exp\!\left[-2\int_{\mathrm{path}}k_2(\omega,s)\,ds\right].
+\exp\!\left[-2\int_{\mathrm{path}}k_2(\omega,s)\,ds\right]
 $$
 
 If $\epsilon_{\mathrm{eff}}(\omega)=0$ produces a longitudinal plasma oscillation, the cascade record routes it into medium excitation or plasmon-like content. It is not counted as a free photon branch and it cannot repair a failed Gate B no-longitudinal-mode check.
@@ -449,13 +449,13 @@ If $\epsilon_{\mathrm{eff}}(\omega)=0$ produces a longitudinal plasma oscillatio
 In this file, $\tau_{\mathrm{syn}}$ is the observer-frame cooling timescale:
 
 $$
-\tau_{\mathrm{syn}}^{\mathrm{obs}} \approx \frac{6\pi m_e c}{\sigma_T B^2\gamma}.
+\tau_{\mathrm{syn}}^{\mathrm{obs}} \approx \frac{6\pi m_e c}{\sigma_T B^2\gamma}
 $$
 
 For ontology-level bookkeeping, use the conversion
 
 $$
-dt = \Gamma_{\mathrm{eff}}(v,\rho_{\text{NS}},n,\Phi)\,d\tau_{\mathrm{asm}},
+dt = \Gamma_{\mathrm{eff}}(v,\rho_{\text{NS}},n,\Phi)\,d\tau_{\mathrm{asm}}
 $$
 
 where $t$ is substrate absolute time and $\tau_{\mathrm{asm}}$ is assembly proper time. Then
@@ -463,7 +463,7 @@ where $t$ is substrate absolute time and $\tau_{\mathrm{asm}}$ is assembly prope
 $$
 \left(\frac{dE}{dt}\right)_{\mathrm{abs}}=\frac{1}{\Gamma_{\mathrm{eff}}}\left(\frac{dE}{d\tau_{\mathrm{asm}}}\right),
 \qquad
-\tau_{\mathrm{syn}}^{\mathrm{abs}}=\Gamma_{\mathrm{eff}}\,\tau_{\mathrm{syn}}^{\mathrm{asm}}.
+\tau_{\mathrm{syn}}^{\mathrm{abs}}=\Gamma_{\mathrm{eff}}\,\tau_{\mathrm{syn}}^{\mathrm{asm}}
 $$
 
 Toy mapping example (local weak-gravity zone): if $\gamma=10^4$, $B=1\,\mathrm{G}$, and $\Gamma_{\mathrm{eff}}\approx\gamma$, then
@@ -471,7 +471,7 @@ Toy mapping example (local weak-gravity zone): if $\gamma=10^4$, $B=1\,\mathrm{G
 $$
 \tau_{\mathrm{syn}}^{\mathrm{obs}}\approx 7.7\times 10^4\,\mathrm{s},
 \qquad
-\tau_{\mathrm{syn}}^{\mathrm{asm}}\approx \frac{\tau_{\mathrm{syn}}^{\mathrm{obs}}}{\Gamma_{\mathrm{eff}}}\approx 7.7\,\mathrm{s}.
+\tau_{\mathrm{syn}}^{\mathrm{asm}}\approx \frac{\tau_{\mathrm{syn}}^{\mathrm{obs}}}{\Gamma_{\mathrm{eff}}}\approx 7.7\,\mathrm{s}
 $$
 
 Here $\Gamma_{\mathrm{eff}}\approx\gamma$ is a placeholder SR-limit surrogate for dimensional illustration only, not a derived $\mathbb{A}\mathbb{A}\mathbb{A}$ relation. In all validated astrophysical regimes (AGN jets, pulsar wind nebulae, GRB afterglows), $\Gamma_{\mathrm{eff}}$ must reproduce the standard Lorentz factor $\gamma_{\mathrm{SR}}$ to within observational uncertainties on cooling breaks ($\lesssim 10\%$ for well-sampled SEDs). Any deviation is confined to untested extreme environments (for example, within $r \lesssim 3r_g$ of supermassive black holes, or $\rho_{\text{NS}} \gg \rho_{\mathrm{nuclear}}$) and requires explicit simulation bounds showing no conflict with validated-regime data.

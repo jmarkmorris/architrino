@@ -24,7 +24,7 @@ $$
 E_{\mathrm{rel}}(Y;A,B)\equiv
 \frac{\|R(Y_B)-Y_A\|_{L^2(W,\{x_k\})}}
 {\|R(Y_B)\|_{L^2(W,\{x_k\})}+\varepsilon_0},
-\qquad \varepsilon_0=10^{-12}.
+\qquad \varepsilon_0=10^{-12}
 $$
 Here $R$ is restriction of the finer run to the coarser sampling grid.
 
@@ -32,7 +32,7 @@ For provenance distributions of solved `t_emit`, define:
 $$
 D_W \equiv \frac{W_1(P_A,P_B)}{\mathrm{IQR}(P_B)+\varepsilon_0},
 \qquad
-D_{JS}\equiv \mathrm{JSD}(P_A\|P_B),
+D_{JS}\equiv \mathrm{JSD}(P_A\|P_B)
 $$
 where $W_1$ is 1-Wasserstein distance and JSD is Jensen-Shannon divergence.
 
@@ -44,7 +44,7 @@ E_{\mathrm{hist}}(S_\eta;\Delta h,\Delta h/2;W)
 \left(\sum_{m\in W}\|I_{\Delta h/2}^qS_\eta(t_{\mathrm{emit},m})-I_{\Delta h}^qS_\eta(t_{\mathrm{emit},m})\|^2w_m\right)^{1/2}
 }{
 \left(\sum_{m\in W}\|I_{\Delta h/2}^qS_\eta(t_{\mathrm{emit},m})\|^2w_m\right)^{1/2}+\varepsilon_0
-}.
+}
 $$
 For nonsmooth state-dependent delay windows, define the jump residual rows
 $$
@@ -55,7 +55,7 @@ $$
 R_{\mathrm{jump},a}
 =
 \frac{|t_{0,\ell_a}(\xi_a)-\xi_{\pi(a)}|}
-{\max(\Delta t,\Delta h,\eta/c_f,\varepsilon_0)}.
+{\max(\Delta t,\Delta h,\eta/c_f,\varepsilon_0)}
 $$
 
 ### Required refinements with pass/fail thresholds
@@ -65,7 +65,7 @@ $$
 - Estimated observed order:
 $$
 p_{\mathrm{obs}}(Y)=\log_2\!\frac{E_{\mathrm{rel}}(Y;\Delta t,\Delta t/2)}
-{E_{\mathrm{rel}}(Y;\Delta t/2,\Delta t/4)}.
+{E_{\mathrm{rel}}(Y;\Delta t/2,\Delta t/4)}
 $$
 Require $p_{\mathrm{obs}}\ge 0.8$ for at least one primary field channel ($\Phi$ or $\|\nabla\Phi\|$).
 
@@ -90,7 +90,7 @@ Require $p_{\mathrm{obs}}\ge 0.8$ for at least one primary field channel ($\Phi$
   \qquad
   E_{\mathrm{rel}}(R_{P}^{\mathrm{cg}})\le0.05,
   \qquad
-  E_{\mathrm{rel}}(R_E^{\mathrm{cg}})\le0.05.
+  E_{\mathrm{rel}}(R_E^{\mathrm{cg}})\le0.05
   $$
 - The moment-closure residual must decrease under temporal, history, and spatial refinement. A continuum plot is not promotion evidence if the next unresolved moment grows or if the memory-current residual is absorbed into fitted constants.
 
@@ -99,7 +99,7 @@ Require $p_{\mathrm{obs}}\ge 0.8$ for at least one primary field channel ($\Phi$
   $$
   E_{\mathrm{rel}}(\langle z\rangle)\le0.03,
   \qquad
-  E_{\mathrm{rel}}(\operatorname{Cov}(z))\le0.05.
+  E_{\mathrm{rel}}(\operatorname{Cov}(z))\le0.05
   $$
 - If a diffusion tensor $D^{ij}(z)$ is inferred from jump or ledger increments, require it to remain positive semidefinite on the retained domain and stable under refinement.
 - If a response kernel $\chi_{AB}$ is promoted, require the causal dispersion residual $\mathcal R_{\mathrm{KK}}(\chi_{AB})\le0.05$ on the declared frequency band and require any fluctuation-dissipation residual to be reported from the same record.
@@ -113,7 +113,7 @@ Require $p_{\mathrm{obs}}\ge 0.8$ for at least one primary field channel ($\Phi$
   \qquad
   \frac{\operatorname{tr}H}{N_{\mathrm{eq}}}\le\frac{1}{2},
   \qquad
-  \max_i H_{ii}\le\frac{1}{2},
+  \max_i H_{ii}\le\frac{1}{2}
   $$
   or an explicitly justified equivalent if a linear hat matrix $H$ is not available.
 - Branch identity must persist under temporal refinement, history-window refinement, regulator refinement when a regulator is used, and root-ledger refinement. A coordinate that only improves the fitted residual while changing the active branch identity fails model selection.
@@ -131,7 +131,7 @@ $$
 E_\eta(Y;\eta,\eta/2)
 =
 \frac{\|R(Y_{\eta/2})-Y_{\eta}\|_{L^2(W,\{x_k\})}}
-{\|R(Y_{\eta/2})\|_{L^2(W,\{x_k\})}+10^{-12}}.
+{\|R(Y_{\eta/2})\|_{L^2(W,\{x_k\})}+10^{-12}}
 $$
 It also records whether active root-ledger entries match between $\eta$ and $\eta/2$ after matching source, receiver, root class, and branch status. A convergence plot is not promotion evidence unless the table row containing the plotted quantity is present and tied to the campaign artifact hash.
 

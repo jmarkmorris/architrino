@@ -40,7 +40,7 @@ $$
 \left\|G_A^{B_1}(t)\right\|
 +\left\|G_A^{B_2}(t)\right\|
 +\varepsilon
-}.
+}
 $$
 
 The comparison is admissible only when $\Delta_{\mathrm{bc}}\le\epsilon_{\mathrm{bc}}$ for the apparatus class and when the same energy, momentum, and record channels are retained. Passing this residual says that two implementations realize the same effective boundary condition for a specific test; it does not import quantum-vacuum ontology, analog-medium ontology, or a new Noether sea mechanism.
@@ -127,7 +127,7 @@ E_k^{\mathrm{cmp}}
 \qquad
 v_c^{\mathrm{cmp}}
 =
-\min_k\frac{E_k^{\mathrm{cmp}}}{\hbar k}.
+\min_k\frac{E_k^{\mathrm{cmp}}}{\hbar k}
 $$
 In the source model the gap was identified with rest energy and a Compton-scale estimate pushed the critical velocity toward $c_0$. In $\mathbb{A}\mathbb{A}\mathbb{A}$ that is only a comparison test. A Noether sea branch may borrow the structure only after it defines a native excitation gap, explains which assemblies or collective modes carry it, and shows that any low-dissipation or transparent regime follows from $v_{\mathrm{rel}}<v_c^\theta$ rather than from naming the medium a superfluid.
 
@@ -157,7 +157,7 @@ $$
 \left|a_{\text{mode}}(r)-\sqrt{a_0a_N(r)}\right|
 }{
 \sqrt{a_0a_N(r)}+\varepsilon
-}.
+}
 $$
 
 This residual is a comparison handoff, not a doctrine. If no native $a_{\text{mode}}$ or matter-coupling channel has been derived, the residual is undefined and the MOND-like comparison fails the technical test.
@@ -179,7 +179,7 @@ A compact derivative-coupling handoff can be expressed at bridge level. Let $S_A
 $$
 \mathcal{L}_{\text{handoff}}
 \sim
-g_A\,S_A\,\mathcal{D}_{\text{coh}}q_{\text{coh}},
+g_A\,S_A\,\mathcal{D}_{\text{coh}}q_{\text{coh}}
 $$
 
 with $q_{\text{coh}}$, $\mathcal{D}_{\text{coh}}$, and $g_A$ derived or explicitly declared as comparison placeholders. A useful range residual for a declared radial window $W$ is then
@@ -194,7 +194,7 @@ $$
 \left|a_{\text{sea-mode}}(r)\right|
 +\left|a_0(r)e^{-r/\ell_{\text{sea}}}\right|
 +\varepsilon
-}.
+}
 $$
 
 This residual is undefined unless $a_{\text{sea-mode}}$, $a_0$, and $\ell_{\text{sea}}$ have native definitions. The failure condition is equally important: if no coherent $q_{\text{coh}}$ exists, if $\mathcal{D}_{\text{coh}}$ is only a borrowed phonon operator, if the source pushes the local Noether sea state outside the linear response window, or if the coupling sign destabilizes the collective mode, then the BEC analogy must be rejected for that calculation.
@@ -215,7 +215,7 @@ n,
 u^i_{\text{sea}},
 e^a{}_i,
 \mathcal{M}_{\text{sea}}^{ab}
-\right),
+\right)
 $$
 
 followed by the ADM/Cartan reconstruction target
@@ -225,7 +225,7 @@ $$
 \longrightarrow
 \left(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij}\right)
 \longrightarrow
-g^{\text{eff}}_{\mu\nu}.
+g^{\text{eff}}_{\mu\nu}
 $$
 
 The resulting observer-level line element has the shared target form
@@ -237,7 +237,7 @@ ds_{\rm eff}^2
 +
 \gamma_{ij}
 \left(dx^i-u^i_{\text{sea}}dt\right)
-\left(dx^j-u^j_{\text{sea}}dt\right).
+\left(dx^j-u^j_{\text{sea}}dt\right)
 $$
 
 This equation is the filter for comparison language. A spacetime model is useful only insofar as it clarifies one of the channels in $\mathcal{X}_{\text{sea}}$, sharpens the map to $(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij})$, or names an observational recovery target for $g^{\text{eff}}_{\mu\nu}$.
@@ -263,7 +263,7 @@ v_c,
 \mathcal{D}_{\text{coh}},
 \Theta_{\text{def}},
 \Gamma_{\text{matter}\leftrightarrow\text{mode}}
-\right).
+\right)
 $$
 
 Here $\Theta_{\text{def}}$ is a declared deformation parameter or residual measuring whether the ordinary source leaves the coherent background in its linear response regime. Without such a coherent-phase data object, `superfluid` and `BEC` should remain comparison labels in this bridge, not terms used in canonical Noether sea mechanism prose.
@@ -335,7 +335,7 @@ $$
 +
 \text{Noether sea}
 \longrightarrow
-\text{effective spacetime}.
+\text{effective spacetime}
 $$
 
 That is why analogy belongs here. Mechanism chapters should inherit the disciplined result: use the native Noether sea variables first, and use outside spacetime models only when they name a concrete equation, test, or failure mode.

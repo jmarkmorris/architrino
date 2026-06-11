@@ -73,7 +73,7 @@ N_{\mathrm{free}}
 -
 N_{\mathrm{shared\ nuisance}}
 -
-N_{\mathrm{posthoc}},
+N_{\mathrm{posthoc}}
 $$
 where $N_{\mathrm{ind}}$ counts independent successful benchmark families, $N_{\mathrm{free}}$ counts unconstrained parameters, $N_{\mathrm{shared\ nuisance}}$ counts nuisance assumptions reused across supposedly independent rows, and $N_{\mathrm{posthoc}}$ counts repairs introduced after seeing the target data. The formula is not a universal philosophy of science. It is a working discipline for this corpus: a substrate claim should not be treated as established until its effective successes outnumber its adjustable and nuisance-dependent supports across multiple measurement families.
 
@@ -364,7 +364,7 @@ $$
 \chi_{\text{sea}}(\mathbf{x},t),
 \mathcal{M}_{\mathrm{sea}}^{ab}(\mathbf{x},t),
 S_{\mathrm{out}}^{(O)}(t)
-\right),
+\right)
 $$
 
 where $\mathcal{D}_{O}(t)$ is the observer-accessible effective horizon domain, $\rho_{\text{NS}}(\mathbf{x},t)$ is physical Noether swarm density, $\chi_{\text{sea}}(\mathbf{x},t)$ is the Noether sea delay factor, $\mathcal{M}_{\mathrm{sea}}^{ab}$ summarizes the medium response channel, and $S_{\mathrm{out}}^{(O)}(t)$ records accessible outgoing entropy. The de Sitter recovery problem is then not "find a boundary CFT"; it is to derive a Noether sea state map

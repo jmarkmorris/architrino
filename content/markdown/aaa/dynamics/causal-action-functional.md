@@ -37,7 +37,7 @@ Here $J_\gamma(t,t')$ denotes the absolute delay-map Jacobian induced by the cau
 $$
 \Delta_m(t,t')=t-t'+mT,
 \qquad
-F_m(t,t')=r(t,t')-c_f\Delta_m(t,t').
+F_m(t,t')=r(t,t')-c_f\Delta_m(t,t')
 $$
 For a $T$-periodic orbit, finite memory depth $h$, and nontrivial-branch cutoff $\tau_{\min}>0$, use
 $$
@@ -47,7 +47,7 @@ $$
 \int_0^T\sum_{m\in\mathbb{Z}}\int_0^T
 \mathbf{1}_{\tau_{\min}\le\Delta_m\le h}
 \frac{\delta_\eta\!\big(F_m(t,t')\big)}
-{r(t,t')^2\,J_m(t,t')}\,dt'\,dt.
+{r(t,t')^2\,J_m(t,t')}\,dt'\,dt
 $$
 with $r(t,t')=\|\mathbf{x}(t)-\mathbf{x}(t')\|$, $\delta_\eta$ a mollified delta, and $J_m(t,t')=\left|\partial_{t'}F_m(t,t')\right|$ on a simple delayed branch. This lifted form captures multi-period circular roots and avoids the trivial diagonal. A symmetric $|t-t'|$ selector is equivalent only after the diagonal is excluded and the delayed half-domain normalization is corrected; otherwise it misses high-winding branches or double-counts them.
 Dimensional status depends on the chosen time/length units and normalization by $T$, $h$, and $c_f$; use a declared dimensionless rescaling before comparing this statistic to mass or action coefficients.
@@ -58,14 +58,14 @@ $$
 \bar{\mathcal{A}}_{\text{self},\eta,h,\tau_{\min}}
 \le
 \frac{(h-\tau_{\min})\|\delta_\eta\|_\infty}
-{r_{\min}^2J_{\min}}.
+{r_{\min}^2J_{\min}}
 $$
 The reason is that, for each fixed $t$, the lifted intervals selected by $m$ partition the delay line over the retained memory window:
 $$
 \sum_m\int_0^T
 \mathbf{1}_{\tau_{\min}\le\Delta_m\le h}\,dt'
 =
-h-\tau_{\min}.
+h-\tau_{\min}
 $$
 Under transversality, the weak coarea limit becomes
 $$
@@ -73,7 +73,7 @@ $$
 \int_{\mathcal{L}_m}
 \frac{1}{r^2J_m\|\nabla F_m\|}\,d\ell,
 \qquad
-\mathcal{L}_m=\{F_m=0,\ \tau_{\min}\le\Delta_m\le h\}.
+\mathcal{L}_m=\{F_m=0,\ \tau_{\min}\le\Delta_m\le h\}
 $$
 Therefore simulations comparing lifted action-density values must report $h$, $\tau_{\min}$, the retained $m$ range, $r_{\min}$, $J_{\min}$, the transversality floor, and inactive-root gaps.
 
@@ -123,7 +123,7 @@ $$
 \qquad
 F_\gamma(t,t')\equiv r(t,t')-c_f|t-t'|,
 \qquad
-r(t,t')=\|\mathbf{x}(t)-\mathbf{x}(t')\|.
+r(t,t')=\|\mathbf{x}(t)-\mathbf{x}(t')\|
 $$
 
 For a $T$-periodic $C^2$ trajectory $\mathbf{x}(t)$ with no collisions or trivial self-support on the sampled
@@ -131,7 +131,7 @@ domain ($r(t,t')\ge r_{\min}>0$, $|t-t'|\ge\tau_{\min}>0$ on self terms, and $J_
 $$
 \bar{\mathcal{A}}_{\text{self},\eta}[\gamma]
 =\frac{1}{T^2}\int_0^T\!\!\int_0^T
-\frac{\phi_\eta(F_\gamma(t,t'))}{r(t,t')^2\,J_\gamma(t,t')}\,dt\,dt'.
+\frac{\phi_\eta(F_\gamma(t,t'))}{r(t,t')^2\,J_\gamma(t,t')}\,dt\,dt'
 $$
 
 This is the single-period symmetric object for proofs and numerics when one period contains the full relevant causal memory. It is therefore a controlled chart, not the most general causal-memory functional. When high-winding or multi-period branches are active, replace it by the lifted statistic above with the same lower-bound and Jacobian assumptions. The unregularized $\eta\to0^+$ limit is treated only after bounds are established.
@@ -178,7 +178,7 @@ $$
 Q_{\mathrm{causal}}(\gamma)
 =
 \{[(\mathcal{L}_{\text{causal}})_a]\}_a
-\subset H_1(T^2,\mathbb{Z}),
+\subset H_1(T^2,\mathbb{Z})
 $$
 the multiset of winding classes of connected causal-locus components, optionally refined by source identity and chirality sign. The comparison rule is:
 $$
@@ -196,7 +196,7 @@ $$
 \qquad
 \Gamma(0)=\gamma_0,
 \qquad
-\Gamma(1)=\gamma_1,
+\Gamma(1)=\gamma_1
 $$
 define the barrier proxy
 $$
@@ -204,7 +204,7 @@ B_{\eta,h}(\gamma_0\to\gamma_1)
 \equiv
 \inf_{\Gamma}
 \max_{s\in[0,1]}
-\bar{\mathcal{A}}_{\text{total},\eta,h}[\Gamma(s)].
+\bar{\mathcal{A}}_{\text{total},\eta,h}[\Gamma(s)]
 $$
 The infimum is taken over paths whose endpoints lie in the declared sectors and whose intermediate histories obey the same regularization convention. This is an instanton-like comparison only in the variational sense: it measures the least regularized action-counting barrier between sectors. It does not assert tunneling, supersymmetry, or Euclidean field-theory ontology.
 
@@ -232,7 +232,7 @@ Under (A1)-(A3b), $\bar{\mathcal{A}}_{\text{self},\eta}[\gamma]$ is finite and n
 $$
 \bar{\mathcal{A}}_{\text{self},\eta}
 =
-\frac{1}{T^2}\int_{[0,T]^2}\frac{\phi_\eta(F_\gamma(t,t'))}{r(t,t')^2 J_\gamma(t,t')}\,dt\,dt'.
+\frac{1}{T^2}\int_{[0,T]^2}\frac{\phi_\eta(F_\gamma(t,t'))}{r(t,t')^2 J_\gamma(t,t')}\,dt\,dt'
 $$
 The integrand is nonnegative because $\phi_\eta\ge0$, $r^{-2}>0$, and $J_\gamma^{-1}>0$, so $\bar{\mathcal{A}}_{\text{self},\eta}\ge0$.
 By (A3) and (A3b), on the support of $\phi_\eta(F_\gamma)$ we have $r\ge r_{\min}>0$ and $J_\gamma\ge J_{\min}>0$, hence
@@ -242,7 +242,7 @@ $$
 \le
 \frac{1}{T^2}\,r_{\min}^{-2}J_{\min}^{-1}\,\|\phi_\eta\|_\infty\,|[0,T]^2|
 =
-\frac{\|\phi_\eta\|_\infty}{r_{\min}^2 J_{\min}}<\infty.
+\frac{\|\phi_\eta\|_\infty}{r_{\min}^2 J_{\min}}<\infty
 $$
 So the functional is finite and nonnegative.
 
@@ -254,7 +254,7 @@ $$
 =
 \frac{1}{T^2}
 \int_{\mathcal{L}_{\text{causal}}}
-\frac{1}{r(t,t')^2\,J_\gamma(t,t')\,\|\nabla F_\gamma(t,t')\|}\,d\ell,
+\frac{1}{r(t,t')^2\,J_\gamma(t,t')\,\|\nabla F_\gamma(t,t')\|}\,d\ell
 $$
 where $\mathcal{L}_{\text{causal}}=\{(t,t')\in T^2: F_\gamma(t,t')=0\}$.
 
@@ -263,13 +263,13 @@ $$
 \int_{[0,T]^2}\frac{\phi_\eta(F_\gamma)}{r^2 J_\gamma}\,dt\,dt'
 =
 \int_{\mathbb{R}}\phi_\eta(s)\,
-H(s)\,ds,
+H(s)\,ds
 $$
 with
 $$
 H(s)\equiv
 \int_{F_\gamma^{-1}(s)}
-\frac{1}{r^2\,J_\gamma\,\|\nabla F_\gamma\|}\,d\ell.
+\frac{1}{r^2\,J_\gamma\,\|\nabla F_\gamma\|}\,d\ell
 $$
 By (A4), $\|\nabla F_\gamma\|$ is nonzero on $F_\gamma^{-1}(0)$, so in a small tubular neighborhood of the zero level the level sets are regular 1-manifolds and $H(s)$ is continuous near $s=0$. By (A3) and (A3b), both $r^{-2}$ and $J_\gamma^{-1}$ are bounded on the active support, so $H(s)$ is locally bounded. Since $\phi_\eta$ is an approximate identity, $\int \phi_\eta(s)H(s)\,ds\to H(0)$ as $\eta\to0^+$. Dividing by $T^2$ yields the claimed limit.
 
@@ -295,14 +295,14 @@ $$
 0\le
 \bar{\mathcal{A}}_{\text{self},\eta}
 \le
-\frac{\|\phi_\eta\|_\infty}{r_{\min}^2 J_{\min}}.
+\frac{\|\phi_\eta\|_\infty}{r_{\min}^2 J_{\min}}
 $$
 If additionally $r\le r_{\max}$ and $J_\gamma\le J_{\max}$ on support, then
 $$
 \bar{\mathcal{A}}_{\text{self},\eta}
 \ge
 \frac{1}{r_{\max}^2 J_{\max} T^2}
-\int_{[0,T]^2}\phi_\eta(F_\gamma)\,dt\,dt'.
+\int_{[0,T]^2}\phi_\eta(F_\gamma)\,dt\,dt'
 $$
 
 **Proof.** The upper bound is exactly the estimate used in Theorem 1. For the lower bound, if $r\le r_{\max}$ and $J_\gamma\le J_{\max}$ on support, then $r^{-2}\ge r_{\max}^{-2}$ and $J_\gamma^{-1}\ge J_{\max}^{-1}$ on support, hence
@@ -311,7 +311,7 @@ $$
 =
 \frac{1}{T^2}\int_{[0,T]^2}\frac{\phi_\eta(F_\gamma)}{r^2 J_\gamma}\,dt\,dt'
 \ge
-\frac{1}{r_{\max}^2 J_{\max} T^2}\int_{[0,T]^2}\phi_\eta(F_\gamma)\,dt\,dt'.
+\frac{1}{r_{\max}^2 J_{\max} T^2}\int_{[0,T]^2}\phi_\eta(F_\gamma)\,dt\,dt'
 $$
 
 **Meaning:** numerical pipelines can assert hard pass/fail envelopes before any
@@ -330,7 +330,7 @@ $$
 
 The nontrivial self-hit threshold is
 $$
-\beta^\star = 1.
+\beta^\star = 1
 $$
 For $\beta \le 1$, the only solution is the trivial coincidence $\xi=0$, so the circular self-action vanishes. For $\beta>1$, each admissible root $\xi_n$ determines a concrete branch datum:
 $$
@@ -338,13 +338,13 @@ $$
 \qquad
 r_n = c_f\Delta_n = \frac{2R\xi_n}{\beta},
 \qquad
-J_n = 1-\beta\cos\xi_n = 1-\xi_n\cot\xi_n.
+J_n = 1-\beta\cos\xi_n = 1-\xi_n\cot\xi_n
 $$
 The derivative of the root function is
 $$
 g_\beta'(\xi_n)=\cos\xi_n-\frac{1}{\beta}
 =
-\cos\xi_n-\frac{\sin\xi_n}{\xi_n},
+\cos\xi_n-\frac{\sin\xi_n}{\xi_n}
 $$
 which is the additional coarea factor controlling branch weight when the two-time integral is collapsed onto the circular causal locus.
 
@@ -356,13 +356,13 @@ r_0 \sim 2R\sqrt{6\mu},
 \qquad
 J_0 \sim 2\mu,
 \qquad
-g_\beta'(\xi_0)\sim -2\mu.
+g_\beta'(\xi_0)\sim -2\mu
 $$
 Hence the principal branch contribution to the circular action density scales like
 $$
 \frac{1}{r_0^2\,|J_0|\,|g_\beta'(\xi_0)|}
 \sim
-\frac{1}{96R^2\,\mu^3}.
+\frac{1}{96R^2\,\mu^3}
 $$
 This is the action-functional expression of the same circular caustic seen in the force law: the onset of self-hit is already singular once the Jacobian and coarea reduction are both kept.
 
@@ -372,7 +372,7 @@ At high speed, all admissible roots lie in $(0,\beta)$, so the branch count grow
 
 Define
 $$
-g_\beta(\xi)=\sin\xi-\frac{\xi}{\beta}.
+g_\beta(\xi)=\sin\xi-\frac{\xi}{\beta}
 $$
 Admissible circular self-hit branches are zeros of $g_\beta$ in $(0,\beta)$.
 
@@ -404,7 +404,7 @@ For the principal circular branch, the bifurcation point occurs at $(\beta,\xi)=
 ## Emergent Geometry Constraints
 Define the coarse‑grained hit density
 $$
-\mathcal{I}(t,\mathbf{x})=\sum_j\int_{-\infty}^{t}\!\frac{\delta_\eta\!\big(\|\mathbf{x}-\mathbf{x}_j(t')\|-c_f(t-t')\big)}{\|\mathbf{x}-\mathbf{x}_j(t')\|^2\,J_j(t,\mathbf{x};t')}\,dt',
+\mathcal{I}(t,\mathbf{x})=\sum_j\int_{-\infty}^{t}\!\frac{\delta_\eta\!\big(\|\mathbf{x}-\mathbf{x}_j(t')\|-c_f(t-t')\big)}{\|\mathbf{x}-\mathbf{x}_j(t')\|^2\,J_j(t,\mathbf{x};t')}\,dt'
 $$
 where
 $$
@@ -414,11 +414,11 @@ J_j(t,\mathbf{x};t')
 \qquad
 \hat{\mathbf{n}}(t,\mathbf{x};t')
 =
-\frac{\mathbf{x}-\mathbf{x}_j(t')}{\|\mathbf{x}-\mathbf{x}_j(t')\|}.
+\frac{\mathbf{x}-\mathbf{x}_j(t')}{\|\mathbf{x}-\mathbf{x}_j(t')\|}
 $$
 This scalar hit density is an effective coarse-grained summary of causal-wake intersections, not a substrate metric and not by itself the observer-level effective metric. At most, it supplies one provisional scalar channel feeding the ADM/Cartan effective-metric handoff. A restricted isotropic subcase may be written as
 $$
-g^{\text{eff}}_{\mu\nu}dx^\mu dx^\nu = -N^2(\mathcal{I})\,c_\star^2 dt^2 + \Omega_s^2(\mathcal{I})\,h_{ij}dx^i dx^j,
+g^{\text{eff}}_{\mu\nu}dx^\mu dx^\nu = -N^2(\mathcal{I})\,c_\star^2 dt^2 + \Omega_s^2(\mathcal{I})\,h_{ij}dx^i dx^j
 $$
 with small couplings $N=1+\lambda_t\mathcal{I}$ and $\Omega_s=1+\lambda_s\mathcal{I}$ in the weak-field regime. Here $c_\star$ must be declared: primitive branch charts may set $c_\star=c_f$, while observer-level metric comparisons normally use the dressed asymptotic channel speed. The full geometry program must also include the Noether sea lapse, shift/medium velocity, spatial metric response, stress, and PPN decision variables used by the spacetime chapters. Bianchi identities and weak-equivalence demands constrain the admissible scalar subcase; otherwise the emergent geometry reduces to a scalar-tensor approximation with potentially observable fifth forces. Matching the long-range limit of test-assembly motion to geodesics in $g^{\text{eff}}_{\mu\nu}$ is the consistency check linking microscopic causal hits to macroscopic effective curvature.
 Here, "fifth force" means an additional long-range interaction mediated by the scalar sector encoded in $\mathcal{I}$, on top of the shared effective-metric response. If that scalar coupling is not sufficiently constrained, test assemblies can acquire composition-dependent accelerations, producing weak-equivalence-principle violations and post-Newtonian deviations that are tightly bounded experimentally.
@@ -459,7 +459,7 @@ Two downstream theorem targets can be stated on top of the existing causal-locus
 
 Construct a framed configuration bundle for nested shell swarm ordered axes and prove that the relevant internal-orientation transport lifts through
 $$
-\widetilde{R}:SU(2)\simeq\mathrm{Spin}(3)\to SO(3),
+\widetilde{R}:SU(2)\simeq\mathrm{Spin}(3)\to SO(3)
 $$
 so the internal phase distinguishes 2$\pi$ and 4$\pi$ loops.
 
@@ -467,10 +467,10 @@ so the internal phase distinguishes 2$\pi$ and 4$\pi$ loops.
 
 Define an effective color-braid energy law:
 $$
-E_{\mathrm{open}}(L)=\sigma_{\mathrm{eff}}L+E_0+\mathcal{O}(1/L),\qquad \sigma_{\mathrm{eff}}>0,
+E_{\mathrm{open}}(L)=\sigma_{\mathrm{eff}}L+E_0+\mathcal{O}(1/L),\qquad \sigma_{\mathrm{eff}}>0
 $$
 $$
-E_{\mathrm{closed}}(L)\to E_{\infty}<\infty\quad (L\to\infty).
+E_{\mathrm{closed}}(L)\to E_{\infty}<\infty\quad (L\to\infty)
 $$
 Combined with causal-locus class constraints, this would give a quantitative separation between confined open sectors and screened singlet sectors after the color-braid and singlet-sector proof is supplied. Until that proof is supplied, the equations are an effective closure target rather than a result of this chapter.
 
@@ -521,7 +521,7 @@ $$
 \qquad
 \mathcal{R}_{\Omega}(\mathfrak{B})\le\epsilon_{\Omega}
 \qquad
-\lambda_{\mathrm{sec}}>0.
+\lambda_{\mathrm{sec}}>0
 $$
 The first condition marks a candidate branch class, the second tests whether the retained return map has the canonical structure expected of an action-derived conservative reduction, and the third checks local section persistence. A failure of $\mathcal{R}_{\Omega}$ does not falsify the Master EOM; it says that the scalar action-counting extremum has not yet been promoted to a reduced Hamiltonian branch certificate.
 
@@ -535,7 +535,7 @@ H_{\mathfrak{B}}\!\left(Q,\partial_Q W_{\mathfrak{B}}(Q,t),t\right)
 $$
 with $\mathcal{R}_{\mathrm{HJ}}\to0$ on the retained window. The associated momentum reconstruction is
 $$
-\Pi_a=\partial_{Q^a}W_{\mathfrak{B}},
+\Pi_a=\partial_{Q^a}W_{\mathfrak{B}}
 $$
 and the first-order branch motion is
 $$
@@ -543,7 +543,7 @@ $$
 =
 \left.
 \frac{\partial H_{\mathfrak{B}}}{\partial \Pi_a}
-\right|_{\Pi=\partial_Q W_{\mathfrak{B}}}.
+\right|_{\Pi=\partial_Q W_{\mathfrak{B}}}
 $$
 For a time-independent reduced chart, the separated form
 $$

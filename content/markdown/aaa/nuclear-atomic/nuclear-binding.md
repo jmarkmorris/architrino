@@ -27,7 +27,7 @@ E_{\text{nuc}}
 +E_{\text{Coul}}
 +E_{\text{excl}}
 +E_{\text{shell}}
-+E_{\text{sea-pol}},
++E_{\text{sea-pol}}
 $$
 with $A=Z+N$.
 
@@ -44,7 +44,7 @@ $$
 B
 =
 \sum_{a=1}^{A} M_a c_{\text{eff}}^2
--E_{\text{nuc}}.
+-E_{\text{nuc}}
 $$
 
 Binding requires the negative medium-plus-residual-strong terms to outweigh the positive Coulomb and exclusion costs.
@@ -68,7 +68,7 @@ Nucleons are not point masses. Each is a structured Noether swarm assembly with 
 $$
 V_{\text{excl}}(r)\to +\infty
 \quad\text{as}\quad
-r\to r_{\text{core}}^{+}.
+r\to r_{\text{core}}^{+}
 $$
 
 This is the geometric origin of the short-range nuclear hard core.
@@ -77,7 +77,7 @@ This is the geometric origin of the short-range nuclear hard core.
 
 For proton-proton channels, add the ordinary repulsive term
 $$
-V_{\text{Coul}}(r)\approx +\frac{e^2}{4\pi\epsilon_{\text{eff}}\,r},
+V_{\text{Coul}}(r)\approx +\frac{e^2}{4\pi\epsilon_{\text{eff}}\,r}
 $$
 at effective level. Nuclear binding must therefore come from the residual strong and sea-polarization channels, not from any cancellation trick in the electric sector.
 
@@ -100,7 +100,7 @@ V_{NN}(r)
 V_{\text{excl}}(r)
 +V_{\text{Coul}}(r)
 +V_{\pi/\text{corr}}(r)
-+V_{\text{sea-pol}}(r),
++V_{\text{sea-pol}}(r)
 $$
 with
 $$
@@ -114,14 +114,14 @@ This is enough structure to explain why nuclei are finite-sized bound objects ra
 
 The deuteron is the minimal nuclear benchmark because it is the smallest bound nucleus:
 $$
-d = p+n.
+d = p+n
 $$
 
 In the present language, the deuteron should exist if the proton-neutron channel admits
 $$
 E_{pn}^{\text{bound}}
 <
-M_p c_{\text{eff}}^2 + M_n c_{\text{eff}}^2.
+M_p c_{\text{eff}}^2 + M_n c_{\text{eff}}^2
 $$
 
 The qualitative reasons this channel is favored are:
@@ -146,7 +146,7 @@ So the binding energy per nucleon should not grow without bound with $A$. At coa
 $$
 \text{short-range attraction}
 \quad\text{vs}\quad
-\text{finite corridor capacity + exclusion cost}.
+\text{finite corridor capacity + exclusion cost}
 $$
 
 ## Why Alpha-Like Structures Should Be Special

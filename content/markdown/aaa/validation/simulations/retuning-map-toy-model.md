@@ -31,7 +31,7 @@ $$
 \ln\nu_I,\ln\nu_M,\ln\nu_O,\,
 \ln R_I,\ln R_M,\ln R_O,\,
 \ln\lambda,\ln\xi
-\right)^T.
+\right)^T
 $$
 
 Given a positive semidefinite retuning-cost matrix $\mathbf{K}^{\mathrm{ret}}_q$, the fixture solves
@@ -42,7 +42,7 @@ $$
 \underset{\Delta\mathbf{y}}{\operatorname{arg\,min}}\;
 \frac{1}{2}\Delta\mathbf{y}^{T}
 \mathbf{K}^{\mathrm{ret}}_q
-\Delta\mathbf{y},
+\Delta\mathbf{y}
 $$
 
 subject to
@@ -64,7 +64,7 @@ $$
 +
 \Delta\ln\nu_\ell,
 \qquad
-\ell\in\{I,M,O\}.
+\ell\in\{I,M,O\}
 $$
 
 The script applies the ordinary nested shell swarm speed gates:
@@ -74,7 +74,7 @@ s_I'>c_f,
 \qquad
 \left|s_M'-c_f\right|\le\epsilon_M c_f,
 \qquad
-s_O'<c_f.
+s_O'<c_f
 $$
 
 The representative Noether swarm cadence increment is
@@ -88,7 +88,7 @@ w_M\Delta\ln\nu_M
 +
 w_O\Delta\ln\nu_O,
 \qquad
-w_I+w_M+w_O=1.
+w_I+w_M+w_O=1
 $$
 
 For a local rate density $r_\sigma$ of accepted $\sigma$ transactions per swarm, the first current estimate is
@@ -99,7 +99,7 @@ J_\nu
 \sum_{\sigma=\pm1}
 f_N r_\sigma\Delta\nu_N^{(q,\sigma)}
 +
-O\!\left((\Delta\nu_N)^2\partial_\nu f_N\right).
+O\!\left((\Delta\nu_N)^2\partial_\nu f_N\right)
 $$
 
 ## Input Packet

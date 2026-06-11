@@ -73,22 +73,22 @@ W_a(s;t)
 \left\{
 \mathbf{y}\in\Sigma_t:
 \|\mathbf{y}-\mathbf{z}_a(s)\|=c_f(t-s)
-\right\}.
+\right\}
 $$
 In Euclidean three-space, a nondegenerate isochron support of this form has a unique center. Therefore, if $W_a(s;t)$ is known as a source-tagged support, its emission center $\mathbf{z}_a(s)$ is geometrically reconstructible without first assigning coordinates to the void.
 
 For a target architrino $a$ and emission interval $I$, define the source-tagged center set
 $$
-Z_a(I)=\{\mathbf{z}_a(s):s\in I\},
+Z_a(I)=\{\mathbf{z}_a(s):s\in I\}
 $$
 and its Euclidean diameter
 $$
-D_a(I)=\sup_{s,u\in I}\|\mathbf{z}_a(s)-\mathbf{z}_a(u)\|.
+D_a(I)=\sup_{s,u\in I}\|\mathbf{z}_a(s)-\mathbf{z}_a(u)\|
 $$
 
 Equivalently,
 $$
-D_a(I)=\operatorname{diam}Z_a(I).
+D_a(I)=\operatorname{diam}Z_a(I)
 $$
 With exact complete-state access and source-independent propagation at $c_f$, $D_a(I)=0$ if and only if $\mathbf{z}_a(s)$ is constant on $I$, so the source is at absolute rest almost everywhere on that interval. For uniform motion, $D_a([t_0,t_0+T])=\|\mathbf{v}_a\|T$. This is a **coordinate-free** geometric diagnostic. It does not compare position to some external grid. It checks an **intrinsic relational property**: whether the source-tagged centers of emitted causal isochrons occupy the same point in the Euclidean void.
 

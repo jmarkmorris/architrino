@@ -13,11 +13,11 @@ This note records a constrained geometric hypothesis for fermion assemblies in $
 - stable quark-like states may occupy a **discrete set of misalignment angles**,
 - the candidate branch increment for those angles is hypothesized, not derived here, to satisfy the existing six-pole electroweak value
 $$
-\sin^2\theta_{\mathrm{inc}}=\frac14,
+\sin^2\theta_{\mathrm{inc}}=\frac14
 $$
 so that
 $$
-\theta_{\mathrm{inc}}=\frac{\pi}{6}=30^\circ.
+\theta_{\mathrm{inc}}=\frac{\pi}{6}=30^\circ
 $$
 
 This is intentionally narrower than a claim that the H/M/L axes themselves tilt or precess into new orientations. The nested shell swarm scaffold remains the kinematic frame. What changes is the orientation of the **principal axial frame** and therefore the orientation of the **weak-coupling triad** relative to the fixed core frame.
@@ -39,14 +39,14 @@ The [Noether swarm](../../noether-swarm/noether-swarm.md) is the neutral nested 
 
 In this idea, the core frame is **not** allowed to undergo a new quark-specific axial distortion. Its role is to provide the reference triad
 $$
-\mathcal{F}_{\text{core}} = \{\hat{\mathbf{e}}_H,\hat{\mathbf{e}}_M,\hat{\mathbf{e}}_L\}.
+\mathcal{F}_{\text{core}} = \{\hat{\mathbf{e}}_H,\hat{\mathbf{e}}_M,\hat{\mathbf{e}}_L\}
 $$
 
 ### 2. Axial Frame
 
 The six axial architrinos define a second frame through their coarse-grained polarity moments. At lowest order this can be represented by a principal-axis frame extracted from the axial distribution:
 $$
-\mathcal{F}_{\text{ax}} = \{\hat{\mathbf{p}}_1,\hat{\mathbf{p}}_2,\hat{\mathbf{p}}_3\}.
+\mathcal{F}_{\text{ax}} = \{\hat{\mathbf{p}}_1,\hat{\mathbf{p}}_2,\hat{\mathbf{p}}_3\}
 $$
 
 For a perfectly symmetric lepton-like axial layer, these two frames coincide. For a quark-like axial layer with axis exceptionality, they need not coincide; compare the charge-and-axis bookkeeping in [Quantum Number Mapping](./quantum-number-mapping.md).
@@ -55,7 +55,7 @@ The geometric object of interest is therefore the relative rotation
 $$
 R_{\text{rel}} \in SO(3),
 \qquad
-\mathcal{F}_{\text{ax}} = R_{\text{rel}}\,\mathcal{F}_{\text{core}}.
+\mathcal{F}_{\text{ax}} = R_{\text{rel}}\,\mathcal{F}_{\text{core}}
 $$
 
 This note proposes that physically stable fermion assemblies use only a restricted subset of such rotations.
@@ -75,11 +75,11 @@ In the Generation-I electron, the axial layer is $6E$. At coarse-grained level:
 
 The natural equilibrium statement is
 $$
-R_{\text{rel}} = I,
+R_{\text{rel}} = I
 $$
 or equivalently a vanishing misalignment angle
 $$
-\alpha = 0.
+\alpha = 0
 $$
 
 This should be read as the **isotropic limit** of the axial geometry, not as a separate dynamical law. In plain terms: when all six axial architrinos share the same polarity, there is no internal reason for the axial frame to rotate away from the core triad.
@@ -100,7 +100,7 @@ For up-type and down-type quarks the imbalance differs:
 
 This means the axial layer does not merely carry a net observer-level charge. It also carries a nontrivial anisotropic load. That anisotropic load can be encoded in an axial-moment tensor
 $$
-M_{ij} = \sum_{a=1}^{6} q_a\,n_i^{(a)} n_j^{(a)},
+M_{ij} = \sum_{a=1}^{6} q_a\,n_i^{(a)} n_j^{(a)}
 $$
 where $q_a\in\{+\epsilon,-\epsilon\}$ and $\mathbf{n}^{(a)}$ are the six polar-site directions measured in the core frame.
 
@@ -108,7 +108,7 @@ The eigenvectors of $M_{ij}$ define the principal axial axes. For leptons, symme
 $$
 \mathcal{R}_{\mathrm{off}}(M;\mathcal{F}_{\text{core}})
 =
-\sum_{i\ne j}|M_{ij}|^2.
+\sum_{i\ne j}|M_{ij}|^2
 $$
 The axial-frame rotation target is $\mathcal{R}_{\mathrm{off}}>0$. If $\mathcal{R}_{\mathrm{off}}=0$ but the eigenvalues of $M_{ij}$ differ, the axial layer is anisotropic while still aligned with the core frame; that case should not be counted as a misalignment branch.
 
@@ -120,11 +120,11 @@ The proposal is not that quarks can take arbitrary rotations. The proposal is th
 
 A useful existing hook in the current $\mathbb{A}\mathbb{A}\mathbb{A}$ notes is the six-pole weak-mixing statement
 $$
-\sin^2\theta_{\mathrm{inc}} = \frac14.
+\sin^2\theta_{\mathrm{inc}} = \frac14
 $$
 This implies the candidate geometric branch increment
 $$
-\theta_{\mathrm{inc}} = \frac{\pi}{6}=30^\circ.
+\theta_{\mathrm{inc}} = \frac{\pi}{6}=30^\circ
 $$
 
 The present idea is to reuse this as an **axial-frame increment**, not as a claim that the observed electroweak angle and internal quark orientation are numerically identical in all environments. The symbol $\theta_W^{\text{bare}}$ should be treated only as a comparison label for this branch-increment hypothesis until the six-pole quotient and electroweak dressing calculation are derived.
@@ -132,13 +132,13 @@ The present idea is to reuse this as an **axial-frame increment**, not as a clai
 Define a discrete family of candidate equilibrium misalignment angles
 $$
 \alpha_n = n\,\theta_{\mathrm{inc}} = n\frac{\pi}{6},
-\qquad n\in\mathbb{Z}.
+\qquad n\in\mathbb{Z}
 $$
 Equivalently, $\alpha_n=n\times30^\circ$ for reader-facing degree notation. In energy or action functionals below, $\alpha$ and $\theta_{\mathrm{inc}}$ are radians.
 
 Because an axial frame is an oriented triad and because many rotations are physically equivalent up to sign flips, pole relabelings, or color-phase shifts, the physically distinct set is expected to be much smaller than all integers. A practical first working set is
 $$
-\alpha \in \{0,30^\circ,60^\circ,90^\circ\},
+\alpha \in \{0,30^\circ,60^\circ,90^\circ\}
 $$
 with additional identifications made by symmetry.
 
@@ -183,7 +183,7 @@ A minimal way to encode the hypothesis is by one angle $\alpha$ and one discrete
 
 Then a first-pass rotation may be written as
 $$
-R_{\text{rel}}(\alpha,c) = R_{\text{axis}}(c)\,R_{\text{tilt}}(\alpha),
+R_{\text{rel}}(\alpha,c) = R_{\text{axis}}(c)\,R_{\text{tilt}}(\alpha)
 $$
 where:
 
@@ -242,7 +242,7 @@ E_{\text{color}}(\phi_c)
 +
 E_{\text{cross}}(\alpha,\phi_c)
 +
-E_{\text{wake}}(\alpha).
+E_{\text{wake}}(\alpha)
 $$
 
 Here:
@@ -258,13 +258,13 @@ $$
 $$
 at
 $$
-\alpha = n\theta_W^{\text{bare}},
+\alpha = n\theta_W^{\text{bare}}
 $$
 and that these stationary points are true minima for the stable branches.
 
 A simple toy realization, with $\alpha$ and $\theta_{\mathrm{inc}}$ measured in radians, is
 $$
-E_{\text{polarity}}(\alpha)=A\sin^2\!\left(\frac{\alpha}{\theta_{\mathrm{inc}}}\pi\right)+B\,f_{\text{type}}(\alpha),
+E_{\text{polarity}}(\alpha)=A\sin^2\!\left(\frac{\alpha}{\theta_{\mathrm{inc}}}\pi\right)+B\,f_{\text{type}}(\alpha)
 $$
 where $f_{\text{type}}$ differs for up-type and down-type loading. This is not a derivation; it is just the minimal shape needed to encode discrete minima at multiples of the bare angle.
 
@@ -314,7 +314,7 @@ Extended picture proposed here:
 - a second datum $\alpha$ labels the polar misalignment of the axial frame,
 - the full quark state is therefore specified by both
 $$
-(c,\alpha).
+(c,\alpha)
 $$
 
 In this sense, color answers the question
@@ -389,7 +389,7 @@ The sharpened hypothesis is:
 - quarks occupy nonzero misalignment branches because their axial layers are both charge-imbalanced and axis-exceptional,
 - the stable branches may be quantized in increments of the branch-increment hypothesis
 $$
-\theta_{\mathrm{inc}}=30^\circ,
+\theta_{\mathrm{inc}}=30^\circ
 $$
 with color providing an independent exceptional-axis label.
 

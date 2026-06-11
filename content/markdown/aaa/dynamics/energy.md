@@ -62,13 +62,13 @@ K'(s_a)\frac{\mathbf{v}_a\cdot\mathbf{a}_a}{s_a}
 =
 \mu_K(s_a)\,\mathbf{a}_a\cdot\mathbf{v}_a,
 \qquad
-\mu_K(s)\equiv\frac{K'(s)}{s}.
+\mu_K(s)\equiv\frac{K'(s)}{s}
 $$
 
 If one introduces the optional universal bookkeeping constant $\mu_{\text{arch}}$ and defines $\mathbf{F}_a \equiv \mu_{\text{arch}}\mathbf{a}_a$, then the quadratic bookkeeping proxy $K_{\mu,a}=\frac{1}{2}\mu_{\text{arch}}\|\mathbf{v}_a\|^2$ satisfies
 
 $$
-\frac{dK_{\mu,a}}{dt} = \mathbf{F}_a(t)\cdot\mathbf{v}_a(t).
+\frac{dK_{\mu,a}}{dt} = \mathbf{F}_a(t)\cdot\mathbf{v}_a(t)
 $$
 
 Here $\mathbf{F}_a$ is the optional force-like bookkeeping quantity associated with the net acceleration from all causal hits; it is not a particle-specific substrate mass law.
@@ -79,7 +79,7 @@ $$
 \mathbf{a}_{o'\leftarrow o}(t; t_0)
 =
 \kappa\,\sigma_{q_o q_{o'}}\,
-\frac{|q_o q_{o'}|}{r^2\,|J_{o'\leftarrow o}(t;t_0)|}\,\hat{\mathbf{r}},
+\frac{|q_o q_{o'}|}{r^2\,|J_{o'\leftarrow o}(t;t_0)|}\,\hat{\mathbf{r}}
 $$
 
 where
@@ -103,7 +103,7 @@ Because $\mathbf{a}_{o'\leftarrow o}\parallel\hat{\mathbf{r}}$:
   =
   \mu_{\text{arch}}\mathbf{a}_{o'\leftarrow o}\cdot\mathbf{v}_{o'}
   =
-  \mu_{\text{arch}}\frac{\kappa\,\sigma_{q_o q_{o'}}\,|q_o q_{o'}|}{r^2\,|J_{o'\leftarrow o}(t;t_0)|}\,v_r.
+  \mu_{\text{arch}}\frac{\kappa\,\sigma_{q_o q_{o'}}\,|q_o q_{o'}|}{r^2\,|J_{o'\leftarrow o}(t;t_0)|}\,v_r
   $$
 
   Only $v_r$ contributes to instantaneous quadratic-proxy power. For the primitive scalar $K$, replace $\mu_{\text{arch}}$ by $\mu_K(\|\mathbf{v}_{o'}\|)$.
@@ -133,7 +133,7 @@ Potential energy is therefore relational. It is assigned when a receiver is plac
 $$
 J_{o'\leftarrow o}(t;t_0)
 =
-1-\frac{\mathbf{v}_o(t_0)\cdot\hat{\mathbf{r}}}{c_f},
+1-\frac{\mathbf{v}_o(t_0)\cdot\hat{\mathbf{r}}}{c_f}
 $$
 
 while the instantaneous power delivered to the receiver is controlled by
@@ -141,7 +141,7 @@ while the instantaneous power delivered to the receiver is controlled by
 $$
 \mathbf{a}_{o'\leftarrow o}\cdot\mathbf{v}_{o'}
 =
-\|\mathbf{a}_{o'\leftarrow o}\|\,v_r.
+\|\mathbf{a}_{o'\leftarrow o}\|\,v_r
 $$
 
 On the affine partner chart used in the [closed-form collinear breather ansatz](../proof-programs/closed-form-collinear-breather-ansatz.md), the same causal bunching appears in the simple branch factor $J_p=1+\dot{x}/c_f$. That formula is not a new global definition of energy; it is the one-dimensional branch expression for how emission cadence is received on that chart.
@@ -170,7 +170,7 @@ Constant causal emission by many architrinos does not imply a large random macro
 $$
 \left\langle \nabla \Phi_{\text{net}}\right\rangle_{\text{incoherent}}
 \approx
-\mathbf{0}.
+\mathbf{0}
 $$
 
 This cancellation is one reason the Noether sea can be densely active while remaining macroscopically quiet. What standard prose may call a vacuum state is not empty Euclidean void; it is the effective limit in which the local Noether sea assemblies and their causal wakes balance so well that only small residual gradients remain available to ordinary probes.
@@ -211,7 +211,7 @@ E_{\text{total}}(t)
 +
 U_{\text{int}}(t)
 +
-E_{\text{wake}}(t).
+E_{\text{wake}}(t)
 $$
 
 This is not a claim that $\sum_a E_{k,a}$ is constant on $\Sigma_t$, nor that a finite simulation window conserves its particle-only ledger. Delayed hits move energy between mechanical motion and causal-wake history, and finite windows must also name boundary flux, external work, and residuals. A calculation that omits one of those terms has not established energy nonconservation; it has exposed an incomplete retained record.
@@ -231,7 +231,7 @@ C_a(t;t_0)
 \left\|\mathbf{y}-\mathbf{x}_a(t_0)\right\|
 =
 c_f(t-t_0)
-\right\}.
+\right\}
 $$
 The emitted isochron belongs to the escapement set $\mathcal{E}_{\mathrm{esc}}(W)$ when it has a first retained boundary crossing
 $$
@@ -247,7 +247,7 @@ t_0<t_r<t_{\partial W},
 \quad
 \mathbf{x}_b(t_r)\in W,
 \quad
-\mathbf{x}_b(t_r)\in C_a(t_r;t_0).
+\mathbf{x}_b(t_r)\in C_a(t_r;t_0)
 $$
 
 Wake escapement is therefore a finite-window boundary classification, not a new substance in the Euclidean void. It names the portion of causal-wake history that cannot be balanced by local receiver work because no local receiver intercepted it. In a contracting binary, the persistent positive tangential drive identified in [Binary Dynamics](binary-dynamics.md#tangential-drive-and-wake-escapement) should be read against this boundary ledger: particle kinetic gain, local interaction-energy change, recoil, and escaped wake flux are parts of one balance law.
@@ -260,7 +260,7 @@ E_W(t)
 +
 U_{\mathrm{int},W}(t)
 +
-E_{\mathrm{wake},W}(t),
+E_{\mathrm{wake},W}(t)
 $$
 where the terms include only the kinetic, interaction, and wake-history content retained by the declared window record. The finite-window energy balance should take the residual form
 $$
@@ -270,7 +270,7 @@ $$
 =
 P_{\mathrm{ext},W}
 +
-\mathcal{R}_E(\eta,\Delta t,W).
+\mathcal{R}_E(\eta,\Delta t,W)
 $$
 Here $\mathbf{J}_E$ is the boundary flux of causal-wake energy bookkeeping, including any wake escapement through $\partial W$; $P_{\mathrm{ext},W}$ is declared external work through sources or controls not included in $W$; and $\mathcal{R}_E$ records mollifier, timestep, and omitted-boundary-history error. A finite-window conservation claim is mature only when $\mathcal{R}_E\to0$ under the same regularized causal action used for the local equation of motion.
 
@@ -292,7 +292,7 @@ $$
 =
 F_{\mathrm{ext},W}^i
 +
-\mathcal{R}_P^i(\eta,\Delta t,W).
+\mathcal{R}_P^i(\eta,\Delta t,W)
 $$
 For a declared origin $\mathbf{x}_0$, the corresponding angular-momentum history functional has the schematic form
 $$
@@ -301,7 +301,7 @@ $$
 \sum_{a:\mathbf{s}_a(t)\in W}
 \big(\mathbf{s}_a(t)-\mathbf{x}_0\big)\times\mathbf{p}_a(t)
 +
-\mathbf{L}_{\mathrm{wake},W}(t),
+\mathbf{L}_{\mathrm{wake},W}(t)
 $$
 where $\mathbf{p}_a$ is the declared mechanical momentum proxy for the chosen kinetic bookkeeping. Its finite-window balance target is
 $$
@@ -311,7 +311,7 @@ $$
 =
 \tau_{\mathrm{ext},W}^i
 +
-\mathcal{R}_L^i(\eta,\Delta t,W).
+\mathcal{R}_L^i(\eta,\Delta t,W)
 $$
 Here $\Pi^{ij}$ and $\Lambda^{ij}$ are finite-window flux diagnostics for retained causal wakes and assembly crossings, not new substrate fields. $\tau_{\mathrm{ext},W}^i$ is the external torque about the same origin $\mathbf{x}_0$. If the energy, momentum, and angular-momentum residuals can be made small only by changing the window measure, boundary wake record, or regularization separately for each observable, the calculation has fitted separate summaries rather than demonstrated one causal-history conservation law.
 
@@ -326,7 +326,7 @@ E_{\mathrm{bind},W}^{\mathrm{grav}}
 {\|\mathbf{x}-\mathbf{y}\|}
 \,dV_{\mathbf{x}}\,dV_{\mathbf{y}}
 +
-\mathcal{B}_{\partial W},
+\mathcal{B}_{\partial W}
 $$
 where $\mathcal{B}_{\partial W}$ records boundary and embedding terms. The corresponding inventory residual is
 $$
@@ -340,7 +340,7 @@ E_{\mathrm{bind},W}^{\mathrm{obs}}
 \right|
 }{\epsilon_{\mathrm{bind}}}
 +
-\frac{|\mathcal{B}_{\partial W}|}{\epsilon_{\partial W}}.
+\frac{|\mathcal{B}_{\partial W}|}{\epsilon_{\partial W}}
 $$
 This keeps gravitational binding from being used as an adjustable bookkeeping sign that can repair the cosmic energy inventory without specifying the same window, boundary wake history, and effective $G_{\mathrm{eff}}$ used by the rest of the cosmology branch.
 
@@ -352,7 +352,7 @@ F_{\mathrm{ext},W_A}^i
 -
 \int_{\partial W_A}\Pi^{ij}\hat{n}_j\,dA
 +
-\mathcal{R}_{\mathrm{resp}}^i(\eta,\Delta t,W_A).
+\mathcal{R}_{\mathrm{resp}}^i(\eta,\Delta t,W_A)
 $$
 Only when the wake-history boundary flux and residual vanish does this reduce to the familiar center-of-mass form. Until that theorem is closed, a center-of-mass trajectory is an effective readout of the assembly response, not a substrate-level proof that internal delayed forces cancel instantaneously.
 
@@ -366,7 +366,7 @@ Entropy and free-energy language belongs to coarse-grained records, not to empty
 $$
 S_{\mathcal Q}
 =
--k_B\sum_{\alpha}p_\alpha\log p_\alpha.
+-k_B\sum_{\alpha}p_\alpha\log p_\alpha
 $$
 When a temperature-like channel $T_{\mathcal Q}$ is declared by the same record, the Helmholtz-style free-energy diagnostic is
 $$
@@ -374,7 +374,7 @@ F_{\mathcal Q}
 =
 E_{\mathcal Q}
 -
-T_{\mathcal Q}S_{\mathcal Q}.
+T_{\mathcal Q}S_{\mathcal Q}
 $$
 This is not an added thermodynamic postulate. It is a test that the chosen coarse variables have retained enough state counting to make relaxation and response claims reproducible.
 
@@ -403,7 +403,7 @@ dt
 \frac{\mathcal D_{\mathcal Q}}{T_{\mathcal Q}+\varepsilon_T}
 \right|dt
 +\varepsilon
-},
+}
 $$
 where $[x]_+=\max(x,0)$ and $\mathcal D_{\mathcal Q}$ is the declared coherent-to-incoherent transfer rate, including viscous, thermal, wake-boundary, or Noether sea response channels retained by the packet. Passing this gate means only that the selected coarse record has not made entropy decrease after unresolved boundary leakage is accounted for. It does not prove a fundamental stochastic substrate.
 
@@ -422,7 +422,7 @@ S_{AB}^{\mathrm{meas}}(\omega)
 +
 \left\|\mathcal F_T\!\left(\chi_{AB}''(\omega)\right)\right\|_{\omega}
 +\varepsilon
-}.
+}
 $$
 Here $\mathcal F_T$ is the packet's chosen fluctuation-dissipation map, and $\chi_{AB}''$ is the imaginary, dissipative response. A passing value supports the coarse response chart; a failing value means the noise, dissipation, and energy ledger have been fitted separately.
 
@@ -486,7 +486,7 @@ $$
 \qquad
 \mathcal{L}_{\text{aniso}}(A_0)
 \equiv
-\mathcal{L}_{\text{wake}}(A_0)-\Pi_0\mathcal{L}_{\text{wake}}(A_0),
+\mathcal{L}_{\text{wake}}(A_0)-\Pi_0\mathcal{L}_{\text{wake}}(A_0)
 $$
 
 evaluated in a regime where the assembly appears as an effective point source. Here $\Pi_0$ extracts the monopole/isotropic component of the far-field wake ledger and $\mathcal{L}_{\text{aniso}}$ retains anisotropic leakage instead of hiding it inside a scalar error term. For a strongly shielded, neutral Noether swarm in the Noether sea, we expect $\zeta\ll 1$.
@@ -496,7 +496,7 @@ $$
 \frac{\|\mathcal{L}_{\text{aniso}}(A_0)\|}
 {\|\mathcal{L}_{\text{naive}}(A_0)\|}
 \le
-\epsilon_{\text{aniso}},
+\epsilon_{\text{aniso}}
 $$
 with $\epsilon_{\text{aniso}}$ declared before the branch is promoted to a scalar mass-facing result.
 
@@ -532,11 +532,11 @@ p_{\text{int}}^{a}
 \approx
 \alpha_{\mathrm{m}}\,\zeta(A)E_{\text{internal}}(A)\,
 \mathcal{M}_{\text{sea}}^{ab}\,
-V_{\text{cm},b},
+V_{\text{cm},b}
 $$
 with homogeneous isotropic limit
 $$
-\mathcal{M}_{\text{sea}}^{ab}\to \frac{h^{ab}}{c_{\text{eff}}^2}.
+\mathcal{M}_{\text{sea}}^{ab}\to \frac{h^{ab}}{c_{\text{eff}}^2}
 $$
 A more complete first-order handoff keeps the scalar and trace-free exposure pieces visible. Write
 
@@ -547,7 +547,7 @@ $$
 +
 \mathcal{Z}_{\mathrm{tf}}^{ab}(A),
 \qquad
-h_{ab}\mathcal{Z}_{\mathrm{tf}}^{ab}(A)=0,
+h_{ab}\mathcal{Z}_{\mathrm{tf}}^{ab}(A)=0
 $$
 
 and split the local Noether sea response as
@@ -560,7 +560,7 @@ $$
 (1+\delta\mathcal{M}_{0})h^{ab}
 +
 \delta\mathcal{M}_{\mathrm{tf}}^{ab}
-\right].
+\right]
 $$
 
 Then the exposed inertial-response tensor is
@@ -577,7 +577,7 @@ $$
 \qquad
 p_{\text{int}}^{a}
 \approx
-\mathsf{I}_{A}^{ab}V_{\text{cm},b}.
+\mathsf{I}_{A}^{ab}V_{\text{cm},b}
 $$
 
 Its rotational scalar trace is
@@ -593,7 +593,7 @@ m_{\mathrm{tr}}(A)
 \zeta(A)(1+\delta\mathcal{M}_{0})
 +
 \frac{1}{3}\mathcal{Z}_{\mathrm{tf},ab}(A)\delta\mathcal{M}_{\mathrm{tf}}^{ab}
-\right].
+\right]
 $$
 
 Only in the homogeneous isotropic limit does the scalar mass formula above follow. The trace formula gives a stricter diagnostic: pure exposure anisotropy does not shift scalar mass in an isotropic medium, and pure trace-free medium response does not shift scalar mass for scalar exposure. A scalar mass shift from anisotropy appears only through the contraction $\mathcal{Z}_{\mathrm{tf},ab}\delta\mathcal{M}_{\mathrm{tf}}^{ab}$; otherwise the residue remains directional inertia in $\mathsf{I}_{A}^{ab}$. Here $E_{\text{internal}}$ names the large internal energy circulation, while $\zeta(A)$ names the small external leakage that survives cancellation and Noether sea shielding. The formula therefore explains weak long-range gravitational and inertial footprints without making the internal energy small: ordinary probes couple to the leaked pattern, not to every internal exchange branch.
@@ -607,7 +607,7 @@ S_{\mathrm{mat}\to\mathrm{sea}}^{(\ell)}(\mathbf{x},t)
 W_\ell(\mathbf{x}-\mathbf{X}_A(t))\,
 \zeta(A)E_{\text{internal}}(A)
 +
-S_{\mathrm{aniso}}^{(\ell)}(\mathbf{x},t),
+S_{\mathrm{aniso}}^{(\ell)}(\mathbf{x},t)
 $$
 
 where $W_\ell$ is the coarse-graining window, $\mathbf{X}_A$ is the assembly center, and $S_{\mathrm{aniso}}^{(\ell)}$ records exposed tensor, orientation, spin, or wake-history residue that cannot be collapsed into the scalar shielding factor. This source then perturbs the local Noether sea state through a constitutive response map,
@@ -620,7 +620,7 @@ $$
 S_{\mathrm{mat}\to\mathrm{sea}}^{(\ell)},
 \lambda_A,\xi_A,\mathcal{H}_A,
 \theta_{\mathrm{sea},0}^{(\ell)}
-\right),
+\right)
 $$
 
 with $\delta\theta_{\mathrm{sea}}^{(\ell)}$ projecting into $n$, $\chi_{\text{sea}}$, $\Gamma_N$, strain, orientation, cadence, and envelope-scale variables. In this language, saying that neighboring Noether swarms absorb the exposed potential means that they retune their branch state. Depending on the accepted branch, that retuning may appear as higher cadence, changed strain, stronger alignment, envelope-scale shift, or altered coupling to nearby Noether swarms; it should not be compressed into a generic statement that the cores simply gain energy and expand.
@@ -657,7 +657,7 @@ The details of this emergent relativistic law arise from the combined dynamics o
 For assembly center-of-mass motion in the Lorentz-suppressed regime, impose the relativistic mass-shell relation as an **effective closure test** (not a substrate postulate):
 
 $$
-E_{\text{CM}}^2 = p_{\text{CM}}^2 c_{\text{eff}}^2 + M_0^2 c_{\text{eff}}^4.
+E_{\text{CM}}^2 = p_{\text{CM}}^2 c_{\text{eff}}^2 + M_0^2 c_{\text{eff}}^4
 $$
 
 Here:
@@ -669,7 +669,7 @@ Equivalent parameterization:
 $$
 E_{\text{CM}}=\gamma_{\text{eff}} M_0 c_{\text{eff}}^2,\qquad
 p_{\text{CM}}=\gamma_{\text{eff}} M_0 v_{\text{CM}},\qquad
-\gamma_{\text{eff}}=\frac{1}{\sqrt{1-v_{\text{CM}}^2/c_{\text{eff}}^2}}.
+\gamma_{\text{eff}}=\frac{1}{\sqrt{1-v_{\text{CM}}^2/c_{\text{eff}}^2}}
 $$
 
 Consistency requirement: if this closure fails in regimes where emergent Lorentz behavior is claimed, the current mass-loading and medium-response model is incomplete.
@@ -793,7 +793,7 @@ $$
 \Delta\mathbf{v}_{a,n}
 =
 \int_{t_n^-}^{t_n^+}
-\mathbf{a}_a^{(\eta)}(t)\,dt.
+\mathbf{a}_a^{(\eta)}(t)\,dt
 $$
 This finite impulse is a candidate substrate mechanism for changing the active causal-root ledger by a discrete amount without making primitive energy granular.
 
@@ -888,7 +888,7 @@ I_a(\lambda)
 \equiv
 \frac{1}{2\pi}
 \oint_{\gamma_a(\lambda)}
-\Pi_a\,dQ_a.
+\Pi_a\,dQ_a
 $$
 If the parameter changes slowly compared with the cycle period $T_a(\lambda)$,
 $$
@@ -900,7 +900,7 @@ T_a(\lambda(t))\,
 \left\|\frac{d\lambda}{dt}\right\|\,
 \ell_{\lambda}^{-1}
 \right)
-\ll1,
+\ll1
 $$
 and the path remains inside the same causal-root ledger cell, the theorem target is
 $$
@@ -908,6 +908,6 @@ $$
 =
 O(\epsilon_{\mathrm{ad},a})
 +
-\mathcal{R}_{\mathrm{branch},a}(t).
+\mathcal{R}_{\mathrm{branch},a}(t)
 $$
 Here $\ell_{\lambda}$ is the declared scale over which the reduced Hamiltonian changes appreciably, and $\mathcal{R}_{\mathrm{branch},a}$ records branch folds, omitted wake-history exchange, non-characteristic boundary leakage, or failure of the reduced symplectic chart. Thus the action variable is expected to drift only adiabatically between separator crossings, while a root-ledger transition may produce the discrete $\Delta I$ recorded above. This turns the $h$-like bookkeeping into a branch invariant target rather than an assumption that energy itself is quantized at the primitive level.

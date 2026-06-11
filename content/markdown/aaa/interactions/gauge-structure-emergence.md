@@ -46,7 +46,7 @@ $$
 d_Q(Q_\theta,Q_{\mathrm{SM}})
 +d_{\mathrm{mix}}\!\left((g_1,g_2,\theta_W)_\theta,(g_1,g_2,\theta_W)_{\mathrm{obs}}\right)
 +d_{\mathrm{chiral}}(W_\theta,W_{\mathrm{obs}})
-+\mathcal{R}_{\mathrm{null}}(\theta).
++\mathcal{R}_{\mathrm{null}}(\theta)
 $$
 Here $\theta$ is the retained Noether sea state and assembly branch record, $d_Q$ measures charge-table mismatch, $d_{\mathrm{mix}}$ measures electroweak-coupling and weak-mixing mismatch, $d_{\mathrm{chiral}}$ measures failure of the weak-coupling-triad exposure record to recover observed handedness, and $\mathcal{R}_{\mathrm{null}}$ penalizes any added low-energy channel that is not observed. This residual is not a new ontology; it names the observer-level recovery burden.
 
@@ -68,7 +68,7 @@ N_{2,\mathrm{Weyl}}\bmod2,
 \mathcal{A}_{[U(1)_Y]^3},
 \mathcal{A}_{[\mathrm{grav}]^2U(1)_Y}
 \right)
-=(0,0,0,0,0,0).
+=(0,0,0,0,0,0)
 $$
 This does not make the Standard Model variables substrate ontology. It says that any accepted Noether sea state and axial-layer branch must project to the same anomaly-free effective gauge record; otherwise the branch cannot be the observer-level Standard Model limit.
 
@@ -91,7 +91,7 @@ P_b^\theta,\,
 m_b^\theta,\,
 \omega_b^\theta(k),\,
 \mathcal{C}_b^\theta
-\right),
+\right)
 $$
 where $J_b^\theta$ is the recovered spin label, $P_b^\theta$ the parity or transverse/longitudinal projector record when applicable, $m_b^\theta$ the mass or gap, $\omega_b^\theta(k)$ the dispersion, and $\mathcal{C}_b^\theta$ the coupling ledger to fermion, photon, weak, color, or gravitational channels. A collective-mode interpretation is admissible only when one Noether sea state and assembly branch supplies $\mathcal{M}_b^\theta$ while also suppressing unobserved scalar, vector, tensor, mirror, or hidden channels. Otherwise "boson as excitation" is an analogy, not gauge-structure emergence.
 
@@ -101,7 +101,7 @@ The Standard Model gauge equations are comparison constraints on the effective r
 $$
 D_\mu^\theta=\partial_\mu-i g_\theta A_{\mathrm{eff},\mu}^\theta,
 \qquad
-F_{\mu\nu}^\theta=\frac{i}{g_\theta}[D_\mu^\theta,D_\nu^\theta].
+F_{\mu\nu}^\theta=\frac{i}{g_\theta}[D_\mu^\theta,D_\nu^\theta]
 $$
 If $U(x)$ is an allowed effective gauge relabeling, then the record should transform as
 $$
@@ -109,7 +109,7 @@ $$
 \qquad
 D_\mu^{\theta'}\Psi_\theta'=U D_\mu^\theta\Psi_\theta,
 \qquad
-F_{\mu\nu}^{\theta'}=U F_{\mu\nu}^\theta U^{-1}.
+F_{\mu\nu}^{\theta'}=U F_{\mu\nu}^\theta U^{-1}
 $$
 This is a redundancy test. It asks whether different gauge charts describe the same observer-level channel, not whether the Noether sea itself has been changed.
 
@@ -124,7 +124,7 @@ D^{\theta'}(U\Psi)-U D^\theta\Psi
 \right\|
 }{
 \left\|D^\theta\Psi\right\|+\varepsilon_{\mathrm{op}}
-}.
+}
 $$
 The electroweak or color branch passes only when this residual stays below its declared tolerance on the same record domain used for charge, chirality, mixing, and null-channel tests. If covariance appears only after changing the physical branch ledger, the construction has not recovered gauge redundancy; it has renamed a different physical state.
 
@@ -136,7 +136,7 @@ W_\gamma^\theta
 \mathcal{P}
 \exp\!\left(
 i g_\theta\oint_\gamma A_{\mathrm{eff},\mu}^\theta\,d\ell^\mu
-\right).
+\right)
 $$
 This Wilson-loop language is useful because it tests gauge-invariant loop content. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the loop value must be reconstructed from the closed causal-wake and axial-layer provenance sampled by the apparatus channel. It is not a claim that the loop integral is fundamental ontology.
 
@@ -151,7 +151,7 @@ k_\theta
 \mathcal{R}_{\mathrm{top}}(\theta)
 =
 \inf_{N\in\mathbb{Z}}
-\left|k_\theta-N\right|.
+\left|k_\theta-N\right|
 $$
 This target belongs to the gauge recovery map only after $\mathcal{D}_\theta$, $F_{\mathrm{eff}}$, and the apparatus-accessible sector have been declared. It passes when the integer sector is fixed by the same branch record that supplies the local gauge response. It fails if the winding number is imported as an external bundle label while the assembly and Noether sea provenance remain silent.
 
@@ -167,7 +167,7 @@ $$
 \mathcal{A}_{L,\theta}^{(h)}
 \frac{i}{P_I^2-m_h^2+i0}
 \mathcal{A}_{R,\theta}^{(h)}
-+\mathcal{A}_{\mathrm{reg},\theta}.
++\mathcal{A}_{\mathrm{reg},\theta}
 $$
 This equation is a locality-emergence test. It says that a boundary of the event-window description must reduce to two lower-channel records connected by the same accepted transient channel $h$. If the pole residue cannot be traced to a replayable branch-boundary decomposition, the amplitude has been fitted but not derived.
 
@@ -175,7 +175,7 @@ Color/kinematics duality supplies a sharper optional comparison. Whenever an ori
 $$
 c_i+c_j+c_k=0
 \quad\Longrightarrow\quad
-n_i^\theta+n_j^\theta+n_k^\theta\to0.
+n_i^\theta+n_j^\theta+n_k^\theta\to0
 $$
 The native value of this test is not the formal identity by itself. The value is whether the existing H/M/L color-exceptionality relation $Q_H+Q_M+Q_L=0$ and the scattering numerator ledger can be derived as two projections of the same branch geometry.
 
@@ -226,24 +226,24 @@ Under the six-site axial-layer hypothesis, sweeping all Electrino:Positrino spli
 
 **Proposition.** If a fermion axial layer has exactly six polar sites, each occupied by either $+\epsilon$ or $-\epsilon$, then the observer-level charge can only be
 $$
-\{-|e|,-2|e|/3,-|e|/3,0,+|e|/3,+2|e|/3,+|e|\}.
+\{-|e|,-2|e|/3,-|e|/3,0,+|e|/3,+2|e|/3,+|e|\}
 $$
 
 **Proof.** Let $N_+$ be the number of $+\epsilon$ slots and $N_-$ the number of $-\epsilon$ slots. Then
 $$
-N_+ + N_- = 6,\qquad N_+,N_- \in \{0,1,\dots,6\}.
+N_+ + N_- = 6,\qquad N_+,N_- \in \{0,1,\dots,6\}
 $$
 The net observer-level charge carried by the axial layer is
 $$
-Q=\epsilon(N_+ - N_-).
+Q=\epsilon(N_+ - N_-)
 $$
 Using $N_-=6-N_+$,
 $$
-Q=\epsilon(2N_+ - 6)=\frac{|e|}{3}(N_+ - 3).
+Q=\epsilon(2N_+ - 6)=\frac{|e|}{3}(N_+ - 3)
 $$
 Since $N_+$ is an integer from $0$ to $6$, $(N_+-3)\in\{-3,-2,-1,0,1,2,3\}$, so
 $$
-Q\in\left\{-|e|,-\frac{2|e|}{3},-\frac{|e|}{3},0,\frac{|e|}{3},\frac{2|e|}{3},|e|\right\}.
+Q\in\left\{-|e|,-\frac{2|e|}{3},-\frac{|e|}{3},0,\frac{|e|}{3},\frac{2|e|}{3},|e|\right\}
 $$
 No other values are possible. Different permutations with the same $(N_+,N_-)$ have identical total $Q$; they only change micro-geometry, not net charge.
 
@@ -259,7 +259,7 @@ $$
 $$
 with the physical ambiguity only
 $$
-\Theta_\gamma(Q)-2\pi N_\gamma \to 0,\qquad N_\gamma\in\mathbb{Z}.
+\Theta_\gamma(Q)-2\pi N_\gamma \to 0,\qquad N_\gamma\in\mathbb{Z}
 $$
 The six-site axial bookkeeping must make this a charge-compatibility condition, not a separately imposed monopole postulate. A compact residual for the allowed axial-layer charge set is
 $$
@@ -270,7 +270,7 @@ $$
 \left|
 \frac{Q}{\hbar}\int_S F_{\mathrm{eff}}
 -2\pi N_\gamma
-\right|.
+\right|
 $$
 This residual belongs to the observer-level recovery map. It passes only when the same Noether sea state and axial-layer branch record that supplies local electromagnetic force and phase transport also yields $\mathcal{R}_{\mathrm{loop}\text{-}Q}\le\varepsilon_{\mathrm{loop}\text{-}Q}$ for the benchmark loop family. If a branch recovers the charge table locally but cannot make closed-loop phase globally consistent, the six-site quantization proof is only combinatorial and has not yet recovered the gauge-topological content of charge quantization.
 
@@ -284,7 +284,7 @@ Q_{m,\mathrm{form}}^\theta
 \Gamma_{m,\mathrm{cap}}^\theta(t')\,dt'
 -
 \int_{t_{\mathrm{form}}}^{t}
-\Gamma_{m,\mathrm{loss}}^\theta(t')\,dt'.
+\Gamma_{m,\mathrm{loss}}^\theta(t')\,dt'
 $$
 The loop-phase target above then requires the same branch record to support both the effective magnetic-flux label and the allowed electric axial-layer charge set. A compact object that solves a monopole-abundance problem by hiding charge in an untracked capture channel has not recovered gauge structure; it has moved the charge ledger outside the derivation.
 
@@ -298,7 +298,7 @@ S_{\text{fund}}
 \sum_i \frac{1}{2}\mu_{\text{arch}}\dot{\mathbf{x}}_i^2
 -\frac{1}{2}\sum_{i\ne j}\int_{\Sigma_{ij}} d^2\sigma\,
 \frac{\kappa \epsilon^2}{\|\mathbf{x}_i(t)-\mathbf{x}_j(t-\tau)\|^2\,|J_{ij}|}\,W_{ij}
-\right].
+\right]
 $$
 Here $\mu_{\text{arch}}$ is the universal force/energy bookkeeping constant and $J_{ij}$ is the delay-map Jacobian on the active branch, so the electroweak closure map starts from the same Jacobian-weighted causal geometry as the master equation rather than from a stripped inverse-square surrogate.
 After fast-mode averaging of inner and middle binary phases (Lie-Deprit/Hamiltonian averaging) and coarse-graining to $q^2\ll \omega_M^2$, the minimal observer-level action is written as
@@ -308,18 +308,18 @@ $$
 \bar{\Psi}\left(i\gamma^\mu D_\mu-\mathcal{M}\right)\Psi
 -\frac{1}{4}\mathcal{F}_{\mu\nu}\mathcal{F}^{\mu\nu}
 -\frac{1}{4}\mathcal{W}_{\mu\nu}^a\mathcal{W}^{a\mu\nu}
-+\mathcal{L}_{\text{comp}},
++\mathcal{L}_{\text{comp}}
 $$
 with
 $$
-D_\mu=\partial_\mu-i g\frac{\tau^a}{2}W_\mu^a-i g'Y B_\mu.
+D_\mu=\partial_\mu-i g\frac{\tau^a}{2}W_\mu^a-i g'Y B_\mu
 $$
 The leading composite correction is modeled as
 $$
 \mathcal{L}_{\text{comp}}
 =
 \frac{R_L^2}{2}\,\bar{\Psi}\gamma^\mu D^\nu\mathcal{F}_{\mu\nu}\Psi
-+O(R_L^4),
++O(R_L^4)
 $$
 where $R_L$ is the outer-binary scale.
 
@@ -329,7 +329,7 @@ For the formal closure layer beneath this working map, see [Gauge Symmetries](./
 
 Use the working map:
 $$
-e = 6\epsilon \sqrt{\kappa c_f}\,Z_e,
+e = 6\epsilon \sqrt{\kappa c_f}\,Z_e
 $$
 where $Z_e$ is the coarse-graining normalization factor ($Z_e=1$ under canonical normalization choice).
 
@@ -339,28 +339,28 @@ $$
 =
 \frac{g'^2}{g^2+g'^2}
 =
-\mathcal{O}_{\text{shield}}+\Delta_{\text{wake}}.
+\mathcal{O}_{\text{shield}}+\Delta_{\text{wake}}
 $$
 
 Mass channels are mapped by
 $$
 m_W^2=\frac{1}{4}g^2 v_{\text{eff}}^2,\qquad
-m_Z^2=\frac{1}{4}(g^2+g'^2)\,v_{\text{eff}}^2,
+m_Z^2=\frac{1}{4}(g^2+g'^2)\,v_{\text{eff}}^2
 $$
 so
 $$
-\frac{m_W}{m_Z}=\cos\theta_W.
+\frac{m_W}{m_Z}=\cos\theta_W
 $$
 Fermion masses are cycle-averaged attractor energies:
 $$
-m_f = c_f^{-2}\,\langle T+V\rangle_f.
+m_f = c_f^{-2}\,\langle T+V\rangle_f
 $$
 
 ### Precision Interface to Measured Quantities
 
 The closure observables are:
 $$
-\sin^2\theta_W(m_Z),\quad \frac{m_W}{m_Z},\quad a_e,\quad a_\mu,\quad \sigma(e^+e^-\to\mu^+\mu^-;s).
+\sin^2\theta_W(m_Z),\quad \frac{m_W}{m_Z},\quad a_e,\quad a_\mu,\quad \sigma(e^+e^-\to\mu^+\mu^-;s)
 $$
 
 Composite magnetic-moment shift:
@@ -369,14 +369,14 @@ a_\ell^{\text{model}}
 =
 a_\ell^{\text{SM,ref}}
 +\mathcal{C}_\ell\,(m_\ell R_L)^2
-+O(R_L^4).
++O(R_L^4)
 $$
 
 In natural units ($\hbar=c=1$), the leading form factor correction for lepton-pair production is
 $$
 F(s)=1-\frac{sR_L^2}{4},
 \qquad
-\sigma_{\text{model}}(s)=\sigma_{\text{SM}}(s)\,|F(s)|^2.
+\sigma_{\text{model}}(s)=\sigma_{\text{SM}}(s)\,|F(s)|^2
 $$
 For $R_L\sim 10^{-19}\,\text{m}$, this predicts negligible deviations at both $\sqrt{s}=10.58\,\text{GeV}$ and $\sqrt{s}=91.19\,\text{GeV}$ relative to current luminosity/systematic floors.
 

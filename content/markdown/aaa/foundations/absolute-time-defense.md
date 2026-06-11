@@ -10,7 +10,7 @@ The teaching sequence is deliberately layered. First comes the ontological claim
 2. **Product substrate**: The kinematic background is the product manifold $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$ with clock projection $\pi_t:\mathcal{M}\to\mathbb{R}$.
 3. **Unique foliation**: The simultaneity slice at fixed $t_0$ is the level set
    $$
-   \Sigma_{t_0} = \pi_t^{-1}(\{t_0\}) = \{t_0\}\times \mathbb{R}^3.
+   \Sigma_{t_0} = \pi_t^{-1}(\{t_0\}) = \{t_0\}\times \mathbb{R}^3
    $$
 4. **Substrate clock form**: The substrate clock form $dt$ is exact, closed, and nowhere vanishing as the pullback from the $\mathbb{R}$ factor. Together with the chosen orientation of increasing $t$, it fixes the tangent planes to the slices $\Sigma_t$; foliation ambiguity is absent at the substrate level rather than removed by coordinate gauge.
 5. **Derived clock time**: Proper time $\tau$ is not fundamental; it is a derived functional of nested shell swarm internal phase dynamics.
@@ -35,7 +35,7 @@ X(t),
 H_t,
 \mathcal{N}_{\mathrm{sea}}(t,\cdot),
 \mathcal{B}_t
-\big),
+\big)
 $$
 where $X(t)$ contains instantaneous architrino and assembly data, $H_t$ is the path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the retained Noether sea state, and $\mathcal{B}_t$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free slice projection.
 
@@ -66,7 +66,7 @@ H_{\mathcal A}
 \right)
 }{
 \Omega_{\mathcal A}^{(0)}
-}.
+}
 $$
 Here $\varphi_{\mathcal A}$ is the declared clock phase, $\Omega_{\mathcal A}^{(0)}$ is its rest-branch reference rate, $R_{\mathcal A}$ is the clock assembly orientation and geometry record, $H_{\mathcal A}$ is the relevant path-history ledger, and
 $$
@@ -90,7 +90,7 @@ Q_{ij},
 \sigma_{ij},
 \nabla\rho_{\text{NS}},
 \ldots
-\right).
+\right)
 $$
 The scalar $\chi_{\text{sea}}(\mathbf{x},t)\equiv c_f/c_{\text{eff}}(\mathbf{x},t)$ is only the Noether sea delay factor extracted for a specified channel. It is not the full Noether sea state.
 
@@ -99,7 +99,7 @@ A broad constitutive expression $d\tau=F(\cdots)dt$ may still be used as a schem
 The integral clock-frequency form is
 
 $$
-\tau(t_1)-\tau(t_0)=\int_{t_0}^{t_1}\frac{\omega_{\text{clk}}(s)}{\omega_0}\,ds,
+\tau(t_1)-\tau(t_0)=\int_{t_0}^{t_1}\frac{\omega_{\text{clk}}(s)}{\omega_0}\,ds
 $$
 
 where $\omega_{\text{clk}}(s)$ is the phase rate extracted from the declared Noether swarm clock channel and $\omega_0$ is its rest-branch reference frequency. The dependencies hidden in $\omega_{\text{clk}}$ are the local causal-root ledger, the relevant path-history data, and the same Noether sea state variables used by the clock/ruler metric handoff.
@@ -127,7 +127,7 @@ c_0^2
 \Delta_{\mathcal A}^{\mathrm{PF}}
 +
 O(w^4/c_0^4)
-\right].
+\right]
 $$
 The residuals record orientation leakage, composition dependence, and preferred-frame leakage. They must be bounded by clock-comparison and Lorentz-test rows rather than hidden inside the constitutive function.
 In ordinary low-energy clock branches, the target scale is
@@ -138,7 +138,7 @@ $$
 \qquad
 |\Delta_{\mathcal A}^{\mathrm{comp}}|
 \lesssim
-10^{-13},
+10^{-13}
 $$
 with $\Delta_{\mathcal A}^{\mathrm{PF}}$ projected into the two-way anisotropy and PPN rows below unless a sharper channel-specific bound is declared.
 
@@ -147,18 +147,18 @@ Required emergent limits:
 - Homogeneous medium, low velocities:
   $$
   \frac{d\tau_{\mathcal A}}{dt} \approx \sqrt{1 - \|\mathbf{w}\|^2/c_\star^2},
-  \qquad c_\star=c_0 \text{ in the weak homogeneous observer branch}.
+  \qquad c_\star=c_0 \text{ in the weak homogeneous observer branch}
   $$
   In the weak homogeneous sea-rest branch, $u^i_{\text{sea}}=0$, so $\mathbf{w}=\mathbf{v}$.
 - Weak field, low velocities, after the clock-channel potential has been matched to the Newtonian benchmark:
   $$
   \Phi_{\text{eff}}=\Phi_N+O(\Phi_N^2/c_0^2),
   \qquad
-  \frac{d\tau_{\mathcal A}}{dt} \approx \sqrt{1 + 2\Phi_{\text{eff}}/c_0^2 - \|\mathbf{w}\|^2/c_0^2}.
+  \frac{d\tau_{\mathcal A}}{dt} \approx \sqrt{1 + 2\Phi_{\text{eff}}/c_0^2 - \|\mathbf{w}\|^2/c_0^2}
   $$
   Here $\Phi_N$ is the conventional negative Newtonian potential. If a positive PPN potential $U_N\ge0$ is used, set
   $$
-  \Phi_N=-U_N,
+  \Phi_N=-U_N
   $$
   so the first-order clock expansion reads
   $$
@@ -168,7 +168,7 @@ Required emergent limits:
   -\frac{\|\mathbf{w}\|^2}{2c_0^2}
   =
   1-\frac{U_N}{c_0^2}
-  -\frac{\|\mathbf{w}\|^2}{2c_0^2}.
+  -\frac{\|\mathbf{w}\|^2}{2c_0^2}
   $$
 
 **Speed convention table**
@@ -189,7 +189,7 @@ The operational two-way photon-speed diagnostic is
 $$
 c_{2w}(\hat{\mathbf n})
 =
-\frac{2L}{T_+(\hat{\mathbf n})+T_-(\hat{\mathbf n})}.
+\frac{2L}{T_+(\hat{\mathbf n})+T_-(\hat{\mathbf n})}
 $$
 In ordinary low-energy conditions its anisotropy must fit
 $$
@@ -202,7 +202,7 @@ $$
 \hat n^i\hat n^j-\frac{1}{3}\delta^{ij}
 \right)
 +
-\cdots,
+\cdots
 $$
 with the trace-free anisotropy below the current hard-wall row in the constraint ledger, presently of order $|\zeta_{ij}^{\mathrm{TF}}|\lesssim10^{-17}$ and, for the strictest cavity rows, at the $10^{-18}$ scale. The PPN export must also pass the componentwise bound vector
 $$
@@ -220,7 +220,7 @@ $$
 4\times10^{-5},
 2\times10^{-9},
 4\times10^{-20}
-\right).
+\right)
 $$
 Any screening mechanism must be included before exporting the observer-level PPN and Lorentz-test coefficients. The exported coefficients themselves must pass the ledger bounds. Preferred-frame hiding is therefore a numerical closure condition, not a prose reassurance.
 
@@ -235,7 +235,7 @@ A^2(\mathcal{N}_{\mathrm{sea}})\,dt^2
 \frac{1}{c_0^2}
 B_{ij}(\mathcal{N}_{\mathrm{sea}})
 \left(dx^i-u^i_{\text{sea}}dt\right)
-\left(dx^j-u^j_{\text{sea}}dt\right).
+\left(dx^j-u^j_{\text{sea}}dt\right)
 $$
 The metric handoff is admissible only on branches where
 $$
@@ -245,28 +245,28 @@ B_{ij}=B_{ji},
 \qquad
 B_{ij}\xi^i\xi^j>0
 \quad
-\text{for }\xi\ne0.
+\text{for }\xi\ne0
 $$
 Define the Lorentzian observer metric by
 $$
-ds_{\mathrm{eff}}^2=-c_0^2d\tau^2.
+ds_{\mathrm{eff}}^2=-c_0^2d\tau^2
 $$
 With $x^0=c_0t$, the exported components are
 $$
 g^{\mathrm{eff}}_{00}
 =
--A^2+\frac{1}{c_0^2}B_{ij}u^i_{\text{sea}}u^j_{\text{sea}},
+-A^2+\frac{1}{c_0^2}B_{ij}u^i_{\text{sea}}u^j_{\text{sea}}
 $$
 $$
 g^{\mathrm{eff}}_{0i}
 =
--\frac{1}{c_0}B_{ij}u^j_{\text{sea}},
+-\frac{1}{c_0}B_{ij}u^j_{\text{sea}}
 $$
 and
 $$
 g^{\mathrm{eff}}_{ij}
 =
-B_{ij}.
+B_{ij}
 $$
 Photon-channel closure then reads the null condition of this observer-level quadratic form, with $c_\gamma$ derived from the same Noether sea state rather than assigned independently:
 $$
@@ -274,12 +274,12 @@ $$
 =
 u^i_{\text{sea}}
 +
-c_\gamma^{\mathrm{rel}}(\hat{\mathbf{k}})\hat k^i,
+c_\gamma^{\mathrm{rel}}(\hat{\mathbf{k}})\hat k^i
 $$
 $$
 c_\gamma^{\mathrm{rel}}(\hat{\mathbf{k}})
 =
-\frac{c_0A}{\sqrt{B_{ij}\hat k^i\hat k^j}}.
+\frac{c_0A}{\sqrt{B_{ij}\hat k^i\hat k^j}}
 $$
 The weak homogeneous branch requires $A\to1$, $B_{ij}\to\delta_{ij}$, and $u^i_{\text{sea}}\to0$.
 

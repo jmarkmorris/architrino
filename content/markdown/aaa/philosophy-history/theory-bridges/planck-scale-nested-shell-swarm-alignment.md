@@ -48,7 +48,7 @@ $$
 \max\!\left(
 \frac{\hbar c_f}{E},
 \frac{2GE}{c_f^4}
-\right).
+\right)
 $$
 
 The first term is the wavelength-limited localization scale. The second term is the gravitational-radius scale associated with the same energy concentration. The minimum occurs when the two constraints meet,
@@ -56,7 +56,7 @@ The first term is the wavelength-limited localization scale. The second term is 
 $$
 E_{\mathrm{cross}}^2 \sim \frac{\hbar c_f^5}{2G},
 \qquad
-\ell_{\mathrm{probe,min}} \sim O(\ell_P).
+\ell_{\mathrm{probe,min}} \sim O(\ell_P)
 $$
 
 Thus the Planck scale is not merely a guessed lattice spacing or primitive grain of length. It is an operational closure point: attempts to force shorter localization either lose resolution through quantum wavelength or replace the target region with a horizon-scale causal boundary. This supports the interpretation of $\ell_P$ as the observed trace of a nested shell swarm alignment horizon rather than as proof that spacetime is made of smaller static beads.
@@ -73,7 +73,7 @@ Thus the Planck scale is not merely a guessed lattice spacing or primitive grain
 
 We treat the Planck relations as constraints on a **specific alignment geometry**, not as abstract dimensional coincidences. Using $f_P \ell_P = c$ with $c \approx c_f$ and the circular orbit relation $v = 2\pi R f$, the aligned state ($v_{\text{align}} = c_f$, $f_{\text{align}} = f_P$) gives:
 $$
-2\pi R_{\text{align}} f_P = c_f \quad \Rightarrow \quad 2\pi R_{\text{align}} = \ell_P.
+2\pi R_{\text{align}} f_P = c_f \quad \Rightarrow \quad 2\pi R_{\text{align}} = \ell_P
 $$
 So the Planck length maps to the **outer circumference**, with $R_{\text{align}} = \ell_P/(2\pi)$.
 
@@ -82,7 +82,7 @@ Outside the alignment point, the $R$–$f$ mapping is not fixed by kinematics al
 
 **Economy hypothesis:** $G$ and $h$ are linked through the alignment geometry. The effective compliance scales with the **alignment area** of the outer orbit ($R_{\text{align}}^2$), while $c_f^3$ provides the causal throughput scale and $h$ sets the action-per-cycle. This is the compact, geometry-first linkage we are testing:
 $$
-G \propto \frac{c_f^3 (\text{alignment geometry})}{h}.
+G \propto \frac{c_f^3 (\text{alignment geometry})}{h}
 $$
 Geometrically, a single alignment area sets the coupling scale; with $R_{\text{align}} = \ell_P/(2\pi)$ and $h = 2\pi\hbar$, this matches $G \sim c^3 \ell_P^2/\hbar$ up to the expected $2\pi$ factors.
 Here, $h$ sets the action-per-cycle and the geometry fixes the length scale; universality follows from a universal alignment mechanism, not from a direct proportionality between $G$ and $h$.
@@ -127,11 +127,11 @@ with $\theta$ the orbital phase and the “forward sector” the subset where th
 
 We define the **kinematic alignment horizon** as the locus where the forward-sector components satisfy
 $$
-v_{\text{trans}} \to c_f \quad \text{and} \quad v_{\text{orb}}^{\text{tan}}(\theta) \to c_f,
+v_{\text{trans}} \to c_f \quad \text{and} \quad v_{\text{orb}}^{\text{tan}}(\theta) \to c_f
 $$
 so the component speeds approach the wake-speed limit at the onset of flattening. The combined forward-sector speed is a separate diagnostic:
 $$
-v_{\text{eff}}(\theta)=\|\mathbf{v}_{\text{trans}}+\mathbf{v}_{\text{orb}}^{\text{tan}}(\theta)\|.
+v_{\text{eff}}(\theta)=\|\mathbf{v}_{\text{trans}}+\mathbf{v}_{\text{orb}}^{\text{tan}}(\theta)\|
 $$
 When $v_{\text{eff}}>c_f$, the same geometry supports the Mach-wedge analysis used above; when $v_{\text{eff}}\lesssim c_f$, the claim is only one-way update starvation along the saturated forward component.
 
@@ -143,14 +143,14 @@ Actual Planck alignment requires closure of the **action-response loop**:
 
 - **One-way delay**: time between an emission and its arrival at a receiver:
   $$
-  \Delta t_{\text{one-way}} = d / c_f.
+  \Delta t_{\text{one-way}} = d / c_f
   $$
 - **Round-trip response**: the full delay between an emitted wake and its subsequent influence on the emitter’s own trajectory after the assembly has responded and moved.
 
 A stable, phase-locked mode must satisfy a **closure condition** on this round-trip delay combined with orbital motion. Schematic:
 
 $$
-\Phi_n \equiv \omega_n \Delta t_{\text{rt}} + \phi_{\text{geom}}(n) = 2\pi k_n,
+\Phi_n \equiv \omega_n \Delta t_{\text{rt}} + \phi_{\text{geom}}(n) = 2\pi k_n
 $$
 
 for integer $k_n$, where $\Delta t_{\text{rt}}$ is the effective round-trip delay and $\phi_{\text{geom}}$ encodes geometric phase due to nested shell swarm structure.
@@ -311,7 +311,7 @@ in the same sector. Planck alignment would become much stronger if the terminal 
 $$
 \mathcal{A}_{\text{align}}^{\text{cycle}}
 =
-\mathcal{B}(Q_{\mathrm{align}}),
+\mathcal{B}(Q_{\mathrm{align}})
 $$
 and if the saturation equations reduced to explicit first-order delay-geometry closure conditions, such as field-speed component saturation, finite branch ledger closure, and zero holonomy after one cycle.
 
@@ -330,13 +330,13 @@ remains only a dimensional and operational mapping rather than a dynamical deriv
 Define
 
 $$
-R_{\text{align}} \equiv r_{\text{Outer}}(n_{\text{max}}).
+R_{\text{align}} \equiv r_{\text{Outer}}(n_{\text{max}})
 $$
 
 Let $\ell_P^{\text{(emp)}}$ be the standard Planck length defined operationally by GR/QM constants (using $h = 2\pi\hbar$ with $f$):
 
 $$
-\ell_P^{\text{(emp)}} = \sqrt{\frac{h\,G}{2\pi c^3}}.
+\ell_P^{\text{(emp)}} = \sqrt{\frac{h\,G}{2\pi c^3}}
 $$
 
 > **Empirical Check (Length):**  
@@ -349,7 +349,7 @@ $$
 Equivalently, within the architrino theory we can invert the relation to define an **effective gravitational constant**:
 
 $$
-G_{\text{eff}} \equiv \frac{R_{\text{align}}^2 c_f^3}{\mathcal{A}_{\text{align}}^{\text{cycle}}}.
+G_{\text{eff}} \equiv \frac{R_{\text{align}}^2 c_f^3}{\mathcal{A}_{\text{align}}^{\text{cycle}}}
 $$
 
 Our program is to compute $\mathcal{A}_{\text{align}}^{\text{cycle}}$, $I_{\text{align}}$, and $R_{\text{align}}$ from first principles, then compare $G_{\text{eff}}$ to the measured $G$.
@@ -393,7 +393,7 @@ a_{\theta}
 \qquad
 \frac{s_{\mathrm{align}}}{a_{\theta}}
 \longrightarrow
-\frac{1}{4},
+\frac{1}{4}
 $$
 where $\mathcal{L}_U$ is the observer-distinguishable set of alignment-compatible labels on a connected block $U$ and $A_{\mathrm{eff}}(U)\to A_H$ in the large-area limit. Thus the Planck-alignment program does not get black-hole entropy merely by naming a small area. It must show that terminal nested shell swarm alignment supplies a universal local entropy density, the associated patch-area normalization, and correlations between neighboring patches that do not restore volume or arbitrary history-length scaling.
 

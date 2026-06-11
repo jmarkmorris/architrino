@@ -29,7 +29,7 @@ $$
 \chi_\gamma(\omega_a,\mathbf{x},t)
 -
 \chi_\gamma(\omega_b,\mathbf{x},t)
-}{c_0}\,d\ell .
+}{c_0}\,d\ell
 $$
 Here $\Gamma_z$ is the observer-level path used by the comparison, and $\chi_\gamma$ is the photon-channel delay factor from the same branch record used for photon synchronization. A useful residual is
 $$
@@ -44,7 +44,7 @@ $$
 -
 \Delta t_{\gamma}^{\mathrm{model}}
 \right|
-}{\sigma_{\Delta t}},
+}{\sigma_{\Delta t}}
 $$
 where $\mathcal{E}$ is the declared transient catalog, $\Delta t_{\mathrm{src}}$ is the modeled source lag, and $\sigma_{\Delta t}$ is the adopted timing uncertainty.
 
@@ -86,7 +86,7 @@ The propagation speed of gravitational-wave disturbances in the Noether sea must
   \lesssim
   \frac{v_{\mathrm{GW}}-c_0}{c_0}
   \lesssim
-  7\times10^{-16}.
+  7\times10^{-16}
   $$
   Any tighter ledger tolerance adopted for a specific validation band should be stated explicitly rather than inferred from ontology.
 * **Mode and Dispersion Gate** – finite-range or medium-compliance corrections must keep accumulated dispersion, false-alarm residuals, calibration residuals, and any scalar, vector, or longitudinal gravitational-wave detector response below the residual bounds for the validated band.
@@ -119,7 +119,7 @@ Massive-interference experiments and precision gravity readouts jointly test whe
   \int_0^T\!\!\int_0^T
   \Delta h_A(t)\,
   N^{-1}_{AB}(t,t')\,
-  \Delta h_B(t')\,dt\,dt',
+  \Delta h_B(t')\,dt\,dt'
   $$
   with $\Delta h_A(t)=h_A(t;\rho_1,\theta)-h_A(t;\rho_2,\theta)$, must remain below the declared which-path threshold for any interference-preserving run unless a record-forming separatrix crossing and persistence window are also derived.
 * **Observable** – the data products are massive-superposition coherence time, branch separation and mass-displacement history, precision-gravity response, detector noise covariance, any two-probe entanglement witness, non-gravitational coupling residuals, and the absence or presence of a durable which-path record.
@@ -144,13 +144,13 @@ $$
 =
 \frac{f_A\rho_{\mathrm{DM}}}{M_A}\,
 \pi b_{\max}^2\,
-\langle v_{\mathrm{rel}}\rangle_{\theta_A}.
+\langle v_{\mathrm{rel}}\rangle_{\theta_A}
 $$
 The corresponding impulse scale on a tracked body is
 $$
 \Delta v_{\mathrm{test}}
 \simeq
-\frac{2GM_A}{b\,v_{\mathrm{rel}}},
+\frac{2GM_A}{b\,v_{\mathrm{rel}}}
 $$
 with the accepted comparison using the full ephemeris covariance rather than this estimate alone.
 
@@ -184,6 +184,6 @@ $$
 \mathcal{C}_{\mathrm{Photon}}
 \cap
 \mathcal{C}_{\mathrm{Topo}}
-\neq \varnothing.
+\neq \varnothing
 $$
 If the intersection is empty after uncertainty propagation, the integrated model version is rejected.

@@ -437,7 +437,7 @@ The minimal proof object is a family of biased basin partitions $\mathcal{P}_u=\
 $$
 P_{c_\Omega,u,T}(i)
 =
-\mu_{c_\Omega,u,T}\!\left(B_i(u)\right).
+\mu_{c_\Omega,u,T}\!\left(B_i(u)\right)
 $$
 A Switch claim requires two preparations $u_a,u_b$ such that
 $$

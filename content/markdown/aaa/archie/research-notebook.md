@@ -36,7 +36,7 @@ F^{\mathrm{mb}}_m
 \qquad
 \text{and}
 \qquad
-\overline{A}^{\mathrm{mb}}_{\mathrm{deep}},
+\overline{A}^{\mathrm{mb}}_{\mathrm{deep}}
 $$
 so the late comparison laws are no longer hiding qualitative path-history terms inside informal “smallness” language.
 
@@ -52,11 +52,11 @@ The 1D collinear breather note reached a major threshold today. The document now
 
 The central technical gain was the conversion of the delayed geometry into explicit 1D comparison layers. The inward leg is now controlled by the collapse-to-crossing ladder and the pre-crossing caustic-transit analysis. The outward leg is controlled by the outer sorting map
 $$
-z(t)=x(t)-c_f t,
+z(t)=x(t)-c_f t
 $$
 the deep-past suppression estimates, and the explicit trimmed-apocenter force margins. The note also now contains a seed-history construction
 $$
-\psi_{\mathrm{seed}}(\theta)=x_\ast-u_{\mathrm{seed}}\theta,
+\psi_{\mathrm{seed}}(\theta)=x_\ast-u_{\mathrm{seed}}\theta
 $$
 which closes the previous vacuity gap by showing that the section-side tame neighborhood is nonempty.
 
@@ -70,13 +70,13 @@ Key victories inside this milestone:
 - The inbound hinge at $\dot x=-c_f$ was reframed correctly: the self-root caustic is not something to forbid, but something to integrate through with a bounded impulse.
 - The pre-crossing delayed geometry was organized around the sorting map
   $$
-  w(t)=x(t)+c_f t,
+  w(t)=x(t)+c_f t
   $$
   which made hinge birth, self-root uniqueness, Jacobian recovery, and admissible-crossing preparation explicit.
 - The return half was topologically repaired by distinguishing the reflected section state from the literal inbound section return, which fixed the geometry of the Poincaré map.
 - The outer-turn problem was reduced to the outer sorting map
   $$
-  z(t)=x(t)-c_f t,
+  z(t)=x(t)-c_f t
   $$
   together with explicit post-hinge descent, rather than being left as a vague delayed-force obstacle.
 - Deep-past outward self-roots on the apocenter window were forced back onto the pre-crossing inbound leg, where they become unique and automatically transversal with $J_s>1$.
@@ -88,7 +88,7 @@ Key victories inside this milestone:
   removed the vacuity risk by giving an explicit nonempty section-side tame neighborhood.
 - The final Schauder-domain mismatch was repaired by introducing a closed convex tame envelope
   $$
-  \mathcal{K}_{x_\ast,\eta},
+  \mathcal{K}_{x_\ast,\eta}
   $$
   so the fixed-point map now acts on a single matching domain.
 
@@ -102,7 +102,7 @@ and then states explicitly the four assumptions that are actually doing the work
 
 The first assumption is the one that now carries the regime claim: outside the black-hole event horizon, and through the horizon-transition regime, the Middle binary is pinned at the field speed,
 $$
-v_M=c_f.
+v_M=c_f
 $$
 The second assumption is exact integer phase closure relative to the Outer period, $f_O:f_M:f_I=1:m:n$ with $1 < m < n$, so that when the Outer completes one cycle, the Middle and Inner also return to cycle start. The third assumption is fixed relative phase lock, and the fourth is a selection principle: among admissible integer locks, the realized one should be the one that maximizes cycle-averaged cancellation of the low-order far-field or effective potential signal.
 
@@ -110,7 +110,7 @@ Under these assumptions, the geometry is controlled by the integer pair $(m,n)$ 
 $$
 r_M=\frac{r_O}{m\beta_O},
 \qquad
-r_I=\frac{\beta_I}{n\beta_O}\,r_O.
+r_I=\frac{\beta_I}{n\beta_O}\,r_O
 $$
 So even if one later tests the dyadic candidate $(m,n)=(2,4)$, the frequency lock $1:2:4$ does not force equal speeds and does not force self-similar radii.
 
@@ -138,7 +138,7 @@ $$
 \frac{|q_i q_j|}{r_{ij}^2(t;t_0)\,|J_{ij}(t;t_0)|}\,
 \hat{\mathbf{r}}_{ij}(t;t_0),
 \qquad
-J_{ij}(t;t_0)=1-\frac{\mathbf{v}_j(t_0)\cdot\hat{\mathbf{r}}_{ij}(t;t_0)}{c_f}.
+J_{ij}(t;t_0)=1-\frac{\mathbf{v}_j(t_0)\cdot\hat{\mathbf{r}}_{ij}(t;t_0)}{c_f}
 $$
 The point of the correction is not that source strength itself changes with speed. The source emits according to the same constant-cadence rule. The velocity dependence enters because the source moves while laying down successive wake surfaces, so the receiver samples a compressed or dilated branch of the source's causal history. The factor $|J_{ij}|^{-1}$ is therefore part of the causal geometry of received wake flux, not an optional adjustment to a static inverse-square force.
 
@@ -262,6 +262,6 @@ come out numerically close to the PDG hierarchy from closure rather than direct 
 
 The same closure step also fixes the CP structure. Using the holonomy relation
 $$
-\cos\delta = \frac{s_{13}}{s_{12}s_{23}},
+\cos\delta = \frac{s_{13}}{s_{12}s_{23}}
 $$
 the model gives $\delta = 66.35^\circ$ and $J = 3.04 \times 10^{-5}$, with the phase landing within $1\sigma$ of the quoted benchmark in the current writeup. The significance of this date is not that flavor closure is finished. It is that the project moved from a qualitative CKM story to a quantitatively constrained statement: three cells can set the rest of the matrix to the right three-digit scale.

@@ -211,7 +211,7 @@ $$
 \mathcal{E}_{\mathrm{obs}}(\theta)\ne\varnothing,\quad
 \mathcal{R}_{\mathrm{rec}}(\theta)\le1,\quad
 \mathcal{R}_{\mathrm{null}}^{\mathrm{op}}(\theta)=0,\quad
-\mathcal{S}_{\mathrm{retune}}(\theta)=0.
+\mathcal{S}_{\mathrm{retune}}(\theta)=0
 $$
 Here $\mathcal{E}_{\mathrm{obs}}$ is the nonempty set of observational or standard-theory contacts, $\mathcal{R}_{\mathrm{rec}}$ is the relevant recovery residual, $\mathcal{R}_{\mathrm{null}}^{\mathrm{op}}$ is the operational null-result residual from [Failure Criteria](../validation/failure-criteria.md#null-result-residual-for-added-channels), and $\mathcal{S}_{\mathrm{retune}}$ records whether separate parameter choices are being used to pass different benchmarks. The rule is not anti-speculative; it simply keeps speculation in the comparison layer until it earns recovery, null-result discipline, and no-retuning closure.
 
@@ -347,7 +347,7 @@ K_{\mathrm{cal}},\;
 M_{\mathrm{eff}},\;
 O_{\mathrm{ont}},\;
 R_{\mathrm{fail}}
-\right),
+\right)
 $$
 
 where $D$ is the data product, $A_{\mathrm{inst}}$ records apparatus and selection assumptions, $K_{\mathrm{cal}}$ records calibration and nuisance modeling, $M_{\mathrm{eff}}$ is the effective formal model, $O_{\mathrm{ont}}$ is the ontological reading under review, and $R_{\mathrm{fail}}$ is the residual pattern that would reject the proposed reinterpretation. This keeps crisis governance from sliding into either uncritical consensus defense or unconstrained heterodoxy.
@@ -364,7 +364,7 @@ $$
 \max_i
 \frac{\left|R_i(D,A_{\mathrm{inst}},K_{\mathrm{cal}},M_{\mathrm{eff}},O_{\mathrm{ont}};\theta)\right|}
 {\epsilon_i}
-\le 1.
+\le 1
 $$
 
 Intermediate stages may therefore be reported as live analysis, failed alarms, revised calibrations, or submitted-but-unaccepted claims without pretending that the final interpretation followed immediately from a single reading. The important discipline is that each stage states which part of the inference record has changed and which residuals still block promotion.
@@ -390,7 +390,7 @@ R_{\mathrm{fail}}
 \frac{\left|R_i(D,A_{\mathrm{inst}},K_{\mathrm{cal}},M_{\mathrm{eff}},O_{\mathrm{ont}};\theta)\right|}
 {\epsilon_i}
 >1
-\right],
+\right]
 $$
 
 where $\Delta C$ denotes a declared change to the corresponding coordinate of the inference record.
@@ -398,7 +398,7 @@ where $\Delta C$ denotes a declared change to the corresponding coordinate of th
 Large heterogeneous correlation systems sharpen this rule rather than replacing it. A predictor may map the preserved data, apparatus assumptions, and calibration record to a useful forecast,
 
 $$
-P:\left(D,A_{\mathrm{inst}},K_{\mathrm{cal}}\right)\mapsto \widehat{D},
+P:\left(D,A_{\mathrm{inst}},K_{\mathrm{cal}}\right)\mapsto \widehat{D}
 $$
 
 while still failing to state why the forecast works. Under crisis governance, such a system remains an effective predictor until it supplies both a mechanism-facing interpretation map
@@ -416,7 +416,7 @@ $$
 =
 \max_i
 \frac{|D_i-\widehat D_{\theta,i}|}{\epsilon_i}
-\le 1.
+\le 1
 $$
 
 For any ontological component $o\in O_{\mathrm{ont}}$ promoted by $\theta$, fit alone is not enough. The promoted component must have observable leverage or derivational necessity under the same apparatus and calibration record:
@@ -430,7 +430,7 @@ $$
 \ \lor\
 \left[
 o\ \text{is required to derive the retained } M_{\mathrm{eff}}
-\right].
+\right]
 $$
 
 If neither condition holds, the component may remain a comparison device, coordinate choice, or calculational convenience, but it has not earned ontology. This rule preserves the empirical-adequacy warning without adopting blanket anti-realism: hidden structure can be promoted, but only when it changes the recoverable record or is indispensable to deriving the effective machinery being retained.
@@ -564,13 +564,13 @@ Emergence, on this view, is lawful novelty in organized systems, not metaphysica
 The same point can be stated mathematically. A higher-level context is not a second causal substance layered on top of the lower-level system. It is a constraint or boundary condition on the admissible lower-level histories. Let $\mathcal{S}_L$ be the lower-level state space, including the path-history data required by delayed causal dynamics. For a lower-level state $X(t)\in\mathcal{S}_L$, a projection $\Pi_L X$ of the lower-level variables, and a surrounding context $c$, define
 
 $$
-K_c=\{\,X\in\mathcal{S}_L\mid G_\alpha(\Pi_L X,c)=0\ \text{for all}\ \alpha\,\}.
+K_c=\{\,X\in\mathcal{S}_L\mid G_\alpha(\Pi_L X,c)=0\ \text{for all}\ \alpha\,\}
 $$
 
 The reduced flow then remains a lower-level flow constrained to $K_c$:
 
 $$
-\frac{dX}{dt}=F_L(X_t),\qquad X(t)\in K_c.
+\frac{dX}{dt}=F_L(X_t),\qquad X(t)\in K_c
 $$
 
 Here $F_L$ represents the lower-level causal-wake dynamics, and $X_t$ denotes the path-history segment needed by the delayed equation. The context $c$ changes the admissible region of state space, not the ontological inventory.

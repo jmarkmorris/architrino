@@ -7,7 +7,7 @@ The packet depends on the clock/rate convention in [Proper Time and Time Dilatio
 $$
 C_{N,\mathrm H}^{(\ell)}
 =
-\left(\Gamma_{N,\mathrm H}^{(\ell)}\right)^{-1}.
+\left(\Gamma_{N,\mathrm H}^{(\ell)}\right)^{-1}
 $$
 
 ## Runtime Artifact
@@ -37,7 +37,7 @@ $$
 =
 \frac{1}{n_b^2}
 -
-\frac{1}{n_a^2},
+\frac{1}{n_a^2}
 $$
 
 The record-level `frequency_scale` represents the normalized $R_{\mathrm H}c_{\gamma,0}$ comparison scale. In the first scaffold it is set to one, so the executable derives
@@ -45,7 +45,7 @@ The record-level `frequency_scale` represents the normalized $R_{\mathrm H}c_{\g
 $$
 \nu_{a\to b}^{\mathrm{obs},(\ell)}
 =
-\Lambda_{ab}.
+\Lambda_{ab}
 $$
 
 The record-level `line_inferred_ln_Gamma_N` then supplies the line-inferred cadence stretch used to derive the replay envelope gap:
@@ -57,7 +57,7 @@ E_{\text{env}}^{(\ell)}(a)-E_{\text{env}}^{(\ell)}(b)
 h
 }
 =
-e^{0.001}\Lambda_{ab},
+e^{0.001}\Lambda_{ab}
 $$
 
 so every selected line infers
@@ -65,7 +65,7 @@ so every selected line infers
 $$
 \ln\widehat\Gamma_{N,\mathrm H}^{(\ell)}(a,b)
 =
-0.001.
+0.001
 $$
 
 The accepted scaffold row is the density/scale-compensated static-response row
@@ -79,7 +79,7 @@ $$
 -0.5,\,
 1,\,
 1
-\right),
+\right)
 $$
 
 with static response vector
@@ -97,13 +97,13 @@ a_R
 2,\,
 -0.1,\,
 0.05
-\right).
+\right)
 $$
 
 It satisfies the endpoint constraint because
 
 $$
-0.4(0.25)+0.4(2)+(-0.5)(-0.1)+1(0.05)=1.
+0.4(0.25)+0.4(2)+(-0.5)(-0.1)+1(0.05)=1
 $$
 
 The two admissible spectral records keep different component splits while preserving the same row prediction:
@@ -127,7 +127,7 @@ $$
 0.0001,\,
 0,\,
 0.00005
-\right)^T,
+\right)^T
 $$
 
 and
@@ -137,7 +137,7 @@ $$
 =
 \mathbf{b}_{N}^{\mathrm{spec}}\cdot\mathbf{g}_{N,\mathrm H}^{(B)}
 =
-0.001.
+0.001
 $$
 
 This makes the packet stronger than a free mock arithmetic witness, but still below a constitutive hydrogen derivation. It checks that a declared row inherited from the static response packet can control several hydrogen line labels across two admissible records without collapsing $n$ and $\chi_{\text{sea}}$ or fitting a separate coefficient row to each transition.
@@ -170,7 +170,7 @@ $$
 +
 \Delta E_{\mathrm{nuc}}(a,b)
 +
-\Delta E_{\mathrm{rem}}(a,b).
+\Delta E_{\mathrm{rem}}(a,b)
 $$
 The current toy scaffold sets the correction terms to zero by declaration and therefore tests only the shared-row handling of the leading Rydberg factor. A non-toy packet must report a residual-separation check
 $$
@@ -187,7 +187,7 @@ $$
 }{
 \varepsilon_{\mathrm{rem}}(a,b)
 }
-\le 1.
+\le 1
 $$
 This prevents the coefficient scan from passing by absorbing known spectral physics into the cadence-stretch row. It also fixes the degeneracy burden: the leading Coulomb target must recover the $n^2$ orbital degeneracy before correction channels split it, while the fine-structure channel may depend on $j$ and the hyperfine channel may depend on nuclear-spin records.
 
@@ -204,7 +204,7 @@ $$
 -0.5,\,
 1,\,
 1
-\right),
+\right)
 $$
 
 with
@@ -228,7 +228,7 @@ $$
 0.0001,\,
 0,\,
 0.00005
-\right)^T.
+\right)^T
 $$
 
 The refinement difference satisfies
@@ -240,7 +240,7 @@ $$
 -
 \mathbf{g}_{N,\mathrm H}^{(A)}
 \right)
-=0,
+=0
 $$
 
 so both records give the same $\ln\Gamma_{N,\mathrm H}=0.001$ while preserving separate $n$, $\chi_{\text{sea}}$, $\lambda$, and $R_{\text{core}}$ entries. By contrast, the shared-delay-only control row
@@ -283,7 +283,7 @@ $$
 \ln\lambda_{\mathrm H}^{(\ell)},\,
 -\ln\xi_{\mathrm H}^{(\ell)},\,
 \ln\frac{R_{\text{core},\mathrm H}^{(\ell)}}{R_{\text{core},0}}
-\right)^T.
+\right)^T
 $$
 
 For each line, the packet also forms the line-inferred cadence stretch
@@ -297,7 +297,7 @@ E_{\text{env}}^{(\ell)}(a)
 E_{\text{env}}^{(\ell)}(b)
 }{
 h\nu_{a\to b}^{\mathrm{obs},(\ell)}
-}.
+}
 $$
 
 This inferred value is a diagnostic readout. It is not a permission to fit a separate $\Gamma_N$ or coefficient row to the transition.
@@ -315,7 +315,7 @@ b_\chi^{\mathrm{spec}},\,
 b_\lambda^{\mathrm{spec}},\,
 1,\,
 b_R^{\mathrm{spec}}
-\right).
+\right)
 $$
 
 The fixed fourth entry is the inherited Lorentz-branch constraint $b_\xi=1$. The remaining entries must satisfy the static weak-field endpoint constraint when evaluated on the same static response vector used by the clock row:
@@ -342,7 +342,7 @@ for $i\in\{n,\chi,\lambda,R\}$. A branch may additionally impose shared clock/si
 $$
 a_\chi
 =
-1+\gamma_{\text{eff}}.
+1+\gamma_{\text{eff}}
 $$
 
 The spectral coefficient row is therefore a constrained row inherited from clock closure. It is not a spectral nuisance parameter and not a per-line normalization constant.
@@ -362,7 +362,7 @@ The minimal scan is a finite grid over the four free entries $(b_n^{\mathrm{spec
    -1
    \right|
    >
-   \Delta_{\mathrm{row}}^{\mathrm{tol}}.
+   \Delta_{\mathrm{row}}^{\mathrm{tol}}
    $$
 
 2. For each remaining row and resolution record, compute
@@ -371,7 +371,7 @@ The minimal scan is a finite grid over the four free entries $(b_n^{\mathrm{spec
    \ln\Gamma_{N,\mathrm H}^{\mathrm{row},(\ell)}
    =
    \mathbf{b}_{N}^{\mathrm{spec}}\cdot
-   \mathbf{g}_{N,\mathrm H}^{(\ell)}.
+   \mathbf{g}_{N,\mathrm H}^{(\ell)}
    $$
 
 3. Compare the row prediction to every line-inferred cadence stretch:
@@ -381,7 +381,7 @@ The minimal scan is a finite grid over the four free entries $(b_n^{\mathrm{spec
    =
    \ln\widehat\Gamma_{N,\mathrm H}^{(\ell)}(a,b)
    -
-   \ln\Gamma_{N,\mathrm H}^{\mathrm{row},(\ell)}.
+   \ln\Gamma_{N,\mathrm H}^{\mathrm{row},(\ell)}
    $$
 
 4. Across refinement records, require the accepted row to keep the same predicted clock-rate conversion after the envelope-gap convergence budget is removed:
@@ -391,7 +391,7 @@ The minimal scan is a finite grid over the four free entries $(b_n^{\mathrm{spec
    =
    \ln\Gamma_{N,\mathrm H}^{\mathrm{row},(\ell)}
    -
-   \ln\Gamma_{N,\mathrm H}^{\mathrm{row},(\ell')}.
+   \ln\Gamma_{N,\mathrm H}^{\mathrm{row},(\ell')}
    $$
 
 The scan output is the accepted coefficient row set
@@ -403,7 +403,7 @@ $$
 \mathbf{b}_{N}^{\mathrm{spec}}
 \;\middle|\;
 \text{endpoint, line-set, and refinement residuals pass}
-\right\}.
+\right\}
 $$
 
 This set may be a point, a bounded interval family, or empty. A bounded family is still useful because it constrains the coefficient row without assigning a separate row to each spectral line.
@@ -426,7 +426,7 @@ $$
 \varepsilon_{\Gamma}
 }
 \le
-\Delta_{\Gamma}^{\mathrm{tol}},
+\Delta_{\Gamma}^{\mathrm{tol}}
 $$
 
 with the refinement check
@@ -445,7 +445,7 @@ $$
 \varepsilon_{\mathrm{row}}
 }
 \le
-\Delta_{\mathrm{row}}^{\mathrm{tol}}.
+\Delta_{\mathrm{row}}^{\mathrm{tol}}
 $$
 
 The stronger extraction claim requires the diameter of $\mathcal B_{\mathrm H}^{\mathrm{spec}}$ to shrink under additional independent hydrogen records or under a constitutive response calculation for $(a_n,a_\chi,a_\lambda,a_R)$. The first packet does not require that stronger claim; it only requires that a shared constrained row survive the line set.
@@ -467,7 +467,7 @@ $$
 \mathbf a^{G},
 \mathbf b_{N}^{\mathrm{spec}},
 \boldsymbol{\tau}
-\right),
+\right)
 $$
 where $\mathbf a^{G}=(a_n,a_\chi,a_\lambda,a_R)$ is the static Noether sea response row for the same cell and $\boldsymbol{\tau}$ collects the declared tolerances.
 
@@ -481,7 +481,7 @@ b_\xi^{\mathrm{spec}}-1,\,
 \mathcal R_{\mathrm{line}},\,
 \mathcal R_{\mathrm{ref}},\,
 \mathcal R_{\mathrm{H,res}}
-\right),
+\right)
 $$
 with
 $$
@@ -496,7 +496,7 @@ $$
 \right|
 }{
 \left|\ln\widehat\Gamma_{N,\mathrm H}^{(\ell)}(a,b)\right|+\varepsilon_\Gamma
-},
+}
 $$
 and
 $$
@@ -514,7 +514,7 @@ $$
 \right|
 }{
 \left|\mathbf b_{N}^{\mathrm{spec}}\cdot\mathbf g_{N,\mathrm H}^{(\ell)}\right|+\varepsilon_{\mathrm{row}}
-}.
+}
 $$
 Here $\mathbf b_{N,\mathrm{stat}}^{\mathrm{spec}}=(b_n^{\mathrm{spec}},b_\chi^{\mathrm{spec}},b_\lambda^{\mathrm{spec}},b_R^{\mathrm{spec}})$ is the four-entry static endpoint subrow. The packet passes only if every component of $\mathcal R_{\mathrm H}^{\Gamma}$ is within its declared tolerance and all packet inputs share the same provenance ledger $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$ and the same static Noether sea cell. Otherwise it fails with the first violated row: provenance, $b_\xi$, endpoint, line-set, refinement, or residual separation.
 

@@ -32,7 +32,7 @@ An effective Hubble-like parameter $H(t)$ is defined operationally through the r
 Let $\delta(\mathbf{x}, t) = (\rho_m(\mathbf{x}, t) - \bar{\rho}_m(t))/\bar{\rho}_m(t)$ be the matter density contrast. In the linear regime ($|\delta| \ll 1$), perturbations in the matter field obey an effective second-order equation that can be written in the familiar comparison form:
 
 $$
-\ddot{\delta} + 2H(t)\,\dot{\delta} - 4\pi G_{\text{eff}}(t, k)\,\bar{\rho}_m(t)\,\delta = 0.
+\ddot{\delta} + 2H(t)\,\dot{\delta} - 4\pi G_{\text{eff}}(t, k)\,\bar{\rho}_m(t)\,\delta = 0
 $$
 
 Each symbol carries a specific medium-level meaning:
@@ -62,7 +62,7 @@ Each symbol carries a specific medium-level meaning:
 Define the linear growth factor $D(t)$ as the growing-mode solution of the perturbation equation, normalized so that $\delta(\mathbf{x}, t) = D(t)\,\delta_0(\mathbf{x})$ in the linear regime. In standard cosmology:
 
 $$
-D(a) \propto H(a) \int_0^a \frac{da'}{[a' H(a')]^3}.
+D(a) \propto H(a) \int_0^a \frac{da'}{[a' H(a')]^3}
 $$
 
 Within $\mathbb{A}\mathbb{A}\mathbb{A}$ the same integral structure holds, with $H(a)$ and $G_{\text{eff}}$ determined by the Noether sea equation of state. The growth rate $f(a) = d\ln D / d\ln a$ is a direct observable (via redshift-space distortions) and provides a clean test:
@@ -78,7 +78,7 @@ P_{\mathrm{seed}}(k)\,T^2(k)\,D^2(z),
 \qquad
 T(k)\sim1\ \text{for }k\ll k_{\mathrm{eq}},
 \qquad
-T(k)\sim k^{-2}\ \text{for }k\gg k_{\mathrm{eq}},
+T(k)\sim k^{-2}\ \text{for }k\gg k_{\mathrm{eq}}
 $$
 up to the declared baryon acoustic, neutrino/free-streaming, and nonlinear corrections. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not an import of metric expansion ontology. It is the observer-level shape test that the same Noether sea state history must pass while computing $G_{\text{eff}}(a,k)$, CMB lensing, $f\sigma_8$, and high-redshift halo statistics.
 
@@ -93,7 +93,7 @@ $$
 \theta_x^\theta,\,
 \sigma_x^\theta,\,
 \delta p_x^\theta
-\right),
+\right)
 $$
 where $\delta_x$ is the density contrast, $\theta_x$ is the velocity-divergence variable, $\sigma_x$ is the anisotropic-stress variable, and $\delta p_x$ is the pressure perturbation. A transfer-function branch is then a map
 $$
@@ -104,7 +104,7 @@ $$
 \qquad
 P_{xy}^\theta(k,z)
 =
-T_x^\theta(k,z)T_y^\theta(k,z)P_{\mathrm{seed}}^\theta(k),
+T_x^\theta(k,z)T_y^\theta(k,z)P_{\mathrm{seed}}^\theta(k)
 $$
 with the same $\theta_{\mathrm{sea}}$ used for CMB lensing, BAO, BBN, and low-redshift growth. In an adiabatic comparison packet the initial component contrasts must satisfy
 $$
@@ -120,7 +120,7 @@ $$
 =
 \frac{3}{4}\delta_\nu^\theta
 =
-\frac{3}{4}\delta_\gamma^\theta,
+\frac{3}{4}\delta_\gamma^\theta
 $$
 unless the branch explicitly declares an isocurvature source and carries it through the CMB, BBN, and matter-power residuals.
 
@@ -146,7 +146,7 @@ $$
 \approx
 1.2\,\mathrm{Mpc}
 \left(\frac{1\,\mathrm{keV}}{m_s^\theta}\right)
-\left(\frac{\langle p/T\rangle_\theta}{3.15}\right).
+\left(\frac{\langle p/T\rangle_\theta}{3.15}\right)
 $$
 The key variable is not mass alone but the momentum distribution inherited from the production channel. A branch that changes $\langle p/T\rangle_\theta$, $f_\nu^\theta$, or $\lambda_{\mathrm{FS}}^\theta$ independently of its BBN and CMB records has split the shared cosmology state.
 
@@ -157,7 +157,7 @@ Hybrid dark-sector comparisons make one useful mathematical demand explicit: the
 $$
 |w_{\mathrm{lin}}|\ll1,
 \qquad
-c_{s,\mathrm{lin}}^2\ll1.
+c_{s,\mathrm{lin}}^2\ll1
 $$
 
 That success does not by itself solve the nonlinear missing-mass problem in galaxies or clusters. Conversely, a MOND-like or medium-compliance law can fit low-acceleration rotation curves without automatically recovering the CMB peak structure or the linear transfer function. The $\mathbb{A}\mathbb{A}\mathbb{A}$ closure requirement is therefore a shared-record split:
@@ -168,7 +168,7 @@ $$
 \left(
 \Pi_{\mathrm{lin}}\theta_{\mathrm{sea}},
 \Pi_{\mathrm{nl}}\theta_{\mathrm{sea}}
-\right),
+\right)
 $$
 
 where $\Pi_{\mathrm{lin}}\theta_{\mathrm{sea}}$ supplies $P(k,z)$, $D(z,k)$, $C_L^{\phi\phi}$, and $f\sigma_8$, while $\Pi_{\mathrm{nl}}\theta_{\mathrm{sea}}$ supplies the radial-acceleration relation, cluster hydrostatic profiles, and rotation-curve residuals. A compact split residual is
@@ -184,7 +184,7 @@ $$
 d_{\mathrm{shared}}\!\left(
 \Pi_{\mathrm{lin}}\theta_{\mathrm{sea}},
 \Pi_{\mathrm{nl}}\theta_{\mathrm{sea}}
-\right).
+\right)
 $$
 
 The last term is the important one. It prevents the model from behaving like CDM in the linear packet and like a separate modified-gravity theory in the nonlinear packet unless both projections come from the same Noether sea state and neutral-assembly state. This also protects the $S_8$ discussion: late-time growth suppression may be allowed, but it must not erase the linear-regime matter loading that fixes the CMB and equality-scale transfer function.
@@ -254,7 +254,7 @@ g_\theta(r)\big|_{W_{\mathrm{kSZ}}}
 \propto
 r^{-n_\theta},
 \qquad
-W_{\mathrm{kSZ}}=[30,230]\,\mathrm{Mpc}.
+W_{\mathrm{kSZ}}=[30,230]\,\mathrm{Mpc}
 $$
 The structure-formation residual is then
 $$
@@ -268,7 +268,7 @@ $$
 d_{\mathrm{shared}}\!\left(
 \Pi_{\mathrm{kSZ}}\theta_{\mathrm{sea}},
 \Pi_{\mathrm{WL/RSD}}\theta_{\mathrm{sea}}
-\right).
+\right)
 $$
 This residual protects the level distinction. A Noether sea response may still modify galaxy-scale low-acceleration behavior, but it cannot become a free large-scale modified-gravity law. On the ACT/SDSS halo-pair window the same $\theta_{\mathrm{sea}}$ must recover an approximately inverse-square effective pull while preserving CMB lensing, weak lensing, redshift-space distortions, and the matter power spectrum.
 
@@ -278,7 +278,7 @@ $$
 =
 P(k,z\mid \theta_{\mathrm{sea}},\theta_X)
 -
-P(k,z\mid \theta_{\mathrm{sea}}).
+P(k,z\mid \theta_{\mathrm{sea}})
 $$
 This quantity must be evaluated with the same $\theta_{\mathrm{sea}}$ used for BBN, CMB, cluster offsets, weak lensing, and redshift-space distortions. If a weakly coupled component is invisible to light elements only by acquiring a free-streaming length, abundance, or interaction history that later changes independently in $P(k,z)$, $C_L^{\phi\phi}$, or halo statistics, the comparison branch fails the shared-record gate.
 
@@ -323,7 +323,7 @@ The effective gravitational coupling is set by how efficiently a local overdensi
 For phenomenological work, write:
 
 $$
-G_{\text{eff}}(a, k) = G_N \bigl[1 + \mu(a, k)\bigr],
+G_{\text{eff}}(a, k) = G_N \bigl[1 + \mu(a, k)\bigr]
 $$
 
 where $\mu(a, k)$ is a dimensionless modification function.
@@ -332,7 +332,7 @@ where $\mu(a, k)$ is a dimensionless modification function.
 
 To make the map explicit, linearize the Noether sea response around a homogeneous background with displacement field $\mathbf{u}$ and scalar compression mode
 $$
-\theta \equiv \nabla\cdot\mathbf{u}.
+\theta \equiv \nabla\cdot\mathbf{u}
 $$
 
 Use isotropic linear constitutive response (elastic + Kelvin-Voigt damping):
@@ -342,7 +342,7 @@ $$
 K(a)\,\delta_{ij}\,\theta
 +2S(a)\!\left(u_{ij}-\frac{1}{3}\delta_{ij}\theta\right)
 +\zeta_{\text{bulk}}(a)\,\delta_{ij}\,\dot{\theta}
-+2\eta(a)\!\left(\dot{u}_{ij}-\frac{1}{3}\delta_{ij}\dot{\theta}\right),
++2\eta(a)\!\left(\dot{u}_{ij}-\frac{1}{3}\delta_{ij}\dot{\theta}\right)
 $$
 with bulk modulus $K$, shear modulus $S$, and viscosities $(\zeta_{\text{bulk}},\eta)$. The subscript prevents confusion with the shielding factor $\zeta(A)$ used in assembly-mass closure.
 
@@ -350,13 +350,13 @@ For scalar/longitudinal modes in Fourier space, the linear response equation is
 $$
 \left[M_L(a)k^2 + m_L^2(a) - i\omega\,\Gamma_L(a)\,k^2\right]\theta(a,k,\omega)
 =
-g_m(a)\,\delta\rho_m(a,k,\omega),
+g_m(a)\,\delta\rho_m(a,k,\omega)
 $$
 where
 $$
 M_L(a)\equiv K(a)+\frac{4}{3}S(a),
 \qquad
-\Gamma_L(a)\equiv \zeta_{\text{bulk}}(a)+\frac{4}{3}\eta(a),
+\Gamma_L(a)\equiv \zeta_{\text{bulk}}(a)+\frac{4}{3}\eta(a)
 $$
 and $m_L(a)$ is the finite-range restoring scale (equivalently $k_\ast(a)^2=m_L^2/M_L$).
 
@@ -366,27 +366,27 @@ $$
 =
 -\bar{u}_{\text{sea}}(a)\,\theta(a,k,\omega)
 =
-\mu_{\text{sea}}(a,k,\omega)\,\delta\rho_m(a,k,\omega),
+\mu_{\text{sea}}(a,k,\omega)\,\delta\rho_m(a,k,\omega)
 $$
 with susceptibility
 $$
 \mu_{\text{sea}}(a,k,\omega)
 =
 -\frac{\bar{u}_{\text{sea}}(a)\,g_m(a)}
-{M_L(a)k^2+m_L^2(a)-i\omega\,\Gamma_L(a)k^2}.
+{M_L(a)k^2+m_L^2(a)-i\omega\,\Gamma_L(a)k^2}
 $$
 
 Insert this into the linear Poisson source:
 $$
 -k^2\Phi(a,k)=4\pi G_N a^2\bigl[\delta\rho_m+\delta u_{\text{sea}}\bigr]
 =
-4\pi G_N a^2\bigl[1+\mu_{\text{sea}}(a,k,\omega)\bigr]\delta\rho_m.
+4\pi G_N a^2\bigl[1+\mu_{\text{sea}}(a,k,\omega)\bigr]\delta\rho_m
 $$
 Therefore
 $$
 G_{\text{eff}}(a,k,\omega)=G_N\bigl[1+\mu_{\text{sea}}(a,k,\omega)\bigr],
 \qquad
-\mu(a,k,\omega)=\mu_{\text{sea}}(a,k,\omega).
+\mu(a,k,\omega)=\mu_{\text{sea}}(a,k,\omega)
 $$
 
 For growth calculations use the quasi-static branch $\omega\simeq H(a)f(a)$ and the real part:
@@ -394,7 +394,7 @@ $$
 \mu(a,k)
 =
 -\frac{\bar{\rho}_{\text{sea}}(a)\,g_m(a)\,\bigl[M_L(a)k^2+m_L^2(a)\bigr]}
-{\bigl[M_L(a)k^2+m_L^2(a)\bigr]^2+\bigl[H(a)f(a)\Gamma_L(a)k^2\bigr]^2}.
+{\bigl[M_L(a)k^2+m_L^2(a)\bigr]^2+\bigl[H(a)f(a)\Gamma_L(a)k^2\bigr]^2}
 $$
 
 In the strictly quasi-static limit ($Hf\,\Gamma_Lk^2\ll M_Lk^2+m_L^2$), this reduces to the closed Yukawa-like form
@@ -404,12 +404,12 @@ $$
 -\frac{\bar{\rho}_{\text{sea}}(a)\,g_m(a)}
 {m_L^2(a)+M_L(a)k^2}
 =
-\frac{\mu_0(a)}{1+\bigl(k/k_\ast(a)\bigr)^2},
+\frac{\mu_0(a)}{1+\bigl(k/k_\ast(a)\bigr)^2}
 $$
 $$
 \mu_0(a)\equiv-\frac{\bar{\rho}_{\text{sea}}(a)\,g_m(a)}{m_L^2(a)},
 \qquad
-k_\ast(a)^2\equiv\frac{m_L^2(a)}{M_L(a)}.
+k_\ast(a)^2\equiv\frac{m_L^2(a)}{M_L(a)}
 $$
 
 Setting $g_m=0$ (or equivalently $\mu=0$) recovers standard GR growth. Current data constrain $|\mu| \lesssim 0.1$ on the scales probed by galaxy surveys and CMB lensing.
@@ -420,11 +420,11 @@ G_{\text{eff}}(a,k,\mathcal{I}_{\mathrm{loc}})
 =
 G_N\left[1+\mu(a,k)S_{\mathrm{loc}}(\mathcal{I}_{\mathrm{loc}})\right],
 \qquad
-0\leq S_{\mathrm{loc}}\leq 1.
+0\leq S_{\mathrm{loc}}\leq 1
 $$
 For every validated solar-system, binary-pulsar, lensing, and gravitational-wave record $r$, the recovery requirement is
 $$
-\left|\mu(a_r,k_r)S_{\mathrm{loc}}(\mathcal{I}_r)\right|<\epsilon_r.
+\left|\mu(a_r,k_r)S_{\mathrm{loc}}(\mathcal{I}_r)\right|<\epsilon_r
 $$
 Cosmological deviations are viable only when the same coefficient record also fits BAO, CMB lensing, supernova distances, and $f\sigma_8$ growth without retuning $S_{\mathrm{loc}}$ by observational channel.
 

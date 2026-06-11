@@ -58,7 +58,7 @@ $$
 and the convention
 
 $$
-S=E(A_0,B_0)-E(A_0,B_1)+E(A_1,B_0)+E(A_1,B_1).
+S=E(A_0,B_0)-E(A_0,B_1)+E(A_1,B_0)+E(A_1,B_1)
 $$
 
 The gate reports both the local-bound excess
@@ -74,7 +74,7 @@ and the Tsirelson excess
 $$
 \Delta_{\mathrm{Ts}}
 =
-\left[|S|-2\sqrt{2}\right]_+.
+\left[|S|-2\sqrt{2}\right]_+
 $$
 
 For GHZ, the script uses the context signs in [Bell's Theorem](../../philosophy-history/theory-bridges/bell-theorem.md#bell-family-strengthenings-ghz-and-hardy):
@@ -82,7 +82,7 @@ For GHZ, the script uses the context signs in [Bell's Theorem](../../philosophy-
 $$
 \mathcal{C}_{\mathrm{GHZ}}=\{XXX,XYY,YXY,YYX\},
 \qquad
-\prod_{C\in\mathcal{C}_{\mathrm{GHZ}}}\chi_C=-1,
+\prod_{C\in\mathcal{C}_{\mathrm{GHZ}}}\chi_C=-1
 $$
 
 and computes
@@ -93,7 +93,7 @@ $$
 \max_{C\in\mathcal{C}_{\mathrm{GHZ}}}
 \left[
 1-\chi_C E(C)
-\right]_+.
+\right]_+
 $$
 
 For Hardy, it computes the positive margin
@@ -109,7 +109,7 @@ P(U_1=1,U_2=1)
 P(D_1=1,U_2=0)
 -
 P(U_1=0,D_2=1)
-\right]_+.
+\right]_+
 $$
 
 No-signaling is evaluated as the maximum one-party marginal drift between contexts that keep that party's setting fixed:
@@ -123,7 +123,7 @@ $$
 P(r_i|s_i,\mathbf{s}_{-i})
 -
 P(r_i|s_i,\mathbf{s}'_{-i})
-\right|.
+\right|
 $$
 
 Measurement-independence leakage is represented by a declared provenance label distribution in each context:
@@ -135,7 +135,7 @@ $$
 D_{\mathrm{TV}}\!\left(
 \rho_{\mathrm{prov}}(\Pi|\mathbf{s}),
 \rho_{\mathrm{prov}}(\Pi|\mathbf{s}_0)
-\right),
+\right)
 $$
 
 where $\mathbf{s}_0$ is the packet baseline. A real closure packet should replace this toy provenance distribution with the pair-provenance ledger described below.
@@ -152,7 +152,7 @@ P_\theta(\mathbf{r}|\mathbf{s}),
 \prod_i
 K_i(r_i|s_i,\Pi)\,
 d\rho_{\mathrm{prov}}(\Pi)
-\right).
+\right)
 $$
 
 Here $\Delta_{\mathrm{screen}}=0$ is not a success for Bell closure. It means the proposed table has collapsed back into the screened common-cause model excluded by the Bell-family gate. A closure candidate must avoid that collapse while still keeping $\Delta_{\mathrm{MI}}$ and $\Delta_{\mathrm{NS}}$ within tolerance.
@@ -168,7 +168,7 @@ $$
 (\phi_k,\phi_k+\pi,w_k)
 \right\}_{k=1}^{N},
 \qquad
-w_k=\frac{1}{N},
+w_k=\frac{1}{N}
 $$
 
 and two local deterministic apparatus kernels:
@@ -178,7 +178,7 @@ K_A(a|A_i,\Pi_k)
 =
 \mathbf{1}\!\left[
 a=\operatorname{sgn}\cos(A_i-\phi_k)
-\right],
+\right]
 $$
 
 $$
@@ -186,7 +186,7 @@ K_B(b|B_j,\Pi_k)
 =
 \mathbf{1}\!\left[
 b=\operatorname{sgn}\cos(B_j-\phi_k-\pi)
-\right].
+\right]
 $$
 
 The generated table is then
@@ -197,7 +197,7 @@ P_{\mathrm{gen}}(a,b|A_i,B_j)
 \sum_k
 w_k
 K_A(a|A_i,\Pi_k)
-K_B(b|B_j,\Pi_k).
+K_B(b|B_j,\Pi_k)
 $$
 
 This is a useful negative control because it has explicit pair provenance, explicit local kernels, clean no-signaling, and clean measurement independence, but it still reaches only the classical-axis correlation. The product-screening residual is zero by construction, so the `product_screening_escape` gate must fail with `bell.product_screening_collapse`.
@@ -242,7 +242,7 @@ P_\theta(\mathbf{r}|\mathbf{s})
 \mu_{*,T}^{(n)}
 \left(
 B_{\mathbf{r}}^{\mathbf{s}}
-\right),
+\right)
 $$
 
 where $B_{\mathbf{r}}^{\mathbf{s}}$ is the record-basin subset for the declared preparation, pair or multiplet provenance, local apparatus kernels, coarse-graining, and record window. This is the same measurement discipline used in [Measurement Ontology](../../quantum/measurement-ontology.md#born-rule-interface), but lifted from single-assembly basin weights to a Bell-family joint record measure.

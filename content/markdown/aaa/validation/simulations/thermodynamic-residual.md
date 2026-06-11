@@ -28,7 +28,7 @@ b:
 b\ \text{is a retained boundary-wake label crossing}\ \partial\Omega
 \ \text{during}\ W
 \ \text{and readable by}\ O
-\right\}.
+\right\}
 $$
 
 The first entropy estimator is the microcanonical count
@@ -42,7 +42,7 @@ k_B\log
 \qquad
 \left|
 \mathcal{B}_{\partial\Omega}^{(O)}(\theta;W)
-\right|>0.
+\right|>0
 $$
 
 This finite count is a packet estimator, not the final horizon-interface coefficient. For coefficient recovery, a row should be interpreted as a finite-block sample of the block-density target
@@ -53,7 +53,7 @@ $$
 \log
 \left|
 \mathcal{B}_{U}^{(O)}(\theta;W)
-\right|,
+\right|
 $$
 where $U$ is the declared connected patch block and $\mathcal{B}_{U}^{(O)}$ retains only labels accessible to the same observer record. The large-block target is $\widehat{s}_{U}^{(O)}\to1/4$ after boundary corrections, not a literal one-patch cardinality.
 
@@ -70,7 +70,7 @@ $$
 }{
 \dfrac{k_B}{4A_{\text{align}}}
 +\varepsilon
-}.
+}
 $$
 
 Passing this subgate means the retained logarithmic label count has the target area slope in the relevant equilibrium regime. It does not yet prove Page-curve recovery or black-hole endpoint closure.
@@ -85,7 +85,7 @@ $$
 \qquad
 a_O^2
 =
-\gamma_{ij}a_O^i a_O^j.
+\gamma_{ij}a_O^i a_O^j
 $$
 
 The continuum flux estimator is
@@ -93,7 +93,7 @@ $$
 \widehat{dQ}_{\partial\Omega}^{(O)}(\theta;W)
 =
 \int_W\int_{\partial\Omega}
-T_{\mu\nu}^{\mathrm{eff}}(\theta)\xi^\mu d\Sigma^\nu.
+T_{\mu\nu}^{\mathrm{eff}}(\theta)\xi^\mu d\Sigma^\nu
 $$
 
 When the run has not constructed a continuum $T_{\mu\nu}^{\mathrm{eff}}$, the packet may use a discrete estimator, but only if every term comes from the same boundary-wake and observer record:
@@ -101,7 +101,7 @@ $$
 \widehat{dQ}_{\partial\Omega,\mathrm{disc}}^{(O)}(\theta;W)
 =
 \sum_{b\in\mathcal{B}_{\partial\Omega}^{(O)}(\theta;W)}
-\sigma_b E_b^{(O)}\omega_b^{(O)}.
+\sigma_b E_b^{(O)}\omega_b^{(O)}
 $$
 Here $\sigma_b$ is the signed crossing convention, $E_b^{(O)}$ is the observer-level energy assigned by the same channel that builds $T_{\mu\nu}^{\mathrm{eff}}$, and $\omega_b^{(O)}$ is the declared quadrature or coarse-graining weight.
 
@@ -123,7 +123,7 @@ d\widehat{S}_{\partial\Omega}^{(O)}
 \left|d\widehat{S}_{\partial\Omega}^{(O)}\right|
 +
 \varepsilon
-}.
+}
 $$
 
 ## Conservation and Same-Record Gate
@@ -144,7 +144,7 @@ $$
 \left|\widehat{dQ}_{\partial\Omega}^{(O)}(\theta;W)\right|
 +
 \varepsilon
-}.
+}
 $$
 
 A local-horizon packet passes only when
@@ -159,7 +159,7 @@ $$
 \qquad
 \mathcal{R}_{E,\partial\Omega}^{(O)}
 \le
-\epsilon_E,
+\epsilon_E
 $$
 and the same $\theta$ also satisfies the weak-field metric gates relevant to the run. A packet that fits $\widehat{S}$, $\widehat{T}_U$, and $\widehat{dQ}$ with independent records fails even if each scalar looks plausible by itself.
 
@@ -171,7 +171,7 @@ $$
 =
 \widehat E_z
 -
-\widehat T_z\widehat S_z.
+\widehat T_z\widehat S_z
 $$
 On a relaxation window with no declared external work, the free-energy residual is
 $$
@@ -187,7 +187,7 @@ W_{\mathrm{ext},z}^{(O)}
 |\Delta_W\widehat F_z|
 +|W_{\mathrm{ext},z}^{(O)}|
 +\varepsilon
-}.
+}
 $$
 The gate is optional unless the packet uses free-energy minimization, order-parameter relaxation, or Landau-Ginzburg language. If invoked, it must pass with the same $\theta$ that supplies $\widehat{\mathcal{R}}_{\mathrm{thermo}}^{(O)}$.
 
@@ -214,7 +214,7 @@ S_{AB}^{(O)}(\omega)
 \right)
 \right\|_{\omega}
 +\varepsilon
-}.
+}
 $$
 Here $\mathcal F_{\widehat T_z}$ is the packet's declared classical or quantum fluctuation-dissipation map. This check is a same-record discipline for equilibrium response. It does not assert that Noether sea dynamics is fundamentally stochastic.
 

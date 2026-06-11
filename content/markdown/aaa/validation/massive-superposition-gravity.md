@@ -33,13 +33,13 @@ The target experiment compares two branch-level mass-density histories over a co
 $$
 \rho_1(\mathbf{x},t),
 \qquad
-\rho_2(\mathbf{x},t).
+\rho_2(\mathbf{x},t)
 $$
 The branch pair is interference-preserving only if the apparatus and environment have not produced an autonomous which-path record. The gravitational or effective-metric channel therefore becomes a constraint through the response difference
 $$
 \Delta h_A(t)
 =
-h_A(t;\rho_1,\theta)-h_A(t;\rho_2,\theta),
+h_A(t;\rho_1,\theta)-h_A(t;\rho_2,\theta)
 $$
 where $A$ labels the resolved detector response channel and $\theta$ is the shared effective-metric constitutive record.
 
@@ -50,7 +50,7 @@ $$
 \int_0^T\!\!\int_0^T
 \Delta h_A(t)\,
 N^{-1}_{AB}(t,t';\theta)\,
-\Delta h_B(t')\,dt\,dt'.
+\Delta h_B(t')\,dt\,dt'
 $$
 Here $N_{AB}$ is the observer-level covariance decomposed in [Observer Framework](../spacetime/observer-framework.md#boundary-wake-covariance-scaffold). It summarizes unresolved deterministic boundary histories and calibrated detector/environment residuals; it is not an ontological randomness postulate.
 
@@ -61,7 +61,7 @@ $$
 \int_{\Sigma_t}
 \varphi_\sigma(\mathbf{x})\,d^3x
 =
-1.
+1
 $$
 For branch separation $\mathbf{d}(t)$ around center $\mathbf{x}_0(t)$, set
 $$
@@ -84,7 +84,7 @@ h_A(t;\rho_k,\theta)
 =
 \int_0^t\!\int_{\Sigma_s}
 G_A(t,s;\mathbf{x};\theta)\,
-\rho_k(\mathbf{x},s)\,d^3x\,ds.
+\rho_k(\mathbf{x},s)\,d^3x\,ds
 $$
 Therefore
 $$
@@ -94,7 +94,7 @@ $$
 G_A(t,s;\mathbf{x};\theta)\,
 \left[
 \rho_1(\mathbf{x},s)-\rho_2(\mathbf{x},s)
-\right]d^3x\,ds.
+\right]d^3x\,ds
 $$
 When $\|\mathbf{d}(t)\|$ is small relative to the packet scale,
 $$
@@ -103,7 +103,7 @@ $$
 -m\,d^i(t)\,
 \partial_i\varphi_\sigma(\mathbf{x}-\mathbf{x}_0(t))
 +
-O(\|\mathbf{d}(t)\|^3),
+O(\|\mathbf{d}(t)\|^3)
 $$
 so the leading branch response is
 $$
@@ -113,7 +113,7 @@ $$
 d^i(s)
 \int_{\Sigma_s}
 G_A(t,s;\mathbf{x};\theta)\,
-\partial_i\varphi_\sigma(\mathbf{x}-\mathbf{x}_0(s))\,d^3x\,ds.
+\partial_i\varphi_\sigma(\mathbf{x}-\mathbf{x}_0(s))\,d^3x\,ds
 $$
 This gives the first closure equation: a mass displacement history should map to a predicted detector-channel separation before any interpretive claim about classical or quantum spacetime is introduced.
 
@@ -130,7 +130,7 @@ U_{ab}^{\mathrm{eff}}(t;\theta)
 \frac{\rho_A^a(\mathbf{x},t)\rho_B^b(\mathbf{y},t)}
 {\|\mathbf{x}-\mathbf{y}\|}
 \,d^3x\,d^3y
-+O(c_0^{-2}).
++O(c_0^{-2})
 $$
 The branch phase is then
 $$
@@ -138,14 +138,14 @@ $$
 =
 \frac{1}{\hbar}
 \int_0^T
-U_{ab}^{\mathrm{eff}}(t;\theta)\,dt.
+U_{ab}^{\mathrm{eff}}(t;\theta)\,dt
 $$
 Local branch phases can be absorbed into the one-probe descriptions. The entangling invariant is the cross-branch phase combination
 $$
 \Delta\Phi_{\mathrm{ent}}(T;\theta)
 =
 \Phi_{++}(T;\theta)+\Phi_{--}(T;\theta)
--\Phi_{+-}(T;\theta)-\Phi_{-+}(T;\theta).
+-\Phi_{+-}(T;\theta)-\Phi_{-+}(T;\theta)
 $$
 For the ideal equal-amplitude two-branch packet, a first witness target is
 $$
@@ -153,7 +153,7 @@ C_{\mathrm{GIE}}(T;\theta)
 =
 \left|
 \sin\frac{\Delta\Phi_{\mathrm{ent}}(T;\theta)}{2}
-\right|.
+\right|
 $$
 This formula is an observer-level benchmark. It does not say that the Euclidean void is quantized, that the effective metric is fundamental, or that a graviton field is the native substrate. It says that the same gravity-side constitutive record must produce the branch phase that standard low-energy descriptions would attribute to gravitational mediation.
 
@@ -161,7 +161,7 @@ The comparison is meaningful only when the non-gravitational residual is bounded
 $$
 \mathcal{R}_{\mathrm{nongrav}}
 \le
-\varepsilon_{\mathrm{iso}},
+\varepsilon_{\mathrm{iso}}
 $$
 with $\varepsilon_{\mathrm{iso}}$ declared by the apparatus class and retained alongside the covariance record $N_{AB}$.
 
@@ -208,7 +208,7 @@ $$
 \int_0^T
 \Delta h_A(t)\,
 S_{AB}^{-1}\,
-\Delta h_B(t)\,dt.
+\Delta h_B(t)\,dt
 $$
 This special case is the first numerical target because it turns the validation packet into a finite time-series calculation once $m$, $\sigma$, $\mathbf{d}(t)$, $G_A$, and $S_{AB}$ are supplied.
 
@@ -218,24 +218,24 @@ A first sanity bound can use a single acceleration readout channel before introd
 $$
 |\Delta h(t)|
 \le
-\frac{2G_{\mathrm{eff}}(\theta)M d_0}{R^3}.
+\frac{2G_{\mathrm{eff}}(\theta)M d_0}{R^3}
 $$
 For a white acceleration readout covariance $N(t,t')=S_a\delta(t-t')$, the distinguishability obeys
 $$
 \mathcal{D}_{\mathrm{grav}}(T;\theta)
 \le
-\frac{4G_{\mathrm{eff}}^2(\theta)M^2d_0^2T}{R^6S_a}.
+\frac{4G_{\mathrm{eff}}^2(\theta)M^2d_0^2T}{R^6S_a}
 $$
 With benchmark values
 $$
 M=10^{-14}\,\mathrm{kg},\qquad
 d_0=10^{-6}\,\mathrm{m},\qquad
 R=10^{-3}\,\mathrm{m},\qquad
-T=1\,\mathrm{s},
+T=1\,\mathrm{s}
 $$
 and an aggressive acceleration-noise amplitude
 $$
-S_a^{1/2}=10^{-15}\,\mathrm{m\,s^{-2}}/\sqrt{\mathrm{Hz}},
+S_a^{1/2}=10^{-15}\,\mathrm{m\,s^{-2}}/\sqrt{\mathrm{Hz}}
 $$
 the bound is
 $$
@@ -248,14 +248,14 @@ $$
 \left(\frac{T}{1\,\mathrm{s}}\right)
 \left(
 \frac{10^{-15}\,\mathrm{m\,s^{-2}}/\sqrt{\mathrm{Hz}}}{S_a^{1/2}}
-\right)^2.
+\right)^2
 $$
 For a which-path threshold of order unity, this run is deep in the weak-probe class. Solving the same bound for the mass needed to reach $\mathcal{D}_{\mathrm{grav}}\sim\varepsilon_{\mathrm{wp}}$ gives
 $$
 M_{\mathrm{crit}}
 \approx
 \frac{R^3}{2G_{\mathrm{eff}}(\theta)d_0}
-\sqrt{\frac{\varepsilon_{\mathrm{wp}}S_a}{T}},
+\sqrt{\frac{\varepsilon_{\mathrm{wp}}S_a}{T}}
 $$
 or, in the same benchmark geometry,
 $$
@@ -268,7 +268,7 @@ M_{\mathrm{crit}}
 \left(
 \frac{S_a^{1/2}}{10^{-15}\,\mathrm{m\,s^{-2}}/\sqrt{\mathrm{Hz}}}
 \right)
-\left(\frac{1\,\mathrm{s}}{T}\right)^{1/2}.
+\left(\frac{1\,\mathrm{s}}{T}\right)^{1/2}
 $$
 This is not a new ontology or an experimental forecast. It is a scale check: for ordinary mesoscopic masses, gravity-side which-path leakage is negligible unless the branch mass, separation, proximity, coherence time, or readout sensitivity moves by many orders of magnitude. A full detector calculation should replace the scalar factor $2/R^3$ with the tensor response in the Minimal Response Model above.
 
@@ -278,7 +278,7 @@ For an interference-preserving run, the metric or gravity-side readout must sati
 $$
 \mathcal{D}_{\mathrm{grav}}(T;\theta)
 \le
-\varepsilon_{\mathrm{wp}}.
+\varepsilon_{\mathrm{wp}}
 $$
 For a mediated-entanglement run, the same record must also satisfy
 $$
@@ -288,7 +288,7 @@ C_{\mathrm{obs}}-\varepsilon_C,
 \qquad
 \mathcal{R}_{\mathrm{nongrav}}
 \le
-\varepsilon_{\mathrm{iso}}.
+\varepsilon_{\mathrm{iso}}
 $$
 This combined gate preserves the observable without overclaiming the interpretation: the run tests whether the retained gravity-side constitutive record can generate the observed branch correlation while avoiding premature which-path record formation.
 
@@ -299,7 +299,7 @@ $$
 \sup_{t\in[\tau_{\text{meas}},\,\tau_{\text{meas}}+T_{\text{rec}}]}
 \Delta_{\mathrm{rec}}(t;k)
 \le
-\varepsilon_{\mathrm{rec}}.
+\varepsilon_{\mathrm{rec}}
 $$
 The failure condition is strict. If $\mathcal{D}_{\mathrm{grav}}\gg1$ while interference visibility remains high and no record-autonomy condition is satisfied, the effective-metric response has overproduced observable which-path information.
 
@@ -321,7 +321,7 @@ m,\sigma,\mathbf{d}(t),T,G_A,N_{AB},R,\Sigma,\rho_A^a,\rho_B^b
 C_{\mathrm{GIE}},
 \tau_{\text{meas}},
 \Delta_{\mathrm{rec}}
-\right).
+\right)
 $$
 The inputs are the branch mass scale, packet width, separation history, coherence window, detector response kernel, covariance decomposition, record variable, separatrix, and two-probe branch histories when present. The outputs are the gravitational distinguishability, interference visibility, entangling phase, mediated-entanglement witness, finite measurement time, and record-autonomy residual.
 

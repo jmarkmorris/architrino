@@ -21,7 +21,7 @@ At the observer level, the same Noether sea must generate the effective metric b
 $$
 \text{medium response}
 \;\Longrightarrow\;
-\text{effective metric observables}.
+\text{effective metric observables}
 $$
 
 The closure demand is not merely qualitative resemblance. The same constitutive map must jointly recover redshift, Shapiro delay, light bending, perihelion precession, and gravitational-wave propagation in the regimes where GR is already tested.
@@ -34,7 +34,7 @@ $$
 =
 \mathbf{r}_{\mathrm{net}}(\theta)^{\mathsf T}
 C_{\mathrm{net}}^{-1}
-\mathbf{r}_{\mathrm{net}}(\theta),
+\mathbf{r}_{\mathrm{net}}(\theta)
 $$
 where $\mathbf{r}_{\mathrm{net}}$ contains the redshift, Shapiro, lensing, 1PN, preferred-frame, equivalence-principle, gravitational-wave, and CMB-derived gravity rows that are claimed by the same record $\theta$. The covariance $C_{\mathrm{net}}$ must include detector calibration, astrophysical nuisance parameters, foregrounds, and external-source uncertainty. A channel passes only when the same $\theta$ survives this joint network; agreement in a single row is a prompt for cross-checks, not closure.
 
@@ -54,7 +54,7 @@ d_{\mathrm{ord}}\!\left(\prec_{\mathrm{eff}}(\theta),\prec_{\mathrm{GR}}\right)
 \right\|_{W}
 +
 \lambda_{\mathrm{PF}}
-\sum_{i=1}^{3}\alpha_i(\theta)^2.
+\sum_{i=1}^{3}\alpha_i(\theta)^2
 $$
 The causal-order term tests the effective light-cone structure, the clock term supplies local scale, and the preferred-frame term keeps the absolute substrate frame hidden below observational bounds. Passing this check does not replace the redshift, Shapiro, lensing, 1PN, quantum-gravity EFT, or gravitational-wave tests below; it prevents them from being fit by mutually incompatible causal and clock conventions.
 
@@ -72,7 +72,7 @@ X_\Omega(t_i),
 N_{\text{sea}}|_{\Omega\times W}
 \right)
 \longrightarrow
-\mathcal{S}_{\Omega}(t_f),
+\mathcal{S}_{\Omega}(t_f)
 $$
 where $\mathcal{S}_{\Omega}(t_f)$ is the finite accepted endpoint or branch-label set. A GR comparison that assumes global hyperbolicity can be used only after the same $\theta$ also recovers the local causal-order, clock, PPN, and gravitational-wave observables above. If $\mathcal{S}_{\Omega}(t_f)$ is empty, infinite without a finite ledger, or selected by an external global assumption rather than by the recorded boundary data, the effective-metric continuation has not closed.
 
@@ -90,7 +90,7 @@ in the weak-field, low-velocity observer regime, where $c_0\equiv c_{\text{eff}}
 $$
 \frac{\Delta \nu}{\nu}
 \approx
-\frac{\Delta \Phi_N}{c_0^2}.
+\frac{\Delta \Phi_N}{c_0^2}
 $$
 
 Operationally, GPS offsets, Pound-Rebka, and related clock-comparison tests are the direct acceptance layer. Height-resolved optical-clock comparisons sharpen this layer: near Earth's surface, $\Delta\nu/\nu\approx gL/c_0^2$, so a $1\,\mathrm{mm}$ clock-sample separation corresponds to about $1.1\times10^{-19}$ and a $33\,\mathrm{cm}$ separation to about $3.6\times10^{-17}$. The same clock law must handle both separated clocks and extended collective clock samples without replacing the constitutive coefficients used for Shapiro delay and lensing.
@@ -99,7 +99,7 @@ Operationally, GPS offsets, Pound-Rebka, and related clock-comparison tests are 
 
 In the refractive-medium picture, one-way path time is
 $$
-t[\Gamma]=\frac{1}{c_0}\int_\Gamma \bar{\chi}_{\text{sea}}(\mathbf{x})\,ds,
+t[\Gamma]=\frac{1}{c_0}\int_\Gamma \bar{\chi}_{\text{sea}}(\mathbf{x})\,ds
 $$
 with
 $$
@@ -110,7 +110,7 @@ $$
 \frac{c_0}{c_f}\chi_{\text{sea}}(\mathbf{x})
 =
 1-(1+\gamma_{\text{eff}})\frac{\Phi_N(\mathbf{x})}{c_0^2}
-+O(c_0^{-4}).
++O(c_0^{-4})
 $$
 
 For a point mass, the resulting delay is
@@ -119,7 +119,7 @@ $$
 =
 \frac{(1+\gamma_{\text{eff}})GM}{c_0^3}
 \ln\!\left(\frac{r_1+r_2+R}{r_1+r_2-R}\right)
-+O(c_0^{-5}),
++O(c_0^{-5})
 $$
 which must match the GR coefficient at current solar-system precision.
 
@@ -130,11 +130,11 @@ $$
 \Delta\theta
 \approx
 2(1+\gamma_{\text{eff}})
-\frac{GM}{b\,c_0^2},
+\frac{GM}{b\,c_0^2}
 $$
 with impact parameter $b$. In the GR-matching limit $\gamma_{\text{eff}}=1$, this reduces to the standard
 $$
-\Delta\theta \approx \frac{4GM}{b\,c_0^2}.
+\Delta\theta \approx \frac{4GM}{b\,c_0^2}
 $$
 
 So Shapiro delay and lensing are not separate fit channels. They are two readouts of the same constitutive coefficient.
@@ -157,7 +157,7 @@ $$
 N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij},
 \Phi_{\text{eff}},
 \chi_{\text{sea}}
-\right).
+\right)
 $$
 The observable residual bundle is then
 $$
@@ -177,7 +177,7 @@ R_{\mathrm{1PN}}\\
 R_{\mathrm{acc}}
 =
 \frac{\left\|\frac{d^2\mathbf{x}}{dt^2}+\nabla\Phi_{\text{eff}}\right\|_W}
-{\left\|\nabla\Phi_{\text{eff}}\right\|_W+\varepsilon}.
+{\left\|\nabla\Phi_{\text{eff}}\right\|_W+\varepsilon}
 $$
 The redshift, Shapiro, lensing, acceleration, 1PN, and preferred-frame rows are acceptable only when they are projections of this same $\theta_W$. If any row requires replacing $N$, $u^i_{\text{sea}}$, $e^a{}_i$, $\gamma_{ij}$, $\Phi_{\text{eff}}$, $\chi_{\text{sea}}$, or the boundary/noise record, the phenomenology pass has become a set of separate fits rather than a GR recovery.
 
@@ -188,7 +188,7 @@ $$
 \Delta\varpi_{\mathrm{PPN}}(\theta_W)
 +\Delta\varpi_{J_{2,\odot}}
 +\Delta\varpi_{\mathrm{asteroid}}
-+\Delta\varpi_{\mathrm{noise}},
++\Delta\varpi_{\mathrm{noise}}
 $$
 where $\Delta\varpi_{J_{2,\odot}}$ is the contribution from the Sun's quadrupole moment and the remaining terms collect other modeled ephemeris corrections. A constitutive map cannot improve its PPN fit by silently moving a mismatch into $\Delta\varpi_{J_{2,\odot}}$ or by using a solar-interior assumption inconsistent with helioseismology and light-deflection records. The precession row closes only after the nuisance record is fixed independently enough that $\Delta\varpi_{\mathrm{PPN}}$ is the recovered effect rather than a residual after subtraction.
 
@@ -203,7 +203,7 @@ $$
 \Delta\varpi_{\mathrm{PPN}}
 =
 \frac{2\pi GM}{a(1-e^2)c_0^2}
-\left(2+2\gamma_{\text{PPN}}-\beta_{\text{PPN}}\right),
+\left(2+2\gamma_{\text{PPN}}-\beta_{\text{PPN}}\right)
 $$
 so Mercury-type precession is a joint test of the same spatial-compliance coefficient that controls lensing and the same nonlinear clock coefficient that controls $\beta_{\text{PPN}}$.
 
@@ -222,7 +222,7 @@ V_{\mathrm{GR\text{-}EFT}}(r)
 +\alpha_{\mathrm{1PN}}\frac{G_N(m_1+m_2)}{c_0^2 r}
 +\alpha_{\hbar}\frac{G_N\hbar}{c_0^3 r^2}
 +\cdots
-\right],
+\right]
 $$
 
 where $\alpha_{\mathrm{1PN}}$ and $\alpha_{\hbar}$ are fixed by the standard low-energy calculation rather than fitted as new $\mathbb{A}\mathbb{A}\mathbb{A}$ parameters. A useful closure residual is
@@ -237,7 +237,7 @@ V_{\mathbb{A}\mathbb{A}\mathbb{A}}(r;\theta)
 }{
 G_N m_1 m_2/r
 }
-\right|.
+\right|
 $$
 
 This residual is not a demand that the Noether sea be rewritten as a graviton field. It is a demand that the same weak-field constitutive record that yields redshift, lensing, and wave propagation also recover the long-distance quantum correction in the regime where the effective theory is predictive.
@@ -250,7 +250,7 @@ The weak equivalence principle and the strong equivalence principle are distinct
 $$
 \eta_{AB}^{S}
 =
-\frac{2(a_A^S-a_B^S)}{a_A^S+a_B^S}.
+\frac{2(a_A^S-a_B^S)}{a_A^S+a_B^S}
 $$
 The weak equivalence row requires $\eta_{AB}^{S}$ to vanish within the material-composition bounds while the same clock, signal, and PPN record is held fixed. The point is not to assume equivalence as a substrate axiom, but to recover it as an observer-level constraint on the same record $\theta_W$. If local clock/ruler states for different apparatuses are allowed to absorb the gravitational response through material-dependent scale factors $\lambda_A(\mathbf{x};\theta_W)$, the residual must also satisfy
 $$
@@ -264,7 +264,7 @@ $$
 }{
 \left\|\nabla\Phi_{\text{eff}}\right\|_W/c_0^2+\varepsilon
 }
-\ll 1,
+\ll 1
 $$
 with the source assembly, boundary wake data, cosmological record, and PPN coefficients held fixed. This forbids a flat-description or local-unit rewriting from replacing universal gravitational acceleration by apparatus-specific material response. Equivalence recovery therefore couples the torsion-balance row, clock-comparison row, and cosmological/boundary record: a Mach-like dependence of inertial standards on the surrounding matter distribution is admissible only if it is common to the accepted observer record and leaves no composition-dependent acceleration residue. A separate strong-equivalence row tests whether gravitational self-energy or medium binding changes the acceleration of extended bodies:
 $$
@@ -276,7 +276,7 @@ $$
 \frac{E_{\mathrm{grav},1}}{m_1c_0^2}
 -
 \frac{E_{\mathrm{grav},2}}{m_2c_0^2}
-\right),
+\right)
 $$
 where the denominator compares gravitational binding-energy fractions for two bodies in the same external field. This row is a recovery target for lunar-ranging, binary-pulsar, and compact-body tests; it is not interchangeable with the material-composition torsion-balance row. The same residual bundle must also keep active, passive, inertial, and energy-defined mass equal in the nonrelativistic limit, or else the Newtonian and PPN rows are being fit with inconsistent mass concepts.
 
@@ -294,7 +294,7 @@ must be observationally negligible in validated regimes. This is not optional. I
 
 The Noether sea picture must recover the observed near-luminal propagation of gravitational disturbances:
 $$
-\left|\frac{v_{\mathrm{GW}}-c_0}{c_0}\right| \ll 1.
+\left|\frac{v_{\mathrm{GW}}-c_0}{c_0}\right| \ll 1
 $$
 
 In this framework, gravitational waves are propagating collective disturbances of the Noether sea. Their speed, dispersion, and polarization content must remain consistent with current timing bounds and detector-mode constraints. Any large medium-dispersion signature or unsuppressed scalar/vector/longitudinal response in already-tested bands is excluded. A cosmological-scale finite-range response must therefore decouple from the weak-field gravitational-wave channel through the same constitutive coefficient record, not through an observational-channel-specific patch.
@@ -365,7 +365,7 @@ $$
 \mathcal{C}_{\text{GW}}
 \cap
 \mathcal{C}_{\text{cont}}
-\neq \varnothing.
+\neq \varnothing
 $$
 
 If that intersection is empty, the effective-metric program is not yet viable.

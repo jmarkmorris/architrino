@@ -39,7 +39,7 @@ $$
 \rightarrow
 \text{thermalization path}
 \rightarrow
-\text{observer-level background variable}.
+\text{observer-level background variable}
 $$
 
 The minimal useful first path is BBN photon loading: identify a source-zone radiation channel, record its event-level provenance, propagate it through the local thermalization assumptions, and show whether it can support effective $\eta\approx6\times10^{-10}$ during the deuterium bottleneck window.
@@ -100,7 +100,7 @@ E_\gamma
 +
 \Delta E_{\text{med}}
 +
-\Delta E_{\text{rem}}.
+\Delta E_{\text{rem}}
 $$
 
 The provenance record must also include the source electron assembly, target assembly, source-depletion row, trigger geometry, $\delta\Theta_a$, local $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, planar-mode threshold status, emitted photon assembly direction, recoil, medium excitation, causal-wake ledger, identity routing, closure status, and whether the event occurs in a regime where standard free-free emissivity remains the observer-level scaffold. Its polarization handoff inherits photon Gate B rather than deriving photon spin locally, and the record remains provisional until the event residual routes source, recoil, medium, wake, handoff, and remnant rows.
@@ -133,7 +133,7 @@ The observed baryon-to-photon ratio is a data-product constraint, not permission
 $$
 \eta_B^{\mathrm{ledger}}(W)
 =
-\frac{N_B(W)-N_{\bar B}(W)}{N_\gamma(W)}.
+\frac{N_B(W)-N_{\bar B}(W)}{N_\gamma(W)}
 $$
 The acceptance residual should be reported as
 $$
@@ -144,7 +144,7 @@ $$
 \frac{|\Delta B_{\mathrm{unrec}}(W)|}{\varepsilon_B},
 \frac{|\Delta Q_{\mathrm{unrec}}(W)|}{\varepsilon_Q},
 \frac{|\Delta E_{\mathrm{unrec}}(W)|}{\varepsilon_E}
-\right).
+\right)
 $$
 Here $\Delta B_{\mathrm{unrec}}$, $\Delta Q_{\mathrm{unrec}}$, and $\Delta E_{\mathrm{unrec}}$ are not new ontology. They are failure counters for baryon-number bookkeeping, electric-charge bookkeeping, and energy balance after all declared reaction, recoil, medium, and escape channels have been included. A source model may remain in the comparison ledger only when $\mathcal{R}_{B/\gamma}\le1$ and the same event record also passes the BBN photon-loading and CMB thermalization checks below.
 
@@ -163,7 +163,7 @@ The thermalization-depth record is a diagnostic field, not a new substrate entit
 $$
 \mathcal{D}_{\mathrm{th}}(\nu;t_a,t_b)
 =
-\int_{t_a}^{t_b}\tau_{\mathrm{th}}^{-1}(\nu,t)\,dt,
+\int_{t_a}^{t_b}\tau_{\mathrm{th}}^{-1}(\nu,t)\,dt
 $$
 
 with $\tau_{\mathrm{th}}^{-1}$ decomposed into the specific event-recorded channels being used: planar-mode capture/release, Compton-like redistribution, pair channels, and non-radiative medium exchange. A CMB blackbody claim requires $\mathcal{D}_{\mathrm{th}}\gg1$ before decoupling, effective photon chemical potential driven to zero, and a post-decoupling transport map that preserves the already-generated spectrum while carrying anisotropy, polarization, damping, and redshift information.
@@ -182,7 +182,7 @@ h(\nu^+-\nu^-)
 +\Delta E_{\mathrm{recoil}}
 +\Delta E_{\mathrm{rem}}
 \right|
-}{\epsilon_E}.
+}{\epsilon_E}
 $$
 
 The same row must state whether the exchange is thermalizing, spectrally distorting, or coherently transported. A Sunyaev-Zeldovich-type boost is admissible only when the electron or medium record supplies the photon energy increase and when the side effects remain compatible with the CMB spectrum, anisotropy, polarization, and kSZ/tSZ observable rows. A depletion row is admissible only when the lost photon energy is routed into a named medium, recoil, remnant, or thermalization channel.

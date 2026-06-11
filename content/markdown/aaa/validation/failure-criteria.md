@@ -35,7 +35,7 @@ A,
 \zeta,
 \mathcal{M}_{\mathrm{sea}}^{ab},
 \{B_i\}
-\right),
+\right)
 $$
 
 where $A$ is the assembly or branch family, $\Gamma$ is the assembly microstate, $\mathcal{H}$ is the path-history and causal-wake ledger, $\mathcal{R}$ is the active residual family, $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the event ledger, $\zeta$ is shielding or exposure data, $\mathcal{M}_{\mathrm{sea}}^{ab}$ is the Noether sea response object, and $\{B_i\}$ is the basin or channel partition. Sector-local coordinates $Z_S(\theta)$ record the benchmark variables, theorem assumptions, provenance rows, and tolerances used by sector $S$.
@@ -45,7 +45,7 @@ For each sector $S$, fix a gate predicate $P_S:\mathfrak{X}\to\{0,1\}$, a benchm
 $$
 \operatorname{dist}_{d_S}(b,\mathfrak{B}^{\mathrm{obs}}_S)
 =
-\inf_{b'\in\mathfrak{B}^{\mathrm{obs}}_S}d_S(b,b').
+\inf_{b'\in\mathfrak{B}^{\mathrm{obs}}_S}d_S(b,b')
 $$
 
 The sector acceptance set is the mathematical subset
@@ -61,7 +61,7 @@ P_S(\theta)=1,\quad
 \le
 \epsilon_S,\quad
 \mathcal{G}_S(\theta)=1
-\right\}.
+\right\}
 $$
 
 The shared acceptance intersection is
@@ -69,7 +69,7 @@ The shared acceptance intersection is
 $$
 \mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}
 =
-\bigcap_{S\in\mathfrak{S}}\mathcal{C}_S.
+\bigcap_{S\in\mathfrak{S}}\mathcal{C}_S
 $$
 
 A closure attempt survives the validation gate only as an element of $\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}$. A sector result that lies in one $\mathcal{C}_S$ but in no element of the full intersection remains a local result rather than a promoted $\mathbb{A}\mathbb{A}\mathbb{A}$ closure.
@@ -94,7 +94,7 @@ $$
 \lor
 \left[
 \exists S\in\mathfrak{S}:\mathcal{G}_S(\theta;q)=0
-\right].
+\right]
 $$
 
 This rule does not make the validation suite less severe. It prevents a residual-bearing closure record from being rejected by a criticism that has not identified which accepted observable, mathematical consistency condition, or no-go assumption has actually changed.
@@ -111,7 +111,7 @@ $$
 \log\frac{O_e(\theta)}{O_e^{\max}}
 \right]_+,
 \qquad
-[x]_+\equiv\max(x,0).
+[x]_+\equiv\max(x,0)
 $$
 
 A promoted record must satisfy
@@ -133,7 +133,7 @@ $$
 \operatorname{dist}_{\mathrm{shared}}\!\left(
 \pi_{\mathrm{shared}}\theta_e,
 \pi_{\mathrm{shared}}\theta_+
-\right),
+\right)
 $$
 where $\pi_{\mathrm{shared}}$ keeps the common Noether sea, assembly, weak-exposure, metric, and provenance coordinates consumed by both the positive benchmark and the null channel. The operational audit residual is
 $$
@@ -146,7 +146,7 @@ $$
 \right]_+
 +
 \lambda_{\mathrm{split}}\Delta_{\mathrm{shared}}(e;\theta)
-\right).
+\right)
 $$
 The original promotion condition is recovered by requiring $\mathcal{R}_{\mathrm{null}}^{\mathrm{op}}(\theta)=0$. This form rejects a second failure mode: a channel can be numerically hidden but still fail because its suppression uses a different shared record from the one that fit the observed sector.
 
@@ -171,7 +171,7 @@ v_+(\omega,\hat{\mathbf{k}};\theta)
 -
 v_-(\omega,\hat{\mathbf{k}};\theta)
 }{c_0}
-\right|.
+\right|
 $$
 The photon/effective-metric record can be promoted only when $\mathcal{R}_{\mathrm{biref}}(\theta)\le\epsilon_{\mathrm{biref}}$ in the declared weak homogeneous regime and when the same $\theta$ also supplies the clock, ruler, signal, and metric coefficients used for the positive GR-facing benchmarks. If birefringence is numerically hidden by switching to a different channel record than the one used for lensing, Shapiro delay, spectra, or photon synchronization, $\mathcal{R}_{\mathrm{null}}^{\mathrm{op}}$ fails even if the split is individually small.
 
@@ -191,7 +191,7 @@ The following matrix assigns each recurring null-result family to the corpus hom
 
 For proton-instability corridors, convert every current partial-mean-life lower limit $\tau_c^{\min}$ into a channel-rate ceiling
 $$
-\Gamma_{p,c}^{\max}=\frac{1}{\tau_c^{\min}}.
+\Gamma_{p,c}^{\max}=\frac{1}{\tau_c^{\min}}
 $$
 The current benchmark scale is already severe: PDG 2024 summaries give $\tau/B(p\to e^+\pi^0)>2.4\times10^{34}\,\mathrm{yr}$ and proton neutrino/kaon modes near $5.9\times10^{33}\,\mathrm{yr}$ at 90% confidence. These numbers are comparison anchors, not permanent constants; a closure packet should cite the current experimental source when the hadronic gate is evaluated.
 
@@ -217,13 +217,13 @@ $$
 \theta\in\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}
 :
 \pi_S(\theta)=c
-\right\}.
+\right\}
 $$
 
 **Lemma.** A local sector result $c$ is promotable through the validation gate if and only if $c\in\pi_S(\mathcal{C}_S)$ and
 
 $$
-\operatorname{Ext}_S(c)\ne\varnothing.
+\operatorname{Ext}_S(c)\ne\varnothing
 $$
 
 Proof route: if $c$ is promoted, the promoted record must retain the sector-$S$ result and pass every sector gate, so it is an element of $\operatorname{Ext}_S(c)$. Conversely, any $\theta\in\operatorname{Ext}_S(c)$ is a shared closure record whose sector-$S$ projection equals $c$ and whose weak, quantum, gravity, hadronic, radiation, and cosmology predicates all pass; therefore the local result has survived the validation gate. If the fiber is empty, the result is blocked by at least one sector predicate, benchmark region, no-go record, or failure condition.
@@ -235,7 +235,7 @@ A local claim $c$ imposes a constraint subset $I(c)\subseteq\mathfrak{X}$ consis
 $$
 \mathcal{C}_T\!\mid c
 =
-\mathcal{C}_T\cap I(c).
+\mathcal{C}_T\cap I(c)
 $$
 
 An incompatibility witness from sector $S$ to sector $T$ is the object
@@ -254,7 +254,7 @@ d_T,
 \epsilon_T,
 \mathcal{G}_T,
 \delta_T(c)
-\right),
+\right)
 $$
 
 where
@@ -265,7 +265,7 @@ $$
 \epsilon_T
 -
 \inf_{\theta\in I(c),\,P_T(\theta)=1,\,\mathcal{G}_T(\theta)=1}
-\operatorname{dist}_{d_T}\!\left(\mathcal{B}_T(\theta),\mathfrak{B}^{\mathrm{obs}}_T\right).
+\operatorname{dist}_{d_T}\!\left(\mathcal{B}_T(\theta),\mathfrak{B}^{\mathrm{obs}}_T\right)
 $$
 
 The witness empties the target gate when $\mathcal{C}_T\!\mid c=\varnothing$. It damages the target gate when $\mathcal{C}_T\!\mid c\ne\varnothing$ but $\delta_T(c)$ removes a required tolerance margin, forces a hidden sector-specific parameter split, or leaves a required ledger row undefined.

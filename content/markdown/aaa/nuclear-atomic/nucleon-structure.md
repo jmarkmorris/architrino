@@ -33,20 +33,20 @@ The constituent content is:
 $$
 p = uud,
 \qquad
-n = udd.
+n = udd
 $$
 
 With the quark charge assignments
 $$
 Q_u=+\frac{2}{3},
 \qquad
-Q_d=-\frac{1}{3},
+Q_d=-\frac{1}{3}
 $$
 one immediately gets
 $$
 Q_p = 2Q_u+Q_d = +1,
 \qquad
-Q_n = Q_u+2Q_d = 0.
+Q_n = Q_u+2Q_d = 0
 $$
 
 ## Color-Singlet Closure
@@ -55,13 +55,13 @@ The nucleon is not three independent quarks sitting side by side. It is a color-
 
 At the bookkeeping level, each constituent quark occupies one of the three color sectors
 $$
-|q_H\rangle,\quad |q_M\rangle,\quad |q_L\rangle,
+|q_H\rangle,\quad |q_M\rangle,\quad |q_L\rangle
 $$
 or equivalently Red, Green, Blue. A baryon singlet uses each exceptional-axis sector once, so the net color flux closes.
 
 This is the nucleon-level meaning of
 $$
-3\otimes 3\otimes 3 \supset 1.
+3\otimes 3\otimes 3 \supset 1
 $$
 
 In the present geometric language:
@@ -81,7 +81,7 @@ s_{u_1},s_{u_2},s_d\in\{H,M,L\},
 \qquad
 \{s_{u_1},s_{u_2},s_d\}
 =
-\{H,M,L\}.
+\{H,M,L\}
 $$
 
 The second condition is the color-singlet occupancy rule: the exceptional-axis sectors occur once each. Let $\mathcal L_{\mathrm{strong}}^{uud}(t)$ denote the strong-sector corridor ledger that locks these three quark branches into one accepted proton branch. At proton-sensitive resolution, the candidate source envelope in response channel $X$ is
@@ -100,7 +100,7 @@ C_{\ell,X}^{p}
 \mathcal W_{\mathrm{strong},X}^{uud}
 \right],
 \qquad
-d_N\ll\ell\ll R_p.
+d_N\ll\ell\ll R_p
 $$
 
 Here $C_{\ell,X}^{p}$ is the declared proton-window projection and $\mathcal W_{\mathrm{strong},X}^{uud}$ is the channel exposure of $\mathcal L_{\mathrm{strong}}^{uud}(t)$. The strong-sector term includes the closed color-corridor contribution needed to make the three quark branches one proton source; it is not ambient Noether sea and is not a fourth quark-like constituent.
@@ -124,7 +124,7 @@ $$
 \varepsilon_{p,X}
 }
 \le
-\Delta_{p,X}^{\mathrm{color}}.
+\Delta_{p,X}^{\mathrm{color}}
 $$
 
 The projection $\Pi_{\mathrm{singlet},X}$ retains the channel entries that are compatible with the color-singlet branch, while $\Pi_{\mathrm{open},X}$ retains any residual open-color exposure. This is a closure target, not a completed confinement proof. It should later be derived from the same color-corridor dynamics that recover the static strong potential and no-free-color benchmark in [Gluons and the Strong Force: Geometric Origins](../assemblies/bosons/gluons.md#confinement-and-energetics).
@@ -151,7 +151,7 @@ C_{\ell_{\mathrm{atom}},X}
 \varepsilon_{p,X}^{\mathrm{env}}
 }
 \le
-\Delta_{p,X}^{\mathrm{env,tol}}.
+\Delta_{p,X}^{\mathrm{env,tol}}
 $$
 
 This is the nucleon-side handoff used by the hydrogen response map in [Atomic Structure](atomic-structure.md#hydrogen-boundary-theorem-target). It lets the atomic calculation see a proton source envelope with retained charge, multipole, shielding, and corridor coefficients, while preventing the three quark Noether swarms from being counted as free atomic sources.
@@ -174,7 +174,7 @@ $$
 \mathcal L_{\mathrm{strong}}^{uud}
 \subset
 \mathcal A_{\mathrm H}(t)
-\right\}.
+\right\}
 $$
 
 The first inequality blocks open-color leakage, the second blocks unstable quark-resolution dependence after atomic projection, and the third keeps the strong-sector corridor inside the matter assembly ledger. Hydrogen corridor and packing tolerances may then ask different stability questions, but they cannot be looser than this proton source-envelope acceptance.
@@ -200,11 +200,11 @@ Using the current quark templates:
 
 So the total axial count is
 $$
-(5P,1E)+(5P,1E)+(2P,4E)=(12P,6E),
+(5P,1E)+(5P,1E)+(2P,4E)=(12P,6E)
 $$
 which gives net charge
 $$
-\frac{12-6}{6}e=+e.
+\frac{12-6}{6}e=+e
 $$
 
 ### Neutron
@@ -213,11 +213,11 @@ The neutron is the lowest stable nested shell swarm with quark content `udd`.
 
 Its total axial count is
 $$
-(5P,1E)+(2P,4E)+(2P,4E)=(9P,9E),
+(5P,1E)+(2P,4E)+(2P,4E)=(9P,9E)
 $$
 so the net charge is
 $$
-\frac{9-9}{6}e=0.
+\frac{9-9}{6}e=0
 $$
 
 The neutron is therefore not neutral because it lacks internal charge structure, but because its quark-level axial asymmetries cancel in total.
@@ -232,13 +232,13 @@ $$
 =
 \epsilon\sum_{a\in A_n}\sigma_a\,\mathbf{r}_a,
 \qquad
-\sum_{a\in A_n}\sigma_a=0.
+\sum_{a\in A_n}\sigma_a=0
 $$
 The second condition is the neutron's neutral axial inventory $(9P,9E)$; it cancels net charge but does not by itself prove that the first moment vanishes. For a declared neutron envelope scale $R_n$ and spin direction $\hat{\mathbf{J}}_n$, define the dimensionless CP-odd axial imbalance
 $$
 \vartheta_n
 =
-\frac{\hat{\mathbf{J}}_n\cdot\mathbf{d}_{n,\mathrm{ax}}}{\epsilon R_n}.
+\frac{\hat{\mathbf{J}}_n\cdot\mathbf{d}_{n,\mathrm{ax}}}{\epsilon R_n}
 $$
 
 The strong-sector flux corridor and local Noether sea response may contribute additional spin-aligned effective moments. A compact neutron-assembly residual is therefore
@@ -256,7 +256,7 @@ d_n^{\mathrm{asm}}
 \qquad
 \mathcal{R}_{\mathrm{nEDM}}
 =
-\frac{|d_n^{\mathrm{asm}}|}{d_n^{\max}}.
+\frac{|d_n^{\mathrm{asm}}|}{d_n^{\max}}
 $$
 
 The first target lemma is a cancellation statement, not a numerical fit:
@@ -336,7 +336,7 @@ m_n-m_p
 \approx
 \Delta E_{\text{down-up}}
 +\Delta E_{\text{Coul}}
-+\Delta E_{\text{flux}},
++\Delta E_{\text{flux}}
 $$
 where:
 

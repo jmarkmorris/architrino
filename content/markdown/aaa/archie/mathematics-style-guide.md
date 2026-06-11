@@ -31,13 +31,13 @@ Plain language: One global clock t and ordinary 3D space; we write vectors in bo
 - Absolute time $t$ is universal and oriented; durations are
 
   $$
-  \Delta t = |\,t_2 - t_1\,|.
+  \Delta t = |\,t_2 - t_1\,|
   $$
 
 - Space is Euclidean with metric
 
   $$
-  h_{ij} = \delta_{ij}\quad\text{on each slice }\Sigma_t.
+  h_{ij} = \delta_{ij}\quad\text{on each slice }\Sigma_t
   $$
 
   Notation: We use $h_{ij}$ exclusively for the spatial metric; do not use $g_{ij}$.
@@ -101,7 +101,7 @@ Given a receiver $o'$ at time $t$ and a source $j$ at causal emission time $t_0 
 $$
 r_{o'j}(t;t_0)=\|\mathbf{s}_{o'}(t)-\mathbf{s}_j(t_0)\|,
 \qquad
-\hat{\mathbf{r}}_{o'j}(t;t_0)=\frac{\mathbf{s}_{o'}(t)-\mathbf{s}_j(t_0)}{r_{o'j}(t;t_0)},
+\hat{\mathbf{r}}_{o'j}(t;t_0)=\frac{\mathbf{s}_{o'}(t)-\mathbf{s}_j(t_0)}{r_{o'j}(t;t_0)}
 $$
 and $\sigma_{q_j q_{o'}}=\mathrm{sign}(q_j q_{o'}) \in \{+1,-1\}$.
 
@@ -109,21 +109,21 @@ Canonical per-hit acceleration:
 $$
 \mathbf{a}_{o'\leftarrow j}(t; t_0)
 = \kappa\,\sigma_{q_j q_{o'}}\,
-\frac{|q_j q_{o'}|}{r_{o'j}^2(t;t_0)\,|J_{o'j}(t;t_0)|}\,\hat{\mathbf{r}}_{o'j}(t;t_0),
+\frac{|q_j q_{o'}|}{r_{o'j}^2(t;t_0)\,|J_{o'j}(t;t_0)|}\,\hat{\mathbf{r}}_{o'j}(t;t_0)
 $$
 where
 $$
-J_{o'j}(t;t_0)\equiv 1-\frac{\mathbf{v}_j(t_0)\cdot\hat{\mathbf{r}}_{o'j}(t;t_0)}{c_f}.
+J_{o'j}(t;t_0)\equiv 1-\frac{\mathbf{v}_j(t_0)\cdot\hat{\mathbf{r}}_{o'j}(t;t_0)}{c_f}
 $$
 
 Total acceleration:
 $$
-\mathbf{a}_{o'}(t) = \sum_{j}\ \sum_{t_0 \in \mathcal{C}_{o'j}(t)} \mathbf{a}_{o'\leftarrow j}(t; t_0).
+\mathbf{a}_{o'}(t) = \sum_{j}\ \sum_{t_0 \in \mathcal{C}_{o'j}(t)} \mathbf{a}_{o'\leftarrow j}(t; t_0)
 $$
 
 DDE view: let state $x = (\mathbf{s}, \mathbf{v})$. With $\eta>0$ regularization, the dynamics admit a causal functional form
 $$
-\frac{d x}{d t} = F\big(x(t), \{x_j(t - \tau_j)\}_j, t\big),
+\frac{d x}{d t} = F\big(x(t), \{x_j(t - \tau_j)\}_j, t\big)
 $$
 with $\tau_j$ determined implicitly by $\|\mathbf{s}(t)-\mathbf{s}_j(t-\tau_j)\| = v\,\tau_j$, and per-hit contributions summed over all roots. In the $\eta\to 0$ limit interpret in the weak sense.
 

@@ -19,15 +19,15 @@ Methodological priority:
 Symmetric two-body on a line (exact DDE; challenges):
 - Let $x_1(t)=+\tfrac{1}{2}r(t)$ and $x_2(t)=-\tfrac{1}{2}r(t)$ with $r(t)>0$ and $v=1$. The causal-time condition implies
   $$
-  \frac{r(t)+r(t_0)}{2} \;=\; t - t_0,\qquad t_0<t,
+  \frac{r(t)+r(t_0)}{2} \;=\; t - t_0,\qquad t_0<t
   $$
   or, writing $\tau(t)=t-t_0>0$ implicitly,
   $$
-  r(t) + r\!\big(t-\tau(t)\big) \;=\; 2\,\tau(t).
+  r(t) + r\!\big(t-\tau(t)\big) \;=\; 2\,\tau(t)
   $$
 - For opposite polarities, the exact relative-coordinate equation is the state-dependent DDE
   $$
-  \ddot r(t) \;=\; -\,\frac{8\,\kappa\,\epsilon^2}{\big(r(t) + r(t-\tau(t))\big)^2\,|J(t)|},
+  \ddot r(t) \;=\; -\,\frac{8\,\kappa\,\epsilon^2}{\big(r(t) + r(t-\tau(t))\big)^2\,|J(t)|}
   $$
   with $\tau(t)$ determined by the implicit constraint above. For equal charges, the sign is reversed.
 
@@ -37,7 +37,7 @@ Integral (delta) form selecting the causal root:
   a_1(t) \;=\; -\,\kappa\,\epsilon^2 \int_{0}^{\infty}
   \frac{\delta\!\big(\lvert x_1(t)-x_2(t-\tau)\rvert - \tau\big)\,
   \mathrm{sgn}\!\big(x_1(t)-x_2(t-\tau)\big)}
-  {\lvert x_1(t)-x_2(t-\tau)\rvert^{2}}\; d\tau,
+  {\lvert x_1(t)-x_2(t-\tau)\rvert^{2}}\; d\tau
   $$
   whose evaluation reduces exactly to finding the causal delay $\tau(t)$; in the symmetric 1D case this yields the DDE above.
 

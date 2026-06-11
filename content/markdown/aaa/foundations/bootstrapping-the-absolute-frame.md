@@ -18,39 +18,39 @@ What follows is the systematic procedure by which the $\mathbb{U}_{\text{now}}$ 
 
 Fix one absolute-time slice $\Sigma_{t_\ast}$. Suppose complete-state wake geometry identifies an origin point $O$ on that slice, supplied either by a stationary architrino or by the fixed Euclidean-void point reconstructed from a source-tagged emission center, and two additional architrinos $A$ and $B$ whose positions on $\Sigma_{t_\ast}$ satisfy
 $$
-\mathbf{d}_1=\mathbf{x}_A(t_\ast)-\mathbf{x}_O(t_\ast)\ne\mathbf{0},
+\mathbf{d}_1=\mathbf{x}_A(t_\ast)-\mathbf{x}_O(t_\ast)\ne\mathbf{0}
 $$
 and
 $$
 \mathbf{d}_2=\mathbf{x}_B(t_\ast)-\mathbf{x}_O(t_\ast),
 \qquad
-\|\mathbf{d}_1\times\mathbf{d}_2\|\ne0.
+\|\mathbf{d}_1\times\mathbf{d}_2\|\ne0
 $$
 Then the first two unit axes are fixed by
 $$
-\hat{\mathbf{x}}=\frac{\mathbf{d}_1}{\|\mathbf{d}_1\|},
+\hat{\mathbf{x}}=\frac{\mathbf{d}_1}{\|\mathbf{d}_1\|}
 $$
 $$
 \mathbf{d}_2^{\perp}=\mathbf{d}_2-(\mathbf{d}_2\cdot\hat{\mathbf{x}})\hat{\mathbf{x}},
 \qquad
-\hat{\mathbf{y}}=\frac{\mathbf{d}_2^{\perp}}{\|\mathbf{d}_2^{\perp}\|}.
+\hat{\mathbf{y}}=\frac{\mathbf{d}_2^{\perp}}{\|\mathbf{d}_2^{\perp}\|}
 $$
 The remaining completion has exactly two signs. Once an orientation convention is declared, the right-handed completion is
 $$
-\hat{\mathbf{z}}=\hat{\mathbf{x}}\times\hat{\mathbf{y}}.
+\hat{\mathbf{z}}=\hat{\mathbf{x}}\times\hat{\mathbf{y}}
 $$
 
 The construction fails precisely when the first displacement is coincident with the origin or the first two displacements are collinear:
 $$
 \|\mathbf{d}_1\|=0
 \qquad\text{or}\qquad
-\|\mathbf{d}_1\times\mathbf{d}_2\|=0.
+\|\mathbf{d}_1\times\mathbf{d}_2\|=0
 $$
 If a fourth architrino $C$ is introduced, it is non-coplanar with the first three exactly when
 $$
 \mathbf{d}_3=\mathbf{x}_C(t_\ast)-\mathbf{x}_O(t_\ast),
 \qquad
-V=\mathbf{d}_3\cdot(\mathbf{d}_1\times\mathbf{d}_2)\ne0.
+V=\mathbf{d}_3\cdot(\mathbf{d}_1\times\mathbf{d}_2)\ne0
 $$
 The sign of $V$ selects a side of the already oriented plane. It does not by itself turn coordinate parity into a dynamical chirality claim.
 

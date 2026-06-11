@@ -24,7 +24,7 @@ $$
 \#\{i:\sigma_i=-1\}
 =3,
 \qquad
-\sum_{i=1}^{6}\sigma_i=0.
+\sum_{i=1}^{6}\sigma_i=0
 $$
 
 This polarity-neutral ledger is imposed before any binary partition, shell ordering, or near-antipodal matching is assumed. Each positive-polarity architrino has three attractive channels to negative-polarity architrinos and two repellent channels to the other positive-polarity architrinos. Each negative-polarity architrino has the polarity-reversed version of the same count: three attractive channels to positives and two repellent channels to negatives. That $3+2$ channel count is part of the neutral swarm bookkeeping even when no binary partition has been certified.
@@ -36,7 +36,7 @@ Y_i:\mathbb{R}/L_i\mathbb{Z}\to\mathbb{R}^3,
 \qquad
 \left\| Y_i'(s)\right\|=1,
 \qquad
-Y_i(s+L_i)=Y_i(s).
+Y_i(s+L_i)=Y_i(s)
 $$
 
 Its physical trajectory is allowed to move along that support with a bounded speed factor,
@@ -46,7 +46,7 @@ X_i(t)=Y_i(\lambda_i(t)),
 \qquad
 \dot{\lambda}_i(t)=\nu_i(t),
 \qquad
-0<\nu_-\leq\nu_i(t)\leq\nu_+<\infty.
+0<\nu_-\leq\nu_i(t)\leq\nu_+<\infty
 $$
 
 The bounded speed factor $\nu_i(t)$ is the place where speed-lapse behavior enters the architecture. A branch may temporarily push an architrino over a local hinge into a self-hit mode, but an admissible neutral swarm must still return to a closed causal ledger within the branch's recovery tolerance. The neutral swarm therefore allows changing support geometry, nonuniform speed, changing local curvature, and delayed multi-channel response without first reducing the motion to three exact binaries.
@@ -71,7 +71,7 @@ $$
 \mathsf{Stability}^{\nu},
 \mathsf{Convergence},
 \mathsf{Status}
-\right).
+\right)
 $$
 
 The corresponding retention predicate is
@@ -99,7 +99,7 @@ P_{\mathrm{event}}
 \wedge
 P_{\mathrm{stab}}
 \wedge
-P_{\mathrm{conv}}.
+P_{\mathrm{conv}}
 $$
 
 Every predicate in this conjunction must use the same source-pair policy, same-source policy, memory depth, support descriptor, action convention, event interval, and inventory ledger. If any row changes those conventions, the status is a ledger mismatch rather than a retention result.
@@ -111,7 +111,7 @@ $$
 =
 \{(i,j)\in I\times I:i\ne j\},
 \qquad
-|\Pi_{\mathrm{all}}|=30.
+|\Pi_{\mathrm{all}}|=30
 $$
 
 The $3$ attractive and $2$ repellent source-site counts for each receiver are inventory facts, not a compressed force law. The force row must still be assembled from the actual retained causal roots, delays, Jacobian floors, and line-of-action vectors for these ordered pairs. A shell swarm or nested shell swarm can reduce this ledger only after its reduction row proves how the compressed rows are inherited from the all-pairs ledger.
@@ -127,7 +127,7 @@ $$
 \mathrm{margin},
 \mathrm{blocking\_packet},
 \mathrm{repair\_or\_rejection}
-\right).
+\right)
 $$
 
 Rows through convergence block branch retention. Case-reduction and observer-export rows classify downstream structure only after the required neutral rows close. Therefore a favorable Lorentz, photon, topology, mass-map, or shell-geometry diagnostic cannot rescue an open root, tail, dynamics, action, event, stability, or convergence row.
@@ -137,7 +137,7 @@ Current fixed-speed octahedral diagnostics have produced scoped negative results
 $$
 \widetilde{\mathcal{R}}_{\mathrm{tan},(1,+)}(0)
 \in
-[0.07393815228,0.07393815232],
+[0.07393815228,0.07393815232]
 $$
 
 so that narrow branch chart is rejected. The diagnostic family also rejects several overreads: the ordinary same-source positive-delay rescue is absent under the rigid exact-$c_f$ circular convention, inventory attraction bias does not imply force closure, resolved positive-delay root rows do not imply force closure, and sampled phase or polarity-phase improvements do not imply retention. These are negative results for rigid fixed-speed octahedral hypotheses, not rejections of the broader neutral swarm, shell swarm, nested shell swarm, bounded-speed, controlled self-hit, fold-layer, or medium-response programs.
@@ -151,13 +151,13 @@ R_-\leq
 \left\| X_i(t)-C(t)\right\|
 \leq R_+,
 \qquad
-i=1,\ldots,6.
+i=1,\ldots,6
 $$
 
 A narrow shell branch has small relative spread,
 
 $$
-\frac{R_+-R_-}{R_*}\leq\varepsilon_{\mathrm{shell}},
+\frac{R_+-R_-}{R_*}\leq\varepsilon_{\mathrm{shell}}
 $$
 
 while a broader shell branch keeps only the hollow-band condition. This is still not the nested shell swarm. It is a one-band neutral swarm whose support is spatially organized strongly enough to produce a persistent exclusion envelope, shielding pattern, and Noether sea coupling channel.
@@ -169,7 +169,7 @@ $$
 =
 \frac{
 \left\| X_i(t)+X_{\iota(i)}(t)-2C(t)\right\|
-}{R_*}.
+}{R_*}
 $$
 
 Exact antipodality, $\delta_{\mathrm{anti},i}=0$, is an ideal symmetry chart. It should not be expected in ordinary conditions: an external potential can disturb one member of the matching first, and the delayed response takes time to circulate through the full six-body causal ledger. The physical shell claim is therefore near-antipodality plus recovery,
@@ -181,7 +181,7 @@ $$
 \qquad
 \delta_{\mathrm{anti},i}(t+T_{\mathrm{rec}})
 \leq
-\kappa\,\delta_{\mathrm{anti},i}(t)+\varepsilon_{\mathrm{drive}},
+\kappa\,\delta_{\mathrm{anti},i}(t)+\varepsilon_{\mathrm{drive}}
 $$
 
 for a branch interval $J$, recovery time $T_{\mathrm{rec}}$, contraction factor $0\leq\kappa<1$, and driving residue $\varepsilon_{\mathrm{drive}}$. Near-antipodality is useful because it captures the shell branch's tendency to restore opposite-side balance without pretending that the two matched architrinos remain in lockstep under perturbation.
@@ -237,7 +237,7 @@ $$
 \qquad
 k_a\in\mathbb{Z},
 \qquad
-a\in\{I,M,O\}.
+a\in\{I,M,O\}
 $$
 
 The integers $k_a$ are winding counts over the closure period. They are not a claim that the layer frequencies are integer-valued at every instant. The surrounding root ledger records which self-hit, partner-hit, and inter-layer branches made the closure admissible.
@@ -257,7 +257,7 @@ h=\text{action per accepted cycle},
 \qquad
 A_N=Nh,
 \qquad
-E_N=A_N\nu_N.
+E_N=A_N\nu_N
 $$
 
 Here $h$ is the fixed closed-cycle action unit, $N$ is the integer number of accepted action units carried by the branch, $A_N$ is the total branch action level, and $\nu_N$ is a representative cadence extracted from the closed nested shell swarm branch. A one-$h$ transaction changes the action ledger; a branch with many accepted units is scaled by $Nh$. The accepted branch may answer through one or more of the cadence, layer radii, envelope scale, envelope ratio, orientation, strain, and inter-layer wake-exchange variables:
@@ -267,7 +267,7 @@ $$
 \quad\Rightarrow\quad
 (\nu_N,\ R_I,R_M,R_O,\ \lambda,\ \xi,\ \mathcal{G}_{IM},\mathcal{G}_{IO},\mathcal{G}_{MO})
 \longmapsto
-(\nu_N',\ R_I',R_M',R_O',\ \lambda',\ \xi',\ \mathcal{G}_{IM}',\mathcal{G}_{IO}',\mathcal{G}_{MO}').
+(\nu_N',\ R_I',R_M',R_O',\ \lambda',\ \xi',\ \mathcal{G}_{IM}',\mathcal{G}_{IO}',\mathcal{G}_{MO}')
 $$
 
 In the simplest fixed-speed layer estimate,
@@ -275,7 +275,7 @@ In the simplest fixed-speed layer estimate,
 $$
 v_\ell\sim 2\pi R_\ell\nu_\ell,
 \qquad
-\ell\in\{I,M,O\}.
+\ell\in\{I,M,O\}
 $$
 
 If a branch keeps $v_\ell$ approximately fixed while accepting the transaction, then
@@ -285,7 +285,7 @@ R_\ell\nu_\ell\approx\text{constant},
 \qquad
 \Delta\nu_\ell>0\Rightarrow\Delta R_\ell<0,
 \qquad
-\Delta\nu_\ell<0\Rightarrow\Delta R_\ell>0.
+\Delta\nu_\ell<0\Rightarrow\Delta R_\ell>0
 $$
 
 The proof target is the constrained map, not only this sign rule. On a fixed branch chart $q$, collect the logarithmic retuning variables into
@@ -297,7 +297,7 @@ $$
 \ln\nu_I,\ln\nu_M,\ln\nu_O,\,
 \ln R_I,\ln R_M,\ln R_O,\,
 \ln\lambda,\ln\xi
-\right)_q^{T}.
+\right)_q^{T}
 $$
 
 Let $A_{\mathrm{cyc},q}(\mathbf{y},\mathcal{G})$ be the closed-cycle action ledger on that chart, and let
@@ -313,7 +313,7 @@ D A_{\mathrm{cyc},q}[\Delta\mathbf{y}]
 +
 \Delta A_{\mathrm{wake}}
 =
-\sigma h,
+\sigma h
 $$
 
 together with the branch-preservation condition
@@ -322,7 +322,7 @@ $$
 D\mathcal{C}_q[\Delta\mathbf{y}]
 +
 \Delta\mathcal{C}_{\mathcal{G}}
-=0.
+=0
 $$
 
 If $\Delta\mathcal{C}_{\mathcal{G}}=0$, the retuning stays on the same causal-root ledger. If $\Delta\mathcal{C}_{\mathcal{G}}\neq0$, the event is a branch transition and must be treated as a separator crossing or causal-locus reconnection rather than as smooth single-swarm drift.
@@ -336,7 +336,7 @@ $$
 \longmapsto
 \left(
 \Delta\nu_N,\Delta R_I,\Delta R_M,\Delta R_O,\Delta\lambda,\Delta\xi
-\right),
+\right)
 $$
 
 where $\theta_{\mathrm{env}}$ records the local Noether sea state and neighboring-assembly conditions. The representative cadence increment is an extraction from the layer increments, for example
@@ -350,7 +350,7 @@ w_M^{(q)}\Delta\ln\nu_M
 +
 w_O^{(q)}\Delta\ln\nu_O,
 \qquad
-w_I^{(q)}+w_M^{(q)}+w_O^{(q)}=1,
+w_I^{(q)}+w_M^{(q)}+w_O^{(q)}=1
 $$
 
 with the weights determined by the same branch and exposure record used for clock and medium coupling. The full nested shell swarm need not put the entire transaction into a single layer. One layer may tighten while another expands, and the outer envelope may change through $\lambda$ or $\xi$, provided the total closure label remains admissible.
@@ -364,7 +364,7 @@ The cadence-scale retuning map becomes more predictive when a homogeneous pool o
 $$
 A_N=Nh,
 \qquad
-N\in\mathbb{Z}_{>0}.
+N\in\mathbb{Z}_{>0}
 $$
 
 For the outer binary, write the outer action allocation as
@@ -373,13 +373,13 @@ $$
 N_O=p_O^{(q)}N,
 \qquad
 I_O=N_O\hbar
-=p_O^{(q)}N\frac{h}{2\pi}.
+=p_O^{(q)}N\frac{h}{2\pi}
 $$
 
 Here $p_O^{(q)}$ is the branch share carried by the outer binary. With the reduced circular-action chart
 
 $$
-I_O=\mu_O^{\mathrm{rot}}R_O v_O,
+I_O=\mu_O^{\mathrm{rot}}R_O v_O
 $$
 
 the action ledger determines the product
@@ -438,7 +438,7 @@ A different closure comes from a bare inverse-square radial balance. If the dela
 $$
 \frac{v_O^2}{R_O}
 =
-\frac{K_O}{4R_O^2}\mathcal{B}_O(\beta_O;\Lambda_O),
+\frac{K_O}{4R_O^2}\mathcal{B}_O(\beta_O;\Lambda_O)
 $$
 
 and if $\mathcal{B}_O$ is approximately constant on the compared segment, then the same action product gives
@@ -458,7 +458,7 @@ Thus the $Nh$ ledger alone does not canonize a single radius curve. It supplies 
 If the outer binary instead carries a declared outer energy projection
 
 $$
-E_O(N)=\zeta_O^{(q)}\mu_O^{\mathrm{rot}}v_O^2,
+E_O(N)=\zeta_O^{(q)}\mu_O^{\mathrm{rot}}v_O^2
 $$
 
 then
@@ -483,13 +483,13 @@ The same chart also gives a packing readout for the Noether sea. In a nearly sph
 $$
 R_{\mathrm{excl}}
 =
-\alpha_O^{(q)}R_O,
+\alpha_O^{(q)}R_O
 $$
 
 where $\alpha_O^{(q)}$ converts the outer-binary radius into the selected exclusion-interface threshold. Equal exclusion-envelope center contact then occurs at
 
 $$
-d_{\mathrm{nn}}=2R_{\mathrm{excl}},
+d_{\mathrm{nn}}=2R_{\mathrm{excl}}
 $$
 
 and the densest ordinary equal-sphere center density is
@@ -497,7 +497,7 @@ and the densest ordinary equal-sphere center density is
 $$
 \rho_{\mathrm{NS},\max}^{\#}
 =
-\frac{1}{4\sqrt{2}R_{\mathrm{excl}}^3}.
+\frac{1}{4\sqrt{2}R_{\mathrm{excl}}^3}
 $$
 
 The legacy density symbol is retained as packing notation for this chart. It names the maximum center density of the relevant Noether swarm exclusion envelopes, not a separate swarm type. Therefore the packing curve inherits the radius closure:
@@ -505,7 +505,7 @@ The legacy density symbol is retained as packing notation for this chart. It nam
 $$
 \rho_{\mathrm{NS},\max}^{\#}(N)
 \propto
-R_O(N)^{-3}.
+R_O(N)^{-3}
 $$
 
 For example, the fixed-speed branch gives $\rho_{\mathrm{NS},\max}^{\#}\propto N^{-3}$, while the bare inverse-square branch with approximately constant $\mathcal{B}_O$ gives $\rho_{\mathrm{NS},\max}^{\#}\propto N^{-6}$. These are branch diagnostics, not competing definitions of a Noether swarm.
@@ -515,7 +515,7 @@ This packing formula is only the spherical leading estimate. At high relative ve
 $$
 p_O^{(q)},\ \mu_O^{\mathrm{rot}},\ \alpha_O^{(q)},\ \mathcal{B}_O(\beta_O;\Lambda_O)
 \longrightarrow
-p_O(q,\theta_{\mathrm{env}}),\ \mu_O^{\mathrm{rot}}(q,\theta_{\mathrm{env}}),\ \alpha_O(q,\theta_{\mathrm{env}}),\ \mathcal{B}_O(\beta_O;\Lambda_O,\theta_{\mathrm{env}}).
+p_O(q,\theta_{\mathrm{env}}),\ \mu_O^{\mathrm{rot}}(q,\theta_{\mathrm{env}}),\ \alpha_O(q,\theta_{\mathrm{env}}),\ \mathcal{B}_O(\beta_O;\Lambda_O,\theta_{\mathrm{env}})
 $$
 
 The scaling curve is therefore piecewise by branch. Once the branch supplies $\xi$ and $\lambda$, the exclusion envelope must be treated as an oblate spheroid rather than a sphere, and the center-density calculation must inherit orientation, strain, and Noether sea delay data from the same branch label.
@@ -532,7 +532,7 @@ k_I,k_M,k_O;\
 \mathcal{G}_I,\mathcal{G}_M,\mathcal{G}_O;\
 \mathcal{G}_{IM},\mathcal{G}_{IO},\mathcal{G}_{MO};\
 \chi_c
-\right).
+\right)
 $$
 
 Here $k_I,k_M,k_O$ are the layer winding counts over the chosen return period. The layer ledgers $\mathcal{G}_I,\mathcal{G}_M,\mathcal{G}_O$ record active self-hit and partner-hit branches, root multiplicities, winding or phase branch, emission-order data, and separator history. The inter-layer ledgers $\mathcal{G}_{IM},\mathcal{G}_{IO},\mathcal{G}_{MO}$ record delayed exchange roots and phase-lock constraints between binary layers. The branch label $\chi_c$ records ordered swarm chirality; the current candidate data are the `HML/HLM` ordered-swarm distinction together with $Wr_c$ or a multi-component causal-writhe parity.
@@ -551,7 +551,7 @@ $$
 v_M=c_f,\;v_O\to c_f\\
 \text{coplanar/co-linear binary layers}\\
 \text{precession ceases}
-}},
+}}
 $$
 with the remaining admissible entries inherited from the layer ledgers, inter-layer ledgers, chirality entry, and emitted wake envelope. For a connected block $U$ of alignment-area patches, the local label set to be counted has the schematic form
 $$
@@ -565,7 +565,7 @@ $$
 \text{conservation and interface compatibility hold}
 \right\}
 /
-\sim_{O,\theta,W}.
+\sim_{O,\theta,W}
 $$
 Here $\mathcal{G}_{\partial U}$ records the causal-root and wake-exchange compatibility across the edge of the block. This expression does not yet derive the entropy coefficient. It identifies the native object whose block entropy density must be computed before $\log|\mathcal{L}_U|/|U|\to1/4$ can be treated as more than a comparison target.
 

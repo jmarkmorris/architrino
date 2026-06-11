@@ -7,7 +7,7 @@ An architrino can intersect an expanding causal isochron that it emitted earlier
 - Root multiplicity and self-roots:
   - The simulation should open the self-hit channel only when it finds same-source roots
     $$
-    \mathcal{C}_{aa}(t)=\{\,s<t:\|\mathbf{x}_a(t)-\mathbf{x}_a(s)\|=c_f(t-s)\,\}.
+    \mathcal{C}_{aa}(t)=\{\,s<t:\|\mathbf{x}_a(t)-\mathbf{x}_a(s)\|=c_f(t-s)\,\}
     $$
     A speed excursion above $c_f$ flags a candidate interval; it is not an acceptance test without root existence and a nonzero Jacobian/transversality margin.
 

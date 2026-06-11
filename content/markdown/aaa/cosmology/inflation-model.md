@@ -51,7 +51,7 @@ $$
 +
 \Delta \rho_{\mathrm{radiation}}
 +
-\Delta \rho_{\mathrm{locked}},
+\Delta \rho_{\mathrm{locked}}
 $$
 
 with each term tied to the same Noether sea response variables used by the CMB, BBN, and expansion modules. This preserves the perturbation-success target of inflationary models while rejecting a free "use it, then lose it" vacuum-energy channel.
@@ -68,7 +68,7 @@ $$
 $$
 within the declared observational tolerances, with
 $$
-r^{\theta}(k_*)\le r_{\max}.
+r^{\theta}(k_*)\le r_{\max}
 $$
 
 The scalar/tensor gate should be read as a closure burden on the high-curvature transfer channel. If $\mathbb{A}\mathbb{A}\mathbb{A}$ uses SMBH-core or horizon-interface dynamics to explain inflation-like behavior, those dynamics must supply the same near-Gaussian scalar spectrum and allowed tensor sector without retuning the CMB, BBN, and expansion interfaces separately.
@@ -84,7 +84,7 @@ Z_X^\theta
 Z_{\mathrm{endpoint},X}^{\theta}
 +Z_{\mathrm{source},X}^{\theta}
 +Z_{\mathrm{launch},X}^{\theta}
-+Y_{X,\mathrm{path}}^{\theta},
++Y_{X,\mathrm{path}}^{\theta}
 $$
 with $Y_{X,\mathrm{path}}^\theta$ carrying any Compton/Sunyaev-Zeldovich-like exchange rows. A branch may use $a_\theta$ and $N_\theta$ only after this budget has been reduced to the homogeneous comparison limit. The first comparison slow-roll coordinate is
 $$
@@ -101,7 +101,7 @@ $$
 \varepsilon_\theta
 -
 \frac{1}{2\varepsilon_\theta}
-\frac{d\varepsilon_\theta}{dN_\theta}.
+\frac{d\varepsilon_\theta}{dN_\theta}
 $$
 If a branch introduces an effective potential surrogate $V_\theta(\varphi)$ for comparison with single-field models, it must also expose
 $$
@@ -113,7 +113,7 @@ $$
 \eta_{v,\theta}
 \equiv
 M_{\mathrm{pl}}^2
-\frac{V_{\theta,\varphi\varphi}}{V_\theta},
+\frac{V_{\theta,\varphi\varphi}}{V_\theta}
 $$
 with $\varepsilon_\theta\approx\epsilon_{v,\theta}$ and $\eta_\theta\approx\eta_{v,\theta}-\epsilon_{v,\theta}$ only in the effective slow-roll limit. These are not new substrate fields; they are a way to test whether the release record lands in the same observable region as slow-roll inflation.
 
@@ -131,7 +131,7 @@ $$
 \left.
 \frac{2H_\theta^2}
 {\pi^2M_{\mathrm{pl}}^2}
-\right|_{k=a_\theta H_\theta},
+\right|_{k=a_\theta H_\theta}
 $$
 so that
 $$
@@ -143,7 +143,7 @@ r^\theta
 =
 \frac{\Delta_{\mathrm{t}}^{2,\theta}}{\Delta_{\mathrm{s}}^{2,\theta}}
 \approx
-16\varepsilon_\theta.
+16\varepsilon_\theta
 $$
 A branch that claims a slow-roll-like scalar/tensor match should therefore supply $\{\varepsilon_\theta,\eta_\theta,N_\theta,\Delta_{\mathrm{s}}^{2,\theta},\Delta_{\mathrm{t}}^{2,\theta},n_s^\theta,r^\theta\}$ from one high-curvature release record. If it also predicts a bispectrum, the single-field slow-roll comparison target is $f_{\mathrm{NL}}^\theta=O(\varepsilon_\theta,\eta_\theta)$; a large non-Gaussian residual requires an explicit additional interaction, branch, or source-measure record.
 
@@ -153,7 +153,7 @@ $$
 =
 d_\Omega\!\left(\Omega_k^{\theta},\Omega_k^{\mathrm{obs}}\right)
 +d_{\mathrm{loc}}\!\left(S_{PW}^{\theta},S_{PW}^{\mathrm{obs}}\right)
-+d_{\mathrm{shared}}\!\left(\theta_{\mathrm{CMB}},\theta_{\mathrm{growth}}\right).
++d_{\mathrm{shared}}\!\left(\theta_{\mathrm{CMB}},\theta_{\mathrm{growth}}\right)
 $$
 Here $S_{PW}$ is the cross-map localized-feature statistic defined in [CMB](./CMB.md), and $d_{\mathrm{shared}}$ penalizes a fit that explains localized features or curvature by changing the cosmology state independently from the acoustic peaks, lensing, BAO, BBN, or structure-growth records. A positive localized feature, negative-curvature trend, or bubble-collision-style template would be an observational pressure to explain, not evidence that the external population picture has become $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology.
 
@@ -172,7 +172,7 @@ w_X(a),\;
 \Delta N_{\text{eff}}^X,\;
 \lambda_{\mathrm{fs}}^X,\;
 \Omega_{\mathrm{GW}}^X(f)
-\right),
+\right)
 $$
 where $\Omega_X(a)$ and $w_X(a)$ summarize effective energy density and equation of state, $\tau_X$ is the decay or handoff timescale if the branch is transient, $\Delta N_{\text{eff}}^X$ is the relativistic-species contribution, $\lambda_{\mathrm{fs}}^X$ is the structure-growth free-streaming scale, and $\Omega_{\mathrm{GW}}^X(f)$ is the stochastic gravitational-wave energy-density spectrum when present. The branch is admissible only if the same $\theta_{\mathrm{sea}}$ used for the scalar/tensor, BBN, CMB, and growth records satisfies
 $$
@@ -184,7 +184,7 @@ $$
 \frac{\|\Delta P^X(k,z)\|}{\epsilon_{\mathrm{growth}}},
 \sup_f\frac{\Omega_{\mathrm{GW}}^X(f)}{\Omega_{\mathrm{GW}}^{\max}(f)}
 \right)
-\le 1.
+\le 1
 $$
 This gate preserves the observable pressure while rejecting the interpretation shortcut. A pre-BBN branch that disappears only by changing state variables between BBN, CMB, structure formation, and gravitational-wave comparisons is not hidden; it has split the cosmology record.
 
@@ -198,7 +198,7 @@ f_X,\;
 t_f(M),\;
 \Gamma_{\mathrm{release}}^X(E,t),\;
 \Delta\mathbf{x}_{\mathrm{ephem}}^X(t)
-\right).
+\right)
 $$
 Here $\psi_X(M)$ is the comparison mass function, $f_X$ is the dark-sector fraction in that branch, $t_f(M)$ is the inferred formation or release clock, $\Gamma_{\mathrm{release}}^X$ is any Hawking-like or native release spectrum, and $\Delta\mathbf{x}_{\mathrm{ephem}}^X$ is retained only for late-time local-detection consistency. These variables do not add compact-object ontology to the inflation module; they make explicit which observables a pre-BBN compact branch must carry into the BBN, CMB, growth, gravitational-wave, and local-detection ledgers.
 
@@ -215,14 +215,14 @@ Planck scale is treated as an alignment-horizon state of assemblies, not a minim
 Use an effective expansion history for comparison work:
 
 $$
-H^2(a) = H_0^2\left[\Omega_r a^{-4} + \Omega_m a^{-3} + \Omega_{\text{eff}}(a)\right],
+H^2(a) = H_0^2\left[\Omega_r a^{-4} + \Omega_m a^{-3} + \Omega_{\text{eff}}(a)\right]
 $$
 
 where $\Omega_{\text{eff}}(a)$ encodes the emergent high-curvature phase and its relaxation.
 
 As a toy kinematic decomposition, one can also track the expansion-rate profile by assigning separate qualitative roles to the three nested branches:
 $$
-\dot{R}(t) = v_I(t) + c_f + v_O(t).
+\dot{R}(t) = v_I(t) + c_f + v_O(t)
 $$
 Here the inner contribution $v_I(t)$ plays the role of a decaying high-curvature release term, the constant $c_f$ marks the transport/horizon channel, and the outer contribution $v_O(t)$ captures slower volumetric rebound. This is not a closed cosmological derivation, but it is a compact way to encode the intuition that inflation-like release, horizon-scale transport, and late-time expansion can all be read as different branches of the same nested shell swarm process.
 

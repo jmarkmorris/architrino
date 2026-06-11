@@ -53,7 +53,7 @@ $$
 \longrightarrow
 \{B_i\}
 \longrightarrow
-\mathcal{L}_{E\mathbf{p}\mathbf{J}}.
+\mathcal{L}_{E\mathbf{p}\mathbf{J}}
 $$
 
 Here $\mathcal{R}$ is the replayable residual computed from the local assembly state, path-history ledger, Noether swarm density, Noether sea delay factor, and any named sector variables. The set $\{B_i\}$ is the finite list of admissible output channels, such as retuning, bound excitation, radiation, recoil, medium heating, weak or nuclear reaction, record formation, release channel, or branch transition. The event ledger $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the balance object that must close after all selected outputs are named.
@@ -69,13 +69,13 @@ X
 \rho_{\text{NS}}(\mathbf{x},t),
 \chi_{\text{sea}}(\mathbf{x},t),
 Z_S
-\right),
+\right)
 $$
 
 where $Z_S$ denotes sector-local variables such as nuclear configuration, weak-corridor data, apparatus state, or horizon-interface boundary data when those variables control the route. A routed reaction event is a triple
 
 $$
-\mathsf e=(X,I_{\mathsf e},Y_{\mathsf e}),
+\mathsf e=(X,I_{\mathsf e},Y_{\mathsf e})
 $$
 
 where $I_{\mathsf e}$ is the selected finite channel set and $Y_{\mathsf e}$ lists outgoing assemblies, recoil targets, medium updates, remnant states, and provenance records. A single reaction vertex may select more than one output channel when photon output, recoil, medium update, and reaction products are simultaneous terms in one closed event.
@@ -94,7 +94,7 @@ $$
 \Delta_{\mathrm{path}},
 \Delta_{\mathrm{med}},
 \Delta_{\mathrm{rem}}
-\right)(\mathsf e).
+\right)(\mathsf e)
 $$
 
 Ledger closure means:
@@ -112,7 +112,7 @@ $$
 =
 \mathcal Q_{\mathrm{src}}^{-}
 -
-\mathcal Q_{\mathrm{src}}^{+}.
+\mathcal Q_{\mathrm{src}}^{+}
 $$
 
 A resolved radiative event closes only if
@@ -130,7 +130,7 @@ $$
 +
 \mathcal Q_{\mathrm{handoff}}^{0}
 +
-\mathcal Q_{\mathrm{rem}}^{0},
+\mathcal Q_{\mathrm{rem}}^{0}
 $$
 
 with normalized residual
@@ -161,7 +161,7 @@ $$
 \left\|
 \Delta\mathcal Q_{\mathrm{src}}^{0}
 \right\|
-}.
+}
 $$
 
 The Gate B angular-momentum row is the $\mathcal Q=\mathbf J$ projection of this same identity. Let the event window be labeled by superscript $0$, and let $\mathbf J_{\mathrm{src}}^-$ and $\mathbf J_{\mathrm{src}}^+$ be the source angular-momentum ledger before and after the event. Define
@@ -171,7 +171,7 @@ $$
 =
 \mathbf J_{\mathrm{src}}^-
 -
-\mathbf J_{\mathrm{src}}^+.
+\mathbf J_{\mathrm{src}}^+
 $$
 
 The photon event row is
@@ -189,7 +189,7 @@ $$
 +
 \mathbf J_{\mathrm{handoff}}^{0}
 +
-\mathbf J_{\mathrm{rem}}^{0}.
+\mathbf J_{\mathrm{rem}}^{0}
 $$
 
 Define the corresponding balance defect by
@@ -209,7 +209,7 @@ $$
 -
 \mathbf J_{\mathrm{handoff}}^{0}
 -
-\mathbf J_{\mathrm{rem}}^{0}.
+\mathbf J_{\mathrm{rem}}^{0}
 $$
 
 For a Gate B-admissible photon row, helicity is the projection
@@ -219,7 +219,7 @@ $$
 =
 \frac{\hat{\mathbf e}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}}{\hbar},
 \qquad
-\lambda_{\mathrm{hel}}\in\{+1,-1\},
+\lambda_{\mathrm{hel}}\in\{+1,-1\}
 $$
 
 and the event balance bounds the projection error:
@@ -246,7 +246,7 @@ $$
 }{\hbar}
 \right|
 \le
-\frac{\|\mathbf B_{\gamma}^{0}\|}{\hbar}.
+\frac{\|\mathbf B_{\gamma}^{0}\|}{\hbar}
 $$
 
 The normalized event-balance residual is
@@ -272,7 +272,7 @@ $$
 \right\|
 }{
 1+\left\|\Delta\mathbf J_{\mathrm{src}}^{0}\right\|
-}.
+}
 $$
 
 The denominator is understood in the normalized angular-momentum units of the event ledger. Missing source, recoil, medium, wake, handoff, or remnant rows keep the photon record provisional even when the outgoing photon substrate ledger is algebraically clean.
@@ -289,7 +289,7 @@ such that, for every routed identity $a$,
 $$
 q_{\Pi_{\mathsf e}(a)}=q_a,\qquad
 q_a=\sigma_a\epsilon,\qquad
-\sigma_a\in\{-1,+1\}.
+\sigma_a\in\{-1,+1\}
 $$
 Equivalently, the polarity inventory vector
 $$
@@ -360,7 +360,7 @@ Minimum weak-channel records should therefore include:
 Observer-level notation:
 
 $$
-t \to b + W^+,\qquad W^+ \to e^+ + \nu_e.
+t \to b + W^+,\qquad W^+ \to e^+ + \nu_e
 $$
 
 Native status: provisional weak-reaction provenance map.
@@ -368,7 +368,7 @@ Native status: provisional weak-reaction provenance map.
 The active quark change is an axial-layer reconfiguration. In the current assembly catalog, the top-to-bottom transition is represented as a shift from the top axial pattern to the bottom axial pattern:
 
 $$
-(1E,5P)_{\text{axial}} \to (4E,2P)_{\text{axial}}.
+(1E,5P)_{\text{axial}} \to (4E,2P)_{\text{axial}}
 $$
 
 Equivalently, the active quark sector requires a $+3E,-3P$ axial exchange. In observer language this is the $W^+$ channel. In substrate language it is a transient payload and coupling event whose geometry, chirality selection, and energy routing still need closure.
@@ -390,13 +390,13 @@ This channel should not be presented as a completed architrino derivation until 
 Observer-level notation:
 
 $$
-n \to p + e^- + \bar{\nu}_e,
+n \to p + e^- + \bar{\nu}_e
 $$
 
 with the active quark-level comparison
 
 $$
-d \to u + W^-,\qquad W^- \to e^- + \bar{\nu}_e.
+d \to u + W^-,\qquad W^- \to e^- + \bar{\nu}_e
 $$
 
 Native label: free-neutron beta reaction.
@@ -406,7 +406,7 @@ The spectator structure is straightforward: one $u$ and one $d$ in the neutron p
 The axial-layer comparison is:
 
 $$
-(4E,2P)_{\text{axial}} \to (1E,5P)_{\text{axial}}.
+(4E,2P)_{\text{axial}} \to (1E,5P)_{\text{axial}}
 $$
 
 So the active quark assembly sheds three $E$-type axial units and receives three $P$-type axial units. The natural provenance hypothesis is that local neutral Noether sea material supplies the compensating polarity units while the ejected $E$-type material participates in electron axial-layer formation.

@@ -18,7 +18,7 @@ Delay differential equations (two-body, v=1):
   \sum_{t_0\in\mathcal{C}_2(t)}
   +\,\kappa\,\epsilon^2\,\frac{\mathrm{sgn}\!\big(x_1(t)-x_2(t_0)\big)}{r_{12}^2},
   \quad
-  r_{12}=\big|x_1(t)-x_2(t_0)\big|,
+  r_{12}=\big|x_1(t)-x_2(t_0)\big|
   $$
   $$
   a_2(t)
@@ -26,7 +26,7 @@ Delay differential equations (two-body, v=1):
   \sum_{t_0\in\mathcal{C}_1(t)}
   -\,\kappa\,\epsilon^2\,\frac{\mathrm{sgn}\!\big(x_2(t)-x_1(t_0)\big)}{r_{21}^2},
   \quad
-  r_{21}=\big|x_2(t)-x_1(t_0)\big|.
+  r_{21}=\big|x_2(t)-x_1(t_0)\big|
   $$
 - Symmetry implies $x_1(t)=-x_2(t)$ and $a_1(t)=-a_2(t)$ for all $t$ given symmetric initial data.
 

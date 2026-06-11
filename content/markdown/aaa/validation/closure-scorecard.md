@@ -75,7 +75,7 @@ D_{a,X}(\mathbf{x},t)
 \left\|\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf{x},t)\right\|
 +
 \left\|\mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf{x},t)\right\|
-},
+}
 $$
 
 with locked and ambient contributions built from the same causal-root kernel, Jacobian floors, branch records, channel projections, and ledger-derived tolerance scales. This justifies raising Axiom+Notation, Cross-Regime Bridge, Internal Constituent Dynamics, and Coverage+Interface Readiness, while keeping the claim below full closure because the interface diagnostic is still a recovery target rather than a validated medium-response theorem.
@@ -86,7 +86,7 @@ $$
 \mathcal{R}_{\mathrm{branch}}
 \left(
 B;\Theta_{\mathrm{sea}},\Theta_{\mathrm{asm}},\mathcal{H}_{\partial\Omega}
-\right)=0,
+\right)=0
 $$
 
 with the force-ledger split
@@ -100,7 +100,7 @@ F_{i,\mathrm{sea}}
 +
 F_{i,\mathrm{asm}}
 +
-F_{i,\partial\Omega}.
+F_{i,\partial\Omega}
 $$
 
 This is a concrete mathematical advance because it prevents isolated seed charts from being read as physical branch closure unless Noether sea, assembly, and boundary residuals are statused. It supports modest increases in Master EOM+Local Dynamics, Potential+Action Closure, Conservation+Invariant Closure, Parameter+Scale Closure, and UV/IR+Regularization Completion.

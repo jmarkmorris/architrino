@@ -29,7 +29,7 @@ $$
 \qquad
 q_1=-\epsilon,
 \qquad
-q_2=+\epsilon.
+q_2=+\epsilon
 $$
 Write
 $$
@@ -37,11 +37,11 @@ $$
 \qquad
 \hat{\mathbf e}_r(t)\equiv \frac{\mathbf r(t)}{\rho(t)},
 \qquad
-\hat{\mathbf e}_\theta(t)\equiv R_{\pi/2}\hat{\mathbf e}_r(t),
+\hat{\mathbf e}_\theta(t)\equiv R_{\pi/2}\hat{\mathbf e}_r(t)
 $$
 and decompose
 $$
-\dot{\mathbf r}(t)=u_r(t)\hat{\mathbf e}_r(t)+u_\theta(t)\hat{\mathbf e}_\theta(t).
+\dot{\mathbf r}(t)=u_r(t)\hat{\mathbf e}_r(t)+u_\theta(t)\hat{\mathbf e}_\theta(t)
 $$
 
 This is the smallest regime that still contains all the new burdens that matter:
@@ -57,11 +57,11 @@ The natural section should remove rigid planar rotation locally and fix only one
 $$
 \mathbf r(0)=\rho_\ast \mathbf e_1,
 \qquad
-\mathbf e_2\cdot \dot{\mathbf r}(0)>0,
+\mathbf e_2\cdot \dot{\mathbf r}(0)>0
 $$
 so that the section-defining equality is
 $$
-\rho(0)=\rho_\ast.
+\rho(0)=\rho_\ast
 $$
 
 This choice serves three purposes:
@@ -72,7 +72,7 @@ This choice serves three purposes:
 
 The first local target is stricter than mere section definition: histories in the seed packet should satisfy a quantitative transversality condition
 $$
-\dot{\rho}(0)\le -u_r<0,
+\dot{\rho}(0)\le -u_r<0
 $$
 so that the first return time is not born tangent to the section. Without such a margin, the gauge-reset map for the returned history need not depend continuously on the return event.
 
@@ -88,7 +88,7 @@ The right conceptual bridge to [Causal Action Functional](../dynamics/causal-act
 $$
 F(t,t')=0,
 \qquad
-\nabla F(t,t')=0.
+\nabla F(t,t')=0
 $$
 So the opening burden is not yet a whole-cycle branch census. It is to prove enough local transversality that the planar delayed geometry stays away from the singular directions long enough to support a finite branch atlas on an initial excursion slab.
 
@@ -176,15 +176,15 @@ $$
 be the first candidate outward-to-inward turnaround window in the reduced
 planar history, with
 $$
-\dot\rho(t_a)>0.
+\dot\rho(t_a)>0
 $$
 Write the net radial acceleration from the delayed master equation as
 $$
-a_r(t)=\mathbf a(t)\cdot\hat{\mathbf e}_r(t),
+a_r(t)=\mathbf a(t)\cdot\hat{\mathbf e}_r(t)
 $$
 so that
 $$
-\ddot\rho(t)=a_r(t)+\frac{u_\theta^2(t)}{\rho(t)}.
+\ddot\rho(t)=a_r(t)+\frac{u_\theta^2(t)}{\rho(t)}
 $$
 Define the inward delayed budget and tangential leakage budget by
 $$
@@ -194,7 +194,7 @@ B_{\mathrm{in}}
 \qquad
 B_\theta
 \equiv
-\int_{t_a}^{t_b}\frac{u_\theta^2(t)}{\rho(t)}\,dt.
+\int_{t_a}^{t_b}\frac{u_\theta^2(t)}{\rho(t)}\,dt
 $$
 Let
 $$
@@ -220,7 +220,7 @@ E_{\mathrm{gauge}}
 \ge
 \dot\rho(t_a)+\gamma_{\mathrm{turn}},
 \qquad
-\gamma_{\mathrm{turn}}>0.
+\gamma_{\mathrm{turn}}>0
 $$
 This implies
 $$
@@ -234,7 +234,7 @@ recapture before the return map can close.
 This budget also fixes what the later gauge-continuity row must provide. The
 return event must satisfy a transverse crossing margin
 $$
-|\dot\rho(T_{\mathrm{ret}})|\ge\nu_{\mathrm{ret}}>0,
+|\dot\rho(T_{\mathrm{ret}})|\ge\nu_{\mathrm{ret}}>0
 $$
 and the compensating rotation angle must have a bounded sensitivity on the same
 history box. Otherwise the gauge-reset map can lose continuity even if the
@@ -294,7 +294,7 @@ The next sequence should be short and disciplined.
 3. Prove a bounded caustic-transit theorem for the first planar fold tube.
 4. Prove the radial leakage-budget inequality in which inward delayed forcing beats centrifugal leakage, fold uncertainty, branch uncertainty, and gauge-reset error with a strict
    $$
-   \gamma_{\mathrm{turn}}>0.
+   \gamma_{\mathrm{turn}}>0
    $$
 5. Assemble these ingredients into a tame-envelope return theorem with continuous gauge reset.
 

@@ -85,7 +85,7 @@ Z_X
 \qquad
 \rho_X
 =
-\frac{X_{\mathbb{A}\mathbb{A}\mathbb{A}}-X_{\mathrm{CODATA}}}{X_{\mathrm{CODATA}}},
+\frac{X_{\mathbb{A}\mathbb{A}\mathbb{A}}-X_{\mathrm{CODATA}}}{X_{\mathrm{CODATA}}}
 $$
 where $u(X)$ is the quoted standard uncertainty. If $X$ is exact by SI definition, the residual is not a measurement residual. The closure test is instead whether the same substrate-to-observer unit map recovers the exact convention while also passing the adjusted measured rows that depend on it.
 
@@ -209,7 +209,7 @@ The ledger above is only useful if the interfaces between layers stay explicit. 
 
 The regularized exact law uses the kernel-side set
 $$
-(c_f,\epsilon,\kappa,\eta).
+(c_f,\epsilon,\kappa,\eta)
 $$
 A representative regularized form is
 $$
@@ -218,7 +218,7 @@ $$
 \kappa\,\sigma_{ab}|q_aq_b|
 \int_{-\infty}^{t}\!dt_0\;
 \frac{\hat{\mathbf{r}}_{ab}(t;t_0)}{r_{ab}(t;t_0)^2}\,
-\delta_\eta\!\big(r_{ab}(t;t_0)-c_f(t-t_0)\big).
+\delta_\eta\!\big(r_{ab}(t;t_0)-c_f(t-t_0)\big)
 $$
 
 This is the substrate-side parameter core. Any exact or numerical closure that changes these symbols chapter by chapter is not a closed theory.
@@ -227,11 +227,11 @@ This is the substrate-side parameter core. Any exact or numerical closure that c
 
 The current substrate-to-observer charge map is
 $$
-|e| = 6\epsilon \sqrt{\kappa c_f}\,Z_e,
+|e| = 6\epsilon \sqrt{\kappa c_f}\,Z_e
 $$
 with canonical normalization choice
 $$
-Z_e=1.
+Z_e=1
 $$
 
 This relation is important because it shows that the elementary charge magnitude is not presently a primitive input in the architrino ontology. It is a recovered observer-level benchmark.
@@ -242,13 +242,13 @@ This equation is a normalization-sensitive substrate-to-observer reconstruction,
 
 The constitutive spacetime layer uses
 $$
-\rho_{\text{NS}}(\mathbf{x},t)=\rho_{\text{NS},0}\,n(\mathbf{x},t),
+\rho_{\text{NS}}(\mathbf{x},t)=\rho_{\text{NS},0}\,n(\mathbf{x},t)
 $$
 and
 $$
 \Phi_{\text{eff}}(\mathbf{x})
 =
-c_f^2\ln\!\big(\Omega(\mathbf{x})\xi(\mathbf{x})\big).
+c_f^2\ln\!\big(\Omega(\mathbf{x})\xi(\mathbf{x})\big)
 $$
 
 Here $\xi$ is the Noether swarm envelope shape ratio, while $\Omega\xi$ is the clock-rate factor used by this exponential metric subclass after the geometry-to-clock map is fixed.
@@ -257,7 +257,7 @@ This is the cleanest current statement of the Noether sea-to-metric handoff:
 $$
 (\delta_{ij},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{stress})
 \mapsto
-g_{\mu\nu}^{\text{eff}}.
+g_{\mu\nu}^{\text{eff}}
 $$
 
 ### 4. Weak-field PPN extraction
@@ -269,25 +269,25 @@ $$
 \frac{c_f}{c_{\text{eff}}(\mathbf{x})}
 =
 1-(1+\gamma_{\text{eff}})\frac{\Phi_N(\mathbf{x})}{c_f^2}
-+\mathcal{O}\!\left(\frac{\Phi_N^2}{c_f^4}\right),
++\mathcal{O}\!\left(\frac{\Phi_N^2}{c_f^4}\right)
 $$
 and
 $$
-\beta_{\text{eff}}=\frac{1+2C_2}{2}.
+\beta_{\text{eff}}=\frac{1+2C_2}{2}
 $$
 
 Preferred-frame leakage is encoded by
 $$
 \alpha_1=\Xi_1,\qquad
 \alpha_2=\Xi_2,\qquad
-\alpha_3=\Xi_1-\Xi_2-\Xi_3.
+\alpha_3=\Xi_1-\Xi_2-\Xi_3
 $$
 
 The zero-leakage closure condition is therefore
 $$
 \Xi_1=\Xi_2=\Xi_3=\Xi_4=0
 \quad\Longleftrightarrow\quad
-\alpha_1=\alpha_2=\alpha_3=0.
+\alpha_1=\alpha_2=\alpha_3=0
 $$
 
 ### 5. Mass map
@@ -296,7 +296,7 @@ The current assembly-side inertial map is
 $$
 m_{\text{inertial}}(A)
 \approx
-\alpha_{\mathrm{m}}\,\frac{\zeta(A)\,E_{\text{internal}}(A)}{c_{\text{eff}}^2},
+\alpha_{\mathrm{m}}\,\frac{\zeta(A)\,E_{\text{internal}}(A)}{c_{\text{eff}}^2}
 $$
 with $\alpha_{\mathrm{m}}$ fixed once by a reference assembly rather than re-fit separately for each particle.
 
@@ -313,14 +313,14 @@ p_{\text{int}}^a
 \qquad
 \mathcal{M}_{\text{sea}}^{ab}
 \to
-\frac{h^{ab}}{c_{\text{eff}}^2}.
+\frac{h^{ab}}{c_{\text{eff}}^2}
 $$
 
 Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate slice. The tensor $\mathcal{M}_{\text{sea}}^{ab}$ is not a particle-specific fit parameter. It is a constitutive closure target for the Noether sea response map.
 
 The first closure gate for this relation is the reference attractor $A_0$. It must report geometry, winding, root-ledger, stability, internal-energy, shielding, medium-response, and mass-facing outputs before any observed particle mass or charged-lepton ratio is used as a benchmark. The mass-facing output is the calibration-free combination
 $$
-\frac{\zeta(A_0)E_{\text{internal}}(A_0)}{E_0},
+\frac{\zeta(A_0)E_{\text{internal}}(A_0)}{E_0}
 $$
 together with the unresolved constants and response-map assumptions needed to turn that dimensionless coefficient into an observer-level mass prediction.
 
@@ -334,13 +334,13 @@ $$
 \qquad
 I_{\text{align}} \stackrel{\text{hyp.}}{\approx} \hbar,
 \qquad
-2\pi R_{\text{align}} = \ell_P,
+2\pi R_{\text{align}} = \ell_P
 $$
 and the effective gravity-side alignment estimate
 $$
 G_{\text{eff}}
 \equiv
-\frac{R_{\text{align}}^2 c_f^3}{\mathcal{A}_{\text{align}}^{\text{cycle}}}.
+\frac{R_{\text{align}}^2 c_f^3}{\mathcal{A}_{\text{align}}^{\text{cycle}}}
 $$
 
 These are not yet closed derivations. They are the current alignment-side targets connecting geometric closure to $(h,G)$.
@@ -351,11 +351,11 @@ The weak-mixing geometry note uses
 $$
 \sin^2\theta_W^{\text{bare}}=\frac14,
 \qquad
-\theta_W^{\text{bare}}=30^\circ,
+\theta_W^{\text{bare}}=30^\circ
 $$
 and the discrete axial-frame branch hypothesis
 $$
-\alpha_n=n\,\theta_W^{\text{bare}}.
+\alpha_n=n\,\theta_W^{\text{bare}}
 $$
 
 This means the present quark-sector use of $\alpha$ is a geometric branch label tied to a candidate bare electroweak increment, not yet a finished derivation of the measured weak angle.
@@ -404,7 +404,7 @@ Parameter closure fails if any of the following occurs:
 
 In compact form, the closure target is a nonempty shared parameter set
 $$
-\mathcal{P}_{\text{shared}} \neq \varnothing,
+\mathcal{P}_{\text{shared}} \neq \varnothing
 $$
 where $\mathcal{P}_{\text{shared}}$ is the common substrate-plus-constitutive set that survives particle, spacetime, and quantum-side tests simultaneously.
 

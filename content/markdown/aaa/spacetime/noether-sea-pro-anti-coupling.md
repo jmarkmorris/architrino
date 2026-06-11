@@ -19,16 +19,16 @@ At the continuum-medium level, represent local Noether swarm density with canoni
 $(\rho_{\text{NS}}, n)$ as two coupled components:
 
 $$
-\rho_{\text{NS}}(\mathbf{x},t) = \rho_{+}(\mathbf{x},t) + \rho_{-}(\mathbf{x},t),
+\rho_{\text{NS}}(\mathbf{x},t) = \rho_{+}(\mathbf{x},t) + \rho_{-}(\mathbf{x},t)
 $$
 $$
-n(\mathbf{x},t)\equiv \frac{\rho_{\text{NS}}(\mathbf{x},t)}{\rho_{\text{NS},0}},
+n(\mathbf{x},t)\equiv \frac{\rho_{\text{NS}}(\mathbf{x},t)}{\rho_{\text{NS},0}}
 $$
 
 with a bounded imbalance
 
 $$
-\Delta\rho_{\text{NS}}(\mathbf{x},t) = \rho_{+}(\mathbf{x},t) - \rho_{-}(\mathbf{x},t),
+\Delta\rho_{\text{NS}}(\mathbf{x},t) = \rho_{+}(\mathbf{x},t) - \rho_{-}(\mathbf{x},t)
 $$
 
 where long-lived Noether sea regions require $|\Delta\rho_{\text{NS}}|$ to remain below a stability threshold set by the local coupling regime.

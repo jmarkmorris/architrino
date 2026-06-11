@@ -49,7 +49,7 @@ a_\ell^{\text{model}}
 =
 a_\ell^{\text{SM,ref}}
 +\mathcal{C}_\ell\,(m_\ell R_L)^2
-+O(R_L^4),
++O(R_L^4)
 $$
 
 with $\mathcal{C}_\ell$ extracted from the same mass-response, angular-response, Noether sea, and orientation maps used for the electron branch. A muon `g-2` residual cannot be accepted as an $\mathbb{A}\mathbb{A}\mathbb{A}$ signal unless the corresponding electron correction remains suppressed and the tau-side scaling is consistent with available bounds.
@@ -61,7 +61,7 @@ F(s)=1-\frac{sR_L^2}{4},
 \qquad
 \sigma_{\text{model}}(e^+e^-\to\mu^+\mu^-;s)
 =
-\sigma_{\text{SM}}(s)\,|F(s)|^2.
+\sigma_{\text{SM}}(s)\,|F(s)|^2
 $$
 
 If the $R_L$ or response coefficient needed for $\Delta a_\mu$ produces excluded deviations in $e^+e^-\to\mu^+\mu^-$, $Z$-pole data, or other charged-lepton universality tests, the heavier-lepton correction map fails. This is a validation gate, not a claimed anomaly explanation.

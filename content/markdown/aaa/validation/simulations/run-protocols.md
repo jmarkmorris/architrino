@@ -32,7 +32,7 @@ I_h^q,
 \Pi_{\mathbb{U}_{\text{now}}},
 \mathcal{E}_{\mathrm{conv}},
 \mathcal{F}
-\big).
+\big)
 $$
 Here $\mathsf{id}$ fixes the run identifier and source commit, $S_\eta$ is the regularized state history, $\mathcal{G}_h$ is the spatial and history mesh, $\Delta t$ is the absolute-time step, $\eta > 0$ is the causal-wake regularization width, $I_h^q$ is the declared order-$q$ history interpolation operator, $\mathcal{L}_{\mathrm{root}}$ is the causal-root ledger, $\mathcal{T}_{\eta}$ is the transition-record family for fold-layer, separator, or active-root status windows, $\mathcal{R}_{\mathrm{branch}}$ is the named branch-residual vector, $\Pi_{\mathbb{U}_{\text{now}}}$ is the provenance log, $\mathcal{E}_{\mathrm{conv}}$ is the convergence-measure vector, and $\mathcal{F}$ is the finite failure-code set.
 
@@ -42,13 +42,13 @@ S_\eta(t)
 =
 \{(\mathbf{x}_i(t),\mathbf{v}_i(t),q_i)\}_{i=1}^{N},
 \qquad
-S_{\eta,t}(\theta)=S_\eta(t+\theta),\quad \theta\in[-h,0].
+S_{\eta,t}(\theta)=S_\eta(t+\theta),\quad \theta\in[-h,0]
 $$
 A Tier 1 packet must state whether this history is evaluated in $C^1([-h,0])$, $W^{1,\infty}([-h,0])$, or a stricter history class. A missing history class is an incomplete artifact, because the delayed source-state evaluation cannot be audited without it.
 
 The mesh and interpolation record is
 $$
-\mathcal{G}_h=(\Omega_h,\Delta x,\{x_k\}_{k=1}^{K},\Theta_h,\Delta h,\mathsf{bc}),
+\mathcal{G}_h=(\Omega_h,\Delta x,\{x_k\}_{k=1}^{K},\Theta_h,\Delta h,\mathsf{bc})
 $$
 where $\Omega_h\subset\mathbb{R}^3$ is the Euclidean-void computational domain, $\{x_k\}$ are the fixed $\mathbb{U}_{\text{now}}$ sample points, $\Theta_h\subset[-h,0]$ is the stored path-history mesh, $\Delta h$ is the history resolution, and $\mathsf{bc}$ records boundary conditions. The interpolation operator $I_h^q$ is part of the packet; delayed source states cannot be reconstructed by an implicit or undocumented lookup rule.
 
@@ -69,7 +69,7 @@ D_{\mathrm{prov}},
 D_{\mathrm{cons}},
 D_{\eta},
 D_{\mathrm{jump}}
-\big),
+\big)
 $$
 where every component is a ratio with passing threshold $1$. The component meanings are:
 
@@ -94,7 +94,7 @@ R_0\in\mathsf{Candidate}_{1},
 \quad
 \max_a\mathcal{D}_{\mathrm{exec},a}\le 1,
 \quad
-\Delta_{\mathrm{root}}(\Delta t,\Delta t/2)=0,
+\Delta_{\mathrm{root}}(\Delta t,\Delta t/2)=0
 $$
 $$
 \Delta_{\mathrm{root}}(\Delta h,\Delta h/2)=0,
@@ -103,7 +103,7 @@ $$
 \quad
 \mathsf{NullFail}=1,
 \quad
-\mathsf{Artifacts}=1.
+\mathsf{Artifacts}=1
 $$
 Here $\mathsf{NullFail}=1$ means the negative control violates at least one required null-test margin, and $\mathsf{Artifacts}=1$ means every required artifact exists with a content hash and source commit.
 
@@ -126,7 +126,7 @@ W,
 \tau_{\eta},
 \mathsf{Null},
 \mathsf{Outputs}
-\big).
+\big)
 $$
 It names the source certificate, initial history, analysis window, branch label, expected active-root classes, branch tolerances, convergence tolerances, regulator ladder, negative-control mutation, and required output channels before the run starts.
 
@@ -143,7 +143,7 @@ $$
 \mathcal{D}_{\mathrm{exec}},
 \mathsf{failure\_code},
 \mathsf{promotion\_status}
-\big).
+\big)
 $$
 A proof packet may cite a simulation only through this handoff. It must state whether every expected active root was matched under $\Delta t$, $\Delta h$, and $\eta$ refinement, which residual component controls the verdict, and which artifact contains each value.
 
@@ -153,12 +153,12 @@ $$
 \qquad
 \max_a\frac{\mathcal{E}_{\mathrm{prov},a}}{\tau_{\mathrm{prov},a}}\le 1,
 \qquad
-\max_a\frac{\mathcal{E}_{\mathrm{cons},a}}{\tau_{\mathrm{cons},a}}\le 1,
+\max_a\frac{\mathcal{E}_{\mathrm{cons},a}}{\tau_{\mathrm{cons},a}}\le 1
 $$
 $$
 \max_a\frac{\mathcal{R}_{\mathrm{branch},a}}{\tau_{\mathrm{branch},a}}\le 1,
 \qquad
-\max_Y\frac{E_\eta(Y)}{\tau_{\eta,Y}}\le 1,
+\max_Y\frac{E_\eta(Y)}{\tau_{\eta,Y}}\le 1
 $$
 with all tolerances declared before the run, then the result may be promoted from numerical candidate to simulation-supported priority claim for $Q$. This lemma does not convert a simulation-supported priority claim into an analytic theorem; it authorizes proof-program routing only with artifact hashes and the failure-code ledger attached.
 
@@ -204,7 +204,7 @@ $$
 \mathcal{R}_{\mathrm{GW}},
 \Pi_{\mathrm{wave}},
 \mathcal{F}
-\big).
+\big)
 $$
 Here $\mathcal{D}$ names the detectors, $\mathcal{S}_h$ names the strain files, $\mathcal{P}_{\mathrm{PE}}$ names posterior-sample and parameter-estimation records, $\mathcal{P}_{\mathrm{wave}}$ names the waveform-family or numerical-relativity provenance, $\mathcal{Q}_{\mathrm{det}}$ carries calibration, data-quality, injection-mask, down-sampling, and glitch-treatment records, $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the event conservation ledger, $\mathcal{R}_{\mathrm{GW}}$ is the residual vector, and $\Pi_{\mathrm{wave}}$ maps each fitted or plotted sample back to public artifacts.
 
@@ -214,7 +214,7 @@ $$
 =
 \big(
 R_h,R_\phi,R_E,R_J,R_{c_g},R_{\mathrm{det}},R_{\mathrm{PE}},R_{\mathrm{prov}}
-\big).
+\big)
 $$
 $R_h$ compares whitened or otherwise declared detector strain on the predeclared analysis window; $R_\phi$ compares unwrapped inspiral-merger phase on the declared frequency band; $R_E$ checks source masses, remnant mass, radiated energy, recoil, ejecta or heat-channel terms, and boundary exchange in one conservation ledger; $R_J$ checks angular-momentum accounting when the packet claims spin or recoil closure; $R_{c_g}$ is used only for multimessenger timing rows; and the final three residuals are provenance-completeness checks.
 
@@ -224,7 +224,7 @@ R_{c_g}
 =
 \frac{\Delta t_{\mathrm{obs}}-\Delta t_{\mathrm{src}}}{D_L/c_\gamma},
 \qquad
-\Delta t_{\mathrm{obs}}=t_\gamma-t_{\mathrm{GW}}.
+\Delta t_{\mathrm{obs}}=t_\gamma-t_{\mathrm{GW}}
 $$
 The intrinsic source-emission delay $\Delta t_{\mathrm{src}}$ must be declared before fitting the gravity-channel speed. A packet fails as hidden tuning if it absorbs photon/gravity timing into an undeclared source delay, changes the analysis band after inspecting residuals, substitutes a cleaned strain product without recording a new provenance row, or changes waveform family after comparing to the data.
 
@@ -236,7 +236,7 @@ $$
 =
 \big(
 D_h,D_\phi,D_E,D_{c_g},D_{\mathrm{det}},D_{\mathrm{PE}},D_{\mathrm{prov}}
-\big),
+\big)
 $$
 with
 $$
@@ -246,7 +246,7 @@ D_\phi=\frac{R_\phi}{\tau_\phi},
 \qquad
 D_E=\frac{R_E}{\tau_E},
 \qquad
-D_{c_g}=\frac{|R_{c_g}|}{\tau_{c_g}}.
+D_{c_g}=\frac{|R_{c_g}|}{\tau_{c_g}}
 $$
 $D_{\mathrm{det}}$, $D_{\mathrm{PE}}$, and $D_{\mathrm{prov}}$ are binary completeness ratios whose value is `0` only when detector masks/calibration, parameter-estimation release metadata, and artifact hashes are all present. A packet can support a promoted gravitational-wave claim only if
 $$

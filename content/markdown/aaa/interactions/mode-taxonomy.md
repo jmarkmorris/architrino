@@ -63,7 +63,7 @@ $$
 =
 \delta^{ij}-\hat v_A^i\hat v_A^j,
 \qquad
-\hat{\mathbf{v}}_A=\frac{\mathbf{v}_A}{\|\mathbf{v}_A\|}.
+\hat{\mathbf{v}}_A=\frac{\mathbf{v}_A}{\|\mathbf{v}_A\|}
 $$
 
 A minimal transverse-channel map is
@@ -73,7 +73,7 @@ F_{\perp,A}^{i}(t)
 \Pi_{\perp}^{ij}(A)
 \sum_{k}\sum_{t_0\in\mathcal{C}_{Ak}(t)}
 W_{Ak}\!\left(t;t_0,\mathcal{V}_{\mathrm{NS}},R_A\right)
-\hat r_{Ak,j}(t;t_0).
+\hat r_{Ak,j}(t;t_0)
 $$
 
 The weight $W_{Ak}$ packages the inverse-square causal-wake factor, polarity sign, causal Jacobian, and local Noether sea anisotropy/vorticity response. This equation is the allowed bridge to magnetic-like language: transverse force is recovered as a projected consequence of delayed branch geometry plus medium response, not as an independent $\mathbf{v}\times\mathbf{B}$ substrate term.
@@ -91,7 +91,7 @@ $$
 \Delta_{\mathbf{p}}^{\mathrm{EM}},
 \Delta_{\mathbf{J}}^{\mathrm{EM}},
 \Delta_{\mathrm{gauge}}
-\right),
+\right)
 $$
 
 where the continuity component is
@@ -101,7 +101,7 @@ $$
 \equiv
 \partial_t\rho_{\mathrm{eff}}
 +
-\nabla\cdot\mathbf{J}_{\mathrm{eff}},
+\nabla\cdot\mathbf{J}_{\mathrm{eff}}
 $$
 
 and the gauge component requires every observer-level observable $\mathcal O$ used by the channel to obey
@@ -112,7 +112,7 @@ $$
 \mathcal O[A_{\mu}^{\mathrm{eff}}+\partial_\mu\chi]
 -
 \mathcal O[A_{\mu}^{\mathrm{eff}}]
-=0.
+=0
 $$
 
 The energy, momentum, and angular-momentum components are defined by the effective electromagnetic energy-momentum gate in [Radiation](../reactions/radiation.md). A channel passes only when these components vanish in the declared validated limit or when each nonzero term is assigned to a named photon, material, recoil, wake, or remnant row. This keeps Maxwell-level ledgers as recovery tests for channel bookkeeping rather than as primitive Noether sea dynamics.
@@ -151,7 +151,7 @@ $$
 \Delta_{\mathrm{handoff}}^\gamma,
 \Delta_{\mathrm{rem}}^\gamma,
 \Delta_{\mathrm{bal}}^\gamma
-\right).
+\right)
 $$
 
 Here $\Delta_A$ is the photon Gate A residual; $\Delta_Q^\gamma$, $\Delta_{\mathrm{surv}}^\gamma$, $\Delta_{\parallel}^{\mathrm{sub}}$, $\Delta_{\mathrm{hel}}^\gamma$, and $\Delta_{\epsilon}^{\gamma}$ test the planar-pair substrate, transverse survival, longitudinal exclusion, helicity, and analyzer-basin rows; and $\Delta_{\mathrm{src}}^\gamma$, $\Delta_{\mathrm{recoil}}^\gamma$, $\Delta_{\mathrm{med}}^\gamma$, $\Delta_{\mathrm{wake}}^\gamma$, $\Delta_{\mathrm{handoff}}^\gamma$, $\Delta_{\mathrm{rem}}^\gamma$, and $\Delta_{\mathrm{bal}}^\gamma$ test the source, recoil, medium, causal-wake, analyzer-handoff, remnant, and event-balance rows. A reaction chapter may cite this vector as a bookkeeping contract, not as a derivation of photon polarization.
@@ -305,7 +305,7 @@ C_{\mathrm{weak}}^{-1/2}
 \mathbf y_{\mathrm{PDG}}
 -
 \mathbf y_{\mathrm{map}}
-\right),
+\right)
 $$
 
 where $\mathbf y_{\mathrm{PDG}}$ may include $M_W$, $\Gamma_W$, $M_Z$, $\Gamma_Z$, weak mixing angles, CKM entries, PMNS entries, lifetimes, or branching fractions, and $C_{\mathrm{weak}}$ is the declared covariance or uncertainty rule for those rows. If a row is an upper limit, an asymmetric uncertainty, or a result with separated statistical and systematic errors, the channel must preserve that convention instead of converting it into an unmarked symmetric error.
@@ -314,7 +314,7 @@ For low-energy charged weak processes the same mapping must also recover the con
 $$
 \mathcal{L}_{\mathrm{map}}^{\mathrm{low}}
 \rightarrow
--\frac{4G_F}{\sqrt 2}\,J_+^\mu J^-_\mu,
+-\frac{4G_F}{\sqrt 2}\,J_+^\mu J^-_\mu
 $$
 with $G_F$ supplied by the electroweak corridor scale rather than by an independent contact parameter. This keeps corridor-mode bookkeeping tied to measured beta-reaction and muon-reaction limits (SM labels: `beta decay`, `muon decay`) while leaving the finite $W^\pm$ channel as the higher-energy provenance record.
 

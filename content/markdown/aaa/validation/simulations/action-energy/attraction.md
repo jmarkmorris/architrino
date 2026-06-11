@@ -28,7 +28,7 @@ Equations of motion (canonical delayed law; two-body, v=1):
   \sum_{t_0\in\mathcal{C}_2(t)}
   -\,\kappa\,\epsilon^2\,\frac{\mathrm{sgn}\!\big(x_1(t)-x_2(t_0)\big)}{r_{12}^2},
   \quad
-  r_{12}=\big|x_1(t)-x_2(t_0)\big|,
+  r_{12}=\big|x_1(t)-x_2(t_0)\big|
   $$
   $$
   a_2(t)
@@ -36,7 +36,7 @@ Equations of motion (canonical delayed law; two-body, v=1):
   \sum_{t_0\in\mathcal{C}_1(t)}
   +\,\kappa\,\epsilon^2\,\frac{\mathrm{sgn}\!\big(x_2(t)-x_1(t_0)\big)}{r_{21}^2},
   \quad
-  r_{21}=\big|x_2(t)-x_1(t_0)\big|.
+  r_{21}=\big|x_2(t)-x_1(t_0)\big|
   $$
   Here $\sigma_{q_2 q_1}=\sigma_{q_1 q_2}=-1$ (unlike polarities attract), $H(0)=0$ excludes $t_0=t$, and $\mathrm{sgn}(\cdot)$ denotes the sign function.
 
@@ -46,7 +46,7 @@ Relative-coordinate DDE:
   \ddot{r}(t)\;=\;a_1(t)-a_2(t)
   \;=\;
   -\,\kappa\,\epsilon^2\sum_{t_0\in\mathcal{C}_2(t)}\frac{\mathrm{sgn}\!\big(r_{12}\big)}{r_{12}^2}
-  -\,\kappa\,\epsilon^2\sum_{t_0\in\mathcal{C}_1(t)}\frac{\mathrm{sgn}\!\big(r_{21}\big)}{r_{21}^2},
+  -\,\kappa\,\epsilon^2\sum_{t_0\in\mathcal{C}_1(t)}\frac{\mathrm{sgn}\!\big(r_{21}\big)}{r_{21}^2}
   $$
   with $r_{12}=|x_1(t)-x_2(t_0)|$ and $r_{21}=|x_2(t)-x_1(t_0)|$ defined by their respective causal-root conditions. No exact closed-form solution is presently known for the coupled DDE system.
 
@@ -54,7 +54,7 @@ Nonlinear history-anchored form (vector notation for clarity):
   $$
   \mathbf{a}_1(t)\;=\;-\,\kappa\,\epsilon^2\,\frac{\mathbf{s}_1(t)-\mathbf{s}_2\!\big(t_0^{(2\to 1)}\big)}{\big\|\mathbf{s}_1(t)-\mathbf{s}_2\!\big(t_0^{(2\to 1)}\big)\big\|^3},
   \qquad
-  \mathbf{a}_2(t)\;=\;+\,\kappa\,\epsilon^2\,\frac{\mathbf{s}_2(t)-\mathbf{s}_1\!\big(t_0^{(1\to 2)}\big)}{\big\|\mathbf{s}_2(t)-\mathbf{s}_1\!\big(t_0^{(1\to 2)}\big)\big\|^3}.
+  \mathbf{a}_2(t)\;=\;+\,\kappa\,\epsilon^2\,\frac{\mathbf{s}_2(t)-\mathbf{s}_1\!\big(t_0^{(1\to 2)}\big)}{\big\|\mathbf{s}_2(t)-\mathbf{s}_1\!\big(t_0^{(1\to 2)}\big)\big\|^3}
   $$
   The attachment points are the partners’ path-history locations at their respective causal emission times; linearizations and small-parameter expansions are intentionally omitted.
 
@@ -62,12 +62,12 @@ Central-origin kinematics (1D positions and velocities; symmetric two-body frame
 - Choose a fixed origin at the geometric midpoint. With equal-magnitude charges and symmetric initial data, this midpoint remains at rest by symmetry.
 - Define the separation
   $$
-  r(t) \equiv x_1(t) - x_2(t) > 0.
+  r(t) \equiv x_1(t) - x_2(t) > 0
   $$
   Positions relative to the central origin are then
   $$
   x_1(t) = \tfrac{1}{2}\,r(t),\qquad
-  x_2(t) = -\,\tfrac{1}{2}\,r(t).
+  x_2(t) = -\,\tfrac{1}{2}\,r(t)
   $$
 - Velocities follow by differentiation:
   $$
@@ -75,13 +75,13 @@ Central-origin kinematics (1D positions and velocities; symmetric two-body frame
   = \tfrac{1}{2}\,\dot{r}(t),
   \qquad
   v_2(t) = \dot{x}_2(t)
-  = -\,\tfrac{1}{2}\,\dot{r}(t).
+  = -\,\tfrac{1}{2}\,\dot{r}(t)
   $$
 - Symmetric initial conditions (example):
   $$
   x_1(0)=\tfrac{r_0}{2},\quad
   x_2(0)=-\tfrac{r_0}{2},\quad
-  v_1(0)=v_2(0)=0.
+  v_1(0)=v_2(0)=0
   $$
 
 Deliverables:

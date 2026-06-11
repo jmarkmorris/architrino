@@ -52,13 +52,13 @@ $$
 \mathcal{R}_{\text{lock}},
 \mathcal{R}_{\text{leak}},
 \mathcal{R}_{\text{Floquet}}
-\right).
+\right)
 $$
 Tier 0 may compute only part of this surface. The row must still emit every component. Missing later-tier components use explicit `not_computed_in_tier0` status, null value, null tolerance when no tolerance exists yet, a promotion role, and a note that names the tier responsible for computing the entry.
 
 The group-velocity anisotropy entry uses the reduced centered covariance of the six-worldline state. With
 $$
-\mathbf{C}_{A_0}(t)=\frac{1}{6}\sum_{a\in A_0}\mathbf{s}_a(t),
+\mathbf{C}_{A_0}(t)=\frac{1}{6}\sum_{a\in A_0}\mathbf{s}_a(t)
 $$
 define
 $$
@@ -68,7 +68,7 @@ D^{ij}_{A_0}(\mathbf{V}_{\text{cm}})
 \sum_{a\in A_0}
 \left(s_a^i-C_{A_0}^i\right)
 \left(s_a^j-C_{A_0}^j\right)
-\right\rangle_{T_{\mathbf{k}}},
+\right\rangle_{T_{\mathbf{k}}}
 $$
 $$
 Q^{ij}_{A_0}
@@ -77,7 +77,7 @@ Q^{ij}_{A_0}
 \qquad
 \mathcal{A}_{\mathrm{gv}}^{ij}
 =
-Q^{ij}_{A_0}-\frac{1}{3}h^{ij}.
+Q^{ij}_{A_0}-\frac{1}{3}h^{ij}
 $$
 This tensor measures motion-induced or probe-induced Noether swarm deformation. It is not the same object as the far-field leakage residue $\mathcal{L}_{\text{aniso}}$, which is extracted from cycle-averaged wake coefficients in Tier 2.
 
@@ -182,7 +182,7 @@ $$
 \qquad
 \mathbf{d}_\ell(t+T_{\mathbf{k}})=\mathbf{d}_\ell(t),
 \qquad
-\left\langle\mathbf{d}_\ell\right\rangle_W=0.
+\left\langle\mathbf{d}_\ell\right\rangle_W=0
 $$
 The one-period residual is
 $$
@@ -206,7 +206,7 @@ $$
 \|\mathbf{a}^{\mathrm{ME}}_a(t;\mathbf{d})\|^2 dt
 \right)^{1/2}
 +\varepsilon_0
-}.
+}
 $$
 The rerun may proceed toward monodromy only if
 $$

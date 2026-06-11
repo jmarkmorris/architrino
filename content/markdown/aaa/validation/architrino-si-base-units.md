@@ -47,13 +47,13 @@ The current numerical anchors are severe in different ways. The fine-structure c
 $$
 \alpha=7.2973525643\times10^{-3},
 \qquad
-u_r(\alpha)\approx1.51\times10^{-10},
+u_r(\alpha)\approx1.51\times10^{-10}
 $$
 while the Newtonian constant is
 $$
 G=6.67430\times10^{-11}\,\mathrm{m^3\,kg^{-1}\,s^{-2}},
 \qquad
-u_r(G)\approx2.25\times10^{-5}.
+u_r(G)\approx2.25\times10^{-5}
 $$
 Thus $\alpha$ is a much sharper dimensionless target than $G$, while Planck-unit rows such as $\ell_P$, $m_P$, and $t_P$ inherit roughly half of the relative uncertainty of $G$ through square-root dependence. A Planck-alignment claim should therefore not over-read the apparent precision of derived Planck-unit numbers.
 

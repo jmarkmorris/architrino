@@ -46,7 +46,7 @@ Penrose-Diosi gravitational-collapse proposals are useful here as an external be
 $$
 \mathcal{Q}_{\mathrm{PD}}
 =
-\frac{\tau_{\text{meas}}\Delta E_G}{\hbar}.
+\frac{\tau_{\text{meas}}\Delta E_G}{\hbar}
 $$
 
 The interpretation of $\mathcal{Q}_{\mathrm{PD}}$ is limited. If the $\mathbb{A}\mathbb{A}\mathbb{A}$ threshold model predicts a different scaling from $\tau_G$, that difference becomes an experimental discriminator in massive interferometry and Bose-Einstein-condensate superposition tests. If a competing collapse model predicts continual spontaneous heating, that heating prediction must be checked against low-background laboratory bounds and compact-object heating constraints. The comparison should therefore preserve the observable pressure while keeping branch selection rooted in finite-time separatrix dynamics.
@@ -59,7 +59,7 @@ $$
 \frac{\Delta_{\mathrm{Born}}(T)}{\varepsilon_{\mathrm{Born}}},
 \frac{\Delta_{\mathrm{ens}}(\mathcal{Q},W,T)}{\varepsilon_{\mathrm{ens}}},
 \frac{|\Delta E_{\mathrm{unrec}}(T;\theta)|}{\varepsilon_E}
-\right).
+\right)
 $$
 The collapse comparison remains viable only when $\mathcal{R}_{\mathrm{meas+heat}}\le1$ on the declared channel. If the Born statistics require one ensemble while the heating bound requires another, or if $\Delta E_{\mathrm{unrec}}$ persists after all event-recorded channels have been included, the model has not closed the measurement account.
 

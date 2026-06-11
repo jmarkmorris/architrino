@@ -28,19 +28,19 @@ $$
 \ln n=a_n\frac{U}{c_0^2},\qquad
 \ln\chi_{\text{sea}}=a_\chi\frac{U}{c_0^2},\qquad
 \ln\lambda=a_\lambda\frac{U}{c_0^2},\qquad
-\ln\frac{R_{\text{core}}}{R_{\text{core},0}}=a_R\frac{U}{c_0^2}.
+\ln\frac{R_{\text{core}}}{R_{\text{core},0}}=a_R\frac{U}{c_0^2}
 $$
 
 The cadence-stretch row must satisfy
 
 $$
-b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1,
+b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1
 $$
 
 while the inverse clock-rate row must satisfy
 
 $$
-\omega_n a_n+\omega_\chi a_\chi+\omega_\lambda a_\lambda+\omega_R a_R=-1.
+\omega_n a_n+\omega_\chi a_\chi+\omega_\lambda a_\lambda+\omega_R a_R=-1
 $$
 
 The row-inverse condition checks
@@ -54,7 +54,7 @@ for $i\in\{n,\chi,\lambda,R\}$.
 The Shapiro-delay neighbor supplies
 
 $$
-a_\chi^{\mathrm{sig}}=1+\gamma_{\text{eff}},
+a_\chi^{\mathrm{sig}}=1+\gamma_{\text{eff}}
 $$
 
 so the shared clock/signal delay residual is
@@ -62,7 +62,7 @@ so the shared clock/signal delay residual is
 $$
 \Delta_\chi^{\mathrm{clk\text{-}sig}}
 =
-a_\chi-a_\chi^{\mathrm{sig}}.
+a_\chi-a_\chi^{\mathrm{sig}}
 $$
 
 The branch is shared-delay closed only when $\Delta_\chi^{\mathrm{clk\text{-}sig}}=0$ within the declared tolerance.
@@ -72,7 +72,7 @@ The same arithmetic also exposes the lensing/dynamics equality burden used by da
 $$
 \gamma_{\text{eff}}=1,
 \qquad
-a_\chi^{\mathrm{sig}}=2,
+a_\chi^{\mathrm{sig}}=2
 $$
 
 while the clock/dynamical endpoint row still satisfies the cadence and inverse-clock equations below. A response vector that changes the dynamical acceleration but leaves $a_\chi^{\mathrm{sig}}\neq2$ is a split clock/signal branch: it may fit rotation curves or hydrostatic motion, but it cannot yet claim the lensing mass equality required by cluster and galaxy-galaxy weak-lensing tests.
@@ -82,7 +82,7 @@ while the clock/dynamical endpoint row still satisfies the cadence and inverse-c
 The first admissible static endpoint packet is the shared scalar delay response specialization of the equations above. Define
 
 $$
-A_\chi\equiv1+\gamma_{\text{eff}}.
+A_\chi\equiv1+\gamma_{\text{eff}}
 $$
 
 The minimal response vector is
@@ -100,7 +100,7 @@ a_R
 A_\chi,\,
 0,\,
 0
-\right),
+\right)
 $$
 
 with cadence row
@@ -136,7 +136,7 @@ $$
 -A_\chi^{-1},\,
 0,\,
 0
-\right).
+\right)
 $$
 
 For the GR-matching branch, this gives $A_\chi=2$, $a_\chi=2$, $b_\chi=1/2$, and $\omega_\chi=-1/2$. The `shared_delay_clean_gr_branch` row in the mock packet is exactly this replay. The `density_scale_compensated_branch` row samples the remaining compensated family, where nonzero $a_n$, $a_\lambda$, or $a_R$ are allowed only if the same cadence row still satisfies $b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1$ and the inverse row remains $\omega_i=-b_i$.
@@ -164,7 +164,7 @@ $$
 b_n\delta\ln n_r
 +b_\chi\delta\ln\chi_{\text{sea},r}
 +b_\lambda\delta\ln\lambda_r
-+b_R\delta\ln R_r.
++b_R\delta\ln R_r
 $$
 
 The pressure cadence residual is
@@ -173,7 +173,7 @@ $$
 \mathcal{R}_{\Gamma,r}^{P}
 =
 \widehat{\delta\ln\Gamma}_{N,r}^{P}
--\delta\ln\Gamma_{N,r}.
+-\delta\ln\Gamma_{N,r}
 $$
 
 The inverse clock-rate row must also close:
@@ -187,7 +187,7 @@ $$
 +\omega_\lambda\delta\ln\lambda_r
 +\omega_R\delta\ln R_r
 \right)
-+\delta\ln\Gamma_{N,r}.
++\delta\ln\Gamma_{N,r}
 $$
 
 When `derive_response` is `gamma_normalized`, the fixture also forms a normalized static-equivalent response vector
@@ -195,7 +195,7 @@ When `derive_response` is `gamma_normalized`, the fixture also forms a normalize
 $$
 a_i^{P\to\Gamma}
 =
-\frac{\delta g_i^P}{\delta\ln\Gamma_N}.
+\frac{\delta g_i^P}{\delta\ln\Gamma_N}
 $$
 
 This normalization makes pressure rows replayable by the same endpoint arithmetic, but it does not convert pressure loading into a gravitational PPN branch. The `gamma_eff_sweep` diagnostic is only an algebraic comparison against $a_\chi^{\mathrm{sig}}=1+\gamma_{\text{eff}}$; a pressure-normalized value that closes for some formal $\gamma_{\text{eff}}$ is not a solar-system Shapiro result.
@@ -282,7 +282,7 @@ b_R
 \frac{1}{2},\,
 0,\,
 0
-\right).
+\right)
 $$
 
 Second, the density/scale-compensated row also passes the endpoint and inverse-row checks:
@@ -314,13 +314,13 @@ b_R
 0.4,\,
 -0.5,\,
 1
-\right),
+\right)
 $$
 
 because
 
 $$
-0.4(0.25)+0.4(2)+(-0.5)(-0.1)+1(0.05)=1.
+0.4(0.25)+0.4(2)+(-0.5)(-0.1)+1(0.05)=1
 $$
 
 This is an admissibility witness for the compensated static family, not a derivation of those numbers.
@@ -335,7 +335,7 @@ $$
 0.6,\,
 0,\,
 0
-\right)^T,
+\right)^T
 $$
 
 so no single $\chi_{\text{sea}}$ coefficient can satisfy both
@@ -343,7 +343,7 @@ so no single $\chi_{\text{sea}}$ coefficient can satisfy both
 $$
 b_\chi(2)=1,
 \qquad
-b_\chi(0.6)=1.
+b_\chi(0.6)=1
 $$
 
 The current validation status is therefore conditional. Nonzero static endpoint coefficients $a_n$, $a_\lambda$, and $a_R$ are not required by the endpoint row itself. They become necessary only if an independent branch record, such as hydrogen spectral refinement or pressure-response replay, supplies non-$\chi_{\text{sea}}$ response that must share the same $\Gamma_N$ row. The next proof obligation is to replace the toy nonzero entries with branch-derived density, envelope-scale, or $R_{\text{core}}$ response rather than treating them as fit parameters.
