@@ -10821,6 +10821,47 @@ R_{\parallel}(v,E,n)
 $$
 Thus $\gamma_\star$ maps to the shape channel $\xi$, while $\lambda$ remains a separate scale, energy, and medium-response channel.
 
+This gives a simple geometry dictionary for the no-extra-scale lesson case:
+$$
+\xi
+\equiv
+\frac{R_{\parallel}}{R_{\perp}}
+=
+\sqrt{1-\beta_\star^2}
+=
+\frac{1}{\gamma_\star},
+\qquad
+\gamma_\star
+=
+\frac{R_{\perp}}{R_{\parallel}}.
+$$
+The velocity fraction is therefore recovered from the spheroid by
+$$
+\beta_\star
+=
+\sqrt{1-\xi^2}
+=
+\sqrt{1-\frac{R_{\parallel}^2}{R_{\perp}^2}}.
+$$
+In ordinary geometry language, $\beta_\star$ is the eccentricity of the Lorentz spheroid, while $\gamma_\star$ is the transverse-to-longitudinal aspect ratio. The spheroid is not merely a picture placed beside the Lorentz factor; its measured semiaxes determine $\xi$, $\gamma_\star$, and $\beta_\star$ in the homogeneous zero-leakage limit.
+
+The same map explains the clock side. A moving clock branch is a closed return cycle, so time dilation is the stretch of the period required for the branch to return to compatible phase:
+$$
+T(v)=\gamma_\star(v)T_0
+$$
+in the ideal homogeneous limit. The size of the object sets the base period $T_0$; the velocity-dependent multiplier is the dimensionless factor $\gamma_\star$.
+
+This distinction matters near the light-speed limit. The spheroid becomes thin because $R_{\parallel}=R_{\perp}/\gamma_\star$ tends to zero. But the forward leg of the closed cycle contains the catch-up denominator $c_\star-v$:
+$$
+t_+
+=
+\frac{R_{\parallel}}{c_\star-v}
+=
+\frac{R_{\perp}}{c_\star}
+\sqrt{\frac{1+\beta_\star}{1-\beta_\star}},
+$$
+so $t_+\to\infty$ as $\beta_\star\to1$. The rear leg tends to zero, but the closed period diverges. Thus the clock does not diverge because the ellipsoid is large; it diverges because the forward causal update has almost no catch-up margin left.
+
 The outer binary is special because it supplies the leading visible envelope. It is not sufficient by itself. A Lorentz-admissible branch must also retune the hidden inner and middle ledgers so that clock closure, action conservation, and leakage bounds are solved by the same branch.
 
 ##### Quantized Realization
