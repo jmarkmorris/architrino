@@ -1,6 +1,6 @@
-# Ideal Swarm Notes
+# Ideal Swarm Guide
 
-Ideal Swarm is an app-facing note for the standalone Noether swarm Lorentz lesson. It explains what the application is trying to make visible, how its controls map to the equations, and where the displayed geometry fits relative to the surrounding $\mathbb{A}\mathbb{A}\mathbb{A}$ documents.
+Ideal Swarm is an app-facing guide for the standalone Noether swarm Lorentz lesson. It explains what the application is trying to make visible, how its controls map to the equations, and where the displayed geometry fits relative to the surrounding $\mathbb{A}\mathbb{A}\mathbb{A}$ documents.
 
 This is not a proof document. The app is an inspection surface: it makes a candidate geometry legible so that the theory documents can state the mathematical obligations clearly.
 
@@ -135,7 +135,7 @@ falls in lockstep with the length-contraction factor because the denominator is 
 | `Paths` | Toggles visible orbit paths and charge traces. |
 | `Surface` | Toggles the surface-dot sample of the spheroid. It defaults off to reduce visual clutter. |
 | `Axes` | Toggles reference axes and orientation guides. |
-| `Freeze` | Pauses or resumes the animation. |
+| `Pause` / `Resume` | Pauses or resumes the animation. |
 | `Outer orbit` | Sets the reference transverse scale for the outer binary and rescales the displayed nested swarm from that reference. |
 | $\beta=v/c$ | Sets the displayed velocity fraction, from rest to the formal light-speed limit. |
 | `Cycle` | Changes animation phase speed only. It does not change $\beta$, $\gamma$, or the physical factors. |
@@ -143,6 +143,16 @@ falls in lockstep with the length-contraction factor because the denominator is 
 | `Focus` | Returns keyboard focus to the 3D stage. |
 
 The documentation buttons open this note, the return-cycle bridge, and the Lorentz kinematics document inside the app's markdown overlay.
+
+## Binary Measures
+
+The `Path speed` row is computed from the displayed circular path:
+
+$$
+v_{\mathrm{path}} = 2\pi R f.
+$$
+
+The `Path speed / c_f` row divides that path speed by the app's field-speed reference. In the current normalized display, $c_f$ is set by the middle binary's current path speed, so the middle binary reads $1.00$ by definition while the inner and outer values are derived from their radii and frequencies.
 
 ## Claim Level
 

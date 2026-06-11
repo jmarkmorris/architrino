@@ -2208,7 +2208,7 @@
     },
     {
       "id": "content/markdown/aaa/archie/ideal-swarm-notes.md",
-      "name": "Ideal Swarm Notes",
+      "name": "Ideal Swarm Guide",
       "path": "content/markdown/aaa/archie/ideal-swarm-notes.md",
       "nodeType": "markdown_doc"
     },
@@ -6253,7 +6253,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/archie/ideal-swarm-notes.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/ideal-swarm-notes.md",
-      "name": "Ideal Swarm Notes",
+      "name": "Ideal Swarm Guide",
       "path": "content/markdown/aaa/archie/ideal-swarm-notes.md",
       "searchTarget": "content/markdown/aaa/archie/ideal-swarm-notes.md",
       "implicit": false

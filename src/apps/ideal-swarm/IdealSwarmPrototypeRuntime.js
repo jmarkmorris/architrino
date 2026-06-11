@@ -4,7 +4,6 @@ import { extractMarkdownSection } from "../../services/MarkdownPolicyService.js"
 import { createAnimatorDefaultCoreSpec } from "../animator/AnimatorDraftScaffoldRuntime.js";
 import { createAnimatorStructureGeometryRuntime } from "../animator/AnimatorStructureGeometryRuntime.js";
 import {
-  BINARY_FIELD_SPEED_RATIOS,
   getFieldSpeedRegimeLabel,
   getOrbitPathBranchGain,
   getOrbitPathTintProfile as resolveOrbitPathTintProfile,
@@ -15,19 +14,19 @@ const BINARY_META = [
     id: "inner",
     label: "Inner",
     color: "#7dd3fc",
-    fieldSpeedRatio: BINARY_FIELD_SPEED_RATIOS.inner,
+    shellColor: "#8fb6d8",
   },
   {
     id: "middle",
     label: "Middle",
     color: "#fbbf24",
-    fieldSpeedRatio: BINARY_FIELD_SPEED_RATIOS.middle,
+    shellColor: "#c4cbd4",
   },
   {
     id: "outer",
     label: "Outer",
     color: "#f472b6",
-    fieldSpeedRatio: BINARY_FIELD_SPEED_RATIOS.outer,
+    shellColor: "#c9b7d8",
   },
 ];
 
@@ -48,7 +47,10 @@ const AXIS_REFERENCE_CIRCLE_SEGMENTS = 48;
 const TWO_PI = Math.PI * 2;
 const LORENTZ_BETA_MAX = 1;
 const LORENTZ_CHART_GAMMA_CAP = 6;
-const BINARY_ORBIT_GUIDE_OPACITY = 0.07;
+const FIELD_SPEED_REFERENCE_BINARY_INDEX = 1;
+const SHELL_SURFACE_BASE_OPACITY = 0.007;
+const SHELL_SURFACE_RIM_OPACITY = 0.16;
+const SHELL_SURFACE_RIM_POWER = 3.2;
 const ORBIT_PATH_LOG_WIDTH_FLOOR = 0.78;
 const ORBIT_PATH_TRAIL_SEGMENTS = 30;
 const ORBIT_PATH_TRAIL_MAX_ARCS = CHARGE_TYPES.length;
@@ -60,7 +62,7 @@ const ASSEMBLY_MOMENTUM_AXIS = new THREE.Vector3(
 );
 const IDEAL_SWARM_DOCS = {
   notes: {
-    name: "Ideal Swarm Notes",
+    name: "Ideal Swarm Guide",
     markdownPath: "content/markdown/aaa/archie/ideal-swarm-notes.md",
     markdownColumns: 1,
   },
@@ -234,6 +236,25 @@ function getMotionAngle(motion, chargeType, timeSeconds) {
   return phase + phaseOffset + direction * timeSeconds * TWO_PI * frequency;
 }
 
+function computePathSpeed(radius, frequencyHz) {
+  return radius * TWO_PI * frequencyHz;
+}
+
+function resolveFieldSpeedReference(binaries) {
+  return binaries[FIELD_SPEED_REFERENCE_BINARY_INDEX] ?? binaries[0] ?? null;
+}
+
+function updateBinaryFieldSpeedRatios(binaries) {
+  const referenceBinary = resolveFieldSpeedReference(binaries);
+  const fieldSpeed = Math.max(0.0001, Number(referenceBinary?.speed) || 1);
+  binaries.forEach((binary) => {
+    binary.fieldSpeed = fieldSpeed;
+    binary.fieldSpeedRatio = binary.speed / fieldSpeed;
+    binary.fieldSpeedRegime = getFieldSpeedRegimeLabel(binary.fieldSpeedRatio);
+  });
+  return fieldSpeed;
+}
+
 export function getOrbitPathTintProfile(binaryOrId) {
   return resolveOrbitPathTintProfile(binaryOrId);
 }
@@ -315,7 +336,7 @@ export function createIdealSwarmModel(options = {}) {
     const basis = geometryRuntime.getAnimatorOrbitBasis(motion);
     const radius = Number(motion.radius ?? 1) || 1;
     const frequencyHz = Number(motion.frequencyHz ?? 0.2) || 0.2;
-    const fieldSpeedRatio = Number(meta.fieldSpeedRatio ?? 1) || 1;
+    const speed = computePathSpeed(radius, frequencyHz);
     return {
       ...meta,
       binaryIndex: index,
@@ -324,11 +345,13 @@ export function createIdealSwarmModel(options = {}) {
       restBasis: cloneOrbitBasis(basis),
       radius,
       frequencyHz,
-      speed: radius * TWO_PI * frequencyHz,
-      fieldSpeedRatio,
-      fieldSpeedRegime: getFieldSpeedRegimeLabel(fieldSpeedRatio),
+      speed,
+      fieldSpeed: 1,
+      fieldSpeedRatio: 1,
+      fieldSpeedRegime: "field speed",
     };
   });
+  const fieldSpeed = updateBinaryFieldSpeedRatios(binaries);
   const orbitPathReferenceRadius = Math.max(0.0001, ...binaries.map((binary) => binary.radius));
   binaries.forEach((binary) => {
     binary.orbitRadiusFraction = binary.radius / orbitPathReferenceRadius;
@@ -350,8 +373,12 @@ export function createIdealSwarmModel(options = {}) {
         q: chargeMeta.q,
         color: chargeMeta.color,
         motion: binary.motion,
-        fieldSpeedRatio: binary.fieldSpeedRatio,
-        fieldSpeedRegime: binary.fieldSpeedRegime,
+        get fieldSpeedRatio() {
+          return binary.fieldSpeedRatio;
+        },
+        get fieldSpeedRegime() {
+          return binary.fieldSpeedRegime;
+        },
         positionAt(timeSeconds) {
           const angle = getMotionAngle(binary.motion, chargeType, timeSeconds);
           return binary.basis.u
@@ -380,6 +407,7 @@ export function createIdealSwarmModel(options = {}) {
     coreSpec,
     binaries,
     architrinos,
+    fieldSpeed,
   };
 }
 
@@ -791,16 +819,50 @@ function updateOrbitPathVisual(Three, pathVisual, timeSeconds, camera) {
   });
 }
 
-function createShellLine(Three, radius, color, opacity) {
-  const geometry = new Three.SphereGeometry(1, 36, 18);
-  const material = new Three.MeshBasicMaterial({
-    color,
-    wireframe: true,
+function createShellSurfaceMaterial(Three, color) {
+  return new Three.ShaderMaterial({
     transparent: true,
-    opacity,
     depthWrite: false,
+    side: Three.DoubleSide,
+    uniforms: {
+      shellColor: { value: new Three.Color(color) },
+      baseOpacity: { value: SHELL_SURFACE_BASE_OPACITY },
+      rimOpacity: { value: SHELL_SURFACE_RIM_OPACITY },
+      rimPower: { value: SHELL_SURFACE_RIM_POWER },
+    },
+    vertexShader: `
+      varying vec3 vNormalView;
+      varying vec3 vViewDirection;
+
+      void main() {
+        vec4 viewPosition = modelViewMatrix * vec4(position, 1.0);
+        vNormalView = normalize(normalMatrix * normal);
+        vViewDirection = normalize(-viewPosition.xyz);
+        gl_Position = projectionMatrix * viewPosition;
+      }
+    `,
+    fragmentShader: `
+      uniform vec3 shellColor;
+      uniform float baseOpacity;
+      uniform float rimOpacity;
+      uniform float rimPower;
+      varying vec3 vNormalView;
+      varying vec3 vViewDirection;
+
+      void main() {
+        float facing = abs(dot(normalize(vNormalView), normalize(vViewDirection)));
+        float rim = pow(1.0 - facing, rimPower);
+        float alpha = baseOpacity + rimOpacity * rim;
+        gl_FragColor = vec4(shellColor, alpha);
+      }
+    `,
   });
-  const mesh = new Three.Mesh(geometry, material);
+}
+
+function createShellSurface(Three, radius, color) {
+  const geometry = new Three.SphereGeometry(1, 48, 24);
+  const mesh = new Three.Mesh(geometry, createShellSurfaceMaterial(Three, color));
+  mesh.renderOrder = 1;
   mesh.scale.setScalar(radius);
   return mesh;
 }
@@ -983,7 +1045,7 @@ function createIdealSwarmMarkdownRuntime({
     }
     await markdownRuntime.showMarkdownPanel({
       id: target,
-      name: "Notes",
+      name: "Guide",
       markdownColumns: 2,
     });
   };
@@ -1034,10 +1096,14 @@ export function mountIdealSwarmPrototype(options = {}) {
 
   const shellGroup = new Three.Group();
   model.binaries.forEach((binary) => {
-    const guideShell = createShellLine(Three, binary.radius, binary.color, BINARY_ORBIT_GUIDE_OPACITY);
-    guideShell.userData.binary = binary;
-    guideShell.userData.binaryId = binary.id;
-    shellGroup.add(guideShell);
+    const shellSurface = createShellSurface(
+      Three,
+      binary.radius,
+      binary.shellColor ?? binary.color
+    );
+    shellSurface.userData.binary = binary;
+    shellSurface.userData.binaryId = binary.id;
+    shellGroup.add(shellSurface);
   });
   sphereContents.add(shellGroup);
 
@@ -1171,8 +1237,9 @@ export function mountIdealSwarmPrototype(options = {}) {
       if (binary.motion) {
         binary.motion.radius = nextRadius;
       }
-      binary.speed = nextRadius * TWO_PI * binary.frequencyHz;
+      binary.speed = computePathSpeed(nextRadius, binary.frequencyHz);
     });
+    model.fieldSpeed = updateBinaryFieldSpeedRatios(model.binaries);
     const orbitPathReferenceRadius = Math.max(
       0.0001,
       ...model.binaries.map((binary) => binary.radius)
@@ -1186,20 +1253,20 @@ export function mountIdealSwarmPrototype(options = {}) {
     });
   }
 
-  function updateOrbitGuideShells() {
-    shellGroup.children.forEach((guideShell) => {
-      const binary = guideShell.userData.binary;
+  function updateShellSurfaces() {
+    shellGroup.children.forEach((shellSurface) => {
+      const binary = shellSurface.userData.binary;
       if (!binary) {
         return;
       }
-      guideShell.scale.setScalar(binary.radius);
+      shellSurface.scale.setScalar(binary.radius);
     });
   }
 
   function setReferenceRadius(referenceRadius) {
     state.radius = Math.max(0.0001, Number(referenceRadius) || state.radius);
     updateBinaryOrbitRadii(state.radius);
-    updateOrbitGuideShells();
+    updateShellSurfaces();
   }
 
   function resize() {
@@ -1216,13 +1283,32 @@ export function mountIdealSwarmPrototype(options = {}) {
     button.setAttribute("aria-pressed", active ? "true" : "false");
   }
 
+  function updatePauseButton() {
+    const label = dom.freezeToggle.querySelector(".ideal-swarm-control-label");
+    const icon = dom.freezeToggle.querySelector(".ideal-swarm-control-icon");
+    const nextLabel = state.frozen ? "Resume" : "Pause";
+    if (label) {
+      label.textContent = nextLabel;
+    } else {
+      dom.freezeToggle.textContent = nextLabel;
+    }
+    if (icon) {
+      icon.classList.toggle("is-play", state.frozen);
+      icon.classList.toggle("is-pause", !state.frozen);
+    }
+    dom.freezeToggle.setAttribute(
+      "aria-label",
+      state.frozen ? "Resume animation" : "Pause animation"
+    );
+  }
+
   function syncControls() {
     const lorentzState = getCurrentLorentzState();
     setButtonActive(dom.pathToggle, state.pathsVisible);
     setButtonActive(dom.surfaceToggle, state.surfaceVisible);
     setButtonActive(dom.axesToggle, state.axesVisible);
     setButtonActive(dom.freezeToggle, state.frozen);
-    dom.freezeToggle.textContent = state.frozen ? "Resume" : "Freeze";
+    updatePauseButton();
     dom.radiusOutput.value = formatFixed(state.radius, 2);
     dom.betaOutput.value = formatFixed(lorentzState.beta, 3);
     dom.speedOutput.value = formatFixed(state.speed, 2);
@@ -1413,7 +1499,7 @@ export function mountIdealSwarmPrototype(options = {}) {
         values: model.binaries.map((binary) => formatFixed(binary.speed, 2)),
       },
       {
-        label: "Speed / field speed",
+        label: "Path speed / c_f",
         values: model.binaries.map((binary) => formatFixed(binary.fieldSpeedRatio, 2)),
       },
       {

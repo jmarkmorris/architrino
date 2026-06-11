@@ -4461,6 +4461,45 @@ exposing a same-domain branch-parity generator for
 `delta_squared_speed`, `sin_phi`, and `sin_delta`, or explicit terminal
 `alpha_j` coefficients for `A_P=sum_j alpha_j*S_j`.
 
+`buildH39RequestedY44TerminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttemptCandidate`
+now tests the natural fold-null generator supplied by the recurrence stack.
+It records
+`D_eta=partial_delta-partial_phi` and the source-term images
+`D_eta(delta^2*nu^{-2})=2*delta_f*nu^{-2}`,
+`D_eta(sin(phi))=-cos(phi_f)`, and
+`D_eta(sin(delta))=cos(delta_f)`. Their aggregate is
+`F_delta-F_phi`, so the fold condition `F_delta-F_phi=0` gives a real
+same-domain aggregate annihilation identity. It does not diagonalize the
+source-term basis into branch-parity eigenvalues and it emits no `alpha_j`
+coefficients, so the rank statement remains fifteen aggregate equations
+known, thirty branch-realization equations needed, and fifteen branch
+covectors missing. The next true blocker is narrower: apply `D_eta` through
+the full terminal coefficient extractor for `h37`, `h36`, and `h35` to emit
+the antisymmetric branch moment `A_P` or explicit terminal `alpha_j`
+coefficients. This remains candidate-only and certifies no source-map
+provider-object branch rows, W producer, matrix identity, terminal row
+provider replay, or directed-rounded provider.
+
+`buildH39RequestedY44TerminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttemptCandidate`
+now performs that terminal-order extractor pass against the existing
+successor certificate branch rows for `h37`, `h36`, and `h35`. For each of
+the five terminal source-covariance nodes it emits three terminal rows and
+six branch-coefficient rows, so all fifteen terminal rows have finite
+branch-antisymmetric coefficient candidates
+`A_G^{terminal}=G_{-,y(h+2)}-G_{+,y(h+2)}`, the `Q_G` coefficient slot that
+appears in `Q_D+(h+1)Q_G`. This is real executable progress: the missing
+object is no longer terminal branch `G` coefficient availability. The
+candidate still does not identify `A_G^{terminal}` with the source-map
+provider-object branch moment `A_P=P_- - P_+`. It records zero
+available coefficient-to-provider-object branch-moment bridges and keeps
+`terminal_branch_g_antisymmetric_coefficient_is_provider_object_A_P=false`.
+The next true blocker is therefore the same-domain bridge from terminal branch
+`G` coefficients to the provider-object branch moment `A_P`, or the explicit
+correction terms that explain why they differ. This remains candidate-only and
+certifies no provider-object branch rows, W producer, matrix identity, terminal
+row provider replay, expression-level N38 provider, or directed-rounded
+provider.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.

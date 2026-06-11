@@ -95,6 +95,8 @@ import {
   buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractorCandidate,
   buildH39RequestedY44TerminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAuditCandidate,
   buildH39RequestedY44TerminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttemptCandidate,
+  buildH39RequestedY44TerminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttemptCandidate,
+  buildH39RequestedY44TerminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttemptCandidate,
   buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandidate,
   buildH39RequestedY44TerminalWitnessDenominatorRealizationAttemptCandidate,
   buildH39RequestedY44TerminalProportionalCommonNormalizerLawRefutationCandidate,
@@ -210,6 +212,8 @@ import {
   validateH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractorCandidate,
   validateH39RequestedY44TerminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAuditCandidate,
   validateH39RequestedY44TerminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttemptCandidate,
+  validateH39RequestedY44TerminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttemptCandidate,
+  validateH39RequestedY44TerminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttemptCandidate,
   validateH39RequestedY44TerminalRowProviderObjectReplayAttemptCandidate,
   validateH39RequestedY44TerminalWitnessDenominatorRealizationAttemptCandidate,
   validateH39RequestedY44TerminalProportionalCommonNormalizerLawRefutationCandidate,
@@ -21556,6 +21560,326 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   assert.deepEqual(
     collectTrueCertifies(
       terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+    ),
+    []
+  );
+  const terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt =
+    buildH39RequestedY44TerminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttemptCandidate(
+      {
+        sourceMapResidualCovarianceTarget,
+        terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt,
+      }
+    );
+  const terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttemptValidationErrors =
+    validateH39RequestedY44TerminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttemptCandidate(
+      terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+    );
+  assert.deepEqual(
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttemptValidationErrors,
+    []
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      .terminal_expression_level_source_term_fold_null_generator_compatibility_attempt_verified,
+    true
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      .terminal_expression_level_source_term_fold_null_generator_compatibility_attempt_certified,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      .fold_null_generator_formula,
+    "D_eta=partial_delta-partial_phi"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      .aggregate_source_generator_formula,
+    "D_eta P=2*delta_f*nu^{-2}-cos(phi_f)+cos(delta_f)=F_delta-F_phi"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      .fold_condition_formula,
+    "F_delta-F_phi=0"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      .fold_null_generator_aggregate_identity,
+    "D_eta P=F_delta-F_phi=0 on the fold"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      .terminal_expression_level_source_term_fold_null_generator_compatibility_attempt_row_count,
+    5
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      .terminal_expression_level_source_term_fold_null_generator_compatibility_attempt_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      .source_term_fold_null_generator_image_row_count,
+    45
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      .source_term_diagonal_parity_eigenvalue_available_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      .source_term_alpha_coefficient_available_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      .fold_null_generator_available_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      .aggregate_generator_annihilation_available_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      .source_term_basis_diagonalized_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      .source_term_alpha_map_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      .source_term_projection_known_equation_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      .source_term_to_branch_projection_known_rank,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      .source_term_to_branch_projection_required_rank,
+    30
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      .source_term_to_branch_projection_missing_rank,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      .provider_object_branch_antisymmetric_free_dimension_remaining,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      .aggregate_generator_annihilates_source_at_fold,
+    true
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      .source_term_basis_diagonalized_by_fold_null_generator,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      .fold_null_generator_is_branch_parity_generator,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      .terminal_expression_level_source_term_fold_null_generator_compatibility_attempt_classification,
+    "fold-null-generator-annihilates-aggregate-source-but-does-not-diagonalize-source-term-basis"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      .terminal_expression_level_source_term_fold_null_generator_compatibility_attempt_blocker_classification,
+    "terminal-order-fold-null-generator-coefficient-extractor-needed"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      .terminal_expression_level_source_term_fold_null_generator_compatibility_attempt_primary_missing_object_kind,
+    "same-domain-terminal-order-fold-null-generator-coefficient-extractor-for-A_P"
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+    ),
+    []
+  );
+  const terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt =
+    buildH39RequestedY44TerminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttemptCandidate(
+      {
+        terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt,
+        terminalSuccessorCoefficientIdentityImportAttempt,
+        successorCoefficientCertificates: {
+          h35: successorCoefficientCertificateH35,
+          h36: successorCoefficientCertificateH36,
+          h37: successorCoefficientCertificateH37,
+        },
+      }
+    );
+  const terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttemptValidationErrors =
+    validateH39RequestedY44TerminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttemptCandidate(
+      terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt
+    );
+  if (
+    terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttemptValidationErrors.length !==
+    0
+  ) {
+    console.log(
+      JSON.stringify(
+        {
+          validationErrors:
+            terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttemptValidationErrors,
+          verified:
+            terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt
+              .terminal_fold_null_coefficient_extractor_attempt_verified,
+          counts: {
+            branch:
+              terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt
+                .terminal_branch_g_coefficient_available_branch_row_count,
+            antisymmetric:
+              terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt
+                .terminal_branch_g_antisymmetric_coefficient_available_terminal_row_count,
+            bridge:
+              terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt
+                .coefficient_to_provider_object_branch_moment_bridge_available_terminal_row_count,
+          },
+          checks:
+            terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt
+              .terminal_fold_null_coefficient_extractor_attempt_checks,
+          rows:
+            terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt.terminal_fold_null_coefficient_extractor_rows.map(
+              (row) => ({
+                node_index: row.node_index,
+                verified:
+                  row.row_terminal_fold_null_coefficient_extractor_attempt_verified,
+                counts: {
+                  branch:
+                    row.terminal_branch_g_coefficient_available_branch_row_count,
+                  antisymmetric:
+                    row.terminal_branch_g_antisymmetric_coefficient_available_terminal_row_count,
+                  bridge:
+                    row.coefficient_to_provider_object_branch_moment_bridge_available_terminal_row_count,
+                },
+                checks: row.row_checks,
+                terminal_rows: row.terminal_fold_null_coefficient_extractor_rows.map(
+                  (terminalRow) => ({
+                    terminal_h_index: terminalRow.terminal_h_index,
+                    verified:
+                      terminalRow.row_terminal_fold_null_coefficient_extractor_attempt_verified,
+                    row_status: terminalRow.row_status,
+                    coefficient_key:
+                      terminalRow.terminal_branch_g_coefficient_key,
+                    coefficient_index:
+                      terminalRow.terminal_branch_g_coefficient_index,
+                    pair_key: terminalRow.terminal_pair_g_coefficient_key,
+                    branch_count:
+                      terminalRow.terminal_branch_g_coefficient_branch_row_count,
+                    branch_available:
+                      terminalRow.terminal_branch_g_coefficient_available_branch_row_count,
+                    antisymmetric_available:
+                      terminalRow.terminal_branch_g_antisymmetric_coefficient_available,
+                    pair_available:
+                      terminalRow
+                        .terminal_branch_g_pair_certificate_coefficient_interval_available,
+                    checks:
+                      terminalRow.terminal_fold_null_coefficient_extractor_checks,
+                  })
+                ),
+              })
+            ),
+        },
+        null,
+        2
+      )
+    );
+  }
+  assert.deepEqual(
+    terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttemptValidationErrors,
+    []
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt
+      .terminal_fold_null_coefficient_extractor_attempt_verified,
+    true
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt
+      .terminal_fold_null_coefficient_extractor_attempt_certified,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt
+      .terminal_fold_null_coefficient_extractor_attempt_row_count,
+    5
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt
+      .terminal_fold_null_coefficient_extractor_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt
+      .terminal_branch_g_coefficient_branch_row_count,
+    30
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt
+      .terminal_branch_g_coefficient_available_branch_row_count,
+    30
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt
+      .terminal_branch_g_antisymmetric_coefficient_available_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt
+      .coefficient_to_provider_object_branch_moment_bridge_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt
+      .terminal_branch_g_antisymmetric_coefficient_candidates_available,
+    true
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt
+      .terminal_branch_g_antisymmetric_coefficient_is_provider_object_A_P,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt
+      .coefficient_to_provider_object_branch_moment_bridge_available,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt
+      .terminal_fold_null_coefficient_extractor_attempt_classification,
+    "terminal-branch-G-antisymmetric-coefficients-available-provider-object-bridge-open"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt
+      .terminal_fold_null_coefficient_extractor_attempt_blocker_classification,
+    "branch-G-coefficient-to-source-map-provider-object-branch-moment-bridge-needed"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt
+      .terminal_fold_null_coefficient_extractor_attempt_primary_missing_object_kind,
+    "same-domain-bridge-from-terminal-branch-G-coefficients-to-A_P"
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt
     ),
     []
   );

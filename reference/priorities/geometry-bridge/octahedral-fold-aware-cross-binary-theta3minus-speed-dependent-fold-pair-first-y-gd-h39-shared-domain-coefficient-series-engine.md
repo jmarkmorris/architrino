@@ -4024,6 +4024,44 @@ true blocker is a same-domain branch-parity generator acting on
 $\delta^2\nu^{-2}$, $\sin(\phi)$, and $\sin(\delta)$, or explicit terminal
 $\alpha_j$ coefficients realizing $A_P=\sum_j \alpha_j S_j$.
 
+\texttt{buildH39RequestedY44TerminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttemptCandidate}
+now tests the natural fold-null generator already present in the recurrence
+stack. It records
+$D_\eta=\partial_\delta-\partial_\phi$ and the source-term images
+$D_\eta(\delta^2\nu^{-2})=2\delta_f\nu^{-2}$,
+$D_\eta(\sin\phi)=-\cos\phi_f$, and
+$D_\eta(\sin\delta)=\cos\delta_f$. Their aggregate is $F_\delta-F_\phi$, so
+the fold condition $F_\delta-F_\phi=0$ gives a same-domain aggregate
+annihilation identity. That identity is useful but not sufficient: it is a
+derivative covector, not a diagonal branch-parity action on the source-term
+basis, and it emits no $\alpha_j$ coefficients. The executable rank statement
+therefore remains fifteen aggregate source equations known, thirty
+branch-realization equations required, and fifteen branch covectors missing.
+The next true blocker is applying $D_\eta$ through the full terminal
+coefficient extractor for $h_{37}$, $h_{36}$, and $h_{35}$ to emit the
+antisymmetric branch moment $A_P$ or explicit terminal $\alpha_j$ coefficients.
+This remains priority-only and candidate-only: it certifies no source-map
+provider-object branch rows, W producer, matrix identity, terminal row
+provider replay, or directed-rounded provider.
+
+\texttt{buildH39RequestedY44TerminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttemptCandidate}
+now executes that terminal-order extractor against the existing h35, h36, and
+h37 successor certificate branch rows. It emits five node rows, fifteen
+terminal rows, and thirty terminal branch-coefficient rows. Every terminal row
+has a finite branch-antisymmetric coefficient candidate
+$A_G^{\mathrm{terminal}}=G_{-,y(h+2)}-G_{+,y(h+2)}$, the $Q_G$ coefficient
+slot in $Q_D+(h+1)Q_G$. This narrows the blocker: terminal branch $G$
+coefficient availability is no longer the missing object. The packet still
+records zero same-domain bridges from those branch $G$ coefficients to the
+source-map provider-object branch moment $A_P=P_- - P_+$, and it keeps
+\texttt{terminal\_branch\_g\_antisymmetric\_coefficient\_is\_provider\_object\_A\_P=false}.
+The next true blocker is a same-domain identity, derivation, or correction-term
+decomposition connecting $A_G^{\mathrm{terminal}}$ to $A_P$. This remains
+priority-only and candidate-only: it certifies no provider-object branch rows,
+provider-object W expression, $\mu$ quotient, matrix identity,
+source-covariance object, terminal row provider enclosure, or directed-rounded
+provider.
+
 \texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
 now also probes a shared terminal-residual coordinate for
 $h_{37},h_{36},h_{35}$. Instead of assigning independent residual hulls to the

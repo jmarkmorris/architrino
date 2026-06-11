@@ -115,11 +115,20 @@
 
       .ideal-swarm-button {
         min-height: 32px;
+        padding: 0 8px;
         border: 1px solid rgba(148, 163, 184, 0.25);
         border-radius: 6px;
         background: rgba(17, 24, 39, 0.85);
         color: rgba(238, 243, 255, 0.88);
         cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        font-size: 12px;
+        font-weight: 650;
+        line-height: 1;
+        white-space: nowrap;
       }
 
       .ideal-swarm-button:hover {
@@ -137,18 +146,90 @@
         gap: 10px;
       }
 
-      .ideal-swarm-toggle-row,
-      .ideal-swarm-range-row,
-      .ideal-swarm-command-row {
+      .ideal-swarm-action-grid,
+      .ideal-swarm-range-row {
         display: grid;
+        gap: 8px;
+      }
+
+      .ideal-swarm-action-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .ideal-swarm-range-row {
         grid-template-columns: 1fr 1fr;
         gap: 8px;
       }
 
       .ideal-swarm-doc-row {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: 1.25fr 0.82fr 1.1fr;
         gap: 8px;
+      }
+
+      .ideal-swarm-control-icon {
+        position: relative;
+        flex: 0 0 auto;
+        width: 12px;
+        height: 12px;
+        color: currentColor;
+      }
+
+      .ideal-swarm-control-icon.is-pause::before,
+      .ideal-swarm-control-icon.is-pause::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 3px;
+        height: 12px;
+        border-radius: 1px;
+        background: currentColor;
+      }
+
+      .ideal-swarm-control-icon.is-pause::before {
+        left: 2px;
+      }
+
+      .ideal-swarm-control-icon.is-pause::after {
+        right: 2px;
+      }
+
+      .ideal-swarm-control-icon.is-play::before {
+        content: "";
+        position: absolute;
+        left: 2px;
+        top: 0;
+        width: 0;
+        height: 0;
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent;
+        border-left: 10px solid currentColor;
+      }
+
+      .ideal-swarm-button.is-doc-button {
+        gap: 4px;
+        padding: 0 5px;
+        font-size: 11px;
+      }
+
+      .ideal-swarm-md-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+        width: 18px;
+        height: 14px;
+        border: 1px solid currentColor;
+        border-radius: 3px;
+        font-size: 7px;
+        font-weight: 800;
+        line-height: 1;
+        opacity: 0.9;
+      }
+
+      .ideal-swarm-button-label {
+        min-width: 0;
+        white-space: nowrap;
       }
 
       .ideal-swarm-range-row {
@@ -658,8 +739,7 @@
           gap: 3px;
         }
 
-        .ideal-swarm-toggle-row,
-        .ideal-swarm-command-row,
+        .ideal-swarm-action-grid,
         .ideal-swarm-doc-row {
           gap: 5px;
         }
@@ -797,11 +877,21 @@
       <section class="ideal-swarm-panel is-upper-right" aria-label="Control panel">
         <h2>Controls</h2>
         <div class="ideal-swarm-control-stack">
-          <div class="ideal-swarm-toggle-row">
+          <div class="ideal-swarm-action-grid">
             <button id="ideal-swarm-path-toggle" class="ideal-swarm-button is-active" type="button">Paths</button>
             <button id="ideal-swarm-surface-toggle" class="ideal-swarm-button" type="button">Surface</button>
             <button id="ideal-swarm-axes-toggle" class="ideal-swarm-button is-active" type="button">Axes</button>
-            <button id="ideal-swarm-freeze-toggle" class="ideal-swarm-button" type="button">Freeze</button>
+            <button
+              id="ideal-swarm-freeze-toggle"
+              class="ideal-swarm-button"
+              type="button"
+              aria-label="Pause animation"
+            >
+              <span class="ideal-swarm-control-icon is-pause" aria-hidden="true"></span>
+              <span class="ideal-swarm-control-label">Pause</span>
+            </button>
+            <button id="ideal-swarm-reset-button" class="ideal-swarm-button" type="button">Reset</button>
+            <button id="ideal-swarm-focus-button" class="ideal-swarm-button" type="button">Focus</button>
           </div>
           <div class="ideal-swarm-range-row">
             <label for="ideal-swarm-radius-input">Outer orbit</label>
@@ -818,19 +908,33 @@
             <input id="ideal-swarm-speed-input" type="range" min="0.2" max="2.4" step="0.05" value="1" />
             <output id="ideal-swarm-speed-output" for="ideal-swarm-speed-input">1.00</output>
           </div>
-          <div class="ideal-swarm-command-row">
-            <button id="ideal-swarm-reset-button" class="ideal-swarm-button" type="button">Reset</button>
-            <button id="ideal-swarm-focus-button" class="ideal-swarm-button" type="button">Focus</button>
-          </div>
           <div class="ideal-swarm-doc-row" aria-label="Lorentz documentation">
-            <button id="ideal-swarm-return-cycle-doc-button" class="ideal-swarm-button" type="button">
-              Return-Cycle
+            <button
+              id="ideal-swarm-return-cycle-doc-button"
+              class="ideal-swarm-button is-doc-button"
+              type="button"
+              aria-label="Open Return-Cycle Lorentz Quantization document"
+            >
+              <span class="ideal-swarm-md-icon" aria-hidden="true">MD</span>
+              <span class="ideal-swarm-button-label">Return-Cycle</span>
             </button>
-            <button id="ideal-swarm-notes-doc-button" class="ideal-swarm-button" type="button">
-              Notes
+            <button
+              id="ideal-swarm-notes-doc-button"
+              class="ideal-swarm-button is-doc-button"
+              type="button"
+              aria-label="Open Ideal Swarm Guide document"
+            >
+              <span class="ideal-swarm-md-icon" aria-hidden="true">MD</span>
+              <span class="ideal-swarm-button-label">Guide</span>
             </button>
-            <button id="ideal-swarm-lorentz-doc-button" class="ideal-swarm-button" type="button">
-              Kinematics
+            <button
+              id="ideal-swarm-lorentz-doc-button"
+              class="ideal-swarm-button is-doc-button"
+              type="button"
+              aria-label="Open Lorentz Kinematics document"
+            >
+              <span class="ideal-swarm-md-icon" aria-hidden="true">MD</span>
+              <span class="ideal-swarm-button-label">Kinematics</span>
             </button>
           </div>
         </div>
