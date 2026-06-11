@@ -876,45 +876,61 @@ function createShellSurface(Three, radius, color) {
 
 function createAxisReferenceGroup(Three) {
   const group = new Three.Group();
-  const axisPositions = new Float32Array(6 * 3);
-  const axisGeometry = new Three.BufferGeometry();
-  axisGeometry.setAttribute("position", new Three.BufferAttribute(axisPositions, 3));
-  const material = new Three.LineBasicMaterial({
-    color: "#f8fafc",
+  const momentumPositions = new Float32Array(2 * 3);
+  const momentumGeometry = new Three.BufferGeometry();
+  momentumGeometry.setAttribute("position", new Three.BufferAttribute(momentumPositions, 3));
+  const momentumMaterial = new Three.LineBasicMaterial({
+    color: "#fbbf24",
     transparent: true,
-    opacity: 0.72,
+    opacity: 0.82,
     depthWrite: false,
   });
-  group.add(new Three.LineSegments(axisGeometry, material));
+  const momentumLine = new Three.LineSegments(momentumGeometry, momentumMaterial);
+  momentumLine.renderOrder = 5;
+  group.add(momentumLine);
 
-  const circles = Array.from({ length: 6 }, () => {
+  const transversePositions = new Float32Array(4 * 3);
+  const transverseGeometry = new Three.BufferGeometry();
+  transverseGeometry.setAttribute("position", new Three.BufferAttribute(transversePositions, 3));
+  const transverseMaterial = new Three.LineBasicMaterial({
+    color: "#f8fafc",
+    transparent: true,
+    opacity: 0.58,
+    depthWrite: false,
+  });
+  const transverseLines = new Three.LineSegments(transverseGeometry, transverseMaterial);
+  transverseLines.renderOrder = 4;
+  group.add(transverseLines);
+
+  const transverseCircles = Array.from({ length: 4 }, () => {
     const positions = new Float32Array(AXIS_REFERENCE_CIRCLE_SEGMENTS * 3);
     const geometry = new Three.BufferGeometry();
     geometry.setAttribute("position", new Three.BufferAttribute(positions, 3));
-    const line = new Three.LineLoop(geometry, material);
+    const line = new Three.LineLoop(geometry, transverseMaterial);
+    line.renderOrder = 4;
     group.add(line);
     return { geometry, positions };
   });
 
-  group.userData.axisPositions = axisPositions;
-  group.userData.axisGeometry = axisGeometry;
-  group.userData.circles = circles;
+  group.userData.momentumPositions = momentumPositions;
+  group.userData.momentumGeometry = momentumGeometry;
+  group.userData.transversePositions = transversePositions;
+  group.userData.transverseGeometry = transverseGeometry;
+  group.userData.transverseCircles = transverseCircles;
   return group;
 }
 
 function updateAxisReferenceGroup(Three, group, radius) {
-  const axisPositions = group.userData.axisPositions;
-  const axisGeometry = group.userData.axisGeometry;
+  const momentumPositions = group.userData.momentumPositions;
+  const momentumGeometry = group.userData.momentumGeometry;
+  const transversePositions = group.userData.transversePositions;
+  const transverseGeometry = group.userData.transverseGeometry;
   const circleRadius = Math.max(0.07, radius * 0.045);
   const momentumAxis = ASSEMBLY_MOMENTUM_AXIS.clone();
   const transverseU = ASSEMBLY_TRANSVERSE_AXIS_U.clone();
   const transverseV = ASSEMBLY_TRANSVERSE_AXIS_V.clone();
-  const axes = [
-    {
-      axis: momentumAxis,
-      circleU: transverseU,
-      circleV: transverseV,
-    },
+  const momentumGuideRadius = radius * 0.58;
+  const transverseAxes = [
     {
       axis: transverseU,
       circleU: transverseV,
@@ -926,26 +942,33 @@ function updateAxisReferenceGroup(Three, group, radius) {
       circleV: transverseU,
     },
   ];
-  let axisOffset = 0;
+  let transverseOffset = 0;
   let circleIndex = 0;
 
-  function pushAxisPoint(point) {
-    axisPositions[axisOffset] = point.x;
-    axisPositions[axisOffset + 1] = point.y;
-    axisPositions[axisOffset + 2] = point.z;
-    axisOffset += 3;
+  function writePoint(positions, offset, point) {
+    positions[offset] = point.x;
+    positions[offset + 1] = point.y;
+    positions[offset + 2] = point.z;
   }
 
-  function pushAxisSegment(start, end) {
-    pushAxisPoint(start);
-    pushAxisPoint(end);
+  function pushTransversePoint(point) {
+    writePoint(transversePositions, transverseOffset, point);
+    transverseOffset += 3;
   }
 
-  axes.forEach(({ axis, circleU, circleV }) => {
-    pushAxisSegment(axis.clone().multiplyScalar(-radius), axis.clone().multiplyScalar(radius));
+  function pushTransverseSegment(start, end) {
+    pushTransversePoint(start);
+    pushTransversePoint(end);
+  }
+
+  writePoint(momentumPositions, 0, momentumAxis.clone().multiplyScalar(-momentumGuideRadius));
+  writePoint(momentumPositions, 3, momentumAxis.clone().multiplyScalar(momentumGuideRadius));
+
+  transverseAxes.forEach(({ axis, circleU, circleV }) => {
+    pushTransverseSegment(axis.clone().multiplyScalar(-radius), axis.clone().multiplyScalar(radius));
     [-1, 1].forEach((direction) => {
       const center = axis.clone().multiplyScalar(direction * radius);
-      const circle = group.userData.circles[circleIndex];
+      const circle = group.userData.transverseCircles[circleIndex];
       circleIndex += 1;
       for (let index = 0; index < AXIS_REFERENCE_CIRCLE_SEGMENTS; index += 1) {
         const angle = (index / AXIS_REFERENCE_CIRCLE_SEGMENTS) * TWO_PI;
@@ -962,20 +985,26 @@ function updateAxisReferenceGroup(Three, group, radius) {
     });
   });
 
-  axisGeometry.attributes.position.needsUpdate = true;
-  axisGeometry.computeBoundingSphere();
+  momentumGeometry.attributes.position.needsUpdate = true;
+  momentumGeometry.computeBoundingSphere();
+  transverseGeometry.attributes.position.needsUpdate = true;
+  transverseGeometry.computeBoundingSphere();
 }
 
-function createSurfaceSamples(Three) {
+export function createSurfaceSamples(Three) {
   const samples = [];
   for (let latIndex = 0; latIndex < SURFACE_LATITUDE_COUNT; latIndex += 1) {
     const theta = (latIndex / (SURFACE_LATITUDE_COUNT - 1)) * Math.PI;
-    const y = Math.cos(theta);
+    const longitudinal = Math.cos(theta);
     const ring = Math.sin(theta);
     for (let lonIndex = 0; lonIndex < SURFACE_LONGITUDE_COUNT; lonIndex += 1) {
       const phi = (lonIndex / SURFACE_LONGITUDE_COUNT) * TWO_PI;
+      const unit = ASSEMBLY_MOMENTUM_AXIS.clone()
+        .multiplyScalar(longitudinal)
+        .add(ASSEMBLY_TRANSVERSE_AXIS_U.clone().multiplyScalar(ring * Math.cos(phi)))
+        .add(ASSEMBLY_TRANSVERSE_AXIS_V.clone().multiplyScalar(ring * Math.sin(phi)));
       samples.push({
-        unit: new Three.Vector3(ring * Math.cos(phi), y, ring * Math.sin(phi)),
+        unit,
         phi,
       });
     }

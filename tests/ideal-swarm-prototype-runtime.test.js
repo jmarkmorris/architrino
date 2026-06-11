@@ -9,6 +9,7 @@ import {
   computeLorentzState,
   computePotentialContribution,
   computePotentialSum,
+  createSurfaceSamples,
   createIdealSwarmModel,
   getOrbitPathTintProfile,
   navigateIdealSwarmHome,
@@ -49,6 +50,16 @@ test("standalone Ideal Swarm home navigation returns to the main webapp", () => 
   assert.equal(navigateIdealSwarmHome(locationLike), true);
   assert.deepEqual(assigned, ["./index.html"]);
   assert.equal(navigateIdealSwarmHome(locationLike, ""), false);
+});
+
+test("surface sample poles align with assembly momentum", () => {
+  const samples = createSurfaceSamples(THREE);
+  const assemblyMomentum = new THREE.Vector3(1, 1, 1).normalize();
+  const firstPole = samples[0].unit;
+  const lastPole = samples[samples.length - 1].unit;
+
+  assert.ok(firstPole.distanceTo(assemblyMomentum) < 1e-12);
+  assert.ok(lastPole.distanceTo(assemblyMomentum.clone().multiplyScalar(-1)) < 1e-12);
 });
 
 test("full potential is the six-emission superposition", () => {

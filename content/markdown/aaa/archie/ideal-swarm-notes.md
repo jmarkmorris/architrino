@@ -133,8 +133,8 @@ falls in lockstep with the length-contraction factor because the denominator is 
 | Control | Meaning |
 | --- | --- |
 | `Paths` | Toggles visible orbit paths and charge traces. |
-| `Surface` | Toggles the surface rendering of the spheroid. It defaults on so the shell geometry is visible. |
-| `Axes` | Toggles momentum-frame guides: the bulk-motion axis $\hat{\mathbf{n}}$ and two transverse axes perpendicular to it. |
+| `Surface` | Toggles the surface rendering of the spheroid. Its sample poles align with the bulk-motion axis $\hat{\mathbf{n}}$. |
+| `Axes` | Toggles momentum-frame guides: a short bulk-motion contraction guide along $\hat{\mathbf{n}}$ plus two transverse axes perpendicular to it. |
 | `Pause` / `Resume` | Pauses or resumes the animation. |
 | Home icon | Returns from the standalone lesson to the main webapp. |
 | `Outer orbit` | Sets the reference transverse scale for the outer binary and rescales the displayed nested swarm from that reference. |
