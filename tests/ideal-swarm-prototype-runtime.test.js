@@ -11,6 +11,7 @@ import {
   computePotentialSum,
   createIdealSwarmModel,
   getOrbitPathTintProfile,
+  navigateIdealSwarmHome,
   solveFlightTime,
 } from "../src/apps/ideal-swarm/IdealSwarmPrototypeRuntime.js";
 
@@ -37,6 +38,17 @@ test("nested shell swarm prototype model reuses three animator circular binaries
     model.architrinos.map((architrino) => architrino.chargeType).slice(0, 2),
     ["positrino", "electrino"]
   );
+});
+
+test("standalone Ideal Swarm home navigation returns to the main webapp", () => {
+  const assigned = [];
+  const locationLike = {
+    assign: (href) => assigned.push(href),
+  };
+
+  assert.equal(navigateIdealSwarmHome(locationLike), true);
+  assert.deepEqual(assigned, ["./index.html"]);
+  assert.equal(navigateIdealSwarmHome(locationLike, ""), false);
 });
 
 test("full potential is the six-emission superposition", () => {

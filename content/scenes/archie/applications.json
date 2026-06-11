@@ -12,6 +12,10 @@
     "hideScaleLabels": true,
     "children": [
       {
+        "nodeId": "ideal_swarm",
+        "scenePath": "content/scenes/archie/ideal_swarm.json"
+      },
+      {
         "nodeId": "hyde_periodic_table",
         "scenePath": "content/scenes/chemistry/hyde_periodic_table_scene.json"
       },
@@ -34,6 +38,13 @@
     ]
   },
   "objects": [
+    {
+      "id": "ideal_swarm",
+      "title": "Ideal Noether Swarm",
+      "radius": 2.2,
+      "color": "#0f766e",
+      "labelTitle": "Ideal Noether Swarm"
+    },
     {
       "id": "hyde_periodic_table",
       "title": "Hyde Periodic Table",

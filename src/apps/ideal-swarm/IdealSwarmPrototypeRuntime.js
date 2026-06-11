@@ -60,6 +60,12 @@ const ASSEMBLY_MOMENTUM_AXIS = new THREE.Vector3(
   ASSEMBLY_MOMENTUM_AXIS_COMPONENT,
   ASSEMBLY_MOMENTUM_AXIS_COMPONENT
 );
+const ASSEMBLY_TRANSVERSE_AXIS_U = new THREE.Vector3(1 / Math.sqrt(2), -1 / Math.sqrt(2), 0);
+const ASSEMBLY_TRANSVERSE_AXIS_V = new THREE.Vector3(
+  1 / Math.sqrt(6),
+  1 / Math.sqrt(6),
+  -2 / Math.sqrt(6)
+);
 const IDEAL_SWARM_DOCS = {
   notes: {
     name: "Ideal Swarm Guide",
@@ -78,6 +84,7 @@ const IDEAL_SWARM_DOCS = {
     markdownColumns: 1,
   },
 };
+export const IDEAL_SWARM_NAVIGATOR_HREF = "./index.html";
 const ORBIT_PATH_TRAIL_LAYERS = [
   {
     role: "headlamp-glow",
@@ -899,21 +906,24 @@ function updateAxisReferenceGroup(Three, group, radius) {
   const axisPositions = group.userData.axisPositions;
   const axisGeometry = group.userData.axisGeometry;
   const circleRadius = Math.max(0.07, radius * 0.045);
+  const momentumAxis = ASSEMBLY_MOMENTUM_AXIS.clone();
+  const transverseU = ASSEMBLY_TRANSVERSE_AXIS_U.clone();
+  const transverseV = ASSEMBLY_TRANSVERSE_AXIS_V.clone();
   const axes = [
     {
-      axis: new Three.Vector3(1, 0, 0),
-      circleU: new Three.Vector3(0, 1, 0),
-      circleV: new Three.Vector3(0, 0, 1),
+      axis: momentumAxis,
+      circleU: transverseU,
+      circleV: transverseV,
     },
     {
-      axis: new Three.Vector3(0, 1, 0),
-      circleU: new Three.Vector3(1, 0, 0),
-      circleV: new Three.Vector3(0, 0, 1),
+      axis: transverseU,
+      circleU: transverseV,
+      circleV: momentumAxis,
     },
     {
-      axis: new Three.Vector3(0, 0, 1),
-      circleU: new Three.Vector3(1, 0, 0),
-      circleV: new Three.Vector3(0, 1, 0),
+      axis: transverseV,
+      circleU: momentumAxis,
+      circleV: transverseU,
     },
   ];
   let axisOffset = 0;
@@ -1016,6 +1026,18 @@ function appendIdealSwarmCacheBust(path, token) {
   return `${path}${separator}v=${token}`;
 }
 
+export function navigateIdealSwarmHome(
+  locationLike = globalThis.window?.location,
+  href = IDEAL_SWARM_NAVIGATOR_HREF
+) {
+  const resolvedHref = String(href ?? "").trim();
+  if (!resolvedHref || typeof locationLike?.assign !== "function") {
+    return false;
+  }
+  locationLike.assign(resolvedHref);
+  return true;
+}
+
 function createIdealSwarmMarkdownRenderer(windowLike) {
   const markdownItFactory = windowLike?.markdownit;
   if (typeof markdownItFactory !== "function") {
@@ -1071,6 +1093,7 @@ export function mountIdealSwarmPrototype(options = {}) {
   const documentLike = options.documentLike ?? globalThis.document;
   const windowLike = options.windowLike ?? globalThis.window;
   const Three = options.THREE ?? THREE;
+  const homeHref = options.homeHref ?? IDEAL_SWARM_NAVIGATOR_HREF;
   const canvas = queryRequiredElement(documentLike, "#ideal-swarm-canvas");
   const model = createIdealSwarmModel({ THREE: Three });
   const renderer = new Three.WebGLRenderer({
@@ -1145,6 +1168,7 @@ export function mountIdealSwarmPrototype(options = {}) {
   sphereContents.add(axisReferenceGroup);
 
   const dom = {
+    homeButton: queryRequiredElement(documentLike, "#ideal-swarm-home-button"),
     pathToggle: queryRequiredElement(documentLike, "#ideal-swarm-path-toggle"),
     surfaceToggle: queryRequiredElement(documentLike, "#ideal-swarm-surface-toggle"),
     axesToggle: queryRequiredElement(documentLike, "#ideal-swarm-axes-toggle"),
@@ -1485,6 +1509,7 @@ export function mountIdealSwarmPrototype(options = {}) {
   }
 
   function renderTable() {
+    const formatWakeRegime = (regime) => (regime === "field speed" ? "c<sub>f</sub>" : regime);
     const rows = [
       {
         label: "Path radius",
@@ -1495,22 +1520,18 @@ export function mountIdealSwarmPrototype(options = {}) {
         values: model.binaries.map((binary) => `${formatFixed(binary.frequencyHz, 2)} Hz`),
       },
       {
-        label: "Path speed",
-        values: model.binaries.map((binary) => formatFixed(binary.speed, 2)),
-      },
-      {
-        label: "Path speed / c_f",
+        label: "Path speed / c<sub>f</sub>",
         values: model.binaries.map((binary) => formatFixed(binary.fieldSpeedRatio, 2)),
       },
       {
         label: "Wake regime",
-        values: model.binaries.map((binary) => binary.fieldSpeedRegime),
+        values: model.binaries.map((binary) => formatWakeRegime(binary.fieldSpeedRegime)),
       },
       {
         label: "Phase",
         values: model.binaries.map((binary) => {
           const degrees = ((state.modelTime * binary.frequencyHz * 360) % 360 + 360) % 360;
-          return `${formatFixed(degrees, 0)} deg`;
+          return `${formatFixed(degrees, 0)}°`;
         }),
       },
     ];
@@ -1590,6 +1611,9 @@ export function mountIdealSwarmPrototype(options = {}) {
   dom.speedInput.addEventListener("input", () => {
     state.speed = Number(dom.speedInput.value) || state.speed;
     syncControls();
+  });
+  dom.homeButton.addEventListener("click", () => {
+    navigateIdealSwarmHome(windowLike?.location, homeHref);
   });
   dom.resetButton.addEventListener("click", () => {
     resetRotation();

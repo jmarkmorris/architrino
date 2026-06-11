@@ -90,10 +90,47 @@
         letter-spacing: 0;
       }
 
+      .ideal-swarm-panel-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin: 0 0 10px;
+      }
+
+      .ideal-swarm-panel-header h2 {
+        margin: 0;
+      }
+
+      .ideal-swarm-home-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        border-radius: 999px;
+        background: rgba(17, 24, 39, 0.85);
+        color: rgba(238, 243, 255, 0.88);
+        cursor: pointer;
+      }
+
+      .ideal-swarm-home-button:hover,
+      .ideal-swarm-home-button:focus-visible {
+        border-color: rgba(125, 211, 252, 0.58);
+        outline: none;
+      }
+
+      .ideal-swarm-home-button svg {
+        width: 18px;
+        height: 18px;
+      }
+
       .ideal-swarm-panel.is-upper-left {
         left: 16px;
         top: 16px;
-        width: 251px;
+        width: 296px;
       }
 
       .ideal-swarm-panel.is-upper-right {
@@ -104,7 +141,7 @@
       .ideal-swarm-panel.is-lower-left {
         left: 16px;
         bottom: 16px;
-        width: 380px;
+        width: 296px;
       }
 
       .ideal-swarm-panel.is-lower-right {
@@ -342,6 +379,10 @@
         color: rgba(203, 213, 225, 0.78);
         font-size: 10px;
         line-height: 1.25;
+      }
+
+      .ideal-swarm-energy-row span {
+        white-space: nowrap;
       }
 
       .ideal-swarm-energy-row output {
@@ -667,6 +708,15 @@
           font-size: 11px;
         }
 
+        .ideal-swarm-panel-header {
+          margin-bottom: 7px;
+        }
+
+        .ideal-swarm-home-button {
+          width: 28px;
+          height: 28px;
+        }
+
         .ideal-swarm-panel.is-upper-left {
           left: 10px;
           top: 10px;
@@ -826,7 +876,7 @@
         <div class="ideal-swarm-chart-legend" aria-hidden="true">
           <span><i style="background:#fbbf24"></i>&gamma; time</span>
           <span><i style="background:#2dd4bf"></i>&xi; length</span>
-          <span><i style="background:#f472b6"></i>&beta; = v / c</span>
+          <span><i style="background:#f472b6"></i>&beta; = v / c<sub>f</sub></span>
         </div>
         <div class="ideal-swarm-factor-grid" aria-label="Time and length factors">
           <div class="ideal-swarm-factor-card is-time">
@@ -843,7 +893,7 @@
         <div class="ideal-swarm-energy-ledger" aria-label="Energy and mass ledger">
           <header>
             <h3>Energy ledger</h3>
-            <small>normalized: m<sub>0</sub> = 1, c = 1</small>
+            <small>m<sub>0</sub> = 1, c<sub>f</sub> = 1</small>
           </header>
           <div class="ideal-swarm-energy-rows">
             <div class="ideal-swarm-energy-row">
@@ -851,23 +901,23 @@
               <output id="ideal-swarm-rest-mass-label">1.000</output>
             </div>
             <div class="ideal-swarm-energy-row">
-              <span>Rest energy E<sub>0</sub> = m<sub>0</sub>c<sup>2</sup></span>
+              <span>Rest energy E<sub>0</sub> = m<sub>0</sub>c<sub>f</sub><sup>2</sup></span>
               <output id="ideal-swarm-rest-energy-label">1.000</output>
             </div>
             <div class="ideal-swarm-energy-row">
-              <span>Movement energy &Delta;E = (&gamma; - 1)m<sub>0</sub>c<sup>2</sup></span>
+              <span>Bulk-motion energy &Delta;E<sub>CM</sub> = (&gamma; - 1)m<sub>0</sub>c<sub>f</sub><sup>2</sup></span>
               <output id="ideal-swarm-movement-energy-label">0.000</output>
             </div>
             <div class="ideal-swarm-energy-row">
-              <span>Movement energy-equivalent mass &Delta;E / c<sup>2</sup></span>
+              <span>Bulk-motion mass equivalent &Delta;E<sub>CM</sub> / c<sub>f</sub><sup>2</sup></span>
               <output id="ideal-swarm-movement-mass-label">0.000</output>
             </div>
             <div class="ideal-swarm-energy-row">
-              <span>Total energy E = &gamma;m<sub>0</sub>c<sup>2</sup></span>
+              <span>Total energy E<sub>CM</sub> = &gamma;m<sub>0</sub>c<sub>f</sub><sup>2</sup></span>
               <output id="ideal-swarm-total-energy-label">1.000</output>
             </div>
             <div class="ideal-swarm-energy-row">
-              <span>Total energy-equivalent mass E / c<sup>2</sup></span>
+              <span>Total mass equivalent E<sub>CM</sub> / c<sub>f</sub><sup>2</sup></span>
               <output id="ideal-swarm-total-mass-label">1.000</output>
             </div>
           </div>
@@ -875,7 +925,27 @@
       </section>
 
       <section class="ideal-swarm-panel is-upper-right" aria-label="Control panel">
-        <h2>Controls</h2>
+        <div class="ideal-swarm-panel-header">
+          <h2>Controls</h2>
+          <button
+            id="ideal-swarm-home-button"
+            class="ideal-swarm-home-button"
+            type="button"
+            aria-label="Go to main webapp"
+            title="Main webapp"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M3 11.5L12 4l9 7.5M6.5 10.5V20h11V10.5"
+                stroke="currentColor"
+                stroke-width="2"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </svg>
+          </button>
+        </div>
         <div class="ideal-swarm-control-stack">
           <div class="ideal-swarm-action-grid">
             <button id="ideal-swarm-path-toggle" class="ideal-swarm-button is-active" type="button">Paths</button>
@@ -899,7 +969,7 @@
             <output id="ideal-swarm-radius-output" for="ideal-swarm-radius-input">1.62</output>
           </div>
           <div class="ideal-swarm-range-row">
-            <label for="ideal-swarm-beta-input">&beta; = v / c</label>
+            <label for="ideal-swarm-beta-input">&beta; = v / c<sub>f</sub></label>
             <input id="ideal-swarm-beta-input" type="range" min="0" max="1" step="0.005" value="0" />
             <output id="ideal-swarm-beta-output" for="ideal-swarm-beta-input">0.000</output>
           </div>
@@ -944,7 +1014,7 @@
         <h2>Noether Swarm Equations</h2>
         <div class="ideal-swarm-equation-stack">
           <div class="ideal-swarm-equation-row">
-            <code>&gamma; = 1 / sqrt(1 - (v/c)<sup>2</sup>)</code>
+            <code>&gamma; = 1 / sqrt(1 - (v/c<sub>f</sub>)<sup>2</sup>)</code>
             <output id="ideal-swarm-gamma-equation">1.000</output>
           </div>
           <div class="ideal-swarm-equation-row">
@@ -957,11 +1027,11 @@
           </div>
           <div class="ideal-swarm-equation-divider ideal-swarm-closure-detail"></div>
           <div class="ideal-swarm-cycle-row ideal-swarm-closure-detail">
-            <code>T<sub>&parallel;</sub> = R<sub>&parallel;</sub>/(c - v) + R<sub>&parallel;</sub>/(c + v)</code>
+            <code>T<sub>&parallel;</sub> = R<sub>&parallel;</sub>/(c<sub>f</sub> - v) + R<sub>&parallel;</sub>/(c<sub>f</sub> + v)</code>
             <output id="ideal-swarm-tparallel-equation">3.240</output>
           </div>
           <div class="ideal-swarm-cycle-row ideal-swarm-closure-detail">
-            <code>T<sub>&perp;</sub> = 2 R<sub>&perp;</sub>&gamma; / c</code>
+            <code>T<sub>&perp;</sub> = 2 R<sub>&perp;</sub>&gamma; / c<sub>f</sub></code>
             <output id="ideal-swarm-tperp-equation">3.240</output>
           </div>
           <div class="ideal-swarm-cycle-row ideal-swarm-closure-detail">

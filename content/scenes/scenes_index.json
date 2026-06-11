@@ -1619,6 +1619,11 @@
       "id": "spacetime__noether_sea_pro_anti_coupling",
       "name": "Noether Sea Pro/Anti Coupling",
       "path": "content/scenes/spacetime/noether_sea_pro_anti_coupling.json"
+    },
+    {
+      "id": "archie__ideal_swarm",
+      "name": "Ideal Noether Swarm: Lorentz Geometry",
+      "path": "content/scenes/archie/ideal_swarm.json"
     }
   ]
 }
