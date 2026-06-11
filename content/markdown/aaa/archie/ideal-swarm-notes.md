@@ -25,10 +25,10 @@ $$
 \xi
 =\frac{R_{\parallel}}{R_{\perp}}
 =\sqrt{1-\beta^2}
-=\frac{1}{\gamma},
+=\frac{1}{\gamma}
 \qquad
 \gamma
-=\frac{R_{\perp}}{R_{\parallel}}.
+=\frac{R_{\perp}}{R_{\parallel}}
 $$
 
 The app therefore uses geometry as a dictionary for the Lorentz kinematics, while leaving the derivation burden in the theory documents.
@@ -61,7 +61,7 @@ The displayed spheroid uses:
 
 The no-extra-scale lesson law is:
 $$
-R_{\parallel}=R_{\perp}\sqrt{1-\beta^2}.
+R_{\parallel}=R_{\perp}\sqrt{1-\beta^2}
 $$
 
 That is why the same number appears as both the relative-length factor and the flattening ratio. The app should be read as a direct geometry map:
@@ -70,7 +70,7 @@ $$
 =
 \sqrt{1-\xi^2}
 =
-\sqrt{1-\frac{R_{\parallel}^2}{R_{\perp}^2}}.
+\sqrt{1-\frac{R_{\parallel}^2}{R_{\perp}^2}}
 $$
 
 In ordinary geometry language, $\beta$ is the eccentricity of the Lorentz spheroid in this simplified display. The physical claim is narrower: if the Noether swarm realizes Lorentz-compatible closure with no additional scale channel, then the measured semiaxes determine $\beta$, $\gamma$, and $\xi$ through the equations above.
@@ -83,14 +83,14 @@ $$
 =
 \frac{\Delta\tau}{\sqrt{1-\beta^2}}
 =
-\gamma\Delta\tau.
+\gamma\Delta\tau
 $$
 
 This does not mean a small object contains an infinitely long literal path inside it. Time dilation is a comparison between cycle counts in two frames. As $\beta$ approaches $1$, the moving cycle must spend more and more of the causal budget keeping up with the translated assembly, leaving less closing capacity for the internal return cycle. In the ideal Lorentz formula, the outside-frame period therefore grows without bound:
 $$
 \gamma\to\infty
 \quad\text{as}\quad
-\beta\to1.
+\beta\to1
 $$
 
 In the app, this is a limit-state display. It marks the mathematical boundary of the Lorentz law, not a claim that a finite material assembly actually reaches the field-speed limit.
@@ -99,21 +99,21 @@ In the app, this is a limit-state display. It marks the mathematical boundary of
 
 The energy ledger is normalized with
 $$
-m_0=1,\qquad c_f=1.
+m_0=1\qquad c_f=1
 $$
 
 With that normalization:
 $$
-E_0=m_0c_f^2=1,
+E_0=m_0c_f^2=1
 \qquad
-E_{\text{CM}}=\gamma m_0c_f^2=\gamma,
+E_{\text{CM}}=\gamma m_0c_f^2=\gamma
 \qquad
-\Delta E_{\text{CM}}=(\gamma-1)m_0c_f^2.
+\Delta E_{\text{CM}}=(\gamma-1)m_0c_f^2
 $$
 
 The app also shows the center-of-mass mass-equivalent form
 $$
-\frac{E_{\text{CM}}}{c_f^2}=\gamma m_0.
+\frac{E_{\text{CM}}}{c_f^2}=\gamma m_0
 $$
 
 That readout is not saying that invariant rest mass changes. It is showing observer-facing center-of-mass energy expressed in mass-equivalent units. The invariant rest mass remains $m_0$; the center-of-mass energy and its mass equivalent grow with $\gamma$.
@@ -150,7 +150,7 @@ The documentation buttons open this note, the return-cycle bridge, and the Loren
 The app computes an internal circular path speed from the displayed radius and frequency:
 
 $$
-v_{\mathrm{path}} = 2\pi R f.
+v_{\mathrm{path}} = 2\pi R f
 $$
 
 The path-speed ratio row divides that path speed by the app's field-speed reference. In the current normalized display, $c_f$ is set by the middle binary's current path speed, so the middle binary reads $1.00$ by definition while the inner and outer values are derived from their radii and frequencies.
@@ -167,13 +167,13 @@ The app supports three separate claim levels:
 
 The app should therefore not be used as proof that the Noether swarm dynamics derive special relativity. Its role is to keep the geometric target concrete:
 $$
-\xi=\frac{1}{\gamma},
+\xi=\frac{1}{\gamma}
 \qquad
-\beta=\sqrt{1-\xi^2},
+\beta=\sqrt{1-\xi^2}
 \qquad
-\Delta t=\gamma\Delta\tau,
+\Delta t=\gamma\Delta\tau
 \qquad
-L_{\parallel}=L_0\xi.
+L_{\parallel}=L_0\xi
 $$
 
 Those are the quantities that return-cycle closure and Lorentz kinematics must recover from the underlying causal-root ledger.
