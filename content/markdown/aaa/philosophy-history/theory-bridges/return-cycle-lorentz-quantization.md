@@ -2,7 +2,7 @@
 
 This bridge gives a compact reader-facing account of the Lorentz milestone developed in the spacetime and Noether swarm chapters. Its preferred name is **Return-Cycle Lorentz Quantization**. The name is more precise than `quantized Lorentz factor` because the smooth observer-level Lorentz function is not replaced by a step function. The quantized object is the material realization of that function: a discrete admissible return-cycle branch of the Noether swarm causal-root ledger.
 
-The formal derivation of the axis-ratio law belongs to [Lorentz Kinematics](../../spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio). The canonical geometry variables belong to [Nested Shell Swarm Geometry](../../noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables). The special-relativity dictionary remains in [Special Relativity and Deformable Noether Swarms](./special-relativity-noether-swarm.md).
+The formal derivation of the axis-ratio law belongs to [Lorentz Kinematics](../../spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio). The canonical geometry variables belong to [Nested Shell Swarm Geometry](../../noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables). The special-relativity dictionary remains in [Special Relativity and Deformable Noether Swarms](./special-relativity-noether-swarm.md). For the interactive geometry surface, open [Ideal Noether Swarm: Lorentz Geometry](../../../../../ideal-swarm.html).
 
 ## Naming And Scope
 
@@ -14,19 +14,21 @@ The older working phrase `branch-quantized Lorentz response` remains mathematica
 
 The claim is therefore not
 $$
-\gamma(v)\quad\text{is a step function}.
+\gamma(v)\quad\text{is a step function}
 $$
 The claim is
 $$
 \text{realized material Lorentz response}
 \quad
-\text{is branch-indexed by closed return-cycle ledgers}.
+\text{is branch-indexed by closed return-cycle ledgers}
 $$
+Here $c_\star$ denotes the declared channel speed for the Lorentz comparison; the convention is defined in [Lorentz Kinematics](../../spacetime/lorentz-kinematics.md). In the app's field-speed lesson, $c_\star=c_f$.
+
 At the effective observer level, the measured envelope can still be the usual smooth function
 $$
 \gamma_\star(v)
 =
-\frac{1}{\sqrt{1-v^2/c_\star^2}}.
+\frac{1}{\sqrt{1-v^2/c_\star^2}}
 $$
 
 ## Level Separation
@@ -46,19 +48,19 @@ This level separation is essential. The Lorentz equation is not being promoted t
 
 A one-way causal leg along the drift direction exposes the preferred Noether sea frame. In a homogeneous dressed channel with speed $c_\star$, define
 $$
-\beta_\star\equiv\frac{v}{c_\star},
+\beta_\star\equiv\frac{v}{c_\star}
 \qquad
-\gamma_\star\equiv\frac{1}{\sqrt{1-\beta_\star^2}}.
+\gamma_\star\equiv\frac{1}{\sqrt{1-\beta_\star^2}}
 $$
 For an envelope semiaxis $R_{\parallel}$ along drift, the forward and rear one-way legs are
 $$
 t_{+}
 =
-\frac{R_{\parallel}}{c_\star-v},
+\frac{R_{\parallel}}{c_\star-v}
 \qquad
 t_{-}
 =
-\frac{R_{\parallel}}{c_\star+v}.
+\frac{R_{\parallel}}{c_\star+v}
 $$
 They are unequal. A single one-way leg therefore cannot be the Lorentz law, because it carries the preferred-frame asymmetry directly.
 
@@ -74,7 +76,7 @@ t_{+}+t_{-}
 =
 \frac{R_{\parallel}}{c_\star-v}
 +
-\frac{R_{\parallel}}{c_\star+v}.
+\frac{R_{\parallel}}{c_\star+v}
 $$
 Combining the fractions gives
 $$
@@ -82,7 +84,7 @@ T_{\parallel}
 =
 \frac{2R_{\parallel}c_\star}{c_\star^2-v^2}
 =
-\frac{2R_{\parallel}}{c_\star}\gamma_\star^2.
+\frac{2R_{\parallel}}{c_\star}\gamma_\star^2
 $$
 
 The transverse return cycle uses part of the causal budget to keep pace with the translated receiver. The remaining transverse closure speed is
@@ -91,7 +93,7 @@ c_{\perp}
 =
 c_\star\sqrt{1-\frac{v^2}{c_\star^2}}
 =
-\frac{c_\star}{\gamma_\star}.
+\frac{c_\star}{\gamma_\star}
 $$
 For transverse semiaxis $R_{\perp}$,
 $$
@@ -99,7 +101,7 @@ T_{\perp}
 =
 \frac{2R_{\perp}}{c_{\perp}}
 =
-\frac{2R_{\perp}}{c_\star}\gamma_\star.
+\frac{2R_{\perp}}{c_\star}\gamma_\star
 $$
 
 The Lorentz-admissible closure condition is that the same material branch closes with one period in the longitudinal and transverse channels:
@@ -108,13 +110,13 @@ T_{\parallel}
 =
 T_{\perp}
 +
-O(\epsilon_{\mathrm{LV}}T_0).
+O(\epsilon_{\mathrm{LV}}T_0)
 $$
 In the homogeneous zero-leakage limit,
 $$
 \frac{2R_{\parallel}}{c_\star}\gamma_\star^2
 =
-\frac{2R_{\perp}}{c_\star}\gamma_\star,
+\frac{2R_{\perp}}{c_\star}\gamma_\star
 $$
 so
 $$
@@ -122,7 +124,7 @@ $$
 \equiv
 \frac{R_{\parallel}(v)}{R_{\perp}(v)}
 =
-\frac{1}{\gamma_\star(v)}.
+\frac{1}{\gamma_\star(v)}
 $$
 This is the direct Lorentz-to-geometry map.
 
@@ -134,7 +136,7 @@ $$
 +
 \frac{x_{\parallel}^2}{R_{\parallel}^2}
 =
-1,
+1
 $$
 with Lorentz-compatible semiaxes
 $$
@@ -146,11 +148,11 @@ in the homogeneous zero-leakage limit. If energy state or Noether sea conditions
 $$
 R_{\perp}(v,E,n)
 =
-\lambda(v,E,n)R_0,
+\lambda(v,E,n)R_0
 \qquad
 R_{\parallel}(v,E,n)
 =
-\frac{\lambda(v,E,n)R_0}{\gamma_\star(v)}.
+\frac{\lambda(v,E,n)R_0}{\gamma_\star(v)}
 $$
 Thus $\gamma_\star$ maps to the shape channel $\xi$, while $\lambda$ remains a separate scale, energy, and medium-response channel.
 
@@ -162,11 +164,11 @@ $$
 =
 \sqrt{1-\beta_\star^2}
 =
-\frac{1}{\gamma_\star},
+\frac{1}{\gamma_\star}
 \qquad
 \gamma_\star
 =
-\frac{R_{\perp}}{R_{\parallel}}.
+\frac{R_{\perp}}{R_{\parallel}}
 $$
 The velocity fraction is therefore recovered from the spheroid by
 $$
@@ -174,7 +176,7 @@ $$
 =
 \sqrt{1-\xi^2}
 =
-\sqrt{1-\frac{R_{\parallel}^2}{R_{\perp}^2}}.
+\sqrt{1-\frac{R_{\parallel}^2}{R_{\perp}^2}}
 $$
 In ordinary geometry language, $\beta_\star$ is the eccentricity of the Lorentz spheroid, while $\gamma_\star$ is the transverse-to-longitudinal aspect ratio. The spheroid is not merely a picture placed beside the Lorentz factor; its measured semiaxes determine $\xi$, $\gamma_\star$, and $\beta_\star$ in the homogeneous zero-leakage limit.
 
@@ -191,7 +193,7 @@ t_+
 \frac{R_{\parallel}}{c_\star-v}
 =
 \frac{R_{\perp}}{c_\star}
-\sqrt{\frac{1+\beta_\star}{1-\beta_\star}},
+\sqrt{\frac{1+\beta_\star}{1-\beta_\star}}
 $$
 so $t_+\to\infty$ as $\beta_\star\to1$. The rear leg tends to zero, but the closed period diverges. Thus the clock does not diverge because the ellipsoid is large; it diverges because the forward causal update has almost no catch-up margin left.
 
@@ -205,11 +207,11 @@ $$
 \equiv
 \frac{R_{\perp,q}(v)}{R_{\parallel,q}(v)}
 =
-\frac{1}{\xi_q(v)},
+\frac{1}{\xi_q(v)}
 \qquad
 \gamma_{\mathrm{clk}}^{(q)}(v)
 \equiv
-\frac{T_q(v)}{T_0}.
+\frac{T_q(v)}{T_0}
 $$
 The realized material Lorentz response is the branch-indexed tuple
 $$
@@ -220,7 +222,7 @@ q
 \gamma_{\mathrm{rul}}^{(q)}(v),
 \gamma_{\mathrm{clk}}^{(q)}(v),
 \mathcal{L}_{\mathrm{root}}^{(q)}(v)
-\right).
+\right)
 $$
 The admissible set at fixed background conditions is
 $$
@@ -233,7 +235,7 @@ $$
 \right)
 :
 q\in\mathcal{Q}_{\mathrm{stable}}(v)
-\right\}.
+\right\}
 $$
 A successful homogeneous weak-field Lorentz limit requires
 $$
@@ -262,23 +264,23 @@ s_I,s_M,s_O;\,
 \mathbf{A}_I,\mathbf{A}_M,\mathbf{A}_O;\,
 \mathcal{L}_{\mathrm{root}};\,
 \mathcal{L}_{\mathrm{wake}}
-\right)_q.
+\right)_q
 $$
 A one-$h$ full-cycle transaction should be treated as a branch update,
 $$
 B_q(v)
 \longrightarrow
-B_{q'}(v+\Delta v),
+B_{q'}(v+\Delta v)
 $$
 subject to the action ledger
 $$
 \Delta A_{\text{cycle}}
 =
-\sigma h,
+\sigma h
 \qquad
 \Delta I_I+\Delta I_M+\Delta I_O+\Delta I_{\text{wake}}
 =
-\sigma\hbar,
+\sigma\hbar
 $$
 and the all-layer energy ledger
 $$
@@ -287,7 +289,7 @@ $$
 +
 \Delta E_{\text{wake}}
 =
-\Delta E_{\text{coupl}}.
+\Delta E_{\text{coupl}}
 $$
 The geometry projection is then the visible part of the sequence
 $$
@@ -297,7 +299,7 @@ $$
 \longrightarrow
 \text{outer-envelope oblation}
 \longrightarrow
-\text{effective }\gamma_\star(v).
+\text{effective }\gamma_\star(v)
 $$
 
 This sequence is the main reason the term `return-cycle` is preferred. The breakthrough is not simply that the outer envelope becomes an ellipsoid. The stronger claim is that the ellipsoid is the visible projection of a closed all-layer branch ledger.
@@ -313,7 +315,7 @@ $$
 \Delta_{\mathrm{tw}}^{\mathrm{smooth}}(\beta,\theta)
 +
 \sum_{r\in\mathcal{R}_{\mathrm{res}}}
-B_r\,\mathcal{W}_r(\beta)\cos(2m_r\theta+\varphi_r),
+B_r\,\mathcal{W}_r(\beta)\cos(2m_r\theta+\varphi_r)
 $$
 where each residual label $r$ must be traceable to a named branch-chart feature. A residual with no branch source is not a successful prediction; it is fitting error or an incomplete closure model.
 
@@ -328,7 +330,7 @@ $$
 \gamma_{\mathrm{clk}}^{(q)}(v)
 \neq
 \gamma_{\mathrm{rul}}^{(q)}(v)
-+O(\epsilon_{\mathrm{LV}}),
++O(\epsilon_{\mathrm{LV}})
 $$
 then the bridge fails. The theory must not tune the ruler, clock, momentum, and signal channels separately.
 

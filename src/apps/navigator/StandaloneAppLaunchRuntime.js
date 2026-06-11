@@ -1,4 +1,6 @@
-const standaloneScenePathById = Object.freeze({});
+const standaloneScenePathById = Object.freeze({
+  archie__ideal_swarm: "ideal-swarm.html",
+});
 
 export function getStandaloneAppPathForScene(sceneId = "") {
   const normalizedSceneId = String(sceneId ?? "").trim();

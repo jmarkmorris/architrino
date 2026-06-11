@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 502,
-      "edges": 1243,
-      "scenes": 324,
+      "nodes": 503,
+      "edges": 1245,
+      "scenes": 325,
       "markdownIndexes": 0,
       "markdownDocs": 178,
       "runtimeEdges": 476,
@@ -2093,6 +2093,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "archie__ideal_swarm",
+      "name": "Ideal Noether Swarm: Lorentz Geometry",
+      "path": "content/scenes/archie/ideal_swarm.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/reading-copies/architrino-textbook.md",
       "name": "Architrino Textbook",
       "path": "content/generated/markdown/textbook/reading-copies/architrino-textbook.md",
@@ -3232,6 +3238,15 @@
       "name": "Navigation & Controls",
       "path": "content/scenes/archie/help.json",
       "searchTarget": "content/scenes/archie/help.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/ideal_swarm.json",
+      "nodeType": "scene",
+      "id": "archie__ideal_swarm",
+      "name": "Ideal Noether Swarm: Lorentz Geometry",
+      "path": "content/scenes/archie/ideal_swarm.json",
+      "searchTarget": "content/scenes/archie/ideal_swarm.json",
       "implicit": false
     },
     {
@@ -7684,38 +7699,45 @@
   "edges": [
     {
       "from": "scene:content/scenes/archie/applications.json",
-      "to": "scene:content/scenes/chemistry/hyde_periodic_table_scene.json",
+      "to": "scene:content/scenes/archie/ideal_swarm.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
       "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
-      "to": "scene:content/scenes/chemistry/molecule.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[4]"
-    },
-    {
-      "from": "scene:content/scenes/archie/applications.json",
-      "to": "scene:content/scenes/chemistry/periodic_table_scene.json",
+      "to": "scene:content/scenes/chemistry/hyde_periodic_table_scene.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
       "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
-      "to": "scene:content/scenes/nuclear/atom.json",
+      "to": "scene:content/scenes/chemistry/molecule.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/applications.json",
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/archie/applications.json",
+      "to": "scene:content/scenes/chemistry/periodic_table_scene.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
       "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
-      "to": "scene:content/scenes/standard-model-particles/standard_model.json",
+      "to": "scene:content/scenes/nuclear/atom.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
       "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/archie/applications.json",
+      "to": "scene:content/scenes/standard-model-particles/standard_model.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/applications.json",
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
@@ -11950,6 +11972,13 @@
       "to": "markdown_doc:content/markdown/aaa/archie/navigation-and-controls.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/archie/help.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/ideal_swarm.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/ideal-swarm-notes.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/ideal_swarm.json",
       "field": "scene.source.path"
     },
     {

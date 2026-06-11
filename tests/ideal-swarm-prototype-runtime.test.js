@@ -9,8 +9,10 @@ import {
   computeLorentzState,
   computePotentialContribution,
   computePotentialSum,
+  createSurfaceSamples,
   createIdealSwarmModel,
   getOrbitPathTintProfile,
+  navigateIdealSwarmHome,
   solveFlightTime,
 } from "../src/apps/ideal-swarm/IdealSwarmPrototypeRuntime.js";
 
@@ -37,6 +39,27 @@ test("nested shell swarm prototype model reuses three animator circular binaries
     model.architrinos.map((architrino) => architrino.chargeType).slice(0, 2),
     ["positrino", "electrino"]
   );
+});
+
+test("standalone Ideal Swarm home navigation returns to the main webapp", () => {
+  const assigned = [];
+  const locationLike = {
+    assign: (href) => assigned.push(href),
+  };
+
+  assert.equal(navigateIdealSwarmHome(locationLike), true);
+  assert.deepEqual(assigned, ["./index.html"]);
+  assert.equal(navigateIdealSwarmHome(locationLike, ""), false);
+});
+
+test("surface sample poles align with assembly momentum", () => {
+  const samples = createSurfaceSamples(THREE);
+  const assemblyMomentum = new THREE.Vector3(1, 1, 1).normalize();
+  const firstPole = samples[0].unit;
+  const lastPole = samples[samples.length - 1].unit;
+
+  assert.ok(firstPole.distanceTo(assemblyMomentum) < 1e-12);
+  assert.ok(lastPole.distanceTo(assemblyMomentum.clone().multiplyScalar(-1)) < 1e-12);
 });
 
 test("full potential is the six-emission superposition", () => {

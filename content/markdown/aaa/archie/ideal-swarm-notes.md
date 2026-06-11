@@ -13,22 +13,22 @@ Read this alongside:
 
 ## Purpose
 
-The app shows a nested Noether swarm whose velocity-dependent envelope is treated as a Lorentz spheroid. The user changes the velocity fraction $\beta = v/c$ and sees the same factor appear in four linked places:
+The app shows a nested Noether swarm whose velocity-dependent envelope is treated as a Lorentz spheroid. The user changes the velocity fraction $\beta = v/c_f$ and sees the same factor appear in four linked places:
 
 1. the geometry of the flattened swarm envelope,
 2. the relative-time readout,
 3. the relative-length readout,
-4. the normalized energy and mass-equivalent ledger.
+4. the normalized center-of-mass energy and mass-equivalent ledger.
 
 The central visual point is that the Lorentz factor is not only a formula on a panel. In the zero-extra-scale lesson case, it is the aspect ratio of the displayed spheroid:
 $$
 \xi
 =\frac{R_{\parallel}}{R_{\perp}}
 =\sqrt{1-\beta^2}
-=\frac{1}{\gamma},
+=\frac{1}{\gamma}
 \qquad
 \gamma
-=\frac{R_{\perp}}{R_{\parallel}}.
+=\frac{R_{\perp}}{R_{\parallel}}
 $$
 
 The app therefore uses geometry as a dictionary for the Lorentz kinematics, while leaving the derivation burden in the theory documents.
@@ -53,7 +53,7 @@ The displayed spheroid uses:
 
 | App quantity | Meaning |
 | --- | --- |
-| $\beta=v/c$ | Velocity fraction shown by the slider. |
+| $\beta=v/c_f$ | Velocity fraction shown by the slider, measured against the field-speed reference. |
 | $\gamma=1/\sqrt{1-\beta^2}$ | Relative-time factor and transverse-to-longitudinal aspect ratio. |
 | $\xi=1/\gamma=\sqrt{1-\beta^2}$ | Length-contraction and spheroid-flattening factor. |
 | $R_{\perp}$ | Transverse radius of the reference orbit envelope. |
@@ -61,7 +61,7 @@ The displayed spheroid uses:
 
 The no-extra-scale lesson law is:
 $$
-R_{\parallel}=R_{\perp}\sqrt{1-\beta^2}.
+R_{\parallel}=R_{\perp}\sqrt{1-\beta^2}
 $$
 
 That is why the same number appears as both the relative-length factor and the flattening ratio. The app should be read as a direct geometry map:
@@ -70,7 +70,7 @@ $$
 =
 \sqrt{1-\xi^2}
 =
-\sqrt{1-\frac{R_{\parallel}^2}{R_{\perp}^2}}.
+\sqrt{1-\frac{R_{\parallel}^2}{R_{\perp}^2}}
 $$
 
 In ordinary geometry language, $\beta$ is the eccentricity of the Lorentz spheroid in this simplified display. The physical claim is narrower: if the Noether swarm realizes Lorentz-compatible closure with no additional scale channel, then the measured semiaxes determine $\beta$, $\gamma$, and $\xi$ through the equations above.
@@ -83,61 +83,62 @@ $$
 =
 \frac{\Delta\tau}{\sqrt{1-\beta^2}}
 =
-\gamma\Delta\tau.
+\gamma\Delta\tau
 $$
 
 This does not mean a small object contains an infinitely long literal path inside it. Time dilation is a comparison between cycle counts in two frames. As $\beta$ approaches $1$, the moving cycle must spend more and more of the causal budget keeping up with the translated assembly, leaving less closing capacity for the internal return cycle. In the ideal Lorentz formula, the outside-frame period therefore grows without bound:
 $$
 \gamma\to\infty
 \quad\text{as}\quad
-\beta\to1.
+\beta\to1
 $$
 
-In the app, this is a limit-state display. It marks the mathematical boundary of the Lorentz law, not a claim that a finite material assembly actually reaches light speed.
+In the app, this is a limit-state display. It marks the mathematical boundary of the Lorentz law, not a claim that a finite material assembly actually reaches the field-speed limit.
 
 ## Energy And Mass Ledger
 
 The energy ledger is normalized with
 $$
-m_0=1,\qquad c=1.
+m_0=1\qquad c_f=1
 $$
 
 With that normalization:
 $$
-E_0=m_0c^2=1,
+E_0=m_0c_f^2=1
 \qquad
-E=\gamma m_0c^2=\gamma,
+E_{\text{CM}}=\gamma m_0c_f^2=\gamma
 \qquad
-\Delta E=(\gamma-1)m_0c^2.
+\Delta E_{\text{CM}}=(\gamma-1)m_0c_f^2
 $$
 
-The app also shows the mass-equivalent form
+The app also shows the center-of-mass mass-equivalent form
 $$
-\frac{E}{c^2}=\gamma m_0.
+\frac{E_{\text{CM}}}{c_f^2}=\gamma m_0
 $$
 
-That readout is not saying that invariant rest mass changes. It is showing total energy expressed in mass-equivalent units. The invariant rest mass remains $m_0$; the total energy and its mass equivalent grow with $\gamma$.
+That readout is not saying that invariant rest mass changes. It is showing observer-facing center-of-mass energy expressed in mass-equivalent units. The invariant rest mass remains $m_0$; the center-of-mass energy and its mass equivalent grow with $\gamma$.
 
 The earlier ratio
 $$
-\frac{m_0}{E}
+\frac{m_0}{E_{\text{CM}}}
 =
-\frac{1}{\gamma c^2}
+\frac{1}{\gamma c_f^2}
 =
-\frac{\sqrt{1-\beta^2}}{c^2}
+\frac{\sqrt{1-\beta^2}}{c_f^2}
 $$
-falls in lockstep with the length-contraction factor because the denominator is total relativistic energy while the numerator is the fixed rest mass.
+falls in lockstep with the length-contraction factor because the denominator is total center-of-mass energy while the numerator is the fixed rest mass.
 
 ## Control Meanings
 
 | Control | Meaning |
 | --- | --- |
 | `Paths` | Toggles visible orbit paths and charge traces. |
-| `Surface` | Toggles the surface-dot sample of the spheroid. It defaults off to reduce visual clutter. |
-| `Axes` | Toggles reference axes and orientation guides. |
+| `Surface` | Toggles the surface rendering of the spheroid. Its sample poles align with the bulk-motion axis $\hat{\mathbf{n}}$. |
+| `Axes` | Toggles momentum-frame guides: a short bulk-motion contraction guide along $\hat{\mathbf{n}}$ plus two transverse axes perpendicular to it. |
 | `Pause` / `Resume` | Pauses or resumes the animation. |
+| Home icon | Returns from the standalone lesson to the main webapp. |
 | `Outer orbit` | Sets the reference transverse scale for the outer binary and rescales the displayed nested swarm from that reference. |
-| $\beta=v/c$ | Sets the displayed velocity fraction, from rest to the formal light-speed limit. |
+| $\beta=v/c_f$ | Sets the displayed velocity fraction, from rest to the formal field-speed limit. |
 | `Cycle` | Changes animation phase speed only. It does not change $\beta$, $\gamma$, or the physical factors. |
 | `Reset` | Restores the view orientation and default phase. |
 | `Focus` | Returns keyboard focus to the 3D stage. |
@@ -146,13 +147,13 @@ The documentation buttons open this note, the return-cycle bridge, and the Loren
 
 ## Binary Measures
 
-The `Path speed` row is computed from the displayed circular path:
+The app computes an internal circular path speed from the displayed radius and frequency:
 
 $$
-v_{\mathrm{path}} = 2\pi R f.
+v_{\mathrm{path}} = 2\pi R f
 $$
 
-The `Path speed / c_f` row divides that path speed by the app's field-speed reference. In the current normalized display, $c_f$ is set by the middle binary's current path speed, so the middle binary reads $1.00$ by definition while the inner and outer values are derived from their radii and frequencies.
+The path-speed ratio row divides that path speed by the app's field-speed reference. In the current normalized display, $c_f$ is set by the middle binary's current path speed, so the middle binary reads $1.00$ by definition while the inner and outer values are derived from their radii and frequencies.
 
 ## Claim Level
 
@@ -166,13 +167,13 @@ The app supports three separate claim levels:
 
 The app should therefore not be used as proof that the Noether swarm dynamics derive special relativity. Its role is to keep the geometric target concrete:
 $$
-\xi=\frac{1}{\gamma},
+\xi=\frac{1}{\gamma}
 \qquad
-\beta=\sqrt{1-\xi^2},
+\beta=\sqrt{1-\xi^2}
 \qquad
-\Delta t=\gamma\Delta\tau,
+\Delta t=\gamma\Delta\tau
 \qquad
-L_{\parallel}=L_0\xi.
+L_{\parallel}=L_0\xi
 $$
 
 Those are the quantities that return-cycle closure and Lorentz kinematics must recover from the underlying causal-root ledger.
