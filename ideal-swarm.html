@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#080b12" />
-    <title>Noether Swarm Lorentz Map</title>
+    <title>Ideal Noether Swarm: Lorentz Geometry</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
@@ -385,8 +385,8 @@
         display: none;
         overflow: hidden;
         border: 1px solid rgba(148, 163, 184, 0.28);
-        border-radius: 8px;
-        background: rgba(5, 8, 14, 0.96);
+        border-radius: 14px;
+        background: rgba(75, 0, 130, 1);
         color: #eef3ff;
         box-shadow: 0 26px 80px rgba(0, 0, 0, 0.42);
         backdrop-filter: blur(14px);
@@ -404,7 +404,7 @@
         gap: 12px;
         padding: 10px 12px;
         border-bottom: 1px solid rgba(148, 163, 184, 0.18);
-        background: rgba(15, 23, 42, 0.78);
+        background: rgba(8, 10, 18, 0.75);
       }
 
       #markdown-title {
@@ -473,7 +473,11 @@
       }
 
       #markdown-content h1 {
-        font-size: 24px;
+        font-size: 22px;
+      }
+
+      #markdown-content h1:first-of-type {
+        display: none;
       }
 
       #markdown-content h2 {
@@ -734,7 +738,7 @@
   <body>
     <main id="ideal-swarm-app">
       <canvas id="ideal-swarm-canvas" tabindex="0" aria-label="Noether swarm Lorentz map stage"></canvas>
-      <div class="ideal-swarm-title">Noether Swarm Lorentz Map</div>
+      <div class="ideal-swarm-title">Ideal Noether Swarm: Lorentz Geometry</div>
 
       <section class="ideal-swarm-panel is-upper-left" aria-label="Graph zone">
         <h2>Lorentz Map</h2>
@@ -891,6 +895,7 @@
               type="button"
               aria-label="Switch markdown layout"
               title="Layout"
+              hidden
             >
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M4 5h6v14H4z"></path>

@@ -62,18 +62,18 @@ const IDEAL_SWARM_DOCS = {
   notes: {
     name: "Ideal Swarm Notes",
     markdownPath: "content/markdown/aaa/archie/ideal-swarm-notes.md",
-    markdownColumns: 2,
+    markdownColumns: 1,
   },
   returnCycle: {
     name: "Return-Cycle Lorentz Quantization",
     markdownPath:
       "content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md",
-    markdownColumns: 2,
+    markdownColumns: 1,
   },
   lorentzKinematics: {
     name: "Lorentz Kinematics",
     markdownPath: "content/markdown/aaa/spacetime/lorentz-kinematics.md",
-    markdownColumns: 2,
+    markdownColumns: 1,
   },
 };
 const ORBIT_PATH_TRAIL_LAYERS = [
