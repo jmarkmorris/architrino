@@ -59,6 +59,11 @@ const ASSEMBLY_MOMENTUM_AXIS = new THREE.Vector3(
   ASSEMBLY_MOMENTUM_AXIS_COMPONENT
 );
 const IDEAL_SWARM_DOCS = {
+  notes: {
+    name: "Ideal Swarm Notes",
+    markdownPath: "content/markdown/aaa/archie/ideal-swarm-notes.md",
+    markdownColumns: 2,
+  },
   returnCycle: {
     name: "Return-Cycle Lorentz Quantization",
     markdownPath:
@@ -1084,6 +1089,7 @@ export function mountIdealSwarmPrototype(options = {}) {
       documentLike,
       "#ideal-swarm-return-cycle-doc-button"
     ),
+    notesDocButton: queryRequiredElement(documentLike, "#ideal-swarm-notes-doc-button"),
     lorentzDocButton: queryRequiredElement(documentLike, "#ideal-swarm-lorentz-doc-button"),
     radiusInput: queryRequiredElement(documentLike, "#ideal-swarm-radius-input"),
     radiusOutput: queryRequiredElement(documentLike, "#ideal-swarm-radius-output"),
@@ -1508,6 +1514,9 @@ export function mountIdealSwarmPrototype(options = {}) {
   });
   dom.returnCycleDocButton.addEventListener("click", () => {
     markdownRuntime.showMarkdownPanel(IDEAL_SWARM_DOCS.returnCycle);
+  });
+  dom.notesDocButton.addEventListener("click", () => {
+    markdownRuntime.showMarkdownPanel(IDEAL_SWARM_DOCS.notes);
   });
   dom.lorentzDocButton.addEventListener("click", () => {
     markdownRuntime.showMarkdownPanel(IDEAL_SWARM_DOCS.lorentzKinematics);

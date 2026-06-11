@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 501,
+      "nodes": 502,
       "edges": 1243,
       "scenes": 324,
       "markdownIndexes": 0,
-      "markdownDocs": 177,
+      "markdownDocs": 178,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2204,6 +2204,12 @@
       "id": "content/markdown/aaa/archie/github-presence-and-community.md",
       "name": "GitHub Presence and Community",
       "path": "content/markdown/aaa/archie/github-presence-and-community.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/archie/ideal-swarm-notes.md",
+      "name": "Ideal Swarm Notes",
+      "path": "content/markdown/aaa/archie/ideal-swarm-notes.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -6241,6 +6247,15 @@
       "name": "GitHub Presence and Community",
       "path": "content/markdown/aaa/archie/github-presence-and-community.md",
       "searchTarget": "content/markdown/aaa/archie/github-presence-and-community.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/ideal-swarm-notes.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/archie/ideal-swarm-notes.md",
+      "name": "Ideal Swarm Notes",
+      "path": "content/markdown/aaa/archie/ideal-swarm-notes.md",
+      "searchTarget": "content/markdown/aaa/archie/ideal-swarm-notes.md",
       "implicit": false
     },
     {

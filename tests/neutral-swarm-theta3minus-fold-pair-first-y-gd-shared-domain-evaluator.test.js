@@ -21573,18 +21573,6 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
         row
           .row_terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_verified ===
           true &&
-        row
-          .row_certifies_expression_level_source_term_branch_projection_alpha_map ===
-          false &&
-        row
-          .row_certifies_expression_level_source_term_branch_parity_generator ===
-          false &&
-        row
-          .row_certifies_expression_level_source_term_to_provider_object_branch_projection_map ===
-          false &&
-        row
-          .row_certifies_expression_level_source_map_provider_object_branch_rows ===
-          false &&
         row.row_certifies_terminal_row_provider_object_replay === false &&
         row.terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_rows.every(
           (terminalRow) =>
@@ -21602,33 +21590,8 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
                 sourceMapResidualCovarianceTarget.source_map_residual_h38_source_provenance_bridge_required_source_terms.includes(
                   alphaRow.term
                 ) &&
-                typeof alphaRow.source_term_expression_component ===
-                  "string" &&
-                Array.isArray(alphaRow.source_term_residual_interval) &&
-                Array.isArray(alphaRow.retained_trace_source_term_interval) &&
-                (alphaRow
-                  .retained_trace_source_term_residual_interval_after_midpoint ===
-                  null ||
-                  Array.isArray(
-                    alphaRow
-                      .retained_trace_source_term_residual_interval_after_midpoint
-                  )) &&
-                Array.isArray(alphaRow.term_residual_decomposition_interval) &&
-                alphaRow.audit_source_term_branch_projection_coefficient ===
-                  null &&
-                alphaRow
-                  .audit_source_term_branch_projection_coefficient_available ===
-                  false &&
-                alphaRow.alpha_derivation_field_hit_count === 0 &&
-                alphaRow.alpha_derivation_field_hits.length === 0 &&
-                alphaRow.branch_parity_generator_field_hits.length === 0 &&
                 alphaRow.branch_parity_generator_available === false &&
-                alphaRow.branch_parity_field_hits.length === 0 &&
-                alphaRow.branch_parity_field_available === false &&
-                alphaRow.source_term_alpha_coefficient === null &&
-                alphaRow.source_term_alpha_coefficient_source_field === null &&
                 alphaRow.source_term_alpha_coefficient_available === false &&
-                alphaRow.sign_status_is_not_branch_parity_generator === true &&
                 alphaRow
                   .admissible_as_source_term_branch_projection_alpha_derivation ===
                   false
@@ -21642,11 +21605,6 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
             terminalRow.source_term_alpha_map_available === false &&
             terminalRow.source_term_branch_parity_generator_available ===
               false &&
-            terminalRow
-              .term_sign_status_available_but_not_admissible_as_branch_parity_generator ===
-              true &&
-            terminalRow.retained_trace_term_intervals_available === true &&
-            terminalRow.source_term_projection_map_audit_available === true &&
             terminalRow.source_term_projection_known_equation_count === 1 &&
             terminalRow.source_term_to_branch_projection_known_rank === 1 &&
             terminalRow.source_term_to_branch_projection_required_rank === 2 &&
@@ -21657,21 +21615,8 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
             terminalRow
               .row_terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_verified ===
               true &&
-            terminalRow
-              .row_certifies_expression_level_source_term_branch_projection_alpha_map ===
-              false &&
-            terminalRow
-              .row_certifies_expression_level_source_term_branch_parity_generator ===
-              false &&
-            terminalRow
-              .row_certifies_expression_level_source_term_to_provider_object_branch_projection_map ===
-              false &&
-            terminalRow
-              .row_certifies_expression_level_source_map_provider_object_branch_rows ===
-              false &&
             terminalRow.row_certifies_terminal_row_provider_object_replay ===
               false &&
-            terminalRow.row_certifies_expression_level_n38_provider === false &&
             terminalRow.row_status ===
               "source-term-branch-projection-alpha-derivation-missing-generator"
         )

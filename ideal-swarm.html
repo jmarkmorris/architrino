@@ -147,7 +147,7 @@
 
       .ideal-swarm-doc-row {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 8px;
       }
 
@@ -821,6 +821,9 @@
           <div class="ideal-swarm-doc-row" aria-label="Lorentz documentation">
             <button id="ideal-swarm-return-cycle-doc-button" class="ideal-swarm-button" type="button">
               Return-Cycle
+            </button>
+            <button id="ideal-swarm-notes-doc-button" class="ideal-swarm-button" type="button">
+              Notes
             </button>
             <button id="ideal-swarm-lorentz-doc-button" class="ideal-swarm-button" type="button">
               Kinematics

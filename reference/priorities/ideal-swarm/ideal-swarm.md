@@ -44,7 +44,7 @@ The target reader experience is lesson-like rather than decorative. The app shou
 
 - The app already has a standalone HTML surface at `ideal-swarm.html`.
 - The current screen has one central Three.js canvas and four surrounding panels.
-- Existing controls include path/surface/axis toggles, freeze, reset, focus, outer orbit, velocity fraction, cycle speed, and direct document buttons for Return-Cycle Lorentz Quantization and Lorentz Kinematics.
+- Existing controls include path/surface/axis toggles, freeze, reset, focus, outer orbit, velocity fraction, cycle speed, and direct document buttons for Ideal Swarm Notes, Return-Cycle Lorentz Quantization, and Lorentz Kinematics.
 - Existing readouts include the Lorentz chart, relative time, relative length, normalized energy/mass ledger, lower-left equation stack, markdown document overlay, and a binary-measures table.
 - The lower-left equation zone is reserved and is the natural home for the Lorentz lesson equation stack.
 - The upper-left chart zone is the natural home for velocity fraction $v/c$, $\gamma$, $\xi$, time-dilation, and length-contraction curves.
@@ -329,6 +329,7 @@ This priority is done when:
 ## Related Files
 
 - [../ellipsoid/ideal-swarm.md](../ellipsoid/ideal-swarm.md)
+- [../../../content/markdown/aaa/archie/ideal-swarm-notes.md](../../../content/markdown/aaa/archie/ideal-swarm-notes.md)
 - [../../../content/markdown/aaa/spacetime/lorentz-kinematics.md](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md)
 - [../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md)
 - [../../../content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md](../../../content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md)
