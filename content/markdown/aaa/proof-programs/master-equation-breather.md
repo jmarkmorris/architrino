@@ -34,24 +34,24 @@ $$
 $$
 denote the full configuration variable of the master equation on its configuration manifold
 $$
-\mathcal{Q}.
+\mathcal{Q}
 $$
 For a fixed memory horizon
 $$
-h>0,
+h>0
 $$
 write the history space as
 $$
-\mathcal{H}_h \equiv C^1([-h,0];\mathcal{Q}).
+\mathcal{H}_h \equiv C^1([-h,0];\mathcal{Q})
 $$
 
 Choose a codimension-one section function
 $$
-G:\mathcal{Q}\to\mathbb{R},
+G:\mathcal{Q}\to\mathbb{R}
 $$
 and let
 $$
-\mathscr{S}\equiv \{ \mathbf{Y}\in \mathcal{Q}\mid G(\mathbf{Y})=0\}.
+\mathscr{S}\equiv \{ \mathbf{Y}\in \mathcal{Q}\mid G(\mathbf{Y})=0\}
 $$
 The raw outbound and inbound section classes are then
 $$
@@ -63,7 +63,7 @@ $$
 G(\Phi(0))=0,
 \qquad
 \nabla G(\Phi(0))\!\cdot\!\dot\Phi(0)>0
-\right\},
+\right\}
 $$
 $$
 \Sigma^-_{\mathscr{S}}
@@ -74,7 +74,7 @@ $$
 G(\Phi(0))=0,
 \qquad
 \nabla G(\Phi(0))\!\cdot\!\dot\Phi(0)<0
-\right\}.
+\right\}
 $$
 
 This section anchoring removes the absolute time-translation symmetry of the continuous delayed flow. As in the collinear reference model, the periodic-orbit question is therefore recast as a fixed-point question for a returned history.
@@ -85,13 +85,13 @@ $$
 $$
 and short-distance core scale
 $$
-\epsilon_c>0,
+\epsilon_c>0
 $$
 the exact history-space return map should be written on its natural domain:
 $$
 P_\eta:\operatorname{Dom}(P_\eta)\subseteq \Sigma^-_{\mathscr{S}}\to \Sigma^-_{\mathscr{S}},
 \qquad
-P_\eta(\Phi)=\mathbf{X}_{T(\Phi)},
+P_\eta(\Phi)=\mathbf{X}_{T(\Phi)}
 $$
 where
 $$
@@ -101,7 +101,7 @@ is the first later return time to the same inbound section after one full excurs
 
 This is the first master-equation lesson from the 1D scaffold: the correct object is the full history-space return map. Scalar diagnostics can still be useful, but they are only projections of
 $$
-P_\eta,
+P_\eta
 $$
 not substitutes for it.
 
@@ -118,7 +118,7 @@ $$
 \int_{t-h}^{t}
 \frac{\widehat{\mathbf r}_{ij}(t,s)}
 {\|\mathbf r_{ij}(t,s)\|^2+\epsilon_c^2}\,
-\delta_\eta\!\big(\|\mathbf r_{ij}(t,s)\|-c_f(t-s)\big)\,ds,
+\delta_\eta\!\big(\|\mathbf r_{ij}(t,s)\|-c_f(t-s)\big)\,ds
 $$
 where
 $$
@@ -128,7 +128,7 @@ $$
 \qquad
 \widehat{\mathbf r}_{ij}(t,s)
 \equiv
-\frac{\mathbf r_{ij}(t,s)}{\|\mathbf r_{ij}(t,s)\|}.
+\frac{\mathbf r_{ij}(t,s)}{\|\mathbf r_{ij}(t,s)\|}
 $$
 Here
 $$
@@ -158,13 +158,13 @@ $$
 \to
 \text{return self-map}
 \to
-\text{Schauder}.
+\text{Schauder}
 $$
 The collinear pre-ledger is a falsification gate, not bookkeeping: finite parent-complement coverage must close before any branch chart is authorized.
 
 In concrete terms, instantiate a candidate history
 $$
-\Phi_{\mathrm{cyc}},
+\Phi_{\mathrm{cyc}}
 $$
 choose the certified domain around it, and prove that
 $$
@@ -196,11 +196,11 @@ The 1D chapter now makes a clean distinction between:
 
 - a convex section envelope
   $$
-  \mathcal{C}_{x_\ast,\eta},
+  \mathcal{C}_{x_\ast,\eta}
   $$
 - and a later closed convex tame envelope
   $$
-  \mathcal{K}_{x_\ast,\eta}\subseteq \mathcal{C}_{x_\ast,\eta}.
+  \mathcal{K}_{x_\ast,\eta}\subseteq \mathcal{C}_{x_\ast,\eta}
   $$
 
 That split is portable. In the master-equation setting, one should not expect Jacobian lower bounds, branch-count bounds, or root-persistence conditions to be convex by inspection. The convex Banach-space box and the tame delayed-root package are different theorem objects.
@@ -223,15 +223,15 @@ The general master-equation breather program should inherit the same three-layer
 
 1. the raw inbound section
    $$
-   \Sigma^-_{\mathscr{S}};
+   \Sigma^-_{\mathscr{S}}
    $$
 2. a convex Banach envelope
    $$
-   \mathcal{C}_{\mathscr{S},\eta}\subseteq \Sigma^-_{\mathscr{S}};
+   \mathcal{C}_{\mathscr{S},\eta}\subseteq \Sigma^-_{\mathscr{S}}
    $$
 3. and a closed convex tame envelope
    $$
-   \mathcal{K}_{\mathscr{S},\eta}\subseteq \mathcal{C}_{\mathscr{S},\eta}.
+   \mathcal{K}_{\mathscr{S},\eta}\subseteq \mathcal{C}_{\mathscr{S},\eta}
    $$
 
 The master-equation analogue of
@@ -275,7 +275,7 @@ w(t)=x(t)+c_f t
 \qquad
 \text{and}
 \qquad
-z(t)=x(t)-c_f t.
+z(t)=x(t)-c_f t
 $$
 Those maps force deep-past roots into rigid order intervals and make descent arguments explicit.
 
@@ -285,7 +285,7 @@ x
 $$
 with
 $$
-\mathbf{x}.
+\mathbf{x}
 $$
 What is needed instead is a replacement coercive functional or ordered comparison geometry that can play the same role:
 
@@ -299,7 +299,7 @@ In 1D the causal Jacobians reduce to explicit signed scalars. In the master equa
 $$
 J_{ij}(t;t_0)
 =
-1-\frac{\mathbf{v}_j(t_0)\cdot \hat{\mathbf{r}}_{ij}(t;t_0)}{c_f},
+1-\frac{\mathbf{v}_j(t_0)\cdot \hat{\mathbf{r}}_{ij}(t;t_0)}{c_f}
 $$
 but the sign bookkeeping is no longer exhausted by line ordering.
 
@@ -416,16 +416,16 @@ This is the abstract endpoint once no quotient gauge reset is being used. In any
 
 Higher-dimensional transport must also separate genuine deformation directions from neutral collective coordinates. For a candidate cycle
 $$
-\mathbf{X}_{\mathrm{cyc}}(t;\alpha),
+\mathbf{X}_{\mathrm{cyc}}(t;\alpha)
 $$
 with finite parameters
 $$
-\alpha^a,
+\alpha^a
 $$
 define the tangent histories
 $$
 Z_a(\theta)\equiv
-\partial_{\alpha^a}\mathbf{X}_{\mathrm{cyc}}(\theta;\alpha).
+\partial_{\alpha^a}\mathbf{X}_{\mathrm{cyc}}(\theta;\alpha)
 $$
 Each
 $$
@@ -439,7 +439,7 @@ must be assigned to one of three roles before the monodromy or Floquet data are 
 
 This is the master-equation analogue of moduli and zero-mode bookkeeping in soliton theory, but it remains an $\mathbb{A}\mathbb{A}\mathbb{A}$ certificate rule. It does not add supersymmetry or gauge-theory ontology. Its concrete use is to prevent neutral drift from contaminating the finite certificate: the return-map derivative should be interpreted on the quotient chart, while any retained collective coordinate must satisfy its own closure residual
 $$
-\mathcal{H}_a(\Phi_{\mathrm{cyc}})=0.
+\mathcal{H}_a(\Phi_{\mathrm{cyc}})=0
 $$
 
 ## Immediate Geometric Research Burdens
@@ -466,7 +466,7 @@ $$
 \qquad
 \text{and}
 \qquad
-\mathfrak M_{\mathrm{out}}>0.
+\mathfrak M_{\mathrm{out}}>0
 $$
 The master-equation replacement must be a vector coercive margin that beats all escape channels, not merely a scalar outward radial speed.
 
@@ -503,7 +503,7 @@ $$
 \qquad
 q_1=-\epsilon,
 \qquad
-q_2=+\epsilon.
+q_2=+\epsilon
 $$
 Write
 $$
@@ -511,26 +511,26 @@ $$
 \qquad
 \hat{\mathbf{e}}_r(t)\equiv \frac{\mathbf{r}(t)}{\rho(t)},
 \qquad
-\hat{\mathbf{e}}_\theta(t)\equiv R_{\pi/2}\hat{\mathbf{e}}_r(t),
+\hat{\mathbf{e}}_\theta(t)\equiv R_{\pi/2}\hat{\mathbf{e}}_r(t)
 $$
 away from the collision set, and decompose the planar velocity as
 $$
-\dot{\mathbf{r}}(t)=u_r(t)\hat{\mathbf{e}}_r(t)+u_\theta(t)\hat{\mathbf{e}}_\theta(t).
+\dot{\mathbf{r}}(t)=u_r(t)\hat{\mathbf{e}}_r(t)+u_\theta(t)\hat{\mathbf{e}}_\theta(t)
 $$
 When a polar-angle coordinate is convenient, write
 $$
-\mathbf{r}(t)=\rho(t)(\cos\vartheta(t),\sin\vartheta(t)).
+\mathbf{r}(t)=\rho(t)(\cos\vartheta(t),\sin\vartheta(t))
 $$
 
 The first technical lesson is that the planar bridge should be written on a rotationally reduced chart. If one keeps the full planar rotation symmetry visible, then the most natural fixed-radius section is not affine in the ambient Banach space and the convex-envelope step is obscured from the start. The clean approach is therefore to quotient rigid planar rotations locally at the section by choosing the representative with
 $$
 \mathbf{r}(0)=\rho_\ast \mathbf{e}_1,
 \qquad
-\mathbf{e}_2\cdot \dot{\mathbf{r}}(0)>0.
+\mathbf{e}_2\cdot \dot{\mathbf{r}}(0)>0
 $$
 After this gauge choice, the remaining return question is codimension one in the reduced history space: the only equality that defines the section is the fixed section radius
 $$
-\rho(0)=\rho_\ast.
+\rho(0)=\rho_\ast
 $$
 
 This regime is the first honest transport problem beyond the line. It preserves reflection symmetry, center-of-mass reduction, and a single binary degree of freedom, but it no longer permits scalar ordering arguments to suppress tangential drift or delayed-root wrapping by inspection.
@@ -555,7 +555,7 @@ $$
 \mathbf{e}_1\cdot\dot\Phi(0)>0,
 \quad
 \mathbf{e}_2\cdot\dot\Phi(0)>0
-\right\},
+\right\}
 $$
 $$
 \Sigma^{-}_{\rho_\ast,\Pi}
@@ -568,7 +568,7 @@ $$
 \mathbf{e}_1\cdot\dot\Phi(0)<0,
 \quad
 \mathbf{e}_2\cdot\dot\Phi(0)>0
-\right\}.
+\right\}
 $$
 The fixed position removes the reduced rotational freedom, the sign of
 $$
@@ -602,13 +602,13 @@ U_{\theta,\min}\le \mathbf{e}_2\cdot\dot\Phi(0)\le U_{\theta,\max}
 \end{array}
 \text{ for all }
 \theta,\theta'\in[-h,0]
-\right\}.
+\right\}
 $$
 Its role is exactly the role played by the section envelope in the frozen collinear chapter: it carries only the convex bookkeeping needed for compactness and for section-side control. It should not yet contain any delayed-root topology.
 
 The tame envelope must then be posed as a stricter target on the same section:
 $$
-\mathcal{K}^{\Pi}_{\rho_\ast,\eta}\subseteq \mathcal{C}^{\Pi}_{\rho_\ast,\eta}.
+\mathcal{K}^{\Pi}_{\rho_\ast,\eta}\subseteq \mathcal{C}^{\Pi}_{\rho_\ast,\eta}
 $$
 The point is not to redefine
 $$
@@ -645,15 +645,15 @@ admits one-cycle continuation with:
   active delayed partner and self branches on the controlled cycle;
 - branch separation at least
   $$
-  \delta_{\mathrm{sep}};
+  \delta_{\mathrm{sep}}
   $$
 - causal Jacobian bound
   $$
-  |J_{ij}(t;t_0)|\ge \nu_J;
+  |J_{ij}(t;t_0)|\ge \nu_J
   $$
 - dual-mollified caustic-transit impulse bounded by
   $$
-  I_{\mathrm{cau}};
+  I_{\mathrm{cau}}
   $$
 - and vector recapture margins at least
   $$
@@ -690,7 +690,7 @@ The first concrete planar task should be to replace the scalar 1D order by a fin
 
 Fix a sector half-width
 $$
-0<\alpha_{\mathrm{sort}}<\frac{\pi}{4},
+0<\alpha_{\mathrm{sort}}<\frac{\pi}{4}
 $$
 and choose a finite family of unit directions
 $$
@@ -708,7 +708,7 @@ $$
 $$
 cover
 $$
-S^1.
+S^1
 $$
 The sector family is fixed once and for all for the chosen tame class. What varies from trajectory to trajectory is only which subfamily is active on a given controlled window.
 
@@ -720,7 +720,7 @@ $$
 \qquad
 \zeta^+_{\hat{\mathbf{u}}}(t)
 \equiv
-\mathbf{r}(t)\cdot\hat{\mathbf{u}}+c_f t,
+\mathbf{r}(t)\cdot\hat{\mathbf{u}}+c_f t
 $$
 from the automatic running envelopes
 $$
@@ -730,7 +730,7 @@ $$
 \qquad
 \overline{\zeta}^+_{\hat{\mathbf{u}}}(t)
 \equiv
-\sup_{\theta\le t}\zeta^+_{\hat{\mathbf{u}}}(\theta).
+\sup_{\theta\le t}\zeta^+_{\hat{\mathbf{u}}}(\theta)
 $$
 The running infimum
 $$
@@ -746,7 +746,7 @@ Two cycle windows should then be named explicitly:
 $$
 I_{\mathrm{in}}=[t_{\mathrm{in}}^-,t_{\mathrm{x}}],
 \qquad
-I_{\mathrm{ap}}=[t_{\mathrm{ap}}^-,t_{\mathrm{ap}}^+].
+I_{\mathrm{ap}}=[t_{\mathrm{ap}}^-,t_{\mathrm{ap}}^+]
 $$
 Here
 $$
@@ -754,7 +754,7 @@ I_{\mathrm{in}}
 $$
 is the final inbound window ending at the first center crossing time
 $$
-t_{\mathrm{x}},
+t_{\mathrm{x}}
 $$
 and
 $$
@@ -764,7 +764,7 @@ is the late-apocenter window on the later outbound branch where the outer-turn p
 
 For any two times
 $$
-s<t,
+s<t
 $$
 define the exact self and partner chord directions
 $$
@@ -774,7 +774,7 @@ $$
 \qquad
 \hat{\mathbf{u}}_{s,t}^{\mathrm{part}}
 \equiv
-\frac{\mathbf{r}(t)+\mathbf{r}(s)}{\|\mathbf{r}(t)+\mathbf{r}(s)\|},
+\frac{\mathbf{r}(t)+\mathbf{r}(s)}{\|\mathbf{r}(t)+\mathbf{r}(s)\|}
 $$
 whenever the denominators are nonzero. The sector label of a root is the unique index
 $$
@@ -782,7 +782,7 @@ k
 $$
 for which the corresponding chord direction lies in
 $$
-\mathfrak{S}_k,
+\mathfrak{S}_k
 $$
 after shrinking the tame class so that active directions stay a positive angular distance away from sector overlaps.
 
@@ -873,7 +873,7 @@ $$
 \quad
 \text{or}
 \quad
-\mathcal{U}_{\mathrm{ap}},
+\mathcal{U}_{\mathrm{ap}}
 $$
 and asks the certificate to prove that this subfamily does not migrate continuously around
 $$
@@ -891,11 +891,11 @@ $$
 $$
 one has
 $$
-\mathbf{r}(t)-\mathbf{r}(s)=c_f(t-s)\hat{\mathbf{u}},
+\mathbf{r}(t)-\mathbf{r}(s)=c_f(t-s)\hat{\mathbf{u}}
 $$
 hence
 $$
-\zeta^-_{\hat{\mathbf{u}}}(t)=\zeta^-_{\hat{\mathbf{u}}}(s).
+\zeta^-_{\hat{\mathbf{u}}}(t)=\zeta^-_{\hat{\mathbf{u}}}(s)
 $$
 If
 $$
@@ -907,11 +907,11 @@ $$
 $$
 one has
 $$
-\mathbf{r}(t)+\mathbf{r}(s)=c_f(t-s)\hat{\mathbf{u}},
+\mathbf{r}(t)+\mathbf{r}(s)=c_f(t-s)\hat{\mathbf{u}}
 $$
 hence
 $$
-\zeta^-_{\hat{\mathbf{u}}}(t)=-\zeta^+_{\hat{\mathbf{u}}}(s).
+\zeta^-_{\hat{\mathbf{u}}}(t)=-\zeta^+_{\hat{\mathbf{u}}}(s)
 $$
 
 > **Target Corollary (Sector-labeled branch family).**
@@ -1000,7 +1000,7 @@ denote the earlier outbound interval between the first center crossing and the s
 $$
 \mathfrak{S}_k,
 \qquad
-\hat{\mathbf{u}}_k\in \mathcal{U}_{\mathrm{ap}},
+\hat{\mathbf{u}}_k\in \mathcal{U}_{\mathrm{ap}}
 $$
 define the sector support envelopes
 $$
@@ -1010,7 +1010,7 @@ $$
 \qquad
 \zeta^-_{k,\min}(t)
 \equiv
-\inf_{\hat{\mathbf{u}}\in \mathfrak{S}_k}\zeta^-_{\hat{\mathbf{u}}}(t).
+\inf_{\hat{\mathbf{u}}\in \mathfrak{S}_k}\zeta^-_{\hat{\mathbf{u}}}(t)
 $$
 The higher-dimensional replacement for the collinear outbound-level exclusion is the sectorwise gap
 $$
@@ -1018,12 +1018,12 @@ $$
 \equiv
 \inf_{s\in I_{\mathrm{out}}}\zeta^-_{k,\min}(s)
 -
-\sup_{t\in I_{\mathrm{ap}}}\zeta^-_{k,\max}(t).
+\sup_{t\in I_{\mathrm{ap}}}\zeta^-_{k,\max}(t)
 $$
 
 If
 $$
-\Delta^{\mathrm{out}}_k>0,
+\Delta^{\mathrm{out}}_k>0
 $$
 then no self root on
 $$
@@ -1035,7 +1035,7 @@ $$
 $$
 can have its source time on
 $$
-I_{\mathrm{out}}.
+I_{\mathrm{out}}
 $$
 Indeed, a self root with exact direction
 $$
@@ -1043,11 +1043,11 @@ $$
 $$
 would satisfy
 $$
-\zeta^-_{\hat{\mathbf{u}}}(t)=\zeta^-_{\hat{\mathbf{u}}}(s),
+\zeta^-_{\hat{\mathbf{u}}}(t)=\zeta^-_{\hat{\mathbf{u}}}(s)
 $$
 hence
 $$
-\zeta^-_{k,\max}(t)\ge \zeta^-_{k,\min}(s),
+\zeta^-_{k,\max}(t)\ge \zeta^-_{k,\min}(s)
 $$
 contradicting the strict gap.
 
@@ -1065,15 +1065,15 @@ $$
 \qquad
 \mathfrak{C}_{\mathrm{in}}
 \equiv
-\bigcup_{\hat{\mathbf{u}}_k\in\mathcal{U}_{\mathrm{ap}}}\mathfrak{C}_{\mathrm{in},k}.
+\bigcup_{\hat{\mathbf{u}}_k\in\mathcal{U}_{\mathrm{ap}}}\mathfrak{C}_{\mathrm{in},k}
 $$
 The intended meaning is not that the full inbound leg lies in one cone. The intended meaning is that once a deep-past root is assigned a sector label
 $$
-k,
+k
 $$
 its admissible pre-crossing source point should be confined to the matching inbound cone
 $$
-\mathfrak{C}_{\mathrm{in},k}.
+\mathfrak{C}_{\mathrm{in},k}
 $$
 
 The first package should also be strengthened sectorwise: after shrinking
@@ -1084,7 +1084,7 @@ and the tame class if necessary, the directional monotonicity bounds should hold
 $$
 \hat{\mathbf{u}}\in\mathfrak{S}_k,
 \qquad
-\hat{\mathbf{u}}_k\in\mathcal{U}_{\mathrm{in}}\cup \mathcal{U}_{\mathrm{ap}},
+\hat{\mathbf{u}}_k\in\mathcal{U}_{\mathrm{in}}\cup \mathcal{U}_{\mathrm{ap}}
 $$
 not only for the sector centers. This is the form actually needed for uniqueness and relocation.
 
@@ -1116,7 +1116,7 @@ not only for the sector centers. This is the form actually needed for uniqueness
 
 This is the direct planar analogue of the 1D statement that late apocenter levels fall below the entire earlier outbound range. The point is the same as in the frozen scaffold, but the comparison is now sectorwise and uses support envelopes rather than a single scalar
 $$
-z.
+z
 $$
 
 > **Target Proposition (Pre-crossing sector relocation).**
@@ -1206,17 +1206,17 @@ $$
 $$
 and each controlled window
 $$
-W\in\{I_{\mathrm{in}},I_{\mathrm{ap}}\},
+W\in\{I_{\mathrm{in}},I_{\mathrm{ap}}\}
 $$
 introduce closed velocity cones
 $$
 \mathfrak{V}^{\mathrm{self}}_{k,W}\subset \Pi,
 \qquad
-\mathfrak{V}^{\mathrm{part}}_{k,W}\subset \Pi.
+\mathfrak{V}^{\mathrm{part}}_{k,W}\subset \Pi
 $$
 These are not spatial source cones. They live in velocity space and encode the admissible emitter velocities for source points whose active chord directions lie in
 $$
-\mathfrak{S}_k.
+\mathfrak{S}_k
 $$
 
 For each such cone define the projection ceilings
@@ -1225,14 +1225,14 @@ $$
 \equiv
 \sup_{\mathbf{v}\in \mathfrak{V}^{\mathrm{self}}_{k,W}}
 \ \sup_{\hat{\mathbf{u}}\in \mathfrak{S}_k}
-\mathbf{v}\cdot \hat{\mathbf{u}},
+\mathbf{v}\cdot \hat{\mathbf{u}}
 $$
 $$
 \Gamma^{\mathrm{part}}_{k,W}
 \equiv
 \sup_{\mathbf{v}\in \mathfrak{V}^{\mathrm{part}}_{k,W}}
 \ \sup_{\hat{\mathbf{u}}\in \mathfrak{S}_k}
-\mathbf{v}\cdot \hat{\mathbf{u}}.
+\mathbf{v}\cdot \hat{\mathbf{u}}
 $$
 The associated dimensionless Jacobian floors are
 $$
@@ -1242,7 +1242,7 @@ $$
 \qquad
 \nu^{\mathrm{part}}_{J,k,W}
 \equiv
-1-\frac{\Gamma^{\mathrm{part}}_{k,W}}{c_f}.
+1-\frac{\Gamma^{\mathrm{part}}_{k,W}}{c_f}
 $$
 Thus any theorem that produces
 $$
@@ -1302,7 +1302,7 @@ $$
 \bigl\{
 \nu^{\mathrm{self}}_{J,k,W},
 \nu^{\mathrm{part}}_{J,k,W}
-\bigr\}.
+\bigr\}
 $$
 Then the entire controlled cycle satisfies
 $$
@@ -1345,7 +1345,7 @@ The relocated deep-past self branches should carry a stronger inbound version of
 
 This is the precise higher-dimensional analogue of the collinear fact that a pre-crossing inbound source automatically gives
 $$
-J_s>1.
+J_s>1
 $$
 The proof burden is now cone separation on the pre-crossing source interval rather than a one-line sign argument.
 
@@ -1379,17 +1379,17 @@ $$
 \qquad
 u_{r,\mathrm{seed}}>0,
 \qquad
-u_{\theta,\mathrm{seed}}>0,
+u_{\theta,\mathrm{seed}}>0
 $$
 and define
 $$
 U_{\mathrm{seed}}
 \equiv
-\sqrt{u_{r,\mathrm{seed}}^2+u_{\theta,\mathrm{seed}}^2}.
+\sqrt{u_{r,\mathrm{seed}}^2+u_{\theta,\mathrm{seed}}^2}
 $$
 Assume
 $$
-U_{\mathrm{seed}}<c_f.
+U_{\mathrm{seed}}<c_f
 $$
 Set
 $$
@@ -1405,7 +1405,7 @@ $$
 \equiv
 \rho_\ast \mathbf{e}_1+\theta \mathbf{v}_{\mathrm{seed}},
 \qquad
-\theta\in[-h,0].
+\theta\in[-h,0]
 $$
 
 This is the minimal planar analogue of the frozen 1D affine inbound seed. It is still affine in history time, but it already carries the genuinely planar datum that the tangential component is positive at the section.
@@ -1476,7 +1476,7 @@ This is the minimal planar analogue of the frozen 1D affine inbound seed. It is 
 
 The proof is the planar version of the 1D seed argument, but the partner root is now genuinely vectorial. Writing
 $$
-\sigma=-\theta>0,
+\sigma=-\theta>0
 $$
 the partner root equation at the section time is
 $$
@@ -1484,15 +1484,15 @@ $$
 =
 \sqrt{(2\rho_\ast+u_{r,\mathrm{seed}}\sigma)^2+u_{\theta,\mathrm{seed}}^2\sigma^2}
 =
-c_f\sigma.
+c_f\sigma
 $$
 Because
 $$
-U_{\mathrm{seed}}<c_f,
+U_{\mathrm{seed}}<c_f
 $$
 this equation has the unique positive solution
 $$
-\sigma=\sigma_{p,\mathrm{seed}}.
+\sigma=\sigma_{p,\mathrm{seed}}
 $$
 Equivalently, the scalar function
 $$
@@ -1506,11 +1506,11 @@ H_{\mathrm{seed}}(0)=2\rho_\ast>0
 $$
 and satisfies
 $$
-H_{\mathrm{seed}}'(\sigma)\le U_{\mathrm{seed}}-c_f<0,
+H_{\mathrm{seed}}'(\sigma)\le U_{\mathrm{seed}}-c_f<0
 $$
 so the root is unique once
 $$
-h>\sigma_{p,\mathrm{seed}}.
+h>\sigma_{p,\mathrm{seed}}
 $$
 
 For exact self roots on the stored interval one has
@@ -1522,11 +1522,11 @@ U_{\mathrm{seed}}|\theta|
 c_f|\theta|
 \qquad
 \text{for every }
-\theta\in[-h,0),
+\theta\in[-h,0)
 $$
 which is the desired chord-defect inequality. Thus the seed carries no exact same-source self roots at all. For the unique partner root, the source particle velocity has norm
 $$
-U_{\mathrm{seed}},
+U_{\mathrm{seed}}
 $$
 so the causal Jacobian satisfies the uniform lower bound
 $$
@@ -1535,7 +1535,7 @@ J_{p,\mathrm{seed}}
 1-\frac{\mathbf{v}_{1}(\theta_{p,\mathrm{seed}})\cdot \hat{\mathbf{r}}_{p,\mathrm{seed}}}{c_f}
 \ge
 1-\frac{U_{\mathrm{seed}}}{c_f}
->0.
+>0
 $$
 
 Consequently, if the convex-envelope constants satisfy
@@ -1546,11 +1546,11 @@ U_{\max}\ge U_{\mathrm{seed}},
 \qquad
 A_{\max}>0,
 \qquad
-0<U_{\theta,\min}\le u_{\theta,\mathrm{seed}}\le U_{\theta,\max},
+0<U_{\theta,\min}\le u_{\theta,\mathrm{seed}}\le U_{\theta,\max}
 $$
 then
 $$
-\Phi_{\mathrm{seed}}\in \mathcal{C}^{\Pi}_{\rho_\ast,\eta}.
+\Phi_{\mathrm{seed}}\in \mathcal{C}^{\Pi}_{\rho_\ast,\eta}
 $$
 
 > **Target Corollary (Nonempty planar section-side tame neighborhood).**
@@ -1615,21 +1615,21 @@ The first seed-side dynamical obstruction is the birth of the principal inbound 
 
 For
 $$
-s<t,
+s<t
 $$
 define the self-delay defect by
 $$
 G_s(t,s)
 \equiv
-\|\mathbf{r}(t)-\mathbf{r}(s)\|-c_f(t-s).
+\|\mathbf{r}(t)-\mathbf{r}(s)\|-c_f(t-s)
 $$
 Self roots satisfy
 $$
-G_s(t,s)=0.
+G_s(t,s)=0
 $$
 Whenever
 $$
-\mathbf{r}(t)\ne \mathbf{r}(s),
+\mathbf{r}(t)\ne \mathbf{r}(s)
 $$
 one has
 $$
@@ -1637,7 +1637,7 @@ $$
 =
 c_f-\dot{\mathbf{r}}(s)\cdot \hat{\mathbf{u}}_{s,t}^{\mathrm{self}}
 =
-c_f J_s(t;s).
+c_f J_s(t;s)
 $$
 Thus a self-root caustic is exactly the loss of source transversality
 $$
@@ -1657,15 +1657,15 @@ The planar caustic event should then be organized around one birth pair
 $$
 (t_{\mathrm{cau}},s_{\mathrm{cau}}),
 \qquad
-s_{\mathrm{cau}}<t_{\mathrm{cau}},
+s_{\mathrm{cau}}<t_{\mathrm{cau}}
 $$
 with associated sector label
 $$
-\hat{\mathbf{u}}_{k_{\mathrm{cau}}}\in \mathcal{U}_{\mathrm{in}}.
+\hat{\mathbf{u}}_{k_{\mathrm{cau}}}\in \mathcal{U}_{\mathrm{in}}
 $$
 For a tube radius
 $$
-\delta_{\mathrm{cau}}>0,
+\delta_{\mathrm{cau}}>0
 $$
 write the caustic tube in the
 $$
@@ -1683,13 +1683,13 @@ $$
 \delta_{\mathrm{cau}},
 \quad
 s<t
-\right\},
+\right\}
 $$
 and let the associated reception-time window be
 $$
 W_{\mathrm{cau}}
 \equiv
-[t_{\mathrm{cau}}-\delta_{\mathrm{cau}},\,t_{\mathrm{cau}}+\delta_{\mathrm{cau}}].
+[t_{\mathrm{cau}}-\delta_{\mathrm{cau}},\,t_{\mathrm{cau}}+\delta_{\mathrm{cau}}]
 $$
 
 > **Target Theorem (Inbound planar caustic transit and recovery).**
@@ -1782,16 +1782,16 @@ The proof architecture should be split into three bounded tasks.
 2. **Shell-impulse estimate.**
    Use dual mollification and the fold normal form to prove integrability of the self contribution across
    $$
-   W_{\mathrm{cau}},
+   W_{\mathrm{cau}}
    $$
    with a class-uniform bound by
    $$
-   I_{\mathrm{cau}}.
+   I_{\mathrm{cau}}
    $$
 3. **Recovery outside the tube.**
    Prove that the born self branch exits the caustic tube into the same sectorwise cone-transversality regime already used elsewhere, yielding
    $$
-   |J_s|\ge \nu_{s,\mathrm{rec}}.
+   |J_s|\ge \nu_{s,\mathrm{rec}}
    $$
 
 > **Target Corollary (Planar caustic handoff).**
@@ -1826,7 +1826,7 @@ W_{\mathrm{in}}^{\mathrm{turn}}
 W_{\mathrm{out}}^{\mathrm{turn}}
 \equiv
 I_{\mathrm{ap}}
-=[t_{\mathrm{ap}}^-,\,t_{\mathrm{ap}}^+].
+=[t_{\mathrm{ap}}^-,\,t_{\mathrm{ap}}^+]
 $$
 The first is the short post-crossing window issued by the caustic handoff. The second is the late-apocenter window on the later outbound branch.
 
@@ -1840,11 +1840,11 @@ a_\theta(t)\hat{\mathbf{e}}_\theta(t),
 \qquad
 a_r(t)=\hat{\mathbf{e}}_r(t)\cdot \mathbf{a}_{\mathrm{net}}(t),
 \qquad
-a_\theta(t)=\hat{\mathbf{e}}_\theta(t)\cdot \mathbf{a}_{\mathrm{net}}(t).
+a_\theta(t)=\hat{\mathbf{e}}_\theta(t)\cdot \mathbf{a}_{\mathrm{net}}(t)
 $$
 Then
 $$
-\ddot\rho(t)=a_r(t)+\rho(t)\dot\vartheta(t)^2.
+\ddot\rho(t)=a_r(t)+\rho(t)\dot\vartheta(t)^2
 $$
 The scalar 1D turn inequalities are therefore replaced by a competition among three windowwise quantities:
 
@@ -1910,24 +1910,24 @@ a^{\mathrm{in}}_{\mathrm{ref}}
 \qquad
 a^{\mathrm{out}}_{\mathrm{ref}}
 \equiv
-\underline A^{\mathrm{out}}_p-\overline A^{\mathrm{out}}_s-\Theta_{\mathrm{out}}.
+\underline A^{\mathrm{out}}_p-\overline A^{\mathrm{out}}_s-\Theta_{\mathrm{out}}
 $$
 Whenever these are positive, the radial comparison inequality becomes
 $$
 \ddot\rho(t)\le -a^{\mathrm{in}}_{\mathrm{ref}}<0
 \qquad
-\text{on }W_{\mathrm{in}}^{\mathrm{turn}},
+\text{on }W_{\mathrm{in}}^{\mathrm{turn}}
 $$
 and
 $$
 \ddot\rho(t)\le -a^{\mathrm{out}}_{\mathrm{ref}}<0
 \qquad
-\text{on }W_{\mathrm{out}}^{\mathrm{turn}}.
+\text{on }W_{\mathrm{out}}^{\mathrm{turn}}
 $$
 
 This is the exact place where the planar bridge differs from the 1D proof scaffold. In the collinear note the comparison race is partner attraction versus self drive. Here the same race acquires the additional positive leakage term
 $$
-\rho\dot\vartheta^2,
+\rho\dot\vartheta^2
 $$
 and the tangential forcing bound is needed precisely so that the leakage ceiling
 $$
@@ -1996,12 +1996,12 @@ The dependency chain should be recorded explicitly:
 
 1. the caustic handoff theorem supplies the controlled entry data for
    $$
-   W_{\mathrm{in}}^{\mathrm{turn}};
+   W_{\mathrm{in}}^{\mathrm{turn}}
    $$
 2. the directional sorting and transversality packages keep the partner floor and local self ceiling stable on the inner window;
 3. the deep-past relocation and suppression packages produce the outer self ceiling on
    $$
-   W_{\mathrm{out}}^{\mathrm{turn}};
+   W_{\mathrm{out}}^{\mathrm{turn}}
    $$
 4. the tangential forcing bounds are what keep
    $$
@@ -2056,19 +2056,19 @@ Within this reduced planar regime, the theorem ladder now has a definite shape:
 3. deep-past sector relocation or exclusion removes the late-apocenter analogue of uncontrolled remote self roots;
 4. sectorwise cone transversality supplies cycle-wide Jacobian floors together with the stronger deep-past bound
    $$
-   \nu_{J,\mathrm{dp}}>1;
+   \nu_{J,\mathrm{dp}}>1
    $$
 5. bounded planar caustic transit integrates the compulsory inbound self-branch birth through one controlled fold tube;
 6. unified vector recapture criteria replace the 1D inner and outer turn inequalities by the planar margins
    $$
    \mathfrak{M}^{\Pi}_{\mathrm{in}}>0,
    \qquad
-   \mathfrak{M}^{\Pi}_{\mathrm{out}}>0.
+   \mathfrak{M}^{\Pi}_{\mathrm{out}}>0
    $$
 
 This synthesis also isolates the exact difference from the frozen 1D scaffold. The collinear note relies on total order and scalar comparison. The reduced planar bridge replaces those by sector atlases, velocity cones, fold tubes, and a radial comparison law that must pay the centrifugal leakage term
 $$
-\rho\dot\vartheta^2.
+\rho\dot\vartheta^2
 $$
 So the present note is not “the general 2D case.” It is the first reduced 2D bridge in which tangential escape is already real, but still symmetry-controlled.
 
@@ -2076,7 +2076,7 @@ What remains missing before the Schauder route can be executed as a serious clos
 
 - one closed convex tame self-map domain
   $$
-  \mathcal{K}^{\Pi}_{\rho_\ast,\eta};
+  \mathcal{K}^{\Pi}_{\rho_\ast,\eta}
   $$
 - continuity and precompactness of the reduced planar return map on that same domain;
 - and one coupled parameter regime in which all sorting, relocation, transversality, caustic, and recapture constants are simultaneously realizable.
@@ -2099,7 +2099,7 @@ $$
 $$
 with the same orientation branch
 $$
-\mathbf{e}_2\cdot \dot{\mathbf{r}}(T^\Pi(\Phi))>0,
+\mathbf{e}_2\cdot \dot{\mathbf{r}}(T^\Pi(\Phi))>0
 $$
 let
 $$
@@ -2109,7 +2109,7 @@ be the unique rigid rotation such that
 $$
 \mathcal{R}_{\Phi}\mathbf{r}(T^\Pi(\Phi))=\rho_\ast \mathbf{e}_1,
 \qquad
-\mathbf{e}_2\cdot \mathcal{R}_{\Phi}\dot{\mathbf{r}}(T^\Pi(\Phi))>0.
+\mathbf{e}_2\cdot \mathcal{R}_{\Phi}\dot{\mathbf{r}}(T^\Pi(\Phi))>0
 $$
 The reduced planar return map should therefore be defined by
 $$
@@ -2117,15 +2117,15 @@ P^\Pi_\eta(\Phi)(\theta)
 \equiv
 \mathcal{R}_{\Phi}\mathbf{r}(T^\Pi(\Phi)+\theta),
 \qquad
-\theta\in[-h,0].
+\theta\in[-h,0]
 $$
 This is the correct reduced return map. Without the gauge reset
 $$
-\mathcal{R}_{\Phi},
+\mathcal{R}_{\Phi}
 $$
 the returned history would not land back in the fixed representative section
 $$
-\Sigma^-_{\rho_\ast,\Pi}.
+\Sigma^-_{\rho_\ast,\Pi}
 $$
 The price of this gauge reset is a reconstruction condition. A fixed point of
 $$
@@ -2137,11 +2137,11 @@ $$
 =
 \mathcal{R}_{\Phi^\ast}^{-1}\mathbf r(\theta),
 \qquad
-\theta\in[-h,0].
+\theta\in[-h,0]
 $$
 Thus the physical trajectory is an absolute periodic orbit only when the rotational holonomy is trivial:
 $$
-\mathcal{R}_{\Phi^\ast}=\mathrm{Id}.
+\mathcal{R}_{\Phi^\ast}=\mathrm{Id}
 $$
 Without that additional condition, the result is a relative breather modulo the chosen
 $$
@@ -2171,7 +2171,7 @@ I_{\mathrm{cau}},
 \quad
 \mathfrak{M}^{\Pi}_{\mathrm{in}},
 \quad
-\mathfrak{M}^{\Pi}_{\mathrm{out}}.
+\mathfrak{M}^{\Pi}_{\mathrm{out}}
 $$
 The point is not to define
 $$
@@ -2344,7 +2344,7 @@ If the planar bridge fails, the failure should be recorded as a theorem-level ob
    $$
    together with a well-defined gauge-reset return map
    $$
-   P^\Pi_\eta;
+   P^\Pi_\eta
    $$
 2. every candidate directional sorting or cone-transversality package loses a positive Jacobian floor, either on the full controlled cycle
    $$
@@ -2352,20 +2352,20 @@ If the planar bridge fails, the failure should be recorded as a theorem-level ob
    $$
    or on the relocated deep-past branches
    $$
-   \nu_{J,\mathrm{dp}}\le 1,
+   \nu_{J,\mathrm{dp}}\le 1
    $$
    so branch persistence cannot be maintained;
 3. every candidate tame class loses one of the delayed-geometry controls needed for one common return domain: bounded branch count
    $$
-   N_{\mathrm{br}},
+   N_{\mathrm{br}}
    $$
    branch separation
    $$
-   \delta_{\mathrm{sep}},
+   \delta_{\mathrm{sep}}
    $$
    or bounded caustic impulse
    $$
-   I_{\mathrm{cau}}<\infty;
+   I_{\mathrm{cau}}<\infty
    $$
 4. every candidate inner or outer comparison window satisfies
    $$
@@ -2373,14 +2373,14 @@ If the planar bridge fails, the failure should be recorded as a theorem-level ob
    \qquad
    \text{or}
    \qquad
-   \mathfrak{M}^{\Pi}_{\mathrm{out}}\le 0,
+   \mathfrak{M}^{\Pi}_{\mathrm{out}}\le 0
    $$
    so partner attraction cannot beat self-drive plus centrifugal leakage on the reduced planar windows;
 5. the rotated full-cycle return fails to preserve the same section anchoring, envelope bounds, or tame constants, so that
    $$
    P^\Pi_\eta\!\big(\mathcal{K}^{\Pi}_{\rho_\ast,\eta}\big)
    \nsubseteq
-   \mathcal{K}^{\Pi}_{\rho_\ast,\eta};
+   \mathcal{K}^{\Pi}_{\rho_\ast,\eta}
    $$
 6. or the reduced return map fails to be continuous or precompact on the same closed convex domain, so the Schauder capstone has no legitimate domain of application.
 
@@ -2392,7 +2392,7 @@ The next genuinely new 2D regime would not yet be the full many-body master equa
 
 First, the section and gauge problem becomes genuinely multicomponent. The present note fixes one relative planar degree of freedom and resets the return by a single rotation back to
 $$
-\rho_\ast \mathbf{e}_1.
+\rho_\ast \mathbf{e}_1
 $$
 In a less constrained planar regime, the return section would have to be posed on a higher-dimensional shape space modulo rigid Euclidean symmetries, and the gauge reset would no longer be a one-angle correction.
 
@@ -2402,7 +2402,7 @@ Third, the deep-past relocation mechanism would need a new replacement. In the r
 
 Fourth, the escape geometry is no longer exhausted by the scalar leakage term
 $$
-\rho\dot\vartheta^2.
+\rho\dot\vartheta^2
 $$
 That term is the correct planar correction for one relative polar degree of freedom. A less constrained 2D regime would require a genuinely multi-channel escape estimate, with several tangential or shear-like directions that can steal coercivity from the radial comparison argument.
 
@@ -2442,7 +2442,7 @@ for the planar shape quotient after rigid Euclidean symmetries are removed. The 
    $$
    represented in the quotient chart
    $$
-   \mathcal{Q}^{\sharp}_{\mathrm{pl}},
+   \mathcal{Q}^{\sharp}_{\mathrm{pl}}
    $$
    with one codimension-one return condition and one explicit gauge selector that chooses a canonical representative of each returned history. In the reduced planar bridge the gauge reset is one rotation angle. Here the theorem target must identify the correct quotient chart and prove that the returned history depends continuously on that gauge choice.
 2. A finite branch-graph package for the active delayed roots. Instead of one sector-labeled family of self and partner branches, one should expect a finite graph
@@ -2453,7 +2453,7 @@ for the planar shape quotient after rigid Euclidean symmetries are removed. The 
 3. A provenance or exclusion package for deep-past roots. The reduced planar argument pushes late self roots into one pre-crossing inbound cone family. The unreduced planar target should instead prove that every remote active root either relocates into a finite provenance class on the earlier branch graph or is excluded by a topological obstruction principle. Without such a theorem there is no honest replacement for deep-past relocation.
 4. A multi-channel recapture package. The reduced planar comparison law pays one scalar leakage term
    $$
-   \rho\dot\vartheta^2.
+   \rho\dot\vartheta^2
    $$
    In the unreduced planar regime the replacement must control several escape channels at once: rotational, tangential, and shear-like components in the quotient dynamics. The correct theorem target is therefore not one scalar inequality, but a coercive inward comparison that dominates every nonradial leakage channel on the chosen inner and outer windows.
 5. A new closure package on one quotient-space convex envelope
@@ -2464,7 +2464,7 @@ for the planar shape quotient after rigid Euclidean symmetries are removed. The 
    $$
    \mathcal{K}^{\sharp}_{\rho_\ast,\eta}
    \subseteq
-   \mathcal{C}^{\sharp}_{\rho_\ast,\eta}.
+   \mathcal{C}^{\sharp}_{\rho_\ast,\eta}
    $$
    The returned histories must land back in the same gauge-fixed quotient section, preserve the branch-graph, provenance, leakage, and recapture constants, and define a continuous precompact self-map on that same domain.
 
@@ -2476,7 +2476,7 @@ $$
 \equiv
 (\mathbf{x}_1(t),\mathbf{x}_2(t))
 \in
-(\mathbb{R}^2)^2,
+(\mathbb{R}^2)^2
 $$
 and decompose the instantaneous configuration into midpoint and chord variables
 $$
@@ -2486,21 +2486,21 @@ $$
 \qquad
 \mathbf{q}(t)
 \equiv
-\mathbf{x}_2(t)-\mathbf{x}_1(t).
+\mathbf{x}_2(t)-\mathbf{x}_1(t)
 $$
 This is the reason the unreduced planar binary is the correct next regime. The quotient by translations is still explicit through
 $$
-\mathbf{m},
+\mathbf{m}
 $$
 and the quotient by rotations is still explicit through the present chord
 $$
-\mathbf{q}(0),
+\mathbf{q}(0)
 $$
 even though the dynamics no longer collapse to one reflection-symmetric relative trajectory.
 
 Fix a return radius
 $$
-\rho_\ast>0.
+\rho_\ast>0
 $$
 The raw inbound section should be posed on full binary histories by
 $$
@@ -2512,23 +2512,23 @@ $$
 \|\mathbf{q}_{\Phi}(0)\|=\rho_\ast,
 \quad
 \mathbf{q}_{\Phi}(0)\cdot \dot{\mathbf{q}}_{\Phi}(0)<0
-\right\},
+\right\}
 $$
 where
 $$
-\mathbf{q}_{\Phi}(\theta)\equiv \Phi_2(\theta)-\Phi_1(\theta).
+\mathbf{q}_{\Phi}(\theta)\equiv \Phi_2(\theta)-\Phi_1(\theta)
 $$
 This is the physical inbound crossing condition before any quotient representative is chosen.
 
 For
 $$
-\Phi\in \Sigma^{-,\sharp}_{\rho_\ast},
+\Phi\in \Sigma^{-,\sharp}_{\rho_\ast}
 $$
 let
 $$
 \mathbf{a}_{\Phi}\equiv \mathbf{m}_{\Phi}(0),
 \qquad
-\mathbf{m}_{\Phi}(\theta)\equiv \frac{\Phi_1(\theta)+\Phi_2(\theta)}{2},
+\mathbf{m}_{\Phi}(\theta)\equiv \frac{\Phi_1(\theta)+\Phi_2(\theta)}{2}
 $$
 and let
 $$
@@ -2536,7 +2536,7 @@ $$
 $$
 be the unique rotation such that
 $$
-\mathcal{R}_{\Phi}\mathbf{q}_{\Phi}(0)=\rho_\ast \mathbf{e}_1.
+\mathcal{R}_{\Phi}\mathbf{q}_{\Phi}(0)=\rho_\ast \mathbf{e}_1
 $$
 Define the gauge selector by
 $$
@@ -2547,7 +2547,7 @@ $$
 \mathcal{R}_{\Phi}\big(\Phi_2(\theta)-\mathbf{a}_{\Phi}\big)
 \right),
 \qquad
-\theta\in[-h,0].
+\theta\in[-h,0]
 $$
 The corresponding gauge-fixed section is
 $$
@@ -2561,7 +2561,7 @@ $$
 \mathbf{q}_{\Psi}(0)=\rho_\ast \mathbf{e}_1,
 \quad
 \mathbf{e}_1\cdot \dot{\mathbf{q}}_{\Psi}(0)<0
-\right\}.
+\right\}
 $$
 
 > **Target Proposition (Gauge-fixed inbound section for the first unreduced planar bridge).**
@@ -2682,7 +2682,7 @@ Once the gauge-fixed section is available, the next missing object is the delaye
 
 For
 $$
-\tau=(i\leftarrow j)\in \{1,2\}\times \{1,2\},
+\tau=(i\leftarrow j)\in \{1,2\}\times \{1,2\}
 $$
 define the corresponding delayed-root defect by
 $$
@@ -2693,7 +2693,7 @@ G_{\tau}(t,s)
 \bigr\|
 -c_f(t-s),
 \qquad
-s<t,
+s<t
 $$
 and let
 $$
@@ -2706,7 +2706,7 @@ be the associated chord direction whenever the denominator is nonzero. The activ
 $$
 \mathcal{W}^{\sharp}
 =
-\{W_1,\dots,W_{L^{\sharp}}\},
+\{W_1,\dots,W_{L^{\sharp}}\}
 $$
 chosen so that no window straddles more than one geometric event of the candidate excursion: section entry, near-crossing passage, outbound expansion, late turn, or returned entry into the section.
 
@@ -2718,35 +2718,35 @@ $$
 $$
 on
 $$
-S^1,
+S^1
 $$
 with positive overlap margins removed so that every active chord direction remains a definite angular distance away from sector boundaries except inside the later caustic neighborhoods. For each type
 $$
-\tau,
+\tau
 $$
 window
 $$
-W_{\ell},
+W_{\ell}
 $$
 and sector
 $$
-\mathfrak{S}^{\sharp}_k,
+\mathfrak{S}^{\sharp}_k
 $$
 an active local branch should mean a simple root curve
 $$
 s=\beta^{\tau}_{k,\ell,m}(t),
 \qquad
-t\in I^{\tau}_{k,\ell,m}\subseteq W_{\ell},
+t\in I^{\tau}_{k,\ell,m}\subseteq W_{\ell}
 $$
 satisfying
 $$
 G_{\tau}\bigl(t,\beta^{\tau}_{k,\ell,m}(t)\bigr)=0,
 \qquad
-\hat{\mathbf{u}}_{\tau}\bigl(t,\beta^{\tau}_{k,\ell,m}(t)\bigr)\in \mathfrak{S}^{\sharp}_k,
+\hat{\mathbf{u}}_{\tau}\bigl(t,\beta^{\tau}_{k,\ell,m}(t)\bigr)\in \mathfrak{S}^{\sharp}_k
 $$
 and
 $$
-\bigl|J_{\tau}\bigl(t,\beta^{\tau}_{k,\ell,m}(t)\bigr)\bigr|>0.
+\bigl|J_{\tau}\bigl(t,\beta^{\tau}_{k,\ell,m}(t)\bigr)\bigr|>0
 $$
 
 The branch graph
@@ -2757,7 +2757,7 @@ should then be defined by one canonical convention.
 
 - A vertex is one maximal simple local branch segment
   $$
-  v=(\tau,k,\ell,m).
+  v=(\tau,k,\ell,m)
   $$
 - The multiplicity label
   $$
@@ -2914,7 +2914,7 @@ $$
 $$
 in the receiver-time order of the cycle partition. A deep-past active root on a late-turn window should mean one with delay
 $$
-t-s\ge \tau^{\sharp}_{\mathrm{dp}}.
+t-s\ge \tau^{\sharp}_{\mathrm{dp}}
 $$
 
 For a vertex
@@ -2923,7 +2923,7 @@ v=(\tau,k,\ell,m)
 $$
 of
 $$
-\mathscr{G}^{\sharp}_{\mathrm{br}}(\Psi),
+\mathscr{G}^{\sharp}_{\mathrm{br}}(\Psi)
 $$
 write
 $$
@@ -2933,7 +2933,7 @@ S(v)
 $$
 for its source-time trace. If
 $$
-W_{\ell}\in \mathcal{W}^{\sharp}_{\mathrm{lt}},
+W_{\ell}\in \mathcal{W}^{\sharp}_{\mathrm{lt}}
 $$
 call
 $$
@@ -2957,7 +2957,7 @@ $$
 $$
 whose vertices all lie in provenance windows
 $$
-W_{\ell}\in \mathcal{W}^{\sharp}_{\mathrm{prov}},
+W_{\ell}\in \mathcal{W}^{\sharp}_{\mathrm{prov}}
 $$
 share one chord type
 $$
@@ -2965,7 +2965,7 @@ $$
 $$
 and one sector label
 $$
-k,
+k
 $$
 and have connected source traces
 $$
@@ -2973,7 +2973,7 @@ $$
 $$
 on which the source parameterization is simple and carries one uniform Jacobian floor
 $$
-\nu^{\sharp}_{J,\mathrm{dp}}>0.
+\nu^{\sharp}_{J,\mathrm{dp}}>0
 $$
 
 The unreduced-planar exclusion step must also be stated graphwise. For each chord type
@@ -2996,7 +2996,7 @@ t\in W_{\ell},
 \ W_{\ell}\in\mathcal{W}^{\sharp}_{\mathrm{lt}},
 \ W_{\ell'}\in\mathcal{W}^{\sharp}_{\mathrm{out}},
 \ \hat{\mathbf{u}}_{\tau}(t,s)\in \mathfrak{S}^{\sharp}_k
-\bigr\}.
+\bigr\}
 $$
 The intended theorem input is that
 $$
@@ -3086,7 +3086,7 @@ This is the quantity the later unreduced-planar recapture package should consume
 
 The next replacement burden is the turn mechanism itself. In the reduced planar bridge the recapture inequality was written in polar form and paid the single leakage term
 $$
-\rho\dot\vartheta^2.
+\rho\dot\vartheta^2
 $$
 That is no longer the honest object once the dynamics are organized on the unreduced quotient chart. The correct target is a coercive primary escape coordinate together with a finite family of leakage channels that measure how the remaining quotient modes steal inward control.
 
@@ -3104,7 +3104,7 @@ and finitely many nonnegative leakage channels
 $$
 \Lambda^{\sharp}_1(t),
 \dots,
-\Lambda^{\sharp}_{Q^{\sharp}_{\mathrm{esc}}}(t).
+\Lambda^{\sharp}_{Q^{\sharp}_{\mathrm{esc}}}(t)
 $$
 The intended meaning is:
 
@@ -3137,7 +3137,7 @@ $$
 -A^{\sharp}_{p}(t)
 +A^{\sharp}_{s,\mathrm{loc}}(t)
 +A^{\sharp}_{s,\mathrm{deep}}(t)
-+\sum_{\alpha=1}^{Q^{\sharp}_{\mathrm{esc}}}\Lambda^{\sharp}_{\alpha}(t),
++\sum_{\alpha=1}^{Q^{\sharp}_{\mathrm{esc}}}\Lambda^{\sharp}_{\alpha}(t)
 $$
 where:
 
@@ -3250,7 +3250,7 @@ $$
 \underline A^{\sharp}_{p,\mathrm{in}}
 -\overline A^{\sharp}_{s,\mathrm{loc,in}}
 -\overline A^{\sharp}_{s,\mathrm{deep,in}}
--\sum_{\alpha=1}^{Q^{\sharp}_{\mathrm{esc}}}\Theta^{\sharp}_{\alpha,\mathrm{in}},
+-\sum_{\alpha=1}^{Q^{\sharp}_{\mathrm{esc}}}\Theta^{\sharp}_{\alpha,\mathrm{in}}
 $$
 $$
 \mathfrak{M}^{\sharp}_{\mathrm{out}}
@@ -3258,25 +3258,25 @@ $$
 \underline A^{\sharp}_{p,\mathrm{out}}
 -\overline A^{\sharp}_{s,\mathrm{loc,out}}
 -\overline A^{\sharp}_{s,\mathrm{deep,out}}
--\sum_{\alpha=1}^{Q^{\sharp}_{\mathrm{esc}}}\Theta^{\sharp}_{\alpha,\mathrm{out}}.
+-\sum_{\alpha=1}^{Q^{\sharp}_{\mathrm{esc}}}\Theta^{\sharp}_{\alpha,\mathrm{out}}
 $$
 These displayed margins are the simultaneous-ceiling form. In the non-resonant averaged form, or in any case where the channels are only bounded after coupling, replace the sums by the certified coupled budgets
 $$
 \Theta^{\sharp}_{\mathrm{coupled,in}},
 \qquad
-\Theta^{\sharp}_{\mathrm{coupled,out}}.
+\Theta^{\sharp}_{\mathrm{coupled,out}}
 $$
 Whenever these are positive, the primary escape observable obeys the comparison inequalities
 $$
 \ddot{\rho}^{\sharp}(t)\le -\mathfrak{M}^{\sharp}_{\mathrm{in}}<0
 \qquad
-\text{on }W^{\sharp}_{\mathrm{in,turn}},
+\text{on }W^{\sharp}_{\mathrm{in,turn}}
 $$
 and
 $$
 \ddot{\rho}^{\sharp}(t)\le -\mathfrak{M}^{\sharp}_{\mathrm{out}}<0
 \qquad
-\text{on }W^{\sharp}_{\mathrm{out,turn}}.
+\text{on }W^{\sharp}_{\mathrm{out,turn}}
 $$
 
 > **Target Theorem (Unreduced-planar multi-channel recapture criterion).**
@@ -3326,11 +3326,11 @@ $$
 
 This is the exact place where the unreduced planar bridge separates from the reduced planar one. The reduced planar note had one leakage ceiling,
 $$
-\rho\dot\vartheta^2.
+\rho\dot\vartheta^2
 $$
 The unreduced planar bridge requires a finite leakage budget
 $$
-\sum_{\alpha=1}^{Q^{\sharp}_{\mathrm{esc}}}\Theta^{\sharp}_{\alpha,\bullet},
+\sum_{\alpha=1}^{Q^{\sharp}_{\mathrm{esc}}}\Theta^{\sharp}_{\alpha,\bullet}
 $$
 because coercivity can now be lost through several quotient modes rather than through one scalar angular channel.
 That sum is proof-valid only when the preceding resonance-control hypothesis has been discharged. Otherwise the recapture criterion must consume the coupled leakage budget produced by the full leakage monodromy block.
@@ -3348,7 +3348,7 @@ The dependency chain should be stated explicitly here:
    \quad
    \text{and}
    \quad
-   \overline A^{\sharp}_{s,\mathrm{loc,out}};
+   \overline A^{\sharp}_{s,\mathrm{loc,out}}
    $$
 3. the provenance-or-exclusion package supplies
    $$
@@ -3356,13 +3356,13 @@ The dependency chain should be stated explicitly here:
    \quad
    \text{and}
    \quad
-   \overline A^{\sharp}_{s,\mathrm{deep,out}};
+   \overline A^{\sharp}_{s,\mathrm{deep,out}}
    $$
 4. the remaining new burden is to prove that all quotient leakage channels admit finite ceilings
    $$
    \Theta^{\sharp}_{\alpha,\mathrm{in}},
    \qquad
-   \Theta^{\sharp}_{\alpha,\mathrm{out}},
+   \Theta^{\sharp}_{\alpha,\mathrm{out}}
    $$
    on the same windows, together with either simultaneous pointwise validity or the non-resonant leakage-block certificate.
 
@@ -3370,11 +3370,11 @@ The dependency chain should be stated explicitly here:
 
 The word **breather** does not mean that the motion remains one-dimensional. It means that one controlled size or escape observable repeatedly contracts and expands while the full delayed trajectory stays bounded and returns to a section. In the reduced planar bridge that observable was the relative radius
 $$
-\rho(t).
+\rho(t)
 $$
 In the unreduced planar bridge it is the quotient escape coordinate
 $$
-\rho^{\sharp}(t).
+\rho^{\sharp}(t)
 $$
 
 So the intended dynamical picture is still a breathing one:
@@ -3418,7 +3418,7 @@ Q^{\sharp}_{\mathrm{esc}},
 \quad
 \mathfrak{M}^{\sharp}_{\mathrm{in}},
 \quad
-\mathfrak{M}^{\sharp}_{\mathrm{out}}.
+\mathfrak{M}^{\sharp}_{\mathrm{out}}
 $$
 The point is again not to define the tame class by pointwise intersection of every branch-graph or provenance predicate. That would generally fail to preserve convexity. The correct theorem target is one finite certificate whose affine or sampled inequalities define a closed convex subset; the branch graph, provenance count, leakage channels, Jacobian floors, and recapture margins must then be proved from that certificate with uniform slack.
 
@@ -3628,7 +3628,7 @@ If the unreduced-planar bridge fails, the failure should now be recorded in clos
    $$
    together with a well-defined return map
    $$
-   P^{\sharp}_{\eta};
+   P^{\sharp}_{\eta}
    $$
 2. every candidate active branch graph loses one of the finite-control bounds
    $$
@@ -3636,7 +3636,7 @@ If the unreduced-planar bridge fails, the failure should now be recorded in clos
    \qquad
    \delta^{\sharp}_{\mathrm{sep}}>0,
    \qquad
-   \nu^{\sharp}_{J}>0;
+   \nu^{\sharp}_{J}>0
    $$
 3. every candidate deep-past provenance package either forces
    $$
@@ -3644,7 +3644,7 @@ If the unreduced-planar bridge fails, the failure should now be recorded in clos
    $$
    or loses the deep-past Jacobian floor
    $$
-   \nu^{\sharp}_{J,\mathrm{dp}}>0,
+   \nu^{\sharp}_{J,\mathrm{dp}}>0
    $$
    so the remote self contribution is no longer uniformly controlled;
 4. every candidate quotient comparison law either forces
@@ -3657,7 +3657,7 @@ If the unreduced-planar bridge fails, the failure should now be recorded in clos
    \qquad
    \text{or}
    \qquad
-   \mathfrak{M}^{\sharp}_{\mathrm{out}}\le 0,
+   \mathfrak{M}^{\sharp}_{\mathrm{out}}\le 0
    $$
    so partner attraction cannot dominate self-drive plus the full leakage budget on the controlled windows;
 5. or every closed convex tame candidate domain fails one of the closure requirements
@@ -3666,7 +3666,7 @@ If the unreduced-planar bridge fails, the failure should now be recorded in clos
    \mathcal{K}^{\sharp}_{\rho_\ast,\eta}
    \big)
    \subseteq
-   \mathcal{K}^{\sharp}_{\rho_\ast,\eta},
+   \mathcal{K}^{\sharp}_{\rho_\ast,\eta}
    $$
    continuity, or precompactness.
 
@@ -3682,17 +3682,17 @@ First, the quotient section and gauge problem becomes higher-rank. In the binary
 $$
 \mathcal{Q}^{\mathrm{mb}}_{\mathrm{pl}}
 \equiv
-\mathcal{Q}_{N,\mathrm{pl}}/SE(2),
+\mathcal{Q}_{N,\mathrm{pl}}/SE(2)
 $$
 and the gauge selector would have to control stabilizers, near-collinear degeneracies, and possible relabeling ambiguities among bodies that play symmetric roles.
 
 Second, the delayed-root combinatorics ceases to be a finite graph over one receiver-source family. Each receiver now sees several active source families at once, and several branch events can interact through shared bodies. The natural replacement object is therefore a finite active delay hypergraph
 $$
-\mathscr{H}^{\mathrm{mb}}_{\mathrm{br}},
+\mathscr{H}^{\mathrm{mb}}_{\mathrm{br}}
 $$
 not merely a graph
 $$
-\mathscr{G}^{\sharp}_{\mathrm{br}}.
+\mathscr{G}^{\sharp}_{\mathrm{br}}
 $$
 Its vertices would encode receiver index, source index, sector data, and window data, while its higher-order incidences would record coupled fold events or exchange events that cannot be represented by pairwise edges alone.
 
@@ -3704,7 +3704,7 @@ $$
 $$
 and a finite leakage budget. In a many-body regime there are several genuine escape channels: pair separation, cluster separation, shear between subclusters, and exchange of the body that is farthest from the current core. The next honest theorem target would therefore require a finite family of escape observables
 $$
-\rho^{\mathrm{mb}}_1,\dots,\rho^{\mathrm{mb}}_{K_{\mathrm{esc}}},
+\rho^{\mathrm{mb}}_1,\dots,\rho^{\mathrm{mb}}_{K_{\mathrm{esc}}}
 $$
 and a coercive comparison law that dominates all open scattering channels at once, not only one preferred outward mode.
 
@@ -3724,13 +3724,13 @@ q_1=+\epsilon,
 \qquad
 q_2=-\epsilon,
 \qquad
-q_3=+\epsilon,
+q_3=+\epsilon
 $$
 with all three trajectories constrained to one plane.
 
 This seed is not polarity-neutral:
 $$
-q_1+q_2+q_3=+\epsilon.
+q_1+q_2+q_3=+\epsilon
 $$
 It should therefore be read as a local nonneutral three-body subsystem, or as a compensated subsystem inside a larger neutral assembly whose compensating polarity remains outside the reduced bridge model. A globally neutral many-body theorem would need a different seed, for example a neutral four-body packet, and should not be inferred from the present
 $$
@@ -3759,7 +3759,7 @@ Under the second convention, every many-body margin below should be read in comp
 $$
 \mathfrak{M}^{\mathrm{mb}}_{m,\bullet}
 \quad\leadsto\quad
-\mathfrak{M}^{\mathrm{mb}}_{m,\bullet}-E_{\mathrm{ext}},
+\mathfrak{M}^{\mathrm{mb}}_{m,\bullet}-E_{\mathrm{ext}}
 $$
 unless a sharper channel-specific external budget has been certified. Without one of these conventions, the planar three-body bridge is only a local nonneutral transport test and cannot be promoted to a globally neutral breather theorem.
 
@@ -3797,7 +3797,7 @@ $$
 \qquad
 \mathbf{x}_3
 =
--\frac{1}{2}\mathbf{a}-\frac{1}{3}\mathbf{b}.
+-\frac{1}{2}\mathbf{a}-\frac{1}{3}\mathbf{b}
 $$
 These factors are the standard equal-mass Jacobi coordinates for the chosen labels:
 $$
@@ -3805,7 +3805,7 @@ $$
 \qquad
 \mathbf{b}=\mathbf{x}_2-\frac{\mathbf{x}_1+\mathbf{x}_3}{2},
 \qquad
-\mathbf{x}_1+\mathbf{x}_2+\mathbf{x}_3=0.
+\mathbf{x}_1+\mathbf{x}_2+\mathbf{x}_3=0
 $$
 Thus the factors
 $$
@@ -3821,11 +3821,11 @@ $$
 $$
 are intentional: the same-sign outer pair lies on the base line with midpoint
 $$
--\frac{1}{3}\mathbf{b},
+-\frac{1}{3}\mathbf{b}
 $$
 the opposite-sign body lies at
 $$
-\frac{2}{3}\mathbf{b},
+\frac{2}{3}\mathbf{b}
 $$
 and the center of mass remains at the origin on the axis of symmetry.
 
@@ -3839,13 +3839,13 @@ u_{a,\mathrm{seed}}>0,
 \qquad
 u_{b,\mathrm{seed}}>0,
 \qquad
-V_{x,\mathrm{seed}}>0,
+V_{x,\mathrm{seed}}>0
 $$
 and define the Jacobi seed history by
 $$
 \mathbf{a}_{\mathrm{seed}}(\theta)
 \equiv
-\bigl(A_\ast-u_{a,\mathrm{seed}}\theta\bigr)\mathbf{e}_1,
+\bigl(A_\ast-u_{a,\mathrm{seed}}\theta\bigr)\mathbf{e}_1
 $$
 $$
 \mathbf{b}_{\mathrm{seed}}(\theta)
@@ -3854,11 +3854,11 @@ $$
 +
 \bigl(B_\ast-u_{b,\mathrm{seed}}\theta\bigr)\mathbf{e}_2,
 \qquad
-\theta\in[-h,0].
+\theta\in[-h,0]
 $$
 Since
 $$
-\theta\le 0,
+\theta\le 0
 $$
 the same-sign pair is farther apart in the recent past and the opposite-sign body sits higher in the recent past. At the section time
 $$
@@ -3872,7 +3872,7 @@ $$
 \qquad
 \dot{\mathbf{b}}_{\mathrm{seed}}(0)
 =
--V_{x,\mathrm{seed}}\mathbf{e}_1-u_{b,\mathrm{seed}}\mathbf{e}_2,
+-V_{x,\mathrm{seed}}\mathbf{e}_1-u_{b,\mathrm{seed}}\mathbf{e}_2
 $$
 so the gauge conditions
 $$
@@ -3890,13 +3890,13 @@ $$
 \frac{u_{a,\mathrm{seed}}}{2}
 -\frac{V_{x,\mathrm{seed}}}{3}
 \right)\mathbf{e}_1
-+\frac{u_{b,\mathrm{seed}}}{3}\mathbf{e}_2,
++\frac{u_{b,\mathrm{seed}}}{3}\mathbf{e}_2
 $$
 $$
 \dot{\mathbf{x}}_{2,\mathrm{seed}}
 =
 -\frac{2V_{x,\mathrm{seed}}}{3}\mathbf{e}_1
--\frac{2u_{b,\mathrm{seed}}}{3}\mathbf{e}_2,
+-\frac{2u_{b,\mathrm{seed}}}{3}\mathbf{e}_2
 $$
 $$
 \dot{\mathbf{x}}_{3,\mathrm{seed}}
@@ -3905,7 +3905,7 @@ $$
 \frac{u_{a,\mathrm{seed}}}{2}
 +\frac{V_{x,\mathrm{seed}}}{3}
 \right)\mathbf{e}_1
-+\frac{u_{b,\mathrm{seed}}}{3}\mathbf{e}_2.
++\frac{u_{b,\mathrm{seed}}}{3}\mathbf{e}_2
 $$
 Hence one sufficient sub-field-speed condition is
 $$
@@ -3922,7 +3922,7 @@ U^{\mathrm{mb}}_{\mathrm{seed}}
 \dot{\mathbf{x}}_{3,\mathrm{seed}}
 \right\|
 \right\}
-<c_f.
+<c_f
 $$
 
 At the section time define the common partner distance
@@ -3933,21 +3933,21 @@ R_{\mathrm{pair}}
 \frac{1}{2}A_\ast \mathbf{e}_1-B_\ast \mathbf{e}_2
 \right\|
 =
-\sqrt{\frac{A_\ast^2}{4}+B_\ast^2}.
+\sqrt{\frac{A_\ast^2}{4}+B_\ast^2}
 $$
 Then the instantaneous Coulomb-like partner projections satisfy
 $$
 \ddot{\mathbf{a}}_{\mathrm{seed}}^{\mathrm{part}}
 =
 -\,\frac{\kappa\epsilon^2}{R_{\mathrm{pair}}^3}\,
-\mathbf{a}_{\mathrm{seed}}(0),
+\mathbf{a}_{\mathrm{seed}}(0)
 $$
 while the direct same-sign pair repulsion contributes
 $$
 \ddot{\mathbf{a}}_{\mathrm{seed}}^{\mathrm{same}}
 =
 \frac{2\kappa\epsilon^2}{A_\ast^3}\,
-\mathbf{a}_{\mathrm{seed}}(0).
+\mathbf{a}_{\mathrm{seed}}(0)
 $$
 Therefore the leading pair-axis seed forcing is
 $$
@@ -3964,7 +3964,7 @@ $$
 \left(
 \frac{A_\ast}{R_{\mathrm{pair}}^3}
 -\frac{2}{A_\ast^2}
-\right).
+\right)
 $$
 
 Likewise, the leading midpoint-axis attraction from the opposite-sign body against the outer-pair midpoint is
@@ -3972,7 +3972,7 @@ $$
 \ddot{\mathbf{b}}_{\mathrm{seed}}^{\mathrm{part}}
 =
 -\,\frac{3\kappa\epsilon^2}{R_{\mathrm{pair}}^3}\,
-\mathbf{b}_{\mathrm{seed}}(0),
+\mathbf{b}_{\mathrm{seed}}(0)
 $$
 so
 $$
@@ -3981,7 +3981,7 @@ $$
 -\hat{\mathbf{b}}_{\mathrm{seed}}(0)\cdot
 \ddot{\mathbf{b}}_{\mathrm{seed}}^{\mathrm{part}}
 =
-\frac{3\kappa\epsilon^2 B_\ast}{R_{\mathrm{pair}}^3}.
+\frac{3\kappa\epsilon^2 B_\ast}{R_{\mathrm{pair}}^3}
 $$
 At this symmetric seed, the direct same-sign pair force does not contribute to
 $$
@@ -3993,7 +3993,7 @@ The leading geometric leakage ceilings at the section are equally explicit:
 $$
 L^{\mathrm{mb}}_{1,\mathrm{geom,seed}}
 =
-0,
+0
 $$
 because
 $$
@@ -4003,13 +4003,13 @@ $$
 $$
 is parallel to
 $$
-\mathbf{a}_{\mathrm{seed}}(0),
+\mathbf{a}_{\mathrm{seed}}(0)
 $$
 and
 $$
 L^{\mathrm{mb}}_{2,\mathrm{geom,seed}}
 =
-\frac{V_{x,\mathrm{seed}}^2}{B_\ast},
+\frac{V_{x,\mathrm{seed}}^2}{B_\ast}
 $$
 because
 $$
@@ -4021,7 +4021,7 @@ $$
 $$
 is exactly
 $$
-V_{x,\mathrm{seed}}\mathbf{e}_1.
+V_{x,\mathrm{seed}}\mathbf{e}_1
 $$
 
 These formulas already show the right geometric sweet spot: choose
@@ -4030,7 +4030,7 @@ B_\ast
 $$
 not too large compared with
 $$
-A_\ast,
+A_\ast
 $$
 and choose
 $$
@@ -4038,7 +4038,7 @@ V_{x,\mathrm{seed}}
 $$
 small relative to
 $$
-\kappa\epsilon^2 B_\ast/R_{\mathrm{pair}}^3.
+\kappa\epsilon^2 B_\ast/R_{\mathrm{pair}}^3
 $$
 Then the first two inward channels are positive before any refined delay bookkeeping is invoked.
 
@@ -4707,13 +4707,13 @@ $$
 $$
 is the collision locus. Remove translations by imposing the center-of-mass condition
 $$
-\mathbf{x}_1+\mathbf{x}_2+\mathbf{x}_3=0.
+\mathbf{x}_1+\mathbf{x}_2+\mathbf{x}_3=0
 $$
 The remaining quotient by rigid planar rotations defines the reduced shape space
 $$
 \mathcal{Q}^{\mathrm{mb}}_{\mathrm{pl}}
 \equiv
-\mathcal{Q}_{3,\mathrm{pl}}/SE(2).
+\mathcal{Q}_{3,\mathrm{pl}}/SE(2)
 $$
 
 Before fixing any gauge, the first analytic object should be the unreduced history space
@@ -4739,7 +4739,7 @@ $$
 \\[0.4em]
 \|\dot{\widetilde{\Phi}}(\theta)\|\le U_{\max}
 \end{array}
-\right\}.
+\right\}
 $$
 This is the space on which local existence, uniqueness, and continuous dependence should first be posed. Only after that should one quotient by rigid rotations and choose a canonical representative.
 
@@ -4749,7 +4749,7 @@ Choose the present-time Jacobi vectors
 $$
 \mathbf{a}(t)\equiv \mathbf{x}_1(t)-\mathbf{x}_3(t),
 \qquad
-\mathbf{b}(t)\equiv \mathbf{x}_2(t)-\frac{\mathbf{x}_1(t)+\mathbf{x}_3(t)}{2}.
+\mathbf{b}(t)\equiv \mathbf{x}_2(t)-\frac{\mathbf{x}_1(t)+\mathbf{x}_3(t)}{2}
 $$
 The first vector tracks the same-sign pair separation, while the second tracks the opposite-sign body's displacement from the outer-pair midpoint. Away from the near-collinear set
 $$
@@ -4758,7 +4758,7 @@ $$
 \left\{
 (\mathbf{a},\mathbf{b})\;\middle|\;
 \big|\det(\mathbf{a},\mathbf{b})\big|\le \delta_{\mathrm{col}}
-\right\},
+\right\}
 $$
 one may impose the canonical gauge
 $$
@@ -4766,11 +4766,11 @@ $$
 \qquad
 \mathbf{e}_2\cdot \mathbf{b}(0)>0,
 \qquad
-\mathbf{e}_1\cdot \dot{\mathbf{b}}(0)<0,
+\mathbf{e}_1\cdot \dot{\mathbf{b}}(0)<0
 $$
 with fixed
 $$
-A_\ast>0.
+A_\ast>0
 $$
 The first condition removes rotation by anchoring the same-sign pair on the horizontal axis, the second chooses the upper-half-plane representative for the opposite-sign body, and the third picks the inbound branch across the section.
 
@@ -4778,7 +4778,7 @@ The resulting gauge-fixed history space is
 $$
 \mathcal{H}^{\mathrm{mb}}_h
 \equiv
-C^1([-h,0];\mathcal{Q}^{\mathrm{mb}}_{\mathrm{pl}}),
+C^1([-h,0];\mathcal{Q}^{\mathrm{mb}}_{\mathrm{pl}})
 $$
 and the raw inbound section should be written as
 $$
@@ -4792,13 +4792,13 @@ $$
 \mathbf{e}_2\cdot \mathbf{b}_\Phi(0)\ge B_{\min},
 \quad
 \mathbf{e}_1\cdot \dot{\mathbf{b}}_\Phi(0)\le -V_{\mathrm{in}}
-\right\},
+\right\}
 $$
 for fixed positive constants
 $$
 B_{\min},
 \qquad
-V_{\mathrm{in}}.
+V_{\mathrm{in}}
 $$
 
 This is the many-body analogue of the binary section packages: it removes time translation through a codimension-one section, removes planar rotation through a canonical representative, and keeps the same-sign pair quotient visible without pretending that the full three-body shape can be controlled by one scalar radius.
@@ -4904,17 +4904,17 @@ Before the active delay hypergraph can be treated as a finite object, one needs 
 
 For each ordered receiver-source pair
 $$
-(i,j)\in\{1,2,3\}^2,
+(i,j)\in\{1,2,3\}^2
 $$
 including
 $$
-i=j,
+i=j
 $$
 define the exact delay defect
 $$
 g_{ij}(t;s)
 \equiv
-\|\mathbf{x}_i(t)-\mathbf{x}_j(s)\|-c_f(t-s).
+\|\mathbf{x}_i(t)-\mathbf{x}_j(s)\|-c_f(t-s)
 $$
 A fold event is a pair
 $$
@@ -4924,7 +4924,7 @@ with
 $$
 g_{ij}(t;s_\ast)=0,
 \qquad
-\partial_s g_{ij}(t;s_\ast)=0.
+\partial_s g_{ij}(t;s_\ast)=0
 $$
 Write
 $$
@@ -4932,18 +4932,18 @@ $$
 \qquad
 r_{ij}(t;s)\equiv \|\mathbf{r}_{ij}(t;s)\|,
 \qquad
-\hat{\mathbf{r}}_{ij}(t;s)\equiv \frac{\mathbf{r}_{ij}(t;s)}{r_{ij}(t;s)}.
+\hat{\mathbf{r}}_{ij}(t;s)\equiv \frac{\mathbf{r}_{ij}(t;s)}{r_{ij}(t;s)}
 $$
 Then
 $$
 \partial_s g_{ij}(t;s)
 =
-c_f-\dot{\mathbf{x}}_j(s)\cdot \hat{\mathbf{r}}_{ij}(t;s),
+c_f-\dot{\mathbf{x}}_j(s)\cdot \hat{\mathbf{r}}_{ij}(t;s)
 $$
 $$
 \partial_t g_{ij}(t;s)
 =
-\dot{\mathbf{x}}_i(t)\cdot \hat{\mathbf{r}}_{ij}(t;s)-c_f,
+\dot{\mathbf{x}}_i(t)\cdot \hat{\mathbf{r}}_{ij}(t;s)-c_f
 $$
 $$
 \partial_s^2 g_{ij}(t;s)
@@ -4954,7 +4954,7 @@ $$
 \big(\dot{\mathbf{x}}_j(s)\cdot \hat{\mathbf{r}}_{ij}(t;s)\big)^2
 }{
 r_{ij}(t;s)
-},
+}
 $$
 and
 $$
@@ -4970,7 +4970,7 @@ $$
 \qquad
 r_{ij}(t;s)^{-1},
 \qquad
-r_{ij}(t;s)^{-2},
+r_{ij}(t;s)^{-2}
 $$
 so it is controlled by the same
 $$
@@ -4987,13 +4987,13 @@ The first analytic bridge theorem should impose one quantitative nondegeneracy r
 
 - a uniform acceleration bound
   $$
-  \|\ddot{\mathbf{x}}_i\|\le A_{\max};
+  \|\ddot{\mathbf{x}}_i\|\le A_{\max}
   $$
 - a uniform acceleration-Lipschitz bound
   $$
   \|\ddot{\mathbf{x}}_i(t)-\ddot{\mathbf{x}}_i(t')\|
   \le
-  L_A|t-t'|;
+  L_A|t-t'|
   $$
 - a strict fold curvature floor
   $$
@@ -5012,7 +5012,7 @@ $$
 \qquad
 |\partial_s^2 g_{ij}(t;s)|\le C^{\mathrm{mb}}_{2,g},
 \qquad
-|\partial_s^3 g_{ij}(t;s)|\le C^{\mathrm{mb}}_{3,g},
+|\partial_s^3 g_{ij}(t;s)|\le C^{\mathrm{mb}}_{3,g}
 $$
 for constants determined only by
 $$
@@ -5022,7 +5022,7 @@ A_{\max},
 \quad
 L_A,
 \quad
-d_{\min}.
+d_{\min}
 $$
 The point of this hierarchy is that it makes the fold geometry quantitative rather than qualitative: once
 $$
@@ -5305,7 +5305,7 @@ $$
 \frac{\nu_J^{\mathrm{mb}}}{2C^{\mathrm{mb}}_{2,g}},
 \Delta\tau_{\mathrm{sec}},
 \Delta\tau_{\mathrm{exc}}
-\right\},
+\right\}
 $$
 where
 $$
@@ -5315,7 +5315,7 @@ $$
 $$
 are the corresponding sector-boundary and admissible exchange isolation scales produced by the same derivative hierarchy. The first two terms are the source-time and receiver-time fold-isolation scales. The third term is the uniform simple-branch persistence scale away from fold tubes: if
 $$
-|\partial_s g_{ij}(t;s_0)|\ge \nu_J^{\mathrm{mb}},
+|\partial_s g_{ij}(t;s_0)|\ge \nu_J^{\mathrm{mb}}
 $$
 then
 $$
@@ -5323,7 +5323,7 @@ $$
 $$
 whenever
 $$
-|s-s_0|<\frac{\nu_J^{\mathrm{mb}}}{2C^{\mathrm{mb}}_{2,g}}.
+|s-s_0|<\frac{\nu_J^{\mathrm{mb}}}{2C^{\mathrm{mb}}_{2,g}}
 $$
 
 > **Corollary (Finite event count on one controlled cycle).**
@@ -5400,18 +5400,18 @@ denote the signed gap function that distinguishes the currently active admissibl
 $$
 |\dot{\Theta}_{\mathrm{sec}}(t)|\le C^{\mathrm{mb}}_{1,\mathrm{sec}},
 \qquad
-|\ddot{\Theta}_{\mathrm{sec}}(t)|\le C^{\mathrm{mb}}_{2,\mathrm{sec}},
+|\ddot{\Theta}_{\mathrm{sec}}(t)|\le C^{\mathrm{mb}}_{2,\mathrm{sec}}
 $$
 $$
 |\dot{\Theta}_{\mathrm{exc}}(t)|\le C^{\mathrm{mb}}_{1,\mathrm{exc}},
 \qquad
-|\ddot{\Theta}_{\mathrm{exc}}(t)|\le C^{\mathrm{mb}}_{2,\mathrm{exc}},
+|\ddot{\Theta}_{\mathrm{exc}}(t)|\le C^{\mathrm{mb}}_{2,\mathrm{exc}}
 $$
 together with transversality floors at admissible relabeling and exchange events:
 $$
 |\dot{\Theta}_{\mathrm{sec}}(t_\ast)|\ge \gamma_{\mathrm{sec}}>0,
 \qquad
-|\dot{\Theta}_{\mathrm{exc}}(t_\ast)|\ge \gamma_{\mathrm{exc}}>0.
+|\dot{\Theta}_{\mathrm{exc}}(t_\ast)|\ge \gamma_{\mathrm{exc}}>0
 $$
 These are the sector and exchange analogues of the fold-curvature floor. Under those hypotheses one may define
 $$
@@ -5421,14 +5421,14 @@ $$
 \qquad
 \Delta\tau_{\mathrm{exc}}
 \equiv
-\frac{\gamma_{\mathrm{exc}}}{C^{\mathrm{mb}}_{2,\mathrm{exc}}},
+\frac{\gamma_{\mathrm{exc}}}{C^{\mathrm{mb}}_{2,\mathrm{exc}}}
 $$
 and the same Taylor argument shows that sector relabelings and admissible exchanges are isolated in cycle time by at least those scales.
 Along any active branch away from the fold tubes one also has
 $$
 \dot{s}(t)
 =
--\frac{\partial_t g_{ij}(t;s(t))}{\partial_s g_{ij}(t;s(t))},
+-\frac{\partial_t g_{ij}(t;s(t))}{\partial_s g_{ij}(t;s(t))}
 $$
 so the simple-branch persistence lemma supplies the denominator floor needed to keep
 $$
@@ -5554,7 +5554,7 @@ This point is harmless in the binary scaffolds only because the dual-mollified c
 
 For each principal escape channel
 $$
-m\in\{1,2,3,4\},
+m\in\{1,2,3,4\}
 $$
 let
 $$
@@ -5562,7 +5562,7 @@ W^{\mathrm{mb}}_{\mathrm{fold}}(\mathsf{e})
 $$
 denote one controlled fold tube associated with an admissible Type II or Type III hyperedge
 $$
-\mathsf{e}\in\mathscr{E}^{\mathrm{mb}}_{\mathrm{br}}.
+\mathsf{e}\in\mathscr{E}^{\mathrm{mb}}_{\mathrm{br}}
 $$
 The theorem target is that the dual-mollified branch sum contributes only a finite channelwise impulse across that tube:
 $$
@@ -5572,7 +5572,7 @@ $$
 \ddot{\mathbf{X}}(t)\,dt
 \right|
 \le
-F^{\mathrm{mb}}_{m,\mathsf{e}},
+F^{\mathrm{mb}}_{m,\mathsf{e}}
 $$
 where
 $$
@@ -5854,7 +5854,7 @@ More concretely, one may take
 $$
 F^{\mathrm{mb}}_m
 \equiv
-\mathfrak{F}^{\mathrm{mb}}_m M_{\max}^{\mathrm{mb}},
+\mathfrak{F}^{\mathrm{mb}}_m M_{\max}^{\mathrm{mb}}
 $$
 where
 $$
@@ -6217,17 +6217,17 @@ $$
 =
 \left\{
 W_1,\dots,W_{N_W}
-\right\},
+\right\}
 $$
 chosen to separate the inbound compression stage, the crossing or near-core stage, the post-crossing recapture stage, and the late-turn stage. For each ordered receiver-source pair
 $$
 (i,j)\in \{1,2,3\}^2,
 \qquad
-i\neq j,
+i\neq j
 $$
 and for the self family
 $$
-(i,i),
+(i,i)
 $$
 let
 $$
@@ -6237,11 +6237,11 @@ g_{ij}(t;s)
 $$
 denote the exact delayed-root equation on a window
 $$
-W_\alpha\in\mathcal{W}^{\mathrm{mb}}.
+W_\alpha\in\mathcal{W}^{\mathrm{mb}}
 $$
 As in the reduced planar bridge, choose a fixed finite directional atlas on
 $$
-S^1,
+S^1
 $$
 but now each active root must carry receiver index, source index, sector label, and window label.
 
@@ -6262,23 +6262,23 @@ as follows.
   $$
   records one active branch family with receiver
   $$
-  i,
+  i
   $$
   source
   $$
-  j,
+  j
   $$
   window
   $$
-  W_\alpha,
+  W_\alpha
   $$
   directional sector
   $$
-  \mathfrak{S}_k,
+  \mathfrak{S}_k
   $$
   and branch multiplicity label
   $$
-  \ell.
+  \ell
   $$
 - A hyperedge
   $$
@@ -6295,7 +6295,7 @@ For the first planar-three-body bridge, the admissible hyperedges should be rest
 - **Type II: simple fold birth or fold death hyperedge.**
   A hyperedge supported inside one controlled fold tube for one receiver-source pair
   $$
-  (i,j),
+  (i,j)
   $$
   where exactly one simple branch is created or annihilated.
 - **Type III: shared-body coupled fold hyperedge.**
@@ -6309,13 +6309,13 @@ For the first planar-three-body bridge, the admissible hyperedges should be rest
   \qquad
   \{i,j\}\leftrightarrow \{i\},
   \qquad
-  \{i,j\}\leftrightarrow \{i,k\},
+  \{i,j\}\leftrightarrow \{i,k\}
   $$
   always through one local shared-body event already visible in the delayed geometry.
 
 No other hyperedge type should be allowed in the first bridge regime. In particular, there should be no hyperedge representing simultaneous creation of arbitrarily many fresh branches, no instantaneous jump to a source cluster outside
 $$
-\mathfrak{C}^{\mathrm{mb}}_{\mathrm{src}},
+\mathfrak{C}^{\mathrm{mb}}_{\mathrm{src}}
 $$
 and no event that changes receiver, source cluster, sector family, and window label all at once without passing through one of the listed local types.
 
@@ -6383,11 +6383,11 @@ $$
 \qquad
 |\det(\mathbf{a},\mathbf{b})|\ge \Delta_{\min},
 \qquad
-\delta_{\mathrm{role}}\ge \delta_{\mathrm{role},\min},
+\delta_{\mathrm{role}}\ge \delta_{\mathrm{role},\min}
 $$
 whenever one asks the same active hypergraph to feed the principal recapture margins. The hypergraph theorem itself does not differentiate the observables
 $$
-\rho^{\mathrm{mb}}_m,
+\rho^{\mathrm{mb}}_m
 $$
 but the event structure it produces must be compatible with the smooth windows on which those derivatives are later taken.
 
@@ -6455,7 +6455,7 @@ $$
 $$
 denote, respectively, the intermediate post-crossing windows and the earlier provenance windows that precede the late-turn block in the cycle order. A deep-past active branch on a late-turn window should mean one with delay
 $$
-t-s\ge \tau^{\mathrm{mb}}_{\mathrm{dp}}.
+t-s\ge \tau^{\mathrm{mb}}_{\mathrm{dp}}
 $$
 
 For the first planar-three-body bridge, the source-cluster alphabet should be fixed as
@@ -6464,7 +6464,7 @@ $$
 \equiv
 \Big\{
 \{1\},\{2\},\{3\},\{1,3\},\{1,2\},\{2,3\}
-\Big\},
+\Big\}
 $$
 and only the following backward exchange moves should be admissible:
 
@@ -6490,7 +6490,7 @@ For each late-turn hypergraph vertex
 $$
 \mathsf{v}_{\mathrm{late}}
 \in
-\mathscr{V}^{\mathrm{mb}}_{\mathrm{br}},
+\mathscr{V}^{\mathrm{mb}}_{\mathrm{br}}
 $$
 define its backward ancestry set
 $$
@@ -6521,19 +6521,19 @@ $$
 $$
 should lie entirely in provenance windows
 $$
-W_\alpha\in \mathcal{W}^{\mathrm{mb}}_{\mathrm{prov}},
+W_\alpha\in \mathcal{W}^{\mathrm{mb}}_{\mathrm{prov}}
 $$
 carry one fixed receiver body
 $$
-i_m,
+i_m
 $$
 one fixed sector label
 $$
-k_m,
+k_m
 $$
 and one connected source-cluster trace on which the relevant branch parameterizations remain simple with one common Jacobian floor
 $$
-\nu^{\mathrm{mb}}_{J,\mathrm{anc}}>0.
+\nu^{\mathrm{mb}}_{J,\mathrm{anc}}>0
 $$
 
 The point is that a remote contribution should now be forced into one finite ancestry complex rather than into one literal earlier branch family.
@@ -6850,7 +6850,7 @@ N_{\mathrm{anc}}\,\kappa\epsilon^2
 }{
 \bigl(c_f^2(\tau^{\mathrm{mb}}_{\mathrm{dp}})^2+\epsilon_c^2\bigr)
 \nu^{\mathrm{mb}}_{J,\mathrm{anc}}
-}.
+}
 $$
 Then
 $$
@@ -6880,18 +6880,18 @@ adapted to the Jacobi coordinates
 $$
 \mathbf{a}=\mathbf{x}_1-\mathbf{x}_3,
 \qquad
-\mathbf{b}=\mathbf{x}_2-\frac{\mathbf{x}_1+\mathbf{x}_3}{2}.
+\mathbf{b}=\mathbf{x}_2-\frac{\mathbf{x}_1+\mathbf{x}_3}{2}
 $$
 For the first three-body bridge the natural concrete choice is
 $$
-\rho^{\mathrm{mb}}_1(\mathbf{a},\mathbf{b})\equiv \|\mathbf{a}\|,
+\rho^{\mathrm{mb}}_1(\mathbf{a},\mathbf{b})\equiv \|\mathbf{a}\|
 $$
 $$
-\rho^{\mathrm{mb}}_2(\mathbf{a},\mathbf{b})\equiv \|\mathbf{b}\|,
+\rho^{\mathrm{mb}}_2(\mathbf{a},\mathbf{b})\equiv \|\mathbf{b}\|
 $$
 $$
 \rho^{\mathrm{mb}}_3(\mathbf{a},\mathbf{b})\equiv
-\frac{\big|\det(\mathbf{a},\mathbf{b})\big|}{\|\mathbf{a}\|+\|\mathbf{b}\|},
+\frac{\big|\det(\mathbf{a},\mathbf{b})\big|}{\|\mathbf{a}\|+\|\mathbf{b}\|}
 $$
 $$
 \rho^{\mathrm{mb}}_4(\mathbf{a},\mathbf{b})\equiv
@@ -6900,7 +6900,7 @@ $$
 \|\mathbf{x}_2\|,
 \|\mathbf{x}_3\|
 \Big\}
--\|\mathbf{x}_2\|.
+-\|\mathbf{x}_2\|
 $$
 
 Their intended meanings are:
@@ -6942,11 +6942,11 @@ $$
 \le
 -\,\Lambda^{\mathrm{mb}}_m(t)
 +L^{\mathrm{mb}}_m(t)
-+A^{\mathrm{mb}}_{s,\mathrm{deep}}(t),
++A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
 $$
 where, for each
 $$
-m,
+m
 $$
 the comparison terms are understood channelwise:
 
@@ -6982,7 +6982,7 @@ $$
 \qquad
 \text{on role windows.}
 $$
-Accordingly, the smooth recapture windows should be refined as:
+Accordingly, the smooth recapture windows should be refined as
 $$
 I^{\mathrm{mb}}_{1,\mathrm{post}}
 \equiv
@@ -7168,7 +7168,7 @@ $$
 =
 -\hat{\mathbf{a}}(t)\cdot\big(\ddot{\mathbf{x}}_1(t)-\ddot{\mathbf{x}}_3(t)\big)
 $$
-splits into branch families:
+splits into branch families
 $$
 \Lambda^{\mathrm{mb}}_1
 =
@@ -7187,7 +7187,7 @@ where:
   $$
   acting on the same-sign pair
   $$
-  (1,3);
+  (1,3)
   $$
 - $$
   \Lambda^{\mathrm{mb}}_{1,\mathrm{same}}
@@ -7209,7 +7209,7 @@ where:
   $$
   and
   $$
-  3.
+  3
   $$
 
 The unresolved but now explicit theorem burden is to prove, on the recapture windows, that the opposite-sign core term dominates the same-sign and self-driven widening after all admissible fold-tube and deep-past ceilings are paid.
@@ -7222,7 +7222,7 @@ L^{\mathrm{mb}}_{1,\mathrm{rep}}(t)
 +
 \Big(\Lambda^{\mathrm{mb}}_{1,\mathrm{self}}(t)\Big)_+
 +
-L^{\mathrm{mb}}_{1,\mathrm{fold}}(t),
+L^{\mathrm{mb}}_{1,\mathrm{fold}}(t)
 $$
 where
 $$
@@ -7238,13 +7238,13 @@ For
 $$
 \rho^{\mathrm{mb}}_2=\|\mathbf{b}\|,
 \qquad
-\hat{\mathbf{b}}\equiv \frac{\mathbf{b}}{\|\mathbf{b}\|},
+\hat{\mathbf{b}}\equiv \frac{\mathbf{b}}{\|\mathbf{b}\|}
 $$
 one has likewise
 $$
 \dot{\rho}^{\mathrm{mb}}_2
 =
-\hat{\mathbf{b}}\cdot \dot{\mathbf{b}},
+\hat{\mathbf{b}}\cdot \dot{\mathbf{b}}
 $$
 and
 $$
@@ -7252,25 +7252,25 @@ $$
 =
 \hat{\mathbf{b}}\cdot \ddot{\mathbf{b}}
 \;+\;
-\frac{\|\dot{\mathbf{b}}\|^2-\big(\hat{\mathbf{b}}\cdot\dot{\mathbf{b}}\big)^2}{\|\mathbf{b}\|}.
+\frac{\|\dot{\mathbf{b}}\|^2-\big(\hat{\mathbf{b}}\cdot\dot{\mathbf{b}}\big)^2}{\|\mathbf{b}\|}
 $$
 Since
 $$
 \ddot{\mathbf{b}}
 =
-\ddot{\mathbf{x}}_2-\frac{\ddot{\mathbf{x}}_1+\ddot{\mathbf{x}}_3}{2},
+\ddot{\mathbf{x}}_2-\frac{\ddot{\mathbf{x}}_1+\ddot{\mathbf{x}}_3}{2}
 $$
 the first term measures the net delayed pull of the opposite-sign body toward or away from the outer-pair midpoint, while the second term is the transverse leakage created by midpoint-frame rotation and shape drift. The natural channelwise definitions are therefore
 $$
 \Lambda^{\mathrm{mb}}_2(t)
 \equiv
--\hat{\mathbf{b}}(t)\cdot \ddot{\mathbf{b}}(t),
+-\hat{\mathbf{b}}(t)\cdot \ddot{\mathbf{b}}(t)
 $$
 $$
 L^{\mathrm{mb}}_2(t)
 \equiv
 \frac{\|\dot{\mathbf{b}}(t)\|^2-\big(\hat{\mathbf{b}}(t)\cdot\dot{\mathbf{b}}(t)\big)^2}{\|\mathbf{b}(t)\|}
-+L^{\mathrm{mb}}_{2,\mathrm{breath}}(t),
++L^{\mathrm{mb}}_{2,\mathrm{breath}}(t)
 $$
 where
 $$
@@ -7282,7 +7282,7 @@ $$
 $$
 and
 $$
-\mathbf{b}.
+\mathbf{b}
 $$
 The recapture target for
 $$
@@ -7294,7 +7294,7 @@ $$
 \le
 -\,\Lambda^{\mathrm{mb}}_2(t)
 +L^{\mathrm{mb}}_2(t)
-+A^{\mathrm{mb}}_{s,\mathrm{deep}}(t).
++A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
 $$
 
 Here the master-equation projection is
@@ -7305,7 +7305,7 @@ $$
 \left(
 \ddot{\mathbf{x}}_2(t)
 -\frac{\ddot{\mathbf{x}}_1(t)+\ddot{\mathbf{x}}_3(t)}{2}
-\right),
+\right)
 $$
 and this naturally decomposes into:
 $$
@@ -7313,7 +7313,7 @@ $$
 =
 \Lambda^{\mathrm{mb}}_{2,\mathrm{attr}}
 -\Lambda^{\mathrm{mb}}_{2,\mathrm{pair}}
--\Lambda^{\mathrm{mb}}_{2,\mathrm{self}},
+-\Lambda^{\mathrm{mb}}_{2,\mathrm{self}}
 $$
 where:
 
@@ -7388,7 +7388,7 @@ $$
 \varsigma\,
 \frac{\Delta_{ab}\,\dot S_{ab}}{S_{ab}^2}.
 $$
-The theorem burden is not to memorize the full second derivative term-by-term, but to split it into:
+The theorem burden is not to memorize the full second derivative term-by-term, but to split it into
 $$
 \ddot{\rho}^{\mathrm{mb}}_3(t)
 \le
@@ -7441,7 +7441,7 @@ L^{\mathrm{mb}}_3(t)
 +
 L^{\mathrm{mb}}_{3,\mathrm{den}}(t)
 +
-L^{\mathrm{mb}}_{3,\mathrm{fold}}(t),
+L^{\mathrm{mb}}_{3,\mathrm{fold}}(t)
 $$
 where
 $$
@@ -7466,29 +7466,29 @@ $$
 \|\mathbf{x}_2\|,
 \|\mathbf{x}_3\|
 \Big\}
--\|\mathbf{x}_2\|,
+-\|\mathbf{x}_2\|
 $$
 the correct local formulation is piecewise. On any subwindow where one outer body, say
 $$
 \mathbf{x}_{i_\ast},
 \qquad
-i_\ast\in\{1,3\},
+i_\ast\in\{1,3\}
 $$
 uniquely realizes the maximum radius with a gap
 $$
-\delta_{\mathrm{role}}>0,
+\delta_{\mathrm{role}}>0
 $$
 one has the smooth branch
 $$
 \rho^{\mathrm{mb}}_4
 =
-\|\mathbf{x}_{i_\ast}\|-\|\mathbf{x}_2\|.
+\|\mathbf{x}_{i_\ast}\|-\|\mathbf{x}_2\|
 $$
 Then, with
 $$
 \hat{\mathbf{x}}_{i_\ast}\equiv \frac{\mathbf{x}_{i_\ast}}{\|\mathbf{x}_{i_\ast}\|},
 \qquad
-\hat{\mathbf{x}}_{2}\equiv \frac{\mathbf{x}_{2}}{\|\mathbf{x}_{2}\|},
+\hat{\mathbf{x}}_{2}\equiv \frac{\mathbf{x}_{2}}{\|\mathbf{x}_{2}\|}
 $$
 the channelwise comparison law should be organized as
 $$
@@ -7496,14 +7496,14 @@ $$
 \le
 -\,\Lambda^{\mathrm{mb}}_4(t)
 +L^{\mathrm{mb}}_4(t)
-+A^{\mathrm{mb}}_{s,\mathrm{deep}}(t),
++A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
 $$
 with
 $$
 \Lambda^{\mathrm{mb}}_4(t)
 \equiv
 -\hat{\mathbf{x}}_{i_\ast}(t)\cdot \ddot{\mathbf{x}}_{i_\ast}(t)
-+\hat{\mathbf{x}}_{2}(t)\cdot \ddot{\mathbf{x}}_{2}(t),
++\hat{\mathbf{x}}_{2}(t)\cdot \ddot{\mathbf{x}}_{2}(t)
 $$
 interpreted as persistence of the distinguished opposite-sign core role, and with leakage ceiling
 $$
@@ -7513,7 +7513,7 @@ L^{\mathrm{mb}}_{4,\mathrm{curv}}(t)
 +
 L^{\mathrm{mb}}_{4,\mathrm{tie}}(t)
 +
-L^{\mathrm{mb}}_{4,\mathrm{fold}}(t).
+L^{\mathrm{mb}}_{4,\mathrm{fold}}(t)
 $$
 Here:
 
@@ -7530,7 +7530,7 @@ Here:
   $$
   or
   $$
-  \|\mathbf{x}_1\|\approx \|\mathbf{x}_3\|;
+  \|\mathbf{x}_1\|\approx \|\mathbf{x}_3\|
   $$
 - $$
   L^{\mathrm{mb}}_{4,\mathrm{fold}}
@@ -7738,7 +7738,7 @@ To align the abstract recapture theorem with the first concrete lemma, the princ
 $$
 m=1,2
 $$
-should be defined directly from the projected branch-sum gaps above. Namely,
+should be defined directly from the projected branch-sum gaps above. Namely
 $$
 \mathfrak{M}^{\mathrm{mb}}_{1,\mathrm{post}}
 \equiv
@@ -7827,7 +7827,7 @@ A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
 $$
 So the first two principal margins may be read as explicit arithmetic inequalities with already-settled fold and deep-past inputs.
 
-For the shear and role-exchange channels, the principal margins should likewise be defined from the concrete decompositions above:
+For the shear and role-exchange channels, the principal margins should likewise be defined from the concrete decompositions above
 $$
 \mathfrak{M}^{\mathrm{mb}}_{3,\mathrm{post}}
 \equiv
@@ -7958,7 +7958,7 @@ $$
 \Big).
 $$
 
-With this convention,
+With this convention
 $$
 \mathfrak{M}^{\mathrm{mb}}_{1,\mathrm{post}}>0,
 \quad
@@ -8440,7 +8440,7 @@ $$
 =
 \frac{\mathbf{r}^{\mathrm{role}}_{\mathrm{seed}}}{\|\mathbf{r}^{\mathrm{role}}_{\mathrm{seed}}\|},
 $$
-on the seed-side windows, and one should center the corresponding cones on:
+on the seed-side windows, and one should center the corresponding cones on
 $$
 \mathfrak{C}^{a}_W
 \ \text{around}\ 
@@ -8459,7 +8459,7 @@ $$
 \ \text{around}\ 
 \dot{\mathbf{x}}_{i,\mathrm{seed}}.
 $$
-The support floors should be chosen from the seed values with explicit slack:
+The support floors should be chosen from the seed values with explicit slack
 $$
 \alpha^{a}_W
 =
@@ -8960,7 +8960,7 @@ W\in\left\{
 \mathrm{late}
 \right\},
 $$
-introduce:
+introduce
 $$
 \underline{\Lambda}^{\mathrm{mb}}_{m,W}
 \equiv
@@ -9647,7 +9647,7 @@ The 1D collinear chapter should now be used as a frozen reference theorem scaffo
 > **Theorem Program (Breather architecture for the master equation).**
 > A master-equation breather theorem should be pursued from the dual-mollified absolute-time integral law, with branch sums used only on certified simple-root charts. The proof task is to construct a sectioned history-space return map, produce one candidate cycle with finite certificate data, separate convex Banach bounds from tame delayed-root geometry, and then close the resulting return map on one closed convex tame self-map domain. The unresolved burden is no longer the abstract fixed-point theorem or an elementary closed-form orbit. It is the geometric production and certification of that domain outside the ordered 1D setting.
 
-Operationally, the live proof burden remains the collinear certificate chain:
+Operationally, the live proof burden remains the collinear certificate chain
 $$
 \phi_{\mathrm{cyc}}
 \to
