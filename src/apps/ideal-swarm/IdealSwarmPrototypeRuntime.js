@@ -1201,7 +1201,7 @@ export function mountIdealSwarmPrototype(options = {}) {
 
   const state = {
     pathsVisible: true,
-    surfaceVisible: false,
+    surfaceVisible: true,
     axesVisible: true,
     frozen: false,
     radius: Number(dom.radiusInput.value) || 1.62,
