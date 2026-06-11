@@ -28,9 +28,15 @@ test("animator dom runtime collects animator shell elements and bindings", () =>
   elementMap.set("animator-canvas", canvas);
   elementMap.set("animator-view-planar-button", { id: "planar" });
   elementMap.set("animator-run-simulation-button", { id: "run_solver" });
+  elementMap.set("animator-simulation-panel", { id: "simulation_panel" });
+  elementMap.set("animator-simulation-duration", { id: "simulation_duration" });
+  elementMap.set("animator-simulation-field-speed", { id: "simulation_field_speed" });
+  elementMap.set("animator-simulation-run", { id: "simulation_run" });
+  elementMap.set("animator-simulation-diagnostics", { id: "simulation_diagnostics" });
   elementMap.set("animator-hud-labels-toggle", { id: "labels" });
   elementMap.set("animator-hud-paths-toggle", { id: "paths" });
   elementMap.set("animator-hud-history-toggle", { id: "history" });
+  elementMap.set("animator-hud-delayed-hits-toggle", { id: "delayed_hits" });
   elementMap.set("animator-hud-envelopes-toggle", { id: "envelopes" });
   elementMap.set("animator-hud-shell-opacity", { id: "shell_opacity" });
   elementMap.set("animator-hud-trail-opacity", { id: "trail_opacity" });
@@ -52,18 +58,26 @@ test("animator dom runtime collects animator shell elements and bindings", () =>
   assert.equal(dom.animatorCanvasWrap, canvasParent);
   assert.equal(dom.animatorViewPlanarButton?.id, "planar");
   assert.equal(dom.animatorRunSimulationButton?.id, "run_solver");
+  assert.equal(dom.animatorSimulationPanel?.id, "simulation_panel");
+  assert.equal(dom.animatorSimulationDurationInput?.id, "simulation_duration");
+  assert.equal(dom.animatorSimulationFieldSpeedInput?.id, "simulation_field_speed");
+  assert.equal(dom.animatorSimulationRunButton?.id, "simulation_run");
+  assert.equal(dom.animatorSimulationDiagnostics?.id, "simulation_diagnostics");
   assert.equal(dom.animatorTabs.length, 2);
   assert.equal(dom.animatorPanels.length, 1);
   assert.equal(dom.animatorMotionSourcePill?.id, "motion_source");
   assert.equal(dom.animatorHudShellOpacityInput?.id, "shell_opacity");
   assert.equal(dom.animatorHudTrailOpacityInput?.id, "trail_opacity");
   assert.equal(dom.animatorHudTrailLifetimeInput?.id, "trail_lifetime");
-  assert.equal(dom.animatorHudViewportToggleBindings.length, 8);
+  assert.equal(dom.animatorHudDelayedHitsToggle?.id, "delayed_hits");
+  assert.equal(dom.animatorHudViewportToggleBindings.length, 9);
   assert.equal(dom.animatorHudViewportToggleBindings[0]?.key, "showLabels");
-  assert.equal(dom.animatorHudViewportToggleBindings[4]?.key, "showTrailDiagnostics");
-  assert.equal(dom.animatorHudViewportToggleBindings[5]?.key, "showSolverMotion");
-  assert.equal(dom.animatorHudViewportToggleBindings[6]?.key, "showAuthoredMotion");
-  assert.equal(dom.animatorHudViewportToggleBindings[7]?.key, "showCameraGuides");
+  assert.equal(dom.animatorHudViewportToggleBindings[2]?.key, "showHistoryTraces");
+  assert.equal(dom.animatorHudViewportToggleBindings[3]?.key, "showDelayedHits");
+  assert.equal(dom.animatorHudViewportToggleBindings[5]?.key, "showTrailDiagnostics");
+  assert.equal(dom.animatorHudViewportToggleBindings[6]?.key, "showSolverMotion");
+  assert.equal(dom.animatorHudViewportToggleBindings[7]?.key, "showAuthoredMotion");
+  assert.equal(dom.animatorHudViewportToggleBindings[8]?.key, "showCameraGuides");
 });
 
 test("animator dom runtime exposes animator shell constants", () => {

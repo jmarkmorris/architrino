@@ -90,6 +90,11 @@ import {
   buildH39RequestedY44TerminalSuccessorBranchResolvedCenteredResidualSourceObjectProjectionCandidate,
   buildH39RequestedY44TerminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttemptCandidate,
   buildH39RequestedY44TerminalSuccessorBarycentricToSuccessorScalarHandoffAttemptCandidate,
+  buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchProducerCandidate,
+  buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdeterminationCandidate,
+  buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractorCandidate,
+  buildH39RequestedY44TerminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAuditCandidate,
+  buildH39RequestedY44TerminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttemptCandidate,
   buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandidate,
   buildH39RequestedY44TerminalWitnessDenominatorRealizationAttemptCandidate,
   buildH39RequestedY44TerminalProportionalCommonNormalizerLawRefutationCandidate,
@@ -200,6 +205,11 @@ import {
   validateH39RequestedY44TerminalSuccessorBranchResolvedCenteredResidualSourceObjectProjectionCandidate,
   validateH39RequestedY44TerminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttemptCandidate,
   validateH39RequestedY44TerminalSuccessorBarycentricToSuccessorScalarHandoffAttemptCandidate,
+  validateH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchProducerCandidate,
+  validateH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdeterminationCandidate,
+  validateH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractorCandidate,
+  validateH39RequestedY44TerminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAuditCandidate,
+  validateH39RequestedY44TerminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttemptCandidate,
   validateH39RequestedY44TerminalRowProviderObjectReplayAttemptCandidate,
   validateH39RequestedY44TerminalWitnessDenominatorRealizationAttemptCandidate,
   validateH39RequestedY44TerminalProportionalCommonNormalizerLawRefutationCandidate,
@@ -20702,8 +20712,977 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
     ),
     []
   );
+  const terminalExpressionLevelSourceMapProviderObjectBranchProducer =
+    buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchProducerCandidate({
+      sourceMapResidualCovarianceTarget,
+      directedRoundedSharedDomainProviderBoundaryReplay,
+      terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt,
+    });
+  const terminalExpressionLevelSourceMapProviderObjectBranchProducerValidationErrors =
+    validateH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchProducerCandidate(
+      terminalExpressionLevelSourceMapProviderObjectBranchProducer
+    );
+  assert.deepEqual(
+    terminalExpressionLevelSourceMapProviderObjectBranchProducerValidationErrors,
+    []
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      .terminal_expression_level_source_map_provider_object_branch_producer_verified,
+    true
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      .terminal_expression_level_source_map_provider_object_branch_producer_certified,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      .terminal_expression_level_source_map_provider_object_branch_producer_row_count,
+    5
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      .terminal_expression_level_source_map_provider_object_branch_producer_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      .terminal_expression_level_source_map_provider_object_branch_producer_branch_row_count,
+    30
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      .aggregate_source_map_provider_object_interval_available_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      .source_map_provider_object_branch_split_map_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      .source_map_provider_object_branch_interval_available_branch_row_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      .terminal_expression_level_source_map_provider_object_branch_producer_classification,
+    "expression-level-source-map-provider-object-branch-split-map-missing"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      .terminal_expression_level_source_map_provider_object_branch_producer_primary_missing_object_kind,
+    "same-domain-expression-level-source-map-provider-object-branch-split-map"
+  );
+  assert.ok(
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      .terminal_expression_level_source_map_provider_object_branch_producer_rows.every(
+        (row, index) =>
+          row.node_index === index &&
+          row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+          row.provider_row_source_kind ===
+            "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+          Array.isArray(row.aggregate_source_map_provider_object_interval) &&
+          row.aggregate_source_map_provider_object_interval.length === 2 &&
+          row.source_map_provider_object_branch_split_map_available_terminal_row_count ===
+            0 &&
+          row.source_map_provider_object_branch_interval_available_branch_row_count ===
+            0 &&
+          row.terminal_expression_level_source_map_provider_object_branch_producer_rows.every(
+            (terminalRow) =>
+              [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+              terminalRow.aggregate_source_map_provider_object_interval_available ===
+                true &&
+              terminalRow.source_map_provider_object_branch_split_map_available ===
+                false &&
+              terminalRow.source_map_provider_object_branch_interval_available_count ===
+                0 &&
+              terminalRow.source_map_provider_object_branch_rows.length === 2 &&
+              terminalRow.source_map_provider_object_branch_rows.every(
+                (branchRow) =>
+                  ["-", "+"].includes(branchRow.branch) &&
+                  branchRow.source_map_provider_object_materialization_source_kind ===
+                    "expression-level-source-map-provider-object-branch-producer" &&
+                  branchRow.aggregate_source_map_provider_object_interval_available ===
+                    true &&
+                  branchRow.source_map_provider_object_branch_split_map_available ===
+                    false &&
+                  branchRow.source_map_provider_object_branch_interval_available ===
+                    false &&
+                  branchRow.source_map_provider_object_branch_interval ===
+                    null &&
+                  branchRow.admissible_as_source_map_provider_object ===
+                    false &&
+                  branchRow.rejection_reason ===
+                    "expression-level-provider-object-branch-split-map-missing"
+              )
+          )
+      )
+  );
+  const terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination =
+    buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdeterminationCandidate(
+      {
+        terminalExpressionLevelSourceMapProviderObjectBranchProducer,
+        terminalSuccessorCenteredResidualBranchSplitRankAttempt,
+      }
+    );
+  const terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdeterminationValidationErrors =
+    validateH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdeterminationCandidate(
+      terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination
+    );
+  assert.deepEqual(
+    terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdeterminationValidationErrors,
+    []
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination
+      .terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_verified,
+    true
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination
+      .terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_certified,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination
+      .terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_row_count,
+    5
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination
+      .terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination
+      .provider_object_branch_unknown_row_count,
+    30
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination
+      .aggregate_provider_object_equation_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination
+      .provider_object_branch_split_rank,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination
+      .provider_object_branch_split_free_dimension,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination
+      .aggregate_compatible_split_witness_pair_count,
+    30
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination
+      .source_map_provider_object_branch_split_map_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination
+      .source_map_provider_object_branch_interval_available_branch_row_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination
+      .aggregate_compatible_split_witnesses_sum_to_aggregate,
+    true
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination
+      .aggregate_compatible_split_witnesses_are_distinct,
+    true
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination
+      .same_aggregate_allows_distinct_branch_splits,
+    true
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination
+      .terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_classification,
+    "aggregate-provider-object-rank-one-branch-split-underdetermined"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination
+      .terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_blocker_classification,
+    "same-domain-provider-object-branch-antisymmetric-equation-needed"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination
+      .terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_primary_missing_object_kind,
+    "same-domain-provider-object-branch-antisymmetric-equation-or-branch-split-map"
+  );
+  assert.ok(
+    terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination.terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.provider_object_branch_unknown_row_count === 6 &&
+        row.aggregate_provider_object_equation_count === 3 &&
+        row.provider_object_branch_split_rank === 3 &&
+        row.provider_object_branch_split_free_dimension === 3 &&
+        row.aggregate_compatible_split_witness_pair_count === 6 &&
+        row.same_aggregate_allows_distinct_branch_splits === true &&
+        row.source_map_provider_object_branch_split_map_available_terminal_row_count ===
+          0 &&
+        row.source_map_provider_object_branch_interval_available_branch_row_count ===
+          0 &&
+        row
+          .row_terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_verified ===
+          true &&
+        row
+          .row_certifies_expression_level_source_map_provider_object_branch_split_map ===
+          false &&
+        row
+          .row_certifies_expression_level_source_map_provider_object_branch_rows ===
+          false &&
+        row.row_certifies_terminal_row_provider_object_replay === false &&
+        row.terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_graph_cell_id ===
+              `speed.${index}.first-y` &&
+            terminalRow.aggregate_source_map_provider_object_equation ===
+              "P_-+P_+=P" &&
+            terminalRow.provider_object_branch_split_linear_model ===
+              "P_-+P_+=P; (P_-,P_+)=(P/2+u_P,P/2-u_P)" &&
+            terminalRow.provider_object_branch_unknown_count === 2 &&
+            terminalRow.aggregate_equation_count === 1 &&
+            terminalRow.provider_object_branch_split_rank === 1 &&
+            terminalRow.provider_object_branch_split_free_dimension === 1 &&
+            terminalRow.source_map_provider_object_branch_split_map_available ===
+              false &&
+            terminalRow.source_map_provider_object_branch_interval_available_count ===
+              0 &&
+            terminalRow.aggregate_compatible_split_witness_pair_count === 2 &&
+            terminalRow.aggregate_compatible_split_witnesses_sum_to_aggregate ===
+              true &&
+            terminalRow.aggregate_compatible_split_witnesses_are_distinct ===
+              true &&
+            terminalRow.same_aggregate_allows_distinct_branch_splits ===
+              true &&
+            terminalRow
+              .provider_object_branch_split_map_underdetermined_by_aggregate_provider ===
+              true &&
+            terminalRow
+              .expression_level_source_map_provider_object_branch_split_map_needed ===
+              true &&
+            terminalRow.provider_object_branch_unknown_rows.length === 2 &&
+            terminalRow.provider_object_branch_unknown_rows.every(
+              (branchRow) =>
+                ["-", "+"].includes(branchRow.branch) &&
+                ["P_-", "P_+"].includes(
+                  branchRow.provider_object_branch_residual_symbol
+                ) &&
+                branchRow.source_map_provider_object_branch_interval_available ===
+                  false &&
+                branchRow.source_map_provider_object_branch_split_map_available ===
+                  false &&
+                branchRow.admissible_as_actual_source_map_provider_object_branch_row ===
+                  false
+            ) &&
+            terminalRow.aggregate_compatible_split_witness_rows.length === 2 &&
+            terminalRow.aggregate_compatible_split_witness_rows[0]
+              .provider_object_branch_antisymmetric_coordinate_value === 0 &&
+            terminalRow.aggregate_compatible_split_witness_rows[1]
+              .provider_object_branch_antisymmetric_coordinate_value > 0 &&
+            terminalRow.aggregate_compatible_split_witness_rows.every(
+              (witnessRow) =>
+                Array.isArray(witnessRow.provider_object_minus_branch_interval) &&
+                Array.isArray(witnessRow.provider_object_plus_branch_interval) &&
+                Array.isArray(witnessRow.provider_object_witness_sum_interval) &&
+                witnessRow.provider_object_witness_sum_matches_aggregate ===
+                  true &&
+                witnessRow
+                  .admissible_as_actual_source_map_provider_object_branch_rows ===
+                  false
+          )
+        )
+    )
+  );
+  const terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor =
+    buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractorCandidate(
+      {
+        sourceMapResidualCovarianceTarget,
+        terminalExpressionLevelSourceMapProviderObjectBranchProducer,
+        terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination,
+      }
+    );
+  const terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractorValidationErrors =
+    validateH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractorCandidate(
+      terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+    );
+  assert.deepEqual(
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractorValidationErrors,
+    []
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      .terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_verified,
+    true
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      .terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_certified,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      .terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_row_count,
+    5
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      .terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      .provider_object_branch_antisymmetric_equation_source_row_count,
+    45
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      .provider_object_branch_antisymmetric_equation_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      .provider_object_branch_antisymmetric_equation_missing_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      .source_term_provider_source_term_row_count,
+    45
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      .source_term_provider_branch_attributed_term_row_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      .explicit_provider_object_branch_row_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      .provider_object_branch_antisymmetric_free_dimension_remaining,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      .all_provider_object_branch_antisymmetric_equations_missing,
+    true
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      .terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_classification,
+    "provider-object-branch-antisymmetric-equation-absent-from-current-expression-level-surface"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      .terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_blocker_classification,
+    "same-domain-expression-level-provider-object-branch-antisymmetric-equation-needed"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      .terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_primary_missing_object_kind,
+    "same-domain-provider-object-branch-antisymmetric-equation-A_P"
+  );
+  assert.ok(
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_terminal_row_count ===
+          3 &&
+        row.provider_object_branch_antisymmetric_equation_source_row_count ===
+          9 &&
+        row.provider_object_branch_antisymmetric_equation_available_terminal_row_count ===
+          0 &&
+        row.provider_object_branch_antisymmetric_equation_missing_terminal_row_count ===
+          3 &&
+        row.source_term_provider_source_term_row_count === 9 &&
+        row.source_term_provider_branch_attributed_term_row_count === 0 &&
+        row.explicit_provider_object_branch_row_count === 0 &&
+        row.provider_object_branch_antisymmetric_free_dimension_remaining ===
+          3 &&
+        row
+          .row_terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_verified ===
+          true &&
+        row
+          .row_certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation ===
+          false &&
+        row
+          .row_certifies_expression_level_source_map_provider_object_branch_split_map ===
+          false &&
+        row
+          .row_certifies_expression_level_source_map_provider_object_branch_rows ===
+          false &&
+        row.row_certifies_terminal_row_provider_object_replay === false &&
+        row.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_graph_cell_id ===
+              `speed.${index}.first-y` &&
+            terminalRow.provider_object_branch_antisymmetric_equation_formula ===
+              "P_- - P_+=A_P; u_P=A_P/2" &&
+            Array.isArray(
+              terminalRow.aggregate_source_map_provider_object_interval
+            ) &&
+            terminalRow.source_term_provider_source_term_row_count === 3 &&
+            terminalRow.source_term_provider_branch_attributed_term_row_count ===
+              0 &&
+            terminalRow.explicit_provider_object_branch_row_count === 0 &&
+            terminalRow
+              .explicit_provider_object_branch_pair_difference_interval ===
+              null &&
+            terminalRow
+              .explicit_provider_object_branch_pair_difference_available ===
+              false &&
+            terminalRow
+              .explicit_provider_object_branch_antisymmetric_moment_interval ===
+              null &&
+            terminalRow
+              .explicit_provider_object_branch_antisymmetric_moment_available ===
+              false &&
+            terminalRow.provider_object_branch_antisymmetric_equation_source_rows
+              .length === 3 &&
+            terminalRow.provider_object_branch_antisymmetric_equation_source_rows.every(
+              (sourceRow) =>
+                typeof sourceRow.source_kind === "string" &&
+                Array.isArray(sourceRow.searched_fields) &&
+                sourceRow.provider_object_branch_antisymmetric_equation_interval ===
+                  null &&
+                sourceRow.provider_object_branch_antisymmetric_equation_available ===
+                  false &&
+                sourceRow.admissible_as_provider_object_branch_antisymmetric_equation ===
+                  false &&
+                typeof sourceRow.rejection_reason === "string"
+            ) &&
+            terminalRow
+              .provider_object_branch_antisymmetric_equation_source_count ===
+              3 &&
+            terminalRow.provider_object_branch_antisymmetric_equation_available ===
+              false &&
+            terminalRow.provider_object_branch_antisymmetric_equation_interval ===
+              null &&
+            terminalRow.provider_object_branch_antisymmetric_equation_count ===
+              0 &&
+            terminalRow
+              .provider_object_branch_antisymmetric_free_dimension_remaining ===
+              1 &&
+            terminalRow.provider_object_branch_split_map_available === false &&
+            terminalRow.source_map_provider_object_branch_interval_available_count ===
+              0 &&
+            terminalRow.provider_object_branch_antisymmetric_equation_needed ===
+              true &&
+            terminalRow
+              .row_terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_verified ===
+              true &&
+            terminalRow
+              .row_certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation ===
+              false &&
+            terminalRow
+              .row_certifies_expression_level_source_map_provider_object_branch_split_map ===
+              false &&
+            terminalRow
+              .row_certifies_expression_level_source_map_provider_object_branch_rows ===
+              false &&
+            terminalRow.row_certifies_terminal_row_provider_object_replay ===
+              false &&
+            terminalRow.row_certifies_expression_level_n38_provider === false
+        )
+    )
+  );
+  const terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit =
+    buildH39RequestedY44TerminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAuditCandidate(
+      {
+        sourceMapResidualCovarianceTarget,
+        terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor,
+      }
+    );
+  const terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAuditValidationErrors =
+    validateH39RequestedY44TerminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAuditCandidate(
+      terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+    );
+  assert.deepEqual(
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAuditValidationErrors,
+    []
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      .terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_verified,
+    true
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      .terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_certified,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      .source_term_to_provider_object_branch_projection_model,
+    "P=sum_j S_j; A_P=sum_j alpha_j S_j"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      .provider_object_branch_antisymmetric_equation_target,
+    "A_P=P_- - P_+"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      .terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_row_count,
+    5
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      .terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      .source_term_projection_candidate_row_count,
+    45
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      .source_term_branch_projection_coefficient_available_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      .source_term_projection_map_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      .source_term_projection_map_missing_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      .retained_source_term_trace_row_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      .term_cancellation_decomposition_row_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      .source_term_aggregate_equation_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      .source_term_to_branch_projection_known_rank,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      .source_term_to_branch_projection_required_rank,
+    30
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      .source_term_to_branch_projection_missing_rank,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      .provider_object_branch_antisymmetric_free_dimension_remaining,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      .all_source_term_rows_preserve_one_signed_stream,
+    true
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      .terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_classification,
+    "source-term-branch-projection-map-absent-from-current-expression-level-surface"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      .terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_blocker_classification,
+    "same-domain-source-term-to-provider-object-branch-projection-map-needed"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      .terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_primary_missing_object_kind,
+    "same-domain-source-term-to-provider-object-branch-projection-map-for-A_P"
+  );
+  assert.ok(
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_terminal_row_count ===
+          3 &&
+        row.source_term_projection_candidate_row_count === 9 &&
+        row.source_term_branch_projection_coefficient_available_count === 0 &&
+        row.source_term_projection_map_available_terminal_row_count === 0 &&
+        row.source_term_projection_map_missing_terminal_row_count === 3 &&
+        row.retained_source_term_trace_row_count === 3 &&
+        row.term_cancellation_decomposition_row_count === 3 &&
+        row.source_term_aggregate_equation_count === 3 &&
+        row.source_term_to_branch_projection_known_rank === 3 &&
+        row.source_term_to_branch_projection_required_rank === 6 &&
+        row.source_term_to_branch_projection_missing_rank === 3 &&
+        row.provider_object_branch_antisymmetric_free_dimension_remaining ===
+          3 &&
+        row
+          .row_terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_verified ===
+          true &&
+        row
+          .row_certifies_expression_level_source_term_to_provider_object_branch_projection_map ===
+          false &&
+        row
+          .row_certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation ===
+          false &&
+        row
+          .row_certifies_expression_level_source_map_provider_object_branch_rows ===
+          false &&
+        row.row_certifies_terminal_row_provider_object_replay === false &&
+        row.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_graph_cell_id ===
+              `speed.${index}.first-y` &&
+            terminalRow.source_term_to_provider_object_branch_projection_model ===
+              "P=sum_j S_j; A_P=sum_j alpha_j S_j" &&
+            terminalRow.source_term_aggregate_equation ===
+              "P=S_delta_squared_speed+S_sin_phi+S_sin_delta" &&
+            terminalRow.provider_object_branch_antisymmetric_equation_target ===
+              "A_P=P_- - P_+" &&
+            terminalRow.source_term_projection_candidate_rows.length === 3 &&
+            terminalRow.source_term_projection_candidate_rows.every(
+              (projectionRow) =>
+                sourceMapResidualCovarianceTarget.source_map_residual_h38_source_provenance_bridge_required_source_terms.includes(
+                  projectionRow.term
+                ) &&
+                Array.isArray(projectionRow.source_term_residual_interval) &&
+                projectionRow.source_term_branch_projection_coefficient ===
+                  null &&
+                projectionRow
+                  .source_term_branch_projection_coefficient_available ===
+                  false &&
+                projectionRow
+                  .sign_status_is_not_provider_object_branch_projection ===
+                  true &&
+                projectionRow
+                  .admissible_as_source_term_to_provider_object_branch_projection ===
+                  false
+            ) &&
+            terminalRow.source_term_projection_candidate_row_count === 3 &&
+            terminalRow
+              .source_term_branch_projection_coefficient_available_count ===
+              0 &&
+            terminalRow.retained_source_term_trace_row_available === true &&
+            terminalRow.term_cancellation_decomposition_row_available ===
+              true &&
+            terminalRow
+              .term_sign_status_available_but_not_admissible_as_branch_projection ===
+              true &&
+            terminalRow.source_term_projection_map_available === false &&
+            terminalRow.source_term_projection_known_equation_count === 1 &&
+            terminalRow.source_term_to_branch_projection_known_rank === 1 &&
+            terminalRow.source_term_to_branch_projection_required_rank === 2 &&
+            terminalRow.source_term_to_branch_projection_missing_rank === 1 &&
+            terminalRow.provider_object_branch_antisymmetric_equation_available ===
+              false &&
+            terminalRow
+              .provider_object_branch_antisymmetric_free_dimension_remaining ===
+              1 &&
+            terminalRow
+              .row_terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_verified ===
+              true &&
+            terminalRow
+              .row_certifies_expression_level_source_term_to_provider_object_branch_projection_map ===
+              false &&
+            terminalRow
+              .row_certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation ===
+              false &&
+            terminalRow
+              .row_certifies_expression_level_source_map_provider_object_branch_rows ===
+              false &&
+            terminalRow.row_certifies_terminal_row_provider_object_replay ===
+              false &&
+            terminalRow.row_certifies_expression_level_n38_provider === false &&
+            terminalRow.row_status ===
+              "source-term-to-provider-object-branch-projection-map-absent"
+        )
+    )
+  );
+  const terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt =
+    buildH39RequestedY44TerminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttemptCandidate(
+      {
+        sourceMapResidualCovarianceTarget,
+        terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit,
+      }
+    );
+  const terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttemptValidationErrors =
+    validateH39RequestedY44TerminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttemptCandidate(
+      terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+    );
+  assert.deepEqual(
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttemptValidationErrors,
+    []
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+      .terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_verified,
+    true
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+      .terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_certified,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+      .source_term_branch_projection_alpha_model,
+    "P=sum_j S_j; A_P=sum_j alpha_j*S_j"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+      .source_term_branch_parity_generator_model,
+    "B(S_j)=epsilon_j*S_j on the same terminal domain"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+      .terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_row_count,
+    5
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+      .terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+      .source_term_branch_projection_alpha_derivation_row_count,
+    45
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+      .source_term_branch_parity_generator_available_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+      .source_term_alpha_coefficient_available_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+      .source_term_alpha_map_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+      .source_term_alpha_map_missing_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+      .source_term_branch_parity_generator_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+      .source_term_projection_known_equation_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+      .source_term_to_branch_projection_known_rank,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+      .source_term_to_branch_projection_required_rank,
+    30
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+      .source_term_to_branch_projection_missing_rank,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+      .provider_object_branch_antisymmetric_free_dimension_remaining,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+      .all_source_term_definition_surfaces_have_no_branch_generator,
+    true
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+      .term_sign_status_treated_as_non_branch_data,
+    true
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+      .terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_classification,
+    "source-term-branch-parity-generator-absent-from-current-expression-level-surface"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+      .terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_blocker_classification,
+    "same-domain-source-term-branch-parity-generator-needed"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+      .terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_primary_missing_object_kind,
+    "same-domain-source-term-branch-parity-generator-or-alpha-coefficients"
+  );
+  assert.ok(
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt.terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_terminal_row_count ===
+          3 &&
+        row.source_term_branch_projection_alpha_derivation_row_count === 9 &&
+        row.source_term_branch_parity_generator_available_count === 0 &&
+        row.source_term_alpha_coefficient_available_count === 0 &&
+        row.source_term_alpha_map_available_terminal_row_count === 0 &&
+        row.source_term_alpha_map_missing_terminal_row_count === 3 &&
+        row.source_term_to_branch_projection_known_rank === 3 &&
+        row.source_term_to_branch_projection_required_rank === 6 &&
+        row.source_term_to_branch_projection_missing_rank === 3 &&
+        row.provider_object_branch_antisymmetric_free_dimension_remaining ===
+          3 &&
+        row
+          .row_terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_verified ===
+          true &&
+        row
+          .row_certifies_expression_level_source_term_branch_projection_alpha_map ===
+          false &&
+        row
+          .row_certifies_expression_level_source_term_branch_parity_generator ===
+          false &&
+        row
+          .row_certifies_expression_level_source_term_to_provider_object_branch_projection_map ===
+          false &&
+        row
+          .row_certifies_expression_level_source_map_provider_object_branch_rows ===
+          false &&
+        row.row_certifies_terminal_row_provider_object_replay === false &&
+        row.terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_graph_cell_id ===
+              `speed.${index}.first-y` &&
+            terminalRow.source_term_branch_projection_alpha_model ===
+              "P=sum_j S_j; A_P=sum_j alpha_j*S_j" &&
+            terminalRow.source_term_branch_parity_generator_model ===
+              "B(S_j)=epsilon_j*S_j on the same terminal domain" &&
+            terminalRow.source_term_branch_projection_alpha_derivation_rows
+              .length === 3 &&
+            terminalRow.source_term_branch_projection_alpha_derivation_rows.every(
+              (alphaRow) =>
+                sourceMapResidualCovarianceTarget.source_map_residual_h38_source_provenance_bridge_required_source_terms.includes(
+                  alphaRow.term
+                ) &&
+                typeof alphaRow.source_term_expression_component ===
+                  "string" &&
+                Array.isArray(alphaRow.source_term_residual_interval) &&
+                Array.isArray(alphaRow.retained_trace_source_term_interval) &&
+                Array.isArray(
+                  alphaRow
+                    .retained_trace_source_term_residual_interval_after_midpoint
+                ) &&
+                Array.isArray(alphaRow.term_residual_decomposition_interval) &&
+                alphaRow.audit_source_term_branch_projection_coefficient ===
+                  null &&
+                alphaRow
+                  .audit_source_term_branch_projection_coefficient_available ===
+                  false &&
+                alphaRow.alpha_derivation_field_hit_count === 0 &&
+                alphaRow.alpha_derivation_field_hits.length === 0 &&
+                alphaRow.branch_parity_generator_field_hits.length === 0 &&
+                alphaRow.branch_parity_generator_available === false &&
+                alphaRow.branch_parity_field_hits.length === 0 &&
+                alphaRow.branch_parity_field_available === false &&
+                alphaRow.source_term_alpha_coefficient === null &&
+                alphaRow.source_term_alpha_coefficient_source_field === null &&
+                alphaRow.source_term_alpha_coefficient_available === false &&
+                alphaRow.sign_status_is_not_branch_parity_generator === true &&
+                alphaRow
+                  .admissible_as_source_term_branch_projection_alpha_derivation ===
+                  false
+            ) &&
+            terminalRow
+              .source_term_branch_projection_alpha_derivation_row_count ===
+              3 &&
+            terminalRow.source_term_branch_parity_generator_available_count ===
+              0 &&
+            terminalRow.source_term_alpha_coefficient_available_count === 0 &&
+            terminalRow.source_term_alpha_map_available === false &&
+            terminalRow.source_term_branch_parity_generator_available ===
+              false &&
+            terminalRow
+              .term_sign_status_available_but_not_admissible_as_branch_parity_generator ===
+              true &&
+            terminalRow.retained_trace_term_intervals_available === true &&
+            terminalRow.source_term_projection_map_audit_available === true &&
+            terminalRow.source_term_projection_known_equation_count === 1 &&
+            terminalRow.source_term_to_branch_projection_known_rank === 1 &&
+            terminalRow.source_term_to_branch_projection_required_rank === 2 &&
+            terminalRow.source_term_to_branch_projection_missing_rank === 1 &&
+            terminalRow
+              .provider_object_branch_antisymmetric_free_dimension_remaining ===
+              1 &&
+            terminalRow
+              .row_terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_verified ===
+              true &&
+            terminalRow
+              .row_certifies_expression_level_source_term_branch_projection_alpha_map ===
+              false &&
+            terminalRow
+              .row_certifies_expression_level_source_term_branch_parity_generator ===
+              false &&
+            terminalRow
+              .row_certifies_expression_level_source_term_to_provider_object_branch_projection_map ===
+              false &&
+            terminalRow
+              .row_certifies_expression_level_source_map_provider_object_branch_rows ===
+              false &&
+            terminalRow.row_certifies_terminal_row_provider_object_replay ===
+              false &&
+            terminalRow.row_certifies_expression_level_n38_provider === false &&
+            terminalRow.row_status ===
+              "source-term-branch-projection-alpha-derivation-missing-generator"
+        )
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+    ),
+    []
+  );
   const terminalRowProviderObjectReplayAttempt =
     buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandidate({
+      terminalExpressionLevelSourceMapProviderObjectBranchProducer,
       terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection,
       terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt,
       terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt,
@@ -21033,7 +22012,7 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
                 ) &&
                 branchRow
                   .source_map_provider_object_branch_interval_candidate_source_count ===
-                  4 &&
+                  5 &&
                 branchRow
                   .source_map_provider_object_branch_interval_admissible_available_count ===
                   0 &&
@@ -21043,7 +22022,7 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
                 ) &&
                 branchRow
                   .source_map_provider_object_branch_interval_materialization_sources
-                  .length === 4 &&
+                  .length === 5 &&
                 branchRow
                   .source_map_provider_object_branch_interval_materialization_sources
                   .every(
@@ -26495,7 +27474,7 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
                 ) &&
                 branchRow
                   .source_map_provider_object_branch_interval_candidate_source_count ===
-                  4 &&
+                  5 &&
                 branchRow
                   .source_map_provider_object_branch_interval_admissible_available_count ===
                   0 &&

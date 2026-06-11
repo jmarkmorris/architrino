@@ -21,6 +21,10 @@ export function getAnimatorDomElements(documentLike = globalThis.document) {
   const animatorHudLabelsToggle = getElementById(documentLike, "animator-hud-labels-toggle");
   const animatorHudPathsToggle = getElementById(documentLike, "animator-hud-paths-toggle");
   const animatorHudHistoryToggle = getElementById(documentLike, "animator-hud-history-toggle");
+  const animatorHudDelayedHitsToggle = getElementById(
+    documentLike,
+    "animator-hud-delayed-hits-toggle"
+  );
   const animatorHudEnvelopesToggle = getElementById(documentLike, "animator-hud-envelopes-toggle");
   const animatorHudShellOpacityInput = getElementById(documentLike, "animator-hud-shell-opacity");
   const animatorHudTrailOpacityInput = getElementById(documentLike, "animator-hud-trail-opacity");
@@ -50,6 +54,47 @@ export function getAnimatorDomElements(documentLike = globalThis.document) {
     animatorViewPlanarButton: getElementById(documentLike, "animator-view-planar-button"),
     animatorSceneButton: getElementById(documentLike, "animator-scene-button"),
     animatorRunSimulationButton: getElementById(documentLike, "animator-run-simulation-button"),
+    animatorSimulationPanel: getElementById(documentLike, "animator-simulation-panel"),
+    animatorSimulationModeSelect: getElementById(documentLike, "animator-simulation-mode"),
+    animatorSimulationDurationInput: getElementById(documentLike, "animator-simulation-duration"),
+    animatorSimulationLoopInput: getElementById(documentLike, "animator-simulation-loop"),
+    animatorSimulationDatasetIdInput: getElementById(documentLike, "animator-simulation-dataset-id"),
+    animatorSimulationStepsInput: getElementById(documentLike, "animator-simulation-steps"),
+    animatorSimulationDtInput: getElementById(documentLike, "animator-simulation-dt"),
+    animatorSimulationStrideInput: getElementById(documentLike, "animator-simulation-stride"),
+    animatorSimulationFieldSpeedInput: getElementById(
+      documentLike,
+      "animator-simulation-field-speed"
+    ),
+    animatorSimulationKappaInput: getElementById(documentLike, "animator-simulation-kappa"),
+    animatorSimulationClaimLevelInput: getElementById(
+      documentLike,
+      "animator-simulation-claim-level"
+    ),
+    animatorSimulationHistoryModeSelect: getElementById(
+      documentLike,
+      "animator-simulation-history-mode"
+    ),
+    animatorSimulationRootHaltPolicySelect: getElementById(
+      documentLike,
+      "animator-simulation-root-halt-policy"
+    ),
+    animatorSimulationParticlesInput: getElementById(documentLike, "animator-simulation-particles"),
+    animatorSimulationRadiusInput: getElementById(documentLike, "animator-simulation-radius"),
+    animatorSimulationRadialSpeedInput: getElementById(
+      documentLike,
+      "animator-simulation-radial-speed"
+    ),
+    animatorSimulationTangentialSpeedInput: getElementById(
+      documentLike,
+      "animator-simulation-tangential-speed"
+    ),
+    animatorSimulationDriftXInput: getElementById(documentLike, "animator-simulation-drift-x"),
+    animatorSimulationDriftYInput: getElementById(documentLike, "animator-simulation-drift-y"),
+    animatorSimulationApplyButton: getElementById(documentLike, "animator-simulation-apply"),
+    animatorSimulationRunButton: getElementById(documentLike, "animator-simulation-run"),
+    animatorSimulationDiagnostics: getElementById(documentLike, "animator-simulation-diagnostics"),
+    animatorSimulationCacheStatus: getElementById(documentLike, "animator-simulation-cache-status"),
     animatorClearButton: getElementById(documentLike, "animator-clear-button"),
     animatorSaveButton: getElementById(documentLike, "animator-save-button"),
     animatorDocsButton: getElementById(documentLike, "animator-docs-button"),
@@ -91,6 +136,7 @@ export function getAnimatorDomElements(documentLike = globalThis.document) {
     animatorHudLabelsToggle,
     animatorHudPathsToggle,
     animatorHudHistoryToggle,
+    animatorHudDelayedHitsToggle,
     animatorHudEnvelopesToggle,
     animatorHudShellOpacityInput,
     animatorHudTrailOpacityInput,
@@ -114,7 +160,12 @@ export function getAnimatorDomElements(documentLike = globalThis.document) {
       {
         button: animatorHudHistoryToggle,
         key: "showHistoryTraces",
-        label: "History Traces",
+        label: "Trails",
+      },
+      {
+        button: animatorHudDelayedHitsToggle,
+        key: "showDelayedHits",
+        label: "Delayed Hits",
       },
       {
         button: animatorHudEnvelopesToggle,

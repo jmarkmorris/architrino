@@ -3,6 +3,7 @@ const defaultAnimatorViewportDisplayState = Object.freeze({
   showCameraGuides: true,
   showLabels: true,
   showHistoryTraces: true,
+  showDelayedHits: true,
   showEnvelopes: false,
   showTrailDiagnostics: true,
   showSolverMotion: true,

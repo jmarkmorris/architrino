@@ -1,4 +1,6 @@
 import * as THREE from "../../../vendor/three/three.module.js";
+import { createMarkdownRuntime } from "../../runtime/MarkdownRuntime.js";
+import { extractMarkdownSection } from "../../services/MarkdownPolicyService.js";
 import { createAnimatorDefaultCoreSpec } from "../animator/AnimatorDraftScaffoldRuntime.js";
 import { createAnimatorStructureGeometryRuntime } from "../animator/AnimatorStructureGeometryRuntime.js";
 import {
@@ -56,6 +58,19 @@ const ASSEMBLY_MOMENTUM_AXIS = new THREE.Vector3(
   ASSEMBLY_MOMENTUM_AXIS_COMPONENT,
   ASSEMBLY_MOMENTUM_AXIS_COMPONENT
 );
+const IDEAL_CORE_DOCS = {
+  returnCycle: {
+    name: "Return-Cycle Lorentz Quantization",
+    markdownPath:
+      "content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md",
+    markdownColumns: 2,
+  },
+  lorentzKinematics: {
+    name: "Lorentz Kinematics",
+    markdownPath: "content/markdown/aaa/spacetime/lorentz-kinematics.md",
+    markdownColumns: 2,
+  },
+};
 const ORBIT_PATH_TRAIL_LAYERS = [
   {
     role: "headlamp-glow",
@@ -929,6 +944,62 @@ function queryRequiredElement(documentLike, selector) {
   return element;
 }
 
+function appendIdealCoreCacheBust(path, token) {
+  const separator = path.includes("?") ? "&" : "?";
+  return `${path}${separator}v=${token}`;
+}
+
+function createIdealCoreMarkdownRenderer(windowLike) {
+  const markdownItFactory = windowLike?.markdownit;
+  if (typeof markdownItFactory !== "function") {
+    return null;
+  }
+  const markdownRenderer = markdownItFactory({ html: false, linkify: true, breaks: false });
+  markdownRenderer.disable("escape");
+  return markdownRenderer;
+}
+
+function createIdealCoreMarkdownRuntime({
+  documentLike,
+  windowLike,
+  markdownPanel,
+  markdownTitle,
+  markdownBody,
+  markdownLayoutToggle,
+}) {
+  const markdownCache = new Map();
+  const markdownSectionCache = new Map();
+  const cacheBustToken = Date.now().toString();
+  let markdownRuntime = null;
+
+  const openMarkdownTarget = async (target) => {
+    if (!markdownRuntime || typeof target !== "string") {
+      return;
+    }
+    await markdownRuntime.showMarkdownPanel({
+      id: target,
+      name: "Notes",
+      markdownColumns: 2,
+    });
+  };
+
+  markdownRuntime = createMarkdownRuntime({
+    markdownPanel,
+    markdownTitle,
+    markdownBody,
+    markdownLayoutToggle,
+    markdownRenderer: createIdealCoreMarkdownRenderer(windowLike),
+    markdownCache,
+    markdownSectionCache,
+    extractMarkdownSection,
+    appendCacheBust: (path) => appendIdealCoreCacheBust(path, cacheBustToken),
+    navigateToTarget: openMarkdownTarget,
+  });
+
+  markdownPanel.inert = true;
+  return markdownRuntime;
+}
+
 export function mountIdealCorePrototype(options = {}) {
   const documentLike = options.documentLike ?? globalThis.document;
   const windowLike = options.windowLike ?? globalThis.window;
@@ -1009,6 +1080,11 @@ export function mountIdealCorePrototype(options = {}) {
     freezeToggle: queryRequiredElement(documentLike, "#ideal-core-freeze-toggle"),
     resetButton: queryRequiredElement(documentLike, "#ideal-core-reset-button"),
     focusButton: queryRequiredElement(documentLike, "#ideal-core-focus-button"),
+    returnCycleDocButton: queryRequiredElement(
+      documentLike,
+      "#ideal-core-return-cycle-doc-button"
+    ),
+    lorentzDocButton: queryRequiredElement(documentLike, "#ideal-core-lorentz-doc-button"),
     radiusInput: queryRequiredElement(documentLike, "#ideal-core-radius-input"),
     radiusOutput: queryRequiredElement(documentLike, "#ideal-core-radius-output"),
     betaInput: queryRequiredElement(documentLike, "#ideal-core-beta-input"),
@@ -1034,8 +1110,22 @@ export function mountIdealCorePrototype(options = {}) {
     closureEquation: queryRequiredElement(documentLike, "#ideal-core-closure-equation"),
     stripCanvas: queryRequiredElement(documentLike, "#ideal-core-potential-strip"),
     tableBody: queryRequiredElement(documentLike, "#ideal-core-table-body"),
+    markdownPanel: queryRequiredElement(documentLike, "#markdown-panel"),
+    markdownTitle: queryRequiredElement(documentLike, "#markdown-title"),
+    markdownBody: queryRequiredElement(documentLike, "#markdown-body"),
+    markdownClose: queryRequiredElement(documentLike, "#markdown-close"),
+    markdownLayoutToggle: queryRequiredElement(documentLike, "#markdown-layout-toggle"),
+    markdownPdfButton: queryRequiredElement(documentLike, "#markdown-pdf-button"),
   };
   const stripContext = dom.stripCanvas.getContext("2d");
+  const markdownRuntime = createIdealCoreMarkdownRuntime({
+    documentLike,
+    windowLike,
+    markdownPanel: dom.markdownPanel,
+    markdownTitle: dom.markdownTitle,
+    markdownBody: dom.markdownBody,
+    markdownLayoutToggle: dom.markdownLayoutToggle,
+  });
 
   const state = {
     pathsVisible: true,
@@ -1416,6 +1506,22 @@ export function mountIdealCorePrototype(options = {}) {
   dom.focusButton.addEventListener("click", () => {
     canvas.focus();
   });
+  dom.returnCycleDocButton.addEventListener("click", () => {
+    markdownRuntime.showMarkdownPanel(IDEAL_CORE_DOCS.returnCycle);
+  });
+  dom.lorentzDocButton.addEventListener("click", () => {
+    markdownRuntime.showMarkdownPanel(IDEAL_CORE_DOCS.lorentzKinematics);
+  });
+  dom.markdownClose.addEventListener("click", () => {
+    markdownRuntime.hideMarkdownPanel();
+    canvas.focus();
+  });
+  dom.markdownLayoutToggle.addEventListener("click", () => {
+    markdownRuntime.toggleMarkdownLayout();
+  });
+  dom.markdownPdfButton.addEventListener("click", () => {
+    markdownRuntime.printMarkdownPanel();
+  });
 
   canvas.addEventListener("pointerdown", (event) => {
     state.dragging = true;
@@ -1486,9 +1592,11 @@ export function mountIdealCorePrototype(options = {}) {
     renderer,
     coreFrame,
     sphereContents,
+    markdownRuntime,
     destroy() {
       resizeObserver.disconnect();
       renderer.dispose();
+      markdownRuntime.hideMarkdownPanel();
     },
   };
 }

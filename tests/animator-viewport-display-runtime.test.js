@@ -8,6 +8,8 @@ test("animator viewport display defaults transport paths off", () => {
 
   assert.equal(runtime.isFlagEnabled("showTransportPath"), false);
   assert.equal(runtime.isFlagEnabled("showLabels"), true);
+  assert.equal(runtime.isFlagEnabled("showHistoryTraces"), true);
+  assert.equal(runtime.isFlagEnabled("showDelayedHits"), true);
   assert.equal(runtime.isFlagEnabled("showEnvelopes"), false);
   assert.equal(runtime.isFlagEnabled("showTrailDiagnostics"), true);
 });

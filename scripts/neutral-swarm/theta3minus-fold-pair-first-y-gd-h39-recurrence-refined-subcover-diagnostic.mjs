@@ -300,6 +300,21 @@ export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SUCCESS
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SUCCESSOR_BARYCENTRIC_TO_SUCCESSOR_SCALAR_HANDOFF_ATTEMPT_CANDIDATE_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-successor-barycentric-to-successor-scalar-handoff-attempt-candidate/v1";
 
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_PRODUCER_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-expression-level-source-map-provider-object-branch-producer-candidate/v1";
+
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_UNDERDETERMINATION_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-expression-level-source-map-provider-object-branch-split-map-underdetermination-candidate/v1";
+
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ANTISYMMETRIC_EQUATION_EXTRACTOR_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-expression-level-source-map-provider-object-branch-antisymmetric-equation-extractor-candidate/v1";
+
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_TO_PROVIDER_OBJECT_BRANCH_PROJECTION_MAP_AUDIT_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-expression-level-source-term-to-provider-object-branch-projection-map-audit-candidate/v1";
+
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_BRANCH_PROJECTION_ALPHA_DERIVATION_ATTEMPT_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-expression-level-source-term-branch-projection-alpha-derivation-attempt-candidate/v1";
+
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_ROW_PROVIDER_OBJECT_REPLAY_ATTEMPT_CANDIDATE_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-row-provider-object-replay-attempt-candidate/v1";
 
@@ -96287,6 +96302,5331 @@ export function validateH39RequestedY44TerminalSuccessorBarycentricToSuccessorSc
   return errors;
 }
 
+function h39TerminalExpressionLevelSourceMapProviderObjectBranchProducerClaimBoundary() {
+  return {
+    defines_terminal_expression_level_source_map_provider_object_branch_producer_only:
+      true,
+    certifies_expression_level_source_map_provider_object_branch_rows: false,
+    certifies_terminal_row_provider_object_replay: false,
+    certifies_barycentric_to_successor_scalar_centered_projection_identity:
+      false,
+    certifies_barycentric_branch_residual_aggregate_identity: false,
+    certifies_branch_resolved_centered_residual_source_object: false,
+    certifies_terminal_successor_scalar_residual_identity: false,
+    certifies_terminal_successor_scalar_provider_boundary_identity: false,
+    certifies_terminal_successor_branch_antisymmetric_common_normalizer: false,
+    certifies_terminal_successor_centered_residual_branch_split: false,
+    certifies_branch_resolved_centered_residual_component: false,
+    certifies_terminal_h_to_source_term_identity: false,
+    certifies_expression_level_n38_provider: false,
+    certifies_terminal_row_provider_enclosure: false,
+    certifies_terminal_graph_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
+export function buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchProducerCandidate({
+  sourceMapResidualCovarianceTarget,
+  directedRoundedSharedDomainProviderBoundaryReplay,
+  terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt,
+} = {}) {
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const numericInterval = (interval) =>
+    finiteOrderedInterval(interval)
+      ? [Number(interval[0]), Number(interval[1])]
+      : null;
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const sameTerminalHIndexes = (indexes) =>
+    Array.isArray(indexes) &&
+    indexes.length === 3 &&
+    indexes[0] === 37 &&
+    indexes[1] === 36 &&
+    indexes[2] === 35;
+  const terminalSpecs = H39_TERMINAL_SUCCESSOR_COEFFICIENT_IDENTITY_IMPORT_SPECS;
+  const sourceTermProviderProbe =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_shared_stream_five_node_source_term_provider_probe ??
+    null;
+  const providerRows = sourceTermProviderProbe?.source_term_provider_probe_rows ?? [];
+  const h38BridgeRows =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_h38_source_provenance_bridge_rows ?? [];
+  const boundaryReplayRows =
+    directedRoundedSharedDomainProviderBoundaryReplay
+      ?.directed_rounded_shared_domain_provider_boundary_replay_rows ?? [];
+  const handoffRows =
+    terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt
+      ?.terminal_successor_barycentric_to_successor_scalar_handoff_attempt_rows ??
+    [];
+  const providerRowsByNode = new Map(
+    providerRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const h38BridgeRowsByNode = new Map(
+    h38BridgeRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const boundaryReplayRowsByNode = new Map(
+    boundaryReplayRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const handoffRowsByNode = new Map(
+    handoffRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const sourceTargetReady =
+    sourceMapResidualCovarianceTarget?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_MAP_RESIDUAL_COVARIANCE_TARGET_SCHEMA &&
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_h38_source_provenance_bridge_available === true &&
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_h38_source_provenance_bridge_provider_rows_ready ===
+      true &&
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_h38_source_provenance_bridge_primary_missing_object_kind ===
+      "directed-rounded-same-domain-expression-level-n38-source-map-residual-envelope" &&
+    sourceMapResidualCovarianceTarget?.claim_boundary
+      ?.certifies_directed_rounded_shared_domain === false;
+  const providerProbeReady =
+    sourceTermProviderProbe?.target_kind ===
+      "candidate-requested-y44-shared-source-map-source-term-provider-probe" &&
+    sourceTermProviderProbe?.provider_probe_kind ===
+      "center-aware-source-term-provider-shaped-rows-through-five-node-verifiers" &&
+    sourceTermProviderProbe?.source_term_provider_probe_rows_available ===
+      true &&
+    sourceTermProviderProbe
+      ?.source_term_provider_reaches_aggregate_verifier_claim_boundary ===
+      true &&
+    sourceTermProviderProbe?.source_term_provider_rows_match_same_domain_contract ===
+      true &&
+    sourceTermProviderProbe?.source_term_provider_rows_match_same_radius_contract ===
+      true &&
+    sourceTermProviderProbe?.source_term_provider_rows_use_required_source_kind ===
+      true &&
+    sourceTermProviderProbe?.source_term_provider_rows_certify_directed_rounded_source ===
+      false &&
+    sourceTermProviderProbe?.source_term_provider_term_width_realization_open ===
+      true;
+  const boundaryReplayReady =
+    directedRoundedSharedDomainProviderBoundaryReplay?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_DIRECTED_ROUNDED_SHARED_DOMAIN_PROVIDER_BOUNDARY_REPLAY_CANDIDATE_SCHEMA &&
+    directedRoundedSharedDomainProviderBoundaryReplay
+      ?.directed_rounded_shared_domain_provider_boundary_replay_verified ===
+      true &&
+    directedRoundedSharedDomainProviderBoundaryReplay
+      ?.directed_rounded_shared_domain_provider_certified === false;
+  const handoffReady =
+    terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SUCCESSOR_BARYCENTRIC_TO_SUCCESSOR_SCALAR_HANDOFF_ATTEMPT_CANDIDATE_SCHEMA &&
+    terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt
+      ?.terminal_successor_barycentric_to_successor_scalar_handoff_attempt_verified ===
+      true &&
+    terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt
+      ?.terminal_successor_barycentric_to_successor_scalar_handoff_attempt_certified ===
+      false &&
+    terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt
+      ?.expression_level_n38_provider_certified === false;
+  const checkKinds = [
+    "source_map_residual_covariance_target_ready",
+    "source_term_provider_probe_aggregate_rows_ready",
+    "directed_rounded_provider_boundary_replay_ready",
+    "terminal_successor_handoff_rows_ready",
+    "same_domain_terminal_rows_aligned",
+    "aggregate_provider_object_rows_recorded",
+    "expression_level_branch_split_map_status_recorded",
+    "source_map_provider_object_branch_rows_recorded",
+    "actual_provider_claims_remain_open",
+  ];
+  const terminalCheckKinds = [
+    "aggregate_provider_object_row_available",
+    "directed_rounded_provider_boundary_replay_row_available",
+    "terminal_successor_handoff_row_available",
+    "same_domain_terminal_row_aligned",
+    "aggregate_provider_object_interval_recorded",
+    "expression_level_branch_split_map_status_recorded",
+    "source_map_provider_object_branch_rows_recorded",
+    "actual_provider_claims_remain_open",
+  ];
+  const branchIntervalsFromProviderRow = (providerRow, terminalHIndex) => {
+    const collections = [
+      providerRow?.source_map_provider_object_branch_rows,
+      providerRow?.expression_level_source_map_provider_object_branch_rows,
+      providerRow?.terminal_source_map_provider_object_branch_rows,
+    ].filter(Array.isArray);
+    return collections
+      .flat()
+      .filter(
+        (row) =>
+          (row?.branch === "-" || row?.branch === "+") &&
+          (row?.terminal_h_index === undefined ||
+            Number(row.terminal_h_index) === terminalHIndex)
+      );
+  };
+  const rows = Array.from({ length: 5 }, (_, nodeIndex) => {
+    const terminalGraphCellId = `speed.${nodeIndex}.first-y`;
+    const providerRow = providerRowsByNode.get(nodeIndex) ?? null;
+    const h38BridgeRow = h38BridgeRowsByNode.get(nodeIndex) ?? null;
+    const boundaryReplayRow = boundaryReplayRowsByNode.get(nodeIndex) ?? null;
+    const handoffRow = handoffRowsByNode.get(nodeIndex) ?? null;
+    const terminalRows = terminalSpecs.map((spec) => {
+      const handoffTerminalRow =
+        handoffRow?.terminal_successor_barycentric_to_successor_scalar_handoff_rows?.find(
+          (row) => Number(row?.terminal_h_index) === spec.terminal_h_index
+        ) ?? null;
+      const aggregateProviderInterval = numericInterval(
+        providerRow?.directed_rounded_signed_residual_interval
+      );
+      const aggregateWeightedProviderInterval = numericInterval(
+        providerRow?.directed_rounded_weighted_signed_residual_interval
+      );
+      const explicitBranchRows = branchIntervalsFromProviderRow(
+        providerRow,
+        spec.terminal_h_index
+      );
+      const splitMapAvailable =
+        providerRow?.source_map_provider_object_branch_split_map_available ===
+          true ||
+        providerRow
+          ?.expression_level_source_map_provider_object_branch_split_map_available ===
+          true ||
+        providerRow?.branch_resolved_source_map_provider_object_available ===
+          true;
+      const branchRows = ["-", "+"].map((branch) => {
+        const explicitBranchRow =
+          explicitBranchRows.find((row) => row?.branch === branch) ?? null;
+        const branchInterval =
+          numericInterval(
+            explicitBranchRow?.source_map_provider_object_branch_interval
+          ) ??
+          numericInterval(
+            explicitBranchRow?.source_map_provider_object_branch_residual_interval
+          ) ??
+          numericInterval(explicitBranchRow?.source_map_provider_object_interval);
+        const branchIntervalAvailable =
+          finiteOrderedInterval(branchInterval) &&
+          (explicitBranchRow?.source_map_provider_object_branch_interval_available ===
+            true ||
+            explicitBranchRow?.source_map_provider_object_interval_available ===
+              true ||
+            explicitBranchRow?.branch_resolved_source_map_provider_object_available ===
+              true);
+        const admissible =
+          branchIntervalAvailable &&
+          splitMapAvailable &&
+          explicitBranchRow?.claim_boundary
+            ?.certifies_expression_level_n38_provider !== true &&
+          explicitBranchRow?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+            true;
+        return {
+          branch,
+          terminal_h_index: spec.terminal_h_index,
+          terminal_graph_cell_id: terminalGraphCellId,
+          source_y_order: H38_NUMERATOR_Y_ORDER,
+          source_map_provider_object_materialization_source_kind:
+            "expression-level-source-map-provider-object-branch-producer",
+          aggregate_source_map_provider_object_interval: aggregateProviderInterval,
+          aggregate_source_map_provider_object_weighted_interval:
+            aggregateWeightedProviderInterval,
+          aggregate_source_map_provider_object_interval_available:
+            finiteOrderedInterval(aggregateProviderInterval),
+          source_map_provider_object_branch_split_map_available:
+            splitMapAvailable,
+          source_map_provider_object_branch_interval: admissible
+            ? branchInterval
+            : null,
+          source_map_provider_object_branch_residual_interval: admissible
+            ? branchInterval
+            : null,
+          source_map_provider_object_branch_interval_available: admissible,
+          source_map_provider_object_branch_interval_candidate_interval:
+            branchInterval,
+          source_map_provider_object_branch_interval_candidate_available:
+            branchIntervalAvailable,
+          admissible_as_source_map_provider_object: admissible,
+          rejection_reason: admissible
+            ? null
+            : branchIntervalAvailable
+              ? "expression-level-provider-object-branch-split-map-not-certified"
+              : splitMapAvailable
+                ? "expression-level-provider-object-branch-interval-missing"
+                : "expression-level-provider-object-branch-split-map-missing",
+          row_certifies_expression_level_source_map_provider_object_branch_rows:
+            false,
+          row_certifies_terminal_row_provider_object_replay: false,
+          row_certifies_expression_level_n38_provider: false,
+          claim_boundary:
+            h39TerminalExpressionLevelSourceMapProviderObjectBranchProducerClaimBoundary(),
+        };
+      });
+      const branchIntervalsAvailableCount = branchRows.filter(
+        (row) => row.source_map_provider_object_branch_interval_available === true
+      ).length;
+      const terminalChecks = {
+        aggregate_provider_object_row_available:
+          providerRow !== null &&
+          providerRow?.provider_row_source_kind ===
+            "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+          providerRow
+            ?.signed_provider_interval_contained_in_center_aware_target === true &&
+          providerRow
+            ?.weighted_provider_interval_contained_in_center_aware_target ===
+            true,
+        directed_rounded_provider_boundary_replay_row_available:
+          boundaryReplayRow !== null &&
+          boundaryReplayRow
+            ?.directed_rounded_shared_domain_provider_boundary_replay_verified ===
+            true &&
+          boundaryReplayRow?.directed_rounded_shared_domain_provider_certified ===
+            false,
+        terminal_successor_handoff_row_available:
+          handoffTerminalRow !== null &&
+          handoffTerminalRow
+            ?.row_terminal_successor_barycentric_to_successor_scalar_handoff_attempt_verified ===
+            true &&
+          handoffTerminalRow
+            ?.row_certifies_branch_resolved_centered_residual_source_object ===
+            false,
+        same_domain_terminal_row_aligned:
+          providerRow?.node_index === nodeIndex &&
+          h38BridgeRow?.node_index === nodeIndex &&
+          boundaryReplayRow?.node_index === nodeIndex &&
+          handoffRow?.node_index === nodeIndex &&
+          handoffTerminalRow?.terminal_graph_cell_id === terminalGraphCellId,
+        aggregate_provider_object_interval_recorded:
+          finiteOrderedInterval(aggregateProviderInterval) &&
+          finiteOrderedInterval(aggregateWeightedProviderInterval),
+        expression_level_branch_split_map_status_recorded:
+          splitMapAvailable === true || splitMapAvailable === false,
+        source_map_provider_object_branch_rows_recorded:
+          branchRows.length === 2 &&
+          branchRows.every(
+            (row) =>
+              row.source_map_provider_object_materialization_source_kind ===
+                "expression-level-source-map-provider-object-branch-producer" &&
+              typeof row.source_map_provider_object_branch_interval_available ===
+                "boolean" &&
+              typeof row.admissible_as_source_map_provider_object === "boolean" &&
+              (row.admissible_as_source_map_provider_object === true
+                ? finiteOrderedInterval(
+                    row.source_map_provider_object_branch_interval
+                  ) && row.rejection_reason === null
+                : row.source_map_provider_object_branch_interval === null &&
+                  typeof row.rejection_reason === "string")
+          ),
+        actual_provider_claims_remain_open:
+          providerRow?.claim_boundary
+            ?.certifies_source_inputs_as_directed_rounded_same_domain === false &&
+          boundaryReplayRow?.claim_boundary
+            ?.certifies_expression_level_n38_provider === false &&
+          boundaryReplayRow?.claim_boundary
+            ?.certifies_directed_rounded_shared_domain === false &&
+          handoffTerminalRow?.claim_boundary
+            ?.certifies_expression_level_n38_provider === false &&
+          handoffTerminalRow?.claim_boundary
+            ?.certifies_directed_rounded_shared_domain === false,
+      };
+      const terminalVerified = Object.values(terminalChecks).every(
+        (value) => value === true
+      );
+      return {
+        terminal_h_index: spec.terminal_h_index,
+        source_y_order: H38_NUMERATOR_Y_ORDER,
+        terminal_graph_cell_id: terminalGraphCellId,
+        successor_scalar_identity_weight:
+          spec.successor_scalar_identity_weight,
+        centered_successor_scalar_weight:
+          spec.centered_successor_scalar_weight,
+        provider_row_source_kind: providerRow?.provider_row_source_kind ?? null,
+        provider_probe_row_status: providerRow?.row_status ?? null,
+        h38_source_provenance_bridge_row_status:
+          h38BridgeRow?.row_status ?? null,
+        directed_rounded_boundary_replay_row_status:
+          boundaryReplayRow?.row_status ?? null,
+        aggregate_source_map_provider_object_interval:
+          aggregateProviderInterval,
+        aggregate_source_map_provider_object_weighted_interval:
+          aggregateWeightedProviderInterval,
+        aggregate_source_map_provider_object_interval_available:
+          finiteOrderedInterval(aggregateProviderInterval),
+        source_map_provider_object_branch_split_map_available:
+          splitMapAvailable,
+        source_map_provider_object_branch_interval_available_count:
+          branchIntervalsAvailableCount,
+        source_map_provider_object_branch_rows: branchRows,
+        source_map_provider_object_branch_row_count: branchRows.length,
+        terminal_expression_level_source_map_provider_object_branch_producer_check_kinds:
+          Object.keys(terminalChecks),
+        terminal_expression_level_source_map_provider_object_branch_producer_checks:
+          terminalChecks,
+        row_terminal_expression_level_source_map_provider_object_branch_producer_verified:
+          terminalVerified,
+        row_certifies_expression_level_source_map_provider_object_branch_rows:
+          false,
+        row_certifies_terminal_row_provider_object_replay: false,
+        row_status: terminalVerified
+          ? branchIntervalsAvailableCount === 2
+            ? "expression-level-source-map-provider-object-branch-rows-materialized-certification-open"
+            : splitMapAvailable
+              ? "expression-level-source-map-provider-object-branch-intervals-missing"
+              : "expression-level-source-map-provider-object-branch-split-map-missing"
+          : "terminal-expression-level-source-map-provider-object-branch-producer-row-open",
+        claim_boundary:
+          h39TerminalExpressionLevelSourceMapProviderObjectBranchProducerClaimBoundary(),
+      };
+    });
+    const rowChecks = {
+      source_map_residual_covariance_target_ready: sourceTargetReady,
+      source_term_provider_probe_aggregate_rows_ready:
+        providerProbeReady &&
+        providerRow !== null &&
+        providerRow?.provider_row_source_kind ===
+          "directed-rounded-same-domain-h38-source-map-residual-provider",
+      directed_rounded_provider_boundary_replay_ready:
+        boundaryReplayReady &&
+        boundaryReplayRow
+          ?.directed_rounded_shared_domain_provider_boundary_replay_verified ===
+          true,
+      terminal_successor_handoff_rows_ready:
+        handoffReady &&
+        handoffRow
+          ?.row_terminal_successor_barycentric_to_successor_scalar_handoff_attempt_verified ===
+          true,
+      same_domain_terminal_rows_aligned: terminalRows.every(
+        (row) =>
+          row
+            .terminal_expression_level_source_map_provider_object_branch_producer_checks
+            ?.same_domain_terminal_row_aligned === true
+      ),
+      aggregate_provider_object_rows_recorded: terminalRows.every(
+        (row) =>
+          row
+            .terminal_expression_level_source_map_provider_object_branch_producer_checks
+            ?.aggregate_provider_object_interval_recorded === true
+      ),
+      expression_level_branch_split_map_status_recorded: terminalRows.every(
+        (row) =>
+          row
+            .terminal_expression_level_source_map_provider_object_branch_producer_checks
+            ?.expression_level_branch_split_map_status_recorded === true
+      ),
+      source_map_provider_object_branch_rows_recorded: terminalRows.every(
+        (row) =>
+          row
+            .terminal_expression_level_source_map_provider_object_branch_producer_checks
+            ?.source_map_provider_object_branch_rows_recorded === true
+      ),
+      actual_provider_claims_remain_open: terminalRows.every(
+        (row) =>
+          row
+            .terminal_expression_level_source_map_provider_object_branch_producer_checks
+            ?.actual_provider_claims_remain_open === true
+      ),
+    };
+    const rowVerified = Object.values(rowChecks).every(
+      (value) => value === true
+    );
+    const branchRows = terminalRows.flatMap(
+      (row) => row.source_map_provider_object_branch_rows
+    );
+    return {
+      node_index: nodeIndex,
+      terminal_graph_cell_id: terminalGraphCellId,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      terminal_expression_level_source_map_provider_object_branch_producer_row_kind:
+        "terminal-expression-level-source-map-provider-object-branch-producer-row",
+      terminal_h_indexes: terminalSpecs.map((spec) => spec.terminal_h_index),
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      zero_source_terms: [...H38_SOURCE_TERM_ZERO_KEYS],
+      provider_row_source_kind: providerRow?.provider_row_source_kind ?? null,
+      aggregate_source_map_provider_object_interval:
+        numericInterval(providerRow?.directed_rounded_signed_residual_interval),
+      aggregate_source_map_provider_object_weighted_interval: numericInterval(
+        providerRow?.directed_rounded_weighted_signed_residual_interval
+      ),
+      source_map_provider_object_branch_split_map_available_terminal_row_count:
+        terminalRows.filter(
+          (row) => row.source_map_provider_object_branch_split_map_available
+        ).length,
+      source_map_provider_object_branch_interval_available_branch_row_count:
+        branchRows.filter(
+          (row) => row.source_map_provider_object_branch_interval_available
+        ).length,
+      terminal_expression_level_source_map_provider_object_branch_producer_rows:
+        terminalRows,
+      terminal_expression_level_source_map_provider_object_branch_producer_terminal_row_count:
+        terminalRows.length,
+      terminal_expression_level_source_map_provider_object_branch_producer_branch_row_count:
+        branchRows.length,
+      row_check_kinds: Object.keys(rowChecks),
+      row_checks: rowChecks,
+      row_terminal_expression_level_source_map_provider_object_branch_producer_verified:
+        rowVerified,
+      row_certifies_expression_level_source_map_provider_object_branch_rows:
+        false,
+      row_certifies_terminal_row_provider_object_replay: false,
+      row_status: rowVerified
+        ? branchRows.every(
+            (row) => row.source_map_provider_object_branch_interval_available === true
+          )
+          ? "expression-level-source-map-provider-object-branch-rows-materialized-certification-open"
+          : terminalRows.some(
+                (row) =>
+                  row.source_map_provider_object_branch_split_map_available ===
+                  true
+              )
+            ? "expression-level-source-map-provider-object-branch-intervals-missing"
+            : "expression-level-source-map-provider-object-branch-split-map-missing"
+        : "terminal-expression-level-source-map-provider-object-branch-producer-open",
+      claim_boundary:
+        h39TerminalExpressionLevelSourceMapProviderObjectBranchProducerClaimBoundary(),
+    };
+  });
+  const terminalRowCount = rows.reduce(
+    (total, row) =>
+      total +
+      row
+        .terminal_expression_level_source_map_provider_object_branch_producer_terminal_row_count,
+    0
+  );
+  const branchRowCount = rows.reduce(
+    (total, row) =>
+      total +
+      row
+        .terminal_expression_level_source_map_provider_object_branch_producer_branch_row_count,
+    0
+  );
+  const branchSplitMapAvailableCount = rows.reduce(
+    (total, row) =>
+      total +
+      row.source_map_provider_object_branch_split_map_available_terminal_row_count,
+    0
+  );
+  const branchIntervalAvailableCount = rows.reduce(
+    (total, row) =>
+      total +
+      row.source_map_provider_object_branch_interval_available_branch_row_count,
+    0
+  );
+  const aggregateProviderIntervalAvailableCount = rows.reduce(
+    (total, row) =>
+      total +
+      row.terminal_expression_level_source_map_provider_object_branch_producer_rows.filter(
+        (terminalRow) =>
+          terminalRow.aggregate_source_map_provider_object_interval_available ===
+          true
+      ).length,
+    0
+  );
+  const aggregateChecks = {
+    source_map_residual_covariance_target_ready: sourceTargetReady,
+    source_term_provider_probe_aggregate_rows_ready: providerProbeReady,
+    directed_rounded_provider_boundary_replay_ready: boundaryReplayReady,
+    terminal_successor_handoff_rows_ready: handoffReady,
+    same_domain_terminal_rows_aligned: rows.every(
+      (row) => row.row_checks?.same_domain_terminal_rows_aligned === true
+    ),
+    aggregate_provider_object_rows_recorded: rows.every(
+      (row) => row.row_checks?.aggregate_provider_object_rows_recorded === true
+    ),
+    expression_level_branch_split_map_status_recorded: rows.every(
+      (row) =>
+        row.row_checks?.expression_level_branch_split_map_status_recorded === true
+    ),
+    source_map_provider_object_branch_rows_recorded: rows.every(
+      (row) =>
+        row.row_checks?.source_map_provider_object_branch_rows_recorded === true
+    ),
+    actual_provider_claims_remain_open: rows.every(
+      (row) => row.row_checks?.actual_provider_claims_remain_open === true
+    ),
+  };
+  const producerVerified =
+    rows.length === 5 &&
+    terminalRowCount === 15 &&
+    branchRowCount === 30 &&
+    rows.every(
+      (row) =>
+        row
+          .row_terminal_expression_level_source_map_provider_object_branch_producer_verified ===
+        true
+    ) &&
+    Object.values(aggregateChecks).every((value) => value === true);
+  const allBranchIntervalsAvailable =
+    producerVerified && branchIntervalAvailableCount === branchRowCount;
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_PRODUCER_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-terminal-expression-level-source-map-provider-object-branch-producer-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-terminal-expression-level-source-map-provider-object-branch-producer",
+    target_kind:
+      "candidate-requested-y44-terminal-expression-level-source-map-provider-object-branch-producer",
+    source_map_residual_covariance_target_schema:
+      sourceMapResidualCovarianceTarget?.schema ?? null,
+    directed_rounded_provider_boundary_replay_schema:
+      directedRoundedSharedDomainProviderBoundaryReplay?.schema ?? null,
+    terminal_successor_barycentric_to_successor_scalar_handoff_attempt_schema:
+      terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt?.schema ??
+      null,
+    proof_status:
+      "candidate-expression-level-source-map-provider-object-branch-producer-open",
+    producer_kind:
+      "same-domain-expression-level-source-map-provider-object-branch-row-producer",
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    terminal_h_indexes: terminalSpecs.map((spec) => spec.terminal_h_index),
+    source_terms_preserved_signed_together: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    zero_source_terms: [...H38_SOURCE_TERM_ZERO_KEYS],
+    provider_object_branch_symbol: "P_b",
+    producer_formula:
+      "P_b must be emitted by an expression-level source-map provider-object branch split map; aggregate P alone does not determine P_- and P_+.",
+    terminal_expression_level_source_map_provider_object_branch_producer_check_kinds:
+      [...checkKinds],
+    terminal_expression_level_source_map_provider_object_branch_producer_checks:
+      aggregateChecks,
+    terminal_expression_level_source_map_provider_object_branch_producer_verified:
+      producerVerified,
+    terminal_expression_level_source_map_provider_object_branch_producer_certified:
+      false,
+    terminal_expression_level_source_map_provider_object_branch_producer_row_count:
+      rows.length,
+    terminal_expression_level_source_map_provider_object_branch_producer_terminal_row_count:
+      terminalRowCount,
+    terminal_expression_level_source_map_provider_object_branch_producer_branch_row_count:
+      branchRowCount,
+    terminal_expression_level_source_map_provider_object_branch_producer_rows:
+      rows,
+    aggregate_source_map_provider_object_interval_available_terminal_row_count:
+      aggregateProviderIntervalAvailableCount,
+    source_map_provider_object_branch_split_map_available_terminal_row_count:
+      branchSplitMapAvailableCount,
+    source_map_provider_object_branch_interval_available_branch_row_count:
+      branchIntervalAvailableCount,
+    all_source_map_provider_object_branch_intervals_available:
+      allBranchIntervalsAvailable,
+    expression_level_source_map_provider_object_branch_rows_certified: false,
+    terminal_row_provider_object_replay_certified: false,
+    expression_level_n38_provider_certified: false,
+    terminal_expression_level_source_map_provider_object_branch_producer_classification:
+      producerVerified
+        ? allBranchIntervalsAvailable
+          ? "expression-level-source-map-provider-object-branch-rows-materialized-certification-open"
+          : branchSplitMapAvailableCount > 0
+            ? "expression-level-source-map-provider-object-branch-intervals-missing"
+            : "expression-level-source-map-provider-object-branch-split-map-missing"
+        : "terminal-expression-level-source-map-provider-object-branch-producer-open",
+    terminal_expression_level_source_map_provider_object_branch_producer_blocker_classification:
+      producerVerified
+        ? allBranchIntervalsAvailable
+          ? "same-domain-expression-level-provider-object-branch-row-certification-needed"
+          : "same-domain-expression-level-source-map-provider-object-branch-split-map-needed"
+        : "terminal-expression-level-source-map-provider-object-branch-producer-open",
+    terminal_expression_level_source_map_provider_object_branch_producer_primary_missing_object_kind:
+      producerVerified
+        ? allBranchIntervalsAvailable
+          ? "same-domain-expression-level-provider-object-branch-row-certification"
+          : "same-domain-expression-level-source-map-provider-object-branch-split-map"
+        : "terminal-expression-level-source-map-provider-object-branch-producer",
+    next_certificate_object:
+      "same-domain expression-level source-map provider-object branch split map that emits finite P_- and P_+ intervals for h37, h36, and h35 on each terminal node",
+    candidate_certificate_route:
+      "This producer starts from the actual expression-level source-map provider probe and boundary replay. Those upstream rows supply finite aggregate signed and weighted provider intervals on all five same-domain source cells, and the terminal successor handoff supplies the h37, h36, and h35 terminal rows. The current upstream object does not carry a branch split map or branch-provider intervals, so P_- and P_+ remain unavailable; scalar-lambda, barycentric, common-normalizer, Wronskian, matrix, and virial candidates are not admitted as provider-object rows by this packet.",
+    claim_boundary:
+      h39TerminalExpressionLevelSourceMapProviderObjectBranchProducerClaimBoundary(),
+  };
+}
+
+export function validateH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchProducerCandidate(
+  artifact
+) {
+  const errors = [];
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const sameStringSet = (left, right) =>
+    Array.isArray(left) &&
+    left.length === right.length &&
+    right.every((value) => left.includes(value));
+  const sameTerminalHIndexes = (indexes) =>
+    Array.isArray(indexes) &&
+    indexes.length === 3 &&
+    indexes[0] === 37 &&
+    indexes[1] === 36 &&
+    indexes[2] === 35;
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const validClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_terminal_expression_level_source_map_provider_object_branch_producer_only ===
+      true &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_rows ===
+      false &&
+    claimBoundary?.certifies_terminal_row_provider_object_replay === false &&
+    claimBoundary
+      ?.certifies_barycentric_to_successor_scalar_centered_projection_identity ===
+      false &&
+    claimBoundary?.certifies_barycentric_branch_residual_aggregate_identity ===
+      false &&
+    claimBoundary
+      ?.certifies_branch_resolved_centered_residual_source_object === false &&
+    claimBoundary?.certifies_terminal_successor_scalar_residual_identity ===
+      false &&
+    claimBoundary
+      ?.certifies_terminal_successor_scalar_provider_boundary_identity ===
+      false &&
+    claimBoundary
+      ?.certifies_terminal_successor_branch_antisymmetric_common_normalizer ===
+      false &&
+    claimBoundary
+      ?.certifies_terminal_successor_centered_residual_branch_split ===
+      false &&
+    claimBoundary?.certifies_branch_resolved_centered_residual_component ===
+      false &&
+    claimBoundary?.certifies_terminal_h_to_source_term_identity === false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const expectedCheckKinds = [
+    "source_map_residual_covariance_target_ready",
+    "source_term_provider_probe_aggregate_rows_ready",
+    "directed_rounded_provider_boundary_replay_ready",
+    "terminal_successor_handoff_rows_ready",
+    "same_domain_terminal_rows_aligned",
+    "aggregate_provider_object_rows_recorded",
+    "expression_level_branch_split_map_status_recorded",
+    "source_map_provider_object_branch_rows_recorded",
+    "actual_provider_claims_remain_open",
+  ];
+  const expectedTerminalCheckKinds = [
+    "aggregate_provider_object_row_available",
+    "directed_rounded_provider_boundary_replay_row_available",
+    "terminal_successor_handoff_row_available",
+    "same_domain_terminal_row_aligned",
+    "aggregate_provider_object_interval_recorded",
+    "expression_level_branch_split_map_status_recorded",
+    "source_map_provider_object_branch_rows_recorded",
+    "actual_provider_claims_remain_open",
+  ];
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_PRODUCER_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 terminal expression-level source-map provider-object branch producer candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-terminal-expression-level-source-map-provider-object-branch-producer-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-terminal-expression-level-source-map-provider-object-branch-producer" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-terminal-expression-level-source-map-provider-object-branch-producer" ||
+    artifact?.source_map_residual_covariance_target_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_MAP_RESIDUAL_COVARIANCE_TARGET_SCHEMA ||
+    artifact?.directed_rounded_provider_boundary_replay_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_DIRECTED_ROUNDED_SHARED_DOMAIN_PROVIDER_BOUNDARY_REPLAY_CANDIDATE_SCHEMA ||
+    artifact
+      ?.terminal_successor_barycentric_to_successor_scalar_handoff_attempt_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SUCCESSOR_BARYCENTRIC_TO_SUCCESSOR_SCALAR_HANDOFF_ATTEMPT_CANDIDATE_SCHEMA ||
+    artifact?.proof_status !==
+      "candidate-expression-level-source-map-provider-object-branch-producer-open" ||
+    artifact?.producer_kind !==
+      "same-domain-expression-level-source-map-provider-object-branch-row-producer" ||
+    artifact?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    !sameTerminalHIndexes(artifact?.terminal_h_indexes) ||
+    !sameTerms(artifact?.source_terms_preserved_signed_together) ||
+    artifact?.provider_object_branch_symbol !== "P_b" ||
+    !sameStringSet(
+      artifact
+        ?.terminal_expression_level_source_map_provider_object_branch_producer_check_kinds,
+      expectedCheckKinds
+    )
+  ) {
+    errors.push("terminal expression-level source-map provider-object branch producer metadata must identify the upstream P_b producer");
+  }
+  if (
+    expectedCheckKinds.some(
+      (kind) =>
+        artifact
+          ?.terminal_expression_level_source_map_provider_object_branch_producer_checks?.[
+          kind
+        ] !== true
+    ) ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_producer_verified !==
+      true ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_producer_certified !==
+      false ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_producer_row_count !==
+      5 ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_producer_terminal_row_count !==
+      15 ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_producer_branch_row_count !==
+      30 ||
+    artifact
+      ?.aggregate_source_map_provider_object_interval_available_terminal_row_count <
+      0 ||
+    artifact
+      ?.aggregate_source_map_provider_object_interval_available_terminal_row_count >
+      15 ||
+    artifact
+      ?.source_map_provider_object_branch_split_map_available_terminal_row_count <
+      0 ||
+    artifact
+      ?.source_map_provider_object_branch_split_map_available_terminal_row_count >
+      15 ||
+    artifact
+      ?.source_map_provider_object_branch_interval_available_branch_row_count <
+      0 ||
+    artifact
+      ?.source_map_provider_object_branch_interval_available_branch_row_count >
+      30 ||
+    typeof artifact?.all_source_map_provider_object_branch_intervals_available !==
+      "boolean" ||
+    artifact?.expression_level_source_map_provider_object_branch_rows_certified !==
+      false ||
+    artifact?.terminal_row_provider_object_replay_certified !== false ||
+    artifact?.expression_level_n38_provider_certified !== false ||
+    ![
+      "expression-level-source-map-provider-object-branch-rows-materialized-certification-open",
+      "expression-level-source-map-provider-object-branch-intervals-missing",
+      "expression-level-source-map-provider-object-branch-split-map-missing",
+      "terminal-expression-level-source-map-provider-object-branch-producer-open",
+    ].includes(
+      artifact
+        ?.terminal_expression_level_source_map_provider_object_branch_producer_classification
+    ) ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("terminal expression-level source-map provider-object branch producer aggregate must fail closed");
+  }
+  const rows =
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_producer_rows ??
+    [];
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== 5 ||
+    !rows.every((row, index) => {
+      const terminalRows =
+        row
+          ?.terminal_expression_level_source_map_provider_object_branch_producer_rows ??
+        [];
+      return (
+        row?.node_index === index &&
+        row?.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+        row?.required_xi_derivative_order === 4 &&
+        row
+          ?.terminal_expression_level_source_map_provider_object_branch_producer_row_kind ===
+          "terminal-expression-level-source-map-provider-object-branch-producer-row" &&
+        sameTerminalHIndexes(row?.terminal_h_indexes) &&
+        sameTerms(row?.source_terms_preserved_signed_together) &&
+        row?.provider_row_source_kind ===
+          "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+        finiteOrderedInterval(row?.aggregate_source_map_provider_object_interval) &&
+        finiteOrderedInterval(
+          row?.aggregate_source_map_provider_object_weighted_interval
+        ) &&
+        Array.isArray(terminalRows) &&
+        terminalRows.length === 3 &&
+        terminalRows.every((terminalRow, terminalIndex) => {
+          const spec =
+            H39_TERMINAL_SUCCESSOR_COEFFICIENT_IDENTITY_IMPORT_SPECS[
+              terminalIndex
+            ];
+          const branchRows = terminalRow?.source_map_provider_object_branch_rows ?? [];
+          return (
+            terminalRow?.terminal_h_index === spec.terminal_h_index &&
+            terminalRow?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+            terminalRow?.terminal_graph_cell_id === `speed.${index}.first-y` &&
+            terminalRow?.successor_scalar_identity_weight ===
+              spec.successor_scalar_identity_weight &&
+            terminalRow?.centered_successor_scalar_weight ===
+              spec.centered_successor_scalar_weight &&
+            terminalRow?.provider_row_source_kind ===
+              "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+            finiteOrderedInterval(
+              terminalRow?.aggregate_source_map_provider_object_interval
+            ) &&
+            finiteOrderedInterval(
+              terminalRow
+                ?.aggregate_source_map_provider_object_weighted_interval
+            ) &&
+            typeof terminalRow
+              ?.source_map_provider_object_branch_split_map_available ===
+              "boolean" &&
+            Array.isArray(branchRows) &&
+            branchRows.length === 2 &&
+            branchRows.every(
+              (branchRow) =>
+                ["-", "+"].includes(branchRow?.branch) &&
+                branchRow?.terminal_h_index === spec.terminal_h_index &&
+                branchRow
+                  ?.source_map_provider_object_materialization_source_kind ===
+                  "expression-level-source-map-provider-object-branch-producer" &&
+                finiteOrderedInterval(
+                  branchRow?.aggregate_source_map_provider_object_interval
+                ) &&
+                typeof branchRow
+                  ?.source_map_provider_object_branch_split_map_available ===
+                  "boolean" &&
+                typeof branchRow
+                  ?.source_map_provider_object_branch_interval_available ===
+                  "boolean" &&
+                typeof branchRow?.admissible_as_source_map_provider_object ===
+                  "boolean" &&
+                (branchRow
+                  ?.source_map_provider_object_branch_interval_available ===
+                true
+                  ? finiteOrderedInterval(
+                      branchRow?.source_map_provider_object_branch_interval
+                    ) && branchRow?.rejection_reason === null
+                  : branchRow?.source_map_provider_object_branch_interval ===
+                      null && typeof branchRow?.rejection_reason === "string") &&
+                branchRow
+                  ?.row_certifies_expression_level_source_map_provider_object_branch_rows ===
+                  false &&
+                branchRow?.row_certifies_terminal_row_provider_object_replay ===
+                  false &&
+                branchRow?.row_certifies_expression_level_n38_provider ===
+                  false &&
+                validClaimBoundary(branchRow?.claim_boundary)
+            ) &&
+            terminalRow?.source_map_provider_object_branch_row_count === 2 &&
+            terminalRow
+              ?.source_map_provider_object_branch_interval_available_count >=
+              0 &&
+            terminalRow
+              ?.source_map_provider_object_branch_interval_available_count <=
+              2 &&
+            sameStringSet(
+              terminalRow
+                ?.terminal_expression_level_source_map_provider_object_branch_producer_check_kinds,
+              expectedTerminalCheckKinds
+            ) &&
+            expectedTerminalCheckKinds.every(
+              (kind) =>
+                terminalRow
+                  ?.terminal_expression_level_source_map_provider_object_branch_producer_checks?.[
+                  kind
+                ] === true
+            ) &&
+            terminalRow
+              ?.row_terminal_expression_level_source_map_provider_object_branch_producer_verified ===
+              true &&
+            terminalRow
+              ?.row_certifies_expression_level_source_map_provider_object_branch_rows ===
+              false &&
+            terminalRow?.row_certifies_terminal_row_provider_object_replay ===
+              false &&
+            validClaimBoundary(terminalRow?.claim_boundary)
+          );
+        }) &&
+        row
+          ?.terminal_expression_level_source_map_provider_object_branch_producer_terminal_row_count ===
+          3 &&
+        row
+          ?.terminal_expression_level_source_map_provider_object_branch_producer_branch_row_count ===
+          6 &&
+        row
+          ?.source_map_provider_object_branch_split_map_available_terminal_row_count >=
+          0 &&
+        row
+          ?.source_map_provider_object_branch_split_map_available_terminal_row_count <=
+          3 &&
+        row
+          ?.source_map_provider_object_branch_interval_available_branch_row_count >=
+          0 &&
+        row
+          ?.source_map_provider_object_branch_interval_available_branch_row_count <=
+          6 &&
+        sameStringSet(row?.row_check_kinds, expectedCheckKinds) &&
+        expectedCheckKinds.every((kind) => row?.row_checks?.[kind] === true) &&
+        row
+          ?.row_terminal_expression_level_source_map_provider_object_branch_producer_verified ===
+          true &&
+        row
+          ?.row_certifies_expression_level_source_map_provider_object_branch_rows ===
+          false &&
+        row?.row_certifies_terminal_row_provider_object_replay === false &&
+        validClaimBoundary(row?.claim_boundary)
+      );
+    })
+  ) {
+    errors.push("terminal expression-level source-map provider-object branch producer rows must expose aggregate P and fail-closed P_b branch rows");
+  }
+  if (
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string" ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("terminal expression-level source-map provider-object branch producer must keep broad closure claims open");
+  }
+  return errors;
+}
+
+function h39TerminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdeterminationClaimBoundary() {
+  return {
+    defines_terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_only:
+      true,
+    certifies_expression_level_source_map_provider_object_branch_split_map:
+      false,
+    certifies_expression_level_source_map_provider_object_branch_rows: false,
+    certifies_terminal_row_provider_object_replay: false,
+    certifies_barycentric_to_successor_scalar_centered_projection_identity:
+      false,
+    certifies_barycentric_branch_residual_aggregate_identity: false,
+    certifies_branch_resolved_centered_residual_source_object: false,
+    certifies_terminal_successor_scalar_residual_identity: false,
+    certifies_terminal_successor_scalar_provider_boundary_identity: false,
+    certifies_terminal_successor_branch_antisymmetric_common_normalizer: false,
+    certifies_terminal_successor_centered_residual_branch_split: false,
+    certifies_branch_resolved_centered_residual_component: false,
+    certifies_terminal_h_to_source_term_identity: false,
+    certifies_expression_level_n38_provider: false,
+    certifies_terminal_row_provider_enclosure: false,
+    certifies_terminal_graph_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
+export function buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdeterminationCandidate({
+  terminalExpressionLevelSourceMapProviderObjectBranchProducer,
+  terminalSuccessorCenteredResidualBranchSplitRankAttempt,
+} = {}) {
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const numericInterval = (interval) =>
+    finiteOrderedInterval(interval)
+      ? [Number(interval[0]), Number(interval[1])]
+      : null;
+  const intervalAdd = (left, right) =>
+    finiteOrderedInterval(left) && finiteOrderedInterval(right)
+      ? [Number(left[0]) + Number(right[0]), Number(left[1]) + Number(right[1])]
+      : null;
+  const intervalShift = (interval, shift) =>
+    finiteOrderedInterval(interval) && finiteNumber(shift)
+      ? [Number(interval[0]) + Number(shift), Number(interval[1]) + Number(shift)]
+      : null;
+  const intervalHalf = (interval) =>
+    finiteOrderedInterval(interval)
+      ? [Number(interval[0]) / 2, Number(interval[1]) / 2]
+      : null;
+  const intervalMidpoint = (interval) =>
+    finiteOrderedInterval(interval)
+      ? (Number(interval[0]) + Number(interval[1])) / 2
+      : null;
+  const intervalHalfWidth = (interval) =>
+    finiteOrderedInterval(interval)
+      ? (Number(interval[1]) - Number(interval[0])) / 2
+      : null;
+  const valuesApproximatelyEqual = (left, right) => {
+    if (!finiteNumber(left) || !finiteNumber(right)) {
+      return false;
+    }
+    const scale = Math.max(1, Math.abs(Number(left)), Math.abs(Number(right)));
+    return Math.abs(Number(left) - Number(right)) <= Number.EPSILON * scale * 16;
+  };
+  const intervalsApproximatelyEqual = (left, right) =>
+    finiteOrderedInterval(left) &&
+    finiteOrderedInterval(right) &&
+    valuesApproximatelyEqual(left[0], right[0]) &&
+    valuesApproximatelyEqual(left[1], right[1]);
+  const intervalsDistinct = (left, right) =>
+    finiteOrderedInterval(left) &&
+    finiteOrderedInterval(right) &&
+    (!valuesApproximatelyEqual(left[0], right[0]) ||
+      !valuesApproximatelyEqual(left[1], right[1]));
+  const sameTerminalHIndexes = (indexes) =>
+    Array.isArray(indexes) &&
+    indexes.length === 3 &&
+    indexes[0] === 37 &&
+    indexes[1] === 36 &&
+    indexes[2] === 35;
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const terminalSpecs = H39_TERMINAL_SUCCESSOR_COEFFICIENT_IDENTITY_IMPORT_SPECS;
+  const expressionRows =
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      ?.terminal_expression_level_source_map_provider_object_branch_producer_rows ??
+    [];
+  const residualRankRows =
+    terminalSuccessorCenteredResidualBranchSplitRankAttempt
+      ?.terminal_successor_centered_residual_branch_split_rank_attempt_rows ??
+    [];
+  const rowsByNode = (rows) =>
+    new Map(
+      rows
+        .filter((row) => Number.isInteger(row?.node_index))
+        .map((row) => [Number(row.node_index), row])
+    );
+  const terminalRowsByH = (rows) =>
+    new Map(
+      (rows ?? [])
+        .filter((row) => Number.isInteger(row?.terminal_h_index))
+        .map((row) => [Number(row.terminal_h_index), row])
+    );
+  const expressionRowsByNode = rowsByNode(expressionRows);
+  const residualRankRowsByNode = rowsByNode(residualRankRows);
+  const expressionProducerReady =
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_PRODUCER_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      ?.terminal_expression_level_source_map_provider_object_branch_producer_verified ===
+      true &&
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      ?.terminal_expression_level_source_map_provider_object_branch_producer_certified ===
+      false &&
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      ?.aggregate_source_map_provider_object_interval_available_terminal_row_count ===
+      15 &&
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      ?.source_map_provider_object_branch_split_map_available_terminal_row_count ===
+      0 &&
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      ?.source_map_provider_object_branch_interval_available_branch_row_count ===
+      0 &&
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer?.claim_boundary
+      ?.certifies_expression_level_source_map_provider_object_branch_rows ===
+      false &&
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer?.claim_boundary
+      ?.certifies_directed_rounded_shared_domain === false;
+  const residualRankReady =
+    terminalSuccessorCenteredResidualBranchSplitRankAttempt?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SUCCESSOR_CENTERED_RESIDUAL_BRANCH_SPLIT_RANK_ATTEMPT_CANDIDATE_SCHEMA &&
+    terminalSuccessorCenteredResidualBranchSplitRankAttempt
+      ?.terminal_successor_centered_residual_branch_split_rank_attempt_verified ===
+      true &&
+    terminalSuccessorCenteredResidualBranchSplitRankAttempt
+      ?.terminal_successor_centered_residual_branch_split_rank_attempt_certified ===
+      false &&
+    terminalSuccessorCenteredResidualBranchSplitRankAttempt
+      ?.total_branch_split_unknown_count === 30 &&
+    terminalSuccessorCenteredResidualBranchSplitRankAttempt
+      ?.total_branch_split_equation_count === 15 &&
+    terminalSuccessorCenteredResidualBranchSplitRankAttempt?.total_branch_split_rank ===
+      15 &&
+    terminalSuccessorCenteredResidualBranchSplitRankAttempt
+      ?.total_branch_split_free_dimension === 15;
+  const checkKinds = [
+    "expression_level_source_map_provider_object_branch_producer_ready",
+    "centered_residual_branch_split_rank_attempt_ready",
+    "same_domain_terminal_rows_aligned",
+    "aggregate_provider_object_equations_available",
+    "provider_object_branch_split_linear_system_rank_recorded",
+    "aggregate_compatible_split_witness_family_recorded",
+    "provider_object_branch_split_map_recorded_open",
+    "actual_provider_claims_remain_open",
+  ];
+  const terminalCheckKinds = [
+    "expression_level_source_map_provider_object_terminal_row_available",
+    "centered_residual_branch_split_rank_terminal_row_available",
+    "same_domain_terminal_row_aligned",
+    "aggregate_provider_object_interval_available",
+    "provider_object_branch_unknowns_declared",
+    "provider_object_split_linear_system_rank_recorded",
+    "aggregate_compatible_split_witness_family_sums_to_aggregate",
+    "provider_object_branch_split_recorded_open",
+    "actual_provider_claims_remain_open",
+  ];
+  const splitWitnessPair = ({ aggregateInterval, freeValue, witnessKind }) => {
+    const halfInterval = intervalHalf(aggregateInterval);
+    const minusInterval = intervalShift(halfInterval, freeValue);
+    const plusInterval = intervalShift(halfInterval, -freeValue);
+    const sumInterval = intervalAdd(minusInterval, plusInterval);
+    return {
+      witness_kind: witnessKind,
+      provider_object_branch_antisymmetric_coordinate_symbol: "u_P",
+      provider_object_branch_antisymmetric_coordinate_value: freeValue,
+      provider_object_minus_branch_interval: minusInterval,
+      provider_object_plus_branch_interval: plusInterval,
+      provider_object_witness_sum_interval: sumInterval,
+      provider_object_witness_sum_matches_aggregate:
+        intervalsApproximatelyEqual(sumInterval, aggregateInterval),
+      admissible_as_actual_source_map_provider_object_branch_rows: false,
+      rejection_reason:
+        "aggregate-provider-object-equation-does-not-determine-the-branch-split",
+      claim_boundary:
+        h39TerminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdeterminationClaimBoundary(),
+    };
+  };
+  const rows = Array.from({ length: 5 }, (_, nodeIndex) => {
+    const terminalGraphCellId = `speed.${nodeIndex}.first-y`;
+    const expressionRow = expressionRowsByNode.get(nodeIndex) ?? null;
+    const residualRankRow = residualRankRowsByNode.get(nodeIndex) ?? null;
+    const expressionTerminalRowsByH = terminalRowsByH(
+      expressionRow
+        ?.terminal_expression_level_source_map_provider_object_branch_producer_rows
+    );
+    const residualRankTerminalRowsByH = terminalRowsByH(
+      residualRankRow?.terminal_successor_centered_residual_branch_split_rows
+    );
+    const terminalRows = terminalSpecs.map((spec) => {
+      const expressionTerminalRow =
+        expressionTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const residualRankTerminalRow =
+        residualRankTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const aggregateProviderInterval = numericInterval(
+        expressionTerminalRow?.aggregate_source_map_provider_object_interval
+      );
+      const aggregateWeightedProviderInterval = numericInterval(
+        expressionTerminalRow?.aggregate_source_map_provider_object_weighted_interval
+      );
+      const aggregateMidpoint = intervalMidpoint(aggregateProviderInterval);
+      const aggregateHalfWidth = intervalHalfWidth(aggregateProviderInterval);
+      const nonzeroWitnessValue = Math.max(
+        1,
+        Math.abs(Number(aggregateMidpoint ?? 0)),
+        Math.abs(Number(aggregateHalfWidth ?? 0))
+      );
+      const splitWitnessRows = [
+        splitWitnessPair({
+          aggregateInterval: aggregateProviderInterval,
+          freeValue: 0,
+          witnessKind: "symmetric-provider-object-split-placeholder",
+        }),
+        splitWitnessPair({
+          aggregateInterval: aggregateProviderInterval,
+          freeValue: nonzeroWitnessValue,
+          witnessKind: "nonzero-branch-antisymmetric-provider-object-split-witness",
+        }),
+      ];
+      const branchUnknownRows = ["-", "+"].map((branch) => ({
+        branch,
+        provider_object_branch_residual_symbol: branch === "-" ? "P_-" : "P_+",
+        aggregate_provider_object_symbol: "P",
+        provider_object_branch_antisymmetric_coordinate_symbol: "u_P",
+        provider_object_branch_antisymmetric_coordinate_coefficient:
+          branch === "-" ? 1 : -1,
+        general_solution_expression: branch === "-" ? "P/2+u_P" : "P/2-u_P",
+        source_map_provider_object_branch_interval_available: false,
+        source_map_provider_object_branch_split_map_available: false,
+        admissible_as_actual_source_map_provider_object_branch_row: false,
+        row_certifies_expression_level_source_map_provider_object_branch_rows:
+          false,
+        row_certifies_expression_level_n38_provider: false,
+        row_certifies_directed_rounded_shared_domain: false,
+        claim_boundary:
+          h39TerminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdeterminationClaimBoundary(),
+      }));
+      const witnessesSumToAggregate =
+        splitWitnessRows.length === 2 &&
+        splitWitnessRows.every(
+          (row) => row.provider_object_witness_sum_matches_aggregate === true
+        );
+      const witnessRowsDistinct =
+        intervalsDistinct(
+          splitWitnessRows[0]?.provider_object_minus_branch_interval,
+          splitWitnessRows[1]?.provider_object_minus_branch_interval
+        ) &&
+        intervalsDistinct(
+          splitWitnessRows[0]?.provider_object_plus_branch_interval,
+          splitWitnessRows[1]?.provider_object_plus_branch_interval
+        );
+      const terminalChecks = {
+        expression_level_source_map_provider_object_terminal_row_available:
+          expressionProducerReady &&
+          expressionTerminalRow
+            ?.row_terminal_expression_level_source_map_provider_object_branch_producer_verified ===
+            true,
+        centered_residual_branch_split_rank_terminal_row_available:
+          residualRankReady &&
+          residualRankTerminalRow
+            ?.row_terminal_successor_centered_residual_branch_split_rank_attempt_verified ===
+            true &&
+          residualRankTerminalRow?.branch_split_free_dimension === 1,
+        same_domain_terminal_row_aligned:
+          expressionTerminalRow?.terminal_graph_cell_id ===
+            terminalGraphCellId &&
+          residualRankTerminalRow?.terminal_graph_cell_id ===
+            terminalGraphCellId &&
+          expressionTerminalRow?.terminal_h_index === spec.terminal_h_index &&
+          residualRankTerminalRow?.terminal_h_index === spec.terminal_h_index &&
+          expressionTerminalRow?.successor_scalar_identity_weight ===
+            spec.successor_scalar_identity_weight &&
+          residualRankTerminalRow?.successor_scalar_identity_weight ===
+            spec.successor_scalar_identity_weight &&
+          expressionTerminalRow?.centered_successor_scalar_weight ===
+            spec.centered_successor_scalar_weight &&
+          residualRankTerminalRow?.centered_successor_scalar_weight ===
+            spec.centered_successor_scalar_weight,
+        aggregate_provider_object_interval_available:
+          finiteOrderedInterval(aggregateProviderInterval) &&
+          finiteOrderedInterval(aggregateWeightedProviderInterval),
+        provider_object_branch_unknowns_declared:
+          branchUnknownRows.length === 2 &&
+          branchUnknownRows.every(
+            (row) =>
+              ["P_-", "P_+"].includes(row.provider_object_branch_residual_symbol) &&
+              row.source_map_provider_object_branch_interval_available ===
+                false &&
+              row.source_map_provider_object_branch_split_map_available === false
+          ),
+        provider_object_split_linear_system_rank_recorded: true,
+        aggregate_compatible_split_witness_family_sums_to_aggregate:
+          witnessesSumToAggregate && witnessRowsDistinct,
+        provider_object_branch_split_recorded_open:
+          expressionTerminalRow
+            ?.source_map_provider_object_branch_split_map_available === false &&
+          expressionTerminalRow
+            ?.source_map_provider_object_branch_interval_available_count === 0 &&
+          expressionTerminalRow
+            ?.row_certifies_expression_level_source_map_provider_object_branch_rows ===
+            false,
+        actual_provider_claims_remain_open:
+          expressionTerminalRow?.claim_boundary
+            ?.certifies_expression_level_source_map_provider_object_branch_rows ===
+            false &&
+          expressionTerminalRow?.claim_boundary
+            ?.certifies_expression_level_n38_provider === false &&
+          expressionTerminalRow?.claim_boundary
+            ?.certifies_directed_rounded_shared_domain === false,
+      };
+      const terminalRowVerified = Object.values(terminalChecks).every(
+        (value) => value === true
+      );
+      return {
+        terminal_h_index: spec.terminal_h_index,
+        source_y_order: H38_NUMERATOR_Y_ORDER,
+        terminal_graph_cell_id: terminalGraphCellId,
+        successor_scalar_identity_weight:
+          spec.successor_scalar_identity_weight,
+        centered_successor_scalar_weight:
+          spec.centered_successor_scalar_weight,
+        aggregate_source_map_provider_object_equation: "P_-+P_+=P",
+        provider_object_branch_split_linear_model:
+          "P_-+P_+=P; (P_-,P_+)=(P/2+u_P,P/2-u_P)",
+        provider_object_branch_split_solution_family:
+          "(P_-,P_+)=(P/2+u_P,P/2-u_P)",
+        aggregate_source_map_provider_object_interval: aggregateProviderInterval,
+        aggregate_source_map_provider_object_weighted_interval:
+          aggregateWeightedProviderInterval,
+        aggregate_source_map_provider_object_interval_available:
+          finiteOrderedInterval(aggregateProviderInterval),
+        provider_object_branch_unknown_rows: branchUnknownRows,
+        provider_object_branch_unknown_count: branchUnknownRows.length,
+        aggregate_equation_count: 1,
+        provider_object_branch_split_rank: 1,
+        provider_object_branch_split_free_dimension: 1,
+        provider_object_branch_antisymmetric_coordinate_symbol: "u_P",
+        provider_object_branch_antisymmetric_coordinate_determined: false,
+        source_map_provider_object_branch_split_map_available: false,
+        source_map_provider_object_branch_interval_available_count: 0,
+        aggregate_compatible_split_witness_rows: splitWitnessRows,
+        aggregate_compatible_split_witness_pair_count: splitWitnessRows.length,
+        aggregate_compatible_split_witnesses_sum_to_aggregate:
+          witnessesSumToAggregate,
+        aggregate_compatible_split_witnesses_are_distinct: witnessRowsDistinct,
+        same_aggregate_allows_distinct_branch_splits:
+          witnessesSumToAggregate && witnessRowsDistinct,
+        provider_object_branch_split_map_underdetermined_by_aggregate_provider:
+          true,
+        expression_level_source_map_provider_object_branch_split_map_needed:
+          true,
+        terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_check_kinds:
+          [...terminalCheckKinds],
+        terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_checks:
+          terminalChecks,
+        row_terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_verified:
+          terminalRowVerified,
+        row_certifies_expression_level_source_map_provider_object_branch_split_map:
+          false,
+        row_certifies_expression_level_source_map_provider_object_branch_rows:
+          false,
+        row_certifies_terminal_row_provider_object_replay: false,
+        row_certifies_expression_level_n38_provider: false,
+        row_status: terminalRowVerified
+          ? "aggregate-provider-object-branch-split-rank-one-free-antisymmetric-coordinate-open"
+          : "provider-object-branch-split-map-underdetermination-row-open",
+        claim_boundary:
+          h39TerminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdeterminationClaimBoundary(),
+      };
+    });
+    const rowChecks = {
+      expression_level_source_map_provider_object_branch_producer_ready:
+        expressionProducerReady &&
+        expressionRow
+          ?.row_terminal_expression_level_source_map_provider_object_branch_producer_verified ===
+          true,
+      centered_residual_branch_split_rank_attempt_ready:
+        residualRankReady &&
+        residualRankRow
+          ?.row_terminal_successor_centered_residual_branch_split_rank_attempt_verified ===
+          true,
+      same_domain_terminal_rows_aligned: terminalRows.every(
+        (row) =>
+          row
+            .terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_checks
+            ?.same_domain_terminal_row_aligned === true
+      ),
+      aggregate_provider_object_equations_available: terminalRows.every(
+        (row) =>
+          row
+            .terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_checks
+            ?.aggregate_provider_object_interval_available === true
+      ),
+      provider_object_branch_split_linear_system_rank_recorded:
+        terminalRows.every(
+          (row) =>
+            row
+              .terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_checks
+              ?.provider_object_split_linear_system_rank_recorded === true
+        ),
+      aggregate_compatible_split_witness_family_recorded: terminalRows.every(
+        (row) =>
+          row
+            .terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_checks
+            ?.aggregate_compatible_split_witness_family_sums_to_aggregate === true
+      ),
+      provider_object_branch_split_map_recorded_open: terminalRows.every(
+        (row) =>
+          row
+            .terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_checks
+            ?.provider_object_branch_split_recorded_open === true
+      ),
+      actual_provider_claims_remain_open: terminalRows.every(
+        (row) =>
+          row
+            .terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_checks
+            ?.actual_provider_claims_remain_open === true
+      ),
+    };
+    const rowVerified = Object.values(rowChecks).every(
+      (value) => value === true
+    );
+    return {
+      node_index: nodeIndex,
+      terminal_graph_cell_id: terminalGraphCellId,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_row_kind:
+        "terminal-expression-level-source-map-provider-object-branch-split-map-underdetermination-row",
+      terminal_h_indexes: terminalSpecs.map((spec) => spec.terminal_h_index),
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_rows:
+        terminalRows,
+      terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_terminal_row_count:
+        terminalRows.length,
+      provider_object_branch_unknown_row_count: terminalRows.reduce(
+        (total, row) => total + row.provider_object_branch_unknown_count,
+        0
+      ),
+      aggregate_provider_object_equation_count: terminalRows.reduce(
+        (total, row) => total + row.aggregate_equation_count,
+        0
+      ),
+      provider_object_branch_split_rank: terminalRows.reduce(
+        (total, row) => total + row.provider_object_branch_split_rank,
+        0
+      ),
+      provider_object_branch_split_free_dimension: terminalRows.reduce(
+        (total, row) => total + row.provider_object_branch_split_free_dimension,
+        0
+      ),
+      aggregate_compatible_split_witness_pair_count: terminalRows.reduce(
+        (total, row) => total + row.aggregate_compatible_split_witness_pair_count,
+        0
+      ),
+      aggregate_compatible_split_witnesses_sum_to_aggregate: terminalRows.every(
+        (row) => row.aggregate_compatible_split_witnesses_sum_to_aggregate === true
+      ),
+      aggregate_compatible_split_witnesses_are_distinct: terminalRows.every(
+        (row) => row.aggregate_compatible_split_witnesses_are_distinct === true
+      ),
+      same_aggregate_allows_distinct_branch_splits: terminalRows.every(
+        (row) => row.same_aggregate_allows_distinct_branch_splits === true
+      ),
+      source_map_provider_object_branch_split_map_available_terminal_row_count:
+        terminalRows.filter(
+          (row) => row.source_map_provider_object_branch_split_map_available
+        ).length,
+      source_map_provider_object_branch_interval_available_branch_row_count:
+        terminalRows.reduce(
+          (total, row) =>
+            total + row.source_map_provider_object_branch_interval_available_count,
+          0
+        ),
+      row_check_kinds: Object.keys(rowChecks),
+      row_checks: rowChecks,
+      row_terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_verified:
+        rowVerified,
+      row_certifies_expression_level_source_map_provider_object_branch_split_map:
+        false,
+      row_certifies_expression_level_source_map_provider_object_branch_rows:
+        false,
+      row_certifies_terminal_row_provider_object_replay: false,
+      row_status: rowVerified
+        ? "aggregate-provider-object-branch-split-rank-one-free-antisymmetric-coordinate-open"
+        : "provider-object-branch-split-map-underdetermination-open",
+      claim_boundary:
+        h39TerminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdeterminationClaimBoundary(),
+    };
+  });
+  const terminalRowCount = rows.reduce(
+    (total, row) =>
+      total +
+      row
+        .terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_terminal_row_count,
+    0
+  );
+  const sumRows = (key) =>
+    rows.reduce((total, row) => total + Number(row?.[key] ?? 0), 0);
+  const totalUnknowns = sumRows("provider_object_branch_unknown_row_count");
+  const totalEquations = sumRows("aggregate_provider_object_equation_count");
+  const totalRank = sumRows("provider_object_branch_split_rank");
+  const totalFreeDimension = sumRows("provider_object_branch_split_free_dimension");
+  const aggregateChecks = {
+    expression_level_source_map_provider_object_branch_producer_ready:
+      expressionProducerReady,
+    centered_residual_branch_split_rank_attempt_ready: residualRankReady,
+    same_domain_terminal_rows_aligned: rows.every(
+      (row) => row.row_checks?.same_domain_terminal_rows_aligned === true
+    ),
+    aggregate_provider_object_equations_available: rows.every(
+      (row) =>
+        row.row_checks?.aggregate_provider_object_equations_available === true
+    ),
+    provider_object_branch_split_linear_system_rank_recorded: rows.every(
+      (row) =>
+        row.row_checks
+          ?.provider_object_branch_split_linear_system_rank_recorded === true
+    ),
+    aggregate_compatible_split_witness_family_recorded: rows.every(
+      (row) =>
+        row.row_checks?.aggregate_compatible_split_witness_family_recorded ===
+        true
+    ),
+    provider_object_branch_split_map_recorded_open: rows.every(
+      (row) =>
+        row.row_checks?.provider_object_branch_split_map_recorded_open === true
+    ),
+    actual_provider_claims_remain_open: rows.every(
+      (row) => row.row_checks?.actual_provider_claims_remain_open === true
+    ),
+  };
+  const packetVerified =
+    rows.length === 5 &&
+    terminalRowCount === 15 &&
+    totalUnknowns === 30 &&
+    totalEquations === 15 &&
+    totalRank === 15 &&
+    totalFreeDimension === 15 &&
+    rows.every(
+      (row) =>
+        row
+          .row_terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_verified ===
+        true
+    ) &&
+    Object.values(aggregateChecks).every((value) => value === true);
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_UNDERDETERMINATION_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-terminal-expression-level-source-map-provider-object-branch-split-map-underdetermination-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-terminal-expression-level-source-map-provider-object-branch-split-map-underdetermination",
+    target_kind:
+      "candidate-requested-y44-terminal-expression-level-source-map-provider-object-branch-split-map-underdetermination",
+    terminal_expression_level_source_map_provider_object_branch_producer_schema:
+      terminalExpressionLevelSourceMapProviderObjectBranchProducer?.schema ??
+      null,
+    terminal_successor_centered_residual_branch_split_rank_attempt_schema:
+      terminalSuccessorCenteredResidualBranchSplitRankAttempt?.schema ?? null,
+    proof_status:
+      "candidate-expression-level-source-map-provider-object-branch-split-map-underdetermined",
+    provider_object_branch_split_linear_model:
+      "P_-+P_+=P; (P_-,P_+)=(P/2+u_P,P/2-u_P)",
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    terminal_h_indexes: terminalSpecs.map((spec) => spec.terminal_h_index),
+    source_terms_preserved_signed_together: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_check_kinds:
+      [...checkKinds],
+    terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_checks:
+      aggregateChecks,
+    terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_verified:
+      packetVerified,
+    terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_certified:
+      false,
+    terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_row_count:
+      rows.length,
+    terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_terminal_row_count:
+      terminalRowCount,
+    provider_object_branch_unknown_row_count: totalUnknowns,
+    aggregate_provider_object_equation_count: totalEquations,
+    provider_object_branch_split_rank: totalRank,
+    provider_object_branch_split_free_dimension: totalFreeDimension,
+    provider_object_branch_split_free_dimension_per_terminal_row: 1,
+    aggregate_compatible_split_witness_pair_count: sumRows(
+      "aggregate_compatible_split_witness_pair_count"
+    ),
+    source_map_provider_object_branch_split_map_available_terminal_row_count:
+      sumRows("source_map_provider_object_branch_split_map_available_terminal_row_count"),
+    source_map_provider_object_branch_interval_available_branch_row_count:
+      sumRows("source_map_provider_object_branch_interval_available_branch_row_count"),
+    terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_rows:
+      rows,
+    aggregate_compatible_split_witnesses_sum_to_aggregate: rows.every(
+      (row) => row.aggregate_compatible_split_witnesses_sum_to_aggregate === true
+    ),
+    aggregate_compatible_split_witnesses_are_distinct: rows.every(
+      (row) => row.aggregate_compatible_split_witnesses_are_distinct === true
+    ),
+    same_aggregate_allows_distinct_branch_splits: rows.every(
+      (row) => row.same_aggregate_allows_distinct_branch_splits === true
+    ),
+    expression_level_source_map_provider_object_branch_split_map_certified:
+      false,
+    expression_level_source_map_provider_object_branch_rows_certified: false,
+    terminal_row_provider_object_replay_certified: false,
+    expression_level_n38_provider_certified: false,
+    terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_classification:
+      packetVerified
+        ? "aggregate-provider-object-rank-one-branch-split-underdetermined"
+        : "provider-object-branch-split-map-underdetermination-open",
+    terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_blocker_classification:
+      packetVerified
+        ? "same-domain-provider-object-branch-antisymmetric-equation-needed"
+        : "provider-object-branch-split-map-underdetermination-open",
+    terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_primary_missing_object_kind:
+      packetVerified
+        ? "same-domain-provider-object-branch-antisymmetric-equation-or-branch-split-map"
+        : "provider-object-branch-split-map-underdetermination",
+    next_certificate_object:
+      "same-domain expression-level provider-object branch-antisymmetric equation or branch split map that fixes u_P in (P_-,P_+)=(P/2+u_P,P/2-u_P) on every terminal row",
+    candidate_certificate_route:
+      "The actual expression-level source-map provider probe supplies only aggregate P intervals. For each terminal row the equation P_-+P_+=P has two branch unknowns, one aggregate equation, rank one, and one free branch-antisymmetric coordinate u_P. The packet emits two distinct aggregate-compatible split witnesses per row to prove non-uniqueness, while rejecting both as actual source-map provider-object branch rows. It certifies no branch split map, provider-object branch rows, expression-level N38 provider, retained branch, shifted R43 closure, S37 division, or directed-rounded shared-domain provider.",
+    claim_boundary:
+      h39TerminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdeterminationClaimBoundary(),
+  };
+}
+
+export function validateH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdeterminationCandidate(
+  artifact
+) {
+  const errors = [];
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const valuesApproximatelyEqual = (left, right) => {
+    if (!finiteNumber(left) || !finiteNumber(right)) {
+      return false;
+    }
+    const scale = Math.max(1, Math.abs(Number(left)), Math.abs(Number(right)));
+    return Math.abs(Number(left) - Number(right)) <= Number.EPSILON * scale * 16;
+  };
+  const intervalsApproximatelyEqual = (left, right) =>
+    finiteOrderedInterval(left) &&
+    finiteOrderedInterval(right) &&
+    valuesApproximatelyEqual(left[0], right[0]) &&
+    valuesApproximatelyEqual(left[1], right[1]);
+  const sameStringSet = (left, right) =>
+    Array.isArray(left) &&
+    left.length === right.length &&
+    right.every((value) => left.includes(value));
+  const sameTerminalHIndexes = (indexes) =>
+    Array.isArray(indexes) &&
+    indexes.length === 3 &&
+    indexes[0] === 37 &&
+    indexes[1] === 36 &&
+    indexes[2] === 35;
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const validClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_only ===
+      true &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_split_map ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_rows ===
+      false &&
+    claimBoundary?.certifies_terminal_row_provider_object_replay === false &&
+    claimBoundary
+      ?.certifies_barycentric_to_successor_scalar_centered_projection_identity ===
+      false &&
+    claimBoundary?.certifies_barycentric_branch_residual_aggregate_identity ===
+      false &&
+    claimBoundary
+      ?.certifies_branch_resolved_centered_residual_source_object === false &&
+    claimBoundary?.certifies_terminal_successor_scalar_residual_identity ===
+      false &&
+    claimBoundary
+      ?.certifies_terminal_successor_scalar_provider_boundary_identity ===
+      false &&
+    claimBoundary
+      ?.certifies_terminal_successor_branch_antisymmetric_common_normalizer ===
+      false &&
+    claimBoundary
+      ?.certifies_terminal_successor_centered_residual_branch_split ===
+      false &&
+    claimBoundary?.certifies_branch_resolved_centered_residual_component ===
+      false &&
+    claimBoundary?.certifies_terminal_h_to_source_term_identity === false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const expectedCheckKinds = [
+    "expression_level_source_map_provider_object_branch_producer_ready",
+    "centered_residual_branch_split_rank_attempt_ready",
+    "same_domain_terminal_rows_aligned",
+    "aggregate_provider_object_equations_available",
+    "provider_object_branch_split_linear_system_rank_recorded",
+    "aggregate_compatible_split_witness_family_recorded",
+    "provider_object_branch_split_map_recorded_open",
+    "actual_provider_claims_remain_open",
+  ];
+  const expectedTerminalCheckKinds = [
+    "expression_level_source_map_provider_object_terminal_row_available",
+    "centered_residual_branch_split_rank_terminal_row_available",
+    "same_domain_terminal_row_aligned",
+    "aggregate_provider_object_interval_available",
+    "provider_object_branch_unknowns_declared",
+    "provider_object_split_linear_system_rank_recorded",
+    "aggregate_compatible_split_witness_family_sums_to_aggregate",
+    "provider_object_branch_split_recorded_open",
+    "actual_provider_claims_remain_open",
+  ];
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_UNDERDETERMINATION_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 terminal expression-level source-map provider-object branch split map underdetermination candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-terminal-expression-level-source-map-provider-object-branch-split-map-underdetermination-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-terminal-expression-level-source-map-provider-object-branch-split-map-underdetermination" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-terminal-expression-level-source-map-provider-object-branch-split-map-underdetermination" ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_producer_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_PRODUCER_CANDIDATE_SCHEMA ||
+    artifact
+      ?.terminal_successor_centered_residual_branch_split_rank_attempt_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SUCCESSOR_CENTERED_RESIDUAL_BRANCH_SPLIT_RANK_ATTEMPT_CANDIDATE_SCHEMA ||
+    artifact?.proof_status !==
+      "candidate-expression-level-source-map-provider-object-branch-split-map-underdetermined" ||
+    artifact?.provider_object_branch_split_linear_model !==
+      "P_-+P_+=P; (P_-,P_+)=(P/2+u_P,P/2-u_P)" ||
+    artifact?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    !sameTerminalHIndexes(artifact?.terminal_h_indexes) ||
+    !sameTerms(artifact?.source_terms_preserved_signed_together) ||
+    !sameStringSet(
+      artifact
+        ?.terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_check_kinds,
+      expectedCheckKinds
+    )
+  ) {
+    errors.push("provider-object branch split map underdetermination metadata must identify aggregate P rank one");
+  }
+  if (
+    expectedCheckKinds.some(
+      (kind) =>
+        artifact
+          ?.terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_checks?.[
+          kind
+        ] !== true
+    ) ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_verified !==
+      true ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_certified !==
+      false ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_row_count !==
+      5 ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_terminal_row_count !==
+      15 ||
+    artifact?.provider_object_branch_unknown_row_count !== 30 ||
+    artifact?.aggregate_provider_object_equation_count !== 15 ||
+    artifact?.provider_object_branch_split_rank !== 15 ||
+    artifact?.provider_object_branch_split_free_dimension !== 15 ||
+    artifact?.provider_object_branch_split_free_dimension_per_terminal_row !==
+      1 ||
+    artifact?.aggregate_compatible_split_witness_pair_count !== 30 ||
+    artifact
+      ?.source_map_provider_object_branch_split_map_available_terminal_row_count !==
+      0 ||
+    artifact
+      ?.source_map_provider_object_branch_interval_available_branch_row_count !==
+      0 ||
+    artifact?.aggregate_compatible_split_witnesses_sum_to_aggregate !== true ||
+    artifact?.aggregate_compatible_split_witnesses_are_distinct !== true ||
+    artifact?.same_aggregate_allows_distinct_branch_splits !== true ||
+    artifact
+      ?.expression_level_source_map_provider_object_branch_split_map_certified !==
+      false ||
+    artifact
+      ?.expression_level_source_map_provider_object_branch_rows_certified !==
+      false ||
+    artifact?.terminal_row_provider_object_replay_certified !== false ||
+    artifact?.expression_level_n38_provider_certified !== false ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_classification !==
+      "aggregate-provider-object-rank-one-branch-split-underdetermined" ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_blocker_classification !==
+      "same-domain-provider-object-branch-antisymmetric-equation-needed" ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_primary_missing_object_kind !==
+      "same-domain-provider-object-branch-antisymmetric-equation-or-branch-split-map" ||
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string" ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("provider-object branch split map underdetermination aggregate must record 30 unknowns, 15 equations, rank 15, and free dimension 15");
+  }
+  const rows =
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_rows ??
+    [];
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== 5 ||
+    !rows.every((row, index) => {
+      const terminalRows =
+        row
+          ?.terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_rows ??
+        [];
+      return (
+        row?.node_index === index &&
+        row?.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+        row?.required_xi_derivative_order === 4 &&
+        row
+          ?.terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_row_kind ===
+          "terminal-expression-level-source-map-provider-object-branch-split-map-underdetermination-row" &&
+        sameTerminalHIndexes(row?.terminal_h_indexes) &&
+        sameTerms(row?.source_terms_preserved_signed_together) &&
+        Array.isArray(terminalRows) &&
+        terminalRows.length === 3 &&
+        row
+          ?.terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_terminal_row_count ===
+          3 &&
+        row?.provider_object_branch_unknown_row_count === 6 &&
+        row?.aggregate_provider_object_equation_count === 3 &&
+        row?.provider_object_branch_split_rank === 3 &&
+        row?.provider_object_branch_split_free_dimension === 3 &&
+        row?.aggregate_compatible_split_witness_pair_count === 6 &&
+        row?.aggregate_compatible_split_witnesses_sum_to_aggregate === true &&
+        row?.aggregate_compatible_split_witnesses_are_distinct === true &&
+        row?.same_aggregate_allows_distinct_branch_splits === true &&
+        row
+          ?.source_map_provider_object_branch_split_map_available_terminal_row_count ===
+          0 &&
+        row
+          ?.source_map_provider_object_branch_interval_available_branch_row_count ===
+          0 &&
+        sameStringSet(row?.row_check_kinds, expectedCheckKinds) &&
+        expectedCheckKinds.every((kind) => row?.row_checks?.[kind] === true) &&
+        row
+          ?.row_terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_verified ===
+          true &&
+        row
+          ?.row_certifies_expression_level_source_map_provider_object_branch_split_map ===
+          false &&
+        row
+          ?.row_certifies_expression_level_source_map_provider_object_branch_rows ===
+          false &&
+        row?.row_certifies_terminal_row_provider_object_replay === false &&
+        validClaimBoundary(row?.claim_boundary) &&
+        terminalRows.every((terminalRow, terminalIndex) => {
+          const spec =
+            H39_TERMINAL_SUCCESSOR_COEFFICIENT_IDENTITY_IMPORT_SPECS[
+              terminalIndex
+            ];
+          const branchUnknownRows =
+            terminalRow?.provider_object_branch_unknown_rows ?? [];
+          const witnessRows =
+            terminalRow?.aggregate_compatible_split_witness_rows ?? [];
+          return (
+            terminalRow?.terminal_h_index === spec.terminal_h_index &&
+            terminalRow?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+            terminalRow?.terminal_graph_cell_id === `speed.${index}.first-y` &&
+            terminalRow?.successor_scalar_identity_weight ===
+              spec.successor_scalar_identity_weight &&
+            terminalRow?.centered_successor_scalar_weight ===
+              spec.centered_successor_scalar_weight &&
+            terminalRow?.aggregate_source_map_provider_object_equation ===
+              "P_-+P_+=P" &&
+            terminalRow?.provider_object_branch_split_linear_model ===
+              "P_-+P_+=P; (P_-,P_+)=(P/2+u_P,P/2-u_P)" &&
+            terminalRow?.provider_object_branch_split_solution_family ===
+              "(P_-,P_+)=(P/2+u_P,P/2-u_P)" &&
+            finiteOrderedInterval(
+              terminalRow?.aggregate_source_map_provider_object_interval
+            ) &&
+            finiteOrderedInterval(
+              terminalRow
+                ?.aggregate_source_map_provider_object_weighted_interval
+            ) &&
+            terminalRow?.provider_object_branch_unknown_count === 2 &&
+            terminalRow?.aggregate_equation_count === 1 &&
+            terminalRow?.provider_object_branch_split_rank === 1 &&
+            terminalRow?.provider_object_branch_split_free_dimension === 1 &&
+            terminalRow?.provider_object_branch_antisymmetric_coordinate_symbol ===
+              "u_P" &&
+            terminalRow?.provider_object_branch_antisymmetric_coordinate_determined ===
+              false &&
+            terminalRow?.source_map_provider_object_branch_split_map_available ===
+              false &&
+            terminalRow
+              ?.source_map_provider_object_branch_interval_available_count ===
+              0 &&
+            Array.isArray(branchUnknownRows) &&
+            branchUnknownRows.length === 2 &&
+            branchUnknownRows.every(
+              (branchRow) =>
+                ["-", "+"].includes(branchRow?.branch) &&
+                ["P_-", "P_+"].includes(
+                  branchRow?.provider_object_branch_residual_symbol
+                ) &&
+                branchRow?.aggregate_provider_object_symbol === "P" &&
+                branchRow
+                  ?.provider_object_branch_antisymmetric_coordinate_symbol ===
+                  "u_P" &&
+                [1, -1].includes(
+                  branchRow
+                    ?.provider_object_branch_antisymmetric_coordinate_coefficient
+                ) &&
+                ["P/2+u_P", "P/2-u_P"].includes(
+                  branchRow?.general_solution_expression
+                ) &&
+                branchRow
+                  ?.source_map_provider_object_branch_interval_available ===
+                  false &&
+                branchRow
+                  ?.source_map_provider_object_branch_split_map_available ===
+                  false &&
+                branchRow
+                  ?.admissible_as_actual_source_map_provider_object_branch_row ===
+                  false &&
+                validClaimBoundary(branchRow?.claim_boundary)
+            ) &&
+            Array.isArray(witnessRows) &&
+            witnessRows.length === 2 &&
+            witnessRows.every(
+              (witnessRow) =>
+                [
+                  "symmetric-provider-object-split-placeholder",
+                  "nonzero-branch-antisymmetric-provider-object-split-witness",
+                ].includes(witnessRow?.witness_kind) &&
+                witnessRow
+                  ?.provider_object_branch_antisymmetric_coordinate_symbol ===
+                  "u_P" &&
+                finiteNumber(
+                  witnessRow
+                    ?.provider_object_branch_antisymmetric_coordinate_value
+                ) &&
+                finiteOrderedInterval(
+                  witnessRow?.provider_object_minus_branch_interval
+                ) &&
+                finiteOrderedInterval(
+                  witnessRow?.provider_object_plus_branch_interval
+                ) &&
+                intervalsApproximatelyEqual(
+                  witnessRow?.provider_object_witness_sum_interval,
+                  terminalRow?.aggregate_source_map_provider_object_interval
+                ) &&
+                witnessRow?.provider_object_witness_sum_matches_aggregate ===
+                  true &&
+                witnessRow
+                  ?.admissible_as_actual_source_map_provider_object_branch_rows ===
+                  false &&
+                witnessRow?.rejection_reason ===
+                  "aggregate-provider-object-equation-does-not-determine-the-branch-split" &&
+                validClaimBoundary(witnessRow?.claim_boundary)
+            ) &&
+            witnessRows[0]
+              ?.provider_object_branch_antisymmetric_coordinate_value === 0 &&
+            Number(
+              witnessRows[1]
+                ?.provider_object_branch_antisymmetric_coordinate_value
+            ) > 0 &&
+            terminalRow?.aggregate_compatible_split_witness_pair_count === 2 &&
+            terminalRow?.aggregate_compatible_split_witnesses_sum_to_aggregate ===
+              true &&
+            terminalRow?.aggregate_compatible_split_witnesses_are_distinct ===
+              true &&
+            terminalRow?.same_aggregate_allows_distinct_branch_splits === true &&
+            terminalRow
+              ?.provider_object_branch_split_map_underdetermined_by_aggregate_provider ===
+              true &&
+            terminalRow
+              ?.expression_level_source_map_provider_object_branch_split_map_needed ===
+              true &&
+            sameStringSet(
+              terminalRow
+                ?.terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_check_kinds,
+              expectedTerminalCheckKinds
+            ) &&
+            expectedTerminalCheckKinds.every(
+              (kind) =>
+                terminalRow
+                  ?.terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_checks?.[
+                  kind
+                ] === true
+            ) &&
+            terminalRow
+              ?.row_terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_verified ===
+              true &&
+            terminalRow
+              ?.row_certifies_expression_level_source_map_provider_object_branch_split_map ===
+              false &&
+            terminalRow
+              ?.row_certifies_expression_level_source_map_provider_object_branch_rows ===
+              false &&
+            terminalRow?.row_certifies_terminal_row_provider_object_replay ===
+              false &&
+            terminalRow?.row_certifies_expression_level_n38_provider ===
+              false &&
+            terminalRow?.row_status ===
+              "aggregate-provider-object-branch-split-rank-one-free-antisymmetric-coordinate-open" &&
+            validClaimBoundary(terminalRow?.claim_boundary)
+          );
+        })
+      );
+    })
+  ) {
+    errors.push("provider-object branch split map underdetermination rows must prove aggregate P leaves one free branch-antisymmetric coordinate per terminal row");
+  }
+  return errors;
+}
+
+function h39TerminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractorClaimBoundary() {
+  return {
+    defines_terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_only:
+      true,
+    certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation:
+      false,
+    certifies_expression_level_source_map_provider_object_branch_split_map:
+      false,
+    certifies_expression_level_source_map_provider_object_branch_rows: false,
+    certifies_terminal_row_provider_object_replay: false,
+    certifies_barycentric_to_successor_scalar_centered_projection_identity:
+      false,
+    certifies_barycentric_branch_residual_aggregate_identity: false,
+    certifies_branch_resolved_centered_residual_source_object: false,
+    certifies_terminal_successor_scalar_residual_identity: false,
+    certifies_terminal_successor_scalar_provider_boundary_identity: false,
+    certifies_terminal_successor_branch_antisymmetric_common_normalizer: false,
+    certifies_terminal_successor_centered_residual_branch_split: false,
+    certifies_branch_resolved_centered_residual_component: false,
+    certifies_terminal_h_to_source_term_identity: false,
+    certifies_expression_level_n38_provider: false,
+    certifies_terminal_row_provider_enclosure: false,
+    certifies_terminal_graph_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
+export function buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractorCandidate({
+  sourceMapResidualCovarianceTarget,
+  terminalExpressionLevelSourceMapProviderObjectBranchProducer,
+  terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination,
+} = {}) {
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const numericInterval = (interval) =>
+    finiteOrderedInterval(interval)
+      ? [Number(interval[0]), Number(interval[1])]
+      : null;
+  const subtractIntervals = (left, right) =>
+    finiteOrderedInterval(left) && finiteOrderedInterval(right)
+      ? [Number(left[0]) - Number(right[1]), Number(left[1]) - Number(right[0])]
+      : null;
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const sameTerminalHIndexes = (indexes) =>
+    Array.isArray(indexes) &&
+    indexes.length === 3 &&
+    indexes[0] === 37 &&
+    indexes[1] === 36 &&
+    indexes[2] === 35;
+  const terminalSpecs = H39_TERMINAL_SUCCESSOR_COEFFICIENT_IDENTITY_IMPORT_SPECS;
+  const sourceTermProviderProbe =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_shared_stream_five_node_source_term_provider_probe ??
+    null;
+  const providerRows = sourceTermProviderProbe?.source_term_provider_probe_rows ?? [];
+  const expressionRows =
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      ?.terminal_expression_level_source_map_provider_object_branch_producer_rows ??
+    [];
+  const underdeterminationRows =
+    terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination
+      ?.terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_rows ??
+    [];
+  const rowsByNode = (rows) =>
+    new Map(
+      rows
+        .filter((row) => Number.isInteger(row?.node_index))
+        .map((row) => [Number(row.node_index), row])
+    );
+  const terminalRowsByH = (rows) =>
+    new Map(
+      (rows ?? [])
+        .filter((row) => Number.isInteger(row?.terminal_h_index))
+        .map((row) => [Number(row.terminal_h_index), row])
+    );
+  const providerRowsByNode = rowsByNode(providerRows);
+  const expressionRowsByNode = rowsByNode(expressionRows);
+  const underdeterminationRowsByNode = rowsByNode(underdeterminationRows);
+  const branchRowCollections = (providerRow) =>
+    [
+      providerRow?.source_map_provider_object_branch_rows,
+      providerRow?.expression_level_source_map_provider_object_branch_rows,
+      providerRow?.terminal_source_map_provider_object_branch_rows,
+    ]
+      .filter(Array.isArray)
+      .flat();
+  const branchRowsForTerminalH = (providerRow, terminalHIndex) =>
+    branchRowCollections(providerRow).filter(
+      (row) =>
+        (row?.branch === "-" || row?.branch === "+") &&
+        (row?.terminal_h_index === undefined ||
+          Number(row.terminal_h_index) === terminalHIndex)
+    );
+  const branchIntervalFromRow = (row) =>
+    numericInterval(row?.source_map_provider_object_branch_interval) ??
+    numericInterval(row?.source_map_provider_object_branch_residual_interval) ??
+    numericInterval(row?.source_map_provider_object_interval);
+  const antisymmetricMomentIntervalFromProviderRow = (providerRow) =>
+    numericInterval(
+      providerRow?.source_map_provider_object_branch_antisymmetric_interval
+    ) ??
+    numericInterval(
+      providerRow
+        ?.expression_level_source_map_provider_object_branch_antisymmetric_interval
+    ) ??
+    numericInterval(providerRow?.provider_object_branch_antisymmetric_interval) ??
+    numericInterval(providerRow?.source_map_provider_object_branch_difference_interval);
+  const termRowIsBranchAttributed = (termRow) =>
+    termRow?.branch === "-" ||
+    termRow?.branch === "+" ||
+    termRow?.source_branch === "-" ||
+    termRow?.source_branch === "+" ||
+    termRow?.provider_object_branch === "-" ||
+    termRow?.provider_object_branch === "+" ||
+    termRow?.branch_resolved_source_term === true;
+  const sourceTargetReady =
+    sourceMapResidualCovarianceTarget?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_MAP_RESIDUAL_COVARIANCE_TARGET_SCHEMA &&
+    sourceTermProviderProbe?.target_kind ===
+      "candidate-requested-y44-shared-source-map-source-term-provider-probe" &&
+    sourceTermProviderProbe?.source_term_provider_probe_rows_available ===
+      true &&
+    sourceTermProviderProbe
+      ?.source_term_provider_reaches_aggregate_verifier_claim_boundary ===
+      true &&
+    sourceTermProviderProbe?.source_term_provider_rows_certify_directed_rounded_source ===
+      false;
+  const expressionProducerReady =
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_PRODUCER_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      ?.terminal_expression_level_source_map_provider_object_branch_producer_verified ===
+      true &&
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      ?.terminal_expression_level_source_map_provider_object_branch_producer_certified ===
+      false &&
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      ?.source_map_provider_object_branch_split_map_available_terminal_row_count ===
+      0 &&
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      ?.source_map_provider_object_branch_interval_available_branch_row_count ===
+      0;
+  const underdeterminationReady =
+    terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_UNDERDETERMINATION_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination
+      ?.terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_verified ===
+      true &&
+    terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination
+      ?.terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_certified ===
+      false &&
+    terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination
+      ?.provider_object_branch_split_free_dimension === 15;
+  const terminalCheckKinds = [
+    "source_term_provider_terminal_row_available",
+    "expression_level_provider_object_terminal_row_available",
+    "provider_object_branch_split_rank_terminal_row_available",
+    "same_domain_terminal_row_aligned",
+    "aggregate_provider_object_interval_available",
+    "provider_object_branch_antisymmetric_equation_sources_inspected",
+    "provider_object_branch_antisymmetric_equation_absence_recorded",
+    "actual_provider_claims_remain_open",
+  ];
+  const checkKinds = [
+    "source_map_residual_covariance_target_ready",
+    "expression_level_source_map_provider_object_branch_producer_ready",
+    "provider_object_branch_split_underdetermination_ready",
+    "same_domain_terminal_rows_aligned",
+    "provider_object_branch_antisymmetric_equation_sources_inspected",
+    "provider_object_branch_antisymmetric_equation_absence_recorded",
+    "actual_provider_claims_remain_open",
+  ];
+  const rows = Array.from({ length: 5 }, (_, nodeIndex) => {
+    const terminalGraphCellId = `speed.${nodeIndex}.first-y`;
+    const providerRow = providerRowsByNode.get(nodeIndex) ?? null;
+    const expressionRow = expressionRowsByNode.get(nodeIndex) ?? null;
+    const underdeterminationRow =
+      underdeterminationRowsByNode.get(nodeIndex) ?? null;
+    const expressionTerminalRowsByH = terminalRowsByH(
+      expressionRow
+        ?.terminal_expression_level_source_map_provider_object_branch_producer_rows
+    );
+    const underdeterminationTerminalRowsByH = terminalRowsByH(
+      underdeterminationRow
+        ?.terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_rows
+    );
+    const sourceTermRows = Array.isArray(providerRow?.source_term_residual_rows)
+      ? providerRow.source_term_residual_rows
+      : [];
+    const terminalRows = terminalSpecs.map((spec) => {
+      const expressionTerminalRow =
+        expressionTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const underdeterminationTerminalRow =
+        underdeterminationTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const aggregateProviderInterval = numericInterval(
+        expressionTerminalRow?.aggregate_source_map_provider_object_interval
+      );
+      const explicitBranchRows = branchRowsForTerminalH(
+        providerRow,
+        spec.terminal_h_index
+      );
+      const minusBranchRow =
+        explicitBranchRows.find((row) => row?.branch === "-") ?? null;
+      const plusBranchRow =
+        explicitBranchRows.find((row) => row?.branch === "+") ?? null;
+      const minusBranchInterval = branchIntervalFromRow(minusBranchRow);
+      const plusBranchInterval = branchIntervalFromRow(plusBranchRow);
+      const branchPairDifferenceInterval = subtractIntervals(
+        minusBranchInterval,
+        plusBranchInterval
+      );
+      const branchPairEquationAvailable =
+        finiteOrderedInterval(branchPairDifferenceInterval) &&
+        minusBranchRow
+          ?.source_map_provider_object_branch_interval_available === true &&
+        plusBranchRow?.source_map_provider_object_branch_interval_available ===
+          true;
+      const explicitAntisymmetricMomentInterval =
+        antisymmetricMomentIntervalFromProviderRow(providerRow);
+      const explicitAntisymmetricMomentAvailable =
+        finiteOrderedInterval(explicitAntisymmetricMomentInterval) &&
+        (providerRow
+          ?.source_map_provider_object_branch_antisymmetric_interval_available ===
+          true ||
+          providerRow
+            ?.expression_level_source_map_provider_object_branch_antisymmetric_interval_available ===
+            true ||
+          providerRow?.provider_object_branch_antisymmetric_interval_available ===
+            true ||
+          providerRow
+            ?.source_map_provider_object_branch_difference_interval_available ===
+            true);
+      const branchAttributedTermRows = sourceTermRows.filter(
+        termRowIsBranchAttributed
+      );
+      const branchAttributedTermEquationAvailable =
+        branchAttributedTermRows.length ===
+          H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length * 2 &&
+        branchAttributedTermRows.every((termRow) =>
+          finiteOrderedInterval(termRow?.residual_interval)
+        );
+      const equationSourceRows = [
+        {
+          source_kind:
+            "explicit-provider-object-branch-antisymmetric-moment-field",
+          searched_fields: [
+            "source_map_provider_object_branch_antisymmetric_interval",
+            "expression_level_source_map_provider_object_branch_antisymmetric_interval",
+            "provider_object_branch_antisymmetric_interval",
+            "source_map_provider_object_branch_difference_interval",
+          ],
+          provider_object_branch_antisymmetric_equation_interval:
+            explicitAntisymmetricMomentAvailable
+              ? explicitAntisymmetricMomentInterval
+              : null,
+          provider_object_branch_antisymmetric_equation_available:
+            explicitAntisymmetricMomentAvailable,
+          admissible_as_provider_object_branch_antisymmetric_equation:
+            explicitAntisymmetricMomentAvailable,
+          rejection_reason: explicitAntisymmetricMomentAvailable
+            ? null
+            : "no-explicit-provider-object-branch-antisymmetric-moment-field",
+        },
+        {
+          source_kind: "explicit-provider-object-branch-row-pair",
+          searched_fields: [
+            "source_map_provider_object_branch_rows",
+            "expression_level_source_map_provider_object_branch_rows",
+            "terminal_source_map_provider_object_branch_rows",
+          ],
+          provider_object_branch_antisymmetric_equation_interval:
+            branchPairEquationAvailable ? branchPairDifferenceInterval : null,
+          provider_object_branch_antisymmetric_equation_available:
+            branchPairEquationAvailable,
+          admissible_as_provider_object_branch_antisymmetric_equation:
+            branchPairEquationAvailable,
+          rejection_reason: branchPairEquationAvailable
+            ? null
+            : "no-actual-provider-object-branch-row-pair",
+        },
+        {
+          source_kind: "branch-attributed-source-term-provider-rows",
+          searched_fields: ["source_term_residual_rows"],
+          provider_object_branch_antisymmetric_equation_interval: null,
+          provider_object_branch_antisymmetric_equation_available:
+            branchAttributedTermEquationAvailable,
+          admissible_as_provider_object_branch_antisymmetric_equation:
+            false,
+          rejection_reason: branchAttributedTermEquationAvailable
+            ? "branch-attributed-source-terms-are-not-yet-provider-object-branch-equation"
+            : "source-term-provider-rows-preserve-one-signed-aggregate-stream",
+        },
+      ];
+      const admissibleEquationSource =
+        equationSourceRows.find(
+          (row) =>
+            row.admissible_as_provider_object_branch_antisymmetric_equation ===
+            true
+        ) ?? null;
+      const equationAvailable = admissibleEquationSource !== null;
+      const terminalChecks = {
+        source_term_provider_terminal_row_available:
+          sourceTargetReady &&
+          providerRow?.provider_row_source_kind ===
+            "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+          sameTerms(providerRow?.source_terms_preserved_signed_together) &&
+          sourceTermRows.length ===
+            H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length,
+        expression_level_provider_object_terminal_row_available:
+          expressionProducerReady &&
+          expressionTerminalRow
+            ?.row_terminal_expression_level_source_map_provider_object_branch_producer_verified ===
+            true,
+        provider_object_branch_split_rank_terminal_row_available:
+          underdeterminationReady &&
+          underdeterminationTerminalRow
+            ?.row_terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_verified ===
+            true &&
+          underdeterminationTerminalRow?.provider_object_branch_split_free_dimension ===
+            1,
+        same_domain_terminal_row_aligned:
+          expressionTerminalRow?.terminal_graph_cell_id ===
+            terminalGraphCellId &&
+          underdeterminationTerminalRow?.terminal_graph_cell_id ===
+            terminalGraphCellId &&
+          expressionTerminalRow?.terminal_h_index === spec.terminal_h_index &&
+          underdeterminationTerminalRow?.terminal_h_index ===
+            spec.terminal_h_index &&
+          expressionTerminalRow?.successor_scalar_identity_weight ===
+            spec.successor_scalar_identity_weight &&
+          underdeterminationTerminalRow?.successor_scalar_identity_weight ===
+            spec.successor_scalar_identity_weight &&
+          expressionTerminalRow?.centered_successor_scalar_weight ===
+            spec.centered_successor_scalar_weight &&
+          underdeterminationTerminalRow?.centered_successor_scalar_weight ===
+            spec.centered_successor_scalar_weight,
+        aggregate_provider_object_interval_available:
+          finiteOrderedInterval(aggregateProviderInterval),
+        provider_object_branch_antisymmetric_equation_sources_inspected:
+          equationSourceRows.length === 3 &&
+          equationSourceRows.every(
+            (row) =>
+              typeof row.source_kind === "string" &&
+              Array.isArray(row.searched_fields) &&
+              typeof row.provider_object_branch_antisymmetric_equation_available ===
+                "boolean" &&
+              typeof row
+                .admissible_as_provider_object_branch_antisymmetric_equation ===
+                "boolean"
+          ),
+        provider_object_branch_antisymmetric_equation_absence_recorded:
+          equationAvailable === false &&
+          explicitBranchRows.length === 0 &&
+          branchAttributedTermRows.length === 0 &&
+          expressionTerminalRow
+            ?.source_map_provider_object_branch_split_map_available === false,
+        actual_provider_claims_remain_open:
+          expressionTerminalRow?.claim_boundary
+            ?.certifies_expression_level_source_map_provider_object_branch_rows ===
+            false &&
+          expressionTerminalRow?.claim_boundary
+            ?.certifies_expression_level_n38_provider === false &&
+          underdeterminationTerminalRow?.claim_boundary
+            ?.certifies_expression_level_source_map_provider_object_branch_split_map ===
+            false &&
+          underdeterminationTerminalRow?.claim_boundary
+            ?.certifies_directed_rounded_shared_domain === false,
+      };
+      const terminalRowVerified = Object.values(terminalChecks).every(
+        (value) => value === true
+      );
+      return {
+        terminal_h_index: spec.terminal_h_index,
+        source_y_order: H38_NUMERATOR_Y_ORDER,
+        terminal_graph_cell_id: terminalGraphCellId,
+        successor_scalar_identity_weight:
+          spec.successor_scalar_identity_weight,
+        centered_successor_scalar_weight:
+          spec.centered_successor_scalar_weight,
+        provider_object_branch_antisymmetric_equation_formula:
+          "P_- - P_+=A_P; u_P=A_P/2",
+        aggregate_source_map_provider_object_interval: aggregateProviderInterval,
+        source_term_provider_row_source_kind:
+          providerRow?.provider_row_source_kind ?? null,
+        source_term_provider_source_term_row_count: sourceTermRows.length,
+        source_term_provider_branch_attributed_term_row_count:
+          branchAttributedTermRows.length,
+        explicit_provider_object_branch_row_count: explicitBranchRows.length,
+        explicit_provider_object_branch_pair_difference_interval:
+          branchPairDifferenceInterval,
+        explicit_provider_object_branch_pair_difference_available:
+          branchPairEquationAvailable,
+        explicit_provider_object_branch_antisymmetric_moment_interval:
+          explicitAntisymmetricMomentAvailable
+            ? explicitAntisymmetricMomentInterval
+            : null,
+        explicit_provider_object_branch_antisymmetric_moment_available:
+          explicitAntisymmetricMomentAvailable,
+        provider_object_branch_antisymmetric_equation_source_rows:
+          equationSourceRows,
+        provider_object_branch_antisymmetric_equation_source_count:
+          equationSourceRows.length,
+        provider_object_branch_antisymmetric_equation_available:
+          equationAvailable,
+        provider_object_branch_antisymmetric_equation_interval:
+          numericInterval(
+            admissibleEquationSource
+              ?.provider_object_branch_antisymmetric_equation_interval
+          ),
+        provider_object_branch_antisymmetric_equation_count:
+          equationAvailable ? 1 : 0,
+        provider_object_branch_antisymmetric_free_dimension_remaining:
+          equationAvailable ? 0 : 1,
+        provider_object_branch_split_map_available:
+          expressionTerminalRow?.source_map_provider_object_branch_split_map_available ===
+          true,
+        source_map_provider_object_branch_interval_available_count:
+          expressionTerminalRow
+            ?.source_map_provider_object_branch_interval_available_count ?? 0,
+        provider_object_branch_antisymmetric_equation_needed: !equationAvailable,
+        terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_check_kinds:
+          [...terminalCheckKinds],
+        terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_checks:
+          terminalChecks,
+        row_terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_verified:
+          terminalRowVerified,
+        row_certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation:
+          false,
+        row_certifies_expression_level_source_map_provider_object_branch_split_map:
+          false,
+        row_certifies_expression_level_source_map_provider_object_branch_rows:
+          false,
+        row_certifies_terminal_row_provider_object_replay: false,
+        row_certifies_expression_level_n38_provider: false,
+        row_status: terminalRowVerified
+          ? equationAvailable
+            ? "provider-object-branch-antisymmetric-equation-extracted-certification-open"
+            : "provider-object-branch-antisymmetric-equation-absent-from-current-expression-level-surface"
+          : "provider-object-branch-antisymmetric-equation-extractor-row-open",
+        claim_boundary:
+          h39TerminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractorClaimBoundary(),
+      };
+    });
+    const rowChecks = {
+      source_map_residual_covariance_target_ready:
+        sourceTargetReady && providerRow !== null,
+      expression_level_source_map_provider_object_branch_producer_ready:
+        expressionProducerReady &&
+        expressionRow
+          ?.row_terminal_expression_level_source_map_provider_object_branch_producer_verified ===
+          true,
+      provider_object_branch_split_underdetermination_ready:
+        underdeterminationReady &&
+        underdeterminationRow
+          ?.row_terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_verified ===
+          true,
+      same_domain_terminal_rows_aligned: terminalRows.every(
+        (row) =>
+          row
+            .terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_checks
+            ?.same_domain_terminal_row_aligned === true
+      ),
+      provider_object_branch_antisymmetric_equation_sources_inspected:
+        terminalRows.every(
+          (row) =>
+            row
+              .terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_checks
+              ?.provider_object_branch_antisymmetric_equation_sources_inspected ===
+            true
+        ),
+      provider_object_branch_antisymmetric_equation_absence_recorded:
+        terminalRows.every(
+          (row) =>
+            row
+              .terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_checks
+              ?.provider_object_branch_antisymmetric_equation_absence_recorded ===
+            true
+        ),
+      actual_provider_claims_remain_open: terminalRows.every(
+        (row) =>
+          row
+            .terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_checks
+            ?.actual_provider_claims_remain_open === true
+      ),
+    };
+    const rowVerified = Object.values(rowChecks).every(
+      (value) => value === true
+    );
+    return {
+      node_index: nodeIndex,
+      terminal_graph_cell_id: terminalGraphCellId,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_row_kind:
+        "terminal-expression-level-source-map-provider-object-branch-antisymmetric-equation-extractor-row",
+      terminal_h_indexes: terminalSpecs.map((spec) => spec.terminal_h_index),
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_rows:
+        terminalRows,
+      terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_terminal_row_count:
+        terminalRows.length,
+      provider_object_branch_antisymmetric_equation_source_row_count:
+        terminalRows.reduce(
+          (total, row) =>
+            total + row.provider_object_branch_antisymmetric_equation_source_count,
+          0
+        ),
+      provider_object_branch_antisymmetric_equation_available_terminal_row_count:
+        terminalRows.filter(
+          (row) => row.provider_object_branch_antisymmetric_equation_available
+        ).length,
+      provider_object_branch_antisymmetric_equation_missing_terminal_row_count:
+        terminalRows.filter(
+          (row) => !row.provider_object_branch_antisymmetric_equation_available
+        ).length,
+      source_term_provider_source_term_row_count: terminalRows.reduce(
+        (total, row) => total + row.source_term_provider_source_term_row_count,
+        0
+      ),
+      source_term_provider_branch_attributed_term_row_count:
+        terminalRows.reduce(
+          (total, row) =>
+            total + row.source_term_provider_branch_attributed_term_row_count,
+          0
+        ),
+      explicit_provider_object_branch_row_count: terminalRows.reduce(
+        (total, row) => total + row.explicit_provider_object_branch_row_count,
+        0
+      ),
+      provider_object_branch_antisymmetric_free_dimension_remaining:
+        terminalRows.reduce(
+          (total, row) =>
+            total +
+            row.provider_object_branch_antisymmetric_free_dimension_remaining,
+          0
+        ),
+      row_check_kinds: Object.keys(rowChecks),
+      row_checks: rowChecks,
+      row_terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_verified:
+        rowVerified,
+      row_certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation:
+        false,
+      row_certifies_expression_level_source_map_provider_object_branch_split_map:
+        false,
+      row_certifies_expression_level_source_map_provider_object_branch_rows:
+        false,
+      row_certifies_terminal_row_provider_object_replay: false,
+      row_status: rowVerified
+        ? "provider-object-branch-antisymmetric-equation-absent-from-current-expression-level-surface"
+        : "provider-object-branch-antisymmetric-equation-extractor-open",
+      claim_boundary:
+        h39TerminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractorClaimBoundary(),
+    };
+  });
+  const terminalRowCount = rows.reduce(
+    (total, row) =>
+      total +
+      row
+        .terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_terminal_row_count,
+    0
+  );
+  const sumRows = (key) =>
+    rows.reduce((total, row) => total + Number(row?.[key] ?? 0), 0);
+  const equationAvailableCount = sumRows(
+    "provider_object_branch_antisymmetric_equation_available_terminal_row_count"
+  );
+  const equationMissingCount = sumRows(
+    "provider_object_branch_antisymmetric_equation_missing_terminal_row_count"
+  );
+  const aggregateChecks = {
+    source_map_residual_covariance_target_ready: sourceTargetReady,
+    expression_level_source_map_provider_object_branch_producer_ready:
+      expressionProducerReady,
+    provider_object_branch_split_underdetermination_ready:
+      underdeterminationReady,
+    same_domain_terminal_rows_aligned: rows.every(
+      (row) => row.row_checks?.same_domain_terminal_rows_aligned === true
+    ),
+    provider_object_branch_antisymmetric_equation_sources_inspected: rows.every(
+      (row) =>
+        row.row_checks
+          ?.provider_object_branch_antisymmetric_equation_sources_inspected ===
+        true
+    ),
+    provider_object_branch_antisymmetric_equation_absence_recorded: rows.every(
+      (row) =>
+        row.row_checks
+          ?.provider_object_branch_antisymmetric_equation_absence_recorded ===
+        true
+    ),
+    actual_provider_claims_remain_open: rows.every(
+      (row) => row.row_checks?.actual_provider_claims_remain_open === true
+    ),
+  };
+  const packetVerified =
+    rows.length === 5 &&
+    terminalRowCount === 15 &&
+    rows.every(
+      (row) =>
+        row
+          .row_terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_verified ===
+        true
+    ) &&
+    Object.values(aggregateChecks).every((value) => value === true);
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ANTISYMMETRIC_EQUATION_EXTRACTOR_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-terminal-expression-level-source-map-provider-object-branch-antisymmetric-equation-extractor-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-terminal-expression-level-source-map-provider-object-branch-antisymmetric-equation-extractor",
+    target_kind:
+      "candidate-requested-y44-terminal-expression-level-source-map-provider-object-branch-antisymmetric-equation-extractor",
+    source_map_residual_covariance_target_schema:
+      sourceMapResidualCovarianceTarget?.schema ?? null,
+    terminal_expression_level_source_map_provider_object_branch_producer_schema:
+      terminalExpressionLevelSourceMapProviderObjectBranchProducer?.schema ??
+      null,
+    terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_schema:
+      terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination?.schema ??
+      null,
+    proof_status:
+      "candidate-expression-level-provider-object-branch-antisymmetric-equation-absent",
+    provider_object_branch_antisymmetric_equation_formula:
+      "P_- - P_+=A_P; u_P=A_P/2",
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    terminal_h_indexes: terminalSpecs.map((spec) => spec.terminal_h_index),
+    source_terms_preserved_signed_together: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_check_kinds:
+      [...checkKinds],
+    terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_checks:
+      aggregateChecks,
+    terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_verified:
+      packetVerified,
+    terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_certified:
+      false,
+    terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_row_count:
+      rows.length,
+    terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_terminal_row_count:
+      terminalRowCount,
+    terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_rows:
+      rows,
+    provider_object_branch_antisymmetric_equation_source_row_count: sumRows(
+      "provider_object_branch_antisymmetric_equation_source_row_count"
+    ),
+    provider_object_branch_antisymmetric_equation_available_terminal_row_count:
+      equationAvailableCount,
+    provider_object_branch_antisymmetric_equation_missing_terminal_row_count:
+      equationMissingCount,
+    source_term_provider_source_term_row_count: sumRows(
+      "source_term_provider_source_term_row_count"
+    ),
+    source_term_provider_branch_attributed_term_row_count: sumRows(
+      "source_term_provider_branch_attributed_term_row_count"
+    ),
+    explicit_provider_object_branch_row_count: sumRows(
+      "explicit_provider_object_branch_row_count"
+    ),
+    provider_object_branch_antisymmetric_free_dimension_remaining: sumRows(
+      "provider_object_branch_antisymmetric_free_dimension_remaining"
+    ),
+    all_provider_object_branch_antisymmetric_equations_missing:
+      packetVerified && equationMissingCount === terminalRowCount,
+    expression_level_source_map_provider_object_branch_antisymmetric_equation_certified:
+      false,
+    expression_level_source_map_provider_object_branch_split_map_certified:
+      false,
+    expression_level_source_map_provider_object_branch_rows_certified: false,
+    terminal_row_provider_object_replay_certified: false,
+    expression_level_n38_provider_certified: false,
+    terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_classification:
+      packetVerified
+        ? "provider-object-branch-antisymmetric-equation-absent-from-current-expression-level-surface"
+        : "provider-object-branch-antisymmetric-equation-extractor-open",
+    terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_blocker_classification:
+      packetVerified
+        ? "same-domain-expression-level-provider-object-branch-antisymmetric-equation-needed"
+        : "provider-object-branch-antisymmetric-equation-extractor-open",
+    terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_primary_missing_object_kind:
+      packetVerified
+        ? "same-domain-provider-object-branch-antisymmetric-equation-A_P"
+        : "provider-object-branch-antisymmetric-equation-extractor",
+    next_certificate_object:
+      "same-domain expression-level provider-object branch moment A_P=P_- - P_+ or explicit branch-attributed provider rows that determine u_P=A_P/2",
+    candidate_certificate_route:
+      "This extractor searches the actual expression-level source-map provider object for an independent branch-antisymmetric equation P_- - P_+=A_P. It inspects explicit provider-object branch moment fields, explicit provider-object branch row pairs, and branch-attributed source-term provider rows. On the live terminal rows those sources are absent: the source terms remain one signed aggregate stream and the aggregate provider object leaves the branch split free. The packet certifies no branch equation, branch split map, provider-object branch rows, expression-level N38 provider, retained branch, shifted R43 closure, S37 division, or directed-rounded shared-domain provider.",
+    claim_boundary:
+      h39TerminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractorClaimBoundary(),
+  };
+}
+
+export function validateH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractorCandidate(
+  artifact
+) {
+  const errors = [];
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const sameStringSet = (left, right) =>
+    Array.isArray(left) &&
+    left.length === right.length &&
+    right.every((value) => left.includes(value));
+  const sameTerminalHIndexes = (indexes) =>
+    Array.isArray(indexes) &&
+    indexes.length === 3 &&
+    indexes[0] === 37 &&
+    indexes[1] === 36 &&
+    indexes[2] === 35;
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const validClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_only ===
+      true &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_split_map ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_rows ===
+      false &&
+    claimBoundary?.certifies_terminal_row_provider_object_replay === false &&
+    claimBoundary
+      ?.certifies_barycentric_to_successor_scalar_centered_projection_identity ===
+      false &&
+    claimBoundary?.certifies_barycentric_branch_residual_aggregate_identity ===
+      false &&
+    claimBoundary
+      ?.certifies_branch_resolved_centered_residual_source_object === false &&
+    claimBoundary?.certifies_terminal_successor_scalar_residual_identity ===
+      false &&
+    claimBoundary
+      ?.certifies_terminal_successor_scalar_provider_boundary_identity ===
+      false &&
+    claimBoundary
+      ?.certifies_terminal_successor_branch_antisymmetric_common_normalizer ===
+      false &&
+    claimBoundary
+      ?.certifies_terminal_successor_centered_residual_branch_split ===
+      false &&
+    claimBoundary?.certifies_branch_resolved_centered_residual_component ===
+      false &&
+    claimBoundary?.certifies_terminal_h_to_source_term_identity === false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const expectedCheckKinds = [
+    "source_map_residual_covariance_target_ready",
+    "expression_level_source_map_provider_object_branch_producer_ready",
+    "provider_object_branch_split_underdetermination_ready",
+    "same_domain_terminal_rows_aligned",
+    "provider_object_branch_antisymmetric_equation_sources_inspected",
+    "provider_object_branch_antisymmetric_equation_absence_recorded",
+    "actual_provider_claims_remain_open",
+  ];
+  const expectedTerminalCheckKinds = [
+    "source_term_provider_terminal_row_available",
+    "expression_level_provider_object_terminal_row_available",
+    "provider_object_branch_split_rank_terminal_row_available",
+    "same_domain_terminal_row_aligned",
+    "aggregate_provider_object_interval_available",
+    "provider_object_branch_antisymmetric_equation_sources_inspected",
+    "provider_object_branch_antisymmetric_equation_absence_recorded",
+    "actual_provider_claims_remain_open",
+  ];
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ANTISYMMETRIC_EQUATION_EXTRACTOR_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 provider-object branch antisymmetric equation extractor candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-terminal-expression-level-source-map-provider-object-branch-antisymmetric-equation-extractor-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-terminal-expression-level-source-map-provider-object-branch-antisymmetric-equation-extractor" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-terminal-expression-level-source-map-provider-object-branch-antisymmetric-equation-extractor" ||
+    artifact?.source_map_residual_covariance_target_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_MAP_RESIDUAL_COVARIANCE_TARGET_SCHEMA ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_producer_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_PRODUCER_CANDIDATE_SCHEMA ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_UNDERDETERMINATION_CANDIDATE_SCHEMA ||
+    artifact?.proof_status !==
+      "candidate-expression-level-provider-object-branch-antisymmetric-equation-absent" ||
+    artifact?.provider_object_branch_antisymmetric_equation_formula !==
+      "P_- - P_+=A_P; u_P=A_P/2" ||
+    artifact?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    !sameTerminalHIndexes(artifact?.terminal_h_indexes) ||
+    !sameTerms(artifact?.source_terms_preserved_signed_together) ||
+    !sameStringSet(
+      artifact
+        ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_check_kinds,
+      expectedCheckKinds
+    )
+  ) {
+    errors.push("provider-object branch antisymmetric equation extractor metadata must identify A_P");
+  }
+  if (
+    expectedCheckKinds.some(
+      (kind) =>
+        artifact
+          ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_checks?.[
+          kind
+        ] !== true
+    ) ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_verified !==
+      true ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_certified !==
+      false ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_row_count !==
+      5 ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_terminal_row_count !==
+      15 ||
+    artifact?.provider_object_branch_antisymmetric_equation_source_row_count !==
+      45 ||
+    artifact
+      ?.provider_object_branch_antisymmetric_equation_available_terminal_row_count !==
+      0 ||
+    artifact
+      ?.provider_object_branch_antisymmetric_equation_missing_terminal_row_count !==
+      15 ||
+    artifact?.source_term_provider_source_term_row_count !== 45 ||
+    artifact?.source_term_provider_branch_attributed_term_row_count !== 0 ||
+    artifact?.explicit_provider_object_branch_row_count !== 0 ||
+    artifact
+      ?.provider_object_branch_antisymmetric_free_dimension_remaining !==
+      15 ||
+    artifact?.all_provider_object_branch_antisymmetric_equations_missing !==
+      true ||
+    artifact
+      ?.expression_level_source_map_provider_object_branch_antisymmetric_equation_certified !==
+      false ||
+    artifact
+      ?.expression_level_source_map_provider_object_branch_split_map_certified !==
+      false ||
+    artifact
+      ?.expression_level_source_map_provider_object_branch_rows_certified !==
+      false ||
+    artifact?.terminal_row_provider_object_replay_certified !== false ||
+    artifact?.expression_level_n38_provider_certified !== false ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_classification !==
+      "provider-object-branch-antisymmetric-equation-absent-from-current-expression-level-surface" ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_blocker_classification !==
+      "same-domain-expression-level-provider-object-branch-antisymmetric-equation-needed" ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_primary_missing_object_kind !==
+      "same-domain-provider-object-branch-antisymmetric-equation-A_P" ||
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string" ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("provider-object branch antisymmetric equation extractor aggregate must record absent A_P on all terminal rows");
+  }
+  const rows =
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_rows ??
+    [];
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== 5 ||
+    !rows.every((row, index) => {
+      const terminalRows =
+        row
+          ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_rows ??
+        [];
+      return (
+        row?.node_index === index &&
+        row?.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+        row?.required_xi_derivative_order === 4 &&
+        row
+          ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_row_kind ===
+          "terminal-expression-level-source-map-provider-object-branch-antisymmetric-equation-extractor-row" &&
+        sameTerminalHIndexes(row?.terminal_h_indexes) &&
+        sameTerms(row?.source_terms_preserved_signed_together) &&
+        Array.isArray(terminalRows) &&
+        terminalRows.length === 3 &&
+        row
+          ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_terminal_row_count ===
+          3 &&
+        row?.provider_object_branch_antisymmetric_equation_source_row_count ===
+          9 &&
+        row
+          ?.provider_object_branch_antisymmetric_equation_available_terminal_row_count ===
+          0 &&
+        row
+          ?.provider_object_branch_antisymmetric_equation_missing_terminal_row_count ===
+          3 &&
+        row?.source_term_provider_source_term_row_count === 9 &&
+        row?.source_term_provider_branch_attributed_term_row_count === 0 &&
+        row?.explicit_provider_object_branch_row_count === 0 &&
+        row?.provider_object_branch_antisymmetric_free_dimension_remaining ===
+          3 &&
+        sameStringSet(row?.row_check_kinds, expectedCheckKinds) &&
+        expectedCheckKinds.every((kind) => row?.row_checks?.[kind] === true) &&
+        row
+          ?.row_terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_verified ===
+          true &&
+        row
+          ?.row_certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation ===
+          false &&
+        row
+          ?.row_certifies_expression_level_source_map_provider_object_branch_split_map ===
+          false &&
+        row
+          ?.row_certifies_expression_level_source_map_provider_object_branch_rows ===
+          false &&
+        row?.row_certifies_terminal_row_provider_object_replay === false &&
+        validClaimBoundary(row?.claim_boundary) &&
+        terminalRows.every((terminalRow, terminalIndex) => {
+          const spec =
+            H39_TERMINAL_SUCCESSOR_COEFFICIENT_IDENTITY_IMPORT_SPECS[
+              terminalIndex
+            ];
+          const sourceRows =
+            terminalRow
+              ?.provider_object_branch_antisymmetric_equation_source_rows ?? [];
+          return (
+            terminalRow?.terminal_h_index === spec.terminal_h_index &&
+            terminalRow?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+            terminalRow?.terminal_graph_cell_id === `speed.${index}.first-y` &&
+            terminalRow?.successor_scalar_identity_weight ===
+              spec.successor_scalar_identity_weight &&
+            terminalRow?.centered_successor_scalar_weight ===
+              spec.centered_successor_scalar_weight &&
+            terminalRow
+              ?.provider_object_branch_antisymmetric_equation_formula ===
+              "P_- - P_+=A_P; u_P=A_P/2" &&
+            finiteOrderedInterval(
+              terminalRow?.aggregate_source_map_provider_object_interval
+            ) &&
+            terminalRow?.source_term_provider_source_term_row_count === 3 &&
+            terminalRow
+              ?.source_term_provider_branch_attributed_term_row_count === 0 &&
+            terminalRow?.explicit_provider_object_branch_row_count === 0 &&
+            terminalRow
+              ?.explicit_provider_object_branch_pair_difference_interval ===
+              null &&
+            terminalRow
+              ?.explicit_provider_object_branch_pair_difference_available ===
+              false &&
+            terminalRow
+              ?.explicit_provider_object_branch_antisymmetric_moment_interval ===
+              null &&
+            terminalRow
+              ?.explicit_provider_object_branch_antisymmetric_moment_available ===
+              false &&
+            Array.isArray(sourceRows) &&
+            sourceRows.length === 3 &&
+            sourceRows.every(
+              (sourceRow) =>
+                typeof sourceRow?.source_kind === "string" &&
+                Array.isArray(sourceRow?.searched_fields) &&
+                sourceRow
+                  ?.provider_object_branch_antisymmetric_equation_interval ===
+                  null &&
+                sourceRow
+                  ?.provider_object_branch_antisymmetric_equation_available ===
+                  false &&
+                sourceRow
+                  ?.admissible_as_provider_object_branch_antisymmetric_equation ===
+                  false &&
+                typeof sourceRow?.rejection_reason === "string"
+            ) &&
+            terminalRow
+              ?.provider_object_branch_antisymmetric_equation_source_count ===
+              3 &&
+            terminalRow
+              ?.provider_object_branch_antisymmetric_equation_available ===
+              false &&
+            terminalRow
+              ?.provider_object_branch_antisymmetric_equation_interval ===
+              null &&
+            terminalRow
+              ?.provider_object_branch_antisymmetric_equation_count === 0 &&
+            terminalRow
+              ?.provider_object_branch_antisymmetric_free_dimension_remaining ===
+              1 &&
+            terminalRow?.provider_object_branch_split_map_available === false &&
+            terminalRow
+              ?.source_map_provider_object_branch_interval_available_count ===
+              0 &&
+            terminalRow
+              ?.provider_object_branch_antisymmetric_equation_needed === true &&
+            sameStringSet(
+              terminalRow
+                ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_check_kinds,
+              expectedTerminalCheckKinds
+            ) &&
+            expectedTerminalCheckKinds.every(
+              (kind) =>
+                terminalRow
+                  ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_checks?.[
+                  kind
+                ] === true
+            ) &&
+            terminalRow
+              ?.row_terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_verified ===
+              true &&
+            terminalRow
+              ?.row_certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation ===
+              false &&
+            terminalRow
+              ?.row_certifies_expression_level_source_map_provider_object_branch_split_map ===
+              false &&
+            terminalRow
+              ?.row_certifies_expression_level_source_map_provider_object_branch_rows ===
+              false &&
+            terminalRow?.row_certifies_terminal_row_provider_object_replay ===
+              false &&
+            terminalRow?.row_certifies_expression_level_n38_provider ===
+              false &&
+            terminalRow?.row_status ===
+              "provider-object-branch-antisymmetric-equation-absent-from-current-expression-level-surface" &&
+            validClaimBoundary(terminalRow?.claim_boundary)
+          );
+        })
+      );
+    })
+  ) {
+    errors.push("provider-object branch antisymmetric equation extractor rows must record absent A_P and remaining branch free dimension");
+  }
+  return errors;
+}
+
+function h39TerminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAuditClaimBoundary() {
+  return {
+    defines_terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_only:
+      true,
+    certifies_expression_level_source_term_to_provider_object_branch_projection_map:
+      false,
+    certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation:
+      false,
+    certifies_expression_level_source_map_provider_object_branch_split_map:
+      false,
+    certifies_expression_level_source_map_provider_object_branch_rows: false,
+    certifies_terminal_row_provider_object_replay: false,
+    certifies_expression_level_n38_provider: false,
+    certifies_terminal_row_provider_enclosure: false,
+    certifies_terminal_graph_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
+export function buildH39RequestedY44TerminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAuditCandidate({
+  sourceMapResidualCovarianceTarget,
+  terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor,
+} = {}) {
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const sameTerminalHIndexes = (indexes) =>
+    Array.isArray(indexes) &&
+    indexes.length === 3 &&
+    indexes[0] === 37 &&
+    indexes[1] === 36 &&
+    indexes[2] === 35;
+  const terminalSpecs = H39_TERMINAL_SUCCESSOR_COEFFICIENT_IDENTITY_IMPORT_SPECS;
+  const sourceTermProviderProbe =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_shared_stream_five_node_source_term_provider_probe ??
+    null;
+  const providerRows = sourceTermProviderProbe?.source_term_provider_probe_rows ?? [];
+  const traceAnchorRows =
+    sourceMapResidualCovarianceTarget?.source_map_residual_trace_anchor_rows ?? [];
+  const retainedTraceRows = traceAnchorRows.flatMap((row) =>
+    Array.isArray(row?.source_term_trace_rows)
+      ? row.source_term_trace_rows
+      : []
+  );
+  const termCancellationRows =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_shared_stream_five_node_term_cancellation_decomposition
+      ?.term_cancellation_decomposition_rows ?? [];
+  const extractorRows =
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_rows ??
+    [];
+  const rowsByNode = (rows) =>
+    new Map(
+      rows
+        .filter((row) => Number.isInteger(row?.node_index))
+        .map((row) => [Number(row.node_index), row])
+    );
+  const terminalRowsByH = (rows) =>
+    new Map(
+      (rows ?? [])
+        .filter((row) => Number.isInteger(row?.terminal_h_index))
+        .map((row) => [Number(row.terminal_h_index), row])
+    );
+  const providerRowsByNode = rowsByNode(providerRows);
+  const traceRowsByNode = rowsByNode(retainedTraceRows);
+  const termCancellationRowsByNode = rowsByNode(termCancellationRows);
+  const extractorRowsByNode = rowsByNode(extractorRows);
+  const branchProjectionSearchedFields = [
+    "branch",
+    "source_branch",
+    "provider_object_branch",
+    "branch_projection_coefficient",
+    "provider_object_branch_projection_weight",
+    "branch_parity",
+    "source_term_branch_parity",
+  ];
+  const branchProjectionCoefficient = (termRow) => {
+    const direct =
+      termRow?.branch_projection_coefficient ??
+      termRow?.provider_object_branch_projection_weight ??
+      termRow?.source_term_branch_projection_weight ??
+      null;
+    return finiteNumber(direct) ? Number(direct) : null;
+  };
+  const branchProjectionAvailable = (termRow) => {
+    const branch =
+      termRow?.branch ??
+      termRow?.source_branch ??
+      termRow?.provider_object_branch ??
+      null;
+    return (
+      (branch === "-" || branch === "+") &&
+      branchProjectionCoefficient(termRow) !== null
+    );
+  };
+  const sourceTargetReady =
+    sourceMapResidualCovarianceTarget?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_MAP_RESIDUAL_COVARIANCE_TARGET_SCHEMA &&
+    sourceTermProviderProbe?.target_kind ===
+      "candidate-requested-y44-shared-source-map-source-term-provider-probe" &&
+    sourceTermProviderProbe?.source_term_provider_probe_rows_available ===
+      true &&
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_trace_anchor_retains_source_term_trace_rows ===
+      true;
+  const extractorReady =
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ANTISYMMETRIC_EQUATION_EXTRACTOR_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_verified ===
+      true &&
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_certified ===
+      false &&
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      ?.provider_object_branch_antisymmetric_equation_available_terminal_row_count ===
+      0;
+  const terminalCheckKinds = [
+    "source_term_provider_terminal_row_available",
+    "retained_source_term_trace_row_available",
+    "term_cancellation_decomposition_row_available",
+    "provider_object_branch_antisymmetric_equation_extractor_terminal_row_available",
+    "same_domain_terminal_row_aligned",
+    "source_terms_preserved_signed_together",
+    "source_term_projection_candidate_rows_inspected",
+    "source_term_projection_map_absence_recorded",
+    "aggregate_source_term_equation_rank_recorded",
+    "actual_provider_claims_remain_open",
+  ];
+  const checkKinds = [
+    "source_map_residual_covariance_target_ready",
+    "provider_object_branch_antisymmetric_equation_extractor_ready",
+    "same_domain_terminal_rows_aligned",
+    "source_term_projection_candidate_rows_inspected",
+    "source_term_projection_map_absence_recorded",
+    "aggregate_source_term_equation_rank_recorded",
+    "actual_provider_claims_remain_open",
+  ];
+  const rows = Array.from({ length: 5 }, (_, nodeIndex) => {
+    const terminalGraphCellId = `speed.${nodeIndex}.first-y`;
+    const providerRow = providerRowsByNode.get(nodeIndex) ?? null;
+    const retainedTraceRow = traceRowsByNode.get(nodeIndex) ?? null;
+    const termCancellationRow =
+      termCancellationRowsByNode.get(nodeIndex) ?? null;
+    const extractorRow = extractorRowsByNode.get(nodeIndex) ?? null;
+    const extractorTerminalRowsByH = terminalRowsByH(
+      extractorRow
+        ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_rows
+    );
+    const sourceTermRows = Array.isArray(providerRow?.source_term_residual_rows)
+      ? H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.map((term) =>
+          providerRow.source_term_residual_rows.find(
+            (termRow) => termRow?.term === term
+          )
+        )
+      : [];
+    const termDecompositionRows = Array.isArray(
+      termCancellationRow?.term_residual_decomposition_rows
+    )
+      ? termCancellationRow.term_residual_decomposition_rows
+      : [];
+    const terminalRows = terminalSpecs.map((spec) => {
+      const extractorTerminalRow =
+        extractorTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const sourceTermProjectionRows = H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.map(
+        (term) => {
+          const termRow =
+            sourceTermRows.find((row) => row?.term === term) ?? null;
+          const decompositionTermRow =
+            termDecompositionRows.find((row) => row?.term === term) ?? null;
+          const coefficient = branchProjectionCoefficient(termRow);
+          const projectionAvailable =
+            termRow !== null && branchProjectionAvailable(termRow);
+          return {
+            term,
+            terminal_h_index: spec.terminal_h_index,
+            source_y_order: H38_NUMERATOR_Y_ORDER,
+            terminal_graph_cell_id: terminalGraphCellId,
+            source_term_residual_interval:
+              finiteOrderedInterval(termRow?.residual_interval)
+                ? [
+                    Number(termRow.residual_interval[0]),
+                    Number(termRow.residual_interval[1]),
+                  ]
+                : null,
+            term_residual_decomposition_sign_status:
+              decompositionTermRow?.residual_interval_sign_status ?? null,
+            term_residual_decomposition_midpoint_sign:
+              decompositionTermRow?.residual_interval_midpoint_sign ?? null,
+            source_term_branch_projection_searched_fields: [
+              ...branchProjectionSearchedFields,
+            ],
+            source_term_branch_label:
+              termRow?.branch ??
+              termRow?.source_branch ??
+              termRow?.provider_object_branch ??
+              null,
+            source_term_branch_projection_coefficient: coefficient,
+            source_term_branch_projection_coefficient_available:
+              projectionAvailable,
+            sign_status_is_not_provider_object_branch_projection:
+              decompositionTermRow?.residual_interval_sign_status !== undefined,
+            admissible_as_source_term_to_provider_object_branch_projection:
+              false,
+            rejection_reason: projectionAvailable
+              ? "source-term-branch-projection-field-present-but-provider-object-branch-map-not-certified"
+              : "source-term-row-has-no-provider-object-branch-projection-coefficient",
+          };
+        }
+      );
+      const availableProjectionRows = sourceTermProjectionRows.filter(
+        (row) => row.source_term_branch_projection_coefficient_available
+      );
+      const sourceTermProjectionMapAvailable =
+        availableProjectionRows.length ===
+        H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length;
+      const terminalChecks = {
+        source_term_provider_terminal_row_available:
+          sourceTargetReady &&
+          providerRow?.provider_row_source_kind ===
+            "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+          sameTerms(providerRow?.source_terms_preserved_signed_together) &&
+          sourceTermRows.length ===
+            H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+          sourceTermRows.every((row) => finiteOrderedInterval(row?.residual_interval)),
+        retained_source_term_trace_row_available:
+          retainedTraceRow !== null &&
+          Array.isArray(retainedTraceRow?.source_term_intervals) === false,
+        term_cancellation_decomposition_row_available:
+          termCancellationRow !== null &&
+          Array.isArray(termCancellationRow?.term_residual_decomposition_rows) &&
+          termCancellationRow.term_residual_decomposition_rows.length ===
+            H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length,
+        provider_object_branch_antisymmetric_equation_extractor_terminal_row_available:
+          extractorReady &&
+          extractorTerminalRow
+            ?.row_terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_verified ===
+            true &&
+          extractorTerminalRow
+            ?.provider_object_branch_antisymmetric_equation_available === false,
+        same_domain_terminal_row_aligned:
+          extractorTerminalRow?.terminal_graph_cell_id ===
+            terminalGraphCellId &&
+          extractorTerminalRow?.terminal_h_index === spec.terminal_h_index &&
+          extractorTerminalRow?.successor_scalar_identity_weight ===
+            spec.successor_scalar_identity_weight &&
+          extractorTerminalRow?.centered_successor_scalar_weight ===
+            spec.centered_successor_scalar_weight &&
+          Number(providerRow?.node_index) === nodeIndex &&
+          Number(retainedTraceRow?.node_index) === nodeIndex &&
+          Number(termCancellationRow?.node_index) === nodeIndex,
+        source_terms_preserved_signed_together: sameTerms(
+          providerRow?.source_terms_preserved_signed_together
+        ),
+        source_term_projection_candidate_rows_inspected:
+          sourceTermProjectionRows.length ===
+            H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+          sourceTermProjectionRows.every(
+            (row) =>
+              H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.includes(row.term) &&
+              Array.isArray(row.source_term_branch_projection_searched_fields) &&
+              typeof row
+                .source_term_branch_projection_coefficient_available ===
+                "boolean"
+          ),
+        source_term_projection_map_absence_recorded:
+          sourceTermProjectionMapAvailable === false &&
+          availableProjectionRows.length === 0,
+        aggregate_source_term_equation_rank_recorded:
+          extractorTerminalRow?.provider_object_branch_antisymmetric_free_dimension_remaining ===
+            1,
+        actual_provider_claims_remain_open:
+          providerRow?.claim_boundary
+            ?.certifies_source_inputs_as_directed_rounded_same_domain === false &&
+          extractorTerminalRow?.claim_boundary
+            ?.certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation ===
+            false &&
+          extractorTerminalRow?.claim_boundary
+            ?.certifies_directed_rounded_shared_domain === false,
+      };
+      const terminalVerified = Object.values(terminalChecks).every(
+        (value) => value === true
+      );
+      return {
+        terminal_h_index: spec.terminal_h_index,
+        source_y_order: H38_NUMERATOR_Y_ORDER,
+        terminal_graph_cell_id: terminalGraphCellId,
+        successor_scalar_identity_weight:
+          spec.successor_scalar_identity_weight,
+        centered_successor_scalar_weight:
+          spec.centered_successor_scalar_weight,
+        source_term_to_provider_object_branch_projection_model:
+          "P=sum_j S_j; A_P=sum_j alpha_j S_j",
+        source_term_aggregate_equation:
+          "P=S_delta_squared_speed+S_sin_phi+S_sin_delta",
+        provider_object_branch_antisymmetric_equation_target:
+          "A_P=P_- - P_+",
+        source_terms_preserved_signed_together: [
+          ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+        ],
+        source_term_projection_candidate_rows: sourceTermProjectionRows,
+        source_term_projection_candidate_row_count:
+          sourceTermProjectionRows.length,
+        source_term_branch_projection_coefficient_available_count:
+          availableProjectionRows.length,
+        retained_source_term_trace_row_available: retainedTraceRow !== null,
+        term_cancellation_decomposition_row_available:
+          termCancellationRow !== null,
+        term_sign_status_available_but_not_admissible_as_branch_projection:
+          termDecompositionRows.length ===
+          H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length,
+        source_term_projection_map_available:
+          sourceTermProjectionMapAvailable,
+        source_term_projection_known_equation_count: 1,
+        source_term_to_branch_projection_known_rank: 1,
+        source_term_to_branch_projection_required_rank: 2,
+        source_term_to_branch_projection_missing_rank:
+          sourceTermProjectionMapAvailable ? 0 : 1,
+        provider_object_branch_antisymmetric_equation_available:
+          extractorTerminalRow?.provider_object_branch_antisymmetric_equation_available ===
+          true,
+        provider_object_branch_antisymmetric_free_dimension_remaining:
+          sourceTermProjectionMapAvailable ? 0 : 1,
+        terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_check_kinds:
+          [...terminalCheckKinds],
+        terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_checks:
+          terminalChecks,
+        row_terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_verified:
+          terminalVerified,
+        row_certifies_expression_level_source_term_to_provider_object_branch_projection_map:
+          false,
+        row_certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation:
+          false,
+        row_certifies_expression_level_source_map_provider_object_branch_rows:
+          false,
+        row_certifies_terminal_row_provider_object_replay: false,
+        row_certifies_expression_level_n38_provider: false,
+        row_status: terminalVerified
+          ? "source-term-to-provider-object-branch-projection-map-absent"
+          : "source-term-to-provider-object-branch-projection-map-audit-row-open",
+        claim_boundary:
+          h39TerminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAuditClaimBoundary(),
+      };
+    });
+    const rowChecks = {
+      source_map_residual_covariance_target_ready:
+        sourceTargetReady && providerRow !== null,
+      provider_object_branch_antisymmetric_equation_extractor_ready:
+        extractorReady &&
+        extractorRow
+          ?.row_terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_verified ===
+          true,
+      same_domain_terminal_rows_aligned: terminalRows.every(
+        (row) =>
+          row
+            .terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_checks
+            ?.same_domain_terminal_row_aligned === true
+      ),
+      source_term_projection_candidate_rows_inspected: terminalRows.every(
+        (row) =>
+          row
+            .terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_checks
+            ?.source_term_projection_candidate_rows_inspected === true
+      ),
+      source_term_projection_map_absence_recorded: terminalRows.every(
+        (row) =>
+          row
+            .terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_checks
+            ?.source_term_projection_map_absence_recorded === true
+      ),
+      aggregate_source_term_equation_rank_recorded: terminalRows.every(
+        (row) =>
+          row
+            .terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_checks
+            ?.aggregate_source_term_equation_rank_recorded === true
+      ),
+      actual_provider_claims_remain_open: terminalRows.every(
+        (row) =>
+          row
+            .terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_checks
+            ?.actual_provider_claims_remain_open === true
+      ),
+    };
+    const rowVerified = Object.values(rowChecks).every(
+      (value) => value === true
+    );
+    const sumTerminalRows = (key) =>
+      terminalRows.reduce((total, row) => total + Number(row?.[key] ?? 0), 0);
+    return {
+      node_index: nodeIndex,
+      terminal_graph_cell_id: terminalGraphCellId,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_row_kind:
+        "terminal-expression-level-source-term-to-provider-object-branch-projection-map-audit-row",
+      terminal_h_indexes: terminalSpecs.map((spec) => spec.terminal_h_index),
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_rows:
+        terminalRows,
+      terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_terminal_row_count:
+        terminalRows.length,
+      source_term_projection_candidate_row_count: sumTerminalRows(
+        "source_term_projection_candidate_row_count"
+      ),
+      source_term_branch_projection_coefficient_available_count:
+        sumTerminalRows(
+          "source_term_branch_projection_coefficient_available_count"
+        ),
+      source_term_projection_map_available_terminal_row_count:
+        terminalRows.filter((row) => row.source_term_projection_map_available)
+          .length,
+      source_term_projection_map_missing_terminal_row_count:
+        terminalRows.filter((row) => !row.source_term_projection_map_available)
+          .length,
+      retained_source_term_trace_row_count: terminalRows.filter(
+        (row) => row.retained_source_term_trace_row_available
+      ).length,
+      term_cancellation_decomposition_row_count: terminalRows.filter(
+        (row) => row.term_cancellation_decomposition_row_available
+      ).length,
+      source_term_aggregate_equation_count: terminalRows.reduce(
+        (total, row) => total + Number(row.source_term_projection_known_equation_count),
+        0
+      ),
+      source_term_to_branch_projection_known_rank: sumTerminalRows(
+        "source_term_to_branch_projection_known_rank"
+      ),
+      source_term_to_branch_projection_required_rank: sumTerminalRows(
+        "source_term_to_branch_projection_required_rank"
+      ),
+      source_term_to_branch_projection_missing_rank: sumTerminalRows(
+        "source_term_to_branch_projection_missing_rank"
+      ),
+      provider_object_branch_antisymmetric_free_dimension_remaining:
+        sumTerminalRows(
+          "provider_object_branch_antisymmetric_free_dimension_remaining"
+        ),
+      row_check_kinds: Object.keys(rowChecks),
+      row_checks: rowChecks,
+      row_terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_verified:
+        rowVerified,
+      row_certifies_expression_level_source_term_to_provider_object_branch_projection_map:
+        false,
+      row_certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation:
+        false,
+      row_certifies_expression_level_source_map_provider_object_branch_rows:
+        false,
+      row_certifies_terminal_row_provider_object_replay: false,
+      row_status: rowVerified
+        ? "source-term-to-provider-object-branch-projection-map-absent"
+        : "source-term-to-provider-object-branch-projection-map-audit-open",
+      claim_boundary:
+        h39TerminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAuditClaimBoundary(),
+    };
+  });
+  const terminalRowCount = rows.reduce(
+    (total, row) =>
+      total +
+      row
+        .terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_terminal_row_count,
+    0
+  );
+  const sumRows = (key) =>
+    rows.reduce((total, row) => total + Number(row?.[key] ?? 0), 0);
+  const projectionMapAvailableCount = sumRows(
+    "source_term_projection_map_available_terminal_row_count"
+  );
+  const projectionMapMissingCount = sumRows(
+    "source_term_projection_map_missing_terminal_row_count"
+  );
+  const aggregateChecks = {
+    source_map_residual_covariance_target_ready: sourceTargetReady,
+    provider_object_branch_antisymmetric_equation_extractor_ready:
+      extractorReady,
+    same_domain_terminal_rows_aligned: rows.every(
+      (row) => row.row_checks?.same_domain_terminal_rows_aligned === true
+    ),
+    source_term_projection_candidate_rows_inspected: rows.every(
+      (row) =>
+        row.row_checks?.source_term_projection_candidate_rows_inspected === true
+    ),
+    source_term_projection_map_absence_recorded: rows.every(
+      (row) => row.row_checks?.source_term_projection_map_absence_recorded === true
+    ),
+    aggregate_source_term_equation_rank_recorded: rows.every(
+      (row) =>
+        row.row_checks?.aggregate_source_term_equation_rank_recorded === true
+    ),
+    actual_provider_claims_remain_open: rows.every(
+      (row) => row.row_checks?.actual_provider_claims_remain_open === true
+    ),
+  };
+  const auditVerified =
+    rows.length === 5 &&
+    terminalRowCount === 15 &&
+    rows.every(
+      (row) =>
+        row
+          .row_terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_verified ===
+        true
+    ) &&
+    Object.values(aggregateChecks).every((value) => value === true);
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_TO_PROVIDER_OBJECT_BRANCH_PROJECTION_MAP_AUDIT_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-terminal-expression-level-source-term-to-provider-object-branch-projection-map-audit-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-terminal-expression-level-source-term-to-provider-object-branch-projection-map-audit",
+    target_kind:
+      "candidate-requested-y44-terminal-expression-level-source-term-to-provider-object-branch-projection-map-audit",
+    source_map_residual_covariance_target_schema:
+      sourceMapResidualCovarianceTarget?.schema ?? null,
+    terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_schema:
+      terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor?.schema ??
+      null,
+    proof_status:
+      "candidate-source-term-to-provider-object-branch-projection-map-absent",
+    source_term_to_provider_object_branch_projection_model:
+      "P=sum_j S_j; A_P=sum_j alpha_j S_j",
+    provider_object_branch_antisymmetric_equation_target: "A_P=P_- - P_+",
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    terminal_h_indexes: terminalSpecs.map((spec) => spec.terminal_h_index),
+    source_terms_preserved_signed_together: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    source_term_branch_projection_searched_fields: [
+      ...branchProjectionSearchedFields,
+    ],
+    terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_check_kinds:
+      [...checkKinds],
+    terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_checks:
+      aggregateChecks,
+    terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_verified:
+      auditVerified,
+    terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_certified:
+      false,
+    terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_row_count:
+      rows.length,
+    terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_terminal_row_count:
+      terminalRowCount,
+    terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_rows:
+      rows,
+    source_term_projection_candidate_row_count: sumRows(
+      "source_term_projection_candidate_row_count"
+    ),
+    source_term_branch_projection_coefficient_available_count: sumRows(
+      "source_term_branch_projection_coefficient_available_count"
+    ),
+    source_term_projection_map_available_terminal_row_count:
+      projectionMapAvailableCount,
+    source_term_projection_map_missing_terminal_row_count:
+      projectionMapMissingCount,
+    retained_source_term_trace_row_count: sumRows(
+      "retained_source_term_trace_row_count"
+    ),
+    term_cancellation_decomposition_row_count: sumRows(
+      "term_cancellation_decomposition_row_count"
+    ),
+    source_term_aggregate_equation_count: sumRows(
+      "source_term_aggregate_equation_count"
+    ),
+    source_term_to_branch_projection_known_rank: sumRows(
+      "source_term_to_branch_projection_known_rank"
+    ),
+    source_term_to_branch_projection_required_rank: sumRows(
+      "source_term_to_branch_projection_required_rank"
+    ),
+    source_term_to_branch_projection_missing_rank: sumRows(
+      "source_term_to_branch_projection_missing_rank"
+    ),
+    provider_object_branch_antisymmetric_free_dimension_remaining: sumRows(
+      "provider_object_branch_antisymmetric_free_dimension_remaining"
+    ),
+    all_source_term_rows_preserve_one_signed_stream:
+      auditVerified && projectionMapMissingCount === terminalRowCount,
+    expression_level_source_term_to_provider_object_branch_projection_map_certified:
+      false,
+    expression_level_source_map_provider_object_branch_antisymmetric_equation_certified:
+      false,
+    expression_level_source_map_provider_object_branch_rows_certified: false,
+    terminal_row_provider_object_replay_certified: false,
+    expression_level_n38_provider_certified: false,
+    terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_classification:
+      auditVerified
+        ? "source-term-branch-projection-map-absent-from-current-expression-level-surface"
+        : "source-term-to-provider-object-branch-projection-map-audit-open",
+    terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_blocker_classification:
+      auditVerified
+        ? "same-domain-source-term-to-provider-object-branch-projection-map-needed"
+        : "source-term-to-provider-object-branch-projection-map-audit-open",
+    terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_primary_missing_object_kind:
+      auditVerified
+        ? "same-domain-source-term-to-provider-object-branch-projection-map-for-A_P"
+        : "source-term-to-provider-object-branch-projection-map-audit",
+    next_certificate_object:
+      "same-domain source-term-to-provider-object branch projection map alpha_j giving A_P=sum_j alpha_j S_j, or explicit expression-level provider-object branch rows",
+    candidate_certificate_route:
+      "The current expression-level source rows preserve delta_squared_speed, sin_phi, and sin_delta as one signed aggregate stream. They close P=sum_j S_j, and the retained trace plus term-cancellation decomposition record term values, residuals, signs, and pair cancellations, but expose no provider-object branch projection coefficients alpha_j and no branch labels. Therefore the source-term layer supplies rank one per terminal row, while provider-object branch realization needs a second independent row A_P=P_- - P_+. This packet certifies no projection map, branch equation, branch rows, expression-level N38 provider, retained branch, shifted R43 closure, S37 division, or directed-rounded shared-domain provider.",
+    claim_boundary:
+      h39TerminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAuditClaimBoundary(),
+  };
+}
+
+export function validateH39RequestedY44TerminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAuditCandidate(
+  artifact
+) {
+  const errors = [];
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const sameStringSet = (left, right) =>
+    Array.isArray(left) &&
+    left.length === right.length &&
+    right.every((value) => left.includes(value));
+  const sameTerminalHIndexes = (indexes) =>
+    Array.isArray(indexes) &&
+    indexes.length === 3 &&
+    indexes[0] === 37 &&
+    indexes[1] === 36 &&
+    indexes[2] === 35;
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const validClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_only ===
+      true &&
+    claimBoundary
+      ?.certifies_expression_level_source_term_to_provider_object_branch_projection_map ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_split_map ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_rows ===
+      false &&
+    claimBoundary?.certifies_terminal_row_provider_object_replay === false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const expectedCheckKinds = [
+    "source_map_residual_covariance_target_ready",
+    "provider_object_branch_antisymmetric_equation_extractor_ready",
+    "same_domain_terminal_rows_aligned",
+    "source_term_projection_candidate_rows_inspected",
+    "source_term_projection_map_absence_recorded",
+    "aggregate_source_term_equation_rank_recorded",
+    "actual_provider_claims_remain_open",
+  ];
+  const expectedTerminalCheckKinds = [
+    "source_term_provider_terminal_row_available",
+    "retained_source_term_trace_row_available",
+    "term_cancellation_decomposition_row_available",
+    "provider_object_branch_antisymmetric_equation_extractor_terminal_row_available",
+    "same_domain_terminal_row_aligned",
+    "source_terms_preserved_signed_together",
+    "source_term_projection_candidate_rows_inspected",
+    "source_term_projection_map_absence_recorded",
+    "aggregate_source_term_equation_rank_recorded",
+    "actual_provider_claims_remain_open",
+  ];
+  const expectedProjectionFields = [
+    "branch",
+    "source_branch",
+    "provider_object_branch",
+    "branch_projection_coefficient",
+    "provider_object_branch_projection_weight",
+    "branch_parity",
+    "source_term_branch_parity",
+  ];
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_TO_PROVIDER_OBJECT_BRANCH_PROJECTION_MAP_AUDIT_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 source-term to provider-object branch projection map audit candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-terminal-expression-level-source-term-to-provider-object-branch-projection-map-audit-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-terminal-expression-level-source-term-to-provider-object-branch-projection-map-audit" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-terminal-expression-level-source-term-to-provider-object-branch-projection-map-audit" ||
+    artifact?.source_map_residual_covariance_target_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_MAP_RESIDUAL_COVARIANCE_TARGET_SCHEMA ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ANTISYMMETRIC_EQUATION_EXTRACTOR_CANDIDATE_SCHEMA ||
+    artifact?.proof_status !==
+      "candidate-source-term-to-provider-object-branch-projection-map-absent" ||
+    artifact?.source_term_to_provider_object_branch_projection_model !==
+      "P=sum_j S_j; A_P=sum_j alpha_j S_j" ||
+    artifact?.provider_object_branch_antisymmetric_equation_target !==
+      "A_P=P_- - P_+" ||
+    artifact?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    !sameTerminalHIndexes(artifact?.terminal_h_indexes) ||
+    !sameTerms(artifact?.source_terms_preserved_signed_together) ||
+    !sameStringSet(
+      artifact?.source_term_branch_projection_searched_fields,
+      expectedProjectionFields
+    ) ||
+    !sameStringSet(
+      artifact
+        ?.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_check_kinds,
+      expectedCheckKinds
+    )
+  ) {
+    errors.push("source-term branch projection map audit metadata must identify missing alpha_j");
+  }
+  if (
+    expectedCheckKinds.some(
+      (kind) =>
+        artifact
+          ?.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_checks?.[
+          kind
+        ] !== true
+    ) ||
+    artifact
+      ?.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_verified !==
+      true ||
+    artifact
+      ?.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_certified !==
+      false ||
+    artifact
+      ?.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_row_count !==
+      5 ||
+    artifact
+      ?.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_terminal_row_count !==
+      15 ||
+    artifact?.source_term_projection_candidate_row_count !== 45 ||
+    artifact?.source_term_branch_projection_coefficient_available_count !==
+      0 ||
+    artifact?.source_term_projection_map_available_terminal_row_count !== 0 ||
+    artifact?.source_term_projection_map_missing_terminal_row_count !== 15 ||
+    artifact?.retained_source_term_trace_row_count !== 15 ||
+    artifact?.term_cancellation_decomposition_row_count !== 15 ||
+    artifact?.source_term_aggregate_equation_count !== 15 ||
+    artifact?.source_term_to_branch_projection_known_rank !== 15 ||
+    artifact?.source_term_to_branch_projection_required_rank !== 30 ||
+    artifact?.source_term_to_branch_projection_missing_rank !== 15 ||
+    artifact
+      ?.provider_object_branch_antisymmetric_free_dimension_remaining !==
+      15 ||
+    artifact?.all_source_term_rows_preserve_one_signed_stream !== true ||
+    artifact
+      ?.expression_level_source_term_to_provider_object_branch_projection_map_certified !==
+      false ||
+    artifact
+      ?.expression_level_source_map_provider_object_branch_antisymmetric_equation_certified !==
+      false ||
+    artifact
+      ?.expression_level_source_map_provider_object_branch_rows_certified !==
+      false ||
+    artifact?.terminal_row_provider_object_replay_certified !== false ||
+    artifact?.expression_level_n38_provider_certified !== false ||
+    artifact
+      ?.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_classification !==
+      "source-term-branch-projection-map-absent-from-current-expression-level-surface" ||
+    artifact
+      ?.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_blocker_classification !==
+      "same-domain-source-term-to-provider-object-branch-projection-map-needed" ||
+    artifact
+      ?.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_primary_missing_object_kind !==
+      "same-domain-source-term-to-provider-object-branch-projection-map-for-A_P" ||
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string" ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("source-term branch projection map audit aggregate must record rank-one source stream and missing branch projection");
+  }
+  const rows =
+    artifact
+      ?.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_rows ??
+    [];
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== 5 ||
+    !rows.every((row, index) => {
+      const terminalRows =
+        row
+          ?.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_rows ??
+        [];
+      return (
+        row?.node_index === index &&
+        row?.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+        row?.required_xi_derivative_order === 4 &&
+        row
+          ?.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_row_kind ===
+          "terminal-expression-level-source-term-to-provider-object-branch-projection-map-audit-row" &&
+        sameTerminalHIndexes(row?.terminal_h_indexes) &&
+        sameTerms(row?.source_terms_preserved_signed_together) &&
+        Array.isArray(terminalRows) &&
+        terminalRows.length === 3 &&
+        row
+          ?.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_terminal_row_count ===
+          3 &&
+        row?.source_term_projection_candidate_row_count === 9 &&
+        row?.source_term_branch_projection_coefficient_available_count === 0 &&
+        row?.source_term_projection_map_available_terminal_row_count === 0 &&
+        row?.source_term_projection_map_missing_terminal_row_count === 3 &&
+        row?.retained_source_term_trace_row_count === 3 &&
+        row?.term_cancellation_decomposition_row_count === 3 &&
+        row?.source_term_aggregate_equation_count === 3 &&
+        row?.source_term_to_branch_projection_known_rank === 3 &&
+        row?.source_term_to_branch_projection_required_rank === 6 &&
+        row?.source_term_to_branch_projection_missing_rank === 3 &&
+        row?.provider_object_branch_antisymmetric_free_dimension_remaining ===
+          3 &&
+        sameStringSet(row?.row_check_kinds, expectedCheckKinds) &&
+        expectedCheckKinds.every((kind) => row?.row_checks?.[kind] === true) &&
+        row
+          ?.row_terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_verified ===
+          true &&
+        row
+          ?.row_certifies_expression_level_source_term_to_provider_object_branch_projection_map ===
+          false &&
+        row
+          ?.row_certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation ===
+          false &&
+        row
+          ?.row_certifies_expression_level_source_map_provider_object_branch_rows ===
+          false &&
+        row?.row_certifies_terminal_row_provider_object_replay === false &&
+        row?.row_status ===
+          "source-term-to-provider-object-branch-projection-map-absent" &&
+        validClaimBoundary(row?.claim_boundary) &&
+        terminalRows.every((terminalRow, terminalIndex) => {
+          const spec =
+            H39_TERMINAL_SUCCESSOR_COEFFICIENT_IDENTITY_IMPORT_SPECS[
+              terminalIndex
+            ];
+          const projectionRows =
+            terminalRow?.source_term_projection_candidate_rows ?? [];
+          return (
+            terminalRow?.terminal_h_index === spec.terminal_h_index &&
+            terminalRow?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+            terminalRow?.terminal_graph_cell_id === `speed.${index}.first-y` &&
+            terminalRow?.successor_scalar_identity_weight ===
+              spec.successor_scalar_identity_weight &&
+            terminalRow?.centered_successor_scalar_weight ===
+              spec.centered_successor_scalar_weight &&
+            terminalRow?.source_term_to_provider_object_branch_projection_model ===
+              "P=sum_j S_j; A_P=sum_j alpha_j S_j" &&
+            terminalRow?.source_term_aggregate_equation ===
+              "P=S_delta_squared_speed+S_sin_phi+S_sin_delta" &&
+            terminalRow?.provider_object_branch_antisymmetric_equation_target ===
+              "A_P=P_- - P_+" &&
+            sameTerms(terminalRow?.source_terms_preserved_signed_together) &&
+            Array.isArray(projectionRows) &&
+            projectionRows.length ===
+              H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+            projectionRows.every(
+              (projectionRow, termIndex) =>
+                projectionRow?.term ===
+                  H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS[termIndex] &&
+                projectionRow?.terminal_h_index === spec.terminal_h_index &&
+                projectionRow?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+                projectionRow?.terminal_graph_cell_id ===
+                  `speed.${index}.first-y` &&
+                finiteOrderedInterval(
+                  projectionRow?.source_term_residual_interval
+                ) &&
+                typeof projectionRow?.term_residual_decomposition_sign_status ===
+                  "string" &&
+                [-1, 0, 1].includes(
+                  Number(projectionRow?.term_residual_decomposition_midpoint_sign)
+                ) &&
+                sameStringSet(
+                  projectionRow?.source_term_branch_projection_searched_fields,
+                  expectedProjectionFields
+                ) &&
+                projectionRow?.source_term_branch_label === null &&
+                projectionRow?.source_term_branch_projection_coefficient ===
+                  null &&
+                projectionRow
+                  ?.source_term_branch_projection_coefficient_available ===
+                  false &&
+                projectionRow
+                  ?.sign_status_is_not_provider_object_branch_projection ===
+                  true &&
+                projectionRow
+                  ?.admissible_as_source_term_to_provider_object_branch_projection ===
+                  false &&
+                projectionRow?.rejection_reason ===
+                  "source-term-row-has-no-provider-object-branch-projection-coefficient"
+            ) &&
+            terminalRow?.source_term_projection_candidate_row_count === 3 &&
+            terminalRow
+              ?.source_term_branch_projection_coefficient_available_count ===
+              0 &&
+            terminalRow?.retained_source_term_trace_row_available === true &&
+            terminalRow?.term_cancellation_decomposition_row_available ===
+              true &&
+            terminalRow
+              ?.term_sign_status_available_but_not_admissible_as_branch_projection ===
+              true &&
+            terminalRow?.source_term_projection_map_available === false &&
+            terminalRow?.source_term_projection_known_equation_count === 1 &&
+            terminalRow?.source_term_to_branch_projection_known_rank === 1 &&
+            terminalRow?.source_term_to_branch_projection_required_rank === 2 &&
+            terminalRow?.source_term_to_branch_projection_missing_rank === 1 &&
+            terminalRow?.provider_object_branch_antisymmetric_equation_available ===
+              false &&
+            terminalRow
+              ?.provider_object_branch_antisymmetric_free_dimension_remaining ===
+              1 &&
+            sameStringSet(
+              terminalRow
+                ?.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_check_kinds,
+              expectedTerminalCheckKinds
+            ) &&
+            expectedTerminalCheckKinds.every(
+              (kind) =>
+                terminalRow
+                  ?.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_checks?.[
+                  kind
+                ] === true
+            ) &&
+            terminalRow
+              ?.row_terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_verified ===
+              true &&
+            terminalRow
+              ?.row_certifies_expression_level_source_term_to_provider_object_branch_projection_map ===
+              false &&
+            terminalRow
+              ?.row_certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation ===
+              false &&
+            terminalRow
+              ?.row_certifies_expression_level_source_map_provider_object_branch_rows ===
+              false &&
+            terminalRow?.row_certifies_terminal_row_provider_object_replay ===
+              false &&
+            terminalRow?.row_certifies_expression_level_n38_provider ===
+              false &&
+            terminalRow?.row_status ===
+              "source-term-to-provider-object-branch-projection-map-absent" &&
+            validClaimBoundary(terminalRow?.claim_boundary)
+          );
+        })
+      );
+    })
+  ) {
+    errors.push("source-term branch projection map audit rows must record no alpha_j map and one missing rank per terminal row");
+  }
+  return errors;
+}
+
+function h39TerminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttemptClaimBoundary() {
+  return {
+    defines_terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_only:
+      true,
+    certifies_expression_level_source_term_branch_projection_alpha_map: false,
+    certifies_expression_level_source_term_branch_parity_generator: false,
+    certifies_expression_level_source_term_to_provider_object_branch_projection_map:
+      false,
+    certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation:
+      false,
+    certifies_expression_level_source_map_provider_object_branch_split_map:
+      false,
+    certifies_expression_level_source_map_provider_object_branch_rows: false,
+    certifies_terminal_row_provider_object_replay: false,
+    certifies_expression_level_n38_provider: false,
+    certifies_terminal_row_provider_enclosure: false,
+    certifies_terminal_graph_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
+export function buildH39RequestedY44TerminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttemptCandidate({
+  sourceMapResidualCovarianceTarget,
+  terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit,
+} = {}) {
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const terminalSpecs = H39_TERMINAL_SUCCESSOR_COEFFICIENT_IDENTITY_IMPORT_SPECS;
+  const sourceTermProviderProbe =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_shared_stream_five_node_source_term_provider_probe ??
+    null;
+  const providerRows = sourceTermProviderProbe?.source_term_provider_probe_rows ?? [];
+  const traceAnchorRows =
+    sourceMapResidualCovarianceTarget?.source_map_residual_trace_anchor_rows ?? [];
+  const retainedTraceRows = traceAnchorRows.flatMap((row) =>
+    Array.isArray(row?.source_term_trace_rows)
+      ? row.source_term_trace_rows
+      : []
+  );
+  const termCancellationRows =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_shared_stream_five_node_term_cancellation_decomposition
+      ?.term_cancellation_decomposition_rows ?? [];
+  const auditRows =
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      ?.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_rows ??
+    [];
+  const rowsByNode = (rows) =>
+    new Map(
+      rows
+        .filter((row) => Number.isInteger(row?.node_index))
+        .map((row) => [Number(row.node_index), row])
+    );
+  const terminalRowsByH = (rows) =>
+    new Map(
+      (rows ?? [])
+        .filter((row) => Number.isInteger(row?.terminal_h_index))
+        .map((row) => [Number(row.terminal_h_index), row])
+    );
+  const providerRowsByNode = rowsByNode(providerRows);
+  const traceRowsByNode = rowsByNode(retainedTraceRows);
+  const termCancellationRowsByNode = rowsByNode(termCancellationRows);
+  const auditRowsByNode = rowsByNode(auditRows);
+  const alphaDerivationSearchedFields = [
+    "branch_parity_generator",
+    "source_term_branch_parity_generator",
+    "provider_object_branch_parity_generator",
+    "branch_involution",
+    "source_term_branch_involution",
+    "provider_object_branch_involution",
+    "branch_involution_eigenvalue",
+    "source_term_branch_involution_eigenvalue",
+    "provider_object_branch_involution_eigenvalue",
+    "branch_parity",
+    "source_term_branch_parity",
+    "provider_object_branch_parity",
+    "alpha_j",
+    "source_term_alpha",
+    "source_term_branch_projection_weight",
+    "branch_projection_coefficient",
+    "provider_object_branch_projection_weight",
+    "provider_object_branch",
+    "source_branch",
+    "branch",
+  ];
+  const alphaCoefficientFields = [
+    "alpha_j",
+    "source_term_alpha",
+    "source_term_branch_projection_weight",
+    "branch_projection_coefficient",
+    "provider_object_branch_projection_weight",
+    "branch_involution_eigenvalue",
+    "source_term_branch_involution_eigenvalue",
+    "provider_object_branch_involution_eigenvalue",
+  ];
+  const branchGeneratorFields = [
+    "branch_parity_generator",
+    "source_term_branch_parity_generator",
+    "provider_object_branch_parity_generator",
+    "branch_involution",
+    "source_term_branch_involution",
+    "provider_object_branch_involution",
+  ];
+  const branchParityFields = [
+    "branch_parity",
+    "source_term_branch_parity",
+    "provider_object_branch_parity",
+  ];
+  const sourceTermExpressionComponents = {
+    delta_squared_speed: "delta^2*nu^{-2}",
+    sin_phi: "sin(phi)",
+    sin_delta: "sin(delta)",
+  };
+  const searchedSurfaceKinds = [
+    "source_term_provider_probe.source_term_residual_rows",
+    "source_map_residual_trace_anchor_rows.source_term_trace_rows",
+    "source_map_residual_shared_stream_five_node_term_cancellation_decomposition.term_residual_decomposition_rows",
+    "source_term_to_provider_object_branch_projection_map_audit.source_term_projection_candidate_rows",
+  ];
+  const firstFiniteField = (objects, fields) => {
+    for (const object of objects) {
+      for (const field of fields) {
+        if (finiteNumber(object?.[field])) {
+          return {
+            field,
+            value: Number(object[field]),
+          };
+        }
+      }
+    }
+    return null;
+  };
+  const fieldHits = (objects) =>
+    alphaDerivationSearchedFields.flatMap((field) =>
+      objects.some(
+        (object) => object?.[field] !== undefined && object?.[field] !== null
+      )
+        ? [field]
+        : []
+    );
+  const branchGeneratorHitFields = (objects) =>
+    branchGeneratorFields.filter((field) =>
+      objects.some(
+        (object) => object?.[field] !== undefined && object?.[field] !== null
+      )
+    );
+  const branchParityHitFields = (objects) =>
+    branchParityFields.filter((field) =>
+      objects.some(
+        (object) => object?.[field] !== undefined && object?.[field] !== null
+      )
+    );
+  const termIntervalFromTrace = (traceRow, term, key) =>
+    finiteOrderedInterval(traceRow?.[key]?.[term])
+      ? [Number(traceRow[key][term][0]), Number(traceRow[key][term][1])]
+      : null;
+  const sourceTargetReady =
+    sourceMapResidualCovarianceTarget?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_MAP_RESIDUAL_COVARIANCE_TARGET_SCHEMA &&
+    sourceTermProviderProbe?.target_kind ===
+      "candidate-requested-y44-shared-source-map-source-term-provider-probe" &&
+    sourceTermProviderProbe?.source_term_provider_probe_rows_available ===
+      true &&
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_trace_anchor_retains_source_term_trace_rows ===
+      true &&
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_shared_stream_five_node_term_cancellation_decomposition
+      ?.term_cancellation_decomposition_rows_available === true;
+  const auditReady =
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_TO_PROVIDER_OBJECT_BRANCH_PROJECTION_MAP_AUDIT_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      ?.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_verified ===
+      true &&
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      ?.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_certified ===
+      false &&
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      ?.source_term_branch_projection_coefficient_available_count === 0;
+  const terminalCheckKinds = [
+    "source_term_provider_terminal_row_available",
+    "retained_trace_terminal_row_available",
+    "term_cancellation_terminal_row_available",
+    "source_term_projection_audit_terminal_row_available",
+    "same_domain_terminal_row_aligned",
+    "source_term_definition_surfaces_inspected",
+    "branch_parity_generator_absence_recorded",
+    "source_term_alpha_coefficient_absence_recorded",
+    "aggregate_rank_obstruction_recorded",
+    "actual_provider_claims_remain_open",
+  ];
+  const checkKinds = [
+    "source_map_residual_covariance_target_ready",
+    "source_term_projection_map_audit_ready",
+    "same_domain_terminal_rows_aligned",
+    "source_term_definition_surfaces_inspected",
+    "branch_parity_generator_absence_recorded",
+    "source_term_alpha_coefficient_absence_recorded",
+    "aggregate_rank_obstruction_recorded",
+    "actual_provider_claims_remain_open",
+  ];
+  const rows = Array.from({ length: 5 }, (_, nodeIndex) => {
+    const terminalGraphCellId = `speed.${nodeIndex}.first-y`;
+    const providerRow = providerRowsByNode.get(nodeIndex) ?? null;
+    const retainedTraceRow = traceRowsByNode.get(nodeIndex) ?? null;
+    const termCancellationRow =
+      termCancellationRowsByNode.get(nodeIndex) ?? null;
+    const auditRow = auditRowsByNode.get(nodeIndex) ?? null;
+    const auditTerminalRowsByH = terminalRowsByH(
+      auditRow
+        ?.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_rows
+    );
+    const providerTermRows = Array.isArray(providerRow?.source_term_residual_rows)
+      ? providerRow.source_term_residual_rows
+      : [];
+    const termDecompositionRows = Array.isArray(
+      termCancellationRow?.term_residual_decomposition_rows
+    )
+      ? termCancellationRow.term_residual_decomposition_rows
+      : [];
+    const terminalRows = terminalSpecs.map((spec) => {
+      const auditTerminalRow =
+        auditTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const auditProjectionRows = Array.isArray(
+        auditTerminalRow?.source_term_projection_candidate_rows
+      )
+        ? auditTerminalRow.source_term_projection_candidate_rows
+        : [];
+      const alphaRows = H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.map(
+        (term) => {
+          const providerTermRow =
+            providerTermRows.find((row) => row?.term === term) ?? null;
+          const decompositionTermRow =
+            termDecompositionRows.find((row) => row?.term === term) ?? null;
+          const auditProjectionRow =
+            auditProjectionRows.find((row) => row?.term === term) ?? null;
+          const traceTermCarrier = retainedTraceRow
+            ? {
+                source_term_trace_interval: termIntervalFromTrace(
+                  retainedTraceRow,
+                  term,
+                  "source_term_intervals"
+                ),
+                source_term_trace_residual_interval_after_midpoint:
+                  termIntervalFromTrace(
+                    retainedTraceRow,
+                    term,
+                    "source_term_residual_intervals_after_midpoint"
+                  ),
+                source_term_trace_midpoint:
+                  finiteNumber(retainedTraceRow?.source_term_midpoints?.[term])
+                    ? Number(retainedTraceRow.source_term_midpoints[term])
+                    : null,
+              }
+            : null;
+          const searchedObjects = [
+            providerTermRow,
+            decompositionTermRow,
+            auditProjectionRow,
+            traceTermCarrier,
+          ].filter((object) => object !== null);
+          const alphaHit = firstFiniteField(
+            searchedObjects,
+            alphaCoefficientFields
+          );
+          const generatorHitNames = branchGeneratorHitFields(searchedObjects);
+          const parityHitNames = branchParityHitFields(searchedObjects);
+          const hitNames = fieldHits(searchedObjects);
+          return {
+            term,
+            terminal_h_index: spec.terminal_h_index,
+            source_y_order: H38_NUMERATOR_Y_ORDER,
+            terminal_graph_cell_id: terminalGraphCellId,
+            source_term_expression_component:
+              sourceTermExpressionComponents[term] ?? null,
+            branch_parity_derivation_model:
+              "B(S_j)=epsilon_j*S_j; A_P=sum_j alpha_j*S_j",
+            source_term_residual_interval:
+              finiteOrderedInterval(providerTermRow?.residual_interval)
+                ? [
+                    Number(providerTermRow.residual_interval[0]),
+                    Number(providerTermRow.residual_interval[1]),
+                  ]
+                : null,
+            retained_trace_source_term_interval:
+              traceTermCarrier?.source_term_trace_interval ?? null,
+            retained_trace_source_term_residual_interval_after_midpoint:
+              traceTermCarrier
+                ?.source_term_trace_residual_interval_after_midpoint ?? null,
+            term_residual_decomposition_interval:
+              finiteOrderedInterval(decompositionTermRow?.residual_interval)
+                ? [
+                    Number(decompositionTermRow.residual_interval[0]),
+                    Number(decompositionTermRow.residual_interval[1]),
+                  ]
+                : null,
+            term_residual_decomposition_sign_status:
+              decompositionTermRow?.residual_interval_sign_status ?? null,
+            audit_source_term_branch_projection_coefficient:
+              auditProjectionRow?.source_term_branch_projection_coefficient ??
+              null,
+            audit_source_term_branch_projection_coefficient_available:
+              auditProjectionRow
+                ?.source_term_branch_projection_coefficient_available === true,
+            alpha_derivation_searched_surface_kinds: [
+              ...searchedSurfaceKinds,
+            ],
+            alpha_derivation_searched_fields: [
+              ...alphaDerivationSearchedFields,
+            ],
+            alpha_derivation_field_hit_count: hitNames.length,
+            alpha_derivation_field_hits: hitNames,
+            branch_parity_generator_field_hits: generatorHitNames,
+            branch_parity_generator_available: generatorHitNames.length > 0,
+            branch_parity_field_hits: parityHitNames,
+            branch_parity_field_available: parityHitNames.length > 0,
+            source_term_alpha_coefficient:
+              alphaHit === null ? null : alphaHit.value,
+            source_term_alpha_coefficient_source_field:
+              alphaHit === null ? null : alphaHit.field,
+            source_term_alpha_coefficient_available: alphaHit !== null,
+            sign_status_is_not_branch_parity_generator:
+              decompositionTermRow?.residual_interval_sign_status !== undefined,
+            admissible_as_source_term_branch_projection_alpha_derivation:
+              false,
+            rejection_reason:
+              alphaHit === null && generatorHitNames.length === 0
+                ? "source-term-definition-surface-has-no-branch-parity-generator-or-alpha-coefficient"
+                : "source-term-definition-surface-field-present-but-alpha-map-not-certified",
+          };
+        }
+      );
+      const alphaAvailableRows = alphaRows.filter(
+        (row) => row.source_term_alpha_coefficient_available
+      );
+      const generatorAvailableRows = alphaRows.filter(
+        (row) => row.branch_parity_generator_available
+      );
+      const sourceTermAlphaMapAvailable =
+        alphaAvailableRows.length ===
+        H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length;
+      const terminalChecks = {
+        source_term_provider_terminal_row_available:
+          sourceTargetReady &&
+          providerRow?.provider_row_source_kind ===
+            "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+          sameTerms(providerRow?.source_terms_preserved_signed_together) &&
+          providerTermRows.length ===
+            H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+          providerTermRows.every((row) =>
+            finiteOrderedInterval(row?.residual_interval)
+          ),
+        retained_trace_terminal_row_available:
+          retainedTraceRow !== null &&
+          sameTerms(retainedTraceRow?.source_terms) &&
+          H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every((term) =>
+            finiteOrderedInterval(
+              retainedTraceRow?.source_term_intervals?.[term]
+            )
+          ),
+        term_cancellation_terminal_row_available:
+          termCancellationRow !== null &&
+          Array.isArray(termCancellationRow?.term_residual_decomposition_rows) &&
+          termCancellationRow.term_residual_decomposition_rows.length ===
+            H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length,
+        source_term_projection_audit_terminal_row_available:
+          auditReady &&
+          auditTerminalRow
+            ?.row_terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_verified ===
+            true &&
+          auditTerminalRow?.source_term_projection_map_available === false,
+        same_domain_terminal_row_aligned:
+          Number(providerRow?.node_index) === nodeIndex &&
+          Number(retainedTraceRow?.node_index) === nodeIndex &&
+          Number(termCancellationRow?.node_index) === nodeIndex &&
+          auditTerminalRow?.terminal_graph_cell_id === terminalGraphCellId &&
+          auditTerminalRow?.terminal_h_index === spec.terminal_h_index &&
+          auditTerminalRow?.successor_scalar_identity_weight ===
+            spec.successor_scalar_identity_weight &&
+          auditTerminalRow?.centered_successor_scalar_weight ===
+            spec.centered_successor_scalar_weight,
+        source_term_definition_surfaces_inspected:
+          alphaRows.length ===
+            H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+          alphaRows.every(
+            (row) =>
+              H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.includes(row.term) &&
+              Array.isArray(row.alpha_derivation_searched_fields) &&
+              Array.isArray(row.alpha_derivation_searched_surface_kinds)
+          ),
+        branch_parity_generator_absence_recorded:
+          generatorAvailableRows.length === 0 &&
+          alphaRows.every(
+            (row) => row.branch_parity_generator_available === false
+          ),
+        source_term_alpha_coefficient_absence_recorded:
+          sourceTermAlphaMapAvailable === false &&
+          alphaAvailableRows.length === 0,
+        aggregate_rank_obstruction_recorded:
+          auditTerminalRow?.source_term_to_branch_projection_known_rank === 1 &&
+          auditTerminalRow?.source_term_to_branch_projection_required_rank ===
+            2 &&
+          auditTerminalRow?.source_term_to_branch_projection_missing_rank === 1,
+        actual_provider_claims_remain_open:
+          providerRow?.claim_boundary
+            ?.certifies_source_inputs_as_directed_rounded_same_domain === false &&
+          auditTerminalRow?.claim_boundary
+            ?.certifies_expression_level_source_term_to_provider_object_branch_projection_map ===
+            false &&
+          auditTerminalRow?.claim_boundary
+            ?.certifies_directed_rounded_shared_domain === false,
+      };
+      const terminalVerified = Object.values(terminalChecks).every(
+        (value) => value === true
+      );
+      return {
+        terminal_h_index: spec.terminal_h_index,
+        source_y_order: H38_NUMERATOR_Y_ORDER,
+        terminal_graph_cell_id: terminalGraphCellId,
+        successor_scalar_identity_weight:
+          spec.successor_scalar_identity_weight,
+        centered_successor_scalar_weight:
+          spec.centered_successor_scalar_weight,
+        source_term_branch_projection_alpha_model:
+          "P=sum_j S_j; A_P=sum_j alpha_j*S_j",
+        source_term_branch_parity_generator_model:
+          "B(S_j)=epsilon_j*S_j on the same terminal domain",
+        provider_object_branch_antisymmetric_equation_target:
+          "A_P=P_- - P_+",
+        source_expression:
+          sourceMapResidualCovarianceTarget?.source_expression ?? null,
+        source_terms_preserved_signed_together: [
+          ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+        ],
+        source_term_branch_projection_alpha_derivation_rows: alphaRows,
+        source_term_branch_projection_alpha_derivation_row_count:
+          alphaRows.length,
+        source_term_branch_parity_generator_available_count:
+          generatorAvailableRows.length,
+        source_term_alpha_coefficient_available_count:
+          alphaAvailableRows.length,
+        source_term_alpha_map_available: sourceTermAlphaMapAvailable,
+        source_term_branch_parity_generator_available:
+          generatorAvailableRows.length > 0,
+        term_sign_status_available_but_not_admissible_as_branch_parity_generator:
+          termDecompositionRows.length ===
+          H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length,
+        retained_trace_term_intervals_available:
+          terminalChecks.retained_trace_terminal_row_available,
+        source_term_projection_map_audit_available:
+          auditTerminalRow?.source_term_projection_map_available === false,
+        source_term_projection_known_equation_count: 1,
+        source_term_to_branch_projection_known_rank: 1,
+        source_term_to_branch_projection_required_rank: 2,
+        source_term_to_branch_projection_missing_rank:
+          sourceTermAlphaMapAvailable ? 0 : 1,
+        provider_object_branch_antisymmetric_free_dimension_remaining:
+          sourceTermAlphaMapAvailable ? 0 : 1,
+        terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_check_kinds:
+          [...terminalCheckKinds],
+        terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_checks:
+          terminalChecks,
+        row_terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_verified:
+          terminalVerified,
+        row_certifies_expression_level_source_term_branch_projection_alpha_map:
+          false,
+        row_certifies_expression_level_source_term_branch_parity_generator:
+          false,
+        row_certifies_expression_level_source_term_to_provider_object_branch_projection_map:
+          false,
+        row_certifies_expression_level_source_map_provider_object_branch_rows:
+          false,
+        row_certifies_terminal_row_provider_object_replay: false,
+        row_certifies_expression_level_n38_provider: false,
+        row_status: terminalVerified
+          ? "source-term-branch-projection-alpha-derivation-missing-generator"
+          : "source-term-branch-projection-alpha-derivation-attempt-open",
+        claim_boundary:
+          h39TerminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttemptClaimBoundary(),
+      };
+    });
+    const rowChecks = {
+      source_map_residual_covariance_target_ready:
+        sourceTargetReady && providerRow !== null,
+      source_term_projection_map_audit_ready:
+        auditReady &&
+        auditRow
+          ?.row_terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_verified ===
+          true,
+      same_domain_terminal_rows_aligned: terminalRows.every(
+        (row) =>
+          row
+            .terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_checks
+            ?.same_domain_terminal_row_aligned === true
+      ),
+      source_term_definition_surfaces_inspected: terminalRows.every(
+        (row) =>
+          row
+            .terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_checks
+            ?.source_term_definition_surfaces_inspected === true
+      ),
+      branch_parity_generator_absence_recorded: terminalRows.every(
+        (row) =>
+          row
+            .terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_checks
+            ?.branch_parity_generator_absence_recorded === true
+      ),
+      source_term_alpha_coefficient_absence_recorded: terminalRows.every(
+        (row) =>
+          row
+            .terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_checks
+            ?.source_term_alpha_coefficient_absence_recorded === true
+      ),
+      aggregate_rank_obstruction_recorded: terminalRows.every(
+        (row) =>
+          row
+            .terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_checks
+            ?.aggregate_rank_obstruction_recorded === true
+      ),
+      actual_provider_claims_remain_open: terminalRows.every(
+        (row) =>
+          row
+            .terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_checks
+            ?.actual_provider_claims_remain_open === true
+      ),
+    };
+    const rowVerified = Object.values(rowChecks).every(
+      (value) => value === true
+    );
+    const sumTerminalRows = (key) =>
+      terminalRows.reduce((total, row) => total + Number(row?.[key] ?? 0), 0);
+    return {
+      node_index: nodeIndex,
+      terminal_graph_cell_id: terminalGraphCellId,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_row_kind:
+        "terminal-expression-level-source-term-branch-projection-alpha-derivation-attempt-row",
+      terminal_h_indexes: terminalSpecs.map((spec) => spec.terminal_h_index),
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_rows:
+        terminalRows,
+      terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_terminal_row_count:
+        terminalRows.length,
+      source_term_branch_projection_alpha_derivation_row_count:
+        sumTerminalRows(
+          "source_term_branch_projection_alpha_derivation_row_count"
+        ),
+      source_term_branch_parity_generator_available_count: sumTerminalRows(
+        "source_term_branch_parity_generator_available_count"
+      ),
+      source_term_alpha_coefficient_available_count: sumTerminalRows(
+        "source_term_alpha_coefficient_available_count"
+      ),
+      source_term_alpha_map_available_terminal_row_count:
+        terminalRows.filter((row) => row.source_term_alpha_map_available)
+          .length,
+      source_term_alpha_map_missing_terminal_row_count:
+        terminalRows.filter((row) => !row.source_term_alpha_map_available)
+          .length,
+      source_term_branch_parity_generator_available_terminal_row_count:
+        terminalRows.filter(
+          (row) => row.source_term_branch_parity_generator_available
+        ).length,
+      source_term_projection_known_equation_count: terminalRows.reduce(
+        (total, row) => total + Number(row.source_term_projection_known_equation_count),
+        0
+      ),
+      source_term_to_branch_projection_known_rank: sumTerminalRows(
+        "source_term_to_branch_projection_known_rank"
+      ),
+      source_term_to_branch_projection_required_rank: sumTerminalRows(
+        "source_term_to_branch_projection_required_rank"
+      ),
+      source_term_to_branch_projection_missing_rank: sumTerminalRows(
+        "source_term_to_branch_projection_missing_rank"
+      ),
+      provider_object_branch_antisymmetric_free_dimension_remaining:
+        sumTerminalRows(
+          "provider_object_branch_antisymmetric_free_dimension_remaining"
+        ),
+      row_check_kinds: Object.keys(rowChecks),
+      row_checks: rowChecks,
+      row_terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_verified:
+        rowVerified,
+      row_certifies_expression_level_source_term_branch_projection_alpha_map:
+        false,
+      row_certifies_expression_level_source_term_branch_parity_generator: false,
+      row_certifies_expression_level_source_term_to_provider_object_branch_projection_map:
+        false,
+      row_certifies_expression_level_source_map_provider_object_branch_rows:
+        false,
+      row_certifies_terminal_row_provider_object_replay: false,
+      row_status: rowVerified
+        ? "source-term-branch-projection-alpha-derivation-missing-generator"
+        : "source-term-branch-projection-alpha-derivation-attempt-open",
+      claim_boundary:
+        h39TerminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttemptClaimBoundary(),
+    };
+  });
+  const terminalRowCount = rows.reduce(
+    (total, row) =>
+      total +
+      row
+        .terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_terminal_row_count,
+    0
+  );
+  const sumRows = (key) =>
+    rows.reduce((total, row) => total + Number(row?.[key] ?? 0), 0);
+  const alphaMapAvailableCount = sumRows(
+    "source_term_alpha_map_available_terminal_row_count"
+  );
+  const alphaMapMissingCount = sumRows(
+    "source_term_alpha_map_missing_terminal_row_count"
+  );
+  const aggregateChecks = {
+    source_map_residual_covariance_target_ready: sourceTargetReady,
+    source_term_projection_map_audit_ready: auditReady,
+    same_domain_terminal_rows_aligned: rows.every(
+      (row) => row.row_checks?.same_domain_terminal_rows_aligned === true
+    ),
+    source_term_definition_surfaces_inspected: rows.every(
+      (row) =>
+        row.row_checks?.source_term_definition_surfaces_inspected === true
+    ),
+    branch_parity_generator_absence_recorded: rows.every(
+      (row) => row.row_checks?.branch_parity_generator_absence_recorded === true
+    ),
+    source_term_alpha_coefficient_absence_recorded: rows.every(
+      (row) =>
+        row.row_checks?.source_term_alpha_coefficient_absence_recorded === true
+    ),
+    aggregate_rank_obstruction_recorded: rows.every(
+      (row) => row.row_checks?.aggregate_rank_obstruction_recorded === true
+    ),
+    actual_provider_claims_remain_open: rows.every(
+      (row) => row.row_checks?.actual_provider_claims_remain_open === true
+    ),
+  };
+  const derivationAttemptVerified =
+    rows.length === 5 &&
+    terminalRowCount === 15 &&
+    rows.every(
+      (row) =>
+        row
+          .row_terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_verified ===
+        true
+    ) &&
+    Object.values(aggregateChecks).every((value) => value === true);
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_BRANCH_PROJECTION_ALPHA_DERIVATION_ATTEMPT_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-terminal-expression-level-source-term-branch-projection-alpha-derivation-attempt-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-terminal-expression-level-source-term-branch-projection-alpha-derivation-attempt",
+    target_kind:
+      "candidate-requested-y44-terminal-expression-level-source-term-branch-projection-alpha-derivation-attempt",
+    source_map_residual_covariance_target_schema:
+      sourceMapResidualCovarianceTarget?.schema ?? null,
+    terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_schema:
+      terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit?.schema ??
+      null,
+    proof_status:
+      "candidate-source-term-branch-projection-alpha-derivation-generator-absent",
+    source_term_branch_projection_alpha_model:
+      "P=sum_j S_j; A_P=sum_j alpha_j*S_j",
+    source_term_branch_parity_generator_model:
+      "B(S_j)=epsilon_j*S_j on the same terminal domain",
+    provider_object_branch_antisymmetric_equation_target: "A_P=P_- - P_+",
+    source_expression: sourceMapResidualCovarianceTarget?.source_expression ?? null,
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    terminal_h_indexes: terminalSpecs.map((spec) => spec.terminal_h_index),
+    source_terms_preserved_signed_together: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    alpha_derivation_searched_fields: [...alphaDerivationSearchedFields],
+    alpha_derivation_searched_surface_kinds: [...searchedSurfaceKinds],
+    terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_check_kinds:
+      [...checkKinds],
+    terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_checks:
+      aggregateChecks,
+    terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_verified:
+      derivationAttemptVerified,
+    terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_certified:
+      false,
+    terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_row_count:
+      rows.length,
+    terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_terminal_row_count:
+      terminalRowCount,
+    terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_rows:
+      rows,
+    source_term_branch_projection_alpha_derivation_row_count: sumRows(
+      "source_term_branch_projection_alpha_derivation_row_count"
+    ),
+    source_term_branch_parity_generator_available_count: sumRows(
+      "source_term_branch_parity_generator_available_count"
+    ),
+    source_term_alpha_coefficient_available_count: sumRows(
+      "source_term_alpha_coefficient_available_count"
+    ),
+    source_term_alpha_map_available_terminal_row_count:
+      alphaMapAvailableCount,
+    source_term_alpha_map_missing_terminal_row_count: alphaMapMissingCount,
+    source_term_branch_parity_generator_available_terminal_row_count: sumRows(
+      "source_term_branch_parity_generator_available_terminal_row_count"
+    ),
+    source_term_projection_known_equation_count: sumRows(
+      "source_term_projection_known_equation_count"
+    ),
+    source_term_to_branch_projection_known_rank: sumRows(
+      "source_term_to_branch_projection_known_rank"
+    ),
+    source_term_to_branch_projection_required_rank: sumRows(
+      "source_term_to_branch_projection_required_rank"
+    ),
+    source_term_to_branch_projection_missing_rank: sumRows(
+      "source_term_to_branch_projection_missing_rank"
+    ),
+    provider_object_branch_antisymmetric_free_dimension_remaining: sumRows(
+      "provider_object_branch_antisymmetric_free_dimension_remaining"
+    ),
+    all_source_term_definition_surfaces_have_no_branch_generator:
+      derivationAttemptVerified && alphaMapMissingCount === terminalRowCount,
+    term_sign_status_treated_as_non_branch_data: true,
+    expression_level_source_term_branch_projection_alpha_map_certified: false,
+    expression_level_source_term_branch_parity_generator_certified: false,
+    expression_level_source_term_to_provider_object_branch_projection_map_certified:
+      false,
+    expression_level_source_map_provider_object_branch_rows_certified: false,
+    terminal_row_provider_object_replay_certified: false,
+    expression_level_n38_provider_certified: false,
+    terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_classification:
+      derivationAttemptVerified
+        ? "source-term-branch-parity-generator-absent-from-current-expression-level-surface"
+        : "source-term-branch-projection-alpha-derivation-attempt-open",
+    terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_blocker_classification:
+      derivationAttemptVerified
+        ? "same-domain-source-term-branch-parity-generator-needed"
+        : "source-term-branch-projection-alpha-derivation-attempt-open",
+    terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_primary_missing_object_kind:
+      derivationAttemptVerified
+        ? "same-domain-source-term-branch-parity-generator-or-alpha-coefficients"
+        : "source-term-branch-projection-alpha-derivation-attempt",
+    next_certificate_object:
+      "same-domain branch-parity generator B acting on delta_squared_speed, sin_phi, and sin_delta, or explicit alpha_j coefficients realizing A_P=sum_j alpha_j*S_j",
+    candidate_certificate_route:
+      "The current source-term surfaces expose same-domain term intervals, retained trace intervals, residual signs, and cancellation rows, plus the aggregate equation P=sum_j S_j. They do not expose a branch involution B, parity eigenvalues epsilon_j, or alpha_j coefficients for A_P=sum_j alpha_j*S_j. The branch realization therefore still lacks one independent covector per terminal row. This packet certifies no alpha map, branch generator, provider-object branch rows, expression-level N38 provider, retained branch, shifted R43 closure, S37 division, or directed-rounded shared-domain provider.",
+    claim_boundary:
+      h39TerminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttemptClaimBoundary(),
+  };
+}
+
+export function validateH39RequestedY44TerminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttemptCandidate(
+  artifact
+) {
+  const errors = [];
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const sameStringSet = (left, right) =>
+    Array.isArray(left) &&
+    left.length === right.length &&
+    right.every((value) => left.includes(value));
+  const sameTerminalHIndexes = (indexes) =>
+    Array.isArray(indexes) &&
+    indexes.length === 3 &&
+    indexes[0] === 37 &&
+    indexes[1] === 36 &&
+    indexes[2] === 35;
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const validClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_only ===
+      true &&
+    claimBoundary
+      ?.certifies_expression_level_source_term_branch_projection_alpha_map ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_term_branch_parity_generator ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_term_to_provider_object_branch_projection_map ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_split_map ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_rows ===
+      false &&
+    claimBoundary?.certifies_terminal_row_provider_object_replay === false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const expectedCheckKinds = [
+    "source_map_residual_covariance_target_ready",
+    "source_term_projection_map_audit_ready",
+    "same_domain_terminal_rows_aligned",
+    "source_term_definition_surfaces_inspected",
+    "branch_parity_generator_absence_recorded",
+    "source_term_alpha_coefficient_absence_recorded",
+    "aggregate_rank_obstruction_recorded",
+    "actual_provider_claims_remain_open",
+  ];
+  const expectedTerminalCheckKinds = [
+    "source_term_provider_terminal_row_available",
+    "retained_trace_terminal_row_available",
+    "term_cancellation_terminal_row_available",
+    "source_term_projection_audit_terminal_row_available",
+    "same_domain_terminal_row_aligned",
+    "source_term_definition_surfaces_inspected",
+    "branch_parity_generator_absence_recorded",
+    "source_term_alpha_coefficient_absence_recorded",
+    "aggregate_rank_obstruction_recorded",
+    "actual_provider_claims_remain_open",
+  ];
+  const expectedSearchedFields = [
+    "branch_parity_generator",
+    "source_term_branch_parity_generator",
+    "provider_object_branch_parity_generator",
+    "branch_involution",
+    "source_term_branch_involution",
+    "provider_object_branch_involution",
+    "branch_involution_eigenvalue",
+    "source_term_branch_involution_eigenvalue",
+    "provider_object_branch_involution_eigenvalue",
+    "branch_parity",
+    "source_term_branch_parity",
+    "provider_object_branch_parity",
+    "alpha_j",
+    "source_term_alpha",
+    "source_term_branch_projection_weight",
+    "branch_projection_coefficient",
+    "provider_object_branch_projection_weight",
+    "provider_object_branch",
+    "source_branch",
+    "branch",
+  ];
+  const expectedSurfaceKinds = [
+    "source_term_provider_probe.source_term_residual_rows",
+    "source_map_residual_trace_anchor_rows.source_term_trace_rows",
+    "source_map_residual_shared_stream_five_node_term_cancellation_decomposition.term_residual_decomposition_rows",
+    "source_term_to_provider_object_branch_projection_map_audit.source_term_projection_candidate_rows",
+  ];
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_BRANCH_PROJECTION_ALPHA_DERIVATION_ATTEMPT_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 source-term branch projection alpha derivation attempt candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-terminal-expression-level-source-term-branch-projection-alpha-derivation-attempt-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-terminal-expression-level-source-term-branch-projection-alpha-derivation-attempt" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-terminal-expression-level-source-term-branch-projection-alpha-derivation-attempt" ||
+    artifact?.source_map_residual_covariance_target_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_MAP_RESIDUAL_COVARIANCE_TARGET_SCHEMA ||
+    artifact
+      ?.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_TO_PROVIDER_OBJECT_BRANCH_PROJECTION_MAP_AUDIT_CANDIDATE_SCHEMA ||
+    artifact?.proof_status !==
+      "candidate-source-term-branch-projection-alpha-derivation-generator-absent" ||
+    artifact?.source_term_branch_projection_alpha_model !==
+      "P=sum_j S_j; A_P=sum_j alpha_j*S_j" ||
+    artifact?.source_term_branch_parity_generator_model !==
+      "B(S_j)=epsilon_j*S_j on the same terminal domain" ||
+    artifact?.provider_object_branch_antisymmetric_equation_target !==
+      "A_P=P_- - P_+" ||
+    artifact?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    !sameTerminalHIndexes(artifact?.terminal_h_indexes) ||
+    !sameTerms(artifact?.source_terms_preserved_signed_together) ||
+    !sameStringSet(artifact?.alpha_derivation_searched_fields, expectedSearchedFields) ||
+    !sameStringSet(
+      artifact?.alpha_derivation_searched_surface_kinds,
+      expectedSurfaceKinds
+    ) ||
+    !sameStringSet(
+      artifact
+        ?.terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_check_kinds,
+      expectedCheckKinds
+    )
+  ) {
+    errors.push("source-term alpha derivation metadata must identify missing branch generator");
+  }
+  if (
+    expectedCheckKinds.some(
+      (kind) =>
+        artifact
+          ?.terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_checks?.[
+          kind
+        ] !== true
+    ) ||
+    artifact
+      ?.terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_verified !==
+      true ||
+    artifact
+      ?.terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_certified !==
+      false ||
+    artifact
+      ?.terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_row_count !==
+      5 ||
+    artifact
+      ?.terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_terminal_row_count !==
+      15 ||
+    artifact?.source_term_branch_projection_alpha_derivation_row_count !== 45 ||
+    artifact?.source_term_branch_parity_generator_available_count !== 0 ||
+    artifact?.source_term_alpha_coefficient_available_count !== 0 ||
+    artifact?.source_term_alpha_map_available_terminal_row_count !== 0 ||
+    artifact?.source_term_alpha_map_missing_terminal_row_count !== 15 ||
+    artifact
+      ?.source_term_branch_parity_generator_available_terminal_row_count !==
+      0 ||
+    artifact?.source_term_projection_known_equation_count !== 15 ||
+    artifact?.source_term_to_branch_projection_known_rank !== 15 ||
+    artifact?.source_term_to_branch_projection_required_rank !== 30 ||
+    artifact?.source_term_to_branch_projection_missing_rank !== 15 ||
+    artifact
+      ?.provider_object_branch_antisymmetric_free_dimension_remaining !==
+      15 ||
+    artifact
+      ?.all_source_term_definition_surfaces_have_no_branch_generator !==
+      true ||
+    artifact?.term_sign_status_treated_as_non_branch_data !== true ||
+    artifact
+      ?.expression_level_source_term_branch_projection_alpha_map_certified !==
+      false ||
+    artifact
+      ?.expression_level_source_term_branch_parity_generator_certified !==
+      false ||
+    artifact
+      ?.expression_level_source_term_to_provider_object_branch_projection_map_certified !==
+      false ||
+    artifact
+      ?.expression_level_source_map_provider_object_branch_rows_certified !==
+      false ||
+    artifact?.terminal_row_provider_object_replay_certified !== false ||
+    artifact?.expression_level_n38_provider_certified !== false ||
+    artifact
+      ?.terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_classification !==
+      "source-term-branch-parity-generator-absent-from-current-expression-level-surface" ||
+    artifact
+      ?.terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_blocker_classification !==
+      "same-domain-source-term-branch-parity-generator-needed" ||
+    artifact
+      ?.terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_primary_missing_object_kind !==
+      "same-domain-source-term-branch-parity-generator-or-alpha-coefficients" ||
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string" ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("source-term alpha derivation aggregate must record absent generator and missing branch covector");
+  }
+  const rows =
+    artifact
+      ?.terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_rows ??
+    [];
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== 5 ||
+    !rows.every((row, index) => {
+      const terminalRows =
+        row
+          ?.terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_rows ??
+        [];
+      return (
+        row?.node_index === index &&
+        row?.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+        row?.required_xi_derivative_order === 4 &&
+        row
+          ?.terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_row_kind ===
+          "terminal-expression-level-source-term-branch-projection-alpha-derivation-attempt-row" &&
+        sameTerminalHIndexes(row?.terminal_h_indexes) &&
+        sameTerms(row?.source_terms_preserved_signed_together) &&
+        Array.isArray(terminalRows) &&
+        terminalRows.length === 3 &&
+        row
+          ?.terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_terminal_row_count ===
+          3 &&
+        row?.source_term_branch_projection_alpha_derivation_row_count === 9 &&
+        row?.source_term_branch_parity_generator_available_count === 0 &&
+        row?.source_term_alpha_coefficient_available_count === 0 &&
+        row?.source_term_alpha_map_available_terminal_row_count === 0 &&
+        row?.source_term_alpha_map_missing_terminal_row_count === 3 &&
+        row
+          ?.source_term_branch_parity_generator_available_terminal_row_count ===
+          0 &&
+        row?.source_term_projection_known_equation_count === 3 &&
+        row?.source_term_to_branch_projection_known_rank === 3 &&
+        row?.source_term_to_branch_projection_required_rank === 6 &&
+        row?.source_term_to_branch_projection_missing_rank === 3 &&
+        row?.provider_object_branch_antisymmetric_free_dimension_remaining ===
+          3 &&
+        sameStringSet(row?.row_check_kinds, expectedCheckKinds) &&
+        expectedCheckKinds.every((kind) => row?.row_checks?.[kind] === true) &&
+        row
+          ?.row_terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_verified ===
+          true &&
+        row
+          ?.row_certifies_expression_level_source_term_branch_projection_alpha_map ===
+          false &&
+        row
+          ?.row_certifies_expression_level_source_term_branch_parity_generator ===
+          false &&
+        row
+          ?.row_certifies_expression_level_source_term_to_provider_object_branch_projection_map ===
+          false &&
+        row
+          ?.row_certifies_expression_level_source_map_provider_object_branch_rows ===
+          false &&
+        row?.row_certifies_terminal_row_provider_object_replay === false &&
+        row?.row_status ===
+          "source-term-branch-projection-alpha-derivation-missing-generator" &&
+        validClaimBoundary(row?.claim_boundary) &&
+        terminalRows.every((terminalRow, terminalIndex) => {
+          const spec =
+            H39_TERMINAL_SUCCESSOR_COEFFICIENT_IDENTITY_IMPORT_SPECS[
+              terminalIndex
+            ];
+          const alphaRows =
+            terminalRow?.source_term_branch_projection_alpha_derivation_rows ??
+            [];
+          return (
+            terminalRow?.terminal_h_index === spec.terminal_h_index &&
+            terminalRow?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+            terminalRow?.terminal_graph_cell_id === `speed.${index}.first-y` &&
+            terminalRow?.successor_scalar_identity_weight ===
+              spec.successor_scalar_identity_weight &&
+            terminalRow?.centered_successor_scalar_weight ===
+              spec.centered_successor_scalar_weight &&
+            terminalRow?.source_term_branch_projection_alpha_model ===
+              "P=sum_j S_j; A_P=sum_j alpha_j*S_j" &&
+            terminalRow?.source_term_branch_parity_generator_model ===
+              "B(S_j)=epsilon_j*S_j on the same terminal domain" &&
+            terminalRow?.provider_object_branch_antisymmetric_equation_target ===
+              "A_P=P_- - P_+" &&
+            sameTerms(terminalRow?.source_terms_preserved_signed_together) &&
+            Array.isArray(alphaRows) &&
+            alphaRows.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+            alphaRows.every(
+              (alphaRow, termIndex) =>
+                alphaRow?.term ===
+                  H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS[termIndex] &&
+                alphaRow?.terminal_h_index === spec.terminal_h_index &&
+                alphaRow?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+                alphaRow?.terminal_graph_cell_id ===
+                  `speed.${index}.first-y` &&
+                typeof alphaRow?.source_term_expression_component ===
+                  "string" &&
+                finiteOrderedInterval(alphaRow?.source_term_residual_interval) &&
+                finiteOrderedInterval(
+                  alphaRow?.retained_trace_source_term_interval
+                ) &&
+                finiteOrderedInterval(
+                  alphaRow
+                    ?.retained_trace_source_term_residual_interval_after_midpoint
+                ) &&
+                finiteOrderedInterval(
+                  alphaRow?.term_residual_decomposition_interval
+                ) &&
+                typeof alphaRow?.term_residual_decomposition_sign_status ===
+                  "string" &&
+                alphaRow?.audit_source_term_branch_projection_coefficient ===
+                  null &&
+                alphaRow
+                  ?.audit_source_term_branch_projection_coefficient_available ===
+                  false &&
+                sameStringSet(
+                  alphaRow?.alpha_derivation_searched_fields,
+                  expectedSearchedFields
+                ) &&
+                sameStringSet(
+                  alphaRow?.alpha_derivation_searched_surface_kinds,
+                  expectedSurfaceKinds
+                ) &&
+                alphaRow?.alpha_derivation_field_hit_count === 0 &&
+                Array.isArray(alphaRow?.alpha_derivation_field_hits) &&
+                alphaRow.alpha_derivation_field_hits.length === 0 &&
+                Array.isArray(alphaRow?.branch_parity_generator_field_hits) &&
+                alphaRow.branch_parity_generator_field_hits.length === 0 &&
+                alphaRow?.branch_parity_generator_available === false &&
+                Array.isArray(alphaRow?.branch_parity_field_hits) &&
+                alphaRow.branch_parity_field_hits.length === 0 &&
+                alphaRow?.branch_parity_field_available === false &&
+                alphaRow?.source_term_alpha_coefficient === null &&
+                alphaRow?.source_term_alpha_coefficient_source_field === null &&
+                alphaRow?.source_term_alpha_coefficient_available === false &&
+                alphaRow?.sign_status_is_not_branch_parity_generator ===
+                  true &&
+                alphaRow
+                  ?.admissible_as_source_term_branch_projection_alpha_derivation ===
+                  false &&
+                alphaRow?.rejection_reason ===
+                  "source-term-definition-surface-has-no-branch-parity-generator-or-alpha-coefficient"
+            ) &&
+            terminalRow
+              ?.source_term_branch_projection_alpha_derivation_row_count ===
+              3 &&
+            terminalRow?.source_term_branch_parity_generator_available_count ===
+              0 &&
+            terminalRow?.source_term_alpha_coefficient_available_count === 0 &&
+            terminalRow?.source_term_alpha_map_available === false &&
+            terminalRow?.source_term_branch_parity_generator_available ===
+              false &&
+            terminalRow
+              ?.term_sign_status_available_but_not_admissible_as_branch_parity_generator ===
+              true &&
+            terminalRow?.retained_trace_term_intervals_available === true &&
+            terminalRow?.source_term_projection_map_audit_available === true &&
+            terminalRow?.source_term_projection_known_equation_count === 1 &&
+            terminalRow?.source_term_to_branch_projection_known_rank === 1 &&
+            terminalRow?.source_term_to_branch_projection_required_rank === 2 &&
+            terminalRow?.source_term_to_branch_projection_missing_rank === 1 &&
+            terminalRow
+              ?.provider_object_branch_antisymmetric_free_dimension_remaining ===
+              1 &&
+            sameStringSet(
+              terminalRow
+                ?.terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_check_kinds,
+              expectedTerminalCheckKinds
+            ) &&
+            expectedTerminalCheckKinds.every(
+              (kind) =>
+                terminalRow
+                  ?.terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_checks?.[
+                  kind
+                ] === true
+            ) &&
+            terminalRow
+              ?.row_terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_verified ===
+              true &&
+            terminalRow
+              ?.row_certifies_expression_level_source_term_branch_projection_alpha_map ===
+              false &&
+            terminalRow
+              ?.row_certifies_expression_level_source_term_branch_parity_generator ===
+              false &&
+            terminalRow
+              ?.row_certifies_expression_level_source_term_to_provider_object_branch_projection_map ===
+              false &&
+            terminalRow
+              ?.row_certifies_expression_level_source_map_provider_object_branch_rows ===
+              false &&
+            terminalRow?.row_certifies_terminal_row_provider_object_replay ===
+              false &&
+            terminalRow?.row_certifies_expression_level_n38_provider ===
+              false &&
+            terminalRow?.row_status ===
+              "source-term-branch-projection-alpha-derivation-missing-generator" &&
+            validClaimBoundary(terminalRow?.claim_boundary)
+          );
+        })
+      );
+    })
+  ) {
+    errors.push("source-term alpha derivation rows must record absent branch generator and one missing covector per terminal row");
+  }
+  return errors;
+}
+
 function h39TerminalRowProviderObjectReplayAttemptClaimBoundary() {
   return {
     defines_terminal_row_provider_object_replay_attempt_only: true,
@@ -96312,6 +101652,7 @@ function h39TerminalRowProviderObjectReplayAttemptClaimBoundary() {
 }
 
 export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandidate({
+  terminalExpressionLevelSourceMapProviderObjectBranchProducer,
   terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection,
   terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt,
   terminalSuccessorBarycentricToSuccessorScalarHandoffAttempt,
@@ -96386,6 +101727,7 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
       (term, index) => terms[index] === term
     );
   const checkKinds = [
+    "expression_level_source_map_provider_object_branch_producer_ready",
     "source_object_projection_ready",
     "barycentric_terminal_witness_ready",
     "barycentric_successor_scalar_handoff_ready",
@@ -96398,6 +101740,7 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
     "actual_source_and_provider_claims_remain_open",
   ];
   const terminalCheckKinds = [
+    "expression_level_source_map_provider_object_branch_producer_terminal_row_available",
     "projection_terminal_row_available",
     "barycentric_terminal_witness_row_available",
     "barycentric_successor_scalar_handoff_terminal_row_available",
@@ -96413,6 +101756,10 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
     terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection
       ?.terminal_successor_branch_resolved_centered_residual_source_object_projection_rows ??
     [];
+  const expressionProducerRows =
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      ?.terminal_expression_level_source_map_provider_object_branch_producer_rows ??
+    [];
   const barycentricRows =
     terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt
       ?.terminal_successor_barycentric_branch_residual_source_object_identity_attempt_rows ??
@@ -96427,6 +101774,11 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
     [];
   const projectionRowsByNode = new Map(
     projectionRows
+      .filter((row) => Number.isInteger(row?.node_index))
+      .map((row) => [Number(row.node_index), row])
+  );
+  const expressionProducerRowsByNode = new Map(
+    expressionProducerRows
       .filter((row) => Number.isInteger(row?.node_index))
       .map((row) => [Number(row.node_index), row])
   );
@@ -96461,6 +101813,29 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
       ?.claim_boundary?.certifies_expression_level_n38_provider === false &&
     terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection
       ?.claim_boundary?.certifies_directed_rounded_shared_domain === false;
+  const expressionProducerReady =
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_PRODUCER_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      ?.terminal_expression_level_source_map_provider_object_branch_producer_verified ===
+      true &&
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      ?.terminal_expression_level_source_map_provider_object_branch_producer_certified ===
+      false &&
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      ?.expression_level_source_map_provider_object_branch_rows_certified ===
+      false &&
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      ?.terminal_row_provider_object_replay_certified === false &&
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      ?.expression_level_n38_provider_certified === false &&
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer?.claim_boundary
+      ?.certifies_expression_level_source_map_provider_object_branch_rows ===
+      false &&
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer?.claim_boundary
+      ?.certifies_expression_level_n38_provider === false &&
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer?.claim_boundary
+      ?.certifies_directed_rounded_shared_domain === false;
   const barycentricReady =
     terminalSuccessorBarycentricBranchResidualSourceObjectIdentityAttempt?.schema ===
       THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SUCCESSOR_BARYCENTRIC_BRANCH_RESIDUAL_SOURCE_OBJECT_IDENTITY_ATTEMPT_CANDIDATE_SCHEMA &&
@@ -96515,6 +101890,8 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
       ?.certifies_directed_rounded_shared_domain === false;
   const rows = Array.from({ length: 5 }, (_, nodeIndex) => {
     const terminalGraphCellId = `speed.${nodeIndex}.first-y`;
+    const expressionProducerRow =
+      expressionProducerRowsByNode.get(nodeIndex) ?? null;
     const projectionRow = projectionRowsByNode.get(nodeIndex) ?? null;
     const barycentricRow = barycentricRowsByNode.get(nodeIndex) ?? null;
     const handoffRow = handoffRowsByNode.get(nodeIndex) ?? null;
@@ -96523,6 +101900,11 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
       (spec) => {
         const projectionTerminalRow =
           projectionRow?.terminal_successor_branch_resolved_centered_residual_source_object_projection_rows?.find(
+            (candidate) =>
+              Number(candidate?.terminal_h_index) === spec.terminal_h_index
+          ) ?? null;
+        const expressionProducerTerminalRow =
+          expressionProducerRow?.terminal_expression_level_source_map_provider_object_branch_producer_rows?.find(
             (candidate) =>
               Number(candidate?.terminal_h_index) === spec.terminal_h_index
           ) ?? null;
@@ -96550,6 +101932,14 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
             .filter((row) => row?.branch === "-" || row?.branch === "+")
             .map((row) => [row.branch, row])
         );
+        const expressionProducerBranchRowsByBranch = new Map(
+          (
+            expressionProducerTerminalRow?.source_map_provider_object_branch_rows ??
+            []
+          )
+            .filter((row) => row?.branch === "-" || row?.branch === "+")
+            .map((row) => [row.branch, row])
+        );
         const barycentricBranchRowsByBranch = new Map(
           (
             barycentricTerminalRow
@@ -96567,6 +101957,8 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
             .map((row) => [row.branch, row])
         );
         const branchRows = ["-", "+"].map((branch) => {
+          const expressionProducerBranchRow =
+            expressionProducerBranchRowsByBranch.get(branch) ?? null;
           const projectionBranchRow =
             projectionBranchRowsByBranch.get(branch) ?? null;
           const barycentricBranchRow =
@@ -96583,6 +101975,22 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
           const commonNormalizerCandidateInterval = numericInterval(
             lawProbeBranchRow?.common_normalizer_branch_residual_candidate_interval
           );
+          const expressionProviderObjectInterval =
+            numericInterval(
+              expressionProducerBranchRow
+                ?.source_map_provider_object_branch_interval
+            ) ??
+            numericInterval(
+              expressionProducerBranchRow
+                ?.source_map_provider_object_branch_residual_interval
+            ) ??
+            numericInterval(
+              expressionProducerBranchRow?.source_map_provider_object_interval
+            );
+          const expressionProviderObjectAvailable =
+            finiteOrderedInterval(expressionProviderObjectInterval) &&
+            expressionProducerBranchRow
+              ?.source_map_provider_object_branch_interval_available === true;
           const explicitProviderObjectInterval =
             numericInterval(
               projectionBranchRow?.source_map_provider_object_branch_interval
@@ -96621,6 +102029,29 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
               ?.branch_resolved_centered_residual_source_object_certified ===
               true;
           const materializationSources = [
+            {
+              source_kind:
+                "expression-level-source-map-provider-object-branch-producer",
+              source_field: "source_map_provider_object_branch_interval",
+              interval: expressionProviderObjectInterval,
+              interval_available: expressionProviderObjectAvailable,
+              admissible_as_source_map_provider_object:
+                expressionProviderObjectAvailable &&
+                expressionProducerBranchRow
+                  ?.admissible_as_source_map_provider_object === true,
+              rejection_reason:
+                expressionProviderObjectAvailable &&
+                expressionProducerBranchRow
+                  ?.admissible_as_source_map_provider_object === true
+                  ? null
+                  : expressionProviderObjectAvailable
+                    ? "expression-level-provider-object-branch-row-not-admissible"
+                    : expressionProducerTerminalRow
+                          ?.aggregate_source_map_provider_object_interval_available ===
+                        true
+                      ? "expression-level-provider-object-branch-split-map-missing"
+                      : "expression-level-provider-object-branch-producer-row-missing",
+            },
             {
               source_kind:
                 "explicit-source-map-provider-object-branch-interval",
@@ -96761,11 +102192,11 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
           branchRows.every(
             (row) =>
               row.source_map_provider_object_branch_interval_candidate_source_count ===
-                4 &&
+                5 &&
               row.source_map_provider_object_branch_interval_candidate_available_count >=
                 0 &&
               row.source_map_provider_object_branch_interval_candidate_available_count <=
-                4 &&
+                5 &&
               row.source_map_provider_object_branch_interval_admissible_available_count >=
                 0 &&
               row.source_map_provider_object_branch_interval_admissible_available_count <=
@@ -96782,7 +102213,7 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
               ) &&
               row
                 .source_map_provider_object_branch_interval_materialization_sources
-                .length === 4 &&
+                .length === 5 &&
               row
                 .source_map_provider_object_branch_interval_materialization_sources
                 .every(
@@ -96851,6 +102282,14 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
             true
         ).length;
         const terminalChecks = {
+          expression_level_source_map_provider_object_branch_producer_terminal_row_available:
+            expressionProducerReady &&
+            expressionProducerTerminalRow
+              ?.row_terminal_expression_level_source_map_provider_object_branch_producer_verified ===
+              true &&
+            expressionProducerTerminalRow
+              ?.row_certifies_expression_level_source_map_provider_object_branch_rows ===
+              false,
           projection_terminal_row_available:
             projectionReady &&
             projectionTerminalRow
@@ -96872,6 +102311,8 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
               ?.row_terminal_successor_branch_residual_common_normalizer_law_probe_verified ===
               true,
           same_domain_terminal_row_aligned:
+            expressionProducerTerminalRow?.terminal_graph_cell_id ===
+              terminalGraphCellId &&
             projectionTerminalRow?.terminal_graph_cell_id ===
               terminalGraphCellId &&
             barycentricTerminalRow?.terminal_graph_cell_id ===
@@ -96884,12 +102325,16 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
             barycentricTerminalRow?.terminal_h_index ===
               spec.terminal_h_index &&
             handoffTerminalRow?.terminal_h_index === spec.terminal_h_index &&
+            expressionProducerTerminalRow?.terminal_h_index ===
+              spec.terminal_h_index &&
             lawProbeTerminalRow?.terminal_h_index === spec.terminal_h_index &&
             projectionTerminalRow?.successor_scalar_identity_weight ===
               spec.successor_scalar_identity_weight &&
             barycentricTerminalRow?.successor_scalar_identity_weight ===
               spec.successor_scalar_identity_weight &&
             handoffTerminalRow?.successor_scalar_identity_weight ===
+              spec.successor_scalar_identity_weight &&
+            expressionProducerTerminalRow?.successor_scalar_identity_weight ===
               spec.successor_scalar_identity_weight &&
             lawProbeTerminalRow?.successor_scalar_identity_weight ===
               spec.successor_scalar_identity_weight &&
@@ -96898,6 +102343,8 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
             barycentricTerminalRow?.centered_successor_scalar_weight ===
               spec.centered_successor_scalar_weight &&
             handoffTerminalRow?.centered_successor_scalar_weight ===
+              spec.centered_successor_scalar_weight &&
+            expressionProducerTerminalRow?.centered_successor_scalar_weight ===
               spec.centered_successor_scalar_weight &&
             lawProbeTerminalRow?.centered_successor_scalar_weight ===
               spec.centered_successor_scalar_weight,
@@ -96913,7 +102360,7 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
                   .source_map_provider_object_branch_interval_materialization_status ===
                   "string" &&
                 row.source_map_provider_object_branch_interval_candidate_source_count ===
-                  4
+                  5
             ),
           terminal_witness_to_source_map_branch_replay_recorded:
             branchReplayRecorded,
@@ -97055,6 +102502,11 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
       }
     );
     const rowChecks = {
+      expression_level_source_map_provider_object_branch_producer_ready:
+        expressionProducerReady &&
+        expressionProducerRow
+          ?.row_terminal_expression_level_source_map_provider_object_branch_producer_verified ===
+          true,
       source_object_projection_ready:
         projectionReady &&
         projectionRow
@@ -97345,6 +102797,8 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
     0
   );
   const aggregateChecks = {
+    expression_level_source_map_provider_object_branch_producer_ready:
+      expressionProducerReady,
     source_object_projection_ready: projectionReady,
     barycentric_terminal_witness_ready: barycentricReady,
     barycentric_successor_scalar_handoff_ready: handoffReady,
@@ -97455,6 +102909,9 @@ export function buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandid
       "candidate-h39-requested-y44-terminal-row-provider-object-replay-attempt",
     target_kind:
       "candidate-requested-y44-terminal-row-provider-object-replay-attempt",
+    terminal_expression_level_source_map_provider_object_branch_producer_schema:
+      terminalExpressionLevelSourceMapProviderObjectBranchProducer?.schema ??
+      null,
     terminal_successor_branch_resolved_centered_residual_source_object_projection_schema:
       terminalSuccessorBranchResolvedCenteredResidualSourceObjectProjection?.schema ??
       null,
@@ -97670,6 +103127,7 @@ export function validateH39RequestedY44TerminalRowProviderObjectReplayAttemptCan
     claimBoundary?.certifies_directed_rounded_shared_domain === false &&
     claimBoundary?.retained_branch === false;
   const expectedCheckKinds = [
+    "expression_level_source_map_provider_object_branch_producer_ready",
     "source_object_projection_ready",
     "barycentric_terminal_witness_ready",
     "barycentric_successor_scalar_handoff_ready",
@@ -97682,6 +103140,7 @@ export function validateH39RequestedY44TerminalRowProviderObjectReplayAttemptCan
     "actual_source_and_provider_claims_remain_open",
   ];
   const expectedTerminalCheckKinds = [
+    "expression_level_source_map_provider_object_branch_producer_terminal_row_available",
     "projection_terminal_row_available",
     "barycentric_terminal_witness_row_available",
     "barycentric_successor_scalar_handoff_terminal_row_available",
@@ -97706,6 +103165,9 @@ export function validateH39RequestedY44TerminalRowProviderObjectReplayAttemptCan
       "candidate-h39-requested-y44-terminal-row-provider-object-replay-attempt" ||
     artifact?.target_kind !==
       "candidate-requested-y44-terminal-row-provider-object-replay-attempt" ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_producer_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_PRODUCER_CANDIDATE_SCHEMA ||
     artifact
       ?.terminal_successor_branch_resolved_centered_residual_source_object_projection_schema !==
       THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SUCCESSOR_BRANCH_RESOLVED_CENTERED_RESIDUAL_SOURCE_OBJECT_PROJECTION_CANDIDATE_SCHEMA ||
@@ -97774,7 +103236,7 @@ export function validateH39RequestedY44TerminalRowProviderObjectReplayAttemptCan
       0 ||
     artifact
       ?.source_map_provider_object_branch_interval_candidate_available_count >
-      120 ||
+      150 ||
     artifact
       ?.source_map_provider_object_branch_interval_admissible_available_count <
       0 ||
@@ -97917,7 +103379,7 @@ export function validateH39RequestedY44TerminalRowProviderObjectReplayAttemptCan
                 ) &&
                 branchRow
                   .source_map_provider_object_branch_interval_materialization_sources
-                  .length === 4 &&
+                  .length === 5 &&
                 branchRow
                   .source_map_provider_object_branch_interval_materialization_sources
                   .every(
@@ -97938,13 +103400,13 @@ export function validateH39RequestedY44TerminalRowProviderObjectReplayAttemptCan
                   ) &&
                 branchRow
                   ?.source_map_provider_object_branch_interval_candidate_source_count ===
-                  4 &&
+                  5 &&
                 branchRow
                   ?.source_map_provider_object_branch_interval_candidate_available_count >=
                   0 &&
                 branchRow
                   ?.source_map_provider_object_branch_interval_candidate_available_count <=
-                  4 &&
+                  5 &&
                 branchRow
                   ?.source_map_provider_object_branch_interval_admissible_available_count >=
                   0 &&
@@ -98068,7 +103530,7 @@ export function validateH39RequestedY44TerminalRowProviderObjectReplayAttemptCan
               0 &&
             terminalRow
               ?.source_map_provider_object_branch_interval_candidate_available_count <=
-              8 &&
+              10 &&
             terminalRow
               ?.source_map_provider_object_branch_interval_admissible_available_count >=
               0 &&
@@ -98122,7 +103584,7 @@ export function validateH39RequestedY44TerminalRowProviderObjectReplayAttemptCan
           0 &&
         row
           ?.source_map_provider_object_branch_interval_candidate_available_count <=
-          24 &&
+          30 &&
         row
           ?.source_map_provider_object_branch_interval_admissible_available_count >=
           0 &&
@@ -125660,11 +131122,11 @@ export function buildH39RequestedY44TerminalSourceCovarianceProviderObjectBranch
             row.source_map_provider_object_replay_branch_row_available ===
               true &&
             row.source_map_provider_object_branch_interval_candidate_source_count ===
-              4 &&
+              5 &&
             row.source_map_provider_object_branch_interval_candidate_available_count >=
               0 &&
             row.source_map_provider_object_branch_interval_candidate_available_count <=
-              4 &&
+              5 &&
             row.source_map_provider_object_branch_interval_admissible_available_count >=
               0 &&
             row.source_map_provider_object_branch_interval_admissible_available_count <=
@@ -126183,7 +131645,7 @@ export function validateH39RequestedY44TerminalSourceCovarianceProviderObjectBra
       0 ||
     artifact
       ?.source_map_provider_object_branch_interval_candidate_available_count >
-      120 ||
+      150 ||
     artifact
       ?.source_map_provider_object_branch_interval_admissible_available_count <
       0 ||
@@ -126276,7 +131738,7 @@ export function validateH39RequestedY44TerminalSourceCovarianceProviderObjectBra
           0 &&
         row
           ?.source_map_provider_object_branch_interval_candidate_available_count <=
-          24 &&
+          30 &&
         row
           ?.source_map_provider_object_branch_interval_admissible_available_count >=
           0 &&
@@ -126337,7 +131799,7 @@ export function validateH39RequestedY44TerminalSourceCovarianceProviderObjectBra
               0 &&
             terminalRow
               ?.source_map_provider_object_branch_interval_candidate_available_count <=
-              8 &&
+              10 &&
             terminalRow
               ?.source_map_provider_object_branch_interval_admissible_available_count >=
               0 &&
@@ -126410,13 +131872,13 @@ export function validateH39RequestedY44TerminalSourceCovarianceProviderObjectBra
                 ) &&
                 branchRow
                   ?.source_map_provider_object_branch_interval_candidate_source_count ===
-                  4 &&
+                  5 &&
                 branchRow
                   ?.source_map_provider_object_branch_interval_candidate_available_count >=
                   0 &&
                 branchRow
                   ?.source_map_provider_object_branch_interval_candidate_available_count <=
-                  4 &&
+                  5 &&
                 branchRow
                   ?.source_map_provider_object_branch_interval_admissible_available_count >=
                   0 &&

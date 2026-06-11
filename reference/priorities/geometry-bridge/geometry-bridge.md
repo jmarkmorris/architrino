@@ -4392,6 +4392,75 @@ classification. Thus the live blocker is not W partitioning, scalar lambda,
 virial work, or matrix replay; it is upstream materialization of finite actual
 provider-object branch intervals $P_-$ and $P_+$ on the terminal rows.
 
+`buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchProducerCandidate`
+now starts from that upstream side directly. It consumes the actual
+expression-level source-map provider probe, the directed-rounded provider
+boundary replay, and the terminal successor handoff. The live packet exposes
+finite aggregate source-map provider-object intervals on all fifteen terminal
+rows, but records
+`source_map_provider_object_branch_split_map_available_terminal_row_count=0`
+and
+`source_map_provider_object_branch_interval_available_branch_row_count=0`.
+The replay now inspects this upstream producer first, yet still leaves
+`P_-` and `P_+` unavailable because aggregate `P` does not determine a
+same-domain branch split. The next blocker is therefore a genuine
+expression-level provider-object branch split map, not another scalar-lambda
+wrapper, virial detour, W partition, or matrix replay.
+
+`buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdeterminationCandidate`
+turns that missing split into an executable rank witness. On the same fifteen
+terminal rows it records the provider-object equation `P_-+P_+=P`, thirty
+branch unknowns, fifteen aggregate equations, rank fifteen, and free dimension
+fifteen. For each terminal row it emits both the symmetric split
+$(P/2,P/2)$ and a nonzero branch-antisymmetric split
+$(P/2+u_P,P/2-u_P)$ that have the same aggregate interval. Both witnesses are
+explicitly rejected as actual source-map provider-object branch rows. This
+proves that the live aggregate provider object cannot by itself determine
+`P_-` and `P_+`; the next object must be a same-domain provider-object
+branch-antisymmetric equation or an explicit expression-level branch split map.
+
+`buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractorCandidate`
+now searches that exact missing equation. It inspects the fifteen same-domain
+terminal rows for an independent `A_P=P_- - P_+` provider-object branch moment,
+explicit provider-object branch row pairs, and branch-attributed source-term
+rows. The live expression-level surface exposes forty-five equation-source
+slots and forty-five source-term rows, but records zero available `A_P`
+equations, zero explicit provider-object branch rows, and zero
+branch-attributed source terms. Thus all fifteen branch-antisymmetric free
+dimensions remain open. The next blocker is not width refinement or scalar
+projection; it is deriving or exposing a same-domain provider-object branch
+moment `A_P` or explicit expression-level branch rows upstream.
+
+`buildH39RequestedY44TerminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAuditCandidate`
+now pushes that blocker one layer further upstream. It treats the retained
+source terms as a vector
+`(S_delta_squared_speed,S_sin_phi,S_sin_delta)` and records the known aggregate
+equation `P=sum_j S_j`. A provider-object branch realization would need a
+second independent source-term covector, `A_P=sum_j alpha_j S_j`, or explicit
+branch rows. The packet inspects forty-five terminal source-term projection
+slots, retained source-term trace rows, and term-cancellation decomposition
+rows. It finds zero branch-projection coefficients, so the source-term layer
+has rank one per terminal row while branch realization needs rank two. The
+live blocker is now the missing same-domain projection map `alpha_j` for
+`A_P`, not a scalar-lambda, virial, W, or matrix replay problem.
+
+`buildH39RequestedY44TerminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttemptCandidate`
+now tests whether that projection map is already derivable from the current
+same-domain source-term definition surfaces. It searches the source-term
+provider rows, retained source-term trace rows, term-cancellation decomposition
+rows, and the projection-map audit rows for a branch-parity generator
+`B(S_j)=epsilon_j*S_j`, branch involution eigenvalues, or explicit
+`alpha_j`/projection-weight fields. The packet inspects forty-five terminal
+source-term derivation slots and finds zero branch-parity generators and zero
+alpha coefficients. It treats residual sign and cancellation data as
+non-branch data, so those rows do not become an inferred provider-object branch
+map. The rank statement is unchanged but sharper: fifteen aggregate source
+equations are known, thirty branch-realization equations would be needed, and
+fifteen branch covectors remain missing. The next true blocker is deriving or
+exposing a same-domain branch-parity generator for
+`delta_squared_speed`, `sin_phi`, and `sin_delta`, or explicit terminal
+`alpha_j` coefficients for `A_P=sum_j alpha_j*S_j`.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.
