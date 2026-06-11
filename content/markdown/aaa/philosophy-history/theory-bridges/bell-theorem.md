@@ -26,25 +26,25 @@ Consider a source that produces pairs of particles sent to two distant detectors
 **Assumption 1 (Realism / Hidden Variables).** There exists a complete specification $\lambda$ (drawn from some space $\Lambda$ with distribution $\rho(\lambda)$) such that the outcomes are deterministic functions:
 
 $$
-a = A(\hat{m}_A, \lambda), \quad b = B(\hat{m}_B, \lambda).
+a = A(\hat{m}_A, \lambda), \quad b = B(\hat{m}_B, \lambda)
 $$
 
 **Assumption 2 (Bell Locality).** The outcome at each detector depends only on the local measurement setting and the shared hidden variable, not on the distant setting:
 
 $$
-A(\hat{m}_A, \lambda) \text{ is independent of } \hat{m}_B, \quad B(\hat{m}_B, \lambda) \text{ is independent of } \hat{m}_A.
+A(\hat{m}_A, \lambda) \text{ is independent of } \hat{m}_B, \quad B(\hat{m}_B, \lambda) \text{ is independent of } \hat{m}_A
 $$
 
 This is the factorizability condition. For stochastic theories it generalizes to:
 
 $$
-P(a, b \,|\, \hat{m}_A, \hat{m}_B, \lambda) = P(a \,|\, \hat{m}_A, \lambda)\; P(b \,|\, \hat{m}_B, \lambda).
+P(a, b \,|\, \hat{m}_A, \hat{m}_B, \lambda) = P(a \,|\, \hat{m}_A, \lambda)\; P(b \,|\, \hat{m}_B, \lambda)
 $$
 
 **Assumption 3 (Measurement Independence).** The hidden variable $\lambda$ is statistically independent of the freely chosen measurement settings:
 
 $$
-\rho(\lambda \,|\, \hat{m}_A, \hat{m}_B) = \rho(\lambda).
+\rho(\lambda \,|\, \hat{m}_A, \hat{m}_B) = \rho(\lambda)
 $$
 
 ### The CHSH Inequality
@@ -52,7 +52,7 @@ $$
 From these three assumptions, Clauser, Horne, Shimony, and Holt (1969) derived the experimentally accessible inequality. Define the correlation function:
 
 $$
-E(\hat{m}_A, \hat{m}_B) = \int_\Lambda A(\hat{m}_A, \lambda)\, B(\hat{m}_B, \lambda)\, \rho(\lambda)\, d\lambda.
+E(\hat{m}_A, \hat{m}_B) = \int_\Lambda A(\hat{m}_A, \lambda)\, B(\hat{m}_B, \lambda)\, \rho(\lambda)\, d\lambda
 $$
 
 For any four measurement settings $\hat{m}_A, \hat{m}_A', \hat{m}_B, \hat{m}_B'$, the CHSH combination:
@@ -64,7 +64,7 @@ $$
 satisfies:
 
 $$
-|S| \leq 2.
+|S| \leq 2
 $$
 
 This bound holds for any local, realistic, measurement-independent hidden-variable theory, regardless of the specific form of $A$, $B$, or $\rho$.
@@ -74,13 +74,13 @@ This bound holds for any local, realistic, measurement-independent hidden-variab
 For the spin-singlet state $|\Psi^-\rangle = \frac{1}{\sqrt{2}}(|\!\uparrow\downarrow\rangle - |\!\downarrow\uparrow\rangle)$, quantum mechanics predicts:
 
 $$
-E_{\text{QM}}(\hat{m}_A, \hat{m}_B) = -\hat{m}_A \cdot \hat{m}_B = -\cos\theta_{AB},
+E_{\text{QM}}(\hat{m}_A, \hat{m}_B) = -\hat{m}_A \cdot \hat{m}_B = -\cos\theta_{AB}
 $$
 
 where $\theta_{AB}$ is the angle between the two measurement axes. With the optimal choice of settings ($\theta = \pi/4$ increments), this yields:
 
 $$
-|S_{\text{QM}}| = 2\sqrt{2} \approx 2.828,
+|S_{\text{QM}}| = 2\sqrt{2} \approx 2.828
 $$
 
 which violates the CHSH bound. The value $2\sqrt{2}$ is the **Tsirelson bound**, the maximum achievable by any quantum state.
@@ -91,11 +91,11 @@ The CHSH inequality is the main statistical benchmark, but it is not the only Be
 
 **GHZ perfect-correlation benchmark.** For a calibrated three-party GHZ state, choose local Pauli-type settings $X$ and $Y$ and define the four product contexts
 $$
-\mathcal{C}_{\mathrm{GHZ}}=\{XXX,XYY,YXY,YYX\}.
+\mathcal{C}_{\mathrm{GHZ}}=\{XXX,XYY,YXY,YYX\}
 $$
 Quantum mechanics assigns product signs $\chi_C\in\{-1,+1\}$ for those contexts such that
 $$
-\prod_{C\in\mathcal{C}_{\mathrm{GHZ}}}\chi_C=-1.
+\prod_{C\in\mathcal{C}_{\mathrm{GHZ}}}\chi_C=-1
 $$
 Any context-independent local assignment of predetermined values $x_A,y_A,x_B,y_B,x_C,y_C\in\{-1,+1\}$ gives product $+1$, because every local value appears twice when the four context products are multiplied. This is the all-or-nothing GHZ obstruction: a model cannot pass by reproducing only a Bell average while carrying one fixed local value table across all contexts.
 
@@ -106,7 +106,7 @@ $$
 \max_{C\in\mathcal{C}_{\mathrm{GHZ}}}
 \left[
 1-\chi_C E_\theta(C)
-\right]_+,
+\right]_+
 $$
 where $E_\theta(C)$ is the product expectation of the three declared apparatus records in context $C$ and $[x]_+\equiv\max(x,0)$. Passing this benchmark means deriving the context-indexed joint record distribution from pair or multiplet provenance and local detector kernels, not assigning context-independent substrate values to all effective $X$ and $Y$ operators.
 
@@ -114,12 +114,12 @@ where $E_\theta(C)$ is the product expectation of the three declared apparatus r
 $$
 P(U_1=1,U_2=1)=0,
 \qquad
-P(D_1=1,U_2=0)=0,
+P(D_1=1,U_2=0)=0
 $$
 $$
 P(U_1=0,D_2=1)=0,
 \qquad
-P(D_1=1,D_2=1)>0.
+P(D_1=1,D_2=1)>0
 $$
 Local realism turns the positive $D_1=D_2=1$ event into a forbidden $U_1=U_2=1$ event. A compact validation margin is
 $$
@@ -133,7 +133,7 @@ P_\theta(U_1=1,U_2=1)
 P_\theta(D_1=1,U_2=0)
 -
 P_\theta(U_1=0,D_2=1)
-\right]_+.
+\right]_+
 $$
 The target is not to import Hardy's notation as ontology. The target is to make the declared joint record measure reproduce the zero constraints and the positive event while preserving measurement independence and no-signaling.
 
@@ -156,13 +156,13 @@ The experimental conclusion is unambiguous: at least one of the three Bell assum
 Bell's theorem is a **no-go theorem**: it excludes a class of theories, not a specific model. Its logical skeleton is:
 
 $$
-\text{(Realism)} \;\wedge\; \text{(Bell Locality)} \;\wedge\; \text{(Measurement Independence)} \;\Rightarrow\; |S| \leq 2.
+\text{(Realism)} \;\wedge\; \text{(Bell Locality)} \;\wedge\; \text{(Measurement Independence)} \;\Rightarrow\; |S| \leq 2
 $$
 
 The contrapositive is:
 
 $$
-|S| > 2 \;\Rightarrow\; \neg\text{(Realism)} \;\vee\; \neg\text{(Bell Locality)} \;\vee\; \neg\text{(Measurement Independence)}.
+|S| > 2 \;\Rightarrow\; \neg\text{(Realism)} \;\vee\; \neg\text{(Bell Locality)} \;\vee\; \neg\text{(Measurement Independence)}
 $$
 
 Experiment confirms $|S| > 2$. Therefore at least one assumption is false. The interpretive question is: *which one?*
@@ -194,7 +194,7 @@ The current placement is therefore:
 - **Bell factorizability is a closure target, not a slogan**: if the completed substrate model is compressed into Bell variables, it must fail the factorized local-response form
 
 $$
-P(a, b \,|\, \hat{m}_A, \hat{m}_B, \lambda) \neq P(a \,|\, \hat{m}_A, \lambda)\; P(b \,|\, \hat{m}_B, \lambda),
+P(a, b \,|\, \hat{m}_A, \hat{m}_B, \lambda) \neq P(a \,|\, \hat{m}_A, \lambda)\; P(b \,|\, \hat{m}_B, \lambda)
 $$
 
 while still preserving no-signaling. The mechanism for that failure must be derived from the angular-momentum ledger and the detector coupling, not inserted by terminology.
@@ -208,7 +208,7 @@ $$
 D_{\mathrm{TV}}\!\left(
 P(a,b\mid \hat{m}_A,\hat{m}_B,C),
 P(a\mid \hat{m}_A,C)P(b\mid \hat{m}_B,C)
-\right).
+\right)
 $$
 
 Here $C$ is not a new substrate object; it is the retained common-past or pair-provenance record used by the proposed Bell closure. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ route must explain why the declared provenance and apparatus-response compression leaves a nonzero factorization residual while keeping the measurement-independence and no-signaling residuals below tolerance. If $\Delta_{\mathrm{fact}}(C)$ vanishes for the completed hidden-variable record, the closure has not escaped the theorem.
@@ -223,7 +223,7 @@ $$
 -
 \mathcal{T}^{\mathcal{Q}_{AB}}_{t_s\to t_{\mathrm{rec}}}
 \mathcal{T}^{\mathcal{Q}_{AB}}_{t_0\to t_s}
-\right\|_{\mathrm{TV}\to\mathrm{TV}}.
+\right\|_{\mathrm{TV}\to\mathrm{TV}}
 $$
 
 If $\Delta_{\mathrm{div}}^{AB}\le\varepsilon_{\mathrm{div}}$ and $\Delta_{\mathrm{fact}}(C)=0$ for the completed retained record, the proposed closure has supplied a restartable screened common cause and remains in the Bell-local class. If $\Delta_{\mathrm{div}}^{AB}=O(1)$ for the observer-level Bell variables, then the reduced variables have lost path-history information needed for the joint record law; that is a possible reason the Bell abstraction fails to factorize. This does not weaken Bell's theorem. It states the replacement burden: derive the non-restartable record compression from pair provenance, local apparatus kernels, and finite-time measurement dynamics while still passing the no-signaling, measurement-independence, and correlation gates below.
@@ -241,7 +241,7 @@ $$
 D_{\mathrm{TV}}\!\left(
 \rho(\lambda\mid \hat{m}_A,\hat{m}_B),
 \rho(\lambda)
-\right),
+\right)
 $$
 
 where $D_{\mathrm{TV}}$ is total-variation distance on the hidden-variable distribution. The $\mathbb{A}\mathbb{A}\mathbb{A}$ route requires $\Delta_{\mathrm{MI}}$ to vanish, or at minimum to remain below an explicitly reported experimental and simulation tolerance $\epsilon_{\mathrm{MI}}$. Otherwise the mechanism has drifted into a measurement-independence denial rather than the pair-provenance route stated above.
@@ -257,7 +257,7 @@ $$
 P(a\mid \hat{m}_A,\hat{m}_B)
 -
 P(a\mid \hat{m}_A,\hat{m}'_B)
-\right|,
+\right|
 $$
 
 with the analogous $\Delta_{\mathrm{NS}}^{B}$ obtained by exchanging the detector labels. Both must vanish within tolerance.
@@ -276,7 +276,7 @@ a\,m_A(x,y)
 b\,m_B(x,y)
 +
 ab\,C(x,y)
-\right],
+\right]
 $$
 
 where
@@ -286,7 +286,7 @@ m_A=\sum_{a,b}aP(a,b|x,y),
 \qquad
 m_B=\sum_{a,b}bP(a,b|x,y),
 \qquad
-C=\sum_{a,b}abP(a,b|x,y).
+C=\sum_{a,b}abP(a,b|x,y)
 $$
 
 No-signaling is exactly the condition that the local channels reduce to $m_A(x)$ and $m_B(y)$. The only term then allowed to carry both settings without operational signaling is the correlation channel:
@@ -303,13 +303,13 @@ a\,m_A(x)
 b\,m_B(y)
 +
 ab\,C(x,y)
-\right],
+\right]
 $$
 
 with positivity condition
 
 $$
-1+a\,m_A(x)+b\,m_B(y)+ab\,C(x,y)\ge0.
+1+a\,m_A(x)+b\,m_B(y)+ab\,C(x,y)\ge0
 $$
 
 For the singlet target,
@@ -319,7 +319,7 @@ m_A(x)=0,
 \qquad
 m_B(y)=0,
 \qquad
-C(x,y)=-\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B.
+C(x,y)=-\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B
 $$
 
 Product-screened response is the special subclass
@@ -329,7 +329,7 @@ C_{\mathrm{prod}}(x,y)
 =
 \int
 A_x(\Pi)B_y(\Pi)\,
-d\rho_{\mathrm{src}}(\Pi).
+d\rho_{\mathrm{src}}(\Pi)
 $$
 
 Thus the non-product burden is sharply located: a successful pair-provenance account must derive a correlation channel $C(x,y)$ that is not reducible to $C_{\mathrm{prod}}(x,y)$, while keeping $m_A$ and $m_B$ local and preserving positivity.
@@ -342,7 +342,7 @@ $$
 \sup_{\theta\in[0,\pi]}
 \left|
 E_{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)+\cos\theta
-\right|.
+\right|
 $$
 
 The target is therefore not simply "$|S|>2$." The target is simultaneous recovery of the tested Bell correlations, preservation of no-signaling, and preservation of measurement independence while the observer-level compression still fails Bell's factorized local-response form.
@@ -353,7 +353,7 @@ Bell experiments end in ordinary records: detector clicks, settings logs, coinci
 
 For a record map
 $$
-\pi_{AB}:\mathcal{M}_{AB}\to\mathcal{R}_A\times\mathcal{R}_B,
+\pi_{AB}:\mathcal{M}_{AB}\to\mathcal{R}_A\times\mathcal{R}_B
 $$
 the required joint distribution is
 $$
@@ -361,7 +361,7 @@ P(a,b\mid\hat{m}_A,\hat{m}_B)
 =
 \mu_*^{AB}\!\left(
 \pi_{AB}^{-1}(a,b;\hat{m}_A,\hat{m}_B)
-\right).
+\right)
 $$
 The guardrail is that this measure must simultaneously produce the singlet correlation, preserve the one-wing marginals, and avoid measurement-independence leakage:
 $$
@@ -385,7 +385,7 @@ The non-separability of $\lambda$ requires a precise physical account. In $\math
 **Creation event.** When a parent assembly fragments into daughters $A$ and $B$ at absolute time $t_0$, the Master Equation and conservation laws jointly constrain the daughter microstates $\Gamma_A(t_0)$ and $\Gamma_B(t_0)$. For a spin-singlet-like event, the observer-level summary is
 
 $$
-\mathbf{J}_A+\mathbf{J}_B=\mathbf{0}.
+\mathbf{J}_A+\mathbf{J}_B=\mathbf{0}
 $$
 
 That summary is necessary, but it is not the mechanism. The substrate question is how the total angular-momentum functional is conserved while the daughter nested shell swarms redistribute action across inner, middle, and outer binaries, including self-action and causal-wake terms. The statement $\mathbf{J}_A=-\mathbf{J}_B$ is only the coarse ledger result of that deeper process.
@@ -403,7 +403,7 @@ t_{\mathrm{sep}},
 \Sigma_{\mathrm{src}},
 \mu_{\mathrm{src}},
 \Gamma_{\mathrm{src}}^{\mathrm{loc}}
-\right),
+\right)
 $$
 
 where $B_{\mathrm{parent}}^-$ is the pre-fragmentation parent branch, $W_{\mathrm{src}}$ is the source event window, $t_{\mathrm{sep}}$ is the separation time, $\Sigma_{\mathrm{src}}$ is the source separatrix or accepted branch condition, $\mu_{\mathrm{src}}$ is the source-side measure, and $\Gamma_{\mathrm{src}}^{\mathrm{loc}}$ records local source geometry. The retained pair-provenance distribution is
@@ -417,7 +417,7 @@ P_{\mathrm{src}}^{\mathrm{sing}}
 \right)
 =
 C_{\mathrm{pair}*}^{\mathrm{sing}}
-\mu_{\mathrm{src}}.
+\mu_{\mathrm{src}}
 $$
 
 Here $\Pi_{AB}^{\mathrm{sing}}$ is the daughter-pair provenance record and $C_{\mathrm{pair}*}^{\mathrm{sing}}$ is the singlet-pair construction or conditioning map. Later detector settings are excluded fields of $P_{\mathrm{src}}^{\mathrm{sing}}$; if they enter this source record, the model has moved into measurement-independence failure rather than Bell closure.
@@ -431,13 +431,13 @@ Here $\Pi_{AB}^{\mathrm{sing}}$ is the daughter-pair provenance record and $C_{\
 The central quantitative test is whether the $\mathbb{A}\mathbb{A}\mathbb{A}$ hidden-variable structure reproduces the singlet correlation:
 
 $$
-E(\hat{\mathbf m}_A, \hat{\mathbf m}_B) = -\cos\theta_{AB}.
+E(\hat{\mathbf m}_A, \hat{\mathbf m}_B) = -\cos\theta_{AB}
 $$
 
 **Classical-axis failure mode.** Suppose each daughter merely carries an opposite internal angular-momentum direction, distributed uniformly over the unit sphere:
 
 $$
-\hat{\mathbf n}_A=-\hat{\mathbf n}_B.
+\hat{\mathbf n}_A=-\hat{\mathbf n}_B
 $$
 
 The deterministic local response
@@ -463,7 +463,7 @@ gives the conserved-opposite-axis correlation
 $$
 E_{\mathrm{axis}}(\theta)
 =
--1+\frac{2\theta}{\pi},
+-1+\frac{2\theta}{\pi}
 $$
 
 which is **linear** in $\theta$ and does not violate the CHSH bound. This is the well-known failure of all local hidden-variable models with sharp basin boundaries.
@@ -477,7 +477,7 @@ P_\theta(\mathbf{r}|\mathbf{s})
 \int_{\Pi}
 \prod_i
 K_i(r_i|s_i,\Pi)\,
-d\rho_{\mathrm{prov}}(\Pi).
+d\rho_{\mathrm{prov}}(\Pi)
 $$
 That form can preserve no-signaling and measurement independence while still staying inside the Bell-local bound. The validation harness records this as `bell.product_screening_collapse`, so pair provenance is useful only if the retained record law avoids this compression without introducing setting-dependent provenance or distant signaling.
 
@@ -491,7 +491,7 @@ $$
 K_{ab}^{\mathrm{prod}}(x,y;\Pi,\zeta_A,\zeta_B)
 =
 K_A^a(x;\Pi,\zeta_A)
-K_B^b(y;\Pi,\zeta_B),
+K_B^b(y;\Pi,\zeta_B)
 $$
 
 with $d\nu_{A,x}$, $d\nu_{B,y}$, and $d\rho_{\mathrm{src}}(\Pi)$ setting-independent in the Bell sense. After integrating unresolved local record variables, define
@@ -503,7 +503,7 @@ p_A(a|x,\Pi)
 \qquad
 p_B(b|y,\Pi)
 =
-\int K_B^b(y;\Pi,\zeta_B)\,d\nu_{B,y}(\zeta_B).
+\int K_B^b(y;\Pi,\zeta_B)\,d\nu_{B,y}(\zeta_B)
 $$
 
 Then the observed law becomes
@@ -514,7 +514,7 @@ P(a,b|x,y)
 \int
 p_A(a|x,\Pi)
 p_B(b|y,\Pi)
-d\rho_{\mathrm{src}}(\Pi).
+d\rho_{\mathrm{src}}(\Pi)
 $$
 
 For $\pm1$ outcomes, set
@@ -522,7 +522,7 @@ For $\pm1$ outcomes, set
 $$
 A_x(\Pi)=\sum_{a=\pm1}a\,p_A(a|x,\Pi),
 \qquad
-B_y(\Pi)=\sum_{b=\pm1}b\,p_B(b|y,\Pi),
+B_y(\Pi)=\sum_{b=\pm1}b\,p_B(b|y,\Pi)
 $$
 
 so $A_x(\Pi),B_y(\Pi)\in[-1,1]$. For each $\Pi$,
@@ -537,7 +537,7 @@ A_{x'}B_y
 -
 A_{x'}B_{y'}
 \right|
-\le 2.
+\le 2
 $$
 
 Integrating over $d\rho_{\mathrm{src}}(\Pi)$ gives the CHSH bound $|S|\le2$. Therefore independent local threshold-pullback kernels can recover one-wing probabilities but cannot recover the singlet Bell law. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ Bell packet must locate nonseparability in the derived joint response kernel, in a non-restartable pair-provenance compression, or in another explicitly stated structure that is not equivalent to the product form above, while still preserving measurement independence and no-signaling.
@@ -545,7 +545,7 @@ Integrating over $d\rho_{\mathrm{src}}(\Pi)$ gives the CHSH bound $|S|\le2$. The
 The no-go is quantitative in the natural per-cell residual. If a candidate table is within $\Delta_{\mathrm{prod}}$ of a product-screened table for each outcome-setting cell, then each correlator differs by at most $4\Delta_{\mathrm{prod}}$, and the CHSH expression obeys
 
 $$
-|S|\le 2+16\Delta_{\mathrm{prod}}.
+|S|\le 2+16\Delta_{\mathrm{prod}}
 $$
 
 At the CHSH-optimal singlet settings, a completed table within $\Delta_{\mathrm{joint}}^{\mathrm{sing}}$ of the singlet joint law must therefore satisfy
@@ -557,7 +557,7 @@ $$
 \ge
 \frac{2\sqrt2-2}{16}
 =
-\frac{\sqrt2-1}{8}.
+\frac{\sqrt2-1}{8}
 $$
 
 Thus exact singlet recovery requires
@@ -592,7 +592,7 @@ P_{\mathrm{src}}^{\mathrm{sing}},
 \mathcal{K}_B,
 W,
 T
-\right),
+\right)
 $$
 
 let the derived joint response kernel satisfy
@@ -607,7 +607,7 @@ K_{ab}^{\theta}
 \zeta_B
 \right)\ge0,
 \qquad
-\sum_{a,b=\pm1}K_{ab}^{\theta}=1.
+\sum_{a,b=\pm1}K_{ab}^{\theta}=1
 $$
 
 The record law is
@@ -624,7 +624,7 @@ d\rho_{\mathrm{src}}
 \Pi
 \middle|
 P_{\mathrm{src}}^{\mathrm{sing}}
-\right).
+\right)
 $$
 
 The singlet residual is
@@ -640,7 +640,7 @@ P_{\theta}(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
 \left(
 1-ab\,\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B
 \right)
-\right|.
+\right|
 $$
 
 If this residual is small, normalization, unbiased one-wing marginals, and the correlation

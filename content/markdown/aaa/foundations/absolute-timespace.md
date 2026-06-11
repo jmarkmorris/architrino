@@ -23,11 +23,11 @@ All curvature, expansion, clock dilation, and relativistic behavior must be reco
 
 The absolute timespace background is the Cartesian product
 $$
-\mathcal{M}=\mathbb{R}\times\mathbb{R}^3,
+\mathcal{M}=\mathbb{R}\times\mathbb{R}^3
 $$
 with coordinates
 $$
-(t,\mathbf{x})=(t,x,y,z).
+(t,\mathbf{x})=(t,x,y,z)
 $$
 
 Each point in $\mathcal{M}$ represents an event: a fixed location $\mathbf{x}$ in the Euclidean void at a definite instant $t$.
@@ -43,7 +43,7 @@ The product structure is fundamental. It is not an approximation to a deeper 4D 
 
 Each instant $t=t_0$ defines a global simultaneity slice
 $$
-\Sigma_{t_0}=\{t_0\}\times\mathbb{R}^3\cong\mathbb{R}^3.
+\Sigma_{t_0}=\{t_0\}\times\mathbb{R}^3\cong\mathbb{R}^3
 $$
 
 Every event $(t,\mathbf{x})$ belongs to exactly one slice $\Sigma_t$. This foliation is absolute and frame-independent.
@@ -52,12 +52,12 @@ An object or assembly traces a worldline through the product background:
 $$
 \gamma:I\subset\mathbb{R}\to\mathcal{M},
 \qquad
-t\mapsto(t,\mathbf{x}(t)).
+t\mapsto(t,\mathbf{x}(t))
 $$
 
 For any alternate curve parameter $s$, admissible worldlines must satisfy
 $$
-\frac{dt}{ds}>0.
+\frac{dt}{ds}>0
 $$
 
 There are no closed timelike curves, no backward-time propagation, and no fundamental reparametrization freedom that replaces the absolute time parameter.
@@ -66,7 +66,7 @@ There are no closed timelike curves, no backward-time propagation, and no fundam
 
 On a fixed slice, the canonical universe-now notation is
 $$
-\mathbb{U}_{\text{now}} \equiv S(t).
+\mathbb{U}_{\text{now}} \equiv S(t)
 $$
 
 This denotes the complete ontic universe state on $\Sigma_t$: architrino positions, velocities, polarities, path-history and provenance bookkeeping, and self-hit history needed for deterministic evolution. It is not an observer's measurement record. Observer reconstructions sample or coarse-grain this state through assemblies and Noether sea coupling, which prevents absolute simultaneity from being confused with operationally synchronized clocks.
@@ -80,7 +80,7 @@ X(t),
 H_t,
 \mathcal{N}_{\mathrm{sea}}(t,\cdot),
 \mathcal{B}_t
-\big).
+\big)
 $$
 Here $X(t)$ contains instantaneous architrino and assembly data, $H_t$ is the required path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the local Noether sea state record, and $\mathcal{B}_t$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free instantaneous projection.
 
@@ -90,18 +90,18 @@ The background geometry is encoded by a pair of structures rather than by a sing
 
 The substrate clock 1-form is the exact form
 $$
-dt.
+dt
 $$
 
 This 1-form is closed, exact, and nowhere vanishing on $\mathcal{M}$. Its level sets are the simultaneity slices $\Sigma_t$. The symbol $\tau$ is reserved for derived observer proper time; emission times use $s$, and causal delay is written $\Delta_{ij}=t-s$.
 
 The spatial metric on each slice is
 $$
-h=dx^2+dy^2+dz^2,
+h=dx^2+dy^2+dz^2
 $$
 with Cartesian components
 $$
-h_{ij}=\delta_{ij}.
+h_{ij}=\delta_{ij}
 $$
 
 The metric $h$ acts only on spatial vectors tangent to $\Sigma_t$. Time and space are therefore encoded separately by $(dt,h)$.
@@ -110,14 +110,14 @@ A flat, torsion-free connection $\nabla$ satisfies
 $$
 \nabla dt=0,
 \qquad
-\nabla h=0.
+\nabla h=0
 $$
 
 These compatibility equations do not determine $\nabla$ by themselves in ordinary Newton-Cartan geometry. The same $(dt,h)$ admits torsion-free compatible connections whose coefficients represent rotating-frame or accelerating-frame inertial terms.
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, $\nabla$ is specified as part of the absolute-timespace substrate. The finite causal-wake speed $c_f$ is isotropic in the Euclidean-void rest frame, and in the corresponding global Cartesian rest coordinates the selected connection has
 $$
-\Gamma^\lambda_{\mu\nu}=0.
+\Gamma^\lambda_{\mu\nu}=0
 $$
 
 Covariant derivatives then reduce to ordinary partial derivatives, and spatial geodesics within each slice are straight lines. Nonzero coefficients introduced by rotating or accelerating coordinates are non-inertial descriptions of the same fixed substrate, not background curvature.
@@ -133,7 +133,7 @@ R(t)\left[
 +2\boldsymbol{\Omega}\times\mathbf{v}'
 +\boldsymbol{\Omega}\times(\boldsymbol{\Omega}\times\mathbf{x}')
 +\dot{\boldsymbol{\Omega}}\times\mathbf{x}'
-\right].
+\right]
 $$
 
 The terms proportional to $2\boldsymbol{\Omega}\times\mathbf{v}'$, $\boldsymbol{\Omega}\times(\boldsymbol{\Omega}\times\mathbf{x}')$, and $\dot{\boldsymbol{\Omega}}\times\mathbf{x}'$ are coordinate descriptions on absolute timespace. They do not add curvature to the Euclidean void, and they do not introduce a substrate magnetic field. Their value is diagnostic: they show how transverse-looking observer equations can arise from a choice of non-inertial chart while the underlying substrate remains $\mathbb{R}\times\mathbb{R}^3$ with the selected flat connection in the Euclidean-void rest frame.
@@ -157,12 +157,12 @@ Spatial distance within a simultaneity slice is
 $$
 d_{\text{spatial}}(\mathbf{x}_1,\mathbf{x}_2)
 =
-\sqrt{(x_1-x_2)^2+(y_1-y_2)^2+(z_1-z_2)^2}.
+\sqrt{(x_1-x_2)^2+(y_1-y_2)^2+(z_1-z_2)^2}
 $$
 
 Temporal duration between events is
 $$
-\Delta t=|t_2-t_1|.
+\Delta t=|t_2-t_1|
 $$
 
 Spatial arc length along a path $\mathbf{x}(t)$ from $t_1$ to $t_2$ is
@@ -176,7 +176,7 @@ L[\mathbf{x};t_1,t_2]
 \left(\frac{dx}{dt}\right)^2+
 \left(\frac{dy}{dt}\right)^2+
 \left(\frac{dz}{dt}\right)^2
-}\,dt.
+}\,dt
 $$
 
 A relativistic 4D arc length such as
@@ -189,26 +189,26 @@ is not a substrate-level object in $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
 Spatial velocity is the 3-vector
 $$
-\mathbf{v}(t)=\frac{d\mathbf{x}}{dt}.
+\mathbf{v}(t)=\frac{d\mathbf{x}}{dt}
 $$
 
 Speed is
 $$
-v=\|\mathbf{v}\|.
+v=\|\mathbf{v}\|
 $$
 
 Acceleration is
 $$
 \mathbf{a}(t)=\frac{d\mathbf{v}}{dt}
 =
-\frac{d^2\mathbf{x}}{dt^2}.
+\frac{d^2\mathbf{x}}{dt^2}
 $$
 
 The usual 3-vector expressions follow:
 $$
 \mathbf{p}=m\mathbf{v},
 \qquad
-T=\frac{1}{2}m v^2.
+T=\frac{1}{2}m v^2
 $$
 
 Forces cause accelerations in the Euclidean void. Time supplies the universal evolution parameter; it does not supply curvature, force, or clock dilation by itself.
@@ -229,7 +229,7 @@ $$
 =
 \mathcal{I}^{\mathrm{resp}}_{ij}
 \!\left(A;\mathcal{H}_A,\mathcal{S}_A,\left.\mathcal{N}_{\mathrm{sea}}\right|_A,R_A\right)
-\delta\Omega^j.
+\delta\Omega^j
 $$
 
 Here $\mathcal{H}_A$ denotes the closed internal path-history and causal-root ledger of the assembly, $\mathcal{S}_A$ its shielding state, $\left.\mathcal{N}_{\mathrm{sea}}\right|_A$ the local Noether sea state sampled by the assembly, and $R_A\in SO(3)$ its orientation relative to the Euclidean-void rest frame. The ordinary scalar mass relation is recovered only in an isotropic observer branch where $\mathcal{M}^{\mathrm{resp}}_{ij}\to m\,\delta_{ij}$ over the probed directions.
@@ -242,14 +242,14 @@ Time translation:
 $$
 t'=t+t_0,
 \qquad
-\mathbf{x}'=\mathbf{x}.
+\mathbf{x}'=\mathbf{x}
 $$
 
 Spatial translation:
 $$
 t'=t,
 \qquad
-\mathbf{x}'=\mathbf{x}+\mathbf{a}.
+\mathbf{x}'=\mathbf{x}+\mathbf{a}
 $$
 
 Rotation:
@@ -258,14 +258,14 @@ t'=t,
 \qquad
 \mathbf{x}'=R\mathbf{x},
 \qquad
-R\in SO(3).
+R\in SO(3)
 $$
 
 Galilean boost:
 $$
 t'=t,
 \qquad
-\mathbf{x}'=\mathbf{x}+\mathbf{v}_0t.
+\mathbf{x}'=\mathbf{x}+\mathbf{v}_0t
 $$
 
 The transformation preserves simultaneity slices because $t'=t$ up to a constant shift.
@@ -284,7 +284,7 @@ $$
 =
 c_f(t-s),
 \qquad
-s<t.
+s<t
 $$
 Thus boosts preserve the product foliation and are allowed coordinate descriptions, but they do not preserve the same isotropic wake-law form unless $\mathbf{u}=\mathbf{0}$ relative to the Euclidean-void rest frame. Galilean boosts are therefore kinematic coordinate transformations of the background, not dynamical symmetries of the primitive wake law.
 
@@ -316,23 +316,23 @@ For two events
 $$
 A=(t_A,\mathbf{x}_A),
 \qquad
-B=(t_B,\mathbf{x}_B),
+B=(t_B,\mathbf{x}_B)
 $$
 event $A$ can causally precede $B$ only if
 $$
-t_A<t_B.
+t_A<t_B
 $$
 
 A wake emitted at $(t_0,\mathbf{x}_0)$ reaches points on the causal wake surface
 $$
 \|\mathbf{x}-\mathbf{x}_0\|=c_f(t-t_0),
 \qquad
-t>t_0.
+t>t_0
 $$
 
 The filled causal future of that emission is
 $$
-\{(t,\mathbf{x}):t\geq t_0,\ \|\mathbf{x}-\mathbf{x}_0\|\leq c_f(t-t_0)\}.
+\{(t,\mathbf{x}):t\geq t_0,\ \|\mathbf{x}-\mathbf{x}_0\|\leq c_f(t-t_0)\}
 $$
 
 The equality surface is an expanding causal isochron: at each later $t$ it appears as a spatial sphere in the Euclidean void, not as a fundamental light cone of a Lorentzian metric. The filled region records causal order and finite-speed reachability, but it is not the support of a single emitted wake. In the exact Master Equation, a receiver is acted on only at boundary roots satisfying the equality condition above. With a mollifier, support is a narrow neighborhood of that boundary and is interpreted in the weak limit.
@@ -343,13 +343,13 @@ F_{ij}(t,s)
 =
 \|\mathbf{x}_i(t)-\mathbf{x}_j(s)\|-c_f(t-s),
 \qquad
-s<t,
+s<t
 $$
 with active causal-root set
 $$
 \mathcal{C}_{ij}(t)
 =
-\{\,s<t:F_{ij}(t,s)=0\,\}.
+\{\,s<t:F_{ij}(t,s)=0\,\}
 $$
 The same notation covers partner hits ($i\ne j$) and self-hits ($i=j$). Simple-root branch charts require the transversality floor
 $$
@@ -361,13 +361,13 @@ $$
 c_f-\hat{\mathbf{r}}_{ij}(t,s)\cdot\mathbf{v}_j(s)
 \right|
 \ge
-\kappa_{\mathrm{hit}}>0,
+\kappa_{\mathrm{hit}}>0
 $$
 where
 $$
 \mathbf{r}_{ij}(t,s)=\mathbf{x}_i(t)-\mathbf{x}_j(s),
 \qquad
-\hat{\mathbf{r}}_{ij}=\frac{\mathbf{r}_{ij}}{\|\mathbf{r}_{ij}\|}.
+\hat{\mathbf{r}}_{ij}=\frac{\mathbf{r}_{ij}}{\|\mathbf{r}_{ij}\|}
 $$
 Failure of this floor marks a caustic-like or degenerate wake-root regime; it is a branch-chart failure condition, not an ordinary small perturbation.
 
@@ -400,17 +400,17 @@ These exclusions preserve the distinction between absolute timespace and emergen
 
 The absolute time measure is
 $$
-dt.
+dt
 $$
 
 The spatial volume element on a slice is
 $$
-dV=dx\,dy\,dz.
+dV=dx\,dy\,dz
 $$
 
 The product measure is
 $$
-d\mathcal{V}=dt\,dx\,dy\,dz=dt\,dV.
+d\mathcal{V}=dt\,dx\,dy\,dz=dt\,dV
 $$
 
 The spatial gradient is
@@ -420,7 +420,7 @@ $$
 \frac{\partial f}{\partial x},
 \frac{\partial f}{\partial y},
 \frac{\partial f}{\partial z}
-\right).
+\right)
 $$
 
 The spatial Laplacian is
@@ -429,12 +429,12 @@ $$
 =
 \partial_x^2f+\partial_y^2f+\partial_z^2f
 =
-\delta^{ij}\partial_i\partial_j f.
+\delta^{ij}\partial_i\partial_j f
 $$
 
 The temporal derivative is
 $$
-\frac{\partial}{\partial t}.
+\frac{\partial}{\partial t}
 $$
 
 All dynamical equations should make clear which derivatives are temporal, which are spatial, and when a calculation is using an effective metric approximation rather than substrate geometry.
@@ -453,7 +453,7 @@ For well-posed dynamics on absolute timespace:
   \lim_{R\to\infty}
   \sum_{\substack{j,\ s\in\mathcal{C}_{ij}(t)\\
   \|\mathbf{x}_j(s)-\mathbf{x}_i(t)\|<R}}
-  \mathbf{a}_{ij}(t;s),
+  \mathbf{a}_{ij}(t;s)
   $$
   with any neutrality, screening, principal-value, or mean-field subtraction rule stated before the limit is used. Inverse-square surface dilution alone is not enough in three spatial dimensions because the number of sources in a radial layer grows like $r^2\,dr$.
 
@@ -483,7 +483,7 @@ A^2(\mathcal{N}_{\mathrm{sea}})\,dt^2
 \frac{1}{c_0^2}
 B_{ij}(\mathcal{N}_{\mathrm{sea}})
 \left(dx^i-u^i_{\text{sea}}dt\right)
-\left(dx^j-u^j_{\text{sea}}dt\right),
+\left(dx^j-u^j_{\text{sea}}dt\right)
 $$
 with $A>0$ and $B_{ij}$ symmetric positive definite. Equivalently, defining $ds_{\mathrm{eff}}^2=-c_0^2d\tau^2$ and $x^0=c_0t$ gives the component export
 $$
@@ -497,7 +497,7 @@ g^{\mathrm{eff}}_{0i}
 \qquad
 g^{\mathrm{eff}}_{ij}
 =
-B_{ij}.
+B_{ij}
 $$
 This is the same observer-level ADM/Cartan map stated in [Emergent Metric](../spacetime/emergent-metric.md). This equation is not substrate geometry; it is the required metric handoff from Noether sea state and Physical Observer assemblies into effective spacetime language.
 

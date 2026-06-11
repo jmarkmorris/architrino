@@ -44,7 +44,7 @@ D_{a,X}(\mathbf{x},t)
 \left\|\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf{x},t)\right\|
 +
 \left\|\mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf{x},t)\right\|
-}.
+}
 $$
 
 The first computable form comes from the same causal-root flux used in the Master Equation. Fix a coarse-graining window $W_\ell$, a channel $X$ being tested, and a sample event $(\mathbf{x},t)$. For a source constituent $j$ at emission time $t_0$, define
@@ -56,7 +56,7 @@ r_{\mathbf{x}j}(t;t_0)
 \qquad
 g_{\mathbf{x}j}(t;t_0)
 =
-r_{\mathbf{x}j}(t;t_0)-c_f(t-t_0),
+r_{\mathbf{x}j}(t;t_0)-c_f(t-t_0)
 $$
 
 $$
@@ -67,7 +67,7 @@ J_{\mathbf{x}j}(t;t_0)
 \qquad
 \mathcal{C}_{\mathbf{x}j}(t)
 =
-\{t_0<t:g_{\mathbf{x}j}(t;t_0)=0\}.
+\{t_0<t:g_{\mathbf{x}j}(t;t_0)=0\}
 $$
 
 Let $\mathcal{I}_a(t)$ be the architrino constituents and bound wake records belonging to assembly $a$, and let $\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)$ be the ambient Noether sea contributors in the same coarse window after excluding $\mathcal{I}_a(t)$. Let $w_{j,a}^{\mathrm{lock}}(t_0;t)$ retain the branches phase-locked to the assembly label, let $w_j^{\mathrm{sea}}(t_0;t)$ retain the ambient branches, and let $\alpha_{j,X}(\mathbf{x},t;t_0)\ge 0$ be the channel intensity inherited from branch-ledger exposure in channel $X$. Then the simple-root diagnostic is
@@ -80,7 +80,7 @@ W_\ell *
 \sum_{t_0\in\mathcal{C}_{\mathbf{x}j}(t)}
 w_{j,a}^{\mathrm{lock}}(t_0;t)
 \frac{\alpha_{j,X}(\mathbf{x},t;t_0)}
-{r_{\mathbf{x}j}^2(t;t_0)\left|J_{\mathbf{x}j}(t;t_0)\right|},
+{r_{\mathbf{x}j}^2(t;t_0)\left|J_{\mathbf{x}j}(t;t_0)\right|}
 $$
 
 and
@@ -93,7 +93,7 @@ W_\ell *
 \sum_{t_0\in\mathcal{C}_{\mathbf{x}j}(t)}
 w_j^{\mathrm{sea}}(t_0;t)
 \frac{\alpha_{j,X}(\mathbf{x},t;t_0)}
-{r_{\mathbf{x}j}^2(t;t_0)\left|J_{\mathbf{x}j}(t;t_0)\right|}.
+{r_{\mathbf{x}j}^2(t;t_0)\left|J_{\mathbf{x}j}(t;t_0)\right|}
 $$
 
 These coefficients are not fit amplitudes. For each accepted causal root, define the root-selected branch record
@@ -110,7 +110,7 @@ J_{\mathbf{x}j},\,
 q_j,\,
 \mathcal{L}_{j}^{\mathrm{wake}},\,
 \Lambda_j
-\right)_{(\mathbf{x},t;t_0)}.
+\right)_{(\mathbf{x},t;t_0)}
 $$
 
 Here $\mathcal{L}_{j}^{\mathrm{wake}}$ is the wake-history ledger carried by the source branch and $\Lambda_j$ is the closure label or neutral swarm label available on that branch. The locked weight is the assembly projector
@@ -123,7 +123,7 @@ w_{j,a}^{\mathrm{lock}}(t_0;t)
 \zeta_a
 \!\left(
 \mathcal{B}_{\mathbf{x}j}^{(t_0)}
-\right),
+\right)
 $$
 
 where $\zeta_a\in[0,1]$ is one for an accepted phase-locked branch of $\Lambda_a(t)$ and zero for a rejected branch in the exact ledger limit. A regularized branch chart may replace this sharp value by
@@ -143,7 +143,7 @@ d_{\Lambda_a}^2
 \mathcal{B}_{\mathbf{x}j}^{(t_0)}
 \right)}
 {\eta_\Lambda^2}
-\right],
+\right]
 $$
 
 where $d_{\Lambda_a}$ measures closure-label, phase, and branch-provenance mismatch against the accepted assembly ledger. The ambient weight is the complement projector
@@ -156,7 +156,7 @@ w_j^{\mathrm{sea}}(t_0;t)
 \zeta_{\mathrm{sea}}^{(\ell)}
 \!\left(
 \mathcal{B}_{\mathbf{x}j}^{(t_0)}
-\right),
+\right)
 $$
 
 where $\zeta_{\mathrm{sea}}^{(\ell)}\in[0,1]$ retains branches belonging to the neutral swarm equilibrium record in the coarse window after all resolved assembly ledgers have been removed. Thus a branch cannot contribute to the locked numerator and the ambient denominator by relabeling alone; it must pass the corresponding ledger projector.
@@ -177,7 +177,7 @@ $$
 \!\left(
 \mathcal{B}_{\mathbf{x}j}^{(t_0)}
 \right)
-\right].
+\right]
 $$
 
 For any neutral swarm branch quantity $f_k(t)$, write the ambient window average after resolved assembly ledgers have been removed as
@@ -191,7 +191,7 @@ W_\ell(\mathbf{x}-\mathbf{X}_k(t))f_k(t)
 }{
 \sum_{k\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)}
 W_\ell(\mathbf{x}-\mathbf{X}_k(t))
-}.
+}
 $$
 
 Let $\nu_k$ be the cadence variable of neutral swarm $k$, let $\bar\nu_{\mathrm{sea}}^{(\ell)}=\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and let $\sigma_{\nu,\ell}^2=\left\langle(\nu-\bar\nu_{\mathrm{sea}}^{(\ell)})^2\right\rangle_{\mathrm{sea},\ell}$. The cadence residual of the candidate branch is
@@ -206,7 +206,7 @@ $$
 \nu_j(t_0)-\bar\nu_{\mathrm{sea}}^{(\ell)}(\mathbf{x},t)
 }{
 \sqrt{\sigma_{\nu,\ell}^2+\epsilon_\nu^2}
-}.
+}
 $$
 
 Let $\mathcal N_{\ell}^{\setminus\mathrm{res}}$ be the neutral-pairing residual and $\mathbf P_{\ell}^{\setminus\mathrm{res}}$ the orientation/polarization residual of the same window after resolved assembly ledgers have been removed. The window-balance residual is
@@ -224,7 +224,7 @@ $$
 \left\|\mathbf P_{\ell}^{\setminus\mathrm{res}}\right\|^2
 }{
 \epsilon_P^2
-}.
+}
 $$
 
 The ambient acceptance is then
@@ -248,7 +248,7 @@ $$
 +
 \left(\Delta_{\mathrm{bal}}^{(\ell)}\right)^2
 \right)
-\right].
+\right]
 $$
 
 This form rejects assembly-locked branches because any resolved locked projector $\zeta_{a'}=1$ drives the complement factor to zero in the exact ledger limit. It retains ambient Noether sea branches in the same coarse window when they remain outside all resolved assembly ledgers and agree with the locally smoothed neutral swarm cadence and balance record. The tolerances $\epsilon_\nu$, $\epsilon_N$, and $\epsilon_P$ are resolution tolerances for the chosen window and ledger chart; they are not channel-specific fit parameters. Channel differences still enter through $\Pi_X$ and $Q_X$, while the assembly/complement split and neutral-equilibrium projector remain common to the diagnostic.
@@ -275,7 +275,7 @@ Q_X
 \!\left(
 \mathcal{B}_{\mathbf{x}j}^{(t_0)}
 \right)
-\right\|_X.
+\right\|_X
 $$
 
 The projection $\Pi_X$ selects the channel being tested and $Q_X$ removes only equivalences that preserve that channel's benchmark. Clock-coupling keeps cadence and phase entries that perturb the clock functional. Reaction-corridor calculations keep the oriented exchange, line-defect, color, weak, or provenance entries declared by that corridor. Packing keeps scalar or tensor exclusion-stress magnitude after force signs are discarded. Penetration keeps the local acceleration and phase-disruption entries along the tested path. These channels may use different $\Pi_X$, but they must not change the causal-root kernel, the assembly/complement split, or the source branch record.
@@ -293,7 +293,7 @@ $$
 J_{\mathbf{x}j},\,
 \Lambda_j,\,
 \mathcal{L}_{j}^{\mathrm{wake}}\big|_{\mathrm{phase}}
-\right),
+\right)
 $$
 
 where $\delta\theta_{\mathrm{clk}}^{(j)}$ and $\delta\omega_{\mathrm{clk}}^{(j)}$ are the branch-induced phase and cadence increments of the declared clock functional, and $\delta\chi_{\mathrm{sea}}^{(\ell,j)}$ is the branch contribution to the coarse Noether sea delay factor. The quotient $Q_{\mathrm{clock}}$ may remove phase-origin choices and hidden constituent relabelings only when $\omega_{\mathrm{clk}}/\omega_0$ is unchanged.
@@ -311,7 +311,7 @@ q_j,\,
 \mathcal{L}_{j}^{\mathrm{corr}},\,
 \mathcal{P}_{j}^{\mathrm{prov}},\,
 \Theta_j^{\mathrm{strain}}
-\right),
+\right)
 $$
 
 where $\mathcal{L}_{j}^{\mathrm{corr}}$ is the declared strong, weak, color, electromagnetic, or material corridor ledger, $\mathcal{P}_{j}^{\mathrm{prov}}$ is the provenance record of participating architrinos and energy entries, and $\Theta_j^{\mathrm{strain}}$ is the line-defect or medium-strain entry when the corridor calculation requires one. The quotient $Q_{\mathrm{corridor}}$ may remove only corridor-basis relabelings that preserve the recovered reaction channel, provenance ledger, and line-defect energy.
@@ -329,7 +329,7 @@ R_{\parallel,j},\,
 R_{\perp,j},\,
 \lambda_j,\,
 \xi_j
-\right),
+\right)
 $$
 
 where $\mathcal{S}_{j,\mathrm{excl}}^{ab}$ is the local exclusion-stress entry and $(R_{\parallel,j},R_{\perp,j},\lambda_j,\xi_j)$ are the envelope entries exposed by the branch. Packing deliberately discards attraction/repulsion sign after the exclusion magnitude and stress tensor are retained, because the benchmark is stable adjacency rather than signed acceleration along one path.
@@ -347,7 +347,7 @@ $$
 r_{\mathbf{x}j},\,
 J_{\mathbf{x}j},\,
 \Lambda_j
-\right),
+\right)
 $$
 
 where $\mathbf{a}_{\mathbf{x}\leftarrow j}$ is the signed branch acceleration obtained from the same causal-root law and $\Delta\phi_{\mathrm{disrupt}}^{(j)}$ is the induced phase-disruption increment on the tested transit branch. Unlike packing, penetration keeps the signed line-of-action entry because the benchmark asks whether the transit path remains dynamically stable.
@@ -367,7 +367,7 @@ $$
 +
 \frac{\left\|
 \mathcal{L}_{j}^{\mathrm{wake}}\big|_{\mathrm{phase}}
-\right\|_{\mathrm{phase}}^2}{\epsilon_{\mathrm{phase}}^2}.
+\right\|_{\mathrm{phase}}^2}{\epsilon_{\mathrm{phase}}^2}
 $$
 
 For a declared reaction corridor with oriented corridor record $\hat{\mathbf c}_X$,
@@ -389,7 +389,7 @@ $$
 +
 \frac{d_{\mathrm{prov}}^2(\mathcal P_j^{\mathrm{prov}},\mathcal P_X^{\mathrm{prov}})}{\epsilon_{\mathrm{prov}}^2}
 +
-\frac{\left\|\Theta_j^{\mathrm{strain}}\right\|^2}{\epsilon_{\Theta}^2}.
+\frac{\left\|\Theta_j^{\mathrm{strain}}\right\|^2}{\epsilon_{\Theta}^2}
 $$
 
 For packing, signs of attraction and repulsion have already been quotiented out, but exclusion magnitude and shape remain:
@@ -417,7 +417,7 @@ $$
 +
 \frac{\left(\Delta\ln\lambda_j\right)^2}{\epsilon_\lambda^2}
 +
-\frac{\left(\Delta\ln\xi_j\right)^2}{\epsilon_\xi^2}.
+\frac{\left(\Delta\ln\xi_j\right)^2}{\epsilon_\xi^2}
 $$
 
 Here each $\Delta\ln$ term is measured relative to the declared branch reference for the channel: the weak homogeneous nested shell swarm for clock/ruler calibration, the candidate neighboring swarm for packing, or the pre-entry path branch for penetration.
@@ -433,7 +433,7 @@ a_{\parallel,j}
 =
 \mathbf a_{\mathbf{x}\leftarrow j}
 -
-a_{\parallel,j}\hat{\mathbf u}.
+a_{\parallel,j}\hat{\mathbf u}
 $$
 
 The dominance norm is
@@ -451,7 +451,7 @@ $$
 +
 \frac{\left(\Delta\ln r_{\mathbf{x}j}\right)^2}{\epsilon_r^2}
 +
-\frac{\left(\Delta\ln|J_{\mathbf{x}j}|\right)^2}{\epsilon_J^2}.
+\frac{\left(\Delta\ln|J_{\mathbf{x}j}|\right)^2}{\epsilon_J^2}
 $$
 
 The signed entries in the penetration record remain available before the norm is taken, so a stabilizing tangent push and a destabilizing tangent push are not treated as the same path-history branch. The scalar norm is used only after the sign-sensitive admissibility test has decided which branch contributes to the penetration benchmark.
@@ -477,7 +477,7 @@ $$
 }
 \le
 \Delta_X^{\mathrm{tol}}
-\right\}.
+\right\}
 $$
 
 This definition makes the $\epsilon$ values derived chart scales: they are how far a retained ledger entry may move before the declared channel readout changes by more than the accepted tolerance. The practical first estimates are:
@@ -487,7 +487,7 @@ $$
 \qquad
 \epsilon_\theta=\Delta_{\theta}^{\mathrm{tol}},
 \qquad
-\epsilon_\chi=\Delta_{\chi}^{\mathrm{clk\text{-}sig,tol}},
+\epsilon_\chi=\Delta_{\chi}^{\mathrm{clk\text{-}sig,tol}}
 $$
 
 for clock scans;
@@ -499,7 +499,7 @@ $$
 \qquad
 \epsilon_{\mathrm{prov}}
 =
-\Delta_{\mathrm{prov},X}^{\mathrm{tol}},
+\Delta_{\mathrm{prov},X}^{\mathrm{tol}}
 $$
 
 for corridor scans, with exact provenance closure represented by the limit $\Delta_{\mathrm{prov},X}^{\mathrm{tol}}\to0$ after regularization; and
@@ -519,7 +519,7 @@ $$
 \qquad
 \epsilon_{\xi}
 =
-\Delta\ln\xi^{\mathrm{stab}},
+\Delta\ln\xi^{\mathrm{stab}}
 $$
 
 for packing scans, where the stable ranges are measured over accepted neighboring-swarm branches rather than chosen per atom or line. For penetration over a trial path of duration $T_{\mathrm{path}}$ and speed $v_{\mathrm{path}}$,
@@ -535,7 +535,7 @@ a_{\perp,\mathrm{tol}}
 \qquad
 \epsilon_{\mathrm{disrupt}}
 =
-\Delta\phi_{\mathrm{path}}^{\mathrm{tol}}.
+\Delta\phi_{\mathrm{path}}^{\mathrm{tol}}
 $$
 
 Thus tolerance derivation is a ledger-replay problem. A hydrogen line, packing calculation, or penetration test may choose a different channel tolerance because it asks a different stability question, but it may not retune the tolerance after seeing the observable.
@@ -575,7 +575,7 @@ d_{\mathrm{prov}}^2
 \left\|
 \Delta\mathcal{N}_{j\to a}
 \right\|_{\mathrm{cons}}^2}
-{\epsilon_{\mathrm{cons}}^2}.
+{\epsilon_{\mathrm{cons}}^2}
 $$
 
 Here $d_{\mathrm{disc}}=0$ when the discrete closure labels are compatible and $d_{\mathrm{disc}}=\infty$ when they are incompatible; $\operatorname{dist}_{S^1}$ is phase distance; $d_{\mathrm{root}}$ compares active causal-root ledgers; $d_{\mathrm{prov}}$ compares participating-source provenance; and $\Delta\mathcal{N}_{j\to a}$ collects the energy, momentum, angular-momentum, polarity, and other conserved-increment residuals needed by the assembly ledger. This makes $\zeta_a$ a branch-admission test. If any term has to be chosen separately for clock, corridor, packing, and penetration benchmarks, the interface diagnostic has reverted to a fitted surface rather than a closure-ledger projection.
@@ -590,7 +590,7 @@ $$
 \left\{
 \mathbf{x}\in\Sigma_t:
 D_{a,X}(\mathbf{x},t)=D_X
-\right\}.
+\right\}
 $$
 
 The level-set threshold is not universal. A penetration calculation, packing calculation, clock-coupling calculation, and reaction-corridor calculation choose different $D_X$ values because they test different stability criteria. A useful ordering of first thresholds is
@@ -606,7 +606,7 @@ D_{\mathrm{packing}}
 \le
 D_{\mathrm{penetration}}
 <
-1.
+1
 $$
 
 Clock-coupling can be sensitive to weak locked-wake tails. A reaction corridor needs a stronger coherent channel but need not coincide with the full exclusion envelope. Packing asks where another stable Noether swarm or assembly can remain without persistent phase disruption. Penetration asks where transit through the assembly-dominated wake becomes dynamically unstable. What must remain invariant is the level distinction: exact assembly membership is a closure-ledger fact, while $\partial\Omega_a(D_X,t)$ is a spatial interface extracted from that ledger and the surrounding Noether sea response.
@@ -629,7 +629,7 @@ In low-energy prose, "nested shell swarm shape" should usually mean this effecti
 
 For the oblate spheroidal exclusion envelope, use $R_{\parallel}$ for the semiaxis along the contraction or drift-aligned direction and $R_{\perp}$ for the transverse semiaxis. The canonical shape ratio is
 $$
-\xi\equiv\frac{R_{\parallel}}{R_{\perp}},
+\xi\equiv\frac{R_{\parallel}}{R_{\perp}}
 $$
 so $\xi=1$ denotes a spherical envelope and $\xi<1$ denotes an oblate envelope compressed along the parallel axis.
 
@@ -641,7 +641,7 @@ for the transverse scale ratio relative to a stated reference envelope. The pair
 
 Observer clock behavior is a downstream readout, not the definition of either geometry variable. In a successful homogeneous Lorentz-closure regime, the theory should derive
 $$
-\frac{\omega_{\text{clk}}}{\omega_0}=\frac{d\tau}{dt}\to\xi\to\frac{1}{\gamma},
+\frac{\omega_{\text{clk}}}{\omega_0}=\frac{d\tau}{dt}\to\xi\to\frac{1}{\gamma}
 $$
 but this is a closure target linking the clock channel to the oblate envelope. It should not be used to define $\xi$.
 
@@ -655,7 +655,7 @@ $$
 \equiv
 \frac{R_{\perp,q}(v)}{R_{\parallel,q}(v)}
 =
-\frac{1}{\xi_q(v)},
+\frac{1}{\xi_q(v)}
 $$
 but the branch $q$ is accepted only when the inner and middle ledgers also retune consistently with clock closure, conservation, and preferred-frame leakage bounds.
 
@@ -663,7 +663,7 @@ The direct Lorentz-to-geometry map comes from a closed return cycle. In a homoge
 $$
 \gamma_{\text{eff}}(v)
 \equiv
-\frac{1}{\sqrt{1-v^2/c_{\text{eff}}^2}}.
+\frac{1}{\sqrt{1-v^2/c_{\text{eff}}^2}}
 $$
 The longitudinal return time for an envelope semiaxis $R_{\parallel}$ is
 $$
@@ -673,13 +673,13 @@ T_{\parallel}
 +
 \frac{R_{\parallel}}{c_{\text{eff}}+v}
 =
-\frac{2R_{\parallel}}{c_{\text{eff}}}\gamma_{\text{eff}}^2,
+\frac{2R_{\parallel}}{c_{\text{eff}}}\gamma_{\text{eff}}^2
 $$
 while the transverse causal-budget return time is
 $$
 T_{\perp}
 =
-\frac{2R_{\perp}}{c_{\text{eff}}}\gamma_{\text{eff}}.
+\frac{2R_{\perp}}{c_{\text{eff}}}\gamma_{\text{eff}}
 $$
 Requiring $T_{\parallel}=T_{\perp}+O(\epsilon_{\mathrm{LV}}T_0)$ gives
 $$
@@ -688,7 +688,7 @@ $$
 \frac{R_{\parallel,q}(v)}{R_{\perp,q}(v)}
 =
 \frac{1}{\gamma_{\text{eff}}(v)}
-+O(\epsilon_{\mathrm{LV}}).
++O(\epsilon_{\mathrm{LV}})
 $$
 The role of the geometry chapter is to record this as an envelope projection, not as a primitive definition. The derivation and closure coefficients belong to [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio).
 
@@ -701,7 +701,7 @@ $$
 \gamma_{\mathrm{clk}}^{(q)}(v)
 =
 \gamma_{\mathrm{rul}}^{(q)}(v)
-+O(\epsilon_{\mathrm{LV}}).
++O(\epsilon_{\mathrm{LV}})
 $$
 The envelope is therefore the visible projection of the three-binary causal-root ledger, not an independently assigned Lorentz surface.
 
@@ -728,7 +728,7 @@ $$
 \ln R_I,\ln R_M,\ln R_O,\,
 \mathbf{A}_I,\mathbf{A}_M,\mathbf{A}_O,\,
 \mathcal{L}_{\mathrm{root}},\mathcal{L}_{\mathrm{wake}}
-\right),
+\right)
 $$
 
 where the axes, root ledger, and wake ledger are part of the branch data. The induced geometry increments are therefore
@@ -742,7 +742,7 @@ $$
 =
 \Delta\ln R_{\parallel,q}
 -
-\Delta\ln R_{\perp,q}.
+\Delta\ln R_{\perp,q}
 $$
 
 In the low-stress outer-dominated branch, this reduces to the useful estimate
@@ -756,7 +756,7 @@ $$
 \approx
 \Delta\ln R_{\parallel,O}
 -
-\Delta\ln R_{\perp,O}.
+\Delta\ln R_{\perp,O}
 $$
 
 This approximation is a projection estimate, not a branch proof. It fails when middle-layer hinge motion, inner self-hit history, axis precession, or neighbor-induced strain contributes at the same order as the outer binary. Those failures are informative: they identify which hidden ledger entries must be retained before the retuning map can be used for clock, ruler, or Noether sea transport calculations.
