@@ -1,10 +1,10 @@
-# Ideal Core
+# Ideal Swarm
 
 ## LLM Instructions
 
-- Keep `Task Queue` ordered as the current Ideal Core app work queue, with the most important active item first.
-- Keep this priority file app-facing: runtime access, visualization requirements, lesson flow, controls, charts, and acceptance gates. Its task queue is app-local and is not part of the global theory priority score table unless the operator/developer explicitly selects Ideal Core work.
-- Use [../ellipsoid/ideal-core.md](../ellipsoid/ideal-core.md) as the earlier design brief for the Noether swarm instrument and central spherical viewing model.
+- Keep `Task Queue` ordered as the current Ideal Swarm app work queue, with the most important active item first.
+- Keep this priority file app-facing: runtime access, visualization requirements, lesson flow, controls, charts, and acceptance gates. Its task queue is app-local and is not part of the global theory priority score table unless the operator/developer explicitly selects Ideal Swarm work.
+- Use [../ellipsoid/ideal-swarm.md](../ellipsoid/ideal-swarm.md) as the earlier design brief for the Noether swarm instrument and central spherical viewing model.
 - Use [../../../content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md](../../../content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md) as the current theory bridge for Lorentz-factor quantization, return-cycle closure, and Lorentz spheroid geometry.
 - Do not treat the app as proof by itself; use it to make the candidate geometry, equations, and closure defects visible.
 
@@ -20,14 +20,14 @@
 ## Access
 
 - Local dev command: `node scripts/dev/start-local-dev.mjs`
-- Local browser URL: `http://127.0.0.1:5173/ideal-core.html`
-- HTML entrypoint: [ideal-core.html](../../../ideal-core.html)
-- JavaScript entrypoint: [main.js](../../../src/apps/ideal-core/main.js)
-- Runtime module: [IdealCorePrototypeRuntime.js](../../../src/apps/ideal-core/IdealCorePrototypeRuntime.js)
+- Local browser URL: `http://127.0.0.1:5173/ideal-swarm.html`
+- HTML entrypoint: [ideal-swarm.html](../../../ideal-swarm.html)
+- JavaScript entrypoint: [main.js](../../../src/apps/ideal-swarm/main.js)
+- Runtime module: [IdealSwarmPrototypeRuntime.js](../../../src/apps/ideal-swarm/IdealSwarmPrototypeRuntime.js)
 
 ## Purpose
 
-Ideal Core is the interactive Noether swarm visualization app.
+Ideal Swarm is the interactive Noether swarm visualization app.
 
 Its near-term role is to make the Lorentz response of a Noether swarm visually and quantitatively legible: the user should be able to change the relative speed $v$, see the Lorentz factor $\gamma$ update, watch the core geometry become a Lorentz-flattened oblate spheroid, and read the corresponding time-dilation and length-contraction symbols directly on the chart.
 
@@ -42,7 +42,7 @@ The target reader experience is lesson-like rather than decorative. The app shou
 
 ## Current State
 
-- The app already has a standalone HTML surface at `ideal-core.html`.
+- The app already has a standalone HTML surface at `ideal-swarm.html`.
 - The current screen has one central Three.js canvas and four surrounding panels.
 - Existing controls include path/surface/axis toggles, freeze, reset, focus, outer orbit, velocity fraction, cycle speed, and direct document buttons for Return-Cycle Lorentz Quantization and Lorentz Kinematics.
 - Existing readouts include the Lorentz chart, relative time, relative length, normalized energy/mass ledger, lower-left equation stack, markdown document overlay, and a binary-measures table.
@@ -314,7 +314,7 @@ The labels should stay readable at normal desktop zoom and should not require th
 
 This priority is done when:
 
-- `ideal-core.html` has a dedicated Lorentz lesson mode or equivalent view state;
+- `ideal-swarm.html` has a dedicated Lorentz lesson mode or equivalent view state;
 - changing $v/c$ updates the spheroid geometry, time-dilation readout, length-contraction readout, and chart cursor together;
 - the chart displays $\gamma(v/c)$ and $\xi(v/c)$ with active symbolic labels;
 - the central core visibly contracts along the assembly momentum / velocity direction $n=(1,1,1)/\sqrt{3}$ according to $R_\parallel=R_\perp/\gamma$;
@@ -328,7 +328,7 @@ This priority is done when:
 
 ## Related Files
 
-- [../ellipsoid/ideal-core.md](../ellipsoid/ideal-core.md)
+- [../ellipsoid/ideal-swarm.md](../ellipsoid/ideal-swarm.md)
 - [../../../content/markdown/aaa/spacetime/lorentz-kinematics.md](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md)
 - [../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md)
 - [../../../content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md](../../../content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md)

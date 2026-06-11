@@ -129,7 +129,7 @@ promoted into the canonical scoring table.
 | 14 | [`animator`](../animator/animator.md) | Product/runtime/UI work can produce visible progress through authoring, timeline, canonical-structure, and visualization improvements. |
 | 17 | [`chapter-authoring`](../chapter-authoring/chapter-authoring.md) | Source mining and authoring can proceed as curated writing and organization. |
 | U2 | [`animator-merge`](../animator-merge/animator-merge.md) | Can advance as app architecture, dataset contract, playback bridge, and UI integration if solver extraction is deferred. |
-| U3 | [`ideal-core`](../ideal-core/ideal-core.md) | App-local lesson and visualization work can stay explanatory and inspection-oriented. |
+| U3 | [`ideal-swarm`](../ideal-swarm/ideal-swarm.md) | App-local lesson and visualization work can stay explanatory and inspection-oriented. |
 | U4 | [`cross-theory-mapping`](../cross-theory-mapping/cross-theory-mapping.md) | Can remain benchmark mapping, requirement classification, and acceptance-predicate drafting until one case is promoted. |
 | U5 | [`dark-sector`](../dark-sector/dark-sector.md) | Can remain a watchlist and hypothesis-routing registry until a release-channel or event-ledger packet becomes concrete. |
 | U6 | [`ellipsoid`](../ellipsoid/ellipsoid.md) | Can be retired or routed by documentation review because its shape-plus-scale material is already owned elsewhere. |
@@ -149,7 +149,7 @@ items by practical attention value and slog risk, not by canonical `Value` or
 | ---: | --- | --- | --- | --- |
 | U1 | `geometry-bridge` | [geometry-bridge.md](../geometry-bridge/geometry-bridge.md) | Proposed active mathematics attack plan for branch-local response, root-sensitive linearization, geometry export, and ADM/Cartan projection. | Treat as high-value but likely proof/certificate heavy; do not start casually when the operator/developer wants a lower-slog lane. |
 | U2 | `animator-merge` | [animator-merge.md](../animator-merge/animator-merge.md) | Direction note for merging useful simulation playback and visual semantics into animator. | Advance through dataset contracts and app integration before solver extraction if the goal is visible progress. |
-| U3 | `ideal-core` | [ideal-core.md](../ideal-core/ideal-core.md) | Nested shell swarm prototype app planning and implementation control surface. | Keep outside the theory score table unless app work becomes a validation, authoring, or proof-inspection dependency. |
+| U3 | `ideal-swarm` | [ideal-swarm.md](../ideal-swarm/ideal-swarm.md) | Nested shell swarm prototype app planning and implementation control surface. | Keep outside the theory score table unless app work becomes a validation, authoring, or proof-inspection dependency. |
 | U4 | `cross-theory-mapping` | [cross-theory-mapping.md](../cross-theory-mapping/cross-theory-mapping.md) | Priority-candidate lane for observational and experimental benchmark cases whose standard-theory mathematics can sharpen $\mathbb{A}\mathbb{A}\mathbb{A}$ closure work. | Keep unscored until one case supplies a concrete acceptance predicate, closure object, promotion target, and failure mode strong enough to enter a ranked workstream. |
 | U5 | `dark-sector` | [dark-sector.md](../dark-sector/dark-sector.md) | Speculative dark-sector candidate assembly lane for release, transport, redshift, reaction, and visible-channel re-entry hypotheses. | Priority candidate under watchlist review; promote only packets with a boundary condition, event ledger, redshift/re-entry gate, or discriminating observable. |
 | U6 | `ellipsoid` | [ellipsoid.md](../ellipsoid/ellipsoid.md) | Residual routing surface for old ellipsoid notes plus the nested shell swarm prototype app idea. | Shape-plus-scale deformation is already owned by the corpus; retire this candidate after raw notes and app routing have destinations. |
@@ -176,7 +176,7 @@ items by practical attention value and slog risk, not by canonical `Value` or
 - Workstream `animator`: compact control file and sibling design/interface file are in place; keep app work globally downstream unless the operator/developer selects it or it directly supports inspection of a scored proof/simulation object.
 - Workstreams `strong-field-closure`, `quantum-closure`, and `cosmology-closure`: the scorecard pressure is high, but their intuition and validation costs keep them downstream until shared branch, exposure, event-ledger, and measure machinery mature.
 - Workstream candidate `dark-sector`: keep dark-sector photon-like modes in [dark-sector](../dark-sector/dark-sector.md) as a speculative assembly lane until the packet gains a release-channel boundary condition, event ledger, redshift/re-entry gate, and discriminating observable.
-- App-local `ideal-core`: keep the local nested shell swarm prototype queue active in its own file, but do not treat it as global rank 1. It becomes globally ranked only if the app is selected as a validation, authoring, or proof-inspection dependency.
+- App-local `ideal-swarm`: keep the local nested shell swarm prototype queue active in its own file, but do not treat it as global rank 1. It becomes globally ranked only if the app is selected as a validation, authoring, or proof-inspection dependency.
 
 ## Organization Status
 
@@ -201,7 +201,7 @@ items by practical attention value and slog risk, not by canonical `Value` or
 10. Advance the transfer-operator / basin-measure theorem as the quantum-side measure engine, but keep Born weights, detector kernels, Bell tests, dyadic locks, and pilot-wave / algorithmic-resonance stress tests tied to explicit state spaces and return maps.
 11. Use `validation-gates` as the cross-sector pressure test only after a local workstream claims a promotable result; local wins must survive weak, quantum, gravity, hadronic, radiation, and cosmology acceptance gates together.
 12. Keep Standard Model, strong-field, quantum, and cosmology closure downstream but sharper: weak/gauge, confinement, nuclear binding, Bell hard tests, black-hole observables, and cosmological transfer functions should inherit explicit branch, exposure, event-ledger, medium-response, and basin-measure objects rather than importing inherited-framework success as a terminal benchmark.
-13. Keep app work, including `animator` and `ideal-core`, behind proof/simulation/corpus needs unless the operator/developer explicitly selects the app path or an app surface directly helps inspect a ranked proof object.
+13. Keep app work, including `animator` and `ideal-swarm`, behind proof/simulation/corpus needs unless the operator/developer explicitly selects the app path or an app surface directly helps inspect a ranked proof object.
 
 ## Info
 

@@ -40,7 +40,7 @@
         font: inherit;
       }
 
-      #ideal-core-app {
+      #ideal-swarm-app {
         position: relative;
         width: 100%;
         height: 100%;
@@ -49,7 +49,7 @@
           linear-gradient(180deg, #111722 0%, #070a11 100%);
       }
 
-      #ideal-core-canvas {
+      #ideal-swarm-canvas {
         position: absolute;
         inset: 0;
         display: block;
@@ -58,7 +58,7 @@
         outline: none;
       }
 
-      .ideal-core-title {
+      .ideal-swarm-title {
         position: absolute;
         left: 50%;
         top: 18px;
@@ -71,7 +71,7 @@
         pointer-events: none;
       }
 
-      .ideal-core-panel {
+      .ideal-swarm-panel {
         position: absolute;
         width: 292px;
         padding: 12px;
@@ -82,7 +82,7 @@
         backdrop-filter: blur(10px);
       }
 
-      .ideal-core-panel h2 {
+      .ideal-swarm-panel h2 {
         margin: 0 0 10px;
         color: rgba(238, 243, 255, 0.95);
         font-size: 13px;
@@ -90,30 +90,30 @@
         letter-spacing: 0;
       }
 
-      .ideal-core-panel.is-upper-left {
+      .ideal-swarm-panel.is-upper-left {
         left: 16px;
         top: 16px;
         width: 251px;
       }
 
-      .ideal-core-panel.is-upper-right {
+      .ideal-swarm-panel.is-upper-right {
         right: 16px;
         top: 16px;
       }
 
-      .ideal-core-panel.is-lower-left {
+      .ideal-swarm-panel.is-lower-left {
         left: 16px;
         bottom: 16px;
         width: 380px;
       }
 
-      .ideal-core-panel.is-lower-right {
+      .ideal-swarm-panel.is-lower-right {
         right: 16px;
         bottom: 16px;
         width: 352px;
       }
 
-      .ideal-core-button {
+      .ideal-swarm-button {
         min-height: 32px;
         border: 1px solid rgba(148, 163, 184, 0.25);
         border-radius: 6px;
@@ -122,46 +122,46 @@
         cursor: pointer;
       }
 
-      .ideal-core-button:hover {
+      .ideal-swarm-button:hover {
         border-color: rgba(125, 211, 252, 0.58);
       }
 
-      .ideal-core-button.is-active {
+      .ideal-swarm-button.is-active {
         border-color: rgba(251, 191, 36, 0.85);
         background: rgba(40, 34, 20, 0.92);
         color: #fff8e6;
       }
 
-      .ideal-core-control-stack {
+      .ideal-swarm-control-stack {
         display: grid;
         gap: 10px;
       }
 
-      .ideal-core-toggle-row,
-      .ideal-core-range-row,
-      .ideal-core-command-row {
+      .ideal-swarm-toggle-row,
+      .ideal-swarm-range-row,
+      .ideal-swarm-command-row {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 8px;
       }
 
-      .ideal-core-doc-row {
+      .ideal-swarm-doc-row {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 8px;
       }
 
-      .ideal-core-range-row {
+      .ideal-swarm-range-row {
         grid-template-columns: 72px 1fr 46px;
         align-items: center;
       }
 
-      .ideal-core-range-row label {
+      .ideal-swarm-range-row label {
         color: rgba(203, 213, 225, 0.76);
         font-size: 12px;
       }
 
-      .ideal-core-range-row output {
+      .ideal-swarm-range-row output {
         color: rgba(238, 243, 255, 0.92);
         font-size: 12px;
         text-align: right;
@@ -172,14 +172,14 @@
         accent-color: #fbbf24;
       }
 
-      .ideal-core-factor-grid {
+      .ideal-swarm-factor-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 6px;
         margin-top: 10px;
       }
 
-      .ideal-core-factor-card {
+      .ideal-swarm-factor-card {
         min-height: 64px;
         padding: 6px;
         border: 1px solid rgba(148, 163, 184, 0.18);
@@ -190,28 +190,28 @@
         gap: 4px;
       }
 
-      .ideal-core-factor-card.is-time {
+      .ideal-swarm-factor-card.is-time {
         border-color: rgba(125, 211, 252, 0.34);
       }
 
-      .ideal-core-factor-card.is-length {
+      .ideal-swarm-factor-card.is-length {
         border-color: rgba(45, 212, 191, 0.34);
       }
 
-      .ideal-core-factor-card span {
+      .ideal-swarm-factor-card span {
         color: rgba(203, 213, 225, 0.82);
         font-size: 10px;
         line-height: 1.2;
       }
 
-      .ideal-core-factor-card strong {
+      .ideal-swarm-factor-card strong {
         color: #fef3c7;
         font-size: 16px;
         font-weight: 700;
         line-height: 1;
       }
 
-      .ideal-core-factor-card small {
+      .ideal-swarm-factor-card small {
         color: rgba(203, 213, 225, 0.7);
         font-size: 8px;
         line-height: 1.18;
@@ -219,7 +219,7 @@
         white-space: nowrap;
       }
 
-      .ideal-core-energy-ledger {
+      .ideal-swarm-energy-ledger {
         margin-top: 10px;
         padding: 9px;
         border: 1px solid rgba(148, 163, 184, 0.18);
@@ -227,7 +227,7 @@
         background: rgba(2, 6, 23, 0.5);
       }
 
-      .ideal-core-energy-ledger header {
+      .ideal-swarm-energy-ledger header {
         display: flex;
         align-items: baseline;
         justify-content: space-between;
@@ -235,25 +235,25 @@
         margin-bottom: 7px;
       }
 
-      .ideal-core-energy-ledger h3 {
+      .ideal-swarm-energy-ledger h3 {
         margin: 0;
         color: rgba(238, 243, 255, 0.95);
         font-size: 11px;
         font-weight: 700;
       }
 
-      .ideal-core-energy-ledger small {
+      .ideal-swarm-energy-ledger small {
         color: rgba(203, 213, 225, 0.62);
         font-size: 9px;
         text-align: right;
       }
 
-      .ideal-core-energy-rows {
+      .ideal-swarm-energy-rows {
         display: grid;
         gap: 5px;
       }
 
-      .ideal-core-energy-row {
+      .ideal-swarm-energy-row {
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto;
         gap: 8px;
@@ -263,14 +263,14 @@
         line-height: 1.25;
       }
 
-      .ideal-core-energy-row output {
+      .ideal-swarm-energy-row output {
         color: #fef3c7;
         font-size: 11px;
         font-weight: 700;
         white-space: nowrap;
       }
 
-      #ideal-core-potential-strip {
+      #ideal-swarm-potential-strip {
         width: 100%;
         height: 84px;
         border: 1px solid rgba(148, 163, 184, 0.16);
@@ -278,7 +278,7 @@
         background: rgba(2, 6, 23, 0.55);
       }
 
-      .ideal-core-chart-legend {
+      .ideal-swarm-chart-legend {
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
@@ -287,28 +287,28 @@
         font-size: 11px;
       }
 
-      .ideal-core-chart-legend span {
+      .ideal-swarm-chart-legend span {
         display: inline-flex;
         align-items: center;
         gap: 5px;
       }
 
-      .ideal-core-chart-legend i {
+      .ideal-swarm-chart-legend i {
         display: inline-block;
         width: 16px;
         height: 3px;
         border-radius: 999px;
       }
 
-      .ideal-core-equation-stack {
+      .ideal-swarm-equation-stack {
         display: grid;
         gap: 9px;
         color: rgba(203, 213, 225, 0.78);
         font-size: 12px;
       }
 
-      .ideal-core-equation-row,
-      .ideal-core-cycle-row {
+      .ideal-swarm-equation-row,
+      .ideal-swarm-cycle-row {
         display: grid;
         grid-template-columns: 1fr auto;
         gap: 10px;
@@ -316,31 +316,31 @@
         min-height: 24px;
       }
 
-      .ideal-core-equation-row code,
-      .ideal-core-cycle-row code {
+      .ideal-swarm-equation-row code,
+      .ideal-swarm-cycle-row code {
         color: rgba(238, 243, 255, 0.9);
         font-family: "Helvetica Neue", Arial, sans-serif;
         font-size: 12px;
       }
 
-      .ideal-core-equation-row output,
-      .ideal-core-cycle-row output {
+      .ideal-swarm-equation-row output,
+      .ideal-swarm-cycle-row output {
         color: #fef3c7;
         font-size: 12px;
         text-align: right;
         white-space: nowrap;
       }
 
-      .ideal-core-equation-divider {
+      .ideal-swarm-equation-divider {
         height: 1px;
         background: rgba(148, 163, 184, 0.16);
       }
 
-      .ideal-core-closure-detail {
+      .ideal-swarm-closure-detail {
         display: none;
       }
 
-      .ideal-core-status {
+      .ideal-swarm-status {
         margin-top: 2px;
         padding: 7px 8px;
         border: 1px solid rgba(45, 212, 191, 0.28);
@@ -350,27 +350,27 @@
         font-size: 11px;
       }
 
-      .ideal-core-table {
+      .ideal-swarm-table {
         width: 100%;
         border-collapse: collapse;
         font-size: 12px;
       }
 
-      .ideal-core-table th,
-      .ideal-core-table td {
+      .ideal-swarm-table th,
+      .ideal-swarm-table td {
         padding: 6px 5px;
         border-bottom: 1px solid rgba(148, 163, 184, 0.15);
         text-align: right;
         white-space: nowrap;
       }
 
-      .ideal-core-table th:first-child,
-      .ideal-core-table td:first-child {
+      .ideal-swarm-table th:first-child,
+      .ideal-swarm-table td:first-child {
         text-align: left;
         color: rgba(203, 213, 225, 0.78);
       }
 
-      .ideal-core-table th {
+      .ideal-swarm-table th {
         color: rgba(238, 243, 255, 0.9);
         font-weight: 700;
       }
@@ -397,7 +397,7 @@
         grid-template-rows: auto minmax(0, 1fr);
       }
 
-      .ideal-core-markdown-header {
+      .ideal-swarm-markdown-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -417,14 +417,14 @@
         white-space: nowrap;
       }
 
-      .ideal-core-markdown-actions {
+      .ideal-swarm-markdown-actions {
         display: inline-flex;
         align-items: center;
         gap: 6px;
         flex: 0 0 auto;
       }
 
-      .ideal-core-icon-button {
+      .ideal-swarm-icon-button {
         width: 30px;
         height: 30px;
         border: 1px solid rgba(148, 163, 184, 0.25);
@@ -434,11 +434,11 @@
         cursor: pointer;
       }
 
-      .ideal-core-icon-button:hover {
+      .ideal-swarm-icon-button:hover {
         border-color: rgba(125, 211, 252, 0.58);
       }
 
-      .ideal-core-icon-button svg {
+      .ideal-swarm-icon-button svg {
         width: 16px;
         height: 16px;
         fill: none;
@@ -563,121 +563,121 @@
       }
 
       @media (max-width: 900px), (max-height: 680px) {
-        .ideal-core-title {
+        .ideal-swarm-title {
           display: none;
         }
 
-        .ideal-core-panel {
+        .ideal-swarm-panel {
           width: calc(50vw - 18px);
           padding: 8px;
         }
 
-        .ideal-core-panel.is-upper-left,
-        .ideal-core-panel.is-upper-right {
+        .ideal-swarm-panel.is-upper-left,
+        .ideal-swarm-panel.is-upper-right {
           width: calc(50vw - 15px);
         }
 
-        .ideal-core-panel h2 {
+        .ideal-swarm-panel h2 {
           margin-bottom: 7px;
           font-size: 11px;
         }
 
-        .ideal-core-panel.is-upper-left {
+        .ideal-swarm-panel.is-upper-left {
           left: 10px;
           top: 10px;
         }
 
-        .ideal-core-panel.is-upper-right {
+        .ideal-swarm-panel.is-upper-right {
           right: 10px;
           top: 10px;
         }
 
-        .ideal-core-panel.is-lower-left {
+        .ideal-swarm-panel.is-lower-left {
           display: none;
         }
 
-        .ideal-core-panel.is-lower-right {
+        .ideal-swarm-panel.is-lower-right {
           left: 10px;
           right: 10px;
           bottom: 10px;
           width: auto;
         }
 
-        #ideal-core-potential-strip {
+        #ideal-swarm-potential-strip {
           height: 48px;
         }
 
-        .ideal-core-chart-legend,
-        .ideal-core-equation-stack,
-        .ideal-core-factor-card span,
-        .ideal-core-factor-card small,
-        .ideal-core-energy-ledger h3,
-        .ideal-core-energy-ledger small,
-        .ideal-core-energy-row,
-        .ideal-core-status {
+        .ideal-swarm-chart-legend,
+        .ideal-swarm-equation-stack,
+        .ideal-swarm-factor-card span,
+        .ideal-swarm-factor-card small,
+        .ideal-swarm-energy-ledger h3,
+        .ideal-swarm-energy-ledger small,
+        .ideal-swarm-energy-row,
+        .ideal-swarm-status {
           font-size: 10px;
         }
 
-        .ideal-core-factor-grid {
+        .ideal-swarm-factor-grid {
           grid-template-columns: 1fr;
           gap: 5px;
           margin-top: 8px;
         }
 
-        .ideal-core-factor-card {
+        .ideal-swarm-factor-card {
           min-height: 58px;
           gap: 2px;
           padding: 6px;
         }
 
-        .ideal-core-factor-card strong {
+        .ideal-swarm-factor-card strong {
           font-size: 16px;
         }
 
-        .ideal-core-energy-ledger {
+        .ideal-swarm-energy-ledger {
           margin-top: 7px;
           padding: 6px;
         }
 
-        .ideal-core-energy-ledger header {
+        .ideal-swarm-energy-ledger header {
           display: block;
           margin-bottom: 5px;
         }
 
-        .ideal-core-energy-ledger small {
+        .ideal-swarm-energy-ledger small {
           display: block;
           margin-top: 2px;
           text-align: left;
         }
 
-        .ideal-core-energy-rows {
+        .ideal-swarm-energy-rows {
           gap: 3px;
         }
 
-        .ideal-core-toggle-row,
-        .ideal-core-command-row,
-        .ideal-core-doc-row {
+        .ideal-swarm-toggle-row,
+        .ideal-swarm-command-row,
+        .ideal-swarm-doc-row {
           gap: 5px;
         }
 
-        .ideal-core-button {
+        .ideal-swarm-button {
           min-height: 28px;
           font-size: 11px;
         }
 
-        .ideal-core-range-row {
+        .ideal-swarm-range-row {
           grid-template-columns: 48px 1fr 36px;
           gap: 5px;
         }
 
-        .ideal-core-range-row label,
-        .ideal-core-range-row output,
-        .ideal-core-table {
+        .ideal-swarm-range-row label,
+        .ideal-swarm-range-row output,
+        .ideal-swarm-table {
           font-size: 10px;
         }
 
-        .ideal-core-table th,
-        .ideal-core-table td {
+        .ideal-swarm-table th,
+        .ideal-swarm-table td {
           padding: 4px 3px;
         }
 
@@ -695,14 +695,14 @@
       }
 
       @media print {
-        #ideal-core-canvas,
-        .ideal-core-title,
-        .ideal-core-panel,
-        .ideal-core-markdown-header {
+        #ideal-swarm-canvas,
+        .ideal-swarm-title,
+        .ideal-swarm-panel,
+        .ideal-swarm-markdown-header {
           display: none !important;
         }
 
-        #ideal-core-app {
+        #ideal-swarm-app {
           position: static;
           height: auto;
           background: #ffffff !important;
@@ -732,140 +732,140 @@
     </style>
   </head>
   <body>
-    <main id="ideal-core-app">
-      <canvas id="ideal-core-canvas" tabindex="0" aria-label="Noether swarm Lorentz map stage"></canvas>
-      <div class="ideal-core-title">Noether Swarm Lorentz Map</div>
+    <main id="ideal-swarm-app">
+      <canvas id="ideal-swarm-canvas" tabindex="0" aria-label="Noether swarm Lorentz map stage"></canvas>
+      <div class="ideal-swarm-title">Noether Swarm Lorentz Map</div>
 
-      <section class="ideal-core-panel is-upper-left" aria-label="Graph zone">
+      <section class="ideal-swarm-panel is-upper-left" aria-label="Graph zone">
         <h2>Lorentz Map</h2>
-        <canvas id="ideal-core-potential-strip" width="536" height="168" aria-hidden="true"></canvas>
-        <div class="ideal-core-chart-legend" aria-hidden="true">
+        <canvas id="ideal-swarm-potential-strip" width="536" height="168" aria-hidden="true"></canvas>
+        <div class="ideal-swarm-chart-legend" aria-hidden="true">
           <span><i style="background:#fbbf24"></i>&gamma; time</span>
           <span><i style="background:#2dd4bf"></i>&xi; length</span>
           <span><i style="background:#f472b6"></i>&beta; = v / c</span>
         </div>
-        <div class="ideal-core-factor-grid" aria-label="Time and length factors">
-          <div class="ideal-core-factor-card is-time">
+        <div class="ideal-swarm-factor-grid" aria-label="Time and length factors">
+          <div class="ideal-swarm-factor-card is-time">
             <span>Relative time</span>
-            <strong id="ideal-core-time-label">1.000</strong>
+            <strong id="ideal-swarm-time-label">1.000</strong>
             <small>&Delta;t=&Delta;&tau;/&radic;(1-&beta;<sup>2</sup>)</small>
           </div>
-          <div class="ideal-core-factor-card is-length">
+          <div class="ideal-swarm-factor-card is-length">
             <span>Relative length</span>
-            <strong id="ideal-core-length-label">1.000</strong>
+            <strong id="ideal-swarm-length-label">1.000</strong>
             <small>L<sub>&parallel;</sub>=L<sub>0</sub>&radic;(1-&beta;<sup>2</sup>)</small>
           </div>
         </div>
-        <div class="ideal-core-energy-ledger" aria-label="Energy and mass ledger">
+        <div class="ideal-swarm-energy-ledger" aria-label="Energy and mass ledger">
           <header>
             <h3>Energy ledger</h3>
             <small>normalized: m<sub>0</sub> = 1, c = 1</small>
           </header>
-          <div class="ideal-core-energy-rows">
-            <div class="ideal-core-energy-row">
+          <div class="ideal-swarm-energy-rows">
+            <div class="ideal-swarm-energy-row">
               <span>Rest mass m<sub>0</sub></span>
-              <output id="ideal-core-rest-mass-label">1.000</output>
+              <output id="ideal-swarm-rest-mass-label">1.000</output>
             </div>
-            <div class="ideal-core-energy-row">
+            <div class="ideal-swarm-energy-row">
               <span>Rest energy E<sub>0</sub> = m<sub>0</sub>c<sup>2</sup></span>
-              <output id="ideal-core-rest-energy-label">1.000</output>
+              <output id="ideal-swarm-rest-energy-label">1.000</output>
             </div>
-            <div class="ideal-core-energy-row">
+            <div class="ideal-swarm-energy-row">
               <span>Movement energy &Delta;E = (&gamma; - 1)m<sub>0</sub>c<sup>2</sup></span>
-              <output id="ideal-core-movement-energy-label">0.000</output>
+              <output id="ideal-swarm-movement-energy-label">0.000</output>
             </div>
-            <div class="ideal-core-energy-row">
+            <div class="ideal-swarm-energy-row">
               <span>Movement energy-equivalent mass &Delta;E / c<sup>2</sup></span>
-              <output id="ideal-core-movement-mass-label">0.000</output>
+              <output id="ideal-swarm-movement-mass-label">0.000</output>
             </div>
-            <div class="ideal-core-energy-row">
+            <div class="ideal-swarm-energy-row">
               <span>Total energy E = &gamma;m<sub>0</sub>c<sup>2</sup></span>
-              <output id="ideal-core-total-energy-label">1.000</output>
+              <output id="ideal-swarm-total-energy-label">1.000</output>
             </div>
-            <div class="ideal-core-energy-row">
+            <div class="ideal-swarm-energy-row">
               <span>Total energy-equivalent mass E / c<sup>2</sup></span>
-              <output id="ideal-core-total-mass-label">1.000</output>
+              <output id="ideal-swarm-total-mass-label">1.000</output>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="ideal-core-panel is-upper-right" aria-label="Control panel">
+      <section class="ideal-swarm-panel is-upper-right" aria-label="Control panel">
         <h2>Controls</h2>
-        <div class="ideal-core-control-stack">
-          <div class="ideal-core-toggle-row">
-            <button id="ideal-core-path-toggle" class="ideal-core-button is-active" type="button">Paths</button>
-            <button id="ideal-core-surface-toggle" class="ideal-core-button" type="button">Surface</button>
-            <button id="ideal-core-axes-toggle" class="ideal-core-button is-active" type="button">Axes</button>
-            <button id="ideal-core-freeze-toggle" class="ideal-core-button" type="button">Freeze</button>
+        <div class="ideal-swarm-control-stack">
+          <div class="ideal-swarm-toggle-row">
+            <button id="ideal-swarm-path-toggle" class="ideal-swarm-button is-active" type="button">Paths</button>
+            <button id="ideal-swarm-surface-toggle" class="ideal-swarm-button" type="button">Surface</button>
+            <button id="ideal-swarm-axes-toggle" class="ideal-swarm-button is-active" type="button">Axes</button>
+            <button id="ideal-swarm-freeze-toggle" class="ideal-swarm-button" type="button">Freeze</button>
           </div>
-          <div class="ideal-core-range-row">
-            <label for="ideal-core-radius-input">Outer orbit</label>
-            <input id="ideal-core-radius-input" type="range" min="1.1" max="2.2" step="0.02" value="1.62" />
-            <output id="ideal-core-radius-output" for="ideal-core-radius-input">1.62</output>
+          <div class="ideal-swarm-range-row">
+            <label for="ideal-swarm-radius-input">Outer orbit</label>
+            <input id="ideal-swarm-radius-input" type="range" min="1.1" max="2.2" step="0.02" value="1.62" />
+            <output id="ideal-swarm-radius-output" for="ideal-swarm-radius-input">1.62</output>
           </div>
-          <div class="ideal-core-range-row">
-            <label for="ideal-core-beta-input">&beta; = v / c</label>
-            <input id="ideal-core-beta-input" type="range" min="0" max="1" step="0.005" value="0" />
-            <output id="ideal-core-beta-output" for="ideal-core-beta-input">0.000</output>
+          <div class="ideal-swarm-range-row">
+            <label for="ideal-swarm-beta-input">&beta; = v / c</label>
+            <input id="ideal-swarm-beta-input" type="range" min="0" max="1" step="0.005" value="0" />
+            <output id="ideal-swarm-beta-output" for="ideal-swarm-beta-input">0.000</output>
           </div>
-          <div class="ideal-core-range-row">
-            <label for="ideal-core-speed-input">Cycle</label>
-            <input id="ideal-core-speed-input" type="range" min="0.2" max="2.4" step="0.05" value="1" />
-            <output id="ideal-core-speed-output" for="ideal-core-speed-input">1.00</output>
+          <div class="ideal-swarm-range-row">
+            <label for="ideal-swarm-speed-input">Cycle</label>
+            <input id="ideal-swarm-speed-input" type="range" min="0.2" max="2.4" step="0.05" value="1" />
+            <output id="ideal-swarm-speed-output" for="ideal-swarm-speed-input">1.00</output>
           </div>
-          <div class="ideal-core-command-row">
-            <button id="ideal-core-reset-button" class="ideal-core-button" type="button">Reset</button>
-            <button id="ideal-core-focus-button" class="ideal-core-button" type="button">Focus</button>
+          <div class="ideal-swarm-command-row">
+            <button id="ideal-swarm-reset-button" class="ideal-swarm-button" type="button">Reset</button>
+            <button id="ideal-swarm-focus-button" class="ideal-swarm-button" type="button">Focus</button>
           </div>
-          <div class="ideal-core-doc-row" aria-label="Lorentz documentation">
-            <button id="ideal-core-return-cycle-doc-button" class="ideal-core-button" type="button">
+          <div class="ideal-swarm-doc-row" aria-label="Lorentz documentation">
+            <button id="ideal-swarm-return-cycle-doc-button" class="ideal-swarm-button" type="button">
               Return-Cycle
             </button>
-            <button id="ideal-core-lorentz-doc-button" class="ideal-core-button" type="button">
+            <button id="ideal-swarm-lorentz-doc-button" class="ideal-swarm-button" type="button">
               Kinematics
             </button>
           </div>
         </div>
       </section>
 
-      <section class="ideal-core-panel is-lower-left" aria-label="Lorentz equation zone">
+      <section class="ideal-swarm-panel is-lower-left" aria-label="Lorentz equation zone">
         <h2>Noether Swarm Equations</h2>
-        <div class="ideal-core-equation-stack">
-          <div class="ideal-core-equation-row">
+        <div class="ideal-swarm-equation-stack">
+          <div class="ideal-swarm-equation-row">
             <code>&gamma; = 1 / sqrt(1 - (v/c)<sup>2</sup>)</code>
-            <output id="ideal-core-gamma-equation">1.000</output>
+            <output id="ideal-swarm-gamma-equation">1.000</output>
           </div>
-          <div class="ideal-core-equation-row">
+          <div class="ideal-swarm-equation-row">
             <code>&xi; = R<sub>&parallel;</sub> / R<sub>&perp;</sub> = 1 / &gamma;</code>
-            <output id="ideal-core-xi-equation">1.000</output>
+            <output id="ideal-swarm-xi-equation">1.000</output>
           </div>
-          <div class="ideal-core-equation-row">
+          <div class="ideal-swarm-equation-row">
             <code>R<sub>&parallel;</sub> = R<sub>&perp;</sub> / &gamma;</code>
-            <output id="ideal-core-rparallel-equation">1.620</output>
+            <output id="ideal-swarm-rparallel-equation">1.620</output>
           </div>
-          <div class="ideal-core-equation-divider ideal-core-closure-detail"></div>
-          <div class="ideal-core-cycle-row ideal-core-closure-detail">
+          <div class="ideal-swarm-equation-divider ideal-swarm-closure-detail"></div>
+          <div class="ideal-swarm-cycle-row ideal-swarm-closure-detail">
             <code>T<sub>&parallel;</sub> = R<sub>&parallel;</sub>/(c - v) + R<sub>&parallel;</sub>/(c + v)</code>
-            <output id="ideal-core-tparallel-equation">3.240</output>
+            <output id="ideal-swarm-tparallel-equation">3.240</output>
           </div>
-          <div class="ideal-core-cycle-row ideal-core-closure-detail">
+          <div class="ideal-swarm-cycle-row ideal-swarm-closure-detail">
             <code>T<sub>&perp;</sub> = 2 R<sub>&perp;</sub>&gamma; / c</code>
-            <output id="ideal-core-tperp-equation">3.240</output>
+            <output id="ideal-swarm-tperp-equation">3.240</output>
           </div>
-          <div class="ideal-core-cycle-row ideal-core-closure-detail">
+          <div class="ideal-swarm-cycle-row ideal-swarm-closure-detail">
             <code>T<sub>&parallel;</sub> - T<sub>&perp;</sub></code>
-            <output id="ideal-core-closure-equation">0.00</output>
+            <output id="ideal-swarm-closure-equation">0.00</output>
           </div>
-          <div class="ideal-core-status">
+          <div class="ideal-swarm-status">
             Closure target: the app shows the candidate shared geometry for mass, clock, and ruler response; it is not a proof by itself.
           </div>
         </div>
       </section>
 
-      <section class="ideal-core-panel is-lower-right" aria-label="Binary measures table">
+      <section class="ideal-swarm-panel is-lower-right" aria-label="Binary measures table">
         <h2>Binary Measures</h2>
-        <table class="ideal-core-table">
+        <table class="ideal-swarm-table">
           <thead>
             <tr>
               <th>Measure</th>
@@ -874,17 +874,17 @@
               <th>Outer</th>
             </tr>
           </thead>
-          <tbody id="ideal-core-table-body"></tbody>
+          <tbody id="ideal-swarm-table-body"></tbody>
         </table>
       </section>
 
       <aside id="markdown-panel" aria-hidden="true" inert>
-        <div class="ideal-core-markdown-header">
+        <div class="ideal-swarm-markdown-header">
           <div id="markdown-title"></div>
-          <div class="ideal-core-markdown-actions">
+          <div class="ideal-swarm-markdown-actions">
             <button
               id="markdown-layout-toggle"
-              class="ideal-core-icon-button"
+              class="ideal-swarm-icon-button"
               type="button"
               aria-label="Switch markdown layout"
               title="Layout"
@@ -896,7 +896,7 @@
             </button>
             <button
               id="markdown-pdf-button"
-              class="ideal-core-icon-button"
+              class="ideal-swarm-icon-button"
               type="button"
               aria-label="Print current document"
               title="Print"
@@ -909,7 +909,7 @@
             </button>
             <button
               id="markdown-close"
-              class="ideal-core-icon-button"
+              class="ideal-swarm-icon-button"
               type="button"
               aria-label="Close document"
               title="Close"
@@ -926,6 +926,6 @@
         </div>
       </aside>
     </main>
-    <script type="module" src="./src/apps/ideal-core/main.js"></script>
+    <script type="module" src="./src/apps/ideal-swarm/main.js"></script>
   </body>
 </html>

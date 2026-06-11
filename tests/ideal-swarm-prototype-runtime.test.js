@@ -2,20 +2,20 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import * as THREE from "../vendor/three/three.module.js";
-import { solveCircularSelfHitSpan } from "../src/apps/ideal-core/IdealCorePathPotentialProfile.js";
+import { solveCircularSelfHitSpan } from "../src/apps/ideal-swarm/IdealSwarmPathPotentialProfile.js";
 import {
   computeAssemblyMomentumContractionMatrix,
   computeLorentzAlignedOrbitBasis,
   computeLorentzState,
   computePotentialContribution,
   computePotentialSum,
-  createIdealCoreModel,
+  createIdealSwarmModel,
   getOrbitPathTintProfile,
   solveFlightTime,
-} from "../src/apps/ideal-core/IdealCorePrototypeRuntime.js";
+} from "../src/apps/ideal-swarm/IdealSwarmPrototypeRuntime.js";
 
 test("nested shell swarm prototype model reuses three animator circular binaries", () => {
-  const model = createIdealCoreModel({ THREE });
+  const model = createIdealSwarmModel({ THREE });
 
   assert.equal(model.binaries.length, 3);
   assert.equal(model.architrinos.length, 6);
@@ -34,7 +34,7 @@ test("nested shell swarm prototype model reuses three animator circular binaries
 });
 
 test("full potential is the six-emission superposition", () => {
-  const model = createIdealCoreModel({ THREE });
+  const model = createIdealSwarmModel({ THREE });
   const samplePoint = new THREE.Vector3(1.8, -0.4, 0.65);
   const observationTime = 1.35;
   const options = { fieldSpeed: 6, softening: 0.1 };
@@ -75,7 +75,7 @@ test("Lorentz energy ledger treats beta equals one as a limit state", () => {
 });
 
 test("Lorentz alignment tilts binary angular momentum normals toward assembly momentum", () => {
-  const model = createIdealCoreModel({ THREE });
+  const model = createIdealSwarmModel({ THREE });
   const assemblyMomentum = new THREE.Vector3(1, 1, 1).normalize();
   const restState = computeLorentzState(0, 1.62);
   const limitState = computeLorentzState(1, 1.62);
@@ -107,7 +107,7 @@ test("assembly momentum contraction preserves the final shared orbit plane", () 
 });
 
 test("flight time solver returns a positive emission delay", () => {
-  const model = createIdealCoreModel({ THREE });
+  const model = createIdealSwarmModel({ THREE });
   const samplePoint = new THREE.Vector3(1.6, 0.3, -0.5);
   const tau = solveFlightTime(samplePoint, model.architrinos[0], 0.9, {
     fieldSpeed: 6,

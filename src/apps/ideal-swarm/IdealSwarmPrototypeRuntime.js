@@ -8,7 +8,7 @@ import {
   getFieldSpeedRegimeLabel,
   getOrbitPathBranchGain,
   getOrbitPathTintProfile as resolveOrbitPathTintProfile,
-} from "./IdealCorePathPotentialProfile.js";
+} from "./IdealSwarmPathPotentialProfile.js";
 
 const BINARY_META = [
   {
@@ -58,7 +58,7 @@ const ASSEMBLY_MOMENTUM_AXIS = new THREE.Vector3(
   ASSEMBLY_MOMENTUM_AXIS_COMPONENT,
   ASSEMBLY_MOMENTUM_AXIS_COMPONENT
 );
-const IDEAL_CORE_DOCS = {
+const IDEAL_SWARM_DOCS = {
   returnCycle: {
     name: "Return-Cycle Lorentz Quantization",
     markdownPath:
@@ -295,9 +295,9 @@ function getOrbitPathLogWidthScale(radius, referenceRadius) {
   return ORBIT_PATH_LOG_WIDTH_FLOOR + (1 - ORBIT_PATH_LOG_WIDTH_FLOOR) * compressedRadius;
 }
 
-export function createIdealCoreModel(options = {}) {
+export function createIdealSwarmModel(options = {}) {
   const Three = options.THREE ?? THREE;
-  const coreSpec = options.coreSpec ?? createAnimatorDefaultCoreSpec("ideal_core");
+  const coreSpec = options.coreSpec ?? createAnimatorDefaultCoreSpec("ideal_swarm");
   const geometryRuntime =
     options.geometryRuntime ?? createAnimatorStructureGeometryRuntime({ THREE: Three });
   const binaries = coreSpec.binaries.map((binary, index) => {
@@ -939,17 +939,17 @@ function makeArchitrinoMaterial(Three, color) {
 function queryRequiredElement(documentLike, selector) {
   const element = documentLike.querySelector(selector);
   if (!element) {
-    throw new Error(`Missing ideal-core prototype element: ${selector}`);
+    throw new Error(`Missing ideal-swarm prototype element: ${selector}`);
   }
   return element;
 }
 
-function appendIdealCoreCacheBust(path, token) {
+function appendIdealSwarmCacheBust(path, token) {
   const separator = path.includes("?") ? "&" : "?";
   return `${path}${separator}v=${token}`;
 }
 
-function createIdealCoreMarkdownRenderer(windowLike) {
+function createIdealSwarmMarkdownRenderer(windowLike) {
   const markdownItFactory = windowLike?.markdownit;
   if (typeof markdownItFactory !== "function") {
     return null;
@@ -959,7 +959,7 @@ function createIdealCoreMarkdownRenderer(windowLike) {
   return markdownRenderer;
 }
 
-function createIdealCoreMarkdownRuntime({
+function createIdealSwarmMarkdownRuntime({
   documentLike,
   windowLike,
   markdownPanel,
@@ -988,11 +988,11 @@ function createIdealCoreMarkdownRuntime({
     markdownTitle,
     markdownBody,
     markdownLayoutToggle,
-    markdownRenderer: createIdealCoreMarkdownRenderer(windowLike),
+    markdownRenderer: createIdealSwarmMarkdownRenderer(windowLike),
     markdownCache,
     markdownSectionCache,
     extractMarkdownSection,
-    appendCacheBust: (path) => appendIdealCoreCacheBust(path, cacheBustToken),
+    appendCacheBust: (path) => appendIdealSwarmCacheBust(path, cacheBustToken),
     navigateToTarget: openMarkdownTarget,
   });
 
@@ -1000,12 +1000,12 @@ function createIdealCoreMarkdownRuntime({
   return markdownRuntime;
 }
 
-export function mountIdealCorePrototype(options = {}) {
+export function mountIdealSwarmPrototype(options = {}) {
   const documentLike = options.documentLike ?? globalThis.document;
   const windowLike = options.windowLike ?? globalThis.window;
   const Three = options.THREE ?? THREE;
-  const canvas = queryRequiredElement(documentLike, "#ideal-core-canvas");
-  const model = createIdealCoreModel({ THREE: Three });
+  const canvas = queryRequiredElement(documentLike, "#ideal-swarm-canvas");
+  const model = createIdealSwarmModel({ THREE: Three });
   const renderer = new Three.WebGLRenderer({
     canvas,
     antialias: true,
@@ -1074,42 +1074,42 @@ export function mountIdealCorePrototype(options = {}) {
   sphereContents.add(axisReferenceGroup);
 
   const dom = {
-    pathToggle: queryRequiredElement(documentLike, "#ideal-core-path-toggle"),
-    surfaceToggle: queryRequiredElement(documentLike, "#ideal-core-surface-toggle"),
-    axesToggle: queryRequiredElement(documentLike, "#ideal-core-axes-toggle"),
-    freezeToggle: queryRequiredElement(documentLike, "#ideal-core-freeze-toggle"),
-    resetButton: queryRequiredElement(documentLike, "#ideal-core-reset-button"),
-    focusButton: queryRequiredElement(documentLike, "#ideal-core-focus-button"),
+    pathToggle: queryRequiredElement(documentLike, "#ideal-swarm-path-toggle"),
+    surfaceToggle: queryRequiredElement(documentLike, "#ideal-swarm-surface-toggle"),
+    axesToggle: queryRequiredElement(documentLike, "#ideal-swarm-axes-toggle"),
+    freezeToggle: queryRequiredElement(documentLike, "#ideal-swarm-freeze-toggle"),
+    resetButton: queryRequiredElement(documentLike, "#ideal-swarm-reset-button"),
+    focusButton: queryRequiredElement(documentLike, "#ideal-swarm-focus-button"),
     returnCycleDocButton: queryRequiredElement(
       documentLike,
-      "#ideal-core-return-cycle-doc-button"
+      "#ideal-swarm-return-cycle-doc-button"
     ),
-    lorentzDocButton: queryRequiredElement(documentLike, "#ideal-core-lorentz-doc-button"),
-    radiusInput: queryRequiredElement(documentLike, "#ideal-core-radius-input"),
-    radiusOutput: queryRequiredElement(documentLike, "#ideal-core-radius-output"),
-    betaInput: queryRequiredElement(documentLike, "#ideal-core-beta-input"),
-    betaOutput: queryRequiredElement(documentLike, "#ideal-core-beta-output"),
-    speedInput: queryRequiredElement(documentLike, "#ideal-core-speed-input"),
-    speedOutput: queryRequiredElement(documentLike, "#ideal-core-speed-output"),
-    timeLabel: queryRequiredElement(documentLike, "#ideal-core-time-label"),
-    lengthLabel: queryRequiredElement(documentLike, "#ideal-core-length-label"),
-    restMassLabel: queryRequiredElement(documentLike, "#ideal-core-rest-mass-label"),
-    restEnergyLabel: queryRequiredElement(documentLike, "#ideal-core-rest-energy-label"),
+    lorentzDocButton: queryRequiredElement(documentLike, "#ideal-swarm-lorentz-doc-button"),
+    radiusInput: queryRequiredElement(documentLike, "#ideal-swarm-radius-input"),
+    radiusOutput: queryRequiredElement(documentLike, "#ideal-swarm-radius-output"),
+    betaInput: queryRequiredElement(documentLike, "#ideal-swarm-beta-input"),
+    betaOutput: queryRequiredElement(documentLike, "#ideal-swarm-beta-output"),
+    speedInput: queryRequiredElement(documentLike, "#ideal-swarm-speed-input"),
+    speedOutput: queryRequiredElement(documentLike, "#ideal-swarm-speed-output"),
+    timeLabel: queryRequiredElement(documentLike, "#ideal-swarm-time-label"),
+    lengthLabel: queryRequiredElement(documentLike, "#ideal-swarm-length-label"),
+    restMassLabel: queryRequiredElement(documentLike, "#ideal-swarm-rest-mass-label"),
+    restEnergyLabel: queryRequiredElement(documentLike, "#ideal-swarm-rest-energy-label"),
     movementEnergyLabel: queryRequiredElement(
       documentLike,
-      "#ideal-core-movement-energy-label"
+      "#ideal-swarm-movement-energy-label"
     ),
-    movementMassLabel: queryRequiredElement(documentLike, "#ideal-core-movement-mass-label"),
-    totalEnergyLabel: queryRequiredElement(documentLike, "#ideal-core-total-energy-label"),
-    totalMassLabel: queryRequiredElement(documentLike, "#ideal-core-total-mass-label"),
-    gammaEquation: queryRequiredElement(documentLike, "#ideal-core-gamma-equation"),
-    xiEquation: queryRequiredElement(documentLike, "#ideal-core-xi-equation"),
-    rParallelEquation: queryRequiredElement(documentLike, "#ideal-core-rparallel-equation"),
-    tParallelEquation: queryRequiredElement(documentLike, "#ideal-core-tparallel-equation"),
-    tPerpEquation: queryRequiredElement(documentLike, "#ideal-core-tperp-equation"),
-    closureEquation: queryRequiredElement(documentLike, "#ideal-core-closure-equation"),
-    stripCanvas: queryRequiredElement(documentLike, "#ideal-core-potential-strip"),
-    tableBody: queryRequiredElement(documentLike, "#ideal-core-table-body"),
+    movementMassLabel: queryRequiredElement(documentLike, "#ideal-swarm-movement-mass-label"),
+    totalEnergyLabel: queryRequiredElement(documentLike, "#ideal-swarm-total-energy-label"),
+    totalMassLabel: queryRequiredElement(documentLike, "#ideal-swarm-total-mass-label"),
+    gammaEquation: queryRequiredElement(documentLike, "#ideal-swarm-gamma-equation"),
+    xiEquation: queryRequiredElement(documentLike, "#ideal-swarm-xi-equation"),
+    rParallelEquation: queryRequiredElement(documentLike, "#ideal-swarm-rparallel-equation"),
+    tParallelEquation: queryRequiredElement(documentLike, "#ideal-swarm-tparallel-equation"),
+    tPerpEquation: queryRequiredElement(documentLike, "#ideal-swarm-tperp-equation"),
+    closureEquation: queryRequiredElement(documentLike, "#ideal-swarm-closure-equation"),
+    stripCanvas: queryRequiredElement(documentLike, "#ideal-swarm-potential-strip"),
+    tableBody: queryRequiredElement(documentLike, "#ideal-swarm-table-body"),
     markdownPanel: queryRequiredElement(documentLike, "#markdown-panel"),
     markdownTitle: queryRequiredElement(documentLike, "#markdown-title"),
     markdownBody: queryRequiredElement(documentLike, "#markdown-body"),
@@ -1118,7 +1118,7 @@ export function mountIdealCorePrototype(options = {}) {
     markdownPdfButton: queryRequiredElement(documentLike, "#markdown-pdf-button"),
   };
   const stripContext = dom.stripCanvas.getContext("2d");
-  const markdownRuntime = createIdealCoreMarkdownRuntime({
+  const markdownRuntime = createIdealSwarmMarkdownRuntime({
     documentLike,
     windowLike,
     markdownPanel: dom.markdownPanel,
@@ -1507,10 +1507,10 @@ export function mountIdealCorePrototype(options = {}) {
     canvas.focus();
   });
   dom.returnCycleDocButton.addEventListener("click", () => {
-    markdownRuntime.showMarkdownPanel(IDEAL_CORE_DOCS.returnCycle);
+    markdownRuntime.showMarkdownPanel(IDEAL_SWARM_DOCS.returnCycle);
   });
   dom.lorentzDocButton.addEventListener("click", () => {
-    markdownRuntime.showMarkdownPanel(IDEAL_CORE_DOCS.lorentzKinematics);
+    markdownRuntime.showMarkdownPanel(IDEAL_SWARM_DOCS.lorentzKinematics);
   });
   dom.markdownClose.addEventListener("click", () => {
     markdownRuntime.hideMarkdownPanel();

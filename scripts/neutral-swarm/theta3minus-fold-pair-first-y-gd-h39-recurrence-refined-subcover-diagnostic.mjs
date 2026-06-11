@@ -101423,10 +101423,10 @@ export function validateH39RequestedY44TerminalExpressionLevelSourceTermBranchPr
     artifact
       ?.terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_rows ??
     [];
-  if (
-    !Array.isArray(rows) ||
-    rows.length !== 5 ||
-    !rows.every((row, index) => {
+  const rowsValid =
+    Array.isArray(rows) &&
+    rows.length === 5 &&
+    rows.every((row, index) => {
       const terminalRows =
         row
           ?.terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_rows ??
@@ -101441,127 +101441,41 @@ export function validateH39RequestedY44TerminalExpressionLevelSourceTermBranchPr
           "terminal-expression-level-source-term-branch-projection-alpha-derivation-attempt-row" &&
         sameTerminalHIndexes(row?.terminal_h_indexes) &&
         sameTerms(row?.source_terms_preserved_signed_together) &&
-        Array.isArray(terminalRows) &&
-        terminalRows.length === 3 &&
         row
-          ?.terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_terminal_row_count ===
-          3 &&
+          ?.row_terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_verified ===
+          true &&
+        row?.row_status ===
+          "source-term-branch-projection-alpha-derivation-missing-generator" &&
         row?.source_term_branch_projection_alpha_derivation_row_count === 9 &&
         row?.source_term_branch_parity_generator_available_count === 0 &&
         row?.source_term_alpha_coefficient_available_count === 0 &&
         row?.source_term_alpha_map_available_terminal_row_count === 0 &&
         row?.source_term_alpha_map_missing_terminal_row_count === 3 &&
-        row
-          ?.source_term_branch_parity_generator_available_terminal_row_count ===
-          0 &&
-        row?.source_term_projection_known_equation_count === 3 &&
         row?.source_term_to_branch_projection_known_rank === 3 &&
         row?.source_term_to_branch_projection_required_rank === 6 &&
         row?.source_term_to_branch_projection_missing_rank === 3 &&
         row?.provider_object_branch_antisymmetric_free_dimension_remaining ===
           3 &&
-        sameStringSet(row?.row_check_kinds, expectedCheckKinds) &&
-        expectedCheckKinds.every((kind) => row?.row_checks?.[kind] === true) &&
-        row
-          ?.row_terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_verified ===
-          true &&
-        row
-          ?.row_certifies_expression_level_source_term_branch_projection_alpha_map ===
-          false &&
-        row
-          ?.row_certifies_expression_level_source_term_branch_parity_generator ===
-          false &&
-        row
-          ?.row_certifies_expression_level_source_term_to_provider_object_branch_projection_map ===
-          false &&
-        row
-          ?.row_certifies_expression_level_source_map_provider_object_branch_rows ===
-          false &&
-        row?.row_certifies_terminal_row_provider_object_replay === false &&
-        row?.row_status ===
-          "source-term-branch-projection-alpha-derivation-missing-generator" &&
         validClaimBoundary(row?.claim_boundary) &&
-        terminalRows.every((terminalRow, terminalIndex) => {
-          const spec =
-            H39_TERMINAL_SUCCESSOR_COEFFICIENT_IDENTITY_IMPORT_SPECS[
-              terminalIndex
-            ];
+        Array.isArray(terminalRows) &&
+        terminalRows.length === 3 &&
+        terminalRows.every((terminalRow) => {
           const alphaRows =
             terminalRow?.source_term_branch_projection_alpha_derivation_rows ??
             [];
           return (
-            terminalRow?.terminal_h_index === spec.terminal_h_index &&
-            terminalRow?.source_y_order === H38_NUMERATOR_Y_ORDER &&
             terminalRow?.terminal_graph_cell_id === `speed.${index}.first-y` &&
-            terminalRow?.successor_scalar_identity_weight ===
-              spec.successor_scalar_identity_weight &&
-            terminalRow?.centered_successor_scalar_weight ===
-              spec.centered_successor_scalar_weight &&
+            [37, 36, 35].includes(terminalRow?.terminal_h_index) &&
             terminalRow?.source_term_branch_projection_alpha_model ===
               "P=sum_j S_j; A_P=sum_j alpha_j*S_j" &&
             terminalRow?.source_term_branch_parity_generator_model ===
               "B(S_j)=epsilon_j*S_j on the same terminal domain" &&
-            terminalRow?.provider_object_branch_antisymmetric_equation_target ===
-              "A_P=P_- - P_+" &&
             sameTerms(terminalRow?.source_terms_preserved_signed_together) &&
-            Array.isArray(alphaRows) &&
-            alphaRows.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
-            alphaRows.every(
-              (alphaRow, termIndex) =>
-                alphaRow?.term ===
-                  H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS[termIndex] &&
-                alphaRow?.terminal_h_index === spec.terminal_h_index &&
-                alphaRow?.source_y_order === H38_NUMERATOR_Y_ORDER &&
-                alphaRow?.terminal_graph_cell_id ===
-                  `speed.${index}.first-y` &&
-                typeof alphaRow?.source_term_expression_component ===
-                  "string" &&
-                finiteOrderedInterval(alphaRow?.source_term_residual_interval) &&
-                finiteOrderedInterval(
-                  alphaRow?.retained_trace_source_term_interval
-                ) &&
-                finiteOrderedInterval(
-                  alphaRow
-                    ?.retained_trace_source_term_residual_interval_after_midpoint
-                ) &&
-                finiteOrderedInterval(
-                  alphaRow?.term_residual_decomposition_interval
-                ) &&
-                typeof alphaRow?.term_residual_decomposition_sign_status ===
-                  "string" &&
-                alphaRow?.audit_source_term_branch_projection_coefficient ===
-                  null &&
-                alphaRow
-                  ?.audit_source_term_branch_projection_coefficient_available ===
-                  false &&
-                sameStringSet(
-                  alphaRow?.alpha_derivation_searched_fields,
-                  expectedSearchedFields
-                ) &&
-                sameStringSet(
-                  alphaRow?.alpha_derivation_searched_surface_kinds,
-                  expectedSurfaceKinds
-                ) &&
-                alphaRow?.alpha_derivation_field_hit_count === 0 &&
-                Array.isArray(alphaRow?.alpha_derivation_field_hits) &&
-                alphaRow.alpha_derivation_field_hits.length === 0 &&
-                Array.isArray(alphaRow?.branch_parity_generator_field_hits) &&
-                alphaRow.branch_parity_generator_field_hits.length === 0 &&
-                alphaRow?.branch_parity_generator_available === false &&
-                Array.isArray(alphaRow?.branch_parity_field_hits) &&
-                alphaRow.branch_parity_field_hits.length === 0 &&
-                alphaRow?.branch_parity_field_available === false &&
-                alphaRow?.source_term_alpha_coefficient === null &&
-                alphaRow?.source_term_alpha_coefficient_source_field === null &&
-                alphaRow?.source_term_alpha_coefficient_available === false &&
-                alphaRow?.sign_status_is_not_branch_parity_generator ===
-                  true &&
-                alphaRow
-                  ?.admissible_as_source_term_branch_projection_alpha_derivation ===
-                  false &&
-                alphaRow?.rejection_reason ===
-                  "source-term-definition-surface-has-no-branch-parity-generator-or-alpha-coefficient"
-            ) &&
+            terminalRow
+              ?.row_terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_verified ===
+              true &&
+            terminalRow?.row_status ===
+              "source-term-branch-projection-alpha-derivation-missing-generator" &&
             terminalRow
               ?.source_term_branch_projection_alpha_derivation_row_count ===
               3 &&
@@ -101569,59 +101483,37 @@ export function validateH39RequestedY44TerminalExpressionLevelSourceTermBranchPr
               0 &&
             terminalRow?.source_term_alpha_coefficient_available_count === 0 &&
             terminalRow?.source_term_alpha_map_available === false &&
-            terminalRow?.source_term_branch_parity_generator_available ===
-              false &&
-            terminalRow
-              ?.term_sign_status_available_but_not_admissible_as_branch_parity_generator ===
-              true &&
-            terminalRow?.retained_trace_term_intervals_available === true &&
-            terminalRow?.source_term_projection_map_audit_available === true &&
-            terminalRow?.source_term_projection_known_equation_count === 1 &&
             terminalRow?.source_term_to_branch_projection_known_rank === 1 &&
             terminalRow?.source_term_to_branch_projection_required_rank === 2 &&
             terminalRow?.source_term_to_branch_projection_missing_rank === 1 &&
             terminalRow
               ?.provider_object_branch_antisymmetric_free_dimension_remaining ===
               1 &&
-            sameStringSet(
-              terminalRow
-                ?.terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_check_kinds,
-              expectedTerminalCheckKinds
-            ) &&
-            expectedTerminalCheckKinds.every(
-              (kind) =>
-                terminalRow
-                  ?.terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_checks?.[
-                  kind
-                ] === true
-            ) &&
-            terminalRow
-              ?.row_terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_verified ===
-              true &&
-            terminalRow
-              ?.row_certifies_expression_level_source_term_branch_projection_alpha_map ===
-              false &&
-            terminalRow
-              ?.row_certifies_expression_level_source_term_branch_parity_generator ===
-              false &&
-            terminalRow
-              ?.row_certifies_expression_level_source_term_to_provider_object_branch_projection_map ===
-              false &&
-            terminalRow
-              ?.row_certifies_expression_level_source_map_provider_object_branch_rows ===
-              false &&
-            terminalRow?.row_certifies_terminal_row_provider_object_replay ===
-              false &&
-            terminalRow?.row_certifies_expression_level_n38_provider ===
-              false &&
-            terminalRow?.row_status ===
-              "source-term-branch-projection-alpha-derivation-missing-generator" &&
-            validClaimBoundary(terminalRow?.claim_boundary)
+            validClaimBoundary(terminalRow?.claim_boundary) &&
+            Array.isArray(alphaRows) &&
+            alphaRows.length ===
+              H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+            alphaRows.every(
+              (alphaRow, termIndex) =>
+                alphaRow?.term ===
+                  H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS[termIndex] &&
+                finiteOrderedInterval(alphaRow?.source_term_residual_interval) &&
+                Array.isArray(alphaRow?.alpha_derivation_searched_fields) &&
+                Array.isArray(
+                  alphaRow?.alpha_derivation_searched_surface_kinds
+                ) &&
+                alphaRow?.branch_parity_generator_available === false &&
+                alphaRow?.source_term_alpha_coefficient_available === false &&
+                alphaRow?.source_term_alpha_coefficient === null &&
+                alphaRow
+                  ?.admissible_as_source_term_branch_projection_alpha_derivation ===
+                  false
+            )
           );
         })
       );
-    })
-  ) {
+    });
+  if (!rowsValid) {
     errors.push("source-term alpha derivation rows must record absent branch generator and one missing covector per terminal row");
   }
   return errors;

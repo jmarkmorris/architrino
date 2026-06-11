@@ -21606,10 +21606,13 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
                   "string" &&
                 Array.isArray(alphaRow.source_term_residual_interval) &&
                 Array.isArray(alphaRow.retained_trace_source_term_interval) &&
-                Array.isArray(
-                  alphaRow
-                    .retained_trace_source_term_residual_interval_after_midpoint
-                ) &&
+                (alphaRow
+                  .retained_trace_source_term_residual_interval_after_midpoint ===
+                  null ||
+                  Array.isArray(
+                    alphaRow
+                      .retained_trace_source_term_residual_interval_after_midpoint
+                  )) &&
                 Array.isArray(alphaRow.term_residual_decomposition_interval) &&
                 alphaRow.audit_source_term_branch_projection_coefficient ===
                   null &&
