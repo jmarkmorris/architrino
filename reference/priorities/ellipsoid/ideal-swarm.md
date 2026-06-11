@@ -1,4 +1,4 @@
-# Ideal Core App Design Brief
+# Ideal Swarm App Design Brief
 
 This is the design brief for a controllable web app that presents a Noether swarm as a dynamic system of architrino paths and uses those paths to inspect emitted potential fields.
 

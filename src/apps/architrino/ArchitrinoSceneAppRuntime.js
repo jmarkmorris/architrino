@@ -187,6 +187,12 @@ import {
   getAnimatorDelayedHitRenderState,
 } from "../animator/AnimatorDelayedHitRuntime.js";
 import {
+  createAnimatorFadeableTrailSamples,
+  createAnimatorTimedTrailSamples,
+  getAnimatorTrailMaterialOpacity,
+  normalizeAnimatorTrailControls,
+} from "../animator/AnimatorTrailRuntime.js";
+import {
   getAnimatorSimulationDataset,
   getAnimatorSimulationFrameMotion,
   getAnimatorSimulationParticleId,
@@ -194,6 +200,12 @@ import {
   sampleAnimatorSimulationParticleAtTime,
   sampleAnimatorSimulationParticleTrail,
 } from "../animator/AnimatorSimulationPlaybackRuntime.js";
+import {
+  applyAnimatorSimulationAuthoringDraftToDocument,
+  buildAnimatorSimulationAuthoringWorkerPayload,
+  createAnimatorSimulationAuthoringDraft,
+  summarizeAnimatorSimulationAuthoringDataset,
+} from "../animator/AnimatorSimulationAuthoringRuntime.js";
 import {
   createAnimatorSimulationWorkerClient,
   mergeAnimatorSimulationDatasetIntoDocument,
@@ -253,6 +265,29 @@ const {
   animatorViewPlanarButton,
   animatorSceneButton,
   animatorRunSimulationButton,
+  animatorSimulationPanel,
+  animatorSimulationModeSelect,
+  animatorSimulationDurationInput,
+  animatorSimulationLoopInput,
+  animatorSimulationDatasetIdInput,
+  animatorSimulationStepsInput,
+  animatorSimulationDtInput,
+  animatorSimulationStrideInput,
+  animatorSimulationFieldSpeedInput,
+  animatorSimulationKappaInput,
+  animatorSimulationClaimLevelInput,
+  animatorSimulationHistoryModeSelect,
+  animatorSimulationRootHaltPolicySelect,
+  animatorSimulationParticlesInput,
+  animatorSimulationRadiusInput,
+  animatorSimulationRadialSpeedInput,
+  animatorSimulationTangentialSpeedInput,
+  animatorSimulationDriftXInput,
+  animatorSimulationDriftYInput,
+  animatorSimulationApplyButton,
+  animatorSimulationRunButton,
+  animatorSimulationDiagnostics,
+  animatorSimulationCacheStatus,
   animatorClearButton,
   animatorSaveButton,
   animatorDocsButton,
@@ -290,6 +325,8 @@ const {
   animatorHudHistoryToggle,
   animatorHudEnvelopesToggle,
   animatorHudShellOpacityInput,
+  animatorHudTrailOpacityInput,
+  animatorHudTrailLifetimeInput,
   animatorHudCameraGuidesToggle,
   animatorMotionSourcePill,
   animatorHudViewportToggleBindings,
@@ -502,6 +539,18 @@ const initialAnimatorFieldShellOpacityScale = Number(animatorHudShellOpacityInpu
 let animatorFieldShellOpacityScale = Math.max(
   0,
   Math.min(1, Number.isFinite(initialAnimatorFieldShellOpacityScale) ? initialAnimatorFieldShellOpacityScale : 1)
+);
+const initialAnimatorTrailOpacityScale = Number(animatorHudTrailOpacityInput?.value ?? 1);
+let animatorTrailOpacityScale = clamp(
+  Number.isFinite(initialAnimatorTrailOpacityScale) ? initialAnimatorTrailOpacityScale : 1,
+  0,
+  1
+);
+const initialAnimatorTrailLifetimeSeconds = Number(animatorHudTrailLifetimeInput?.value ?? 6);
+let animatorTrailLifetimeSeconds = clamp(
+  Number.isFinite(initialAnimatorTrailLifetimeSeconds) ? initialAnimatorTrailLifetimeSeconds : 6,
+  0.25,
+  60
 );
 const animatorArchitrinoFieldShellEmissionIntervalSeconds = 0.25;
 const animatorRenderAssetsRuntime = createAnimatorRenderAssetsRuntime({
@@ -1317,12 +1366,14 @@ function rebuildAnimatorPathDisplayFromDocument(documentData) {
       return;
     }
     const sourceKind = getAnimatorDocumentPathSourceKind(path, documentData);
+    const style = path?.style && typeof path.style === "object" ? path.style : {};
+    const opacity = Number(style.opacity);
     const line = new THREE.Line(
       new THREE.BufferGeometry().setFromPoints(samples),
       new THREE.LineBasicMaterial({
-        color: 0x8bdcff,
+        color: style.color ?? 0x8bdcff,
         transparent: true,
-        opacity: 0.28,
+        opacity: Number.isFinite(opacity) ? opacity : 0.28,
       })
     );
     line.userData.ownerAssemblyId = getAnimatorPathOwnerAssemblyId(path);
@@ -1358,6 +1409,7 @@ function applyAnimatorViewportDisplayState() {
   const showCameraGuides = isAnimatorViewportDisplayFlagEnabled("showCameraGuides");
   const showLabels = isAnimatorViewportDisplayFlagEnabled("showLabels");
   const showHistoryTraces = isAnimatorViewportDisplayFlagEnabled("showHistoryTraces");
+  const showDelayedHits = isAnimatorViewportDisplayFlagEnabled("showDelayedHits");
   const showEnvelopes = isAnimatorViewportDisplayFlagEnabled("showEnvelopes");
   const isObserverViewActive =
     animatorCameraFlightState.preview || animatorViewportModeState.cameraSource === "authored";
@@ -1428,6 +1480,7 @@ function applyAnimatorViewportDisplayState() {
     animatorCameraFlightGroup.visible = showObserverGuidesInViewport;
   }
   animatorHistoryTraceLines.forEach((line) => {
+    refreshAnimatorHistoryTraceMaterial(line);
     line.visible = showHistoryTraces && isAnimatorThreeObjectMotionSourceVisible(line);
   });
   animatorEnvelopeMeshes.forEach((mesh) => {
@@ -1441,15 +1494,19 @@ function applyAnimatorViewportDisplayState() {
   });
   if (animatorPathHistoryLineSegments) {
     animatorPathHistoryLineSegments.visible =
-      showHistoryTraces &&
+      showDelayedHits &&
       animatorPathHistoryLineSegments?.userData?.visibleByMotionState !== false &&
       isAnimatorThreeObjectMotionSourceVisible(animatorPathHistoryLineSegments);
   }
   animatorDelayedHitGroups.forEach((group) => {
     group.visible =
+      showDelayedHits &&
       group?.userData?.visibleByMotionState !== false &&
       isAnimatorThreeObjectMotionSourceVisible(group);
   });
+  if (animatorDelayedHitTable && !showDelayedHits) {
+    animatorDelayedHitTable.hidden = true;
+  }
   animatorCameraWaypointMeshes.forEach((mesh) => {
     const labelSprite = mesh.userData?.labelSprite;
     if (labelSprite) {
@@ -2520,6 +2577,77 @@ function getAnimatorVisiblePathSamples(path, normalizedT) {
   return sampledPoints.slice(0, maxIndex + 1);
 }
 
+function getAnimatorTrailControlState() {
+  return normalizeAnimatorTrailControls({
+    opacityScale: animatorTrailOpacityScale,
+    lifetimeSeconds: animatorTrailLifetimeSeconds,
+    diagnosticEmphasis: isAnimatorViewportDisplayFlagEnabled("showTrailDiagnostics"),
+  });
+}
+
+function getAnimatorTimedPathTrailSamples(path, simulationDataset) {
+  const points = Array.isArray(path?.payload?.points) ? path.payload.points : [];
+  if (!points.length) {
+    return [];
+  }
+  const sampledPoints = sampleAnimatorPath(
+    points,
+    path?.payload?.interpolate ?? "spline",
+    !!path?.payload?.closed
+  );
+  return createAnimatorTimedTrailSamples(
+    sampledPoints,
+    getAnimatorSimulationDatasetTimeWindow(simulationDataset)
+  );
+}
+
+function refreshAnimatorHistoryTraceMaterial(line, historyTrace = line?.userData?.historyTrace) {
+  if (!line?.material) {
+    return;
+  }
+  const style = historyTrace?.style && typeof historyTrace.style === "object" ? historyTrace.style : {};
+  const controls = getAnimatorTrailControlState();
+  line.material.opacity = getAnimatorTrailMaterialOpacity(historyTrace, controls);
+  line.material.linewidth =
+    normalizePositiveNumber(style.lineWidth ?? style.width, 1) *
+    (controls.diagnosticEmphasis && historyTrace?.kind === "solver-derived" ? 1.35 : 1);
+  line.material.needsUpdate = true;
+}
+
+function setAnimatorHistoryTraceLineSamples(line, trailSamples = []) {
+  if (!line || !Array.isArray(trailSamples) || trailSamples.length < 2) {
+    return false;
+  }
+  const historyTrace = line.userData?.historyTrace ?? {};
+  const style = historyTrace?.style && typeof historyTrace.style === "object" ? historyTrace.style : {};
+  const baseColor = new THREE.Color(style.color ?? 0x8bdcff);
+  const positions = new Float32Array(trailSamples.length * 3);
+  const colors = new Float32Array(trailSamples.length * 3);
+  trailSamples.forEach((sample, index) => {
+    const point = vectorFromTriplet(sample.position);
+    const offset = index * 3;
+    const fade = clamp(Number(sample.fade ?? 1) || 0, 0, 1);
+    positions[offset] = point.x;
+    positions[offset + 1] = point.y;
+    positions[offset + 2] = point.z;
+    colors[offset] = baseColor.r * fade;
+    colors[offset + 1] = baseColor.g * fade;
+    colors[offset + 2] = baseColor.b * fade;
+  });
+  line.geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+  line.geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+  line.geometry.setDrawRange(0, trailSamples.length);
+  line.geometry.computeBoundingSphere();
+  if (line.material) {
+    line.material.vertexColors = true;
+  }
+  refreshAnimatorHistoryTraceMaterial(line, historyTrace);
+  if (line.userData.usesLineDistances) {
+    line.computeLineDistances();
+  }
+  return true;
+}
+
 function updateAnimatorPathGeometry(points = animatorPathState.points) {
   if (!animatorPathGeometry) {
     return [];
@@ -3582,33 +3710,30 @@ function updateAnimatorAnimatedViewport(timeSeconds) {
         historyTrace?.source ?? historyTrace
       );
       if (path && getAnimatorDocumentPathSourceKind(path) === "solver-derived") {
-        const visiblePoints = getAnimatorVisiblePathSamples(
-          path,
-          getAnimatorSimulationDatasetProgress(simulationDataset, traceSimulationTime)
+        const trailSamples = createAnimatorFadeableTrailSamples(
+          getAnimatorTimedPathTrailSamples(path, simulationDataset),
+          traceSimulationTime,
+          getAnimatorTrailControlState()
         );
-        if (visiblePoints.length < 2) {
+        if (!setAnimatorHistoryTraceLineSamples(line, trailSamples)) {
           line.visible = false;
           return;
-        }
-        line.geometry.setFromPoints(visiblePoints);
-        if (line.userData.usesLineDistances) {
-          line.computeLineDistances();
         }
         line.visible = showHistoryTraces && showMotionSource;
         return;
       }
-      const tracePoints = sampleAnimatorSimulationParticleTrail(
-        simulationDataset,
-        simulationParticleId,
-        traceSimulationTime
-      ).map((sample) => vectorFromTriplet(sample.position));
-      if (tracePoints.length < 2) {
+      const trailSamples = createAnimatorFadeableTrailSamples(
+        sampleAnimatorSimulationParticleTrail(
+          simulationDataset,
+          simulationParticleId,
+          traceSimulationTime
+        ),
+        traceSimulationTime,
+        getAnimatorTrailControlState()
+      );
+      if (!setAnimatorHistoryTraceLineSamples(line, trailSamples)) {
         line.visible = false;
         return;
-      }
-      line.geometry.setFromPoints(tracePoints);
-      if (line.userData.usesLineDistances) {
-        line.computeLineDistances();
       }
       line.visible = showHistoryTraces && showMotionSource;
       return;
@@ -3967,15 +4092,19 @@ function addAnimatorHistoryTrace(historyTrace) {
   const material = isDashed
     ? new THREE.LineDashedMaterial({
         color: style.color ?? 0x8bdcff,
+        vertexColors: true,
         transparent: true,
-        opacity: style.opacity ?? 0.42,
+        opacity: getAnimatorTrailMaterialOpacity(historyTrace, getAnimatorTrailControlState()),
+        linewidth: normalizePositiveNumber(style.lineWidth ?? style.width, 1),
         dashSize: normalizePositiveNumber(style.dashSize, isDotted ? 0.025 : 0.14),
         gapSize: normalizePositiveNumber(style.gapSize, isDotted ? 0.085 : 0.08),
       })
     : new THREE.LineBasicMaterial({
         color: style.color ?? 0x8bdcff,
+        vertexColors: true,
         transparent: true,
-        opacity: style.opacity ?? 0.42,
+        opacity: getAnimatorTrailMaterialOpacity(historyTrace, getAnimatorTrailControlState()),
+        linewidth: normalizePositiveNumber(style.lineWidth ?? style.width, 1),
       });
   const line = new THREE.Line(new THREE.BufferGeometry(), material);
   line.userData.historyTrace = historyTrace;
@@ -3987,6 +4116,11 @@ function addAnimatorHistoryTrace(historyTrace) {
 
 function renderAnimatorDelayedHitTable(documentData, timeSeconds) {
   if (!animatorDelayedHitTable) {
+    return;
+  }
+  if (!isAnimatorViewportDisplayFlagEnabled("showDelayedHits")) {
+    animatorDelayedHitTable.hidden = true;
+    animatorDelayedHitTable.replaceChildren();
     return;
   }
   const simulationDataset = getAnimatorSimulationDataset(documentData);
@@ -4089,6 +4223,9 @@ function updateAnimatorPathHistoryLineSegments(timeSeconds) {
     if (!renderState.visible) {
       return;
     }
+    if (renderState.travelProgress <= 0.001) {
+      return;
+    }
     points.push(
       vectorFromTriplet(renderState.sourcePosition),
       vectorFromTriplet(renderState.connectorEndPosition)
@@ -4097,7 +4234,7 @@ function updateAnimatorPathHistoryLineSegments(timeSeconds) {
   animatorPathHistoryLineSegments.geometry.setFromPoints(points);
   const isVisible =
     points.length > 0 &&
-    isAnimatorViewportDisplayFlagEnabled("showHistoryTraces") &&
+    isAnimatorViewportDisplayFlagEnabled("showDelayedHits") &&
     isAnimatorThreeObjectMotionSourceVisible(animatorPathHistoryLineSegments);
   animatorPathHistoryLineSegments.userData.visibleByMotionState = points.length > 0;
   animatorPathHistoryLineSegments.visible = isVisible;
@@ -4209,7 +4346,10 @@ function updateAnimatorDelayedHitVisualState(group, timeSeconds) {
       : renderState.opacity * 0.72;
   }
   group.userData.visibleByMotionState = renderState.visible;
-  group.visible = renderState.visible && isAnimatorThreeObjectMotionSourceVisible(group);
+  group.visible =
+    isAnimatorViewportDisplayFlagEnabled("showDelayedHits") &&
+    renderState.visible &&
+    isAnimatorThreeObjectMotionSourceVisible(group);
 }
 
 function addAnimatorOrbitParticle(center, motion, chargeType, memberId = null) {
@@ -4910,6 +5050,7 @@ function updateAnimatorViewportFromDocument(documentData) {
     updateAnimatorViewportModeButtons();
   }
   updateAnimatorMotionSourcePill(documentData);
+  renderAnimatorSimulationAuthoringPanel(documentData);
   if (!animatorViewportGroup || !animatorPathGeometry) {
     return;
   }
@@ -5799,20 +5940,21 @@ const animatorSimulationWorkerClient = createAnimatorSimulationWorkerClient({
 });
 let animatorSimulationWorkerRunActive = false;
 const animatorRunSimulationButtonLabel = animatorRunSimulationButton?.textContent ?? "Run Solver";
+const animatorSimulationRunButtonLabel = animatorSimulationRunButton?.textContent ?? "Run Solver";
 
 function setAnimatorSimulationWorkerRunActive(isActive) {
   animatorSimulationWorkerRunActive = Boolean(isActive);
-  if (!animatorRunSimulationButton) {
-    return;
-  }
-  animatorRunSimulationButton.disabled = animatorSimulationWorkerRunActive;
-  animatorRunSimulationButton.setAttribute(
-    "aria-busy",
-    animatorSimulationWorkerRunActive ? "true" : "false"
-  );
-  animatorRunSimulationButton.textContent = animatorSimulationWorkerRunActive
-    ? "Running..."
-    : animatorRunSimulationButtonLabel;
+  [
+    [animatorRunSimulationButton, animatorRunSimulationButtonLabel],
+    [animatorSimulationRunButton, animatorSimulationRunButtonLabel],
+  ].forEach(([button, label]) => {
+    if (!button) {
+      return;
+    }
+    button.disabled = animatorSimulationWorkerRunActive;
+    button.setAttribute("aria-busy", animatorSimulationWorkerRunActive ? "true" : "false");
+    button.textContent = animatorSimulationWorkerRunActive ? "Running..." : label;
+  });
 }
 
 const animatorDocumentWorkspaceRuntime = createAnimatorDocumentWorkspaceRuntime({
@@ -5902,6 +6044,7 @@ const animatorDocumentWorkspaceRuntime = createAnimatorDocumentWorkspaceRuntime(
     setCurrentDocument: (documentData) => {
       animatorCurrentDocument = documentData;
       updateAnimatorMotionSourcePill(documentData);
+      renderAnimatorSimulationAuthoringPanel(documentData);
     },
   },
 });
@@ -5921,6 +6064,131 @@ const {
   deleteAnimatorSceneFromLibrary,
   renderAnimatorJsonPreview,
 } = animatorDocumentWorkspaceRuntime;
+
+function setAnimatorSimulationInputValue(input, value) {
+  if (!input) {
+    return;
+  }
+  input.value = String(value ?? "");
+}
+
+function setAnimatorSimulationSelectValue(select, value) {
+  if (!select) {
+    return;
+  }
+  const nextValue = String(value ?? "");
+  const hasOption = Array.from(select.options ?? []).some((option) => option.value === nextValue);
+  select.value = hasOption ? nextValue : select.options?.[0]?.value ?? "";
+}
+
+function readAnimatorSimulationAuthoringDraftFromDom() {
+  return {
+    duration: animatorSimulationDurationInput?.value,
+    loop: animatorSimulationLoopInput?.checked === true,
+    steps: animatorSimulationStepsInput?.value,
+    dt: animatorSimulationDtInput?.value,
+    stride: animatorSimulationStrideInput?.value,
+    particles: animatorSimulationParticlesInput?.value,
+    radius: animatorSimulationRadiusInput?.value,
+    radialSpeed: animatorSimulationRadialSpeedInput?.value,
+    tangentialSpeed: animatorSimulationTangentialSpeedInput?.value,
+    driftX: animatorSimulationDriftXInput?.value,
+    driftY: animatorSimulationDriftYInput?.value,
+    cf: animatorSimulationFieldSpeedInput?.value,
+    kappa: animatorSimulationKappaInput?.value,
+    historyMode: animatorSimulationHistoryModeSelect?.value,
+    rootHaltPolicy: animatorSimulationRootHaltPolicySelect?.value,
+    claimLevel: animatorSimulationClaimLevelInput?.value,
+    datasetId: animatorSimulationDatasetIdInput?.value,
+  };
+}
+
+function renderAnimatorSimulationDiagnosticsRows(rows = []) {
+  if (!animatorSimulationDiagnostics) {
+    return;
+  }
+  animatorSimulationDiagnostics.replaceChildren();
+  rows.forEach(([label, value]) => {
+    const row = document.createElement("div");
+    row.className = "animator-simulation-diagnostic-row";
+    const labelElement = document.createElement("div");
+    labelElement.className = "animator-simulation-diagnostic-label";
+    labelElement.textContent = label;
+    const valueElement = document.createElement("div");
+    valueElement.className = "animator-simulation-diagnostic-value";
+    valueElement.textContent = value;
+    row.append(labelElement, valueElement);
+    animatorSimulationDiagnostics.appendChild(row);
+  });
+}
+
+function renderAnimatorSimulationAuthoringPanel(documentData = animatorCurrentDocument) {
+  if (!animatorSimulationPanel || !documentData) {
+    return;
+  }
+  const draft = createAnimatorSimulationAuthoringDraft(documentData);
+  setAnimatorSimulationSelectValue(animatorSimulationModeSelect, "planar-2d");
+  setAnimatorSimulationInputValue(animatorSimulationDurationInput, draft.duration);
+  if (animatorSimulationLoopInput) {
+    animatorSimulationLoopInput.checked = draft.loop;
+  }
+  setAnimatorSimulationInputValue(animatorSimulationDatasetIdInput, draft.datasetId);
+  setAnimatorSimulationInputValue(animatorSimulationStepsInput, draft.steps);
+  setAnimatorSimulationInputValue(animatorSimulationDtInput, draft.dt);
+  setAnimatorSimulationInputValue(animatorSimulationStrideInput, draft.stride);
+  setAnimatorSimulationInputValue(animatorSimulationFieldSpeedInput, draft.cf);
+  setAnimatorSimulationInputValue(animatorSimulationKappaInput, draft.kappa);
+  setAnimatorSimulationInputValue(animatorSimulationClaimLevelInput, draft.claimLevel);
+  setAnimatorSimulationSelectValue(animatorSimulationHistoryModeSelect, draft.historyMode);
+  setAnimatorSimulationSelectValue(animatorSimulationRootHaltPolicySelect, draft.rootHaltPolicy);
+  setAnimatorSimulationInputValue(animatorSimulationParticlesInput, draft.particles);
+  setAnimatorSimulationInputValue(animatorSimulationRadiusInput, draft.radius);
+  setAnimatorSimulationInputValue(animatorSimulationRadialSpeedInput, draft.radialSpeed);
+  setAnimatorSimulationInputValue(animatorSimulationTangentialSpeedInput, draft.tangentialSpeed);
+  setAnimatorSimulationInputValue(animatorSimulationDriftXInput, draft.driftX);
+  setAnimatorSimulationInputValue(animatorSimulationDriftYInput, draft.driftY);
+
+  if (animatorSceneDurationInput) {
+    animatorSceneDurationInput.value = String(draft.duration);
+  }
+  if (animatorSceneLoopInput) {
+    animatorSceneLoopInput.checked = draft.loop;
+  }
+
+  const summary = summarizeAnimatorSimulationAuthoringDataset(documentData);
+  const datasetRow = summary.rows.find(([label]) => label === "Dataset");
+  const haltRow = summary.rows.find(([label]) => label === "Halt" || label === "Last Run");
+  if (animatorSimulationCacheStatus) {
+    animatorSimulationCacheStatus.textContent = summary.hasDataset
+      ? `Dataset: ${datasetRow?.[1] ?? "loaded"} (${haltRow?.[1] ?? "unknown"})`
+      : `Dataset: ${haltRow?.[1] ?? "not run"}`;
+  }
+  renderAnimatorSimulationDiagnosticsRows(summary.rows);
+}
+
+function applyAnimatorSimulationAuthoringDraftFromDom(options = {}) {
+  const baseDocument =
+    options.baseDocument ??
+    animatorCurrentDocument ??
+    buildAnimatorDocumentData(readAnimatorDraftState());
+  if (!baseDocument) {
+    return null;
+  }
+  const nextDocument = normalizeAnimatorSceneDocument(
+    applyAnimatorSimulationAuthoringDraftToDocument(
+      baseDocument,
+      readAnimatorSimulationAuthoringDraftFromDom()
+    )
+  );
+  updateAnimatorViewportFromDocument(nextDocument);
+  if (animatorJsonPreview) {
+    animatorJsonPreview.textContent = JSON.stringify(nextDocument, null, 2);
+  }
+  if (options.status !== false) {
+    setAnimatorStatus("Simulation settings applied.");
+  }
+  return nextDocument;
+}
 
 function getAnimatorWorkerSimulationConfig(documentData = animatorCurrentDocument, inputConfig = null) {
   if (inputConfig && typeof inputConfig === "object") {
@@ -5987,18 +6255,33 @@ async function runAnimatorSimulationWorkerFromCurrentDocument(inputConfig = null
   };
 }
 
+async function runAnimatorSimulationWorkerFromAuthoringPanel() {
+  const baseDocument = applyAnimatorSimulationAuthoringDraftFromDom({ status: false });
+  const payload = buildAnimatorSimulationAuthoringWorkerPayload(
+    readAnimatorSimulationAuthoringDraftFromDom(),
+    baseDocument
+  );
+  return runAnimatorSimulationWorkerFromCurrentDocument(payload.config, {
+    baseDocument,
+    datasetOptions: payload.datasetOptions,
+  });
+}
+
 if (typeof window !== "undefined") {
   window.runAnimatorSimulationWorker = runAnimatorSimulationWorkerFromCurrentDocument;
 }
 
-if (animatorRunSimulationButton && !animatorRunSimulationButton.dataset.bound) {
-  animatorRunSimulationButton.addEventListener("click", async () => {
+function bindAnimatorSimulationRunButton(button) {
+  if (!button || button.dataset.bound) {
+    return;
+  }
+  button.addEventListener("click", async () => {
     if (animatorSimulationWorkerRunActive) {
       return;
     }
     setAnimatorSimulationWorkerRunActive(true);
     try {
-      await runAnimatorSimulationWorkerFromCurrentDocument();
+      await runAnimatorSimulationWorkerFromAuthoringPanel();
     } catch (error) {
       console.error("animator worker simulation failed.", error);
       setAnimatorStatus(`Worker simulation failed: ${error?.message ?? error}`);
@@ -6006,7 +6289,17 @@ if (animatorRunSimulationButton && !animatorRunSimulationButton.dataset.bound) {
       setAnimatorSimulationWorkerRunActive(false);
     }
   });
-  animatorRunSimulationButton.dataset.bound = "true";
+  button.dataset.bound = "true";
+}
+
+bindAnimatorSimulationRunButton(animatorRunSimulationButton);
+bindAnimatorSimulationRunButton(animatorSimulationRunButton);
+
+if (animatorSimulationApplyButton && !animatorSimulationApplyButton.dataset.bound) {
+  animatorSimulationApplyButton.addEventListener("click", () => {
+    applyAnimatorSimulationAuthoringDraftFromDom();
+  });
+  animatorSimulationApplyButton.dataset.bound = "true";
 }
 
 if (animatorHudShellOpacityInput && !animatorHudShellOpacityInput.dataset.bound) {
@@ -6016,6 +6309,28 @@ if (animatorHudShellOpacityInput && !animatorHudShellOpacityInput.dataset.bound)
     applyAnimatorViewportDisplayState();
   });
   animatorHudShellOpacityInput.dataset.bound = "true";
+}
+
+if (animatorHudTrailOpacityInput && !animatorHudTrailOpacityInput.dataset.bound) {
+  animatorHudTrailOpacityInput.addEventListener("input", () => {
+    animatorTrailOpacityScale = clamp(Number(animatorHudTrailOpacityInput.value) || 0, 0, 1);
+    updateAnimatorAnimatedViewport(animatorPlaybackState.playheadSeconds);
+    applyAnimatorViewportDisplayState();
+  });
+  animatorHudTrailOpacityInput.dataset.bound = "true";
+}
+
+if (animatorHudTrailLifetimeInput && !animatorHudTrailLifetimeInput.dataset.bound) {
+  animatorHudTrailLifetimeInput.addEventListener("input", () => {
+    animatorTrailLifetimeSeconds = clamp(
+      Number(animatorHudTrailLifetimeInput.value) || 0.25,
+      0.25,
+      60
+    );
+    updateAnimatorAnimatedViewport(animatorPlaybackState.playheadSeconds);
+    applyAnimatorViewportDisplayState();
+  });
+  animatorHudTrailLifetimeInput.dataset.bound = "true";
 }
 
 const levels = new Map();

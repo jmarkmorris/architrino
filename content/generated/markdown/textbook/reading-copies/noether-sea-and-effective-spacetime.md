@@ -2875,6 +2875,64 @@ $$
 \gamma_\star(v)+O(\epsilon_{\mathrm{LV}}).
 $$
 
+The same equations give a direct geometry dictionary for the spheroid. In the no-extra-scale channel, take $R_{\perp}=R_0$ and $R_{\parallel}=R_0/\gamma_\star$. Then
+$$
+\xi
+\equiv
+\frac{R_{\parallel}}{R_{\perp}}
+=
+\frac{1}{\gamma_\star}
+=
+\sqrt{1-\beta_\star^2},
+\qquad
+\gamma_\star
+=
+\frac{R_{\perp}}{R_{\parallel}},
+$$
+and therefore
+$$
+\beta_\star
+=
+\sqrt{1-\xi^2}
+=
+\sqrt{1-\frac{R_{\parallel}^2}{R_{\perp}^2}}.
+$$
+Thus the velocity fraction is encoded as the eccentricity of the Lorentz spheroid, while $\gamma_\star$ is encoded as its transverse-to-longitudinal aspect ratio. This is only a statement about the shape channel: a separate scale channel $\lambda$ may change the absolute size without changing the dimensionless ratios $\xi$, $\gamma_\star$, and $\beta_\star$.
+
+The clock law belongs to the return-cycle period, not to the absolute size of the ellipsoid. If a rest branch has period $T_0$, the observer-sector target is
+$$
+T_q(v)=\gamma_\star(v)T_0+O(\epsilon_{\mathrm{LV}}T_0).
+$$
+For the simple return-cycle benchmark above, substituting $R_{\parallel}=R_{\perp}/\gamma_\star$ gives
+$$
+T_{\parallel}
+=
+\frac{2R_{\perp}}{c_\star}\gamma_\star,
+$$
+so the period dilation is the same $\gamma_\star$ that appears as the inverse axis ratio. This remains true even when the ellipsoid becomes very thin. As $\beta_\star\to1$, the forward leg is
+$$
+t_+
+=
+\frac{R_{\parallel}}{c_\star-v}
+=
+\frac{R_{\perp}}{c_\star}
+\sqrt{\frac{1+\beta_\star}{1-\beta_\star}}
+\longrightarrow
+\infty,
+$$
+while the rear leg satisfies
+$$
+t_-
+=
+\frac{R_{\parallel}}{c_\star+v}
+=
+\frac{R_{\perp}}{c_\star}
+\sqrt{\frac{1-\beta_\star}{1+\beta_\star}}
+\longrightarrow
+0.
+$$
+The divergent clock factor is therefore not caused by a large object. It is caused by the vanishing forward catch-up margin $c_\star-v$ in the closed return cycle. The contraction of $R_{\parallel}$ and the divergence of $T_q(v)$ are two coupled readouts of the same closure condition.
+
 In this precise theorem-target sense, Lorentz response is branch-indexed in the framework. The smooth function $\gamma_\star(v)$ remains the observer-level envelope, but a physical material branch can realize that envelope only through a discrete admissible closure class $q$. The quantized object is not the algebraic curve by itself; it is the branch-indexed realization
 $$
 q

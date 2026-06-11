@@ -84,10 +84,10 @@ test("static animator simulation fixture carries dataset through the animator pr
     normalizedDocument.assemblies.map((assembly) => assembly.motion?.[0]?.type),
     ["simulation.frame", "simulation.frame"]
   );
-  assert.deepEqual(dataset.frames[0].particles[0].position, [-6.4, -1.6, 0]);
-  assert.deepEqual(dataset.frames[3].particles[0].position, [-0.55, 2.35, 0]);
-  assert.deepEqual(dataset.frames[3].particles[1].position, [0.55, -2.35, 0]);
-  assert.equal(dataset.frames[3].diagnostics.minimumSeparation, 4.827);
+  assert.deepEqual(dataset.frames[0].particles[0].position, [-18, -5.58, 0]);
+  assert.deepEqual(dataset.frames[3].particles[0].position, [-3.6, 5.22, 0]);
+  assert.deepEqual(dataset.frames[3].particles[1].position, [3.24, -3.6, 0]);
+  assert.equal(dataset.frames[3].diagnostics.minimumSeparation, 11.161);
   assert.equal(normalizedDocument.paths.length, 2);
   assert.deepEqual(
     normalizedDocument.paths.map((path) => path.payload?.interpolate),

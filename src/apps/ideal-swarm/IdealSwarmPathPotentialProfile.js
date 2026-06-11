@@ -2,11 +2,16 @@ const QUARTER_TURN = Math.PI / 2;
 const NO_FORWARD_SPAN = 0;
 const FIELD_SPEED_TOLERANCE = 0.015;
 const SELF_HIT_SOLVE_ITERATIONS = 28;
+const DEFAULT_PATH_SPEED_PRODUCTS = Object.freeze({
+  inner: 0.5 * 0.42,
+  middle: 0.7 * 0.26,
+  outer: 0.9 * 0.16,
+});
 
 export const BINARY_FIELD_SPEED_RATIOS = Object.freeze({
-  inner: 1.35,
+  inner: DEFAULT_PATH_SPEED_PRODUCTS.inner / DEFAULT_PATH_SPEED_PRODUCTS.middle,
   middle: 1,
-  outer: 0.7,
+  outer: DEFAULT_PATH_SPEED_PRODUCTS.outer / DEFAULT_PATH_SPEED_PRODUCTS.middle,
 });
 
 function clampNumber(value, min, max) {

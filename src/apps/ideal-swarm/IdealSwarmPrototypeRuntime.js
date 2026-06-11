@@ -1,31 +1,32 @@
 import * as THREE from "../../../vendor/three/three.module.js";
+import { createMarkdownRuntime } from "../../runtime/MarkdownRuntime.js";
+import { extractMarkdownSection } from "../../services/MarkdownPolicyService.js";
 import { createAnimatorDefaultCoreSpec } from "../animator/AnimatorDraftScaffoldRuntime.js";
 import { createAnimatorStructureGeometryRuntime } from "../animator/AnimatorStructureGeometryRuntime.js";
 import {
-  BINARY_FIELD_SPEED_RATIOS,
   getFieldSpeedRegimeLabel,
   getOrbitPathBranchGain,
   getOrbitPathTintProfile as resolveOrbitPathTintProfile,
-} from "./IdealCorePathPotentialProfile.js";
+} from "./IdealSwarmPathPotentialProfile.js";
 
 const BINARY_META = [
   {
     id: "inner",
     label: "Inner",
     color: "#7dd3fc",
-    fieldSpeedRatio: BINARY_FIELD_SPEED_RATIOS.inner,
+    shellColor: "#8fb6d8",
   },
   {
     id: "middle",
     label: "Middle",
     color: "#fbbf24",
-    fieldSpeedRatio: BINARY_FIELD_SPEED_RATIOS.middle,
+    shellColor: "#c4cbd4",
   },
   {
     id: "outer",
     label: "Outer",
     color: "#f472b6",
-    fieldSpeedRatio: BINARY_FIELD_SPEED_RATIOS.outer,
+    shellColor: "#c9b7d8",
   },
 ];
 
@@ -44,9 +45,39 @@ const SURFACE_LATITUDE_COUNT = 25;
 const SURFACE_LONGITUDE_COUNT = 48;
 const AXIS_REFERENCE_CIRCLE_SEGMENTS = 48;
 const TWO_PI = Math.PI * 2;
+const LORENTZ_BETA_MAX = 1;
+const LORENTZ_CHART_GAMMA_CAP = 6;
+const FIELD_SPEED_REFERENCE_BINARY_INDEX = 1;
+const SHELL_SURFACE_BASE_OPACITY = 0.007;
+const SHELL_SURFACE_RIM_OPACITY = 0.16;
+const SHELL_SURFACE_RIM_POWER = 3.2;
 const ORBIT_PATH_LOG_WIDTH_FLOOR = 0.78;
 const ORBIT_PATH_TRAIL_SEGMENTS = 30;
 const ORBIT_PATH_TRAIL_MAX_ARCS = CHARGE_TYPES.length;
+const ASSEMBLY_MOMENTUM_AXIS_COMPONENT = 1 / Math.sqrt(3);
+const ASSEMBLY_MOMENTUM_AXIS = new THREE.Vector3(
+  ASSEMBLY_MOMENTUM_AXIS_COMPONENT,
+  ASSEMBLY_MOMENTUM_AXIS_COMPONENT,
+  ASSEMBLY_MOMENTUM_AXIS_COMPONENT
+);
+const IDEAL_SWARM_DOCS = {
+  notes: {
+    name: "Ideal Swarm Guide",
+    markdownPath: "content/markdown/aaa/archie/ideal-swarm-notes.md",
+    markdownColumns: 1,
+  },
+  returnCycle: {
+    name: "Return-Cycle Lorentz Quantization",
+    markdownPath:
+      "content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md",
+    markdownColumns: 1,
+  },
+  lorentzKinematics: {
+    name: "Lorentz Kinematics",
+    markdownPath: "content/markdown/aaa/spacetime/lorentz-kinematics.md",
+    markdownColumns: 1,
+  },
+};
 const ORBIT_PATH_TRAIL_LAYERS = [
   {
     role: "headlamp-glow",
@@ -115,6 +146,28 @@ function formatFixed(value, digits = 2) {
   return value.toFixed(digits);
 }
 
+function formatSignedFixed(value, digits = 4) {
+  if (!Number.isFinite(value)) {
+    return "0";
+  }
+  const threshold = 1 / 10 ** digits;
+  const normalized = Math.abs(value) < threshold ? 0 : value;
+  return normalized.toFixed(digits);
+}
+
+function formatLimitFixed(value, digits = 2) {
+  if (value === Infinity) {
+    return "infinite";
+  }
+  if (value === -Infinity) {
+    return "-infinite";
+  }
+  if (!Number.isFinite(value)) {
+    return "undefined";
+  }
+  return formatFixed(value, digits);
+}
+
 function formatScientific(value) {
   if (!Number.isFinite(value) || value === 0) {
     return "0.00";
@@ -126,9 +179,49 @@ function formatScientific(value) {
   return value.toFixed(3);
 }
 
-function normalizeViewId(value) {
-  const normalized = String(value ?? "all").trim().toLowerCase();
-  return ["all", "inner", "middle", "outer"].includes(normalized) ? normalized : "all";
+export function computeLorentzState(beta, radius) {
+  const rawBeta = Number(beta);
+  const normalizedBeta = clampNumber(Number.isFinite(rawBeta) ? rawBeta : 0, 0, LORENTZ_BETA_MAX);
+  const isLightSpeedLimit = normalizedBeta >= 1;
+  const referenceRadius = Math.max(0.0001, Number(radius) || 1);
+  const gamma = isLightSpeedLimit
+    ? Infinity
+    : 1 / Math.sqrt(1 - normalizedBeta * normalizedBeta);
+  const xi = isLightSpeedLimit ? 0 : 1 / gamma;
+  const restMass = 1;
+  const restEnergy = restMass;
+  const movementEnergy = isLightSpeedLimit ? Infinity : gamma - restEnergy;
+  const movementMassEquivalent = movementEnergy;
+  const totalEnergy = gamma * restEnergy;
+  const totalMassEquivalent = totalEnergy;
+  const rPerp = referenceRadius;
+  const rParallel = rPerp * xi;
+  const tPlus = isLightSpeedLimit ? Infinity : rParallel / (1 - normalizedBeta);
+  const tMinus = isLightSpeedLimit ? 0 : rParallel / (1 + normalizedBeta);
+  const tParallel = isLightSpeedLimit ? Infinity : tPlus + tMinus;
+  const tPerp = isLightSpeedLimit ? Infinity : 2 * rPerp * gamma;
+  return {
+    beta: normalizedBeta,
+    gamma,
+    xi,
+    rPerp,
+    rParallel,
+    timeRatio: gamma,
+    lengthRatio: xi,
+    restEnergyShareFactor: xi,
+    restMass,
+    restEnergy,
+    movementEnergy,
+    movementMassEquivalent,
+    totalEnergy,
+    totalMassEquivalent,
+    tPlus,
+    tMinus,
+    tParallel,
+    tPerp,
+    closureResidual: isLightSpeedLimit ? 0 : tParallel - tPerp,
+    isLightSpeedLimit,
+  };
 }
 
 function wrapSignedAngle(value) {
@@ -143,8 +236,83 @@ function getMotionAngle(motion, chargeType, timeSeconds) {
   return phase + phaseOffset + direction * timeSeconds * TWO_PI * frequency;
 }
 
+function computePathSpeed(radius, frequencyHz) {
+  return radius * TWO_PI * frequencyHz;
+}
+
+function resolveFieldSpeedReference(binaries) {
+  return binaries[FIELD_SPEED_REFERENCE_BINARY_INDEX] ?? binaries[0] ?? null;
+}
+
+function updateBinaryFieldSpeedRatios(binaries) {
+  const referenceBinary = resolveFieldSpeedReference(binaries);
+  const fieldSpeed = Math.max(0.0001, Number(referenceBinary?.speed) || 1);
+  binaries.forEach((binary) => {
+    binary.fieldSpeed = fieldSpeed;
+    binary.fieldSpeedRatio = binary.speed / fieldSpeed;
+    binary.fieldSpeedRegime = getFieldSpeedRegimeLabel(binary.fieldSpeedRatio);
+  });
+  return fieldSpeed;
+}
+
 export function getOrbitPathTintProfile(binaryOrId) {
   return resolveOrbitPathTintProfile(binaryOrId);
+}
+
+function cloneOrbitBasis(basis) {
+  return {
+    normal: basis.normal.clone(),
+    u: basis.u.clone(),
+    v: basis.v.clone(),
+  };
+}
+
+export function computeLorentzAlignedOrbitBasis(Three, restBasis, lorentzState) {
+  const xi = clampNumber(Number(lorentzState?.xi ?? 1) || 0, 0, 1);
+  const targetNormal = restBasis.normal
+    .clone()
+    .multiplyScalar(xi)
+    .add(ASSEMBLY_MOMENTUM_AXIS.clone().multiplyScalar(1 - xi));
+  if (targetNormal.lengthSq() <= 0.000001) {
+    targetNormal.copy(restBasis.normal);
+  }
+  targetNormal.normalize();
+  const rotation = new Three.Quaternion().setFromUnitVectors(restBasis.normal, targetNormal);
+  return {
+    normal: targetNormal,
+    u: restBasis.u.clone().applyQuaternion(rotation).normalize(),
+    v: restBasis.v.clone().applyQuaternion(rotation).normalize(),
+  };
+}
+
+export function computeAssemblyMomentumContractionMatrix(Three, lorentzState) {
+  const xi = clampNumber(Number(lorentzState?.xi ?? 1) || 0, 0, 1);
+  const k = xi - 1;
+  const { x, y, z } = ASSEMBLY_MOMENTUM_AXIS;
+  return new Three.Matrix4().set(
+    1 + k * x * x,
+    k * x * y,
+    k * x * z,
+    0,
+    k * y * x,
+    1 + k * y * y,
+    k * y * z,
+    0,
+    k * z * x,
+    k * z * y,
+    1 + k * z * z,
+    0,
+    0,
+    0,
+    0,
+    1
+  );
+}
+
+function setBinaryOrbitBasis(binary, basis) {
+  binary.basis.normal.copy(basis.normal);
+  binary.basis.u.copy(basis.u);
+  binary.basis.v.copy(basis.v);
 }
 
 function getOrbitPathLogWidthScale(radius, referenceRadius) {
@@ -153,9 +321,9 @@ function getOrbitPathLogWidthScale(radius, referenceRadius) {
   return ORBIT_PATH_LOG_WIDTH_FLOOR + (1 - ORBIT_PATH_LOG_WIDTH_FLOOR) * compressedRadius;
 }
 
-export function createIdealCoreModel(options = {}) {
+export function createIdealSwarmModel(options = {}) {
   const Three = options.THREE ?? THREE;
-  const coreSpec = options.coreSpec ?? createAnimatorDefaultCoreSpec("ideal_core");
+  const coreSpec = options.coreSpec ?? createAnimatorDefaultCoreSpec("ideal_swarm");
   const geometryRuntime =
     options.geometryRuntime ?? createAnimatorStructureGeometryRuntime({ THREE: Three });
   const binaries = coreSpec.binaries.map((binary, index) => {
@@ -168,21 +336,25 @@ export function createIdealCoreModel(options = {}) {
     const basis = geometryRuntime.getAnimatorOrbitBasis(motion);
     const radius = Number(motion.radius ?? 1) || 1;
     const frequencyHz = Number(motion.frequencyHz ?? 0.2) || 0.2;
-    const fieldSpeedRatio = Number(meta.fieldSpeedRatio ?? 1) || 1;
+    const speed = computePathSpeed(radius, frequencyHz);
     return {
       ...meta,
       binaryIndex: index,
       motion,
       basis,
+      restBasis: cloneOrbitBasis(basis),
       radius,
       frequencyHz,
-      speed: radius * TWO_PI * frequencyHz,
-      fieldSpeedRatio,
-      fieldSpeedRegime: getFieldSpeedRegimeLabel(fieldSpeedRatio),
+      speed,
+      fieldSpeed: 1,
+      fieldSpeedRatio: 1,
+      fieldSpeedRegime: "field speed",
     };
   });
+  const fieldSpeed = updateBinaryFieldSpeedRatios(binaries);
   const orbitPathReferenceRadius = Math.max(0.0001, ...binaries.map((binary) => binary.radius));
   binaries.forEach((binary) => {
+    binary.orbitRadiusFraction = binary.radius / orbitPathReferenceRadius;
     binary.orbitPathReferenceRadius = orbitPathReferenceRadius;
     binary.orbitPathWidthScale = getOrbitPathLogWidthScale(
       binary.radius,
@@ -201,14 +373,18 @@ export function createIdealCoreModel(options = {}) {
         q: chargeMeta.q,
         color: chargeMeta.color,
         motion: binary.motion,
-        fieldSpeedRatio: binary.fieldSpeedRatio,
-        fieldSpeedRegime: binary.fieldSpeedRegime,
+        get fieldSpeedRatio() {
+          return binary.fieldSpeedRatio;
+        },
+        get fieldSpeedRegime() {
+          return binary.fieldSpeedRegime;
+        },
         positionAt(timeSeconds) {
-          return geometryRuntime.getAnimatorOrbitOffsetAtTime(
-            binary.motion,
-            chargeType,
-            timeSeconds
-          );
+          const angle = getMotionAngle(binary.motion, chargeType, timeSeconds);
+          return binary.basis.u
+            .clone()
+            .multiplyScalar(Math.cos(angle) * binary.radius)
+            .add(binary.basis.v.clone().multiplyScalar(Math.sin(angle) * binary.radius));
         },
         velocityAt(timeSeconds) {
           const angle = getMotionAngle(binary.motion, chargeType, timeSeconds);
@@ -231,6 +407,7 @@ export function createIdealCoreModel(options = {}) {
     coreSpec,
     binaries,
     architrinos,
+    fieldSpeed,
   };
 }
 
@@ -271,17 +448,8 @@ export function computePotentialContribution(samplePoint, architrino, observatio
   };
 }
 
-export function getSelectedArchitrinos(model, viewId) {
-  const selectedView = normalizeViewId(viewId);
-  if (selectedView === "all") {
-    return model.architrinos;
-  }
-  return model.architrinos.filter((architrino) => architrino.binaryId === selectedView);
-}
-
-export function computePotentialSum(samplePoint, model, viewId, observationTime, options = {}) {
-  const selectedArchitrinos = getSelectedArchitrinos(model, viewId);
-  const contributions = selectedArchitrinos.map((architrino) =>
+export function computePotentialSum(samplePoint, model, observationTime, options = {}) {
+  const contributions = model.architrinos.map((architrino) =>
     computePotentialContribution(samplePoint, architrino, observationTime, options)
   );
   return {
@@ -321,9 +489,24 @@ function createOrbitPathLine(Three, binary) {
   const line = new Three.LineSegments(geometry, material);
   line.renderOrder = 8;
   line.userData.binary = binary;
+  line.userData.positions = positions;
   line.userData.angles = angles;
   line.userData.colors = colors;
   return line;
+}
+
+function updateOrbitPathLineGeometry(line) {
+  const binary = line.userData.binary;
+  const positions = line.userData.positions;
+  const angles = line.userData.angles;
+  if (!binary || !positions || !angles) {
+    return;
+  }
+  for (let vertexIndex = 0; vertexIndex < angles.length; vertexIndex += 1) {
+    writeOrbitPathPosition(positions, vertexIndex, binary, angles[vertexIndex], binary.radius);
+  }
+  line.geometry.attributes.position.needsUpdate = true;
+  line.geometry.computeBoundingSphere();
 }
 
 function writeOrbitPathPosition(positions, vertexIndex, binary, angle, radius) {
@@ -629,22 +812,59 @@ function updateOrbitPathTrailRibbon(Three, mesh, timeSeconds, camera) {
 }
 
 function updateOrbitPathVisual(Three, pathVisual, timeSeconds, camera) {
+  updateOrbitPathLineGeometry(pathVisual.userData.pathLine);
   updateOrbitPathColors(Three, pathVisual.userData.pathLine, timeSeconds);
   pathVisual.userData.trailRibbons.forEach((mesh) => {
     updateOrbitPathTrailRibbon(Three, mesh, timeSeconds, camera);
   });
 }
 
-function createShellLine(Three, radius, color, opacity) {
-  const geometry = new Three.SphereGeometry(radius, 36, 18);
-  const material = new Three.MeshBasicMaterial({
-    color,
-    wireframe: true,
+function createShellSurfaceMaterial(Three, color) {
+  return new Three.ShaderMaterial({
     transparent: true,
-    opacity,
     depthWrite: false,
+    side: Three.DoubleSide,
+    uniforms: {
+      shellColor: { value: new Three.Color(color) },
+      baseOpacity: { value: SHELL_SURFACE_BASE_OPACITY },
+      rimOpacity: { value: SHELL_SURFACE_RIM_OPACITY },
+      rimPower: { value: SHELL_SURFACE_RIM_POWER },
+    },
+    vertexShader: `
+      varying vec3 vNormalView;
+      varying vec3 vViewDirection;
+
+      void main() {
+        vec4 viewPosition = modelViewMatrix * vec4(position, 1.0);
+        vNormalView = normalize(normalMatrix * normal);
+        vViewDirection = normalize(-viewPosition.xyz);
+        gl_Position = projectionMatrix * viewPosition;
+      }
+    `,
+    fragmentShader: `
+      uniform vec3 shellColor;
+      uniform float baseOpacity;
+      uniform float rimOpacity;
+      uniform float rimPower;
+      varying vec3 vNormalView;
+      varying vec3 vViewDirection;
+
+      void main() {
+        float facing = abs(dot(normalize(vNormalView), normalize(vViewDirection)));
+        float rim = pow(1.0 - facing, rimPower);
+        float alpha = baseOpacity + rimOpacity * rim;
+        gl_FragColor = vec4(shellColor, alpha);
+      }
+    `,
   });
-  return new Three.Mesh(geometry, material);
+}
+
+function createShellSurface(Three, radius, color) {
+  const geometry = new Three.SphereGeometry(1, 48, 24);
+  const mesh = new Three.Mesh(geometry, createShellSurfaceMaterial(Three, color));
+  mesh.renderOrder = 1;
+  mesh.scale.setScalar(radius);
+  return mesh;
 }
 
 function createAxisReferenceGroup(Three) {
@@ -786,17 +1006,73 @@ function makeArchitrinoMaterial(Three, color) {
 function queryRequiredElement(documentLike, selector) {
   const element = documentLike.querySelector(selector);
   if (!element) {
-    throw new Error(`Missing ideal-core prototype element: ${selector}`);
+    throw new Error(`Missing ideal-swarm prototype element: ${selector}`);
   }
   return element;
 }
 
-export function mountIdealCorePrototype(options = {}) {
+function appendIdealSwarmCacheBust(path, token) {
+  const separator = path.includes("?") ? "&" : "?";
+  return `${path}${separator}v=${token}`;
+}
+
+function createIdealSwarmMarkdownRenderer(windowLike) {
+  const markdownItFactory = windowLike?.markdownit;
+  if (typeof markdownItFactory !== "function") {
+    return null;
+  }
+  const markdownRenderer = markdownItFactory({ html: false, linkify: true, breaks: false });
+  markdownRenderer.disable("escape");
+  return markdownRenderer;
+}
+
+function createIdealSwarmMarkdownRuntime({
+  documentLike,
+  windowLike,
+  markdownPanel,
+  markdownTitle,
+  markdownBody,
+  markdownLayoutToggle,
+}) {
+  const markdownCache = new Map();
+  const markdownSectionCache = new Map();
+  const cacheBustToken = Date.now().toString();
+  let markdownRuntime = null;
+
+  const openMarkdownTarget = async (target) => {
+    if (!markdownRuntime || typeof target !== "string") {
+      return;
+    }
+    await markdownRuntime.showMarkdownPanel({
+      id: target,
+      name: "Guide",
+      markdownColumns: 2,
+    });
+  };
+
+  markdownRuntime = createMarkdownRuntime({
+    markdownPanel,
+    markdownTitle,
+    markdownBody,
+    markdownLayoutToggle,
+    markdownRenderer: createIdealSwarmMarkdownRenderer(windowLike),
+    markdownCache,
+    markdownSectionCache,
+    extractMarkdownSection,
+    appendCacheBust: (path) => appendIdealSwarmCacheBust(path, cacheBustToken),
+    navigateToTarget: openMarkdownTarget,
+  });
+
+  markdownPanel.inert = true;
+  return markdownRuntime;
+}
+
+export function mountIdealSwarmPrototype(options = {}) {
   const documentLike = options.documentLike ?? globalThis.document;
   const windowLike = options.windowLike ?? globalThis.window;
   const Three = options.THREE ?? THREE;
-  const canvas = queryRequiredElement(documentLike, "#ideal-core-canvas");
-  const model = createIdealCoreModel({ THREE: Three });
+  const canvas = queryRequiredElement(documentLike, "#ideal-swarm-canvas");
+  const model = createIdealSwarmModel({ THREE: Three });
   const renderer = new Three.WebGLRenderer({
     canvas,
     antialias: true,
@@ -811,12 +1087,23 @@ export function mountIdealCorePrototype(options = {}) {
   camera.position.set(0, 0, 6.7);
   camera.lookAt(0, 0, 0);
 
+  const coreFrame = new Three.Group();
+  scene.add(coreFrame);
+
   const sphereContents = new Three.Group();
-  scene.add(sphereContents);
+  sphereContents.matrixAutoUpdate = false;
+  coreFrame.add(sphereContents);
 
   const shellGroup = new Three.Group();
-  model.coreSpec.shells.slice(0, 3).forEach((shell) => {
-    shellGroup.add(createShellLine(Three, shell.radius, shell.color, Math.max(0.04, shell.opacity)));
+  model.binaries.forEach((binary) => {
+    const shellSurface = createShellSurface(
+      Three,
+      binary.radius,
+      binary.shellColor ?? binary.color
+    );
+    shellSurface.userData.binary = binary;
+    shellSurface.userData.binaryId = binary.id;
+    shellGroup.add(shellSurface);
   });
   sphereContents.add(shellGroup);
 
@@ -858,32 +1145,67 @@ export function mountIdealCorePrototype(options = {}) {
   sphereContents.add(axisReferenceGroup);
 
   const dom = {
-    viewButtons: [...documentLike.querySelectorAll("[data-view]")],
-    pathToggle: queryRequiredElement(documentLike, "#ideal-core-path-toggle"),
-    surfaceToggle: queryRequiredElement(documentLike, "#ideal-core-surface-toggle"),
-    axesToggle: queryRequiredElement(documentLike, "#ideal-core-axes-toggle"),
-    freezeToggle: queryRequiredElement(documentLike, "#ideal-core-freeze-toggle"),
-    resetButton: queryRequiredElement(documentLike, "#ideal-core-reset-button"),
-    focusButton: queryRequiredElement(documentLike, "#ideal-core-focus-button"),
-    radiusInput: queryRequiredElement(documentLike, "#ideal-core-radius-input"),
-    radiusOutput: queryRequiredElement(documentLike, "#ideal-core-radius-output"),
-    speedInput: queryRequiredElement(documentLike, "#ideal-core-speed-input"),
-    speedOutput: queryRequiredElement(documentLike, "#ideal-core-speed-output"),
-    viewLabel: queryRequiredElement(documentLike, "#ideal-core-view-label"),
-    rangeLabel: queryRequiredElement(documentLike, "#ideal-core-range-label"),
-    sampleLabel: queryRequiredElement(documentLike, "#ideal-core-sample-label"),
-    stripCanvas: queryRequiredElement(documentLike, "#ideal-core-potential-strip"),
-    tableBody: queryRequiredElement(documentLike, "#ideal-core-table-body"),
+    pathToggle: queryRequiredElement(documentLike, "#ideal-swarm-path-toggle"),
+    surfaceToggle: queryRequiredElement(documentLike, "#ideal-swarm-surface-toggle"),
+    axesToggle: queryRequiredElement(documentLike, "#ideal-swarm-axes-toggle"),
+    freezeToggle: queryRequiredElement(documentLike, "#ideal-swarm-freeze-toggle"),
+    resetButton: queryRequiredElement(documentLike, "#ideal-swarm-reset-button"),
+    focusButton: queryRequiredElement(documentLike, "#ideal-swarm-focus-button"),
+    returnCycleDocButton: queryRequiredElement(
+      documentLike,
+      "#ideal-swarm-return-cycle-doc-button"
+    ),
+    notesDocButton: queryRequiredElement(documentLike, "#ideal-swarm-notes-doc-button"),
+    lorentzDocButton: queryRequiredElement(documentLike, "#ideal-swarm-lorentz-doc-button"),
+    radiusInput: queryRequiredElement(documentLike, "#ideal-swarm-radius-input"),
+    radiusOutput: queryRequiredElement(documentLike, "#ideal-swarm-radius-output"),
+    betaInput: queryRequiredElement(documentLike, "#ideal-swarm-beta-input"),
+    betaOutput: queryRequiredElement(documentLike, "#ideal-swarm-beta-output"),
+    speedInput: queryRequiredElement(documentLike, "#ideal-swarm-speed-input"),
+    speedOutput: queryRequiredElement(documentLike, "#ideal-swarm-speed-output"),
+    timeLabel: queryRequiredElement(documentLike, "#ideal-swarm-time-label"),
+    lengthLabel: queryRequiredElement(documentLike, "#ideal-swarm-length-label"),
+    restMassLabel: queryRequiredElement(documentLike, "#ideal-swarm-rest-mass-label"),
+    restEnergyLabel: queryRequiredElement(documentLike, "#ideal-swarm-rest-energy-label"),
+    movementEnergyLabel: queryRequiredElement(
+      documentLike,
+      "#ideal-swarm-movement-energy-label"
+    ),
+    movementMassLabel: queryRequiredElement(documentLike, "#ideal-swarm-movement-mass-label"),
+    totalEnergyLabel: queryRequiredElement(documentLike, "#ideal-swarm-total-energy-label"),
+    totalMassLabel: queryRequiredElement(documentLike, "#ideal-swarm-total-mass-label"),
+    gammaEquation: queryRequiredElement(documentLike, "#ideal-swarm-gamma-equation"),
+    xiEquation: queryRequiredElement(documentLike, "#ideal-swarm-xi-equation"),
+    rParallelEquation: queryRequiredElement(documentLike, "#ideal-swarm-rparallel-equation"),
+    tParallelEquation: queryRequiredElement(documentLike, "#ideal-swarm-tparallel-equation"),
+    tPerpEquation: queryRequiredElement(documentLike, "#ideal-swarm-tperp-equation"),
+    closureEquation: queryRequiredElement(documentLike, "#ideal-swarm-closure-equation"),
+    stripCanvas: queryRequiredElement(documentLike, "#ideal-swarm-potential-strip"),
+    tableBody: queryRequiredElement(documentLike, "#ideal-swarm-table-body"),
+    markdownPanel: queryRequiredElement(documentLike, "#markdown-panel"),
+    markdownTitle: queryRequiredElement(documentLike, "#markdown-title"),
+    markdownBody: queryRequiredElement(documentLike, "#markdown-body"),
+    markdownClose: queryRequiredElement(documentLike, "#markdown-close"),
+    markdownLayoutToggle: queryRequiredElement(documentLike, "#markdown-layout-toggle"),
+    markdownPdfButton: queryRequiredElement(documentLike, "#markdown-pdf-button"),
   };
   const stripContext = dom.stripCanvas.getContext("2d");
+  const markdownRuntime = createIdealSwarmMarkdownRuntime({
+    documentLike,
+    windowLike,
+    markdownPanel: dom.markdownPanel,
+    markdownTitle: dom.markdownTitle,
+    markdownBody: dom.markdownBody,
+    markdownLayoutToggle: dom.markdownLayoutToggle,
+  });
 
   const state = {
-    view: "all",
     pathsVisible: true,
-    surfaceVisible: true,
+    surfaceVisible: false,
     axesVisible: true,
     frozen: false,
     radius: Number(dom.radiusInput.value) || 1.62,
+    beta: Number.isFinite(Number(dom.betaInput.value)) ? Number(dom.betaInput.value) : 0,
     speed: Number(dom.speedInput.value) || 1,
     modelTime: 0,
     lastFrameTime: performance.now(),
@@ -892,6 +1214,60 @@ export function mountIdealCorePrototype(options = {}) {
     surfaceRange: { min: 0, max: 0, maxAbs: 1 },
     samplePotential: 0,
   };
+
+  function getCurrentLorentzState() {
+    return computeLorentzState(state.beta, state.radius);
+  }
+
+  function updateBinaryLorentzBases(lorentzState) {
+    model.binaries.forEach((binary) => {
+      setBinaryOrbitBasis(
+        binary,
+        computeLorentzAlignedOrbitBasis(Three, binary.restBasis, lorentzState)
+      );
+    });
+  }
+
+  function updateBinaryOrbitRadii(referenceRadius) {
+    const nextReferenceRadius = Math.max(0.0001, Number(referenceRadius) || 1);
+    model.binaries.forEach((binary) => {
+      const radiusFraction = Number(binary.orbitRadiusFraction ?? 1) || 1;
+      const nextRadius = nextReferenceRadius * radiusFraction;
+      binary.radius = nextRadius;
+      if (binary.motion) {
+        binary.motion.radius = nextRadius;
+      }
+      binary.speed = computePathSpeed(nextRadius, binary.frequencyHz);
+    });
+    model.fieldSpeed = updateBinaryFieldSpeedRatios(model.binaries);
+    const orbitPathReferenceRadius = Math.max(
+      0.0001,
+      ...model.binaries.map((binary) => binary.radius)
+    );
+    model.binaries.forEach((binary) => {
+      binary.orbitPathReferenceRadius = orbitPathReferenceRadius;
+      binary.orbitPathWidthScale = getOrbitPathLogWidthScale(
+        binary.radius,
+        orbitPathReferenceRadius
+      );
+    });
+  }
+
+  function updateShellSurfaces() {
+    shellGroup.children.forEach((shellSurface) => {
+      const binary = shellSurface.userData.binary;
+      if (!binary) {
+        return;
+      }
+      shellSurface.scale.setScalar(binary.radius);
+    });
+  }
+
+  function setReferenceRadius(referenceRadius) {
+    state.radius = Math.max(0.0001, Number(referenceRadius) || state.radius);
+    updateBinaryOrbitRadii(state.radius);
+    updateShellSurfaces();
+  }
 
   function resize() {
     const rect = canvas.getBoundingClientRect();
@@ -907,23 +1283,52 @@ export function mountIdealCorePrototype(options = {}) {
     button.setAttribute("aria-pressed", active ? "true" : "false");
   }
 
+  function updatePauseButton() {
+    const label = dom.freezeToggle.querySelector(".ideal-swarm-control-label");
+    const icon = dom.freezeToggle.querySelector(".ideal-swarm-control-icon");
+    const nextLabel = state.frozen ? "Resume" : "Pause";
+    if (label) {
+      label.textContent = nextLabel;
+    } else {
+      dom.freezeToggle.textContent = nextLabel;
+    }
+    if (icon) {
+      icon.classList.toggle("is-play", state.frozen);
+      icon.classList.toggle("is-pause", !state.frozen);
+    }
+    dom.freezeToggle.setAttribute(
+      "aria-label",
+      state.frozen ? "Resume animation" : "Pause animation"
+    );
+  }
+
   function syncControls() {
-    dom.viewButtons.forEach((button) => {
-      setButtonActive(button, button.dataset.view === state.view);
-    });
+    const lorentzState = getCurrentLorentzState();
     setButtonActive(dom.pathToggle, state.pathsVisible);
     setButtonActive(dom.surfaceToggle, state.surfaceVisible);
     setButtonActive(dom.axesToggle, state.axesVisible);
     setButtonActive(dom.freezeToggle, state.frozen);
-    dom.freezeToggle.textContent = state.frozen ? "Resume" : "Freeze";
+    updatePauseButton();
     dom.radiusOutput.value = formatFixed(state.radius, 2);
+    dom.betaOutput.value = formatFixed(lorentzState.beta, 3);
     dom.speedOutput.value = formatFixed(state.speed, 2);
-    dom.viewLabel.textContent =
-      BINARY_META.find((binary) => binary.id === state.view)?.label ?? "Full";
-    dom.rangeLabel.textContent = `${formatScientific(state.surfaceRange.min)} to ${formatScientific(
-      state.surfaceRange.max
-    )}`;
-    dom.sampleLabel.textContent = formatScientific(state.samplePotential);
+    dom.timeLabel.textContent = formatLimitFixed(lorentzState.timeRatio, 3);
+    dom.lengthLabel.textContent = formatFixed(lorentzState.lengthRatio, 3);
+    dom.restMassLabel.textContent = formatLimitFixed(lorentzState.restMass, 3);
+    dom.restEnergyLabel.textContent = formatLimitFixed(lorentzState.restEnergy, 3);
+    dom.movementEnergyLabel.textContent = formatLimitFixed(lorentzState.movementEnergy, 3);
+    dom.movementMassLabel.textContent = formatLimitFixed(
+      lorentzState.movementMassEquivalent,
+      3
+    );
+    dom.totalEnergyLabel.textContent = formatLimitFixed(lorentzState.totalEnergy, 3);
+    dom.totalMassLabel.textContent = formatLimitFixed(lorentzState.totalMassEquivalent, 3);
+    dom.gammaEquation.textContent = formatLimitFixed(lorentzState.gamma, 3);
+    dom.xiEquation.textContent = formatFixed(lorentzState.xi, 3);
+    dom.rParallelEquation.textContent = formatFixed(lorentzState.rParallel, 3);
+    dom.tParallelEquation.textContent = formatLimitFixed(lorentzState.tParallel, 3);
+    dom.tPerpEquation.textContent = formatLimitFixed(lorentzState.tPerp, 3);
+    dom.closureEquation.textContent = formatSignedFixed(lorentzState.closureResidual, 5);
   }
 
   function updateArchitrinoMeshes() {
@@ -948,7 +1353,7 @@ export function mountIdealCorePrototype(options = {}) {
       surfacePositions[sampleIndex * 3] = position.x;
       surfacePositions[sampleIndex * 3 + 1] = position.y;
       surfacePositions[sampleIndex * 3 + 2] = position.z;
-      return computePotentialSum(position, model, state.view, state.modelTime, {
+      return computePotentialSum(position, model, state.modelTime, {
         fieldSpeed: 6,
         softening: 0.1,
       }).potential;
@@ -969,7 +1374,6 @@ export function mountIdealCorePrototype(options = {}) {
     state.samplePotential = computePotentialSum(
       new Three.Vector3(state.radius, 0, 0),
       model,
-      state.view,
       state.modelTime,
       { fieldSpeed: 6, softening: 0.1 }
     ).potential;
@@ -979,41 +1383,105 @@ export function mountIdealCorePrototype(options = {}) {
     updateAxisReferenceGroup(Three, axisReferenceGroup, state.radius);
   }
 
-  function drawPotentialStrip() {
+  function updateLorentzGeometry() {
+    const lorentzState = getCurrentLorentzState();
+    updateBinaryLorentzBases(lorentzState);
+    sphereContents.matrix.copy(computeAssemblyMomentumContractionMatrix(Three, lorentzState));
+    sphereContents.matrixWorldNeedsUpdate = true;
+    sphereContents.updateMatrixWorld(true);
+  }
+
+  function drawLorentzChart() {
     if (!stripContext) {
       return;
     }
     const width = dom.stripCanvas.width;
     const height = dom.stripCanvas.height;
     stripContext.clearRect(0, 0, width, height);
-    stripContext.fillStyle = "rgba(2, 6, 23, 0.78)";
+    stripContext.fillStyle = "rgba(2, 6, 23, 0.88)";
     stripContext.fillRect(0, 0, width, height);
-    const values = [];
-    for (let x = 0; x < width; x += 1) {
-      const phi = (x / Math.max(1, width - 1)) * TWO_PI;
-      const sample = new Three.Vector3(
-        Math.cos(phi) * state.radius,
+    const left = 34;
+    const right = width - 14;
+    const top = 14;
+    const bottom = height - 24;
+    const plotWidth = Math.max(1, right - left);
+    const plotHeight = Math.max(1, bottom - top);
+    function chartX(beta) {
+      return left + (clampNumber(beta, 0, LORENTZ_BETA_MAX) / LORENTZ_BETA_MAX) * plotWidth;
+    }
+
+    function chartY(normalized) {
+      return top + (1 - clampNumber(normalized, 0, 1)) * plotHeight;
+    }
+
+    function normalizeGammaForChart(lorentzState) {
+      return clampNumber(
+        (lorentzState.gamma - 1) / Math.max(1, LORENTZ_CHART_GAMMA_CAP - 1),
         0,
-        Math.sin(phi) * state.radius
-      );
-      values.push(
-        computePotentialSum(sample, model, state.view, state.modelTime, {
-          fieldSpeed: 6,
-          softening: 0.1,
-        }).potential
+        1
       );
     }
-    const maxAbs = Math.max(0.0001, ...values.map((value) => Math.abs(value)));
-    values.forEach((value, x) => {
-      stripContext.fillStyle = colorToCanvasFill(colorForPotential(Three, value, maxAbs));
-      stripContext.fillRect(x, 0, 1, height);
-    });
-    stripContext.strokeStyle = "rgba(238, 243, 255, 0.5)";
+
+    stripContext.strokeStyle = "rgba(148, 163, 184, 0.24)";
     stripContext.lineWidth = 1;
+    for (let gridIndex = 0; gridIndex <= 4; gridIndex += 1) {
+      const y = top + (plotHeight * gridIndex) / 4;
+      stripContext.beginPath();
+      stripContext.moveTo(left, y);
+      stripContext.lineTo(right, y);
+      stripContext.stroke();
+    }
+    stripContext.strokeStyle = "rgba(238, 243, 255, 0.46)";
     stripContext.beginPath();
-    stripContext.moveTo(0, height / 2);
-    stripContext.lineTo(width, height / 2);
+    stripContext.moveTo(left, top);
+    stripContext.lineTo(left, bottom);
+    stripContext.lineTo(right, bottom);
     stripContext.stroke();
+
+    function drawCurve(color, resolveNormalized) {
+      stripContext.strokeStyle = color;
+      stripContext.lineWidth = 2.4;
+      stripContext.beginPath();
+      const steps = 160;
+      for (let index = 0; index <= steps; index += 1) {
+        const beta = (index / steps) * LORENTZ_BETA_MAX;
+        const x = chartX(beta);
+        const y = chartY(resolveNormalized(computeLorentzState(beta, state.radius)));
+        if (index === 0) {
+          stripContext.moveTo(x, y);
+        } else {
+          stripContext.lineTo(x, y);
+        }
+      }
+      stripContext.stroke();
+    }
+
+    drawCurve("#fbbf24", normalizeGammaForChart);
+    drawCurve("#2dd4bf", (lorentzState) => lorentzState.xi);
+
+    const current = getCurrentLorentzState();
+    const markerX = chartX(current.beta);
+    stripContext.strokeStyle = "rgba(244, 114, 182, 0.92)";
+    stripContext.lineWidth = 1.5;
+    stripContext.beginPath();
+    stripContext.moveTo(markerX, top);
+    stripContext.lineTo(markerX, bottom);
+    stripContext.stroke();
+    stripContext.fillStyle = "rgba(244, 114, 182, 0.95)";
+    stripContext.beginPath();
+    stripContext.arc(markerX, chartY(current.xi), 3.8, 0, TWO_PI);
+    stripContext.fill();
+    stripContext.fillStyle = "rgba(251, 191, 36, 0.95)";
+    stripContext.beginPath();
+    stripContext.arc(markerX, chartY(normalizeGammaForChart(current)), 3.8, 0, TWO_PI);
+    stripContext.fill();
+
+    stripContext.fillStyle = "rgba(203, 213, 225, 0.82)";
+    stripContext.font = "20px Helvetica Neue, Arial, sans-serif";
+    stripContext.fillText("0", left - 6, height - 6);
+    stripContext.fillText("1.000", right - 48, height - 6);
+    stripContext.fillText("1", 8, chartY(1) + 6);
+    stripContext.fillText("0", 8, bottom + 4);
   }
 
   function renderTable() {
@@ -1031,7 +1499,7 @@ export function mountIdealCorePrototype(options = {}) {
         values: model.binaries.map((binary) => formatFixed(binary.speed, 2)),
       },
       {
-        label: "Speed / field speed",
+        label: "Path speed / c_f",
         values: model.binaries.map((binary) => formatFixed(binary.fieldSpeedRatio, 2)),
       },
       {
@@ -1061,7 +1529,7 @@ export function mountIdealCorePrototype(options = {}) {
   }
 
   function resetRotation() {
-    sphereContents.rotation.set(-0.18, 0.36, 0.04);
+    coreFrame.rotation.set(-0.18, 0.36, 0.04);
   }
 
   function setFrozen(frozen) {
@@ -1080,24 +1548,18 @@ export function mountIdealCorePrototype(options = {}) {
       state.modelTime += deltaSeconds * state.speed;
     }
     updateVisibility();
+    updateLorentzGeometry();
     updateOrbitPaths();
     updateArchitrinoMeshes();
     updateSurface();
     updateAxisReference();
-    drawPotentialStrip();
+    drawLorentzChart();
     renderTable();
     syncControls();
     renderer.render(scene, camera);
     windowLike.requestAnimationFrame(renderFrame);
   }
 
-  dom.viewButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      state.view = normalizeViewId(button.dataset.view);
-      syncControls();
-      canvas.focus();
-    });
-  });
   dom.pathToggle.addEventListener("click", () => {
     state.pathsVisible = !state.pathsVisible;
     syncControls();
@@ -1118,7 +1580,11 @@ export function mountIdealCorePrototype(options = {}) {
     canvas.focus();
   });
   dom.radiusInput.addEventListener("input", () => {
-    state.radius = Number(dom.radiusInput.value) || state.radius;
+    setReferenceRadius(dom.radiusInput.value);
+    syncControls();
+  });
+  dom.betaInput.addEventListener("input", () => {
+    state.beta = clampNumber(Number(dom.betaInput.value) || 0, 0, LORENTZ_BETA_MAX);
     syncControls();
   });
   dom.speedInput.addEventListener("input", () => {
@@ -1131,6 +1597,25 @@ export function mountIdealCorePrototype(options = {}) {
   });
   dom.focusButton.addEventListener("click", () => {
     canvas.focus();
+  });
+  dom.returnCycleDocButton.addEventListener("click", () => {
+    markdownRuntime.showMarkdownPanel(IDEAL_SWARM_DOCS.returnCycle);
+  });
+  dom.notesDocButton.addEventListener("click", () => {
+    markdownRuntime.showMarkdownPanel(IDEAL_SWARM_DOCS.notes);
+  });
+  dom.lorentzDocButton.addEventListener("click", () => {
+    markdownRuntime.showMarkdownPanel(IDEAL_SWARM_DOCS.lorentzKinematics);
+  });
+  dom.markdownClose.addEventListener("click", () => {
+    markdownRuntime.hideMarkdownPanel();
+    canvas.focus();
+  });
+  dom.markdownLayoutToggle.addEventListener("click", () => {
+    markdownRuntime.toggleMarkdownLayout();
+  });
+  dom.markdownPdfButton.addEventListener("click", () => {
+    markdownRuntime.printMarkdownPanel();
   });
 
   canvas.addEventListener("pointerdown", (event) => {
@@ -1145,8 +1630,8 @@ export function mountIdealCorePrototype(options = {}) {
     }
     const dx = event.clientX - state.lastPointer.x;
     const dy = event.clientY - state.lastPointer.y;
-    sphereContents.rotation.y += dx * 0.008;
-    sphereContents.rotation.x += dy * 0.008;
+    coreFrame.rotation.y += dx * 0.008;
+    coreFrame.rotation.x += dy * 0.008;
     state.lastPointer = { x: event.clientX, y: event.clientY };
   });
   canvas.addEventListener("pointerup", (event) => {
@@ -1160,22 +1645,22 @@ export function mountIdealCorePrototype(options = {}) {
     const rotationStep = event.shiftKey ? 0.16 : 0.08;
     if (event.key === "ArrowLeft") {
       event.preventDefault();
-      sphereContents.rotation.y -= rotationStep;
+      coreFrame.rotation.y -= rotationStep;
     } else if (event.key === "ArrowRight") {
       event.preventDefault();
-      sphereContents.rotation.y += rotationStep;
+      coreFrame.rotation.y += rotationStep;
     } else if (event.key === "ArrowUp") {
       event.preventDefault();
-      sphereContents.rotation.x -= rotationStep;
+      coreFrame.rotation.x -= rotationStep;
     } else if (event.key === "ArrowDown") {
       event.preventDefault();
-      sphereContents.rotation.x += rotationStep;
+      coreFrame.rotation.x += rotationStep;
     } else if (event.key.toLowerCase() === "q") {
       event.preventDefault();
-      sphereContents.rotation.z += rotationStep;
+      coreFrame.rotation.z += rotationStep;
     } else if (event.key.toLowerCase() === "e") {
       event.preventDefault();
-      sphereContents.rotation.z -= rotationStep;
+      coreFrame.rotation.z -= rotationStep;
     } else if (event.key.toLowerCase() === "r") {
       event.preventDefault();
       resetRotation();
@@ -1187,6 +1672,7 @@ export function mountIdealCorePrototype(options = {}) {
 
   const resizeObserver = new ResizeObserver(resize);
   resizeObserver.observe(canvas);
+  setReferenceRadius(state.radius);
   resetRotation();
   resize();
   syncControls();
@@ -1199,10 +1685,13 @@ export function mountIdealCorePrototype(options = {}) {
     scene,
     camera,
     renderer,
+    coreFrame,
     sphereContents,
+    markdownRuntime,
     destroy() {
       resizeObserver.disconnect();
       renderer.dispose();
+      markdownRuntime.hideMarkdownPanel();
     },
   };
 }

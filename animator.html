@@ -302,7 +302,37 @@
                     Transport Paths
                   </button>
                   <button id="animator-hud-history-toggle" type="button" class="animator-canvas-hud-toggle" aria-pressed="true">
-                    History Traces
+                    Trails
+                  </button>
+                  <button id="animator-hud-delayed-hits-toggle" type="button" class="animator-canvas-hud-toggle" aria-pressed="true">
+                    Delayed Hits
+                  </button>
+                  <label class="animator-canvas-hud-range">
+                    <span>Trail Opacity</span>
+                    <input
+                      id="animator-hud-trail-opacity"
+                      type="range"
+                      min="0"
+                      max="1"
+                      step="0.05"
+                      value="1"
+                      aria-label="Trail opacity"
+                    />
+                  </label>
+                  <label class="animator-canvas-hud-range">
+                    <span>Trail Life</span>
+                    <input
+                      id="animator-hud-trail-lifetime"
+                      type="range"
+                      min="0.25"
+                      max="8"
+                      step="0.25"
+                      value="6"
+                      aria-label="Trail lifetime"
+                    />
+                  </label>
+                  <button id="animator-hud-trail-diagnostics-toggle" type="button" class="animator-canvas-hud-toggle" aria-pressed="true">
+                    Trail Emphasis
                   </button>
                   <button id="animator-hud-envelopes-toggle" type="button" class="animator-canvas-hud-toggle" aria-pressed="false">
                     Envelopes
@@ -338,6 +368,119 @@
               ></div>
             </div>
           </main>
+          <aside id="animator-simulation-panel" class="animator-simulation-panel" aria-label="Simulation authoring">
+            <div class="animator-simulation-panel-head">
+              <div>
+                <h2>Simulation</h2>
+                <div id="animator-simulation-cache-status" class="animator-simulation-cache-status">Dataset: loading</div>
+              </div>
+            </div>
+            <section class="animator-simulation-section" aria-label="Scene setup">
+              <h3>Scene</h3>
+              <div class="animator-form animator-form-grid">
+                <label class="animator-field">
+                  <span>Mode</span>
+                  <select id="animator-simulation-mode">
+                    <option value="planar-2d">Planar 2D</option>
+                  </select>
+                </label>
+                <label class="animator-field">
+                  <span>Duration</span>
+                  <input id="animator-simulation-duration" type="number" min="0.25" step="0.25" value="6" />
+                </label>
+                <label class="animator-field is-toggle-field animator-simulation-loop-field">
+                  <span>Loop</span>
+                  <input id="animator-simulation-loop" type="checkbox" />
+                </label>
+                <label class="animator-field">
+                  <span>Dataset Id</span>
+                  <input id="animator-simulation-dataset-id" type="text" value="animator_worker_dataset" />
+                </label>
+              </div>
+            </section>
+            <section class="animator-simulation-section" aria-label="Solver parameters">
+              <h3>Solver</h3>
+              <div class="animator-form animator-form-grid">
+                <label class="animator-field">
+                  <span>Steps</span>
+                  <input id="animator-simulation-steps" type="number" min="1" step="1" value="600" />
+                </label>
+                <label class="animator-field">
+                  <span>dt</span>
+                  <input id="animator-simulation-dt" type="number" min="0.0001" step="0.001" value="0.01" />
+                </label>
+                <label class="animator-field">
+                  <span>Stride</span>
+                  <input id="animator-simulation-stride" type="number" min="1" step="1" value="10" />
+                </label>
+                <label class="animator-field">
+                  <span>Field Speed</span>
+                  <input id="animator-simulation-field-speed" type="number" min="0.0001" step="0.01" value="1" />
+                </label>
+                <label class="animator-field">
+                  <span>Kappa</span>
+                  <input id="animator-simulation-kappa" type="number" step="0.001" value="0.02" />
+                </label>
+                <label class="animator-field">
+                  <span>Claim</span>
+                  <input id="animator-simulation-claim-level" type="text" value="solver-derived-diagnostic" />
+                </label>
+                <label class="animator-field">
+                  <span>History</span>
+                  <select id="animator-simulation-history-mode">
+                    <option value="adaptive">Adaptive</option>
+                    <option value="deep">Deep</option>
+                    <option value="fixed">Fixed</option>
+                  </select>
+                </label>
+                <label class="animator-field">
+                  <span>Root Halt</span>
+                  <select id="animator-simulation-root-halt-policy">
+                    <option value="all">All</option>
+                    <option value="partner">Partner</option>
+                    <option value="none">None</option>
+                  </select>
+                </label>
+              </div>
+            </section>
+            <section class="animator-simulation-section" aria-label="Particle setup">
+              <h3>Particles</h3>
+              <div class="animator-form animator-form-grid">
+                <label class="animator-field">
+                  <span>Count</span>
+                  <input id="animator-simulation-particles" type="number" min="1" step="1" value="6" />
+                </label>
+                <label class="animator-field">
+                  <span>Radius</span>
+                  <input id="animator-simulation-radius" type="number" min="0.0001" step="0.1" value="1" />
+                </label>
+                <label class="animator-field">
+                  <span>Radial Speed</span>
+                  <input id="animator-simulation-radial-speed" type="number" step="0.01" value="0" />
+                </label>
+                <label class="animator-field">
+                  <span>Tangent Speed</span>
+                  <input id="animator-simulation-tangential-speed" type="number" step="0.01" value="0.55" />
+                </label>
+                <label class="animator-field">
+                  <span>Drift X</span>
+                  <input id="animator-simulation-drift-x" type="number" step="0.001" value="0.035" />
+                </label>
+                <label class="animator-field">
+                  <span>Drift Y</span>
+                  <input id="animator-simulation-drift-y" type="number" step="0.001" value="-0.018" />
+                </label>
+              </div>
+            </section>
+            <div class="animator-simulation-actions">
+              <button id="animator-simulation-apply" type="button" class="animator-simulation-action-button">Apply</button>
+              <button id="animator-simulation-run" type="button" class="animator-simulation-action-button is-primary">Run Solver</button>
+            </div>
+            <section class="animator-simulation-section" aria-label="Simulation diagnostics">
+              <h3>Diagnostics</h3>
+              <div id="animator-simulation-diagnostics" class="animator-simulation-diagnostics"></div>
+            </section>
+          </aside>
           <div class="animator-store" hidden aria-hidden="true">
             <input id="animator-scene-id" type="text" value="animator_scene" />
             <input id="animator-scene-name" type="text" value="animator Scene" />

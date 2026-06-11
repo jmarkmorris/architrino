@@ -40,7 +40,7 @@ export function createAnimatorDefaultCoreSpec(assemblyId, options = {}) {
   const binaryCount = clampNumber(Math.round(Number(options?.binaryCount ?? 3) || 3), 1, 3);
   const shellUnit = 0.45;
   const outerShellRadius = shellUnit * 4;
-  const binaryRadiusFractions = [0.7, 0.8, 0.9];
+  const binaryRadiusFractions = [0.5, 0.7, 0.9];
   const planeNormals = [
     [0, 1, 0],
     [1, 0, 0],

@@ -1698,6 +1698,156 @@ body {
   display: none !important;
 }
 
+.animator-simulation-panel {
+  flex: 0 0 340px;
+  min-width: 300px;
+  max-width: 380px;
+  padding: 12px 14px;
+  border-left: 1px solid rgba(160, 170, 220, 0.18);
+  background: rgba(6, 9, 18, 0.86);
+  color: rgba(245, 247, 255, 0.92);
+  overflow-y: auto;
+}
+
+.animator-simulation-panel-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(160, 170, 220, 0.16);
+}
+
+.animator-simulation-panel-head h2 {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+
+.animator-simulation-cache-status {
+  margin-top: 4px;
+  font-size: 11px;
+  line-height: 1.3;
+  color: rgba(204, 219, 255, 0.68);
+}
+
+.animator-simulation-section {
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(160, 170, 220, 0.12);
+}
+
+.animator-simulation-section h3 {
+  margin: 0 0 8px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(220, 231, 255, 0.82);
+}
+
+.animator-simulation-panel .animator-form {
+  margin-bottom: 0;
+}
+
+.animator-simulation-panel .animator-field {
+  font-size: 10px;
+}
+
+.animator-simulation-panel .animator-field input,
+.animator-simulation-panel .animator-field select {
+  height: 28px;
+  font-size: 11px;
+}
+
+.animator-simulation-loop-field {
+  min-height: 28px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.animator-simulation-actions {
+  display: flex;
+  gap: 8px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(160, 170, 220, 0.12);
+}
+
+.animator-simulation-action-button {
+  flex: 1;
+  min-height: 30px;
+  padding: 0 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(160, 170, 220, 0.26);
+  background: rgba(15, 18, 32, 0.82);
+  color: #f5f7ff;
+  font: inherit;
+  font-size: 12px;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+}
+
+.animator-simulation-action-button.is-primary {
+  border-color: rgba(134, 201, 255, 0.48);
+  background: rgba(28, 54, 92, 0.88);
+}
+
+.animator-simulation-action-button:hover,
+.animator-simulation-action-button:focus-visible {
+  border-color: rgba(160, 170, 220, 0.55);
+  background: rgba(25, 30, 48, 0.94);
+  outline: none;
+}
+
+.animator-simulation-action-button:disabled {
+  cursor: default;
+  opacity: 0.64;
+}
+
+.animator-simulation-diagnostics {
+  display: grid;
+  gap: 6px;
+}
+
+.animator-simulation-diagnostic-row {
+  display: grid;
+  grid-template-columns: minmax(88px, 0.42fr) minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  font-size: 11px;
+  line-height: 1.3;
+}
+
+.animator-simulation-diagnostic-label {
+  color: rgba(188, 222, 255, 0.82);
+  font-weight: 700;
+}
+
+.animator-simulation-diagnostic-value {
+  min-width: 0;
+  color: rgba(245, 247, 255, 0.9);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 1100px) {
+  .animator-workspace {
+    flex-direction: column;
+  }
+
+  .animator-main {
+    flex: 0 0 auto;
+  }
+
+  .animator-simulation-panel {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none;
+    min-width: 0;
+    max-height: 42vh;
+    border-left: none;
+    border-top: 1px solid rgba(160, 170, 220, 0.18);
+  }
+}
+
 .animator-card {
   padding: 10px;
   border-radius: 12px;
@@ -4222,8 +4372,9 @@ body {
 
 .animator-delayed-hit-table {
   position: absolute;
-  left: 10px;
+  right: 10px;
   bottom: 118px;
+  left: auto;
   max-width: min(720px, calc(100% - 20px));
   padding: 10px 12px;
   border: 1px solid rgba(210, 226, 255, 0.2);

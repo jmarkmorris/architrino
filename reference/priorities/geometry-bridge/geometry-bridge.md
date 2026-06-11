@@ -4248,6 +4248,258 @@ before the provider boundary can be certified. If it still exceeds the budget,
 the next hard object is Wronskian-sensitive narrowing rather than another
 scalar-lambda wrapper.
 
+`buildH39RequestedY44TerminalSourceCovarianceWronskianNonScalarSourceObjectForkCandidate`
+is the corresponding fork packet. It extracts the provider-object rank-two
+matrix
+$M=\begin{pmatrix}\lambda_{\parallel}&\mu\\-\mu&\lambda_{\parallel}\end{pmatrix}$
+from the replay rows and checks whether $r=M s$ is ready to become the next
+same-domain source-covariance certificate object. The packet also records the
+worst reconstructed-half-width-to-endpoint-budget ratio and the corresponding
+target scale for $\mu$ when the provider-object reconstruction still exceeds
+the terminal-affine budget. It therefore separates the two legitimate next
+moves: a non-scalar source-covariance certificate if the provider-object matrix
+rows already fit, or Wronskian-sensitive narrowing if they do not. It certifies
+no rank-two source-covariance object, no non-scalar source-covariance object,
+no scalar-lambda source object, no expression-level shared Wronskian, no
+terminal row provider enclosure, and no directed-rounded provider.
+
+`buildH39RequestedY44TerminalSourceCovarianceWronskianMatrixOrWRefinementCandidate`
+is the second-stage fork executor. It consumes the non-scalar source-object
+fork and emits one of two next proof obligations for each terminal row. If the
+provider-object matrix row is budget-ready, it records the same-domain matrix
+provider identity obligation for
+$M=\begin{pmatrix}\lambda_{\parallel}&\mu\\-\mu&\lambda_{\parallel}\end{pmatrix}$.
+If the provider-object row still exceeds the terminal-affine endpoint budget,
+it records a shared-Wronskian refinement target with
+`projected_W_subcell_count=ceil(1/required_width_scale)`. This turns the fork
+into an executable next target rather than another scalar-lambda wrapper. The
+packet certifies no matrix identity, no W refinement, no source-covariance
+object, no expression-level shared Wronskian, and no directed-rounded provider.
+
+`buildH39RequestedY44TerminalSourceCovarianceWronskianDirectNonScalarProviderReplayCandidate`
+now executes the non-scalar matrix replay directly. It consumes the rank-two
+decomposition for same-domain solve-slope intervals, the rank-two provider
+replay for same-radius source-map boundary provenance, the non-scalar fork for
+$\lambda_{\parallel}$ and $\mu$, and the matrix-or-W packet for the $Q$ and
+$W$ branch gate. It replays
+$r_-=\lambda_{\parallel}s_-+\mu s_+$ and
+$r_+=\lambda_{\parallel}s_+-\mu s_-$ against the provider-object residual
+rows, endpoint budget, and source-map boundary flags. The packet remains
+candidate-only: it certifies no matrix identity, no non-scalar
+source-covariance object, no scalar-lambda source object, no terminal row
+provider enclosure, and no directed-rounded provider. If the replay rows fit
+and the boundary is reachable, the next blocker is the same-domain
+provider-object matrix identity proof; otherwise the next blocker is the
+recorded shared-Wronskian-sensitive narrowing target.
+
+`buildH39RequestedY44TerminalSourceCovarianceWronskianDirectReplayEmittedBranchExecutorCandidate`
+now executes the branch emitted by that direct replay packet. It does not add a
+scalar-lambda layer. If the emitted branch is the matrix-provider identity
+obligation, it audits the same-domain residual
+`direct_matrix_image - provider_object_residual` branch-by-branch. If the
+emitted branch is Wronskian-sensitive narrowing, it subdivides the
+provider-object $\mu=W/Q$ interval by the recorded projected subcell target and
+replays the non-scalar matrix image on each subcell against the terminal-affine
+endpoint budget. The executor records whether that narrowed replay fits, still
+exceeds, or exceeds the packet execution cap. It remains candidate-only and
+certifies no matrix identity, no W refinement, no source-covariance object, no
+terminal row provider enclosure, and no directed-rounded provider. If the
+subcell replay still exceeds the endpoint budget, the next true blocker is a
+narrower expression-level shared Wronskian producer on the same terminal
+domain, not another scalar-lambda wrapper.
+
+`buildH39RequestedY44TerminalSourceCovarianceWronskianEmittedBranchMatrixIdentityOrWProducerCandidate`
+continues only on the emitted branch from the executor. On a matrix-identity
+branch it records the same-domain proof attempt by checking whether
+`direct_matrix_image - provider_object_residual` collapses branch-by-branch. On
+a Wronskian-refinement branch it now partitions the actual shared
+$W=r_-s_+-r_+s_-$ interval by the recorded W-sensitive subcell count, computes
+$\mu_{\mathrm{sub}}=W_{\mathrm{sub}}/Q$ on the same $Q=s_-^2+s_+^2$ interval,
+and replays
+$r_-=\lambda_{\parallel}s_-+\mu_{\mathrm{sub}}s_+$ and
+$r_+=\lambda_{\parallel}s_+-\mu_{\mathrm{sub}}s_-$ against the endpoint budget.
+This is the first packet in this fork that refines the W producer itself rather
+than the already-projected $\mu$ interval. It remains candidate-only and
+certifies no matrix identity, no shared W producer, no source-covariance object,
+no terminal row provider enclosure, and no directed-rounded provider.
+
+`buildH39RequestedY44TerminalSourceCovarianceWronskianWGateProvenanceAuditCandidate`
+now consumes the cross-branch W diagnostic, the direct non-scalar replay, the
+emitted-branch executor, and the emitted-branch matrix/W producer packet. The
+current emitted packet does not reach a true W-overwidth branch or a matrix
+identity branch: all fifteen terminal rows are still `w-gate-open`, and the
+explicit blocker is `same-domain-shared-wronskian-interval-needed`. The
+provenance audit traces this back one step further: the same-domain provider
+object branch residual intervals needed to form
+$W_{\mathrm{provider}}=P_-s_+-P_+s_-$ are not available on the terminal rows.
+Thus the next executable object is not another scalar-$\lambda$ wrapper, not a
+virial identity, and not W-sensitive partitioning yet; it is a direct
+same-domain expression-level provider-object W evaluator that supplies
+$P_-$ and $P_+$ into $W_{\mathrm{provider}}$ before $\mu=W_{\mathrm{provider}}/Q$
+is replayed through the rank-two source-covariance matrix. This packet remains
+candidate-only and certifies no W producer, matrix identity,
+source-covariance object, terminal row provider enclosure, or directed-rounded
+provider.
+
+`buildH39RequestedY44TerminalSourceCovarianceWronskianProviderObjectWExpressionEvaluatorCandidate`
+continues on that reported blocker without adding another scalar-$\lambda$
+wrapper. It attempts to evaluate
+$W_{\mathrm{provider}}=P_-s_+-P_+s_-$ directly from same-domain source-map
+provider-object branch residual intervals and then forms
+$\mu_{\mathrm{provider}}=W_{\mathrm{provider}}/Q$ only when $Q$ is separated
+from zero. The current live rows keep $Q$ separated on all fifteen terminal
+rows, but expose zero complete provider-object branch residual pairs:
+`provider_object_branch_residual_pair_available_terminal_row_count=0`,
+`provider_object_w_expression_evaluated_terminal_row_count=0`, and
+`provider_object_w_expression_missing_branch_pair_terminal_row_count=15`.
+The active blocker has therefore sharpened to
+`same-domain-expression-level-source-map-provider-object-branch-residual-extractor-needed`.
+This packet remains candidate-only and certifies no provider-object branch
+residual extractor, no provider-object W expression, no $\mu$ quotient, no
+matrix identity, no source-covariance object, no terminal row provider
+enclosure, and no directed-rounded provider.
+
+`buildH39RequestedY44TerminalSourceCovarianceProviderObjectBranchResidualExtractorCandidate`
+now implements that extractor audit directly against the same-domain
+terminal-row provider-object replay. It emits five node rows, fifteen terminal
+rows, and thirty branch rows naming the candidate branch residuals as $P_-$ and
+$P_+$. On the current live rows, both the source-map provider-object branch
+intervals and the terminal witness intervals are absent at this extractor
+surface:
+`provider_object_branch_residual_interval_available_branch_row_count=0`,
+`terminal_witness_interval_available_branch_row_count=0`,
+`provider_object_branch_residual_pair_available_terminal_row_count=0`, and
+`provider_object_branch_residual_pair_missing_terminal_row_count=15`. The W
+evaluator now consumes this extractor and reports
+`same-domain-source-map-provider-object-branch-intervals-needed`, so the next
+blocker is upstream of W partitioning or matrix replay: materialize same-domain
+source-map provider-object branch intervals on the terminal rows. This packet
+remains candidate-only and certifies no extractor, no provider-object W
+expression, no $\mu$ quotient, no matrix identity, no source-covariance object,
+no terminal row provider enclosure, and no directed-rounded provider.
+
+`buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandidate` now
+materializes the `P_b` slot only from explicit same-domain source-map
+provider-object branch intervals. It also records scalar source-covariance
+projection, barycentric terminal-witness, and common-normalizer law-probe rows
+as inspected candidate sources, but rejects them as actual provider-object
+branch intervals unless a branch-resolved source object is available on the
+same terminal row. The focused replay currently leaves
+`source_map_provider_branch_intervals_available_count=0` and
+`source_map_provider_object_branch_interval_admissible_available_count=0`, with
+`terminal-row-provider-object-replay-provider-object-open` as the replay
+classification. Thus the live blocker is not W partitioning, scalar lambda,
+virial work, or matrix replay; it is upstream materialization of finite actual
+provider-object branch intervals $P_-$ and $P_+$ on the terminal rows.
+
+`buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchProducerCandidate`
+now starts from that upstream side directly. It consumes the actual
+expression-level source-map provider probe, the directed-rounded provider
+boundary replay, and the terminal successor handoff. The live packet exposes
+finite aggregate source-map provider-object intervals on all fifteen terminal
+rows, but records
+`source_map_provider_object_branch_split_map_available_terminal_row_count=0`
+and
+`source_map_provider_object_branch_interval_available_branch_row_count=0`.
+The replay now inspects this upstream producer first, yet still leaves
+`P_-` and `P_+` unavailable because aggregate `P` does not determine a
+same-domain branch split. The next blocker is therefore a genuine
+expression-level provider-object branch split map, not another scalar-lambda
+wrapper, virial detour, W partition, or matrix replay.
+
+`buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdeterminationCandidate`
+turns that missing split into an executable rank witness. On the same fifteen
+terminal rows it records the provider-object equation `P_-+P_+=P`, thirty
+branch unknowns, fifteen aggregate equations, rank fifteen, and free dimension
+fifteen. For each terminal row it emits both the symmetric split
+$(P/2,P/2)$ and a nonzero branch-antisymmetric split
+$(P/2+u_P,P/2-u_P)$ that have the same aggregate interval. Both witnesses are
+explicitly rejected as actual source-map provider-object branch rows. This
+proves that the live aggregate provider object cannot by itself determine
+`P_-` and `P_+`; the next object must be a same-domain provider-object
+branch-antisymmetric equation or an explicit expression-level branch split map.
+
+`buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractorCandidate`
+now searches that exact missing equation. It inspects the fifteen same-domain
+terminal rows for an independent `A_P=P_- - P_+` provider-object branch moment,
+explicit provider-object branch row pairs, and branch-attributed source-term
+rows. The live expression-level surface exposes forty-five equation-source
+slots and forty-five source-term rows, but records zero available `A_P`
+equations, zero explicit provider-object branch rows, and zero
+branch-attributed source terms. Thus all fifteen branch-antisymmetric free
+dimensions remain open. The next blocker is not width refinement or scalar
+projection; it is deriving or exposing a same-domain provider-object branch
+moment `A_P` or explicit expression-level branch rows upstream.
+
+`buildH39RequestedY44TerminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAuditCandidate`
+now pushes that blocker one layer further upstream. It treats the retained
+source terms as a vector
+`(S_delta_squared_speed,S_sin_phi,S_sin_delta)` and records the known aggregate
+equation `P=sum_j S_j`. A provider-object branch realization would need a
+second independent source-term covector, `A_P=sum_j alpha_j S_j`, or explicit
+branch rows. The packet inspects forty-five terminal source-term projection
+slots, retained source-term trace rows, and term-cancellation decomposition
+rows. It finds zero branch-projection coefficients, so the source-term layer
+has rank one per terminal row while branch realization needs rank two. The
+live blocker is now the missing same-domain projection map `alpha_j` for
+`A_P`, not a scalar-lambda, virial, W, or matrix replay problem.
+
+`buildH39RequestedY44TerminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttemptCandidate`
+now tests whether that projection map is already derivable from the current
+same-domain source-term definition surfaces. It searches the source-term
+provider rows, retained source-term trace rows, term-cancellation decomposition
+rows, and the projection-map audit rows for a branch-parity generator
+`B(S_j)=epsilon_j*S_j`, branch involution eigenvalues, or explicit
+`alpha_j`/projection-weight fields. The packet inspects forty-five terminal
+source-term derivation slots and finds zero branch-parity generators and zero
+alpha coefficients. It treats residual sign and cancellation data as
+non-branch data, so those rows do not become an inferred provider-object branch
+map. The rank statement is unchanged but sharper: fifteen aggregate source
+equations are known, thirty branch-realization equations would be needed, and
+fifteen branch covectors remain missing. The next true blocker is deriving or
+exposing a same-domain branch-parity generator for
+`delta_squared_speed`, `sin_phi`, and `sin_delta`, or explicit terminal
+`alpha_j` coefficients for `A_P=sum_j alpha_j*S_j`.
+
+`buildH39RequestedY44TerminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttemptCandidate`
+now tests the natural fold-null generator supplied by the recurrence stack.
+It records
+`D_eta=partial_delta-partial_phi` and the source-term images
+`D_eta(delta^2*nu^{-2})=2*delta_f*nu^{-2}`,
+`D_eta(sin(phi))=-cos(phi_f)`, and
+`D_eta(sin(delta))=cos(delta_f)`. Their aggregate is
+`F_delta-F_phi`, so the fold condition `F_delta-F_phi=0` gives a real
+same-domain aggregate annihilation identity. It does not diagonalize the
+source-term basis into branch-parity eigenvalues and it emits no `alpha_j`
+coefficients, so the rank statement remains fifteen aggregate equations
+known, thirty branch-realization equations needed, and fifteen branch
+covectors missing. The next true blocker is narrower: apply `D_eta` through
+the full terminal coefficient extractor for `h37`, `h36`, and `h35` to emit
+the antisymmetric branch moment `A_P` or explicit terminal `alpha_j`
+coefficients. This remains candidate-only and certifies no source-map
+provider-object branch rows, W producer, matrix identity, terminal row
+provider replay, or directed-rounded provider.
+
+`buildH39RequestedY44TerminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttemptCandidate`
+now performs that terminal-order extractor pass against the existing
+successor certificate branch rows for `h37`, `h36`, and `h35`. For each of
+the five terminal source-covariance nodes it emits three terminal rows and
+six branch-coefficient rows, so all fifteen terminal rows have finite
+branch-antisymmetric coefficient candidates
+`A_G^{terminal}=G_{-,y(h+2)}-G_{+,y(h+2)}`, the `Q_G` coefficient slot that
+appears in `Q_D+(h+1)Q_G`. This is real executable progress: the missing
+object is no longer terminal branch `G` coefficient availability. The
+candidate still does not identify `A_G^{terminal}` with the source-map
+provider-object branch moment `A_P=P_- - P_+`. It records zero
+available coefficient-to-provider-object branch-moment bridges and keeps
+`terminal_branch_g_antisymmetric_coefficient_is_provider_object_A_P=false`.
+The next true blocker is therefore the same-domain bridge from terminal branch
+`G` coefficients to the provider-object branch moment `A_P`, or the explicit
+correction terms that explain why they differ. This remains candidate-only and
+certifies no provider-object branch rows, W producer, matrix identity, terminal
+row provider replay, expression-level N38 provider, or directed-rounded
+provider.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.
