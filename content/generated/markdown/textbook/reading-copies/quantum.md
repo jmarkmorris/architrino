@@ -467,7 +467,7 @@ The minimal proof object is a family of biased basin partitions $\mathcal{P}_u=\
 $$
 P_{c_\Omega,u,T}(i)
 =
-\mu_{c_\Omega,u,T}\!\left(B_i(u)\right).
+\mu_{c_\Omega,u,T}\!\left(B_i(u)\right)
 $$
 A Switch claim requires two preparations $u_a,u_b$ such that
 $$
@@ -517,13 +517,13 @@ $$
 \qquad
 \langle\psi|\phi\rangle_\theta
 =
-\int_{M_\theta}\psi^*(q)\phi(q)\,d\nu_\theta(q).
+\int_{M_\theta}\psi^*(q)\phi(q)\,d\nu_\theta(q)
 $$
 The effective state is a normalized ray,
 $$
 \|\psi\|_\theta^2=1,
 \qquad
-\psi\sim\lambda\psi,\quad \lambda\in\mathbb{C}\setminus\{0\},
+\psi\sim\lambda\psi,\quad \lambda\in\mathbb{C}\setminus\{0\}
 $$
 because a constant nonzero complex rescaling does not change the record statistics after normalization. A spatially varying phase is different: it changes momentum, current, and interference data, so it cannot be quotiented away by the same rule.
 
@@ -533,7 +533,7 @@ $$
 \qquad
 a_n=\langle\phi_n|\psi\rangle_\theta,
 \qquad
-\sum_n |a_n|^2=1.
+\sum_n |a_n|^2=1
 $$
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is to derive the chart, the inner product, the admissible operator, and the coefficients from the retained deterministic flow and apparatus kernel. If those objects are inserted independently of the record-forming dynamics, the formal Hilbert-space description has been assumed rather than recovered.
 
@@ -560,7 +560,7 @@ P_{\mathrm{obs}}(\cdot\mid C)
 \right)
 }{\varepsilon_{\mathrm{rec}}}
 \right)
-\le 1.
+\le 1
 $$
 The first term tests the effective operator or channel residual against the loop benchmark; the second tests the actual recorded statistics. Passing this residual licenses the perturbative virtual-particle description as an economical calculation layer. It does not license a substrate claim that additional short-lived particles are being created and erased between records.
 
@@ -573,11 +573,11 @@ $$
 \mathbf{J}_\psi(\mathbf{x},t)
 =
 \frac{\hbar_{\mathrm{eff}}}{2m_{\mathrm{eff}}i}
-\left(\psi^*\nabla\psi-\psi\nabla\psi^*\right).
+\left(\psi^*\nabla\psi-\psi\nabla\psi^*\right)
 $$
 The standard benchmark is
 $$
-\partial_t\rho_\psi+\nabla\cdot\mathbf{J}_\psi=0.
+\partial_t\rho_\psi+\nabla\cdot\mathbf{J}_\psi=0
 $$
 This equation should be read as an effective continuity target, not as a claim that probability is a physical fluid. Let $\rho_{\mathrm{rec}}(\mathbf{x},t)$ and $\mathbf{J}_{\mathrm{rec}}(\mathbf{x},t)$ be the position density and record-facing flux obtained by pushing the same finite-window basin measure $\mu_{*,T}$ through the deterministic assembly flow and the declared position projection. A Born-current recovery should report
 $$
@@ -588,7 +588,7 @@ $$
 \frac{\|\partial_t\rho_{\mathrm{rec}}+\nabla\cdot\mathbf{J}_{\mathrm{rec}}\|_{\mathcal{D}'(W\times T)}}{\varepsilon_{\mathrm{cont}}},
 \frac{\sup_{t\in T}\|\mathbf{J}_{\mathrm{rec}}(\cdot,t)-\mathbf{J}_\psi(\cdot,t)\|_{W^{-1,1}(W)}}{\varepsilon_J}
 \right)
-\le 1.
+\le 1
 $$
 The first term checks Born density, the second checks local conservation for the derived record flow, and the third checks the standard probability-current benchmark. A model that matches $|\psi|^2$ only after allowing probability to disappear from one region and reappear elsewhere before a record has formed has not recovered Schrödinger continuity.
 
@@ -596,7 +596,7 @@ The same target can be sharpened into a guidance-ratio test. Wherever $\rho_\psi
 $$
 \mathbf{v}_\psi(\mathbf{x},t)
 =
-\frac{\mathbf{J}_\psi(\mathbf{x},t)}{\rho_\psi(\mathbf{x},t)}.
+\frac{\mathbf{J}_\psi(\mathbf{x},t)}{\rho_\psi(\mathbf{x},t)}
 $$
 Let $\mathbf{v}_{\mathrm{rec}}$ be the velocity field obtained by projecting the deterministic assembly-flow current through the same record chart. The local guidance residual is
 $$
@@ -610,7 +610,7 @@ $$
 \mathbf{v}_\psi(\cdot,t)
 \right\|_{L^1(W,\rho_\psi)}
 }{\epsilon_v}
-\le 1.
+\le 1
 $$
 This is a stricter recovery target than Born density alone. It asks whether the extracted wavefunction gives the same local transport law as the underlying causal-wake basin flow, not merely the same final histogram.
 
@@ -640,7 +640,7 @@ $$
 \qquad
 \left|\Delta_x(0)\Delta_p(0)-\frac{\hbar_{\mathrm{eff}}}{2}\right|
 \le
-\varepsilon_{\mathrm{G}}.
+\varepsilon_{\mathrm{G}}
 $$
 For a free retained chart, the same packet must move and spread with the standard effective kinematics,
 $$
@@ -660,20 +660,20 @@ $$
 \Delta_x^{2,\mathrm{QM}}(t)
 \right|
 }{\varepsilon_{\mathrm{spread}}}
-\le 1.
+\le 1
 $$
 Here $\Delta_x^{2,\mathrm{QM}}(t)$ is the standard Gaussian spreading benchmark for the same initial covariance. If the derived envelope violates this bound in ordinary free-packet regimes, then the uncertainty explanation has remained qualitative rather than becoming a quantum closure.
 
 The WKB comparison supplies the corresponding semi-classical envelope test. For a one-dimensional retained chart with effective momentum
 $$
-p_\theta(x;E)=\sqrt{2m_{\mathrm{eff}}\left(E-V_{\mathrm{eff}}(x)\right)},
+p_\theta(x;E)=\sqrt{2m_{\mathrm{eff}}\left(E-V_{\mathrm{eff}}(x)\right)}
 $$
 the standard oscillatory benchmark away from turning points is
 $$
 \psi_{\mathrm{WKB}}(x)
 \sim
 \frac{1}{\sqrt{p_\theta(x;E)}}
-\exp\!\left(\pm\frac{i}{\hbar_{\mathrm{eff}}}\int^x p_\theta(x';E)\,dx'\right),
+\exp\!\left(\pm\frac{i}{\hbar_{\mathrm{eff}}}\int^x p_\theta(x';E)\,dx'\right)
 $$
 with validity only when the effective wavelength varies slowly across one wavelength. A closure packet should therefore report a WKB-envelope residual on the declared access interval $W$:
 $$
@@ -684,7 +684,7 @@ $$
 \frac{\sup_{x\in W_{\mathrm{osc}}}\left|\partial_x\varphi_{\mathrm{rec}}(x)-p_\theta(x;E)/\hbar_{\mathrm{eff}}\right|}{\varepsilon_{\varphi}},
 \frac{\sup_{x\in W_{\mathrm{turn}}}\left|\mathcal{A}_{\mathrm{turn}}^{\mathbb{A}\mathbb{A}\mathbb{A}}-\mathcal{A}_{\mathrm{Airy}}\right|}{\varepsilon_{\mathrm{turn}}}
 \right)
-\le 1.
+\le 1
 $$
 The final term is the turning-point matching check: near $E=V_{\mathrm{eff}}(x)$ the effective chart must pass through the Airy-function benchmark rather than pretending the WKB expression remains valid at $p_\theta=0$. This makes the semi-classical wavefunction comparison a falsifiable envelope recovery, not a visual analogy.
 
@@ -695,7 +695,7 @@ S_{\mathrm{tun}}(E)
 \int_{x_0}^{x_1}
 \sqrt{2m_{\mathrm{eff}}\left(V_{\mathrm{eff}}(x)-E\right)}\,dx,
 \qquad
-T_{\mathrm{WKB}}\sim e^{-2S_{\mathrm{tun}}/\hbar_{\mathrm{eff}}}.
+T_{\mathrm{WKB}}\sim e^{-2S_{\mathrm{tun}}/\hbar_{\mathrm{eff}}}
 $$
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ target is to derive $S_{\mathrm{tun}}$ from the action accumulated by deterministic assembly histories that cross the retained separatrix tube. A fitted barrier exponent that is not tied to the same $\mu_{*,T}$, apparatus kernel, and path-history flow used for record probabilities is only a comparison curve.
 
@@ -741,7 +741,7 @@ $$
 $$
 maps the retained record-window section to observer records, then the record probability must be
 $$
-P_n(T)=\mu_{*,T}\!\left(\pi_T^{-1}(R_n)\right),
+P_n(T)=\mu_{*,T}\!\left(\pi_T^{-1}(R_n)\right)
 $$
 with $\mu_{*,T}$ derived from the finite-window coarse-grained measure of the same dynamics that supplies the effective wave equation. A free-standing external geometric measure, by contrast, is only a scaffold until it is tied to the Master Equation, record formation, and the retained measurement channel.
 
@@ -761,13 +761,13 @@ A zero coefficient in one effective Hilbert expansion is therefore not a substra
 $$
 \mu_{*,T}(B_i)\mathbf{1}_{\mathrm{rec}}(i;\theta)
 \le
-\varepsilon_{\mathrm{Born}},
+\varepsilon_{\mathrm{Born}}
 $$
 not the stronger claim that no substrate history exists. The substrate-side question remains whether $B_i$ is a completed, recordable basin for the declared setup $\theta$, not whether one coordinate chart happens to give a vanishing expansion coefficient.
 
 The boundary between an unresolved branch envelope and a completed record should therefore be tested by the record-autonomy residual in [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md#what-makes-an-interaction-a-record), not by a metaphysical decision about how many worlds exist. In the wavefunction description, interference remains live while
 $$
-\Delta_{\mathrm{rec}}(t;k)=O(1),
+\Delta_{\mathrm{rec}}(t;k)=O(1)
 $$
 because the candidate alternatives still affect the record channel at observable scale. A record-facing wavefunction update is justified only after the relevant apparatus basin satisfies $\Delta_{\mathrm{rec}}(t;k)\le\varepsilon_{\mathrm{rec}}$ across the persistence window. This keeps the useful lesson from decoherence language while rejecting branching as substrate ontology.
 
@@ -781,7 +781,7 @@ N_\varepsilon(\Phi_t(B_i))\cap N_\varepsilon(\Phi_t(B_j))
 \right)
 }{
 \min\{\mu_{*,T}(B_i),\mu_{*,T}(B_j)\}
-},
+}
 $$
 where $N_\varepsilon$ denotes an $\varepsilon$-thickened tube in the retained coarse-grained record coordinates. If $\Delta_{\mathrm{recoh}}=O(1)$ before the persistence window closes, the alternatives have not become independent records; the effective wavefunction must continue to carry their mutual influence. A completed record requires both $\Delta_{\mathrm{rec}}\le\varepsilon_{\mathrm{rec}}$ and recoherence residuals below the apparatus-class tolerance for competing basin pairs.
 
@@ -789,12 +789,12 @@ For a declared apparatus kernel, coarse-graining, access region, and record wind
 $$
 N_{\mathcal{Q},W}(B_i)\ge 1,
 \qquad
-\sup_{j\ne i}\sup_{t\in T}\Delta_{\mathrm{recoh}}(t;i,j)\le\varepsilon_{\mathrm{recoh}},
+\sup_{j\ne i}\sup_{t\in T}\Delta_{\mathrm{recoh}}(t;i,j)\le\varepsilon_{\mathrm{recoh}}
 $$
 $$
 \Delta_{\mathrm{Born}}(T)\le\varepsilon_{\mathrm{Born}},
 \qquad
-\Delta_{\mathrm{ens}}(\mathcal{Q},W,T)\le\varepsilon_{\mathrm{ens}}.
+\Delta_{\mathrm{ens}}(\mathcal{Q},W,T)\le\varepsilon_{\mathrm{ens}}
 $$
 This condition keeps the useful Everettian lesson that branch descriptions become robust through dynamics, while refusing to count a formal Hilbert-space expansion as a substrate event. If any line fails, the effective wavefunction still carries an unresolved branch envelope; it has not earned a completed record or an independent outcome count in $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
@@ -807,7 +807,7 @@ B_i:
 \mathbf{1}_{\mathrm{rec}}(i;\theta)=1,\quad
 \sup_{j\ne i}\sup_{t\in T}\Delta_{\mathrm{recoh}}(t;i,j)\le\varepsilon_{\mathrm{recoh}},\quad
 \mu_{*,T}(B_i)\ge\mu_0(\mathcal{Q},W)
-\right\}.
+\right\}
 $$
 Only basins in $\mathcal{B}_{\mathrm{rec}}(\theta)$ may be counted as completed observer-level alternatives. Formal components outside this family may remain useful for calculation, but they are unresolved envelope structure rather than independent outcomes.
 
@@ -820,7 +820,7 @@ $$
 -
 \mathcal{T}^{\mathcal{Q}}_{t_1\to t_2}
 \mathcal{T}^{\mathcal{Q}}_{t_0\to t_1}
-\right\|_{\mathrm{TV}\to\mathrm{TV}}.
+\right\|_{\mathrm{TV}\to\mathrm{TV}}
 $$
 When $\Delta_{\mathrm{div}}=O(1)$, the coarse-grained state has not retained enough path-history information to be restarted at $t_1$ without loss; in the wavefunction representation, that missing history appears as live phase, coherence, or interference structure. After a valid record, the retained record channel should satisfy $\Delta_{\mathrm{div}}\le\varepsilon_{\mathrm{div}}$ on the same persistence window used for $\Delta_{\mathrm{rec}}$. This is a closure diagnostic for the effective description, not a new substrate law.
 
@@ -828,13 +828,13 @@ This restartability test is the $\mathbb{A}\mathbb{A}\mathbb{A}$-native way to u
 
 This gives a compact way to state the double-slit comparison without treating the wavefunction as ontology. Let $t_h$ be the time at the slit or hole plane and let $t_s$ be the later screen-record time. If the retained coarse-graining $\mathcal{Q}_{\mathrm{path}}$ contains only a path label at $t_h$ and no durable apparatus record, the unresolved path-history influence should remain visible as
 $$
-\Delta_{\mathrm{div}}(t_0,t_h,t_s;\mathcal{Q}_{\mathrm{path}})=O(1).
+\Delta_{\mathrm{div}}(t_0,t_h,t_s;\mathcal{Q}_{\mathrm{path}})=O(1)
 $$
 In that regime the effective wavefunction must continue to carry the branch envelope, and interference remains an observer-level consequence of incomplete restartability. If a which-path apparatus creates a record channel $R_h$ satisfying the record-autonomy test, the retained coarse-graining changes. The accepted closure condition becomes
 $$
 \Delta_{\mathrm{rec}}(t_h;k)\le\varepsilon_{\mathrm{rec}},
 \qquad
-\Delta_{\mathrm{div}}(t_0,t_h,t_s;\mathcal{Q}_{\mathrm{path}}\cup R_h)\le\varepsilon_{\mathrm{div}}.
+\Delta_{\mathrm{div}}(t_0,t_h,t_s;\mathcal{Q}_{\mathrm{path}}\cup R_h)\le\varepsilon_{\mathrm{div}}
 $$
 The disappearance of interference is then attributed to a completed record and a restartable reduced description, not to an ontological wave splitting and then collapsing.
 
@@ -854,11 +854,11 @@ For a declared setup $\theta=(\mathcal{K}_A,\mathcal{Q},W,T)$, let $\Gamma_{\tex
 $$
 d_{\mathrm{TV}}\!\left((\Phi_T)_*\mu_{*,T},\,\mu_{*,T}\right)\le\varepsilon_\mu,
 \qquad
-\varepsilon_\mu\ll 1.
+\varepsilon_\mu\ll 1
 $$
 For record-forming attractor basins $\{B_n^{(T)}\}$,
 $$
-P_n(T)=\int_{B_n^{(T)}} d\mu_{*,T}(\Gamma).
+P_n(T)=\int_{B_n^{(T)}} d\mu_{*,T}(\Gamma)
 $$
 Here $B_n^{(T)}$ means a record-forming basin for the declared apparatus channel, not every formal component of a Hilbert-space expansion. If the channel carries candidate branches that have not yet satisfied the record-autonomy, persistence, event-ledger, and energy-residual tests in [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md#what-makes-an-interaction-a-record), the Born-side weight is computed only after applying that record filter:
 $$
@@ -868,7 +868,7 @@ P_n(T)
 \mu_{*,T}(B_n^{(T)})\mathbf{1}_{\mathrm{rec}}(n;\theta)
 }{
 \sum_m\mu_{*,T}(B_m^{(T)})\mathbf{1}_{\mathrm{rec}}(m;\theta)
-}.
+}
 $$
 
 Let $\mathcal{P}_\theta:\Gamma_{\text{eff}}^{(T)}\to\Omega_\theta$ be the effective record projection for apparatus context $\theta$, and let $\Omega_n^\theta=\mathcal{P}_\theta(B_n^{(T)})$ be the projected record region. The closure target for this chapter is:
@@ -889,7 +889,7 @@ Equivalently, the native basin measure must push forward to the effective Hilber
 $$
 (\mathcal{P}_\theta)_*\mu_{*,T}
 \approx
-|\psi_\theta(q)|^2d\nu_\theta(q),
+|\psi_\theta(q)|^2d\nu_\theta(q)
 $$
 
 on the declared record regions. This keeps basin-space measures and effective wavefunction measures in their proper domains.
@@ -906,7 +906,7 @@ p_i
 =
 \int_{\Gamma_{\mathrm{eff}}^{(T)}}\mathbf{1}_{B_i}\,d\mu_*
 =
-\mu_*(B_i),
+\mu_*(B_i)
 $$
 within the finite-window error budget. A representative acceptance bound is
 $$
@@ -919,7 +919,7 @@ $$
 \varepsilon_{\mathrm{meta}}
 +\varepsilon_{\mathrm{leak},i}
 +\varepsilon_{\mathrm{esc}}
-+\varepsilon_C.
++\varepsilon_C
 $$
 
 If a model assigns branch weights that are not the basin measures of the same record-forming flow, it has added an untracked transition kernel, an external interpretive rule, or a hidden ensemble change. Such a model may still be a comparison formalism, but it has not derived Born weights from $\mathbb{A}\mathbb{A}\mathbb{A}$ threshold dynamics.
@@ -937,7 +937,7 @@ $$
 \sup_{t\in[\tau_{\text{meas}},\,\tau_{\text{meas}}+T_{\text{rec}}]}
 \frac{\Delta_{\mathrm{rec}}(t;k)}{\varepsilon_{\mathrm{rec}}}
 \right)
-\le 1.
+\le 1
 $$
 This residual is not an additional probability postulate. It is the finite-window acceptance test for treating the effective wavefunction as having updated to a completed record rather than to an unresolved branch envelope.
 
@@ -957,30 +957,30 @@ B\subset\mathcal{M}:
 \Delta_{\mathrm{rec}}(t;k)
 \le
 \varepsilon_{\mathrm{rec}}
-\right\}.
+\right\}
 $$
 The candidate lower measure unit is then
 $$
 \mu_0(\mathcal{Q},W)
 =
 \inf_{B\in\mathcal{B}_{\mathcal{Q},W}^{\mathrm{rec}}}
-\mu_{\mathcal{Q}}(B),
+\mu_{\mathcal{Q}}(B)
 $$
 with the required closure condition
 $$
-0<\mu_0(\mathcal{Q},W)<\infty.
+0<\mu_0(\mathcal{Q},W)<\infty
 $$
 When this condition holds, the resolved-state count of a basin is
 $$
 N_{\mathcal{Q},W}(B)
 =
-\frac{\mu_{\mathcal{Q}}(B)}{\mu_0(\mathcal{Q},W)}.
+\frac{\mu_{\mathcal{Q}}(B)}{\mu_0(\mathcal{Q},W)}
 $$
 Basins with $N_{\mathcal{Q},W}(B)<1$ are not independent record states in the declared window; they remain unresolved substructure of a larger recordable alternative. Plain language: the state count is not an information-theory primitive; it is a derived claim about which basins the actual apparatus dynamics can separate, lock, and preserve as records.
 
 This is a closure target, not a completed derivation of the action quantum. In an effective canonical chart with $n$ conjugate pairs, the stronger result would be a derivation that relates the lower basin measure to the standard action cell,
 $$
-\mu_0(\mathcal{Q},W)\longrightarrow C_{\mathcal{Q},W}h^n,
+\mu_0(\mathcal{Q},W)\longrightarrow C_{\mathcal{Q},W}h^n
 $$
 with the normalization factor $C_{\mathcal{Q},W}$ fixed by the same assembly and apparatus reduction rather than chosen after the fact. If the infimum is zero, if $\mu_0$ changes arbitrarily with readout convention, or if the resulting cell fails to match the observer-level $h,\hbar$ benchmarks in the parameter ledger, this route does not close the quantum state-counting problem.
 
@@ -1043,7 +1043,7 @@ whose apparatus kernel, coarse-graining, access region, record window, record cl
 $$
 p_k(\theta)
 =
-\mu_{*,T}\!\left(\pi^{-1}(R_k)\right),
+\mu_{*,T}\!\left(\pi^{-1}(R_k)\right)
 $$
 not an extra rule assigned after the dynamics. This keeps the empirical measurement formalism intact while forcing the words "measurement," "outcome," and "probability" to earn a physical record channel.
 
@@ -1061,7 +1061,7 @@ $$
 \times
 \Gamma_{\mathrm{reg}}
 \times
-U.
+U
 $$
 The coarse-state map is
 $$
@@ -1071,7 +1071,7 @@ C_{\eta,h}:
 \mathcal{H}_{\eta,h}(t)
 \right)
 \longrightarrow
-\Gamma_{\eta,h},
+\Gamma_{\eta,h}
 $$
 where $\mathbb{U}_{\mathrm{now}}(t)$ is the instantaneous substrate state retained by the model and $U$ records declared apparatus controls or settings.
 
@@ -1081,7 +1081,7 @@ $$
 =
 \left(
 \Phi_{\Delta t}^{u,\mathcal{H},\mathcal{W}_{\mathrm{sea}}}
-\right)_*\rho.
+\right)_*\rho
 $$
 A reduced Markov kernel is a later compression of this pushforward, not an assumed Born kernel. It is licensed only after unresolved variables receive an explicit occupation measure from a material return map, a record cycle, or the Noether sea context used by the same apparatus channel. Otherwise the probability rule has been inserted at the cut rather than derived from the record-forming flow.
 
@@ -1095,7 +1095,7 @@ $$
 =
 F_{\mathrm{tot}}(\Gamma_{\mathrm{tot}}),
 \qquad
-\pi_{XA}\Phi_t^{\mathrm{tot}}(\Gamma_0)=(X(t),A(t)),
+\pi_{XA}\Phi_t^{\mathrm{tot}}(\Gamma_0)=(X(t),A(t))
 $$
 not a splice between quantum dynamics on the target side and a separate classical-observer dynamics on the apparatus side. A human observer, laboratory notebook, or downstream database is therefore another possible record-bearing assembly, not an ontologically privileged endpoint of the measurement.
 
@@ -1105,7 +1105,7 @@ $$
 =
 \sum_m M_m\rho M_m^\dagger,
 \qquad
-\sum_m M_m^\dagger M_m=I.
+\sum_m M_m^\dagger M_m=I
 $$
 A differential Lindblad comparison is admissible only after the environment correlation time $\tau_{\mathrm{env}}$ is short compared with the retained record window. In that regime the benchmark generator has the form
 $$
@@ -1120,7 +1120,7 @@ L_m\rho L_m^\dagger
 \frac{1}{2}L_m^\dagger L_m\rho
 -
 \frac{1}{2}\rho L_m^\dagger L_m
-\right).
+\right)
 $$
 The native residual is a memory check, not a demand that the substrate be Markovian:
 $$
@@ -1131,7 +1131,7 @@ $$
 \frac{\left\|\mathcal{T}_{t_0\to t_2}^{\mathcal{Q}}-\mathcal{T}_{t_1\to t_2}^{\mathcal{Q}}\mathcal{T}_{t_0\to t_1}^{\mathcal{Q}}\right\|_{\mathrm{TV}\to\mathrm{TV}}}{\varepsilon_{\mathrm{div}}},
 \frac{\left\|\partial_t\rho_{\mathrm{rec}}-\mathcal{L}_{\mathrm{Lind}}[\rho_{\mathrm{rec}}]\right\|}{\varepsilon_L}
 \right)
-\le 1.
+\le 1
 $$
 If the first two terms are large, a Kraus or Lindblad description may remain a useful short-time fit, but it has not earned a restartable measurement state. This matches the $\mathbb{A}\mathbb{A}\mathbb{A}$ distinction between a completed record and a reduced description that has discarded live path-history memory.
 
@@ -1145,7 +1145,7 @@ p_i(\ell|\theta_i)
 \qquad
 c_{i\leftarrow j}(k|\theta_i)
 =
-\mu_{*,T}^{(i)}\!\left(\pi_i^{-1}(C_{j\to i,k})\right).
+\mu_{*,T}^{(i)}\!\left(\pi_i^{-1}(C_{j\to i,k})\right)
 $$
 Here $p_i$ is $O_i$'s direct record probability for outcome $R_\ell$, while $c_{i\leftarrow j}$ is the probability that $O_i$ has a valid physical record of $O_j$'s certified conclusion. For mutually exclusive record classes $R_k\cap R_\ell=\varnothing$, define a certainty-threshold residual
 $$
@@ -1160,7 +1160,7 @@ p_i(\ell|\theta_i)
 2(1-\epsilon_C)
 \right]_+,
 \qquad
-[x]_+\equiv\max(x,0).
+[x]_+\equiv\max(x,0)
 $$
 A valid observed-observer measurement model should satisfy
 $$
@@ -1176,19 +1176,19 @@ Let $X(t)$ denote reduced coordinates for the measured subsystem and $A(t)$ the 
 $$
 \dot X = F_X(X,A,\mathcal{W}),
 \qquad
-\dot A = F_A(X,A,\mathcal{W}),
+\dot A = F_A(X,A,\mathcal{W})
 $$
 where $\mathcal{W}$ denotes the local causal-wake background inherited from the apparatus, environment, and prior path history.
 
 Let the metastable branch boundary be defined by a separatrix
 $$
-\Sigma(X,A)=0.
+\Sigma(X,A)=0
 $$
 Then the measurement transition is the first crossing time
 $$
 \tau_{\text{meas}}
 =
-\inf\{t>t_0:\Sigma(X(t),A(t))=0\}.
+\inf\{t>t_0:\Sigma(X(t),A(t))=0\}
 $$
 
 This is the ontology-level replacement for instantaneous collapse. The transition is continuous in absolute time, though it may appear effectively abrupt to a coarse observer.
@@ -1201,7 +1201,7 @@ d_O\!\left(
 \pi_O(\partial B_k)
 \right)
 \le
-\epsilon_O.
+\epsilon_O
 $$
 
 This condition does not add a second ontology or a language-level vagueness postulate. It says only that the available record cannot decide the basin side. If the full measurement dynamics place $(X(t),A(t),\mathcal{W})$ inside or outside $B_k$, that fact remains substrate-level; a failure claim must instead show that the basin family or its boundary is absent, unstable under the declared coarse-graining, or not tied to the record channel.
@@ -1213,7 +1213,7 @@ $$
 \inf\{t>t_0:\exists i\ne j,
 N_{\mathcal{Q},W}(B_i(t))\ge 1,
 N_{\mathcal{Q},W}(B_j(t))\ge 1,
-\Delta_{\mathrm{div}}(t_0,t,T;\mathcal{Q},W)>\varepsilon_{\mathrm{div}}\}.
+\Delta_{\mathrm{div}}(t_0,t,T;\mathcal{Q},W)>\varepsilon_{\mathrm{div}}\}
 $$
 Here $N_{\mathcal{Q},W}$ is the recordable basin count from [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md#lower-bound-on-recordable-basin-measure), and $\Delta_{\mathrm{div}}$ is the restartability residual defined below for the same coarse-graining, access region, and record window.
 
@@ -1224,7 +1224,7 @@ $$
 \inf\{t>\tau_{\mathrm{split}}:
 \Delta_{\mathrm{rec}}(t;k)\le\varepsilon_{\mathrm{rec}},
 \Delta_{\mathrm{div}}(t_0,t,T;\mathcal{Q},W)\le\varepsilon_{\mathrm{div}},
-\Delta S_{\mathcal{Q},W}^{\mathrm{app+env}}\ge S_{\mathrm{lock}}\}.
+\Delta S_{\mathcal{Q},W}^{\mathrm{app+env}}\ge S_{\mathrm{lock}}\}
 $$
 The unresolved interval $\tau_{\mathrm{rec}}-\tau_{\mathrm{split}}$ is a validation target for a concrete apparatus model. It is not a new collapse law and not a substrate-level consciousness event. It names the window in which an effective wavefunction may need to carry multiple alternatives while the ontology still owes a finite-time record-forming transition.
 
@@ -1246,7 +1246,7 @@ $$
 \nu_{\tau_{\mathrm{rec}}}\!\left(B\cap B_k^{\mathrm{rec}}(\theta)\right)
 }{
 \nu_{\tau_{\mathrm{rec}}}\!\left(B_k^{\mathrm{rec}}(\theta)\right)
-}.
+}
 $$
 This is not a new stochastic law. It is the observer's effective ensemble after the deterministic apparatus-target flow has crossed the separatrix, locked the record, and passed the record-autonomy tests.
 
@@ -1258,14 +1258,14 @@ $$
 \qquad
 \psi_{\theta,k}^{+}
 =
-\mathcal{E}_\theta(\mu_{\theta,k}^{+}).
+\mathcal{E}_\theta(\mu_{\theta,k}^{+})
 $$
 In subsystem language this is the measurement analogue of a conditional or effective wavefunction. If a total extracted state is written on a target-apparatus chart as $\Psi_{\mathrm{tot}}(x_S,y_A,t)$ and the apparatus record has entered the basin coordinate $Y_{A,k}$, the comparison update has the schematic form
 $$
 \psi_{S,k}^{\mathrm{cond}}(x_S,t)
 =
 \mathcal{N}_k
-\Psi_{\mathrm{tot}}(x_S,Y_{A,k},t),
+\Psi_{\mathrm{tot}}(x_S,Y_{A,k},t)
 $$
 with normalization $\mathcal{N}_k$ fixed after the record exists. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not a primitive collapse event. It is the effective description extracted from the basin-conditioned measure $\mu_{\theta,k}^{+}$ after the apparatus has produced a persistent record.
 
@@ -1278,7 +1278,7 @@ $$
 e^{i\alpha_k}\phi_k
 \right\|_{\mathcal{H}_\theta}
 \le
-\varepsilon_{\mathrm{upd}}.
+\varepsilon_{\mathrm{upd}}
 $$
 For a degenerate outcome $\lambda$, with projector $\Pi_\lambda$, the corresponding target is
 $$
@@ -1290,19 +1290,19 @@ e^{i\alpha_\lambda}
 \frac{\Pi_\lambda\psi_\theta^{-}}{\|\Pi_\lambda\psi_\theta^{-}\|_{\mathcal{H}_\theta}}
 \right\|_{\mathcal{H}_\theta}
 \le
-\varepsilon_{\mathrm{upd}},
+\varepsilon_{\mathrm{upd}}
 $$
 whenever the denominator is nonzero. This equation is the measurement-basin version of the textbook projection rule: first the coupled physical system selects and records a basin, then the observer-level wavefunction is updated to the corresponding effective eigenspace.
 
 Generalized measurements sharpen this requirement because the observer-level measurement record is not always projective. A calibrated record channel may be represented by a POVM $\{E_m\}$ with
 $$
-E_m=E_m^\dagger,\qquad E_m\ge0,\qquad \sum_m E_m=I,
+E_m=E_m^\dagger,\qquad E_m\ge0,\qquad \sum_m E_m=I
 $$
 and an instrument choice $\{M_m\}$ satisfying
 $$
 E_m=M_m^\dagger M_m,
 \qquad
-\sum_m M_m^\dagger M_m=I.
+\sum_m M_m^\dagger M_m=I
 $$
 The comparison probabilities and conditional updates are
 $$
@@ -1310,7 +1310,7 @@ p_m=\operatorname{Tr}(\rho E_m),
 \qquad
 \rho\mapsto\rho_m^+
 =
-\frac{M_m\rho M_m^\dagger}{p_m}.
+\frac{M_m\rho M_m^\dagger}{p_m}
 $$
 At the probability level, the native record map should first recover the POVM outcome distribution before any operator is treated as a valid comparison label:
 $$
@@ -1322,7 +1322,7 @@ P_{\mathrm{rec}}^{\theta}(\cdot\mid\psi),
 \langle\psi|E_{\theta}(\cdot)|\psi\rangle
 \right)
 \le
-\varepsilon_{\mathrm{POVM}}.
+\varepsilon_{\mathrm{POVM}}
 $$
 This residual says that the operator summary is licensed by the apparatus record map; it is not a primitive property carried into the interaction.
 
@@ -1338,7 +1338,7 @@ $$
 \frac{\left\|\rho_{\theta,m}^{\mathrm{rec},+}-\rho_{\theta,m}^{\mathrm{inst},+}\right\|_1}{\varepsilon_{\mathrm{inst}}},
 \frac{\left|\Delta E_{\mathrm{unrec}}(T;\theta,m)\right|}{\varepsilon_E}
 \right)
-\le 1.
+\le 1
 $$
 This is the measurement-channel version of the usual dilation result: a POVM can be represented as a projective measurement on a larger Hilbert space, but the native account must identify the physical apparatus, environment, and inaccessible degrees of freedom that realize that larger record space. Photon detection is the warning case. The record may use projective effects for "photon absent" and "photon present," while the instrument maps both outcomes to the no-photon post-record channel because the photon assembly has been absorbed into the apparatus/event ledger.
 
@@ -1348,11 +1348,11 @@ Not every separatrix crossing is a measurement record. A record requires stabili
 
 Introduce a coarse record variable $R(A)$ extracted from apparatus state. A measurement record exists only if, after the transition,
 $$
-|R(A(t)) - R(A_{\text{pre}})| > R_*,
+|R(A(t)) - R(A_{\text{pre}})| > R_*
 $$
 for some readout threshold $R_*$, and if the new branch remains stable for a persistence time $T_{\text{rec}}$:
 $$
-\tau_{\text{persist}} > T_{\text{rec}}.
+\tau_{\text{persist}} > T_{\text{rec}}
 $$
 
 Environmental locking can be sharpened as an entropy diagnostic rather than left as a prose condition. For a declared coarse-graining $\mathcal{Q}$ and retained access region $W$, let
@@ -1365,7 +1365,7 @@ S_{\mathcal{Q},W}^{\mathrm{app+env}}(t_0)
 $$
 measure the apparatus/environment entropy change associated with the candidate record channel. A strong record candidate should satisfy
 $$
-\Delta S_{\mathcal{Q},W}^{\mathrm{app+env}}\ge S_{\mathrm{lock}}>0,
+\Delta S_{\mathcal{Q},W}^{\mathrm{app+env}}\ge S_{\mathrm{lock}}>0
 $$
 with $S_{\mathrm{lock}}$ fixed by the apparatus class and readout channel. This is not a new collapse law. It is a closure check that the branch has exported enough unresolved apparatus/environment history that coherent reversal is no longer part of the retained measurement window.
 
@@ -1375,7 +1375,7 @@ $$
 \ge
 k_B\log N-k_B\varepsilon_\mu,
 \qquad
-N\ge2.
+N\ge2
 $$
 For a non-uniform retained distribution, replace $k_B\log N$ by $-k_B\sum_i p_i\log p_i$. If the apparatus is not reset, the blank memory itself has been consumed as a finite physical resource and that depletion must appear in the event ledger. This reset test is a measurement-record closure condition, not a fundamental information ontology.
 
@@ -1396,7 +1396,7 @@ $$
 R(A(\Phi_t(\Gamma_0)))-
 R(A(\Phi_t^{(k)}(\Gamma_0)))
 \right\|_R
-}{R_*}.
+}{R_*}
 $$
 The candidate record is autonomous on the persistence window only if
 $$
@@ -1405,7 +1405,7 @@ $$
 \le
 \varepsilon_{\mathrm{rec}},
 \qquad
-\varepsilon_{\mathrm{rec}}\ll 1.
+\varepsilon_{\mathrm{rec}}\ll 1
 $$
 If $\Delta_{\mathrm{rec}}=O(1)$ on that window, the apparatus has not yet produced an independent record in the ontology of this chapter. The correct description is still an unresolved interference or weak-probe regime, not a completed branch selection.
 
@@ -1418,7 +1418,7 @@ $$
 -
 \mathcal{T}^{\mathcal{Q},W}_{t_1\to t_2}
 \mathcal{T}^{\mathcal{Q},W}_{t_0\to t_1}
-\right\|_{\mathrm{TV}\to\mathrm{TV}}.
+\right\|_{\mathrm{TV}\to\mathrm{TV}}
 $$
 The restartability closure condition is
 $$
@@ -1427,7 +1427,7 @@ $$
 \le
 \varepsilon_{\mathrm{div}},
 \qquad
-\varepsilon_{\mathrm{div}}\ll 1.
+\varepsilon_{\mathrm{div}}\ll 1
 $$
 This condition says that, after record formation, the retained apparatus-target record can be treated as a new effective starting point without carrying unresolved cross-basin history as live interference. If $\Delta_{\mathrm{div}}=O(1)$, the interaction may have decohered in a reduced description, but it has not yet supplied the independent record assumed by a wave function transition.
 
@@ -1441,14 +1441,14 @@ $$
 \Delta_{\mathrm{rec}}(t;k)\le\varepsilon_{\mathrm{rec}},\quad
 \sup_{t_1,t_2\in[\tau_{\text{meas}},\,\tau_{\text{meas}}+T_{\text{rec}}]}
 \Delta_{\mathrm{div}}(t_0,t_1,t_2;\mathcal{Q},W)\le\varepsilon_{\mathrm{div}},
-\right.
+\right
 $$
 $$
 \left.
 \Delta S_{\mathcal{Q},W}^{\mathrm{app+env}}\ge S_{\mathrm{lock}},\quad
 \|\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e_k)\|\le\varepsilon_{\mathrm{evt}},\quad
 |\Delta E_{\mathrm{unrec}}(T;\theta,k)|\le\varepsilon_E
-\right].
+\right]
 $$
 Here $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the event ledger for energy, momentum, and angular momentum, while $\Delta E_{\mathrm{unrec}}$ is the unrecorded energy residual used in the [Measurement And Heating Residual](#measurement-and-heating-residual). This filter prevents a mere correlation, weak probe, or formal branch label from being counted as a measurement outcome before it has supplied a persistent record, closed the event ledger, and kept unrecorded energy below tolerance.
 
@@ -1470,7 +1470,7 @@ $$
 \Delta_{\mathrm{freq}}^{\mathrm{meas}}(N;\theta)
 =
 \max_k
-\frac{\left|\widehat f_k-P_\theta(k)\right|}{\varepsilon_k(N)}.
+\frac{\left|\widehat f_k-P_\theta(k)\right|}{\varepsilon_k(N)}
 $$
 The validation target is
 $$
@@ -1494,7 +1494,7 @@ $$
 \frac{\Delta_{\mathrm{Born}}(T)}{\varepsilon_{\mathrm{Born}}},
 \frac{\Delta_{\mathrm{ens}}(\mathcal{Q},W,T)}{\varepsilon_{\mathrm{ens}}},
 \max_k\frac{|\Delta E_{\mathrm{unrec}}(T;\theta,k)|}{\varepsilon_E}
-\right).
+\right)
 $$
 Here the Born-window and thermodynamic-ensemble terms are the residuals defined in [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md#statistical-measure-and-the-born-rule-emergence), while the energy term is the event-ledger residual used below. A completed measurement account requires $\mathcal{R}_{\mathrm{same}}\le1$ on the same retained window. Otherwise the model has fit several observer-level summaries with different hidden ensembles rather than deriving one record-forming channel.
 
@@ -1504,13 +1504,13 @@ A weak measurement is not a different ontology. It is the small-coupling regime 
 $$
 |R(A_\epsilon(t_1))-R(A_{\text{pre}})|\le R_*,
 \qquad
-\tau_{\text{meas}}^{(\epsilon)}>t_1-t_0,
+\tau_{\text{meas}}^{(\epsilon)}>t_1-t_0
 $$
 where
 $$
 \tau_{\text{meas}}^{(\epsilon)}
 =
-\inf\{t>t_0:\Sigma(X_\epsilon(t),A_\epsilon(t))=0\}.
+\inf\{t>t_0:\Sigma(X_\epsilon(t),A_\epsilon(t))=0\}
 $$
 Thus the individual retained interaction remains below the same record threshold used above. It may still produce a small pointer displacement $Y(A)$ whose ensemble mean is visible:
 $$
@@ -1520,7 +1520,7 @@ Y(A_\epsilon(t_1))-Y(A_{\text{pre}})
 =
 O(\epsilon),
 \qquad
-\mathrm{Var}_{\mathcal{E}}\!\left(Y(A_\epsilon(t_1))\right)=O(1).
+\mathrm{Var}_{\mathcal{E}}\!\left(Y(A_\epsilon(t_1))\right)=O(1)
 $$
 The signal is therefore statistical: many similarly prepared trials can expose the weak channel even though no single trial has generated a durable record of the target variable.
 
@@ -1528,7 +1528,7 @@ Post-selection does not add future causation. It is ordinary conditioning on a l
 $$
 \mu_t
 =
-(\Phi^{\mathrm{tot}}_{t-t_0})_*\mu_0.
+(\Phi^{\mathrm{tot}}_{t-t_0})_*\mu_0
 $$
 The post-selected ensemble measure is then
 $$
@@ -1540,7 +1540,7 @@ $$
 \mu_t\!\left(B\cap\pi^{-1}(\mathcal{R}_f)\right)
 }{
 \mu_t\!\left(\pi^{-1}(\mathcal{R}_f)\right)
-},
+}
 $$
 where $\pi$ is the declared record map for the later apparatus channel.
 This conditional measure can sharpen which weak-probe displacements are averaged, but all substrate evolution still runs forward in absolute time. The closure target is to derive the weak-probe response and its post-selected statistics from the same deterministic flow, separatrix geometry, and record criterion used for ordinary measurements.
@@ -1554,7 +1554,7 @@ $$
 \left(
 Y(A_\epsilon(t_1))-Y(A_{\text{pre}})
 \right)
-d\mu_{\mathrm{post}}.
+d\mu_{\mathrm{post}}
 $$
 If standard weak-value analysis predicts a signed displacement, $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover that sign and magnitude as a conditional average over below-threshold probe trajectories:
 $$
@@ -1564,7 +1564,7 @@ $$
 \bar{Y}_{\epsilon\mid\mathcal{R}_f}^{\mathrm{QM}}
 \right|
 \le
-\varepsilon_Y,
+\varepsilon_Y
 $$
 while still satisfying the no-record condition for each retained weak-probe trial. A negative or otherwise anomalous signed average is therefore a constraint on the conditional response kernel, not evidence for negative-mass ontology, backward substrate causation, or a completed measurement record inside the weak-probe window.
 
@@ -1578,7 +1578,7 @@ $$
 \left(
 Y_\Omega(A_\epsilon(t_1))-Y_\Omega(A_{\text{pre}})
 \right)
-d\mu_{\mathrm{post}}.
+d\mu_{\mathrm{post}}
 $$
 For a standard weak-measurement benchmark with prediction $T_{\Omega\mid\mathcal{R}_f}^{\mathrm{QM,weak}}$, the recovery target is
 $$
@@ -1588,7 +1588,7 @@ $$
 T_{\Omega\mid\mathcal{R}_f}^{\mathrm{QM,weak}}
 \right|
 \le
-\varepsilon_T,
+\varepsilon_T
 $$
 while the no-record condition above still holds on each retained trial. If two clock designs are known to agree in a calibrated regime, such as a dwell-style internal-state clock and a delay-style pulse clock, the additional equality target is
 $$
@@ -1598,7 +1598,7 @@ $$
 \bar{T}_{\mathrm{delay}\mid\mathcal{R}_f}
 \right|
 \le
-\varepsilon_{\mathrm{eq}}.
+\varepsilon_{\mathrm{eq}}
 $$
 A negative value of $\bar{T}_{\Omega\mid\mathcal{R}_f}$ is therefore a signed conditional clock response in the post-selected ensemble. It is not negative absolute time, not a backward-in-time causal process, and not a claim that an intermediate record has already formed inside the weak-probe window.
 
@@ -1635,7 +1635,7 @@ B_k^{O,\mathcal{K}_A}
 =
 \pi_{\mathcal{K}_A}^{-1}(R_k)
 \cap
-\{\mathbf{1}_{\mathrm{rec}}(k;\theta)=1\}.
+\{\mathbf{1}_{\mathrm{rec}}(k;\theta)=1\}
 $$
 This condition keeps the Bricmont-Goldstein/Bohmian warning in native form: a channel may reveal a position-like record, but spin-, momentum-, phase-, and energy-like labels are often apparatus-defined outcomes of an interaction. They need not be primitive properties carried unchanged into the apparatus. The deterministic substrate may still contain velocities, angular-momentum ledgers, phases, and causal-wake histories; the measurement claim is narrower, namely that the chosen apparatus kernel maps the coupled flow into a persistent record with the advertised observer-level statistics.
 
@@ -1675,7 +1675,7 @@ G_{\mathrm{rec}}
 \left(
 \Phi_{T_{\mathrm{int}}}^{\hat{\mathbf m}}(Z_0)
 \right)>0
-\right\}.
+\right\}
 $$
 
 The lifted plus probability is the pullback measure
@@ -1685,7 +1685,7 @@ P_{+}^{\mathrm{lift}}(\hat{\mathbf m})
 =
 \int_{\mathcal Z_{\hat{\mathbf m}}^{\mathrm{SG}}}
 \mathbf 1_{B_{+}^{\mathrm{lift}}(\hat{\mathbf m})}(Z_0)
-\,d\mu_{\hat{\mathbf m}}^{\mathrm{in}}(Z_0).
+\,d\mu_{\hat{\mathbf m}}^{\mathrm{in}}(Z_0)
 $$
 
 The complementary recorded basin is
@@ -1704,7 +1704,7 @@ G_{\mathrm{rec}}
 \left(
 \Phi_{T_{\mathrm{int}}}^{\hat{\mathbf m}}(Z_0)
 \right)<0
-\right\},
+\right\}
 $$
 
 with
@@ -1714,7 +1714,7 @@ P_{-}^{\mathrm{lift}}(\hat{\mathbf m})
 =
 \int_{\mathcal Z_{\hat{\mathbf m}}^{\mathrm{SG}}}
 \mathbf 1_{B_{-}^{\mathrm{lift}}(\hat{\mathbf m})}(Z_0)
-\,d\mu_{\hat{\mathbf m}}^{\mathrm{in}}(Z_0).
+\,d\mu_{\hat{\mathbf m}}^{\mathrm{in}}(Z_0)
 $$
 
 The record-normalization residual is
@@ -1731,7 +1731,7 @@ P_{-}^{\mathrm{lift}}(\hat{\mathbf m})
 \left(
 G_{\mathrm{rec}}\circ\Phi_{T_{\mathrm{int}}}^{\hat{\mathbf m}}=1
 \right)
-\right|.
+\right|
 $$
 
 The ideal two-outcome Stern-Gerlach comparison requires $\Delta_{\mathrm{rec}}^{\mathrm{lift}}$ below tolerance before conditioning on successful records. A missing reject basin is not a harmless omission; it hides detector loss or failed record formation inside the plus-channel probability.
@@ -1747,7 +1747,7 @@ P_{+}^{\mathrm{lift}}(\hat{\mathbf m})
 \cos^2\left(
 \frac{\alpha(Z_0,\hat{\mathbf m})}{2}
 \right)_{\mu}
-\right|.
+\right|
 $$
 
 Here $(\cdot)_{\mu}$ means the comparison is averaged using the derived effective spinor coordinate and incoming measure. The full substrate normal is
@@ -1756,7 +1756,7 @@ $$
 \mathcal N_{\hat{\mathbf m}}^{\mathrm{SG}}(Z,t)
 =
 D_Z
-\Sigma_{\hat{\mathbf m}}^{\mathrm{SG}}(Z(t)).
+\Sigma_{\hat{\mathbf m}}^{\mathrm{SG}}(Z(t))
 $$
 
 The reduced normal
@@ -1782,7 +1782,7 @@ This chapter does not derive the Born rule by itself. It fixes the ontology that
 
 The closure target is that basin weights induced by the deterministic flow reproduce the usual outcome weights:
 $$
-P_k = \mu_*(B_k),
+P_k = \mu_*(B_k)
 $$
 with $B_k$ the record-forming attractor basins that satisfy the record, persistence, and event-ledger tests above, and $\mu_*$ the relevant invariant or coarse-grained measure. When the channel includes candidate branches that do not yet pass those tests, the normalized record probability is the filtered quantity $P_\theta(k)$ rather than a weight assigned to every formal branch label.
 
@@ -1790,7 +1790,7 @@ The measurement ontology therefore connects directly to the basin-measure progra
 
 This also fixes how external probability geometries should be used. A comparison framework may assign a natural measure to a space of possible configurations or records, but that measure is not automatically the Born rule. In this chapter, a candidate record map $\pi:\mathcal{M}\to\mathcal{R}$ is admissible only if the probabilities are pulled forward from the same deterministic flow that creates the apparatus record:
 $$
-P(R_k)=\mu_*\!\left(\pi^{-1}(R_k)\right).
+P(R_k)=\mu_*\!\left(\pi^{-1}(R_k)\right)
 $$
 The source of $\mu_*$ is therefore part of the measurement closure, not an optional interpretive add-on.
 
@@ -1800,7 +1800,7 @@ p_i
 =
 \int_{\Gamma_{\eta,h}}\mathbf{1}_{B_i}\,d\mu_*
 =
-\mu_*(B_i),
+\mu_*(B_i)
 $$
 up to the metastability, leakage, escape, and coarse-state errors declared for that same finite window. A weight assignment that is not this basin measure introduces an untracked kernel between the substrate flow and the recorded outcome.
 
@@ -1816,11 +1816,11 @@ In that comparison, two alternative mass distributions $\rho_1$ and $\rho_2$ are
 $$
 \Delta E_G \sim \frac{G}{2}\int\!\!\int
 \frac{(\rho_1-\rho_2)(\mathbf{x})(\rho_1-\rho_2)(\mathbf{y})}
-{\|\mathbf{x}-\mathbf{y}\|}\,d^3x\,d^3y,
+{\|\mathbf{x}-\mathbf{y}\|}\,d^3x\,d^3y
 $$
 and a corresponding lifetime estimate
 $$
-\tau_G\sim \frac{\hbar}{\Delta E_G}.
+\tau_G\sim \frac{\hbar}{\Delta E_G}
 $$
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ does not adopt fundamental gravitational collapse or a stochastic metric. The benchmark is useful because large-mass interferometry and Bose-Einstein-condensate proposals ask whether spatial superpositions involving roughly $10^9$ to $10^{10}$ atoms remain coherent long enough to distinguish ordinary environmental decoherence, finite-time threshold resolution, and any gravity-driven collapse model. For this chapter, the comparison target is therefore not to derive $\tau_G$ as an ontological law, but to show that the $\mathbb{A}\mathbb{A}\mathbb{A}$ separatrix-time estimate for massive-superposition records remains quantitatively distinguishable from, or explicitly bounded against, the Penrose-Diosi scale.
@@ -1831,7 +1831,7 @@ $$
 =
 \frac{\tau_{\text{meas}}}{\tau_G}
 =
-\frac{\tau_{\text{meas}}\Delta E_G}{\hbar}.
+\frac{\tau_{\text{meas}}\Delta E_G}{\hbar}
 $$
 This ratio is not an ontology selector. It is a validation diagnostic: $\tau_{\text{meas}}$ must be derived from the Master-Equation separatrix and record-locking dynamics, while $\tau_G$ supplies an external mass-displacement benchmark. Collapse-model variants that imply persistent spontaneous heating add a separate empirical pressure, because neutron-star and low-background heating bounds can exclude that heating channel without deciding the $\mathbb{A}\mathbb{A}\mathbb{A}$ threshold-resolution mechanism.
 
@@ -1845,7 +1845,7 @@ $$
 {}-W_{\mathrm{decl}}(T;\theta)
 {}-E_{\mathrm{recoil}}(T;\theta)
 {}-E_{\mathrm{medium}}(T;\theta)
-{}-E_{\mathrm{boundary}}(T;\theta).
+{}-E_{\mathrm{boundary}}(T;\theta)
 $$
 Here $\theta$ is the apparatus and environment record used for the same measurement run. The combined validation diagnostic is
 $$
@@ -1855,7 +1855,7 @@ $$
 \frac{\Delta_{\mathrm{Born}}(T)}{\varepsilon_{\mathrm{Born}}},
 \frac{\Delta_{\mathrm{ens}}(\mathcal{Q},W,T)}{\varepsilon_{\mathrm{ens}}},
 \frac{|\Delta E_{\mathrm{unrec}}(T;\theta)|}{\varepsilon_E}
-\right).
+\right)
 $$
 A measurement model that fits Born weights only by changing the thermodynamic ensemble, or that leaves a persistent unexplained heating term, has not closed the record-forming channel. A model may still compare to CSL-like or Penrose-Diosi-like formulas, but the retained content is the observable residual, not the external collapse mechanism.
 
@@ -1867,7 +1867,7 @@ Let $\rho_1(\mathbf{x},t)$ and $\rho_2(\mathbf{x},t)$ be two alternative branch-
 $$
 \Delta h_A(t)
 =
-h_A(t;\rho_1,\theta)-h_A(t;\rho_2,\theta).
+h_A(t;\rho_1,\theta)-h_A(t;\rho_2,\theta)
 $$
 If $N_{AB}(t,t')$ is the covariance of unresolved detector, environmental, and boundary-wake contributions over the coherence window $T$, the gravitational distinguishability diagnostic is
 $$
@@ -1876,7 +1876,7 @@ $$
 \int_0^T\!\!\int_0^T
 \Delta h_A(t)\,
 N^{-1}_{AB}(t,t')\,
-\Delta h_B(t')\,dt\,dt'.
+\Delta h_B(t')\,dt\,dt'
 $$
 
 The comparison criterion is:
@@ -1893,7 +1893,7 @@ A first calculation can be posed without choosing a full collapse interpretation
 $$
 \mathbf{X}_{\pm}(t)
 =
-\mathbf{X}_0(t)\pm\frac{1}{2}\mathbf{d}(t),
+\mathbf{X}_0(t)\pm\frac{1}{2}\mathbf{d}(t)
 $$
 with branch densities
 $$
@@ -1901,7 +1901,7 @@ $$
 =
 M\,\delta_{\eta}\!\left(\mathbf{x}-\mathbf{X}_{\pm}(t)\right)
 +
-\rho_{\mathrm{app}}(\mathbf{x},t),
+\rho_{\mathrm{app}}(\mathbf{x},t)
 $$
 where $\rho_{\mathrm{app}}$ is the shared apparatus and environmental mass density. For a differential gravity readout channel $A$, define
 $$
@@ -1912,7 +1912,7 @@ e_A^i
 a_i^{\mathrm{eff}}(\mathbf{y}_A,t;\rho_{\pm},\theta)
 -
 a_i^{\mathrm{eff}}(\mathbf{y}_0,t;\rho_{\pm},\theta)
-\right],
+\right]
 $$
 where $\mathbf{y}_A$ and $\mathbf{y}_0$ are detector reference points, $e_A^i$ is the channel projection, and $a_i^{\mathrm{eff}}$ is the effective metric or weak-field acceleration readout derived from the same constitutive record $\theta$ used in the spacetime chapters.
 
@@ -1926,13 +1926,13 @@ D_{ij}(\mathbf{y}_A-\mathbf{X}_0)
 -
 D_{ij}(\mathbf{y}_0-\mathbf{X}_0)
 \right]
-d^j(t),
+d^j(t)
 $$
 with
 $$
 D_{ij}(\mathbf{R})
 =
-\frac{3R_iR_j-\|\mathbf{R}\|^2 h_{ij}}{\|\mathbf{R}\|^5}.
+\frac{3R_iR_j-\|\mathbf{R}\|^2 h_{ij}}{\|\mathbf{R}\|^5}
 $$
 If the unresolved readout noise is approximately stationary over the coherence window, $N_{AB}(t,t')=S_{AB}\delta(t-t')$, then
 $$
@@ -1941,7 +1941,7 @@ $$
 \int_0^T
 \Delta h_A(t)\,
 S^{-1}_{AB}\,
-\Delta h_B(t)\,dt.
+\Delta h_B(t)\,dt
 $$
 
 This toy model turns the benchmark into a simulation target. The required inputs are $M$, $\mathbf{d}(t)$, $\mathbf{X}_0(t)$, detector geometry $(\mathbf{y}_A,\mathbf{y}_0,e_A)$, noise matrix $S_{AB}$, coherence time $T$, and the constitutive weak-field map in $\theta$. An interference-preserving run passes the gravitational which-path gate only if $\mathcal{D}_{\mathrm{grav}}(T;\theta)\le\varepsilon_{\mathrm{wp}}$ or if the same apparatus model derives a record-forming separatrix crossing with a persistent record variable.
@@ -2026,7 +2026,7 @@ This page is falsifiable at the scaling interface. A viable $\mathbb{A}\mathbb{A
 
 For any newly established two-register coupling, abstract gate identity does not remove finite propagation and settling time. If $d_{\mathrm{ctrl}}$ is the controlled-coupling separation and $\tau_{\mathrm{settle}}$ is the apparatus/assembly settling time needed to enter the calibrated gate channel, the gate-time floor is
 $$
-\tau_{\mathrm{gate}}\ge \frac{d_{\mathrm{ctrl}}}{c_f}+\tau_{\mathrm{settle}}.
+\tau_{\mathrm{gate}}\ge \frac{d_{\mathrm{ctrl}}}{c_f}+\tau_{\mathrm{settle}}
 $$
 Inherited pair provenance is a separate case: it may be read out later by local apparatus interactions, but it should not be described as a newly transmitted gate influence during a spacelike-separated measurement window.
 
@@ -2036,13 +2036,13 @@ $$
 \qquad
 \tau_{\mathrm{corr}},
 \qquad
-\tau_{\mathrm{decoh}}(\rho_{\text{NS}},\chi_{\text{sea}},\mathcal{H}),
+\tau_{\mathrm{decoh}}(\rho_{\text{NS}},\chi_{\text{sea}},\mathcal{H})
 $$
 where $\tau_{\mathrm{gate}}$ is the controlled operation time, $\tau_{\mathrm{corr}}$ is the full syndrome-extraction and recovery cycle, and $\tau_{\mathrm{decoh}}$ is the medium- and path-history-dependent coherence time of the encoded assembly network. The necessary validation inequality is
 $$
 \tau_{\mathrm{gate}}+\tau_{\mathrm{corr}}
 <
-\tau_{\mathrm{decoh}},
+\tau_{\mathrm{decoh}}
 $$
 with the additional requirement that the correction operation closes its energy, momentum, angular-momentum, and record ledgers. Failure of this inequality in a hardware-dependent but reproducible way would be a useful departure from ideal unitary scaling; success over increasing code distance would constrain how weak the Noether sea decoherence channel must be in calibrated laboratory conditions.
 
@@ -2092,7 +2092,7 @@ $$
 \qquad
 \Pi_{W,r_\star}^{4\pi}=0,
 \qquad
-\Delta_{\mathrm{gc}}(r_\star)\le\varepsilon_{\mathrm{gc}},
+\Delta_{\mathrm{gc}}(r_\star)\le\varepsilon_{\mathrm{gc}}
 $$
 
 and with the corresponding angular-momentum residuals below tolerance. Without that row, volumetric exclusion may explain why same-state packing is dynamically costly, but it does not yet derive the antisymmetric exchange phase used by the observer-level fermion chart.
@@ -2118,7 +2118,7 @@ Photon-like channel behavior is the cleanest target for this mechanism. A bosoni
 The transition can be summarized by the canonical nested shell swarm shape ratio from [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables). Let $R_{\parallel}$ denote the semiaxis along the contraction or drift-aligned direction and $R_{\perp}$ the transverse semiaxis. Then
 
 $$
-\xi\equiv\frac{R_{\parallel}}{R_{\perp}}.
+\xi\equiv\frac{R_{\parallel}}{R_{\perp}}
 $$
 
 The Fermi-Dirac regime has $\xi$ bounded away from zero. The envelope is oblate but still volumetric. The Bose-Einstein regime is approached as $\xi\to 0$, where the active support becomes effectively two-dimensional.
@@ -2137,7 +2137,7 @@ P_+
 P_-
 =
 \frac{1}{N!}
-\sum_{\sigma\in S_N}\operatorname{sgn}(\sigma)U_\sigma.
+\sum_{\sigma\in S_N}\operatorname{sgn}(\sigma)U_\sigma
 $$
 The Bose-Einstein and Fermi-Dirac comparison spaces are therefore
 $$
@@ -2147,7 +2147,7 @@ P_+\mathcal{H}_\theta^{\otimes N},
 \qquad
 \mathcal{H}_{\theta,-}^{(N)}
 =
-P_-\mathcal{H}_\theta^{\otimes N}.
+P_-\mathcal{H}_\theta^{\otimes N}
 $$
 The exchange rule is a statement about the effective quotient after inaccessible provenance has been compressed, not a claim that substrate identities disappear. Individual architrinos still retain path history and provenance; $P_\pm$ acts only after the apparatus and coarse-graining have made those labels unavailable to the observer-level state.
 
@@ -2156,7 +2156,7 @@ $$
 \Psi_-(1,\ldots,N)
 =
 \frac{1}{\sqrt{N!}}
-\det\!\left[\psi_i(j)\right].
+\det\!\left[\psi_i(j)\right]
 $$
 This state changes sign under exchange and vanishes when two effective rows become identical, so it packages both antisymmetry and Pauli exclusion. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this determinant is not substrate identity loss; it is the record-facing compression obtained after the apparatus cannot access individual architrino provenance.
 
@@ -2168,7 +2168,7 @@ J_{ab}
 \int
 \frac{|\psi_a(\mathbf{r}_1)|^2|\psi_b(\mathbf{r}_2)|^2}
 {\|\mathbf{r}_1-\mathbf{r}_2\|}
-d^3r_1d^3r_2,
+d^3r_1d^3r_2
 $$
 $$
 K_{ab}
@@ -2180,7 +2180,7 @@ K_{ab}
 \psi_a(\mathbf{r}_2)\psi_b(\mathbf{r}_1)
 }
 {\|\mathbf{r}_1-\mathbf{r}_2\|}
-d^3r_1d^3r_2.
+d^3r_1d^3r_2
 $$
 The symmetric and antisymmetric spatial states split as $J_{ab}\pm K_{ab}$, with the fermionic spin sector supplying the compensating exchange symmetry. A useful exchange-energy recovery residual is therefore
 $$
@@ -2192,7 +2192,7 @@ $$
 \frac{\left|\Delta E_{ab}^{\mathbb{A}\mathbb{A}\mathbb{A}}-\left(J_{ab}-K_{ab}\right)\right|}{\varepsilon_K},
 \frac{\left|\Delta E_{ab}^{\mathrm{sym}}-\left(J_{ab}+K_{ab}\right)\right|}{\varepsilon_J}
 \right)
-\le 1.
+\le 1
 $$
 This does not replace the ordered-frame spinor proof. It prevents a purely geometric exclusion story from missing the experimentally important exchange-energy splitting that appears before full many-electron Hartree-Fock closure.
 
@@ -2205,7 +2205,7 @@ $$
 \frac{\|(I-P_+)\mathcal{E}_{N,\theta}(\mu_{\mathrm{2D}})\|_{\mathcal{H}^{(N)}_\theta}}{\varepsilon_+},
 \frac{\|\mathcal{E}_{N,\theta}(\mu)-\mathcal{E}_{N,\theta}(\mu^{\mathrm{prov}})\|_{\mathrm{obs}}}{\varepsilon_{\mathrm{prov}}}
 \right)
-\le 1.
+\le 1
 $$
 Here $\mathcal{H}^{(N)}_\theta=\mathcal{H}_\theta^{\otimes N}$ and $\mu^{\mathrm{prov}}$ denotes the same retained physical ensemble after a swap of inaccessible provenance labels. The first two terms demand antisymmetric and symmetric state-space recovery in the proposed geometric regimes. The third term checks that the observer-level quotient is legitimate: swapping labels that the apparatus cannot access should not change the retained observable state beyond tolerance. If this residual fails, the proposed Fermi-Dirac or Bose-Einstein rule has been imposed as formal bookkeeping rather than derived from assembly geometry.
 

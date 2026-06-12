@@ -10,7 +10,7 @@ This is why the reader path introduces Noether swarm scaffold and geometry befor
 $$
 \rho_{\text{NS}}(\mathbf{x},t)
 \sim
-\sum_s W_\ell(\mathbf{x}-\mathbf{X}_s(t)),
+\sum_s W_\ell(\mathbf{x}-\mathbf{X}_s(t))
 $$
 where $W_\ell$ is a smoothing window over Noether swarm center variables $\mathbf{X}_s(t)$. The Noether sea stress, delay factor, and orientation variables then depend on each swarm's closure label, orientation, and envelope deformation. The Noether sea is therefore introduced before effective metric language because its state variables are coarse-grained functions of Noether swarm geometry, not primitive geometric postulates.
 
@@ -46,7 +46,7 @@ At a fixed coordinate point $\mathbf{x}$ and absolute time $t$, the Noether sea 
 $$
 \rho_{\text{NS}}(\mathbf{x},t),\quad
 \Sigma_{\text{sea}}(\mathbf{x},t),\quad
-\mathbf{u}_{\text{sea}}(\mathbf{x},t),
+\mathbf{u}_{\text{sea}}(\mathbf{x},t)
 $$
 without changing the identity of the underlying void point.
 
@@ -55,7 +55,7 @@ without changing the identity of the underlying void point.
 The complete substrate description is the universe state
 
 $$
-\mathbb{U}_{\text{now}}\equiv S(t).
+\mathbb{U}_{\text{now}}\equiv S(t)
 $$
 
 This state is not an observer frame. It is the absolute-time record of positions, velocities, assemblies, causal wakes, Noether sea variables, and path-history ledgers inside the Euclidean void. Physical observers recover clock rates, photon frequencies, energies, distances, and effective geometry only after their local assemblies couple to part of that record.
@@ -63,7 +63,7 @@ This state is not an observer frame. It is the absolute-time record of positions
 This distinction matters most in redshift language. The void does not stretch, and absolute time does not slow. A source assembly emits a photon-channel packet with a local emission ledger; the packet follows a definite path history through the Noether sea; and the receiver assembly samples the packet using its own local cadence. The measured energy is therefore a receiver-coupling result,
 
 $$
-E_{\mathrm{obs}}=h\nu_{\mathrm{obs}},
+E_{\mathrm{obs}}=h\nu_{\mathrm{obs}}
 $$
 
 not a primitive frame-free photon scalar. The redshift task is to compute the endpoint cadence, launch geometry, and path-history propagation terms from the same $S(t)$ record rather than changing explanation between gravitational, relative-motion, and cosmological cases.
@@ -94,7 +94,7 @@ $$
 \mathcal{R}_{\mathrm{branch}}
 \left(
 B;\Theta_{\mathrm{sea}},\Theta_{\mathrm{asm}},\mathcal{H}_{\partial\Omega}
-\right)=0,
+\right)=0
 $$
 
 where $\Theta_{\mathrm{sea}}$ records the local Noether sea density, cadence, orientation, strain, and delay-response state; $\Theta_{\mathrm{asm}}$ records nearby resolved assemblies, including assemblies that later map to Standard Model particle language; and $\mathcal{H}_{\partial\Omega}$ records the causal-wake and event data entering the local region through its boundary. These are not extra fit parameters. They are the retained part of the same absolute record $S(t)$ needed to decide whether the local branch persists.
@@ -110,7 +110,7 @@ F_{i,\mathrm{sea}}
 +
 F_{i,\mathrm{asm}}
 +
-F_{i,\partial\Omega},
+F_{i,\partial\Omega}
 $$
 
 with every non-internal contribution either computed from the surrounding Noether sea state and assembly record or explicitly assigned a residual. The isolated equation is recovered only when $F_{i,\mathrm{sea}}$, $F_{i,\mathrm{asm}}$, and $F_{i,\partial\Omega}$ vanish, are homogeneous enough to collapse into fixed boundary data, or are below the declared tolerance.
@@ -128,14 +128,14 @@ Assembly emergence is therefore not emergence from empty isolation. It is local 
 The spacetime branch uses the following canonical total-density symbols:
 
 $$
-\rho_{\text{NS}}(\mathbf{x},t),
+\rho_{\text{NS}}(\mathbf{x},t)
 $$
 
 with normalized density
 
 $$
 n(\mathbf{x},t)
-=\frac{\rho_{\text{NS}}(\mathbf{x},t)}{\rho_{\text{NS},0}}.
+=\frac{\rho_{\text{NS}}(\mathbf{x},t)}{\rho_{\text{NS},0}}
 $$
 
 The Noether sea delay factor is written
@@ -143,7 +143,7 @@ The Noether sea delay factor is written
 $$
 \chi_{\text{sea}}(\mathbf{x},t)
 =
-\frac{c_f}{c_{\text{eff}}(\mathbf{x},t)}.
+\frac{c_f}{c_{\text{eff}}(\mathbf{x},t)}
 $$
 
 It plays the role that refractive index plays in ordinary optical analogies, but it is a native Noether sea response variable. Do not use $n$ for this delay factor; $n$ is reserved for normalized Noether swarm density.
@@ -155,7 +155,7 @@ $$
 =
 \frac{\Omega_{N0}}{\Omega_N(\mathbf{x},t)},
 \qquad
-C_N(\mathbf{x},t)=\Gamma_N^{-1}(\mathbf{x},t).
+C_N(\mathbf{x},t)=\Gamma_N^{-1}(\mathbf{x},t)
 $$
 
 Here $\Omega_N$ is a representative local Noether sea swarm cadence and $C_N$ is the corresponding clock-rate factor. This pair is not a new density or delay factor: $n$ tracks normalized Noether swarm density, $\chi_{\text{sea}}$ tracks effective causal delay, and $\Gamma_N$ tracks cadence stretch. The clock extraction and hydrogen spectral use of this diagnostic belong in [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md#hydrogen-spectral-clock-rate-conversion-target).
@@ -189,7 +189,7 @@ $$
 =
 \int_V S_{\rho}\,dV
 +
-R_{\rho,V}.
+R_{\rho,V}
 $$
 Equivalently, on resolved windows,
 $$
@@ -197,7 +197,7 @@ $$
 +\nabla\cdot(\rho_{\text{NS}}\mathbf{u}_{\mathrm{sea}})
 =
 S_{\rho}
-+r_{\rho}.
++r_{\rho}
 $$
 The same standard applies to cadence, orientation, strain, and energy variables. A continuum equation is therefore not added because fluids are a good analogy; it is admitted only when it is the low-moment projection of the resolved Noether swarm population and the residual decreases under refinement.
 
@@ -213,7 +213,7 @@ $$
 e_{\mathrm{sea}},
 \boldsymbol\theta_{\mathrm{sea}},
 f_N
-\right),
+\right)
 $$
 where $e_{\mathrm{sea}}$ is the retained medium energy density and $\boldsymbol\theta_{\mathrm{sea}}$ packages the declared orientation, delay, and envelope variables as a reduced projection of the full state. The moment-closure residual is
 $$
@@ -231,7 +231,7 @@ $$
 +\left\|\nabla\cdot J_a\right\|
 +\left\|S_a\right\|
 +\varepsilon
-},
+}
 $$
 with $a$ ranging over the retained density, momentum, energy, cadence, and orientation moments. This residual is the guardrail against closing the Noether sea by naming a fluid-like equation while hiding unresolved causal-wake memory in fitted coefficients.
 
@@ -243,14 +243,14 @@ $$
 \begin{pmatrix}
 -(c_s^2-\|\mathbf{u}_{\mathrm{fluid}}\|^2) & -u_{\mathrm{fluid},j} \\
 -u_{\mathrm{fluid},i} & h_{ij}
-\end{pmatrix}.
+\end{pmatrix}
 $$
 The comparison is useful because it keeps the levels separated: the perturbation metric is a constitutive readout, while the underlying medium still obeys its own dynamics. The Noether sea target has the same form of obligation,
 $$
 g_{\mu\nu}^{\mathrm{eff}}
 =
 \mathcal{G}_{\mu\nu}\!\left[\mathcal{N}_{\mathrm{sea}}\right]
-+\mathcal{R}_{\mathrm{metric}},
++\mathcal{R}_{\mathrm{metric}}
 $$
 where $\mathcal{G}_{\mu\nu}$ must be derived from the retained density, flow, cadence, orientation, strain, and causal-wake records. A metric row that fits clock, signal, pressure, or lensing behavior with separate coefficients for each observable is not yet a Noether sea constitutive law.
 
@@ -261,7 +261,7 @@ C_{AB}^{\theta}(x,y)
 \left\langle
 \delta T_A^{\mathrm{eff}}(x)\,
 \delta T_B^{\mathrm{eff}}(y)
-\right\rangle_{\theta}.
+\right\rangle_{\theta}
 $$
 The Noether sea side must supply this from unresolved deterministic histories, not from an independent stochastic metric postulate. A compact correlation-hierarchy residual is
 $$
@@ -274,7 +274,7 @@ C_{\mathrm{obs}}^{(n)}-
 \right\|
 }{\epsilon_n},
 \qquad
-n=2,3,\ldots .
+n=2,3,\ldots
 $$
 Here $\Pi_{\mathrm{corr}}^{(n)}$ is the declared projection from retained Noether sea histories to the $n$-point observer-level correlation. Passing the $n=2$ test is the analogue of the noise-kernel step in stochastic gravity; higher $n$ tests are the kinetic-theory route toward mesoscopic closure.
 
@@ -285,7 +285,7 @@ $$
 \sum_B
 \chi_{AB}(\omega,\mathbf{k})\,
 \delta X_B(\omega,\mathbf{k})
-+R_A^{\chi},
++R_A^{\chi}
 $$
 where $X_B$ are declared perturbations of $\mathcal{N}_{\mathrm{sea}}$ and $Y_A$ are observer-channel readouts such as delay factor, stress, cadence, or clock response. Causality requires the time-domain kernel to have delayed support only, which becomes an analyticity and dispersion check in frequency space. The practical residual is
 $$
@@ -302,7 +302,7 @@ $$
 +
 \left\|\mathcal H\!\left(\operatorname{Im}\chi_{AB}\right)\right\|_{\omega}
 +\varepsilon
-},
+}
 $$
 where $\mathcal H$ is the principal-value Hilbert transform used by the packet. A nonzero residual means the proposed response row is not yet a causal Noether sea constitutive law.
 
@@ -313,7 +313,7 @@ A provisional cosmology-facing hypothesis treats the Noether sea as a dense neig
 Let $\nu_N$ denote an ordinary frequency extracted from a representative Noether swarm cadence state. The local swarm energy scale is then
 
 $$
-E_N=h\nu_N.
+E_N=h\nu_N
 $$
 
 The point of this expression is not to add a new quantum postulate at the Noether sea level. It records the same closed-cycle action accounting used elsewhere in the corpus: a cadence state carries energy as action per cycle times cycles per unit absolute time. A single Noether swarm may cross a neighboring branch through an $h$-scale ledger step, while a large asynchronous ensemble can produce an apparently smooth drift in the coarse variables.
@@ -323,7 +323,7 @@ At the single Noether swarm level, each accepted $h$-scale transfer forces the s
 $$
 v_N\sim 2\pi R_N\nu_N,
 \qquad
-R_N\nu_N\approx\text{constant},
+R_N\nu_N\approx\text{constant}
 $$
 
 so a higher accepted cadence corresponds to a smaller representative scale, while a lower accepted cadence corresponds to a larger representative scale. The full nested shell swarm can partition the same transaction across its inner, middle, and outer layers, so this relation is a first estimate rather than a complete closure law.
@@ -336,7 +336,7 @@ J_\nu
 f_N
 \left\langle
 \dot{\nu}_N
-\right\rangle_{\Delta A_{\mathrm{cyc}}=\pm h},
+\right\rangle_{\Delta A_{\mathrm{cyc}}=\pm h}
 $$
 
 where the average is taken over accepted $h$-scale transactions inside the coarse-graining cell. Once the single-swarm retuning map $\mathcal{R}_{\mathrm{cyc}}^{(q,\sigma)}$ is specified, the first current estimate is
@@ -349,7 +349,7 @@ f_N(\nu,\mathbf{x},t)\,
 r_\sigma(\nu,\mathbf{x},t)\,
 \Delta\nu_N^{(q,\sigma)}
 +
-O\!\left((\Delta\nu_N)^2\partial_\nu f_N\right),
+O\!\left((\Delta\nu_N)^2\partial_\nu f_N\right)
 $$
 
 where $r_\sigma$ is the local rate density of accepted $\sigma$ transactions per swarm and $\Delta\nu_N^{(q,\sigma)}$ is the cadence component extracted from $\mathcal{R}_{\mathrm{cyc}}^{(q,\sigma)}$. Deep space can therefore look smooth without making the underlying transactions continuous. Moving from deep space toward a solar-system environment should not be modeled as a scalar temperature increase alone; it is a bias in the local population toward higher cadence, stronger strain, stronger alignment, and larger gradients. Near a proton or other matter assembly, the neighboring Noether swarms see a sharper boundary condition and retune more discretely around the assembly.
@@ -365,7 +365,7 @@ W_\ell(\mathbf{x}-\mathbf{X}_k(t))f_k(t)
 }{
 \sum_{k\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)}
 W_\ell(\mathbf{x}-\mathbf{X}_k(t))
-}.
+}
 $$
 
 The branch-level equilibrium test is not that every Noether swarm has the same cadence. It is that, after all resolved assembly ledgers have been removed, an ambient branch belongs to the local neutral-swarm population when its cadence lies within the smoothed distribution and the remaining pro/anti orientation balance is small. In symbolic form,
@@ -383,7 +383,7 @@ $$
 +
 \Delta_{\mathrm{bal}}^2
 \right)
-\right],
+\right]
 $$
 
 where $\chi_{\mathrm{comp}}^{(\ell)}$ removes branches phase-locked to resolved assemblies, $\Delta_{\mathrm{cad}}$ compares the branch cadence with $\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and $\Delta_{\mathrm{bal}}$ measures the residual neutral-pairing and orientation imbalance of the same window. The assembly-facing definition is given in [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#assembly-noether-sea-interface-diagnostic). The conceptual point is that a matter Noether swarm can sit inside the same coordinate window as ambient Noether sea swarms without becoming part of the ambient Noether sea record; ledger complement, not mere spatial proximity, makes the separation.
@@ -397,7 +397,7 @@ $$
 =
 S_{\mathrm{BH}}
 +S_{\mathrm{GW}}
--R_{\mathrm{eq}}[f_N].
+-R_{\mathrm{eq}}[f_N]
 $$
 
 Here $J_\nu$ is the current through frequency or cadence state space, $S_{\mathrm{BH}}$ is loading from black-hole recycling regions, $S_{\mathrm{GW}}$ is the perturbative contribution from gravitational-wave disturbances, and $R_{\mathrm{eq}}[f_N]$ is the local neighbor-equilibration operator. This equation is a derivation target, not a completed constitutive law. It becomes relevant to redshift only if the same $f_N$ record also determines $\Gamma_N$, $\chi_{\text{sea}}$, and the path-history propagation term $\mathcal{P}_{E\to R}$ used in the cosmology chapters.
@@ -420,7 +420,7 @@ Y_{X,E\to R}
 \qquad
 \mathcal P_{E\to R,X}
 =
-\exp(Y_{X,E\to R}).
+\exp(Y_{X,E\to R})
 $$
 
 The minimal state needed for the first executable closure is a projection of the absolute record, not a new ontology. For a segmented path $\gamma_{E\to R}=\{\Delta s_j\}_{j=1}^N$, use
@@ -436,7 +436,7 @@ B_X(E),\,
 \left\{
 \mathcal K_{X,j},\Delta s_j
 \right\}_{j=1}^{N}
-\right),
+\right)
 $$
 
 with endpoint records
@@ -449,7 +449,7 @@ $$
 \mathcal R_{\Gamma,Q}
 \right),
 \qquad
-Q\in\{E,R\},
+Q\in\{E,R\}
 $$
 
 launch record
@@ -459,7 +459,7 @@ $$
 =
 \left(
 \mathbf v_E,\mathbf v_R,\hat{\mathbf k},\mathcal R_v
-\right),
+\right)
 $$
 
 and segment record
@@ -477,7 +477,7 @@ R_{\mathrm{eq},j},\,
 \delta_{u,j},\,
 \sigma_{X,j},\,
 \mathcal R_{\mathrm{coh},X,j}
-\right).
+\right)
 $$
 
 Here $\mathbf d_{\theta,j}=D_{\gamma}\boldsymbol\theta_{\mathrm{sea}}|_j$, $\delta_{u,j}=(\nabla\cdot\mathbf u_{\mathrm{sea}})_j$, and $\sigma_{X,j}=\hat k_a\hat k_b\Sigma_{\mathrm{sea},X,j}^{ab}$. The transport coefficients are one fixed row for the line family,
@@ -491,7 +491,7 @@ $$
 p_{\nu,X},\,
 p_{u,X},\,
 p_{\sigma,X}
-\right),
+\right)
 $$
 
 so the no-case-switch requirement is simply
@@ -503,7 +503,7 @@ $$
 =
 \Theta_X^{\mathrm{deep}}
 \equiv
-\Theta_X.
+\Theta_X
 $$
 
 The three cases may supply different restrictions of $S(t)$: a strong endpoint deformation record, a launch-velocity record, or a long weak path-history record. They fail the absolute-record transport target if the coefficient row or explanatory class changes between those restrictions.
@@ -520,7 +520,7 @@ $$
 \mathcal R_{\Gamma,Q}
 \right],
 \qquad
-Q\in\{E,R\},
+Q\in\{E,R\}
 $$
 
 where $\mathbf g_N=(\ln n,\ln\chi_{\text{sea}},\ln\lambda,-\ln\xi,\ln(R_{\text{core}}/R_{\text{core},0}))^T$ in the local endpoint cell. The launch term is the causal-root compression of the emitted phase train. In the first weak-velocity form,
@@ -537,7 +537,7 @@ D_v
 \qquad
 \boldsymbol\beta_Q
 =
-\frac{\mathbf v_Q}{c_{\gamma,Q}},
+\frac{\mathbf v_Q}{c_{\gamma,Q}}
 $$
 
 where $\hat{\mathbf k}$ points from source to receiver, $c_{\gamma,Q}$ is the local photon-channel speed used for the endpoint comparison, and $\mathcal R_v$ carries higher-order and multi-root Jacobian corrections from the exact causal ledger.
@@ -552,7 +552,7 @@ Y_{X,E\to R}
 \!\left[
 S(t_s)
 \right]
-\,ds.
+\,ds
 $$
 
 A first local path-rate ansatz is
@@ -568,7 +568,7 @@ p_{\nu,X}
 +
 p_{u,X}\nabla\cdot\mathbf u_{\mathrm{sea}}
 +
-\mathcal R_{\mathrm{coh},X},
+\mathcal R_{\mathrm{coh},X}
 $$
 
 with $\boldsymbol\theta_{\mathrm{sea}}=(\ln n,\ln\chi_{\text{sea}},\ln\lambda,-\ln\xi)^T$. The sharper continuity form replaces the isolated current-divergence term with the source-balanced cadence residual. Along a photon path, let
@@ -578,7 +578,7 @@ D_{\gamma}
 =
 c_{\gamma}^{-1}\partial_t
 +
-\hat{\mathbf k}\cdot\nabla,
+\hat{\mathbf k}\cdot\nabla
 $$
 
 where $\hat{\mathbf k}$ is the path tangent and $s$ is path length. The transport equation defines
@@ -596,7 +596,7 @@ R_{\mathrm{eq}}[f_N]
 \partial_\nu J_\nu
 }{
 f_N+\epsilon_f
-},
+}
 $$
 
 so that, away from the regularization floor,
@@ -611,7 +611,7 @@ $$
 \approx
 \mathcal C_N[f_N]
 -
-\nabla\cdot\mathbf u_{\mathrm{sea}}.
+\nabla\cdot\mathbf u_{\mathrm{sea}}
 $$
 
 The continuity-disciplined path rate is therefore
@@ -632,7 +632,7 @@ p_{\sigma,X}
 \hat k_a\hat k_b
 \Sigma_{\mathrm{sea},X}^{ab}
 +
-\mathcal R_{\mathrm{coh},X}.
+\mathcal R_{\mathrm{coh},X}
 $$
 
 Here $\Sigma_{\mathrm{sea},X}^{ab}$ is the trace-free anisotropic medium-response tensor seen by channel $X$ and vanishes in the isotropic weak limit. In a segmented calculation this is the computable update
@@ -659,7 +659,7 @@ p_{u,X}\delta_{u,j}
 +
 p_{\sigma,X}\sigma_{X,j}
 +
-\mathcal R_{\mathrm{coh},X,j}.
+\mathcal R_{\mathrm{coh},X,j}
 $$
 
 The coefficient rows $\mathbf b_N$ and $(\mathbf p_X,p_{\nu,X},p_{u,X},p_{\sigma,X})$ must be fixed from the declared Noether sea constitutive response and then reused across gravitational, relative-motion, and deep-space cases. A deep-space contribution may come from a persistent $\mathcal C_N[f_N]$, flow-divergence, or anisotropic-response record, but not from switching to a generic photon-energy-loss explanation.
@@ -675,13 +675,13 @@ b_\chi,\,
 b_\lambda,\,
 1,\,
 b_R
-\right),
+\right)
 $$
 
 because the homogeneous moving Noether swarm branch fixes the coefficient of $-\ln\xi$ by requiring $\Gamma_N\to1/\xi\to\gamma$. The weak static endpoint branch then fixes only the scalar combination
 
 $$
-b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1,
+b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1
 $$
 
 where
@@ -692,19 +692,19 @@ $$
 \ln\lambda=a_\lambda\frac{U}{c_0^2},\qquad
 \ln\frac{R_{\text{core}}}{R_{\text{core},0}}=a_R\frac{U}{c_0^2},
 \qquad
-U\equiv-\Phi_N.
+U\equiv-\Phi_N
 $$
 
 Under shared clock/signal delay closure, the Shapiro-delay response supplies
 
 $$
-a_\chi=1+\gamma_{\text{eff}},
+a_\chi=1+\gamma_{\text{eff}}
 $$
 
 so the endpoint condition becomes
 
 $$
-b_n a_n+b_\chi(1+\gamma_{\text{eff}})+b_\lambda a_\lambda+b_R a_R=1.
+b_n a_n+b_\chi(1+\gamma_{\text{eff}})+b_\lambda a_\lambda+b_R a_R=1
 $$
 
 In the GR-matching weak branch this is $b_n a_n+2b_\chi+b_\lambda a_\lambda+b_R a_R=1$. If the shared-delay residual is nonzero, the unconstrained equation with $a_\chi$ must be used and the residual must remain visible in the clock, Shapiro-delay, pressure-response, and redshift packets.
@@ -738,7 +738,7 @@ b_R
 A_\chi^{-1},\,
 0,\,
 0
-\right).
+\right)
 $$
 
 For $\gamma_{\text{eff}}=1$, this gives $a_\chi=2$ and $b_\chi=1/2$. Nonzero $n$, $\lambda$, or $R_{\text{core}}$ contributions remain admissible only as a compensated static family that preserves the endpoint sum and the inverse clock-rate row; they are not free redshift-fit parameters.
@@ -752,7 +752,7 @@ Z_X
 =
 -\ln D_v,
 \qquad
-Y_{X,E\to R}=0.
+Y_{X,E\to R}=0
 $$
 
 Thus the launch factor carries the ordinary first-order Doppler or phase-compression term; no component of $(\mathbf p_X,p_{\nu,X},p_{u,X},p_{\sigma,X})$ may be adjusted to recover a pure relative-motion redshift.
@@ -766,7 +766,7 @@ $$
 -\ln\Gamma_{N,R}
 -\ln D_v
 +Y_{X,E\to R}
--\ln B_X(E),
+-\ln B_X(E)
 $$
 
 the replayed propagation term is
@@ -780,7 +780,7 @@ Y_{X,E\to R}^{\mathrm{sub}}
 -\ln\Gamma_{N,R}
 \right)
 +\ln D_v
-+\ln B_X(E).
++\ln B_X(E)
 $$
 
 In a weak static endpoint comparison,
@@ -794,7 +794,7 @@ b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R
 \frac{U_Q}{c_0^2}
 +O\!\left(\frac{U_Q^2}{c_0^4}\right),
 \qquad
-Q\in\{E,R\}.
+Q\in\{E,R\}
 $$
 
 Endpoint-subtracted replay therefore constrains the propagation row only after the endpoint scalar is fixed. A compensated static family is invisible to this first-order subtraction when it preserves $b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1$; it becomes disfavored only if it leaves an endpoint residual that the path-history row must repair.
@@ -812,7 +812,7 @@ Z_{\mathrm{prop},X}
 +p_{\sigma,X}\sigma_{X,j}
 +\mathcal R_{\mathrm{coh},X,j}
 \right]
-\Delta s_j,
+\Delta s_j
 $$
 
 with
@@ -827,7 +827,7 @@ S_{\mathrm{BH},j}
 -\partial_\nu J_{\nu,j}
 }{
 f_{N,j}+\epsilon_f
-}.
+}
 $$
 
 This equation fixes the sign convention and the shared-row obligation for deep-space transport, but it does not yet determine $\mathbf p_X$, $p_{\nu,X}$, $p_{u,X}$, or $p_{\sigma,X}$ individually. They remain constitutive freedoms until independent segment records vary the corresponding Noether sea gradients, cadence residual, flow divergence, and anisotropic response. The first observable falsifiers are the existing transport diagnostics: chromaticity residuals for line-family dependence, time-dilation residuals for frequency/cadence splitting, image-bundle variance for anisotropic or flow-induced beam spread, and directional residuals for unmodeled large-scale Noether sea structure.
@@ -851,7 +851,7 @@ Y_X^{\mathrm{freq}}
 Y_X^{\mathrm{dur}}
 \right|
 \le
-\epsilon_{\mathrm{td},X}.
+\epsilon_{\mathrm{td},X}
 $$
 
 The path term is thus phase-cadence retiming read from $S(t)$: it may change the energy a receiver assigns through $E=h\nu_{\mathrm{obs}}$, but it is not an untracked energy sink along the path.
@@ -864,7 +864,7 @@ $$
 \nu_{X,0}B_X(E)
 \frac{\Gamma_{N,R}}{\Gamma_{N,E}}
 D_v
-\exp(-Y_{X,E\to R}),
+\exp(-Y_{X,E\to R})
 $$
 
 so no factor is interpreted as untracked photon energy loss. The packet energy read by the receiver is $E_{\mathrm{obs},X}=h\nu_{\mathrm{obs},X}$ after source branch, endpoint cadence, launch compression, and path-history propagation have all been extracted from the same absolute record.
@@ -972,16 +972,16 @@ At the continuum-medium level, represent local Noether swarm density with canoni
 $(\rho_{\text{NS}}, n)$ as two coupled components:
 
 $$
-\rho_{\text{NS}}(\mathbf{x},t) = \rho_{+}(\mathbf{x},t) + \rho_{-}(\mathbf{x},t),
+\rho_{\text{NS}}(\mathbf{x},t) = \rho_{+}(\mathbf{x},t) + \rho_{-}(\mathbf{x},t)
 $$
 $$
-n(\mathbf{x},t)\equiv \frac{\rho_{\text{NS}}(\mathbf{x},t)}{\rho_{\text{NS},0}},
+n(\mathbf{x},t)\equiv \frac{\rho_{\text{NS}}(\mathbf{x},t)}{\rho_{\text{NS},0}}
 $$
 
 with a bounded imbalance
 
 $$
-\Delta\rho_{\text{NS}}(\mathbf{x},t) = \rho_{+}(\mathbf{x},t) - \rho_{-}(\mathbf{x},t),
+\Delta\rho_{\text{NS}}(\mathbf{x},t) = \rho_{+}(\mathbf{x},t) - \rho_{-}(\mathbf{x},t)
 $$
 
 where long-lived Noether sea regions require $|\Delta\rho_{\text{NS}}|$ to remain below a stability threshold set by the local coupling regime.
@@ -1096,14 +1096,14 @@ The kinetic baseline is not just occupied volume; it is also the collision lengt
 $$
 \lambda_m
 \sim
-\frac{1}{\pi d_m^2 n_m},
+\frac{1}{\pi d_m^2 n_m}
 $$
 up to the usual order-one correction for relative molecular motion. A probe of size $L$ is in a continuum regime only when
 $$
 \mathrm{Kn}_m
 \equiv
 \frac{\lambda_m}{L}
-\ll 1.
+\ll 1
 $$
 When $\mathrm{Kn}_m$ is not small, a molecular continuum pressure or viscosity description is a poor model even if the geometric occupancy is tiny.
 
@@ -1121,7 +1121,7 @@ n_m V_{\mathrm{VdW}},
 \qquad
 \mathcal C_X
 =
-\text{declared coupling record for channel }X.
+\text{declared coupling record for channel }X
 $$
 A low $\phi_{\mathrm{VdW}}$ or high $\mathrm{Kn}_m$ may explain molecular sparsity or gas-kinetic behavior; it is not evidence by itself for transparency of channel $X$.
 
@@ -1259,7 +1259,7 @@ Y_A(t),
 C_A,
 \mathcal{N}_A,
 \mathcal{B}_{\partial\Omega}^{(O)}(W)
-\right),
+\right)
 $$
 where $Y_A(t)$ is the measured readout, $\mathcal{K}_A$ is the apparatus response kernel, $\mathcal{M}_A$ is the modulation or timing protocol, $C_A$ is calibration covariance, and $\mathcal{N}_A$ is the declared nuisance family. Redshift measurements, torsion balances, preferred-frame clock tests, CMB radiometers, and interferometric gravitational-wave detectors differ mainly in these record fields. A comparison that keeps $Y_A(t)$ while replacing $\mathcal{K}_A$, $\mathcal{M}_A$, $C_A$, or $\mathcal{N}_A$ after seeing the result is not the same Physical Observer record.
 
@@ -1294,7 +1294,7 @@ $$
 t_0<t,\quad
 \|\mathbf{x}-\mathbf{s}_j(t_0)\|=c_f(t-t_0),\quad
 \mathbf{x}\in\partial\Omega
-\right\}.
+\right\}
 $$
 
 The subsystem evolution therefore has the schematic form
@@ -1306,7 +1306,7 @@ X_\Omega(t),
 \mathcal{H}_{\Omega}^{<t},
 \mathcal{B}_{\partial\Omega}(t),
 N_{\text{sea}}|_{\Omega}(t)
-\right),
+\right)
 $$
 where $N_{\text{sea}}|_{\Omega}(t)$ denotes the locally resolved Noether sea state. A Physical Observer who models only $X_\Omega(t)$ has omitted finite-speed signals, incoming causal wakes, and path-history branches crossing the boundary. That omission can make local prediction fail without implying indeterminism in the $\mathbb{U}_{\text{now}}$ universe-state perspective, because the complete state includes the boundary wake data and the path-history ledger needed for deterministic continuation.
 
@@ -1326,7 +1326,7 @@ d_{\mathcal{D}}\!\left(
 \Pi_{\mathcal{D}}^{(O,W)}(\theta)
 \right)
 \le \epsilon
-\right\}.
+\right\}
 $$
 For a proposed global claim $P$, the observer-side ambiguity indicator is
 $$
@@ -1336,7 +1336,7 @@ $$
 \exists\theta_1,\theta_2\in[\theta]_{\mathcal{D},\epsilon}^{(O,W)}
 \text{ with }
 P(\theta_1)\ne P(\theta_2)
-\right].
+\right]
 $$
 If $\Delta_P^{(O,W)}(\theta)=1$, the Physical Observer has not measured $P$ as a global fact. The data product may still be valid, but $P$ remains an effective reconstruction or comparison interpretation unless an independent $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation selects it from the same complete-state and boundary-wake record.
 
@@ -1348,7 +1348,7 @@ $$
 \widehat{\mathcal{B}}_{\partial\Omega}(t;\theta)
 \right|_{W}
 /
-\sim_{O,\theta,W}.
+\sim_{O,\theta,W}
 $$
 Here $\widehat{\mathcal{B}}_{\partial\Omega}(t;\theta)$ denotes the boundary wake history retained by the observer model record, and $\mathcal{B}_1\sim_{O,\theta,W}\mathcal{B}_2$ means that the two retained boundary histories give the same Physical Observer clock, ruler, detector, and readout records on $W$ within the declared tolerance. This quotient is an observer-accessible coarse-graining of deterministic boundary data, not a new substrate boundary. It is the object later counted in local-horizon entropy targets.
 
@@ -1362,7 +1362,7 @@ $$
 =
 \mathcal{B}_{\partial\Omega}(t)
 -
-\widehat{\mathcal{B}}_{\partial\Omega}(t;\theta).
+\widehat{\mathcal{B}}_{\partial\Omega}(t;\theta)
 $$
 For a readout channel $Y_A(t)$, define the residual induced by unresolved boundary histories as
 $$
@@ -1372,7 +1372,7 @@ Y_A(t;\mathcal{B},\theta)
 -
 \left\langle
 Y_A(t;\mathcal{B},\theta)
-\right\rangle_{\mu_{\Omega,\theta}}.
+\right\rangle_{\mu_{\Omega,\theta}}
 $$
 Here $\mu_{\Omega,\theta}$ is a coarse-grained conditional measure over complete states whose resolved projection agrees with the Physical Observer's record $\theta$. It is an epistemic measure over unresolved deterministic histories, not a new substrate law.
 
@@ -1383,7 +1383,7 @@ N^{\mathrm{bw}}_{AB}(t,t';\theta)
 \int
 \delta Y_A(t;\mathcal{B},\theta)\,
 \delta Y_B(t';\mathcal{B},\theta)\,
-d\mu_{\Omega,\theta}(\mathcal{B}).
+d\mu_{\Omega,\theta}(\mathcal{B})
 $$
 It must be positive semidefinite as a channel covariance:
 $$
@@ -1403,7 +1403,7 @@ N^{\mathrm{bw}}_{AB}(t,t';\theta)
 +
 N^{\mathrm{det}}_{AB}(t,t')
 +
-N^{\mathrm{env}}_{AB}(t,t').
+N^{\mathrm{env}}_{AB}(t,t')
 $$
 The same decomposition should be reused across weak-probe, interferometric, and precision-gravity comparisons. If a proposed measurement model must retune the unresolved boundary covariance separately for each branch or observable, the observer-level closure has failed rather than discovered a new ontology.
 
@@ -1421,7 +1421,7 @@ N^{\mathrm{bw}}_{AB},
 N^{\mathrm{det}}_{AB},
 N^{\mathrm{env}}_{AB},
 \Pi_{\mathrm{ADM}}
-\right),
+\right)
 $$
 where $\Pi_{\mathrm{ADM}}$ is the observer-level projection to $(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij},\Phi_{\text{eff}},\chi_{\text{sea}})$. Redshift, Shapiro delay, lensing, weak-field acceleration, and preferred-frame residuals must be read from $\Theta_{\mathrm{weak}}^{(O,W)}$ with the same covariance and boundary-data model. A channel-specific replacement of $\mu_{\Omega,\theta}$, $N^{\mathrm{bw}}_{AB}$, or $\Pi_{\mathrm{ADM}}$ is therefore a retuning residual, not an improved observer model.
 
@@ -1431,7 +1431,7 @@ P_{\Omega,\theta,W}(Y_A\in B)
 =
 \mu_{\Omega,\theta}\!\left(
 \{\mathcal{B}:Y_A(t;\mathcal{B},\theta)\in B\ \text{on}\ W\}
-\right).
+\right)
 $$
 If a comparison requires different measures for branch weights, thermodynamic noise, observer selection, or readout covariance while holding the same observer record $\theta$, it is a set of separately fitted summaries rather than one observer-model closure.
 
@@ -1445,12 +1445,12 @@ $$
 $$
 are simultaneous exactly when
 $$
-t_1=t_2.
+t_1=t_2
 $$
 
 The simultaneity slice is
 $$
-\Sigma_t=\{t\}\times\mathbb{R}^3.
+\Sigma_t=\{t\}\times\mathbb{R}^3
 $$
 
 This is a statement about the substrate foliation of absolute timespace, not about what any Physical Observer can operationally reconstruct.
@@ -1481,7 +1481,7 @@ d_{\mathrm{ord}}\!\left(\prec_{\mathrm{eff}}(\theta),\prec_{\mathrm{GR}}\right)
 \right\|_{W}
 +
 \lambda_{\mathrm{PF}}
-\sum_{i=1}^{3}\alpha_i(\theta)^2.
+\sum_{i=1}^{3}\alpha_i(\theta)^2
 $$
 Here $d_{\mathrm{ord}}$ measures mismatch of inferred causal order on the comparison domain, the clock term supplies the missing local scale, and the preferred-frame term penalizes residual PPN drift coefficients. This is a closure target for the observer layer, not a claim that substrate spacetime is Lorentzian.
 
@@ -1490,7 +1490,7 @@ $$
 \mathcal{H}_{\mathrm{eff}}(\theta;\ell,\varepsilon)
 =
 \sup_{g_1,g_2\in\mathcal{G}_{\ell,\varepsilon}(\theta)}
-d_{\mathrm{geom},\ell}(g_1,g_2).
+d_{\mathrm{geom},\ell}(g_1,g_2)
 $$
 Small $\mathcal{H}_{\mathrm{eff}}$ says that the observer record determines a unique effective geometry up to the declared coarse-graining scale. Large $\mathcal{H}_{\mathrm{eff}}$ means the observer layer has not supplied enough scale, transport, or preferred-frame information to identify a stable GR comparison geometry. This is an effective-reconstruction test only; it does not promote a Lorentzian metric to substrate ontology.
 
@@ -1503,7 +1503,7 @@ P_{\mathrm{proc}}(\mathbf{r}|\mathbf{s}),
 P_{\mathrm{rec}}^\theta(\mathbf{r}|\mathbf{s})
 \right)
 +
-\lambda_{\mathrm{causal}}\mathcal{R}_{\mathrm{causal}}(\theta).
+\lambda_{\mathrm{causal}}\mathcal{R}_{\mathrm{causal}}(\theta)
 $$
 Small process-table mismatch with large $\mathcal{R}_{\mathrm{causal}}$ is a warning that the observer layer has not recovered an effective causal order. It is not evidence that the ontic substrate lacks absolute time. The admissible lesson is diagnostic: preserve the operational record constraint while forcing the Physical Observer account to say how causal order, clocks, and records are recovered together.
 
@@ -1579,7 +1579,7 @@ H_{\mathcal A}
 \qquad
 d\tau_{\mathcal A}
 =
-\frac{d\varphi_{\mathcal A}}{\Omega_{\mathcal A}^{(0)}}.
+\frac{d\varphi_{\mathcal A}}{\Omega_{\mathcal A}^{(0)}}
 $$
 Here $\varphi_{\mathcal A}$ is the counted clock phase, $\Omega_{\mathcal A}^{(0)}$ is its rest-branch reference rate, $\mathcal{N}_{\mathrm{sea}}$ is the retained Noether sea state, $R_{\mathcal A}$ is the clock geometry/orientation record, $H_{\mathcal A}$ is the relevant path-history ledger, and $\mathbf{w}$ is the clock drift relative to local Noether sea flow. A broad expression such as $d\tau/dt=F(\mathbf{v},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{clock geometry})$ is only a shorthand after this phase channel has been declared.
 
@@ -1635,13 +1635,13 @@ The homogeneous moving-clock extraction is independent from weak-field PPN match
 $$
 \left\|\mathbf{x}_{o}(t)-\mathbf{x}_{j}(t_0)\right\|
 =
-c_f(t-t_0).
+c_f(t-t_0)
 $$
 The dressed observer-channel speed $c_\star$ is declared only after the clock/ruler channel is chosen: $c_\star=c_f$ for a primitive branch scan and usually $c_\star=c_{\text{eff}}(\mathbf{x})$ for a Noether sea dressed clock comparison. Thus
 $$
 \beta_\star=\frac{v}{c_\star},
 \qquad
-\gamma_\star(v)=\frac{1}{\sqrt{1-\beta_\star^2}}.
+\gamma_\star(v)=\frac{1}{\sqrt{1-\beta_\star^2}}
 $$
 
 For an admitted moving nested shell swarm branch $q$ on a drift band $0\le v/c_f\le\beta_{\max}<1$, choose one clock phase $\theta_{\mathrm{clk},q}$ from the same causal-root ledger used for the branch's geometry. The extracted period is
@@ -1650,7 +1650,7 @@ T_q(v)
 =
 \frac{2\pi}{\langle\dot{\theta}_{\mathrm{clk},q}\rangle_{\mathrm{cyc}}},
 \qquad
-T_0=T_q(0),
+T_0=T_q(0)
 $$
 and the clock residual is
 $$
@@ -1658,7 +1658,7 @@ R_T^{(q)}(v)
 \equiv
 \frac{T_q(v)}{T_0}
 -
-\gamma_\star(v).
+\gamma_\star(v)
 $$
 The moving-clock theorem target is
 $$
@@ -1667,6 +1667,8 @@ $$
 C_T\epsilon_{\text{LV}}\beta_\star^2
 $$
 uniformly on the drift band, with any surviving preferred-frame sideband reported as a branch-sourced leakage term. This packet fails if the clock phase and ruler geometry come from different branch ledgers, if the residual is suppressed only by fitting a PPN coefficient after the fact, or if $c_f$ is silently identified with $c_\star$ without a dressing map.
+
+This moving-clock row is one leg of the structural-integrity common-limit closure in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure). It is not enough for the clock branch to approximate $\gamma_\star^{-1}$ in isolation. The same causal-root ledger must also produce the moving ruler deformation, photon synchronization row, and weak-field gravity-channel speed row used by Lorentz closure; otherwise the clock result is a branch-split fit rather than proper-time closure.
 
 ##### Noether Sea Swarm Cadence
 
@@ -1677,7 +1679,7 @@ $$
 \equiv
 \frac{T_N(\mathbf{x},t)}{T_{N0}}
 =
-\frac{\Omega_{N0}}{\Omega_N(\mathbf{x},t)}.
+\frac{\Omega_{N0}}{\Omega_N(\mathbf{x},t)}
 $$
 
 The quantity $\Gamma_N$ records local cadence stretching of the Noether sea itself. It is therefore a substrate-facing clock diagnostic: $\Gamma_N=1$ marks the weak homogeneous reference, while $\Gamma_N>1$ marks a locally slowed or stretched Noether sea cadence. In the homogeneous moving Noether swarm branch, the Lorentz-closure target is to derive the appropriate limit $\Gamma_N\to\gamma$ or, equivalently, $\Omega_N/\Omega_{N0}\to1/\gamma$ for the declared clock channel. In a gravitational or cosmological Noether sea state comparison, $\Gamma_N$ must instead be extracted from $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, $\Phi_{\text{eff}}$, and clock geometry.
@@ -1689,7 +1691,7 @@ C_N(\mathbf{x},t)
 \equiv
 \frac{\Omega_N(\mathbf{x},t)}{\Omega_{N0}}
 =
-\Gamma_N^{-1}(\mathbf{x},t).
+\Gamma_N^{-1}(\mathbf{x},t)
 $$
 
 In the homogeneous moving Noether swarm branch, the geometry-to-clock closure target is $C_N\to\xi\to1/\gamma$, so the corresponding cadence-stretch target is $\Gamma_N\to1/\xi\to\gamma$.
@@ -1703,7 +1705,7 @@ $$
 \qquad
 \Gamma_N(\mathbf{x},t)
 \approx
-1-\frac{\Phi_N(\mathbf{x},t)}{c_0^2},
+1-\frac{\Phi_N(\mathbf{x},t)}{c_0^2}
 $$
 
 to first order in $\Phi_N/c_0^2$. Since $\Phi_N < 0$ in a deeper potential, this gives $\Gamma_N > 1$ there: the local Noether sea swarm cadence is stretched relative to the weak homogeneous reference. For two endpoint cells $E$ and $R$ with no source-branch, launch, or path-history correction, the redshift recovery condition is therefore
@@ -1713,7 +1715,7 @@ $$
 \approx
 \ln\Gamma_{N,E}-\ln\Gamma_{N,R}
 \approx
-\frac{\Phi_N(R)-\Phi_N(E)}{c_0^2}.
+\frac{\Phi_N(R)-\Phi_N(E)}{c_0^2}
 $$
 
 This is the clock-channel version of the weak gravitational-redshift benchmark. The derivation burden is to obtain the first equation from Noether sea constitutive response rather than impose it as an imported metric fact.
@@ -1725,7 +1727,7 @@ $$
 d\tau
 =
 \frac{1}{c_0}
-\sqrt{-g^{\text{eff}}_{\mu\nu}dx^\mu dx^\nu},
+\sqrt{-g^{\text{eff}}_{\mu\nu}dx^\mu dx^\nu}
 $$
 with the weak-field static endpoint limit above and the moving-clock limit
 $$
@@ -1733,7 +1735,7 @@ g^{\text{eff}}_{\mu\nu}
 \frac{dx^\mu}{d\tau}
 \frac{dx^\nu}{d\tau}
 =
--c_0^2.
+-c_0^2
 $$
 This equation is not a claim that the Euclidean void is a four-dimensional curved substrate. It is the observer-level action benchmark: physical clocks should extremize the same effective interval that the signal, ruler, and orbital modules use when they project the Noether sea state into GR comparison language. If a branch recovers endpoint redshift but fails the integrated clock functional along accelerated or orbital records, the proper-time map has not closed.
 
@@ -1750,7 +1752,7 @@ $$
 \ln\lambda,\,
 -\ln\xi,\,
 \ln\frac{R_{\text{core}}}{R_{\text{core},0}}
-\right)^T.
+\right)^T
 $$
 
 The candidate extraction law is
@@ -1759,7 +1761,7 @@ $$
 \ln\Gamma_N
 =
 \mathbf{b}_N\cdot\mathbf{g}_N
-+\mathcal{R}_{\Gamma},
++\mathcal{R}_{\Gamma}
 $$
 
 where $\mathbf{b}_N$ is a constitutive coefficient row and $\mathcal{R}_{\Gamma}$ contains higher-order and branch-specific corrections. Write the row as
@@ -1773,7 +1775,7 @@ b_\chi,\,
 b_\lambda,\,
 b_\xi,\,
 b_R
-\right).
+\right)
 $$
 
 The sign convention places $-\ln\xi$ in the deformation record because the homogeneous Lorentz-closure branch requires $\Gamma_N\to1/\xi$ when the clock readout is controlled only by oblate moving Noether swarm geometry. In that branch
@@ -1788,7 +1790,7 @@ $$
 \ln\gamma,\,
 0
 \right)^T
-+O(\epsilon_{\mathrm{LV}}),
++O(\epsilon_{\mathrm{LV}})
 $$
 
 so the moving Noether swarm constraint fixes
@@ -1808,7 +1810,7 @@ b_\chi,\,
 b_\lambda,\,
 1,\,
 b_R
-\right),
+\right)
 $$
 
 with the remaining coefficients belonging to the isotropic Noether sea constitutive response rather than to Lorentz geometry.
@@ -1818,7 +1820,7 @@ This is also the convention bridge to the effective metric subclass. If the loca
 $$
 C_N^{\mathrm{met}}
 =
-\Omega_{\mathrm{clk}}(n,\chi_{\text{sea}},\lambda,R_{\text{core}})\,\xi,
+\Omega_{\mathrm{clk}}(n,\chi_{\text{sea}},\lambda,R_{\text{core}})\,\xi
 $$
 
 then the cadence-stretch factor is
@@ -1828,7 +1830,7 @@ $$
 =
 \left(
 \Omega_{\mathrm{clk}}\xi
-\right)^{-1}.
+\right)^{-1}
 $$
 
 Writing
@@ -1850,7 +1852,7 @@ b_n=-\omega_n,\qquad
 b_\chi=-\omega_\chi,\qquad
 b_\lambda=-\omega_\lambda,\qquad
 b_R=-\omega_R,\qquad
-b_\xi=1.
+b_\xi=1
 $$
 
 The weak-field recovery condition then becomes a constraint on the same coefficient row:
@@ -1859,7 +1861,7 @@ $$
 \ln\Gamma_N(\mathbf{x},t)
 =
 -\frac{\Phi_N(\mathbf{x},t)}{c_0^2}
-+O\!\left(\frac{\Phi_N^2}{c_0^4}\right),
++O\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
 
 or, locally,
@@ -1868,7 +1870,7 @@ $$
 \mathbf{b}_N\cdot\nabla\mathbf{g}_N
 =
 -\frac{\nabla\Phi_N}{c_0^2}
-+O\!\left(\frac{\Phi_N\nabla\Phi_N}{c_0^4}\right).
++O\!\left(\frac{\Phi_N\nabla\Phi_N}{c_0^4}\right)
 $$
 
 Equivalently, let $U\equiv-\Phi_N>0$ and define the static weak-potential response coefficients by
@@ -1877,19 +1879,19 @@ $$
 \ln n=a_n\frac{U}{c_0^2},\qquad
 \ln\chi_{\text{sea}}=a_\chi\frac{U}{c_0^2},\qquad
 \ln\lambda=a_\lambda\frac{U}{c_0^2},\qquad
-\ln\frac{R_{\text{core}}}{R_{\text{core},0}}=a_R\frac{U}{c_0^2},
+\ln\frac{R_{\text{core}}}{R_{\text{core},0}}=a_R\frac{U}{c_0^2}
 $$
 
 to first order, with $-\ln\xi=0+O(U^2/c_0^4)$ in an isotropic static endpoint cell. Then weak gravitational redshift fixes only the scalar combination
 
 $$
-b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1.
+b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1
 $$
 
 In clock-rate language this is the equivalent condition
 
 $$
-\omega_n a_n+\omega_\chi a_\chi+\omega_\lambda a_\lambda+\omega_R a_R=-1.
+\omega_n a_n+\omega_\chi a_\chi+\omega_\lambda a_\lambda+\omega_R a_R=-1
 $$
 
 This is the first useful reduction of the proof burden. The Lorentz branch fixes the shape coefficient $b_\xi$, while static weak-field redshift fixes one isotropic coefficient combination. Individual values of $b_n$, $b_\chi$, $b_\lambda$, and $b_R$, or equivalently of the $\omega$ row, require a constitutive calculation or simulation that extracts how a mass source changes $n$, $\chi_{\text{sea}}$, $\lambda$, and $R_{\text{core}}$ in the same Noether sea cell.
@@ -1902,7 +1904,7 @@ $$
 \frac{c_0}{c_{\text{eff}}}
 =
 1+(1+\gamma_{\text{eff}})\frac{U}{c_0^2}
-+O\!\left(\frac{U^2}{c_0^4}\right),
++O\!\left(\frac{U^2}{c_0^4}\right)
 $$
 
 so its logarithmic response is
@@ -1911,7 +1913,7 @@ $$
 \delta\ln\bar{\chi}_{\text{sea}}
 =
 (1+\gamma_{\text{eff}})\frac{U}{c_0^2}
-+O\!\left(\frac{U^2}{c_0^4}\right).
++O\!\left(\frac{U^2}{c_0^4}\right)
 $$
 
 This fixes a signal-delay response coefficient $a_\chi^{\mathrm{sig}}=1+\gamma_{\text{eff}}$, giving $a_\chi^{\mathrm{sig}}\approx2$ in the GR-matching solar-system branch. It becomes the clock-row coefficient $a_\chi$ only if the clock cadence and signal-propagation channel share the same scalar delay response in the tested branch. If they do not, the difference is not fit freedom; it is a channel-splitting residual that must be carried into PPN, redshift, and pressure-response comparisons.
@@ -1927,7 +1929,7 @@ a_\chi-a_\chi^{\mathrm{sig}}
 =
 a_\chi-(1+\gamma_{\text{eff}}),
 \qquad
-\Delta_\chi^{\mathrm{clk\text{-}sig}}=0.
+\Delta_\chi^{\mathrm{clk\text{-}sig}}=0
 $$
 
 A branch may impose this condition only when the same first-order Noether sea delay factor retimes assembly clocks and signal propagation, the photon or signal channel has no separate $\chi_\gamma$ response at $O(U/c_0^2)$, the asymptotic normalization $c_0/c_f$ is spatially constant in the comparison, and the weak cell is isotropic enough that first-order birefringent or stress-anisotropic delay terms are absent.
@@ -1935,13 +1937,13 @@ A branch may impose this condition only when the same first-order Noether sea de
 Under this shared-delay closure, the static endpoint constraint becomes
 
 $$
-b_n a_n+b_\chi(1+\gamma_{\text{eff}})+b_\lambda a_\lambda+b_R a_R=1,
+b_n a_n+b_\chi(1+\gamma_{\text{eff}})+b_\lambda a_\lambda+b_R a_R=1
 $$
 
 or, equivalently in clock-rate-row language,
 
 $$
-\omega_n a_n+\omega_\chi(1+\gamma_{\text{eff}})+\omega_\lambda a_\lambda+\omega_R a_R=-1.
+\omega_n a_n+\omega_\chi(1+\gamma_{\text{eff}})+\omega_\lambda a_\lambda+\omega_R a_R=-1
 $$
 
 In the GR-matching weak solar-system branch, $\gamma_{\text{eff}}=1$ makes the delay contribution $2b_\chi$ in the cadence-stretch row and $2\omega_\chi$ in the clock-rate row. If $\Delta_\chi^{\mathrm{clk\text{-}sig}}\neq0$, the branch has not failed by definition, but it must carry $\Delta_\chi^{\mathrm{clk\text{-}sig}}$ as a measured residual across clock redshift, Shapiro delay, pressure-response, and cosmological redshift comparisons rather than absorbing it into a fitted coefficient.
@@ -1949,7 +1951,7 @@ In the GR-matching weak solar-system branch, $\gamma_{\text{eff}}=1$ makes the d
 The first admissible static packet is the minimal shared-delay specialization of this row. Let
 
 $$
-A_\chi\equiv1+\gamma_{\text{eff}}.
+A_\chi\equiv1+\gamma_{\text{eff}}
 $$
 
 If the weak static endpoint cadence is assigned entirely to the shared scalar delay response at first order, then
@@ -1967,7 +1969,7 @@ a_R
 A_\chi,\,
 0,\,
 0
-\right),
+\right)
 $$
 
 and the cadence-stretch row is
@@ -1985,7 +1987,7 @@ b_R
 A_\chi^{-1},\,
 0,\,
 0
-\right).
+\right)
 $$
 
 The inverse clock-rate row is therefore
@@ -2003,7 +2005,7 @@ $$
 -A_\chi^{-1},\,
 0,\,
 0
-\right),
+\right)
 $$
 
 so
@@ -2011,7 +2013,7 @@ so
 $$
 \mathbf b_N\cdot\mathbf a=1,\qquad
 \boldsymbol\omega\cdot\mathbf a=-1,\qquad
-b_i+\omega_i=0.
+b_i+\omega_i=0
 $$
 
 For the GR-matching weak branch, $A_\chi=2$, giving $a_\chi=2$, $b_\chi=1/2$, and $\omega_\chi=-1/2$. This is a minimal endpoint packet, not a proof that density, envelope scale, or core-radius responses are physically absent. A compensated static family remains admissible:
@@ -2026,7 +2028,7 @@ b_\chi
 A_\chi
 },
 \qquad
-\omega_i=-b_i.
+\omega_i=-b_i
 $$
 
 ###### Compensated Static-Family Validation Packet
@@ -2048,7 +2050,7 @@ a_R
 b_n,\,
 b_\lambda,\,
 b_R
-\right)^T.
+\right)^T
 $$
 
 The weak static endpoint condition is then
@@ -2058,7 +2060,7 @@ S_G
 \equiv
 \mathbf{c}\cdot\mathbf{u}^{G}
 +b_\chi A_\chi
-=1.
+=1
 $$
 
 A finite-height clock comparison samples the spatial derivative of the same scalar. For a small upward separation $L$ near Earth, with $U(z+L)-U(z)\approx-gL$, the clock-rate ratio obeys
@@ -2070,7 +2072,7 @@ $$
 =
 S_G\frac{gL}{c_0^2}
 +O(L^2)
-+O\!\left(\frac{U^2}{c_0^4}\right).
++O\!\left(\frac{U^2}{c_0^4}\right)
 $$
 
 Thus finite-height redshift fixes $S_G=1$ to the experimental tolerance. It does not distinguish the minimal row $\mathbf{c}=\mathbf{0}$ from a compensated row with $\mathbf{c}\cdot\mathbf{u}^{G}\ne0$ and adjusted $b_\chi$, provided the same coefficients are used across the sample.
@@ -2084,7 +2086,7 @@ $$
 -
 \mathbf{g}_{N,\mathrm H}^{(\ell')}
 \right)
-=0.
+=0
 $$
 
 The minimal shared-delay row passes only if the record difference has no uncompensated $\chi_{\text{sea}}$ component after the fixed $-\ln\xi$ term is included. The hydrogen toy scan now demonstrates the discriminant: the clean shared-delay row passes a clean $\chi_{\text{sea}}$-only packet, while the density/scale-compensated row passes the split-record scaffold. This does not yet prove that the gravitational static endpoint has nonzero $a_n$, $a_\lambda$, or $a_R$; it proves that any atom-local record with persistent density, scale, or core-radius splits must use one shared compensated row instead of per-line clock factors.
@@ -2104,7 +2106,7 @@ a_R
 \mathbf{a}^{P\to\Gamma}
 =
 \frac{\delta\mathbf{g}^{P,\mathrm{iso}}}
-{\delta\ln\Gamma_N^{P,\mathrm{iso}}}.
+{\delta\ln\Gamma_N^{P,\mathrm{iso}}}
 $$
 
 A single isotropic cadence row can serve both the gravitational endpoint and the pressure-normalized replay only if
@@ -2121,7 +2123,7 @@ $$
 1
 \end{pmatrix},
 \qquad
-\omega_i=-b_i.
+\omega_i=-b_i
 $$
 
 The current Fe/Cr toy pressure projection has $\mathbf{a}^{P\to\Gamma}=(0,0.6,0,0)^T$, while the GR-matching shared-delay endpoint has $A_\chi=2$. Therefore the $\chi_{\text{sea}}$-only shared row is falsified for that toy pressure replay. A broader compensated row remains conditional: it requires branch-derived non-$\chi_{\text{sea}}$ pressure response in $n$, $\lambda$, or $R_{\text{core}}$, and it must still preserve $S_G=1$ for finite-height and endpoint redshift.
@@ -2142,7 +2144,7 @@ $$
 \ln(1+z)_{\mathrm{endpoint}}
 =
 \ln\Gamma_{N,E}
--\ln\Gamma_{N,R}.
+-\ln\Gamma_{N,R}
 $$
 
 The full candidate redshift comparison keeps that endpoint clock term separate from source, launch, and path-history terms:
@@ -2154,7 +2156,7 @@ $$
 -\ln\Gamma_{N,R}
 -\ln D_v
 +Y_{X,E\to R}
--\ln B_X(E).
+-\ln B_X(E)
 $$
 
 Here $B_X(E)$ is the source-branch factor, $D_v$ is the launch or relative-motion phase-compression factor, and $Y_{X,E\to R}=\ln\mathcal P_{E\to R,X}$ is the path-history propagation integral through the Noether sea. This chapter owns the extraction of $\Gamma_N$ and $C_N=\Gamma_N^{-1}$. The other factors are routed through the absolute-record transport map in [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md#equilibrium-transport-hypothesis) and must not be folded into $\Gamma_N$ unless a derivation proves the reduction in a declared limit.
@@ -2166,7 +2168,7 @@ Hydrogen spectra give the first atom-local use of the $\Gamma_N$ extraction map.
 $$
 C_N(\mathbf{x},t)
 =
-\Gamma_N^{-1}(\mathbf{x},t).
+\Gamma_N^{-1}(\mathbf{x},t)
 $$
 
 For the hydrogen spectral channel at resolution $\ell$, extract the clock-facing deformation record from the same response map used by the spectral scan:
@@ -2180,7 +2182,7 @@ $$
 \ln\lambda_{\mathrm H}^{(\ell)},\,
 -\ln\xi_{\mathrm H}^{(\ell)},\,
 \ln\frac{R_{\text{core},\mathrm H}^{(\ell)}}{R_{\text{core},0}}
-\right)^T.
+\right)^T
 $$
 
 The hydrogen clock/rate conversion target is then
@@ -2195,7 +2197,7 @@ $$
 \qquad
 C_{N,\mathrm H}^{(\ell)}
 =
-\left(\Gamma_{N,\mathrm H}^{(\ell)}\right)^{-1}.
+\left(\Gamma_{N,\mathrm H}^{(\ell)}\right)^{-1}
 $$
 
 The row $\mathbf{b}_{N}^{\mathrm{spec}}$ is not a per-line fit. It is the spectral-channel instance of the same clock-row program above, with $b_\xi=1$ inherited from the homogeneous Lorentz branch and the weak-field scalar combination constrained by gravitational redshift. The residual $\mathcal R_{\Gamma,\mathrm H}^{\mathrm{spec},(\ell)}$ carries higher-order branch effects such as recoil, hyperfine structure, medium anisotropy, or unresolved source-branch corrections; it must not absorb the basic distinction between $n$, $\chi_{\text{sea}}$, and clock cadence.
@@ -2212,7 +2214,7 @@ E_{\text{env}}^{(\ell)}(a)
 E_{\text{env}}^{(\ell)}(b)
 }{h}
 +
-\nu_{a\to b}^{\mathrm{res},(\ell)}.
+\nu_{a\to b}^{\mathrm{res},(\ell)}
 $$
 
 Equivalently, an isolated line with bounded event residual gives a line-inferred cadence stretch,
@@ -2226,7 +2228,7 @@ E_{\text{env}}^{(\ell)}(a)
 E_{\text{env}}^{(\ell)}(b)
 }{
 h\nu_{a\to b}^{\mathrm{obs},(\ell)}
-}.
+}
 $$
 
 The first pass condition is that one $\Gamma_{N,\mathrm H}^{(\ell)}$ from the local Noether sea response controls the chosen line set:
@@ -2247,7 +2249,7 @@ $$
 \varepsilon_{\Gamma}
 }
 \le
-\Delta_{\Gamma}^{\mathrm{tol}}.
+\Delta_{\Gamma}^{\mathrm{tol}}
 $$
 
 This target fails if $\Gamma_N$ is multiplied directly into the line frequency after being defined as cadence stretch, if each transition requires its own clock coefficient row, if $n$ or $\chi_{\text{sea}}$ is used as a substitute for $\Gamma_N$, if recoil or photon-channel propagation is hidden inside $\Gamma_N$, or if the hydrogen spectral map uses a different Noether sea response record than the clock, Shapiro-delay, or endpoint-redshift comparisons.
@@ -2312,7 +2314,7 @@ To first order in the Newtonian potential $\Phi_N(\mathbf{x})$,
 $$
 \omega(\Phi_N) \approx \omega_0\left(1 + \frac{\Phi_N}{c^2}\right)
 \quad \Rightarrow \quad
-\frac{d\tau}{dt}\bigg|_{\text{grav}} \approx 1 + \frac{\Phi_N}{c^2},
+\frac{d\tau}{dt}\bigg|_{\text{grav}} \approx 1 + \frac{\Phi_N}{c^2}
 $$
 with the sign convention chosen so that $\Phi_N < 0$ (deeper potential) yields **slower** clocks ($d\tau/dt < 1$), consistent with GR.
 
@@ -2324,7 +2326,7 @@ $$
 \approx
 \frac{\Delta\Phi_N}{c_0^2}
 \approx
-\frac{gL}{c_0^2}.
+\frac{gL}{c_0^2}
 $$
 Thus $L=1\,\mathrm{mm}$ corresponds to $\Delta\nu/\nu\approx1.1\times10^{-19}$, while $L=33\,\mathrm{cm}$ corresponds to $\Delta\nu/\nu\approx3.6\times10^{-17}$. These numbers are direct weak-field acceptance tests for the extracted clock map: the same Noether sea constitutive response that slows separated clocks must also describe an extended clock sample whose lower and upper portions accumulate different proper-time phases.
 
@@ -2336,7 +2338,7 @@ $$
 =
 \widehat{\beta}_{T^3}T^3
 +\Delta\phi_{\mathrm{ctrl}}(T)
-+O(T^4).
++O(T^4)
 $$
 This coefficient must be derived from the same weak-field clock and phase map that produces the finite-height redshift benchmark. A fit to $\widehat{\beta}_{T^3}$ cannot be allowed to use one effective potential record while the redshift, Shapiro-delay, lensing, PPN, or gravitational-wave-speed channels use another.
 
@@ -2356,12 +2358,12 @@ Outside that limit, $F$ will in general deviate from the GR expression and defin
 
 In the same weak-field regime where the clock law is expected to be Lorentz-like, the center-of-mass kinematics should satisfy the effective mass-shell closure
 $$
-E_{\text{CM}}^2 = p_{\text{CM}}^2 c_{\text{eff}}^2 + M_0^2 c_{\text{eff}}^4,
+E_{\text{CM}}^2 = p_{\text{CM}}^2 c_{\text{eff}}^2 + M_0^2 c_{\text{eff}}^4
 $$
 with $d\tau/dt=\gamma_{\text{eff}}^{-1}$ and
 $$
 E_{\text{CM}}=\gamma_{\text{eff}}M_0c_{\text{eff}}^2,\qquad
-p_{\text{CM}}=\gamma_{\text{eff}}M_0v.
+p_{\text{CM}}=\gamma_{\text{eff}}M_0v
 $$
 This is a cross-check on the emergent clock model, not an independent axiom at the architrino substrate level.
 For definitions and interpretation, see [Effective Energy-Momentum Closure](../../../../markdown/aaa/dynamics/energy.md#effective-energy-momentum-closure).
@@ -2382,7 +2384,7 @@ To close the derivation gap, we now fix an explicit clock model and an explicit 
 
 Use one neutral nested shell swarm with six constituent architrinos:
 $$
-\mathcal{A}=\{i_+,i_-,m_+,m_-,o_+,o_-\},
+\mathcal{A}=\{i_+,i_-,m_+,m_-,o_+,o_-\}
 $$
 with intrinsic polarities $q_a=\pm\epsilon$, $\epsilon=|e|/6$, effective inertial parameters $m_a$, and trajectories $\mathbf{x}_a(t)$.
 
@@ -2390,11 +2392,11 @@ Define pair-separation vectors
 $$
 \mathbf{r}_i=\mathbf{x}_{i+}-\mathbf{x}_{i-},\quad
 \mathbf{r}_m=\mathbf{x}_{m+}-\mathbf{x}_{m-},\quad
-\mathbf{r}_o=\mathbf{x}_{o+}-\mathbf{x}_{o-},
+\mathbf{r}_o=\mathbf{x}_{o+}-\mathbf{x}_{o-}
 $$
 with radii $R_b=\|\mathbf{r}_b\|$ for $b\in\{i,m,o\}$ and nested ordering
 $$
-R_i<R_m<R_o.
+R_i<R_m<R_o
 $$
 
 ##### Microscopic Evolution Equation (Regularized)
@@ -2406,12 +2408,12 @@ m_a\ddot{\mathbf{x}}_a(t)=
 \kappa\,\sigma_{ab}\lvert q_aq_b\rvert
 \int_{-\infty}^{t}\!dt_0\;
 \frac{\hat{\mathbf{r}}_{ab}(t;t_0)}{r_{ab}(t;t_0)^2}\,
-\delta_\eta\!\big(r_{ab}(t;t_0)-c_f(t-t_0)\big),
+\delta_\eta\!\big(r_{ab}(t;t_0)-c_f(t-t_0)\big)
 $$
 $$
 r_{ab}(t;t_0)=\|\mathbf{x}_a(t)-\mathbf{x}_b(t_0)\|,
 \qquad
-\hat{\mathbf{r}}_{ab}=\frac{\mathbf{x}_a(t)-\mathbf{x}_b(t_0)}{r_{ab}(t;t_0)}.
+\hat{\mathbf{r}}_{ab}=\frac{\mathbf{x}_a(t)-\mathbf{x}_b(t_0)}{r_{ab}(t;t_0)}
 $$
 This is the same $\eta>0$ regularized kernel used in the dynamical chapters.
 
@@ -2419,17 +2421,17 @@ This is the same $\eta>0$ regularized kernel used in the dynamical chapters.
 
 Take the middle binary as the clock channel. Let $\mathbf{e}_1,\mathbf{e}_2$ be an orthonormal basis of the mean orbital plane of $\mathbf{r}_m$, and define phase
 $$
-\theta_m(t)=\operatorname{atan2}\!\big(\mathbf{r}_m\!\cdot\!\mathbf{e}_2,\mathbf{r}_m\!\cdot\!\mathbf{e}_1\big).
+\theta_m(t)=\operatorname{atan2}\!\big(\mathbf{r}_m\!\cdot\!\mathbf{e}_2,\mathbf{r}_m\!\cdot\!\mathbf{e}_1\big)
 $$
 On a window $[t_1,t_2]$, define measured frequency
 $$
 \omega_{\text{clk}}
 =
-\frac{\theta_m(t_2)-\theta_m(t_1)}{t_2-t_1}.
+\frac{\theta_m(t_2)-\theta_m(t_1)}{t_2-t_1}
 $$
 For the reference run $(v=0,\Phi_N=0)$, set $\omega_0=\omega_{\text{clk}}^{\text{ref}}$ and define
 $$
-\frac{d\tau}{dt}\equiv\frac{\omega_{\text{clk}}}{\omega_0}.
+\frac{d\tau}{dt}\equiv\frac{\omega_{\text{clk}}}{\omega_0}
 $$
 
 This observable is the benchmark preserved by the clock projector in [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#assembly-noether-sea-interface-diagnostic). For a branch record $\mathcal{B}_{\mathbf{x}j}^{(t_0)}$, the clock-facing projection keeps only the entries that can change the extracted phase or cadence:
@@ -2445,7 +2447,7 @@ $$
 J_{\mathbf{x}j},\,
 \Lambda_j,\,
 \mathcal{L}_{j}^{\mathrm{wake}}\big|_{\mathrm{phase}}
-\right).
+\right)
 $$
 
 Thus a boundary contribution may affect clock coupling only by changing the same phase increment, measured frequency, Noether sea delay factor, or phase-retained wake ledger used to compute $\omega_{\text{clk}}/\omega_0$. A separate clock fit that bypasses this projection would split the clock benchmark from the assembly/Noether sea interface diagnostic.
@@ -2464,7 +2466,7 @@ For each run $j$, record
 $$
 \left(U_j,\;v_j,\;\omega_j\right),
 \qquad
-y_j\equiv\frac{\omega_j}{\omega_0}-1.
+y_j\equiv\frac{\omega_j}{\omega_0}-1
 $$
 
 ---
@@ -2477,7 +2479,7 @@ This chapter keeps only the symbolic/numeric coefficient interface needed to bri
 
 Linearize each trajectory as $\mathbf{x}_a(t)=\mathbf{x}_a^{(0)}(t)+\delta\mathbf{x}_a(t)$ around the periodic rest solution and expand the extracted clock ratio in
 $$
-\epsilon_U\equiv U/c_0^2,\qquad \epsilon_v\equiv v^2/c_\star^2.
+\epsilon_U\equiv U/c_0^2,\qquad \epsilon_v\equiv v^2/c_\star^2
 $$
 
 Use the regression model
@@ -2488,24 +2490,24 @@ $$
 +C_2\,\epsilon_U^2
 +C_{Uv}\,\epsilon_U\epsilon_v
 +C_{v4}\,\epsilon_v^2
-+\mathcal{O}(\epsilon^3).
++\mathcal{O}(\epsilon^3)
 $$
 
 Coefficient extraction from simulation ensemble $\{(U_j,v_j,\omega_j)\}_{j=1}^N$:
 $$
 \mathbf{y}=X\mathbf{c}+\boldsymbol{\varepsilon},
 \qquad
-\hat{\mathbf{c}}=(X^\top W X)^{-1}X^\top W\mathbf{y},
+\hat{\mathbf{c}}=(X^\top W X)^{-1}X^\top W\mathbf{y}
 $$
 with
 $$
 \mathbf{c}=(A_U,A_v,C_2,C_{Uv},C_{v4})^\top,\quad
-y_j=\frac{\omega_j}{\omega_0}-1,
+y_j=\frac{\omega_j}{\omega_0}-1
 $$
 and design row
 $$
 X_j=\left(-\epsilon_{U,j},\,-\epsilon_{v,j},\,\epsilon_{U,j}^2,\,
-\epsilon_{U,j}\epsilon_{v,j},\,\epsilon_{v,j}^2\right).
+\epsilon_{U,j}\epsilon_{v,j},\,\epsilon_{v,j}^2\right)
 $$
 
 Estimated covariance:
@@ -2514,27 +2516,27 @@ $$
 =
 \hat{s}^2(X^\top W X)^{-1},
 \qquad
-\hat{s}^2=\frac{\sum_j w_j(y_j-(X\hat{\mathbf{c}})_j)^2}{N-5}.
+\hat{s}^2=\frac{\sum_j w_j(y_j-(X\hat{\mathbf{c}})_j)^2}{N-5}
 $$
 
 ##### Coefficient Targets and PPN Map
 
 In the GR-matching weak-field observer limit, first-order targets are
 $$
-A_U^\star=1,\qquad A_v^\star=\frac{1}{2}.
+A_U^\star=1,\qquad A_v^\star=\frac{1}{2}
 $$
 
 For the static branch ($v=0$),
 $$
-\frac{\omega}{\omega_0}=1-\frac{U}{c_0^2}+C_2\frac{U^2}{c_0^4}+\cdots,
+\frac{\omega}{\omega_0}=1-\frac{U}{c_0^2}+C_2\frac{U^2}{c_0^4}+\cdots
 $$
 and the PPN map used in [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md) is
 $$
-\beta_{\mathrm{eff}}=\frac{1+2C_2}{2}.
+\beta_{\mathrm{eff}}=\frac{1+2C_2}{2}
 $$
 So the GR target $\beta_{\mathrm{eff}}=1$ implies
 $$
-C_2^\star=\frac{1}{2}.
+C_2^\star=\frac{1}{2}
 $$
 
 The mixed coefficient $C_{Uv}$ is treated as a leakage diagnostic at this order.
@@ -2586,11 +2588,11 @@ The clock-to-PPN closure checklist is:
 
 Given extracted coefficients
 $$
-\hat{\mathbf{c}}=(\hat A_U,\hat A_v,\hat C_2,\hat C_{Uv},\hat C_{v4}),
+\hat{\mathbf{c}}=(\hat A_U,\hat A_v,\hat C_2,\hat C_{Uv},\hat C_{v4})
 $$
 map to
 $$
-\hat\beta_{\mathrm{eff}}=\frac{1+2\hat C_2}{2},
+\hat\beta_{\mathrm{eff}}=\frac{1+2\hat C_2}{2}
 $$
 and forward to the PPN decision vector in [spacetime/ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md).
 
@@ -2599,12 +2601,12 @@ $$
 \chi^2_{\mathrm{closure}}=
 (\hat{\mathbf{q}}-\mathbf{q}_\star)^\top
 \Sigma_q^{-1}
-(\hat{\mathbf{q}}-\mathbf{q}_\star),
+(\hat{\mathbf{q}}-\mathbf{q}_\star)
 $$
 with
 $$
 \hat{\mathbf{q}}=(\hat A_U,\hat A_v,\hat\beta_{\mathrm{eff}},\hat C_{Uv}),\qquad
-\mathbf{q}_\star=(1,\tfrac12,1,0).
+\mathbf{q}_\star=(1,\tfrac12,1,0)
 $$
 Low $\chi^2_{\mathrm{closure}}$ with no preferred-direction leakage is the acceptance condition for the clock-law sector.
 
@@ -3872,6 +3874,21 @@ C_Q\left(\frac{r_M}{r_L}\right)^2
 $$
 In particular, if $(r_M/r_L)^2\le C_{23}\epsilon_{\text{LV}}$, operational Lorentz closure is universal across these two micro-regimes up to preferred-frame leakage.
 
+##### Theorem G (structural-integrity common-limit closure)
+
+This theorem is the parent Lorentz-closure target for Theorems B-D, the photon synchronization row, and the weak-field gravitational-wave speed row. In the weak homogeneous observer branch, a retained material assembly branch closes only if the matter-assembly limiting speed, the Noether sea dressed clock/ruler speed, the photon-channel speed, and the empirical calibration speed obey
+$$
+c_{\mathrm{mat}}^{\mathrm{lim}}
+=
+c_{\text{eff}}
+=
+c_\gamma
+=
+c_0
++O(\epsilon_{\text{LV}}c_0)
+$$
+on the same causal-root ledger. The same branch record must then supply the longitudinal deformation $a_\parallel/a_\perp=\gamma_0^{-1}+O(\epsilon_{\text{LV}})$, clock cadence $d\tau/dt=\gamma_0^{-1}+O(\epsilon_{\text{LV}})$, two-way signal residual $\Delta_{\text{tw}}=O(\epsilon_{\text{LV}})$, and the gravitational-wave speed residual $|c_{\mathrm{GW}}/c_\gamma-1|\le\epsilon_{\mathrm{GW}}$ in the weak-field TT channel. Closure fails if the photon speed, gravitational-wave speed, material limiting speed, or deformation coefficients require independently fitted dressing records.
+
 #### Observable Interface
 
 Key outputs to pass into validation and simulation layers:
@@ -3975,7 +3992,7 @@ $$
 \;\Rightarrow\;
 \big(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij}\big)
 \;\Rightarrow\;
-g^{\text{eff}}_{\mu\nu}.
+g^{\text{eff}}_{\mu\nu}
 $$
 
 The first arrow is the open constitutive problem. The second arrow is the observer-level metric assembly; it does not curve the Euclidean void.
@@ -3989,7 +4006,7 @@ $$
 \equiv
 \frac{|\Phi_{\text{eff}}|}{c_0^2}
 \sim
-\frac{4\pi G_{\mathrm{eff}}\rho_{\mathrm{mat}}L^2}{3c_0^2}.
+\frac{4\pi G_{\mathrm{eff}}\rho_{\mathrm{mat}}L^2}{3c_0^2}
 $$
 
 Thus ordinary density can be weakly visible to clocks and signal paths when it is integrated over planetary or stellar length scales, while meter-scale laboratory samples require much higher density or precision. The Earth core is thermally cold on a Planck-temperature comparison, but that fact is not the limiting variable for weak gravity. Its contribution to observer-level metric response comes from the rest-energy, pressure, stress, and exposed assembly ledger distributed over a large body, projected through the same Noether sea response map that supplies $\Phi_{\text{eff}}$, $\Gamma_N$, and $\chi_{\text{sea}}$.
@@ -4005,7 +4022,7 @@ ds_{\rm eff}^2
 +
 \gamma_{ij}
 \left(dx^i-u^i_{\text{sea}}dt\right)
-\left(dx^j-u^j_{\text{sea}}dt\right).
+\left(dx^j-u^j_{\text{sea}}dt\right)
 $$
 
 Here $N$ is the clock-rate or lapse channel, $u^i_{\text{sea}}$ is medium drift, and $\gamma_{ij}$ is the spatial compliance channel built from the frame field $e^a{}_i$. In the GR-matching regime the effective connection is the Levi-Civita connection of $g^{\text{eff}}_{\mu\nu}$; torsion, nonmetricity, birefringence, dispersion, and preferred-frame leakage are deviation observables rather than substrate ontology.
@@ -4021,7 +4038,7 @@ A^2(\mathcal{N}_{\mathrm{sea}})\,dt^2
 \frac{1}{c_0^2}
 B_{ij}(\mathcal{N}_{\mathrm{sea}})
 \left(dx^i-u^i_{\text{sea}}dt\right)
-\left(dx^j-u^j_{\text{sea}}dt\right),
+\left(dx^j-u^j_{\text{sea}}dt\right)
 $$
 with $A$, $B_{ij}$, and $u^i_{\text{sea}}$ read from the same retained Noether sea state and Physical Observer record. In the local Noether sea rest frame, the photon-channel null condition $d\tau^2=0$ gives
 $$
@@ -4033,7 +4050,7 @@ c_0A(\mathcal{N}_{\mathrm{sea}})
 \sqrt{
 B_{ij}(\mathcal{N}_{\mathrm{sea}})\hat k^i\hat k^j
 }
-}.
+}
 $$
 The weak homogeneous observer branch requires
 $$
@@ -4041,7 +4058,7 @@ A\to1,
 \qquad
 B_{ij}\to\delta_{ij},
 \qquad
-u^i_{\text{sea}}\to0.
+u^i_{\text{sea}}\to0
 $$
 This is a constitutive equation, not a new fundamental four-dimensional metric on absolute timespace.
 
@@ -4050,7 +4067,7 @@ $$
 \delta n\equiv n-1,\qquad
 \delta\chi\equiv\frac{\chi_{\text{sea}}}{\chi_{\text{sea}}(\infty)}-1,
 \qquad
-\varphi\equiv\frac{\Phi_{\text{eff}}}{c_0^2},
+\varphi\equiv\frac{\Phi_{\text{eff}}}{c_0^2}
 $$
 and with $\sigma_{ij}$ the retained Noether sea stress projection, the minimal coefficient scaffold is
 $$
@@ -4061,7 +4078,7 @@ N
 +A_N^\chi\delta\chi
 +A_N^\Phi\varphi
 +Q_N(\delta n,\delta\chi,\varphi,\sigma)
-+O(c_0^{-6},\epsilon_{\mathrm{LV}}),
++O(c_0^{-6},\epsilon_{\mathrm{LV}})
 $$
 $$
 \gamma_{ij}
@@ -4074,7 +4091,7 @@ h_{ij}
 +A_\gamma^\Phi\varphi
 \right)
 +A_{\gamma,\mathrm{tf}}\sigma^{\mathrm{tf}}_{ij}
-+O(c_0^{-4},\epsilon_{\mathrm{LV}}),
++O(c_0^{-4},\epsilon_{\mathrm{LV}})
 $$
 $$
 u^i_{\text{sea}}
@@ -4082,7 +4099,7 @@ u^i_{\text{sea}}
 B^i{}_j w^j\frac{U}{c_0^2}
 +O(c_0^{-5},\epsilon_{\mathrm{LV}}),
 \qquad
-\gamma_{ij}=\delta_{ab}e^a{}_i e^b{}_j.
+\gamma_{ij}=\delta_{ab}e^a{}_i e^b{}_j
 $$
 Here $w^i$ is the Noether sea drift relative to the comparison frame and $U$ is the positive PPN potential. These are not new substrate fields. They are coefficient rows for the observer-level reconstruction. Redshift, Shapiro delay, lensing, weak-field acceleration, and preferred-frame residuals must read from these rows as one shared constitutive record.
 
@@ -4109,13 +4126,13 @@ $$
 +
 \lambda_{\mathrm{PF}}\sum_{i=1}^{3}\alpha_i(\theta)^2
 +
-\lambda_{\mathrm{retune}}\mathcal{S}_{\mathrm{retune}}(\theta).
+\lambda_{\mathrm{retune}}\mathcal{S}_{\mathrm{retune}}(\theta)
 $$
 Here $\Sigma_W$ is the declared benchmark covariance, $\alpha_i$ are the preferred-frame parameters, and $\mathcal{S}_{\mathrm{retune}}(\theta)$ records whether separate parameter choices were used to pass different channels. The closure condition is
 $$
 \mathcal{R}_{\mathrm{metric}}(\theta;W)\le\epsilon_{\mathrm{metric}},
 \qquad
-\mathcal{S}_{\mathrm{retune}}(\theta)=0.
+\mathcal{S}_{\mathrm{retune}}(\theta)=0
 $$
 The point is not to add a new spacetime ontology. It is to require the effective metric to behave as one constitutive summary of the same Noether sea state and observer record across clocks, rulers, signal propagation, and weak-field gravitational tests.
 
@@ -4131,14 +4148,14 @@ S_{\mathrm{clk}}
 d\tau
 =
 \frac{1}{c_0}
-\sqrt{-g^{\text{eff}}_{\mu\nu}dx^\mu dx^\nu},
+\sqrt{-g^{\text{eff}}_{\mu\nu}dx^\mu dx^\nu}
 $$
 and extremizing this observer-level action must give the same weak-field acceleration row used in the PPN bundle,
 $$
 \frac{d^2\mathbf{x}}{dt^2}
 =
 -\nabla\Phi_{\text{eff}}
-+O(c_0^{-2}).
++O(c_0^{-2})
 $$
 For null signal records,
 $$
@@ -4150,7 +4167,7 @@ $$
 =
 2(1+\gamma_{\text{eff}})
 \frac{GM}{b\,c_0^2}
-+O(c_0^{-4}),
++O(c_0^{-4})
 $$
 so the GR limit $\gamma_{\text{eff}}=1$ gives $\Delta\theta=4GM/(b\,c_0^2)$. A lapse-only or scalar-delay-only map that supplies only $2GM/(b\,c_0^2)$ has recovered the Newtonian half-test, not the full effective metric. This is why the ADM/Cartan map must carry both the clock/lapse channel and the spatial-compliance channel.
 
@@ -4163,7 +4180,7 @@ ds_{\mathrm{eff}}^2
 =
 -\left(1+\frac{2\Phi_{\mathrm{dyn}}}{c_0^2}\right)c_0^2dt^2
 +
-\left(1-\frac{2\Psi_{\mathrm{sp}}}{c_0^2}\right)d\mathbf{x}^2.
+\left(1-\frac{2\Psi_{\mathrm{sp}}}{c_0^2}\right)d\mathbf{x}^2
 $$
 
 Massive slow probes read the dynamical potential $\Phi_{\mathrm{dyn}}$, while weak lensing reads the Weyl combination
@@ -4171,7 +4188,7 @@ Massive slow probes read the dynamical potential $\Phi_{\mathrm{dyn}}$, while we
 $$
 \Phi_{\mathrm{lens}}
 =
-\frac{\Phi_{\mathrm{dyn}}+\Psi_{\mathrm{sp}}}{2}.
+\frac{\Phi_{\mathrm{dyn}}+\Psi_{\mathrm{sp}}}{2}
 $$
 
 The equality target is therefore
@@ -4184,7 +4201,7 @@ $$
 \qquad
 \Psi_{\mathrm{sp}}-\Phi_{\mathrm{dyn}}
 =
-O(\epsilon_{\mathrm{lens}}),
+O(\epsilon_{\mathrm{lens}})
 $$
 
 equivalently $\gamma_{\text{eff}}\equiv\Psi_{\mathrm{sp}}/\Phi_{\mathrm{dyn}}\to1$ in the weak-field lensing regime. A scalar force or medium-response correction that appears only in the clock/lapse channel accelerates matter but under-deflects light. A valid $\mathbb{A}\mathbb{A}\mathbb{A}$ response must project the same Noether sea state into the lapse and spatial-compliance channels so that rotation curves, hydrostatic mass, time delay, and lensing consume one effective metric.
@@ -4211,7 +4228,7 @@ $$
 \gamma_{\text{eff}}^\theta-1
 \right\|_W^2
 +
-\lambda_{\mathrm{shared}}\mathcal{S}_{\mathrm{retune}}(\theta).
+\lambda_{\mathrm{shared}}\mathcal{S}_{\mathrm{retune}}(\theta)
 $$
 
 This residual belongs to the effective-metric closure program, not to dark-sector ontology by itself. It is the condition that lets a medium-response explanation of galaxy or cluster dynamics remain compatible with the same lensing map.
@@ -4234,7 +4251,7 @@ d_{\mathrm{cone}}
 +
 \lambda_{\mathrm{C}}
 \mathcal{R}_{\mathrm{Cauchy}}^{(r)}(\theta)
-\right],
+\right]
 $$
 where $\mathcal{R}_{\mathrm{Cauchy}}^{(r)}$ records failure of the declared channel to share the predictive Cauchy evolution used by the same observer-level metric record. In the validated weak homogeneous photon regime, this residual includes the requirement that the two physical polarization branches share the same free-space characteristic cone up to the birefringence tolerance routed through [Failure Criteria](../../../../markdown/aaa/validation/failure-criteria.md#operational-null-result-ledger).
 
@@ -4246,7 +4263,7 @@ $$
 =
 \mathcal{R}_{\mathrm{metric}}(\theta;W)
 +\lambda_{\mathrm{s2m}}
-\mathcal{R}_{\mathrm{spin\to metric}}(\theta;W),
+\mathcal{R}_{\mathrm{spin\to metric}}(\theta;W)
 $$
 with $\mathcal{R}_{\mathrm{spin\to metric}}$ defined in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#spinor-to-metric-compatibility-residual). This does not add spinor ontology to the metric. It states when fermion matter records are mature enough to be consumed by the metric constitutive map without importing weak handedness or spin as unexplained effective labels.
 
@@ -4260,7 +4277,7 @@ At the assembly level, an individual Noether swarm has an oblate, deformable exc
 
 When translating toward General Relativity, Einstein's field equations are treated as the effective continuum relation
 $$
-G_{\mu\nu} = \frac{8\pi G}{c^4}T_{\mu\nu},
+G_{\mu\nu} = \frac{8\pi G}{c^4}T_{\mu\nu}
 $$
 not as substrate curvature of the Euclidean void. In this framework, the right-hand side is interpreted through matter assemblies and Noether sea stress, while the left-hand side is the observer-level metric summary reconstructed from clock, ruler, and signal channels.
 
@@ -4271,7 +4288,7 @@ ds^2
 -f(\xi,\eta)c_0^2dt^2
 +g_1(\xi,\eta)d\xi^2
 +g_2(\xi,\eta)d\eta^2
-+g_3(\xi,\eta)d\phi^2,
++g_3(\xi,\eta)d\phi^2
 $$
 where $f,g_1,g_2,g_3$ encode the observer-level response of clocks, rulers, and signal paths. These coefficients are not primitive geometry. They are closure targets to be derived from Noether sea density, strain, alignment, and deformation.
 
@@ -4303,7 +4320,7 @@ $$
 S(t),\mathcal{H}_{\Omega}^{W},\mathcal{N}_{\mathrm{sea}}
 \right)
 \longrightarrow
-g_{\mu\nu}^{\mathrm{eff}},
+g_{\mu\nu}^{\mathrm{eff}}
 $$
 and the residual
 $$
@@ -4315,7 +4332,7 @@ g_{\mu\nu}^{\mathrm{eff}}(\theta)
 -
 \Pi_{\mathrm{hydro}}[S(t),\mathcal{H}_{\Omega}^{W},\mathcal{N}_{\mathrm{sea}}]
 \right\|
-}{\epsilon_g}.
+}{\epsilon_g}
 $$
 This residual is not a new gate; it states the existing constitutive burden in a form that separates collective-mode recovery from microscopic derivation.
 
@@ -4340,7 +4357,7 @@ k_B\log\left|\mathcal{B}_{\partial\Omega}^{(O)}(\theta)\right|
 dQ_{\partial\Omega}^{(O)}(\theta)
 =
 \int_{\partial\Omega}
-T_{\mu\nu}^{\mathrm{eff}}(\theta)\xi^\mu d\Sigma^\nu,
+T_{\mu\nu}^{\mathrm{eff}}(\theta)\xi^\mu d\Sigma^\nu
 $$
 and
 $$
@@ -4360,7 +4377,7 @@ T_U^{(O)}
 \left|dS_{\partial\Omega}^{(O)}(\theta)\right|
 +
 \varepsilon
-}.
+}
 $$
 
 The local-horizon gate is $\mathcal{R}_{\mathrm{thermo}}(\theta)\le\epsilon_{\mathrm{thermo}}$ in the equilibrium weak-field comparison regime, with the same $\theta$ also passing the ADM/Cartan and PPN gates below. If the residual can be made small only by assigning independent entropy, temperature, and stress records to each patch, then the equation-of-state analogy has not become a native closure. If it can be made small for all local horizon patches while local observer-level conservation holds, the Jacobson route supplies a proof scaffold for recovering an effective Einstein equation without treating the Euclidean void as curved.
@@ -4373,13 +4390,13 @@ $$
 \qquad
 S_{\partial\Omega}^{(O)}(\theta;W)
 =
-k_B\log\mathcal{N}_{\partial\Omega}^{(O)}(\theta;W).
+k_B\log\mathcal{N}_{\partial\Omega}^{(O)}(\theta;W)
 $$
 The area-scaling target is not imposed as ontology. It is the recoverable limit
 $$
 \frac{\partial S_{\partial\Omega}^{(O)}}{\partial A_{\partial\Omega}^{\mathrm{eff}}}
 \longrightarrow
-\frac{k_B}{4A_{\text{align}}},
+\frac{k_B}{4A_{\text{align}}}
 $$
 where $A_{\partial\Omega}^{\mathrm{eff}}$ is the observer-level patch area and $A_{\text{align}}$ is the alignment-area scale used in the black-hole entropy target. The local temperature comparison is
 $$
@@ -4389,7 +4406,7 @@ T_U^{(O)}
 \qquad
 a_O^2
 =
-\gamma_{ij}a_O^i a_O^j,
+\gamma_{ij}a_O^i a_O^j
 $$
 with $a_O^i$ extracted from the same observer-channel metric record. The flux projection must then agree with the effective stress-energy flux computed from that record, and the local conservation residual
 $$
@@ -4419,7 +4436,7 @@ $$
 O_W,
 \Pi_{\mathrm{eff}},
 \mu_{\Omega,\theta}
-\right).
+\right)
 $$
 Here $\mathcal{H}_{\Omega}^{W}$ is the retained path-history data on the window, $\mathcal{B}_{\partial\Omega}^{(O)}(W)$ is the observer-accessible boundary-wake record, $\left.\mathcal{N}_{\mathrm{sea}}\right|_{\Omega,W}$ is the locally resolved Noether sea state, $O_W$ is the observer's clock, ruler, and readout state on the window, $\Pi_{\mathrm{eff}}$ is the projection to the observer-level fields $(N,u^i_{\text{sea}},\gamma_{ij},T_{\mu\nu}^{\mathrm{eff}})$, and $\mu_{\Omega,\theta}$ is the conditional measure over unresolved deterministic histories. This tuple is not a new substrate object. It only names the record that must supply entropy, temperature, flux, and effective metric data together.
 
@@ -4435,7 +4452,7 @@ $$
 =
 \frac{\delta_\ell Q_{\partial\Omega}^{(O)}}{k_B T_U^{(O)}}
 +
-\mathcal{O}(\epsilon_{\mathrm{local}}).
+\mathcal{O}(\epsilon_{\mathrm{local}})
 $$
 Equivalently, $\delta_\ell Q_{\partial\Omega}^{(O)}=T_U^{(O)}\delta_\ell S_{\partial\Omega}^{(O)}+\mathcal{O}(k_B T_U^{(O)}\epsilon_{\mathrm{local}})$, with $S_{\partial\Omega}^{(O)}=k_B\log|\mathcal{B}_{\partial\Omega}^{(O)}|$. The error term collects declared local-gradient, finite-window, and record-coarse-graining residuals; it may not hide a second entropy record, a second stress record, or a separately tuned temperature.
 
@@ -4467,7 +4484,7 @@ a_{\theta}A_{\text{align}}
 +
 \mathcal{O}(\epsilon_A A_{\text{align}}),
 \qquad
-P_a\in\mathcal{P}_{\partial\Omega}.
+P_a\in\mathcal{P}_{\partial\Omega}
 $$
 where $a_{\theta}$ is the derived dimensionless patch-area normalization for the retained record. The coefficient cannot be interpreted as a literal independent one-patch count: $\log|\mathcal{L}_a|=1/4$ would require $|\mathcal{L}_a|=e^{1/4}$, not the cardinality of a finite set. The coherent target is an area-normalized block entropy density. For a connected patch block $U\subseteq\mathcal{P}_{\partial\Omega}$, let $\mathcal{L}_U(\theta_{\Omega,O,W})$ be the joint retained boundary-wake label set on $U$ after fixing the observer record and the edge data to the accuracy declared by $\epsilon_{\mathrm{local}}$. The local aligned-label density is
 $$
@@ -4477,7 +4494,7 @@ s_{\mathrm{align}}(\theta_{\Omega,O,W})
 \frac{1}{|U|}
 \log\left|
 \mathcal{L}_U(\theta_{\Omega,O,W})
-\right|,
+\right|
 $$
 when the limit exists after boundary corrections. The locality part of the theorem target is
 $$
@@ -4489,14 +4506,14 @@ $$
 +
 \mathcal{O}\!\left(
 |\partial U|\epsilon_{\mathrm{corr}}
-\right),
+\right)
 $$
 where the correction records edge and finite-correlation effects between adjacent patches. The normalization part is then the aligned-label statement
 $$
 \frac{s_{\mathrm{align}}(\theta_{\Omega,O,W})}
 {a_{\theta}}
 \longrightarrow
-\frac{1}{4}.
+\frac{1}{4}
 $$
 Together with $\sum_{P_a\in\mathcal{P}_{\partial\Omega}}A_{\mathrm{eff}}(P_a)\to A_{\partial\Omega}^{\mathrm{eff}}$, these claims imply the area density above. This does not prove the coefficient by definition. It reduces the problem to a local aligned-interface calculation: terminal nested shell swarm alignment must supply a universal block entropy density, its patch-area normalization, and surrounding Noether sea correlations short-range enough that the boundary count is additive up to edge residuals.
 
@@ -4525,14 +4542,14 @@ The core task of this document will be to:
 
 To make the mapping functional explicit at first post-Newtonian order, start in the local Noether sea rest gauge
 $$
-u^i_{\text{sea}}=0,
+u^i_{\text{sea}}=0
 $$
 with observer-channel speed $c_0=c_{\text{eff}}(\infty)$. The weak-field target is
 $$
 N(\mathbf{x})
 =
 1+\frac{\Phi_N(\mathbf{x})}{c_0^2}
-+\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right),
++\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
 $$
 \gamma_{ij}(\mathbf{x})
@@ -4540,7 +4557,7 @@ $$
 \left(
 1-2\gamma_{\text{eff}}\frac{\Phi_N(\mathbf{x})}{c_0^2}
 \right)h_{ij}
-+\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right).
++\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
 
 Equivalently, using $x^0=c_0t$ in the observer-sector metric,
@@ -4548,7 +4565,7 @@ $$
 g^{\text{eff}}_{00}(\mathbf{x})
 =
 -\left(1+\frac{2\Phi_N(\mathbf{x})}{c_0^2}\right)
-+\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right),
++\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
 $$
 g^{\text{eff}}_{ij}(\mathbf{x})
@@ -4556,12 +4573,12 @@ g^{\text{eff}}_{ij}(\mathbf{x})
 \left(
 1-2\gamma_{\text{eff}}\frac{\Phi_N(\mathbf{x})}{c_0^2}
 \right)h_{ij}
-+\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right).
++\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
 
 The canonical Noether sea delay factor remains
 $$
-\chi_{\text{sea}}(\mathbf{x})\equiv \frac{c_f}{c_{\text{eff}}(\mathbf{x})}.
+\chi_{\text{sea}}(\mathbf{x})\equiv \frac{c_f}{c_{\text{eff}}(\mathbf{x})}
 $$
 For PPN time-of-flight comparisons, normalize by the homogeneous observer speed:
 $$
@@ -4570,11 +4587,11 @@ $$
 \frac{\chi_{\text{sea}}(\mathbf{x})}{\chi_{\text{sea}}(\infty)}
 =
 1-(1+\gamma_{\text{eff}})\frac{\Phi_N(\mathbf{x})}{c_0^2}
-+\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right),
++\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
 so travel time on a Euclidean anchor path $\Gamma$ is
 $$
-t[\Gamma]=\frac{1}{c_0}\int_\Gamma \frac{c_0}{c_{\text{eff}}(\mathbf{x})}\,ds.
+t[\Gamma]=\frac{1}{c_0}\int_\Gamma \frac{c_0}{c_{\text{eff}}(\mathbf{x})}\,ds
 $$
 
 This is the concrete first-order realization of
@@ -4583,7 +4600,7 @@ $$
 \mapsto
 (N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij})
 \mapsto
-g^{\text{eff}}_{\mu\nu},
+g^{\text{eff}}_{\mu\nu}
 $$
 with $\gamma_{\text{eff}}$ the observer-level refraction/spatial-compliance coefficient extracted from the same constitutive record whose Shapiro-delay and lensing projections are tested in [ppn-parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md#explicit-weak-field-noether-sea-delay-map-ppn-gamma).
 
@@ -4595,7 +4612,7 @@ $$
 \mapsto
 (N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij})
 \mapsto
-g^{\text{eff}}_{\mu\nu}.
+g^{\text{eff}}_{\mu\nu}
 $$
 
 Distribute proof obligations as:
@@ -4619,7 +4636,7 @@ u^i_{\text{sea}}=0,
 \qquad
 \gamma_{ij}=\Omega^2(n,\lambda)h_{ij},
 \qquad
-N=\Omega(n,\lambda)\xi.
+N=\Omega(n,\lambda)\xi
 $$
 
 Here $\xi$ is the Noether swarm envelope shape ratio $\xi=R_{\parallel}/R_{\perp}$, not a synonym for the clock-rate factor. The stationary ideal clock-rate factor in this metric subclass is $N=\Omega\xi$ only after the geometry-to-clock map is fixed.
@@ -4630,14 +4647,14 @@ $$
 =
 c_0^2\ln\!\big(\Omega(x)\xi(x)\big),
 \qquad
-N(x)=e^{\Phi_{\text{eff}}(x)/c_0^2}.
+N(x)=e^{\Phi_{\text{eff}}(x)/c_0^2}
 $$
 
 With $x^0=c_0t$, the Noether sea rest-frame metric components are
 $$
 g^{\text{eff}}_{00}=-N^2,
 \qquad
-g^{\text{eff}}_{ij}=\Omega^2h_{ij}.
+g^{\text{eff}}_{ij}=\Omega^2h_{ij}
 $$
 For a slowly moving test assembly in a stationary medium, the dominant connection piece is
 $$
@@ -4647,7 +4664,7 @@ $$
 =
 \xi^{2}\,\partial^i\ln(\Omega\xi)
 =
-\xi^{2}\frac{\partial^i\Phi_{\text{eff}}}{c_0^2}.
+\xi^{2}\frac{\partial^i\Phi_{\text{eff}}}{c_0^2}
 $$
 Using $dx^0/dt\approx c_0$, the spatial geodesic equation gives
 $$
@@ -4655,13 +4672,13 @@ $$
 \approx
 -\Gamma^i_{00}\left(\frac{dx^0}{dt}\right)^2
 =
--\xi^{2}\nabla^i\Phi_{\text{eff}}.
+-\xi^{2}\nabla^i\Phi_{\text{eff}}
 $$
 Hence, in weak field ($\xi\to 1$),
 $$
 \frac{d^2\mathbf{x}}{dt^2}
 =-\nabla\Phi_{\text{eff}}
-+O\!\left(\left|1-\xi^{2}\right|\,\left|\nabla\Phi_{\text{eff}}\right|\right),
++O\!\left(\left|1-\xi^{2}\right|\,\left|\nabla\Phi_{\text{eff}}\right|\right)
 $$
 which is the Newtonian limit.
 
@@ -4717,27 +4734,27 @@ $$
 =
 \frac{c_0}{c_f}\chi_{\text{sea}}(\mathbf{x})
 = 1 - (1+\gamma_{\text{eff}})\frac{\Phi_N(\mathbf{x})}{c_0^2}
-+ \mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right),
++ \mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
 with $\Phi_N<0$ near a mass source. For a point mass $M$,
 $$
 \Phi_N(r)=-\frac{GM}{r}
 \quad\Rightarrow\quad
 \bar{\chi}_{\text{sea}}(r)=1+(1+\gamma_{\text{eff}})\frac{GM}{c_0^2 r}
-+\mathcal{O}\!\left(\frac{G^2M^2}{c_0^4 r^2}\right).
++\mathcal{O}\!\left(\frac{G^2M^2}{c_0^4 r^2}\right)
 $$
 
 For a one-way signal along a Euclidean straight path $\Gamma$ (the $\mathbb{U}_{\text{now}}$ anchor),
 $$
 t_{\text{arch}}=\frac{1}{c_0}\int_\Gamma \bar{\chi}_{\text{sea}}(\mathbf{x})\,ds
-=\frac{R}{c_0}+\Delta t_{\text{arch}},
+=\frac{R}{c_0}+\Delta t_{\text{arch}}
 $$
 where $R=\int_\Gamma ds$ is Euclidean path length and
 $$
 \Delta t_{\text{arch}}
 =\frac{1}{c_0}\int_\Gamma (\bar{\chi}_{\text{sea}}-1)\,ds
 =\frac{(1+\gamma_{\text{eff}})GM}{c_0^3}\int_\Gamma \frac{ds}{r(s)}
-+\mathcal{O}\!\left(\frac{G^2M^2}{c_0^5}\right).
++\mathcal{O}\!\left(\frac{G^2M^2}{c_0^5}\right)
 $$
 
 Evaluating the line integral for endpoint radii $r_1,r_2$ and Euclidean endpoint separation $R$ gives
@@ -4745,7 +4762,7 @@ $$
 \Delta t_{\text{arch}}
 =\frac{(1+\gamma_{\text{eff}})GM}{c_0^3}
 \ln\!\left(\frac{r_1+r_2+R}{r_1+r_2-R}\right)
-+\mathcal{O}\!\left(\frac{G^2M^2}{c_0^5}\right),
++\mathcal{O}\!\left(\frac{G^2M^2}{c_0^5}\right)
 $$
 which is the standard 1PN Shapiro form with $\gamma\to\gamma_{\text{eff}}$ and $c\to c_0$. The primitive wake speed $c_f$ remains in the unnormalized delay factor $\chi_{\text{sea}}=c_f/c_{\text{eff}}$; observer-facing PPN timing uses the asymptotic dressed speed $c_0$.
 
@@ -4755,7 +4772,7 @@ $$
 =
 \frac{c_0^3\,\Delta t_{\text{obs}}}
 {GM\ln\!\left(\frac{r_1+r_2+R}{r_1+r_2-R}\right)}
--1,
+-1
 $$
 with $\Delta t_{\text{obs}}=t_{\text{obs}}-R/c_0$.
 
@@ -4764,7 +4781,7 @@ In the weak-field solar-system regime, $\gamma_{\text{eff}}$ is the direct refra
 The same Shapiro map also fixes the first-order signal-delay response coefficient
 
 $$
-a_\chi^{\mathrm{sig}}=1+\gamma_{\text{eff}}.
+a_\chi^{\mathrm{sig}}=1+\gamma_{\text{eff}}
 $$
 
 This is not automatically the clock coefficient $a_\chi$ used in the static $\Gamma_N$ endpoint row. The shared clock/signal delay branch is the additional condition
@@ -4773,7 +4790,7 @@ $$
 \Delta_\chi^{\mathrm{clk\text{-}sig}}
 \equiv
 a_\chi-a_\chi^{\mathrm{sig}}
-=0.
+=0
 $$
 
 When this residual vanishes, Shapiro delay and gravitational clock redshift are using the same first-order Noether sea delay response. When it does not vanish, PPN delay, redshift, lensing, pressure-response, and cosmological redshift comparisons must carry the residual explicitly rather than refitting $\chi_{\text{sea}}$ per observable.
@@ -4789,13 +4806,13 @@ The light-bending half-test makes the same point numerically. A lapse-only weak-
 $$
 \Delta\theta_{\mathrm{half}}
 =
-\frac{2GM}{b\,c_0^2},
+\frac{2GM}{b\,c_0^2}
 $$
 while the full GR-matching target is
 $$
 \Delta\theta_{\mathrm{GR}}
 =
-\frac{4GM}{b\,c_0^2}.
+\frac{4GM}{b\,c_0^2}
 $$
 In the forward projection below, the missing half is precisely the $\gamma_{\text{eff}}$ spatial-compliance contribution. Therefore a constitutive map cannot claim PPN closure by matching Shapiro delay with a scalar delay factor while leaving the ruler/spatial-compliance row undefined.
 
@@ -4808,7 +4825,7 @@ $$
 =
 1-\frac{U}{c_0^2}
 +C_2(a,k)\frac{U^2}{c_0^4}
-+\mathcal{O}\!\left(\frac{U^3}{c_0^6}\right).
++\mathcal{O}\!\left(\frac{U^3}{c_0^6}\right)
 $$
 Since $-g_{00}=(d\tau/dt)^2$ for a static observer,
 $$
@@ -4817,7 +4834,7 @@ g_{00}
 -1
 +2\frac{U}{c_0^2}
 -\bigl[1+2C_2(a,k)\bigr]\frac{U^2}{c_0^4}
-+\mathcal{O}\!\left(\frac{U^3}{c_0^6}\right).
++\mathcal{O}\!\left(\frac{U^3}{c_0^6}\right)
 $$
 Match to the PPN form
 $$
@@ -4827,7 +4844,7 @@ g_{00}^{\mathrm{PPN}}
 $$
 to obtain
 $$
-\boxed{\beta_{\mathrm{eff}}(a,k)=\frac{1+2C_2(a,k)}{2}}.
+\boxed{\beta_{\mathrm{eff}}(a,k)=\frac{1+2C_2(a,k)}{2}}
 $$
 Equivalently, if $\alpha(\mathcal{I})=1+\lambda_t\mathcal{I}+\frac{1}{2}\lambda_{tt}\mathcal{I}^2$ and
 $\mathcal{I}=\chi_1(a,k)\,U/c_0^2+\chi_2(a,k)\,U^2/c_0^4+\cdots$, then
@@ -4836,7 +4853,7 @@ $$
 =
 \frac{1}{2}
 +\lambda_t\chi_2(a,k)
-+\frac{1}{2}\lambda_{tt}\chi_1(a,k)^2.
++\frac{1}{2}\lambda_{tt}\chi_1(a,k)^2
 $$
 * **Observable:** Perihelion precession and other 1PN nonlinear-potential tests.
 
@@ -4846,7 +4863,7 @@ If the constitutive clock channel is exactly
 $$
 \Omega\xi=e^{\Phi_{\text{eff}}/c_0^2},
 \qquad
-g_{00}=-(\Omega\xi)^2,
+g_{00}=-(\Omega\xi)^2
 $$
 then with $U_{\Phi}\equiv -\Phi_{\text{eff}}$:
 $$
@@ -4854,7 +4871,7 @@ g_{00}
 =
 -e^{2\Phi_{\text{eff}}/c_0^2}
 =
--1+2\frac{U_{\Phi}}{c_0^2}-2\frac{U_{\Phi}^2}{c_0^4}+O(c_0^{-6}),
+-1+2\frac{U_{\Phi}}{c_0^2}-2\frac{U_{\Phi}^2}{c_0^4}+O(c_0^{-6})
 $$
 so this subclass yields
 $$
@@ -4874,26 +4891,26 @@ $$
 g_{0i}^{\text{leak}}
 =
 -\frac{1}{2}\Xi_1(a,k)\frac{w_i U}{c_0^3}
--\Xi_2(a,k)\frac{w^j U_{ij}}{c_0^3},
+-\Xi_2(a,k)\frac{w^j U_{ij}}{c_0^3}
 $$
 $$
 g_{00}^{\text{leak}}
 =
 -\Xi_3(a,k)\frac{w^2 U}{c_0^4}
 -\Xi_2(a,k)\frac{w^i w^j U_{ij}}{c_0^4}
-+\Xi_4(a,k)\frac{w^i V_i}{c_0^3}.
++\Xi_4(a,k)\frac{w^i V_i}{c_0^3}
 $$
 Matching to standard PPN preferred-frame structure gives
 $$
 \boxed{\alpha_1(a,k)=\Xi_1(a,k)},\qquad
-\boxed{\alpha_2(a,k)=\Xi_2(a,k)},
+\boxed{\alpha_2(a,k)=\Xi_2(a,k)}
 $$
 $$
-\boxed{\alpha_3(a,k)=\Xi_1(a,k)-\Xi_2(a,k)-\Xi_3(a,k)},
+\boxed{\alpha_3(a,k)=\Xi_1(a,k)-\Xi_2(a,k)-\Xi_3(a,k)}
 $$
 with consistency relation
 $$
-\Xi_4(a,k)=2\alpha_3-\alpha_1=\Xi_1-2\Xi_2-2\Xi_3.
+\Xi_4(a,k)=2\alpha_3-\alpha_1=\Xi_1-2\Xi_2-2\Xi_3
 $$
 
 #### Zero-Leakage Conditions (Preferred-Frame Closure)
@@ -4902,7 +4919,7 @@ The effective theory is preferred-frame safe iff all drift couplings vanish:
 $$
 \Xi_1=\Xi_2=\Xi_3=\Xi_4=0
 \quad\Longleftrightarrow\quad
-\alpha_1=\alpha_2=\alpha_3=0.
+\alpha_1=\alpha_2=\alpha_3=0
 $$
 
 Equivalent constitutive conditions:
@@ -4911,7 +4928,7 @@ $$
 \qquad
 \left.\frac{\partial^2 g_{00}}{\partial w_i\partial w_j}\right|_{\mathbf{w}=0}
 \propto \delta_{ij}
-\ \text{with zero traceless part},
+\ \text{with zero traceless part}
 $$
 and no momentum-density coupling term $w^iV_i$ at the retained PN order.
 
@@ -4936,7 +4953,7 @@ y_{A,0}
 \left(\mathbf{w}(t)\cdot\hat{\mathbf{n}}_A(t)\right)^2
 -w^2(t)/3
 }{c_0^2}
-+n_A(t).
++n_A(t)
 $$
 Here $\mathbf{s}_A$ is the PPN sensitivity row for the channel, $\zeta_A$ is an allowed apparatus-calibration nuisance fixed by the instrument model, and $n_A$ is detector/environment noise. The shared preferred-frame residual is
 $$
@@ -4948,7 +4965,7 @@ y_A^{\mathrm{obs}}-y_A^{\theta}
 \right\|_{C_A^{-1}}^2
 +
 \lambda_{\mathrm{PF}}
-\left(\alpha_1^2+\alpha_2^2+\alpha_3^2\right).
+\left(\alpha_1^2+\alpha_2^2+\alpha_3^2\right)
 $$
 The bundle fails if one clock or material channel requires a nonzero $\alpha_i$ that another channel excludes, or if the orientation/annual term is hidden in $\zeta_A$ rather than projected through $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$.
 
@@ -4978,7 +4995,7 @@ $$
 4\times 10^{-5}\\
 2\times 10^{-9}\\
 4\times 10^{-20}
-\end{pmatrix},
+\end{pmatrix}
 $$
 ordered as
 $$
@@ -4988,7 +5005,7 @@ $$
 |\alpha_1|,
 |\alpha_2|,
 |\alpha_3|
-\right).
+\right)
 $$
 The first row is the Cassini time-delay bound on $\gamma_{\mathrm{PPN}}-1$; the second uses the perihelion-shift row for $\beta_{\mathrm{PPN}}-1$; the preferred-frame rows use the best listed weak-field/strong-field analogue bounds. Strong-field pulsar bounds should not be silently reclassified as solar-system PPN measurements, but they are valid closure pressure: any $\mathbb{A}\mathbb{A}\mathbb{A}$ drift leakage that survives in ordinary clocks, orbits, or pulsar timing must project below the corresponding row unless a separate strong-field screening mechanism is derived.
 
@@ -5003,7 +5020,7 @@ $$
 \alpha_1\\
 \alpha_2\\
 \alpha_3
-\end{pmatrix}.
+\end{pmatrix}
 $$
 Weak-field closure requires
 $$
@@ -5020,7 +5037,7 @@ $$
 \|\tilde\kappa_{o+}^{\mathrm{eff}}\|,
 |\tilde\kappa_{\mathrm{tr}}^{\mathrm{eff}}|,
 \|\bar{s}^{\mu\nu}_{\mathrm{eff}}\|
-\right),
+\right)
 $$
 with $\tilde\kappa_{\bullet}^{\mathrm{eff}}$ used as photon-sector comparison coefficients and $\bar{s}^{\mu\nu}_{\mathrm{eff}}$ used as a gravity-sector comparison coefficient. These are observer-level projection diagnostics; they are not substrate coefficients added to the Euclidean void.
 
@@ -5031,7 +5048,7 @@ This chapter is the observable-side gate for the emergent-metric closure.
 Define the PPN decision vector:
 $$
 \mathbf{p}_{\mathrm{PPN}}=
-\bigl(\gamma_{\mathrm{eff}}-1,\ \beta_{\mathrm{eff}}-1,\ \alpha_1,\ \alpha_2,\ \alpha_3\bigr).
+\bigl(\gamma_{\mathrm{eff}}-1,\ \beta_{\mathrm{eff}}-1,\ \alpha_1,\ \alpha_2,\ \alpha_3\bigr)
 $$
 The weak-field closure target is
 $$
@@ -5066,7 +5083,7 @@ g_{0i}^{\mathrm{eff}}
 =
 -\frac{\gamma_{ij}u^j_{\text{sea}}}{c_0},
 \qquad
-g_{ij}^{\mathrm{eff}}=\gamma_{ij}.
+g_{ij}^{\mathrm{eff}}=\gamma_{ij}
 $$
 
 In the local Noether sea rest weak-field row, write
@@ -5075,7 +5092,7 @@ N
 =
 1-\frac{U_{\Phi}}{c_0^2}
 +C_2\frac{U_{\Phi}^2}{c_0^4}
-+O(c_0^{-6},\epsilon_{\mathrm{LV}}),
++O(c_0^{-6},\epsilon_{\mathrm{LV}})
 $$
 and extract
 $$
@@ -5087,13 +5104,13 @@ $$
 \right)
 +O(U_{\Phi}/c_0^2,\epsilon_{\mathrm{LV}}),
 \qquad
-\beta_{\mathrm{PPN}}-1=C_2-\frac12.
+\beta_{\mathrm{PPN}}-1=C_2-\frac12
 $$
 The preferred-frame coefficients are the retained drift coefficients in $g_{0i}^{\mathrm{eff}}$ and $g_{00}^{\mathrm{eff}}$ under the $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ expansion above, with
 $$
 \alpha_1=\Xi_1,\qquad
 \alpha_2=\Xi_2,\qquad
-\alpha_3=\Xi_1-\Xi_2-\Xi_3.
+\alpha_3=\Xi_1-\Xi_2-\Xi_3
 $$
 
 For a declared observation window $W$, the shared weak-field residual can be recorded as
@@ -5110,14 +5127,14 @@ R_{\mathrm{acc}}\\
 \alpha_1\\
 \alpha_2\\
 \alpha_3
-\end{pmatrix},
+\end{pmatrix}
 $$
 with
 $$
 R_{\mathrm{acc}}
 =
 \frac{\left\|\frac{d^2\mathbf{x}}{dt^2}+\nabla\Phi_{\text{eff}}\right\|_W}
-{\left\|\nabla\Phi_{\text{eff}}\right\|_W+\varepsilon}.
+{\left\|\nabla\Phi_{\text{eff}}\right\|_W+\varepsilon}
 $$
 The other residuals are the redshift, Shapiro, and lensing differences computed from the same $\theta$ and the forward projection below. This strengthens the existing decision layer; it is not a separate gate.
 
@@ -5145,17 +5162,17 @@ C_2\\
 \alpha_1\\
 \alpha_2\\
 \alpha_3
-\end{pmatrix}.
+\end{pmatrix}
 $$
 Using
 $$
 \beta_{\mathrm{PPN}}-1=\left(\frac{1+2C_2}{2}\right)-1=C_2-\frac12,
 \qquad
-\alpha_1=\Xi_1,\ \alpha_2=\Xi_2,\ \alpha_3=\Xi_1-\Xi_2-\Xi_3,
+\alpha_1=\Xi_1,\ \alpha_2=\Xi_2,\ \alpha_3=\Xi_1-\Xi_2-\Xi_3
 $$
 the map is the exact linear projection
 $$
-\mathbf{p}_{\mathrm{PPN}}=\mathbf{J}\mathbf{\theta}-\mathbf{p}_0,
+\mathbf{p}_{\mathrm{PPN}}=\mathbf{J}\mathbf{\theta}-\mathbf{p}_0
 $$
 with
 $$
@@ -5176,17 +5193,17 @@ $$
 0 & 0 & 1 & 0 & 0\\
 0 & 0 & 0 & 1 & 0\\
 0 & 0 & 1 & -1 & -1
-\end{pmatrix}.
+\end{pmatrix}
 $$
 
 If $\Sigma_\theta$ is the covariance of the constitutive fit from micro-simulations, propagate uncertainty by
 $$
-\Sigma_{\mathrm{PPN}}=\mathbf{J}\Sigma_\theta\mathbf{J}^{\mathsf T}.
+\Sigma_{\mathrm{PPN}}=\mathbf{J}\Sigma_\theta\mathbf{J}^{\mathsf T}
 $$
 
 Define the single Tier-1 weighted closure objective
 $$
-\mathcal{L}(\mathbf{\theta})=\mathbf{p}_{\mathrm{PPN}}^{\mathsf T}\mathbf{W}\,\mathbf{p}_{\mathrm{PPN}},
+\mathcal{L}(\mathbf{\theta})=\mathbf{p}_{\mathrm{PPN}}^{\mathsf T}\mathbf{W}\,\mathbf{p}_{\mathrm{PPN}}
 $$
 where $\mathbf{W}$ is the precision matrix from ledger tolerances.
 With the source-mined benchmark vector above,
@@ -5199,7 +5216,7 @@ $$
 (4\times10^{-5})^{-2},
 (2\times10^{-9})^{-2},
 (4\times10^{-20})^{-2}
-\right).
+\right)
 $$
 
 Forward-only evaluation rule:
@@ -5219,7 +5236,7 @@ $$
 \Delta\phi_{\text{Def}}\\
 \Delta\omega_{\text{Prec}}\\
 z_{\text{Red}}
-\end{pmatrix}.
+\end{pmatrix}
 $$
 Using the weak-field constitutive map of $\mathbb{A}\mathbb{A}\mathbb{A}$:
 
@@ -5229,14 +5246,14 @@ O_1(\mathbf{\theta})=K_{\text{Shap}}(1+\gamma_{\text{eff}}),
 \qquad
 K_{\text{Shap}}=
 \frac{GM}{c_0^3}
-\ln\!\left(\frac{r_1+r_2+R}{r_1+r_2-R}\right).
+\ln\!\left(\frac{r_1+r_2+R}{r_1+r_2-R}\right)
 $$
 For two-way radar-style Shapiro measurements, apply the same kernel on each leg and sum the two one-way contributions.
 2. Light deflection:
 $$
 O_2(\mathbf{\theta})=K_{\text{Def}}(1+\gamma_{\text{eff}}),
 \qquad
-K_{\text{Def}}=\frac{2GM}{b\,c_0^2}.
+K_{\text{Def}}=\frac{2GM}{b\,c_0^2}
 $$
 3. Perihelion precession per orbit:
 $$
@@ -5244,10 +5261,10 @@ O_3(\mathbf{\theta})
 =
 K_{\text{Prec}}\left(2+2\gamma_{\text{PPN}}-\beta_{\text{PPN}}\right)
 =
-K_{\text{Prec}}\left(1.5+2\gamma_{\text{eff}}-C_2\right),
+K_{\text{Prec}}\left(1.5+2\gamma_{\text{eff}}-C_2\right)
 $$
 $$
-K_{\text{Prec}}=\frac{2\pi GM}{a(1-e^2)c_0^2}.
+K_{\text{Prec}}=\frac{2\pi GM}{a(1-e^2)c_0^2}
 $$
 4. Gravitational redshift (to retained order):
 $$
@@ -5257,7 +5274,7 @@ K_{\text{Red1}}-K_{\text{Red2}}C_2,
 \qquad
 K_{\text{Red1}}=\frac{\Delta U}{c_0^2},
 \quad
-K_{\text{Red2}}=\frac{\Delta(U^2)}{c_0^4}.
+K_{\text{Red2}}=\frac{\Delta(U^2)}{c_0^4}
 $$
 
 First-order observable sensitivities are
@@ -5271,11 +5288,11 @@ K_{\text{Shap}} & 0 & 0 & 0 & 0\\
 K_{\text{Def}} & 0 & 0 & 0 & 0\\
 2K_{\text{Prec}} & -K_{\text{Prec}} & 0 & 0 & 0\\
 0 & -K_{\text{Red2}} & 0 & 0 & 0
-\end{pmatrix},
+\end{pmatrix}
 $$
 and the propagated covariance is
 $$
-\Sigma_O=\mathbf{J}_O\Sigma_\theta\mathbf{J}_O^{\mathsf T}.
+\Sigma_O=\mathbf{J}_O\Sigma_\theta\mathbf{J}_O^{\mathsf T}
 $$
 For this spherically symmetric classical set, preferred-frame channels $(\Xi_1,\Xi_2,\Xi_3)$ decouple at leading order; they are constrained by dedicated drift/leakage observables.
 
@@ -5285,7 +5302,7 @@ Use
 $$
 \frac{GM_\odot}{c_0^2}=1.4766\times 10^3\ \mathrm{m},
 \qquad
-\frac{GM_\odot}{c_0^3}=4.925\times 10^{-6}\ \mathrm{s},
+\frac{GM_\odot}{c_0^3}=4.925\times 10^{-6}\ \mathrm{s}
 $$
 with reference kernels
 $$
@@ -5297,7 +5314,7 @@ K_{\text{Prec}}=14.3''/\mathrm{cy},
 \quad
 K_{\text{Red1}}=2.12\times 10^{-6},
 \quad
-K_{\text{Red2}}=4.50\times 10^{-12}.
+K_{\text{Red2}}=4.50\times 10^{-12}
 $$
 Take a synthetic constitutive fit
 $$
@@ -5309,7 +5326,7 @@ $$
 10^{-18}\\
 -0.5\times 10^{-18}\\
 0.2\times 10^{-18}
-\end{pmatrix},
+\end{pmatrix}
 $$
 $$
 \Sigma_\theta=
@@ -5319,7 +5336,7 @@ $$
 10^{-36},
 10^{-36},
 10^{-36}
-\right).
+\right)
 $$
 This block is an internal consistency projection example, not a claim of experimental pass/fail by itself.
 
@@ -5329,7 +5346,7 @@ $$
 \quad
 \beta_{\mathrm{PPN}}-1=0.8\times 10^{-5},
 \quad
-(\alpha_1,\alpha_2,\alpha_3)=\left(10^{-18},-0.5\times 10^{-18},1.3\times 10^{-18}\right).
+(\alpha_1,\alpha_2,\alpha_3)=\left(10^{-18},-0.5\times 10^{-18},1.3\times 10^{-18}\right)
 $$
 Forward observables are
 $$
@@ -5337,10 +5354,10 @@ $$
 \quad
 \Delta\phi_{\text{Def}}=1.75001'',
 \quad
-\Delta\omega_{\text{Prec}}=42.9002''/\mathrm{cy},
+\Delta\omega_{\text{Prec}}=42.9002''/\mathrm{cy}
 $$
 $$
-z_{\text{Red}}\approx 2.119997\times 10^{-6}.
+z_{\text{Red}}\approx 2.119997\times 10^{-6}
 $$
 Propagated $1\sigma$ scales (diagonal approximation) are
 $$
@@ -5350,13 +5367,13 @@ $$
 \quad
 \sigma_{\text{Prec}}\approx 1.5\times 10^{-4}''/\mathrm{cy},
 \quad
-\sigma_{\text{Red}}\approx 1.8\times 10^{-17}.
+\sigma_{\text{Red}}\approx 1.8\times 10^{-17}
 $$
 
 Failure rule for this closure layer:
 if any observed value lies outside
 $$
-\mathbf{O}(\mathbf{\theta})\pm 3\sqrt{\operatorname{diag}(\Sigma_O)},
+\mathbf{O}(\mathbf{\theta})\pm 3\sqrt{\operatorname{diag}(\Sigma_O)}
 $$
 the constitutive map fails this gate and must be replaced rather than re-fit per observable.
 
@@ -5369,12 +5386,12 @@ $$
 -\frac{1}{2}
 \bigl(\mathbf{O}(\mathbf{\theta})-\mathbf{O}_{\text{obs}}\bigr)^{\mathsf T}
 \Sigma_{\text{obs}}^{-1}
-\bigl(\mathbf{O}(\mathbf{\theta})-\mathbf{O}_{\text{obs}}\bigr),
+\bigl(\mathbf{O}(\mathbf{\theta})-\mathbf{O}_{\text{obs}}\bigr)
 $$
 with
 $$
 \mathbf{\theta}=
-\left(\gamma_{\text{eff}},C_2,\Xi_1,\Xi_2,\Xi_3\right)^{\mathsf T}.
+\left(\gamma_{\text{eff}},C_2,\Xi_1,\Xi_2,\Xi_3\right)^{\mathsf T}
 $$
 
 Benchmark observable inputs for the classical weak-field suite are:
@@ -5391,7 +5408,7 @@ $$
 =
 \frac{\partial \mathbf{O}}{\partial \Xi_3}
 =
-\mathbf{0},
+\mathbf{0}
 $$
 so the Fisher matrix is rank-2 in this fit and $(\Xi_1,\Xi_2,\Xi_3)$ remain unconstrained by this subset alone.
 
@@ -5402,17 +5419,17 @@ $$
 \begin{pmatrix}
 5.1\times 10^{-10} & 1.02\times 10^{-9}\\
 1.02\times 10^{-9} & 2.94\times 10^{-9}
-\end{pmatrix},
+\end{pmatrix}
 $$
 with maximum-likelihood point
 $$
 \gamma_{\text{eff}}=1+(2.03\pm2.26)\times 10^{-5},
 \qquad
-C_2=0.5+(4.06\pm5.42)\times 10^{-5},
+C_2=0.5+(4.06\pm5.42)\times 10^{-5}
 $$
 and correlation
 $$
-\rho(\gamma_{\text{eff}},C_2)=+0.83.
+\rho(\gamma_{\text{eff}},C_2)=+0.83
 $$
 
 Interpretation for closure:
@@ -5424,7 +5441,7 @@ Interpretation for closure:
 
 Define the preferred-frame constitutive vector
 $$
-\boldsymbol{\Xi}\equiv(\Xi_1,\Xi_2,\Xi_3)^{\mathsf T}.
+\boldsymbol{\Xi}\equiv(\Xi_1,\Xi_2,\Xi_3)^{\mathsf T}
 $$
 For the spherical classical set above, $\boldsymbol{\Xi}$ is unconstrained. For an expanded drift-sensitive baseline (ephemerides + LLR + anisotropy channels), treat the preferred-frame Fisher block as
 $$
@@ -5434,11 +5451,11 @@ $$
 \nabla_{\boldsymbol{\Xi}}
 \nabla_{\boldsymbol{\Xi}}^{\mathsf T}
 \ln \mathcal{L}_{\text{base}}
-\right],
+\right]
 $$
 with rank-2 degeneracy and null direction $\hat n$:
 $$
-\mathcal{I}_{\Xi,\text{base}}\hat n=\mathbf{0}.
+\mathcal{I}_{\Xi,\text{base}}\hat n=\mathbf{0}
 $$
 
 Minimal augmentation:
@@ -5451,7 +5468,7 @@ $$
 =
 \ln \mathcal{L}_{\text{base}}
 +\ln \mathcal{L}_{\dot e}
-+\ln \mathcal{L}_{\dot P}.
++\ln \mathcal{L}_{\dot P}
 $$
 The augmented Fisher matrix is
 $$
@@ -5463,7 +5480,7 @@ $$
 \left(\nabla_{\boldsymbol{\Xi}}\dot e\right)^{\mathsf T}
 +\frac{1}{\sigma_{\dot P}^2}
 \left(\nabla_{\boldsymbol{\Xi}}\dot P\right)\!
-\left(\nabla_{\boldsymbol{\Xi}}\dot P\right)^{\mathsf T}.
+\left(\nabla_{\boldsymbol{\Xi}}\dot P\right)^{\mathsf T}
 $$
 
 Degeneracy-lift criterion:
@@ -5509,7 +5526,7 @@ At the observer level, the same Noether sea must generate the effective metric b
 $$
 \text{medium response}
 \;\Longrightarrow\;
-\text{effective metric observables}.
+\text{effective metric observables}
 $$
 
 The closure demand is not merely qualitative resemblance. The same constitutive map must jointly recover redshift, Shapiro delay, light bending, perihelion precession, and gravitational-wave propagation in the regimes where GR is already tested.
@@ -5522,7 +5539,7 @@ $$
 =
 \mathbf{r}_{\mathrm{net}}(\theta)^{\mathsf T}
 C_{\mathrm{net}}^{-1}
-\mathbf{r}_{\mathrm{net}}(\theta),
+\mathbf{r}_{\mathrm{net}}(\theta)
 $$
 where $\mathbf{r}_{\mathrm{net}}$ contains the redshift, Shapiro, lensing, 1PN, preferred-frame, equivalence-principle, gravitational-wave, and CMB-derived gravity rows that are claimed by the same record $\theta$. The covariance $C_{\mathrm{net}}$ must include detector calibration, astrophysical nuisance parameters, foregrounds, and external-source uncertainty. A channel passes only when the same $\theta$ survives this joint network; agreement in a single row is a prompt for cross-checks, not closure.
 
@@ -5542,7 +5559,7 @@ d_{\mathrm{ord}}\!\left(\prec_{\mathrm{eff}}(\theta),\prec_{\mathrm{GR}}\right)
 \right\|_{W}
 +
 \lambda_{\mathrm{PF}}
-\sum_{i=1}^{3}\alpha_i(\theta)^2.
+\sum_{i=1}^{3}\alpha_i(\theta)^2
 $$
 The causal-order term tests the effective light-cone structure, the clock term supplies local scale, and the preferred-frame term keeps the absolute substrate frame hidden below observational bounds. Passing this check does not replace the redshift, Shapiro, lensing, 1PN, quantum-gravity EFT, or gravitational-wave tests below; it prevents them from being fit by mutually incompatible causal and clock conventions.
 
@@ -5560,7 +5577,7 @@ X_\Omega(t_i),
 N_{\text{sea}}|_{\Omega\times W}
 \right)
 \longrightarrow
-\mathcal{S}_{\Omega}(t_f),
+\mathcal{S}_{\Omega}(t_f)
 $$
 where $\mathcal{S}_{\Omega}(t_f)$ is the finite accepted endpoint or branch-label set. A GR comparison that assumes global hyperbolicity can be used only after the same $\theta$ also recovers the local causal-order, clock, PPN, and gravitational-wave observables above. If $\mathcal{S}_{\Omega}(t_f)$ is empty, infinite without a finite ledger, or selected by an external global assumption rather than by the recorded boundary data, the effective-metric continuation has not closed.
 
@@ -5578,7 +5595,7 @@ in the weak-field, low-velocity observer regime, where $c_0\equiv c_{\text{eff}}
 $$
 \frac{\Delta \nu}{\nu}
 \approx
-\frac{\Delta \Phi_N}{c_0^2}.
+\frac{\Delta \Phi_N}{c_0^2}
 $$
 
 Operationally, GPS offsets, Pound-Rebka, and related clock-comparison tests are the direct acceptance layer. Height-resolved optical-clock comparisons sharpen this layer: near Earth's surface, $\Delta\nu/\nu\approx gL/c_0^2$, so a $1\,\mathrm{mm}$ clock-sample separation corresponds to about $1.1\times10^{-19}$ and a $33\,\mathrm{cm}$ separation to about $3.6\times10^{-17}$. The same clock law must handle both separated clocks and extended collective clock samples without replacing the constitutive coefficients used for Shapiro delay and lensing.
@@ -5587,7 +5604,7 @@ Operationally, GPS offsets, Pound-Rebka, and related clock-comparison tests are 
 
 In the refractive-medium picture, one-way path time is
 $$
-t[\Gamma]=\frac{1}{c_0}\int_\Gamma \bar{\chi}_{\text{sea}}(\mathbf{x})\,ds,
+t[\Gamma]=\frac{1}{c_0}\int_\Gamma \bar{\chi}_{\text{sea}}(\mathbf{x})\,ds
 $$
 with
 $$
@@ -5598,7 +5615,7 @@ $$
 \frac{c_0}{c_f}\chi_{\text{sea}}(\mathbf{x})
 =
 1-(1+\gamma_{\text{eff}})\frac{\Phi_N(\mathbf{x})}{c_0^2}
-+O(c_0^{-4}).
++O(c_0^{-4})
 $$
 
 For a point mass, the resulting delay is
@@ -5607,7 +5624,7 @@ $$
 =
 \frac{(1+\gamma_{\text{eff}})GM}{c_0^3}
 \ln\!\left(\frac{r_1+r_2+R}{r_1+r_2-R}\right)
-+O(c_0^{-5}),
++O(c_0^{-5})
 $$
 which must match the GR coefficient at current solar-system precision.
 
@@ -5618,11 +5635,11 @@ $$
 \Delta\theta
 \approx
 2(1+\gamma_{\text{eff}})
-\frac{GM}{b\,c_0^2},
+\frac{GM}{b\,c_0^2}
 $$
 with impact parameter $b$. In the GR-matching limit $\gamma_{\text{eff}}=1$, this reduces to the standard
 $$
-\Delta\theta \approx \frac{4GM}{b\,c_0^2}.
+\Delta\theta \approx \frac{4GM}{b\,c_0^2}
 $$
 
 So Shapiro delay and lensing are not separate fit channels. They are two readouts of the same constitutive coefficient.
@@ -5645,7 +5662,7 @@ $$
 N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij},
 \Phi_{\text{eff}},
 \chi_{\text{sea}}
-\right).
+\right)
 $$
 The observable residual bundle is then
 $$
@@ -5665,7 +5682,7 @@ R_{\mathrm{1PN}}\\
 R_{\mathrm{acc}}
 =
 \frac{\left\|\frac{d^2\mathbf{x}}{dt^2}+\nabla\Phi_{\text{eff}}\right\|_W}
-{\left\|\nabla\Phi_{\text{eff}}\right\|_W+\varepsilon}.
+{\left\|\nabla\Phi_{\text{eff}}\right\|_W+\varepsilon}
 $$
 The redshift, Shapiro, lensing, acceleration, 1PN, and preferred-frame rows are acceptable only when they are projections of this same $\theta_W$. If any row requires replacing $N$, $u^i_{\text{sea}}$, $e^a{}_i$, $\gamma_{ij}$, $\Phi_{\text{eff}}$, $\chi_{\text{sea}}$, or the boundary/noise record, the phenomenology pass has become a set of separate fits rather than a GR recovery.
 
@@ -5676,7 +5693,7 @@ $$
 \Delta\varpi_{\mathrm{PPN}}(\theta_W)
 +\Delta\varpi_{J_{2,\odot}}
 +\Delta\varpi_{\mathrm{asteroid}}
-+\Delta\varpi_{\mathrm{noise}},
++\Delta\varpi_{\mathrm{noise}}
 $$
 where $\Delta\varpi_{J_{2,\odot}}$ is the contribution from the Sun's quadrupole moment and the remaining terms collect other modeled ephemeris corrections. A constitutive map cannot improve its PPN fit by silently moving a mismatch into $\Delta\varpi_{J_{2,\odot}}$ or by using a solar-interior assumption inconsistent with helioseismology and light-deflection records. The precession row closes only after the nuisance record is fixed independently enough that $\Delta\varpi_{\mathrm{PPN}}$ is the recovered effect rather than a residual after subtraction.
 
@@ -5691,7 +5708,7 @@ $$
 \Delta\varpi_{\mathrm{PPN}}
 =
 \frac{2\pi GM}{a(1-e^2)c_0^2}
-\left(2+2\gamma_{\text{PPN}}-\beta_{\text{PPN}}\right),
+\left(2+2\gamma_{\text{PPN}}-\beta_{\text{PPN}}\right)
 $$
 so Mercury-type precession is a joint test of the same spatial-compliance coefficient that controls lensing and the same nonlinear clock coefficient that controls $\beta_{\text{PPN}}$.
 
@@ -5710,7 +5727,7 @@ V_{\mathrm{GR\text{-}EFT}}(r)
 +\alpha_{\mathrm{1PN}}\frac{G_N(m_1+m_2)}{c_0^2 r}
 +\alpha_{\hbar}\frac{G_N\hbar}{c_0^3 r^2}
 +\cdots
-\right],
+\right]
 $$
 
 where $\alpha_{\mathrm{1PN}}$ and $\alpha_{\hbar}$ are fixed by the standard low-energy calculation rather than fitted as new $\mathbb{A}\mathbb{A}\mathbb{A}$ parameters. A useful closure residual is
@@ -5725,7 +5742,7 @@ V_{\mathbb{A}\mathbb{A}\mathbb{A}}(r;\theta)
 }{
 G_N m_1 m_2/r
 }
-\right|.
+\right|
 $$
 
 This residual is not a demand that the Noether sea be rewritten as a graviton field. It is a demand that the same weak-field constitutive record that yields redshift, lensing, and wave propagation also recover the long-distance quantum correction in the regime where the effective theory is predictive.
@@ -5738,7 +5755,7 @@ The weak equivalence principle and the strong equivalence principle are distinct
 $$
 \eta_{AB}^{S}
 =
-\frac{2(a_A^S-a_B^S)}{a_A^S+a_B^S}.
+\frac{2(a_A^S-a_B^S)}{a_A^S+a_B^S}
 $$
 The weak equivalence row requires $\eta_{AB}^{S}$ to vanish within the material-composition bounds while the same clock, signal, and PPN record is held fixed. The point is not to assume equivalence as a substrate axiom, but to recover it as an observer-level constraint on the same record $\theta_W$. If local clock/ruler states for different apparatuses are allowed to absorb the gravitational response through material-dependent scale factors $\lambda_A(\mathbf{x};\theta_W)$, the residual must also satisfy
 $$
@@ -5752,7 +5769,7 @@ $$
 }{
 \left\|\nabla\Phi_{\text{eff}}\right\|_W/c_0^2+\varepsilon
 }
-\ll 1,
+\ll 1
 $$
 with the source assembly, boundary wake data, cosmological record, and PPN coefficients held fixed. This forbids a flat-description or local-unit rewriting from replacing universal gravitational acceleration by apparatus-specific material response. Equivalence recovery therefore couples the torsion-balance row, clock-comparison row, and cosmological/boundary record: a Mach-like dependence of inertial standards on the surrounding matter distribution is admissible only if it is common to the accepted observer record and leaves no composition-dependent acceleration residue. A separate strong-equivalence row tests whether gravitational self-energy or medium binding changes the acceleration of extended bodies:
 $$
@@ -5764,7 +5781,7 @@ $$
 \frac{E_{\mathrm{grav},1}}{m_1c_0^2}
 -
 \frac{E_{\mathrm{grav},2}}{m_2c_0^2}
-\right),
+\right)
 $$
 where the denominator compares gravitational binding-energy fractions for two bodies in the same external field. This row is a recovery target for lunar-ranging, binary-pulsar, and compact-body tests; it is not interchangeable with the material-composition torsion-balance row. The same residual bundle must also keep active, passive, inertial, and energy-defined mass equal in the nonrelativistic limit, or else the Newtonian and PPN rows are being fit with inconsistent mass concepts.
 
@@ -5782,7 +5799,7 @@ must be observationally negligible in validated regimes. This is not optional. I
 
 The Noether sea picture must recover the observed near-luminal propagation of gravitational disturbances:
 $$
-\left|\frac{v_{\mathrm{GW}}-c_0}{c_0}\right| \ll 1.
+\left|\frac{v_{\mathrm{GW}}-c_0}{c_0}\right| \ll 1
 $$
 
 In this framework, gravitational waves are propagating collective disturbances of the Noether sea. Their speed, dispersion, and polarization content must remain consistent with current timing bounds and detector-mode constraints. Any large medium-dispersion signature or unsuppressed scalar/vector/longitudinal response in already-tested bands is excluded. A cosmological-scale finite-range response must therefore decouple from the weak-field gravitational-wave channel through the same constitutive coefficient record, not through an observational-channel-specific patch.
@@ -5853,7 +5870,7 @@ $$
 \mathcal{C}_{\text{GW}}
 \cap
 \mathcal{C}_{\text{cont}}
-\neq \varnothing.
+\neq \varnothing
 $$
 
 If that intersection is empty, the effective-metric program is not yet viable.
@@ -5883,21 +5900,21 @@ Assume an effective metric
 $$
 g_{\mu\nu}^{\text{eff}}=\eta_{\mu\nu}+h_{\mu\nu},
 \qquad
-|h_{\mu\nu}|\ll1,
+|h_{\mu\nu}|\ll1
 $$
 with background Noether sea state homogeneous and isotropic at leading order.
 
 Define trace-reversed perturbation
 $$
 \bar h_{\mu\nu}=h_{\mu\nu}-\frac12\eta_{\mu\nu}h,\qquad
-h=\eta^{\alpha\beta}h_{\alpha\beta},
+h=\eta^{\alpha\beta}h_{\alpha\beta}
 $$
 and impose Lorenz gauge
 $$
-\partial^\mu \bar h_{\mu\nu}=0.
+\partial^\mu \bar h_{\mu\nu}=0
 $$
 
-Assume constitutive closure supplies effective $(G_{\text{eff}},c_{\text{GW}})$ in this regime.
+Assume constitutive closure supplies effective $(G_{\text{eff}},c_{\text{GW}})$ in this regime. The speed row is the gravitational-wave component of the structural-integrity common-limit closure in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure): the weak-field tensor channel must share the same Noether sea state record that supports photon timing, PPN, redshift, Shapiro delay, and lensing.
 
 #### Linear Wave Equation
 
@@ -5909,7 +5926,7 @@ $$
 \frac{16\pi G_{\text{eff}}}{c_{\text{GW}}^4}\,T_{\mu\nu}^{\text{TT}},
 \qquad
 \Box_{c_{\text{GW}}}\equiv
--\frac{1}{c_{\text{GW}}^2}\partial_t^2+\nabla^2.
+-\frac{1}{c_{\text{GW}}^2}\partial_t^2+\nabla^2
 $$
 
 *Derivation sketch:* If the effective field equations induced by the metric constitutive map exist in this regime, linearize them around the homogeneous background, then project onto the TT sector.
@@ -5917,7 +5934,7 @@ $$
 **Corollary 1 (source-free effective waves).**
 For $T_{\mu\nu}^{\text{TT}}=0$:
 $$
-\Box_{c_{\text{GW}}}\bar h_{\mu\nu}^{\text{TT}}=0,
+\Box_{c_{\text{GW}}}\bar h_{\mu\nu}^{\text{TT}}=0
 $$
 so plane waves satisfy
 $$
@@ -5927,13 +5944,13 @@ to leading order (higher-order dispersive corrections are constitutive and model
 
 Finite-range comparison models may introduce gravitational-wave dispersion, but here that is only a deviation diagnostic. Define the group speed
 $$
-v_{\mathrm{g,GW}}\equiv\frac{\partial\omega}{\partial k}.
+v_{\mathrm{g,GW}}\equiv\frac{\partial\omega}{\partial k}
 $$
 In validated frequency bands the constitutive map must satisfy
 $$
 \left|\frac{v_{\mathrm{g,GW}}-c_0}{c_0}\right|<\epsilon_{\mathrm{GW}},
 \qquad
-\left|\frac{\partial^2\omega}{\partial k^2}\right|_{\mathrm{band}}\leq\epsilon_{\mathrm{disp}},
+\left|\frac{\partial^2\omega}{\partial k^2}\right|_{\mathrm{band}}\leq\epsilon_{\mathrm{disp}}
 $$
 with the integrated phase drift across the source distance below the detector residual bound. A finite-range cosmological response is not acceptable if it leaks into already-tested gravitational-wave timing as measurable dispersion.
 
@@ -5946,7 +5963,7 @@ $$
 k_{\theta}(f,\mathbf{x},t)
 -
 k_{\mathrm{GR}}(f,\mathbf{x},t)
-\right]\,d\ell,
+\right]\,d\ell
 $$
 where $\Gamma$ is the observer-level propagation path used by the comparison. A useful low-frequency residual is
 $$
@@ -5960,7 +5977,7 @@ $$
 \sup_{f\in\mathcal{B}_{\mathrm{low}}}
 \frac{
 \left|v_{\mathrm{g,GW}}^{\theta}(f)-c_0\right|
-}{c_0\,\epsilon_{v}(f)}.
+}{c_0\,\epsilon_{v}(f)}
 $$
 This is a forecast and comparison gate. It does not license a massive-graviton ontology; it only says that any cosmological-scale weakening channel must remain compatible with the low-frequency strain and timing residuals that would test long-wavelength dispersion.
 
@@ -5975,7 +5992,7 @@ $$
 =
 S_{\mathrm{BH}}
 +S_{\mathrm{GW}}
--R_{\mathrm{eq}}[f_N],
+-R_{\mathrm{eq}}[f_N]
 $$
 
 the term $S_{\mathrm{GW}}$ records the disturbance of the local Noether swarm cadence distribution by the gravitational-wave channel. It is not an additional default polarization mode and not a license for frequency-dependent gravitational-wave propagation in validated bands. It is a possible low-amplitude contribution to the Noether sea state later sampled by photons, clocks, and growth observables.
@@ -5987,7 +6004,7 @@ $$
 =
 \mathcal{A}_{X,\mathrm{GW}}\!\left[
 S_{\mathrm{GW}},f_N,J_\nu;\mathbf{x},t,\hat{\mathbf{k}}
-\right],
+\right]
 $$
 
 with the associated beam variance, chromaticity residual, and packet time-dilation residual below the same tolerances used for the redshift budget. If $S_{\mathrm{GW}}$ produces measurable photon dispersion, image blur, or gravitational-wave timing drift beyond the detector gates above, the perturbative transport branch fails.
@@ -5999,14 +6016,14 @@ In the project spin taxonomy, this is the effective **spin-2 / tensor** channel:
 **Conditional Lemma 2 (two-mode TT closure in isotropic limit).**
 If the low-energy constitutive response is parity-even and isotropic, residual gauge constraints leave exactly two propagating tensor modes:
 $$
-h_+(t,\mathbf{x}),\qquad h_\times(t,\mathbf{x}).
+h_+(t,\mathbf{x}),\qquad h_\times(t,\mathbf{x})
 $$
 
 *Derivation sketch:* Standard counting in Lorenz gauge plus TT projection gives 10 components $\to$ gauge/constraint reduction $\to$ two physical helicity-2 modes, provided the effective-metric gauge structure is recovered by the constitutive map.
 
 Any scalar, vector, or longitudinal gravitational-wave response is therefore an effective deviation to be bounded, not a new default channel:
 $$
-\frac{\mathcal{P}_{\mathrm{extra}}}{\mathcal{P}_{\mathrm{TT}}}<\epsilon_{\mathrm{pol}}.
+\frac{\mathcal{P}_{\mathrm{extra}}}{\mathcal{P}_{\mathrm{TT}}}<\epsilon_{\mathrm{pol}}
 $$
 The numerator collects non-TT detector power after known instrumental and astrophysical residuals are removed.
 
@@ -6023,7 +6040,7 @@ $$
 \frac{\mathcal{P}_{\mathrm{extra}}}{\mathcal{P}_{\mathrm{TT}}},\;
 \mathrm{FAR},\;
 R_{\mathrm{cal}}
-\right),
+\right)
 $$
 
 where $\mathrm{FAR}$ is the false-alarm-rate estimate and $R_{\mathrm{cal}}$ is the retained calibration residual for the strain channel and timing model. Promotion from a candidate disturbance to an accepted gravitational-wave data product requires
@@ -6050,7 +6067,7 @@ s_a-\mathcal{P}_{D_a}h^\theta
 \right)^2
 }{
 \sigma_{ab}^2
-}.
+}
 $$
 This residual is the modern version of the separated-detector check: a signal must be coherent across instruments after antenna response, timing, calibration, and background rejection are fixed. An isolated excess in one detector, or a coincidence that requires an implausible source energy after the same response projection, remains a candidate disturbance rather than an accepted gravitational-wave record.
 
@@ -6073,7 +6090,7 @@ N_{\mathrm{occ}}
 \qquad
 \rho_1
 \lesssim
-\frac{\hbar\omega^4}{c_0^3}.
+\frac{\hbar\omega^4}{c_0^3}
 $$
 The accepted gravitational-wave record is therefore classical whenever $N_{\mathrm{occ}}\gg1$. A separate single-quantum claim would need a detector-side packet $\theta_{\mathrm{1g}}$ satisfying
 $$
@@ -6086,7 +6103,7 @@ $$
 \frac{B_{\mathrm{th}}}{S_{\mathrm{1g}}^2}
 \right)
 \le
-1,
+1
 $$
 with $\delta_{\mathrm{req}}\sim L_{\mathrm{P}}$ for a single-graviton interferometric distance readout, $\delta_{\mathrm{det}}$ the achieved distance uncertainty, $M_{\mathrm{det}}$ and $D_{\mathrm{det}}$ the detector mass and size, $S_{\mathrm{1g}}$ the predicted single-graviton count, $B_{\mathrm{th}}$ the relevant thermal or particle-background count, and $\epsilon_N$ the allowed occupation-window tolerance. The compactness term prevents a sensitivity claim from hiding a black-hole detector; the background term prevents a thermal-graviton claim from being promoted when statistical scatter in known backgrounds dominates the putative count. Failure of this residual does not refute gravitons as a comparison basis and does not add graviton ontology to $\mathbb{A}\mathbb{A}\mathbb{A}$; it only blocks the stronger detector claim that an observed strain or thermal count has directly resolved individual quanta.
 
@@ -6111,7 +6128,7 @@ d_{\mathrm{nohair}}\!\left(
 (M_f,\mathbf{J}_f,Q_f)^{\mathrm{obs}}
 \right)
 +
-d_{\mathrm{shared}}(\theta_H,\theta_{\mathrm{GW}},\theta_{\mathrm{BH}}).
+d_{\mathrm{shared}}(\theta_H,\theta_{\mathrm{GW}},\theta_{\mathrm{BH}})
 $$
 Here $\mathcal{P}_{\mathrm{det}}$ is the detector projection and $d_{\mathrm{shared}}$ penalizes any fit that uses one state record for the strain channel, another for the horizon-interface label, and another for the black-hole entropy or release ledger. The gate is satisfied only if $\mathcal{R}_{\mathrm{merge}}(\theta_H)$ is below the declared tolerance while preserving the validated inspiral limit, the two tensor polarizations, and the final exterior no-hair coarse-graining. A predicted deviation is admissible only as a bounded residual or a falsifiable template, not as permission to loosen already-tested gravitational-wave recovery.
 
@@ -6125,7 +6142,7 @@ $$
 \frac{\Omega_{\mathrm{GW}}^X(f)}
 {\Omega_{\mathrm{GW}}^{\max}(f)}
 +
-d_{\mathrm{shared}}\!\left(\theta_{\mathrm{GW}},\theta_{\mathrm{BBN}},\theta_{\mathrm{CMB}},\theta_{\mathrm{growth}}\right),
+d_{\mathrm{shared}}\!\left(\theta_{\mathrm{GW}},\theta_{\mathrm{BBN}},\theta_{\mathrm{CMB}},\theta_{\mathrm{growth}}\right)
 $$
 where $\mathcal{B}_{\mathrm{det}}$ is the validated detector band and $d_{\mathrm{shared}}$ penalizes any branch that requires a gravitational-wave source record inconsistent with the BBN, CMB, or structure-formation records. A positive stochastic signal would become observational pressure on the early medium history; a null result closes only the corresponding branch amplitude, not the whole cosmology program.
 
@@ -6138,7 +6155,7 @@ P_{\mathrm{GW}}
 \frac{G_{\text{eff}}}{5c_{\text{GW}}^5}
 \left\langle
 \dddot Q_{ij}\dddot Q^{ij}
-\right\rangle,
+\right\rangle
 $$
 with $Q_{ij}$ the trace-free mass quadrupole of the effective source record in the validated weak-field limit. A native Noether sea wave model must therefore explain why scalar monopole leakage, vector dipole leakage, and non-TT power remain below detector bounds rather than adding them as free source channels.
 
@@ -6148,7 +6165,7 @@ $$
 \mathcal{F}_{\text{GW}}
 =
 \frac{c_{\text{GW}}^3}{32\pi G_{\text{eff}}}
-\left\langle \dot h_+^2+\dot h_\times^2\right\rangle.
+\left\langle \dot h_+^2+\dot h_\times^2\right\rangle
 $$
 This is the quantity used for binary-orbit energy-loss consistency checks. Energy localization for gravitational waves is an observer-level effective description: the packet may use cycle-averaged fluxes and asymptotic energy loss, but it should not promote a gauge-dependent local gravitational energy density into substrate ontology.
 
@@ -6204,7 +6221,7 @@ This ladder does not add a new validation gate. It identifies which existing var
 For an iron-group stellar core, the central Standard Model transition is electron capture,
 
 $$
-p+e^-\rightarrow n+\nu_e.
+p+e^-\rightarrow n+\nu_e
 $$
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ reading keeps this reaction as a required observer-level channel while reclassifying the surrounding story as a change in exposed assembly response.
@@ -6226,7 +6243,7 @@ $$
 \rightarrow
 \text{neutron-rich packed fermion response}
 \rightarrow
-\text{strong Noether sea constitutive regime}.
+\text{strong Noether sea constitutive regime}
 $$
 
 ##### Neutron-Star Branch as a Radial Test
@@ -6244,7 +6261,7 @@ n(r),
 S_{ij}(r),
 \mathcal{M}_{\text{sea}}^{ab}(r),
 \mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(\Omega_r)}
-\right),
+\right)
 $$
 
 where $\Omega_r$ is the compact interior region retained by the comparison and $\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(\Omega_r)}$ records the local energy, momentum, angular-momentum, reaction, neutrino, stress, heat, medium-update, and remnant rows needed for that region. The exterior region samples the same record through redshift, orbital motion, lensing, and signal-delay channels. The surface is not a hard boundary of the Euclidean void; it is the branch boundary where exterior Noether sea response starts coupling to neutron-rich packed matter, charged layers, radiation channels, magnetic stresses when present, and surface transport.
@@ -6259,7 +6276,7 @@ $$
 \qquad
 \mathcal{R}_H(\Omega_r)<\infty,
 \qquad
-\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(\Omega_r)}\ \text{closes},
+\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(\Omega_r)}\ \text{closes}
 $$
 
 for all retained radii $0\le r\le R_*$. Here $v_O$ is the outer-binary speed in the relevant branch record, $s_n$ is the packing-headroom diagnostic when a pressure-packing model is being used, and $\mathcal{R}_H$ is the strong-field regularity residual. The $s_n$ condition should be read as a candidate pressure-response target until a neutron-star dense-matter branch supplies the corresponding $K_{\mathrm{pack}}$, packing ceiling, and branch residuals.
@@ -6273,7 +6290,7 @@ The canonical strong-field alignment condition is inherited from [singularity-re
 $$
 v_M = c_f,
 \qquad
-v_O \to c_f,
+v_O \to c_f
 $$
 
 with the middle and outer binaries becoming coplanar and co-linear with the inner binary at alignment and precession ceasing in that limit.
@@ -6288,7 +6305,7 @@ r_s=\frac{2GM}{c_0^2},
 \qquad
 r_{\mathrm{ph}}=\frac{3GM}{c_0^2},
 \qquad
-r_{\mathrm{ISCO}}=\frac{6GM}{c_0^2}.
+r_{\mathrm{ISCO}}=\frac{6GM}{c_0^2}
 $$
 Here $r_s$ is the Schwarzschild comparison radius, $r_{\mathrm{ph}}$ is the null photon-orbit radius, and $r_{\mathrm{ISCO}}$ is the innermost stable circular orbit for massive test bodies. These are effective-metric recovery targets, not claims that the Euclidean void contains a geometric hole.
 
@@ -6298,7 +6315,7 @@ K_{\mathrm{Schw}}
 =
 R_{\alpha\beta\gamma\delta}R^{\alpha\beta\gamma\delta}
 =
-\frac{48G^2M^2}{c_0^4 r^6}.
+\frac{48G^2M^2}{c_0^4 r^6}
 $$
 The native model is expected to replace the $r\to0$ divergence with finite maximum-curvature bookkeeping, while leaving the exterior weak-field and ringdown observables intact.
 
@@ -6316,7 +6333,7 @@ $$
 +\Delta E_{\mathrm{rem}}
 +\Delta E_{\mathrm{bind}}^{\mathrm{eff}}
 -\Delta E_{\mathrm{in}}
-\right\|_W .
+\right\|_W
 $$
 The pass condition is not horizon absence. It is that $\mathcal{R}_{N\text{-}\mathrm{body}}$ stays within the declared tolerance while the same $\theta_W$ also recovers lensing, timing, ringdown, and horizon-scale imaging. If a burst, merger, or accretion model needs one record for exterior no-hair behavior and a separate record for the many-body energy release, then the compact-object closure has split into fitted stories.
 
@@ -6337,7 +6354,7 @@ C_{\mathrm{dep}},
 A^{\mathrm{cl}}_{ijkl}(t),
 \Pi_{\mathrm{lin}}(\varphi,t),
 \Pi_{\mathrm{circ}}(\varphi,t)
-\right).
+\right)
 $$
 Here $D_{\mathrm{ring}}$ is the bright-ring diameter, $f_w$ is the fractional ring width, $C_{\mathrm{dep}}$ is the interior brightness-depression contrast, $\mathcal{V}_{ij}$ are baseline visibilities, $\Phi^{\mathrm{cl}}$ and $A^{\mathrm{cl}}$ are closure quantities, and $\Pi_{\mathrm{lin}}$ and $\Pi_{\mathrm{circ}}$ record resolved polarization. These quantities belong to the effective observational layer. They constrain the same strong-field branch record that defines the horizon interface, but they do not replace that constitutive condition.
 
@@ -6368,7 +6385,7 @@ R_H(E;\theta)
 \quad\Longrightarrow\quad
 v_M=c_f,\quad
 v_O\to c_f,\quad
-S_H\sim k_B\log\left|\mathcal{B}_{H}\right|.
+S_H\sim k_B\log\left|\mathcal{B}_{H}\right|
 $$
 
 This is not a claim that the Euclidean void becomes quantized geometry. It is a benchmark on the native strong-field branch: when the effective comparison says that a probe has become a black hole, the same Noether sea state must activate the alignment condition, finite maximum-curvature bookkeeping, and entropy/release-channel ledger used below. If short-distance recovery requires an independent ultraviolet story that bypasses those variables, the black-hole closure has split from the rest of the spacetime program.
@@ -6394,7 +6411,7 @@ k_B\log|\mathcal{B}_H|
 \right)
 +
 \mathcal{R}_{\mathrm{release}}(E;\theta)
-\right].
+\right]
 $$
 Here $w(E)$ is the comparison weighting for the probe family, $d_{\mathrm{curv}}$ checks that the admitted Noether swarm labels are finite maximum-curvature labels, $d_{\mathrm{ent}}$ checks horizon-interface entropy bookkeeping, and $\mathcal{R}_{\mathrm{release}}$ checks the outgoing $E$, $\mathbf{p}$, $\mathbf{J}$, polarity, provenance, medium-update, and remnant rows through the event ledger.
 
@@ -6410,13 +6427,13 @@ $$
 \qquad
 R_H(E;\theta)
 \simeq
-\frac{2G_{\mathrm{eff}}(\theta)E}{c_0^4}.
+\frac{2G_{\mathrm{eff}}(\theta)E}{c_0^4}
 $$
 The horizon-interface handoff begins when
 $$
 \frac{\hbar c_0}{E}
 \le
-\frac{2G_{\mathrm{eff}}(\theta)E}{c_0^4},
+\frac{2G_{\mathrm{eff}}(\theta)E}{c_0^4}
 $$
 or equivalently
 $$
@@ -6426,7 +6443,7 @@ E_H(\theta)
 \equiv
 \left(
 \frac{\hbar c_0^5}{2G_{\mathrm{eff}}(\theta)}
-\right)^{1/2}.
+\right)^{1/2}
 $$
 This is an observer-level comparison estimate, not a proof that the Euclidean void has Planck-scale cells. Its purpose is to decide when the record should stop being interpreted as a shorter-distance particle probe and start being routed through horizon-interface bookkeeping.
 
@@ -6463,7 +6480,7 @@ $$
 A_{\mathrm{eff}}\!\left(\gamma_A^{\mathrm{eff}}(\theta)\cap H_{\mathrm{eff}}(\theta)\right)
 }{
 A_{\mathrm{eff}}\!\left(\gamma_A^{\mathrm{eff}}(\theta)\right)
-}.
+}
 $$
 The event-horizon reading is justified only in the $\eta_H\to1$ regime. When $\eta_H=0$ or remains bounded away from one, the holographic comparison is still useful as an access-region entropy test, but it is not evidence that the boundary surface is the horizon-interface ontology.
 
@@ -6480,7 +6497,7 @@ $$
 v_M=c_f,\quad
 v_O\to c_f,\quad
 \text{horizon-interface compatibility}
-\right\}.
+\right\}
 $$
 
 In plain language, $\mathcal{B}_{H}$ is the set of strong-field Noether swarm ledger arrangements that look identical to exterior probes once the probe can resolve only effective mass, angular momentum, charge, and allowed interface channels. This gives a precise no-hair reading: exterior no-hair is a coarse-graining over many compatible closure labels, not evidence that the interior has no microstate.
@@ -6493,7 +6510,7 @@ k_B\log\left|\mathcal{B}_{H}(M,\mathbf{J},Q)\right|,
 \qquad
 S_H
 \stackrel{\text{target}}{\sim}
-\frac{k_B A_H}{4A_{\text{align}}},
+\frac{k_B A_H}{4A_{\text{align}}}
 $$
 where $A_H$ is the observer-level horizon area and $A_{\text{align}}$ is the alignment-area scale from the Planck-alignment program, with the numerical and $2\pi$ conventions fixed by that derivation rather than by definition here. Page-curve recovery then becomes a release-channel theorem: outward channels must preserve enough phase, axial-pattern, and path-history information from $\mathcal{B}_{H}$ to make evaporation or recycling unitary at the effective quantum level, while still appearing thermal to coarse exterior measurements.
 
@@ -6513,7 +6530,7 @@ a_H(\theta)
 \qquad
 \frac{s_{\mathrm{align}}^H(\theta)}{a_H(\theta)}
 \longrightarrow
-\frac{1}{4},
+\frac{1}{4}
 $$
 with boundary corrections vanishing in the large-block limit. This is the local calculation that must make the global area law credible; the raw statement $s_{\mathrm{align}}^H\to1/4$ is only the special case $a_H\to1$.
 
@@ -6531,7 +6548,7 @@ $$
 \right|
 \right|
 \le
-\epsilon_{\mathrm{proj}},
+\epsilon_{\mathrm{proj}}
 $$
 for the same strong-field record $\theta$ restricted to the observer window and the same block or patch family. If the local boundary density and the global horizon-interface count require different records, the entropy target has split into two fitted stories. If they agree, the black-hole area law is no longer an isolated assumption; it becomes the compact strong-field version of the local boundary-factorization theorem target.
 
@@ -6543,7 +6560,7 @@ Y_O
 \lambda;\mathcal{K}_{O}^{\mathrm{rad}},
 \mathcal{R}_{O},
 \mathcal{B}_{\partial\Omega}
-\right).
+\right)
 $$
 Before a black-hole information claim is promoted, the comparison packet must say which $\mathcal{K}_{O}^{\mathrm{rad}}$, reference resources, access region, and finite boundary data make the outgoing channel meaningful. A coarse exterior channel may legitimately see an approximately thermal distribution while a richer correlated reference channel retains structure, but that difference is a statement about observer-accessible records. It does not import a boundary CFT, many-copy tomography story, or external reference frame as $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology.
 
@@ -6564,7 +6581,7 @@ S_H^{(O)},
 k_B\log|\mathcal{B}_{H}^{(O)}|+S_{\mathrm{out}}^{(O)}
 \right)
 +
-d_{\mathrm{CPT}}\!\left(\mathcal{R}_{\mathrm{CPT}}(\theta),0\right).
+d_{\mathrm{CPT}}\!\left(\mathcal{R}_{\mathrm{CPT}}(\theta),0\right)
 $$
 The pass condition is $\mathcal{R}_{H,\mathrm{bal}}(\theta)\le\epsilon_H$ using the same branch record that recovers exterior compact-object observables. This does not assert a literal mirror universe, a white-hole ontology, or a final-state boundary postulate. It says that if the effective comparison invokes CPT or thermal equilibrium, the native horizon-interface release ledger must exhibit the corresponding formation/release balance within the declared observer access channel.
 
@@ -6574,7 +6591,7 @@ $$
 \frac{\partial S_H^\theta}{\partial N_{\mathrm{spect}}}
 \right|_{\mathcal{B}_H,\partial\Omega}
 \le
-\epsilon_{\mathrm{spect}}.
+\epsilon_{\mathrm{spect}}
 $$
 If an added species is physically real, it must change $\mathcal{B}_{H}$, $S_{\mathrm{out}}^{(O)}$, a release-channel row, or $\mathcal{R}_{\mathrm{null}}$. If it changes none of those records, it is an effective-description label and may not be used to tune black-hole entropy.
 
@@ -6588,7 +6605,7 @@ under the usual classical assumptions. The $\mathbb{A}\mathbb{A}\mathbb{A}$ tran
 $$
 S_{H,\mathrm{final}}^{(O)}
 \ge
-S_{H,1}^{(O)}+S_{H,2}^{(O)}-\Delta S_{\mathrm{out}}^{(O)},
+S_{H,1}^{(O)}+S_{H,2}^{(O)}-\Delta S_{\mathrm{out}}^{(O)}
 $$
 with $\Delta S_{\mathrm{out}}^{(O)}$ accounting for accessible radiation, waves, and release channels during the merger. This keeps the area theorem as a standard-theory benchmark rather than as imported horizon ontology.
 
@@ -6596,7 +6613,7 @@ A sharper comparison target comes from generalized-entropy work in semiclassical
 $$
 \mathcal{B}_{H}^{(O)}(t)
 \subseteq
-\mathcal{B}_{H}(M,\mathbf{J},Q),
+\mathcal{B}_{H}(M,\mathbf{J},Q)
 $$
 where $O$ denotes a Physical Observer and $\mathcal{B}_{H}^{(O)}(t)$ is the subset of horizon-interface ledger states indistinguishable to that observer's finite records, clocks, and exterior channels at time $t$. The corresponding comparison target is
 $$
@@ -6604,7 +6621,7 @@ S_{H}^{(O)}(t)
 =
 k_B\log\left|\mathcal{B}_{H}^{(O)}(t)\right|
 +
-S_{\mathrm{out}}^{(O)}(t),
+S_{\mathrm{out}}^{(O)}(t)
 $$
 where $S_{\mathrm{out}}^{(O)}(t)$ summarizes the entropy of accessible outgoing channels. This equation is not a new ontology. It is a bookkeeping target: the native horizon-interface model should explain how the area-like ledger term and the outgoing-channel entropy combine into a finite observer-level entropy, and how that combined quantity can reproduce Page-curve behavior without importing islands, replica wormholes, or a boundary CFT as primitive structure.
 
@@ -6614,7 +6631,7 @@ S_{\mathcal{Q},A}^{(O)}(t)
 \stackrel{\mathrm{target}}{=}
 k_B\log\left|\mathcal{L}_{\gamma_A}^{(O)}(t)\right|
 +
-S_{\mathrm{out},A}^{(O)}(t).
+S_{\mathrm{out},A}^{(O)}(t)
 $$
 The proof burden is to define the observer-relative label ensemble $\mathcal{L}_{\gamma_A}^{(O)}(t)$ from native horizon-interface, boundary-wake, and release-channel records. When $\eta_H(A;\theta)\to1$, this target must reduce to the horizon-interface ledger target above; when $\eta_H(A;\theta)=0$, it remains an access-region entropy comparison and should not be promoted as black-hole horizon entropy.
 
@@ -6632,14 +6649,14 @@ $$
 N:
 G_N\circ\cdots\circ G_1(\Lambda_a)=\Lambda_b,\
 G_i\in\mathcal{G}_{\mathrm{loc}}
-\right\},
+\right\}
 $$
 where $\mathcal{G}_{\mathrm{loc}}$ is the permitted set of local Noether swarm, path-history, and release-ledger updates inside the horizon-interface model. For a horizon history, write $\mathcal{C}_{H}^{(O)}(t)$ for the minimum such update count between the observer-accessible initial ledger and the compatible ledger class at time $t$.
 
 The comparison burden is then:
 $$
 S_H^{(O)}(t)\ \text{approximately saturates while}\
-\mathcal{C}_{H}^{(O)}(t)\ \text{can continue to grow},
+\mathcal{C}_{H}^{(O)}(t)\ \text{can continue to grow}
 $$
 without breaking exterior no-hair behavior, Page-compatible release accounting, or finite-boundary-data regularity. If this growth can be matched only by importing a literal boundary CFT, an AdS interior ontology, or an independent hidden state not present in $\mathcal{B}_{H}^{(O)}(t)$, then the complexity comparison has not been translated into the native black-hole closure.
 
@@ -6659,13 +6676,13 @@ N_{\text{sea}}|_{\Omega\times[t_i,t_f]}
 X_\Omega(t_f),
 \mathcal{B}_{H}^{(O)}(t_f),
 S_{\mathrm{out}}^{(O)}(t_f)
-\right).
+\right)
 $$
 Here $X_\Omega$, $\mathcal{H}_{\Omega}^{<t}$, and $\mathcal{B}_{\partial\Omega}$ are the finite-region variables from [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md#ontic-and-epistemic-levels). The closure requirement is not that a particular remnant, bounce, or asymptotic boundary story be adopted. It is that the same finite boundary data determine a finite strong-field continuation:
 $$
 F_H=0,\qquad
 \mathcal{R}_H(\Omega)<\infty,\qquad
-0<\left|\mathcal{B}_{H}^{(O)}(t_f)\right|<\infty,
+0<\left|\mathcal{B}_{H}^{(O)}(t_f)\right|<\infty
 $$
 with outgoing energy, momentum, angular momentum, charge, polarity, provenance, and medium-update rows accounted for through the release-channel ledger.
 
@@ -6675,7 +6692,7 @@ No-hair, cosmic-censorship, Cauchy-horizon, and endpoint theorems enter this cha
 
 As a heuristic geometric picture, the horizon can also be described as a **dimensional pinch** in the nested shell swarm shape trajectory. On this reading, ordinary 3D assemblies are flattened toward a near-planar disk at the alignment interface, while the interior self-hit regime permits re-opening of the suppressed axial degree of freedom. In shorthand, the proposed shape path is
 $$
-\text{3D sphere} \to \text{2D horizon disk} \to \text{3D interior reopening}.
+\text{3D sphere} \to \text{2D horizon disk} \to \text{3D interior reopening}
 $$
 This is not yet a derived strong-field theorem. It is a compact way of expressing why the horizon is treated as an information-compression layer rather than as a literal ontic edge of space.
 
@@ -6698,7 +6715,7 @@ F_H\!\left[
 \right]
 =0,
 \qquad
-v_M=c_f,\quad v_O\to c_f.
+v_M=c_f,\quad v_O\to c_f
 $$
 
 Here $\partial\Omega$ denotes the boundary data supplied by the surrounding Noether sea and the effective exterior comparison region. The equation is a closure target, not a completed model: the task is to show that the same Noether sea variables that recover weak-field gravity can also admit a regular terminal-alignment interface under non-isolated embedding conditions. Compact, topologically identified, or otherwise non-asymptotically-flat comparison settings are useful stress tests for this requirement, but they do not add extra dimensions to the substrate ontology.
@@ -6733,7 +6750,7 @@ R_H(M;\theta)
 \qquad
 A_H(M;\theta)
 =
-4\pi R_H^2(M;\theta).
+4\pi R_H^2(M;\theta)
 $$
 
 The native strong-field interpretation does not treat $R_H$ or $A_H$ as primitive geometry of the Euclidean void. They are observer-level readouts of the same horizon-interface condition $v_M=c_f,\ v_O\to c_f$. Still, their scaling organizes which closure burden dominates. The interface label capacity scales schematically like
@@ -6741,7 +6758,7 @@ The native strong-field interpretation does not treat $R_H$ or $A_H$ as primitiv
 $$
 N_{\mathrm{align}}(M;\theta)
 \sim
-\frac{A_H(M;\theta)}{A_{\mathrm{align}}},
+\frac{A_H(M;\theta)}{A_{\mathrm{align}}}
 $$
 
 while the exterior tidal or curvature pressure at the horizon scales, in the same comparison limit, like
@@ -6751,7 +6768,7 @@ $$
 \sim
 \frac{G_{\mathrm{eff}}(\theta)M}{R_H^3(M;\theta)}
 \propto
-M^{-2}.
+M^{-2}
 $$
 
 This gives a compact mass-scale rule. Small black holes concentrate the traversal into a tiny region with steep local gradients, high comparison temperature, and release-channel pressure. Stellar-mass or intermediate black holes are the clean collapse-ladder case: the record must pass from compact matter through the neutron-star branch or its failure into the horizon-interface branch. Supermassive black holes have comparatively gentle local horizon gradients but enormous interface capacity, long-lived recycling, and the strongest coupling to the ambient Noether sea embedding.
@@ -6774,7 +6791,7 @@ r_{\mathrm{dam}}
 \left(
 \frac{dE_{\mathrm{dep}}}{d\ell},
 \theta_{\mathrm{mat}}
-\right).
+\right)
 $$
 If the object is horizon-like in the observer comparison, $R_X$ is bounded by the effective horizon scale $R_H(M_X;\theta)$; if it is a native maximum-curvature defect, $R_X$ is instead supplied by the core-interface branch. Either way, the material claim must pass through the same energy-deposition, acoustic, thermal, and defect-survival record before it is used as evidence for a compact dark-sector branch.
 
@@ -6832,7 +6849,7 @@ $$
 \qquad
 v_{\mathrm{esc}}(R_{\mathrm{launch}})
 =
-\left(\frac{2G_{\mathrm{eff}}M}{R_{\mathrm{launch}}}\right)^{1/2}.
+\left(\frac{2G_{\mathrm{eff}}M}{R_{\mathrm{launch}}}\right)^{1/2}
 $$
 
 This is an effective launch benchmark, not a claim that Newtonian escape speed is substrate ontology. It says that the same strong-field or disk-interface record that powers release must also set the observed launch speed scale. Third, collimation must survive propagation through the ambient Noether sea. A minimal release-channel packet should therefore record
@@ -6849,7 +6866,7 @@ $$
 \eta_j,
 \mathcal{A}_{\mathrm{NS}},
 \mathcal{R}_{v,\mathrm{jet}}
-\right),
+\right)
 $$
 
 where $\theta_j$ is the opening angle, $\eta_j$ is the observer-level jet-to-ambient density ratio, and $\mathcal{A}_{\mathrm{NS}}$ is the local Noether sea anisotropy and loading state mapped to effective magnetic-like collimation. In a black-hole branch, spin-powered extraction, disk-powered extraction, hot-corona loading, and supercritical accretion are comparison mechanisms until the native horizon-interface ledger shows which terms actually supply $\dot E_{\mathrm{out}}$ and $\dot{\mathbf{J}}_{\mathrm{out}}$. A model fails this selection packet if it produces a horizon recycling source but leaves the launch-speed scale, angular-momentum drain, or collimation angle unrelated to the same boundary data.
@@ -6867,7 +6884,7 @@ M,\mathbf{J},
 \mathcal{A}_{\mathrm{NS}}(R,t),
 \Sigma_{\mathrm{wind}}(R,t),
 \mathcal{B}_{H}(t)
-\right),
+\right)
 $$
 
 where $R_{\inf}$ is the observer-level black-hole influence scale, $\Phi_{\mathrm{eff}}^{\mathrm{obs}}$ is the standard magnetic-flux comparison diagnostic rather than substrate field ontology, $\mathcal{A}_{\mathrm{NS}}$ is the mapped Noether sea anisotropy and loading state, and $\Sigma_{\mathrm{wind}}$ records disk-wind or sheath confinement. The local selector must then produce one channel record
@@ -6885,7 +6902,7 @@ R_{\mathrm{diss}},
 \mathcal{H}_{\mathrm{shock}},
 \mathcal{S}_{\mathrm{rad}},
 \mathcal{F}_{\mathrm{fb}}
-\right).
+\right)
 $$
 
 Here $\Gamma_j$ is the observer-level bulk Lorentz factor, $\sigma_j$ is the observer-level magnetization comparison ratio, $f_p$ is the proton or baryon loading fraction, $R_{\mathrm{ACZ}}$ is the acceleration-and-collimation-zone scale, $R_{\mathrm{diss}}$ is the main dissipation radius or family of radii, $\mathcal{H}_{\mathrm{shock}}$ records recollimation shocks, hot spots, bow shocks, and Mach-disk-like structures, $\mathcal{S}_{\mathrm{rad}}$ records the synchrotron, Compton, hadronic, pair-cascade, cosmic-ray, and neutrino channels retained by the comparison, and $\mathcal{F}_{\mathrm{fb}}$ records environmental heating, cavity, cocoon, bubble, and duty-cycle effects. The native burden is that these outputs come from one horizon-interface, disk-interface, wind, and Noether sea loading record, not from separate fitted stories for launch, radio emission, gamma emission, and galaxy feedback.
@@ -6963,7 +6980,7 @@ $$
 =
 S_{\mathrm{BH}}
 +S_{\mathrm{GW}}
--R_{\mathrm{eq}}[f_N].
+-R_{\mathrm{eq}}[f_N]
 $$
 
 This is the controlled sense of a bulk recycling movement: processed content from high-gradient recycling regions can load the Noether sea and then relax toward lower-energy Noether sea cadence states. The statement remains conditional because $S_{\mathrm{BH}}$ must be energy-accounted, population-history dependent, and small enough not to spoil weak-field gravity, photon coherence, CMB blackbody quality, or gravitational-wave propagation. If the resulting current $J_\nu$ has no signed large-scale component, the recycling channel may still heat or perturb local environments without becoming an effective expansion-history source.
@@ -6973,7 +6990,7 @@ This is the controlled sense of a bulk recycling movement: processed content fro
 One modern comparison target is the claim that some dormant supermassive black holes appear to gain mass in step with the late-time cosmological background more strongly than standard accretion and merger channels predict. The common phenomenological summary is
 
 $$
-M_{\mathrm{BH}}(a) \propto a^{K},
+M_{\mathrm{BH}}(a) \propto a^{K}
 $$
 
 with $K$ measuring the effective coupling strength.
@@ -7042,7 +7059,7 @@ This chapter is the canonical source for the strong-field event-horizon alignmen
 
 Use the following regime definition near the horizon:
 $$
-v_M=c_f,\qquad v_O\to c_f,
+v_M=c_f,\qquad v_O\to c_f
 $$
 with middle/outer binaries becoming coplanar and co-linear with the inner binary at alignment and precession ceasing in that limit.
 
@@ -7057,7 +7074,7 @@ F_H\!\left[
 \right]
 =0,
 \qquad
-v_M=c_f,\quad v_O\to c_f.
+v_M=c_f,\quad v_O\to c_f
 $$
 The boundary data $\partial\Omega$ record the surrounding Noether sea state and effective exterior state. A viable singularity replacement must solve the alignment condition with finite boundary data in embedded, non-isolated settings, rather than relying on asymptotic flatness as an implicit support.
 
@@ -7065,7 +7082,7 @@ The boundary data $\partial\Omega$ record the surrounding Noether sea state and 
 
 Penrose-style singularity theorems are useful here because they remove a misleading loophole: collapse failure cannot be dismissed merely by abandoning exact spherical symmetry. At the effective GR comparison layer, a trapped surface is detected by both future-directed null expansions becoming negative,
 $$
-\theta_+^{\mathrm{eff}}<0,\qquad \theta_-^{\mathrm{eff}}<0.
+\theta_+^{\mathrm{eff}}<0,\qquad \theta_-^{\mathrm{eff}}<0
 $$
 That is a standard-theory warning that weak-field continuation has entered a generic strong-collapse regime.
 
@@ -7079,7 +7096,7 @@ $$
 \mathrm{NullComplete}^{\mathrm{eff}}_+,\,
 T_{\mu\nu}^{\mathrm{eff}}k^\mu k^\nu\ge 0,\,
 \mathcal{C}^{\mathrm{eff}}
-\right),
+\right)
 $$
 where $\mathrm{NullComplete}^{\mathrm{eff}}_+$ records future null completeness, $T_{\mu\nu}^{\mathrm{eff}}k^\mu k^\nu\ge 0$ records the non-negative local energy condition along null directions, and $\mathcal{C}^{\mathrm{eff}}$ records the comparison assumption that the effective spacetime is the future development of an initial Cauchy surface with the required global orientation. Penrose's disjunction is then the pressure point: once a trapped surface forms under the local energy and global continuation assumptions, at least one assumption in $\mathcal{A}_{\mathrm{P}}^{\mathrm{eff}}$ must fail if a physical endpoint is to remain nonsingular.
 
@@ -7108,7 +7125,7 @@ T_{\mu\nu}^{\mathrm{eff}}k^\mu k^\nu\ge 0,\,
 F_H=0,\,
 \mathcal{R}_H(\Omega)<\infty,\,
 0<\left|\mathcal{B}_{H}\right|<\infty
-\right).
+\right)
 $$
 The theorem burden is not to deny the trapped-surface comparison result. It is to show exactly which effective global-completeness assumption is superseded by compact Noether sea boundary data, while preserving the non-negative local energy comparison and producing a finite, labeled strong-field continuation.
 
@@ -7128,7 +7145,7 @@ $$
 +
 \|\mathbf{u}_{\text{sea}}(\mathbf{x},t)\|
 \right)
-<\infty,
+<\infty
 $$
 together with the horizon-interface condition $F_H=0$ and a finite Noether swarm closure-label ensemble. This is a theorem target, not a definition of success: the strong-field model must show that finite boundary data determine a finite maximum-curvature replacement rather than a zero-volume endpoint or an arbitrary branch choice.
 
@@ -7141,13 +7158,13 @@ X_\Omega(t_i),
 N_{\text{sea}}|_{\Omega\times[t_i,t_f]}
 \right)
 \longmapsto
-X_\Omega(t_f),
+X_\Omega(t_f)
 $$
 with
 $$
 F_H=0,\qquad
 \mathcal{R}_H(\Omega)<\infty,\qquad
-0<\left|\mathcal{B}_{H}\right|<\infty.
+0<\left|\mathcal{B}_{H}\right|<\infty
 $$
 This is the singularity-resolution form of the black-hole endpoint gate: the replacement must be finite, ledger-preserving, and non-arbitrary using compact boundary data, without importing a remnant, bounce, or asymptotic boundary condition as doctrine.
 
@@ -7166,11 +7183,11 @@ F_H=0,\quad
 \sup_{t\in W}\mathcal{R}_H(\Omega,t)<\infty,
 \quad
 \mathcal{L}_{E\mathbf{p}\mathbf{J}}\ \text{closes}
-\right\}.
+\right\}
 $$
 The Cauchy-horizon comparison burden is
 $$
-0<\left|\mathfrak{S}_H(\theta_{\partial\Omega,W})\right|<\infty,
+0<\left|\mathfrak{S}_H(\theta_{\partial\Omega,W})\right|<\infty
 $$
 with every element carrying a closure label, finite horizon-interface ledger, and event-ledger accounting. An empty family means no native continuation has been supplied. An infinite or unlabeled family means the endpoint remains arbitrary. A finite labeled family is admissible only if later observer-level release, entropy, and exterior $(M,\mathbf{J},Q)$ records are computed from those same finite boundary data.
 
@@ -7181,7 +7198,7 @@ $$
 F_H(t)=0,\qquad
 \sup_{t\in[t_i,t_f]}\mathcal{R}_H(\Omega,t)<\infty,
 \qquad
-0<\left|\mathcal{B}_{H}(t_f)\right|<\infty,
+0<\left|\mathcal{B}_{H}(t_f)\right|<\infty
 $$
 with the same finite boundary data driving the transition across the whole interval. A result that proves regularity only for an isolated stationary exterior remains a comparison result until it supplies this dynamical continuation.
 
@@ -7208,7 +7225,7 @@ The canonical horizon condition is inherited from [singularity-resolution.md](..
 $$
 v_M = c_f,
 \qquad
-v_O \to c_f,
+v_O \to c_f
 $$
 
 with the middle and outer binaries becoming coplanar and co-linear with the inner binary at alignment and precession ceasing in that limit.
@@ -7343,7 +7360,7 @@ R_\parallel = \frac{R_\perp}{\gamma},
 \qquad
 \gamma = \frac{1}{\sqrt{1-\beta^2}},
 \qquad
-\beta = \frac{v_{\text{trans}}}{c_f}.
+\beta = \frac{v_{\text{trans}}}{c_f}
 $$
 
 Now let one binary orbit in a plane whose unit normal $\hat n$ makes angle $\alpha$ with the translation axis $\hat z$. The central cross-section of the ellipsoid cut by that orbital plane has area
@@ -7355,7 +7372,7 @@ A(\alpha)
 {\sqrt{R_\perp^2\sin^2\alpha + R_\parallel^2\cos^2\alpha}}
 =
 \frac{\pi R_\perp^2}
-{\sqrt{\gamma^2\sin^2\alpha + \cos^2\alpha}}.
+{\sqrt{\gamma^2\sin^2\alpha + \cos^2\alpha}}
 $$
 
 This area is maximal at $\alpha = 0$ or $\alpha = \pi$, meaning the orbital normal is parallel or antiparallel to the line of translation. It is minimal at $\alpha = \pi/2$, when the orbital normal is transverse to the motion.
@@ -7374,7 +7391,7 @@ A(\alpha)
 \pi R_\perp^2
 \left[
 1-\frac{\gamma^2-1}{2}\alpha^2
-\right],
+\right]
 $$
 
 so the restoring pressure toward axial alignment strengthens as $v_{\text{trans}} \to c_f$.
@@ -7404,7 +7421,7 @@ $$
 \;\to\;
 \text{planar horizon lock}
 \;\to\;
-\text{post-lock reconfiguration or reopening}.
+\text{post-lock reconfiguration or reopening}
 $$
 
 The intended label flow along that ladder is:
@@ -7493,7 +7510,7 @@ This should remain a live hypothesis rather than a settled identification. The s
 The explicit defer condition is that terminal axial sign,
 
 $$
-\hat J_{\text{net}}\parallel\pm\hat{\mathbf V},
+\hat J_{\text{net}}\parallel\pm\hat{\mathbf V}
 $$
 
 is not enough to identify weak left/right exposure. The same record must also pass the row-local parity and gauge-control checks used in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md) and the $\Delta_{\mathrm{WCT}}$ exposure record used in [Weak Mixing and CKM](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md). Until then, axial sign remains a candidate bridge variable rather than a weak-chirality derivation.
@@ -7593,7 +7610,7 @@ That yields a disciplined provisional picture:
 
 **Key Equation:** A standard schematic form of the AdS/CFT correspondence is
 $$
-Z_{\mathrm{grav}}[\phi_0] = Z_{\mathrm{CFT}}[\phi_0].
+Z_{\mathrm{grav}}[\phi_0] = Z_{\mathrm{CFT}}[\phi_0]
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Within $\mathbb{A}\mathbb{A}\mathbb{A}$, these concepts are treated as high-level clues rather than as final ontology. The project does not start from a fundamental AdS bulk or a literal boundary CFT. Instead, it interprets horizon structure as a constitutive interface between different nested shell swarm regimes. In that setting, cosmic censorship becomes a statement about access to maximal-curvature regimes, holography becomes a statement about compressed interface encoding, and AdS/CFT becomes a suggestive dual-language analogue rather than the primitive architecture itself.
 
