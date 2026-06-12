@@ -7268,10 +7268,10 @@
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "Why the divergence is absent here",
+                        "title": "Why the zero-radius divergence is quarantined here",
                         "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
-                        "markdownSection": "Why the divergence is absent here",
-                        "sectionKey": "why the divergence is absent here",
+                        "markdownSection": "Why the zero-radius divergence is quarantined here",
+                        "sectionKey": "why the zero radius divergence is quarantined here",
                         "headingLevel": 2
                       },
                       {

@@ -732,13 +732,13 @@ Cosmology inventory prose uses the same convention only after declaring the comp
 
 ### Physical Setup and Why a New Zero is Needed
 
-For an accepted attractive bound branch (opposite polarities), the inward motion accelerates until it reaches a **minimum radius** $r_{\min}$ where self-hit dynamics and curvature limits prevent further collapse. The motion then rebounds or orbits. Unlike a pure Coulomb potential, this branch has a lower bound on radius (and hence on accessible energy states).
+For an accepted attractive bound branch (opposite polarities), the inward motion accelerates until it reaches a **minimum radius** $r_{\min}$ where the certified self-hit and curvature records prevent further collapse. The motion then rebounds or orbits. Unlike a pure Coulomb potential, this branch has a lower bound on radius (and hence on accessible energy states).
 
 Because a lower bound exists, the natural reference is **not** "infinite separation" but the **ground configuration** at $r_{\min}$.
 
 ### The Bookkeeping Convention
 
-We adopt a **singular-boundary gauge**: since the self-hit dynamics impose a geometric lower bound $r_{\min}$ (the maximum curvature attractor), we fix the potential gauge at this wall.
+We adopt a **singular-boundary gauge**: on a certified branch chart with a declared self-hit lower boundary $r_{\min}$ (the maximum curvature attractor), we fix the potential gauge at this wall.
 
 $$U(r_{\min}) \equiv 0.$$
 

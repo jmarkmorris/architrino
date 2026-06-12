@@ -103,6 +103,17 @@ Gate A is closed only when this branch proves the following recoveries in the sa
 - The weak homogeneous branch identifies the measured photon speed with the same low-gradient limit used by clock-and-ruler synchronization, while keeping $c_f$ as the primitive wake speed rather than the directly measured observer speed.
 - The residual leakage terms for dispersion, birefringence, static charge exposure, and preferred-frame anisotropy fall below the empirical bounds before Gate B and Gate C add polarization and interaction vertices.
 
+In the structural-integrity Lorentz target, the Gate A speed row is the photon side of the common-limit condition:
+$$
+c_\gamma
+=
+c_{\text{eff}}
+=
+c_0
++O(\epsilon_{\text{LV}}c_0)
+$$
+The weak homogeneous photon branch must derive this relation from the same Noether sea response record used by clock and ruler synchronization. A separately tuned photon-channel speed would leave Lorentz closure branch-split rather than structurally intact.
+
 Gate A also owns the long-baseline photon time-of-flight check in [Constraint Ledger](../../validation/constraint-ledger.md#photon-time-of-flight-dispersion-gate). If a candidate branch permits frequency-dependent photon-channel delay, its accumulated prediction for two photon phase frequencies must be
 $$
 \Delta t_{\gamma}^{\mathrm{model}}(\omega_a,\omega_b;z)

@@ -6,7 +6,7 @@ Purpose: explain why classical "point-charge self-energy" divergences do not ari
 
 In classical electrostatics, a static $1/r$ potential yields an electric field $\mathbf{E}\propto 1/r^2$ with energy density proportional to $\|\mathbf{E}\|^2\propto 1/r^4$. Integrating $1/r^4$ over a ball produces a divergent $\int (1/r^2)\,dr$ near $r\to0$, the textbook "infinite self-energy of a point charge." This is an artifact of modeling the source as an enduring, everywhere-filled near field.
 
-## Why the divergence is absent here
+## Why the zero-radius divergence is quarantined here
 
 This project does not posit a static near field. Instead:
 
@@ -24,7 +24,7 @@ This project does not posit a static near field. Instead:
 - Event-driven geometry (self-hits occur at $r>0$):
   - Self-interaction requires outrunning recent wake surfaces $(\|\mathbf{v}\|>c_f)$. Self-hits are intersections with one's own earlier wakes at strictly positive radius $r>0$, yielding finite $1/r^2$ impulses (repulsive, like-on-like). There is no accumulation of divergent near-field energy at $r\to0$.
 
-Net effect: the canonical ontology (moving surface measures, H(0)=0, mollification for analysis) avoids the classical point-charge self-energy divergence by construction.
+Net effect: within a declared admissible branch chart, the canonical ontology (moving surface measures, H(0)=0, mollification for analysis) removes the zero-radius event that creates the classical point-charge self-energy divergence. Any remaining divergence claim must enter through a failed branch floor, failed window limit, or failed $\eta\to0$ convergence test rather than through an assumed static near field.
 
 ## Practical guidance (numerics and analysis)
 

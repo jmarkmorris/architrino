@@ -14,6 +14,7 @@ The purpose of this section is to define the combination of experimental isotrop
 * **Consolidated Requirement** – prove preferred-frame hiding: architrino assemblies must acquire Lorentz-compatible deformation and clock behavior in the Euclidean-void rest frame so no local observer can detect the Noether sea's rest frame.
 * **Observable** – local Lorentz invariance is preserved.
 * **Mechanism** – assembly-based clocks/rulers must emerge with proper time $\tau$ rather than absolute time $t$.
+* **Shared Residual** – the structural-integrity residual couples this row to the photon dispersion gate: the same branch record must make $c_{\mathrm{mat}}^{\mathrm{lim}}$, $c_{\text{eff}}$, $c_\gamma$, and $c_0$ agree within $O(\epsilon_{\text{LV}})$ while also producing clock/ruler deformation and two-way photon synchronization.
 * **Failure Condition** – any detectable preferred-frame orientation above $10^{-17}$ or residual $\delta$ in $L_{moving} = L_{rest} (\gamma^{-1} + \delta)$ that exceeds $10^{-17}$ invalidates the theory.
 
 ### Photon Time-of-Flight Dispersion Gate
@@ -51,6 +52,7 @@ where $\mathcal{E}$ is the declared transient catalog, $\Delta t_{\mathrm{src}}$
 * **Constraint** – the same photon branch that recovers local Lorentz synchronization must keep $\mathcal{R}_{\gamma\mathrm{disp}}$ below the declared catalog threshold without per-source retuning.
 * **Observable** – measured arrival-time differences across photon energy or frequency bands, source-lag model, redshift, instrument timing uncertainty, and event-selection rule.
 * **Validation Target** – Gate A in [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md) must derive a nondispersive weak homogeneous photon branch rather than assume it after the fact.
+* **Shared Residual** – this is the photon-channel component of the same common-limit residual; the $\chi_\gamma$ record cannot be repaired independently of the clock/ruler $c_{\text{eff}}$ record.
 * **Failure Condition** – a photon closure branch fails if it predicts an accumulated frequency-dependent delay in the validated band, hides that delay by changing the source-lag model event by event, or uses a different $c_\gamma$ / $\chi_\gamma$ record from the one used in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md).
 
 ### The Absolute-Frame Drift Check (Lorentz Contraction Enforcement)

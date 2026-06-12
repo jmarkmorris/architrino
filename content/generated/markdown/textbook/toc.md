@@ -888,7 +888,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
       - [Repulsion](../../../scenes/validation/repulsion.json)
       - [Self-Energy](../../../scenes/validation/self_energy.json)
         - [Classical self-energy pathology (contrast)](../../../markdown/aaa/validation/simulations/action-energy/self-energy.md?section=Classical+self-energy+pathology+%28contrast%29)
-        - [Why the divergence is absent here](../../../markdown/aaa/validation/simulations/action-energy/self-energy.md?section=Why+the+divergence+is+absent+here)
+        - [Why the zero-radius divergence is quarantined here](../../../markdown/aaa/validation/simulations/action-energy/self-energy.md?section=Why+the+zero-radius+divergence+is+quarantined+here)
         - [Practical guidance (numerics and analysis)](../../../markdown/aaa/validation/simulations/action-energy/self-energy.md?section=Practical+guidance+%28numerics+and+analysis%29)
         - [Sign-resolved bookkeeping](../../../markdown/aaa/validation/simulations/action-energy/self-energy.md?section=Sign-resolved+bookkeeping)
       - [Self-Interaction Switch](../../../scenes/validation/self_interaction_switch.json)

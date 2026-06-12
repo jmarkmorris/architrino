@@ -61,6 +61,8 @@ $$
 P_c(k)=\mu_c(B_k^W(c))
 $$
 
+This is only the foundation-level basin-measure form. It becomes a quantum-probability recovery only after a measurement chart supplies an apparatus kernel, record map, interference or coherence bookkeeping, and a proof that the same declared measure pushes forward to Born statistics across the relevant measurement contexts. In particular, a Born-rule closure must show that these finite-window basin weights reproduce $|\psi_k|^2$ frequencies without changing the measure between outcome statistics, interference records, and thermodynamic cost. That burden belongs to the quantum recovery chapters, especially [Wavefunction Ontology](../quantum/wavefunction-ontology.md) and [Quantum Operator Mapping](../philosophy-history/theory-bridges/quantum-operator-mapping.md#statistical-measure-and-the-born-rule-emergence).
+
 For this expression to support stable observer-level inference, the basin partition must be measurable on the declared chart. A useful admissibility target is
 
 $$
@@ -91,7 +93,9 @@ $$
 \mathsf e=(X,I_{\mathsf e},Y_{\mathsf e})
 $$
 
-where $X$ is the local state and path-history record, $I_{\mathsf e}$ is the finite selected channel set, and $Y_{\mathsf e}$ lists outgoing assemblies, radiation or non-photon shedding, recoil targets, Noether sea updates, remnant states, and provenance records. The corresponding energy row is not an independent emergence law; it is the energy component of the event ledger,
+where $X$ is the local state and path-history record, $I_{\mathsf e}$ is the finite selected channel set, and $Y_{\mathsf e}$ lists outgoing assemblies, radiation or non-photon shedding, recoil targets, Noether sea updates, remnant states, and provenance records. The corresponding energy row is not an independent emergence law. It is a candidate event-ledger closure condition whose wake term must be earned, not presumed.
+
+The row below is a closure template until $E_{\text{wake}}$ has been defined constructively for the declared regularized delay system. Time-translation invariance of a delay equation does not by itself supply a standard Noether energy. A valid wake-energy term must be obtained from a local potential reconstruction, an action/work integral, or a convergent boundary-flux account and then shown equivalent on the retained window.
 
 $$
 \Delta_E(\mathsf e)
@@ -126,15 +130,15 @@ This recursive structure implies that many stable forms can be deconstructed int
 
 The recursive picture is easiest to read as a bottom-up construction ladder. The ladder is a teaching map of claim levels, not a proof that every branch has already been derived.
 
-1. **Ontological background:** absolute time and the Euclidean void provide the fixed arena.
-2. **Primitive transceivers:** individual architrinos are the irreducible emitters/receivers of causal wake structure.
-3. **First bound assembly candidate:** a stable orbiting electrino:positrino binary is the first bound assembly once its branch stability certificate is supplied.
-4. **Nested shell swarms:** binaries can capture into larger nested systems, giving isolated binaries, shell swarms, and nested shell swarms with progressively stronger shielding structure.
-5. **Noether swarm stabilization:** the nested shell swarm is the first fully three-dimensional shielded Noether swarm scaffold; see [Noether Swarm](../noether-swarm/noether-swarm.md). Its persistence comes from delayed phase closure, nested energy separation, and reduced external reactivity through superposition.
-6. **Fermions with axial layers:** a nested shell swarm plus a six-site axial layer is the working map for charged-fermion and quark family architecture; changing the shielding tier is the generation target, while pro/anti orientation tracks handedness within the same swarm architecture rather than a separate substance type. Neutrino and near-photon branches require their own closure statements. This is the same ladder later used in [Particle Masses: Emergent Inertia in the Noether sea](../assemblies/particle-masses.md).
-7. **Collective medium:** larger balanced populations of neutral swarms organize into the [Noether sea](../spacetime/noether-sea.md), so the Noether sea is a higher-order collective state of neutral swarms rather than a second fundamental substrate. Its pro/anti assembly hypotheses are tracked in [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md).
-8. **Bosonic channels:** propagating coupled disturbances of assemblies appear as effective bosonic channels, but the channels are not interchangeable. Photons are routed through the coaxial contra-rotating pro/anti planar pair branch, weak carriers through massive corridor maps, and gluonic links through color-sector reconfiguration or ribbon-like coupling targets. These belong to the interaction/excitation branch of the hierarchy, not to a separate ontological species; see [Gauge Structure Emergence](../interactions/gauge-structure-emergence.md).
-9. **Composite matter and reactions:** nucleons, atoms, and larger structures arise from the coupling of already-formed assemblies. A reaction is then a reorganization of conserved constituents inside a structured environment, not creation from nothing.
+1. **Ontological background:** status: postulate. Absolute time and the Euclidean void provide the fixed arena.
+2. **Primitive transceivers:** status: primitive definition. Individual architrinos are the irreducible emitters/receivers of causal wake structure.
+3. **First bound assembly candidate:** status: branch-certificate target. A stable orbiting electrino:positrino binary is the first bound assembly once its branch stability certificate is supplied.
+4. **Nested shell swarms:** status: simulated/conjectural construction target. Binaries can capture into larger nested systems, giving isolated binaries, shell swarms, and nested shell swarms with progressively stronger shielding structure.
+5. **Noether swarm stabilization:** status: closure target. The nested shell swarm is the first fully three-dimensional shielded Noether swarm scaffold; see [Noether Swarm](../noether-swarm/noether-swarm.md). Its persistence must be closed through delayed phase closure, nested energy separation, and reduced external reactivity through superposition.
+6. **Fermions with axial layers:** status: working map and routing target. A nested shell swarm plus a six-site axial layer is the current map for charged-fermion and quark family architecture; changing the shielding tier is the generation target, while pro/anti orientation tracks handedness within the same swarm architecture rather than a separate substance type. Neutrino and near-photon branches require their own closure statements. This is the same ladder later used in [Particle Masses: Emergent Inertia in the Noether sea](../assemblies/particle-masses.md).
+7. **Collective medium:** status: effective collective-state target. Larger balanced populations of neutral swarms organize into the [Noether sea](../spacetime/noether-sea.md), so the Noether sea is a higher-order collective state of neutral swarms rather than a second fundamental substrate. Its pro/anti assembly hypotheses are tracked in [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md).
+8. **Bosonic channels:** status: channel-specific routing targets. Propagating coupled disturbances of assemblies appear as effective bosonic channels, but the channels are not interchangeable. Photons are routed through the coaxial contra-rotating pro/anti planar pair branch, weak carriers through massive corridor maps, and gluonic links through color-sector reconfiguration or ribbon-like coupling targets. These belong to the interaction/excitation branch of the hierarchy, not to a separate ontological species; see [Gauge Structure Emergence](../interactions/gauge-structure-emergence.md).
+9. **Composite matter and reactions:** status: effective summary after lower closure. Nucleons, atoms, and larger structures arise from the coupling of already-formed assemblies. A reaction is then a reorganization of conserved constituents inside a structured environment, not creation from nothing.
 
 This ladder matters because it prevents category drift. Fermions, bosonic channels, and observer-level spacetime are not separate ontological species added by hand; they are different organizational levels or effective descriptions of the same underlying architrino dynamics.
 
