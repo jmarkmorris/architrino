@@ -27,7 +27,7 @@ $$
 =
 \mathbf{D}_{X}
 -
-K_X(\alpha_X,x_X)\,\mathbf{D}_{\mathrm{CMB}},
+K_X(\alpha_X,x_X)\,\mathbf{D}_{\mathrm{CMB}}
 $$
 
 where $\mathbf{D}_{X}$ is the measured source-count dipole, $\mathbf{D}_{\mathrm{CMB}}$ is the CMB dipole vector, and $K_X(\alpha_X,x_X)$ is the catalogue-dependent kinematic amplification factor built from spectral index $\alpha_X$ and number-count slope $x_X$.
@@ -41,7 +41,7 @@ $$
 +
 \mathbf{D}_{\mathrm{sea}}
 +
-\mathbf{D}_{\mathrm{mask/source}},
+\mathbf{D}_{\mathrm{mask/source}}
 $$
 
 where $\mathbf{D}_{\mathrm{kin}}$ is ordinary observer motion, $\mathbf{D}_{\mathrm{sea}}$ is the contribution from Noether sea flow, density, delay, and clock-rate gradients, and $\mathbf{D}_{\mathrm{mask/source}}$ records survey selection and source-population effects. Closure requires the same Noether sea term to remain compatible with CMB anisotropy, quasar and radio-source dipoles, supernova directionality, BAO measurements, and local $H$ scatter.
@@ -61,7 +61,7 @@ $$
 S_{PW}(\hat{\mathbf{n}},\theta)
 =
 \frac{\langle M_P,T_{\theta,\hat{\mathbf{n}}}\rangle_{C_P^{-1}}}{\sigma_P(\theta)}
-\frac{\langle M_W,T_{\theta,\hat{\mathbf{n}}}\rangle_{C_W^{-1}}}{\sigma_W(\theta)}.
+\frac{\langle M_W,T_{\theta,\hat{\mathbf{n}}}\rangle_{C_W^{-1}}}{\sigma_W(\theta)}
 $$
 For a proposed set of $N$ localized features, the comparison pressure is the null probability
 $$
@@ -73,7 +73,7 @@ p_N
 \sum_{i=1}^{N}S_{PW}(\hat{\mathbf{n}}_i,\theta_i)
 \ge
 S_{\mathrm{obs}}
-\right].
+\right]
 $$
 
 This statistic is a validation target, not a permission to import an external cosmology. If such a residual remains significant after foreground, mask, and look-elsewhere accounting, a viable $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmology must either reproduce it from the same Noether sea state used for TT/TE/EE, blackbody behavior, lensing, BAO, and structure growth, or show why it is a foreground, systematic, or null-fluctuation artifact. A fit that explains localized features by changing the cosmology state independently from the acoustic peaks or lensing record fails the shared-state requirement.
@@ -249,7 +249,7 @@ N_{\mathrm{eff}},
 Y_p,
 \mathcal{P}_{\mathrm{instr}},
 \mathbf{D}_{\mathrm{frame}}
-\right),
+\right)
 $$
 where $T_{\mathrm{src}}$ is the effective source or last-thermalization temperature, $\eta_{\gamma b}$ is the photon-to-baryon loading ledger, $N_{\mathrm{eff}}$ and $Y_p$ carry the neutrino and helium-facing constraints, $\mathcal{P}_{\mathrm{instr}}$ records the antenna, atmosphere, calibration, foreground, polarization, and seasonal checks, and $\mathbf{D}_{\mathrm{frame}}$ is the residual frame vector used in the dipole gate above. A distributed or recycling interpretation is admissible only when the same $\Theta_{\mathrm{CMB}}$ supports the spectrum, isotropy, BBN handoff, and frame correction. Fitting the microwave temperature while assigning the helium abundance, neutrino history, foreground subtraction, or dipole correction to separate records would reproduce a number while failing the CMB constraint.
 
@@ -275,7 +275,7 @@ B_{\mathrm{loss}}^\theta
 -
 \int \mathcal{F}_\gamma^\theta\,dA\,dt
 \right|
-}{\epsilon_E}.
+}{\epsilon_E}
 $$
 This residual is the CMB-facing form of source provenance. A branch that recovers a blackbody curve by adding an untracked photon bath, or by hiding excess source energy in an undeclared non-photon reservoir, has not supplied the shared record required by the CMB gate.
 
@@ -311,7 +311,7 @@ $$
 \frac{(\ln M_{\mathrm{grow}}^\theta-\ln M_{\mathrm{grow}}^{\mathrm{ref}})^2}{\sigma_{\ln M}^2}
 +
 \frac{(\ln R_{\mathrm{grow}}^\theta-\ln R_{\mathrm{grow}}^{\mathrm{ref}})^2}{\sigma_{\ln R}^2}
-\right].
+\right]
 $$
 Here $T_0^\theta$ is the present observer-side radiation temperature, while $z_{\mathrm{eq}}^\theta$ and $k_{\mathrm{eq}}^\theta$ are the matter-radiation equality redshift and scale in observer variables. The term $H_{\mathrm{eff}}^\theta$ is the effective expansion or relaxation projection, and $\Omega_{K,\mathrm{eff}}^\theta$ is the effective curvature projection of the same Noether sea record. The positive-scale terms $M_{\mathrm{grow}}^\theta$ and $R_{\mathrm{grow}}^\theta$ are declared condensation/growth-scale comparisons supplied by the structure-formation packet rather than imported 1948 values. A successful CMB record must make this residual small without changing $\theta$ between the blackbody, equality, effective expansion, curvature, and growth projections.
 
@@ -323,7 +323,7 @@ $$
 \mathcal{D}_{\mathrm{th}}^{\mathrm{CMB}}(\nu)
 =
 \int_{t_{\text{src}}}^{t_{\text{dec}}}
-\tau_{\mathrm{th}}^{-1}(\nu,t)\,dt,
+\tau_{\mathrm{th}}^{-1}(\nu,t)\,dt
 $$
 
 where $\tau_{\mathrm{th}}^{-1}$ is the effective rate for the already-recorded capture/release, Compton-like redistribution, pair-channel, and medium-exchange processes. The target is $\mathcal{D}_{\mathrm{th}}^{\mathrm{CMB}}\gg1$ before decoupling for spectral relaxation, followed by sufficiently weak post-decoupling coupling to preserve anisotropy, polarization, and damping information rather than erase it.
@@ -340,14 +340,14 @@ $$
 \qquad
 D_{\mathrm{eff}}^\theta(\nu,\hat{\mathbf{n}})
 =
-\inf\{D>0:\tau_{\mathrm{mw}}^\theta(\nu,\hat{\mathbf{n}},D)\ge1\}.
+\inf\{D>0:\tau_{\mathrm{mw}}^\theta(\nu,\hat{\mathbf{n}},D)\ge1\}
 $$
 
 Here $\chi_{\mathrm{op}}^\theta$ is the proposed microwave-band opacity, not the Noether sea delay factor $\chi_{\text{sea}}$. The CMB-pixel question is therefore a derived closure target. For angular beam or pixel width $\Delta\alpha$ in radians, use the transverse comparison scale
 $$
 L_{\perp}^{\theta}(\nu,\hat{\mathbf{n}},\Delta\alpha)
 \simeq
-D_{\mathrm{eff}}^\theta(\nu,\hat{\mathbf{n}})\,\Delta\alpha.
+D_{\mathrm{eff}}^\theta(\nu,\hat{\mathbf{n}})\,\Delta\alpha
 $$
 This scale is meaningful only after the branch computes $D_{\mathrm{eff}}^\theta$ from its source, transport, and thermalization record. If no finite $D_{\mathrm{eff}}^\theta$ exists, or if it varies too strongly with frequency or sky direction, the distributed-source interpretation has not supplied a stable CMB comparison surface.
 
@@ -361,7 +361,7 @@ $$
 +
 \frac{\|\Delta\mathcal{D}_{\mathrm{FIR}}^\theta\|}{\epsilon_{\mathrm{FIR}}}
 +
-\frac{\|\partial_\nu\chi_{\mathrm{op}}^\theta\|_{\mathrm{CMB}}}{\epsilon_\chi}.
+\frac{\|\partial_\nu\chi_{\mathrm{op}}^\theta\|_{\mathrm{CMB}}}{\epsilon_\chi}
 $$
 A thermalizing component is admissible only if it helps make $\mathcal{D}_{\mathrm{th}}^{\mathrm{CMB}}\gg1$ before the free-streaming record is fixed while keeping $\mathcal{R}_{\mathrm{op}}^\theta\le1$ afterward. This is the native exclusion of absorber stories that smooth the spectrum by erasing the anisotropy and polarization record they must also preserve.
 
@@ -371,7 +371,7 @@ $$
 u_\nu^{\mathrm{eff}}(T_{\text{ens}})
 =
 \frac{8\pi h\nu^3}{c_\gamma^3}
-\frac{1}{\exp(h\nu/(k_B T_{\text{ens}}))-1}.
+\frac{1}{\exp(h\nu/(k_B T_{\text{ens}}))-1}
 $$
 
 This formula is an effective comparison object. It becomes available only after Gate A supplies the photon energy-frequency and mode-counting interface, Gate B supplies the two transverse photon modes and polarization handoff, and Gate C drives the photon chemical potential to zero through detailed balance. The redshift handoff must then preserve spectral shape by mapping photon frequencies and inferred temperature through the same Noether sea state and clock-rate comparison variables used elsewhere in this document.
@@ -387,7 +387,7 @@ I_i-F_i(\psi)-B_{\nu_i}(T;\theta)
 C^{-1}_{ij}
 \left[
 I_j-F_j(\psi)-B_{\nu_j}(T;\theta)
-\right],
+\right]
 $$
 where $B_\nu(T;\theta)$ is the photon-channel blackbody comparison spectrum projected through the same medium record $\theta$. A distributed or recycling source story must make $\mathcal{R}_{\mathrm{spec}}$ small without using a foreground, calibration, or post-decoupling transport residual to erase the acoustic and polarization information.
 
@@ -399,7 +399,7 @@ $$
 \qquad
 T_{\mathrm{obs}}
 =
-\frac{T_{\mathrm{dec}}}{1+z}.
+\frac{T_{\mathrm{dec}}}{1+z}
 $$
 This is an observer-level transport benchmark. It does not say that the Euclidean void expanded; it says the photon-channel distribution, endpoint clock comparison, and path-history propagation must carry a blackbody spectrum into the present microwave band without generating a chemical-potential or chromaticity residual above the CMB tolerance.
 
@@ -411,7 +411,7 @@ $$
 +
 \frac{y^2}{\sigma_y^2}
 +
-\mathcal{R}_{\mathrm{spec}},
+\mathcal{R}_{\mathrm{spec}}
 $$
 where $\mu$ and $y$ are the chemical-potential and Compton-distortion parameters of the observer-level spectrum fit. A path-history redshift proposal passes only if it preserves the near-thermal spectrum, image sharpness, and packet time-dilation behavior in the same transport record.
 
@@ -421,7 +421,7 @@ $$
 =
 n_e\sigma_T c_0
 \approx
-H_{\mathrm{eff}},
+H_{\mathrm{eff}}
 $$
 with recombination delayed by the high photon-to-baryon loading encoded in the same $\eta$ ledger used by BBN. The native CMB record therefore has to recover a thin enough last-scattering window, not only a plausible source story.
 
@@ -446,7 +446,7 @@ In the modular cosmology map, this page provides:
 ### Effective Comparison Object
 
 $$
-C_\ell = \langle |a_{\ell m}|^2 \rangle.
+C_\ell = \langle |a_{\ell m}|^2 \rangle
 $$
 
 The formal observables remain standard; in practice this includes TT/TE/EE spectra (with damping-tail and lensing behavior), with $C_\ell$ as compact notation.
@@ -466,12 +466,12 @@ n_s^{\theta}-1+\frac12\alpha_s^{\theta}\ln(k/k_*)
 \qquad
 r^{\theta}(k_*)
 =
-\frac{\mathcal{P}_{T}^{\theta}(k_*)}{\mathcal{P}_{\mathcal{R}}^{\theta}(k_*)}.
+\frac{\mathcal{P}_{T}^{\theta}(k_*)}{\mathcal{P}_{\mathcal{R}}^{\theta}(k_*)}
 $$
 
 Here $A_s^{\theta}$ is the scalar amplitude, $n_s^{\theta}$ the scalar tilt, $\alpha_s^{\theta}$ an optional running term, and $r^{\theta}$ the tensor-to-scalar comparison ratio. The tensor condition is a bound,
 $$
-r^{\theta}(k_*)\le r_{\max},
+r^{\theta}(k_*)\le r_{\max}
 $$
 with $r_{\max}$ supplied by the current observational analysis being used for the comparison. This keeps tensor non-detection as a pressure on source models without turning any particular inflationary or anti-inflationary interpretation into corpus doctrine.
 
@@ -488,7 +488,7 @@ $$
 +
 \lambda_r\max(0,r^{\theta}-r_{\max})^2
 +
-\lambda_{\mathrm{low}}\mathcal{R}_{\mathrm{GW,low}}(\theta),
+\lambda_{\mathrm{low}}\mathcal{R}_{\mathrm{GW,low}}(\theta)
 $$
 where $\mathcal{L}_{BB}$ is the declared B-mode comparison window and $\mathcal{R}_{\mathrm{GW,low}}$ is the low-frequency dispersion forecast from [Gravitational Waves](../spacetime/gravitational-waves.md#linear-wave-equation). This keeps the CMB tensor bound and gravitational-wave dispersion gate tied to one comparison record rather than allowing a finite-range branch to fit them separately.
 
@@ -503,7 +503,7 @@ $$
 +
 \frac{(n_s^{\theta}-n_s^{\mathrm{obs}})^2}{\sigma_{n_s}^2}
 +
-\lambda_T\max(0,r^{\theta}-r_{\max})^2.
+\lambda_T\max(0,r^{\theta}-r_{\max})^2
 $$
 
 The closure target is one medium-and-assembly model with bounded $\mathcal{R}_{\mathrm{CMB}}$, not a separate fit for each observable family.
@@ -517,7 +517,7 @@ $$
 \left(\ell_{p,X}^{\theta}-\ell_{p,X}^{\mathrm{obs}}\right)^2
 }{
 \sigma_{\ell,p,X}^2
-},
+}
 $$
 where $\ell_{p,X}$ denotes the location of the $p$th acoustic feature in spectrum $X$. This residual keeps acoustic ringing as an observational phase-coherence requirement. It does not select a particular origin story for why those phases are coherent.
 
@@ -532,7 +532,7 @@ $$
 \int_{\Sigma_{\mathrm{dec}}}
 \left\|\nabla\delta_{\gamma}^{\theta}\right\|^2\,dV_{\mathrm{eff}}
 +\epsilon_V
-}.
+}
 $$
 Here $\delta_{\gamma}^{\theta}$ is the photon-channel density contrast in the observer-level reconstruction. The numerator tests effective vector/vorticity content; the denominator normalizes it against the scalar contrast being recovered. A successful CMB history must keep this residual small in the same state record that fits TT/TE/EE.
 
@@ -545,7 +545,7 @@ $$
 \left(C_L^{\phi\phi,\theta}-C_L^{\phi\phi,\mathrm{obs}}\right)^2
 }{
 \sigma_{L,\phi}^2
-}.
+}
 $$
 This is a data-product constraint, not a dark-sector ontology by itself. The same Noether sea and assembly history that fits the primary TT/TE/EE spectra must also project to the lensing potential consumed by the growth and dark-matter modules.
 
@@ -562,7 +562,7 @@ $$
 \int_{\Sigma_{\mathrm{dec}}}
 \left\|R_{\alpha\beta}(g_{\theta}^{\text{eff}})\right\|^2\,dV_{\mathrm{eff}}
 +\epsilon_R
-}.
+}
 $$
 
 This is not a statement that the Euclidean void is curved. It is an observer-level diagnostic on the effective reconstruction used to compare with CMB data. A stronger closure criterion is therefore
@@ -581,7 +581,7 @@ $$
 +
 \lambda_{\mathrm{range}}\mathcal{R}_{T,\mathrm{range}}(\theta)
 \le
-\varepsilon_{\mathrm{CMB}},
+\varepsilon_{\mathrm{CMB}}
 $$
 with $\lambda_{T,\mathrm{eq,grow}}$, $\lambda_{\mathrm{phase}}$, $\lambda_V$, $\lambda_{\mathrm{lens}}$, $\lambda_{\mathrm{smooth}}$, $\lambda_{\mathrm{range}}$, and $\varepsilon_{\mathrm{CMB}}$ declared by the data release or simulation protocol. Passing this test would mean that the same Noether sea and assembly history recovers TT/TE/EE, blackbody behavior, radiation-temperature/equality/growth consistency, scalar/tensor bounds, acoustic phase coherence, vector-mode suppression, CMB-lensing reconstruction, the low effective gravitational free-mode budget, and any declared finite-range comparison branch without changing ontology between modules.
 
@@ -611,7 +611,7 @@ So source narrative is an interpretation layer, not a change in the prediction t
 CMB frequency scaling to present observers is interpreted through medium evolution plus environment-dependent clock-rate comparison, consistent with the expansion-mechanism framing:
 
 $$
-\frac{d\tau}{dt}=F\!\left(\mathbf{v},\rho_{\text{NS}}(\mathbf{x},t),n(\mathbf{x},t),\chi_{\text{sea}}(\mathbf{x},t),\Phi_{\text{eff}},\text{clock geometry}\right).
+\frac{d\tau}{dt}=F\!\left(\mathbf{v},\rho_{\text{NS}}(\mathbf{x},t),n(\mathbf{x},t),\chi_{\text{sea}}(\mathbf{x},t),\Phi_{\text{eff}},\text{clock geometry}\right)
 $$
 
 So CMB temperature/redshift summaries remain usable while their mechanism is grounded in assembly-medium dynamics.
@@ -630,7 +630,7 @@ Y_{\gamma}^{\mathrm{post}}
 \Delta Y_{\gamma,j}^{\mathrm{ex}}
 =
 -\ln
-\frac{\nu_{\gamma,j}^{+}}{\nu_{\gamma,j}^{-}},
+\frac{\nu_{\gamma,j}^{+}}{\nu_{\gamma,j}^{-}}
 $$
 
 where negative increments are frequency boosts and positive increments are frequency depletions relative to the local comparison clock. The corresponding exchange residual is
@@ -646,7 +646,7 @@ h(\nu_{\gamma,j}^{+}-\nu_{\gamma,j}^{-})
 +\Delta E_{\mathrm{recoil},j}
 +\Delta E_{\mathrm{rem},j}
 \right|
-}{\epsilon_{E,j}}.
+}{\epsilon_{E,j}}
 $$
 
 This row is a calibration and provenance requirement, not a claim that all cosmological redshift is SZ scattering. A CMB history must still preserve the near-blackbody spectrum, anisotropy, polarization, damping, and lensing records. The SZ lesson is narrower and important: any use of CMB temperature, redshift, or kSZ velocity data must keep photon frequency transfer tied to the same Noether sea, electron-population, and path-history record rather than treating frequency as a pure expansion clock.

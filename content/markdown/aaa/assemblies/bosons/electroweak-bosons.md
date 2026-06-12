@@ -74,7 +74,7 @@ The axial communication budget is asymmetric:
 $$
 \tau_{L\to T}\simeq \frac{d}{c_f+c_\gamma},
 \qquad
-\tau_{T\to L}\simeq \frac{d}{c_f-c_\gamma}.
+\tau_{T\to L}\simeq \frac{d}{c_f-c_\gamma}
 $$
 
 The forward catch-up delay $\tau_{T\to L}$ is the dangerous term because it diverges at fixed $d$ as $c_\gamma\to c_f$. Gate A must therefore prove a finite phase-locking branch, not merely assume one:
@@ -84,7 +84,7 @@ $$
 \phi_{\text{geom}}(d,\omega,c_\gamma)
 =2\pi k,
 \qquad
-k\in\mathbb{Z}.
+k\in\mathbb{Z}
 $$
 
 The non-dispersive candidate is the proportional-collapse branch
@@ -93,7 +93,7 @@ d(\omega,\delta_\gamma)
 \sim
 \Lambda_\gamma\frac{c_f-c_\gamma}{\omega},
 \qquad
-\delta_\gamma\equiv1-\frac{c_\gamma}{c_f},
+\delta_\gamma\equiv1-\frac{c_\gamma}{c_f}
 $$
 with finite branch constant $\Lambda_\gamma$. This branch keeps $\omega d/(c_f-c_\gamma)=O(1)$ while forcing $d\to0$ as $c_\gamma\to c_f$. A fixed-$d$ branch would generally make the photon channel frequency-dependent and is therefore a failure mode unless a separate cancellation is derived.
 
@@ -102,6 +102,17 @@ Gate A is closed only when this branch proves the following recoveries in the sa
 - The kinematic mass shell is null in the photon channel: $E_\gamma^2-\|\mathbf{p}_\gamma\|^2c_\gamma^2=0$, with $E_\gamma=h\nu$ and $p=h/\lambda$ recovered from the phase-cycle ledger.
 - The weak homogeneous branch identifies the measured photon speed with the same low-gradient limit used by clock-and-ruler synchronization, while keeping $c_f$ as the primitive wake speed rather than the directly measured observer speed.
 - The residual leakage terms for dispersion, birefringence, static charge exposure, and preferred-frame anisotropy fall below the empirical bounds before Gate B and Gate C add polarization and interaction vertices.
+
+In the structural-integrity common-limit closure in [Lorentz Kinematics](../../spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure), the Gate A speed row is the photon side of the common-limit condition:
+$$
+c_\gamma
+=
+c_{\text{eff}}
+=
+c_0
++O(\epsilon_{\text{LV}}c_0)
+$$
+The weak homogeneous photon branch must derive this relation from the same Noether sea response record used by clock and ruler synchronization. A separately tuned photon-channel speed would leave Lorentz closure branch-split rather than structurally intact.
 
 Gate A also owns the long-baseline photon time-of-flight check in [Constraint Ledger](../../validation/constraint-ledger.md#photon-time-of-flight-dispersion-gate). If a candidate branch permits frequency-dependent photon-channel delay, its accumulated prediction for two photon phase frequencies must be
 $$
@@ -112,7 +123,7 @@ $$
 \chi_\gamma(\omega_a,\mathbf{x},t)
 -
 \chi_\gamma(\omega_b,\mathbf{x},t)
-}{c_0}\,d\ell .
+}{c_0}\,d\ell
 $$
 The closure target is $\Delta t_{\gamma}^{\mathrm{model}}\to0$ in the weak homogeneous branch after the same $c_\gamma$ and $\chi_\gamma$ record has recovered local synchronization. A branch that requires a different photon speed for time-of-flight events than for clock, ruler, or scattering comparisons has not closed Gate A.
 
@@ -127,7 +138,7 @@ The natural object is the rank-two transverse projector
 $$
 P_{\perp}^{ab}
 =
-h^{ab}-\hat{e}^a\hat{e}^b.
+h^{ab}-\hat{e}^a\hat{e}^b
 $$
 
 Let $P_{\parallel}^{ab}=\hat{e}^a\hat{e}^b$ be the complementary longitudinal projector. Gate B must show that the planar-pair ledger lives in the image of $P_{\perp}$ and has no accepted free longitudinal component. A longitudinal or mixed-axis vector channel belongs to a massive corridor, a medium-bound recoupling, or a Gate A failure mode; it is not an additional free photon polarization.
@@ -151,7 +162,7 @@ P_{\perp}
 \mathbf a_{\parallel}^{\mathrm{sub}}
 =
 P_{\parallel}
-\mathbf a_{\gamma}^{\mathrm{sub}}.
+\mathbf a_{\gamma}^{\mathrm{sub}}
 $$
 
 The first two substrate residuals check static charge-like cancellation and longitudinal leakage:
@@ -189,7 +200,7 @@ q_{\mathrm{anti}}^{\mathrm{eff}}
 \right\|
 +
 \varepsilon_{\mathrm{amp}}
-}.
+}
 $$
 
 A free photon branch requires small $\Delta_Q^\gamma$, nonzero $\mathbf a_{\perp}^{\mathrm{sub}}$, and small $\Delta_{\parallel}^{\mathrm{sub}}$ in the same Gate A event window. These are closure conditions on the coaxial contra-rotating pro/anti planar pair, not independent postulates about a photon field.
@@ -201,7 +212,7 @@ $$
 =
 a_u\hat{\mathbf{u}}+a_v\hat{\mathbf{v}},
 \qquad
-|a_u|^2+|a_v|^2=1.
+|a_u|^2+|a_v|^2=1
 $$
 
 Linear polarization is the real-axis case. Circular polarization is the quarter-cycle relation represented by
@@ -212,7 +223,7 @@ $$
 \frac{1}{\sqrt{2}}
 \left(\hat{\mathbf{u}}\pm i\hat{\mathbf{v}}\right),
 \qquad
-\lambda_{\mathrm{hel}}\in\{+1,-1\}.
+\lambda_{\mathrm{hel}}\in\{+1,-1\}
 $$
 
 The standard polarization kinds are observer-level summaries of this same transverse ledger, not separate photon species. After removing an irrelevant common phase, write
@@ -223,7 +234,7 @@ a_v=A_v e^{i\phi_v},
 \qquad
 A_u^2+A_v^2=1,
 \qquad
-\delta=\phi_v-\phi_u.
+\delta=\phi_v-\phi_u
 $$
 Then linear polarization is the phase-aligned case $\delta=0$ or $\pi$, so the ledger can be represented by a real transverse axis. Circular polarization is the equal-amplitude quarter-cycle case $A_u=A_v=1/\sqrt2$ and $\delta=\pm\pi/2$. Elliptical polarization is the remaining coherent case: both transverse components are retained with a stable relative phase, with linear and circular polarization appearing as limiting cases of the same ledger.
 
@@ -237,7 +248,7 @@ C_{\rho}^{ab}
 \left\langle h_{cd}\overline{a_\perp^c}a_\perp^d\right\rangle_{\rho}
 },
 \qquad
-h_{ab}C_{\rho}^{ab}=1.
+h_{ab}C_{\rho}^{ab}=1
 $$
 A pure polarization record is rank one inside $\operatorname{im}P_{\perp}$. An unpolarized record has $C_{\rho}^{ab}=\frac12P_{\perp}^{ab}$, so no analyzer axis is preferred. A partially polarized record lies between these cases. Gate B must derive the underlying transverse ledgers, source or material averaging window, and analyzer response before these effective summaries are treated as recovered optical behavior.
 
@@ -250,7 +261,7 @@ $$
 +
 \mathbf J_{\mathrm{anti}}
 +
-\mathbf J_{\gamma,\mathrm{wake}},
+\mathbf J_{\gamma,\mathrm{wake}}
 $$
 
 with
@@ -272,7 +283,7 @@ P_{\perp}\mathbf J_{\gamma}^{\mathrm{sub}}
 \right\|
 }{
 \hbar+\varepsilon_J
-}.
+}
 $$
 
 A clean free branch must route source remnant, recoil, material handoff, and unrelated medium rows outside the photon-only ledger through the event-balance equation. Only after Gate A, the event-window helicity projection, and the transverse leakage residual pass may the target be summarized by $\mathbf J_{\gamma}^{\mathrm{sub}}\approx\lambda_{\mathrm{hel}}\hbar\hat{\mathbf e}$. Reaction chapters consume this as the photon Gate B event residual, not as a source-free helicity proof.
@@ -290,7 +301,7 @@ P_{\text{pass}}
 =
 |\mathcal{A}_{\text{pass}}|^2
 =
-\cos^2\theta.
+\cos^2\theta
 $$
 
 Gate B is not closed by writing this standard projection formula, but the native measure has a precise form. Let $a_\perp^a$ be the incoming transverse planar-pair ledger and define its positive action norm by
@@ -298,7 +309,7 @@ Gate B is not closed by writing this standard projection formula, but the native
 $$
 \mathcal{I}_{\perp}
 =
-h_{ab}\,\overline{a_\perp^a}a_\perp^b.
+h_{ab}\,\overline{a_\perp^a}a_\perp^b
 $$
 
 The analyzer's accepted material channel is the rank-one transverse projector
@@ -306,7 +317,7 @@ The analyzer's accepted material channel is the rank-one transverse projector
 $$
 A^a{}_{b}=\hat a^a\hat a_b,
 \qquad
-A^a{}_{b}P_{\perp}^{b}{}_{c}=A^a{}_{c}.
+A^a{}_{b}P_{\perp}^{b}{}_{c}=A^a{}_{c}
 $$
 
 The signed overlap $\hat a_a a_\perp^a$ is only the coherent capture amplitude. The material capture measure is the positive accepted action fraction:
@@ -318,7 +329,7 @@ $$
 {h_{ab}\,\overline{a_\perp^a}a_\perp^b}
 =
 \frac{\left|\hat a_a a_\perp^a\right|^2}
-{\mathcal{I}_{\perp}}.
+{\mathcal{I}_{\perp}}
 $$
 
 The rejected channel is
@@ -330,7 +341,7 @@ R^a{}_{b}=P_{\perp}^{a}{}_{b}-A^a{}_{b},
 =
 \frac{\overline{a_\perp^a}R_{ab}a_\perp^b}{\mathcal{I}_{\perp}},
 \qquad
-\mu_{\text{pass}}+\mu_{\text{rej}}=1.
+\mu_{\text{pass}}+\mu_{\text{rej}}=1
 $$
 
 For linear polarization this reduces to $\mu_{\text{pass}}=\cos^2\theta$ and $\mu_{\text{rej}}=\sin^2\theta$. For circular helicity states $\boldsymbol{\epsilon}_{\pm}$ it gives $\mu_{\text{pass}}=1/2$ for any linear analyzer axis.
@@ -341,7 +352,7 @@ $$
 \mathcal{C}_{\text{pass}}(\hat{\mathbf a})
 =
 \{\xi\,\hat a^a:\xi\in\mathbb{C}\}
-\subset\operatorname{im}P_{\perp},
+\subset\operatorname{im}P_{\perp}
 $$
 
 so the accepted projector is rank one inside $P_{\perp}$. If the accepted channel had rank two it would pass the full transverse ledger; if it had rank zero it would not pass a photon channel. The rejected component
@@ -361,7 +372,7 @@ H\!\left(\mu_{\text{pass}}-\eta_{\hat{\mathbf a}}(\zeta)\right),
 \qquad
 \int_{\Theta_{\hat{\mathbf a}}}K_{\text{pass}}\,d\nu_{\hat{\mathbf a}}
 =
-\mu_{\text{pass}}.
+\mu_{\text{pass}}
 $$
 
 The reduced substrate origin is the analyzer's record-window return dynamics. $\Theta_{\hat{\mathbf a}}$ is the quotient of calibrated analyzer microstates during a local capture attempt, $d\nu_{\hat{\mathbf a}}$ is the invariant occupation measure of the material return map $T_s$, and $\eta_{\hat{\mathbf a}}$ is the pass-basin threshold coordinate
@@ -372,7 +383,7 @@ $$
 \inf\left\{
 \rho\in[0,1]:
 \zeta\in\mathcal{B}_{\text{pass}}(\rho;\hat{\mathbf a})
-\right\}.
+\right\}
 $$
 
 The ideal-analyzer closure target is $(\eta_{\hat{\mathbf a}})_*d\nu_{\hat{\mathbf a}}=d\eta$. If this pushforward is biased, the deviation $P_{\text{pass}}(\rho)-\rho$ is a material calibration diagnostic rather than a new photon law. The concrete substrate proof still has to compute the return map and basin filtration from an analyzer assembly simulation.
@@ -384,7 +395,7 @@ The polarization-pair no-signaling test is part of the same gate. For entangled 
 $$
 \sum_{b=\pm}P(a,b\mid\alpha,\beta)=P(a\mid\alpha),
 \qquad
-\sum_{a=\pm}P(a,b\mid\alpha,\beta)=P(b\mid\beta).
+\sum_{a=\pm}P(a,b\mid\alpha,\beta)=P(b\mid\beta)
 $$
 
 The correlation target depends on the prepared photon-pair state, but the usual polarization tests require a $\cos 2(\alpha-\beta)$ angle dependence up to the sign and phase convention of that state. A model may use pair provenance and contextual local analyzer coupling, but it must not permit the remote analyzer setting to send a usable signal through the photon ledger.
@@ -452,7 +463,7 @@ $$
 -\frac{4G_F}{\sqrt 2}\,
 J_+^\mu J^-_\mu,
 \qquad
-G_F=\frac{1}{\sqrt 2\,v_{\mathrm{EW}}^2}.
+G_F=\frac{1}{\sqrt 2\,v_{\mathrm{EW}}^2}
 $$
 This is not a new substrate interaction. It is the low-energy observer limit of the same charged-corridor event after the finite-width mediator has been integrated out. The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is therefore to derive the corridor stiffness or electroweak scale $v_{\mathrm{EW}}$ from Noether sea response and then recover $G_F$, beta rates, and charged-current branching fractions without fitting a separate contact coupling.
 
@@ -487,7 +498,7 @@ g_{H,A}^{\mathrm{eff}}(\theta)
 \left.
 \frac{\partial M_{\mathrm{sh}}(A;\theta,\varphi)}
 {\partial \varphi}
-\right|_{\varphi=0}.
+\right|_{\varphi=0}
 $$
 The Higgs comparison closes only if this derivative reproduces the observed Higgs-coupling pattern while the radial mode's own resonance scale gives $M_H^{\mathrm{breath}}\approx 125$ GeV on the same Noether sea branch. The scalar mode is therefore a shared medium-response benchmark, not a license to add independent Yukawa parameters or a separate mass-generating substance.
 
@@ -502,7 +513,7 @@ N_{s,c,k}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)
 \,A_{s,c,k,p}
 \,\varepsilon_{s,c,k,p}
 +
-B_{s,c,k}.
+B_{s,c,k}
 $$
 The relevant high-resolution channels include $H\to ZZ^{(*)}\to4\ell$, $H\to\gamma\gamma$, and $H\to WW^{(*)}$. The $\gamma\gamma$ channel is especially important for this chapter because it disfavors a spin-$1$ assignment while keeping the photon channel itself a separate transverse planar-pair ledger.
 
@@ -532,12 +543,12 @@ This chapter provides the interaction operator needed by the quark/lepton closur
 
 Define charged-corridor operators acting on weak basis states:
 $$
-\mathcal{W}_\pm:\ \mathcal{H}_{\mathrm{weak}}\to \mathcal{H}_{\mathrm{weak}},
+\mathcal{W}_\pm:\ \mathcal{H}_{\mathrm{weak}}\to \mathcal{H}_{\mathrm{weak}}
 $$
 with effective amplitudes weighted by overlap matrices:
 $$
 \mathcal{M}_{q}\propto V_{\mathrm{CKM}},\qquad
-\mathcal{M}_{\ell}\propto U_{\mathrm{PMNS}}.
+\mathcal{M}_{\ell}\propto U_{\mathrm{PMNS}}
 $$
 
 Operational closure requirement:

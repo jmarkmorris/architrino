@@ -82,7 +82,7 @@ A second tension is explanatory thinness. Informational ontology can classify re
 This becomes more acute when large correlation systems are treated as if predictive success were already explanation. A high-performing predictor may act on data products and calibration records,
 
 $$
-P:\left(D,A_{\mathrm{inst}},K_{\mathrm{cal}}\right)\mapsto \widehat{D},
+P:\left(D,A_{\mathrm{inst}},K_{\mathrm{cal}}\right)\mapsto \widehat{D}
 $$
 
 without identifying the effective model $M_{\mathrm{eff}}$ or the ontological reading $O_{\mathrm{ont}}$ that would explain the forecast. A correlation result should therefore remain at the effective-description level unless it is paired with a mechanism map
@@ -94,7 +94,7 @@ $$
 and a stated residual $R_{\mathrm{fail}}$ that could reject that map. In observational-equivalence language, if distinct candidate substrate states $S$ and $S'$ remain indistinguishable under the encoding chain,
 
 $$
-\|E(S)-E(S')\|\le\varepsilon,
+\|E(S)-E(S')\|\le\varepsilon
 $$
 
 then the available information has not selected one ontology. The prediction may be useful, but it has not become the substance of the world.
@@ -134,7 +134,7 @@ For a declared operation step $s$, let $\Omega_s$ be the accessible pre-operatio
 $$
 p_s =
 \frac{\mu_{\Theta_s}(\Omega_s^{\mathrm{ok}})}
-{\mu_{\Theta_s}(\Omega_s)}.
+{\mu_{\Theta_s}(\Omega_s)}
 $$
 
 A physical lower-bound claim must be stated against that record, for example as a device-level entropy accounting condition
@@ -146,7 +146,7 @@ $$
 +
 \Delta S_{\mathrm{boundary},s}
 \ge
-k_B\log(1/p_s)-\epsilon_s.
+k_B\log(1/p_s)-\epsilon_s
 $$
 
 The symbols do not define a new law. They express the burden: the same record that defines success must also supply the entropy, work, heat, and boundary terms used to claim a cost.
@@ -303,7 +303,7 @@ A precise version of the same pressure appears in Turing-complete dynamical syst
 $$
 \exists t\ge 0:\Phi_t(E(M,w))\in O
 \quad\Longleftrightarrow\quad
-M(w)\ \text{halts},
+M(w)\ \text{halts}
 $$
 then no general algorithm can decide that reachability question for every encoded input. The retained lesson is methodological rather than ontological: a lawful deterministic model may contain questions that outrun algorithmic decision, but that does not make the physical substrate identical to computation or turn computability limits into the substance of the world.
 

@@ -48,7 +48,7 @@ This ladder does not add a new validation gate. It identifies which existing var
 For an iron-group stellar core, the central Standard Model transition is electron capture,
 
 $$
-p+e^-\rightarrow n+\nu_e.
+p+e^-\rightarrow n+\nu_e
 $$
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ reading keeps this reaction as a required observer-level channel while reclassifying the surrounding story as a change in exposed assembly response.
@@ -70,7 +70,7 @@ $$
 \rightarrow
 \text{neutron-rich packed fermion response}
 \rightarrow
-\text{strong Noether sea constitutive regime}.
+\text{strong Noether sea constitutive regime}
 $$
 
 ### Neutron-Star Branch as a Radial Test
@@ -88,7 +88,7 @@ n(r),
 S_{ij}(r),
 \mathcal{M}_{\text{sea}}^{ab}(r),
 \mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(\Omega_r)}
-\right),
+\right)
 $$
 
 where $\Omega_r$ is the compact interior region retained by the comparison and $\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(\Omega_r)}$ records the local energy, momentum, angular-momentum, reaction, neutrino, stress, heat, medium-update, and remnant rows needed for that region. The exterior region samples the same record through redshift, orbital motion, lensing, and signal-delay channels. The surface is not a hard boundary of the Euclidean void; it is the branch boundary where exterior Noether sea response starts coupling to neutron-rich packed matter, charged layers, radiation channels, magnetic stresses when present, and surface transport.
@@ -103,7 +103,7 @@ $$
 \qquad
 \mathcal{R}_H(\Omega_r)<\infty,
 \qquad
-\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(\Omega_r)}\ \text{closes},
+\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(\Omega_r)}\ \text{closes}
 $$
 
 for all retained radii $0\le r\le R_*$. Here $v_O$ is the outer-binary speed in the relevant branch record, $s_n$ is the packing-headroom diagnostic when a pressure-packing model is being used, and $\mathcal{R}_H$ is the strong-field regularity residual. The $s_n$ condition should be read as a candidate pressure-response target until a neutron-star dense-matter branch supplies the corresponding $K_{\mathrm{pack}}$, packing ceiling, and branch residuals.
@@ -117,7 +117,7 @@ The canonical strong-field alignment condition is inherited from [singularity-re
 $$
 v_M = c_f,
 \qquad
-v_O \to c_f,
+v_O \to c_f
 $$
 
 with the middle and outer binaries becoming coplanar and co-linear with the inner binary at alignment and precession ceasing in that limit.
@@ -132,7 +132,7 @@ r_s=\frac{2GM}{c_0^2},
 \qquad
 r_{\mathrm{ph}}=\frac{3GM}{c_0^2},
 \qquad
-r_{\mathrm{ISCO}}=\frac{6GM}{c_0^2}.
+r_{\mathrm{ISCO}}=\frac{6GM}{c_0^2}
 $$
 Here $r_s$ is the Schwarzschild comparison radius, $r_{\mathrm{ph}}$ is the null photon-orbit radius, and $r_{\mathrm{ISCO}}$ is the innermost stable circular orbit for massive test bodies. These are effective-metric recovery targets, not claims that the Euclidean void contains a geometric hole.
 
@@ -142,7 +142,7 @@ K_{\mathrm{Schw}}
 =
 R_{\alpha\beta\gamma\delta}R^{\alpha\beta\gamma\delta}
 =
-\frac{48G^2M^2}{c_0^4 r^6}.
+\frac{48G^2M^2}{c_0^4 r^6}
 $$
 The native model is expected to replace the $r\to0$ divergence with finite maximum-curvature bookkeeping, while leaving the exterior weak-field and ringdown observables intact.
 
@@ -160,7 +160,7 @@ $$
 +\Delta E_{\mathrm{rem}}
 +\Delta E_{\mathrm{bind}}^{\mathrm{eff}}
 -\Delta E_{\mathrm{in}}
-\right\|_W .
+\right\|_W
 $$
 The pass condition is not horizon absence. It is that $\mathcal{R}_{N\text{-}\mathrm{body}}$ stays within the declared tolerance while the same $\theta_W$ also recovers lensing, timing, ringdown, and horizon-scale imaging. If a burst, merger, or accretion model needs one record for exterior no-hair behavior and a separate record for the many-body energy release, then the compact-object closure has split into fitted stories.
 
@@ -181,7 +181,7 @@ C_{\mathrm{dep}},
 A^{\mathrm{cl}}_{ijkl}(t),
 \Pi_{\mathrm{lin}}(\varphi,t),
 \Pi_{\mathrm{circ}}(\varphi,t)
-\right).
+\right)
 $$
 Here $D_{\mathrm{ring}}$ is the bright-ring diameter, $f_w$ is the fractional ring width, $C_{\mathrm{dep}}$ is the interior brightness-depression contrast, $\mathcal{V}_{ij}$ are baseline visibilities, $\Phi^{\mathrm{cl}}$ and $A^{\mathrm{cl}}$ are closure quantities, and $\Pi_{\mathrm{lin}}$ and $\Pi_{\mathrm{circ}}$ record resolved polarization. These quantities belong to the effective observational layer. They constrain the same strong-field branch record that defines the horizon interface, but they do not replace that constitutive condition.
 
@@ -212,7 +212,7 @@ R_H(E;\theta)
 \quad\Longrightarrow\quad
 v_M=c_f,\quad
 v_O\to c_f,\quad
-S_H\sim k_B\log\left|\mathcal{B}_{H}\right|.
+S_H\sim k_B\log\left|\mathcal{B}_{H}\right|
 $$
 
 This is not a claim that the Euclidean void becomes quantized geometry. It is a benchmark on the native strong-field branch: when the effective comparison says that a probe has become a black hole, the same Noether sea state must activate the alignment condition, finite maximum-curvature bookkeeping, and entropy/release-channel ledger used below. If short-distance recovery requires an independent ultraviolet story that bypasses those variables, the black-hole closure has split from the rest of the spacetime program.
@@ -238,7 +238,7 @@ k_B\log|\mathcal{B}_H|
 \right)
 +
 \mathcal{R}_{\mathrm{release}}(E;\theta)
-\right].
+\right]
 $$
 Here $w(E)$ is the comparison weighting for the probe family, $d_{\mathrm{curv}}$ checks that the admitted Noether swarm labels are finite maximum-curvature labels, $d_{\mathrm{ent}}$ checks horizon-interface entropy bookkeeping, and $\mathcal{R}_{\mathrm{release}}$ checks the outgoing $E$, $\mathbf{p}$, $\mathbf{J}$, polarity, provenance, medium-update, and remnant rows through the event ledger.
 
@@ -254,13 +254,13 @@ $$
 \qquad
 R_H(E;\theta)
 \simeq
-\frac{2G_{\mathrm{eff}}(\theta)E}{c_0^4}.
+\frac{2G_{\mathrm{eff}}(\theta)E}{c_0^4}
 $$
 The horizon-interface handoff begins when
 $$
 \frac{\hbar c_0}{E}
 \le
-\frac{2G_{\mathrm{eff}}(\theta)E}{c_0^4},
+\frac{2G_{\mathrm{eff}}(\theta)E}{c_0^4}
 $$
 or equivalently
 $$
@@ -270,7 +270,7 @@ E_H(\theta)
 \equiv
 \left(
 \frac{\hbar c_0^5}{2G_{\mathrm{eff}}(\theta)}
-\right)^{1/2}.
+\right)^{1/2}
 $$
 This is an observer-level comparison estimate, not a proof that the Euclidean void has Planck-scale cells. Its purpose is to decide when the record should stop being interpreted as a shorter-distance particle probe and start being routed through horizon-interface bookkeeping.
 
@@ -307,7 +307,7 @@ $$
 A_{\mathrm{eff}}\!\left(\gamma_A^{\mathrm{eff}}(\theta)\cap H_{\mathrm{eff}}(\theta)\right)
 }{
 A_{\mathrm{eff}}\!\left(\gamma_A^{\mathrm{eff}}(\theta)\right)
-}.
+}
 $$
 The event-horizon reading is justified only in the $\eta_H\to1$ regime. When $\eta_H=0$ or remains bounded away from one, the holographic comparison is still useful as an access-region entropy test, but it is not evidence that the boundary surface is the horizon-interface ontology.
 
@@ -324,7 +324,7 @@ $$
 v_M=c_f,\quad
 v_O\to c_f,\quad
 \text{horizon-interface compatibility}
-\right\}.
+\right\}
 $$
 
 In plain language, $\mathcal{B}_{H}$ is the set of strong-field Noether swarm ledger arrangements that look identical to exterior probes once the probe can resolve only effective mass, angular momentum, charge, and allowed interface channels. This gives a precise no-hair reading: exterior no-hair is a coarse-graining over many compatible closure labels, not evidence that the interior has no microstate.
@@ -337,7 +337,7 @@ k_B\log\left|\mathcal{B}_{H}(M,\mathbf{J},Q)\right|,
 \qquad
 S_H
 \stackrel{\text{target}}{\sim}
-\frac{k_B A_H}{4A_{\text{align}}},
+\frac{k_B A_H}{4A_{\text{align}}}
 $$
 where $A_H$ is the observer-level horizon area and $A_{\text{align}}$ is the alignment-area scale from the Planck-alignment program, with the numerical and $2\pi$ conventions fixed by that derivation rather than by definition here. Page-curve recovery then becomes a release-channel theorem: outward channels must preserve enough phase, axial-pattern, and path-history information from $\mathcal{B}_{H}$ to make evaporation or recycling unitary at the effective quantum level, while still appearing thermal to coarse exterior measurements.
 
@@ -357,7 +357,7 @@ a_H(\theta)
 \qquad
 \frac{s_{\mathrm{align}}^H(\theta)}{a_H(\theta)}
 \longrightarrow
-\frac{1}{4},
+\frac{1}{4}
 $$
 with boundary corrections vanishing in the large-block limit. This is the local calculation that must make the global area law credible; the raw statement $s_{\mathrm{align}}^H\to1/4$ is only the special case $a_H\to1$.
 
@@ -375,7 +375,7 @@ $$
 \right|
 \right|
 \le
-\epsilon_{\mathrm{proj}},
+\epsilon_{\mathrm{proj}}
 $$
 for the same strong-field record $\theta$ restricted to the observer window and the same block or patch family. If the local boundary density and the global horizon-interface count require different records, the entropy target has split into two fitted stories. If they agree, the black-hole area law is no longer an isolated assumption; it becomes the compact strong-field version of the local boundary-factorization theorem target.
 
@@ -387,7 +387,7 @@ Y_O
 \lambda;\mathcal{K}_{O}^{\mathrm{rad}},
 \mathcal{R}_{O},
 \mathcal{B}_{\partial\Omega}
-\right).
+\right)
 $$
 Before a black-hole information claim is promoted, the comparison packet must say which $\mathcal{K}_{O}^{\mathrm{rad}}$, reference resources, access region, and finite boundary data make the outgoing channel meaningful. A coarse exterior channel may legitimately see an approximately thermal distribution while a richer correlated reference channel retains structure, but that difference is a statement about observer-accessible records. It does not import a boundary CFT, many-copy tomography story, or external reference frame as $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology.
 
@@ -408,7 +408,7 @@ S_H^{(O)},
 k_B\log|\mathcal{B}_{H}^{(O)}|+S_{\mathrm{out}}^{(O)}
 \right)
 +
-d_{\mathrm{CPT}}\!\left(\mathcal{R}_{\mathrm{CPT}}(\theta),0\right).
+d_{\mathrm{CPT}}\!\left(\mathcal{R}_{\mathrm{CPT}}(\theta),0\right)
 $$
 The pass condition is $\mathcal{R}_{H,\mathrm{bal}}(\theta)\le\epsilon_H$ using the same branch record that recovers exterior compact-object observables. This does not assert a literal mirror universe, a white-hole ontology, or a final-state boundary postulate. It says that if the effective comparison invokes CPT or thermal equilibrium, the native horizon-interface release ledger must exhibit the corresponding formation/release balance within the declared observer access channel.
 
@@ -418,7 +418,7 @@ $$
 \frac{\partial S_H^\theta}{\partial N_{\mathrm{spect}}}
 \right|_{\mathcal{B}_H,\partial\Omega}
 \le
-\epsilon_{\mathrm{spect}}.
+\epsilon_{\mathrm{spect}}
 $$
 If an added species is physically real, it must change $\mathcal{B}_{H}$, $S_{\mathrm{out}}^{(O)}$, a release-channel row, or $\mathcal{R}_{\mathrm{null}}$. If it changes none of those records, it is an effective-description label and may not be used to tune black-hole entropy.
 
@@ -432,7 +432,7 @@ under the usual classical assumptions. The $\mathbb{A}\mathbb{A}\mathbb{A}$ tran
 $$
 S_{H,\mathrm{final}}^{(O)}
 \ge
-S_{H,1}^{(O)}+S_{H,2}^{(O)}-\Delta S_{\mathrm{out}}^{(O)},
+S_{H,1}^{(O)}+S_{H,2}^{(O)}-\Delta S_{\mathrm{out}}^{(O)}
 $$
 with $\Delta S_{\mathrm{out}}^{(O)}$ accounting for accessible radiation, waves, and release channels during the merger. This keeps the area theorem as a standard-theory benchmark rather than as imported horizon ontology.
 
@@ -440,7 +440,7 @@ A sharper comparison target comes from generalized-entropy work in semiclassical
 $$
 \mathcal{B}_{H}^{(O)}(t)
 \subseteq
-\mathcal{B}_{H}(M,\mathbf{J},Q),
+\mathcal{B}_{H}(M,\mathbf{J},Q)
 $$
 where $O$ denotes a Physical Observer and $\mathcal{B}_{H}^{(O)}(t)$ is the subset of horizon-interface ledger states indistinguishable to that observer's finite records, clocks, and exterior channels at time $t$. The corresponding comparison target is
 $$
@@ -448,7 +448,7 @@ S_{H}^{(O)}(t)
 =
 k_B\log\left|\mathcal{B}_{H}^{(O)}(t)\right|
 +
-S_{\mathrm{out}}^{(O)}(t),
+S_{\mathrm{out}}^{(O)}(t)
 $$
 where $S_{\mathrm{out}}^{(O)}(t)$ summarizes the entropy of accessible outgoing channels. This equation is not a new ontology. It is a bookkeeping target: the native horizon-interface model should explain how the area-like ledger term and the outgoing-channel entropy combine into a finite observer-level entropy, and how that combined quantity can reproduce Page-curve behavior without importing islands, replica wormholes, or a boundary CFT as primitive structure.
 
@@ -458,7 +458,7 @@ S_{\mathcal{Q},A}^{(O)}(t)
 \stackrel{\mathrm{target}}{=}
 k_B\log\left|\mathcal{L}_{\gamma_A}^{(O)}(t)\right|
 +
-S_{\mathrm{out},A}^{(O)}(t).
+S_{\mathrm{out},A}^{(O)}(t)
 $$
 The proof burden is to define the observer-relative label ensemble $\mathcal{L}_{\gamma_A}^{(O)}(t)$ from native horizon-interface, boundary-wake, and release-channel records. When $\eta_H(A;\theta)\to1$, this target must reduce to the horizon-interface ledger target above; when $\eta_H(A;\theta)=0$, it remains an access-region entropy comparison and should not be promoted as black-hole horizon entropy.
 
@@ -476,14 +476,14 @@ $$
 N:
 G_N\circ\cdots\circ G_1(\Lambda_a)=\Lambda_b,\
 G_i\in\mathcal{G}_{\mathrm{loc}}
-\right\},
+\right\}
 $$
 where $\mathcal{G}_{\mathrm{loc}}$ is the permitted set of local Noether swarm, path-history, and release-ledger updates inside the horizon-interface model. For a horizon history, write $\mathcal{C}_{H}^{(O)}(t)$ for the minimum such update count between the observer-accessible initial ledger and the compatible ledger class at time $t$.
 
 The comparison burden is then:
 $$
 S_H^{(O)}(t)\ \text{approximately saturates while}\
-\mathcal{C}_{H}^{(O)}(t)\ \text{can continue to grow},
+\mathcal{C}_{H}^{(O)}(t)\ \text{can continue to grow}
 $$
 without breaking exterior no-hair behavior, Page-compatible release accounting, or finite-boundary-data regularity. If this growth can be matched only by importing a literal boundary CFT, an AdS interior ontology, or an independent hidden state not present in $\mathcal{B}_{H}^{(O)}(t)$, then the complexity comparison has not been translated into the native black-hole closure.
 
@@ -503,13 +503,13 @@ N_{\text{sea}}|_{\Omega\times[t_i,t_f]}
 X_\Omega(t_f),
 \mathcal{B}_{H}^{(O)}(t_f),
 S_{\mathrm{out}}^{(O)}(t_f)
-\right).
+\right)
 $$
 Here $X_\Omega$, $\mathcal{H}_{\Omega}^{<t}$, and $\mathcal{B}_{\partial\Omega}$ are the finite-region variables from [Observer Framework](observer-framework.md#ontic-and-epistemic-levels). The closure requirement is not that a particular remnant, bounce, or asymptotic boundary story be adopted. It is that the same finite boundary data determine a finite strong-field continuation:
 $$
 F_H=0,\qquad
 \mathcal{R}_H(\Omega)<\infty,\qquad
-0<\left|\mathcal{B}_{H}^{(O)}(t_f)\right|<\infty,
+0<\left|\mathcal{B}_{H}^{(O)}(t_f)\right|<\infty
 $$
 with outgoing energy, momentum, angular momentum, charge, polarity, provenance, and medium-update rows accounted for through the release-channel ledger.
 
@@ -519,7 +519,7 @@ No-hair, cosmic-censorship, Cauchy-horizon, and endpoint theorems enter this cha
 
 As a heuristic geometric picture, the horizon can also be described as a **dimensional pinch** in the nested shell swarm shape trajectory. On this reading, ordinary 3D assemblies are flattened toward a near-planar disk at the alignment interface, while the interior self-hit regime permits re-opening of the suppressed axial degree of freedom. In shorthand, the proposed shape path is
 $$
-\text{3D sphere} \to \text{2D horizon disk} \to \text{3D interior reopening}.
+\text{3D sphere} \to \text{2D horizon disk} \to \text{3D interior reopening}
 $$
 This is not yet a derived strong-field theorem. It is a compact way of expressing why the horizon is treated as an information-compression layer rather than as a literal ontic edge of space.
 
@@ -542,7 +542,7 @@ F_H\!\left[
 \right]
 =0,
 \qquad
-v_M=c_f,\quad v_O\to c_f.
+v_M=c_f,\quad v_O\to c_f
 $$
 
 Here $\partial\Omega$ denotes the boundary data supplied by the surrounding Noether sea and the effective exterior comparison region. The equation is a closure target, not a completed model: the task is to show that the same Noether sea variables that recover weak-field gravity can also admit a regular terminal-alignment interface under non-isolated embedding conditions. Compact, topologically identified, or otherwise non-asymptotically-flat comparison settings are useful stress tests for this requirement, but they do not add extra dimensions to the substrate ontology.
@@ -577,7 +577,7 @@ R_H(M;\theta)
 \qquad
 A_H(M;\theta)
 =
-4\pi R_H^2(M;\theta).
+4\pi R_H^2(M;\theta)
 $$
 
 The native strong-field interpretation does not treat $R_H$ or $A_H$ as primitive geometry of the Euclidean void. They are observer-level readouts of the same horizon-interface condition $v_M=c_f,\ v_O\to c_f$. Still, their scaling organizes which closure burden dominates. The interface label capacity scales schematically like
@@ -585,7 +585,7 @@ The native strong-field interpretation does not treat $R_H$ or $A_H$ as primitiv
 $$
 N_{\mathrm{align}}(M;\theta)
 \sim
-\frac{A_H(M;\theta)}{A_{\mathrm{align}}},
+\frac{A_H(M;\theta)}{A_{\mathrm{align}}}
 $$
 
 while the exterior tidal or curvature pressure at the horizon scales, in the same comparison limit, like
@@ -595,7 +595,7 @@ $$
 \sim
 \frac{G_{\mathrm{eff}}(\theta)M}{R_H^3(M;\theta)}
 \propto
-M^{-2}.
+M^{-2}
 $$
 
 This gives a compact mass-scale rule. Small black holes concentrate the traversal into a tiny region with steep local gradients, high comparison temperature, and release-channel pressure. Stellar-mass or intermediate black holes are the clean collapse-ladder case: the record must pass from compact matter through the neutron-star branch or its failure into the horizon-interface branch. Supermassive black holes have comparatively gentle local horizon gradients but enormous interface capacity, long-lived recycling, and the strongest coupling to the ambient Noether sea embedding.
@@ -618,7 +618,7 @@ r_{\mathrm{dam}}
 \left(
 \frac{dE_{\mathrm{dep}}}{d\ell},
 \theta_{\mathrm{mat}}
-\right).
+\right)
 $$
 If the object is horizon-like in the observer comparison, $R_X$ is bounded by the effective horizon scale $R_H(M_X;\theta)$; if it is a native maximum-curvature defect, $R_X$ is instead supplied by the core-interface branch. Either way, the material claim must pass through the same energy-deposition, acoustic, thermal, and defect-survival record before it is used as evidence for a compact dark-sector branch.
 
@@ -676,7 +676,7 @@ $$
 \qquad
 v_{\mathrm{esc}}(R_{\mathrm{launch}})
 =
-\left(\frac{2G_{\mathrm{eff}}M}{R_{\mathrm{launch}}}\right)^{1/2}.
+\left(\frac{2G_{\mathrm{eff}}M}{R_{\mathrm{launch}}}\right)^{1/2}
 $$
 
 This is an effective launch benchmark, not a claim that Newtonian escape speed is substrate ontology. It says that the same strong-field or disk-interface record that powers release must also set the observed launch speed scale. Third, collimation must survive propagation through the ambient Noether sea. A minimal release-channel packet should therefore record
@@ -693,7 +693,7 @@ $$
 \eta_j,
 \mathcal{A}_{\mathrm{NS}},
 \mathcal{R}_{v,\mathrm{jet}}
-\right),
+\right)
 $$
 
 where $\theta_j$ is the opening angle, $\eta_j$ is the observer-level jet-to-ambient density ratio, and $\mathcal{A}_{\mathrm{NS}}$ is the local Noether sea anisotropy and loading state mapped to effective magnetic-like collimation. In a black-hole branch, spin-powered extraction, disk-powered extraction, hot-corona loading, and supercritical accretion are comparison mechanisms until the native horizon-interface ledger shows which terms actually supply $\dot E_{\mathrm{out}}$ and $\dot{\mathbf{J}}_{\mathrm{out}}$. A model fails this selection packet if it produces a horizon recycling source but leaves the launch-speed scale, angular-momentum drain, or collimation angle unrelated to the same boundary data.
@@ -711,7 +711,7 @@ M,\mathbf{J},
 \mathcal{A}_{\mathrm{NS}}(R,t),
 \Sigma_{\mathrm{wind}}(R,t),
 \mathcal{B}_{H}(t)
-\right),
+\right)
 $$
 
 where $R_{\inf}$ is the observer-level black-hole influence scale, $\Phi_{\mathrm{eff}}^{\mathrm{obs}}$ is the standard magnetic-flux comparison diagnostic rather than substrate field ontology, $\mathcal{A}_{\mathrm{NS}}$ is the mapped Noether sea anisotropy and loading state, and $\Sigma_{\mathrm{wind}}$ records disk-wind or sheath confinement. The local selector must then produce one channel record
@@ -729,7 +729,7 @@ R_{\mathrm{diss}},
 \mathcal{H}_{\mathrm{shock}},
 \mathcal{S}_{\mathrm{rad}},
 \mathcal{F}_{\mathrm{fb}}
-\right).
+\right)
 $$
 
 Here $\Gamma_j$ is the observer-level bulk Lorentz factor, $\sigma_j$ is the observer-level magnetization comparison ratio, $f_p$ is the proton or baryon loading fraction, $R_{\mathrm{ACZ}}$ is the acceleration-and-collimation-zone scale, $R_{\mathrm{diss}}$ is the main dissipation radius or family of radii, $\mathcal{H}_{\mathrm{shock}}$ records recollimation shocks, hot spots, bow shocks, and Mach-disk-like structures, $\mathcal{S}_{\mathrm{rad}}$ records the synchrotron, Compton, hadronic, pair-cascade, cosmic-ray, and neutrino channels retained by the comparison, and $\mathcal{F}_{\mathrm{fb}}$ records environmental heating, cavity, cocoon, bubble, and duty-cycle effects. The native burden is that these outputs come from one horizon-interface, disk-interface, wind, and Noether sea loading record, not from separate fitted stories for launch, radio emission, gamma emission, and galaxy feedback.
@@ -807,7 +807,7 @@ $$
 =
 S_{\mathrm{BH}}
 +S_{\mathrm{GW}}
--R_{\mathrm{eq}}[f_N].
+-R_{\mathrm{eq}}[f_N]
 $$
 
 This is the controlled sense of a bulk recycling movement: processed content from high-gradient recycling regions can load the Noether sea and then relax toward lower-energy Noether sea cadence states. The statement remains conditional because $S_{\mathrm{BH}}$ must be energy-accounted, population-history dependent, and small enough not to spoil weak-field gravity, photon coherence, CMB blackbody quality, or gravitational-wave propagation. If the resulting current $J_\nu$ has no signed large-scale component, the recycling channel may still heat or perturb local environments without becoming an effective expansion-history source.
@@ -817,7 +817,7 @@ This is the controlled sense of a bulk recycling movement: processed content fro
 One modern comparison target is the claim that some dormant supermassive black holes appear to gain mass in step with the late-time cosmological background more strongly than standard accretion and merger channels predict. The common phenomenological summary is
 
 $$
-M_{\mathrm{BH}}(a) \propto a^{K},
+M_{\mathrm{BH}}(a) \propto a^{K}
 $$
 
 with $K$ measuring the effective coupling strength.

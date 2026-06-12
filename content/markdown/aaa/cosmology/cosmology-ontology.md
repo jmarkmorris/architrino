@@ -68,7 +68,7 @@ Redshift is therefore not a primitive expansion witness in this ontology. It is 
 $$
 Z_X^{E\to R}
 =
-\ln\frac{\nu_{X,0}}{\nu_{\mathrm{obs},X}},
+\ln\frac{\nu_{X,0}}{\nu_{\mathrm{obs},X}}
 $$
 
 whose positive and negative contributions must be assigned to endpoint cadence, source-branch state, launch geometry, and path-history exchange through the Noether sea. Sunyaev-Zeldovich-type CMB measurements make the path-history part observationally concrete: intervening medium can shift photon frequencies after emission. A valid cosmology must preserve that fact while still recovering the standard data products, rather than using redshift alone to promote literal expansion of the Euclidean void.
@@ -84,7 +84,7 @@ ds_{\mathrm{FRW,eff}}^2
 \left[
 \frac{d\chi^2}{1-k\chi^2}
 +\chi^2d\Omega^2
-\right],
+\right]
 $$
 but this is a reconstruction used by Physical Observers. The Euclidean void does not expand, and $a_{\mathrm{eff}}$, $H_{\mathrm{eff}}\equiv \dot a_{\mathrm{eff}}/a_{\mathrm{eff}}$, $k$, $\Omega_i$, $w_i$, and horizon distances are effective variables extracted from Noether sea evolution, clock comparison, and transport records.
 
@@ -94,12 +94,12 @@ H_{\mathrm{eff}}^2
 =
 \frac{8\pi G_{\mathrm{eff}}}{3c_0^2}\rho_{\mathrm{eff}}
 -\frac{k c_0^2}{a_{\mathrm{eff}}^2}
-+\frac{\Lambda_{\mathrm{eff}}}{3},
++\frac{\Lambda_{\mathrm{eff}}}{3}
 $$
 $$
 \dot\rho_{\mathrm{eff}}
 +3H_{\mathrm{eff}}(\rho_{\mathrm{eff}}+P_{\mathrm{eff}})
-=0.
+=0
 $$
 Passing these equations does not by itself promote metric expansion. It means that the fixed-void medium history has an observer-level FRW projection accurate enough to feed distance-redshift, CMB, BBN, and growth comparisons.
 
@@ -110,14 +110,14 @@ $$
 \Omega_i^\theta(t)
 =
 \frac{8\pi G_{\mathrm{eff}}^\theta(t)\bar\rho_i^\theta(t)}
-{3\left(H_{\mathrm{eff}}^\theta(t)\right)^2}.
+{3\left(H_{\mathrm{eff}}^\theta(t)\right)^2}
 $$
 For a component recorded first as an energy density $u_i^\theta$, use
 $$
 \Omega_i^\theta(t)
 =
 \frac{8\pi G_{\mathrm{eff}}^\theta(t)u_i^\theta(t)}
-{3c_0^2\left(H_{\mathrm{eff}}^\theta(t)\right)^2}.
+{3c_0^2\left(H_{\mathrm{eff}}^\theta(t)\right)^2}
 $$
 These $\Omega_i$ variables are data-product coordinates. They do not say that the Euclidean void contains independent density fluids. They say that the same Noether sea state and assembly record has been projected into the standard component language at the observer epoch.
 
@@ -129,7 +129,7 @@ $$
 +
 \sum_{i\in\mathcal{I}_{\mathrm{cos}}}
 \Omega_i^\theta(t_{\mathrm{obs}})
--1,
+-1
 $$
 where $\mathcal{I}_{\mathrm{cos}}$ includes only declared comparison rows, such as dark energy, neutral assemblies, baryons, radiation, neutrinos, binding-energy entries, kinetic or plasma entries, and wake-history or medium-response entries when the local branch has supplied them. Passing this residual means the effective inventory closes; it does not identify the substrate carrier of each row.
 
@@ -139,7 +139,7 @@ $$
 =
 \left\|
 Q_i^\theta-\mathcal{T}_{ij}^\theta Q_j^\theta
-\right\|_{C_{ij}^{-1}}^2.
+\right\|_{C_{ij}^{-1}}^2
 $$
 Examples include nuclear binding versus radiation and neutrino backgrounds, baryon density versus BBN and CMB inference, quasar luminosity versus massive-black-hole remnant density, and lensing mass versus galaxy luminosity and clustering. A component row that cannot be connected to the rest of the ledger remains an interpretation placeholder.
 
@@ -150,7 +150,7 @@ Historical steady-state cosmologies are useful here as failure tests, not as ont
 In the effective FRW layer, a dust-like component obeys the no-source comparison equation
 $$
 \dot{\rho}_{m,\mathrm{eff}}
-+3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}=0.
++3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}=0
 $$
 If one imposes $\dot{\rho}_{m,\mathrm{eff}}=0$ while $H_{\mathrm{eff}}\ne0$, the equation forces $\rho_{m,\mathrm{eff}}=0$. A nontrivial constant-density branch therefore requires
 $$
@@ -162,7 +162,7 @@ $$
 \mathcal{S}_{m,\mathrm{eff}}
 =3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}
 \quad
-\text{for constant }\rho_{m,\mathrm{eff}}.
+\text{for constant }\rho_{m,\mathrm{eff}}
 $$
 From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, $\mathcal{S}_{m,\mathrm{eff}}$ cannot mean matter produced by the Euclidean void. It must be a projection of assembly association, dissociation, recycling, transport, or Noether sea exchange already present in the absolute record $S(t)$. If no such provenance route is supplied, the model is only an effective parameter fit and fails as cosmology closure.
 
@@ -174,7 +174,7 @@ $$
 \mathcal{S}_{m,\mathrm{eff}}(t)a_{\mathrm{eff}}^3(t)\,dt
 -
 \int_{t_1}^{t_2}
-3H_{\mathrm{eff}}(t)\rho_{m,\mathrm{eff}}(t)a_{\mathrm{eff}}^3(t)\,dt.
+3H_{\mathrm{eff}}(t)\rho_{m,\mathrm{eff}}(t)a_{\mathrm{eff}}^3(t)\,dt
 $$
 The pass condition is not a preferred external cosmology. It is that $\Delta M_{\mathrm{eff}}$ be supplied by assembly association, dissociation, transport, recycling, or Noether sea exchange in the same absolute record. Otherwise the branch has kept an effective density constant by inserting a source without provenance.
 
@@ -206,7 +206,7 @@ $$
 =
 \delta v_i
 -
-\Pi_v(\theta_{\mathrm{sea}};\mathbf{x}_i,\hat{\mathbf{n}}_i),
+\Pi_v(\theta_{\mathrm{sea}};\mathbf{x}_i,\hat{\mathbf{n}}_i)
 $$
 where $\Pi_v$ includes the declared Noether sea flow, density, delay, clock-rate, CMB-frame, and local-calibration terms. A historical rotation-like comparison can then be expressed only as a residual template,
 $$
@@ -216,7 +216,7 @@ T_i(\mathbf{x}_c,\boldsymbol{\omega},g)
 \left[
 g(D_i)\,\boldsymbol{\omega}\times(\mathbf{x}_i-\mathbf{x}_c)
 -g(0)\,\boldsymbol{\omega}\times(\mathbf{x}_o-\mathbf{x}_c)
-\right],
+\right]
 $$
 with the center $\mathbf{x}_c$, angular-rate vector $\boldsymbol{\omega}$, and distance profile $g$ declared as comparison parameters rather than new ontology. The corresponding all-sky antisymmetric-flow residual on a survey shell $S$ is
 $$
@@ -232,7 +232,7 @@ w_i\left(
 \right)^2
 \right]^{1/2},
 \qquad
-W_S=\sum_{i\in S}w_i.
+W_S=\sum_{i\in S}w_i
 $$
 This diagnostic protects the fixed-void ontology in both directions. If the best-fit template is insignificant or survey-dependent, the rotation story is rejected. If a stable double-sine, dipole, quadrupole, or higher directional pattern remains, it must be derived from the same $\theta_{\mathrm{sea}}$ that also fits expansion, CMB transfer, BBN, growth, lensing, and calibration; it cannot be absorbed silently into $H(z)$, $w(z)$, or a new global-rotation premise.
 
@@ -240,7 +240,7 @@ A scale-neutral homogeneity check should also be part of the shared ledger. For 
 $$
 L_W^2(t)=\frac{2}{N_W(N_W-1)}
 \sum_{i<j\in I_W(t)}
-\|\mathbf{x}_i(t)-\mathbf{x}_j(t)\|^2.
+\|\mathbf{x}_i(t)-\mathbf{x}_j(t)\|^2
 $$
 The corresponding dimensionless pair-separation distribution is
 $$
@@ -249,14 +249,14 @@ $$
 \sum_{i<j\in I_W(t)}
 \delta\!\left(
 u-\frac{\|\mathbf{x}_i(t)-\mathbf{x}_j(t)\|}{L_W(t)}
-\right).
+\right)
 $$
 For a declared family of same-scale windows $\mathcal{W}_L(t)$ and a declared distribution distance $d$, a candidate Noether sea state record should expose
 $$
 \mathcal{R}_{\mathrm{hom}}(\theta_{\mathrm{sea}};L,t)
 =
 \sup_{W_a,W_b\in\mathcal{W}_L(t)}
-d\!\left(\widehat{\mu}_{W_a,t},\widehat{\mu}_{W_b,t}\right).
+d\!\left(\widehat{\mu}_{W_a,t},\widehat{\mu}_{W_b,t}\right)
 $$
 Large-scale homogeneity is accepted only when this residual remains within the declared tolerance while the same $\theta_{\mathrm{sea}}$ also passes the expansion, CMB, BBN, growth, lensing, and calibration gates. This is a scale-neutral diagnostic over observer-facing data products, not an import of a shape-first cosmology or a replacement for the fixed Euclidean void.
 
@@ -266,7 +266,7 @@ Claims about observer selection, anthropic conditioning, or typicality belong in
 $$
 P_{\theta_{\mathrm{sea}},W}(D_a)
 =
-\mu_{\theta_{\mathrm{sea}},W}\!\left(\pi_D^{-1}(D_a)\right),
+\mu_{\theta_{\mathrm{sea}},W}\!\left(\pi_D^{-1}(D_a)\right)
 $$
 with $\mu_{\theta_{\mathrm{sea}},W}$ conditioned by the same $\theta_{\mathrm{sea}}$ used for expansion, CMB, BBN, growth, lensing, and calibration. A compact selection-admissibility guardrail is
 $$
@@ -278,7 +278,7 @@ d_{\mathcal{D}_{\mathrm{cos}}}\!\left(
 (\pi_D)_*\mu_{\theta_{\mathrm{sea}},W},
 \widehat{\mu}_{\mathcal{D}_{\mathrm{cos}},W}
 \right)
-\right).
+\right)
 $$
 Here $\widehat{\mu}_{\mathcal{D}_{\mathrm{cos}},W}$ is the empirical distribution of the declared cosmology data products on the same window. If $\mathcal{R}_{\mathrm{sel}}$ is large, the corpus should retain the observable data product and classify the typicality claim as interpretation rather than cosmology closure.
 
@@ -298,7 +298,7 @@ d_{\mathcal{D}_{\mathrm{cos}}}\!\left(
 \le\epsilon,
 \quad
 \mathcal{R}_{\mathrm{shared}}(\theta'_{\mathrm{sea}})\le\epsilon_{\mathrm{shared}}
-\right\}.
+\right\}
 $$
 For a proposed global cosmology claim $P_{\mathrm{glob}}$, define
 $$
@@ -308,7 +308,7 @@ $$
 \exists\theta_1,\theta_2\in[\theta_{\mathrm{sea}}]_{\mathcal{D}_{\mathrm{cos}},\epsilon}
 \text{ with }
 P_{\mathrm{glob}}(\theta_1)\ne P_{\mathrm{glob}}(\theta_2)
-\right].
+\right]
 $$
 A claim about a unique global chronology, asymptotic de Sitter state, global topology, or one-time origin is promoted only when this ambiguity indicator vanishes or when a native derivation selects that claim without using the fitted data products as the selection rule. Otherwise the corpus should retain the observational data product and classify the global statement as an effective reconstruction.
 

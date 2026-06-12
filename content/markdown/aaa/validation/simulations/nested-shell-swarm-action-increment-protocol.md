@@ -44,7 +44,7 @@ B_q\to B_{q'}:
 \mathcal{R}_{J}\le\tau_J,\ 
 \Delta N_{\mathrm{self}}\in2\mathbb{Z},\ 
 \mathcal{R}_{\mathrm{root}}\le\tau_{\mathrm{root}}
-\right\}.
+\right\}
 $$
 The tolerances $\tau_{\mathrm{phase}}$, $\tau_E$, $\tau_P$, $\tau_J$, and $\tau_{\mathrm{root}}$ must be declared before the run. The transition is not accepted merely because it improves a fit to `$h$`.
 
@@ -62,7 +62,7 @@ $$
 \int_{t_i}^{t_f}\mathbf T_\ell(s)\,ds
 +
 \Delta\mathbf L_{\mathrm{wake},\partial}
-\right).
+\right)
 $$
 Here $\mathbf T_\ell$ is the layer torque reconstructed from causal-wake forces on the architrinos in layer $\ell$, and $\Delta\mathbf L_{\mathrm{wake},\partial}$ is the angular momentum still carried across the chosen core boundary at the end of the transition window.
 
@@ -76,12 +76,12 @@ K_{\mu}+E_{\mathrm{wake,eff}}^{(\eta)},
 \qquad
 \boldsymbol{\mathcal{P}}_{\mathrm{tot}}^{(\eta)}
 =
-\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)},
+\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}
 $$
 $$
 \boldsymbol{\mathcal{J}}_{\mathrm{tot}}^{(\eta)}
 =
-\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}.
+\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}
 $$
 The residuals $\mathcal{R}_{E}$, $\mathcal{R}_{P}$, and $\mathcal{R}_{J}$ are the normalized window changes of these three totals after subtracting the declared Euler-residual and endpoint-leakage terms. They must use the same branch rows as the root ledger, force residual, and $\Delta I_{\mathrm{ME}}$ calculation. A work-integral energy reconstruction or torque projection may be reported as a diagnostic, but it does not replace the exact wake-history pullback.
 
@@ -90,11 +90,11 @@ $$
 \Delta I_*
 =
 \inf_{B_q\to B_{q'}\in\mathcal{T}_{\mathrm{acc}}}
-\left|\Delta I_{\mathrm{ME}}(B_q\to B_{q'})\right|,
+\left|\Delta I_{\mathrm{ME}}(B_q\to B_{q'})\right|
 $$
 with required positivity condition
 $$
-0<\Delta I_*<\infty.
+0<\Delta I_*<\infty
 $$
 The benchmark comparison is
 $$
@@ -102,7 +102,7 @@ $$
 =
 \left|
 \frac{2\pi\Delta I_*-h}{h}
-\right|.
+\right|
 $$
 
 ## Cluster and Stability Residuals
@@ -118,7 +118,7 @@ $$
 +\varepsilon_0
 },
 \qquad
-\varepsilon_0=10^{-12}.
+\varepsilon_0=10^{-12}
 $$
 Also report the Floquet basin-robustness gap
 $$

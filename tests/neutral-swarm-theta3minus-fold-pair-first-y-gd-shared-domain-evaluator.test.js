@@ -97,10 +97,22 @@ import {
   buildH39RequestedY44TerminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttemptCandidate,
   buildH39RequestedY44TerminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttemptCandidate,
   buildH39RequestedY44TerminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttemptCandidate,
+  buildH39RequestedY44TerminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAuditCandidate,
+  buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAuditCandidate,
+  buildH39RequestedY44TerminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttemptCandidate,
+  buildH39RequestedY44TerminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplayCandidate,
   buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandidate,
   buildH39RequestedY44TerminalWitnessDenominatorRealizationAttemptCandidate,
   buildH39RequestedY44TerminalProportionalCommonNormalizerLawRefutationCandidate,
   buildH39RequestedY44TerminalDenominatorFreeBranchResidualSourceObjectIdentityAttemptCandidate,
+  buildH39RequestedY44TerminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttemptCandidate,
+  buildH39RequestedY44TerminalVariableOwnershipAlphaProvenanceIdentityAuditCandidate,
+  buildH39RequestedY44TerminalProviderObjectAPMaterializationObstructionAuditCandidate,
+  buildH39RequestedY44TerminalSourceTermBranchFeedExtractorCandidate,
+  buildH39RequestedY44TerminalSourceTermOppositeBranchFeedLiftCandidate,
+  buildH39RequestedY44TerminalRowLocalFeedToProviderObjectPbIdentityAuditCandidate,
+  buildH39RequestedY44TerminalProviderObjectPbPushforwardOperatorAuditCandidate,
+  buildH39RequestedY44TerminalAggregatePProviderPreaggregationBranchBearingAuditCandidate,
   buildH39RequestedY44TerminalSourceCovarianceLambdaTCoordinateProjectionAttemptCandidate,
   buildH39RequestedY44TerminalSourceCovarianceLambdaProviderObjectReplayAuditCandidate,
   buildH39RequestedY44TerminalSourceCovarianceAdjointMomentumBalanceAttemptCandidate,
@@ -214,10 +226,22 @@ import {
   validateH39RequestedY44TerminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttemptCandidate,
   validateH39RequestedY44TerminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttemptCandidate,
   validateH39RequestedY44TerminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttemptCandidate,
+  validateH39RequestedY44TerminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAuditCandidate,
+  validateH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAuditCandidate,
+  validateH39RequestedY44TerminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttemptCandidate,
+  validateH39RequestedY44TerminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplayCandidate,
   validateH39RequestedY44TerminalRowProviderObjectReplayAttemptCandidate,
   validateH39RequestedY44TerminalWitnessDenominatorRealizationAttemptCandidate,
   validateH39RequestedY44TerminalProportionalCommonNormalizerLawRefutationCandidate,
   validateH39RequestedY44TerminalDenominatorFreeBranchResidualSourceObjectIdentityAttemptCandidate,
+  validateH39RequestedY44TerminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttemptCandidate,
+  validateH39RequestedY44TerminalVariableOwnershipAlphaProvenanceIdentityAuditCandidate,
+  validateH39RequestedY44TerminalProviderObjectAPMaterializationObstructionAuditCandidate,
+  validateH39RequestedY44TerminalSourceTermBranchFeedExtractorCandidate,
+  validateH39RequestedY44TerminalSourceTermOppositeBranchFeedLiftCandidate,
+  validateH39RequestedY44TerminalRowLocalFeedToProviderObjectPbIdentityAuditCandidate,
+  validateH39RequestedY44TerminalProviderObjectPbPushforwardOperatorAuditCandidate,
+  validateH39RequestedY44TerminalAggregatePProviderPreaggregationBranchBearingAuditCandidate,
   validateH39RequestedY44TerminalSourceCovarianceLambdaTCoordinateProjectionAttemptCandidate,
   validateH39RequestedY44TerminalSourceCovarianceLambdaProviderObjectReplayAuditCandidate,
   validateH39RequestedY44TerminalSourceCovarianceAdjointMomentumBalanceAttemptCandidate,
@@ -21883,6 +21907,651 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
     ),
     []
   );
+  const terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit =
+    buildH39RequestedY44TerminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAuditCandidate(
+      {
+        terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt,
+        terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor,
+        terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit,
+      }
+    );
+  const terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAuditValidationErrors =
+    validateH39RequestedY44TerminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAuditCandidate(
+      terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+    );
+  assert.deepEqual(
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAuditValidationErrors,
+    []
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      .terminal_g_to_provider_bridge_audit_verified,
+    true
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      .terminal_g_to_provider_bridge_audit_certified,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      .terminal_branch_g_moment_formula,
+    "A_G^{terminal}=G_{-,y(h+2)}-G_{+,y(h+2)}"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      .provider_object_branch_moment_formula,
+    "A_P=P_- - P_+"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      .g_to_provider_correction_term_formula,
+    "C_{G_to_P}=A_P-A_G^{terminal}"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      .terminal_g_to_provider_bridge_audit_row_count,
+    5
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      .terminal_g_to_provider_bridge_audit_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      .terminal_branch_g_moment_available_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      .provider_object_branch_moment_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      .source_term_alpha_map_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      .g_to_provider_correction_term_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      .terminal_g_to_provider_bridge_certified_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      .same_domain_bridge_obstruction_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      .terminal_branch_g_moment_available,
+    true
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      .provider_object_branch_moment_available,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      .g_to_provider_correction_term_available,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      .terminal_g_to_provider_bridge_available,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      .terminal_g_to_provider_bridge_certified,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      .terminal_g_to_provider_bridge_audit_classification,
+    "terminal-branch-G-moment-available-provider-object-branch-moment-missing"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      .terminal_g_to_provider_bridge_audit_blocker_classification,
+    "same-domain-A_P-provider-object-branch-moment-equation-needed"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      .terminal_g_to_provider_bridge_audit_primary_missing_object_kind,
+    "same-domain-provider-object-branch-moment-A_P-or-correction-term-C_G_to_P"
+  );
+  assert.ok(
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit.terminal_g_to_provider_bridge_audit_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_g_to_provider_bridge_audit_terminal_row_count === 3 &&
+        row.terminal_branch_g_moment_available_terminal_row_count === 3 &&
+        row.provider_object_branch_moment_available_terminal_row_count === 0 &&
+        row.source_term_alpha_map_available_terminal_row_count === 0 &&
+        row.g_to_provider_correction_term_available_terminal_row_count ===
+          0 &&
+        row.terminal_g_to_provider_bridge_certified_terminal_row_count === 0 &&
+        row.same_domain_bridge_obstruction_terminal_row_count === 3 &&
+        row.row_terminal_g_to_provider_bridge_audit_verified === true &&
+        row.row_certifies_terminal_g_to_provider_moment_bridge === false &&
+        row.row_certifies_terminal_g_to_provider_correction_term === false &&
+        row.row_certifies_terminal_row_provider_object_replay === false &&
+        row.terminal_g_to_provider_bridge_audit_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_graph_cell_id ===
+              `speed.${index}.first-y` &&
+            terminalRow.terminal_branch_g_moment_available === true &&
+            Array.isArray(terminalRow.terminal_branch_g_moment_interval) &&
+            terminalRow.provider_object_branch_moment_available === false &&
+            terminalRow.provider_object_branch_moment_interval === null &&
+            terminalRow.source_term_alpha_map_available === false &&
+            terminalRow
+              .source_term_to_provider_object_branch_projection_missing_rank ===
+              1 &&
+            terminalRow.g_to_provider_correction_term_available === false &&
+            terminalRow.g_to_provider_correction_term_interval === null &&
+            terminalRow.terminal_g_to_provider_bridge_available === false &&
+            terminalRow.terminal_g_to_provider_bridge_certified === false &&
+            terminalRow.row_certifies_terminal_g_to_provider_moment_bridge ===
+              false &&
+            terminalRow.row_certifies_terminal_g_to_provider_correction_term ===
+              false &&
+            terminalRow.row_certifies_terminal_row_provider_object_replay ===
+              false
+        )
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+    ),
+    []
+  );
+  const terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit =
+    buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAuditCandidate(
+      {
+        sourceMapResidualCovarianceTarget,
+        terminalExpressionLevelSourceMapProviderObjectBranchProducer,
+        terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor,
+        terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit,
+      }
+    );
+  const terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAuditValidationErrors =
+    validateH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAuditCandidate(
+      terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+    );
+  assert.deepEqual(
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAuditValidationErrors,
+    []
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      .provider_object_pre_sum_branch_source_audit_verified,
+    true
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      .provider_object_pre_sum_branch_source_audit_certified,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      .pre_sum_provider_object_formula,
+    "P=S_delta_squared_speed+S_sin_phi+S_sin_delta"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      .provider_object_branch_target,
+    "P_b"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      .provider_object_branch_moment_target,
+    "A_P=P_- - P_+"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      .provider_object_pre_sum_branch_source_audit_row_count,
+    5
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      .provider_object_pre_sum_branch_source_audit_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      .pre_sum_source_term_feed_row_count,
+    45
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      .pre_sum_source_term_branch_feed_available_row_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      .aggregate_source_term_equation_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      .provider_object_branch_moment_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      .source_term_alpha_map_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      .source_map_provider_object_branch_split_map_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      .provider_object_pre_sum_branch_source_obstruction_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      .provider_object_pre_sum_branch_source_available,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      .provider_object_pre_sum_branch_source_certified,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      .provider_object_pre_sum_branch_source_audit_classification,
+    "provider-object-pre-sum-source-term-feed-aggregate-only"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      .provider_object_pre_sum_branch_source_audit_blocker_classification,
+    "same-domain-branch-indexed-source-term-feed-needed-before-provider-sum"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      .provider_object_pre_sum_branch_source_audit_primary_missing_object_kind,
+    "same-domain-pre-sum-provider-object-branch-source-or-alpha-map"
+  );
+  assert.ok(
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit.provider_object_pre_sum_branch_source_audit_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.provider_object_pre_sum_branch_source_audit_terminal_row_count ===
+          3 &&
+        row.pre_sum_source_term_feed_row_count === 9 &&
+        row.pre_sum_source_term_branch_feed_available_row_count === 0 &&
+        row.aggregate_source_term_equation_count === 3 &&
+        row.provider_object_branch_moment_available_terminal_row_count === 0 &&
+        row.source_term_alpha_map_available_terminal_row_count === 0 &&
+        row
+          .source_map_provider_object_branch_split_map_available_terminal_row_count ===
+          0 &&
+        row.provider_object_pre_sum_branch_source_obstruction_terminal_row_count ===
+          3 &&
+        row.row_provider_object_pre_sum_branch_source_audit_verified === true &&
+        row.row_certifies_pre_sum_provider_object_branch_source === false &&
+        row.row_certifies_expression_level_source_map_provider_object_branch_rows ===
+          false &&
+        row.row_certifies_directed_rounded_shared_domain === false &&
+        row.provider_object_pre_sum_branch_source_audit_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_graph_cell_id ===
+              `speed.${index}.first-y` &&
+            terminalRow.pre_sum_provider_object_formula ===
+              "P=S_delta_squared_speed+S_sin_phi+S_sin_delta" &&
+            Array.isArray(
+              terminalRow.aggregate_source_map_provider_object_interval
+            ) &&
+            Array.isArray(terminalRow.pre_sum_source_term_aggregate_interval) &&
+            terminalRow.pre_sum_source_term_aggregate_matches_provider_object ===
+              true &&
+            terminalRow.pre_sum_source_term_feed_row_count === 3 &&
+            terminalRow
+              .pre_sum_source_term_branch_feed_available_row_count ===
+              0 &&
+            terminalRow.provider_object_branch_moment_available === false &&
+            terminalRow.source_term_alpha_map_available === false &&
+            terminalRow.source_map_provider_object_branch_split_map_available ===
+              false &&
+            terminalRow.source_map_provider_object_branch_interval_available_count ===
+              0 &&
+            terminalRow.provider_object_branch_materialization_before_sum_available ===
+              false &&
+            terminalRow.pre_sum_branch_source_obstruction_recorded === true &&
+            terminalRow.row_certifies_pre_sum_provider_object_branch_source ===
+              false &&
+            terminalRow.row_certifies_expression_level_source_map_provider_object_branch_rows ===
+              false &&
+            terminalRow.row_certifies_directed_rounded_shared_domain ===
+              false &&
+            terminalRow.pre_sum_source_term_feed_rows.every(
+              (feedRow) =>
+                sourceMapResidualCovarianceTarget.source_map_residual_h38_source_provenance_bridge_required_source_terms.includes(
+                  feedRow.term
+                ) &&
+                feedRow.provider_object_pre_sum_feed_role ===
+                  "aggregate-source-term-feed-into-P" &&
+                Array.isArray(feedRow.aggregate_source_term_feed_interval) &&
+                feedRow.aggregate_source_term_feed_interval_available ===
+                  true &&
+                feedRow.branch_label_available === false &&
+                feedRow
+                  .source_term_branch_projection_coefficient_available ===
+                  false &&
+                feedRow.source_term_branch_interval_available === false &&
+                feedRow.provider_object_branch_feed_available === false &&
+                feedRow.admissible_as_pre_sum_provider_object_branch_source ===
+                  false &&
+                typeof feedRow.rejection_reason === "string" &&
+                feedRow.row_certifies_pre_sum_provider_object_branch_source ===
+                  false &&
+                feedRow.row_certifies_expression_level_source_map_provider_object_branch_rows ===
+                  false &&
+                feedRow.row_certifies_directed_rounded_shared_domain === false
+            )
+        )
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+    ),
+    []
+  );
+  const terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt =
+    buildH39RequestedY44TerminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttemptCandidate(
+      {
+        terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit,
+        terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt,
+        terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit,
+      }
+    );
+  const terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttemptValidationErrors =
+    validateH39RequestedY44TerminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttemptCandidate(
+      terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+    );
+  assert.deepEqual(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttemptValidationErrors,
+    []
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      .variable_ownership_branch_feed_attempt_verified,
+    true
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      .variable_ownership_branch_feed_attempt_certified,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      .variable_ownership_branch_feed_model,
+    "P_delta=S_delta_squared_speed+S_sin_delta; P_phi=S_sin_phi; A_var=P_delta-P_phi"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      .variable_ownership_alpha_model,
+    "A_var=S_delta_squared_speed-S_sin_phi+S_sin_delta"
+  );
+  assert.deepEqual(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      .variable_ownership_alpha_coefficients,
+    {
+      delta_squared_speed: 1,
+      sin_phi: -1,
+      sin_delta: 1,
+    }
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      .variable_ownership_branch_feed_attempt_row_count,
+    5
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      .variable_ownership_branch_feed_attempt_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      .variable_ownership_alpha_row_count,
+    45
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      .variable_ownership_alpha_candidate_available_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      .variable_ownership_branch_feed_candidate_available_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      .terminal_branch_g_moment_available_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      .provider_object_branch_moment_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      .fold_null_variable_split_compatible_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      .admissible_as_actual_provider_object_branch_source_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      .variable_ownership_alpha_candidate_certified_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      .variable_ownership_alpha_candidate_available,
+    true
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      .variable_ownership_branch_feed_candidate_available,
+    true
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      .fold_null_variable_split_compatible,
+    true
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      .provider_object_branch_moment_available,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      .variable_ownership_alpha_admissible_as_actual_provider_object_branch_source,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      .variable_ownership_alpha_candidate_certified,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      .variable_ownership_branch_feed_attempt_classification,
+    "variable-ownership-alpha-candidate-emitted-provider-object-target-missing"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      .variable_ownership_branch_feed_attempt_blocker_classification,
+    "same-domain-proof-variable-ownership-alpha-row-is-provider-object-branch-source-needed"
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      .variable_ownership_branch_feed_attempt_primary_missing_object_kind,
+    "same-domain-provider-object-branch-moment-A_P-or-branch-parity-generator-certifying-variable-ownership-alpha"
+  );
+  assert.ok(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt.variable_ownership_branch_feed_attempt_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.variable_ownership_branch_feed_attempt_terminal_row_count === 3 &&
+        row.variable_ownership_alpha_row_count === 9 &&
+        row.variable_ownership_alpha_candidate_available_terminal_row_count ===
+          3 &&
+        row
+          .variable_ownership_branch_feed_candidate_available_terminal_row_count ===
+          3 &&
+        row.terminal_branch_g_moment_available_terminal_row_count === 3 &&
+        row.provider_object_branch_moment_available_terminal_row_count === 0 &&
+        row.fold_null_variable_split_compatible_terminal_row_count === 3 &&
+        row
+          .admissible_as_actual_provider_object_branch_source_terminal_row_count ===
+          0 &&
+        row.variable_ownership_alpha_candidate_certified_terminal_row_count ===
+          0 &&
+        row.row_variable_ownership_branch_feed_attempt_verified === true &&
+        row.row_certifies_variable_ownership_alpha_as_provider_object_branch_source ===
+          false &&
+        row.row_certifies_pre_sum_provider_object_branch_source === false &&
+        row.row_certifies_expression_level_source_term_branch_projection_alpha_map ===
+          false &&
+        row.row_certifies_terminal_g_to_provider_moment_bridge === false &&
+        row.row_certifies_terminal_g_to_provider_correction_term === false &&
+        row.row_certifies_expression_level_source_map_provider_object_branch_rows ===
+          false &&
+        row.row_certifies_terminal_row_provider_object_replay === false &&
+        row.row_certifies_expression_level_n38_provider === false &&
+        row.row_certifies_directed_rounded_shared_domain === false &&
+        row.variable_ownership_branch_feed_attempt_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_graph_cell_id ===
+              `speed.${index}.first-y` &&
+            terminalRow.variable_ownership_alpha_row_count === 3 &&
+            Array.isArray(terminalRow.p_delta_candidate_interval) &&
+            Array.isArray(terminalRow.p_phi_candidate_interval) &&
+            Array.isArray(
+              terminalRow.variable_ownership_alpha_candidate_interval
+            ) &&
+            terminalRow.variable_ownership_alpha_candidate_available ===
+              true &&
+            terminalRow.variable_ownership_branch_feed_candidate_available ===
+              true &&
+            Array.isArray(terminalRow.terminal_branch_g_moment_interval) &&
+            terminalRow.terminal_branch_g_moment_available === true &&
+            terminalRow.provider_object_branch_moment_interval === null &&
+            terminalRow.provider_object_branch_moment_available === false &&
+            Array.isArray(
+              terminalRow
+                .variable_ownership_alpha_minus_terminal_g_moment_interval
+            ) &&
+            typeof terminalRow
+              .variable_ownership_alpha_minus_terminal_g_moment_contains_zero ===
+              "boolean" &&
+            typeof terminalRow
+              .variable_ownership_alpha_overlaps_terminal_g_moment ===
+              "boolean" &&
+            Number.isFinite(
+              terminalRow.variable_ownership_alpha_to_terminal_g_endpoint_gap
+            ) &&
+            Number.isFinite(
+              terminalRow.variable_ownership_alpha_half_width
+            ) &&
+            Number.isFinite(
+              terminalRow.terminal_branch_g_moment_half_width
+            ) &&
+            terminalRow.fold_null_variable_split_compatible === true &&
+            terminalRow.admissible_as_actual_provider_object_branch_source ===
+              false &&
+            terminalRow.variable_ownership_alpha_candidate_certified ===
+              false &&
+            terminalRow.row_variable_ownership_branch_feed_attempt_verified ===
+              true &&
+            terminalRow
+              .row_certifies_variable_ownership_alpha_as_provider_object_branch_source ===
+              false &&
+            terminalRow.row_certifies_pre_sum_provider_object_branch_source ===
+              false &&
+            terminalRow
+              .row_certifies_expression_level_source_term_branch_projection_alpha_map ===
+              false &&
+            terminalRow.row_certifies_terminal_g_to_provider_moment_bridge ===
+              false &&
+            terminalRow.row_certifies_terminal_g_to_provider_correction_term ===
+              false &&
+            terminalRow
+              .row_certifies_expression_level_source_map_provider_object_branch_rows ===
+              false &&
+            terminalRow.row_certifies_terminal_row_provider_object_replay ===
+              false &&
+            terminalRow.row_certifies_expression_level_n38_provider ===
+              false &&
+            terminalRow.row_certifies_directed_rounded_shared_domain ===
+              false &&
+            terminalRow.variable_ownership_alpha_rows.every(
+              (alphaRow) =>
+                sourceMapResidualCovarianceTarget.source_map_residual_h38_source_provenance_bridge_required_source_terms.includes(
+                  alphaRow.term
+                ) &&
+                ["delta", "phi"].includes(alphaRow.source_variable_owner) &&
+                [1, -1].includes(
+                  alphaRow.variable_ownership_alpha_coefficient
+                ) &&
+                Array.isArray(alphaRow.aggregate_source_term_feed_interval) &&
+                Array.isArray(
+                  alphaRow.variable_ownership_signed_contribution_interval
+                ) &&
+                alphaRow.variable_ownership_alpha_coefficient_available ===
+                  true &&
+                alphaRow.variable_ownership_signed_contribution_available ===
+                  true &&
+                alphaRow.admissible_as_actual_provider_object_branch_source ===
+                  false &&
+                alphaRow
+                  .row_certifies_variable_ownership_alpha_as_provider_object_branch_source ===
+                  false &&
+                alphaRow
+                  .row_certifies_expression_level_source_map_provider_object_branch_rows ===
+                  false &&
+                alphaRow.row_certifies_directed_rounded_shared_domain === false
+            )
+        )
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+    ),
+    []
+  );
   const terminalRowProviderObjectReplayAttempt =
     buildH39RequestedY44TerminalRowProviderObjectReplayAttemptCandidate({
       terminalExpressionLevelSourceMapProviderObjectBranchProducer,
@@ -22291,6 +22960,339 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
                   .certifies_expression_level_n38_provider === false &&
                 branchRow.claim_boundary
                   .certifies_directed_rounded_shared_domain === false
+            )
+        )
+    )
+  );
+  const terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay =
+    buildH39RequestedY44TerminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplayCandidate(
+      {
+        terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt,
+        terminalRowProviderObjectReplayAttempt,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44TerminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplayCandidate(
+      terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+    ),
+    []
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+      .variable_ownership_provider_boundary_replay_verified,
+    true
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+      .variable_ownership_provider_boundary_replay_certified,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+      .orientation_count,
+    2
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+      .variable_ownership_provider_boundary_replay_row_count,
+    5
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+      .variable_ownership_provider_boundary_replay_terminal_row_count,
+    30
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+      .variable_ownership_provider_boundary_replay_branch_row_count,
+    60
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+      .variable_ownership_branch_candidate_intervals_available_count,
+    60
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+      .terminal_witness_branch_intervals_available_count,
+    terminalRowProviderObjectReplayAttempt
+      .terminal_witness_branch_intervals_available_count * 2
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+      .terminal_witness_branch_intervals_available_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+      .actual_provider_object_branch_intervals_available_count,
+    0
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+      .provider_object_branch_intervals_available_from_actual_provider_count,
+    0
+  );
+  assert.ok(
+    terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+      .variable_ownership_branch_candidate_overlaps_terminal_witness_count >=
+      0 &&
+      terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+        .variable_ownership_branch_candidate_overlaps_terminal_witness_count <=
+        60
+  );
+  assert.ok(
+    terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+      .variable_ownership_branch_candidate_subset_terminal_witness_count >= 0 &&
+      terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+        .variable_ownership_branch_candidate_subset_terminal_witness_count <= 60
+  );
+  assert.ok(
+    [
+      "minus-delta-plus-phi",
+      "minus-phi-plus-delta",
+    ].includes(
+      terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+        .best_orientation_id
+    )
+  );
+  assert.ok(
+    terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+      .best_orientation_branch_overlap_count >= 0 &&
+      terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+        .best_orientation_branch_overlap_count <= 30
+  );
+  assert.ok(
+    terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+      .best_orientation_branch_subset_count >= 0 &&
+      terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+        .best_orientation_branch_subset_count <= 30
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+      .actual_provider_object_branch_rows_available,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+      .variable_ownership_identity_proof_available,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+      .candidate_identity_proof_available,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+      .variable_ownership_provider_object_branch_identity_certified,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+      .expression_level_source_map_provider_object_branch_rows_certified,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+      .terminal_row_provider_object_replay_certified,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+      .expression_level_n38_provider_certified,
+    false
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+      .directed_rounded_shared_domain_provider_certified,
+    false
+  );
+  assert.ok(
+    [
+      "variable-ownership-provider-boundary-terminal-witness-open",
+      "variable-ownership-provider-boundary-branch-overlap-open",
+      "variable-ownership-provider-boundary-branch-containment-open",
+      "variable-ownership-provider-boundary-remainder-open",
+      "variable-ownership-provider-boundary-compatible-identity-open",
+    ].includes(
+      terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+        .variable_ownership_provider_boundary_replay_classification
+    )
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+      .variable_ownership_provider_boundary_replay_classification,
+    "variable-ownership-provider-boundary-terminal-witness-open"
+  );
+  assert.ok(
+    [
+      "same-domain-terminal-witness-branch-intervals-needed-before-variable-ownership-replay",
+      "variable-ownership-branch-orientation-terminal-witness-overlap-needed",
+      "variable-ownership-branch-orientation-terminal-witness-containment-needed",
+      "variable-ownership-provider-boundary-remainder-fit-needed",
+      "same-domain-proof-variable-ownership-branches-are-actual-provider-object-needed",
+    ].includes(
+      terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+        .variable_ownership_provider_boundary_replay_blocker_classification
+    )
+  );
+  assert.equal(
+    terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+      .variable_ownership_provider_boundary_replay_blocker_classification,
+    "same-domain-terminal-witness-branch-intervals-needed-before-variable-ownership-replay"
+  );
+  assert.ok(
+    terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay.orientation_summaries.every(
+      (summary) =>
+        ["minus-delta-plus-phi", "minus-phi-plus-delta"].includes(
+          summary.orientation_id
+        ) &&
+        summary.orientation_terminal_row_count === 15 &&
+        summary.orientation_branch_row_count === 30 &&
+        summary.variable_ownership_branch_candidate_intervals_available_count ===
+          30 &&
+        summary.terminal_witness_branch_intervals_available_count ===
+          terminalRowProviderObjectReplayAttempt
+            .terminal_witness_branch_intervals_available_count &&
+        summary.actual_provider_object_branch_intervals_available_count === 0 &&
+        summary.branch_candidate_overlaps_terminal_witness_count >= 0 &&
+        summary.branch_candidate_overlaps_terminal_witness_count <= 30 &&
+        summary.branch_candidate_subset_terminal_witness_count >= 0 &&
+        summary.branch_candidate_subset_terminal_witness_count <= 30 &&
+        typeof summary.orientation_reaches_terminal_witness === "boolean" &&
+        typeof summary.orientation_subset_terminal_witness === "boolean"
+    )
+  );
+  assert.ok(
+    terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay.variable_ownership_provider_boundary_replay_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.variable_ownership_provider_boundary_replay_terminal_row_count ===
+          6 &&
+        row.variable_ownership_provider_boundary_replay_branch_row_count ===
+          12 &&
+        row.variable_ownership_branch_candidate_intervals_available_count ===
+          12 &&
+        row.terminal_witness_branch_intervals_available_count === 0 &&
+        row.actual_provider_object_branch_intervals_available_count === 0 &&
+        row.row_variable_ownership_provider_boundary_replay_verified ===
+          true &&
+        row.row_certifies_variable_ownership_provider_boundary_replay ===
+          false &&
+        row.row_certifies_variable_ownership_provider_object_branch_identity ===
+          false &&
+        row.row_certifies_expression_level_source_map_provider_object_branch_rows ===
+          false &&
+        row.row_certifies_terminal_row_provider_object_replay === false &&
+        row.row_certifies_expression_level_n38_provider === false &&
+        row.row_certifies_directed_rounded_shared_domain === false &&
+        row.variable_ownership_provider_boundary_replay_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_graph_cell_id ===
+              `speed.${index}.first-y` &&
+            [
+              "minus-delta-plus-phi",
+              "minus-phi-plus-delta",
+            ].includes(terminalRow.orientation_id) &&
+            Array.isArray(terminalRow.p_delta_candidate_interval) &&
+            Array.isArray(terminalRow.p_phi_candidate_interval) &&
+            Array.isArray(
+              terminalRow.variable_ownership_alpha_candidate_interval
+            ) &&
+            Array.isArray(
+              terminalRow.orientation_antisymmetric_candidate_interval
+            ) &&
+            terminalRow
+              .variable_ownership_provider_boundary_replay_branch_row_count ===
+              2 &&
+            terminalRow
+              .variable_ownership_branch_candidate_intervals_available_count ===
+              2 &&
+            terminalRow.terminal_witness_branch_intervals_available_count ===
+              0 &&
+            terminalRow
+              .actual_provider_object_branch_intervals_available_count === 0 &&
+            typeof terminalRow
+              .variable_ownership_orientation_reaches_terminal_witness ===
+              "boolean" &&
+            typeof terminalRow
+              .variable_ownership_orientation_subset_of_terminal_witness ===
+              "boolean" &&
+            terminalRow
+              .row_variable_ownership_provider_boundary_replay_verified ===
+              true &&
+            terminalRow
+              .row_certifies_variable_ownership_provider_boundary_replay ===
+              false &&
+            terminalRow
+              .row_certifies_variable_ownership_provider_object_branch_identity ===
+              false &&
+            terminalRow
+              .row_certifies_expression_level_source_map_provider_object_branch_rows ===
+              false &&
+            terminalRow.row_certifies_terminal_row_provider_object_replay ===
+              false &&
+            terminalRow.row_certifies_expression_level_n38_provider === false &&
+            terminalRow.row_certifies_directed_rounded_shared_domain ===
+              false &&
+            terminalRow.variable_ownership_provider_boundary_replay_branch_rows.every(
+              (branchRow) =>
+                ["-", "+"].includes(branchRow.branch) &&
+                branchRow.orientation_id === terminalRow.orientation_id &&
+                ["P_delta", "P_phi"].includes(
+                  branchRow.variable_ownership_branch_candidate_side
+                ) &&
+                Array.isArray(
+                  branchRow.variable_ownership_branch_candidate_interval
+                ) &&
+                branchRow.terminal_witness_interval === null &&
+                branchRow.actual_source_map_provider_object_branch_interval ===
+                  null &&
+                branchRow
+                  .variable_ownership_branch_candidate_interval_available ===
+                  true &&
+                branchRow.terminal_witness_interval_available === false &&
+                branchRow
+                  .actual_source_map_provider_object_branch_interval_available ===
+                  false &&
+                typeof branchRow
+                  .variable_ownership_candidate_overlaps_terminal_witness ===
+                  "boolean" &&
+                typeof branchRow
+                  .variable_ownership_candidate_subset_of_terminal_witness ===
+                  "boolean" &&
+                typeof branchRow
+                  .terminal_witness_subset_of_variable_ownership_candidate ===
+                  "boolean" &&
+                branchRow
+                  .variable_ownership_candidate_to_terminal_witness_endpoint_gap ===
+                  null &&
+                Number.isFinite(
+                  Number(branchRow.variable_ownership_candidate_half_width)
+                ) &&
+                branchRow.terminal_witness_interval_half_width === null &&
+                branchRow
+                  .variable_ownership_candidate_to_terminal_witness_half_width_ratio ===
+                  null &&
+                branchRow
+                  .admissible_as_actual_source_map_provider_object_branch_interval ===
+                  false &&
+                branchRow.candidate_identity_proof_available === false &&
+                branchRow
+                  .row_certifies_variable_ownership_provider_boundary_replay ===
+                  false &&
+                branchRow
+                  .row_certifies_variable_ownership_provider_object_branch_identity ===
+                  false &&
+                branchRow
+                  .row_certifies_expression_level_source_map_provider_object_branch_rows ===
+                  false &&
+                branchRow.row_certifies_terminal_row_provider_object_replay ===
+                  false &&
+                branchRow.row_certifies_directed_rounded_shared_domain === false
             )
         )
     )
@@ -22977,6 +23979,1561 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   assert.deepEqual(
     collectExactKeys(
       terminalDenominatorFreeBranchResidualSourceObjectIdentityAttempt,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt =
+    buildH39RequestedY44TerminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttemptCandidate(
+      {
+        terminalDenominatorFreeBranchResidualSourceObjectIdentityAttempt,
+        terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt,
+        terminalRowProviderObjectReplayAttempt,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44TerminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttemptCandidate(
+      terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+    ),
+    []
+  );
+  assert.equal(
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      .terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_verified,
+    true
+  );
+  assert.equal(
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      .terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_certified,
+    false
+  );
+  assert.equal(
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      .terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_row_count,
+    5
+  );
+  assert.equal(
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      .terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      .terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_branch_row_count,
+    30
+  );
+  assert.equal(
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      .variable_ownership_t_coordinate_candidate_available_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      .denominator_free_variable_ownership_branch_candidate_available_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      .candidate_branch_sum_contains_aggregate_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      .candidate_branch_difference_contains_variable_ownership_alpha_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      .terminal_witness_branch_intervals_available_count,
+    terminalRowProviderObjectReplayAttempt
+      .terminal_witness_branch_intervals_available_count
+  );
+  assert.equal(
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      .terminal_witness_branch_intervals_available_count,
+    0
+  );
+  assert.equal(
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      .candidate_admissible_as_terminal_witness_branch_interval_count,
+    0
+  );
+  assert.equal(
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      .all_variable_ownership_t_coordinate_candidates_available,
+    true
+  );
+  assert.equal(
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      .all_denominator_free_variable_ownership_branch_candidates_available,
+    true
+  );
+  assert.equal(
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      .all_candidate_branch_sums_contain_aggregate,
+    true
+  );
+  assert.equal(
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      .all_candidate_branch_differences_contain_variable_ownership_alpha,
+    true
+  );
+  assert.equal(
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      .variable_ownership_t_coordinate_identity_available,
+    false
+  );
+  assert.equal(
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      .variable_ownership_t_coordinate_identity_certified,
+    false
+  );
+  assert.equal(
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      .denominator_free_branch_residual_source_object_identity_certified,
+    false
+  );
+  assert.equal(
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      .branch_resolved_centered_residual_source_object_certified,
+    false
+  );
+  assert.equal(
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      .terminal_row_provider_object_replay_certified,
+    false
+  );
+  assert.equal(
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      .expression_level_n38_provider_certified,
+    false
+  );
+  assert.equal(
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      .directed_rounded_shared_domain_provider_certified,
+    false
+  );
+  assert.equal(
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      .terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_classification,
+    "denominator-free-variable-ownership-t-candidate-emitted-identity-open"
+  );
+  assert.equal(
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      .terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_blocker_classification,
+    "same-domain-proof-variable-ownership-alpha-determines-branch-antisymmetric-coordinate-needed"
+  );
+  assert.equal(
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      .next_certificate_object,
+    "same-domain proof that 2t=A_var=P_delta-P_phi for the branch-resolved centered residual source object"
+  );
+  assert.ok(
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt.terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_terminal_row_count ===
+          3 &&
+        row.denominator_free_variable_ownership_branch_candidate_row_count ===
+          6 &&
+        row.variable_ownership_t_coordinate_candidate_available_terminal_row_count ===
+          3 &&
+        row.denominator_free_variable_ownership_branch_candidate_available_terminal_row_count ===
+          3 &&
+        row.candidate_branch_sum_contains_aggregate_terminal_row_count === 3 &&
+        row
+          .candidate_branch_difference_contains_variable_ownership_alpha_terminal_row_count ===
+          3 &&
+        row.terminal_witness_branch_intervals_available_count === 0 &&
+        row.candidate_admissible_as_terminal_witness_branch_interval_count ===
+          0 &&
+        row.row_terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_verified ===
+          true &&
+        row.row_certifies_variable_ownership_t_coordinate_identity === false &&
+        row
+          .row_certifies_denominator_free_branch_residual_source_object_identity ===
+          false &&
+        row.row_certifies_branch_resolved_centered_residual_source_object ===
+          false &&
+        row.row_certifies_terminal_row_provider_object_replay === false &&
+        row.row_certifies_expression_level_n38_provider === false &&
+        row.row_certifies_directed_rounded_shared_domain === false &&
+        row.terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_graph_cell_id ===
+              `speed.${index}.first-y` &&
+            terminalRow.denominator_free_variable_ownership_t_coordinate_formula ===
+              "t_var=A_var/2" &&
+            terminalRow.denominator_free_variable_ownership_branch_formula ===
+              "(r_-,r_+)=(R/2+A_var/2,R/2-A_var/2)" &&
+            Array.isArray(terminalRow.aggregate_centered_residual_interval) &&
+            Array.isArray(terminalRow.aggregate_half_interval) &&
+            Array.isArray(
+              terminalRow.variable_ownership_alpha_candidate_interval
+            ) &&
+            Array.isArray(
+              terminalRow.variable_ownership_t_coordinate_candidate_interval
+            ) &&
+            Number.isFinite(
+              Number(
+                terminalRow
+                  .variable_ownership_t_coordinate_candidate_interval_half_width
+              )
+            ) &&
+            terminalRow
+              .denominator_free_variable_ownership_branch_candidate_rows
+              .length === 2 &&
+            terminalRow.denominator_free_variable_ownership_branch_candidate_rows.every(
+              (branchRow) =>
+                ["-", "+"].includes(branchRow.branch) &&
+                [
+                  "r_-=R/2+A_var/2",
+                  "r_+=R/2-A_var/2",
+                ].includes(
+                  branchRow
+                    .denominator_free_variable_ownership_branch_formula
+                ) &&
+                Array.isArray(branchRow.aggregate_half_interval) &&
+                Array.isArray(
+                  branchRow.variable_ownership_alpha_candidate_interval
+                ) &&
+                Array.isArray(
+                  branchRow.variable_ownership_t_coordinate_candidate_interval
+                ) &&
+                Array.isArray(
+                  branchRow
+                    .denominator_free_variable_ownership_branch_candidate_interval
+                ) &&
+                branchRow
+                  .denominator_free_variable_ownership_branch_candidate_available ===
+                  true &&
+                branchRow.terminal_witness_interval === null &&
+                branchRow.terminal_witness_interval_available === false &&
+                branchRow
+                  .candidate_admissible_as_terminal_witness_branch_interval ===
+                  false &&
+                branchRow.variable_ownership_t_coordinate_identity_available ===
+                  false &&
+                branchRow.variable_ownership_t_coordinate_identity_certified ===
+                  false &&
+                branchRow
+                  .branch_resolved_centered_residual_source_object_certified ===
+                  false &&
+                branchRow
+                  .row_certifies_variable_ownership_t_coordinate_identity ===
+                  false &&
+                branchRow
+                  .row_certifies_branch_resolved_centered_residual_component ===
+                  false &&
+                branchRow.row_certifies_terminal_row_provider_object_replay ===
+                  false &&
+                branchRow.row_certifies_directed_rounded_shared_domain ===
+                  false
+            ) &&
+            Array.isArray(
+              terminalRow.denominator_free_variable_ownership_branch_sum_interval
+            ) &&
+            terminalRow
+              .denominator_free_variable_ownership_branch_sum_contains_aggregate ===
+              true &&
+            Array.isArray(
+              terminalRow
+                .denominator_free_variable_ownership_branch_difference_interval
+            ) &&
+            terminalRow
+              .denominator_free_variable_ownership_branch_difference_contains_variable_ownership_alpha ===
+              true &&
+            terminalRow.terminal_witness_branch_intervals_available_count ===
+              0 &&
+            terminalRow
+              .candidate_admissible_as_terminal_witness_branch_interval_count ===
+              0 &&
+            terminalRow.variable_ownership_t_coordinate_identity_available ===
+              false &&
+            terminalRow.variable_ownership_t_coordinate_identity_certified ===
+              false &&
+            terminalRow
+              .denominator_free_branch_residual_source_object_identity_certified ===
+              false &&
+            terminalRow
+              .branch_resolved_centered_residual_source_object_certified ===
+              false &&
+            terminalRow
+              .row_terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_verified ===
+              true &&
+            terminalRow
+              .row_certifies_variable_ownership_t_coordinate_identity ===
+              false &&
+            terminalRow
+              .row_certifies_denominator_free_branch_residual_source_object_identity ===
+              false &&
+            terminalRow
+              .row_certifies_branch_resolved_centered_residual_source_object ===
+              false &&
+            terminalRow.row_certifies_terminal_row_provider_object_replay ===
+              false &&
+            terminalRow.row_certifies_expression_level_n38_provider === false &&
+            terminalRow.row_certifies_directed_rounded_shared_domain === false
+        )
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalVariableOwnershipAlphaProvenanceIdentityAudit =
+    buildH39RequestedY44TerminalVariableOwnershipAlphaProvenanceIdentityAuditCandidate(
+      {
+        terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt,
+        terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt,
+        terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit,
+        terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt,
+        terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44TerminalVariableOwnershipAlphaProvenanceIdentityAuditCandidate(
+      terminalVariableOwnershipAlphaProvenanceIdentityAudit
+    ),
+    []
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .terminal_variable_ownership_alpha_provenance_identity_audit_verified,
+    true
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .terminal_variable_ownership_alpha_provenance_identity_audit_certified,
+    false
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .provenance_identity_target,
+    "2t=A_P=A_var=P_delta-P_phi"
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .candidate_t_identity_formula,
+    "2*t_var-A_var=0"
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .terminal_variable_ownership_alpha_provenance_identity_audit_row_count,
+    5
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .terminal_variable_ownership_alpha_provenance_identity_audit_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .candidate_2t_minus_A_var_tautology_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .source_term_alpha_map_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .source_term_branch_parity_generator_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .fold_null_generator_is_branch_parity_generator_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .provider_object_branch_moment_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .terminal_g_comparison_available_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .variable_ownership_alpha_minus_terminal_g_moment_contains_zero_terminal_row_count +
+      terminalVariableOwnershipAlphaProvenanceIdentityAudit
+        .variable_ownership_alpha_minus_terminal_g_moment_excludes_zero_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .all_candidate_2t_var_equals_A_var_by_construction,
+    true
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .all_terminal_g_comparisons_available,
+    true
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .source_term_alpha_map_available,
+    false
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .source_term_branch_parity_generator_available,
+    false
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .fold_null_generator_is_branch_parity_generator,
+    false
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .provider_object_branch_moment_available,
+    false
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .variable_ownership_alpha_provenance_identity_available,
+    false
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .variable_ownership_alpha_provenance_identity_certified,
+    false
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .variable_ownership_t_coordinate_identity_certified,
+    false
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .variable_ownership_alpha_as_provider_object_branch_source_certified,
+    false
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .terminal_g_to_provider_moment_bridge_certified,
+    false
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .terminal_row_provider_object_replay_certified,
+    false
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .expression_level_n38_provider_certified,
+    false
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .directed_rounded_shared_domain_provider_certified,
+    false
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .terminal_variable_ownership_alpha_provenance_identity_audit_classification,
+    "variable-ownership-alpha-provenance-identity-open-alpha-map-and-provider-moment-missing"
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .terminal_variable_ownership_alpha_provenance_identity_audit_blocker_classification,
+    "same-domain-source-term-branch-parity-generator-or-provider-object-branch-moment-needed"
+  );
+  assert.equal(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      .next_certificate_object,
+    "same-domain source-term branch-parity generator or explicit provider-object branch moment A_P proving A_var=P_delta-P_phi is the actual branch-antisymmetric source object"
+  );
+  assert.ok(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit.terminal_variable_ownership_alpha_provenance_identity_audit_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_variable_ownership_alpha_provenance_identity_audit_terminal_row_count ===
+          3 &&
+        row.candidate_2t_minus_A_var_tautology_terminal_row_count === 3 &&
+        row.source_term_alpha_map_available_terminal_row_count === 0 &&
+        row
+          .source_term_branch_parity_generator_available_terminal_row_count ===
+          0 &&
+        row
+          .fold_null_generator_is_branch_parity_generator_terminal_row_count ===
+          0 &&
+        row.provider_object_branch_moment_available_terminal_row_count === 0 &&
+        row.terminal_g_comparison_available_terminal_row_count === 3 &&
+        row
+          .variable_ownership_alpha_minus_terminal_g_moment_contains_zero_terminal_row_count +
+          row
+            .variable_ownership_alpha_minus_terminal_g_moment_excludes_zero_terminal_row_count ===
+          3 &&
+        row.row_variable_ownership_alpha_provenance_identity_audit_verified ===
+          true &&
+        row.row_certifies_variable_ownership_alpha_provenance_identity ===
+          false &&
+        row.row_certifies_variable_ownership_t_coordinate_identity === false &&
+        row
+          .row_certifies_variable_ownership_alpha_as_provider_object_branch_source ===
+          false &&
+        row.row_certifies_terminal_g_to_provider_moment_bridge === false &&
+        row.row_certifies_terminal_row_provider_object_replay === false &&
+        row.row_certifies_expression_level_n38_provider === false &&
+        row.row_certifies_directed_rounded_shared_domain === false &&
+        row.terminal_variable_ownership_alpha_provenance_identity_audit_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_graph_cell_id === `speed.${index}.first-y` &&
+            terminalRow.candidate_t_identity_formula === "2*t_var-A_var=0" &&
+            terminalRow.provider_object_identity_target ===
+              "2t=A_P=A_var=P_delta-P_phi" &&
+            terminalRow.branch_parity_generator_target ===
+              "B(S_j)=epsilon_j*S_j" &&
+            Array.isArray(
+              terminalRow.variable_ownership_alpha_candidate_interval
+            ) &&
+            Array.isArray(
+              terminalRow.variable_ownership_t_coordinate_candidate_interval
+            ) &&
+            Array.isArray(terminalRow.two_t_var_candidate_interval) &&
+            Array.isArray(
+              terminalRow.candidate_2t_minus_A_var_residual_interval
+            ) &&
+            terminalRow.candidate_2t_minus_A_var_residual_contains_zero ===
+              true &&
+            Number.isFinite(
+              Number(terminalRow.candidate_2t_minus_A_var_residual_half_width)
+            ) &&
+            Array.isArray(terminalRow.terminal_branch_g_moment_interval) &&
+            Array.isArray(
+              terminalRow
+                .variable_ownership_alpha_minus_terminal_g_moment_interval
+            ) &&
+            typeof terminalRow
+              .variable_ownership_alpha_minus_terminal_g_moment_contains_zero ===
+              "boolean" &&
+            typeof terminalRow
+              .variable_ownership_alpha_minus_terminal_g_moment_excludes_zero ===
+              "boolean" &&
+            terminalRow.source_term_alpha_map_available === false &&
+            terminalRow.source_term_branch_parity_generator_available === false &&
+            terminalRow.fold_null_generator_is_branch_parity_generator ===
+              false &&
+            terminalRow.provider_object_branch_moment_available === false &&
+            terminalRow.g_to_provider_correction_term_available === false &&
+            terminalRow.variable_ownership_alpha_provenance_identity_available ===
+              false &&
+            terminalRow.variable_ownership_alpha_provenance_identity_certified ===
+              false &&
+            terminalRow.variable_ownership_t_coordinate_identity_certified ===
+              false &&
+            terminalRow
+              .row_variable_ownership_alpha_provenance_identity_audit_verified ===
+              true &&
+            terminalRow
+              .row_certifies_variable_ownership_alpha_provenance_identity ===
+              false &&
+            terminalRow.row_certifies_variable_ownership_t_coordinate_identity ===
+              false &&
+            terminalRow
+              .row_certifies_variable_ownership_alpha_as_provider_object_branch_source ===
+              false &&
+            terminalRow.row_certifies_terminal_g_to_provider_moment_bridge ===
+              false &&
+            terminalRow.row_certifies_terminal_row_provider_object_replay ===
+              false &&
+            terminalRow.row_certifies_expression_level_n38_provider === false &&
+            terminalRow.row_certifies_directed_rounded_shared_domain === false
+        )
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalVariableOwnershipAlphaProvenanceIdentityAudit),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalVariableOwnershipAlphaProvenanceIdentityAudit,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalProviderObjectAPMaterializationObstructionAudit =
+    buildH39RequestedY44TerminalProviderObjectAPMaterializationObstructionAuditCandidate(
+      {
+        terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination,
+        terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor,
+        terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit,
+        terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt,
+        terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit,
+        terminalVariableOwnershipAlphaProvenanceIdentityAudit,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44TerminalProviderObjectAPMaterializationObstructionAuditCandidate(
+      terminalProviderObjectAPMaterializationObstructionAudit
+    ),
+    []
+  );
+  assert.equal(
+    terminalProviderObjectAPMaterializationObstructionAudit
+      .provider_object_ap_materialization_obstruction_audit_verified,
+    true
+  );
+  assert.equal(
+    terminalProviderObjectAPMaterializationObstructionAudit
+      .provider_object_ap_materialization_obstruction_audit_certified,
+    false
+  );
+  assert.equal(
+    terminalProviderObjectAPMaterializationObstructionAudit
+      .provider_object_branch_moment_target,
+    "A_P=P_- - P_+"
+  );
+  assert.equal(
+    terminalProviderObjectAPMaterializationObstructionAudit
+      .provider_object_ap_materialization_obstruction_row_count,
+    5
+  );
+  assert.equal(
+    terminalProviderObjectAPMaterializationObstructionAudit
+      .provider_object_ap_materialization_obstruction_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalProviderObjectAPMaterializationObstructionAudit
+      .provider_object_moment_candidate_row_count,
+    30
+  );
+  assert.equal(
+    terminalProviderObjectAPMaterializationObstructionAudit
+      .provider_object_moment_candidate_available_count,
+    30
+  );
+  assert.equal(
+    terminalProviderObjectAPMaterializationObstructionAudit
+      .provider_object_moment_candidate_admissible_count,
+    0
+  );
+  assert.equal(
+    terminalProviderObjectAPMaterializationObstructionAudit
+      .provider_object_A_P_materialization_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalProviderObjectAPMaterializationObstructionAudit
+      .materialization_free_dimension_remaining,
+    15
+  );
+  assert.equal(
+    terminalProviderObjectAPMaterializationObstructionAudit
+      .aggregate_rank_one_provider_object_split_recorded,
+    true
+  );
+  assert.equal(
+    terminalProviderObjectAPMaterializationObstructionAudit
+      .all_candidate_provider_object_moments_available_but_nonadmissible,
+    true
+  );
+  assert.equal(
+    terminalProviderObjectAPMaterializationObstructionAudit
+      .provider_object_A_P_materialization_available,
+    false
+  );
+  assert.equal(
+    terminalProviderObjectAPMaterializationObstructionAudit
+      .provider_object_A_P_materialization_certified,
+    false
+  );
+  assert.equal(
+    terminalProviderObjectAPMaterializationObstructionAudit
+      .terminal_row_provider_object_replay_certified,
+    false
+  );
+  assert.equal(
+    terminalProviderObjectAPMaterializationObstructionAudit
+      .expression_level_n38_provider_certified,
+    false
+  );
+  assert.equal(
+    terminalProviderObjectAPMaterializationObstructionAudit
+      .directed_rounded_shared_domain_provider_certified,
+    false
+  );
+  assert.equal(
+    terminalProviderObjectAPMaterializationObstructionAudit
+      .provider_object_ap_materialization_obstruction_classification,
+    "provider-object-A_P-materialization-obstructed-by-missing-branch-equation"
+  );
+  assert.equal(
+    terminalProviderObjectAPMaterializationObstructionAudit
+      .provider_object_ap_materialization_obstruction_blocker_classification,
+    "same-domain-provider-object-branch-antisymmetric-equation-or-branch-indexed-feed-needed"
+  );
+  assert.equal(
+    terminalProviderObjectAPMaterializationObstructionAudit
+      .next_certificate_object,
+    "same-domain provider-object branch-antisymmetric equation A_P, explicit P_- and P_+ provider rows, or branch-indexed source-term feed upstream of the aggregate provider sum"
+  );
+  assert.ok(
+    terminalProviderObjectAPMaterializationObstructionAudit.provider_object_ap_materialization_obstruction_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.provider_object_ap_materialization_obstruction_terminal_row_count ===
+          3 &&
+        row.provider_object_moment_candidate_row_count === 6 &&
+        row.provider_object_moment_candidate_available_count === 6 &&
+        row.provider_object_moment_candidate_admissible_count === 0 &&
+        row.provider_object_A_P_materialization_available_terminal_row_count ===
+          0 &&
+        row.materialization_free_dimension_remaining === 3 &&
+        row.row_provider_object_ap_materialization_obstruction_audit_verified ===
+          true &&
+        row.row_certifies_provider_object_A_P_materialization === false &&
+        row.row_certifies_provider_object_branch_moment === false &&
+        row.row_certifies_expression_level_source_map_provider_object_branch_rows ===
+          false &&
+        row.row_certifies_terminal_row_provider_object_replay === false &&
+        row.row_certifies_expression_level_n38_provider === false &&
+        row.row_certifies_directed_rounded_shared_domain === false &&
+        row.provider_object_ap_materialization_obstruction_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_graph_cell_id === `speed.${index}.first-y` &&
+            terminalRow.provider_object_branch_moment_target ===
+              "A_P=P_- - P_+" &&
+            terminalRow.aggregate_equation_count === 1 &&
+            terminalRow.provider_object_branch_unknown_count === 2 &&
+            terminalRow.provider_object_branch_split_rank === 1 &&
+            terminalRow.provider_object_branch_split_free_dimension === 1 &&
+            terminalRow
+              .provider_object_branch_antisymmetric_coordinate_determined ===
+              false &&
+            terminalRow
+              .explicit_provider_object_branch_antisymmetric_equation_available ===
+              false &&
+            terminalRow.pre_sum_provider_object_branch_source_available ===
+              false &&
+            Array.isArray(terminalRow.variable_ownership_alpha_candidate_interval) &&
+            Array.isArray(terminalRow.terminal_branch_g_moment_interval) &&
+            terminalRow.provider_object_moment_candidate_row_count === 2 &&
+            terminalRow.provider_object_moment_candidate_available_count === 2 &&
+            terminalRow.provider_object_moment_candidate_admissible_count === 0 &&
+            terminalRow.provider_object_A_P_materialization_available ===
+              false &&
+            terminalRow.provider_object_A_P_materialization_certified ===
+              false &&
+            terminalRow.materialization_rank_lift_equation_count === 0 &&
+            terminalRow.materialization_free_dimension_remaining === 1 &&
+            terminalRow.provider_object_moment_candidate_rows.every(
+              (candidateRow) =>
+                [
+                  "variable-owned-source-term-alpha-candidate",
+                  "terminal-branch-G-antisymmetric-coefficient-candidate",
+                ].includes(candidateRow.provider_object_moment_candidate_kind) &&
+                Array.isArray(
+                  candidateRow.provider_object_moment_candidate_interval
+                ) &&
+                candidateRow.provider_object_moment_candidate_available ===
+                  true &&
+                candidateRow
+                  .admissible_as_actual_provider_object_branch_moment ===
+                  false &&
+                candidateRow.row_certifies_provider_object_A_P_materialization ===
+                  false
+            ) &&
+            terminalRow
+              .row_provider_object_ap_materialization_obstruction_audit_verified ===
+              true &&
+            terminalRow.row_certifies_provider_object_A_P_materialization ===
+              false &&
+            terminalRow.row_certifies_provider_object_branch_moment === false &&
+            terminalRow.row_certifies_terminal_row_provider_object_replay ===
+              false &&
+            terminalRow.row_certifies_expression_level_n38_provider === false &&
+            terminalRow.row_certifies_directed_rounded_shared_domain === false
+        )
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalProviderObjectAPMaterializationObstructionAudit),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalProviderObjectAPMaterializationObstructionAudit,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalSourceTermBranchFeedExtractor =
+    buildH39RequestedY44TerminalSourceTermBranchFeedExtractorCandidate({
+      signedSourceSumDerivativeProvider,
+      rowLocalCollarReplay,
+      terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit,
+      terminalProviderObjectAPMaterializationObstructionAudit,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44TerminalSourceTermBranchFeedExtractorCandidate(
+      terminalSourceTermBranchFeedExtractor
+    ),
+    []
+  );
+  assert.equal(
+    terminalSourceTermBranchFeedExtractor
+      .terminal_source_term_branch_feed_extractor_verified,
+    true
+  );
+  assert.equal(
+    terminalSourceTermBranchFeedExtractor
+      .terminal_source_term_branch_feed_extractor_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceTermBranchFeedExtractor
+      .selected_branch_source_stream_exposed,
+    true
+  );
+  assert.equal(
+    terminalSourceTermBranchFeedExtractor
+      .partner_branch_source_stream_exposed,
+    false
+  );
+  assert.equal(
+    terminalSourceTermBranchFeedExtractor
+      .terminal_provider_object_branch_pair_materialized,
+    false
+  );
+  assert.equal(
+    terminalSourceTermBranchFeedExtractor.provider_object_A_P_materialized,
+    false
+  );
+  assert.equal(
+    terminalSourceTermBranchFeedExtractor
+      .row_local_selected_branch_source_stream_available_count,
+    signedSourceSumDerivativeProvider.selected_row_count
+  );
+  assert.equal(
+    terminalSourceTermBranchFeedExtractor
+      .row_local_partner_branch_source_stream_available_count,
+    0
+  );
+  assert.equal(
+    terminalSourceTermBranchFeedExtractor
+      .terminal_source_term_branch_feed_extractor_row_count,
+    5
+  );
+  assert.equal(
+    terminalSourceTermBranchFeedExtractor
+      .terminal_source_term_branch_feed_extractor_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalSourceTermBranchFeedExtractor
+      .terminal_provider_object_branch_pair_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalSourceTermBranchFeedExtractor
+      .terminal_source_term_branch_feed_extractor_classification,
+    "selected-branch-source-stream-exposed-partner-branch-provider-object-lift-missing"
+  );
+  assert.equal(
+    terminalSourceTermBranchFeedExtractor
+      .terminal_source_term_branch_feed_extractor_blocker_classification,
+    "same-domain-partner-branch-source-stream-and-terminal-provider-object-lift-needed"
+  );
+  assert.ok(
+    terminalSourceTermBranchFeedExtractor.row_local_source_term_branch_feed_rows.every(
+      (row) =>
+        row.selected_branch_source_term_feed_available === true &&
+        row.partner_branch_source_term_feed_available === false &&
+        row.provider_object_branch_pair_available === false &&
+        row.admissible_as_terminal_provider_object_branch_rows === false &&
+        row.source_term_node_feed_row_count === 15 &&
+        row.source_term_node_feed_rows.every(
+          (feedRow) =>
+            sourceMapResidualCovarianceTarget.source_map_residual_h38_source_provenance_bridge_required_source_terms.includes(
+              feedRow.term
+            ) &&
+            feedRow.source_term_node_interval_available === true &&
+            feedRow.selected_branch_source_term_feed_available === true &&
+            feedRow.partner_branch_source_term_feed_available === false &&
+            feedRow.provider_object_branch_pair_available === false &&
+            feedRow.admissible_as_provider_object_branch_row === false
+        )
+    )
+  );
+  assert.ok(
+    terminalSourceTermBranchFeedExtractor.terminal_source_term_branch_feed_extractor_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_aggregate_source_feed_available_terminal_row_count === 3 &&
+        row.terminal_provider_object_branch_pair_available_terminal_row_count ===
+          0 &&
+        row.row_certifies_provider_object_A_P_materialization === false &&
+        row.row_certifies_expression_level_source_map_provider_object_branch_rows ===
+          false &&
+        row.terminal_source_term_branch_feed_extractor_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_aggregate_source_feed_available === true &&
+            terminalRow
+              .terminal_selected_branch_source_term_feed_lift_available ===
+              false &&
+            terminalRow
+              .terminal_partner_branch_source_term_feed_lift_available ===
+              false &&
+            terminalRow.terminal_provider_object_branch_pair_available ===
+              false &&
+            terminalRow.terminal_provider_object_A_P_available === false &&
+            terminalRow.terminal_actual_provider_object_branch_rows_available ===
+              false &&
+            terminalRow.row_certifies_provider_object_A_P_materialization ===
+              false &&
+            terminalRow
+              .row_certifies_expression_level_source_map_provider_object_branch_rows ===
+              false &&
+            terminalRow.row_certifies_directed_rounded_shared_domain === false
+        )
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalSourceTermBranchFeedExtractor),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalSourceTermBranchFeedExtractor,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalSourceTermOppositeBranchFeedLift =
+    buildH39RequestedY44TerminalSourceTermOppositeBranchFeedLiftCandidate({
+      rowLocalCollarReplay,
+      terminalSourceTermBranchFeedExtractor,
+      terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit,
+      terminalProviderObjectAPMaterializationObstructionAudit,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44TerminalSourceTermOppositeBranchFeedLiftCandidate(
+      terminalSourceTermOppositeBranchFeedLift
+    ),
+    []
+  );
+  assert.equal(
+    terminalSourceTermOppositeBranchFeedLift
+      .terminal_source_term_opposite_branch_feed_lift_verified,
+    true
+  );
+  assert.equal(
+    terminalSourceTermOppositeBranchFeedLift
+      .terminal_source_term_opposite_branch_feed_lift_certified,
+    false
+  );
+  assert.equal(
+    terminalSourceTermOppositeBranchFeedLift
+      .row_local_opposite_branch_source_stream_exposed,
+    true
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_row_local_opposite_branch_source_term_feeds_materialized,
+    true
+  );
+  assert.equal(
+    terminalSourceTermOppositeBranchFeedLift
+      .row_local_source_term_branch_pair_feed_candidate_available_count,
+    rowLocalCollarReplay.selected_row_count
+  );
+  assert.equal(
+    terminalSourceTermOppositeBranchFeedLift
+      .terminal_source_term_opposite_branch_feed_lift_row_count,
+    5
+  );
+  assert.equal(
+    terminalSourceTermOppositeBranchFeedLift
+      .terminal_source_term_opposite_branch_feed_lift_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalSourceTermOppositeBranchFeedLift
+      .terminal_provider_object_branch_pair_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalSourceTermOppositeBranchFeedLift
+      .terminal_candidate_P_minus_P_plus_materialized,
+    false
+  );
+  assert.equal(
+    terminalSourceTermOppositeBranchFeedLift.provider_object_A_P_materialized,
+    false
+  );
+  assert.equal(
+    terminalSourceTermOppositeBranchFeedLift
+      .terminal_source_term_opposite_branch_feed_lift_classification,
+    "row-local-opposite-branch-source-feed-materialized-terminal-provider-object-P-b-lift-open"
+  );
+  assert.equal(
+    terminalSourceTermOppositeBranchFeedLift
+      .terminal_source_term_opposite_branch_feed_lift_blocker_classification,
+    "same-domain-provider-object-P-minus-P-plus-identity-needed"
+  );
+  assert.ok(
+    terminalSourceTermOppositeBranchFeedLift.row_local_source_term_branch_pair_feed_lift_rows.every(
+      (row) =>
+        row.source_term_branch_pair_feed_candidate_available === true &&
+        row.row_local_selected_branch_feed_available === true &&
+        row.row_local_opposite_branch_feed_available === true &&
+        row.same_domain_selected_and_partner_source_term_feed === true &&
+        Array.isArray(row.selected_branch_source_term_feed_interval_d4) &&
+        Array.isArray(row.partner_branch_source_term_feed_interval_d4) &&
+        Array.isArray(row.candidate_branch_pair_sum_interval) &&
+        Array.isArray(row.candidate_branch_pair_antisymmetric_interval) &&
+        row.terminal_provider_object_branch_pair_available === false &&
+        row.terminal_provider_object_A_P_available === false &&
+        row.admissible_as_actual_terminal_provider_object_branch_rows ===
+          false &&
+        row.source_term_branch_feed_lift_term_rows.length === 6 &&
+        row.source_term_branch_feed_lift_term_rows.every(
+          (termRow) =>
+            sourceMapResidualCovarianceTarget.source_map_residual_h38_source_provenance_bridge_required_source_terms.includes(
+              termRow.term
+            ) &&
+            [row.selected_branch, row.partner_branch].includes(
+              termRow.branch
+            ) &&
+            termRow.node_value_intervals.length === 5 &&
+            termRow.source_term_derivative_interval_available === true &&
+            termRow.admissible_as_actual_provider_object_branch_term ===
+              false
+        )
+    )
+  );
+  assert.ok(
+    terminalSourceTermOppositeBranchFeedLift.terminal_source_term_opposite_branch_feed_lift_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_aggregate_provider_object_available_terminal_row_count ===
+          3 &&
+        row.terminal_provider_object_branch_pair_available_terminal_row_count ===
+          0 &&
+        row.row_certifies_provider_object_A_P_materialization === false &&
+        row.row_certifies_terminal_provider_object_branch_rows === false &&
+        row.row_certifies_directed_rounded_shared_domain === false &&
+        row.terminal_source_term_opposite_branch_feed_lift_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.row_local_branch_pair_feed_candidate_available ===
+              true &&
+            terminalRow.terminal_candidate_P_minus_interval === null &&
+            terminalRow.terminal_candidate_P_plus_interval === null &&
+            terminalRow.terminal_candidate_A_P_interval === null &&
+            terminalRow.terminal_provider_object_branch_pair_available ===
+              false &&
+            terminalRow.terminal_provider_object_A_P_available === false &&
+            terminalRow.row_certifies_terminal_provider_object_branch_rows ===
+              false &&
+            terminalRow.row_certifies_provider_object_A_P_materialization ===
+              false &&
+            terminalRow.row_certifies_directed_rounded_shared_domain === false
+        )
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalSourceTermOppositeBranchFeedLift),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalSourceTermOppositeBranchFeedLift,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalRowLocalFeedToProviderObjectPbIdentityAudit =
+    buildH39RequestedY44TerminalRowLocalFeedToProviderObjectPbIdentityAuditCandidate({
+      rowLocalCollarReplay,
+      terminalSourceTermOppositeBranchFeedLift,
+      terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44TerminalRowLocalFeedToProviderObjectPbIdentityAuditCandidate(
+      terminalRowLocalFeedToProviderObjectPbIdentityAudit
+    ),
+    []
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_terminal_source_cell_branch_pair_feeds_materialized,
+    true
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_terminal_source_cell_branch_pair_feed_surface_row_count,
+    5
+  );
+  assert.equal(
+    terminalRowLocalFeedToProviderObjectPbIdentityAudit
+      .terminal_row_local_feed_to_provider_object_pb_identity_audit_verified,
+    true
+  );
+  assert.equal(
+    terminalRowLocalFeedToProviderObjectPbIdentityAudit
+      .terminal_row_local_feed_to_provider_object_pb_identity_audit_certified,
+    false
+  );
+  assert.equal(
+    terminalRowLocalFeedToProviderObjectPbIdentityAudit
+      .candidate_provider_object_branch_pair_available_terminal_row_count,
+    15
+  );
+  assert.equal(
+    terminalRowLocalFeedToProviderObjectPbIdentityAudit
+      .admissible_provider_object_branch_pair_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalRowLocalFeedToProviderObjectPbIdentityAudit
+      .row_local_expression_feed_to_terminal_provider_object_pb_identity_available,
+    false
+  );
+  assert.equal(
+    terminalRowLocalFeedToProviderObjectPbIdentityAudit
+      .terminal_candidate_P_minus_P_plus_materialized,
+    false
+  );
+  assert.equal(
+    terminalRowLocalFeedToProviderObjectPbIdentityAudit
+      .provider_object_A_P_materialized,
+    false
+  );
+  assert.equal(
+    terminalRowLocalFeedToProviderObjectPbIdentityAudit
+      .terminal_row_local_feed_to_provider_object_pb_identity_audit_classification,
+    "candidate-expression-feed-P-minus-P-plus-available-provider-object-P-b-identity-open"
+  );
+  assert.equal(
+    terminalRowLocalFeedToProviderObjectPbIdentityAudit
+      .terminal_row_local_feed_to_provider_object_pb_identity_audit_blocker_classification,
+    "same-domain-expression-feed-to-provider-object-P-b-pushforward-identity-needed"
+  );
+  assert.ok(
+    terminalRowLocalFeedToProviderObjectPbIdentityAudit
+      .candidate_branch_sum_overlaps_aggregate_terminal_row_count >= 0 &&
+      terminalRowLocalFeedToProviderObjectPbIdentityAudit
+        .candidate_branch_sum_overlaps_aggregate_terminal_row_count <= 15
+  );
+  assert.ok(
+    terminalRowLocalFeedToProviderObjectPbIdentityAudit.terminal_row_local_feed_to_provider_object_pb_identity_audit_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_source_cell_branch_pair_feed_available === true &&
+        row.candidate_provider_object_branch_pair_available_terminal_row_count ===
+          3 &&
+        row.admissible_provider_object_branch_pair_terminal_row_count === 0 &&
+        row.row_certifies_terminal_provider_object_branch_rows === false &&
+        row.row_certifies_provider_object_A_P_materialization === false &&
+        row.row_certifies_directed_rounded_shared_domain === false &&
+        row.terminal_row_local_feed_to_provider_object_pb_identity_audit_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.candidate_branch_pair_available === true &&
+            Array.isArray(terminalRow.candidate_P_minus_interval) &&
+            Array.isArray(terminalRow.candidate_P_plus_interval) &&
+            Array.isArray(
+              terminalRow.candidate_P_minus_plus_P_plus_interval
+            ) &&
+            Array.isArray(terminalRow.candidate_A_P_interval) &&
+            Array.isArray(
+              terminalRow.aggregate_source_map_provider_object_interval
+            ) &&
+            typeof terminalRow
+              .candidate_branch_sum_overlaps_aggregate_provider_object ===
+              "boolean" &&
+            terminalRow.terminal_provider_object_branch_sum_identity_available ===
+              false &&
+            terminalRow
+              .admissible_as_actual_terminal_provider_object_branch_rows ===
+              false &&
+            terminalRow
+              .row_certifies_row_local_expression_feed_to_terminal_provider_object_pb_identity ===
+              false &&
+            terminalRow.row_certifies_terminal_provider_object_branch_rows ===
+              false &&
+            terminalRow.row_certifies_provider_object_A_P_materialization ===
+              false &&
+            terminalRow.row_certifies_directed_rounded_shared_domain === false
+        )
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalRowLocalFeedToProviderObjectPbIdentityAudit),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalRowLocalFeedToProviderObjectPbIdentityAudit,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalProviderObjectPbPushforwardOperatorAudit =
+    buildH39RequestedY44TerminalProviderObjectPbPushforwardOperatorAuditCandidate({
+      rowLocalCollarReplay,
+      terminalRowLocalFeedToProviderObjectPbIdentityAudit,
+      terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44TerminalProviderObjectPbPushforwardOperatorAuditCandidate(
+      terminalProviderObjectPbPushforwardOperatorAudit
+    ),
+    []
+  );
+  assert.equal(
+    terminalProviderObjectPbPushforwardOperatorAudit
+      .terminal_provider_object_pb_pushforward_operator_audit_verified,
+    true
+  );
+  assert.equal(
+    terminalProviderObjectPbPushforwardOperatorAudit
+      .terminal_provider_object_pb_pushforward_operator_audit_certified,
+    false
+  );
+  assert.equal(
+    terminalProviderObjectPbPushforwardOperatorAudit
+      .term_pushforward_operator_comparison_row_count,
+    45
+  );
+  assert.equal(
+    terminalProviderObjectPbPushforwardOperatorAudit
+      .candidate_term_branch_pair_available_count,
+    45
+  );
+  assert.equal(
+    terminalProviderObjectPbPushforwardOperatorAudit
+      .same_domain_pushforward_operator_identity_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalProviderObjectPbPushforwardOperatorAudit
+      .same_domain_pushforward_normalization_identity_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalProviderObjectPbPushforwardOperatorAudit
+      .provider_object_pb_pushforward_operator_identity_available,
+    false
+  );
+  assert.equal(
+    terminalProviderObjectPbPushforwardOperatorAudit
+      .admissible_provider_object_branch_pair_terminal_row_count,
+    0
+  );
+  assert.equal(
+    terminalProviderObjectPbPushforwardOperatorAudit
+      .terminal_candidate_P_minus_P_plus_materialized,
+    false
+  );
+  assert.equal(
+    terminalProviderObjectPbPushforwardOperatorAudit.provider_object_A_P_materialized,
+    false
+  );
+  assert.equal(
+    terminalProviderObjectPbPushforwardOperatorAudit
+      .terminal_provider_object_pb_pushforward_operator_audit_classification,
+    "candidate-term-operators-compared-P-b-pushforward-identity-open"
+  );
+  assert.equal(
+    terminalProviderObjectPbPushforwardOperatorAudit
+      .terminal_provider_object_pb_pushforward_operator_audit_blocker_classification,
+    "same-domain-pushforward-operator-and-normalization-identity-needed"
+  );
+  assert.ok(
+    terminalProviderObjectPbPushforwardOperatorAudit
+      .candidate_term_branch_sum_overlaps_aggregate_count >= 0 &&
+      terminalProviderObjectPbPushforwardOperatorAudit
+        .candidate_term_branch_sum_overlaps_aggregate_count <= 45
+  );
+  assert.ok(
+    terminalProviderObjectPbPushforwardOperatorAudit.terminal_provider_object_pb_pushforward_operator_audit_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.terminal_source_cell_branch_pair_feed_available === true &&
+        row.terminal_identity_candidate_row_available === true &&
+        row.term_pushforward_operator_comparison_row_count === 9 &&
+        row.candidate_term_branch_pair_available_count === 9 &&
+        row.same_domain_pushforward_operator_identity_available_terminal_row_count ===
+          0 &&
+        row.admissible_provider_object_branch_pair_terminal_row_count === 0 &&
+        row.row_certifies_provider_object_pb_pushforward_operator_identity ===
+          false &&
+        row.row_certifies_terminal_provider_object_branch_rows === false &&
+        row.row_certifies_directed_rounded_shared_domain === false &&
+        row.terminal_provider_object_pb_pushforward_operator_audit_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.operator_source_terms_aligned === true &&
+            terminalRow.terminal_identity_candidate_row_available === true &&
+            terminalRow.term_pushforward_operator_comparison_row_count === 3 &&
+            terminalRow.candidate_term_branch_pair_available_count === 3 &&
+            terminalRow.aggregate_provider_terms_have_no_branch_bearing_fields ===
+              true &&
+            terminalRow.same_domain_pushforward_operator_identity_available ===
+              false &&
+            terminalRow.same_domain_pushforward_normalization_identity_available ===
+              false &&
+            terminalRow
+              .admissible_as_actual_terminal_provider_object_branch_rows ===
+              false &&
+            terminalRow
+              .row_certifies_provider_object_pb_pushforward_operator_identity ===
+              false &&
+            terminalRow.row_certifies_terminal_provider_object_branch_rows ===
+              false &&
+            terminalRow.row_certifies_directed_rounded_shared_domain === false &&
+            terminalRow.term_pushforward_operator_comparison_rows.every(
+              (termRow) =>
+                sourceMapResidualCovarianceTarget.source_map_residual_h38_source_provenance_bridge_required_source_terms.includes(
+                  termRow.term
+                ) &&
+                Array.isArray(termRow.aggregate_source_term_feed_interval) &&
+                Array.isArray(
+                  termRow.selected_expression_feed_term_interval
+                ) &&
+                Array.isArray(
+                  termRow.partner_expression_feed_term_interval
+                ) &&
+                Array.isArray(
+                  termRow.candidate_expression_branch_sum_term_interval
+                ) &&
+                termRow.aggregate_term_has_branch_bearing_fields === false &&
+                termRow.candidate_term_branch_pair_available === true &&
+                termRow.same_operator_identity_available === false &&
+                termRow.same_normalization_identity_available === false &&
+                termRow.admissible_as_provider_object_branch_term === false &&
+                termRow
+                  .row_certifies_provider_object_pb_pushforward_operator_identity ===
+                  false &&
+                termRow.row_certifies_terminal_provider_object_branch_rows ===
+                  false &&
+                termRow.row_certifies_directed_rounded_shared_domain === false
+            )
+        )
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalProviderObjectPbPushforwardOperatorAudit),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalProviderObjectPbPushforwardOperatorAudit,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  const terminalAggregatePProviderPreaggregationBranchBearingAudit =
+    buildH39RequestedY44TerminalAggregatePProviderPreaggregationBranchBearingAuditCandidate(
+      {
+        sourceMapResidualCovarianceTarget,
+        terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit,
+        terminalProviderObjectPbPushforwardOperatorAudit,
+      }
+    );
+  assert.deepEqual(
+    validateH39RequestedY44TerminalAggregatePProviderPreaggregationBranchBearingAuditCandidate(
+      terminalAggregatePProviderPreaggregationBranchBearingAudit
+    ),
+    []
+  );
+  assert.equal(
+    terminalAggregatePProviderPreaggregationBranchBearingAudit
+      .aggregate_p_provider_preaggregation_branch_bearing_audit_verified,
+    true
+  );
+  assert.equal(
+    terminalAggregatePProviderPreaggregationBranchBearingAudit
+      .aggregate_p_provider_preaggregation_branch_bearing_audit_certified,
+    false
+  );
+  assert.equal(
+    terminalAggregatePProviderPreaggregationBranchBearingAudit
+      .raw_provider_probe_row_count,
+    5
+  );
+  assert.equal(
+    terminalAggregatePProviderPreaggregationBranchBearingAudit
+      .raw_provider_probe_term_row_count,
+    15
+  );
+  assert.equal(
+    terminalAggregatePProviderPreaggregationBranchBearingAudit
+      .raw_provider_precertificate_row_count,
+    5
+  );
+  assert.equal(
+    terminalAggregatePProviderPreaggregationBranchBearingAudit
+      .raw_provider_precertificate_term_row_count,
+    15
+  );
+  assert.equal(
+    terminalAggregatePProviderPreaggregationBranchBearingAudit
+      .aggregate_p_provider_preaggregation_branch_bearing_field_hit_count,
+    0
+  );
+  assert.equal(
+    terminalAggregatePProviderPreaggregationBranchBearingAudit
+      .branch_label_field_hit_count,
+    0
+  );
+  assert.equal(
+    terminalAggregatePProviderPreaggregationBranchBearingAudit
+      .branch_weight_field_hit_count,
+    0
+  );
+  assert.equal(
+    terminalAggregatePProviderPreaggregationBranchBearingAudit
+      .branch_interval_field_hit_count,
+    0
+  );
+  assert.equal(
+    terminalAggregatePProviderPreaggregationBranchBearingAudit
+      .projection_map_field_hit_count,
+    0
+  );
+  assert.equal(
+    terminalAggregatePProviderPreaggregationBranchBearingAudit
+      .pushforward_operator_field_hit_count,
+    0
+  );
+  assert.equal(
+    terminalAggregatePProviderPreaggregationBranchBearingAudit
+      .normalization_field_hit_count,
+    0
+  );
+  assert.equal(
+    terminalAggregatePProviderPreaggregationBranchBearingAudit
+      .raw_provider_probe_branch_bearing_data_available,
+    false
+  );
+  assert.equal(
+    terminalAggregatePProviderPreaggregationBranchBearingAudit
+      .upstream_provider_object_branch_materialization_available,
+    false
+  );
+  assert.equal(
+    terminalAggregatePProviderPreaggregationBranchBearingAudit
+      .actual_provider_object_branch_rows_available,
+    false
+  );
+  assert.equal(
+    terminalAggregatePProviderPreaggregationBranchBearingAudit
+      .provider_object_pb_pushforward_operator_identity_available,
+    false
+  );
+  assert.equal(
+    terminalAggregatePProviderPreaggregationBranchBearingAudit
+      .aggregate_p_provider_preaggregation_branch_bearing_audit_classification,
+    "aggregate-P-provider-probe-born-aggregate-only"
+  );
+  assert.equal(
+    terminalAggregatePProviderPreaggregationBranchBearingAudit
+      .aggregate_p_provider_preaggregation_branch_bearing_audit_blocker_classification,
+    "upstream-source-map-provider-probe-must-emit-branch-bearing-P-b-map-before-terminal-replay"
+  );
+  assert.ok(
+    terminalAggregatePProviderPreaggregationBranchBearingAudit.aggregate_p_provider_preaggregation_branch_bearing_audit_rows.every(
+      (row, index) =>
+        row.node_index === index &&
+        row.terminal_graph_cell_id === `speed.${index}.first-y` &&
+        row.raw_provider_probe_row_available === true &&
+        row.raw_provider_precertificate_row_available === true &&
+        row.raw_provider_probe_term_row_count === 3 &&
+        row.aggregate_p_provider_preaggregation_branch_bearing_field_hit_count ===
+          0 &&
+        row.aggregate_p_provider_preaggregation_branch_bearing_data_available ===
+          false &&
+        row
+          .aggregate_p_provider_preaggregation_branch_bearing_obstruction_terminal_row_count ===
+          3 &&
+        row
+          .row_aggregate_p_provider_preaggregation_branch_bearing_audit_verified ===
+          true &&
+        row.row_certifies_actual_provider_object_branch_rows === false &&
+        row.row_certifies_provider_object_pb_pushforward_operator_identity ===
+          false &&
+        row.raw_provider_probe_term_rows.every(
+          (termRow) =>
+            sourceMapResidualCovarianceTarget.source_map_residual_h38_source_provenance_bridge_required_source_terms.includes(
+              termRow.term
+            ) &&
+            Array.isArray(termRow.provider_probe_term_interval) &&
+            Array.isArray(termRow.provider_probe_original_term_interval) &&
+            Array.isArray(termRow.precertificate_term_interval) &&
+            termRow.preaggregation_branch_bearing_field_hit_count === 0 &&
+            termRow.raw_term_branch_bearing_data_available === false &&
+            termRow.admissible_as_actual_provider_object_branch_term === false &&
+            termRow.row_certifies_actual_provider_object_branch_rows === false
+        ) &&
+        row.aggregate_p_provider_preaggregation_branch_bearing_terminal_rows.every(
+          (terminalRow) =>
+            [37, 36, 35].includes(terminalRow.terminal_h_index) &&
+            terminalRow.terminal_graph_cell_id === `speed.${index}.first-y` &&
+            terminalRow.raw_provider_probe_branch_bearing_field_hit_count ===
+              0 &&
+            terminalRow
+              .raw_provider_precertificate_branch_bearing_field_hit_count ===
+              0 &&
+            terminalRow
+              .aggregate_provider_object_preaggregation_branch_bearing_data_available ===
+              false &&
+            terminalRow.pre_sum_terminal_feed_confirms_aggregate_only ===
+              true &&
+            terminalRow.pushforward_terminal_row_keeps_identity_absent ===
+              true &&
+            terminalRow
+              .row_aggregate_p_provider_preaggregation_branch_bearing_audit_verified ===
+              true &&
+            terminalRow.row_certifies_actual_provider_object_branch_rows ===
+              false &&
+            terminalRow
+              .row_certifies_provider_object_pb_pushforward_operator_identity ===
+              false &&
+            terminalRow.row_certifies_directed_rounded_shared_domain === false
+        )
+    )
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      terminalAggregatePProviderPreaggregationBranchBearingAudit
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalAggregatePProviderPreaggregationBranchBearingAudit,
       FORBIDDEN_FIXED_SPEED_KEYS
     ),
     []
@@ -27936,6 +30493,98 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
   assert.deepEqual(
     collectExactKeys(
       terminalRowProviderObjectReplayAttempt,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplay,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectTrueCertifies(
+      terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalVariableOwnershipAlphaProvenanceIdentityAudit),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalVariableOwnershipAlphaProvenanceIdentityAudit,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalProviderObjectAPMaterializationObstructionAudit),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalProviderObjectAPMaterializationObstructionAudit,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalSourceTermBranchFeedExtractor),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalSourceTermBranchFeedExtractor,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalSourceTermOppositeBranchFeedLift),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalSourceTermOppositeBranchFeedLift,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalRowLocalFeedToProviderObjectPbIdentityAudit),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalRowLocalFeedToProviderObjectPbIdentityAudit,
+      FORBIDDEN_FIXED_SPEED_KEYS
+    ),
+    []
+  );
+  assert.deepEqual(
+    collectTrueCertifies(terminalProviderObjectPbPushforwardOperatorAudit),
+    []
+  );
+  assert.deepEqual(
+    collectExactKeys(
+      terminalProviderObjectPbPushforwardOperatorAudit,
       FORBIDDEN_FIXED_SPEED_KEYS
     ),
     []

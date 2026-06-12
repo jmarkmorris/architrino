@@ -28,7 +28,7 @@ $$
 =
 U(1)_Y\times SU(2)_L\times SU(3)_c,
 \qquad
-Q=T_3+\frac{Y}{2},
+Q=T_3+\frac{Y}{2}
 $$
 
 together with the observed charge assignments, chiral weak couplings, anomaly cancellations, running couplings, and mixing data consumed by the fermion and reaction chapters. A compact residual for this chapter is
@@ -49,7 +49,7 @@ d_{\mathrm{run}}\!\left(
 d_{\mathrm{chiral}}\!\left(
 \mathcal{E}_{\mathrm{weak}}(\theta),
 \mathcal{E}_{\mathrm{weak}}^{\mathrm{obs}}
-\right),
+\right)
 $$
 
 where $d_{\mathrm{rep}}$ checks representation and charge bookkeeping, $d_{\mathrm{run}}$ checks the scale-dependent effective couplings, and $d_{\mathrm{chiral}}$ checks the weak-coupling-triad exposure record against observed charged-current handedness. This chapter's bridge is promotable only if
@@ -57,7 +57,7 @@ where $d_{\mathrm{rep}}$ checks representation and charge bookkeeping, $d_{\math
 $$
 \mathcal{R}_{\mathrm{gauge}}(\theta)\le\epsilon_{\mathrm{gauge}}
 \qquad\text{and}\qquad
-\mathcal{R}_{\mathrm{null}}(\theta)=0,
+\mathcal{R}_{\mathrm{null}}(\theta)=0
 $$
 
 with $\mathcal{R}_{\mathrm{null}}$ defined in [Failure Criteria](../validation/failure-criteria.md#null-result-residual-for-added-channels). Thus larger group unification, supersymmetry, Kaluza-Klein-style geometry, and similar constructions remain comparison frameworks unless an $\mathbb{A}\mathbb{A}\mathbb{A}$ branch record recovers the observed gauge sector while also suppressing every added observable channel from the same shared state variables.
@@ -69,7 +69,7 @@ $$
 A_\mu\sim A_\mu+\partial_\mu\alpha,\qquad
 W_\mu\sim U W_\mu U^{-1}+\frac{i}{g_2}U\partial_\mu U^{-1},
 \qquad
-G_\mu\sim V G_\mu V^{-1}+\frac{i}{g_3}V\partial_\mu V^{-1}.
+G_\mu\sim V G_\mu V^{-1}+\frac{i}{g_3}V\partial_\mu V^{-1}
 $$
 This is why the chapter treats $A_\mu,W_\mu,G_\mu$ as effective connections. The substrate burden is not to find primitive gauge fields, but to recover one gauge-invariant record of forces, phases, holonomies, and charge ledgers from causal-wake and assembly histories.
 
@@ -94,11 +94,11 @@ N_{2,\mathrm{Weyl}}\bmod 2,
 \mathcal{A}_{[SU(2)_L]^2U(1)_Y},
 \mathcal{A}_{[U(1)_Y]^3},
 \mathcal{A}_{[\mathrm{grav}]^2U(1)_Y}
-\right)_\theta .
+\right)_\theta
 $$
 For the Standard Model recovery gate this vector must equal
 $$
-\mathcal{A}_{\mathrm{gauge}}(\theta)=(0,0,0,0,0,0).
+\mathcal{A}_{\mathrm{gauge}}(\theta)=(0,0,0,0,0,0)
 $$
 The second entry is the non-perturbative $SU(2)$ Witten check: the number of left-handed $SU(2)$ doublets must be even. Global anomalies that are part of known physics, such as axial-current violation and pion-to-photon anomaly matching, may be retained as observer-level recovery targets, but a gauge anomaly is a consistency failure rather than an optional correction.
 
@@ -114,7 +114,7 @@ g_1(\mu;\theta),
 g_2(\mu;\theta),
 g_3(\mu;\theta),
 \theta_W(\mu;\theta)
-\bigr),
+\bigr)
 $$
 
 where $\mu$ is the observer-level probe scale and $\theta$ is the retained branch and constitutive record. The term $d_{\mathrm{run}}$ measures the distance between this output and the observed running record across a declared scale window; it is not permission to fit each sector independently at one reference energy.
@@ -134,7 +134,7 @@ $$
 \qquad
 \alpha_i^{\mathbb{A}\mathbb{A}\mathbb{A}}(\mu;\theta)
 =
-\frac{g_i^2(\mu;\theta)}{4\pi}.
+\frac{g_i^2(\mu;\theta)}{4\pi}
 $$
 
 This diagnostic is subordinate to $d_{\mathrm{run}}$ and $\mathcal{R}_{\mathrm{null}}$. A small $\Delta_{\mathrm{meet}}$ does not promote a grand-unified container unless the same branch record recovers the observed low-energy gauge record, reproduces the scale dependence, and explains the absence of mirror matter, superpartners, proton-instability channels, extra gauge bosons, hidden transport modes, and other non-baseline outputs in the tested regime.
@@ -145,7 +145,7 @@ $$
 =
 w_g\mathcal{R}_{\mathrm{gauge}}(\theta)
 +w_f\mathcal{R}_{\mathrm{fact}}(\theta)
-+w_0\mathcal{R}_{\mathrm{null}}^{\mathrm{op}}(\theta),
++w_0\mathcal{R}_{\mathrm{null}}^{\mathrm{op}}(\theta)
 $$
 where $\mathcal{R}_{\mathrm{fact}}$ measures failure of the recovered observer-level scattering and gauge sector to factor into the validated spacetime and internal-gauge records once those effective records exist. The container is only comparison language unless one shared $\theta$ drives all terms below tolerance; in particular, $\mathcal{R}_{\mathrm{null}}^{\mathrm{op}}=0$ must follow from the accepted branch family rather than from sector-specific hiding parameters.
 
@@ -156,11 +156,11 @@ The same filter applies to especially elegant symmetry containers, including gra
 **Theorem 1 (Global phase invariance implies charge continuity).**  
 If the effective action is invariant under
 $$
-\Psi \mapsto e^{i\alpha}\Psi,\qquad \alpha\in\mathbb{R},
+\Psi \mapsto e^{i\alpha}\Psi,\qquad \alpha\in\mathbb{R}
 $$
 then there exists a conserved current $j^\mu$ such that
 $$
-\partial_\mu j^\mu=0.
+\partial_\mu j^\mu=0
 $$
 
 *Proof sketch:* Apply Noether's theorem in the regularized variational setting; invariance under constant phase shifts yields the continuity equation.
@@ -168,12 +168,12 @@ $$
 **Corollary (Local phase covariance requires a connection).**  
 For local $\alpha(x)$, invariance requires a compensating field $A_\mu$ and covariant derivative
 $$
-D_\mu=\partial_\mu-i g_1 A_\mu,
+D_\mu=\partial_\mu-i g_1 A_\mu
 $$
 with $U(1)$ gauge transform
 $$
 \Psi\mapsto e^{i\alpha(x)}\Psi,\qquad
-A_\mu\mapsto A_\mu+\frac{1}{g_1}\partial_\mu\alpha.
+A_\mu\mapsto A_\mu+\frac{1}{g_1}\partial_\mu\alpha
 $$
 
 ### Aharonov-Bohm Holonomy Benchmark
@@ -186,7 +186,7 @@ $$
 =
 \mathbf{F}_{\mathrm{eff}}\big|_{\gamma_2}
 =
-\mathbf{0},
+\mathbf{0}
 $$
 the coarse-grained wake/action ledger must still produce the observer-level phase shift
 $$
@@ -200,7 +200,7 @@ $$
 \right)
 \stackrel{!}{=}
 \frac{q_{\mathrm{eff}}}{\hbar}\Phi_B
-\pmod{2\pi}.
+\pmod{2\pi}
 $$
 Here $\mathcal{S}_{\mathrm{wake}}[\gamma_a]$ is the effective action accumulated by the coarse-grained causal-wake history assigned to arm $\gamma_a$, and $\Phi_B$ is the standard enclosed magnetic-flux observable. A useful residual is
 $$
@@ -211,7 +211,7 @@ $$
 \Delta\phi_{\mathrm{AB}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\Phi_B)
 -
 \frac{q_{\mathrm{eff}}}{\hbar}\Phi_B
-\right|.
+\right|
 $$
 When the benchmark is evaluated as a concrete interferometer packet, the force-free and phase requirements should be checked together rather than fitted separately. For a branch record $\theta$, one compact validation residual is
 $$
@@ -228,7 +228,7 @@ w_\phi
 \frac{q_{\mathrm{eff}}}{\hbar}\Phi_B
 -
 2\pi N
-\right|,
+\right|
 $$
 with $w_F$ and $w_\phi$ fixed by the declared interferometer tolerance. The benchmark passes only when $\mathcal{V}_{\mathrm{AB}}(\theta)\le\varepsilon_{\mathrm{AB}}$ for the same wake/action ledger, so a model cannot trade a hidden local force for phase recovery or tune the phase apart from the local electromagnetic-force record.
 
@@ -250,7 +250,7 @@ $$
 \frac{q_{\mathrm{eff}}}{\hbar}\int_S F_{\mathrm{eff}}(\theta)
 -
 2\pi N
-\right|.
+\right|
 $$
 Here $F_{\mathrm{eff}}$ is the observer-level curvature recovered from the same effective gauge record used for force and phase transport. The integer $N$ records the allowed $2\pi$ ambiguity of the phase, not an independent hidden sector.
 
@@ -269,7 +269,7 @@ d_{\mathrm{obs}}\!\left(
 \mathcal{O}_\theta(s),
 \mathcal{O}_{\mathrm{SM}}(s)
 \right)
-\right].
+\right]
 $$
 Here $\mathcal{Q}^{\mathbb{A}\mathbb{A}\mathbb{A}}_{\mathrm{wake}}$ is only the sector label extracted from the retained causal-wake/action record. It is not an independent topological charge assigned after the effective gauge description has already been fitted.
 
@@ -282,19 +282,19 @@ Let $\chi$ denote the local weak doublet (effective exposed-triad channel).
 **Proposition 2 (Local weak-basis rotations define an SU(2) connection).**  
 If physics is invariant under
 $$
-\chi(x)\mapsto U_2(x)\chi(x),\qquad U_2(x)\in SU(2),
+\chi(x)\mapsto U_2(x)\chi(x),\qquad U_2(x)\in SU(2)
 $$
 then the derivative must be promoted to
 $$
 D_\mu\chi
 =
-\left(\partial_\mu-i g_2 W_\mu^a\frac{\tau^a}{2}\right)\chi,
+\left(\partial_\mu-i g_2 W_\mu^a\frac{\tau^a}{2}\right)\chi
 $$
 with curvature
 $$
 F_{\mu\nu}^a
 =
-\partial_\mu W_\nu^a-\partial_\nu W_\mu^a+g_2\epsilon^{abc}W_\mu^bW_\nu^c.
+\partial_\mu W_\nu^a-\partial_\nu W_\mu^a+g_2\epsilon^{abc}W_\mu^bW_\nu^c
 $$
 
 *Proof sketch:* Standard principal-connection construction for local non-Abelian basis changes; the commutator term follows from non-commutativity of $SU(2)$ generators.
@@ -307,7 +307,7 @@ In the ordered basis $(H,M,L)$, the eight generators built from axis mixers and 
 This is the rigorous closure result already proven in [color-charge-su3](../assemblies/fermions/color-charge-su3.md#algebra-closure-rigorous-statement). Therefore effective color transport acts through
 $$
 U_3\in SU(3),\qquad
-D_\mu=\partial_\mu-i g_3 G_\mu^a T^a.
+D_\mu=\partial_\mu-i g_3 G_\mu^a T^a
 $$
 
 ## Minimal Effective Gauge Lagrangian

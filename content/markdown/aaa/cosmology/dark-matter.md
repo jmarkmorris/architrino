@@ -40,7 +40,7 @@ $$
 -
 \nabla\psi(\mathbf{x}),
 \qquad
-\Delta\psi(\mathbf{x})=2\kappa(\mathbf{x}),
+\Delta\psi(\mathbf{x})=2\kappa(\mathbf{x})
 $$
 
 where $\psi$ is the observer-level lensing potential and $\kappa$ is the convergence, i.e. the surface mass density in critical-density units. The local image distortion is encoded by the Jacobian
@@ -54,7 +54,7 @@ A(\mathbf{x})
 \begin{pmatrix}
 1-g_1 & -g_2\\
 -g_2 & 1+g_1
-\end{pmatrix},
+\end{pmatrix}
 $$
 
 where $g_1$ and $g_2$ are reduced-shear components. For two resolved images $i$ and $j$ of the same background source, the image-to-image transformation has the local form
@@ -62,7 +62,7 @@ where $g_1$ and $g_2$ are reduced-shear components. For two resolved images $i$ 
 $$
 T_{ij}
 =
-A(\mathbf{x}_j)^{-1}A(\mathbf{x}_i).
+A(\mathbf{x}_j)^{-1}A(\mathbf{x}_i)
 $$
 
 This transformation constrains local reduced shear and relative convergence near the observed images. It does not by itself determine a unique global mass map in regions not sampled by the light bundles. For a candidate medium-and-assembly record $\theta$, let $\psi_\theta$ define the projected observer-level lensing potential, let $A_\theta(\mathbf{x})$ be its local Jacobian, and let
@@ -70,7 +70,7 @@ This transformation constrains local reduced shear and relative convergence near
 $$
 T_{ij}^{\theta}
 =
-A_\theta(\mathbf{x}_j)^{-1}A_\theta(\mathbf{x}_i).
+A_\theta(\mathbf{x}_j)^{-1}A_\theta(\mathbf{x}_i)
 $$
 
 The data-supported local part of the lensing comparison can then be recorded as
@@ -81,7 +81,7 @@ $$
 \sum_{(i,j)}
 \left(T_{ij}^{\mathrm{obs}}-T_{ij}^{\theta}\right)^T
 C_{ij}^{-1}
-\left(T_{ij}^{\mathrm{obs}}-T_{ij}^{\theta}\right),
+\left(T_{ij}^{\mathrm{obs}}-T_{ij}^{\theta}\right)
 $$
 
 where $C_{ij}$ is the covariance model for the measured image-to-image transformation. This residual tests what the multiple-image data constrain before a global mass profile is imposed.
@@ -94,7 +94,7 @@ w_{\mathrm{img}}(\mathbf{x})
 \max_i
 \exp\!\left(
 -\frac{\|\mathbf{x}-\mathbf{x}_i\|^2}{2\sigma_i^2}
-\right).
+\right)
 $$
 
 Then the inferred convergence can be reported in two pieces,
@@ -108,7 +108,7 @@ w_{\mathrm{img}}(\mathbf{x})\,\kappa_\theta(\mathbf{x})\,d^2x,
 M_{\mathrm{extrapolated}}
 =
 \int_\Omega
-\left(1-w_{\mathrm{img}}(\mathbf{x})\right)\kappa_\theta(\mathbf{x})\,d^2x.
+\left(1-w_{\mathrm{img}}(\mathbf{x})\right)\kappa_\theta(\mathbf{x})\,d^2x
 $$
 
 These are not new dark-sector variables. They are inference-discipline diagnostics: $M_{\mathrm{supported}}$ records the part of the projected map close to the local lensing constraints, while $M_{\mathrm{extrapolated}}$ records the model-projected part that must be justified by priors, weak-lensing data, gas dynamics, galaxy kinematics, CMB lensing, or the shared Noether sea state record.
@@ -147,7 +147,7 @@ D_{\mathrm{cl}}^{\mathrm{obs}}
 +
 \mathcal{R}_{\mathrm{gas}}
 +
-\mathcal{R}_{\mathrm{shared}}(\theta_{\mathrm{sea}}).
+\mathcal{R}_{\mathrm{shared}}(\theta_{\mathrm{sea}})
 $$
 
 Here $D_{\mathrm{cl}}^{\mathrm{obs}}$ is the retained cluster-offset data packet and $C_{\mathrm{cl}}$ records the covariance of the lensing, gas, and tracer reconstruction. The residual should be evaluated across an ensemble of merging clusters, not treated as a one-image proof. A pure medium-response branch fails this gate only when
@@ -156,7 +156,7 @@ $$
 \inf_{\theta_{\mathrm{sea}}:\rho_A=0}
 \mathcal{R}_{\mathrm{cl\ offset}}(\theta_{\mathrm{sea}},0)
 >
-\varepsilon_{\mathrm{cl}},
+\varepsilon_{\mathrm{cl}}
 $$
 
 with the same lensing priors, gas model, and shared Noether sea state record used to test the neutral-assembly or hybrid branch. Passing the gate does not by itself prove a collisionless neutral-assembly interpretation; it shows that the candidate branch has recovered the cluster-offset observable without changing the inference stack per system.
@@ -176,7 +176,7 @@ $$
 F_{\mathrm{DM}}\!\left(\Pi_{\mathrm{DE}}\theta_{\mathrm{sea}}\right)
 \right\|_{C_{\mathrm{DM/DE}}^{-1}}^2
 +
-\mathcal{R}_{\mathrm{shared}}(\theta_{\mathrm{sea}}).
+\mathcal{R}_{\mathrm{shared}}(\theta_{\mathrm{sea}})
 $$
 
 Here $C_{\mathrm{DM/DE}}$ is the covariance or weighting model for the joint dark-sector comparison, and $\mathcal{R}_{\mathrm{shared}}$ is the shared calibration residual from [Dark Energy](./dark-energy.md#inference-dependency-and-calibration-gates). A dark-sector scale relation is promotable only if this residual stays small without assigning one Noether sea state to dark-energy data and another to dark-matter data. If the relation fits one observable family by changing $\theta_{\mathrm{sea}}$ for another, it remains an interpretation artifact rather than a substrate claim.
@@ -203,13 +203,13 @@ $$
 =
 \frac{f_A\rho_{\mathrm{DM}}}{M_A}\,
 \pi b_{\max}^2\,
-\langle v_{\mathrm{rel}}\rangle.
+\langle v_{\mathrm{rel}}\rangle
 $$
 A nearby passage gives the order-of-magnitude impulse
 $$
 \Delta v_{\mathrm{test}}
 \simeq
-\frac{2GM_A}{b\,v_{\mathrm{rel}}},
+\frac{2GM_A}{b\,v_{\mathrm{rel}}}
 $$
 before detailed $N$-body and relativistic corrections. The retained observable is the ephemeris residual, not the compact-object interpretation: a candidate detection must produce a trajectory-consistent perturbation above the ranging error floor, fail ordinary visible-object and catalogued-asteroid explanations under the same covariance model, and carry any high-energy co-signature through the same branch record.
 
@@ -222,7 +222,7 @@ $$
 \qquad
 N_{\mathrm{track}}
 =
-\Phi_X A_{\mathrm{scan}}T_{\mathrm{age}}P_{\mathrm{surv}}P_{\mathrm{det}}.
+\Phi_X A_{\mathrm{scan}}T_{\mathrm{age}}P_{\mathrm{surv}}P_{\mathrm{det}}
 $$
 Here $A_{\mathrm{scan}}$ is the scanned cross-section, $T_{\mathrm{age}}$ is the exposure time of the material, $P_{\mathrm{surv}}$ is the survival probability of the track under thermal, geological, and mechanical erasure, and $P_{\mathrm{det}}$ is the detection efficiency after morphology cuts. The residual is not simply a count mismatch:
 $$
@@ -232,7 +232,7 @@ $$
 +
 \mathcal{R}_{\mathrm{morph}}
 +
-\mathcal{R}_{\mathrm{ordinary}}.
+\mathcal{R}_{\mathrm{ordinary}}
 $$
 The morphology term requires the candidate track to match the predicted energy-deposition and damage profile for the branch, while $\mathcal{R}_{\mathrm{ordinary}}$ penalizes fits explained by ordinary radiation, defects, inclusions, machining damage, or impact history. A null search becomes a constraint on $f_X(M_X)$ only after the survival and detection functions are declared; a positive search becomes a compact-object claim only after the same branch also passes the BBN, CMB, ephemeris, and high-energy co-signature tests.
 
@@ -271,7 +271,7 @@ a_0^{\mathrm{MOND}}
 +
 d_{\mathrm{RAR}}\!\left(\mathrm{RAR}^{\theta},\mathrm{RAR}^{\mathrm{obs}}\right)
 +
-\lambda\,\mathcal{R}_{\mathrm{shared}}(\theta).
+\lambda\,\mathcal{R}_{\mathrm{shared}}(\theta)
 $$
 
 Here $\mathrm{RAR}^{\theta}$ is the radial-acceleration relation predicted by the coupled neutral-assembly plus medium-response model, $\mathrm{RAR}^{\mathrm{obs}}$ is the observed relation, and $\mathcal{R}_{\mathrm{shared}}$ is the cosmology shared residual in [Dark Energy](./dark-energy.md#inference-dependency-and-calibration-gates). If no value of $\alpha_H$ follows from the Noether sea response law while preserving CMB loading, cluster offsets, BAO, supernova, growth, and lensing constraints, the horizon-scale coincidence remains a heuristic rather than a derived result.
@@ -306,7 +306,7 @@ These difficulties motivate retaining Candidate A as the primary dark-matter sub
 **Coupled equations (schematic).** Let $\rho_A(\mathbf{x},t)$ denote the neutral-assembly density and $\rho_{\text{NS}}(\mathbf{x},t)$ the Noether swarm density. In the Newtonian limit, the effective Poisson equation becomes:
 
 $$
-\nabla^2 \Phi_{\mathrm{eff}} = 4\pi G_{\mathrm{eff}}(\nabla\Phi,\rho_{\text{NS}},n)\,\bigl(\rho_b + \rho_A + \delta\rho_{\text{NS}}^{(\mathrm{pert})}\bigr),
+\nabla^2 \Phi_{\mathrm{eff}} = 4\pi G_{\mathrm{eff}}(\nabla\Phi,\rho_{\text{NS}},n)\,\bigl(\rho_b + \rho_A + \delta\rho_{\text{NS}}^{(\mathrm{pert})}\bigr)
 $$
 
 where $\rho_b$ is baryonic density, $\delta\rho_{\text{NS}}^{(\mathrm{pert})}$ is the perturbative Sea response above its cosmological mean, and $G_{\mathrm{eff}}$ carries the Noether sea response modification. In the high-acceleration limit ($|\nabla\Phi| \gg a_0^{\mathrm{MOND}}$), $G_{\mathrm{eff}} \to G_N$ and $\delta\rho_{\text{NS}}^{(\mathrm{pert})} \to 0$; in the low-acceleration limit, $G_{\mathrm{eff}}$ stiffens and $\delta\rho_{\text{NS}}^{(\mathrm{pert})}$ may contribute an effective "phantom" density that mimics additional dark matter.
@@ -334,7 +334,7 @@ where $a_N$ is the baryonic Newtonian benchmark acceleration, $a_\star$ is the e
 $$
 a_\star(E)=A_\star(\Pi_E\theta_{\mathrm{sea}}),
 \qquad
-f(E)=F_\star(\Pi_E\theta_{\mathrm{sea}}),
+f(E)=F_\star(\Pi_E\theta_{\mathrm{sea}})
 $$
 
 with $E$ denoting an environment class such as spiral galaxies, pressure-supported dwarfs, clusters, or diffuse absorbers. A viable branch must reproduce the galaxy radial-acceleration relation in the middle regime while allowing clusters to fall in the ultra-low-acceleration regime without assigning a separate medium record to each class.
@@ -356,7 +356,7 @@ d_{\mathrm{shared}}\!\left(
 \Pi_E\theta_{\mathrm{sea}},
 \Pi_{\mathrm{cos}}\theta_{\mathrm{sea}}
 \right)
-\right].
+\right]
 $$
 
 This residual is useful because it turns the cluster-versus-galaxy pressure into a falsifiable question. If the observed cluster temperature and lensing profiles require an $a_\star$ scale significantly above the galaxy radial-acceleration scale, that scale shift must be derived from environment-dependent Noether sea density, delay, stress, or neutral-assembly loading. If the same shift is inserted by hand, the branch has reproduced a comparison curve but not closed a native dark-sector mechanism.
@@ -376,7 +376,7 @@ $$
 \qquad
 \zeta_{\mathrm{norm}}^{\mathrm{cmp}}(E)
 =
-1-\zeta_{\mathrm{cond}}^{\mathrm{cmp}}(E).
+1-\zeta_{\mathrm{cond}}^{\mathrm{cmp}}(E)
 $$
 
 Here $E$ is an observer-level environment class, such as spiral galaxies, pressure-supported dwarfs, clusters, or the cosmological background. The temperature ratio and fractions are comparison coordinates only. A native branch must instead derive their effective values from $\Pi_E\theta_{\mathrm{sea}}$, $\rho_A$, $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, and $\chi_{\text{sea}}(\mathbf{x},t)$:
@@ -400,7 +400,7 @@ Z_{\mathrm{norm}}\!\left(
 \rho_{\text{NS}}(\mathbf{x},t),
 n(\mathbf{x},t),
 \chi_{\text{sea}}(\mathbf{x},t)
-\right).
+\right)
 $$
 
 The comparison target is therefore not "make a superfluid." It is the stronger phase-environment closure: galaxy environments should project toward a large low-acceleration response coordinate, cluster environments should retain a substantial CDM-like or normal component, and the cosmological background should remain pressureless enough to preserve CMB loading and growth. The MOND-like part is fixed by the radial-acceleration relation and by the BTFR limit
@@ -408,7 +408,7 @@ The comparison target is therefore not "make a superfluid." It is the stronger p
 $$
 a_{\mathrm{obs}}(r)\simeq\sqrt{a_N(r)a_0^{\mathrm{MOND}}},
 \qquad
-v_c^4\simeq G_NM_ba_0^{\mathrm{MOND}}.
+v_c^4\simeq G_NM_ba_0^{\mathrm{MOND}}
 $$
 
 A compact version of the closure residual is
@@ -446,7 +446,7 @@ $$
 \qquad
 \varphi_{\mathrm{rel}}^{\mathrm{cmp}}(t)
 =
-\varphi_2^{\mathrm{cmp}}-\varphi_1^{\mathrm{cmp}}+\Delta E\,t,
+\varphi_2^{\mathrm{cmp}}-\varphi_1^{\mathrm{cmp}}+\Delta E\,t
 $$
 
 and the source-side phase-coupling potential
@@ -457,7 +457,7 @@ V_J^{\mathrm{cmp}}(t)
 M_J^4
 \cos^2\!\left(
 \frac{\varphi_{\mathrm{rel}}^{\mathrm{cmp}}(t)}{2f_J}
-\right).
+\right)
 $$
 
 The native branch must derive these comparison coordinates from a medium-and-assembly projection, not fit them independently:
@@ -478,7 +478,7 @@ f_J
 \rho_{\text{NS}}(\mathbf{x},t),
 n(\mathbf{x},t),
 \chi_{\text{sea}}(\mathbf{x},t)
-\right).
+\right)
 $$
 
 The conversion discipline can be recorded in source-term form,
@@ -494,7 +494,7 @@ Q_J^\theta,
 \qquad
 Q_J^\theta
 \sim
-\Delta E\,\partial_{\varphi_{\mathrm{rel}}}V_J^{\mathrm{cmp}},
+\Delta E\,\partial_{\varphi_{\mathrm{rel}}}V_J^{\mathrm{cmp}}
 $$
 
 so that the total dark-sector count $N_1+N_2$ is conserved while the relative population can evolve. The comparison background equation then becomes
@@ -503,7 +503,7 @@ $$
 2\dot H_{\mathrm{eff}}^\theta
 +3\left(H_{\mathrm{eff}}^\theta\right)^2
 \simeq
-\frac{V_J^{\mathrm{cmp}}(t)}{M_{\mathrm{Pl}}^2},
+\frac{V_J^{\mathrm{cmp}}(t)}{M_{\mathrm{Pl}}^2}
 $$
 
 as a source-side benchmark for late-time acceleration without adding an independent dark-energy fluid. A native $\mathbb{A}\mathbb{A}\mathbb{A}$ branch may pass this benchmark only if the right-hand side is reconstructed from $\theta_{\mathrm{sea}}$ and $\rho_A$ through $\mathcal{J}_{\mathrm{dark}}$.
@@ -523,7 +523,7 @@ f_{\mathrm{grow}}(z)
 \equiv
 \frac{d\ln D}{d\ln a}
 =
--\frac{d\ln D}{d\ln(1+z)}.
+-\frac{d\ln D}{d\ln(1+z)}
 $$
 
 The paper's numerical examples show why this matters: the background history and growth factor can remain close to $\Lambda\mathrm{CDM}$ while the late-time growth rate deviates more strongly. The $\mathbb{A}\mathbb{A}\mathbb{A}$ residual should therefore not stop at an $H(z)$ fit:
@@ -605,7 +605,7 @@ m_{\nu_R},
 \lambda_{\mathrm{fs}},
 \sigma_{\mathrm{vis}},
 \Delta N_{\mathrm{eff}}
-\right),
+\right)
 $$
 with
 $$
@@ -617,7 +617,7 @@ $$
 \qquad
 \sigma_{\mathrm{vis}}\le\sigma_{\max},
 \qquad
-\Delta N_{\mathrm{eff}}\in\mathcal{B}_{\mathrm{BBN/CMB}}.
+\Delta N_{\mathrm{eff}}\in\mathcal{B}_{\mathrm{BBN/CMB}}
 $$
 Failure of any row keeps the branch external to the working dark-matter ontology. Passing these rows would still not identify the branch with the current neutral-assembly baseline unless the same internal-energy, shielding, and Noether sea response map derives its mass and coupling suppression.
 
@@ -640,7 +640,7 @@ m_A,
 \Phi_{\bar p},
 \Phi_{e^+},
 \Phi_\gamma
-\right).
+\right)
 $$
 
 The entries track assembly mass, relic abundance, annihilation rate, scalar and axial scattering channels for direct detection, neutrino rates from solar or terrestrial capture, and indirect antiproton, positron, and gamma-ray fluxes. The native branch may pass this benchmark only if one medium-and-assembly record predicts or bounds all entries while satisfying direct-detection, indirect-detection, collider, CMB/BBN, structure-growth, and other relevant null-result constraints. Matching $\Omega_A h^2$ alone is not dark-matter closure; the same branch must also keep scattering and annihilation channels below excluded levels or declare a detectable channel.
@@ -663,7 +663,7 @@ The neutral-assembly candidate must be cosmologically stable: lifetime $\tau \gg
 Neutral assemblies contribute to the total matter density:
 
 $$
-\Omega_m = \Omega_b + \Omega_A, \quad \Omega_A \approx 0.25.
+\Omega_m = \Omega_b + \Omega_A, \quad \Omega_A \approx 0.25
 $$
 
 Their gravitational effect on photon-baryon oscillations produces the characteristic signature in the [CMB](./CMB.md) power spectrum: suppression of odd peaks (baryon loading) with the overall amplitude and peak-height ratios set by $\Omega_A/\Omega_b$.
@@ -673,7 +673,7 @@ Their gravitational effect on photon-baryon oscillations produces the characteri
 Matter perturbations grow as $\delta \propto a$ in the matter-dominated era. The $\mathbb{A}\mathbb{A}\mathbb{A}$ growth equation in the Newtonian limit reads:
 
 $$
-\ddot{\delta}_A + 2H\dot{\delta}_A = 4\pi G_{\mathrm{eff}}\,\rho_m\,\delta_m,
+\ddot{\delta}_A + 2H\dot{\delta}_A = 4\pi G_{\mathrm{eff}}\,\rho_m\,\delta_m
 $$
 
 where $\rho_m = \rho_b + \rho_A$ and $G_{\mathrm{eff}}$ may carry scale-dependent corrections from Noether sea response. In the high-acceleration (linear) regime, $G_{\mathrm{eff}} \to G_N$ and standard CDM growth is recovered. Deviations from $\Lambda\mathrm{CDM}$ growth appear only when $|\nabla\Phi|/a_0^{\mathrm{MOND}} \lesssim 1$, which on cosmological scales ($k < 0.01\;h\,\mathrm{Mpc}^{-1}$) may be relevant at low redshift and could contribute to resolving the $S_8$ tension.

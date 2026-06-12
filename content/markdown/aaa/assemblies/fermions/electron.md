@@ -19,7 +19,7 @@ $$
 \qquad
 \text{axial inventory}(e^-)=6E,
 \qquad
-\text{axial inventory}(e^+)=6P.
+\text{axial inventory}(e^+)=6P
 $$
 
 This framing keeps lepton universality disciplined. The charged-lepton side of universality says that $e$, $\mu$, and $\tau$ share the same six-site charged-lepton axial pattern and weak-coupling-triad bookkeeping. Their mass hierarchy and lifetime differences must come from shielding coherence, internal causal history, and medium response, not from changing the electric-charge inventory or adding lepton-specific gauge couplings.
@@ -28,7 +28,7 @@ The $e^-/e^+$ pair is also the concrete charged-lepton test of charge-conjugate 
 $$
 m_{\mathrm{tr}}(e^-)=m_{\mathrm{tr}}(e^+),
 \qquad
-Q_{\mathrm{eff}}(e^-)=-Q_{\mathrm{eff}}(e^+).
+Q_{\mathrm{eff}}(e^-)=-Q_{\mathrm{eff}}(e^+)
 $$
 The equality is a constraint on the mass-facing causal ledger: complete polarity inversion preserves the polarity-even internal products, shielding-coherence class, and medium response that feed scalar rest mass, while reversing the exposed electric bookkeeping. A partial polarity replacement inside the axial layer would not be the positron branch; it would generally change the assembly ledger and must be classified as a different or unstable charged-fermion candidate.
 
@@ -46,7 +46,7 @@ $$
 \mathcal{A}_{\mathrm{nuc}},\,
 \theta_{\mathrm{sea}}^{(\ell)},\,
 \mathcal{W}_{\mathrm{causal}}^{(\ell)}
-\right](\mathbf{x}),
+\right](\mathbf{x})
 $$
 
 where $\mathcal{D}_e^{(\ell)}$ is the observer-level electron detection map at coarse window $\ell$, $\mathcal{B}_e$ is the realized electron-envelope branch, $\mathcal{A}_{\mathrm{nuc}}$ is the nuclear assembly ledger, $\theta_{\mathrm{sea}}^{(\ell)}$ is the local Noether sea state record, and $\mathcal{W}_{\mathrm{causal}}^{(\ell)}$ is the retained causal-wake history. This map is not the electron itself. It is the statistical readout obtained after unresolved branch data, apparatus coupling, and local medium response have been projected into an observer-level record.
@@ -89,7 +89,7 @@ a_\ell^{\text{model}}
 =
 a_\ell^{\text{SM,ref}}
 +\mathcal{C}_\ell\,(m_\ell R_L)^2
-+O(R_L^4),
++O(R_L^4)
 $$
 
 and, in natural units,
@@ -99,7 +99,7 @@ F(s)=1-\frac{sR_L^2}{4},
 \qquad
 \sigma_{\text{model}}(e^+e^-\to\mu^+\mu^-;s)
 =
-\sigma_{\text{SM}}(s)\,|F(s)|^2.
+\sigma_{\text{SM}}(s)\,|F(s)|^2
 $$
 
 For the electron branch, the gate is conservative: any finite-size or Noether sea response correction large enough to explain a heavier-lepton magnetic-moment residual must still leave $a_e$, precision scattering, and lepton-pair production within their observed limits. If the same $R_L$, shielding map, and response projection cannot serve $e$, $\mu$, and $\tau$, the charged-lepton universality claim has not closed.

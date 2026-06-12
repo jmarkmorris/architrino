@@ -8,6 +8,8 @@ The companion chapter [Absolute Time Defense](absolute-time-defense.md) gives th
 
 Absolute time is a **one-dimensional, continuous, oriented parameter** that advances uniformly and independently of space, matter, energy, or any physical process. In substrate ontology, it is **non-dynamical**: time does not curve, dilate, accelerate, or respond to forces. Physical clocks are assemblies whose internal cycles are compared against this parameter; they do not generate the parameter itself.
 
+The word **uniformly** is a dynamical normalization statement, not an extra clock substance on the bare line. Before units and laws are declared, the oriented manifold $T\cong\mathbb{R}$ admits affine relabelings $t\mapsto at+b$ with $a>0$. The origin $b$ remains conventional. The scale $a$ is fixed only after the dynamics are declared: the primitive wake speed $c_f$ is constant in the Euclidean-void rest frame, all worldlines use the same parameter $t$, and the master equation keeps its form under time translation. A rescaling of $t$ is therefore a unit change involving $T_0$, $L_0$, $c_f$, and the coupling normalizations, not a second physical freedom to choose a different flow of time.
+
 ## Mathematical Description
 
 Time is modeled as the real number line:
@@ -29,7 +31,7 @@ The level distinction is essential. The substrate structure is absolute time tog
 
 We **non-dimensionalize** time by choosing a reference timescale $T_0 > 0$ such that physical time $\hat{t}$ is given by:
 $$
-\hat{t} = T_0 \, t,
+\hat{t} = T_0 \, t
 $$
 where $t$ is dimensionless.
 
@@ -39,33 +41,35 @@ $$
 \qquad
 \hat t=T_0t,
 \qquad
-c_f=\frac{\hat c_f T_0}{L_0}.
+c_f=\frac{\hat c_f T_0}{L_0}
 $$
 Here hatted quantities are dimensional and unhatted quantities are nondimensional. With this convention the nondimensional causal-root condition keeps the same form,
 $$
 \|\mathbf{x}_i(t)-\mathbf{x}_j(s)\|
 =
-c_f(t-s),
+c_f(t-s)
 $$
 while the dimensional condition is
 $$
 \|\hat{\mathbf{x}}_i(\hat t)-\hat{\mathbf{x}}_j(\hat s)\|
 =
-\hat c_f(\hat t-\hat s).
+\hat c_f(\hat t-\hat s)
 $$
+
+Choosing $T_0$ fixes the affine scale of $t$ for the declared model. Setting $c_f=1$ is the special unit convention $L_0/T_0=\hat c_f$; keeping $c_f$ explicit leaves the physical anchor visible.
 
 > **Plain language:** We pick a standard unit of duration, such as one second or one maximum-curvature binary orbit time, and measure all times as pure numbers of that unit, keeping equations dimensionally clean.
 
 ## Duration and Linear Advancement
 
-Time progresses at a constant, immutable rate. The **duration** between two instants $t_1$ and $t_2$ is the absolute difference:
+With the affine scale fixed by the declared dynamical normalization, time progresses at a constant, immutable rate. The **duration** between two instants $t_1$ and $t_2$ is the absolute difference:
 $$
-\Delta t = |t_2 - t_1|.
+\Delta t = |t_2 - t_1|
 $$
 
 The corresponding physical duration is:
 $$
-\Delta \hat{t} = T_0 \, \Delta t.
+\Delta \hat{t} = T_0 \, \Delta t
 $$
 
 This metric is **invariant under time translation**: it is the same for all observers, regardless of their position or state of motion.
@@ -81,16 +85,16 @@ We endow $\mathbb{R}$ with a **global orientation**:
 
 The set of all instants is **totally ordered**: for any two instants $t_1$ and $t_2$, exactly one of the following holds:
 $$
-t_1 < t_2, \quad t_1 = t_2, \quad \text{or} \quad t_1 > t_2.
+t_1 < t_2, \quad t_1 = t_2, \quad \text{or} \quad t_1 > t_2
 $$
 
 **Temporal ordering:** Event A temporally precedes event B if and only if $t_A < t_B$. This ordering is absolute and observer-independent. Causal influence is stricter than temporal precedence: Event A can influence event B only when $t_A<t_B$ and event B lies on the finite-speed causal wake support emitted from A.
 
-**Remark on the Thermodynamic Arrow of Time:** Any observed arrow of time in thermodynamic, biological, or cosmological systems, such as entropy increase, aging, or effective expansion, is an **emergent property** arising from the dynamics of assemblies, causal wakes, and observer-level effective fields, not a kinematic postulate. The background time manifold $\mathbb{R}$ is symmetric under time reversal $t \mapsto -t$; the asymmetry emerges at macroscopic scales from initial conditions, dynamics, and the records retained by a finite observer.
+**Remark on the Thermodynamic Arrow of Time:** The background time manifold $\mathbb{R}$ is symmetric under time reversal $t \mapsto -t$ as a bare oriented line. The declared interaction law is not time-symmetric in that same sense: causal wakes contribute only from emission times $s<t$, and the theory excludes advanced or instantaneous interaction terms. The causal arrow is therefore a law-level feature of the master-equation support convention, while thermodynamic, biological, and cosmological arrows are emergent finite-window properties built on that oriented dynamics, initial and boundary conditions, and the records retained by a finite observer. This differs from time-symmetric absorber formulations, where past- and future-supported solutions are treated as part of one law.
 
 The entropy arrow is therefore a finite-window statement, not a definition of time itself. For a chosen coarse-graining $\mathcal{Q}$ and observer-accessible window $W(t)$, an entropy summary has the schematic form
 $$
-S_{\mathcal{Q},W}(t)=k_B\log \mu\!\left(\Gamma_{\mathcal{Q},W(t)}\right),
+S_{\mathcal{Q},W}(t)=k_B\log \mu\!\left(\Gamma_{\mathcal{Q},W(t)}\right)
 $$
 where $\Gamma_{\mathcal{Q},W(t)}$ is the set of microstates compatible with the retained macroscopic records in that window. This expression is meaningful only after the measure, coarse-graining, and access window are specified.
 
@@ -98,7 +102,7 @@ The same statement can be written as a projection of complete deterministic hist
 $$
 S_{\Pi,W}(t)
 =
-k_B\,\mathcal{H}\!\left((\Pi_{\mathcal{Q},W})_*\mu_t\right),
+k_B\,\mathcal{H}\!\left((\Pi_{\mathcal{Q},W})_*\mu_t\right)
 $$
 where $\mathcal{H}$ is the entropy functional on the pushed-forward record measure. Even if the complete dynamics preserve the underlying measure, $S_{\Pi,W}$ can increase when $\Pi_{\mathcal{Q},W}$ discards path-history, boundary-wake, or apparatus-record information. This is an observer-window projection effect, not evidence that absolute time itself is generated by entropy.
 
@@ -110,7 +114,7 @@ $$
 -
 \int_{\partial W(t)}\mathbf{J}_S\cdot\hat{\mathbf{n}}\,dA
 +
-\mathcal{R}_{\mathcal{Q}}(t),
+\mathcal{R}_{\mathcal{Q}}(t)
 $$
 with $\sigma_W$ the local production term, $\mathbf{J}_S$ the entropy flux through the boundary, and $\mathcal{R}_{\mathcal{Q}}$ the residual created by changing the coarse-graining or record set. Plain language: entropy can diagnose an emergent arrow inside a stated physical and inferential window, but it does not supply the absolute ordering parameter $t$.
 
@@ -159,7 +163,7 @@ $$
 $$
 of **time translations**. This acts on time via:
 $$
-t \mapsto t + t_0, \quad t_0 \in \mathbb{R}.
+t \mapsto t + t_0, \quad t_0 \in \mathbb{R}
 $$
 
 This symmetry expresses the principle that **the laws of physics are time-translation invariant**: the same admissible state and path-history data, translated by a constant amount in $t$, obey the same dynamical law.
@@ -168,13 +172,10 @@ This symmetry expresses the principle that **the laws of physics are time-transl
 
 At the level of the background structure, time is symmetric under **time reversal**:
 $$
-t \mapsto -t.
+t \mapsto -t
 $$
 
-This is a **mathematical symmetry** of the manifold $\mathbb{R}$. However:
-
-- **Dynamically**, delayed causal wakes and observer-window entropy can break this symmetry in the realized history.
-- The **causal orientation** (future = increasing $t$) is the chosen orientation used by the dynamics; it is not curvature, force, or internal structure of the time background itself.
+This is a **mathematical symmetry** of the manifold $\mathbb{R}$, not automatically a symmetry of the declared dynamics. The master equation chooses future as increasing $t$ by summing only over causal-root rows with $s<t$. A reflected history would solve a different future-supported law unless the causal-support convention were changed. The **causal orientation** is therefore part of the dynamics' support rule; it is not curvature, force, or internal structure of the time background itself.
 
 ## Role of Time in Dynamics
 
@@ -188,7 +189,7 @@ Time serves as a **universal, non-dynamical parameter** for all worldlines, caus
 
 A **worldline** of an architrino or assembly is a map:
 $$
-\mathbf{x}: I \subset \mathbb{R} \to \mathbb{R}^3, \quad t \mapsto \mathbf{x}(t),
+\mathbf{x}: I \subset \mathbb{R} \to \mathbb{R}^3, \quad t \mapsto \mathbf{x}(t)
 $$
 where $I$ is an interval and $t$ is **strictly increasing** with respect to the time orientation.
 
@@ -220,7 +221,7 @@ These symbols must not be identified unless the local regime and derivation have
 $$
 \mathcal{C}_{ij}(t)
 =
-\{\,t_0<t:\|\mathbf{x}_i(t)-\mathbf{x}_j(t_0)\|=c_f(t-t_0)\,\}.
+\{\,t_0<t:\|\mathbf{x}_i(t)-\mathbf{x}_j(t_0)\|=c_f(t-t_0)\,\}
 $$
 
 Only emission times in $\mathcal{C}_{ij}(t)$ contribute to the receiver at time $t$. In dimensional variables, the same condition is written with hatted times and positions using the corresponding dimensional value of $c_f$.
@@ -231,7 +232,7 @@ F_{ij}(t,s)
 =
 \|\mathbf{x}_i(t)-\mathbf{x}_j(s)\|-c_f(t-s),
 \qquad
-s<t.
+s<t
 $$
 Then $\mathcal{C}_{ij}(t)=\{\,s<t:F_{ij}(t,s)=0\,\}$. The same set covers ordinary partner hits when $i\ne j$ and self-hits when $i=j$; no separate self-hit law is needed. A simple-root branch chart requires
 $$
@@ -243,19 +244,19 @@ $$
 c_f-\hat{\mathbf{r}}_{ij}(t,s)\cdot\mathbf{v}_j(s)
 \right|
 \ge
-\kappa_{\mathrm{hit}}>0,
+\kappa_{\mathrm{hit}}>0
 $$
 where
 $$
 \mathbf{r}_{ij}(t,s)=\mathbf{x}_i(t)-\mathbf{x}_j(s),
 \qquad
-\hat{\mathbf{r}}_{ij}=\frac{\mathbf{r}_{ij}}{\|\mathbf{r}_{ij}\|}.
+\hat{\mathbf{r}}_{ij}=\frac{\mathbf{r}_{ij}}{\|\mathbf{r}_{ij}\|}
 $$
 Failure of this transversality floor marks a caustic-like or degenerate wake-root regime, so it must be routed to branch-chart or regularization analysis rather than treated as an ordinary force perturbation.
 
-The constant $\kappa_{\mathrm{hit}}>0$ is a physical branch-admissibility floor for causal-root separation in the declared model or regularization. It is not a coordinate parameter and cannot be removed by relabeling the same history.
+The symbol $\kappa_{\mathrm{hit}}>0$ is not a universal coupling constant and not the regularization width $\eta$. It denotes a declared positive lower bound for one retained branch chart, certificate, or regularized model after the units, root labels, endpoint convention, and memory window have been fixed. Concrete branch packets may report the same condition as a certified Jacobian floor such as $J_0$ or $\nu_J$. The existence of a positive floor is part of simple-root admissibility; its numerical value belongs to the branch-chart or validation record, not to the universal parameter ledger. It is not a coordinate parameter and cannot be removed by relabeling the same history.
 
-The interaction law is built entirely from path-history contributions at times $t' < t$ that satisfy the causal-root condition; $\mathbb{A}\mathbb{A}\mathbb{A}$ contains no advanced or instantaneous interaction terms. This ensures causality at the fundamental level.
+The interaction law is built entirely from path-history contributions at times $t' < t$ that satisfy the causal-root condition; $\mathbb{A}\mathbb{A}\mathbb{A}$ contains no advanced or instantaneous interaction terms. This delayed-only support condition is a law-level causal asymmetry, not merely an initial-condition effect.
 
 There are **no instantaneous actions-at-a-distance** and **no advanced potentials**.
 
@@ -276,7 +277,7 @@ Consequently, an exact global flip or permutation of architrinos is not a substr
 $$
 \mathbb{U}_{\text{now}}\equiv S(t)
 =
-\{(\mathbf{x}_i(t),\mathbf{v}_i(t),q_i,H_i(t))\}_i,
+\{(\mathbf{x}_i(t),\mathbf{v}_i(t),q_i,H_i(t))\}_i
 $$
 
 where $H_i(t)$ denotes the path-history and provenance record carried by architrino $i$, then a proposed exchange is exact only when it preserves the instantaneous data and the corresponding $H_i(t)$ records. Generic architrinos are therefore not interchangeable at the ontic level even when finite observers can treat their exposed properties as effectively identical.
@@ -311,4 +312,4 @@ They do **not** arise from any curvature or dynamics of the time coordinate itse
 
 ## Summary Postulate
 
-> **Postulate 1 (Absolute Time):** Time is an **absolute, universal, one-dimensional continuum** $\mathbb{R}$, with a fixed orientation (future = increasing $t$) and a uniform rate of advancement. Duration between events is **frame-independent**. The time coordinate is **non-dynamical** and does not encode forces or curvature. All dynamics occur via finite-speed wake propagation ($c_f$) in absolute time, with all interactions via path history; there is no instantaneous action-at-a-distance. Worldlines are parametrized directly by $t$ with no fundamental reparametrization freedom. Any thermodynamic arrow, observer-clock dilation, or relativistic proper-time effect is an emergent property of assemblies, causal wakes, and effective observer reconstruction, not a feature of the background $t$ parameter itself.
+> **Postulate 1 (Absolute Time):** Time is an **absolute, universal, one-dimensional continuum** $\mathbb{R}$, with a fixed orientation (future = increasing $t$) and a dynamical scale anchored by the constant primitive wake speed $c_f$ and the time-translation-invariant master equation. Duration between events is **frame-independent**. The time coordinate is **non-dynamical** and does not encode forces or curvature. All dynamics occur via finite-speed wake propagation ($c_f$) in absolute time, with all interactions via path history; there is no instantaneous action-at-a-distance and no advanced interaction term. Worldlines are parametrized directly by $t$ with no fundamental reparametrization freedom beyond unit choice and origin choice. Any thermodynamic arrow, observer-clock dilation, or relativistic proper-time effect is an emergent property of assemblies, causal wakes, and effective observer reconstruction, not a feature of the background $t$ parameter itself.

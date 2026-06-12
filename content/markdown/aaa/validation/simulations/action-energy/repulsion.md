@@ -16,18 +16,19 @@ Delay differential equations (two-body, v=1):
   a_1(t)
   \;=\;
   \sum_{t_0\in\mathcal{C}_2(t)}
-  +\,\kappa\,\epsilon^2\,\frac{\mathrm{sgn}\!\big(x_1(t)-x_2(t_0)\big)}{r_{12}^2},
+  +\,\kappa\,\epsilon^2\,\frac{\mathrm{sgn}\!\big(x_1(t)-x_2(t_0)\big)}{r_{12}^2\,|J_{12}(t;t_0)|},
   \quad
-  r_{12}=\big|x_1(t)-x_2(t_0)\big|,
+  r_{12}=\big|x_1(t)-x_2(t_0)\big|
   $$
   $$
   a_2(t)
   \;=\;
   \sum_{t_0\in\mathcal{C}_1(t)}
-  -\,\kappa\,\epsilon^2\,\frac{\mathrm{sgn}\!\big(x_2(t)-x_1(t_0)\big)}{r_{21}^2},
+  -\,\kappa\,\epsilon^2\,\frac{\mathrm{sgn}\!\big(x_2(t)-x_1(t_0)\big)}{r_{21}^2\,|J_{21}(t;t_0)|},
   \quad
-  r_{21}=\big|x_2(t)-x_1(t_0)\big|.
+  r_{21}=\big|x_2(t)-x_1(t_0)\big|
   $$
+- $J_{12}$ and $J_{21}$ are the corresponding causal-root Jacobians. A root with a failed Jacobian floor is a branch-transition or caustic case, not an ordinary stable row of this two-body DDE.
 - Symmetry implies $x_1(t)=-x_2(t)$ and $a_1(t)=-a_2(t)$ for all $t$ given symmetric initial data.
 
 Solvability status:

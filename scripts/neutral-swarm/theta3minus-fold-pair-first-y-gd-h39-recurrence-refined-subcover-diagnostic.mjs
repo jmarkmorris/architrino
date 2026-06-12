@@ -321,6 +321,18 @@ export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESS
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_FOLD_NULL_COEFFICIENT_EXTRACTOR_ATTEMPT_CANDIDATE_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-expression-level-source-term-fold-null-coefficient-extractor-attempt-candidate/v1";
 
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_FOLD_NULL_COEFFICIENT_PROVIDER_MOMENT_BRIDGE_AUDIT_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-expression-level-source-term-fold-null-coefficient-provider-moment-bridge-audit-candidate/v1";
+
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_PRE_SUM_BRANCH_SOURCE_AUDIT_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-expression-level-source-map-provider-object-pre-sum-branch-source-audit-candidate/v1";
+
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_VARIABLE_OWNERSHIP_BRANCH_FEED_ATTEMPT_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-expression-level-source-term-variable-ownership-branch-feed-attempt-candidate/v1";
+
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_VARIABLE_OWNERSHIP_PROVIDER_BOUNDARY_REPLAY_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-expression-level-source-term-variable-ownership-provider-boundary-replay-candidate/v1";
+
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_ROW_PROVIDER_OBJECT_REPLAY_ATTEMPT_CANDIDATE_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-row-provider-object-replay-attempt-candidate/v1";
 
@@ -332,6 +344,30 @@ export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_PROPORT
 
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_DENOMINATOR_FREE_BRANCH_RESIDUAL_SOURCE_OBJECT_IDENTITY_ATTEMPT_CANDIDATE_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-denominator-free-branch-residual-source-object-identity-attempt-candidate/v1";
+
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_DENOMINATOR_FREE_VARIABLE_OWNERSHIP_T_COORDINATE_MATERIALIZATION_ATTEMPT_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-denominator-free-variable-ownership-t-coordinate-materialization-attempt-candidate/v1";
+
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_VARIABLE_OWNERSHIP_ALPHA_PROVENANCE_IDENTITY_AUDIT_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-variable-ownership-alpha-provenance-identity-audit-candidate/v1";
+
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_PROVIDER_OBJECT_A_P_MATERIALIZATION_OBSTRUCTION_AUDIT_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-provider-object-a-p-materialization-obstruction-audit-candidate/v1";
+
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SOURCE_TERM_BRANCH_FEED_EXTRACTOR_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-source-term-branch-feed-extractor-candidate/v1";
+
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SOURCE_TERM_OPPOSITE_BRANCH_FEED_LIFT_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-source-term-opposite-branch-feed-lift-candidate/v1";
+
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_ROW_LOCAL_FEED_TO_PROVIDER_OBJECT_PB_IDENTITY_AUDIT_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-row-local-feed-to-provider-object-pb-identity-audit-candidate/v1";
+
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_PROVIDER_OBJECT_PB_PUSHFORWARD_OPERATOR_AUDIT_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-provider-object-pb-pushforward-operator-audit-candidate/v1";
+
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_AGGREGATE_P_PROVIDER_PREAGGREGATION_BRANCH_BEARING_AUDIT_CANDIDATE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-aggregate-p-provider-preaggregation-branch-bearing-audit-candidate/v1";
 
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SOURCE_COVARIANCE_LAMBDA_T_COORDINATE_PROJECTION_ATTEMPT_CANDIDATE_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-terminal-source-covariance-lambda-t-coordinate-projection-attempt-candidate/v1";
@@ -40839,6 +40875,7 @@ function h39RequestedY44ProducerRowReplayContext({
     source_subcover_row_index:
       rowSummary?.source_subcover_row_index ?? null,
     cell_id: row.cell_id,
+    active_branch: branch,
     speed_interval: row.speed_interval,
     xi_interval: xiInterval,
     noise_coordinate: intervalMidpoint(xiInterval),
@@ -40899,6 +40936,8 @@ function h39RequestedY44ProducerRowLocalCollarReplay({
   const requestedMidpointPressureBound = Number(
     requestedResidualRadiusBudget?.midpoint_pressure_bound
   );
+  const partnerBranch =
+    branch === "-" ? "+" : branch === "+" ? "-" : null;
   if (
     !finitePositive(requestedHalfWidth) ||
     !Array.isArray(requestedBudgetInterval) ||
@@ -41292,6 +41331,30 @@ function h39RequestedY44ProducerRowLocalCollarReplay({
       };
     }
   })();
+  const rowLocalN38S37PartnerSolveWidthProfile = (() => {
+    if (partnerBranch === null) {
+      return {
+        available: false,
+        solve_width_profile: null,
+      };
+    }
+    try {
+      return {
+        available: true,
+        solve_width_profile: h38SolveWidthFactorizationProfileForRows({
+          targetSpeedInterval: setup.targetSpeedInterval,
+          rows: setup.comparisonRows,
+          branch: partnerBranch,
+          transportProfile: setup.transportProfile,
+        }),
+      };
+    } catch {
+      return {
+        available: false,
+        solve_width_profile: null,
+      };
+    }
+  })();
   const rowLocalN38S37ProfileForDegree = (requestedDegree) => {
     const polynomialDegree = Math.max(
       1,
@@ -41330,11 +41393,51 @@ function h39RequestedY44ProducerRowLocalCollarReplay({
       return rowLocalN38S37UnavailableProfile(polynomialDegree);
     }
   };
+  const rowLocalN38S37PartnerProfileForDegree = (requestedDegree) => {
+    const polynomialDegree = Math.max(
+      1,
+      Math.min(3, Number(requestedDegree ?? 2))
+    );
+    if (rowLocalN38S37PartnerSolveWidthProfile.available !== true) {
+      return rowLocalN38S37UnavailableProfile(polynomialDegree);
+    }
+    try {
+      const numeratorPolynomialDiagnostic =
+        h38NumeratorPolynomialDegreeDiagnostics({
+          solveWidthProfile:
+            rowLocalN38S37PartnerSolveWidthProfile.solve_width_profile,
+          degrees: [polynomialDegree],
+        })[0];
+      const numeratorResidualProfile = h38NumeratorGraphResidualProfile({
+        solveWidthProfile:
+          rowLocalN38S37PartnerSolveWidthProfile.solve_width_profile,
+        numeratorPolynomialDiagnostic,
+      });
+      return {
+        available: true,
+        polynomial_degree: polynomialDegree,
+        solve_width_profile:
+          rowLocalN38S37PartnerSolveWidthProfile.solve_width_profile,
+        numerator_polynomial_diagnostic: numeratorPolynomialDiagnostic,
+        numerator_residual_profile: numeratorResidualProfile,
+        sample_by_cell_id: new Map(
+          numeratorResidualProfile.samples.map((sample) => [
+            sample.cell_id,
+            sample,
+          ])
+        ),
+      };
+    } catch {
+      return rowLocalN38S37UnavailableProfile(polynomialDegree);
+    }
+  };
   const rowLocalN38S37Profile = rowLocalN38S37ProfileForDegree(
     setup?.polynomialDegree ?? 2
   );
   const rowLocalN38S37TaylorProfile =
     rowLocalN38S37ProfileForDegree(3);
+  const rowLocalN38S37PartnerTaylorProfile =
+    rowLocalN38S37PartnerProfileForDegree(3);
   const rowLocalN38S37GraphRemainderTargetForRow = ({
     targetNumeratorWidthLower,
     graphIntervalWidth,
@@ -43049,6 +43152,106 @@ function h39RequestedY44ProducerRowLocalCollarReplay({
       },
     };
   };
+  const rowLocalN38S37PartnerSourceTermFeedForRow = ({
+    row,
+    rowContext,
+    target,
+  }) => {
+    if (
+      partnerBranch === null ||
+      target === null ||
+      target === undefined ||
+      rowLocalN38S37PartnerTaylorProfile.available !== true
+    ) {
+      return null;
+    }
+    const sample =
+      rowLocalN38S37PartnerTaylorProfile.sample_by_cell_id.get(row.cell_id) ??
+      rowLocalN38S37PartnerTaylorProfile.numerator_residual_profile.samples.find(
+        (candidate) =>
+          Number(candidate?.xi_midpoint) ===
+          Number(rowContext?.noise_coordinate)
+      ) ??
+      null;
+    if (sample === null) {
+      return null;
+    }
+    const targetNumeratorWidthLower = Number(
+      target.target_s37_division_numerator_width_lower
+    );
+    const taylorGraphRemainderTarget =
+      rowLocalN38S37TaylorGraphRemainderTargetForRow({
+        targetNumeratorWidthLower,
+        taylorGraphIntervalWidth: Number(sample.graph_interval_width),
+        taylorMidpointResidualAbs: Math.abs(
+          Number(sample.midpoint_residual)
+        ),
+        taylorIntervalResidualWidth: Number(
+          sample.interval_residual_width
+        ),
+      });
+    const partnerTaylorProxyTarget = rowLocalN38TaylorProxyTargetForRow({
+      profile: rowLocalN38S37PartnerTaylorProfile,
+      sample,
+      sameDomainRemainderWidthBudget:
+        taylorGraphRemainderTarget
+          .row_local_n38_taylor_same_domain_remainder_width_budget,
+    });
+    const selectedProvider =
+      rowContext?.row_center_n38_s37_collar_diagnostic
+        ?.row_local_n38_nonconstant_source_sum_xi_intervalized_lagrange_provider_candidate ??
+      null;
+    const partnerProvider =
+      partnerTaylorProxyTarget
+        ?.row_local_n38_nonconstant_source_sum_xi_intervalized_lagrange_provider_candidate ??
+      null;
+    return {
+      partner_source_term_feed_kind:
+        "row-local-opposite-branch-n38-nonconstant-source-sum-feed-candidate",
+      selected_branch: branch,
+      partner_branch: partnerBranch,
+      row_index: row.row_index,
+      comparison_row_index: row.comparison_row_index,
+      source_subcover_row_index: row.source_subcover_row_index,
+      cell_id: row.cell_id,
+      speed_interval: row.speed_interval,
+      xi_interval: row.xi_interval,
+      same_domain_with_selected_row:
+        h39RequestedY44SameInterval(rowContext?.speed_interval, row.speed_interval) &&
+        h39RequestedY44SameInterval(rowContext?.xi_interval, row.xi_interval),
+      selected_branch_derivative_input_available:
+        selectedProvider?.derivative_input_for_signed_sum_bridge !== null &&
+        selectedProvider?.derivative_input_for_signed_sum_bridge !== undefined,
+      partner_branch_derivative_input_available:
+        partnerProvider?.derivative_input_for_signed_sum_bridge !== null &&
+        partnerProvider?.derivative_input_for_signed_sum_bridge !== undefined,
+      selected_branch_derivative_input_for_signed_sum_bridge:
+        selectedProvider?.derivative_input_for_signed_sum_bridge ?? null,
+      partner_branch_derivative_input_for_signed_sum_bridge:
+        partnerProvider?.derivative_input_for_signed_sum_bridge ?? null,
+      partner_branch_taylor_proxy_target: partnerTaylorProxyTarget,
+      partner_branch_taylor_graph_remainder_target:
+        taylorGraphRemainderTarget,
+      provider_object_branch_pair_available: false,
+      admissible_as_terminal_provider_object_branch_rows: false,
+      rejection_reason:
+        "opposite-branch-source-term-feed-is-row-local-expression-feed-not-yet-identified-with-terminal-provider-object-P-b",
+      row_certifies_partner_branch_source_term_feed: false,
+      row_certifies_expression_level_source_map_provider_object_branch_rows:
+        false,
+      row_certifies_terminal_row_provider_object_replay: false,
+      row_certifies_directed_rounded_shared_domain: false,
+      claim_boundary: {
+        certifies_partner_branch_source_term_feed_as_provider_object_branch:
+          false,
+        certifies_expression_level_source_map_provider_object_branch_rows:
+          false,
+        certifies_terminal_row_provider_object_replay: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  };
   const rowReplays = selectedRows
     .map(({ row_roles: roles, row_summary: row }) => {
       const rowContext = h39RequestedY44ProducerRowReplayContext({
@@ -43116,6 +43319,17 @@ function h39RequestedY44ProducerRowLocalCollarReplay({
           rowContext,
           target: rowCenterProducerWidthContractionTarget,
         });
+      const rowContextWithDiagnostic = {
+        ...rowContext,
+        row_center_n38_s37_collar_diagnostic:
+          rowCenterN38S37CollarDiagnostic,
+      };
+      const rowCenterPartnerBranchSourceTermFeedCandidate =
+        rowLocalN38S37PartnerSourceTermFeedForRow({
+          row,
+          rowContext: rowContextWithDiagnostic,
+          target: rowCenterProducerWidthContractionTarget,
+        });
       const requestedBudgetCloses =
         Number(
           requestedBudgetReplay
@@ -43139,6 +43353,7 @@ function h39RequestedY44ProducerRowLocalCollarReplay({
           comparison_row_index: rowContext.comparison_row_index,
           source_subcover_row_index: rowContext.source_subcover_row_index,
           cell_id: rowContext.cell_id,
+          active_branch: rowContext.active_branch,
           speed_interval: rowContext.speed_interval,
           xi_interval: rowContext.xi_interval,
           noise_coordinate: rowContext.noise_coordinate,
@@ -43157,6 +43372,8 @@ function h39RequestedY44ProducerRowLocalCollarReplay({
           rowCenterProducerWidthContractionTarget,
         row_center_n38_s37_collar_diagnostic:
           rowCenterN38S37CollarDiagnostic,
+        row_center_partner_branch_source_term_feed_candidate:
+          rowCenterPartnerBranchSourceTermFeedCandidate,
         requested_budget_collar_inside_requested_budget: true,
         row_midpoint_collar_inside_requested_budget:
           Number(rowMidpointCollar[0]) >= Number(requestedBudgetInterval[0]) &&
@@ -43350,6 +43567,216 @@ function h39RequestedY44ProducerRowLocalCollarReplay({
       };
     })
     .filter((row) => row !== null);
+  const terminalNodeIndexFromCellId = (cellId) => {
+    const match = /^speed\.(\d+)\.first-y$/.exec(String(cellId ?? ""));
+    return match === null ? null : Number(match[1]);
+  };
+  const branchSourceTermFeedSurfaceForRow = ({
+    row,
+    profile,
+    branchLabel,
+    targetNumeratorWidthLower,
+    feedRole,
+  }) => {
+    if (
+      profile?.available !== true ||
+      !finitePositive(targetNumeratorWidthLower)
+    ) {
+      return null;
+    }
+    const sample =
+      profile.sample_by_cell_id.get(row.cell_id) ??
+      profile.numerator_residual_profile.samples.find(
+        (candidate) =>
+          Number(candidate?.xi_midpoint) ===
+          Number(row?.residual_coordinate_interval_center)
+      ) ??
+      null;
+    if (sample === null) {
+      return null;
+    }
+    const taylorGraphRemainderTarget =
+      rowLocalN38S37TaylorGraphRemainderTargetForRow({
+        targetNumeratorWidthLower,
+        taylorGraphIntervalWidth: Number(sample.graph_interval_width),
+        taylorMidpointResidualAbs: Math.abs(
+          Number(sample.midpoint_residual)
+        ),
+        taylorIntervalResidualWidth: Number(sample.interval_residual_width),
+      });
+    const taylorProxyTarget = rowLocalN38TaylorProxyTargetForRow({
+      profile,
+      sample,
+      sameDomainRemainderWidthBudget:
+        taylorGraphRemainderTarget
+          .row_local_n38_taylor_same_domain_remainder_width_budget,
+    });
+    const provider =
+      taylorProxyTarget
+        ?.row_local_n38_nonconstant_source_sum_xi_intervalized_lagrange_provider_candidate ??
+      null;
+    const input = provider?.derivative_input_for_signed_sum_bridge ?? null;
+    const derivativeInterval = finiteOrderedIntervalOrNull(
+      input?.derivative_interval_d4
+    );
+    const sourceTermRows = Array.isArray(input?.source_term_node_rows)
+      ? input.source_term_node_rows
+      : [];
+    const sourceTermFeedRows = H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.map(
+      (term) => {
+        const termRow =
+          sourceTermRows.find((candidate) => candidate?.term === term) ??
+          null;
+        const nodeValueIntervals = Array.isArray(termRow?.node_value_intervals)
+          ? termRow.node_value_intervals
+              .map(finiteOrderedIntervalOrNull)
+              .filter((interval) => interval !== null)
+          : [];
+        return {
+          feed_role: feedRole,
+          branch: branchLabel,
+          term,
+          source_y_order: H38_NUMERATOR_Y_ORDER,
+          node_value_intervals:
+            nodeValueIntervals.length === 5 ? nodeValueIntervals : [],
+          node_value_interval_count: nodeValueIntervals.length,
+          weighted_node_interval_rows:
+            termRow?.weighted_node_interval_rows ?? [],
+          source_term_feed_row_available:
+            nodeValueIntervals.length === 5 &&
+            Array.isArray(termRow?.weighted_node_interval_rows) &&
+            termRow.weighted_node_interval_rows.length === 5,
+          row_certifies_expression_level_source_map_provider_object_branch_rows:
+            false,
+          row_certifies_directed_rounded_shared_domain: false,
+        };
+      }
+    );
+    return {
+      feed_role: feedRole,
+      branch: branchLabel,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      cell_id: row.cell_id,
+      speed_interval: row.speed_interval,
+      xi_interval: row.xi_interval,
+      taylor_proxy_target: taylorProxyTarget,
+      derivative_input_for_signed_sum_bridge: input,
+      source_term_feed_interval_d4: derivativeInterval,
+      source_term_feed_interval_available:
+        finiteOrderedIntervalOrNull(derivativeInterval) !== null,
+      source_term_feed_half_width:
+        derivativeInterval === null ? null : intervalHalfWidth(derivativeInterval),
+      source_term_feed_rows: sourceTermFeedRows,
+      source_term_feed_row_count: sourceTermFeedRows.length,
+      all_source_term_feed_rows_available:
+        sourceTermFeedRows.length ===
+          H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+        sourceTermFeedRows.every(
+          (termRow) => termRow.source_term_feed_row_available === true
+        ),
+      admissible_as_terminal_provider_object_branch_row: false,
+      row_certifies_expression_level_source_map_provider_object_branch_rows:
+        false,
+      row_certifies_directed_rounded_shared_domain: false,
+    };
+  };
+  const readinessRowByCellId = new Map(
+    allTerminalSourceCellS37DenominatorReadinessRows.map((row) => [
+      row.cell_id,
+      row,
+    ])
+  );
+  const allTerminalSourceCellBranchPairFeedSurfaceRows = (
+    producerBudgetComparison.producer_sample_budget_rows ?? []
+  )
+    .map((row, sourceCellIndex) => {
+      const readinessRow = readinessRowByCellId.get(row.cell_id) ?? null;
+      const targetNumeratorWidthLower = Number(
+        readinessRow?.target_s37_division_numerator_width_lower
+      );
+      const selectedFeed = branchSourceTermFeedSurfaceForRow({
+        row,
+        profile: rowLocalN38S37TaylorProfile,
+        branchLabel: branch,
+        targetNumeratorWidthLower,
+        feedRole: "selected-branch-terminal-source-cell-expression-feed",
+      });
+      const partnerFeed = branchSourceTermFeedSurfaceForRow({
+        row,
+        profile: rowLocalN38S37PartnerTaylorProfile,
+        branchLabel: partnerBranch,
+        targetNumeratorWidthLower,
+        feedRole: "opposite-branch-terminal-source-cell-expression-feed",
+      });
+      const selectedInterval = finiteOrderedIntervalOrNull(
+        selectedFeed?.source_term_feed_interval_d4
+      );
+      const partnerInterval = finiteOrderedIntervalOrNull(
+        partnerFeed?.source_term_feed_interval_d4
+      );
+      const branchPairSumInterval =
+        selectedInterval !== null && partnerInterval !== null
+          ? root.addIntervals(selectedInterval, partnerInterval)
+          : null;
+      const branchPairAntisymmetricInterval =
+        selectedInterval !== null && partnerInterval !== null
+          ? [
+              Number(selectedInterval[0]) - Number(partnerInterval[1]),
+              Number(selectedInterval[1]) - Number(partnerInterval[0]),
+            ]
+          : null;
+      const terminalNodeIndex =
+        terminalNodeIndexFromCellId(row.cell_id) ?? sourceCellIndex;
+      const branchPairAvailable =
+        selectedFeed?.source_term_feed_interval_available === true &&
+        partnerFeed?.source_term_feed_interval_available === true &&
+        selectedFeed?.all_source_term_feed_rows_available === true &&
+        partnerFeed?.all_source_term_feed_rows_available === true &&
+        finiteOrderedIntervalOrNull(branchPairSumInterval) !== null &&
+        finiteOrderedIntervalOrNull(branchPairAntisymmetricInterval) !== null;
+      return {
+        node_index: terminalNodeIndex,
+        terminal_graph_cell_id: row.cell_id,
+        row_index: row.row_index,
+        comparison_row_index: row.comparison_row_index,
+        source_subcover_row_index: row.source_subcover_row_index,
+        source_cell_index: sourceCellIndex,
+        selected_branch: branch,
+        partner_branch: partnerBranch,
+        source_y_order: H38_NUMERATOR_Y_ORDER,
+        required_xi_derivative_order: 4,
+        speed_interval: row.speed_interval,
+        xi_interval: row.xi_interval,
+        readiness_row_available: readinessRow !== null,
+        target_s37_division_numerator_width_lower:
+          Number.isFinite(targetNumeratorWidthLower)
+            ? targetNumeratorWidthLower
+            : null,
+        selected_branch_expression_feed: selectedFeed,
+        partner_branch_expression_feed: partnerFeed,
+        selected_branch_source_term_feed_interval_d4: selectedInterval,
+        partner_branch_source_term_feed_interval_d4: partnerInterval,
+        candidate_branch_pair_sum_interval: branchPairSumInterval,
+        candidate_branch_pair_antisymmetric_interval:
+          branchPairAntisymmetricInterval,
+        candidate_branch_pair_antisymmetric_half_width:
+          branchPairAntisymmetricInterval === null
+            ? null
+            : intervalHalfWidth(branchPairAntisymmetricInterval),
+        terminal_source_cell_branch_pair_feed_available:
+          branchPairAvailable,
+        admissible_as_terminal_provider_object_branch_rows: false,
+        row_certifies_expression_level_source_map_provider_object_branch_rows:
+          false,
+        row_certifies_terminal_row_provider_object_replay: false,
+        row_certifies_directed_rounded_shared_domain: false,
+        row_status: branchPairAvailable
+          ? "all-terminal-source-cell-expression-branch-pair-feed-materialized-P-b-identity-open"
+          : "all-terminal-source-cell-expression-branch-pair-feed-open",
+      };
+    })
+    .filter((row) => row !== null);
   const requestedRatios = rowReplays
     .map((row) =>
       Number(
@@ -43463,6 +43890,20 @@ function h39RequestedY44ProducerRowLocalCollarReplay({
   const n38S37CollarDiagnostics = rowReplays
     .map((row) => row.row_center_n38_s37_collar_diagnostic)
     .filter((target) => target !== null && target !== undefined);
+  const partnerBranchSourceTermFeedCandidates = rowReplays
+    .map((row) => row.row_center_partner_branch_source_term_feed_candidate)
+    .filter((target) => target !== null && target !== undefined);
+  const allPartnerBranchSourceTermFeedCandidatesAvailable =
+    partnerBranchSourceTermFeedCandidates.length === rowReplays.length &&
+    partnerBranchSourceTermFeedCandidates.length > 0 &&
+    partnerBranchSourceTermFeedCandidates.every(
+      (target) =>
+        target.same_domain_with_selected_row === true &&
+        target.selected_branch_derivative_input_available === true &&
+        target.partner_branch_derivative_input_available === true &&
+        target.provider_object_branch_pair_available === false &&
+        target.admissible_as_terminal_provider_object_branch_rows === false
+    );
   const producerTargetNumbers = (field) =>
     producerWidthTargets
       .map((target) => Number(target[field]))
@@ -43961,6 +44402,7 @@ function h39RequestedY44ProducerRowLocalCollarReplay({
       "h39-requested-y44-row-local-producer-collar-replay-candidate-emitted",
     evaluation_level:
       "candidate-h39-requested-y44-row-local-producer-collar-replay",
+    active_branch: branch,
     selected_row_count: rowReplays.length,
     requested_residual_midpoint_matching_half_width: requestedHalfWidth,
     requested_residual_budget_interval: requestedBudgetInterval.map(Number),
@@ -44193,6 +44635,36 @@ function h39RequestedY44ProducerRowLocalCollarReplay({
       intervalizedLagrangeLossAttributionSummary,
     row_local_n38_intervalized_lagrange_loss_attribution:
       intervalizedLagrangeLossAttributionSummary.intervalized_loss_attribution,
+    row_local_opposite_branch_source_term_feed_candidate_count:
+      partnerBranchSourceTermFeedCandidates.length,
+    all_row_local_opposite_branch_source_term_feeds_materialized:
+      allPartnerBranchSourceTermFeedCandidatesAvailable,
+    row_local_opposite_branch_source_term_feed_interpretation:
+      allPartnerBranchSourceTermFeedCandidatesAvailable
+        ? "same-domain-opposite-branch-expression-source-term-feeds-materialized-provider-object-lift-open"
+        : "same-domain-opposite-branch-expression-source-term-feed-open",
+    all_terminal_source_cell_branch_pair_feed_surface_rows:
+      allTerminalSourceCellBranchPairFeedSurfaceRows,
+    all_terminal_source_cell_branch_pair_feed_surface_row_count:
+      allTerminalSourceCellBranchPairFeedSurfaceRows.length,
+    all_terminal_source_cell_branch_pair_feeds_materialized:
+      allTerminalSourceCellBranchPairFeedSurfaceRows.length ===
+        Number(producerBudgetComparison?.producer_row_count) &&
+      allTerminalSourceCellBranchPairFeedSurfaceRows.length > 0 &&
+      allTerminalSourceCellBranchPairFeedSurfaceRows.every(
+        (row) =>
+          row.terminal_source_cell_branch_pair_feed_available === true &&
+          row.admissible_as_terminal_provider_object_branch_rows === false
+      ),
+    all_terminal_source_cell_branch_pair_feed_interpretation:
+      allTerminalSourceCellBranchPairFeedSurfaceRows.length ===
+        Number(producerBudgetComparison?.producer_row_count) &&
+      allTerminalSourceCellBranchPairFeedSurfaceRows.length > 0 &&
+      allTerminalSourceCellBranchPairFeedSurfaceRows.every(
+        (row) => row.terminal_source_cell_branch_pair_feed_available === true
+      )
+        ? "all-terminal-source-cell-expression-branch-pair-feeds-materialized-P-b-identity-open"
+        : "all-terminal-source-cell-expression-branch-pair-feed-open",
     max_row_local_n38_observed_m4_proxy_to_required_budget:
       maxN38S37DiagnosticNumber(
         "row_local_n38_observed_m4_proxy_to_required_budget"
@@ -45972,6 +46444,7 @@ export function buildH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffol
       comparison_row_index: rowContext.comparison_row_index,
       source_subcover_row_index: rowContext.source_subcover_row_index,
       cell_id: rowContext.cell_id,
+      active_branch: rowContext.active_branch ?? null,
       speed_interval: rowContext.speed_interval,
       xi_interval: rowContext.xi_interval,
       source_y_order: H38_NUMERATOR_Y_ORDER,
@@ -101640,6 +102113,10 @@ export function buildH39RequestedY44TerminalExpressionLevelSourceTermFoldNullGen
         source_y_order: H38_NUMERATOR_Y_ORDER,
         required_xi_derivative_order: 4,
         terminal_graph_cell_id: terminalGraphCellId,
+        successor_scalar_identity_weight:
+          spec.successor_scalar_identity_weight,
+        centered_successor_scalar_weight:
+          spec.centered_successor_scalar_weight,
         terminal_expression_level_source_term_fold_null_generator_compatibility_attempt_row_kind:
           "terminal-expression-level-source-term-fold-null-generator-compatibility-terminal-row",
         source_terms_preserved_signed_together: [
@@ -103024,6 +103501,4252 @@ export function validateH39RequestedY44TerminalExpressionLevelSourceTermFoldNull
     )
   ) {
     errors.push("fold-null coefficient extractor rows must expose branch G antisymmetric coefficients and no provider bridge");
+  }
+  return errors;
+}
+
+function h39TerminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAuditClaimBoundary() {
+  return {
+    defines_terminal_expression_level_source_term_fold_null_coefficient_provider_moment_bridge_audit_only:
+      true,
+    certifies_terminal_g_to_provider_moment_bridge: false,
+    certifies_terminal_g_to_provider_correction_term: false,
+    certifies_expression_level_source_term_fold_null_generator_coefficient_extractor:
+      false,
+    certifies_expression_level_source_term_branch_projection_alpha_map: false,
+    certifies_expression_level_source_term_to_provider_object_branch_projection_map:
+      false,
+    certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation:
+      false,
+    certifies_expression_level_source_map_provider_object_branch_split_map:
+      false,
+    certifies_expression_level_source_map_provider_object_branch_rows: false,
+    certifies_provider_object_branch_residual_extractor: false,
+    certifies_provider_object_w_expression: false,
+    certifies_source_covariance_matrix_identity: false,
+    certifies_terminal_row_provider_object_replay: false,
+    certifies_expression_level_n38_provider: false,
+    certifies_terminal_row_provider_enclosure: false,
+    certifies_terminal_graph_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
+export function buildH39RequestedY44TerminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAuditCandidate({
+  terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt,
+  terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor,
+  terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit,
+} = {}) {
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const numericInterval = (interval) =>
+    finiteOrderedInterval(interval)
+      ? [Number(interval[0]), Number(interval[1])]
+      : null;
+  const intervalSubtract = (left, right) =>
+    finiteOrderedInterval(left) && finiteOrderedInterval(right)
+      ? [Number(left[0]) - Number(right[1]), Number(left[1]) - Number(right[0])]
+      : null;
+  const intervalContainsZero = (interval) =>
+    finiteOrderedInterval(interval) &&
+    Number(interval[0]) <= 0 &&
+    0 <= Number(interval[1]);
+  const rowsByNode = (rows) =>
+    new Map(
+      (rows ?? [])
+        .filter((row) => Number.isInteger(row?.node_index))
+        .map((row) => [Number(row.node_index), row])
+    );
+  const terminalRowsByH = (rows) =>
+    new Map(
+      (rows ?? [])
+        .filter((row) => Number.isInteger(row?.terminal_h_index))
+        .map((row) => [Number(row.terminal_h_index), row])
+    );
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const terminalSpecs = H39_TERMINAL_SUCCESSOR_COEFFICIENT_IDENTITY_IMPORT_SPECS;
+  const coefficientRowsByNode = rowsByNode(
+    terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt
+      ?.terminal_fold_null_coefficient_extractor_rows
+  );
+  const providerEquationRowsByNode = rowsByNode(
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_rows
+  );
+  const projectionRowsByNode = rowsByNode(
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      ?.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_rows
+  );
+  const coefficientExtractorReady =
+    terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_FOLD_NULL_COEFFICIENT_EXTRACTOR_ATTEMPT_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt
+      ?.terminal_fold_null_coefficient_extractor_attempt_verified === true &&
+    terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt
+      ?.terminal_fold_null_coefficient_extractor_attempt_certified === false &&
+    terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt
+      ?.terminal_branch_g_antisymmetric_coefficient_candidates_available ===
+      true &&
+    terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt
+      ?.terminal_branch_g_antisymmetric_coefficient_is_provider_object_A_P ===
+      false &&
+    terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt
+      ?.coefficient_to_provider_object_branch_moment_bridge_available === false;
+  const providerEquationExtractorReady =
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ANTISYMMETRIC_EQUATION_EXTRACTOR_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_verified ===
+      true &&
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_certified ===
+      false &&
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      ?.provider_object_branch_antisymmetric_equation_available_terminal_row_count ===
+      0 &&
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      ?.all_provider_object_branch_antisymmetric_equations_missing === true;
+  const projectionMapAuditReady =
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_TO_PROVIDER_OBJECT_BRANCH_PROJECTION_MAP_AUDIT_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      ?.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_verified ===
+      true &&
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      ?.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_certified ===
+      false &&
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      ?.source_term_projection_map_available_terminal_row_count === 0 &&
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      ?.source_term_to_branch_projection_missing_rank === 15 &&
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      ?.all_source_term_rows_preserve_one_signed_stream === true;
+  const terminalCheckKinds = [
+    "terminal_branch_g_moment_row_available",
+    "provider_object_branch_moment_equation_extractor_ready",
+    "source_term_projection_map_audit_ready",
+    "same_domain_terminal_row_aligned",
+    "provider_object_branch_moment_absence_recorded",
+    "source_term_alpha_map_absence_recorded",
+    "g_to_provider_correction_term_obstruction_recorded",
+    "h39_claims_remain_open",
+  ];
+  const checkKinds = [
+    "terminal_branch_g_moment_extractor_ready",
+    "provider_object_branch_moment_equation_extractor_ready",
+    "source_term_projection_map_audit_ready",
+    "same_domain_terminal_rows_aligned",
+    "terminal_branch_g_moment_available",
+    "provider_object_branch_moment_absence_recorded",
+    "source_term_alpha_map_absence_recorded",
+    "g_to_provider_correction_term_obstruction_recorded",
+    "h39_claims_remain_open",
+  ];
+  const rows = Array.from({ length: 5 }, (_, nodeIndex) => {
+    const terminalGraphCellId = `speed.${nodeIndex}.first-y`;
+    const coefficientNodeRow = coefficientRowsByNode.get(nodeIndex) ?? null;
+    const providerEquationNodeRow =
+      providerEquationRowsByNode.get(nodeIndex) ?? null;
+    const projectionNodeRow = projectionRowsByNode.get(nodeIndex) ?? null;
+    const coefficientTerminalRowsByH = terminalRowsByH(
+      coefficientNodeRow?.terminal_fold_null_coefficient_extractor_rows
+    );
+    const providerEquationTerminalRowsByH = terminalRowsByH(
+      providerEquationNodeRow
+        ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_rows
+    );
+    const projectionTerminalRowsByH = terminalRowsByH(
+      projectionNodeRow
+        ?.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_rows
+    );
+    const terminalRows = terminalSpecs.map((spec) => {
+      const coefficientTerminalRow =
+        coefficientTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const providerEquationTerminalRow =
+        providerEquationTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const projectionTerminalRow =
+        projectionTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const terminalBranchGMomentInterval = numericInterval(
+        coefficientTerminalRow?.terminal_branch_g_antisymmetric_coefficient_interval
+      );
+      const providerObjectBranchMomentInterval = numericInterval(
+        providerEquationTerminalRow
+          ?.provider_object_branch_antisymmetric_equation_interval
+      );
+      const gMomentAvailable =
+        finiteOrderedInterval(terminalBranchGMomentInterval) &&
+        coefficientTerminalRow
+          ?.terminal_branch_g_antisymmetric_coefficient_available === true;
+      const providerMomentAvailable =
+        finiteOrderedInterval(providerObjectBranchMomentInterval) &&
+        providerEquationTerminalRow
+          ?.provider_object_branch_antisymmetric_equation_available === true;
+      const correctionTermInterval = intervalSubtract(
+        providerObjectBranchMomentInterval,
+        terminalBranchGMomentInterval
+      );
+      const correctionTermAvailable = finiteOrderedInterval(
+        correctionTermInterval
+      );
+      const directIdentityResidualContainsZero =
+        intervalContainsZero(correctionTermInterval);
+      const terminalChecks = {
+        terminal_branch_g_moment_row_available:
+          coefficientExtractorReady &&
+          coefficientTerminalRow
+            ?.row_terminal_fold_null_coefficient_extractor_attempt_verified ===
+            true &&
+          gMomentAvailable,
+        provider_object_branch_moment_equation_extractor_ready:
+          providerEquationExtractorReady &&
+          providerEquationTerminalRow
+            ?.row_terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_verified ===
+            true,
+        source_term_projection_map_audit_ready:
+          projectionMapAuditReady &&
+          projectionTerminalRow
+            ?.row_terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_verified ===
+            true,
+        same_domain_terminal_row_aligned:
+          coefficientTerminalRow?.terminal_graph_cell_id ===
+            terminalGraphCellId &&
+          providerEquationTerminalRow?.terminal_graph_cell_id ===
+            terminalGraphCellId &&
+          projectionTerminalRow?.terminal_graph_cell_id === terminalGraphCellId &&
+          coefficientTerminalRow?.terminal_h_index === spec.terminal_h_index &&
+          providerEquationTerminalRow?.terminal_h_index ===
+            spec.terminal_h_index &&
+          projectionTerminalRow?.terminal_h_index === spec.terminal_h_index &&
+          coefficientTerminalRow?.successor_scalar_identity_weight ===
+            spec.successor_scalar_identity_weight &&
+          providerEquationTerminalRow?.successor_scalar_identity_weight ===
+            spec.successor_scalar_identity_weight &&
+          projectionTerminalRow?.successor_scalar_identity_weight ===
+            spec.successor_scalar_identity_weight &&
+          coefficientTerminalRow?.centered_successor_scalar_weight ===
+            spec.centered_successor_scalar_weight &&
+          providerEquationTerminalRow?.centered_successor_scalar_weight ===
+            spec.centered_successor_scalar_weight &&
+          projectionTerminalRow?.centered_successor_scalar_weight ===
+            spec.centered_successor_scalar_weight,
+        provider_object_branch_moment_absence_recorded:
+          providerMomentAvailable === false &&
+          providerEquationTerminalRow
+            ?.provider_object_branch_antisymmetric_equation_available ===
+            false &&
+          providerEquationTerminalRow
+            ?.provider_object_branch_antisymmetric_equation_interval === null &&
+          providerEquationTerminalRow
+            ?.provider_object_branch_antisymmetric_free_dimension_remaining ===
+            1,
+        source_term_alpha_map_absence_recorded:
+          projectionTerminalRow?.source_term_projection_map_available ===
+            false &&
+          projectionTerminalRow
+            ?.source_term_to_branch_projection_missing_rank === 1 &&
+          projectionTerminalRow
+            ?.provider_object_branch_antisymmetric_equation_available ===
+            false,
+        g_to_provider_correction_term_obstruction_recorded:
+          gMomentAvailable === true &&
+          providerMomentAvailable === false &&
+          correctionTermAvailable === false,
+        h39_claims_remain_open:
+          coefficientTerminalRow
+            ?.row_certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation ===
+            false &&
+          coefficientTerminalRow
+            ?.row_certifies_expression_level_source_map_provider_object_branch_rows ===
+            false &&
+          providerEquationTerminalRow
+            ?.row_certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation ===
+            false &&
+          providerEquationTerminalRow
+            ?.row_certifies_expression_level_source_map_provider_object_branch_rows ===
+            false &&
+          projectionTerminalRow
+            ?.row_certifies_expression_level_source_term_to_provider_object_branch_projection_map ===
+            false &&
+          projectionTerminalRow
+            ?.row_certifies_expression_level_source_map_provider_object_branch_rows ===
+            false &&
+          projectionTerminalRow?.row_certifies_terminal_row_provider_object_replay ===
+            false,
+      };
+      const terminalVerified = Object.values(terminalChecks).every(
+        (value) => value === true
+      );
+      return {
+        terminal_h_index: spec.terminal_h_index,
+        source_y_order: H38_NUMERATOR_Y_ORDER,
+        terminal_graph_cell_id: terminalGraphCellId,
+        successor_scalar_identity_weight:
+          spec.successor_scalar_identity_weight,
+        centered_successor_scalar_weight:
+          spec.centered_successor_scalar_weight,
+        terminal_g_to_provider_bridge_audit_row_kind:
+          "terminal-expression-level-source-term-fold-null-coefficient-provider-moment-bridge-terminal-row",
+        terminal_branch_g_moment_formula:
+          "A_G^{terminal}=G_{-,y(h+2)}-G_{+,y(h+2)}",
+        provider_object_branch_moment_formula: "A_P=P_- - P_+",
+        g_to_provider_correction_term_formula:
+          "C_{G_to_P}=A_P-A_G^{terminal}",
+        terminal_g_to_provider_bridge_model:
+          "A_P=A_G^{terminal}+C_{G_to_P}",
+        terminal_g_to_provider_direct_identity_target: "C_{G_to_P}=0",
+        terminal_branch_g_moment_interval: terminalBranchGMomentInterval,
+        terminal_branch_g_moment_available: gMomentAvailable,
+        provider_object_branch_moment_interval:
+          providerObjectBranchMomentInterval,
+        provider_object_branch_moment_available: providerMomentAvailable,
+        source_term_alpha_map_available:
+          projectionTerminalRow?.source_term_projection_map_available === true,
+        source_term_to_provider_object_branch_projection_missing_rank:
+          projectionTerminalRow?.source_term_to_branch_projection_missing_rank ??
+          null,
+        g_to_provider_correction_term_interval: correctionTermInterval,
+        g_to_provider_correction_term_available: correctionTermAvailable,
+        g_to_provider_direct_identity_residual_contains_zero:
+          directIdentityResidualContainsZero,
+        terminal_g_to_provider_bridge_available: false,
+        terminal_g_to_provider_bridge_certified: false,
+        terminal_g_to_provider_direct_identity_certified: false,
+        terminal_g_to_provider_bridge_audit_check_kinds: [
+          ...terminalCheckKinds,
+        ],
+        terminal_g_to_provider_bridge_audit_checks: terminalChecks,
+        row_terminal_g_to_provider_bridge_audit_verified: terminalVerified,
+        row_certifies_terminal_g_to_provider_moment_bridge: false,
+        row_certifies_terminal_g_to_provider_correction_term: false,
+        row_certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation:
+          false,
+        row_certifies_expression_level_source_map_provider_object_branch_rows:
+          false,
+        row_certifies_terminal_row_provider_object_replay: false,
+        row_certifies_expression_level_n38_provider: false,
+        row_status: terminalVerified
+          ? "terminal-branch-G-moment-available-provider-object-branch-moment-missing"
+          : "terminal-g-to-provider-bridge-audit-open",
+        claim_boundary:
+          h39TerminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAuditClaimBoundary(),
+      };
+    });
+    const rowChecks = {
+      terminal_branch_g_moment_extractor_ready:
+        coefficientExtractorReady &&
+        coefficientNodeRow
+          ?.row_terminal_fold_null_coefficient_extractor_attempt_verified ===
+          true,
+      provider_object_branch_moment_equation_extractor_ready:
+        providerEquationExtractorReady &&
+        providerEquationNodeRow
+          ?.row_terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_verified ===
+          true,
+      source_term_projection_map_audit_ready:
+        projectionMapAuditReady &&
+        projectionNodeRow
+          ?.row_terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_verified ===
+          true,
+      same_domain_terminal_rows_aligned: terminalRows.every(
+        (row) =>
+          row.terminal_g_to_provider_bridge_audit_checks
+            ?.same_domain_terminal_row_aligned === true
+      ),
+      terminal_branch_g_moment_available: terminalRows.every(
+        (row) => row.terminal_branch_g_moment_available === true
+      ),
+      provider_object_branch_moment_absence_recorded: terminalRows.every(
+        (row) =>
+          row.terminal_g_to_provider_bridge_audit_checks
+            ?.provider_object_branch_moment_absence_recorded === true
+      ),
+      source_term_alpha_map_absence_recorded: terminalRows.every(
+        (row) =>
+          row.terminal_g_to_provider_bridge_audit_checks
+            ?.source_term_alpha_map_absence_recorded === true
+      ),
+      g_to_provider_correction_term_obstruction_recorded: terminalRows.every(
+        (row) =>
+          row.terminal_g_to_provider_bridge_audit_checks
+            ?.g_to_provider_correction_term_obstruction_recorded === true
+      ),
+      h39_claims_remain_open: terminalRows.every(
+        (row) =>
+          row.terminal_g_to_provider_bridge_audit_checks
+            ?.h39_claims_remain_open === true
+      ),
+    };
+    const rowVerified = Object.values(rowChecks).every(
+      (value) => value === true
+    );
+    return {
+      node_index: nodeIndex,
+      terminal_graph_cell_id: terminalGraphCellId,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      terminal_g_to_provider_bridge_audit_row_kind:
+        "terminal-expression-level-source-term-fold-null-coefficient-provider-moment-bridge-node-row",
+      terminal_h_indexes: terminalSpecs.map((spec) => spec.terminal_h_index),
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      terminal_g_to_provider_bridge_audit_rows: terminalRows,
+      terminal_g_to_provider_bridge_audit_terminal_row_count:
+        terminalRows.length,
+      terminal_branch_g_moment_available_terminal_row_count:
+        terminalRows.filter((row) => row.terminal_branch_g_moment_available)
+          .length,
+      provider_object_branch_moment_available_terminal_row_count:
+        terminalRows.filter(
+          (row) => row.provider_object_branch_moment_available
+        ).length,
+      source_term_alpha_map_available_terminal_row_count: terminalRows.filter(
+        (row) => row.source_term_alpha_map_available
+      ).length,
+      g_to_provider_correction_term_available_terminal_row_count:
+        terminalRows.filter(
+          (row) => row.g_to_provider_correction_term_available
+        ).length,
+      terminal_g_to_provider_bridge_certified_terminal_row_count:
+        terminalRows.filter((row) => row.terminal_g_to_provider_bridge_certified)
+          .length,
+      same_domain_bridge_obstruction_terminal_row_count: terminalRows.filter(
+        (row) =>
+          row.row_terminal_g_to_provider_bridge_audit_verified === true &&
+          row.terminal_g_to_provider_bridge_certified === false
+      ).length,
+      row_check_kinds: [...checkKinds],
+      row_checks: rowChecks,
+      row_terminal_g_to_provider_bridge_audit_verified: rowVerified,
+      row_certifies_terminal_g_to_provider_moment_bridge: false,
+      row_certifies_terminal_g_to_provider_correction_term: false,
+      row_certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation:
+        false,
+      row_certifies_expression_level_source_map_provider_object_branch_rows:
+        false,
+      row_certifies_terminal_row_provider_object_replay: false,
+      row_certifies_expression_level_n38_provider: false,
+      row_status: rowVerified
+        ? "terminal-branch-G-moment-available-provider-object-branch-moment-missing"
+        : "terminal-g-to-provider-bridge-audit-open",
+      claim_boundary:
+        h39TerminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAuditClaimBoundary(),
+    };
+  });
+  const terminalRowCount = rows.reduce(
+    (total, row) =>
+      total + row.terminal_g_to_provider_bridge_audit_terminal_row_count,
+    0
+  );
+  const sumRows = (key) =>
+    rows.reduce((total, row) => total + Number(row?.[key] ?? 0), 0);
+  const aggregateChecks = {
+    terminal_branch_g_moment_extractor_ready: coefficientExtractorReady,
+    provider_object_branch_moment_equation_extractor_ready:
+      providerEquationExtractorReady,
+    source_term_projection_map_audit_ready: projectionMapAuditReady,
+    same_domain_terminal_rows_aligned: rows.every(
+      (row) => row.row_checks?.same_domain_terminal_rows_aligned === true
+    ),
+    terminal_branch_g_moment_available: rows.every(
+      (row) => row.row_checks?.terminal_branch_g_moment_available === true
+    ),
+    provider_object_branch_moment_absence_recorded: rows.every(
+      (row) =>
+        row.row_checks?.provider_object_branch_moment_absence_recorded === true
+    ),
+    source_term_alpha_map_absence_recorded: rows.every(
+      (row) => row.row_checks?.source_term_alpha_map_absence_recorded === true
+    ),
+    g_to_provider_correction_term_obstruction_recorded: rows.every(
+      (row) =>
+        row.row_checks?.g_to_provider_correction_term_obstruction_recorded ===
+        true
+    ),
+    h39_claims_remain_open: rows.every(
+      (row) => row.row_checks?.h39_claims_remain_open === true
+    ),
+  };
+  const auditVerified =
+    rows.length === 5 &&
+    terminalRowCount === 15 &&
+    rows.every(
+      (row) => row.row_terminal_g_to_provider_bridge_audit_verified === true
+    ) &&
+    Object.values(aggregateChecks).every((value) => value === true);
+  const gMomentAvailableCount = sumRows(
+    "terminal_branch_g_moment_available_terminal_row_count"
+  );
+  const providerMomentAvailableCount = sumRows(
+    "provider_object_branch_moment_available_terminal_row_count"
+  );
+  const correctionAvailableCount = sumRows(
+    "g_to_provider_correction_term_available_terminal_row_count"
+  );
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_FOLD_NULL_COEFFICIENT_PROVIDER_MOMENT_BRIDGE_AUDIT_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-terminal-expression-level-source-term-fold-null-coefficient-provider-moment-bridge-audit-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-terminal-expression-level-source-term-fold-null-coefficient-provider-moment-bridge-audit",
+    target_kind:
+      "candidate-requested-y44-terminal-expression-level-source-term-fold-null-coefficient-provider-moment-bridge-audit",
+    terminal_expression_level_source_term_fold_null_coefficient_extractor_attempt_schema:
+      terminalExpressionLevelSourceTermFoldNullCoefficientExtractorAttempt?.schema ??
+      null,
+    terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_schema:
+      terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor?.schema ??
+      null,
+    terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_schema:
+      terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit?.schema ??
+      null,
+    proof_status:
+      "candidate-terminal-branch-G-moment-available-provider-object-branch-moment-missing",
+    terminal_branch_g_moment_formula:
+      "A_G^{terminal}=G_{-,y(h+2)}-G_{+,y(h+2)}",
+    provider_object_branch_moment_formula: "A_P=P_- - P_+",
+    g_to_provider_correction_term_formula:
+      "C_{G_to_P}=A_P-A_G^{terminal}",
+    terminal_g_to_provider_bridge_model:
+      "A_P=A_G^{terminal}+C_{G_to_P}",
+    terminal_g_to_provider_direct_identity_target: "C_{G_to_P}=0",
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    terminal_h_indexes: terminalSpecs.map((spec) => spec.terminal_h_index),
+    source_terms_preserved_signed_together: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    terminal_g_to_provider_bridge_audit_check_kinds: [...checkKinds],
+    terminal_g_to_provider_bridge_audit_checks: aggregateChecks,
+    terminal_g_to_provider_bridge_audit_verified: auditVerified,
+    terminal_g_to_provider_bridge_audit_certified: false,
+    terminal_g_to_provider_bridge_audit_row_count: rows.length,
+    terminal_g_to_provider_bridge_audit_terminal_row_count: terminalRowCount,
+    terminal_g_to_provider_bridge_audit_rows: rows,
+    terminal_branch_g_moment_available_terminal_row_count:
+      gMomentAvailableCount,
+    provider_object_branch_moment_available_terminal_row_count:
+      providerMomentAvailableCount,
+    source_term_alpha_map_available_terminal_row_count: sumRows(
+      "source_term_alpha_map_available_terminal_row_count"
+    ),
+    g_to_provider_correction_term_available_terminal_row_count:
+      correctionAvailableCount,
+    terminal_g_to_provider_bridge_certified_terminal_row_count: sumRows(
+      "terminal_g_to_provider_bridge_certified_terminal_row_count"
+    ),
+    same_domain_bridge_obstruction_terminal_row_count: sumRows(
+      "same_domain_bridge_obstruction_terminal_row_count"
+    ),
+    terminal_branch_g_moment_available:
+      auditVerified && gMomentAvailableCount === terminalRowCount,
+    provider_object_branch_moment_available:
+      providerMomentAvailableCount === terminalRowCount,
+    g_to_provider_correction_term_available:
+      correctionAvailableCount === terminalRowCount,
+    terminal_g_to_provider_bridge_available: false,
+    terminal_g_to_provider_bridge_certified: false,
+    terminal_g_to_provider_direct_identity_certified: false,
+    expression_level_source_map_provider_object_branch_antisymmetric_equation_certified:
+      false,
+    expression_level_source_map_provider_object_branch_rows_certified: false,
+    expression_level_source_term_to_provider_object_branch_projection_map_certified:
+      false,
+    source_covariance_matrix_identity_certified: false,
+    terminal_row_provider_object_replay_certified: false,
+    expression_level_n38_provider_certified: false,
+    directed_rounded_shared_domain_provider_certified: false,
+    terminal_g_to_provider_bridge_audit_classification:
+      auditVerified && providerMomentAvailableCount === 0
+        ? "terminal-branch-G-moment-available-provider-object-branch-moment-missing"
+        : "terminal-g-to-provider-bridge-audit-open",
+    terminal_g_to_provider_bridge_audit_blocker_classification:
+      auditVerified && providerMomentAvailableCount === 0
+        ? "same-domain-A_P-provider-object-branch-moment-equation-needed"
+        : "terminal-g-to-provider-bridge-audit-open",
+    terminal_g_to_provider_bridge_audit_primary_missing_object_kind:
+      auditVerified && providerMomentAvailableCount === 0
+        ? "same-domain-provider-object-branch-moment-A_P-or-correction-term-C_G_to_P"
+        : "terminal-g-to-provider-bridge-audit",
+    next_certificate_object:
+      "materialize the same-domain provider-object branch moment A_P=P_- - P_+, or derive a same-domain transport correction C_{G_to_P}=A_P-A_G^{terminal} from the terminal branch G coefficient moment into the source-map provider object",
+    candidate_certificate_route:
+      "The terminal branch G antisymmetric coefficient moment is finite on all same-domain terminal rows, but the current expression-level provider-object surface still exposes neither A_P=P_- - P_+ nor source-term alpha coefficients for A_P=sum_j alpha_j*S_j. Therefore the formal bridge residual C_{G_to_P}=A_P-A_G^{terminal} cannot be interval-formed. This packet certifies no G-to-provider identity, provider-object branch rows, matrix identity, W closure, S37 division, shifted R43 closure, retained branch, or directed-rounded provider.",
+    claim_boundary:
+      h39TerminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAuditClaimBoundary(),
+  };
+}
+
+export function validateH39RequestedY44TerminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAuditCandidate(
+  artifact
+) {
+  const errors = [];
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const sameStringSet = (left, right) =>
+    Array.isArray(left) &&
+    left.length === right.length &&
+    right.every((value) => left.includes(value));
+  const sameTerminalHIndexes = (indexes) =>
+    Array.isArray(indexes) &&
+    indexes.length === 3 &&
+    indexes[0] === 37 &&
+    indexes[1] === 36 &&
+    indexes[2] === 35;
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const validClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_terminal_expression_level_source_term_fold_null_coefficient_provider_moment_bridge_audit_only ===
+      true &&
+    claimBoundary?.certifies_terminal_g_to_provider_moment_bridge === false &&
+    claimBoundary?.certifies_terminal_g_to_provider_correction_term ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_term_fold_null_generator_coefficient_extractor ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_term_to_provider_object_branch_projection_map ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_split_map ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_rows ===
+      false &&
+    claimBoundary?.certifies_provider_object_branch_residual_extractor ===
+      false &&
+    claimBoundary?.certifies_provider_object_w_expression === false &&
+    claimBoundary?.certifies_source_covariance_matrix_identity === false &&
+    claimBoundary?.certifies_terminal_row_provider_object_replay === false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const expectedCheckKinds = [
+    "terminal_branch_g_moment_extractor_ready",
+    "provider_object_branch_moment_equation_extractor_ready",
+    "source_term_projection_map_audit_ready",
+    "same_domain_terminal_rows_aligned",
+    "terminal_branch_g_moment_available",
+    "provider_object_branch_moment_absence_recorded",
+    "source_term_alpha_map_absence_recorded",
+    "g_to_provider_correction_term_obstruction_recorded",
+    "h39_claims_remain_open",
+  ];
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_FOLD_NULL_COEFFICIENT_PROVIDER_MOMENT_BRIDGE_AUDIT_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 fold-null coefficient provider moment bridge audit candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-terminal-expression-level-source-term-fold-null-coefficient-provider-moment-bridge-audit-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-terminal-expression-level-source-term-fold-null-coefficient-provider-moment-bridge-audit" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-terminal-expression-level-source-term-fold-null-coefficient-provider-moment-bridge-audit" ||
+    artifact
+      ?.terminal_expression_level_source_term_fold_null_coefficient_extractor_attempt_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_FOLD_NULL_COEFFICIENT_EXTRACTOR_ATTEMPT_CANDIDATE_SCHEMA ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ANTISYMMETRIC_EQUATION_EXTRACTOR_CANDIDATE_SCHEMA ||
+    artifact
+      ?.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_TO_PROVIDER_OBJECT_BRANCH_PROJECTION_MAP_AUDIT_CANDIDATE_SCHEMA ||
+    artifact?.proof_status !==
+      "candidate-terminal-branch-G-moment-available-provider-object-branch-moment-missing" ||
+    artifact?.terminal_branch_g_moment_formula !==
+      "A_G^{terminal}=G_{-,y(h+2)}-G_{+,y(h+2)}" ||
+    artifact?.provider_object_branch_moment_formula !== "A_P=P_- - P_+" ||
+    artifact?.g_to_provider_correction_term_formula !==
+      "C_{G_to_P}=A_P-A_G^{terminal}" ||
+    artifact?.terminal_g_to_provider_bridge_model !==
+      "A_P=A_G^{terminal}+C_{G_to_P}" ||
+    artifact?.terminal_g_to_provider_direct_identity_target !==
+      "C_{G_to_P}=0" ||
+    artifact?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    !sameTerminalHIndexes(artifact?.terminal_h_indexes) ||
+    !sameTerms(artifact?.source_terms_preserved_signed_together) ||
+    !sameStringSet(
+      artifact?.terminal_g_to_provider_bridge_audit_check_kinds,
+      expectedCheckKinds
+    )
+  ) {
+    errors.push("bridge audit metadata must target A_P, A_G, and the correction term on the terminal domain");
+  }
+  if (
+    expectedCheckKinds.some(
+      (kind) => artifact?.terminal_g_to_provider_bridge_audit_checks?.[kind] !== true
+    ) ||
+    artifact?.terminal_g_to_provider_bridge_audit_verified !== true ||
+    artifact?.terminal_g_to_provider_bridge_audit_certified !== false ||
+    artifact?.terminal_g_to_provider_bridge_audit_row_count !== 5 ||
+    artifact?.terminal_g_to_provider_bridge_audit_terminal_row_count !== 15 ||
+    artifact?.terminal_branch_g_moment_available_terminal_row_count !== 15 ||
+    artifact?.provider_object_branch_moment_available_terminal_row_count !==
+      0 ||
+    artifact?.source_term_alpha_map_available_terminal_row_count !== 0 ||
+    artifact
+      ?.g_to_provider_correction_term_available_terminal_row_count !== 0 ||
+    artifact
+      ?.terminal_g_to_provider_bridge_certified_terminal_row_count !== 0 ||
+    artifact?.same_domain_bridge_obstruction_terminal_row_count !== 15 ||
+    artifact?.terminal_branch_g_moment_available !== true ||
+    artifact?.provider_object_branch_moment_available !== false ||
+    artifact?.g_to_provider_correction_term_available !== false ||
+    artifact?.terminal_g_to_provider_bridge_available !== false ||
+    artifact?.terminal_g_to_provider_bridge_certified !== false ||
+    artifact?.terminal_g_to_provider_direct_identity_certified !== false ||
+    artifact
+      ?.expression_level_source_map_provider_object_branch_antisymmetric_equation_certified !==
+      false ||
+    artifact
+      ?.expression_level_source_map_provider_object_branch_rows_certified !==
+      false ||
+    artifact
+      ?.expression_level_source_term_to_provider_object_branch_projection_map_certified !==
+      false ||
+    artifact?.source_covariance_matrix_identity_certified !== false ||
+    artifact?.terminal_row_provider_object_replay_certified !== false ||
+    artifact?.expression_level_n38_provider_certified !== false ||
+    artifact?.directed_rounded_shared_domain_provider_certified !== false ||
+    artifact?.terminal_g_to_provider_bridge_audit_classification !==
+      "terminal-branch-G-moment-available-provider-object-branch-moment-missing" ||
+    artifact?.terminal_g_to_provider_bridge_audit_blocker_classification !==
+      "same-domain-A_P-provider-object-branch-moment-equation-needed" ||
+    artifact?.terminal_g_to_provider_bridge_audit_primary_missing_object_kind !==
+      "same-domain-provider-object-branch-moment-A_P-or-correction-term-C_G_to_P" ||
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string" ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("bridge audit aggregate must record finite A_G, absent A_P, absent correction term, and open claims");
+  }
+  const rows = artifact?.terminal_g_to_provider_bridge_audit_rows ?? [];
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== 5 ||
+    rows.some(
+      (row) =>
+        row?.row_terminal_g_to_provider_bridge_audit_verified !== true ||
+        row?.terminal_g_to_provider_bridge_audit_terminal_row_count !== 3 ||
+        row?.terminal_branch_g_moment_available_terminal_row_count !== 3 ||
+        row?.provider_object_branch_moment_available_terminal_row_count !== 0 ||
+        row?.source_term_alpha_map_available_terminal_row_count !== 0 ||
+        row
+          ?.g_to_provider_correction_term_available_terminal_row_count !==
+          0 ||
+        row
+          ?.terminal_g_to_provider_bridge_certified_terminal_row_count !== 0 ||
+        row?.same_domain_bridge_obstruction_terminal_row_count !== 3 ||
+        row?.row_certifies_terminal_g_to_provider_moment_bridge !== false ||
+        row?.row_certifies_terminal_g_to_provider_correction_term !== false ||
+        row?.row_certifies_expression_level_source_map_provider_object_branch_rows !==
+          false ||
+        row?.row_certifies_expression_level_n38_provider !== false ||
+        row?.row_status !==
+          "terminal-branch-G-moment-available-provider-object-branch-moment-missing" ||
+        !validClaimBoundary(row?.claim_boundary) ||
+        !Array.isArray(row?.terminal_g_to_provider_bridge_audit_rows) ||
+        row.terminal_g_to_provider_bridge_audit_rows.length !== 3 ||
+        row.terminal_g_to_provider_bridge_audit_rows.some(
+          (terminalRow) =>
+            terminalRow?.row_terminal_g_to_provider_bridge_audit_verified !==
+              true ||
+            terminalRow?.terminal_branch_g_moment_available !== true ||
+            !finiteOrderedInterval(
+              terminalRow?.terminal_branch_g_moment_interval
+            ) ||
+            terminalRow?.provider_object_branch_moment_available !== false ||
+            terminalRow?.provider_object_branch_moment_interval !== null ||
+            terminalRow?.source_term_alpha_map_available !== false ||
+            terminalRow
+              ?.source_term_to_provider_object_branch_projection_missing_rank !==
+              1 ||
+            terminalRow?.g_to_provider_correction_term_available !== false ||
+            terminalRow?.g_to_provider_correction_term_interval !== null ||
+            terminalRow
+              ?.g_to_provider_direct_identity_residual_contains_zero !==
+              false ||
+            terminalRow?.terminal_g_to_provider_bridge_available !== false ||
+            terminalRow?.terminal_g_to_provider_bridge_certified !== false ||
+            terminalRow
+              ?.terminal_g_to_provider_direct_identity_certified !== false ||
+            terminalRow?.row_certifies_terminal_g_to_provider_moment_bridge !==
+              false ||
+            terminalRow?.row_certifies_terminal_g_to_provider_correction_term !==
+              false ||
+            terminalRow?.row_certifies_terminal_row_provider_object_replay !==
+              false ||
+            terminalRow?.row_status !==
+              "terminal-branch-G-moment-available-provider-object-branch-moment-missing" ||
+            !validClaimBoundary(terminalRow?.claim_boundary)
+        )
+    )
+  ) {
+    errors.push("bridge audit rows must expose finite A_G, no A_P, and no correction interval on every terminal row");
+  }
+  return errors;
+}
+
+function h39TerminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAuditClaimBoundary() {
+  return {
+    defines_terminal_expression_level_source_map_provider_object_pre_sum_branch_source_audit_only:
+      true,
+    certifies_pre_sum_provider_object_branch_source: false,
+    certifies_expression_level_source_map_provider_object_branch_rows: false,
+    certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation:
+      false,
+    certifies_expression_level_source_term_to_provider_object_branch_projection_map:
+      false,
+    certifies_terminal_g_to_provider_moment_bridge: false,
+    certifies_terminal_g_to_provider_correction_term: false,
+    certifies_source_covariance_matrix_identity: false,
+    certifies_terminal_row_provider_object_replay: false,
+    certifies_expression_level_n38_provider: false,
+    certifies_terminal_row_provider_enclosure: false,
+    certifies_terminal_graph_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
+export function buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAuditCandidate({
+  sourceMapResidualCovarianceTarget,
+  terminalExpressionLevelSourceMapProviderObjectBranchProducer,
+  terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor,
+  terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit,
+} = {}) {
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const numericInterval = (interval) =>
+    finiteOrderedInterval(interval)
+      ? [Number(interval[0]), Number(interval[1])]
+      : null;
+  const addIntervals = (left, right) =>
+    finiteOrderedInterval(left) && finiteOrderedInterval(right)
+      ? [Number(left[0]) + Number(right[0]), Number(left[1]) + Number(right[1])]
+      : null;
+  const sumIntervalsLocal = (intervals) =>
+    intervals.reduce((sum, interval) => addIntervals(sum, interval), [0, 0]);
+  const intervalEndpointGap = (left, right) =>
+    finiteOrderedInterval(left) && finiteOrderedInterval(right)
+      ? Math.max(
+          Math.abs(Number(left[0]) - Number(right[0])),
+          Math.abs(Number(left[1]) - Number(right[1]))
+        )
+      : null;
+  const intervalsEqualWithinTolerance = (left, right, tolerance = 1e-12) => {
+    const gap = intervalEndpointGap(left, right);
+    if (!finiteNumber(gap)) {
+      return false;
+    }
+    const scale = Math.max(
+      1,
+      Math.abs(Number(left[0])),
+      Math.abs(Number(left[1])),
+      Math.abs(Number(right[0])),
+      Math.abs(Number(right[1]))
+    );
+    return Number(gap) <= tolerance * scale;
+  };
+  const rowsByNode = (rows) =>
+    new Map(
+      (rows ?? [])
+        .filter((row) => Number.isInteger(row?.node_index))
+        .map((row) => [Number(row.node_index), row])
+    );
+  const terminalRowsByH = (rows) =>
+    new Map(
+      (rows ?? [])
+        .filter((row) => Number.isInteger(row?.terminal_h_index))
+        .map((row) => [Number(row.terminal_h_index), row])
+    );
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const candidateBranchLabel = (termRow) =>
+    termRow?.branch ??
+    termRow?.source_branch ??
+    termRow?.provider_object_branch ??
+    termRow?.source_map_provider_object_branch ??
+    termRow?.branch_label ??
+    null;
+  const candidateBranchWeight = (termRow) =>
+    termRow?.source_term_branch_projection_coefficient ??
+    termRow?.source_term_alpha_coefficient ??
+    termRow?.provider_object_branch_weight ??
+    termRow?.branch_weight ??
+    termRow?.alpha_j ??
+    null;
+  const candidateBranchInterval = (termRow) =>
+    numericInterval(termRow?.source_map_provider_object_branch_interval) ??
+    numericInterval(termRow?.provider_object_branch_interval) ??
+    numericInterval(termRow?.branch_resolved_residual_interval) ??
+    numericInterval(termRow?.source_term_branch_residual_interval);
+  const branchLabelAvailable = (termRow) =>
+    candidateBranchLabel(termRow) === "-" || candidateBranchLabel(termRow) === "+";
+  const branchWeightAvailable = (termRow) =>
+    finiteNumber(candidateBranchWeight(termRow));
+  const branchIntervalAvailable = (termRow) =>
+    finiteOrderedInterval(candidateBranchInterval(termRow));
+  const terminalSpecs = H39_TERMINAL_SUCCESSOR_COEFFICIENT_IDENTITY_IMPORT_SPECS;
+  const sourceTermProviderProbe =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_shared_stream_five_node_source_term_provider_probe ??
+    null;
+  const providerRows = sourceTermProviderProbe?.source_term_provider_probe_rows ?? [];
+  const producerRows =
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      ?.terminal_expression_level_source_map_provider_object_branch_producer_rows ??
+    [];
+  const equationRows =
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_rows ??
+    [];
+  const projectionRows =
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      ?.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_rows ??
+    [];
+  const providerRowsByNode = rowsByNode(providerRows);
+  const producerRowsByNode = rowsByNode(producerRows);
+  const equationRowsByNode = rowsByNode(equationRows);
+  const projectionRowsByNode = rowsByNode(projectionRows);
+  const sourceTargetReady =
+    sourceMapResidualCovarianceTarget?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_MAP_RESIDUAL_COVARIANCE_TARGET_SCHEMA &&
+    sourceTermProviderProbe?.target_kind ===
+      "candidate-requested-y44-shared-source-map-source-term-provider-probe" &&
+    sourceTermProviderProbe?.source_term_provider_probe_rows_available ===
+      true &&
+    sourceTermProviderProbe
+      ?.source_term_provider_reaches_aggregate_verifier_claim_boundary ===
+      true &&
+    sourceTermProviderProbe?.source_term_provider_rows_match_same_domain_contract ===
+      true &&
+    sourceTermProviderProbe?.source_term_provider_rows_match_same_radius_contract ===
+      true &&
+    sourceTermProviderProbe?.source_term_provider_rows_certify_directed_rounded_source ===
+      false;
+  const branchProducerReady =
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_PRODUCER_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      ?.terminal_expression_level_source_map_provider_object_branch_producer_verified ===
+      true &&
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      ?.terminal_expression_level_source_map_provider_object_branch_producer_certified ===
+      false &&
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      ?.aggregate_source_map_provider_object_interval_available_terminal_row_count ===
+      15 &&
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      ?.source_map_provider_object_branch_split_map_available_terminal_row_count ===
+      0 &&
+    terminalExpressionLevelSourceMapProviderObjectBranchProducer
+      ?.source_map_provider_object_branch_interval_available_branch_row_count ===
+      0;
+  const equationExtractorReady =
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ANTISYMMETRIC_EQUATION_EXTRACTOR_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_verified ===
+      true &&
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      ?.provider_object_branch_antisymmetric_equation_available_terminal_row_count ===
+      0;
+  const projectionAuditReady =
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_TO_PROVIDER_OBJECT_BRANCH_PROJECTION_MAP_AUDIT_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      ?.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_verified ===
+      true &&
+    terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit
+      ?.source_term_projection_map_available_terminal_row_count === 0;
+  const terminalCheckKinds = [
+    "source_term_provider_pre_sum_rows_available",
+    "provider_object_branch_producer_terminal_row_available",
+    "provider_object_branch_antisymmetric_equation_terminal_row_available",
+    "source_term_projection_map_terminal_row_available",
+    "same_domain_terminal_row_aligned",
+    "aggregate_sum_reconstructs_provider_object_interval",
+    "source_term_rows_have_no_branch_bearing_fields",
+    "provider_object_branch_materialization_absent_before_sum",
+    "h39_claims_remain_open",
+  ];
+  const checkKinds = [
+    "source_term_provider_probe_ready",
+    "provider_object_branch_producer_ready",
+    "provider_object_branch_antisymmetric_equation_extractor_ready",
+    "source_term_projection_map_audit_ready",
+    "same_domain_terminal_rows_aligned",
+    "aggregate_sum_reconstructs_provider_object_intervals",
+    "source_term_rows_have_no_branch_bearing_fields",
+    "provider_object_branch_materialization_absent_before_sum",
+    "h39_claims_remain_open",
+  ];
+  const rows = Array.from({ length: 5 }, (_, nodeIndex) => {
+    const terminalGraphCellId = `speed.${nodeIndex}.first-y`;
+    const providerRow = providerRowsByNode.get(nodeIndex) ?? null;
+    const producerNodeRow = producerRowsByNode.get(nodeIndex) ?? null;
+    const equationNodeRow = equationRowsByNode.get(nodeIndex) ?? null;
+    const projectionNodeRow = projectionRowsByNode.get(nodeIndex) ?? null;
+    const producerTerminalRowsByH = terminalRowsByH(
+      producerNodeRow
+        ?.terminal_expression_level_source_map_provider_object_branch_producer_rows
+    );
+    const equationTerminalRowsByH = terminalRowsByH(
+      equationNodeRow
+        ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_rows
+    );
+    const projectionTerminalRowsByH = terminalRowsByH(
+      projectionNodeRow
+        ?.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_rows
+    );
+    const sourceTermRows = Array.isArray(providerRow?.source_term_residual_rows)
+      ? providerRow.source_term_residual_rows
+      : [];
+    const terminalRows = terminalSpecs.map((spec) => {
+      const producerTerminalRow =
+        producerTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const equationTerminalRow =
+        equationTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const projectionTerminalRow =
+        projectionTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const aggregateProviderInterval = numericInterval(
+        producerTerminalRow?.aggregate_source_map_provider_object_interval
+      );
+      const providerProbeAggregateInterval = numericInterval(
+        providerRow?.directed_rounded_signed_residual_interval
+      );
+      const feedRows = H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.map(
+        (term) => {
+          const termRow =
+            sourceTermRows.find((candidate) => candidate?.term === term) ?? null;
+          const residualInterval = numericInterval(termRow?.residual_interval);
+          const originalInterval = numericInterval(
+            termRow?.original_residual_interval
+          );
+          const labelAvailable = branchLabelAvailable(termRow);
+          const weightAvailable = branchWeightAvailable(termRow);
+          const intervalAvailable = branchIntervalAvailable(termRow);
+          const branchFeedAvailable =
+            labelAvailable && (weightAvailable || intervalAvailable);
+          return {
+            term,
+            terminal_h_index: spec.terminal_h_index,
+            terminal_graph_cell_id: terminalGraphCellId,
+            provider_object_pre_sum_feed_role:
+              "aggregate-source-term-feed-into-P",
+            aggregate_source_term_feed_interval: residualInterval,
+            aggregate_source_term_feed_interval_available:
+              finiteOrderedInterval(residualInterval),
+            original_source_term_interval: originalInterval,
+            source_term_center_preserved_from_precertificate:
+              termRow?.center_preserved_from_precertificate === true,
+            branch_label: candidateBranchLabel(termRow),
+            branch_label_available: labelAvailable,
+            source_term_branch_projection_coefficient:
+              finiteNumber(candidateBranchWeight(termRow))
+                ? Number(candidateBranchWeight(termRow))
+                : null,
+            source_term_branch_projection_coefficient_available:
+              weightAvailable,
+            source_term_branch_interval: candidateBranchInterval(termRow),
+            source_term_branch_interval_available: intervalAvailable,
+            provider_object_branch_feed_available: branchFeedAvailable,
+            admissible_as_pre_sum_provider_object_branch_source:
+              branchFeedAvailable,
+            rejection_reason: branchFeedAvailable
+              ? null
+              : "source-term-row-is-aggregate-feed-with-no-branch-label-weight-or-branch-interval",
+            row_certifies_pre_sum_provider_object_branch_source: false,
+            row_certifies_expression_level_source_map_provider_object_branch_rows:
+              false,
+            row_certifies_directed_rounded_shared_domain: false,
+            claim_boundary:
+              h39TerminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAuditClaimBoundary(),
+          };
+        }
+      );
+      const feedIntervals = feedRows.map(
+        (row) => row.aggregate_source_term_feed_interval
+      );
+      const preSumAggregateInterval = feedIntervals.every(finiteOrderedInterval)
+        ? sumIntervalsLocal(feedIntervals)
+        : null;
+      const branchFeedAvailableCount = feedRows.filter(
+        (row) => row.provider_object_branch_feed_available
+      ).length;
+      const terminalChecks = {
+        source_term_provider_pre_sum_rows_available:
+          sourceTargetReady &&
+          providerRow?.provider_row_source_kind ===
+            "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+          sameTerms(providerRow?.source_terms_preserved_signed_together) &&
+          feedRows.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+          feedRows.every(
+            (row) => row.aggregate_source_term_feed_interval_available === true
+          ),
+        provider_object_branch_producer_terminal_row_available:
+          branchProducerReady &&
+          producerTerminalRow
+            ?.row_terminal_expression_level_source_map_provider_object_branch_producer_verified ===
+            true,
+        provider_object_branch_antisymmetric_equation_terminal_row_available:
+          equationExtractorReady &&
+          equationTerminalRow
+            ?.row_terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_verified ===
+            true,
+        source_term_projection_map_terminal_row_available:
+          projectionAuditReady &&
+          projectionTerminalRow
+            ?.row_terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_verified ===
+            true,
+        same_domain_terminal_row_aligned:
+          producerTerminalRow?.terminal_graph_cell_id === terminalGraphCellId &&
+          equationTerminalRow?.terminal_graph_cell_id === terminalGraphCellId &&
+          projectionTerminalRow?.terminal_graph_cell_id ===
+            terminalGraphCellId &&
+          Number(producerTerminalRow?.terminal_h_index) ===
+            spec.terminal_h_index &&
+          Number(equationTerminalRow?.terminal_h_index) ===
+            spec.terminal_h_index &&
+          Number(projectionTerminalRow?.terminal_h_index) ===
+            spec.terminal_h_index &&
+          producerTerminalRow?.successor_scalar_identity_weight ===
+            spec.successor_scalar_identity_weight &&
+          equationTerminalRow?.successor_scalar_identity_weight ===
+            spec.successor_scalar_identity_weight &&
+          projectionTerminalRow?.successor_scalar_identity_weight ===
+            spec.successor_scalar_identity_weight,
+        aggregate_sum_reconstructs_provider_object_interval:
+          intervalsEqualWithinTolerance(
+            preSumAggregateInterval,
+            providerProbeAggregateInterval
+          ) &&
+          intervalsEqualWithinTolerance(
+            preSumAggregateInterval,
+            aggregateProviderInterval
+          ),
+        source_term_rows_have_no_branch_bearing_fields:
+          branchFeedAvailableCount === 0 &&
+          feedRows.every(
+            (row) =>
+              row.branch_label_available === false &&
+              row.source_term_branch_projection_coefficient_available ===
+                false &&
+              row.source_term_branch_interval_available === false
+          ),
+        provider_object_branch_materialization_absent_before_sum:
+          producerTerminalRow
+            ?.source_map_provider_object_branch_split_map_available ===
+            false &&
+          producerTerminalRow
+            ?.source_map_provider_object_branch_interval_available_count ===
+            0 &&
+          equationTerminalRow
+            ?.provider_object_branch_antisymmetric_equation_available ===
+            false &&
+          projectionTerminalRow?.source_term_projection_map_available ===
+            false,
+        h39_claims_remain_open:
+          providerRow?.claim_boundary
+            ?.certifies_source_inputs_as_directed_rounded_same_domain ===
+            false &&
+          producerTerminalRow
+            ?.row_certifies_expression_level_source_map_provider_object_branch_rows ===
+            false &&
+          equationTerminalRow
+            ?.row_certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation ===
+            false &&
+          projectionTerminalRow
+            ?.row_certifies_expression_level_source_term_to_provider_object_branch_projection_map ===
+            false,
+      };
+      const terminalVerified = Object.values(terminalChecks).every(
+        (value) => value === true
+      );
+      return {
+        terminal_h_index: spec.terminal_h_index,
+        source_y_order: H38_NUMERATOR_Y_ORDER,
+        terminal_graph_cell_id: terminalGraphCellId,
+        successor_scalar_identity_weight:
+          spec.successor_scalar_identity_weight,
+        centered_successor_scalar_weight:
+          spec.centered_successor_scalar_weight,
+        provider_object_pre_sum_branch_source_audit_row_kind:
+          "terminal-expression-level-source-map-provider-object-pre-sum-branch-source-terminal-row",
+        pre_sum_provider_object_formula:
+          "P=S_delta_squared_speed+S_sin_phi+S_sin_delta",
+        provider_object_branch_target: "P_b",
+        provider_object_branch_moment_target: "A_P=P_- - P_+",
+        aggregate_source_map_provider_object_interval:
+          aggregateProviderInterval,
+        pre_sum_source_term_aggregate_interval: preSumAggregateInterval,
+        pre_sum_source_term_aggregate_matches_provider_object:
+          intervalsEqualWithinTolerance(
+            preSumAggregateInterval,
+            aggregateProviderInterval
+          ),
+        pre_sum_source_term_feed_rows: feedRows,
+        pre_sum_source_term_feed_row_count: feedRows.length,
+        pre_sum_source_term_branch_feed_available_row_count:
+          branchFeedAvailableCount,
+        source_term_alpha_map_available:
+          projectionTerminalRow?.source_term_projection_map_available === true,
+        provider_object_branch_moment_available:
+          equationTerminalRow
+            ?.provider_object_branch_antisymmetric_equation_available === true,
+        source_map_provider_object_branch_split_map_available:
+          producerTerminalRow
+            ?.source_map_provider_object_branch_split_map_available === true,
+        source_map_provider_object_branch_interval_available_count:
+          producerTerminalRow
+            ?.source_map_provider_object_branch_interval_available_count ?? 0,
+        provider_object_branch_materialization_before_sum_available:
+          branchFeedAvailableCount > 0,
+        pre_sum_branch_source_obstruction_recorded:
+          terminalVerified && branchFeedAvailableCount === 0,
+        provider_object_pre_sum_branch_source_audit_check_kinds: [
+          ...terminalCheckKinds,
+        ],
+        provider_object_pre_sum_branch_source_audit_checks: terminalChecks,
+        row_provider_object_pre_sum_branch_source_audit_verified:
+          terminalVerified,
+        row_certifies_pre_sum_provider_object_branch_source: false,
+        row_certifies_expression_level_source_map_provider_object_branch_rows:
+          false,
+        row_certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation:
+          false,
+        row_certifies_terminal_row_provider_object_replay: false,
+        row_certifies_expression_level_n38_provider: false,
+        row_certifies_directed_rounded_shared_domain: false,
+        row_status: terminalVerified
+          ? "provider-object-pre-sum-source-term-feed-aggregate-only"
+          : "provider-object-pre-sum-branch-source-audit-open",
+        claim_boundary:
+          h39TerminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAuditClaimBoundary(),
+      };
+    });
+    const rowChecks = {
+      source_term_provider_probe_ready:
+        sourceTargetReady &&
+        providerRow?.provider_row_source_kind ===
+          "directed-rounded-same-domain-h38-source-map-residual-provider",
+      provider_object_branch_producer_ready:
+        branchProducerReady &&
+        producerNodeRow
+          ?.row_terminal_expression_level_source_map_provider_object_branch_producer_verified ===
+          true,
+      provider_object_branch_antisymmetric_equation_extractor_ready:
+        equationExtractorReady &&
+        equationNodeRow
+          ?.row_terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_verified ===
+          true,
+      source_term_projection_map_audit_ready:
+        projectionAuditReady &&
+        projectionNodeRow
+          ?.row_terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_verified ===
+          true,
+      same_domain_terminal_rows_aligned: terminalRows.every(
+        (row) =>
+          row.provider_object_pre_sum_branch_source_audit_checks
+            ?.same_domain_terminal_row_aligned === true
+      ),
+      aggregate_sum_reconstructs_provider_object_intervals: terminalRows.every(
+        (row) =>
+          row.provider_object_pre_sum_branch_source_audit_checks
+            ?.aggregate_sum_reconstructs_provider_object_interval === true
+      ),
+      source_term_rows_have_no_branch_bearing_fields: terminalRows.every(
+        (row) =>
+          row.provider_object_pre_sum_branch_source_audit_checks
+            ?.source_term_rows_have_no_branch_bearing_fields === true
+      ),
+      provider_object_branch_materialization_absent_before_sum:
+        terminalRows.every(
+          (row) =>
+            row.provider_object_pre_sum_branch_source_audit_checks
+              ?.provider_object_branch_materialization_absent_before_sum ===
+            true
+        ),
+      h39_claims_remain_open: terminalRows.every(
+        (row) =>
+          row.provider_object_pre_sum_branch_source_audit_checks
+            ?.h39_claims_remain_open === true
+      ),
+    };
+    const rowVerified = Object.values(rowChecks).every(
+      (value) => value === true
+    );
+    const feedRows = terminalRows.flatMap(
+      (row) => row.pre_sum_source_term_feed_rows
+    );
+    return {
+      node_index: nodeIndex,
+      terminal_graph_cell_id: terminalGraphCellId,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      provider_object_pre_sum_branch_source_audit_row_kind:
+        "terminal-expression-level-source-map-provider-object-pre-sum-branch-source-node-row",
+      terminal_h_indexes: terminalSpecs.map((spec) => spec.terminal_h_index),
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      pre_sum_provider_object_formula:
+        "P=S_delta_squared_speed+S_sin_phi+S_sin_delta",
+      provider_object_branch_target: "P_b",
+      provider_object_branch_moment_target: "A_P=P_- - P_+",
+      provider_object_pre_sum_branch_source_audit_rows: terminalRows,
+      provider_object_pre_sum_branch_source_audit_terminal_row_count:
+        terminalRows.length,
+      pre_sum_source_term_feed_row_count: feedRows.length,
+      pre_sum_source_term_branch_feed_available_row_count: feedRows.filter(
+        (row) => row.provider_object_branch_feed_available
+      ).length,
+      aggregate_source_term_equation_count: terminalRows.filter((row) =>
+        finiteOrderedInterval(row.pre_sum_source_term_aggregate_interval)
+      ).length,
+      provider_object_branch_moment_available_terminal_row_count:
+        terminalRows.filter((row) => row.provider_object_branch_moment_available)
+          .length,
+      source_term_alpha_map_available_terminal_row_count: terminalRows.filter(
+        (row) => row.source_term_alpha_map_available
+      ).length,
+      source_map_provider_object_branch_split_map_available_terminal_row_count:
+        terminalRows.filter(
+          (row) => row.source_map_provider_object_branch_split_map_available
+        ).length,
+      provider_object_pre_sum_branch_source_obstruction_terminal_row_count:
+        terminalRows.filter(
+          (row) => row.pre_sum_branch_source_obstruction_recorded
+        ).length,
+      row_check_kinds: [...checkKinds],
+      row_checks: rowChecks,
+      row_provider_object_pre_sum_branch_source_audit_verified: rowVerified,
+      row_certifies_pre_sum_provider_object_branch_source: false,
+      row_certifies_expression_level_source_map_provider_object_branch_rows:
+        false,
+      row_certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation:
+        false,
+      row_certifies_terminal_row_provider_object_replay: false,
+      row_certifies_expression_level_n38_provider: false,
+      row_certifies_directed_rounded_shared_domain: false,
+      row_status: rowVerified
+        ? "provider-object-pre-sum-source-term-feed-aggregate-only"
+        : "provider-object-pre-sum-branch-source-audit-open",
+      claim_boundary:
+        h39TerminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAuditClaimBoundary(),
+    };
+  });
+  const terminalRowCount = rows.reduce(
+    (total, row) =>
+      total +
+      row.provider_object_pre_sum_branch_source_audit_terminal_row_count,
+    0
+  );
+  const sumRows = (key) =>
+    rows.reduce((total, row) => total + Number(row?.[key] ?? 0), 0);
+  const aggregateChecks = {
+    source_term_provider_probe_ready: sourceTargetReady,
+    provider_object_branch_producer_ready: branchProducerReady,
+    provider_object_branch_antisymmetric_equation_extractor_ready:
+      equationExtractorReady,
+    source_term_projection_map_audit_ready: projectionAuditReady,
+    same_domain_terminal_rows_aligned: rows.every(
+      (row) => row.row_checks?.same_domain_terminal_rows_aligned === true
+    ),
+    aggregate_sum_reconstructs_provider_object_intervals: rows.every(
+      (row) =>
+        row.row_checks
+          ?.aggregate_sum_reconstructs_provider_object_intervals === true
+    ),
+    source_term_rows_have_no_branch_bearing_fields: rows.every(
+      (row) =>
+        row.row_checks?.source_term_rows_have_no_branch_bearing_fields === true
+    ),
+    provider_object_branch_materialization_absent_before_sum: rows.every(
+      (row) =>
+        row.row_checks
+          ?.provider_object_branch_materialization_absent_before_sum === true
+    ),
+    h39_claims_remain_open: rows.every(
+      (row) => row.row_checks?.h39_claims_remain_open === true
+    ),
+  };
+  const auditVerified =
+    rows.length === 5 &&
+    terminalRowCount === 15 &&
+    rows.every(
+      (row) =>
+        row.row_provider_object_pre_sum_branch_source_audit_verified === true
+    ) &&
+    Object.values(aggregateChecks).every((value) => value === true);
+  const preSumBranchFeedAvailableCount = sumRows(
+    "pre_sum_source_term_branch_feed_available_row_count"
+  );
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_PRE_SUM_BRANCH_SOURCE_AUDIT_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-terminal-expression-level-source-map-provider-object-pre-sum-branch-source-audit-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-terminal-expression-level-source-map-provider-object-pre-sum-branch-source-audit",
+    target_kind:
+      "candidate-requested-y44-terminal-expression-level-source-map-provider-object-pre-sum-branch-source-audit",
+    source_map_residual_covariance_target_schema:
+      sourceMapResidualCovarianceTarget?.schema ?? null,
+    terminal_expression_level_source_map_provider_object_branch_producer_schema:
+      terminalExpressionLevelSourceMapProviderObjectBranchProducer?.schema ??
+      null,
+    terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_schema:
+      terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor?.schema ??
+      null,
+    terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_schema:
+      terminalExpressionLevelSourceTermToProviderObjectBranchProjectionMapAudit?.schema ??
+      null,
+    proof_status:
+      "candidate-provider-object-pre-sum-source-term-feed-aggregate-only",
+    pre_sum_provider_object_formula:
+      "P=S_delta_squared_speed+S_sin_phi+S_sin_delta",
+    provider_object_branch_target: "P_b",
+    provider_object_branch_moment_target: "A_P=P_- - P_+",
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    terminal_h_indexes: terminalSpecs.map((spec) => spec.terminal_h_index),
+    source_terms_preserved_signed_together: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    provider_object_pre_sum_branch_source_audit_check_kinds: [...checkKinds],
+    provider_object_pre_sum_branch_source_audit_checks: aggregateChecks,
+    provider_object_pre_sum_branch_source_audit_verified: auditVerified,
+    provider_object_pre_sum_branch_source_audit_certified: false,
+    provider_object_pre_sum_branch_source_audit_row_count: rows.length,
+    provider_object_pre_sum_branch_source_audit_terminal_row_count:
+      terminalRowCount,
+    provider_object_pre_sum_branch_source_audit_rows: rows,
+    pre_sum_source_term_feed_row_count: sumRows(
+      "pre_sum_source_term_feed_row_count"
+    ),
+    pre_sum_source_term_branch_feed_available_row_count:
+      preSumBranchFeedAvailableCount,
+    aggregate_source_term_equation_count: sumRows(
+      "aggregate_source_term_equation_count"
+    ),
+    provider_object_branch_moment_available_terminal_row_count: sumRows(
+      "provider_object_branch_moment_available_terminal_row_count"
+    ),
+    source_term_alpha_map_available_terminal_row_count: sumRows(
+      "source_term_alpha_map_available_terminal_row_count"
+    ),
+    source_map_provider_object_branch_split_map_available_terminal_row_count:
+      sumRows(
+        "source_map_provider_object_branch_split_map_available_terminal_row_count"
+      ),
+    provider_object_pre_sum_branch_source_obstruction_terminal_row_count:
+      sumRows(
+        "provider_object_pre_sum_branch_source_obstruction_terminal_row_count"
+      ),
+    provider_object_pre_sum_branch_source_available:
+      preSumBranchFeedAvailableCount > 0,
+    provider_object_pre_sum_branch_source_certified: false,
+    expression_level_source_map_provider_object_branch_rows_certified: false,
+    expression_level_source_map_provider_object_branch_antisymmetric_equation_certified:
+      false,
+    expression_level_source_term_to_provider_object_branch_projection_map_certified:
+      false,
+    terminal_row_provider_object_replay_certified: false,
+    expression_level_n38_provider_certified: false,
+    directed_rounded_shared_domain_provider_certified: false,
+    provider_object_pre_sum_branch_source_audit_classification:
+      auditVerified && preSumBranchFeedAvailableCount === 0
+        ? "provider-object-pre-sum-source-term-feed-aggregate-only"
+        : "provider-object-pre-sum-branch-source-audit-open",
+    provider_object_pre_sum_branch_source_audit_blocker_classification:
+      auditVerified && preSumBranchFeedAvailableCount === 0
+        ? "same-domain-branch-indexed-source-term-feed-needed-before-provider-sum"
+        : "provider-object-pre-sum-branch-source-audit-open",
+    provider_object_pre_sum_branch_source_audit_primary_missing_object_kind:
+      auditVerified && preSumBranchFeedAvailableCount === 0
+        ? "same-domain-pre-sum-provider-object-branch-source-or-alpha-map"
+        : "provider-object-pre-sum-branch-source-audit",
+    next_certificate_object:
+      "same-domain branch-indexed source-term feed, alpha map, or provider-object branch source before the aggregate P=sum_j S_j provider-object sum is emitted",
+    candidate_certificate_route:
+      "This audit inspects the actual source_term_residual_rows consumed by the expression-level source-map provider-object producer before aggregate P is formed. The current rows reconstruct P exactly as the signed sum of delta_squared_speed, sin_phi, and sin_delta feeds, but none of those pre-sum rows carries a branch label, branch projection coefficient, or branch interval. Therefore the first executable loss point is upstream of A_P: the current provider object is born aggregate-only, and P_- / P_+ cannot be materialized without a new same-domain branch-indexed source-term feed or alpha map. This packet certifies no provider-object branch rows, A_P equation, matrix identity, W closure, terminal row replay, expression-level N38 provider, retained branch, or directed-rounded provider.",
+    claim_boundary:
+      h39TerminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAuditClaimBoundary(),
+  };
+}
+
+export function validateH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAuditCandidate(
+  artifact
+) {
+  const errors = [];
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const sameStringSet = (left, right) =>
+    Array.isArray(left) &&
+    left.length === right.length &&
+    right.every((value) => left.includes(value));
+  const sameTerminalHIndexes = (indexes) =>
+    Array.isArray(indexes) &&
+    indexes.length === 3 &&
+    indexes[0] === 37 &&
+    indexes[1] === 36 &&
+    indexes[2] === 35;
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const validClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_terminal_expression_level_source_map_provider_object_pre_sum_branch_source_audit_only ===
+      true &&
+    claimBoundary?.certifies_pre_sum_provider_object_branch_source ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_rows ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_term_to_provider_object_branch_projection_map ===
+      false &&
+    claimBoundary?.certifies_terminal_g_to_provider_moment_bridge === false &&
+    claimBoundary?.certifies_terminal_g_to_provider_correction_term ===
+      false &&
+    claimBoundary?.certifies_source_covariance_matrix_identity === false &&
+    claimBoundary?.certifies_terminal_row_provider_object_replay === false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const expectedCheckKinds = [
+    "source_term_provider_probe_ready",
+    "provider_object_branch_producer_ready",
+    "provider_object_branch_antisymmetric_equation_extractor_ready",
+    "source_term_projection_map_audit_ready",
+    "same_domain_terminal_rows_aligned",
+    "aggregate_sum_reconstructs_provider_object_intervals",
+    "source_term_rows_have_no_branch_bearing_fields",
+    "provider_object_branch_materialization_absent_before_sum",
+    "h39_claims_remain_open",
+  ];
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_PRE_SUM_BRANCH_SOURCE_AUDIT_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 provider-object pre-sum branch-source audit candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-terminal-expression-level-source-map-provider-object-pre-sum-branch-source-audit-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-terminal-expression-level-source-map-provider-object-pre-sum-branch-source-audit" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-terminal-expression-level-source-map-provider-object-pre-sum-branch-source-audit" ||
+    artifact?.source_map_residual_covariance_target_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_MAP_RESIDUAL_COVARIANCE_TARGET_SCHEMA ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_producer_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_PRODUCER_CANDIDATE_SCHEMA ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ANTISYMMETRIC_EQUATION_EXTRACTOR_CANDIDATE_SCHEMA ||
+    artifact
+      ?.terminal_expression_level_source_term_to_provider_object_branch_projection_map_audit_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_TO_PROVIDER_OBJECT_BRANCH_PROJECTION_MAP_AUDIT_CANDIDATE_SCHEMA ||
+    artifact?.proof_status !==
+      "candidate-provider-object-pre-sum-source-term-feed-aggregate-only" ||
+    artifact?.pre_sum_provider_object_formula !==
+      "P=S_delta_squared_speed+S_sin_phi+S_sin_delta" ||
+    artifact?.provider_object_branch_target !== "P_b" ||
+    artifact?.provider_object_branch_moment_target !== "A_P=P_- - P_+" ||
+    artifact?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    !sameTerminalHIndexes(artifact?.terminal_h_indexes) ||
+    !sameTerms(artifact?.source_terms_preserved_signed_together) ||
+    !sameStringSet(
+      artifact?.provider_object_pre_sum_branch_source_audit_check_kinds,
+      expectedCheckKinds
+    )
+  ) {
+    errors.push("pre-sum branch-source audit metadata must identify the source-term feed into aggregate P");
+  }
+  if (
+    expectedCheckKinds.some(
+      (kind) =>
+        artifact?.provider_object_pre_sum_branch_source_audit_checks?.[kind] !==
+        true
+    ) ||
+    artifact?.provider_object_pre_sum_branch_source_audit_verified !== true ||
+    artifact?.provider_object_pre_sum_branch_source_audit_certified !== false ||
+    artifact?.provider_object_pre_sum_branch_source_audit_row_count !== 5 ||
+    artifact
+      ?.provider_object_pre_sum_branch_source_audit_terminal_row_count !== 15 ||
+    artifact?.pre_sum_source_term_feed_row_count !== 45 ||
+    artifact?.pre_sum_source_term_branch_feed_available_row_count !== 0 ||
+    artifact?.aggregate_source_term_equation_count !== 15 ||
+    artifact?.provider_object_branch_moment_available_terminal_row_count !==
+      0 ||
+    artifact?.source_term_alpha_map_available_terminal_row_count !== 0 ||
+    artifact
+      ?.source_map_provider_object_branch_split_map_available_terminal_row_count !==
+      0 ||
+    artifact
+      ?.provider_object_pre_sum_branch_source_obstruction_terminal_row_count !==
+      15 ||
+    artifact?.provider_object_pre_sum_branch_source_available !== false ||
+    artifact?.provider_object_pre_sum_branch_source_certified !== false ||
+    artifact
+      ?.expression_level_source_map_provider_object_branch_rows_certified !==
+      false ||
+    artifact
+      ?.expression_level_source_map_provider_object_branch_antisymmetric_equation_certified !==
+      false ||
+    artifact
+      ?.expression_level_source_term_to_provider_object_branch_projection_map_certified !==
+      false ||
+    artifact?.terminal_row_provider_object_replay_certified !== false ||
+    artifact?.expression_level_n38_provider_certified !== false ||
+    artifact?.directed_rounded_shared_domain_provider_certified !== false ||
+    artifact?.provider_object_pre_sum_branch_source_audit_classification !==
+      "provider-object-pre-sum-source-term-feed-aggregate-only" ||
+    artifact
+      ?.provider_object_pre_sum_branch_source_audit_blocker_classification !==
+      "same-domain-branch-indexed-source-term-feed-needed-before-provider-sum" ||
+    artifact
+      ?.provider_object_pre_sum_branch_source_audit_primary_missing_object_kind !==
+      "same-domain-pre-sum-provider-object-branch-source-or-alpha-map" ||
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string" ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("pre-sum branch-source audit aggregate must record aggregate-only source-term feeds and open claims");
+  }
+  const rows = artifact?.provider_object_pre_sum_branch_source_audit_rows ?? [];
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== 5 ||
+    rows.some((row, index) => {
+      const terminalRows =
+        row?.provider_object_pre_sum_branch_source_audit_rows ?? [];
+      return (
+        row?.node_index !== index ||
+        row?.terminal_graph_cell_id !== `speed.${index}.first-y` ||
+        row?.provider_object_pre_sum_branch_source_audit_terminal_row_count !==
+          3 ||
+        row?.pre_sum_source_term_feed_row_count !== 9 ||
+        row?.pre_sum_source_term_branch_feed_available_row_count !== 0 ||
+        row?.aggregate_source_term_equation_count !== 3 ||
+        row?.provider_object_branch_moment_available_terminal_row_count !== 0 ||
+        row?.source_term_alpha_map_available_terminal_row_count !== 0 ||
+        row
+          ?.source_map_provider_object_branch_split_map_available_terminal_row_count !==
+          0 ||
+        row
+          ?.provider_object_pre_sum_branch_source_obstruction_terminal_row_count !==
+          3 ||
+        row?.row_provider_object_pre_sum_branch_source_audit_verified !== true ||
+        row?.row_certifies_pre_sum_provider_object_branch_source !== false ||
+        row?.row_certifies_expression_level_source_map_provider_object_branch_rows !==
+          false ||
+        row?.row_certifies_directed_rounded_shared_domain !== false ||
+        row?.row_status !==
+          "provider-object-pre-sum-source-term-feed-aggregate-only" ||
+        !validClaimBoundary(row?.claim_boundary) ||
+        !Array.isArray(terminalRows) ||
+        terminalRows.length !== 3 ||
+        terminalRows.some((terminalRow) => {
+          const feedRows = terminalRow?.pre_sum_source_term_feed_rows ?? [];
+          return (
+            terminalRow?.row_provider_object_pre_sum_branch_source_audit_verified !==
+              true ||
+            terminalRow?.pre_sum_provider_object_formula !==
+              "P=S_delta_squared_speed+S_sin_phi+S_sin_delta" ||
+            terminalRow?.pre_sum_source_term_feed_row_count !== 3 ||
+            terminalRow
+              ?.pre_sum_source_term_branch_feed_available_row_count !== 0 ||
+            !finiteOrderedInterval(
+              terminalRow?.aggregate_source_map_provider_object_interval
+            ) ||
+            !finiteOrderedInterval(
+              terminalRow?.pre_sum_source_term_aggregate_interval
+            ) ||
+            terminalRow
+              ?.pre_sum_source_term_aggregate_matches_provider_object !==
+              true ||
+            terminalRow?.provider_object_branch_moment_available !== false ||
+            terminalRow?.source_term_alpha_map_available !== false ||
+            terminalRow
+              ?.source_map_provider_object_branch_split_map_available !==
+              false ||
+            terminalRow
+              ?.source_map_provider_object_branch_interval_available_count !==
+              0 ||
+            terminalRow
+              ?.provider_object_branch_materialization_before_sum_available !==
+              false ||
+            terminalRow?.pre_sum_branch_source_obstruction_recorded !== true ||
+            terminalRow
+              ?.row_certifies_pre_sum_provider_object_branch_source !== false ||
+            terminalRow
+              ?.row_certifies_expression_level_source_map_provider_object_branch_rows !==
+              false ||
+            terminalRow?.row_certifies_directed_rounded_shared_domain !==
+              false ||
+            terminalRow?.row_status !==
+              "provider-object-pre-sum-source-term-feed-aggregate-only" ||
+            !validClaimBoundary(terminalRow?.claim_boundary) ||
+            !Array.isArray(feedRows) ||
+            feedRows.length !== 3 ||
+            feedRows.some(
+              (feedRow) =>
+                !H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.includes(
+                  feedRow?.term
+                ) ||
+                feedRow?.provider_object_pre_sum_feed_role !==
+                  "aggregate-source-term-feed-into-P" ||
+                !finiteOrderedInterval(
+                  feedRow?.aggregate_source_term_feed_interval
+                ) ||
+                feedRow?.aggregate_source_term_feed_interval_available !==
+                  true ||
+                feedRow?.branch_label_available !== false ||
+                feedRow
+                  ?.source_term_branch_projection_coefficient_available !==
+                  false ||
+                feedRow?.source_term_branch_interval_available !== false ||
+                feedRow?.provider_object_branch_feed_available !== false ||
+                feedRow
+                  ?.admissible_as_pre_sum_provider_object_branch_source !==
+                  false ||
+                typeof feedRow?.rejection_reason !== "string" ||
+                feedRow
+                  ?.row_certifies_pre_sum_provider_object_branch_source !==
+                  false ||
+                feedRow
+                  ?.row_certifies_expression_level_source_map_provider_object_branch_rows !==
+                  false ||
+                feedRow?.row_certifies_directed_rounded_shared_domain !==
+                  false ||
+                !validClaimBoundary(feedRow?.claim_boundary)
+            )
+          );
+        })
+      );
+    })
+  ) {
+    errors.push("pre-sum branch-source audit rows must show aggregate-only source-term feeds on every terminal row");
+  }
+  return errors;
+}
+
+function h39TerminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttemptClaimBoundary() {
+  return {
+    defines_terminal_expression_level_source_term_variable_ownership_branch_feed_attempt_only:
+      true,
+    certifies_variable_ownership_alpha_as_provider_object_branch_source: false,
+    certifies_pre_sum_provider_object_branch_source: false,
+    certifies_expression_level_source_term_branch_projection_alpha_map: false,
+    certifies_expression_level_source_term_branch_parity_generator: false,
+    certifies_expression_level_source_term_to_provider_object_branch_projection_map:
+      false,
+    certifies_terminal_g_to_provider_moment_bridge: false,
+    certifies_terminal_g_to_provider_correction_term: false,
+    certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation:
+      false,
+    certifies_expression_level_source_map_provider_object_branch_rows: false,
+    certifies_provider_object_branch_residual_extractor: false,
+    certifies_provider_object_w_expression: false,
+    certifies_source_covariance_matrix_identity: false,
+    certifies_terminal_row_provider_object_replay: false,
+    certifies_expression_level_n38_provider: false,
+    certifies_terminal_row_provider_enclosure: false,
+    certifies_terminal_graph_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
+export function buildH39RequestedY44TerminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttemptCandidate({
+  terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit,
+  terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt,
+  terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit,
+} = {}) {
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const numericInterval = (interval) =>
+    finiteOrderedInterval(interval)
+      ? [Number(interval[0]), Number(interval[1])]
+      : null;
+  const intervalAdd = (left, right) =>
+    finiteOrderedInterval(left) && finiteOrderedInterval(right)
+      ? [Number(left[0]) + Number(right[0]), Number(left[1]) + Number(right[1])]
+      : null;
+  const intervalScale = (interval, scalar) => {
+    if (!finiteOrderedInterval(interval) || !finiteNumber(scalar)) {
+      return null;
+    }
+    const scaledLeft = Number(interval[0]) * Number(scalar);
+    const scaledRight = Number(interval[1]) * Number(scalar);
+    return scaledLeft <= scaledRight
+      ? [scaledLeft, scaledRight]
+      : [scaledRight, scaledLeft];
+  };
+  const intervalSubtract = (left, right) =>
+    finiteOrderedInterval(left) && finiteOrderedInterval(right)
+      ? [Number(left[0]) - Number(right[1]), Number(left[1]) - Number(right[0])]
+      : null;
+  const sumIntervalsLocal = (intervals) =>
+    intervals.reduce((sum, interval) => intervalAdd(sum, interval), [0, 0]);
+  const intervalContainsZero = (interval) =>
+    finiteOrderedInterval(interval) &&
+    Number(interval[0]) <= 0 &&
+    0 <= Number(interval[1]);
+  const intervalsOverlap = (left, right) =>
+    finiteOrderedInterval(left) &&
+    finiteOrderedInterval(right) &&
+    Math.max(Number(left[0]), Number(right[0])) <=
+      Math.min(Number(left[1]), Number(right[1]));
+  const intervalEndpointGap = (left, right) =>
+    finiteOrderedInterval(left) && finiteOrderedInterval(right)
+      ? Math.max(
+          Math.abs(Number(left[0]) - Number(right[0])),
+          Math.abs(Number(left[1]) - Number(right[1]))
+        )
+      : null;
+  const intervalHalfWidth = (interval) =>
+    finiteOrderedInterval(interval)
+      ? (Number(interval[1]) - Number(interval[0])) / 2
+      : null;
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const rowsByNode = (rows) =>
+    new Map(
+      (rows ?? [])
+        .filter((row) => Number.isInteger(row?.node_index))
+        .map((row) => [Number(row.node_index), row])
+    );
+  const terminalRowsByH = (rows) =>
+    new Map(
+      (rows ?? [])
+        .filter((row) => Number.isInteger(row?.terminal_h_index))
+        .map((row) => [Number(row.terminal_h_index), row])
+    );
+  const ownershipAlpha = Object.freeze({
+    delta_squared_speed: {
+      source_variable: "delta",
+      source_variable_owner: "delta",
+      variable_ownership_alpha_coefficient: 1,
+      provider_object_candidate_side: "P_delta",
+    },
+    sin_phi: {
+      source_variable: "phi",
+      source_variable_owner: "phi",
+      variable_ownership_alpha_coefficient: -1,
+      provider_object_candidate_side: "P_phi",
+    },
+    sin_delta: {
+      source_variable: "delta",
+      source_variable_owner: "delta",
+      variable_ownership_alpha_coefficient: 1,
+      provider_object_candidate_side: "P_delta",
+    },
+  });
+  const terminalSpecs = H39_TERMINAL_SUCCESSOR_COEFFICIENT_IDENTITY_IMPORT_SPECS;
+  const preSumRowsByNode = rowsByNode(
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      ?.provider_object_pre_sum_branch_source_audit_rows
+  );
+  const foldRowsByNode = rowsByNode(
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      ?.terminal_expression_level_source_term_fold_null_generator_compatibility_attempt_rows
+  );
+  const bridgeRowsByNode = rowsByNode(
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      ?.terminal_g_to_provider_bridge_audit_rows
+  );
+  const preSumAuditReady =
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_PRE_SUM_BRANCH_SOURCE_AUDIT_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      ?.provider_object_pre_sum_branch_source_audit_verified === true &&
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      ?.provider_object_pre_sum_branch_source_audit_certified === false &&
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      ?.pre_sum_source_term_feed_row_count === 45 &&
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      ?.pre_sum_source_term_branch_feed_available_row_count === 0;
+  const foldNullAttemptReady =
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_FOLD_NULL_GENERATOR_COMPATIBILITY_ATTEMPT_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      ?.terminal_expression_level_source_term_fold_null_generator_compatibility_attempt_verified ===
+      true &&
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      ?.terminal_expression_level_source_term_fold_null_generator_compatibility_attempt_certified ===
+      false &&
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      ?.fold_null_generator_available_terminal_row_count === 15 &&
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      ?.source_term_basis_diagonalized_terminal_row_count === 0;
+  const bridgeAuditReady =
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_FOLD_NULL_COEFFICIENT_PROVIDER_MOMENT_BRIDGE_AUDIT_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      ?.terminal_g_to_provider_bridge_audit_verified === true &&
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      ?.terminal_g_to_provider_bridge_audit_certified === false &&
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      ?.terminal_branch_g_moment_available_terminal_row_count === 15 &&
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      ?.provider_object_branch_moment_available_terminal_row_count === 0;
+  const terminalCheckKinds = [
+    "pre_sum_source_term_feed_row_available",
+    "variable_ownership_alpha_row_emitted",
+    "fold_null_variable_split_compatible",
+    "terminal_branch_g_moment_available",
+    "provider_object_branch_moment_absent",
+    "actual_provider_identity_absent",
+    "candidate_not_admissible_as_provider_object_branch_source",
+    "h39_claims_remain_open",
+  ];
+  const checkKinds = [
+    "provider_object_pre_sum_branch_source_audit_ready",
+    "fold_null_generator_compatibility_attempt_ready",
+    "terminal_g_to_provider_bridge_audit_ready",
+    "same_domain_terminal_rows_aligned",
+    "variable_ownership_alpha_candidates_emitted",
+    "fold_null_variable_split_compatible",
+    "provider_object_branch_moment_absence_recorded",
+    "candidate_not_admissible_as_provider_object_branch_source",
+    "h39_claims_remain_open",
+  ];
+  const rows = Array.from({ length: 5 }, (_, nodeIndex) => {
+    const terminalGraphCellId = `speed.${nodeIndex}.first-y`;
+    const preSumNodeRow = preSumRowsByNode.get(nodeIndex) ?? null;
+    const foldNodeRow = foldRowsByNode.get(nodeIndex) ?? null;
+    const bridgeNodeRow = bridgeRowsByNode.get(nodeIndex) ?? null;
+    const preSumTerminalRowsByH = terminalRowsByH(
+      preSumNodeRow?.provider_object_pre_sum_branch_source_audit_rows
+    );
+    const foldTerminalRowsByH = terminalRowsByH(
+      foldNodeRow
+        ?.terminal_expression_level_source_term_fold_null_generator_compatibility_attempt_rows
+    );
+    const bridgeTerminalRowsByH = terminalRowsByH(
+      bridgeNodeRow?.terminal_g_to_provider_bridge_audit_rows
+    );
+    const terminalRows = terminalSpecs.map((spec) => {
+      const preSumTerminalRow =
+        preSumTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const foldTerminalRow =
+        foldTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const bridgeTerminalRow =
+        bridgeTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const sourceTermFeedRows =
+        preSumTerminalRow?.pre_sum_source_term_feed_rows ?? [];
+      const feedRowsByTerm = new Map(
+        sourceTermFeedRows
+          .filter((row) => typeof row?.term === "string")
+          .map((row) => [row.term, row])
+      );
+      const alphaRows = H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.map(
+        (term) => {
+          const feedRow = feedRowsByTerm.get(term) ?? null;
+          const alpha = ownershipAlpha[term]?.variable_ownership_alpha_coefficient;
+          const aggregateInterval = numericInterval(
+            feedRow?.aggregate_source_term_feed_interval
+          );
+          const signedContributionInterval = intervalScale(
+            aggregateInterval,
+            alpha
+          );
+          return {
+            term,
+            terminal_h_index: spec.terminal_h_index,
+            terminal_graph_cell_id: terminalGraphCellId,
+            source_variable: ownershipAlpha[term]?.source_variable ?? null,
+            source_variable_owner:
+              ownershipAlpha[term]?.source_variable_owner ?? null,
+            provider_object_candidate_side:
+              ownershipAlpha[term]?.provider_object_candidate_side ?? null,
+            variable_ownership_alpha_coefficient: alpha,
+            aggregate_source_term_feed_interval: aggregateInterval,
+            variable_ownership_signed_contribution_interval:
+              signedContributionInterval,
+            variable_ownership_alpha_coefficient_available:
+              finiteNumber(alpha),
+            variable_ownership_signed_contribution_available:
+              finiteOrderedInterval(signedContributionInterval),
+            admissible_as_actual_provider_object_branch_source: false,
+            rejection_reason:
+              "variable-ownership-alpha-row-has-no-same-domain-provider-object-branch-moment-identity",
+            row_certifies_variable_ownership_alpha_as_provider_object_branch_source:
+              false,
+            row_certifies_expression_level_source_map_provider_object_branch_rows:
+              false,
+            row_certifies_directed_rounded_shared_domain: false,
+            claim_boundary:
+              h39TerminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttemptClaimBoundary(),
+          };
+        }
+      );
+      const deltaIntervals = alphaRows
+        .filter((row) => row.source_variable_owner === "delta")
+        .map((row) => row.aggregate_source_term_feed_interval);
+      const phiIntervals = alphaRows
+        .filter((row) => row.source_variable_owner === "phi")
+        .map((row) => row.aggregate_source_term_feed_interval);
+      const signedIntervals = alphaRows.map(
+        (row) => row.variable_ownership_signed_contribution_interval
+      );
+      const pDeltaInterval = deltaIntervals.every(finiteOrderedInterval)
+        ? sumIntervalsLocal(deltaIntervals)
+        : null;
+      const pPhiInterval = phiIntervals.every(finiteOrderedInterval)
+        ? sumIntervalsLocal(phiIntervals)
+        : null;
+      const variableOwnershipAlphaInterval = signedIntervals.every(
+        finiteOrderedInterval
+      )
+        ? sumIntervalsLocal(signedIntervals)
+        : null;
+      const terminalBranchGMomentInterval = numericInterval(
+        bridgeTerminalRow?.terminal_branch_g_moment_interval
+      );
+      const providerObjectBranchMomentInterval = numericInterval(
+        bridgeTerminalRow?.provider_object_branch_moment_interval
+      );
+      const residualToGMomentInterval = intervalSubtract(
+        variableOwnershipAlphaInterval,
+        terminalBranchGMomentInterval
+      );
+      const terminalChecks = {
+        pre_sum_source_term_feed_row_available:
+          preSumAuditReady &&
+          preSumTerminalRow
+            ?.row_provider_object_pre_sum_branch_source_audit_verified ===
+            true &&
+          sameTerms(alphaRows.map((row) => row.term)) &&
+          alphaRows.every(
+            (row) =>
+              row.variable_ownership_signed_contribution_available === true
+          ),
+        variable_ownership_alpha_row_emitted:
+          finiteOrderedInterval(pDeltaInterval) &&
+          finiteOrderedInterval(pPhiInterval) &&
+          finiteOrderedInterval(variableOwnershipAlphaInterval) &&
+          alphaRows.every(
+            (row) =>
+              row.variable_ownership_alpha_coefficient_available === true
+          ),
+        fold_null_variable_split_compatible:
+          foldNullAttemptReady &&
+          foldTerminalRow
+            ?.fold_null_generator_formula ===
+            "D_eta=partial_delta-partial_phi" &&
+          foldTerminalRow?.fold_null_generator_available === true &&
+          foldTerminalRow
+            ?.aggregate_generator_annihilates_source_at_fold === true &&
+          foldTerminalRow?.source_term_basis_diagonalized_by_fold_null_generator ===
+            false,
+        terminal_branch_g_moment_available:
+          bridgeAuditReady &&
+          bridgeTerminalRow?.terminal_branch_g_moment_available === true &&
+          finiteOrderedInterval(terminalBranchGMomentInterval),
+        provider_object_branch_moment_absent:
+          bridgeTerminalRow?.provider_object_branch_moment_available === false &&
+          providerObjectBranchMomentInterval === null &&
+          preSumTerminalRow?.provider_object_branch_moment_available === false,
+        actual_provider_identity_absent:
+          bridgeTerminalRow?.terminal_g_to_provider_bridge_available === false &&
+          bridgeTerminalRow?.terminal_g_to_provider_bridge_certified === false &&
+          bridgeTerminalRow?.source_term_alpha_map_available === false &&
+          preSumTerminalRow?.source_term_alpha_map_available === false,
+        candidate_not_admissible_as_provider_object_branch_source:
+          alphaRows.every(
+            (row) =>
+              row.admissible_as_actual_provider_object_branch_source === false
+          ),
+        h39_claims_remain_open:
+          preSumTerminalRow?.row_certifies_pre_sum_provider_object_branch_source ===
+            false &&
+          preSumTerminalRow
+            ?.row_certifies_expression_level_source_map_provider_object_branch_rows ===
+            false &&
+          bridgeTerminalRow
+            ?.row_certifies_terminal_g_to_provider_moment_bridge === false &&
+          bridgeTerminalRow
+            ?.row_certifies_terminal_g_to_provider_correction_term === false &&
+          bridgeTerminalRow?.row_certifies_terminal_row_provider_object_replay ===
+            false,
+      };
+      const terminalVerified = Object.values(terminalChecks).every(
+        (value) => value === true
+      );
+      return {
+        terminal_h_index: spec.terminal_h_index,
+        source_y_order: H38_NUMERATOR_Y_ORDER,
+        required_xi_derivative_order: 4,
+        terminal_graph_cell_id: terminalGraphCellId,
+        successor_scalar_identity_weight:
+          spec.successor_scalar_identity_weight,
+        centered_successor_scalar_weight:
+          spec.centered_successor_scalar_weight,
+        variable_ownership_branch_feed_attempt_row_kind:
+          "terminal-expression-level-source-term-variable-ownership-branch-feed-terminal-row",
+        variable_ownership_branch_feed_model:
+          "P_delta=S_delta_squared_speed+S_sin_delta; P_phi=S_sin_phi; A_var=P_delta-P_phi",
+        variable_ownership_alpha_model:
+          "A_var=S_delta_squared_speed-S_sin_phi+S_sin_delta",
+        source_terms_preserved_signed_together: [
+          ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+        ],
+        variable_ownership_alpha_rows: alphaRows,
+        variable_ownership_alpha_row_count: alphaRows.length,
+        p_delta_candidate_interval: pDeltaInterval,
+        p_phi_candidate_interval: pPhiInterval,
+        variable_ownership_alpha_candidate_interval:
+          variableOwnershipAlphaInterval,
+        variable_ownership_alpha_candidate_available:
+          finiteOrderedInterval(variableOwnershipAlphaInterval),
+        variable_ownership_branch_feed_candidate_available:
+          finiteOrderedInterval(pDeltaInterval) &&
+          finiteOrderedInterval(pPhiInterval),
+        terminal_branch_g_moment_interval: terminalBranchGMomentInterval,
+        terminal_branch_g_moment_available:
+          finiteOrderedInterval(terminalBranchGMomentInterval),
+        provider_object_branch_moment_interval:
+          providerObjectBranchMomentInterval,
+        provider_object_branch_moment_available:
+          finiteOrderedInterval(providerObjectBranchMomentInterval),
+        variable_ownership_alpha_minus_terminal_g_moment_interval:
+          residualToGMomentInterval,
+        variable_ownership_alpha_minus_terminal_g_moment_contains_zero:
+          intervalContainsZero(residualToGMomentInterval),
+        variable_ownership_alpha_overlaps_terminal_g_moment: intervalsOverlap(
+          variableOwnershipAlphaInterval,
+          terminalBranchGMomentInterval
+        ),
+        variable_ownership_alpha_to_terminal_g_endpoint_gap:
+          intervalEndpointGap(
+            variableOwnershipAlphaInterval,
+            terminalBranchGMomentInterval
+          ),
+        variable_ownership_alpha_half_width: intervalHalfWidth(
+          variableOwnershipAlphaInterval
+        ),
+        terminal_branch_g_moment_half_width: intervalHalfWidth(
+          terminalBranchGMomentInterval
+        ),
+        fold_null_variable_split_compatible:
+          terminalChecks.fold_null_variable_split_compatible,
+        admissible_as_actual_provider_object_branch_source: false,
+        variable_ownership_alpha_candidate_certified: false,
+        variable_ownership_branch_feed_attempt_check_kinds: [
+          ...terminalCheckKinds,
+        ],
+        variable_ownership_branch_feed_attempt_checks: terminalChecks,
+        row_variable_ownership_branch_feed_attempt_verified:
+          terminalVerified,
+        row_certifies_variable_ownership_alpha_as_provider_object_branch_source:
+          false,
+        row_certifies_pre_sum_provider_object_branch_source: false,
+        row_certifies_expression_level_source_term_branch_projection_alpha_map:
+          false,
+        row_certifies_terminal_g_to_provider_moment_bridge: false,
+        row_certifies_terminal_g_to_provider_correction_term: false,
+        row_certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation:
+          false,
+        row_certifies_expression_level_source_map_provider_object_branch_rows:
+          false,
+        row_certifies_terminal_row_provider_object_replay: false,
+        row_certifies_expression_level_n38_provider: false,
+        row_certifies_directed_rounded_shared_domain: false,
+        row_status: terminalVerified
+          ? "variable-ownership-alpha-candidate-emitted-provider-object-target-missing"
+          : "variable-ownership-branch-feed-attempt-open",
+        claim_boundary:
+          h39TerminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttemptClaimBoundary(),
+      };
+    });
+    const rowChecks = {
+      provider_object_pre_sum_branch_source_audit_ready:
+        preSumAuditReady &&
+        preSumNodeRow
+          ?.row_provider_object_pre_sum_branch_source_audit_verified === true,
+      fold_null_generator_compatibility_attempt_ready:
+        foldNullAttemptReady &&
+        foldNodeRow
+          ?.row_terminal_expression_level_source_term_fold_null_generator_compatibility_attempt_verified ===
+          true,
+      terminal_g_to_provider_bridge_audit_ready:
+        bridgeAuditReady &&
+        bridgeNodeRow?.row_terminal_g_to_provider_bridge_audit_verified ===
+          true,
+      same_domain_terminal_rows_aligned: terminalRows.every(
+        (row) =>
+          row.variable_ownership_branch_feed_attempt_checks
+            ?.pre_sum_source_term_feed_row_available === true &&
+          row.variable_ownership_branch_feed_attempt_checks
+            ?.terminal_branch_g_moment_available === true
+      ),
+      variable_ownership_alpha_candidates_emitted: terminalRows.every(
+        (row) =>
+          row.variable_ownership_alpha_candidate_available === true &&
+          row.variable_ownership_branch_feed_candidate_available === true
+      ),
+      fold_null_variable_split_compatible: terminalRows.every(
+        (row) => row.fold_null_variable_split_compatible === true
+      ),
+      provider_object_branch_moment_absence_recorded: terminalRows.every(
+        (row) => row.provider_object_branch_moment_available === false
+      ),
+      candidate_not_admissible_as_provider_object_branch_source:
+        terminalRows.every(
+          (row) =>
+            row.admissible_as_actual_provider_object_branch_source === false
+        ),
+      h39_claims_remain_open: terminalRows.every(
+        (row) =>
+          row.variable_ownership_branch_feed_attempt_checks
+            ?.h39_claims_remain_open === true
+      ),
+    };
+    const rowVerified = Object.values(rowChecks).every(
+      (value) => value === true
+    );
+    const sumTerminalRows = (key) =>
+      terminalRows.reduce((total, row) => total + Number(row?.[key] ?? 0), 0);
+    return {
+      node_index: nodeIndex,
+      terminal_graph_cell_id: terminalGraphCellId,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      variable_ownership_branch_feed_attempt_row_kind:
+        "terminal-expression-level-source-term-variable-ownership-branch-feed-node-row",
+      terminal_h_indexes: terminalSpecs.map((spec) => spec.terminal_h_index),
+      source_terms_preserved_signed_together: [
+        ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+      ],
+      variable_ownership_branch_feed_model:
+        "P_delta=S_delta_squared_speed+S_sin_delta; P_phi=S_sin_phi; A_var=P_delta-P_phi",
+      variable_ownership_alpha_model:
+        "A_var=S_delta_squared_speed-S_sin_phi+S_sin_delta",
+      variable_ownership_branch_feed_attempt_rows: terminalRows,
+      variable_ownership_branch_feed_attempt_terminal_row_count:
+        terminalRows.length,
+      variable_ownership_alpha_row_count: sumTerminalRows(
+        "variable_ownership_alpha_row_count"
+      ),
+      variable_ownership_alpha_candidate_available_terminal_row_count:
+        terminalRows.filter(
+          (row) => row.variable_ownership_alpha_candidate_available
+        ).length,
+      variable_ownership_branch_feed_candidate_available_terminal_row_count:
+        terminalRows.filter(
+          (row) => row.variable_ownership_branch_feed_candidate_available
+        ).length,
+      terminal_branch_g_moment_available_terminal_row_count:
+        terminalRows.filter((row) => row.terminal_branch_g_moment_available)
+          .length,
+      provider_object_branch_moment_available_terminal_row_count:
+        terminalRows.filter((row) => row.provider_object_branch_moment_available)
+          .length,
+      fold_null_variable_split_compatible_terminal_row_count:
+        terminalRows.filter((row) => row.fold_null_variable_split_compatible)
+          .length,
+      variable_ownership_alpha_overlaps_terminal_g_moment_terminal_row_count:
+        terminalRows.filter(
+          (row) => row.variable_ownership_alpha_overlaps_terminal_g_moment
+        ).length,
+      variable_ownership_alpha_minus_terminal_g_moment_contains_zero_terminal_row_count:
+        terminalRows.filter(
+          (row) =>
+            row.variable_ownership_alpha_minus_terminal_g_moment_contains_zero
+        ).length,
+      admissible_as_actual_provider_object_branch_source_terminal_row_count:
+        terminalRows.filter(
+          (row) => row.admissible_as_actual_provider_object_branch_source
+        ).length,
+      variable_ownership_alpha_candidate_certified_terminal_row_count:
+        terminalRows.filter(
+          (row) => row.variable_ownership_alpha_candidate_certified
+        ).length,
+      row_check_kinds: [...checkKinds],
+      row_checks: rowChecks,
+      row_variable_ownership_branch_feed_attempt_verified: rowVerified,
+      row_certifies_variable_ownership_alpha_as_provider_object_branch_source:
+        false,
+      row_certifies_pre_sum_provider_object_branch_source: false,
+      row_certifies_expression_level_source_term_branch_projection_alpha_map:
+        false,
+      row_certifies_terminal_g_to_provider_moment_bridge: false,
+      row_certifies_terminal_g_to_provider_correction_term: false,
+      row_certifies_expression_level_source_map_provider_object_branch_rows:
+        false,
+      row_certifies_terminal_row_provider_object_replay: false,
+      row_certifies_expression_level_n38_provider: false,
+      row_certifies_directed_rounded_shared_domain: false,
+      row_status: rowVerified
+        ? "variable-ownership-alpha-candidate-emitted-provider-object-target-missing"
+        : "variable-ownership-branch-feed-attempt-open",
+      claim_boundary:
+        h39TerminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttemptClaimBoundary(),
+    };
+  });
+  const terminalRowCount = rows.reduce(
+    (total, row) =>
+      total + row.variable_ownership_branch_feed_attempt_terminal_row_count,
+    0
+  );
+  const sumRows = (key) =>
+    rows.reduce((total, row) => total + Number(row?.[key] ?? 0), 0);
+  const aggregateChecks = {
+    provider_object_pre_sum_branch_source_audit_ready: preSumAuditReady,
+    fold_null_generator_compatibility_attempt_ready: foldNullAttemptReady,
+    terminal_g_to_provider_bridge_audit_ready: bridgeAuditReady,
+    same_domain_terminal_rows_aligned: rows.every(
+      (row) => row.row_checks?.same_domain_terminal_rows_aligned === true
+    ),
+    variable_ownership_alpha_candidates_emitted: rows.every(
+      (row) =>
+        row.row_checks?.variable_ownership_alpha_candidates_emitted === true
+    ),
+    fold_null_variable_split_compatible: rows.every(
+      (row) => row.row_checks?.fold_null_variable_split_compatible === true
+    ),
+    provider_object_branch_moment_absence_recorded: rows.every(
+      (row) =>
+        row.row_checks?.provider_object_branch_moment_absence_recorded === true
+    ),
+    candidate_not_admissible_as_provider_object_branch_source: rows.every(
+      (row) =>
+        row.row_checks
+          ?.candidate_not_admissible_as_provider_object_branch_source === true
+    ),
+    h39_claims_remain_open: rows.every(
+      (row) => row.row_checks?.h39_claims_remain_open === true
+    ),
+  };
+  const attemptVerified =
+    rows.length === 5 &&
+    terminalRowCount === 15 &&
+    rows.every(
+      (row) => row.row_variable_ownership_branch_feed_attempt_verified === true
+    ) &&
+    Object.values(aggregateChecks).every((value) => value === true);
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_VARIABLE_OWNERSHIP_BRANCH_FEED_ATTEMPT_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-terminal-expression-level-source-term-variable-ownership-branch-feed-attempt-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-terminal-expression-level-source-term-variable-ownership-branch-feed-attempt",
+    target_kind:
+      "candidate-requested-y44-terminal-expression-level-source-term-variable-ownership-branch-feed-attempt",
+    terminal_expression_level_source_map_provider_object_pre_sum_branch_source_audit_schema:
+      terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit?.schema ??
+      null,
+    terminal_expression_level_source_term_fold_null_generator_compatibility_attempt_schema:
+      terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt?.schema ??
+      null,
+    terminal_expression_level_source_term_fold_null_coefficient_provider_moment_bridge_audit_schema:
+      terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit?.schema ??
+      null,
+    proof_status:
+      "candidate-variable-ownership-alpha-row-provider-object-target-missing",
+    variable_ownership_branch_feed_model:
+      "P_delta=S_delta_squared_speed+S_sin_delta; P_phi=S_sin_phi; A_var=P_delta-P_phi",
+    variable_ownership_alpha_model:
+      "A_var=S_delta_squared_speed-S_sin_phi+S_sin_delta",
+    provider_object_branch_moment_target: "A_P=P_- - P_+",
+    terminal_branch_g_moment_reference: "A_G^{terminal}=G_{-,y(h+2)}-G_{+,y(h+2)}",
+    variable_ownership_alpha_coefficients: {
+      delta_squared_speed: 1,
+      sin_phi: -1,
+      sin_delta: 1,
+    },
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    terminal_h_indexes: terminalSpecs.map((spec) => spec.terminal_h_index),
+    source_terms_preserved_signed_together: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    variable_ownership_branch_feed_attempt_check_kinds: [...checkKinds],
+    variable_ownership_branch_feed_attempt_checks: aggregateChecks,
+    variable_ownership_branch_feed_attempt_verified: attemptVerified,
+    variable_ownership_branch_feed_attempt_certified: false,
+    variable_ownership_branch_feed_attempt_row_count: rows.length,
+    variable_ownership_branch_feed_attempt_terminal_row_count: terminalRowCount,
+    variable_ownership_branch_feed_attempt_rows: rows,
+    variable_ownership_alpha_row_count: sumRows(
+      "variable_ownership_alpha_row_count"
+    ),
+    variable_ownership_alpha_candidate_available_terminal_row_count: sumRows(
+      "variable_ownership_alpha_candidate_available_terminal_row_count"
+    ),
+    variable_ownership_branch_feed_candidate_available_terminal_row_count:
+      sumRows(
+        "variable_ownership_branch_feed_candidate_available_terminal_row_count"
+      ),
+    terminal_branch_g_moment_available_terminal_row_count: sumRows(
+      "terminal_branch_g_moment_available_terminal_row_count"
+    ),
+    provider_object_branch_moment_available_terminal_row_count: sumRows(
+      "provider_object_branch_moment_available_terminal_row_count"
+    ),
+    fold_null_variable_split_compatible_terminal_row_count: sumRows(
+      "fold_null_variable_split_compatible_terminal_row_count"
+    ),
+    variable_ownership_alpha_overlaps_terminal_g_moment_terminal_row_count:
+      sumRows(
+        "variable_ownership_alpha_overlaps_terminal_g_moment_terminal_row_count"
+      ),
+    variable_ownership_alpha_minus_terminal_g_moment_contains_zero_terminal_row_count:
+      sumRows(
+        "variable_ownership_alpha_minus_terminal_g_moment_contains_zero_terminal_row_count"
+      ),
+    admissible_as_actual_provider_object_branch_source_terminal_row_count:
+      sumRows(
+        "admissible_as_actual_provider_object_branch_source_terminal_row_count"
+      ),
+    variable_ownership_alpha_candidate_certified_terminal_row_count: sumRows(
+      "variable_ownership_alpha_candidate_certified_terminal_row_count"
+    ),
+    variable_ownership_alpha_candidate_available:
+      sumRows("variable_ownership_alpha_candidate_available_terminal_row_count") ===
+      terminalRowCount,
+    variable_ownership_branch_feed_candidate_available:
+      sumRows(
+        "variable_ownership_branch_feed_candidate_available_terminal_row_count"
+      ) === terminalRowCount,
+    fold_null_variable_split_compatible:
+      sumRows("fold_null_variable_split_compatible_terminal_row_count") ===
+      terminalRowCount,
+    provider_object_branch_moment_available: false,
+    variable_ownership_alpha_admissible_as_actual_provider_object_branch_source:
+      false,
+    variable_ownership_alpha_candidate_certified: false,
+    expression_level_source_term_branch_projection_alpha_map_certified: false,
+    expression_level_source_term_to_provider_object_branch_projection_map_certified:
+      false,
+    terminal_g_to_provider_moment_bridge_certified: false,
+    terminal_g_to_provider_correction_term_certified: false,
+    expression_level_source_map_provider_object_branch_antisymmetric_equation_certified:
+      false,
+    expression_level_source_map_provider_object_branch_rows_certified: false,
+    source_covariance_matrix_identity_certified: false,
+    terminal_row_provider_object_replay_certified: false,
+    expression_level_n38_provider_certified: false,
+    directed_rounded_shared_domain_provider_certified: false,
+    variable_ownership_branch_feed_attempt_classification:
+      attemptVerified
+        ? "variable-ownership-alpha-candidate-emitted-provider-object-target-missing"
+        : "variable-ownership-branch-feed-attempt-open",
+    variable_ownership_branch_feed_attempt_blocker_classification:
+      attemptVerified
+        ? "same-domain-proof-variable-ownership-alpha-row-is-provider-object-branch-source-needed"
+        : "variable-ownership-branch-feed-attempt-open",
+    variable_ownership_branch_feed_attempt_primary_missing_object_kind:
+      attemptVerified
+        ? "same-domain-provider-object-branch-moment-A_P-or-branch-parity-generator-certifying-variable-ownership-alpha"
+        : "variable-ownership-branch-feed-attempt",
+    next_certificate_object:
+      "same-domain proof that A_var=P_delta-P_phi is the actual provider-object branch moment A_P, or direct expression-level P_- and P_+ rows before the provider-object sum",
+    candidate_certificate_route:
+      "The pre-sum provider object exposes exactly three same-domain source-term feed intervals. Splitting them by expression variable gives the natural candidate P_delta=S_delta_squared_speed+S_sin_delta, P_phi=S_sin_phi, and A_var=P_delta-P_phi. This packet emits those intervals on all terminal rows and compares A_var with the finite terminal branch-G moment, but it does not certify A_var as A_P because the current provider-object surface still exposes no branch moment, branch parity generator, correction term, or branch split map. The next proof obligation is therefore an identity derivation from the source-map provider object itself, not another scalar-lambda wrapper, virial detour, W partition, or matrix replay.",
+    claim_boundary:
+      h39TerminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttemptClaimBoundary(),
+  };
+}
+
+export function validateH39RequestedY44TerminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttemptCandidate(
+  artifact
+) {
+  const errors = [];
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const sameStringSet = (left, right) =>
+    Array.isArray(left) &&
+    left.length === right.length &&
+    right.every((value) => left.includes(value));
+  const sameTerminalHIndexes = (indexes) =>
+    Array.isArray(indexes) &&
+    indexes.length === 3 &&
+    indexes[0] === 37 &&
+    indexes[1] === 36 &&
+    indexes[2] === 35;
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const validClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_terminal_expression_level_source_term_variable_ownership_branch_feed_attempt_only ===
+      true &&
+    claimBoundary
+      ?.certifies_variable_ownership_alpha_as_provider_object_branch_source ===
+      false &&
+    claimBoundary?.certifies_pre_sum_provider_object_branch_source ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_term_branch_projection_alpha_map ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_term_branch_parity_generator ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_term_to_provider_object_branch_projection_map ===
+      false &&
+    claimBoundary?.certifies_terminal_g_to_provider_moment_bridge === false &&
+    claimBoundary?.certifies_terminal_g_to_provider_correction_term ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_rows ===
+      false &&
+    claimBoundary?.certifies_source_covariance_matrix_identity === false &&
+    claimBoundary?.certifies_terminal_row_provider_object_replay === false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const expectedCheckKinds = [
+    "provider_object_pre_sum_branch_source_audit_ready",
+    "fold_null_generator_compatibility_attempt_ready",
+    "terminal_g_to_provider_bridge_audit_ready",
+    "same_domain_terminal_rows_aligned",
+    "variable_ownership_alpha_candidates_emitted",
+    "fold_null_variable_split_compatible",
+    "provider_object_branch_moment_absence_recorded",
+    "candidate_not_admissible_as_provider_object_branch_source",
+    "h39_claims_remain_open",
+  ];
+  const expectedTerminalCheckKinds = [
+    "pre_sum_source_term_feed_row_available",
+    "variable_ownership_alpha_row_emitted",
+    "fold_null_variable_split_compatible",
+    "terminal_branch_g_moment_available",
+    "provider_object_branch_moment_absent",
+    "actual_provider_identity_absent",
+    "candidate_not_admissible_as_provider_object_branch_source",
+    "h39_claims_remain_open",
+  ];
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_VARIABLE_OWNERSHIP_BRANCH_FEED_ATTEMPT_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 variable-ownership branch-feed attempt candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-terminal-expression-level-source-term-variable-ownership-branch-feed-attempt-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-terminal-expression-level-source-term-variable-ownership-branch-feed-attempt" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-terminal-expression-level-source-term-variable-ownership-branch-feed-attempt" ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_pre_sum_branch_source_audit_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_PRE_SUM_BRANCH_SOURCE_AUDIT_CANDIDATE_SCHEMA ||
+    artifact
+      ?.terminal_expression_level_source_term_fold_null_generator_compatibility_attempt_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_FOLD_NULL_GENERATOR_COMPATIBILITY_ATTEMPT_CANDIDATE_SCHEMA ||
+    artifact
+      ?.terminal_expression_level_source_term_fold_null_coefficient_provider_moment_bridge_audit_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_FOLD_NULL_COEFFICIENT_PROVIDER_MOMENT_BRIDGE_AUDIT_CANDIDATE_SCHEMA ||
+    artifact?.proof_status !==
+      "candidate-variable-ownership-alpha-row-provider-object-target-missing" ||
+    artifact?.variable_ownership_branch_feed_model !==
+      "P_delta=S_delta_squared_speed+S_sin_delta; P_phi=S_sin_phi; A_var=P_delta-P_phi" ||
+    artifact?.variable_ownership_alpha_model !==
+      "A_var=S_delta_squared_speed-S_sin_phi+S_sin_delta" ||
+    artifact?.provider_object_branch_moment_target !== "A_P=P_- - P_+" ||
+    artifact?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    !sameTerminalHIndexes(artifact?.terminal_h_indexes) ||
+    !sameTerms(artifact?.source_terms_preserved_signed_together) ||
+    artifact?.variable_ownership_alpha_coefficients?.delta_squared_speed !==
+      1 ||
+    artifact?.variable_ownership_alpha_coefficients?.sin_phi !== -1 ||
+    artifact?.variable_ownership_alpha_coefficients?.sin_delta !== 1 ||
+    !sameStringSet(
+      artifact?.variable_ownership_branch_feed_attempt_check_kinds,
+      expectedCheckKinds
+    )
+  ) {
+    errors.push("variable-ownership branch-feed metadata must identify the delta/phi alpha candidate");
+  }
+  if (
+    expectedCheckKinds.some(
+      (kind) =>
+        artifact?.variable_ownership_branch_feed_attempt_checks?.[kind] !==
+        true
+    ) ||
+    artifact?.variable_ownership_branch_feed_attempt_verified !== true ||
+    artifact?.variable_ownership_branch_feed_attempt_certified !== false ||
+    artifact?.variable_ownership_branch_feed_attempt_row_count !== 5 ||
+    artifact?.variable_ownership_branch_feed_attempt_terminal_row_count !==
+      15 ||
+    artifact?.variable_ownership_alpha_row_count !== 45 ||
+    artifact
+      ?.variable_ownership_alpha_candidate_available_terminal_row_count !==
+      15 ||
+    artifact
+      ?.variable_ownership_branch_feed_candidate_available_terminal_row_count !==
+      15 ||
+    artifact?.terminal_branch_g_moment_available_terminal_row_count !== 15 ||
+    artifact?.provider_object_branch_moment_available_terminal_row_count !==
+      0 ||
+    artifact?.fold_null_variable_split_compatible_terminal_row_count !== 15 ||
+    artifact
+      ?.admissible_as_actual_provider_object_branch_source_terminal_row_count !==
+      0 ||
+    artifact?.variable_ownership_alpha_candidate_certified_terminal_row_count !==
+      0 ||
+    artifact?.variable_ownership_alpha_candidate_available !== true ||
+    artifact?.variable_ownership_branch_feed_candidate_available !== true ||
+    artifact?.fold_null_variable_split_compatible !== true ||
+    artifact?.provider_object_branch_moment_available !== false ||
+    artifact
+      ?.variable_ownership_alpha_admissible_as_actual_provider_object_branch_source !==
+      false ||
+    artifact?.variable_ownership_alpha_candidate_certified !== false ||
+    artifact
+      ?.expression_level_source_term_branch_projection_alpha_map_certified !==
+      false ||
+    artifact
+      ?.expression_level_source_term_to_provider_object_branch_projection_map_certified !==
+      false ||
+    artifact?.terminal_g_to_provider_moment_bridge_certified !== false ||
+    artifact?.terminal_g_to_provider_correction_term_certified !== false ||
+    artifact
+      ?.expression_level_source_map_provider_object_branch_antisymmetric_equation_certified !==
+      false ||
+    artifact
+      ?.expression_level_source_map_provider_object_branch_rows_certified !==
+      false ||
+    artifact?.source_covariance_matrix_identity_certified !== false ||
+    artifact?.terminal_row_provider_object_replay_certified !== false ||
+    artifact?.expression_level_n38_provider_certified !== false ||
+    artifact?.directed_rounded_shared_domain_provider_certified !== false ||
+    artifact?.variable_ownership_branch_feed_attempt_classification !==
+      "variable-ownership-alpha-candidate-emitted-provider-object-target-missing" ||
+    artifact?.variable_ownership_branch_feed_attempt_blocker_classification !==
+      "same-domain-proof-variable-ownership-alpha-row-is-provider-object-branch-source-needed" ||
+    artifact?.variable_ownership_branch_feed_attempt_primary_missing_object_kind !==
+      "same-domain-provider-object-branch-moment-A_P-or-branch-parity-generator-certifying-variable-ownership-alpha" ||
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string" ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("variable-ownership branch-feed aggregate must emit candidate rows without certifying provider identity");
+  }
+  const rows = artifact?.variable_ownership_branch_feed_attempt_rows ?? [];
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== 5 ||
+    rows.some((row, index) => {
+      const terminalRows =
+        row?.variable_ownership_branch_feed_attempt_rows ?? [];
+      return (
+        row?.node_index !== index ||
+        row?.terminal_graph_cell_id !== `speed.${index}.first-y` ||
+        row?.variable_ownership_branch_feed_attempt_terminal_row_count !== 3 ||
+        row?.variable_ownership_alpha_row_count !== 9 ||
+        row
+          ?.variable_ownership_alpha_candidate_available_terminal_row_count !==
+          3 ||
+        row
+          ?.variable_ownership_branch_feed_candidate_available_terminal_row_count !==
+          3 ||
+        row?.terminal_branch_g_moment_available_terminal_row_count !== 3 ||
+        row?.provider_object_branch_moment_available_terminal_row_count !== 0 ||
+        row?.fold_null_variable_split_compatible_terminal_row_count !== 3 ||
+        row
+          ?.admissible_as_actual_provider_object_branch_source_terminal_row_count !==
+          0 ||
+        row
+          ?.variable_ownership_alpha_candidate_certified_terminal_row_count !==
+          0 ||
+        !sameStringSet(row?.row_check_kinds, expectedCheckKinds) ||
+        expectedCheckKinds.some((kind) => row?.row_checks?.[kind] !== true) ||
+        row?.row_variable_ownership_branch_feed_attempt_verified !== true ||
+        row
+          ?.row_certifies_variable_ownership_alpha_as_provider_object_branch_source !==
+          false ||
+        row?.row_certifies_pre_sum_provider_object_branch_source !== false ||
+        row
+          ?.row_certifies_expression_level_source_term_branch_projection_alpha_map !==
+          false ||
+        row?.row_certifies_terminal_g_to_provider_moment_bridge !== false ||
+        row?.row_certifies_terminal_g_to_provider_correction_term !== false ||
+        row
+          ?.row_certifies_expression_level_source_map_provider_object_branch_rows !==
+          false ||
+        row?.row_certifies_terminal_row_provider_object_replay !== false ||
+        row?.row_certifies_expression_level_n38_provider !== false ||
+        row?.row_certifies_directed_rounded_shared_domain !== false ||
+        row?.row_status !==
+          "variable-ownership-alpha-candidate-emitted-provider-object-target-missing" ||
+        !validClaimBoundary(row?.claim_boundary) ||
+        !Array.isArray(terminalRows) ||
+        terminalRows.length !== 3 ||
+        terminalRows.some((terminalRow) => {
+          const alphaRows = terminalRow?.variable_ownership_alpha_rows ?? [];
+          return (
+            !sameStringSet(
+              terminalRow?.variable_ownership_branch_feed_attempt_check_kinds,
+              expectedTerminalCheckKinds
+            ) ||
+            expectedTerminalCheckKinds.some(
+              (kind) =>
+                terminalRow?.variable_ownership_branch_feed_attempt_checks?.[
+                  kind
+                ] !== true
+            ) ||
+            !sameTerms(terminalRow?.source_terms_preserved_signed_together) ||
+            terminalRow?.variable_ownership_alpha_row_count !== 3 ||
+            !finiteOrderedInterval(terminalRow?.p_delta_candidate_interval) ||
+            !finiteOrderedInterval(terminalRow?.p_phi_candidate_interval) ||
+            !finiteOrderedInterval(
+              terminalRow?.variable_ownership_alpha_candidate_interval
+            ) ||
+            terminalRow?.variable_ownership_alpha_candidate_available !==
+              true ||
+            terminalRow?.variable_ownership_branch_feed_candidate_available !==
+              true ||
+            !finiteOrderedInterval(
+              terminalRow?.terminal_branch_g_moment_interval
+            ) ||
+            terminalRow?.terminal_branch_g_moment_available !== true ||
+            terminalRow?.provider_object_branch_moment_interval !== null ||
+            terminalRow?.provider_object_branch_moment_available !== false ||
+            !finiteOrderedInterval(
+              terminalRow
+                ?.variable_ownership_alpha_minus_terminal_g_moment_interval
+            ) ||
+            typeof terminalRow
+              ?.variable_ownership_alpha_minus_terminal_g_moment_contains_zero !==
+              "boolean" ||
+            typeof terminalRow
+              ?.variable_ownership_alpha_overlaps_terminal_g_moment !==
+              "boolean" ||
+            !finiteNumber(
+              terminalRow?.variable_ownership_alpha_to_terminal_g_endpoint_gap
+            ) ||
+            !finiteNumber(terminalRow?.variable_ownership_alpha_half_width) ||
+            !finiteNumber(terminalRow?.terminal_branch_g_moment_half_width) ||
+            terminalRow?.fold_null_variable_split_compatible !== true ||
+            terminalRow
+              ?.admissible_as_actual_provider_object_branch_source !==
+              false ||
+            terminalRow?.variable_ownership_alpha_candidate_certified !==
+              false ||
+            terminalRow?.row_variable_ownership_branch_feed_attempt_verified !==
+              true ||
+            terminalRow
+              ?.row_certifies_variable_ownership_alpha_as_provider_object_branch_source !==
+              false ||
+            terminalRow?.row_certifies_pre_sum_provider_object_branch_source !==
+              false ||
+            terminalRow
+              ?.row_certifies_expression_level_source_term_branch_projection_alpha_map !==
+              false ||
+            terminalRow?.row_certifies_terminal_g_to_provider_moment_bridge !==
+              false ||
+            terminalRow?.row_certifies_terminal_g_to_provider_correction_term !==
+              false ||
+            terminalRow
+              ?.row_certifies_expression_level_source_map_provider_object_branch_rows !==
+              false ||
+            terminalRow?.row_certifies_terminal_row_provider_object_replay !==
+              false ||
+            terminalRow?.row_certifies_expression_level_n38_provider !==
+              false ||
+            terminalRow?.row_certifies_directed_rounded_shared_domain !==
+              false ||
+            terminalRow?.row_status !==
+              "variable-ownership-alpha-candidate-emitted-provider-object-target-missing" ||
+            !validClaimBoundary(terminalRow?.claim_boundary) ||
+            !Array.isArray(alphaRows) ||
+            alphaRows.length !== 3 ||
+            alphaRows.some(
+              (alphaRow, termIndex) =>
+                alphaRow?.term !==
+                  H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS[termIndex] ||
+                alphaRow?.terminal_graph_cell_id !==
+                  `speed.${index}.first-y` ||
+                !["delta", "phi"].includes(alphaRow?.source_variable_owner) ||
+                ![1, -1].includes(
+                  Number(alphaRow?.variable_ownership_alpha_coefficient)
+                ) ||
+                !finiteOrderedInterval(
+                  alphaRow?.aggregate_source_term_feed_interval
+                ) ||
+                !finiteOrderedInterval(
+                  alphaRow?.variable_ownership_signed_contribution_interval
+                ) ||
+                alphaRow
+                  ?.variable_ownership_alpha_coefficient_available !==
+                  true ||
+                alphaRow
+                  ?.variable_ownership_signed_contribution_available !==
+                  true ||
+                alphaRow
+                  ?.admissible_as_actual_provider_object_branch_source !==
+                  false ||
+                alphaRow
+                  ?.row_certifies_variable_ownership_alpha_as_provider_object_branch_source !==
+                  false ||
+                alphaRow
+                  ?.row_certifies_expression_level_source_map_provider_object_branch_rows !==
+                  false ||
+                alphaRow?.row_certifies_directed_rounded_shared_domain !==
+                  false ||
+                !validClaimBoundary(alphaRow?.claim_boundary)
+            )
+          );
+        })
+      );
+    })
+  ) {
+    errors.push("variable-ownership branch-feed rows must emit finite candidates but no actual provider-object branch source");
+  }
+  return errors;
+}
+
+function h39TerminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplayClaimBoundary() {
+  return {
+    defines_terminal_expression_level_source_term_variable_ownership_provider_boundary_replay_attempt_only:
+      true,
+    certifies_variable_ownership_provider_boundary_replay: false,
+    certifies_variable_ownership_provider_object_branch_identity: false,
+    certifies_variable_ownership_alpha_as_provider_object_branch_source: false,
+    certifies_pre_sum_provider_object_branch_source: false,
+    certifies_expression_level_source_term_branch_projection_alpha_map: false,
+    certifies_expression_level_source_term_to_provider_object_branch_projection_map:
+      false,
+    certifies_expression_level_source_map_provider_object_branch_rows: false,
+    certifies_terminal_row_provider_object_replay: false,
+    certifies_expression_level_n38_provider: false,
+    certifies_terminal_row_provider_enclosure: false,
+    certifies_terminal_graph_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
+export function buildH39RequestedY44TerminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplayCandidate({
+  terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt,
+  terminalRowProviderObjectReplayAttempt,
+} = {}) {
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const numericInterval = (interval) =>
+    finiteOrderedInterval(interval)
+      ? [Number(interval[0]), Number(interval[1])]
+      : null;
+  const intervalScale = (interval, scalar) => {
+    if (!finiteOrderedInterval(interval) || !finiteNumber(scalar)) {
+      return null;
+    }
+    const left = Number(interval[0]) * Number(scalar);
+    const right = Number(interval[1]) * Number(scalar);
+    return left <= right ? [left, right] : [right, left];
+  };
+  const intervalsOverlap = (left, right) =>
+    finiteOrderedInterval(left) &&
+    finiteOrderedInterval(right) &&
+    Math.max(Number(left[0]), Number(right[0])) <=
+      Math.min(Number(left[1]), Number(right[1]));
+  const intervalContainsInterval = (outer, inner) =>
+    finiteOrderedInterval(outer) &&
+    finiteOrderedInterval(inner) &&
+    Number(outer[0]) <= Number(inner[0]) &&
+    Number(inner[1]) <= Number(outer[1]);
+  const intervalEndpointGap = (left, right) =>
+    finiteOrderedInterval(left) && finiteOrderedInterval(right)
+      ? Math.max(
+          Math.abs(Number(left[0]) - Number(right[0])),
+          Math.abs(Number(left[1]) - Number(right[1]))
+        )
+      : null;
+  const intervalHalfWidth = (interval) =>
+    finiteOrderedInterval(interval)
+      ? (Number(interval[1]) - Number(interval[0])) / 2
+      : null;
+  const halfWidthRatio = (candidate, reference) => {
+    const candidateHalfWidth = intervalHalfWidth(candidate);
+    const referenceHalfWidth = intervalHalfWidth(reference);
+    if (!finiteNumber(candidateHalfWidth) || !finiteNumber(referenceHalfWidth)) {
+      return null;
+    }
+    return (
+      Number(candidateHalfWidth) /
+      Math.max(Math.abs(Number(referenceHalfWidth)), Number.EPSILON)
+    );
+  };
+  const rowsByNode = (rows) =>
+    new Map(
+      (rows ?? [])
+        .filter((row) => Number.isInteger(row?.node_index))
+        .map((row) => [Number(row.node_index), row])
+    );
+  const terminalRowsByH = (rows) =>
+    new Map(
+      (rows ?? [])
+        .filter((row) => Number.isInteger(row?.terminal_h_index))
+        .map((row) => [Number(row.terminal_h_index), row])
+    );
+  const branchRowsByBranch = (rows) =>
+    new Map(
+      (rows ?? [])
+        .filter((row) => row?.branch === "-" || row?.branch === "+")
+        .map((row) => [row.branch, row])
+    );
+  const orientations = [
+    {
+      orientation_id: "minus-delta-plus-phi",
+      branch_candidate_side_by_branch: {
+        "-": "P_delta",
+        "+": "P_phi",
+      },
+      antisymmetric_candidate_source: "A_var=P_delta-P_phi",
+      antisymmetric_candidate_sign: 1,
+    },
+    {
+      orientation_id: "minus-phi-plus-delta",
+      branch_candidate_side_by_branch: {
+        "-": "P_phi",
+        "+": "P_delta",
+      },
+      antisymmetric_candidate_source: "A_var_swapped=P_phi-P_delta",
+      antisymmetric_candidate_sign: -1,
+    },
+  ];
+  const terminalSpecs = H39_TERMINAL_SUCCESSOR_COEFFICIENT_IDENTITY_IMPORT_SPECS;
+  const checkKinds = [
+    "variable_ownership_branch_feed_attempt_ready",
+    "terminal_row_provider_object_replay_attempt_ready",
+    "same_domain_terminal_rows_aligned",
+    "terminal_witness_branch_rows_inspected",
+    "variable_ownership_branch_candidates_available",
+    "actual_provider_object_branch_rows_absent",
+    "orientation_replay_rows_recorded",
+    "h39_claims_remain_open",
+  ];
+  const orientationTerminalCheckKinds = [
+    "variable_ownership_terminal_row_available",
+    "provider_object_replay_terminal_row_available",
+    "same_domain_terminal_row_aligned",
+    "terminal_witness_branch_rows_inspected",
+    "variable_ownership_branch_candidate_rows_available",
+    "actual_provider_object_branch_rows_absent",
+    "orientation_branch_comparison_recorded",
+    "candidate_not_admitted_as_actual_provider_object_branch",
+    "h39_claims_remain_open",
+  ];
+  const variableOwnershipReady =
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_VARIABLE_OWNERSHIP_BRANCH_FEED_ATTEMPT_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      ?.variable_ownership_branch_feed_attempt_verified === true &&
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      ?.variable_ownership_branch_feed_attempt_certified === false &&
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      ?.variable_ownership_branch_feed_candidate_available === true &&
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      ?.provider_object_branch_moment_available === false &&
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      ?.variable_ownership_alpha_candidate_certified === false;
+  const providerReplayReady =
+    terminalRowProviderObjectReplayAttempt?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_ROW_PROVIDER_OBJECT_REPLAY_ATTEMPT_CANDIDATE_SCHEMA &&
+    terminalRowProviderObjectReplayAttempt
+      ?.terminal_row_provider_object_replay_attempt_verified === true &&
+    terminalRowProviderObjectReplayAttempt
+      ?.terminal_row_provider_object_replay_attempt_certified === false &&
+    terminalRowProviderObjectReplayAttempt
+      ?.source_map_provider_branch_intervals_available_count === 0 &&
+    terminalRowProviderObjectReplayAttempt
+      ?.terminal_row_provider_object_replay_certified === false;
+  const ownershipRowsByNode = rowsByNode(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      ?.variable_ownership_branch_feed_attempt_rows
+  );
+  const replayRowsByNode = rowsByNode(
+    terminalRowProviderObjectReplayAttempt?.terminal_row_provider_object_replay_rows
+  );
+  const rows = Array.from({ length: 5 }, (_, nodeIndex) => {
+    const terminalGraphCellId = `speed.${nodeIndex}.first-y`;
+    const ownershipNodeRow = ownershipRowsByNode.get(nodeIndex) ?? null;
+    const replayNodeRow = replayRowsByNode.get(nodeIndex) ?? null;
+    const ownershipTerminalRowsByH = terminalRowsByH(
+      ownershipNodeRow?.variable_ownership_branch_feed_attempt_rows
+    );
+    const replayTerminalRowsByH = terminalRowsByH(
+      replayNodeRow?.terminal_row_provider_object_replay_rows
+    );
+    const orientationTerminalRows = terminalSpecs.flatMap((spec) => {
+      const ownershipTerminalRow =
+        ownershipTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const replayTerminalRow =
+        replayTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const replayBranchRowsByBranch = branchRowsByBranch(
+        replayTerminalRow?.source_map_provider_object_replay_branch_rows
+      );
+      const pDeltaInterval = numericInterval(
+        ownershipTerminalRow?.p_delta_candidate_interval
+      );
+      const pPhiInterval = numericInterval(
+        ownershipTerminalRow?.p_phi_candidate_interval
+      );
+      const aVarInterval = numericInterval(
+        ownershipTerminalRow?.variable_ownership_alpha_candidate_interval
+      );
+      const branchCandidateIntervals = {
+        P_delta: pDeltaInterval,
+        P_phi: pPhiInterval,
+      };
+      return orientations.map((orientation) => {
+        const branchRows = ["-", "+"].map((branch) => {
+          const branchCandidateSide =
+            orientation.branch_candidate_side_by_branch[branch];
+          const candidateBranchInterval = numericInterval(
+            branchCandidateIntervals[branchCandidateSide]
+          );
+          const replayBranchRow = replayBranchRowsByBranch.get(branch) ?? null;
+          const terminalWitnessInterval = numericInterval(
+            replayBranchRow?.terminal_witness_interval
+          );
+          const actualProviderObjectInterval = numericInterval(
+            replayBranchRow?.source_map_provider_object_interval
+          );
+          const candidateAvailable = finiteOrderedInterval(
+            candidateBranchInterval
+          );
+          const terminalWitnessAvailable = finiteOrderedInterval(
+            terminalWitnessInterval
+          );
+          const actualProviderObjectAvailable =
+            replayBranchRow?.source_map_provider_object_interval_available ===
+              true && finiteOrderedInterval(actualProviderObjectInterval);
+          const overlapsWitness = intervalsOverlap(
+            candidateBranchInterval,
+            terminalWitnessInterval
+          );
+          const subsetOfWitness = intervalContainsInterval(
+            terminalWitnessInterval,
+            candidateBranchInterval
+          );
+          const witnessSubsetOfCandidate = intervalContainsInterval(
+            candidateBranchInterval,
+            terminalWitnessInterval
+          );
+          return {
+            branch,
+            orientation_id: orientation.orientation_id,
+            variable_ownership_branch_candidate_side: branchCandidateSide,
+            variable_ownership_branch_candidate_interval:
+              candidateBranchInterval,
+            terminal_witness_interval: terminalWitnessInterval,
+            actual_source_map_provider_object_branch_interval:
+              actualProviderObjectInterval,
+            variable_ownership_branch_candidate_interval_available:
+              candidateAvailable,
+            terminal_witness_interval_available: terminalWitnessAvailable,
+            actual_source_map_provider_object_branch_interval_available:
+              actualProviderObjectAvailable,
+            variable_ownership_candidate_overlaps_terminal_witness:
+              overlapsWitness,
+            variable_ownership_candidate_subset_of_terminal_witness:
+              subsetOfWitness,
+            terminal_witness_subset_of_variable_ownership_candidate:
+              witnessSubsetOfCandidate,
+            variable_ownership_candidate_to_terminal_witness_endpoint_gap:
+              intervalEndpointGap(candidateBranchInterval, terminalWitnessInterval),
+            variable_ownership_candidate_half_width: intervalHalfWidth(
+              candidateBranchInterval
+            ),
+            terminal_witness_interval_half_width: intervalHalfWidth(
+              terminalWitnessInterval
+            ),
+            variable_ownership_candidate_to_terminal_witness_half_width_ratio:
+              halfWidthRatio(candidateBranchInterval, terminalWitnessInterval),
+            source_map_provider_object_branch_interval_materialization_status:
+              replayBranchRow
+                ?.source_map_provider_object_branch_interval_materialization_status ??
+              null,
+            source_map_provider_object_branch_interval_candidate_available_count:
+              replayBranchRow
+                ?.source_map_provider_object_branch_interval_candidate_available_count ??
+              0,
+            admissible_as_actual_source_map_provider_object_branch_interval:
+              false,
+            candidate_identity_proof_available: false,
+            row_certifies_variable_ownership_provider_boundary_replay: false,
+            row_certifies_variable_ownership_provider_object_branch_identity:
+              false,
+            row_certifies_expression_level_source_map_provider_object_branch_rows:
+              false,
+            row_certifies_terminal_row_provider_object_replay: false,
+            row_certifies_directed_rounded_shared_domain: false,
+            claim_boundary:
+              h39TerminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplayClaimBoundary(),
+          };
+        });
+        const candidateBranchIntervalsAvailableCount = branchRows.filter(
+          (row) =>
+            row.variable_ownership_branch_candidate_interval_available === true
+        ).length;
+        const terminalWitnessBranchIntervalsAvailableCount = branchRows.filter(
+          (row) => row.terminal_witness_interval_available === true
+        ).length;
+        const actualProviderObjectBranchIntervalsAvailableCount =
+          branchRows.filter(
+            (row) =>
+              row.actual_source_map_provider_object_branch_interval_available ===
+              true
+          ).length;
+        const branchOverlapCount = branchRows.filter(
+          (row) =>
+            row.variable_ownership_candidate_overlaps_terminal_witness === true
+        ).length;
+        const branchSubsetCount = branchRows.filter(
+          (row) =>
+            row.variable_ownership_candidate_subset_of_terminal_witness === true
+        ).length;
+        const terminalChecks = {
+          variable_ownership_terminal_row_available:
+            variableOwnershipReady &&
+            ownershipTerminalRow
+              ?.row_variable_ownership_branch_feed_attempt_verified === true &&
+            ownershipTerminalRow?.variable_ownership_branch_feed_candidate_available ===
+              true,
+          provider_object_replay_terminal_row_available:
+            providerReplayReady &&
+            replayTerminalRow
+              ?.row_terminal_row_provider_object_replay_attempt_verified ===
+              true,
+          same_domain_terminal_row_aligned:
+            ownershipTerminalRow?.terminal_graph_cell_id ===
+              terminalGraphCellId &&
+            replayTerminalRow?.terminal_graph_cell_id === terminalGraphCellId &&
+            ownershipTerminalRow?.terminal_h_index === spec.terminal_h_index &&
+            replayTerminalRow?.terminal_h_index === spec.terminal_h_index &&
+            ownershipTerminalRow?.successor_scalar_identity_weight ===
+              spec.successor_scalar_identity_weight &&
+            replayTerminalRow?.successor_scalar_identity_weight ===
+              spec.successor_scalar_identity_weight &&
+            ownershipTerminalRow?.centered_successor_scalar_weight ===
+              spec.centered_successor_scalar_weight &&
+            replayTerminalRow?.centered_successor_scalar_weight ===
+              spec.centered_successor_scalar_weight,
+          terminal_witness_branch_rows_inspected:
+            branchRows.length === 2 &&
+            branchRows.every(
+              (row) =>
+                typeof row.terminal_witness_interval_available === "boolean"
+            ),
+          variable_ownership_branch_candidate_rows_available:
+            candidateBranchIntervalsAvailableCount === 2 &&
+            finiteOrderedInterval(aVarInterval),
+          actual_provider_object_branch_rows_absent:
+            actualProviderObjectBranchIntervalsAvailableCount === 0,
+          orientation_branch_comparison_recorded:
+            branchRows.length === 2 &&
+            branchRows.every(
+              (row) =>
+                typeof row.variable_ownership_candidate_overlaps_terminal_witness ===
+                  "boolean" &&
+                typeof row.variable_ownership_candidate_subset_of_terminal_witness ===
+                  "boolean" &&
+                row.admissible_as_actual_source_map_provider_object_branch_interval ===
+                  false
+            ),
+          candidate_not_admitted_as_actual_provider_object_branch:
+            branchRows.every(
+              (row) =>
+                row.admissible_as_actual_source_map_provider_object_branch_interval ===
+                  false &&
+                row.candidate_identity_proof_available === false
+            ),
+          h39_claims_remain_open:
+            ownershipTerminalRow
+              ?.row_certifies_variable_ownership_alpha_as_provider_object_branch_source ===
+              false &&
+            replayTerminalRow?.row_certifies_terminal_row_provider_object_replay ===
+              false &&
+            replayTerminalRow
+              ?.row_certifies_branch_resolved_centered_residual_source_object ===
+              false,
+        };
+        const terminalVerified = Object.values(terminalChecks).every(
+          (value) => value === true
+        );
+        return {
+          terminal_h_index: spec.terminal_h_index,
+          source_y_order: H38_NUMERATOR_Y_ORDER,
+          required_xi_derivative_order: 4,
+          terminal_graph_cell_id: terminalGraphCellId,
+          successor_scalar_identity_weight:
+            spec.successor_scalar_identity_weight,
+          centered_successor_scalar_weight:
+            spec.centered_successor_scalar_weight,
+          orientation_id: orientation.orientation_id,
+          orientation_branch_candidate_assignment:
+            orientation.branch_candidate_side_by_branch,
+          orientation_antisymmetric_candidate_source:
+            orientation.antisymmetric_candidate_source,
+          orientation_antisymmetric_candidate_interval: intervalScale(
+            aVarInterval,
+            orientation.antisymmetric_candidate_sign
+          ),
+          p_delta_candidate_interval: pDeltaInterval,
+          p_phi_candidate_interval: pPhiInterval,
+          variable_ownership_alpha_candidate_interval: aVarInterval,
+          variable_ownership_provider_boundary_replay_branch_rows: branchRows,
+          variable_ownership_provider_boundary_replay_branch_row_count:
+            branchRows.length,
+          variable_ownership_branch_candidate_intervals_available_count:
+            candidateBranchIntervalsAvailableCount,
+          terminal_witness_branch_intervals_available_count:
+            terminalWitnessBranchIntervalsAvailableCount,
+          actual_provider_object_branch_intervals_available_count:
+            actualProviderObjectBranchIntervalsAvailableCount,
+          variable_ownership_branch_candidate_overlaps_terminal_witness_count:
+            branchOverlapCount,
+          variable_ownership_branch_candidate_subset_terminal_witness_count:
+            branchSubsetCount,
+          variable_ownership_orientation_reaches_terminal_witness:
+            branchOverlapCount === 2,
+          variable_ownership_orientation_subset_of_terminal_witness:
+            branchSubsetCount === 2,
+          successor_scalar_provider_boundary_remainder_fits:
+            replayTerminalRow
+              ?.successor_scalar_provider_boundary_remainder_fits === true,
+          variable_ownership_provider_boundary_replay_check_kinds: [
+            ...orientationTerminalCheckKinds,
+          ],
+          variable_ownership_provider_boundary_replay_checks: terminalChecks,
+          row_variable_ownership_provider_boundary_replay_verified:
+            terminalVerified,
+          row_certifies_variable_ownership_provider_boundary_replay: false,
+          row_certifies_variable_ownership_provider_object_branch_identity:
+            false,
+          row_certifies_expression_level_source_map_provider_object_branch_rows:
+            false,
+          row_certifies_terminal_row_provider_object_replay: false,
+          row_certifies_expression_level_n38_provider: false,
+          row_certifies_directed_rounded_shared_domain: false,
+          row_status: terminalVerified
+            ? branchOverlapCount !== 2
+              ? "variable-ownership-provider-boundary-branch-overlap-open"
+              : branchSubsetCount !== 2
+                ? "variable-ownership-provider-boundary-branch-containment-open"
+                : replayTerminalRow
+                      ?.successor_scalar_provider_boundary_remainder_fits !==
+                    true
+                  ? "variable-ownership-provider-boundary-remainder-open"
+                  : "variable-ownership-provider-boundary-compatible-identity-open"
+            : "variable-ownership-provider-boundary-replay-attempt-open",
+          claim_boundary:
+            h39TerminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplayClaimBoundary(),
+        };
+      });
+    });
+    const rowChecks = {
+      variable_ownership_branch_feed_attempt_ready:
+        variableOwnershipReady &&
+        ownershipNodeRow?.row_variable_ownership_branch_feed_attempt_verified ===
+          true,
+      terminal_row_provider_object_replay_attempt_ready:
+        providerReplayReady &&
+        replayNodeRow?.row_terminal_row_provider_object_replay_attempt_verified ===
+          true,
+      same_domain_terminal_rows_aligned: orientationTerminalRows.every(
+        (row) =>
+          row.variable_ownership_provider_boundary_replay_checks
+            ?.same_domain_terminal_row_aligned === true
+      ),
+      terminal_witness_branch_rows_inspected: orientationTerminalRows.every(
+        (row) =>
+          row.variable_ownership_provider_boundary_replay_branch_row_count ===
+            2 &&
+          row.variable_ownership_provider_boundary_replay_checks
+            ?.terminal_witness_branch_rows_inspected === true
+      ),
+      variable_ownership_branch_candidates_available:
+        orientationTerminalRows.every(
+          (row) =>
+            row.variable_ownership_branch_candidate_intervals_available_count ===
+            2
+        ),
+      actual_provider_object_branch_rows_absent:
+        orientationTerminalRows.every(
+          (row) =>
+            row.actual_provider_object_branch_intervals_available_count === 0
+        ),
+      orientation_replay_rows_recorded:
+        orientationTerminalRows.length === 6 &&
+        orientationTerminalRows.every(
+          (row) =>
+            row.variable_ownership_provider_boundary_replay_branch_row_count ===
+            2
+        ),
+      h39_claims_remain_open: orientationTerminalRows.every(
+        (row) =>
+          row.variable_ownership_provider_boundary_replay_checks
+            ?.h39_claims_remain_open === true
+      ),
+    };
+    const rowVerified = Object.values(rowChecks).every(
+      (value) => value === true
+    );
+    const orientationBranchRows = orientationTerminalRows.flatMap(
+      (row) => row.variable_ownership_provider_boundary_replay_branch_rows
+    );
+    return {
+      node_index: nodeIndex,
+      terminal_graph_cell_id: terminalGraphCellId,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      variable_ownership_provider_boundary_replay_row_kind:
+        "terminal-expression-level-source-term-variable-ownership-provider-boundary-replay-node-row",
+      terminal_h_indexes: terminalSpecs.map((spec) => spec.terminal_h_index),
+      orientation_ids: orientations.map((orientation) => orientation.orientation_id),
+      variable_ownership_provider_boundary_replay_rows:
+        orientationTerminalRows,
+      variable_ownership_provider_boundary_replay_terminal_row_count:
+        orientationTerminalRows.length,
+      variable_ownership_provider_boundary_replay_branch_row_count:
+        orientationBranchRows.length,
+      variable_ownership_branch_candidate_intervals_available_count:
+        orientationBranchRows.filter(
+          (row) =>
+            row.variable_ownership_branch_candidate_interval_available === true
+        ).length,
+      terminal_witness_branch_intervals_available_count:
+        orientationBranchRows.filter(
+          (row) => row.terminal_witness_interval_available === true
+        ).length,
+      actual_provider_object_branch_intervals_available_count:
+        orientationBranchRows.filter(
+          (row) =>
+            row.actual_source_map_provider_object_branch_interval_available ===
+            true
+        ).length,
+      variable_ownership_branch_candidate_overlaps_terminal_witness_count:
+        orientationBranchRows.filter(
+          (row) =>
+            row.variable_ownership_candidate_overlaps_terminal_witness === true
+        ).length,
+      variable_ownership_branch_candidate_subset_terminal_witness_count:
+        orientationBranchRows.filter(
+          (row) =>
+            row.variable_ownership_candidate_subset_of_terminal_witness === true
+        ).length,
+      row_check_kinds: [...checkKinds],
+      row_checks: rowChecks,
+      row_variable_ownership_provider_boundary_replay_verified: rowVerified,
+      row_certifies_variable_ownership_provider_boundary_replay: false,
+      row_certifies_variable_ownership_provider_object_branch_identity: false,
+      row_certifies_expression_level_source_map_provider_object_branch_rows:
+        false,
+      row_certifies_terminal_row_provider_object_replay: false,
+      row_certifies_expression_level_n38_provider: false,
+      row_certifies_directed_rounded_shared_domain: false,
+      row_status: rowVerified
+        ? "variable-ownership-provider-boundary-replay-recorded-identity-open"
+        : "variable-ownership-provider-boundary-replay-attempt-open",
+      claim_boundary:
+        h39TerminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplayClaimBoundary(),
+    };
+  });
+  const orientationTerminalRows = rows.flatMap(
+    (row) => row.variable_ownership_provider_boundary_replay_rows
+  );
+  const orientationBranchRows = orientationTerminalRows.flatMap(
+    (row) => row.variable_ownership_provider_boundary_replay_branch_rows
+  );
+  const terminalRowCount = orientationTerminalRows.length;
+  const branchRowCount = orientationBranchRows.length;
+  const sumRows = (key) =>
+    rows.reduce((total, row) => total + Number(row?.[key] ?? 0), 0);
+  const orientationSummaries = orientations.map((orientation) => {
+    const terminalRows = orientationTerminalRows.filter(
+      (row) => row.orientation_id === orientation.orientation_id
+    );
+    const branchRows = terminalRows.flatMap(
+      (row) => row.variable_ownership_provider_boundary_replay_branch_rows
+    );
+    return {
+      orientation_id: orientation.orientation_id,
+      branch_candidate_assignment:
+        orientation.branch_candidate_side_by_branch,
+      orientation_terminal_row_count: terminalRows.length,
+      orientation_branch_row_count: branchRows.length,
+      variable_ownership_branch_candidate_intervals_available_count:
+        branchRows.filter(
+          (row) =>
+            row.variable_ownership_branch_candidate_interval_available === true
+        ).length,
+      terminal_witness_branch_intervals_available_count: branchRows.filter(
+        (row) => row.terminal_witness_interval_available === true
+      ).length,
+      actual_provider_object_branch_intervals_available_count:
+        branchRows.filter(
+          (row) =>
+            row.actual_source_map_provider_object_branch_interval_available ===
+            true
+        ).length,
+      branch_candidate_overlaps_terminal_witness_count: branchRows.filter(
+        (row) =>
+          row.variable_ownership_candidate_overlaps_terminal_witness === true
+      ).length,
+      branch_candidate_subset_terminal_witness_count: branchRows.filter(
+        (row) =>
+          row.variable_ownership_candidate_subset_of_terminal_witness === true
+      ).length,
+      terminal_rows_all_branch_candidates_overlap_terminal_witness_count:
+        terminalRows.filter(
+          (row) =>
+            row.variable_ownership_branch_candidate_overlaps_terminal_witness_count ===
+            2
+        ).length,
+      terminal_rows_all_branch_candidates_subset_terminal_witness_count:
+        terminalRows.filter(
+          (row) =>
+            row.variable_ownership_branch_candidate_subset_terminal_witness_count ===
+            2
+        ).length,
+      provider_boundary_remainder_fits_terminal_row_count:
+        terminalRows.filter(
+          (row) =>
+            row.successor_scalar_provider_boundary_remainder_fits === true
+        ).length,
+      orientation_reaches_terminal_witness:
+        branchRows.filter(
+          (row) =>
+            row.variable_ownership_candidate_overlaps_terminal_witness === true
+        ).length === branchRows.length,
+      orientation_subset_terminal_witness:
+        branchRows.filter(
+          (row) =>
+            row.variable_ownership_candidate_subset_of_terminal_witness === true
+        ).length === branchRows.length,
+    };
+  });
+  const bestOrientation =
+    [...orientationSummaries].sort(
+      (left, right) =>
+        right.branch_candidate_subset_terminal_witness_count -
+          left.branch_candidate_subset_terminal_witness_count ||
+        right.branch_candidate_overlaps_terminal_witness_count -
+          left.branch_candidate_overlaps_terminal_witness_count ||
+        right.terminal_rows_all_branch_candidates_subset_terminal_witness_count -
+          left.terminal_rows_all_branch_candidates_subset_terminal_witness_count
+    )[0] ?? null;
+  const aggregateChecks = {
+    variable_ownership_branch_feed_attempt_ready: variableOwnershipReady,
+    terminal_row_provider_object_replay_attempt_ready: providerReplayReady,
+    same_domain_terminal_rows_aligned: rows.every(
+      (row) => row.row_checks?.same_domain_terminal_rows_aligned === true
+    ),
+    terminal_witness_branch_rows_inspected: rows.every(
+      (row) => row.row_checks?.terminal_witness_branch_rows_inspected === true
+    ),
+    variable_ownership_branch_candidates_available: rows.every(
+      (row) =>
+        row.row_checks?.variable_ownership_branch_candidates_available === true
+    ),
+    actual_provider_object_branch_rows_absent: rows.every(
+      (row) =>
+        row.row_checks?.actual_provider_object_branch_rows_absent === true
+    ),
+    orientation_replay_rows_recorded: rows.every(
+      (row) => row.row_checks?.orientation_replay_rows_recorded === true
+    ),
+    h39_claims_remain_open: rows.every(
+      (row) => row.row_checks?.h39_claims_remain_open === true
+    ),
+  };
+  const attemptVerified =
+    rows.length === 5 &&
+    terminalRowCount === 30 &&
+    branchRowCount === 60 &&
+    rows.every(
+      (row) =>
+        row.row_variable_ownership_provider_boundary_replay_verified === true
+    ) &&
+    Object.values(aggregateChecks).every((value) => value === true);
+  const candidateAvailableCount = sumRows(
+    "variable_ownership_branch_candidate_intervals_available_count"
+  );
+  const terminalWitnessAvailableCount = sumRows(
+    "terminal_witness_branch_intervals_available_count"
+  );
+  const actualProviderAvailableCount = sumRows(
+    "actual_provider_object_branch_intervals_available_count"
+  );
+  const branchOverlapCount = sumRows(
+    "variable_ownership_branch_candidate_overlaps_terminal_witness_count"
+  );
+  const branchSubsetCount = sumRows(
+    "variable_ownership_branch_candidate_subset_terminal_witness_count"
+  );
+  const bestOrientationOverlapCount =
+    bestOrientation?.branch_candidate_overlaps_terminal_witness_count ?? 0;
+  const bestOrientationSubsetCount =
+    bestOrientation?.branch_candidate_subset_terminal_witness_count ?? 0;
+  const bestOrientationTerminalWitnessAvailableCount =
+    bestOrientation?.terminal_witness_branch_intervals_available_count ?? 0;
+  const bestOrientationProviderBoundaryFitCount =
+    bestOrientation?.provider_boundary_remainder_fits_terminal_row_count ?? 0;
+  const bestOrientationWitnessesAvailable =
+    attemptVerified && bestOrientationTerminalWitnessAvailableCount === 30;
+  const bestOrientationReachesTerminalWitness =
+    bestOrientationWitnessesAvailable && bestOrientationOverlapCount === 30;
+  const bestOrientationSubsetTerminalWitness =
+    bestOrientationWitnessesAvailable && bestOrientationSubsetCount === 30;
+  const allProviderBoundaryRemaindersFit =
+    terminalRowProviderObjectReplayAttempt?.all_provider_boundary_remainders_fit ===
+    true;
+  const candidateCompatible =
+    bestOrientationSubsetTerminalWitness && allProviderBoundaryRemaindersFit;
+  const classification = (() => {
+    if (!attemptVerified) {
+      return "variable-ownership-provider-boundary-replay-attempt-open";
+    }
+    if (!bestOrientationWitnessesAvailable) {
+      return "variable-ownership-provider-boundary-terminal-witness-open";
+    }
+    if (!bestOrientationReachesTerminalWitness) {
+      return "variable-ownership-provider-boundary-branch-overlap-open";
+    }
+    if (!bestOrientationSubsetTerminalWitness) {
+      return "variable-ownership-provider-boundary-branch-containment-open";
+    }
+    if (!allProviderBoundaryRemaindersFit) {
+      return "variable-ownership-provider-boundary-remainder-open";
+    }
+    return "variable-ownership-provider-boundary-compatible-identity-open";
+  })();
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_VARIABLE_OWNERSHIP_PROVIDER_BOUNDARY_REPLAY_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-terminal-expression-level-source-term-variable-ownership-provider-boundary-replay-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-terminal-expression-level-source-term-variable-ownership-provider-boundary-replay",
+    target_kind:
+      "candidate-requested-y44-terminal-expression-level-source-term-variable-ownership-provider-boundary-replay",
+    terminal_expression_level_source_term_variable_ownership_branch_feed_attempt_schema:
+      terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt?.schema ??
+      null,
+    terminal_row_provider_object_replay_attempt_schema:
+      terminalRowProviderObjectReplayAttempt?.schema ?? null,
+    proof_status:
+      "candidate-variable-ownership-provider-boundary-replay-identity-open",
+    replay_attempt_kind:
+      "variable-owned-pre-sum-branch-candidate-to-terminal-witness-provider-boundary-replay",
+    branch_candidate_model:
+      "P_delta=S_delta_squared_speed+S_sin_delta; P_phi=S_sin_phi",
+    orientation_models: orientations.map((orientation) => ({
+      orientation_id: orientation.orientation_id,
+      branch_candidate_assignment:
+        orientation.branch_candidate_side_by_branch,
+      antisymmetric_candidate_source:
+        orientation.antisymmetric_candidate_source,
+    })),
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    terminal_h_indexes: terminalSpecs.map((spec) => spec.terminal_h_index),
+    orientation_count: orientations.length,
+    orientation_summaries: orientationSummaries,
+    variable_ownership_provider_boundary_replay_check_kinds: [...checkKinds],
+    variable_ownership_provider_boundary_replay_checks: aggregateChecks,
+    variable_ownership_provider_boundary_replay_verified: attemptVerified,
+    variable_ownership_provider_boundary_replay_certified: false,
+    variable_ownership_provider_boundary_replay_row_count: rows.length,
+    variable_ownership_provider_boundary_replay_terminal_row_count:
+      terminalRowCount,
+    variable_ownership_provider_boundary_replay_branch_row_count:
+      branchRowCount,
+    variable_ownership_provider_boundary_replay_rows: rows,
+    variable_ownership_branch_candidate_intervals_available_count:
+      candidateAvailableCount,
+    terminal_witness_branch_intervals_available_count:
+      terminalWitnessAvailableCount,
+    actual_provider_object_branch_intervals_available_count:
+      actualProviderAvailableCount,
+    provider_object_branch_intervals_available_from_actual_provider_count:
+      terminalRowProviderObjectReplayAttempt
+        ?.source_map_provider_branch_intervals_available_count ?? 0,
+    variable_ownership_branch_candidate_overlaps_terminal_witness_count:
+      branchOverlapCount,
+    variable_ownership_branch_candidate_subset_terminal_witness_count:
+      branchSubsetCount,
+    best_orientation_id: bestOrientation?.orientation_id ?? null,
+    best_orientation_branch_overlap_count: bestOrientationOverlapCount,
+    best_orientation_branch_subset_count: bestOrientationSubsetCount,
+    best_orientation_terminal_witness_branch_intervals_available_count:
+      bestOrientationTerminalWitnessAvailableCount,
+    best_orientation_terminal_rows_all_branch_candidates_overlap_terminal_witness_count:
+      bestOrientation
+        ?.terminal_rows_all_branch_candidates_overlap_terminal_witness_count ??
+      0,
+    best_orientation_terminal_rows_all_branch_candidates_subset_terminal_witness_count:
+      bestOrientation
+        ?.terminal_rows_all_branch_candidates_subset_terminal_witness_count ??
+      0,
+    best_orientation_provider_boundary_remainder_fits_terminal_row_count:
+      bestOrientationProviderBoundaryFitCount,
+    best_orientation_terminal_witnesses_available:
+      bestOrientationWitnessesAvailable,
+    best_orientation_reaches_terminal_witness:
+      bestOrientationReachesTerminalWitness,
+    best_orientation_subset_terminal_witness:
+      bestOrientationSubsetTerminalWitness,
+    all_provider_boundary_remainders_fit: allProviderBoundaryRemaindersFit,
+    variable_ownership_provider_boundary_candidate_compatible:
+      candidateCompatible,
+    actual_provider_object_branch_rows_available: false,
+    variable_ownership_identity_proof_available: false,
+    candidate_identity_proof_available: false,
+    variable_ownership_provider_boundary_replay_certified_terminal_row_count:
+      0,
+    variable_ownership_provider_boundary_replay_certified_branch_row_count: 0,
+    variable_ownership_provider_boundary_replay_certified: false,
+    variable_ownership_provider_object_branch_identity_certified: false,
+    expression_level_source_map_provider_object_branch_rows_certified: false,
+    terminal_row_provider_object_replay_certified: false,
+    expression_level_n38_provider_certified: false,
+    directed_rounded_shared_domain_provider_certified: false,
+    variable_ownership_provider_boundary_replay_classification:
+      classification,
+    variable_ownership_provider_boundary_replay_blocker_classification:
+      !attemptVerified
+        ? "variable-ownership-provider-boundary-replay-attempt-open"
+        : !bestOrientationWitnessesAvailable
+          ? "same-domain-terminal-witness-branch-intervals-needed-before-variable-ownership-replay"
+        : !bestOrientationReachesTerminalWitness
+          ? "variable-ownership-branch-orientation-terminal-witness-overlap-needed"
+          : !bestOrientationSubsetTerminalWitness
+            ? "variable-ownership-branch-orientation-terminal-witness-containment-needed"
+            : !allProviderBoundaryRemaindersFit
+              ? "variable-ownership-provider-boundary-remainder-fit-needed"
+              : "same-domain-proof-variable-ownership-branches-are-actual-provider-object-needed",
+    variable_ownership_provider_boundary_replay_primary_missing_object_kind:
+      !attemptVerified
+        ? "variable-ownership-provider-boundary-replay"
+        : !bestOrientationWitnessesAvailable
+          ? "terminal-witness-branch-intervals"
+        : !bestOrientationReachesTerminalWitness
+          ? "branch-label-orientation-compatible-terminal-witness-overlap"
+          : !bestOrientationSubsetTerminalWitness
+            ? "branch-label-orientation-compatible-terminal-witness-containment"
+            : !allProviderBoundaryRemaindersFit
+              ? "successor-scalar-provider-boundary-fit"
+              : "same-domain-variable-ownership-provider-object-branch-identity",
+    next_certificate_object:
+      "same-domain proof that P_- and P_+ are P_delta/P_phi in the best branch-label orientation, or direct expression-level P_- and P_+ provider-object rows before aggregate P",
+    candidate_certificate_route:
+      "This packet replays the variable-owned pre-sum candidates P_delta and P_phi through both branch-label orientations against the existing terminal witness rows from terminalRowProviderObjectReplayAttempt. It records overlap and containment of the candidate branch intervals against the terminal witness intervals, and it propagates the successor-scalar provider-boundary remainder status. It does not admit the candidates as actual provider-object branch intervals because the source-map provider object still exposes zero actual P_- and P_+ rows and no same-domain identity proving the variable-owned branches are the provider-object branches.",
+    claim_boundary:
+      h39TerminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplayClaimBoundary(),
+  };
+}
+
+export function validateH39RequestedY44TerminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplayCandidate(
+  artifact
+) {
+  const errors = [];
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const sameStringSet = (left, right) =>
+    Array.isArray(left) &&
+    left.length === right.length &&
+    right.every((value) => left.includes(value));
+  const sameTerminalHIndexes = (indexes) =>
+    Array.isArray(indexes) &&
+    indexes.length === 3 &&
+    indexes[0] === 37 &&
+    indexes[1] === 36 &&
+    indexes[2] === 35;
+  const validClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_terminal_expression_level_source_term_variable_ownership_provider_boundary_replay_attempt_only ===
+      true &&
+    claimBoundary?.certifies_variable_ownership_provider_boundary_replay ===
+      false &&
+    claimBoundary
+      ?.certifies_variable_ownership_provider_object_branch_identity ===
+      false &&
+    claimBoundary
+      ?.certifies_variable_ownership_alpha_as_provider_object_branch_source ===
+      false &&
+    claimBoundary?.certifies_pre_sum_provider_object_branch_source === false &&
+    claimBoundary
+      ?.certifies_expression_level_source_term_branch_projection_alpha_map ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_term_to_provider_object_branch_projection_map ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_rows ===
+      false &&
+    claimBoundary?.certifies_terminal_row_provider_object_replay === false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const expectedCheckKinds = [
+    "variable_ownership_branch_feed_attempt_ready",
+    "terminal_row_provider_object_replay_attempt_ready",
+    "same_domain_terminal_rows_aligned",
+    "terminal_witness_branch_rows_inspected",
+    "variable_ownership_branch_candidates_available",
+    "actual_provider_object_branch_rows_absent",
+    "orientation_replay_rows_recorded",
+    "h39_claims_remain_open",
+  ];
+  const expectedOrientationTerminalCheckKinds = [
+    "variable_ownership_terminal_row_available",
+    "provider_object_replay_terminal_row_available",
+    "same_domain_terminal_row_aligned",
+    "terminal_witness_branch_rows_inspected",
+    "variable_ownership_branch_candidate_rows_available",
+    "actual_provider_object_branch_rows_absent",
+    "orientation_branch_comparison_recorded",
+    "candidate_not_admitted_as_actual_provider_object_branch",
+    "h39_claims_remain_open",
+  ];
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_VARIABLE_OWNERSHIP_PROVIDER_BOUNDARY_REPLAY_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 variable-ownership provider-boundary replay candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-terminal-expression-level-source-term-variable-ownership-provider-boundary-replay-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-terminal-expression-level-source-term-variable-ownership-provider-boundary-replay" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-terminal-expression-level-source-term-variable-ownership-provider-boundary-replay" ||
+    artifact
+      ?.terminal_expression_level_source_term_variable_ownership_branch_feed_attempt_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_VARIABLE_OWNERSHIP_BRANCH_FEED_ATTEMPT_CANDIDATE_SCHEMA ||
+    artifact?.terminal_row_provider_object_replay_attempt_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_ROW_PROVIDER_OBJECT_REPLAY_ATTEMPT_CANDIDATE_SCHEMA ||
+    artifact?.proof_status !==
+      "candidate-variable-ownership-provider-boundary-replay-identity-open" ||
+    artifact?.replay_attempt_kind !==
+      "variable-owned-pre-sum-branch-candidate-to-terminal-witness-provider-boundary-replay" ||
+    artifact?.branch_candidate_model !==
+      "P_delta=S_delta_squared_speed+S_sin_delta; P_phi=S_sin_phi" ||
+    artifact?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    !sameTerminalHIndexes(artifact?.terminal_h_indexes) ||
+    artifact?.orientation_count !== 2 ||
+    !Array.isArray(artifact?.orientation_models) ||
+    artifact.orientation_models.length !== 2 ||
+    !Array.isArray(artifact?.orientation_summaries) ||
+    artifact.orientation_summaries.length !== 2 ||
+    !sameStringSet(
+      artifact?.variable_ownership_provider_boundary_replay_check_kinds,
+      expectedCheckKinds
+    )
+  ) {
+    errors.push("variable-ownership provider-boundary replay metadata must identify the two branch orientations");
+  }
+  if (
+    expectedCheckKinds.some(
+      (kind) =>
+        artifact?.variable_ownership_provider_boundary_replay_checks?.[kind] !==
+        true
+    ) ||
+    artifact?.variable_ownership_provider_boundary_replay_verified !== true ||
+    artifact?.variable_ownership_provider_boundary_replay_certified !== false ||
+    artifact?.variable_ownership_provider_boundary_replay_row_count !== 5 ||
+    artifact?.variable_ownership_provider_boundary_replay_terminal_row_count !==
+      30 ||
+    artifact?.variable_ownership_provider_boundary_replay_branch_row_count !==
+      60 ||
+    artifact?.variable_ownership_branch_candidate_intervals_available_count !==
+      60 ||
+    artifact?.terminal_witness_branch_intervals_available_count < 0 ||
+    artifact?.terminal_witness_branch_intervals_available_count > 60 ||
+    artifact?.actual_provider_object_branch_intervals_available_count !== 0 ||
+    artifact
+      ?.provider_object_branch_intervals_available_from_actual_provider_count !==
+      0 ||
+    artifact
+      ?.variable_ownership_branch_candidate_overlaps_terminal_witness_count <
+      0 ||
+    artifact
+      ?.variable_ownership_branch_candidate_overlaps_terminal_witness_count >
+      60 ||
+    artifact
+      ?.variable_ownership_branch_candidate_subset_terminal_witness_count <
+      0 ||
+    artifact
+      ?.variable_ownership_branch_candidate_subset_terminal_witness_count >
+      60 ||
+    !["minus-delta-plus-phi", "minus-phi-plus-delta"].includes(
+      artifact?.best_orientation_id
+    ) ||
+    artifact?.best_orientation_branch_overlap_count < 0 ||
+    artifact?.best_orientation_branch_overlap_count > 30 ||
+    artifact?.best_orientation_branch_subset_count < 0 ||
+    artifact?.best_orientation_branch_subset_count > 30 ||
+    artifact?.best_orientation_terminal_witness_branch_intervals_available_count <
+      0 ||
+    artifact?.best_orientation_terminal_witness_branch_intervals_available_count >
+      30 ||
+    artifact
+      ?.best_orientation_terminal_rows_all_branch_candidates_overlap_terminal_witness_count <
+      0 ||
+    artifact
+      ?.best_orientation_terminal_rows_all_branch_candidates_overlap_terminal_witness_count >
+      15 ||
+    artifact
+      ?.best_orientation_terminal_rows_all_branch_candidates_subset_terminal_witness_count <
+      0 ||
+    artifact
+      ?.best_orientation_terminal_rows_all_branch_candidates_subset_terminal_witness_count >
+      15 ||
+    artifact
+      ?.best_orientation_provider_boundary_remainder_fits_terminal_row_count <
+      0 ||
+    artifact
+      ?.best_orientation_provider_boundary_remainder_fits_terminal_row_count >
+      15 ||
+    typeof artifact?.best_orientation_reaches_terminal_witness !== "boolean" ||
+    typeof artifact?.best_orientation_subset_terminal_witness !== "boolean" ||
+    typeof artifact?.best_orientation_terminal_witnesses_available !==
+      "boolean" ||
+    typeof artifact?.all_provider_boundary_remainders_fit !== "boolean" ||
+    typeof artifact
+      ?.variable_ownership_provider_boundary_candidate_compatible !==
+      "boolean" ||
+    artifact?.actual_provider_object_branch_rows_available !== false ||
+    artifact?.variable_ownership_identity_proof_available !== false ||
+    artifact?.candidate_identity_proof_available !== false ||
+    artifact
+      ?.variable_ownership_provider_boundary_replay_certified_terminal_row_count !==
+      0 ||
+    artifact
+      ?.variable_ownership_provider_boundary_replay_certified_branch_row_count !==
+      0 ||
+    artifact
+      ?.variable_ownership_provider_object_branch_identity_certified !==
+      false ||
+    artifact
+      ?.expression_level_source_map_provider_object_branch_rows_certified !==
+      false ||
+    artifact?.terminal_row_provider_object_replay_certified !== false ||
+    artifact?.expression_level_n38_provider_certified !== false ||
+    artifact?.directed_rounded_shared_domain_provider_certified !== false ||
+    ![
+      "variable-ownership-provider-boundary-replay-attempt-open",
+      "variable-ownership-provider-boundary-terminal-witness-open",
+      "variable-ownership-provider-boundary-branch-overlap-open",
+      "variable-ownership-provider-boundary-branch-containment-open",
+      "variable-ownership-provider-boundary-remainder-open",
+      "variable-ownership-provider-boundary-compatible-identity-open",
+    ].includes(
+      artifact?.variable_ownership_provider_boundary_replay_classification
+    ) ||
+    typeof artifact
+      ?.variable_ownership_provider_boundary_replay_blocker_classification !==
+      "string" ||
+    typeof artifact
+      ?.variable_ownership_provider_boundary_replay_primary_missing_object_kind !==
+      "string" ||
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string" ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("variable-ownership provider-boundary replay aggregate must be finite and non-certifying");
+  }
+  const rows = artifact?.variable_ownership_provider_boundary_replay_rows ?? [];
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== 5 ||
+    rows.some((row, index) => {
+      const terminalRows =
+        row?.variable_ownership_provider_boundary_replay_rows ?? [];
+      const branchRows = terminalRows.flatMap(
+        (terminalRow) =>
+          terminalRow?.variable_ownership_provider_boundary_replay_branch_rows ??
+          []
+      );
+      return (
+        row?.node_index !== index ||
+        row?.terminal_graph_cell_id !== `speed.${index}.first-y` ||
+        row?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+        row?.required_xi_derivative_order !== 4 ||
+        row?.variable_ownership_provider_boundary_replay_row_kind !==
+          "terminal-expression-level-source-term-variable-ownership-provider-boundary-replay-node-row" ||
+        !sameTerminalHIndexes(row?.terminal_h_indexes) ||
+        !sameStringSet(row?.orientation_ids, [
+          "minus-delta-plus-phi",
+          "minus-phi-plus-delta",
+        ]) ||
+        row?.variable_ownership_provider_boundary_replay_terminal_row_count !==
+          6 ||
+        row?.variable_ownership_provider_boundary_replay_branch_row_count !==
+          12 ||
+        row?.variable_ownership_branch_candidate_intervals_available_count !==
+          12 ||
+        row?.terminal_witness_branch_intervals_available_count < 0 ||
+        row?.terminal_witness_branch_intervals_available_count > 12 ||
+        row?.actual_provider_object_branch_intervals_available_count !== 0 ||
+        row
+          ?.variable_ownership_branch_candidate_overlaps_terminal_witness_count <
+          0 ||
+        row
+          ?.variable_ownership_branch_candidate_overlaps_terminal_witness_count >
+          12 ||
+        row?.variable_ownership_branch_candidate_subset_terminal_witness_count <
+          0 ||
+        row?.variable_ownership_branch_candidate_subset_terminal_witness_count >
+          12 ||
+        !sameStringSet(row?.row_check_kinds, expectedCheckKinds) ||
+        expectedCheckKinds.some((kind) => row?.row_checks?.[kind] !== true) ||
+        row?.row_variable_ownership_provider_boundary_replay_verified !==
+          true ||
+        row?.row_certifies_variable_ownership_provider_boundary_replay !==
+          false ||
+        row
+          ?.row_certifies_variable_ownership_provider_object_branch_identity !==
+          false ||
+        row
+          ?.row_certifies_expression_level_source_map_provider_object_branch_rows !==
+          false ||
+        row?.row_certifies_terminal_row_provider_object_replay !== false ||
+        row?.row_certifies_expression_level_n38_provider !== false ||
+        row?.row_certifies_directed_rounded_shared_domain !== false ||
+        !validClaimBoundary(row?.claim_boundary) ||
+        !Array.isArray(terminalRows) ||
+        terminalRows.length !== 6 ||
+        branchRows.length !== 12 ||
+        terminalRows.some((terminalRow) => {
+          const orientationBranchRows =
+            terminalRow
+              ?.variable_ownership_provider_boundary_replay_branch_rows ?? [];
+          return (
+            ![37, 36, 35].includes(terminalRow?.terminal_h_index) ||
+            terminalRow?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+            terminalRow?.required_xi_derivative_order !== 4 ||
+            terminalRow?.terminal_graph_cell_id !==
+              `speed.${index}.first-y` ||
+            !["minus-delta-plus-phi", "minus-phi-plus-delta"].includes(
+              terminalRow?.orientation_id
+            ) ||
+            !finiteOrderedInterval(terminalRow?.p_delta_candidate_interval) ||
+            !finiteOrderedInterval(terminalRow?.p_phi_candidate_interval) ||
+            !finiteOrderedInterval(
+              terminalRow?.variable_ownership_alpha_candidate_interval
+            ) ||
+            !finiteOrderedInterval(
+              terminalRow?.orientation_antisymmetric_candidate_interval
+            ) ||
+            terminalRow
+              ?.variable_ownership_provider_boundary_replay_branch_row_count !==
+              2 ||
+            terminalRow
+              ?.variable_ownership_branch_candidate_intervals_available_count !==
+              2 ||
+            terminalRow?.terminal_witness_branch_intervals_available_count <
+              0 ||
+            terminalRow?.terminal_witness_branch_intervals_available_count >
+              2 ||
+            terminalRow
+              ?.actual_provider_object_branch_intervals_available_count !==
+              0 ||
+            terminalRow
+              ?.variable_ownership_branch_candidate_overlaps_terminal_witness_count <
+              0 ||
+            terminalRow
+              ?.variable_ownership_branch_candidate_overlaps_terminal_witness_count >
+              2 ||
+            terminalRow
+              ?.variable_ownership_branch_candidate_subset_terminal_witness_count <
+              0 ||
+            terminalRow
+              ?.variable_ownership_branch_candidate_subset_terminal_witness_count >
+              2 ||
+            typeof terminalRow
+              ?.variable_ownership_orientation_reaches_terminal_witness !==
+              "boolean" ||
+            typeof terminalRow
+              ?.variable_ownership_orientation_subset_of_terminal_witness !==
+              "boolean" ||
+            typeof terminalRow
+              ?.successor_scalar_provider_boundary_remainder_fits !==
+              "boolean" ||
+            !sameStringSet(
+              terminalRow
+                ?.variable_ownership_provider_boundary_replay_check_kinds,
+              expectedOrientationTerminalCheckKinds
+            ) ||
+            expectedOrientationTerminalCheckKinds.some(
+              (kind) =>
+                terminalRow
+                  ?.variable_ownership_provider_boundary_replay_checks?.[
+                  kind
+                ] !== true
+            ) ||
+            terminalRow
+              ?.row_variable_ownership_provider_boundary_replay_verified !==
+              true ||
+            terminalRow
+              ?.row_certifies_variable_ownership_provider_boundary_replay !==
+              false ||
+            terminalRow
+              ?.row_certifies_variable_ownership_provider_object_branch_identity !==
+              false ||
+            terminalRow
+              ?.row_certifies_expression_level_source_map_provider_object_branch_rows !==
+              false ||
+            terminalRow?.row_certifies_terminal_row_provider_object_replay !==
+              false ||
+            terminalRow?.row_certifies_expression_level_n38_provider !==
+              false ||
+            terminalRow?.row_certifies_directed_rounded_shared_domain !==
+              false ||
+            !validClaimBoundary(terminalRow?.claim_boundary) ||
+            !Array.isArray(orientationBranchRows) ||
+            orientationBranchRows.length !== 2 ||
+            orientationBranchRows.some(
+              (branchRow) =>
+                !["-", "+"].includes(branchRow?.branch) ||
+                branchRow?.orientation_id !== terminalRow?.orientation_id ||
+                !["P_delta", "P_phi"].includes(
+                  branchRow?.variable_ownership_branch_candidate_side
+                ) ||
+                !finiteOrderedInterval(
+                  branchRow?.variable_ownership_branch_candidate_interval
+                ) ||
+                !(branchRow?.terminal_witness_interval_available === true
+                  ? finiteOrderedInterval(branchRow?.terminal_witness_interval)
+                  : branchRow?.terminal_witness_interval === null) ||
+                branchRow?.actual_source_map_provider_object_branch_interval !==
+                  null ||
+                branchRow
+                  ?.variable_ownership_branch_candidate_interval_available !==
+                  true ||
+                typeof branchRow?.terminal_witness_interval_available !==
+                  "boolean" ||
+                branchRow
+                  ?.actual_source_map_provider_object_branch_interval_available !==
+                  false ||
+                typeof branchRow
+                  ?.variable_ownership_candidate_overlaps_terminal_witness !==
+                  "boolean" ||
+                typeof branchRow
+                  ?.variable_ownership_candidate_subset_of_terminal_witness !==
+                  "boolean" ||
+                typeof branchRow
+                  ?.terminal_witness_subset_of_variable_ownership_candidate !==
+                  "boolean" ||
+                !(branchRow?.terminal_witness_interval_available === true
+                  ? finiteNumber(
+                      branchRow
+                        ?.variable_ownership_candidate_to_terminal_witness_endpoint_gap
+                    )
+                  : branchRow
+                      ?.variable_ownership_candidate_to_terminal_witness_endpoint_gap ===
+                    null) ||
+                !finiteNumber(
+                  branchRow?.variable_ownership_candidate_half_width
+                ) ||
+                !(branchRow?.terminal_witness_interval_available === true
+                  ? finiteNumber(branchRow?.terminal_witness_interval_half_width)
+                  : branchRow?.terminal_witness_interval_half_width === null) ||
+                !(branchRow?.terminal_witness_interval_available === true
+                  ? finiteNumber(
+                      branchRow
+                        ?.variable_ownership_candidate_to_terminal_witness_half_width_ratio
+                    )
+                  : branchRow
+                      ?.variable_ownership_candidate_to_terminal_witness_half_width_ratio ===
+                    null) ||
+                branchRow
+                  ?.actual_source_map_provider_object_branch_interval_available !==
+                  false ||
+                branchRow
+                  ?.admissible_as_actual_source_map_provider_object_branch_interval !==
+                  false ||
+                branchRow?.candidate_identity_proof_available !== false ||
+                branchRow
+                  ?.row_certifies_variable_ownership_provider_boundary_replay !==
+                  false ||
+                branchRow
+                  ?.row_certifies_variable_ownership_provider_object_branch_identity !==
+                  false ||
+                branchRow
+                  ?.row_certifies_expression_level_source_map_provider_object_branch_rows !==
+                  false ||
+                branchRow?.row_certifies_terminal_row_provider_object_replay !==
+                  false ||
+                branchRow?.row_certifies_directed_rounded_shared_domain !==
+                  false ||
+                !validClaimBoundary(branchRow?.claim_boundary)
+            )
+          );
+        })
+      );
+    })
+  ) {
+    errors.push("variable-ownership provider-boundary replay rows must compare both orientations against finite terminal witnesses");
+  }
+  if (
+    artifact?.orientation_summaries.some(
+      (summary) =>
+        !["minus-delta-plus-phi", "minus-phi-plus-delta"].includes(
+          summary?.orientation_id
+        ) ||
+        summary?.orientation_terminal_row_count !== 15 ||
+        summary?.orientation_branch_row_count !== 30 ||
+        summary
+          ?.variable_ownership_branch_candidate_intervals_available_count !==
+          30 ||
+        summary?.terminal_witness_branch_intervals_available_count < 0 ||
+        summary?.terminal_witness_branch_intervals_available_count > 30 ||
+        summary?.actual_provider_object_branch_intervals_available_count !==
+          0 ||
+        summary?.branch_candidate_overlaps_terminal_witness_count < 0 ||
+        summary?.branch_candidate_overlaps_terminal_witness_count > 30 ||
+        summary?.branch_candidate_subset_terminal_witness_count < 0 ||
+        summary?.branch_candidate_subset_terminal_witness_count > 30 ||
+        summary
+          ?.terminal_rows_all_branch_candidates_overlap_terminal_witness_count <
+          0 ||
+        summary
+          ?.terminal_rows_all_branch_candidates_overlap_terminal_witness_count >
+          15 ||
+        summary
+          ?.terminal_rows_all_branch_candidates_subset_terminal_witness_count <
+          0 ||
+        summary
+          ?.terminal_rows_all_branch_candidates_subset_terminal_witness_count >
+          15 ||
+        summary?.provider_boundary_remainder_fits_terminal_row_count < 0 ||
+        summary?.provider_boundary_remainder_fits_terminal_row_count > 15 ||
+        typeof summary?.orientation_reaches_terminal_witness !== "boolean" ||
+        typeof summary?.orientation_subset_terminal_witness !== "boolean"
+    )
+  ) {
+    errors.push("variable-ownership provider-boundary replay orientation summaries must be bounded");
   }
   return errors;
 }
@@ -108472,6 +113195,7016 @@ export function validateH39RequestedY44TerminalDenominatorFreeBranchResidualSour
     !validClaimBoundary(artifact?.claim_boundary)
   ) {
     errors.push("terminal denominator-free branch-residual identity attempt must keep broad closure claims open");
+  }
+  return errors;
+}
+
+function h39TerminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttemptClaimBoundary() {
+  return {
+    defines_terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_only:
+      true,
+    certifies_variable_ownership_t_coordinate_identity: false,
+    certifies_denominator_free_branch_residual_source_object_identity: false,
+    certifies_branch_resolved_centered_residual_source_object: false,
+    certifies_terminal_successor_centered_residual_branch_split: false,
+    certifies_branch_resolved_centered_residual_component: false,
+    certifies_variable_ownership_alpha_as_provider_object_branch_source: false,
+    certifies_expression_level_source_map_provider_object_branch_rows: false,
+    certifies_terminal_row_provider_object_replay: false,
+    certifies_terminal_successor_scalar_provider_boundary_identity: false,
+    certifies_expression_level_n38_provider: false,
+    certifies_terminal_row_provider_enclosure: false,
+    certifies_terminal_graph_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
+export function buildH39RequestedY44TerminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttemptCandidate({
+  terminalDenominatorFreeBranchResidualSourceObjectIdentityAttempt,
+  terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt,
+  terminalRowProviderObjectReplayAttempt,
+} = {}) {
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const numericInterval = (interval) =>
+    finiteOrderedInterval(interval)
+      ? [Number(interval[0]), Number(interval[1])]
+      : null;
+  const addIntervals = (left, right) =>
+    finiteOrderedInterval(left) && finiteOrderedInterval(right)
+      ? [Number(left[0]) + Number(right[0]), Number(left[1]) + Number(right[1])]
+      : null;
+  const subtractIntervals = (left, right) =>
+    finiteOrderedInterval(left) && finiteOrderedInterval(right)
+      ? [Number(left[0]) - Number(right[1]), Number(left[1]) - Number(right[0])]
+      : null;
+  const scaleInterval = (interval, scalar) => {
+    if (!finiteOrderedInterval(interval) || !finiteNumber(scalar)) {
+      return null;
+    }
+    const left = Number(interval[0]) * Number(scalar);
+    const right = Number(interval[1]) * Number(scalar);
+    return left <= right ? [left, right] : [right, left];
+  };
+  const intervalContainsValue = (interval, value) =>
+    finiteOrderedInterval(interval) &&
+    finiteNumber(value) &&
+    Number(interval[0]) <= Number(value) &&
+    Number(value) <= Number(interval[1]);
+  const intervalContainsInterval = (outer, inner) =>
+    finiteOrderedInterval(outer) &&
+    finiteOrderedInterval(inner) &&
+    Number(outer[0]) <= Number(inner[0]) &&
+    Number(inner[1]) <= Number(outer[1]);
+  const intervalHalfWidth = (interval) =>
+    finiteOrderedInterval(interval)
+      ? (Number(interval[1]) - Number(interval[0])) / 2
+      : null;
+  const rowsByNode = (rows) =>
+    new Map(
+      (rows ?? [])
+        .filter((row) => Number.isInteger(row?.node_index))
+        .map((row) => [Number(row.node_index), row])
+    );
+  const terminalRowsByH = (rows) =>
+    new Map(
+      (rows ?? [])
+        .filter((row) => Number.isInteger(row?.terminal_h_index))
+        .map((row) => [Number(row.terminal_h_index), row])
+    );
+  const branchRowsByBranch = (rows) =>
+    new Map(
+      (rows ?? [])
+        .filter((row) => row?.branch === "-" || row?.branch === "+")
+        .map((row) => [row.branch, row])
+    );
+  const terminalSpecs = H39_TERMINAL_SUCCESSOR_COEFFICIENT_IDENTITY_IMPORT_SPECS;
+  const checkKinds = [
+    "denominator_free_identity_attempt_ready",
+    "variable_ownership_branch_feed_attempt_ready",
+    "terminal_row_provider_object_replay_attempt_ready",
+    "same_domain_terminal_rows_aligned",
+    "variable_ownership_t_coordinate_candidate_available",
+    "denominator_free_variable_ownership_branch_candidates_recorded",
+    "candidate_branch_sum_contains_aggregate_recorded",
+    "candidate_branch_difference_contains_variable_ownership_alpha_recorded",
+    "terminal_witness_slots_recorded",
+    "source_object_identity_kept_fail_closed",
+    "h39_broad_claims_remain_open",
+  ];
+  const terminalCheckKinds = [
+    "denominator_free_terminal_row_available",
+    "variable_ownership_terminal_row_available",
+    "provider_replay_terminal_row_available",
+    "same_domain_terminal_row_aligned",
+    "variable_ownership_t_coordinate_candidate_available",
+    "denominator_free_variable_ownership_branch_candidates_recorded",
+    "candidate_branch_sum_contains_aggregate_recorded",
+    "candidate_branch_difference_contains_variable_ownership_alpha_recorded",
+    "terminal_witness_slots_recorded",
+    "source_object_identity_kept_fail_closed",
+    "h39_claims_remain_open",
+  ];
+  const denominatorFreeRowsByNode = rowsByNode(
+    terminalDenominatorFreeBranchResidualSourceObjectIdentityAttempt
+      ?.terminal_denominator_free_branch_residual_source_object_identity_attempt_rows
+  );
+  const variableOwnershipRowsByNode = rowsByNode(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      ?.variable_ownership_branch_feed_attempt_rows
+  );
+  const providerReplayRowsByNode = rowsByNode(
+    terminalRowProviderObjectReplayAttempt?.terminal_row_provider_object_replay_rows
+  );
+  const denominatorFreeReady =
+    terminalDenominatorFreeBranchResidualSourceObjectIdentityAttempt?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_DENOMINATOR_FREE_BRANCH_RESIDUAL_SOURCE_OBJECT_IDENTITY_ATTEMPT_CANDIDATE_SCHEMA &&
+    terminalDenominatorFreeBranchResidualSourceObjectIdentityAttempt
+      ?.terminal_denominator_free_branch_residual_source_object_identity_attempt_verified ===
+      true &&
+    terminalDenominatorFreeBranchResidualSourceObjectIdentityAttempt
+      ?.terminal_denominator_free_branch_residual_source_object_identity_attempt_certified ===
+      false &&
+    terminalDenominatorFreeBranchResidualSourceObjectIdentityAttempt
+      ?.all_denominator_free_symmetric_candidates_available === true &&
+    terminalDenominatorFreeBranchResidualSourceObjectIdentityAttempt
+      ?.all_denominator_free_symmetric_candidate_sums_equal_aggregate === true &&
+    terminalDenominatorFreeBranchResidualSourceObjectIdentityAttempt
+      ?.all_branch_antisymmetric_coordinate_identities_missing === true &&
+    terminalDenominatorFreeBranchResidualSourceObjectIdentityAttempt
+      ?.branch_resolved_centered_residual_source_object_certified === false &&
+    terminalDenominatorFreeBranchResidualSourceObjectIdentityAttempt
+      ?.expression_level_n38_provider_certified === false;
+  const variableOwnershipReady =
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_VARIABLE_OWNERSHIP_BRANCH_FEED_ATTEMPT_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      ?.variable_ownership_branch_feed_attempt_verified === true &&
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      ?.variable_ownership_branch_feed_attempt_certified === false &&
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      ?.variable_ownership_alpha_candidate_available === true &&
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      ?.variable_ownership_alpha_candidate_certified === false &&
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      ?.provider_object_branch_moment_available === false;
+  const providerReplayReady =
+    terminalRowProviderObjectReplayAttempt?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_ROW_PROVIDER_OBJECT_REPLAY_ATTEMPT_CANDIDATE_SCHEMA &&
+    terminalRowProviderObjectReplayAttempt
+      ?.terminal_row_provider_object_replay_attempt_verified === true &&
+    terminalRowProviderObjectReplayAttempt
+      ?.terminal_row_provider_object_replay_attempt_certified === false &&
+    terminalRowProviderObjectReplayAttempt
+      ?.terminal_row_provider_object_replay_certified === false &&
+    terminalRowProviderObjectReplayAttempt
+      ?.branch_resolved_centered_residual_source_object_certified === false;
+  const rows = Array.from({ length: 5 }, (_, nodeIndex) => {
+    const terminalGraphCellId = `speed.${nodeIndex}.first-y`;
+    const denominatorFreeNodeRow = denominatorFreeRowsByNode.get(nodeIndex) ?? null;
+    const variableOwnershipNodeRow =
+      variableOwnershipRowsByNode.get(nodeIndex) ?? null;
+    const providerReplayNodeRow = providerReplayRowsByNode.get(nodeIndex) ?? null;
+    const denominatorFreeTerminalRowsByH = terminalRowsByH(
+      denominatorFreeNodeRow
+        ?.terminal_denominator_free_branch_residual_source_object_identity_attempt_rows
+    );
+    const variableOwnershipTerminalRowsByH = terminalRowsByH(
+      variableOwnershipNodeRow?.variable_ownership_branch_feed_attempt_rows
+    );
+    const providerReplayTerminalRowsByH = terminalRowsByH(
+      providerReplayNodeRow?.terminal_row_provider_object_replay_rows
+    );
+    const terminalRows = terminalSpecs.map((spec) => {
+      const denominatorFreeTerminalRow =
+        denominatorFreeTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const variableOwnershipTerminalRow =
+        variableOwnershipTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const providerReplayTerminalRow =
+        providerReplayTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const aggregateResidual = finiteNumber(
+        denominatorFreeTerminalRow?.measured_successor_scalar_centered_projected_residual
+      )
+        ? Number(
+            denominatorFreeTerminalRow
+              .measured_successor_scalar_centered_projected_residual
+          )
+        : null;
+      const aggregateInterval = finiteNumber(aggregateResidual)
+        ? [Number(aggregateResidual), Number(aggregateResidual)]
+        : null;
+      const halfAggregateInterval = finiteOrderedInterval(aggregateInterval)
+        ? scaleInterval(aggregateInterval, 0.5)
+        : null;
+      const alphaInterval = numericInterval(
+        variableOwnershipTerminalRow?.variable_ownership_alpha_candidate_interval
+      );
+      const tVarInterval = scaleInterval(alphaInterval, 0.5);
+      const replayBranchRowsByBranch = branchRowsByBranch(
+        providerReplayTerminalRow?.source_map_provider_object_replay_branch_rows
+      );
+      const branchRows = ["-", "+"].map((branch) => {
+        const replayBranchRow = replayBranchRowsByBranch.get(branch) ?? null;
+        const candidateInterval =
+          branch === "-"
+            ? addIntervals(halfAggregateInterval, tVarInterval)
+            : subtractIntervals(halfAggregateInterval, tVarInterval);
+        return {
+          branch,
+          denominator_free_variable_ownership_branch_formula:
+            branch === "-" ? "r_-=R/2+A_var/2" : "r_+=R/2-A_var/2",
+          aggregate_half_interval: halfAggregateInterval,
+          variable_ownership_alpha_candidate_interval: alphaInterval,
+          variable_ownership_t_coordinate_candidate_interval: tVarInterval,
+          denominator_free_variable_ownership_branch_candidate_interval:
+            candidateInterval,
+          denominator_free_variable_ownership_branch_candidate_available:
+            finiteOrderedInterval(candidateInterval),
+          terminal_witness_interval:
+            numericInterval(replayBranchRow?.terminal_witness_interval),
+          terminal_witness_interval_available:
+            replayBranchRow?.terminal_witness_interval_available === true &&
+            finiteOrderedInterval(replayBranchRow?.terminal_witness_interval),
+          candidate_admissible_as_terminal_witness_branch_interval: false,
+          variable_ownership_t_coordinate_identity_available: false,
+          variable_ownership_t_coordinate_identity_certified: false,
+          branch_resolved_centered_residual_source_object_certified: false,
+          row_certifies_variable_ownership_t_coordinate_identity: false,
+          row_certifies_branch_resolved_centered_residual_component: false,
+          row_certifies_terminal_row_provider_object_replay: false,
+          row_certifies_directed_rounded_shared_domain: false,
+          claim_boundary:
+            h39TerminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttemptClaimBoundary(),
+        };
+      });
+      const minusCandidate =
+        branchRows.find((row) => row.branch === "-")
+          ?.denominator_free_variable_ownership_branch_candidate_interval ?? null;
+      const plusCandidate =
+        branchRows.find((row) => row.branch === "+")
+          ?.denominator_free_variable_ownership_branch_candidate_interval ?? null;
+      const branchSumInterval = addIntervals(minusCandidate, plusCandidate);
+      const branchDifferenceInterval = subtractIntervals(
+        minusCandidate,
+        plusCandidate
+      );
+      const branchSumContainsAggregate = intervalContainsValue(
+        branchSumInterval,
+        aggregateResidual
+      );
+      const branchDifferenceContainsAlpha = intervalContainsInterval(
+        branchDifferenceInterval,
+        alphaInterval
+      );
+      const terminalWitnessAvailableCount = branchRows.filter(
+        (row) => row.terminal_witness_interval_available === true
+      ).length;
+      const terminalChecks = {
+        denominator_free_terminal_row_available:
+          denominatorFreeReady &&
+          denominatorFreeTerminalRow
+            ?.row_terminal_denominator_free_branch_residual_source_object_identity_attempt_verified ===
+            true,
+        variable_ownership_terminal_row_available:
+          variableOwnershipReady &&
+          variableOwnershipTerminalRow
+            ?.row_variable_ownership_branch_feed_attempt_verified === true &&
+          variableOwnershipTerminalRow
+            ?.variable_ownership_alpha_candidate_available === true,
+        provider_replay_terminal_row_available:
+          providerReplayReady &&
+          providerReplayTerminalRow
+            ?.row_terminal_row_provider_object_replay_attempt_verified === true,
+        same_domain_terminal_row_aligned:
+          denominatorFreeTerminalRow?.terminal_graph_cell_id ===
+            terminalGraphCellId &&
+          variableOwnershipTerminalRow?.terminal_graph_cell_id ===
+            terminalGraphCellId &&
+          providerReplayTerminalRow?.terminal_graph_cell_id ===
+            terminalGraphCellId &&
+          denominatorFreeTerminalRow?.terminal_h_index ===
+            spec.terminal_h_index &&
+          variableOwnershipTerminalRow?.terminal_h_index ===
+            spec.terminal_h_index &&
+          providerReplayTerminalRow?.terminal_h_index ===
+            spec.terminal_h_index &&
+          denominatorFreeTerminalRow?.successor_scalar_identity_weight ===
+            spec.successor_scalar_identity_weight &&
+          variableOwnershipTerminalRow?.successor_scalar_identity_weight ===
+            spec.successor_scalar_identity_weight &&
+          providerReplayTerminalRow?.successor_scalar_identity_weight ===
+            spec.successor_scalar_identity_weight &&
+          denominatorFreeTerminalRow?.centered_successor_scalar_weight ===
+            spec.centered_successor_scalar_weight &&
+          variableOwnershipTerminalRow?.centered_successor_scalar_weight ===
+            spec.centered_successor_scalar_weight &&
+          providerReplayTerminalRow?.centered_successor_scalar_weight ===
+            spec.centered_successor_scalar_weight,
+        variable_ownership_t_coordinate_candidate_available:
+          finiteOrderedInterval(alphaInterval) && finiteOrderedInterval(tVarInterval),
+        denominator_free_variable_ownership_branch_candidates_recorded:
+          branchRows.length === 2 &&
+          branchRows.every(
+            (row) =>
+              finiteOrderedInterval(
+                row.denominator_free_variable_ownership_branch_candidate_interval
+              ) &&
+              row
+                .denominator_free_variable_ownership_branch_candidate_available ===
+                true
+          ),
+        candidate_branch_sum_contains_aggregate_recorded:
+          finiteOrderedInterval(branchSumInterval) &&
+          branchSumContainsAggregate === true,
+        candidate_branch_difference_contains_variable_ownership_alpha_recorded:
+          finiteOrderedInterval(branchDifferenceInterval) &&
+          branchDifferenceContainsAlpha === true,
+        terminal_witness_slots_recorded:
+          branchRows.length === 2 &&
+          branchRows.every(
+            (row) =>
+              typeof row.terminal_witness_interval_available === "boolean"
+          ),
+        source_object_identity_kept_fail_closed:
+          denominatorFreeTerminalRow
+            ?.branch_antisymmetric_coordinate_identity_available === false &&
+          denominatorFreeTerminalRow
+            ?.branch_resolved_centered_residual_source_object_identity_available ===
+            false &&
+          variableOwnershipTerminalRow
+            ?.variable_ownership_alpha_candidate_certified === false &&
+          branchRows.every(
+            (row) =>
+              row.candidate_admissible_as_terminal_witness_branch_interval ===
+                false &&
+              row.variable_ownership_t_coordinate_identity_available === false
+          ),
+        h39_claims_remain_open:
+          denominatorFreeTerminalRow?.claim_boundary
+            ?.certifies_branch_resolved_centered_residual_source_object ===
+            false &&
+          variableOwnershipTerminalRow
+            ?.row_certifies_variable_ownership_alpha_as_provider_object_branch_source ===
+            false &&
+          providerReplayTerminalRow?.row_certifies_terminal_row_provider_object_replay ===
+            false,
+      };
+      const terminalVerified = Object.values(terminalChecks).every(
+        (value) => value === true
+      );
+      return {
+        terminal_h_index: spec.terminal_h_index,
+        source_y_order: H38_NUMERATOR_Y_ORDER,
+        required_xi_derivative_order: 4,
+        terminal_graph_cell_id: terminalGraphCellId,
+        successor_scalar_identity_weight:
+          spec.successor_scalar_identity_weight,
+        centered_successor_scalar_weight:
+          spec.centered_successor_scalar_weight,
+        denominator_free_variable_ownership_t_coordinate_formula:
+          "t_var=A_var/2",
+        denominator_free_variable_ownership_branch_formula:
+          "(r_-,r_+)=(R/2+A_var/2,R/2-A_var/2)",
+        measured_successor_scalar_centered_projected_residual:
+          aggregateResidual,
+        aggregate_centered_residual_interval: aggregateInterval,
+        aggregate_half_interval: halfAggregateInterval,
+        variable_ownership_alpha_candidate_interval: alphaInterval,
+        variable_ownership_t_coordinate_candidate_interval: tVarInterval,
+        variable_ownership_t_coordinate_candidate_interval_half_width:
+          intervalHalfWidth(tVarInterval),
+        denominator_free_variable_ownership_branch_candidate_rows: branchRows,
+        denominator_free_variable_ownership_branch_candidate_row_count:
+          branchRows.length,
+        denominator_free_variable_ownership_branch_sum_interval:
+          branchSumInterval,
+        denominator_free_variable_ownership_branch_sum_contains_aggregate:
+          branchSumContainsAggregate,
+        denominator_free_variable_ownership_branch_difference_interval:
+          branchDifferenceInterval,
+        denominator_free_variable_ownership_branch_difference_contains_variable_ownership_alpha:
+          branchDifferenceContainsAlpha,
+        terminal_witness_branch_intervals_available_count:
+          terminalWitnessAvailableCount,
+        candidate_admissible_as_terminal_witness_branch_interval_count: 0,
+        variable_ownership_t_coordinate_identity_available: false,
+        variable_ownership_t_coordinate_identity_certified: false,
+        denominator_free_branch_residual_source_object_identity_certified: false,
+        branch_resolved_centered_residual_source_object_certified: false,
+        terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_check_kinds:
+          [...terminalCheckKinds],
+        terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_checks:
+          terminalChecks,
+        row_terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_verified:
+          terminalVerified,
+        row_certifies_variable_ownership_t_coordinate_identity: false,
+        row_certifies_denominator_free_branch_residual_source_object_identity:
+          false,
+        row_certifies_branch_resolved_centered_residual_source_object: false,
+        row_certifies_terminal_row_provider_object_replay: false,
+        row_certifies_expression_level_n38_provider: false,
+        row_certifies_directed_rounded_shared_domain: false,
+        row_status: terminalVerified
+          ? "denominator-free-variable-ownership-t-candidate-emitted-identity-open"
+          : "denominator-free-variable-ownership-t-coordinate-materialization-attempt-open",
+        claim_boundary:
+          h39TerminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttemptClaimBoundary(),
+      };
+    });
+    const rowChecks = {
+      denominator_free_identity_attempt_ready:
+        denominatorFreeReady &&
+        denominatorFreeNodeRow
+          ?.row_terminal_denominator_free_branch_residual_source_object_identity_attempt_verified ===
+          true,
+      variable_ownership_branch_feed_attempt_ready:
+        variableOwnershipReady &&
+        variableOwnershipNodeRow
+          ?.row_variable_ownership_branch_feed_attempt_verified === true,
+      terminal_row_provider_object_replay_attempt_ready:
+        providerReplayReady &&
+        providerReplayNodeRow
+          ?.row_terminal_row_provider_object_replay_attempt_verified === true,
+      same_domain_terminal_rows_aligned: terminalRows.every(
+        (row) =>
+          row
+            .terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_checks
+            ?.same_domain_terminal_row_aligned === true
+      ),
+      variable_ownership_t_coordinate_candidate_available: terminalRows.every(
+        (row) =>
+          row
+            .terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_checks
+            ?.variable_ownership_t_coordinate_candidate_available === true
+      ),
+      denominator_free_variable_ownership_branch_candidates_recorded:
+        terminalRows.every(
+          (row) =>
+            row
+              .terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_checks
+              ?.denominator_free_variable_ownership_branch_candidates_recorded ===
+            true
+        ),
+      candidate_branch_sum_contains_aggregate_recorded: terminalRows.every(
+        (row) =>
+          row
+            .terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_checks
+            ?.candidate_branch_sum_contains_aggregate_recorded === true
+      ),
+      candidate_branch_difference_contains_variable_ownership_alpha_recorded:
+        terminalRows.every(
+          (row) =>
+            row
+              .terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_checks
+              ?.candidate_branch_difference_contains_variable_ownership_alpha_recorded ===
+            true
+        ),
+      terminal_witness_slots_recorded: terminalRows.every(
+        (row) =>
+          row
+            .terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_checks
+            ?.terminal_witness_slots_recorded === true
+      ),
+      source_object_identity_kept_fail_closed: terminalRows.every(
+        (row) =>
+          row
+            .terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_checks
+            ?.source_object_identity_kept_fail_closed === true
+      ),
+      h39_broad_claims_remain_open: terminalRows.every(
+        (row) =>
+          row
+            .terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_checks
+            ?.h39_claims_remain_open === true
+      ),
+    };
+    const rowVerified = Object.values(rowChecks).every(
+      (value) => value === true
+    );
+    return {
+      node_index: nodeIndex,
+      terminal_graph_cell_id: terminalGraphCellId,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_row_kind:
+        "terminal-denominator-free-variable-ownership-t-coordinate-materialization-attempt-node-row",
+      terminal_h_indexes: terminalSpecs.map((spec) => spec.terminal_h_index),
+      terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_rows:
+        terminalRows,
+      terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_terminal_row_count:
+        terminalRows.length,
+      denominator_free_variable_ownership_branch_candidate_row_count:
+        terminalRows.reduce(
+          (total, row) =>
+            total +
+            row
+              .denominator_free_variable_ownership_branch_candidate_row_count,
+          0
+        ),
+      variable_ownership_t_coordinate_candidate_available_terminal_row_count:
+        terminalRows.filter((row) =>
+          finiteOrderedInterval(row.variable_ownership_t_coordinate_candidate_interval)
+        ).length,
+      denominator_free_variable_ownership_branch_candidate_available_terminal_row_count:
+        terminalRows.filter((row) =>
+          row.denominator_free_variable_ownership_branch_candidate_rows.every(
+            (branchRow) =>
+              branchRow
+                .denominator_free_variable_ownership_branch_candidate_available ===
+              true
+          )
+        ).length,
+      candidate_branch_sum_contains_aggregate_terminal_row_count:
+        terminalRows.filter(
+          (row) =>
+            row.denominator_free_variable_ownership_branch_sum_contains_aggregate ===
+            true
+        ).length,
+      candidate_branch_difference_contains_variable_ownership_alpha_terminal_row_count:
+        terminalRows.filter(
+          (row) =>
+            row
+              .denominator_free_variable_ownership_branch_difference_contains_variable_ownership_alpha ===
+            true
+        ).length,
+      terminal_witness_branch_intervals_available_count:
+        terminalRows.reduce(
+          (total, row) =>
+            total + row.terminal_witness_branch_intervals_available_count,
+          0
+        ),
+      candidate_admissible_as_terminal_witness_branch_interval_count: 0,
+      row_check_kinds: [...checkKinds],
+      row_checks: rowChecks,
+      row_terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_verified:
+        rowVerified,
+      row_certifies_variable_ownership_t_coordinate_identity: false,
+      row_certifies_denominator_free_branch_residual_source_object_identity:
+        false,
+      row_certifies_branch_resolved_centered_residual_source_object: false,
+      row_certifies_terminal_row_provider_object_replay: false,
+      row_certifies_expression_level_n38_provider: false,
+      row_certifies_directed_rounded_shared_domain: false,
+      row_status: rowVerified
+        ? "denominator-free-variable-ownership-t-candidate-emitted-identity-open"
+        : "denominator-free-variable-ownership-t-coordinate-materialization-attempt-open",
+      claim_boundary:
+        h39TerminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttemptClaimBoundary(),
+    };
+  });
+  const terminalRowCount = rows.reduce(
+    (total, row) =>
+      total +
+      row
+        .terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_terminal_row_count,
+    0
+  );
+  const branchCandidateRowCount = rows.reduce(
+    (total, row) =>
+      total +
+      row.denominator_free_variable_ownership_branch_candidate_row_count,
+    0
+  );
+  const sumRows = (key) =>
+    rows.reduce((total, row) => total + Number(row?.[key] ?? 0), 0);
+  const aggregateChecks = {
+    denominator_free_identity_attempt_ready: denominatorFreeReady,
+    variable_ownership_branch_feed_attempt_ready: variableOwnershipReady,
+    terminal_row_provider_object_replay_attempt_ready: providerReplayReady,
+    same_domain_terminal_rows_aligned: rows.every(
+      (row) => row.row_checks?.same_domain_terminal_rows_aligned === true
+    ),
+    variable_ownership_t_coordinate_candidate_available: rows.every(
+      (row) =>
+        row.row_checks?.variable_ownership_t_coordinate_candidate_available ===
+        true
+    ),
+    denominator_free_variable_ownership_branch_candidates_recorded:
+      rows.every(
+        (row) =>
+          row.row_checks
+            ?.denominator_free_variable_ownership_branch_candidates_recorded ===
+          true
+      ),
+    candidate_branch_sum_contains_aggregate_recorded: rows.every(
+      (row) =>
+        row.row_checks?.candidate_branch_sum_contains_aggregate_recorded ===
+        true
+    ),
+    candidate_branch_difference_contains_variable_ownership_alpha_recorded:
+      rows.every(
+        (row) =>
+          row.row_checks
+            ?.candidate_branch_difference_contains_variable_ownership_alpha_recorded ===
+          true
+      ),
+    terminal_witness_slots_recorded: rows.every(
+      (row) => row.row_checks?.terminal_witness_slots_recorded === true
+    ),
+    source_object_identity_kept_fail_closed: rows.every(
+      (row) => row.row_checks?.source_object_identity_kept_fail_closed === true
+    ),
+    h39_broad_claims_remain_open: rows.every(
+      (row) => row.row_checks?.h39_broad_claims_remain_open === true
+    ),
+  };
+  const attemptVerified =
+    rows.length === 5 &&
+    terminalRowCount === 15 &&
+    branchCandidateRowCount === 30 &&
+    sumRows("variable_ownership_t_coordinate_candidate_available_terminal_row_count") ===
+      15 &&
+    sumRows(
+      "denominator_free_variable_ownership_branch_candidate_available_terminal_row_count"
+    ) === 15 &&
+    sumRows("candidate_branch_sum_contains_aggregate_terminal_row_count") ===
+      15 &&
+    sumRows(
+      "candidate_branch_difference_contains_variable_ownership_alpha_terminal_row_count"
+    ) === 15 &&
+    rows.every(
+      (row) =>
+        row
+          .row_terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_verified ===
+        true
+    ) &&
+    Object.values(aggregateChecks).every((value) => value === true);
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_DENOMINATOR_FREE_VARIABLE_OWNERSHIP_T_COORDINATE_MATERIALIZATION_ATTEMPT_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-terminal-denominator-free-variable-ownership-t-coordinate-materialization-attempt-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-terminal-denominator-free-variable-ownership-t-coordinate-materialization-attempt",
+    target_kind:
+      "candidate-requested-y44-terminal-denominator-free-variable-ownership-t-coordinate-materialization-attempt",
+    terminal_denominator_free_branch_residual_source_object_identity_attempt_schema:
+      terminalDenominatorFreeBranchResidualSourceObjectIdentityAttempt?.schema ??
+      null,
+    terminal_expression_level_source_term_variable_ownership_branch_feed_attempt_schema:
+      terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt?.schema ??
+      null,
+    terminal_row_provider_object_replay_attempt_schema:
+      terminalRowProviderObjectReplayAttempt?.schema ?? null,
+    proof_status:
+      "candidate-denominator-free-variable-ownership-t-coordinate-materialization-identity-open",
+    materialization_attempt_kind:
+      "same-domain-denominator-free-branch-residual-candidate-from-variable-ownership-alpha",
+    denominator_free_variable_ownership_t_coordinate_formula:
+      "t_var=A_var/2",
+    denominator_free_variable_ownership_branch_formula:
+      "(r_-,r_+)=(R/2+A_var/2,R/2-A_var/2)",
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    terminal_h_indexes: terminalSpecs.map((spec) => spec.terminal_h_index),
+    terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_check_kinds:
+      [...checkKinds],
+    terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_checks:
+      aggregateChecks,
+    terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_verified:
+      attemptVerified,
+    terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_certified:
+      false,
+    terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_row_count:
+      rows.length,
+    terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_terminal_row_count:
+      terminalRowCount,
+    terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_branch_row_count:
+      branchCandidateRowCount,
+    terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_rows:
+      rows,
+    variable_ownership_t_coordinate_candidate_available_terminal_row_count:
+      sumRows("variable_ownership_t_coordinate_candidate_available_terminal_row_count"),
+    denominator_free_variable_ownership_branch_candidate_available_terminal_row_count:
+      sumRows(
+        "denominator_free_variable_ownership_branch_candidate_available_terminal_row_count"
+      ),
+    candidate_branch_sum_contains_aggregate_terminal_row_count: sumRows(
+      "candidate_branch_sum_contains_aggregate_terminal_row_count"
+    ),
+    candidate_branch_difference_contains_variable_ownership_alpha_terminal_row_count:
+      sumRows(
+        "candidate_branch_difference_contains_variable_ownership_alpha_terminal_row_count"
+      ),
+    terminal_witness_branch_intervals_available_count: sumRows(
+      "terminal_witness_branch_intervals_available_count"
+    ),
+    candidate_admissible_as_terminal_witness_branch_interval_count: 0,
+    all_variable_ownership_t_coordinate_candidates_available:
+      attemptVerified &&
+      sumRows("variable_ownership_t_coordinate_candidate_available_terminal_row_count") ===
+        terminalRowCount,
+    all_denominator_free_variable_ownership_branch_candidates_available:
+      attemptVerified &&
+      sumRows(
+        "denominator_free_variable_ownership_branch_candidate_available_terminal_row_count"
+      ) === terminalRowCount,
+    all_candidate_branch_sums_contain_aggregate:
+      attemptVerified &&
+      sumRows("candidate_branch_sum_contains_aggregate_terminal_row_count") ===
+        terminalRowCount,
+    all_candidate_branch_differences_contain_variable_ownership_alpha:
+      attemptVerified &&
+      sumRows(
+        "candidate_branch_difference_contains_variable_ownership_alpha_terminal_row_count"
+      ) === terminalRowCount,
+    variable_ownership_t_coordinate_identity_available: false,
+    variable_ownership_t_coordinate_identity_certified: false,
+    denominator_free_branch_residual_source_object_identity_certified: false,
+    branch_resolved_centered_residual_source_object_certified: false,
+    terminal_row_provider_object_replay_certified: false,
+    expression_level_n38_provider_certified: false,
+    directed_rounded_shared_domain_provider_certified: false,
+    terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_classification:
+      attemptVerified
+        ? "denominator-free-variable-ownership-t-candidate-emitted-identity-open"
+        : "denominator-free-variable-ownership-t-coordinate-materialization-attempt-open",
+    terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_blocker_classification:
+      attemptVerified
+        ? "same-domain-proof-variable-ownership-alpha-determines-branch-antisymmetric-coordinate-needed"
+        : "denominator-free-variable-ownership-t-coordinate-materialization-attempt-open",
+    terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_primary_missing_object_kind:
+      attemptVerified
+        ? "variable-ownership-alpha-to-branch-antisymmetric-coordinate-identity"
+        : "denominator-free-variable-ownership-t-coordinate-materialization-attempt",
+    next_certificate_object:
+      "same-domain proof that 2t=A_var=P_delta-P_phi for the branch-resolved centered residual source object",
+    candidate_certificate_route:
+      "This packet uses the denominator-free branch family (r_-,r_+)=(R/2+t,R/2-t) and the variable-owned alpha candidate A_var=P_delta-P_phi to emit t_var=A_var/2 branch residual candidates on every terminal row. The branch candidates sum back to the aggregate residual R and their difference contains A_var without dividing by s_-+s_+. They remain inadmissible as terminal witness branches until a same-domain identity proves that A_var is the branch-antisymmetric centered residual coordinate 2t.",
+    claim_boundary:
+      h39TerminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttemptClaimBoundary(),
+  };
+}
+
+export function validateH39RequestedY44TerminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttemptCandidate(
+  artifact
+) {
+  const errors = [];
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const sameStringSet = (left, right) =>
+    Array.isArray(left) &&
+    left.length === right.length &&
+    right.every((value) => left.includes(value));
+  const sameTerminalHIndexes = (indexes) =>
+    Array.isArray(indexes) &&
+    indexes.length === 3 &&
+    indexes[0] === 37 &&
+    indexes[1] === 36 &&
+    indexes[2] === 35;
+  const validClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_only ===
+      true &&
+    claimBoundary?.certifies_variable_ownership_t_coordinate_identity ===
+      false &&
+    claimBoundary
+      ?.certifies_denominator_free_branch_residual_source_object_identity ===
+      false &&
+    claimBoundary
+      ?.certifies_branch_resolved_centered_residual_source_object === false &&
+    claimBoundary
+      ?.certifies_terminal_successor_centered_residual_branch_split === false &&
+    claimBoundary?.certifies_branch_resolved_centered_residual_component ===
+      false &&
+    claimBoundary
+      ?.certifies_variable_ownership_alpha_as_provider_object_branch_source ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_rows ===
+      false &&
+    claimBoundary?.certifies_terminal_row_provider_object_replay === false &&
+    claimBoundary
+      ?.certifies_terminal_successor_scalar_provider_boundary_identity ===
+      false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const expectedCheckKinds = [
+    "denominator_free_identity_attempt_ready",
+    "variable_ownership_branch_feed_attempt_ready",
+    "terminal_row_provider_object_replay_attempt_ready",
+    "same_domain_terminal_rows_aligned",
+    "variable_ownership_t_coordinate_candidate_available",
+    "denominator_free_variable_ownership_branch_candidates_recorded",
+    "candidate_branch_sum_contains_aggregate_recorded",
+    "candidate_branch_difference_contains_variable_ownership_alpha_recorded",
+    "terminal_witness_slots_recorded",
+    "source_object_identity_kept_fail_closed",
+    "h39_broad_claims_remain_open",
+  ];
+  const expectedTerminalCheckKinds = [
+    "denominator_free_terminal_row_available",
+    "variable_ownership_terminal_row_available",
+    "provider_replay_terminal_row_available",
+    "same_domain_terminal_row_aligned",
+    "variable_ownership_t_coordinate_candidate_available",
+    "denominator_free_variable_ownership_branch_candidates_recorded",
+    "candidate_branch_sum_contains_aggregate_recorded",
+    "candidate_branch_difference_contains_variable_ownership_alpha_recorded",
+    "terminal_witness_slots_recorded",
+    "source_object_identity_kept_fail_closed",
+    "h39_claims_remain_open",
+  ];
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_DENOMINATOR_FREE_VARIABLE_OWNERSHIP_T_COORDINATE_MATERIALIZATION_ATTEMPT_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 denominator-free variable-ownership t-coordinate materialization attempt candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-terminal-denominator-free-variable-ownership-t-coordinate-materialization-attempt-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-terminal-denominator-free-variable-ownership-t-coordinate-materialization-attempt" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-terminal-denominator-free-variable-ownership-t-coordinate-materialization-attempt" ||
+    artifact
+      ?.terminal_denominator_free_branch_residual_source_object_identity_attempt_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_DENOMINATOR_FREE_BRANCH_RESIDUAL_SOURCE_OBJECT_IDENTITY_ATTEMPT_CANDIDATE_SCHEMA ||
+    artifact
+      ?.terminal_expression_level_source_term_variable_ownership_branch_feed_attempt_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_VARIABLE_OWNERSHIP_BRANCH_FEED_ATTEMPT_CANDIDATE_SCHEMA ||
+    artifact?.terminal_row_provider_object_replay_attempt_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_ROW_PROVIDER_OBJECT_REPLAY_ATTEMPT_CANDIDATE_SCHEMA ||
+    artifact?.proof_status !==
+      "candidate-denominator-free-variable-ownership-t-coordinate-materialization-identity-open" ||
+    artifact?.materialization_attempt_kind !==
+      "same-domain-denominator-free-branch-residual-candidate-from-variable-ownership-alpha" ||
+    artifact?.denominator_free_variable_ownership_t_coordinate_formula !==
+      "t_var=A_var/2" ||
+    artifact?.denominator_free_variable_ownership_branch_formula !==
+      "(r_-,r_+)=(R/2+A_var/2,R/2-A_var/2)" ||
+    artifact?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    !sameTerminalHIndexes(artifact?.terminal_h_indexes) ||
+    !sameStringSet(
+      artifact
+        ?.terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_check_kinds,
+      expectedCheckKinds
+    )
+  ) {
+    errors.push("denominator-free variable-ownership t-coordinate metadata must identify A_var/2");
+  }
+  if (
+    expectedCheckKinds.some(
+      (kind) =>
+        artifact
+          ?.terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_checks?.[
+          kind
+        ] !== true
+    ) ||
+    artifact
+      ?.terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_verified !==
+      true ||
+    artifact
+      ?.terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_certified !==
+      false ||
+    artifact
+      ?.terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_row_count !==
+      5 ||
+    artifact
+      ?.terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_terminal_row_count !==
+      15 ||
+    artifact
+      ?.terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_branch_row_count !==
+      30 ||
+    artifact
+      ?.variable_ownership_t_coordinate_candidate_available_terminal_row_count !==
+      15 ||
+    artifact
+      ?.denominator_free_variable_ownership_branch_candidate_available_terminal_row_count !==
+      15 ||
+    artifact?.candidate_branch_sum_contains_aggregate_terminal_row_count !==
+      15 ||
+    artifact
+      ?.candidate_branch_difference_contains_variable_ownership_alpha_terminal_row_count !==
+      15 ||
+    artifact?.terminal_witness_branch_intervals_available_count < 0 ||
+    artifact?.terminal_witness_branch_intervals_available_count > 30 ||
+    artifact?.candidate_admissible_as_terminal_witness_branch_interval_count !==
+      0 ||
+    artifact?.all_variable_ownership_t_coordinate_candidates_available !==
+      true ||
+    artifact
+      ?.all_denominator_free_variable_ownership_branch_candidates_available !==
+      true ||
+    artifact?.all_candidate_branch_sums_contain_aggregate !== true ||
+    artifact
+      ?.all_candidate_branch_differences_contain_variable_ownership_alpha !==
+      true ||
+    artifact?.variable_ownership_t_coordinate_identity_available !== false ||
+    artifact?.variable_ownership_t_coordinate_identity_certified !== false ||
+    artifact
+      ?.denominator_free_branch_residual_source_object_identity_certified !==
+      false ||
+    artifact?.branch_resolved_centered_residual_source_object_certified !==
+      false ||
+    artifact?.terminal_row_provider_object_replay_certified !== false ||
+    artifact?.expression_level_n38_provider_certified !== false ||
+    artifact?.directed_rounded_shared_domain_provider_certified !== false ||
+    artifact
+      ?.terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_classification !==
+      "denominator-free-variable-ownership-t-candidate-emitted-identity-open" ||
+    artifact
+      ?.terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_blocker_classification !==
+      "same-domain-proof-variable-ownership-alpha-determines-branch-antisymmetric-coordinate-needed" ||
+    artifact
+      ?.terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_primary_missing_object_kind !==
+      "variable-ownership-alpha-to-branch-antisymmetric-coordinate-identity" ||
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string" ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("denominator-free variable-ownership t-coordinate aggregate must emit finite candidates without certification");
+  }
+  const rows =
+    artifact
+      ?.terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_rows ??
+    [];
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== 5 ||
+    rows.some((row, index) => {
+      const terminalRows =
+        row
+          ?.terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_rows ??
+        [];
+      return (
+        row?.node_index !== index ||
+        row?.terminal_graph_cell_id !== `speed.${index}.first-y` ||
+        row?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+        row?.required_xi_derivative_order !== 4 ||
+        row
+          ?.terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_row_kind !==
+          "terminal-denominator-free-variable-ownership-t-coordinate-materialization-attempt-node-row" ||
+        !sameTerminalHIndexes(row?.terminal_h_indexes) ||
+        row
+          ?.terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_terminal_row_count !==
+          3 ||
+        row?.denominator_free_variable_ownership_branch_candidate_row_count !==
+          6 ||
+        row
+          ?.variable_ownership_t_coordinate_candidate_available_terminal_row_count !==
+          3 ||
+        row
+          ?.denominator_free_variable_ownership_branch_candidate_available_terminal_row_count !==
+          3 ||
+        row?.candidate_branch_sum_contains_aggregate_terminal_row_count !== 3 ||
+        row
+          ?.candidate_branch_difference_contains_variable_ownership_alpha_terminal_row_count !==
+          3 ||
+        row?.terminal_witness_branch_intervals_available_count < 0 ||
+        row?.terminal_witness_branch_intervals_available_count > 6 ||
+        row?.candidate_admissible_as_terminal_witness_branch_interval_count !==
+          0 ||
+        !sameStringSet(row?.row_check_kinds, expectedCheckKinds) ||
+        expectedCheckKinds.some((kind) => row?.row_checks?.[kind] !== true) ||
+        row
+          ?.row_terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_verified !==
+          true ||
+        row?.row_certifies_variable_ownership_t_coordinate_identity !== false ||
+        row
+          ?.row_certifies_denominator_free_branch_residual_source_object_identity !==
+          false ||
+        row?.row_certifies_branch_resolved_centered_residual_source_object !==
+          false ||
+        row?.row_certifies_terminal_row_provider_object_replay !== false ||
+        row?.row_certifies_expression_level_n38_provider !== false ||
+        row?.row_certifies_directed_rounded_shared_domain !== false ||
+        !validClaimBoundary(row?.claim_boundary) ||
+        !Array.isArray(terminalRows) ||
+        terminalRows.length !== 3 ||
+        terminalRows.some((terminalRow) => {
+          const branchRows =
+            terminalRow
+              ?.denominator_free_variable_ownership_branch_candidate_rows ?? [];
+          return (
+            ![37, 36, 35].includes(terminalRow?.terminal_h_index) ||
+            terminalRow?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+            terminalRow?.required_xi_derivative_order !== 4 ||
+            terminalRow?.terminal_graph_cell_id !==
+              `speed.${index}.first-y` ||
+            terminalRow
+              ?.denominator_free_variable_ownership_t_coordinate_formula !==
+              "t_var=A_var/2" ||
+            terminalRow?.denominator_free_variable_ownership_branch_formula !==
+              "(r_-,r_+)=(R/2+A_var/2,R/2-A_var/2)" ||
+            finiteNumber(
+              terminalRow?.measured_successor_scalar_centered_projected_residual
+            ) !== true ||
+            !finiteOrderedInterval(terminalRow?.aggregate_centered_residual_interval) ||
+            !finiteOrderedInterval(terminalRow?.aggregate_half_interval) ||
+            !finiteOrderedInterval(
+              terminalRow?.variable_ownership_alpha_candidate_interval
+            ) ||
+            !finiteOrderedInterval(
+              terminalRow?.variable_ownership_t_coordinate_candidate_interval
+            ) ||
+            !finiteNumber(
+              terminalRow
+                ?.variable_ownership_t_coordinate_candidate_interval_half_width
+            ) ||
+            !Array.isArray(branchRows) ||
+            branchRows.length !== 2 ||
+            branchRows.some(
+              (branchRow) =>
+                !["-", "+"].includes(branchRow?.branch) ||
+                ![
+                  "r_-=R/2+A_var/2",
+                  "r_+=R/2-A_var/2",
+                ].includes(
+                  branchRow
+                    ?.denominator_free_variable_ownership_branch_formula
+                ) ||
+                !finiteOrderedInterval(branchRow?.aggregate_half_interval) ||
+                !finiteOrderedInterval(
+                  branchRow?.variable_ownership_alpha_candidate_interval
+                ) ||
+                !finiteOrderedInterval(
+                  branchRow?.variable_ownership_t_coordinate_candidate_interval
+                ) ||
+                !finiteOrderedInterval(
+                  branchRow
+                    ?.denominator_free_variable_ownership_branch_candidate_interval
+                ) ||
+                branchRow
+                  ?.denominator_free_variable_ownership_branch_candidate_available !==
+                  true ||
+                typeof branchRow?.terminal_witness_interval_available !==
+                  "boolean" ||
+                (branchRow?.terminal_witness_interval_available === true
+                  ? !finiteOrderedInterval(branchRow?.terminal_witness_interval)
+                  : branchRow?.terminal_witness_interval !== null) ||
+                branchRow
+                  ?.candidate_admissible_as_terminal_witness_branch_interval !==
+                  false ||
+                branchRow?.variable_ownership_t_coordinate_identity_available !==
+                  false ||
+                branchRow?.variable_ownership_t_coordinate_identity_certified !==
+                  false ||
+                branchRow
+                  ?.branch_resolved_centered_residual_source_object_certified !==
+                  false ||
+                branchRow?.row_certifies_variable_ownership_t_coordinate_identity !==
+                  false ||
+                branchRow
+                  ?.row_certifies_branch_resolved_centered_residual_component !==
+                  false ||
+                branchRow?.row_certifies_terminal_row_provider_object_replay !==
+                  false ||
+                branchRow?.row_certifies_directed_rounded_shared_domain !==
+                  false ||
+                !validClaimBoundary(branchRow?.claim_boundary)
+            ) ||
+            !finiteOrderedInterval(
+              terminalRow
+                ?.denominator_free_variable_ownership_branch_sum_interval
+            ) ||
+            terminalRow
+              ?.denominator_free_variable_ownership_branch_sum_contains_aggregate !==
+              true ||
+            !finiteOrderedInterval(
+              terminalRow
+                ?.denominator_free_variable_ownership_branch_difference_interval
+            ) ||
+            terminalRow
+              ?.denominator_free_variable_ownership_branch_difference_contains_variable_ownership_alpha !==
+              true ||
+            terminalRow?.terminal_witness_branch_intervals_available_count < 0 ||
+            terminalRow?.terminal_witness_branch_intervals_available_count > 2 ||
+            terminalRow
+              ?.candidate_admissible_as_terminal_witness_branch_interval_count !==
+              0 ||
+            terminalRow?.variable_ownership_t_coordinate_identity_available !==
+              false ||
+            terminalRow?.variable_ownership_t_coordinate_identity_certified !==
+              false ||
+            terminalRow
+              ?.denominator_free_branch_residual_source_object_identity_certified !==
+              false ||
+            terminalRow
+              ?.branch_resolved_centered_residual_source_object_certified !==
+              false ||
+            !sameStringSet(
+              terminalRow
+                ?.terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_check_kinds,
+              expectedTerminalCheckKinds
+            ) ||
+            expectedTerminalCheckKinds.some(
+              (kind) =>
+                terminalRow
+                  ?.terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_checks?.[
+                  kind
+                ] !== true
+            ) ||
+            terminalRow
+              ?.row_terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_verified !==
+              true ||
+            terminalRow?.row_certifies_variable_ownership_t_coordinate_identity !==
+              false ||
+            terminalRow
+              ?.row_certifies_denominator_free_branch_residual_source_object_identity !==
+              false ||
+            terminalRow
+              ?.row_certifies_branch_resolved_centered_residual_source_object !==
+              false ||
+            terminalRow?.row_certifies_terminal_row_provider_object_replay !==
+              false ||
+            terminalRow?.row_certifies_expression_level_n38_provider !== false ||
+            terminalRow?.row_certifies_directed_rounded_shared_domain !==
+              false ||
+            !validClaimBoundary(terminalRow?.claim_boundary)
+          );
+        })
+      );
+    })
+  ) {
+    errors.push("denominator-free variable-ownership t-coordinate rows must emit finite A_var/2 branch candidates without certification");
+  }
+  return errors;
+}
+
+function h39TerminalVariableOwnershipAlphaProvenanceIdentityAuditClaimBoundary() {
+  return {
+    defines_terminal_variable_ownership_alpha_provenance_identity_audit_only:
+      true,
+    certifies_variable_ownership_alpha_provenance_identity: false,
+    certifies_variable_ownership_t_coordinate_identity: false,
+    certifies_variable_ownership_alpha_as_provider_object_branch_source: false,
+    certifies_expression_level_source_term_branch_projection_alpha_map: false,
+    certifies_expression_level_source_term_branch_parity_generator: false,
+    certifies_terminal_g_to_provider_moment_bridge: false,
+    certifies_terminal_g_to_provider_correction_term: false,
+    certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation:
+      false,
+    certifies_expression_level_source_map_provider_object_branch_rows: false,
+    certifies_denominator_free_branch_residual_source_object_identity: false,
+    certifies_branch_resolved_centered_residual_source_object: false,
+    certifies_terminal_row_provider_object_replay: false,
+    certifies_expression_level_n38_provider: false,
+    certifies_terminal_row_provider_enclosure: false,
+    certifies_terminal_graph_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
+export function buildH39RequestedY44TerminalVariableOwnershipAlphaProvenanceIdentityAuditCandidate({
+  terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt,
+  terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt,
+  terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit,
+  terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt,
+  terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt,
+} = {}) {
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const numericInterval = (interval) =>
+    finiteOrderedInterval(interval)
+      ? [Number(interval[0]), Number(interval[1])]
+      : null;
+  const subtractIntervals = (left, right) =>
+    finiteOrderedInterval(left) && finiteOrderedInterval(right)
+      ? [Number(left[0]) - Number(right[1]), Number(left[1]) - Number(right[0])]
+      : null;
+  const scaleInterval = (interval, scalar) => {
+    if (!finiteOrderedInterval(interval) || !finiteNumber(scalar)) {
+      return null;
+    }
+    const left = Number(interval[0]) * Number(scalar);
+    const right = Number(interval[1]) * Number(scalar);
+    return left <= right ? [left, right] : [right, left];
+  };
+  const intervalContainsZero = (interval) =>
+    finiteOrderedInterval(interval) &&
+    Number(interval[0]) <= 0 &&
+    0 <= Number(interval[1]);
+  const intervalsOverlap = (left, right) =>
+    finiteOrderedInterval(left) &&
+    finiteOrderedInterval(right) &&
+    Number(left[0]) <= Number(right[1]) &&
+    Number(right[0]) <= Number(left[1]);
+  const intervalHalfWidth = (interval) =>
+    finiteOrderedInterval(interval)
+      ? (Number(interval[1]) - Number(interval[0])) / 2
+      : null;
+  const rowsByNode = (rows) =>
+    new Map(
+      (rows ?? [])
+        .filter((row) => Number.isInteger(row?.node_index))
+        .map((row) => [Number(row.node_index), row])
+    );
+  const terminalRowsByH = (rows) =>
+    new Map(
+      (rows ?? [])
+        .filter((row) => Number.isInteger(row?.terminal_h_index))
+        .map((row) => [Number(row.terminal_h_index), row])
+    );
+  const terminalSpecs = H39_TERMINAL_SUCCESSOR_COEFFICIENT_IDENTITY_IMPORT_SPECS;
+  const checkKinds = [
+    "source_term_alpha_derivation_attempt_ready",
+    "fold_null_generator_compatibility_attempt_ready",
+    "terminal_g_to_provider_bridge_audit_ready",
+    "variable_ownership_branch_feed_attempt_ready",
+    "denominator_free_variable_ownership_t_materialization_ready",
+    "same_domain_terminal_rows_aligned",
+    "candidate_2t_minus_A_var_tautology_recorded",
+    "source_term_alpha_map_absence_recorded",
+    "fold_null_not_branch_parity_generator_recorded",
+    "provider_object_branch_moment_absence_recorded",
+    "terminal_g_comparison_recorded",
+    "identity_kept_fail_closed",
+    "h39_broad_claims_remain_open",
+  ];
+  const terminalCheckKinds = [
+    "source_term_alpha_derivation_terminal_row_available",
+    "fold_null_generator_terminal_row_available",
+    "terminal_g_to_provider_bridge_terminal_row_available",
+    "variable_ownership_terminal_row_available",
+    "denominator_free_variable_ownership_t_terminal_row_available",
+    "same_domain_terminal_row_aligned",
+    "candidate_2t_minus_A_var_tautology_recorded",
+    "source_term_alpha_map_absence_recorded",
+    "fold_null_not_branch_parity_generator_recorded",
+    "provider_object_branch_moment_absence_recorded",
+    "terminal_g_comparison_recorded",
+    "identity_kept_fail_closed",
+    "h39_claims_remain_open",
+  ];
+  const alphaDerivationRowsByNode = rowsByNode(
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+      ?.terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_rows
+  );
+  const foldRowsByNode = rowsByNode(
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      ?.terminal_expression_level_source_term_fold_null_generator_compatibility_attempt_rows
+  );
+  const bridgeRowsByNode = rowsByNode(
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      ?.terminal_g_to_provider_bridge_audit_rows
+  );
+  const variableOwnershipRowsByNode = rowsByNode(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      ?.variable_ownership_branch_feed_attempt_rows
+  );
+  const denominatorFreeVariableRowsByNode = rowsByNode(
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      ?.terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_rows
+  );
+  const alphaDerivationReady =
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_BRANCH_PROJECTION_ALPHA_DERIVATION_ATTEMPT_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+      ?.terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_verified ===
+      true &&
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+      ?.terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_certified ===
+      false &&
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+      ?.source_term_alpha_map_available_terminal_row_count === 0 &&
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+      ?.source_term_branch_parity_generator_available_terminal_row_count === 0 &&
+    terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt
+      ?.source_term_to_branch_projection_missing_rank === 15;
+  const foldNullReady =
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_FOLD_NULL_GENERATOR_COMPATIBILITY_ATTEMPT_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      ?.terminal_expression_level_source_term_fold_null_generator_compatibility_attempt_verified ===
+      true &&
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      ?.terminal_expression_level_source_term_fold_null_generator_compatibility_attempt_certified ===
+      false &&
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      ?.aggregate_generator_annihilates_source_at_fold === true &&
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      ?.source_term_basis_diagonalized_by_fold_null_generator === false &&
+    terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt
+      ?.fold_null_generator_is_branch_parity_generator === false;
+  const bridgeAuditReady =
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_FOLD_NULL_COEFFICIENT_PROVIDER_MOMENT_BRIDGE_AUDIT_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      ?.terminal_g_to_provider_bridge_audit_verified === true &&
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      ?.terminal_g_to_provider_bridge_audit_certified === false &&
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      ?.terminal_branch_g_moment_available === true &&
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      ?.provider_object_branch_moment_available === false &&
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      ?.terminal_g_to_provider_bridge_available === false;
+  const variableOwnershipReady =
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_VARIABLE_OWNERSHIP_BRANCH_FEED_ATTEMPT_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      ?.variable_ownership_branch_feed_attempt_verified === true &&
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      ?.variable_ownership_branch_feed_attempt_certified === false &&
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      ?.variable_ownership_alpha_candidate_available === true &&
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      ?.variable_ownership_alpha_candidate_certified === false &&
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      ?.provider_object_branch_moment_available === false;
+  const tMaterializationReady =
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_DENOMINATOR_FREE_VARIABLE_OWNERSHIP_T_COORDINATE_MATERIALIZATION_ATTEMPT_CANDIDATE_SCHEMA &&
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      ?.terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_verified ===
+      true &&
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      ?.terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_certified ===
+      false &&
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      ?.all_variable_ownership_t_coordinate_candidates_available === true &&
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      ?.variable_ownership_t_coordinate_identity_available === false &&
+    terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt
+      ?.variable_ownership_t_coordinate_identity_certified === false;
+  const rows = Array.from({ length: 5 }, (_, nodeIndex) => {
+    const terminalGraphCellId = `speed.${nodeIndex}.first-y`;
+    const alphaDerivationNodeRow =
+      alphaDerivationRowsByNode.get(nodeIndex) ?? null;
+    const foldNodeRow = foldRowsByNode.get(nodeIndex) ?? null;
+    const bridgeNodeRow = bridgeRowsByNode.get(nodeIndex) ?? null;
+    const variableOwnershipNodeRow =
+      variableOwnershipRowsByNode.get(nodeIndex) ?? null;
+    const denominatorFreeVariableNodeRow =
+      denominatorFreeVariableRowsByNode.get(nodeIndex) ?? null;
+    const alphaTerminalRowsByH = terminalRowsByH(
+      alphaDerivationNodeRow
+        ?.terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_rows
+    );
+    const foldTerminalRowsByH = terminalRowsByH(
+      foldNodeRow
+        ?.terminal_expression_level_source_term_fold_null_generator_compatibility_attempt_rows
+    );
+    const bridgeTerminalRowsByH = terminalRowsByH(
+      bridgeNodeRow?.terminal_g_to_provider_bridge_audit_rows
+    );
+    const variableTerminalRowsByH = terminalRowsByH(
+      variableOwnershipNodeRow?.variable_ownership_branch_feed_attempt_rows
+    );
+    const denominatorFreeTerminalRowsByH = terminalRowsByH(
+      denominatorFreeVariableNodeRow
+        ?.terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_rows
+    );
+    const terminalRows = terminalSpecs.map((spec) => {
+      const alphaTerminalRow =
+        alphaTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const foldTerminalRow =
+        foldTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const bridgeTerminalRow =
+        bridgeTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const variableTerminalRow =
+        variableTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const denominatorFreeTerminalRow =
+        denominatorFreeTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const alphaInterval = numericInterval(
+        variableTerminalRow?.variable_ownership_alpha_candidate_interval
+      );
+      const tVarInterval = numericInterval(
+        denominatorFreeTerminalRow
+          ?.variable_ownership_t_coordinate_candidate_interval
+      );
+      const twoTVarInterval = scaleInterval(tVarInterval, 2);
+      const twoTMinusAlphaInterval = subtractIntervals(
+        twoTVarInterval,
+        alphaInterval
+      );
+      const terminalGInterval =
+        numericInterval(bridgeTerminalRow?.terminal_branch_g_moment_interval) ??
+        numericInterval(variableTerminalRow?.terminal_branch_g_moment_interval);
+      const alphaMinusGInterval = subtractIntervals(alphaInterval, terminalGInterval);
+      const alphaMinusGContainsZero = intervalContainsZero(alphaMinusGInterval);
+      const alphaMinusGExcludesZero =
+        finiteOrderedInterval(alphaMinusGInterval) &&
+        alphaMinusGContainsZero === false;
+      const terminalChecks = {
+        source_term_alpha_derivation_terminal_row_available:
+          alphaDerivationReady &&
+          alphaTerminalRow !== null &&
+          alphaTerminalRow?.source_term_alpha_map_available === false &&
+          alphaTerminalRow?.source_term_branch_parity_generator_available ===
+            false &&
+          alphaTerminalRow?.source_term_alpha_coefficient_available_count === 0 &&
+          alphaTerminalRow?.source_term_to_branch_projection_missing_rank === 1,
+        fold_null_generator_terminal_row_available:
+          foldNullReady &&
+          foldTerminalRow !== null &&
+          foldTerminalRow?.fold_null_generator_available === true &&
+          foldTerminalRow?.aggregate_generator_annihilates_source_at_fold ===
+            true &&
+          foldTerminalRow?.source_term_basis_diagonalized_by_fold_null_generator ===
+            false &&
+          foldTerminalRow?.source_term_diagonal_parity_eigenvalue_available_count ===
+            0,
+        terminal_g_to_provider_bridge_terminal_row_available:
+          bridgeAuditReady &&
+          bridgeTerminalRow?.row_terminal_g_to_provider_bridge_audit_verified ===
+            true,
+        variable_ownership_terminal_row_available:
+          variableOwnershipReady &&
+          variableTerminalRow?.row_variable_ownership_branch_feed_attempt_verified ===
+            true,
+        denominator_free_variable_ownership_t_terminal_row_available:
+          tMaterializationReady &&
+          denominatorFreeTerminalRow
+            ?.row_terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_verified ===
+            true,
+        same_domain_terminal_row_aligned:
+          alphaTerminalRow?.terminal_graph_cell_id === terminalGraphCellId &&
+          foldTerminalRow?.terminal_graph_cell_id === terminalGraphCellId &&
+          bridgeTerminalRow?.terminal_graph_cell_id === terminalGraphCellId &&
+          variableTerminalRow?.terminal_graph_cell_id === terminalGraphCellId &&
+          denominatorFreeTerminalRow?.terminal_graph_cell_id ===
+            terminalGraphCellId &&
+          alphaTerminalRow?.terminal_h_index === spec.terminal_h_index &&
+          foldTerminalRow?.terminal_h_index === spec.terminal_h_index &&
+          bridgeTerminalRow?.terminal_h_index === spec.terminal_h_index &&
+          variableTerminalRow?.terminal_h_index === spec.terminal_h_index &&
+          denominatorFreeTerminalRow?.terminal_h_index ===
+            spec.terminal_h_index &&
+          alphaTerminalRow?.successor_scalar_identity_weight ===
+            spec.successor_scalar_identity_weight &&
+          foldTerminalRow?.successor_scalar_identity_weight ===
+            spec.successor_scalar_identity_weight &&
+          bridgeTerminalRow?.successor_scalar_identity_weight ===
+            spec.successor_scalar_identity_weight &&
+          variableTerminalRow?.successor_scalar_identity_weight ===
+            spec.successor_scalar_identity_weight &&
+          denominatorFreeTerminalRow?.successor_scalar_identity_weight ===
+            spec.successor_scalar_identity_weight,
+        candidate_2t_minus_A_var_tautology_recorded:
+          finiteOrderedInterval(alphaInterval) &&
+          finiteOrderedInterval(tVarInterval) &&
+          finiteOrderedInterval(twoTMinusAlphaInterval) &&
+          intervalContainsZero(twoTMinusAlphaInterval),
+        source_term_alpha_map_absence_recorded:
+          alphaTerminalRow?.source_term_alpha_map_available === false &&
+          alphaTerminalRow?.source_term_branch_parity_generator_available ===
+            false &&
+          alphaTerminalRow?.source_term_alpha_coefficient_available_count === 0 &&
+          alphaTerminalRow?.source_term_to_branch_projection_missing_rank === 1,
+        fold_null_not_branch_parity_generator_recorded:
+          foldTerminalRow?.fold_null_generator_available === true &&
+          foldTerminalRow?.aggregate_generator_annihilates_source_at_fold ===
+            true &&
+          foldTerminalRow?.source_term_basis_diagonalized_by_fold_null_generator ===
+            false &&
+          foldTerminalRow?.source_term_diagonal_parity_eigenvalue_available_count ===
+            0,
+        provider_object_branch_moment_absence_recorded:
+          bridgeTerminalRow?.provider_object_branch_moment_available === false &&
+          bridgeTerminalRow?.provider_object_branch_moment_interval === null &&
+          bridgeTerminalRow?.g_to_provider_correction_term_available === false &&
+          bridgeTerminalRow?.terminal_g_to_provider_bridge_available === false,
+        terminal_g_comparison_recorded:
+          finiteOrderedInterval(alphaInterval) &&
+          finiteOrderedInterval(terminalGInterval) &&
+          finiteOrderedInterval(alphaMinusGInterval) &&
+          typeof alphaMinusGContainsZero === "boolean" &&
+          typeof alphaMinusGExcludesZero === "boolean",
+        identity_kept_fail_closed:
+          variableTerminalRow
+            ?.admissible_as_actual_provider_object_branch_source === false &&
+          variableTerminalRow?.variable_ownership_alpha_candidate_certified ===
+            false &&
+          denominatorFreeTerminalRow
+            ?.variable_ownership_t_coordinate_identity_available === false &&
+          denominatorFreeTerminalRow
+            ?.variable_ownership_t_coordinate_identity_certified === false,
+        h39_claims_remain_open:
+          alphaTerminalRow
+            ?.row_certifies_expression_level_source_term_branch_projection_alpha_map ===
+            false &&
+          foldTerminalRow
+            ?.row_certifies_expression_level_source_term_fold_null_generator_coefficient_extractor ===
+            false &&
+          bridgeTerminalRow?.row_certifies_terminal_g_to_provider_moment_bridge ===
+            false &&
+          variableTerminalRow
+            ?.row_certifies_variable_ownership_alpha_as_provider_object_branch_source ===
+            false &&
+          denominatorFreeTerminalRow
+            ?.row_certifies_variable_ownership_t_coordinate_identity === false,
+      };
+      const terminalVerified = Object.values(terminalChecks).every(
+        (value) => value === true
+      );
+      return {
+        terminal_h_index: spec.terminal_h_index,
+        source_y_order: H38_NUMERATOR_Y_ORDER,
+        required_xi_derivative_order: 4,
+        terminal_graph_cell_id: terminalGraphCellId,
+        successor_scalar_identity_weight:
+          spec.successor_scalar_identity_weight,
+        centered_successor_scalar_weight:
+          spec.centered_successor_scalar_weight,
+        variable_ownership_alpha_provenance_identity_audit_row_kind:
+          "terminal-variable-ownership-alpha-provenance-identity-audit-terminal-row",
+        candidate_t_identity_formula: "2*t_var-A_var=0",
+        provider_object_identity_target:
+          "2t=A_P=A_var=P_delta-P_phi",
+        branch_parity_generator_target: "B(S_j)=epsilon_j*S_j",
+        fold_null_generator_formula:
+          foldTerminalRow?.fold_null_generator_formula ?? null,
+        variable_ownership_alpha_candidate_interval: alphaInterval,
+        variable_ownership_t_coordinate_candidate_interval: tVarInterval,
+        two_t_var_candidate_interval: twoTVarInterval,
+        candidate_2t_minus_A_var_residual_interval: twoTMinusAlphaInterval,
+        candidate_2t_minus_A_var_residual_contains_zero:
+          intervalContainsZero(twoTMinusAlphaInterval),
+        candidate_2t_minus_A_var_residual_half_width: intervalHalfWidth(
+          twoTMinusAlphaInterval
+        ),
+        terminal_branch_g_moment_interval: terminalGInterval,
+        variable_ownership_alpha_minus_terminal_g_moment_interval:
+          alphaMinusGInterval,
+        variable_ownership_alpha_minus_terminal_g_moment_contains_zero:
+          alphaMinusGContainsZero,
+        variable_ownership_alpha_minus_terminal_g_moment_excludes_zero:
+          alphaMinusGExcludesZero,
+        variable_ownership_alpha_overlaps_terminal_g_moment: intervalsOverlap(
+          alphaInterval,
+          terminalGInterval
+        ),
+        source_term_alpha_map_available:
+          alphaTerminalRow?.source_term_alpha_map_available === true,
+        source_term_branch_parity_generator_available:
+          alphaTerminalRow?.source_term_branch_parity_generator_available === true,
+        fold_null_generator_is_branch_parity_generator:
+          foldTerminalRow?.source_term_basis_diagonalized_by_fold_null_generator ===
+          true,
+        provider_object_branch_moment_available:
+          bridgeTerminalRow?.provider_object_branch_moment_available === true,
+        g_to_provider_correction_term_available:
+          bridgeTerminalRow?.g_to_provider_correction_term_available === true,
+        variable_ownership_alpha_provenance_identity_available: false,
+        variable_ownership_alpha_provenance_identity_certified: false,
+        variable_ownership_t_coordinate_identity_certified: false,
+        row_variable_ownership_alpha_provenance_identity_audit_verified:
+          terminalVerified,
+        terminal_variable_ownership_alpha_provenance_identity_audit_check_kinds:
+          [...terminalCheckKinds],
+        terminal_variable_ownership_alpha_provenance_identity_audit_checks:
+          terminalChecks,
+        row_certifies_variable_ownership_alpha_provenance_identity: false,
+        row_certifies_variable_ownership_t_coordinate_identity: false,
+        row_certifies_variable_ownership_alpha_as_provider_object_branch_source:
+          false,
+        row_certifies_terminal_g_to_provider_moment_bridge: false,
+        row_certifies_terminal_row_provider_object_replay: false,
+        row_certifies_expression_level_n38_provider: false,
+        row_certifies_directed_rounded_shared_domain: false,
+        row_status: terminalVerified
+          ? "variable-ownership-alpha-provenance-identity-open-alpha-map-and-provider-moment-missing"
+          : "variable-ownership-alpha-provenance-identity-audit-open",
+        claim_boundary:
+          h39TerminalVariableOwnershipAlphaProvenanceIdentityAuditClaimBoundary(),
+      };
+    });
+    const rowChecks = {
+      source_term_alpha_derivation_attempt_ready:
+        alphaDerivationReady &&
+        alphaDerivationNodeRow
+          ?.row_terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_verified ===
+          true,
+      fold_null_generator_compatibility_attempt_ready:
+        foldNullReady &&
+        foldNodeRow
+          ?.row_terminal_expression_level_source_term_fold_null_generator_compatibility_attempt_verified ===
+          true,
+      terminal_g_to_provider_bridge_audit_ready:
+        bridgeAuditReady &&
+        bridgeNodeRow?.row_terminal_g_to_provider_bridge_audit_verified === true,
+      variable_ownership_branch_feed_attempt_ready:
+        variableOwnershipReady &&
+        variableOwnershipNodeRow?.row_variable_ownership_branch_feed_attempt_verified ===
+          true,
+      denominator_free_variable_ownership_t_materialization_ready:
+        tMaterializationReady &&
+        denominatorFreeVariableNodeRow
+          ?.row_terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_verified ===
+          true,
+      same_domain_terminal_rows_aligned: terminalRows.every(
+        (row) =>
+          row
+            .terminal_variable_ownership_alpha_provenance_identity_audit_checks
+            ?.same_domain_terminal_row_aligned === true
+      ),
+      source_term_alpha_derivation_terminal_rows_available: terminalRows.every(
+        (row) =>
+          row
+            .terminal_variable_ownership_alpha_provenance_identity_audit_checks
+            ?.source_term_alpha_derivation_terminal_row_available === true
+      ),
+      fold_null_generator_terminal_rows_available: terminalRows.every(
+        (row) =>
+          row
+            .terminal_variable_ownership_alpha_provenance_identity_audit_checks
+            ?.fold_null_generator_terminal_row_available === true
+      ),
+      terminal_g_to_provider_bridge_terminal_rows_available: terminalRows.every(
+        (row) =>
+          row
+            .terminal_variable_ownership_alpha_provenance_identity_audit_checks
+            ?.terminal_g_to_provider_bridge_terminal_row_available === true
+      ),
+      variable_ownership_terminal_rows_available: terminalRows.every(
+        (row) =>
+          row
+            .terminal_variable_ownership_alpha_provenance_identity_audit_checks
+            ?.variable_ownership_terminal_row_available === true
+      ),
+      denominator_free_variable_ownership_t_terminal_rows_available:
+        terminalRows.every(
+          (row) =>
+            row
+              .terminal_variable_ownership_alpha_provenance_identity_audit_checks
+              ?.denominator_free_variable_ownership_t_terminal_row_available ===
+            true
+        ),
+      candidate_2t_minus_A_var_tautology_recorded: terminalRows.every(
+        (row) =>
+          row
+            .terminal_variable_ownership_alpha_provenance_identity_audit_checks
+            ?.candidate_2t_minus_A_var_tautology_recorded === true
+      ),
+      source_term_alpha_map_absence_recorded: terminalRows.every(
+        (row) =>
+          row
+            .terminal_variable_ownership_alpha_provenance_identity_audit_checks
+            ?.source_term_alpha_map_absence_recorded === true
+      ),
+      fold_null_not_branch_parity_generator_recorded: terminalRows.every(
+        (row) =>
+          row
+            .terminal_variable_ownership_alpha_provenance_identity_audit_checks
+            ?.fold_null_not_branch_parity_generator_recorded === true
+      ),
+      provider_object_branch_moment_absence_recorded: terminalRows.every(
+        (row) =>
+          row
+            .terminal_variable_ownership_alpha_provenance_identity_audit_checks
+            ?.provider_object_branch_moment_absence_recorded === true
+      ),
+      terminal_g_comparison_recorded: terminalRows.every(
+        (row) =>
+          row
+            .terminal_variable_ownership_alpha_provenance_identity_audit_checks
+            ?.terminal_g_comparison_recorded === true
+      ),
+      identity_kept_fail_closed: terminalRows.every(
+        (row) =>
+          row
+            .terminal_variable_ownership_alpha_provenance_identity_audit_checks
+            ?.identity_kept_fail_closed === true
+      ),
+      h39_broad_claims_remain_open: terminalRows.every(
+        (row) =>
+          row
+            .terminal_variable_ownership_alpha_provenance_identity_audit_checks
+            ?.h39_claims_remain_open === true
+      ),
+    };
+    const rowVerified = Object.values(rowChecks).every(
+      (value) => value === true
+    );
+    return {
+      node_index: nodeIndex,
+      terminal_graph_cell_id: terminalGraphCellId,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      variable_ownership_alpha_provenance_identity_audit_row_kind:
+        "terminal-variable-ownership-alpha-provenance-identity-audit-node-row",
+      terminal_h_indexes: terminalSpecs.map((spec) => spec.terminal_h_index),
+      terminal_variable_ownership_alpha_provenance_identity_audit_rows:
+        terminalRows,
+      terminal_variable_ownership_alpha_provenance_identity_audit_terminal_row_count:
+        terminalRows.length,
+      candidate_2t_minus_A_var_tautology_terminal_row_count: terminalRows.filter(
+        (row) => row.candidate_2t_minus_A_var_residual_contains_zero === true
+      ).length,
+      source_term_alpha_map_available_terminal_row_count: terminalRows.filter(
+        (row) => row.source_term_alpha_map_available
+      ).length,
+      source_term_branch_parity_generator_available_terminal_row_count:
+        terminalRows.filter((row) => row.source_term_branch_parity_generator_available)
+          .length,
+      fold_null_generator_is_branch_parity_generator_terminal_row_count:
+        terminalRows.filter((row) => row.fold_null_generator_is_branch_parity_generator)
+          .length,
+      provider_object_branch_moment_available_terminal_row_count:
+        terminalRows.filter((row) => row.provider_object_branch_moment_available)
+          .length,
+      terminal_g_comparison_available_terminal_row_count: terminalRows.filter(
+        (row) =>
+          finiteOrderedInterval(
+            row.variable_ownership_alpha_minus_terminal_g_moment_interval
+          )
+      ).length,
+      variable_ownership_alpha_minus_terminal_g_moment_contains_zero_terminal_row_count:
+        terminalRows.filter(
+          (row) =>
+            row.variable_ownership_alpha_minus_terminal_g_moment_contains_zero ===
+            true
+        ).length,
+      variable_ownership_alpha_minus_terminal_g_moment_excludes_zero_terminal_row_count:
+        terminalRows.filter(
+          (row) =>
+            row.variable_ownership_alpha_minus_terminal_g_moment_excludes_zero ===
+            true
+        ).length,
+      row_check_kinds: [...checkKinds],
+      row_checks: rowChecks,
+      row_variable_ownership_alpha_provenance_identity_audit_verified:
+        rowVerified,
+      row_certifies_variable_ownership_alpha_provenance_identity: false,
+      row_certifies_variable_ownership_t_coordinate_identity: false,
+      row_certifies_variable_ownership_alpha_as_provider_object_branch_source:
+        false,
+      row_certifies_terminal_g_to_provider_moment_bridge: false,
+      row_certifies_terminal_row_provider_object_replay: false,
+      row_certifies_expression_level_n38_provider: false,
+      row_certifies_directed_rounded_shared_domain: false,
+      row_status: rowVerified
+        ? "variable-ownership-alpha-provenance-identity-open-alpha-map-and-provider-moment-missing"
+        : "variable-ownership-alpha-provenance-identity-audit-open",
+      claim_boundary:
+        h39TerminalVariableOwnershipAlphaProvenanceIdentityAuditClaimBoundary(),
+    };
+  });
+  const terminalRowCount = rows.reduce(
+    (total, row) =>
+      total +
+      row.terminal_variable_ownership_alpha_provenance_identity_audit_terminal_row_count,
+    0
+  );
+  const sumRows = (key) =>
+    rows.reduce((total, row) => total + Number(row?.[key] ?? 0), 0);
+  const aggregateChecks = {
+    source_term_alpha_derivation_attempt_ready: alphaDerivationReady,
+    fold_null_generator_compatibility_attempt_ready: foldNullReady,
+    terminal_g_to_provider_bridge_audit_ready: bridgeAuditReady,
+    variable_ownership_branch_feed_attempt_ready: variableOwnershipReady,
+    denominator_free_variable_ownership_t_materialization_ready:
+      tMaterializationReady,
+    same_domain_terminal_rows_aligned: rows.every(
+      (row) => row.row_checks?.same_domain_terminal_rows_aligned === true
+    ),
+    candidate_2t_minus_A_var_tautology_recorded: rows.every(
+      (row) =>
+        row.row_checks?.candidate_2t_minus_A_var_tautology_recorded === true
+    ),
+    source_term_alpha_map_absence_recorded: rows.every(
+      (row) => row.row_checks?.source_term_alpha_map_absence_recorded === true
+    ),
+    fold_null_not_branch_parity_generator_recorded: rows.every(
+      (row) =>
+        row.row_checks?.fold_null_not_branch_parity_generator_recorded === true
+    ),
+    provider_object_branch_moment_absence_recorded: rows.every(
+      (row) =>
+        row.row_checks?.provider_object_branch_moment_absence_recorded === true
+    ),
+    terminal_g_comparison_recorded: rows.every(
+      (row) => row.row_checks?.terminal_g_comparison_recorded === true
+    ),
+    identity_kept_fail_closed: rows.every(
+      (row) => row.row_checks?.identity_kept_fail_closed === true
+    ),
+    h39_broad_claims_remain_open: rows.every(
+      (row) => row.row_checks?.h39_broad_claims_remain_open === true
+    ),
+  };
+  const auditVerified =
+    rows.length === 5 &&
+    terminalRowCount === 15 &&
+    rows.every(
+      (row) =>
+        row.row_variable_ownership_alpha_provenance_identity_audit_verified ===
+        true
+    ) &&
+    Object.values(aggregateChecks).every((value) => value === true);
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_VARIABLE_OWNERSHIP_ALPHA_PROVENANCE_IDENTITY_AUDIT_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-terminal-variable-ownership-alpha-provenance-identity-audit-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-terminal-variable-ownership-alpha-provenance-identity-audit",
+    target_kind:
+      "candidate-requested-y44-terminal-variable-ownership-alpha-provenance-identity-audit",
+    terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_schema:
+      terminalExpressionLevelSourceTermBranchProjectionAlphaDerivationAttempt?.schema ??
+      null,
+    terminal_expression_level_source_term_fold_null_generator_compatibility_attempt_schema:
+      terminalExpressionLevelSourceTermFoldNullGeneratorCompatibilityAttempt?.schema ??
+      null,
+    terminal_expression_level_source_term_fold_null_coefficient_provider_moment_bridge_audit_schema:
+      terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit?.schema ??
+      null,
+    terminal_expression_level_source_term_variable_ownership_branch_feed_attempt_schema:
+      terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt?.schema ??
+      null,
+    terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_schema:
+      terminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttempt?.schema ??
+      null,
+    proof_status:
+      "candidate-variable-ownership-alpha-provenance-identity-open",
+    provenance_identity_target:
+      "2t=A_P=A_var=P_delta-P_phi",
+    candidate_t_identity_formula: "2*t_var-A_var=0",
+    provider_object_branch_moment_target: "A_P=P_- - P_+",
+    branch_parity_generator_target: "B(S_j)=epsilon_j*S_j",
+    fold_null_generator_obstruction:
+      "D_eta annihilates the aggregate source at the fold but does not diagonalize the source-term basis into branch-parity eigenvalues.",
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    terminal_h_indexes: terminalSpecs.map((spec) => spec.terminal_h_index),
+    terminal_variable_ownership_alpha_provenance_identity_audit_check_kinds: [
+      ...checkKinds,
+    ],
+    terminal_variable_ownership_alpha_provenance_identity_audit_checks:
+      aggregateChecks,
+    terminal_variable_ownership_alpha_provenance_identity_audit_verified:
+      auditVerified,
+    terminal_variable_ownership_alpha_provenance_identity_audit_certified:
+      false,
+    terminal_variable_ownership_alpha_provenance_identity_audit_row_count:
+      rows.length,
+    terminal_variable_ownership_alpha_provenance_identity_audit_terminal_row_count:
+      terminalRowCount,
+    terminal_variable_ownership_alpha_provenance_identity_audit_rows: rows,
+    candidate_2t_minus_A_var_tautology_terminal_row_count: sumRows(
+      "candidate_2t_minus_A_var_tautology_terminal_row_count"
+    ),
+    source_term_alpha_map_available_terminal_row_count: sumRows(
+      "source_term_alpha_map_available_terminal_row_count"
+    ),
+    source_term_branch_parity_generator_available_terminal_row_count: sumRows(
+      "source_term_branch_parity_generator_available_terminal_row_count"
+    ),
+    fold_null_generator_is_branch_parity_generator_terminal_row_count: sumRows(
+      "fold_null_generator_is_branch_parity_generator_terminal_row_count"
+    ),
+    provider_object_branch_moment_available_terminal_row_count: sumRows(
+      "provider_object_branch_moment_available_terminal_row_count"
+    ),
+    terminal_g_comparison_available_terminal_row_count: sumRows(
+      "terminal_g_comparison_available_terminal_row_count"
+    ),
+    variable_ownership_alpha_minus_terminal_g_moment_contains_zero_terminal_row_count:
+      sumRows(
+        "variable_ownership_alpha_minus_terminal_g_moment_contains_zero_terminal_row_count"
+      ),
+    variable_ownership_alpha_minus_terminal_g_moment_excludes_zero_terminal_row_count:
+      sumRows(
+        "variable_ownership_alpha_minus_terminal_g_moment_excludes_zero_terminal_row_count"
+      ),
+    all_candidate_2t_var_equals_A_var_by_construction:
+      auditVerified &&
+      sumRows("candidate_2t_minus_A_var_tautology_terminal_row_count") ===
+        terminalRowCount,
+    all_terminal_g_comparisons_available:
+      auditVerified &&
+      sumRows("terminal_g_comparison_available_terminal_row_count") ===
+        terminalRowCount,
+    source_term_alpha_map_available: false,
+    source_term_branch_parity_generator_available: false,
+    fold_null_generator_is_branch_parity_generator: false,
+    provider_object_branch_moment_available: false,
+    variable_ownership_alpha_provenance_identity_available: false,
+    variable_ownership_alpha_provenance_identity_certified: false,
+    variable_ownership_t_coordinate_identity_certified: false,
+    variable_ownership_alpha_as_provider_object_branch_source_certified: false,
+    terminal_g_to_provider_moment_bridge_certified: false,
+    terminal_row_provider_object_replay_certified: false,
+    expression_level_n38_provider_certified: false,
+    directed_rounded_shared_domain_provider_certified: false,
+    terminal_variable_ownership_alpha_provenance_identity_audit_classification:
+      auditVerified
+        ? "variable-ownership-alpha-provenance-identity-open-alpha-map-and-provider-moment-missing"
+        : "variable-ownership-alpha-provenance-identity-audit-open",
+    terminal_variable_ownership_alpha_provenance_identity_audit_blocker_classification:
+      auditVerified
+        ? "same-domain-source-term-branch-parity-generator-or-provider-object-branch-moment-needed"
+        : "variable-ownership-alpha-provenance-identity-audit-open",
+    terminal_variable_ownership_alpha_provenance_identity_audit_primary_missing_object_kind:
+      auditVerified
+        ? "same-domain-alpha-map-or-A_P-provider-object-branch-moment"
+        : "variable-ownership-alpha-provenance-identity-audit",
+    next_certificate_object:
+      "same-domain source-term branch-parity generator or explicit provider-object branch moment A_P proving A_var=P_delta-P_phi is the actual branch-antisymmetric source object",
+    candidate_certificate_route:
+      "This audit separates the candidate tautology 2*t_var=A_var from the missing provider-object identity 2t=A_P=A_var. The current rows prove that A_var/2 gives a finite denominator-free candidate t_var, and they compare A_var with the finite terminal branch-G moment. They also record that the same-domain source-term surfaces expose no alpha_j map, no branch-parity generator, no fold-null diagonalization of the source-term basis, and no provider-object branch moment A_P or correction C_{G_to_P}. Therefore A_var remains a useful non-scalar candidate, but it is not admitted as the actual branch-resolved centered residual source object.",
+    claim_boundary:
+      h39TerminalVariableOwnershipAlphaProvenanceIdentityAuditClaimBoundary(),
+  };
+}
+
+export function validateH39RequestedY44TerminalVariableOwnershipAlphaProvenanceIdentityAuditCandidate(
+  artifact
+) {
+  const errors = [];
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const sameStringSet = (left, right) =>
+    Array.isArray(left) &&
+    left.length === right.length &&
+    right.every((value) => left.includes(value));
+  const sameTerminalHIndexes = (indexes) =>
+    Array.isArray(indexes) &&
+    indexes.length === 3 &&
+    indexes[0] === 37 &&
+    indexes[1] === 36 &&
+    indexes[2] === 35;
+  const validClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_terminal_variable_ownership_alpha_provenance_identity_audit_only ===
+      true &&
+    claimBoundary?.certifies_variable_ownership_alpha_provenance_identity ===
+      false &&
+    claimBoundary?.certifies_variable_ownership_t_coordinate_identity === false &&
+    claimBoundary
+      ?.certifies_variable_ownership_alpha_as_provider_object_branch_source ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_term_branch_projection_alpha_map ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_term_branch_parity_generator === false &&
+    claimBoundary?.certifies_terminal_g_to_provider_moment_bridge === false &&
+    claimBoundary?.certifies_terminal_g_to_provider_correction_term === false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_rows ===
+      false &&
+    claimBoundary
+      ?.certifies_denominator_free_branch_residual_source_object_identity ===
+      false &&
+    claimBoundary
+      ?.certifies_branch_resolved_centered_residual_source_object === false &&
+    claimBoundary?.certifies_terminal_row_provider_object_replay === false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const expectedCheckKinds = [
+    "source_term_alpha_derivation_attempt_ready",
+    "fold_null_generator_compatibility_attempt_ready",
+    "terminal_g_to_provider_bridge_audit_ready",
+    "variable_ownership_branch_feed_attempt_ready",
+    "denominator_free_variable_ownership_t_materialization_ready",
+    "same_domain_terminal_rows_aligned",
+    "candidate_2t_minus_A_var_tautology_recorded",
+    "source_term_alpha_map_absence_recorded",
+    "fold_null_not_branch_parity_generator_recorded",
+    "provider_object_branch_moment_absence_recorded",
+    "terminal_g_comparison_recorded",
+    "identity_kept_fail_closed",
+    "h39_broad_claims_remain_open",
+  ];
+  const expectedTerminalCheckKinds = [
+    "source_term_alpha_derivation_terminal_row_available",
+    "fold_null_generator_terminal_row_available",
+    "terminal_g_to_provider_bridge_terminal_row_available",
+    "variable_ownership_terminal_row_available",
+    "denominator_free_variable_ownership_t_terminal_row_available",
+    "same_domain_terminal_row_aligned",
+    "candidate_2t_minus_A_var_tautology_recorded",
+    "source_term_alpha_map_absence_recorded",
+    "fold_null_not_branch_parity_generator_recorded",
+    "provider_object_branch_moment_absence_recorded",
+    "terminal_g_comparison_recorded",
+    "identity_kept_fail_closed",
+    "h39_claims_remain_open",
+  ];
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_VARIABLE_OWNERSHIP_ALPHA_PROVENANCE_IDENTITY_AUDIT_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 variable-ownership alpha provenance identity audit candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-terminal-variable-ownership-alpha-provenance-identity-audit-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-terminal-variable-ownership-alpha-provenance-identity-audit" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-terminal-variable-ownership-alpha-provenance-identity-audit" ||
+    artifact
+      ?.terminal_expression_level_source_term_branch_projection_alpha_derivation_attempt_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_BRANCH_PROJECTION_ALPHA_DERIVATION_ATTEMPT_CANDIDATE_SCHEMA ||
+    artifact
+      ?.terminal_expression_level_source_term_fold_null_generator_compatibility_attempt_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_FOLD_NULL_GENERATOR_COMPATIBILITY_ATTEMPT_CANDIDATE_SCHEMA ||
+    artifact
+      ?.terminal_expression_level_source_term_fold_null_coefficient_provider_moment_bridge_audit_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_FOLD_NULL_COEFFICIENT_PROVIDER_MOMENT_BRIDGE_AUDIT_CANDIDATE_SCHEMA ||
+    artifact
+      ?.terminal_expression_level_source_term_variable_ownership_branch_feed_attempt_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_VARIABLE_OWNERSHIP_BRANCH_FEED_ATTEMPT_CANDIDATE_SCHEMA ||
+    artifact
+      ?.terminal_denominator_free_variable_ownership_t_coordinate_materialization_attempt_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_DENOMINATOR_FREE_VARIABLE_OWNERSHIP_T_COORDINATE_MATERIALIZATION_ATTEMPT_CANDIDATE_SCHEMA ||
+    artifact?.proof_status !==
+      "candidate-variable-ownership-alpha-provenance-identity-open" ||
+    artifact?.provenance_identity_target !== "2t=A_P=A_var=P_delta-P_phi" ||
+    artifact?.candidate_t_identity_formula !== "2*t_var-A_var=0" ||
+    artifact?.provider_object_branch_moment_target !== "A_P=P_- - P_+" ||
+    artifact?.branch_parity_generator_target !== "B(S_j)=epsilon_j*S_j" ||
+    artifact?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    !sameTerminalHIndexes(artifact?.terminal_h_indexes) ||
+    !sameStringSet(
+      artifact
+        ?.terminal_variable_ownership_alpha_provenance_identity_audit_check_kinds,
+      expectedCheckKinds
+    )
+  ) {
+    errors.push("variable-ownership alpha provenance metadata must identify the A_var to A_P identity target");
+  }
+  const containsZeroCount =
+    artifact
+      ?.variable_ownership_alpha_minus_terminal_g_moment_contains_zero_terminal_row_count;
+  const excludesZeroCount =
+    artifact
+      ?.variable_ownership_alpha_minus_terminal_g_moment_excludes_zero_terminal_row_count;
+  if (
+    expectedCheckKinds.some(
+      (kind) =>
+        artifact
+          ?.terminal_variable_ownership_alpha_provenance_identity_audit_checks?.[
+          kind
+        ] !== true
+    ) ||
+    artifact
+      ?.terminal_variable_ownership_alpha_provenance_identity_audit_verified !==
+      true ||
+    artifact
+      ?.terminal_variable_ownership_alpha_provenance_identity_audit_certified !==
+      false ||
+    artifact
+      ?.terminal_variable_ownership_alpha_provenance_identity_audit_row_count !==
+      5 ||
+    artifact
+      ?.terminal_variable_ownership_alpha_provenance_identity_audit_terminal_row_count !==
+      15 ||
+    artifact?.candidate_2t_minus_A_var_tautology_terminal_row_count !== 15 ||
+    artifact?.source_term_alpha_map_available_terminal_row_count !== 0 ||
+    artifact?.source_term_branch_parity_generator_available_terminal_row_count !==
+      0 ||
+    artifact
+      ?.fold_null_generator_is_branch_parity_generator_terminal_row_count !==
+      0 ||
+    artifact?.provider_object_branch_moment_available_terminal_row_count !== 0 ||
+    artifact?.terminal_g_comparison_available_terminal_row_count !== 15 ||
+    containsZeroCount < 0 ||
+    containsZeroCount > 15 ||
+    excludesZeroCount < 0 ||
+    excludesZeroCount > 15 ||
+    containsZeroCount + excludesZeroCount !== 15 ||
+    artifact?.all_candidate_2t_var_equals_A_var_by_construction !== true ||
+    artifact?.all_terminal_g_comparisons_available !== true ||
+    artifact?.source_term_alpha_map_available !== false ||
+    artifact?.source_term_branch_parity_generator_available !== false ||
+    artifact?.fold_null_generator_is_branch_parity_generator !== false ||
+    artifact?.provider_object_branch_moment_available !== false ||
+    artifact?.variable_ownership_alpha_provenance_identity_available !== false ||
+    artifact?.variable_ownership_alpha_provenance_identity_certified !== false ||
+    artifact?.variable_ownership_t_coordinate_identity_certified !== false ||
+    artifact
+      ?.variable_ownership_alpha_as_provider_object_branch_source_certified !==
+      false ||
+    artifact?.terminal_g_to_provider_moment_bridge_certified !== false ||
+    artifact?.terminal_row_provider_object_replay_certified !== false ||
+    artifact?.expression_level_n38_provider_certified !== false ||
+    artifact?.directed_rounded_shared_domain_provider_certified !== false ||
+    artifact
+      ?.terminal_variable_ownership_alpha_provenance_identity_audit_classification !==
+      "variable-ownership-alpha-provenance-identity-open-alpha-map-and-provider-moment-missing" ||
+    artifact
+      ?.terminal_variable_ownership_alpha_provenance_identity_audit_blocker_classification !==
+      "same-domain-source-term-branch-parity-generator-or-provider-object-branch-moment-needed" ||
+    artifact
+      ?.terminal_variable_ownership_alpha_provenance_identity_audit_primary_missing_object_kind !==
+      "same-domain-alpha-map-or-A_P-provider-object-branch-moment" ||
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string" ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("variable-ownership alpha provenance aggregate must keep identity open and record missing alpha map/A_P");
+  }
+  const rows =
+    artifact?.terminal_variable_ownership_alpha_provenance_identity_audit_rows ??
+    [];
+  const rowDetailFailures = [];
+  if (!Array.isArray(rows)) {
+    rowDetailFailures.push("rows-not-array");
+  } else {
+    rows.forEach((row, index) => {
+      const terminalRows =
+        row?.terminal_variable_ownership_alpha_provenance_identity_audit_rows ??
+        [];
+      const rowContainsZero =
+        row
+          ?.variable_ownership_alpha_minus_terminal_g_moment_contains_zero_terminal_row_count;
+      const rowExcludesZero =
+        row
+          ?.variable_ownership_alpha_minus_terminal_g_moment_excludes_zero_terminal_row_count;
+      const missingRowChecks = expectedCheckKinds.filter(
+        (kind) => row?.row_checks?.[kind] !== true
+      );
+      if (
+        row?.node_index !== index ||
+        row?.terminal_graph_cell_id !== `speed.${index}.first-y` ||
+        row?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+        row?.required_xi_derivative_order !== 4
+      ) {
+        rowDetailFailures.push(`row-${index}:metadata`);
+      }
+      if (
+        row?.terminal_variable_ownership_alpha_provenance_identity_audit_terminal_row_count !==
+          3 ||
+        row?.candidate_2t_minus_A_var_tautology_terminal_row_count !== 3 ||
+        row?.source_term_alpha_map_available_terminal_row_count !== 0 ||
+        row?.source_term_branch_parity_generator_available_terminal_row_count !==
+          0 ||
+        row?.fold_null_generator_is_branch_parity_generator_terminal_row_count !==
+          0 ||
+        row?.provider_object_branch_moment_available_terminal_row_count !== 0 ||
+        row?.terminal_g_comparison_available_terminal_row_count !== 3 ||
+        rowContainsZero < 0 ||
+        rowContainsZero > 3 ||
+        rowExcludesZero < 0 ||
+        rowExcludesZero > 3 ||
+        rowContainsZero + rowExcludesZero !== 3
+      ) {
+        rowDetailFailures.push(`row-${index}:counts`);
+      }
+      if (!sameStringSet(row?.row_check_kinds, expectedCheckKinds)) {
+        rowDetailFailures.push(`row-${index}:check-kinds`);
+      }
+      if (missingRowChecks.length > 0) {
+        rowDetailFailures.push(
+          `row-${index}:checks:${missingRowChecks.join(",")}`
+        );
+      }
+      if (
+        row?.row_variable_ownership_alpha_provenance_identity_audit_verified !==
+          true ||
+        row?.row_certifies_variable_ownership_alpha_provenance_identity !==
+          false ||
+        row?.row_certifies_variable_ownership_t_coordinate_identity !== false ||
+        row?.row_certifies_variable_ownership_alpha_as_provider_object_branch_source !==
+          false ||
+        row?.row_certifies_terminal_g_to_provider_moment_bridge !== false ||
+        row?.row_certifies_terminal_row_provider_object_replay !== false ||
+        row?.row_certifies_expression_level_n38_provider !== false ||
+        row?.row_certifies_directed_rounded_shared_domain !== false ||
+        row?.row_status !==
+          "variable-ownership-alpha-provenance-identity-open-alpha-map-and-provider-moment-missing" ||
+        !validClaimBoundary(row?.claim_boundary)
+      ) {
+        rowDetailFailures.push(`row-${index}:open-claim-boundary`);
+      }
+      if (!Array.isArray(terminalRows) || terminalRows.length !== 3) {
+        rowDetailFailures.push(`row-${index}:terminal-rows-shape`);
+        return;
+      }
+      terminalRows.forEach((terminalRow) => {
+        const terminalPrefix = `row-${index}:h${terminalRow?.terminal_h_index}`;
+        const missingTerminalChecks = expectedTerminalCheckKinds.filter(
+          (kind) =>
+            terminalRow
+              ?.terminal_variable_ownership_alpha_provenance_identity_audit_checks?.[
+              kind
+            ] !== true
+        );
+        if (
+          ![37, 36, 35].includes(terminalRow?.terminal_h_index) ||
+          terminalRow?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+          terminalRow?.required_xi_derivative_order !== 4 ||
+          terminalRow?.terminal_graph_cell_id !== `speed.${index}.first-y` ||
+          terminalRow?.candidate_t_identity_formula !== "2*t_var-A_var=0" ||
+          terminalRow?.provider_object_identity_target !==
+            "2t=A_P=A_var=P_delta-P_phi" ||
+          terminalRow?.branch_parity_generator_target !==
+            "B(S_j)=epsilon_j*S_j"
+        ) {
+          rowDetailFailures.push(`${terminalPrefix}:metadata`);
+        }
+        if (
+          !finiteOrderedInterval(
+            terminalRow?.variable_ownership_alpha_candidate_interval
+          ) ||
+          !finiteOrderedInterval(
+            terminalRow?.variable_ownership_t_coordinate_candidate_interval
+          ) ||
+          !finiteOrderedInterval(terminalRow?.two_t_var_candidate_interval) ||
+          !finiteOrderedInterval(
+            terminalRow?.candidate_2t_minus_A_var_residual_interval
+          ) ||
+          terminalRow?.candidate_2t_minus_A_var_residual_contains_zero !==
+            true ||
+          !finiteNumber(
+            terminalRow?.candidate_2t_minus_A_var_residual_half_width
+          ) ||
+          !finiteOrderedInterval(terminalRow?.terminal_branch_g_moment_interval) ||
+          !finiteOrderedInterval(
+            terminalRow?.variable_ownership_alpha_minus_terminal_g_moment_interval
+          ) ||
+          typeof terminalRow
+            ?.variable_ownership_alpha_minus_terminal_g_moment_contains_zero !==
+            "boolean" ||
+          typeof terminalRow
+            ?.variable_ownership_alpha_minus_terminal_g_moment_excludes_zero !==
+            "boolean"
+        ) {
+          rowDetailFailures.push(`${terminalPrefix}:intervals`);
+        }
+        if (
+          terminalRow?.source_term_alpha_map_available !== false ||
+          terminalRow?.source_term_branch_parity_generator_available !== false ||
+          terminalRow?.fold_null_generator_is_branch_parity_generator !== false ||
+          terminalRow?.provider_object_branch_moment_available !== false ||
+          terminalRow?.g_to_provider_correction_term_available !== false ||
+          terminalRow?.variable_ownership_alpha_provenance_identity_available !==
+            false ||
+          terminalRow?.variable_ownership_alpha_provenance_identity_certified !==
+            false ||
+          terminalRow?.variable_ownership_t_coordinate_identity_certified !== false
+        ) {
+          rowDetailFailures.push(`${terminalPrefix}:missing-object-flags`);
+        }
+        if (
+          !sameStringSet(
+            terminalRow
+              ?.terminal_variable_ownership_alpha_provenance_identity_audit_check_kinds,
+            expectedTerminalCheckKinds
+          )
+        ) {
+          rowDetailFailures.push(`${terminalPrefix}:check-kinds`);
+        }
+        if (missingTerminalChecks.length > 0) {
+          rowDetailFailures.push(
+            `${terminalPrefix}:checks:${missingTerminalChecks.join(",")}`
+          );
+        }
+        if (
+          terminalRow
+            ?.row_variable_ownership_alpha_provenance_identity_audit_verified !==
+            true ||
+          terminalRow?.row_certifies_variable_ownership_alpha_provenance_identity !==
+            false ||
+          terminalRow?.row_certifies_variable_ownership_t_coordinate_identity !==
+            false ||
+          terminalRow
+            ?.row_certifies_variable_ownership_alpha_as_provider_object_branch_source !==
+            false ||
+          terminalRow?.row_certifies_terminal_g_to_provider_moment_bridge !==
+            false ||
+          terminalRow?.row_certifies_terminal_row_provider_object_replay !== false ||
+          terminalRow?.row_certifies_expression_level_n38_provider !== false ||
+          terminalRow?.row_certifies_directed_rounded_shared_domain !== false ||
+          terminalRow?.row_status !==
+            "variable-ownership-alpha-provenance-identity-open-alpha-map-and-provider-moment-missing" ||
+          !validClaimBoundary(terminalRow?.claim_boundary)
+        ) {
+          rowDetailFailures.push(`${terminalPrefix}:open-claim-boundary`);
+        }
+      });
+    });
+  }
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== 5 ||
+    rows.some((row, index) => {
+      const terminalRows =
+        row?.terminal_variable_ownership_alpha_provenance_identity_audit_rows ??
+        [];
+      const rowContainsZero =
+        row
+          ?.variable_ownership_alpha_minus_terminal_g_moment_contains_zero_terminal_row_count;
+      const rowExcludesZero =
+        row
+          ?.variable_ownership_alpha_minus_terminal_g_moment_excludes_zero_terminal_row_count;
+      return (
+        row?.node_index !== index ||
+        row?.terminal_graph_cell_id !== `speed.${index}.first-y` ||
+        row?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+        row?.required_xi_derivative_order !== 4 ||
+        row?.terminal_variable_ownership_alpha_provenance_identity_audit_terminal_row_count !==
+          3 ||
+        row?.candidate_2t_minus_A_var_tautology_terminal_row_count !== 3 ||
+        row?.source_term_alpha_map_available_terminal_row_count !== 0 ||
+        row?.source_term_branch_parity_generator_available_terminal_row_count !==
+          0 ||
+        row
+          ?.fold_null_generator_is_branch_parity_generator_terminal_row_count !==
+          0 ||
+        row?.provider_object_branch_moment_available_terminal_row_count !== 0 ||
+        row?.terminal_g_comparison_available_terminal_row_count !== 3 ||
+        rowContainsZero < 0 ||
+        rowContainsZero > 3 ||
+        rowExcludesZero < 0 ||
+        rowExcludesZero > 3 ||
+        rowContainsZero + rowExcludesZero !== 3 ||
+        !sameStringSet(row?.row_check_kinds, expectedCheckKinds) ||
+        expectedCheckKinds.some((kind) => row?.row_checks?.[kind] !== true) ||
+        row?.row_variable_ownership_alpha_provenance_identity_audit_verified !==
+          true ||
+        row?.row_certifies_variable_ownership_alpha_provenance_identity !==
+          false ||
+        row?.row_certifies_variable_ownership_t_coordinate_identity !== false ||
+        row?.row_certifies_variable_ownership_alpha_as_provider_object_branch_source !==
+          false ||
+        row?.row_certifies_terminal_g_to_provider_moment_bridge !== false ||
+        row?.row_certifies_terminal_row_provider_object_replay !== false ||
+        row?.row_certifies_expression_level_n38_provider !== false ||
+        row?.row_certifies_directed_rounded_shared_domain !== false ||
+        row?.row_status !==
+          "variable-ownership-alpha-provenance-identity-open-alpha-map-and-provider-moment-missing" ||
+        !validClaimBoundary(row?.claim_boundary) ||
+        !Array.isArray(terminalRows) ||
+        terminalRows.length !== 3 ||
+        terminalRows.some((terminalRow) => {
+          return (
+            ![37, 36, 35].includes(terminalRow?.terminal_h_index) ||
+            terminalRow?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+            terminalRow?.required_xi_derivative_order !== 4 ||
+            terminalRow?.terminal_graph_cell_id !== `speed.${index}.first-y` ||
+            terminalRow?.candidate_t_identity_formula !== "2*t_var-A_var=0" ||
+            terminalRow?.provider_object_identity_target !==
+              "2t=A_P=A_var=P_delta-P_phi" ||
+            terminalRow?.branch_parity_generator_target !==
+              "B(S_j)=epsilon_j*S_j" ||
+            !finiteOrderedInterval(
+              terminalRow?.variable_ownership_alpha_candidate_interval
+            ) ||
+            !finiteOrderedInterval(
+              terminalRow?.variable_ownership_t_coordinate_candidate_interval
+            ) ||
+            !finiteOrderedInterval(terminalRow?.two_t_var_candidate_interval) ||
+            !finiteOrderedInterval(
+              terminalRow?.candidate_2t_minus_A_var_residual_interval
+            ) ||
+            terminalRow?.candidate_2t_minus_A_var_residual_contains_zero !==
+              true ||
+            !finiteNumber(
+              terminalRow?.candidate_2t_minus_A_var_residual_half_width
+            ) ||
+            !finiteOrderedInterval(terminalRow?.terminal_branch_g_moment_interval) ||
+            !finiteOrderedInterval(
+              terminalRow
+                ?.variable_ownership_alpha_minus_terminal_g_moment_interval
+            ) ||
+            typeof terminalRow
+              ?.variable_ownership_alpha_minus_terminal_g_moment_contains_zero !==
+              "boolean" ||
+            typeof terminalRow
+              ?.variable_ownership_alpha_minus_terminal_g_moment_excludes_zero !==
+              "boolean" ||
+            terminalRow?.source_term_alpha_map_available !== false ||
+            terminalRow?.source_term_branch_parity_generator_available !==
+              false ||
+            terminalRow?.fold_null_generator_is_branch_parity_generator !==
+              false ||
+            terminalRow?.provider_object_branch_moment_available !== false ||
+            terminalRow?.g_to_provider_correction_term_available !== false ||
+            terminalRow?.variable_ownership_alpha_provenance_identity_available !==
+              false ||
+            terminalRow?.variable_ownership_alpha_provenance_identity_certified !==
+              false ||
+            terminalRow?.variable_ownership_t_coordinate_identity_certified !==
+              false ||
+            !sameStringSet(
+              terminalRow
+                ?.terminal_variable_ownership_alpha_provenance_identity_audit_check_kinds,
+              expectedTerminalCheckKinds
+            ) ||
+            expectedTerminalCheckKinds.some(
+              (kind) =>
+                terminalRow
+                  ?.terminal_variable_ownership_alpha_provenance_identity_audit_checks?.[
+                  kind
+                ] !== true
+            ) ||
+            terminalRow
+              ?.row_variable_ownership_alpha_provenance_identity_audit_verified !==
+              true ||
+            terminalRow
+              ?.row_certifies_variable_ownership_alpha_provenance_identity !==
+              false ||
+            terminalRow?.row_certifies_variable_ownership_t_coordinate_identity !==
+              false ||
+            terminalRow
+              ?.row_certifies_variable_ownership_alpha_as_provider_object_branch_source !==
+              false ||
+            terminalRow?.row_certifies_terminal_g_to_provider_moment_bridge !==
+              false ||
+            terminalRow?.row_certifies_terminal_row_provider_object_replay !==
+              false ||
+            terminalRow?.row_certifies_expression_level_n38_provider !== false ||
+            terminalRow?.row_certifies_directed_rounded_shared_domain !== false ||
+            terminalRow?.row_status !==
+              "variable-ownership-alpha-provenance-identity-open-alpha-map-and-provider-moment-missing" ||
+            !validClaimBoundary(terminalRow?.claim_boundary)
+          );
+        })
+      );
+    })
+  ) {
+    errors.push("variable-ownership alpha provenance rows must record candidate tautology, terminal-G comparison, and missing alpha map/A_P");
+    if (rowDetailFailures.length > 0) {
+      errors.push(
+        `variable-ownership alpha provenance row detail failures: ${rowDetailFailures
+          .slice(0, 8)
+          .join("; ")}`
+      );
+    }
+  }
+  return errors;
+}
+
+function h39TerminalProviderObjectAPMaterializationObstructionAuditClaimBoundary() {
+  return {
+    defines_terminal_provider_object_ap_materialization_obstruction_audit_only:
+      true,
+    certifies_provider_object_A_P_materialization: false,
+    certifies_provider_object_branch_moment: false,
+    certifies_pre_sum_provider_object_branch_source: false,
+    certifies_variable_ownership_alpha_as_provider_object_branch_source: false,
+    certifies_terminal_g_to_provider_moment_bridge: false,
+    certifies_terminal_g_to_provider_correction_term: false,
+    certifies_expression_level_source_term_branch_projection_alpha_map: false,
+    certifies_expression_level_source_term_branch_parity_generator: false,
+    certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation:
+      false,
+    certifies_expression_level_source_map_provider_object_branch_split_map:
+      false,
+    certifies_expression_level_source_map_provider_object_branch_rows: false,
+    certifies_branch_resolved_centered_residual_source_object: false,
+    certifies_terminal_row_provider_object_replay: false,
+    certifies_expression_level_n38_provider: false,
+    certifies_terminal_row_provider_enclosure: false,
+    certifies_terminal_graph_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
+export function buildH39RequestedY44TerminalProviderObjectAPMaterializationObstructionAuditCandidate({
+  terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination,
+  terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor,
+  terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit,
+  terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt,
+  terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit,
+  terminalVariableOwnershipAlphaProvenanceIdentityAudit,
+} = {}) {
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const numericInterval = (interval) =>
+    finiteOrderedInterval(interval)
+      ? [Number(interval[0]), Number(interval[1])]
+      : null;
+  const intervalContainsZero = (interval) =>
+    finiteOrderedInterval(interval) &&
+    Number(interval[0]) <= 0 &&
+    0 <= Number(interval[1]);
+  const rowsByNode = (rows) =>
+    new Map(
+      (rows ?? [])
+        .filter((row) => Number.isInteger(row?.node_index))
+        .map((row) => [Number(row.node_index), row])
+    );
+  const terminalRowsByH = (rows) =>
+    new Map(
+      (rows ?? [])
+        .filter((row) => Number.isInteger(row?.terminal_h_index))
+        .map((row) => [Number(row.terminal_h_index), row])
+    );
+  const terminalSpecs = H39_TERMINAL_SUCCESSOR_COEFFICIENT_IDENTITY_IMPORT_SPECS;
+  const checkKinds = [
+    "provider_object_branch_split_underdetermination_ready",
+    "provider_object_branch_antisymmetric_equation_extractor_ready",
+    "pre_sum_branch_source_audit_ready",
+    "variable_ownership_branch_feed_attempt_ready",
+    "terminal_g_to_provider_bridge_audit_ready",
+    "alpha_provenance_identity_audit_ready",
+    "same_domain_terminal_rows_aligned",
+    "aggregate_rank_one_split_recorded",
+    "candidate_equations_available_but_nonadmissible",
+    "actual_A_P_materialization_absence_recorded",
+    "h39_claims_remain_open",
+  ];
+  const terminalCheckKinds = [
+    "provider_object_branch_split_terminal_row_available",
+    "provider_object_branch_antisymmetric_equation_terminal_row_available",
+    "pre_sum_branch_source_terminal_row_available",
+    "variable_ownership_terminal_row_available",
+    "terminal_g_bridge_terminal_row_available",
+    "alpha_provenance_terminal_row_available",
+    "same_domain_terminal_row_aligned",
+    "aggregate_rank_one_split_recorded",
+    "candidate_equations_available_but_nonadmissible",
+    "actual_A_P_materialization_absence_recorded",
+    "h39_claims_remain_open",
+  ];
+  const splitRowsByNode = rowsByNode(
+    terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination
+      ?.terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_rows
+  );
+  const equationRowsByNode = rowsByNode(
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_rows
+  );
+  const preSumRowsByNode = rowsByNode(
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      ?.provider_object_pre_sum_branch_source_audit_rows
+  );
+  const variableRowsByNode = rowsByNode(
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      ?.variable_ownership_branch_feed_attempt_rows
+  );
+  const bridgeRowsByNode = rowsByNode(
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      ?.terminal_g_to_provider_bridge_audit_rows
+  );
+  const provenanceRowsByNode = rowsByNode(
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      ?.terminal_variable_ownership_alpha_provenance_identity_audit_rows
+  );
+  const splitReady =
+    terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_UNDERDETERMINATION_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination
+      ?.terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_verified ===
+      true &&
+    terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination
+      ?.terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_certified ===
+      false &&
+    terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination
+      ?.provider_object_branch_split_free_dimension === 15;
+  const equationReady =
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ANTISYMMETRIC_EQUATION_EXTRACTOR_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_verified ===
+      true &&
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_certified ===
+      false &&
+    terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor
+      ?.provider_object_branch_antisymmetric_equation_available_terminal_row_count ===
+      0;
+  const preSumReady =
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_PRE_SUM_BRANCH_SOURCE_AUDIT_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      ?.provider_object_pre_sum_branch_source_audit_verified === true &&
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      ?.provider_object_pre_sum_branch_source_audit_certified === false &&
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      ?.pre_sum_source_term_branch_feed_available_row_count === 0 &&
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      ?.provider_object_pre_sum_branch_source_available === false;
+  const variableReady =
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_VARIABLE_OWNERSHIP_BRANCH_FEED_ATTEMPT_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      ?.variable_ownership_branch_feed_attempt_verified === true &&
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      ?.variable_ownership_branch_feed_attempt_certified === false &&
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      ?.variable_ownership_alpha_candidate_available === true &&
+    terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt
+      ?.provider_object_branch_moment_available === false;
+  const bridgeReady =
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_TERM_FOLD_NULL_COEFFICIENT_PROVIDER_MOMENT_BRIDGE_AUDIT_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      ?.terminal_g_to_provider_bridge_audit_verified === true &&
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      ?.terminal_g_to_provider_bridge_audit_certified === false &&
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      ?.terminal_branch_g_moment_available === true &&
+    terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit
+      ?.provider_object_branch_moment_available === false;
+  const provenanceReady =
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_VARIABLE_OWNERSHIP_ALPHA_PROVENANCE_IDENTITY_AUDIT_CANDIDATE_SCHEMA &&
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      ?.terminal_variable_ownership_alpha_provenance_identity_audit_verified ===
+      true &&
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      ?.terminal_variable_ownership_alpha_provenance_identity_audit_certified ===
+      false &&
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      ?.source_term_alpha_map_available_terminal_row_count === 0 &&
+    terminalVariableOwnershipAlphaProvenanceIdentityAudit
+      ?.provider_object_branch_moment_available_terminal_row_count === 0;
+  const rows = Array.from({ length: 5 }, (_, nodeIndex) => {
+    const terminalGraphCellId = `speed.${nodeIndex}.first-y`;
+    const splitNodeRow = splitRowsByNode.get(nodeIndex) ?? null;
+    const equationNodeRow = equationRowsByNode.get(nodeIndex) ?? null;
+    const preSumNodeRow = preSumRowsByNode.get(nodeIndex) ?? null;
+    const variableNodeRow = variableRowsByNode.get(nodeIndex) ?? null;
+    const bridgeNodeRow = bridgeRowsByNode.get(nodeIndex) ?? null;
+    const provenanceNodeRow = provenanceRowsByNode.get(nodeIndex) ?? null;
+    const splitTerminalRowsByH = terminalRowsByH(
+      splitNodeRow
+        ?.terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_rows
+    );
+    const equationTerminalRowsByH = terminalRowsByH(
+      equationNodeRow
+        ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_rows
+    );
+    const preSumTerminalRowsByH = terminalRowsByH(
+      preSumNodeRow?.provider_object_pre_sum_branch_source_audit_rows
+    );
+    const variableTerminalRowsByH = terminalRowsByH(
+      variableNodeRow?.variable_ownership_branch_feed_attempt_rows
+    );
+    const bridgeTerminalRowsByH = terminalRowsByH(
+      bridgeNodeRow?.terminal_g_to_provider_bridge_audit_rows
+    );
+    const provenanceTerminalRowsByH = terminalRowsByH(
+      provenanceNodeRow
+        ?.terminal_variable_ownership_alpha_provenance_identity_audit_rows
+    );
+    const terminalRows = terminalSpecs.map((spec) => {
+      const splitTerminalRow =
+        splitTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const equationTerminalRow =
+        equationTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const preSumTerminalRow =
+        preSumTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const variableTerminalRow =
+        variableTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const bridgeTerminalRow =
+        bridgeTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const provenanceTerminalRow =
+        provenanceTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+      const variableAlphaInterval = numericInterval(
+        variableTerminalRow?.variable_ownership_alpha_candidate_interval
+      );
+      const terminalGInterval = numericInterval(
+        bridgeTerminalRow?.terminal_branch_g_moment_interval
+      );
+      const candidateEquationRows = [
+        {
+          provider_object_moment_candidate_kind:
+            "variable-owned-source-term-alpha-candidate",
+          provider_object_moment_candidate_symbol: "A_var",
+          provider_object_moment_target: "A_P=P_- - P_+",
+          provider_object_moment_candidate_interval: variableAlphaInterval,
+          provider_object_moment_candidate_available:
+            finiteOrderedInterval(variableAlphaInterval),
+          admissible_as_actual_provider_object_branch_moment: false,
+          rejection_reason:
+            "source-term-alpha-map-or-provider-object-branch-moment-missing",
+          row_certifies_provider_object_A_P_materialization: false,
+          claim_boundary:
+            h39TerminalProviderObjectAPMaterializationObstructionAuditClaimBoundary(),
+        },
+        {
+          provider_object_moment_candidate_kind:
+            "terminal-branch-G-antisymmetric-coefficient-candidate",
+          provider_object_moment_candidate_symbol: "A_G^{terminal}",
+          provider_object_moment_target: "A_P=P_- - P_+",
+          provider_object_moment_candidate_interval: terminalGInterval,
+          provider_object_moment_candidate_available:
+            finiteOrderedInterval(terminalGInterval),
+          admissible_as_actual_provider_object_branch_moment: false,
+          rejection_reason:
+            "terminal-G-to-provider-object-correction-or-bridge-missing",
+          row_certifies_provider_object_A_P_materialization: false,
+          claim_boundary:
+            h39TerminalProviderObjectAPMaterializationObstructionAuditClaimBoundary(),
+        },
+      ];
+      const candidateEquationsAvailable =
+        candidateEquationRows.length === 2 &&
+        candidateEquationRows.every(
+          (row) => row.provider_object_moment_candidate_available === true
+        );
+      const actualEquationAvailable =
+        equationTerminalRow
+          ?.provider_object_branch_antisymmetric_equation_available === true ||
+        preSumTerminalRow?.provider_object_branch_moment_available === true ||
+        provenanceTerminalRow?.provider_object_branch_moment_available === true ||
+        candidateEquationRows.some(
+          (row) =>
+            row.admissible_as_actual_provider_object_branch_moment === true
+        );
+      const terminalChecks = {
+        provider_object_branch_split_terminal_row_available:
+          splitReady &&
+          splitTerminalRow
+            ?.row_terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_verified ===
+            true,
+        provider_object_branch_antisymmetric_equation_terminal_row_available:
+          equationReady &&
+          equationTerminalRow
+            ?.row_terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_verified ===
+            true,
+        pre_sum_branch_source_terminal_row_available:
+          preSumReady &&
+          preSumTerminalRow
+            ?.row_provider_object_pre_sum_branch_source_audit_verified === true,
+        variable_ownership_terminal_row_available:
+          variableReady &&
+          variableTerminalRow?.row_variable_ownership_branch_feed_attempt_verified ===
+            true,
+        terminal_g_bridge_terminal_row_available:
+          bridgeReady &&
+          bridgeTerminalRow?.row_terminal_g_to_provider_bridge_audit_verified ===
+            true,
+        alpha_provenance_terminal_row_available:
+          provenanceReady &&
+          provenanceTerminalRow
+            ?.row_variable_ownership_alpha_provenance_identity_audit_verified ===
+            true,
+        same_domain_terminal_row_aligned:
+          splitTerminalRow?.terminal_graph_cell_id === terminalGraphCellId &&
+          equationTerminalRow?.terminal_graph_cell_id === terminalGraphCellId &&
+          preSumTerminalRow?.terminal_graph_cell_id === terminalGraphCellId &&
+          variableTerminalRow?.terminal_graph_cell_id === terminalGraphCellId &&
+          bridgeTerminalRow?.terminal_graph_cell_id === terminalGraphCellId &&
+          provenanceTerminalRow?.terminal_graph_cell_id === terminalGraphCellId &&
+          splitTerminalRow?.terminal_h_index === spec.terminal_h_index &&
+          equationTerminalRow?.terminal_h_index === spec.terminal_h_index &&
+          preSumTerminalRow?.terminal_h_index === spec.terminal_h_index &&
+          variableTerminalRow?.terminal_h_index === spec.terminal_h_index &&
+          bridgeTerminalRow?.terminal_h_index === spec.terminal_h_index &&
+          provenanceTerminalRow?.terminal_h_index === spec.terminal_h_index &&
+          splitTerminalRow?.successor_scalar_identity_weight ===
+            spec.successor_scalar_identity_weight &&
+          equationTerminalRow?.successor_scalar_identity_weight ===
+            spec.successor_scalar_identity_weight &&
+          preSumTerminalRow?.successor_scalar_identity_weight ===
+            spec.successor_scalar_identity_weight &&
+          variableTerminalRow?.successor_scalar_identity_weight ===
+            spec.successor_scalar_identity_weight &&
+          bridgeTerminalRow?.successor_scalar_identity_weight ===
+            spec.successor_scalar_identity_weight &&
+          provenanceTerminalRow?.successor_scalar_identity_weight ===
+            spec.successor_scalar_identity_weight,
+        aggregate_rank_one_split_recorded:
+          splitTerminalRow?.aggregate_source_map_provider_object_equation ===
+            "P_-+P_+=P" &&
+          splitTerminalRow?.provider_object_branch_split_rank === 1 &&
+          splitTerminalRow?.provider_object_branch_split_free_dimension === 1 &&
+          splitTerminalRow?.provider_object_branch_antisymmetric_coordinate_determined ===
+            false,
+        candidate_equations_available_but_nonadmissible:
+          candidateEquationsAvailable &&
+          candidateEquationRows.every(
+            (row) =>
+              row.admissible_as_actual_provider_object_branch_moment === false
+          ) &&
+          provenanceTerminalRow?.candidate_2t_minus_A_var_residual_contains_zero ===
+            true &&
+          bridgeTerminalRow?.terminal_branch_g_moment_available === true,
+        actual_A_P_materialization_absence_recorded:
+          actualEquationAvailable === false &&
+          equationTerminalRow
+            ?.provider_object_branch_antisymmetric_equation_available ===
+            false &&
+          preSumTerminalRow?.pre_sum_source_term_branch_feed_available_row_count ===
+            0 &&
+          preSumTerminalRow
+            ?.provider_object_branch_materialization_before_sum_available ===
+            false &&
+          variableTerminalRow
+            ?.admissible_as_actual_provider_object_branch_source === false &&
+          bridgeTerminalRow?.provider_object_branch_moment_available === false &&
+          bridgeTerminalRow?.g_to_provider_correction_term_available === false &&
+          provenanceTerminalRow?.provider_object_branch_moment_available ===
+            false,
+        h39_claims_remain_open:
+          splitTerminalRow
+            ?.row_certifies_expression_level_source_map_provider_object_branch_split_map ===
+            false &&
+          equationTerminalRow
+            ?.row_certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation ===
+            false &&
+          preSumTerminalRow?.row_certifies_pre_sum_provider_object_branch_source ===
+            false &&
+          variableTerminalRow
+            ?.row_certifies_variable_ownership_alpha_as_provider_object_branch_source ===
+            false &&
+          bridgeTerminalRow?.row_certifies_terminal_g_to_provider_moment_bridge ===
+            false &&
+          provenanceTerminalRow
+            ?.row_certifies_variable_ownership_alpha_as_provider_object_branch_source ===
+            false,
+      };
+      const terminalVerified = Object.values(terminalChecks).every(
+        (value) => value === true
+      );
+      return {
+        terminal_h_index: spec.terminal_h_index,
+        source_y_order: H38_NUMERATOR_Y_ORDER,
+        required_xi_derivative_order: 4,
+        terminal_graph_cell_id: terminalGraphCellId,
+        successor_scalar_identity_weight:
+          spec.successor_scalar_identity_weight,
+        centered_successor_scalar_weight:
+          spec.centered_successor_scalar_weight,
+        provider_object_ap_materialization_obstruction_row_kind:
+          "terminal-provider-object-A_P-materialization-obstruction-terminal-row",
+        provider_object_branch_moment_target: "A_P=P_- - P_+",
+        provider_object_branch_split_linear_model:
+          "P_-+P_+=P; (P_-,P_+)=(P/2+u_P,P/2-u_P)",
+        aggregate_equation_count: 1,
+        provider_object_branch_unknown_count: 2,
+        provider_object_branch_split_rank: 1,
+        provider_object_branch_split_free_dimension: 1,
+        provider_object_branch_antisymmetric_coordinate_symbol: "u_P",
+        provider_object_branch_antisymmetric_coordinate_determined: false,
+        explicit_provider_object_branch_antisymmetric_equation_available:
+          equationTerminalRow
+            ?.provider_object_branch_antisymmetric_equation_available === true,
+        pre_sum_provider_object_branch_source_available:
+          preSumTerminalRow
+            ?.provider_object_branch_materialization_before_sum_available ===
+          true,
+        variable_ownership_alpha_candidate_interval: variableAlphaInterval,
+        terminal_branch_g_moment_interval: terminalGInterval,
+        provider_object_moment_candidate_rows: candidateEquationRows,
+        provider_object_moment_candidate_row_count:
+          candidateEquationRows.length,
+        provider_object_moment_candidate_available_count:
+          candidateEquationRows.filter(
+            (row) => row.provider_object_moment_candidate_available
+          ).length,
+        provider_object_moment_candidate_admissible_count:
+          candidateEquationRows.filter(
+            (row) => row.admissible_as_actual_provider_object_branch_moment
+          ).length,
+        provider_object_A_P_materialization_available: false,
+        provider_object_A_P_materialization_certified: false,
+        materialization_rank_lift_equation_count: 0,
+        materialization_free_dimension_remaining: 1,
+        provider_object_ap_materialization_obstruction_recorded:
+          terminalVerified,
+        provider_object_ap_materialization_obstruction_check_kinds: [
+          ...terminalCheckKinds,
+        ],
+        provider_object_ap_materialization_obstruction_checks: terminalChecks,
+        row_provider_object_ap_materialization_obstruction_audit_verified:
+          terminalVerified,
+        row_certifies_provider_object_A_P_materialization: false,
+        row_certifies_provider_object_branch_moment: false,
+        row_certifies_expression_level_source_map_provider_object_branch_rows:
+          false,
+        row_certifies_terminal_row_provider_object_replay: false,
+        row_certifies_expression_level_n38_provider: false,
+        row_certifies_directed_rounded_shared_domain: false,
+        row_status: terminalVerified
+          ? "provider-object-A_P-materialization-obstructed-by-missing-branch-equation"
+          : "provider-object-A_P-materialization-obstruction-audit-open",
+        claim_boundary:
+          h39TerminalProviderObjectAPMaterializationObstructionAuditClaimBoundary(),
+      };
+    });
+    const rowChecks = {
+      provider_object_branch_split_underdetermination_ready:
+        splitReady &&
+        splitNodeRow
+          ?.row_terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_verified ===
+          true,
+      provider_object_branch_antisymmetric_equation_extractor_ready:
+        equationReady &&
+        equationNodeRow
+          ?.row_terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_verified ===
+          true,
+      pre_sum_branch_source_audit_ready:
+        preSumReady &&
+        preSumNodeRow?.row_provider_object_pre_sum_branch_source_audit_verified ===
+          true,
+      variable_ownership_branch_feed_attempt_ready:
+        variableReady &&
+        variableNodeRow?.row_variable_ownership_branch_feed_attempt_verified ===
+          true,
+      terminal_g_to_provider_bridge_audit_ready:
+        bridgeReady &&
+        bridgeNodeRow?.row_terminal_g_to_provider_bridge_audit_verified ===
+          true,
+      alpha_provenance_identity_audit_ready:
+        provenanceReady &&
+        provenanceNodeRow
+          ?.row_variable_ownership_alpha_provenance_identity_audit_verified ===
+          true,
+      same_domain_terminal_rows_aligned: terminalRows.every(
+        (row) =>
+          row.provider_object_ap_materialization_obstruction_checks
+            ?.same_domain_terminal_row_aligned === true
+      ),
+      aggregate_rank_one_split_recorded: terminalRows.every(
+        (row) =>
+          row.provider_object_ap_materialization_obstruction_checks
+            ?.aggregate_rank_one_split_recorded === true
+      ),
+      candidate_equations_available_but_nonadmissible: terminalRows.every(
+        (row) =>
+          row.provider_object_ap_materialization_obstruction_checks
+            ?.candidate_equations_available_but_nonadmissible === true
+      ),
+      actual_A_P_materialization_absence_recorded: terminalRows.every(
+        (row) =>
+          row.provider_object_ap_materialization_obstruction_checks
+            ?.actual_A_P_materialization_absence_recorded === true
+      ),
+      h39_claims_remain_open: terminalRows.every(
+        (row) =>
+          row.provider_object_ap_materialization_obstruction_checks
+            ?.h39_claims_remain_open === true
+      ),
+    };
+    const rowVerified = Object.values(rowChecks).every(
+      (value) => value === true
+    );
+    return {
+      node_index: nodeIndex,
+      terminal_graph_cell_id: terminalGraphCellId,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      provider_object_ap_materialization_obstruction_row_kind:
+        "terminal-provider-object-A_P-materialization-obstruction-node-row",
+      terminal_h_indexes: terminalSpecs.map((spec) => spec.terminal_h_index),
+      provider_object_ap_materialization_obstruction_rows: terminalRows,
+      provider_object_ap_materialization_obstruction_terminal_row_count:
+        terminalRows.length,
+      provider_object_moment_candidate_row_count: terminalRows.reduce(
+        (total, row) => total + row.provider_object_moment_candidate_row_count,
+        0
+      ),
+      provider_object_moment_candidate_available_count: terminalRows.reduce(
+        (total, row) =>
+          total + row.provider_object_moment_candidate_available_count,
+        0
+      ),
+      provider_object_moment_candidate_admissible_count: terminalRows.reduce(
+        (total, row) =>
+          total + row.provider_object_moment_candidate_admissible_count,
+        0
+      ),
+      provider_object_A_P_materialization_available_terminal_row_count:
+        terminalRows.filter((row) => row.provider_object_A_P_materialization_available)
+          .length,
+      materialization_free_dimension_remaining: terminalRows.reduce(
+        (total, row) => total + row.materialization_free_dimension_remaining,
+        0
+      ),
+      row_check_kinds: [...checkKinds],
+      row_checks: rowChecks,
+      row_provider_object_ap_materialization_obstruction_audit_verified:
+        rowVerified,
+      row_certifies_provider_object_A_P_materialization: false,
+      row_certifies_provider_object_branch_moment: false,
+      row_certifies_expression_level_source_map_provider_object_branch_rows:
+        false,
+      row_certifies_terminal_row_provider_object_replay: false,
+      row_certifies_expression_level_n38_provider: false,
+      row_certifies_directed_rounded_shared_domain: false,
+      row_status: rowVerified
+        ? "provider-object-A_P-materialization-obstructed-by-missing-branch-equation"
+        : "provider-object-A_P-materialization-obstruction-audit-open",
+      claim_boundary:
+        h39TerminalProviderObjectAPMaterializationObstructionAuditClaimBoundary(),
+    };
+  });
+  const terminalRowCount = rows.reduce(
+    (total, row) =>
+      total + row.provider_object_ap_materialization_obstruction_terminal_row_count,
+    0
+  );
+  const sumRows = (key) =>
+    rows.reduce((total, row) => total + Number(row?.[key] ?? 0), 0);
+  const aggregateChecks = {
+    provider_object_branch_split_underdetermination_ready: splitReady,
+    provider_object_branch_antisymmetric_equation_extractor_ready:
+      equationReady,
+    pre_sum_branch_source_audit_ready: preSumReady,
+    variable_ownership_branch_feed_attempt_ready: variableReady,
+    terminal_g_to_provider_bridge_audit_ready: bridgeReady,
+    alpha_provenance_identity_audit_ready: provenanceReady,
+    same_domain_terminal_rows_aligned: rows.every(
+      (row) => row.row_checks?.same_domain_terminal_rows_aligned === true
+    ),
+    aggregate_rank_one_split_recorded: rows.every(
+      (row) => row.row_checks?.aggregate_rank_one_split_recorded === true
+    ),
+    candidate_equations_available_but_nonadmissible: rows.every(
+      (row) =>
+        row.row_checks?.candidate_equations_available_but_nonadmissible === true
+    ),
+    actual_A_P_materialization_absence_recorded: rows.every(
+      (row) =>
+        row.row_checks?.actual_A_P_materialization_absence_recorded === true
+    ),
+    h39_claims_remain_open: rows.every(
+      (row) => row.row_checks?.h39_claims_remain_open === true
+    ),
+  };
+  const auditVerified =
+    rows.length === 5 &&
+    terminalRowCount === 15 &&
+    rows.every(
+      (row) =>
+        row.row_provider_object_ap_materialization_obstruction_audit_verified ===
+        true
+    ) &&
+    Object.values(aggregateChecks).every((value) => value === true);
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_PROVIDER_OBJECT_A_P_MATERIALIZATION_OBSTRUCTION_AUDIT_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-terminal-provider-object-A-P-materialization-obstruction-audit-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-terminal-provider-object-A-P-materialization-obstruction-audit",
+    target_kind:
+      "candidate-requested-y44-terminal-provider-object-A-P-materialization-obstruction-audit",
+    terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination_schema:
+      terminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdetermination?.schema ??
+      null,
+    terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor_schema:
+      terminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractor?.schema ??
+      null,
+    terminal_expression_level_source_map_provider_object_pre_sum_branch_source_audit_schema:
+      terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit?.schema ??
+      null,
+    terminal_expression_level_source_term_variable_ownership_branch_feed_attempt_schema:
+      terminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttempt?.schema ??
+      null,
+    terminal_expression_level_source_term_fold_null_coefficient_provider_moment_bridge_audit_schema:
+      terminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAudit?.schema ??
+      null,
+    terminal_variable_ownership_alpha_provenance_identity_audit_schema:
+      terminalVariableOwnershipAlphaProvenanceIdentityAudit?.schema ?? null,
+    proof_status:
+      "candidate-provider-object-A-P-materialization-obstructed",
+    provider_object_branch_moment_target: "A_P=P_- - P_+",
+    provider_object_branch_split_linear_model:
+      "P_-+P_+=P; (P_-,P_+)=(P/2+u_P,P/2-u_P)",
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    terminal_h_indexes: terminalSpecs.map((spec) => spec.terminal_h_index),
+    provider_object_ap_materialization_obstruction_check_kinds: [
+      ...checkKinds,
+    ],
+    provider_object_ap_materialization_obstruction_checks: aggregateChecks,
+    provider_object_ap_materialization_obstruction_audit_verified:
+      auditVerified,
+    provider_object_ap_materialization_obstruction_audit_certified: false,
+    provider_object_ap_materialization_obstruction_row_count: rows.length,
+    provider_object_ap_materialization_obstruction_terminal_row_count:
+      terminalRowCount,
+    provider_object_ap_materialization_obstruction_rows: rows,
+    provider_object_moment_candidate_row_count: sumRows(
+      "provider_object_moment_candidate_row_count"
+    ),
+    provider_object_moment_candidate_available_count: sumRows(
+      "provider_object_moment_candidate_available_count"
+    ),
+    provider_object_moment_candidate_admissible_count: sumRows(
+      "provider_object_moment_candidate_admissible_count"
+    ),
+    provider_object_A_P_materialization_available_terminal_row_count: sumRows(
+      "provider_object_A_P_materialization_available_terminal_row_count"
+    ),
+    materialization_free_dimension_remaining: sumRows(
+      "materialization_free_dimension_remaining"
+    ),
+    aggregate_rank_one_provider_object_split_recorded:
+      auditVerified &&
+      rows.every((row) => row.row_checks?.aggregate_rank_one_split_recorded === true),
+    all_candidate_provider_object_moments_available_but_nonadmissible:
+      auditVerified &&
+      sumRows("provider_object_moment_candidate_available_count") === 30 &&
+      sumRows("provider_object_moment_candidate_admissible_count") === 0,
+    provider_object_A_P_materialization_available: false,
+    provider_object_A_P_materialization_certified: false,
+    provider_object_branch_moment_certified: false,
+    pre_sum_provider_object_branch_source_certified: false,
+    variable_ownership_alpha_as_provider_object_branch_source_certified: false,
+    terminal_g_to_provider_moment_bridge_certified: false,
+    expression_level_source_map_provider_object_branch_rows_certified: false,
+    terminal_row_provider_object_replay_certified: false,
+    expression_level_n38_provider_certified: false,
+    directed_rounded_shared_domain_provider_certified: false,
+    provider_object_ap_materialization_obstruction_classification:
+      auditVerified
+        ? "provider-object-A_P-materialization-obstructed-by-missing-branch-equation"
+        : "provider-object-A_P-materialization-obstruction-audit-open",
+    provider_object_ap_materialization_obstruction_blocker_classification:
+      auditVerified
+        ? "same-domain-provider-object-branch-antisymmetric-equation-or-branch-indexed-feed-needed"
+        : "provider-object-A_P-materialization-obstruction-audit-open",
+    provider_object_ap_materialization_obstruction_primary_missing_object_kind:
+      auditVerified
+        ? "same-domain-A_P-equation-provider-branch-rows-or-branch-indexed-source-term-feed"
+        : "provider-object-A_P-materialization-obstruction-audit",
+    next_certificate_object:
+      "same-domain provider-object branch-antisymmetric equation A_P, explicit P_- and P_+ provider rows, or branch-indexed source-term feed upstream of the aggregate provider sum",
+    candidate_certificate_route:
+      "This audit combines the current actual provider-object surfaces on the same fifteen terminal rows. The provider object has one aggregate equation P_-+P_+=P with one free antisymmetric coordinate u_P; no explicit A_P equation exists; the pre-sum feed is aggregate-only; A_var and A_G are finite candidate equations but neither is admitted as the actual provider-object branch moment. Therefore the present executable surface cannot materialize A_P without a new same-domain provider-object branch equation, branch rows, or branch-indexed source-term feed.",
+    claim_boundary:
+      h39TerminalProviderObjectAPMaterializationObstructionAuditClaimBoundary(),
+  };
+}
+
+export function validateH39RequestedY44TerminalProviderObjectAPMaterializationObstructionAuditCandidate(
+  artifact
+) {
+  const errors = [];
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const sameStringSet = (left, right) =>
+    Array.isArray(left) &&
+    left.length === right.length &&
+    right.every((value) => left.includes(value));
+  const sameTerminalHIndexes = (indexes) =>
+    Array.isArray(indexes) &&
+    indexes.length === 3 &&
+    indexes[0] === 37 &&
+    indexes[1] === 36 &&
+    indexes[2] === 35;
+  const validClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_terminal_provider_object_ap_materialization_obstruction_audit_only ===
+      true &&
+    claimBoundary?.certifies_provider_object_A_P_materialization === false &&
+    claimBoundary?.certifies_provider_object_branch_moment === false &&
+    claimBoundary?.certifies_pre_sum_provider_object_branch_source === false &&
+    claimBoundary
+      ?.certifies_variable_ownership_alpha_as_provider_object_branch_source ===
+      false &&
+    claimBoundary?.certifies_terminal_g_to_provider_moment_bridge === false &&
+    claimBoundary?.certifies_expression_level_source_map_provider_object_branch_rows ===
+      false &&
+    claimBoundary?.certifies_terminal_row_provider_object_replay === false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const expectedCheckKinds = [
+    "provider_object_branch_split_underdetermination_ready",
+    "provider_object_branch_antisymmetric_equation_extractor_ready",
+    "pre_sum_branch_source_audit_ready",
+    "variable_ownership_branch_feed_attempt_ready",
+    "terminal_g_to_provider_bridge_audit_ready",
+    "alpha_provenance_identity_audit_ready",
+    "same_domain_terminal_rows_aligned",
+    "aggregate_rank_one_split_recorded",
+    "candidate_equations_available_but_nonadmissible",
+    "actual_A_P_materialization_absence_recorded",
+    "h39_claims_remain_open",
+  ];
+  const expectedTerminalCheckKinds = [
+    "provider_object_branch_split_terminal_row_available",
+    "provider_object_branch_antisymmetric_equation_terminal_row_available",
+    "pre_sum_branch_source_terminal_row_available",
+    "variable_ownership_terminal_row_available",
+    "terminal_g_bridge_terminal_row_available",
+    "alpha_provenance_terminal_row_available",
+    "same_domain_terminal_row_aligned",
+    "aggregate_rank_one_split_recorded",
+    "candidate_equations_available_but_nonadmissible",
+    "actual_A_P_materialization_absence_recorded",
+    "h39_claims_remain_open",
+  ];
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_PROVIDER_OBJECT_A_P_MATERIALIZATION_OBSTRUCTION_AUDIT_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 provider-object A_P materialization obstruction audit candidate");
+  }
+  if (
+    artifact?.proof_status !==
+      "candidate-provider-object-A-P-materialization-obstructed" ||
+    artifact?.provider_object_branch_moment_target !== "A_P=P_- - P_+" ||
+    artifact?.provider_object_branch_split_linear_model !==
+      "P_-+P_+=P; (P_-,P_+)=(P/2+u_P,P/2-u_P)" ||
+    artifact?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    !sameTerminalHIndexes(artifact?.terminal_h_indexes) ||
+    !sameStringSet(
+      artifact?.provider_object_ap_materialization_obstruction_check_kinds,
+      expectedCheckKinds
+    )
+  ) {
+    errors.push("provider-object A_P materialization metadata must identify rank-one split and missing A_P target");
+  }
+  if (
+    expectedCheckKinds.some(
+      (kind) =>
+        artifact?.provider_object_ap_materialization_obstruction_checks?.[
+        kind
+        ] !== true
+    ) ||
+    artifact?.provider_object_ap_materialization_obstruction_audit_verified !==
+      true ||
+    artifact?.provider_object_ap_materialization_obstruction_audit_certified !==
+      false ||
+    artifact?.provider_object_ap_materialization_obstruction_row_count !== 5 ||
+    artifact?.provider_object_ap_materialization_obstruction_terminal_row_count !==
+      15 ||
+    artifact?.provider_object_moment_candidate_row_count !== 30 ||
+    artifact?.provider_object_moment_candidate_available_count !== 30 ||
+    artifact?.provider_object_moment_candidate_admissible_count !== 0 ||
+    artifact?.provider_object_A_P_materialization_available_terminal_row_count !==
+      0 ||
+    artifact?.materialization_free_dimension_remaining !== 15 ||
+    artifact?.aggregate_rank_one_provider_object_split_recorded !== true ||
+    artifact?.all_candidate_provider_object_moments_available_but_nonadmissible !==
+      true ||
+    artifact?.provider_object_A_P_materialization_available !== false ||
+    artifact?.provider_object_A_P_materialization_certified !== false ||
+    artifact?.provider_object_branch_moment_certified !== false ||
+    artifact?.pre_sum_provider_object_branch_source_certified !== false ||
+    artifact
+      ?.variable_ownership_alpha_as_provider_object_branch_source_certified !==
+      false ||
+    artifact?.terminal_g_to_provider_moment_bridge_certified !== false ||
+    artifact?.terminal_row_provider_object_replay_certified !== false ||
+    artifact?.expression_level_n38_provider_certified !== false ||
+    artifact?.directed_rounded_shared_domain_provider_certified !== false ||
+    artifact?.provider_object_ap_materialization_obstruction_classification !==
+      "provider-object-A_P-materialization-obstructed-by-missing-branch-equation" ||
+    artifact?.provider_object_ap_materialization_obstruction_blocker_classification !==
+      "same-domain-provider-object-branch-antisymmetric-equation-or-branch-indexed-feed-needed" ||
+    artifact?.provider_object_ap_materialization_obstruction_primary_missing_object_kind !==
+      "same-domain-A_P-equation-provider-branch-rows-or-branch-indexed-source-term-feed" ||
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string" ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("provider-object A_P materialization aggregate must record obstruction and keep claims open");
+  }
+  const rows = artifact?.provider_object_ap_materialization_obstruction_rows ?? [];
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== 5 ||
+    rows.some((row, index) => {
+      const terminalRows =
+        row?.provider_object_ap_materialization_obstruction_rows ?? [];
+      return (
+        row?.node_index !== index ||
+        row?.terminal_graph_cell_id !== `speed.${index}.first-y` ||
+        row?.provider_object_ap_materialization_obstruction_terminal_row_count !==
+          3 ||
+        row?.provider_object_moment_candidate_row_count !== 6 ||
+        row?.provider_object_moment_candidate_available_count !== 6 ||
+        row?.provider_object_moment_candidate_admissible_count !== 0 ||
+        row?.provider_object_A_P_materialization_available_terminal_row_count !==
+          0 ||
+        row?.materialization_free_dimension_remaining !== 3 ||
+        !sameStringSet(row?.row_check_kinds, expectedCheckKinds) ||
+        expectedCheckKinds.some((kind) => row?.row_checks?.[kind] !== true) ||
+        row?.row_provider_object_ap_materialization_obstruction_audit_verified !==
+          true ||
+        row?.row_certifies_provider_object_A_P_materialization !== false ||
+        row?.row_certifies_provider_object_branch_moment !== false ||
+        row?.row_certifies_expression_level_source_map_provider_object_branch_rows !==
+          false ||
+        row?.row_certifies_terminal_row_provider_object_replay !== false ||
+        row?.row_certifies_expression_level_n38_provider !== false ||
+        row?.row_certifies_directed_rounded_shared_domain !== false ||
+        row?.row_status !==
+          "provider-object-A_P-materialization-obstructed-by-missing-branch-equation" ||
+        !validClaimBoundary(row?.claim_boundary) ||
+        !Array.isArray(terminalRows) ||
+        terminalRows.length !== 3 ||
+        terminalRows.some((terminalRow) => {
+          const candidateRows = terminalRow?.provider_object_moment_candidate_rows ?? [];
+          return (
+            ![37, 36, 35].includes(terminalRow?.terminal_h_index) ||
+            terminalRow?.terminal_graph_cell_id !== `speed.${index}.first-y` ||
+            terminalRow?.provider_object_branch_moment_target !==
+              "A_P=P_- - P_+" ||
+            terminalRow?.aggregate_equation_count !== 1 ||
+            terminalRow?.provider_object_branch_unknown_count !== 2 ||
+            terminalRow?.provider_object_branch_split_rank !== 1 ||
+            terminalRow?.provider_object_branch_split_free_dimension !== 1 ||
+            terminalRow
+              ?.provider_object_branch_antisymmetric_coordinate_determined !==
+              false ||
+            terminalRow
+              ?.explicit_provider_object_branch_antisymmetric_equation_available !==
+              false ||
+            terminalRow?.pre_sum_provider_object_branch_source_available !==
+              false ||
+            !finiteOrderedInterval(
+              terminalRow?.variable_ownership_alpha_candidate_interval
+            ) ||
+            !finiteOrderedInterval(terminalRow?.terminal_branch_g_moment_interval) ||
+            !Array.isArray(candidateRows) ||
+            candidateRows.length !== 2 ||
+            candidateRows.some(
+              (candidateRow) =>
+                !finiteOrderedInterval(
+                  candidateRow?.provider_object_moment_candidate_interval
+                ) ||
+                candidateRow?.provider_object_moment_candidate_available !==
+                  true ||
+                candidateRow
+                  ?.admissible_as_actual_provider_object_branch_moment !==
+                  false ||
+                candidateRow?.row_certifies_provider_object_A_P_materialization !==
+                  false ||
+                !validClaimBoundary(candidateRow?.claim_boundary)
+            ) ||
+            terminalRow?.provider_object_moment_candidate_available_count !== 2 ||
+            terminalRow?.provider_object_moment_candidate_admissible_count !== 0 ||
+            terminalRow?.provider_object_A_P_materialization_available !== false ||
+            terminalRow?.provider_object_A_P_materialization_certified !== false ||
+            terminalRow?.materialization_rank_lift_equation_count !== 0 ||
+            terminalRow?.materialization_free_dimension_remaining !== 1 ||
+            !sameStringSet(
+              terminalRow?.provider_object_ap_materialization_obstruction_check_kinds,
+              expectedTerminalCheckKinds
+            ) ||
+            expectedTerminalCheckKinds.some(
+              (kind) =>
+                terminalRow
+                  ?.provider_object_ap_materialization_obstruction_checks?.[
+                  kind
+                ] !== true
+            ) ||
+            terminalRow
+              ?.row_provider_object_ap_materialization_obstruction_audit_verified !==
+              true ||
+            terminalRow?.row_certifies_provider_object_A_P_materialization !==
+              false ||
+            terminalRow?.row_certifies_provider_object_branch_moment !== false ||
+            terminalRow?.row_certifies_terminal_row_provider_object_replay !==
+              false ||
+            terminalRow?.row_certifies_expression_level_n38_provider !== false ||
+            terminalRow?.row_certifies_directed_rounded_shared_domain !== false ||
+            terminalRow?.row_status !==
+              "provider-object-A_P-materialization-obstructed-by-missing-branch-equation" ||
+            !validClaimBoundary(terminalRow?.claim_boundary)
+          );
+        })
+      );
+    })
+  ) {
+    errors.push("provider-object A_P materialization rows must record rank-one split, nonadmissible candidates, and absent A_P");
+  }
+  return errors;
+}
+
+function h39TerminalSourceTermBranchFeedExtractorClaimBoundary() {
+  return {
+    defines_terminal_source_term_branch_feed_extractor_only: true,
+    certifies_selected_branch_source_term_feed_as_provider_object_branch: false,
+    certifies_partner_branch_source_term_feed: false,
+    certifies_provider_object_A_P_materialization: false,
+    certifies_provider_object_branch_moment: false,
+    certifies_pre_sum_provider_object_branch_source: false,
+    certifies_expression_level_source_map_provider_object_branch_rows: false,
+    certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation:
+      false,
+    certifies_terminal_row_provider_object_replay: false,
+    certifies_expression_level_n38_provider: false,
+    certifies_terminal_row_provider_enclosure: false,
+    certifies_terminal_graph_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
+export function buildH39RequestedY44TerminalSourceTermBranchFeedExtractorCandidate({
+  signedSourceSumDerivativeProvider,
+  producerRowLocalCollarReplay = null,
+  rowLocalCollarReplay = null,
+  terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit,
+  terminalProviderObjectAPMaterializationObstructionAudit,
+} = {}) {
+  const resolvedRowLocalCollarReplay =
+    rowLocalCollarReplay ?? producerRowLocalCollarReplay;
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const numericInterval = (interval) =>
+    finiteOrderedInterval(interval)
+      ? [Number(interval[0]), Number(interval[1])]
+      : null;
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const branchPair = ["-", "+"];
+  const partnerBranchFor = (branch) =>
+    branch === "-" ? "+" : branch === "+" ? "-" : null;
+  const validBranch = (branch) => branchPair.includes(branch);
+  const rowLocalReplays = Array.isArray(resolvedRowLocalCollarReplay?.row_replays)
+    ? resolvedRowLocalCollarReplay.row_replays
+    : [];
+  const rowLocalContextByCellId = new Map(
+    rowLocalReplays
+      .map((row) => row?.row_replay_context ?? null)
+      .filter((context) => typeof context?.cell_id === "string")
+      .map((context) => [context.cell_id, context])
+  );
+  const activeBranchCandidates = [
+    resolvedRowLocalCollarReplay?.active_branch,
+    ...rowLocalReplays.map((row) => row?.row_replay_context?.active_branch),
+    ...(Array.isArray(signedSourceSumDerivativeProvider?.row_bridges)
+      ? signedSourceSumDerivativeProvider.row_bridges.map(
+          (row) => row?.active_branch
+        )
+      : []),
+  ].filter(validBranch);
+  const uniqueActiveBranches = [...new Set(activeBranchCandidates)];
+  const activeBranch =
+    uniqueActiveBranches.length === 1 ? uniqueActiveBranches[0] : null;
+  const partnerBranch = partnerBranchFor(activeBranch);
+  const signedRows = Array.isArray(signedSourceSumDerivativeProvider?.row_bridges)
+    ? signedSourceSumDerivativeProvider.row_bridges
+    : [];
+  const sourceTermNodeFeedRowsForSignedRow = (row) => {
+    const input = row?.signed_source_sum_derivative_input ?? null;
+    const sourceTermRows = Array.isArray(input?.source_term_node_rows)
+      ? input.source_term_node_rows
+      : [];
+    return H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.flatMap((term) => {
+      const termRow =
+        sourceTermRows.find((candidate) => candidate?.term === term) ?? null;
+      const nodeIntervals = Array.isArray(termRow?.node_value_intervals)
+        ? termRow.node_value_intervals
+        : [];
+      const midpointValues = Array.isArray(termRow?.midpoint_values)
+        ? termRow.midpoint_values
+        : [];
+      const widths = Array.isArray(termRow?.node_value_interval_widths)
+        ? termRow.node_value_interval_widths
+        : [];
+      return Array.from({ length: 5 }, (_, nodeIndex) => {
+        const interval = numericInterval(nodeIntervals[nodeIndex]);
+        return {
+          term,
+          node_index: nodeIndex,
+          selected_branch: validBranch(row?.active_branch)
+            ? row.active_branch
+            : activeBranch,
+          partner_branch: partnerBranchFor(
+            validBranch(row?.active_branch) ? row.active_branch : activeBranch
+          ),
+          source_y_order: H38_NUMERATOR_Y_ORDER,
+          required_xi_derivative_order: 4,
+          source_term_node_interval: interval,
+          source_term_node_interval_available:
+            finiteOrderedInterval(interval),
+          source_term_node_interval_width: finiteNumber(widths[nodeIndex])
+            ? Number(widths[nodeIndex])
+            : interval === null
+              ? null
+              : intervalWidth(interval),
+          source_term_node_midpoint: finiteNumber(midpointValues[nodeIndex])
+            ? Number(midpointValues[nodeIndex])
+            : null,
+          selected_branch_source_term_feed_available:
+            validBranch(row?.active_branch ?? activeBranch) &&
+            finiteOrderedInterval(interval),
+          partner_branch_source_term_feed_available: false,
+          provider_object_branch_pair_available: false,
+          admissible_as_provider_object_branch_row: false,
+          rejection_reason:
+            "selected-branch-source-term-node-feed-has-no-partner-branch-feed-or-terminal-provider-object-lift",
+          row_certifies_selected_branch_source_term_feed_as_provider_object_branch:
+            false,
+          row_certifies_partner_branch_source_term_feed: false,
+          row_certifies_expression_level_source_map_provider_object_branch_rows:
+            false,
+          row_certifies_directed_rounded_shared_domain: false,
+          claim_boundary:
+            h39TerminalSourceTermBranchFeedExtractorClaimBoundary(),
+        };
+      });
+    });
+  };
+  const rowLocalBranchFeedRows = signedRows.map((row, rowIndex) => {
+    const rowLocalContext = rowLocalContextByCellId.get(row?.cell_id) ?? null;
+    const rowActiveBranch = validBranch(row?.active_branch)
+      ? row.active_branch
+      : validBranch(rowLocalContext?.active_branch)
+        ? rowLocalContext.active_branch
+        : activeBranch;
+    const rowPartnerBranch = partnerBranchFor(rowActiveBranch);
+    const sameDomainWithReplay =
+      rowLocalContext !== null &&
+      rowLocalContext.cell_id === row?.cell_id &&
+      h39RequestedY44SameInterval(
+        rowLocalContext.speed_interval,
+        row?.speed_interval
+      ) &&
+      h39RequestedY44SameInterval(rowLocalContext.xi_interval, row?.xi_interval);
+    const nodeFeedRows = sourceTermNodeFeedRowsForSignedRow({
+      ...row,
+      active_branch: rowActiveBranch,
+    });
+    const selectedFeedAvailable =
+      validBranch(rowActiveBranch) &&
+      row?.signed_source_sum_derivative_input_available === true &&
+      sameTerms(row?.source_terms_preserved_signed_together) &&
+      nodeFeedRows.length === 15 &&
+      nodeFeedRows.every(
+        (feedRow) =>
+          feedRow.selected_branch_source_term_feed_available === true
+      );
+    return {
+      row_local_feed_index: rowIndex,
+      row_index: row?.row_index ?? null,
+      comparison_row_index: row?.comparison_row_index ?? null,
+      source_subcover_row_index: row?.source_subcover_row_index ?? null,
+      cell_id: row?.cell_id ?? null,
+      selected_branch: rowActiveBranch,
+      partner_branch: rowPartnerBranch,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      speed_interval: numericInterval(row?.speed_interval),
+      xi_interval: numericInterval(row?.xi_interval),
+      row_local_replay_context_available: rowLocalContext !== null,
+      row_local_replay_context_same_domain: sameDomainWithReplay,
+      signed_source_sum_derivative_input_available:
+        row?.signed_source_sum_derivative_input_available === true,
+      source_terms_preserved_signed_together:
+        row?.source_terms_preserved_signed_together ?? [],
+      source_term_node_feed_rows: nodeFeedRows,
+      source_term_node_feed_row_count: nodeFeedRows.length,
+      selected_branch_source_term_feed_available: selectedFeedAvailable,
+      partner_branch_source_term_feed_available: false,
+      provider_object_branch_pair_available: false,
+      admissible_as_terminal_provider_object_branch_rows: false,
+      row_status: selectedFeedAvailable
+        ? "row-local-selected-branch-source-term-feed-exposed-partner-branch-feed-missing"
+        : "row-local-selected-branch-source-term-feed-input-open",
+      row_certifies_selected_branch_source_term_feed_as_provider_object_branch:
+        false,
+      row_certifies_partner_branch_source_term_feed: false,
+      row_certifies_expression_level_source_map_provider_object_branch_rows:
+        false,
+      row_certifies_terminal_row_provider_object_replay: false,
+      row_certifies_directed_rounded_shared_domain: false,
+      claim_boundary:
+        h39TerminalSourceTermBranchFeedExtractorClaimBoundary(),
+    };
+  });
+  const terminalSourceRows =
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      ?.provider_object_pre_sum_branch_source_audit_rows ?? [];
+  const terminalFeedRows = terminalSourceRows.map((row, nodeIndex) => {
+    const terminalRows = Array.isArray(
+      row?.provider_object_pre_sum_branch_source_audit_rows
+    )
+      ? row.provider_object_pre_sum_branch_source_audit_rows
+      : [];
+    const terminalBranchRows = terminalRows.map((terminalRow) => {
+      const aggregateFeedRows = Array.isArray(
+        terminalRow?.pre_sum_source_term_feed_rows
+      )
+        ? terminalRow.pre_sum_source_term_feed_rows
+        : [];
+      const aggregateOnly =
+        aggregateFeedRows.length ===
+          H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+        aggregateFeedRows.every(
+          (feedRow) =>
+            feedRow?.aggregate_source_term_feed_interval_available === true &&
+            feedRow?.provider_object_branch_feed_available === false
+        );
+      return {
+        terminal_h_index: terminalRow?.terminal_h_index ?? null,
+        source_y_order: H38_NUMERATOR_Y_ORDER,
+        terminal_graph_cell_id: terminalRow?.terminal_graph_cell_id ?? null,
+        selected_branch: activeBranch,
+        partner_branch: partnerBranch,
+        pre_sum_source_term_feed_row_count:
+          terminalRow?.pre_sum_source_term_feed_row_count ?? 0,
+        pre_sum_source_term_branch_feed_available_row_count:
+          terminalRow?.pre_sum_source_term_branch_feed_available_row_count ??
+          0,
+        terminal_aggregate_source_feed_available: aggregateOnly,
+        row_local_selected_branch_source_stream_available:
+          rowLocalBranchFeedRows.some(
+            (feedRow) =>
+              feedRow.selected_branch_source_term_feed_available === true
+          ),
+        terminal_selected_branch_source_term_feed_lift_available: false,
+        terminal_partner_branch_source_term_feed_lift_available: false,
+        terminal_provider_object_branch_pair_available: false,
+        terminal_provider_object_A_P_available: false,
+        terminal_actual_provider_object_branch_rows_available: false,
+        row_status:
+          aggregateOnly && activeBranch !== null
+            ? "terminal-provider-object-aggregate-feed-row-local-selected-branch-lift-open"
+            : "terminal-source-term-branch-feed-extractor-input-open",
+        row_certifies_selected_branch_source_term_feed_as_provider_object_branch:
+          false,
+        row_certifies_partner_branch_source_term_feed: false,
+        row_certifies_provider_object_A_P_materialization: false,
+        row_certifies_expression_level_source_map_provider_object_branch_rows:
+          false,
+        row_certifies_terminal_row_provider_object_replay: false,
+        row_certifies_expression_level_n38_provider: false,
+        row_certifies_directed_rounded_shared_domain: false,
+        claim_boundary:
+          h39TerminalSourceTermBranchFeedExtractorClaimBoundary(),
+      };
+    });
+    return {
+      node_index: row?.node_index ?? nodeIndex,
+      terminal_graph_cell_id: row?.terminal_graph_cell_id ?? null,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      terminal_source_term_branch_feed_extractor_rows: terminalBranchRows,
+      terminal_source_term_branch_feed_extractor_terminal_row_count:
+        terminalBranchRows.length,
+      terminal_aggregate_source_feed_available_terminal_row_count:
+        terminalBranchRows.filter(
+          (terminalRow) =>
+            terminalRow.terminal_aggregate_source_feed_available === true
+        ).length,
+      terminal_provider_object_branch_pair_available_terminal_row_count:
+        terminalBranchRows.filter(
+          (terminalRow) =>
+            terminalRow.terminal_provider_object_branch_pair_available === true
+        ).length,
+      row_certifies_selected_branch_source_term_feed_as_provider_object_branch:
+        false,
+      row_certifies_partner_branch_source_term_feed: false,
+      row_certifies_provider_object_A_P_materialization: false,
+      row_certifies_expression_level_source_map_provider_object_branch_rows:
+        false,
+      row_certifies_directed_rounded_shared_domain: false,
+      row_status:
+        terminalBranchRows.length === 3 &&
+        terminalBranchRows.every(
+          (terminalRow) =>
+            terminalRow.terminal_aggregate_source_feed_available === true &&
+            terminalRow.terminal_provider_object_branch_pair_available === false
+        )
+          ? "terminal-aggregate-source-feed-present-provider-object-branch-pair-missing"
+          : "terminal-source-term-branch-feed-extractor-input-open",
+      claim_boundary:
+        h39TerminalSourceTermBranchFeedExtractorClaimBoundary(),
+    };
+  });
+  const rowLocalSelectedBranchSourceStreamAvailableCount =
+    rowLocalBranchFeedRows.filter(
+      (row) => row.selected_branch_source_term_feed_available === true
+    ).length;
+  const rowLocalPartnerBranchSourceStreamAvailableCount =
+    rowLocalBranchFeedRows.filter(
+      (row) => row.partner_branch_source_term_feed_available === true
+    ).length;
+  const terminalRowCount = terminalFeedRows.reduce(
+    (total, row) =>
+      total +
+      Number(row.terminal_source_term_branch_feed_extractor_terminal_row_count),
+    0
+  );
+  const terminalProviderObjectBranchPairAvailableCount =
+    terminalFeedRows.reduce(
+      (total, row) =>
+        total +
+        Number(
+          row.terminal_provider_object_branch_pair_available_terminal_row_count
+        ),
+      0
+    );
+  const sourceTermNodeFeedRowCount = rowLocalBranchFeedRows.reduce(
+    (total, row) => total + Number(row.source_term_node_feed_row_count),
+    0
+  );
+  const rowLocalReady =
+    resolvedRowLocalCollarReplay?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_ROW_LOCAL_PRODUCER_COLLAR_REPLAY_SCHEMA &&
+    validBranch(activeBranch) &&
+    rowLocalBranchFeedRows.length > 0 &&
+    rowLocalSelectedBranchSourceStreamAvailableCount ===
+      rowLocalBranchFeedRows.length &&
+    rowLocalPartnerBranchSourceStreamAvailableCount === 0;
+  const signedProviderReady =
+    signedSourceSumDerivativeProvider?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_ROW_LOCAL_N38_SIGNED_SOURCE_SUM_DERIVATIVE_PROVIDER_SCHEMA &&
+    signedSourceSumDerivativeProvider?.all_rows_have_signed_source_sum_derivative_inputs ===
+      true &&
+    signedRows.length === rowLocalBranchFeedRows.length;
+  const terminalAggregateOnlyReady =
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_PRE_SUM_BRANCH_SOURCE_AUDIT_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      ?.provider_object_pre_sum_branch_source_audit_verified === true &&
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      ?.pre_sum_source_term_branch_feed_available_row_count === 0 &&
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      ?.provider_object_pre_sum_branch_source_available === false &&
+    terminalFeedRows.length === 5 &&
+    terminalRowCount === 15;
+  const apObstructionReady =
+    terminalProviderObjectAPMaterializationObstructionAudit?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_PROVIDER_OBJECT_A_P_MATERIALIZATION_OBSTRUCTION_AUDIT_CANDIDATE_SCHEMA &&
+    terminalProviderObjectAPMaterializationObstructionAudit
+      ?.provider_object_ap_materialization_obstruction_audit_verified === true &&
+    terminalProviderObjectAPMaterializationObstructionAudit
+      ?.provider_object_A_P_materialization_available === false;
+  const extractorVerified =
+    rowLocalReady &&
+    signedProviderReady &&
+    terminalAggregateOnlyReady &&
+    apObstructionReady &&
+    terminalProviderObjectBranchPairAvailableCount === 0;
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SOURCE_TERM_BRANCH_FEED_EXTRACTOR_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-terminal-source-term-branch-feed-extractor-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-terminal-source-term-branch-feed-extractor",
+    target_kind:
+      "candidate-requested-y44-terminal-source-term-branch-feed-extractor",
+    proof_status:
+      "candidate-selected-branch-source-term-stream-exposed-partner-branch-provider-object-lift-missing",
+    signed_source_sum_derivative_provider_schema:
+      signedSourceSumDerivativeProvider?.schema ?? null,
+    row_local_collar_replay_schema:
+      resolvedRowLocalCollarReplay?.schema ?? null,
+    terminal_expression_level_source_map_provider_object_pre_sum_branch_source_audit_schema:
+      terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit?.schema ??
+      null,
+    terminal_provider_object_ap_materialization_obstruction_audit_schema:
+      terminalProviderObjectAPMaterializationObstructionAudit?.schema ?? null,
+    selected_branch: activeBranch,
+    partner_branch: partnerBranch,
+    branch_pair_target: "P_- and P_+",
+    provider_object_branch_moment_target: "A_P=P_- - P_+",
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    source_terms_preserved_signed_together: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    row_local_source_term_branch_feed_rows: rowLocalBranchFeedRows,
+    row_local_source_term_branch_feed_row_count:
+      rowLocalBranchFeedRows.length,
+    row_local_source_term_node_feed_row_count: sourceTermNodeFeedRowCount,
+    row_local_selected_branch_source_stream_available_count:
+      rowLocalSelectedBranchSourceStreamAvailableCount,
+    row_local_partner_branch_source_stream_available_count:
+      rowLocalPartnerBranchSourceStreamAvailableCount,
+    terminal_source_term_branch_feed_extractor_rows: terminalFeedRows,
+    terminal_source_term_branch_feed_extractor_row_count:
+      terminalFeedRows.length,
+    terminal_source_term_branch_feed_extractor_terminal_row_count:
+      terminalRowCount,
+    terminal_provider_object_branch_pair_available_terminal_row_count:
+      terminalProviderObjectBranchPairAvailableCount,
+    selected_branch_source_stream_exposed:
+      rowLocalSelectedBranchSourceStreamAvailableCount > 0,
+    partner_branch_source_stream_exposed: false,
+    terminal_provider_object_branch_pair_materialized: false,
+    provider_object_A_P_materialized: false,
+    terminal_row_provider_object_replay_certified: false,
+    expression_level_n38_provider_certified: false,
+    directed_rounded_shared_domain_provider_certified: false,
+    terminal_source_term_branch_feed_extractor_verified: extractorVerified,
+    terminal_source_term_branch_feed_extractor_certified: false,
+    terminal_source_term_branch_feed_extractor_classification:
+      extractorVerified
+        ? "selected-branch-source-stream-exposed-partner-branch-provider-object-lift-missing"
+        : "terminal-source-term-branch-feed-extractor-open",
+    terminal_source_term_branch_feed_extractor_blocker_classification:
+      extractorVerified
+        ? "same-domain-partner-branch-source-stream-and-terminal-provider-object-lift-needed"
+        : "terminal-source-term-branch-feed-extractor-open",
+    terminal_source_term_branch_feed_extractor_primary_missing_object_kind:
+      extractorVerified
+        ? "same-domain-partner-branch-feed-plus-terminal-P-minus-P-plus-provider-object-row-lift"
+        : "terminal-source-term-branch-feed-extractor",
+    next_certificate_object:
+      "same-domain partner-branch source-term feed and terminal lift that turns the selected branch stream into explicit P_- and P_+ provider-object rows before A_P is tested",
+    candidate_certificate_route:
+      "The row-local signed-source provider now exposes the selected active branch and finite source-term node feed rows on the same domain, but the terminal provider-object pre-sum surface remains aggregate-only and the partner branch stream is not materialized. The next proof object must evaluate or expose the same source-term feed for the opposite branch on the same terminal domains, then lift both branch feeds into explicit P_- and P_+ provider-object rows before replaying A_P or any rank-two matrix identity.",
+    claim_boundary:
+      h39TerminalSourceTermBranchFeedExtractorClaimBoundary(),
+  };
+}
+
+export function validateH39RequestedY44TerminalSourceTermBranchFeedExtractorCandidate(
+  artifact
+) {
+  const errors = [];
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const sameStringSet = (left, right) =>
+    Array.isArray(left) &&
+    left.length === right.length &&
+    right.every((value) => left.includes(value));
+  const sameTerms = (terms) =>
+    sameStringSet(terms, H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS);
+  const validClaimBoundary = (claimBoundary) =>
+    claimBoundary?.defines_terminal_source_term_branch_feed_extractor_only ===
+      true &&
+    claimBoundary
+      ?.certifies_selected_branch_source_term_feed_as_provider_object_branch ===
+      false &&
+    claimBoundary?.certifies_partner_branch_source_term_feed === false &&
+    claimBoundary?.certifies_provider_object_A_P_materialization === false &&
+    claimBoundary?.certifies_provider_object_branch_moment === false &&
+    claimBoundary?.certifies_pre_sum_provider_object_branch_source === false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_rows ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation ===
+      false &&
+    claimBoundary?.certifies_terminal_row_provider_object_replay === false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SOURCE_TERM_BRANCH_FEED_EXTRACTOR_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 terminal source-term branch-feed extractor candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-terminal-source-term-branch-feed-extractor-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-terminal-source-term-branch-feed-extractor" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-terminal-source-term-branch-feed-extractor" ||
+    artifact?.proof_status !==
+      "candidate-selected-branch-source-term-stream-exposed-partner-branch-provider-object-lift-missing" ||
+    artifact?.signed_source_sum_derivative_provider_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_ROW_LOCAL_N38_SIGNED_SOURCE_SUM_DERIVATIVE_PROVIDER_SCHEMA ||
+    artifact?.row_local_collar_replay_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_ROW_LOCAL_PRODUCER_COLLAR_REPLAY_SCHEMA ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_pre_sum_branch_source_audit_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_PRE_SUM_BRANCH_SOURCE_AUDIT_CANDIDATE_SCHEMA ||
+    artifact?.terminal_provider_object_ap_materialization_obstruction_audit_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_PROVIDER_OBJECT_A_P_MATERIALIZATION_OBSTRUCTION_AUDIT_CANDIDATE_SCHEMA ||
+    !["-", "+"].includes(artifact?.selected_branch) ||
+    !["-", "+"].includes(artifact?.partner_branch) ||
+    artifact?.selected_branch === artifact?.partner_branch ||
+    artifact?.branch_pair_target !== "P_- and P_+" ||
+    artifact?.provider_object_branch_moment_target !== "A_P=P_- - P_+" ||
+    artifact?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    !sameTerms(artifact?.source_terms_preserved_signed_together)
+  ) {
+    errors.push("source-term branch-feed extractor metadata must identify selected branch, partner branch, and P pair target");
+  }
+  const rowLocalRows = artifact?.row_local_source_term_branch_feed_rows ?? [];
+  const terminalRows =
+    artifact?.terminal_source_term_branch_feed_extractor_rows ?? [];
+  if (
+    !Array.isArray(rowLocalRows) ||
+    rowLocalRows.length < 1 ||
+    artifact?.row_local_source_term_branch_feed_row_count !==
+      rowLocalRows.length ||
+    artifact?.row_local_source_term_node_feed_row_count !==
+      rowLocalRows.length * 15 ||
+    artifact?.row_local_selected_branch_source_stream_available_count !==
+      rowLocalRows.length ||
+    artifact?.row_local_partner_branch_source_stream_available_count !== 0 ||
+    !Array.isArray(terminalRows) ||
+    terminalRows.length !== 5 ||
+    artifact?.terminal_source_term_branch_feed_extractor_row_count !== 5 ||
+    artifact?.terminal_source_term_branch_feed_extractor_terminal_row_count !==
+      15 ||
+    artifact
+      ?.terminal_provider_object_branch_pair_available_terminal_row_count !==
+      0 ||
+    artifact?.selected_branch_source_stream_exposed !== true ||
+    artifact?.partner_branch_source_stream_exposed !== false ||
+    artifact?.terminal_provider_object_branch_pair_materialized !== false ||
+    artifact?.provider_object_A_P_materialized !== false ||
+    artifact?.terminal_row_provider_object_replay_certified !== false ||
+    artifact?.expression_level_n38_provider_certified !== false ||
+    artifact?.directed_rounded_shared_domain_provider_certified !== false ||
+    artifact?.terminal_source_term_branch_feed_extractor_verified !== true ||
+    artifact?.terminal_source_term_branch_feed_extractor_certified !== false ||
+    artifact?.terminal_source_term_branch_feed_extractor_classification !==
+      "selected-branch-source-stream-exposed-partner-branch-provider-object-lift-missing" ||
+    artifact?.terminal_source_term_branch_feed_extractor_blocker_classification !==
+      "same-domain-partner-branch-source-stream-and-terminal-provider-object-lift-needed" ||
+    artifact
+      ?.terminal_source_term_branch_feed_extractor_primary_missing_object_kind !==
+      "same-domain-partner-branch-feed-plus-terminal-P-minus-P-plus-provider-object-row-lift" ||
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string" ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("source-term branch-feed extractor aggregate must expose selected branch feed and keep partner/provider-object lift open");
+  }
+  if (
+    rowLocalRows.some((row) => {
+      const nodeFeedRows = row?.source_term_node_feed_rows ?? [];
+      return (
+        !["-", "+"].includes(row?.selected_branch) ||
+        !["-", "+"].includes(row?.partner_branch) ||
+        row.selected_branch === row.partner_branch ||
+        row?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+        row?.required_xi_derivative_order !== 4 ||
+        !finiteOrderedInterval(row?.speed_interval) ||
+        !finiteOrderedInterval(row?.xi_interval) ||
+        row?.row_local_replay_context_available !== true ||
+        row?.row_local_replay_context_same_domain !== true ||
+        row?.signed_source_sum_derivative_input_available !== true ||
+        !sameTerms(row?.source_terms_preserved_signed_together) ||
+        row?.source_term_node_feed_row_count !== 15 ||
+        !Array.isArray(nodeFeedRows) ||
+        nodeFeedRows.length !== 15 ||
+        row?.selected_branch_source_term_feed_available !== true ||
+        row?.partner_branch_source_term_feed_available !== false ||
+        row?.provider_object_branch_pair_available !== false ||
+        row?.admissible_as_terminal_provider_object_branch_rows !== false ||
+        row?.row_status !==
+          "row-local-selected-branch-source-term-feed-exposed-partner-branch-feed-missing" ||
+        row?.row_certifies_selected_branch_source_term_feed_as_provider_object_branch !==
+          false ||
+        row?.row_certifies_partner_branch_source_term_feed !== false ||
+        row?.row_certifies_expression_level_source_map_provider_object_branch_rows !==
+          false ||
+        row?.row_certifies_terminal_row_provider_object_replay !== false ||
+        row?.row_certifies_directed_rounded_shared_domain !== false ||
+        !validClaimBoundary(row?.claim_boundary) ||
+        nodeFeedRows.some(
+          (feedRow) =>
+            !H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.includes(
+              feedRow?.term
+            ) ||
+            !Number.isInteger(feedRow?.node_index) ||
+            feedRow.node_index < 0 ||
+            feedRow.node_index > 4 ||
+            feedRow?.selected_branch !== row.selected_branch ||
+            feedRow?.partner_branch !== row.partner_branch ||
+            feedRow?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+            feedRow?.required_xi_derivative_order !== 4 ||
+            !finiteOrderedInterval(feedRow?.source_term_node_interval) ||
+            feedRow?.source_term_node_interval_available !== true ||
+            !finiteNumber(feedRow?.source_term_node_interval_width) ||
+            !finiteNumber(feedRow?.source_term_node_midpoint) ||
+            feedRow?.selected_branch_source_term_feed_available !== true ||
+            feedRow?.partner_branch_source_term_feed_available !== false ||
+            feedRow?.provider_object_branch_pair_available !== false ||
+            feedRow?.admissible_as_provider_object_branch_row !== false ||
+            typeof feedRow?.rejection_reason !== "string" ||
+            feedRow
+              ?.row_certifies_selected_branch_source_term_feed_as_provider_object_branch !==
+              false ||
+            feedRow?.row_certifies_partner_branch_source_term_feed !== false ||
+            feedRow
+              ?.row_certifies_expression_level_source_map_provider_object_branch_rows !==
+              false ||
+            feedRow?.row_certifies_directed_rounded_shared_domain !== false ||
+            !validClaimBoundary(feedRow?.claim_boundary)
+        )
+      );
+    })
+  ) {
+    errors.push("row-local branch-feed rows must expose selected branch source-term node feed only");
+  }
+  if (
+    terminalRows.some((row, index) => {
+      const terminalBranchRows =
+        row?.terminal_source_term_branch_feed_extractor_rows ?? [];
+      return (
+        row?.node_index !== index ||
+        row?.terminal_graph_cell_id !== `speed.${index}.first-y` ||
+        row?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+        row?.required_xi_derivative_order !== 4 ||
+        row?.terminal_source_term_branch_feed_extractor_terminal_row_count !==
+          3 ||
+        row
+          ?.terminal_aggregate_source_feed_available_terminal_row_count !==
+          3 ||
+        row
+          ?.terminal_provider_object_branch_pair_available_terminal_row_count !==
+          0 ||
+        row
+          ?.row_certifies_selected_branch_source_term_feed_as_provider_object_branch !==
+          false ||
+        row?.row_certifies_partner_branch_source_term_feed !== false ||
+        row?.row_certifies_provider_object_A_P_materialization !== false ||
+        row?.row_certifies_expression_level_source_map_provider_object_branch_rows !==
+          false ||
+        row?.row_certifies_directed_rounded_shared_domain !== false ||
+        row?.row_status !==
+          "terminal-aggregate-source-feed-present-provider-object-branch-pair-missing" ||
+        !validClaimBoundary(row?.claim_boundary) ||
+        !Array.isArray(terminalBranchRows) ||
+        terminalBranchRows.length !== 3 ||
+        terminalBranchRows.some(
+          (terminalRow) =>
+            ![37, 36, 35].includes(terminalRow?.terminal_h_index) ||
+            terminalRow?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+            terminalRow?.terminal_graph_cell_id !== `speed.${index}.first-y` ||
+            terminalRow?.selected_branch !== artifact.selected_branch ||
+            terminalRow?.partner_branch !== artifact.partner_branch ||
+            terminalRow?.pre_sum_source_term_feed_row_count !== 3 ||
+            terminalRow
+              ?.pre_sum_source_term_branch_feed_available_row_count !== 0 ||
+            terminalRow?.terminal_aggregate_source_feed_available !== true ||
+            terminalRow?.row_local_selected_branch_source_stream_available !==
+              true ||
+            terminalRow
+              ?.terminal_selected_branch_source_term_feed_lift_available !==
+              false ||
+            terminalRow
+              ?.terminal_partner_branch_source_term_feed_lift_available !==
+              false ||
+            terminalRow?.terminal_provider_object_branch_pair_available !==
+              false ||
+            terminalRow?.terminal_provider_object_A_P_available !== false ||
+            terminalRow?.terminal_actual_provider_object_branch_rows_available !==
+              false ||
+            terminalRow?.row_status !==
+              "terminal-provider-object-aggregate-feed-row-local-selected-branch-lift-open" ||
+            terminalRow
+              ?.row_certifies_selected_branch_source_term_feed_as_provider_object_branch !==
+              false ||
+            terminalRow?.row_certifies_partner_branch_source_term_feed !==
+              false ||
+            terminalRow?.row_certifies_provider_object_A_P_materialization !==
+              false ||
+            terminalRow
+              ?.row_certifies_expression_level_source_map_provider_object_branch_rows !==
+              false ||
+            terminalRow?.row_certifies_terminal_row_provider_object_replay !==
+              false ||
+            terminalRow?.row_certifies_expression_level_n38_provider !==
+              false ||
+            terminalRow?.row_certifies_directed_rounded_shared_domain !==
+              false ||
+            !validClaimBoundary(terminalRow?.claim_boundary)
+        )
+      );
+    })
+  ) {
+    errors.push("terminal branch-feed extractor rows must keep aggregate terminal provider object lift open");
+  }
+  return errors;
+}
+
+function h39TerminalSourceTermOppositeBranchFeedLiftClaimBoundary() {
+  return {
+    defines_terminal_source_term_opposite_branch_feed_lift_only: true,
+    certifies_selected_branch_source_term_feed_as_provider_object_branch: false,
+    certifies_partner_branch_source_term_feed_as_provider_object_branch: false,
+    certifies_terminal_provider_object_branch_rows: false,
+    certifies_provider_object_branch_sum_identity: false,
+    certifies_provider_object_A_P_materialization: false,
+    certifies_expression_level_source_map_provider_object_branch_rows: false,
+    certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation:
+      false,
+    certifies_terminal_row_provider_object_replay: false,
+    certifies_expression_level_n38_provider: false,
+    certifies_terminal_row_provider_enclosure: false,
+    certifies_terminal_graph_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
+export function buildH39RequestedY44TerminalSourceTermOppositeBranchFeedLiftCandidate({
+  rowLocalCollarReplay = null,
+  terminalSourceTermBranchFeedExtractor = null,
+  terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit,
+  terminalProviderObjectAPMaterializationObstructionAudit,
+} = {}) {
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const numericInterval = (interval) =>
+    finiteOrderedInterval(interval)
+      ? [Number(interval[0]), Number(interval[1])]
+      : null;
+  const addIntervals = (left, right) =>
+    finiteOrderedInterval(left) && finiteOrderedInterval(right)
+      ? [Number(left[0]) + Number(right[0]), Number(left[1]) + Number(right[1])]
+      : null;
+  const subtractIntervals = (left, right) =>
+    finiteOrderedInterval(left) && finiteOrderedInterval(right)
+      ? [Number(left[0]) - Number(right[1]), Number(left[1]) - Number(right[0])]
+      : null;
+  const intervalEndpointGap = (left, right) =>
+    finiteOrderedInterval(left) && finiteOrderedInterval(right)
+      ? Math.max(
+          Math.abs(Number(left[0]) - Number(right[0])),
+          Math.abs(Number(left[1]) - Number(right[1]))
+        )
+      : null;
+  const intervalHalfWidth = (interval) =>
+    finiteOrderedInterval(interval)
+      ? (Number(interval[1]) - Number(interval[0])) / 2
+      : null;
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const validBranch = (branch) => branch === "-" || branch === "+";
+  const partnerBranchFor = (branch) =>
+    branch === "-" ? "+" : branch === "+" ? "-" : null;
+  const sumWeightedRows = (rows) => {
+    const intervals = Array.isArray(rows)
+      ? rows.map((row) => numericInterval(row?.weighted_derivative_interval))
+      : [];
+    return intervals.length === 5 &&
+      intervals.every((interval) => interval !== null)
+      ? intervals.reduce((sum, interval) => addIntervals(sum, interval), [0, 0])
+      : null;
+  };
+  const termRowsFromInput = ({ input, branch, role }) => {
+    const sourceTermRows = Array.isArray(input?.source_term_node_rows)
+      ? input.source_term_node_rows
+      : [];
+    return H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.map((term) => {
+      const sourceTermRow =
+        sourceTermRows.find((row) => row?.term === term) ?? null;
+      const nodeIntervals = Array.isArray(sourceTermRow?.node_value_intervals)
+        ? sourceTermRow.node_value_intervals.map(numericInterval)
+        : [];
+      const termDerivativeInterval = sumWeightedRows(
+        sourceTermRow?.weighted_node_interval_rows
+      );
+      return {
+        source_term_branch_feed_role: role,
+        branch,
+        term,
+        source_y_order: H38_NUMERATOR_Y_ORDER,
+        node_value_intervals:
+          nodeIntervals.length === 5 &&
+          nodeIntervals.every((interval) => interval !== null)
+            ? nodeIntervals
+            : [],
+        node_value_interval_widths:
+          nodeIntervals.length === 5 &&
+          nodeIntervals.every((interval) => interval !== null)
+            ? nodeIntervals.map(intervalWidth)
+            : [],
+        midpoint_values: Array.isArray(sourceTermRow?.midpoint_values)
+          ? sourceTermRow.midpoint_values.map((value) => Number(value))
+          : [],
+        lagrange_fourth_derivative_weights:
+          sourceTermRow?.lagrange_fourth_derivative_weights ?? [],
+        weighted_node_interval_rows:
+          sourceTermRow?.weighted_node_interval_rows ?? [],
+        source_term_derivative_interval_d4: termDerivativeInterval,
+        source_term_derivative_interval_available:
+          finiteOrderedInterval(termDerivativeInterval),
+        source_term_derivative_half_width:
+          intervalHalfWidth(termDerivativeInterval),
+        admissible_as_actual_provider_object_branch_term: false,
+        rejection_reason:
+          "row-local-expression-source-term-feed-has-no-same-domain-provider-object-P-b-identity",
+        row_certifies_expression_level_source_map_provider_object_branch_rows:
+          false,
+        row_certifies_directed_rounded_shared_domain: false,
+        claim_boundary:
+          h39TerminalSourceTermOppositeBranchFeedLiftClaimBoundary(),
+      };
+    });
+  };
+  const rowLocalReplays = Array.isArray(rowLocalCollarReplay?.row_replays)
+    ? rowLocalCollarReplay.row_replays
+    : [];
+  const activeBranch = validBranch(rowLocalCollarReplay?.active_branch)
+    ? rowLocalCollarReplay.active_branch
+    : validBranch(terminalSourceTermBranchFeedExtractor?.selected_branch)
+      ? terminalSourceTermBranchFeedExtractor.selected_branch
+      : null;
+  const partnerBranch = partnerBranchFor(activeBranch);
+  const rowLocalBranchPairRows = rowLocalReplays.map((row, rowIndex) => {
+    const context = row?.row_replay_context ?? {};
+    const selectedProvider =
+      row?.row_center_n38_s37_collar_diagnostic
+        ?.row_local_n38_nonconstant_source_sum_xi_intervalized_lagrange_provider_candidate ??
+      null;
+    const partnerFeedCandidate =
+      row?.row_center_partner_branch_source_term_feed_candidate ?? null;
+    const selectedInput =
+      selectedProvider?.derivative_input_for_signed_sum_bridge ?? null;
+    const partnerInput =
+      partnerFeedCandidate
+        ?.partner_branch_derivative_input_for_signed_sum_bridge ?? null;
+    const rowActiveBranch = validBranch(context?.active_branch)
+      ? context.active_branch
+      : activeBranch;
+    const rowPartnerBranch = partnerBranchFor(rowActiveBranch);
+    const selectedInterval = numericInterval(
+      selectedInput?.derivative_interval_d4
+    );
+    const partnerInterval = numericInterval(
+      partnerInput?.derivative_interval_d4
+    );
+    const branchPairSumInterval = addIntervals(
+      selectedInterval,
+      partnerInterval
+    );
+    const branchPairAntisymmetricInterval = subtractIntervals(
+      selectedInterval,
+      partnerInterval
+    );
+    const termRows = [
+      ...termRowsFromInput({
+        input: selectedInput,
+        branch: rowActiveBranch,
+        role: "selected-branch-expression-source-term-feed",
+      }),
+      ...termRowsFromInput({
+        input: partnerInput,
+        branch: rowPartnerBranch,
+        role: "opposite-branch-expression-source-term-feed",
+      }),
+    ];
+    const candidateAvailable =
+      validBranch(rowActiveBranch) &&
+      validBranch(rowPartnerBranch) &&
+      rowActiveBranch !== rowPartnerBranch &&
+      partnerFeedCandidate?.same_domain_with_selected_row === true &&
+      finiteOrderedInterval(selectedInterval) &&
+      finiteOrderedInterval(partnerInterval) &&
+      sameTerms(selectedInput?.source_terms) &&
+      sameTerms(partnerInput?.source_terms) &&
+      termRows.length === 6 &&
+      termRows.every(
+        (termRow) => termRow.source_term_derivative_interval_available === true
+      );
+    return {
+      row_local_feed_lift_index: rowIndex,
+      row_index: context?.row_index ?? null,
+      comparison_row_index: context?.comparison_row_index ?? null,
+      source_subcover_row_index: context?.source_subcover_row_index ?? null,
+      cell_id: context?.cell_id ?? null,
+      selected_branch: rowActiveBranch,
+      partner_branch: rowPartnerBranch,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      speed_interval: numericInterval(context?.speed_interval),
+      xi_interval: numericInterval(context?.xi_interval),
+      row_local_opposite_branch_feed_available:
+        partnerFeedCandidate?.partner_branch_derivative_input_available === true,
+      row_local_selected_branch_feed_available:
+        selectedInput !== null && selectedInput !== undefined,
+      same_domain_selected_and_partner_source_term_feed:
+        partnerFeedCandidate?.same_domain_with_selected_row === true,
+      selected_branch_source_term_feed_interval_d4: selectedInterval,
+      partner_branch_source_term_feed_interval_d4: partnerInterval,
+      candidate_branch_pair_sum_interval: branchPairSumInterval,
+      candidate_branch_pair_antisymmetric_interval:
+        branchPairAntisymmetricInterval,
+      candidate_branch_pair_antisymmetric_half_width:
+        intervalHalfWidth(branchPairAntisymmetricInterval),
+      source_term_branch_feed_lift_term_rows: termRows,
+      source_term_branch_feed_lift_term_row_count: termRows.length,
+      source_term_branch_pair_feed_candidate_available: candidateAvailable,
+      terminal_provider_object_branch_pair_available: false,
+      terminal_provider_object_A_P_available: false,
+      admissible_as_actual_terminal_provider_object_branch_rows: false,
+      row_status: candidateAvailable
+        ? "row-local-opposite-branch-source-feed-materialized-terminal-P-b-lift-open"
+        : "row-local-opposite-branch-source-feed-lift-input-open",
+      rejection_reason:
+        "row-local-selected-and-opposite-branch-expression-feeds-do-not-supply-terminal-provider-object-P-minus-P-plus-identity",
+      row_certifies_selected_branch_source_term_feed_as_provider_object_branch:
+        false,
+      row_certifies_partner_branch_source_term_feed_as_provider_object_branch:
+        false,
+      row_certifies_terminal_provider_object_branch_rows: false,
+      row_certifies_provider_object_A_P_materialization: false,
+      row_certifies_expression_level_source_map_provider_object_branch_rows:
+        false,
+      row_certifies_terminal_row_provider_object_replay: false,
+      row_certifies_directed_rounded_shared_domain: false,
+      claim_boundary:
+        h39TerminalSourceTermOppositeBranchFeedLiftClaimBoundary(),
+    };
+  });
+  const terminalPreSumRows =
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      ?.provider_object_pre_sum_branch_source_audit_rows ?? [];
+  const terminalRows = terminalPreSumRows.map((row, nodeIndex) => {
+    const terminalBranchRows = Array.isArray(
+      row?.provider_object_pre_sum_branch_source_audit_rows
+    )
+      ? row.provider_object_pre_sum_branch_source_audit_rows
+      : [];
+    const liftRows = terminalBranchRows.map((terminalRow) => {
+      const aggregateInterval = numericInterval(
+        terminalRow?.pre_sum_source_term_aggregate_interval
+      );
+      return {
+        terminal_h_index: terminalRow?.terminal_h_index ?? null,
+        terminal_graph_cell_id: terminalRow?.terminal_graph_cell_id ?? null,
+        source_y_order: H38_NUMERATOR_Y_ORDER,
+        selected_branch: activeBranch,
+        partner_branch: partnerBranch,
+        aggregate_source_map_provider_object_interval: numericInterval(
+          terminalRow?.aggregate_source_map_provider_object_interval
+        ),
+        pre_sum_source_term_aggregate_interval: aggregateInterval,
+        row_local_branch_pair_feed_candidate_available:
+          rowLocalBranchPairRows.length > 0 &&
+          rowLocalBranchPairRows.every(
+            (branchRow) =>
+              branchRow.source_term_branch_pair_feed_candidate_available ===
+              true
+          ),
+        terminal_candidate_P_minus_interval: null,
+        terminal_candidate_P_plus_interval: null,
+        terminal_candidate_A_P_interval: null,
+        terminal_provider_object_branch_pair_available: false,
+        terminal_provider_object_A_P_available: false,
+        terminal_provider_object_branch_sum_identity_available: false,
+        terminal_provider_object_branch_sum_endpoint_gap: null,
+        terminal_provider_object_branch_sum_half_width: null,
+        row_status:
+          finiteOrderedInterval(aggregateInterval) &&
+          rowLocalBranchPairRows.length > 0
+            ? "terminal-aggregate-provider-object-present-row-local-branch-pair-feed-lift-open"
+            : "terminal-opposite-branch-feed-lift-input-open",
+        row_certifies_selected_branch_source_term_feed_as_provider_object_branch:
+          false,
+        row_certifies_partner_branch_source_term_feed_as_provider_object_branch:
+          false,
+        row_certifies_terminal_provider_object_branch_rows: false,
+        row_certifies_provider_object_branch_sum_identity: false,
+        row_certifies_provider_object_A_P_materialization: false,
+        row_certifies_expression_level_source_map_provider_object_branch_rows:
+          false,
+        row_certifies_terminal_row_provider_object_replay: false,
+        row_certifies_expression_level_n38_provider: false,
+        row_certifies_directed_rounded_shared_domain: false,
+        claim_boundary:
+          h39TerminalSourceTermOppositeBranchFeedLiftClaimBoundary(),
+      };
+    });
+    return {
+      node_index: row?.node_index ?? nodeIndex,
+      terminal_graph_cell_id: row?.terminal_graph_cell_id ?? null,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      terminal_source_term_opposite_branch_feed_lift_rows: liftRows,
+      terminal_source_term_opposite_branch_feed_lift_terminal_row_count:
+        liftRows.length,
+      terminal_aggregate_provider_object_available_terminal_row_count:
+        liftRows.filter((liftRow) =>
+          finiteOrderedInterval(liftRow.pre_sum_source_term_aggregate_interval)
+        ).length,
+      terminal_provider_object_branch_pair_available_terminal_row_count:
+        liftRows.filter(
+          (liftRow) =>
+            liftRow.terminal_provider_object_branch_pair_available === true
+        ).length,
+      row_status:
+        liftRows.length === 3 &&
+        liftRows.every(
+          (liftRow) =>
+            liftRow.row_status ===
+            "terminal-aggregate-provider-object-present-row-local-branch-pair-feed-lift-open"
+        )
+          ? "terminal-opposite-branch-feed-lift-open-P-b-identity-missing"
+          : "terminal-opposite-branch-feed-lift-input-open",
+      row_certifies_selected_branch_source_term_feed_as_provider_object_branch:
+        false,
+      row_certifies_partner_branch_source_term_feed_as_provider_object_branch:
+        false,
+      row_certifies_terminal_provider_object_branch_rows: false,
+      row_certifies_provider_object_A_P_materialization: false,
+      row_certifies_expression_level_source_map_provider_object_branch_rows:
+        false,
+      row_certifies_directed_rounded_shared_domain: false,
+      claim_boundary:
+        h39TerminalSourceTermOppositeBranchFeedLiftClaimBoundary(),
+    };
+  });
+  const rowLocalCandidateAvailableCount = rowLocalBranchPairRows.filter(
+    (row) => row.source_term_branch_pair_feed_candidate_available === true
+  ).length;
+  const terminalRowCount = terminalRows.reduce(
+    (total, row) =>
+      total +
+      Number(row.terminal_source_term_opposite_branch_feed_lift_terminal_row_count),
+    0
+  );
+  const terminalProviderObjectBranchPairAvailableCount = terminalRows.reduce(
+    (total, row) =>
+      total +
+      Number(
+        row.terminal_provider_object_branch_pair_available_terminal_row_count
+      ),
+    0
+  );
+  const rowLocalReady =
+    rowLocalCollarReplay?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_ROW_LOCAL_PRODUCER_COLLAR_REPLAY_SCHEMA &&
+    rowLocalCollarReplay?.all_row_local_opposite_branch_source_term_feeds_materialized ===
+      true &&
+    rowLocalBranchPairRows.length > 0 &&
+    rowLocalCandidateAvailableCount === rowLocalBranchPairRows.length;
+  const extractorReady =
+    terminalSourceTermBranchFeedExtractor?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SOURCE_TERM_BRANCH_FEED_EXTRACTOR_CANDIDATE_SCHEMA &&
+    terminalSourceTermBranchFeedExtractor
+      ?.terminal_source_term_branch_feed_extractor_verified === true &&
+    terminalSourceTermBranchFeedExtractor?.selected_branch_source_stream_exposed ===
+      true &&
+    terminalSourceTermBranchFeedExtractor?.terminal_provider_object_branch_pair_materialized ===
+      false;
+  const preSumReady =
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_PRE_SUM_BRANCH_SOURCE_AUDIT_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      ?.provider_object_pre_sum_branch_source_audit_verified === true &&
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      ?.pre_sum_source_term_branch_feed_available_row_count === 0;
+  const apObstructionReady =
+    terminalProviderObjectAPMaterializationObstructionAudit?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_PROVIDER_OBJECT_A_P_MATERIALIZATION_OBSTRUCTION_AUDIT_CANDIDATE_SCHEMA &&
+    terminalProviderObjectAPMaterializationObstructionAudit
+      ?.provider_object_ap_materialization_obstruction_audit_verified === true &&
+    terminalProviderObjectAPMaterializationObstructionAudit
+      ?.provider_object_A_P_materialization_available === false;
+  const liftVerified =
+    rowLocalReady &&
+    extractorReady &&
+    preSumReady &&
+    apObstructionReady &&
+    terminalRows.length === 5 &&
+    terminalRowCount === 15 &&
+    terminalProviderObjectBranchPairAvailableCount === 0;
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SOURCE_TERM_OPPOSITE_BRANCH_FEED_LIFT_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-terminal-source-term-opposite-branch-feed-lift-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-terminal-source-term-opposite-branch-feed-lift",
+    target_kind:
+      "candidate-requested-y44-terminal-source-term-opposite-branch-feed-lift",
+    proof_status:
+      "candidate-row-local-opposite-branch-source-feed-materialized-terminal-provider-object-lift-open",
+    row_local_collar_replay_schema: rowLocalCollarReplay?.schema ?? null,
+    terminal_source_term_branch_feed_extractor_schema:
+      terminalSourceTermBranchFeedExtractor?.schema ?? null,
+    terminal_expression_level_source_map_provider_object_pre_sum_branch_source_audit_schema:
+      terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit?.schema ??
+      null,
+    terminal_provider_object_ap_materialization_obstruction_audit_schema:
+      terminalProviderObjectAPMaterializationObstructionAudit?.schema ?? null,
+    selected_branch: activeBranch,
+    partner_branch: partnerBranch,
+    source_terms_preserved_signed_together: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    provider_object_branch_target: "P_b",
+    provider_object_branch_pair_target: "P_- and P_+",
+    provider_object_branch_moment_target: "A_P=P_- - P_+",
+    row_local_source_term_branch_pair_feed_lift_rows:
+      rowLocalBranchPairRows,
+    row_local_source_term_branch_pair_feed_lift_row_count:
+      rowLocalBranchPairRows.length,
+    row_local_source_term_branch_pair_feed_candidate_available_count:
+      rowLocalCandidateAvailableCount,
+    row_local_opposite_branch_source_stream_exposed:
+      rowLocalCandidateAvailableCount > 0 &&
+      rowLocalCandidateAvailableCount === rowLocalBranchPairRows.length,
+    terminal_source_term_opposite_branch_feed_lift_rows: terminalRows,
+    terminal_source_term_opposite_branch_feed_lift_row_count:
+      terminalRows.length,
+    terminal_source_term_opposite_branch_feed_lift_terminal_row_count:
+      terminalRowCount,
+    terminal_provider_object_branch_pair_available_terminal_row_count:
+      terminalProviderObjectBranchPairAvailableCount,
+    terminal_candidate_P_minus_P_plus_materialized: false,
+    provider_object_A_P_materialized: false,
+    terminal_row_provider_object_replay_certified: false,
+    expression_level_n38_provider_certified: false,
+    directed_rounded_shared_domain_provider_certified: false,
+    terminal_source_term_opposite_branch_feed_lift_verified:
+      liftVerified,
+    terminal_source_term_opposite_branch_feed_lift_certified: false,
+    terminal_source_term_opposite_branch_feed_lift_classification:
+      liftVerified
+        ? "row-local-opposite-branch-source-feed-materialized-terminal-provider-object-P-b-lift-open"
+        : "terminal-source-term-opposite-branch-feed-lift-open",
+    terminal_source_term_opposite_branch_feed_lift_blocker_classification:
+      liftVerified
+        ? "same-domain-provider-object-P-minus-P-plus-identity-needed"
+        : "terminal-source-term-opposite-branch-feed-lift-input-open",
+    terminal_source_term_opposite_branch_feed_lift_primary_missing_object_kind:
+      liftVerified
+        ? "same-domain-identity-from-row-local-expression-branch-feed-to-terminal-source-map-provider-object-P-b"
+        : "terminal-source-term-opposite-branch-feed-lift",
+    next_certificate_object:
+      "same-domain source-map provider-object identity that maps the materialized row-local selected/opposite branch expression feeds into terminal P_- and P_+ rows",
+    candidate_certificate_route:
+      "The packet now evaluates the opposite-branch nonconstant N38 source-term feed through the same row-local expression evaluator and same selected collar domains. It still rejects the result as actual terminal provider-object branch rows because the terminal source-map provider object remains aggregate-only and no same-domain identity maps these expression feeds to P_- and P_+.",
+    claim_boundary:
+      h39TerminalSourceTermOppositeBranchFeedLiftClaimBoundary(),
+  };
+}
+
+export function validateH39RequestedY44TerminalSourceTermOppositeBranchFeedLiftCandidate(
+  artifact
+) {
+  const errors = [];
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const sameStringSet = (left, right) =>
+    Array.isArray(left) &&
+    left.length === right.length &&
+    right.every((value) => left.includes(value));
+  const validClaimBoundary = (claimBoundary) =>
+    claimBoundary?.defines_terminal_source_term_opposite_branch_feed_lift_only ===
+      true &&
+    claimBoundary
+      ?.certifies_selected_branch_source_term_feed_as_provider_object_branch ===
+      false &&
+    claimBoundary
+      ?.certifies_partner_branch_source_term_feed_as_provider_object_branch ===
+      false &&
+    claimBoundary?.certifies_terminal_provider_object_branch_rows === false &&
+    claimBoundary?.certifies_provider_object_branch_sum_identity === false &&
+    claimBoundary?.certifies_provider_object_A_P_materialization === false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_rows ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation ===
+      false &&
+    claimBoundary?.certifies_terminal_row_provider_object_replay === false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SOURCE_TERM_OPPOSITE_BRANCH_FEED_LIFT_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 terminal source-term opposite-branch feed lift candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-terminal-source-term-opposite-branch-feed-lift-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-terminal-source-term-opposite-branch-feed-lift" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-terminal-source-term-opposite-branch-feed-lift" ||
+    artifact?.proof_status !==
+      "candidate-row-local-opposite-branch-source-feed-materialized-terminal-provider-object-lift-open" ||
+    artifact?.row_local_collar_replay_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_ROW_LOCAL_PRODUCER_COLLAR_REPLAY_SCHEMA ||
+    artifact?.terminal_source_term_branch_feed_extractor_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SOURCE_TERM_BRANCH_FEED_EXTRACTOR_CANDIDATE_SCHEMA ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_pre_sum_branch_source_audit_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_PRE_SUM_BRANCH_SOURCE_AUDIT_CANDIDATE_SCHEMA ||
+    artifact?.terminal_provider_object_ap_materialization_obstruction_audit_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_PROVIDER_OBJECT_A_P_MATERIALIZATION_OBSTRUCTION_AUDIT_CANDIDATE_SCHEMA ||
+    !["-", "+"].includes(artifact?.selected_branch) ||
+    !["-", "+"].includes(artifact?.partner_branch) ||
+    artifact?.selected_branch === artifact?.partner_branch ||
+    !sameStringSet(
+      artifact?.source_terms_preserved_signed_together,
+      H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS
+    ) ||
+    artifact?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    artifact?.provider_object_branch_target !== "P_b" ||
+    artifact?.provider_object_branch_pair_target !== "P_- and P_+" ||
+    artifact?.provider_object_branch_moment_target !== "A_P=P_- - P_+" ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("opposite-branch feed lift metadata must identify branch pair and provider-object target");
+  }
+  const rowLocalRows =
+    artifact?.row_local_source_term_branch_pair_feed_lift_rows ?? [];
+  const terminalRows =
+    artifact?.terminal_source_term_opposite_branch_feed_lift_rows ?? [];
+  if (
+    !Array.isArray(rowLocalRows) ||
+    rowLocalRows.length < 1 ||
+    artifact?.row_local_source_term_branch_pair_feed_lift_row_count !==
+      rowLocalRows.length ||
+    artifact?.row_local_source_term_branch_pair_feed_candidate_available_count !==
+      rowLocalRows.length ||
+    artifact?.row_local_opposite_branch_source_stream_exposed !== true ||
+    !Array.isArray(terminalRows) ||
+    terminalRows.length !== 5 ||
+    artifact?.terminal_source_term_opposite_branch_feed_lift_row_count !== 5 ||
+    artifact?.terminal_source_term_opposite_branch_feed_lift_terminal_row_count !==
+      15 ||
+    artifact?.terminal_provider_object_branch_pair_available_terminal_row_count !==
+      0 ||
+    artifact?.terminal_candidate_P_minus_P_plus_materialized !== false ||
+    artifact?.provider_object_A_P_materialized !== false ||
+    artifact?.terminal_row_provider_object_replay_certified !== false ||
+    artifact?.expression_level_n38_provider_certified !== false ||
+    artifact?.directed_rounded_shared_domain_provider_certified !== false ||
+    artifact?.terminal_source_term_opposite_branch_feed_lift_verified !== true ||
+    artifact?.terminal_source_term_opposite_branch_feed_lift_certified !==
+      false ||
+    artifact?.terminal_source_term_opposite_branch_feed_lift_classification !==
+      "row-local-opposite-branch-source-feed-materialized-terminal-provider-object-P-b-lift-open" ||
+    artifact
+      ?.terminal_source_term_opposite_branch_feed_lift_blocker_classification !==
+      "same-domain-provider-object-P-minus-P-plus-identity-needed" ||
+    artifact
+      ?.terminal_source_term_opposite_branch_feed_lift_primary_missing_object_kind !==
+      "same-domain-identity-from-row-local-expression-branch-feed-to-terminal-source-map-provider-object-P-b" ||
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string"
+  ) {
+    errors.push("opposite-branch feed lift aggregate must expose row-local branch pair and keep terminal P pair open");
+  }
+  if (
+    rowLocalRows.some((row) => {
+      const termRows = row?.source_term_branch_feed_lift_term_rows ?? [];
+      return (
+        !["-", "+"].includes(row?.selected_branch) ||
+        !["-", "+"].includes(row?.partner_branch) ||
+        row.selected_branch === row.partner_branch ||
+        !finiteOrderedInterval(row?.speed_interval) ||
+        !finiteOrderedInterval(row?.xi_interval) ||
+        row?.same_domain_selected_and_partner_source_term_feed !== true ||
+        row?.row_local_selected_branch_feed_available !== true ||
+        row?.row_local_opposite_branch_feed_available !== true ||
+        !finiteOrderedInterval(row?.selected_branch_source_term_feed_interval_d4) ||
+        !finiteOrderedInterval(row?.partner_branch_source_term_feed_interval_d4) ||
+        !finiteOrderedInterval(row?.candidate_branch_pair_sum_interval) ||
+        !finiteOrderedInterval(
+          row?.candidate_branch_pair_antisymmetric_interval
+        ) ||
+        !finiteNumber(row?.candidate_branch_pair_antisymmetric_half_width) ||
+        row?.source_term_branch_feed_lift_term_row_count !== 6 ||
+        !Array.isArray(termRows) ||
+        termRows.length !== 6 ||
+        row?.source_term_branch_pair_feed_candidate_available !== true ||
+        row?.terminal_provider_object_branch_pair_available !== false ||
+        row?.terminal_provider_object_A_P_available !== false ||
+        row?.admissible_as_actual_terminal_provider_object_branch_rows !==
+          false ||
+        row?.row_status !==
+          "row-local-opposite-branch-source-feed-materialized-terminal-P-b-lift-open" ||
+        row?.row_certifies_selected_branch_source_term_feed_as_provider_object_branch !==
+          false ||
+        row?.row_certifies_partner_branch_source_term_feed_as_provider_object_branch !==
+          false ||
+        row?.row_certifies_terminal_provider_object_branch_rows !== false ||
+        row?.row_certifies_provider_object_A_P_materialization !== false ||
+        row?.row_certifies_expression_level_source_map_provider_object_branch_rows !==
+          false ||
+        row?.row_certifies_terminal_row_provider_object_replay !== false ||
+        row?.row_certifies_directed_rounded_shared_domain !== false ||
+        !validClaimBoundary(row?.claim_boundary) ||
+        termRows.some(
+          (termRow) =>
+            !H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.includes(
+              termRow?.term
+            ) ||
+            ![row.selected_branch, row.partner_branch].includes(
+              termRow?.branch
+            ) ||
+            termRow?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+            !Array.isArray(termRow?.node_value_intervals) ||
+            termRow.node_value_intervals.length !== 5 ||
+            termRow.node_value_intervals.some(
+              (interval) => !finiteOrderedInterval(interval)
+            ) ||
+            !finiteOrderedInterval(termRow?.source_term_derivative_interval_d4) ||
+            termRow?.source_term_derivative_interval_available !== true ||
+            !finiteNumber(termRow?.source_term_derivative_half_width) ||
+            termRow?.admissible_as_actual_provider_object_branch_term !==
+              false ||
+            termRow
+              ?.row_certifies_expression_level_source_map_provider_object_branch_rows !==
+              false ||
+            termRow?.row_certifies_directed_rounded_shared_domain !== false ||
+            !validClaimBoundary(termRow?.claim_boundary)
+        )
+      );
+    })
+  ) {
+    errors.push("row-local opposite-branch feed lift rows must expose finite selected and partner expression feeds only");
+  }
+  if (
+    terminalRows.some((row, index) => {
+      const liftRows =
+        row?.terminal_source_term_opposite_branch_feed_lift_rows ?? [];
+      return (
+        row?.node_index !== index ||
+        row?.terminal_graph_cell_id !== `speed.${index}.first-y` ||
+        row?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+        row?.required_xi_derivative_order !== 4 ||
+        row?.terminal_source_term_opposite_branch_feed_lift_terminal_row_count !==
+          3 ||
+        row?.terminal_aggregate_provider_object_available_terminal_row_count !==
+          3 ||
+        row?.terminal_provider_object_branch_pair_available_terminal_row_count !==
+          0 ||
+        row?.row_status !==
+          "terminal-opposite-branch-feed-lift-open-P-b-identity-missing" ||
+        row?.row_certifies_selected_branch_source_term_feed_as_provider_object_branch !==
+          false ||
+        row?.row_certifies_partner_branch_source_term_feed_as_provider_object_branch !==
+          false ||
+        row?.row_certifies_terminal_provider_object_branch_rows !== false ||
+        row?.row_certifies_provider_object_A_P_materialization !== false ||
+        row?.row_certifies_expression_level_source_map_provider_object_branch_rows !==
+          false ||
+        row?.row_certifies_directed_rounded_shared_domain !== false ||
+        !validClaimBoundary(row?.claim_boundary) ||
+        !Array.isArray(liftRows) ||
+        liftRows.length !== 3 ||
+        liftRows.some(
+          (liftRow) =>
+            ![37, 36, 35].includes(liftRow?.terminal_h_index) ||
+            liftRow?.terminal_graph_cell_id !== `speed.${index}.first-y` ||
+            liftRow?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+            liftRow?.selected_branch !== artifact.selected_branch ||
+            liftRow?.partner_branch !== artifact.partner_branch ||
+            !finiteOrderedInterval(
+              liftRow?.aggregate_source_map_provider_object_interval
+            ) ||
+            !finiteOrderedInterval(
+              liftRow?.pre_sum_source_term_aggregate_interval
+            ) ||
+            liftRow?.row_local_branch_pair_feed_candidate_available !== true ||
+            liftRow?.terminal_candidate_P_minus_interval !== null ||
+            liftRow?.terminal_candidate_P_plus_interval !== null ||
+            liftRow?.terminal_candidate_A_P_interval !== null ||
+            liftRow?.terminal_provider_object_branch_pair_available !== false ||
+            liftRow?.terminal_provider_object_A_P_available !== false ||
+            liftRow
+              ?.terminal_provider_object_branch_sum_identity_available !==
+              false ||
+            liftRow?.row_status !==
+              "terminal-aggregate-provider-object-present-row-local-branch-pair-feed-lift-open" ||
+            liftRow?.row_certifies_selected_branch_source_term_feed_as_provider_object_branch !==
+              false ||
+            liftRow?.row_certifies_partner_branch_source_term_feed_as_provider_object_branch !==
+              false ||
+            liftRow?.row_certifies_terminal_provider_object_branch_rows !==
+              false ||
+            liftRow?.row_certifies_provider_object_A_P_materialization !==
+              false ||
+            liftRow
+              ?.row_certifies_expression_level_source_map_provider_object_branch_rows !==
+              false ||
+            liftRow?.row_certifies_terminal_row_provider_object_replay !==
+              false ||
+            liftRow?.row_certifies_expression_level_n38_provider !== false ||
+            liftRow?.row_certifies_directed_rounded_shared_domain !== false ||
+            !validClaimBoundary(liftRow?.claim_boundary)
+        )
+      );
+    })
+  ) {
+    errors.push("terminal opposite-branch feed lift rows must keep P minus/P plus absent while row-local branch pair feed is available");
+  }
+  return errors;
+}
+
+function h39TerminalRowLocalFeedToProviderObjectPbIdentityAuditClaimBoundary() {
+  return {
+    defines_terminal_row_local_feed_to_provider_object_pb_identity_audit_only:
+      true,
+    certifies_row_local_expression_feed_to_terminal_provider_object_pb_identity:
+      false,
+    certifies_terminal_provider_object_branch_rows: false,
+    certifies_provider_object_branch_sum_identity: false,
+    certifies_provider_object_A_P_materialization: false,
+    certifies_expression_level_source_map_provider_object_branch_rows: false,
+    certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation:
+      false,
+    certifies_terminal_row_provider_object_replay: false,
+    certifies_expression_level_n38_provider: false,
+    certifies_terminal_row_provider_enclosure: false,
+    certifies_terminal_graph_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
+export function buildH39RequestedY44TerminalRowLocalFeedToProviderObjectPbIdentityAuditCandidate({
+  rowLocalCollarReplay = null,
+  terminalSourceTermOppositeBranchFeedLift = null,
+  terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit,
+} = {}) {
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const numericInterval = (interval) =>
+    finiteOrderedInterval(interval)
+      ? [Number(interval[0]), Number(interval[1])]
+      : null;
+  const addIntervals = (left, right) =>
+    finiteOrderedInterval(left) && finiteOrderedInterval(right)
+      ? [Number(left[0]) + Number(right[0]), Number(left[1]) + Number(right[1])]
+      : null;
+  const subtractIntervals = (left, right) =>
+    finiteOrderedInterval(left) && finiteOrderedInterval(right)
+      ? [Number(left[0]) - Number(right[1]), Number(left[1]) - Number(right[0])]
+      : null;
+  const intervalsOverlap = (left, right) =>
+    finiteOrderedInterval(left) &&
+    finiteOrderedInterval(right) &&
+    Number(left[0]) <= Number(right[1]) &&
+    Number(right[0]) <= Number(left[1]);
+  const intervalContainsInterval = (container, candidate) =>
+    finiteOrderedInterval(container) &&
+    finiteOrderedInterval(candidate) &&
+    Number(container[0]) <= Number(candidate[0]) &&
+    Number(candidate[1]) <= Number(container[1]);
+  const intervalEndpointGap = (left, right) =>
+    finiteOrderedInterval(left) && finiteOrderedInterval(right)
+      ? Math.max(
+          Math.abs(Number(left[0]) - Number(right[0])),
+          Math.abs(Number(left[1]) - Number(right[1]))
+        )
+      : null;
+  const intervalHalfWidthLocal = (interval) =>
+    finiteOrderedInterval(interval)
+      ? (Number(interval[1]) - Number(interval[0])) / 2
+      : null;
+  const rowsByNode = (rows) =>
+    new Map(
+      (rows ?? [])
+        .filter((row) => Number.isInteger(row?.node_index))
+        .map((row) => [Number(row.node_index), row])
+    );
+  const validBranch = (branch) => branch === "-" || branch === "+";
+  const selectedBranch = validBranch(rowLocalCollarReplay?.active_branch)
+    ? rowLocalCollarReplay.active_branch
+    : terminalSourceTermOppositeBranchFeedLift?.selected_branch ?? null;
+  const partnerBranch =
+    selectedBranch === "-" ? "+" : selectedBranch === "+" ? "-" : null;
+  const branchSurfaceRows =
+    rowLocalCollarReplay?.all_terminal_source_cell_branch_pair_feed_surface_rows ??
+    [];
+  const branchSurfaceRowsByNode = rowsByNode(branchSurfaceRows);
+  const preSumRows =
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      ?.provider_object_pre_sum_branch_source_audit_rows ?? [];
+  const terminalRows = preSumRows.map((nodeRow, nodeIndex) => {
+    const branchFeedRow = branchSurfaceRowsByNode.get(nodeIndex) ?? null;
+    const selectedInterval = numericInterval(
+      branchFeedRow?.selected_branch_source_term_feed_interval_d4
+    );
+    const partnerInterval = numericInterval(
+      branchFeedRow?.partner_branch_source_term_feed_interval_d4
+    );
+    const pMinusInterval =
+      selectedBranch === "-"
+        ? selectedInterval
+        : selectedBranch === "+"
+          ? partnerInterval
+          : null;
+    const pPlusInterval =
+      selectedBranch === "-"
+        ? partnerInterval
+        : selectedBranch === "+"
+          ? selectedInterval
+          : null;
+    const candidateSumInterval = addIntervals(
+      pMinusInterval,
+      pPlusInterval
+    );
+    const candidateAPInterval = subtractIntervals(
+      pMinusInterval,
+      pPlusInterval
+    );
+    const terminalAuditRows = Array.isArray(
+      nodeRow?.provider_object_pre_sum_branch_source_audit_rows
+    )
+      ? nodeRow.provider_object_pre_sum_branch_source_audit_rows
+      : [];
+    const identityRows = terminalAuditRows.map((terminalRow) => {
+      const aggregateInterval = numericInterval(
+        terminalRow?.aggregate_source_map_provider_object_interval
+      );
+      const aggregatePreSumInterval = numericInterval(
+        terminalRow?.pre_sum_source_term_aggregate_interval
+      );
+      const candidateAvailable =
+        branchFeedRow?.terminal_source_cell_branch_pair_feed_available ===
+          true &&
+        finiteOrderedInterval(pMinusInterval) &&
+        finiteOrderedInterval(pPlusInterval) &&
+        finiteOrderedInterval(candidateSumInterval) &&
+        finiteOrderedInterval(candidateAPInterval);
+      const sumOverlapsAggregate = intervalsOverlap(
+        candidateSumInterval,
+        aggregateInterval
+      );
+      const aggregateContainsCandidate = intervalContainsInterval(
+        aggregateInterval,
+        candidateSumInterval
+      );
+      const candidateContainsAggregate = intervalContainsInterval(
+        candidateSumInterval,
+        aggregateInterval
+      );
+      return {
+        terminal_h_index: terminalRow?.terminal_h_index ?? null,
+        source_y_order: H38_NUMERATOR_Y_ORDER,
+        required_xi_derivative_order: 4,
+        terminal_graph_cell_id: terminalRow?.terminal_graph_cell_id ?? null,
+        selected_branch: selectedBranch,
+        partner_branch: partnerBranch,
+        candidate_P_minus_interval: pMinusInterval,
+        candidate_P_plus_interval: pPlusInterval,
+        candidate_P_minus_plus_P_plus_interval: candidateSumInterval,
+        candidate_A_P_interval: candidateAPInterval,
+        aggregate_source_map_provider_object_interval: aggregateInterval,
+        pre_sum_source_term_aggregate_interval: aggregatePreSumInterval,
+        candidate_branch_pair_available: candidateAvailable,
+        candidate_branch_sum_overlaps_aggregate_provider_object:
+          sumOverlapsAggregate,
+        aggregate_provider_object_contains_candidate_branch_sum:
+          aggregateContainsCandidate,
+        candidate_branch_sum_contains_aggregate_provider_object:
+          candidateContainsAggregate,
+        candidate_branch_sum_to_aggregate_endpoint_gap:
+          intervalEndpointGap(candidateSumInterval, aggregateInterval),
+        candidate_branch_sum_half_width:
+          intervalHalfWidthLocal(candidateSumInterval),
+        aggregate_provider_object_half_width:
+          intervalHalfWidthLocal(aggregateInterval),
+        terminal_provider_object_branch_sum_identity_available: false,
+        admissible_as_actual_terminal_provider_object_branch_rows: false,
+        row_status: candidateAvailable
+          ? "candidate-P-minus-P-plus-from-expression-feed-compared-P-b-identity-open"
+          : "candidate-P-minus-P-plus-from-expression-feed-input-open",
+        rejection_reason:
+          "finite expression-feed branch pair lacks same-domain identity admitting it as terminal source-map provider-object P_b",
+        row_certifies_row_local_expression_feed_to_terminal_provider_object_pb_identity:
+          false,
+        row_certifies_terminal_provider_object_branch_rows: false,
+        row_certifies_provider_object_branch_sum_identity: false,
+        row_certifies_provider_object_A_P_materialization: false,
+        row_certifies_expression_level_source_map_provider_object_branch_rows:
+          false,
+        row_certifies_terminal_row_provider_object_replay: false,
+        row_certifies_expression_level_n38_provider: false,
+        row_certifies_directed_rounded_shared_domain: false,
+        claim_boundary:
+          h39TerminalRowLocalFeedToProviderObjectPbIdentityAuditClaimBoundary(),
+      };
+    });
+    return {
+      node_index: nodeRow?.node_index ?? nodeIndex,
+      terminal_graph_cell_id: nodeRow?.terminal_graph_cell_id ?? null,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      selected_branch: selectedBranch,
+      partner_branch: partnerBranch,
+      terminal_source_cell_branch_pair_feed_available:
+        branchFeedRow?.terminal_source_cell_branch_pair_feed_available === true,
+      terminal_row_local_feed_to_provider_object_pb_identity_audit_rows:
+        identityRows,
+      terminal_row_local_feed_to_provider_object_pb_identity_audit_terminal_row_count:
+        identityRows.length,
+      candidate_provider_object_branch_pair_available_terminal_row_count:
+        identityRows.filter((row) => row.candidate_branch_pair_available)
+          .length,
+      candidate_branch_sum_overlaps_aggregate_terminal_row_count:
+        identityRows.filter(
+          (row) =>
+            row.candidate_branch_sum_overlaps_aggregate_provider_object ===
+            true
+        ).length,
+      admissible_provider_object_branch_pair_terminal_row_count: 0,
+      row_status:
+        identityRows.length === 3 &&
+        identityRows.every((row) => row.candidate_branch_pair_available === true)
+          ? "row-local-expression-feed-candidate-P-b-compared-identity-open"
+          : "row-local-expression-feed-to-P-b-identity-input-open",
+      row_certifies_row_local_expression_feed_to_terminal_provider_object_pb_identity:
+        false,
+      row_certifies_terminal_provider_object_branch_rows: false,
+      row_certifies_provider_object_A_P_materialization: false,
+      row_certifies_expression_level_source_map_provider_object_branch_rows:
+        false,
+      row_certifies_directed_rounded_shared_domain: false,
+      claim_boundary:
+        h39TerminalRowLocalFeedToProviderObjectPbIdentityAuditClaimBoundary(),
+    };
+  });
+  const terminalRowCount = terminalRows.reduce(
+    (total, row) =>
+      total +
+      Number(
+        row
+          .terminal_row_local_feed_to_provider_object_pb_identity_audit_terminal_row_count
+      ),
+    0
+  );
+  const candidateAvailableCount = terminalRows.reduce(
+    (total, row) =>
+      total +
+      Number(
+        row.candidate_provider_object_branch_pair_available_terminal_row_count
+      ),
+    0
+  );
+  const overlapCount = terminalRows.reduce(
+    (total, row) =>
+      total +
+      Number(row.candidate_branch_sum_overlaps_aggregate_terminal_row_count),
+    0
+  );
+  const rowLocalReady =
+    rowLocalCollarReplay?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_ROW_LOCAL_PRODUCER_COLLAR_REPLAY_SCHEMA &&
+    rowLocalCollarReplay?.all_terminal_source_cell_branch_pair_feeds_materialized ===
+      true &&
+    branchSurfaceRows.length === 5;
+  const oppositeLiftReady =
+    terminalSourceTermOppositeBranchFeedLift?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SOURCE_TERM_OPPOSITE_BRANCH_FEED_LIFT_CANDIDATE_SCHEMA &&
+    terminalSourceTermOppositeBranchFeedLift
+      ?.terminal_source_term_opposite_branch_feed_lift_verified === true &&
+    terminalSourceTermOppositeBranchFeedLift
+      ?.terminal_candidate_P_minus_P_plus_materialized === false;
+  const preSumReady =
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_PRE_SUM_BRANCH_SOURCE_AUDIT_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      ?.provider_object_pre_sum_branch_source_audit_verified === true;
+  const auditVerified =
+    rowLocalReady &&
+    oppositeLiftReady &&
+    preSumReady &&
+    terminalRows.length === 5 &&
+    terminalRowCount === 15 &&
+    candidateAvailableCount === 15;
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_ROW_LOCAL_FEED_TO_PROVIDER_OBJECT_PB_IDENTITY_AUDIT_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-terminal-row-local-feed-to-provider-object-pb-identity-audit-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-terminal-row-local-feed-to-provider-object-pb-identity-audit",
+    target_kind:
+      "candidate-requested-y44-terminal-row-local-feed-to-provider-object-P-b-identity-audit",
+    proof_status:
+      "candidate-expression-feed-branch-pair-compared-provider-object-P-b-identity-open",
+    row_local_collar_replay_schema: rowLocalCollarReplay?.schema ?? null,
+    terminal_source_term_opposite_branch_feed_lift_schema:
+      terminalSourceTermOppositeBranchFeedLift?.schema ?? null,
+    terminal_expression_level_source_map_provider_object_pre_sum_branch_source_audit_schema:
+      terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit?.schema ??
+      null,
+    selected_branch: selectedBranch,
+    partner_branch: partnerBranch,
+    source_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    provider_object_branch_target: "P_b",
+    provider_object_branch_pair_target: "P_- and P_+",
+    provider_object_branch_moment_target: "A_P=P_- - P_+",
+    all_terminal_source_cell_branch_pair_feed_surface_row_count:
+      branchSurfaceRows.length,
+    terminal_row_local_feed_to_provider_object_pb_identity_audit_rows:
+      terminalRows,
+    terminal_row_local_feed_to_provider_object_pb_identity_audit_row_count:
+      terminalRows.length,
+    terminal_row_local_feed_to_provider_object_pb_identity_audit_terminal_row_count:
+      terminalRowCount,
+    candidate_provider_object_branch_pair_available_terminal_row_count:
+      candidateAvailableCount,
+    candidate_branch_sum_overlaps_aggregate_terminal_row_count:
+      overlapCount,
+    admissible_provider_object_branch_pair_terminal_row_count: 0,
+    row_local_expression_feed_to_terminal_provider_object_pb_identity_available:
+      false,
+    terminal_candidate_P_minus_P_plus_materialized: false,
+    provider_object_A_P_materialized: false,
+    terminal_row_provider_object_replay_certified: false,
+    expression_level_n38_provider_certified: false,
+    directed_rounded_shared_domain_provider_certified: false,
+    terminal_row_local_feed_to_provider_object_pb_identity_audit_verified:
+      auditVerified,
+    terminal_row_local_feed_to_provider_object_pb_identity_audit_certified:
+      false,
+    terminal_row_local_feed_to_provider_object_pb_identity_audit_classification:
+      auditVerified
+        ? "candidate-expression-feed-P-minus-P-plus-available-provider-object-P-b-identity-open"
+        : "row-local-feed-to-provider-object-P-b-identity-audit-open",
+    terminal_row_local_feed_to_provider_object_pb_identity_audit_blocker_classification:
+      auditVerified
+        ? "same-domain-expression-feed-to-provider-object-P-b-pushforward-identity-needed"
+        : "row-local-feed-to-provider-object-P-b-identity-audit-input-open",
+    terminal_row_local_feed_to_provider_object_pb_identity_audit_primary_missing_object_kind:
+      auditVerified
+        ? "same-domain-pushforward-identity-from-expression-branch-feed-to-terminal-source-map-provider-object-P-b"
+        : "row-local-feed-to-provider-object-P-b-identity-audit",
+    next_certificate_object:
+      "same-domain pushforward identity proving the all-terminal-source-cell expression branch feeds are the terminal source-map provider-object branches P_- and P_+",
+    candidate_certificate_route:
+      "The packet now evaluates selected/opposite expression branch feeds on all five terminal source cells and forms candidate P_- and P_+ rows for all fifteen terminal provider rows. It compares P_-+P_+ with aggregate P but keeps admissibility false because no same-domain pushforward identity proves that these expression feeds are the actual terminal source-map provider-object branches.",
+    claim_boundary:
+      h39TerminalRowLocalFeedToProviderObjectPbIdentityAuditClaimBoundary(),
+  };
+}
+
+export function validateH39RequestedY44TerminalRowLocalFeedToProviderObjectPbIdentityAuditCandidate(
+  artifact
+) {
+  const errors = [];
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const validClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_terminal_row_local_feed_to_provider_object_pb_identity_audit_only ===
+      true &&
+    claimBoundary
+      ?.certifies_row_local_expression_feed_to_terminal_provider_object_pb_identity ===
+      false &&
+    claimBoundary?.certifies_terminal_provider_object_branch_rows === false &&
+    claimBoundary?.certifies_provider_object_branch_sum_identity === false &&
+    claimBoundary?.certifies_provider_object_A_P_materialization === false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_rows ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation ===
+      false &&
+    claimBoundary?.certifies_terminal_row_provider_object_replay === false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_ROW_LOCAL_FEED_TO_PROVIDER_OBJECT_PB_IDENTITY_AUDIT_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 row-local feed to provider-object P_b identity audit candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-terminal-row-local-feed-to-provider-object-pb-identity-audit-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-terminal-row-local-feed-to-provider-object-pb-identity-audit" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-terminal-row-local-feed-to-provider-object-P-b-identity-audit" ||
+    artifact?.proof_status !==
+      "candidate-expression-feed-branch-pair-compared-provider-object-P-b-identity-open" ||
+    artifact?.row_local_collar_replay_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_ROW_LOCAL_PRODUCER_COLLAR_REPLAY_SCHEMA ||
+    artifact?.terminal_source_term_opposite_branch_feed_lift_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_SOURCE_TERM_OPPOSITE_BRANCH_FEED_LIFT_CANDIDATE_SCHEMA ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_pre_sum_branch_source_audit_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_PRE_SUM_BRANCH_SOURCE_AUDIT_CANDIDATE_SCHEMA ||
+    !["-", "+"].includes(artifact?.selected_branch) ||
+    !["-", "+"].includes(artifact?.partner_branch) ||
+    artifact?.selected_branch === artifact?.partner_branch ||
+    artifact?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    artifact?.provider_object_branch_target !== "P_b" ||
+    artifact?.provider_object_branch_pair_target !== "P_- and P_+" ||
+    artifact?.provider_object_branch_moment_target !== "A_P=P_- - P_+" ||
+    artifact?.all_terminal_source_cell_branch_pair_feed_surface_row_count !==
+      5 ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("P_b identity audit metadata must identify all-terminal branch feed and provider-object target");
+  }
+  const rows =
+    artifact?.terminal_row_local_feed_to_provider_object_pb_identity_audit_rows ??
+    [];
+  const overlapCount =
+    artifact?.candidate_branch_sum_overlaps_aggregate_terminal_row_count;
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== 5 ||
+    artifact?.terminal_row_local_feed_to_provider_object_pb_identity_audit_row_count !==
+      5 ||
+    artifact?.terminal_row_local_feed_to_provider_object_pb_identity_audit_terminal_row_count !==
+      15 ||
+    artifact?.candidate_provider_object_branch_pair_available_terminal_row_count !==
+      15 ||
+    !Number.isInteger(overlapCount) ||
+    overlapCount < 0 ||
+    overlapCount > 15 ||
+    artifact?.admissible_provider_object_branch_pair_terminal_row_count !== 0 ||
+    artifact
+      ?.row_local_expression_feed_to_terminal_provider_object_pb_identity_available !==
+      false ||
+    artifact?.terminal_candidate_P_minus_P_plus_materialized !== false ||
+    artifact?.provider_object_A_P_materialized !== false ||
+    artifact?.terminal_row_provider_object_replay_certified !== false ||
+    artifact?.expression_level_n38_provider_certified !== false ||
+    artifact?.directed_rounded_shared_domain_provider_certified !== false ||
+    artifact
+      ?.terminal_row_local_feed_to_provider_object_pb_identity_audit_verified !==
+      true ||
+    artifact
+      ?.terminal_row_local_feed_to_provider_object_pb_identity_audit_certified !==
+      false ||
+    artifact
+      ?.terminal_row_local_feed_to_provider_object_pb_identity_audit_classification !==
+      "candidate-expression-feed-P-minus-P-plus-available-provider-object-P-b-identity-open" ||
+    artifact
+      ?.terminal_row_local_feed_to_provider_object_pb_identity_audit_blocker_classification !==
+      "same-domain-expression-feed-to-provider-object-P-b-pushforward-identity-needed" ||
+    artifact
+      ?.terminal_row_local_feed_to_provider_object_pb_identity_audit_primary_missing_object_kind !==
+      "same-domain-pushforward-identity-from-expression-branch-feed-to-terminal-source-map-provider-object-P-b" ||
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string"
+  ) {
+    errors.push("P_b identity audit aggregate must compare fifteen candidate branch rows and keep admissibility open");
+  }
+  if (
+    rows.some((row, index) => {
+      const terminalRows =
+        row?.terminal_row_local_feed_to_provider_object_pb_identity_audit_rows ??
+        [];
+      return (
+        row?.node_index !== index ||
+        row?.terminal_graph_cell_id !== `speed.${index}.first-y` ||
+        row?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+        row?.required_xi_derivative_order !== 4 ||
+        row?.selected_branch !== artifact.selected_branch ||
+        row?.partner_branch !== artifact.partner_branch ||
+        row?.terminal_source_cell_branch_pair_feed_available !== true ||
+        row
+          ?.terminal_row_local_feed_to_provider_object_pb_identity_audit_terminal_row_count !==
+          3 ||
+        row?.candidate_provider_object_branch_pair_available_terminal_row_count !==
+          3 ||
+        !Number.isInteger(
+          row?.candidate_branch_sum_overlaps_aggregate_terminal_row_count
+        ) ||
+        row?.candidate_branch_sum_overlaps_aggregate_terminal_row_count < 0 ||
+        row?.candidate_branch_sum_overlaps_aggregate_terminal_row_count > 3 ||
+        row?.admissible_provider_object_branch_pair_terminal_row_count !== 0 ||
+        row?.row_status !==
+          "row-local-expression-feed-candidate-P-b-compared-identity-open" ||
+        row
+          ?.row_certifies_row_local_expression_feed_to_terminal_provider_object_pb_identity !==
+          false ||
+        row?.row_certifies_terminal_provider_object_branch_rows !== false ||
+        row?.row_certifies_provider_object_A_P_materialization !== false ||
+        row?.row_certifies_expression_level_source_map_provider_object_branch_rows !==
+          false ||
+        row?.row_certifies_directed_rounded_shared_domain !== false ||
+        !validClaimBoundary(row?.claim_boundary) ||
+        !Array.isArray(terminalRows) ||
+        terminalRows.length !== 3 ||
+        terminalRows.some(
+          (terminalRow) =>
+            ![37, 36, 35].includes(terminalRow?.terminal_h_index) ||
+            terminalRow?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+            terminalRow?.required_xi_derivative_order !== 4 ||
+            terminalRow?.terminal_graph_cell_id !== `speed.${index}.first-y` ||
+            terminalRow?.selected_branch !== artifact.selected_branch ||
+            terminalRow?.partner_branch !== artifact.partner_branch ||
+            !finiteOrderedInterval(terminalRow?.candidate_P_minus_interval) ||
+            !finiteOrderedInterval(terminalRow?.candidate_P_plus_interval) ||
+            !finiteOrderedInterval(
+              terminalRow?.candidate_P_minus_plus_P_plus_interval
+            ) ||
+            !finiteOrderedInterval(terminalRow?.candidate_A_P_interval) ||
+            !finiteOrderedInterval(
+              terminalRow?.aggregate_source_map_provider_object_interval
+            ) ||
+            !finiteOrderedInterval(
+              terminalRow?.pre_sum_source_term_aggregate_interval
+            ) ||
+            terminalRow?.candidate_branch_pair_available !== true ||
+            typeof terminalRow
+              ?.candidate_branch_sum_overlaps_aggregate_provider_object !==
+              "boolean" ||
+            typeof terminalRow
+              ?.aggregate_provider_object_contains_candidate_branch_sum !==
+              "boolean" ||
+            typeof terminalRow
+              ?.candidate_branch_sum_contains_aggregate_provider_object !==
+              "boolean" ||
+            !finiteNumber(
+              terminalRow?.candidate_branch_sum_to_aggregate_endpoint_gap
+            ) ||
+            !finiteNumber(terminalRow?.candidate_branch_sum_half_width) ||
+            !finiteNumber(terminalRow?.aggregate_provider_object_half_width) ||
+            terminalRow
+              ?.terminal_provider_object_branch_sum_identity_available !==
+              false ||
+            terminalRow
+              ?.admissible_as_actual_terminal_provider_object_branch_rows !==
+              false ||
+            terminalRow?.row_status !==
+              "candidate-P-minus-P-plus-from-expression-feed-compared-P-b-identity-open" ||
+            terminalRow
+              ?.row_certifies_row_local_expression_feed_to_terminal_provider_object_pb_identity !==
+              false ||
+            terminalRow?.row_certifies_terminal_provider_object_branch_rows !==
+              false ||
+            terminalRow?.row_certifies_provider_object_branch_sum_identity !==
+              false ||
+            terminalRow?.row_certifies_provider_object_A_P_materialization !==
+              false ||
+            terminalRow
+              ?.row_certifies_expression_level_source_map_provider_object_branch_rows !==
+              false ||
+            terminalRow?.row_certifies_terminal_row_provider_object_replay !==
+              false ||
+            terminalRow?.row_certifies_expression_level_n38_provider !== false ||
+            terminalRow?.row_certifies_directed_rounded_shared_domain !==
+              false ||
+            !validClaimBoundary(terminalRow?.claim_boundary)
+        )
+      );
+    })
+  ) {
+    errors.push("P_b identity audit rows must compare candidate P pairs against aggregate P while keeping admission false");
+  }
+  return errors;
+}
+
+function h39TerminalProviderObjectPbPushforwardOperatorAuditClaimBoundary() {
+  return {
+    defines_terminal_provider_object_pb_pushforward_operator_audit_only: true,
+    certifies_provider_object_pb_pushforward_operator_identity: false,
+    certifies_row_local_expression_feed_to_terminal_provider_object_pb_identity:
+      false,
+    certifies_terminal_provider_object_branch_rows: false,
+    certifies_provider_object_branch_sum_identity: false,
+    certifies_provider_object_A_P_materialization: false,
+    certifies_expression_level_source_map_provider_object_branch_rows: false,
+    certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation:
+      false,
+    certifies_terminal_row_provider_object_replay: false,
+    certifies_expression_level_n38_provider: false,
+    certifies_terminal_row_provider_enclosure: false,
+    certifies_terminal_graph_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
+export function buildH39RequestedY44TerminalProviderObjectPbPushforwardOperatorAuditCandidate({
+  rowLocalCollarReplay = null,
+  terminalRowLocalFeedToProviderObjectPbIdentityAudit = null,
+  terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit,
+} = {}) {
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const numericInterval = (interval) =>
+    finiteOrderedInterval(interval)
+      ? [Number(interval[0]), Number(interval[1])]
+      : null;
+  const addIntervals = (left, right) =>
+    finiteOrderedInterval(left) && finiteOrderedInterval(right)
+      ? [Number(left[0]) + Number(right[0]), Number(left[1]) + Number(right[1])]
+      : null;
+  const intervalEndpointGap = (left, right) =>
+    finiteOrderedInterval(left) && finiteOrderedInterval(right)
+      ? Math.max(
+          Math.abs(Number(left[0]) - Number(right[0])),
+          Math.abs(Number(left[1]) - Number(right[1]))
+        )
+      : null;
+  const intervalsOverlap = (left, right) =>
+    finiteOrderedInterval(left) &&
+    finiteOrderedInterval(right) &&
+    Number(left[0]) <= Number(right[1]) &&
+    Number(right[0]) <= Number(left[1]);
+  const intervalHalfWidthLocal = (interval) =>
+    finiteOrderedInterval(interval)
+      ? (Number(interval[1]) - Number(interval[0])) / 2
+      : null;
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const rowsByNode = (rows) =>
+    new Map(
+      (rows ?? [])
+        .filter((row) => Number.isInteger(row?.node_index))
+        .map((row) => [Number(row.node_index), row])
+    );
+  const terminalRowsByH = (rows) =>
+    new Map(
+      (rows ?? [])
+        .filter((row) => Number.isInteger(row?.terminal_h_index))
+        .map((row) => [Number(row.terminal_h_index), row])
+    );
+  const sumWeightedRows = (rows) => {
+    const intervals = Array.isArray(rows)
+      ? rows.map((row) => numericInterval(row?.weighted_derivative_interval))
+      : [];
+    return intervals.length === 5 &&
+      intervals.every((interval) => interval !== null)
+      ? intervals.reduce((sum, interval) => addIntervals(sum, interval), [0, 0])
+      : null;
+  };
+  const branchTermRowsByTerm = (feed) =>
+    new Map(
+      (feed?.source_term_feed_rows ?? [])
+        .filter((row) => typeof row?.term === "string")
+        .map((row) => [row.term, row])
+    );
+  const selectedBranch =
+    terminalRowLocalFeedToProviderObjectPbIdentityAudit?.selected_branch ??
+    rowLocalCollarReplay?.active_branch ??
+    null;
+  const partnerBranch =
+    selectedBranch === "-" ? "+" : selectedBranch === "+" ? "-" : null;
+  const branchSurfaceRowsByNode = rowsByNode(
+    rowLocalCollarReplay?.all_terminal_source_cell_branch_pair_feed_surface_rows
+  );
+  const identityRowsByNode = rowsByNode(
+    terminalRowLocalFeedToProviderObjectPbIdentityAudit
+      ?.terminal_row_local_feed_to_provider_object_pb_identity_audit_rows
+  );
+  const preSumRows =
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      ?.provider_object_pre_sum_branch_source_audit_rows ?? [];
+  const rows = preSumRows.map((nodeRow, nodeIndex) => {
+    const terminalGraphCellId = nodeRow?.terminal_graph_cell_id ?? null;
+    const branchSurfaceRow = branchSurfaceRowsByNode.get(nodeIndex) ?? null;
+    const identityNodeRow = identityRowsByNode.get(nodeIndex) ?? null;
+    const identityTerminalRowsByH = terminalRowsByH(
+      identityNodeRow?.terminal_row_local_feed_to_provider_object_pb_identity_audit_rows
+    );
+    const selectedTermRowsByTerm = branchTermRowsByTerm(
+      branchSurfaceRow?.selected_branch_expression_feed
+    );
+    const partnerTermRowsByTerm = branchTermRowsByTerm(
+      branchSurfaceRow?.partner_branch_expression_feed
+    );
+    const terminalRows = (nodeRow?.provider_object_pre_sum_branch_source_audit_rows ?? []).map(
+      (terminalRow) => {
+        const identityTerminalRow =
+          identityTerminalRowsByH.get(terminalRow?.terminal_h_index) ?? null;
+        const termComparisonRows = H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.map(
+          (term) => {
+            const aggregateTermRow =
+              (terminalRow?.pre_sum_source_term_feed_rows ?? []).find(
+                (candidate) => candidate?.term === term
+              ) ?? null;
+            const selectedTermRow = selectedTermRowsByTerm.get(term) ?? null;
+            const partnerTermRow = partnerTermRowsByTerm.get(term) ?? null;
+            const aggregateInterval = numericInterval(
+              aggregateTermRow?.aggregate_source_term_feed_interval
+            );
+            const selectedInterval = sumWeightedRows(
+              selectedTermRow?.weighted_node_interval_rows
+            );
+            const partnerInterval = sumWeightedRows(
+              partnerTermRow?.weighted_node_interval_rows
+            );
+            const candidateBranchSumInterval = addIntervals(
+              selectedInterval,
+              partnerInterval
+            );
+            const candidateTermAvailable =
+              aggregateTermRow?.aggregate_source_term_feed_interval_available ===
+                true &&
+              selectedTermRow?.source_term_feed_row_available === true &&
+              partnerTermRow?.source_term_feed_row_available === true &&
+              finiteOrderedInterval(aggregateInterval) &&
+              finiteOrderedInterval(selectedInterval) &&
+              finiteOrderedInterval(partnerInterval) &&
+              finiteOrderedInterval(candidateBranchSumInterval);
+            return {
+              term,
+              terminal_h_index: terminalRow?.terminal_h_index ?? null,
+              terminal_graph_cell_id: terminalRow?.terminal_graph_cell_id ?? null,
+              selected_branch: selectedBranch,
+              partner_branch: partnerBranch,
+              aggregate_provider_operator_kind:
+                aggregateTermRow?.provider_object_pre_sum_feed_role ?? null,
+              expression_feed_operator_kind:
+                "five-node-lagrange-d4-expression-source-term-feed",
+              aggregate_source_term_feed_interval: aggregateInterval,
+              selected_expression_feed_term_interval: selectedInterval,
+              partner_expression_feed_term_interval: partnerInterval,
+              candidate_expression_branch_sum_term_interval:
+                candidateBranchSumInterval,
+              candidate_expression_branch_sum_overlaps_aggregate_term:
+                intervalsOverlap(candidateBranchSumInterval, aggregateInterval),
+              candidate_expression_branch_sum_to_aggregate_term_endpoint_gap:
+                intervalEndpointGap(candidateBranchSumInterval, aggregateInterval),
+              candidate_expression_branch_sum_term_half_width:
+                intervalHalfWidthLocal(candidateBranchSumInterval),
+              aggregate_source_term_feed_half_width:
+                intervalHalfWidthLocal(aggregateInterval),
+              aggregate_term_has_branch_bearing_fields:
+                aggregateTermRow?.provider_object_branch_feed_available === true ||
+                aggregateTermRow?.branch_label_available === true ||
+                aggregateTermRow
+                  ?.source_term_branch_projection_coefficient_available ===
+                  true ||
+                aggregateTermRow?.source_term_branch_interval_available === true,
+              candidate_term_branch_pair_available: candidateTermAvailable,
+              same_operator_identity_available: false,
+              same_normalization_identity_available: false,
+              admissible_as_provider_object_branch_term: false,
+              rejection_reason:
+                "aggregate-P-term-feed-and-expression-branch-term-feed-have-no-same-domain-pushforward-operator-identity",
+              row_certifies_provider_object_pb_pushforward_operator_identity:
+                false,
+              row_certifies_terminal_provider_object_branch_rows: false,
+              row_certifies_directed_rounded_shared_domain: false,
+              claim_boundary:
+                h39TerminalProviderObjectPbPushforwardOperatorAuditClaimBoundary(),
+            };
+          }
+        );
+        const candidateTermsAvailable = termComparisonRows.every(
+          (row) => row.candidate_term_branch_pair_available === true
+        );
+        return {
+          terminal_h_index: terminalRow?.terminal_h_index ?? null,
+          source_y_order: H38_NUMERATOR_Y_ORDER,
+          required_xi_derivative_order: 4,
+          terminal_graph_cell_id: terminalRow?.terminal_graph_cell_id ?? null,
+          selected_branch: selectedBranch,
+          partner_branch: partnerBranch,
+          aggregate_provider_operator_kind:
+            "provider-object-pre-sum-aggregate-source-term-feed",
+          expression_feed_operator_kind:
+            "five-node-lagrange-d4-expression-source-term-feed",
+          operator_source_terms_aligned: sameTerms(
+            termComparisonRows.map((row) => row.term)
+          ),
+          terminal_identity_candidate_row_available:
+            identityTerminalRow?.candidate_branch_pair_available === true,
+          term_pushforward_operator_comparison_rows: termComparisonRows,
+          term_pushforward_operator_comparison_row_count:
+            termComparisonRows.length,
+          candidate_term_branch_pair_available_count: termComparisonRows.filter(
+            (row) => row.candidate_term_branch_pair_available === true
+          ).length,
+          candidate_term_branch_sum_overlaps_aggregate_count:
+            termComparisonRows.filter(
+              (row) =>
+                row.candidate_expression_branch_sum_overlaps_aggregate_term ===
+                true
+            ).length,
+          aggregate_provider_terms_have_no_branch_bearing_fields:
+            termComparisonRows.every(
+              (row) => row.aggregate_term_has_branch_bearing_fields === false
+            ),
+          same_domain_pushforward_operator_identity_available: false,
+          same_domain_pushforward_normalization_identity_available: false,
+          admissible_as_actual_terminal_provider_object_branch_rows: false,
+          row_status: candidateTermsAvailable
+            ? "candidate-expression-term-feeds-compared-pushforward-operator-identity-open"
+            : "candidate-expression-term-feed-pushforward-input-open",
+          row_certifies_provider_object_pb_pushforward_operator_identity:
+            false,
+          row_certifies_terminal_provider_object_branch_rows: false,
+          row_certifies_provider_object_branch_sum_identity: false,
+          row_certifies_provider_object_A_P_materialization: false,
+          row_certifies_expression_level_source_map_provider_object_branch_rows:
+            false,
+          row_certifies_terminal_row_provider_object_replay: false,
+          row_certifies_expression_level_n38_provider: false,
+          row_certifies_directed_rounded_shared_domain: false,
+          claim_boundary:
+            h39TerminalProviderObjectPbPushforwardOperatorAuditClaimBoundary(),
+        };
+      }
+    );
+    return {
+      node_index: nodeRow?.node_index ?? nodeIndex,
+      terminal_graph_cell_id: terminalGraphCellId,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      selected_branch: selectedBranch,
+      partner_branch: partnerBranch,
+      terminal_source_cell_branch_pair_feed_available:
+        branchSurfaceRow?.terminal_source_cell_branch_pair_feed_available ===
+        true,
+      terminal_identity_candidate_row_available:
+        identityNodeRow?.candidate_provider_object_branch_pair_available_terminal_row_count ===
+        3,
+      terminal_provider_object_pb_pushforward_operator_audit_rows:
+        terminalRows,
+      terminal_provider_object_pb_pushforward_operator_audit_terminal_row_count:
+        terminalRows.length,
+      term_pushforward_operator_comparison_row_count: terminalRows.reduce(
+        (total, row) => total + row.term_pushforward_operator_comparison_row_count,
+        0
+      ),
+      candidate_term_branch_pair_available_count: terminalRows.reduce(
+        (total, row) => total + row.candidate_term_branch_pair_available_count,
+        0
+      ),
+      candidate_term_branch_sum_overlaps_aggregate_count: terminalRows.reduce(
+        (total, row) =>
+          total + row.candidate_term_branch_sum_overlaps_aggregate_count,
+        0
+      ),
+      same_domain_pushforward_operator_identity_available_terminal_row_count:
+        0,
+      admissible_provider_object_branch_pair_terminal_row_count: 0,
+      row_status:
+        terminalRows.length === 3 &&
+        terminalRows.every(
+          (row) =>
+            row.row_status ===
+            "candidate-expression-term-feeds-compared-pushforward-operator-identity-open"
+        )
+          ? "candidate-expression-feed-pushforward-operator-compared-identity-open"
+          : "provider-object-P-b-pushforward-operator-audit-input-open",
+      row_certifies_provider_object_pb_pushforward_operator_identity: false,
+      row_certifies_terminal_provider_object_branch_rows: false,
+      row_certifies_provider_object_A_P_materialization: false,
+      row_certifies_expression_level_source_map_provider_object_branch_rows:
+        false,
+      row_certifies_directed_rounded_shared_domain: false,
+      claim_boundary:
+        h39TerminalProviderObjectPbPushforwardOperatorAuditClaimBoundary(),
+    };
+  });
+  const terminalRowCount = rows.reduce(
+    (total, row) =>
+      total +
+      Number(row.terminal_provider_object_pb_pushforward_operator_audit_terminal_row_count),
+    0
+  );
+  const termComparisonRowCount = rows.reduce(
+    (total, row) =>
+      total + Number(row.term_pushforward_operator_comparison_row_count),
+    0
+  );
+  const candidateTermAvailableCount = rows.reduce(
+    (total, row) =>
+      total + Number(row.candidate_term_branch_pair_available_count),
+    0
+  );
+  const overlapCount = rows.reduce(
+    (total, row) =>
+      total + Number(row.candidate_term_branch_sum_overlaps_aggregate_count),
+    0
+  );
+  const rowLocalReady =
+    rowLocalCollarReplay?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_ROW_LOCAL_PRODUCER_COLLAR_REPLAY_SCHEMA &&
+    rowLocalCollarReplay?.all_terminal_source_cell_branch_pair_feeds_materialized ===
+      true;
+  const identityAuditReady =
+    terminalRowLocalFeedToProviderObjectPbIdentityAudit?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_ROW_LOCAL_FEED_TO_PROVIDER_OBJECT_PB_IDENTITY_AUDIT_CANDIDATE_SCHEMA &&
+    terminalRowLocalFeedToProviderObjectPbIdentityAudit
+      ?.terminal_row_local_feed_to_provider_object_pb_identity_audit_verified ===
+      true &&
+    terminalRowLocalFeedToProviderObjectPbIdentityAudit
+      ?.row_local_expression_feed_to_terminal_provider_object_pb_identity_available ===
+      false;
+  const preSumReady =
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_PRE_SUM_BRANCH_SOURCE_AUDIT_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      ?.provider_object_pre_sum_branch_source_audit_verified === true &&
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      ?.pre_sum_source_term_branch_feed_available_row_count === 0;
+  const auditVerified =
+    rowLocalReady &&
+    identityAuditReady &&
+    preSumReady &&
+    rows.length === 5 &&
+    terminalRowCount === 15 &&
+    termComparisonRowCount === 45 &&
+    candidateTermAvailableCount === 45;
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_PROVIDER_OBJECT_PB_PUSHFORWARD_OPERATOR_AUDIT_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-terminal-provider-object-pb-pushforward-operator-audit-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-terminal-provider-object-P-b-pushforward-operator-audit",
+    target_kind:
+      "candidate-requested-y44-terminal-provider-object-P-b-pushforward-operator-audit",
+    proof_status:
+      "candidate-expression-feed-and-aggregate-P-term-operators-compared-pushforward-identity-open",
+    row_local_collar_replay_schema: rowLocalCollarReplay?.schema ?? null,
+    terminal_row_local_feed_to_provider_object_pb_identity_audit_schema:
+      terminalRowLocalFeedToProviderObjectPbIdentityAudit?.schema ?? null,
+    terminal_expression_level_source_map_provider_object_pre_sum_branch_source_audit_schema:
+      terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit?.schema ??
+      null,
+    selected_branch: selectedBranch,
+    partner_branch: partnerBranch,
+    source_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    source_terms_preserved_signed_together: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    aggregate_provider_operator_kind:
+      "provider-object-pre-sum-aggregate-source-term-feed",
+    expression_feed_operator_kind:
+      "five-node-lagrange-d4-expression-source-term-feed",
+    provider_object_branch_pair_target: "P_- and P_+",
+    provider_object_branch_moment_target: "A_P=P_- - P_+",
+    terminal_provider_object_pb_pushforward_operator_audit_rows: rows,
+    terminal_provider_object_pb_pushforward_operator_audit_row_count:
+      rows.length,
+    terminal_provider_object_pb_pushforward_operator_audit_terminal_row_count:
+      terminalRowCount,
+    term_pushforward_operator_comparison_row_count: termComparisonRowCount,
+    candidate_term_branch_pair_available_count: candidateTermAvailableCount,
+    candidate_term_branch_sum_overlaps_aggregate_count: overlapCount,
+    same_domain_pushforward_operator_identity_available_terminal_row_count: 0,
+    same_domain_pushforward_normalization_identity_available_terminal_row_count:
+      0,
+    admissible_provider_object_branch_pair_terminal_row_count: 0,
+    provider_object_pb_pushforward_operator_identity_available: false,
+    terminal_candidate_P_minus_P_plus_materialized: false,
+    provider_object_A_P_materialized: false,
+    terminal_row_provider_object_replay_certified: false,
+    expression_level_n38_provider_certified: false,
+    directed_rounded_shared_domain_provider_certified: false,
+    terminal_provider_object_pb_pushforward_operator_audit_verified:
+      auditVerified,
+    terminal_provider_object_pb_pushforward_operator_audit_certified:
+      false,
+    terminal_provider_object_pb_pushforward_operator_audit_classification:
+      auditVerified
+        ? "candidate-term-operators-compared-P-b-pushforward-identity-open"
+        : "provider-object-P-b-pushforward-operator-audit-open",
+    terminal_provider_object_pb_pushforward_operator_audit_blocker_classification:
+      auditVerified
+        ? "same-domain-pushforward-operator-and-normalization-identity-needed"
+        : "provider-object-P-b-pushforward-operator-audit-input-open",
+    terminal_provider_object_pb_pushforward_operator_audit_primary_missing_object_kind:
+      auditVerified
+        ? "same-domain-pushforward-operator-identity-from-expression-source-term-feed-to-aggregate-provider-P"
+        : "provider-object-P-b-pushforward-operator-audit",
+    next_certificate_object:
+      "same-domain pushforward operator and normalization identity mapping the branch-labeled expression source-term feed to the terminal aggregate provider-object P terms before admitting P_- and P_+",
+    candidate_certificate_route:
+      "The packet compares all forty-five term-level rows between aggregate P pre-sum feeds and the selected/opposite expression branch feeds. It records that candidate branch term intervals exist, but the aggregate P term rows expose no branch-bearing operator, branch weights, or same-domain normalization identity. Therefore interval overlap cannot admit P_- and P_+ as actual provider-object branches.",
+    claim_boundary:
+      h39TerminalProviderObjectPbPushforwardOperatorAuditClaimBoundary(),
+  };
+}
+
+export function validateH39RequestedY44TerminalProviderObjectPbPushforwardOperatorAuditCandidate(
+  artifact
+) {
+  const errors = [];
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const sameStringSet = (left, right) =>
+    Array.isArray(left) &&
+    left.length === right.length &&
+    right.every((value) => left.includes(value));
+  const validClaimBoundary = (claimBoundary) =>
+    claimBoundary?.defines_terminal_provider_object_pb_pushforward_operator_audit_only ===
+      true &&
+    claimBoundary?.certifies_provider_object_pb_pushforward_operator_identity ===
+      false &&
+    claimBoundary
+      ?.certifies_row_local_expression_feed_to_terminal_provider_object_pb_identity ===
+      false &&
+    claimBoundary?.certifies_terminal_provider_object_branch_rows === false &&
+    claimBoundary?.certifies_provider_object_branch_sum_identity === false &&
+    claimBoundary?.certifies_provider_object_A_P_materialization === false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_rows ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation ===
+      false &&
+    claimBoundary?.certifies_terminal_row_provider_object_replay === false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_PROVIDER_OBJECT_PB_PUSHFORWARD_OPERATOR_AUDIT_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 provider-object P_b pushforward operator audit candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-terminal-provider-object-pb-pushforward-operator-audit-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-terminal-provider-object-P-b-pushforward-operator-audit" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-terminal-provider-object-P-b-pushforward-operator-audit" ||
+    artifact?.proof_status !==
+      "candidate-expression-feed-and-aggregate-P-term-operators-compared-pushforward-identity-open" ||
+    artifact?.row_local_collar_replay_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_ROW_LOCAL_PRODUCER_COLLAR_REPLAY_SCHEMA ||
+    artifact?.terminal_row_local_feed_to_provider_object_pb_identity_audit_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_ROW_LOCAL_FEED_TO_PROVIDER_OBJECT_PB_IDENTITY_AUDIT_CANDIDATE_SCHEMA ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_pre_sum_branch_source_audit_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_PRE_SUM_BRANCH_SOURCE_AUDIT_CANDIDATE_SCHEMA ||
+    !["-", "+"].includes(artifact?.selected_branch) ||
+    !["-", "+"].includes(artifact?.partner_branch) ||
+    artifact?.selected_branch === artifact?.partner_branch ||
+    artifact?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    !sameStringSet(
+      artifact?.source_terms_preserved_signed_together,
+      H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS
+    ) ||
+    artifact?.aggregate_provider_operator_kind !==
+      "provider-object-pre-sum-aggregate-source-term-feed" ||
+    artifact?.expression_feed_operator_kind !==
+      "five-node-lagrange-d4-expression-source-term-feed" ||
+    artifact?.provider_object_branch_pair_target !== "P_- and P_+" ||
+    artifact?.provider_object_branch_moment_target !== "A_P=P_- - P_+" ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("pushforward audit metadata must identify aggregate P and expression-feed operators");
+  }
+  const rows =
+    artifact?.terminal_provider_object_pb_pushforward_operator_audit_rows ?? [];
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== 5 ||
+    artifact?.terminal_provider_object_pb_pushforward_operator_audit_row_count !==
+      5 ||
+    artifact
+      ?.terminal_provider_object_pb_pushforward_operator_audit_terminal_row_count !==
+      15 ||
+    artifact?.term_pushforward_operator_comparison_row_count !== 45 ||
+    artifact?.candidate_term_branch_pair_available_count !== 45 ||
+    !Number.isInteger(
+      artifact?.candidate_term_branch_sum_overlaps_aggregate_count
+    ) ||
+    artifact?.candidate_term_branch_sum_overlaps_aggregate_count < 0 ||
+    artifact?.candidate_term_branch_sum_overlaps_aggregate_count > 45 ||
+    artifact
+      ?.same_domain_pushforward_operator_identity_available_terminal_row_count !==
+      0 ||
+    artifact
+      ?.same_domain_pushforward_normalization_identity_available_terminal_row_count !==
+      0 ||
+    artifact?.admissible_provider_object_branch_pair_terminal_row_count !== 0 ||
+    artifact?.provider_object_pb_pushforward_operator_identity_available !==
+      false ||
+    artifact?.terminal_candidate_P_minus_P_plus_materialized !== false ||
+    artifact?.provider_object_A_P_materialized !== false ||
+    artifact?.terminal_row_provider_object_replay_certified !== false ||
+    artifact?.expression_level_n38_provider_certified !== false ||
+    artifact?.directed_rounded_shared_domain_provider_certified !== false ||
+    artifact?.terminal_provider_object_pb_pushforward_operator_audit_verified !==
+      true ||
+    artifact?.terminal_provider_object_pb_pushforward_operator_audit_certified !==
+      false ||
+    artifact?.terminal_provider_object_pb_pushforward_operator_audit_classification !==
+      "candidate-term-operators-compared-P-b-pushforward-identity-open" ||
+    artifact
+      ?.terminal_provider_object_pb_pushforward_operator_audit_blocker_classification !==
+      "same-domain-pushforward-operator-and-normalization-identity-needed" ||
+    artifact
+      ?.terminal_provider_object_pb_pushforward_operator_audit_primary_missing_object_kind !==
+      "same-domain-pushforward-operator-identity-from-expression-source-term-feed-to-aggregate-provider-P" ||
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string"
+  ) {
+    errors.push("pushforward audit aggregate must compare forty-five term rows and keep identity absent");
+  }
+  if (
+    rows.some((row, index) => {
+      const terminalRows =
+        row?.terminal_provider_object_pb_pushforward_operator_audit_rows ?? [];
+      return (
+        row?.node_index !== index ||
+        row?.terminal_graph_cell_id !== `speed.${index}.first-y` ||
+        row?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+        row?.required_xi_derivative_order !== 4 ||
+        row?.selected_branch !== artifact.selected_branch ||
+        row?.partner_branch !== artifact.partner_branch ||
+        row?.terminal_source_cell_branch_pair_feed_available !== true ||
+        row?.terminal_identity_candidate_row_available !== true ||
+        row
+          ?.terminal_provider_object_pb_pushforward_operator_audit_terminal_row_count !==
+          3 ||
+        row?.term_pushforward_operator_comparison_row_count !== 9 ||
+        row?.candidate_term_branch_pair_available_count !== 9 ||
+        !Number.isInteger(
+          row?.candidate_term_branch_sum_overlaps_aggregate_count
+        ) ||
+        row?.candidate_term_branch_sum_overlaps_aggregate_count < 0 ||
+        row?.candidate_term_branch_sum_overlaps_aggregate_count > 9 ||
+        row
+          ?.same_domain_pushforward_operator_identity_available_terminal_row_count !==
+          0 ||
+        row?.admissible_provider_object_branch_pair_terminal_row_count !== 0 ||
+        row?.row_status !==
+          "candidate-expression-feed-pushforward-operator-compared-identity-open" ||
+        row?.row_certifies_provider_object_pb_pushforward_operator_identity !==
+          false ||
+        row?.row_certifies_terminal_provider_object_branch_rows !== false ||
+        row?.row_certifies_provider_object_A_P_materialization !== false ||
+        row?.row_certifies_expression_level_source_map_provider_object_branch_rows !==
+          false ||
+        row?.row_certifies_directed_rounded_shared_domain !== false ||
+        !validClaimBoundary(row?.claim_boundary) ||
+        !Array.isArray(terminalRows) ||
+        terminalRows.length !== 3 ||
+        terminalRows.some(
+          (terminalRow) =>
+            ![37, 36, 35].includes(terminalRow?.terminal_h_index) ||
+            terminalRow?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+            terminalRow?.required_xi_derivative_order !== 4 ||
+            terminalRow?.terminal_graph_cell_id !== `speed.${index}.first-y` ||
+            terminalRow?.selected_branch !== artifact.selected_branch ||
+            terminalRow?.partner_branch !== artifact.partner_branch ||
+            terminalRow?.aggregate_provider_operator_kind !==
+              "provider-object-pre-sum-aggregate-source-term-feed" ||
+            terminalRow?.expression_feed_operator_kind !==
+              "five-node-lagrange-d4-expression-source-term-feed" ||
+            terminalRow?.operator_source_terms_aligned !== true ||
+            terminalRow?.terminal_identity_candidate_row_available !== true ||
+            terminalRow?.term_pushforward_operator_comparison_row_count !== 3 ||
+            terminalRow?.candidate_term_branch_pair_available_count !== 3 ||
+            terminalRow?.aggregate_provider_terms_have_no_branch_bearing_fields !==
+              true ||
+            terminalRow?.same_domain_pushforward_operator_identity_available !==
+              false ||
+            terminalRow
+              ?.same_domain_pushforward_normalization_identity_available !==
+              false ||
+            terminalRow
+              ?.admissible_as_actual_terminal_provider_object_branch_rows !==
+              false ||
+            terminalRow?.row_status !==
+              "candidate-expression-term-feeds-compared-pushforward-operator-identity-open" ||
+            terminalRow
+              ?.row_certifies_provider_object_pb_pushforward_operator_identity !==
+              false ||
+            terminalRow?.row_certifies_terminal_provider_object_branch_rows !==
+              false ||
+            terminalRow?.row_certifies_provider_object_A_P_materialization !==
+              false ||
+            terminalRow?.row_certifies_directed_rounded_shared_domain !==
+              false ||
+            !validClaimBoundary(terminalRow?.claim_boundary) ||
+            !Array.isArray(terminalRow?.term_pushforward_operator_comparison_rows) ||
+            terminalRow.term_pushforward_operator_comparison_rows.length !== 3 ||
+            terminalRow.term_pushforward_operator_comparison_rows.some(
+              (termRow) =>
+                !H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.includes(
+                  termRow?.term
+                ) ||
+                !finiteOrderedInterval(
+                  termRow?.aggregate_source_term_feed_interval
+                ) ||
+                !finiteOrderedInterval(
+                  termRow?.selected_expression_feed_term_interval
+                ) ||
+                !finiteOrderedInterval(
+                  termRow?.partner_expression_feed_term_interval
+                ) ||
+                !finiteOrderedInterval(
+                  termRow?.candidate_expression_branch_sum_term_interval
+                ) ||
+                typeof termRow
+                  ?.candidate_expression_branch_sum_overlaps_aggregate_term !==
+                  "boolean" ||
+                !finiteNumber(
+                  termRow
+                    ?.candidate_expression_branch_sum_to_aggregate_term_endpoint_gap
+                ) ||
+                !finiteNumber(
+                  termRow?.candidate_expression_branch_sum_term_half_width
+                ) ||
+                !finiteNumber(termRow?.aggregate_source_term_feed_half_width) ||
+                termRow?.aggregate_term_has_branch_bearing_fields !== false ||
+                termRow?.candidate_term_branch_pair_available !== true ||
+                termRow?.same_operator_identity_available !== false ||
+                termRow?.same_normalization_identity_available !== false ||
+                termRow?.admissible_as_provider_object_branch_term !== false ||
+                termRow?.row_certifies_provider_object_pb_pushforward_operator_identity !==
+                  false ||
+                termRow?.row_certifies_terminal_provider_object_branch_rows !==
+                  false ||
+                termRow?.row_certifies_directed_rounded_shared_domain !==
+                  false ||
+                !validClaimBoundary(termRow?.claim_boundary)
+            )
+        )
+      );
+    })
+  ) {
+    errors.push("pushforward audit rows must keep all operator identities absent while term comparisons are available");
+  }
+  return errors;
+}
+
+function h39TerminalAggregatePProviderPreaggregationBranchBearingAuditClaimBoundary() {
+  return {
+    defines_terminal_aggregate_p_provider_preaggregation_branch_bearing_audit_only:
+      true,
+    certifies_upstream_provider_object_branch_materialization: false,
+    certifies_actual_provider_object_branch_rows: false,
+    certifies_provider_object_branch_sum_identity: false,
+    certifies_provider_object_A_P_materialization: false,
+    certifies_provider_object_pb_pushforward_operator_identity: false,
+    certifies_pre_sum_provider_object_branch_source: false,
+    certifies_expression_level_source_map_provider_object_branch_rows: false,
+    certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation:
+      false,
+    certifies_terminal_row_provider_object_replay: false,
+    certifies_expression_level_n38_provider: false,
+    certifies_terminal_row_provider_enclosure: false,
+    certifies_terminal_graph_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
+export function buildH39RequestedY44TerminalAggregatePProviderPreaggregationBranchBearingAuditCandidate({
+  sourceMapResidualCovarianceTarget,
+  terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit,
+  terminalProviderObjectPbPushforwardOperatorAudit,
+} = {}) {
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const numericInterval = (interval) =>
+    finiteOrderedInterval(interval)
+      ? [Number(interval[0]), Number(interval[1])]
+      : null;
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  const rowsByNode = (rows) =>
+    new Map(
+      (rows ?? [])
+        .filter((row) => Number.isInteger(row?.node_index))
+        .map((row) => [Number(row.node_index), row])
+    );
+  const terminalRowsByH = (rows) =>
+    new Map(
+      (rows ?? [])
+        .filter((row) => Number.isInteger(row?.terminal_h_index))
+        .map((row) => [Number(row.terminal_h_index), row])
+    );
+  const hasOwn = (object, key) =>
+    object !== null &&
+    typeof object === "object" &&
+    Object.prototype.hasOwnProperty.call(object, key);
+  const valueSummary = (value) => {
+    if (finiteOrderedInterval(value)) {
+      return {
+        value_kind: "finite-interval",
+        interval: numericInterval(value),
+      };
+    }
+    if (Array.isArray(value)) {
+      return {
+        value_kind: "array",
+        array_length: value.length,
+      };
+    }
+    if (value !== null && typeof value === "object") {
+      return {
+        value_kind: "object",
+        object_key_count: Object.keys(value).length,
+      };
+    }
+    return {
+      value_kind: typeof value,
+      value:
+        typeof value === "string" ||
+        typeof value === "number" ||
+        typeof value === "boolean"
+          ? value
+          : null,
+    };
+  };
+  const branchBearingFieldGroups = Object.freeze({
+    branch_label: [
+      "branch",
+      "source_branch",
+      "source_term_branch",
+      "provider_branch",
+      "provider_object_branch",
+      "provider_object_branch_label",
+      "source_map_provider_object_branch",
+      "branch_label",
+    ],
+    branch_weight: [
+      "source_term_branch_projection_coefficient",
+      "source_term_alpha_coefficient",
+      "source_term_to_provider_object_branch_projection_coefficient",
+      "branch_projection_coefficient",
+      "provider_object_branch_weight",
+      "branch_weight",
+      "alpha_j",
+    ],
+    branch_interval: [
+      "source_map_provider_object_branch_interval",
+      "provider_object_branch_interval",
+      "branch_resolved_residual_interval",
+      "source_term_branch_residual_interval",
+      "P_minus_interval",
+      "P_plus_interval",
+      "P_b_interval",
+    ],
+    projection_map: [
+      "source_map_provider_object_branch_split_map",
+      "provider_object_branch_split_map",
+      "branch_projection_map",
+      "provider_object_branch_projection_map",
+      "source_term_to_provider_object_branch_map",
+      "source_term_to_provider_object_branch_projection_map",
+      "source_term_projection_map",
+      "alpha_map",
+    ],
+    pushforward_operator: [
+      "provider_object_pushforward_operator",
+      "same_domain_pushforward_operator_identity",
+      "source_term_to_provider_object_pushforward_operator",
+      "source_map_provider_object_branch_operator",
+      "provider_object_branch_operator",
+    ],
+    normalization: [
+      "provider_object_branch_normalization",
+      "source_term_branch_projection_normalization",
+      "pushforward_normalization",
+      "same_domain_pushforward_normalization_identity",
+      "source_map_provider_object_pushforward_normalization",
+      "normalization_identity",
+      "operator_normalization",
+    ],
+  });
+  const inspectFieldHits = (object, objectRole, objectPath) => {
+    if (object === null || typeof object !== "object") {
+      return [];
+    }
+    return Object.entries(branchBearingFieldGroups).flatMap(
+      ([fieldGroup, fieldNames]) =>
+        fieldNames
+          .filter((fieldName) => hasOwn(object, fieldName))
+          .map((fieldName) => ({
+            object_role: objectRole,
+            object_path: objectPath,
+            field_group: fieldGroup,
+            field_name: fieldName,
+            field_present: true,
+            field_value_is_non_null:
+              object[fieldName] !== null && object[fieldName] !== undefined,
+            ...valueSummary(object[fieldName]),
+          }))
+          .filter((hit) => hit.field_value_is_non_null === true)
+    );
+  };
+  const sourceTermProviderProbe =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_shared_stream_five_node_source_term_provider_probe ??
+    null;
+  const sourceTermProviderPrecertificate =
+    sourceMapResidualCovarianceTarget
+      ?.source_map_residual_shared_stream_five_node_source_term_provider_precertificate ??
+    null;
+  const providerRows = sourceTermProviderProbe?.source_term_provider_probe_rows ?? [];
+  const precertificateRows =
+    sourceTermProviderPrecertificate?.source_term_provider_precertificate_rows ??
+    [];
+  const preSumRows =
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      ?.provider_object_pre_sum_branch_source_audit_rows ?? [];
+  const pushforwardRows =
+    terminalProviderObjectPbPushforwardOperatorAudit
+      ?.terminal_provider_object_pb_pushforward_operator_audit_rows ?? [];
+  const providerRowsByNode = rowsByNode(providerRows);
+  const precertificateRowsByNode = rowsByNode(precertificateRows);
+  const preSumRowsByNode = rowsByNode(preSumRows);
+  const pushforwardRowsByNode = rowsByNode(pushforwardRows);
+  const sourceTargetReady =
+    sourceMapResidualCovarianceTarget?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_MAP_RESIDUAL_COVARIANCE_TARGET_SCHEMA &&
+    sourceTermProviderProbe?.target_kind ===
+      "candidate-requested-y44-shared-source-map-source-term-provider-probe" &&
+    sourceTermProviderProbe?.source_term_provider_probe_rows_available ===
+      true &&
+    sourceTermProviderPrecertificate?.target_kind ===
+      "candidate-requested-y44-shared-source-map-source-term-provider-precertificate" &&
+    sourceTermProviderPrecertificate
+      ?.source_term_provider_precertificate_rows_available === true;
+  const preSumReady =
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_PRE_SUM_BRANCH_SOURCE_AUDIT_CANDIDATE_SCHEMA &&
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      ?.provider_object_pre_sum_branch_source_audit_verified === true &&
+    terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+      ?.provider_object_pre_sum_branch_source_available === false;
+  const pushforwardReady =
+    terminalProviderObjectPbPushforwardOperatorAudit?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_PROVIDER_OBJECT_PB_PUSHFORWARD_OPERATOR_AUDIT_CANDIDATE_SCHEMA &&
+    terminalProviderObjectPbPushforwardOperatorAudit
+      ?.terminal_provider_object_pb_pushforward_operator_audit_verified ===
+      true &&
+    terminalProviderObjectPbPushforwardOperatorAudit
+      ?.provider_object_pb_pushforward_operator_identity_available === false;
+  const rows = Array.from({ length: 5 }, (_, nodeIndex) => {
+    const terminalGraphCellId = `speed.${nodeIndex}.first-y`;
+    const providerRow = providerRowsByNode.get(nodeIndex) ?? null;
+    const precertificateRow = precertificateRowsByNode.get(nodeIndex) ?? null;
+    const preSumNodeRow = preSumRowsByNode.get(nodeIndex) ?? null;
+    const pushforwardNodeRow = pushforwardRowsByNode.get(nodeIndex) ?? null;
+    const providerTermRows = Array.isArray(providerRow?.source_term_residual_rows)
+      ? providerRow.source_term_residual_rows
+      : [];
+    const precertificateTermRows = Array.isArray(
+      precertificateRow?.term_precertificate_rows
+    )
+      ? precertificateRow.term_precertificate_rows
+      : [];
+    const preSumTerminalRowsByH = terminalRowsByH(
+      preSumNodeRow?.provider_object_pre_sum_branch_source_audit_rows
+    );
+    const pushforwardTerminalRowsByH = terminalRowsByH(
+      pushforwardNodeRow?.terminal_provider_object_pb_pushforward_operator_audit_rows
+    );
+    const providerRowFieldHits = inspectFieldHits(
+      providerRow,
+      "raw-source-term-provider-probe-row",
+      `source_term_provider_probe_rows[${nodeIndex}]`
+    );
+    const precertificateRowFieldHits = inspectFieldHits(
+      precertificateRow,
+      "raw-source-term-provider-precertificate-row",
+      `source_term_provider_precertificate_rows[${nodeIndex}]`
+    );
+    const termRows = H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.map((term) => {
+      const providerTermRow =
+        providerTermRows.find((candidate) => candidate?.term === term) ?? null;
+      const precertificateTermRow =
+        precertificateTermRows.find((candidate) => candidate?.term === term) ??
+        null;
+      const providerTermFieldHits = inspectFieldHits(
+        providerTermRow,
+        "raw-source-term-provider-probe-term-row",
+        `source_term_provider_probe_rows[${nodeIndex}].source_term_residual_rows.${term}`
+      );
+      const precertificateTermFieldHits = inspectFieldHits(
+        precertificateTermRow,
+        "raw-source-term-provider-precertificate-term-row",
+        `source_term_provider_precertificate_rows[${nodeIndex}].term_precertificate_rows.${term}`
+      );
+      const fieldHits = [
+        ...providerTermFieldHits,
+        ...precertificateTermFieldHits,
+      ];
+      return {
+        term,
+        node_index: nodeIndex,
+        terminal_graph_cell_id: terminalGraphCellId,
+        provider_probe_term_interval: numericInterval(
+          providerTermRow?.residual_interval
+        ),
+        provider_probe_original_term_interval: numericInterval(
+          providerTermRow?.original_residual_interval
+        ),
+        precertificate_term_interval: numericInterval(
+          precertificateTermRow?.residual_interval
+        ),
+        provider_probe_term_row_available: providerTermRow !== null,
+        precertificate_term_row_available: precertificateTermRow !== null,
+        provider_probe_term_row_field_hits: providerTermFieldHits,
+        precertificate_term_row_field_hits: precertificateTermFieldHits,
+        preaggregation_branch_bearing_field_hit_count: fieldHits.length,
+        raw_term_interval_available:
+          finiteOrderedInterval(providerTermRow?.residual_interval) &&
+          finiteOrderedInterval(precertificateTermRow?.residual_interval),
+        raw_term_branch_bearing_data_available: fieldHits.length > 0,
+        admissible_as_actual_provider_object_branch_term:
+          fieldHits.length > 0,
+        row_certifies_upstream_provider_object_branch_materialization: false,
+        row_certifies_actual_provider_object_branch_rows: false,
+        row_certifies_directed_rounded_shared_domain: false,
+        claim_boundary:
+          h39TerminalAggregatePProviderPreaggregationBranchBearingAuditClaimBoundary(),
+      };
+    });
+    const terminalRows = H39_TERMINAL_SUCCESSOR_COEFFICIENT_IDENTITY_IMPORT_SPECS.map(
+      (spec) => {
+        const preSumTerminalRow =
+          preSumTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+        const pushforwardTerminalRow =
+          pushforwardTerminalRowsByH.get(spec.terminal_h_index) ?? null;
+        const checks = {
+          source_provider_probe_row_ready:
+            sourceTargetReady &&
+            providerRow?.provider_row_source_kind ===
+              "directed-rounded-same-domain-h38-source-map-residual-provider" &&
+            sameTerms(providerRow?.source_terms_preserved_signed_together) &&
+            finiteOrderedInterval(
+              providerRow?.directed_rounded_signed_residual_interval
+            ),
+          source_provider_precertificate_row_ready:
+            sourceTargetReady &&
+            precertificateRow?.node_index === nodeIndex &&
+            sameTerms(
+              precertificateTermRows.map((termRow) => termRow?.term)
+            ),
+          raw_provider_rows_have_no_branch_bearing_fields:
+            providerRowFieldHits.length === 0 &&
+            precertificateRowFieldHits.length === 0 &&
+            termRows.every(
+              (termRow) =>
+                termRow.preaggregation_branch_bearing_field_hit_count === 0
+            ),
+          pre_sum_terminal_feed_confirms_aggregate_only:
+            preSumReady &&
+            preSumTerminalRow?.terminal_h_index === spec.terminal_h_index &&
+            preSumTerminalRow?.terminal_graph_cell_id === terminalGraphCellId &&
+            preSumTerminalRow
+              ?.pre_sum_source_term_branch_feed_available_row_count === 0 &&
+            preSumTerminalRow
+              ?.provider_object_branch_materialization_before_sum_available ===
+              false,
+          pushforward_terminal_row_keeps_identity_absent:
+            pushforwardReady &&
+            pushforwardTerminalRow?.terminal_h_index ===
+              spec.terminal_h_index &&
+            pushforwardTerminalRow?.terminal_graph_cell_id ===
+              terminalGraphCellId &&
+            pushforwardTerminalRow
+              ?.aggregate_provider_terms_have_no_branch_bearing_fields ===
+              true &&
+            pushforwardTerminalRow
+              ?.same_domain_pushforward_operator_identity_available === false &&
+            pushforwardTerminalRow
+              ?.same_domain_pushforward_normalization_identity_available ===
+              false,
+          h39_claims_remain_open:
+            providerRow?.claim_boundary
+              ?.certifies_source_inputs_as_directed_rounded_same_domain ===
+              false &&
+            preSumTerminalRow?.row_certifies_pre_sum_provider_object_branch_source ===
+              false &&
+            pushforwardTerminalRow
+              ?.row_certifies_provider_object_pb_pushforward_operator_identity ===
+              false &&
+            pushforwardTerminalRow
+              ?.row_certifies_terminal_provider_object_branch_rows === false,
+        };
+        const terminalVerified = Object.values(checks).every(
+          (value) => value === true
+        );
+        return {
+          terminal_h_index: spec.terminal_h_index,
+          terminal_graph_cell_id: terminalGraphCellId,
+          source_y_order: H38_NUMERATOR_Y_ORDER,
+          required_xi_derivative_order: 4,
+          aggregate_provider_preaggregation_audit_row_kind:
+            "terminal-aggregate-P-provider-preaggregation-branch-bearing-terminal-row",
+          upstream_provider_object_source:
+            "source_map_residual_shared_stream_five_node_source_term_provider_probe",
+          provider_object_formula:
+            "P=S_delta_squared_speed+S_sin_phi+S_sin_delta",
+          provider_object_branch_target: "P_b",
+          provider_object_branch_moment_target: "A_P=P_- - P_+",
+          raw_provider_probe_term_row_count: termRows.length,
+          raw_provider_probe_branch_bearing_field_hit_count:
+            providerRowFieldHits.length +
+            termRows.reduce(
+              (total, termRow) =>
+                total +
+                termRow.provider_probe_term_row_field_hits.length,
+              0
+            ),
+          raw_provider_precertificate_branch_bearing_field_hit_count:
+            precertificateRowFieldHits.length +
+            termRows.reduce(
+              (total, termRow) =>
+                total +
+                termRow.precertificate_term_row_field_hits.length,
+              0
+            ),
+          aggregate_provider_object_preaggregation_branch_bearing_data_available:
+            false,
+          pre_sum_terminal_feed_confirms_aggregate_only:
+            checks.pre_sum_terminal_feed_confirms_aggregate_only,
+          pushforward_terminal_row_keeps_identity_absent:
+            checks.pushforward_terminal_row_keeps_identity_absent,
+          aggregate_p_provider_preaggregation_branch_bearing_audit_checks:
+            checks,
+          row_aggregate_p_provider_preaggregation_branch_bearing_audit_verified:
+            terminalVerified,
+          row_certifies_upstream_provider_object_branch_materialization: false,
+          row_certifies_actual_provider_object_branch_rows: false,
+          row_certifies_provider_object_pb_pushforward_operator_identity: false,
+          row_certifies_terminal_row_provider_object_replay: false,
+          row_certifies_directed_rounded_shared_domain: false,
+          row_status: terminalVerified
+            ? "aggregate-P-provider-probe-preaggregation-branch-bearing-data-absent"
+            : "aggregate-P-provider-preaggregation-branch-bearing-audit-open",
+          claim_boundary:
+            h39TerminalAggregatePProviderPreaggregationBranchBearingAuditClaimBoundary(),
+        };
+      }
+    );
+    const rowFieldHits = [
+      ...providerRowFieldHits,
+      ...precertificateRowFieldHits,
+      ...termRows.flatMap((termRow) => [
+        ...termRow.provider_probe_term_row_field_hits,
+        ...termRow.precertificate_term_row_field_hits,
+      ]),
+    ];
+    const rowVerified =
+      terminalRows.length === 3 &&
+      terminalRows.every(
+        (terminalRow) =>
+          terminalRow
+            .row_aggregate_p_provider_preaggregation_branch_bearing_audit_verified ===
+          true
+      ) &&
+      rowFieldHits.length === 0;
+    return {
+      node_index: nodeIndex,
+      terminal_graph_cell_id: terminalGraphCellId,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      aggregate_provider_preaggregation_audit_row_kind:
+        "terminal-aggregate-P-provider-preaggregation-branch-bearing-node-row",
+      upstream_provider_object_source:
+        "source_map_residual_shared_stream_five_node_source_term_provider_probe",
+      provider_object_formula:
+        "P=S_delta_squared_speed+S_sin_phi+S_sin_delta",
+      provider_object_branch_target: "P_b",
+      provider_object_branch_moment_target: "A_P=P_- - P_+",
+      raw_provider_probe_row_available: providerRow !== null,
+      raw_provider_precertificate_row_available: precertificateRow !== null,
+      raw_provider_probe_term_rows: termRows,
+      raw_provider_probe_term_row_count: termRows.length,
+      raw_provider_probe_row_field_hits: providerRowFieldHits,
+      raw_provider_precertificate_row_field_hits: precertificateRowFieldHits,
+      aggregate_p_provider_preaggregation_branch_bearing_field_hits:
+        rowFieldHits,
+      aggregate_p_provider_preaggregation_branch_bearing_field_hit_count:
+        rowFieldHits.length,
+      aggregate_p_provider_preaggregation_branch_bearing_data_available:
+        rowFieldHits.length > 0,
+      aggregate_p_provider_preaggregation_branch_bearing_terminal_rows:
+        terminalRows,
+      aggregate_p_provider_preaggregation_branch_bearing_terminal_row_count:
+        terminalRows.length,
+      aggregate_p_provider_preaggregation_branch_bearing_obstruction_terminal_row_count:
+        terminalRows.filter(
+          (terminalRow) =>
+            terminalRow
+              .row_aggregate_p_provider_preaggregation_branch_bearing_audit_verified ===
+              true &&
+            terminalRow
+              .aggregate_provider_object_preaggregation_branch_bearing_data_available ===
+              false
+        ).length,
+      row_aggregate_p_provider_preaggregation_branch_bearing_audit_verified:
+        rowVerified,
+      row_certifies_upstream_provider_object_branch_materialization: false,
+      row_certifies_actual_provider_object_branch_rows: false,
+      row_certifies_provider_object_pb_pushforward_operator_identity: false,
+      row_certifies_terminal_row_provider_object_replay: false,
+      row_certifies_directed_rounded_shared_domain: false,
+      row_status: rowVerified
+        ? "aggregate-P-provider-probe-preaggregation-branch-bearing-data-absent"
+        : "aggregate-P-provider-preaggregation-branch-bearing-audit-open",
+      claim_boundary:
+        h39TerminalAggregatePProviderPreaggregationBranchBearingAuditClaimBoundary(),
+    };
+  });
+  const terminalRowCount = rows.reduce(
+    (total, row) =>
+      total +
+      Number(
+        row.aggregate_p_provider_preaggregation_branch_bearing_terminal_row_count
+      ),
+    0
+  );
+  const allFieldHits = rows.flatMap(
+    (row) => row.aggregate_p_provider_preaggregation_branch_bearing_field_hits
+  );
+  const countHits = (fieldGroup) =>
+    allFieldHits.filter((hit) => hit.field_group === fieldGroup).length;
+  const auditVerified =
+    sourceTargetReady &&
+    preSumReady &&
+    pushforwardReady &&
+    rows.length === 5 &&
+    terminalRowCount === 15 &&
+    rows.every(
+      (row) =>
+        row
+          .row_aggregate_p_provider_preaggregation_branch_bearing_audit_verified ===
+        true
+    ) &&
+    allFieldHits.length === 0;
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_AGGREGATE_P_PROVIDER_PREAGGREGATION_BRANCH_BEARING_AUDIT_CANDIDATE_SCHEMA,
+    status:
+      "h39-requested-y44-terminal-aggregate-P-provider-preaggregation-branch-bearing-audit-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-terminal-aggregate-P-provider-preaggregation-branch-bearing-audit",
+    target_kind:
+      "candidate-requested-y44-terminal-aggregate-P-provider-preaggregation-branch-bearing-audit",
+    proof_status:
+      "candidate-aggregate-P-provider-probe-born-aggregate-only-branch-bearing-materialization-open",
+    source_map_residual_covariance_target_schema:
+      sourceMapResidualCovarianceTarget?.schema ?? null,
+    terminal_expression_level_source_map_provider_object_pre_sum_branch_source_audit_schema:
+      terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit?.schema ??
+      null,
+    terminal_provider_object_pb_pushforward_operator_audit_schema:
+      terminalProviderObjectPbPushforwardOperatorAudit?.schema ?? null,
+    upstream_provider_object_source:
+      "source_map_residual_shared_stream_five_node_source_term_provider_probe",
+    upstream_provider_precertificate_source:
+      "source_map_residual_shared_stream_five_node_source_term_provider_precertificate",
+    provider_object_formula: "P=S_delta_squared_speed+S_sin_phi+S_sin_delta",
+    provider_object_branch_target: "P_b",
+    provider_object_branch_moment_target: "A_P=P_- - P_+",
+    source_y_order: H38_NUMERATOR_Y_ORDER,
+    required_xi_derivative_order: 4,
+    source_terms_preserved_signed_together: [
+      ...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS,
+    ],
+    branch_bearing_field_group_names: Object.keys(branchBearingFieldGroups),
+    aggregate_p_provider_preaggregation_branch_bearing_audit_rows: rows,
+    aggregate_p_provider_preaggregation_branch_bearing_audit_row_count:
+      rows.length,
+    aggregate_p_provider_preaggregation_branch_bearing_terminal_row_count:
+      terminalRowCount,
+    raw_provider_probe_row_count: providerRows.length,
+    raw_provider_probe_term_row_count: rows.reduce(
+      (total, row) => total + Number(row.raw_provider_probe_term_row_count),
+      0
+    ),
+    raw_provider_precertificate_row_count: precertificateRows.length,
+    raw_provider_precertificate_term_row_count: rows.reduce(
+      (total, row) =>
+        total +
+        row.raw_provider_probe_term_rows.filter(
+          (termRow) => termRow.precertificate_term_row_available === true
+        ).length,
+      0
+    ),
+    aggregate_p_provider_preaggregation_branch_bearing_field_hits:
+      allFieldHits,
+    aggregate_p_provider_preaggregation_branch_bearing_field_hit_count:
+      allFieldHits.length,
+    branch_label_field_hit_count: countHits("branch_label"),
+    branch_weight_field_hit_count: countHits("branch_weight"),
+    branch_interval_field_hit_count: countHits("branch_interval"),
+    projection_map_field_hit_count: countHits("projection_map"),
+    pushforward_operator_field_hit_count: countHits("pushforward_operator"),
+    normalization_field_hit_count: countHits("normalization"),
+    raw_provider_probe_branch_bearing_data_available: allFieldHits.length > 0,
+    pre_sum_source_term_branch_feed_available_row_count:
+      terminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAudit
+        ?.pre_sum_source_term_branch_feed_available_row_count ?? null,
+    same_domain_pushforward_operator_identity_available_terminal_row_count:
+      terminalProviderObjectPbPushforwardOperatorAudit
+        ?.same_domain_pushforward_operator_identity_available_terminal_row_count ??
+      null,
+    same_domain_pushforward_normalization_identity_available_terminal_row_count:
+      terminalProviderObjectPbPushforwardOperatorAudit
+        ?.same_domain_pushforward_normalization_identity_available_terminal_row_count ??
+      null,
+    upstream_provider_object_branch_materialization_available: false,
+    actual_provider_object_branch_rows_available: false,
+    provider_object_pb_pushforward_operator_identity_available: false,
+    terminal_row_provider_object_replay_certified: false,
+    expression_level_n38_provider_certified: false,
+    directed_rounded_shared_domain_provider_certified: false,
+    aggregate_p_provider_preaggregation_branch_bearing_audit_verified:
+      auditVerified,
+    aggregate_p_provider_preaggregation_branch_bearing_audit_certified: false,
+    aggregate_p_provider_preaggregation_branch_bearing_audit_classification:
+      auditVerified && allFieldHits.length === 0
+        ? "aggregate-P-provider-probe-born-aggregate-only"
+        : "aggregate-P-provider-preaggregation-branch-bearing-audit-open",
+    aggregate_p_provider_preaggregation_branch_bearing_audit_blocker_classification:
+      auditVerified && allFieldHits.length === 0
+        ? "upstream-source-map-provider-probe-must-emit-branch-bearing-P-b-map-before-terminal-replay"
+        : "aggregate-P-provider-preaggregation-branch-bearing-audit-open",
+    aggregate_p_provider_preaggregation_branch_bearing_audit_primary_missing_object_kind:
+      auditVerified && allFieldHits.length === 0
+        ? "same-domain-branch-bearing-provider-object-P-b-fields-or-normalization-inside-source-term-provider-probe"
+        : "aggregate-P-provider-preaggregation-branch-bearing-audit",
+    next_certificate_object:
+      "same-domain source-map provider construction that emits branch-bearing P_b rows, branch weights, a branch projection map, or a pushforward normalization identity before aggregate P is summed",
+    candidate_certificate_route:
+      "This packet inspects the raw five-node source-term provider probe and its precertificate inputs before terminal replication. The current aggregate P provider is born as one signed source-term stream: P is the sum of three aggregate term feeds, with no branch labels, branch weights, branch intervals, projection maps, pushforward operator, or normalization fields exposed in the raw provider rows. Therefore the next non-scalar packet must derive or modify the upstream source-map provider construction itself; downstream interval overlap cannot certify actual P_- and P_+ rows from the present aggregate P object.",
+    claim_boundary:
+      h39TerminalAggregatePProviderPreaggregationBranchBearingAuditClaimBoundary(),
+  };
+}
+
+export function validateH39RequestedY44TerminalAggregatePProviderPreaggregationBranchBearingAuditCandidate(
+  artifact
+) {
+  const errors = [];
+  const finiteNumber = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const finiteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    finiteNumber(interval[0]) &&
+    finiteNumber(interval[1]) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const sameStringSet = (left, right) =>
+    Array.isArray(left) &&
+    left.length === right.length &&
+    right.every((value) => left.includes(value));
+  const validClaimBoundary = (claimBoundary) =>
+    claimBoundary
+      ?.defines_terminal_aggregate_p_provider_preaggregation_branch_bearing_audit_only ===
+      true &&
+    claimBoundary
+      ?.certifies_upstream_provider_object_branch_materialization === false &&
+    claimBoundary?.certifies_actual_provider_object_branch_rows === false &&
+    claimBoundary?.certifies_provider_object_branch_sum_identity === false &&
+    claimBoundary?.certifies_provider_object_A_P_materialization === false &&
+    claimBoundary?.certifies_provider_object_pb_pushforward_operator_identity ===
+      false &&
+    claimBoundary?.certifies_pre_sum_provider_object_branch_source ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_rows ===
+      false &&
+    claimBoundary
+      ?.certifies_expression_level_source_map_provider_object_branch_antisymmetric_equation ===
+      false &&
+    claimBoundary?.certifies_terminal_row_provider_object_replay === false &&
+    claimBoundary?.certifies_expression_level_n38_provider === false &&
+    claimBoundary?.certifies_terminal_row_provider_enclosure === false &&
+    claimBoundary?.certifies_terminal_graph_remainder_bound === false &&
+    claimBoundary?.certifies_s37_dependency_preserving_division === false &&
+    claimBoundary?.certifies_shifted_R43_outer_bound === false &&
+    claimBoundary?.certifies_directed_rounded_shared_domain === false &&
+    claimBoundary?.retained_branch === false;
+  const expectedFieldGroups = [
+    "branch_label",
+    "branch_weight",
+    "branch_interval",
+    "projection_map",
+    "pushforward_operator",
+    "normalization",
+  ];
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_AGGREGATE_P_PROVIDER_PREAGGREGATION_BRANCH_BEARING_AUDIT_CANDIDATE_SCHEMA
+  ) {
+    errors.push("schema must match h39 aggregate P provider preaggregation branch-bearing audit candidate");
+  }
+  if (
+    artifact?.status !==
+      "h39-requested-y44-terminal-aggregate-P-provider-preaggregation-branch-bearing-audit-candidate-emitted" ||
+    artifact?.evaluation_level !==
+      "candidate-h39-requested-y44-terminal-aggregate-P-provider-preaggregation-branch-bearing-audit" ||
+    artifact?.target_kind !==
+      "candidate-requested-y44-terminal-aggregate-P-provider-preaggregation-branch-bearing-audit" ||
+    artifact?.proof_status !==
+      "candidate-aggregate-P-provider-probe-born-aggregate-only-branch-bearing-materialization-open" ||
+    artifact?.source_map_residual_covariance_target_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_SOURCE_MAP_RESIDUAL_COVARIANCE_TARGET_SCHEMA ||
+    artifact
+      ?.terminal_expression_level_source_map_provider_object_pre_sum_branch_source_audit_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_EXPRESSION_LEVEL_SOURCE_MAP_PROVIDER_OBJECT_PRE_SUM_BRANCH_SOURCE_AUDIT_CANDIDATE_SCHEMA ||
+    artifact?.terminal_provider_object_pb_pushforward_operator_audit_schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_TERMINAL_PROVIDER_OBJECT_PB_PUSHFORWARD_OPERATOR_AUDIT_CANDIDATE_SCHEMA ||
+    artifact?.upstream_provider_object_source !==
+      "source_map_residual_shared_stream_five_node_source_term_provider_probe" ||
+    artifact?.upstream_provider_precertificate_source !==
+      "source_map_residual_shared_stream_five_node_source_term_provider_precertificate" ||
+    artifact?.provider_object_formula !==
+      "P=S_delta_squared_speed+S_sin_phi+S_sin_delta" ||
+    artifact?.provider_object_branch_target !== "P_b" ||
+    artifact?.provider_object_branch_moment_target !== "A_P=P_- - P_+" ||
+    artifact?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    !sameStringSet(
+      artifact?.source_terms_preserved_signed_together,
+      H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS
+    ) ||
+    !sameStringSet(artifact?.branch_bearing_field_group_names, expectedFieldGroups)
+  ) {
+    errors.push("preaggregation branch-bearing audit metadata must identify upstream aggregate P provider probe");
+  }
+  if (
+    artifact?.aggregate_p_provider_preaggregation_branch_bearing_audit_verified !==
+      true ||
+    artifact?.aggregate_p_provider_preaggregation_branch_bearing_audit_certified !==
+      false ||
+    artifact?.aggregate_p_provider_preaggregation_branch_bearing_audit_row_count !==
+      5 ||
+    artifact
+      ?.aggregate_p_provider_preaggregation_branch_bearing_terminal_row_count !==
+      15 ||
+    artifact?.raw_provider_probe_row_count !== 5 ||
+    artifact?.raw_provider_probe_term_row_count !== 15 ||
+    artifact?.raw_provider_precertificate_row_count !== 5 ||
+    artifact?.raw_provider_precertificate_term_row_count !== 15 ||
+    artifact
+      ?.aggregate_p_provider_preaggregation_branch_bearing_field_hit_count !==
+      0 ||
+    artifact?.branch_label_field_hit_count !== 0 ||
+    artifact?.branch_weight_field_hit_count !== 0 ||
+    artifact?.branch_interval_field_hit_count !== 0 ||
+    artifact?.projection_map_field_hit_count !== 0 ||
+    artifact?.pushforward_operator_field_hit_count !== 0 ||
+    artifact?.normalization_field_hit_count !== 0 ||
+    artifact?.raw_provider_probe_branch_bearing_data_available !== false ||
+    artifact?.pre_sum_source_term_branch_feed_available_row_count !== 0 ||
+    artifact
+      ?.same_domain_pushforward_operator_identity_available_terminal_row_count !==
+      0 ||
+    artifact
+      ?.same_domain_pushforward_normalization_identity_available_terminal_row_count !==
+      0 ||
+    artifact?.upstream_provider_object_branch_materialization_available !==
+      false ||
+    artifact?.actual_provider_object_branch_rows_available !== false ||
+    artifact?.provider_object_pb_pushforward_operator_identity_available !==
+      false ||
+    artifact?.terminal_row_provider_object_replay_certified !== false ||
+    artifact?.expression_level_n38_provider_certified !== false ||
+    artifact?.directed_rounded_shared_domain_provider_certified !== false ||
+    artifact
+      ?.aggregate_p_provider_preaggregation_branch_bearing_audit_classification !==
+      "aggregate-P-provider-probe-born-aggregate-only" ||
+    artifact
+      ?.aggregate_p_provider_preaggregation_branch_bearing_audit_blocker_classification !==
+      "upstream-source-map-provider-probe-must-emit-branch-bearing-P-b-map-before-terminal-replay" ||
+    artifact
+      ?.aggregate_p_provider_preaggregation_branch_bearing_audit_primary_missing_object_kind !==
+      "same-domain-branch-bearing-provider-object-P-b-fields-or-normalization-inside-source-term-provider-probe" ||
+    typeof artifact?.next_certificate_object !== "string" ||
+    typeof artifact?.candidate_certificate_route !== "string" ||
+    !validClaimBoundary(artifact?.claim_boundary)
+  ) {
+    errors.push("preaggregation branch-bearing audit aggregate must keep upstream P_b materialization absent");
+  }
+  const rows =
+    artifact?.aggregate_p_provider_preaggregation_branch_bearing_audit_rows ??
+    [];
+  if (
+    !Array.isArray(rows) ||
+    rows.length !== 5 ||
+    rows.some((row, index) => {
+      const termRows = row?.raw_provider_probe_term_rows ?? [];
+      const terminalRows =
+        row?.aggregate_p_provider_preaggregation_branch_bearing_terminal_rows ??
+        [];
+      return (
+        row?.node_index !== index ||
+        row?.terminal_graph_cell_id !== `speed.${index}.first-y` ||
+        row?.raw_provider_probe_row_available !== true ||
+        row?.raw_provider_precertificate_row_available !== true ||
+        row?.raw_provider_probe_term_row_count !== 3 ||
+        row?.aggregate_p_provider_preaggregation_branch_bearing_field_hit_count !==
+          0 ||
+        row?.aggregate_p_provider_preaggregation_branch_bearing_data_available !==
+          false ||
+        row
+          ?.aggregate_p_provider_preaggregation_branch_bearing_terminal_row_count !==
+          3 ||
+        row
+          ?.aggregate_p_provider_preaggregation_branch_bearing_obstruction_terminal_row_count !==
+          3 ||
+        row
+          ?.row_aggregate_p_provider_preaggregation_branch_bearing_audit_verified !==
+          true ||
+        row
+          ?.row_certifies_upstream_provider_object_branch_materialization !==
+          false ||
+        row?.row_certifies_actual_provider_object_branch_rows !== false ||
+        row?.row_certifies_provider_object_pb_pushforward_operator_identity !==
+          false ||
+        row?.row_certifies_directed_rounded_shared_domain !== false ||
+        row?.row_status !==
+          "aggregate-P-provider-probe-preaggregation-branch-bearing-data-absent" ||
+        !validClaimBoundary(row?.claim_boundary) ||
+        !Array.isArray(termRows) ||
+        termRows.length !== 3 ||
+        termRows.some(
+          (termRow) =>
+            !H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.includes(
+              termRow?.term
+            ) ||
+            !finiteOrderedInterval(termRow?.provider_probe_term_interval) ||
+            !finiteOrderedInterval(termRow?.provider_probe_original_term_interval) ||
+            !finiteOrderedInterval(termRow?.precertificate_term_interval) ||
+            termRow?.provider_probe_term_row_available !== true ||
+            termRow?.precertificate_term_row_available !== true ||
+            termRow?.preaggregation_branch_bearing_field_hit_count !== 0 ||
+            termRow?.raw_term_interval_available !== true ||
+            termRow?.raw_term_branch_bearing_data_available !== false ||
+            termRow?.admissible_as_actual_provider_object_branch_term !==
+              false ||
+            termRow
+              ?.row_certifies_upstream_provider_object_branch_materialization !==
+              false ||
+            termRow?.row_certifies_actual_provider_object_branch_rows !==
+              false ||
+            termRow?.row_certifies_directed_rounded_shared_domain !== false ||
+            !validClaimBoundary(termRow?.claim_boundary)
+        ) ||
+        !Array.isArray(terminalRows) ||
+        terminalRows.length !== 3 ||
+        terminalRows.some(
+          (terminalRow) =>
+            ![37, 36, 35].includes(terminalRow?.terminal_h_index) ||
+            terminalRow?.terminal_graph_cell_id !== `speed.${index}.first-y` ||
+            terminalRow?.provider_object_formula !==
+              "P=S_delta_squared_speed+S_sin_phi+S_sin_delta" ||
+            terminalRow?.raw_provider_probe_term_row_count !== 3 ||
+            terminalRow
+              ?.raw_provider_probe_branch_bearing_field_hit_count !== 0 ||
+            terminalRow
+              ?.raw_provider_precertificate_branch_bearing_field_hit_count !==
+              0 ||
+            terminalRow
+              ?.aggregate_provider_object_preaggregation_branch_bearing_data_available !==
+              false ||
+            terminalRow?.pre_sum_terminal_feed_confirms_aggregate_only !==
+              true ||
+            terminalRow?.pushforward_terminal_row_keeps_identity_absent !==
+              true ||
+            terminalRow
+              ?.row_aggregate_p_provider_preaggregation_branch_bearing_audit_verified !==
+              true ||
+            terminalRow
+              ?.row_certifies_upstream_provider_object_branch_materialization !==
+              false ||
+            terminalRow?.row_certifies_actual_provider_object_branch_rows !==
+              false ||
+            terminalRow
+              ?.row_certifies_provider_object_pb_pushforward_operator_identity !==
+              false ||
+            terminalRow?.row_certifies_directed_rounded_shared_domain !==
+              false ||
+            terminalRow?.row_status !==
+              "aggregate-P-provider-probe-preaggregation-branch-bearing-data-absent" ||
+            !validClaimBoundary(terminalRow?.claim_boundary) ||
+            Object.values(
+              terminalRow?.aggregate_p_provider_preaggregation_branch_bearing_audit_checks ??
+                {}
+            ).some((value) => value !== true)
+        )
+      );
+    })
+  ) {
+    errors.push("preaggregation branch-bearing audit rows must show no upstream branch-bearing provider data");
   }
   return errors;
 }

@@ -11,7 +11,7 @@ The canonical horizon condition is inherited from [singularity-resolution.md](./
 $$
 v_M = c_f,
 \qquad
-v_O \to c_f,
+v_O \to c_f
 $$
 
 with the middle and outer binaries becoming coplanar and co-linear with the inner binary at alignment and precession ceasing in that limit.
@@ -146,7 +146,7 @@ R_\parallel = \frac{R_\perp}{\gamma},
 \qquad
 \gamma = \frac{1}{\sqrt{1-\beta^2}},
 \qquad
-\beta = \frac{v_{\text{trans}}}{c_f}.
+\beta = \frac{v_{\text{trans}}}{c_f}
 $$
 
 Now let one binary orbit in a plane whose unit normal $\hat n$ makes angle $\alpha$ with the translation axis $\hat z$. The central cross-section of the ellipsoid cut by that orbital plane has area
@@ -158,7 +158,7 @@ A(\alpha)
 {\sqrt{R_\perp^2\sin^2\alpha + R_\parallel^2\cos^2\alpha}}
 =
 \frac{\pi R_\perp^2}
-{\sqrt{\gamma^2\sin^2\alpha + \cos^2\alpha}}.
+{\sqrt{\gamma^2\sin^2\alpha + \cos^2\alpha}}
 $$
 
 This area is maximal at $\alpha = 0$ or $\alpha = \pi$, meaning the orbital normal is parallel or antiparallel to the line of translation. It is minimal at $\alpha = \pi/2$, when the orbital normal is transverse to the motion.
@@ -177,7 +177,7 @@ A(\alpha)
 \pi R_\perp^2
 \left[
 1-\frac{\gamma^2-1}{2}\alpha^2
-\right],
+\right]
 $$
 
 so the restoring pressure toward axial alignment strengthens as $v_{\text{trans}} \to c_f$.
@@ -207,7 +207,7 @@ $$
 \;\to\;
 \text{planar horizon lock}
 \;\to\;
-\text{post-lock reconfiguration or reopening}.
+\text{post-lock reconfiguration or reopening}
 $$
 
 The intended label flow along that ladder is:
@@ -296,7 +296,7 @@ This should remain a live hypothesis rather than a settled identification. The s
 The explicit defer condition is that terminal axial sign,
 
 $$
-\hat J_{\text{net}}\parallel\pm\hat{\mathbf V},
+\hat J_{\text{net}}\parallel\pm\hat{\mathbf V}
 $$
 
 is not enough to identify weak left/right exposure. The same record must also pass the row-local parity and gauge-control checks used in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md) and the $\Delta_{\mathrm{WCT}}$ exposure record used in [Weak Mixing and CKM](../philosophy-history/theory-bridges/weak-mixing-ckm.md). Until then, axial sign remains a candidate bridge variable rather than a weak-chirality derivation.

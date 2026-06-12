@@ -75,6 +75,32 @@ $$
 
 In ordinary geometry language, $\beta$ is the eccentricity of the Lorentz spheroid in this simplified display. The physical claim is narrower: if the Noether swarm realizes Lorentz-compatible closure with no additional scale channel, then the measured semiaxes determine $\beta$, $\gamma$, and $\xi$ through the equations above.
 
+The visible spheroid should be read as the outer-binary envelope exposed by the full nested Noether swarm, not as a solid body filled only by the outer binary. In the no-extra-scale lesson state,
+$$
+R_{\perp}=R_0
+\qquad
+R_{\parallel}=\frac{R_0}{\gamma}
+$$
+so the relative envelope volume follows the same inverse Lorentz factor:
+$$
+\frac{V_{\mathrm{env}}(v)}{V_{\mathrm{env}}(0)}
+=
+\frac{1}{\gamma}
+$$
+If a later lesson exposes a separate scale channel $\lambda$, then
+$$
+R_{\perp}=\lambda R_0
+\qquad
+R_{\parallel}=\frac{\lambda R_0}{\gamma}
+$$
+and the volume ratio becomes
+$$
+\frac{V_{\mathrm{env}}(v)}{V_{\mathrm{env}}(0)}
+=
+\frac{\lambda^3}{\gamma}
+$$
+The scale channel is separate from the Lorentz shape channel: $\gamma$ fixes the axis ratio, while $\lambda$ changes the absolute size.
+
 ## Time And Return Cycles
 
 The relative-time panel shows

@@ -67,7 +67,7 @@ $$
 \mathcal{R}_{\text{lock}},
 \mathcal{R}_{\text{leak}},
 \mathcal{R}_{\text{Floquet}}
-\right).
+\right)
 $$
 Each entry carries value, tolerance, status, role, and note fields. The companion `residual_values` object mirrors only the values; omitted Tier 0 components remain null rather than disappearing.
 
@@ -142,7 +142,7 @@ The safe reading is therefore:
 $$
 \text{Tier 0 pass}
 \quad\Longrightarrow\quad
-\text{eligible for Tier 1 continuation},
+\text{eligible for Tier 1 continuation}
 $$
 
 not
@@ -150,7 +150,7 @@ not
 $$
 \text{Tier 0 pass}
 \quad\Longrightarrow\quad
-\text{accepted } A_0 \text{ attractor}.
+\text{accepted } A_0 \text{ attractor}
 $$
 
 This boundary is the main protection against premature mass-map promotion.

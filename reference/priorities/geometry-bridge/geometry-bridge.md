@@ -9,6 +9,11 @@
 - ROI: `unscored`
 - Status: `active`
 
+H39/H38 source-covariance pause note:
+[H39/H38 Source-Covariance Closure Sprint Wrap-Up](h39-h38-source-covariance-closure-sprint-wrap-up.md).
+That path is paused until a same-domain branch-bearing source-map provider
+object exists upstream of aggregate `P`.
+
 ## Scope
 
 This priority folder owns the focused mathematics and geometry attack plan for moving from the Master Equation of Motion to emergent assembly geometry without jumping directly to full observer-level GR. The workstream exists because the current stack has strong pieces in the Master EOM, Noether swarm architecture, nested shell swarm geometry, and emergent metric map, but it lacks one controlled intermediate object:
@@ -4499,6 +4504,183 @@ correction terms that explain why they differ. This remains candidate-only and
 certifies no provider-object branch rows, W producer, matrix identity, terminal
 row provider replay, expression-level N38 provider, or directed-rounded
 provider.
+
+`buildH39RequestedY44TerminalExpressionLevelSourceTermFoldNullCoefficientProviderMomentBridgeAuditCandidate`
+now executes that bridge audit directly. It tests the formal normal form
+`A_P=A_G^{terminal}+C_{G_to_P}` with
+`C_{G_to_P}=A_P-A_G^{terminal}` on the same fifteen terminal rows. The
+result is decisive but still non-closing: all fifteen rows have finite
+`A_G^{terminal}` intervals, zero rows expose the provider-object branch
+moment `A_P`, zero rows expose terminal source-term alpha maps, and zero rows
+can form a directed-rounded `C_{G_to_P}` correction interval. The terminal
+branch `G` moment therefore cannot be promoted into the actual source-map
+provider-object branch moment by assertion or scalar-lambda reuse. The next
+true blocker is to materialize `A_P=P_- - P_+` on the expression-level
+provider-object surface, or derive a same-domain transport correction
+`C_{G_to_P}` from terminal branch `G` coefficients into that provider object.
+This remains candidate-only and certifies no provider-object branch rows,
+W producer closure, matrix identity, terminal row provider replay,
+expression-level N38 provider, or directed-rounded provider.
+
+`buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAuditCandidate`
+now moves one layer upstream and inspects the actual source-term feed before
+aggregate `P` is formed. It records the construction
+`P=S_delta_squared_speed+S_sin_phi+S_sin_delta` on the same fifteen terminal
+rows. The audit emits forty-five pre-sum source-term feed rows and verifies
+that their interval sum reconstructs the aggregate provider-object interval,
+but zero rows carry a branch label, branch projection coefficient, or branch
+interval. Thus the provider object is currently born aggregate-only before
+the `P` sum, not merely losing branch data during downstream replay. The next
+true blocker is a same-domain branch-indexed source-term feed, terminal alpha
+map, or provider-object branch source upstream of the aggregate provider sum.
+This remains candidate-only and certifies no `P_-`/`P_+` rows, `A_P` equation,
+W producer closure, matrix identity, terminal row provider replay,
+expression-level N38 provider, or directed-rounded provider.
+
+`buildH39RequestedY44TerminalExpressionLevelSourceTermVariableOwnershipBranchFeedAttemptCandidate`
+tests the natural variable-owned alpha row exposed by that pre-sum structure.
+It emits finite same-domain candidates
+`P_delta=S_delta_squared_speed+S_sin_delta`,
+`P_phi=S_sin_phi`, and
+`A_var=P_delta-P_phi=S_delta_squared_speed-S_sin_phi+S_sin_delta` on all
+fifteen terminal rows, with forty-five signed source-term alpha rows. The
+candidate is compatible with the existing fold-null variable split
+`D_eta=partial_delta-partial_phi`, and it compares `A_var` to the finite
+terminal branch `G` moment on every row. This is executable mathematical
+progress because the candidate alpha covector now exists as an interval object,
+not only as prose. It is still not a provider-object certificate: zero terminal
+rows expose `A_P=P_- - P_+`, zero rows admit the candidate as the actual
+provider-object branch source, and zero rows certify the alpha candidate. The
+next true blocker is a same-domain proof that `A_var` is the actual
+provider-object branch moment `A_P`, or direct expression-level `P_-` and `P_+`
+rows before the provider-object sum. This remains candidate-only and certifies
+no provider-object branch rows, matrix identity, W closure, terminal row
+provider replay, expression-level N38 provider, or directed-rounded provider.
+
+`buildH39RequestedY44TerminalExpressionLevelSourceTermVariableOwnershipProviderBoundaryReplayCandidate`
+now replays the variable-owned pre-sum branch candidates through the existing
+terminal witness boundary in both branch-label orientations:
+`P_-=P_delta, P_+=P_phi` and `P_-=P_phi, P_+=P_delta`. The packet keeps the
+same fifteen terminal rows and emits thirty orientation terminal rows and sixty
+branch replay slots against `terminalRowProviderObjectReplayAttempt`. The live
+executable result records sixty finite variable-owned branch candidate
+intervals, zero terminal witness branch intervals, and zero actual `P_-`/`P_+`
+provider-object branch rows. Thus the packet does not yet reach overlap or
+containment: the immediate blocker is the same-domain terminal witness branch
+interval materialization needed before the variable-owned provider-boundary
+replay can test either orientation. If those witness intervals later
+materialize and an orientation reaches containment, the blocker becomes the
+identity proof that the variable-owned rows are the actual provider object
+branches. This remains candidate-only and certifies no `A_var=A_P`,
+provider-object branch identity, terminal row provider replay, expression-level
+N38 provider, or directed-rounded provider.
+
+`buildH39RequestedY44TerminalDenominatorFreeVariableOwnershipTCoordinateMaterializationAttemptCandidate`
+now attacks the denominator-free terminal witness materialization route
+directly. It combines the already emitted denominator-free branch family
+`(r_-,r_+)=(R/2+t,R/2-t)` with the variable-owned alpha candidate by setting
+`t_var=A_var/2`, hence
+`(r_-^{var},r_+^{var})=(R/2+A_var/2,R/2-A_var/2)`. On the same fifteen
+terminal rows it emits thirty finite branch candidates without using
+`s_-+s_+`; every candidate pair has a branch-sum interval containing the
+aggregate residual `R`, and every branch-difference interval contains
+`A_var=P_delta-P_phi`. This materially narrows the missing object: the blocker
+is no longer the existence of a denominator-free branch candidate, but the
+same-domain identity `2t=A_var` connecting the variable-owned source-term
+alpha row to the branch-antisymmetric centered residual coordinate. The packet
+does not admit the candidates as terminal witness branches and certifies no
+branch-resolved centered residual source object, terminal row provider replay,
+expression-level N38 provider, or directed-rounded provider.
+
+`buildH39RequestedY44TerminalVariableOwnershipAlphaProvenanceIdentityAuditCandidate`
+now separates the executable candidate identity from the missing provider
+identity. It verifies on the same fifteen terminal rows that the emitted
+candidate satisfies `2*t_var-A_var=0` by construction and compares `A_var` to
+the finite terminal branch-`G` moment already extracted from the fold-null
+coefficient path. The same rows still expose zero source-term alpha maps, zero
+branch-parity generators, zero fold-null diagonalizations of the source-term
+basis, and zero provider-object branch moments `A_P=P_- - P_+`. This moves the
+blocker from "can we form a non-scalar candidate?" to the sharper provenance
+question: derive the same-domain branch-parity generator or explicit
+provider-object branch moment that identifies `A_var` with the actual
+branch-antisymmetric source object. The packet certifies no `2t=A_var`, no
+`A_var=A_P`, no terminal row provider replay, no expression-level N38 provider,
+and no directed-rounded provider.
+
+`buildH39RequestedY44TerminalProviderObjectAPMaterializationObstructionAuditCandidate`
+now combines the actual provider-object materialization surfaces into one
+same-domain obstruction audit. On the same fifteen terminal rows it records the
+rank-one provider split `P_-+P_+=P` with one free `u_P`, verifies that no
+explicit provider-object antisymmetric equation or pre-sum branch-indexed feed
+is present, and keeps both finite candidate moments `A_var=P_delta-P_phi` and
+`A_G^{terminal}` nonadmissible as actual `A_P`. The executable result emits
+thirty available candidate-moment rows but zero admissible provider-object
+branch moments and zero terminal rows with `A_P` materialized. This sharpens
+the blocker to a same-domain provider-object branch-antisymmetric equation,
+explicit `P_-`/`P_+` rows, or branch-indexed source-term feed upstream of the
+aggregate provider sum. It certifies no `A_P`, no provider-object branch rows,
+no terminal row provider replay, no expression-level N38 provider, and no
+directed-rounded provider.
+
+`buildH39RequestedY44TerminalSourceTermBranchFeedExtractorCandidate` now
+pushes the obstruction one layer upstream without adding a scalar-lambda,
+virial, W, or matrix wrapper. The row-local signed-source provider now carries
+the selected active branch and exposes finite source-term node-feed rows for
+that selected branch on the same domain. The terminal provider-object surface
+still remains aggregate-only: it records zero partner-branch source streams,
+zero terminal `P_-`/`P_+` provider-object row pairs, and zero materialized
+`A_P=P_- - P_+` rows. The blocker is therefore no longer "find any source-term
+feed"; it is to evaluate or expose the same source-term feed for the opposite
+branch on the same terminal domains and lift both feeds into explicit
+provider-object branch rows before replaying `A_P`.
+
+`buildH39RequestedY44TerminalSourceTermOppositeBranchFeedLiftCandidate` now
+evaluates that opposite-branch expression feed through the same row-local H38
+source-term machinery. The executable packet records finite selected/opposite
+nonconstant source-sum feeds on the same selected collar rows and forms a
+candidate branch-pair feed interval plus its antisymmetric interval. It does
+not admit those feeds as terminal provider-object rows: the terminal source-map
+provider object still exposes only aggregate `P` rows, with zero `P_-`/`P_+`
+rows and zero `A_P=P_- - P_+` rows. The blocker has therefore moved from
+"materialize the partner expression feed" to a sharper identity obligation:
+derive the same-domain map identifying the row-local expression branch feeds
+with the terminal source-map provider-object branches `P_b`.
+
+`buildH39RequestedY44TerminalRowLocalFeedToProviderObjectPbIdentityAuditCandidate`
+extends that test from the selected collar rows to all five terminal source
+cells. It materializes candidate expression-feed `P_-`/`P_+` rows for the full
+fifteen-row terminal provider surface and compares each candidate
+`P_-+P_+` interval against the aggregate terminal provider object `P`. The
+candidate rows remain nonadmissible: the packet records zero actual terminal
+provider-object branch rows, zero certified branch-sum identities, and zero
+materialized `A_P`. The live mathematical obligation is now a same-domain
+pushforward identity proving that the all-terminal-source-cell expression
+branch feeds are the actual terminal source-map provider-object branches.
+
+`buildH39RequestedY44TerminalProviderObjectPbPushforwardOperatorAuditCandidate`
+now opens the identity itself. It compares all forty-five term-level rows
+between the aggregate `P` pre-sum source-term feeds and the selected/opposite
+expression branch feeds. The packet verifies that candidate branch term
+intervals exist, but the aggregate `P` term rows expose no branch-bearing
+operator, branch weights, or same-domain normalization map that would make
+interval overlap admissive. This turns the blocker into a direct pushforward
+operator problem: derive the same-domain operator and normalization identity
+from expression source-term feeds to aggregate provider-object `P`, or record
+that the current aggregate provider surface is structurally incapable of
+certifying `P_b`.
+
+`buildH39RequestedY44TerminalAggregatePProviderPreaggregationBranchBearingAuditCandidate`
+now inspects the upstream aggregate `P` provider-probe object itself before
+terminal replay. It audits the raw five-node
+`source_term_provider_probe_rows`, their `source_term_residual_rows`, and the
+matching provider precertificate term rows for branch labels, branch weights,
+branch intervals, projection maps, pushforward operators, and normalization
+fields. The current executable result is zero hits in all six field groups,
+while the pre-sum and pushforward packets still verify aggregate-only `P`
+feeds. The blocker is therefore upstream of terminal replay: the source-map
+provider construction must emit a same-domain branch-bearing `P_b` map,
+branch projection, or normalization identity before matrix replay can certify
+actual `P_-` and `P_+` provider-object rows.
 
 ## Current Classification
 

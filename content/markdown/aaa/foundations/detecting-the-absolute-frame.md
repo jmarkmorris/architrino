@@ -66,6 +66,8 @@ Consider a $\mathbb{U}_{\text{now}}$ universe-state perspective with access to c
 - **All centers coincident** means $\mathbf{v}_{\text{abs}} = \mathbf{0}$ on that interval (absolute rest).
 - **Centers form a trajectory** means $\mathbf{v}_{\text{abs}} \neq \mathbf{0}$; for a uniform segment, the displacement vector $\Delta \mathbf{x}$ per unit time $\Delta t$ yields the absolute velocity: $\mathbf{v}_{\text{abs}} = \Delta \mathbf{x} / \Delta t$.
 
+This is definitionally a complete-state test. It assumes the individual source identity, emission time, and isochron support are already available in the provenance-bearing state. A physical apparatus receiving only the summed potential cannot recover the source-tagged centers by a clever superposition-resolving operation unless it already has access to the very provenance data the diagnostic assumes.
+
 **Wake-center theorem:** Let a source-tagged causal isochron emitted by source $a$ at time $s$ and inspected at time $t>s$ have support
 $$
 W_a(s;t)
@@ -73,22 +75,22 @@ W_a(s;t)
 \left\{
 \mathbf{y}\in\Sigma_t:
 \|\mathbf{y}-\mathbf{z}_a(s)\|=c_f(t-s)
-\right\}.
+\right\}
 $$
 In Euclidean three-space, a nondegenerate isochron support of this form has a unique center. Therefore, if $W_a(s;t)$ is known as a source-tagged support, its emission center $\mathbf{z}_a(s)$ is geometrically reconstructible without first assigning coordinates to the void.
 
 For a target architrino $a$ and emission interval $I$, define the source-tagged center set
 $$
-Z_a(I)=\{\mathbf{z}_a(s):s\in I\},
+Z_a(I)=\{\mathbf{z}_a(s):s\in I\}
 $$
 and its Euclidean diameter
 $$
-D_a(I)=\sup_{s,u\in I}\|\mathbf{z}_a(s)-\mathbf{z}_a(u)\|.
+D_a(I)=\sup_{s,u\in I}\|\mathbf{z}_a(s)-\mathbf{z}_a(u)\|
 $$
 
 Equivalently,
 $$
-D_a(I)=\operatorname{diam}Z_a(I).
+D_a(I)=\operatorname{diam}Z_a(I)
 $$
 With exact complete-state access and source-independent propagation at $c_f$, $D_a(I)=0$ if and only if $\mathbf{z}_a(s)$ is constant on $I$, so the source is at absolute rest almost everywhere on that interval. For uniform motion, $D_a([t_0,t_0+T])=\|\mathbf{v}_a\|T$. This is a **coordinate-free** geometric diagnostic. It does not compare position to some external grid. It checks an **intrinsic relational property**: whether the source-tagged centers of emitted causal isochrons occupy the same point in the Euclidean void.
 
@@ -156,7 +158,7 @@ Assembly-based measuring devices are themselves distorted by motion and coupling
 The diagnostic relies on a critical physical assumption:
 - **Wake propagation independence from source motion**: once emitted, the potential-bearing wake propagates at $c_f$ relative to the void, independent of the source's subsequent trajectory.
 
-This is analogous to **acoustic waves** in air: once a speaker emits sound, that wave propagates at the speed of sound in the medium. The wave does not follow the speaker if it moves.
+This is analogous to **acoustic waves** in air: once a speaker emits sound, that wave propagates at the speed of sound in the medium. The wave does not follow the speaker if it moves. The analogy does not by itself answer Michelson-Morley-style null drift results; that burden is owned by the moving-assembly closure ladder, not by this complete-state diagnostic.
 
 ## Philosophical Context
 

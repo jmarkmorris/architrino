@@ -14,6 +14,7 @@ The purpose of this section is to define the combination of experimental isotrop
 * **Consolidated Requirement** – prove preferred-frame hiding: architrino assemblies must acquire Lorentz-compatible deformation and clock behavior in the Euclidean-void rest frame so no local observer can detect the Noether sea's rest frame.
 * **Observable** – local Lorentz invariance is preserved.
 * **Mechanism** – assembly-based clocks/rulers must emerge with proper time $\tau$ rather than absolute time $t$.
+* **Shared Residual** – the structural-integrity common-limit closure in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure) couples this row to photon and gravitational-wave speed gates: the same branch record must make $c_{\mathrm{mat}}^{\mathrm{lim}}$, $c_{\text{eff}}$, $c_\gamma$, and $c_0$ agree within $O(\epsilon_{\text{LV}})$ while also producing clock/ruler deformation and two-way photon synchronization.
 * **Failure Condition** – any detectable preferred-frame orientation above $10^{-17}$ or residual $\delta$ in $L_{moving} = L_{rest} (\gamma^{-1} + \delta)$ that exceeds $10^{-17}$ invalidates the theory.
 
 ### Photon Time-of-Flight Dispersion Gate
@@ -29,7 +30,7 @@ $$
 \chi_\gamma(\omega_a,\mathbf{x},t)
 -
 \chi_\gamma(\omega_b,\mathbf{x},t)
-}{c_0}\,d\ell .
+}{c_0}\,d\ell
 $$
 Here $\Gamma_z$ is the observer-level path used by the comparison, and $\chi_\gamma$ is the photon-channel delay factor from the same branch record used for photon synchronization. A useful residual is
 $$
@@ -44,13 +45,14 @@ $$
 -
 \Delta t_{\gamma}^{\mathrm{model}}
 \right|
-}{\sigma_{\Delta t}},
+}{\sigma_{\Delta t}}
 $$
 where $\mathcal{E}$ is the declared transient catalog, $\Delta t_{\mathrm{src}}$ is the modeled source lag, and $\sigma_{\Delta t}$ is the adopted timing uncertainty.
 
 * **Constraint** – the same photon branch that recovers local Lorentz synchronization must keep $\mathcal{R}_{\gamma\mathrm{disp}}$ below the declared catalog threshold without per-source retuning.
 * **Observable** – measured arrival-time differences across photon energy or frequency bands, source-lag model, redshift, instrument timing uncertainty, and event-selection rule.
 * **Validation Target** – Gate A in [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md) must derive a nondispersive weak homogeneous photon branch rather than assume it after the fact.
+* **Shared Residual** – this is the photon-channel component of the same common-limit residual defined in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure); the $\chi_\gamma$ record cannot be repaired independently of the clock/ruler $c_{\text{eff}}$ record.
 * **Failure Condition** – a photon closure branch fails if it predicts an accumulated frequency-dependent delay in the validated band, hides that delay by changing the source-lag model event by event, or uses a different $c_\gamma$ / $\chi_\gamma$ record from the one used in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md).
 
 ### The Absolute-Frame Drift Check (Lorentz Contraction Enforcement)
@@ -78,7 +80,7 @@ Ordinary materials supply a broad recovery surface for the same assembly, electr
 
 ### GW Speed
 
-The propagation speed of gravitational-wave disturbances in the Noether sea must align with the measured gravitational-wave velocity, so this section records the tolerance within which new physics can coexist with GW timing data without contradicting the LIGO/Virgo baseline. The relevant benchmark is now multi-messenger rather than merely assumed: GW170817/GRB 170817A constrained the gravity-channel and light-channel speed difference at roughly the $10^{-15}$ level.
+The propagation speed of gravitational-wave disturbances in the Noether sea must align with the measured gravitational-wave velocity, so this section records the tolerance within which new physics can coexist with GW timing data without contradicting the LIGO/Virgo baseline. The relevant benchmark is now multi-messenger rather than merely assumed: GW170817/GRB 170817A constrained the gravity-channel and photon-channel speed difference at roughly the $10^{-15}$ level.
 
 * **Constraint** – gravitational waves, modeled as collective Noether sea disturbances, must satisfy the multi-messenger speed gate, with GW170817/GRB 170817A giving the reference scale
   $$
@@ -86,9 +88,20 @@ The propagation speed of gravitational-wave disturbances in the Noether sea must
   \lesssim
   \frac{v_{\mathrm{GW}}-c_0}{c_0}
   \lesssim
-  7\times10^{-16}.
+  7\times10^{-16}
   $$
-  Any tighter ledger tolerance adopted for a specific validation band should be stated explicitly rather than inferred from ontology.
+  Equivalently, for the weak homogeneous observer branch in which $c_\gamma\to c_0$,
+  $$
+  \left|
+  \frac{c_{\mathrm{GW}}}{c_\gamma}
+  -
+  1
+  \right|
+  \lesssim
+  10^{-15}
+  $$
+  is the order-of-magnitude ledger tolerance. Any tighter ledger tolerance adopted for a specific validation band should be stated explicitly rather than inferred from ontology.
+* **Shared-Channel Requirement** – the effective gravitational-wave channel and photon channel must be derived from one Noether sea state record in the weak-field branch, as required by [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure). A medium-based gravity model fails this row if it lets gravitational waves and photons acquire independently tunable dressed speeds in the same region.
 * **Mode and Dispersion Gate** – finite-range or medium-compliance corrections must keep accumulated dispersion, false-alarm residuals, calibration residuals, and any scalar, vector, or longitudinal gravitational-wave detector response below the residual bounds for the validated band.
 * **Low-Frequency Extension** – if a cosmological-scale weakening channel claims finite-range behavior, it must also report the low-frequency residual $\mathcal{R}_{\mathrm{GW,low}}(\theta)$ from [Gravitational Waves](../spacetime/gravitational-waves.md#linear-wave-equation) for the declared pulsar-timing or space-interferometer band. A band not yet measured may be listed as a forecast, but it cannot be used to override the existing high-frequency speed, polarization, and dispersion gates.
 * **Failure Condition** – a cosmological-scale weakening channel fails if it predicts measurable gravitational-wave dispersion, an unsuppressed non-TT mode, or a speed offset in the same regime where the weak-field metric map is supposed to recover GR.
@@ -119,7 +132,7 @@ Massive-interference experiments and precision gravity readouts jointly test whe
   \int_0^T\!\!\int_0^T
   \Delta h_A(t)\,
   N^{-1}_{AB}(t,t')\,
-  \Delta h_B(t')\,dt\,dt',
+  \Delta h_B(t')\,dt\,dt'
   $$
   with $\Delta h_A(t)=h_A(t;\rho_1,\theta)-h_A(t;\rho_2,\theta)$, must remain below the declared which-path threshold for any interference-preserving run unless a record-forming separatrix crossing and persistence window are also derived.
 * **Observable** – the data products are massive-superposition coherence time, branch separation and mass-displacement history, precision-gravity response, detector noise covariance, any two-probe entanglement witness, non-gravitational coupling residuals, and the absence or presence of a durable which-path record.
@@ -144,13 +157,13 @@ $$
 =
 \frac{f_A\rho_{\mathrm{DM}}}{M_A}\,
 \pi b_{\max}^2\,
-\langle v_{\mathrm{rel}}\rangle_{\theta_A}.
+\langle v_{\mathrm{rel}}\rangle_{\theta_A}
 $$
 The corresponding impulse scale on a tracked body is
 $$
 \Delta v_{\mathrm{test}}
 \simeq
-\frac{2GM_A}{b\,v_{\mathrm{rel}}},
+\frac{2GM_A}{b\,v_{\mathrm{rel}}}
 $$
 with the accepted comparison using the full ephemeris covariance rather than this estimate alone.
 
@@ -184,6 +197,6 @@ $$
 \mathcal{C}_{\mathrm{Photon}}
 \cap
 \mathcal{C}_{\mathrm{Topo}}
-\neq \varnothing.
+\neq \varnothing
 $$
 If the intersection is empty after uncertainty propagation, the integrated model version is rejected.

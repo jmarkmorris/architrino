@@ -39,7 +39,7 @@ $$
 \mathcal B_{e,1},\ldots,\mathcal B_{e,N},
 \mathcal B_{\mathrm{bond}},
 \mathcal{N}_{\mathrm{sea}}^{(\ell)}
-\right).
+\right)
 $$
 
 Equilibrium molecular geometry is the stationary branch
@@ -63,7 +63,7 @@ $$
 \sum_{B,j}
 \left(M^{-1}\right)_{Ai,Ck}
 \mathcal H_{Ck,Bj}\,
-\epsilon_{s,Bj},
+\epsilon_{s,Bj}
 $$
 
 where $M$ is the observer-level mass-response matrix of the participating nuclei or molecular fragments. The normal-mode spectrum is therefore a validation surface for the same corridor, exclusion, and medium-response functional that fixes shape. A geometry fit fails if it recovers equilibrium angles only by using one functional while vibrational frequencies require an unrelated stiffness map.

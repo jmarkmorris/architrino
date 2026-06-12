@@ -1,3 +1,3 @@
-import { mountIdealSwarmPrototype } from "./IdealSwarmPrototypeRuntime.js";
+import { mountIdealSwarm } from "./IdealSwarmRuntime.js";
 
-window.__IDEAL_SWARM_PROTOTYPE__ = mountIdealSwarmPrototype();
+window.__IDEAL_SWARM__ = mountIdealSwarm();

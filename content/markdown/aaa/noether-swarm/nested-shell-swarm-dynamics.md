@@ -46,7 +46,7 @@ T_q(\mathbf{w}),
 \theta_{\mathrm{obs}}^{(q)},
 \mathfrak{S}^{(q)}(W),
 \mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}
-\right).
+\right)
 $$
 
 Here $\mathcal{A}_q$ is the active causal-root ledger, $\nu_J^{(q)}$ the active Jacobian floor, $g_{\mathrm{inactive}}^{(q)}$ the inactive-root gap, $h_{\mathrm{mem}}^{(q)}$ the finite memory depth, and $\Delta_{\mathbf{k}}^{(q)}$ the Floquet or branch-stability gap. The remaining rows record the moving deformation map, absolute branch period, medium-dressed mass-response tensor, moving-branch residual, observer-export packet, active sector residuals, and row-indexed event ledger. The observer-export packet is not an effective metric or clock law; it is the branch-certified data that later observer-inference chapters must consume.
@@ -72,7 +72,7 @@ d_{\mathcal{A}}
 \left(
 \mathcal{A}_{\mathrm{sig}}^{(q)},
 \mathcal{A}_{\mathrm{event}}^{(q)}
-\right).
+\right)
 $$
 
 The candidate chart may be promoted to a retained branch class $q$ only if the same ledger supplies a positive Jacobian floor, inactive-root gap, finite memory depth, positive stability gap, closed event ledger, and the normalized closure residual
@@ -89,7 +89,7 @@ $$
 \frac{\left\|\mathcal{R}_S^{(q)}\right\|_W}{\epsilon_S},
 \frac{\left\|\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}\right\|_W}{\epsilon_{\mathrm{led}}}
 \right)
-\le1.
+\le1
 $$
 
 This is a certificate target, not an additional force law. It prevents a moving-deformation ratio, a mass-response average, a photon row, or an observer-export residual from being promoted unless the same causal-root branch supplies the period, envelope, signal, observer-export, mass, sector, and event-ledger data. If a row fails on $q$, the verdict is a rejected chart or continuation target under its declared hypotheses, not evidence against the broader neutral swarm or shell swarm class.
@@ -129,7 +129,7 @@ s_I > c_f,
 \qquad
 s_M \approx c_f,
 \qquad
-s_O < c_f.
+s_O < c_f
 $$
 
 The inner binary is therefore self-hit and history-supported, the middle binary is the $\|\mathbf{v}\| = c_f$ hinge where root branches are most sensitive, and the outer binary is the sub-field-speed interface that controls shielding and boundary coupling. Their radii, cycle times, and history-window depths may differ by orders of magnitude. A reduced derivation can start with a separated-scale hypothesis such as $R_I \ll R_M \ll R_O$ and $T_I \ll T_M \ll T_O$, but the branch must report the actual hierarchy rather than hiding it in the notation.
@@ -155,7 +155,7 @@ In roadmap form, the target relation is
 $$
 m_0(A)c_{\text{eff}}^2
 \sim
-\zeta(A)E_{\text{internal}}(A),
+\zeta(A)E_{\text{internal}}(A)
 $$
 
 where $E_{\text{internal}}(A)$ is the closed internal causal-history energy ledger of assembly $A$, and $\zeta(A)$ is the shielding or leakage factor that controls how much of that ledger couples to external probes. This is not yet a derived mass formula. It becomes a theorem only after the shielding factor, the internal energy ledger, and the first-order momentum-skew response are derived from the closed nested shell swarm dynamics.
@@ -185,12 +185,12 @@ s_I,s_M,s_O;\,
 \mathbf{A}_I,\mathbf{A}_M,\mathbf{A}_O;\,
 \mathcal{L}_{\mathrm{root}};\,
 \mathcal{L}_{\mathrm{wake}}
-\right)_q.
+\right)_q
 $$
 
 The moving-branch extraction starts with a primitive drift band
 $$
-\mathcal{D}_{\beta_f}=\{\,0\le \|\mathbf{v}_{\text{trans}}\|/c_f\le\beta_{\max}<1\,\}.
+\mathcal{D}_{\beta_f}=\{\,0\le \|\mathbf{v}_{\text{trans}}\|/c_f\le\beta_{\max}<1\,\}
 $$
 All causal roots in the branch ledger are solved with $c_f$ and absolute time $t$. No dressed observer-channel speed is allowed inside this branch calculation.
 
@@ -203,7 +203,7 @@ Q_{ab}^{(q)}(\mathbf{v}_{\text{trans}})
 \sum_i m_i\,r_{i,a}r_{i,b}
 \right\rangle_{\mathrm{cyc},q},
 \qquad
-M_q=\sum_i m_i.
+M_q=\sum_i m_i
 $$
 With drift direction $\hat{\mathbf e}_{\parallel}$ and transverse projector $P_{\perp}^{ab}=\delta^{ab}-\hat e_{\parallel}^{a}\hat e_{\parallel}^{b}$, define
 $$
@@ -213,7 +213,7 @@ R_{\parallel,q}(\mathbf{v}_{\text{trans}})
 \qquad
 R_{\perp,q}(\mathbf{v}_{\text{trans}})
 =
-\sqrt{\frac{1}{2}P_{\perp}^{ab}Q_{ab}^{(q)}}.
+\sqrt{\frac{1}{2}P_{\perp}^{ab}Q_{ab}^{(q)}}
 $$
 The physical branch period is extracted from a declared layer or composite phase on that same branch ledger:
 $$
@@ -221,7 +221,7 @@ T_q(\mathbf{v}_{\text{trans}})
 =
 \frac{2\pi}{\langle\dot{\theta}_{q}\rangle_{\mathrm{cyc}}},
 \qquad
-T_{q,0}=T_q(\mathbf{0}),
+T_{q,0}=T_q(\mathbf{0})
 $$
 where the dot means $d/dt$ with respect to absolute substrate time.
 
@@ -240,7 +240,7 @@ be the integer ledger of causal roots required to complete one primitive branch 
 $$
 |N_{\text{hits},q}|_1
 =
-\sum_{\ell,\rho}N_{\ell\rho}^{(q)}.
+\sum_{\ell,\rho}N_{\ell\rho}^{(q)}
 $$
 Preserving the same branch means preserving this integer ledger, the source identities of the roots, their emission-order classes, the positive Jacobian floor, and the phase-return condition over the whole cycle.
 Equivalently, let $\mathcal{H}_q$ be the ordered multiset of retained hit rows represented by $N_{\text{hits},q}$.
@@ -251,7 +251,7 @@ c_f^2\left(\Delta t_a\right)^2
 =
 \ell_a^2
 +
-\|\mathbf{v}_{\text{trans}}\|^2\left(\Delta t_a\right)^2,
+\|\mathbf{v}_{\text{trans}}\|^2\left(\Delta t_a\right)^2
 $$
 so
 $$
@@ -260,7 +260,7 @@ $$
 \frac{\ell_a}{\sqrt{c_f^2-\|\mathbf{v}_{\text{trans}}\|^2}}
 =
 \frac{\Delta t_a(\mathbf{0})}
-{\sqrt{1-\|\mathbf{v}_{\text{trans}}\|^2/c_f^2}}.
+{\sqrt{1-\|\mathbf{v}_{\text{trans}}\|^2/c_f^2}}
 $$
 Thus any retained ledger that requires nonzero transverse closure rows has a larger absolute-time delay per such row when $\mathbf{v}_{\text{trans}}\ne\mathbf{0}$, unless the internal geometry retunes. A branch-period decomposition has the schematic form
 $$
@@ -269,7 +269,7 @@ T_q(\mathbf{v}_{\text{trans}})
 \sum_{a\in \mathcal{H}_q}
 \Delta t_a(\mathbf{v}_{\text{trans}})
 +
-\mathcal{R}_{\mathrm{phase},q},
+\mathcal{R}_{\mathrm{phase},q}
 $$
 where $\mathcal{R}_{\mathrm{phase},q}$ records finite-memory, inter-layer, and phase-return corrections on the same retained branch chart. The theorem target is:
 $$
@@ -279,7 +279,7 @@ N_{\text{hits},q}(\mathbf{v}_{\text{trans}})=N_{\text{hits},q}(\mathbf{0}),
 \quad
 \Delta_{\mathbf{k}}^{(q)}>0
 \quad\Longrightarrow\quad
-T_q(\mathbf{v}_{\text{trans}})\ge T_{q,0},
+T_q(\mathbf{v}_{\text{trans}})\ge T_{q,0}
 $$
 with strict inequality for nonzero translation unless a compensating shape retuning changes the relevant $\ell_a$ rows. This is an absolute-time period theorem target, not a statement about observer clock time.
 
@@ -294,7 +294,7 @@ J_a
 \qquad
 w_a
 =
-\frac{1}{r_a^2|J_a|}.
+\frac{1}{r_a^2|J_a|}
 $$
 The branch force contribution is proportional to $w_a\hat{\mathbf r}_a$. Decompose the source velocity into center translation plus internal motion,
 $$
@@ -302,7 +302,7 @@ $$
 =
 \mathbf{v}_{\text{trans}}
 +
-\mathbf{u}_j(t_0).
+\mathbf{u}_j(t_0)
 $$
 On a retained chart away from grazing, the translation part changes the received weight by
 $$
@@ -313,7 +313,7 @@ $$
 \frac{\mathbf{v}_{\text{trans}}\cdot\hat{\mathbf r}_a}{c_f}
 -
 \frac{\mathbf{u}_j(t_0)\cdot\hat{\mathbf r}_a}{c_f}
-\right|^{-1}.
+\right|^{-1}
 $$
 Cycle-paired longitudinal rows with $\hat{\mathbf r}_a=\pm\hat{\mathbf e}_{\parallel}$ acquire the symmetric translation weight
 $$
@@ -326,7 +326,7 @@ $$
 =
 \frac{1}{1-\beta_f^2},
 \qquad
-\beta_f=\frac{\|\mathbf{v}_{\text{trans}}\|}{c_f},
+\beta_f=\frac{\|\mathbf{v}_{\text{trans}}\|}{c_f}
 $$
 whereas ideal transverse rows with $\mathbf{v}_{\text{trans}}\cdot\hat{\mathbf r}_a=0$ do not receive this translation amplification at the same order. Therefore the same radial inverse-square law becomes anisotropic after the branch is translated:
 $$
@@ -338,7 +338,7 @@ $$
 \left(
 \frac{1}{1-\beta_f^2}-1
 \right)
-+\mathcal{R}_{u,J}.
++\mathcal{R}_{u,J}
 $$
 Here $\mathcal{R}_{u,J}$ records internal-motion, unequal-radius, finite-memory, and unpaired-row corrections.
 
@@ -351,7 +351,7 @@ K_{\perp}^{(q)}
 \frac{R_{\parallel,q}}{R_{\perp,q}}
 \sim
 \sqrt{\frac{K_{\perp}^{(q)}}{K_{\parallel}^{(q)}}}
-<1.
+<1
 $$
 The physical squash into an oblate $R_{\parallel}<R_{\perp}$ branch is therefore not imported from a relativistic metric. It is the mechanical response to the $1/|J|$ wake-flux asymmetry created by translating the same causal-root ledger through the Euclidean void.
 
@@ -359,13 +359,13 @@ A one-$h$ closed-cycle action transaction is a candidate map between stable bran
 $$
 B_q(\mathbf{v}_{\text{trans}})
 \longrightarrow
-B_{q'}(\mathbf{v}_{\text{trans}}+\Delta\mathbf{v}),
+B_{q'}(\mathbf{v}_{\text{trans}}+\Delta\mathbf{v})
 $$
 subject to the all-layer action and energy ledgers
 $$
 \Delta A_{\mathrm{cyc}}\equiv\Delta A_{\text{cycle}}=\sigma h,
 \qquad
-\Delta I_I+\Delta I_M+\Delta I_O+\Delta I_{\text{wake}}=\sigma\hbar,
+\Delta I_I+\Delta I_M+\Delta I_O+\Delta I_{\text{wake}}=\sigma\hbar
 $$
 $$
 \sum_{\ell\in\{I,M,O\}}
@@ -373,7 +373,7 @@ $$
 +
 \Delta E_{\text{wake}}
 =
-\Delta E_{\text{coupl}}.
+\Delta E_{\text{coupl}}
 $$
 Thus acceleration, absorption, or any accepted transaction can change all three $\omega_\ell$, all three $R_\ell$, and all three $s_\ell$. The outer binary is the leading envelope projector because it is the exposed boundary layer. The middle binary remains the separator-sensitive hinge, and the inner binary remains the self-hit/history-supported engine. Dropping the middle or inner layer is therefore a reduced observable model, not a proof of translating-branch closure.
 
@@ -390,7 +390,7 @@ $$
 \ln\lambda,\ln\xi
 \right)^{T},
 \qquad
-\omega_\ell=2\pi\nu_\ell.
+\omega_\ell=2\pi\nu_\ell
 $$
 
 The layer-speed identities give the first kinematic constraint:
@@ -402,7 +402,7 @@ $$
 +
 \Delta\ln\nu_\ell,
 \qquad
-\ell\in\{I,M,O\}.
+\ell\in\{I,M,O\}
 $$
 
 The simple inverse rule $\Delta\ln R_\ell=-\Delta\ln\nu_\ell$ is therefore valid only on a sub-branch where $\Delta\ln s_\ell=0$. The ordinary nested shell swarm speed hierarchy instead imposes inequalities and hinge tolerances:
@@ -412,7 +412,7 @@ s_I'>c_f,
 \qquad
 \left|s_M'-c_f\right|\le\epsilon_M c_f,
 \qquad
-s_O'<c_f,
+s_O'<c_f
 $$
 
 where primed quantities are evaluated after retuning and $\epsilon_M$ is the declared middle-hinge tolerance. A transaction that violates these conditions is not a smooth retuning inside the same regime; it is a branch event at the speed-regime boundary.
@@ -426,7 +426,7 @@ $$
 \frac{1}{2}
 \Delta\mathbf{y}^{T}
 \mathbf{K}^{\mathrm{ret}}_q
-\Delta\mathbf{y},
+\Delta\mathbf{y}
 $$
 
 subject to
@@ -441,7 +441,7 @@ D A_{\mathrm{cyc},q}[\Delta\mathbf{y}]
 D\mathcal{C}_q[\Delta\mathbf{y}]
 +
 \Delta\mathcal{C}_{\mathcal{G}}
-=0,
+=0
 $$
 
 and to the post-retuning speed-regime inequalities above. The matrix $\mathbf{K}^{\mathrm{ret}}_q$ is not a new force law. It is the local second-variation record of how costly it is for the accepted branch to place the action increment into cadence, layer scale, envelope shape, orientation, or wake exchange. In a simulation, it should be estimated from the linearized return map or from finite retuning trials around an admitted branch.
@@ -455,7 +455,7 @@ $$
 \left(
 \Delta\mathbf{y}_{q,\sigma},
 \Delta\mathcal{G}_{q,\sigma}
-\right),
+\right)
 $$
 
 with
@@ -469,7 +469,7 @@ $$
 =
 \left(
 \Delta\nu_N,\Delta R_I,\Delta R_M,\Delta R_O,\Delta\lambda,\Delta\xi
-\right).
+\right)
 $$
 
 This map is falsifiable at the branch level. It fails if no admissible minimizer exists, if the minimizer crosses a separator while being treated as same-branch drift, if the middle hinge leaves its declared tolerance, if the envelope projection and branch-period stretch come from different retained ledgers, or if the wake-ledger residual is large enough to survive hierarchy averaging. These are not bookkeeping nuisances; they are the diagnostics that decide whether the same one-$h$ transaction can become the Noether sea cadence current used in cosmology.
@@ -491,7 +491,7 @@ K_{\perp}^{(q)},
 \nu_J^{(q)},
 \Delta_{\mathbf{k}}^{(q)},
 \mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}
-\right).
+\right)
 $$
 Every entry is computed in absolute time from the retained causal-root chart. Later observer-inference chapters may ask whether this packet recovers clock behavior, ruler behavior, photon synchronization, or effective geometry. Those are downstream recovery tests. They are not definitions, assumptions, or integration variables in nested shell swarm dynamics.
 
@@ -507,7 +507,7 @@ $$
 \text{all layer ledgers close, edge wake ledgers match, and } \theta \text{ is preserved}
 \right\}
 /
-\sim_{O,\theta,W}.
+\sim_{O,\theta,W}
 $$
 
 The first calculation route is a transfer-compatibility problem. Fix a local strip direction $\nu$ on the horizon-adjacent interface. Let $\Lambda_{\theta}^{\mathrm{loc}}$ be the set of one-patch labels $\lambda$ obtained from $\Lambda_{\text{NS}}^{\mathrm{align}}$ after imposing one-patch layer closure, terminal-alignment conditions, and the Physical Observer quotient for the declared record $\theta$. Each $\lambda\in\Lambda_{\theta}^{\mathrm{loc}}$ carries two edge projections $\mathcal{E}_{\nu}^{-}(\lambda)$ and $\mathcal{E}_{\nu}^{+}(\lambda)$: the active causal-root, winding, emission-order, Jacobian-branch, and wake-exchange data presented to the two neighboring patches in the $\nu$ direction.
@@ -528,7 +528,7 @@ $$
 0, & \text{otherwise},
 \end{cases}
 \qquad
-\lambda,\lambda'\in\Lambda_{\theta}^{\mathrm{loc}}.
+\lambda,\lambda'\in\Lambda_{\theta}^{\mathrm{loc}}
 $$
 This is a counting matrix, not a thermodynamic weight. For an open strip of $N$ patches,
 $$
@@ -538,7 +538,7 @@ $$
 \mathsf{T}_{\theta,\nu}^{N-1}
 \mathbf{1}
 +
-\mathcal{O}(\epsilon_{\mathrm{edge}}),
+\mathcal{O}(\epsilon_{\mathrm{edge}})
 $$
 while a periodic strip uses $\mathrm{Tr}(\mathsf{T}_{\theta,\nu}^{N})$. If the label set is finite and the transfer rule is local, the strip entropy density is
 $$
@@ -548,7 +548,7 @@ s_{\mathrm{align}}(\theta;\nu)
 \frac{1}{N}
 \log\left|\mathcal{L}_{[1,N]}(\theta)\right|
 =
-\log\rho(\mathsf{T}_{\theta,\nu}),
+\log\rho(\mathsf{T}_{\theta,\nu})
 $$
 where $\rho$ is the spectral radius. In a two-dimensional patch network the same target becomes the subadditive pressure
 $$
@@ -556,7 +556,7 @@ s_{\mathrm{align}}(\theta)
 =
 \lim_{|U|\to\infty}
 \frac{1}{|U|}
-\log\left|\mathcal{L}_U(\theta)\right|,
+\log\left|\mathcal{L}_U(\theta)\right|
 $$
 with the limit taken over blocks whose boundary-to-area ratio vanishes.
 
@@ -574,13 +574,13 @@ A_{\text{align}}
 \lim_{|U|\to\infty}
 \frac{\log|\mathcal{L}_U(\theta)|}{A_{\theta}(U)}
 =
-\frac{s_{\mathrm{align}}(\theta)}{a_{\theta}}.
+\frac{s_{\mathrm{align}}(\theta)}{a_{\theta}}
 $$
 The horizon target is
 $$
 \bar{\alpha}_{\mathrm{align}}(\theta)
 \longrightarrow
-\frac{1}{4}.
+\frac{1}{4}
 $$
 The special raw statement $s_{\mathrm{align}}\to1/4$ is valid only when the terminal branch also derives $a_{\theta}\to1$. Exact recovery can therefore come from an asymptotic transfer system, a weighted pressure, a block-density limit with derived area normalization, or an explicitly approximate tolerance target rather than one fixed counting matrix. A finite computation should report a convergence criterion of the form
 $$
@@ -594,7 +594,7 @@ C\frac{|\partial U_N|}{|U_N|}
 +
 \epsilon_{\mathrm{branch}}
 +
-\epsilon_{\mathrm{quot}},
+\epsilon_{\mathrm{quot}}
 $$
 where $a_N(\theta)=A_{\theta}(U_N)/(|U_N|A_{\text{align}})$. This tests the area coefficient as a controlled limit rather than hiding it inside one finite count.
 
@@ -612,7 +612,7 @@ a_N(\theta)
 \qquad
 \bar{\alpha}_N(\theta)
 =
-\frac{s_N(\theta)}{a_N(\theta)}.
+\frac{s_N(\theta)}{a_N(\theta)}
 $$
 The finite-block residual vector is
 $$
@@ -626,7 +626,7 @@ $$
 \epsilon_{\mathrm{quot}},
 \epsilon_{\mathrm{cons}},
 \epsilon_{\mathrm{var}}
-\right).
+\right)
 $$
 Here $\epsilon_{\mathrm{area}}$ records how much the patch-area assignment varies across the retained block, $\epsilon_{\mathrm{cons}}$ is the conservation-ledger residual, and $\epsilon_{\mathrm{var}}$ is the action-variation residual inherited from the terminal branch scaffold below. This object is the right simulation output: it can pass, fail, or converge under refinement without turning the coefficient into a definition.
 
@@ -636,13 +636,13 @@ $$
 \qquad
 \bar{\alpha}_{16}=0.11198,
 \qquad
-\bar{\alpha}_{32}=0.05599,
+\bar{\alpha}_{32}=0.05599
 $$
 while the widened $3\le n\le6$ packet gives
 $$
 \bar{\alpha}_{16}=0.14391,
 \qquad
-\bar{\alpha}_{32}=0.07196.
+\bar{\alpha}_{32}=0.07196
 $$
 These values scale like a finite-label open-strip count divided by block length, with asymptotic proxy coefficient $0$, rather than trending toward $1/4$. Coarse and strict quotients coincide on these packets. The action-complete transfer has no accepted transfer edges, so its coefficient is undefined rather than near the target. This is a failure of the reduced adapter as a horizon-coefficient proof, not a failure of the coefficient target itself.
 
@@ -654,7 +654,7 @@ $$
 +
 \Delta\Pi_{b,\mathrm{src}},
 \qquad
-\Delta\Pi=(\Delta E,\Delta\mathbf{p},\Delta J,\Delta q).
+\Delta\Pi=(\Delta E,\Delta\mathbf{p},\Delta J,\Delta q)
 $$
 Also record the per-branch stationarity residual
 $$
@@ -669,7 +669,7 @@ $$
 {r_b(t_b,t_0)J_b(t_b,t_0)}
 \right]
 \right|_{t_0=t_b-\Delta_b}
-\right\|.
+\right\|
 $$
 The executable now also records the branch-summed receiver residual after the direct inverse-square term is removed:
 $$
@@ -686,7 +686,7 @@ $$
 {r_b(t_b,t_0)J_b(t_b,t_0)}
 \right]
 \right|_{t_0=t_b-\Delta_b}
-\right\|,
+\right\|
 $$
 where $\alpha$ ranges over sampled receiver phase keys. The dynamics-backed transfer predicate is therefore the earlier edge-match condition plus closure of the paired source-recoil ledger, the cycle residual, and $\epsilon_{\mathrm{sum}}$; $\epsilon_{\mathrm{stat}}$ remains an obstruction diagnostic. In the current executable packet this `terminal_dynamic` transfer has zero accepted edges. With $3\le n\le5$, `phase-samples = 12`, and the layer-sum area proxy, the edge-only coefficient is $\bar{\alpha}_{16}=0.09174$, but the terminal-dynamic coefficient is undefined; $\epsilon_{\mathrm{stat}}^{\max}$ is about $166.83$ and $\epsilon_{\mathrm{sum}}^{\max}$ is about $607.78$. With $3\le n\le6$, the edge-only coefficient is $\bar{\alpha}_{16}=0.12120$, while the terminal-dynamic transfer remains empty; $\epsilon_{\mathrm{stat}}^{\max}$ rises to about $322.67$ and $\epsilon_{\mathrm{sum}}^{\max}$ rises to about $1729.02$. Thus the obstruction is not merely the observer quotient or area normalization. The reduced concentric terminal ansatz fails the action-variation and cycle-support tests before it can become a horizon-interface transfer system.
 
@@ -696,7 +696,7 @@ $$
 \qquad
 \phi_M=2\pi f,
 \qquad
-\phi_O=0,
+\phi_O=0
 $$
 with tested offsets $f=1/8$ and $f=1/4$. These packets raise the delayed inter-layer root inventory to $288$ sampled roots per candidate, but the terminal-dynamic transfer still has zero accepted edges under both coarse and strict quotients. For $3\le n\le5$, the edge-only coefficient remains $\bar{\alpha}_{16}=0.09174$ while $\epsilon_{\mathrm{stat}}^{\max}$ is about $179.54$ at $f=1/8$ and about $166.83$ at $f=1/4$; the corresponding $\epsilon_{\mathrm{sum}}^{\max}$ values are about $608.87$ and $626.17$. For $3\le n\le6$, the edge-only coefficient remains $\bar{\alpha}_{16}=0.12120$, $\epsilon_{\mathrm{stat}}^{\max}$ reaches about $322.67$, and $\epsilon_{\mathrm{sum}}^{\max}$ reaches about $2067.83$. A bounded phase offset therefore does not rescue the reduced circular terminal ansatz.
 
@@ -706,7 +706,7 @@ $$
 \qquad
 \mathbf{c}_M=\left(\frac{\epsilon_c R_O}{2},\frac{\sqrt{3}\epsilon_c R_O}{2}\right),
 \qquad
-\mathbf{c}_O=\left(\frac{\epsilon_c R_O}{2},-\frac{\sqrt{3}\epsilon_c R_O}{2}\right),
+\mathbf{c}_O=\left(\frac{\epsilon_c R_O}{2},-\frac{\sqrt{3}\epsilon_c R_O}{2}\right)
 $$
 where $R_O=1/\omega_O$ is the outer alignment radius and $\epsilon_c$ is the tested center-shift fraction. Runs at $\epsilon_c=0.01$, $0.05$, and $0.10$ again raised the delayed inter-layer inventory to $288$ sampled roots per candidate, but they produced zero terminal-dynamic transfer edges. The $\epsilon_c=0.05$ and $\epsilon_c=0.10$ packets were empty even at the edge-proxy level for $3\le n\le5$ and $3\le n\le6$. The smaller $\epsilon_c=0.01$ packet produced only one widened edge-proxy edge at $3\le n\le6$, with zero finite-block coefficient and still no terminal-dynamic edge. The sampled stationarity residuals remained large: $\epsilon_{\mathrm{stat}}^{\max}$ was about $620.96$ to $1026.11$ for $\epsilon_c=0.01$, about $965.98$ to $1103.36$ for $\epsilon_c=0.05$, and about $693.97$ for $\epsilon_c=0.10$; the branch-summed residual was larger still, reaching about $9243.89$, $4569.36$, and $5941.09$ respectively. Thus small shifted centers make the reduced chart more brittle rather than more entropy-bearing. The next useful variation must change the action kernel, the wake-memory ledger, or the observer quotient, not merely the first-order circular geometry.
 
@@ -714,7 +714,7 @@ At the present derivation level, the admissible one-patch labels can be enumerat
 $$
 (k_I,k_M,k_O)=(n,m,1),
 \qquad
-1<m<n,
+1<m<n
 $$
 with longer closure periods represented by common integer multiples before reduction to the primitive label. For each layer $\ell\in\{I,M,O\}$, write $\sigma_\ell=s_\ell/c_f$ in the circular reduced root chart. The binary root vocabulary supplies finite active branch sets on any resolved terminal branch:
 $$
@@ -726,7 +726,7 @@ r\in\mathbb{Z}_{\ge0}
 \tilde{\delta}_{s,\ell}+2\pi r
 =
 2\sigma_\ell\sin(\tilde{\delta}_{s,\ell}/2)
-\right\},
+\right\}
 $$
 $$
 \mathcal{M}_{p,\ell}
@@ -737,7 +737,7 @@ r\in\mathbb{Z}_{\ge0}
 \tilde{\delta}_{p,\ell}+2\pi r
 =
 2\sigma_\ell\cos(\tilde{\delta}_{p,\ell}/2)
-\right\}.
+\right\}
 $$
 Branch-birth or grazing cases, where a Jacobian ceases to be transversal, must be split into their own boundary class rather than silently folded into a smooth label.
 
@@ -752,7 +752,7 @@ $$
 \chi_c;\,
 \mathcal{E}_{\nu}^{-},\mathcal{E}_{\nu}^{+};\,
 \mathcal{R}_{O,W}^{\theta}
-\right),
+\right)
 $$
 where $J_{\ell}$ collects the active branch Jacobians and $\prec_{\ell}$ records the emission-order relation within the layer. The finite candidate set is the subset of these labels satisfying exact one-patch phase closure, terminal-alignment conditions, edge conservation, inter-layer wake compatibility, and the observer quotient:
 $$
@@ -765,7 +765,7 @@ $$
 \mathcal{R}_{O,W}(\lambda)=\mathcal{R}_{O,W}^{\theta}
 \right\}
 /
-\sim_{O,\theta,W}.
+\sim_{O,\theta,W}
 $$
 
 This makes the next missing equations precise. To turn the schema into an actual transfer matrix, the dynamics must supply: first, the terminal branch equations fixing $(s_\ell,R_\ell,\omega_\ell,\mathbf{A}_\ell)$ under $v_M=c_f$, $v_O\to c_f$, and coplanar/co-linear alignment; second, the inter-layer maps that reduce $\mathcal{G}_{IM}^{\mathrm{align}},\mathcal{G}_{IO}^{\mathrm{align}},\mathcal{G}_{MO}^{\mathrm{align}}$ to boundary wake data; and third, the observer-record quotient that decides which edge distinctions remain visible in $\theta$.
@@ -775,7 +775,7 @@ $$
 \hat{\mathbf{r}}_b
 =
 \frac{\mathbf{x}_{o_b}(t_b)-\mathbf{x}_{j_b}(t_{0,b})}
-{\left\|\mathbf{x}_{o_b}(t_b)-\mathbf{x}_{j_b}(t_{0,b})\right\|},
+{\left\|\mathbf{x}_{o_b}(t_b)-\mathbf{x}_{j_b}(t_{0,b})\right\|}
 $$
 and branch Jacobian
 $$
@@ -783,7 +783,7 @@ J_b
 =
 1
 -
-\frac{\mathbf{v}_{j_b}(t_{0,b})\cdot\hat{\mathbf{r}}_b}{c_f}.
+\frac{\mathbf{v}_{j_b}(t_{0,b})\cdot\hat{\mathbf{r}}_b}{c_f}
 $$
 The branch is admissible only when its causal-root equation closes,
 $$
@@ -791,18 +791,18 @@ $$
 =
 c_f(t_b-t_{0,b}),
 \qquad
-J_b\ne0,
+J_b\ne0
 $$
 and the terminal label also satisfies the integer-lock and alignment constraints
 $$
 \omega_O T=2\pi,\qquad
 \omega_M T=2\pi m,\qquad
-\omega_I T=2\pi n,
+\omega_I T=2\pi n
 $$
 $$
 s_M=c_f,\qquad
 s_O\to c_f,\qquad
-\max_{\ell,\ell'}\arccos(\hat{\mathbf{A}}_\ell\cdot\hat{\mathbf{A}}_{\ell'})\to0.
+\max_{\ell,\ell'}\arccos(\hat{\mathbf{A}}_\ell\cdot\hat{\mathbf{A}}_{\ell'})\to0
 $$
 
 For such a branch, define the boundary-facing datum
@@ -829,7 +829,7 @@ $$
 :
 b\in\mathcal{B}_{\mathrm{term}}(\lambda),\,
 \pm(\hat{\mathbf{r}}_b\cdot\mathbf{n}_{\nu})>0
-\right\}.
+\right\}
 $$
 This equation is the derived projection target: it reduces each terminal one-patch branch ledger to the wake data presented across one edge. The still-open numerical step is solving $\mathcal{B}_{\mathrm{term}}(\lambda)$ from the full three-layer state-dependent delayed equations, including the regularized action and energy ledger that assigns the conserved increments used in $\mathcal{C}_{\theta,\nu}$.
 
@@ -839,7 +839,7 @@ $$
 \qquad
 \omega_M=m\omega_O,
 \qquad
-\omega_I=n\omega_O,
+\omega_I=n\omega_O
 $$
 and represent the aligned circular branch by
 $$
@@ -852,13 +852,13 @@ $$
 \qquad
 \ell\in\{I,M,O\},
 \qquad
-\alpha\in\{+1,-1\},
+\alpha\in\{+1,-1\}
 $$
 where $\mathbf{e}(\psi)$ is the unit vector in the common terminal plane. The phase-lock and terminal-alignment constraints are
 $$
 \phi_M-m\phi_O=\phi_{MO}^{\ast},
 \qquad
-\phi_I-n\phi_O=\phi_{IO}^{\ast},
+\phi_I-n\phi_O=\phi_{IO}^{\ast}
 $$
 $$
 R_\ell\omega_\ell=s_\ell,
@@ -881,7 +881,7 @@ F_b(\Delta_b)
 -
 c_f\Delta_b
 =
-0,
+0
 $$
 with $0<\Delta_b\le H_{\lambda}$ for the finite history window assigned to $\lambda$, layer pair $(\ell_j,\ell_o)\in\{(I,M),(I,O),(M,O),(M,I),(O,I),(O,M)\}$, signs $\alpha_j,\alpha_o\in\{+1,-1\}$, and emission phase recorded modulo $T$. The branch is kept in $\mathcal{B}_{\mathrm{term}}(\lambda)$ only if it is transversal,
 $$
@@ -890,7 +890,7 @@ J_b
 1
 -
 \frac{\mathbf{v}_{\ell_j,\alpha_j}(t_b-\Delta_b)\cdot\hat{\mathbf{r}}_b}{c_f}
-\ne0,
+\ne0
 $$
 and belongs to the same integer-lock, emission-order, and observer-record class as $\lambda$.
 
@@ -908,7 +908,7 @@ $$
 \right\|^2
 dt
 =
-0,
+0
 $$
 with the same branch set also satisfying the local conservation ledger
 $$
@@ -917,7 +917,7 @@ $$
 \Delta E_b,\Delta\mathbf{p}_b,\Delta\mathbf{J}_b,\Delta q_b
 \right)
 =
-(0,\mathbf{0},\mathbf{0},0).
+(0,\mathbf{0},\mathbf{0},0)
 $$
 This defines the current reduced solve: $\mathcal{B}_{\mathrm{term}}(\lambda)$ is the finite set of intra-layer and inter-layer roots satisfying the terminal kinematics, transversality, cycle-averaged dynamics, conservation ledger, and observer quotient. A numerical enumeration can now target these equations directly; if no solution has $|J_b|$ bounded away from zero, the label must be reclassified as a grazing boundary case rather than counted as an interior transfer-matrix state.
 
@@ -927,7 +927,7 @@ $$
 \qquad
 q_I=n,\quad q_M=m,\quad q_O=1,
 \qquad
-u=\omega_O t\pmod{2\pi},
+u=\omega_O t\pmod{2\pi}
 $$
 and introduce dimensionless layer radii
 $$
@@ -935,7 +935,7 @@ x_\ell
 =
 \frac{\omega_O R_\ell}{c_f}
 =
-\frac{s_\ell/c_f}{q_\ell}.
+\frac{s_\ell/c_f}{q_\ell}
 $$
 For a branch from source layer $\ell_j$ and sign $\alpha_j$ to receiver layer $\ell_o$ and sign $\alpha_o$, write the outer-period delay as $\delta=\omega_O\Delta$. The phase separation is
 $$
@@ -945,7 +945,7 @@ $$
 +
 q_j\delta
 +
-\phi_o-\phi_j,
+\phi_o-\phi_j
 $$
 and the causal-root equation becomes
 $$
@@ -958,7 +958,7 @@ x_o^2+x_j^2
 \cos\Theta_{jo}^{\alpha_j\alpha_o}(u,\delta)
 \right]^{1/2},
 \qquad
-0<\delta\le \omega_O H_{\lambda}.
+0<\delta\le \omega_O H_{\lambda}
 $$
 The corresponding inter-layer Jacobian reduces to
 $$
@@ -968,7 +968,7 @@ J_{jo}^{\alpha_j\alpha_o}(u,\delta)
 -
 \alpha_o\alpha_j
 \frac{(s_j/c_f)x_o}{\delta}
-\sin\Theta_{jo}^{\alpha_j\alpha_o}(u,\delta).
+\sin\Theta_{jo}^{\alpha_j\alpha_o}(u,\delta)
 $$
 
 Thus an inter-layer entry of $\mathcal{B}_{\mathrm{term}}(\lambda)$ is not an arbitrary phase sample. It is a smooth $2\pi$-periodic root curve $\delta_b(u)$ of the scalar equation above, with $|J_{jo}^{\alpha_j\alpha_o}(u,\delta_b(u))|$ bounded away from zero and with the same emission-order class over the full outer period. The intra-layer pieces remain the self-hit and partner-hit equations already listed for each $\ell$. In this symmetric special case, the unknowns left for enumeration are therefore
@@ -976,7 +976,7 @@ $$
 (m,n),\quad
 (x_I,x_M,x_O),\quad
 (\phi_{MO}^{\ast},\phi_{IO}^{\ast}),\quad
-\{\delta_b(u)\}_{b\in\mathcal{B}_{\mathrm{term}}(\lambda)},
+\{\delta_b(u)\}_{b\in\mathcal{B}_{\mathrm{term}}(\lambda)}
 $$
 subject to $x_M=1/m$, $x_O\to1$, branch transversality, the cycle residual $\mathcal{Q}_{\ell,\alpha}^{\mathrm{term}}=0$, and the conservation ledger. This is the first algebraic reduction of the terminal branch problem. It still does not select $(m,n)$ or prove existence; selection requires the residual and conservation equations to admit at least one branch set with a positive Jacobian floor.
 
@@ -989,14 +989,14 @@ x_o^2+x_j^2
 2\alpha_o\alpha_j x_o x_j
 \cos\Theta_{jo}^{\alpha_j\alpha_o}(u,\delta)
 -
-\delta^2.
+\delta^2
 $$
 The causal-root equation is equivalent to $F_{jo}^{\alpha_j\alpha_o}(u,\delta)=0$ with $\delta>0$, and, using $q_jx_j=s_j/c_f$, its delay derivative is
 $$
 \partial_{\delta}F_{jo}^{\alpha_j\alpha_o}(u,\delta)
 =
 -2\delta\,
-J_{jo}^{\alpha_j\alpha_o}(u,\delta).
+J_{jo}^{\alpha_j\alpha_o}(u,\delta)
 $$
 Thus the branch Jacobian is exactly the implicit-function denominator for the scalar root. Any nonzero root with $|J_{jo}^{\alpha_j\alpha_o}|>0$ continues locally as a smooth delay curve, and along such a curve
 $$
@@ -1008,7 +1008,7 @@ $$
 }{
 \delta_b(u)
 J_{jo}^{\alpha_j\alpha_o}(u,\delta_b(u))
-}.
+}
 $$
 
 This turns the symmetric terminal branch problem into a compact root-curve test before the force residual is evaluated. Any inter-layer root must lie in the geometric delay strip
@@ -1017,7 +1017,7 @@ $$
 \le
 \delta
 \le
-\min\{x_o+x_j,\omega_OH_{\lambda}\}.
+\min\{x_o+x_j,\omega_OH_{\lambda}\}
 $$
 For fixed $(m,n)$, radii, and relative phases, an interior inter-layer ledger is admissible only if its initial roots at one outer phase continue around the full $2\pi$ period as closed curves $\delta_b(u)$ that remain inside this strip, satisfy a uniform floor
 $$
@@ -1027,7 +1027,7 @@ $$
 J_{jo}^{\alpha_j\alpha_o}(u,\delta_b(u))
 \right|
 \ge
-\epsilon_J>0,
+\epsilon_J>0
 $$
 and preserve the declared emission-order and observer-record class. Failure of the delay strip rejects the candidate kinematically; failure of the Jacobian floor places it in the grazing boundary class; failure of closed return changes the root ledger over one outer period. Passing this scalar certificate is still not terminal-branch existence, because $\mathcal{Q}_{\ell,\alpha}^{\mathrm{term}}=0$ and the conservation ledger must still close, but it is the first finite rejection and continuation criterion for candidate $(m,n)$ branch labels.
 
@@ -1038,7 +1038,7 @@ $$
 \kappa\,
 \operatorname{sign}(q_{\ell_j,\alpha_j}^{\mathrm{pol}}q_{\ell_o,\alpha_o}^{\mathrm{pol}})
 \left|q_{\ell_j,\alpha_j}^{\mathrm{pol}}q_{\ell_o,\alpha_o}^{\mathrm{pol}}\right|
-\frac{\omega_O^2}{c_f^2}.
+\frac{\omega_O^2}{c_f^2}
 $$
 For a certified inter-layer curve $\delta_b(u)$, the circular-frame radial component, positive outward from the common center of the receiver layer, is
 $$
@@ -1051,7 +1051,7 @@ x_o-\alpha_o\alpha_j x_j
 }{
 \left(\delta_b(u)\right)^3
 \left|J_{jo}^{\alpha_j\alpha_o}(u,\delta_b(u))\right|
-},
+}
 $$
 and the tangential component, positive in the receiver's instantaneous direction of motion, is
 $$
@@ -1064,7 +1064,7 @@ a_{jo,\tau}^{\alpha_j\alpha_o}(u)
 }{
 \left(\delta_b(u)\right)^3
 \left|J_{jo}^{\alpha_j\alpha_o}(u,\delta_b(u))\right|
-}.
+}
 $$
 These formulas are just the canonical line-of-action acceleration projected onto the two circular-frame basis vectors. The intra-layer self-hit and partner-hit pieces use the same projection after substituting their own certified delay roots from the binary branch chart.
 
@@ -1078,7 +1078,7 @@ a_{b,r}(u),
 \mathcal{A}_{\ell_o,\alpha_o}^{\tau}(u)
 =
 \sum_{b:\,o_b=(\ell_o,\alpha_o)}
-a_{b,\tau}(u).
+a_{b,\tau}(u)
 $$
 On the symmetric terminal circle, with $\mathbf{e}_{\perp}(\psi)=d\mathbf{e}(\psi)/d\psi$, the target acceleration has only inward radial component,
 $$
@@ -1092,7 +1092,7 @@ $$
 \cdot
 \alpha_o\mathbf{e}_{\perp}(q_{\ell_o}u+\phi_{\ell_o})
 =
-0.
+0
 $$
 Thus the vector residual $\mathcal{Q}_{\ell,\alpha}^{\mathrm{term}}$ reduces in this chart to the two scalar residual functions
 $$
@@ -1105,7 +1105,7 @@ $$
 \mathcal{R}_{\ell_o,\alpha_o}^{\tau}(u)
 =
 -
-\mathcal{A}_{\ell_o,\alpha_o}^{\tau}(u).
+\mathcal{A}_{\ell_o,\alpha_o}^{\tau}(u)
 $$
 Equivalently,
 $$
@@ -1118,7 +1118,7 @@ $$
 +
 \left(\mathcal{R}_{\ell_o,\alpha_o}^{\tau}(u)\right)^2
 \right]
-du.
+du
 $$
 Since the integrand is non-negative on a smooth certified branch, $\mathcal{Q}_{\ell_o,\alpha_o}^{\mathrm{term}}=0$ is equivalent to $\mathcal{R}_{\ell_o,\alpha_o}^{r}(u)=0$ and $\mathcal{R}_{\ell_o,\alpha_o}^{\tau}(u)=0$ for the full outer period. This is the residual projection that can select or reject candidate integer locks after the scalar root curves are known. The remaining missing closure is the signed branch-strength and conservation assignment: without the polarity factors, regularized intra-layer branch weights, and conserved increments $(\Delta E_b,\Delta\mathbf{p}_b,\Delta\mathbf{J}_b,\Delta q_b)$, the chart can reject kinematic and force-residual failures but cannot yet prove that a particular $(m,n)$ is the terminal solution.
 
@@ -1129,7 +1129,7 @@ b
 \left(
 j_b,o_b,\tau_b,\delta_b(u),\hat{\mathbf{r}}_b(u),J_b(u),
 q_{j_b}^{\mathrm{pol}},q_{o_b}^{\mathrm{pol}},w_b^{(\eta)}(u)
-\right),
+\right)
 $$
 where $j_b$ and $o_b$ are the source and receiver architrinos, $\tau_b$ is the hit type, and $w_b^{(\eta)}$ is the regularized inverse-square/Jacobian weight assigned to that branch. On a sharp transversal inter-layer branch,
 $$
@@ -1139,7 +1139,7 @@ w_b^{(0)}(u)
 \frac{1}{
 \left(\delta_b(u)\right)^2
 \left|J_b(u)\right|
-},
+}
 $$
 while intra-layer self-hit and partner-hit entries use the corresponding binary-root delay and Jacobian. The branch acceleration is then the canonical per-hit law in ledger form,
 $$
@@ -1149,7 +1149,7 @@ $$
 \operatorname{sign}(q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}})
 \left|q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}}\right|
 w_b^{(\eta)}(u)
-\hat{\mathbf{r}}_b(u).
+\hat{\mathbf{r}}_b(u)
 $$
 The sharp limit is acceptable only when the positive delay and Jacobian-floor certificate above holds; otherwise the branch must retain its regularized weight and remain a boundary case rather than an interior terminal label.
 
@@ -1159,7 +1159,7 @@ $$
 =
 \frac{\mu_{\text{arch}}}{\omega_O}
 \int_0^{2\pi}
-\mathbf{a}_b^{(\eta)}(u)\cdot\mathbf{v}_{o_b}(u)\,du,
+\mathbf{a}_b^{(\eta)}(u)\cdot\mathbf{v}_{o_b}(u)\,du
 $$
 $$
 \Delta\mathbf{p}_{b}^{\mathrm{mech}}
@@ -1172,7 +1172,7 @@ $$
 =
 \frac{\mu_{\text{arch}}}{\omega_O}
 \int_0^{2\pi}
-\mathbf{x}_{o_b}(u)\times\mathbf{a}_b^{(\eta)}(u)\,du.
+\mathbf{x}_{o_b}(u)\times\mathbf{a}_b^{(\eta)}(u)\,du
 $$
 Because delayed momentum and energy are not purely instantaneous mechanical quantities, the full ledger entries are
 $$
@@ -1186,14 +1186,14 @@ $$
 =
 \Delta\mathbf{p}_b^{\mathrm{mech}}
 +
-\Delta\mathbf{p}_b^{\mathrm{wake}},
+\Delta\mathbf{p}_b^{\mathrm{wake}}
 $$
 $$
 \Delta\mathbf{J}_b
 =
 \Delta\mathbf{J}_b^{\mathrm{mech}}
 +
-\Delta\mathbf{J}_b^{\mathrm{wake}}.
+\Delta\mathbf{J}_b^{\mathrm{wake}}
 $$
 For an internal causal-wake hit, $\Delta q_b=0$ because no architrino identity is created, destroyed, or transferred; nonzero charge-bookkeeping entries belong only to a declared provenance crossing of the patch boundary. The terminal conservation ledger is therefore the simultaneous closure condition
 $$
@@ -1205,7 +1205,7 @@ $$
 \sum_{b\in\mathcal{B}_{\mathrm{term}}(\lambda)}
 \Delta\mathbf{p}_b
 =
-\mathbf{0},
+\mathbf{0}
 $$
 $$
 \sum_{b\in\mathcal{B}_{\mathrm{term}}(\lambda)}
@@ -1216,7 +1216,7 @@ $$
 \sum_{b\in\mathcal{B}_{\mathrm{term}}(\lambda)}
 \Delta q_b
 =
-0.
+0
 $$
 This completes the local bookkeeping needed for terminal enumeration: a candidate $(m,n)$ must pass scalar root continuation, force-residual cancellation, and the history-aware conservation ledger on the same branch set. What remains unsolved is not another requirement artifact but the derivation of $w_b^{(\eta)}$ and the wake-history increments from a time-translation- and Euclidean-invariant regularized action for the coupled three-layer branch.
 
@@ -1226,7 +1226,7 @@ t=\frac{u}{\omega_O},
 \qquad
 t_b^0(u)=t-\Delta_b(u),
 \qquad
-r_b(u)=\frac{c_f}{\omega_O}\delta_b(u).
+r_b(u)=\frac{c_f}{\omega_O}\delta_b(u)
 $$
 The sharp branch density inherited from the exact $1/r$ causal kernel is
 $$
@@ -1236,7 +1236,7 @@ $$
 \frac{1}{r_b(u)|J_b(u)|}
 =
 \frac{\omega_O}{c_f^2}
-\frac{1}{\delta_b(u)|J_b(u)|}.
+\frac{1}{\delta_b(u)|J_b(u)|}
 $$
 A regularized terminal action for the branch set should therefore have the form
 $$
@@ -1255,7 +1255,7 @@ S_{\lambda}^{(\eta)}
 \kappa\,
 \operatorname{sign}(q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}})
 \left|q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}}\right|
-\mathcal{I}_b^{(\eta)}(u),
+\mathcal{I}_b^{(\eta)}(u)
 $$
 with $\mathcal{I}_b^{(\eta)}\to\mathcal{I}_b^{(0)}$ weakly on any branch satisfying the positive-delay and Jacobian-floor certificate. Its branch variation must reproduce the terminal acceleration weight,
 $$
@@ -1268,7 +1268,7 @@ $$
 \operatorname{sign}(q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}})
 \left|q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}}\right|
 w_b^{(0)}(u)
-\hat{\mathbf{r}}_b(u),
+\hat{\mathbf{r}}_b(u)
 $$
 up to the sign convention fixed by writing the interaction term with a minus sign in the action. In other words, $w_b^{(\eta)}$ is not an independent fitting weight. It is the Euler-Lagrange pullback of the regularized causal kernel on a certified branch chart.
 
@@ -1278,7 +1278,7 @@ u_b^{\mathrm{c}}(t_1,t_0)
 =
 g_b(t_1,t_0)
 +
-\frac{r_b(t_1,t_0)}{c_f}.
+\frac{r_b(t_1,t_0)}{c_f}
 $$
 After endpoint-clear normalization, the candidate branch kernel is
 $$
@@ -1287,7 +1287,7 @@ K_{b,\mathrm{eff}}^{(\eta)}(t_1,t_0)
 \int_{-\infty}^{g_b(t_1,t_0)}
 \frac{\delta_\eta(s)}
 {c_f\left(u_b^{\mathrm{c}}(t_1,t_0)-s\right)^2}
-ds,
+ds
 $$
 or the finite-endpoint version with lower limit $-h_{+}$ when the endpoint-clearance term is cancelled by the characteristic gauge. Its receiver-gradient identity is
 $$
@@ -1299,7 +1299,7 @@ $$
 K_{b,\mathrm{eff}}^{(\eta)}
 =
 -
-\frac{\delta_\eta(g_b)}{r_b^2}.
+\frac{\delta_\eta(g_b)}{r_b^2}
 $$
 This is the action-level object that can replace the diagnostic inverse-square adapter once the Noether boundary terms below are computed from the same kernel. Until then, terminal enumerator rows using $w_b^{(\eta)}\hat{\mathbf{r}}_b$ remain diagnostic branch-force rows rather than a completed action derivation.
 
@@ -1309,7 +1309,7 @@ $$
 =
 \frac{1}{c_f}
 \Theta(t_1-t_0)
-\frac{\delta(g_b(t_1,t_0))}{r_b(t_1,t_0)},
+\frac{\delta(g_b(t_1,t_0))}{r_b(t_1,t_0)}
 $$
 with
 $$
@@ -1321,7 +1321,7 @@ t_1-t_0
 \qquad
 r_b(t_1,t_0)
 =
-\|\mathbf{x}_{o_b}(t_1)-\mathbf{x}_{j_b}(t_0)\|.
+\|\mathbf{x}_{o_b}(t_1)-\mathbf{x}_{j_b}(t_0)\|
 $$
 For a receiver variation at fixed source history,
 $$
@@ -1333,7 +1333,7 @@ $$
 =
 -
 \frac{1}{c_f}
-\hat{\mathbf{r}}_b\cdot\delta\mathbf{x}_{o_b}(t_1).
+\hat{\mathbf{r}}_b\cdot\delta\mathbf{x}_{o_b}(t_1)
 $$
 Therefore
 $$
@@ -1345,7 +1345,7 @@ $$
 +
 \frac{\delta'(g_b)}{c_f r_b}
 \right]
-\hat{\mathbf{r}}_b\cdot\delta\mathbf{x}_{o_b}(t_1).
+\hat{\mathbf{r}}_b\cdot\delta\mathbf{x}_{o_b}(t_1)
 $$
 The first term already gives the desired terminal branch weight after the causal root is selected:
 $$
@@ -1358,7 +1358,7 @@ $$
 \frac{\omega_O^2}{c_f^2}
 \frac{1}{\delta_b^2(u)|J_b(u)|}
 =
-w_b^{(0)}(u).
+w_b^{(0)}(u)
 $$
 
 The second term is the nontrivial root-constraint variation. It cannot be dropped after the branch has been pulled back to $\delta_b(u)$. The terminal-chart variation proof closes exactly when the regularized two-time action satisfies, for every compactly supported or period-matched receiver variation,
@@ -1371,7 +1371,7 @@ $$
 \hat{\mathbf{r}}_b(t_1,t_0)
 \right]_{\mathrm{int}}
 =
-\mathbf{0},
+\mathbf{0}
 $$
 where the subscript $\mathrm{int}$ means after the source-side variation, integration by parts on the root-selected chart, and the Noether boundary term have been accounted for. Equivalently, all interior force density left by varying the causal constraint must cancel into the boundary wake increments rather than adding a second independent line-of-action force. This is the exact missing identity for a complete terminal-chart variation proof. The direct $1/r$ variation supplies the scale coefficient $w_b^{(0)}$; the remaining proof burden is to show that the $\delta_\eta'(g_b)$ contribution is a boundary/source-side term, vanishes under a local stationarity condition, or is cancelled by a declared counterterm under the same symmetry-preserving regularization used for the conservation ledger.
 
@@ -1379,7 +1379,7 @@ This identity can be narrowed one step further. On a transversal branch,
 $$
 \partial_{t_0}g_b(t_1,t_0)
 =
--J_b(t_1,t_0),
+-J_b(t_1,t_0)
 $$
 so
 $$
@@ -1387,7 +1387,7 @@ $$
 =
 -
 \frac{1}{J_b}
-\partial_{t_0}\delta_\eta(g_b).
+\partial_{t_0}\delta_\eta(g_b)
 $$
 Substituting this into the unresolved term and integrating by parts in $t_0$ gives
 $$
@@ -1404,7 +1404,7 @@ $$
 \left[
 \Theta(t_1-t_0)
 \frac{\hat{\mathbf{r}}_b}{c_f r_b J_b}
-\right],
+\right]
 $$
 where $\mathcal{B}_{b}^{(\eta)}(t_1)$ is the endpoint contribution at the history-window, period, or excluded coincidence boundary. The coincidence term is removed by $H(0)=0$; the remaining endpoint term vanishes only for compactly supported variations or for period-matched terminal histories.
 
@@ -1418,7 +1418,7 @@ $$
 \left[
 \Theta(t_1-t_0)
 \frac{\hat{\mathbf{r}}_b}{c_f r_b J_b}
-\right].
+\right]
 $$
 The terminal action derives the claimed line-of-action branch law exactly only if
 $$
@@ -1431,7 +1431,7 @@ $$
 \mathbf{C}_{b,\mathrm{bdry}}^{(\eta)}
 \right]
 =
-\mathbf{0},
+\mathbf{0}
 $$
 where $\mathbf{C}_{b,\mathrm{src}}^{(\eta)}$ is the source-side variation of the same two-time kernel and $\mathbf{C}_{b,\mathrm{bdry}}^{(\eta)}$ is the Noether boundary contribution assigned to the wake-history ledger. This is the precise local closure condition that would be needed for the pure scalar kernel to derive the terminal line-of-action force without an added term. If this cancellation fails, the action-derived terminal force law must include an additional regularized counterterm rather than using $w_b^{(\eta)}\hat{\mathbf{r}}_b$ alone.
 
@@ -1444,7 +1444,7 @@ $$
 \delta g_b
 =
 \frac{1}{c_f}
-\hat{\mathbf{r}}_b\cdot\delta\mathbf{x}_{j_b}(t_0),
+\hat{\mathbf{r}}_b\cdot\delta\mathbf{x}_{j_b}(t_0)
 $$
 and therefore
 $$
@@ -1455,13 +1455,13 @@ $$
 +
 \frac{\delta_\eta'(g_b)}{c_f r_b}
 \right]
-\hat{\mathbf{r}}_b\cdot\delta\mathbf{x}_{j_b}(t_0).
+\hat{\mathbf{r}}_b\cdot\delta\mathbf{x}_{j_b}(t_0)
 $$
 On a future-reception chart for the same branch,
 $$
 \partial_{t_1}g_b(t_1,t_0)
 =
-1-\frac{\hat{\mathbf{r}}_b(t_1,t_0)\cdot\mathbf{v}_{o_b}(t_1)}{c_f},
+1-\frac{\hat{\mathbf{r}}_b(t_1,t_0)\cdot\mathbf{v}_{o_b}(t_1)}{c_f}
 $$
 so the source-side derivative-of-delta contribution becomes
 $$
@@ -1479,7 +1479,7 @@ $$
 \Theta(t_1-t_0)
 \frac{\hat{\mathbf{r}}_b}
 {c_f r_b\left(1-\hat{\mathbf{r}}_b\cdot\mathbf{v}_{o_b}/c_f\right)}
-\right].
+\right]
 $$
 This is the coefficient of $\delta\mathbf{x}_{j_b}(t_0)$, not the coefficient of $\delta\mathbf{x}_{o_b}(t_1)$. For arbitrary compactly supported interior variations, the source and receiver variations are independent. The source-side term therefore does not cancel $\mathbf{C}_{b}^{(\eta)}$ pointwise in the receiver Euler-Lagrange equation. Noether boundary terms can cancel endpoint contributions or enforce global time-translation, spatial-translation, and rotation charges, but they cannot remove an interior receiver coefficient for compactly supported variations.
 
@@ -1494,7 +1494,7 @@ $$
 \frac{\hat{\mathbf{r}}_b(t_1,t_0)}
 {c_f r_b(t_1,t_0)J_b(t_1,t_0)}
 \right]
-\right|_{t_0=t_b^0}.
+\right|_{t_0=t_b^0}
 $$
 Thus the pure regularized $1/r$ causal kernel is promoted to an exact branch-weight derivation only under the sufficient local stationarity condition
 $$
@@ -1535,7 +1535,7 @@ $$
 \qquad
 \rho_b(u,\delta)
 =
-\|\mathbf{Y}_b(u,\delta)\|.
+\|\mathbf{Y}_b(u,\delta)\|
 $$
 Since $r_b=(c_f/\omega_O)\rho_b$ and $\hat{\mathbf{r}}_b=\mathbf{Y}_b/\rho_b$, the branch stationarity condition is equivalent up to a nonzero scale to
 $$
@@ -1547,14 +1547,14 @@ $$
 \right]
 \right|_{\delta=\delta_b(u)}
 =
-\mathbf{0}.
+\mathbf{0}
 $$
 The vector derivative can vanish only if $\partial_\delta\mathbf{Y}_b$ is parallel to $\mathbf{Y}_b$. But
 $$
 \partial_\delta\mathbf{Y}_b
 =
 \alpha_j q_j x_j\,
-\mathbf{e}_{\perp}(q_j(u-\delta)+\phi_j),
+\mathbf{e}_{\perp}(q_j(u-\delta)+\phi_j)
 $$
 so parallelism forces the separation to be tangent to the source circle:
 $$
@@ -1564,7 +1564,7 @@ $$
 \quad\Longleftrightarrow\quad
 \alpha_o x_o\cos\Theta_{jo}^{\alpha_j\alpha_o}(u,\delta)
 =
-\alpha_j x_j.
+\alpha_j x_j
 $$
 On this tangent subcase, $\rho_{b,\delta\delta}=0$ and $J_b=1-\rho_{b,\delta}$. The remaining scalar stationarity condition reduces to
 $$
@@ -1572,7 +1572,7 @@ $$
 =
 \rho_{b,\delta}(1-\rho_{b,\delta})
 =
-0.
+0
 $$
 The first factor would require $\rho_{b,\delta}=0$; with $q_jx_j=s_j/c_f\ne0$ and the tangent condition, that collapses the separation to $\rho_b=0$ and violates the positive-delay floor. The second factor gives $J_b=0$, which violates the Jacobian floor. Therefore per-branch stationarity is not the terminal inter-layer closure mechanism on this chart. The remaining action-level route is branch-summed residual closure over the signed admitted branch set, or a richer invariant action mechanism whose Euler derivative supplies the missing residual without fitting the force law.
 
@@ -1586,7 +1586,7 @@ $$
 \frac{\mathbf{Y}_b(u,\delta)}
 {\rho_b^2(u,\delta)J_b(u,\delta)}
 \right]
-\right|_{\delta=\delta_b(u)}.
+\right|_{\delta=\delta_b(u)}
 $$
 Using $t_0=t_1-\delta/\omega_O$, $r_b=(c_f/\omega_O)\rho_b$, and $\hat{\mathbf{r}}_b=\mathbf{Y}_b/\rho_b$, the sharp receiver-side interior term becomes
 $$
@@ -1594,7 +1594,7 @@ $$
 =
 -
 \frac{\omega_O^2}{c_f^2}
-\frac{\mathbf{A}_b(u)}{|J_b(u)|}.
+\frac{\mathbf{A}_b(u)}{|J_b(u)|}
 $$
 After the common nonzero scale is removed, the necessary pointwise receiver-side closure equation is
 $$
@@ -1605,7 +1605,7 @@ $$
 =
 \mathbf{0}
 \qquad
-\text{for all }u.
+\text{for all }u
 $$
 This is a different equation from the force residuals $\mathcal{R}_{\ell_o,\alpha_o}^{r}=\mathcal{R}_{\ell_o,\alpha_o}^{\tau}=0$ and from the conservation-ledger sums. The force residual tests whether the accepted Master EOM supplies the terminal circular acceleration. The conservation ledger tests Noether bookkeeping over the same branch set. The branch-summed residual equation tests whether the scalar action scaffold has no leftover Euler derivative on that receiver after the direct inverse-square term has already been accounted for.
 
@@ -1635,7 +1635,7 @@ E_{b}^{\mathrm{wake}}(t_\ast)
 \int_{\{(t_1,t_0)\in b:\,t_0\le t_\ast<t_1\}}
 \partial_{t_1}
 \mathcal{K}_{b}^{(\eta)}(t_1,t_0)\,
-dt_0\,dt_1,
+dt_0\,dt_1
 $$
 where $\mathcal{K}_{b}^{(\eta)}$ is the weighted regularized causal kernel restricted to branch $b$,
 $$
@@ -1645,7 +1645,7 @@ $$
 \left|q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}}\right|}{c_f}
 \Theta(t_1-t_0)
 \frac{\delta_\eta(g_b(t_1,t_0))}
-{r_b(t_1,t_0)},
+{r_b(t_1,t_0)}
 $$
 for the pure scalar scaffold. For the delayed-interior characteristic-tail candidate, the branch kernel is instead
 $$
@@ -1654,13 +1654,13 @@ $$
 \frac{\kappa\,\operatorname{sign}(q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}})
 \left|q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}}\right|}{c_f}
 \Theta(t_1-t_0)
-K_{b,\mathrm{eff}}^{(\eta)}(t_1,t_0),
+K_{b,\mathrm{eff}}^{(\eta)}(t_1,t_0)
 $$
 with the trivial self-coincidence branch excluded in either case. Over one outer period,
 $$
 \Delta E_b^{\mathrm{wake}}
 =
-E_{b}^{\mathrm{wake}}(T)-E_{b}^{\mathrm{wake}}(0).
+E_{b}^{\mathrm{wake}}(T)-E_{b}^{\mathrm{wake}}(0)
 $$
 The momentum and angular-momentum wake increments are the corresponding spatial-translation and rotation boundary terms:
 $$
@@ -1670,7 +1670,7 @@ $$
 \qquad
 \Delta\mathbf{J}_b^{\mathrm{wake}}
 =
-\mathbf{J}_b^{\mathrm{wake}}(T)-\mathbf{J}_b^{\mathrm{wake}}(0).
+\mathbf{J}_b^{\mathrm{wake}}(T)-\mathbf{J}_b^{\mathrm{wake}}(0)
 $$
 They are fixed by the coefficients of the boundary variations
 $$
@@ -1682,7 +1682,7 @@ $$
 \delta_{\boldsymbol{\Omega}}S_b^{(\eta)}
 =
 \boldsymbol{\Omega}\cdot
-\Delta\mathbf{J}_b^{\mathrm{wake}},
+\Delta\mathbf{J}_b^{\mathrm{wake}}
 $$
 with the mechanical increments already written above. Therefore a terminal branch proof now has a precise action-level target: derive $\mathcal{I}_b^{(\eta)}$ from the normalized delayed-interior kernel, prove that its branch variation gives $w_b^{(\eta)}$ with the derivative-of-constraint residual cancelled by the receiver-gradient identity, and show that the Noether boundary terms close over the same certified branch set. Until those three steps are complete, the action scaffold supplies a constrained proof route and a rejection test, not a solved terminal $(m,n)$ selection.
 
@@ -1696,7 +1696,7 @@ r_b,\hat{\mathbf r}_b,g_b,u_b,J_b,
 K_{b,\mathrm{eff}}^{(\eta)},
 \partial_{t_b}\mathcal{K}_{b,\mathrm{eff}}^{(\eta)},
 \nabla_{\mathbf{x}_{o_b}(t_b)}\mathcal{K}_{b,\mathrm{eff}}^{(\eta)}
-\right),
+\right)
 $$
 using the action-level causal scalar
 $$
@@ -1704,7 +1704,7 @@ g_b(t_b,t_{0,b})
 =
 t_b-t_{0,b}
 -
-\frac{r_b(t_b,t_{0,b})}{c_f}.
+\frac{r_b(t_b,t_{0,b})}{c_f}
 $$
 The chart then reports the endpoint totals
 $$
@@ -1718,14 +1718,14 @@ E_{\mathrm{wake,eff},\lambda}^{(\eta)},
 =
 \mathbf{P}_{\mathrm{mech},\lambda}
 +
-\mathbf{P}_{\mathrm{wake,eff},\lambda}^{(\eta)},
+\mathbf{P}_{\mathrm{wake,eff},\lambda}^{(\eta)}
 $$
 $$
 \boldsymbol{\mathcal{J}}_{\mathrm{term}}^{(\eta)}
 =
 \mathbf{J}_{\mathrm{mech},\lambda}
 +
-\mathbf{J}_{\mathrm{wake,eff},\lambda}^{(\eta)}.
+\mathbf{J}_{\mathrm{wake,eff},\lambda}^{(\eta)}
 $$
 The terminal label is conserved only when the increments of all three totals vanish within the declared branch tolerance, after subtracting the Euler-residual and endpoint-leakage terms. The projected action increment $\Delta I_{\mathrm{ME}}$ and any torque integral remain numerical diagnostics until these three totals close on the same $\mathcal{B}_{\mathrm{term}}(\lambda)$ rows.
 
@@ -1777,7 +1777,7 @@ To keep speed claims consistent across documents, all binary-speed statements sh
 
 **Geometry speed guardrail:** Primitive envelope and closure diagnostics use the causal speed $c_f$. Downstream observer-channel dressing is not part of this branch scan. The corresponding kinematic parameter is
 $$
-\beta_f=\frac{v_{\text{trans}}}{c_f}.
+\beta_f=\frac{v_{\text{trans}}}{c_f}
 $$
 Primitive dynamics scans must not mix $c_f$ and $c_{\text{eff}}$ in the same diagnostic. Any $c_{\text{eff}}$ comparison belongs to a downstream observer-channel map.
 
@@ -1791,7 +1791,7 @@ Primitive dynamics scans must not mix $c_f$ and $c_{\text{eff}}$ in the same dia
 
 **Geometry:** Let the motion define the $z$-axis. Model the envelope as an ellipsoid
 $$
-\frac{x^2 + y^2}{R_\perp^2} + \frac{z^2}{R_\parallel^2} = 1,
+\frac{x^2 + y^2}{R_\perp^2} + \frac{z^2}{R_\parallel^2} = 1
 $$
 with transverse radius $R_\perp$ and longitudinal radius $R_\parallel$.
 
@@ -1799,33 +1799,33 @@ Use the kinematic contraction law as a theorem target to be derived from branch 
 $$
 \beta_f = \frac{v_{\text{trans}}}{c_f},
 \qquad
-R_\parallel = R_\perp\sqrt{1-\beta_f^2}.
+R_\parallel = R_\perp\sqrt{1-\beta_f^2}
 $$
 As $\beta_f \to 1$, $R_\parallel \to 0$ and the envelope collapses toward a disk.
 **Right-triangle link:** Treat $c_f$ as the primitive causal propagation speed and decompose it into orthogonal components: one leg is the group translation $v_{\text{trans}}$, the other leg is the longitudinal closure speed $v_\parallel$. Then
 $$
-c_f^2 = v_{\text{trans}}^2 + v_\parallel^2 \quad \Rightarrow \quad v_\parallel = c_f\sqrt{1-\beta_f^2}.
+c_f^2 = v_{\text{trans}}^2 + v_\parallel^2 \quad \Rightarrow \quad v_\parallel = c_f\sqrt{1-\beta_f^2}
 $$
 Mapping causal speed to closure length gives $R_\parallel = R_\perp (v_\parallel/c_f) = R_\perp\sqrt{1-\beta_f^2}$, which is the triangle form of the ellipsoid theorem target rather than a completed recovery.
 
 **Impact on delay locking:** The round-trip delay $\Delta t_{\text{rt}}$ is the time between an outer-binary architrino’s emission and the moment its wake returns to influence that same architrino, approximating the inner and middle binaries as a compact subsystem at the center. For a ray at polar angle $\theta$ relative to the $z$-axis, the intersection radius with the ellipsoid is
 $$
-R(\theta) = \left(\frac{\sin^2\theta}{R_\perp^2} + \frac{\cos^2\theta}{R_\parallel^2}\right)^{-1/2}.
+R(\theta) = \left(\frac{\sin^2\theta}{R_\perp^2} + \frac{\cos^2\theta}{R_\parallel^2}\right)^{-1/2}
 $$
 Then $\Delta t_{\text{rt}}(\theta) \approx 2 R(\theta)/c_f$, and the phase condition generalizes to
 $$
-\Phi_n(\theta, \mathbf{v}_{\text{trans}}) = \omega_n\,\Delta t_{\text{rt}}(\theta) + \phi_{\text{geom}}(n).
+\Phi_n(\theta, \mathbf{v}_{\text{trans}}) = \omega_n\,\Delta t_{\text{rt}}(\theta) + \phi_{\text{geom}}(n)
 $$
 **Conjecture (velocity convergence):** As translational speed increases, delay-closure constraints drive the orbital degree of freedom to adjust (e.g., by shrinking radius and raising $v_{\text{orb}}^{\text{tan}}$) so that both $v_{\text{trans}}$ and $v_{\text{orb}}^{\text{tan}}$ converge toward $c_f$ at the planar transition.
 
 **Exclusion volume (instantaneous):**
 $$
 V(v_{\text{trans}}) = \frac{4\pi}{3} R_\perp^2 R_\parallel
-= \frac{4\pi}{3} R_\perp^3 \sqrt{1-\left(\frac{v_{\text{trans}}}{c_f}\right)^2}.
+= \frac{4\pi}{3} R_\perp^3 \sqrt{1-\left(\frac{v_{\text{trans}}}{c_f}\right)^2}
 $$
 If the outer radius is infalling, treat $R_\perp = R_\perp(t)$ so
 $$
-V(t) = \frac{4\pi}{3} R_\perp(t)^3 \sqrt{1-\left(\frac{v_{\text{trans}}(t)}{c_f}\right)^2}.
+V(t) = \frac{4\pi}{3} R_\perp(t)^3 \sqrt{1-\left(\frac{v_{\text{trans}}(t)}{c_f}\right)^2}
 $$
 This expression belongs to the primitive branch chart; downstream dressed-channel variants must be rebuilt from an explicit observer-inference map.
 
@@ -1883,7 +1883,7 @@ $$
 $$
 measures how one sector's phase-closure period compares to the reference cadence:
 $$
-T_{\text{local}}(\theta) = T_0 \, \alpha(\theta, G_{\text{grad}}).
+T_{\text{local}}(\theta) = T_0 \, \alpha(\theta, G_{\text{grad}})
 $$
 When $\alpha > 1$, local cycles are longer relative to $T_0$; when $\alpha < 1$, they are shorter. This sector-delay diagnostic remains an absolute-time branch-period record. It can be exported downstream only after the accepted branch functional $T_q(v,G_{\text{grad}})$ is derived from the full cycle and matched to the retained causal-root ledger.
 
@@ -1893,7 +1893,7 @@ When $\alpha > 1$, local cycles are longer relative to $T_0$; when $\alpha < 1$,
 $$
 \beta_f=\frac{v_{\text{trans}}}{c_f},
 \qquad
-R_\parallel = R_\perp \sqrt{1-\beta_f^2}.
+R_\parallel = R_\perp \sqrt{1-\beta_f^2}
 $$
 Geometrically, $\beta_f$ is the primitive axis-squash control: as $\beta_f \to 1$, the causal envelope collapses along the motion axis, shrinking longitudinal path lengths and altering the delay.
 
@@ -1919,7 +1919,7 @@ Geometrically, $\beta_f$ is the primitive axis-squash control: as $\beta_f \to 1
 
 **Phase condition:**
 $$
-\Phi_n(\theta, \mathbf{v}_{\text{trans}}, G_{\text{grad}}) = \omega_n\,\Delta t_{\text{rt}}(\theta) + \phi_{\text{geom}}(n),
+\Phi_n(\theta, \mathbf{v}_{\text{trans}}, G_{\text{grad}}) = \omega_n\,\Delta t_{\text{rt}}(\theta) + \phi_{\text{geom}}(n)
 $$
 and track when $\partial \Phi_n/\partial r$ changes sign.
 Quantization here is emergent: only delay-locked, stable closures persist as discrete rungs, not imposed eigenmodes.
@@ -1940,7 +1940,7 @@ Two nonlinear-dynamics diagnostics extend the standard alignment invariants and 
 
 **Floquet basin-robustness gap:** For a periodic nested shell swarm state $\mathcal{S}_{\mathbf{k}}$ with integer winding $\mathbf{k}$ and period $T_{\mathbf{k}}$, linearize the delay system around the periodic orbit and compute the leading Floquet multipliers $\{\mu_i\}$ off the symmetry directions. Define
 $$
-\Delta_{\mathbf{k}} = 1 - \max_{i\notin G}\|\mu_i(\mathbf{k})\|.
+\Delta_{\mathbf{k}} = 1 - \max_{i\notin G}\|\mu_i(\mathbf{k})\|
 $$
 Track $\Delta_{\mathbf{k}}$ along scans in declared $\beta_f = v_{\text{trans}}/c_f$ and $G_{\text{grad}}$. Stable rungs have $\Delta_{\mathbf{k}}>0$; rung termination, separator cycle-period divergence, and gradient-driven failure should all coincide with $\Delta_{\mathbf{k}}\to 0^+$.
 
@@ -1969,7 +1969,7 @@ K_{\perp}^{(q)},
 \Delta_{\mathbf{k}}^{(q)},
 G_{\text{grad}},
 \mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}
-\right)_W.
+\right)_W
 $$
 The spacetime and observer-inference chapters may convert this packet into lapse, ruler, signal, connection, and weak-field comparison variables. This chapter's obligation is narrower: certify that the packet comes from one retained causal-root branch chart in absolute time.
 
@@ -2000,7 +2000,7 @@ The local dynamics burden behind later equivalence-principle recovery is a subst
 $$
 \mathcal{D}_{\mathrm{tri}}^{\mathrm{accel}}(W)
 \sim
-\mathcal{D}_{\mathrm{tri}}^{\mathrm{grad}}(W),
+\mathcal{D}_{\mathrm{tri}}^{\mathrm{grad}}(W)
 $$
 with the comparison made from phase-closure residuals, anisotropy ratios, branch-period records, stability thresholds, and cycle-averaged causal-work or phase-slip variance.
 
@@ -2029,23 +2029,23 @@ The stronger claim that this architecture supplies the basis for rest mass, obse
 
 **Equation of motion near the hinge ($v \approx c_f$)** For each architrino $i$ interacting with its partner $j$:
 $$
-\ddot{\mathbf{x}}_i(t)=\mathbf{a}_{i,j}(t;\{t_{p,k}\})+\mathbf{a}_{i,i}^{\mathrm{active}}(t;\{t_{s,m}\})+\mathbf{a}_{\text{ext}}(t),
+\ddot{\mathbf{x}}_i(t)=\mathbf{a}_{i,j}(t;\{t_{p,k}\})+\mathbf{a}_{i,i}^{\mathrm{active}}(t;\{t_{s,m}\})+\mathbf{a}_{\text{ext}}(t)
 $$
 with delay constraints (causal roots):
 $$
 \|\mathbf{x}_j(t_{p,k})-\mathbf{x}_i(t)\|=c_f\,(t-t_{p,k}), \quad
-\|\mathbf{x}_i(t_{s,m})-\mathbf{x}_i(t)\|=c_f\,(t-t_{s,m}),
+\|\mathbf{x}_i(t_{s,m})-\mathbf{x}_i(t)\|=c_f\,(t-t_{s,m})
 $$
 where $\mathbf{a}_{i,i}^{\mathrm{active}}$ is a shorthand for the sum over retained self-hit roots in $\mathcal{C}_{ii}(t)$, not an instantaneous switch $H(s-1)$. Self-hit remains path-history dependent: roots emitted during an earlier super-field-speed interval can stay active after the current speed has changed.
 The second constraint is the native small-scale bridge-like causal structure in this sketch: the receiver at $\mathbf{x}_i(t)$ is linked to an earlier point on the same worldline by its own causal wake. The connectedness is path-history closure in the causal-root ledger, not a tunnel in the Euclidean void. Any connected-geometry translation belongs only after coarse-graining into an effective horizon-interface or metric description.
 
 and $s=\|\mathbf{v}\|/c_f$. For symmetric, non-translating circular geometry, the delay angles satisfy
 $$
-\delta_p=2s\cos(\delta_p/2), \qquad \delta_s=2s\sin(\delta_s/2),
+\delta_p=2s\cos(\delta_p/2), \qquad \delta_s=2s\sin(\delta_s/2)
 $$
 with no self-hit solution for $s\le 1$ and a small-root branch $\tilde{\delta}_s\to 0^+$ for $s>1$. The radial/tangential split then reads
 $$
-\ddot r-r\dot\theta^2=A_{\text{rad}}(\delta_p,\delta_s), \qquad r\ddot\theta+2\dot r\dot\theta=T(\delta_p,\delta_s).
+\ddot r-r\dot\theta^2=A_{\text{rad}}(\delta_p,\delta_s), \qquad r\ddot\theta+2\dot r\dot\theta=T(\delta_p,\delta_s)
 $$
 The symmetry breaking at the hinge is geometric: as $\tilde{\delta}_s\to 0^+$ the self-hit radial factor scales like $1/\sin(\tilde{\delta}_s/2)$, turning on a large outward term while the state remains continuous.
 

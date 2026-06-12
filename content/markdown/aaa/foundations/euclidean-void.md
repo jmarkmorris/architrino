@@ -26,32 +26,32 @@ $$
 
 A specific location is represented by a point
 $$
-\mathbf{x}=(x,y,z)\in\mathbb{R}^3,
+\mathbf{x}=(x,y,z)\in\mathbb{R}^3
 $$
 or in index notation by $x^i$ where $i\in\{1,2,3\}$.
 
 The fundamental geometric object is the fixed Euclidean metric:
 $$
-h_{ij}=\delta_{ij},
+h_{ij}=\delta_{ij}
 $$
 where $\delta_{ij}$ is the Kronecker delta.
 
 The spatial line element is
 $$
-ds^2=h_{ij}\,dx^i dx^j=dx^2+dy^2+dz^2.
+ds^2=h_{ij}\,dx^i dx^j=dx^2+dy^2+dz^2
 $$
 
 The distance between two points $\mathbf{p}$ and $\mathbf{q}$ is
 $$
 d(\mathbf{p},\mathbf{q})=
-\sqrt{(x_p-x_q)^2+(y_p-y_q)^2+(z_p-z_q)^2}.
+\sqrt{(x_p-x_q)^2+(y_p-y_q)^2+(z_p-z_q)^2}
 $$
 
 For fixed void points, this distance is time-independent. Equivalently, with
 $$
 D_h(\mathbf{p},\mathbf{q})
 =
-\sqrt{h_{ij}(p^i-q^i)(p^j-q^j)},
+\sqrt{h_{ij}(p^i-q^i)(p^j-q^j)}
 $$
 the substrate condition is
 $$
@@ -59,7 +59,7 @@ $$
 \qquad
 R^i{}_{jkl}(h)=0,
 \qquad
-\frac{d}{dt}D_h(\mathbf{p},\mathbf{q})=0.
+\frac{d}{dt}D_h(\mathbf{p},\mathbf{q})=0
 $$
 Any cosmological scale variable must therefore be an effective summary of medium or observer records, not a time-dependent scale factor multiplying the void metric.
 
@@ -77,16 +77,16 @@ Its curvature tensors vanish identically:
 
 The Levi-Civita connection $\nabla$ is compatible with the metric,
 $$
-\nabla h=0,
+\nabla h=0
 $$
 and is torsion-free. In Cartesian coordinates, all Christoffel symbols vanish:
 $$
-\Gamma^i{}_{jk}=0.
+\Gamma^i{}_{jk}=0
 $$
 
 The geodesic equation reduces to
 $$
-\frac{d^2x^i}{ds^2}=0,
+\frac{d^2x^i}{ds^2}=0
 $$
 whose solutions are straight lines.
 
@@ -112,11 +112,11 @@ This fixed identity is important for self-hit diagnostics, path-history bookkeep
 
 For a received wake contribution, the provenance record consists of the source identity, emission time, emission location, receiver identity, reception time, and reception location:
 $$
-(j,t_0,\mathbf{s}_j(t_0),o',t,\mathbf{s}_{o'}(t)).
+(j,t_0,\mathbf{s}_j(t_0),o',t,\mathbf{s}_{o'}(t))
 $$
 The causal-root condition is then
 $$
-\|\mathbf{s}_{o'}(t)-\mathbf{s}_j(t_0)\|_h=c_f(t-t_0).
+\|\mathbf{s}_{o'}(t)-\mathbf{s}_j(t_0)\|_h=c_f(t-t_0)
 $$
 This condition is invariant under Euclidean translations and rotations of the chosen coordinate chart. The chart may be changed for calculation, but the underlying void point where emission occurred is not moved by that relabeling.
 
@@ -126,7 +126,7 @@ Cartesian coordinates are the natural default chart, but the same Euclidean geom
 
 In spherical coordinates $(r,\theta,\phi)$ with $r\geq0$, $\theta\in[0,\pi]$, and $\phi\in[0,2\pi)$,
 $$
-h=dr^2+r^2d\theta^2+r^2\sin^2\theta\,d\phi^2,
+h=dr^2+r^2d\theta^2+r^2\sin^2\theta\,d\phi^2
 $$
 with components
 $$
@@ -135,7 +135,7 @@ h_{ij}=
 1&0&0\\
 0&r^2&0\\
 0&0&r^2\sin^2\theta
-\end{pmatrix}.
+\end{pmatrix}
 $$
 
 In cylindrical coordinates $(\rho,\phi,z)$,
@@ -147,7 +147,7 @@ h_{ij}=
 1&0&0\\
 0&\rho^2&0\\
 0&0&1
-\end{pmatrix}.
+\end{pmatrix}
 $$
 
 The metric components look different in these coordinate systems, but the geometry remains flat. Curvature is coordinate-invariant, and
@@ -160,30 +160,30 @@ in every coordinate system.
 
 Use Cartesian core indices $i,j,k\in\{1,2,3\}$ for spatial components. The Euclidean metric and its inverse are
 $$
-h_{ij}=\delta_{ij},\qquad h^{ij}=\delta^{ij}.
+h_{ij}=\delta_{ij},\qquad h^{ij}=\delta^{ij}
 $$
 
 Raising and lowering indices is trivial:
 $$
 v_i=h_{ij}v^j=\delta_{ij}v^j=v^i,
 \qquad
-v^i=h^{ij}v_j=\delta^{ij}v_j=v_i.
+v^i=h^{ij}v_j=\delta^{ij}v_j=v_i
 $$
 
 The dot product and norm are
 $$
 \mathbf{u}\cdot\mathbf{v}
 =h_{ij}u^i v^j
-=u^1v^1+u^2v^2+u^3v^3,
+=u^1v^1+u^2v^2+u^3v^3
 $$
 and
 $$
-\|\mathbf{v}\|^2=h_{ij}v^i v^j=(v^1)^2+(v^2)^2+(v^3)^2.
+\|\mathbf{v}\|^2=h_{ij}v^i v^j=(v^1)^2+(v^2)^2+(v^3)^2
 $$
 
 The spatial volume element in Cartesian coordinates is
 $$
-dV=\sqrt{\det h}\,d^3x=dx\,dy\,dz.
+dV=\sqrt{\det h}\,d^3x=dx\,dy\,dz
 $$
 
 Surface elements inherit the usual Jacobian factors when parametrized, for example $dA=r^2\sin\theta\,d\theta\,d\phi$ on a constant-$r$ sphere.
@@ -200,32 +200,32 @@ $$
 \frac{\partial f}{\partial y},
 \frac{\partial f}{\partial z}
 \right)
-=h^{ij}\partial_i f\,\mathbf{e}_j.
+=h^{ij}\partial_i f\,\mathbf{e}_j
 $$
 
 The divergence of a vector field is
 $$
 \nabla\cdot\mathbf{v}
 =\partial_i v^i
-=\frac{1}{\sqrt{\det h}}\partial_i\left(\sqrt{\det h}\,v^i\right).
+=\frac{1}{\sqrt{\det h}}\partial_i\left(\sqrt{\det h}\,v^i\right)
 $$
 
 In Cartesian coordinates this reduces to
 $$
-\partial_x v^x+\partial_y v^y+\partial_z v^z.
+\partial_x v^x+\partial_y v^y+\partial_z v^z
 $$
 
 The scalar Laplacian in Cartesian coordinates is
 $$
 \Delta f=\nabla^2 f=h^{ij}\partial_i\partial_j f
-=\partial_x^2f+\partial_y^2f+\partial_z^2f.
+=\partial_x^2f+\partial_y^2f+\partial_z^2f
 $$
 
 In curvilinear coordinates on the same flat geometry, the invariant scalar Laplacian is
 $$
 \Delta f
 =
-\frac{1}{\sqrt{\det h}}\partial_i\left(\sqrt{\det h}\,h^{ij}\partial_j f\right).
+\frac{1}{\sqrt{\det h}}\partial_i\left(\sqrt{\det h}\,h^{ij}\partial_j f\right)
 $$
 
 All these operators remain coordinate-invariant when expressed tensorially, while their component formulas depend on the chosen coordinate chart.
@@ -234,7 +234,7 @@ All these operators remain coordinate-invariant when expressed tensorially, whil
 
 The kinematic symmetry group of the Euclidean void is the Euclidean group:
 $$
-E(3)=\mathbb{R}^3\rtimes SO(3).
+E(3)=\mathbb{R}^3\rtimes SO(3)
 $$
 
 This combines:
@@ -244,12 +244,12 @@ This combines:
 
 Any element $g=(R,\mathbf{a})\in E(3)$ acts on a point $\mathbf{x}$ as
 $$
-g\cdot\mathbf{x}=R\mathbf{x}+\mathbf{a}.
+g\cdot\mathbf{x}=R\mathbf{x}+\mathbf{a}
 $$
 
 The metric is invariant under all such transformations:
 $$
-g^*h=h.
+g^*h=h
 $$
 
 Homogeneity and isotropy imply:
@@ -268,7 +268,7 @@ This section separates inertial motion in the container from dynamical curvature
 
 In the absence of forces, motion in the Euclidean void follows straight-line, constant-velocity paths:
 $$
-\mathbf{x}(t)=\mathbf{x}_0+\mathbf{v}_0 t.
+\mathbf{x}(t)=\mathbf{x}_0+\mathbf{v}_0 t
 $$
 
 Only physical interactions can bend a trajectory. The curvature of a trajectory in the void is distinct from curvature of the void itself:
@@ -312,7 +312,7 @@ At any time $t$, a coordinate point may be occupied by an architrino, traversed 
 
 This gives a direct no-expanding-void criterion for cosmology. Effective cosmology variables such as $a(t)$, $H(t)$, redshift, and CMB temperature summaries are admissible only as functions of Noether sea state, transport history, and observer clock comparison:
 $$
-a_{\mathrm{eff}}(t)=\mathcal{A}[\mathcal{N}_{\mathrm{sea}}(t),O(t)].
+a_{\mathrm{eff}}(t)=\mathcal{A}[\mathcal{N}_{\mathrm{sea}}(t),O(t)]
 $$
 Here $\mathcal{N}_{\mathrm{sea}}(t)$ denotes the relevant Noether sea state variables, and $O(t)$ denotes observer records and calibration data. The formula is a schematic inference map into the observer-level metric, not a new substrate law.
 They must not be interpreted as
@@ -320,6 +320,8 @@ $$
 h_{ij}(t)=a_{\mathrm{eff}}^2(t)\delta_{ij}
 $$
 for the Euclidean void. The substrate spatial metric remains $h_{ij}=\delta_{ij}$, flat and unchanging, while any effective cosmological expansion factor belongs to observer-level metric reconstruction.
+
+This no-expanding-void commitment creates a specific observational burden. Any medium-and-observer redshift mechanism must still recover the tested expansion signatures normally carried by an FRW scale factor: the Tolman surface-brightness scaling $B_{\mathrm{obs}}\propto(1+z)^{-4}$ after the declared distance map is applied, supernova light-curve time dilation $\Delta t_{\mathrm{obs}}\approx(1+z)\Delta t_{\mathrm{emit}}$, and CMB temperature-redshift scaling $T_{\mathrm{CMB}}(z)\approx T_0(1+z)$ in the appropriate thermal record. A fixed-void model that supplies redshift only by generic scattering loss, phase degradation, or photon fatigue falls into the excluded tired-light class. The cosmology branch owns the positive recovery: [Cosmology Ontology](../cosmology/cosmology-ontology.md) defines the shared fixed-void variables, [Expansion Mechanism](../cosmology/expansion-mechanism.md) carries the redshift and distance tests, and [CMB](../cosmology/CMB.md) carries the temperature and spectrum tests.
 
 ### Plenum of Potential
 

@@ -17,7 +17,7 @@ $$
 =
 \Theta_a(T;\mathbf{V}_{\text{before}},G_{\text{grad}})
 -
-\Theta_a(T;\mathbf{V}_{\text{after}},G_{\text{grad}}).
+\Theta_a(T;\mathbf{V}_{\text{after}},G_{\text{grad}})
 $$
 
 Here $\Theta_a$ denotes the layer's phase-closure ledger over the comparison interval $T$, $\mathbf{V}$ denotes the transport state being retuned, and $G_{\text{grad}}$ denotes the local gradient data that modifies the delay loops. The notation $\{I,M,O\}$ refers to the same inner, middle, and outer nested shell swarm roles that ordered-axis chapters often write as $(H,M,L)$.
@@ -29,7 +29,7 @@ $$
 =
 \left(\sum_{a\in\{I,M,O\}} w_a\,\delta\Theta_a^2\right)^{1/2},
 \qquad
-w_a>0.
+w_a>0
 $$
 
 The weights $w_a$ are not free phenomenology in the completed theory. They must be derived from the layer hierarchy, active causal-root branches, and local Noether sea coupling. At this overview level, $\mathcal{R}_{\Theta}$ is only a bookkeeping norm for how far the post-drive assembly has been pushed away from the nearest closure class.
@@ -41,7 +41,7 @@ A closure residual becomes radiatively relevant only when it cannot be absorbed 
 $$
 \epsilon_{\text{ad}}
 \equiv
-\frac{\tau_{\text{retune}}}{\tau_{\text{drive}}}.
+\frac{\tau_{\text{retune}}}{\tau_{\text{drive}}}
 $$
 
 When $\epsilon_{\text{ad}}\ll 1$, the inner, middle, and outer ledgers remain near their stable return map, and the disturbance appears as smooth transport or small local heating. When $\epsilon_{\text{ad}}\gtrsim 1$, the post-drive state can carry a finite closure residual after the external impulse has passed. Radiation begins only if that residual is routed through an allowed shedding channel.
@@ -53,7 +53,7 @@ $$
 \equiv
 \frac{t_{\mathrm{cool}}}{t_{\mathrm{dyn}}},
 \qquad
-t_{\mathrm{dyn}}\sim\frac{\ell_j}{v_j},
+t_{\mathrm{dyn}}\sim\frac{\ell_j}{v_j}
 $$
 
 with an observer-level thermal-plasma estimate
@@ -62,7 +62,7 @@ $$
 t_{\mathrm{cool}}
 =
 \frac{(n_e+n_H)k_B T_s}
-{(\gamma_{\mathrm{gas}}-1)n_e n_H\Lambda(T_s)}.
+{(\gamma_{\mathrm{gas}}-1)n_e n_H\Lambda(T_s)}
 $$
 
 Here $v_j$ and $\ell_j$ are the effective jet speed and propagation scale, $T_s$ is the post-shock temperature, and $\Lambda(T_s)$ is the standard cooling function. These variables do not become substrate ontology. They define an observational closure target: when $\mathcal{R}_{\mathrm{cool}}\ll1$, shocked material should route a large fraction of $E_{\text{exc}}$ into thermal line, free-free, and medium-heating rows; when $\mathcal{R}_{\mathrm{cool}}\gg1$, the same shock geometry may remain adiabatic enough for non-thermal acceleration, synchrotron emission, inverse-Compton output, and cocoon/lobe energy storage to dominate. A radiation map that uses the same shock residual for both cases must therefore expose the branch decision rather than treating "shock" as a single radiative outcome.
@@ -81,7 +81,7 @@ This is the point where the radiation page connects to the Master Equation: the 
 $$
 \mathcal{R}_{\Theta}
 =
-\mathcal{R}_{\Theta}\!\left(\Gamma(t),\mathcal{C}_{o'j}(t),J_{o'j},\rho_{\text{NS}}(\mathbf{x},t),\chi_{\text{sea}}(\mathbf{x},t)\right),
+\mathcal{R}_{\Theta}\!\left(\Gamma(t),\mathcal{C}_{o'j}(t),J_{o'j},\rho_{\text{NS}}(\mathbf{x},t),\chi_{\text{sea}}(\mathbf{x},t)\right)
 $$
 
 where $\Gamma(t)$ is the assembly microstate and the other inputs are the causal-root, Jacobian, density, and delay data already used elsewhere in the corpus.
@@ -100,7 +100,7 @@ $$
 \Delta P^\mu_{\mathrm{wake}}
 +
 \Delta P^\mu_{\mathrm{mass/rem}}
-=0,
+=0
 $$
 
 where $\Delta P^\mu_{\mathrm{near}}$ is the reversible near-field or acceleration-energy comparison row, $\Delta P^\mu_{\mathrm{wake}}$ is the causal-wake branch exchange computed from delayed path-history data, and $\Delta P^\mu_{\mathrm{mass/rem}}$ is the finite internal mass or remnant ledger that prevents electromagnetic self-energy from being mistaken for the whole mass story. A completed radiation-reaction derivation must show that the observer-level damping term is the irreversible part of this conservation residual after the reversible near-field row is separated, not an independently appended self-force.
@@ -116,7 +116,7 @@ E_{\text{exc}}
 =
 E_C(\Gamma_{\text{post shock}})
 -
-E_C(\Gamma_{\text{nearest stable rung}}).
+E_C(\Gamma_{\text{nearest stable rung}})
 $$
 
 An excitation basin is the set of post-drive states that share the same available relaxation routes. The simplest basin classification is:
@@ -141,7 +141,7 @@ $$
 \ge
 \mathcal{S}_{\gamma,*},
 \qquad
-E_{\text{exc}}\ge E_{\gamma,\min}.
+E_{\text{exc}}\ge E_{\gamma,\min}
 $$
 
 Here $\mathcal{S}_{\gamma}$ is the local photon-channel drive, $\mathcal{S}_{\gamma,*}$ is the planar-mode stability boundary, and $E_{\gamma,\min}$ is the minimum stable planar-mode cost if such a floor survives the derivation. This form is only a scaffold. The burden is to derive $\mathcal{S}_{\gamma}$ from wake-strain geometry, causal-root branch data, and Noether sea coupling, then recover the validated limits used by bremsstrahlung, synchrotron emission, atomic transitions, Compton-like scattering, pair channels, and thermal radiation.
@@ -163,7 +163,7 @@ E_\gamma
 +
 \Delta E_{\text{rem}}
 +
-\Delta E_{\text{rxn}}.
+\Delta E_{\text{rxn}}
 $$
 
 The pure radiative limit has $\Delta E_{\text{rxn}}=0$. A sub-threshold transport event has $E_\gamma=0$ and routes energy into $\Delta E_{\text{med}}$, $\Delta E_{\text{recoil}}$, or $\Delta E_{\text{rem}}$. A reaction event has nonzero $\Delta E_{\text{rxn}}$ and must use the full reaction provenance ledger.
@@ -191,7 +191,7 @@ $$
 +
 \Delta \mathbf{p}_{\text{rxn}}
 =
-0.
+0
 $$
 
 The corresponding polarity, architrino-inventory, identity-routing, and path-history ledgers must also close. Non-radiative shedding is therefore not a discard bin. It is the required accounting for medium heating, turbulence, phonon/plasmon-like excitations, unresolved causal-wake stress, recoil, and residual internal excitation when no stable photon assembly leaves the event.
@@ -213,7 +213,7 @@ h(\nu^+-\nu^-)
 +\Delta E_{\mathrm{recoil}}
 +\Delta E_{\mathrm{rem}}
 \right|
-}{\epsilon_E}.
+}{\epsilon_E}
 $$
 
 The signs of the $\Delta E$ terms are ledger signs. A frequency boost has $h(\nu^+-\nu^-)>0$ and therefore requires a corresponding loss from the target or medium rows. A frequency depletion requires a named gain in target, medium, recoil, remnant, or thermalization rows. The photon Gate A and Gate B records also persist through the segment: the outgoing packet must retain a valid photon-channel kinematic and polarization handoff, or else the process becomes absorption plus re-emission, pair production, or another reaction channel with a different event record.
@@ -233,7 +233,7 @@ u_{\mathrm{EM}}
 \qquad
 \mathbf{S}_{\mathrm{EM}}
 =
-\frac{1}{\mu_0}\mathbf{E}_{\mathrm{eff}}\times\mathbf{B}_{\mathrm{eff}},
+\frac{1}{\mu_0}\mathbf{E}_{\mathrm{eff}}\times\mathbf{B}_{\mathrm{eff}}
 $$
 
 and
@@ -243,7 +243,7 @@ $$
 =
 \frac{1}{c^2}\mathbf{S}_{\mathrm{EM}}
 =
-\epsilon_0\mathbf{E}_{\mathrm{eff}}\times\mathbf{B}_{\mathrm{eff}}.
+\epsilon_0\mathbf{E}_{\mathrm{eff}}\times\mathbf{B}_{\mathrm{eff}}
 $$
 
 The corresponding Maxwell-stress comparison tensor is
@@ -263,7 +263,7 @@ E_{\mathrm{eff}}^iE_{\mathrm{eff}}^j
 \frac{1}{2}\delta^{ij}\|\mathbf{B}_{\mathrm{eff}}\|^2
 -
 B_{\mathrm{eff}}^iB_{\mathrm{eff}}^j
-\right).
+\right)
 $$
 
 For a control volume $V$ with outward unit normal $\hat{\mathbf{n}}$, the effective energy residual is
@@ -275,7 +275,7 @@ $$
 +
 \int_{\partial V}\mathbf{S}_{\mathrm{EM}}\cdot\hat{\mathbf{n}}\,dA
 +
-\int_V\mathbf{J}_{\mathrm{eff}}\cdot\mathbf{E}_{\mathrm{eff}}\,d^3x.
+\int_V\mathbf{J}_{\mathrm{eff}}\cdot\mathbf{E}_{\mathrm{eff}}\,d^3x
 $$
 
 The effective Lorentz-force density is
@@ -285,7 +285,7 @@ f_{\mathrm{L}}^i
 =
 \rho_{\mathrm{eff}}E_{\mathrm{eff}}^i
 +
-\left(\mathbf{J}_{\mathrm{eff}}\times\mathbf{B}_{\mathrm{eff}}\right)^i,
+\left(\mathbf{J}_{\mathrm{eff}}\times\mathbf{B}_{\mathrm{eff}}\right)^i
 $$
 
 and the momentum residual is
@@ -297,7 +297,7 @@ $$
 +
 \int_{\partial V}\sigma_{\mathrm{EM}}^{ij}\hat n_j\,dA
 +
-\int_V f_{\mathrm{L}}^i\,d^3x.
+\int_V f_{\mathrm{L}}^i\,d^3x
 $$
 
 The angular-momentum residual is the corresponding moment of the momentum ledger:
@@ -309,7 +309,7 @@ $$
 +
 \int_{\partial V}\mathbf{x}\times(\sigma_{\mathrm{EM}}\hat{\mathbf{n}})\,dA
 +
-\int_V\mathbf{x}\times\mathbf{f}_{\mathrm{L}}\,d^3x.
+\int_V\mathbf{x}\times\mathbf{f}_{\mathrm{L}}\,d^3x
 $$
 
 The tensor $\sigma_{\mathrm{EM}}^{ij}$ is symmetric, so this effective comparison ledger carries the standard angular-momentum closure condition. A radiation, scattering, or material-capture event may use this gate only as a benchmark: the $\mathbb{A}\mathbb{A}\mathbb{A}$ event record must still name the source assembly, causal-root history, medium rows, recoil, and identity routing that generate the effective quantities.
@@ -330,7 +330,7 @@ E_\gamma
 \frac{1}{c^2}
 \int_{t_i}^{t_f}\int_{\partial V}
 (\mathbf{S}_{\mathrm{EM}}\cdot\hat{\mathbf{n}})\hat{\mathbf{n}}\,dA\,dt
-\right).
+\right)
 $$
 
 The photon event closes this check only when $\Delta_{\gamma,\mathrm{flux}}=0$ in the declared standard-limit comparison, or when the residual is explicitly routed into material, recoil, remnant, or unresolved wake rows. This is the radiation energy-momentum closure check used by the channel pages.
@@ -374,7 +374,7 @@ $$
 +
 \mathcal Q_{\mathrm{rem}}^{0},
 \qquad
-\mathcal Q\in\{E,\mathbf p,\mathbf J\}.
+\mathcal Q\in\{E,\mathbf p,\mathbf J\}
 $$
 
 For Gate B, the $\mathcal Q=\mathbf J$ component is the transverse angular-momentum balance. Photon polarization, helicity, and analyzer handoff are therefore not detached labels; they are the photon-side component of one event-window conservation record.
@@ -396,7 +396,7 @@ $$
 -
 \mathbf J_{\mathrm{handoff}}^{0}
 -
-\mathbf J_{\mathrm{rem}}^{0}.
+\mathbf J_{\mathrm{rem}}^{0}
 $$
 
 Then
@@ -423,7 +423,7 @@ $$
 \right)
 }{\hbar},
 \qquad
-\lambda_{\mathrm{hel}}\in\{+1,-1\},
+\lambda_{\mathrm{hel}}\in\{+1,-1\}
 $$
 
 when $\mathbf B_{\gamma}^{0}=\mathbf 0$ and the photon substrate row has no transverse leakage. If the balance defect is nonzero, the projection error is bounded by $\|\mathbf B_{\gamma}^{0}\|/\hbar$.
@@ -441,7 +441,7 @@ E_\gamma
 +
 \Delta E_{\text{rem}}
 +
-\Delta E_{\text{rxn}}.
+\Delta E_{\text{rxn}}
 $$
 
 Channel pages may add specialized variables, but they should not remove these fields. The polarization handoff remains inherited from photon Gate B; radiation records carry the fields needed by that gate, while the photon-spin and polarization proof remains outside the local radiation event record.
@@ -459,7 +459,7 @@ W_{\mathrm{int}},
 \mathfrak{T}_{\mathrm{cons}},
 \mathfrak{L}_{\mathrm{out}},
 \mathfrak{R}_{\mathrm{res}}
-\right).
+\right)
 $$
 
 The five entries are theorem-target data, not a completed QFT scattering derivation:
@@ -483,7 +483,7 @@ $$
 \Delta\mathbf{J}_{\mathrm{tot}},
 \Delta\mathcal{N}_{\mathrm{id}},
 \Delta_{\mathrm{bench}}
-\right),
+\right)
 $$
 
 with every component required to vanish, or to be assigned to a named residual row, before the channel can be used as a completed scattering or reaction ledger. Here $\Delta\mathcal{N}_{\mathrm{id}}$ is the identity-routing residual after explicit Noether sea reservoir terms are included, and $\Delta_{\mathrm{bench}}$ is the observer-level benchmark residual for the declared regime. At validated relativistic collision limits, this grammar must reproduce the standard incoming/outgoing state accounting, thresholds, and conservation laws. It does not by itself derive amplitudes, cross sections, or particle-creation rates.
@@ -502,7 +502,7 @@ X_{\mathrm{surf}}
 \mathcal B_{\mathrm{lat}},
 \Theta_E^{(\ell)},
 \mathcal H_{\gamma\to\Omega}
-\right),
+\right)
 $$
 
 where $\gamma_{\mathrm{in}}$ carries $E_{\gamma,\mathrm{in}}$, $\mathbf{p}_{\gamma,\mathrm{in}}$, direction, phase frequency, local $c_\gamma$, and transverse ledger data; $\mathcal B_e$ is the realized electron-envelope branch; $\mathcal A_{\mathrm{nuc}}^{Z,N}$ is the nuclear assembly ledger; $\mathcal B_{\mathrm{lat}}$ is the realized material bonding or lattice branch; $\Theta_E^{(\ell)}$ is the coarse Noether sea response record in the surface cell; and $\mathcal H_{\gamma\to\Omega}$ is the causal-wake and path-history ledger for the incoming packet and local material window.
@@ -519,7 +519,7 @@ B_{\mathrm{scat}},
 B_{\mathrm{heat}},
 B_{\mathrm{recoil}},
 B_{\mathrm{rem}}
-\}.
+\}
 $$
 
 The selected route must close the scalar ledger
@@ -537,7 +537,7 @@ E_{\gamma,\mathrm{out}}
 +
 \Delta E_{\mathrm{recoil}}
 +
-\Delta E_{\mathrm{rem}},
+\Delta E_{\mathrm{rem}}
 $$
 
 with corresponding momentum and angular-momentum rows
@@ -553,7 +553,7 @@ $$
 +
 \Delta \mathbf{p}_{\mathrm{sea}}
 +
-\Delta \mathbf{p}_{\mathrm{recoil}},
+\Delta \mathbf{p}_{\mathrm{recoil}}
 $$
 
 $$
@@ -567,7 +567,7 @@ $$
 +
 \Delta \mathcal J_{\mathrm{sea}}
 +
-\Delta \mathcal J_{\mathrm{wake}}.
+\Delta \mathcal J_{\mathrm{wake}}
 $$
 
 Here $E_{\gamma,\mathrm{out}}=0$ when no free photon leaves the cell. In that case the photon branch has been captured or dephased as a free planar-pair mode, but the event has not lost energy; the electron-envelope, lattice, Noether sea, recoil, remnant, and wake rows carry the balance. For ordinary optical or infrared surface events, the nuclear inventory remains fixed: $\Delta Z=0$ and $\Delta A=0$ unless a separate nuclear-reaction gate is explicitly supplied.
@@ -592,7 +592,7 @@ $$
 =
 \int_{-\infty}^{+\infty}
 \mathcal X_\Omega(t-t';\mathbf{x})\,
-\mathbf{E}_{\Omega}(t',\mathbf{x})\,dt',
+\mathbf{E}_{\Omega}(t',\mathbf{x})\,dt'
 $$
 
 with causality requiring
@@ -601,7 +601,7 @@ $$
 \mathcal X_\Omega(\Delta t;\mathbf{x})=0
 \qquad
 \text{for}\quad
-\Delta t<0.
+\Delta t<0
 $$
 
 Therefore the frequency-domain response $\mathcal X_\Omega(\omega;\mathbf{x})$ must be analytic for $\operatorname{Im}\omega>0$ in the validated linear-response regime. The Noether sea dressing map for material response must recover the Kramers-Kronig residuals
@@ -613,7 +613,7 @@ $$
 -
 \mathcal P\int_{-\infty}^{+\infty}
 \frac{d\omega'}{\pi}
-\frac{\operatorname{Im}\mathcal X_\Omega(\omega')}{\omega'-\omega},
+\frac{\operatorname{Im}\mathcal X_\Omega(\omega')}{\omega'-\omega}
 $$
 
 $$
@@ -623,7 +623,7 @@ $$
 +
 \mathcal P\int_{-\infty}^{+\infty}
 \frac{d\omega'}{\pi}
-\frac{\operatorname{Re}\mathcal X_\Omega(\omega')}{\omega'-\omega},
+\frac{\operatorname{Re}\mathcal X_\Omega(\omega')}{\omega'-\omega}
 $$
 
 and pass only when both residuals vanish, up to declared coarse-graining error. This is a causality test for Noether sea dressing, not a claim that the effective response kernel is the substrate ontology.
@@ -641,7 +641,7 @@ k^2(\omega)
 =
 \mu_{\Omega}(\omega)\epsilon_{\mathrm{eff}}(\omega)\omega^2,
 \qquad
-k(\omega)=k_1(\omega)+ik_2(\omega).
+k(\omega)=k_1(\omega)+ik_2(\omega)
 $$
 
 The attenuation and phase rows are
@@ -649,7 +649,7 @@ The attenuation and phase rows are
 $$
 \delta_{\mathrm{skin}}(\omega)=\frac{1}{k_2(\omega)},
 \qquad
-\phi_{EB}(\omega)=\tan^{-1}\!\left(\frac{k_2(\omega)}{k_1(\omega)}\right).
+\phi_{EB}(\omega)=\tan^{-1}\!\left(\frac{k_2(\omega)}{k_1(\omega)}\right)
 $$
 
 In the low-frequency Drude conductor limit,
@@ -661,7 +661,7 @@ $$
 \qquad
 \delta_{\mathrm{skin}}(\omega)
 \rightarrow
-\left(\frac{2}{\mu_\Omega\omega\sigma_{\mathrm{DC}}}\right)^{1/2}.
+\left(\frac{2}{\mu_\Omega\omega\sigma_{\mathrm{DC}}}\right)^{1/2}
 $$
 
 In the high-frequency plasma limit, with carrier density $n_{\mathrm{car}}$,
@@ -673,7 +673,7 @@ $$
 \qquad
 \epsilon_{\mathrm{eff}}(\omega)
 \rightarrow
-\epsilon_0\left(1-\frac{\omega_p^2}{\omega^2}\right).
+\epsilon_0\left(1-\frac{\omega_p^2}{\omega^2}\right)
 $$
 
 The transparent branch must recover
@@ -681,7 +681,7 @@ The transparent branch must recover
 $$
 \omega^2=\omega_p^2+c^2k^2
 \qquad
-(\omega>\omega_p),
+(\omega>\omega_p)
 $$
 
 while $\omega<\omega_p$ routes to an evanescent reflection/skin-depth row rather than to an untracked disappearance of the photon ledger. If $\epsilon_{\mathrm{eff}}(\omega)=0$ supports a longitudinal plasma oscillation, that excitation belongs in the medium-excitation row; it is not a hidden longitudinal free-photon branch.
@@ -704,13 +704,13 @@ k_2,
 \Delta_{\mathrm{KK}}^{\operatorname{Im}},
 \Delta_E^{\mathrm{EM}},
 \Delta_{\mathbf{p}}^{\mathrm{EM}}
-\right),
+\right)
 $$
 
 with scalar routing condition
 
 $$
-R_b+T_b+A_b+Q_b^{\mathrm{rem}}=1.
+R_b+T_b+A_b+Q_b^{\mathrm{rem}}=1
 $$
 
 Here $R_b$ is coherent reflected flux, $T_b$ is transmitted flux, $A_b$ is thermalized or dephased absorption, and $Q_b^{\mathrm{rem}}$ is retained bound excitation. In transparent interface limits the same ledger must recover Snell and Brewster behavior,
@@ -718,7 +718,7 @@ Here $R_b$ is coherent reflected flux, $T_b$ is transmitted flux, $A_b$ is therm
 $$
 n_1\sin\theta_I=n_2\sin\theta_T,
 \qquad
-\tan\theta_B=\frac{n_2}{n_1},
+\tan\theta_B=\frac{n_2}{n_1}
 $$
 
 with the polarization branch $b$ selecting the relevant Fresnel amplitude. In absorbing or conducting limits, the ledger must recover attenuation through $k_2$ and $\delta_{\mathrm{skin}}$ while keeping energy, momentum, and transverse angular momentum assigned to the same event record.
@@ -732,7 +732,7 @@ At the ensemble level, the relevant object is not one value of $E_{\text{exc}}$ 
 $$
 \frac{1}{k_B T_{\text{ens}}}
 =
-\left(\frac{\partial S_{\text{ens}}}{\partial E_{\text{ens}}}\right)_{\mathcal{N},\mathcal{V}},
+\left(\frac{\partial S_{\text{ens}}}{\partial E_{\text{ens}}}\right)_{\mathcal{N},\mathcal{V}}
 $$
 
 or from an equivalent kinetic distribution that has already been shown to thermalize under the local interaction rules. The symbols $\mathcal{N}$ and $\mathcal{V}$ denote the conserved inventory and effective volume variables held fixed in the chosen coarse-graining; they are bookkeeping variables, not new ontology.
@@ -742,7 +742,7 @@ For radiation channels, local thermodynamic equilibrium is a timescale claim. Re
 $$
 \mathcal{R}_{\mathrm{LTE}}
 \equiv
-\frac{\tau_{\mathrm{couple}}}{\tau_{\mathrm{cool}}}.
+\frac{\tau_{\mathrm{couple}}}{\tau_{\mathrm{cool}}}
 $$
 
 When $\mathcal{R}_{\mathrm{LTE}}\ll 1$, assembly-medium coupling is fast enough that local emissivity may be computed from instantaneous ensemble variables. When $\mathcal{R}_{\mathrm{LTE}}\gtrsim 1$, the channel remains non-equilibrium, and a single local temperature is not a sufficient state description.
@@ -754,7 +754,7 @@ Blackbody behavior is a stronger claim than radiation. It requires repeated emis
 $$
 \bar n_\gamma(\nu)
 =
-\frac{1}{\exp(h\nu/(k_B T))-1},
+\frac{1}{\exp(h\nu/(k_B T))-1}
 $$
 
 with effective photon chemical potential driven to zero in the fully thermalized photon bath. This is an observer-level recovery target. The foundation-up task is to show how planar-mode nucleation, planar-mode capture, Compton-like redistribution, pair channels, and non-radiative medium exchange jointly produce the same limit.
@@ -764,7 +764,7 @@ The minimum detailed-balance condition is schematic but useful:
 $$
 \Gamma_{i\to j+\gamma}\,f_i\,(1+\bar n_\gamma)
 =
-\Gamma_{j+\gamma\to i}\,f_j\,\bar n_\gamma.
+\Gamma_{j+\gamma\to i}\,f_j\,\bar n_\gamma
 $$
 
 Here $f_i$ and $f_j$ are ensemble occupation weights for material or assembly states, while $\Gamma$ denotes the effective transition rate after the underlying assembly dynamics have been coarse-grained. This equation is not a proof of blackbody behavior. It states the rate symmetry that the completed Gate C radiation derivation must recover.
@@ -782,7 +782,7 @@ from the thermalized assembly ensemble, together with a rate-degeneracy relation
 $$
 \Gamma_{i\to j+\gamma}\,g_i
 =
-\Gamma_{j+\gamma\to i}\,g_j.
+\Gamma_{j+\gamma\to i}\,g_j
 $$
 
 Those two conditions make the detailed-balance equation imply
@@ -790,7 +790,7 @@ Those two conditions make the detailed-balance equation imply
 $$
 \frac{\bar n_\gamma}{1+\bar n_\gamma}
 =
-\exp\!\left(-\frac{h\nu}{k_B T_{\text{ens}}}\right),
+\exp\!\left(-\frac{h\nu}{k_B T_{\text{ens}}}\right)
 $$
 
 and therefore recover the Planck occupation. The point is not to postulate these relations at the substrate level; the point is to identify exactly what the assembly return map, planar-mode capture/release rates, and coarse-grained ensemble measure must prove before blackbody language becomes available.
@@ -809,7 +809,7 @@ $$
 \tau_{\mathrm{pair}}^{-1}
 +
 \tau_{\mathrm{med}}^{-1}
-\right](\nu,t)\,dt,
+\right](\nu,t)\,dt
 $$
 
 where the terms respectively summarize planar-mode capture/release, Compton-like redistribution, pair channels, and non-radiative medium exchange after those channels have been tied to event records. The condition $\mathcal{D}_{\mathrm{th}}\gg1$ is necessary for a source population to approach a blackbody photon bath, but it is not sufficient unless the same provenance record also closes Gate A kinematics, Gate B transverse handoff, Gate C transition rates, and the Noether sea state map used for redshift and damping.
@@ -837,7 +837,7 @@ $$
 \longrightarrow
 \text{excitation basin}
 \longrightarrow
-\text{planar-mode photon, medium excitation, recoil, residual internal energy, or reaction products}.
+\text{planar-mode photon, medium excitation, recoil, residual internal energy, or reaction products}
 $$
 
 The channel pages specialize the skeleton. This overview supplies the shared rule: no radiation claim is complete until the event record identifies the source assembly, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, causal-wake ledger, closure status, and observer-level recovery limit.
@@ -880,7 +880,7 @@ $$
 \longrightarrow
 \text{photon output, medium excitation, recoil, residual internal energy, or reaction products}
 \longrightarrow
-\text{observer-level spectrum or thermal bath}.
+\text{observer-level spectrum or thermal bath}
 $$
 
 This is a radiative closure program, not yet a completed derivation of blackbody radiation. It keeps strong source insights in play while preserving the distinction between ontology, derivation targets, effective summaries, and speculative extensions.

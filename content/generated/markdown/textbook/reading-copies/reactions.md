@@ -65,7 +65,7 @@ $$
 =
 \delta^{ij}-\hat v_A^i\hat v_A^j,
 \qquad
-\hat{\mathbf{v}}_A=\frac{\mathbf{v}_A}{\|\mathbf{v}_A\|}.
+\hat{\mathbf{v}}_A=\frac{\mathbf{v}_A}{\|\mathbf{v}_A\|}
 $$
 
 A minimal transverse-channel map is
@@ -75,7 +75,7 @@ F_{\perp,A}^{i}(t)
 \Pi_{\perp}^{ij}(A)
 \sum_{k}\sum_{t_0\in\mathcal{C}_{Ak}(t)}
 W_{Ak}\!\left(t;t_0,\mathcal{V}_{\mathrm{NS}},R_A\right)
-\hat r_{Ak,j}(t;t_0).
+\hat r_{Ak,j}(t;t_0)
 $$
 
 The weight $W_{Ak}$ packages the inverse-square causal-wake factor, polarity sign, causal Jacobian, and local Noether sea anisotropy/vorticity response. This equation is the allowed bridge to magnetic-like language: transverse force is recovered as a projected consequence of delayed branch geometry plus medium response, not as an independent $\mathbf{v}\times\mathbf{B}$ substrate term.
@@ -93,7 +93,7 @@ $$
 \Delta_{\mathbf{p}}^{\mathrm{EM}},
 \Delta_{\mathbf{J}}^{\mathrm{EM}},
 \Delta_{\mathrm{gauge}}
-\right),
+\right)
 $$
 
 where the continuity component is
@@ -103,7 +103,7 @@ $$
 \equiv
 \partial_t\rho_{\mathrm{eff}}
 +
-\nabla\cdot\mathbf{J}_{\mathrm{eff}},
+\nabla\cdot\mathbf{J}_{\mathrm{eff}}
 $$
 
 and the gauge component requires every observer-level observable $\mathcal O$ used by the channel to obey
@@ -114,7 +114,7 @@ $$
 \mathcal O[A_{\mu}^{\mathrm{eff}}+\partial_\mu\chi]
 -
 \mathcal O[A_{\mu}^{\mathrm{eff}}]
-=0.
+=0
 $$
 
 The energy, momentum, and angular-momentum components are defined by the effective electromagnetic energy-momentum gate in [Radiation](../../../../markdown/aaa/reactions/radiation.md). A channel passes only when these components vanish in the declared validated limit or when each nonzero term is assigned to a named photon, material, recoil, wake, or remnant row. This keeps Maxwell-level ledgers as recovery tests for channel bookkeeping rather than as primitive Noether sea dynamics.
@@ -153,7 +153,7 @@ $$
 \Delta_{\mathrm{handoff}}^\gamma,
 \Delta_{\mathrm{rem}}^\gamma,
 \Delta_{\mathrm{bal}}^\gamma
-\right).
+\right)
 $$
 
 Here $\Delta_A$ is the photon Gate A residual; $\Delta_Q^\gamma$, $\Delta_{\mathrm{surv}}^\gamma$, $\Delta_{\parallel}^{\mathrm{sub}}$, $\Delta_{\mathrm{hel}}^\gamma$, and $\Delta_{\epsilon}^{\gamma}$ test the planar-pair substrate, transverse survival, longitudinal exclusion, helicity, and analyzer-basin rows; and $\Delta_{\mathrm{src}}^\gamma$, $\Delta_{\mathrm{recoil}}^\gamma$, $\Delta_{\mathrm{med}}^\gamma$, $\Delta_{\mathrm{wake}}^\gamma$, $\Delta_{\mathrm{handoff}}^\gamma$, $\Delta_{\mathrm{rem}}^\gamma$, and $\Delta_{\mathrm{bal}}^\gamma$ test the source, recoil, medium, causal-wake, analyzer-handoff, remnant, and event-balance rows. A reaction chapter may cite this vector as a bookkeeping contract, not as a derivation of photon polarization.
@@ -307,7 +307,7 @@ C_{\mathrm{weak}}^{-1/2}
 \mathbf y_{\mathrm{PDG}}
 -
 \mathbf y_{\mathrm{map}}
-\right),
+\right)
 $$
 
 where $\mathbf y_{\mathrm{PDG}}$ may include $M_W$, $\Gamma_W$, $M_Z$, $\Gamma_Z$, weak mixing angles, CKM entries, PMNS entries, lifetimes, or branching fractions, and $C_{\mathrm{weak}}$ is the declared covariance or uncertainty rule for those rows. If a row is an upper limit, an asymmetric uncertainty, or a result with separated statistical and systematic errors, the channel must preserve that convention instead of converting it into an unmarked symmetric error.
@@ -316,7 +316,7 @@ For low-energy charged weak processes the same mapping must also recover the con
 $$
 \mathcal{L}_{\mathrm{map}}^{\mathrm{low}}
 \rightarrow
--\frac{4G_F}{\sqrt 2}\,J_+^\mu J^-_\mu,
+-\frac{4G_F}{\sqrt 2}\,J_+^\mu J^-_\mu
 $$
 with $G_F$ supplied by the electroweak corridor scale rather than by an independent contact parameter. This keeps corridor-mode bookkeeping tied to measured beta-reaction and muon-reaction limits (SM labels: `beta decay`, `muon decay`) while leaving the finite $W^\pm$ channel as the higher-energy provenance record.
 
@@ -435,7 +435,7 @@ $$
 \longrightarrow
 \text{bremsstrahlung excitation basin}
 \longrightarrow
-\text{planar-mode photon, recoil, medium excitation, or residual internal energy}.
+\text{planar-mode photon, recoil, medium excitation, or residual internal energy}
 $$
 
 For this channel, the radiation residual can be specialized as the derivation target
@@ -450,7 +450,7 @@ J_{o'j},
 \rho_{\text{NS}}(\mathbf{x},t),
 \chi_{\text{sea}}(\mathbf{x},t);
 Z,b,\left\|\frac{d\mathbf{v}_e}{dt}\right\|
-\right).
+\right)
 $$
 
 Here $\Gamma_e(t)$ is the electron-assembly microstate, $\mathcal{C}_{o'j}(t)$ and $J_{o'j}$ are the active causal-root and Jacobian data during the target encounter, $Z$ and $b$ summarize the observer-level target charge and impact-parameter geometry, and $\left\| d\mathbf{v}_e/dt\right\|$ is the deceleration magnitude. This equation does not derive the QED bremsstrahlung cross-section. It names the closure functional that must later recover the validated cross-section and emissivity limits.
@@ -462,7 +462,7 @@ E_{\text{exc}}^{\mathrm{br}}
 =
 E_C(\Gamma_{e,\text{post shock}})
 -
-E_C(\Gamma_{e,\text{nearest stable rung}}).
+E_C(\Gamma_{e,\text{nearest stable rung}})
 $$
 
 The planar-mode gate is likewise inherited:
@@ -472,7 +472,7 @@ $$
 \ge
 \mathcal{S}_{\gamma,*},
 \qquad
-E_{\text{exc}}^{\mathrm{br}}\ge E_{\gamma,\min}.
+E_{\text{exc}}^{\mathrm{br}}\ge E_{\gamma,\min}
 $$
 
 Only when both conditions are met is photon output allowed. If the closure residual remains below the planar-mode basin, or if $E_{\text{exc}}^{\mathrm{br}}$ is sub-threshold, the event must route energy into medium excitation, recoil, or residual internal energy instead of treating the missing photon as a silent loss.
@@ -484,7 +484,7 @@ In this document, a **wake shock** is the bremsstrahlung name for the inherited 
 A minimal trigger condition is written as
 
 $$
-\mathcal{I}_e\!\left(\rho_{\text{NS}}(\mathbf{x},t),\left\|\frac{d\mathbf{v}_e}{dt}\right\|,\Xi_e\right) \ge \mathcal{I}_{\mathrm{crit}},
+\mathcal{I}_e\!\left(\rho_{\text{NS}}(\mathbf{x},t),\left\|\frac{d\mathbf{v}_e}{dt}\right\|,\Xi_e\right) \ge \mathcal{I}_{\mathrm{crit}}
 $$
 
 where $\Xi_e$ denotes electron-assembly internal state variables. In Master Equation language, wake shock onset corresponds to entry into the emission-capable region of state space, with transition kernel weight from non-emissive to emissive microstates increased above baseline.
@@ -510,7 +510,7 @@ $$
 +
 \mathcal Q_{\mathrm{handoff}}^{0}
 +
-\mathcal Q_{\mathrm{rem}}^{0}.
+\mathcal Q_{\mathrm{rem}}^{0}
 $$
 
 The energy component reduces to
@@ -524,7 +524,7 @@ E_{\gamma}
 +
 \Delta E_{\mathrm{med}}
 +
-\Delta E_{\text{rem}},
+\Delta E_{\text{rem}}
 $$
 
 where $E_{\gamma}$ is emitted photon energy, $\Delta E_{\mathrm{recoil}}$ is target recoil energy, $\Delta E_{\mathrm{med}}$ is genuine medium excitation (for example plasmons/phonons in dense environments), and $\Delta E_{\text{rem}}$ is residual internal excitation left in the source assembly. The projectile energy loss $\Delta E_e$ supplies this ledger at event level, with the common approximation $\Delta E_e\approx E_{\text{exc}}^{\mathrm{br}}$ used only when untracked stopping, recoil preparation, and remnant channels are negligible. In the lone heavy-target limit, $\Delta E_{\mathrm{recoil}} \approx 0$ energetically but still carries momentum closure. Mapping work focuses on identifying when wake-shock energy crosses the photon-composite stability threshold so discrete photon output is recovered from continuous transport.
@@ -536,13 +536,13 @@ Interpretive takeaway: this section defines event-level state transition and boo
 To make the wake language calculable, the current $\mathbb{A}\mathbb{A}\mathbb{A}$ program uses a provisional mapping ansatz. The variable $\mathcal{S}_{\mathrm{wake}}$ is an effective proxy for the inherited photon-channel drive $\mathcal{S}_{\gamma}^{\mathrm{br}}$, not a separate radiation ontology. This is a working effective form pending derivation from the Master Equation, not a claimed first-principles closure:
 
 $$
-\mathcal{S}_{\mathrm{wake}} \equiv A_{\mathrm{tb}} \, \bigl[\rho_{\text{NS}}(\mathbf{x},t)\bigr]^{\alpha} \left\|\frac{d\mathbf{v}_e}{dt}\right\|^{\beta},
+\mathcal{S}_{\mathrm{wake}} \equiv A_{\mathrm{tb}} \, \bigl[\rho_{\text{NS}}(\mathbf{x},t)\bigr]^{\alpha} \left\|\frac{d\mathbf{v}_e}{dt}\right\|^{\beta}
 $$
 
 Conceptual nucleation picture for this ansatz: a photon mode modeled as a coaxial contra-rotating pro/anti planar pair is treated as a stable attractor that appears only when wake-driven internal concentration exceeds a local stability barrier. The threshold scale $\mathcal{S}_*$ represents the effective bremsstrahlung proxy for $\mathcal{S}_{\gamma,*}$ and is interpreted as an effective function of Noether sea stiffness plus local nested shell swarm geometry. The coupling through $E_{\text{exc}}^{\mathrm{br}}/E_{\gamma,\min}$ represents available shed energy relative to minimum stable planar-mode cost. The exponential response is used as a first-pass survival-style ansatz for threshold crossing with sensitivity to local fluctuations; it is not yet claimed as unique.
 
 $$
-P_{\mathrm{nuc}}(E_\gamma) = 1 - \exp\!\left[-\left(\frac{\mathcal{S}_{\mathrm{wake}}-\mathcal{S}_*}{\mathcal{S}_*}\right)_+ \left(\frac{E_{\text{exc}}^{\mathrm{br}}}{E_{\gamma,\min}}\right)\right],
+P_{\mathrm{nuc}}(E_\gamma) = 1 - \exp\!\left[-\left(\frac{\mathcal{S}_{\mathrm{wake}}-\mathcal{S}_*}{\mathcal{S}_*}\right)_+ \left(\frac{E_{\text{exc}}^{\mathrm{br}}}{E_{\gamma,\min}}\right)\right]
 $$
 
 with $(x)_+ \equiv \max(x,0)$. Here $A_{\mathrm{tb}},\alpha,\beta,\mathcal{S}_*$ are effective Noether sea response parameters. This is explicitly a mapping goal, not yet a closed derivation.
@@ -563,7 +563,7 @@ Status and handling:
 For gravity integration, the same source terms can be expressed through the emergent metric fields that govern local geodesics:
 
 $$
-\mathcal{S}_{\mathrm{wake}} = \mathcal{S}_{\mathrm{wake}}\!\left(g_{\mu\nu},\nabla g_{\mu\nu},u_e^\mu,\rho_{\text{NS}}(\mathbf{x},t)\right).
+\mathcal{S}_{\mathrm{wake}} = \mathcal{S}_{\mathrm{wake}}\!\left(g_{\mu\nu},\nabla g_{\mu\nu},u_e^\mu,\rho_{\text{NS}}(\mathbf{x},t)\right)
 $$
 
 #### Emergence of Radiation from Assembly Dynamics
@@ -580,13 +580,13 @@ This section states the mechanism-level emergence claim explicitly:
 A compact emissivity form for thermal free-free emission is
 
 $$
-\epsilon_{\nu}^{\mathrm{ff}} \propto Z^2 n_e n_i T^{-1/2} e^{-h\nu/(k_B T)} g_{\mathrm{ff}}(\nu,T),
+\epsilon_{\nu}^{\mathrm{ff}} \propto Z^2 n_e n_i T^{-1/2} e^{-h\nu/(k_B T)} g_{\mathrm{ff}}(\nu,T)
 $$
 
 where $Z$ is ion charge, $n_e$ and $n_i$ are number densities, and $g_{\mathrm{ff}}$ is the Gaunt factor (quantum correction). In dense plasma or condensed regimes, screening-length limits (Debye/collective shielding) modify both the effective interaction range and the integration limits folded into $g_{\mathrm{ff}}$. Frequency-integrated thermal emissivity scales approximately as
 
 $$
-\epsilon_{\mathrm{ff}} \propto Z^2 n_e n_i T^{1/2}.
+\epsilon_{\mathrm{ff}} \propto Z^2 n_e n_i T^{1/2}
 $$
 
 For high-energy scattering language, the differential yield is tracked with $d\sigma/dk$ (photon energy $k$), including screening and Coulomb corrections in the target.
@@ -680,7 +680,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping, finite geometry is explicitly the s
 A gravity-coupled extension can be written as
 
 $$
-\frac{d\sigma}{dk} \propto Z_{\mathrm{eff}}^2 \, |F(q^2)|^2 \, \left[1+\delta_g(r,\Phi)\right],
+\frac{d\sigma}{dk} \propto Z_{\mathrm{eff}}^2 \, |F(q^2)|^2 \, \left[1+\delta_g(r,\Phi)\right]
 $$
 
 where $\delta_g$ parameterizes local metric/Noether sea corrections. For standard nuclei in laboratory regimes, $\delta_g$ is expected to be subdominant; the term is retained so compact-object surface applications can be treated in one formalism.
@@ -690,7 +690,7 @@ where $\delta_g$ parameterizes local metric/Noether sea corrections. For standar
 $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping enforces local momentum-flux balance at the emission vertex:
 
 $$
-\Delta \mathbf{p}_e + \mathbf{p}_{\gamma} + \Delta \mathbf{p}_{\mathrm{recoil}} + \Delta \mathbf{p}_{\mathrm{med}} = 0.
+\Delta \mathbf{p}_e + \mathbf{p}_{\gamma} + \Delta \mathbf{p}_{\mathrm{recoil}} + \Delta \mathbf{p}_{\mathrm{med}} = 0
 $$
 
 Photon emission angle is therefore constrained by incident electron momentum, target potential geometry, and local wake transfer into planar mode plus recoil channel. For isolated heavy targets, momentum closure is dominated by $\Delta \mathbf{p}_{\mathrm{recoil}}$ with negligible recoil energy; medium momentum terms are reserved for explicit collective-excitation environments. This is the micro-level closure condition behind macroscopic angular spectra.
@@ -701,7 +701,7 @@ $$
 \frac{dP_{\mathrm{br,std}}}{d\Omega}
 =
 \frac{q^2\|\mathbf{a}\|^2}{16\pi^2\epsilon_0c^3}
-\frac{\sin^2\theta}{(1-\beta\cos\theta)^5}.
+\frac{\sin^2\theta}{(1-\beta\cos\theta)^5}
 $$
 
 The corresponding total-power target is
@@ -709,7 +709,7 @@ The corresponding total-power target is
 $$
 P_{\mathrm{br,std}}
 =
-\frac{q^2\gamma^6\|\mathbf{a}\|^2}{6\pi\epsilon_0c^3}.
+\frac{q^2\gamma^6\|\mathbf{a}\|^2}{6\pi\epsilon_0c^3}
 $$
 
 This supplies a channel-local radiation energy-momentum closure check:
@@ -725,7 +725,7 @@ $$
 =
 \frac{(dP_{\mathrm{map}}/d\Omega)(\theta)}
 {(dP_{\mathrm{br,std}}/d\Omega)(\theta)}
--1.
+-1
 $$
 
 In validated weak-field bremsstrahlung regimes, $\Delta_{\mathrm{br,pow}}\rightarrow0$ and $\Delta_{\mathrm{br,ang}}(\theta)\rightarrow0$ after screening, recoil, and form-factor corrections are applied through the same event record. The emitted photon ledger must also pass $\Delta_{\gamma,\mathrm{flux}}=0$ from [Radiation](../../../../markdown/aaa/reactions/radiation.md); otherwise a correct-looking photon spectrum has not closed the local energy-momentum route.
@@ -737,13 +737,13 @@ Rate equations in this file are observer-level unless noted. For substrate-level
 $$
 \frac{dE_e}{d\tau_e} = \frac{dE_e}{dt}\,\frac{dt}{d\tau_e},
 \qquad
-\frac{dt}{d\tau_e} = \Gamma_{\mathrm{eff}}(v_e,\rho_{\text{NS}}(\mathbf{x},t),\Phi).
+\frac{dt}{d\tau_e} = \Gamma_{\mathrm{eff}}(v_e,\rho_{\text{NS}}(\mathbf{x},t),\Phi)
 $$
 
 For operational closure in this chapter, use the provisional split
 
 $$
-\Gamma_{\mathrm{eff}} \approx \gamma(v_e)\,\left[1+\delta_{\rho}(\rho_{\text{NS}}(\mathbf{x},t))+\delta_{\Phi}(\Phi)\right],
+\Gamma_{\mathrm{eff}} \approx \gamma(v_e)\,\left[1+\delta_{\rho}(\rho_{\text{NS}}(\mathbf{x},t))+\delta_{\Phi}(\Phi)\right]
 $$
 
 with $\gamma(v_e)=1/\sqrt{1-v_e^2/c^2}$ and $|\delta_{\rho}|,|\delta_{\Phi}|\ll 1$ in laboratory and weak-field astrophysical regimes where standard relativistic timing is already validated. The full derivation and regime-dependent corrections are delegated to the metric/time foundations chapter; this file uses the above form as a controlled working map.
@@ -764,13 +764,13 @@ Z_X^{E\to R}
 Z_{\mathrm{endpoint},X}
 +Z_{\mathrm{source},X}
 +Z_{\mathrm{launch},X}
-+Y_{X,\mathrm{path}}.
++Y_{X,\mathrm{path}}
 $$
 
 The observer-level mapping target is then
 
 $$
-\epsilon_\nu^{\mathrm{obs}}(R) = (1+z_X)^{-4}\,\epsilon_{\nu(1+z_X)}^{\mathrm{ff}}(E)\,\mathcal{T}(\nu, E\to R),
+\epsilon_\nu^{\mathrm{obs}}(R) = (1+z_X)^{-4}\,\epsilon_{\nu(1+z_X)}^{\mathrm{ff}}(E)\,\mathcal{T}(\nu, E\to R)
 $$
 
 where $\mathcal{T}$ is the transfer factor for absorption, scattering in plasma, and any Noether sea-specific opacity. The $Y_{X,\mathrm{path}}$ term records signed frequency exchange along the path; $\mathcal{T}$ must not hide an unlogged photon-energy gain or loss. In the standard homogeneous limit this reduces to the conventional redshift notation with $1+z \equiv (1+z_{\mathrm{em}})/(1+z_{\mathrm{obs}})$.
@@ -780,7 +780,7 @@ where $\mathcal{T}$ is the transfer factor for absorption, scattering in plasma,
 The free-free forms above assume local thermodynamic equilibrium (LTE). In evolving Noether sea states, define
 
 $$
-\mathcal{R}_{\mathrm{LTE}} \equiv \frac{\tau_{\mathrm{couple}}}{\tau_{\mathrm{cool}}}.
+\mathcal{R}_{\mathrm{LTE}} \equiv \frac{\tau_{\mathrm{couple}}}{\tau_{\mathrm{cool}}}
 $$
 
 - **$\mathcal{R}_{\mathrm{LTE}} \ll 1$:** assembly-medium coupling is fast, LTE emissivity is valid with instantaneous state variables.
@@ -793,7 +793,7 @@ This ratio provides a diagnostic for when LTE-based closure is expected to hold.
 Bremsstrahlung photons, once emitted, are modeled as propagating on null geodesics of the emergent metric:
 
 $$
-ds^2 = 0,\qquad k^\mu \nabla_\mu k^\nu = 0.
+ds^2 = 0,\qquad k^\mu \nabla_\mu k^\nu = 0
 $$
 
 This keeps transport treatment aligned with the same geometric sector used across the spacetime mapping.
@@ -860,25 +860,25 @@ This is the observer-level mechanism. The $\mathbb{A}\mathbb{A}\mathbb{A}$ layer
 A standard synchrotron power scale is
 
 $$
-P_{\mathrm{syn}} = \frac{4}{3}\sigma_T c\,U_B\,\gamma^2,
+P_{\mathrm{syn}} = \frac{4}{3}\sigma_T c\,U_B\,\gamma^2
 $$
 
 with magnetic energy density
 
 $$
-U_B=\frac{B^2}{8\pi}.
+U_B=\frac{B^2}{8\pi}
 $$
 
 The characteristic photon energy is set by
 
 $$
-E_{\gamma,\mathrm{syn}} \sim h\nu_c \propto \gamma^2 B.
+E_{\gamma,\mathrm{syn}} \sim h\nu_c \propto \gamma^2 B
 $$
 
 For pitch angle $\alpha$, a standard critical-frequency expression is
 
 $$
-\nu_c = \frac{3}{2}\gamma^2\frac{eB}{2\pi m_e c}\sin\alpha.
+\nu_c = \frac{3}{2}\gamma^2\frac{eB}{2\pi m_e c}\sin\alpha
 $$
 
 For isotropic pitch-angle distributions, $\langle\sin\alpha\rangle = \pi/4$, so ensemble-averaged characteristic frequency becomes $\nu_c \approx (3e/4\pi m_e c)\gamma^2 B$.
@@ -886,7 +886,7 @@ For isotropic pitch-angle distributions, $\langle\sin\alpha\rangle = \pi/4$, so 
 An operational energy-loss (cooling) timescale relation is
 
 $$
-\tau_{\mathrm{syn}} \sim \frac{E_e}{P_{\mathrm{syn}}} \propto \frac{1}{\gamma B^2}.
+\tau_{\mathrm{syn}} \sim \frac{E_e}{P_{\mathrm{syn}}} \propto \frac{1}{\gamma B^2}
 $$
 
 Here $\tau_{\mathrm{syn}}$ denotes a characteristic energy-loss timescale ($E/|dE/dt|$), distinct from the instantaneous synchrotron power rate $P_{\mathrm{syn}}$.
@@ -900,7 +900,7 @@ These equations and thresholds are the observer-level scaffold that $\mathbb{A}\
 For power-law injection $N(\gamma) \propto \gamma^{-p}$, the synchrotron emissivity in the slow-cooling regime ($\tau_{\mathrm{syn}} > \tau_{\mathrm{esc}}$) follows
 
 $$
-j_\nu \propto \nu^{-(p-1)/2}, \quad \nu < \nu_{\mathrm{max}},
+j_\nu \propto \nu^{-(p-1)/2}, \quad \nu < \nu_{\mathrm{max}}
 $$
 
 where $\nu_{\mathrm{max}} \propto \gamma_{\mathrm{max}}^2 B$ is the maximum synchrotron frequency set by the highest injected Lorentz factor.
@@ -908,7 +908,7 @@ where $\nu_{\mathrm{max}} \propto \gamma_{\mathrm{max}}^2 B$ is the maximum sync
 In the fast-cooling regime ($\tau_{\mathrm{syn}} < \tau_{\mathrm{esc}}$), electrons cool to a break Lorentz factor
 
 $$
-\gamma_{\mathrm{cool}} \approx \frac{6\pi m_e c}{\sigma_T B^2 t_{\mathrm{esc}}},
+\gamma_{\mathrm{cool}} \approx \frac{6\pi m_e c}{\sigma_T B^2 t_{\mathrm{esc}}}
 $$
 
 and the spectrum develops a characteristic break at $\nu_c(\gamma_{\mathrm{cool}})$ with slopes
@@ -946,7 +946,7 @@ $$
 \longrightarrow
 \text{wake-strain threshold}
 \longrightarrow
-\text{planar-mode photon, medium excitation, recoil, residual internal energy, or pair-channel handoff}.
+\text{planar-mode photon, medium excitation, recoil, residual internal energy, or pair-channel handoff}
 $$
 
 The radiation page writes the retuned transport state as $\mathbf{V}$. In this channel, $\mathbf{V}$ is the Noether swarm velocity-deformation state of the charged assembly during curved transport through $\mathcal{V}_{\mathrm{NS}}$. A channel-local closure mismatch can therefore be written as the derivation target
@@ -958,7 +958,7 @@ $$
 -
 \Theta_a(T;\mathbf{V}_{\text{adiabatic}},G_{\text{grad}},\mathcal{V}_{\mathrm{NS}}),
 \qquad
-a\in\{I,M,O\}.
+a\in\{I,M,O\}
 $$
 
 The corresponding residual norm specializes the shared radiation residual:
@@ -977,7 +977,7 @@ J_{o'j},
 \mathcal{V}_{\mathrm{NS}},
 G_{\text{grad}},
 \mathbf{V}_{\text{curved}}
-\right).
+\right)
 $$
 
 Here $\Gamma_{e^\pm}(t)$ is the charged assembly microstate; $\mathcal{C}_{o'j}(t)$ and $J_{o'j}$ are the active causal-root and Jacobian data; $\mathcal{V}_{\mathrm{NS}}$ is the anisotropic Noether sea state provisionally mapped to the observer-level $B$ field; and $G_{\text{grad}}$ records the gradient forcing that skews delay loops. This equation is not a derivation of synchrotron radiation. It names the residual functional that must later recover the validated frequency, power, cooling-break, and polarization limits.
@@ -997,7 +997,7 @@ J_{\text{loc}}
 \ge
 \mathcal{S}_{\gamma,*},
 \qquad
-E_{\text{exc}}^{\mathrm{syn}}\ge E_{\gamma,\min}.
+E_{\text{exc}}^{\mathrm{syn}}\ge E_{\gamma,\min}
 $$
 
 The wake-strain threshold is therefore the channel's local expression of the planar-mode basin boundary. If the residual is sub-threshold, the event must route energy into medium excitation, recoil, or residual internal energy rather than silently declaring a missing photon. If the threshold is crossed, the emitted photon must still satisfy the standard synchrotron scaling target
@@ -1046,7 +1046,7 @@ $$
 +
 \mathcal Q_{\mathrm{rem}}^{0},
 \qquad
-\mathcal Q\in\{E,\mathbf p,\mathbf J\}.
+\mathcal Q\in\{E,\mathbf p,\mathbf J\}
 $$
 
 Pair-production cascade vertices close the incoming photon ledger and then recruit identity-routed charged-assembly content from the named target or Noether sea reservoir; they do not treat photon energy alone as an identity source.
@@ -1067,7 +1067,7 @@ $$
 -
 \psi_{B,\mathrm{eff}}^{\perp}(\mathbf{x})
 \right]
-\right\rangle_{\mathbf{x}\in K}^{1/2},
+\right\rangle_{\mathbf{x}\in K}^{1/2}
 $$
 where $\psi_{\mathrm{syn}}$ is the synthetic linear-polarization angle and $\psi_{B,\mathrm{eff}}^{\perp}$ is the projected field-compression basis expected for the observer-level shock model. The target is not a new free-photon polarization proof; it is a source-scale Gate B consumer. Persistent knot-scale misalignment after Faraday rotation, beam averaging, and turbulent depolarization are accounted for would falsify the directional $B_{\mathrm{eff}}\leftrightarrow\mathcal{V}_{\mathrm{NS}}$ map in that regime.
 - Radiation-zone closure: for the local transverse-acceleration segment with $\mathbf{v}\cdot\mathbf{a}_\perp=0$, axes chosen so $\mathbf{v}$ lies along $z$ and $\mathbf{a}_\perp$ along $x$, and $\beta=\|\mathbf{v}\|/c$, recover the angular target
@@ -1082,7 +1082,7 @@ $$
 -
 \frac{\sin^2\theta\cos^2\phi}
 {\gamma^2(1-\beta\cos\theta)^2}
-\right],
+\right]
 $$
 
 and the total-power target
@@ -1090,7 +1090,7 @@ and the total-power target
 $$
 P_{\perp,\mathrm{std}}
 =
-\frac{q^2\gamma^4\|\mathbf{a}_\perp\|^2}{6\pi\epsilon_0c^3}.
+\frac{q^2\gamma^4\|\mathbf{a}_\perp\|^2}{6\pi\epsilon_0c^3}
 $$
 
 The channel residual is
@@ -1102,7 +1102,7 @@ $$
 \frac{P_{\mathrm{map}}}{P_{\perp,\mathrm{std}}}-1,
 \frac{\nu_{\gamma}^{\mathrm{out}}}{\nu_c}-1,
 \Delta_{\gamma,\mathrm{flux}}
-\right),
+\right)
 $$
 
 with $\Delta_{\gamma,\mathrm{flux}}$ inherited from [Radiation](../../../../markdown/aaa/reactions/radiation.md). In validated weak homogeneous limits, all components must tend to zero without retuning the $B\leftrightarrow\mathcal{V}_{\mathrm{NS}}$ map.
@@ -1142,7 +1142,7 @@ I_{\nu}^{\mathrm{IC}},
 \tau_{\mathrm{syn}},
 \tau_{\mathrm{esc}},
 \Delta_{\mathrm{pol}}^{K}
-\right),
+\right)
 $$
 
 where $I_{\nu}^{\mathrm{syn}}$ and $I_{\nu}^{\mathrm{IC}}$ are the synthetic synchrotron and inverse-Compton maps, $\Pi_{\nu}$ and $\psi_{\nu}$ are the linear-polarization fraction and angle, $\nu_{\mathrm{br}}$ is the cooling-break frequency, and $\Delta_{\mathrm{pol}}^{K}$ is evaluated on knots or shock-compressed regions. A source model passes this benchmark only if the same electron transport, $B_{\mathrm{eff}}\leftrightarrow\mathcal{V}_{\mathrm{NS}}$ map, and photon event ledger recover both the radio synchrotron and X-ray inverse-Compton morphology without separately tuning the field map for each band.
@@ -1198,7 +1198,7 @@ Any additional dependence of pair yield on local Noether sea state beyond standa
 A minimal cascade-depth diagnostic can be expressed through competing timescale ratios. Define the dimensionless cascade parameter as
 
 $$
-\mathcal{C}_{\mathrm{cas}} \equiv \left(\frac{\tau_{\mathrm{esc}}}{\tau_{\mathrm{syn}}}\right) \left(\frac{L}{L_{\gamma\gamma}}\right),
+\mathcal{C}_{\mathrm{cas}} \equiv \left(\frac{\tau_{\mathrm{esc}}}{\tau_{\mathrm{syn}}}\right) \left(\frac{L}{L_{\gamma\gamma}}\right)
 $$
 
 where
@@ -1231,11 +1231,11 @@ Z_X^{E\to R}
 Z_{\mathrm{endpoint},X}
 +Z_{\mathrm{source},X}
 +Z_{\mathrm{launch},X}
-+Y_{X,\mathrm{path}}.
++Y_{X,\mathrm{path}}
 $$
 
 $$
-j_{\nu}^{\mathrm{obs}}(R) = (1+z_X)^{-3} \, j_{\nu(1+z_X)}^{\mathrm{em}}(E)\,\mathcal{T}(\nu,E\rightarrow R),
+j_{\nu}^{\mathrm{obs}}(R) = (1+z_X)^{-3} \, j_{\nu(1+z_X)}^{\mathrm{em}}(E)\,\mathcal{T}(\nu,E\rightarrow R)
 $$
 
 Here $\mathcal{T}(\nu,E\rightarrow R)$ is the cumulative transfer function including absorption (for example, $e^{-\tau_{\gamma\gamma}(\nu,z)}$ for pair production on extragalactic background light) and any intervening scattering. The signed $Y_{X,\mathrm{path}}$ term must carry any Compton/Sunyaev-Zeldovich-like frequency exchange rather than being folded into a primitive expansion factor or hidden inside $\mathcal{T}$. For nearby sources ($z_X \ll 1$) with negligible path exchange, $\mathcal{T} \approx 1$.
@@ -1249,13 +1249,13 @@ $$
 \approx
 \epsilon_0\left(1-\frac{\omega_p^2}{\omega^2}\right),
 \qquad
-\omega_p^2=\frac{n_{\mathrm{car}}q^2}{m\epsilon_0}.
+\omega_p^2=\frac{n_{\mathrm{car}}q^2}{m\epsilon_0}
 $$
 
 For $\omega>\omega_p$, the transparent branch must recover
 
 $$
-\omega^2=\omega_p^2+c^2k^2,
+\omega^2=\omega_p^2+c^2k^2
 $$
 
 while $\omega<\omega_p$ is an evanescent or reflected transport row with $k=i\kappa_{\mathrm{ev}}$ rather than a lost photon ledger. Absorbing conductors use $k=k_1+ik_2$ and add an attenuation factor schematically of the form
@@ -1263,7 +1263,7 @@ while $\omega<\omega_p$ is an evanescent or reflected transport row with $k=i\ka
 $$
 \mathcal{T}_{\mathrm{abs}}(\omega)
 =
-\exp\!\left[-2\int_{\mathrm{path}}k_2(\omega,s)\,ds\right].
+\exp\!\left[-2\int_{\mathrm{path}}k_2(\omega,s)\,ds\right]
 $$
 
 If $\epsilon_{\mathrm{eff}}(\omega)=0$ produces a longitudinal plasma oscillation, the cascade record routes it into medium excitation or plasmon-like content. It is not counted as a free photon branch and it cannot repair a failed Gate B no-longitudinal-mode check.
@@ -1273,13 +1273,13 @@ If $\epsilon_{\mathrm{eff}}(\omega)=0$ produces a longitudinal plasma oscillatio
 In this file, $\tau_{\mathrm{syn}}$ is the observer-frame cooling timescale:
 
 $$
-\tau_{\mathrm{syn}}^{\mathrm{obs}} \approx \frac{6\pi m_e c}{\sigma_T B^2\gamma}.
+\tau_{\mathrm{syn}}^{\mathrm{obs}} \approx \frac{6\pi m_e c}{\sigma_T B^2\gamma}
 $$
 
 For ontology-level bookkeeping, use the conversion
 
 $$
-dt = \Gamma_{\mathrm{eff}}(v,\rho_{\text{NS}},n,\Phi)\,d\tau_{\mathrm{asm}},
+dt = \Gamma_{\mathrm{eff}}(v,\rho_{\text{NS}},n,\Phi)\,d\tau_{\mathrm{asm}}
 $$
 
 where $t$ is substrate absolute time and $\tau_{\mathrm{asm}}$ is assembly proper time. Then
@@ -1287,7 +1287,7 @@ where $t$ is substrate absolute time and $\tau_{\mathrm{asm}}$ is assembly prope
 $$
 \left(\frac{dE}{dt}\right)_{\mathrm{abs}}=\frac{1}{\Gamma_{\mathrm{eff}}}\left(\frac{dE}{d\tau_{\mathrm{asm}}}\right),
 \qquad
-\tau_{\mathrm{syn}}^{\mathrm{abs}}=\Gamma_{\mathrm{eff}}\,\tau_{\mathrm{syn}}^{\mathrm{asm}}.
+\tau_{\mathrm{syn}}^{\mathrm{abs}}=\Gamma_{\mathrm{eff}}\,\tau_{\mathrm{syn}}^{\mathrm{asm}}
 $$
 
 Toy mapping example (local weak-gravity zone): if $\gamma=10^4$, $B=1\,\mathrm{G}$, and $\Gamma_{\mathrm{eff}}\approx\gamma$, then
@@ -1295,7 +1295,7 @@ Toy mapping example (local weak-gravity zone): if $\gamma=10^4$, $B=1\,\mathrm{G
 $$
 \tau_{\mathrm{syn}}^{\mathrm{obs}}\approx 7.7\times 10^4\,\mathrm{s},
 \qquad
-\tau_{\mathrm{syn}}^{\mathrm{asm}}\approx \frac{\tau_{\mathrm{syn}}^{\mathrm{obs}}}{\Gamma_{\mathrm{eff}}}\approx 7.7\,\mathrm{s}.
+\tau_{\mathrm{syn}}^{\mathrm{asm}}\approx \frac{\tau_{\mathrm{syn}}^{\mathrm{obs}}}{\Gamma_{\mathrm{eff}}}\approx 7.7\,\mathrm{s}
 $$
 
 Here $\Gamma_{\mathrm{eff}}\approx\gamma$ is a placeholder SR-limit surrogate for dimensional illustration only, not a derived $\mathbb{A}\mathbb{A}\mathbb{A}$ relation. In all validated astrophysical regimes (AGN jets, pulsar wind nebulae, GRB afterglows), $\Gamma_{\mathrm{eff}}$ must reproduce the standard Lorentz factor $\gamma_{\mathrm{SR}}$ to within observational uncertainties on cooling breaks ($\lesssim 10\%$ for well-sampled SEDs). Any deviation is confined to untested extreme environments (for example, within $r \lesssim 3r_g$ of supermassive black holes, or $\rho_{\text{NS}} \gg \rho_{\mathrm{nuclear}}$) and requires explicit simulation bounds showing no conflict with validated-regime data.

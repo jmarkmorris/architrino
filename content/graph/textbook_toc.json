@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 157,
-      "sections": 1247
+      "entries": 158,
+      "sections": 1250
     }
   },
   "tocRoot": {
@@ -738,34 +738,18 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Step 1: Establishing the Origin",
+                "title": "Minimal Reconstruction Procedure",
                 "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-                "markdownSection": "Step 1: Establishing the Origin",
-                "sectionKey": "step 1 establishing the origin",
+                "markdownSection": "Minimal Reconstruction Procedure",
+                "sectionKey": "minimal reconstruction procedure",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Step 2: Defining the Primary Axis (First Direction)",
+                "title": "Parity Convention and Dynamical Chirality",
                 "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-                "markdownSection": "Step 2: Defining the Primary Axis (First Direction)",
-                "sectionKey": "step 2 defining the primary axis first direction",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Step 3: Defining the Plane (Second Independent Direction)",
-                "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-                "markdownSection": "Step 3: Defining the Plane (Second Independent Direction)",
-                "sectionKey": "step 3 defining the plane second independent direction",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Step 4: Resolving Handedness (Parity Convention)",
-                "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-                "markdownSection": "Step 4: Resolving Handedness (Parity Convention)",
-                "sectionKey": "step 4 resolving handedness parity convention",
+                "markdownSection": "Parity Convention and Dynamical Chirality",
+                "sectionKey": "parity convention and dynamical chirality",
                 "headingLevel": 2
               },
               {
@@ -774,22 +758,6 @@
                 "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
                 "markdownSection": "Coordinate Frames Are Not Ontology",
                 "sectionKey": "coordinate frames are not ontology",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Summary Table: Reconstruction Steps",
-                "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-                "markdownSection": "Summary Table: Reconstruction Steps",
-                "sectionKey": "summary table reconstruction steps",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Categories of Calculation Served by Each Step",
-                "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-                "markdownSection": "Categories of Calculation Served by Each Step",
-                "sectionKey": "categories of calculation served by each step",
                 "headingLevel": 2
               },
               {
@@ -7223,6 +7191,72 @@
                     ]
                   },
                   {
+                    "id": "validation_action_energy__delay_dynamics_energy",
+                    "title": "Constructive Energy for Delay Dynamics",
+                    "kind": "markdown-view",
+                    "sceneType": "Scene-Markdown-View",
+                    "scenePath": "content/scenes/validation/delay_dynamics_energy.json",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+                    "sections": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "Energy Construction Problem",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+                        "markdownSection": "Energy Construction Problem",
+                        "sectionKey": "energy construction problem",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Accepted Construction Routes",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+                        "markdownSection": "Accepted Construction Routes",
+                        "sectionKey": "accepted construction routes",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Crosswalk Residual",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+                        "markdownSection": "Crosswalk Residual",
+                        "sectionKey": "crosswalk residual",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Conservation Residual",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+                        "markdownSection": "Conservation Residual",
+                        "sectionKey": "conservation residual",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "No-Double-Counting Rule",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+                        "markdownSection": "No-Double-Counting Rule",
+                        "sectionKey": "no double counting rule",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Promotion and Failure Conditions",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+                        "markdownSection": "Promotion and Failure Conditions",
+                        "sectionKey": "promotion and failure conditions",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Downstream Use",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+                        "markdownSection": "Downstream Use",
+                        "sectionKey": "downstream use",
+                        "headingLevel": 2
+                      }
+                    ]
+                  },
+                  {
                     "id": "validation_action_energy__informational_ambiguity",
                     "title": "Informational Ambiguity",
                     "kind": "markdown-view",
@@ -7300,10 +7334,10 @@
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "Why the divergence is absent here",
+                        "title": "Why the zero-radius divergence is quarantined here",
                         "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
-                        "markdownSection": "Why the divergence is absent here",
-                        "sectionKey": "why the divergence is absent here",
+                        "markdownSection": "Why the zero-radius divergence is quarantined here",
+                        "sectionKey": "why the zero radius divergence is quarantined here",
                         "headingLevel": 2
                       },
                       {

@@ -245,13 +245,13 @@ $$
 =
 \mathcal{R}_{\mathrm{obs}}(\theta;W)
 +\mathcal{R}_{\mathrm{stab}}(\theta;W)
-+\mathcal{R}_{\mathrm{src/bdy}}(\theta;W).
++\mathcal{R}_{\mathrm{src/bdy}}(\theta;W)
 $$
 Here $\mathcal{R}_{\mathrm{obs}}$ measures mismatch to the declared astronomical data packet, $\mathcal{R}_{\mathrm{stab}}$ measures growth of admissible perturbations around the branch, and $\mathcal{R}_{\mathrm{src/bdy}}$ measures whether boundary fluxes and source terms close one shared ledger rather than being inserted independently. In continuity form, the last term has the schematic structure
 $$
 \mathcal{R}_{\mathrm{src/bdy}}(\theta;W)
 =
-\frac{\left\|\partial_t Q_\theta+\nabla\cdot \mathbf{F}_\theta-\mathcal{S}_\theta\right\|_W}{\epsilon_Q},
+\frac{\left\|\partial_t Q_\theta+\nabla\cdot \mathbf{F}_\theta-\mathcal{S}_\theta\right\|_W}{\epsilon_Q}
 $$
 where $Q_\theta$ is the retained effective quantity, $\mathbf{F}_\theta$ is its boundary flux, $\mathcal{S}_\theta$ is its declared source, and $\epsilon_Q$ is the tolerance fixed by the comparison packet. A global geometry, medium interpretation, or effective scale-factor story should not be promoted unless the three terms are simultaneously small under one branch record.
 
@@ -375,7 +375,7 @@ $$
 =
 \frac{\left\|\Delta\mathbf{p}_{\mathrm{wake}}(W)-\Delta\mathbf{p}_{\mathrm{eff}}(W)\right\|}{p_W}
 +\frac{\left\|\mathcal{P}_{\mathrm{wake}}(W)-\mathcal{P}_{\mathrm{field}}(W)\right\|}{P_W}
-+\frac{\left|m_{\mathrm{resp}}(W)-m_{\mathrm{obs}}(W)\right|}{m_W}.
++\frac{\left|m_{\mathrm{resp}}(W)-m_{\mathrm{obs}}(W)\right|}{m_W}
 $$
 Here $\Delta\mathbf{p}_{\mathrm{wake}}$ is the impulse accumulated from finite-speed causal-wake hits, $\Delta\mathbf{p}_{\mathrm{eff}}$ is the corresponding impulse in the effective field description being recovered, $\mathcal{P}_{\mathrm{wake}}$ and $\mathcal{P}_{\mathrm{field}}$ are matched provenance records for where the interaction content enters and exits the calculation, and $m_{\mathrm{resp}}$ is the externally exposed inertial response derived from path history, shielding, and Noether sea coupling. A Wheeler-style near miss becomes live only if all three terms are small without adding instantaneous action, non-causal branch content, or independent mass constants.
 
@@ -405,12 +405,12 @@ What physics already had was unusually concentrated: Hubble's approximately line
 $$
 a_{\mathrm{eff}}(t)=a_0e^{H_*t},
 \qquad
-\dot{\rho}_{m,\mathrm{eff}}=0.
+\dot{\rho}_{m,\mathrm{eff}}=0
 $$
 The mathematical pressure is immediate. With no source term, dust continuity gives
 $$
 \dot{\rho}_{m,\mathrm{eff}}
-+3H_*\rho_{m,\mathrm{eff}}=0,
++3H_*\rho_{m,\mathrm{eff}}=0
 $$
 so a nonzero constant density requires a provenance source $\mathcal{S}_{m,\mathrm{eff}}=3H_*\rho_{m,\mathrm{eff}}$.
 

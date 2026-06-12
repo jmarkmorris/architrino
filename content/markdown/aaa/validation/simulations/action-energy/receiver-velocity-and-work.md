@@ -8,7 +8,7 @@ $$
 =
 \mathbf{a}_{o'\leftarrow o}(t;t_0)\cdot\hat{\mathbf{r}}
 =
-\frac{\kappa\,\sigma_{q_o q_{o'}}\,\lvert q_o q_{o'}\rvert}{r^2}.
+\frac{\kappa\,\sigma_{q_o q_{o'}}\,\lvert q_o q_{o'}\rvert}{r^2}
 $$
 
 ## Decomposition and Energetics

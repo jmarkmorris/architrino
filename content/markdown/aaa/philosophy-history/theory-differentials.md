@@ -2635,7 +2635,7 @@ t_f(M),\;
 \Omega_{\mathrm{GW}}(f),\;
 \Delta\mathbf{x}_{\mathrm{ephem}}(t),\;
 \Phi_{\mathrm{HE}}(E,t)
-\right),
+\right)
 $$
 where $\psi(M)$ is the compact-object mass function, $f_{\mathrm{PBH}}$ is the dark-matter fraction in that comparison model, $t_f(M)$ is the inferred formation epoch, $\Delta\mathbf{x}_{\mathrm{ephem}}$ is a solar-system ephemeris perturbation, and $\Phi_{\mathrm{HE}}$ denotes any high-energy particle or radiation flux tied to evaporation or analogous release. This projection is useful precisely because it separates observables from the interpretation that produced them.
 
@@ -2724,7 +2724,7 @@ $$
 \dot{\rho}_{m,\mathrm{eff}}
 +3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}
 =
-\mathcal{S}_{m,\mathrm{eff}},
+\mathcal{S}_{m,\mathrm{eff}}
 $$
 so $\dot{\rho}_{m,\mathrm{eff}}=0$ and $H_{\mathrm{eff}}\ne0$ require $\mathcal{S}_{m,\mathrm{eff}}=3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}$. Without that term, the nontrivial constant-density branch is not closed.
 
@@ -4552,7 +4552,7 @@ In the neutral comparative stack, Entropy sits at **Cross-layer portable constru
 
 The retained object is explicitly windowed. For a coarse-graining $\mathcal{Q}$ and access region $W(t)$, entropy should be read as a measure over compatible microstates,
 $$
-S_{\mathcal{Q},W}(t)=k_B\log \mu\!\left(\Gamma_{\mathcal{Q},W(t)}\right).
+S_{\mathcal{Q},W}(t)=k_B\log \mu\!\left(\Gamma_{\mathcal{Q},W(t)}\right)
 $$
 The expression does useful work only after the finite measure, coarse-graining, and boundary conditions are declared. In an unbounded cosmology or a source-and-sink medium history, the relevant arrow is not "entropy of the universe" as a bare phrase; it is the balance between production, boundary flux, and record/coarse-graining residuals in the retained window.
 
@@ -4656,7 +4656,7 @@ $$
 -
 \int_{\partial W(t)}\mathbf{J}_S\cdot\hat{\mathbf{n}}\,dA
 +
-\mathcal{R}_{\mathcal{Q}}(t).
+\mathcal{R}_{\mathcal{Q}}(t)
 $$
 This is not a rejection of thermodynamics. It is the domain-of-validity condition that lets thermodynamic success remain intact without converting a bounded-system law into final cosmological ontology.
 

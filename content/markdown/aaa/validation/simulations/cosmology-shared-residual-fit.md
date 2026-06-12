@@ -11,7 +11,7 @@ Let
 $$
 \mathcal{X}_{\mathrm{cos}}
 =
-\{\mathrm{SN},\mathrm{BAO},\mathrm{CMB},\mathrm{WL},\mathrm{RSD},\mathrm{BBN},\mathrm{PREBBN}\}.
+\{\mathrm{SN},\mathrm{BAO},\mathrm{CMB},\mathrm{WL},\mathrm{RSD},\mathrm{BBN},\mathrm{PREBBN}\}
 $$
 
 For each family $X\in\mathcal{X}_{\mathrm{cos}}$, the packet records a residual vector $r_X$, a covariance object $C_X$, nuisance/calibration context $\nu_X$, and a projection $\Pi_X\theta_{\mathrm{sea}}$ of the shared Noether sea state record into that family. The scaffold computes
@@ -21,7 +21,7 @@ $$
 =
 r_X(\theta_{\mathrm{sea}},\nu_X)^T
 C_X^{-1}
-r_X(\theta_{\mathrm{sea}},\nu_X),
+r_X(\theta_{\mathrm{sea}},\nu_X)
 $$
 
 and the cross-family projection penalty
@@ -35,7 +35,7 @@ w_a
 (\Pi_X\theta_{\mathrm{sea}})_a
 -
 (\Pi_Y\theta_{\mathrm{sea}})_a
-\right)^2,
+\right)^2
 $$
 
 where $K_X$ is the set of shared comparison coordinates reported by family $X$, and $w_a$ is a declared dimensionless weight. The packet-level residual is
@@ -48,7 +48,7 @@ $$
 \;+\;
 \lambda
 \sum_{X<Y}
-\mathcal{P}_{XY}.
+\mathcal{P}_{XY}
 $$
 
 A low value of the first term alone is insufficient. The second term is the split-ontology guard: it rejects a fit that keeps each observable close to its benchmark only by assigning mutually incompatible projections of $\theta_{\mathrm{sea}}$.
@@ -61,7 +61,7 @@ r_{\mathrm{SN/BAO}}
 \frac{d_L^\theta(z)-d_L^{\mathrm{obs}}(z)}{\sigma_{d_L}},
 \frac{D_M^\theta(z)/r_d^\theta-(D_M/r_d)^{\mathrm{obs}}}{\sigma_{D_M/r_d}},
 \frac{H^\theta(z)r_d^\theta-(Hr_d)^{\mathrm{obs}}}{\sigma_{Hr_d}}
-\right),
+\right)
 $$
 $$
 r_{\mathrm{CMB}}
@@ -70,7 +70,7 @@ r_{\mathrm{CMB}}
 \frac{\Delta T_{\mathrm{bb}}^\theta}{\epsilon_{\mathrm{bb}}},
 \frac{C_{\ell}^{\theta}-C_{\ell}^{\mathrm{obs}}}{\sigma_{C_\ell}},
 \frac{C_L^{\phi\phi,\theta}-C_L^{\phi\phi,\mathrm{obs}}}{\sigma_{C_L^{\phi\phi}}}
-\right),
+\right)
 $$
 $$
 r_{\mathrm{growth}}
@@ -78,7 +78,7 @@ r_{\mathrm{growth}}
 \left(
 \frac{f\sigma_8^\theta(z,k)-f\sigma_8^{\mathrm{obs}}(z,k)}{\sigma_{f\sigma_8}},
 \frac{P^\theta(k,z)-P^{\mathrm{obs}}(k,z)}{\sigma_P}
-\right),
+\right)
 $$
 and $r_{\mathrm{BBN}}$ should retain D/H, $Y_p$, lithium, $\eta$, and $\Delta N_{\text{eff}}$ rows. These are data-product coordinates, not ontology claims. They make the shared packet check luminosity distance, BAO rulers, blackbody preservation, CMB lensing, growth, and BBN yield recovery before any Noether sea state interpretation is promoted.
 
@@ -90,7 +90,7 @@ r_{\nu\text{-}\mathrm{path}}
 \frac{Z_X^\theta-Z_X^{\mathrm{obs}}}{\sigma_Z},\;
 \frac{Y_{X,\mathrm{path}}^\theta-Y_{X,\mathrm{cal}}^{\mathrm{obs}}}{\sigma_Y},\;
 \frac{\mathcal{R}_{\nu\text{-}\mathrm{ex}}^\theta}{\epsilon_{\nu\text{-}\mathrm{ex}}}
-\right),
+\right)
 $$
 where $Z_X$ is the total logarithmic redshift budget, $Y_{X,\mathrm{path}}$ is the signed path-history exchange contribution, and $Y_{X,\mathrm{cal}}^{\mathrm{obs}}$ is any declared calibration row such as a Sunyaev-Zeldovich or kinematic-Sunyaev-Zeldovich frequency-shift packet. This row does not add a separate cosmology gate. It prevents a shared-state fit from hiding path-frequency exchange inside $H(z)$, distance modulus, or CMB temperature calibration.
 
@@ -125,7 +125,7 @@ D_V^\theta(z_i)/r_d^\theta
 (D_H/r_d)_i^{\mathrm{obs}}\\
 (D_V/r_d)_i^{\mathrm{obs}}
 \end{pmatrix}_{\!\mathrm{kept}}
-\right],
+\right]
 $$
 
 where `kept` means the subset reported by the survey bin. This avoids pretending that isotropic BAO bins contain independent radial and transverse information. The SN/local-ladder row should analogously keep the distance-modulus and local-slope rows separate:
@@ -140,7 +140,7 @@ $$
 \right],
 \frac{H_{\mathrm{eff,ladder}}^\theta-H_{0,\mathrm{ladder}}^{\mathrm{obs}}}{\sigma_{H_0}},
 \frac{\Delta_{\mathrm{cal}}^\theta}{\sigma_{\mathrm{cal}}}
-\right).
+\right)
 $$
 
 The CMB row should preserve spectra and lensing as separate but overlapping checks:
@@ -163,7 +163,7 @@ $$
 \right],
 \frac{\theta_*^\theta-\theta_*^{\mathrm{obs}}}{\sigma_{\theta_*}},
 \frac{\Delta T_{\mathrm{bb}}^\theta}{\epsilon_{\mathrm{bb}}}
-\right).
+\right)
 $$
 
 The overlap key `CMB_lensing` must appear in both CMB and growth-facing projections whenever lensing is used. Otherwise a packet can accidentally fit CMB spectra with one projection and weak-lensing or clustering with another, which is exactly the split-ontology failure this protocol is meant to catch.
@@ -181,7 +181,7 @@ r_{\mathrm{DM,split}}
 \frac{\mathrm{RAR}^{\theta}(g_{\mathrm{bar}},E_{\mathrm{gal}})-\mathrm{RAR}^{\mathrm{obs}}(g_{\mathrm{bar}})}{\sigma_{\mathrm{RAR}}},
 \frac{a_\star^{\theta}(E)-a_\star^{\mathrm{obs}}(E)}{\sigma_{a_\star}},
 \frac{f_\star^{\theta}(E)-f_\star^{\mathrm{obs}}(E)}{\sigma_f}
-\right).
+\right)
 $$
 
 Here $w_{\mathrm{lin}}$ and $c_{s,\mathrm{lin}}^2$ are comparison coordinates for CDM-like linear loading, while $v_c(r)$, $\Delta_{\mathrm{BTFR}}$, $\mathrm{RAR}$, $a_\star(E)$, and $f_\star(E)$ are nonlinear acceleration-response coordinates. A dimensionless BTFR residual can be recorded as
@@ -190,7 +190,7 @@ $$
 \Delta_{\mathrm{BTFR}}^\theta
 \equiv
 \frac{G_N M_b^{\mathrm{obs}} a_\star^\theta(E_{\mathrm{gal}})}{(v_f^\theta)^4}
--1,
+-1
 $$
 
 with $v_f$ the retained flat-curve velocity and $M_b$ the retained baryonic mass. The environment label $E$ is not a new ontology coordinate; it is the observable context carried in $\nu_X$. For these rows it should include at least $M_{\mathrm{halo}}$, $z_{\mathrm{vir}}$, $\sigma_v$, $T_{\mathrm{eff}}$, the baryon profile, and, for mergers, the declared ratio $v_{\mathrm{inf}}/c_s$ when the comparison template supplies a sound-speed coordinate. The low-acceleration galaxy comparison may be expressed as
@@ -200,7 +200,7 @@ g_{\mathrm{obs}}^\theta(r,E_{\mathrm{gal}})
 =
 g_{\mathrm{bar}}(r)
 +
-g_{\mathrm{med}}^\theta(r,E_{\mathrm{gal}}),
+g_{\mathrm{med}}^\theta(r,E_{\mathrm{gal}})
 $$
 
 where $g_{\mathrm{med}}^\theta$ is only the Noether sea response projection being tested against a MOND-like comparison residual. To make the galaxy-vs-cluster split measurable, the same packet should evaluate $a_\star(E)$ and $f_\star(E)$ at both $E_{\mathrm{gal}}$ and $E_{\mathrm{cl}}$. Passing the galaxy rotation-curve, BTFR, and RAR rows while failing the cluster rows below is not promotable as a shared-state success. These rows are not a request to add a new fundamental scalar-fluid ontology. Their purpose is to prevent a packet from fitting CMB and matter power data with one effective dark component while fitting galaxy, cluster, and merger accelerations with a separately tuned Noether sea law.
@@ -218,7 +218,7 @@ r_{\mathrm{cl}}
 \frac{\gamma_{\text{eff}}^\theta(r)-1}{\sigma_\gamma},
 \frac{d_{\mathrm{lens-gal}}^\theta-d_{\mathrm{lens-gal}}^{\mathrm{obs}}}{\sigma_{d,\mathrm{lg}}},
 \frac{d_{\mathrm{lens-gas}}^\theta-d_{\mathrm{lens-gas}}^{\mathrm{obs}}}{\sigma_{d,\mathrm{lgas}}}
-\right).
+\right)
 $$
 
 This row is a success marker under the existing shared-state gate, not a new standalone gate. It records whether the same Noether sea state packet can recover cluster gas temperature, SZ pressure, lensing potential, dynamical potential, and Bullet-like lensing/galaxy/gas peak separation without changing the acceleration law between observables.
@@ -233,7 +233,7 @@ r_{\mathrm{merge}}
 \frac{\Delta_{\mathrm{fric}}^\theta(v_{\mathrm{inf}}/c_s)-\Delta_{\mathrm{fric}}^{\mathrm{obs}}}{\sigma_{\mathrm{fric}}},
 \frac{\mathcal{I}_{\mathrm{int}}^\theta(v_{\mathrm{inf}}/c_s)-\mathcal{I}_{\mathrm{int}}^{\mathrm{obs}}}{\sigma_{\mathcal{I}}},
 \frac{N_{\mathrm{vort}}^\theta(R)-N_{\mathrm{vort}}^{\mathrm{obs}}(R)}{\sigma_N}
-\right).
+\right)
 $$
 
 The ratio $v_{\mathrm{inf}}/c_s$ distinguishes low-dissipation pass-through encounters from high-dissipation encounters in comparison templates that provide $c_s$. The coordinate $\mathcal{I}_{\mathrm{int}}$ is a declared shell or interference-morphology statistic for high-relative-speed mergers, and $N_{\mathrm{vort}}(R)$ is included only when the comparison template predicts vortex-like substructure measurable through lensing over projected radius $R$. Cold-atom or other laboratory analogue simulations can supply provenance for these dimensionless template variables, but visual analogy is not a substitute for astronomical residual rows under the shared-state packet.
@@ -269,7 +269,7 @@ r_{\mathrm{PREBBN}}
 \frac{\|\Delta C_\ell^X\|}{\epsilon_{\mathrm{CMB}}},
 \frac{\|\Delta P_X(k,z)\|}{\epsilon_{\mathrm{growth}}},
 \sup_f\frac{\Omega_{\mathrm{GW}}^X(f)}{\Omega_{\mathrm{GW}}^{\max}(f)}
-\right).
+\right)
 $$
 The projection keys should include the ordinary shared cosmology coordinates plus branch-facing coordinates such as `Delta_N_eff`, `lambda_fs`, and `Omega_GW`. The packet passes this subgate only when the ordinary residual $\mathcal{R}_{\mathrm{PREBBN}}$ is small and the projection penalty shows that the same $\theta_{\mathrm{sea}}$ is being consumed by BBN, CMB, growth, and gravitational-wave comparisons.
 
@@ -282,7 +282,7 @@ The required frame families are
 $$
 \mathcal{F}_{\mathrm{frame}}
 =
-\{\mathrm{CMB},\mathrm{MD},\mathrm{SN},\mathrm{BAO},H_0\},
+\{\mathrm{CMB},\mathrm{MD},\mathrm{SN},\mathrm{BAO},H_0\}
 $$
 
 where $\mathrm{MD}$ denotes matter-dipole catalogues such as radio, infrared, quasar, or galaxy-count samples. Each row must report a measured three-vector $\mathbf{y}_i$, an expected three-vector $\mathbf{m}_i(\theta_{\mathrm{frame}})$ from the declared common frame model, a covariance object $C_i$, calibration or mask context $\nu_i$, and a projection $\Pi_i\theta_{\mathrm{frame}}$ onto shared frame coordinates.
@@ -298,7 +298,7 @@ The preprocessing rules are:
   =
   K_X(\alpha_X,x_X)\,\mathbf{D}_{\mathrm{CMB}}
   +
-  \mathbf{F}_{X}(\theta_{\mathrm{frame}},\nu_X),
+  \mathbf{F}_{X}(\theta_{\mathrm{frame}},\nu_X)
   $$
   where $K_X$ is the catalogue kinematic amplification factor and $\mathbf{F}_X$ is the allowed non-kinematic directional residual from the shared frame state and survey context.
 - Supernovae: $\mathbf{y}_{\mathrm{SN}}(z_b)$ is the fitted distance-modulus dipole in redshift bin $z_b$, after standardization and host-environment bookkeeping; $\mathbf{m}_{\mathrm{SN}}(z_b)$ is the corresponding shared-frame prediction.
@@ -313,7 +313,7 @@ $$
 \sum_{i\in I_{\mathrm{frame}}}
 \left(\mathbf{y}_i-\mathbf{m}_i\right)^T
 C_i^{-1}
-\left(\mathbf{y}_i-\mathbf{m}_i\right).
+\left(\mathbf{y}_i-\mathbf{m}_i\right)
 $$
 
 The frame-projection penalty is
@@ -328,7 +328,7 @@ w_a
 (\Pi_i\theta_{\mathrm{frame}})_a
 -
 (\Pi_j\theta_{\mathrm{frame}})_a
-\right]^2,
+\right]^2
 $$
 
 and the combined frame score is
@@ -338,7 +338,7 @@ $$
 =
 \mathcal{Q}_{\mathrm{frame}}
 +
-\lambda_{\mathrm{frame}}\mathcal{P}_{\mathrm{frame}}.
+\lambda_{\mathrm{frame}}\mathcal{P}_{\mathrm{frame}}
 $$
 
 The packet also records a direction check for every nonzero row,
@@ -350,7 +350,7 @@ $$
 \left(
 \frac{\mathbf{y}_i\cdot\mathbf{m}_i}
 {\|\mathbf{y}_i\|\|\mathbf{m}_i\|}
-\right).
+\right)
 $$
 
 Tolerances must be declared before fitting: maximum $\mathcal{Q}_{\mathrm{frame}}$, maximum $\mathcal{P}_{\mathrm{frame}}$, maximum $\mathcal{R}_{\mathrm{frame}}$, minimum shared projection-key overlap, and maximum allowed $\alpha_i$ for nonzero vectors. These tolerances are not universal constants; they belong to the survey packet, covariance construction, redshift binning, and systematics budget.

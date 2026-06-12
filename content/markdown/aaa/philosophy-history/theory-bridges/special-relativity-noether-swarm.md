@@ -45,7 +45,7 @@ In special relativity, the moving-clock law is usually written
 $$
 \frac{d\tau}{dt}=\frac{1}{\gamma},
 \qquad
-\gamma=\frac{1}{\sqrt{1-v^2/c^2}}.
+\gamma=\frac{1}{\sqrt{1-v^2/c^2}}
 $$
 The equation is an observer-level statement: it tells Physical Observers how many proper-time units a moving clock records relative to an inertial coordinate description.
 
@@ -53,13 +53,13 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, the primitive time parameter is absolute ti
 $$
 \frac{d\tau}{dt}
 =
-\frac{\omega_{\text{clk}}(v,n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{geometry})}{\omega_0}.
+\frac{\omega_{\text{clk}}(v,n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{geometry})}{\omega_0}
 $$
 The special-relativistic target is recovered when homogeneous weak-field conditions give
 $$
 \frac{\omega_{\text{clk}}(v)}{\omega_0}
 \approx
-\sqrt{1-\frac{v^2}{c_{\text{eff}}^2}}.
+\sqrt{1-\frac{v^2}{c_{\text{eff}}^2}}
 $$
 
 The Noether swarm mechanism behind that target is finite-speed causal closure. As the center of mass translates, each internal wake return must close across a slanted path-history geometry. The assembly can remain stable only if orbital phase, path length, envelope geometry, and inter-layer timing retune together. Clock slowing is then the observer-facing readout of a deeper assembly fact: the moving swarm has fewer available stable closure cycles per unit absolute time.
@@ -70,7 +70,7 @@ Special relativity packages moving-ruler behavior as
 $$
 L_{\parallel}(v)=\frac{L_0}{\gamma},
 \qquad
-L_{\perp}(v)=L_{\perp,0}.
+L_{\perp}(v)=L_{\perp,0}
 $$
 The standard equation is kinematic. It does not say what a ruler is made of.
 
@@ -78,7 +78,7 @@ In the Noether swarm implementation story, rods are made from bound assemblies w
 $$
 \mathcal{E}_{\text{excl}}
 =
-\mathcal{E}_{\text{excl}}(\mathbf{v},\mathbf{A}_i,\mathbf{A}_m,\mathbf{A}_o,R_i,R_m,R_o,n,\chi_{\text{sea}}).
+\mathcal{E}_{\text{excl}}(\mathbf{v},\mathbf{A}_i,\mathbf{A}_m,\mathbf{A}_o,R_i,R_m,R_o,n,\chi_{\text{sea}})
 $$
 Here the subscripts $i,m,o$ refer to the inner, middle, and outer binary layers. The Lorentz-compatible weak-field target is the envelope-axis relation
 $$
@@ -86,7 +86,7 @@ $$
 \to
 \frac{1}{\gamma_{\text{eff}}},
 \qquad
-\gamma_{\text{eff}}=\frac{1}{\sqrt{1-v^2/c_{\text{eff}}^2}}.
+\gamma_{\text{eff}}=\frac{1}{\sqrt{1-v^2/c_{\text{eff}}^2}}
 $$
 
 The important point is that the contraction is not a primitive command imposed on matter. It is a closure condition on matter. If delayed wake exchange sets stable separations, and if those wake exchanges propagate through a medium with effective speed $c_{\text{eff}}$, then the equilibrium geometry of a moving bound system must change in the direction that preserves return timing and phase lock.
@@ -99,7 +99,7 @@ The shortest derivation of the spheroid map uses the difference between a one-wa
 $$
 t_{+}=\frac{R_{\parallel}}{c_{\text{eff}}-v},
 \qquad
-t_{-}=\frac{R_{\parallel}}{c_{\text{eff}}+v}.
+t_{-}=\frac{R_{\parallel}}{c_{\text{eff}}+v}
 $$
 Those legs are unequal. A physical clock or ruler branch is not built from either leg alone, however. It is built from a return cycle that must close with a stable phase and root ledger. The longitudinal return time is
 $$
@@ -109,7 +109,7 @@ T_{\parallel}
 +
 \frac{R_{\parallel}}{c_{\text{eff}}+v}
 =
-\frac{2R_{\parallel}}{c_{\text{eff}}}\gamma_{\text{eff}}^2.
+\frac{2R_{\parallel}}{c_{\text{eff}}}\gamma_{\text{eff}}^2
 $$
 The transverse cycle uses the remaining transverse causal budget,
 $$
@@ -118,7 +118,7 @@ c_{\perp}
 c_{\text{eff}}
 \sqrt{1-\frac{v^2}{c_{\text{eff}}^2}}
 =
-\frac{c_{\text{eff}}}{\gamma_{\text{eff}}},
+\frac{c_{\text{eff}}}{\gamma_{\text{eff}}}
 $$
 so
 $$
@@ -126,18 +126,18 @@ T_{\perp}
 =
 \frac{2R_{\perp}}{c_{\perp}}
 =
-\frac{2R_{\perp}}{c_{\text{eff}}}\gamma_{\text{eff}}.
+\frac{2R_{\perp}}{c_{\text{eff}}}\gamma_{\text{eff}}
 $$
 
 If the same branch is to act as Lorentz-admissible clock and ruler material, the longitudinal and transverse return cycles must close with the same period:
 $$
-T_{\parallel}=T_{\perp}+O(\epsilon_{\mathrm{LV}}T_0).
+T_{\parallel}=T_{\perp}+O(\epsilon_{\mathrm{LV}}T_0)
 $$
 In the homogeneous zero-leakage limit this gives
 $$
 \frac{2R_{\parallel}}{c_{\text{eff}}}\gamma_{\text{eff}}^2
 =
-\frac{2R_{\perp}}{c_{\text{eff}}}\gamma_{\text{eff}},
+\frac{2R_{\perp}}{c_{\text{eff}}}\gamma_{\text{eff}}
 $$
 and therefore
 $$
@@ -145,7 +145,7 @@ $$
 \equiv
 \frac{R_{\parallel}(v)}{R_{\perp}(v)}
 =
-\frac{1}{\gamma_{\text{eff}}(v)}.
+\frac{1}{\gamma_{\text{eff}}(v)}
 $$
 
 The moving Noether swarm envelope is then the oblate spheroid
@@ -155,7 +155,7 @@ $$
 \frac{x_{\parallel}^2}{R_{\parallel}^2}
 =1,
 \qquad
-R_{\parallel}=\frac{R_{\perp}}{\gamma_{\text{eff}}},
+R_{\parallel}=\frac{R_{\perp}}{\gamma_{\text{eff}}}
 $$
 up to leakage and branch-resolution corrections. If a separate energy or medium response changes the transverse scale, write
 $$
@@ -163,7 +163,7 @@ R_{\perp}(v,E,n)=\lambda(v,E,n)R_0,
 \qquad
 R_{\parallel}(v,E,n)
 =
-\frac{\lambda(v,E,n)R_0}{\gamma_{\text{eff}}(v)}.
+\frac{\lambda(v,E,n)R_0}{\gamma_{\text{eff}}(v)}
 $$
 Thus $\gamma_{\text{eff}}$ maps to the shape channel $\xi$, while $\lambda$ remains the separate scale channel.
 
@@ -175,7 +175,7 @@ This is also the precise meaning of quantizing the Lorentz response. The smooth 
 
 The Lorentz factor is usually written as a smooth function,
 $$
-\gamma_{\text{eff}}(v)=\frac{1}{\sqrt{1-v^2/c_{\text{eff}}^2}}.
+\gamma_{\text{eff}}(v)=\frac{1}{\sqrt{1-v^2/c_{\text{eff}}^2}}
 $$
 In the observer-level theory this is the correct continuous kinematic envelope. The Noether swarm implementation adds a deeper condition: the swarm can realize this envelope only by moving through admissible branch classes of the nested shell swarm causal-root ledger.
 
@@ -190,7 +190,7 @@ s_I,s_M,s_O;\,
 \mathcal{L}_{\mathrm{root}};\,
 \mathbf{A}_I,\mathbf{A}_M,\mathbf{A}_O;\,
 \mathcal{L}_{\mathrm{wake}}
-\right)_q.
+\right)_q
 $$
 Here $R_\ell$ are layer radii, $\omega_\ell$ are layer angular frequencies, $s_\ell$ are characteristic layer speeds, $\mathbf{A}_\ell$ are layer axes, $\mathcal{L}_{\mathrm{root}}$ is the active causal-root ledger, and $\mathcal{L}_{\mathrm{wake}}$ records the causal-wake exchange needed for conservation. The branch index $q$ is not an added particle label. It names a stable admissible closure class.
 
@@ -198,13 +198,13 @@ A one-$h$ full-cycle action transaction should therefore be treated as a branch 
 $$
 B_q(v)
 \longrightarrow
-B_{q'}(v+\Delta v),
+B_{q'}(v+\Delta v)
 $$
 not as an outer-binary-only energy deposit. The scalar action condition is
 $$
 \Delta A_{\text{cycle}}=\sigma h,
 \qquad
-\Delta I_I+\Delta I_M+\Delta I_O+\Delta I_{\text{wake}}=\sigma\hbar,
+\Delta I_I+\Delta I_M+\Delta I_O+\Delta I_{\text{wake}}=\sigma\hbar
 $$
 and the energy condition is the all-layer action-angle ledger
 $$
@@ -213,7 +213,7 @@ $$
 +
 \Delta E_{\text{wake}}
 =
-\Delta E_{\text{coupl}}.
+\Delta E_{\text{coupl}}
 $$
 Thus all three radii, all three frequencies, and all three characteristic speeds are allowed to change. The outer binary is special because it sets the leading exclusion-envelope boundary, not because the other layers are spectators.
 
@@ -225,7 +225,7 @@ $$
 \longrightarrow
 \text{outer-envelope oblation}
 \longrightarrow
-\text{effective }\gamma_{\text{eff}}(v).
+\text{effective }\gamma_{\text{eff}}(v)
 $$
 For the branch $q$, define the realized clock and ruler factors
 $$
@@ -235,7 +235,7 @@ $$
 \qquad
 \gamma_{\mathrm{rul}}^{(q)}(v)
 \equiv
-\frac{R_{\perp,q}(v)}{R_{\parallel,q}(v)}.
+\frac{R_{\perp,q}(v)}{R_{\parallel,q}(v)}
 $$
 The Lorentz bridge closes only if, in a homogeneous weak-field Noether sea cell,
 $$
@@ -253,7 +253,7 @@ $$
 \equiv
 \frac{R_{\parallel,q}(v)}{R_{\perp,q}(v)}
 \to
-\frac{1}{\gamma_{\text{eff}}(v)}.
+\frac{1}{\gamma_{\text{eff}}(v)}
 $$
 An outer-only model can be useful as a first observable projection or reduced diagnostic, but it cannot prove Lorentz closure unless the inner and middle ledgers have already been shown to retune consistently and stay hidden below the preferred-frame leakage bound.
 
@@ -261,7 +261,7 @@ An outer-only model can be useful as a first observable projection or reduced di
 
 Special relativity compresses rest energy into
 $$
-E_0=m_0c^2.
+E_0=m_0c^2
 $$
 That equation is extremely successful as observer-level bookkeeping. The bridge question is what implements $m_0$.
 
@@ -269,7 +269,7 @@ The Noether swarm mass thesis is that observed mass is not a primitive property 
 $$
 m_{\text{inertial}}(A)
 \approx
-\alpha_{\mathrm{m}}\,\frac{\zeta(A)E_{\text{internal}}(A)}{c_{\text{eff}}^2}.
+\alpha_{\mathrm{m}}\,\frac{\zeta(A)E_{\text{internal}}(A)}{c_{\text{eff}}^2}
 $$
 Here $A$ is the assembly, $E_{\text{internal}}(A)$ is the internal energy ledger, $\zeta(A)$ is the shielding/exposure factor, and $\alpha_{\mathrm{m}}$ is the weak-field matching normalization once a reference assembly is fixed.
 
@@ -277,7 +277,7 @@ The SR-side phrase "mass is energy divided by $c^2$" becomes, in the Noether swa
 $$
 \text{observed rest mass}
 \quad\leftrightarrow\quad
-\text{shielded internal ledger exposed through Noether sea response}.
+\text{shielded internal ledger exposed through Noether sea response}
 $$
 This keeps the force of $E_0=m_0c^2$ while relocating its ontology. The equation remains the observer-level conversion law; the deeper task is to derive the internal ledger, shielding coefficient, and response tensor from Noether swarm dynamics.
 
@@ -287,13 +287,13 @@ The first mass-side gate is the $A_0$ reference attractor defined in [Particle M
 
 Special relativity unifies energy and momentum through the mass shell
 $$
-E^2=p^2c^2+m_0^2c^4.
+E^2=p^2c^2+m_0^2c^4
 $$
 Equivalently,
 $$
 E=\gamma m_0c^2,
 \qquad
-p=\gamma m_0v.
+p=\gamma m_0v
 $$
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ bridge should preserve this relation as an effective closure in homogeneous weak-field conditions:
@@ -301,20 +301,20 @@ $$
 E_{\text{CM}}^2
 =
 p_{\text{CM}}^2 c_{\text{eff}}^2
-+M_0^2c_{\text{eff}}^4.
++M_0^2c_{\text{eff}}^4
 $$
 The terms are not substrate primitives. They are center-of-mass summaries of a dressed assembly state. The more resolved theorem target should include the internal energy ledger, shielding coefficient, deformation state, and Noether sea response tensor:
 $$
 p_{\text{int}}^a
 \approx
 \alpha_{\mathrm{m}}\,\zeta(A)E_{\text{internal}}(A)\,
-\mathcal{M}_{\text{sea}}^{ab}V_{\text{cm},b}.
+\mathcal{M}_{\text{sea}}^{ab}V_{\text{cm},b}
 $$
 In an isotropic homogeneous cell,
 $$
 \mathcal{M}_{\text{sea}}^{ab}
 \to
-\frac{h^{ab}}{c_{\text{eff}}^2}.
+\frac{h^{ab}}{c_{\text{eff}}^2}
 $$
 The scalar mass-shell relation is therefore the low-information summary of a richer assembly-plus-medium response.
 

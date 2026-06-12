@@ -54,7 +54,7 @@ H_{\mathrm{geo}}=
 \epsilon_1 & \Omega_{12}e^{-i\phi_{12}} & \Omega_{13}e^{-i\phi_{13}}\\
 \Omega_{12}e^{i\phi_{12}} & \epsilon_2 & \Omega_{23}e^{-i\phi_{23}}\\
 \Omega_{13}e^{i\phi_{13}} & \Omega_{23}e^{i\phi_{23}} & \epsilon_3
-\end{pmatrix},
+\end{pmatrix}
 $$
 with $(\epsilon_i,\Omega_{ij},\phi_{ij})$ derived from near-planar pro/anti swarm-pair geometry, residual internal-binary exposure, and Noether sea coupling.
 
@@ -62,7 +62,7 @@ Here $H_{\mathrm{geo}}$ is the operator that supplies the relativistic propagati
 $$
 H_{\mathrm{geo}}=U_{\mathrm{PMNS}}\Lambda U_{\mathrm{PMNS}}^\dagger,\qquad
 \Lambda=\operatorname{diag}(\lambda_1,\lambda_2,\lambda_3),\qquad
-|\nu_\alpha\rangle=\sum_i U_{\alpha i}|\nu_i\rangle.
+|\nu_\alpha\rangle=\sum_i U_{\alpha i}|\nu_i\rangle
 $$
 Thus $\lambda_i$ is not an energy eigenvalue; it is the geometric counterpart of a mass-squared propagation response, and $\Delta\lambda_{ij}=\lambda_i-\lambda_j$.
 
@@ -71,10 +71,10 @@ $$
 P_{\alpha\to\beta}(L,E)=
 \delta_{\alpha\beta}
 -4\sum_{i<j}\Re\!\left[U_{\alpha i}U_{\beta i}^*U_{\alpha j}^*U_{\beta j}\right]\sin^2\Delta_{ij}
-+2\sum_{i<j}\Im\!\left[U_{\alpha i}U_{\beta i}^*U_{\alpha j}^*U_{\beta j}\right]\sin(2\Delta_{ij}),
++2\sum_{i<j}\Im\!\left[U_{\alpha i}U_{\beta i}^*U_{\alpha j}^*U_{\beta j}\right]\sin(2\Delta_{ij})
 $$
 $$
-\Delta_{ij}=\frac{\Delta\lambda_{ij}L}{4E}.
+\Delta_{ij}=\frac{\Delta\lambda_{ij}L}{4E}
 $$
 
 The two-basis distinction is part of the recovery target, not optional notation. Weak reactions create and detect flavor-basis states $|\nu_\alpha\rangle$, while propagation follows the eigenbasis $|\nu_i\rangle$ of $H_{\mathrm{geo}}$. In the two-state limit this reduces to the benchmark form
@@ -82,7 +82,7 @@ $$
 P_{\nu_e\to\nu_\mu}(L,E)
 =
 \sin^2(2\theta)\,
-\sin^2\!\left(\frac{\Delta\lambda\,L}{4E}\right),
+\sin^2\!\left(\frac{\Delta\lambda\,L}{4E}\right)
 $$
 using the same mass-squared-response eigenvalue gap convention as the three-flavor equation above. Any later conversion to ordinary mass language is a comparison-layer unit map; it must not replace the geometric eigenvalue derivation.
 
@@ -90,7 +90,7 @@ Matter correction enters through the Noether sea state:
 $$
 H_{\mathrm{eff}}=H_{\mathrm{geo}}+V_{\mathrm{sea}}(n(\mathbf{x},t)),
 \qquad
-n(\mathbf{x},t)\equiv\frac{\rho_{\text{NS}}(\mathbf{x},t)}{\rho_{\text{NS},0}}.
+n(\mathbf{x},t)\equiv\frac{\rho_{\text{NS}}(\mathbf{x},t)}{\rho_{\text{NS},0}}
 $$
 The matter term must be normalized to the same mass-squared-response units as $H_{\mathrm{geo}}$ before the $\Delta\lambda L/(4E)$ phase formula is used.
 
@@ -109,6 +109,6 @@ External benchmark packages can sharpen these gates without becoming $\mathbb{A}
 $$
 m_{\mathrm{lightest}}\to 0,
 \qquad
-\sum_i m_i \approx 0.06\,\mathrm{eV},
+\sum_i m_i \approx 0.06\,\mathrm{eV}
 $$
 paired with a suppressed neutrinoless double-beta rate and a sterile or right-handed branch only if the same branch also closes the dark-sector abundance and free-streaming gates. In this chapter those values are discriminator targets: convergence toward them would pressure the near-photon phase operator toward a boundary or shielding limit, while a measured larger mass sum, incompatible neutrinoless double-beta signal, or detected sterile branch with the wrong coupling pattern would force revision of the neutral-lepton geometry.

@@ -29,7 +29,7 @@ $$
 \mathrm{assumption\ mismatch},
 \mathrm{replacement\ constraint},
 \mathrm{irrelevant\ comparison}
-\}.
+\}
 $$
 
 The class is `direct` when the theorem's assumptions are accepted or effective in the tested regime and its conclusion applies as a rejection condition. The class is `assumption mismatch` when a required assumption is rejected or absent and the theorem does not by itself supply a validated replacement burden. The class is `replacement constraint` when an assumption is rejected or replaced but the theorem protects a validated behavior that the candidate record must recover by $\mathbb{A}\mathbb{A}\mathbb{A}$ objects. The class is `irrelevant comparison` when $G$ shares no benchmark variable, conservation condition, or effective limit with the local claim under test.
@@ -66,7 +66,7 @@ $$
 \max_{C\in\mathcal{C}_{\mathrm{GHZ}}}
 \left[
 1-\chi_C E_\theta(C)
-\right]_+,
+\right]_+
 $$
 where $E_\theta(C)$ is the product expectation for the declared apparatus context and $[x]_+\equiv\max(x,0)$. For a Hardy setup with binary observables $U_i,D_i$, use the zero-probability constraints and positive Hardy event as a margin:
 $$
@@ -80,7 +80,7 @@ P_\theta(U_1=1,U_2=1)
 P_\theta(D_1=1,U_2=0)
 -
 P_\theta(U_1=0,D_2=1)
-\right]_+.
+\right]_+
 $$
 A useful Bell-family closure must make $\Delta_{\mathrm{GHZ}}$ small on the perfect-correlation contexts, produce the positive Hardy margin where the experiment requires it, and still keep $\Delta_{\mathrm{MI}}$ and $\Delta_{\mathrm{NS}}$ inside tolerance. These are validation targets for the joint record measure, not new ontology.
 
@@ -93,7 +93,7 @@ $$
 D_{\mathrm{TV}}\!\left(
 \rho_{AB}(\lambda_A,\lambda_B|P_A,P_B),
 \rho_A(\lambda_A|P_A)\rho_B(\lambda_B|P_B)
-\right).
+\right)
 $$
 If a candidate avoids the theorem by allowing $\Delta_{\mathrm{PI}}>0$, that residual must be tied to a physical shared-provenance, boundary-data, or apparatus-coupling record. Otherwise it is an untracked preparation correlation. The useful closure target is therefore two-part: recover the PBR state-discrimination statistics in the declared record channel while reporting whether the substrate preparation measure factorizes. If both the PBR measurement statistics and preparation independence are accepted in the same domain, overlapping effective wavefunction descriptions cannot be treated as a harmless epistemic overlap.
 
@@ -104,7 +104,7 @@ C_{ij}
 \sum_{q_i,q_j=\pm1}
 q_iq_j\,P_\theta(q_i,q_j|\mathcal{K}_i,\mathcal{K}_j),
 \qquad
-K_{\mathrm{LG}}=C_{12}+C_{23}-C_{13}.
+K_{\mathrm{LG}}=C_{12}+C_{23}-C_{13}
 $$
 Macrorealism plus noninvasive measurability gives $K_{\mathrm{LG}}\le 1$ for this sign convention. The $\mathbb{A}\mathbb{A}\mathbb{A}$ replacement burden is not to accept noninvasive readout, but to declare the disturbance residual
 $$
@@ -114,7 +114,7 @@ $$
 D_{\mathrm{TV}}\!\left(
 P_\theta(q_j|\mathcal{K}_j),
 P_\theta(q_j|\mathcal{K}_i,\mathcal{K}_j)
-\right),
+\right)
 $$
 recover the observed $K_{\mathrm{LG}}$-type statistics, and state whether the violation is carried by ordinary record-forming apparatus coupling, weak-probe disturbance, or a still-unclosed measurement model. A result that leaves $\Delta_{\mathrm{NIM}}$ implicit has not converted the Leggett-Garg comparison into a usable validation gate.
 
@@ -144,7 +144,7 @@ w_{\mathrm{disp}}
 \frac{\partial^2\omega_\theta}{\partial k^2}
 \right|^2\,d\log f
 +
-w_{\mathrm{cos}}\mathcal{R}_{\mathrm{shared}}(\theta).
+w_{\mathrm{cos}}\mathcal{R}_{\mathrm{shared}}(\theta)
 $$
 where $[x]_+\equiv\max(x,0)$. The record is useful only if one shared Noether sea response map can make this residual small. A result that passes local GR tests by changing the energy, positivity, polarization, dispersion, or cosmology record separately is not a promoted closure.
 

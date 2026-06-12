@@ -14,9 +14,9 @@ import {
   getOrbitPathTintProfile,
   navigateIdealSwarmHome,
   solveFlightTime,
-} from "../src/apps/ideal-swarm/IdealSwarmPrototypeRuntime.js";
+} from "../src/apps/ideal-swarm/IdealSwarmRuntime.js";
 
-test("nested shell swarm prototype model reuses three animator circular binaries", () => {
+test("Ideal Swarm model reuses three animator circular binaries", () => {
   const model = createIdealSwarmModel({ THREE });
 
   assert.equal(model.binaries.length, 3);

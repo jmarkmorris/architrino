@@ -44,7 +44,7 @@ $$
 \qquad
 \Pi_{W,r_\star}^{4\pi}=0,
 \qquad
-\Delta_{\mathrm{gc}}(r_\star)\le\varepsilon_{\mathrm{gc}},
+\Delta_{\mathrm{gc}}(r_\star)\le\varepsilon_{\mathrm{gc}}
 $$
 
 and with the corresponding angular-momentum residuals below tolerance. Without that row, volumetric exclusion may explain why same-state packing is dynamically costly, but it does not yet derive the antisymmetric exchange phase used by the observer-level fermion chart.
@@ -70,7 +70,7 @@ Photon-like channel behavior is the cleanest target for this mechanism. A bosoni
 The transition can be summarized by the canonical nested shell swarm shape ratio from [Nested Shell Swarm Geometry](../noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables). Let $R_{\parallel}$ denote the semiaxis along the contraction or drift-aligned direction and $R_{\perp}$ the transverse semiaxis. Then
 
 $$
-\xi\equiv\frac{R_{\parallel}}{R_{\perp}}.
+\xi\equiv\frac{R_{\parallel}}{R_{\perp}}
 $$
 
 The Fermi-Dirac regime has $\xi$ bounded away from zero. The envelope is oblate but still volumetric. The Bose-Einstein regime is approached as $\xi\to 0$, where the active support becomes effectively two-dimensional.
@@ -89,7 +89,7 @@ P_+
 P_-
 =
 \frac{1}{N!}
-\sum_{\sigma\in S_N}\operatorname{sgn}(\sigma)U_\sigma.
+\sum_{\sigma\in S_N}\operatorname{sgn}(\sigma)U_\sigma
 $$
 The Bose-Einstein and Fermi-Dirac comparison spaces are therefore
 $$
@@ -99,7 +99,7 @@ P_+\mathcal{H}_\theta^{\otimes N},
 \qquad
 \mathcal{H}_{\theta,-}^{(N)}
 =
-P_-\mathcal{H}_\theta^{\otimes N}.
+P_-\mathcal{H}_\theta^{\otimes N}
 $$
 The exchange rule is a statement about the effective quotient after inaccessible provenance has been compressed, not a claim that substrate identities disappear. Individual architrinos still retain path history and provenance; $P_\pm$ acts only after the apparatus and coarse-graining have made those labels unavailable to the observer-level state.
 
@@ -108,7 +108,7 @@ $$
 \Psi_-(1,\ldots,N)
 =
 \frac{1}{\sqrt{N!}}
-\det\!\left[\psi_i(j)\right].
+\det\!\left[\psi_i(j)\right]
 $$
 This state changes sign under exchange and vanishes when two effective rows become identical, so it packages both antisymmetry and Pauli exclusion. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this determinant is not substrate identity loss; it is the record-facing compression obtained after the apparatus cannot access individual architrino provenance.
 
@@ -120,7 +120,7 @@ J_{ab}
 \int
 \frac{|\psi_a(\mathbf{r}_1)|^2|\psi_b(\mathbf{r}_2)|^2}
 {\|\mathbf{r}_1-\mathbf{r}_2\|}
-d^3r_1d^3r_2,
+d^3r_1d^3r_2
 $$
 $$
 K_{ab}
@@ -132,7 +132,7 @@ K_{ab}
 \psi_a(\mathbf{r}_2)\psi_b(\mathbf{r}_1)
 }
 {\|\mathbf{r}_1-\mathbf{r}_2\|}
-d^3r_1d^3r_2.
+d^3r_1d^3r_2
 $$
 The symmetric and antisymmetric spatial states split as $J_{ab}\pm K_{ab}$, with the fermionic spin sector supplying the compensating exchange symmetry. A useful exchange-energy recovery residual is therefore
 $$
@@ -144,7 +144,7 @@ $$
 \frac{\left|\Delta E_{ab}^{\mathbb{A}\mathbb{A}\mathbb{A}}-\left(J_{ab}-K_{ab}\right)\right|}{\varepsilon_K},
 \frac{\left|\Delta E_{ab}^{\mathrm{sym}}-\left(J_{ab}+K_{ab}\right)\right|}{\varepsilon_J}
 \right)
-\le 1.
+\le 1
 $$
 This does not replace the ordered-frame spinor proof. It prevents a purely geometric exclusion story from missing the experimentally important exchange-energy splitting that appears before full many-electron Hartree-Fock closure.
 
@@ -157,7 +157,7 @@ $$
 \frac{\|(I-P_+)\mathcal{E}_{N,\theta}(\mu_{\mathrm{2D}})\|_{\mathcal{H}^{(N)}_\theta}}{\varepsilon_+},
 \frac{\|\mathcal{E}_{N,\theta}(\mu)-\mathcal{E}_{N,\theta}(\mu^{\mathrm{prov}})\|_{\mathrm{obs}}}{\varepsilon_{\mathrm{prov}}}
 \right)
-\le 1.
+\le 1
 $$
 Here $\mathcal{H}^{(N)}_\theta=\mathcal{H}_\theta^{\otimes N}$ and $\mu^{\mathrm{prov}}$ denotes the same retained physical ensemble after a swap of inaccessible provenance labels. The first two terms demand antisymmetric and symmetric state-space recovery in the proposed geometric regimes. The third term checks that the observer-level quotient is legitimate: swapping labels that the apparatus cannot access should not change the retained observable state beyond tolerance. If this residual fails, the proposed Fermi-Dirac or Bose-Einstein rule has been imposed as formal bookkeeping rather than derived from assembly geometry.
 

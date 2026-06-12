@@ -76,7 +76,7 @@ K\!\left(\mathbf{x},t;\mathbf{s}_a(s),s\right)
 \qquad
 \operatorname{supp}K
 \subseteq
-\left\{\|\mathbf{x}-\mathbf{s}_a(s)\|=c_f(t-s)\right\}.
+\left\{\|\mathbf{x}-\mathbf{s}_a(s)\|=c_f(t-s)\right\}
 $$
 
 This formula is a level assignment, not a replacement for the Master Equation. It states the ontological dependency: once the source identity, polarity, and path history are fixed, no additional freely specifiable wake substance remains. Effective field language may summarize many such wake contributions, but the substrate account remains source-provenanced causal-wake history.
@@ -117,6 +117,8 @@ In this ontology hub, the key commitment is:
 
 > **Observer Commitment:** $\mathbb{A}\mathbb{A}\mathbb{A}$ distinguishes the complete ontic state on an absolute-time slice from the measurements available to embedded Physical Observers. Physical Observers are assemblies inside the Noether sea, so their clocks, rulers, synchronization procedures, and records are dynamical outputs. Effective relativity and quantum state descriptions belong to this observer-accessible layer, not to the primitive substrate itself.
 
+There is no observer outside the ledger. A Physical Observer's records are themselves entries inside $S(t)$, so inference means an internal subsystem reconstructing a coarse description from its own accessible records, not a second-level spectator reading the complete state without constraint.
+
 The resulting observer descriptions can be indispensable without being final ontology. Effective metric reconstruction, wave function transition, and particle records are inferential summaries of accessible interactions, not replacements for the substrate and assembly account.
 
 ### Bell Nonlocality Placement
@@ -125,12 +127,12 @@ Bell-family experiments are not treated as evidence for ontological randomness, 
 
 The no-go guardrail is strict. If measurement independence, no advanced influence, finite-speed local response, and local factorization over a complete past-state variable $\lambda$ are all retained, then the Bell-local factorization is restored and Bell violations cannot be recovered. The Bell bridge must choose and declare which Bell assumption fails. A foundation page may route that burden, but it must not imply that shared provenance alone solves Bell.
 
-The placement is therefore level-specific. If $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves measurement independence and no-signaling at the observer level, then Bell violation must come from an explicitly nonseparable substrate response, such as a $c_f$-mediated coordination channel outside effective light cones with no-signaling shielding, or another declared nonseparable mechanism. The observer-level compression must fail the factorizable local-response form
+The placement is therefore level-specific. If $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves measurement independence and no-signaling at the observer level, then Bell violation must come from an explicitly nonseparable substrate response, such as a $c_f$-mediated coordination channel outside effective light cones with no-signaling shielding, or another declared nonseparable mechanism. A $c_f$-mediated option is a substantive hierarchy claim: the primitive coordination channel must lie outside the observer photon cone, so $c_f > c_0$ after the low-energy photon speed $c_0$ is calibrated, and any stronger hierarchy such as $c_f \gg c_0$ must be reconciled with photon dressing, moving-assembly Lorentz closure, and clock/ruler universality. It must also evade the finite-speed hidden-influence obstruction identified by Bancal et al. ([arXiv:1110.3795](https://arxiv.org/abs/1110.3795), Nature Physics 8, 867 (2012)): finite superluminal influences with $c_0 < v < \infty$ can become operationally signaling in multipartite Bell scenarios. The observer-level compression must fail the factorizable local-response form
 $$
 P(a,b\mid \hat{m}_A,\hat{m}_B,\lambda)
 =
 P(a\mid \hat{m}_A,\lambda)\,
-P(b\mid \hat{m}_B,\lambda),
+P(b\mid \hat{m}_B,\lambda)
 $$
 without adding instantaneous causal influence between detectors. If instead measurement independence is relaxed, that relaxation must be stated quantitatively, and the text must not also claim exact measurement independence. These options are mutually exclusive at the bridge level:
 
@@ -146,7 +148,7 @@ The routing boundary is:
 - [Lorentz Kinematics](../spacetime/lorentz-kinematics.md) owns moving-assembly deformation, clock/ruler retuning, two-way signal synchronization, and preferred-frame leakage bounds.
 - [Emergent Metric](../spacetime/emergent-metric.md) owns metric reconstruction from observer clocks, rulers, and signals.
 - [Wavefunction Ontology](../quantum/wavefunction-ontology.md) and [Measurement Ontology](../quantum/measurement-ontology.md) own quantum-state and measurement descriptions at the observer-accessible layer.
-- [Bell's Theorem](../philosophy-history/theory-bridges/bell-theorem.md) and [Entanglement and Nonlocality](../philosophy-history/theory-bridges/entanglement-nonlocality.md) own Bell-family correlation recovery, no-signaling, measurement-independence, and pair-provenance closure tests.
+- [Bell's Theorem](../philosophy-history/theory-bridges/bell-theorem.md) and [Entanglement and Nonlocality](../philosophy-history/theory-bridges/entanglement-nonlocality.md) own Bell-family correlation recovery, no-signaling, measurement-independence, pair-provenance closure tests, and the Bancal finite-speed-influence no-signaling obstruction.
 
 ## Terminology Discipline (Locked Definitions)
 

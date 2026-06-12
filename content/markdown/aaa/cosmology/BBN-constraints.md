@@ -78,7 +78,7 @@ These abundances must be observationally consistent with "primordial" BBN if the
 
 $$
 \frac{dn_i}{dt} = \sum_{j,k}\langle\sigma v_{\mathrm{rel}}\rangle_{jk\to i}n_jn_k
-- \sum_l\langle\sigma v_{\mathrm{rel}}\rangle_{il}n_in_l.
+- \sum_l\langle\sigma v_{\mathrm{rel}}\rangle_{il}n_in_l
 $$
 
 The reaction bookkeeping is unchanged; the $\mathbb{A}\mathbb{A}\mathbb{A}$ shift is the background interpretation that sets temperature, density, and freeze-out timing.
@@ -105,7 +105,7 @@ $$
 t
 \approx
 \frac{2.4\ \mathrm{s}}{\sqrt{g_*}}
-\left(\frac{1\ \mathrm{MeV}}{k_BT}\right)^2,
+\left(\frac{1\ \mathrm{MeV}}{k_BT}\right)^2
 $$
 where $g_*$ is the effective relativistic-species loading. The neutron-to-proton ratio follows the equilibrium estimate
 $$
@@ -119,7 +119,7 @@ $$
 \sim
 \eta
 \left(\frac{k_BT}{m_p c_0^2}\right)^{3/2}
-\exp\!\left(\frac{E_D}{k_BT}\right),
+\exp\!\left(\frac{E_D}{k_BT}\right)
 $$
 with $E_D$ the deuterium binding energy and $\eta$ the baryon-to-photon ledger variable. These equations are observer-level benchmarks for the thermal record. A native local-reactor branch may reinterpret where the history occurs, but it must reproduce the same freeze-out, deuterium-bottleneck, $Y_p$, D/H, lithium, $\eta$, and $N_{\text{eff}}$ residuals without fitting them in separate source zones.
 
@@ -147,7 +147,7 @@ $$
 \sim
 \lambda_{p\to n}^{\theta}(T)
 \sim
-H_{\mathrm{eff,BBN}}^\theta(T),
+H_{\mathrm{eff,BBN}}^\theta(T)
 $$
 where $H_{\mathrm{eff,BBN}}^\theta$ is the observer-level cooling and dilution rate inferred from the local transport record, not expansion of the Euclidean void. Any extra relativistic component changes the same clock through
 $$
@@ -159,14 +159,14 @@ H_{\mathrm{eff,BBN}}^\theta
 +\rho_{\nu_\alpha}^\theta
 +\rho_{\nu_s}^\theta
 +\cdots
-\right)^{1/2},
+\right)^{1/2}
 $$
 so the relativistic-species residual must be tracked as
 $$
 N_{\text{eff}}^\theta
 \equiv
 \frac{\rho_{\mathrm{rel}}^\theta-\rho_\gamma^\theta}
-{\rho_{\nu,1}^\theta}.
+{\rho_{\nu,1}^\theta}
 $$
 The equilibrium neutron-to-proton comparison then reads
 $$
@@ -175,7 +175,7 @@ $$
 \exp\!\left(
 -\frac{\Delta m_{np}c_0^2}{k_BT}
 -\xi_{\nu_e}^\theta
-\right),
+\right)
 $$
 where $\xi_{\nu_e}^\theta$ is retained only when the branch declares a neutrino-sector asymmetry. A viable branch must therefore recover the same $n_n/n_p$, $Y_p$, D/H, lithium, $\eta$, and $N_{\text{eff}}$ surfaces from one local source-window record. A sterile or hidden relativistic sector that improves one isotope while shifting the weak-rate clock, neutrino asymmetry, or photon loading independently fails this gate.
 
@@ -241,7 +241,7 @@ $$
 \frac{|\left({}^7\mathrm{Li}/H\right)_X-\left({}^7\mathrm{Li}/H\right)_{\mathrm{obs}}|}{\epsilon_{\mathrm{Li}}},\;
 \frac{|\eta_X-\eta_{\mathrm{obs}}|}{\epsilon_\eta},\;
 \frac{|\Delta N_{\text{eff}}^X|}{\epsilon_N}
-\right).
+\right)
 $$
 The branch may remain in the comparison ledger only when $\mathcal{R}_{\mathrm{BBN},X}\le1$ using the same provenance and Noether sea record carried into [CMB](./CMB.md), [Structure Formation](./structure-formation.md), and [Gravitational Waves](../spacetime/gravitational-waves.md). A component that repairs one BBN channel while spoiling deuterium survival, helium clustering, or $N_{\text{eff}}$ compatibility is a failed comparison branch, not a new explanatory resource.
 
@@ -254,14 +254,14 @@ $$
 \int_{\tau_{\mathrm{on},s}}^{\tau_{\mathrm{off},s}}
 n_n^X(\tau,s)\,
 \langle\sigma v_{\mathrm{rel}}\rangle_{i,n}^X(T(\tau,s),\rho(\tau,s))\,
-d\tau,
+d\tau
 $$
 and require the yield vector to be computed as $\mathbf{Y}_{\mathrm{BBN}}^X=\mathbf{Y}[\{T,\rho,n_b,n_\gamma,n_n,\mathcal{E}_{i,s}^X\}]$ over the same source-window record used for $\eta_X$ and $N_{\text{eff}}$. The corresponding exposure closure term is
 $$
 \mathcal{R}_{\mathrm{exp},X}
 =
 \max_i
-\frac{|\mathcal{E}_{i,\mathrm{eff}}^X-\mathcal{E}_{i,\mathrm{BBN}}^{\mathrm{obs}}|}{\epsilon_{\mathcal{E}_i}},
+\frac{|\mathcal{E}_{i,\mathrm{eff}}^X-\mathcal{E}_{i,\mathrm{BBN}}^{\mathrm{obs}}|}{\epsilon_{\mathcal{E}_i}}
 $$
 where $\mathcal{E}_{i,\mathrm{eff}}^X$ is the channel-weighted exposure reaching the BBN comparison surface. A SMBH-local or fixed-void replacement branch fails this gate if it matches final D/H, $Y_p$, or lithium while its integrated exposure requires a different density-temperature timing record than the one used for photon loading, weak freeze-out, and the CMB handoff.
 
@@ -270,7 +270,7 @@ $$
 \mathcal{I}_X(E,t)
 =
 \int \psi_X(M,t)\,
-\Gamma_{\mathrm{release}}^X(E,t;M)\,dM,
+\Gamma_{\mathrm{release}}^X(E,t;M)\,dM
 $$
 where $\psi_X(M,t)$ is the branch mass function and $\Gamma_{\mathrm{release}}^X$ is the Hawking-like or native release channel being compared. The yield shifts $\Delta\mathbf{Y}_{\mathrm{BBN}}^X$ must be computed from $\mathcal{I}_X$ and the same thermal, photon-loading, neutrino, and Noether sea state used elsewhere in the BBN gate. A branch that uses late energetic injection to repair one isotope while changing $\eta_X$, $N_{\text{eff}}$, or the CMB handoff independently is a failed comparison branch, not a promoted source mechanism.
 
@@ -284,7 +284,7 @@ $$
 \frac{|\Delta\eta_X|}{\epsilon_\eta},
 \frac{\|\Delta f_\gamma^X(E,t)\|}{\epsilon_\gamma},
 \frac{\|\Delta f_\nu^X(E,t)\|}{\epsilon_\nu}
-\right).
+\right)
 $$
 Here $\Delta f_\gamma^X$ and $\Delta f_\nu^X$ are photon- and neutrino-sector spectral distortions induced by the release history. This term keeps primordial-compact-object comparisons as constraints on a shared thermal history rather than a license to import compact objects as an explanatory ontology.
 

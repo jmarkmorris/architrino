@@ -17,7 +17,7 @@ The background is fixed absolute time times Euclidean space. Free paths are stra
 - Intersection as the driver of acceleration:
   - The receiver’s worldline is $\mathbf{s}_{o'}(t)$. An intersection at time $t$ means some earlier emission time $t_0 < t$ satisfies the causal-distance condition
     $$
-    \|\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0)\|=v(t-t_0).
+    \|\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0)\|=v(t-t_0)
     $$
     That event is a causal hit from source $o$’s past to the receiver’s present.
   - At a hit, the acceleration impulse is directed along
@@ -25,7 +25,7 @@ The background is fixed absolute time times Euclidean space. Free paths are stra
     \hat{\mathbf{r}}
     =
     \frac{\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0)}
-    {\|\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0)\|}.
+    {\|\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0)\|}
     $$
     No cross products or right-hand-rule terms appear; the action is collinear with $\hat{\mathbf{r}}$. Its magnitude is weighted by the branch Jacobian $|J|^{-1}$, which captures causal-flux bunching or dilation due to source motion.
 

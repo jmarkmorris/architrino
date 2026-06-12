@@ -1,6 +1,6 @@
-# Ellipsoid Raw Notes
+# Work-Thread Raw Notes: Ideal Swarm Source Fragments
 
-This detailed priority file supports [Ellipsoid Effective-Metric Workstream](ellipsoid.md). It preserves scratch notes and open questions that should not be promoted until they are classified into a named theorem target, app direction, or deferred intuition.
+This source packet preserves scratch notes and open questions that fed the Ideal Swarm / Lorentz-spheroid app work. It is parked material, not an active priority queue. Promote only concrete equations, simulation targets, theorem obligations, or app tasks into the relevant corpus document, app runtime, or another priority workstream.
 
 closed form equations?
     - seems like AI should be able to do the math to calculate the 'energy' accounted for passing through an enclosing sphere.

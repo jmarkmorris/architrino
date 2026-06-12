@@ -16,7 +16,7 @@ $$
 E_{\mathrm{env}}\!\left(a;\mathcal W_{\mathrm{nuc}},\rho_{\text{NS}},n,\chi_{\text{sea}}\right)
 -
 E_{\mathrm{env}}\!\left(b;\mathcal W_{\mathrm{nuc}},\rho_{\text{NS}},n,\chi_{\text{sea}}\right)
->0.
+>0
 $$
 
 Here $\mathcal W_{\mathrm{nuc}}$ is the effective nuclear causal-wake envelope, $\rho_{\text{NS}}(\mathbf{x},t)$ is the physical Noether swarm density, $n(\mathbf{x},t)$ is the normalized Noether swarm density, and $\chi_{\text{sea}}(\mathbf{x},t)$ is the Noether sea delay factor. The gap is an effective atomic quantity, not a proof that the underlying Noether swarm ledgers of the nucleus or electron have already been derived.
@@ -32,7 +32,7 @@ h\nu_{a\to b}^{\mathrm{loc}}
 -
 \Delta E_{\mathrm{med}}
 -
-\Delta E_{\mathrm{rem}}.
+\Delta E_{\mathrm{rem}}
 $$
 
 In the ideal isolated line limit, the non-photon terms are negligible and $E_\gamma\simeq h\nu_{a\to b}^{\mathrm{loc}}$. In dense media, strong gradients, or unresolved recoil regimes, those terms must remain in the ledger rather than being silently absorbed into the line frequency.
@@ -50,7 +50,7 @@ E_\gamma
 +
 \Delta E_{\mathrm{med}}
 +
-\Delta E_{\mathrm{rem}},
+\Delta E_{\mathrm{rem}}
 $$
 
 with $\Delta E_{\mathrm{med}}$ and $\Delta E_{\mathrm{rem}}$ bounded by the declared isolated-line tolerance rather than hidden in the fitted line frequency. A compact event residual is
@@ -78,7 +78,7 @@ E_\gamma
 \varepsilon_{\mathrm{evt}}
 }
 \le
-\Delta_{\mathrm{evt}}^{\mathrm{tol}}.
+\Delta_{\mathrm{evt}}^{\mathrm{tol}}
 $$
 
 The frequency readout must then agree with the local photon record:
@@ -100,7 +100,7 @@ E_\gamma
 \varepsilon_{\gamma}
 }
 \le
-\Delta_{\gamma}^{\mathrm{tol}}.
+\Delta_{\gamma}^{\mathrm{tol}}
 $$
 
 The benchmark fails if a Rydberg-consistent line can be obtained only by dropping recoil, medium excitation, or residual atomic energy from the ledger; if the planar-mode gate is changed between hydrogen lines; if the photon-channel speed used by the spectral comparison differs from the emitted photon record; or if path-history provenance is not sufficient to replay which envelope transition produced the coaxial contra-rotating pro/anti planar pair.
@@ -118,7 +118,7 @@ $$
 \ge
 \mathcal S_{\gamma,*},
 \qquad
-\Delta E_{a\to b}^{\mathrm{env}}\ge E_{\gamma,\min}.
+\Delta E_{a\to b}^{\mathrm{env}}\ge E_{\gamma,\min}
 $$
 
 The symbol $\mathcal S_{\gamma}^{\mathrm{at}}$ denotes the atomic-transition specialization of the photon-channel drive. Its arguments record the pre/post atomic microstates $\Gamma_a,\Gamma_b$, the nuclear causal-wake envelope, local Noether sea density and delay state, and the local causal-root/Jacobian data. This is a derivation target: the completed Gate C account must compute this drive from the assembly return map and delayed causal-wake ledger, not fit it separately for each line.
@@ -147,7 +147,7 @@ E_\gamma
 +
 \Delta E_{\mathrm{med}}
 +
-\Delta E_{\mathrm{rem}}.
+\Delta E_{\mathrm{rem}}
 $$
 
 The corresponding momentum ledger is
@@ -161,7 +161,7 @@ $$
 +
 \Delta \mathbf p_{\mathrm{med}}
 =
-\mathbf 0.
+\mathbf 0
 $$
 
 Angular momentum and wake-carried angular momentum must close at the same vertex:
@@ -181,7 +181,7 @@ $$
 +
 \Delta \mathcal J_{\mathrm{rem}}
 =
-0.
+0
 $$
 
 The photon term $\mathcal J_{\gamma}^{\perp}$ is a Gate B handoff. Recoil, wake, material handoff, medium, and remnant rows are shown explicitly because a clean photon transverse ledger is not enough to close the event. This page records that an emitted or absorbed photon assembly must carry the transverse angular-momentum ledger, polarization basis, helicity label where applicable, accepted/rejected handoff where applicable, and no-longitudinal-mode status. It does not locally prove photon spin, Malus' law, or the squared-amplitude capture rule.
@@ -209,7 +209,7 @@ b+\gamma \to a,
 \qquad
 E_\gamma+\Delta E_{\mathrm{med}}+\Delta E_{\mathrm{recoil}}
 \simeq
-\Delta E_{a\to b}^{\mathrm{env}}.
+\Delta E_{a\to b}^{\mathrm{env}}
 $$
 
 This is ordinary photon capture by the same atomic assembly. It changes the assembly's envelope basin and closes the incoming photon ledger, but it is not a general particle-production rule. If the event has different outgoing Standard Model assemblies, the channel must be written as a reaction or pair channel with a separate identity-routing row for the target or Noether sea content that supplies those outgoing inventories.
@@ -231,7 +231,7 @@ E_{\gamma,\mathrm{out}}
 +
 \Delta E_{\mathrm{recoil}}
 +
-\Delta E_{\mathrm{rem}}.
+\Delta E_{\mathrm{rem}}
 $$
 
 This is the same Gate C vertex as atomic absorption, but with the final state distributed over the material branch rather than one isolated envelope label. A Vantablack-like branch is a high-depth repeated-capture limit with $E_{\gamma,\mathrm{out}}\approx0$ after many cells. A metal-like branch is a coherent re-release limit in which the conduction-electron response carries most of the incoming ledger back into an outgoing planar-pair mode. Both limits remain provisional until the same basin-measure and event-ledger program recovers standard absorption, reflection, scattering, and thermalization behavior.
@@ -241,7 +241,7 @@ Stimulated emission and absorption belong to the same Gate C rate program. In th
 $$
 \Gamma_{a\to b+\gamma}\,f_a\,(1+\bar n_\gamma)
 =
-\Gamma_{b+\gamma\to a}\,f_b\,\bar n_\gamma.
+\Gamma_{b+\gamma\to a}\,f_b\,\bar n_\gamma
 $$
 
 Here $f_a$ and $f_b$ are ensemble occupation weights for the atomic basins and $\bar n_\gamma$ is the effective photon occupation. This is an observer-level recovery target, not a substrate postulate.
@@ -257,7 +257,7 @@ $$
 \mu_T\!\left\{
 \zeta\in\mathcal B_a:
 \Phi_T(\zeta)\in\mathcal B_{b+\gamma}
-\right\}.
+\right\}
 $$
 
 The set $\mathcal B_a$ denotes the resolved microstate basin corresponding to the effective atomic state $a$, $\mathcal B_{b+\gamma}$ denotes the basin in which the lower atomic state and outgoing photon assembly are accepted, $\Phi_T$ is the deterministic return map across the record window, and $\mu_T$ is the unresolved-material measure induced by the local ensemble and path-history distribution.
@@ -271,7 +271,7 @@ $$
 \left|
 \langle b;\gamma|\widehat V_{\mathrm{eff}}|a;0\rangle
 \right|^2
-\rho_\gamma(\Delta E).
+\rho_\gamma(\Delta E)
 $$
 
 The operator $\widehat V_{\mathrm{eff}}$ is only an effective comparison object. The foundation-up burden is to show that its matrix-element behavior emerges from overlap and capture probabilities between the atomic assembly and the photon planar-mode branch. The same passage must recover the effective electromagnetic coupling scale $\alpha$ without treating $\alpha$ as a separate ontology.
@@ -282,7 +282,7 @@ $$
 \rightarrow
 2\pi\,
 \left|\mathcal{M}_{a\to f}^{\mathrm{eff}}\right|^2
-\rho_f,
+\rho_f
 $$
 after unit conventions are fixed. The important closure is not the symbol $\mathcal{M}$ itself; it is that the same event window, source basin, accepted photon branch, recoil row, and residual row generate both the discrete line rate and the continuum final-state density used by the comparison formula.
 

@@ -295,14 +295,14 @@ d_n^{\mathrm{asm}}(\vartheta_n;\theta)
 \qquad
 \mathcal{R}_{\mathrm{nEDM}}(\theta)
 =
-\frac{|d_n^{\mathrm{asm}}|}{d_n^{\max}}.
+\frac{|d_n^{\mathrm{asm}}|}{d_n^{\max}}
 $$
 The closure burden is to derive $\mathcal{R}_{\mathrm{nEDM}}\le1$ from assembly stability rather than parameter choice. A proof route would exhibit a relaxation law of the schematic form
 $$
 \frac{d\vartheta_n}{dt}
 =
 -\partial_{\vartheta_n}V_{\mathrm{asm}}(\vartheta_n;\theta)
--\Gamma_{\mathrm{sea}}(\theta)\,\vartheta_n,
+-\Gamma_{\mathrm{sea}}(\theta)\,\vartheta_n
 $$
 with $\vartheta_n=0$ as a stable attractor in the same record that recovers nucleon structure, flavor CP phases, and null results for axion-like channels if such channels are predicted. Until that derivation exists, Peccei-Quinn and axion language remains a comparison framework and search surface, not adopted ontology.
 

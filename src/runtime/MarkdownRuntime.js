@@ -92,7 +92,8 @@ export function createMarkdownRuntime(deps) {
     const isMarkdownDocument =
       resolvedPath.endsWith(".md") &&
       (resolvedPath.startsWith("content/markdown/") ||
-        resolvedPath.startsWith("content/generated/markdown/"));
+        resolvedPath.startsWith("content/generated/markdown/") ||
+        resolvedPath.startsWith("reference/priorities/"));
     if (isMarkdownDocument) {
       const section = resolved.searchParams.get("section");
       if (typeof section === "string" && section.trim()) {

@@ -29,7 +29,7 @@ The axial layer stays six sites wide in all three generations. Each site is occu
 
 The total constituent count of a quark is therefore
 $$
-N_{\text{quark}} = N_{\text{core}} + 6,
+N_{\text{quark}} = N_{\text{core}} + 6
 $$
 with
 $$
@@ -64,11 +64,11 @@ Colorless fermions keep the three axes equivalent. Quarks do not. A quark become
 
 All up-type quarks share the same six-site axial count:
 $$
-5P + 1E.
+5P + 1E
 $$
 That gives net charge
 $$
-Q = \frac{5-1}{6}e = +\frac{2}{3}e.
+Q = \frac{5-1}{6}e = +\frac{2}{3}e
 $$
 
 At axis level, the canonical up-type structure is:
@@ -78,18 +78,18 @@ At axis level, the canonical up-type structure is:
 
 In ordered-axis notation, the three color states are the three permutations of
 $$
-(P^{m},P^+,P^+).
+(P^{m},P^+,P^+)
 $$
 
 ### Down-type template
 
 All down-type quarks share the same six-site axial count:
 $$
-2P + 4E.
+2P + 4E
 $$
 That gives net charge
 $$
-Q = \frac{2-4}{6}e = -\frac{1}{3}e.
+Q = \frac{2-4}{6}e = -\frac{1}{3}e
 $$
 
 The down-type sector admits two currently allowed axis-pattern families:
@@ -97,12 +97,12 @@ The down-type sector admits two currently allowed axis-pattern families:
 1. Family I:
    one axis of type $P^+$ and two axes of type $P^-$, i.e. permutations of
    $$
-   (P^+,P^-,P^-).
+   (P^+,P^-,P^-)
    $$
 2. Family II:
    one axis of type $P^-$ and two axes of type $P^{m}$, i.e. permutations of
    $$
-   (P^-,P^{m},P^{m}).
+   (P^-,P^{m},P^{m})
    $$
 
 Both families satisfy the same structural rule: two axes are in one class and one axis is exceptional. That common axis-exceptionality is what carries color. They are therefore candidate sectors, not two independent low-energy species. For any realized down-type branch, a single selected family $F_\star\in\{I,II\}$ supplies the full red/green/blue color triplet over the declared stability window; the unselected family must be unstable, high-energy transient, or excluded by the hadron boundary conditions. The current corpus does not assign $d$, $s$, and $b$ to separate families as a settled rule.
@@ -117,11 +117,11 @@ For right-handed quarks:
 - the weak-coupling triad is treated as hidden or inactive,
 - therefore
   $$
-  T_3 = 0,
+  T_3 = 0
   $$
 - and the weak hypercharge is determined directly by
   $$
-  Y = 2Q.
+  Y = 2Q
   $$
 
 This gives the standard singlet assignments:
@@ -147,11 +147,11 @@ In this bookkeeping:
 - the left-handed down-type states keep the $2P,4E$ axial count,
 - the up-type branch carries
   $$
-  T_3 = +\frac{1}{2}, \qquad Y = +\frac{1}{3},
+  T_3 = +\frac{1}{2}, \qquad Y = +\frac{1}{3}
   $$
 - the down-type branch carries
   $$
-  T_3 = -\frac{1}{2}, \qquad Y = +\frac{1}{3}.
+  T_3 = -\frac{1}{2}, \qquad Y = +\frac{1}{3}
   $$
 
 This gives the standard doublet bookkeeping:
@@ -178,11 +178,11 @@ Start by charge-conjugating the quark axial inventories:
 
 - anti-up family $(\bar u,\bar c,\bar t)$:
   $$
-  1P,5E,\qquad Q=-\frac{2}{3},
+  1P,5E,\qquad Q=-\frac{2}{3}
   $$
 - anti-down family $(\bar d,\bar s,\bar b)$:
   $$
-  4P,2E,\qquad Q=+\frac{1}{3}.
+  4P,2E,\qquad Q=+\frac{1}{3}
   $$
 
 The conjectural rule then reads:
@@ -205,7 +205,7 @@ In this reverse-engineered candidate:
 These are exactly the charge-conjugate mirrors of the pro-swarm left-handed quark doublet:
 $$
 \left(+\frac{1}{2},+\frac{1}{3}\right)\mapsto \left(-\frac{1}{2},-\frac{1}{3}\right),\qquad
-\left(-\frac{1}{2},+\frac{1}{3}\right)\mapsto \left(+\frac{1}{2},-\frac{1}{3}\right).
+\left(-\frac{1}{2},+\frac{1}{3}\right)\mapsto \left(+\frac{1}{2},-\frac{1}{3}\right)
 $$
 
 #### Left-handed antiquark bookkeeping
@@ -220,7 +220,7 @@ For the left-handed anti-swarm branch, the same mirror logic gives:
 These are the charge-conjugate mirrors of the pro-swarm right-handed singlets:
 $$
 \left(0,+\frac{4}{3}\right)\mapsto \left(0,-\frac{4}{3}\right),\qquad
-\left(0,-\frac{2}{3}\right)\mapsto \left(0,+\frac{2}{3}\right).
+\left(0,-\frac{2}{3}\right)\mapsto \left(0,+\frac{2}{3}\right)
 $$
 
 The practical advantage of this rule is that it closes the quark-sector wheel without inventing a separate anti-swarm lookup system. Once the pro-swarm sector is specified, the anti-swarm sector follows by charge conjugation plus the handedness swap in weak exposure.
@@ -231,11 +231,11 @@ This remains a conjectural bookkeeping layer derived by reverse engineering from
 
 The larger comparative picture suggested by the diagram is that the six-site axial-inventory wheel may be embedded directly into the familiar electroweak plane with coordinates
 $$
-(T_3,Y),
+(T_3,Y)
 $$
 while electric charge appears on the diagonal through
 $$
-Q = T_3 + \frac{Y}{2}.
+Q = T_3 + \frac{Y}{2}
 $$
 
 For quarks, this gives a compact map:
@@ -305,19 +305,19 @@ The bottom quark is the Generation-III down-type branch. It carries the down-typ
 
 For any quark flavor $q$, the color space is the ordered basis
 $$
-\mathcal{H}^{\text{color}}_q = \mathrm{span}\{|q_H\rangle, |q_M\rangle, |q_L\rangle\},
+\mathcal{H}^{\text{color}}_q = \mathrm{span}\{|q_H\rangle, |q_M\rangle, |q_L\rangle\}
 $$
 where $|q_H\rangle$, $|q_M\rangle$, and $|q_L\rangle$ mean that the exceptional axis sits on $H$, $M$, or $L$ respectively.
 
 This basis may be identified with the conventional color labels by the fixed phase convention
 $$
-|q_H\rangle \leftrightarrow \text{Red} \leftrightarrow 0^\circ,
+|q_H\rangle \leftrightarrow \text{Red} \leftrightarrow 0^\circ
 $$
 $$
-|q_M\rangle \leftrightarrow \text{Green} \leftrightarrow 120^\circ,
+|q_M\rangle \leftrightarrow \text{Green} \leftrightarrow 120^\circ
 $$
 $$
-|q_L\rangle \leftrightarrow \text{Blue} \leftrightarrow 240^\circ.
+|q_L\rangle \leftrightarrow \text{Blue} \leftrightarrow 240^\circ
 $$
 
 The exact angular labels are conventional. What matters geometrically is that the three states are separated by the three-way axis choice and behave as the triplet basis of the color sector.
@@ -421,7 +421,7 @@ In practical terms, a gluon may change
 $$
 |u_H\rangle \leftrightarrow |u_M\rangle,\qquad
 |u_M\rangle \leftrightarrow |u_L\rangle,\qquad
-|u_H\rangle \leftrightarrow |u_L\rangle,
+|u_H\rangle \leftrightarrow |u_L\rangle
 $$
 and likewise for down-type states, without changing $u \leftrightarrow d$ or Generation I $\leftrightarrow$ II $\leftrightarrow$ III. Strong couplings move quarks around inside color space; they do not perform weak flavor conversion.
 For down-type states this color motion is internal to the selected Family-I or Family-II sector. Pure gluon exchange may rotate H/M/L exceptionality, but it is not allowed to hop between Family I and Family II as a hidden flavor change.
@@ -430,7 +430,7 @@ For down-type states this color motion is internal to the selected Family-I or F
 
 With the ordered basis $(H,M,L)$ fixed, the color action is represented by
 $$
-U \in SU(3),
+U \in SU(3)
 $$
 because the transformation must preserve norm, remain within the one-axis-exceptionality sector, and have unit determinant after removing the unobservable overall phase.
 

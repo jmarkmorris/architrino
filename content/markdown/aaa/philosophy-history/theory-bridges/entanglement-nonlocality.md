@@ -13,13 +13,13 @@ It forms a tight cluster with [Bell Theorem](./bell-theorem.md), [Measurement On
 In standard quantum mechanics, two systems $A$ and $B$ are entangled when the composite state $|\Psi\rangle_{AB}$ cannot be written as a product of individual states:
 
 $$
-|\Psi\rangle_{AB} \neq |\phi\rangle_A \otimes |\chi\rangle_B.
+|\Psi\rangle_{AB} \neq |\phi\rangle_A \otimes |\chi\rangle_B
 $$
 
 The canonical example is the spin-singlet state of two spin-$\tfrac{1}{2}$ particles:
 
 $$
-|\Psi^-\rangle = \frac{1}{\sqrt{2}}\bigl(|\!\uparrow\rangle_A |\!\downarrow\rangle_B - |\!\downarrow\rangle_A |\!\uparrow\rangle_B\bigr).
+|\Psi^-\rangle = \frac{1}{\sqrt{2}}\bigl(|\!\uparrow\rangle_A |\!\downarrow\rangle_B - |\!\downarrow\rangle_A |\!\uparrow\rangle_B\bigr)
 $$
 
 Neither particle possesses a definite spin state individually; the state is irreducibly relational. Upon measuring particle $A$ along any axis and obtaining a result, the state of particle $B$ is instantaneously determined—regardless of the spatial separation between $A$ and $B$.
@@ -29,7 +29,7 @@ Neither particle possesses a definite spin state individually; the state is irre
 Einstein, Podolsky, and Rosen (1935) argued that perfect correlations at a distance imply pre-existing values (hidden variables), concluding that quantum mechanics is incomplete. Bell (1964) showed that any theory reproducing quantum predictions while assigning pre-existing local values must violate an inequality:
 
 $$
-|S| \leq 2 \quad \text{(Bell-CHSH inequality for local hidden variables)}.
+|S| \leq 2 \quad \text{(Bell-CHSH inequality for local hidden variables)}
 $$
 
 Quantum mechanics predicts $|S| = 2\sqrt{2}$, and experiments confirm this violation. The standard conclusion is that no theory satisfying **Bell locality** (the outcomes at $A$ depend only on settings and hidden variables at $A$, not on the distant setting at $B$) and **measurement independence** (the choice of measurement settings is uncorrelated with the hidden variables) can reproduce all quantum predictions.
@@ -61,7 +61,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, this is handled as a projection issue
 In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, every architrino possesses a definite position $\mathbf{x}_i(t)$ and velocity $\mathbf{v}_i(t)$ in the Euclidean void at every absolute time $t$. There is no ontological indeterminacy. The complete microstate of a system is:
 
 $$
-\Gamma(t) = \bigl\{(\mathbf{x}_i(t),\, \mathbf{v}_i(t),\, q_i)\bigr\}_{i=1}^{N},
+\Gamma(t) = \bigl\{(\mathbf{x}_i(t),\, \mathbf{v}_i(t),\, q_i)\bigr\}_{i=1}^{N}
 $$
 
 and the Master Equation determines its future evolution given path-history data, with deterministic multistability at threshold regimes.
@@ -115,7 +115,7 @@ Bell's theorem excludes theories that are simultaneously **local** (in the Bell 
 Formally, let $\lambda$ denote the complete hidden-variable specification (the full microstate at the source event plus all subsequent path-history data). Bell locality requires:
 
 $$
-P(a, b \,|\, \hat{\mathbf{m}}_A, \hat{\mathbf{m}}_B, \lambda) = P(a \,|\, \hat{\mathbf{m}}_A, \lambda)\; P(b \,|\, \hat{\mathbf{m}}_B, \lambda),
+P(a, b \,|\, \hat{\mathbf{m}}_A, \hat{\mathbf{m}}_B, \lambda) = P(a \,|\, \hat{\mathbf{m}}_A, \lambda)\; P(b \,|\, \hat{\mathbf{m}}_B, \lambda)
 $$
 
 where $a, b$ are outcomes and $\hat{\mathbf{m}}_A, \hat{\mathbf{m}}_B$ are measurement settings. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ closure program, this factorization is the gate to fail—not because of any superluminal influence at the time of measurement, but because $\lambda$ may encode **joint geometric constraints** (correlated binary-phase orientations, conserved angular-momentum projections, and path-history relations) that are lost when the pair is partitioned into independent local packages. The pair-provenance ledger by itself is not yet the proof. The proof must derive the two local apparatus-response maps and show that their observer-level compression fails Bell's factorized form while preserving no-signaling.
@@ -135,7 +135,7 @@ $$
 \mathcal{H}_B[t_0,t_B],
 \Delta\Theta_{AB}^{\text{bin/wake}},
 \mathsf{Cons}_{AB}
-\big),
+\big)
 $$
 
 where $\mathcal{H}_A$ and $\mathcal{H}_B$ are the path-history data carried by the two daughter assemblies, $\Delta\Theta_{AB}^{\text{bin/wake}}$ records their correlated binary-orientation and wake-phase relations, and $\mathsf{Cons}_{AB}$ records the conservation constraints inherited from the source event. This is not an additional force or influence. It is the candidate hidden-variable domain over which the Bell closure must integrate.
@@ -145,7 +145,7 @@ Let $K_{ab}^{AB}$ be the joint-record response kernel induced by the pair-proven
 $$
 K_{ab}^{AB}\ge0,
 \qquad
-\sum_{a,b=\pm1}K_{ab}^{AB}=1.
+\sum_{a,b=\pm1}K_{ab}^{AB}=1
 $$
 
 If $\Pi_{AB}^{\mathrm{sing}}$ is the singlet-like pair-provenance record, $P_{\mathrm{src}}^{\mathrm{sing}}$ is the source record, and $\zeta_A,\zeta_B$ collect unresolved local apparatus and Noether sea microstates, the observer-level joint response target is
@@ -169,7 +169,7 @@ d\rho_{\mathrm{src}}
 \Pi_{AB}^{\mathrm{sing}}
 \middle|
 P_{\mathrm{src}}^{\mathrm{sing}}
-\right).
+\right)
 $$
 
 Writing this integral does not pass the Bell gate. It names the diagnostic object: the derived joint-record kernel and provenance measure must reproduce the tested singlet joint law while preserving no-signaling and measurement independence, and they must identify exactly which provenance or response compression prevents reduction to Bell's factorized form. The compact singlet residual is
@@ -185,7 +185,7 @@ P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
 \left(
 1-ab\,\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B
 \right)
-\right|.
+\right|
 $$
 
 This single target implies the unbiased marginals and the correlation $E=-\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B$ only after the record law is normalized. Product form belongs only as a failure audit:
@@ -199,7 +199,7 @@ $$
 P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
 -
 \int K_AK_B\,d\mu_{AB}^{\mathrm{rec}}
-\right|.
+\right|
 $$
 
 If $\Delta_{\mathrm{prod}}$ vanishes in the completed record table, the expression has reduced to an ordinary measurement-independent Bell-local hidden-variable integral and the Bell gate fails.
@@ -210,7 +210,7 @@ $$
 K_{ab}^{AB}
 =
 K_A^a(\hat{\mathbf m}_A;\Pi,\zeta_A)
-K_B^b(\hat{\mathbf m}_B;\Pi,\zeta_B),
+K_B^b(\hat{\mathbf m}_B;\Pi,\zeta_B)
 $$
 
 then after integrating $\zeta_A,\zeta_B$ the model has
@@ -221,7 +221,7 @@ P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
 \int
 p_A(a|\hat{\mathbf m}_A,\Pi)
 p_B(b|\hat{\mathbf m}_B,\Pi)
-d\rho_{\mathrm{src}}(\Pi),
+d\rho_{\mathrm{src}}(\Pi)
 $$
 
 so the standard CHSH proof applies. The Bell task is therefore not to repeat the one-wing threshold theorem twice. It is to derive the non-product joint response or non-restartable provenance compression that survives this no-go while keeping the local marginals screenable.
@@ -235,7 +235,7 @@ $$
 D_{\mathrm{TV}}\!\left(
 \rho_{AB}^{\mathrm{prov}}(\lambda_{AB}^{\mathrm{prov}}\mid \hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B),
 \rho_{AB}^{\mathrm{prov}}(\lambda_{AB}^{\mathrm{prov}})
-\right).
+\right)
 $$
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ Bell route requires $\Delta_{\mathrm{MI}}^{\mathrm{prov}}$ to vanish, or to be bounded below an explicitly reported tolerance set by the simulation and experimental pipeline. The non-factorization must therefore come from the structure of the pair-provenance ledger and local response kernels, not from allowing the settings to preselect the hidden-variable ensemble.
@@ -253,7 +253,7 @@ $$
 P(a\mid \hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
 -
 P(a\mid \hat{\mathbf{m}}_A,\hat{\mathbf{m}}'_B)
-\right|,
+\right|
 $$
 
 with the analogous $\Delta_{\mathrm{NS}}^{B}$ for the other wing, and
@@ -264,7 +264,7 @@ $$
 \sup_{\theta\in[0,\pi]}
 \left|
 E_{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)+\cos\theta
-\right|.
+\right|
 $$
 
 These residuals keep the observable constraint separate from the interpretation. The data product is the tested Bell correlation with no-signaling marginals; the $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation must earn that data product without importing a superdeterministic assumption.
@@ -297,7 +297,7 @@ $$
 P(a|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
 =
 \sum_b
-P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B),
+P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
 $$
 
 and an admissible model must make this marginal independent of $\hat{\mathbf m}_B$. This independence is required because:
@@ -324,7 +324,7 @@ b\,m_B(y)
 ab\,C(x,y)
 \right],
 \qquad
-a,b\in\{-1,+1\},
+a,b\in\{-1,+1\}
 $$
 
 with $1+a\,m_A(x)+b\,m_B(y)+ab\,C(x,y)\ge0$. The local channels $m_A$ and $m_B$ carry only local settings; the only setting-pair term is the correlation channel $C(x,y)$. A product-screened pair provenance gives $C_{\mathrm{prod}}(x,y)=\int A_x(\Pi)B_y(\Pi)d\rho_{\mathrm{src}}(\Pi)$, so the live nonlocality question is whether $\mathbb{A}\mathbb{A}\mathbb{A}$ can derive a non-product $C(x,y)$ while preserving the local marginals.
@@ -338,7 +338,7 @@ $$
 \sum_b P(a,b\mid\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
 -
 \sum_b P(a,b\mid\hat{\mathbf{m}}_A,\hat{\mathbf{m}}'_B)
-\right|.
+\right|
 $$
 The Bell-correlation recovery is admissible only with $\Delta_{\mathrm{screen}}\le\epsilon_{\mathrm{NS}}$ and the analogous $B$-side residual. This residual keeps the non-separable ontology from becoming an operational signal channel.
 
@@ -425,7 +425,7 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Boh
   1-ab\,\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B
   \right),
   \qquad
-  a,b\in\{-1,+1\},
+  a,b\in\{-1,+1\}
   $$
   which yields
   $$
@@ -435,7 +435,7 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Boh
   \hat{\mathbf m}_B
   \right)
   =
-  -\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B.
+  -\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B
   $$
 - Investigate whether the non-separability of $\lambda$ can be given a precise geometric characterization in terms of correlated binary-plane orientations and wake-phase offsets.
 

@@ -272,6 +272,17 @@ B_q(v)
 \longrightarrow
 B_{q'}(v+\Delta v)
 $$
+For each binary layer $\ell\in\{I,M,O\}$, the branch ledger can expose a layer-level phase and action row:
+$$
+\Delta\phi_\ell=2\pi n_\ell
+\qquad
+n_\ell\in\mathbb{Z}
+$$
+$$
+\Delta A_\ell=n_\ell h+\epsilon_\ell^{\mathrm{leak}}
+$$
+where $\epsilon_\ell^{\mathrm{leak}}$ records unresolved branch leakage or coupling to the wake ledger. A closed branch requires the layer rows to be compatible with the same all-layer action transaction, not tuned independently.
+
 subject to the action ledger
 $$
 \Delta A_{\text{cycle}}

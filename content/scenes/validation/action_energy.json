@@ -31,6 +31,10 @@
         "scenePath": "content/scenes/validation/causal_set_delay_geometry.json"
       },
       {
+        "nodeId": "delay_dynamics_energy",
+        "scenePath": "content/scenes/validation/delay_dynamics_energy.json"
+      },
+      {
         "nodeId": "informational_ambiguity",
         "scenePath": "content/scenes/validation/informational_ambiguity.json"
       },
@@ -111,6 +115,14 @@
       "radius": 2.688,
       "color": "#4b0082",
       "labelTitle": "Causal Set and Delay Geometry",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "delay_dynamics_energy",
+      "title": "Constructive Energy for Delay Dynamics",
+      "radius": 2.688,
+      "color": "#2c567a",
+      "labelTitle": "Constructive Energy for Delay Dynamics",
       "labelBadge": "doc"
     },
     {

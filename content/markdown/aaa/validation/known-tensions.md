@@ -85,11 +85,11 @@ Penrose-Diosi gravitational-collapse tests are an external benchmark for the sam
 $$
 \Delta E_G \sim \frac{G}{2}\int\!\!\int
 \frac{(\rho_1-\rho_2)(\mathbf{x})(\rho_1-\rho_2)(\mathbf{y})}
-{\|\mathbf{x}-\mathbf{y}\|}\,d^3x\,d^3y,
+{\|\mathbf{x}-\mathbf{y}\|}\,d^3x\,d^3y
 $$
 with the collapse-time estimate
 $$
-\tau_G\sim \frac{\hbar}{\Delta E_G}.
+\tau_G\sim \frac{\hbar}{\Delta E_G}
 $$
 The useful comparison pressure is the tension between local free-fall equivalence and linear superposition when the two branches carry measurably different mass distributions. The validation burden is to compare $\tau_{\text{meas}}$ for massive-superposition records, including BEC-scale spatial superpositions of roughly $10^9$ to $10^{10}$ atoms, against $\tau_G$ and against ordinary environmental decoherence, while preserving the $\mathbb{A}\mathbb{A}\mathbb{A}$ claim that branch selection is finite-time threshold resolution rather than fundamental gravitational collapse. Any collapse variant that predicts persistent spontaneous heating must also pass low-background and compact-object heating bounds before it can serve even as a comparison baseline.
 
@@ -146,7 +146,7 @@ $$
 \mathcal{C}_{\mathrm{radiation}}
 \cap
 \mathcal{C}_{\mathrm{cosmology}}
-\neq \varnothing.
+\neq \varnothing
 $$
 
 If that intersection becomes empty after quantitative work is done, the present implementation is rejected even if many individual chapters remain suggestive. The detailed sector predicates, benchmark tolerances, and promotion-fiber test are recorded in [Failure Criteria](failure-criteria.md).

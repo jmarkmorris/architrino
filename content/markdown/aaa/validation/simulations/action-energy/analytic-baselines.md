@@ -15,19 +15,36 @@ Methodological priority:
 - Treat the two-point-potential problem as the canonical first laboratory for the delayed theory.
 - Any proposed energy, momentum, virial-like, or kinetic/potential closure claim should be checked here before being generalized to assemblies or Noether sea response arguments.
 - In practice this means: solve the fixed-center and symmetric two-body cases first, then ask which familiar ODE identities survive, which acquire delay corrections, and which fail outright.
+- For the nontrivial electrino:positrino binary, use the finite-$\eta$ closure packet in [Binary Dynamics](../../../dynamics/binary-dynamics.md#two-body-closure-packet-theorem-target) and the constructive residuals in [Delay-Dynamics Energy](delay-dynamics-energy.md). A claimed branch must report
+  $$
+  \mathsf{Res}_{2\mathrm{B}}^{(\eta)}
+  =
+  \left(
+  \mathcal{R}_{\mathrm{EOM}}^{2\mathrm{B}},
+  \mathcal{R}_{\mathrm{per}}^{2\mathrm{B}},
+  \mathcal{R}_{\mathrm{bal}}^{2\mathrm{B}},
+  \nu_J^{2\mathrm{B}},
+  \Delta_{\mathrm{gap}}^{2\mathrm{B}},
+  \lambda_{\mathrm{sec}}^{2\mathrm{B}},
+  \epsilon_E^{(\eta)},
+  \Delta_{\mathrm{E,cross}}^{(\eta)},
+  \mathcal{R}_{\omega}^{2\mathrm{B}}
+  \right).
+  $$
+  Until these entries are computed on the same window, regulator, and branch chart, the binary remains an existence candidate rather than a validated closure result.
 
 Symmetric two-body on a line (exact DDE; challenges):
 - Let $x_1(t)=+\tfrac{1}{2}r(t)$ and $x_2(t)=-\tfrac{1}{2}r(t)$ with $r(t)>0$ and $v=1$. The causal-time condition implies
   $$
-  \frac{r(t)+r(t_0)}{2} \;=\; t - t_0,\qquad t_0<t,
+  \frac{r(t)+r(t_0)}{2} \;=\; t - t_0,\qquad t_0<t
   $$
   or, writing $\tau(t)=t-t_0>0$ implicitly,
   $$
-  r(t) + r\!\big(t-\tau(t)\big) \;=\; 2\,\tau(t).
+  r(t) + r\!\big(t-\tau(t)\big) \;=\; 2\,\tau(t)
   $$
 - For opposite polarities, the exact relative-coordinate equation is the state-dependent DDE
   $$
-  \ddot r(t) \;=\; -\,\frac{8\,\kappa\,\epsilon^2}{\big(r(t) + r(t-\tau(t))\big)^2\,|J(t)|},
+  \ddot r(t) \;=\; -\,\frac{8\,\kappa\,\epsilon^2}{\big(r(t) + r(t-\tau(t))\big)^2\,|J(t)|}
   $$
   with $\tau(t)$ determined by the implicit constraint above. For equal charges, the sign is reversed.
 
@@ -37,7 +54,7 @@ Integral (delta) form selecting the causal root:
   a_1(t) \;=\; -\,\kappa\,\epsilon^2 \int_{0}^{\infty}
   \frac{\delta\!\big(\lvert x_1(t)-x_2(t-\tau)\rvert - \tau\big)\,
   \mathrm{sgn}\!\big(x_1(t)-x_2(t-\tau)\big)}
-  {\lvert x_1(t)-x_2(t-\tau)\rvert^{2}}\; d\tau,
+  {\lvert x_1(t)-x_2(t-\tau)\rvert^{2}}\; d\tau
   $$
   whose evaluation reduces exactly to finding the causal delay $\tau(t)$; in the symmetric 1D case this yields the DDE above.
 
@@ -65,6 +82,7 @@ Deliverables:
 - A minimal benchmark ladder for closure tests:
   - fixed-center ODE recovery,
   - symmetric two-body delayed dynamics,
+  - finite-$\eta$ two-body binary closure packet with branch floors and characteristic frequency extraction,
   - work-energy balance on resolved windows,
   - virial-like time averages where periodic or quasi-periodic regimes exist.
 

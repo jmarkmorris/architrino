@@ -11,7 +11,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, a scalar field should not be read as a fund
 $$
 \text{scalar field } \phi
 \quad\leftrightarrow\quad
-\text{coarse-grained scalar amplitude of assembly or Noether sea response}.
+\text{coarse-grained scalar amplitude of assembly or Noether sea response}
 $$
 
 The bridge target is to derive when a collective mode of Noether swarm clusters or Noether sea state variables obeys a Klein-Gordon-like equation, and when delayed path-history effects force corrections.
@@ -20,7 +20,7 @@ The bridge target is to derive when a collective mode of Noether swarm clusters 
 
 As a pure mathematical object, a scalar field is a map
 $$
-\phi:M\to K,
+\phi:M\to K
 $$
 usually with $K=\mathbb{R}$ or $\mathbb{C}$. It assigns one scalar value to each point of the domain and carries no intrinsic direction, orientation, or tensor index.
 
@@ -34,7 +34,7 @@ In relativistic quantum theory, a free massive scalar mode obeys a second-order 
 
 The Klein-Gordon equation can be read as the wave-equation form of the relativistic energy-momentum relation
 $$
-E^2=p^2c^2+m^2c^4.
+E^2=p^2c^2+m^2c^4
 $$
 
 Historically, it failed as a single-particle probability equation because its conserved density is not positive definite. Its stable role appears in field theory: $\phi$ is not a probability amplitude for one particle, but a scalar field whose quantized normal modes give spin-0 particle and antiparticle excitations.
@@ -45,7 +45,7 @@ A real scalar field describes a neutral scalar sector, while a complex scalar fi
 
 In second-quantized language, a scalar field is expanded into modes with creation and annihilation operators,
 $$
-\hat{\phi}(x)=\sum_k\left(a_k u_k(x)+a_k^\dagger u_k^*(x)\right).
+\hat{\phi}(x)=\sum_k\left(a_k u_k(x)+a_k^\dagger u_k^*(x)\right)
 $$
 
 Under $\mathbb{A}\mathbb{A}\mathbb{A}$, this should be read as effective bookkeeping for stable mode contributions from Noether swarm clusters, not as literal creation or destruction of substrate entities.
@@ -72,7 +72,7 @@ in the mostly-plus metric convention.
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ bridge reads this as a continuum-limit target. A mature derivation should show when linearization around a homogeneous Noether sea background yields a dispersion relation of the form
 $$
-\omega^2=c_{\mathrm{eff}}^2k^2+\omega_0^2,
+\omega^2=c_{\mathrm{eff}}^2k^2+\omega_0^2
 $$
 with $\omega_0$ supplying the Klein-Gordon-like mode gap.
 
@@ -80,7 +80,7 @@ with $\omega_0$ supplying the Klein-Gordon-like mode gap.
 
 The curved-spacetime scalar-field equation with optional curvature coupling is
 $$
-\left(\nabla^\mu\nabla_\mu - \frac{m^2c^2}{\hbar^2} - \xi R\right)\phi = 0.
+\left(\nabla^\mu\nabla_\mu - \frac{m^2c^2}{\hbar^2} - \xi R\right)\phi = 0
 $$
 Here $\nabla^\mu\nabla_\mu$ is the metric wave operator, $R$ is scalar curvature, and $\xi$ controls nonminimal coupling between the scalar mode and curvature.
 
@@ -92,12 +92,12 @@ S_\phi =
 -\frac{1}{2}g^{\mu\nu}\nabla_\mu\phi\nabla_\nu\phi
 -\frac{1}{2}\left(\frac{m^2c^2}{\hbar^2}+\xi R\right)\phi^2
 -V(\phi)
-\right].
+\right]
 $$
 
 When coupled to general relativity, this scalar action contributes an effective stress-energy tensor,
 $$
-G_{\mu\nu}=8\pi G\left(T_{\mu\nu}^{\mathrm{matter}}+T_{\mu\nu}^{(\phi)}\right),
+G_{\mu\nu}=8\pi G\left(T_{\mu\nu}^{\mathrm{matter}}+T_{\mu\nu}^{(\phi)}\right)
 $$
 so scalar-field energy density, pressure, and gradients can affect curvature. This is the common mathematical route behind subjects such as Higgs-like scalar modes, inflaton fields, quintessence, boson stars, scalar-tensor gravity, and semiclassical matter-on-geometry models.
 
@@ -109,7 +109,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, this places Klein-Gordon-like scalar behavi
 
 With a source term, the same equation can be written schematically as
 $$
-\left(\nabla^\mu\nabla_\mu - \frac{m^2c^2}{\hbar^2} - \xi R\right)\phi = J.
+\left(\nabla^\mu\nabla_\mu - \frac{m^2c^2}{\hbar^2} - \xi R\right)\phi = J
 $$
 
 Here $J$ may be an ordinary source density, a distributional point or surface source, or a regularized source $J_\eta$ used for calculation. This distinction matters because a Dirac delta is not an infinite-valued ordinary scalar field; it is a distributional source whose mollified version becomes an ordinary finite scalar profile.
@@ -124,7 +124,7 @@ $$
 \left[
 \frac{K_\phi}{2}\|\nabla\phi\|^2
 +V_{\mathrm{eff}}(\phi)
-\right]\,dV,
+\right]\,dV
 $$
 where
 $$
@@ -136,7 +136,7 @@ $$
 $$
 is a candidate background only if
 $$
-V_{\mathrm{eff}}'(\phi_\ast)=0.
+V_{\mathrm{eff}}'(\phi_\ast)=0
 $$
 Linearizing gives
 $$
@@ -145,7 +145,7 @@ $$
 c_{\mathrm{eff}}^2\Delta\delta\phi
 -\omega_0^2\delta\phi,
 \qquad
-\omega_0^2\propto V_{\mathrm{eff}}''(\phi_\ast),
+\omega_0^2\propto V_{\mathrm{eff}}''(\phi_\ast)
 $$
 which is the bridge route to the Klein-Gordon dispersion target.
 
@@ -157,7 +157,7 @@ has two locally stable branches
 $$
 \phi_-
 \quad\text{and}\quad
-\phi_+,
+\phi_+
 $$
 then a one-dimensional interface profile should satisfy the saddle equation
 $$
@@ -167,7 +167,7 @@ V_{\mathrm{eff}}'(\phi),
 \qquad
 \lim_{x\to-\infty}\phi(x)=\phi_-,
 \qquad
-\lim_{x\to+\infty}\phi(x)=\phi_+.
+\lim_{x\to+\infty}\phi(x)=\phi_+
 $$
 Its interface cost is
 $$
@@ -177,7 +177,7 @@ $$
 \left[
 \frac{K_\phi}{2}\left(\frac{d\phi}{dx}\right)^2
 +V_{\mathrm{eff}}(\phi)-V_{\mathrm{eff}}(\phi_\pm)
-\right]\,dx,
+\right]\,dx
 $$
 with the appropriate branch value subtracted on each side. For this bridge, such domain-wall or kink-like profiles are comparison diagnostics for coarse scalar closure; they are not evidence that the underlying architrino ontology is a continuous scalar field.
 

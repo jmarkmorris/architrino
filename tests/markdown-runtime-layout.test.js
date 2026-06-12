@@ -167,6 +167,82 @@ test("open markdown panels can invoke the browser PDF save flow", async (t) => {
   assert.equal(printCount, 1);
 });
 
+test("priority markdown links stay inside the markdown runtime", async (t) => {
+  const originalFetch = globalThis.fetch;
+  const originalWindow = globalThis.window;
+  let clickHandler = null;
+  const navigatedTargets = [];
+
+  globalThis.fetch = async () => ({
+    ok: true,
+    async text() {
+      return "# Photon App\n\n[photon-app-requirements](photon-app-requirements.md)";
+    },
+  });
+  globalThis.window = {};
+
+  t.after(() => {
+    globalThis.fetch = originalFetch;
+    globalThis.window = originalWindow;
+  });
+
+  const markdownPanel = createFakeElement();
+  const markdownBody = createFakeElement();
+  markdownBody.addEventListener = (type, handler) => {
+    if (type === "click") {
+      clickHandler = handler;
+    }
+  };
+  const runtime = createMarkdownRuntime({
+    markdownPanel,
+    markdownBody,
+    markdownLayoutToggle: createFakeElement(),
+    markdownRenderer: null,
+    markdownCache: new Map(),
+    markdownSectionCache: new Map(),
+    extractMarkdownSection: () => null,
+    appendCacheBust: (path) => path,
+    navigateToTarget(target) {
+      navigatedTargets.push(target);
+    },
+  });
+
+  await runtime.showMarkdownPanel({
+    name: "Photon App",
+    markdownPath: "reference/priorities/photon-app/photon-app.md",
+    markdownColumns: 1,
+  });
+
+  const link = {
+    getAttribute(name) {
+      return name === "href" ? "photon-app-requirements.md" : null;
+    },
+  };
+  const event = {
+    defaultPrevented: false,
+    altKey: false,
+    ctrlKey: false,
+    metaKey: false,
+    shiftKey: false,
+    preventDefault() {
+      this.defaultPrevented = true;
+    },
+    target: {
+      closest(selector) {
+        return selector === "a[href]" ? link : null;
+      },
+    },
+  };
+
+  assert.equal(typeof clickHandler, "function");
+  await clickHandler(event);
+
+  assert.equal(event.defaultPrevented, true);
+  assert.deepEqual(navigatedTargets, [
+    "reference/priorities/photon-app/photon-app-requirements.md",
+  ]);
+});
+
 test("PDF toolbar button opens markdown before invoking browser print", async (t) => {
   const originalWindow = globalThis.window;
   const printCalls = [];

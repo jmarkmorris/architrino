@@ -67,7 +67,7 @@ Y_A(t),
 C_A,
 \mathcal{N}_A,
 \mathcal{B}_{\partial\Omega}^{(O)}(W)
-\right),
+\right)
 $$
 where $Y_A(t)$ is the measured readout, $\mathcal{K}_A$ is the apparatus response kernel, $\mathcal{M}_A$ is the modulation or timing protocol, $C_A$ is calibration covariance, and $\mathcal{N}_A$ is the declared nuisance family. Redshift measurements, torsion balances, preferred-frame clock tests, CMB radiometers, and interferometric gravitational-wave detectors differ mainly in these record fields. A comparison that keeps $Y_A(t)$ while replacing $\mathcal{K}_A$, $\mathcal{M}_A$, $C_A$, or $\mathcal{N}_A$ after seeing the result is not the same Physical Observer record.
 
@@ -102,7 +102,7 @@ $$
 t_0<t,\quad
 \|\mathbf{x}-\mathbf{s}_j(t_0)\|=c_f(t-t_0),\quad
 \mathbf{x}\in\partial\Omega
-\right\}.
+\right\}
 $$
 
 The subsystem evolution therefore has the schematic form
@@ -114,7 +114,7 @@ X_\Omega(t),
 \mathcal{H}_{\Omega}^{<t},
 \mathcal{B}_{\partial\Omega}(t),
 N_{\text{sea}}|_{\Omega}(t)
-\right),
+\right)
 $$
 where $N_{\text{sea}}|_{\Omega}(t)$ denotes the locally resolved Noether sea state. A Physical Observer who models only $X_\Omega(t)$ has omitted finite-speed signals, incoming causal wakes, and path-history branches crossing the boundary. That omission can make local prediction fail without implying indeterminism in the $\mathbb{U}_{\text{now}}$ universe-state perspective, because the complete state includes the boundary wake data and the path-history ledger needed for deterministic continuation.
 
@@ -134,7 +134,7 @@ d_{\mathcal{D}}\!\left(
 \Pi_{\mathcal{D}}^{(O,W)}(\theta)
 \right)
 \le \epsilon
-\right\}.
+\right\}
 $$
 For a proposed global claim $P$, the observer-side ambiguity indicator is
 $$
@@ -144,7 +144,7 @@ $$
 \exists\theta_1,\theta_2\in[\theta]_{\mathcal{D},\epsilon}^{(O,W)}
 \text{ with }
 P(\theta_1)\ne P(\theta_2)
-\right].
+\right]
 $$
 If $\Delta_P^{(O,W)}(\theta)=1$, the Physical Observer has not measured $P$ as a global fact. The data product may still be valid, but $P$ remains an effective reconstruction or comparison interpretation unless an independent $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation selects it from the same complete-state and boundary-wake record.
 
@@ -156,7 +156,7 @@ $$
 \widehat{\mathcal{B}}_{\partial\Omega}(t;\theta)
 \right|_{W}
 /
-\sim_{O,\theta,W}.
+\sim_{O,\theta,W}
 $$
 Here $\widehat{\mathcal{B}}_{\partial\Omega}(t;\theta)$ denotes the boundary wake history retained by the observer model record, and $\mathcal{B}_1\sim_{O,\theta,W}\mathcal{B}_2$ means that the two retained boundary histories give the same Physical Observer clock, ruler, detector, and readout records on $W$ within the declared tolerance. This quotient is an observer-accessible coarse-graining of deterministic boundary data, not a new substrate boundary. It is the object later counted in local-horizon entropy targets.
 
@@ -170,7 +170,7 @@ $$
 =
 \mathcal{B}_{\partial\Omega}(t)
 -
-\widehat{\mathcal{B}}_{\partial\Omega}(t;\theta).
+\widehat{\mathcal{B}}_{\partial\Omega}(t;\theta)
 $$
 For a readout channel $Y_A(t)$, define the residual induced by unresolved boundary histories as
 $$
@@ -180,7 +180,7 @@ Y_A(t;\mathcal{B},\theta)
 -
 \left\langle
 Y_A(t;\mathcal{B},\theta)
-\right\rangle_{\mu_{\Omega,\theta}}.
+\right\rangle_{\mu_{\Omega,\theta}}
 $$
 Here $\mu_{\Omega,\theta}$ is a coarse-grained conditional measure over complete states whose resolved projection agrees with the Physical Observer's record $\theta$. It is an epistemic measure over unresolved deterministic histories, not a new substrate law.
 
@@ -191,7 +191,7 @@ N^{\mathrm{bw}}_{AB}(t,t';\theta)
 \int
 \delta Y_A(t;\mathcal{B},\theta)\,
 \delta Y_B(t';\mathcal{B},\theta)\,
-d\mu_{\Omega,\theta}(\mathcal{B}).
+d\mu_{\Omega,\theta}(\mathcal{B})
 $$
 It must be positive semidefinite as a channel covariance:
 $$
@@ -211,7 +211,7 @@ N^{\mathrm{bw}}_{AB}(t,t';\theta)
 +
 N^{\mathrm{det}}_{AB}(t,t')
 +
-N^{\mathrm{env}}_{AB}(t,t').
+N^{\mathrm{env}}_{AB}(t,t')
 $$
 The same decomposition should be reused across weak-probe, interferometric, and precision-gravity comparisons. If a proposed measurement model must retune the unresolved boundary covariance separately for each branch or observable, the observer-level closure has failed rather than discovered a new ontology.
 
@@ -229,7 +229,7 @@ N^{\mathrm{bw}}_{AB},
 N^{\mathrm{det}}_{AB},
 N^{\mathrm{env}}_{AB},
 \Pi_{\mathrm{ADM}}
-\right),
+\right)
 $$
 where $\Pi_{\mathrm{ADM}}$ is the observer-level projection to $(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij},\Phi_{\text{eff}},\chi_{\text{sea}})$. Redshift, Shapiro delay, lensing, weak-field acceleration, and preferred-frame residuals must be read from $\Theta_{\mathrm{weak}}^{(O,W)}$ with the same covariance and boundary-data model. A channel-specific replacement of $\mu_{\Omega,\theta}$, $N^{\mathrm{bw}}_{AB}$, or $\Pi_{\mathrm{ADM}}$ is therefore a retuning residual, not an improved observer model.
 
@@ -239,7 +239,7 @@ P_{\Omega,\theta,W}(Y_A\in B)
 =
 \mu_{\Omega,\theta}\!\left(
 \{\mathcal{B}:Y_A(t;\mathcal{B},\theta)\in B\ \text{on}\ W\}
-\right).
+\right)
 $$
 If a comparison requires different measures for branch weights, thermodynamic noise, observer selection, or readout covariance while holding the same observer record $\theta$, it is a set of separately fitted summaries rather than one observer-model closure.
 
@@ -253,12 +253,12 @@ $$
 $$
 are simultaneous exactly when
 $$
-t_1=t_2.
+t_1=t_2
 $$
 
 The simultaneity slice is
 $$
-\Sigma_t=\{t\}\times\mathbb{R}^3.
+\Sigma_t=\{t\}\times\mathbb{R}^3
 $$
 
 This is a statement about the substrate foliation of absolute timespace, not about what any Physical Observer can operationally reconstruct.
@@ -289,7 +289,7 @@ d_{\mathrm{ord}}\!\left(\prec_{\mathrm{eff}}(\theta),\prec_{\mathrm{GR}}\right)
 \right\|_{W}
 +
 \lambda_{\mathrm{PF}}
-\sum_{i=1}^{3}\alpha_i(\theta)^2.
+\sum_{i=1}^{3}\alpha_i(\theta)^2
 $$
 Here $d_{\mathrm{ord}}$ measures mismatch of inferred causal order on the comparison domain, the clock term supplies the missing local scale, and the preferred-frame term penalizes residual PPN drift coefficients. This is a closure target for the observer layer, not a claim that substrate spacetime is Lorentzian.
 
@@ -298,7 +298,7 @@ $$
 \mathcal{H}_{\mathrm{eff}}(\theta;\ell,\varepsilon)
 =
 \sup_{g_1,g_2\in\mathcal{G}_{\ell,\varepsilon}(\theta)}
-d_{\mathrm{geom},\ell}(g_1,g_2).
+d_{\mathrm{geom},\ell}(g_1,g_2)
 $$
 Small $\mathcal{H}_{\mathrm{eff}}$ says that the observer record determines a unique effective geometry up to the declared coarse-graining scale. Large $\mathcal{H}_{\mathrm{eff}}$ means the observer layer has not supplied enough scale, transport, or preferred-frame information to identify a stable GR comparison geometry. This is an effective-reconstruction test only; it does not promote a Lorentzian metric to substrate ontology.
 
@@ -311,7 +311,7 @@ P_{\mathrm{proc}}(\mathbf{r}|\mathbf{s}),
 P_{\mathrm{rec}}^\theta(\mathbf{r}|\mathbf{s})
 \right)
 +
-\lambda_{\mathrm{causal}}\mathcal{R}_{\mathrm{causal}}(\theta).
+\lambda_{\mathrm{causal}}\mathcal{R}_{\mathrm{causal}}(\theta)
 $$
 Small process-table mismatch with large $\mathcal{R}_{\mathrm{causal}}$ is a warning that the observer layer has not recovered an effective causal order. It is not evidence that the ontic substrate lacks absolute time. The admissible lesson is diagnostic: preserve the operational record constraint while forcing the Physical Observer account to say how causal order, clocks, and records are recovered together.
 

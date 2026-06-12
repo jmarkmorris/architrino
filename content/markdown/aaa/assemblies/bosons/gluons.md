@@ -97,11 +97,11 @@ Quarks are confined because an open color corridor stores energy in the surround
 - **Cost of coherent ordering:** forcing a line of ambient Noether sea swarms to align with an open color corridor costs an energy $E_{\mathrm{coh}}$ per coherence length.
 - **String tension ($\sigma$):**
   $$
-  \sigma \sim \frac{E_{\mathrm{coh}}}{L_{\mathrm{coh}}}.
+  \sigma \sim \frac{E_{\mathrm{coh}}}{L_{\mathrm{coh}}}
   $$
   If $E_{\mathrm{coh}}\sim 1\;\mathrm{GeV}$ and $L_{\mathrm{coh}}\sim 1\;\mathrm{fm}$, then
   $$
-  \sigma \sim 1\;\mathrm{GeV/fm}.
+  \sigma \sim 1\;\mathrm{GeV/fm}
   $$
 - **Result:** the energy grows approximately linearly with separation, $V \propto r$, until it becomes cheaper to create a new quark-antiquark pair than to keep stretching the corridor.
 
@@ -132,7 +132,7 @@ A proton such as $(u_R,u_G,d_B)$ is stable because the three quarks occupy the t
 
 - **Closure:** the triad covers the three color sectors exactly once, producing the singlet channel inside
   $$
-  3\otimes 3\otimes 3 \supset 1.
+  3\otimes 3\otimes 3 \supset 1
   $$
 - **Far field:** at distances larger than the proton radius, the open color corridors close and no net color flux leaks into the surrounding Noether sea. The composite is therefore transparent in the color channel at large distances.
 

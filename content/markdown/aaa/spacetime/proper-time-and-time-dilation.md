@@ -24,7 +24,7 @@ H_{\mathcal A}
 \qquad
 d\tau_{\mathcal A}
 =
-\frac{d\varphi_{\mathcal A}}{\Omega_{\mathcal A}^{(0)}}.
+\frac{d\varphi_{\mathcal A}}{\Omega_{\mathcal A}^{(0)}}
 $$
 Here $\varphi_{\mathcal A}$ is the counted clock phase, $\Omega_{\mathcal A}^{(0)}$ is its rest-branch reference rate, $\mathcal{N}_{\mathrm{sea}}$ is the retained Noether sea state, $R_{\mathcal A}$ is the clock geometry/orientation record, $H_{\mathcal A}$ is the relevant path-history ledger, and $\mathbf{w}$ is the clock drift relative to local Noether sea flow. A broad expression such as $d\tau/dt=F(\mathbf{v},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{clock geometry})$ is only a shorthand after this phase channel has been declared.
 
@@ -80,13 +80,13 @@ The homogeneous moving-clock extraction is independent from weak-field PPN match
 $$
 \left\|\mathbf{x}_{o}(t)-\mathbf{x}_{j}(t_0)\right\|
 =
-c_f(t-t_0).
+c_f(t-t_0)
 $$
 The dressed observer-channel speed $c_\star$ is declared only after the clock/ruler channel is chosen: $c_\star=c_f$ for a primitive branch scan and usually $c_\star=c_{\text{eff}}(\mathbf{x})$ for a Noether sea dressed clock comparison. Thus
 $$
 \beta_\star=\frac{v}{c_\star},
 \qquad
-\gamma_\star(v)=\frac{1}{\sqrt{1-\beta_\star^2}}.
+\gamma_\star(v)=\frac{1}{\sqrt{1-\beta_\star^2}}
 $$
 
 For an admitted moving nested shell swarm branch $q$ on a drift band $0\le v/c_f\le\beta_{\max}<1$, choose one clock phase $\theta_{\mathrm{clk},q}$ from the same causal-root ledger used for the branch's geometry. The extracted period is
@@ -95,7 +95,7 @@ T_q(v)
 =
 \frac{2\pi}{\langle\dot{\theta}_{\mathrm{clk},q}\rangle_{\mathrm{cyc}}},
 \qquad
-T_0=T_q(0),
+T_0=T_q(0)
 $$
 and the clock residual is
 $$
@@ -103,7 +103,7 @@ R_T^{(q)}(v)
 \equiv
 \frac{T_q(v)}{T_0}
 -
-\gamma_\star(v).
+\gamma_\star(v)
 $$
 The moving-clock theorem target is
 $$
@@ -112,6 +112,8 @@ $$
 C_T\epsilon_{\text{LV}}\beta_\star^2
 $$
 uniformly on the drift band, with any surviving preferred-frame sideband reported as a branch-sourced leakage term. This packet fails if the clock phase and ruler geometry come from different branch ledgers, if the residual is suppressed only by fitting a PPN coefficient after the fact, or if $c_f$ is silently identified with $c_\star$ without a dressing map.
+
+This moving-clock row is one leg of the structural-integrity common-limit closure in [Lorentz Kinematics](./lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure). It is not enough for the clock branch to approximate $\gamma_\star^{-1}$ in isolation. The same causal-root ledger must also produce the moving ruler deformation, photon synchronization row, and weak-field gravity-channel speed row used by Lorentz closure; otherwise the clock result is a branch-split fit rather than proper-time closure.
 
 ### Noether Sea Swarm Cadence
 
@@ -122,7 +124,7 @@ $$
 \equiv
 \frac{T_N(\mathbf{x},t)}{T_{N0}}
 =
-\frac{\Omega_{N0}}{\Omega_N(\mathbf{x},t)}.
+\frac{\Omega_{N0}}{\Omega_N(\mathbf{x},t)}
 $$
 
 The quantity $\Gamma_N$ records local cadence stretching of the Noether sea itself. It is therefore a substrate-facing clock diagnostic: $\Gamma_N=1$ marks the weak homogeneous reference, while $\Gamma_N>1$ marks a locally slowed or stretched Noether sea cadence. In the homogeneous moving Noether swarm branch, the Lorentz-closure target is to derive the appropriate limit $\Gamma_N\to\gamma$ or, equivalently, $\Omega_N/\Omega_{N0}\to1/\gamma$ for the declared clock channel. In a gravitational or cosmological Noether sea state comparison, $\Gamma_N$ must instead be extracted from $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, $\Phi_{\text{eff}}$, and clock geometry.
@@ -134,7 +136,7 @@ C_N(\mathbf{x},t)
 \equiv
 \frac{\Omega_N(\mathbf{x},t)}{\Omega_{N0}}
 =
-\Gamma_N^{-1}(\mathbf{x},t).
+\Gamma_N^{-1}(\mathbf{x},t)
 $$
 
 In the homogeneous moving Noether swarm branch, the geometry-to-clock closure target is $C_N\to\xi\to1/\gamma$, so the corresponding cadence-stretch target is $\Gamma_N\to1/\xi\to\gamma$.
@@ -148,7 +150,7 @@ $$
 \qquad
 \Gamma_N(\mathbf{x},t)
 \approx
-1-\frac{\Phi_N(\mathbf{x},t)}{c_0^2},
+1-\frac{\Phi_N(\mathbf{x},t)}{c_0^2}
 $$
 
 to first order in $\Phi_N/c_0^2$. Since $\Phi_N < 0$ in a deeper potential, this gives $\Gamma_N > 1$ there: the local Noether sea swarm cadence is stretched relative to the weak homogeneous reference. For two endpoint cells $E$ and $R$ with no source-branch, launch, or path-history correction, the redshift recovery condition is therefore
@@ -158,7 +160,7 @@ $$
 \approx
 \ln\Gamma_{N,E}-\ln\Gamma_{N,R}
 \approx
-\frac{\Phi_N(R)-\Phi_N(E)}{c_0^2}.
+\frac{\Phi_N(R)-\Phi_N(E)}{c_0^2}
 $$
 
 This is the clock-channel version of the weak gravitational-redshift benchmark. The derivation burden is to obtain the first equation from Noether sea constitutive response rather than impose it as an imported metric fact.
@@ -170,7 +172,7 @@ $$
 d\tau
 =
 \frac{1}{c_0}
-\sqrt{-g^{\text{eff}}_{\mu\nu}dx^\mu dx^\nu},
+\sqrt{-g^{\text{eff}}_{\mu\nu}dx^\mu dx^\nu}
 $$
 with the weak-field static endpoint limit above and the moving-clock limit
 $$
@@ -178,7 +180,7 @@ g^{\text{eff}}_{\mu\nu}
 \frac{dx^\mu}{d\tau}
 \frac{dx^\nu}{d\tau}
 =
--c_0^2.
+-c_0^2
 $$
 This equation is not a claim that the Euclidean void is a four-dimensional curved substrate. It is the observer-level action benchmark: physical clocks should extremize the same effective interval that the signal, ruler, and orbital modules use when they project the Noether sea state into GR comparison language. If a branch recovers endpoint redshift but fails the integrated clock functional along accelerated or orbital records, the proper-time map has not closed.
 
@@ -195,7 +197,7 @@ $$
 \ln\lambda,\,
 -\ln\xi,\,
 \ln\frac{R_{\text{core}}}{R_{\text{core},0}}
-\right)^T.
+\right)^T
 $$
 
 The candidate extraction law is
@@ -204,7 +206,7 @@ $$
 \ln\Gamma_N
 =
 \mathbf{b}_N\cdot\mathbf{g}_N
-+\mathcal{R}_{\Gamma},
++\mathcal{R}_{\Gamma}
 $$
 
 where $\mathbf{b}_N$ is a constitutive coefficient row and $\mathcal{R}_{\Gamma}$ contains higher-order and branch-specific corrections. Write the row as
@@ -218,7 +220,7 @@ b_\chi,\,
 b_\lambda,\,
 b_\xi,\,
 b_R
-\right).
+\right)
 $$
 
 The sign convention places $-\ln\xi$ in the deformation record because the homogeneous Lorentz-closure branch requires $\Gamma_N\to1/\xi$ when the clock readout is controlled only by oblate moving Noether swarm geometry. In that branch
@@ -233,7 +235,7 @@ $$
 \ln\gamma,\,
 0
 \right)^T
-+O(\epsilon_{\mathrm{LV}}),
++O(\epsilon_{\mathrm{LV}})
 $$
 
 so the moving Noether swarm constraint fixes
@@ -253,7 +255,7 @@ b_\chi,\,
 b_\lambda,\,
 1,\,
 b_R
-\right),
+\right)
 $$
 
 with the remaining coefficients belonging to the isotropic Noether sea constitutive response rather than to Lorentz geometry.
@@ -263,7 +265,7 @@ This is also the convention bridge to the effective metric subclass. If the loca
 $$
 C_N^{\mathrm{met}}
 =
-\Omega_{\mathrm{clk}}(n,\chi_{\text{sea}},\lambda,R_{\text{core}})\,\xi,
+\Omega_{\mathrm{clk}}(n,\chi_{\text{sea}},\lambda,R_{\text{core}})\,\xi
 $$
 
 then the cadence-stretch factor is
@@ -273,7 +275,7 @@ $$
 =
 \left(
 \Omega_{\mathrm{clk}}\xi
-\right)^{-1}.
+\right)^{-1}
 $$
 
 Writing
@@ -295,7 +297,7 @@ b_n=-\omega_n,\qquad
 b_\chi=-\omega_\chi,\qquad
 b_\lambda=-\omega_\lambda,\qquad
 b_R=-\omega_R,\qquad
-b_\xi=1.
+b_\xi=1
 $$
 
 The weak-field recovery condition then becomes a constraint on the same coefficient row:
@@ -304,7 +306,7 @@ $$
 \ln\Gamma_N(\mathbf{x},t)
 =
 -\frac{\Phi_N(\mathbf{x},t)}{c_0^2}
-+O\!\left(\frac{\Phi_N^2}{c_0^4}\right),
++O\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
 
 or, locally,
@@ -313,7 +315,7 @@ $$
 \mathbf{b}_N\cdot\nabla\mathbf{g}_N
 =
 -\frac{\nabla\Phi_N}{c_0^2}
-+O\!\left(\frac{\Phi_N\nabla\Phi_N}{c_0^4}\right).
++O\!\left(\frac{\Phi_N\nabla\Phi_N}{c_0^4}\right)
 $$
 
 Equivalently, let $U\equiv-\Phi_N>0$ and define the static weak-potential response coefficients by
@@ -322,19 +324,19 @@ $$
 \ln n=a_n\frac{U}{c_0^2},\qquad
 \ln\chi_{\text{sea}}=a_\chi\frac{U}{c_0^2},\qquad
 \ln\lambda=a_\lambda\frac{U}{c_0^2},\qquad
-\ln\frac{R_{\text{core}}}{R_{\text{core},0}}=a_R\frac{U}{c_0^2},
+\ln\frac{R_{\text{core}}}{R_{\text{core},0}}=a_R\frac{U}{c_0^2}
 $$
 
 to first order, with $-\ln\xi=0+O(U^2/c_0^4)$ in an isotropic static endpoint cell. Then weak gravitational redshift fixes only the scalar combination
 
 $$
-b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1.
+b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1
 $$
 
 In clock-rate language this is the equivalent condition
 
 $$
-\omega_n a_n+\omega_\chi a_\chi+\omega_\lambda a_\lambda+\omega_R a_R=-1.
+\omega_n a_n+\omega_\chi a_\chi+\omega_\lambda a_\lambda+\omega_R a_R=-1
 $$
 
 This is the first useful reduction of the proof burden. The Lorentz branch fixes the shape coefficient $b_\xi$, while static weak-field redshift fixes one isotropic coefficient combination. Individual values of $b_n$, $b_\chi$, $b_\lambda$, and $b_R$, or equivalently of the $\omega$ row, require a constitutive calculation or simulation that extracts how a mass source changes $n$, $\chi_{\text{sea}}$, $\lambda$, and $R_{\text{core}}$ in the same Noether sea cell.
@@ -347,7 +349,7 @@ $$
 \frac{c_0}{c_{\text{eff}}}
 =
 1+(1+\gamma_{\text{eff}})\frac{U}{c_0^2}
-+O\!\left(\frac{U^2}{c_0^4}\right),
++O\!\left(\frac{U^2}{c_0^4}\right)
 $$
 
 so its logarithmic response is
@@ -356,7 +358,7 @@ $$
 \delta\ln\bar{\chi}_{\text{sea}}
 =
 (1+\gamma_{\text{eff}})\frac{U}{c_0^2}
-+O\!\left(\frac{U^2}{c_0^4}\right).
++O\!\left(\frac{U^2}{c_0^4}\right)
 $$
 
 This fixes a signal-delay response coefficient $a_\chi^{\mathrm{sig}}=1+\gamma_{\text{eff}}$, giving $a_\chi^{\mathrm{sig}}\approx2$ in the GR-matching solar-system branch. It becomes the clock-row coefficient $a_\chi$ only if the clock cadence and signal-propagation channel share the same scalar delay response in the tested branch. If they do not, the difference is not fit freedom; it is a channel-splitting residual that must be carried into PPN, redshift, and pressure-response comparisons.
@@ -372,7 +374,7 @@ a_\chi-a_\chi^{\mathrm{sig}}
 =
 a_\chi-(1+\gamma_{\text{eff}}),
 \qquad
-\Delta_\chi^{\mathrm{clk\text{-}sig}}=0.
+\Delta_\chi^{\mathrm{clk\text{-}sig}}=0
 $$
 
 A branch may impose this condition only when the same first-order Noether sea delay factor retimes assembly clocks and signal propagation, the photon or signal channel has no separate $\chi_\gamma$ response at $O(U/c_0^2)$, the asymptotic normalization $c_0/c_f$ is spatially constant in the comparison, and the weak cell is isotropic enough that first-order birefringent or stress-anisotropic delay terms are absent.
@@ -380,13 +382,13 @@ A branch may impose this condition only when the same first-order Noether sea de
 Under this shared-delay closure, the static endpoint constraint becomes
 
 $$
-b_n a_n+b_\chi(1+\gamma_{\text{eff}})+b_\lambda a_\lambda+b_R a_R=1,
+b_n a_n+b_\chi(1+\gamma_{\text{eff}})+b_\lambda a_\lambda+b_R a_R=1
 $$
 
 or, equivalently in clock-rate-row language,
 
 $$
-\omega_n a_n+\omega_\chi(1+\gamma_{\text{eff}})+\omega_\lambda a_\lambda+\omega_R a_R=-1.
+\omega_n a_n+\omega_\chi(1+\gamma_{\text{eff}})+\omega_\lambda a_\lambda+\omega_R a_R=-1
 $$
 
 In the GR-matching weak solar-system branch, $\gamma_{\text{eff}}=1$ makes the delay contribution $2b_\chi$ in the cadence-stretch row and $2\omega_\chi$ in the clock-rate row. If $\Delta_\chi^{\mathrm{clk\text{-}sig}}\neq0$, the branch has not failed by definition, but it must carry $\Delta_\chi^{\mathrm{clk\text{-}sig}}$ as a measured residual across clock redshift, Shapiro delay, pressure-response, and cosmological redshift comparisons rather than absorbing it into a fitted coefficient.
@@ -394,7 +396,7 @@ In the GR-matching weak solar-system branch, $\gamma_{\text{eff}}=1$ makes the d
 The first admissible static packet is the minimal shared-delay specialization of this row. Let
 
 $$
-A_\chi\equiv1+\gamma_{\text{eff}}.
+A_\chi\equiv1+\gamma_{\text{eff}}
 $$
 
 If the weak static endpoint cadence is assigned entirely to the shared scalar delay response at first order, then
@@ -412,7 +414,7 @@ a_R
 A_\chi,\,
 0,\,
 0
-\right),
+\right)
 $$
 
 and the cadence-stretch row is
@@ -430,7 +432,7 @@ b_R
 A_\chi^{-1},\,
 0,\,
 0
-\right).
+\right)
 $$
 
 The inverse clock-rate row is therefore
@@ -448,7 +450,7 @@ $$
 -A_\chi^{-1},\,
 0,\,
 0
-\right),
+\right)
 $$
 
 so
@@ -456,7 +458,7 @@ so
 $$
 \mathbf b_N\cdot\mathbf a=1,\qquad
 \boldsymbol\omega\cdot\mathbf a=-1,\qquad
-b_i+\omega_i=0.
+b_i+\omega_i=0
 $$
 
 For the GR-matching weak branch, $A_\chi=2$, giving $a_\chi=2$, $b_\chi=1/2$, and $\omega_\chi=-1/2$. This is a minimal endpoint packet, not a proof that density, envelope scale, or core-radius responses are physically absent. A compensated static family remains admissible:
@@ -471,7 +473,7 @@ b_\chi
 A_\chi
 },
 \qquad
-\omega_i=-b_i.
+\omega_i=-b_i
 $$
 
 #### Compensated Static-Family Validation Packet
@@ -493,7 +495,7 @@ a_R
 b_n,\,
 b_\lambda,\,
 b_R
-\right)^T.
+\right)^T
 $$
 
 The weak static endpoint condition is then
@@ -503,7 +505,7 @@ S_G
 \equiv
 \mathbf{c}\cdot\mathbf{u}^{G}
 +b_\chi A_\chi
-=1.
+=1
 $$
 
 A finite-height clock comparison samples the spatial derivative of the same scalar. For a small upward separation $L$ near Earth, with $U(z+L)-U(z)\approx-gL$, the clock-rate ratio obeys
@@ -515,7 +517,7 @@ $$
 =
 S_G\frac{gL}{c_0^2}
 +O(L^2)
-+O\!\left(\frac{U^2}{c_0^4}\right).
++O\!\left(\frac{U^2}{c_0^4}\right)
 $$
 
 Thus finite-height redshift fixes $S_G=1$ to the experimental tolerance. It does not distinguish the minimal row $\mathbf{c}=\mathbf{0}$ from a compensated row with $\mathbf{c}\cdot\mathbf{u}^{G}\ne0$ and adjusted $b_\chi$, provided the same coefficients are used across the sample.
@@ -529,7 +531,7 @@ $$
 -
 \mathbf{g}_{N,\mathrm H}^{(\ell')}
 \right)
-=0.
+=0
 $$
 
 The minimal shared-delay row passes only if the record difference has no uncompensated $\chi_{\text{sea}}$ component after the fixed $-\ln\xi$ term is included. The hydrogen toy scan now demonstrates the discriminant: the clean shared-delay row passes a clean $\chi_{\text{sea}}$-only packet, while the density/scale-compensated row passes the split-record scaffold. This does not yet prove that the gravitational static endpoint has nonzero $a_n$, $a_\lambda$, or $a_R$; it proves that any atom-local record with persistent density, scale, or core-radius splits must use one shared compensated row instead of per-line clock factors.
@@ -549,7 +551,7 @@ a_R
 \mathbf{a}^{P\to\Gamma}
 =
 \frac{\delta\mathbf{g}^{P,\mathrm{iso}}}
-{\delta\ln\Gamma_N^{P,\mathrm{iso}}}.
+{\delta\ln\Gamma_N^{P,\mathrm{iso}}}
 $$
 
 A single isotropic cadence row can serve both the gravitational endpoint and the pressure-normalized replay only if
@@ -566,7 +568,7 @@ $$
 1
 \end{pmatrix},
 \qquad
-\omega_i=-b_i.
+\omega_i=-b_i
 $$
 
 The current Fe/Cr toy pressure projection has $\mathbf{a}^{P\to\Gamma}=(0,0.6,0,0)^T$, while the GR-matching shared-delay endpoint has $A_\chi=2$. Therefore the $\chi_{\text{sea}}$-only shared row is falsified for that toy pressure replay. A broader compensated row remains conditional: it requires branch-derived non-$\chi_{\text{sea}}$ pressure response in $n$, $\lambda$, or $R_{\text{core}}$, and it must still preserve $S_G=1$ for finite-height and endpoint redshift.
@@ -587,7 +589,7 @@ $$
 \ln(1+z)_{\mathrm{endpoint}}
 =
 \ln\Gamma_{N,E}
--\ln\Gamma_{N,R}.
+-\ln\Gamma_{N,R}
 $$
 
 The full candidate redshift comparison keeps that endpoint clock term separate from source, launch, and path-history terms:
@@ -599,7 +601,7 @@ $$
 -\ln\Gamma_{N,R}
 -\ln D_v
 +Y_{X,E\to R}
--\ln B_X(E).
+-\ln B_X(E)
 $$
 
 Here $B_X(E)$ is the source-branch factor, $D_v$ is the launch or relative-motion phase-compression factor, and $Y_{X,E\to R}=\ln\mathcal P_{E\to R,X}$ is the path-history propagation integral through the Noether sea. This chapter owns the extraction of $\Gamma_N$ and $C_N=\Gamma_N^{-1}$. The other factors are routed through the absolute-record transport map in [Noether sea](noether-sea.md#equilibrium-transport-hypothesis) and must not be folded into $\Gamma_N$ unless a derivation proves the reduction in a declared limit.
@@ -611,7 +613,7 @@ Hydrogen spectra give the first atom-local use of the $\Gamma_N$ extraction map.
 $$
 C_N(\mathbf{x},t)
 =
-\Gamma_N^{-1}(\mathbf{x},t).
+\Gamma_N^{-1}(\mathbf{x},t)
 $$
 
 For the hydrogen spectral channel at resolution $\ell$, extract the clock-facing deformation record from the same response map used by the spectral scan:
@@ -625,7 +627,7 @@ $$
 \ln\lambda_{\mathrm H}^{(\ell)},\,
 -\ln\xi_{\mathrm H}^{(\ell)},\,
 \ln\frac{R_{\text{core},\mathrm H}^{(\ell)}}{R_{\text{core},0}}
-\right)^T.
+\right)^T
 $$
 
 The hydrogen clock/rate conversion target is then
@@ -640,7 +642,7 @@ $$
 \qquad
 C_{N,\mathrm H}^{(\ell)}
 =
-\left(\Gamma_{N,\mathrm H}^{(\ell)}\right)^{-1}.
+\left(\Gamma_{N,\mathrm H}^{(\ell)}\right)^{-1}
 $$
 
 The row $\mathbf{b}_{N}^{\mathrm{spec}}$ is not a per-line fit. It is the spectral-channel instance of the same clock-row program above, with $b_\xi=1$ inherited from the homogeneous Lorentz branch and the weak-field scalar combination constrained by gravitational redshift. The residual $\mathcal R_{\Gamma,\mathrm H}^{\mathrm{spec},(\ell)}$ carries higher-order branch effects such as recoil, hyperfine structure, medium anisotropy, or unresolved source-branch corrections; it must not absorb the basic distinction between $n$, $\chi_{\text{sea}}$, and clock cadence.
@@ -657,7 +659,7 @@ E_{\text{env}}^{(\ell)}(a)
 E_{\text{env}}^{(\ell)}(b)
 }{h}
 +
-\nu_{a\to b}^{\mathrm{res},(\ell)}.
+\nu_{a\to b}^{\mathrm{res},(\ell)}
 $$
 
 Equivalently, an isolated line with bounded event residual gives a line-inferred cadence stretch,
@@ -671,7 +673,7 @@ E_{\text{env}}^{(\ell)}(a)
 E_{\text{env}}^{(\ell)}(b)
 }{
 h\nu_{a\to b}^{\mathrm{obs},(\ell)}
-}.
+}
 $$
 
 The first pass condition is that one $\Gamma_{N,\mathrm H}^{(\ell)}$ from the local Noether sea response controls the chosen line set:
@@ -692,7 +694,7 @@ $$
 \varepsilon_{\Gamma}
 }
 \le
-\Delta_{\Gamma}^{\mathrm{tol}}.
+\Delta_{\Gamma}^{\mathrm{tol}}
 $$
 
 This target fails if $\Gamma_N$ is multiplied directly into the line frequency after being defined as cadence stretch, if each transition requires its own clock coefficient row, if $n$ or $\chi_{\text{sea}}$ is used as a substitute for $\Gamma_N$, if recoil or photon-channel propagation is hidden inside $\Gamma_N$, or if the hydrogen spectral map uses a different Noether sea response record than the clock, Shapiro-delay, or endpoint-redshift comparisons.
@@ -757,7 +759,7 @@ To first order in the Newtonian potential $\Phi_N(\mathbf{x})$,
 $$
 \omega(\Phi_N) \approx \omega_0\left(1 + \frac{\Phi_N}{c^2}\right)
 \quad \Rightarrow \quad
-\frac{d\tau}{dt}\bigg|_{\text{grav}} \approx 1 + \frac{\Phi_N}{c^2},
+\frac{d\tau}{dt}\bigg|_{\text{grav}} \approx 1 + \frac{\Phi_N}{c^2}
 $$
 with the sign convention chosen so that $\Phi_N < 0$ (deeper potential) yields **slower** clocks ($d\tau/dt < 1$), consistent with GR.
 
@@ -769,7 +771,7 @@ $$
 \approx
 \frac{\Delta\Phi_N}{c_0^2}
 \approx
-\frac{gL}{c_0^2}.
+\frac{gL}{c_0^2}
 $$
 Thus $L=1\,\mathrm{mm}$ corresponds to $\Delta\nu/\nu\approx1.1\times10^{-19}$, while $L=33\,\mathrm{cm}$ corresponds to $\Delta\nu/\nu\approx3.6\times10^{-17}$. These numbers are direct weak-field acceptance tests for the extracted clock map: the same Noether sea constitutive response that slows separated clocks must also describe an extended clock sample whose lower and upper portions accumulate different proper-time phases.
 
@@ -781,7 +783,7 @@ $$
 =
 \widehat{\beta}_{T^3}T^3
 +\Delta\phi_{\mathrm{ctrl}}(T)
-+O(T^4).
++O(T^4)
 $$
 This coefficient must be derived from the same weak-field clock and phase map that produces the finite-height redshift benchmark. A fit to $\widehat{\beta}_{T^3}$ cannot be allowed to use one effective potential record while the redshift, Shapiro-delay, lensing, PPN, or gravitational-wave-speed channels use another.
 
@@ -801,12 +803,12 @@ Outside that limit, $F$ will in general deviate from the GR expression and defin
 
 In the same weak-field regime where the clock law is expected to be Lorentz-like, the center-of-mass kinematics should satisfy the effective mass-shell closure
 $$
-E_{\text{CM}}^2 = p_{\text{CM}}^2 c_{\text{eff}}^2 + M_0^2 c_{\text{eff}}^4,
+E_{\text{CM}}^2 = p_{\text{CM}}^2 c_{\text{eff}}^2 + M_0^2 c_{\text{eff}}^4
 $$
 with $d\tau/dt=\gamma_{\text{eff}}^{-1}$ and
 $$
 E_{\text{CM}}=\gamma_{\text{eff}}M_0c_{\text{eff}}^2,\qquad
-p_{\text{CM}}=\gamma_{\text{eff}}M_0v.
+p_{\text{CM}}=\gamma_{\text{eff}}M_0v
 $$
 This is a cross-check on the emergent clock model, not an independent axiom at the architrino substrate level.
 For definitions and interpretation, see [Effective Energy-Momentum Closure](../dynamics/energy.md#effective-energy-momentum-closure).
@@ -827,7 +829,7 @@ To close the derivation gap, we now fix an explicit clock model and an explicit 
 
 Use one neutral nested shell swarm with six constituent architrinos:
 $$
-\mathcal{A}=\{i_+,i_-,m_+,m_-,o_+,o_-\},
+\mathcal{A}=\{i_+,i_-,m_+,m_-,o_+,o_-\}
 $$
 with intrinsic polarities $q_a=\pm\epsilon$, $\epsilon=|e|/6$, effective inertial parameters $m_a$, and trajectories $\mathbf{x}_a(t)$.
 
@@ -835,11 +837,11 @@ Define pair-separation vectors
 $$
 \mathbf{r}_i=\mathbf{x}_{i+}-\mathbf{x}_{i-},\quad
 \mathbf{r}_m=\mathbf{x}_{m+}-\mathbf{x}_{m-},\quad
-\mathbf{r}_o=\mathbf{x}_{o+}-\mathbf{x}_{o-},
+\mathbf{r}_o=\mathbf{x}_{o+}-\mathbf{x}_{o-}
 $$
 with radii $R_b=\|\mathbf{r}_b\|$ for $b\in\{i,m,o\}$ and nested ordering
 $$
-R_i<R_m<R_o.
+R_i<R_m<R_o
 $$
 
 ### Microscopic Evolution Equation (Regularized)
@@ -851,12 +853,12 @@ m_a\ddot{\mathbf{x}}_a(t)=
 \kappa\,\sigma_{ab}\lvert q_aq_b\rvert
 \int_{-\infty}^{t}\!dt_0\;
 \frac{\hat{\mathbf{r}}_{ab}(t;t_0)}{r_{ab}(t;t_0)^2}\,
-\delta_\eta\!\big(r_{ab}(t;t_0)-c_f(t-t_0)\big),
+\delta_\eta\!\big(r_{ab}(t;t_0)-c_f(t-t_0)\big)
 $$
 $$
 r_{ab}(t;t_0)=\|\mathbf{x}_a(t)-\mathbf{x}_b(t_0)\|,
 \qquad
-\hat{\mathbf{r}}_{ab}=\frac{\mathbf{x}_a(t)-\mathbf{x}_b(t_0)}{r_{ab}(t;t_0)}.
+\hat{\mathbf{r}}_{ab}=\frac{\mathbf{x}_a(t)-\mathbf{x}_b(t_0)}{r_{ab}(t;t_0)}
 $$
 This is the same $\eta>0$ regularized kernel used in the dynamical chapters.
 
@@ -864,17 +866,17 @@ This is the same $\eta>0$ regularized kernel used in the dynamical chapters.
 
 Take the middle binary as the clock channel. Let $\mathbf{e}_1,\mathbf{e}_2$ be an orthonormal basis of the mean orbital plane of $\mathbf{r}_m$, and define phase
 $$
-\theta_m(t)=\operatorname{atan2}\!\big(\mathbf{r}_m\!\cdot\!\mathbf{e}_2,\mathbf{r}_m\!\cdot\!\mathbf{e}_1\big).
+\theta_m(t)=\operatorname{atan2}\!\big(\mathbf{r}_m\!\cdot\!\mathbf{e}_2,\mathbf{r}_m\!\cdot\!\mathbf{e}_1\big)
 $$
 On a window $[t_1,t_2]$, define measured frequency
 $$
 \omega_{\text{clk}}
 =
-\frac{\theta_m(t_2)-\theta_m(t_1)}{t_2-t_1}.
+\frac{\theta_m(t_2)-\theta_m(t_1)}{t_2-t_1}
 $$
 For the reference run $(v=0,\Phi_N=0)$, set $\omega_0=\omega_{\text{clk}}^{\text{ref}}$ and define
 $$
-\frac{d\tau}{dt}\equiv\frac{\omega_{\text{clk}}}{\omega_0}.
+\frac{d\tau}{dt}\equiv\frac{\omega_{\text{clk}}}{\omega_0}
 $$
 
 This observable is the benchmark preserved by the clock projector in [Nested Shell Swarm Geometry](../noether-swarm/nested-shell-swarm-geometry.md#assembly-noether-sea-interface-diagnostic). For a branch record $\mathcal{B}_{\mathbf{x}j}^{(t_0)}$, the clock-facing projection keeps only the entries that can change the extracted phase or cadence:
@@ -890,7 +892,7 @@ $$
 J_{\mathbf{x}j},\,
 \Lambda_j,\,
 \mathcal{L}_{j}^{\mathrm{wake}}\big|_{\mathrm{phase}}
-\right).
+\right)
 $$
 
 Thus a boundary contribution may affect clock coupling only by changing the same phase increment, measured frequency, Noether sea delay factor, or phase-retained wake ledger used to compute $\omega_{\text{clk}}/\omega_0$. A separate clock fit that bypasses this projection would split the clock benchmark from the assembly/Noether sea interface diagnostic.
@@ -909,7 +911,7 @@ For each run $j$, record
 $$
 \left(U_j,\;v_j,\;\omega_j\right),
 \qquad
-y_j\equiv\frac{\omega_j}{\omega_0}-1.
+y_j\equiv\frac{\omega_j}{\omega_0}-1
 $$
 
 ---
@@ -922,7 +924,7 @@ This chapter keeps only the symbolic/numeric coefficient interface needed to bri
 
 Linearize each trajectory as $\mathbf{x}_a(t)=\mathbf{x}_a^{(0)}(t)+\delta\mathbf{x}_a(t)$ around the periodic rest solution and expand the extracted clock ratio in
 $$
-\epsilon_U\equiv U/c_0^2,\qquad \epsilon_v\equiv v^2/c_\star^2.
+\epsilon_U\equiv U/c_0^2,\qquad \epsilon_v\equiv v^2/c_\star^2
 $$
 
 Use the regression model
@@ -933,24 +935,24 @@ $$
 +C_2\,\epsilon_U^2
 +C_{Uv}\,\epsilon_U\epsilon_v
 +C_{v4}\,\epsilon_v^2
-+\mathcal{O}(\epsilon^3).
++\mathcal{O}(\epsilon^3)
 $$
 
 Coefficient extraction from simulation ensemble $\{(U_j,v_j,\omega_j)\}_{j=1}^N$:
 $$
 \mathbf{y}=X\mathbf{c}+\boldsymbol{\varepsilon},
 \qquad
-\hat{\mathbf{c}}=(X^\top W X)^{-1}X^\top W\mathbf{y},
+\hat{\mathbf{c}}=(X^\top W X)^{-1}X^\top W\mathbf{y}
 $$
 with
 $$
 \mathbf{c}=(A_U,A_v,C_2,C_{Uv},C_{v4})^\top,\quad
-y_j=\frac{\omega_j}{\omega_0}-1,
+y_j=\frac{\omega_j}{\omega_0}-1
 $$
 and design row
 $$
 X_j=\left(-\epsilon_{U,j},\,-\epsilon_{v,j},\,\epsilon_{U,j}^2,\,
-\epsilon_{U,j}\epsilon_{v,j},\,\epsilon_{v,j}^2\right).
+\epsilon_{U,j}\epsilon_{v,j},\,\epsilon_{v,j}^2\right)
 $$
 
 Estimated covariance:
@@ -959,27 +961,27 @@ $$
 =
 \hat{s}^2(X^\top W X)^{-1},
 \qquad
-\hat{s}^2=\frac{\sum_j w_j(y_j-(X\hat{\mathbf{c}})_j)^2}{N-5}.
+\hat{s}^2=\frac{\sum_j w_j(y_j-(X\hat{\mathbf{c}})_j)^2}{N-5}
 $$
 
 ### Coefficient Targets and PPN Map
 
 In the GR-matching weak-field observer limit, first-order targets are
 $$
-A_U^\star=1,\qquad A_v^\star=\frac{1}{2}.
+A_U^\star=1,\qquad A_v^\star=\frac{1}{2}
 $$
 
 For the static branch ($v=0$),
 $$
-\frac{\omega}{\omega_0}=1-\frac{U}{c_0^2}+C_2\frac{U^2}{c_0^4}+\cdots,
+\frac{\omega}{\omega_0}=1-\frac{U}{c_0^2}+C_2\frac{U^2}{c_0^4}+\cdots
 $$
 and the PPN map used in [PPN Parameters](./ppn-parameters.md) is
 $$
-\beta_{\mathrm{eff}}=\frac{1+2C_2}{2}.
+\beta_{\mathrm{eff}}=\frac{1+2C_2}{2}
 $$
 So the GR target $\beta_{\mathrm{eff}}=1$ implies
 $$
-C_2^\star=\frac{1}{2}.
+C_2^\star=\frac{1}{2}
 $$
 
 The mixed coefficient $C_{Uv}$ is treated as a leakage diagnostic at this order.
@@ -1031,11 +1033,11 @@ The clock-to-PPN closure checklist is:
 
 Given extracted coefficients
 $$
-\hat{\mathbf{c}}=(\hat A_U,\hat A_v,\hat C_2,\hat C_{Uv},\hat C_{v4}),
+\hat{\mathbf{c}}=(\hat A_U,\hat A_v,\hat C_2,\hat C_{Uv},\hat C_{v4})
 $$
 map to
 $$
-\hat\beta_{\mathrm{eff}}=\frac{1+2\hat C_2}{2},
+\hat\beta_{\mathrm{eff}}=\frac{1+2\hat C_2}{2}
 $$
 and forward to the PPN decision vector in [spacetime/ppn-parameters.md](./ppn-parameters.md).
 
@@ -1044,11 +1046,11 @@ $$
 \chi^2_{\mathrm{closure}}=
 (\hat{\mathbf{q}}-\mathbf{q}_\star)^\top
 \Sigma_q^{-1}
-(\hat{\mathbf{q}}-\mathbf{q}_\star),
+(\hat{\mathbf{q}}-\mathbf{q}_\star)
 $$
 with
 $$
 \hat{\mathbf{q}}=(\hat A_U,\hat A_v,\hat\beta_{\mathrm{eff}},\hat C_{Uv}),\qquad
-\mathbf{q}_\star=(1,\tfrac12,1,0).
+\mathbf{q}_\star=(1,\tfrac12,1,0)
 $$
 Low $\chi^2_{\mathrm{closure}}$ with no preferred-direction leakage is the acceptance condition for the clock-law sector.

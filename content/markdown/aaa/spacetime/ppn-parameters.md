@@ -39,27 +39,27 @@ $$
 =
 \frac{c_0}{c_f}\chi_{\text{sea}}(\mathbf{x})
 = 1 - (1+\gamma_{\text{eff}})\frac{\Phi_N(\mathbf{x})}{c_0^2}
-+ \mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right),
++ \mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
 with $\Phi_N<0$ near a mass source. For a point mass $M$,
 $$
 \Phi_N(r)=-\frac{GM}{r}
 \quad\Rightarrow\quad
 \bar{\chi}_{\text{sea}}(r)=1+(1+\gamma_{\text{eff}})\frac{GM}{c_0^2 r}
-+\mathcal{O}\!\left(\frac{G^2M^2}{c_0^4 r^2}\right).
++\mathcal{O}\!\left(\frac{G^2M^2}{c_0^4 r^2}\right)
 $$
 
 For a one-way signal along a Euclidean straight path $\Gamma$ (the $\mathbb{U}_{\text{now}}$ anchor),
 $$
 t_{\text{arch}}=\frac{1}{c_0}\int_\Gamma \bar{\chi}_{\text{sea}}(\mathbf{x})\,ds
-=\frac{R}{c_0}+\Delta t_{\text{arch}},
+=\frac{R}{c_0}+\Delta t_{\text{arch}}
 $$
 where $R=\int_\Gamma ds$ is Euclidean path length and
 $$
 \Delta t_{\text{arch}}
 =\frac{1}{c_0}\int_\Gamma (\bar{\chi}_{\text{sea}}-1)\,ds
 =\frac{(1+\gamma_{\text{eff}})GM}{c_0^3}\int_\Gamma \frac{ds}{r(s)}
-+\mathcal{O}\!\left(\frac{G^2M^2}{c_0^5}\right).
++\mathcal{O}\!\left(\frac{G^2M^2}{c_0^5}\right)
 $$
 
 Evaluating the line integral for endpoint radii $r_1,r_2$ and Euclidean endpoint separation $R$ gives
@@ -67,7 +67,7 @@ $$
 \Delta t_{\text{arch}}
 =\frac{(1+\gamma_{\text{eff}})GM}{c_0^3}
 \ln\!\left(\frac{r_1+r_2+R}{r_1+r_2-R}\right)
-+\mathcal{O}\!\left(\frac{G^2M^2}{c_0^5}\right),
++\mathcal{O}\!\left(\frac{G^2M^2}{c_0^5}\right)
 $$
 which is the standard 1PN Shapiro form with $\gamma\to\gamma_{\text{eff}}$ and $c\to c_0$. The primitive wake speed $c_f$ remains in the unnormalized delay factor $\chi_{\text{sea}}=c_f/c_{\text{eff}}$; observer-facing PPN timing uses the asymptotic dressed speed $c_0$.
 
@@ -77,7 +77,7 @@ $$
 =
 \frac{c_0^3\,\Delta t_{\text{obs}}}
 {GM\ln\!\left(\frac{r_1+r_2+R}{r_1+r_2-R}\right)}
--1,
+-1
 $$
 with $\Delta t_{\text{obs}}=t_{\text{obs}}-R/c_0$.
 
@@ -86,7 +86,7 @@ In the weak-field solar-system regime, $\gamma_{\text{eff}}$ is the direct refra
 The same Shapiro map also fixes the first-order signal-delay response coefficient
 
 $$
-a_\chi^{\mathrm{sig}}=1+\gamma_{\text{eff}}.
+a_\chi^{\mathrm{sig}}=1+\gamma_{\text{eff}}
 $$
 
 This is not automatically the clock coefficient $a_\chi$ used in the static $\Gamma_N$ endpoint row. The shared clock/signal delay branch is the additional condition
@@ -95,7 +95,7 @@ $$
 \Delta_\chi^{\mathrm{clk\text{-}sig}}
 \equiv
 a_\chi-a_\chi^{\mathrm{sig}}
-=0.
+=0
 $$
 
 When this residual vanishes, Shapiro delay and gravitational clock redshift are using the same first-order Noether sea delay response. When it does not vanish, PPN delay, redshift, lensing, pressure-response, and cosmological redshift comparisons must carry the residual explicitly rather than refitting $\chi_{\text{sea}}$ per observable.
@@ -111,13 +111,13 @@ The light-bending half-test makes the same point numerically. A lapse-only weak-
 $$
 \Delta\theta_{\mathrm{half}}
 =
-\frac{2GM}{b\,c_0^2},
+\frac{2GM}{b\,c_0^2}
 $$
 while the full GR-matching target is
 $$
 \Delta\theta_{\mathrm{GR}}
 =
-\frac{4GM}{b\,c_0^2}.
+\frac{4GM}{b\,c_0^2}
 $$
 In the forward projection below, the missing half is precisely the $\gamma_{\text{eff}}$ spatial-compliance contribution. Therefore a constitutive map cannot claim PPN closure by matching Shapiro delay with a scalar delay factor while leaving the ruler/spatial-compliance row undefined.
 
@@ -130,7 +130,7 @@ $$
 =
 1-\frac{U}{c_0^2}
 +C_2(a,k)\frac{U^2}{c_0^4}
-+\mathcal{O}\!\left(\frac{U^3}{c_0^6}\right).
++\mathcal{O}\!\left(\frac{U^3}{c_0^6}\right)
 $$
 Since $-g_{00}=(d\tau/dt)^2$ for a static observer,
 $$
@@ -139,7 +139,7 @@ g_{00}
 -1
 +2\frac{U}{c_0^2}
 -\bigl[1+2C_2(a,k)\bigr]\frac{U^2}{c_0^4}
-+\mathcal{O}\!\left(\frac{U^3}{c_0^6}\right).
++\mathcal{O}\!\left(\frac{U^3}{c_0^6}\right)
 $$
 Match to the PPN form
 $$
@@ -149,7 +149,7 @@ g_{00}^{\mathrm{PPN}}
 $$
 to obtain
 $$
-\boxed{\beta_{\mathrm{eff}}(a,k)=\frac{1+2C_2(a,k)}{2}}.
+\boxed{\beta_{\mathrm{eff}}(a,k)=\frac{1+2C_2(a,k)}{2}}
 $$
 Equivalently, if $\alpha(\mathcal{I})=1+\lambda_t\mathcal{I}+\frac{1}{2}\lambda_{tt}\mathcal{I}^2$ and
 $\mathcal{I}=\chi_1(a,k)\,U/c_0^2+\chi_2(a,k)\,U^2/c_0^4+\cdots$, then
@@ -158,7 +158,7 @@ $$
 =
 \frac{1}{2}
 +\lambda_t\chi_2(a,k)
-+\frac{1}{2}\lambda_{tt}\chi_1(a,k)^2.
++\frac{1}{2}\lambda_{tt}\chi_1(a,k)^2
 $$
 * **Observable:** Perihelion precession and other 1PN nonlinear-potential tests.
 
@@ -168,7 +168,7 @@ If the constitutive clock channel is exactly
 $$
 \Omega\xi=e^{\Phi_{\text{eff}}/c_0^2},
 \qquad
-g_{00}=-(\Omega\xi)^2,
+g_{00}=-(\Omega\xi)^2
 $$
 then with $U_{\Phi}\equiv -\Phi_{\text{eff}}$:
 $$
@@ -176,7 +176,7 @@ g_{00}
 =
 -e^{2\Phi_{\text{eff}}/c_0^2}
 =
--1+2\frac{U_{\Phi}}{c_0^2}-2\frac{U_{\Phi}^2}{c_0^4}+O(c_0^{-6}),
+-1+2\frac{U_{\Phi}}{c_0^2}-2\frac{U_{\Phi}^2}{c_0^4}+O(c_0^{-6})
 $$
 so this subclass yields
 $$
@@ -196,26 +196,26 @@ $$
 g_{0i}^{\text{leak}}
 =
 -\frac{1}{2}\Xi_1(a,k)\frac{w_i U}{c_0^3}
--\Xi_2(a,k)\frac{w^j U_{ij}}{c_0^3},
+-\Xi_2(a,k)\frac{w^j U_{ij}}{c_0^3}
 $$
 $$
 g_{00}^{\text{leak}}
 =
 -\Xi_3(a,k)\frac{w^2 U}{c_0^4}
 -\Xi_2(a,k)\frac{w^i w^j U_{ij}}{c_0^4}
-+\Xi_4(a,k)\frac{w^i V_i}{c_0^3}.
++\Xi_4(a,k)\frac{w^i V_i}{c_0^3}
 $$
 Matching to standard PPN preferred-frame structure gives
 $$
 \boxed{\alpha_1(a,k)=\Xi_1(a,k)},\qquad
-\boxed{\alpha_2(a,k)=\Xi_2(a,k)},
+\boxed{\alpha_2(a,k)=\Xi_2(a,k)}
 $$
 $$
-\boxed{\alpha_3(a,k)=\Xi_1(a,k)-\Xi_2(a,k)-\Xi_3(a,k)},
+\boxed{\alpha_3(a,k)=\Xi_1(a,k)-\Xi_2(a,k)-\Xi_3(a,k)}
 $$
 with consistency relation
 $$
-\Xi_4(a,k)=2\alpha_3-\alpha_1=\Xi_1-2\Xi_2-2\Xi_3.
+\Xi_4(a,k)=2\alpha_3-\alpha_1=\Xi_1-2\Xi_2-2\Xi_3
 $$
 
 ## Zero-Leakage Conditions (Preferred-Frame Closure)
@@ -224,7 +224,7 @@ The effective theory is preferred-frame safe iff all drift couplings vanish:
 $$
 \Xi_1=\Xi_2=\Xi_3=\Xi_4=0
 \quad\Longleftrightarrow\quad
-\alpha_1=\alpha_2=\alpha_3=0.
+\alpha_1=\alpha_2=\alpha_3=0
 $$
 
 Equivalent constitutive conditions:
@@ -233,7 +233,7 @@ $$
 \qquad
 \left.\frac{\partial^2 g_{00}}{\partial w_i\partial w_j}\right|_{\mathbf{w}=0}
 \propto \delta_{ij}
-\ \text{with zero traceless part},
+\ \text{with zero traceless part}
 $$
 and no momentum-density coupling term $w^iV_i$ at the retained PN order.
 
@@ -258,7 +258,7 @@ y_{A,0}
 \left(\mathbf{w}(t)\cdot\hat{\mathbf{n}}_A(t)\right)^2
 -w^2(t)/3
 }{c_0^2}
-+n_A(t).
++n_A(t)
 $$
 Here $\mathbf{s}_A$ is the PPN sensitivity row for the channel, $\zeta_A$ is an allowed apparatus-calibration nuisance fixed by the instrument model, and $n_A$ is detector/environment noise. The shared preferred-frame residual is
 $$
@@ -270,7 +270,7 @@ y_A^{\mathrm{obs}}-y_A^{\theta}
 \right\|_{C_A^{-1}}^2
 +
 \lambda_{\mathrm{PF}}
-\left(\alpha_1^2+\alpha_2^2+\alpha_3^2\right).
+\left(\alpha_1^2+\alpha_2^2+\alpha_3^2\right)
 $$
 The bundle fails if one clock or material channel requires a nonzero $\alpha_i$ that another channel excludes, or if the orientation/annual term is hidden in $\zeta_A$ rather than projected through $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$.
 
@@ -300,7 +300,7 @@ $$
 4\times 10^{-5}\\
 2\times 10^{-9}\\
 4\times 10^{-20}
-\end{pmatrix},
+\end{pmatrix}
 $$
 ordered as
 $$
@@ -310,7 +310,7 @@ $$
 |\alpha_1|,
 |\alpha_2|,
 |\alpha_3|
-\right).
+\right)
 $$
 The first row is the Cassini time-delay bound on $\gamma_{\mathrm{PPN}}-1$; the second uses the perihelion-shift row for $\beta_{\mathrm{PPN}}-1$; the preferred-frame rows use the best listed weak-field/strong-field analogue bounds. Strong-field pulsar bounds should not be silently reclassified as solar-system PPN measurements, but they are valid closure pressure: any $\mathbb{A}\mathbb{A}\mathbb{A}$ drift leakage that survives in ordinary clocks, orbits, or pulsar timing must project below the corresponding row unless a separate strong-field screening mechanism is derived.
 
@@ -325,7 +325,7 @@ $$
 \alpha_1\\
 \alpha_2\\
 \alpha_3
-\end{pmatrix}.
+\end{pmatrix}
 $$
 Weak-field closure requires
 $$
@@ -342,7 +342,7 @@ $$
 \|\tilde\kappa_{o+}^{\mathrm{eff}}\|,
 |\tilde\kappa_{\mathrm{tr}}^{\mathrm{eff}}|,
 \|\bar{s}^{\mu\nu}_{\mathrm{eff}}\|
-\right),
+\right)
 $$
 with $\tilde\kappa_{\bullet}^{\mathrm{eff}}$ used as photon-sector comparison coefficients and $\bar{s}^{\mu\nu}_{\mathrm{eff}}$ used as a gravity-sector comparison coefficient. These are observer-level projection diagnostics; they are not substrate coefficients added to the Euclidean void.
 
@@ -353,7 +353,7 @@ This chapter is the observable-side gate for the emergent-metric closure.
 Define the PPN decision vector:
 $$
 \mathbf{p}_{\mathrm{PPN}}=
-\bigl(\gamma_{\mathrm{eff}}-1,\ \beta_{\mathrm{eff}}-1,\ \alpha_1,\ \alpha_2,\ \alpha_3\bigr).
+\bigl(\gamma_{\mathrm{eff}}-1,\ \beta_{\mathrm{eff}}-1,\ \alpha_1,\ \alpha_2,\ \alpha_3\bigr)
 $$
 The weak-field closure target is
 $$
@@ -388,7 +388,7 @@ g_{0i}^{\mathrm{eff}}
 =
 -\frac{\gamma_{ij}u^j_{\text{sea}}}{c_0},
 \qquad
-g_{ij}^{\mathrm{eff}}=\gamma_{ij}.
+g_{ij}^{\mathrm{eff}}=\gamma_{ij}
 $$
 
 In the local Noether sea rest weak-field row, write
@@ -397,7 +397,7 @@ N
 =
 1-\frac{U_{\Phi}}{c_0^2}
 +C_2\frac{U_{\Phi}^2}{c_0^4}
-+O(c_0^{-6},\epsilon_{\mathrm{LV}}),
++O(c_0^{-6},\epsilon_{\mathrm{LV}})
 $$
 and extract
 $$
@@ -409,13 +409,13 @@ $$
 \right)
 +O(U_{\Phi}/c_0^2,\epsilon_{\mathrm{LV}}),
 \qquad
-\beta_{\mathrm{PPN}}-1=C_2-\frac12.
+\beta_{\mathrm{PPN}}-1=C_2-\frac12
 $$
 The preferred-frame coefficients are the retained drift coefficients in $g_{0i}^{\mathrm{eff}}$ and $g_{00}^{\mathrm{eff}}$ under the $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ expansion above, with
 $$
 \alpha_1=\Xi_1,\qquad
 \alpha_2=\Xi_2,\qquad
-\alpha_3=\Xi_1-\Xi_2-\Xi_3.
+\alpha_3=\Xi_1-\Xi_2-\Xi_3
 $$
 
 For a declared observation window $W$, the shared weak-field residual can be recorded as
@@ -432,14 +432,14 @@ R_{\mathrm{acc}}\\
 \alpha_1\\
 \alpha_2\\
 \alpha_3
-\end{pmatrix},
+\end{pmatrix}
 $$
 with
 $$
 R_{\mathrm{acc}}
 =
 \frac{\left\|\frac{d^2\mathbf{x}}{dt^2}+\nabla\Phi_{\text{eff}}\right\|_W}
-{\left\|\nabla\Phi_{\text{eff}}\right\|_W+\varepsilon}.
+{\left\|\nabla\Phi_{\text{eff}}\right\|_W+\varepsilon}
 $$
 The other residuals are the redshift, Shapiro, and lensing differences computed from the same $\theta$ and the forward projection below. This strengthens the existing decision layer; it is not a separate gate.
 
@@ -467,17 +467,17 @@ C_2\\
 \alpha_1\\
 \alpha_2\\
 \alpha_3
-\end{pmatrix}.
+\end{pmatrix}
 $$
 Using
 $$
 \beta_{\mathrm{PPN}}-1=\left(\frac{1+2C_2}{2}\right)-1=C_2-\frac12,
 \qquad
-\alpha_1=\Xi_1,\ \alpha_2=\Xi_2,\ \alpha_3=\Xi_1-\Xi_2-\Xi_3,
+\alpha_1=\Xi_1,\ \alpha_2=\Xi_2,\ \alpha_3=\Xi_1-\Xi_2-\Xi_3
 $$
 the map is the exact linear projection
 $$
-\mathbf{p}_{\mathrm{PPN}}=\mathbf{J}\mathbf{\theta}-\mathbf{p}_0,
+\mathbf{p}_{\mathrm{PPN}}=\mathbf{J}\mathbf{\theta}-\mathbf{p}_0
 $$
 with
 $$
@@ -498,17 +498,17 @@ $$
 0 & 0 & 1 & 0 & 0\\
 0 & 0 & 0 & 1 & 0\\
 0 & 0 & 1 & -1 & -1
-\end{pmatrix}.
+\end{pmatrix}
 $$
 
 If $\Sigma_\theta$ is the covariance of the constitutive fit from micro-simulations, propagate uncertainty by
 $$
-\Sigma_{\mathrm{PPN}}=\mathbf{J}\Sigma_\theta\mathbf{J}^{\mathsf T}.
+\Sigma_{\mathrm{PPN}}=\mathbf{J}\Sigma_\theta\mathbf{J}^{\mathsf T}
 $$
 
 Define the single Tier-1 weighted closure objective
 $$
-\mathcal{L}(\mathbf{\theta})=\mathbf{p}_{\mathrm{PPN}}^{\mathsf T}\mathbf{W}\,\mathbf{p}_{\mathrm{PPN}},
+\mathcal{L}(\mathbf{\theta})=\mathbf{p}_{\mathrm{PPN}}^{\mathsf T}\mathbf{W}\,\mathbf{p}_{\mathrm{PPN}}
 $$
 where $\mathbf{W}$ is the precision matrix from ledger tolerances.
 With the source-mined benchmark vector above,
@@ -521,7 +521,7 @@ $$
 (4\times10^{-5})^{-2},
 (2\times10^{-9})^{-2},
 (4\times10^{-20})^{-2}
-\right).
+\right)
 $$
 
 Forward-only evaluation rule:
@@ -541,7 +541,7 @@ $$
 \Delta\phi_{\text{Def}}\\
 \Delta\omega_{\text{Prec}}\\
 z_{\text{Red}}
-\end{pmatrix}.
+\end{pmatrix}
 $$
 Using the weak-field constitutive map of $\mathbb{A}\mathbb{A}\mathbb{A}$:
 
@@ -551,14 +551,14 @@ O_1(\mathbf{\theta})=K_{\text{Shap}}(1+\gamma_{\text{eff}}),
 \qquad
 K_{\text{Shap}}=
 \frac{GM}{c_0^3}
-\ln\!\left(\frac{r_1+r_2+R}{r_1+r_2-R}\right).
+\ln\!\left(\frac{r_1+r_2+R}{r_1+r_2-R}\right)
 $$
 For two-way radar-style Shapiro measurements, apply the same kernel on each leg and sum the two one-way contributions.
 2. Light deflection:
 $$
 O_2(\mathbf{\theta})=K_{\text{Def}}(1+\gamma_{\text{eff}}),
 \qquad
-K_{\text{Def}}=\frac{2GM}{b\,c_0^2}.
+K_{\text{Def}}=\frac{2GM}{b\,c_0^2}
 $$
 3. Perihelion precession per orbit:
 $$
@@ -566,10 +566,10 @@ O_3(\mathbf{\theta})
 =
 K_{\text{Prec}}\left(2+2\gamma_{\text{PPN}}-\beta_{\text{PPN}}\right)
 =
-K_{\text{Prec}}\left(1.5+2\gamma_{\text{eff}}-C_2\right),
+K_{\text{Prec}}\left(1.5+2\gamma_{\text{eff}}-C_2\right)
 $$
 $$
-K_{\text{Prec}}=\frac{2\pi GM}{a(1-e^2)c_0^2}.
+K_{\text{Prec}}=\frac{2\pi GM}{a(1-e^2)c_0^2}
 $$
 4. Gravitational redshift (to retained order):
 $$
@@ -579,7 +579,7 @@ K_{\text{Red1}}-K_{\text{Red2}}C_2,
 \qquad
 K_{\text{Red1}}=\frac{\Delta U}{c_0^2},
 \quad
-K_{\text{Red2}}=\frac{\Delta(U^2)}{c_0^4}.
+K_{\text{Red2}}=\frac{\Delta(U^2)}{c_0^4}
 $$
 
 First-order observable sensitivities are
@@ -593,11 +593,11 @@ K_{\text{Shap}} & 0 & 0 & 0 & 0\\
 K_{\text{Def}} & 0 & 0 & 0 & 0\\
 2K_{\text{Prec}} & -K_{\text{Prec}} & 0 & 0 & 0\\
 0 & -K_{\text{Red2}} & 0 & 0 & 0
-\end{pmatrix},
+\end{pmatrix}
 $$
 and the propagated covariance is
 $$
-\Sigma_O=\mathbf{J}_O\Sigma_\theta\mathbf{J}_O^{\mathsf T}.
+\Sigma_O=\mathbf{J}_O\Sigma_\theta\mathbf{J}_O^{\mathsf T}
 $$
 For this spherically symmetric classical set, preferred-frame channels $(\Xi_1,\Xi_2,\Xi_3)$ decouple at leading order; they are constrained by dedicated drift/leakage observables.
 
@@ -607,7 +607,7 @@ Use
 $$
 \frac{GM_\odot}{c_0^2}=1.4766\times 10^3\ \mathrm{m},
 \qquad
-\frac{GM_\odot}{c_0^3}=4.925\times 10^{-6}\ \mathrm{s},
+\frac{GM_\odot}{c_0^3}=4.925\times 10^{-6}\ \mathrm{s}
 $$
 with reference kernels
 $$
@@ -619,7 +619,7 @@ K_{\text{Prec}}=14.3''/\mathrm{cy},
 \quad
 K_{\text{Red1}}=2.12\times 10^{-6},
 \quad
-K_{\text{Red2}}=4.50\times 10^{-12}.
+K_{\text{Red2}}=4.50\times 10^{-12}
 $$
 Take a synthetic constitutive fit
 $$
@@ -631,7 +631,7 @@ $$
 10^{-18}\\
 -0.5\times 10^{-18}\\
 0.2\times 10^{-18}
-\end{pmatrix},
+\end{pmatrix}
 $$
 $$
 \Sigma_\theta=
@@ -641,7 +641,7 @@ $$
 10^{-36},
 10^{-36},
 10^{-36}
-\right).
+\right)
 $$
 This block is an internal consistency projection example, not a claim of experimental pass/fail by itself.
 
@@ -651,7 +651,7 @@ $$
 \quad
 \beta_{\mathrm{PPN}}-1=0.8\times 10^{-5},
 \quad
-(\alpha_1,\alpha_2,\alpha_3)=\left(10^{-18},-0.5\times 10^{-18},1.3\times 10^{-18}\right).
+(\alpha_1,\alpha_2,\alpha_3)=\left(10^{-18},-0.5\times 10^{-18},1.3\times 10^{-18}\right)
 $$
 Forward observables are
 $$
@@ -659,10 +659,10 @@ $$
 \quad
 \Delta\phi_{\text{Def}}=1.75001'',
 \quad
-\Delta\omega_{\text{Prec}}=42.9002''/\mathrm{cy},
+\Delta\omega_{\text{Prec}}=42.9002''/\mathrm{cy}
 $$
 $$
-z_{\text{Red}}\approx 2.119997\times 10^{-6}.
+z_{\text{Red}}\approx 2.119997\times 10^{-6}
 $$
 Propagated $1\sigma$ scales (diagonal approximation) are
 $$
@@ -672,13 +672,13 @@ $$
 \quad
 \sigma_{\text{Prec}}\approx 1.5\times 10^{-4}''/\mathrm{cy},
 \quad
-\sigma_{\text{Red}}\approx 1.8\times 10^{-17}.
+\sigma_{\text{Red}}\approx 1.8\times 10^{-17}
 $$
 
 Failure rule for this closure layer:
 if any observed value lies outside
 $$
-\mathbf{O}(\mathbf{\theta})\pm 3\sqrt{\operatorname{diag}(\Sigma_O)},
+\mathbf{O}(\mathbf{\theta})\pm 3\sqrt{\operatorname{diag}(\Sigma_O)}
 $$
 the constitutive map fails this gate and must be replaced rather than re-fit per observable.
 
@@ -691,12 +691,12 @@ $$
 -\frac{1}{2}
 \bigl(\mathbf{O}(\mathbf{\theta})-\mathbf{O}_{\text{obs}}\bigr)^{\mathsf T}
 \Sigma_{\text{obs}}^{-1}
-\bigl(\mathbf{O}(\mathbf{\theta})-\mathbf{O}_{\text{obs}}\bigr),
+\bigl(\mathbf{O}(\mathbf{\theta})-\mathbf{O}_{\text{obs}}\bigr)
 $$
 with
 $$
 \mathbf{\theta}=
-\left(\gamma_{\text{eff}},C_2,\Xi_1,\Xi_2,\Xi_3\right)^{\mathsf T}.
+\left(\gamma_{\text{eff}},C_2,\Xi_1,\Xi_2,\Xi_3\right)^{\mathsf T}
 $$
 
 Benchmark observable inputs for the classical weak-field suite are:
@@ -713,7 +713,7 @@ $$
 =
 \frac{\partial \mathbf{O}}{\partial \Xi_3}
 =
-\mathbf{0},
+\mathbf{0}
 $$
 so the Fisher matrix is rank-2 in this fit and $(\Xi_1,\Xi_2,\Xi_3)$ remain unconstrained by this subset alone.
 
@@ -724,17 +724,17 @@ $$
 \begin{pmatrix}
 5.1\times 10^{-10} & 1.02\times 10^{-9}\\
 1.02\times 10^{-9} & 2.94\times 10^{-9}
-\end{pmatrix},
+\end{pmatrix}
 $$
 with maximum-likelihood point
 $$
 \gamma_{\text{eff}}=1+(2.03\pm2.26)\times 10^{-5},
 \qquad
-C_2=0.5+(4.06\pm5.42)\times 10^{-5},
+C_2=0.5+(4.06\pm5.42)\times 10^{-5}
 $$
 and correlation
 $$
-\rho(\gamma_{\text{eff}},C_2)=+0.83.
+\rho(\gamma_{\text{eff}},C_2)=+0.83
 $$
 
 Interpretation for closure:
@@ -746,7 +746,7 @@ Interpretation for closure:
 
 Define the preferred-frame constitutive vector
 $$
-\boldsymbol{\Xi}\equiv(\Xi_1,\Xi_2,\Xi_3)^{\mathsf T}.
+\boldsymbol{\Xi}\equiv(\Xi_1,\Xi_2,\Xi_3)^{\mathsf T}
 $$
 For the spherical classical set above, $\boldsymbol{\Xi}$ is unconstrained. For an expanded drift-sensitive baseline (ephemerides + LLR + anisotropy channels), treat the preferred-frame Fisher block as
 $$
@@ -756,11 +756,11 @@ $$
 \nabla_{\boldsymbol{\Xi}}
 \nabla_{\boldsymbol{\Xi}}^{\mathsf T}
 \ln \mathcal{L}_{\text{base}}
-\right],
+\right]
 $$
 with rank-2 degeneracy and null direction $\hat n$:
 $$
-\mathcal{I}_{\Xi,\text{base}}\hat n=\mathbf{0}.
+\mathcal{I}_{\Xi,\text{base}}\hat n=\mathbf{0}
 $$
 
 Minimal augmentation:
@@ -773,7 +773,7 @@ $$
 =
 \ln \mathcal{L}_{\text{base}}
 +\ln \mathcal{L}_{\dot e}
-+\ln \mathcal{L}_{\dot P}.
++\ln \mathcal{L}_{\dot P}
 $$
 The augmented Fisher matrix is
 $$
@@ -785,7 +785,7 @@ $$
 \left(\nabla_{\boldsymbol{\Xi}}\dot e\right)^{\mathsf T}
 +\frac{1}{\sigma_{\dot P}^2}
 \left(\nabla_{\boldsymbol{\Xi}}\dot P\right)\!
-\left(\nabla_{\boldsymbol{\Xi}}\dot P\right)^{\mathsf T}.
+\left(\nabla_{\boldsymbol{\Xi}}\dot P\right)^{\mathsf T}
 $$
 
 Degeneracy-lift criterion:
