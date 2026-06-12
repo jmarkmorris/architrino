@@ -113,7 +113,7 @@ C_T\epsilon_{\text{LV}}\beta_\star^2
 $$
 uniformly on the drift band, with any surviving preferred-frame sideband reported as a branch-sourced leakage term. This packet fails if the clock phase and ruler geometry come from different branch ledgers, if the residual is suppressed only by fitting a PPN coefficient after the fact, or if $c_f$ is silently identified with $c_\star$ without a dressing map.
 
-This moving-clock row is one leg of the [structural-integrity theorem target](../foundations/absolute-timespace.md#causal-wake-geometry). It is not enough for the clock branch to approximate $\gamma_\star^{-1}$ in isolation. The same causal-root ledger must also produce the moving ruler deformation and the photon synchronization row used by Lorentz closure; otherwise the clock result is a branch-split fit rather than proper-time closure.
+This moving-clock row is one leg of the structural-integrity common-limit closure in [Lorentz Kinematics](./lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure). It is not enough for the clock branch to approximate $\gamma_\star^{-1}$ in isolation. The same causal-root ledger must also produce the moving ruler deformation, photon synchronization row, and weak-field gravity-channel speed row used by Lorentz closure; otherwise the clock result is a branch-split fit rather than proper-time closure.
 
 ### Noether Sea Swarm Cadence
 

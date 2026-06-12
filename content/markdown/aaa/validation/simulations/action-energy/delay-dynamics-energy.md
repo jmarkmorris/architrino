@@ -1,0 +1,200 @@
+# Constructive Energy for Delay Dynamics
+
+This chapter isolates the energy problem created by causal-delay dynamics. It is foundations-adjacent because it states what kind of energy object the substrate law is allowed to use before later chapters invoke conservation, no-runaway arguments, event ledgers, or Noether sea exchange.
+
+The core warning is simple: time-translation invariance of a state-dependent delay equation does not by itself supply the familiar local Noether energy of finite-dimensional mechanics. In $\mathbb{A}\mathbb{A}\mathbb{A}$, any term written as $E_{\text{wake}}$ must be constructed from the same causal-history law, regularization, branch chart, and boundary convention that generate the force row. Otherwise it is a diagnostic label, not a conserved charge.
+
+## Energy Construction Problem
+
+Fix a finite retained system over a time window $W=[t_a,t_b]$, a spatial window $\Omega\subset\Sigma_t$ when boundary flux is relevant, memory depth $h < \infty$, causal-surface width $\eta > 0$, optional core cutoff $\epsilon_c > 0$, and branch chart
+$$
+\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)
+$$
+for the same active causal-root rows used by the [Master Equation of Motion](../../../dynamics/master-equation.md). The retained history at time $t$ is the segment
+$$
+X_t
+=
+\left\{
+\mathbf{x}_a(t+\theta),
+\mathbf{v}_a(t+\theta),
+q_a
+:
+a\in A_\Omega,\,
+-h\le\theta\le0
+\right\}
+$$
+with any excluded rows, endpoint conventions, and boundary crossings recorded explicitly.
+Here $A_\Omega$ is the retained architrino index set for the window, not a new kind of assembly.
+
+A promoted delay-energy functional has the form
+$$
+E_{\mathrm{delay}}^{(\eta)}[X_t;\mathfrak{B},\Omega]
+=
+K_{\mu}^{(\eta)}(t)
++
+E_{\text{wake},\mathfrak{B}}^{(\eta)}(t)
++
+E_{\mathrm{sea},\Omega}^{(\eta)}(t)
+$$
+where $K_{\mu}^{(\eta)}$ is the declared mechanical kinetic bookkeeping proxy, $E_{\text{wake},\mathfrak{B}}^{(\eta)}$ is the causal-history interaction contribution, and $E_{\mathrm{sea},\Omega}^{(\eta)}$ is included only when retained Noether sea degrees of freedom are part of the window. None of these terms is allowed to absorb an unreported boundary flux or unresolved reaction channel.
+
+## Accepted Construction Routes
+
+There are three admissible ways to define the wake-energy term. A calculation may use one route directly, but a theorem-level conservation claim must also state why the other routes are equivalent or irrelevant on the declared chart.
+
+### Action-Boundary Route
+
+If a symmetry-preserving nonlocal action supplies the force row, then the energy term is the time-boundary charge induced by absolute-time translation. With causal-delay interaction kernel $\mathcal{K}_{ij}^{E}(t_1,t_0)$ chosen by the same action as the force residual,
+$$
+E_{\text{wake},\mathfrak{B}}^{(\eta)}(t)
+=
+\frac{1}{2}
+\sum_{i,j}
+\int_{-\infty}^{t}dt_0
+\int_t^\infty dt_1\,
+\partial_{t_1}
+\mathcal{K}_{ij,\mathfrak{B}}^{E,\eta}(t_1,t_0)
+$$
+is the candidate in-flight causal-history charge. This is the route developed in [Master Equation](../../../dynamics/master-equation.md#action-level-wake-energy-functional-at-time-boundary-t) and [Effective Lagrangian](../../../dynamics/effective-lagrangian.md#symmetries-and-history-aware-conservation-laws). It becomes theorem-level only when the same action also gives the accepted acceleration law and the endpoint leakage residual vanishes.
+
+### Work-Integral Route
+
+For a realized trajectory, one may reconstruct a compatible interaction contribution by integrating the delivered power:
+$$
+U_{\mathfrak{B}}(t)
+=
+U_\ast
+-
+\int_{t_\ast}^{t}
+\sum_i
+\mu_{\text{arch}}\,
+\mathbf{a}_{i,\mathfrak{B}}^{(\eta)}(t')
+\cdot
+\mathbf{v}_i(t')\,dt'
+$$
+This route is trajectory-local. It is useful for simulations and branch replay, but it is not an off-shell conserved charge unless the same action and boundary convention have already been declared.
+
+### Boundary-Flux Route
+
+For finite retained windows, missing energy must be routed to boundary exchange rather than hidden in $E_{\text{wake}}$. The finite-window balance target is
+$$
+\frac{dE_{\Omega}^{(\eta)}}{dt}
++
+\int_{\partial\Omega}
+\mathbf{J}_E^{(\eta)}
+\cdot
+\hat{\mathbf{n}}\,dA
+=
+P_{\mathrm{ext},\Omega}^{(\eta)}
++
+\mathcal{R}_{E,\Omega}^{(\eta)}
+$$
+where $\mathbf{J}_E^{(\eta)}$ records causal-wake escapement, assembly crossings, and declared medium exchange through the retained boundary. The flux term is not a new substrate field; it is the boundary part of the retained causal-history ledger.
+
+## Crosswalk Residual
+
+The three routes must not define three different energies for the same branch. On any chart where more than one construction is available, use the crosswalk residual
+$$
+\Delta_{\mathrm{E,cross}}^{(\eta)}(W;\mathfrak{B})
+=
+\frac{
+\left|
+\Delta_W E_{\text{wake,act}}^{(\eta)}
+-
+\Delta_W U_{\mathfrak{B}}
+-
+\Phi_{\partial\Omega,E}^{(\eta)}(W)
+\right|
+}{
+\left|
+\Delta_W E_{\text{wake,act}}^{(\eta)}
+\right|
++
+\left|
+\Delta_W U_{\mathfrak{B}}
+\right|
++
+\left|
+\Phi_{\partial\Omega,E}^{(\eta)}(W)
+\right|
++
+\varepsilon
+}
+$$
+where $\Phi_{\partial\Omega,E}^{(\eta)}(W)=\int_W\int_{\partial\Omega}\mathbf{J}_E^{(\eta)}\cdot\hat{\mathbf{n}}\,dA\,dt$ is the declared boundary energy flux. The chart promotes only if $\Delta_{\mathrm{E,cross}}^{(\eta)}\to0$ under the same refinement limit used for the force residual.
+
+## Conservation Residual
+
+Let $\mathbf{R}_i^{(\eta)}$ be the Euler or force residual of the declared action-derived model, and let $\mathcal{B}_E^{(\eta)}$ collect endpoint leakage, period cuts, excluded self-coincidence boundaries, and omitted branch rows. The finite-window conservation residual is
+$$
+\mathcal{R}_{E}^{(\eta)}(W;\mathfrak{B})
+=
+\Delta_W
+\left(
+K_{\mu}^{(\eta)}
++
+E_{\text{wake},\mathfrak{B}}^{(\eta)}
++
+E_{\mathrm{sea},\Omega}^{(\eta)}
+\right)
+-
+\int_W
+\sum_i
+\mathbf{v}_i\cdot\mathbf{R}_i^{(\eta)}\,dt
+-
+\int_W
+\mathcal{B}_E^{(\eta)}\,dt
+-
+W_{\partial\Omega}^{(\eta)}
+$$
+The normalized diagnostic is
+$$
+\epsilon_E^{(\eta)}(W;\mathfrak{B})
+=
+\frac{
+\left|
+\mathcal{R}_{E}^{(\eta)}(W;\mathfrak{B})
+\right|
+}{
+\left|
+\Delta_W K_{\mu}^{(\eta)}
+\right|
++
+\left|
+\Delta_W E_{\text{wake},\mathfrak{B}}^{(\eta)}
+\right|
++
+\left|
+\Delta_W E_{\mathrm{sea},\Omega}^{(\eta)}
+\right|
++
+\left|
+W_{\partial\Omega}^{(\eta)}
+\right|
++
+\varepsilon
+}
+$$
+An exact isolated conservation claim requires $\epsilon_E^{(\eta)}\to0$, $\Delta_{\mathrm{E,cross}}^{(\eta)}\to0$ when applicable, and stable branch floors as $\eta$ and the numerical/history-window resolution are refined.
+
+## No-Double-Counting Rule
+
+The interaction contribution may be carried by $E_{\text{wake}}$, by an equivalent work-integral reconstruction, or by an explicitly retained near-field decomposition, but not by all of them at once. If a pairwise $U_{\mathrm{int}}$ term is used inside an assembly, the wake-energy term must omit the same near-field content. If a Noether sea update is retained inside $E_{\mathrm{sea},\Omega}$, it must not also appear as an outgoing event-ledger channel. The same rule is used by [Emergence](../../../foundations/emergence.md#transition-thresholds-and-event-ledgers) and [Kinetic and Potential Energy](../../../dynamics/energy.md#energy-conservation-and-exchange).
+
+## Promotion and Failure Conditions
+
+A delay-energy construction is promotable only when the branch chart names:
+
+1. the retained history window $h$ and memory truncation residual;
+2. the causal-surface regularization $\eta$ and any core cutoff $\epsilon_c$;
+3. active causal roots, inactive-root gaps, and the active Jacobian floor;
+4. the exact route used for $E_{\text{wake}}$;
+5. boundary flux, endpoint leakage, period-cut terms, and excluded self-coincidence rows;
+6. the crosswalk residual whenever more than one energy construction is invoked;
+7. the lower-bound condition needed for no-runaway arguments.
+
+The construction fails if conservation is recovered only by changing the energy definition per observable, if $E_{\text{wake}}^{(\eta)}$ has no lower bound on the admitted chart, if endpoint leakage is silently discarded, if the regulator is not the same regulator used by the force law, or if the branch chart loses its causal-root floors. In those cases $E_{\text{wake}}$ remains a diagnostic placeholder and cannot be used to close energy bookkeeping, stability, or no-runaway claims.
+
+## Downstream Use
+
+This chapter is the shared energy standard for [Master Equation](../../../dynamics/master-equation.md), [Effective Lagrangian](../../../dynamics/effective-lagrangian.md), [Kinetic and Potential Energy](../../../dynamics/energy.md), [Binary Dynamics](../../../dynamics/binary-dynamics.md), and event-ledger uses in [Emergence](../../../foundations/emergence.md). The [two-body binary closure packet](../../../dynamics/binary-dynamics.md#two-body-closure-packet-theorem-target) must report $\epsilon_E^{(\eta)}(W;\mathfrak{B})$, $\Delta_{\mathrm{E,cross}}^{(\eta)}(W;\mathfrak{B})$, and the lower-bound entry on the same branch chart as its motion, branch-floor, stability, and frequency residuals. Existence and stability are not enough unless the accepted branch also carries a constructive energy ledger.

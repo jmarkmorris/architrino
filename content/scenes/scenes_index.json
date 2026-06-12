@@ -1624,6 +1624,11 @@
       "id": "archie__ideal_swarm",
       "name": "Ideal Noether Swarm: Lorentz Geometry",
       "path": "content/scenes/archie/ideal_swarm.json"
+    },
+    {
+      "id": "validation_action_energy__delay_dynamics_energy",
+      "name": "Constructive Energy for Delay Dynamics",
+      "path": "content/scenes/validation/delay_dynamics_energy.json"
     }
   ]
 }

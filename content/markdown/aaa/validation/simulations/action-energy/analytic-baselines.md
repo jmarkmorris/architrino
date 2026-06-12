@@ -15,6 +15,23 @@ Methodological priority:
 - Treat the two-point-potential problem as the canonical first laboratory for the delayed theory.
 - Any proposed energy, momentum, virial-like, or kinetic/potential closure claim should be checked here before being generalized to assemblies or Noether sea response arguments.
 - In practice this means: solve the fixed-center and symmetric two-body cases first, then ask which familiar ODE identities survive, which acquire delay corrections, and which fail outright.
+- For the nontrivial electrino:positrino binary, use the finite-$\eta$ closure packet in [Binary Dynamics](../../../dynamics/binary-dynamics.md#two-body-closure-packet-theorem-target) and the constructive residuals in [Delay-Dynamics Energy](delay-dynamics-energy.md). A claimed branch must report
+  $$
+  \mathsf{Res}_{2\mathrm{B}}^{(\eta)}
+  =
+  \left(
+  \mathcal{R}_{\mathrm{EOM}}^{2\mathrm{B}},
+  \mathcal{R}_{\mathrm{per}}^{2\mathrm{B}},
+  \mathcal{R}_{\mathrm{bal}}^{2\mathrm{B}},
+  \nu_J^{2\mathrm{B}},
+  \Delta_{\mathrm{gap}}^{2\mathrm{B}},
+  \lambda_{\mathrm{sec}}^{2\mathrm{B}},
+  \epsilon_E^{(\eta)},
+  \Delta_{\mathrm{E,cross}}^{(\eta)},
+  \mathcal{R}_{\omega}^{2\mathrm{B}}
+  \right).
+  $$
+  Until these entries are computed on the same window, regulator, and branch chart, the binary remains an existence candidate rather than a validated closure result.
 
 Symmetric two-body on a line (exact DDE; challenges):
 - Let $x_1(t)=+\tfrac{1}{2}r(t)$ and $x_2(t)=-\tfrac{1}{2}r(t)$ with $r(t)>0$ and $v=1$. The causal-time condition implies
@@ -65,6 +82,7 @@ Deliverables:
 - A minimal benchmark ladder for closure tests:
   - fixed-center ODE recovery,
   - symmetric two-body delayed dynamics,
+  - finite-$\eta$ two-body binary closure packet with branch floors and characteristic frequency extraction,
   - work-energy balance on resolved windows,
   - virial-like time averages where periodic or quasi-periodic regimes exist.
 

@@ -183,6 +183,17 @@ $$
 $$
 Crossing any component of $\partial\mathcal{A}_\eta$ changes the promotion status to $\mathsf{eta\_continuation\_failure}$ unless a stricter replacement bound is proved in the same artifact packet.
 
+For the finite-$\eta$ pathology theorem target in [Master Equation](../../../dynamics/master-equation.md#finite-eta-pathology-quarantine-theorem-target), a promoted run family must report the same boundary components as observables, not only as solver diagnostics. Divergent self-energy is routed through the $d$ or $\epsilon_c$ row, runaway behavior through the $E_{\text{wake}}^{(\eta)}$ lower-bound row, pre-acceleration through the retained-history and endpoint-convention row, and caustic blow-up through the $\nu$ and transition-status rows. The minimum residual packet is:
+
+- root residual and root-transport residual for every retained row,
+- active Jacobian floor and inactive-root gap,
+- finite-memory coverage and endpoint or period-cut leakage,
+- energy, momentum, and angular-momentum residuals computed with the same $\eta$, window, and endpoint convention,
+- transition-observable refinement residuals $E_{\mathrm{trans}}(Y;\eta,\eta/2;I_*)$ for every fold-layer or caustic transit promoted through the window,
+- $\Delta_{\eta,\mathrm{root}}$ for every active branch ledger in the $\eta$ ladder.
+
+If any row is missing, the artifact status is $\mathsf{artifact\_incomplete}$. If a row is present but fails under refinement, the status is the corresponding continuation, regulator-dependence, or branch-root instability failure already defined above.
+
 The $\eta\to0^+$ claim boundary is
 $$
 \limsup_{\eta\to0^+}E_\eta(Y;\eta,\eta/2)=0,

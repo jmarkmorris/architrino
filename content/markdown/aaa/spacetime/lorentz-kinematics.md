@@ -1264,7 +1264,7 @@ In particular, if $(r_M/r_L)^2\le C_{23}\epsilon_{\text{LV}}$, operational Loren
 
 ### Theorem G (structural-integrity common-limit closure)
 
-The [structural-integrity theorem target](../foundations/absolute-timespace.md#causal-wake-geometry) is the parent Lorentz-closure target for Theorems B-D and the photon synchronization row. In the weak homogeneous observer branch, a retained material assembly branch closes only if the matter-assembly limiting speed, the Noether sea dressed clock/ruler speed, the photon-channel speed, and the empirical calibration speed obey
+This theorem is the parent Lorentz-closure target for Theorems B-D, the photon synchronization row, and the weak-field gravitational-wave speed row. In the weak homogeneous observer branch, a retained material assembly branch closes only if the matter-assembly limiting speed, the Noether sea dressed clock/ruler speed, the photon-channel speed, and the empirical calibration speed obey
 $$
 c_{\mathrm{mat}}^{\mathrm{lim}}
 =
@@ -1275,7 +1275,7 @@ c_\gamma
 c_0
 +O(\epsilon_{\text{LV}}c_0)
 $$
-on the same causal-root ledger. The same branch record must then supply the longitudinal deformation $a_\parallel/a_\perp=\gamma_0^{-1}+O(\epsilon_{\text{LV}})$, clock cadence $d\tau/dt=\gamma_0^{-1}+O(\epsilon_{\text{LV}})$, and two-way signal residual $\Delta_{\text{tw}}=O(\epsilon_{\text{LV}})$. Closure fails if the photon speed, material limiting speed, or deformation coefficients require independently fitted dressing records.
+on the same causal-root ledger. The same branch record must then supply the longitudinal deformation $a_\parallel/a_\perp=\gamma_0^{-1}+O(\epsilon_{\text{LV}})$, clock cadence $d\tau/dt=\gamma_0^{-1}+O(\epsilon_{\text{LV}})$, two-way signal residual $\Delta_{\text{tw}}=O(\epsilon_{\text{LV}})$, and the gravitational-wave speed residual $|c_{\mathrm{GW}}/c_\gamma-1|\le\epsilon_{\mathrm{GW}}$ in the weak-field TT channel. Closure fails if the photon speed, gravitational-wave speed, material limiting speed, or deformation coefficients require independently fitted dressing records.
 
 ## Observable Interface
 

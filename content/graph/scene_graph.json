@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 503,
-      "edges": 1245,
-      "scenes": 325,
+      "nodes": 505,
+      "edges": 1247,
+      "scenes": 326,
       "markdownIndexes": 0,
-      "markdownDocs": 178,
+      "markdownDocs": 179,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2099,6 +2099,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "validation_action_energy__delay_dynamics_energy",
+      "name": "Constructive Energy for Delay Dynamics",
+      "path": "content/scenes/validation/delay_dynamics_energy.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/reading-copies/architrino-textbook.md",
       "name": "Architrino Textbook",
       "path": "content/generated/markdown/textbook/reading-copies/architrino-textbook.md",
@@ -3008,6 +3014,12 @@
       "id": "content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md",
       "name": "Causal set and delay geometry",
       "path": "content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+      "name": "Constructive Energy for Delay Dynamics",
+      "path": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5860,6 +5872,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/validation/delay_dynamics_energy.json",
+      "nodeType": "scene",
+      "id": "validation_action_energy__delay_dynamics_energy",
+      "name": "Constructive Energy for Delay Dynamics",
+      "path": "content/scenes/validation/delay_dynamics_energy.json",
+      "searchTarget": "content/scenes/validation/delay_dynamics_energy.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/validation/failure_criteria.json",
       "nodeType": "scene",
       "id": "validation__failure_criteria",
@@ -7459,6 +7480,15 @@
       "name": "Causal set and delay geometry",
       "path": "content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+      "name": "Constructive Energy for Delay Dynamics",
+      "path": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
       "implicit": false
     },
     {
@@ -11738,73 +11768,80 @@
     },
     {
       "from": "scene:content/scenes/validation/action_energy.json",
-      "to": "scene:content/scenes/validation/informational_ambiguity.json",
+      "to": "scene:content/scenes/validation/delay_dynamics_energy.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/action_energy.json",
       "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/validation/action_energy.json",
-      "to": "scene:content/scenes/validation/numerical_recipe_stability.json",
+      "to": "scene:content/scenes/validation/informational_ambiguity.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/action_energy.json",
       "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/validation/action_energy.json",
-      "to": "scene:content/scenes/validation/radial_attraction.json",
+      "to": "scene:content/scenes/validation/numerical_recipe_stability.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/action_energy.json",
       "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/validation/action_energy.json",
-      "to": "scene:content/scenes/validation/receiver_velocity_work.json",
+      "to": "scene:content/scenes/validation/radial_attraction.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/action_energy.json",
       "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/validation/action_energy.json",
-      "to": "scene:content/scenes/validation/repulsion.json",
+      "to": "scene:content/scenes/validation/receiver_velocity_work.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/action_energy.json",
       "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/validation/action_energy.json",
-      "to": "scene:content/scenes/validation/self_energy.json",
+      "to": "scene:content/scenes/validation/repulsion.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/action_energy.json",
       "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/validation/action_energy.json",
-      "to": "scene:content/scenes/validation/self_interaction_switch.json",
+      "to": "scene:content/scenes/validation/self_energy.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/action_energy.json",
       "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/validation/action_energy.json",
-      "to": "scene:content/scenes/validation/superposition_locality.json",
+      "to": "scene:content/scenes/validation/self_interaction_switch.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/action_energy.json",
       "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/validation/action_energy.json",
-      "to": "scene:content/scenes/validation/units_constants.json",
+      "to": "scene:content/scenes/validation/superposition_locality.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/action_energy.json",
       "field": "scene.children[13]"
     },
     {
       "from": "scene:content/scenes/validation/action_energy.json",
-      "to": "scene:content/scenes/validation/well_posedness_regularization.json",
+      "to": "scene:content/scenes/validation/units_constants.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/action_energy.json",
       "field": "scene.children[14]"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "scene:content/scenes/validation/well_posedness_regularization.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "scene.children[15]"
     },
     {
       "from": "scene:content/scenes/validation/simulations.json",
@@ -12910,6 +12947,13 @@
       "to": "markdown_doc:content/markdown/aaa/validation/constraint-ledger.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/validation/constraint_ledger.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/validation/delay_dynamics_energy.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/delay_dynamics_energy.json",
       "field": "scene.source.path"
     },
     {

@@ -14,6 +14,7 @@ function formatControlValue(value, digits = 2) {
 }
 
 const ZERO_SNAP_STEP_COUNT = 2;
+const ZERO_SNAP_TRACK_RATIO = 0.0125;
 
 export function getPhotonControlZeroPositionPercent(range) {
   const min = Number(range?.min);
@@ -24,13 +25,27 @@ export function getPhotonControlZeroPositionPercent(range) {
   return ((0 - min) / (max - min)) * 100;
 }
 
+export function getPhotonControlZeroSnapThreshold(range) {
+  const min = Number(range?.min);
+  const max = Number(range?.max);
+  const step = Math.abs(Number(range?.step));
+  if (
+    !Number.isFinite(min) ||
+    !Number.isFinite(max) ||
+    !Number.isFinite(step) ||
+    getPhotonControlZeroPositionPercent(range) === null
+  ) {
+    return null;
+  }
+  return Math.max(step * ZERO_SNAP_STEP_COUNT, (max - min) * ZERO_SNAP_TRACK_RATIO);
+}
+
 export function snapPhotonControlValueToZero(value, range) {
   const number = Number(value);
-  const step = Math.abs(Number(range?.step));
-  if (!Number.isFinite(number) || !Number.isFinite(step) || getPhotonControlZeroPositionPercent(range) === null) {
+  const threshold = getPhotonControlZeroSnapThreshold(range);
+  if (!Number.isFinite(number) || threshold === null) {
     return number;
   }
-  const threshold = step * ZERO_SNAP_STEP_COUNT;
   return threshold > 0 && Math.abs(number) <= threshold ? 0 : number;
 }
 

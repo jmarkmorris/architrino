@@ -176,7 +176,7 @@
 
       .photon-doc-row {
         display: grid;
-        grid-template-columns: 0.82fr 0.86fr 1.2fr;
+        grid-template-columns: 1fr;
         gap: 7px;
         margin-bottom: 10px;
       }
@@ -189,6 +189,10 @@
         min-width: 0;
         padding: 0 6px;
         white-space: nowrap;
+      }
+
+      .photon-button.is-doc-button[hidden] {
+        display: none;
       }
 
       .photon-md-icon {
@@ -409,10 +413,10 @@
         display: none;
         overflow: hidden;
         border: 1px solid rgba(148, 163, 184, 0.28);
-        border-radius: 8px;
-        background: rgba(9, 17, 28, 0.98);
+        border-radius: 14px;
+        background: rgba(75, 0, 130, 1);
         color: #eef3ff;
-        box-shadow: 0 26px 80px rgba(0, 0, 0, 0.44);
+        box-shadow: 0 26px 80px rgba(0, 0, 0, 0.42);
         backdrop-filter: blur(14px);
       }
 
@@ -428,7 +432,7 @@
         gap: 12px;
         padding: 10px 12px;
         border-bottom: 1px solid rgba(148, 163, 184, 0.18);
-        background: rgba(8, 11, 18, 0.88);
+        background: rgba(8, 10, 18, 0.75);
       }
 
       #photon-markdown-title {
@@ -688,6 +692,7 @@
             class="photon-button is-doc-button"
             type="button"
             aria-label="Open Photon App project document"
+            hidden
           >
             <span class="photon-md-icon" aria-hidden="true">MD</span>
             <span class="photon-button-label">Project</span>
@@ -697,6 +702,7 @@
             class="photon-button is-doc-button"
             type="button"
             aria-label="Open Photon App Requirements document"
+            hidden
           >
             <span class="photon-md-icon" aria-hidden="true">MD</span>
             <span class="photon-button-label">Requirements</span>

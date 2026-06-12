@@ -704,6 +704,161 @@ Only that return-map condition would upgrade the Hessian-style stiffness picture
 
 The circular formulas below use reduced coordinates; stability in the full history space remains a separate proof obligation.
 
+#### Two-Body Closure Packet (Theorem Target)
+
+A nontrivial electrino:positrino binary is promoted only by a replayable finite-$\eta$ packet, not by the circular ansatz alone. For a fixed signed causal-root ledger $b$, the binary closure packet is
+
+$$
+\mathfrak{C}_{2\mathrm{B}}^{(\eta)}
+=
+\left(
+b,\mathbf{X}_b,P_b,R_b,s_b,\mathfrak{B}_b,\mathcal{P}_b,\mathcal{E}_b
+\right),
+$$
+
+where $\mathbf{X}_b(t)$ is the two-body history, $P_b$ is its return period, $R_b$ and $s_b$ are the circular benchmark radius and speed when that reduction is valid, $\mathfrak{B}_b$ is the branch chart of active and excluded roots, $\mathcal{P}_b$ is the history-space return map, and $\mathcal{E}_b$ is the constructive energy packet of [Delay-Dynamics Energy](../validation/simulations/action-energy/delay-dynamics-energy.md). The packet must report the following residuals before the branch can be used as a closed result.
+
+The equation-of-motion residual is
+
+$$
+\mathcal{R}_{\mathrm{EOM}}^{2\mathrm{B}}(b,\eta)
+=
+\frac{1}{P_b}
+\int_0^{P_b}
+\frac{
+\left\|
+\ddot{\mathbf{X}}_b(t)
+-
+F_{\eta,b}[\mathbf{X}_{b,t}]
+\right\|
+}{
+1+\left\|F_{\eta,b}[\mathbf{X}_{b,t}]\right\|
+}
+\,dt,
+$$
+
+where $F_{\eta,b}$ is the regularized two-body branch force obtained from the active self and partner rows in $b$. The period residual is
+
+$$
+\mathcal{R}_{\mathrm{per}}^{2\mathrm{B}}(b,\eta)
+=
+\frac{
+\left\|\mathbf{X}_{b,P_b}-\mathbf{X}_{b,0}\right\|_{\mathcal{H}}
+}{
+\left\|\mathbf{X}_{b,0}\right\|_{\mathcal{H}}+\epsilon_{\mathcal{H}}
+},
+$$
+
+with $\mathcal{H}$ the declared history norm and $\epsilon_{\mathcal{H}} > 0$ a fixed normalization floor.
+
+The branch-chart admissibility certificate is
+
+$$
+\nu_J^{2\mathrm{B}}(b,\eta)
+=
+\inf_{\rho\in b,\ 0\leq t\leq P_b}
+|J_\rho(t)|
+>0,
+\qquad
+\Delta_{\mathrm{gap}}^{2\mathrm{B}}(b,\eta)
+=
+\inf_{\rho\in b^{\mathrm{off}},\ 0\leq t\leq P_b}
+|g_\rho(t)|
+>0.
+$$
+
+Here $J_\rho$ is the root Jacobian for an active row and $g_\rho$ is the signed gap of a declared inactive row in the finite branch complement $b^{\mathrm{off}}$. The certificate fails if either floor tends to zero under refinement or under the advertised $\eta$-continuation.
+
+For a circular benchmark the radial and tangential balance residual is
+
+$$
+\mathcal{R}_{\mathrm{bal}}^{2\mathrm{B}}
+=
+\frac{
+\left|
+\left\langle A^{\mathrm{rad}}_{\eta,b}(R_b,s_b)\right\rangle_{P_b}
+-s_b^2/R_b
+\right|
+}{
+1+s_b^2/R_b+
+\left|\left\langle A^{\mathrm{rad}}_{\eta,b}\right\rangle_{P_b}\right|
+}
++
+\frac{
+\left|
+\left\langle A^{\mathrm{tan}}_{\eta,b}
++A^{\mathrm{tan}}_{\partial W}
++A^{\mathrm{tan}}_{\mathrm{recoil}}
+\right\rangle_{P_b}
+\right|
+}{
+1+\left\langle
+|A^{\mathrm{tan}}_{\eta,b}|
++|A^{\mathrm{tan}}_{\partial W}|
++|A^{\mathrm{tan}}_{\mathrm{recoil}}|
+\right\rangle_{P_b}
+}.
+$$
+
+The two added tangential channels are not optional bookkeeping terms: they are the boundary and recoil entries required by the constructive wake-energy ledger. If they are absent, the packet must fail closed rather than hiding tangential work in an undefined reservoir.
+
+The stability certificate is a secular Floquet margin in history space,
+
+$$
+\lambda_{\mathrm{sec}}^{2\mathrm{B}}(b,\eta)
+=
+1-\rho\!\left(
+D\mathcal{P}_b[\mathbf{X}_b]\big|_{E_\perp}
+\right)
+>0,
+$$
+
+where $E_\perp$ removes the neutral phase and symmetry directions. A numerical orbit without this projected return-map certificate is an existence candidate, not a stable binary certificate.
+
+The energy packet is
+
+$$
+\mathcal{E}_b
+=
+\left(
+\epsilon_E^{(\eta)}(W_b;\mathfrak{B}_b),
+\Delta_{\mathrm{E,cross}}^{(\eta)}(W_b;\mathfrak{B}_b),
+U_{\min,b}^{(\eta)}
+\right),
+$$
+
+and must satisfy
+
+$$
+\epsilon_E^{(\eta)}(W_b;\mathfrak{B}_b)\leq \epsilon_E^\star,
+\qquad
+\Delta_{\mathrm{E,cross}}^{(\eta)}(W_b;\mathfrak{B}_b)
+\leq \epsilon_{\mathrm{cross}}^\star,
+\qquad
+E_{\mathrm{wake},b}^{(\eta)}(t)\geq U_{\min,b}^{(\eta)}
+$$
+
+on the same window, branch chart, and regulator used for the motion residuals. This is the handoff point to the constructive delay-energy chapter: ordinary Noether language is not sufficient until $E_{\mathrm{wake},b}^{(\eta)}$ has been constructed for the chosen chart.
+
+Finally, the characteristic frequency is extracted from the return period,
+
+$$
+\omega_b=\frac{2\pi}{P_b},
+\qquad
+\mathcal{R}_{\omega}^{2\mathrm{B}}
+=
+\frac{\left|2\pi/P_b-s_b/R_b\right|}
+{|2\pi/P_b|+|s_b/R_b|+\epsilon_{\omega}},
+$$
+
+when the circular reduction is claimed. For a noncircular branch, $\omega_b=2\pi/P_b$ remains the fundamental return frequency, but the $s_b/R_b$ comparison is replaced by the declared harmonic-extraction rule.
+
+The theorem target is therefore:
+
+> If a finite-$\eta$ branch supplies $\mathfrak{C}_{2\mathrm{B}}^{(\eta)}$ with $\mathcal{R}_{\mathrm{EOM}}^{2\mathrm{B}}$, $\mathcal{R}_{\mathrm{per}}^{2\mathrm{B}}$, $\mathcal{R}_{\mathrm{bal}}^{2\mathrm{B}}$, and $\mathcal{R}_{\omega}^{2\mathrm{B}}$ below declared tolerances, $\nu_J^{2\mathrm{B}}$ and $\Delta_{\mathrm{gap}}^{2\mathrm{B}}$ bounded away from zero, $\lambda_{\mathrm{sec}}^{2\mathrm{B}} > 0$, and the constructive energy residuals closed on the same branch chart, then that branch is a certified local electrino:positrino two-body binary at that finite regulator.
+
+No such finite-$\eta$ packet is supplied in this chapter yet. The status is a theorem target and simulation closure contract, not a closed proof. The $\eta\to0$ limit, the basin measure of the branch, and the later use of the binary as a universal clock or matter standard remain separate obligations.
+
 ## State Space and Well-Posedness of the Two-Body Delay System
 
 ### Introduction and Scope

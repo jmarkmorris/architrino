@@ -14,6 +14,7 @@ import {
 } from "../src/apps/photon/PhotonStateRuntime.js";
 import {
   getPhotonControlZeroPositionPercent,
+  getPhotonControlZeroSnapThreshold,
   snapPhotonControlValueToZero,
 } from "../src/apps/photon/PhotonControlsRuntime.js";
 import {
@@ -175,8 +176,14 @@ test("test point slider zero helpers mark and snap near zero", () => {
   assert.equal(getPhotonControlZeroPositionPercent(PHOTON_CONTROL_RANGES.testPointX), 50);
   assert.equal(getPhotonControlZeroPositionPercent(PHOTON_CONTROL_RANGES.testPointY), 50);
   assert.equal(getPhotonControlZeroPositionPercent(PHOTON_CONTROL_RANGES.fieldGain), null);
+  assert.equal(getPhotonControlZeroSnapThreshold(PHOTON_CONTROL_RANGES.testPointX), 0.25);
+  assert.equal(getPhotonControlZeroSnapThreshold(PHOTON_CONTROL_RANGES.testPointY), 0.1);
+  assert.equal(getPhotonControlZeroSnapThreshold(PHOTON_CONTROL_RANGES.fieldGain), null);
 
   assert.equal(snapPhotonControlValueToZero(0.05, PHOTON_CONTROL_RANGES.testPointX), 0);
+  assert.equal(snapPhotonControlValueToZero(0.25, PHOTON_CONTROL_RANGES.testPointX), 0);
+  assert.equal(snapPhotonControlValueToZero(-0.25, PHOTON_CONTROL_RANGES.testPointX), 0);
+  assert.equal(snapPhotonControlValueToZero(0.3, PHOTON_CONTROL_RANGES.testPointX), 0.3);
   assert.equal(snapPhotonControlValueToZero(-0.1, PHOTON_CONTROL_RANGES.testPointY), 0);
   assert.equal(snapPhotonControlValueToZero(0.15, PHOTON_CONTROL_RANGES.testPointZ), 0.15);
   assert.equal(snapPhotonControlValueToZero(0.05, PHOTON_CONTROL_RANGES.fieldGain), 0.05);

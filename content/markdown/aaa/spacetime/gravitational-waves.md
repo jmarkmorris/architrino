@@ -27,7 +27,7 @@ $$
 \partial^\mu \bar h_{\mu\nu}=0
 $$
 
-Assume constitutive closure supplies effective $(G_{\text{eff}},c_{\text{GW}})$ in this regime.
+Assume constitutive closure supplies effective $(G_{\text{eff}},c_{\text{GW}})$ in this regime. The speed row is the gravitational-wave component of the structural-integrity common-limit closure in [Lorentz Kinematics](./lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure): the weak-field tensor channel must share the same Noether sea state record that supports photon timing, PPN, redshift, Shapiro delay, and lensing.
 
 ## Linear Wave Equation
 

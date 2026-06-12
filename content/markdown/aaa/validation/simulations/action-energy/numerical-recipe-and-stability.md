@@ -25,4 +25,24 @@ Event-aware integration (practical algorithm):
 5. Units:
    - Use $v=1$ nondimensionalization throughout. Remember: emission cadence and per-wavefront amplitude are constant; receiver speed influences only power via $v_r$.
 
+6. Two-body closure run packet:
+   - For a candidate electrino:positrino binary, emit the signed branch ledger $b$, regulator $\eta$, step or collocation scale $h$, candidate period $P_b$, and the residual tuple
+     $$
+     \mathsf{Run}_{2\mathrm{B}}^{(\eta)}
+     =
+     \left(
+     \mathcal{R}_{\mathrm{EOM}}^{2\mathrm{B}},
+     \mathcal{R}_{\mathrm{per}}^{2\mathrm{B}},
+     \mathcal{R}_{\mathrm{bal}}^{2\mathrm{B}},
+     \nu_J^{2\mathrm{B}},
+     \Delta_{\mathrm{gap}}^{2\mathrm{B}},
+     \lambda_{\mathrm{sec}}^{2\mathrm{B}},
+     \epsilon_E^{(\eta)},
+     \Delta_{\mathrm{E,cross}}^{(\eta)},
+     \mathcal{R}_{\omega}^{2\mathrm{B}}
+     \right).
+     $$
+   - Fail closed if the signed ledger changes during the reported period, an active Jacobian floor or inactive-root gap vanishes, the projected return-map spectrum is not computed, the energy residuals use a different window or branch chart than the motion residuals, or the extracted frequency is not stable under refinement.
+   - Treat a visually periodic orbit without these entries as a search hit only. It is not a binary closure certificate.
+
 Plain language: At each time, find which past emissions can reach the receiver now, sum their radial pushes with $1/r^2$ falloff, and step forward either with sharp kicks at exact hit times or with thin mollified wake surfaces for smooth integration.

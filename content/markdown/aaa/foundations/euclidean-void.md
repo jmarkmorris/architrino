@@ -321,6 +321,8 @@ h_{ij}(t)=a_{\mathrm{eff}}^2(t)\delta_{ij}
 $$
 for the Euclidean void. The substrate spatial metric remains $h_{ij}=\delta_{ij}$, flat and unchanging, while any effective cosmological expansion factor belongs to observer-level metric reconstruction.
 
+This no-expanding-void commitment creates a specific observational burden. Any medium-and-observer redshift mechanism must still recover the tested expansion signatures normally carried by an FRW scale factor: the Tolman surface-brightness scaling $B_{\mathrm{obs}}\propto(1+z)^{-4}$ after the declared distance map is applied, supernova light-curve time dilation $\Delta t_{\mathrm{obs}}\approx(1+z)\Delta t_{\mathrm{emit}}$, and CMB temperature-redshift scaling $T_{\mathrm{CMB}}(z)\approx T_0(1+z)$ in the appropriate thermal record. A fixed-void model that supplies redshift only by generic scattering loss, phase degradation, or photon fatigue falls into the excluded tired-light class. The cosmology branch owns the positive recovery: [Cosmology Ontology](../cosmology/cosmology-ontology.md) defines the shared fixed-void variables, [Expansion Mechanism](../cosmology/expansion-mechanism.md) carries the redshift and distance tests, and [CMB](../cosmology/CMB.md) carries the temperature and spectrum tests.
+
 ### Plenum of Potential
 
 The Euclidean void is strictly empty of material substance. It is not a material ether, not a quantum foam, and not a hidden continuum with internal state variables. Its points do not store energy, density, curvature, stress, or memory.

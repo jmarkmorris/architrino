@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 157,
-      "sections": 1243
+      "entries": 158,
+      "sections": 1250
     }
   },
   "tocRoot": {
@@ -7186,6 +7186,72 @@
                         "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md",
                         "markdownSection": "Geometry of Delay and Roots",
                         "sectionKey": "geometry of delay and roots",
+                        "headingLevel": 2
+                      }
+                    ]
+                  },
+                  {
+                    "id": "validation_action_energy__delay_dynamics_energy",
+                    "title": "Constructive Energy for Delay Dynamics",
+                    "kind": "markdown-view",
+                    "sceneType": "Scene-Markdown-View",
+                    "scenePath": "content/scenes/validation/delay_dynamics_energy.json",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+                    "sections": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "Energy Construction Problem",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+                        "markdownSection": "Energy Construction Problem",
+                        "sectionKey": "energy construction problem",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Accepted Construction Routes",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+                        "markdownSection": "Accepted Construction Routes",
+                        "sectionKey": "accepted construction routes",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Crosswalk Residual",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+                        "markdownSection": "Crosswalk Residual",
+                        "sectionKey": "crosswalk residual",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Conservation Residual",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+                        "markdownSection": "Conservation Residual",
+                        "sectionKey": "conservation residual",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "No-Double-Counting Rule",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+                        "markdownSection": "No-Double-Counting Rule",
+                        "sectionKey": "no double counting rule",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Promotion and Failure Conditions",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+                        "markdownSection": "Promotion and Failure Conditions",
+                        "sectionKey": "promotion and failure conditions",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Downstream Use",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+                        "markdownSection": "Downstream Use",
+                        "sectionKey": "downstream use",
                         "headingLevel": 2
                       }
                     ]

@@ -151,6 +151,8 @@ We use the following minimal assumption set for theorem-level statements:
 These assumptions are deliberately local and testable. If any assumption fails, the
 corresponding theorem is not claimed.
 
+For the finite-$\eta$ pathology theorem target, (A3) and (A3b) are the action-statistic side of the self-energy and caustic quarantine. They bound the scalar causal-hit statistic on the retained chart, but they do not by themselves prove the Master EOM, no-runaway behavior, or exact conservation. Those stronger claims require the same branch chart to pass the force residual, action residual, and energy-momentum residuals stated in [Master Equation](master-equation.md#finite-eta-pathology-quarantine-theorem-target).
+
 ## Rationale for the Functional
 - **Action-like comparison candidate:** If a motion class is stationary or extremal for this statistic, the result gives a candidate branch label. It does not by itself prove attraction, rest mass, or a variational derivation of the master equation.
 - **Bridge to geometric analysis and knot theory:** Showing that simple periodic motions, such as maximum-curvature self-hit orbits, locally minimize $\mathcal{A}_{\text{self}}$ within a topological class would give a geometric reason to test those orbits as preferred branches.
