@@ -9,6 +9,11 @@
 - ROI: `unscored`
 - Status: `active`
 
+H39/H38 source-covariance pause note:
+[H39/H38 Source-Covariance Closure Sprint Wrap-Up](h39-h38-source-covariance-closure-sprint-wrap-up.md).
+That path is paused until a same-domain branch-bearing source-map provider
+object exists upstream of aggregate `P`.
+
 ## Scope
 
 This priority folder owns the focused mathematics and geometry attack plan for moving from the Master Equation of Motion to emergent assembly geometry without jumping directly to full observer-level GR. The workstream exists because the current stack has strong pieces in the Master EOM, Noether swarm architecture, nested shell swarm geometry, and emergent metric map, but it lacks one controlled intermediate object:

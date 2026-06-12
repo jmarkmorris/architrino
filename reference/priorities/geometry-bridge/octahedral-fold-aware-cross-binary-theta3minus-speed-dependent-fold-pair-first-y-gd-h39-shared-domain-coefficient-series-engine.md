@@ -2,6 +2,9 @@
 
 Promotion status: `priority-only`.
 
+H39/H38 source-covariance pause note:
+[H39/H38 Source-Covariance Closure Sprint Wrap-Up](h39-h38-source-covariance-closure-sprint-wrap-up.md).
+
 This packet is the coefficient-level predecessor to the h39 shared-domain
 primitive diagnostic. The diagnostic consumes seven primitive bounds
 
