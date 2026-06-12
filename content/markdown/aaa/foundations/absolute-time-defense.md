@@ -104,6 +104,40 @@ $$
 
 where $\omega_{\text{clk}}(s)$ is the phase rate extracted from the declared Noether swarm clock channel and $\omega_0$ is its rest-branch reference frequency. The dependencies hidden in $\omega_{\text{clk}}$ are the local causal-root ledger, the relevant path-history data, and the same Noether sea state variables used by the clock/ruler metric handoff.
 
+This definition avoids assigning proper time as an independent scalar, but it does not by itself prove relativity-compatible clock behavior. The non-circular closure statement is stronger: after phase extraction, all admitted low-energy clock and ruler assemblies in a tested comparison class must reduce to the same observer-level clock/ruler map. Equivalently, for each clock assembly $\mathcal A$,
+$$
+A_{\mathcal A}
+=
+A+\delta A_{\mathcal A},
+\qquad
+B_{ij}^{(\mathcal A)}
+=
+B_{ij}+\delta B_{ij}^{(\mathcal A)}
+$$
+with the assembly-dependent remainders bounded by the clock-comparison, composition, and Lorentz-test rows below. The residual universality condition can be written schematically as
+$$
+\epsilon_{\mathrm{univ}}
+\equiv
+\sup_{\mathcal A,\mathcal B}
+\max\left(
+\left|
+\frac{A_{\mathcal A}}{A_{\mathcal B}}-1
+\right|,
+\frac{
+\left\|
+B^{(\mathcal A)}-B^{(\mathcal B)}
+\right\|
+}{
+\left\|
+B^{(\mathcal B)}
+\right\|
+}
+\right)
+$$
+with $\epsilon_{\mathrm{univ}}$ forced below the relevant residual ceilings for the comparison being made. The proposed mechanism is primitive-wake commonality: atomic, nuclear, and mechanical clocks are all architrino assemblies whose stable translating branches are solved from the same causal-wake law, causal-root ledger grammar, and Noether sea state. A moving branch should therefore deform its closed return cycles, clock periods, and ruler scales together rather than receiving separate Lorentz factors by definition.
+
+The dressing caveat is essential. The simple common-wake argument works only after the Noether sea dressing map descends to a shared clock/ruler channel. If one apparatus samples $c_\star=c_{\text{eff}}^{(1)}$ and another samples a different dressed channel $c_\star=c_{\text{eff}}^{(2)}$ without a common reduction to the same $A$ and $B_{ij}$, the mismatch is not hidden by the definition of $\tau$. It appears as $\Delta_{\mathcal A}^{\mathrm{comp}}$, $\Delta_{\mathcal A}^{\mathrm{ori}}$, or $\Delta_{\mathcal A}^{\mathrm{PF}}$ and must be carried as a failure pressure on the Lorentz-closure program.
+
 The low-energy Lorentz-closure target for a declared clock branch has the form
 $$
 \frac{d\tau_{\mathcal A}}{dt}
@@ -130,17 +164,14 @@ O(w^4/c_0^4)
 \right]
 $$
 The residuals record orientation leakage, composition dependence, and preferred-frame leakage. They must be bounded by clock-comparison and Lorentz-test rows rather than hidden inside the constitutive function.
-In ordinary low-energy clock branches, the target scale is
-$$
-|\Delta_{\mathcal A}^{\mathrm{ori}}|
-\lesssim
-10^{-16}\text{--}10^{-18},
-\qquad
-|\Delta_{\mathcal A}^{\mathrm{comp}}|
-\lesssim
-10^{-13}
-$$
-with $\Delta_{\mathcal A}^{\mathrm{PF}}$ projected into the two-way anisotropy and PPN rows below unless a sharper channel-specific bound is declared.
+
+These scales are experimental requirements and bookkeeping ceilings, not framework-predicted amplitudes by themselves:
+
+| Residual | Meaning | Required low-energy ceiling | Framework-predicted scale |
+| --- | --- | --- | --- |
+| $\Delta_{\mathcal A}^{\mathrm{ori}}$ | Orientation leakage in clock/ruler response | typically $10^{-16}\text{--}10^{-18}$, with the strictest resonator rows at the $10^{-18}$ scale | Must be computed from branch-chart, hierarchy, dressing, and regularization residuals; no value is predicted by the phase definition alone. |
+| $\Delta_{\mathcal A}^{\mathrm{comp}}$ | Composition dependence across atomic, nuclear, mechanical, or material clock/ruler assemblies | bounded at the clock-comparison/equivalence-test scale, represented here by $|\Delta_{\mathcal A}^{\mathrm{comp}}|\lesssim10^{-13}$ unless a sharper row is declared | Must descend from a common $A$ and $B_{ij}$ after dressing; channel-dependent $c_{\text{eff}}$ maps contribute directly to this residual. |
+| $\Delta_{\mathcal A}^{\mathrm{PF}}$ | Preferred-frame leakage from the Euclidean-void rest frame into observer observables | projected into the two-way anisotropy and PPN rows below unless a sharper channel-specific bound is declared | Must be traced to named branch-chart, medium-drift, or dressing terms rather than fitted as an independent nuisance. |
 
 Required emergent limits:
 - Speed convention: $c_f$ is the primitive wake speed used inside delayed-root equations. Observer-level clock limits use the declared channel speed $c_\star$ from the [transverse causal budget lemma](../noether-swarm/nested-shell-swarm-dynamics.md#transverse-causal-budget-lemma): $c_\star=c_{\text{eff}}(\mathbf{X},t)$ for Noether sea dressed clocks and rulers, with $c_0\equiv c_{\text{eff}}(\infty)$ in the weak homogeneous comparison. Set $c_\star=c_f$ only for a primitive branch chart, or after deriving that a specific internal limit-cycle branch is governed directly by the undressed wake speed.
@@ -247,6 +278,8 @@ B_{ij}\xi^i\xi^j>0
 \quad
 \text{for }\xi\ne0
 $$
+These inequalities have a physical meaning. $A>0$ says the declared clock phase remains monotone in absolute time, so the branch still supplies a usable clock. Positive-definite $B_{ij}$ says the local ruler/signal compliance remains an ordinary spatial quadratic form, so one observer-level light cone can be exported from the branch. The handoff fails when a stable clock limit cycle is lost, when a separator or branch-chart transition makes the causal-root ledger discontinuous, when a Jacobian floor collapses, or when a strong-field channel becomes dispersive, birefringent, or multi-valued enough that no single $B_{ij}$ represents the local response. In those regimes the effective metric description is suspended and the analysis must return to finite branch data, as in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#causal-root-ledger-progression-as-a-lorentz-prediction) and the strong-field continuation criteria in [Singularity Resolution](../spacetime/singularity-resolution.md).
+
 Define the Lorentzian observer metric by
 $$
 ds_{\mathrm{eff}}^2=-c_0^2d\tau^2

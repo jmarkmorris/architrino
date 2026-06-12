@@ -371,6 +371,8 @@ $$
 $$
 Failure of this floor marks a caustic-like or degenerate wake-root regime; it is a branch-chart failure condition, not an ordinary small perturbation.
 
+The status of $\kappa_{\mathrm{hit}}$ is fixed in [Absolute Time](absolute-time.md#causality-and-finite-propagation-speed): it is a declared branch-chart or certificate lower bound, not a universal coupling constant, coordinate parameter, or regularization width.
+
 The causal wake geometry does not forbid a point architrino from having $\|\mathbf{v}\|>c_f$. It forbids backward-time influence. This separates kinematic freedom from dynamical stability: the Euclidean substrate places no kinematic speed limit on a point architrino, but that freedom does not imply that an assembly can be carried through the same regime intact.
 
 In observer-level wave language, causality is often diagnosed by front velocity rather than group or phase velocity. The substrate statement is sharper: the causal front is the first nonzero causal-wake support in absolute time. Observer-level group-speed, phase-speed, or packet-reshaping effects cannot override the support condition above; they are summaries of how an already causal wake record is sampled by assemblies.

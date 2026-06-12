@@ -8,6 +8,8 @@ The companion chapter [Absolute Time Defense](absolute-time-defense.md) gives th
 
 Absolute time is a **one-dimensional, continuous, oriented parameter** that advances uniformly and independently of space, matter, energy, or any physical process. In substrate ontology, it is **non-dynamical**: time does not curve, dilate, accelerate, or respond to forces. Physical clocks are assemblies whose internal cycles are compared against this parameter; they do not generate the parameter itself.
 
+The word **uniformly** is a dynamical normalization statement, not an extra clock substance on the bare line. Before units and laws are declared, the oriented manifold $T\cong\mathbb{R}$ admits affine relabelings $t\mapsto at+b$ with $a>0$. The origin $b$ remains conventional. The scale $a$ is fixed only after the dynamics are declared: the primitive wake speed $c_f$ is constant in the Euclidean-void rest frame, all worldlines use the same parameter $t$, and the master equation keeps its form under time translation. A rescaling of $t$ is therefore a unit change involving $T_0$, $L_0$, $c_f$, and the coupling normalizations, not a second physical freedom to choose a different flow of time.
+
 ## Mathematical Description
 
 Time is modeled as the real number line:
@@ -54,11 +56,13 @@ $$
 \hat c_f(\hat t-\hat s)
 $$
 
+Choosing $T_0$ fixes the affine scale of $t$ for the declared model. Setting $c_f=1$ is the special unit convention $L_0/T_0=\hat c_f$; keeping $c_f$ explicit leaves the physical anchor visible.
+
 > **Plain language:** We pick a standard unit of duration, such as one second or one maximum-curvature binary orbit time, and measure all times as pure numbers of that unit, keeping equations dimensionally clean.
 
 ## Duration and Linear Advancement
 
-Time progresses at a constant, immutable rate. The **duration** between two instants $t_1$ and $t_2$ is the absolute difference:
+With the affine scale fixed by the declared dynamical normalization, time progresses at a constant, immutable rate. The **duration** between two instants $t_1$ and $t_2$ is the absolute difference:
 $$
 \Delta t = |t_2 - t_1|
 $$
@@ -86,7 +90,7 @@ $$
 
 **Temporal ordering:** Event A temporally precedes event B if and only if $t_A < t_B$. This ordering is absolute and observer-independent. Causal influence is stricter than temporal precedence: Event A can influence event B only when $t_A<t_B$ and event B lies on the finite-speed causal wake support emitted from A.
 
-**Remark on the Thermodynamic Arrow of Time:** Any observed arrow of time in thermodynamic, biological, or cosmological systems, such as entropy increase, aging, or effective expansion, is an **emergent property** arising from the dynamics of assemblies, causal wakes, and observer-level effective fields, not a kinematic postulate. The background time manifold $\mathbb{R}$ is symmetric under time reversal $t \mapsto -t$; the asymmetry emerges at macroscopic scales from initial conditions, dynamics, and the records retained by a finite observer.
+**Remark on the Thermodynamic Arrow of Time:** The background time manifold $\mathbb{R}$ is symmetric under time reversal $t \mapsto -t$ as a bare oriented line. The declared interaction law is not time-symmetric in that same sense: causal wakes contribute only from emission times $s<t$, and the theory excludes advanced or instantaneous interaction terms. The causal arrow is therefore a law-level feature of the master-equation support convention, while thermodynamic, biological, and cosmological arrows are emergent finite-window properties built on that oriented dynamics, initial and boundary conditions, and the records retained by a finite observer. This differs from time-symmetric absorber formulations, where past- and future-supported solutions are treated as part of one law.
 
 The entropy arrow is therefore a finite-window statement, not a definition of time itself. For a chosen coarse-graining $\mathcal{Q}$ and observer-accessible window $W(t)$, an entropy summary has the schematic form
 $$
@@ -171,10 +175,7 @@ $$
 t \mapsto -t
 $$
 
-This is a **mathematical symmetry** of the manifold $\mathbb{R}$. However:
-
-- **Dynamically**, delayed causal wakes and observer-window entropy can break this symmetry in the realized history.
-- The **causal orientation** (future = increasing $t$) is the chosen orientation used by the dynamics; it is not curvature, force, or internal structure of the time background itself.
+This is a **mathematical symmetry** of the manifold $\mathbb{R}$, not automatically a symmetry of the declared dynamics. The master equation chooses future as increasing $t$ by summing only over causal-root rows with $s<t$. A reflected history would solve a different future-supported law unless the causal-support convention were changed. The **causal orientation** is therefore part of the dynamics' support rule; it is not curvature, force, or internal structure of the time background itself.
 
 ## Role of Time in Dynamics
 
@@ -253,9 +254,9 @@ $$
 $$
 Failure of this transversality floor marks a caustic-like or degenerate wake-root regime, so it must be routed to branch-chart or regularization analysis rather than treated as an ordinary force perturbation.
 
-The constant $\kappa_{\mathrm{hit}}>0$ is a physical branch-admissibility floor for causal-root separation in the declared model or regularization. It is not a coordinate parameter and cannot be removed by relabeling the same history.
+The symbol $\kappa_{\mathrm{hit}}>0$ is not a universal coupling constant and not the regularization width $\eta$. It denotes a declared positive lower bound for one retained branch chart, certificate, or regularized model after the units, root labels, endpoint convention, and memory window have been fixed. Concrete branch packets may report the same condition as a certified Jacobian floor such as $J_0$ or $\nu_J$. The existence of a positive floor is part of simple-root admissibility; its numerical value belongs to the branch-chart or validation record, not to the universal parameter ledger. It is not a coordinate parameter and cannot be removed by relabeling the same history.
 
-The interaction law is built entirely from path-history contributions at times $t' < t$ that satisfy the causal-root condition; $\mathbb{A}\mathbb{A}\mathbb{A}$ contains no advanced or instantaneous interaction terms. This ensures causality at the fundamental level.
+The interaction law is built entirely from path-history contributions at times $t' < t$ that satisfy the causal-root condition; $\mathbb{A}\mathbb{A}\mathbb{A}$ contains no advanced or instantaneous interaction terms. This delayed-only support condition is a law-level causal asymmetry, not merely an initial-condition effect.
 
 There are **no instantaneous actions-at-a-distance** and **no advanced potentials**.
 
@@ -311,4 +312,4 @@ They do **not** arise from any curvature or dynamics of the time coordinate itse
 
 ## Summary Postulate
 
-> **Postulate 1 (Absolute Time):** Time is an **absolute, universal, one-dimensional continuum** $\mathbb{R}$, with a fixed orientation (future = increasing $t$) and a uniform rate of advancement. Duration between events is **frame-independent**. The time coordinate is **non-dynamical** and does not encode forces or curvature. All dynamics occur via finite-speed wake propagation ($c_f$) in absolute time, with all interactions via path history; there is no instantaneous action-at-a-distance. Worldlines are parametrized directly by $t$ with no fundamental reparametrization freedom. Any thermodynamic arrow, observer-clock dilation, or relativistic proper-time effect is an emergent property of assemblies, causal wakes, and effective observer reconstruction, not a feature of the background $t$ parameter itself.
+> **Postulate 1 (Absolute Time):** Time is an **absolute, universal, one-dimensional continuum** $\mathbb{R}$, with a fixed orientation (future = increasing $t$) and a dynamical scale anchored by the constant primitive wake speed $c_f$ and the time-translation-invariant master equation. Duration between events is **frame-independent**. The time coordinate is **non-dynamical** and does not encode forces or curvature. All dynamics occur via finite-speed wake propagation ($c_f$) in absolute time, with all interactions via path history; there is no instantaneous action-at-a-distance and no advanced interaction term. Worldlines are parametrized directly by $t$ with no fundamental reparametrization freedom beyond unit choice and origin choice. Any thermodynamic arrow, observer-clock dilation, or relativistic proper-time effect is an emergent property of assemblies, causal wakes, and effective observer reconstruction, not a feature of the background $t$ parameter itself.

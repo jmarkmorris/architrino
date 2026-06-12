@@ -32,6 +32,7 @@ The first implementation should use the app name `photon`.
 Required route and source layout:
 
 - route file: `photon.html`;
+- operator-facing app guide: `reference/priorities/photon-app/photon-guide.md`;
 - app folder: `src/apps/photon/`;
 - entrypoint: `src/apps/photon/main.js`;
 - runtime module: `src/apps/photon/PhotonRuntime.js`;
@@ -53,9 +54,9 @@ V1 uses a left-to-right propagation convention:
 - right means leading;
 - the left trailing swarm rotates counter-clockwise;
 - the right leading swarm rotates clockwise;
-- the observer-field plot draws from left to right as the visualization runs;
-- the E-B plot window covers exactly three observer cycles;
-- vertical guide lines appear at the start and end of the middle cycle;
+- the observer-field plots draw from left to right as the visualization runs;
+- the stacked $\mathbf E$ and comparison $\mathbf B$ plot windows each cover exactly three observer cycles;
+- vertical guide lines appear at the start and end of the middle cycle in both plots;
 - and the middle cycle is the default visual focus region for comparing $\mathbf E$, comparison $\mathbf B$, analyzer projection, and polarization readouts.
 
 The v1 observer cycle should use the middle-layer frequency as the default field-cycle reference. With the default middle-layer frequency $f_M=0.26\,\mathrm{Hz}$, the three-cycle run duration is
@@ -64,7 +65,7 @@ $$
 T_{\mathrm{run}}=\frac{3}{f_M}\approx11.54\,\mathrm{s}.
 $$
 
-The E-B plot guide lines are placed at
+The $\mathbf E$ and comparison $\mathbf B$ plot guide lines are placed at
 
 $$
 t=\frac{T_{\mathrm{run}}}{3}
@@ -72,7 +73,7 @@ t=\frac{T_{\mathrm{run}}}{3}
 t=\frac{2T_{\mathrm{run}}}{3}.
 $$
 
-If the middle-layer frequency changes, the plot window should update so it still spans three middle-layer cycles.
+If the middle-layer frequency changes, both plot windows should update so they still span three middle-layer cycles.
 
 ## Default State
 
@@ -95,18 +96,18 @@ The default state should be reproducible as JSON. The initial values are:
       "role": "trailing",
       "direction": "ccw",
       "layers": {
-        "I": { "radius": 0.9, "frequencyHz": 0.42, "phaseDeg": 0 },
-        "M": { "radius": 1.26, "frequencyHz": 0.26, "phaseDeg": 120 },
-        "O": { "radius": 1.62, "frequencyHz": 0.16, "phaseDeg": 240 }
+        "I": { "enabled": true, "radius": 0.9, "frequencyHz": 0.42, "phaseDeg": 0 },
+        "M": { "enabled": true, "radius": 1.26, "frequencyHz": 0.26, "phaseDeg": 120 },
+        "O": { "enabled": true, "radius": 1.62, "frequencyHz": 0.16, "phaseDeg": 240 }
       }
     },
     "right": {
       "role": "leading",
       "direction": "cw",
       "layers": {
-        "I": { "radius": 0.9, "frequencyHz": 0.42, "phaseDeg": 0 },
-        "M": { "radius": 1.26, "frequencyHz": 0.26, "phaseDeg": 120 },
-        "O": { "radius": 1.62, "frequencyHz": 0.16, "phaseDeg": 240 }
+        "I": { "enabled": true, "radius": 0.9, "frequencyHz": 0.42, "phaseDeg": 0 },
+        "M": { "enabled": true, "radius": 1.26, "frequencyHz": 0.26, "phaseDeg": 120 },
+        "O": { "enabled": true, "radius": 1.62, "frequencyHz": 0.16, "phaseDeg": 240 }
       }
     }
   },
@@ -117,6 +118,12 @@ The default state should be reproducible as JSON. The initial values are:
     "ellipticity": 0,
     "intensity": 1,
     "analyzerAngleDeg": 0
+  },
+  "measurement": {
+    "testPoint": { "x": 6, "u": 0, "v": 0 },
+    "emissionSpeedCf": 1,
+    "nearFieldWeight": 0.12,
+    "fieldGain": 0.04
   }
 }
 ```
@@ -132,6 +139,7 @@ Required layout regions:
 1. Top diagnostic region: two side-by-side flat Noether swarm views.
 2. Lower observer-field region: external $\mathbf E$ and comparison $\mathbf B$ field readouts observed from the current candidate state.
 3. Control region: compact controls for time, pair state, per-swarm I/M/O parameters, polarization, formulas, and presets.
+4. Markdown document access: compact `MD` buttons for the photon guide, project packet, and requirements packet, using the same in-app Markdown viewer pattern as the Ideal Swarm app.
 
 The pair should remain centered in the diagnostic region. Translation at $c_f$ should be represented by a propagation cue, phase advance, moving tick marks, or a viewport-followed centerline, rather than by allowing the swarms to drift off screen.
 
@@ -141,8 +149,9 @@ Desktop layout should be optimized first. The preferred v1 desktop layout is:
 
 - a full-viewport app surface;
 - a two-swarm stage occupying the main upper-left region;
-- a three-cycle E-B plot directly below the two-swarm stage;
+- stacked three-cycle $\mathbf E$ and comparison $\mathbf B$ plots directly below the two-swarm stage;
 - a right-side inspector panel, approximately `360px` to `420px` wide, for controls, presets, diagnostics, and formulas;
+- clickable Markdown guide controls inside the inspector;
 - compact translucent controls in the same restrained app family as Ideal Swarm;
 - and no landing-page hero, decorative card nesting, or separate explanatory splash surface.
 
@@ -171,6 +180,7 @@ The architrino visualization and trails in the photon app should match the Ideal
 The photon app should reuse this visual grammar:
 
 - red positrino markers and blue electrino markers;
+- one fixed on-screen architrino marker size shared by all I/M/O layers and both swarms;
 - purple neutral path blending where the orbit path is not strongly dominated by either polarity;
 - I/M/O layer colors matching the Ideal Swarm inner, middle, and outer binary colors;
 - orbit path lines with time-varying charge tinting;
@@ -186,20 +196,31 @@ The photon renderer should not invent a different architrino marker style, polar
 Global controls:
 
 - pause/play icon button;
+- Space bar pause/play shortcut when focus is not inside an editable field, slider, selector, or button;
 - reset animation button;
 - reset parameters button;
 - simulation time readout;
 - speed mode with v1 fixed to $c_f$ and a future slot for local $c$;
 - and pair separation along the line of translation.
 
+Measurement controls:
+
+- test-point $x$ coordinate along the line of translation;
+- test-point $u$ coordinate on the first transverse axis;
+- test-point $v$ coordinate on the second transverse axis;
+- field gain for keeping the analytic delayed-emission curve readable;
+- and near-field mix for comparing a pure acceleration/radiation-style signal against a signal with a controlled signed near-field contribution.
+
 Per swarm controls:
 
+- enabled checkbox for each of the six binaries, default checked;
 - layer frequency for I, M, and O;
 - layer radius for I, M, and O;
 - layer phase in degrees for I, M, and O;
 - direction display locked to clockwise for one swarm and counter-clockwise for the other in v1;
-- optional amplitude or visibility control per layer if the first renderer needs it;
 - and a copy/mirror control so one swarm can inherit parameters from the other with sign or phase changes.
+
+When a binary checkbox is unchecked, that binary is removed from the swarm display. The analytic delayed-emission formulas for $\mathbf E$ and comparison $\mathbf B$ should zero the contribution from both architrinos in that binary.
 
 Control organization should assume the app may eventually need dozens of controls. The v1 interface should therefore use grouped panels, tabs, accordions, or inspector sections rather than placing every advanced parameter in one flat control wall.
 
@@ -225,6 +246,11 @@ The first prototype should expose these controls visibly in the UI panel:
 | ellipticity | `0.00` | `-1.00` to `1.00` | `0.01` |
 | intensity | `1.00` | `0.00` to `2.00` | `0.01` |
 | analyzer angle | `0 deg` | `0` to `180 deg` | `1 deg` |
+| test point $x$ | `6.00` | `-10.00` to `10.00` | `0.05` |
+| test point $u$ | `0.00` | `-4.00` to `4.00` | `0.05` |
+| test point $v$ | `0.00` | `-4.00` to `4.00` | `0.05` |
+| near-field mix | `0.12` | `0.00` to `1.00` | `0.01` |
+| field gain | `0.04` | `0.01` to `1.00` | `0.01` |
 
 Each swarm should have its own I/M/O frequency, radius, and phase controls. The direction controls are visible but locked in v1: left trailing is counter-clockwise and right leading is clockwise.
 
@@ -271,43 +297,80 @@ The $\mathbf E$ / comparison $\mathbf B$ panel should support both vector and wa
 
 ## V1 Observer-Field Mapping
 
-The first prototype should use a provisional observer-field mapping so the panel can compute live values. This mapping is diagnostic-only and should not be treated as a photon-substrate derivation.
+The first prototype should base the lower E-B plot on analytic delayed-emission calculations from the architrinos in the two swarms. This mapping is diagnostic-only and should not be treated as a photon-substrate derivation.
 
-Let the propagation axis be $+\hat{\mathbf x}$, let the transverse axes be $\hat{\mathbf u}$ and $\hat{\mathbf v}$, and let the observer phase be
-
-$$
-\psi(t)=2\pi f_M t.
-$$
-
-For polarization controls with intensity $I$, linear angle $\alpha$, and phase lag $\delta$, define
+Let the propagation axis be $+\hat{\mathbf x}$, and let the transverse axes be $\hat{\mathbf u}$ and $\hat{\mathbf v}$. The measurement point is
 
 $$
-A=\sqrt{I},
+\mathbf X_{\mathrm{test}}
+=
+x_{\mathrm{test}}\hat{\mathbf x}
++u_{\mathrm{test}}\hat{\mathbf u}
++v_{\mathrm{test}}\hat{\mathbf v}.
+$$
+
+For swarm $s$, layer $\ell$, and architrino charge $q\in\{+1,-1\}$, use the analytic source position
+
+$$
+\mathbf r_{s\ell q}(\tau)
+=
+x_s\hat{\mathbf x}
++R_{s\ell}\cos\theta_{s\ell q}(\tau)\hat{\mathbf u}
++R_{s\ell}\sin\theta_{s\ell q}(\tau)\hat{\mathbf v},
 $$
 
 $$
-E_u(t)=A\cos\alpha\cos\psi(t),
-\qquad
-E_v(t)=A\sin\alpha\cos(\psi(t)+\delta).
+\theta_{s\ell q}(\tau)
+=
+\phi_{s\ell}
++\sigma_s2\pi f_{s\ell}\tau
++\pi\,\mathbf 1_{q=-1},
 $$
 
-The displayed observer electric field is
+where $\sigma_s=+1$ for the left trailing counter-clockwise swarm and $\sigma_s=-1$ for the right leading clockwise swarm. The delayed emission time $\tau_{s\ell q}$ for observer time $t$ is determined by
 
 $$
-\mathbf E(t)=E_u(t)\hat{\mathbf u}+E_v(t)\hat{\mathbf v}.
+\tau_{s\ell q}
+=
+t-\frac{|\mathbf X_{\mathrm{test}}-\mathbf r_{s\ell q}(\tau_{s\ell q})|}{c_f}.
 $$
 
-The comparison magnetic field is the normalized observer-level cross product
+The v1 implementation may solve this causal-delay equation by a short fixed-point iteration over the analytic source position. With
+
+$$
+\mathbf n_i
+=
+\frac{\mathbf X_{\mathrm{test}}-\mathbf r_i(\tau_i)}
+{|\mathbf X_{\mathrm{test}}-\mathbf r_i(\tau_i)|},
+$$
+
+and analytic source acceleration $\mathbf a_i(\tau_i)$, the provisional displayed contribution from source $i$ is
+
+$$
+\mathbf E_i(t)
+=
+g q_i
+\left[
+\frac{\mathbf n_i(\mathbf n_i\cdot\mathbf a_i)-\mathbf a_i}{R_i}
++\eta\frac{\mathbf n_i}{R_i^2}
+\right],
+$$
+
+where $g$ is the field-gain display control, $\eta$ is the near-field mix control, and $R_i=|\mathbf X_{\mathrm{test}}-\mathbf r_i(\tau_i)|$. The displayed field is
+
+$$
+\mathbf E(t)=\sum_i\mathbf E_i(t).
+$$
+
+The comparison magnetic field is computed per delayed contribution and then summed:
 
 $$
 \mathbf B_{\mathrm{cmp}}(t)
 =
-\frac{1}{c_f}\hat{\mathbf x}\times\mathbf E(t),
+\sum_i\frac{1}{c_f}\mathbf n_i\times\mathbf E_i(t).
 $$
 
-with $c_f=1$ in the v1 display normalization unless a later requirement introduces dimensional scaling.
-
-The E-B plot should draw three full cycles of $E_u$, $E_v$, and at least one comparison $\mathbf B_{\mathrm{cmp}}$ component from left to right. The middle cycle should be bounded by the two vertical guide lines. The plot should update immediately when frequency, phase, polarization, intensity, analyzer angle, or pair separation changes.
+The lower field panel should draw two separate same-width plots with the same grid, cursor, and middle-cycle guide format. The $\mathbf E$ plot appears above the comparison $\mathbf B$ plot. The $\mathbf E$ plot should draw three full cycles of $E_u$ and $E_v$ from left to right. The comparison $\mathbf B$ plot should draw three full cycles of the displayed comparison $\mathbf B_{\mathrm{cmp}}$ components from left to right. The middle cycle should be bounded by the two vertical guide lines in both plots. Both plots should update immediately when frequency, radius, phase, pair separation, test-point coordinates, field gain, near-field mix, polarization analyzer angle, or reset state changes.
 
 The analyzer projection should use
 
@@ -439,9 +502,10 @@ The first prototype should be verified before it is treated as complete:
 - the app route renders a nonblank visual stage;
 - the left trailing swarm rotates counter-clockwise;
 - the right leading swarm rotates clockwise;
-- the E-B plot draws left to right over exactly three middle-layer cycles;
-- vertical guide lines bracket the middle cycle;
+- the stacked $\mathbf E$ and comparison $\mathbf B$ plots draw left to right over exactly three middle-layer cycles;
+- vertical guide lines bracket the middle cycle in both plots;
 - I/M/O controls update both the visual swarms and exported state;
+- test-point controls update both delayed-emission field plots and exported state;
 - polarization and analyzer controls update formula-panel values;
 - pause/play and reset controls work;
 - exported JSON can be imported or replayed without losing values;
@@ -479,12 +543,13 @@ The first implementation is acceptable when:
 - the left trailing swarm rotates counter-clockwise while the right leading swarm rotates clockwise;
 - architrino markers, orbit paths, and layered trails match the Ideal Swarm visual grammar;
 - I/M/O frequency, radius, and phase controls work for both swarms;
+- six binary enabled checkboxes default checked, remove unchecked binaries from the display, and remove their delayed-emission contributions from both field plots;
 - default I/M/O phases are `0`, `120`, and `240` degrees on both swarms;
 - default I/M/O radii follow the `5:7:9` Ideal Swarm ratio;
 - pair separation changes visibly along the line of translation;
-- pause/play and reset controls work;
-- the lower $\mathbf E$ / comparison $\mathbf B$ panel draws left to right over three full cycles;
-- vertical guide lines bracket the middle cycle in the E-B plot;
+- pause/play, Space bar playback shortcut, and reset controls work;
+- the lower $\mathbf E$ / comparison $\mathbf B$ panel draws separate stacked delayed-emission field plots at the configured test point left to right over three full cycles;
+- vertical guide lines bracket the middle cycle in both field plots;
 - polarization controls affect the observer-level readout;
 - Malus' law is present with live numeric substitution;
 - app state can be reset and exported;

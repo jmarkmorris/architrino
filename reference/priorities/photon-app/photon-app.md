@@ -17,6 +17,10 @@ The app begins from the candidate photon picture already used in the photon Gate
 
 The implementation name should be `photon`: use `photon.html` for the route and `src/apps/photon/` for dedicated source files.
 
+The first prototype now exists at `photon.html`. It implements the dedicated `src/apps/photon/` runtime, 2D side-by-side swarm stage, Ideal Swarm-style markers and trails, stacked three-cycle delayed-emission $\mathbf E$ and comparison $\mathbf B$ plots, visible controls, formulas, diagnostics, reset, JSON import/export, and an in-app Markdown document viewer.
+
+The operator-facing app guide is [photon-guide](photon-guide.md). The photon UI exposes Markdown buttons for the guide, this project packet, and the requirements packet.
+
 ## Objective
 
 Build a 2D interactive diagnostic for a photon candidate modeled as two contra-rotating flat Noether swarms moving at $c_f$ in the first version, with a later path to local $c$. The app should make the pair geometry, binary rotation, layer frequencies, layer radii, layer phases, pair separation, polarization controls, and observer-level field readouts adjustable enough to support exploratory closure work.
@@ -28,12 +32,14 @@ The first implementation should include:
 - two side-by-side flat Noether swarm views;
 - counter-clockwise rotation in the left trailing swarm and clockwise rotation in the right leading swarm;
 - per-swarm controls for I/M/O frequency, radius, and phase in degrees;
+- enabled checkboxes for each of the six binaries, default checked, with unchecked binaries removed from both the display and delayed-emission field sums;
 - pair separation along the line of translation;
 - architrino markers, path tinting, and layered trails that match the Ideal Swarm app visual grammar;
 - pause/play and reset controls;
-- a lower observer-field panel for external $\mathbf E$ and comparison $\mathbf B$ readouts;
+- a lower observer-field panel for delayed-emission external $\mathbf E$ and comparison $\mathbf B$ readouts at a configurable test point;
 - polarization visualization controls;
-- and a formula panel containing Malus' law plus the additional polarization formulas needed by the diagnostic.
+- a formula panel containing Malus' law plus the additional polarization formulas needed by the diagnostic;
+- and in-app Markdown access to [photon-guide](photon-guide.md), [photon-app](photon-app.md), and [photon-app-requirements](photon-app-requirements.md).
 
 The first implementation should not include:
 
@@ -44,12 +50,10 @@ The first implementation should not include:
 
 ## Task Queue
 
-1. `requirements_seed` - Stage the first requirements packet for the photon app, including candidate model, layout, controls, formulas, diagnostics, and implementation boundaries. Status: `staged`; packet: [photon-app-requirements](photon-app-requirements.md).
-2. `runtime_boundary` - Use `photon.html` and `src/apps/photon/`, then choose focused modules and shared helper boundaries before implementation begins. Status: `open`.
-3. `two_swarm_stage` - Implement the 2D side-by-side flat Noether swarm renderer with I/M/O layers, binary rotation, Ideal Swarm-style architrino markers and trails, propagation cue, and pair-separation control. Status: `open`.
-4. `observer_field_panel` - Implement the lower $\mathbf E$ / comparison $\mathbf B$ field panel with phase, amplitude, and polarization readouts derived from the current candidate parameters. Status: `open`.
-5. `polarization_formula_panel` - Implement polarization controls, analyzer angle, Malus-law readout, and related formula diagnostics without treating observer formulas as substrate proof. Status: `open`.
-6. `preset_and_diagnostic_capture` - Add parameter presets, import/export, and snapshot diagnostics so exploratory states can be preserved for later proof or simulation packets. Status: `open`.
+1. `named_presets` - Add named preset selection for balanced contra-rotating pair, linear polarization candidate, right circular candidate, left circular candidate, phase-offset stress test, and layer-radius stress test. Status: `open`.
+2. `shared_visual_extraction` - Extract shared Ideal Swarm / photon architrino marker, orbit-path, tint-profile, and layered-trail helpers if the visual grammar needs to be maintained across both apps. Status: `open`.
+3. `substrate_mapping_refinement` - Refine the delayed-emission observer-field mapping from I/M/O layer parameters to transverse observer-field amplitudes, while preserving claim discipline. Status: `open`.
+4. `local_c_continuation` - Add a later speed mode that replaces fixed $c_f$ with local $c$ from declared Noether sea state variables. Status: `open`.
 
 ## Claim Discipline
 
