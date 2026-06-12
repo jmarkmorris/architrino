@@ -13,6 +13,27 @@ function formatControlValue(value, digits = 2) {
   return Number(value).toFixed(digits);
 }
 
+const ZERO_SNAP_STEP_COUNT = 2;
+
+export function getPhotonControlZeroPositionPercent(range) {
+  const min = Number(range?.min);
+  const max = Number(range?.max);
+  if (!Number.isFinite(min) || !Number.isFinite(max) || min >= 0 || max <= 0 || max <= min) {
+    return null;
+  }
+  return ((0 - min) / (max - min)) * 100;
+}
+
+export function snapPhotonControlValueToZero(value, range) {
+  const number = Number(value);
+  const step = Math.abs(Number(range?.step));
+  if (!Number.isFinite(number) || !Number.isFinite(step) || getPhotonControlZeroPositionPercent(range) === null) {
+    return number;
+  }
+  const threshold = step * ZERO_SNAP_STEP_COUNT;
+  return threshold > 0 && Math.abs(number) <= threshold ? 0 : number;
+}
+
 function createElement(documentLike, tag, className, text = "") {
   const element = documentLike.createElement(tag);
   if (className) {
@@ -24,7 +45,7 @@ function createElement(documentLike, tag, className, text = "") {
   return element;
 }
 
-function createRangeControl(documentLike, { label, value, range, digits = 2, onInput }) {
+function createRangeControl(documentLike, { label, value, range, digits = 2, zeroIndicator = false, snapToZero = false, onInput }) {
   const row = createElement(documentLike, "label", "photon-control-row");
   const span = createElement(documentLike, "span", "photon-control-label", label);
   const input = createElement(documentLike, "input", "photon-control-input");
@@ -35,12 +56,35 @@ function createRangeControl(documentLike, { label, value, range, digits = 2, onI
   input.value = String(value);
   input.setAttribute("aria-label", label);
   input.dataset.controlLabel = label;
+  if (snapToZero) {
+    input.dataset.snapToZero = "true";
+  }
   const output = createElement(documentLike, "output", "photon-control-output", formatControlValue(value, digits));
+  const readInputValue = () => {
+    const rawValue = Number(input.value);
+    const nextValue = snapToZero ? snapPhotonControlValueToZero(rawValue, range) : rawValue;
+    if (!Object.is(nextValue, rawValue)) {
+      input.value = String(nextValue);
+    }
+    return nextValue;
+  };
   input.addEventListener("input", () => {
-    output.textContent = formatControlValue(input.value, digits);
-    onInput(Number(input.value));
+    const nextValue = readInputValue();
+    output.textContent = formatControlValue(nextValue, digits);
+    onInput(nextValue);
   });
-  row.append(span, input, output);
+  const zeroPosition = zeroIndicator ? getPhotonControlZeroPositionPercent(range) : null;
+  if (zeroPosition !== null) {
+    const rangeShell = createElement(documentLike, "span", "photon-range-shell");
+    rangeShell.style.setProperty("--photon-zero-position", `${zeroPosition}%`);
+    const zeroTick = createElement(documentLike, "span", "photon-zero-tick");
+    zeroTick.setAttribute("aria-hidden", "true");
+    rangeShell.append(input, zeroTick);
+    row.classList.add("has-zero-indicator");
+    row.append(span, rangeShell, output);
+  } else {
+    row.append(span, input, output);
+  }
   return { row, input, output, digits };
 }
 
@@ -105,7 +149,7 @@ export function createPhotonControlsRuntime({
   const timeSection = addSection(documentLike, container, "Runtime");
   const actionGrid = createElement(documentLike, "div", "photon-action-grid");
   const pauseButton = createButton(documentLike, "Pause");
-  const resetTimeButton = createButton(documentLike, "Reset");
+  const resetTimeButton = createButton(documentLike, "Reset time");
   const resetStateButton = createButton(documentLike, "Reset all");
   const pathsButton = createButton(documentLike, "Paths on", "photon-button is-active");
   actionGrid.append(pauseButton, resetTimeButton, resetStateButton, pathsButton);
@@ -150,14 +194,16 @@ export function createPhotonControlsRuntime({
   const measurementSection = addSection(documentLike, container, "Measurement");
   [
     ["x", "Test x", PHOTON_CONTROL_RANGES.testPointX, 2],
-    ["u", "Test u", PHOTON_CONTROL_RANGES.testPointU, 2],
-    ["v", "Test v", PHOTON_CONTROL_RANGES.testPointV, 2],
+    ["y", "Test y", PHOTON_CONTROL_RANGES.testPointY, 2],
+    ["z", "Test z", PHOTON_CONTROL_RANGES.testPointZ, 2],
   ].forEach(([key, label, range, digits]) => {
     const control = createRangeControl(documentLike, {
       label,
       value: state.measurement.testPoint[key],
       range,
       digits,
+      zeroIndicator: true,
+      snapToZero: true,
       onInput: (value) => {
         getState().measurement.testPoint[key] = value;
         onRangeStateChange();
@@ -281,7 +327,7 @@ export function createPhotonControlsRuntime({
     index += 1;
     syncRange(controls[index], nextState.time.speedMultiplier);
     index += 1;
-    ["x", "u", "v"].forEach((key) => {
+    ["x", "y", "z"].forEach((key) => {
       syncRange(controls[index], nextState.measurement.testPoint[key]);
       index += 1;
     });

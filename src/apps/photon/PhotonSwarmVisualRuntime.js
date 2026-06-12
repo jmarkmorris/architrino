@@ -154,6 +154,22 @@ function drawArchitrinoMarker(ctx, x, y, color, radius) {
   ctx.restore();
 }
 
+function getPhotonLayerRadii(state, { enabledOnly = false } = {}) {
+  return PHOTON_LAYER_ORDER.flatMap((layerId) =>
+    ["left", "right"].flatMap((swarmId) => {
+      if (enabledOnly && !getPhotonLayerEnabled(state, swarmId, layerId)) {
+        return [];
+      }
+      return [getPhotonLayer(state, swarmId, layerId).radius];
+    })
+  );
+}
+
+function getPhotonMaxLayerRadius(state, { enabledOnly = false } = {}) {
+  const radii = getPhotonLayerRadii(state, { enabledOnly }).filter((radius) => radius > 0);
+  return radii.length > 0 ? Math.max(...radii) : 0;
+}
+
 function drawSwarm(ctx, state, swarmId, centerX, centerY, scale, timeSeconds) {
   const role = state.pair[swarmId].role;
   const pathsVisible = state.view?.pathsVisible !== false;
@@ -198,10 +214,6 @@ function drawSwarm(ctx, state, swarmId, centerX, centerY, scale, timeSeconds) {
       PHOTON_CHARGE_COLORS.electrino,
       ARCHITRINO_MARKER_RADIUS
     );
-    ctx.fillStyle = meta.color;
-    ctx.font = "700 11px Helvetica Neue, Arial, sans-serif";
-    ctx.textAlign = "left";
-    ctx.fillText(layerId, centerX + radius + 6, centerY + 4);
   });
 
   ctx.strokeStyle = "rgba(245, 247, 255, 0.34)";
@@ -210,6 +222,87 @@ function drawSwarm(ctx, state, swarmId, centerX, centerY, scale, timeSeconds) {
   ctx.moveTo(centerX - scale * 1.85, centerY);
   ctx.lineTo(centerX + scale * 1.85, centerY);
   ctx.stroke();
+  ctx.restore();
+}
+
+function drawSideSwarmTrace(ctx, state, swarmId, x, centerY, halfHeight, scale, timeSeconds) {
+  if (halfHeight <= 1) {
+    return;
+  }
+  const top = centerY - halfHeight;
+  const bottom = centerY + halfHeight;
+  ctx.save();
+  ctx.lineCap = "round";
+  ctx.shadowBlur = 18;
+  ctx.shadowColor = "rgba(128, 0, 128, 0.68)";
+  ctx.strokeStyle = "rgba(128, 0, 128, 0.34)";
+  ctx.lineWidth = 10;
+  ctx.beginPath();
+  ctx.moveTo(x, top);
+  ctx.lineTo(x, bottom);
+  ctx.stroke();
+
+  ctx.shadowBlur = 14;
+  ctx.shadowColor = PHOTON_CHARGE_COLORS.positrino;
+  ctx.strokeStyle = "rgba(255, 0, 0, 0.42)";
+  ctx.lineWidth = 4;
+  ctx.beginPath();
+  ctx.moveTo(x - 2.2, top);
+  ctx.lineTo(x - 2.2, bottom);
+  ctx.stroke();
+
+  ctx.shadowColor = PHOTON_CHARGE_COLORS.electrino;
+  ctx.strokeStyle = "rgba(0, 0, 255, 0.46)";
+  ctx.beginPath();
+  ctx.moveTo(x + 2.2, top);
+  ctx.lineTo(x + 2.2, bottom);
+  ctx.stroke();
+
+  PHOTON_LAYER_ORDER.forEach((layerId, layerIndex) => {
+    if (!getPhotonLayerEnabled(state, swarmId, layerId)) {
+      return;
+    }
+    const layer = getPhotonLayer(state, swarmId, layerId);
+    const radius = layer.radius * scale;
+    ["positrino", "electrino"].forEach((chargeType) => {
+      const angle = getPhotonLayerAngleRadians(state, swarmId, layerId, timeSeconds, chargeType);
+      const markerX =
+        x +
+        (chargeType === "positrino" ? -3.4 : 3.4) +
+        (layerIndex - 1) * 0.9;
+      const markerY = centerY + Math.sin(angle) * radius;
+      drawArchitrinoMarker(
+        ctx,
+        markerX,
+        markerY,
+        PHOTON_CHARGE_COLORS[chargeType],
+        ARCHITRINO_MARKER_RADIUS * 0.82
+      );
+    });
+  });
+
+  ctx.shadowBlur = 0;
+  ctx.fillStyle = "rgba(226, 232, 240, 0.74)";
+  ctx.font = "600 10px Helvetica Neue, Arial, sans-serif";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "top";
+  ctx.fillText(state.pair[swarmId].role, x, bottom + 9);
+  ctx.restore();
+}
+
+function drawPhotonSideView(ctx, state, layout, timeSeconds) {
+  const { sideCenterX, sideLeftX, sideRightX, centerY, sideHalfHeight, scale } = layout;
+  if (sideHalfHeight <= 1) {
+    return;
+  }
+  ctx.save();
+  ctx.fillStyle = "rgba(238, 243, 255, 0.78)";
+  ctx.font = "700 12px Helvetica Neue, Arial, sans-serif";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "bottom";
+  ctx.fillText("side view", sideCenterX, centerY - sideHalfHeight - 18);
+  drawSideSwarmTrace(ctx, state, "left", sideLeftX, centerY, sideHalfHeight, scale, timeSeconds);
+  drawSideSwarmTrace(ctx, state, "right", sideRightX, centerY, sideHalfHeight, scale, timeSeconds);
   ctx.restore();
 }
 
@@ -274,6 +367,51 @@ function drawStageOrientationNote(ctx, cssWidth, cssHeight) {
   ctx.restore();
 }
 
+export function computePhotonStageLayout(state, cssWidth, cssHeight) {
+  const maxLayerRadius = Math.max(0.1, getPhotonMaxLayerRadius(state));
+  const enabledMaxLayerRadius = getPhotonMaxLayerRadius(state, { enabledOnly: true });
+  const scale = Math.min(cssHeight * 0.31, cssWidth * 0.15) / Math.max(0.1, maxLayerRadius);
+  const separationProgress = clampPhotonNumber(
+    state.pair.pairSeparation,
+    PHOTON_CONTROL_RANGES.pairSeparation.min,
+    PHOTON_CONTROL_RANGES.pairSeparation.max,
+    4
+  ) / PHOTON_CONTROL_RANGES.pairSeparation.max;
+  const centerY = cssHeight * 0.54;
+  const faceMaxRadiusPx = maxLayerRadius * scale;
+  const faceSpacing = Math.min(
+    cssWidth * 0.31,
+    Math.max(faceMaxRadiusPx * 2.35, scale * 2.6)
+  );
+  const facePairCenterX = Math.min(
+    cssWidth * 0.38,
+    Math.max(cssWidth * 0.32, faceMaxRadiusPx + faceSpacing / 2 + 24)
+  );
+  const faceLeftX = facePairCenterX - faceSpacing / 2;
+  const faceRightX = facePairCenterX + faceSpacing / 2;
+  const sideSeparationPx = cssWidth * (0.035 + separationProgress * 0.16);
+  const sideCenterBaseX = Math.max(faceRightX + faceMaxRadiusPx + 100, cssWidth * 0.79);
+  const sideCenterX = Math.min(cssWidth - sideSeparationPx / 2 - 42, sideCenterBaseX);
+  const sideLeftX = sideCenterX - sideSeparationPx / 2;
+  const sideRightX = sideCenterX + sideSeparationPx / 2;
+  const translationAxisStartX = Math.max(18, faceLeftX - faceMaxRadiusPx * 1.2);
+  const translationAxisEndX = Math.min(cssWidth - 28, sideRightX + 64);
+  const translationArrowBaseX = Math.max(translationAxisStartX + 10, translationAxisEndX - 18);
+  return {
+    scale,
+    centerY,
+    faceLeftX,
+    faceRightX,
+    sideCenterX,
+    sideLeftX,
+    sideRightX,
+    sideHalfHeight: enabledMaxLayerRadius * scale,
+    translationAxisStartX,
+    translationAxisEndX,
+    translationArrowBaseX,
+  };
+}
+
 export function drawPhotonSwarmStage(canvas, state, timeSeconds, options = {}) {
   const { windowLike = globalThis.window } = options;
   const ctx = canvas.getContext("2d");
@@ -287,24 +425,7 @@ export function drawPhotonSwarmStage(canvas, state, timeSeconds, options = {}) {
   gradient.addColorStop(1, "rgba(5, 8, 18, 0.98)");
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, cssWidth, cssHeight);
-
-  const maxLayerRadius = Math.max(
-    ...PHOTON_LAYER_ORDER.flatMap((layerId) => [
-      getPhotonLayer(state, "left", layerId).radius,
-      getPhotonLayer(state, "right", layerId).radius,
-    ])
-  );
-  const scale = Math.min(cssHeight * 0.31, cssWidth * 0.15) / Math.max(0.1, maxLayerRadius);
-  const separationProgress = clampPhotonNumber(
-    state.pair.pairSeparation,
-    PHOTON_CONTROL_RANGES.pairSeparation.min,
-    PHOTON_CONTROL_RANGES.pairSeparation.max,
-    4
-  ) / PHOTON_CONTROL_RANGES.pairSeparation.max;
-  const separationPx = cssWidth * (0.28 + separationProgress * 0.22);
-  const centerY = cssHeight * 0.54;
-  const leftX = cssWidth / 2 - separationPx / 2;
-  const rightX = cssWidth / 2 + separationPx / 2;
+  const layout = computePhotonStageLayout(state, cssWidth, cssHeight);
 
   ctx.save();
   ctx.strokeStyle = "rgba(251, 191, 36, 0.5)";
@@ -312,20 +433,26 @@ export function drawPhotonSwarmStage(canvas, state, timeSeconds, options = {}) {
   ctx.lineWidth = 1.2;
   ctx.setLineDash([8, 8]);
   ctx.beginPath();
-  ctx.moveTo(Math.max(18, leftX - scale * 2.35), centerY);
-  ctx.lineTo(Math.min(cssWidth - 28, rightX + scale * 2.35), centerY);
+  ctx.moveTo(layout.translationAxisStartX, layout.centerY);
+  ctx.lineTo(layout.translationAxisEndX, layout.centerY);
   ctx.stroke();
   ctx.setLineDash([]);
   ctx.beginPath();
-  ctx.moveTo(Math.min(cssWidth - 28, rightX + scale * 2.35), centerY);
-  ctx.lineTo(Math.min(cssWidth - 44, rightX + scale * 2.16), centerY - 6);
-  ctx.lineTo(Math.min(cssWidth - 44, rightX + scale * 2.16), centerY + 6);
+  ctx.moveTo(layout.translationAxisEndX, layout.centerY);
+  ctx.lineTo(layout.translationArrowBaseX, layout.centerY - 6);
+  ctx.lineTo(layout.translationArrowBaseX, layout.centerY + 6);
   ctx.closePath();
   ctx.fill();
+  ctx.fillStyle = "rgba(251, 191, 36, 0.92)";
+  ctx.font = "700 13px Helvetica Neue, Arial, sans-serif";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "bottom";
+  ctx.fillText("x", Math.min(cssWidth - 18, layout.translationAxisEndX + 10), layout.centerY - 8);
   ctx.restore();
 
-  drawSwarm(ctx, state, "left", leftX, centerY, scale, timeSeconds);
-  drawSwarm(ctx, state, "right", rightX, centerY, scale, timeSeconds);
+  drawSwarm(ctx, state, "left", layout.faceLeftX, layout.centerY, layout.scale, timeSeconds);
+  drawSwarm(ctx, state, "right", layout.faceRightX, layout.centerY, layout.scale, timeSeconds);
+  drawPhotonSideView(ctx, state, layout, timeSeconds);
   drawStageOrientationNote(ctx, cssWidth, cssHeight);
 }
 
@@ -472,8 +599,8 @@ export function drawPhotonElectricFieldPlot(canvas, state, timeSeconds, options 
   drawPhotonComponentPlot(canvas, state, timeSeconds, {
     ...options,
     components: [
-      { key: "eu", label: "E_u", color: "#7dd3fc" },
-      { key: "ev", label: "E_v", color: "#f472b6" },
+      { key: "ey", label: "E_y", color: "#7dd3fc" },
+      { key: "ez", label: "E_z", color: "#f472b6" },
     ],
   });
 }
@@ -482,8 +609,8 @@ export function drawPhotonComparisonBFieldPlot(canvas, state, timeSeconds, optio
   drawPhotonComponentPlot(canvas, state, timeSeconds, {
     ...options,
     components: [
-      { key: "bu", label: "B_u", color: "#86efac" },
-      { key: "bv", label: "B_v", color: "#fbbf24" },
+      { key: "by", label: "B_y", color: "#86efac" },
+      { key: "bz", label: "B_z", color: "#fbbf24" },
     ],
   });
 }

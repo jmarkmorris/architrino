@@ -1045,7 +1045,7 @@ function makeArchitrinoMaterial(Three, color) {
 function queryRequiredElement(documentLike, selector) {
   const element = documentLike.querySelector(selector);
   if (!element) {
-    throw new Error(`Missing ideal-swarm prototype element: ${selector}`);
+    throw new Error(`Missing ideal-swarm element: ${selector}`);
   }
   return element;
 }
@@ -1118,7 +1118,7 @@ function createIdealSwarmMarkdownRuntime({
   return markdownRuntime;
 }
 
-export function mountIdealSwarmPrototype(options = {}) {
+export function mountIdealSwarm(options = {}) {
   const documentLike = options.documentLike ?? globalThis.document;
   const windowLike = options.windowLike ?? globalThis.window;
   const Three = options.THREE ?? THREE;

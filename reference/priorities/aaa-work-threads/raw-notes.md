@@ -1,4 +1,4 @@
-# Ideal Swarm Raw Notes
+# Work-Thread Raw Notes: Ideal Swarm Source Fragments
 
 This source packet preserves scratch notes and open questions that fed the Ideal Swarm / Lorentz-spheroid app work. It is parked material, not an active priority queue. Promote only concrete equations, simulation targets, theorem obligations, or app tasks into the relevant corpus document, app runtime, or another priority workstream.
 

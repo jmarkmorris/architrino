@@ -22,6 +22,7 @@ The first version uses this candidate picture:
 - The left swarm is the trailing swarm and rotates counter-clockwise.
 - The right swarm is the leading swarm and rotates clockwise.
 - The 2D view of each swarm does not rotate as a group; only the binaries and layer phases animate.
+- The stage should also include an edge-on side view along the line of translation, where the pair separation control changes the distance between the two side-view swarm traces rather than changing the distance between the face-on circular swarm views.
 
 Use the canonical photon priority language where possible: the visual pair should be described as a candidate planar pair, and any pro/anti or leading/trailing role should be declared in the app state rather than inferred only from screen position.
 
@@ -120,7 +121,7 @@ The default state should be reproducible as JSON. The initial values are:
     "analyzerAngleDeg": 0
   },
   "measurement": {
-    "testPoint": { "x": 6, "u": 0, "v": 0 },
+    "testPoint": { "x": 6, "y": 0, "z": 0 },
     "emissionSpeedCf": 1,
     "nearFieldWeight": 0.12,
     "fieldGain": 0.04
@@ -136,7 +137,7 @@ The first screen should be the working diagnostic, not a landing page.
 
 Required layout regions:
 
-1. Top diagnostic region: two side-by-side flat Noether swarm views.
+1. Top diagnostic region: two face-on flat Noether swarm views plus an edge-on side view of the same pair.
 2. Lower observer-field region: external $\mathbf E$ and comparison $\mathbf B$ field readouts observed from the current candidate state.
 3. Control region: compact controls for time, pair state, per-swarm I/M/O parameters, polarization, formulas, and presets.
 4. Markdown document access: compact `MD` buttons for the photon guide, project packet, and requirements packet, using the same in-app Markdown viewer pattern as the Ideal Swarm app.
@@ -148,7 +149,7 @@ The swarm views should remain 2D. The app should not use a 3D renderer unless th
 Desktop layout should be optimized first. The preferred v1 desktop layout is:
 
 - a full-viewport app surface;
-- a two-swarm stage occupying the main upper-left region;
+- a two-swarm face-on stage occupying the main upper-left region, with an edge-on side view in the same stage;
 - stacked three-cycle $\mathbf E$ and comparison $\mathbf B$ plots directly below the two-swarm stage;
 - a right-side inspector panel, approximately `360px` to `420px` wide, for controls, presets, diagnostics, and formulas;
 - clickable Markdown guide controls inside the inspector;
@@ -171,11 +172,13 @@ Each flat Noether swarm view should show:
 
 The two swarm views should make contra-rotation obvious without needing explanatory prose. Direction indicators, phase ticks, or short motion trails are acceptable if they do not make the display visually noisy.
 
+The stage should also provide an edge-on side view of the photon candidate. In that view, each planar swarm should appear as a vertical trace whose length equals the diameter of the largest enabled binary. The trace should carry red and blue glow, and active architrino markers may move up and down along the trace to show the projected side-view orbit. The pair separation control should change the distance between the two side-view traces along the $x$ axis, while the face-on circular orbit views keep a fixed visual spacing for readability.
+
 The visual state should be driven by one shared app clock so pause/play, reset, phase offsets, and observed field summaries remain synchronized.
 
 ## Ideal Swarm Visual Reuse Requirement
 
-The architrino visualization and trails in the photon app should match the Ideal Swarm app. The implementation reference is [IdealSwarmPrototypeRuntime](../../../src/apps/ideal-swarm/IdealSwarmPrototypeRuntime.js) and its path-potential profile helper [IdealSwarmPathPotentialProfile](../../../src/apps/ideal-swarm/IdealSwarmPathPotentialProfile.js).
+The architrino visualization and trails in the photon app should match the Ideal Swarm app. The implementation reference is [IdealSwarmRuntime](../../../src/apps/ideal-swarm/IdealSwarmRuntime.js) and its path-potential profile helper [IdealSwarmPathPotentialProfile](../../../src/apps/ideal-swarm/IdealSwarmPathPotentialProfile.js).
 
 The photon app should reuse this visual grammar:
 
@@ -201,13 +204,13 @@ Global controls:
 - reset parameters button;
 - simulation time readout;
 - speed mode with v1 fixed to $c_f$ and a future slot for local $c$;
-- and pair separation along the line of translation.
+- and pair separation along the line of translation, shown by the edge-on side-view trace spacing rather than by moving the face-on circular orbit views.
 
 Measurement controls:
 
 - test-point $x$ coordinate along the line of translation;
-- test-point $u$ coordinate on the first transverse axis;
-- test-point $v$ coordinate on the second transverse axis;
+- test-point $y$ coordinate on the first transverse axis;
+- test-point $z$ coordinate on the second transverse axis;
 - field gain for keeping the analytic delayed-emission curve readable;
 - and near-field mix for comparing a pure acceleration/radiation-style signal against a signal with a controlled signed near-field contribution.
 
@@ -247,10 +250,12 @@ The first prototype should expose these controls visibly in the UI panel:
 | intensity | `1.00` | `0.00` to `2.00` | `0.01` |
 | analyzer angle | `0 deg` | `0` to `180 deg` | `1 deg` |
 | test point $x$ | `6.00` | `-10.00` to `10.00` | `0.05` |
-| test point $u$ | `0.00` | `-4.00` to `4.00` | `0.05` |
-| test point $v$ | `0.00` | `-4.00` to `4.00` | `0.05` |
+| test point $y$ | `0.00` | `-4.00` to `4.00` | `0.05` |
+| test point $z$ | `0.00` | `-4.00` to `4.00` | `0.05` |
 | near-field mix | `0.12` | `0.00` to `1.00` | `0.01` |
 | field gain | `0.04` | `0.01` to `1.00` | `0.01` |
+
+The test point $x$, $y$, and $z$ sliders should show a visible zero marker. Values within two slider steps of zero should snap to exactly `0`.
 
 Each swarm should have its own I/M/O frequency, radius, and phase controls. The direction controls are visible but locked in v1: left trailing is counter-clockwise and right leading is clockwise.
 
@@ -299,14 +304,14 @@ The $\mathbf E$ / comparison $\mathbf B$ panel should support both vector and wa
 
 The first prototype should base the lower E-B plot on analytic delayed-emission calculations from the architrinos in the two swarms. This mapping is diagnostic-only and should not be treated as a photon-substrate derivation.
 
-Let the propagation axis be $+\hat{\mathbf x}$, and let the transverse axes be $\hat{\mathbf u}$ and $\hat{\mathbf v}$. The measurement point is
+Let the propagation axis be $+\hat{\mathbf x}$, and let the transverse axes be $\hat{\mathbf y}$ and $\hat{\mathbf z}$. The measurement point is
 
 $$
 \mathbf X_{\mathrm{test}}
 =
 x_{\mathrm{test}}\hat{\mathbf x}
-+u_{\mathrm{test}}\hat{\mathbf u}
-+v_{\mathrm{test}}\hat{\mathbf v}.
++y_{\mathrm{test}}\hat{\mathbf y}
++z_{\mathrm{test}}\hat{\mathbf z}.
 $$
 
 For swarm $s$, layer $\ell$, and architrino charge $q\in\{+1,-1\}$, use the analytic source position
@@ -315,8 +320,8 @@ $$
 \mathbf r_{s\ell q}(\tau)
 =
 x_s\hat{\mathbf x}
-+R_{s\ell}\cos\theta_{s\ell q}(\tau)\hat{\mathbf u}
-+R_{s\ell}\sin\theta_{s\ell q}(\tau)\hat{\mathbf v},
++R_{s\ell}\cos\theta_{s\ell q}(\tau)\hat{\mathbf y}
++R_{s\ell}\sin\theta_{s\ell q}(\tau)\hat{\mathbf z},
 $$
 
 $$
@@ -370,16 +375,16 @@ $$
 \sum_i\frac{1}{c_f}\mathbf n_i\times\mathbf E_i(t).
 $$
 
-The lower field panel should draw two separate same-width plots with the same grid, cursor, and middle-cycle guide format. The $\mathbf E$ plot appears above the comparison $\mathbf B$ plot. The $\mathbf E$ plot should draw three full cycles of $E_u$ and $E_v$ from left to right. The comparison $\mathbf B$ plot should draw three full cycles of the displayed comparison $\mathbf B_{\mathrm{cmp}}$ components from left to right. The middle cycle should be bounded by the two vertical guide lines in both plots. Both plots should update immediately when frequency, radius, phase, pair separation, test-point coordinates, field gain, near-field mix, polarization analyzer angle, or reset state changes.
+The lower field panel should draw two separate same-width plots with the same grid, cursor, and middle-cycle guide format. The $\mathbf E$ plot appears above the comparison $\mathbf B$ plot. The $\mathbf E$ plot should draw three full cycles of $E_y$ and $E_z$ from left to right. The comparison $\mathbf B$ plot should draw three full cycles of the displayed comparison $\mathbf B_{\mathrm{cmp}}$ components from left to right. The middle cycle should be bounded by the two vertical guide lines in both plots. Both plots should update immediately when frequency, radius, phase, pair separation, test-point coordinates, field gain, near-field mix, polarization analyzer angle, or reset state changes.
 
 The analyzer projection should use
 
 $$
 \hat{\mathbf a}
 =
-\cos\theta\,\hat{\mathbf u}
+\cos\theta\,\hat{\mathbf y}
 +
-\sin\theta\,\hat{\mathbf v},
+\sin\theta\,\hat{\mathbf z},
 $$
 
 and the displayed pass measure should be
@@ -406,7 +411,7 @@ It should also reserve space for polarization formulas that help connect the app
 $$
 \mathbf a_{\perp}
 =
-a_u\hat{\mathbf u}+a_v\hat{\mathbf v},
+a_y\hat{\mathbf y}+a_z\hat{\mathbf z},
 \qquad
 \mu_{\mathrm{pass}}
 =
@@ -421,8 +426,8 @@ $$
 =
 \frac{1}{\sqrt{2}}
 \left(
-\hat{\mathbf u}
-+i\lambda\hat{\mathbf v}
+\hat{\mathbf y}
++i\lambda\hat{\mathbf z}
 \right),
 \qquad
 \lambda\in\{+1,-1\}.
@@ -431,15 +436,15 @@ $$
 For Stokes-style observer summaries:
 
 $$
-S_0=|E_u|^2+|E_v|^2,
+S_0=|E_y|^2+|E_z|^2,
 \qquad
-S_1=|E_u|^2-|E_v|^2,
+S_1=|E_y|^2-|E_z|^2,
 $$
 
 $$
-S_2=2\operatorname{Re}(E_u\overline{E_v}),
+S_2=2\operatorname{Re}(E_y\overline{E_z}),
 \qquad
-S_3=2\operatorname{Im}(E_u\overline{E_v}).
+S_3=2\operatorname{Im}(E_y\overline{E_z}).
 $$
 
 The formula panel should show live numeric substitution from the current app state when possible.
@@ -546,7 +551,7 @@ The first implementation is acceptable when:
 - six binary enabled checkboxes default checked, remove unchecked binaries from the display, and remove their delayed-emission contributions from both field plots;
 - default I/M/O phases are `0`, `120`, and `240` degrees on both swarms;
 - default I/M/O radii follow the `5:7:9` Ideal Swarm ratio;
-- pair separation changes visibly along the line of translation;
+- pair separation changes visibly between the two edge-on side-view traces without changing the face-on circular orbit spacing;
 - pause/play, Space bar playback shortcut, and reset controls work;
 - the lower $\mathbf E$ / comparison $\mathbf B$ panel draws separate stacked delayed-emission field plots at the configured test point left to right over three full cycles;
 - vertical guide lines bracket the middle cycle in both field plots;

@@ -175,7 +175,7 @@ At the substrate level, structure is carried by **dynamical geometry**. Every ar
 
 However, because the potential density on each causal wake surface falls off as $1/r^2$, nearby coherent roots are weighted more strongly than distant roots. This supports effective locality only after the branch also supplies convergence control for the far population. In three spatial dimensions, a homogeneous radial layer contains $O(r^2\,dr)$ possible sources, so inverse-square dilution by itself is not enough to define the infinite many-source sum.
 
-A mathematically admissible many-source branch must make a limit such as
+A mathematically admissible many-source branch must satisfy the [Receiver-Centered Exhaustion Lemma](absolute-timespace.md#receiver-centered-exhaustion-lemma): it must make a limit such as
 $$
 \lim_{R\to\infty}
 \sum_{\substack{j,\ s\in\mathcal{C}_{ij}(t)\\

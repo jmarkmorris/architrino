@@ -234,6 +234,19 @@ $$
 
 Here $\mathcal{H}_A$ denotes the closed internal path-history and causal-root ledger of the assembly, $\mathcal{S}_A$ its shielding state, $\left.\mathcal{N}_{\mathrm{sea}}\right|_A$ the local Noether sea state sampled by the assembly, and $R_A\in SO(3)$ its orientation relative to the Euclidean-void rest frame. The ordinary scalar mass relation is recovered only in an isotropic observer branch where $\mathcal{M}^{\mathrm{resp}}_{ij}\to m\,\delta_{ij}$ over the probed directions.
 
+The isotropic limit is not merely a simplifying convention. Hughes-Drever-type clock-comparison tests constrain orientation-dependent matter-sector response, so the residual attached to $\mathcal{M}^{\mathrm{resp}}_{ij}$ must be declared alongside clock and photon anisotropy bounds. A representative matter-anisotropy row should track a projected residual such as
+$$
+\epsilon_M^{\mathrm{HD}}
+=
+\sup_{\hat{\mathbf{n}}}
+\left|
+\frac{\hat n^i
+\left(\mathcal{M}^{\mathrm{resp}}_{ij}-m\delta_{ij}\right)
+\hat n^j}{m}
+\right|
+$$
+after mapping the assembly response onto the tested matter-sector coefficients. The benchmark is not a single universal number: SME translations are species- and coefficient-dependent, with Hughes-Drever and clock-comparison rows reaching roughly the $10^{-27}$-class matter-anisotropy scale or stronger in several spin-coupling channels. Passing the scalar-mass limit therefore means driving the projected matter response below the declared Hughes-Drever/clock-comparison row, not only asserting isotropy in prose.
+
 ## Galilean Kinematic Structure
 
 The product background admits the usual Galilean kinematic transformations that preserve the absolute foliation and the spatial metric on each slice.
@@ -379,7 +392,34 @@ In observer-level wave language, causality is often diagnosed by front velocity 
 
 For standard-matter assemblies, the observer-level relativistic speed limit is a closure result of assembly structure and channel dressing, usually expressed with the declared local comparison speed $c_\star$ and with $c_0$ in the weak homogeneous observer branch. This statement is effective, not ontological: it constrains the recovered observer branch rather than the admissible velocities of individual architrinos.
 
-At the primitive branch level, as constituent architrino speeds approach the wake-speed threshold $c_f$, the constituents increasingly outrun the potential interactions that normally maintain internal closure. The leading side of the assembly encounters a strongly asymmetric wake ledger while trailing structure remains tied to older path-history contributions. The result is severe mechanical deformation rather than a substrate-level prohibition. The observer "speed of light" limit for macroscopic assemblies is therefore a structural integrity barrier in the recovered observer branch: an assembly-level failure mode under extreme asymmetric delayed-root closure, not a curvature boundary or geometric wall in absolute timespace.
+At the primitive branch level, as constituent architrino speeds approach the wake-speed threshold $c_f$, the constituents increasingly outrun the potential interactions that normally maintain internal closure. The leading side of the assembly encounters a strongly asymmetric wake ledger while trailing structure remains tied to older path-history contributions. The result is severe mechanical deformation rather than a substrate-level prohibition.
+
+This structural-integrity claim is the central Lorentz-closure theorem target for this chapter. It must prove more than the qualitative statement that assemblies fail mechanically near $c_f$. A successful recovered observer branch must show that the matter-assembly limiting speed, photon-channel speed, and weak-homogeneous calibration speed collapse to one common limit:
+$$
+c_{\mathrm{mat}}^{\mathrm{lim}}
+=
+c_\gamma
+=
+c_0
+\left[1+O(\epsilon_{\mathrm{LV}})\right]
+$$
+It must also show that approach to this limit yields Lorentzian kinematics rather than an arbitrary deformation law:
+$$
+\frac{R_{\parallel}}{R_{\perp}}
+=
+\frac{1}{\gamma_0(v)}
++O(\epsilon_{\mathrm{LV}}),
+\qquad
+\frac{d\tau}{dt}
+=
+\frac{1}{\gamma_0(v)}
++O(\epsilon_{\mathrm{LV}}),
+\qquad
+\gamma_0(v)
+=
+\left(1-\frac{v^2}{c_0^2}\right)^{-1/2}
+$$
+The proof burden is to derive these relations from the same causal-root ledger, Noether sea dressing, and assembly deformation law that produce clocks, rulers, and photon transport. The theorem target fails if stable matter classes acquire composition-dependent limiting speeds, if $c_\gamma$ remains independently dressed from matter transport in the weak homogeneous branch, or if the leading deformation is non-Lorentzian after the $c_0$ calibration is fixed. The observer "speed of light" limit for macroscopic assemblies is therefore a structural integrity barrier only after this common-limit and Lorentz-shape closure is satisfied.
 
 ## Coordinates and Forbidden Transformations
 
@@ -450,14 +490,19 @@ For well-posed dynamics on absolute timespace:
 - Source configurations are locally finite or represented by integrable measures.
 - Regularized wake surfaces should preserve total polarity and converge to the intended causal-wake limit as the regulator is removed.
 - Solutions should decay suitably at spatial infinity unless an incoming condition is explicitly imposed.
-- Infinite source families must supply a declared summation or continuum prescription under which the many-source wake sum converges. A receiver-centered exhaustion condition has the form
-  $$
-  \lim_{R\to\infty}
-  \sum_{\substack{j,\ s\in\mathcal{C}_{ij}(t)\\
-  \|\mathbf{x}_j(s)-\mathbf{x}_i(t)\|<R}}
-  \mathbf{a}_{ij}(t;s)
-  $$
-  with any neutrality, screening, principal-value, or mean-field subtraction rule stated before the limit is used. Inverse-square surface dilution alone is not enough in three spatial dimensions because the number of sources in a radial layer grows like $r^2\,dr$.
+
+### Receiver-Centered Exhaustion Lemma
+
+Infinite source families must supply a declared summation or continuum prescription under which the many-source wake sum converges. For each receiver event $(i,t)$, choose an increasing receiver-centered exhaustion of retained source events and take the limit in that order. In the simplest radial form the condition is
+$$
+\lim_{R\to\infty}
+\sum_{\substack{j,\ s\in\mathcal{C}_{ij}(t)\\
+\|\mathbf{x}_j(s)-\mathbf{x}_i(t)\|<R}}
+\mathbf{a}_{ij}(t;s)
+$$
+with any neutrality, screening, principal-value, or mean-field subtraction rule stated before the limit is used.
+
+This is an admissibility lemma for branches and continuum reductions: the branch is well-defined only when the receiver-centered limit exists under the declared subtraction or screening rule, and allowed refinements of the exhaustion do not change the resulting local acceleration. Inverse-square surface dilution alone is not enough in three spatial dimensions because the number of sources in a radial layer grows like $r^2\,dr$. The lemma supplies the convergence condition used by emergence arguments to justify effective locality and metastable assembly behavior.
 
 These assumptions are not additional ontology. They are the analytic conditions needed for the master equation and simulation approximations to be well-defined on the product background.
 

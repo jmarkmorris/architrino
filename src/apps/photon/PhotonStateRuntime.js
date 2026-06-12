@@ -24,8 +24,8 @@ export const PHOTON_CONTROL_RANGES = Object.freeze({
   intensity: { min: 0, max: 2, step: 0.01 },
   analyzerAngleDeg: { min: 0, max: 180, step: 1 },
   testPointX: { min: -10, max: 10, step: 0.05 },
-  testPointU: { min: -4, max: 4, step: 0.05 },
-  testPointV: { min: -4, max: 4, step: 0.05 },
+  testPointY: { min: -4, max: 4, step: 0.05 },
+  testPointZ: { min: -4, max: 4, step: 0.05 },
   nearFieldWeight: { min: 0, max: 1, step: 0.01 },
   fieldGain: { min: 0.01, max: 1, step: 0.01 },
 });
@@ -75,8 +75,8 @@ export const DEFAULT_PHOTON_STATE = Object.freeze({
   measurement: {
     testPoint: {
       x: 6,
-      u: 0,
-      v: 0,
+      y: 0,
+      z: 0,
     },
     emissionSpeedCf: 1,
     nearFieldWeight: 0.12,
@@ -220,17 +220,17 @@ export function normalizePhotonState(input = DEFAULT_PHOTON_STATE) {
           PHOTON_CONTROL_RANGES.testPointX.max,
           fallback.measurement.testPoint.x
         ),
-        u: clampPhotonNumber(
-          state.measurement?.testPoint?.u,
-          PHOTON_CONTROL_RANGES.testPointU.min,
-          PHOTON_CONTROL_RANGES.testPointU.max,
-          fallback.measurement.testPoint.u
+        y: clampPhotonNumber(
+          state.measurement?.testPoint?.y,
+          PHOTON_CONTROL_RANGES.testPointY.min,
+          PHOTON_CONTROL_RANGES.testPointY.max,
+          fallback.measurement.testPoint.y
         ),
-        v: clampPhotonNumber(
-          state.measurement?.testPoint?.v,
-          PHOTON_CONTROL_RANGES.testPointV.min,
-          PHOTON_CONTROL_RANGES.testPointV.max,
-          fallback.measurement.testPoint.v
+        z: clampPhotonNumber(
+          state.measurement?.testPoint?.z,
+          PHOTON_CONTROL_RANGES.testPointZ.min,
+          PHOTON_CONTROL_RANGES.testPointZ.max,
+          fallback.measurement.testPoint.z
         ),
       },
       emissionSpeedCf: 1,

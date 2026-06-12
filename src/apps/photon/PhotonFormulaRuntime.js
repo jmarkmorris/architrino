@@ -59,8 +59,8 @@ export function resolvePhotonMeasurementParameters(state) {
   return {
     testPoint: {
       x: Number(state?.measurement?.testPoint?.x ?? 6) || 0,
-      u: Number(state?.measurement?.testPoint?.u ?? 0) || 0,
-      v: Number(state?.measurement?.testPoint?.v ?? 0) || 0,
+      y: Number(state?.measurement?.testPoint?.y ?? 0) || 0,
+      z: Number(state?.measurement?.testPoint?.z ?? 0) || 0,
     },
     emissionSpeedCf: 1,
     nearFieldWeight: Math.max(0, Math.min(1, Number(state?.measurement?.nearFieldWeight ?? 0.12) || 0)),
@@ -76,29 +76,29 @@ function getPhotonSwarmCenterX(state, swarmId) {
 function subtractVector(a, b) {
   return {
     x: a.x - b.x,
-    u: a.u - b.u,
-    v: a.v - b.v,
+    y: a.y - b.y,
+    z: a.z - b.z,
   };
 }
 
 function addVector(a, b) {
   return {
     x: a.x + b.x,
-    u: a.u + b.u,
-    v: a.v + b.v,
+    y: a.y + b.y,
+    z: a.z + b.z,
   };
 }
 
 function scaleVector(vector, scale) {
   return {
     x: vector.x * scale,
-    u: vector.u * scale,
-    v: vector.v * scale,
+    y: vector.y * scale,
+    z: vector.z * scale,
   };
 }
 
 function dotVector(a, b) {
-  return a.x * b.x + a.u * b.u + a.v * b.v;
+  return a.x * b.x + a.y * b.y + a.z * b.z;
 }
 
 function vectorMagnitude(vector) {
@@ -107,9 +107,9 @@ function vectorMagnitude(vector) {
 
 function crossVector(a, b) {
   return {
-    x: a.u * b.v - a.v * b.u,
-    u: a.v * b.x - a.x * b.v,
-    v: a.x * b.u - a.u * b.x,
+    x: a.y * b.z - a.z * b.y,
+    y: a.z * b.x - a.x * b.z,
+    z: a.x * b.y - a.y * b.x,
   };
 }
 
@@ -140,18 +140,18 @@ export function getPhotonArchitrinoKinematics(state, swarmId, layerId, chargeTyp
     radius,
     position: {
       x: centerX,
-      u: radius * cos,
-      v: radius * sin,
+      y: radius * cos,
+      z: radius * sin,
     },
     velocity: {
       x: 0,
-      u: -radius * angularVelocity * sin,
-      v: radius * angularVelocity * cos,
+      y: -radius * angularVelocity * sin,
+      z: radius * angularVelocity * cos,
     },
     acceleration: {
       x: 0,
-      u: -radius * angularVelocity * angularVelocity * cos,
-      v: -radius * angularVelocity * angularVelocity * sin,
+      y: -radius * angularVelocity * angularVelocity * cos,
+      z: -radius * angularVelocity * angularVelocity * sin,
     },
   };
 }
@@ -237,11 +237,11 @@ export function computePhotonDelayedEmissionField(state, observationTime) {
   );
   const electric = contributions.reduce(
     (sum, contribution) => addVector(sum, contribution.electric),
-    { x: 0, u: 0, v: 0 }
+    { x: 0, y: 0, z: 0 }
   );
   const comparisonB = contributions.reduce(
     (sum, contribution) => addVector(sum, contribution.comparisonB),
-    { x: 0, u: 0, v: 0 }
+    { x: 0, y: 0, z: 0 }
   );
   const delaySum = contributions.reduce((sum, contribution) => sum + contribution.delay, 0);
   const distanceMin = contributions.reduce(
@@ -266,15 +266,15 @@ export function computePhotonObserverField(state, timeSeconds) {
   const phase = TWO_PI * referenceFrequency * timeSeconds;
   const polarization = resolvePhotonPolarizationParameters(state);
   const delayedField = computePhotonDelayedEmissionField(state, timeSeconds);
-  const eu = delayedField.electric.u;
-  const ev = delayedField.electric.v;
-  const bu = delayedField.comparisonB.u;
-  const bv = delayedField.comparisonB.v;
+  const ey = delayedField.electric.y;
+  const ez = delayedField.electric.z;
+  const by = delayedField.comparisonB.y;
+  const bz = delayedField.comparisonB.z;
   const analyzerAngle = degreesToPhotonRadians(state?.polarization?.analyzerAngleDeg ?? 0);
-  const analyzerU = Math.cos(analyzerAngle);
-  const analyzerV = Math.sin(analyzerAngle);
-  const projection = eu * analyzerU + ev * analyzerV;
-  const fieldNormSquared = eu * eu + ev * ev;
+  const analyzerY = Math.cos(analyzerAngle);
+  const analyzerZ = Math.sin(analyzerAngle);
+  const projection = ey * analyzerY + ez * analyzerZ;
+  const fieldNormSquared = ey * ey + ez * ez;
   const passMeasure = projection * projection / (fieldNormSquared + EPSILON);
   return {
     timeSeconds,
@@ -287,12 +287,12 @@ export function computePhotonObserverField(state, timeSeconds) {
     averageDelay: delayedField.averageDelay,
     nearestSourceDistance: delayedField.nearestSourceDistance,
     contributions: delayedField.contributions,
-    electric: { u: eu, v: ev, magnitude: Math.sqrt(fieldNormSquared) },
-    comparisonB: { u: bu, v: bv, magnitude: Math.sqrt(bu * bu + bv * bv) },
+    electric: { y: ey, z: ez, magnitude: Math.sqrt(fieldNormSquared) },
+    comparisonB: { y: by, z: bz, magnitude: Math.sqrt(by * by + bz * bz) },
     analyzer: {
       angle: analyzerAngle,
-      u: analyzerU,
-      v: analyzerV,
+      y: analyzerY,
+      z: analyzerZ,
       projection,
       passMeasure,
     },
@@ -302,33 +302,33 @@ export function computePhotonObserverField(state, timeSeconds) {
 export function computePhotonStokes(state) {
   const polarization = resolvePhotonPolarizationParameters(state);
   const amplitude = Math.sqrt(polarization.intensity);
-  const euAmplitude = amplitude * Math.cos(polarization.alpha);
-  const evAmplitude = amplitude * Math.sin(polarization.alpha);
-  const s0 = euAmplitude * euAmplitude + evAmplitude * evAmplitude;
-  const s1 = euAmplitude * euAmplitude - evAmplitude * evAmplitude;
-  const s2 = 2 * euAmplitude * evAmplitude * Math.cos(polarization.phaseLag);
-  const s3 = -2 * euAmplitude * evAmplitude * Math.sin(polarization.phaseLag);
+  const eyAmplitude = amplitude * Math.cos(polarization.alpha);
+  const ezAmplitude = amplitude * Math.sin(polarization.alpha);
+  const s0 = eyAmplitude * eyAmplitude + ezAmplitude * ezAmplitude;
+  const s1 = eyAmplitude * eyAmplitude - ezAmplitude * ezAmplitude;
+  const s2 = 2 * eyAmplitude * ezAmplitude * Math.cos(polarization.phaseLag);
+  const s3 = -2 * eyAmplitude * ezAmplitude * Math.sin(polarization.phaseLag);
   return { s0, s1, s2, s3 };
 }
 
 export function computePhotonPolarizationAnalyzerPassTarget(state) {
   const polarization = resolvePhotonPolarizationParameters(state);
   const amplitude = Math.sqrt(polarization.intensity);
-  const euAmplitude = amplitude * Math.cos(polarization.alpha);
-  const evAmplitude = amplitude * Math.sin(polarization.alpha);
+  const eyAmplitude = amplitude * Math.cos(polarization.alpha);
+  const ezAmplitude = amplitude * Math.sin(polarization.alpha);
   const analyzerAngle = degreesToPhotonRadians(state?.polarization?.analyzerAngleDeg ?? 0);
-  const analyzerU = Math.cos(analyzerAngle);
-  const analyzerV = Math.sin(analyzerAngle);
+  const analyzerY = Math.cos(analyzerAngle);
+  const analyzerZ = Math.sin(analyzerAngle);
   const numerator =
-    analyzerU * analyzerU * euAmplitude * euAmplitude +
-    analyzerV * analyzerV * evAmplitude * evAmplitude +
+    analyzerY * analyzerY * eyAmplitude * eyAmplitude +
+    analyzerZ * analyzerZ * ezAmplitude * ezAmplitude +
     2 *
-      analyzerU *
-      analyzerV *
-      euAmplitude *
-      evAmplitude *
+      analyzerY *
+      analyzerZ *
+      eyAmplitude *
+      ezAmplitude *
       Math.cos(polarization.phaseLag);
-  const denominator = euAmplitude * euAmplitude + evAmplitude * evAmplitude + EPSILON;
+  const denominator = eyAmplitude * eyAmplitude + ezAmplitude * ezAmplitude + EPSILON;
   return numerator / denominator;
 }
 
@@ -381,19 +381,19 @@ export function buildPhotonPlotSamples(state, timeSeconds, sampleCount = 360) {
     const field = computePhotonObserverField(state, t);
     amplitudeScale = Math.max(
       amplitudeScale,
-      Math.abs(field.electric.u),
-      Math.abs(field.electric.v),
-      Math.abs(field.comparisonB.u),
-      Math.abs(field.comparisonB.v)
+      Math.abs(field.electric.y),
+      Math.abs(field.electric.z),
+      Math.abs(field.comparisonB.y),
+      Math.abs(field.comparisonB.z)
     );
     samples.push({
       t,
       progress: runDuration > 0 ? t / runDuration : 0,
       active: t <= currentTime,
-      eu: field.electric.u,
-      ev: field.electric.v,
-      bu: field.comparisonB.u,
-      bv: field.comparisonB.v,
+      ey: field.electric.y,
+      ez: field.electric.z,
+      by: field.comparisonB.y,
+      bz: field.comparisonB.z,
       passMeasure: field.analyzer.passMeasure,
     });
   }

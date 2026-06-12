@@ -8,7 +8,9 @@ The left swarm is the trailing swarm and rotates counter-clockwise. The right sw
 
 ## Main View
 
-The upper stage shows the two swarms side by side. Each active I/M/O binary contributes one red positrino marker and one blue electrino marker. The markers, orbit paths, and path-history trails follow the Ideal Swarm visual grammar.
+The upper stage shows the two face-on swarms on the left and an edge-on side view on the right. Each active I/M/O binary contributes one red positrino marker and one blue electrino marker. The face-on markers, orbit paths, and path-history trails follow the Ideal Swarm visual grammar.
+
+The side view shows the same pair along the line of translation. Each planar swarm appears as a vertical glowing trace with the same height as the diameter of the largest enabled binary. The red and blue side-view markers move up and down along those traces, as they would when the orbit is viewed from the side.
 
 The lower stage contains two stacked plots:
 
@@ -21,7 +23,7 @@ Both plots cover three full middle-layer cycles. The vertical guide lines mark t
 
 Use the pause/play button to stop or resume the animation. The Space bar also toggles pause and play when focus is not inside a control.
 
-Use Reset to restart time at the beginning of the three-cycle plot. Use Reset all to restore the default photon candidate state.
+Use Reset time to restart time at the beginning of the three-cycle plot. Use Reset all to restore the default photon candidate state.
 
 Use Paths on/off to show or hide orbit paths and path-history trails.
 
@@ -29,7 +31,7 @@ Each of the six binaries has an enabled checkbox. When a binary is unchecked, it
 
 ## Geometry Controls
 
-The pair separation control changes the distance between the trailing and leading swarm centers along the line of translation.
+The pair separation control changes the distance between the two vertical traces in the side view. It does not change the spacing between the two face-on circular swarm views.
 
 Each swarm has independent I/M/O controls:
 
@@ -44,8 +46,10 @@ The default I/M/O phases are `0`, `120`, and `240` degrees. The default I/M/O ra
 The test point controls choose where the external fields are measured:
 
 - `x` is the coordinate along the line of translation;
-- `u` is the first transverse coordinate;
-- `v` is the second transverse coordinate.
+- `y` is the first transverse coordinate;
+- `z` is the second transverse coordinate.
+
+The `x`, `y`, and `z` sliders mark the zero point and snap values very close to zero to exactly `0`.
 
 The plotted E and comparison B curves are recalculated from the active architrino positions and the current test point. Field gain only rescales the displayed curve so it stays readable. Near-field mix blends in a controlled near-field contribution for diagnostic comparison.
 

@@ -12,7 +12,7 @@ The coordinate system reconstructed here is a mathematical and computational too
 
 The claim is therefore limited. This complete-state reconstruction is a mathematical existence proof demonstrating that a unique oriented basis can be defined after a nondegenerate ordered architrino tuple and parity convention are fixed from the $\mathbb{U}_{\text{now}}$ complete-state bookkeeping perspective. It is not an operational laboratory protocol for Physical Observers made of assemblies.
 
-What follows is the systematic procedure by which the $\mathbb{U}_{\text{now}}$ complete-state bookkeeping perspective can reconstruct a complete, unambiguous coordinate frame from the raw geometric data of architrino positions and their causal wake patterns.
+The mathematical content is small but useful: the Euclidean metric plus a nondegenerate ordered tuple supplies an origin, two axes, and a parity convention. The important points are the lemma, the exact failure conditions, and the fact that coordinate parity is not dynamical chirality.
 
 ## Reconstruction Existence Lemma
 
@@ -56,206 +56,40 @@ The sign of $V$ selects a side of the already oriented plane. It does not by its
 
 This lemma is an existence claim at the complete-state level. It does not say that the Euclidean void contains an origin or preferred axes. It says that once a nondegenerate ordered tuple is selected, the Euclidean metric supplies enough invariant structure to construct a coordinate basis for calculation.
 
-## Step 1: Establishing the Origin
+## Minimal Reconstruction Procedure
 
-**Origin datum required:** one stationary architrino, or one fixed Euclidean-void point reconstructed from a source-tagged emission center and carried to $\Sigma_{t_\ast}$ by spatial identity
+The lemma above is the full construction. Complete-state bookkeeping performs four choices:
 
-**Method:**
-Using the wake-center diagnostic described in the previous chapter, complete-state bookkeeping first recovers the preferred rest structure: the frame in which primitive causal wakes expand isotropically at $c_f$. If an architrino's outgoing source-tagged causal wakes remain perfectly concentric over the diagnostic interval, that stationary architrino supplies a material origin. If no architrino is stationary over the interval, choose a reconstructed emission center and use its fixed Euclidean-void point as the conventional origin point on the selected slice $\Sigma_{t_\ast}$.
+1. Choose an origin point $O$ on $\Sigma_{t_\ast}$. A stationary architrino can supply a material origin, but a reconstructed source-tagged emission center also suffices. If the emission time is $s\ne t_\ast$, the origin on $\Sigma_{t_\ast}$ is the same fixed Euclidean-void point carried by spatial identity across slices, not the original event on $\Sigma_s$.
+2. Choose a non-coincident architrino $A$ and set $\hat{\mathbf{x}}=\mathbf{d}_1/\|\mathbf{d}_1\|$. This fixes a reference direction but not a physically preferred direction; the tuple choice is conventional once the complete-state geometry is available.
+3. Choose a non-collinear architrino $B$ and use the orthogonal projection of $\mathbf{d}_2$ to define $\hat{\mathbf{y}}$. This fixes the remaining continuous roll around $\hat{\mathbf{x}}$.
+4. Declare a parity convention and set $\hat{\mathbf{z}}=\hat{\mathbf{x}}\times\hat{\mathbf{y}}$, or use a non-coplanar fourth architrino only as a side marker for reporting the chosen convention.
 
-If the origin is supplied by an emission center reconstructed from an emission time $s\ne t_\ast$, the emission event itself lies on $\Sigma_s$. The selected origin on $\Sigma_{t_\ast}$ is the same fixed Euclidean-void point carried by spatial identity across slices, not the original emission event.
+The continuous freedoms removed are translation and rotation. Absolute time zero remains a separate temporal convention. The reconstruction fails only for degenerate reference data: $\|\mathbf{d}_1\|=0$ or $\|\mathbf{d}_1\times\mathbf{d}_2\|=0$. In that case complete-state bookkeeping must choose a different ordered tuple; the failure is not a failure of the Euclidean void.
 
-**What This Accomplishes:**
-The selected point is assigned as the **origin** of the coordinate frame on the selected slice:
+## Parity Convention and Dynamical Chirality
+
+Coordinate handedness is a basis convention: it chooses which side of the already-defined plane is called positive $\hat{\mathbf{z}}$. A complete-state side marker $C$ can report that choice through
 $$
-\mathbf{x}_{\text{origin}}(t_\ast) = (0, 0, 0)
+V=\mathbf{d}_3\cdot(\mathbf{d}_1\times\mathbf{d}_2)
 $$
+with $V>0$ and $V<0$ selecting opposite sides of the plane after the orientation convention has been declared. The sign of $V$ does not turn coordinate parity into a dynamical handedness law.
 
-**Degrees of Freedom Fixed:**
-- **Translation (3 DOFs)**: The coordinate origin is assigned to the selected origin point in the Euclidean void.
-
-**What Remains Undefined:**
-- The **orientation** of the coordinate axes
-- The **handedness** of the coordinate system
-- The **absolute time zero**
-
-**Why This Step Is Necessary:**
-Without an origin, position vectors cannot be represented in components. Every subsequent statement of "where" must be relative to some reference point. The wake-center criterion gives complete-state reconstruction a coordinate-independent method for selecting this point without making the preferred frame depend on the existence of a stationary material marker.
-
-## Step 2: Defining the Primary Axis (First Direction)
-
-**Architrino Required:** 1 additional (total: 2)
-
-**Method:**
-Choose a second, non-coincident architrino (stationary or moving). From the complete-state record, compute the displacement vector from the origin to this second architrino:
-$$
-\mathbf{d}_1 = \mathbf{x}_2(t_\ast) - \mathbf{x}_{\text{origin}}(t_\ast)
-$$
-
-Define the **first unit vector** (conventionally, the $\hat{\mathbf{x}}$-axis):
-$$
-\hat{\mathbf{x}} = \frac{\mathbf{d}_1}{\|\mathbf{d}_1\|}
-$$
-
-**What This Accomplishes:**
-This fixes one **direction** in the Euclidean void and establishes the first spatial axis of the scaffold.
-
-**Degrees of Freedom Fixed:**
-- **Rotation (2 DOFs)**: Two continuous rotational freedoms are fixed. The $\hat{\mathbf{x}}$-axis points from the origin toward the second architrino.
-
-**What Remains Undefined:**
-- The **second and third axes** ($\hat{\mathbf{y}}$ and $\hat{\mathbf{z}}$)
-- The **rotation around the $\hat{\mathbf{x}}$-axis** (roll)
-- The **handedness** of the coordinate system
-
-**Why This Step Is Necessary:**
-To compute derivatives, projections, and vector components, the coordinate frame needs at least one defined direction. The displacement vector between two architrinos provides this in a coordinate-independent manner.
-
-**Physical Note:**
-The choice of *which* architrino becomes the second reference object is arbitrary. Any non-coincident architrino will work, because the Euclidean void is rotationally symmetric. The reconstruction chooses a reference direction for the coordinate grid; it does not identify a physically preferred direction.
-
-## Step 3: Defining the Plane (Second Independent Direction)
-
-**Architrino Required:** 1 additional (total: 3)
-
-**Method:**
-Identify a third architrino that is **not collinear** with the first two. Compute the displacement vector:
-$$
-\mathbf{d}_2 = \mathbf{x}_3(t_\ast) - \mathbf{x}_{\text{origin}}(t_\ast)
-$$
-
-**Check for linear independence:**
-Verify that $\mathbf{d}_2$ is not parallel to $\mathbf{d}_1$:
-$$
-\mathbf{d}_1 \times \mathbf{d}_2 \neq \mathbf{0}
-$$
-If this condition fails, select a different third architrino.
-
-**Construct the second unit vector** using Gram-Schmidt orthogonalization:
-$$
-\mathbf{d}_2^{\perp} = \mathbf{d}_2 - (\mathbf{d}_2 \cdot \hat{\mathbf{x}})\hat{\mathbf{x}}
-$$
-$$
-\hat{\mathbf{y}} = \frac{\mathbf{d}_2^{\perp}}{\|\mathbf{d}_2^{\perp}\|}
-$$
-
-This ensures $\hat{\mathbf{y}}$ is orthogonal to $\hat{\mathbf{x}}$ and lies in the plane defined by $\mathbf{d}_1$ and $\mathbf{d}_2$.
-
-**What This Accomplishes:**
-This defines a **plane** (the $xy$-plane) within the Euclidean void. Two orthogonal directions are now fixed.
-
-**Degrees of Freedom Fixed:**
-- **Rotation (1 DOF)**: The remaining continuous rotation around the $\hat{\mathbf{x}}$-axis is fixed.
-
-**What Remains Undefined:**
-- The **third axis** ($\hat{\mathbf{z}}$), which must be perpendicular to the $xy$-plane
-- The **handedness** of the coordinate system
-
-**Why This Step Is Necessary:**
-To perform spatial vector calculus, the coordinate frame needs a second independent direction. The plane spanned by $\hat{\mathbf{x}}$ and $\hat{\mathbf{y}}$ is now unambiguously defined by the positions of three architrinos.
-
-## Step 4: Resolving Handedness (Parity Convention)
-
-**Architrino Required:** 0 additional (if conventional) **or** 1 additional (if a side marker is used)
-
-Here **handedness** or **parity convention** is the geometric issue: choosing which side of the already-defined plane is positive $\hat{\mathbf{z}}$. This is only a coordinate-basis choice. It should not be identified with fermionic chirality, which is reserved for the dynamical handed precession order of emergent Noether swarms.
-
-### Option A: Conventional Handedness (Mathematical Convention)
-
-**Method:**
-Impose the **right-hand rule** by definition:
-$$
-\hat{\mathbf{z}} = \hat{\mathbf{x}} \times \hat{\mathbf{y}}
-$$
-
-This completes the orthonormal basis $\{\hat{\mathbf{x}}, \hat{\mathbf{y}}, \hat{\mathbf{z}}\}$ using the standard cross-product convention.
-
-**What This Accomplishes:**
-The coordinate system is now **fully specified**. All vector operations have unambiguous signs.
-
-**What Remains Undefined:**
-No spatial orientation or parity choice remains undefined. Absolute time zero remains a separate temporal convention.
-
-**Degrees of Freedom Fixed:**
-- **Parity (1 discrete choice)**: We have chosen right-handed over left-handed coordinates.
-
-### Option B: Complete-State Side Marker (Fourth Architrino)
-
-**Method:**
-If the reconstruction uses a physical configuration to mark one side of the oriented plane, complete-state bookkeeping examines a fourth architrino that is **not coplanar** with the first three.
-
-Compute:
-$$
-\mathbf{d}_3 = \mathbf{x}_4(t_\ast) - \mathbf{x}_{\text{origin}}(t_\ast)
-$$
-
-Define the preliminary third axis:
-$$
-\hat{\mathbf{z}}_{\text{prelim}} = \hat{\mathbf{x}} \times \hat{\mathbf{y}}
-$$
-
-Check the sign of the scalar triple product:
-$$
-V = \mathbf{d}_3 \cdot (\mathbf{d}_1 \times \mathbf{d}_2)
-$$
-
-- If $V > 0$: The fourth architrino lies on the positive side of the plane relative to the declared orientation convention. Set $\hat{\mathbf{z}} = \hat{\mathbf{z}}_{\text{prelim}}$.
-- If $V < 0$: The fourth architrino lies on the negative side. Set $\hat{\mathbf{z}} = -\hat{\mathbf{z}}_{\text{prelim}}$.
-
-**What This Accomplishes:**
-The fourth architrino supplies a complete-state side marker for the chosen plane. The sign assignment still depends on the declared orientation convention; the configuration does not convert coordinate parity into a new dynamical handedness law.
-
-**Special Condition on the Fourth Architrino:**
-It must be **non-coplanar** with the first three, so that it has a component perpendicular to the $xy$-plane.
-
-**Why This Might Be Preferred:**
-If a later assembly-level model supplies a persistent parity bias or handed precession order, a simulation may choose the coordinate parity convention that reports that marker with a declared positive sign. That alignment is a reporting convention, not a derivation of the marker. It keeps later labels consistently assigned while preserving the distinction between coordinate-basis parity and dynamical chirality in the Noether swarm.
+Dynamical chirality is reserved for ordered precession, axial-frame exposure, reaction provenance, and Noether swarm handedness. If a later assembly-level model supplies a persistent handed marker, a simulation may choose the coordinate parity convention that reports that marker with a positive sign. That is a reporting alignment, not a derivation of the marker.
 
 ## Coordinate Frames Are Not Ontology
 
 The Euclidean void has no preferred origin, no intrinsic axis labels, and no substrate-level marker for clockwise versus counterclockwise. At the ontological level, architrinos move and interact through Euclidean separations, source-tagged causal wakes, and line-of-action hits. The physics proceeds without coordinate labels.
 
 The reconstruction procedure outlined here serves theory-building and simulation:
-- To write down the master equation in component form
-- To run numerical simulations
-- To communicate results
-- To compare frames
+- writing the master equation in component form,
+- running numerical simulations,
+- communicating results,
+- and comparing frames.
 
 The coordinate-invariant content of the laws does not depend on the selected frame. A left-handed coordinate system and a right-handed one produce identical predictions for measurable quantities, differing only in the coordinate signs assigned to pseudovectors and pseudoscalars.
 
-The universe does not require a coordinate frame; theory and simulation use one because the relevant relationships need a stable component language.
-
-## Summary Table: Reconstruction Steps
-
-| **Step** | **Architrinos Required** | **Purpose** | **DOFs Fixed** | **What Remains Undefined** | **Notes** |
-|----------|-------------------------|-------------|----------------|---------------------------|-----------|
-| **1. Origin** | 1 stationary architrino or one reconstructed emission center | Fix translational reference point | Translation (3) | Orientation, handedness, time zero | Stationary architrino is sufficient, not necessary |
-| **2. Primary Axis** | +1 (non-coincident) | Define first spatial direction ($\hat{\mathbf{x}}$) | Rotation (2) | Second/third axes, roll, handedness | Displacement vector gives objective direction |
-| **3. Plane** | +1 (non-collinear) | Define second independent direction ($\hat{\mathbf{y}}$) and lock the $xy$-plane | Rotation (1) | Third axis, handedness | Gram-Schmidt ensures orthogonality |
-| **4A. Handedness (Conventional)** | 0 | Complete spatial basis via right-hand rule | Parity (1) | Absolute time zero | Mathematical convention ($\hat{\mathbf{z}} = \hat{\mathbf{x}} \times \hat{\mathbf{y}}$) |
-| **4B. Side Marker (Complete-State)** | +1 (non-coplanar) | Choose a physical side marker for the oriented plane | Parity (1) | Absolute time zero | Scalar triple product resolves the reported $\pm\hat{\mathbf{z}}$ side |
-
-**Total Architrinos:**
-- **Conventional approach with stationary material origin**: 3
-- **Side-marker approach with stationary material origin**: 4
-- **Wake-center origin approach**: one reconstructed emission center plus the nondegenerate architrino tuple used for axes
-
-## Categories of Calculation Served by Each Step
-
-| **Category** | **Step 1 (Origin)** | **Step 2 (Axis 1)** | **Step 3 (Plane)** | **Step 4 (Handedness)** |
-|--------------|---------------------|---------------------|-------------------|------------------------|
-| **Master Equation (Position-Dependent Forces)** | ✓ | ✓ | ✓ | — |
-| **Velocity & Acceleration (Derivatives)** | ✓ | ✓ | ✓ | — |
-| **Scalar Products (Energies, Distances)** | ✓ | ✓ | ✓ | — |
-| **Vector Products (Angular Momentum, Torque)** | — | — | ✓ | ✓ |
-| **Pseudovectors (magnetic-like effective fields, helicity proxies)** | — | — | — | ✓ |
-| **Weak-sector exposure records** | — | — | — | coordinate signs only |
-| **Simulation (Explicit Coordinates)** | ✓ | ✓ | ✓ | ✓ |
-| **Frame Transformations (Relativity)** | ✓ | ✓ | ✓ | ✓ |
-
-**Key Point:**
-- Scalar and component calculations require the origin, primary axis, and plane construction (Steps 1-3); they do not require assigning coordinate parity.
-- Coordinate **handedness** matters when reporting cross-product, pseudovector, pseudoscalar, or parity-sensitive coordinate quantities. Weak-interaction handedness remains a separate dynamical closure target tied to Noether swarm chirality, axial-frame exposure, and reaction provenance.
+The universe does not require a coordinate frame; theory and simulation use one because the relevant relationships need a stable component language. Origin, first axis, and plane are enough for distances, derivatives, scalar products, and component equations. Handedness matters only when reporting cross products, pseudovectors, pseudoscalars, or parity-sensitive coordinate quantities.
 
 ## Complete-State and Physical-Observer Access
 

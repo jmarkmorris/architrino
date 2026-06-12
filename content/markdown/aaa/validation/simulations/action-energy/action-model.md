@@ -156,7 +156,7 @@ where:
 * $\mathbf{v}_s(\tau)=\dfrac{d\mathbf{x}_s}{d\tau}$ is the source velocity at emission time $\tau$.
 * $\mathbf{n}(\tau) = \dfrac{\mathbf{x}-\mathbf{x}_s(\tau)}{r(\tau)}$ is the unit vector pointing from source (at emission) to the field point.
 
-In standard wave-equation solutions, a Jacobian factor $|1 - \mathbf{n}\!\cdot\!\mathbf{v}_s/c|$ arises from the change of variables used to evaluate the path history time delta. In this project’s canonical per-hit law, emission cadence and per-wavefront amplitude are constant and do not depend on emitter speed; we therefore do not apply this factor as an amplitude modulation.
+In standard wave-equation solutions, a Jacobian factor $|1 - \mathbf{n}\!\cdot\!\mathbf{v}_s/c|$ arises from the change of variables used to evaluate the path history time delta. In this project’s canonical per-hit law, emission cadence and per-wavefront amplitude are constant and do not depend on emitter speed; the corresponding branch Jacobian enters as received causal-flux weighting, not as an extra source-amplitude modulation.
 
 ### Special simple case — stationary emitter
 
@@ -219,7 +219,7 @@ Implementation checklist
 
 Relation to Methods 1 and 2
 - This is a transport/continuity model, not the scalar wave equation. The $1/r^2$ factor is a surface-density normalization (Gauss-like on the spherically expanding causal wake surfaces); it is compatible with conserving total emission per wake surface. In Method 2 the $\!1/(4\pi r)$ factor appears for a wave amplitude; taking gradients connects these scalings when mapping to forces.
-- The Doppler-type Jacobian $1-\mathbf{n}\!\cdot\!\mathbf{v}_s/c$ from Method 2 is not explicit here; geometric normalizations are absorbed into $\kappa$ by convention. We do not include any per-hit weighting by this Jacobian in the canonical law; geometry and timing alone encode speed effects.
+- The Doppler-type Jacobian $1-\mathbf{n}\!\cdot\!\mathbf{v}_s/c$ from Method 2 is the same branch-transversality factor that appears as $|J|^{-1}$ in the canonical per-hit law. Geometric constants are absorbed into $\kappa$ by convention, but the branch Jacobian is retained as received causal-flux weighting; no additional source-speed amplitude factor is introduced.
 - Numerically, this method targets particle dynamics directly (per-hit ODEs) rather than evolving a full field (Method 1) or evaluating fields at sparse probes (Method 2).
 
 Operator diagnostics (finite-window checks)
@@ -250,7 +250,7 @@ Plain language: treat the potential contribution as a conserved amount spread ov
 ### Cross-Method Selection
 - Method 1 (PDE): whole-field grid simulations, visualization, and complex media/boundaries. Deposit a smeared source each step; robust when an emitter slows or stops. Aggregate particle data to coarse-grained densities n(x,t), $\rho$(x,t), and ℰ(x,t) as inputs/targets for PDE runs and validation.
 - Method 2 (Green’s function / path-history integral): closed forms and sparse probe evaluation. Enforce the path-history condition $t-\tau=\|\mathbf{x}-\mathbf{x}_s(\tau)\|/c$ and handle the geometric factor $1-\mathbf{n}\cdot\mathbf{v}_s/c$ during evaluation; root-solve one (or more) $\tau$ per (observer, time) pair.
-- Method 3 (Event-driven canonical): production many-body dynamics. Find causal roots and sum per-hit $1/r^2$ pushes; prefer $\eta$-mollified mode for smooth ODEs when needed.
+- Method 3 (Event-driven canonical): production many-body dynamics. Find causal roots and sum per-hit $1/(r^2|J|)$ pushes; prefer $\eta$-mollified mode for smooth ODEs when needed.
 
 Short worked example — stationary emitter, continuous source (consistent across methods)
 - Setup: emitter at origin $\mathbf{x}_s=0$ with $q(t)\equiv q_0$ (constant).
@@ -315,7 +315,7 @@ Summary (one line each)
 Operational guidance — when to use which method
 - Method 1 (PDE): use this for whole-field grid simulations, visualization, and complex media or boundaries; step the wave PDE forward with a smeared source. Robust when an emitter slows or stops.
 - Method 2 (Path history integral): use this for closed forms, analytic insight, or sparse probe evaluation; enforce the path-history condition $t-\tau=\|\mathbf{x}-\mathbf{x}_s(\tau)\|/c$ and handle the geometric factor $1-\mathbf{n}\cdot\mathbf{v}_s/c$ in evaluation; solve one root per (observer, time) pair in slow-motion, more if sources move fast.
-- Method 3 (Event-driven canonical): use this for production many-body dynamics; find causal roots and sum per-hit $1/r^2$ pushes; prefer $\eta$-mollified mode for smooth ODEs when needed.
+- Method 3 (Event-driven canonical): use this for production many-body dynamics; find causal roots and sum per-hit $1/(r^2|J|)$ pushes; prefer $\eta$-mollified mode for smooth ODEs when needed.
 
 ## Pros and cons (comparative)
 

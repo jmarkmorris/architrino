@@ -259,7 +259,37 @@
 
       .photon-control-input {
         width: 100%;
+        margin: 0;
         accent-color: #fbbf24;
+      }
+
+      .photon-range-shell {
+        position: relative;
+        display: flex;
+        align-items: center;
+        min-width: 0;
+        height: 24px;
+      }
+
+      .photon-range-shell .photon-control-input {
+        position: relative;
+        z-index: 1;
+      }
+
+      .photon-zero-tick {
+        position: absolute;
+        left: var(--photon-zero-position, 50%);
+        top: 50%;
+        z-index: 2;
+        width: 2px;
+        height: 16px;
+        border-radius: 999px;
+        background: rgba(125, 211, 252, 0.95);
+        box-shadow:
+          0 0 0 1px rgba(8, 11, 18, 0.92),
+          0 0 8px rgba(125, 211, 252, 0.68);
+        pointer-events: none;
+        transform: translate(-50%, -50%);
       }
 
       .photon-control-output {

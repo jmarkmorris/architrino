@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
+  PHOTON_CONTROL_RANGES,
   createDefaultPhotonState,
   getPhotonLayerEnabled,
   getPhotonLayerAngleRadians,
@@ -12,6 +13,10 @@ import {
   serializePhotonState,
 } from "../src/apps/photon/PhotonStateRuntime.js";
 import {
+  getPhotonControlZeroPositionPercent,
+  snapPhotonControlValueToZero,
+} from "../src/apps/photon/PhotonControlsRuntime.js";
+import {
   buildPhotonArchitrinoSourceRefs,
   buildPhotonPlotSamples,
   computePhotonDelayedEmissionField,
@@ -19,6 +24,7 @@ import {
   computePhotonObserverField,
 } from "../src/apps/photon/PhotonFormulaRuntime.js";
 import { shouldHandlePhotonSpaceToggle } from "../src/apps/photon/PhotonRuntime.js";
+import { computePhotonStageLayout } from "../src/apps/photon/PhotonSwarmVisualRuntime.js";
 
 test("default photon state encodes trailing and leading swarm convention", () => {
   const state = createDefaultPhotonState();
@@ -35,7 +41,7 @@ test("default photon state encodes trailing and leading swarm convention", () =>
     ["I", "M", "O"].map((layerId) => state.pair.left.layers[layerId].radius),
     [0.9, 1.26, 1.62]
   );
-  assert.deepEqual(state.measurement.testPoint, { x: 6, u: 0, v: 0 });
+  assert.deepEqual(state.measurement.testPoint, { x: 6, y: 0, z: 0 });
   assert.equal(state.measurement.emissionSpeedCf, 1);
   assert.deepEqual(
     ["left", "right"].flatMap((swarmId) =>
@@ -73,9 +79,9 @@ test("default observer field is computed from delayed architrino emissions", () 
   assert.equal(field.sourceMode, "delayed_architrino_emissions");
   assert.equal(field.sourceCount, 12);
   assert.equal(field.contributions.length, 12);
-  assert.ok(Number.isFinite(field.electric.u));
-  assert.ok(Number.isFinite(field.electric.v));
-  assert.ok(Number.isFinite(field.comparisonB.v));
+  assert.ok(Number.isFinite(field.electric.y));
+  assert.ok(Number.isFinite(field.electric.z));
+  assert.ok(Number.isFinite(field.comparisonB.z));
   assert.ok(Number.isFinite(field.analyzer.passMeasure));
   assert.ok(field.averageDelay > 0);
 });
@@ -107,18 +113,18 @@ test("all disabled binaries produce zero delayed field", () => {
   const field = computePhotonDelayedEmissionField(state, 0.5);
 
   assert.equal(field.sourceCount, 0);
-  assert.deepEqual(field.electric, { x: 0, u: 0, v: 0 });
-  assert.deepEqual(field.comparisonB, { x: 0, u: 0, v: 0 });
+  assert.deepEqual(field.electric, { x: 0, y: 0, z: 0 });
+  assert.deepEqual(field.comparisonB, { x: 0, y: 0, z: 0 });
 });
 
 test("moving the measurement test point changes the delayed emission field", () => {
   const state = createDefaultPhotonState();
   const base = computePhotonDelayedEmissionField(state, 0.75);
   state.measurement.testPoint.x = 2.75;
-  state.measurement.testPoint.u = 1.4;
+  state.measurement.testPoint.y = 1.4;
   const moved = computePhotonDelayedEmissionField(state, 0.75);
 
-  assert.notEqual(base.electric.u.toFixed(8), moved.electric.u.toFixed(8));
+  assert.notEqual(base.electric.y.toFixed(8), moved.electric.y.toFixed(8));
   assert.notEqual(base.averageDelay.toFixed(8), moved.averageDelay.toFixed(8));
 });
 
@@ -131,6 +137,49 @@ test("plot samples expose middle-cycle guide bounds and active left-to-right tra
   assert.ok(Math.abs(plot.middleCycle.start - plot.runDuration / 3) < 1e-12);
   assert.ok(Math.abs(plot.middleCycle.end - (plot.runDuration * 2) / 3) < 1e-12);
   assert.ok(plot.amplitudeScale > 0);
+  assert.deepEqual(
+    Object.keys(plot.samples[0]).filter((key) => /^[eb][yz]$/.test(key)).sort(),
+    ["by", "bz", "ey", "ez"]
+  );
+  assert.deepEqual(
+    Object.keys(plot.samples[0]).filter((key) => /^[eb][uv]$/.test(key)),
+    []
+  );
+});
+
+test("photon stage keeps face-on swarm spacing fixed while side view separation changes", () => {
+  const state = createDefaultPhotonState();
+  const base = computePhotonStageLayout(state, 933, 466);
+  state.pair.pairSeparation = 8;
+  const separated = computePhotonStageLayout(state, 933, 466);
+
+  assert.equal(base.faceLeftX, separated.faceLeftX);
+  assert.equal(base.faceRightX, separated.faceRightX);
+  assert.ok(
+    separated.sideRightX - separated.sideLeftX > base.sideRightX - base.sideLeftX
+  );
+});
+
+test("photon side-view height follows the largest enabled binary", () => {
+  const state = createDefaultPhotonState();
+  const base = computePhotonStageLayout(state, 933, 466);
+  state.pair.left.layers.O.enabled = false;
+  state.pair.right.layers.O.enabled = false;
+  const withoutOuter = computePhotonStageLayout(state, 933, 466);
+
+  assert.ok(base.sideHalfHeight > withoutOuter.sideHalfHeight);
+  assert.ok(withoutOuter.sideHalfHeight > 0);
+});
+
+test("test point slider zero helpers mark and snap near zero", () => {
+  assert.equal(getPhotonControlZeroPositionPercent(PHOTON_CONTROL_RANGES.testPointX), 50);
+  assert.equal(getPhotonControlZeroPositionPercent(PHOTON_CONTROL_RANGES.testPointY), 50);
+  assert.equal(getPhotonControlZeroPositionPercent(PHOTON_CONTROL_RANGES.fieldGain), null);
+
+  assert.equal(snapPhotonControlValueToZero(0.05, PHOTON_CONTROL_RANGES.testPointX), 0);
+  assert.equal(snapPhotonControlValueToZero(-0.1, PHOTON_CONTROL_RANGES.testPointY), 0);
+  assert.equal(snapPhotonControlValueToZero(0.15, PHOTON_CONTROL_RANGES.testPointZ), 0.15);
+  assert.equal(snapPhotonControlValueToZero(0.05, PHOTON_CONTROL_RANGES.fieldGain), 0.05);
 });
 
 test("state JSON round trips through normalization", () => {
@@ -139,14 +188,14 @@ test("state JSON round trips through normalization", () => {
   state.pair.right.layers.M.frequencyHz = 0.39;
   state.pair.right.layers.O.enabled = false;
   state.measurement.testPoint.x = 5.25;
-  state.measurement.testPoint.u = -1.5;
+  state.measurement.testPoint.y = -1.5;
   const parsed = parsePhotonStateJson(serializePhotonState(state));
 
   assert.equal(parsed.polarization.linearAngleDeg, 45);
   assert.equal(parsed.pair.right.layers.M.frequencyHz, 0.39);
   assert.equal(parsed.pair.right.layers.O.enabled, false);
   assert.equal(parsed.measurement.testPoint.x, 5.25);
-  assert.equal(parsed.measurement.testPoint.u, -1.5);
+  assert.equal(parsed.measurement.testPoint.y, -1.5);
   assert.deepEqual(parsed, normalizePhotonState(parsed));
 });
 

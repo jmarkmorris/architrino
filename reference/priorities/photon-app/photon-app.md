@@ -29,11 +29,11 @@ Build a 2D interactive diagnostic for a photon candidate modeled as two contra-r
 
 The first implementation should include:
 
-- two side-by-side flat Noether swarm views;
+- two fixed-spacing face-on flat Noether swarm views plus an edge-on side view of the same pair;
 - counter-clockwise rotation in the left trailing swarm and clockwise rotation in the right leading swarm;
 - per-swarm controls for I/M/O frequency, radius, and phase in degrees;
 - enabled checkboxes for each of the six binaries, default checked, with unchecked binaries removed from both the display and delayed-emission field sums;
-- pair separation along the line of translation;
+- pair separation along the line of translation, shown by the edge-on side-view trace spacing;
 - architrino markers, path tinting, and layered trails that match the Ideal Swarm app visual grammar;
 - pause/play and reset controls;
 - a lower observer-field panel for delayed-emission external $\mathbf E$ and comparison $\mathbf B$ readouts at a configurable test point;

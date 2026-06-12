@@ -66,6 +66,8 @@ Consider a $\mathbb{U}_{\text{now}}$ universe-state perspective with access to c
 - **All centers coincident** means $\mathbf{v}_{\text{abs}} = \mathbf{0}$ on that interval (absolute rest).
 - **Centers form a trajectory** means $\mathbf{v}_{\text{abs}} \neq \mathbf{0}$; for a uniform segment, the displacement vector $\Delta \mathbf{x}$ per unit time $\Delta t$ yields the absolute velocity: $\mathbf{v}_{\text{abs}} = \Delta \mathbf{x} / \Delta t$.
 
+This is definitionally a complete-state test. It assumes the individual source identity, emission time, and isochron support are already available in the provenance-bearing state. A physical apparatus receiving only the summed potential cannot recover the source-tagged centers by a clever superposition-resolving operation unless it already has access to the very provenance data the diagnostic assumes.
+
 **Wake-center theorem:** Let a source-tagged causal isochron emitted by source $a$ at time $s$ and inspected at time $t>s$ have support
 $$
 W_a(s;t)
@@ -156,7 +158,7 @@ Assembly-based measuring devices are themselves distorted by motion and coupling
 The diagnostic relies on a critical physical assumption:
 - **Wake propagation independence from source motion**: once emitted, the potential-bearing wake propagates at $c_f$ relative to the void, independent of the source's subsequent trajectory.
 
-This is analogous to **acoustic waves** in air: once a speaker emits sound, that wave propagates at the speed of sound in the medium. The wave does not follow the speaker if it moves.
+This is analogous to **acoustic waves** in air: once a speaker emits sound, that wave propagates at the speed of sound in the medium. The wave does not follow the speaker if it moves. The analogy does not by itself answer Michelson-Morley-style null drift results; that burden is owned by the moving-assembly closure ladder, not by this complete-state diagnostic.
 
 ## Philosophical Context
 

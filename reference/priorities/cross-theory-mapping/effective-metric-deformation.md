@@ -1,4 +1,4 @@
-# Ideal Swarm Source Packet: Ellipsoidal Deformation and the Effective Metric
+# Cross-Theory Source Packet: Ellipsoidal Deformation and the Effective Metric
 
 Status note: this source packet is a candidate deformation map, not a completed physical theorem and not a separate priority lane. Any usable result must be routed through the current master-equation, Lorentz/GR bridge, Noether sea constitutive-closure, or [Ideal Swarm Guide](../../../content/markdown/aaa/archie/ideal-swarm-notes.md) app-inspection targets before being promoted into corpus prose.
 
