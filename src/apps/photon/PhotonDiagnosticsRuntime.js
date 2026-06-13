@@ -27,6 +27,15 @@ function computePhaseLockSpread(state, swarmId) {
   return error;
 }
 
+function getDelaySolveStatus(diagnostics) {
+  if (diagnostics.sourceCount === 0) {
+    return "none";
+  }
+  return diagnostics.maxSourceSpeedRatio > 1 || diagnostics.delaySolveGapMax > 0.05
+    ? "unstable"
+    : "stable";
+}
+
 export function computePhotonDiagnostics(state, timeSeconds, formulaSummary = null) {
   const formula = formulaSummary ?? computePhotonFormulaSummary(state, timeSeconds);
   const leftAction = computeSwarmActionProxy(state, "left");
@@ -45,6 +54,9 @@ export function computePhotonDiagnostics(state, timeSeconds, formulaSummary = nu
     averageAnalyzerPass: formula.averagePass,
     malusResidual: formula.malusResidual,
     averageDelay: formula.field.averageDelay,
+    delaySolveGapMax: formula.field.delaySolveGapMax,
+    maxSourceSpeedRatio: formula.field.maxSourceSpeedRatio,
+    unstableSourceCount: formula.field.unstableSourceCount,
     nearestSourceDistance: formula.field.nearestSourceDistance,
     sourceCount: formula.field.sourceCount,
     leftPhaseSpread: computePhaseLockSpread(state, "left"),
@@ -65,6 +77,9 @@ export function getPhotonDiagnosticRows(state, timeSeconds, formulaSummary = nul
     ["Mean delay", formatPhotonFixed(diagnostics.averageDelay, 3)],
     ["Nearest source", formatPhotonFixed(diagnostics.nearestSourceDistance, 3)],
     ["Source count", String(diagnostics.sourceCount)],
+    ["Max source v/c_f", formatPhotonFixed(diagnostics.maxSourceSpeedRatio, 2)],
+    ["Delay solve gap", formatPhotonFixed(diagnostics.delaySolveGapMax, 3)],
+    ["Delay status", getDelaySolveStatus(diagnostics)],
     ["Left phase spread", `${formatPhotonFixed(diagnostics.leftPhaseSpread, 1)} deg`],
     ["Right phase spread", `${formatPhotonFixed(diagnostics.rightPhaseSpread, 1)} deg`],
     ["Snapshot", diagnostics.snapshotId],

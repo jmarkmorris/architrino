@@ -13,7 +13,8 @@ import {
 const TWO_PI = Math.PI * 2;
 const EPSILON = 1e-9;
 const MIN_FIELD_DISTANCE = 0.08;
-const DELAY_SOLVE_STEPS = 6;
+const MAX_DELAY_SOLVE_STEPS = 24;
+const DELAY_SOLVE_TOLERANCE = 1e-5;
 const DEFAULT_ANALYZER_AVERAGE_SAMPLES = 48;
 const PHOTON_CHARGE_TYPES = Object.freeze(["positrino", "electrino"]);
 const PHOTON_CHARGE_SIGN = Object.freeze({
@@ -167,8 +168,10 @@ function solvePhotonDelayedEmission(state, sourceRef, observationTime, testPoint
   );
   let delta = subtractVector(testPoint, kinematics.position);
   let delay = vectorMagnitude(delta) / emissionSpeedCf;
+  let delaySolveGap = Number.POSITIVE_INFINITY;
+  let solveIterations = 0;
 
-  for (let index = 0; index < DELAY_SOLVE_STEPS; index += 1) {
+  for (let index = 0; index < MAX_DELAY_SOLVE_STEPS; index += 1) {
     emissionTime = observationTime - delay;
     kinematics = getPhotonArchitrinoKinematics(
       state,
@@ -179,15 +182,24 @@ function solvePhotonDelayedEmission(state, sourceRef, observationTime, testPoint
     );
     delta = subtractVector(testPoint, kinematics.position);
     delay = Math.max(MIN_FIELD_DISTANCE, vectorMagnitude(delta)) / emissionSpeedCf;
+    delaySolveGap = Math.abs((observationTime - emissionTime) - delay);
+    solveIterations = index + 1;
+    if (delaySolveGap <= DELAY_SOLVE_TOLERANCE) {
+      break;
+    }
   }
 
   const { distance, direction } = safeDirectionVector(delta);
+  const sourceSpeedRatio = vectorMagnitude(kinematics.velocity) / Math.max(EPSILON, emissionSpeedCf);
   return {
     emissionTime,
     delay,
+    delaySolveGap,
+    solveIterations,
     distance,
     direction,
     kinematics,
+    sourceSpeedRatio,
   };
 }
 
@@ -248,6 +260,17 @@ export function computePhotonDelayedEmissionField(state, observationTime) {
     (minimum, contribution) => Math.min(minimum, contribution.distance),
     Number.POSITIVE_INFINITY
   );
+  const delaySolveGapMax = contributions.reduce(
+    (maximum, contribution) => Math.max(maximum, contribution.delaySolveGap),
+    0
+  );
+  const maxSourceSpeedRatio = contributions.reduce(
+    (maximum, contribution) => Math.max(maximum, contribution.sourceSpeedRatio),
+    0
+  );
+  const unstableSourceCount = contributions.filter(
+    (contribution) => contribution.sourceSpeedRatio > 1 || contribution.delaySolveGap > 0.05
+  ).length;
 
   return {
     sourceMode: "delayed_architrino_emissions",
@@ -255,6 +278,9 @@ export function computePhotonDelayedEmissionField(state, observationTime) {
     contributions,
     sourceCount: contributions.length,
     averageDelay: contributions.length > 0 ? delaySum / contributions.length : 0,
+    delaySolveGapMax,
+    maxSourceSpeedRatio,
+    unstableSourceCount,
     nearestSourceDistance: Number.isFinite(distanceMin) ? distanceMin : 0,
     electric,
     comparisonB,
@@ -285,6 +311,9 @@ export function computePhotonObserverField(state, timeSeconds) {
     measurement: delayedField.measurement,
     sourceCount: delayedField.sourceCount,
     averageDelay: delayedField.averageDelay,
+    delaySolveGapMax: delayedField.delaySolveGapMax,
+    maxSourceSpeedRatio: delayedField.maxSourceSpeedRatio,
+    unstableSourceCount: delayedField.unstableSourceCount,
     nearestSourceDistance: delayedField.nearestSourceDistance,
     contributions: delayedField.contributions,
     electric: { y: ey, z: ez, magnitude: Math.sqrt(fieldNormSquared) },

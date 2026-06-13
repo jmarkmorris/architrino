@@ -12,8 +12,57 @@ export const PHOTON_CHARGE_COLORS = Object.freeze({
   neutral: "#800080",
 });
 
+const TWO_PI = Math.PI * 2;
+
+export const PHOTON_DEFAULT_LAYER_RADII = Object.freeze({
+  I: 0.9,
+  M: 1.26,
+  O: 1.62,
+});
+
+export const PHOTON_DEFAULT_LAYER_PHASES_DEG = Object.freeze({
+  I: 0,
+  M: 0,
+  O: 0,
+});
+
+export const PHOTON_LAYER_SPEED_RATIO_TARGETS = Object.freeze({
+  I: 1.2,
+  M: 1,
+  O: 0.8,
+});
+
+export function getPhotonFrequencyForSpeedRatio(radius, speedRatio, fieldSpeed = 1) {
+  const radiusNumber = Number(radius);
+  const speedNumber = Number(speedRatio);
+  const fieldSpeedNumber = Number(fieldSpeed);
+  if (!Number.isFinite(radiusNumber) || radiusNumber <= 0 || !Number.isFinite(speedNumber)) {
+    return 0;
+  }
+  const safeFieldSpeed = Number.isFinite(fieldSpeedNumber) && fieldSpeedNumber > 0 ? fieldSpeedNumber : 1;
+  return (speedNumber * safeFieldSpeed) / (TWO_PI * radiusNumber);
+}
+
+function createPhotonDefaultLayer(layerId) {
+  const radius = PHOTON_DEFAULT_LAYER_RADII[layerId];
+  return {
+    enabled: true,
+    radius,
+    frequencyHz: getPhotonFrequencyForSpeedRatio(radius, PHOTON_LAYER_SPEED_RATIO_TARGETS[layerId]),
+    phaseDeg: PHOTON_DEFAULT_LAYER_PHASES_DEG[layerId],
+  };
+}
+
+function createPhotonDefaultLayers() {
+  return {
+    I: createPhotonDefaultLayer("I"),
+    M: createPhotonDefaultLayer("M"),
+    O: createPhotonDefaultLayer("O"),
+  };
+}
+
 export const PHOTON_CONTROL_RANGES = Object.freeze({
-  frequencyHz: { min: 0.01, max: 2, step: 0.01 },
+  frequencyHz: { min: 0.01, max: 2, step: 0.0001 },
   radius: { min: 0.2, max: 2.4, step: 0.01 },
   phaseDeg: { min: 0, max: 360, step: 1 },
   pairSeparation: { min: 0.5, max: 8, step: 0.05 },
@@ -48,20 +97,12 @@ export const DEFAULT_PHOTON_STATE = Object.freeze({
     left: {
       role: "trailing",
       direction: "ccw",
-      layers: {
-        I: { enabled: true, radius: 0.9, frequencyHz: 0.42, phaseDeg: 0 },
-        M: { enabled: true, radius: 1.26, frequencyHz: 0.26, phaseDeg: 120 },
-        O: { enabled: true, radius: 1.62, frequencyHz: 0.16, phaseDeg: 240 },
-      },
+      layers: createPhotonDefaultLayers(),
     },
     right: {
       role: "leading",
       direction: "cw",
-      layers: {
-        I: { enabled: true, radius: 0.9, frequencyHz: 0.42, phaseDeg: 0 },
-        M: { enabled: true, radius: 1.26, frequencyHz: 0.26, phaseDeg: 120 },
-        O: { enabled: true, radius: 1.62, frequencyHz: 0.16, phaseDeg: 240 },
-      },
+      layers: createPhotonDefaultLayers(),
     },
   },
   polarization: {
@@ -83,8 +124,6 @@ export const DEFAULT_PHOTON_STATE = Object.freeze({
     fieldGain: 0.04,
   },
 });
-
-const TWO_PI = Math.PI * 2;
 
 export function clampPhotonNumber(value, min, max, fallback = min) {
   const number = Number(value);
@@ -303,6 +342,14 @@ export function wrapPhotonTime(state, timeSeconds) {
 
 export function getPhotonDirectionSign(state, swarmId) {
   return state?.pair?.[swarmId]?.direction === "cw" ? -1 : 1;
+}
+
+export function getPhotonLayerTangentialSpeedRatio(state, swarmId, layerId, fieldSpeed = 1) {
+  const layer = getPhotonLayer(state, swarmId, layerId);
+  const speed = TWO_PI * Math.abs(Number(layer.radius) || 0) * Math.abs(Number(layer.frequencyHz) || 0);
+  const fieldSpeedNumber = Number(fieldSpeed);
+  const safeFieldSpeed = Number.isFinite(fieldSpeedNumber) && fieldSpeedNumber > 0 ? fieldSpeedNumber : 1;
+  return speed / safeFieldSpeed;
 }
 
 export function getPhotonLayerAngleRadians(state, swarmId, layerId, timeSeconds, chargeType = "positrino") {

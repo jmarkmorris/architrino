@@ -39,7 +39,7 @@ Each swarm has independent I/M/O controls:
 - radius sets the layer orbit size;
 - phase sets the starting angle in degrees.
 
-The default I/M/O phases are `0`, `120`, and `240` degrees. The default I/M/O radii use the same `5:7:9` ratio as the Ideal Swarm app.
+The default I/M/O phases are all `0` degrees. The default I/M/O radii use the same `5:7:9` ratio as the Ideal Swarm app.
 
 ## Measurement Controls
 

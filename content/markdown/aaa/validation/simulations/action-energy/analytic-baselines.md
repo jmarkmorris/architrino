@@ -32,6 +32,39 @@ Methodological priority:
   \right).
   $$
   Until these entries are computed on the same window, regulator, and branch chart, the binary remains an existence candidate rather than a validated closure result.
+- The first constructive energy baseline for such a branch is the branch-local work reconstruction
+  $$
+  U_{b,\mathrm{work}}^{(\eta)}(t)
+  =
+  U_b(t_\ast)
+  -
+  \int_{t_\ast}^{t}
+  \sum_i
+  \mu_{\text{arch}}\,
+  \mathbf{a}_{i,b}^{(\eta)}(t')
+  \cdot
+  \mathbf{v}_i(t')\,dt'
+  $$
+  with the same replacement by $\mu_K(\|\mathbf{v}_i\|)$ when the primitive kinetic scalar is used. For a circular branch, the period-averaged integrand reduces to $\mu_{\text{arch}}s_b\langle A_{\eta,b}^{\mathrm{tan}}\rangle_{P_b}$ in the quadratic proxy.
+- The adiabatic consistency check is branch preservation under slow drift. Along a quasi-static path $\gamma:\lambda\mapsto(R(\lambda),s(\lambda),b)$ that does not cross a root-ledger threshold, the work-integral energy change should match the energy difference inferred from the neighboring solved branch family:
+  $$
+  \Delta_{\mathrm{ad},E}^{2\mathrm{B}}(\gamma)
+  =
+  \frac{
+  \left|
+  \Delta_\gamma U_{b,\mathrm{work}}^{(\eta)}
+  -
+  \left(E_b^{(\eta)}(\lambda_1)-E_b^{(\eta)}(\lambda_0)\right)
+  \right|
+  }{
+  \left|\Delta_\gamma U_{b,\mathrm{work}}^{(\eta)}\right|
+  +
+  \left|E_b^{(\eta)}(\lambda_1)-E_b^{(\eta)}(\lambda_0)\right|
+  +
+  \varepsilon
+  }
+  $$
+  Here $E_b^{(\eta)}(\lambda)$ denotes the candidate branch energy extracted at fixed $\lambda$ by the same declared construction route. The test is valid only while the same signed causal-root ledger persists with positive Jacobian and inactive-root gap floors. A jump in the ledger is a bifurcation, not a failure of adiabatic energy consistency.
 
 Symmetric two-body on a line (exact DDE; challenges):
 - Let $x_1(t)=+\tfrac{1}{2}r(t)$ and $x_2(t)=-\tfrac{1}{2}r(t)$ with $r(t)>0$ and $v=1$. The causal-time condition implies

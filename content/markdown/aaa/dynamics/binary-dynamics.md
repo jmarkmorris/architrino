@@ -412,6 +412,29 @@ For uniform circular motion at fixed radius $R$ and constant speed $s$:
   $$
   Here $K_{\mu}$ is the chosen quadratic kinetic proxy, $\Phi_{\mathrm{wake},\partial W}$ is the causal-wake energy flux through the boundary of the local window, and $P_{\mathrm{recoil}}$ is any retained local wake-emission resistance term. The older shorthand $\langle T\rangle=0$ is valid only for a particle-only closed window with no boundary wake flux and no recoil term.
 
+  On a declared branch chart $b$, this balance has an operational work row:
+  $$
+  P_{b,\mathrm{work}}^{(\eta)}(t)
+  =
+  \sum_i
+  \mu_{\text{arch}}\,
+  \mathbf{a}_{i,b}^{(\eta)}(t)
+  \cdot
+  \mathbf{v}_i(t)
+  $$
+  For a circular constant-speed benchmark, $\mathbf{v}_i$ is tangent to the orbit and the radial row does no instantaneous work, so
+  $$
+  \left\langle
+  P_{b,\mathrm{work}}^{(\eta)}
+  \right\rangle_{P_b}
+  =
+  \mu_{\text{arch}}\,s_b\,
+  \left\langle
+  A_{\eta,b}^{\mathrm{tan}}
+  \right\rangle_{P_b}
+  $$
+  for the quadratic proxy. Thus the tangential term is not merely a geometric nuisance; it is the first constructive entry in the binary wake-energy ledger. If the primitive kinetic scalar is used instead, replace $\mu_{\text{arch}}$ by $\mu_K(\|\mathbf{v}_i\|)$ inside the summed power.
+
 ---
 
 #### Tangential Drive and Wake Escapement
@@ -493,7 +516,23 @@ If a stable MCB exists, it provides a concrete **rod** and **clock** defined ent
 $$
 d_0 := R_{\text{MCB}}, \qquad T_0 := \frac{2\pi}{\omega_{\text{MCB}}}
 $$
-Then $d_0$ is the fundamental length scale of the architecture, and $T_0$ is the fundamental time scale. Their comparison with the wake propagation speed is the dimensionless MCB speed factor
+The natural Layer-I two-body units are
+$$
+R_*=\frac{\kappa\epsilon^2}{c_f^2},
+\qquad
+T_*=\frac{R_*}{c_f}
+$$
+so the first MCB outputs are the dimensionless ratios
+$$
+\frac{R_{\mathrm{MCB}}}{R_*},
+\qquad
+\frac{T_0}{T_*},
+\qquad
+\beta_{\mathrm{MCB}}
+$$
+rather than additional fitted constants. Once $(c_f,\kappa,\epsilon)$ fixes the length, time, and polarity units, the signed-root ledger and stability problem must compute those ratios as pure numbers.
+
+Then $d_0$ is the candidate fundamental length scale of the architecture, and $T_0$ is the candidate fundamental time scale. Their comparison with the wake propagation speed is the dimensionless MCB speed factor
 $$
 \beta_{\mathrm{MCB}}
 =
@@ -555,6 +594,94 @@ so the old equally spaced picture is recovered only as a high-speed approximatio
 
 **Note**: Straight-line motion admits **no self-hits** even if $s > 1$; **curvature is required**. The above statements apply specifically to uniform circular, non-translating geometry.
 
+The self-hit root count is therefore a genuine branch-bifurcation diagram for the circular benchmark. Here
+$$
+s=\frac{\|\mathbf{v}\|}{c_f}
+$$
+is the chapter's speed ratio, equivalent to $\beta$ in the usual notation. Between neighboring branch-birth thresholds, the active self-root ledger $N_s(s)$ is constant and the same root labels can be transported. At the thresholds, the delay equation has a tangency and the newly born circular root lies on a Jacobian-null boundary. Thus the root census, the caustic locations, and the ledger-transition speeds are one computed object rather than three separate assumptions.
+
+#### Parameter-Free Circular Branch Packet
+
+The circular two-body benchmark can now be stated as a parameter-free branch packet. Use the Layer-I units
+$$
+R_*=\frac{\kappa\epsilon^2}{c_f^2},
+\qquad
+\rho=\frac{R}{R_*},
+\qquad
+s=\frac{R\omega}{c_f}
+$$
+and factor out the acceleration scale $c_f^2/R_*$. The remaining equations depend only on the dimensionless radius $\rho$, the speed ratio $s$, and the signed causal-root ledger.
+
+For the principal partner branch, let $\xi_p=\delta_p/2$. The delay equation is
+$$
+\cos\xi_p=\frac{\xi_p}{s},
+\qquad
+0<\xi_p<\frac{\pi}{2}
+$$
+with
+$$
+J_p=1+s\sin\xi_p
+$$
+and branch coefficients
+$$
+P_{\mathrm{rad}}(\xi_p,s)=\frac{1}{\cos\xi_p\,|J_p|},
+\qquad
+P_{\mathrm{tan}}(\xi_p,s)=\frac{\sin\xi_p}{\cos^2\xi_p\,|J_p|}
+$$
+where radial is measured inward and tangential is measured in the direction of motion.
+
+Each partner row uses the same coefficient form with its own half-angle. For a signed self branch $\alpha_s=(\xi,\sigma)$ in the full circular ledger, use
+$$
+\sigma\sin\xi=\frac{\xi}{s},
+\qquad
+\sigma=\operatorname{sign}(\sin\xi)
+$$
+with
+$$
+J_s(\xi,\sigma;s)=1-s\sigma\cos\xi
+$$
+The outward radial and signed tangential coefficients are
+$$
+S_{\mathrm{rad}}(\xi,\sigma;s)=\frac{s}{\xi |J_s|},
+\qquad
+S_{\mathrm{tan}}(\xi,\sigma;s)=\frac{s^2\sigma\cos\xi}{\xi^2 |J_s|}
+$$
+Higher self-root births occur at tangencies:
+$$
+\tan\xi^\star=\xi^\star,
+\qquad
+s^\star=|\sec\xi^\star|
+$$
+and these births are also Jacobian-null events, $J_s=0$.
+
+On a fixed signed ledger $b$, the dimensionless circular MCB candidate equations are therefore
+$$
+\mathcal{G}_{\mathrm{rad}}^{(b)}(\rho,s)
+=
+\frac{1}{4\rho^2}
+\left(
+\sum_{\alpha_p\in b_p}P_{\mathrm{rad}}(\alpha_p;s)
+-
+\sum_{\alpha_s\in b_s}S_{\mathrm{rad}}(\alpha_s;s)
+\right)
+-
+\frac{s^2}{\rho}
+=0
+$$
+and
+$$
+\mathcal{G}_{\mathrm{tan}}^{(b)}(\rho,s)
+=
+\frac{1}{4\rho^2}
+\left(
+\sum_{\alpha_p\in b_p}P_{\mathrm{tan}}(\alpha_p;s)
++
+\sum_{\alpha_s\in b_s}S_{\mathrm{tan}}(\alpha_s;s)
+\right)
+=0
+$$
+Here $b_p$ and $b_s$ are the partner-hit and self-hit rows in the signed causal-root ledger. The equations are parameter-free because $\kappa$, $\epsilon$, and $c_f$ have already been absorbed into $R_*$ and the acceleration scale. A common zero of these two residuals is only an algebraic circular MCB candidate; promotion to a stable branch still requires the finite-window return-map certificate, positive Jacobian floors, and energy packet described below.
+
 ---
 
 ### Where Do Causal Hits Come From on the Circle? (Discrete Azimuth Pattern)
@@ -595,7 +722,7 @@ The emission points on the circle that can produce hits "now" form a **finite, d
 
 - **Existence windows**:
  - Principal branch ($m = 0$): exists for every $s>1$, with $\tilde{\delta}_s\to0^+$ as $s\downarrow1$.
- - For $m \ge 1$: the branch appears only when the self-delay equation develops an interior tangency. The exact threshold $s_m^\star$ is determined in **Counting Self-Hits by Winding Index** below.
+ - For $m \ge 1$: the branch appears only when the self-delay equation develops an interior tangency. The exact threshold $s_m^\star$ is determined in **Counting Self-Hits by Winding Index** above.
  - Within each branch, $\tilde{\delta}_s$ initially enters at a tangency angle and then decreases with $s$, so $\varphi_s$ drifts toward $-\pi$ at high speed.
 
 ---
@@ -649,6 +776,33 @@ $$
 =0
 $$
 where the average is taken over one candidate period $P_b$ of the regularized history. The tangential condition remains the hard part: in the same-sheet bare isolated two-body kernel, the no-go result above shows that every active branch contributes positive tangential drive; in the full signed ledger, negative sheets must be included before any global no-go or closure theorem is claimed.
+
+Equivalently, on a fixed signed ledger $b$, the circular MCB search is the intersection problem
+$$
+G_{\mathrm{rad}}^{(b)}(R,s)=0,
+\qquad
+G_{\mathrm{tan}}^{(b)}(R,s)=0
+$$
+where
+$$
+G_{\mathrm{rad}}^{(b)}(R,s)
+\equiv
+\sum_{\alpha_p\in b_p}A_{\alpha_p}^{\mathrm{rad}}(R,s)
+-
+\sum_{\alpha_s\in b_s}A_{\alpha_s}^{\mathrm{rad}}(R,s)
+-
+\frac{s^2}{R}
+$$
+and
+$$
+G_{\mathrm{tan}}^{(b)}(R,s)
+\equiv
+\left\langle
+\sum_{\alpha\in b}T_\alpha(R,s;\eta)
+\right\rangle_{P_b}
+$$
+with $b_p$ and $b_s$ denoting the partner-hit and self-hit rows inside the signed ledger $b$.
+The first curve enforces inward/outward radial balance, while the second enforces finite-window tangential closure. In the natural Layer-I units, the search lives in $(R/R_*,s)$, so any intersection is a parameter-free candidate point for that ledger. It is still only an algebraic MCB candidate until the fixed-ledger return map proves stability, positive Jacobian floors, and persistence under perturbation.
 
 This gives a precise, conditional meaning to binary resonance lock. A stable slot would be a region of history space in which the integer pair
 $$
@@ -823,6 +977,7 @@ $$
 \left(
 \epsilon_E^{(\eta)}(W_b;\mathfrak{B}_b),
 \Delta_{\mathrm{E,cross}}^{(\eta)}(W_b;\mathfrak{B}_b),
+U_{b,\mathrm{work}}^{(\eta)}(t),
 U_{\min,b}^{(\eta)}
 \right),
 $$
@@ -838,7 +993,20 @@ $$
 E_{\mathrm{wake},b}^{(\eta)}(t)\geq U_{\min,b}^{(\eta)}
 $$
 
-on the same window, branch chart, and regulator used for the motion residuals. This is the handoff point to the constructive delay-energy chapter: ordinary Noether language is not sufficient until $E_{\mathrm{wake},b}^{(\eta)}$ has been constructed for the chosen chart.
+on the same window, branch chart, and regulator used for the motion residuals. The work reconstruction is
+$$
+U_{b,\mathrm{work}}^{(\eta)}(t)
+=
+U_b(t_\ast)
+-
+\int_{t_\ast}^{t}
+\sum_i
+\mu_{\text{arch}}\,
+\mathbf{a}_{i,b}^{(\eta)}(t')
+\cdot
+\mathbf{v}_i(t')\,dt'
+$$
+for the quadratic proxy, with $\mu_K(\|\mathbf{v}_i\|)$ replacing $\mu_{\text{arch}}$ when the primitive kinetic scalar is used. The lower-bound entry applies to the constructed action-level wake charge when that route is available, or to the compatible work reconstruction when that is the declared route. This is the handoff point to the constructive delay-energy chapter: ordinary Noether language is not sufficient until $E_{\mathrm{wake},b}^{(\eta)}$ or its compatible work-integral reconstruction has been constructed for the chosen chart.
 
 Finally, the characteristic frequency is extracted from the return period,
 

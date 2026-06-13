@@ -3,9 +3,11 @@ import assert from "node:assert/strict";
 
 import {
   PHOTON_CONTROL_RANGES,
+  PHOTON_LAYER_SPEED_RATIO_TARGETS,
   createDefaultPhotonState,
   getPhotonLayerEnabled,
   getPhotonLayerAngleRadians,
+  getPhotonLayerTangentialSpeedRatio,
   getPhotonMiddleCycleBounds,
   getPhotonRunDuration,
   normalizePhotonState,
@@ -24,8 +26,16 @@ import {
   computePhotonFormulaSummary,
   computePhotonObserverField,
 } from "../src/apps/photon/PhotonFormulaRuntime.js";
+import {
+  computePhotonDiagnostics,
+  getPhotonDiagnosticRows,
+} from "../src/apps/photon/PhotonDiagnosticsRuntime.js";
 import { shouldHandlePhotonSpaceToggle } from "../src/apps/photon/PhotonRuntime.js";
 import { computePhotonStageLayout } from "../src/apps/photon/PhotonSwarmVisualRuntime.js";
+
+function assertNear(actual, expected, epsilon = 1e-12) {
+  assert.ok(Math.abs(actual - expected) < epsilon, `${actual} should be near ${expected}`);
+}
 
 test("default photon state encodes trailing and leading swarm convention", () => {
   const state = createDefaultPhotonState();
@@ -36,12 +46,20 @@ test("default photon state encodes trailing and leading swarm convention", () =>
   assert.equal(state.pair.right.direction, "cw");
   assert.deepEqual(
     ["I", "M", "O"].map((layerId) => state.pair.left.layers[layerId].phaseDeg),
-    [0, 120, 240]
+    [0, 0, 0]
   );
   assert.deepEqual(
     ["I", "M", "O"].map((layerId) => state.pair.left.layers[layerId].radius),
     [0.9, 1.26, 1.62]
   );
+  ["left", "right"].forEach((swarmId) => {
+    ["I", "M", "O"].forEach((layerId) => {
+      assertNear(
+        getPhotonLayerTangentialSpeedRatio(state, swarmId, layerId),
+        PHOTON_LAYER_SPEED_RATIO_TARGETS[layerId]
+      );
+    });
+  });
   assert.deepEqual(state.measurement.testPoint, { x: 6, y: 0, z: 0 });
   assert.equal(state.measurement.emissionSpeedCf, 1);
   assert.deepEqual(
@@ -56,10 +74,11 @@ test("photon middle cycle spans the middle of the three-cycle E-B plot", () => {
   const state = createDefaultPhotonState();
   const runDuration = getPhotonRunDuration(state);
   const bounds = getPhotonMiddleCycleBounds(state);
+  const referenceFrequency = state.pair.left.layers.M.frequencyHz;
 
-  assert.ok(Math.abs(runDuration - 3 / 0.26) < 1e-12);
-  assert.ok(Math.abs(bounds.start - runDuration / 3) < 1e-12);
-  assert.ok(Math.abs(bounds.end - (runDuration * 2) / 3) < 1e-12);
+  assertNear(runDuration, 3 / referenceFrequency);
+  assertNear(bounds.start, runDuration / 3);
+  assertNear(bounds.end, (runDuration * 2) / 3);
 });
 
 test("left swarm angles advance counter-clockwise while right swarm angles advance clockwise", () => {
@@ -85,6 +104,8 @@ test("default observer field is computed from delayed architrino emissions", () 
   assert.ok(Number.isFinite(field.comparisonB.z));
   assert.ok(Number.isFinite(field.analyzer.passMeasure));
   assert.ok(field.averageDelay > 0);
+  assertNear(field.maxSourceSpeedRatio, PHOTON_LAYER_SPEED_RATIO_TARGETS.I);
+  assert.ok(field.delaySolveGapMax >= 0);
 });
 
 test("disabled binaries are removed from delayed emission sources", () => {
@@ -116,6 +137,51 @@ test("all disabled binaries produce zero delayed field", () => {
   assert.equal(field.sourceCount, 0);
   assert.deepEqual(field.electric, { x: 0, y: 0, z: 0 });
   assert.deepEqual(field.comparisonB, { x: 0, y: 0, z: 0 });
+  assert.equal(field.maxSourceSpeedRatio, 0);
+  assert.equal(field.delaySolveGapMax, 0);
+  assert.equal(field.unstableSourceCount, 0);
+});
+
+test("outer-only default stays below field speed and has a stable delay solve", () => {
+  const state = createDefaultPhotonState();
+  state.measurement.testPoint = { x: 0, y: 4, z: 0 };
+  state.measurement.nearFieldWeight = 0.09;
+  state.measurement.fieldGain = 1;
+  ["left", "right"].forEach((swarmId) => {
+    ["I", "M"].forEach((layerId) => {
+      state.pair[swarmId].layers[layerId].enabled = false;
+    });
+    state.pair[swarmId].layers.O.phaseDeg = 0;
+  });
+  const field = computePhotonDelayedEmissionField(state, 3);
+  const diagnostics = computePhotonDiagnostics(state, 3, computePhotonFormulaSummary(state, 3));
+  const diagnosticRows = new Map(getPhotonDiagnosticRows(state, 3, computePhotonFormulaSummary(state, 3)));
+
+  assert.equal(field.sourceCount, 4);
+  assert.ok(field.maxSourceSpeedRatio < 1);
+  assert.ok(field.delaySolveGapMax < 0.01);
+  assert.equal(field.unstableSourceCount, 0);
+  assert.equal(diagnostics.maxSourceSpeedRatio < 1, true);
+  assert.equal(diagnosticRows.get("Delay status"), "stable");
+});
+
+test("outer-only super field speed settings report unstable delay solve", () => {
+  const state = createDefaultPhotonState();
+  state.measurement.testPoint = { x: 0, y: 4, z: 0 };
+  ["left", "right"].forEach((swarmId) => {
+    ["I", "M"].forEach((layerId) => {
+      state.pair[swarmId].layers[layerId].enabled = false;
+    });
+    state.pair[swarmId].layers.O.frequencyHz = 0.16;
+    state.pair[swarmId].layers.O.phaseDeg = 0;
+  });
+  const field = computePhotonDelayedEmissionField(state, 3);
+  const diagnosticRows = new Map(getPhotonDiagnosticRows(state, 3, computePhotonFormulaSummary(state, 3)));
+
+  assert.equal(field.sourceCount, 4);
+  assert.ok(field.maxSourceSpeedRatio > 1);
+  assert.ok(field.unstableSourceCount > 0);
+  assert.equal(diagnosticRows.get("Delay status"), "unstable");
 });
 
 test("moving the measurement test point changes the delayed emission field", () => {
@@ -156,6 +222,8 @@ test("photon stage keeps face-on swarm spacing fixed while side view separation 
 
   assert.equal(base.faceLeftX, separated.faceLeftX);
   assert.equal(base.faceRightX, separated.faceRightX);
+  assert.equal(base.translationOriginX, (base.sideLeftX + base.sideRightX) / 2);
+  assert.equal(separated.translationOriginX, (separated.sideLeftX + separated.sideRightX) / 2);
   assert.ok(
     separated.sideRightX - separated.sideLeftX > base.sideRightX - base.sideLeftX
   );

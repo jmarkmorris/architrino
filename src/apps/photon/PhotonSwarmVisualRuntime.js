@@ -394,6 +394,7 @@ export function computePhotonStageLayout(state, cssWidth, cssHeight) {
   const sideCenterX = Math.min(cssWidth - sideSeparationPx / 2 - 42, sideCenterBaseX);
   const sideLeftX = sideCenterX - sideSeparationPx / 2;
   const sideRightX = sideCenterX + sideSeparationPx / 2;
+  const translationOriginX = sideCenterX;
   const translationAxisStartX = Math.max(18, faceLeftX - faceMaxRadiusPx * 1.2);
   const translationAxisEndX = Math.min(cssWidth - 28, sideRightX + 64);
   const translationArrowBaseX = Math.max(translationAxisStartX + 10, translationAxisEndX - 18);
@@ -405,6 +406,7 @@ export function computePhotonStageLayout(state, cssWidth, cssHeight) {
     sideCenterX,
     sideLeftX,
     sideRightX,
+    translationOriginX,
     sideHalfHeight: enabledMaxLayerRadius * scale,
     translationAxisStartX,
     translationAxisEndX,
@@ -448,6 +450,16 @@ export function drawPhotonSwarmStage(canvas, state, timeSeconds, options = {}) {
   ctx.textAlign = "center";
   ctx.textBaseline = "bottom";
   ctx.fillText("x", Math.min(cssWidth - 18, layout.translationAxisEndX + 10), layout.centerY - 8);
+  ctx.strokeStyle = "rgba(238, 243, 255, 0.96)";
+  ctx.fillStyle = "rgba(238, 243, 255, 0.96)";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(layout.translationOriginX, layout.centerY - 12);
+  ctx.lineTo(layout.translationOriginX, layout.centerY + 12);
+  ctx.stroke();
+  ctx.font = "700 13px Helvetica Neue, Arial, sans-serif";
+  ctx.textBaseline = "bottom";
+  ctx.fillText("0", layout.translationOriginX + 8, layout.centerY - 14);
   ctx.restore();
 
   drawSwarm(ctx, state, "left", layout.faceLeftX, layout.centerY, layout.scale, timeSeconds);

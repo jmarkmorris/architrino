@@ -97,18 +97,18 @@ The default state should be reproducible as JSON. The initial values are:
       "role": "trailing",
       "direction": "ccw",
       "layers": {
-        "I": { "enabled": true, "radius": 0.9, "frequencyHz": 0.42, "phaseDeg": 0 },
-        "M": { "enabled": true, "radius": 1.26, "frequencyHz": 0.26, "phaseDeg": 120 },
-        "O": { "enabled": true, "radius": 1.62, "frequencyHz": 0.16, "phaseDeg": 240 }
+        "I": { "enabled": true, "radius": 0.9, "frequencyHz": 0.2122, "phaseDeg": 0 },
+        "M": { "enabled": true, "radius": 1.26, "frequencyHz": 0.1263, "phaseDeg": 0 },
+        "O": { "enabled": true, "radius": 1.62, "frequencyHz": 0.0786, "phaseDeg": 0 }
       }
     },
     "right": {
       "role": "leading",
       "direction": "cw",
       "layers": {
-        "I": { "enabled": true, "radius": 0.9, "frequencyHz": 0.42, "phaseDeg": 0 },
-        "M": { "enabled": true, "radius": 1.26, "frequencyHz": 0.26, "phaseDeg": 120 },
-        "O": { "enabled": true, "radius": 1.62, "frequencyHz": 0.16, "phaseDeg": 240 }
+        "I": { "enabled": true, "radius": 0.9, "frequencyHz": 0.2122, "phaseDeg": 0 },
+        "M": { "enabled": true, "radius": 1.26, "frequencyHz": 0.1263, "phaseDeg": 0 },
+        "O": { "enabled": true, "radius": 1.62, "frequencyHz": 0.0786, "phaseDeg": 0 }
       }
     }
   },
@@ -233,15 +233,15 @@ The first prototype should expose these controls visibly in the UI panel:
 
 | Control | Default | Range | Step |
 | --- | ---: | ---: | ---: |
-| I frequency | `0.42 Hz` | `0.01` to `2.00 Hz` | `0.01` |
-| M frequency | `0.26 Hz` | `0.01` to `2.00 Hz` | `0.01` |
-| O frequency | `0.16 Hz` | `0.01` to `2.00 Hz` | `0.01` |
+| I frequency | `0.2122 Hz` | `0.01` to `2.00 Hz` | `0.0001` |
+| M frequency | `0.1263 Hz` | `0.01` to `2.00 Hz` | `0.0001` |
+| O frequency | `0.0786 Hz` | `0.01` to `2.00 Hz` | `0.0001` |
 | I radius | `0.90` | `0.20` to `2.40` | `0.01` |
 | M radius | `1.26` | `0.20` to `2.40` | `0.01` |
 | O radius | `1.62` | `0.20` to `2.40` | `0.01` |
 | I phase | `0 deg` | `0` to `360 deg` | `1 deg` |
-| M phase | `120 deg` | `0` to `360 deg` | `1 deg` |
-| O phase | `240 deg` | `0` to `360 deg` | `1 deg` |
+| M phase | `0 deg` | `0` to `360 deg` | `1 deg` |
+| O phase | `0 deg` | `0` to `360 deg` | `1 deg` |
 | pair separation | `4.00` | `0.50` to `8.00` | `0.05` |
 | time speed | `1.00` | `0.10` to `4.00` | `0.05` |
 | polarization angle | `0 deg` | `0` to `180 deg` | `1 deg` |
@@ -549,7 +549,7 @@ The first implementation is acceptable when:
 - architrino markers, orbit paths, and layered trails match the Ideal Swarm visual grammar;
 - I/M/O frequency, radius, and phase controls work for both swarms;
 - six binary enabled checkboxes default checked, remove unchecked binaries from the display, and remove their delayed-emission contributions from both field plots;
-- default I/M/O phases are `0`, `120`, and `240` degrees on both swarms;
+- default I/M/O phases are all `0` degrees on both swarms;
 - default I/M/O radii follow the `5:7:9` Ideal Swarm ratio;
 - pair separation changes visibly between the two edge-on side-view traces without changing the face-on circular orbit spacing;
 - pause/play, Space bar playback shortcut, and reset controls work;

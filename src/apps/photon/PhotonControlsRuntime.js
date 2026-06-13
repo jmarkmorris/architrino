@@ -263,7 +263,7 @@ export function createPhotonControlsRuntime({
       binaryControls.push({ ...enabledControl, swarmId, layerId });
       group.append(enabledControl.row);
       [
-        ["frequencyHz", "f", PHOTON_CONTROL_RANGES.frequencyHz, 2],
+        ["frequencyHz", "f", PHOTON_CONTROL_RANGES.frequencyHz, 4],
         ["radius", "r", PHOTON_CONTROL_RANGES.radius, 2],
         ["phaseDeg", "phase", PHOTON_CONTROL_RANGES.phaseDeg, 0],
       ].forEach(([key, label, range, digits]) => {
