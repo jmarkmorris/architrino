@@ -14,8 +14,6 @@ import {
   getPhotonMiddleCycleBounds,
   getPhotonRunDuration,
   normalizePhotonState,
-  parsePhotonStateJson,
-  serializePhotonState,
 } from "../src/apps/photon/PhotonStateRuntime.js";
 import {
   getPhotonControlZeroPositionPercent,
@@ -26,10 +24,12 @@ import {
 } from "../src/apps/photon/PhotonControlsRuntime.js";
 import {
   buildPhotonArchitrinoSourceRefs,
+  buildPhotonDerivedPolarizationTrace,
   buildPhotonPlotSamples,
   computePhotonDelayedEmissionField,
   computePhotonFormulaSummary,
   computePhotonObserverField,
+  fitPhotonPolarizationFromSamples,
   solvePhotonCausalRoots,
 } from "../src/apps/photon/PhotonFormulaRuntime.js";
 import {
@@ -45,6 +45,19 @@ import {
 
 function assertNear(actual, expected, epsilon = 1e-12) {
   assert.ok(Math.abs(actual - expected) < epsilon, `${actual} should be near ${expected}`);
+}
+
+function buildSyntheticPolarizationSamples({ ampY = 1, ampZ = 0, phaseLag = 0, count = 144 } = {}) {
+  return Array.from({ length: count }, (_, index) => {
+    const progress = index / count;
+    const phase = Math.PI * 2 * progress;
+    return {
+      progress,
+      phase,
+      ey: ampY * Math.cos(phase),
+      ez: ampZ * Math.cos(phase + phaseLag),
+    };
+  });
 }
 
 test("default photon state encodes trailing and leading swarm convention", () => {
@@ -72,6 +85,7 @@ test("default photon state encodes trailing and leading swarm convention", () =>
   });
   assert.deepEqual(state.measurement.virtualObserver, { x: 0, y: 0, z: 0 });
   assert.equal(state.measurement.emissionSpeedCf, 1);
+  assert.deepEqual(state.polarization, { analyzerAngleDeg: 0 });
   assert.equal(state.pair.pairSeparation, getPhotonSeparationReferenceRadius(state));
   assert.equal(getPhotonSeparationLog10Ratio(state), 0);
   assert.deepEqual(
@@ -162,7 +176,6 @@ test("all disabled binaries produce zero branch-sum field", () => {
 test("outer-only default stays below field speed and has a stable branch solve", () => {
   const state = createDefaultPhotonState();
   state.measurement.virtualObserver = { x: 0, y: 4, z: 0 };
-  state.measurement.fieldGain = 1;
   ["left", "right"].forEach((swarmId) => {
     ["I", "M"].forEach((layerId) => {
       state.pair[swarmId].layers[layerId].enabled = false;
@@ -269,8 +282,8 @@ test("photon stage keeps face-on swarm spacing fixed while side view separation 
 
   assert.equal(base.faceLeftX, separated.faceLeftX);
   assert.equal(base.faceRightX, separated.faceRightX);
-  assert.equal(PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio.min, -15);
-  assert.equal(PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio.max, 0);
+  assert.equal(PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio.min, -10);
+  assert.equal(PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio.max, 5);
   assert.ok(
     nearCoLocated.sideRightX - nearCoLocated.sideLeftX < base.sideRightX - base.sideLeftX
   );
@@ -306,10 +319,8 @@ test("photon side-view height follows the largest enabled binary", () => {
 test("Virtual Observer slider zero helpers mark and snap near zero", () => {
   assert.equal(getPhotonControlZeroPositionPercent(PHOTON_CONTROL_RANGES.virtualObserverX), 50);
   assert.equal(getPhotonControlZeroPositionPercent(PHOTON_CONTROL_RANGES.virtualObserverY), 50);
-  assert.equal(getPhotonControlZeroPositionPercent(PHOTON_CONTROL_RANGES.fieldGain), null);
   assert.equal(getPhotonControlZeroSnapThreshold(PHOTON_CONTROL_RANGES.virtualObserverX), 0.25);
   assert.equal(getPhotonControlZeroSnapThreshold(PHOTON_CONTROL_RANGES.virtualObserverY), 0.1);
-  assert.equal(getPhotonControlZeroSnapThreshold(PHOTON_CONTROL_RANGES.fieldGain), null);
 
   assert.equal(snapPhotonControlValueToZero(0.05, PHOTON_CONTROL_RANGES.virtualObserverX), 0);
   assert.equal(snapPhotonControlValueToZero(0.25, PHOTON_CONTROL_RANGES.virtualObserverX), 0);
@@ -317,7 +328,6 @@ test("Virtual Observer slider zero helpers mark and snap near zero", () => {
   assert.equal(snapPhotonControlValueToZero(0.3, PHOTON_CONTROL_RANGES.virtualObserverX), 0.3);
   assert.equal(snapPhotonControlValueToZero(-0.1, PHOTON_CONTROL_RANGES.virtualObserverY), 0);
   assert.equal(snapPhotonControlValueToZero(0.15, PHOTON_CONTROL_RANGES.virtualObserverZ), 0.15);
-  assert.equal(snapPhotonControlValueToZero(0.05, PHOTON_CONTROL_RANGES.fieldGain), 0.05);
 });
 
 test("separation log ticks cover mantissas 1 through 9 for each decade", () => {
@@ -328,8 +338,9 @@ test("separation log ticks cover mantissas 1 through 9 for each decade", () => {
     ticks.slice(0, 9).map((tick) => tick.mantissa),
     [1, 2, 3, 4, 5, 6, 7, 8, 9]
   );
-  assert.equal(ticks[0].exponent, -15);
-  assert.equal(ticks.at(-1).value, 0);
+  assert.equal(ticks[0].exponent, -10);
+  assert.equal(ticks.at(-1).value, 5);
+  assert.equal(ticks.at(-1).label, "1e5");
   assertNear(snapPhotonSeparationLogTick(Math.log10(7.2e-9)), Math.log10(7e-9), 1e-12);
 });
 
@@ -345,32 +356,79 @@ test("separation reference radius follows the largest enabled radius", () => {
   assert.equal(getPhotonPairSeparationFromLog10Ratio(state, 0), 0.2);
 });
 
-test("state JSON round trips through normalization", () => {
+test("photon state normalization preserves configured values", () => {
   const state = createDefaultPhotonState();
-  state.polarization.linearAngleDeg = 45;
+  state.polarization.analyzerAngleDeg = 45;
   state.pair.right.layers.M.frequencyHz = 0.39;
   state.pair.right.layers.O.enabled = false;
   state.measurement.virtualObserver.x = 5.25;
   state.measurement.virtualObserver.y = -1.5;
-  const parsed = parsePhotonStateJson(serializePhotonState(state));
+  const normalized = normalizePhotonState(state);
 
-  assert.equal(parsed.polarization.linearAngleDeg, 45);
-  assert.equal(parsed.pair.right.layers.M.frequencyHz, 0.39);
-  assert.equal(parsed.pair.right.layers.O.enabled, false);
-  assert.equal(parsed.measurement.virtualObserver.x, 5.25);
-  assert.equal(parsed.measurement.virtualObserver.y, -1.5);
-  assert.deepEqual(parsed, normalizePhotonState(parsed));
+  assert.equal(normalized.polarization.analyzerAngleDeg, 45);
+  assert.equal(normalized.pair.right.layers.M.frequencyHz, 0.39);
+  assert.equal(normalized.pair.right.layers.O.enabled, false);
+  assert.equal(normalized.measurement.virtualObserver.x, 5.25);
+  assert.equal(normalized.measurement.virtualObserver.y, -1.5);
+  assert.deepEqual(normalized, normalizePhotonState(normalized));
 });
 
-test("formula summary reports a Malus residual for the current analyzer setup", () => {
+test("formula summary reports a derived branch-sum polarization fit", () => {
   const state = createDefaultPhotonState();
-  state.polarization.linearAngleDeg = 30;
   state.polarization.analyzerAngleDeg = 60;
   const summary = computePhotonFormulaSummary(state, 0.5);
 
-  assert.ok(Number.isFinite(summary.malusTarget));
-  assert.ok(Number.isFinite(summary.malusResidual));
-  assert.ok(Math.abs(summary.malusTarget - 0.75) < 1e-12);
+  assert.ok(["weak", "linear", "right_circular", "left_circular", "elliptical"].includes(
+    summary.polarization.classification
+  ));
+  assert.ok(Number.isFinite(summary.polarization.amplitudes.y));
+  assert.ok(Number.isFinite(summary.polarization.amplitudes.z));
+  assert.ok(Number.isFinite(summary.polarization.phaseLagDeg));
+  assert.ok(Number.isFinite(summary.analyzerTarget));
+  assert.ok(Number.isFinite(summary.fitResidual));
+});
+
+test("polarization fitter classifies a one-axis branch-sum signal as linear", () => {
+  const fit = fitPhotonPolarizationFromSamples(buildSyntheticPolarizationSamples({ ampY: 1, ampZ: 0 }));
+
+  assert.equal(fit.classification, "linear");
+  assertNear(fit.amplitudes.y, 1, 1e-12);
+  assertNear(fit.amplitudes.z, 0, 1e-12);
+});
+
+test("polarization fitter classifies equal quadrature amplitudes as circular", () => {
+  const fit = fitPhotonPolarizationFromSamples(
+    buildSyntheticPolarizationSamples({ ampY: 1, ampZ: 1, phaseLag: -Math.PI / 2 })
+  );
+
+  assert.equal(fit.classification, "right_circular");
+  assertNear(fit.amplitudes.y, 1, 1e-12);
+  assertNear(fit.amplitudes.z, 1, 1e-12);
+  assertNear(fit.phaseLag, -Math.PI / 2, 1e-12);
+  assertNear(fit.analyzerPassTarget, 0.5, 1e-12);
+});
+
+test("polarization fitter classifies unequal quadrature amplitudes as elliptical", () => {
+  const fit = fitPhotonPolarizationFromSamples(
+    buildSyntheticPolarizationSamples({ ampY: 1, ampZ: 0.5, phaseLag: -Math.PI / 3 })
+  );
+
+  assert.equal(fit.classification, "elliptical");
+  assertNear(fit.amplitudes.y, 1, 1e-12);
+  assertNear(fit.amplitudes.z, 0.5, 1e-12);
+});
+
+test("derived branch-sum analyzer pass and reject vectors reconstruct the current field", () => {
+  const state = createDefaultPhotonState();
+  state.polarization.analyzerAngleDeg = 17;
+  const trace = buildPhotonDerivedPolarizationTrace(state, 0.5, 48);
+
+  assert.ok(trace.rawSamples.length >= 48);
+  assert.ok(["weak", "linear", "right_circular", "left_circular", "elliptical"].includes(
+    trace.classification
+  ));
+  assertNear(trace.pass.ey + trace.reject.ey, trace.current.ey, 1e-12);
+  assertNear(trace.pass.ez + trace.reject.ez, trace.current.ez, 1e-12);
 });
 
 test("spacebar playback shortcut ignores editable controls", () => {

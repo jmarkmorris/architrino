@@ -10,7 +10,10 @@ import {
   getPhotonSeparationLog10Ratio,
   wrapPhotonTime,
 } from "./PhotonStateRuntime.js";
-import { buildPhotonPlotSamples } from "./PhotonFormulaRuntime.js";
+import {
+  buildPhotonDerivedPolarizationTrace,
+  buildPhotonPlotSamples,
+} from "./PhotonFormulaRuntime.js";
 
 const TWO_PI = Math.PI * 2;
 const ARCHITRINO_MARKER_RADIUS = 5.2;
@@ -538,11 +541,26 @@ function drawPlotCurve(ctx, samples, width, height, key, color, currentProgress,
   ctx.restore();
 }
 
-function getPlotAmplitudeScale(samples, keys) {
+function getPlotAmplitudeScale(samples, keys, currentProgress = null) {
+  const visibleSamples = currentProgress === null
+    ? samples
+    : samples.filter((sample) => !isPhotonPlotSampleInForwardGap(sample.progress, currentProgress));
   return Math.max(
-    1,
-    ...samples.flatMap((sample) => keys.map((key) => Math.abs(Number(sample[key]) || 0)))
+    0,
+    ...visibleSamples.flatMap((sample) => keys.map((key) => Math.abs(Number(sample[key]) || 0)))
   );
+}
+
+function formatPhotonPlotEmax(value) {
+  const number = Math.abs(Number(value) || 0);
+  if (!Number.isFinite(number) || number <= 1e-12) {
+    return "0";
+  }
+  if (number < 0.01 || number >= 100) {
+    return number.toExponential(2);
+  }
+  const digits = number >= 10 ? 1 : 3;
+  return number.toFixed(digits).replace(/0+$/, "").replace(/\.$/, "");
 }
 
 export function getPhotonFieldPlotSampleCount(cssWidth) {
@@ -579,6 +597,113 @@ function getPhotonFieldPlotSamples(state, sampleCount) {
   return photonFieldPlotCache.plot;
 }
 
+function mapPhotonPolarizationPoint(point, centerX, centerY, radius, scale) {
+  const divisor = Math.max(1e-9, scale);
+  return {
+    x: centerX + (point.ey / divisor) * radius,
+    y: centerY - (point.ez / divisor) * radius,
+  };
+}
+
+function drawPhotonPolarizationAxes(ctx, centerX, centerY, radius) {
+  ctx.save();
+  ctx.strokeStyle = "rgba(148, 163, 184, 0.34)";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(centerX - radius, centerY);
+  ctx.lineTo(centerX + radius, centerY);
+  ctx.moveTo(centerX, centerY + radius);
+  ctx.lineTo(centerX, centerY - radius);
+  ctx.stroke();
+  ctx.strokeStyle = "rgba(148, 163, 184, 0.12)";
+  ctx.beginPath();
+  ctx.arc(centerX, centerY, radius, 0, TWO_PI);
+  ctx.stroke();
+  ctx.fillStyle = "rgba(238, 243, 255, 0.72)";
+  ctx.font = "700 10px Helvetica Neue, Arial, sans-serif";
+  ctx.fillText("E_y", centerX + radius - 20, centerY - 7);
+  ctx.fillText("E_z", centerX + 7, centerY - radius + 12);
+  ctx.restore();
+}
+
+function drawPhotonPolarizationAnalyzer(ctx, trace, centerX, centerY, radius, scale) {
+  const axis = {
+    ey: trace.analyzer.y * trace.scale,
+    ez: trace.analyzer.z * trace.scale,
+  };
+  const axisStart = mapPhotonPolarizationPoint({ ey: -axis.ey, ez: -axis.ez }, centerX, centerY, radius, scale);
+  const axisEnd = mapPhotonPolarizationPoint(axis, centerX, centerY, radius, scale);
+  const passEnd = mapPhotonPolarizationPoint(trace.pass, centerX, centerY, radius, scale);
+  const current = mapPhotonPolarizationPoint(trace.current, centerX, centerY, radius, scale);
+
+  ctx.save();
+  ctx.strokeStyle = "rgba(251, 191, 36, 0.72)";
+  ctx.lineWidth = 1.4;
+  ctx.setLineDash([6, 5]);
+  ctx.beginPath();
+  ctx.moveTo(axisStart.x, axisStart.y);
+  ctx.lineTo(axisEnd.x, axisEnd.y);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  ctx.strokeStyle = "rgba(251, 191, 36, 0.92)";
+  ctx.lineWidth = 3;
+  ctx.lineCap = "round";
+  ctx.beginPath();
+  ctx.moveTo(centerX, centerY);
+  ctx.lineTo(passEnd.x, passEnd.y);
+  ctx.stroke();
+
+  ctx.strokeStyle = "rgba(244, 114, 182, 0.88)";
+  ctx.lineWidth = 2.2;
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath();
+  ctx.moveTo(passEnd.x, passEnd.y);
+  ctx.lineTo(current.x, current.y);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  ctx.restore();
+}
+
+function drawPhotonPolarizationTrail(ctx, trace, centerX, centerY, radius, scale) {
+  ctx.save();
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+  for (let index = 1; index < trace.samples.length; index += 1) {
+    const previous = mapPhotonPolarizationPoint(trace.samples[index - 1], centerX, centerY, radius, scale);
+    const current = mapPhotonPolarizationPoint(trace.samples[index], centerX, centerY, radius, scale);
+    const progress = trace.samples[index].progress;
+    ctx.strokeStyle = `rgba(125, 211, 252, ${0.14 + progress * 0.62})`;
+    ctx.lineWidth = 1.2 + progress * 1.6;
+    ctx.beginPath();
+    ctx.moveTo(previous.x, previous.y);
+    ctx.lineTo(current.x, current.y);
+    ctx.stroke();
+  }
+  ctx.restore();
+}
+
+function drawPhotonPolarizationCurrentVector(ctx, trace, centerX, centerY, radius, scale) {
+  const current = mapPhotonPolarizationPoint(trace.current, centerX, centerY, radius, scale);
+  ctx.save();
+  ctx.strokeStyle = "rgba(238, 243, 255, 0.92)";
+  ctx.lineWidth = 2;
+  ctx.lineCap = "round";
+  ctx.beginPath();
+  ctx.moveTo(centerX, centerY);
+  ctx.lineTo(current.x, current.y);
+  ctx.stroke();
+
+  ctx.fillStyle = "#eef3ff";
+  ctx.shadowColor = "rgba(125, 211, 252, 0.9)";
+  ctx.shadowBlur = 10;
+  ctx.beginPath();
+  ctx.arc(current.x, current.y, 4.2, 0, TWO_PI);
+  ctx.fill();
+  ctx.restore();
+}
+
 function drawPhotonComponentPlot(canvas, state, timeSeconds, options = {}) {
   const { windowLike = globalThis.window, components = [] } = options;
   const ctx = canvas.getContext("2d");
@@ -596,7 +721,8 @@ function drawPhotonComponentPlot(canvas, state, timeSeconds, options = {}) {
   const currentProgress = plot.runDuration > 0 ? currentTime / plot.runDuration : 0;
   const amplitudeScale = getPlotAmplitudeScale(
     plot.samples,
-    components.map((component) => component.key)
+    components.map((component) => component.key),
+    currentProgress
   );
 
   ctx.save();
@@ -649,7 +775,7 @@ function drawPhotonComponentPlot(canvas, state, timeSeconds, options = {}) {
     legendX += ctx.measureText(component.label).width + 16;
   });
   ctx.fillStyle = "rgba(238, 243, 255, 0.6)";
-  ctx.fillText(`x${amplitudeScale.toFixed(2)}`, 12, cssHeight - 10);
+  ctx.fillText(`Emax ${formatPhotonPlotEmax(amplitudeScale)} E`, 12, cssHeight - 10);
   ctx.restore();
 }
 
@@ -661,4 +787,53 @@ export function drawPhotonElectricFieldPlot(canvas, state, timeSeconds, options 
       { key: "ez", label: "E_z", color: "#f472b6" },
     ],
   });
+}
+
+export function drawPhotonPolarizationInset(canvas, state, timeSeconds, options = {}) {
+  const { windowLike = globalThis.window } = options;
+  const ctx = canvas.getContext("2d");
+  const { width, height, pixelRatio } = resizeCanvasToDisplaySize(canvas, windowLike);
+  ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+  const cssWidth = width / pixelRatio;
+  const cssHeight = height / pixelRatio;
+  ctx.clearRect(0, 0, cssWidth, cssHeight);
+  ctx.fillStyle = "rgba(6, 9, 18, 0.96)";
+  ctx.fillRect(0, 0, cssWidth, cssHeight);
+
+  const trace = buildPhotonDerivedPolarizationTrace(state, timeSeconds);
+  const centerX = cssWidth / 2;
+  const centerY = cssHeight / 2 + 8;
+  const radius = Math.max(42, Math.min(cssWidth - 40, cssHeight - 62) * 0.48);
+
+  drawPhotonPolarizationAxes(ctx, centerX, centerY, radius);
+  drawPhotonPolarizationTrail(ctx, trace, centerX, centerY, radius, trace.scale);
+  drawPhotonPolarizationAnalyzer(ctx, trace, centerX, centerY, radius, trace.scale);
+  drawPhotonPolarizationCurrentVector(ctx, trace, centerX, centerY, radius, trace.scale);
+
+  ctx.save();
+  ctx.fillStyle = "rgba(238, 243, 255, 0.58)";
+  ctx.font = "600 10px Helvetica Neue, Arial, sans-serif";
+  ctx.fillText(trace.classificationLabel, 12, 34);
+  ctx.fillText(`lag ${trace.phaseLagDeg.toFixed(1)} deg`, 12, 48);
+  ctx.fillText(`Emax ${trace.scale.toFixed(2)}`, 12, cssHeight - 10);
+  const legendY = cssHeight - 12;
+  const legendX = Math.max(92, cssWidth - 112);
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = "rgba(251, 191, 36, 0.92)";
+  ctx.beginPath();
+  ctx.moveTo(legendX, legendY - 2);
+  ctx.lineTo(legendX + 14, legendY - 2);
+  ctx.stroke();
+  ctx.fillStyle = "rgba(251, 191, 36, 0.92)";
+  ctx.fillText("pass", legendX + 18, legendY + 1);
+  ctx.strokeStyle = "rgba(244, 114, 182, 0.88)";
+  ctx.setLineDash([3, 3]);
+  ctx.beginPath();
+  ctx.moveTo(legendX + 52, legendY - 2);
+  ctx.lineTo(legendX + 66, legendY - 2);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = "rgba(244, 114, 182, 0.88)";
+  ctx.fillText("reject", legendX + 70, legendY + 1);
+  ctx.restore();
 }

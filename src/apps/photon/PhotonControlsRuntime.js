@@ -35,8 +35,8 @@ export function getPhotonSeparationLogTicks() {
   ticks.push({
     value: range.max,
     mantissa: 1,
-    exponent: 0,
-    label: "1",
+    exponent: range.max,
+    label: range.max === 0 ? "1" : `1e${range.max}`,
   });
   return ticks;
 }
@@ -52,7 +52,8 @@ export function snapPhotonSeparationLogTick(value) {
 
 function formatPhotonSeparationLogRatio(value) {
   const range = PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio;
-  const clamped = Math.min(range.max, Math.max(range.min, Number(value) || range.max));
+  const number = Number(value);
+  const clamped = Math.min(range.max, Math.max(range.min, Number.isFinite(number) ? number : range.max));
   if (Math.abs(clamped) <= PHOTON_SEPARATION_LOG_TICK_EPSILON) {
     return "1 r";
   }
@@ -262,13 +263,10 @@ export function createPhotonControlsRuntime({
   container,
   state,
   getState = () => state,
-  jsonElement,
   onStateChange,
   onResetAnimation,
   onResetParameters,
   onTogglePause,
-  onExportState,
-  onImportState,
 }) {
   const controls = [];
   const binaryControls = [];
@@ -336,23 +334,6 @@ export function createPhotonControlsRuntime({
     controls.push(control);
     measurementSection.append(control.row);
   });
-  [
-    ["fieldGain", "Field gain", PHOTON_CONTROL_RANGES.fieldGain, 2],
-  ].forEach(([key, label, range, digits]) => {
-    const control = createRangeControl(documentLike, {
-      label,
-      value: state.measurement[key],
-      range,
-      digits,
-      onInput: (value) => {
-        getState().measurement[key] = value;
-        onRangeStateChange();
-      },
-    });
-    controls.push(control);
-    measurementSection.append(control.row);
-  });
-
   ["left", "right"].forEach((swarmId) => {
     const swarm = state.pair[swarmId];
     const section = addSection(documentLike, container, `${swarm.role} ${swarm.direction.toUpperCase()}`);
@@ -400,34 +381,9 @@ export function createPhotonControlsRuntime({
     });
   });
 
-  const polarizationSection = addSection(documentLike, container, "Polarization");
-  const basisRow = createElement(documentLike, "label", "photon-control-row");
-  basisRow.append(createElement(documentLike, "span", "photon-control-label", "Basis"));
-  const basisSelect = createElement(documentLike, "select", "photon-select");
+  const analyzerSection = addSection(documentLike, container, "Analyzer");
   [
-    ["linear", "Linear"],
-    ["right_circular", "Right circular"],
-    ["left_circular", "Left circular"],
-    ["elliptical", "Elliptical"],
-  ].forEach(([value, label]) => {
-    const option = createElement(documentLike, "option", "", label);
-    option.value = value;
-    basisSelect.append(option);
-  });
-  basisSelect.value = state.polarization.basis;
-  basisSelect.addEventListener("change", () => {
-    getState().polarization.basis = basisSelect.value;
-    onStateChange();
-  });
-  basisRow.append(basisSelect, createElement(documentLike, "output", "photon-control-output", ""));
-  polarizationSection.append(basisRow);
-
-  [
-    ["linearAngleDeg", "Angle", PHOTON_CONTROL_RANGES.polarizationAngleDeg, 0],
-    ["phaseLagDeg", "Lag", PHOTON_CONTROL_RANGES.phaseLagDeg, 0],
-    ["ellipticity", "Ellipticity", PHOTON_CONTROL_RANGES.ellipticity, 2],
-    ["intensity", "Intensity", PHOTON_CONTROL_RANGES.intensity, 2],
-    ["analyzerAngleDeg", "Analyzer", PHOTON_CONTROL_RANGES.analyzerAngleDeg, 0],
+    ["analyzerAngleDeg", "Angle", PHOTON_CONTROL_RANGES.analyzerAngleDeg, 0],
   ].forEach(([key, label, range, digits]) => {
     const control = createRangeControl(documentLike, {
       label,
@@ -440,17 +396,8 @@ export function createPhotonControlsRuntime({
       },
     });
     controls.push(control);
-    polarizationSection.append(control.row);
+    analyzerSection.append(control.row);
   });
-
-  const ioSection = addSection(documentLike, container, "State");
-  const ioGrid = createElement(documentLike, "div", "photon-action-grid");
-  const exportButton = createButton(documentLike, "Export");
-  const importButton = createButton(documentLike, "Import");
-  ioGrid.append(exportButton, importButton);
-  ioSection.append(ioGrid);
-  exportButton.addEventListener("click", onExportState);
-  importButton.addEventListener("click", () => onImportState(jsonElement.value));
 
   function sync(nextState) {
     let index = 0;
@@ -460,10 +407,6 @@ export function createPhotonControlsRuntime({
     index += 1;
     ["x", "y", "z"].forEach((key) => {
       syncRange(controls[index], nextState.measurement.virtualObserver[key]);
-      index += 1;
-    });
-    ["fieldGain"].forEach((key) => {
-      syncRange(controls[index], nextState.measurement[key]);
       index += 1;
     });
     ["left", "right"].forEach((swarmId) => {
@@ -478,8 +421,7 @@ export function createPhotonControlsRuntime({
     binaryControls.forEach((control) => {
       control.input.checked = getPhotonLayer(nextState, control.swarmId, control.layerId).enabled !== false;
     });
-    basisSelect.value = nextState.polarization.basis;
-    ["linearAngleDeg", "phaseLagDeg", "ellipticity", "intensity", "analyzerAngleDeg"].forEach((key) => {
+    ["analyzerAngleDeg"].forEach((key) => {
       syncRange(controls[index], nextState.polarization[key]);
       index += 1;
     });

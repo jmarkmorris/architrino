@@ -13,10 +13,10 @@ export const PHOTON_CHARGE_COLORS = Object.freeze({
 });
 
 const TWO_PI = Math.PI * 2;
-const PHOTON_MIN_SEPARATION_LOG10_RATIO = -15;
-const PHOTON_MAX_SEPARATION_LOG10_RATIO = 0;
+const PHOTON_MIN_SEPARATION_LOG10_RATIO = -10;
+const PHOTON_MAX_SEPARATION_LOG10_RATIO = 5;
 const PHOTON_CONTROL_RANGES_MIN_PAIR_SEPARATION = 0.2 * 10 ** PHOTON_MIN_SEPARATION_LOG10_RATIO;
-const PHOTON_CONTROL_RANGES_MAX_PAIR_SEPARATION = 2.4;
+const PHOTON_CONTROL_RANGES_MAX_PAIR_SEPARATION = 2.4 * 10 ** PHOTON_MAX_SEPARATION_LOG10_RATIO;
 
 export const PHOTON_DEFAULT_LAYER_RADII = Object.freeze({
   I: 0.9,
@@ -80,15 +80,10 @@ export const PHOTON_CONTROL_RANGES = Object.freeze({
     step: "any",
   },
   speedMultiplier: { min: 0.1, max: 4, step: 0.05 },
-  polarizationAngleDeg: { min: 0, max: 180, step: 1 },
-  phaseLagDeg: { min: -180, max: 180, step: 1 },
-  ellipticity: { min: -1, max: 1, step: 0.01 },
-  intensity: { min: 0, max: 2, step: 0.01 },
   analyzerAngleDeg: { min: 0, max: 180, step: 1 },
   virtualObserverX: { min: -10, max: 10, step: 0.05 },
   virtualObserverY: { min: -4, max: 4, step: 0.05 },
   virtualObserverZ: { min: -4, max: 4, step: 0.05 },
-  fieldGain: { min: 0.01, max: 1, step: 0.01 },
 });
 
 export const DEFAULT_PHOTON_STATE = Object.freeze({
@@ -118,11 +113,6 @@ export const DEFAULT_PHOTON_STATE = Object.freeze({
     },
   },
   polarization: {
-    basis: "linear",
-    linearAngleDeg: 0,
-    phaseLagDeg: 0,
-    ellipticity: 0,
-    intensity: 1,
     analyzerAngleDeg: 0,
   },
   measurement: {
@@ -132,7 +122,6 @@ export const DEFAULT_PHOTON_STATE = Object.freeze({
       z: 0,
     },
     emissionSpeedCf: 1,
-    fieldGain: 0.04,
   },
 });
 
@@ -228,35 +217,6 @@ export function normalizePhotonState(input = DEFAULT_PHOTON_STATE) {
       right,
     },
     polarization: {
-      basis: ["linear", "right_circular", "left_circular", "elliptical"].includes(
-        state.polarization?.basis
-      )
-        ? state.polarization.basis
-        : fallback.polarization.basis,
-      linearAngleDeg: clampPhotonNumber(
-        state.polarization?.linearAngleDeg,
-        PHOTON_CONTROL_RANGES.polarizationAngleDeg.min,
-        PHOTON_CONTROL_RANGES.polarizationAngleDeg.max,
-        fallback.polarization.linearAngleDeg
-      ),
-      phaseLagDeg: clampPhotonNumber(
-        state.polarization?.phaseLagDeg,
-        PHOTON_CONTROL_RANGES.phaseLagDeg.min,
-        PHOTON_CONTROL_RANGES.phaseLagDeg.max,
-        fallback.polarization.phaseLagDeg
-      ),
-      ellipticity: clampPhotonNumber(
-        state.polarization?.ellipticity,
-        PHOTON_CONTROL_RANGES.ellipticity.min,
-        PHOTON_CONTROL_RANGES.ellipticity.max,
-        fallback.polarization.ellipticity
-      ),
-      intensity: clampPhotonNumber(
-        state.polarization?.intensity,
-        PHOTON_CONTROL_RANGES.intensity.min,
-        PHOTON_CONTROL_RANGES.intensity.max,
-        fallback.polarization.intensity
-      ),
       analyzerAngleDeg: clampPhotonNumber(
         state.polarization?.analyzerAngleDeg,
         PHOTON_CONTROL_RANGES.analyzerAngleDeg.min,
@@ -286,12 +246,6 @@ export function normalizePhotonState(input = DEFAULT_PHOTON_STATE) {
         ),
       },
       emissionSpeedCf: 1,
-      fieldGain: clampPhotonNumber(
-        state.measurement?.fieldGain,
-        PHOTON_CONTROL_RANGES.fieldGain.min,
-        PHOTON_CONTROL_RANGES.fieldGain.max,
-        fallback.measurement.fieldGain
-      ),
     },
   };
 }
@@ -451,13 +405,4 @@ export function setPhotonLayerValue(state, swarmId, layerId, key, value) {
       layer.radius
     );
   }
-}
-
-export function serializePhotonState(state) {
-  return JSON.stringify(normalizePhotonState(state), null, 2);
-}
-
-export function parsePhotonStateJson(jsonText) {
-  const parsed = JSON.parse(String(jsonText ?? "{}"));
-  return normalizePhotonState(parsed);
 }

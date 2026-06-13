@@ -1,8 +1,6 @@
 import {
   createDefaultPhotonState,
   normalizePhotonState,
-  parsePhotonStateJson,
-  serializePhotonState,
   wrapPhotonTime,
 } from "./PhotonStateRuntime.js";
 import { createMarkdownRuntime } from "../../runtime/MarkdownRuntime.js";
@@ -12,6 +10,7 @@ import { computePhotonFormulaSummary } from "./PhotonFormulaRuntime.js";
 import { getPhotonDiagnosticRows, formatPhotonFixed } from "./PhotonDiagnosticsRuntime.js";
 import {
   drawPhotonElectricFieldPlot,
+  drawPhotonPolarizationInset,
   drawPhotonSwarmStage,
 } from "./PhotonSwarmVisualRuntime.js";
 
@@ -67,10 +66,19 @@ function renderRows(documentLike, container, rows) {
 
 function renderFormulaSummary(documentLike, container, summary) {
   const values = [
-    ["Ipass = I0 cos^2(theta)", formatPhotonFixed(summary.malusTarget, 3)],
+    ["derived mode", summary.polarization.classificationLabel],
+    ["fit amp E_y", formatPhotonFixed(summary.polarization.amplitudes.y, 3)],
+    ["fit amp E_z", formatPhotonFixed(summary.polarization.amplitudes.z, 3)],
+    [
+      "fit lag",
+      summary.polarization.phaseLagDefined
+        ? `${formatPhotonFixed(summary.polarization.phaseLagDeg, 1)} deg`
+        : "n/a",
+    ],
+    ["fit analyzer target", formatPhotonFixed(summary.analyzerTarget, 3)],
     ["mu pass", formatPhotonFixed(summary.field.analyzer.passMeasure, 3)],
     ["cycle average", formatPhotonFixed(summary.averagePass, 3)],
-    ["residual", formatPhotonFixed(summary.malusResidual, 4)],
+    ["fit residual", formatPhotonFixed(summary.fitResidual, 4)],
     ["source count", String(summary.field.sourceCount)],
     ["root count", String(summary.field.rootCount)],
     ["mean delay", formatPhotonFixed(summary.field.averageDelay, 3)],
@@ -188,10 +196,10 @@ export function createPhotonRuntime({
 } = {}) {
   const stageCanvas = queryPhotonElement(documentLike, "#photon-stage-canvas");
   const electricFieldCanvas = queryPhotonElement(documentLike, "#photon-electric-field-canvas");
+  const polarizationCanvas = queryPhotonElement(documentLike, "#photon-polarization-canvas");
   const controlsElement = queryPhotonElement(documentLike, "#photon-controls");
   const diagnosticsElement = queryPhotonElement(documentLike, "#photon-diagnostics");
   const formulasElement = queryPhotonElement(documentLike, "#photon-formulas");
-  const jsonElement = queryPhotonElement(documentLike, "#photon-state-json");
   const homeButton = queryPhotonElement(documentLike, "#photon-home-button");
   const guideDocButton = queryPhotonElement(documentLike, "#photon-guide-doc-button");
   const projectDocButton = queryPhotonElement(documentLike, "#photon-project-doc-button");
@@ -233,6 +241,7 @@ export function createPhotonRuntime({
     const summary = computePhotonFormulaSummary(state, wrappedTime);
     drawPhotonSwarmStage(stageCanvas, state, wrappedTime, { windowLike });
     drawPhotonElectricFieldPlot(electricFieldCanvas, state, wrappedTime, { windowLike });
+    drawPhotonPolarizationInset(polarizationCanvas, state, wrappedTime, { windowLike });
     syncOutputs(wrappedTime, summary);
   }
 
@@ -243,7 +252,6 @@ export function createPhotonRuntime({
   function setState(nextState) {
     state = normalizePhotonState(nextState);
     modelTime = wrapPhotonTime(state, modelTime);
-    jsonElement.value = serializePhotonState(state);
     syncControls();
     draw();
   }
@@ -256,14 +264,12 @@ export function createPhotonRuntime({
   function resetParameters() {
     state = createDefaultPhotonState();
     modelTime = 0;
-    jsonElement.value = serializePhotonState(state);
     syncControls();
     draw();
   }
 
   function togglePause() {
     state.time.paused = !state.time.paused;
-    jsonElement.value = serializePhotonState(state);
     syncControls();
     draw();
   }
@@ -276,18 +282,9 @@ export function createPhotonRuntime({
     togglePause();
   }
 
-  function exportState() {
-    jsonElement.value = serializePhotonState(state);
-  }
-
-  function importState(jsonText) {
-    setState(parsePhotonStateJson(jsonText));
-  }
-
   function onStateChange({ syncControls: shouldSyncControls = true, drawNow = true } = {}) {
     state = normalizePhotonState(state);
     modelTime = wrapPhotonTime(state, modelTime);
-    jsonElement.value = serializePhotonState(state);
     if (shouldSyncControls) {
       syncControls();
     }
@@ -310,19 +307,15 @@ export function createPhotonRuntime({
   }
 
   function init() {
-    jsonElement.value = serializePhotonState(state);
     controlsRuntime = createPhotonControlsRuntime({
       documentLike,
       container: controlsElement,
       state,
       getState: () => state,
-      jsonElement,
       onStateChange,
       onResetAnimation: resetAnimation,
       onResetParameters: resetParameters,
       onTogglePause: togglePause,
-      onExportState: exportState,
-      onImportState: importState,
     });
     homeButton.addEventListener("click", () => {
       windowLike.location.assign(homeHref);
