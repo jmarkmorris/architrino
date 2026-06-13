@@ -85,10 +85,9 @@ export const PHOTON_CONTROL_RANGES = Object.freeze({
   ellipticity: { min: -1, max: 1, step: 0.01 },
   intensity: { min: 0, max: 2, step: 0.01 },
   analyzerAngleDeg: { min: 0, max: 180, step: 1 },
-  testPointX: { min: -10, max: 10, step: 0.05 },
-  testPointY: { min: -4, max: 4, step: 0.05 },
-  testPointZ: { min: -4, max: 4, step: 0.05 },
-  nearFieldWeight: { min: 0, max: 1, step: 0.01 },
+  virtualObserverX: { min: -10, max: 10, step: 0.05 },
+  virtualObserverY: { min: -4, max: 4, step: 0.05 },
+  virtualObserverZ: { min: -4, max: 4, step: 0.05 },
   fieldGain: { min: 0.01, max: 1, step: 0.01 },
 });
 
@@ -127,13 +126,12 @@ export const DEFAULT_PHOTON_STATE = Object.freeze({
     analyzerAngleDeg: 0,
   },
   measurement: {
-    testPoint: {
+    virtualObserver: {
       x: 0,
       y: 0,
       z: 0,
     },
     emissionSpeedCf: 1,
-    nearFieldWeight: 0.12,
     fieldGain: 0.04,
   },
 });
@@ -267,33 +265,27 @@ export function normalizePhotonState(input = DEFAULT_PHOTON_STATE) {
       ),
     },
     measurement: {
-      testPoint: {
+      virtualObserver: {
         x: clampPhotonNumber(
-          state.measurement?.testPoint?.x,
-          PHOTON_CONTROL_RANGES.testPointX.min,
-          PHOTON_CONTROL_RANGES.testPointX.max,
-          fallback.measurement.testPoint.x
+          state.measurement?.virtualObserver?.x,
+          PHOTON_CONTROL_RANGES.virtualObserverX.min,
+          PHOTON_CONTROL_RANGES.virtualObserverX.max,
+          fallback.measurement.virtualObserver.x
         ),
         y: clampPhotonNumber(
-          state.measurement?.testPoint?.y,
-          PHOTON_CONTROL_RANGES.testPointY.min,
-          PHOTON_CONTROL_RANGES.testPointY.max,
-          fallback.measurement.testPoint.y
+          state.measurement?.virtualObserver?.y,
+          PHOTON_CONTROL_RANGES.virtualObserverY.min,
+          PHOTON_CONTROL_RANGES.virtualObserverY.max,
+          fallback.measurement.virtualObserver.y
         ),
         z: clampPhotonNumber(
-          state.measurement?.testPoint?.z,
-          PHOTON_CONTROL_RANGES.testPointZ.min,
-          PHOTON_CONTROL_RANGES.testPointZ.max,
-          fallback.measurement.testPoint.z
+          state.measurement?.virtualObserver?.z,
+          PHOTON_CONTROL_RANGES.virtualObserverZ.min,
+          PHOTON_CONTROL_RANGES.virtualObserverZ.max,
+          fallback.measurement.virtualObserver.z
         ),
       },
       emissionSpeedCf: 1,
-      nearFieldWeight: clampPhotonNumber(
-        state.measurement?.nearFieldWeight,
-        PHOTON_CONTROL_RANGES.nearFieldWeight.min,
-        PHOTON_CONTROL_RANGES.nearFieldWeight.max,
-        fallback.measurement.nearFieldWeight
-      ),
       fieldGain: clampPhotonNumber(
         state.measurement?.fieldGain,
         PHOTON_CONTROL_RANGES.fieldGain.min,

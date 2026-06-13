@@ -317,19 +317,19 @@ export function createPhotonControlsRuntime({
 
   const measurementSection = addSection(documentLike, container, "Measurement");
   [
-    ["x", "Test x", PHOTON_CONTROL_RANGES.testPointX, 2],
-    ["y", "Test y", PHOTON_CONTROL_RANGES.testPointY, 2],
-    ["z", "Test z", PHOTON_CONTROL_RANGES.testPointZ, 2],
+    ["x", "Observer x", PHOTON_CONTROL_RANGES.virtualObserverX, 2],
+    ["y", "Observer y", PHOTON_CONTROL_RANGES.virtualObserverY, 2],
+    ["z", "Observer z", PHOTON_CONTROL_RANGES.virtualObserverZ, 2],
   ].forEach(([key, label, range, digits]) => {
     const control = createRangeControl(documentLike, {
       label,
-      value: state.measurement.testPoint[key],
+      value: state.measurement.virtualObserver[key],
       range,
       digits,
       zeroIndicator: true,
       snapToZero: true,
       onInput: (value) => {
-        getState().measurement.testPoint[key] = value;
+        getState().measurement.virtualObserver[key] = value;
         onRangeStateChange();
       },
     });
@@ -337,7 +337,6 @@ export function createPhotonControlsRuntime({
     measurementSection.append(control.row);
   });
   [
-    ["nearFieldWeight", "Near mix", PHOTON_CONTROL_RANGES.nearFieldWeight, 2],
     ["fieldGain", "Field gain", PHOTON_CONTROL_RANGES.fieldGain, 2],
   ].forEach(([key, label, range, digits]) => {
     const control = createRangeControl(documentLike, {
@@ -460,10 +459,10 @@ export function createPhotonControlsRuntime({
     syncRange(controls[index], nextState.time.speedMultiplier);
     index += 1;
     ["x", "y", "z"].forEach((key) => {
-      syncRange(controls[index], nextState.measurement.testPoint[key]);
+      syncRange(controls[index], nextState.measurement.virtualObserver[key]);
       index += 1;
     });
-    ["nearFieldWeight", "fieldGain"].forEach((key) => {
+    ["fieldGain"].forEach((key) => {
       syncRange(controls[index], nextState.measurement[key]);
       index += 1;
     });

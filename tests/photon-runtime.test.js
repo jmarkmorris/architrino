@@ -30,6 +30,7 @@ import {
   computePhotonDelayedEmissionField,
   computePhotonFormulaSummary,
   computePhotonObserverField,
+  solvePhotonCausalRoots,
 } from "../src/apps/photon/PhotonFormulaRuntime.js";
 import {
   computePhotonDiagnostics,
@@ -65,7 +66,7 @@ test("default photon state encodes trailing and leading swarm convention", () =>
       );
     });
   });
-  assert.deepEqual(state.measurement.testPoint, { x: 0, y: 0, z: 0 });
+  assert.deepEqual(state.measurement.virtualObserver, { x: 0, y: 0, z: 0 });
   assert.equal(state.measurement.emissionSpeedCf, 1);
   assert.equal(state.pair.pairSeparation, getPhotonSeparationReferenceRadius(state));
   assert.equal(getPhotonSeparationLog10Ratio(state), 0);
@@ -99,23 +100,26 @@ test("left swarm angles advance counter-clockwise while right swarm angles advan
   assert.ok(rightLater < rightStart);
 });
 
-test("default observer field is computed from delayed architrino emissions", () => {
+test("default observer field is computed from Virtual Observer branch sums", () => {
   const state = createDefaultPhotonState();
   const field = computePhotonObserverField(state, 0);
 
-  assert.equal(field.sourceMode, "delayed_architrino_emissions");
+  assert.equal(field.sourceMode, "virtual_observer_branch_sum");
   assert.equal(field.sourceCount, 12);
-  assert.equal(field.contributions.length, 12);
+  assert.equal(field.rootCount, field.contributions.length);
+  assert.ok(field.rootCount >= field.sourceCount);
   assert.ok(Number.isFinite(field.electric.y));
   assert.ok(Number.isFinite(field.electric.z));
   assert.ok(Number.isFinite(field.comparisonB.z));
+  assert.ok(Number.isFinite(field.receiverAcceleration.x));
   assert.ok(Number.isFinite(field.analyzer.passMeasure));
   assert.ok(field.averageDelay > 0);
   assertNear(field.maxSourceSpeedRatio, PHOTON_LAYER_SPEED_RATIO_TARGETS.I);
   assert.ok(field.delaySolveGapMax >= 0);
+  assert.ok(field.jacobianAbsMin > 0);
 });
 
-test("disabled binaries are removed from delayed emission sources", () => {
+test("disabled binaries are removed from branch-sum sources", () => {
   const state = createDefaultPhotonState();
   state.pair.left.layers.M.enabled = false;
   const refs = buildPhotonArchitrinoSourceRefs(state);
@@ -123,7 +127,7 @@ test("disabled binaries are removed from delayed emission sources", () => {
 
   assert.equal(refs.length, 10);
   assert.equal(field.sourceCount, 10);
-  assert.equal(field.contributions.length, 10);
+  assert.equal(field.rootCount, field.contributions.length);
   assert.equal(
     field.contributions.some(
       (contribution) => contribution.kinematics.swarmId === "left" && contribution.kinematics.layerId === "M"
@@ -132,7 +136,7 @@ test("disabled binaries are removed from delayed emission sources", () => {
   );
 });
 
-test("all disabled binaries produce zero delayed field", () => {
+test("all disabled binaries produce zero branch-sum field", () => {
   const state = createDefaultPhotonState();
   ["left", "right"].forEach((swarmId) => {
     ["I", "M", "O"].forEach((layerId) => {
@@ -142,17 +146,18 @@ test("all disabled binaries produce zero delayed field", () => {
   const field = computePhotonDelayedEmissionField(state, 0.5);
 
   assert.equal(field.sourceCount, 0);
+  assert.equal(field.rootCount, 0);
   assert.deepEqual(field.electric, { x: 0, y: 0, z: 0 });
   assert.deepEqual(field.comparisonB, { x: 0, y: 0, z: 0 });
   assert.equal(field.maxSourceSpeedRatio, 0);
   assert.equal(field.delaySolveGapMax, 0);
   assert.equal(field.unstableSourceCount, 0);
+  assert.equal(field.unresolvedSourceCount, 0);
 });
 
-test("outer-only default stays below field speed and has a stable delay solve", () => {
+test("outer-only default stays below field speed and has a stable branch solve", () => {
   const state = createDefaultPhotonState();
-  state.measurement.testPoint = { x: 0, y: 4, z: 0 };
-  state.measurement.nearFieldWeight = 0.09;
+  state.measurement.virtualObserver = { x: 0, y: 4, z: 0 };
   state.measurement.fieldGain = 1;
   ["left", "right"].forEach((swarmId) => {
     ["I", "M"].forEach((layerId) => {
@@ -165,16 +170,19 @@ test("outer-only default stays below field speed and has a stable delay solve", 
   const diagnosticRows = new Map(getPhotonDiagnosticRows(state, 3, computePhotonFormulaSummary(state, 3)));
 
   assert.equal(field.sourceCount, 4);
+  assert.equal(field.rootCount, field.contributions.length);
   assert.ok(field.maxSourceSpeedRatio < 1);
   assert.ok(field.delaySolveGapMax < 0.01);
+  assert.ok(field.jacobianAbsMin > 0);
+  assert.equal(field.unresolvedSourceCount, 0);
   assert.equal(field.unstableSourceCount, 0);
   assert.equal(diagnostics.maxSourceSpeedRatio < 1, true);
   assert.equal(diagnosticRows.get("Delay status"), "stable");
 });
 
-test("outer-only super field speed settings report unstable delay solve", () => {
+test("outer-only super field speed settings report unstable branch solve", () => {
   const state = createDefaultPhotonState();
-  state.measurement.testPoint = { x: 0, y: 4, z: 0 };
+  state.measurement.virtualObserver = { x: 0, y: 4, z: 0 };
   ["left", "right"].forEach((swarmId) => {
     ["I", "M"].forEach((layerId) => {
       state.pair[swarmId].layers[layerId].enabled = false;
@@ -186,20 +194,36 @@ test("outer-only super field speed settings report unstable delay solve", () => 
   const diagnosticRows = new Map(getPhotonDiagnosticRows(state, 3, computePhotonFormulaSummary(state, 3)));
 
   assert.equal(field.sourceCount, 4);
+  assert.ok(field.rootCount >= field.sourceCount);
   assert.ok(field.maxSourceSpeedRatio > 1);
   assert.ok(field.unstableSourceCount > 0);
   assert.equal(diagnosticRows.get("Delay status"), "unstable");
 });
 
-test("moving the measurement test point changes the delayed emission field", () => {
+test("moving the Virtual Observer changes the branch-sum field", () => {
   const state = createDefaultPhotonState();
   const base = computePhotonDelayedEmissionField(state, 0.75);
-  state.measurement.testPoint.x = 2.75;
-  state.measurement.testPoint.y = 1.4;
+  state.measurement.virtualObserver.x = 2.75;
+  state.measurement.virtualObserver.y = 1.4;
   const moved = computePhotonDelayedEmissionField(state, 0.75);
 
   assert.notEqual(base.electric.y.toFixed(8), moved.electric.y.toFixed(8));
   assert.notEqual(base.averageDelay.toFixed(8), moved.averageDelay.toFixed(8));
+});
+
+test("causal-root solver returns branch roots with Jacobian-weighted contributions", () => {
+  const state = createDefaultPhotonState();
+  const sourceRef = { swarmId: "left", layerId: "O", chargeType: "positrino" };
+  const roots = solvePhotonCausalRoots(state, sourceRef, 0.75);
+  const field = computePhotonDelayedEmissionField(state, 0.75);
+
+  assert.ok(roots.length >= 1);
+  roots.forEach((root) => {
+    assert.ok(Math.abs(root.residual) < 1e-4);
+    assert.ok(root.delay > 0);
+  });
+  assert.ok(field.contributions.every((contribution) => Number.isFinite(contribution.jacobianWeight)));
+  assert.ok(field.contributions.every((contribution) => contribution.jacobianWeight > 0));
 });
 
 test("plot samples expose middle-cycle guide bounds and active left-to-right trace", () => {
@@ -272,20 +296,20 @@ test("photon side-view height follows the largest enabled binary", () => {
   assert.ok(withoutOuter.sideHalfHeight > 0);
 });
 
-test("test point slider zero helpers mark and snap near zero", () => {
-  assert.equal(getPhotonControlZeroPositionPercent(PHOTON_CONTROL_RANGES.testPointX), 50);
-  assert.equal(getPhotonControlZeroPositionPercent(PHOTON_CONTROL_RANGES.testPointY), 50);
+test("Virtual Observer slider zero helpers mark and snap near zero", () => {
+  assert.equal(getPhotonControlZeroPositionPercent(PHOTON_CONTROL_RANGES.virtualObserverX), 50);
+  assert.equal(getPhotonControlZeroPositionPercent(PHOTON_CONTROL_RANGES.virtualObserverY), 50);
   assert.equal(getPhotonControlZeroPositionPercent(PHOTON_CONTROL_RANGES.fieldGain), null);
-  assert.equal(getPhotonControlZeroSnapThreshold(PHOTON_CONTROL_RANGES.testPointX), 0.25);
-  assert.equal(getPhotonControlZeroSnapThreshold(PHOTON_CONTROL_RANGES.testPointY), 0.1);
+  assert.equal(getPhotonControlZeroSnapThreshold(PHOTON_CONTROL_RANGES.virtualObserverX), 0.25);
+  assert.equal(getPhotonControlZeroSnapThreshold(PHOTON_CONTROL_RANGES.virtualObserverY), 0.1);
   assert.equal(getPhotonControlZeroSnapThreshold(PHOTON_CONTROL_RANGES.fieldGain), null);
 
-  assert.equal(snapPhotonControlValueToZero(0.05, PHOTON_CONTROL_RANGES.testPointX), 0);
-  assert.equal(snapPhotonControlValueToZero(0.25, PHOTON_CONTROL_RANGES.testPointX), 0);
-  assert.equal(snapPhotonControlValueToZero(-0.25, PHOTON_CONTROL_RANGES.testPointX), 0);
-  assert.equal(snapPhotonControlValueToZero(0.3, PHOTON_CONTROL_RANGES.testPointX), 0.3);
-  assert.equal(snapPhotonControlValueToZero(-0.1, PHOTON_CONTROL_RANGES.testPointY), 0);
-  assert.equal(snapPhotonControlValueToZero(0.15, PHOTON_CONTROL_RANGES.testPointZ), 0.15);
+  assert.equal(snapPhotonControlValueToZero(0.05, PHOTON_CONTROL_RANGES.virtualObserverX), 0);
+  assert.equal(snapPhotonControlValueToZero(0.25, PHOTON_CONTROL_RANGES.virtualObserverX), 0);
+  assert.equal(snapPhotonControlValueToZero(-0.25, PHOTON_CONTROL_RANGES.virtualObserverX), 0);
+  assert.equal(snapPhotonControlValueToZero(0.3, PHOTON_CONTROL_RANGES.virtualObserverX), 0.3);
+  assert.equal(snapPhotonControlValueToZero(-0.1, PHOTON_CONTROL_RANGES.virtualObserverY), 0);
+  assert.equal(snapPhotonControlValueToZero(0.15, PHOTON_CONTROL_RANGES.virtualObserverZ), 0.15);
   assert.equal(snapPhotonControlValueToZero(0.05, PHOTON_CONTROL_RANGES.fieldGain), 0.05);
 });
 
@@ -319,15 +343,15 @@ test("state JSON round trips through normalization", () => {
   state.polarization.linearAngleDeg = 45;
   state.pair.right.layers.M.frequencyHz = 0.39;
   state.pair.right.layers.O.enabled = false;
-  state.measurement.testPoint.x = 5.25;
-  state.measurement.testPoint.y = -1.5;
+  state.measurement.virtualObserver.x = 5.25;
+  state.measurement.virtualObserver.y = -1.5;
   const parsed = parsePhotonStateJson(serializePhotonState(state));
 
   assert.equal(parsed.polarization.linearAngleDeg, 45);
   assert.equal(parsed.pair.right.layers.M.frequencyHz, 0.39);
   assert.equal(parsed.pair.right.layers.O.enabled, false);
-  assert.equal(parsed.measurement.testPoint.x, 5.25);
-  assert.equal(parsed.measurement.testPoint.y, -1.5);
+  assert.equal(parsed.measurement.virtualObserver.x, 5.25);
+  assert.equal(parsed.measurement.virtualObserver.y, -1.5);
   assert.deepEqual(parsed, normalizePhotonState(parsed));
 });
 

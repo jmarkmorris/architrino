@@ -14,9 +14,15 @@ import {
 const TWO_PI = Math.PI * 2;
 const EPSILON = 1e-9;
 const MIN_FIELD_DISTANCE = 0.08;
-const MAX_DELAY_SOLVE_STEPS = 24;
-const DELAY_SOLVE_TOLERANCE = 1e-5;
+const ROOT_SCAN_MIN_STEPS = 48;
+const ROOT_SCAN_MAX_STEPS = 720;
+const ROOT_SCAN_STEPS_PER_CYCLE = 40;
+const ROOT_BISECTION_STEPS = 32;
+const ROOT_RESIDUAL_TOLERANCE = 1e-5;
+const ROOT_DEDUP_DELAY_TOLERANCE = 1e-4;
+const JACOBIAN_FLOOR = 1e-4;
 const DEFAULT_ANALYZER_AVERAGE_SAMPLES = 48;
+const X_HAT = Object.freeze({ x: 1, y: 0, z: 0 });
 const PHOTON_CHARGE_TYPES = Object.freeze(["positrino", "electrino"]);
 const PHOTON_CHARGE_SIGN = Object.freeze({
   positrino: 1,
@@ -59,13 +65,12 @@ export function resolvePhotonPolarizationParameters(state) {
 
 export function resolvePhotonMeasurementParameters(state) {
   return {
-    testPoint: {
-      x: Number(state?.measurement?.testPoint?.x ?? 0) || 0,
-      y: Number(state?.measurement?.testPoint?.y ?? 0) || 0,
-      z: Number(state?.measurement?.testPoint?.z ?? 0) || 0,
+    virtualObserver: {
+      x: Number(state?.measurement?.virtualObserver?.x ?? 0) || 0,
+      y: Number(state?.measurement?.virtualObserver?.y ?? 0) || 0,
+      z: Number(state?.measurement?.virtualObserver?.z ?? 0) || 0,
     },
     emissionSpeedCf: 1,
-    nearFieldWeight: Math.max(0, Math.min(1, Number(state?.measurement?.nearFieldWeight ?? 0.12) || 0)),
     fieldGain: Math.max(0.01, Number(state?.measurement?.fieldGain ?? 0.04) || 0.04),
   };
 }
@@ -124,6 +129,108 @@ function safeDirectionVector(delta) {
   };
 }
 
+function getPhotonCausalRootResidual(state, sourceRef, observationTime, delay, measurement) {
+  const emissionTime = observationTime - delay;
+  const kinematics = getPhotonArchitrinoKinematics(
+    state,
+    sourceRef.swarmId,
+    sourceRef.layerId,
+    sourceRef.chargeType,
+    emissionTime
+  );
+  const delta = subtractVector(measurement.virtualObserver, kinematics.position);
+  const { distance, direction } = safeDirectionVector(delta);
+  return {
+    emissionTime,
+    delay,
+    residual: distance - measurement.emissionSpeedCf * delay,
+    distance,
+    direction,
+    kinematics,
+  };
+}
+
+function getPhotonSourceMaxDelay(state, sourceRef, measurement) {
+  const layer = getPhotonLayer(state, sourceRef.swarmId, sourceRef.layerId);
+  const centerX = getPhotonSwarmCenterX(state, sourceRef.swarmId);
+  const observer = measurement.virtualObserver;
+  const dx = observer.x - centerX;
+  const transverseObserverRadius = Math.hypot(observer.y, observer.z);
+  const maxTransverseDistance = transverseObserverRadius + Math.max(0, Number(layer.radius) || 0);
+  const maxDistance = Math.max(
+    MIN_FIELD_DISTANCE,
+    Math.hypot(dx, maxTransverseDistance)
+  );
+  return (maxDistance + MIN_FIELD_DISTANCE) / measurement.emissionSpeedCf;
+}
+
+function pushPhotonRoot(roots, root) {
+  const duplicate = roots.some((existingRoot) =>
+    Math.abs(existingRoot.delay - root.delay) <= ROOT_DEDUP_DELAY_TOLERANCE
+  );
+  if (!duplicate) {
+    roots.push(root);
+  }
+}
+
+function refinePhotonRootDelay(state, sourceRef, observationTime, measurement, lowDelay, highDelay) {
+  let low = getPhotonCausalRootResidual(state, sourceRef, observationTime, lowDelay, measurement);
+  let high = getPhotonCausalRootResidual(state, sourceRef, observationTime, highDelay, measurement);
+  for (let index = 0; index < ROOT_BISECTION_STEPS; index += 1) {
+    const midDelay = (low.delay + high.delay) / 2;
+    const mid = getPhotonCausalRootResidual(state, sourceRef, observationTime, midDelay, measurement);
+    if (Math.abs(mid.residual) <= ROOT_RESIDUAL_TOLERANCE) {
+      return { ...mid, solveIterations: index + 1 };
+    }
+    if (Math.sign(low.residual) === Math.sign(mid.residual)) {
+      low = mid;
+    } else {
+      high = mid;
+    }
+  }
+  const result = Math.abs(low.residual) < Math.abs(high.residual) ? low : high;
+  return { ...result, solveIterations: ROOT_BISECTION_STEPS };
+}
+
+export function solvePhotonCausalRoots(state, sourceRef, observationTime, measurement = resolvePhotonMeasurementParameters(state)) {
+  const layer = getPhotonLayer(state, sourceRef.swarmId, sourceRef.layerId);
+  const maxDelay = getPhotonSourceMaxDelay(state, sourceRef, measurement);
+  const frequency = Math.max(0, Math.abs(Number(layer.frequencyHz) || 0));
+  const scanSteps = Math.min(
+    ROOT_SCAN_MAX_STEPS,
+    Math.max(ROOT_SCAN_MIN_STEPS, Math.ceil(maxDelay * frequency * ROOT_SCAN_STEPS_PER_CYCLE))
+  );
+  const roots = [];
+  let previous = getPhotonCausalRootResidual(state, sourceRef, observationTime, 0, measurement);
+  if (Math.abs(previous.residual) <= ROOT_RESIDUAL_TOLERANCE) {
+    pushPhotonRoot(roots, { ...previous, solveIterations: 0 });
+  }
+
+  for (let index = 1; index <= scanSteps; index += 1) {
+    const delay = (maxDelay * index) / scanSteps;
+    const current = getPhotonCausalRootResidual(state, sourceRef, observationTime, delay, measurement);
+    if (Math.abs(current.residual) <= ROOT_RESIDUAL_TOLERANCE) {
+      pushPhotonRoot(roots, { ...current, solveIterations: 0 });
+    }
+    if (Math.sign(previous.residual) !== Math.sign(current.residual)) {
+      pushPhotonRoot(
+        roots,
+        refinePhotonRootDelay(
+          state,
+          sourceRef,
+          observationTime,
+          measurement,
+          previous.delay,
+          current.delay
+        )
+      );
+    }
+    previous = current;
+  }
+
+  return roots.sort((a, b) => a.delay - b.delay);
+}
+
 export function getPhotonArchitrinoKinematics(state, swarmId, layerId, chargeType, timeSeconds) {
   const layer = getPhotonLayer(state, swarmId, layerId);
   const directionSign = getPhotonDirectionSign(state, swarmId);
@@ -159,74 +266,29 @@ export function getPhotonArchitrinoKinematics(state, swarmId, layerId, chargeTyp
   };
 }
 
-function solvePhotonDelayedEmission(state, sourceRef, observationTime, testPoint, emissionSpeedCf) {
-  let emissionTime = observationTime;
-  let kinematics = getPhotonArchitrinoKinematics(
-    state,
-    sourceRef.swarmId,
-    sourceRef.layerId,
-    sourceRef.chargeType,
-    emissionTime
+function computePhotonDelayedContribution(root, measurement) {
+  const n = root.direction;
+  const sourceRadialSpeed = dotVector(root.kinematics.velocity, n);
+  const jacobian = 1 - sourceRadialSpeed / Math.max(EPSILON, measurement.emissionSpeedCf);
+  const jacobianAbs = Math.abs(jacobian);
+  const jacobianWeight = 1 / Math.max(JACOBIAN_FLOOR, jacobianAbs);
+  const sourceSpeedRatio = vectorMagnitude(root.kinematics.velocity) / Math.max(EPSILON, measurement.emissionSpeedCf);
+  const receiverAcceleration = scaleVector(
+    n,
+    root.kinematics.chargeSign * measurement.fieldGain * jacobianWeight / (root.distance * root.distance)
   );
-  let delta = subtractVector(testPoint, kinematics.position);
-  let delay = vectorMagnitude(delta) / emissionSpeedCf;
-  let delaySolveGap = Number.POSITIVE_INFINITY;
-  let solveIterations = 0;
+  const electric = receiverAcceleration;
+  const comparisonB = scaleVector(crossVector(X_HAT, electric), 1 / measurement.emissionSpeedCf);
 
-  for (let index = 0; index < MAX_DELAY_SOLVE_STEPS; index += 1) {
-    emissionTime = observationTime - delay;
-    kinematics = getPhotonArchitrinoKinematics(
-      state,
-      sourceRef.swarmId,
-      sourceRef.layerId,
-      sourceRef.chargeType,
-      emissionTime
-    );
-    delta = subtractVector(testPoint, kinematics.position);
-    delay = Math.max(MIN_FIELD_DISTANCE, vectorMagnitude(delta)) / emissionSpeedCf;
-    delaySolveGap = Math.abs((observationTime - emissionTime) - delay);
-    solveIterations = index + 1;
-    if (delaySolveGap <= DELAY_SOLVE_TOLERANCE) {
-      break;
-    }
-  }
-
-  const { distance, direction } = safeDirectionVector(delta);
-  const sourceSpeedRatio = vectorMagnitude(kinematics.velocity) / Math.max(EPSILON, emissionSpeedCf);
   return {
-    emissionTime,
-    delay,
-    delaySolveGap,
-    solveIterations,
-    distance,
-    direction,
-    kinematics,
+    ...root,
+    delaySolveGap: Math.abs(root.residual),
+    jacobian,
+    jacobianAbs,
+    jacobianWeight,
+    sourceRadialSpeed,
     sourceSpeedRatio,
-  };
-}
-
-function computePhotonDelayedContribution(state, sourceRef, observationTime, measurement) {
-  const delayed = solvePhotonDelayedEmission(
-    state,
-    sourceRef,
-    observationTime,
-    measurement.testPoint,
-    measurement.emissionSpeedCf
-  );
-  const n = delayed.direction;
-  const acceleration = delayed.kinematics.acceleration;
-  const charge = delayed.kinematics.chargeSign;
-  const nDotA = dotVector(n, acceleration);
-  const radiationVector = subtractVector(scaleVector(n, nDotA), acceleration);
-  const nearVector = scaleVector(n, measurement.nearFieldWeight / (delayed.distance * delayed.distance));
-  const electric = scaleVector(
-    addVector(scaleVector(radiationVector, 1 / delayed.distance), nearVector),
-    charge * measurement.fieldGain
-  );
-  const comparisonB = scaleVector(crossVector(n, electric), 1 / measurement.emissionSpeedCf);
-
-  return {
-    ...delayed,
+    receiverAcceleration,
     electric,
     comparisonB,
   };
@@ -246,8 +308,12 @@ export function buildPhotonArchitrinoSourceRefs(state = null) {
 export function computePhotonDelayedEmissionField(state, observationTime) {
   const measurement = resolvePhotonMeasurementParameters(state);
   const sourceRefs = buildPhotonArchitrinoSourceRefs(state);
-  const contributions = sourceRefs.map((sourceRef) =>
-    computePhotonDelayedContribution(state, sourceRef, observationTime, measurement)
+  const rootSets = sourceRefs.map((sourceRef) => ({
+    sourceRef,
+    roots: solvePhotonCausalRoots(state, sourceRef, observationTime, measurement),
+  }));
+  const contributions = rootSets.flatMap(({ roots }) =>
+    roots.map((root) => computePhotonDelayedContribution(root, measurement))
   );
   const electric = contributions.reduce(
     (sum, contribution) => addVector(sum, contribution.electric),
@@ -270,18 +336,29 @@ export function computePhotonDelayedEmissionField(state, observationTime) {
     (maximum, contribution) => Math.max(maximum, contribution.sourceSpeedRatio),
     0
   );
+  const jacobianAbsMin = contributions.reduce(
+    (minimum, contribution) => Math.min(minimum, contribution.jacobianAbs),
+    Number.POSITIVE_INFINITY
+  );
+  const unresolvedSourceCount = rootSets.filter((rootSet) => rootSet.roots.length === 0).length;
   const unstableSourceCount = contributions.filter(
-    (contribution) => contribution.sourceSpeedRatio > 1 || contribution.delaySolveGap > 0.05
+    (contribution) =>
+      contribution.sourceSpeedRatio > 1 ||
+      contribution.delaySolveGap > 0.05 ||
+      contribution.jacobianAbs <= JACOBIAN_FLOOR
   ).length;
 
   return {
-    sourceMode: "delayed_architrino_emissions",
+    sourceMode: "virtual_observer_branch_sum",
     measurement,
     contributions,
-    sourceCount: contributions.length,
+    sourceCount: sourceRefs.length,
+    rootCount: contributions.length,
     averageDelay: contributions.length > 0 ? delaySum / contributions.length : 0,
     delaySolveGapMax,
     maxSourceSpeedRatio,
+    jacobianAbsMin: Number.isFinite(jacobianAbsMin) ? jacobianAbsMin : 0,
+    unresolvedSourceCount,
     unstableSourceCount,
     nearestSourceDistance: Number.isFinite(distanceMin) ? distanceMin : 0,
     electric,
@@ -312,12 +389,16 @@ export function computePhotonObserverField(state, timeSeconds) {
     sourceMode: delayedField.sourceMode,
     measurement: delayedField.measurement,
     sourceCount: delayedField.sourceCount,
+    rootCount: delayedField.rootCount,
     averageDelay: delayedField.averageDelay,
     delaySolveGapMax: delayedField.delaySolveGapMax,
     maxSourceSpeedRatio: delayedField.maxSourceSpeedRatio,
+    jacobianAbsMin: delayedField.jacobianAbsMin,
+    unresolvedSourceCount: delayedField.unresolvedSourceCount,
     unstableSourceCount: delayedField.unstableSourceCount,
     nearestSourceDistance: delayedField.nearestSourceDistance,
     contributions: delayedField.contributions,
+    receiverAcceleration: delayedField.electric,
     electric: { y: ey, z: ez, magnitude: Math.sqrt(fieldNormSquared) },
     comparisonB: { y: by, z: bz, magnitude: Math.sqrt(by * by + bz * bz) },
     analyzer: {

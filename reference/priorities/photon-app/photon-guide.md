@@ -2,7 +2,7 @@
 
 ## What This App Shows
 
-The photon app is an exploratory diagnostic for a candidate photon modeled as two contra-rotating flat Noether swarms. It is meant to help inspect the candidate geometry, delayed field readouts, and polarization controls. It is not a proof of photon closure.
+The photon app is an exploratory diagnostic for a candidate photon modeled as two contra-rotating flat Noether swarms. It is meant to help inspect the candidate geometry, Virtual Observer field readouts, and polarization controls. It is not a proof of photon closure.
 
 The left swarm is the trailing swarm and rotates counter-clockwise. The right swarm is the leading swarm and rotates clockwise. The app shows the swarms face-on so the I/M/O binary motion is visible; in the candidate geometry, the planar swarms are perpendicular to the line of translation.
 
@@ -12,9 +12,9 @@ The upper stage shows the two face-on swarms on the left and an edge-on side vie
 
 The side view shows the same pair along the line of translation. Each planar swarm appears as a vertical glowing trace with the same height as the diameter of the largest enabled binary. The red and blue side-view markers move up and down along those traces, as they would when the orbit is viewed from the side.
 
-The lower stage contains one delayed field plot:
+The lower stage contains one Virtual Observer field plot:
 
-- Delayed E plot: the transverse electric readout computed from the delayed emissions of the active architrinos at the current test point.
+- Virtual Observer E plot: the transverse electric readout reconstructed from the branch-weighted causal hits at the current Virtual Observer coordinate.
 
 The plot covers three full middle-layer cycles. The vertical guide lines mark the start and end of the middle cycle so the central cycle can be inspected without edge effects. For an ideal plane-wave comparison moving along $+\hat{\mathbf x}$, $\mathbf B$ is recovered from $\mathbf E$ by $\mathbf B=(1/c_f)\hat{\mathbf x}\times\mathbf E$, so it is not plotted as a separate graph.
 
@@ -26,7 +26,7 @@ Use Reset time to restart time at the beginning of the three-cycle plot. Use Res
 
 Use Paths on/off to show or hide orbit paths and path-history trails.
 
-Each of the six binaries has an enabled checkbox. When a binary is unchecked, it is removed from the swarm display and its two architrinos are removed from the delayed E field sum.
+Each of the six binaries has an enabled checkbox. When a binary is unchecked, it is removed from the swarm display and its two architrinos are removed from the Virtual Observer E field sum.
 
 ## Geometry Controls
 
@@ -40,9 +40,9 @@ Each swarm has independent I/M/O controls:
 
 The default I/M/O phases are all `0` degrees. The default I/M/O radii use the same `5:7:9` ratio as the Ideal Swarm app.
 
-## Measurement Controls
+## Virtual Observer Controls
 
-The test point controls choose where the external fields are measured:
+The Virtual Observer controls choose where the absolute-coordinate sample point is placed:
 
 - `x` is the coordinate along the line of translation;
 - `y` is the first transverse coordinate;
@@ -50,7 +50,9 @@ The test point controls choose where the external fields are measured:
 
 The `x`, `y`, and `z` sliders mark the zero point and snap values very close to zero to exactly `0`.
 
-The plotted E curve is recalculated from the active architrino positions and the current test point. Field gain only rescales the displayed curve so it stays readable. Near-field mix blends in a controlled near-field contribution for diagnostic comparison.
+The plotted E curve is recalculated by solving the causal-root equation from every active architrino source history to the Virtual Observer point. Each retained root contributes a radial Master-EOM-style hit weighted by $1/(R^2 |J|)$, where $R$ is the source-to-observer distance at the root and $J$ is the delay-map Jacobian. The app then reconstructs the displayed $E_y$ and $E_z$ components from the transverse part of the summed receiver acceleration.
+
+Field gain only rescales the displayed curve so it stays readable. The previous local-mix diagnostic is no longer needed because the branch-weighted receiver acceleration already uses the radial inverse-square causal-hit form.
 
 ## Polarization Controls
 

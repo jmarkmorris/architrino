@@ -82,6 +82,13 @@ Textbook regeneration has two generated layers:
 - `node scripts/build-scene-graph.mjs --write --strict` regenerates the scene graph, Textbook TOC data, and Textbook TOC markdown.
 - `node scripts/build-textbook-md-pdf.mjs --write` regenerates the textbook reading-copy markdown under `content/generated/markdown/textbook/reading-copies/`.
 
+Regenerate both layers before the final check pass whenever a PR touches any source that can affect textbook PDF reading copies:
+
+- textbook-facing markdown under `content/markdown/aaa/`,
+- authored scene files that affect textbook ordering, inclusion, or section structure,
+- textbook TOC generation inputs or outputs, including `content/graph/textbook_toc.json` and `content/generated/markdown/textbook/toc.md`,
+- existing textbook reading-copy outputs under `content/generated/markdown/textbook/reading-copies/`.
+
 The local browser PDF made from a reading-copy view is not a committed repo artifact.
 
 If scene-graph or textbook reading-copy drift is reported, regenerate and re-check:

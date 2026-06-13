@@ -31,7 +31,10 @@ function getDelaySolveStatus(diagnostics) {
   if (diagnostics.sourceCount === 0) {
     return "none";
   }
-  return diagnostics.maxSourceSpeedRatio > 1 || diagnostics.delaySolveGapMax > 0.05
+  return diagnostics.maxSourceSpeedRatio > 1 ||
+    diagnostics.delaySolveGapMax > 0.05 ||
+    diagnostics.jacobianAbsMin <= 1e-4 ||
+    diagnostics.unresolvedSourceCount > 0
     ? "unstable"
     : "stable";
 }
@@ -47,7 +50,7 @@ export function computePhotonDiagnostics(state, timeSeconds, formulaSummary = nu
   return {
     exposureBalance,
     transverseAmplitude: formula.field.electric.magnitude,
-    longitudinalLeakage: 0,
+    longitudinalLeakage: Math.abs(formula.field.receiverAcceleration?.x ?? 0),
     helicityEstimate,
     analyzerProjection: formula.field.analyzer.projection,
     analyzerPass: formula.field.analyzer.passMeasure,
@@ -56,9 +59,12 @@ export function computePhotonDiagnostics(state, timeSeconds, formulaSummary = nu
     averageDelay: formula.field.averageDelay,
     delaySolveGapMax: formula.field.delaySolveGapMax,
     maxSourceSpeedRatio: formula.field.maxSourceSpeedRatio,
+    jacobianAbsMin: formula.field.jacobianAbsMin,
+    unresolvedSourceCount: formula.field.unresolvedSourceCount,
     unstableSourceCount: formula.field.unstableSourceCount,
     nearestSourceDistance: formula.field.nearestSourceDistance,
     sourceCount: formula.field.sourceCount,
+    rootCount: formula.field.rootCount,
     leftPhaseSpread: computePhaseLockSpread(state, "left"),
     rightPhaseSpread: computePhaseLockSpread(state, "right"),
     snapshotId: `photon-v${state.version}-t${formatPhotonFixed(formula.wrappedTime, 2)}`,
@@ -77,7 +83,10 @@ export function getPhotonDiagnosticRows(state, timeSeconds, formulaSummary = nul
     ["Mean delay", formatPhotonFixed(diagnostics.averageDelay, 3)],
     ["Nearest source", formatPhotonFixed(diagnostics.nearestSourceDistance, 3)],
     ["Source count", String(diagnostics.sourceCount)],
+    ["Root count", String(diagnostics.rootCount)],
     ["Max source v/c_f", formatPhotonFixed(diagnostics.maxSourceSpeedRatio, 2)],
+    ["Min |J|", formatPhotonFixed(diagnostics.jacobianAbsMin, 4)],
+    ["Missed sources", String(diagnostics.unresolvedSourceCount)],
     ["Delay solve gap", formatPhotonFixed(diagnostics.delaySolveGapMax, 3)],
     ["Delay status", getDelaySolveStatus(diagnostics)],
     ["Left phase spread", `${formatPhotonFixed(diagnostics.leftPhaseSpread, 1)} deg`],

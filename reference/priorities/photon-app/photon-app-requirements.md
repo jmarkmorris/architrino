@@ -121,9 +121,8 @@ The default state should be reproducible as JSON. The initial values are:
     "analyzerAngleDeg": 0
   },
   "measurement": {
-    "testPoint": { "x": 0, "y": 0, "z": 0 },
+    "virtualObserver": { "x": 0, "y": 0, "z": 0 },
     "emissionSpeedCf": 1,
-    "nearFieldWeight": 0.12,
     "fieldGain": 0.04
   }
 }
@@ -208,11 +207,10 @@ Global controls:
 
 Measurement controls:
 
-- test-point $x$ coordinate along the line of translation;
-- test-point $y$ coordinate on the first transverse axis;
-- test-point $z$ coordinate on the second transverse axis;
-- field gain for keeping the analytic delayed-emission curve readable;
-- and near-field mix for comparing a pure acceleration/radiation-style signal against a signal with a controlled signed near-field contribution.
+- Virtual Observer $x$ coordinate along the line of translation;
+- Virtual Observer $y$ coordinate on the first transverse axis;
+- Virtual Observer $z$ coordinate on the second transverse axis;
+- and field gain for keeping the Virtual Observer branch-sum curve readable.
 
 Per swarm controls:
 
@@ -223,7 +221,7 @@ Per swarm controls:
 - direction display locked to clockwise for one swarm and counter-clockwise for the other in v1;
 - and a copy/mirror control so one swarm can inherit parameters from the other with sign or phase changes.
 
-When a binary checkbox is unchecked, that binary is removed from the swarm display. The analytic delayed-emission formulas for $\mathbf E$ should zero the contribution from both architrinos in that binary.
+When a binary checkbox is unchecked, that binary is removed from the swarm display. The Virtual Observer branch-sum formulas for $\mathbf E$ should zero the contribution from both architrinos in that binary.
 
 Control organization should assume the app may eventually need dozens of controls. The v1 interface should therefore use grouped panels, tabs, accordions, or inspector sections rather than placing every advanced parameter in one flat control wall.
 
@@ -249,13 +247,12 @@ The first prototype should expose these controls visibly in the UI panel:
 | ellipticity | `0.00` | `-1.00` to `1.00` | `0.01` |
 | intensity | `1.00` | `0.00` to `2.00` | `0.01` |
 | analyzer angle | `0 deg` | `0` to `180 deg` | `1 deg` |
-| test point $x$ | `0.00` | `-10.00` to `10.00` | `0.05` |
-| test point $y$ | `0.00` | `-4.00` to `4.00` | `0.05` |
-| test point $z$ | `0.00` | `-4.00` to `4.00` | `0.05` |
-| near-field mix | `0.12` | `0.00` to `1.00` | `0.01` |
+| Virtual Observer $x$ | `0.00` | `-10.00` to `10.00` | `0.05` |
+| Virtual Observer $y$ | `0.00` | `-4.00` to `4.00` | `0.05` |
+| Virtual Observer $z$ | `0.00` | `-4.00` to `4.00` | `0.05` |
 | field gain | `0.04` | `0.01` to `1.00` | `0.01` |
 
-The test point $x$, $y$, and $z$ sliders should show a visible zero marker. Values within two slider steps of zero should snap to exactly `0`.
+The Virtual Observer $x$, $y$, and $z$ sliders should show a visible zero marker. Values within two slider steps of zero should snap to exactly `0`.
 
 Each swarm should have its own I/M/O frequency, radius, and phase controls. The direction controls are visible but locked in v1: left trailing is counter-clockwise and right leading is clockwise.
 
@@ -300,16 +297,16 @@ The $\mathbf E$ panel should support both vector and waveform forms if practical
 
 ## V1 Observer-Field Mapping
 
-The first prototype should base the lower $\mathbf E$ plot on analytic delayed-emission calculations from the architrinos in the two swarms. This mapping is diagnostic-only and should not be treated as a photon-substrate derivation.
+The first prototype should base the lower $\mathbf E$ plot on a Virtual Observer branch-sum calculation from the architrino source histories in the two swarms. This mapping is diagnostic-only and should not be treated as a photon-substrate derivation or a closure certificate.
 
-Let the propagation axis be $+\hat{\mathbf x}$, and let the transverse axes be $\hat{\mathbf y}$ and $\hat{\mathbf z}$. The measurement point is
+Let the propagation axis be $+\hat{\mathbf x}$, and let the transverse axes be $\hat{\mathbf y}$ and $\hat{\mathbf z}$. The Virtual Observer coordinate is
 
 $$
-\mathbf X_{\mathrm{test}}
+\mathbf X_{\mathrm{VO}}
 =
-x_{\mathrm{test}}\hat{\mathbf x}
-+y_{\mathrm{test}}\hat{\mathbf y}
-+z_{\mathrm{test}}\hat{\mathbf z}.
+x_{\mathrm{VO}}\hat{\mathbf x}
++y_{\mathrm{VO}}\hat{\mathbf y}
++z_{\mathrm{VO}}\hat{\mathbf z}.
 $$
 
 For swarm $s$, layer $\ell$, and architrino charge $q\in\{+1,-1\}$, use the analytic source position
@@ -330,40 +327,65 @@ $$
 +\pi\,\mathbf 1_{q=-1},
 $$
 
-where $\sigma_s=+1$ for the left trailing counter-clockwise swarm and $\sigma_s=-1$ for the right leading clockwise swarm. The delayed emission time $\tau_{s\ell q}$ for observer time $t$ is determined by
+where $\sigma_s=+1$ for the left trailing counter-clockwise swarm and $\sigma_s=-1$ for the right leading clockwise swarm.
+
+For each active source row $i=(s,\ell,q)$ and observer time $t$, solve the causal-root equation for every retained source-history root $\tau_{i,k}<t$:
 
 $$
-\tau_{s\ell q}
+F_i(t;\tau)
 =
-t-\frac{|\mathbf X_{\mathrm{test}}-\mathbf r_{s\ell q}(\tau_{s\ell q})|}{c_f}.
+\left\|
+\mathbf X_{\mathrm{VO}}-\mathbf r_i(\tau)
+\right\|
+-c_f(t-\tau)
+=0.
 $$
 
-The v1 implementation may solve this causal-delay equation by a short fixed-point iteration over the analytic source position. With
+With
 
 $$
-\mathbf n_i
+\mathbf n_{i,k}
 =
-\frac{\mathbf X_{\mathrm{test}}-\mathbf r_i(\tau_i)}
-{|\mathbf X_{\mathrm{test}}-\mathbf r_i(\tau_i)|},
+\frac{\mathbf X_{\mathrm{VO}}-\mathbf r_i(\tau_{i,k})}
+{\left\|\mathbf X_{\mathrm{VO}}-\mathbf r_i(\tau_{i,k})\right\|},
 $$
 
-and analytic source acceleration $\mathbf a_i(\tau_i)$, the provisional displayed contribution from source $i$ is
+and source velocity $\mathbf v_i(\tau_{i,k})$, compute the delay-map Jacobian
 
 $$
-\mathbf E_i(t)
+J_{i,k}
 =
-g q_i
-\left[
-\frac{\mathbf n_i(\mathbf n_i\cdot\mathbf a_i)-\mathbf a_i}{R_i}
-+\eta\frac{\mathbf n_i}{R_i^2}
-\right],
+1-\frac{\mathbf v_i(\tau_{i,k})\cdot\mathbf n_{i,k}}{c_f}.
 $$
 
-where $g$ is the field-gain display control, $\eta$ is the near-field mix control, and $R_i=|\mathbf X_{\mathrm{test}}-\mathbf r_i(\tau_i)|$. The displayed field is
+The Virtual Observer receiver acceleration is the Jacobian-weighted radial hit sum for a unit positive receiver:
 
 $$
-\mathbf E(t)=\sum_i\mathbf E_i(t).
+\mathbf a_{\mathrm{VO}}(t)
+=
+g\sum_i\sum_k
+q_i
+\frac{\mathbf n_{i,k}}
+{R_{i,k}^2 |J_{i,k}|},
+\qquad
+R_{i,k}
+=
+\left\|
+\mathbf X_{\mathrm{VO}}-\mathbf r_i(\tau_{i,k})
+\right\|.
 $$
+
+The displayed electric readout is the transverse observer reconstruction from that receiver acceleration:
+
+$$
+\mathbf E_{\perp}(t)
+=
+\left(\mathbf a_{\mathrm{VO}}(t)\cdot\hat{\mathbf y}\right)\hat{\mathbf y}
++
+\left(\mathbf a_{\mathrm{VO}}(t)\cdot\hat{\mathbf z}\right)\hat{\mathbf z}.
+$$
+
+The app should expose diagnostic rows for source count, retained root count, maximum source speed ratio, minimum $|J|$, missed source rows, nearest source distance, mean delay, and delay residual. A low $|J|$, missing root row, or super-$c_f$ source speed should mark the branch solve as unstable rather than silently treating the plotted trace as a certified field.
 
 For an ideal plane-wave comparison moving along $+\hat{\mathbf x}$, the magnetic field is recoverable from the displayed electric field:
 
@@ -373,7 +395,7 @@ $$
 
 so $B_y=-E_z/c_f$ and $B_z=E_y/c_f$. The app should not draw $\mathbf B$ as a separate graph unless a later diagnostic explicitly needs to compare a non-plane-wave magnetic reconstruction.
 
-The lower field panel should draw one $\mathbf E$ plot with grid, cursor, and middle-cycle guide format. The $\mathbf E$ plot should draw three full cycles of $E_y$ and $E_z$ from left to right. The middle cycle should be bounded by two vertical guide lines. The plot should update immediately when frequency, radius, phase, pair separation, test-point coordinates, field gain, near-field mix, polarization analyzer angle, or reset state changes.
+The lower field panel should draw one $\mathbf E$ plot with grid, cursor, and middle-cycle guide format. The $\mathbf E$ plot should draw three full cycles of $E_y$ and $E_z$ from left to right. The middle cycle should be bounded by two vertical guide lines. The plot should update immediately when frequency, radius, phase, pair separation, Virtual Observer coordinates, field gain, polarization analyzer angle, or reset state changes.
 
 The analyzer projection should use
 
@@ -508,7 +530,7 @@ The first prototype should be verified before it is treated as complete:
 - the $\mathbf E$ plot draws left to right over exactly three middle-layer cycles;
 - vertical guide lines bracket the middle cycle;
 - I/M/O controls update both the visual swarms and exported state;
-- test-point controls update the delayed-emission field plot and exported state;
+- Virtual Observer controls update the branch-sum field plot and exported state;
 - polarization and analyzer controls update formula-panel values;
 - pause/play and reset controls work;
 - exported JSON can be imported or replayed without losing values;
@@ -546,12 +568,12 @@ The first implementation is acceptable when:
 - the left trailing swarm rotates counter-clockwise while the right leading swarm rotates clockwise;
 - architrino markers, orbit paths, and layered trails match the Ideal Swarm visual grammar;
 - I/M/O frequency, radius, and phase controls work for both swarms;
-- six binary enabled checkboxes default checked, remove unchecked binaries from the display, and remove their delayed-emission contributions from both field plots;
+- six binary enabled checkboxes default checked, remove unchecked binaries from the display, and remove their Virtual Observer branch-sum contributions from the field plot;
 - default I/M/O phases are all `0` degrees on both swarms;
 - default I/M/O radii follow the `5:7:9` Ideal Swarm ratio;
 - pair separation changes visibly between the two edge-on side-view traces without changing the face-on circular orbit spacing;
 - pause/play, Space bar playback shortcut, and reset controls work;
-- the lower $\mathbf E$ panel draws the delayed-emission field plot at the configured test point left to right over three full cycles;
+- the lower $\mathbf E$ panel draws the branch-sum field plot at the configured Virtual Observer coordinate left to right over three full cycles;
 - vertical guide lines bracket the middle cycle in the field plot;
 - polarization controls affect the observer-level readout;
 - Malus' law is present with live numeric substitution;

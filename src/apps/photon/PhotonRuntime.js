@@ -72,6 +72,7 @@ function renderFormulaSummary(documentLike, container, summary) {
     ["cycle average", formatPhotonFixed(summary.averagePass, 3)],
     ["residual", formatPhotonFixed(summary.malusResidual, 4)],
     ["source count", String(summary.field.sourceCount)],
+    ["root count", String(summary.field.rootCount)],
     ["mean delay", formatPhotonFixed(summary.field.averageDelay, 3)],
     ["nearest source", formatPhotonFixed(summary.field.nearestSourceDistance, 3)],
     ["S0", formatPhotonFixed(summary.stokes.s0, 3)],
