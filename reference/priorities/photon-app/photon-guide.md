@@ -12,12 +12,11 @@ The upper stage shows the two face-on swarms on the left and an edge-on side vie
 
 The side view shows the same pair along the line of translation. Each planar swarm appears as a vertical glowing trace with the same height as the diameter of the largest enabled binary. The red and blue side-view markers move up and down along those traces, as they would when the orbit is viewed from the side.
 
-The lower stage contains two stacked plots:
+The lower stage contains one delayed field plot:
 
 - Delayed E plot: the transverse electric readout computed from the delayed emissions of the active architrinos at the current test point.
-- Comparison B plot: the corresponding comparison magnetic readout from the same delayed-emission calculation.
 
-Both plots cover three full middle-layer cycles. The vertical guide lines mark the start and end of the middle cycle so the central cycle can be inspected without edge effects.
+The plot covers three full middle-layer cycles. The vertical guide lines mark the start and end of the middle cycle so the central cycle can be inspected without edge effects. For an ideal plane-wave comparison moving along $+\hat{\mathbf x}$, $\mathbf B$ is recovered from $\mathbf E$ by $\mathbf B=(1/c_f)\hat{\mathbf x}\times\mathbf E$, so it is not plotted as a separate graph.
 
 ## Basic Controls
 
@@ -27,7 +26,7 @@ Use Reset time to restart time at the beginning of the three-cycle plot. Use Res
 
 Use Paths on/off to show or hide orbit paths and path-history trails.
 
-Each of the six binaries has an enabled checkbox. When a binary is unchecked, it is removed from the swarm display and its two architrinos are removed from the delayed E and comparison B field sums.
+Each of the six binaries has an enabled checkbox. When a binary is unchecked, it is removed from the swarm display and its two architrinos are removed from the delayed E field sum.
 
 ## Geometry Controls
 
@@ -51,7 +50,7 @@ The test point controls choose where the external fields are measured:
 
 The `x`, `y`, and `z` sliders mark the zero point and snap values very close to zero to exactly `0`.
 
-The plotted E and comparison B curves are recalculated from the active architrino positions and the current test point. Field gain only rescales the displayed curve so it stays readable. Near-field mix blends in a controlled near-field contribution for diagnostic comparison.
+The plotted E curve is recalculated from the active architrino positions and the current test point. Field gain only rescales the displayed curve so it stays readable. Near-field mix blends in a controlled near-field contribution for diagnostic comparison.
 
 ## Polarization Controls
 

@@ -65,7 +65,7 @@ test("default photon state encodes trailing and leading swarm convention", () =>
       );
     });
   });
-  assert.deepEqual(state.measurement.testPoint, { x: 6, y: 0, z: 0 });
+  assert.deepEqual(state.measurement.testPoint, { x: 0, y: 0, z: 0 });
   assert.equal(state.measurement.emissionSpeedCf, 1);
   assert.equal(state.pair.pairSeparation, getPhotonSeparationReferenceRadius(state));
   assert.equal(getPhotonSeparationLog10Ratio(state), 0);
@@ -77,7 +77,7 @@ test("default photon state encodes trailing and leading swarm convention", () =>
   );
 });
 
-test("photon middle cycle spans the middle of the three-cycle E-B plot", () => {
+test("photon middle cycle spans the middle of the three-cycle E plot", () => {
   const state = createDefaultPhotonState();
   const runDuration = getPhotonRunDuration(state);
   const bounds = getPhotonMiddleCycleBounds(state);
@@ -213,7 +213,7 @@ test("plot samples expose middle-cycle guide bounds and active left-to-right tra
   assert.ok(plot.amplitudeScale > 0);
   assert.deepEqual(
     Object.keys(plot.samples[0]).filter((key) => /^[eb][yz]$/.test(key)).sort(),
-    ["by", "bz", "ey", "ez"]
+    ["ey", "ez"]
   );
   assert.deepEqual(
     Object.keys(plot.samples[0]).filter((key) => /^[eb][uv]$/.test(key)),
@@ -245,11 +245,17 @@ test("photon stage keeps face-on swarm spacing fixed while side view separation 
   );
   assert.ok(nearCoLocated.sideRightX - nearCoLocated.sideLeftX > 0);
   assert.equal(base.translationOriginX, (base.sideLeftX + base.sideRightX) / 2);
+  assert.ok(base.translationAxisStartX >= base.faceRightX + base.sideHalfHeight);
+  assert.ok(base.translationAxisStartX < base.sideLeftX);
   assert.equal(
     nearCoLocated.translationOriginX,
     (nearCoLocated.sideLeftX + nearCoLocated.sideRightX) / 2
   );
+  assert.ok(nearCoLocated.translationAxisStartX >= nearCoLocated.faceRightX + nearCoLocated.sideHalfHeight);
+  assert.ok(nearCoLocated.translationAxisStartX < nearCoLocated.sideLeftX);
   assert.equal(separated.translationOriginX, (separated.sideLeftX + separated.sideRightX) / 2);
+  assert.ok(separated.translationAxisStartX >= separated.faceRightX + separated.sideHalfHeight);
+  assert.ok(separated.translationAxisStartX < separated.sideLeftX);
   assert.ok(
     separated.sideRightX - separated.sideLeftX > base.sideRightX - base.sideLeftX
   );

@@ -60,7 +60,7 @@ export function resolvePhotonPolarizationParameters(state) {
 export function resolvePhotonMeasurementParameters(state) {
   return {
     testPoint: {
-      x: Number(state?.measurement?.testPoint?.x ?? 6) || 0,
+      x: Number(state?.measurement?.testPoint?.x ?? 0) || 0,
       y: Number(state?.measurement?.testPoint?.y ?? 0) || 0,
       z: Number(state?.measurement?.testPoint?.z ?? 0) || 0,
     },
@@ -413,9 +413,7 @@ export function buildPhotonPlotSamples(state, timeSeconds, sampleCount = 360) {
     amplitudeScale = Math.max(
       amplitudeScale,
       Math.abs(field.electric.y),
-      Math.abs(field.electric.z),
-      Math.abs(field.comparisonB.y),
-      Math.abs(field.comparisonB.z)
+      Math.abs(field.electric.z)
     );
     samples.push({
       t,
@@ -423,8 +421,6 @@ export function buildPhotonPlotSamples(state, timeSeconds, sampleCount = 360) {
       active: t <= currentTime,
       ey: field.electric.y,
       ez: field.electric.z,
-      by: field.comparisonB.y,
-      bz: field.comparisonB.z,
       passMeasure: field.analyzer.passMeasure,
     });
   }

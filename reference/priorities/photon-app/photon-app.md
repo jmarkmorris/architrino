@@ -17,7 +17,7 @@ The app begins from the candidate photon picture already used in the photon Gate
 
 The implementation name should be `photon`: use `photon.html` for the route and `src/apps/photon/` for dedicated source files.
 
-The first prototype now exists at `photon.html`. It implements the dedicated `src/apps/photon/` runtime, 2D side-by-side swarm stage, Ideal Swarm-style markers and trails, stacked three-cycle delayed-emission $\mathbf E$ and comparison $\mathbf B$ plots, visible controls, formulas, diagnostics, reset, JSON import/export, and an in-app Markdown document viewer.
+The first prototype now exists at `photon.html`. It implements the dedicated `src/apps/photon/` runtime, 2D side-by-side swarm stage, Ideal Swarm-style markers and trails, a three-cycle delayed-emission $\mathbf E$ plot, visible controls, formulas, diagnostics, reset, JSON import/export, and an in-app Markdown document viewer.
 
 The operator-facing app guide is [photon-guide](photon-guide.md). The photon UI exposes Markdown buttons for the guide, this project packet, and the requirements packet.
 
@@ -36,7 +36,7 @@ The first implementation should include:
 - pair separation along the line of translation, shown by the edge-on side-view trace spacing;
 - architrino markers, path tinting, and layered trails that match the Ideal Swarm app visual grammar;
 - pause/play and reset controls;
-- a lower observer-field panel for delayed-emission external $\mathbf E$ and comparison $\mathbf B$ readouts at a configurable test point;
+- a lower observer-field panel for delayed-emission external $\mathbf E$ readouts at a configurable test point;
 - polarization visualization controls;
 - a formula panel containing Malus' law plus the additional polarization formulas needed by the diagnostic;
 - and in-app Markdown access to [photon-guide](photon-guide.md), [photon-app](photon-app.md), and [photon-app-requirements](photon-app-requirements.md).

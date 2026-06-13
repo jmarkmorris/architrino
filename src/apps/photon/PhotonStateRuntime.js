@@ -128,7 +128,7 @@ export const DEFAULT_PHOTON_STATE = Object.freeze({
   },
   measurement: {
     testPoint: {
-      x: 6,
+      x: 0,
       y: 0,
       z: 0,
     },

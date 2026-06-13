@@ -123,7 +123,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Spiral Momentum Budget Across the Hinge (Speculative)](../../../markdown/aaa/dynamics/binary-dynamics.md?section=Spiral+Momentum+Budget+Across+the+Hinge+%28Speculative%29)
     - [Spiral Binary Symmetry-Breaking Point (\|v\| = c_f)](../../../markdown/aaa/dynamics/binary-dynamics.md?section=Spiral+Binary+Symmetry-Breaking+Point+%28%24%5C%7C%5Cmathbf%7Bv%7D%5C%7C+%3D+c_f%24%29)
     - [Self-Hit: Definition and Diagnostics](../../../markdown/aaa/dynamics/binary-dynamics.md?section=Self-Hit%3A+Definition+and+Diagnostics)
-    - [Spiral Binary Deflationary Phase](../../../markdown/aaa/dynamics/binary-dynamics.md?section=Spiral+Binary+Deflationary+Phase)
+    - [Post-Threshold Self-Hit Phase](../../../markdown/aaa/dynamics/binary-dynamics.md?section=Post-Threshold+Self-Hit+Phase)
     - [Maximum-Curvature Binary — Circular](../../../markdown/aaa/dynamics/binary-dynamics.md?section=Maximum-Curvature+Binary+%E2%80%94+Circular)
     - [State Space and Well-Posedness of the Two-Body Delay System](../../../markdown/aaa/dynamics/binary-dynamics.md?section=State+Space+and+Well-Posedness+of+the+Two-Body+Delay+System)
     - [Symmetry, Conservation, and Lyapunov Functionals](../../../markdown/aaa/dynamics/binary-dynamics.md?section=Symmetry%2C+Conservation%2C+and+Lyapunov+Functionals)

@@ -11,7 +11,6 @@ import { createPhotonControlsRuntime } from "./PhotonControlsRuntime.js";
 import { computePhotonFormulaSummary } from "./PhotonFormulaRuntime.js";
 import { getPhotonDiagnosticRows, formatPhotonFixed } from "./PhotonDiagnosticsRuntime.js";
 import {
-  drawPhotonComparisonBFieldPlot,
   drawPhotonElectricFieldPlot,
   drawPhotonSwarmStage,
 } from "./PhotonSwarmVisualRuntime.js";
@@ -188,7 +187,6 @@ export function createPhotonRuntime({
 } = {}) {
   const stageCanvas = queryPhotonElement(documentLike, "#photon-stage-canvas");
   const electricFieldCanvas = queryPhotonElement(documentLike, "#photon-electric-field-canvas");
-  const magneticFieldCanvas = queryPhotonElement(documentLike, "#photon-magnetic-field-canvas");
   const controlsElement = queryPhotonElement(documentLike, "#photon-controls");
   const diagnosticsElement = queryPhotonElement(documentLike, "#photon-diagnostics");
   const formulasElement = queryPhotonElement(documentLike, "#photon-formulas");
@@ -234,7 +232,6 @@ export function createPhotonRuntime({
     const summary = computePhotonFormulaSummary(state, wrappedTime);
     drawPhotonSwarmStage(stageCanvas, state, wrappedTime, { windowLike });
     drawPhotonElectricFieldPlot(electricFieldCanvas, state, wrappedTime, { windowLike });
-    drawPhotonComparisonBFieldPlot(magneticFieldCanvas, state, wrappedTime, { windowLike });
     syncOutputs(wrappedTime, summary);
   }
 

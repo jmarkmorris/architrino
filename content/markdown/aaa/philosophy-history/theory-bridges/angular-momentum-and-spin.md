@@ -135,7 +135,7 @@ An opposite-polarity flyby can therefore convert transverse motion into a captur
 
 ## Spiraling Binary
 
-An opposite-polarity binary introduces the first genuinely assembly-like use of angular momentum. In the sub-field-speed partner-only circular benchmark, the delayed attraction is not central in the instantaneous Newtonian sense. The partner's past position creates a tangential component, and that component is positive in the direction of motion. The result is inward spiral rather than stable circular motion.
+An opposite-polarity binary introduces the first genuinely assembly-like use of angular momentum. In the sub-field-speed partner-only circular benchmark, the delayed attraction is not central in the instantaneous Newtonian sense. The partner's past position creates a tangential component, and that component is positive in the direction of motion. The result is anti-damped circular instability rather than stable circular motion. An inward spiral is a separate non-circular branch claim, not a consequence of the principal circular sign alone.
 
 The binary's useful variables are not only position and velocity. A reduced circular chart uses radius $R$, angular speed $\omega$, speed $s=R\omega$, phase angle, branch roots, and a plane normal. For a full cycle, the relevant action-angle relation is
 
@@ -159,7 +159,7 @@ The correct statement is that a spiraling binary has orbital-like rotational act
 
 ## Maximum-Curvature Binary
 
-The maximum-curvature binary is the candidate limiting state reached when the inward spiral enters self-hit geometry. Self-hit exists when the same architrino intersects its own earlier causal wake:
+The maximum-curvature binary is the candidate limiting state reached if a contraction or capture history enters self-hit geometry. Self-hit exists when the same architrino intersects its own earlier causal wake:
 
 $$
 \|\mathbf{x}_i(t)-\mathbf{x}_i(t_0)\|

@@ -172,14 +172,15 @@ function getPhotonMaxLayerRadius(state, { enabledOnly = false } = {}) {
   return radii.length > 0 ? Math.max(...radii) : 0;
 }
 
-function drawSwarm(ctx, state, swarmId, centerX, centerY, scale, timeSeconds) {
+function drawSwarm(ctx, state, swarmId, centerX, centerY, scale, timeSeconds, labelY) {
   const role = state.pair[swarmId].role;
   const pathsVisible = state.view?.pathsVisible !== false;
   ctx.save();
   ctx.fillStyle = "rgba(238, 243, 255, 0.82)";
   ctx.font = "600 12px Helvetica Neue, Arial, sans-serif";
   ctx.textAlign = "center";
-  ctx.fillText(`${role} ${state.pair[swarmId].direction.toUpperCase()}`, centerX, centerY - scale * 2.05);
+  ctx.textBaseline = "bottom";
+  ctx.fillText(`${role} ${state.pair[swarmId].direction.toUpperCase()}`, centerX, labelY);
 
   PHOTON_LAYER_ORDER.forEach((layerId) => {
     if (!getPhotonLayerEnabled(state, swarmId, layerId)) {
@@ -218,16 +219,10 @@ function drawSwarm(ctx, state, swarmId, centerX, centerY, scale, timeSeconds) {
     );
   });
 
-  ctx.strokeStyle = "rgba(245, 247, 255, 0.34)";
-  ctx.lineWidth = 1;
-  ctx.beginPath();
-  ctx.moveTo(centerX - scale * 1.85, centerY);
-  ctx.lineTo(centerX + scale * 1.85, centerY);
-  ctx.stroke();
   ctx.restore();
 }
 
-function drawSideSwarmTrace(ctx, state, swarmId, x, centerY, halfHeight, scale, timeSeconds) {
+function drawSideSwarmTrace(ctx, state, swarmId, x, centerY, halfHeight, scale, timeSeconds, labelY) {
   if (halfHeight <= 1) {
     return;
   }
@@ -289,12 +284,12 @@ function drawSideSwarmTrace(ctx, state, swarmId, x, centerY, halfHeight, scale, 
   ctx.font = "600 10px Helvetica Neue, Arial, sans-serif";
   ctx.textAlign = "center";
   ctx.textBaseline = "top";
-  ctx.fillText(state.pair[swarmId].role, x, bottom + 9);
+  ctx.fillText(state.pair[swarmId].role, x, labelY);
   ctx.restore();
 }
 
 function drawPhotonSideView(ctx, state, layout, timeSeconds) {
-  const { sideCenterX, sideLeftX, sideRightX, centerY, sideHalfHeight, scale } = layout;
+  const { sideCenterX, sideLeftX, sideRightX, centerY, sideHalfHeight, scale, topLabelY, bottomLabelY } = layout;
   if (sideHalfHeight <= 1) {
     return;
   }
@@ -303,9 +298,9 @@ function drawPhotonSideView(ctx, state, layout, timeSeconds) {
   ctx.font = "700 12px Helvetica Neue, Arial, sans-serif";
   ctx.textAlign = "center";
   ctx.textBaseline = "bottom";
-  ctx.fillText("side view", sideCenterX, centerY - sideHalfHeight - 18);
-  drawSideSwarmTrace(ctx, state, "left", sideLeftX, centerY, sideHalfHeight, scale, timeSeconds);
-  drawSideSwarmTrace(ctx, state, "right", sideRightX, centerY, sideHalfHeight, scale, timeSeconds);
+  ctx.fillText("Side View", sideCenterX, topLabelY);
+  drawSideSwarmTrace(ctx, state, "left", sideLeftX, centerY, sideHalfHeight, scale, timeSeconds, bottomLabelY);
+  drawSideSwarmTrace(ctx, state, "right", sideRightX, centerY, sideHalfHeight, scale, timeSeconds, bottomLabelY);
   ctx.restore();
 }
 
@@ -328,8 +323,10 @@ function wrapCanvasText(ctx, text, maxWidth) {
   return lines;
 }
 
-function drawStageOrientationNote(ctx, cssWidth, cssHeight) {
-  const maxWidth = Math.max(180, cssWidth - 44);
+function drawStageOrientationNote(ctx, layout) {
+  const noteLeft = Math.max(16, layout.faceLeftX - layout.scale * 1.35);
+  const noteRight = Math.min(layout.sideLeftX - 30, layout.faceRightX + layout.scale * 1.35);
+  const maxWidth = Math.max(220, noteRight - noteLeft);
   ctx.save();
   ctx.font = "600 11px Helvetica Neue, Arial, sans-serif";
   ctx.textAlign = "center";
@@ -341,8 +338,12 @@ function drawStageOrientationNote(ctx, cssWidth, cssHeight) {
     Math.max(...lines.map((line) => ctx.measureText(line).width), 120) + 20
   );
   const boxHeight = lines.length * lineHeight + 12;
-  const x = cssWidth / 2;
-  const y = cssHeight - boxHeight / 2 - 10;
+  const noteCenterX = (layout.faceLeftX + layout.faceRightX) / 2;
+  const x = Math.min(
+    Math.max(noteCenterX, noteLeft + boxWidth / 2),
+    noteRight - boxWidth / 2
+  );
+  const y = layout.bottomLabelY + boxHeight / 2 - 5;
   ctx.fillStyle = "rgba(2, 6, 23, 0.58)";
   ctx.strokeStyle = "rgba(148, 163, 184, 0.18)";
   ctx.lineWidth = 1;
@@ -400,7 +401,10 @@ export function computePhotonStageLayout(state, cssWidth, cssHeight) {
   const sideLeftX = sideCenterX - sideSeparationPx / 2;
   const sideRightX = sideCenterX + sideSeparationPx / 2;
   const translationOriginX = sideCenterX;
-  const translationAxisStartX = Math.max(18, faceLeftX - faceMaxRadiusPx * 1.2);
+  const topLabelY = Math.max(24, centerY - faceMaxRadiusPx - 44);
+  const sideHalfHeight = enabledMaxLayerRadius * scale;
+  const bottomLabelY = centerY + sideHalfHeight + 9;
+  const translationAxisStartX = Math.max(18, sideLeftX - 44);
   const translationAxisEndX = Math.min(cssWidth - 28, sideRightX + 64);
   const translationArrowBaseX = Math.max(translationAxisStartX + 10, translationAxisEndX - 18);
   return {
@@ -412,7 +416,9 @@ export function computePhotonStageLayout(state, cssWidth, cssHeight) {
     sideLeftX,
     sideRightX,
     translationOriginX,
-    sideHalfHeight: enabledMaxLayerRadius * scale,
+    sideHalfHeight,
+    topLabelY,
+    bottomLabelY,
     translationAxisStartX,
     translationAxisEndX,
     translationArrowBaseX,
@@ -467,10 +473,10 @@ export function drawPhotonSwarmStage(canvas, state, timeSeconds, options = {}) {
   ctx.fillText("0", layout.translationOriginX + 8, layout.centerY - 14);
   ctx.restore();
 
-  drawSwarm(ctx, state, "left", layout.faceLeftX, layout.centerY, layout.scale, timeSeconds);
-  drawSwarm(ctx, state, "right", layout.faceRightX, layout.centerY, layout.scale, timeSeconds);
+  drawSwarm(ctx, state, "left", layout.faceLeftX, layout.centerY, layout.scale, timeSeconds, layout.topLabelY);
+  drawSwarm(ctx, state, "right", layout.faceRightX, layout.centerY, layout.scale, timeSeconds, layout.topLabelY);
   drawPhotonSideView(ctx, state, layout, timeSeconds);
-  drawStageOrientationNote(ctx, cssWidth, cssHeight);
+  drawStageOrientationNote(ctx, layout);
 }
 
 function drawPlotCurve(ctx, samples, width, height, key, color, currentTime, amplitudeScale = 1) {
@@ -618,16 +624,6 @@ export function drawPhotonElectricFieldPlot(canvas, state, timeSeconds, options 
     components: [
       { key: "ey", label: "E_y", color: "#7dd3fc" },
       { key: "ez", label: "E_z", color: "#f472b6" },
-    ],
-  });
-}
-
-export function drawPhotonComparisonBFieldPlot(canvas, state, timeSeconds, options = {}) {
-  drawPhotonComponentPlot(canvas, state, timeSeconds, {
-    ...options,
-    components: [
-      { key: "by", label: "B_y", color: "#86efac" },
-      { key: "bz", label: "B_z", color: "#fbbf24" },
     ],
   });
 }
