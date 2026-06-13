@@ -72,11 +72,13 @@ export class SceneRepository {
       typeof view?.columns === "number" ? view.columns : null;
     const markdownAutoOpen =
       typeof view?.autoOpen === "boolean" ? view.autoOpen : null;
+    const markdownDownloadOnly = view?.downloadOnly === true;
     return {
       markdownPath,
       markdownSection,
       markdownColumns,
       markdownAutoOpen,
+      markdownDownloadOnly,
     };
   }
 
@@ -332,6 +334,8 @@ export class SceneRepository {
       markdownPath: markdown.markdownPath,
       markdownSection: markdown.markdownSection,
       markdownColumns: markdown.markdownColumns,
+      markdownAutoOpen: markdown.markdownAutoOpen,
+      markdownDownloadOnly: markdown.markdownDownloadOnly,
       markdownHeadingLevel: obj.markdownHeadingLevel ?? null,
       markdownMaxDepth: obj.markdownMaxDepth ?? null,
       markdownAutoIndex: obj.markdownAutoIndex ?? null,
@@ -617,6 +621,7 @@ export class SceneRepository {
             markdownSection: null,
             markdownColumns: null,
             markdownAutoOpen: null,
+            markdownDownloadOnly: false,
           }
         : rawSceneMarkdown;
     const rawLayoutType = this.resolveLayoutType(sceneMeta);
@@ -680,6 +685,7 @@ export class SceneRepository {
       markdownColumns: sceneMarkdown.markdownColumns,
       markdownShowTitle: sceneMeta.markdownShowTitle ?? true,
       markdownAutoOpen: sceneMarkdown.markdownAutoOpen ?? true,
+      markdownDownloadOnly: sceneMarkdown.markdownDownloadOnly === true,
       centerOn: sceneMeta.centerOn ?? null,
       splitSourcePath: splitScene.splitSourcePath,
       splitSection: splitScene.splitSection,

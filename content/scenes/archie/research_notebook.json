@@ -7,7 +7,6 @@
     "units": "relative",
     "wrapLabels": true,
     "centerOn": "research_notebook_overview",
-    "layoutColumns": 3,
     "layout": {
       "type": "grid"
     },

@@ -55,7 +55,8 @@
       },
       "view": {
         "columns": 1,
-        "autoOpen": true
+        "autoOpen": false,
+        "downloadOnly": true
       }
     },
     {
@@ -74,7 +75,8 @@
       },
       "view": {
         "columns": 1,
-        "autoOpen": true
+        "autoOpen": false,
+        "downloadOnly": true
       }
     },
     {
@@ -93,7 +95,8 @@
       },
       "view": {
         "columns": 1,
-        "autoOpen": true
+        "autoOpen": false,
+        "downloadOnly": true
       }
     },
     {
@@ -112,7 +115,8 @@
       },
       "view": {
         "columns": 1,
-        "autoOpen": true
+        "autoOpen": false,
+        "downloadOnly": true
       }
     },
     {
@@ -131,7 +135,8 @@
       },
       "view": {
         "columns": 1,
-        "autoOpen": true
+        "autoOpen": false,
+        "downloadOnly": true
       }
     },
     {
@@ -150,7 +155,8 @@
       },
       "view": {
         "columns": 1,
-        "autoOpen": true
+        "autoOpen": false,
+        "downloadOnly": true
       }
     },
     {
@@ -169,7 +175,8 @@
       },
       "view": {
         "columns": 1,
-        "autoOpen": true
+        "autoOpen": false,
+        "downloadOnly": true
       }
     },
     {
@@ -188,7 +195,8 @@
       },
       "view": {
         "columns": 1,
-        "autoOpen": true
+        "autoOpen": false,
+        "downloadOnly": true
       }
     },
     {
@@ -207,7 +215,8 @@
       },
       "view": {
         "columns": 1,
-        "autoOpen": true
+        "autoOpen": false,
+        "downloadOnly": true
       }
     },
     {
@@ -226,7 +235,8 @@
       },
       "view": {
         "columns": 1,
-        "autoOpen": true
+        "autoOpen": false,
+        "downloadOnly": true
       }
     },
     {
@@ -245,7 +255,8 @@
       },
       "view": {
         "columns": 1,
-        "autoOpen": true
+        "autoOpen": false,
+        "downloadOnly": true
       }
     },
     {
@@ -264,7 +275,8 @@
       },
       "view": {
         "columns": 1,
-        "autoOpen": true
+        "autoOpen": false,
+        "downloadOnly": true
       }
     },
     {
@@ -283,7 +295,8 @@
       },
       "view": {
         "columns": 1,
-        "autoOpen": true
+        "autoOpen": false,
+        "downloadOnly": true
       }
     },
     {
@@ -302,7 +315,8 @@
       },
       "view": {
         "columns": 1,
-        "autoOpen": true
+        "autoOpen": false,
+        "downloadOnly": true
       }
     }
   ]

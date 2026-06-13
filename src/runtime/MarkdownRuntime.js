@@ -10,6 +10,7 @@ export function createMarkdownRuntime(deps) {
     extractMarkdownSection,
     appendCacheBust,
     navigateToTarget,
+    documentLike = typeof document !== "undefined" ? document : null,
   } = deps;
 
   let activeMarkdownPath = null;
@@ -422,6 +423,52 @@ export function createMarkdownRuntime(deps) {
     return true;
   }
 
+  function markdownFilenameFromPath(markdownPath) {
+    const leaf = String(markdownPath ?? "").split("/").filter(Boolean).pop();
+    return leaf && leaf.endsWith(".md") ? leaf : "reading-copy.md";
+  }
+
+  function downloadMarkdownSource(level) {
+    const target = resolveMarkdownTarget(level);
+    if (!target.markdownPath) {
+      return false;
+    }
+    const doc =
+      documentLike && typeof documentLike.createElement === "function"
+        ? documentLike
+        : null;
+    if (!doc) {
+      return false;
+    }
+    const link = doc.createElement("a");
+    const downloadName =
+      typeof level?.markdownDownloadName === "string" && level.markdownDownloadName.trim()
+        ? level.markdownDownloadName.trim()
+        : markdownFilenameFromPath(target.markdownPath);
+    link.href =
+      typeof appendCacheBust === "function"
+        ? appendCacheBust(target.markdownPath)
+        : target.markdownPath;
+    link.download = downloadName;
+    if (typeof link.setAttribute === "function") {
+      link.setAttribute("download", downloadName);
+    }
+    if ("rel" in link) {
+      link.rel = "noopener";
+    }
+    const parent = doc.body ?? doc.documentElement ?? markdownPanel ?? null;
+    if (parent && typeof parent.appendChild === "function") {
+      parent.appendChild(link);
+    }
+    if (typeof link.click !== "function") {
+      link.remove?.();
+      return false;
+    }
+    link.click();
+    link.remove?.();
+    return true;
+  }
+
   async function showMarkdownPanel(level) {
     const target = resolveMarkdownTarget(level);
     if (!markdownPanel || !target.markdownPath) {
@@ -552,6 +599,7 @@ export function createMarkdownRuntime(deps) {
     applyMarkdownLayout,
     toggleMarkdownLayout,
     printMarkdownPanel,
+    downloadMarkdownSource,
     showMarkdownPanel,
   };
 }

@@ -1,3 +1,46 @@
+export function resolveAutoMarkdownGridColumns(layoutCount) {
+  const count = Math.max(0, Math.floor(Number(layoutCount) || 0));
+  if (count <= 1) {
+    return 1;
+  }
+  if (count <= 4) {
+    return Math.ceil(Math.sqrt(count));
+  }
+  if (count <= 9) {
+    return 3;
+  }
+  if (count <= 12) {
+    return 4;
+  }
+  if (count <= 20) {
+    return 5;
+  }
+  if (count <= 30) {
+    return 6;
+  }
+  return Math.ceil(Math.sqrt(count * 1.2));
+}
+
+function resolveAutoMarkdownGridSpacingFactor(layoutCount) {
+  const count = Math.max(0, Math.floor(Number(layoutCount) || 0));
+  return count >= 13 ? 2.32 : 2.6;
+}
+
+function extractDatedHeadingLabel(title) {
+  const match = String(title ?? "").match(
+    /^(\d{4}-\d{2}-\d{2})(?:\s*[:\u2014\u2013-]\s+|\s+)(.+)$/
+  );
+  if (!match) {
+    return null;
+  }
+  const labelTitle = (match[2] || "").trim();
+  const labelSubtitle = (match[1] || "").trim();
+  if (!labelTitle || !labelSubtitle) {
+    return null;
+  }
+  return { labelTitle, labelSubtitle };
+}
+
 export function createMarkdownNodeBuilder(deps) {
   const fetchImpl = deps.fetchImpl;
   const appendCacheBust = deps.appendCacheBust;
@@ -200,7 +243,7 @@ export function createMarkdownNodeBuilder(deps) {
     const gridSpacing =
       typeof scene.splitGridSpacing === "number"
         ? scene.splitGridSpacing
-        : layoutRadius * 2.6;
+        : layoutRadius * resolveAutoMarkdownGridSpacingFactor(layoutCount);
     const useRing = usesRingLayout && layoutCount <= maxRingCount;
     const requestedColumns =
       Number.isInteger(scene.layoutColumns) && scene.layoutColumns > 0
@@ -208,7 +251,10 @@ export function createMarkdownNodeBuilder(deps) {
         : null;
     const columns = useRing
       ? 1
-      : Math.max(1, Math.min(layoutCount || 1, requestedColumns ?? Math.ceil(Math.sqrt(layoutCount))));
+      : Math.max(
+          1,
+          Math.min(layoutCount || 1, requestedColumns ?? resolveAutoMarkdownGridColumns(layoutCount))
+        );
     const rows = useRing ? layoutCount : Math.ceil(layoutCount / columns);
     const startX = useRing ? 0 : -((columns - 1) * gridSpacing) / 2;
     const startY = useRing ? 0 : ((rows - 1) * gridSpacing) / 2;
@@ -307,6 +353,9 @@ export function createMarkdownNodeBuilder(deps) {
         const nodeName = scene.splitSourcePath
           ? info.title ?? titleFromSlug(slug)
           : info.title ?? titleFromSlug(slug);
+        const datedHeadingLabel = scene.splitSourcePath
+          ? extractDatedHeadingLabel(nodeName)
+          : null;
         const node = {
           id: nodeId,
           name: nodeName,
@@ -318,9 +367,13 @@ export function createMarkdownNodeBuilder(deps) {
         };
         if (typeof sectionOverride?.labelTitle === "string") {
           node.labelTitle = sectionOverride.labelTitle;
+        } else if (datedHeadingLabel?.labelTitle) {
+          node.labelTitle = datedHeadingLabel.labelTitle;
         }
         if (typeof sectionOverride?.labelSubtitle === "string") {
           node.labelSubtitle = sectionOverride.labelSubtitle;
+        } else if (datedHeadingLabel?.labelSubtitle) {
+          node.labelSubtitle = datedHeadingLabel.labelSubtitle;
         }
         if (typeof sectionOverride?.labelDates === "string") {
           node.labelDates = sectionOverride.labelDates;

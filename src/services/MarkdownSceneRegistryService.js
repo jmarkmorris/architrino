@@ -55,6 +55,9 @@ export function createMarkdownSceneRegistry(deps) {
       markdownPlainSectionPaths: Array.isArray(nodeData?.markdownPlainSectionPaths)
         ? nodeData.markdownPlainSectionPaths
         : [],
+      markdownAutoOpen:
+        typeof nodeData?.markdownAutoOpen === "boolean" ? nodeData.markdownAutoOpen : true,
+      markdownDownloadOnly: nodeData?.markdownDownloadOnly === true,
       sceneName: nodeData?.name ?? "Notes",
     };
   }
@@ -66,6 +69,7 @@ export function createMarkdownSceneRegistry(deps) {
     markdownSection = null,
     markdownColumns = null,
     markdownAutoOpen = true,
+    markdownDownloadOnly = false,
   }) {
     return {
       layout: "static",
@@ -78,6 +82,7 @@ export function createMarkdownSceneRegistry(deps) {
       markdownSection,
       markdownColumns,
       markdownAutoOpen,
+      markdownDownloadOnly,
       centerOn: null,
     };
   }
@@ -110,7 +115,14 @@ export function createMarkdownSceneRegistry(deps) {
   }
 
   function ensureMarkdownDocScene(nodeData) {
-    const { markdownPath, markdownSection, markdownColumns, sceneName } =
+    const {
+      markdownPath,
+      markdownSection,
+      markdownColumns,
+      markdownAutoOpen,
+      markdownDownloadOnly,
+      sceneName,
+    } =
       resolveNodeMarkdownConfig(nodeData);
     if (!markdownPath) {
       return null;
@@ -125,7 +137,8 @@ export function createMarkdownSceneRegistry(deps) {
       markdownPath,
       markdownSection,
       markdownColumns,
-      markdownAutoOpen: true,
+      markdownAutoOpen,
+      markdownDownloadOnly,
     });
     return sceneId;
   }
@@ -135,6 +148,8 @@ export function createMarkdownSceneRegistry(deps) {
       markdownPath,
       markdownSection,
       markdownColumns,
+      markdownAutoOpen,
+      markdownDownloadOnly,
       markdownHeadingLevel: headingLevel,
       markdownMaxDepth,
       markdownAutoIndex,
@@ -157,7 +172,8 @@ export function createMarkdownSceneRegistry(deps) {
           markdownPath,
           markdownSection: null,
           markdownColumns,
-          markdownAutoOpen: true,
+          markdownAutoOpen,
+          markdownDownloadOnly,
         });
         return sceneId;
       }
@@ -176,6 +192,7 @@ export function createMarkdownSceneRegistry(deps) {
         markdownSection: null,
         markdownColumns,
         markdownAutoOpen: false,
+        markdownDownloadOnly,
         centerOn: null,
         splitSourcePath: markdownPath,
         splitHeadingLevel: headingLevel,
@@ -207,6 +224,7 @@ export function createMarkdownSceneRegistry(deps) {
         markdownSection,
         markdownColumns,
         markdownAutoOpen: false,
+        markdownDownloadOnly,
         centerOn: null,
         splitSourcePath: markdownPath,
         splitSection: markdownSection,
@@ -228,7 +246,8 @@ export function createMarkdownSceneRegistry(deps) {
       markdownPath,
       markdownSection,
       markdownColumns,
-      markdownAutoOpen: true,
+      markdownAutoOpen,
+      markdownDownloadOnly,
     });
     return sceneId;
   }
