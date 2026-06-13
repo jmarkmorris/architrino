@@ -14,6 +14,8 @@ import { buildPhotonPlotSamples } from "./PhotonFormulaRuntime.js";
 const TWO_PI = Math.PI * 2;
 const ARCHITRINO_MARKER_RADIUS = 5.2;
 const PHOTON_FIELD_PLOT_SAMPLE_COUNT = 180;
+const PHOTON_SIDE_VIEW_CHARGE_LANE_OFFSET = 2.2;
+const PHOTON_SIDE_VIEW_SEPARATION_VISUAL_SCALE = 0.5;
 const STAGE_ORIENTATION_NOTE =
   "Face-on view: the planar swarms are actually perpendicular to the translation line.";
 
@@ -247,18 +249,18 @@ function drawSideSwarmTrace(ctx, state, swarmId, x, centerY, halfHeight, scale, 
   ctx.strokeStyle = "rgba(255, 0, 0, 0.42)";
   ctx.lineWidth = 4;
   ctx.beginPath();
-  ctx.moveTo(x - 2.2, top);
-  ctx.lineTo(x - 2.2, bottom);
+  ctx.moveTo(x - PHOTON_SIDE_VIEW_CHARGE_LANE_OFFSET, top);
+  ctx.lineTo(x - PHOTON_SIDE_VIEW_CHARGE_LANE_OFFSET, bottom);
   ctx.stroke();
 
   ctx.shadowColor = PHOTON_CHARGE_COLORS.electrino;
   ctx.strokeStyle = "rgba(0, 0, 255, 0.46)";
   ctx.beginPath();
-  ctx.moveTo(x + 2.2, top);
-  ctx.lineTo(x + 2.2, bottom);
+  ctx.moveTo(x + PHOTON_SIDE_VIEW_CHARGE_LANE_OFFSET, top);
+  ctx.lineTo(x + PHOTON_SIDE_VIEW_CHARGE_LANE_OFFSET, bottom);
   ctx.stroke();
 
-  PHOTON_LAYER_ORDER.forEach((layerId, layerIndex) => {
+  PHOTON_LAYER_ORDER.forEach((layerId) => {
     if (!getPhotonLayerEnabled(state, swarmId, layerId)) {
       return;
     }
@@ -268,8 +270,9 @@ function drawSideSwarmTrace(ctx, state, swarmId, x, centerY, halfHeight, scale, 
       const angle = getPhotonLayerAngleRadians(state, swarmId, layerId, timeSeconds, chargeType);
       const markerX =
         x +
-        (chargeType === "positrino" ? -3.4 : 3.4) +
-        (layerIndex - 1) * 0.9;
+        (chargeType === "positrino"
+          ? -PHOTON_SIDE_VIEW_CHARGE_LANE_OFFSET
+          : PHOTON_SIDE_VIEW_CHARGE_LANE_OFFSET);
       const markerY = centerY + Math.sin(angle) * radius;
       drawArchitrinoMarker(
         ctx,
@@ -371,12 +374,19 @@ export function computePhotonStageLayout(state, cssWidth, cssHeight) {
   const maxLayerRadius = Math.max(0.1, getPhotonMaxLayerRadius(state));
   const enabledMaxLayerRadius = getPhotonMaxLayerRadius(state, { enabledOnly: true });
   const scale = Math.min(cssHeight * 0.31, cssWidth * 0.15) / Math.max(0.1, maxLayerRadius);
-  const separationProgress = clampPhotonNumber(
+  const clampedSeparation = clampPhotonNumber(
     state.pair.pairSeparation,
     PHOTON_CONTROL_RANGES.pairSeparation.min,
     PHOTON_CONTROL_RANGES.pairSeparation.max,
     4
-  ) / PHOTON_CONTROL_RANGES.pairSeparation.max;
+  );
+  const separationProgress = clampPhotonNumber(
+    Math.log1p(clampedSeparation / PHOTON_SIDE_VIEW_SEPARATION_VISUAL_SCALE) /
+      Math.log1p(PHOTON_CONTROL_RANGES.pairSeparation.max / PHOTON_SIDE_VIEW_SEPARATION_VISUAL_SCALE),
+    0,
+    1,
+    0.5
+  );
   const centerY = cssHeight * 0.54;
   const faceMaxRadiusPx = maxLayerRadius * scale;
   const faceSpacing = Math.min(

@@ -31,7 +31,7 @@ Each of the six binaries has an enabled checkbox. When a binary is unchecked, it
 
 ## Geometry Controls
 
-The pair separation control changes the distance between the two vertical traces in the side view. It does not change the spacing between the two face-on circular swarm views.
+The pair separation control changes the center-to-center distance between the two vertical traces in the side view. It uses the same dimensionless model length units as the I/M/O radii, but along the $x$ direction rather than in the transverse orbit plane. The current range is `0.05` to `50.00`. A separation of `4.00` places the swarm centers at $x = -2.00$ and $x = +2.00$. It does not change the spacing between the two face-on circular swarm views.
 
 Each swarm has independent I/M/O controls:
 

@@ -217,12 +217,24 @@ test("plot samples expose middle-cycle guide bounds and active left-to-right tra
 test("photon stage keeps face-on swarm spacing fixed while side view separation changes", () => {
   const state = createDefaultPhotonState();
   const base = computePhotonStageLayout(state, 933, 466);
-  state.pair.pairSeparation = 8;
+  state.pair.pairSeparation = PHOTON_CONTROL_RANGES.pairSeparation.min;
+  const nearCoLocated = computePhotonStageLayout(state, 933, 466);
+  state.pair.pairSeparation = PHOTON_CONTROL_RANGES.pairSeparation.max;
   const separated = computePhotonStageLayout(state, 933, 466);
 
   assert.equal(base.faceLeftX, separated.faceLeftX);
   assert.equal(base.faceRightX, separated.faceRightX);
+  assert.equal(PHOTON_CONTROL_RANGES.pairSeparation.min, 0.05);
+  assert.equal(PHOTON_CONTROL_RANGES.pairSeparation.max, 50);
+  assert.ok(
+    nearCoLocated.sideRightX - nearCoLocated.sideLeftX < base.sideRightX - base.sideLeftX
+  );
+  assert.ok(nearCoLocated.sideRightX - nearCoLocated.sideLeftX > 0);
   assert.equal(base.translationOriginX, (base.sideLeftX + base.sideRightX) / 2);
+  assert.equal(
+    nearCoLocated.translationOriginX,
+    (nearCoLocated.sideLeftX + nearCoLocated.sideRightX) / 2
+  );
   assert.equal(separated.translationOriginX, (separated.sideLeftX + separated.sideRightX) / 2);
   assert.ok(
     separated.sideRightX - separated.sideLeftX > base.sideRightX - base.sideLeftX

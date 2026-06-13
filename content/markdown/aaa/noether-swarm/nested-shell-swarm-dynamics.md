@@ -194,6 +194,8 @@ $$
 $$
 All causal roots in the branch ledger are solved with $c_f$ and absolute time $t$. No dressed observer-channel speed is allowed inside this branch calculation.
 
+The strict upper end of this drift band is kinematic. A leading-side partner row must be caught by a causal wake emitted from a source behind the receiver in the co-moving branch chart. If the center drift reaches $\|\mathbf{v}_{\text{trans}}\|\ge c_f$, that forward partner row has no positive-delay root, and the causal-root ledger starves on the leading side. The resulting speed-limit statement applies to sustained center translation of an internally bound branch; it does not prohibit inner-shell self-hit histories or other internal components from entering super-field-speed regimes relative to the primitive wake speed.
+
 For the same admitted branch $q$, extract semiaxes from the cycle-averaged nested shell swarm shape tensor
 $$
 Q_{ab}^{(q)}(\mathbf{v}_{\text{trans}})

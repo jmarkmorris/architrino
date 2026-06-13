@@ -65,7 +65,7 @@ export const PHOTON_CONTROL_RANGES = Object.freeze({
   frequencyHz: { min: 0.01, max: 2, step: 0.0001 },
   radius: { min: 0.2, max: 2.4, step: 0.01 },
   phaseDeg: { min: 0, max: 360, step: 1 },
-  pairSeparation: { min: 0.5, max: 8, step: 0.05 },
+  pairSeparation: { min: 0.05, max: 50, step: 0.05 },
   speedMultiplier: { min: 0.1, max: 4, step: 0.05 },
   polarizationAngleDeg: { min: 0, max: 180, step: 1 },
   phaseLagDeg: { min: -180, max: 180, step: 1 },

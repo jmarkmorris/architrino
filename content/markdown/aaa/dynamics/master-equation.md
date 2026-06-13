@@ -514,6 +514,47 @@ between regular intervals.
 
 This delay-map theorem pack is foundational rather than merely model-specific. Within this chapter it serves as the fold-geometry reference for delayed-root constructions: regular charts preserve signed degree, while branch creation or annihilation requires a Jacobian-degenerate fold.
 
+**Proposition 4 (forward partner-root starvation under field-speed drift).**
+Let a candidate translating branch have center drift $u\hat{\mathbf e}$ on the retained interval, with $u\ge0$ and $\|\hat{\mathbf e}\|=1$. Write two partner constituents as
+$$
+\mathbf{x}_i(t)=u t\,\hat{\mathbf e}+\boldsymbol{\rho}_i(t),
+\qquad
+\mathbf{x}_j(t_0)=u t_0\,\hat{\mathbf e}+\boldsymbol{\rho}_j(t_0)
+$$
+where $i$ is the receiver and $j\ne i$ is the source. Suppose the retained partner row is forward-directed in the co-moving branch chart:
+$$
+d_{\parallel}(t,t_0)
+\equiv
+\hat{\mathbf e}\cdot
+\left(
+\boldsymbol{\rho}_i(t)-\boldsymbol{\rho}_j(t_0)
+\right)
+\ge d_{\min}>0
+$$
+For any positive-delay candidate root with $\tau=t-t_0>0$,
+$$
+c_f\tau
+=
+\left\|
+u\tau\,\hat{\mathbf e}
++
+\boldsymbol{\rho}_i(t)-\boldsymbol{\rho}_j(t_0)
+\right\|
+\ge
+u\tau+d_{\min}
+$$
+Hence
+$$
+\left(c_f-u\right)\tau\ge d_{\min}
+$$
+If $u\ge c_f$, no such forward partner root exists. If $u<c_f$, any such row has the lower delay bound
+$$
+\tau\ge\frac{d_{\min}}{c_f-u}
+$$
+so the required memory depth diverges as $u\to c_f^-$.
+
+This is a kinematic starvation result, not a force-balance approximation. It says that a forward structural partner row cannot be retained at or above field-speed center drift because the causal wake cannot catch the leading receiver. A bound assembly branch that requires at least one such forward partner row for structural closure therefore cannot preserve the same causal-root ledger for sustained drift $u\ge c_f$. The proposition does not impose a speed cap on a single architrino, on internal curved self-hit motion, or on history-supported super-field-speed components; it applies to center translation of an internally bound branch whose leading-side partner closure is part of the retained ledger.
+
 #### Single-Hit Regime (Unique $t_0$)
 
 In the **sub-field-speed regime** ($\|\mathbf{v}_j(t_0)\| < c_f$ locally), Proposition 2 applies, and the map is strictly monotone:

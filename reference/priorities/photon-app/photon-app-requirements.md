@@ -172,7 +172,7 @@ Each flat Noether swarm view should show:
 
 The two swarm views should make contra-rotation obvious without needing explanatory prose. Direction indicators, phase ticks, or short motion trails are acceptable if they do not make the display visually noisy.
 
-The stage should also provide an edge-on side view of the photon candidate. In that view, each planar swarm should appear as a vertical trace whose length equals the diameter of the largest enabled binary. The trace should carry red and blue glow, and active architrino markers may move up and down along the trace to show the projected side-view orbit. The pair separation control should change the distance between the two side-view traces along the $x$ axis, while the face-on circular orbit views keep a fixed visual spacing for readability.
+The stage should also provide an edge-on side view of the photon candidate. In that view, each planar swarm should appear as a vertical trace whose length equals the diameter of the largest enabled binary. The trace should carry red and blue glow, and active architrino markers may move up and down along the trace to show the projected side-view orbit. The pair separation control should change the center-to-center distance between the two side-view traces along the $x$ axis, while the face-on circular orbit views keep a fixed visual spacing for readability. Pair separation uses the same dimensionless model length units as the I/M/O radii, but measures distance along the line of translation; a separation $s$ places the swarm centers at $x = -s/2$ and $x = +s/2$.
 
 The visual state should be driven by one shared app clock so pause/play, reset, phase offsets, and observed field summaries remain synchronized.
 
@@ -242,7 +242,7 @@ The first prototype should expose these controls visibly in the UI panel:
 | I phase | `0 deg` | `0` to `360 deg` | `1 deg` |
 | M phase | `0 deg` | `0` to `360 deg` | `1 deg` |
 | O phase | `0 deg` | `0` to `360 deg` | `1 deg` |
-| pair separation | `4.00` | `0.50` to `8.00` | `0.05` |
+| pair separation | `4.00` | `0.05` to `50.00` | `0.05` |
 | time speed | `1.00` | `0.10` to `4.00` | `0.05` |
 | polarization angle | `0 deg` | `0` to `180 deg` | `1 deg` |
 | phase lag | `0 deg` | `-180` to `180 deg` | `1 deg` |
