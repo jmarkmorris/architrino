@@ -117,7 +117,7 @@ c_f-\hat{\mathbf{r}}_{ij}(t;t_0)\cdot\mathbf{v}_j(t_0)
 \ge
 \kappa_{\mathrm{hit}}>0
 $$
-When this floor fails, the active root is caustic-like or degenerate and must be routed to a different branch chart or regularization regime.
+When this floor fails, the active root is caustic-like or degenerate and must be routed to a different branch chart or regularization regime. In special geometries the floor can be computed rather than declared; the principal circular partner branch derives $\kappa_{\mathrm{hit}}^{\mathrm{bin}}=c_f(1+\beta\sin(\phi/2)) > c_f$ in [Binary Dynamics](binary-dynamics.md#principal-partner-root-certificate).
 
 #### Caustic Transit and Finite Impulse
 
@@ -935,6 +935,30 @@ The receiver's velocity $\mathbf{v}_i(t)$ does **not** appear as a separate sour
 1. The **instantaneous power** through $\mathbf{F} \cdot \mathbf{v} = \|\mathbf{F}\| v_r$.
 2. The **subsequent evolution of $r_{ij}$** (and thus future force magnitudes).
 3. Which delayed branches are actually sampled along the receiver worldline over time.
+
+For a uniformly moving source on a simple branch, this flux modulation is closed form. Let
+$$
+\mathbf{x}_j(t_0)=\mathbf{x}_{j,0}+\mathbf{u}t_0,
+\qquad
+\beta=\frac{\|\mathbf{u}\|}{c_f},
+\qquad
+\cos\theta=\frac{\mathbf{u}\cdot\hat{\mathbf{r}}_{ij}}{\|\mathbf{u}\|}
+$$
+at the emission event. Then
+$$
+J_{ij}=1-\beta\cos\theta
+$$
+and the received wake density attached to the simple root is proportional to
+$$
+\frac{1}{r_{ij}^2\,|1-\beta\cos\theta|}
+$$
+For $0\le\beta<1$ this gives a headlight-style causal-wake anisotropy:
+$$
+\mathcal{D}_{\mathrm{wake}}(\theta;\beta)
+=
+\frac{1}{1-\beta\cos\theta}
+$$
+up to the common inverse-square dilution and coupling normalization. The formula is not a Lorentz transformation and does not add electrodynamic velocity-field or acceleration-field terms. It is the microscopic source of leading/trailing wake-density asymmetry: forward directions with $\cos\theta>0$ receive compressed isochron spacing, while trailing directions receive diluted spacing. Doppler shift, aberration, magnetic-like response, preferred-frame leakage estimates, and translating-binary asymmetry must be derived from this branch geometry plus assembly and observer-channel closure rather than inserted as independent laws.
 
 **Causal-flux modulation:** Unlike models that make source strength itself a function of speed, the velocity dependence here enters through the **moving-source geometry** of emission, the **geometry of causal intersections**, and the **bunching or dilation of received wake flux** in the Euclidean void. This is the origin of the Jacobian denominator and the seed of relativistic and magnetic behavior in the emergent theory.
 

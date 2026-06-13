@@ -230,6 +230,100 @@ This yields two delay equations:
 
 ---
 
+#### Principal Partner-Root Certificate
+
+For the partner branch, write the full delay angle as
+$$
+\phi=\omega\Delta
+$$
+and the chapter speed ratio as
+$$
+\beta=\frac{\omega R}{c_f}
+$$
+The principal partner-root equation is
+$$
+2\beta\cos\frac{\phi}{2}=\phi,
+\qquad
+0<\phi<\pi
+$$
+The function $F(\phi)=2\beta\cos(\phi/2)-\phi$ satisfies $F(0)=2\beta>0$, $F(\pi)=-\pi$, and
+$$
+F'(\phi)=-\beta\sin\frac{\phi}{2}-1<0
+$$
+on $(0,\pi)$. Therefore the principal partner root exists and is unique for every $\beta>0$.
+
+The same conclusion gives a derived transversality floor. On the principal partner branch,
+$$
+J_p=1+\beta\sin\frac{\phi}{2}
+$$
+so the dimensional root-transversality quantity is
+$$
+\kappa_{\mathrm{hit}}^{\mathrm{bin}}
+\equiv
+\left|
+c_f-\hat{\mathbf r}\cdot\mathbf{v}_j(t-\Delta)
+\right|
+=
+c_f\left(1+\beta\sin\frac{\phi}{2}\right)
+>
+c_f
+$$
+This floor is not an admissibility parameter for the principal branch; it is a computed property of the circular geometry. It certifies that the simple-root chart cannot fail by partner-root tangency on the principal partner branch.
+
+The instantaneous radial-balance equation is also closed form. Setting the inward partner radial acceleration equal to the required centripetal acceleration gives
+$$
+\frac{\beta^2c_f^2}{R}
+=
+\frac{\kappa\epsilon^2}
+{4R^2\cos(\phi/2)\left(1+\beta\sin(\phi/2)\right)}
+$$
+and therefore, with $R_*=\kappa\epsilon^2/c_f^2$,
+$$
+\frac{R}{R_*}
+=
+\frac{1}
+{4\beta^2\cos(\phi/2)\left(1+\beta\sin(\phi/2)\right)}
+$$
+As $\beta\to0$, the root satisfies $\phi\sim2\beta$, and the balance reduces to
+$$
+\omega^2R^3=\frac{\kappa\epsilon^2}{4}
+$$
+which is the delayed Coulomb-Kepler scaling for the isolated opposite-polarity pair.
+
+The same principal branch still cannot be a uniform orbit. The delayed partner line of action has a forward tangential projection, so
+$$
+a_\theta^{(\mathrm{part})}
+=
+\frac{\kappa\epsilon^2\sin(\phi/2)}
+{4R^2\cos^2(\phi/2)\left(1+\beta\sin(\phi/2)\right)}
+>
+0
+$$
+and the instantaneous work rate satisfies $a_\theta^{(\mathrm{part})}R\omega>0$. Thus the principal branch has positive tangential work in the particle-only circular reduction: it gives the radial family above, but it also pumps tangential energy. A particle-only constant-speed circular binary therefore requires a signed multi-root tangential residual
+$$
+\sum_{t_0\in\mathcal{C}_{12}(t)}a_\theta^{(12)}(t;t_0)
++
+\sum_{t_0\in\mathcal{C}_{11}(t)}a_\theta^{(11)}(t;t_0)
+=0
+$$
+on the retained ledger, or an explicitly retained wake-flux/recoil channel in the finite-window energy ledger. Since circular self-hit roots require super-field-speed history on this branch, a self-hit-stabilized MCB candidate must live on the super-field-speed side of the circular ledger rather than on the principal partner branch alone.
+
+Additional partner roots are not speculative. In the full delay-angle representation, partner roots can occur only in positive-cosine windows
+$$
+W_k=\left(4\pi k-\pi,\ 4\pi k+\pi\right),
+\qquad
+k=0,1,2,\ldots
+$$
+with the principal root in $W_0\cap(0,\pi)$. For $k\ge1$, the root pair appears when the window maximum reaches zero:
+$$
+\sqrt{\beta^2-1}
++
+\arcsin\frac{1}{\beta}
+=
+2\pi k
+$$
+At equality the two roots are born at a tangency; above it they thicken the partner-hit ledger. The root census is therefore a computed branch diagram rather than an independent conjecture.
+
 #### Terminology: Roots and Winding Numbers
 
 **Root**: An emission time $t_0 < t$ (from either self or partner) that satisfies the causal constraint $r = c_f (t - t_0)$ and produces a hit at reception time $t$.
