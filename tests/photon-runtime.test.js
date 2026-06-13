@@ -7,6 +7,9 @@ import {
   createDefaultPhotonState,
   getPhotonLayerEnabled,
   getPhotonLayerAngleRadians,
+  getPhotonPairSeparationFromLog10Ratio,
+  getPhotonSeparationLog10Ratio,
+  getPhotonSeparationReferenceRadius,
   getPhotonLayerTangentialSpeedRatio,
   getPhotonMiddleCycleBounds,
   getPhotonRunDuration,
@@ -17,6 +20,8 @@ import {
 import {
   getPhotonControlZeroPositionPercent,
   getPhotonControlZeroSnapThreshold,
+  getPhotonSeparationLogTicks,
+  snapPhotonSeparationLogTick,
   snapPhotonControlValueToZero,
 } from "../src/apps/photon/PhotonControlsRuntime.js";
 import {
@@ -62,6 +67,8 @@ test("default photon state encodes trailing and leading swarm convention", () =>
   });
   assert.deepEqual(state.measurement.testPoint, { x: 6, y: 0, z: 0 });
   assert.equal(state.measurement.emissionSpeedCf, 1);
+  assert.equal(state.pair.pairSeparation, getPhotonSeparationReferenceRadius(state));
+  assert.equal(getPhotonSeparationLog10Ratio(state), 0);
   assert.deepEqual(
     ["left", "right"].flatMap((swarmId) =>
       ["I", "M", "O"].map((layerId) => getPhotonLayerEnabled(state, swarmId, layerId))
@@ -216,16 +223,23 @@ test("plot samples expose middle-cycle guide bounds and active left-to-right tra
 
 test("photon stage keeps face-on swarm spacing fixed while side view separation changes", () => {
   const state = createDefaultPhotonState();
+  state.pair.pairSeparation = getPhotonPairSeparationFromLog10Ratio(state, -6);
   const base = computePhotonStageLayout(state, 933, 466);
-  state.pair.pairSeparation = PHOTON_CONTROL_RANGES.pairSeparation.min;
+  state.pair.pairSeparation = getPhotonPairSeparationFromLog10Ratio(
+    state,
+    PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio.min
+  );
   const nearCoLocated = computePhotonStageLayout(state, 933, 466);
-  state.pair.pairSeparation = PHOTON_CONTROL_RANGES.pairSeparation.max;
+  state.pair.pairSeparation = getPhotonPairSeparationFromLog10Ratio(
+    state,
+    PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio.max
+  );
   const separated = computePhotonStageLayout(state, 933, 466);
 
   assert.equal(base.faceLeftX, separated.faceLeftX);
   assert.equal(base.faceRightX, separated.faceRightX);
-  assert.equal(PHOTON_CONTROL_RANGES.pairSeparation.min, 0.05);
-  assert.equal(PHOTON_CONTROL_RANGES.pairSeparation.max, 50);
+  assert.equal(PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio.min, -15);
+  assert.equal(PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio.max, 0);
   assert.ok(
     nearCoLocated.sideRightX - nearCoLocated.sideLeftX < base.sideRightX - base.sideLeftX
   );
@@ -267,6 +281,31 @@ test("test point slider zero helpers mark and snap near zero", () => {
   assert.equal(snapPhotonControlValueToZero(-0.1, PHOTON_CONTROL_RANGES.testPointY), 0);
   assert.equal(snapPhotonControlValueToZero(0.15, PHOTON_CONTROL_RANGES.testPointZ), 0.15);
   assert.equal(snapPhotonControlValueToZero(0.05, PHOTON_CONTROL_RANGES.fieldGain), 0.05);
+});
+
+test("separation log ticks cover mantissas 1 through 9 for each decade", () => {
+  const ticks = getPhotonSeparationLogTicks();
+
+  assert.equal(ticks.length, 136);
+  assert.deepEqual(
+    ticks.slice(0, 9).map((tick) => tick.mantissa),
+    [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  );
+  assert.equal(ticks[0].exponent, -15);
+  assert.equal(ticks.at(-1).value, 0);
+  assertNear(snapPhotonSeparationLogTick(Math.log10(7.2e-9)), Math.log10(7e-9), 1e-12);
+});
+
+test("separation reference radius follows the largest enabled radius", () => {
+  const state = createDefaultPhotonState();
+  ["left", "right"].forEach((swarmId) => {
+    ["I", "M", "O"].forEach((layerId) => {
+      state.pair[swarmId].layers[layerId].radius = 0.2;
+    });
+  });
+
+  assert.equal(getPhotonSeparationReferenceRadius(state), 0.2);
+  assert.equal(getPhotonPairSeparationFromLog10Ratio(state, 0), 0.2);
 });
 
 test("state JSON round trips through normalization", () => {

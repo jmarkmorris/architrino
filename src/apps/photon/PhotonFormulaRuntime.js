@@ -8,6 +8,7 @@ import {
   getPhotonRunDuration,
   getPhotonMiddleCycleBounds,
   wrapPhotonTime,
+  getPhotonSeparationReferenceRadius,
 } from "./PhotonStateRuntime.js";
 
 const TWO_PI = Math.PI * 2;
@@ -70,7 +71,8 @@ export function resolvePhotonMeasurementParameters(state) {
 }
 
 function getPhotonSwarmCenterX(state, swarmId) {
-  const separation = Math.max(0, Number(state?.pair?.pairSeparation ?? 4) || 4);
+  const fallbackSeparation = getPhotonSeparationReferenceRadius(state);
+  const separation = Math.max(0, Number(state?.pair?.pairSeparation) || fallbackSeparation);
   return swarmId === "left" ? -separation / 2 : separation / 2;
 }
 

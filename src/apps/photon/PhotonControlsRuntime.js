@@ -2,7 +2,9 @@ import {
   PHOTON_CONTROL_RANGES,
   PHOTON_LAYER_ORDER,
   getPhotonLayer,
+  getPhotonSeparationLog10Ratio,
   setPhotonLayerEnabled,
+  setPhotonPairSeparationLog10Ratio,
   setPhotonLayerValue,
 } from "./PhotonStateRuntime.js";
 
@@ -15,6 +17,54 @@ function formatControlValue(value, digits = 2) {
 
 const ZERO_SNAP_STEP_COUNT = 2;
 const ZERO_SNAP_TRACK_RATIO = 0.0125;
+const PHOTON_SEPARATION_LOG_TICK_EPSILON = 1e-10;
+
+export function getPhotonSeparationLogTicks() {
+  const range = PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio;
+  const ticks = [];
+  for (let exponent = range.min; exponent < range.max; exponent += 1) {
+    for (let mantissa = 1; mantissa <= 9; mantissa += 1) {
+      ticks.push({
+        value: exponent + Math.log10(mantissa),
+        mantissa,
+        exponent,
+        label: mantissa === 1 ? `1e${exponent}` : `${mantissa}`,
+      });
+    }
+  }
+  ticks.push({
+    value: range.max,
+    mantissa: 1,
+    exponent: 0,
+    label: "1",
+  });
+  return ticks;
+}
+
+export function snapPhotonSeparationLogTick(value) {
+  const range = PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio;
+  const number = Number(value);
+  const clamped = Math.min(range.max, Math.max(range.min, Number.isFinite(number) ? number : range.max));
+  return getPhotonSeparationLogTicks().reduce((best, tick) => {
+    return Math.abs(tick.value - clamped) < Math.abs(best.value - clamped) ? tick : best;
+  }).value;
+}
+
+function formatPhotonSeparationLogRatio(value) {
+  const range = PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio;
+  const clamped = Math.min(range.max, Math.max(range.min, Number(value) || range.max));
+  if (Math.abs(clamped) <= PHOTON_SEPARATION_LOG_TICK_EPSILON) {
+    return "1 r";
+  }
+  const exponent = Math.floor(clamped + PHOTON_SEPARATION_LOG_TICK_EPSILON);
+  const mantissa = 10 ** (clamped - exponent);
+  const roundedMantissa = Math.round(mantissa);
+  const mantissaText =
+    Math.abs(mantissa - roundedMantissa) <= 0.015
+      ? String(roundedMantissa)
+      : mantissa.toPrecision(2);
+  return `${mantissaText}e${exponent} r`;
+}
 
 export function getPhotonControlZeroPositionPercent(range) {
   const min = Number(range?.min);
@@ -103,6 +153,66 @@ function createRangeControl(documentLike, { label, value, range, digits = 2, zer
   return { row, input, output, digits };
 }
 
+function createSeparationLogControl(documentLike, { state, getState, onInput }) {
+  const range = PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio;
+  const ticks = getPhotonSeparationLogTicks();
+  const value = snapPhotonSeparationLogTick(getPhotonSeparationLog10Ratio(state));
+  const row = createElement(documentLike, "label", "photon-control-row photon-log-control-row");
+  const span = createElement(documentLike, "span", "photon-control-label", "Sep/r");
+  const input = createElement(documentLike, "input", "photon-control-input");
+  const output = createElement(documentLike, "output", "photon-control-output", formatPhotonSeparationLogRatio(value));
+  const rangeShell = createElement(documentLike, "span", "photon-range-shell photon-log-range-shell");
+  const tickStrip = createElement(documentLike, "span", "photon-log-tick-strip");
+  const datalist = createElement(documentLike, "datalist");
+  const datalistId = "photon-separation-log-ticks";
+  const syncOutput = () => {
+    const currentState = getState();
+    const logValue = snapPhotonSeparationLogTick(getPhotonSeparationLog10Ratio(currentState));
+    input.value = String(logValue);
+    output.textContent = formatPhotonSeparationLogRatio(logValue);
+    output.title = `separation = ${Number(currentState.pair.pairSeparation).toExponential(3)}`;
+  };
+
+  input.type = "range";
+  input.min = String(range.min);
+  input.max = String(range.max);
+  input.step = String(range.step);
+  input.value = String(value);
+  input.setAttribute("aria-label", "Separation over r");
+  input.setAttribute("list", datalistId);
+  input.dataset.controlLabel = "Separation over r";
+  datalist.id = datalistId;
+  ticks.forEach((tick) => {
+    const option = createElement(documentLike, "option");
+    option.value = String(tick.value);
+    option.label = tick.label;
+    datalist.append(option);
+
+    const tickElement = createElement(
+      documentLike,
+      "span",
+      tick.mantissa === 1 ? "photon-log-tick is-decade" : "photon-log-tick"
+    );
+    const position = ((tick.value - range.min) / (range.max - range.min)) * 100;
+    tickElement.style.setProperty("--photon-log-tick-position", `${position}%`);
+    tickElement.setAttribute("aria-hidden", "true");
+    tickStrip.append(tickElement);
+  });
+
+  input.addEventListener("input", () => {
+    const nextValue = snapPhotonSeparationLogTick(input.value);
+    input.value = String(nextValue);
+    setPhotonPairSeparationLog10Ratio(getState(), nextValue);
+    syncOutput();
+    onInput(nextValue);
+  });
+
+  rangeShell.append(input, tickStrip, datalist);
+  row.append(span, rangeShell, output);
+  syncOutput();
+  return { row, input, output, sync: syncOutput };
+}
+
 function createCheckboxControl(documentLike, { label, checked, onChange }) {
   const row = createElement(documentLike, "label", "photon-checkbox-row");
   const input = createElement(documentLike, "input", "photon-checkbox-input");
@@ -133,6 +243,10 @@ function addSection(documentLike, parent, title) {
 }
 
 function syncRange(control, value) {
+  if (typeof control.sync === "function") {
+    control.sync();
+    return;
+  }
   control.input.value = String(value);
   control.output.textContent = formatControlValue(value, control.digits);
 }
@@ -181,15 +295,10 @@ export function createPhotonControlsRuntime({
   });
 
   controls.push(
-    createRangeControl(documentLike, {
-      label: "Separation",
-      value: state.pair.pairSeparation,
-      range: PHOTON_CONTROL_RANGES.pairSeparation,
-      digits: 2,
-      onInput: (value) => {
-        getState().pair.pairSeparation = value;
-        onRangeStateChange();
-      },
+    createSeparationLogControl(documentLike, {
+      state,
+      getState,
+      onInput: () => onRangeStateChange(),
     })
   );
   controls.push(
@@ -256,7 +365,10 @@ export function createPhotonControlsRuntime({
         label: `${swarm.role} ${layerId} binary enabled`,
         checked: layer.enabled !== false,
         onChange: (checked) => {
-          setPhotonLayerEnabled(getState(), swarmId, layerId, checked);
+          const nextState = getState();
+          const separationLog10Ratio = getPhotonSeparationLog10Ratio(nextState);
+          setPhotonLayerEnabled(nextState, swarmId, layerId, checked);
+          setPhotonPairSeparationLog10Ratio(nextState, separationLog10Ratio);
           onStateChange();
         },
       });
@@ -273,7 +385,12 @@ export function createPhotonControlsRuntime({
           range,
           digits,
           onInput: (value) => {
-            setPhotonLayerValue(getState(), swarmId, layerId, key, value);
+            const nextState = getState();
+            const separationLog10Ratio = getPhotonSeparationLog10Ratio(nextState);
+            setPhotonLayerValue(nextState, swarmId, layerId, key, value);
+            if (key === "radius") {
+              setPhotonPairSeparationLog10Ratio(nextState, separationLog10Ratio);
+            }
             onRangeStateChange();
           },
         });

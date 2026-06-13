@@ -7,6 +7,7 @@ import {
   getPhotonLayer,
   getPhotonLayerEnabled,
   getPhotonLayerAngleRadians,
+  getPhotonSeparationLog10Ratio,
   wrapPhotonTime,
 } from "./PhotonStateRuntime.js";
 import { buildPhotonPlotSamples } from "./PhotonFormulaRuntime.js";
@@ -15,7 +16,6 @@ const TWO_PI = Math.PI * 2;
 const ARCHITRINO_MARKER_RADIUS = 5.2;
 const PHOTON_FIELD_PLOT_SAMPLE_COUNT = 180;
 const PHOTON_SIDE_VIEW_CHARGE_LANE_OFFSET = 2.2;
-const PHOTON_SIDE_VIEW_SEPARATION_VISUAL_SCALE = 0.5;
 const STAGE_ORIENTATION_NOTE =
   "Face-on view: the planar swarms are actually perpendicular to the translation line.";
 
@@ -374,15 +374,10 @@ export function computePhotonStageLayout(state, cssWidth, cssHeight) {
   const maxLayerRadius = Math.max(0.1, getPhotonMaxLayerRadius(state));
   const enabledMaxLayerRadius = getPhotonMaxLayerRadius(state, { enabledOnly: true });
   const scale = Math.min(cssHeight * 0.31, cssWidth * 0.15) / Math.max(0.1, maxLayerRadius);
-  const clampedSeparation = clampPhotonNumber(
-    state.pair.pairSeparation,
-    PHOTON_CONTROL_RANGES.pairSeparation.min,
-    PHOTON_CONTROL_RANGES.pairSeparation.max,
-    4
-  );
+  const separationLog10Ratio = getPhotonSeparationLog10Ratio(state);
+  const separationLogRange = PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio;
   const separationProgress = clampPhotonNumber(
-    Math.log1p(clampedSeparation / PHOTON_SIDE_VIEW_SEPARATION_VISUAL_SCALE) /
-      Math.log1p(PHOTON_CONTROL_RANGES.pairSeparation.max / PHOTON_SIDE_VIEW_SEPARATION_VISUAL_SCALE),
+    (separationLog10Ratio - separationLogRange.min) / (separationLogRange.max - separationLogRange.min),
     0,
     1,
     0.5

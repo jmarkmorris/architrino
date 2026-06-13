@@ -92,6 +92,102 @@ where $\mathbf{y}$ stacks positions and velocities in relative coordinates. Kine
 2. Spectral stability of the monodromy operator (all nontrivial Floquet multipliers inside the unit disk).
 3. Smooth coefficient maps for axis and period renormalization extracted from $\boldsymbol{\rho}^\star$.
 
+### Translating binary benchmark
+
+The first hard Lorentz-closure calculation is the moving version of the certified rest two-body branch. Let $\sigma\in\{+1,-1\}$ label the two opposite-polarity architrinos and choose the drift direction $\hat{\mathbf e}$. A translating binary branch has the substrate ansatz
+$$
+\mathbf{x}_{\sigma}(t)
+=
+u t\,\hat{\mathbf e}
++
+\sigma\,\boldsymbol{\rho}_u(\theta(t)),
+\qquad
+\theta(t+T_u)=\theta(t)+2\pi
+$$
+with $\boldsymbol{\rho}_u$ periodic on the retained branch chart. This is not a Lorentz boost of coordinates. It is a direct absolute-time branch ansatz inserted into the delayed root equation.
+
+For a root emitted by constituent $\sigma'$ and received by constituent $\sigma$, the delay $\tau>0$ must solve
+$$
+G_{\sigma\sigma'}(\tau;\theta,u)
+\equiv
+\left\|
+u\tau\,\hat{\mathbf e}
++
+\sigma\,\boldsymbol{\rho}_u(\theta)
+-
+\sigma'\,\boldsymbol{\rho}_u(\theta-\Omega_u\tau)
+\right\|
+-c_f\tau
+=0,
+\qquad
+\Omega_u\equiv\frac{2\pi}{T_u}
+$$
+The branch Jacobian is
+$$
+J_{\sigma\sigma'}(\tau;\theta,u)
+=
+1-
+\frac{
+\left(
+u\hat{\mathbf e}
++
+\sigma'\Omega_u\boldsymbol{\rho}'_u(\theta-\Omega_u\tau)
+\right)
+\cdot\hat{\mathbf r}_{\sigma\sigma'}
+}{c_f}
+$$
+where $\hat{\mathbf r}_{\sigma\sigma'}$ is the unit vector from the source emission point to the receiver-now point. This is structurally the same denominator that appears in Lienard-Wiechert delay geometry. The analogy is useful only at the level of causal-root flux: the master-equation kernel has the radial inverse-square line of action and the $|J|^{-1}$ weight, but not the full electrodynamic velocity-field and acceleration-field terms. The Lorentz answer therefore cannot be imported from classical electrodynamics; it must be computed on this branch.
+
+The primitive Lorentz test for this binary is the residual triple
+$$
+\mathcal{R}_{\mathrm{bin}}(u)
+=
+\left(
+R_T^{\mathrm{bin}}(u),
+R_{\xi}^{\mathrm{bin}}(u),
+R_{\mathrm{shape}}^{\mathrm{bin}}(u)
+\right),
+\qquad
+\gamma_f(u)\equiv
+\left(1-\frac{u^2}{c_f^2}\right)^{-1/2}
+$$
+with
+$$
+R_T^{\mathrm{bin}}(u)
+\equiv
+\frac{T_u}{T_0}
+-
+\gamma_f(u),
+\qquad
+R_{\xi}^{\mathrm{bin}}(u)
+\equiv
+\frac{L_{\parallel}(u)}{L_{\perp}(u)}
+-
+\frac{1}{\gamma_f(u)}
+$$
+Here $L_{\parallel}$ and $L_{\perp}$ are extracted from the same periodic solution by projecting the relative orbit along and transverse to $\hat{\mathbf e}$. The shape residual measures the remaining branch-chart difference from the Lorentz-deformed rest solution,
+$$
+R_{\mathrm{shape}}^{\mathrm{bin}}(u)
+\equiv
+\inf_{\varphi}
+\frac{
+\left\|
+\boldsymbol{\rho}_u(\theta)
+-
+\boldsymbol{\rho}_{L}(\theta+\varphi;u)
+\right\|_{\mathrm{cyc}}
+}{R_0},
+\qquad
+\boldsymbol{\rho}_{L}(\theta;u)
+=
+R_0\left(
+\gamma_f^{-1}\cos\theta\,\hat{\mathbf e}
++
+\sin\theta\,\hat{\mathbf e}_{\perp}
+\right)
+$$
+in the planar orientation where the drift direction lies in the binary plane. A clean primitive result has $\mathcal{R}_{\mathrm{bin}}=0$ or a controlled residual traceable to named branch-ledger features. A nonzero residual is not a rhetorical failure; it is the first foundation-level pressure on the Lorentz-closure program, because the binary is the first available internal clock and ruler.
+
 ### Exact substrate symmetries and delay currents
 
 At action level, use a causal path-history functional
@@ -1210,6 +1306,46 @@ c_{\mathrm{mat}}^{\mathrm{lim}}\le c_f
 $$
 for that class of material branches. The remaining Lorentz program is the constructive side: proving that stable branch families exist for $u<c_f$, that their deformation and periods approach the common envelope, and that Noether sea dressing maps the primitive bound to the observer-channel speeds without an independent fit.
 
+### Theorem A1 (translating binary Lorentz residual)
+
+The first constructive test of Theorem G is the translating maximum-curvature binary benchmark defined in [Translating Binary Benchmark](#translating-binary-benchmark). Start from the certified rest binary with radius $R_0$, period $T_0$, active root ledger $b_0$, and positive Jacobian floors. For each $0<u<c_f$, solve the absolute-time delayed root equations for
+$$
+\mathbf{x}_{\sigma}(t)
+=
+u t\,\hat{\mathbf e}
++
+\sigma\,\boldsymbol{\rho}_u(\theta(t))
+$$
+on a retained deformed ledger $b_u$. The target is not merely existence. The branch must return the residual triple
+$$
+\mathcal{R}_{\mathrm{bin}}(u)
+=
+\left(
+R_T^{\mathrm{bin}}(u),
+R_{\xi}^{\mathrm{bin}}(u),
+R_{\mathrm{shape}}^{\mathrm{bin}}(u)
+\right)
+$$
+with either
+$$
+\mathcal{R}_{\mathrm{bin}}(u)=0
+$$
+on the primitive branch, or a controlled residual whose source is a named causal-root feature: a branch transition, small Jacobian floor, finite-memory cutoff, shape-mode excitation, or Noether sea dressing row.
+
+This calculation decides whether the first available internal clock and ruler obey primitive FitzGerald contraction and clock dilation:
+$$
+\frac{L_{\parallel}(u)}{L_{\perp}(u)}
+=
+\frac{1}{\gamma_f(u)},
+\qquad
+\frac{T_u}{T_0}
+=
+\gamma_f(u),
+\qquad
+\gamma_f(u)=\left(1-\frac{u^2}{c_f^2}\right)^{-1/2}
+$$
+If these equalities hold on the same branch ledger, the Lorentzian compensation has been derived for the two-body clock rather than asserted. If they fail, the residual is the earliest foundation-level falsification pressure: it marks exactly where the primitive kernel departs from Lorentzian matter behavior before nested shell swarm averaging or Noether sea dressing is allowed to repair anything.
+
 ### Theorem A (attractor existence under drift)
 
 For admissible coupling and regularization parameters, there exists a bounded translating attractor family for binary and nested shell swarm systems for $\|\mathbf{v}\|<c_f$.
@@ -1288,7 +1424,7 @@ In particular, if $(r_M/r_L)^2\le C_{23}\epsilon_{\text{LV}}$, operational Loren
 
 ### Theorem G (structural-integrity common-limit closure)
 
-This theorem is the parent Lorentz-closure target for Theorems B-D, the photon synchronization row, and the weak-field gravitational-wave speed row. Theorem A0 supplies the primitive kinematic obstruction: a material branch that needs forward partner-hit closure cannot have a sustained translating ledger with $c_{\mathrm{mat}}^{\mathrm{lim}}>c_f$. In the weak homogeneous observer branch, a retained material assembly branch closes only if the matter-assembly limiting speed, the Noether sea dressed clock/ruler speed, the photon-channel speed, and the empirical calibration speed obey
+This theorem is the parent Lorentz-closure target for Theorems B-D, the photon synchronization row, and the weak-field gravitational-wave speed row. Theorem A0 supplies the primitive kinematic obstruction: a material branch that needs forward partner-hit closure cannot have a sustained translating ledger with $c_{\mathrm{mat}}^{\mathrm{lim}}>c_f$. Theorem A1 supplies the first constructive clock/ruler decision surface by asking whether the translating two-body branch returns $R_T^{\mathrm{bin}}=0$ and $R_{\xi}^{\mathrm{bin}}=0$ before nested shell swarm averaging or Noether sea dressing is invoked. In the weak homogeneous observer branch, a retained material assembly branch closes only if the matter-assembly limiting speed, the Noether sea dressed clock/ruler speed, the photon-channel speed, and the empirical calibration speed obey
 $$
 c_{\mathrm{mat}}^{\mathrm{lim}}
 =

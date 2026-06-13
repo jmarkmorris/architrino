@@ -256,6 +256,10 @@
         min-height: 24px;
       }
 
+      .photon-log-control-row {
+        grid-template-columns: 74px minmax(0, 1fr) 64px;
+      }
+
       .photon-control-label {
         color: rgba(203, 213, 225, 0.78);
         font-size: 11px;
@@ -275,9 +279,41 @@
         height: 24px;
       }
 
+      .photon-log-range-shell {
+        height: 30px;
+        align-items: flex-start;
+        padding-top: 2px;
+      }
+
       .photon-range-shell .photon-control-input {
         position: relative;
         z-index: 1;
+      }
+
+      .photon-log-tick-strip {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 19px;
+        height: 8px;
+        pointer-events: none;
+      }
+
+      .photon-log-tick {
+        position: absolute;
+        left: var(--photon-log-tick-position, 0%);
+        top: 1px;
+        width: 1px;
+        height: 4px;
+        border-radius: 999px;
+        background: rgba(203, 213, 225, 0.32);
+        transform: translateX(-50%);
+      }
+
+      .photon-log-tick.is-decade {
+        top: 0;
+        height: 7px;
+        background: rgba(251, 191, 36, 0.72);
       }
 
       .photon-zero-tick {

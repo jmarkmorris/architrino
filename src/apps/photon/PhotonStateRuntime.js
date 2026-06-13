@@ -13,6 +13,10 @@ export const PHOTON_CHARGE_COLORS = Object.freeze({
 });
 
 const TWO_PI = Math.PI * 2;
+const PHOTON_MIN_SEPARATION_LOG10_RATIO = -15;
+const PHOTON_MAX_SEPARATION_LOG10_RATIO = 0;
+const PHOTON_CONTROL_RANGES_MIN_PAIR_SEPARATION = 0.2 * 10 ** PHOTON_MIN_SEPARATION_LOG10_RATIO;
+const PHOTON_CONTROL_RANGES_MAX_PAIR_SEPARATION = 2.4;
 
 export const PHOTON_DEFAULT_LAYER_RADII = Object.freeze({
   I: 0.9,
@@ -65,7 +69,16 @@ export const PHOTON_CONTROL_RANGES = Object.freeze({
   frequencyHz: { min: 0.01, max: 2, step: 0.0001 },
   radius: { min: 0.2, max: 2.4, step: 0.01 },
   phaseDeg: { min: 0, max: 360, step: 1 },
-  pairSeparation: { min: 0.05, max: 50, step: 0.05 },
+  pairSeparation: {
+    min: PHOTON_CONTROL_RANGES_MIN_PAIR_SEPARATION,
+    max: PHOTON_CONTROL_RANGES_MAX_PAIR_SEPARATION,
+    step: 0.05,
+  },
+  pairSeparationLog10Ratio: {
+    min: PHOTON_MIN_SEPARATION_LOG10_RATIO,
+    max: PHOTON_MAX_SEPARATION_LOG10_RATIO,
+    step: "any",
+  },
   speedMultiplier: { min: 0.1, max: 4, step: 0.05 },
   polarizationAngleDeg: { min: 0, max: 180, step: 1 },
   phaseLagDeg: { min: -180, max: 180, step: 1 },
@@ -93,7 +106,7 @@ export const DEFAULT_PHOTON_STATE = Object.freeze({
   },
   pair: {
     speedMode: "cf",
-    pairSeparation: 4,
+    pairSeparation: PHOTON_DEFAULT_LAYER_RADII.O,
     left: {
       role: "trailing",
       direction: "ccw",
@@ -184,6 +197,9 @@ function normalizeSwarmState(swarm = {}, fallbackSwarm = {}, side = "left") {
 export function normalizePhotonState(input = DEFAULT_PHOTON_STATE) {
   const fallback = DEFAULT_PHOTON_STATE;
   const state = input && typeof input === "object" ? input : fallback;
+  const left = normalizeSwarmState(state.pair?.left, fallback.pair.left, "left");
+  const right = normalizeSwarmState(state.pair?.right, fallback.pair.right, "right");
+  const pairShell = { pair: { left, right } };
   return {
     app: "photon",
     version: 1,
@@ -205,14 +221,13 @@ export function normalizePhotonState(input = DEFAULT_PHOTON_STATE) {
     },
     pair: {
       speedMode: "cf",
-      pairSeparation: clampPhotonNumber(
+      pairSeparation: clampPhotonPairSeparationForState(
+        pairShell,
         state.pair?.pairSeparation,
-        PHOTON_CONTROL_RANGES.pairSeparation.min,
-        PHOTON_CONTROL_RANGES.pairSeparation.max,
         fallback.pair.pairSeparation
       ),
-      left: normalizeSwarmState(state.pair?.left, fallback.pair.left, "left"),
-      right: normalizeSwarmState(state.pair?.right, fallback.pair.right, "right"),
+      left,
+      right,
     },
     polarization: {
       basis: ["linear", "right_circular", "left_circular", "elliptical"].includes(
@@ -299,6 +314,64 @@ export function getPhotonLayer(state, swarmId, layerId) {
 
 export function getPhotonLayerEnabled(state, swarmId, layerId) {
   return getPhotonLayer(state, swarmId, layerId).enabled !== false;
+}
+
+export function getPhotonSeparationReferenceRadius(state) {
+  const enabledRadii = [];
+  const fallbackRadii = [];
+  ["left", "right"].forEach((swarmId) => {
+    PHOTON_LAYER_ORDER.forEach((layerId) => {
+      const layer = getPhotonLayer(state, swarmId, layerId);
+      const radius = Number(layer.radius);
+      if (!Number.isFinite(radius) || radius <= 0) {
+        return;
+      }
+      fallbackRadii.push(radius);
+      if (layer.enabled !== false) {
+        enabledRadii.push(radius);
+      }
+    });
+  });
+  const radii = enabledRadii.length ? enabledRadii : fallbackRadii;
+  return radii.length ? Math.max(...radii) : PHOTON_DEFAULT_LAYER_RADII.O;
+}
+
+export function getPhotonPairSeparationFromLog10Ratio(state, log10Ratio) {
+  const range = PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio;
+  const clampedLog10Ratio = clampPhotonNumber(log10Ratio, range.min, range.max, range.max);
+  return getPhotonSeparationReferenceRadius(state) * 10 ** clampedLog10Ratio;
+}
+
+export function getPhotonSeparationLog10Ratio(state) {
+  const range = PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio;
+  const referenceRadius = getPhotonSeparationReferenceRadius(state);
+  const rawSeparation = Number(state?.pair?.pairSeparation);
+  const safeSeparation =
+    Number.isFinite(rawSeparation) && rawSeparation > 0
+      ? rawSeparation
+      : getPhotonPairSeparationFromLog10Ratio(state, range.max);
+  const ratio = safeSeparation / Math.max(referenceRadius, Number.EPSILON);
+  return clampPhotonNumber(Math.log10(Math.max(ratio, 10 ** range.min)), range.min, range.max, range.max);
+}
+
+export function setPhotonPairSeparationLog10Ratio(state, log10Ratio) {
+  if (!state?.pair) {
+    return;
+  }
+  state.pair.pairSeparation = getPhotonPairSeparationFromLog10Ratio(state, log10Ratio);
+}
+
+export function clampPhotonPairSeparationForState(state, value, fallback = DEFAULT_PHOTON_STATE.pair.pairSeparation) {
+  const range = PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio;
+  const min = getPhotonPairSeparationFromLog10Ratio(state, range.min);
+  const max = getPhotonPairSeparationFromLog10Ratio(state, range.max);
+  const safeFallback = clampPhotonNumber(fallback, min, max, max);
+  return clampPhotonNumber(
+    value,
+    min,
+    max,
+    safeFallback
+  );
 }
 
 export function setPhotonLayerEnabled(state, swarmId, layerId, enabled) {
