@@ -54,6 +54,18 @@ function formatPhotonSeparationScaleLabel(exponent) {
   return `10${formatPhotonSuperscriptInteger(exponent)}`;
 }
 
+function formatPhotonExponentText(exponent) {
+  return String(Math.trunc(Number(exponent) || 0));
+}
+
+function renderPhotonSeparationScaleLabel(documentLike, element, exponent) {
+  element.textContent = "";
+  const label = createElement(documentLike, "span", "photon-exponent-label");
+  const power = createElement(documentLike, "sup", "photon-exponent-power", formatPhotonExponentText(exponent));
+  label.append(documentLike.createTextNode("10"), power);
+  element.append(label);
+}
+
 export function getPhotonSeparationLogTicks() {
   const range = PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio;
   const ticks = [];
@@ -316,9 +328,10 @@ function createSeparationLogControl(documentLike, { state, getState, onInput }) 
   const exponentControl = createElement(documentLike, "span", "photon-separation-exponent-control");
   const exponentButton = createButton(
     documentLike,
-    formatPhotonSeparationScaleLabel(initialTick.exponent),
+    "",
     "photon-separation-exponent-button"
   );
+  renderPhotonSeparationScaleLabel(documentLike, exponentButton, initialTick.exponent);
   const exponentMenu = createElement(documentLike, "span", "photon-separation-exponent-menu");
   const output = createElement(
     documentLike,
@@ -350,9 +363,10 @@ function createSeparationLogControl(documentLike, { state, getState, onInput }) 
   for (let exponent = range.min; exponent <= range.max; exponent += 1) {
     const exponentOption = createButton(
       documentLike,
-      formatPhotonSeparationScaleLabel(exponent),
+      "",
       "photon-separation-exponent-option"
     );
+    renderPhotonSeparationScaleLabel(documentLike, exponentOption, exponent);
     exponentOption.dataset.exponent = String(exponent);
     exponentOption.setAttribute("role", "option");
     exponentOption.setAttribute("aria-label", `Delta x exponent ${exponent}`);
@@ -411,7 +425,7 @@ function createSeparationLogControl(documentLike, { state, getState, onInput }) 
     selectedMantissa = tick.mantissa;
     selectedExponent = tick.exponent;
     const exponentLabel = formatPhotonSeparationScaleLabel(selectedExponent);
-    exponentButton.textContent = exponentLabel;
+    renderPhotonSeparationScaleLabel(documentLike, exponentButton, selectedExponent);
     exponentButton.title = `Exponent ${selectedExponent}`;
     exponentButton.setAttribute(
       "aria-label",

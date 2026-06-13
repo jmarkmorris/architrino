@@ -63,6 +63,27 @@ The Analyzer angle remains a control because it is a measurement axis, not a sou
 
 Treat polarization agreement as a diagnostic signal. A useful fit can identify a parameter regime worth studying, but it does not by itself establish a physical photon branch.
 
+## Diagnostics
+
+The live Diagnostics panel includes a quality word when a readout has a useful direction. The words are `great`, `good`, `ok`, `poor`, and `bad`; neutral readouts use `info`.
+
+| # | Name | ELI5 explanation |
+|---:|---|---|
+| 1 | Transverse&nbsp;amp | How strong the sideways electric readout is at the Virtual Observer. |
+| 2 | Longitudinal&nbsp;leak | How much field points along the travel direction. For a clean transverse light-like readout, this should stay small. |
+| 3 | Helicity&nbsp;estimate | A simple handedness check for the left counter-clockwise and right clockwise setup. |
+| 4 | Fit&nbsp;residual | How far the fitted polarization curve misses the sampled branch-sum field. Smaller is a cleaner fit. |
+| 5 | Mean&nbsp;delay | The average travel time from source history roots to the Virtual Observer. |
+| 6 | Source&nbsp;count | How many active architrino sources are included. Each enabled binary contributes two sources. |
+| 7 | Root&nbsp;count | How many causal roots were retained after solving source histories. More than source count means at least one source has multiple roots. |
+| 8 | Max&nbsp;source&nbsp;v/c_f | The fastest active source speed compared with field speed. Above `1` means super-field-speed source motion is present; that is a regime indicator, not a delay-solve failure by itself. |
+| 9 | Min \|J\| | The smallest Jacobian magnitude in the causal-root sum. Very small values mean the branch is close to a pile-up or caustic. |
+| 10 | Missed&nbsp;sources | How many active source rows produced no retained root. For a clean solve, this should be `0`. |
+| 11 | Delay&nbsp;solve&nbsp;gap | The largest leftover mismatch in the causal-delay equation. Smaller means the root solve is tighter. |
+| 12 | Delay&nbsp;status | A simple stable/unstable flag based on root misses, delay gap, and small-Jacobian checks. |
+| 13 | Left&nbsp;phase&nbsp;spread | How evenly the left swarm's I/M/O phases are spaced. |
+| 14 | Right&nbsp;phase&nbsp;spread | How evenly the right swarm's I/M/O phases are spaced. |
+
 ## Formulas
 
 The live Formulas panel reports the current branch-sum field, the one-cycle polarization fit, the Analyzer-axis comparison, and the Stokes-style fitted polarization components.
@@ -87,24 +108,3 @@ The live Formulas panel reports the current branch-sum field, the one-cycle pola
 | 16 | S1 | The fitted strength imbalance, $A_y^2 - A_z^2$, between the two transverse components. |
 | 17 | S2 | The fitted in-phase or anti-phase linear component, $2A_yA_z\cos\delta$. |
 | 18 | S3 | The fitted handed circular or elliptical component, $-2A_yA_z\sin\delta$. |
-
-## Diagnostics
-
-The live Diagnostics panel includes a quality word when a readout has a useful direction. The words are `great`, `good`, `ok`, `poor`, and `bad`; neutral readouts use `info`.
-
-| # | Name | ELI5 explanation |
-|---:|---|---|
-| 1 | Transverse&nbsp;amp | How strong the sideways electric readout is at the Virtual Observer. |
-| 2 | Longitudinal&nbsp;leak | How much field points along the travel direction. For a clean transverse light-like readout, this should stay small. |
-| 3 | Helicity&nbsp;estimate | A simple handedness check for the left counter-clockwise and right clockwise setup. |
-| 4 | Fit&nbsp;residual | How far the fitted polarization curve misses the sampled branch-sum field. Smaller is a cleaner fit. |
-| 5 | Mean&nbsp;delay | The average travel time from source history roots to the Virtual Observer. |
-| 6 | Source&nbsp;count | How many active architrino sources are included. Each enabled binary contributes two sources. |
-| 7 | Root&nbsp;count | How many causal roots were retained after solving source histories. More than source count means at least one source has multiple roots. |
-| 8 | Max&nbsp;source&nbsp;v/c_f | The fastest active source speed compared with field speed. Above `1` means super-field-speed source motion is present; that is a regime indicator, not a delay-solve failure by itself. |
-| 9 | Min \|J\| | The smallest Jacobian magnitude in the causal-root sum. Very small values mean the branch is close to a pile-up or caustic. |
-| 10 | Missed&nbsp;sources | How many active source rows produced no retained root. For a clean solve, this should be `0`. |
-| 11 | Delay&nbsp;solve&nbsp;gap | The largest leftover mismatch in the causal-delay equation. Smaller means the root solve is tighter. |
-| 12 | Delay&nbsp;status | A simple stable/unstable flag based on root misses, delay gap, and small-Jacobian checks. |
-| 13 | Left&nbsp;phase&nbsp;spread | How evenly the left swarm's I/M/O phases are spaced. |
-| 14 | Right&nbsp;phase&nbsp;spread | How evenly the right swarm's I/M/O phases are spaced. |
