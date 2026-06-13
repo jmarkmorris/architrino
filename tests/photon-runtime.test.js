@@ -39,6 +39,7 @@ import {
 import { shouldHandlePhotonSpaceToggle } from "../src/apps/photon/PhotonRuntime.js";
 import {
   computePhotonStageLayout,
+  getPhotonFieldPlotSampleCount,
   isPhotonPlotSampleInForwardGap,
 } from "../src/apps/photon/PhotonSwarmVisualRuntime.js";
 
@@ -234,6 +235,9 @@ test("plot samples expose full trace data with a small forward now gap", () => {
   const plot = buildPhotonPlotSamples(state, getPhotonRunDuration(state) / 2, 30);
 
   assert.ok(plot.amplitudeScale > 0);
+  assert.equal(getPhotonFieldPlotSampleCount(200), 360);
+  assert.equal(getPhotonFieldPlotSampleCount(933), 700);
+  assert.equal(getPhotonFieldPlotSampleCount(2000), 900);
   assert.equal(isPhotonPlotSampleInForwardGap(0.1, 0, 0.15), true);
   assert.equal(isPhotonPlotSampleInForwardGap(0.2, 0, 0.15), false);
   assert.equal(isPhotonPlotSampleInForwardGap(0.04, 0.94, 0.15), true);

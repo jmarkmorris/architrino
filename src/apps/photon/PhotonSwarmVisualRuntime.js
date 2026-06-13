@@ -14,7 +14,9 @@ import { buildPhotonPlotSamples } from "./PhotonFormulaRuntime.js";
 
 const TWO_PI = Math.PI * 2;
 const ARCHITRINO_MARKER_RADIUS = 5.2;
-const PHOTON_FIELD_PLOT_SAMPLE_COUNT = 180;
+const PHOTON_FIELD_PLOT_MIN_SAMPLE_COUNT = 360;
+const PHOTON_FIELD_PLOT_MAX_SAMPLE_COUNT = 900;
+const PHOTON_FIELD_PLOT_SAMPLES_PER_CSS_PIXEL = 0.75;
 const PHOTON_FIELD_PLOT_FORWARD_GAP_FRACTION = 0.15;
 const PHOTON_SIDE_VIEW_CHARGE_LANE_OFFSET = 2.2;
 const STAGE_ORIENTATION_NOTE =
@@ -543,7 +545,17 @@ function getPlotAmplitudeScale(samples, keys) {
   );
 }
 
-function createPhotonFieldPlotCacheKey(state) {
+export function getPhotonFieldPlotSampleCount(cssWidth) {
+  const width = Math.max(0, Number(cssWidth) || 0);
+  return Math.round(
+    Math.max(
+      PHOTON_FIELD_PLOT_MIN_SAMPLE_COUNT,
+      Math.min(PHOTON_FIELD_PLOT_MAX_SAMPLE_COUNT, width * PHOTON_FIELD_PLOT_SAMPLES_PER_CSS_PIXEL)
+    )
+  );
+}
+
+function createPhotonFieldPlotCacheKey(state, sampleCount) {
   return JSON.stringify({
     pair: state.pair,
     measurement: state.measurement,
@@ -551,16 +563,17 @@ function createPhotonFieldPlotCacheKey(state) {
       cycleReferenceLayer: state.time?.cycleReferenceLayer,
       cycleCount: state.time?.cycleCount,
     },
+    sampleCount,
     analyzerAngleDeg: state.polarization?.analyzerAngleDeg,
   });
 }
 
-function getPhotonFieldPlotSamples(state) {
-  const key = createPhotonFieldPlotCacheKey(state);
+function getPhotonFieldPlotSamples(state, sampleCount) {
+  const key = createPhotonFieldPlotCacheKey(state, sampleCount);
   if (photonFieldPlotCache.key !== key || !photonFieldPlotCache.plot) {
     photonFieldPlotCache = {
       key,
-      plot: buildPhotonPlotSamples(state, 0, PHOTON_FIELD_PLOT_SAMPLE_COUNT),
+      plot: buildPhotonPlotSamples(state, 0, sampleCount),
     };
   }
   return photonFieldPlotCache.plot;
@@ -577,7 +590,8 @@ function drawPhotonComponentPlot(canvas, state, timeSeconds, options = {}) {
   ctx.fillStyle = "rgba(6, 9, 18, 0.96)";
   ctx.fillRect(0, 0, cssWidth, cssHeight);
 
-  const plot = getPhotonFieldPlotSamples(state);
+  const sampleCount = getPhotonFieldPlotSampleCount(cssWidth);
+  const plot = getPhotonFieldPlotSamples(state, sampleCount);
   const currentTime = wrapPhotonTime(state, timeSeconds);
   const currentProgress = plot.runDuration > 0 ? currentTime / plot.runDuration : 0;
   const amplitudeScale = getPlotAmplitudeScale(
