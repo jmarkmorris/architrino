@@ -39,7 +39,7 @@ The bridge separates four levels:
 | --- | --- |
 | Substrate ontology | Architrinos evolve in the Euclidean void under absolute time and delayed causal wakes. |
 | Assembly dynamics | A Noether swarm must close inner, middle, and outer binary return cycles through a causal-root ledger. |
-| Geometry projection | The outer-binary exclusion envelope exposes an oblate spheroid with shape ratio $\xi=R_{\parallel}/R_{\perp}$. |
+| Geometry projection | The outer-binary exclusion envelope exposes an oblate spheroidal envelope with shape ratio $\xi=R_{\parallel}/R_{\perp}$. |
 | Observer law | Physical Observers infer Lorentz contraction, clock dilation, and two-way signal invariance after branch averaging and Noether sea dressing. |
 
 This level separation is essential. The Lorentz equation is not being promoted to substrate ontology. It is an observer-level envelope that must be implemented by closed assembly dynamics.
@@ -128,9 +128,9 @@ $$
 $$
 This is the direct Lorentz-to-geometry map.
 
-## Spheroid Projection
+## Oblate Spheroidal Envelope Projection
 
-The moving Noether swarm envelope is represented by an oblate spheroid,
+The moving Noether swarm envelope is represented by an oblate spheroidal envelope,
 $$
 \frac{x_{\perp,1}^2+x_{\perp,2}^2}{R_{\perp}^2}
 +
@@ -170,7 +170,7 @@ $$
 =
 \frac{R_{\perp}}{R_{\parallel}}
 $$
-The velocity fraction is therefore recovered from the spheroid by
+The velocity fraction is therefore recovered from the envelope by
 $$
 \beta_\star
 =
@@ -178,7 +178,7 @@ $$
 =
 \sqrt{1-\frac{R_{\parallel}^2}{R_{\perp}^2}}
 $$
-In ordinary geometry language, $\beta_\star$ is the eccentricity of the Lorentz spheroid, while $\gamma_\star$ is the transverse-to-longitudinal aspect ratio. The spheroid is not merely a picture placed beside the Lorentz factor; its measured semiaxes determine $\xi$, $\gamma_\star$, and $\beta_\star$ in the homogeneous zero-leakage limit.
+In ordinary geometry language, $\beta_\star$ is the eccentricity of the oblate spheroidal envelope, while $\gamma_\star$ is the transverse-to-longitudinal aspect ratio. The envelope is not merely a picture placed beside the Lorentz factor; its measured semiaxes determine $\xi$, $\gamma_\star$, and $\beta_\star$ in the homogeneous zero-leakage limit.
 
 The same map explains the clock side. A moving clock branch is a closed return cycle, so time dilation is the stretch of the period required for the branch to return to compatible phase:
 $$
@@ -186,7 +186,7 @@ T(v)=\gamma_\star(v)T_0
 $$
 in the ideal homogeneous limit. The size of the object sets the base period $T_0$; the velocity-dependent multiplier is the dimensionless factor $\gamma_\star$.
 
-This distinction matters near the light-speed limit. The spheroid becomes thin because $R_{\parallel}=R_{\perp}/\gamma_\star$ tends to zero. But the forward leg of the closed cycle contains the catch-up denominator $c_\star-v$:
+This distinction matters near the light-speed limit. The oblate spheroidal envelope becomes thin because $R_{\parallel}=R_{\perp}/\gamma_\star$ tends to zero. But the forward leg of the closed cycle contains the catch-up denominator $c_\star-v$:
 $$
 t_+
 =
@@ -195,7 +195,7 @@ t_+
 \frac{R_{\perp}}{c_\star}
 \sqrt{\frac{1+\beta_\star}{1-\beta_\star}}
 $$
-so $t_+\to\infty$ as $\beta_\star\to1$. The rear leg tends to zero, but the closed period diverges. Thus the clock does not diverge because the ellipsoid is large; it diverges because the forward causal update has almost no catch-up margin left.
+so $t_+\to\infty$ as $\beta_\star\to1$. The rear leg tends to zero, but the closed period diverges. Thus the clock does not diverge because the envelope is large; it diverges because the forward causal update has almost no catch-up margin left.
 
 The outer binary is special because it supplies the leading visible envelope. It is not sufficient by itself. A Lorentz-admissible branch must also retune the hidden inner and middle ledgers so that clock closure, action conservation, and leakage bounds are solved by the same branch.
 
@@ -253,7 +253,7 @@ This is the precise sense in which the Lorentz equation is quantized. The smooth
 
 ## All-Layer Closure Burden
 
-The full branch state is not just the outer spheroid. For branch $q$, use the all-layer state
+The full branch state is not just the outer oblate spheroidal envelope. For branch $q$, use the all-layer state
 $$
 B_q(v)
 =
@@ -313,7 +313,7 @@ $$
 \text{effective }\gamma_\star(v)
 $$
 
-This sequence is the main reason the term `return-cycle` is preferred. The breakthrough is not simply that the outer envelope becomes an ellipsoid. The stronger claim is that the ellipsoid is the visible projection of a closed all-layer branch ledger.
+This sequence is the main reason the term `return-cycle` is preferred. The breakthrough is not simply that the outer envelope becomes oblate. The stronger claim is that the oblate spheroidal envelope is the visible projection of a closed all-layer branch ledger.
 
 ## Prediction And Failure Mode
 

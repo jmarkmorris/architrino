@@ -93,9 +93,9 @@ The important point is that the contraction is not a primitive command imposed o
 
 In the geometry canon, this contraction is recorded first as the Noether swarm envelope shape ratio $\xi=R_{\parallel}/R_{\perp}$. The special-relativistic limit requires a derived map $\xi\to1/\gamma_{\text{eff}}$ together with a matching clock readout $\omega_{\text{clk}}/\omega_0\to1/\gamma_{\text{eff}}$; neither equality is the definition of $\xi$.
 
-### Closed Return Cycle And Spheroid Map
+### Closed Return Cycle And Oblate Spheroidal Envelope Map
 
-The shortest derivation of the spheroid map uses the difference between a one-way leg and a closed return cycle. A one-way causal leg in the drift direction exposes the preferred Noether sea frame:
+The shortest derivation of the oblate spheroidal envelope map uses the difference between a one-way leg and a closed return cycle. A one-way causal leg in the drift direction exposes the preferred Noether sea frame:
 $$
 t_{+}=\frac{R_{\parallel}}{c_{\text{eff}}-v},
 \qquad
@@ -148,7 +148,7 @@ $$
 \frac{1}{\gamma_{\text{eff}}(v)}
 $$
 
-The moving Noether swarm envelope is then the oblate spheroid
+The moving Noether swarm envelope is then the oblate spheroidal envelope
 $$
 \frac{x_{\perp,1}^2+x_{\perp,2}^2}{R_{\perp}^2}
 +
@@ -167,7 +167,7 @@ R_{\parallel}(v,E,n)
 $$
 Thus $\gamma_{\text{eff}}$ maps to the shape channel $\xi$, while $\lambda$ remains the separate scale channel.
 
-This is the bridge insight. The one-way legs reveal the substrate anisotropy; the closed return cycle determines the geometry that hides it from Physical Observers. The Lorentz factor is therefore not painted onto the ellipsoid. It is the return-cycle closure condition expressed as an axis ratio.
+This is the bridge insight. The one-way legs reveal the substrate anisotropy; the closed return cycle determines the geometry that hides it from Physical Observers. The Lorentz factor is therefore not painted onto an oblate spheroidal envelope. It is the return-cycle closure condition expressed as an axis ratio.
 
 This is also the precise meaning of quantizing the Lorentz response. The smooth equation for $\gamma_{\text{eff}}(v)$ remains the effective observer law, but a Noether swarm assembly realizes any admitted value only through a discrete stable branch class $q$ with a definite causal-root ledger, return-cycle period, and envelope projection. The continuous Lorentz curve is therefore treated as the common observer envelope of branch-indexed Noether swarm closure states, not as an independent kinematic rule imposed on matter.
 

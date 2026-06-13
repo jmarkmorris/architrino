@@ -170,6 +170,14 @@ Show assemblies as balanced arrangements of red and blue point transceivers:
 
 The child should be able to see that a calm neutral assembly is made from active parts.
 
+### Oblate Spheroidal Envelopes
+
+For adult notes, prompts, and production metadata, use `oblate spheroidal envelope` when a Noether swarm boundary has two equal transverse directions and one shortened axis. Use `oblate spheroidal exclusion envelope` when the page is about packing, overlap, displacement, or boundary contact.
+
+In child-facing story prose, avoid making the technical term carry the sentence. Prefer simple descriptions such as `flattened envelope`, `squashed round envelope`, or `round glow pressed flatter in one direction` when the exact term would interrupt the page. Keep the adult note or production prompt precise enough that the image still shows the correct geometry.
+
+Do not call this geometry a `Lorentz spheroid`. Use `ellipsoid` only when the page is intentionally discussing the broader ordinary-geometry family. The visual target is an oblate spheroid: a smooth, soft envelope with two equal wide directions and one shorter direction, not a hard shell, a ball, a ring, or a generic oval.
+
 ### Optional Play Surface References
 
 Children's-book images are not required to include, match, or integrate the merchandise play surface. The physical play-surface design is maintained separately as a product and activity concept; see [play-surface/README.md](../play-surface/README.md).

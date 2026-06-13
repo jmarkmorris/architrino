@@ -1787,11 +1787,11 @@ Primitive dynamics scans must not mix $c_f$ and $c_{\text{eff}}$ in the same dia
 
 ## Geometry Focus
 
-### A) High Group Velocity Geometry (Oblate Spheroid)
+### A) High Group Velocity Geometry (Oblate Spheroidal Envelope)
 
 **Assumption (testable):** The outer binary moving at translational speed $v_{\text{trans}}$ generates a causal interaction envelope that is oblate and flattens along the direction of motion as $v_{\text{trans}} \to c_f$ on the primitive branch chart.
 
-**Geometry:** Let the motion define the $z$-axis. Model the envelope as an ellipsoid
+**Geometry:** Let the motion define the $z$-axis. Model the envelope as an oblate spheroidal envelope
 $$
 \frac{x^2 + y^2}{R_\perp^2} + \frac{z^2}{R_\parallel^2} = 1
 $$
@@ -1808,9 +1808,9 @@ As $\beta_f \to 1$, $R_\parallel \to 0$ and the envelope collapses toward a disk
 $$
 c_f^2 = v_{\text{trans}}^2 + v_\parallel^2 \quad \Rightarrow \quad v_\parallel = c_f\sqrt{1-\beta_f^2}
 $$
-Mapping causal speed to closure length gives $R_\parallel = R_\perp (v_\parallel/c_f) = R_\perp\sqrt{1-\beta_f^2}$, which is the triangle form of the ellipsoid theorem target rather than a completed recovery.
+Mapping causal speed to closure length gives $R_\parallel = R_\perp (v_\parallel/c_f) = R_\perp\sqrt{1-\beta_f^2}$, which is the triangle form of the oblate spheroidal envelope theorem target rather than a completed recovery.
 
-**Impact on delay locking:** The round-trip delay $\Delta t_{\text{rt}}$ is the time between an outer-binary architrino’s emission and the moment its wake returns to influence that same architrino, approximating the inner and middle binaries as a compact subsystem at the center. For a ray at polar angle $\theta$ relative to the $z$-axis, the intersection radius with the ellipsoid is
+**Impact on delay locking:** The round-trip delay $\Delta t_{\text{rt}}$ is the time between an outer-binary architrino’s emission and the moment its wake returns to influence that same architrino, approximating the inner and middle binaries as a compact subsystem at the center. For a ray at polar angle $\theta$ relative to the $z$-axis, the intersection radius with the oblate spheroidal envelope is
 $$
 R(\theta) = \left(\frac{\sin^2\theta}{R_\perp^2} + \frac{\cos^2\theta}{R_\parallel^2}\right)^{-1/2}
 $$
@@ -1879,7 +1879,7 @@ in the rest branch of the local Noether sea cell. This quantity is a dynamics-si
 $$
 \alpha(\theta, G_{\text{grad}}) = \frac{\Delta t_{\text{rt}}(\theta, G_{\text{grad}})}{\Delta t_{\text{rt,ref}}}
 $$
-and, for the ellipsoid-only case with no gradient,
+and, for the oblate-envelope-only case with no gradient,
 $$
 \alpha(\theta) = \frac{R(\theta)}{R_{\text{ref}}}
 $$
@@ -1917,7 +1917,7 @@ Geometrically, $\beta_f$ is the primitive axis-squash control: as $\beta_f \to 1
 - Inner and middle binaries modeled as a rigid subsystem with fixed timescales.
 - Outer binary orbits that subsystem with non-coplanar planes initially.
 - Translational speed $\mathbf{v}_{\text{trans}}$ and gradient $G_{\text{grad}}$ are control parameters.
-- Use ellipsoid-based $\Delta t_{\text{rt}}(\theta)$ for high-velocity geometry.
+- Use oblate-envelope-based $\Delta t_{\text{rt}}(\theta)$ for high-velocity geometry.
 
 **Phase condition:**
 $$

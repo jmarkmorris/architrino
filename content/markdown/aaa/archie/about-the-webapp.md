@@ -53,7 +53,7 @@ The webapp also includes non-document surfaces where interaction is primary.
 Current examples include:
 
 - image, reaction-diagram, and animation tools for selected assembly examples, with PDG-derived reaction data used only where provenance is clear enough for curated presentation.
-- the Ideal Swarm Lorentz lesson, which links a Noether swarm spheroid, $\beta$, $\gamma$, length contraction, time dilation, and the normalized energy ledger in one inspection surface.
+- the Ideal Swarm Lorentz lesson, which links a Noether swarm oblate spheroidal envelope, $\beta$, $\gamma$, length contraction, time dilation, and the normalized energy ledger in one inspection surface.
 - periodic-table and element navigation overlays,
 - other domain-specific scene behaviors where the scene is more than a reading panel.
 

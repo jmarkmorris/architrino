@@ -17,7 +17,7 @@ We propose that the Planck scale corresponds, in the architrino architecture, to
 > 
 > A nested shell swarm reaches the Planck state when, in the forward sector, both component speeds approach the field speed $c_f$ and the **full delay-feedback loop** admits a final, marginally stable, phase-locked configuration. The component-speed statement and the combined-speed statement are distinct: $v_{\text{trans}}\to c_f$ and $v_{\text{orb}}^{\text{tan}}\to c_f$ name the terminal component limits, while $v_{\text{eff}}=\|\mathbf{v}_{\text{trans}}+\mathbf{v}_{\text{orb}}^{\text{tan}}\|$ names the forward-sector vector sum used for wedge geometry. In this state:
 > 1. The kinematic transition to flattening occurs as $v_{\text{trans}} \to c_f$ and $v_{\text{orb}}^{\text{tan}} \to c_f$ in the forward sector, starving new one-way causal updates ahead of the forward edge (local horizon behavior).
-> 2. The geometry collapses from a 3D precessing ellipsoid (fermion-like) to a 2D, co-planar disk (boson-like).
+> 2. The geometry collapses from a 3D precessing oblate spheroidal envelope (fermion-like) to a 2D, co-planar disk (boson-like).
 > 3. In the planar limit, the combined in-plane motion outruns $c_f$, so the emission history forms a Mach-wedge causal wake with half-angle
 >    $$
 >    \sin\theta = \frac{c_f}{v_{\text{eff}}} \quad (\;v_{\text{eff}} > c_f\;),
@@ -425,6 +425,6 @@ Those steps remain open.
    - Clear loss of stability when trying to force $v_{\text{eff}} > c_f$.
 
 4. **Angular Momentum Conservation at Spin Flip.**  
-   Transition from fermion-like ellipsoid to boson-like disk must:
+   Transition from a fermion-like oblate spheroidal envelope to a boson-like disk must:
    - Conserve total angular momentum via emission of spin-1 radiation (circularly polarized bosons).
    - Produce potentially observable signatures (e.g. polarization patterns near strong-gravity regions).

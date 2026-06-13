@@ -14,6 +14,8 @@ $$
 $$
 where $W_\ell$ is a smoothing window over Noether swarm center variables $\mathbf{X}_s(t)$. The Noether sea stress, delay factor, and orientation variables then depend on each swarm's closure label, orientation, and envelope deformation. The Noether sea is therefore introduced before effective metric language because its state variables are coarse-grained functions of Noether swarm geometry, not primitive geometric postulates.
 
+The homogeneous Noether sea also supplies the first constructive convergence case for the infinite many-source wake sum. In a statistically homogeneous, isotropic, locally neutral population with neutrality correlation length $\ell$ and a mixing bound, receiver-centered shell contributions have square-summable fluctuations: a shell of radius $r_n\sim n\ell$ contains $O(n^2)$ neutral cells, signed fluctuations scale as $O(n)$, and inverse-square wake dilution contributes $O(n^{-2})$. The shell variance is therefore $O(n^{-2})$, so the neutral far-population contribution converges in the receiver-centered exhaustion sense. This is a weak homogeneous medium result, not a blanket convergence claim for coherent strong-field regions or unneutralized source populations.
+
 ### Core Definition
 
 The **Noether sea** is the ambient physical medium formed by dense, balanced populations of coupled neutral Noether swarms in the Euclidean void.
@@ -2277,7 +2279,7 @@ When the clock moves with velocity $\mathbf{v}$ relative to the Noether sea:
 3. **Shape deformation (Lorentz‑link hypothesis):**
  To remain dynamically stable under increased $\|\mathbf{v}\|$, the tri‑binary’s outer exclusion surface becomes **oblate**, flattened along the direction of motion:
  - At low $v$, the outer exclusion surface is nearly spherical.
- - As $v\to c_\star$, that exclusion surface contracts along $\hat{\mathbf{v}}$ while maintaining transverse dimensions, yielding an ellipsoid with semi‑axes $(a_\perp, a_\perp, a_\parallel)$ and $a_\parallel < a_\perp$.
+ - As $v\to c_\star$, that exclusion surface contracts along $\hat{\mathbf{v}}$ while maintaining transverse dimensions, yielding an oblate spheroidal envelope with semiaxes $(a_\perp, a_\perp, a_\parallel)$ and $a_\parallel < a_\perp$.
  - This geometric dilation changes internal path lengths and curvature, lowering $\omega$.
 
 Geometry terminology follows [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables): the envelope shape ratio is $\xi=R_{\parallel}/R_{\perp}$. The proper-time factor is not defined to be $\xi$; it is the extracted clock observable $\omega_{\text{clk}}/\omega_0=d\tau/dt$. In the homogeneous Lorentz-closure target, the theory must derive $\omega_{\text{clk}}/\omega_0\to\xi\to1/\gamma$.
@@ -2704,6 +2706,110 @@ where $\mathbf{y}$ stacks positions and velocities in relative coordinates. Kine
 2. Spectral stability of the monodromy operator (all nontrivial Floquet multipliers inside the unit disk).
 3. Smooth coefficient maps for axis and period renormalization extracted from $\boldsymbol{\rho}^\star$.
 
+##### Translating binary benchmark
+
+The first hard Lorentz-closure calculation is the moving version of the certified rest two-body branch. Let $\sigma\in\{+1,-1\}$ label the two opposite-polarity architrinos and choose the drift direction $\hat{\mathbf e}$. A translating binary branch has the substrate ansatz
+$$
+\mathbf{x}_{\sigma}(t)
+=
+u t\,\hat{\mathbf e}
++
+\sigma\,\boldsymbol{\rho}_u(\theta(t)),
+\qquad
+\theta(t+T_u)=\theta(t)+2\pi
+$$
+with $\boldsymbol{\rho}_u$ periodic on the retained branch chart. This is not a Lorentz boost of coordinates. It is a direct absolute-time branch ansatz inserted into the delayed root equation.
+
+For a root emitted by constituent $\sigma'$ and received by constituent $\sigma$, the delay $\tau>0$ must solve
+$$
+G_{\sigma\sigma'}(\tau;\theta,u)
+\equiv
+\left\|
+u\tau\,\hat{\mathbf e}
++
+\sigma\,\boldsymbol{\rho}_u(\theta)
+-
+\sigma'\,\boldsymbol{\rho}_u(\theta-\Omega_u\tau)
+\right\|
+-c_f\tau
+=0,
+\qquad
+\Omega_u\equiv\frac{2\pi}{T_u}
+$$
+The branch Jacobian is
+$$
+J_{\sigma\sigma'}(\tau;\theta,u)
+=
+1-
+\frac{
+\left(
+u\hat{\mathbf e}
++
+\sigma'\Omega_u\boldsymbol{\rho}'_u(\theta-\Omega_u\tau)
+\right)
+\cdot\hat{\mathbf r}_{\sigma\sigma'}
+}{c_f}
+$$
+where $\hat{\mathbf r}_{\sigma\sigma'}$ is the unit vector from the source emission point to the receiver-now point. This is structurally the same denominator that appears in Lienard-Wiechert delay geometry. The analogy is useful only at the level of causal-root flux: the master-equation kernel has the radial inverse-square line of action and the $|J|^{-1}$ weight, but not the full electrodynamic velocity-field and acceleration-field terms. The Lorentz answer therefore cannot be imported from classical electrodynamics; it must be computed on this branch.
+
+The leading/trailing asymmetry in this translating ledger is already visible in the pure drift part of the same Jacobian. For a uniformly moving source with drift ratio $\beta=u/c_f$ and $\theta$ the angle between the drift direction and the source-to-receiver line of action, the simple-root wake-density factor is
+$$
+\mathcal{D}_{\mathrm{wake}}(\theta;\beta)
+=
+\frac{1}{1-\beta\cos\theta}
+$$
+before the internal orbital velocity, branch multiplicity, and finite-window energy rows are added. Thus the translating binary calculation is not asking whether anisotropy exists; it is asking whether the full deformed branch ledger converts this microscopic wake-density anisotropy into Lorentzian contraction, clock dilation, and bounded residual leakage.
+
+The primitive Lorentz test for this binary is the residual triple
+$$
+\mathcal{R}_{\mathrm{bin}}(u)
+=
+\left(
+R_T^{\mathrm{bin}}(u),
+R_{\xi}^{\mathrm{bin}}(u),
+R_{\mathrm{shape}}^{\mathrm{bin}}(u)
+\right),
+\qquad
+\gamma_f(u)\equiv
+\left(1-\frac{u^2}{c_f^2}\right)^{-1/2}
+$$
+with
+$$
+R_T^{\mathrm{bin}}(u)
+\equiv
+\frac{T_u}{T_0}
+-
+\gamma_f(u),
+\qquad
+R_{\xi}^{\mathrm{bin}}(u)
+\equiv
+\frac{L_{\parallel}(u)}{L_{\perp}(u)}
+-
+\frac{1}{\gamma_f(u)}
+$$
+Here $L_{\parallel}$ and $L_{\perp}$ are extracted from the same periodic solution by projecting the relative orbit along and transverse to $\hat{\mathbf e}$. The shape residual measures the remaining branch-chart difference from the Lorentz-deformed rest solution,
+$$
+R_{\mathrm{shape}}^{\mathrm{bin}}(u)
+\equiv
+\inf_{\varphi}
+\frac{
+\left\|
+\boldsymbol{\rho}_u(\theta)
+-
+\boldsymbol{\rho}_{L}(\theta+\varphi;u)
+\right\|_{\mathrm{cyc}}
+}{R_0},
+\qquad
+\boldsymbol{\rho}_{L}(\theta;u)
+=
+R_0\left(
+\gamma_f^{-1}\cos\theta\,\hat{\mathbf e}
++
+\sin\theta\,\hat{\mathbf e}_{\perp}
+\right)
+$$
+in the planar orientation where the drift direction lies in the binary plane. A clean primitive result has $\mathcal{R}_{\mathrm{bin}}=0$ or a controlled residual traceable to named branch-ledger features. A nonzero residual is not a rhetorical failure; it is the first foundation-level pressure on the Lorentz-closure program, because the binary is the first available internal clock and ruler.
+
 ##### Exact substrate symmetries and delay currents
 
 At action level, use a causal path-history functional
@@ -2877,7 +2983,7 @@ $$
 \gamma_\star(v)+O(\epsilon_{\mathrm{LV}})
 $$
 
-The same equations give a direct geometry dictionary for the spheroid. In the no-extra-scale channel, take $R_{\perp}=R_0$ and $R_{\parallel}=R_0/\gamma_\star$. Then
+The same equations give a direct geometry dictionary for the oblate spheroidal envelope. In the no-extra-scale channel, take $R_{\perp}=R_0$ and $R_{\parallel}=R_0/\gamma_\star$. Then
 $$
 \xi
 \equiv
@@ -2899,9 +3005,9 @@ $$
 =
 \sqrt{1-\frac{R_{\parallel}^2}{R_{\perp}^2}}
 $$
-Thus the velocity fraction is encoded as the eccentricity of the Lorentz spheroid, while $\gamma_\star$ is encoded as its transverse-to-longitudinal aspect ratio. This is only a statement about the shape channel: a separate scale channel $\lambda$ may change the absolute size without changing the dimensionless ratios $\xi$, $\gamma_\star$, and $\beta_\star$.
+Thus the velocity fraction is encoded as the eccentricity of the oblate spheroidal envelope, while $\gamma_\star$ is encoded as its transverse-to-longitudinal aspect ratio. This is only a statement about the shape channel: a separate scale channel $\lambda$ may change the absolute size without changing the dimensionless ratios $\xi$, $\gamma_\star$, and $\beta_\star$.
 
-The clock law belongs to the return-cycle period, not to the absolute size of the ellipsoid. If a rest branch has period $T_0$, the observer-sector target is
+The clock law belongs to the return-cycle period, not to the absolute size of the oblate spheroidal envelope. If a rest branch has period $T_0$, the observer-sector target is
 $$
 T_q(v)=\gamma_\star(v)T_0+O(\epsilon_{\mathrm{LV}}T_0)
 $$
@@ -2911,7 +3017,7 @@ T_{\parallel}
 =
 \frac{2R_{\perp}}{c_\star}\gamma_\star
 $$
-so the period dilation is the same $\gamma_\star$ that appears as the inverse axis ratio. This remains true even when the ellipsoid becomes very thin. As $\beta_\star\to1$, the forward leg is
+so the period dilation is the same $\gamma_\star$ that appears as the inverse axis ratio. This remains true even when the oblate spheroidal envelope becomes very thin. As $\beta_\star\to1$, the forward leg is
 $$
 t_+
 =
@@ -2946,7 +3052,7 @@ q
 \mathcal{L}_{\mathrm{root}}^{(q)}(v)
 \right)
 $$
-with admissibility requiring the same causal-root ledger to close the spheroid geometry, clock period, and preferred-frame leakage bounds. Thus a continuous Lorentz formula would be recovered as the common envelope of discrete Noether swarm return-cycle classes only after those branch-admissibility conditions close.
+with admissibility requiring the same causal-root ledger to close the oblate spheroidal envelope geometry, clock period, and preferred-frame leakage bounds. Thus a continuous Lorentz formula would be recovered as the common envelope of discrete Noether swarm return-cycle classes only after those branch-admissibility conditions close.
 
 To keep this closure target testable, the branch should report a single Lorentz residual record rather than separate narrative successes. For a declared channel speed $c_\star$ and branch $q$, write
 $$
@@ -2991,7 +3097,7 @@ E_\gamma-c_\gamma\|\mathbf{p}_\gamma\|
 $$
 Here $m_q$ is the observer-sector inertial response assigned to the admitted branch, and $R_\gamma^{(q)}$ is evaluated only after the photon channel has been declared. The same causal-root ledger, medium dressing map, and branch state must feed all components. A branch that fits clock slowing with one ledger, ruler contraction with another, and photon propagation with an independent channel has not closed Lorentz behavior; it has only matched isolated formulas.
 
-This derivation is stronger than assigning an ellipsoid after the fact. The one-way longitudinal legs remain asymmetric; the Lorentz geometry appears only when the closed return cycle is allowed to choose the semiaxes that make longitudinal and transverse closure periods agree. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the spheroid is the visible projection of a branch that has solved its return-cycle ledger.
+This derivation is stronger than assigning an oblate spheroidal envelope after the fact. The one-way longitudinal legs remain asymmetric; the Lorentz geometry appears only when the closed return cycle is allowed to choose the semiaxes that make longitudinal and transverse closure periods agree. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the envelope is the visible projection of a branch that has solved its return-cycle ledger.
 
 ##### Effective shape law
 
@@ -3798,6 +3904,70 @@ for small integers $(m,n)$ and nonlinear coupling width $\delta\omega_{\text{nl}
 
 #### Theorem Targets
 
+##### Theorem A0 (forward partner-root speed-limit lemma)
+
+The primitive material speed-limit row has a kinematic upper-bound lemma before any detailed nested shell swarm deformation is solved. In a translating branch with center drift $u\hat{\mathbf e}$, a retained partner row whose receiver lies ahead of its source by positive co-moving separation $d_{\parallel}\ge d_{\min}>0$ must satisfy
+$$
+c_f\tau
+=
+\left\|
+u\tau\,\hat{\mathbf e}
++
+\boldsymbol{\rho}_i(t)-\boldsymbol{\rho}_j(t-\tau)
+\right\|
+\ge
+u\tau+d_{\min}
+$$
+and therefore
+$$
+\left(c_f-u\right)\tau\ge d_{\min}
+$$
+No such forward partner root exists for $u\ge c_f$; for $u<c_f$ its required delay is at least $d_{\min}/(c_f-u)$. Thus a bound translating assembly whose structural closure requires leading-side partner rows cannot preserve its causal-root ledger at or above primitive field speed. This proves the upper-bound side
+$$
+c_{\mathrm{mat}}^{\mathrm{lim}}\le c_f
+$$
+for that class of material branches. The remaining Lorentz program is the constructive side: proving that stable branch families exist for $u<c_f$, that their deformation and periods approach the common envelope, and that Noether sea dressing maps the primitive bound to the observer-channel speeds without an independent fit.
+
+##### Theorem A1 (translating binary Lorentz residual)
+
+The first constructive test of Theorem G is the translating maximum-curvature binary benchmark defined in [Translating Binary Benchmark](#translating-binary-benchmark). Start from the certified rest binary with radius $R_0$, period $T_0$, active root ledger $b_0$, and positive Jacobian floors. For each $0<u<c_f$, solve the absolute-time delayed root equations for
+$$
+\mathbf{x}_{\sigma}(t)
+=
+u t\,\hat{\mathbf e}
++
+\sigma\,\boldsymbol{\rho}_u(\theta(t))
+$$
+on a retained deformed ledger $b_u$. The target is not merely existence. The branch must return the residual triple
+$$
+\mathcal{R}_{\mathrm{bin}}(u)
+=
+\left(
+R_T^{\mathrm{bin}}(u),
+R_{\xi}^{\mathrm{bin}}(u),
+R_{\mathrm{shape}}^{\mathrm{bin}}(u)
+\right)
+$$
+with either
+$$
+\mathcal{R}_{\mathrm{bin}}(u)=0
+$$
+on the primitive branch, or a controlled residual whose source is a named causal-root feature: a branch transition, small Jacobian floor, finite-memory cutoff, shape-mode excitation, or Noether sea dressing row.
+
+This calculation decides whether the first available internal clock and ruler obey primitive FitzGerald contraction and clock dilation:
+$$
+\frac{L_{\parallel}(u)}{L_{\perp}(u)}
+=
+\frac{1}{\gamma_f(u)},
+\qquad
+\frac{T_u}{T_0}
+=
+\gamma_f(u),
+\qquad
+\gamma_f(u)=\left(1-\frac{u^2}{c_f^2}\right)^{-1/2}
+$$
+If these equalities hold on the same branch ledger, the Lorentzian compensation has been derived for the two-body clock rather than asserted. If they fail, the residual is the earliest foundation-level falsification pressure: it marks exactly where the primitive kernel departs from Lorentzian matter behavior before nested shell swarm averaging or Noether sea dressing is allowed to repair anything.
+
 ##### Theorem A (attractor existence under drift)
 
 For admissible coupling and regularization parameters, there exists a bounded translating attractor family for binary and nested shell swarm systems for $\|\mathbf{v}\|<c_f$.
@@ -3876,7 +4046,7 @@ In particular, if $(r_M/r_L)^2\le C_{23}\epsilon_{\text{LV}}$, operational Loren
 
 ##### Theorem G (structural-integrity common-limit closure)
 
-This theorem is the parent Lorentz-closure target for Theorems B-D, the photon synchronization row, and the weak-field gravitational-wave speed row. In the weak homogeneous observer branch, a retained material assembly branch closes only if the matter-assembly limiting speed, the Noether sea dressed clock/ruler speed, the photon-channel speed, and the empirical calibration speed obey
+This theorem is the parent Lorentz-closure target for Theorems B-D, the photon synchronization row, and the weak-field gravitational-wave speed row. Theorem A0 supplies the primitive kinematic obstruction: a material branch that needs forward partner-hit closure cannot have a sustained translating ledger with $c_{\mathrm{mat}}^{\mathrm{lim}}>c_f$. Theorem A1 supplies the first constructive clock/ruler decision surface by asking whether the translating two-body branch returns $R_T^{\mathrm{bin}}=0$ and $R_{\xi}^{\mathrm{bin}}=0$ before nested shell swarm averaging or Noether sea dressing is invoked. In the weak homogeneous observer branch, a retained material assembly branch closes only if the matter-assembly limiting speed, the Noether sea dressed clock/ruler speed, the photon-channel speed, and the empirical calibration speed obey
 $$
 c_{\mathrm{mat}}^{\mathrm{lim}}
 =
@@ -7363,7 +7533,7 @@ R_\parallel = \frac{R_\perp}{\gamma},
 \beta = \frac{v_{\text{trans}}}{c_f}
 $$
 
-Now let one binary orbit in a plane whose unit normal $\hat n$ makes angle $\alpha$ with the translation axis $\hat z$. The central cross-section of the ellipsoid cut by that orbital plane has area
+Now let one binary orbit in a plane whose unit normal $\hat n$ makes angle $\alpha$ with the translation axis $\hat z$. The central cross-section of the oblate spheroidal envelope cut by that orbital plane has area
 
 $$
 A(\alpha)

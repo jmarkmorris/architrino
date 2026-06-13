@@ -369,7 +369,7 @@ $$
 \gamma_\star(v)+O(\epsilon_{\mathrm{LV}})
 $$
 
-The same equations give a direct geometry dictionary for the spheroid. In the no-extra-scale channel, take $R_{\perp}=R_0$ and $R_{\parallel}=R_0/\gamma_\star$. Then
+The same equations give a direct geometry dictionary for the oblate spheroidal envelope. In the no-extra-scale channel, take $R_{\perp}=R_0$ and $R_{\parallel}=R_0/\gamma_\star$. Then
 $$
 \xi
 \equiv
@@ -391,9 +391,9 @@ $$
 =
 \sqrt{1-\frac{R_{\parallel}^2}{R_{\perp}^2}}
 $$
-Thus the velocity fraction is encoded as the eccentricity of the Lorentz spheroid, while $\gamma_\star$ is encoded as its transverse-to-longitudinal aspect ratio. This is only a statement about the shape channel: a separate scale channel $\lambda$ may change the absolute size without changing the dimensionless ratios $\xi$, $\gamma_\star$, and $\beta_\star$.
+Thus the velocity fraction is encoded as the eccentricity of the oblate spheroidal envelope, while $\gamma_\star$ is encoded as its transverse-to-longitudinal aspect ratio. This is only a statement about the shape channel: a separate scale channel $\lambda$ may change the absolute size without changing the dimensionless ratios $\xi$, $\gamma_\star$, and $\beta_\star$.
 
-The clock law belongs to the return-cycle period, not to the absolute size of the ellipsoid. If a rest branch has period $T_0$, the observer-sector target is
+The clock law belongs to the return-cycle period, not to the absolute size of the oblate spheroidal envelope. If a rest branch has period $T_0$, the observer-sector target is
 $$
 T_q(v)=\gamma_\star(v)T_0+O(\epsilon_{\mathrm{LV}}T_0)
 $$
@@ -403,7 +403,7 @@ T_{\parallel}
 =
 \frac{2R_{\perp}}{c_\star}\gamma_\star
 $$
-so the period dilation is the same $\gamma_\star$ that appears as the inverse axis ratio. This remains true even when the ellipsoid becomes very thin. As $\beta_\star\to1$, the forward leg is
+so the period dilation is the same $\gamma_\star$ that appears as the inverse axis ratio. This remains true even when the oblate spheroidal envelope becomes very thin. As $\beta_\star\to1$, the forward leg is
 $$
 t_+
 =
@@ -438,7 +438,7 @@ q
 \mathcal{L}_{\mathrm{root}}^{(q)}(v)
 \right)
 $$
-with admissibility requiring the same causal-root ledger to close the spheroid geometry, clock period, and preferred-frame leakage bounds. Thus a continuous Lorentz formula would be recovered as the common envelope of discrete Noether swarm return-cycle classes only after those branch-admissibility conditions close.
+with admissibility requiring the same causal-root ledger to close the oblate spheroidal envelope geometry, clock period, and preferred-frame leakage bounds. Thus a continuous Lorentz formula would be recovered as the common envelope of discrete Noether swarm return-cycle classes only after those branch-admissibility conditions close.
 
 To keep this closure target testable, the branch should report a single Lorentz residual record rather than separate narrative successes. For a declared channel speed $c_\star$ and branch $q$, write
 $$
@@ -483,7 +483,7 @@ E_\gamma-c_\gamma\|\mathbf{p}_\gamma\|
 $$
 Here $m_q$ is the observer-sector inertial response assigned to the admitted branch, and $R_\gamma^{(q)}$ is evaluated only after the photon channel has been declared. The same causal-root ledger, medium dressing map, and branch state must feed all components. A branch that fits clock slowing with one ledger, ruler contraction with another, and photon propagation with an independent channel has not closed Lorentz behavior; it has only matched isolated formulas.
 
-This derivation is stronger than assigning an ellipsoid after the fact. The one-way longitudinal legs remain asymmetric; the Lorentz geometry appears only when the closed return cycle is allowed to choose the semiaxes that make longitudinal and transverse closure periods agree. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the spheroid is the visible projection of a branch that has solved its return-cycle ledger.
+This derivation is stronger than assigning an oblate spheroidal envelope after the fact. The one-way longitudinal legs remain asymmetric; the Lorentz geometry appears only when the closed return cycle is allowed to choose the semiaxes that make longitudinal and transverse closure periods agree. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the envelope is the visible projection of a branch that has solved its return-cycle ledger.
 
 ### Effective shape law
 

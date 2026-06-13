@@ -2165,7 +2165,7 @@ Stabilizes the Higgs mass and enables unification in some models.
 $$
 \{Q_\alpha, \bar Q_{\dot\beta}\} = 2\sigma^\mu_{\alpha\dot\beta} P_\mu
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ naturally relates fermionic (3D ellipsoidal) and bosonic (2D planar) nested shell swarm configurations of similar topological content. A full SUSY algebra would correspond to an approximate symmetry exchanging these geometric realizations of assemblies. Whether exact SUSY emerges depends on additional symmetry structure in the architrino dynamics; $\mathbb{A}\mathbb{A}\mathbb{A}$ does not require it but can mimic SUSY-like pairings as approximate assembly symmetries.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ naturally relates fermionic 3D oblate spheroidal envelope configurations and bosonic 2D planar nested shell swarm configurations of similar topological content. A full SUSY algebra would correspond to an approximate symmetry exchanging these geometric realizations of assemblies. Whether exact SUSY emerges depends on additional symmetry structure in the architrino dynamics; $\mathbb{A}\mathbb{A}\mathbb{A}$ does not require it but can mimic SUSY-like pairings as approximate assembly symmetries.
 
 **What Still Works:** Supersymmetry (SUSY) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether swarm assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
@@ -10393,9 +10393,9 @@ The important point is that the contraction is not a primitive command imposed o
 
 In the geometry canon, this contraction is recorded first as the Noether swarm envelope shape ratio $\xi=R_{\parallel}/R_{\perp}$. The special-relativistic limit requires a derived map $\xi\to1/\gamma_{\text{eff}}$ together with a matching clock readout $\omega_{\text{clk}}/\omega_0\to1/\gamma_{\text{eff}}$; neither equality is the definition of $\xi$.
 
-###### Closed Return Cycle And Spheroid Map
+###### Closed Return Cycle And Oblate Spheroidal Envelope Map
 
-The shortest derivation of the spheroid map uses the difference between a one-way leg and a closed return cycle. A one-way causal leg in the drift direction exposes the preferred Noether sea frame:
+The shortest derivation of the oblate spheroidal envelope map uses the difference between a one-way leg and a closed return cycle. A one-way causal leg in the drift direction exposes the preferred Noether sea frame:
 $$
 t_{+}=\frac{R_{\parallel}}{c_{\text{eff}}-v},
 \qquad
@@ -10448,7 +10448,7 @@ $$
 \frac{1}{\gamma_{\text{eff}}(v)}
 $$
 
-The moving Noether swarm envelope is then the oblate spheroid
+The moving Noether swarm envelope is then the oblate spheroidal envelope
 $$
 \frac{x_{\perp,1}^2+x_{\perp,2}^2}{R_{\perp}^2}
 +
@@ -10467,7 +10467,7 @@ R_{\parallel}(v,E,n)
 $$
 Thus $\gamma_{\text{eff}}$ maps to the shape channel $\xi$, while $\lambda$ remains the separate scale channel.
 
-This is the bridge insight. The one-way legs reveal the substrate anisotropy; the closed return cycle determines the geometry that hides it from Physical Observers. The Lorentz factor is therefore not painted onto the ellipsoid. It is the return-cycle closure condition expressed as an axis ratio.
+This is the bridge insight. The one-way legs reveal the substrate anisotropy; the closed return cycle determines the geometry that hides it from Physical Observers. The Lorentz factor is therefore not painted onto an oblate spheroidal envelope. It is the return-cycle closure condition expressed as an axis ratio.
 
 This is also the precise meaning of quantizing the Lorentz response. The smooth equation for $\gamma_{\text{eff}}(v)$ remains the effective observer law, but a Noether swarm assembly realizes any admitted value only through a discrete stable branch class $q$ with a definite causal-root ledger, return-cycle period, and envelope projection. The continuous Lorentz curve is therefore treated as the common observer envelope of branch-indexed Noether swarm closure states, not as an independent kinematic rule imposed on matter.
 
@@ -10706,7 +10706,7 @@ The bridge separates four levels:
 | --- | --- |
 | Substrate ontology | Architrinos evolve in the Euclidean void under absolute time and delayed causal wakes. |
 | Assembly dynamics | A Noether swarm must close inner, middle, and outer binary return cycles through a causal-root ledger. |
-| Geometry projection | The outer-binary exclusion envelope exposes an oblate spheroid with shape ratio $\xi=R_{\parallel}/R_{\perp}$. |
+| Geometry projection | The outer-binary exclusion envelope exposes an oblate spheroidal envelope with shape ratio $\xi=R_{\parallel}/R_{\perp}$. |
 | Observer law | Physical Observers infer Lorentz contraction, clock dilation, and two-way signal invariance after branch averaging and Noether sea dressing. |
 
 This level separation is essential. The Lorentz equation is not being promoted to substrate ontology. It is an observer-level envelope that must be implemented by closed assembly dynamics.
@@ -10795,9 +10795,9 @@ $$
 $$
 This is the direct Lorentz-to-geometry map.
 
-##### Spheroid Projection
+##### Oblate Spheroidal Envelope Projection
 
-The moving Noether swarm envelope is represented by an oblate spheroid,
+The moving Noether swarm envelope is represented by an oblate spheroidal envelope,
 $$
 \frac{x_{\perp,1}^2+x_{\perp,2}^2}{R_{\perp}^2}
 +
@@ -10837,7 +10837,7 @@ $$
 =
 \frac{R_{\perp}}{R_{\parallel}}
 $$
-The velocity fraction is therefore recovered from the spheroid by
+The velocity fraction is therefore recovered from the envelope by
 $$
 \beta_\star
 =
@@ -10845,7 +10845,7 @@ $$
 =
 \sqrt{1-\frac{R_{\parallel}^2}{R_{\perp}^2}}
 $$
-In ordinary geometry language, $\beta_\star$ is the eccentricity of the Lorentz spheroid, while $\gamma_\star$ is the transverse-to-longitudinal aspect ratio. The spheroid is not merely a picture placed beside the Lorentz factor; its measured semiaxes determine $\xi$, $\gamma_\star$, and $\beta_\star$ in the homogeneous zero-leakage limit.
+In ordinary geometry language, $\beta_\star$ is the eccentricity of the oblate spheroidal envelope, while $\gamma_\star$ is the transverse-to-longitudinal aspect ratio. The envelope is not merely a picture placed beside the Lorentz factor; its measured semiaxes determine $\xi$, $\gamma_\star$, and $\beta_\star$ in the homogeneous zero-leakage limit.
 
 The same map explains the clock side. A moving clock branch is a closed return cycle, so time dilation is the stretch of the period required for the branch to return to compatible phase:
 $$
@@ -10853,7 +10853,7 @@ T(v)=\gamma_\star(v)T_0
 $$
 in the ideal homogeneous limit. The size of the object sets the base period $T_0$; the velocity-dependent multiplier is the dimensionless factor $\gamma_\star$.
 
-This distinction matters near the light-speed limit. The spheroid becomes thin because $R_{\parallel}=R_{\perp}/\gamma_\star$ tends to zero. But the forward leg of the closed cycle contains the catch-up denominator $c_\star-v$:
+This distinction matters near the light-speed limit. The oblate spheroidal envelope becomes thin because $R_{\parallel}=R_{\perp}/\gamma_\star$ tends to zero. But the forward leg of the closed cycle contains the catch-up denominator $c_\star-v$:
 $$
 t_+
 =
@@ -10862,7 +10862,7 @@ t_+
 \frac{R_{\perp}}{c_\star}
 \sqrt{\frac{1+\beta_\star}{1-\beta_\star}}
 $$
-so $t_+\to\infty$ as $\beta_\star\to1$. The rear leg tends to zero, but the closed period diverges. Thus the clock does not diverge because the ellipsoid is large; it diverges because the forward causal update has almost no catch-up margin left.
+so $t_+\to\infty$ as $\beta_\star\to1$. The rear leg tends to zero, but the closed period diverges. Thus the clock does not diverge because the envelope is large; it diverges because the forward causal update has almost no catch-up margin left.
 
 The outer binary is special because it supplies the leading visible envelope. It is not sufficient by itself. A Lorentz-admissible branch must also retune the hidden inner and middle ledgers so that clock closure, action conservation, and leakage bounds are solved by the same branch.
 
@@ -10920,7 +10920,7 @@ This is the precise sense in which the Lorentz equation is quantized. The smooth
 
 ##### All-Layer Closure Burden
 
-The full branch state is not just the outer spheroid. For branch $q$, use the all-layer state
+The full branch state is not just the outer oblate spheroidal envelope. For branch $q$, use the all-layer state
 $$
 B_q(v)
 =
@@ -10980,7 +10980,7 @@ $$
 \text{effective }\gamma_\star(v)
 $$
 
-This sequence is the main reason the term `return-cycle` is preferred. The breakthrough is not simply that the outer envelope becomes an ellipsoid. The stronger claim is that the ellipsoid is the visible projection of a closed all-layer branch ledger.
+This sequence is the main reason the term `return-cycle` is preferred. The breakthrough is not simply that the outer envelope becomes oblate. The stronger claim is that the oblate spheroidal envelope is the visible projection of a closed all-layer branch ledger.
 
 ##### Prediction And Failure Mode
 
@@ -12257,7 +12257,7 @@ We propose that the Planck scale corresponds, in the architrino architecture, to
 >
 > A nested shell swarm reaches the Planck state when, in the forward sector, both component speeds approach the field speed $c_f$ and the **full delay-feedback loop** admits a final, marginally stable, phase-locked configuration. The component-speed statement and the combined-speed statement are distinct: $v_{\text{trans}}\to c_f$ and $v_{\text{orb}}^{\text{tan}}\to c_f$ name the terminal component limits, while $v_{\text{eff}}=\|\mathbf{v}_{\text{trans}}+\mathbf{v}_{\text{orb}}^{\text{tan}}\|$ names the forward-sector vector sum used for wedge geometry. In this state:
 > 1. The kinematic transition to flattening occurs as $v_{\text{trans}} \to c_f$ and $v_{\text{orb}}^{\text{tan}} \to c_f$ in the forward sector, starving new one-way causal updates ahead of the forward edge (local horizon behavior).
-> 2. The geometry collapses from a 3D precessing ellipsoid (fermion-like) to a 2D, co-planar disk (boson-like).
+> 2. The geometry collapses from a 3D precessing oblate spheroidal envelope (fermion-like) to a 2D, co-planar disk (boson-like).
 > 3. In the planar limit, the combined in-plane motion outruns $c_f$, so the emission history forms a Mach-wedge causal wake with half-angle
 >    $$
 >    \sin\theta = \frac{c_f}{v_{\text{eff}}} \quad (\;v_{\text{eff}} > c_f\;),
@@ -12663,7 +12663,7 @@ Those steps remain open.
    - Clear loss of stability when trying to force $v_{\text{eff}} > c_f$.
 
 4. **Angular Momentum Conservation at Spin Flip.**
-   Transition from fermion-like ellipsoid to boson-like disk must:
+   Transition from a fermion-like oblate spheroidal envelope to a boson-like disk must:
    - Conserve total angular momentum via emission of spin-1 radiation (circularly polarized bosons).
    - Produce potentially observable signatures (e.g. polarization patterns near strong-gravity regions).
 

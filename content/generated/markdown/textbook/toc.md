@@ -1245,7 +1245,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
         - [Level Separation](../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md?section=Level+Separation)
         - [One-Way Roots Are Not Yet Lorentz Geometry](../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md?section=One-Way+Roots+Are+Not+Yet+Lorentz+Geometry)
         - [Closed Return Derivation](../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md?section=Closed+Return+Derivation)
-        - [Spheroid Projection](../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md?section=Spheroid+Projection)
+        - [Oblate Spheroidal Envelope Projection](../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md?section=Oblate+Spheroidal+Envelope+Projection)
         - [Quantized Realization](../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md?section=Quantized+Realization)
         - [All-Layer Closure Burden](../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md?section=All-Layer+Closure+Burden)
         - [Prediction And Failure Mode](../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md?section=Prediction+And+Failure+Mode)

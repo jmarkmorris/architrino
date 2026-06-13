@@ -187,3 +187,40 @@ test("Scene-Index nodes infer doc badges from markdown child scenes", async () =
     "diagram"
   );
 });
+
+test("markdown view options propagate to runtime nodes", async () => {
+  const repository = createRepositoryWithScenes({});
+
+  const config = await repository.createConfigFromSceneData(
+    "content/scenes/example/downloads.json",
+    {
+      scene: {
+        type: "Scene-Markdown-View",
+      },
+      objects: [
+        {
+          id: "reading_copy",
+          title: "Reading Copy",
+          source: {
+            type: "markdown",
+            path: "content/generated/markdown/textbook/reading-copies/foundations.md",
+          },
+          view: {
+            columns: 1,
+            autoOpen: false,
+            downloadOnly: true,
+          },
+        },
+      ],
+    }
+  );
+
+  const node = config.nodes.find((entry) => entry.id === "reading_copy");
+  assert.equal(
+    node?.markdownPath,
+    "content/generated/markdown/textbook/reading-copies/foundations.md"
+  );
+  assert.equal(node?.markdownColumns, 1);
+  assert.equal(node?.markdownAutoOpen, false);
+  assert.equal(node?.markdownDownloadOnly, true);
+});
