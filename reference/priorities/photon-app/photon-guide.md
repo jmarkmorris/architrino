@@ -16,7 +16,7 @@ The lower stage contains one Virtual Observer field plot:
 
 - Virtual Observer E plot: the transverse electric readout reconstructed from the branch-weighted causal hits at the current Virtual Observer coordinate.
 
-The plot covers three full middle-layer cycles. The vertical guide lines mark the start and end of the middle cycle so the central cycle can be inspected without edge effects. For an ideal plane-wave comparison moving along $+\hat{\mathbf x}$, $\mathbf B$ is recovered from $\mathbf E$ by $\mathbf B=(1/c_f)\hat{\mathbf x}\times\mathbf E$, so it is not plotted as a separate graph.
+The plot covers three full middle-layer cycles. The white now line moves left to right, and the app leaves only a short forward gap ahead of that line blank so the waveform stays visible when time wraps around. For an ideal plane-wave comparison moving along $+\hat{\mathbf x}$, $\mathbf B$ is recovered from $\mathbf E$ by $\mathbf B=(1/c_f)\hat{\mathbf x}\times\mathbf E$, so it is not plotted as a separate graph.
 
 ## Basic Controls
 

@@ -15,6 +15,7 @@ import { buildPhotonPlotSamples } from "./PhotonFormulaRuntime.js";
 const TWO_PI = Math.PI * 2;
 const ARCHITRINO_MARKER_RADIUS = 5.2;
 const PHOTON_FIELD_PLOT_SAMPLE_COUNT = 180;
+const PHOTON_FIELD_PLOT_FORWARD_GAP_FRACTION = 0.15;
 const PHOTON_SIDE_VIEW_CHARGE_LANE_OFFSET = 2.2;
 const STAGE_ORIENTATION_NOTE =
   "Face-on view: the planar swarms are actually perpendicular to the translation line.";
@@ -479,7 +480,28 @@ export function drawPhotonSwarmStage(canvas, state, timeSeconds, options = {}) {
   drawStageOrientationNote(ctx, layout);
 }
 
-function drawPlotCurve(ctx, samples, width, height, key, color, currentTime, amplitudeScale = 1) {
+function normalizePhotonPlotProgress(progress) {
+  if (!Number.isFinite(progress)) {
+    return 0;
+  }
+  return ((progress % 1) + 1) % 1;
+}
+
+export function isPhotonPlotSampleInForwardGap(
+  sampleProgress,
+  currentProgress,
+  gapFraction = PHOTON_FIELD_PLOT_FORWARD_GAP_FRACTION
+) {
+  const boundedGap = Math.max(0, Math.min(0.5, Number(gapFraction) || 0));
+  const ahead = (
+    normalizePhotonPlotProgress(sampleProgress) -
+    normalizePhotonPlotProgress(currentProgress) +
+    1
+  ) % 1;
+  return ahead > 0 && ahead <= boundedGap;
+}
+
+function drawPlotCurve(ctx, samples, width, height, key, color, currentProgress, amplitudeScale = 1) {
   const top = 24;
   const bottom = height - 28;
   const mid = (top + bottom) / 2;
@@ -491,7 +513,12 @@ function drawPlotCurve(ctx, samples, width, height, key, color, currentTime, amp
   ctx.beginPath();
   let started = false;
   samples.forEach((sample) => {
-    if (sample.t > currentTime) {
+    if (isPhotonPlotSampleInForwardGap(sample.progress, currentProgress)) {
+      if (started) {
+        ctx.stroke();
+        ctx.beginPath();
+        started = false;
+      }
       return;
     }
     const x = sample.progress * width;
@@ -503,7 +530,9 @@ function drawPlotCurve(ctx, samples, width, height, key, color, currentTime, amp
       ctx.lineTo(x, y);
     }
   });
-  ctx.stroke();
+  if (started) {
+    ctx.stroke();
+  }
   ctx.restore();
 }
 
@@ -550,12 +579,11 @@ function drawPhotonComponentPlot(canvas, state, timeSeconds, options = {}) {
 
   const plot = getPhotonFieldPlotSamples(state);
   const currentTime = wrapPhotonTime(state, timeSeconds);
+  const currentProgress = plot.runDuration > 0 ? currentTime / plot.runDuration : 0;
   const amplitudeScale = getPlotAmplitudeScale(
     plot.samples,
     components.map((component) => component.key)
   );
-  const middleStartX = plot.runDuration > 0 ? (plot.middleCycle.start / plot.runDuration) * cssWidth : 0;
-  const middleEndX = plot.runDuration > 0 ? (plot.middleCycle.end / plot.runDuration) * cssWidth : 0;
 
   ctx.save();
   ctx.strokeStyle = "rgba(148, 163, 184, 0.16)";
@@ -572,13 +600,6 @@ function drawPhotonComponentPlot(canvas, state, timeSeconds, options = {}) {
   ctx.moveTo(0, cssHeight / 2);
   ctx.lineTo(cssWidth, cssHeight / 2);
   ctx.stroke();
-  ctx.strokeStyle = "rgba(251, 191, 36, 0.72)";
-  [middleStartX, middleEndX].forEach((x) => {
-    ctx.beginPath();
-    ctx.moveTo(x, 0);
-    ctx.lineTo(x, cssHeight);
-    ctx.stroke();
-  });
   ctx.restore();
 
   components.forEach((component) => {
@@ -589,12 +610,12 @@ function drawPhotonComponentPlot(canvas, state, timeSeconds, options = {}) {
       cssHeight,
       component.key,
       component.color,
-      currentTime,
+      currentProgress,
       amplitudeScale
     );
   });
 
-  const cursorX = plot.runDuration > 0 ? (currentTime / plot.runDuration) * cssWidth : 0;
+  const cursorX = currentProgress * cssWidth;
   ctx.save();
   ctx.strokeStyle = "rgba(255, 255, 255, 0.72)";
   ctx.lineWidth = 1;

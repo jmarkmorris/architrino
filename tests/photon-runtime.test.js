@@ -37,7 +37,10 @@ import {
   getPhotonDiagnosticRows,
 } from "../src/apps/photon/PhotonDiagnosticsRuntime.js";
 import { shouldHandlePhotonSpaceToggle } from "../src/apps/photon/PhotonRuntime.js";
-import { computePhotonStageLayout } from "../src/apps/photon/PhotonSwarmVisualRuntime.js";
+import {
+  computePhotonStageLayout,
+  isPhotonPlotSampleInForwardGap,
+} from "../src/apps/photon/PhotonSwarmVisualRuntime.js";
 
 function assertNear(actual, expected, epsilon = 1e-12) {
   assert.ok(Math.abs(actual - expected) < epsilon, `${actual} should be near ${expected}`);
@@ -78,7 +81,7 @@ test("default photon state encodes trailing and leading swarm convention", () =>
   );
 });
 
-test("photon middle cycle spans the middle of the three-cycle E plot", () => {
+test("photon plot duration spans three middle-layer cycles", () => {
   const state = createDefaultPhotonState();
   const runDuration = getPhotonRunDuration(state);
   const bounds = getPhotonMiddleCycleBounds(state);
@@ -226,15 +229,15 @@ test("causal-root solver returns branch roots with Jacobian-weighted contributio
   assert.ok(field.contributions.every((contribution) => contribution.jacobianWeight > 0));
 });
 
-test("plot samples expose middle-cycle guide bounds and active left-to-right trace", () => {
+test("plot samples expose full trace data with a small forward now gap", () => {
   const state = createDefaultPhotonState();
   const plot = buildPhotonPlotSamples(state, getPhotonRunDuration(state) / 2, 30);
 
-  assert.equal(plot.samples[0].active, true);
-  assert.equal(plot.samples.at(-1).active, false);
-  assert.ok(Math.abs(plot.middleCycle.start - plot.runDuration / 3) < 1e-12);
-  assert.ok(Math.abs(plot.middleCycle.end - (plot.runDuration * 2) / 3) < 1e-12);
   assert.ok(plot.amplitudeScale > 0);
+  assert.equal(isPhotonPlotSampleInForwardGap(0.1, 0, 0.15), true);
+  assert.equal(isPhotonPlotSampleInForwardGap(0.2, 0, 0.15), false);
+  assert.equal(isPhotonPlotSampleInForwardGap(0.04, 0.94, 0.15), true);
+  assert.equal(isPhotonPlotSampleInForwardGap(0.4, 0.94, 0.15), false);
   assert.deepEqual(
     Object.keys(plot.samples[0]).filter((key) => /^[eb][yz]$/.test(key)).sort(),
     ["ey", "ez"]

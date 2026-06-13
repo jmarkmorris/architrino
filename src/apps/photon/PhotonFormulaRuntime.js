@@ -499,7 +499,6 @@ export function buildPhotonPlotSamples(state, timeSeconds, sampleCount = 360) {
     samples.push({
       t,
       progress: runDuration > 0 ? t / runDuration : 0,
-      active: t <= currentTime,
       ey: field.electric.y,
       ez: field.electric.z,
       passMeasure: field.analyzer.passMeasure,

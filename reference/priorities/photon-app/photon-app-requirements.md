@@ -55,10 +55,9 @@ V1 uses a left-to-right propagation convention:
 - right means leading;
 - the left trailing swarm rotates counter-clockwise;
 - the right leading swarm rotates clockwise;
-- the observer-field plots draw from left to right as the visualization runs;
+- the observer-field cursor moves from left to right as the visualization runs;
 - the $\mathbf E$ plot covers exactly three observer cycles;
-- vertical guide lines appear at the start and end of the middle cycle;
-- and the middle cycle is the default visual focus region for comparing $\mathbf E$, analyzer projection, and polarization readouts.
+- and the plot keeps the full waveform visible except for a short forward gap ahead of the moving now line.
 
 The v1 observer cycle should use the middle-layer frequency as the default field-cycle reference. With the default middle-layer frequency $f_M=0.26\,\mathrm{Hz}$, the three-cycle run duration is
 
@@ -66,15 +65,7 @@ $$
 T_{\mathrm{run}}=\frac{3}{f_M}\approx11.54\,\mathrm{s}.
 $$
 
-The $\mathbf E$ plot guide lines are placed at
-
-$$
-t=\frac{T_{\mathrm{run}}}{3}
-\qquad\text{and}\qquad
-t=\frac{2T_{\mathrm{run}}}{3}.
-$$
-
-If the middle-layer frequency changes, both plot windows should update so they still span three middle-layer cycles.
+If the middle-layer frequency changes, the plot window should update so it still spans three middle-layer cycles.
 
 ## Default State
 
@@ -395,7 +386,7 @@ $$
 
 so $B_y=-E_z/c_f$ and $B_z=E_y/c_f$. The app should not draw $\mathbf B$ as a separate graph unless a later diagnostic explicitly needs to compare a non-plane-wave magnetic reconstruction.
 
-The lower field panel should draw one $\mathbf E$ plot with grid, cursor, and middle-cycle guide format. The $\mathbf E$ plot should draw three full cycles of $E_y$ and $E_z$ from left to right. The middle cycle should be bounded by two vertical guide lines. The plot should update immediately when frequency, radius, phase, pair separation, Virtual Observer coordinates, field gain, polarization analyzer angle, or reset state changes.
+The lower field panel should draw one $\mathbf E$ plot with grid, moving now cursor, and no middle-cycle guide lines. The $\mathbf E$ plot should cover three full cycles of $E_y$ and $E_z$. The waveform should remain mostly visible across wrap-around, with only a short forward gap ahead of the now cursor left blank. The plot should update immediately when frequency, radius, phase, pair separation, Virtual Observer coordinates, field gain, polarization analyzer angle, or reset state changes.
 
 The analyzer projection should use
 
@@ -528,7 +519,6 @@ The first prototype should be verified before it is treated as complete:
 - the left trailing swarm rotates counter-clockwise;
 - the right leading swarm rotates clockwise;
 - the $\mathbf E$ plot draws left to right over exactly three middle-layer cycles;
-- vertical guide lines bracket the middle cycle;
 - I/M/O controls update both the visual swarms and exported state;
 - Virtual Observer controls update the branch-sum field plot and exported state;
 - polarization and analyzer controls update formula-panel values;
@@ -574,7 +564,6 @@ The first implementation is acceptable when:
 - pair separation changes visibly between the two edge-on side-view traces without changing the face-on circular orbit spacing;
 - pause/play, Space bar playback shortcut, and reset controls work;
 - the lower $\mathbf E$ panel draws the branch-sum field plot at the configured Virtual Observer coordinate left to right over three full cycles;
-- vertical guide lines bracket the middle cycle in the field plot;
 - polarization controls affect the observer-level readout;
 - Malus' law is present with live numeric substitution;
 - app state can be reset and exported;
