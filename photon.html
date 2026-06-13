@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#080b12" />
     <title>Photon and Polarization Visualization</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    ></script>
     <script src="./vendor/markdown-it/markdown-it.min.js"></script>
     <style>
       * {
@@ -176,7 +188,7 @@
 
       .photon-doc-row {
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 7px;
         margin-bottom: 10px;
       }
@@ -257,12 +269,27 @@
       }
 
       .photon-log-control-row {
-        grid-template-columns: 74px minmax(0, 1fr) 64px;
+        grid-template-columns: 24px minmax(0, 1fr);
+        align-items: center;
+        gap: 3px;
+      }
+
+      .photon-playback-speed-row {
+        grid-template-columns: 44px minmax(0, 1fr) 38px;
       }
 
       .photon-control-label {
         color: rgba(203, 213, 225, 0.78);
         font-size: 11px;
+      }
+
+      .photon-speed-end-label {
+        color: rgba(203, 213, 225, 0.78);
+        font-size: 11px;
+      }
+
+      .photon-speed-end-label.is-fast {
+        text-align: right;
       }
 
       .photon-control-input {
@@ -279,41 +306,133 @@
         height: 24px;
       }
 
-      .photon-log-range-shell {
-        height: 30px;
-        align-items: flex-start;
-        padding-top: 2px;
-      }
-
       .photon-range-shell .photon-control-input {
         position: relative;
         z-index: 1;
       }
 
-      .photon-log-tick-strip {
+      .photon-separation-picker {
+        display: grid;
+        grid-template-columns: max-content 58px minmax(86px, 1fr);
+        align-items: center;
+        gap: 5px;
+        min-width: 0;
+        overflow: visible;
+      }
+
+      .photon-separation-picker > * {
+        min-width: 0;
+      }
+
+      .photon-separation-mantissas {
+        display: grid;
+        grid-template-columns: repeat(9, 26px);
+        gap: 4px;
+        min-width: 0;
+      }
+
+      .photon-separation-mantissa-button,
+      .photon-separation-exponent-button,
+      .photon-separation-exponent-option {
+        height: 24px;
+        border: 1px solid rgba(148, 163, 184, 0.3);
+        border-radius: 5px;
+        background: rgba(15, 23, 42, 0.72);
+        color: rgba(226, 232, 240, 0.82);
+        box-sizing: border-box;
+        font: inherit;
+      }
+
+      .photon-separation-mantissa-button {
+        min-width: 0;
+        padding: 0;
+        cursor: pointer;
+        font-size: 10px;
+        font-weight: 800;
+      }
+
+      .photon-separation-mantissa-button:hover,
+      .photon-separation-mantissa-button:focus-visible,
+      .photon-separation-exponent-button:hover,
+      .photon-separation-exponent-button:focus-visible,
+      .photon-separation-exponent-option:hover,
+      .photon-separation-exponent-option:focus-visible {
+        border-color: rgba(251, 191, 36, 0.72);
+        outline: none;
+      }
+
+      .photon-separation-mantissa-button.is-selected {
+        border-color: rgba(251, 191, 36, 0.92);
+        background: rgba(251, 191, 36, 0.88);
+        color: #111827;
+      }
+
+      .photon-separation-exponent-option.is-selected {
+        border-color: rgba(251, 191, 36, 0.86);
+        background: rgba(251, 191, 36, 0.18);
+        color: #fef3c7;
+      }
+
+      .photon-separation-mantissa-button:disabled {
+        opacity: 0.36;
+        cursor: not-allowed;
+      }
+
+      .photon-separation-exponent-control {
+        position: relative;
+        display: block;
+        min-width: 0;
+        overflow: visible;
+      }
+
+      .photon-separation-exponent-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 58px;
+        padding: 0;
+        overflow: hidden;
+        cursor: pointer;
+        font-size: 10px;
+        font-weight: 800;
+        line-height: 1;
+        white-space: nowrap;
+      }
+
+      .photon-separation-exponent-menu {
         position: absolute;
+        top: var(--photon-exponent-menu-top, 50%);
         left: 0;
-        right: 0;
-        top: 19px;
-        height: 8px;
-        pointer-events: none;
+        z-index: 60;
+        display: grid;
+        width: 58px;
+        max-height: 228px;
+        gap: 3px;
+        padding: 5px;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        border: 1px solid rgba(148, 163, 184, 0.32);
+        border-radius: 6px;
+        background: rgba(8, 13, 24, 0.98);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.42);
       }
 
-      .photon-log-tick {
-        position: absolute;
-        left: var(--photon-log-tick-position, 0%);
-        top: 1px;
-        width: 1px;
-        height: 4px;
-        border-radius: 999px;
-        background: rgba(203, 213, 225, 0.32);
-        transform: translateX(-50%);
+      .photon-separation-exponent-menu[hidden] {
+        display: none;
       }
 
-      .photon-log-tick.is-decade {
-        top: 0;
-        height: 7px;
-        background: rgba(251, 191, 36, 0.72);
+      .photon-separation-exponent-option {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 0 4px;
+        cursor: pointer;
+        font-size: 10px;
+        font-weight: 800;
+        line-height: 1;
+        text-align: center;
+        white-space: nowrap;
       }
 
       .photon-zero-tick {
@@ -336,6 +455,16 @@
         color: rgba(238, 243, 255, 0.9);
         font-size: 11px;
         text-align: right;
+      }
+
+      .photon-separation-output {
+        min-width: 0;
+        white-space: nowrap;
+      }
+
+      .photon-log-control-row > .photon-control-label {
+        align-self: center;
+        line-height: 24px;
       }
 
       .photon-checkbox-row {
@@ -407,10 +536,59 @@
         font-size: 11px;
       }
 
+      .photon-readout-row.has-quality {
+        grid-template-columns: minmax(0, 1fr) auto auto;
+      }
+
       .photon-readout-row strong {
         color: #fef3c7;
         font-size: 11px;
         white-space: nowrap;
+      }
+
+      .photon-readout-quality {
+        min-width: 38px;
+        padding: 1px 5px;
+        border: 1px solid rgba(148, 163, 184, 0.22);
+        border-radius: 999px;
+        background: rgba(148, 163, 184, 0.1);
+        color: rgba(226, 232, 240, 0.76);
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 1.25;
+        text-align: center;
+        white-space: nowrap;
+      }
+
+      .photon-readout-quality.is-great {
+        border-color: rgba(34, 197, 94, 0.5);
+        background: rgba(34, 197, 94, 0.14);
+        color: #bbf7d0;
+      }
+
+      .photon-readout-quality.is-good {
+        border-color: rgba(132, 204, 22, 0.46);
+        background: rgba(132, 204, 22, 0.13);
+        color: #d9f99d;
+      }
+
+      .photon-readout-quality.is-ok {
+        border-color: rgba(250, 204, 21, 0.46);
+        background: rgba(250, 204, 21, 0.13);
+        color: #fef08a;
+      }
+
+      .photon-readout-quality.is-poor {
+        border-color: rgba(251, 146, 60, 0.48);
+        background: rgba(251, 146, 60, 0.13);
+        color: #fed7aa;
+      }
+
+      .photon-readout-quality.is-bad {
+        border-color: rgba(248, 113, 113, 0.5);
+        background: rgba(248, 113, 113, 0.14);
+        color: #fecaca;
       }
 
       #photon-boot-error {
@@ -667,22 +845,24 @@
         <section class="photon-field-panel">
           <div class="photon-field-plot">
             <div class="photon-field-header">
-              <span>Virtual Observer E plot</span>
-              <span>t <output id="photon-time-output" class="photon-time-output">0.00 s</output></span>
-              <span>run <output id="photon-cycle-output" class="photon-cycle-output">11.54 s</output></span>
+              <span>Electric Field</span>
+              <span>
+                time <output id="photon-time-output" class="photon-time-output">0.00 s</output> /
+                <output id="photon-cycle-output" class="photon-cycle-output">11.54 s</output>
+              </span>
             </div>
             <canvas
               id="photon-electric-field-canvas"
-              aria-label="Virtual Observer electric field plot"
+              aria-label="Virtual Observer electric field"
             ></canvas>
           </div>
           <div class="photon-field-plot">
             <div class="photon-field-header">
-              <span>Polarization inset</span>
+              <span>Polarization</span>
             </div>
             <canvas
               id="photon-polarization-canvas"
-              aria-label="Transverse polarization inset"
+              aria-label="Transverse polarization"
             ></canvas>
           </div>
         </section>
@@ -716,6 +896,24 @@
           >
             <span class="photon-md-icon" aria-hidden="true">MD</span>
             <span class="photon-button-label">Guide</span>
+          </button>
+          <button
+            id="photon-closure-doc-button"
+            class="photon-button is-doc-button"
+            type="button"
+            aria-label="Open Photon Closure document"
+          >
+            <span class="photon-md-icon" aria-hidden="true">MD</span>
+            <span class="photon-button-label">Photon Closure</span>
+          </button>
+          <button
+            id="photon-polarization-gate-doc-button"
+            class="photon-button is-doc-button"
+            type="button"
+            aria-label="Open Polarization document"
+          >
+            <span class="photon-md-icon" aria-hidden="true">MD</span>
+            <span class="photon-button-label">Polarization</span>
           </button>
           <button
             id="photon-project-doc-button"

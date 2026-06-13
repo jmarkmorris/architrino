@@ -224,3 +224,44 @@ test("markdown view options propagate to runtime nodes", async () => {
   assert.equal(node?.markdownAutoOpen, false);
   assert.equal(node?.markdownDownloadOnly, true);
 });
+
+test("markdown split grid gap options propagate to runtime config", async () => {
+  let capturedScene = null;
+  const repository = createRepositoryWithScenes(
+    {},
+    {
+      buildAutoMarkdownNodes: async (scene) => {
+        capturedScene = scene;
+        return [];
+      },
+    }
+  );
+
+  const config = await repository.createConfigFromSceneData(
+    "content/scenes/example/notebook.json",
+    {
+      scene: {
+        type: "Scene-Markdown-Split",
+        layout: {
+          type: "grid",
+        },
+        source: {
+          type: "markdown",
+          path: "content/markdown/example.md",
+          split: {
+            headingLevel: 2,
+            maxDepth: 1,
+            gridGapMultiplier: 2,
+            gridSpacing: 4.75,
+          },
+        },
+      },
+      objects: [],
+    }
+  );
+
+  assert.equal(config.splitGridGapMultiplier, 2);
+  assert.equal(config.splitGridSpacing, 4.75);
+  assert.equal(capturedScene?.splitGridGapMultiplier, 2);
+  assert.equal(capturedScene?.splitGridSpacing, 4.75);
+});

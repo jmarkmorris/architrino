@@ -31,12 +31,73 @@ function getDelaySolveStatus(diagnostics) {
   if (diagnostics.sourceCount === 0) {
     return "none";
   }
-  return diagnostics.maxSourceSpeedRatio > 1 ||
-    diagnostics.delaySolveGapMax > 0.05 ||
+  return diagnostics.delaySolveGapMax > 0.05 ||
     diagnostics.jacobianAbsMin <= 1e-4 ||
     diagnostics.unresolvedSourceCount > 0
     ? "unstable"
     : "stable";
+}
+
+function getLowerIsBetterQuality(value, thresholds) {
+  if (!Number.isFinite(value)) {
+    return "info";
+  }
+  if (value <= thresholds.great) {
+    return "great";
+  }
+  if (value <= thresholds.good) {
+    return "good";
+  }
+  if (value <= thresholds.ok) {
+    return "ok";
+  }
+  if (value <= thresholds.poor) {
+    return "poor";
+  }
+  return "bad";
+}
+
+function getHigherIsBetterQuality(value, thresholds) {
+  if (!Number.isFinite(value)) {
+    return "info";
+  }
+  if (value >= thresholds.great) {
+    return "great";
+  }
+  if (value >= thresholds.good) {
+    return "good";
+  }
+  if (value >= thresholds.ok) {
+    return "ok";
+  }
+  if (value >= thresholds.poor) {
+    return "poor";
+  }
+  return "bad";
+}
+
+function getLongitudinalLeakQuality(diagnostics) {
+  if (diagnostics.transverseAmplitude <= 1e-9) {
+    return "info";
+  }
+  return getLowerIsBetterQuality(
+    diagnostics.longitudinalLeakage / diagnostics.transverseAmplitude,
+    { great: 0.01, good: 0.05, ok: 0.15, poor: 0.35 }
+  );
+}
+
+function getSourceSpeedQuality() {
+  return "info";
+}
+
+function getDelayStatusQuality(status) {
+  if (status === "stable") {
+    return "good";
+  }
+  if (status === "unstable") {
+    return "bad";
+  }
+  return "info";
 }
 
 export function computePhotonDiagnostics(state, timeSeconds, formulaSummary = null) {
@@ -53,8 +114,8 @@ export function computePhotonDiagnostics(state, timeSeconds, formulaSummary = nu
     longitudinalLeakage: Math.abs(formula.field.receiverAcceleration?.x ?? 0),
     helicityEstimate,
     analyzerProjection: formula.field.analyzer.projection,
-    analyzerPass: formula.field.analyzer.passMeasure,
-    averageAnalyzerPass: formula.averagePass,
+    analyzerFraction: formula.field.analyzer.fraction,
+    averageAnalyzerFraction: formula.averageAnalyzerFraction,
     fitResidual: formula.fitResidual,
     averageDelay: formula.field.averageDelay,
     delaySolveGapMax: formula.field.delaySolveGapMax,
@@ -73,24 +134,21 @@ export function computePhotonDiagnostics(state, timeSeconds, formulaSummary = nu
 
 export function getPhotonDiagnosticRows(state, timeSeconds, formulaSummary = null) {
   const diagnostics = computePhotonDiagnostics(state, timeSeconds, formulaSummary);
+  const delayStatus = getDelaySolveStatus(diagnostics);
   return [
-    ["Static balance", formatPhotonFixed(diagnostics.exposureBalance, 4)],
-    ["Transverse amp", formatPhotonFixed(diagnostics.transverseAmplitude, 3)],
-    ["Longitudinal leak", formatPhotonFixed(diagnostics.longitudinalLeakage, 3)],
-    ["Helicity estimate", diagnostics.helicityEstimate > 0 ? "+1" : "open"],
-    ["Analyzer pass", formatPhotonFixed(diagnostics.analyzerPass, 3)],
-    ["Fit residual", formatPhotonFixed(diagnostics.fitResidual, 4)],
-    ["Mean delay", formatPhotonFixed(diagnostics.averageDelay, 3)],
-    ["Nearest source", formatPhotonFixed(diagnostics.nearestSourceDistance, 3)],
-    ["Source count", String(diagnostics.sourceCount)],
-    ["Root count", String(diagnostics.rootCount)],
-    ["Max source v/c_f", formatPhotonFixed(diagnostics.maxSourceSpeedRatio, 2)],
-    ["Min |J|", formatPhotonFixed(diagnostics.jacobianAbsMin, 4)],
-    ["Missed sources", String(diagnostics.unresolvedSourceCount)],
-    ["Delay solve gap", formatPhotonFixed(diagnostics.delaySolveGapMax, 3)],
-    ["Delay status", getDelaySolveStatus(diagnostics)],
-    ["Left phase spread", `${formatPhotonFixed(diagnostics.leftPhaseSpread, 1)} deg`],
-    ["Right phase spread", `${formatPhotonFixed(diagnostics.rightPhaseSpread, 1)} deg`],
-    ["Snapshot", diagnostics.snapshotId],
+    ["Transverse amp", formatPhotonFixed(diagnostics.transverseAmplitude, 3), "info"],
+    ["Longitudinal leak", formatPhotonFixed(diagnostics.longitudinalLeakage, 3), getLongitudinalLeakQuality(diagnostics)],
+    ["Helicity estimate", diagnostics.helicityEstimate > 0 ? "+1" : "open", diagnostics.helicityEstimate > 0 ? "good" : "info"],
+    ["Fit residual", formatPhotonFixed(diagnostics.fitResidual, 4), getLowerIsBetterQuality(diagnostics.fitResidual, { great: 0.005, good: 0.02, ok: 0.08, poor: 0.2 })],
+    ["Mean delay", formatPhotonFixed(diagnostics.averageDelay, 3), "info"],
+    ["Source count", String(diagnostics.sourceCount), "info"],
+    ["Root count", String(diagnostics.rootCount), "info"],
+    ["Max source v/c_f", formatPhotonFixed(diagnostics.maxSourceSpeedRatio, 2), getSourceSpeedQuality(diagnostics)],
+    ["Min |J|", formatPhotonFixed(diagnostics.jacobianAbsMin, 4), getHigherIsBetterQuality(diagnostics.jacobianAbsMin, { great: 0.5, good: 0.2, ok: 0.05, poor: 0.01 })],
+    ["Missed sources", String(diagnostics.unresolvedSourceCount), diagnostics.unresolvedSourceCount === 0 ? "great" : "bad"],
+    ["Delay solve gap", formatPhotonFixed(diagnostics.delaySolveGapMax, 3), getLowerIsBetterQuality(diagnostics.delaySolveGapMax, { great: 0.001, good: 0.005, ok: 0.02, poor: 0.05 })],
+    ["Delay status", delayStatus, getDelayStatusQuality(delayStatus)],
+    ["Left phase spread", `${formatPhotonFixed(diagnostics.leftPhaseSpread, 1)} deg`, "info"],
+    ["Right phase spread", `${formatPhotonFixed(diagnostics.rightPhaseSpread, 1)} deg`, "info"],
   ];
 }

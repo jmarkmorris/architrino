@@ -17,12 +17,17 @@
       "split": {
         "headingLevel": 2,
         "maxDepth": 1,
+        "gridGapMultiplier": 2,
         "overrides": {
           "overview": {
             "id": "research_notebook_overview",
             "labelTitle": "Overview",
             "labelBadge": "doc",
             "mode": "doc"
+          },
+          "2026 06 13 photon and polarization visualization": {
+            "labelTitle": "Photon and Polarization Visualization",
+            "labelSubtitle": "2026-06-13"
           },
           "2026 03 17 planar three body breather bridge frozen": {
             "labelTitle": "3-Body Breather Frozen",

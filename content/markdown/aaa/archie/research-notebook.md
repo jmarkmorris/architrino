@@ -8,6 +8,28 @@ Each dated section should preserve the reasoning of the moment closely enough th
 
 Entries are maintained in descending date order, with the newest `##` section first.
 
+## 2026-06-13: Photon and Polarization Visualization
+
+Relevant files:
+
+- [Photon and Polarization Visualization](../../../../photon.html)
+- [Mode Taxonomy](../interactions/mode-taxonomy.md)
+- [Horizon Chirality and Planar Spin](../spacetime/horizon-chirality.md)
+- [Quantum Summary](../quantum/quantum-summary.md)
+- [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md)
+
+The standalone [Photon and Polarization Visualization](../../../../photon.html) app became the interactive inspection surface for the candidate photon planar-pair lesson. Its purpose is to make one photon-channel hypothesis concrete: a photon-like packet is modeled as two contra-rotating flat Noether swarms, with the trailing swarm rotating `CCW` and the leading swarm rotating `CW` as the pair translates along the $x$ direction. The app shows both face-on planar swarm views and a side view, because the actual planar swarms are perpendicular to the line of translation even though the face-on views are turned toward the reader for inspection.
+
+The controls turn the candidate into an inspectable research object rather than a static illustration. Each swarm exposes enabled/disabled binary rows for the `I`, `M`, and `O` binaries, with frequency, radius, and phase controls. The separation control is scaled as `Sep/r`, so the distance between the trailing and leading swarms can be explored across many orders of magnitude relative to the largest active binary radius. The Virtual Observer controls place the receiver at a selected $(x,y,z)$ location, and the runtime reconstructs the displayed transverse $\mathbf E$ readout from delayed source histories, all causal roots found for the active architrinos, Jacobian-weighted hit sums, and the resulting receiver acceleration.
+
+The app deliberately does not claim to prove photon closure. It records the geometry and measurement target in a form that can be checked visually, algebraically, and numerically. The $\mathbf B$ graph is not plotted as a separate source of evidence, because in the validated plane-wave comparison regime $\mathbf B$ is recovered from $\mathbf E$ by $\mathbf B=(1/c_f)\hat{\mathbf x}\times\mathbf E$. The useful app-level question is therefore sharper: which planar-pair settings yield a stable, transverse, low-leakage Virtual Observer $\mathbf E$ signal whose fitted polarization behaves like the expected photon-channel record?
+
+The polarization section makes that burden visible. The app fits the branch-sum $E_y(t)$ and $E_z(t)$ over a reference cycle, derives amplitudes, phase lag, Stokes readouts, analyzer fraction, and fit residual, and classifies the observed trace as weak, linear, circular, or elliptical. Those readouts are diagnostic outputs of the branch-sum field, not source-side knobs inserted by hand. That distinction matters because the photon Gate B problem is precisely to recover polarization, helicity, analyzer response, and absence of a free longitudinal mode from the candidate planar-pair ledger.
+
+The supporting corpus chapters state the downstream burden. [Mode Taxonomy](../interactions/mode-taxonomy.md) owns the controlled `planar-mode` language for photon channels and keeps Gate A/Gate B as recovery obligations rather than completed derivations. [Horizon Chirality and Planar Spin](../spacetime/horizon-chirality.md) records why contra-rotating planar branch language is natural in flat or boundary-like Noether swarm regimes. [Quantum Summary](../quantum/quantum-summary.md) and [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md) keep the broader photon closure gates connected to tested energy, momentum, polarization, helicity, transition, and Bose-channel behavior.
+
+Together these surfaces turn the photon planar-pair idea into a governed research object. The app provides the visible and numerical target, the diagnostics expose branch-sum quality, the polarization fit translates the target into observer-level readouts, and the corpus chapters state what still has to be proved before the visualization can become a physical photon theorem.
+
 ## 2026-06-10: Ideal Noether Swarm Lorentz Geometry
 
 Relevant files:

@@ -88,6 +88,10 @@ export class SceneRepository {
     const split = source?.split ?? null;
     const tree = source?.tree ?? null;
     const view = sceneMeta?.view ?? null;
+    const optionalPositiveNumber = (value) =>
+      typeof value === "number" && Number.isFinite(value) && value > 0
+        ? value
+        : null;
     const usesTypedTreeSource =
       sceneType === "Scene-Markdown-Tree" &&
       source?.type === "markdown" &&
@@ -142,7 +146,8 @@ export class SceneRepository {
       splitNodeRadius: null,
       splitRingRadius: null,
       splitMaxRingCount: null,
-      splitGridSpacing: null,
+      splitGridSpacing: optionalPositiveNumber(split?.gridSpacing),
+      splitGridGapMultiplier: optionalPositiveNumber(split?.gridGapMultiplier),
       splitPalette: null,
       splitPaletteName: this.defaultAutoMarkdownPaletteName,
       splitColor: null,
@@ -696,6 +701,7 @@ export class SceneRepository {
       splitRingRadius: splitScene.splitRingRadius,
       splitMaxRingCount: splitScene.splitMaxRingCount,
       splitGridSpacing: splitScene.splitGridSpacing,
+      splitGridGapMultiplier: splitScene.splitGridGapMultiplier,
       splitColumns: splitScene.splitColumns,
       splitPalette: splitScene.splitPalette,
       splitPaletteName: splitScene.splitPaletteName,

@@ -20,6 +20,19 @@ const PHOTON_DOCS = {
     markdownPath: "reference/priorities/photon-app/photon-guide.md",
     markdownColumns: 1,
   },
+  photonClosure: {
+    name: "Photon Closure",
+    markdownPath: "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
+    markdownSection: "Photon Closure Interface",
+    markdownColumns: 1,
+  },
+  polarizationGateB: {
+    name: "Polarization",
+    markdownPath:
+      "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+    markdownSection: "Helicity and Vector Modes",
+    markdownColumns: 1,
+  },
   project: {
     name: "Photon App",
     markdownPath: "reference/priorities/photon-app/photon-app.md",
@@ -52,7 +65,7 @@ function setTextAll(elements, value) {
 
 function renderRows(documentLike, container, rows) {
   container.textContent = "";
-  rows.forEach(([label, value]) => {
+  rows.forEach(([label, value, quality]) => {
     const row = documentLike.createElement("div");
     row.className = "photon-readout-row";
     const labelElement = documentLike.createElement("span");
@@ -60,6 +73,14 @@ function renderRows(documentLike, container, rows) {
     const valueElement = documentLike.createElement("strong");
     valueElement.textContent = value;
     row.append(labelElement, valueElement);
+    if (quality) {
+      row.classList.add("has-quality");
+      const qualityElement = documentLike.createElement("em");
+      const qualityClass = String(quality).toLowerCase().replace(/[^a-z0-9_-]+/g, "-");
+      qualityElement.className = `photon-readout-quality is-${qualityClass}`;
+      qualityElement.textContent = quality;
+      row.append(qualityElement);
+    }
     container.append(row);
   });
 }
@@ -69,16 +90,18 @@ function renderFormulaSummary(documentLike, container, summary) {
     ["derived mode", summary.polarization.classificationLabel],
     ["fit amp E_y", formatPhotonFixed(summary.polarization.amplitudes.y, 3)],
     ["fit amp E_z", formatPhotonFixed(summary.polarization.amplitudes.z, 3)],
+    ["fit E_z/E_y", formatPhotonFixed(summary.polarization.amplitudes.relative, 3)],
     [
       "fit lag",
       summary.polarization.phaseLagDefined
         ? `${formatPhotonFixed(summary.polarization.phaseLagDeg, 1)} deg`
         : "n/a",
     ],
-    ["fit analyzer target", formatPhotonFixed(summary.analyzerTarget, 3)],
-    ["mu pass", formatPhotonFixed(summary.field.analyzer.passMeasure, 3)],
-    ["cycle average", formatPhotonFixed(summary.averagePass, 3)],
     ["fit residual", formatPhotonFixed(summary.fitResidual, 4)],
+    ["fit analyzer fraction", formatPhotonFixed(summary.analyzerTarget, 3)],
+    ["mu analyzer", formatPhotonFixed(summary.field.analyzer.fraction, 3)],
+    ["cycle average", formatPhotonFixed(summary.averageAnalyzerFraction, 3)],
+    ["analyzer residual", formatPhotonFixed(summary.analyzerResidual, 4)],
     ["source count", String(summary.field.sourceCount)],
     ["root count", String(summary.field.rootCount)],
     ["mean delay", formatPhotonFixed(summary.field.averageDelay, 3)],
@@ -115,6 +138,21 @@ export function shouldHandlePhotonSpaceToggle(event = {}) {
   return !["INPUT", "TEXTAREA", "SELECT", "BUTTON", "OPTION"].includes(
     getPhotonEventTargetTagName(target)
   );
+}
+
+export function getPhotonRuntimeTimes(state, modelTime) {
+  const continuousTime = Number.isFinite(Number(modelTime)) ? Number(modelTime) : 0;
+  return {
+    modelTime: continuousTime,
+    displayTime: wrapPhotonTime(state, continuousTime),
+  };
+}
+
+export function advancePhotonModelTime(modelTime, deltaSeconds, speedMultiplier) {
+  const currentTime = Number.isFinite(Number(modelTime)) ? Number(modelTime) : 0;
+  const safeDelta = Math.max(0, Number.isFinite(Number(deltaSeconds)) ? Number(deltaSeconds) : 0);
+  const safeSpeed = Number.isFinite(Number(speedMultiplier)) ? Number(speedMultiplier) : 1;
+  return currentTime + safeDelta * safeSpeed;
 }
 
 function appendPhotonCacheBust(path, token) {
@@ -202,6 +240,14 @@ export function createPhotonRuntime({
   const formulasElement = queryPhotonElement(documentLike, "#photon-formulas");
   const homeButton = queryPhotonElement(documentLike, "#photon-home-button");
   const guideDocButton = queryPhotonElement(documentLike, "#photon-guide-doc-button");
+  const photonClosureDocButton = queryPhotonElement(
+    documentLike,
+    "#photon-closure-doc-button"
+  );
+  const polarizationGateBDocButton = queryPhotonElement(
+    documentLike,
+    "#photon-polarization-gate-doc-button"
+  );
   const projectDocButton = queryPhotonElement(documentLike, "#photon-project-doc-button");
   const requirementsDocButton = queryPhotonElement(documentLike, "#photon-requirements-doc-button");
   const markdownPanel = queryPhotonElement(documentLike, "#photon-markdown-panel");
@@ -229,20 +275,21 @@ export function createPhotonRuntime({
     markdownLayoutToggle,
   });
 
-  function syncOutputs(wrappedTime, summary) {
-    setTextAll(timeOutputs, `${formatPhotonFixed(wrappedTime, 2)} s`);
-    setTextAll(cycleOutputs, `${formatPhotonFixed(summary.runDuration, 2)} s`);
-    renderRows(documentLike, diagnosticsElement, getPhotonDiagnosticRows(state, wrappedTime, summary));
+  function syncOutputs(displayTime, summary) {
+    setTextAll(timeOutputs, `${formatPhotonFixed(displayTime, 1)} s`);
+    setTextAll(cycleOutputs, `${formatPhotonFixed(summary.runDuration, 1)} s`);
+    renderRows(documentLike, diagnosticsElement, getPhotonDiagnosticRows(state, displayTime, summary));
     renderFormulaSummary(documentLike, formulasElement, summary);
   }
 
   function draw() {
-    const wrappedTime = wrapPhotonTime(state, modelTime);
-    const summary = computePhotonFormulaSummary(state, wrappedTime);
-    drawPhotonSwarmStage(stageCanvas, state, wrappedTime, { windowLike });
-    drawPhotonElectricFieldPlot(electricFieldCanvas, state, wrappedTime, { windowLike });
-    drawPhotonPolarizationInset(polarizationCanvas, state, wrappedTime, { windowLike });
-    syncOutputs(wrappedTime, summary);
+    const times = getPhotonRuntimeTimes(state, modelTime);
+    const displayTime = times.displayTime;
+    const summary = computePhotonFormulaSummary(state, displayTime);
+    drawPhotonSwarmStage(stageCanvas, state, times.modelTime, { windowLike });
+    drawPhotonElectricFieldPlot(electricFieldCanvas, state, displayTime, { windowLike });
+    drawPhotonPolarizationInset(polarizationCanvas, state, displayTime, { windowLike });
+    syncOutputs(displayTime, summary);
   }
 
   function syncControls() {
@@ -251,7 +298,6 @@ export function createPhotonRuntime({
 
   function setState(nextState) {
     state = normalizePhotonState(nextState);
-    modelTime = wrapPhotonTime(state, modelTime);
     syncControls();
     draw();
   }
@@ -284,7 +330,6 @@ export function createPhotonRuntime({
 
   function onStateChange({ syncControls: shouldSyncControls = true, drawNow = true } = {}) {
     state = normalizePhotonState(state);
-    modelTime = wrapPhotonTime(state, modelTime);
     if (shouldSyncControls) {
       syncControls();
     }
@@ -300,7 +345,7 @@ export function createPhotonRuntime({
     const deltaSeconds = Math.min(0.08, Math.max(0, (timestamp - lastFrame) / 1000));
     lastFrame = timestamp;
     if (!state.time.paused) {
-      modelTime = wrapPhotonTime(state, modelTime + deltaSeconds * state.time.speedMultiplier);
+      modelTime = advancePhotonModelTime(modelTime, deltaSeconds, state.time.speedMultiplier);
     }
     draw();
     animationFrame = windowLike.requestAnimationFrame(frame);
@@ -322,6 +367,12 @@ export function createPhotonRuntime({
     });
     guideDocButton.addEventListener("click", () => {
       markdownRuntime.showMarkdownPanel(PHOTON_DOCS.guide);
+    });
+    photonClosureDocButton.addEventListener("click", () => {
+      markdownRuntime.showMarkdownPanel(PHOTON_DOCS.photonClosure);
+    });
+    polarizationGateBDocButton.addEventListener("click", () => {
+      markdownRuntime.showMarkdownPanel(PHOTON_DOCS.polarizationGateB);
     });
     projectDocButton.addEventListener("click", () => {
       markdownRuntime.showMarkdownPanel(PHOTON_DOCS.project);

@@ -240,10 +240,15 @@ export function createMarkdownNodeBuilder(deps) {
     let ringRadius = hasCustomRingRadius
       ? scene.splitRingRadius
       : Math.max(6, Math.min(layoutCount, maxRingCount) * layoutRadius * 1.4);
+    const defaultGridSpacing = layoutRadius * resolveAutoMarkdownGridSpacingFactor(layoutCount);
     const gridSpacing =
       typeof scene.splitGridSpacing === "number"
         ? scene.splitGridSpacing
-        : layoutRadius * resolveAutoMarkdownGridSpacingFactor(layoutCount);
+        : typeof scene.splitGridGapMultiplier === "number"
+          ? layoutRadius * 2 +
+            Math.max(0, defaultGridSpacing - layoutRadius * 2) *
+              scene.splitGridGapMultiplier
+          : defaultGridSpacing;
     const useRing = usesRingLayout && layoutCount <= maxRingCount;
     const requestedColumns =
       Number.isInteger(scene.layoutColumns) && scene.layoutColumns > 0

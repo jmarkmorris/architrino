@@ -71,6 +71,41 @@ test("markdown grid autolayout gives 13 split headings five columns", async () =
   assert.equal(uniqueCoordinateCount(nodes, 1), 3);
 });
 
+test("markdown grid gap multiplier scales the open grid gap", async () => {
+  const markdown = Array.from({ length: 13 }, (_, index) => {
+    const day = String(index + 1).padStart(2, "0");
+    return `## 2026-06-${day}: Entry ${index + 1}`;
+  }).join("\n\nBody\n\n");
+  const builder = createBuilder({
+    "content/markdown/example.md": markdown,
+  });
+  const baseScene = {
+    layoutType: "grid",
+    splitSourcePath: "content/markdown/example.md",
+    splitHeadingLevel: 2,
+    splitMaxDepth: 1,
+    wrapLabels: true,
+  };
+
+  const defaultNodes = await builder(baseScene, []);
+  const expandedNodes = await builder(
+    {
+      ...baseScene,
+      splitGridGapMultiplier: 2,
+    },
+    []
+  );
+
+  const defaultPitch = defaultNodes[1].position[0] - defaultNodes[0].position[0];
+  const expandedPitch = expandedNodes[1].position[0] - expandedNodes[0].position[0];
+  const diameter = defaultNodes[0].radius * 2;
+  const defaultGap = defaultPitch - diameter;
+  const expandedGap = expandedPitch - diameter;
+
+  assert.ok(defaultGap > 0);
+  assert.ok(Math.abs(expandedGap / defaultGap - 2) < 0.04);
+});
+
 test("markdown split nodes derive title and date labels from dated headings", async () => {
   const builder = createBuilder({
     "content/markdown/example.md": "## 2026-06-10: Ideal Noether Swarm Lorentz Geometry\n\nBody",

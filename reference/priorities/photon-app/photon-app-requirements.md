@@ -247,12 +247,11 @@ Required v1 polarization views:
 - fitted circular polarization handedness indicator;
 - fitted ellipticity or phase-lag indicator for non-linear polarization states;
 - analyzer angle control;
-- projected accepted and rejected components for the current analyzer angle;
+- scalar analyzer projection fraction for the current analyzer angle;
 - and a transverse $E_y/E_z$ inset that keeps the observer-level polarization readout visually separate from the swarm-pair substrate animation.
 
 Useful additional controls:
 
-- analyzer pass/reject toggle or split display;
 - and a diagnostic overlay that shows the raw one-cycle branch-sum points behind the fitted polarization curve.
 
 The app must keep the distinction between substrate animation and observer-level polarization diagnostics visible in the state model. A good visual match to Malus' law is a diagnostic target, not proof that the planar pair has supplied the required substrate ledger rows.
@@ -373,7 +372,7 @@ $$
 
 so $B_y=-E_z/c_f$ and $B_z=E_y/c_f$. The app should not draw $\mathbf B$ as a separate graph unless a later diagnostic explicitly needs to compare a non-plane-wave magnetic reconstruction.
 
-The lower field panel should draw one $\mathbf E$ plot with grid, moving now cursor, and no middle-cycle guide lines, plus a transverse polarization inset. The $\mathbf E$ plot should cover three full cycles of $E_y$ and $E_z$. The waveform should remain mostly visible across wrap-around, with only a short forward gap ahead of the now cursor left blank. The $\mathbf E$ graph should auto-scale its drawing span from the maximum visible $|E_y|$ or $|E_z|$ sample while keeping diagnostics based on the unscaled branch-sum field. The polarization inset should fit the actual branch-sum $E_y(t)$ and $E_z(t)$ over one reference cycle, show $E_y$ and $E_z$ axes, draw the current field vector, leave a one-cycle fitted trail, overlay the analyzer axis, and show pass/reject projection lengths. The plot and inset should update immediately when frequency, radius, phase, pair separation, Virtual Observer coordinates, analyzer angle, or reset state changes.
+The lower field panel should draw one $\mathbf E$ plot with grid, moving now cursor, and no middle-cycle guide lines, plus a transverse polarization inset. The $\mathbf E$ plot should cover three full cycles of $E_y$ and $E_z$. The waveform should remain mostly visible across wrap-around, with only a short forward gap ahead of the now cursor left blank. The $\mathbf E$ graph should auto-scale its drawing span from the maximum visible $|E_y|$ or $|E_z|$ sample while keeping diagnostics based on the unscaled branch-sum field. The polarization inset should fit the actual branch-sum $E_y(t)$ and $E_z(t)$ over one reference cycle, show $E_y$ and $E_z$ axes, draw the current field vector, leave a one-cycle fitted trail, and overlay the analyzer axis. The plot and inset should update immediately when frequency, radius, phase, pair separation, Virtual Observer coordinates, analyzer angle, or reset state changes.
 
 The analyzer projection should use
 
@@ -385,10 +384,10 @@ $$
 \sin\theta\,\hat{\mathbf z},
 $$
 
-and the displayed pass measure should be
+and the displayed analyzer fraction should be
 
 $$
-\mu_{\mathrm{pass}}
+\mu_{\mathrm{analyzer}}
 =
 \frac{|\hat{\mathbf a}\cdot\mathbf E|^2}
 {|\mathbf E|^2+\varepsilon}.
@@ -411,7 +410,7 @@ $$
 =
 a_y\hat{\mathbf y}+a_z\hat{\mathbf z},
 \qquad
-\mu_{\mathrm{pass}}
+\mu_{\mathrm{analyzer}}
 =
 \frac{|\hat{\mathbf a}\cdot\mathbf a_{\perp}|^2}
 {|\mathbf a_{\perp}|^2+\varepsilon}.
@@ -456,7 +455,8 @@ The first useful diagnostic readouts should be lightweight and explicitly non-ce
 - longitudinal leakage indicator;
 - helicity sign estimate;
 - analyzer projection intensity;
-- fit residual for the current analyzer angle;
+- normalized ellipse-fit residual;
+- analyzer residual for the current analyzer angle;
 - phase-lock indicators for I/M/O layers;
 - and snapshot ID for captured diagnostic states.
 

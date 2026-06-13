@@ -18,9 +18,15 @@ import {
 import {
   getPhotonControlZeroPositionPercent,
   getPhotonControlZeroSnapThreshold,
+  getPhotonPlaybackSpeedMultiplier,
+  getPhotonPlaybackSpeedSliderValue,
+  getPhotonSeparationLog10RatioFromParts,
+  getPhotonSeparationLogTick,
   getPhotonSeparationLogTicks,
   snapPhotonSeparationLogTick,
   snapPhotonControlValueToZero,
+  snapPhotonPhaseDegrees,
+  snapPhotonRangeControlValue,
 } from "../src/apps/photon/PhotonControlsRuntime.js";
 import {
   buildPhotonArchitrinoSourceRefs,
@@ -36,7 +42,11 @@ import {
   computePhotonDiagnostics,
   getPhotonDiagnosticRows,
 } from "../src/apps/photon/PhotonDiagnosticsRuntime.js";
-import { shouldHandlePhotonSpaceToggle } from "../src/apps/photon/PhotonRuntime.js";
+import {
+  advancePhotonModelTime,
+  getPhotonRuntimeTimes,
+  shouldHandlePhotonSpaceToggle,
+} from "../src/apps/photon/PhotonRuntime.js";
 import {
   computePhotonStageLayout,
   getPhotonFieldPlotSampleCount,
@@ -130,11 +140,24 @@ test("default observer field is computed from Virtual Observer branch sums", () 
   assert.ok(Number.isFinite(field.electric.z));
   assert.ok(Number.isFinite(field.comparisonB.z));
   assert.ok(Number.isFinite(field.receiverAcceleration.x));
-  assert.ok(Number.isFinite(field.analyzer.passMeasure));
+  assert.ok(Number.isFinite(field.analyzer.fraction));
   assert.ok(field.averageDelay > 0);
   assertNear(field.maxSourceSpeedRatio, PHOTON_LAYER_SPEED_RATIO_TARGETS.I);
   assert.ok(field.delaySolveGapMax >= 0);
   assert.ok(field.jacobianAbsMin > 0);
+  assert.equal(field.unstableSourceCount, 0);
+
+  const diagnosticRowList = getPhotonDiagnosticRows(state, 0, computePhotonFormulaSummary(state, 0));
+  const diagnosticRows = new Map(diagnosticRowList);
+  assert.equal(diagnosticRows.get("Delay status"), "stable");
+  assert.equal(
+    diagnosticRowList.find(([label]) => label === "Max source v/c_f")?.[2],
+    "info"
+  );
+  assert.equal(
+    diagnosticRowList.find(([label]) => label === "Delay status")?.[2],
+    "good"
+  );
 });
 
 test("disabled binaries are removed from branch-sum sources", () => {
@@ -183,8 +206,10 @@ test("outer-only default stays below field speed and has a stable branch solve",
     state.pair[swarmId].layers.O.phaseDeg = 0;
   });
   const field = computePhotonDelayedEmissionField(state, 3);
-  const diagnostics = computePhotonDiagnostics(state, 3, computePhotonFormulaSummary(state, 3));
-  const diagnosticRows = new Map(getPhotonDiagnosticRows(state, 3, computePhotonFormulaSummary(state, 3)));
+  const formulaSummary = computePhotonFormulaSummary(state, 3);
+  const diagnostics = computePhotonDiagnostics(state, 3, formulaSummary);
+  const diagnosticRowList = getPhotonDiagnosticRows(state, 3, formulaSummary);
+  const diagnosticRows = new Map(diagnosticRowList);
 
   assert.equal(field.sourceCount, 4);
   assert.equal(field.rootCount, field.contributions.length);
@@ -195,9 +220,17 @@ test("outer-only default stays below field speed and has a stable branch solve",
   assert.equal(field.unstableSourceCount, 0);
   assert.equal(diagnostics.maxSourceSpeedRatio < 1, true);
   assert.equal(diagnosticRows.get("Delay status"), "stable");
+  assert.equal(
+    diagnosticRowList.find(([label]) => label === "Delay status")?.[2],
+    "good"
+  );
+  assert.equal(
+    diagnosticRowList.find(([label]) => label === "Missed sources")?.[2],
+    "great"
+  );
 });
 
-test("outer-only super field speed settings report unstable branch solve", () => {
+test("outer-only super field speed settings stay stable when causal roots are clean", () => {
   const state = createDefaultPhotonState();
   state.measurement.virtualObserver = { x: 0, y: 4, z: 0 };
   ["left", "right"].forEach((swarmId) => {
@@ -208,13 +241,22 @@ test("outer-only super field speed settings report unstable branch solve", () =>
     state.pair[swarmId].layers.O.phaseDeg = 0;
   });
   const field = computePhotonDelayedEmissionField(state, 3);
-  const diagnosticRows = new Map(getPhotonDiagnosticRows(state, 3, computePhotonFormulaSummary(state, 3)));
+  const diagnosticRowList = getPhotonDiagnosticRows(state, 3, computePhotonFormulaSummary(state, 3));
+  const diagnosticRows = new Map(diagnosticRowList);
 
   assert.equal(field.sourceCount, 4);
   assert.ok(field.rootCount >= field.sourceCount);
   assert.ok(field.maxSourceSpeedRatio > 1);
-  assert.ok(field.unstableSourceCount > 0);
-  assert.equal(diagnosticRows.get("Delay status"), "unstable");
+  assert.equal(field.unstableSourceCount, 0);
+  assert.equal(diagnosticRows.get("Delay status"), "stable");
+  assert.equal(
+    diagnosticRowList.find(([label]) => label === "Max source v/c_f")?.[2],
+    "info"
+  );
+  assert.equal(
+    diagnosticRowList.find(([label]) => label === "Delay status")?.[2],
+    "good"
+  );
 });
 
 test("moving the Virtual Observer changes the branch-sum field", () => {
@@ -241,6 +283,22 @@ test("causal-root solver returns branch roots with Jacobian-weighted contributio
   });
   assert.ok(field.contributions.every((contribution) => Number.isFinite(contribution.jacobianWeight)));
   assert.ok(field.contributions.every((contribution) => contribution.jacobianWeight > 0));
+});
+
+test("large Sep/r still uses the full causal-root scanner", () => {
+  const state = createDefaultPhotonState();
+  state.pair.pairSeparation = getPhotonPairSeparationFromLog10Ratio(
+    state,
+    PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio.max
+  );
+  const sourceRef = { swarmId: "left", layerId: "O", chargeType: "positrino" };
+  const roots = solvePhotonCausalRoots(state, sourceRef, 0.75);
+
+  assert.ok(roots.length >= 1);
+  roots.forEach((root) => {
+    assert.equal("solveMode" in root, false);
+    assert.ok(Math.abs(root.residual) < 1e-4);
+  });
 });
 
 test("plot samples expose full trace data with a small forward now gap", () => {
@@ -330,6 +388,33 @@ test("Virtual Observer slider zero helpers mark and snap near zero", () => {
   assert.equal(snapPhotonControlValueToZero(0.15, PHOTON_CONTROL_RANGES.virtualObserverZ), 0.15);
 });
 
+test("phase controls snap near 45 degree sticky spots", () => {
+  assert.equal(snapPhotonPhaseDegrees(40), 45);
+  assert.equal(snapPhotonPhaseDegrees(43), 45);
+  assert.equal(snapPhotonPhaseDegrees(47), 45);
+  assert.equal(snapPhotonPhaseDegrees(50), 45);
+  assert.equal(snapPhotonPhaseDegrees(85), 90);
+  assert.equal(snapPhotonPhaseDegrees(88), 90);
+  assert.equal(snapPhotonPhaseDegrees(137), 135);
+  assert.equal(snapPhotonPhaseDegrees(182), 180);
+  assert.equal(snapPhotonPhaseDegrees(39), 39);
+  assert.equal(snapPhotonPhaseDegrees(51), 51);
+  assert.equal(snapPhotonPhaseDegrees(96), 96);
+  assert.equal(
+    snapPhotonRangeControlValue(43, PHOTON_CONTROL_RANGES.phaseDeg, {
+      snapToPhaseDegrees: true,
+    }),
+    45
+  );
+});
+
+test("playback speed slider centers the default multiplier", () => {
+  assertNear(getPhotonPlaybackSpeedSliderValue(1), 50, 1e-12);
+  assertNear(getPhotonPlaybackSpeedMultiplier(50), 1, 1e-12);
+  assertNear(getPhotonPlaybackSpeedMultiplier(0), 0.25, 1e-12);
+  assertNear(getPhotonPlaybackSpeedMultiplier(100), 4, 1e-12);
+});
+
 test("separation log ticks cover mantissas 1 through 9 for each decade", () => {
   const ticks = getPhotonSeparationLogTicks();
 
@@ -340,8 +425,19 @@ test("separation log ticks cover mantissas 1 through 9 for each decade", () => {
   );
   assert.equal(ticks[0].exponent, -10);
   assert.equal(ticks.at(-1).value, 5);
-  assert.equal(ticks.at(-1).label, "1e5");
+  assert.equal(ticks.at(-1).label, "10⁵");
   assertNear(snapPhotonSeparationLogTick(Math.log10(7.2e-9)), Math.log10(7e-9), 1e-12);
+});
+
+test("separation scientific-notation picker maps coefficient and decade to log ticks", () => {
+  const logValue = getPhotonSeparationLog10RatioFromParts(7, -9);
+  const tick = getPhotonSeparationLogTick(logValue);
+
+  assert.equal(tick.mantissa, 7);
+  assert.equal(tick.exponent, -9);
+  assertNear(logValue, Math.log10(7e-9), 1e-12);
+  assert.equal(getPhotonSeparationLog10RatioFromParts(9, 5), 5);
+  assert.equal(getPhotonSeparationLogTick(5).mantissa, 1);
 });
 
 test("separation reference radius follows the largest enabled radius", () => {
@@ -386,6 +482,8 @@ test("formula summary reports a derived branch-sum polarization fit", () => {
   assert.ok(Number.isFinite(summary.polarization.phaseLagDeg));
   assert.ok(Number.isFinite(summary.analyzerTarget));
   assert.ok(Number.isFinite(summary.fitResidual));
+  assert.ok(summary.fitResidual >= 0);
+  assert.ok(Number.isFinite(summary.analyzerResidual));
 });
 
 test("polarization fitter classifies a one-axis branch-sum signal as linear", () => {
@@ -394,6 +492,8 @@ test("polarization fitter classifies a one-axis branch-sum signal as linear", ()
   assert.equal(fit.classification, "linear");
   assertNear(fit.amplitudes.y, 1, 1e-12);
   assertNear(fit.amplitudes.z, 0, 1e-12);
+  assertNear(fit.fitResidual, 0, 1e-12);
+  assert.equal(fit.phaseLagDefined, false);
 });
 
 test("polarization fitter classifies equal quadrature amplitudes as circular", () => {
@@ -405,7 +505,9 @@ test("polarization fitter classifies equal quadrature amplitudes as circular", (
   assertNear(fit.amplitudes.y, 1, 1e-12);
   assertNear(fit.amplitudes.z, 1, 1e-12);
   assertNear(fit.phaseLag, -Math.PI / 2, 1e-12);
-  assertNear(fit.analyzerPassTarget, 0.5, 1e-12);
+  assertNear(fit.fitResidual, 0, 1e-12);
+  assert.equal(fit.phaseLagDefined, true);
+  assertNear(fit.analyzerFractionTarget, 0.5, 1e-12);
 });
 
 test("polarization fitter classifies unequal quadrature amplitudes as elliptical", () => {
@@ -416,9 +518,10 @@ test("polarization fitter classifies unequal quadrature amplitudes as elliptical
   assert.equal(fit.classification, "elliptical");
   assertNear(fit.amplitudes.y, 1, 1e-12);
   assertNear(fit.amplitudes.z, 0.5, 1e-12);
+  assertNear(fit.fitResidual, 0, 1e-12);
 });
 
-test("derived branch-sum analyzer pass and reject vectors reconstruct the current field", () => {
+test("derived branch-sum polarization trace uses the fitted current field", () => {
   const state = createDefaultPhotonState();
   state.polarization.analyzerAngleDeg = 17;
   const trace = buildPhotonDerivedPolarizationTrace(state, 0.5, 48);
@@ -427,8 +530,33 @@ test("derived branch-sum analyzer pass and reject vectors reconstruct the curren
   assert.ok(["weak", "linear", "right_circular", "left_circular", "elliptical"].includes(
     trace.classification
   ));
-  assertNear(trace.pass.ey + trace.reject.ey, trace.current.ey, 1e-12);
-  assertNear(trace.pass.ez + trace.reject.ez, trace.current.ez, 1e-12);
+  assertNear(trace.current.ey, trace.fittedCurrent.ey, 1e-12);
+  assertNear(trace.current.ez, trace.fittedCurrent.ez, 1e-12);
+});
+
+test("derived polarization ellipse fit stays stable while the current point advances", () => {
+  const state = createDefaultPhotonState();
+  state.polarization.analyzerAngleDeg = 17;
+  const first = buildPhotonDerivedPolarizationTrace(state, 0.5, 48);
+  const second = buildPhotonDerivedPolarizationTrace(state, 1.25, 48);
+
+  assertNear(first.scale, second.scale, 1e-12);
+  assertNear(first.amplitudes.y, second.amplitudes.y, 1e-12);
+  assertNear(first.amplitudes.z, second.amplitudes.z, 1e-12);
+  assertNear(first.samples[12].ey, second.samples[12].ey, 1e-12);
+  assertNear(first.samples[12].ez, second.samples[12].ez, 1e-12);
+  assert.notEqual(first.currentProgress.toFixed(6), second.currentProgress.toFixed(6));
+});
+
+test("photon animation keeps swarm time continuous while plot time wraps", () => {
+  const state = createDefaultPhotonState();
+  const runDuration = getPhotonRunDuration(state);
+  const modelTime = advancePhotonModelTime(0, runDuration + 0.25, 1);
+  const times = getPhotonRuntimeTimes(state, modelTime);
+
+  assert.ok(times.modelTime > runDuration);
+  assertNear(times.modelTime, runDuration + 0.25, 1e-12);
+  assertNear(times.displayTime, 0.25, 1e-12);
 });
 
 test("spacebar playback shortcut ignores editable controls", () => {

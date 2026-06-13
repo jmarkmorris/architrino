@@ -346,7 +346,6 @@ export function computePhotonDelayedEmissionField(state, observationTime) {
   const unresolvedSourceCount = rootSets.filter((rootSet) => rootSet.roots.length === 0).length;
   const unstableSourceCount = contributions.filter(
     (contribution) =>
-      contribution.sourceSpeedRatio > 1 ||
       contribution.delaySolveGap > 0.05 ||
       contribution.jacobianAbs <= JACOBIAN_FLOOR
   ).length;
@@ -382,7 +381,7 @@ export function computePhotonObserverField(state, timeSeconds) {
   const analyzerZ = Math.sin(analyzerAngle);
   const projection = ey * analyzerY + ez * analyzerZ;
   const fieldNormSquared = ey * ey + ez * ez;
-  const passMeasure = projection * projection / (fieldNormSquared + EPSILON);
+  const analyzerFraction = projection * projection / (fieldNormSquared + EPSILON);
   return {
     timeSeconds,
     referenceFrequency,
@@ -407,7 +406,7 @@ export function computePhotonObserverField(state, timeSeconds) {
       y: analyzerY,
       z: analyzerZ,
       projection,
-      passMeasure,
+      fraction: analyzerFraction,
     },
   };
 }
@@ -453,6 +452,32 @@ function evaluatePhotonFittedComponent(component, phase) {
   );
 }
 
+function computePhotonPolarizationFitResidual(samples, yFit, zFit) {
+  const safeSamples = Array.isArray(samples) ? samples : [];
+  if (safeSamples.length === 0) {
+    return 0;
+  }
+  const totals = safeSamples.reduce(
+    (sum, sample) => {
+      const phase = Number.isFinite(sample.phase)
+        ? sample.phase
+        : TWO_PI * (Number(sample.progress) || 0);
+      const rawY = Number(sample.ey) || 0;
+      const rawZ = Number(sample.ez) || 0;
+      const fittedY = evaluatePhotonFittedComponent(yFit, phase);
+      const fittedZ = evaluatePhotonFittedComponent(zFit, phase);
+      const errorY = rawY - fittedY;
+      const errorZ = rawZ - fittedZ;
+      return {
+        errorPower: sum.errorPower + errorY * errorY + errorZ * errorZ,
+        signalPower: sum.signalPower + rawY * rawY + rawZ * rawZ,
+      };
+    },
+    { errorPower: 0, signalPower: 0 }
+  );
+  return Math.sqrt(totals.errorPower / Math.max(EPSILON, totals.signalPower));
+}
+
 function classifyPhotonPolarization(stokes, normalizedStokes, amplitudeY, amplitudeZ) {
   const maxAmplitude = Math.max(amplitudeY, amplitudeZ);
   if (stokes.s0 <= EPSILON || maxAmplitude <= EPSILON) {
@@ -487,6 +512,7 @@ export function fitPhotonPolarizationFromSamples(samples, analyzerAngleRadians =
   const safeSamples = Array.isArray(samples) ? samples : [];
   const yFit = fitPhotonSignalComponent(safeSamples, "ey");
   const zFit = fitPhotonSignalComponent(safeSamples, "ez");
+  const fitResidual = computePhotonPolarizationFitResidual(safeSamples, yFit, zFit);
   const amplitudeY = yFit.amplitude;
   const amplitudeZ = zFit.amplitude;
   const phaseLag = wrapPhotonSignedRadians(zFit.phase - yFit.phase);
@@ -518,7 +544,7 @@ export function fitPhotonPolarizationFromSamples(samples, analyzerAngleRadians =
     analyzerY * analyzerY * amplitudeY * amplitudeY +
     analyzerZ * analyzerZ * amplitudeZ * amplitudeZ +
     2 * analyzerY * analyzerZ * amplitudeY * amplitudeZ * Math.cos(phaseLag);
-  const analyzerPassTarget = clampPhotonUnitInterval(analyzerNumerator / normalizer);
+  const analyzerFractionTarget = clampPhotonUnitInterval(analyzerNumerator / normalizer);
   const orientationAngle = 0.5 * Math.atan2(s2, s1);
 
   return {
@@ -536,6 +562,7 @@ export function fitPhotonPolarizationFromSamples(samples, analyzerAngleRadians =
     orientationAngle,
     orientationAngleDeg: ((radiansToPhotonDegrees(orientationAngle) % 180) + 180) % 180,
     ellipticity: s3 / normalizer,
+    fitResidual,
     phaseLagDefined,
     stokes,
     normalizedStokes,
@@ -550,7 +577,7 @@ export function fitPhotonPolarizationFromSamples(samples, analyzerAngleRadians =
       y: analyzerY,
       z: analyzerZ,
     },
-    analyzerPassTarget,
+    analyzerFractionTarget,
   };
 }
 
@@ -562,14 +589,17 @@ export function buildPhotonDerivedPolarizationTrace(
   const referenceFrequency = getPhotonReferenceFrequency(state);
   const cycleDuration = 1 / referenceFrequency;
   const currentTime = Number.isFinite(timeSeconds) ? timeSeconds : 0;
-  const cycleStart = currentTime - cycleDuration;
+  const fitCycleStart = getPhotonMiddleCycleBounds(state).start;
+  const currentProgress =
+    ((((currentTime - fitCycleStart) / cycleDuration) % 1) + 1) % 1;
+  const currentPhase = TWO_PI * currentProgress;
   const count = Math.max(24, Math.round(sampleCount));
   const rawSamples = [];
 
   for (let index = 0; index < count; index += 1) {
     const progress = index / count;
     const phase = TWO_PI * progress;
-    const t = cycleStart + progress * cycleDuration;
+    const t = fitCycleStart + progress * cycleDuration;
     const field = computePhotonObserverField(state, t);
     rawSamples.push({
       t,
@@ -595,55 +625,53 @@ export function buildPhotonDerivedPolarizationTrace(
   }
 
   const currentField = computePhotonObserverField(state, currentTime);
-  const current = {
+  const rawCurrent = {
     ey: currentField.electric.y,
     ez: currentField.electric.z,
   };
+  const fittedCurrent = {
+    progress: currentProgress,
+    phase: currentPhase,
+    ey: evaluatePhotonFittedComponent(fit.components.y, currentPhase),
+    ez: evaluatePhotonFittedComponent(fit.components.z, currentPhase),
+  };
+  const current = fittedCurrent;
   const projection = current.ey * fit.analyzer.y + current.ez * fit.analyzer.z;
-  const pass = {
-    ey: projection * fit.analyzer.y,
-    ez: projection * fit.analyzer.z,
-  };
-  const reject = {
-    ey: current.ey - pass.ey,
-    ez: current.ez - pass.ez,
-  };
   const scale = Math.max(
     1e-9,
     ...samples.flatMap((sample) => [Math.abs(sample.ey), Math.abs(sample.ez)]),
-    ...rawSamples.flatMap((sample) => [Math.abs(sample.ey), Math.abs(sample.ez)]),
-    Math.abs(current.ey),
-    Math.abs(current.ez),
-    Math.abs(pass.ey),
-    Math.abs(pass.ez),
-    Math.abs(reject.ey),
-    Math.abs(reject.ez)
+    ...rawSamples.flatMap((sample) => [Math.abs(sample.ey), Math.abs(sample.ez)])
   );
 
   return {
     ...fit,
     referenceFrequency,
     cycleDuration,
+    fitCycleStart,
     rawSamples,
+    rawCurrent,
     samples,
+    currentProgress,
+    currentPhase,
     current,
-    fittedCurrent: samples.at(-1) ?? { ey: 0, ez: 0 },
+    fittedCurrent,
     projection,
-    pass,
-    reject,
     scale,
   };
 }
 
-export function computePhotonAverageAnalyzerPass(state, sampleCount = DEFAULT_ANALYZER_AVERAGE_SAMPLES) {
+export function computePhotonAverageAnalyzerFraction(
+  state,
+  sampleCount = DEFAULT_ANALYZER_AVERAGE_SAMPLES
+) {
   const runDuration = getPhotonRunDuration(state);
   const count = Math.max(8, Math.round(sampleCount));
-  let passSum = 0;
+  let fractionSum = 0;
   for (let index = 0; index < count; index += 1) {
     const t = (index / count) * runDuration;
-    passSum += computePhotonObserverField(state, t).analyzer.passMeasure;
+    fractionSum += computePhotonObserverField(state, t).analyzer.fraction;
   }
-  return passSum / count;
+  return fractionSum / count;
 }
 
 export function computePhotonFormulaSummary(state, timeSeconds) {
@@ -651,8 +679,9 @@ export function computePhotonFormulaSummary(state, timeSeconds) {
   const field = computePhotonObserverField(state, wrappedTime);
   const polarization = buildPhotonDerivedPolarizationTrace(state, wrappedTime);
   const stokes = polarization.stokes;
-  const averagePass = computePhotonAverageAnalyzerPass(state);
-  const analyzerTarget = polarization.analyzerPassTarget;
+  const averageAnalyzerFraction = computePhotonAverageAnalyzerFraction(state);
+  const analyzerTarget = polarization.analyzerFractionTarget;
+  const analyzerResidual = averageAnalyzerFraction - analyzerTarget;
   return {
     wrappedTime,
     runDuration: getPhotonRunDuration(state),
@@ -660,9 +689,10 @@ export function computePhotonFormulaSummary(state, timeSeconds) {
     field,
     polarization,
     stokes,
-    averagePass,
+    averageAnalyzerFraction,
     analyzerTarget,
-    fitResidual: averagePass - analyzerTarget,
+    analyzerResidual,
+    fitResidual: polarization.fitResidual,
   };
 }
 
@@ -684,7 +714,7 @@ export function buildPhotonPlotSamples(state, timeSeconds, sampleCount = 360) {
       progress: runDuration > 0 ? t / runDuration : 0,
       ey: field.electric.y,
       ez: field.electric.z,
-      passMeasure: field.analyzer.passMeasure,
+      analyzerFraction: field.analyzer.fraction,
     });
   }
   return {

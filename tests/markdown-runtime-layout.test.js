@@ -1,7 +1,42 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { readdirSync, readFileSync } from "node:fs";
+import { join, relative } from "node:path";
+import { fileURLToPath } from "node:url";
 import { createMarkdownRuntime } from "../src/runtime/MarkdownRuntime.js";
 import { createScenePanelUiRuntime } from "../src/runtime/ScenePanelUiRuntime.js";
+
+const repoRoot = fileURLToPath(new URL("../", import.meta.url));
+const ignoredHtmlScanDirectories = new Set([".git", "node_modules"]);
+const requiredKatexAssetNames = [
+  "katex.min.css",
+  "katex.min.js",
+  "auto-render.min.js",
+];
+
+function collectHtmlFiles(directory = repoRoot) {
+  const htmlFiles = [];
+  for (const entry of readdirSync(directory, { withFileTypes: true })) {
+    if (entry.isDirectory()) {
+      if (!ignoredHtmlScanDirectories.has(entry.name)) {
+        htmlFiles.push(...collectHtmlFiles(join(directory, entry.name)));
+      }
+      continue;
+    }
+    if (entry.isFile() && entry.name.endsWith(".html")) {
+      htmlFiles.push(join(directory, entry.name));
+    }
+  }
+  return htmlFiles;
+}
+
+function usesMarkdownDocumentSurface(html) {
+  return (
+    html.includes("vendor/markdown-it/markdown-it.min.js") ||
+    /\bid=["'](?:photon-)?markdown-body["']/.test(html) ||
+    /\bid=["'](?:photon-)?markdown-content["']/.test(html)
+  );
+}
 
 function createClassList() {
   const classes = new Set();
@@ -107,6 +142,26 @@ function createFakeDocument() {
   };
 }
 
+test("markdown document HTML entrypoints load KaTeX auto-render assets", () => {
+  const markdownEntrypoints = collectHtmlFiles()
+    .map((file) => {
+      const html = readFileSync(file, "utf8");
+      return {
+        file: relative(repoRoot, file),
+        html,
+      };
+    })
+    .filter(({ html }) => usesMarkdownDocumentSurface(html));
+
+  const missingAssets = markdownEntrypoints.flatMap(({ file, html }) =>
+    requiredKatexAssetNames
+      .filter((assetName) => !html.includes(assetName))
+      .map((assetName) => `${file}: missing ${assetName}`)
+  );
+
+  assert.deepEqual(missingAssets, []);
+});
+
 test("one-column markdown documents can toggle to a two-column layout", async (t) => {
   const originalFetch = globalThis.fetch;
   const originalWindow = globalThis.window;
@@ -153,6 +208,67 @@ test("one-column markdown documents can toggle to a two-column layout", async (t
   assert.equal(markdownPanel.classList.contains("multi-columns"), true);
   assert.equal(markdownPanel.style.props.get("--markdown-column-count"), "2");
   assert.equal(markdownLayoutToggle.attributes.get("aria-label"), "Switch to single column");
+});
+
+test("markdown math typesetting retries when KaTeX auto-render loads late", async (t) => {
+  const originalFetch = globalThis.fetch;
+  const originalWindow = globalThis.window;
+  const retryCallbacks = [];
+  const renderCalls = [];
+
+  globalThis.fetch = async () => ({
+    ok: true,
+    async text() {
+      return "Inline $x$.";
+    },
+  });
+  globalThis.window = {
+    setTimeout(callback) {
+      retryCallbacks.push(callback);
+      return retryCallbacks.length;
+    },
+    clearTimeout() {},
+  };
+
+  t.after(() => {
+    globalThis.fetch = originalFetch;
+    globalThis.window = originalWindow;
+  });
+
+  const markdownBody = createFakeElement();
+  const runtime = createMarkdownRuntime({
+    markdownPanel: createFakeElement(),
+    markdownBody,
+    markdownLayoutToggle: createFakeElement(),
+    markdownRenderer: {
+      render(markdown) {
+        return `<p>${markdown}</p>`;
+      },
+    },
+    markdownCache: new Map(),
+    markdownSectionCache: new Map(),
+    extractMarkdownSection: () => null,
+    appendCacheBust: (path) => path,
+  });
+
+  await runtime.showMarkdownPanel({
+    name: "Test",
+    markdownPath: "content/markdown/test.md",
+    markdownColumns: 1,
+  });
+
+  assert.equal(retryCallbacks.length, 1);
+  assert.match(markdownBody.innerHTML, /\$x\$/);
+
+  globalThis.window.renderMathInElement = (element, options) => {
+    renderCalls.push(options);
+    element.innerHTML = element.innerHTML.replace("$x$", '<span class="katex">x</span>');
+  };
+
+  retryCallbacks.shift()();
+
+  assert.equal(renderCalls.length, 1);
+  assert.match(markdownBody.innerHTML, /class="katex"/);
 });
 
 test("open markdown panels can invoke the browser PDF save flow", async (t) => {

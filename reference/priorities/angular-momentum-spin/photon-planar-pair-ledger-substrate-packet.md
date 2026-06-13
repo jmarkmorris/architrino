@@ -99,6 +99,42 @@ $$
 
 while the surviving photon branch must still produce a nonzero transverse oscillatory ledger. Static cancellation and oscillatory survival are therefore different rows, not the same assertion.
 
+## Integer Phase-Lock And Analyzer-Arrival Hypothesis
+
+Priority-only hypothesis. A viable planar-pair photon branch may require the `I`, `M`, and `O` binaries to close on a shared commensurate phase ledger before their branch sums can supply a clean transverse polarization state. The candidate frequency condition is
+
+$$
+f_I:f_M:f_O=n_I:n_M:n_O,
+\qquad
+n_I,n_M,n_O\in\mathbb Z_{>0}.
+$$
+
+This is not a theorem row by itself. It is a substrate mechanism candidate for making $\Theta_\gamma$ reproducible across the leading and trailing planar ledgers.
+
+For each layer $k\in\{I,M,O\}$, the leading/trailing phase relation must also compensate the propagation delay across the pair spacing $d$. In the first fixed-$c_f$ app model, the candidate analyzer-arrival phase mismatch is
+
+$$
+\Delta\Phi_k
+=
+2\pi f_k\frac{d}{c_f}
++
+\phi_{k,\mathrm{trailing}}
+-
+\phi_{k,\mathrm{leading}}.
+$$
+
+A later local-$c$ branch should replace $c_f$ with the declared photon-channel speed or local propagation record from Gate A. In either convention, a clean branch must show that the relevant $\Delta\Phi_k$ rows close modulo $2\pi$ in the same event window used for $\mathbf a_{\perp}^{\mathrm{sub}}$, $\mathbf J_{\gamma}^{\mathrm{sub}}$, and $\mathcal W_\gamma$.
+
+The polarization interpretation of this hypothesis is:
+
+| Candidate | Phase-lock meaning | Observer-level target |
+| --- | --- | --- |
+| Linear | The branch-sum transverse ledger collapses to one stable analyzer axis. | The fitted $E_u/E_v$ or $E_y/E_z$ trace is a line and the analyzer response has a preferred axis. |
+| Circular | Two transverse components survive with equal amplitude and relative phase $\pm90^\circ$. | The fitted transverse trace is a circle and an ideal linear analyzer gives equal pass fraction for every analyzer angle. |
+| Elliptical | Two transverse components survive with stable unequal amplitudes and/or a stable non-special phase lag. | The fitted transverse trace is an ellipse, with linear and circular behavior recovered as limiting cases. |
+
+The proof burden is to compute these cases from the delayed branch sums of the twelve architrinos and the material analyzer handoff, not by inserting polarization vectors, analyzer pass rules, or source-side polarization parameters by hand. A good visual fit in the photon app can nominate a parameter regime, but this packet can consume it only after the branch supplies the corresponding phase-lock, transverse-survival, longitudinal-leakage, helicity, and event-ledger rows.
+
 ## Static Exposure And Transverse Survival
 
 Define the static exposure residual

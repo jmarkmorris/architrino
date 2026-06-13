@@ -21,9 +21,12 @@ const PHOTON_FIELD_PLOT_MIN_SAMPLE_COUNT = 360;
 const PHOTON_FIELD_PLOT_MAX_SAMPLE_COUNT = 900;
 const PHOTON_FIELD_PLOT_SAMPLES_PER_CSS_PIXEL = 0.75;
 const PHOTON_FIELD_PLOT_FORWARD_GAP_FRACTION = 0.15;
-const PHOTON_SIDE_VIEW_CHARGE_LANE_OFFSET = 2.2;
-const STAGE_ORIENTATION_NOTE =
-  "Face-on view: the planar swarms are actually perpendicular to the translation line.";
+const PHOTON_FIELD_PLOT_TOP_INSET = 24;
+const PHOTON_FIELD_PLOT_BOTTOM_INSET = 28;
+const PHOTON_FIELD_PANEL_TEXT_FONT = "700 12px Helvetica Neue, Arial, sans-serif";
+const PHOTON_STAGE_TEXT_FONT = "700 12px Helvetica Neue, Arial, sans-serif";
+const PHOTON_FACE_PAIR_TITLE = "Contra-rotating, Offset, Planar Swarms";
+const PHOTON_TRANSLATION_AXIS_COLOR = "rgba(251, 191, 36, 0.92)";
 
 let photonFieldPlotCache = {
   key: "",
@@ -162,6 +165,28 @@ function drawArchitrinoMarker(ctx, x, y, color, radius) {
   ctx.restore();
 }
 
+function drawPhotonFaceAxisMarker(ctx, centerX, centerY) {
+  const radius = 9;
+  ctx.save();
+  ctx.shadowColor = "rgba(251, 191, 36, 0.36)";
+  ctx.shadowBlur = 7;
+  ctx.strokeStyle = PHOTON_TRANSLATION_AXIS_COLOR;
+  ctx.fillStyle = PHOTON_TRANSLATION_AXIS_COLOR;
+  ctx.lineWidth = 1.7;
+  ctx.beginPath();
+  ctx.arc(centerX, centerY, radius, 0, TWO_PI);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(centerX, centerY, 2.5, 0, TWO_PI);
+  ctx.fill();
+  ctx.shadowBlur = 0;
+  ctx.font = PHOTON_STAGE_TEXT_FONT;
+  ctx.textAlign = "left";
+  ctx.textBaseline = "middle";
+  ctx.fillText("x", centerX + radius + 6, centerY);
+  ctx.restore();
+}
+
 function getPhotonLayerRadii(state, { enabledOnly = false } = {}) {
   return PHOTON_LAYER_ORDER.flatMap((layerId) =>
     ["left", "right"].flatMap((swarmId) => {
@@ -178,15 +203,9 @@ function getPhotonMaxLayerRadius(state, { enabledOnly = false } = {}) {
   return radii.length > 0 ? Math.max(...radii) : 0;
 }
 
-function drawSwarm(ctx, state, swarmId, centerX, centerY, scale, timeSeconds, labelY) {
-  const role = state.pair[swarmId].role;
+function drawSwarm(ctx, state, swarmId, centerX, centerY, scale, timeSeconds) {
   const pathsVisible = state.view?.pathsVisible !== false;
   ctx.save();
-  ctx.fillStyle = "rgba(238, 243, 255, 0.82)";
-  ctx.font = "600 12px Helvetica Neue, Arial, sans-serif";
-  ctx.textAlign = "center";
-  ctx.textBaseline = "bottom";
-  ctx.fillText(`${role} ${state.pair[swarmId].direction.toUpperCase()}`, centerX, labelY);
 
   PHOTON_LAYER_ORDER.forEach((layerId) => {
     if (!getPhotonLayerEnabled(state, swarmId, layerId)) {
@@ -225,6 +244,17 @@ function drawSwarm(ctx, state, swarmId, centerX, centerY, scale, timeSeconds, la
     );
   });
 
+  drawPhotonFaceAxisMarker(ctx, centerX, centerY);
+  ctx.restore();
+}
+
+function drawPhotonFacePairTitle(ctx, layout) {
+  ctx.save();
+  ctx.fillStyle = "rgba(238, 243, 255, 0.82)";
+  ctx.font = PHOTON_STAGE_TEXT_FONT;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "bottom";
+  ctx.fillText(PHOTON_FACE_PAIR_TITLE, (layout.faceLeftX + layout.faceRightX) / 2, layout.topLabelY);
   ctx.restore();
 }
 
@@ -236,29 +266,11 @@ function drawSideSwarmTrace(ctx, state, swarmId, x, centerY, halfHeight, scale, 
   const bottom = centerY + halfHeight;
   ctx.save();
   ctx.lineCap = "round";
-  ctx.shadowBlur = 18;
-  ctx.shadowColor = "rgba(128, 0, 128, 0.68)";
-  ctx.strokeStyle = "rgba(128, 0, 128, 0.34)";
-  ctx.lineWidth = 10;
+  ctx.strokeStyle = "rgba(129, 0, 188, 0.88)";
+  ctx.lineWidth = 4;
   ctx.beginPath();
   ctx.moveTo(x, top);
   ctx.lineTo(x, bottom);
-  ctx.stroke();
-
-  ctx.shadowBlur = 14;
-  ctx.shadowColor = PHOTON_CHARGE_COLORS.positrino;
-  ctx.strokeStyle = "rgba(255, 0, 0, 0.42)";
-  ctx.lineWidth = 4;
-  ctx.beginPath();
-  ctx.moveTo(x - PHOTON_SIDE_VIEW_CHARGE_LANE_OFFSET, top);
-  ctx.lineTo(x - PHOTON_SIDE_VIEW_CHARGE_LANE_OFFSET, bottom);
-  ctx.stroke();
-
-  ctx.shadowColor = PHOTON_CHARGE_COLORS.electrino;
-  ctx.strokeStyle = "rgba(0, 0, 255, 0.46)";
-  ctx.beginPath();
-  ctx.moveTo(x + PHOTON_SIDE_VIEW_CHARGE_LANE_OFFSET, top);
-  ctx.lineTo(x + PHOTON_SIDE_VIEW_CHARGE_LANE_OFFSET, bottom);
   ctx.stroke();
 
   PHOTON_LAYER_ORDER.forEach((layerId) => {
@@ -269,15 +281,10 @@ function drawSideSwarmTrace(ctx, state, swarmId, x, centerY, halfHeight, scale, 
     const radius = layer.radius * scale;
     ["positrino", "electrino"].forEach((chargeType) => {
       const angle = getPhotonLayerAngleRadians(state, swarmId, layerId, timeSeconds, chargeType);
-      const markerX =
-        x +
-        (chargeType === "positrino"
-          ? -PHOTON_SIDE_VIEW_CHARGE_LANE_OFFSET
-          : PHOTON_SIDE_VIEW_CHARGE_LANE_OFFSET);
       const markerY = centerY + Math.sin(angle) * radius;
       drawArchitrinoMarker(
         ctx,
-        markerX,
+        x,
         markerY,
         PHOTON_CHARGE_COLORS[chargeType],
         ARCHITRINO_MARKER_RADIUS * 0.82
@@ -287,10 +294,61 @@ function drawSideSwarmTrace(ctx, state, swarmId, x, centerY, halfHeight, scale, 
 
   ctx.shadowBlur = 0;
   ctx.fillStyle = "rgba(226, 232, 240, 0.74)";
-  ctx.font = "600 10px Helvetica Neue, Arial, sans-serif";
+  ctx.font = PHOTON_STAGE_TEXT_FONT;
   ctx.textAlign = "center";
   ctx.textBaseline = "top";
   ctx.fillText(state.pair[swarmId].role, x, labelY);
+  ctx.restore();
+}
+
+function drawPhotonSideDeltaMarker(ctx, layout) {
+  const traceTopY = layout.centerY - layout.sideHalfHeight;
+  const y = Math.max(
+    layout.topLabelY + 26,
+    Math.min(traceTopY - 14, layout.topLabelY + 42)
+  );
+  if (!Number.isFinite(y) || y >= traceTopY - 6) {
+    return;
+  }
+
+  const centerX = layout.sideCenterX;
+  const label = "Δx";
+  const arrowHead = 7;
+
+  ctx.save();
+  ctx.strokeStyle = "rgba(245, 247, 255, 0.92)";
+  ctx.fillStyle = "rgba(245, 247, 255, 0.92)";
+  ctx.font = PHOTON_STAGE_TEXT_FONT;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  const labelGap = Math.max(14, ctx.measureText(label).width / 2 + 8);
+  const leftInnerX = Math.min(centerX - labelGap, layout.sideRightX - arrowHead * 2);
+  const rightInnerX = Math.max(centerX + labelGap, layout.sideLeftX + arrowHead * 2);
+
+  ctx.lineWidth = 1.8;
+  ctx.lineCap = "square";
+  ctx.beginPath();
+  ctx.moveTo(layout.sideLeftX, y);
+  ctx.lineTo(leftInnerX, y);
+  ctx.moveTo(rightInnerX, y);
+  ctx.lineTo(layout.sideRightX, y);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(layout.sideLeftX, y);
+  ctx.lineTo(layout.sideLeftX + arrowHead, y - 4.5);
+  ctx.lineTo(layout.sideLeftX + arrowHead, y + 4.5);
+  ctx.closePath();
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.moveTo(layout.sideRightX, y);
+  ctx.lineTo(layout.sideRightX - arrowHead, y - 4.5);
+  ctx.lineTo(layout.sideRightX - arrowHead, y + 4.5);
+  ctx.closePath();
+  ctx.fill();
+
+  ctx.fillText(label, centerX, y);
   ctx.restore();
 }
 
@@ -301,79 +359,13 @@ function drawPhotonSideView(ctx, state, layout, timeSeconds) {
   }
   ctx.save();
   ctx.fillStyle = "rgba(238, 243, 255, 0.78)";
-  ctx.font = "700 12px Helvetica Neue, Arial, sans-serif";
+  ctx.font = PHOTON_STAGE_TEXT_FONT;
   ctx.textAlign = "center";
   ctx.textBaseline = "bottom";
   ctx.fillText("Side View", sideCenterX, topLabelY);
+  drawPhotonSideDeltaMarker(ctx, layout);
   drawSideSwarmTrace(ctx, state, "left", sideLeftX, centerY, sideHalfHeight, scale, timeSeconds, bottomLabelY);
   drawSideSwarmTrace(ctx, state, "right", sideRightX, centerY, sideHalfHeight, scale, timeSeconds, bottomLabelY);
-  ctx.restore();
-}
-
-function wrapCanvasText(ctx, text, maxWidth) {
-  const words = text.split(" ");
-  const lines = [];
-  let line = "";
-  words.forEach((word) => {
-    const candidate = line ? `${line} ${word}` : word;
-    if (ctx.measureText(candidate).width <= maxWidth || !line) {
-      line = candidate;
-      return;
-    }
-    lines.push(line);
-    line = word;
-  });
-  if (line) {
-    lines.push(line);
-  }
-  return lines;
-}
-
-function drawStageOrientationNote(ctx, layout) {
-  const noteLeft = Math.max(16, layout.faceLeftX - layout.scale * 1.35);
-  const noteRight = Math.min(layout.sideLeftX - 30, layout.faceRightX + layout.scale * 1.35);
-  const maxWidth = Math.max(220, noteRight - noteLeft);
-  ctx.save();
-  ctx.font = "600 11px Helvetica Neue, Arial, sans-serif";
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  const lines = wrapCanvasText(ctx, STAGE_ORIENTATION_NOTE, maxWidth).slice(0, 2);
-  const lineHeight = 14;
-  const boxWidth = Math.min(
-    maxWidth + 20,
-    Math.max(...lines.map((line) => ctx.measureText(line).width), 120) + 20
-  );
-  const boxHeight = lines.length * lineHeight + 12;
-  const noteCenterX = (layout.faceLeftX + layout.faceRightX) / 2;
-  const x = Math.min(
-    Math.max(noteCenterX, noteLeft + boxWidth / 2),
-    noteRight - boxWidth / 2
-  );
-  const y = layout.bottomLabelY + boxHeight / 2 - 5;
-  ctx.fillStyle = "rgba(2, 6, 23, 0.58)";
-  ctx.strokeStyle = "rgba(148, 163, 184, 0.18)";
-  ctx.lineWidth = 1;
-  const radius = 6;
-  const left = x - boxWidth / 2;
-  const top = y - boxHeight / 2;
-  ctx.beginPath();
-  ctx.moveTo(left + radius, top);
-  ctx.lineTo(left + boxWidth - radius, top);
-  ctx.quadraticCurveTo(left + boxWidth, top, left + boxWidth, top + radius);
-  ctx.lineTo(left + boxWidth, top + boxHeight - radius);
-  ctx.quadraticCurveTo(left + boxWidth, top + boxHeight, left + boxWidth - radius, top + boxHeight);
-  ctx.lineTo(left + radius, top + boxHeight);
-  ctx.quadraticCurveTo(left, top + boxHeight, left, top + boxHeight - radius);
-  ctx.lineTo(left, top + radius);
-  ctx.quadraticCurveTo(left, top, left + radius, top);
-  ctx.closePath();
-  ctx.fill();
-  ctx.stroke();
-  ctx.fillStyle = "rgba(226, 232, 240, 0.78)";
-  const firstLineY = y - ((lines.length - 1) * lineHeight) / 2;
-  lines.forEach((line, index) => {
-    ctx.fillText(line, x, firstLineY + index * lineHeight);
-  });
   ctx.restore();
 }
 
@@ -462,27 +454,26 @@ export function drawPhotonSwarmStage(canvas, state, timeSeconds, options = {}) {
   ctx.lineTo(layout.translationArrowBaseX, layout.centerY + 6);
   ctx.closePath();
   ctx.fill();
-  ctx.fillStyle = "rgba(251, 191, 36, 0.92)";
-  ctx.font = "700 13px Helvetica Neue, Arial, sans-serif";
+  ctx.fillStyle = PHOTON_TRANSLATION_AXIS_COLOR;
+  ctx.font = PHOTON_STAGE_TEXT_FONT;
   ctx.textAlign = "center";
   ctx.textBaseline = "bottom";
-  ctx.fillText("x", Math.min(cssWidth - 18, layout.translationAxisEndX + 10), layout.centerY - 8);
-  ctx.strokeStyle = "rgba(238, 243, 255, 0.96)";
-  ctx.fillStyle = "rgba(238, 243, 255, 0.96)";
-  ctx.lineWidth = 2;
+  const translationAxisLabelY = layout.centerY - 8;
+  ctx.fillText("x", Math.min(cssWidth - 18, layout.translationAxisEndX + 10), translationAxisLabelY);
+  ctx.strokeStyle = PHOTON_TRANSLATION_AXIS_COLOR;
+  ctx.lineWidth = 1.8;
   ctx.beginPath();
-  ctx.moveTo(layout.translationOriginX, layout.centerY - 12);
-  ctx.lineTo(layout.translationOriginX, layout.centerY + 12);
+  ctx.moveTo(layout.translationOriginX, layout.centerY - 8);
+  ctx.lineTo(layout.translationOriginX, layout.centerY + 8);
   ctx.stroke();
-  ctx.font = "700 13px Helvetica Neue, Arial, sans-serif";
-  ctx.textBaseline = "bottom";
-  ctx.fillText("0", layout.translationOriginX + 8, layout.centerY - 14);
+  ctx.font = PHOTON_STAGE_TEXT_FONT;
+  ctx.fillText("0", layout.translationOriginX, translationAxisLabelY);
   ctx.restore();
 
-  drawSwarm(ctx, state, "left", layout.faceLeftX, layout.centerY, layout.scale, timeSeconds, layout.topLabelY);
-  drawSwarm(ctx, state, "right", layout.faceRightX, layout.centerY, layout.scale, timeSeconds, layout.topLabelY);
+  drawPhotonFacePairTitle(ctx, layout);
+  drawSwarm(ctx, state, "left", layout.faceLeftX, layout.centerY, layout.scale, timeSeconds);
+  drawSwarm(ctx, state, "right", layout.faceRightX, layout.centerY, layout.scale, timeSeconds);
   drawPhotonSideView(ctx, state, layout, timeSeconds);
-  drawStageOrientationNote(ctx, layout);
 }
 
 function normalizePhotonPlotProgress(progress) {
@@ -507,9 +498,9 @@ export function isPhotonPlotSampleInForwardGap(
 }
 
 function drawPlotCurve(ctx, samples, width, height, key, color, currentProgress, amplitudeScale = 1) {
-  const top = 24;
-  const bottom = height - 28;
-  const mid = (top + bottom) / 2;
+  const top = PHOTON_FIELD_PLOT_TOP_INSET;
+  const bottom = height - PHOTON_FIELD_PLOT_BOTTOM_INSET;
+  const mid = getPhotonFieldAxisY(height);
   const amplitude = (bottom - top) * 0.42;
   const scale = Math.max(1e-9, amplitudeScale);
   ctx.save();
@@ -561,6 +552,10 @@ function formatPhotonPlotEmax(value) {
   }
   const digits = number >= 10 ? 1 : 3;
   return number.toFixed(digits).replace(/0+$/, "").replace(/\.$/, "");
+}
+
+function getPhotonFieldAxisY(cssHeight) {
+  return (PHOTON_FIELD_PLOT_TOP_INSET + (cssHeight - PHOTON_FIELD_PLOT_BOTTOM_INSET)) / 2;
 }
 
 export function getPhotonFieldPlotSampleCount(cssWidth) {
@@ -620,21 +615,19 @@ function drawPhotonPolarizationAxes(ctx, centerX, centerY, radius) {
   ctx.arc(centerX, centerY, radius, 0, TWO_PI);
   ctx.stroke();
   ctx.fillStyle = "rgba(238, 243, 255, 0.72)";
-  ctx.font = "700 10px Helvetica Neue, Arial, sans-serif";
+  ctx.font = PHOTON_FIELD_PANEL_TEXT_FONT;
   ctx.fillText("E_y", centerX + radius - 20, centerY - 7);
   ctx.fillText("E_z", centerX + 7, centerY - radius + 12);
   ctx.restore();
 }
 
-function drawPhotonPolarizationAnalyzer(ctx, trace, centerX, centerY, radius, scale) {
+function drawPhotonPolarizationAnalyzerAxis(ctx, trace, centerX, centerY, radius, scale) {
   const axis = {
     ey: trace.analyzer.y * trace.scale,
     ez: trace.analyzer.z * trace.scale,
   };
   const axisStart = mapPhotonPolarizationPoint({ ey: -axis.ey, ez: -axis.ez }, centerX, centerY, radius, scale);
   const axisEnd = mapPhotonPolarizationPoint(axis, centerX, centerY, radius, scale);
-  const passEnd = mapPhotonPolarizationPoint(trace.pass, centerX, centerY, radius, scale);
-  const current = mapPhotonPolarizationPoint(trace.current, centerX, centerY, radius, scale);
 
   ctx.save();
   ctx.strokeStyle = "rgba(251, 191, 36, 0.72)";
@@ -645,42 +638,39 @@ function drawPhotonPolarizationAnalyzer(ctx, trace, centerX, centerY, radius, sc
   ctx.lineTo(axisEnd.x, axisEnd.y);
   ctx.stroke();
   ctx.setLineDash([]);
-
-  ctx.strokeStyle = "rgba(251, 191, 36, 0.92)";
-  ctx.lineWidth = 3;
-  ctx.lineCap = "round";
-  ctx.beginPath();
-  ctx.moveTo(centerX, centerY);
-  ctx.lineTo(passEnd.x, passEnd.y);
-  ctx.stroke();
-
-  ctx.strokeStyle = "rgba(244, 114, 182, 0.88)";
-  ctx.lineWidth = 2.2;
-  ctx.setLineDash([4, 4]);
-  ctx.beginPath();
-  ctx.moveTo(passEnd.x, passEnd.y);
-  ctx.lineTo(current.x, current.y);
-  ctx.stroke();
-  ctx.setLineDash([]);
-
   ctx.restore();
 }
 
 function drawPhotonPolarizationTrail(ctx, trace, centerX, centerY, radius, scale) {
+  if (!trace.samples.length) {
+    return;
+  }
+
   ctx.save();
   ctx.lineCap = "round";
   ctx.lineJoin = "round";
-  for (let index = 1; index < trace.samples.length; index += 1) {
-    const previous = mapPhotonPolarizationPoint(trace.samples[index - 1], centerX, centerY, radius, scale);
-    const current = mapPhotonPolarizationPoint(trace.samples[index], centerX, centerY, radius, scale);
-    const progress = trace.samples[index].progress;
-    ctx.strokeStyle = `rgba(125, 211, 252, ${0.14 + progress * 0.62})`;
-    ctx.lineWidth = 1.2 + progress * 1.6;
+
+  const first = mapPhotonPolarizationPoint(trace.samples[0], centerX, centerY, radius, scale);
+  const drawClosedTrailPath = () => {
     ctx.beginPath();
-    ctx.moveTo(previous.x, previous.y);
-    ctx.lineTo(current.x, current.y);
-    ctx.stroke();
-  }
+    ctx.moveTo(first.x, first.y);
+    for (let index = 1; index < trace.samples.length; index += 1) {
+      const current = mapPhotonPolarizationPoint(trace.samples[index], centerX, centerY, radius, scale);
+      ctx.lineTo(current.x, current.y);
+    }
+    ctx.closePath();
+  };
+
+  ctx.strokeStyle = "rgba(125, 211, 252, 0.18)";
+  ctx.lineWidth = 4.2;
+  drawClosedTrailPath();
+  ctx.stroke();
+
+  ctx.strokeStyle = "rgba(125, 211, 252, 0.78)";
+  ctx.lineWidth = 2.1;
+  drawClosedTrailPath();
+  ctx.stroke();
+
   ctx.restore();
 }
 
@@ -724,6 +714,9 @@ function drawPhotonComponentPlot(canvas, state, timeSeconds, options = {}) {
     components.map((component) => component.key),
     currentProgress
   );
+  const plotTop = PHOTON_FIELD_PLOT_TOP_INSET;
+  const plotBottom = cssHeight - PHOTON_FIELD_PLOT_BOTTOM_INSET;
+  const plotMid = getPhotonFieldAxisY(cssHeight);
 
   ctx.save();
   ctx.strokeStyle = "rgba(148, 163, 184, 0.16)";
@@ -731,14 +724,14 @@ function drawPhotonComponentPlot(canvas, state, timeSeconds, options = {}) {
   for (let index = 0; index <= 6; index += 1) {
     const x = (index / 6) * cssWidth;
     ctx.beginPath();
-    ctx.moveTo(x, 0);
-    ctx.lineTo(x, cssHeight);
+    ctx.moveTo(x, plotTop);
+    ctx.lineTo(x, plotBottom);
     ctx.stroke();
   }
   ctx.strokeStyle = "rgba(245, 247, 255, 0.18)";
   ctx.beginPath();
-  ctx.moveTo(0, cssHeight / 2);
-  ctx.lineTo(cssWidth, cssHeight / 2);
+  ctx.moveTo(0, plotMid);
+  ctx.lineTo(cssWidth, plotMid);
   ctx.stroke();
   ctx.restore();
 
@@ -760,10 +753,10 @@ function drawPhotonComponentPlot(canvas, state, timeSeconds, options = {}) {
   ctx.strokeStyle = "rgba(255, 255, 255, 0.72)";
   ctx.lineWidth = 1;
   ctx.beginPath();
-  ctx.moveTo(cursorX, 0);
-  ctx.lineTo(cursorX, cssHeight);
+  ctx.moveTo(cursorX, plotTop);
+  ctx.lineTo(cursorX, plotBottom);
   ctx.stroke();
-  ctx.font = "600 11px Helvetica Neue, Arial, sans-serif";
+  ctx.font = PHOTON_FIELD_PANEL_TEXT_FONT;
   const legendWidth = components.reduce(
     (sum, component) => sum + ctx.measureText(component.label).width + 16,
     0
@@ -775,7 +768,7 @@ function drawPhotonComponentPlot(canvas, state, timeSeconds, options = {}) {
     legendX += ctx.measureText(component.label).width + 16;
   });
   ctx.fillStyle = "rgba(238, 243, 255, 0.6)";
-  ctx.fillText(`Emax ${formatPhotonPlotEmax(amplitudeScale)} E`, 12, cssHeight - 10);
+  ctx.fillText(`Max E = ${formatPhotonPlotEmax(amplitudeScale)}`, 12, cssHeight - 10);
   ctx.restore();
 }
 
@@ -783,8 +776,8 @@ export function drawPhotonElectricFieldPlot(canvas, state, timeSeconds, options 
   drawPhotonComponentPlot(canvas, state, timeSeconds, {
     ...options,
     components: [
-      { key: "ey", label: "E_y", color: "#7dd3fc" },
-      { key: "ez", label: "E_z", color: "#f472b6" },
+      { key: "ey", label: "E_y", color: "#fde68a" },
+      { key: "ez", label: "E_z", color: "#86efac" },
     ],
   });
 }
@@ -802,38 +795,19 @@ export function drawPhotonPolarizationInset(canvas, state, timeSeconds, options 
 
   const trace = buildPhotonDerivedPolarizationTrace(state, timeSeconds);
   const centerX = cssWidth / 2;
-  const centerY = cssHeight / 2 + 8;
+  const centerY = getPhotonFieldAxisY(cssHeight);
   const radius = Math.max(42, Math.min(cssWidth - 40, cssHeight - 62) * 0.48);
 
   drawPhotonPolarizationAxes(ctx, centerX, centerY, radius);
   drawPhotonPolarizationTrail(ctx, trace, centerX, centerY, radius, trace.scale);
-  drawPhotonPolarizationAnalyzer(ctx, trace, centerX, centerY, radius, trace.scale);
+  drawPhotonPolarizationAnalyzerAxis(ctx, trace, centerX, centerY, radius, trace.scale);
   drawPhotonPolarizationCurrentVector(ctx, trace, centerX, centerY, radius, trace.scale);
 
   ctx.save();
   ctx.fillStyle = "rgba(238, 243, 255, 0.58)";
-  ctx.font = "600 10px Helvetica Neue, Arial, sans-serif";
+  ctx.font = PHOTON_FIELD_PANEL_TEXT_FONT;
   ctx.fillText(trace.classificationLabel, 12, 34);
-  ctx.fillText(`lag ${trace.phaseLagDeg.toFixed(1)} deg`, 12, 48);
-  ctx.fillText(`Emax ${trace.scale.toFixed(2)}`, 12, cssHeight - 10);
-  const legendY = cssHeight - 12;
-  const legendX = Math.max(92, cssWidth - 112);
-  ctx.lineWidth = 2;
-  ctx.strokeStyle = "rgba(251, 191, 36, 0.92)";
-  ctx.beginPath();
-  ctx.moveTo(legendX, legendY - 2);
-  ctx.lineTo(legendX + 14, legendY - 2);
-  ctx.stroke();
-  ctx.fillStyle = "rgba(251, 191, 36, 0.92)";
-  ctx.fillText("pass", legendX + 18, legendY + 1);
-  ctx.strokeStyle = "rgba(244, 114, 182, 0.88)";
-  ctx.setLineDash([3, 3]);
-  ctx.beginPath();
-  ctx.moveTo(legendX + 52, legendY - 2);
-  ctx.lineTo(legendX + 66, legendY - 2);
-  ctx.stroke();
-  ctx.setLineDash([]);
-  ctx.fillStyle = "rgba(244, 114, 182, 0.88)";
-  ctx.fillText("reject", legendX + 70, legendY + 1);
+  ctx.fillText(trace.phaseLagDefined ? `lag ${trace.phaseLagDeg.toFixed(1)} deg` : "lag n/a", 12, 50);
+  ctx.fillText(`Max E = ${formatPhotonPlotEmax(trace.scale)}`, 12, cssHeight - 10);
   ctx.restore();
 }
