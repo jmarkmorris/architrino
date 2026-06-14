@@ -33,7 +33,7 @@ The first implementation should use the app name `photon`.
 Required route and source layout:
 
 - route file: `photon.html`;
-- operator-facing app guide: `reference/priorities/photon-app/photon-guide.md`;
+- reader-facing app guide: `content/markdown/aaa/archie/photon-guide.md`;
 - app folder: `src/apps/photon/`;
 - entrypoint: `src/apps/photon/main.js`;
 - runtime module: `src/apps/photon/PhotonRuntime.js`;

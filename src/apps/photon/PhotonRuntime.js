@@ -17,7 +17,7 @@ import {
 const PHOTON_DOCS = {
   guide: {
     name: "Photon Guide",
-    markdownPath: "reference/priorities/photon-app/photon-guide.md",
+    markdownPath: "content/markdown/aaa/archie/photon-guide.md",
     markdownColumns: 1,
   },
   photonClosure: {

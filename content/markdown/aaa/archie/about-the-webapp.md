@@ -18,7 +18,8 @@ This guide should be read alongside:
 - [textbook-file-structure.md](textbook-file-structure.md)
 - [comparative-glossary.md](comparative-glossary.md)
 - [github-presence-and-community.md](github-presence-and-community.md)
-- [ideal-swarm-notes.md](ideal-swarm-notes.md)
+- [ideal-swarm-guide.md](ideal-swarm-guide.md)
+- [photon-guide.md](photon-guide.md)
 - [research-notebook.md](research-notebook.md)
 
 ## What the Webapp Is
@@ -54,6 +55,7 @@ Current examples include:
 
 - image, reaction-diagram, and animation tools for selected assembly examples, with PDG-derived reaction data used only where provenance is clear enough for curated presentation.
 - the Ideal Swarm Lorentz lesson, which links a Noether swarm oblate spheroidal envelope, $\beta$, $\gamma$, length contraction, time dilation, and the normalized energy ledger in one inspection surface.
+- the Photon and Polarization Visualization lesson, which exposes a candidate planar pair, Virtual Observer electric-field reconstruction, and derived polarization diagnostics in one inspection surface.
 - periodic-table and element navigation overlays,
 - other domain-specific scene behaviors where the scene is more than a reading panel.
 

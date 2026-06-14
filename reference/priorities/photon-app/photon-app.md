@@ -19,7 +19,7 @@ The implementation name should be `photon`: use `photon.html` for the route and 
 
 The first prototype now exists at `photon.html`. It implements the dedicated `src/apps/photon/` runtime, 2D side-by-side swarm stage, Ideal Swarm-style markers and trails, a three-cycle Virtual Observer $\mathbf E$ plot based on causal-root branch sums, a transverse polarization inset derived from a one-cycle branch-sum fit, visible controls, formulas, diagnostics, reset, and an in-app Markdown document viewer.
 
-The operator-facing app guide is [photon-guide](photon-guide.md). The photon UI exposes Markdown buttons for the guide, this project packet, and the requirements packet.
+The reader-facing app guide is [Photon Guide](../../../content/markdown/aaa/archie/photon-guide.md). The photon UI exposes Markdown buttons for the guide, [Photon Closure](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md), and [Polarization](../../../content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
 
 ## Objective
 
@@ -39,7 +39,7 @@ The first implementation should include:
 - a lower observer-field panel for branch-weighted external $\mathbf E$ readouts at a configurable Virtual Observer coordinate;
 - a derived polarization visualization;
 - a formula panel containing the fitted branch-sum polarization classification plus analyzer projection readouts needed by the diagnostic;
-- and in-app Markdown access to [photon-guide](photon-guide.md), [photon-app](photon-app.md), and [photon-app-requirements](photon-app-requirements.md).
+- and in-app Markdown access to [Photon Guide](../../../content/markdown/aaa/archie/photon-guide.md), [Photon Closure](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md), and [Polarization](../../../content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
 
 The first implementation should not include:
 

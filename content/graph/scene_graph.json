@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 506,
+      "nodes": 507,
       "edges": 1249,
       "scenes": 327,
       "markdownIndexes": 0,
-      "markdownDocs": 179,
+      "markdownDocs": 180,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2225,9 +2225,9 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/archie/ideal-swarm-notes.md",
+      "id": "content/markdown/aaa/archie/ideal-swarm-guide.md",
       "name": "Ideal Swarm Guide",
-      "path": "content/markdown/aaa/archie/ideal-swarm-notes.md",
+      "path": "content/markdown/aaa/archie/ideal-swarm-guide.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2252,6 +2252,12 @@
       "id": "content/markdown/aaa/archie/navigation-and-controls.md",
       "name": "Navigation & Controls",
       "path": "content/markdown/aaa/archie/navigation-and-controls.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/archie/photon-guide.md",
+      "name": "Photon Guide",
+      "path": "content/markdown/aaa/archie/photon-guide.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -6301,12 +6307,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/archie/ideal-swarm-notes.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/ideal-swarm-guide.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/archie/ideal-swarm-notes.md",
+      "id": "content/markdown/aaa/archie/ideal-swarm-guide.md",
       "name": "Ideal Swarm Guide",
-      "path": "content/markdown/aaa/archie/ideal-swarm-notes.md",
-      "searchTarget": "content/markdown/aaa/archie/ideal-swarm-notes.md",
+      "path": "content/markdown/aaa/archie/ideal-swarm-guide.md",
+      "searchTarget": "content/markdown/aaa/archie/ideal-swarm-guide.md",
       "implicit": false
     },
     {
@@ -6343,6 +6349,15 @@
       "name": "Navigation & Controls",
       "path": "content/markdown/aaa/archie/navigation-and-controls.md",
       "searchTarget": "content/markdown/aaa/archie/navigation-and-controls.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/photon-guide.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/archie/photon-guide.md",
+      "name": "Photon Guide",
+      "path": "content/markdown/aaa/archie/photon-guide.md",
+      "searchTarget": "content/markdown/aaa/archie/photon-guide.md",
       "implicit": false
     },
     {
@@ -12035,7 +12050,7 @@
     },
     {
       "from": "scene:content/scenes/archie/ideal_swarm.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/ideal-swarm-notes.md",
+      "to": "markdown_doc:content/markdown/aaa/archie/ideal-swarm-guide.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/archie/ideal_swarm.json",
       "field": "scene.source.path"

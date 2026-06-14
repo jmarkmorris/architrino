@@ -13,6 +13,7 @@ Entries are maintained in descending date order, with the newest `##` section fi
 Relevant files:
 
 - [Photon and Polarization Visualization](../../../../photon.html)
+- [Photon Guide](photon-guide.md)
 - [Mode Taxonomy](../interactions/mode-taxonomy.md)
 - [Horizon Chirality and Planar Spin](../spacetime/horizon-chirality.md)
 - [Quantum Summary](../quantum/quantum-summary.md)
@@ -26,7 +27,7 @@ The app deliberately does not claim to prove photon closure. It records the geom
 
 The polarization section makes that burden visible. The app fits the branch-sum $E_y(t)$ and $E_z(t)$ over a reference cycle, derives amplitudes, phase lag, Stokes readouts, analyzer fraction, and fit residual, and classifies the observed trace as weak, linear, circular, or elliptical. Those readouts are diagnostic outputs of the branch-sum field, not source-side knobs inserted by hand. That distinction matters because the photon Gate B problem is precisely to recover polarization, helicity, analyzer response, and absence of a free longitudinal mode from the candidate planar-pair ledger.
 
-The supporting corpus chapters state the downstream burden. [Mode Taxonomy](../interactions/mode-taxonomy.md) owns the controlled `planar-mode` language for photon channels and keeps Gate A/Gate B as recovery obligations rather than completed derivations. [Horizon Chirality and Planar Spin](../spacetime/horizon-chirality.md) records why contra-rotating planar branch language is natural in flat or boundary-like Noether swarm regimes. [Quantum Summary](../quantum/quantum-summary.md) and [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md) keep the broader photon closure gates connected to tested energy, momentum, polarization, helicity, transition, and Bose-channel behavior.
+The supporting documents divide the burden. [Photon Guide](photon-guide.md) is the app-facing explanation: it defines the visible pair, the Virtual Observer controls, the branch-weighted field reconstruction, the derived polarization panel, formulas, diagnostics, and claim level. [Mode Taxonomy](../interactions/mode-taxonomy.md) owns the controlled `planar-mode` language for photon channels and keeps Gate A/Gate B as recovery obligations rather than completed derivations. [Horizon Chirality and Planar Spin](../spacetime/horizon-chirality.md) records why contra-rotating planar branch language is natural in flat or boundary-like Noether swarm regimes. [Quantum Summary](../quantum/quantum-summary.md) and [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md) keep the broader photon closure gates connected to tested energy, momentum, polarization, helicity, transition, and Bose-channel behavior.
 
 Together these surfaces turn the photon planar-pair idea into a governed research object. The app provides the visible and numerical target, the diagnostics expose branch-sum quality, the polarization fit translates the target into observer-level readouts, and the corpus chapters state what still has to be proved before the visualization can become a physical photon theorem.
 
@@ -35,7 +36,7 @@ Together these surfaces turn the photon planar-pair idea into a governed researc
 Relevant files:
 
 - [Ideal Noether Swarm: Lorentz Geometry](../../../../ideal-swarm.html)
-- [Ideal Swarm Guide](ideal-swarm-notes.md)
+- [Ideal Swarm Guide](ideal-swarm-guide.md)
 - [Return-Cycle Lorentz Quantization](../philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md)
 - [Lorentz Kinematics](../spacetime/lorentz-kinematics.md)
 
@@ -43,7 +44,7 @@ The standalone [Ideal Noether Swarm: Lorentz Geometry](../../../../ideal-swarm.h
 
 The app deliberately does not claim to prove Lorentz kinematics from Noether swarm dynamics. It records the target geometry in a form that can be checked visually and algebraically: in the zero-extra-scale lesson case, the displayed oblate spheroidal envelope satisfies $R_{\parallel}=R_{\perp}/\gamma$ and $\xi=1/\gamma$. That makes the Lorentz factor more than a formula in a side panel; it becomes the aspect ratio of the displayed envelope. The app is therefore a dictionary between the formula, the return-cycle picture, and the geometry that a later branch-ledger derivation would have to recover.
 
-The three supporting documents divide the burden cleanly. [Ideal Swarm Guide](ideal-swarm-notes.md) is the app-facing explanation: it defines the lesson purpose, the control meanings, the geometry dictionary, the energy and mass-equivalent readouts, and the claim level of the surface. [Return-Cycle Lorentz Quantization](../philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md) gives the reader-facing bridge: the continuous observer-level Lorentz function is not replaced by a step function; the discrete object is the admissible material return-cycle branch whose longitudinal and transverse cycles close to the same period. [Lorentz Kinematics](../spacetime/lorentz-kinematics.md) carries the deeper proof program, where the Lorentz laws must be derived from delayed substrate dynamics, stable translating branches, closure residuals, and bounded preferred-frame leakage.
+The three supporting documents divide the burden cleanly. [Ideal Swarm Guide](ideal-swarm-guide.md) is the app-facing explanation: it defines the lesson purpose, the control meanings, the geometry dictionary, the energy and mass-equivalent readouts, and the claim level of the surface. [Return-Cycle Lorentz Quantization](../philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md) gives the reader-facing bridge: the continuous observer-level Lorentz function is not replaced by a step function; the discrete object is the admissible material return-cycle branch whose longitudinal and transverse cycles close to the same period. [Lorentz Kinematics](../spacetime/lorentz-kinematics.md) carries the deeper proof program, where the Lorentz laws must be derived from delayed substrate dynamics, stable translating branches, closure residuals, and bounded preferred-frame leakage.
 
 Together these four surfaces turned the Lorentz lesson into a governed research object. The app provides the visible target, the guide explains how to read it, the bridge names the branch-indexed mechanism, and the kinematics chapter states the mathematical work still required. That separation matters because it lets the project use the app pedagogically without mistaking a visualization for a completed theorem.
 
