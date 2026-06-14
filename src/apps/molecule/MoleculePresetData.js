@@ -665,7 +665,6 @@ export const MOLECULE_PRESETS = Object.freeze([
       { element: "H", x: -0.54, y: -0.45, z: -0.79 },
       { element: "H", x: 1.88, y: -0.98, z: 0.22 },
       { element: "H", x: 1.82, y: 0.42, z: 0.92 },
-      { element: "H", x: 1.84, y: 0.56, z: -0.82 },
     ],
     bonds: [
       [0, 1],
@@ -676,7 +675,6 @@ export const MOLECULE_PRESETS = Object.freeze([
       [0, 6],
       [1, 7],
       [1, 8],
-      [1, 9],
     ],
   },
   {
