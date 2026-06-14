@@ -86,7 +86,7 @@ The live Diagnostics panel includes a quality word when a readout has a useful d
 
 ## Formulas
 
-The live Formulas panel reports the current branch-sum field, the one-cycle polarization fit, the Analyzer-axis comparison, and the Stokes-style fitted polarization components.
+The live Formulas panel reports the current branch-sum field, the one-cycle polarization fit, the Analyzer-axis comparison, and the Stokes-style fitted polarization components. The Stokes rows put the formula first and the conventional shorthand in parentheses.
 
 | # | Name | ELI5 explanation |
 |---:|---|---|
@@ -104,7 +104,7 @@ The live Formulas panel reports the current branch-sum field, the one-cycle pola
 | 12 | root&nbsp;count | How many causal roots were retained after solving the source histories. |
 | 13 | mean&nbsp;delay | The average travel time from retained source roots to the Virtual Observer. |
 | 14 | nearest&nbsp;source | The closest retained source-to-observer distance in the current causal-root sum. |
-| 15 | S0 | The fitted total transverse strength, $A_y^2 + A_z^2$. |
-| 16 | S1 | The fitted strength imbalance, $A_y^2 - A_z^2$, between the two transverse components. |
-| 17 | S2 | The fitted in-phase or anti-phase linear component, $2A_yA_z\cos\delta$. |
-| 18 | S3 | The fitted handed circular or elliptical component, $-2A_yA_z\sin\delta$. |
+| 15 | $A_y^2 + A_z^2$ ($S_0$) | The fitted total transverse strength. |
+| 16 | $A_y^2 - A_z^2$ ($S_1$) | The fitted strength imbalance between the two transverse components. |
+| 17 | $2A_yA_z\cos\delta$ ($S_2$) | The fitted in-phase or anti-phase linear component. |
+| 18 | $-2A_yA_z\sin\delta$ ($S_3$) | The fitted handed circular or elliptical component. |

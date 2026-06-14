@@ -1629,6 +1629,11 @@
       "id": "validation_action_energy__delay_dynamics_energy",
       "name": "Constructive Energy for Delay Dynamics",
       "path": "content/scenes/validation/delay_dynamics_energy.json"
+    },
+    {
+      "id": "archie__photon",
+      "name": "Photon and Polarization Visualization",
+      "path": "content/scenes/archie/photon.json"
     }
   ]
 }

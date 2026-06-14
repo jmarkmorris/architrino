@@ -212,14 +212,15 @@
         align-items: center;
         justify-content: center;
         flex: 0 0 auto;
-        width: 18px;
-        height: 14px;
-        border: 1px solid currentColor;
-        border-radius: 3px;
-        font-size: 7px;
-        font-weight: 800;
-        line-height: 1;
+        width: 16px;
+        height: 16px;
         opacity: 0.9;
+      }
+
+      .photon-md-icon svg {
+        display: block;
+        width: 15px;
+        height: 15px;
       }
 
       .photon-button-label {
@@ -549,6 +550,18 @@
         min-height: 20px;
         color: rgba(203, 213, 225, 0.78);
         font-size: 11px;
+      }
+
+      .photon-readout-row > span {
+        min-width: 0;
+      }
+
+      .photon-readout-row > span.has-math {
+        color: rgba(226, 232, 240, 0.9);
+      }
+
+      .photon-readout-row > span.has-math .katex {
+        font-size: 1em;
       }
 
       .photon-readout-row.has-quality {
@@ -909,7 +922,25 @@
             type="button"
             aria-label="Open Photon Guide document"
           >
-            <span class="photon-md-icon" aria-hidden="true">MD</span>
+            <span class="photon-md-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path
+                  d="M5 3H14L19 8V21H5Z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linejoin="miter"
+                />
+                <path d="M14 3V8H19Z" fill="currentColor" />
+                <path
+                  d="M7.5 12.6H16.5M7.5 16.1H16.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="butt"
+                />
+              </svg>
+            </span>
             <span class="photon-button-label">Guide</span>
           </button>
           <button
@@ -918,7 +949,25 @@
             type="button"
             aria-label="Open Photon Closure document"
           >
-            <span class="photon-md-icon" aria-hidden="true">MD</span>
+            <span class="photon-md-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path
+                  d="M5 3H14L19 8V21H5Z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linejoin="miter"
+                />
+                <path d="M14 3V8H19Z" fill="currentColor" />
+                <path
+                  d="M7.5 12.6H16.5M7.5 16.1H16.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="butt"
+                />
+              </svg>
+            </span>
             <span class="photon-button-label">Photon Closure</span>
           </button>
           <button
@@ -927,7 +976,25 @@
             type="button"
             aria-label="Open Polarization document"
           >
-            <span class="photon-md-icon" aria-hidden="true">MD</span>
+            <span class="photon-md-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path
+                  d="M5 3H14L19 8V21H5Z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linejoin="miter"
+                />
+                <path d="M14 3V8H19Z" fill="currentColor" />
+                <path
+                  d="M7.5 12.6H16.5M7.5 16.1H16.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="butt"
+                />
+              </svg>
+            </span>
             <span class="photon-button-label">Polarization</span>
           </button>
           <button
@@ -937,7 +1004,25 @@
             aria-label="Open Photon App project document"
             hidden
           >
-            <span class="photon-md-icon" aria-hidden="true">MD</span>
+            <span class="photon-md-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path
+                  d="M5 3H14L19 8V21H5Z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linejoin="miter"
+                />
+                <path d="M14 3V8H19Z" fill="currentColor" />
+                <path
+                  d="M7.5 12.6H16.5M7.5 16.1H16.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="butt"
+                />
+              </svg>
+            </span>
             <span class="photon-button-label">Project</span>
           </button>
           <button
@@ -947,7 +1032,25 @@
             aria-label="Open Photon App Requirements document"
             hidden
           >
-            <span class="photon-md-icon" aria-hidden="true">MD</span>
+            <span class="photon-md-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path
+                  d="M5 3H14L19 8V21H5Z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linejoin="miter"
+                />
+                <path d="M14 3V8H19Z" fill="currentColor" />
+                <path
+                  d="M7.5 12.6H16.5M7.5 16.1H16.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="butt"
+                />
+              </svg>
+            </span>
             <span class="photon-button-label">Requirements</span>
           </button>
         </div>

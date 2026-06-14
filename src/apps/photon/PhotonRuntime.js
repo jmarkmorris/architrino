@@ -63,13 +63,30 @@ function setTextAll(elements, value) {
   elements.forEach((element) => setText(element, value));
 }
 
-function renderRows(documentLike, container, rows) {
+function renderInlineMathLabel(windowLike, element, math) {
+  const katex = windowLike?.katex;
+  if (katex && typeof katex.render === "function") {
+    katex.render(math, element, {
+      displayMode: false,
+      throwOnError: false,
+    });
+    return;
+  }
+  element.textContent = math;
+}
+
+function renderRows(documentLike, container, rows, { windowLike } = {}) {
   container.textContent = "";
-  rows.forEach(([label, value, quality]) => {
+  rows.forEach(([label, value, quality, options = {}]) => {
     const row = documentLike.createElement("div");
     row.className = "photon-readout-row";
     const labelElement = documentLike.createElement("span");
-    labelElement.textContent = label;
+    if (options.labelMath) {
+      labelElement.classList.add("has-math");
+      renderInlineMathLabel(windowLike, labelElement, options.labelMath);
+    } else {
+      labelElement.textContent = label;
+    }
     const valueElement = documentLike.createElement("strong");
     valueElement.textContent = value;
     row.append(labelElement, valueElement);
@@ -85,7 +102,7 @@ function renderRows(documentLike, container, rows) {
   });
 }
 
-function renderFormulaSummary(documentLike, container, summary) {
+function renderFormulaSummary(documentLike, container, summary, { windowLike } = {}) {
   const values = [
     ["derived mode", summary.polarization.classificationLabel],
     ["fit amp E_y", formatPhotonFixed(summary.polarization.amplitudes.y, 3)],
@@ -106,12 +123,22 @@ function renderFormulaSummary(documentLike, container, summary) {
     ["root count", String(summary.field.rootCount)],
     ["mean delay", formatPhotonFixed(summary.field.averageDelay, 3)],
     ["nearest source", formatPhotonFixed(summary.field.nearestSourceDistance, 3)],
-    ["S0", formatPhotonFixed(summary.stokes.s0, 3)],
-    ["S1", formatPhotonFixed(summary.stokes.s1, 3)],
-    ["S2", formatPhotonFixed(summary.stokes.s2, 3)],
-    ["S3", formatPhotonFixed(summary.stokes.s3, 3)],
+    ["", formatPhotonFixed(summary.stokes.s0, 3), undefined, { labelMath: "A_y^2 + A_z^2" }],
+    ["", formatPhotonFixed(summary.stokes.s1, 3), undefined, { labelMath: "A_y^2 - A_z^2" }],
+    [
+      "",
+      formatPhotonFixed(summary.stokes.s2, 3),
+      undefined,
+      { labelMath: "2 A_y A_z \\cos\\delta" },
+    ],
+    [
+      "",
+      formatPhotonFixed(summary.stokes.s3, 3),
+      undefined,
+      { labelMath: "-2 A_y A_z \\sin\\delta" },
+    ],
   ];
-  renderRows(documentLike, container, values);
+  renderRows(documentLike, container, values, { windowLike });
 }
 
 function getPhotonEventTargetTagName(target) {
@@ -278,8 +305,10 @@ export function createPhotonRuntime({
   function syncOutputs(displayTime, summary) {
     setTextAll(timeOutputs, `${formatPhotonFixed(displayTime, 1)} s`);
     setTextAll(cycleOutputs, `${formatPhotonFixed(summary.runDuration, 1)} s`);
-    renderRows(documentLike, diagnosticsElement, getPhotonDiagnosticRows(state, displayTime, summary));
-    renderFormulaSummary(documentLike, formulasElement, summary);
+    renderRows(documentLike, diagnosticsElement, getPhotonDiagnosticRows(state, displayTime, summary), {
+      windowLike,
+    });
+    renderFormulaSummary(documentLike, formulasElement, summary, { windowLike });
   }
 
   function draw() {

@@ -16,6 +16,10 @@
         "scenePath": "content/scenes/archie/ideal_swarm.json"
       },
       {
+        "nodeId": "photon",
+        "scenePath": "content/scenes/archie/photon.json"
+      },
+      {
         "nodeId": "hyde_periodic_table",
         "scenePath": "content/scenes/chemistry/hyde_periodic_table_scene.json"
       },
@@ -43,7 +47,16 @@
       "title": "Ideal Noether Swarm",
       "radius": 2.2,
       "color": "#0f766e",
-      "labelTitle": "Ideal Noether Swarm"
+      "labelTitle": "Ideal Noether Swarm",
+      "labelBadge": ""
+    },
+    {
+      "id": "photon",
+      "title": "Photon and Polarization Visualization",
+      "radius": 2.2,
+      "color": "#2563eb",
+      "labelTitle": "Photon",
+      "labelBadge": ""
     },
     {
       "id": "hyde_periodic_table",
