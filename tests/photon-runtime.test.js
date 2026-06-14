@@ -565,6 +565,19 @@ test("derived branch-sum polarization trace uses the fitted current field", () =
   assertNear(trace.current.ez, trace.fittedCurrent.ez, 1e-12);
 });
 
+test("derived polarization inset trace is centered on the oscillating component", () => {
+  const state = createDefaultPhotonState();
+  const trace = buildPhotonDerivedPolarizationTrace(state, 0, 144);
+  const eyValues = trace.samples.map((sample) => sample.ey);
+  const ezValues = trace.samples.map((sample) => sample.ez);
+  const eyMidpoint = (Math.min(...eyValues) + Math.max(...eyValues)) / 2;
+  const ezMidpoint = (Math.min(...ezValues) + Math.max(...ezValues)) / 2;
+
+  assert.ok(Math.abs(trace.components.y.dc) > 1);
+  assertNear(eyMidpoint, 0, 1e-9);
+  assertNear(ezMidpoint, 0, 1e-9);
+});
+
 test("derived polarization ellipse fit stays stable while the current point advances", () => {
   const state = createDefaultPhotonState();
   state.polarization.analyzerAngleDeg = 17;

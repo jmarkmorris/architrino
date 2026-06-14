@@ -59,7 +59,7 @@ The $\mathbf E$ graph auto-scales its vertical span from the maximum visible $|E
 
 ## Derived Polarization
 
-The app no longer asks the operator to set a polarization basis, linear angle, phase lag, ellipticity, or intensity. Those are now observer-level diagnostic outcomes. The formula panel fits the actual branch-sum $E_y(t)$ and $E_z(t)$ over one reference cycle, extracts the fitted amplitudes and relative phase lag, and classifies the result as weak, linear, circular, or elliptical.
+The app no longer asks the operator to set a polarization basis, linear angle, phase lag, ellipticity, or intensity. Those are now observer-level diagnostic outcomes. The formula panel fits the actual branch-sum $E_y(t)$ and $E_z(t)$ over one reference cycle, extracts the fitted amplitudes and relative phase lag, and classifies the result as weak, linear, circular, or elliptical. The polarization inset draws the fitted oscillating component centered on the $E_y/E_z$ origin, so a constant observer bias does not shift the ellipse or line.
 
 The Analyzer angle remains a control because it is a measurement axis, not a source polarization factor. The inset overlays that analyzer axis and the formula panel reports the scalar analyzer fraction for the current field vector. The formula panel keeps the normalized ellipse-fit residual separate from the analyzer residual, which is the cycle-average analyzer fraction minus the fitted analyzer fraction.
 

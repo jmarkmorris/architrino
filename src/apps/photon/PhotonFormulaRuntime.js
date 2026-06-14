@@ -452,6 +452,10 @@ function evaluatePhotonFittedComponent(component, phase) {
   );
 }
 
+function evaluatePhotonCenteredFittedComponent(component, phase) {
+  return evaluatePhotonFittedComponent(component, phase) - (Number(component?.dc) || 0);
+}
+
 function computePhotonPolarizationFitResidual(samples, yFit, zFit) {
   const safeSamples = Array.isArray(samples) ? samples : [];
   if (safeSamples.length === 0) {
@@ -619,8 +623,8 @@ export function buildPhotonDerivedPolarizationTrace(
     samples.push({
       progress,
       phase,
-      ey: evaluatePhotonFittedComponent(fit.components.y, phase),
-      ez: evaluatePhotonFittedComponent(fit.components.z, phase),
+      ey: evaluatePhotonCenteredFittedComponent(fit.components.y, phase),
+      ez: evaluatePhotonCenteredFittedComponent(fit.components.z, phase),
     });
   }
 
@@ -632,15 +636,18 @@ export function buildPhotonDerivedPolarizationTrace(
   const fittedCurrent = {
     progress: currentProgress,
     phase: currentPhase,
-    ey: evaluatePhotonFittedComponent(fit.components.y, currentPhase),
-    ez: evaluatePhotonFittedComponent(fit.components.z, currentPhase),
+    ey: evaluatePhotonCenteredFittedComponent(fit.components.y, currentPhase),
+    ez: evaluatePhotonCenteredFittedComponent(fit.components.z, currentPhase),
   };
   const current = fittedCurrent;
   const projection = current.ey * fit.analyzer.y + current.ez * fit.analyzer.z;
   const scale = Math.max(
     1e-9,
     ...samples.flatMap((sample) => [Math.abs(sample.ey), Math.abs(sample.ez)]),
-    ...rawSamples.flatMap((sample) => [Math.abs(sample.ey), Math.abs(sample.ez)])
+    ...rawSamples.flatMap((sample) => [
+      Math.abs(sample.ey - fit.components.y.dc),
+      Math.abs(sample.ez - fit.components.z.dc),
+    ])
   );
 
   return {
