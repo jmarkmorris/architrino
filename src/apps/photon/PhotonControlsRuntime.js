@@ -1,6 +1,8 @@
 import {
   PHOTON_CONTROL_RANGES,
   PHOTON_LAYER_ORDER,
+  getPhotonFrequencyExponent,
+  getPhotonFrequencyFromExponent,
   getPhotonLayer,
   getPhotonSeparationLog10Ratio,
   setPhotonLayerEnabled,
@@ -21,8 +23,8 @@ const PHOTON_SEPARATION_LOG_TICK_EPSILON = 1e-10;
 const PHOTON_SEPARATION_MANTISSAS = Object.freeze([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 const PHOTON_CONTROL_SWARM_ORDER = Object.freeze(["right", "left"]);
 const PHOTON_PLAYBACK_SPEED_RANGE = Object.freeze({
-  min: 0.25,
-  max: 4,
+  min: PHOTON_CONTROL_RANGES.speedMultiplier.min,
+  max: PHOTON_CONTROL_RANGES.speedMultiplier.max,
   sliderMin: 0,
   sliderMax: 100,
   sliderStep: 1,
@@ -63,6 +65,14 @@ function renderPhotonSeparationScaleLabel(documentLike, element, exponent) {
   const label = createElement(documentLike, "span", "photon-exponent-label");
   const power = createElement(documentLike, "sup", "photon-exponent-power", formatPhotonExponentText(exponent));
   label.append(documentLike.createTextNode("10"), power);
+  element.append(label);
+}
+
+function renderPhotonPowerOfTwoLabel(documentLike, element, exponent) {
+  element.textContent = "";
+  const label = createElement(documentLike, "span", "photon-exponent-label");
+  const power = createElement(documentLike, "sup", "photon-exponent-power", formatPhotonExponentText(exponent));
+  label.append(documentLike.createTextNode("2"), power);
   element.append(label);
 }
 
@@ -318,6 +328,43 @@ function createRangeControl(
   return { row, input, output, digits };
 }
 
+function createFrequencyPowerControl(documentLike, { label, value, onInput }) {
+  const range = PHOTON_CONTROL_RANGES.frequencyExponent;
+  const row = createElement(documentLike, "label", "photon-control-row");
+  const span = createElement(documentLike, "span", "photon-control-label", label);
+  const input = createElement(documentLike, "input", "photon-control-input");
+  input.type = "range";
+  input.min = String(range.min);
+  input.max = String(range.max);
+  input.step = String(range.step);
+  input.setAttribute("aria-label", label);
+  input.dataset.controlLabel = label;
+  const output = createElement(documentLike, "output", "photon-control-output");
+
+  const sync = (frequency = value) => {
+    const exponent = getPhotonFrequencyExponent(frequency);
+    const nextFrequency = getPhotonFrequencyFromExponent(exponent);
+    input.value = String(exponent);
+    input.title = `f = ${nextFrequency}`;
+    input.setAttribute("aria-valuetext", `2^${exponent}`);
+    output.title = `f = ${nextFrequency}`;
+    output.setAttribute("aria-label", `2^${exponent}`);
+    renderPhotonPowerOfTwoLabel(documentLike, output, exponent);
+  };
+
+  input.addEventListener("input", () => {
+    const exponent = Number(input.value);
+    const nextFrequency = getPhotonFrequencyFromExponent(exponent);
+    sync(nextFrequency);
+    onInput(nextFrequency);
+  });
+
+  row.append(span, input, output);
+  bindPhotonPointerBlur(row, input);
+  sync(value);
+  return { row, input, output, sync };
+}
+
 function createSeparationLogControl(documentLike, { state, getState, onInput }) {
   const range = PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio;
   const initialTick = getPhotonSeparationLogTick(getPhotonSeparationLog10Ratio(state));
@@ -558,7 +605,7 @@ function addSection(documentLike, parent, title) {
 
 function syncRange(control, value) {
   if (typeof control.sync === "function") {
-    control.sync();
+    control.sync(value);
     return;
   }
   control.input.value = String(value);
@@ -664,25 +711,32 @@ export function createPhotonControlsRuntime({
       group.append(enabledControl.row);
       [
         ["frequencyHz", "f", PHOTON_CONTROL_RANGES.frequencyHz, 4],
-        ["radius", "r", PHOTON_CONTROL_RANGES.radius, 2],
+        ["radius", "r", PHOTON_CONTROL_RANGES.radius, 4],
         ["phaseDeg", "phase", PHOTON_CONTROL_RANGES.phaseDeg, 0],
       ].forEach(([key, label, range, digits]) => {
-        const control = createRangeControl(documentLike, {
-          label,
-          value: layer[key],
-          range,
-          digits,
-          snapToPhaseDegrees: key === "phaseDeg",
-          onInput: (value) => {
-            const nextState = getState();
-            const separationLog10Ratio = getPhotonSeparationLog10Ratio(nextState);
-            setPhotonLayerValue(nextState, swarmId, layerId, key, value);
-            if (key === "radius") {
-              setPhotonPairSeparationLog10Ratio(nextState, separationLog10Ratio);
-            }
-            onRangeStateChange();
-          },
-        });
+        const handleLayerInput = (value) => {
+          const nextState = getState();
+          const separationLog10Ratio = getPhotonSeparationLog10Ratio(nextState);
+          setPhotonLayerValue(nextState, swarmId, layerId, key, value);
+          if (key === "radius") {
+            setPhotonPairSeparationLog10Ratio(nextState, separationLog10Ratio);
+          }
+          onRangeStateChange();
+        };
+        const control = key === "frequencyHz"
+          ? createFrequencyPowerControl(documentLike, {
+              label,
+              value: layer[key],
+              onInput: handleLayerInput,
+            })
+          : createRangeControl(documentLike, {
+              label,
+              value: layer[key],
+              range,
+              digits,
+              snapToPhaseDegrees: key === "phaseDeg",
+              onInput: handleLayerInput,
+            });
         controls.push(control);
         group.append(control.row);
       });

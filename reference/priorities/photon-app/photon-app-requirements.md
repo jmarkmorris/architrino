@@ -59,10 +59,10 @@ V1 uses a left-to-right propagation convention:
 - the $\mathbf E$ plot covers exactly three observer cycles;
 - and the plot keeps the full waveform visible except for a short forward gap ahead of the moving now line.
 
-The v1 observer cycle should use the middle-layer frequency as the default field-cycle reference. With the default middle-layer frequency $f_M=0.26\,\mathrm{Hz}$, the three-cycle run duration is
+The v1 observer cycle should use the middle-layer frequency as the default field-cycle reference. With the default middle-layer frequency $f_M=2\,\mathrm{Hz}$, the three-cycle run duration is
 
 $$
-T_{\mathrm{run}}=\frac{3}{f_M}\approx11.54\,\mathrm{s}.
+T_{\mathrm{run}}=\frac{3}{f_M}=1.5\,\mathrm{s}.
 $$
 
 If the middle-layer frequency changes, the plot window should update so it still spans three middle-layer cycles.
@@ -77,29 +77,29 @@ The default runtime parameter state should use these initial values:
   "version": 1,
   "time": {
     "paused": false,
-    "speedMultiplier": 1,
+    "speedMultiplier": 0.2,
     "cycleReferenceLayer": "M",
     "cycleCount": 3
   },
   "pair": {
     "speedMode": "cf",
-    "pairSeparation": 1.62,
+    "pairSeparation": 0.1273,
     "left": {
       "role": "trailing",
       "direction": "ccw",
       "layers": {
-        "I": { "enabled": true, "radius": 0.9, "frequencyHz": 0.2122, "phaseDeg": 0 },
-        "M": { "enabled": true, "radius": 1.26, "frequencyHz": 0.1263, "phaseDeg": 0 },
-        "O": { "enabled": true, "radius": 1.62, "frequencyHz": 0.0786, "phaseDeg": 0 }
+        "I": { "enabled": true, "radius": 0.0477, "frequencyHz": 4, "phaseDeg": 0 },
+        "M": { "enabled": true, "radius": 0.0796, "frequencyHz": 2, "phaseDeg": 0 },
+        "O": { "enabled": true, "radius": 0.1273, "frequencyHz": 1, "phaseDeg": 0 }
       }
     },
     "right": {
       "role": "leading",
       "direction": "cw",
       "layers": {
-        "I": { "enabled": true, "radius": 0.9, "frequencyHz": 0.2122, "phaseDeg": 0 },
-        "M": { "enabled": true, "radius": 1.26, "frequencyHz": 0.1263, "phaseDeg": 0 },
-        "O": { "enabled": true, "radius": 1.62, "frequencyHz": 0.0786, "phaseDeg": 0 }
+        "I": { "enabled": true, "radius": 0.0477, "frequencyHz": 4, "phaseDeg": 0 },
+        "M": { "enabled": true, "radius": 0.0796, "frequencyHz": 2, "phaseDeg": 0 },
+        "O": { "enabled": true, "radius": 0.1273, "frequencyHz": 1, "phaseDeg": 0 }
       }
     }
   },
@@ -217,17 +217,17 @@ The first prototype should expose these controls visibly in the UI panel:
 
 | Control | Default | Range | Step |
 | --- | ---: | ---: | ---: |
-| I frequency | `0.2122 Hz` | `0.01` to `2.00 Hz` | `0.0001` |
-| M frequency | `0.1263 Hz` | `0.01` to `2.00 Hz` | `0.0001` |
-| O frequency | `0.0786 Hz` | `0.01` to `2.00 Hz` | `0.0001` |
-| I radius | `0.90` | `0.20` to `2.40` | `0.01` |
-| M radius | `1.26` | `0.20` to `2.40` | `0.01` |
-| O radius | `1.62` | `0.20` to `2.40` | `0.01` |
+| I frequency | `4 Hz` | $2^0$ to $2^5$ | powers of two |
+| M frequency | `2 Hz` | $2^0$ to $2^5$ | powers of two |
+| O frequency | `1 Hz` | $2^0$ to $2^5$ | powers of two |
+| I radius | `0.0477` | `0.0100` to `2.4000` | `0.0001` |
+| M radius | `0.0796` | `0.0100` to `2.4000` | `0.0001` |
+| O radius | `0.1273` | `0.0100` to `2.4000` | `0.0001` |
 | I phase | `0 deg` | `0` to `360 deg` | `1 deg` |
 | M phase | `0 deg` | `0` to `360 deg` | `1 deg` |
 | O phase | `0 deg` | `0` to `360 deg` | `1 deg` |
 | pair separation ratio | `1 r` | `1e-10 r` to `1e5 r` | selectable `1` through `9` ticks per decade |
-| time speed | `1.00` | `0.10` to `4.00` | `0.05` |
+| Slow/Fast animation scale | `0.20` | `0.025` to `1.600` | log slider |
 | analyzer angle | `0 deg` | `0` to `180 deg` | `1 deg` |
 | Virtual Observer $x$ | `0.00` | `-10.00` to `10.00` | `0.05` |
 | Virtual Observer $y$ | `0.00` | `-4.00` to `4.00` | `0.05` |
@@ -235,7 +235,7 @@ The first prototype should expose these controls visibly in the UI panel:
 
 The Virtual Observer $x$, $y$, and $z$ sliders should show a visible zero marker. Values within two slider steps of zero should snap to exactly `0`.
 
-Each swarm should have its own I/M/O frequency, radius, and phase controls. The direction controls are visible but locked in v1: left trailing is counter-clockwise and right leading is clockwise.
+Each swarm should have its own I/M/O frequency, radius, and phase controls. Frequency controls should move by exponent and show the selected value as $2^n$ on the right side of the control. The default radii should satisfy $v=2\pi r f$, with I at $1.2c_f$, M at $c_f$, and O at $0.8c_f$. The Slow/Fast animation scale should default to `0.20`, so the default visible I/M/O orbit rates are `0.8`, `0.4`, and `0.2` cycles per real second. The direction controls are visible but locked in v1: left trailing is counter-clockwise and right leading is clockwise.
 
 ## Polarization Requirements
 

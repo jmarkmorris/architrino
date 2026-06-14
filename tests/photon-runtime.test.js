@@ -3,10 +3,14 @@ import assert from "node:assert/strict";
 
 import {
   PHOTON_CONTROL_RANGES,
+  PHOTON_DEFAULT_PLAYBACK_SPEED_MULTIPLIER,
+  PHOTON_DEFAULT_LAYER_FREQUENCIES_HZ,
   PHOTON_LAYER_SPEED_RATIO_TARGETS,
   createDefaultPhotonState,
   getPhotonLayerEnabled,
   getPhotonLayerAngleRadians,
+  getPhotonFrequencyExponent,
+  getPhotonFrequencyFromExponent,
   getPhotonPairSeparationFromLog10Ratio,
   getPhotonSeparationLog10Ratio,
   getPhotonSeparationReferenceRadius,
@@ -14,6 +18,7 @@ import {
   getPhotonMiddleCycleBounds,
   getPhotonRunDuration,
   normalizePhotonState,
+  setPhotonLayerValue,
 } from "../src/apps/photon/PhotonStateRuntime.js";
 import {
   getPhotonControlZeroPositionPercent,
@@ -82,8 +87,12 @@ test("default photon state encodes trailing and leading swarm convention", () =>
     [0, 0, 0]
   );
   assert.deepEqual(
-    ["I", "M", "O"].map((layerId) => state.pair.left.layers[layerId].radius),
-    [0.9, 1.26, 1.62]
+    ["I", "M", "O"].map((layerId) => state.pair.left.layers[layerId].frequencyHz),
+    ["I", "M", "O"].map((layerId) => PHOTON_DEFAULT_LAYER_FREQUENCIES_HZ[layerId])
+  );
+  assert.deepEqual(
+    ["I", "M", "O"].map((layerId) => state.pair.right.layers[layerId].frequencyHz),
+    ["I", "M", "O"].map((layerId) => PHOTON_DEFAULT_LAYER_FREQUENCIES_HZ[layerId])
   );
   ["left", "right"].forEach((swarmId) => {
     ["I", "M", "O"].forEach((layerId) => {
@@ -237,7 +246,7 @@ test("outer-only super field speed settings stay stable when causal roots are cl
     ["I", "M"].forEach((layerId) => {
       state.pair[swarmId].layers[layerId].enabled = false;
     });
-    state.pair[swarmId].layers.O.frequencyHz = 0.16;
+    state.pair[swarmId].layers.O.frequencyHz = 16;
     state.pair[swarmId].layers.O.phaseDeg = 0;
   });
   const field = computePhotonDelayedEmissionField(state, 3);
@@ -409,10 +418,20 @@ test("phase controls snap near 45 degree sticky spots", () => {
 });
 
 test("playback speed slider centers the default multiplier", () => {
-  assertNear(getPhotonPlaybackSpeedSliderValue(1), 50, 1e-12);
-  assertNear(getPhotonPlaybackSpeedMultiplier(50), 1, 1e-12);
-  assertNear(getPhotonPlaybackSpeedMultiplier(0), 0.25, 1e-12);
-  assertNear(getPhotonPlaybackSpeedMultiplier(100), 4, 1e-12);
+  assertNear(
+    getPhotonPlaybackSpeedSliderValue(PHOTON_DEFAULT_PLAYBACK_SPEED_MULTIPLIER),
+    50,
+    1e-12
+  );
+  assertNear(getPhotonPlaybackSpeedMultiplier(50), PHOTON_DEFAULT_PLAYBACK_SPEED_MULTIPLIER, 1e-12);
+  assertNear(getPhotonPlaybackSpeedMultiplier(0), PHOTON_CONTROL_RANGES.speedMultiplier.min, 1e-12);
+  assertNear(getPhotonPlaybackSpeedMultiplier(100), PHOTON_CONTROL_RANGES.speedMultiplier.max, 1e-12);
+
+  const state = createDefaultPhotonState();
+  assertNear(state.time.speedMultiplier, PHOTON_DEFAULT_PLAYBACK_SPEED_MULTIPLIER);
+  assertNear(state.pair.left.layers.I.frequencyHz * state.time.speedMultiplier, 0.8);
+  assertNear(state.pair.left.layers.M.frequencyHz * state.time.speedMultiplier, 0.4);
+  assertNear(state.pair.left.layers.O.frequencyHz * state.time.speedMultiplier, 0.2);
 });
 
 test("separation log ticks cover mantissas 1 through 9 for each decade", () => {
@@ -440,6 +459,18 @@ test("separation scientific-notation picker maps coefficient and decade to log t
   assert.equal(getPhotonSeparationLogTick(5).mantissa, 1);
 });
 
+test("frequency controls use powers of two", () => {
+  assert.equal(getPhotonFrequencyFromExponent(0), 1);
+  assert.equal(getPhotonFrequencyFromExponent(1), 2);
+  assert.equal(getPhotonFrequencyFromExponent(2), 4);
+  assert.equal(getPhotonFrequencyFromExponent(3), 8);
+  assert.equal(getPhotonFrequencyExponent(7), 3);
+
+  const state = createDefaultPhotonState();
+  setPhotonLayerValue(state, "right", "M", "frequencyHz", 3);
+  assert.equal(state.pair.right.layers.M.frequencyHz, 4);
+});
+
 test("separation reference radius follows the largest enabled radius", () => {
   const state = createDefaultPhotonState();
   ["left", "right"].forEach((swarmId) => {
@@ -455,14 +486,14 @@ test("separation reference radius follows the largest enabled radius", () => {
 test("photon state normalization preserves configured values", () => {
   const state = createDefaultPhotonState();
   state.polarization.analyzerAngleDeg = 45;
-  state.pair.right.layers.M.frequencyHz = 0.39;
+  state.pair.right.layers.M.frequencyHz = 7;
   state.pair.right.layers.O.enabled = false;
   state.measurement.virtualObserver.x = 5.25;
   state.measurement.virtualObserver.y = -1.5;
   const normalized = normalizePhotonState(state);
 
   assert.equal(normalized.polarization.analyzerAngleDeg, 45);
-  assert.equal(normalized.pair.right.layers.M.frequencyHz, 0.39);
+  assert.equal(normalized.pair.right.layers.M.frequencyHz, 8);
   assert.equal(normalized.pair.right.layers.O.enabled, false);
   assert.equal(normalized.measurement.virtualObserver.x, 5.25);
   assert.equal(normalized.measurement.virtualObserver.y, -1.5);

@@ -27,6 +27,8 @@ Use Reset time to restart time at the beginning of the three-cycle plot. Use Res
 
 Use Paths on/off to show or hide orbit paths and path-history trails.
 
+Use Slow/Fast to scale animation time without changing the configured layer frequencies. The default Slow/Fast setting is calibrated to make the default I/M/O orbit rates visible at `0.8`, `0.4`, and `0.2` cycles per real second.
+
 Each of the six binaries has an enabled checkbox. When a binary is unchecked, it is removed from the swarm display and its two architrinos are removed from the Virtual Observer E field sum.
 
 ## Geometry Controls
@@ -35,11 +37,11 @@ The $\Delta x$ control changes the center-to-center distance between the two ver
 
 Each swarm has independent I/M/O controls:
 
-- frequency sets the layer cadence;
+- frequency sets the layer cadence as powers of two, from $2^0$ through $2^5$;
 - radius sets the layer orbit size;
 - phase sets the starting angle in degrees.
 
-The default I/M/O phases are all `0` degrees. The default I/M/O radii use the same `5:7:9` ratio as the Ideal Swarm app.
+The default I/M/O phases are all `0` degrees. The default I/M/O frequencies are `4`, `2`, and `1`. The default radii are chosen from $v=2\pi r f$ so the I layer is super-$c_f$, the M layer is at $c_f$, and the O layer is below $c_f$.
 
 ## Virtual Observer Controls
 

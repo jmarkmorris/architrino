@@ -17,11 +17,35 @@ const PHOTON_MIN_SEPARATION_LOG10_RATIO = -10;
 const PHOTON_MAX_SEPARATION_LOG10_RATIO = 5;
 const PHOTON_CONTROL_RANGES_MIN_PAIR_SEPARATION = 0.2 * 10 ** PHOTON_MIN_SEPARATION_LOG10_RATIO;
 const PHOTON_CONTROL_RANGES_MAX_PAIR_SEPARATION = 2.4 * 10 ** PHOTON_MAX_SEPARATION_LOG10_RATIO;
+const PHOTON_MIN_FREQUENCY_EXPONENT = 0;
+const PHOTON_MAX_FREQUENCY_EXPONENT = 5;
+export const PHOTON_DEFAULT_PLAYBACK_SPEED_MULTIPLIER = 0.2;
+
+export const PHOTON_LAYER_SPEED_RATIO_TARGETS = Object.freeze({
+  I: 1.2,
+  M: 1,
+  O: 0.8,
+});
+
+export const PHOTON_DEFAULT_LAYER_FREQUENCIES_HZ = Object.freeze({
+  I: 4,
+  M: 2,
+  O: 1,
+});
 
 export const PHOTON_DEFAULT_LAYER_RADII = Object.freeze({
-  I: 0.9,
-  M: 1.26,
-  O: 1.62,
+  I: getPhotonRadiusForSpeedRatio(
+    PHOTON_DEFAULT_LAYER_FREQUENCIES_HZ.I,
+    PHOTON_LAYER_SPEED_RATIO_TARGETS.I
+  ),
+  M: getPhotonRadiusForSpeedRatio(
+    PHOTON_DEFAULT_LAYER_FREQUENCIES_HZ.M,
+    PHOTON_LAYER_SPEED_RATIO_TARGETS.M
+  ),
+  O: getPhotonRadiusForSpeedRatio(
+    PHOTON_DEFAULT_LAYER_FREQUENCIES_HZ.O,
+    PHOTON_LAYER_SPEED_RATIO_TARGETS.O
+  ),
 });
 
 export const PHOTON_DEFAULT_LAYER_PHASES_DEG = Object.freeze({
@@ -30,11 +54,20 @@ export const PHOTON_DEFAULT_LAYER_PHASES_DEG = Object.freeze({
   O: 0,
 });
 
-export const PHOTON_LAYER_SPEED_RATIO_TARGETS = Object.freeze({
-  I: 1.2,
-  M: 1,
-  O: 0.8,
-});
+export function getPhotonRadiusForSpeedRatio(frequencyHz, speedRatio, fieldSpeed = 1) {
+  const frequencyNumber = Number(frequencyHz);
+  const speedNumber = Number(speedRatio);
+  const fieldSpeedNumber = Number(fieldSpeed);
+  if (
+    !Number.isFinite(frequencyNumber) ||
+    frequencyNumber <= 0 ||
+    !Number.isFinite(speedNumber)
+  ) {
+    return 0;
+  }
+  const safeFieldSpeed = Number.isFinite(fieldSpeedNumber) && fieldSpeedNumber > 0 ? fieldSpeedNumber : 1;
+  return (speedNumber * safeFieldSpeed) / (TWO_PI * frequencyNumber);
+}
 
 export function getPhotonFrequencyForSpeedRatio(radius, speedRatio, fieldSpeed = 1) {
   const radiusNumber = Number(radius);
@@ -47,12 +80,38 @@ export function getPhotonFrequencyForSpeedRatio(radius, speedRatio, fieldSpeed =
   return (speedNumber * safeFieldSpeed) / (TWO_PI * radiusNumber);
 }
 
+export function getPhotonFrequencyFromExponent(exponent) {
+  const number = Number(exponent);
+  const safeExponent = Math.min(
+    PHOTON_MAX_FREQUENCY_EXPONENT,
+    Math.max(PHOTON_MIN_FREQUENCY_EXPONENT, Number.isFinite(number) ? Math.round(number) : 0)
+  );
+  return 2 ** safeExponent;
+}
+
+export function getPhotonFrequencyExponent(frequency) {
+  const number = Number(frequency);
+  if (!Number.isFinite(number) || number <= 0) {
+    return PHOTON_MIN_FREQUENCY_EXPONENT;
+  }
+  return Math.min(
+    PHOTON_MAX_FREQUENCY_EXPONENT,
+    Math.max(PHOTON_MIN_FREQUENCY_EXPONENT, Math.round(Math.log2(number)))
+  );
+}
+
+export function snapPhotonFrequencyToPowerOfTwo(frequency, fallback = 1) {
+  const number = Number(frequency);
+  const safeFrequency = Number.isFinite(number) && number > 0 ? number : fallback;
+  return getPhotonFrequencyFromExponent(getPhotonFrequencyExponent(safeFrequency));
+}
+
 function createPhotonDefaultLayer(layerId) {
   const radius = PHOTON_DEFAULT_LAYER_RADII[layerId];
   return {
     enabled: true,
     radius,
-    frequencyHz: getPhotonFrequencyForSpeedRatio(radius, PHOTON_LAYER_SPEED_RATIO_TARGETS[layerId]),
+    frequencyHz: PHOTON_DEFAULT_LAYER_FREQUENCIES_HZ[layerId],
     phaseDeg: PHOTON_DEFAULT_LAYER_PHASES_DEG[layerId],
   };
 }
@@ -66,8 +125,17 @@ function createPhotonDefaultLayers() {
 }
 
 export const PHOTON_CONTROL_RANGES = Object.freeze({
-  frequencyHz: { min: 0.01, max: 2, step: 0.0001 },
-  radius: { min: 0.2, max: 2.4, step: 0.01 },
+  frequencyHz: {
+    min: getPhotonFrequencyFromExponent(PHOTON_MIN_FREQUENCY_EXPONENT),
+    max: getPhotonFrequencyFromExponent(PHOTON_MAX_FREQUENCY_EXPONENT),
+    step: 1,
+  },
+  frequencyExponent: {
+    min: PHOTON_MIN_FREQUENCY_EXPONENT,
+    max: PHOTON_MAX_FREQUENCY_EXPONENT,
+    step: 1,
+  },
+  radius: { min: 0.01, max: 2.4, step: 0.0001 },
   phaseDeg: { min: 0, max: 360, step: 1 },
   pairSeparation: {
     min: PHOTON_CONTROL_RANGES_MIN_PAIR_SEPARATION,
@@ -79,7 +147,7 @@ export const PHOTON_CONTROL_RANGES = Object.freeze({
     max: PHOTON_MAX_SEPARATION_LOG10_RATIO,
     step: "any",
   },
-  speedMultiplier: { min: 0.1, max: 4, step: 0.05 },
+  speedMultiplier: { min: 0.025, max: 1.6, step: 0.001 },
   analyzerAngleDeg: { min: 0, max: 180, step: 1 },
   virtualObserverX: { min: -10, max: 10, step: 0.05 },
   virtualObserverY: { min: -4, max: 4, step: 0.05 },
@@ -91,7 +159,7 @@ export const DEFAULT_PHOTON_STATE = Object.freeze({
   version: 1,
   time: {
     paused: false,
-    speedMultiplier: 1,
+    speedMultiplier: PHOTON_DEFAULT_PLAYBACK_SPEED_MULTIPLIER,
     cycleReferenceLayer: "M",
     cycleCount: 3,
   },
@@ -154,11 +222,9 @@ function normalizeLayerState(layer = {}, fallbackLayer = {}) {
       PHOTON_CONTROL_RANGES.radius.max,
       fallbackLayer.radius ?? 1
     ),
-    frequencyHz: clampPhotonNumber(
+    frequencyHz: snapPhotonFrequencyToPowerOfTwo(
       layer.frequencyHz,
-      PHOTON_CONTROL_RANGES.frequencyHz.min,
-      PHOTON_CONTROL_RANGES.frequencyHz.max,
-      fallbackLayer.frequencyHz ?? 0.25
+      fallbackLayer.frequencyHz ?? 1
     ),
     phaseDeg: normalizePhotonDegrees(layer.phaseDeg, fallbackLayer.phaseDeg ?? 0),
   };
@@ -389,10 +455,8 @@ export function setPhotonLayerValue(state, swarmId, layerId, key, value) {
     return;
   }
   if (key === "frequencyHz") {
-    layer.frequencyHz = clampPhotonNumber(
+    layer.frequencyHz = snapPhotonFrequencyToPowerOfTwo(
       value,
-      PHOTON_CONTROL_RANGES.frequencyHz.min,
-      PHOTON_CONTROL_RANGES.frequencyHz.max,
       layer.frequencyHz
     );
     return;
