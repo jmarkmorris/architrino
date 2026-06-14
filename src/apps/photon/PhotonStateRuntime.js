@@ -12,22 +12,146 @@ export const PHOTON_CHARGE_COLORS = Object.freeze({
   neutral: "#800080",
 });
 
+const TWO_PI = Math.PI * 2;
+const PHOTON_MIN_SEPARATION_LOG10_RATIO = -10;
+const PHOTON_MAX_SEPARATION_LOG10_RATIO = 5;
+const PHOTON_CONTROL_RANGES_MIN_PAIR_SEPARATION = 0.2 * 10 ** PHOTON_MIN_SEPARATION_LOG10_RATIO;
+const PHOTON_CONTROL_RANGES_MAX_PAIR_SEPARATION = 2.4 * 10 ** PHOTON_MAX_SEPARATION_LOG10_RATIO;
+const PHOTON_MIN_FREQUENCY_EXPONENT = 0;
+const PHOTON_MAX_FREQUENCY_EXPONENT = 5;
+export const PHOTON_DEFAULT_PLAYBACK_SPEED_MULTIPLIER = 0.2;
+
+export const PHOTON_LAYER_SPEED_RATIO_TARGETS = Object.freeze({
+  I: 1.2,
+  M: 1,
+  O: 0.8,
+});
+
+export const PHOTON_DEFAULT_LAYER_FREQUENCIES_HZ = Object.freeze({
+  I: 4,
+  M: 2,
+  O: 1,
+});
+
+export const PHOTON_DEFAULT_LAYER_RADII = Object.freeze({
+  I: getPhotonRadiusForSpeedRatio(
+    PHOTON_DEFAULT_LAYER_FREQUENCIES_HZ.I,
+    PHOTON_LAYER_SPEED_RATIO_TARGETS.I
+  ),
+  M: getPhotonRadiusForSpeedRatio(
+    PHOTON_DEFAULT_LAYER_FREQUENCIES_HZ.M,
+    PHOTON_LAYER_SPEED_RATIO_TARGETS.M
+  ),
+  O: getPhotonRadiusForSpeedRatio(
+    PHOTON_DEFAULT_LAYER_FREQUENCIES_HZ.O,
+    PHOTON_LAYER_SPEED_RATIO_TARGETS.O
+  ),
+});
+
+export const PHOTON_DEFAULT_LAYER_PHASES_DEG = Object.freeze({
+  I: 0,
+  M: 0,
+  O: 0,
+});
+
+export function getPhotonRadiusForSpeedRatio(frequencyHz, speedRatio, fieldSpeed = 1) {
+  const frequencyNumber = Number(frequencyHz);
+  const speedNumber = Number(speedRatio);
+  const fieldSpeedNumber = Number(fieldSpeed);
+  if (
+    !Number.isFinite(frequencyNumber) ||
+    frequencyNumber <= 0 ||
+    !Number.isFinite(speedNumber)
+  ) {
+    return 0;
+  }
+  const safeFieldSpeed = Number.isFinite(fieldSpeedNumber) && fieldSpeedNumber > 0 ? fieldSpeedNumber : 1;
+  return (speedNumber * safeFieldSpeed) / (TWO_PI * frequencyNumber);
+}
+
+export function getPhotonFrequencyForSpeedRatio(radius, speedRatio, fieldSpeed = 1) {
+  const radiusNumber = Number(radius);
+  const speedNumber = Number(speedRatio);
+  const fieldSpeedNumber = Number(fieldSpeed);
+  if (!Number.isFinite(radiusNumber) || radiusNumber <= 0 || !Number.isFinite(speedNumber)) {
+    return 0;
+  }
+  const safeFieldSpeed = Number.isFinite(fieldSpeedNumber) && fieldSpeedNumber > 0 ? fieldSpeedNumber : 1;
+  return (speedNumber * safeFieldSpeed) / (TWO_PI * radiusNumber);
+}
+
+export function getPhotonFrequencyFromExponent(exponent) {
+  const number = Number(exponent);
+  const safeExponent = Math.min(
+    PHOTON_MAX_FREQUENCY_EXPONENT,
+    Math.max(PHOTON_MIN_FREQUENCY_EXPONENT, Number.isFinite(number) ? Math.round(number) : 0)
+  );
+  return 2 ** safeExponent;
+}
+
+export function getPhotonFrequencyExponent(frequency) {
+  const number = Number(frequency);
+  if (!Number.isFinite(number) || number <= 0) {
+    return PHOTON_MIN_FREQUENCY_EXPONENT;
+  }
+  return Math.min(
+    PHOTON_MAX_FREQUENCY_EXPONENT,
+    Math.max(PHOTON_MIN_FREQUENCY_EXPONENT, Math.round(Math.log2(number)))
+  );
+}
+
+export function snapPhotonFrequencyToPowerOfTwo(frequency, fallback = 1) {
+  const number = Number(frequency);
+  const safeFrequency = Number.isFinite(number) && number > 0 ? number : fallback;
+  return getPhotonFrequencyFromExponent(getPhotonFrequencyExponent(safeFrequency));
+}
+
+function createPhotonDefaultLayer(layerId) {
+  const radius = PHOTON_DEFAULT_LAYER_RADII[layerId];
+  return {
+    enabled: true,
+    radius,
+    frequencyHz: PHOTON_DEFAULT_LAYER_FREQUENCIES_HZ[layerId],
+    phaseDeg: PHOTON_DEFAULT_LAYER_PHASES_DEG[layerId],
+  };
+}
+
+function createPhotonDefaultLayers() {
+  return {
+    I: createPhotonDefaultLayer("I"),
+    M: createPhotonDefaultLayer("M"),
+    O: createPhotonDefaultLayer("O"),
+  };
+}
+
 export const PHOTON_CONTROL_RANGES = Object.freeze({
-  frequencyHz: { min: 0.01, max: 2, step: 0.01 },
-  radius: { min: 0.2, max: 2.4, step: 0.01 },
+  frequencyHz: {
+    min: getPhotonFrequencyFromExponent(PHOTON_MIN_FREQUENCY_EXPONENT),
+    max: getPhotonFrequencyFromExponent(PHOTON_MAX_FREQUENCY_EXPONENT),
+    step: 1,
+  },
+  frequencyExponent: {
+    min: PHOTON_MIN_FREQUENCY_EXPONENT,
+    max: PHOTON_MAX_FREQUENCY_EXPONENT,
+    step: 1,
+  },
+  radius: { min: 0.01, max: 2.4, step: 0.0001 },
   phaseDeg: { min: 0, max: 360, step: 1 },
-  pairSeparation: { min: 0.5, max: 8, step: 0.05 },
-  speedMultiplier: { min: 0.1, max: 4, step: 0.05 },
-  polarizationAngleDeg: { min: 0, max: 180, step: 1 },
-  phaseLagDeg: { min: -180, max: 180, step: 1 },
-  ellipticity: { min: -1, max: 1, step: 0.01 },
-  intensity: { min: 0, max: 2, step: 0.01 },
+  pairSeparation: {
+    min: PHOTON_CONTROL_RANGES_MIN_PAIR_SEPARATION,
+    max: PHOTON_CONTROL_RANGES_MAX_PAIR_SEPARATION,
+    step: 0.05,
+  },
+  pairSeparationLog10Ratio: {
+    min: PHOTON_MIN_SEPARATION_LOG10_RATIO,
+    max: PHOTON_MAX_SEPARATION_LOG10_RATIO,
+    step: "any",
+  },
+  speedMultiplier: { min: 0.025, max: 1.6, step: 0.001 },
   analyzerAngleDeg: { min: 0, max: 180, step: 1 },
-  testPointX: { min: -10, max: 10, step: 0.05 },
-  testPointY: { min: -4, max: 4, step: 0.05 },
-  testPointZ: { min: -4, max: 4, step: 0.05 },
-  nearFieldWeight: { min: 0, max: 1, step: 0.01 },
-  fieldGain: { min: 0.01, max: 1, step: 0.01 },
+  virtualObserverX: { min: -10, max: 10, step: 0.05 },
+  virtualObserverY: { min: -4, max: 4, step: 0.05 },
+  virtualObserverZ: { min: -4, max: 4, step: 0.05 },
 });
 
 export const DEFAULT_PHOTON_STATE = Object.freeze({
@@ -35,7 +159,7 @@ export const DEFAULT_PHOTON_STATE = Object.freeze({
   version: 1,
   time: {
     paused: false,
-    speedMultiplier: 1,
+    speedMultiplier: PHOTON_DEFAULT_PLAYBACK_SPEED_MULTIPLIER,
     cycleReferenceLayer: "M",
     cycleCount: 3,
   },
@@ -44,47 +168,30 @@ export const DEFAULT_PHOTON_STATE = Object.freeze({
   },
   pair: {
     speedMode: "cf",
-    pairSeparation: 4,
+    pairSeparation: PHOTON_DEFAULT_LAYER_RADII.O,
     left: {
       role: "trailing",
       direction: "ccw",
-      layers: {
-        I: { enabled: true, radius: 0.9, frequencyHz: 0.42, phaseDeg: 0 },
-        M: { enabled: true, radius: 1.26, frequencyHz: 0.26, phaseDeg: 120 },
-        O: { enabled: true, radius: 1.62, frequencyHz: 0.16, phaseDeg: 240 },
-      },
+      layers: createPhotonDefaultLayers(),
     },
     right: {
       role: "leading",
       direction: "cw",
-      layers: {
-        I: { enabled: true, radius: 0.9, frequencyHz: 0.42, phaseDeg: 0 },
-        M: { enabled: true, radius: 1.26, frequencyHz: 0.26, phaseDeg: 120 },
-        O: { enabled: true, radius: 1.62, frequencyHz: 0.16, phaseDeg: 240 },
-      },
+      layers: createPhotonDefaultLayers(),
     },
   },
   polarization: {
-    basis: "linear",
-    linearAngleDeg: 0,
-    phaseLagDeg: 0,
-    ellipticity: 0,
-    intensity: 1,
     analyzerAngleDeg: 0,
   },
   measurement: {
-    testPoint: {
-      x: 6,
+    virtualObserver: {
+      x: 0,
       y: 0,
       z: 0,
     },
     emissionSpeedCf: 1,
-    nearFieldWeight: 0.12,
-    fieldGain: 0.04,
   },
 });
-
-const TWO_PI = Math.PI * 2;
 
 export function clampPhotonNumber(value, min, max, fallback = min) {
   const number = Number(value);
@@ -115,11 +222,9 @@ function normalizeLayerState(layer = {}, fallbackLayer = {}) {
       PHOTON_CONTROL_RANGES.radius.max,
       fallbackLayer.radius ?? 1
     ),
-    frequencyHz: clampPhotonNumber(
+    frequencyHz: snapPhotonFrequencyToPowerOfTwo(
       layer.frequencyHz,
-      PHOTON_CONTROL_RANGES.frequencyHz.min,
-      PHOTON_CONTROL_RANGES.frequencyHz.max,
-      fallbackLayer.frequencyHz ?? 0.25
+      fallbackLayer.frequencyHz ?? 1
     ),
     phaseDeg: normalizePhotonDegrees(layer.phaseDeg, fallbackLayer.phaseDeg ?? 0),
   };
@@ -145,6 +250,9 @@ function normalizeSwarmState(swarm = {}, fallbackSwarm = {}, side = "left") {
 export function normalizePhotonState(input = DEFAULT_PHOTON_STATE) {
   const fallback = DEFAULT_PHOTON_STATE;
   const state = input && typeof input === "object" ? input : fallback;
+  const left = normalizeSwarmState(state.pair?.left, fallback.pair.left, "left");
+  const right = normalizeSwarmState(state.pair?.right, fallback.pair.right, "right");
+  const pairShell = { pair: { left, right } };
   return {
     app: "photon",
     version: 1,
@@ -166,45 +274,15 @@ export function normalizePhotonState(input = DEFAULT_PHOTON_STATE) {
     },
     pair: {
       speedMode: "cf",
-      pairSeparation: clampPhotonNumber(
+      pairSeparation: clampPhotonPairSeparationForState(
+        pairShell,
         state.pair?.pairSeparation,
-        PHOTON_CONTROL_RANGES.pairSeparation.min,
-        PHOTON_CONTROL_RANGES.pairSeparation.max,
         fallback.pair.pairSeparation
       ),
-      left: normalizeSwarmState(state.pair?.left, fallback.pair.left, "left"),
-      right: normalizeSwarmState(state.pair?.right, fallback.pair.right, "right"),
+      left,
+      right,
     },
     polarization: {
-      basis: ["linear", "right_circular", "left_circular", "elliptical"].includes(
-        state.polarization?.basis
-      )
-        ? state.polarization.basis
-        : fallback.polarization.basis,
-      linearAngleDeg: clampPhotonNumber(
-        state.polarization?.linearAngleDeg,
-        PHOTON_CONTROL_RANGES.polarizationAngleDeg.min,
-        PHOTON_CONTROL_RANGES.polarizationAngleDeg.max,
-        fallback.polarization.linearAngleDeg
-      ),
-      phaseLagDeg: clampPhotonNumber(
-        state.polarization?.phaseLagDeg,
-        PHOTON_CONTROL_RANGES.phaseLagDeg.min,
-        PHOTON_CONTROL_RANGES.phaseLagDeg.max,
-        fallback.polarization.phaseLagDeg
-      ),
-      ellipticity: clampPhotonNumber(
-        state.polarization?.ellipticity,
-        PHOTON_CONTROL_RANGES.ellipticity.min,
-        PHOTON_CONTROL_RANGES.ellipticity.max,
-        fallback.polarization.ellipticity
-      ),
-      intensity: clampPhotonNumber(
-        state.polarization?.intensity,
-        PHOTON_CONTROL_RANGES.intensity.min,
-        PHOTON_CONTROL_RANGES.intensity.max,
-        fallback.polarization.intensity
-      ),
       analyzerAngleDeg: clampPhotonNumber(
         state.polarization?.analyzerAngleDeg,
         PHOTON_CONTROL_RANGES.analyzerAngleDeg.min,
@@ -213,39 +291,27 @@ export function normalizePhotonState(input = DEFAULT_PHOTON_STATE) {
       ),
     },
     measurement: {
-      testPoint: {
+      virtualObserver: {
         x: clampPhotonNumber(
-          state.measurement?.testPoint?.x,
-          PHOTON_CONTROL_RANGES.testPointX.min,
-          PHOTON_CONTROL_RANGES.testPointX.max,
-          fallback.measurement.testPoint.x
+          state.measurement?.virtualObserver?.x,
+          PHOTON_CONTROL_RANGES.virtualObserverX.min,
+          PHOTON_CONTROL_RANGES.virtualObserverX.max,
+          fallback.measurement.virtualObserver.x
         ),
         y: clampPhotonNumber(
-          state.measurement?.testPoint?.y,
-          PHOTON_CONTROL_RANGES.testPointY.min,
-          PHOTON_CONTROL_RANGES.testPointY.max,
-          fallback.measurement.testPoint.y
+          state.measurement?.virtualObserver?.y,
+          PHOTON_CONTROL_RANGES.virtualObserverY.min,
+          PHOTON_CONTROL_RANGES.virtualObserverY.max,
+          fallback.measurement.virtualObserver.y
         ),
         z: clampPhotonNumber(
-          state.measurement?.testPoint?.z,
-          PHOTON_CONTROL_RANGES.testPointZ.min,
-          PHOTON_CONTROL_RANGES.testPointZ.max,
-          fallback.measurement.testPoint.z
+          state.measurement?.virtualObserver?.z,
+          PHOTON_CONTROL_RANGES.virtualObserverZ.min,
+          PHOTON_CONTROL_RANGES.virtualObserverZ.max,
+          fallback.measurement.virtualObserver.z
         ),
       },
       emissionSpeedCf: 1,
-      nearFieldWeight: clampPhotonNumber(
-        state.measurement?.nearFieldWeight,
-        PHOTON_CONTROL_RANGES.nearFieldWeight.min,
-        PHOTON_CONTROL_RANGES.nearFieldWeight.max,
-        fallback.measurement.nearFieldWeight
-      ),
-      fieldGain: clampPhotonNumber(
-        state.measurement?.fieldGain,
-        PHOTON_CONTROL_RANGES.fieldGain.min,
-        PHOTON_CONTROL_RANGES.fieldGain.max,
-        fallback.measurement.fieldGain
-      ),
     },
   };
 }
@@ -260,6 +326,64 @@ export function getPhotonLayer(state, swarmId, layerId) {
 
 export function getPhotonLayerEnabled(state, swarmId, layerId) {
   return getPhotonLayer(state, swarmId, layerId).enabled !== false;
+}
+
+export function getPhotonSeparationReferenceRadius(state) {
+  const enabledRadii = [];
+  const fallbackRadii = [];
+  ["left", "right"].forEach((swarmId) => {
+    PHOTON_LAYER_ORDER.forEach((layerId) => {
+      const layer = getPhotonLayer(state, swarmId, layerId);
+      const radius = Number(layer.radius);
+      if (!Number.isFinite(radius) || radius <= 0) {
+        return;
+      }
+      fallbackRadii.push(radius);
+      if (layer.enabled !== false) {
+        enabledRadii.push(radius);
+      }
+    });
+  });
+  const radii = enabledRadii.length ? enabledRadii : fallbackRadii;
+  return radii.length ? Math.max(...radii) : PHOTON_DEFAULT_LAYER_RADII.O;
+}
+
+export function getPhotonPairSeparationFromLog10Ratio(state, log10Ratio) {
+  const range = PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio;
+  const clampedLog10Ratio = clampPhotonNumber(log10Ratio, range.min, range.max, range.max);
+  return getPhotonSeparationReferenceRadius(state) * 10 ** clampedLog10Ratio;
+}
+
+export function getPhotonSeparationLog10Ratio(state) {
+  const range = PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio;
+  const referenceRadius = getPhotonSeparationReferenceRadius(state);
+  const rawSeparation = Number(state?.pair?.pairSeparation);
+  const safeSeparation =
+    Number.isFinite(rawSeparation) && rawSeparation > 0
+      ? rawSeparation
+      : getPhotonPairSeparationFromLog10Ratio(state, range.max);
+  const ratio = safeSeparation / Math.max(referenceRadius, Number.EPSILON);
+  return clampPhotonNumber(Math.log10(Math.max(ratio, 10 ** range.min)), range.min, range.max, range.max);
+}
+
+export function setPhotonPairSeparationLog10Ratio(state, log10Ratio) {
+  if (!state?.pair) {
+    return;
+  }
+  state.pair.pairSeparation = getPhotonPairSeparationFromLog10Ratio(state, log10Ratio);
+}
+
+export function clampPhotonPairSeparationForState(state, value, fallback = DEFAULT_PHOTON_STATE.pair.pairSeparation) {
+  const range = PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio;
+  const min = getPhotonPairSeparationFromLog10Ratio(state, range.min);
+  const max = getPhotonPairSeparationFromLog10Ratio(state, range.max);
+  const safeFallback = clampPhotonNumber(fallback, min, max, max);
+  return clampPhotonNumber(
+    value,
+    min,
+    max,
+    safeFallback
+  );
 }
 
 export function setPhotonLayerEnabled(state, swarmId, layerId, enabled) {
@@ -305,6 +429,14 @@ export function getPhotonDirectionSign(state, swarmId) {
   return state?.pair?.[swarmId]?.direction === "cw" ? -1 : 1;
 }
 
+export function getPhotonLayerTangentialSpeedRatio(state, swarmId, layerId, fieldSpeed = 1) {
+  const layer = getPhotonLayer(state, swarmId, layerId);
+  const speed = TWO_PI * Math.abs(Number(layer.radius) || 0) * Math.abs(Number(layer.frequencyHz) || 0);
+  const fieldSpeedNumber = Number(fieldSpeed);
+  const safeFieldSpeed = Number.isFinite(fieldSpeedNumber) && fieldSpeedNumber > 0 ? fieldSpeedNumber : 1;
+  return speed / safeFieldSpeed;
+}
+
 export function getPhotonLayerAngleRadians(state, swarmId, layerId, timeSeconds, chargeType = "positrino") {
   const layer = getPhotonLayer(state, swarmId, layerId);
   const directionSign = getPhotonDirectionSign(state, swarmId);
@@ -323,10 +455,8 @@ export function setPhotonLayerValue(state, swarmId, layerId, key, value) {
     return;
   }
   if (key === "frequencyHz") {
-    layer.frequencyHz = clampPhotonNumber(
+    layer.frequencyHz = snapPhotonFrequencyToPowerOfTwo(
       value,
-      PHOTON_CONTROL_RANGES.frequencyHz.min,
-      PHOTON_CONTROL_RANGES.frequencyHz.max,
       layer.frequencyHz
     );
     return;
@@ -339,13 +469,4 @@ export function setPhotonLayerValue(state, swarmId, layerId, key, value) {
       layer.radius
     );
   }
-}
-
-export function serializePhotonState(state) {
-  return JSON.stringify(normalizePhotonState(state), null, 2);
-}
-
-export function parsePhotonStateJson(jsonText) {
-  const parsed = JSON.parse(String(jsonText ?? "{}"));
-  return normalizePhotonState(parsed);
 }

@@ -117,7 +117,7 @@ c_f-\hat{\mathbf{r}}_{ij}(t;t_0)\cdot\mathbf{v}_j(t_0)
 \ge
 \kappa_{\mathrm{hit}}>0
 $$
-When this floor fails, the active root is caustic-like or degenerate and must be routed to a different branch chart or regularization regime.
+When this floor fails, the active root is caustic-like or degenerate and must be routed to a different branch chart or regularization regime. In special geometries the floor can be computed rather than declared; the principal circular partner branch derives $\kappa_{\mathrm{hit}}^{\mathrm{bin}}=c_f(1+\beta\sin(\phi/2)) > c_f$ in [Binary Dynamics](binary-dynamics.md#principal-partner-root-certificate).
 
 #### Caustic Transit and Finite Impulse
 
@@ -499,6 +499,8 @@ $$
 
 *Proof sketch:* Strict positivity of the Jacobian gives monotonicity, hence injectivity. Existence under endpoint sign change follows by the intermediate value theorem.
 
+This proposition is retained-interval local. It controls roots whose emission times lie inside the declared interval $I_t$; it does not remove older path-history roots emitted outside $I_t$, including self-hit candidates from an earlier super-field-speed interval that remain inside a longer memory window. If the model retains such persistent-memory roots, the speed bound must be checked on the enlarged interval that contains their emission times.
+
 **Proposition 3 (Fold criterion and even-jump law).**  
 In a one-parameter family $F^{(ij)}(t_0;\lambda)$ (with $\lambda$ a control parameter, e.g. receiver time or orbit parameter), interior root-count changes occur only at fold points:
 $$
@@ -513,6 +515,47 @@ between regular intervals.
 *Proof sketch:* Local normal form near a generic fold is equivalent to $u^2\pm\mu=0$, yielding either 0 or 2 simple roots. The two roots carry opposite Jacobian signs, so the degree is unchanged.
 
 This delay-map theorem pack is foundational rather than merely model-specific. Within this chapter it serves as the fold-geometry reference for delayed-root constructions: regular charts preserve signed degree, while branch creation or annihilation requires a Jacobian-degenerate fold.
+
+**Proposition 4 (forward partner-root starvation under field-speed drift).**
+Let a candidate translating branch have center drift $u\hat{\mathbf e}$ on the retained interval, with $u\ge0$ and $\|\hat{\mathbf e}\|=1$. Write two partner constituents as
+$$
+\mathbf{x}_i(t)=u t\,\hat{\mathbf e}+\boldsymbol{\rho}_i(t),
+\qquad
+\mathbf{x}_j(t_0)=u t_0\,\hat{\mathbf e}+\boldsymbol{\rho}_j(t_0)
+$$
+where $i$ is the receiver and $j\ne i$ is the source. Suppose the retained partner row is forward-directed in the co-moving branch chart:
+$$
+d_{\parallel}(t,t_0)
+\equiv
+\hat{\mathbf e}\cdot
+\left(
+\boldsymbol{\rho}_i(t)-\boldsymbol{\rho}_j(t_0)
+\right)
+\ge d_{\min}>0
+$$
+For any positive-delay candidate root with $\tau=t-t_0>0$,
+$$
+c_f\tau
+=
+\left\|
+u\tau\,\hat{\mathbf e}
++
+\boldsymbol{\rho}_i(t)-\boldsymbol{\rho}_j(t_0)
+\right\|
+\ge
+u\tau+d_{\min}
+$$
+Hence
+$$
+\left(c_f-u\right)\tau\ge d_{\min}
+$$
+If $u\ge c_f$, no such forward partner root exists. If $u<c_f$, any such row has the lower delay bound
+$$
+\tau\ge\frac{d_{\min}}{c_f-u}
+$$
+so the required memory depth diverges as $u\to c_f^-$.
+
+This is a kinematic starvation result, not a force-balance approximation. It says that a forward structural partner row cannot be retained at or above field-speed center drift because the causal wake cannot catch the leading receiver. A bound assembly branch that requires at least one such forward partner row for structural closure therefore cannot preserve the same causal-root ledger for sustained drift $u\ge c_f$. The proposition does not impose a speed cap on a single architrino, on internal curved self-hit motion, or on history-supported super-field-speed components; it applies to center translation of an internally bound branch whose leading-side partner closure is part of the retained ledger.
 
 #### Single-Hit Regime (Unique $t_0$)
 
@@ -640,7 +683,7 @@ $$
 
 This gives a purely substrate-level period-stretch checkpoint. It says only that preserving the same internal phase closure while the receiver translates forces the physical period $T$ to increase in absolute time unless the longitudinal leg shortens. The full unresolved step is proving the same absolute-period scaling for the complete multi-hit NFDE nested shell swarm dynamics without reducing to a two-leg closure model.
 
-The two-leg loop is only a checkpoint. It has two phase points and one chosen orientation relative to the absolute motion. A real assembly has an effective internal phase distribution over a finite three-dimensional volume, and operational isotropy has to hold for all loop orientations at once. The closure target is therefore a full ellipsoid-to-sphere reduction in the internal nested shell swarm phase space, not just the equality
+The two-leg loop is only a checkpoint. It has two phase points and one chosen orientation relative to the absolute motion. A real assembly has an effective internal phase distribution over a finite three-dimensional volume, and operational isotropy has to hold for all loop orientations at once. The closure target is therefore a full oblate-envelope-to-sphere reduction in the internal nested shell swarm phase space, not just the equality
 $$
 T_\parallel=T_\perp
 $$
@@ -894,6 +937,30 @@ The receiver's velocity $\mathbf{v}_i(t)$ does **not** appear as a separate sour
 1. The **instantaneous power** through $\mathbf{F} \cdot \mathbf{v} = \|\mathbf{F}\| v_r$.
 2. The **subsequent evolution of $r_{ij}$** (and thus future force magnitudes).
 3. Which delayed branches are actually sampled along the receiver worldline over time.
+
+For a uniformly moving source on a simple branch, this flux modulation is closed form. Let
+$$
+\mathbf{x}_j(t_0)=\mathbf{x}_{j,0}+\mathbf{u}t_0,
+\qquad
+\beta=\frac{\|\mathbf{u}\|}{c_f},
+\qquad
+\cos\theta=\frac{\mathbf{u}\cdot\hat{\mathbf{r}}_{ij}}{\|\mathbf{u}\|}
+$$
+at the emission event. Then
+$$
+J_{ij}=1-\beta\cos\theta
+$$
+and the received wake density attached to the simple root is proportional to
+$$
+\frac{1}{r_{ij}^2\,|1-\beta\cos\theta|}
+$$
+For $0\le\beta<1$ this gives a headlight-style causal-wake anisotropy:
+$$
+\mathcal{D}_{\mathrm{wake}}(\theta;\beta)
+=
+\frac{1}{1-\beta\cos\theta}
+$$
+up to the common inverse-square dilution and coupling normalization. The formula is not a Lorentz transformation and does not add electrodynamic velocity-field or acceleration-field terms. It is the microscopic source of leading/trailing wake-density asymmetry: forward directions with $\cos\theta>0$ receive compressed isochron spacing, while trailing directions receive diluted spacing. Doppler shift, aberration, magnetic-like response, preferred-frame leakage estimates, and translating-binary asymmetry must be derived from this branch geometry plus assembly and observer-channel closure rather than inserted as independent laws.
 
 **Causal-flux modulation:** Unlike models that make source strength itself a function of speed, the velocity dependence here enters through the **moving-source geometry** of emission, the **geometry of causal intersections**, and the **bunching or dilation of received wake flux** in the Euclidean void. This is the origin of the Jacobian denominator and the seed of relativistic and magnetic behavior in the emergent theory.
 
@@ -1207,7 +1274,7 @@ where the factor of 2 comes from the symmetry (each feels the same magnitude for
 - Provides inward radial force (centripetal)
 - Also provides **tangential force** (always positive, i.e., in direction of motion)
 
-**Result:** Net tangential power $T > 0$ → continuous acceleration → orbit tightens (spiral inward) → speed increases.
+**Result:** Net tangential power $T > 0$ means the partner-only circular branch is anti-damped. It accelerates along the orbit and cannot remain a constant-speed circle. The sign of this tangential work does not prove inward tightening; any contraction must come from a separate non-circular branch, capture basin, wake-flux/recoil channel, or multi-root ledger.
 
 **Conclusion within this circular benchmark:** No stable circular orbit appears in the sub-field-speed regime for isolated opposite-polarity binaries.
 
@@ -1216,7 +1283,7 @@ where the factor of 2 comes from the symmetry (each feels the same magnitude for
 #### Maximum-Curvature Orbit (Self-Hit Stabilization)
 
 **Setup:**
-- Opposite-polarity binary spirals inward (as in [Sub-Field-Speed Circular Orbit (Instability)](#sub-field-speed-circular-orbit-instability)) until speed crosses $\|\mathbf{v}\| = c_f$
+- A candidate opposite-polarity branch reaches super-field-speed curved history after a non-circular contraction, capture, or forced branch transition
 - Self-hits activate → repulsive outward force
 
 **Geometric definition (Null Separatrix):**
@@ -1640,7 +1707,7 @@ $$
 Therefore an isolated opposite-polarity binary cannot realize an exact constant-speed circular orbit from partner delay alone.
 
 **Interpretation.**
-These are the exact partner-only circular formulas needed elsewhere in the chapter. They show that the delayed partner branch supplies the desired inward radial pull, but it also drives the motion forward along $\mathbf{e}_\theta$. The circular ansatz therefore spirals inward instead of closing unless some additional structure changes the tangential balance.
+These are the exact partner-only circular formulas needed elsewhere in the chapter. They show that the delayed partner branch supplies inward radial pull, but it also drives the motion forward along $\mathbf{e}_\theta$. The circular ansatz therefore fails by anti-damping rather than by proving an inward spiral. Any tightening history must be certified on a non-circular branch or by an explicit finite-window energy ledger.
 
 ---
 
@@ -1734,7 +1801,7 @@ J^\star = 1-\beta^\star \cos\xi^\star = 0
 $$
 So each new circular self branch is born directly on a Jacobian-null boundary: branch creation and null-separatrix contact are the same event in the uniform circular toy model.
 
-> **Theorem Target (Signed higher-winding circular branch birth).**
+> **Proposition (Signed higher-winding circular branch birth).**
 > The circular distance equation should be read branchwise as
 > $$
 > g_{\beta,s}(\xi)\equiv s\sin\xi-\frac{\xi}{\beta}=0,
@@ -1989,7 +2056,7 @@ a_{r}^{(\mathrm{part})}+A_r^{|\sin|}(\beta)
 =
 \frac{2C}{\pi}\log\beta-\frac{2C}{\pi}+O(C)
 $$
-is again outward for sufficiently large $\beta$. Thus an exact high-speed constant-radius circular orbit is asymptotically excluded in the equal-magnitude bare two-body kernel away from Jacobian-null windows: the tangential residual remains forward, and the radial branch sum does not provide the required inward acceleration $-\omega^2R$. This is not yet a finite-$\beta$ no-go theorem; any surviving finite-speed window still requires a certified branch chart with positive Jacobian floor, inactive gaps, finite memory depth, and signed residual closure.
+is again outward for sufficiently large $\beta$. Thus, on this equal-magnitude bare circular chart and away from Jacobian-null birth windows, an exact constant-radius orbit is excluded for sufficiently large $\beta$: the tangential residual remains forward, and the radial branch sum does not provide the required inward acceleration $-\omega^2R$. This is a conditional high-speed chart result, not a global MCB no-go theorem and not a finite-$\beta$ exclusion across all ledgers; any surviving finite-speed window still requires a certified branch chart with positive Jacobian floor, inactive gaps, finite memory depth, and signed residual closure.
 
 The circular self-hit and partner-hit formulas are kernel benchmarks. They are not the Noether swarm model. The Noether swarm model is the six-body branch chart containing self, partner, and inter-layer causal roots, with hierarchy averaging only where justified by separated scales and certified branch data.
 

@@ -1,6 +1,6 @@
 # Work-Thread Raw Notes: Ideal Swarm Source Fragments
 
-This source packet preserves scratch notes and open questions that fed the Ideal Swarm / Lorentz-spheroid app work. It is parked material, not an active priority queue. Promote only concrete equations, simulation targets, theorem obligations, or app tasks into the relevant corpus document, app runtime, or another priority workstream.
+This source packet preserves scratch notes and open questions that fed the Ideal Swarm / oblate spheroidal envelope app work. It is parked material, not an active priority queue. Promote only concrete equations, simulation targets, theorem obligations, or app tasks into the relevant corpus document, app runtime, or another priority workstream.
 
 closed form equations?
     - seems like AI should be able to do the math to calculate the 'energy' accounted for passing through an enclosing sphere.

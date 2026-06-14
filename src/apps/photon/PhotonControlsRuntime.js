@@ -1,8 +1,12 @@
 import {
   PHOTON_CONTROL_RANGES,
   PHOTON_LAYER_ORDER,
+  getPhotonFrequencyExponent,
+  getPhotonFrequencyFromExponent,
   getPhotonLayer,
+  getPhotonSeparationLog10Ratio,
   setPhotonLayerEnabled,
+  setPhotonPairSeparationLog10Ratio,
   setPhotonLayerValue,
 } from "./PhotonStateRuntime.js";
 
@@ -15,6 +19,158 @@ function formatControlValue(value, digits = 2) {
 
 const ZERO_SNAP_STEP_COUNT = 2;
 const ZERO_SNAP_TRACK_RATIO = 0.0125;
+const PHOTON_SEPARATION_LOG_TICK_EPSILON = 1e-10;
+const PHOTON_SEPARATION_MANTISSAS = Object.freeze([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+const PHOTON_CONTROL_SWARM_ORDER = Object.freeze(["right", "left"]);
+const PHOTON_PLAYBACK_SPEED_RANGE = Object.freeze({
+  min: PHOTON_CONTROL_RANGES.speedMultiplier.min,
+  max: PHOTON_CONTROL_RANGES.speedMultiplier.max,
+  sliderMin: 0,
+  sliderMax: 100,
+  sliderStep: 1,
+});
+const PHOTON_SUPERSCRIPT_DIGITS = Object.freeze({
+  "-": "⁻",
+  0: "⁰",
+  1: "¹",
+  2: "²",
+  3: "³",
+  4: "⁴",
+  5: "⁵",
+  6: "⁶",
+  7: "⁷",
+  8: "⁸",
+  9: "⁹",
+});
+const PHOTON_PHASE_SNAP_STEP_DEG = 45;
+const PHOTON_PHASE_SNAP_THRESHOLD_DEG = 5;
+
+function formatPhotonSuperscriptInteger(value) {
+  return String(Math.trunc(Number(value) || 0))
+    .split("")
+    .map((character) => PHOTON_SUPERSCRIPT_DIGITS[character] ?? character)
+    .join("");
+}
+
+function formatPhotonSeparationScaleLabel(exponent) {
+  return `10${formatPhotonSuperscriptInteger(exponent)}`;
+}
+
+function formatPhotonExponentText(exponent) {
+  return String(Math.trunc(Number(exponent) || 0));
+}
+
+function renderPhotonSeparationScaleLabel(documentLike, element, exponent) {
+  element.textContent = "";
+  const label = createElement(documentLike, "span", "photon-exponent-label");
+  const power = createElement(documentLike, "sup", "photon-exponent-power", formatPhotonExponentText(exponent));
+  label.append(documentLike.createTextNode("10"), power);
+  element.append(label);
+}
+
+function renderPhotonPowerOfTwoLabel(documentLike, element, exponent) {
+  element.textContent = "";
+  const label = createElement(documentLike, "span", "photon-exponent-label");
+  const power = createElement(documentLike, "sup", "photon-exponent-power", formatPhotonExponentText(exponent));
+  label.append(documentLike.createTextNode("2"), power);
+  element.append(label);
+}
+
+export function getPhotonSeparationLogTicks() {
+  const range = PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio;
+  const ticks = [];
+  for (let exponent = range.min; exponent < range.max; exponent += 1) {
+    PHOTON_SEPARATION_MANTISSAS.forEach((mantissa) => {
+      ticks.push({
+        value: exponent + Math.log10(mantissa),
+        mantissa,
+        exponent,
+        label: mantissa === 1 ? formatPhotonSeparationScaleLabel(exponent) : `${mantissa}`,
+      });
+    });
+  }
+  ticks.push({
+    value: range.max,
+    mantissa: 1,
+    exponent: range.max,
+    label: formatPhotonSeparationScaleLabel(range.max),
+  });
+  return ticks;
+}
+
+export function getPhotonSeparationLogTick(value) {
+  const range = PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio;
+  const number = Number(value);
+  const clamped = Math.min(range.max, Math.max(range.min, Number.isFinite(number) ? number : range.max));
+  return getPhotonSeparationLogTicks().reduce((best, tick) => {
+    return Math.abs(tick.value - clamped) < Math.abs(best.value - clamped) ? tick : best;
+  });
+}
+
+export function snapPhotonSeparationLogTick(value) {
+  return getPhotonSeparationLogTick(value).value;
+}
+
+export function getPhotonSeparationLog10RatioFromParts(mantissa, exponent) {
+  const range = PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio;
+  const safeMantissa = Math.min(
+    Math.max(1, Math.round(Number.isFinite(Number(mantissa)) ? Number(mantissa) : 1)),
+    9
+  );
+  const safeExponent = Math.min(
+    range.max,
+    Math.max(range.min, Math.round(Number.isFinite(Number(exponent)) ? Number(exponent) : 0))
+  );
+  if (safeExponent >= range.max) {
+    return range.max;
+  }
+  return snapPhotonSeparationLogTick(safeExponent + Math.log10(safeMantissa));
+}
+
+export function getPhotonPlaybackSpeedSliderValue(multiplier) {
+  const minLog = Math.log(PHOTON_PLAYBACK_SPEED_RANGE.min);
+  const maxLog = Math.log(PHOTON_PLAYBACK_SPEED_RANGE.max);
+  const safeMultiplier = Math.min(
+    PHOTON_PLAYBACK_SPEED_RANGE.max,
+    Math.max(PHOTON_PLAYBACK_SPEED_RANGE.min, Number(multiplier) || 1)
+  );
+  return (
+    ((Math.log(safeMultiplier) - minLog) / (maxLog - minLog)) *
+    (PHOTON_PLAYBACK_SPEED_RANGE.sliderMax - PHOTON_PLAYBACK_SPEED_RANGE.sliderMin)
+  );
+}
+
+export function getPhotonPlaybackSpeedMultiplier(sliderValue) {
+  const sliderSpan =
+    PHOTON_PLAYBACK_SPEED_RANGE.sliderMax - PHOTON_PLAYBACK_SPEED_RANGE.sliderMin;
+  const progress = Math.min(
+    1,
+    Math.max(
+      0,
+      ((Number(sliderValue) || PHOTON_PLAYBACK_SPEED_RANGE.sliderMin) -
+        PHOTON_PLAYBACK_SPEED_RANGE.sliderMin) /
+        sliderSpan
+    )
+  );
+  const minLog = Math.log(PHOTON_PLAYBACK_SPEED_RANGE.min);
+  const maxLog = Math.log(PHOTON_PLAYBACK_SPEED_RANGE.max);
+  const multiplier = Math.exp(minLog + progress * (maxLog - minLog));
+  return Math.abs(multiplier - 1) < 1e-12 ? 1 : multiplier;
+}
+
+function formatPhotonSeparationLogRatio(value) {
+  const range = PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio;
+  const number = Number(value);
+  const clamped = Math.min(range.max, Math.max(range.min, Number.isFinite(number) ? number : range.max));
+  const exponent = Math.floor(clamped + PHOTON_SEPARATION_LOG_TICK_EPSILON);
+  const mantissa = 10 ** (clamped - exponent);
+  const roundedMantissa = Math.round(mantissa);
+  const mantissaText =
+    Math.abs(mantissa - roundedMantissa) <= 0.015
+      ? String(roundedMantissa)
+      : mantissa.toPrecision(2);
+  return `${mantissaText} × ${formatPhotonSeparationScaleLabel(exponent)} r`;
+}
 
 export function getPhotonControlZeroPositionPercent(range) {
   const min = Number(range?.min);
@@ -49,6 +205,28 @@ export function snapPhotonControlValueToZero(value, range) {
   return threshold > 0 && Math.abs(number) <= threshold ? 0 : number;
 }
 
+export function snapPhotonPhaseDegrees(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) {
+    return number;
+  }
+  const nearestStickySpot =
+    Math.round(number / PHOTON_PHASE_SNAP_STEP_DEG) * PHOTON_PHASE_SNAP_STEP_DEG;
+  return Math.abs(number - nearestStickySpot) <= PHOTON_PHASE_SNAP_THRESHOLD_DEG
+    ? nearestStickySpot
+    : number;
+}
+
+export function snapPhotonRangeControlValue(
+  value,
+  range,
+  { snapToZero = false, snapToPhaseDegrees = false } = {}
+) {
+  const rawValue = Number(value);
+  const zeroSnappedValue = snapToZero ? snapPhotonControlValueToZero(rawValue, range) : rawValue;
+  return snapToPhaseDegrees ? snapPhotonPhaseDegrees(zeroSnappedValue) : zeroSnappedValue;
+}
+
 function createElement(documentLike, tag, className, text = "") {
   const element = documentLike.createElement(tag);
   if (className) {
@@ -60,7 +238,47 @@ function createElement(documentLike, tag, className, text = "") {
   return element;
 }
 
-function createRangeControl(documentLike, { label, value, range, digits = 2, zeroIndicator = false, snapToZero = false, onInput }) {
+function bindPhotonPointerBlur(pointerElement, focusElement = pointerElement) {
+  let pointerWasUsed = false;
+  const blurAfterPointerUse = () => {
+    if (!pointerWasUsed) {
+      return;
+    }
+    pointerWasUsed = false;
+    const windowLike = focusElement?.ownerDocument?.defaultView;
+    const schedule = typeof windowLike?.requestAnimationFrame === "function"
+      ? windowLike.requestAnimationFrame.bind(windowLike)
+      : (callback) => setTimeout(callback, 0);
+    schedule(() => {
+      if (typeof focusElement?.blur === "function") {
+        focusElement.blur();
+      }
+    });
+  };
+
+  pointerElement.addEventListener("pointerdown", () => {
+    pointerWasUsed = true;
+  });
+  pointerElement.addEventListener("pointerup", blurAfterPointerUse);
+  pointerElement.addEventListener("pointercancel", () => {
+    pointerWasUsed = false;
+  });
+  pointerElement.addEventListener("click", blurAfterPointerUse);
+}
+
+function createRangeControl(
+  documentLike,
+  {
+    label,
+    value,
+    range,
+    digits = 2,
+    zeroIndicator = false,
+    snapToZero = false,
+    snapToPhaseDegrees = false,
+    onInput,
+  }
+) {
   const row = createElement(documentLike, "label", "photon-control-row");
   const span = createElement(documentLike, "span", "photon-control-label", label);
   const input = createElement(documentLike, "input", "photon-control-input");
@@ -74,10 +292,16 @@ function createRangeControl(documentLike, { label, value, range, digits = 2, zer
   if (snapToZero) {
     input.dataset.snapToZero = "true";
   }
+  if (snapToPhaseDegrees) {
+    input.dataset.snapToPhaseDegrees = "true";
+  }
   const output = createElement(documentLike, "output", "photon-control-output", formatControlValue(value, digits));
   const readInputValue = () => {
     const rawValue = Number(input.value);
-    const nextValue = snapToZero ? snapPhotonControlValueToZero(rawValue, range) : rawValue;
+    const nextValue = snapPhotonRangeControlValue(rawValue, range, {
+      snapToZero,
+      snapToPhaseDegrees,
+    });
     if (!Object.is(nextValue, rawValue)) {
       input.value = String(nextValue);
     }
@@ -100,7 +324,252 @@ function createRangeControl(documentLike, { label, value, range, digits = 2, zer
   } else {
     row.append(span, input, output);
   }
+  bindPhotonPointerBlur(row, input);
   return { row, input, output, digits };
+}
+
+function createFrequencyPowerControl(documentLike, { label, value, onInput }) {
+  const range = PHOTON_CONTROL_RANGES.frequencyExponent;
+  const row = createElement(documentLike, "label", "photon-control-row");
+  const span = createElement(documentLike, "span", "photon-control-label", label);
+  const input = createElement(documentLike, "input", "photon-control-input");
+  input.type = "range";
+  input.min = String(range.min);
+  input.max = String(range.max);
+  input.step = String(range.step);
+  input.setAttribute("aria-label", label);
+  input.dataset.controlLabel = label;
+  const output = createElement(documentLike, "output", "photon-control-output");
+
+  const sync = (frequency = value) => {
+    const exponent = getPhotonFrequencyExponent(frequency);
+    const nextFrequency = getPhotonFrequencyFromExponent(exponent);
+    input.value = String(exponent);
+    input.title = `f = ${nextFrequency}`;
+    input.setAttribute("aria-valuetext", `2^${exponent}`);
+    output.title = `f = ${nextFrequency}`;
+    output.setAttribute("aria-label", `2^${exponent}`);
+    renderPhotonPowerOfTwoLabel(documentLike, output, exponent);
+  };
+
+  input.addEventListener("input", () => {
+    const exponent = Number(input.value);
+    const nextFrequency = getPhotonFrequencyFromExponent(exponent);
+    sync(nextFrequency);
+    onInput(nextFrequency);
+  });
+
+  row.append(span, input, output);
+  bindPhotonPointerBlur(row, input);
+  sync(value);
+  return { row, input, output, sync };
+}
+
+function createSeparationLogControl(documentLike, { state, getState, onInput }) {
+  const range = PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio;
+  const initialTick = getPhotonSeparationLogTick(getPhotonSeparationLog10Ratio(state));
+  const row = createElement(documentLike, "div", "photon-control-row photon-log-control-row");
+  const span = createElement(documentLike, "span", "photon-control-label", "Δx");
+  const controlShell = createElement(documentLike, "span", "photon-separation-picker");
+  const mantissaGroup = createElement(documentLike, "span", "photon-separation-mantissas");
+  const exponentControl = createElement(documentLike, "span", "photon-separation-exponent-control");
+  const exponentButton = createButton(
+    documentLike,
+    "",
+    "photon-separation-exponent-button"
+  );
+  renderPhotonSeparationScaleLabel(documentLike, exponentButton, initialTick.exponent);
+  const exponentMenu = createElement(documentLike, "span", "photon-separation-exponent-menu");
+  const output = createElement(
+    documentLike,
+    "output",
+    "photon-control-output photon-separation-output",
+    formatPhotonSeparationLogRatio(initialTick.value)
+  );
+  let selectedMantissa = initialTick.mantissa;
+  let selectedExponent = initialTick.exponent;
+  let exponentMenuOpen = false;
+
+  PHOTON_SEPARATION_MANTISSAS.forEach((mantissa) => {
+    const button = createButton(
+      documentLike,
+      String(mantissa),
+      "photon-separation-mantissa-button"
+    );
+    button.dataset.mantissa = String(mantissa);
+    button.setAttribute("aria-label", `Delta x coefficient ${mantissa}`);
+    mantissaGroup.append(button);
+  });
+
+  exponentButton.setAttribute("aria-label", "Choose Delta x exponent");
+  exponentButton.setAttribute("aria-haspopup", "listbox");
+  exponentButton.setAttribute("aria-expanded", "false");
+  exponentMenu.hidden = true;
+  exponentMenu.setAttribute("role", "listbox");
+  exponentMenu.setAttribute("aria-label", "Delta x exponent");
+  for (let exponent = range.min; exponent <= range.max; exponent += 1) {
+    const exponentOption = createButton(
+      documentLike,
+      "",
+      "photon-separation-exponent-option"
+    );
+    renderPhotonSeparationScaleLabel(documentLike, exponentOption, exponent);
+    exponentOption.dataset.exponent = String(exponent);
+    exponentOption.setAttribute("role", "option");
+    exponentOption.setAttribute("aria-label", `Delta x exponent ${exponent}`);
+    exponentMenu.append(exponentOption);
+  }
+
+  const getSelectedExponentOption = () =>
+    Array.from(exponentMenu.children).find(
+      (button) => Number(button.dataset.exponent) === selectedExponent
+    );
+
+  const positionExponentMenu = () => {
+    const selectedButton = getSelectedExponentOption();
+    if (selectedButton) {
+      exponentMenu.scrollTop =
+        selectedButton.offsetTop -
+        Math.max(0, (exponentMenu.clientHeight - selectedButton.offsetHeight) / 2);
+    }
+
+    const controlRect = exponentControl.getBoundingClientRect?.();
+    const menuRect = exponentMenu.getBoundingClientRect?.();
+    const windowLike = exponentControl.ownerDocument?.defaultView;
+    if (!controlRect || !menuRect || !windowLike) {
+      return;
+    }
+
+    const desiredTop = controlRect.height / 2 - menuRect.height / 2;
+    const minTop = 8 - controlRect.top;
+    const maxTop = (windowLike.innerHeight || 0) - menuRect.height - controlRect.top - 8;
+    const top = Math.min(maxTop, Math.max(minTop, desiredTop));
+    exponentMenu.style.setProperty(
+      "--photon-exponent-menu-top",
+      `${Number.isFinite(top) ? top : desiredTop}px`
+    );
+  };
+
+  const setExponentMenuOpen = (nextOpen) => {
+    exponentMenuOpen = Boolean(nextOpen);
+    exponentControl.classList.toggle("is-open", exponentMenuOpen);
+    exponentButton.setAttribute("aria-expanded", exponentMenuOpen ? "true" : "false");
+    exponentMenu.hidden = !exponentMenuOpen;
+    if (exponentMenuOpen) {
+      const windowLike = exponentControl.ownerDocument?.defaultView;
+      const schedule = typeof windowLike?.requestAnimationFrame === "function"
+        ? windowLike.requestAnimationFrame.bind(windowLike)
+        : (callback) => setTimeout(callback, 0);
+      schedule(positionExponentMenu);
+    } else {
+      exponentMenu.style.removeProperty("--photon-exponent-menu-top");
+    }
+  };
+
+  const syncOutput = () => {
+    const currentState = getState();
+    const tick = getPhotonSeparationLogTick(getPhotonSeparationLog10Ratio(currentState));
+    selectedMantissa = tick.mantissa;
+    selectedExponent = tick.exponent;
+    const exponentLabel = formatPhotonSeparationScaleLabel(selectedExponent);
+    renderPhotonSeparationScaleLabel(documentLike, exponentButton, selectedExponent);
+    exponentButton.title = `Exponent ${selectedExponent}`;
+    exponentButton.setAttribute(
+      "aria-label",
+      `Choose Delta x exponent, current ${exponentLabel}`
+    );
+    Array.from(mantissaGroup.children).forEach((button) => {
+      const mantissa = Number(button.dataset.mantissa);
+      const isSelected = mantissa === selectedMantissa;
+      const isAvailable = selectedExponent < range.max || mantissa === 1;
+      button.classList.toggle("is-selected", isSelected);
+      button.disabled = !isAvailable;
+      button.setAttribute("aria-pressed", isSelected ? "true" : "false");
+    });
+    Array.from(exponentMenu.children).forEach((button) => {
+      const isSelected = Number(button.dataset.exponent) === selectedExponent;
+      button.classList.toggle("is-selected", isSelected);
+      button.setAttribute("aria-selected", isSelected ? "true" : "false");
+    });
+    output.textContent = formatPhotonSeparationLogRatio(tick.value);
+    output.title = `separation = ${Number(currentState.pair.pairSeparation).toExponential(3)}`;
+    if (exponentMenuOpen) {
+      positionExponentMenu();
+    }
+  };
+
+  const commitParts = (mantissa, exponent) => {
+    const nextValue = getPhotonSeparationLog10RatioFromParts(mantissa, exponent);
+    setPhotonPairSeparationLog10Ratio(getState(), nextValue);
+    syncOutput();
+    onInput(nextValue);
+  };
+
+  Array.from(mantissaGroup.children).forEach((button) => {
+    button.addEventListener("click", () => {
+      commitParts(Number(button.dataset.mantissa), selectedExponent);
+    });
+  });
+  exponentButton.addEventListener("click", () => {
+    setExponentMenuOpen(!exponentMenuOpen);
+  });
+  Array.from(exponentMenu.children).forEach((button) => {
+    button.addEventListener("click", () => {
+      commitParts(selectedMantissa, Number(button.dataset.exponent));
+      setExponentMenuOpen(false);
+    });
+  });
+  documentLike.addEventListener?.("click", (event) => {
+    if (!exponentControl.contains(event.target)) {
+      setExponentMenuOpen(false);
+    }
+  });
+  exponentControl.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      setExponentMenuOpen(false);
+      exponentButton.focus();
+    }
+  });
+
+  exponentControl.append(exponentButton, exponentMenu);
+  controlShell.append(mantissaGroup, exponentControl, output);
+  row.append(span, controlShell);
+  syncOutput();
+  return { row, output, sync: syncOutput };
+}
+
+function createPlaybackSpeedControl(documentLike, { state, getState, onInput }) {
+  const row = createElement(documentLike, "label", "photon-control-row photon-playback-speed-row");
+  const slowLabel = createElement(documentLike, "span", "photon-speed-end-label", "Slow");
+  const input = createElement(documentLike, "input", "photon-control-input");
+  const fastLabel = createElement(documentLike, "span", "photon-speed-end-label is-fast", "Fast");
+
+  input.type = "range";
+  input.min = String(PHOTON_PLAYBACK_SPEED_RANGE.sliderMin);
+  input.max = String(PHOTON_PLAYBACK_SPEED_RANGE.sliderMax);
+  input.step = String(PHOTON_PLAYBACK_SPEED_RANGE.sliderStep);
+  input.setAttribute("aria-label", "Playback speed");
+  input.dataset.controlLabel = "Playback speed";
+
+  const syncInput = () => {
+    const multiplier = getState().time.speedMultiplier;
+    const sliderValue = Math.round(getPhotonPlaybackSpeedSliderValue(multiplier));
+    input.value = String(sliderValue);
+    input.title = `Playback speed ${formatControlValue(multiplier, 2)}x`;
+    input.setAttribute("aria-valuetext", `${formatControlValue(multiplier, 2)}x`);
+  };
+
+  input.addEventListener("input", () => {
+    const multiplier = getPhotonPlaybackSpeedMultiplier(input.value);
+    getState().time.speedMultiplier = multiplier;
+    syncInput();
+    onInput(multiplier);
+  });
+
+  row.append(slowLabel, input, fastLabel);
+  bindPhotonPointerBlur(row, input);
+  syncInput();
+  return { row, input, sync: syncInput };
 }
 
 function createCheckboxControl(documentLike, { label, checked, onChange }) {
@@ -115,12 +584,14 @@ function createCheckboxControl(documentLike, { label, checked, onChange }) {
     onChange(input.checked);
   });
   row.append(input, span);
+  bindPhotonPointerBlur(row, input);
   return { row, input };
 }
 
 function createButton(documentLike, label, className = "photon-button") {
   const button = createElement(documentLike, "button", className, label);
   button.type = "button";
+  bindPhotonPointerBlur(button);
   return button;
 }
 
@@ -133,6 +604,10 @@ function addSection(documentLike, parent, title) {
 }
 
 function syncRange(control, value) {
+  if (typeof control.sync === "function") {
+    control.sync(value);
+    return;
+  }
   control.input.value = String(value);
   control.output.textContent = formatControlValue(value, control.digits);
 }
@@ -148,13 +623,10 @@ export function createPhotonControlsRuntime({
   container,
   state,
   getState = () => state,
-  jsonElement,
   onStateChange,
   onResetAnimation,
   onResetParameters,
   onTogglePause,
-  onExportState,
-  onImportState,
 }) {
   const controls = [];
   const binaryControls = [];
@@ -181,71 +653,43 @@ export function createPhotonControlsRuntime({
   });
 
   controls.push(
-    createRangeControl(documentLike, {
-      label: "Separation",
-      value: state.pair.pairSeparation,
-      range: PHOTON_CONTROL_RANGES.pairSeparation,
-      digits: 2,
-      onInput: (value) => {
-        getState().pair.pairSeparation = value;
-        onRangeStateChange();
-      },
+    createSeparationLogControl(documentLike, {
+      state,
+      getState,
+      onInput: () => onRangeStateChange(),
     })
   );
   controls.push(
-    createRangeControl(documentLike, {
-      label: "Time speed",
-      value: state.time.speedMultiplier,
-      range: PHOTON_CONTROL_RANGES.speedMultiplier,
-      digits: 2,
-      onInput: (value) => {
-        getState().time.speedMultiplier = value;
-        onRangeStateChange();
-      },
+    createPlaybackSpeedControl(documentLike, {
+      state,
+      getState,
+      onInput: () => onRangeStateChange(),
     })
   );
   timeSection.append(...controls.slice(-2).map((control) => control.row));
 
   const measurementSection = addSection(documentLike, container, "Measurement");
   [
-    ["x", "Test x", PHOTON_CONTROL_RANGES.testPointX, 2],
-    ["y", "Test y", PHOTON_CONTROL_RANGES.testPointY, 2],
-    ["z", "Test z", PHOTON_CONTROL_RANGES.testPointZ, 2],
+    ["x", "Observer x", PHOTON_CONTROL_RANGES.virtualObserverX, 2],
+    ["y", "Observer y", PHOTON_CONTROL_RANGES.virtualObserverY, 2],
+    ["z", "Observer z", PHOTON_CONTROL_RANGES.virtualObserverZ, 2],
   ].forEach(([key, label, range, digits]) => {
     const control = createRangeControl(documentLike, {
       label,
-      value: state.measurement.testPoint[key],
+      value: state.measurement.virtualObserver[key],
       range,
       digits,
       zeroIndicator: true,
       snapToZero: true,
       onInput: (value) => {
-        getState().measurement.testPoint[key] = value;
+        getState().measurement.virtualObserver[key] = value;
         onRangeStateChange();
       },
     });
     controls.push(control);
     measurementSection.append(control.row);
   });
-  [
-    ["nearFieldWeight", "Near mix", PHOTON_CONTROL_RANGES.nearFieldWeight, 2],
-    ["fieldGain", "Field gain", PHOTON_CONTROL_RANGES.fieldGain, 2],
-  ].forEach(([key, label, range, digits]) => {
-    const control = createRangeControl(documentLike, {
-      label,
-      value: state.measurement[key],
-      range,
-      digits,
-      onInput: (value) => {
-        getState().measurement[key] = value;
-        onRangeStateChange();
-      },
-    });
-    controls.push(control);
-    measurementSection.append(control.row);
-  });
-
-  ["left", "right"].forEach((swarmId) => {
+  PHOTON_CONTROL_SWARM_ORDER.forEach((swarmId) => {
     const swarm = state.pair[swarmId];
     const section = addSection(documentLike, container, `${swarm.role} ${swarm.direction.toUpperCase()}`);
     PHOTON_LAYER_ORDER.forEach((layerId) => {
@@ -256,27 +700,43 @@ export function createPhotonControlsRuntime({
         label: `${swarm.role} ${layerId} binary enabled`,
         checked: layer.enabled !== false,
         onChange: (checked) => {
-          setPhotonLayerEnabled(getState(), swarmId, layerId, checked);
+          const nextState = getState();
+          const separationLog10Ratio = getPhotonSeparationLog10Ratio(nextState);
+          setPhotonLayerEnabled(nextState, swarmId, layerId, checked);
+          setPhotonPairSeparationLog10Ratio(nextState, separationLog10Ratio);
           onStateChange();
         },
       });
       binaryControls.push({ ...enabledControl, swarmId, layerId });
       group.append(enabledControl.row);
       [
-        ["frequencyHz", "f", PHOTON_CONTROL_RANGES.frequencyHz, 2],
-        ["radius", "r", PHOTON_CONTROL_RANGES.radius, 2],
+        ["frequencyHz", "f", PHOTON_CONTROL_RANGES.frequencyHz, 4],
+        ["radius", "r", PHOTON_CONTROL_RANGES.radius, 4],
         ["phaseDeg", "phase", PHOTON_CONTROL_RANGES.phaseDeg, 0],
       ].forEach(([key, label, range, digits]) => {
-        const control = createRangeControl(documentLike, {
-          label,
-          value: layer[key],
-          range,
-          digits,
-          onInput: (value) => {
-            setPhotonLayerValue(getState(), swarmId, layerId, key, value);
-            onRangeStateChange();
-          },
-        });
+        const handleLayerInput = (value) => {
+          const nextState = getState();
+          const separationLog10Ratio = getPhotonSeparationLog10Ratio(nextState);
+          setPhotonLayerValue(nextState, swarmId, layerId, key, value);
+          if (key === "radius") {
+            setPhotonPairSeparationLog10Ratio(nextState, separationLog10Ratio);
+          }
+          onRangeStateChange();
+        };
+        const control = key === "frequencyHz"
+          ? createFrequencyPowerControl(documentLike, {
+              label,
+              value: layer[key],
+              onInput: handleLayerInput,
+            })
+          : createRangeControl(documentLike, {
+              label,
+              value: layer[key],
+              range,
+              digits,
+              snapToPhaseDegrees: key === "phaseDeg",
+              onInput: handleLayerInput,
+            });
         controls.push(control);
         group.append(control.row);
       });
@@ -284,34 +744,9 @@ export function createPhotonControlsRuntime({
     });
   });
 
-  const polarizationSection = addSection(documentLike, container, "Polarization");
-  const basisRow = createElement(documentLike, "label", "photon-control-row");
-  basisRow.append(createElement(documentLike, "span", "photon-control-label", "Basis"));
-  const basisSelect = createElement(documentLike, "select", "photon-select");
+  const analyzerSection = addSection(documentLike, container, "Analyzer");
   [
-    ["linear", "Linear"],
-    ["right_circular", "Right circular"],
-    ["left_circular", "Left circular"],
-    ["elliptical", "Elliptical"],
-  ].forEach(([value, label]) => {
-    const option = createElement(documentLike, "option", "", label);
-    option.value = value;
-    basisSelect.append(option);
-  });
-  basisSelect.value = state.polarization.basis;
-  basisSelect.addEventListener("change", () => {
-    getState().polarization.basis = basisSelect.value;
-    onStateChange();
-  });
-  basisRow.append(basisSelect, createElement(documentLike, "output", "photon-control-output", ""));
-  polarizationSection.append(basisRow);
-
-  [
-    ["linearAngleDeg", "Angle", PHOTON_CONTROL_RANGES.polarizationAngleDeg, 0],
-    ["phaseLagDeg", "Lag", PHOTON_CONTROL_RANGES.phaseLagDeg, 0],
-    ["ellipticity", "Ellipticity", PHOTON_CONTROL_RANGES.ellipticity, 2],
-    ["intensity", "Intensity", PHOTON_CONTROL_RANGES.intensity, 2],
-    ["analyzerAngleDeg", "Analyzer", PHOTON_CONTROL_RANGES.analyzerAngleDeg, 0],
+    ["analyzerAngleDeg", "Angle", PHOTON_CONTROL_RANGES.analyzerAngleDeg, 0],
   ].forEach(([key, label, range, digits]) => {
     const control = createRangeControl(documentLike, {
       label,
@@ -324,17 +759,8 @@ export function createPhotonControlsRuntime({
       },
     });
     controls.push(control);
-    polarizationSection.append(control.row);
+    analyzerSection.append(control.row);
   });
-
-  const ioSection = addSection(documentLike, container, "State");
-  const ioGrid = createElement(documentLike, "div", "photon-action-grid");
-  const exportButton = createButton(documentLike, "Export");
-  const importButton = createButton(documentLike, "Import");
-  ioGrid.append(exportButton, importButton);
-  ioSection.append(ioGrid);
-  exportButton.addEventListener("click", onExportState);
-  importButton.addEventListener("click", () => onImportState(jsonElement.value));
 
   function sync(nextState) {
     let index = 0;
@@ -343,14 +769,10 @@ export function createPhotonControlsRuntime({
     syncRange(controls[index], nextState.time.speedMultiplier);
     index += 1;
     ["x", "y", "z"].forEach((key) => {
-      syncRange(controls[index], nextState.measurement.testPoint[key]);
+      syncRange(controls[index], nextState.measurement.virtualObserver[key]);
       index += 1;
     });
-    ["nearFieldWeight", "fieldGain"].forEach((key) => {
-      syncRange(controls[index], nextState.measurement[key]);
-      index += 1;
-    });
-    ["left", "right"].forEach((swarmId) => {
+    PHOTON_CONTROL_SWARM_ORDER.forEach((swarmId) => {
       PHOTON_LAYER_ORDER.forEach((layerId) => {
         const layer = getPhotonLayer(nextState, swarmId, layerId);
         ["frequencyHz", "radius", "phaseDeg"].forEach((key) => {
@@ -362,8 +784,7 @@ export function createPhotonControlsRuntime({
     binaryControls.forEach((control) => {
       control.input.checked = getPhotonLayer(nextState, control.swarmId, control.layerId).enabled !== false;
     });
-    basisSelect.value = nextState.polarization.basis;
-    ["linearAngleDeg", "phaseLagDeg", "ellipticity", "intensity", "analyzerAngleDeg"].forEach((key) => {
+    ["analyzerAngleDeg"].forEach((key) => {
       syncRange(controls[index], nextState.polarization[key]);
       index += 1;
     });

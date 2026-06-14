@@ -10,6 +10,7 @@ export function createMarkdownRuntime(deps) {
     extractMarkdownSection,
     appendCacheBust,
     navigateToTarget,
+    documentLike = typeof document !== "undefined" ? document : null,
   } = deps;
 
   let activeMarkdownPath = null;
@@ -19,11 +20,21 @@ export function createMarkdownRuntime(deps) {
   const textbookTocMarkdownPath = "content/generated/markdown/textbook/toc.md";
   const supportResearchMarkdownPath = "content/markdown/aaa/archie/support-architrino-research.md";
   const liberapayWidgetScriptSrc = "https://liberapay.com/Architrino/widgets/button.js";
+  const mathTypesetRetryDelayMs = 120;
+  const mathTypesetRetryLimit = 20;
+  const markdownMathDelimiters = [
+    { left: "$$", right: "$$", display: true },
+    { left: "\\[", right: "\\]", display: true },
+    { left: "$", right: "$", display: false },
+    { left: "\\(", right: "\\)", display: false },
+  ];
   // These IDs are runtime-only helper scene identities, not authored scene IDs.
   const runtimeMarkdownPrefix = "runtime:markdown:";
   const runtimeMarkdownDocPrefix = `${runtimeMarkdownPrefix}doc:`;
   const runtimeMarkdownReaderPrefix = `${runtimeMarkdownPrefix}reader:`;
   const runtimeMarkdownIndexPrefix = `${runtimeMarkdownPrefix}index:`;
+  let mathTypesetRetryTimer = null;
+  let mathTypesetRetryVersion = 0;
 
   function escapeHtml(text) {
     return String(text)
@@ -275,27 +286,77 @@ export function createMarkdownRuntime(deps) {
     insertionTarget.insertAdjacentElement("afterend", widget);
   }
 
+  function getBrowserWindow() {
+    return typeof window !== "undefined" ? window : null;
+  }
+
+  function clearTypesetRetryTimer() {
+    const browserWindow = getBrowserWindow();
+    if (
+      mathTypesetRetryTimer !== null &&
+      typeof browserWindow?.clearTimeout === "function"
+    ) {
+      browserWindow.clearTimeout(mathTypesetRetryTimer);
+    }
+    mathTypesetRetryTimer = null;
+  }
+
+  function startTypesetRetryCycle() {
+    clearTypesetRetryTimer();
+    mathTypesetRetryVersion += 1;
+    return mathTypesetRetryVersion;
+  }
+
+  function cancelTypesetRetryCycle() {
+    clearTypesetRetryTimer();
+    mathTypesetRetryVersion += 1;
+  }
+
+  function markdownBodyNeedsMathTypesetting() {
+    if (!markdownBody) {
+      return false;
+    }
+    const text = `${markdownBody.textContent ?? ""}\n${markdownBody.innerHTML ?? ""}`;
+    return text.includes("$") || text.includes("\\[") || text.includes("\\(");
+  }
+
   function typesetMarkdown() {
     if (!markdownBody) {
-      return;
+      return true;
     }
-    const katexRender = window.renderMathInElement;
+    if (!markdownBodyNeedsMathTypesetting()) {
+      return true;
+    }
+    const katexRender = getBrowserWindow()?.renderMathInElement;
     if (typeof katexRender !== "function") {
-      return;
+      return false;
     }
     try {
       katexRender(markdownBody, {
-        delimiters: [
-          { left: "$$", right: "$$", display: true },
-          { left: "\\[", right: "\\]", display: true },
-          { left: "$", right: "$", display: false },
-          { left: "\\(", right: "\\)", display: false },
-        ],
+        delimiters: markdownMathDelimiters,
         throwOnError: false,
       });
     } catch (error) {
       console.error(error);
     }
+    return true;
+  }
+
+  function typesetMarkdownWithRetry(version, retriesRemaining = mathTypesetRetryLimit) {
+    if (version !== mathTypesetRetryVersion) {
+      return;
+    }
+    if (typesetMarkdown() || retriesRemaining <= 0) {
+      return;
+    }
+    const browserWindow = getBrowserWindow();
+    if (typeof browserWindow?.setTimeout !== "function") {
+      return;
+    }
+    mathTypesetRetryTimer = browserWindow.setTimeout(() => {
+      mathTypesetRetryTimer = null;
+      typesetMarkdownWithRetry(version, retriesRemaining - 1);
+    }, mathTypesetRetryDelayMs);
   }
 
   function hideMarkdownPanel() {
@@ -313,6 +374,7 @@ export function createMarkdownRuntime(deps) {
     }
     activeMarkdownPath = null;
     activeMarkdownSourcePath = null;
+    cancelTypesetRetryCycle();
     setMarkdownKind(null);
   }
 
@@ -422,6 +484,52 @@ export function createMarkdownRuntime(deps) {
     return true;
   }
 
+  function markdownFilenameFromPath(markdownPath) {
+    const leaf = String(markdownPath ?? "").split("/").filter(Boolean).pop();
+    return leaf && leaf.endsWith(".md") ? leaf : "reading-copy.md";
+  }
+
+  function downloadMarkdownSource(level) {
+    const target = resolveMarkdownTarget(level);
+    if (!target.markdownPath) {
+      return false;
+    }
+    const doc =
+      documentLike && typeof documentLike.createElement === "function"
+        ? documentLike
+        : null;
+    if (!doc) {
+      return false;
+    }
+    const link = doc.createElement("a");
+    const downloadName =
+      typeof level?.markdownDownloadName === "string" && level.markdownDownloadName.trim()
+        ? level.markdownDownloadName.trim()
+        : markdownFilenameFromPath(target.markdownPath);
+    link.href =
+      typeof appendCacheBust === "function"
+        ? appendCacheBust(target.markdownPath)
+        : target.markdownPath;
+    link.download = downloadName;
+    if (typeof link.setAttribute === "function") {
+      link.setAttribute("download", downloadName);
+    }
+    if ("rel" in link) {
+      link.rel = "noopener";
+    }
+    const parent = doc.body ?? doc.documentElement ?? markdownPanel ?? null;
+    if (parent && typeof parent.appendChild === "function") {
+      parent.appendChild(link);
+    }
+    if (typeof link.click !== "function") {
+      link.remove?.();
+      return false;
+    }
+    link.click();
+    link.remove?.();
+    return true;
+  }
+
   async function showMarkdownPanel(level) {
     const target = resolveMarkdownTarget(level);
     if (!markdownPanel || !target.markdownPath) {
@@ -485,7 +593,7 @@ export function createMarkdownRuntime(deps) {
     activeMarkdownSourcePath = markdownPath;
     setMarkdownKind(markdownPath);
     applyMarkdownLayout();
-    typesetMarkdown();
+    typesetMarkdownWithRetry(startTypesetRetryCycle());
     decorateTextbookToc();
     decorateSupportResearch();
   }
@@ -552,6 +660,7 @@ export function createMarkdownRuntime(deps) {
     applyMarkdownLayout,
     toggleMarkdownLayout,
     printMarkdownPanel,
+    downloadMarkdownSource,
     showMarkdownPanel,
   };
 }

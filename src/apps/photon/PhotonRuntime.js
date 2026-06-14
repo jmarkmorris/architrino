@@ -1,8 +1,6 @@
 import {
   createDefaultPhotonState,
   normalizePhotonState,
-  parsePhotonStateJson,
-  serializePhotonState,
   wrapPhotonTime,
 } from "./PhotonStateRuntime.js";
 import { createMarkdownRuntime } from "../../runtime/MarkdownRuntime.js";
@@ -11,8 +9,8 @@ import { createPhotonControlsRuntime } from "./PhotonControlsRuntime.js";
 import { computePhotonFormulaSummary } from "./PhotonFormulaRuntime.js";
 import { getPhotonDiagnosticRows, formatPhotonFixed } from "./PhotonDiagnosticsRuntime.js";
 import {
-  drawPhotonComparisonBFieldPlot,
   drawPhotonElectricFieldPlot,
+  drawPhotonPolarizationInset,
   drawPhotonSwarmStage,
 } from "./PhotonSwarmVisualRuntime.js";
 
@@ -20,6 +18,19 @@ const PHOTON_DOCS = {
   guide: {
     name: "Photon Guide",
     markdownPath: "reference/priorities/photon-app/photon-guide.md",
+    markdownColumns: 1,
+  },
+  photonClosure: {
+    name: "Photon Closure",
+    markdownPath: "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
+    markdownSection: "Photon Closure Interface",
+    markdownColumns: 1,
+  },
+  polarizationGateB: {
+    name: "Polarization",
+    markdownPath:
+      "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+    markdownSection: "Helicity and Vector Modes",
     markdownColumns: 1,
   },
   project: {
@@ -52,35 +63,97 @@ function setTextAll(elements, value) {
   elements.forEach((element) => setText(element, value));
 }
 
-function renderRows(documentLike, container, rows) {
+function renderInlineMathLabel(windowLike, element, math) {
+  const katex = windowLike?.katex;
+  if (katex && typeof katex.render === "function") {
+    katex.render(math, element, {
+      displayMode: false,
+      throwOnError: false,
+    });
+    return;
+  }
+  element.textContent = math;
+}
+
+function renderRows(documentLike, container, rows, { windowLike } = {}) {
   container.textContent = "";
-  rows.forEach(([label, value]) => {
+  rows.forEach(([label, value, quality, options = {}]) => {
     const row = documentLike.createElement("div");
     row.className = "photon-readout-row";
     const labelElement = documentLike.createElement("span");
-    labelElement.textContent = label;
+    if (options.labelMath) {
+      labelElement.classList.add("has-math");
+      renderInlineMathLabel(windowLike, labelElement, options.labelMath);
+    } else {
+      labelElement.textContent = label;
+    }
     const valueElement = documentLike.createElement("strong");
     valueElement.textContent = value;
     row.append(labelElement, valueElement);
+    if (quality) {
+      row.classList.add("has-quality");
+      const qualityElement = documentLike.createElement("em");
+      const qualityClass = String(quality).toLowerCase().replace(/[^a-z0-9_-]+/g, "-");
+      qualityElement.className = `photon-readout-quality is-${qualityClass}`;
+      qualityElement.textContent = quality;
+      row.append(qualityElement);
+    }
     container.append(row);
   });
 }
 
-function renderFormulaSummary(documentLike, container, summary) {
+function renderFormulaSummary(documentLike, container, summary, { windowLike } = {}) {
   const values = [
-    ["Ipass = I0 cos^2(theta)", formatPhotonFixed(summary.malusTarget, 3)],
-    ["mu pass", formatPhotonFixed(summary.field.analyzer.passMeasure, 3)],
-    ["cycle average", formatPhotonFixed(summary.averagePass, 3)],
-    ["residual", formatPhotonFixed(summary.malusResidual, 4)],
+    ["derived mode", summary.polarization.classificationLabel],
+    [
+      "fit amp E_y",
+      formatPhotonFixed(summary.polarization.amplitudes.y, 3),
+      undefined,
+      { labelMath: "\\mathrm{fit\\ amp}\\ E_y" },
+    ],
+    [
+      "fit amp E_z",
+      formatPhotonFixed(summary.polarization.amplitudes.z, 3),
+      undefined,
+      { labelMath: "\\mathrm{fit\\ amp}\\ E_z" },
+    ],
+    [
+      "fit E_z/E_y",
+      formatPhotonFixed(summary.polarization.amplitudes.relative, 3),
+      undefined,
+      { labelMath: "\\mathrm{fit}\\ E_z/E_y" },
+    ],
+    [
+      "fit lag",
+      summary.polarization.phaseLagDefined
+        ? `${formatPhotonFixed(summary.polarization.phaseLagDeg, 1)} deg`
+        : "n/a",
+    ],
+    ["fit residual", formatPhotonFixed(summary.fitResidual, 4)],
+    ["fit analyzer fraction", formatPhotonFixed(summary.analyzerTarget, 3)],
+    ["mu analyzer", formatPhotonFixed(summary.field.analyzer.fraction, 3)],
+    ["cycle average", formatPhotonFixed(summary.averageAnalyzerFraction, 3)],
+    ["analyzer residual", formatPhotonFixed(summary.analyzerResidual, 4)],
     ["source count", String(summary.field.sourceCount)],
+    ["root count", String(summary.field.rootCount)],
     ["mean delay", formatPhotonFixed(summary.field.averageDelay, 3)],
     ["nearest source", formatPhotonFixed(summary.field.nearestSourceDistance, 3)],
-    ["S0", formatPhotonFixed(summary.stokes.s0, 3)],
-    ["S1", formatPhotonFixed(summary.stokes.s1, 3)],
-    ["S2", formatPhotonFixed(summary.stokes.s2, 3)],
-    ["S3", formatPhotonFixed(summary.stokes.s3, 3)],
+    ["", formatPhotonFixed(summary.stokes.s0, 3), undefined, { labelMath: "A_y^2 + A_z^2" }],
+    ["", formatPhotonFixed(summary.stokes.s1, 3), undefined, { labelMath: "A_y^2 - A_z^2" }],
+    [
+      "",
+      formatPhotonFixed(summary.stokes.s2, 3),
+      undefined,
+      { labelMath: "2 A_y A_z \\cos\\delta" },
+    ],
+    [
+      "",
+      formatPhotonFixed(summary.stokes.s3, 3),
+      undefined,
+      { labelMath: "-2 A_y A_z \\sin\\delta" },
+    ],
   ];
-  renderRows(documentLike, container, values);
+  renderRows(documentLike, container, values, { windowLike });
 }
 
 function getPhotonEventTargetTagName(target) {
@@ -107,6 +180,21 @@ export function shouldHandlePhotonSpaceToggle(event = {}) {
   return !["INPUT", "TEXTAREA", "SELECT", "BUTTON", "OPTION"].includes(
     getPhotonEventTargetTagName(target)
   );
+}
+
+export function getPhotonRuntimeTimes(state, modelTime) {
+  const continuousTime = Number.isFinite(Number(modelTime)) ? Number(modelTime) : 0;
+  return {
+    modelTime: continuousTime,
+    displayTime: wrapPhotonTime(state, continuousTime),
+  };
+}
+
+export function advancePhotonModelTime(modelTime, deltaSeconds, speedMultiplier) {
+  const currentTime = Number.isFinite(Number(modelTime)) ? Number(modelTime) : 0;
+  const safeDelta = Math.max(0, Number.isFinite(Number(deltaSeconds)) ? Number(deltaSeconds) : 0);
+  const safeSpeed = Number.isFinite(Number(speedMultiplier)) ? Number(speedMultiplier) : 1;
+  return currentTime + safeDelta * safeSpeed;
 }
 
 function appendPhotonCacheBust(path, token) {
@@ -188,13 +276,20 @@ export function createPhotonRuntime({
 } = {}) {
   const stageCanvas = queryPhotonElement(documentLike, "#photon-stage-canvas");
   const electricFieldCanvas = queryPhotonElement(documentLike, "#photon-electric-field-canvas");
-  const magneticFieldCanvas = queryPhotonElement(documentLike, "#photon-magnetic-field-canvas");
+  const polarizationCanvas = queryPhotonElement(documentLike, "#photon-polarization-canvas");
   const controlsElement = queryPhotonElement(documentLike, "#photon-controls");
   const diagnosticsElement = queryPhotonElement(documentLike, "#photon-diagnostics");
   const formulasElement = queryPhotonElement(documentLike, "#photon-formulas");
-  const jsonElement = queryPhotonElement(documentLike, "#photon-state-json");
   const homeButton = queryPhotonElement(documentLike, "#photon-home-button");
   const guideDocButton = queryPhotonElement(documentLike, "#photon-guide-doc-button");
+  const photonClosureDocButton = queryPhotonElement(
+    documentLike,
+    "#photon-closure-doc-button"
+  );
+  const polarizationGateBDocButton = queryPhotonElement(
+    documentLike,
+    "#photon-polarization-gate-doc-button"
+  );
   const projectDocButton = queryPhotonElement(documentLike, "#photon-project-doc-button");
   const requirementsDocButton = queryPhotonElement(documentLike, "#photon-requirements-doc-button");
   const markdownPanel = queryPhotonElement(documentLike, "#photon-markdown-panel");
@@ -222,20 +317,23 @@ export function createPhotonRuntime({
     markdownLayoutToggle,
   });
 
-  function syncOutputs(wrappedTime, summary) {
-    setTextAll(timeOutputs, `${formatPhotonFixed(wrappedTime, 2)} s`);
-    setTextAll(cycleOutputs, `${formatPhotonFixed(summary.runDuration, 2)} s`);
-    renderRows(documentLike, diagnosticsElement, getPhotonDiagnosticRows(state, wrappedTime, summary));
-    renderFormulaSummary(documentLike, formulasElement, summary);
+  function syncOutputs(displayTime, summary) {
+    setTextAll(timeOutputs, `${formatPhotonFixed(displayTime, 1)} s`);
+    setTextAll(cycleOutputs, `${formatPhotonFixed(summary.runDuration, 1)} s`);
+    renderRows(documentLike, diagnosticsElement, getPhotonDiagnosticRows(state, displayTime, summary), {
+      windowLike,
+    });
+    renderFormulaSummary(documentLike, formulasElement, summary, { windowLike });
   }
 
   function draw() {
-    const wrappedTime = wrapPhotonTime(state, modelTime);
-    const summary = computePhotonFormulaSummary(state, wrappedTime);
-    drawPhotonSwarmStage(stageCanvas, state, wrappedTime, { windowLike });
-    drawPhotonElectricFieldPlot(electricFieldCanvas, state, wrappedTime, { windowLike });
-    drawPhotonComparisonBFieldPlot(magneticFieldCanvas, state, wrappedTime, { windowLike });
-    syncOutputs(wrappedTime, summary);
+    const times = getPhotonRuntimeTimes(state, modelTime);
+    const displayTime = times.displayTime;
+    const summary = computePhotonFormulaSummary(state, displayTime);
+    drawPhotonSwarmStage(stageCanvas, state, times.modelTime, { windowLike });
+    drawPhotonElectricFieldPlot(electricFieldCanvas, state, displayTime, { windowLike });
+    drawPhotonPolarizationInset(polarizationCanvas, state, displayTime, { windowLike });
+    syncOutputs(displayTime, summary);
   }
 
   function syncControls() {
@@ -244,8 +342,6 @@ export function createPhotonRuntime({
 
   function setState(nextState) {
     state = normalizePhotonState(nextState);
-    modelTime = wrapPhotonTime(state, modelTime);
-    jsonElement.value = serializePhotonState(state);
     syncControls();
     draw();
   }
@@ -258,14 +354,12 @@ export function createPhotonRuntime({
   function resetParameters() {
     state = createDefaultPhotonState();
     modelTime = 0;
-    jsonElement.value = serializePhotonState(state);
     syncControls();
     draw();
   }
 
   function togglePause() {
     state.time.paused = !state.time.paused;
-    jsonElement.value = serializePhotonState(state);
     syncControls();
     draw();
   }
@@ -278,18 +372,8 @@ export function createPhotonRuntime({
     togglePause();
   }
 
-  function exportState() {
-    jsonElement.value = serializePhotonState(state);
-  }
-
-  function importState(jsonText) {
-    setState(parsePhotonStateJson(jsonText));
-  }
-
   function onStateChange({ syncControls: shouldSyncControls = true, drawNow = true } = {}) {
     state = normalizePhotonState(state);
-    modelTime = wrapPhotonTime(state, modelTime);
-    jsonElement.value = serializePhotonState(state);
     if (shouldSyncControls) {
       syncControls();
     }
@@ -305,32 +389,34 @@ export function createPhotonRuntime({
     const deltaSeconds = Math.min(0.08, Math.max(0, (timestamp - lastFrame) / 1000));
     lastFrame = timestamp;
     if (!state.time.paused) {
-      modelTime = wrapPhotonTime(state, modelTime + deltaSeconds * state.time.speedMultiplier);
+      modelTime = advancePhotonModelTime(modelTime, deltaSeconds, state.time.speedMultiplier);
     }
     draw();
     animationFrame = windowLike.requestAnimationFrame(frame);
   }
 
   function init() {
-    jsonElement.value = serializePhotonState(state);
     controlsRuntime = createPhotonControlsRuntime({
       documentLike,
       container: controlsElement,
       state,
       getState: () => state,
-      jsonElement,
       onStateChange,
       onResetAnimation: resetAnimation,
       onResetParameters: resetParameters,
       onTogglePause: togglePause,
-      onExportState: exportState,
-      onImportState: importState,
     });
     homeButton.addEventListener("click", () => {
       windowLike.location.assign(homeHref);
     });
     guideDocButton.addEventListener("click", () => {
       markdownRuntime.showMarkdownPanel(PHOTON_DOCS.guide);
+    });
+    photonClosureDocButton.addEventListener("click", () => {
+      markdownRuntime.showMarkdownPanel(PHOTON_DOCS.photonClosure);
+    });
+    polarizationGateBDocButton.addEventListener("click", () => {
+      markdownRuntime.showMarkdownPanel(PHOTON_DOCS.polarizationGateB);
     });
     projectDocButton.addEventListener("click", () => {
       markdownRuntime.showMarkdownPanel(PHOTON_DOCS.project);

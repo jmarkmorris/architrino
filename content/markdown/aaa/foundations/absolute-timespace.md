@@ -507,6 +507,16 @@ with any neutrality, screening, principal-value, or mean-field subtraction rule 
 
 This is an admissibility lemma for branches and continuum reductions: the branch is well-defined only when the receiver-centered limit exists under the declared subtraction or screening rule, and allowed refinements of the exhaustion do not change the resulting local acceleration. Inverse-square surface dilution alone is not enough in three spatial dimensions because the number of sources in a radial layer grows like $r^2\,dr$. The lemma supplies the convergence condition used by emergence arguments to justify effective locality and metastable assembly behavior.
 
+There is one important homogeneous case where the lemma becomes a theorem rather than a bare admissibility requirement. Suppose the far population is statistically homogeneous, isotropic, locally neutral, and mixing, with neutrality correlation length $\ell$. Partition space outside a fixed local ball into receiver-centered shells of thickness comparable to $\ell$, and group sources into neutral cells of diameter $O(\ell)$. Let $S_n$ be the vector acceleration contribution from shell $n$ after subtracting the local neutral mean. A shell at radius $r_n\sim n\ell$ contains $N_n=O(n^2)$ effectively independent cells, so signed fluctuations scale like $\sqrt{N_n}=O(n)$ while each cell contribution carries the inverse-square factor $O(r_n^{-2})=O(n^{-2})$. Hence
+$$
+\mathbb{E}\|S_n\|^2=O(n^{-2})
+$$
+under the declared mixing bound, and therefore
+$$
+\sum_{n=1}^{\infty}\mathbb{E}\|S_n\|^2<\infty
+$$
+The shell series converges in $L^2$ and almost surely by the standard square-summable fluctuation criterion. Thus a homogeneous locally neutral Noether sea record supplies a convergent receiver-centered exhaustion under these assumptions. This result does not prove convergence for arbitrary inhomogeneous or coherent far populations; those branches still need shielding, screening, a finite active horizon, or an explicit subtraction prescription.
+
 These assumptions are not additional ontology. They are the analytic conditions needed for the master equation and simulation approximations to be well-defined on the product background.
 
 ## Relation to Relativistic Spacetime

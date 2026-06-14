@@ -63,10 +63,17 @@ export function createScenePanelUiRuntime(deps) {
         if (isTransitionActive()) {
           return;
         }
+        const currentLevel = getCurrentLevel();
+        if (
+          currentLevel?.markdownDownloadOnly === true &&
+          typeof markdownRuntime.downloadMarkdownSource === "function" &&
+          markdownRuntime.downloadMarkdownSource(currentLevel)
+        ) {
+          return;
+        }
         if (markdownRuntime.printMarkdownPanel()) {
           return;
         }
-        const currentLevel = getCurrentLevel();
         if (currentLevel?.markdownPath) {
           await markdownRuntime.showMarkdownPanel(currentLevel);
           window.setTimeout(() => {

@@ -74,6 +74,42 @@ U_\ast
 $$
 This route is trajectory-local. It is useful for simulations and branch replay, but it is not an off-shell conserved charge unless the same action and boundary convention have already been declared.
 
+#### Binary Branch Work Ledger
+
+For a solved two-body branch chart $b$, the work-integral route has a concrete first test. Let $\mathbf{a}_{i,b}^{(\eta)}(t)$ be the acceleration row obtained from exactly the active causal roots retained by the binary branch chart. With the quadratic kinetic proxy, define the delivered branch power by
+$$
+P_{b,\mathrm{work}}^{(\eta)}(t)
+=
+\sum_{i=1}^{2}
+\mu_{\text{arch}}\,
+\mathbf{a}_{i,b}^{(\eta)}(t)
+\cdot
+\mathbf{v}_i(t)
+$$
+and reconstruct the compatible causal-history interaction contribution by
+$$
+U_{b,\mathrm{work}}^{(\eta)}(t)
+=
+U_b(t_\ast)
+-
+\int_{t_\ast}^{t}
+P_{b,\mathrm{work}}^{(\eta)}(t')\,dt'
+$$
+For a primitive kinetic scalar, replace $\mu_{\text{arch}}$ by $\mu_K(\|\mathbf{v}_i\|)$ inside the sum. This is the operational binary definition: the wake-history row is whatever balances the delivered branch work along the realized trajectory, after the window, regulator, and branch ledger have been declared.
+
+On a circular benchmark with speed $s_b$, the radial component is orthogonal to the receiver velocity, so the branch power is the tangential row:
+$$
+\left\langle
+P_{b,\mathrm{work}}^{(\eta)}
+\right\rangle_{P_b}
+=
+\mu_{\text{arch}}\,s_b\,
+\left\langle
+A_{\eta,b}^{\mathrm{tan}}
+\right\rangle_{P_b}
+$$
+for the quadratic proxy. A nonzero value is not by itself an energy-conservation failure; it is the quantity that the boundary flux, recoil row, or constructed wake-history term must balance. A stable binary claim must therefore compute this row on the same branch chart as the motion residuals before invoking a Noether-style conserved energy.
+
 ### Boundary-Flux Route
 
 For finite retained windows, missing energy must be routed to boundary exchange rather than hidden in $E_{\text{wake}}$. The finite-window balance target is

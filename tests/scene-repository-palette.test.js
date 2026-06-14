@@ -187,3 +187,81 @@ test("Scene-Index nodes infer doc badges from markdown child scenes", async () =
     "diagram"
   );
 });
+
+test("markdown view options propagate to runtime nodes", async () => {
+  const repository = createRepositoryWithScenes({});
+
+  const config = await repository.createConfigFromSceneData(
+    "content/scenes/example/downloads.json",
+    {
+      scene: {
+        type: "Scene-Markdown-View",
+      },
+      objects: [
+        {
+          id: "reading_copy",
+          title: "Reading Copy",
+          source: {
+            type: "markdown",
+            path: "content/generated/markdown/textbook/reading-copies/foundations.md",
+          },
+          view: {
+            columns: 1,
+            autoOpen: false,
+            downloadOnly: true,
+          },
+        },
+      ],
+    }
+  );
+
+  const node = config.nodes.find((entry) => entry.id === "reading_copy");
+  assert.equal(
+    node?.markdownPath,
+    "content/generated/markdown/textbook/reading-copies/foundations.md"
+  );
+  assert.equal(node?.markdownColumns, 1);
+  assert.equal(node?.markdownAutoOpen, false);
+  assert.equal(node?.markdownDownloadOnly, true);
+});
+
+test("markdown split grid gap options propagate to runtime config", async () => {
+  let capturedScene = null;
+  const repository = createRepositoryWithScenes(
+    {},
+    {
+      buildAutoMarkdownNodes: async (scene) => {
+        capturedScene = scene;
+        return [];
+      },
+    }
+  );
+
+  const config = await repository.createConfigFromSceneData(
+    "content/scenes/example/notebook.json",
+    {
+      scene: {
+        type: "Scene-Markdown-Split",
+        layout: {
+          type: "grid",
+        },
+        source: {
+          type: "markdown",
+          path: "content/markdown/example.md",
+          split: {
+            headingLevel: 2,
+            maxDepth: 1,
+            gridGapMultiplier: 2,
+            gridSpacing: 4.75,
+          },
+        },
+      },
+      objects: [],
+    }
+  );
+
+  assert.equal(config.splitGridGapMultiplier, 2);
+  assert.equal(config.splitGridSpacing, 4.75);
+  assert.equal(capturedScene?.splitGridGapMultiplier, 2);
+  assert.equal(capturedScene?.splitGridSpacing, 4.75);
+});

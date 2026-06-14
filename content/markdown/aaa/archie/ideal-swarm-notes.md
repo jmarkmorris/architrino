@@ -13,14 +13,14 @@ Read this alongside:
 
 ## Purpose
 
-The app shows a nested Noether swarm whose velocity-dependent envelope is treated as a Lorentz spheroid. The user changes the velocity fraction $\beta = v/c_f$ and sees the same factor appear in four linked places:
+The app shows a nested Noether swarm whose velocity-dependent boundary is treated as an oblate spheroidal envelope. The user changes the velocity fraction $\beta = v/c_f$ and sees the same factor appear in four linked places:
 
 1. the geometry of the flattened swarm envelope,
 2. the relative-time readout,
 3. the relative-length readout,
 4. the normalized center-of-mass energy and mass-equivalent ledger.
 
-The central visual point is that the Lorentz factor is not only a formula on a panel. In the zero-extra-scale lesson case, it is the aspect ratio of the displayed spheroid:
+The central visual point is that the Lorentz factor is not only a formula on a panel. In the zero-extra-scale lesson case, it is the aspect ratio of the displayed oblate spheroidal envelope:
 $$
 \xi
 =\frac{R_{\parallel}}{R_{\perp}}
@@ -43,19 +43,19 @@ $$
 =
 \frac{(1,1,1)}{\sqrt{3}}
 $$
-as that direction. The binary orbital normals then tilt toward $\hat{\mathbf{n}}$ as the Lorentz spheroid contracts along $\hat{\mathbf{n}}$. Near the limit $\beta\to1$, the displayed orbit planes approach a common plane orthogonal to the assembly momentum direction, so a viewer looking along $\hat{\mathbf{n}}$ should see the orbits approach concentric circles.
+as that direction. The binary orbital normals then tilt toward $\hat{\mathbf{n}}$ as the oblate spheroidal envelope contracts along $\hat{\mathbf{n}}$. Near the limit $\beta\to1$, the displayed orbit planes approach a common plane orthogonal to the assembly momentum direction, so a viewer looking along $\hat{\mathbf{n}}$ should see the orbits approach concentric circles.
 
 This is a visualization hypothesis, not a completed theorem. The app makes the proposed convergence visible so that later simulation, return-cycle, and branch-ledger work can test whether the convergence follows from the underlying dynamics.
 
 ## Geometry Dictionary
 
-The displayed spheroid uses:
+The displayed oblate spheroidal envelope uses:
 
 | App quantity | Meaning |
 | --- | --- |
 | $\beta=v/c_f$ | Velocity fraction shown by the slider, measured against the field-speed reference. |
 | $\gamma=1/\sqrt{1-\beta^2}$ | Relative-time factor and transverse-to-longitudinal aspect ratio. |
-| $\xi=1/\gamma=\sqrt{1-\beta^2}$ | Length-contraction and spheroid-flattening factor. |
+| $\xi=1/\gamma=\sqrt{1-\beta^2}$ | Length-contraction and oblate-envelope flattening factor. |
 | $R_{\perp}$ | Transverse radius of the reference orbit envelope. |
 | $R_{\parallel}$ | Longitudinal radius along the assembly momentum direction. |
 
@@ -73,9 +73,9 @@ $$
 \sqrt{1-\frac{R_{\parallel}^2}{R_{\perp}^2}}
 $$
 
-In ordinary geometry language, $\beta$ is the eccentricity of the Lorentz spheroid in this simplified display. The physical claim is narrower: if the Noether swarm realizes Lorentz-compatible closure with no additional scale channel, then the measured semiaxes determine $\beta$, $\gamma$, and $\xi$ through the equations above.
+In ordinary geometry language, $\beta$ is the eccentricity of the oblate spheroidal envelope in this simplified display. The physical claim is narrower: if the Noether swarm realizes Lorentz-compatible closure with no additional scale channel, then the measured semiaxes determine $\beta$, $\gamma$, and $\xi$ through the equations above.
 
-The visible spheroid should be read as the outer-binary envelope exposed by the full nested Noether swarm, not as a solid body filled only by the outer binary. In the no-extra-scale lesson state,
+The visible oblate spheroidal envelope should be read as the outer-binary envelope exposed by the full nested Noether swarm, not as a solid body filled only by the outer binary. In the no-extra-scale lesson state,
 $$
 R_{\perp}=R_0
 \qquad
@@ -159,7 +159,7 @@ falls in lockstep with the length-contraction factor because the denominator is 
 | Control | Meaning |
 | --- | --- |
 | `Paths` | Toggles visible orbit paths and charge traces. |
-| `Surface` | Toggles the surface rendering of the spheroid. Its sample poles align with the bulk-motion axis $\hat{\mathbf{n}}$. |
+| `Surface` | Toggles the surface rendering of the oblate spheroidal envelope. Its sample poles align with the bulk-motion axis $\hat{\mathbf{n}}$. |
 | `Axes` | Toggles momentum-frame guides: a short bulk-motion contraction guide along $\hat{\mathbf{n}}$ plus two transverse axes perpendicular to it. |
 | `Pause` / `Resume` | Pauses or resumes the animation. |
 | Home icon | Returns from the standalone lesson to the main webapp. |
@@ -188,7 +188,7 @@ The app supports three separate claim levels:
 | Level | Status |
 | --- | --- |
 | Formula visualization | Implemented in the app. |
-| Geometry dictionary | Defensible as the zero-extra-scale Lorentz spheroid map. |
+| Geometry dictionary | Defensible as the zero-extra-scale oblate spheroidal envelope map. |
 | Dynamical derivation from Noether swarm branch closure | Still a theory and simulation obligation. |
 
 The app should therefore not be used as proof that the Noether swarm dynamics derive special relativity. Its role is to keep the geometric target concrete:

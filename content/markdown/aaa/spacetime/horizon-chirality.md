@@ -149,7 +149,7 @@ R_\parallel = \frac{R_\perp}{\gamma},
 \beta = \frac{v_{\text{trans}}}{c_f}
 $$
 
-Now let one binary orbit in a plane whose unit normal $\hat n$ makes angle $\alpha$ with the translation axis $\hat z$. The central cross-section of the ellipsoid cut by that orbital plane has area
+Now let one binary orbit in a plane whose unit normal $\hat n$ makes angle $\alpha$ with the translation axis $\hat z$. The central cross-section of the oblate spheroidal envelope cut by that orbital plane has area
 
 $$
 A(\alpha)

@@ -72,11 +72,13 @@ export class SceneRepository {
       typeof view?.columns === "number" ? view.columns : null;
     const markdownAutoOpen =
       typeof view?.autoOpen === "boolean" ? view.autoOpen : null;
+    const markdownDownloadOnly = view?.downloadOnly === true;
     return {
       markdownPath,
       markdownSection,
       markdownColumns,
       markdownAutoOpen,
+      markdownDownloadOnly,
     };
   }
 
@@ -86,6 +88,10 @@ export class SceneRepository {
     const split = source?.split ?? null;
     const tree = source?.tree ?? null;
     const view = sceneMeta?.view ?? null;
+    const optionalPositiveNumber = (value) =>
+      typeof value === "number" && Number.isFinite(value) && value > 0
+        ? value
+        : null;
     const usesTypedTreeSource =
       sceneType === "Scene-Markdown-Tree" &&
       source?.type === "markdown" &&
@@ -140,7 +146,8 @@ export class SceneRepository {
       splitNodeRadius: null,
       splitRingRadius: null,
       splitMaxRingCount: null,
-      splitGridSpacing: null,
+      splitGridSpacing: optionalPositiveNumber(split?.gridSpacing),
+      splitGridGapMultiplier: optionalPositiveNumber(split?.gridGapMultiplier),
       splitPalette: null,
       splitPaletteName: this.defaultAutoMarkdownPaletteName,
       splitColor: null,
@@ -332,6 +339,8 @@ export class SceneRepository {
       markdownPath: markdown.markdownPath,
       markdownSection: markdown.markdownSection,
       markdownColumns: markdown.markdownColumns,
+      markdownAutoOpen: markdown.markdownAutoOpen,
+      markdownDownloadOnly: markdown.markdownDownloadOnly,
       markdownHeadingLevel: obj.markdownHeadingLevel ?? null,
       markdownMaxDepth: obj.markdownMaxDepth ?? null,
       markdownAutoIndex: obj.markdownAutoIndex ?? null,
@@ -617,6 +626,7 @@ export class SceneRepository {
             markdownSection: null,
             markdownColumns: null,
             markdownAutoOpen: null,
+            markdownDownloadOnly: false,
           }
         : rawSceneMarkdown;
     const rawLayoutType = this.resolveLayoutType(sceneMeta);
@@ -680,6 +690,7 @@ export class SceneRepository {
       markdownColumns: sceneMarkdown.markdownColumns,
       markdownShowTitle: sceneMeta.markdownShowTitle ?? true,
       markdownAutoOpen: sceneMarkdown.markdownAutoOpen ?? true,
+      markdownDownloadOnly: sceneMarkdown.markdownDownloadOnly === true,
       centerOn: sceneMeta.centerOn ?? null,
       splitSourcePath: splitScene.splitSourcePath,
       splitSection: splitScene.splitSection,
@@ -690,6 +701,7 @@ export class SceneRepository {
       splitRingRadius: splitScene.splitRingRadius,
       splitMaxRingCount: splitScene.splitMaxRingCount,
       splitGridSpacing: splitScene.splitGridSpacing,
+      splitGridGapMultiplier: splitScene.splitGridGapMultiplier,
       splitColumns: splitScene.splitColumns,
       splitPalette: splitScene.splitPalette,
       splitPaletteName: splitScene.splitPaletteName,

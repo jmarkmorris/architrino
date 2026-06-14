@@ -126,6 +126,20 @@ Sentence guidance:
 
 Each inherited alternative carries conceptual drag. `Vacuum` invites empty-space or ground-state associations; `aether` imports a historical debate that is not quite the same as the present ontology; `medium` is often too generic to do the constitutive work by itself. `Noether sea` is therefore valuable not because novelty is desirable, but because it is specific enough to name the ontological substrate contents without silently borrowing the wrong metaphysics from neighboring frameworks.
 
+## Oblate Spheroidal Envelope, Spheroid, and Ellipsoid
+
+Use `oblate spheroidal envelope` for the Noether swarm boundary when the text is naming the project geometry precisely. Use `oblate spheroidal exclusion envelope` when exclusion, packing, or overlap is the active point. After a local paragraph has established that object, `spheroid` or `oblate spheroid` may be used as a short ordinary-geometry phrase, but the full project term should anchor the passage first.
+
+| When you mean... | Prefer | Use with caution | Example |
+| --- | --- | --- | --- |
+| the Noether swarm boundary with two equal transverse axes and one contraction axis | `oblate spheroidal envelope` | `spheroid` only after the full term is established | "The app displays an oblate spheroidal envelope with $\xi=R_{\parallel}/R_{\perp}$." |
+| the same geometry as an exclusion or packing boundary | `oblate spheroidal exclusion envelope` | generic `surface` if it hides the exclusion role | "Packing calculations use the oblate spheroidal exclusion envelope." |
+| ordinary geometry shorthand inside a local derivation | `oblate spheroid` | `spheroid` without context | "The oblate spheroid has semiaxes $(R_{\perp},R_{\perp},R_{\parallel})$." |
+| a generic quadric or comparison class | `ellipsoid` | only when the geometry is generic, triaxial, or comparative | "Maclaurin spheroids and Jacobi ellipsoids belong to the broader ellipsoid comparison family." |
+| Lorentz-linked Noether swarm display geometry | `oblate spheroidal envelope` with the Lorentz axis ratio stated separately | `Lorentz spheroid`, `Lorentz-spheroid` | "The Lorentz lesson displays an oblate spheroidal envelope whose zero-extra-scale target is $\xi=1/\gamma$." |
+
+The reason for the distinction is mathematical as well as stylistic. `Ellipsoid` is a broad class and can suggest three independent semiaxes. The Noether swarm Lorentz lesson uses an axisymmetric oblate spheroid: two equal transverse semiaxes and one shortened longitudinal semiaxis. The Lorentz content is not in the name of the surface; it is in the closure target that relates the axis ratio to $\gamma$. Keep that burden explicit by writing the geometry term and the Lorentz law as separate claims.
+
 ## Spacetime, Void, and Timespace
 
 Use `spacetime` for emergent/effective structure, not as the default name for the substrate.

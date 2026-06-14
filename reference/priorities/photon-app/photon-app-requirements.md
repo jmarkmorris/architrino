@@ -2,11 +2,11 @@
 
 Status. Initial priority-app requirements packet for [photon-app](photon-app.md). This file stages the first product, visualization, and diagnostic requirements for a photon application. It is priority material only and does not edit reader-facing $\mathbb{A}\mathbb{A}\mathbb{A}$ prose.
 
-Claim level. Exploratory app scaffold. The app models a photon candidate as two contra-rotating flat Noether swarms and visualizes observer-level polarization formulas, but it does not prove a physical photon branch, helicity closure, Malus-law recovery, or analyzer dynamics.
+Claim level. Exploratory app scaffold. The app models a photon candidate as two contra-rotating flat Noether swarms and visualizes observer-level polarization diagnostics fitted from the branch-sum field, but it does not prove a physical photon branch, helicity closure, Malus-law recovery, or analyzer dynamics.
 
 ## Purpose
 
-The photon app should provide an interactive 2D workbench for exploring a candidate photon as a pair of contra-rotating flat Noether swarms. The app's first job is to make the candidate geometry inspectable: layer cadence, radius, phase, pair separation, binary rotation direction, propagation speed, polarization state, and observer-level field summaries should all be visible and adjustable.
+The photon app should provide an interactive 2D workbench for exploring a candidate photon as a pair of contra-rotating flat Noether swarms. The app's first job is to make the candidate geometry inspectable: layer cadence, radius, phase, pair separation, binary rotation direction, propagation speed, analyzer axis, derived polarization state, and observer-level field summaries should all be visible.
 
 The app should support theory work by making parameter choices reproducible. A useful state should be exportable as a preset or diagnostic snapshot so later proof packets, simulations, or corpus notes can cite exact values rather than describing an animation by memory.
 
@@ -55,30 +55,21 @@ V1 uses a left-to-right propagation convention:
 - right means leading;
 - the left trailing swarm rotates counter-clockwise;
 - the right leading swarm rotates clockwise;
-- the observer-field plots draw from left to right as the visualization runs;
-- the stacked $\mathbf E$ and comparison $\mathbf B$ plot windows each cover exactly three observer cycles;
-- vertical guide lines appear at the start and end of the middle cycle in both plots;
-- and the middle cycle is the default visual focus region for comparing $\mathbf E$, comparison $\mathbf B$, analyzer projection, and polarization readouts.
+- the observer-field cursor moves from left to right as the visualization runs;
+- the $\mathbf E$ plot covers exactly three observer cycles;
+- and the plot keeps the full waveform visible except for a short forward gap ahead of the moving now line.
 
-The v1 observer cycle should use the middle-layer frequency as the default field-cycle reference. With the default middle-layer frequency $f_M=0.26\,\mathrm{Hz}$, the three-cycle run duration is
-
-$$
-T_{\mathrm{run}}=\frac{3}{f_M}\approx11.54\,\mathrm{s}.
-$$
-
-The $\mathbf E$ and comparison $\mathbf B$ plot guide lines are placed at
+The v1 observer cycle should use the middle-layer frequency as the default field-cycle reference. With the default middle-layer frequency $f_M=2\,\mathrm{Hz}$, the three-cycle run duration is
 
 $$
-t=\frac{T_{\mathrm{run}}}{3}
-\qquad\text{and}\qquad
-t=\frac{2T_{\mathrm{run}}}{3}.
+T_{\mathrm{run}}=\frac{3}{f_M}=1.5\,\mathrm{s}.
 $$
 
-If the middle-layer frequency changes, both plot windows should update so they still span three middle-layer cycles.
+If the middle-layer frequency changes, the plot window should update so it still spans three middle-layer cycles.
 
 ## Default State
 
-The default state should be reproducible as JSON. The initial values are:
+The default runtime parameter state should use these initial values:
 
 ```json
 {
@@ -86,45 +77,38 @@ The default state should be reproducible as JSON. The initial values are:
   "version": 1,
   "time": {
     "paused": false,
-    "speedMultiplier": 1,
+    "speedMultiplier": 0.2,
     "cycleReferenceLayer": "M",
     "cycleCount": 3
   },
   "pair": {
     "speedMode": "cf",
-    "pairSeparation": 4,
+    "pairSeparation": 0.1273,
     "left": {
       "role": "trailing",
       "direction": "ccw",
       "layers": {
-        "I": { "enabled": true, "radius": 0.9, "frequencyHz": 0.42, "phaseDeg": 0 },
-        "M": { "enabled": true, "radius": 1.26, "frequencyHz": 0.26, "phaseDeg": 120 },
-        "O": { "enabled": true, "radius": 1.62, "frequencyHz": 0.16, "phaseDeg": 240 }
+        "I": { "enabled": true, "radius": 0.0477, "frequencyHz": 4, "phaseDeg": 0 },
+        "M": { "enabled": true, "radius": 0.0796, "frequencyHz": 2, "phaseDeg": 0 },
+        "O": { "enabled": true, "radius": 0.1273, "frequencyHz": 1, "phaseDeg": 0 }
       }
     },
     "right": {
       "role": "leading",
       "direction": "cw",
       "layers": {
-        "I": { "enabled": true, "radius": 0.9, "frequencyHz": 0.42, "phaseDeg": 0 },
-        "M": { "enabled": true, "radius": 1.26, "frequencyHz": 0.26, "phaseDeg": 120 },
-        "O": { "enabled": true, "radius": 1.62, "frequencyHz": 0.16, "phaseDeg": 240 }
+        "I": { "enabled": true, "radius": 0.0477, "frequencyHz": 4, "phaseDeg": 0 },
+        "M": { "enabled": true, "radius": 0.0796, "frequencyHz": 2, "phaseDeg": 0 },
+        "O": { "enabled": true, "radius": 0.1273, "frequencyHz": 1, "phaseDeg": 0 }
       }
     }
   },
   "polarization": {
-    "basis": "linear",
-    "linearAngleDeg": 0,
-    "phaseLagDeg": 0,
-    "ellipticity": 0,
-    "intensity": 1,
     "analyzerAngleDeg": 0
   },
   "measurement": {
-    "testPoint": { "x": 6, "y": 0, "z": 0 },
-    "emissionSpeedCf": 1,
-    "nearFieldWeight": 0.12,
-    "fieldGain": 0.04
+    "virtualObserver": { "x": 0, "y": 0, "z": 0 },
+    "emissionSpeedCf": 1
   }
 }
 ```
@@ -138,8 +122,8 @@ The first screen should be the working diagnostic, not a landing page.
 Required layout regions:
 
 1. Top diagnostic region: two face-on flat Noether swarm views plus an edge-on side view of the same pair.
-2. Lower observer-field region: external $\mathbf E$ and comparison $\mathbf B$ field readouts observed from the current candidate state.
-3. Control region: compact controls for time, pair state, per-swarm I/M/O parameters, polarization, formulas, and presets.
+2. Lower observer-field region: external $\mathbf E$ field readouts observed from the current candidate state.
+3. Control region: compact controls for time, pair state, per-swarm I/M/O parameters, analyzer angle, formulas, and presets.
 4. Markdown document access: compact `MD` buttons for the photon guide, project packet, and requirements packet, using the same in-app Markdown viewer pattern as the Ideal Swarm app.
 
 The pair should remain centered in the diagnostic region. Translation at $c_f$ should be represented by a propagation cue, phase advance, moving tick marks, or a viewport-followed centerline, rather than by allowing the swarms to drift off screen.
@@ -150,7 +134,7 @@ Desktop layout should be optimized first. The preferred v1 desktop layout is:
 
 - a full-viewport app surface;
 - a two-swarm face-on stage occupying the main upper-left region, with an edge-on side view in the same stage;
-- stacked three-cycle $\mathbf E$ and comparison $\mathbf B$ plots directly below the two-swarm stage;
+- a three-cycle $\mathbf E$ plot directly below the two-swarm stage;
 - a right-side inspector panel, approximately `360px` to `420px` wide, for controls, presets, diagnostics, and formulas;
 - clickable Markdown guide controls inside the inspector;
 - compact translucent controls in the same restrained app family as Ideal Swarm;
@@ -172,7 +156,7 @@ Each flat Noether swarm view should show:
 
 The two swarm views should make contra-rotation obvious without needing explanatory prose. Direction indicators, phase ticks, or short motion trails are acceptable if they do not make the display visually noisy.
 
-The stage should also provide an edge-on side view of the photon candidate. In that view, each planar swarm should appear as a vertical trace whose length equals the diameter of the largest enabled binary. The trace should carry red and blue glow, and active architrino markers may move up and down along the trace to show the projected side-view orbit. The pair separation control should change the distance between the two side-view traces along the $x$ axis, while the face-on circular orbit views keep a fixed visual spacing for readability.
+The stage should also provide an edge-on side view of the photon candidate. In that view, each planar swarm should appear as a vertical trace whose length equals the diameter of the largest enabled binary. The trace should carry red and blue glow, and active architrino markers may move up and down along the trace to show the projected side-view orbit. The `Sep/r` control should change the center-to-center distance between the two side-view traces along the $x$ axis, while the face-on circular orbit views keep a fixed visual spacing for readability. Pair separation uses the same dimensionless model length units as the I/M/O radii, but the UI controls it as a ratio $s/r_{\mathrm{ref}}$ from `1e-10` to `1e5`, where $r_{\mathrm{ref}}$ is the largest enabled binary radius. A separation $s$ places the swarm centers at $x = -s/2$ and $x = +s/2$.
 
 The visual state should be driven by one shared app clock so pause/play, reset, phase offsets, and observed field summaries remain synchronized.
 
@@ -208,11 +192,11 @@ Global controls:
 
 Measurement controls:
 
-- test-point $x$ coordinate along the line of translation;
-- test-point $y$ coordinate on the first transverse axis;
-- test-point $z$ coordinate on the second transverse axis;
-- field gain for keeping the analytic delayed-emission curve readable;
-- and near-field mix for comparing a pure acceleration/radiation-style signal against a signal with a controlled signed near-field contribution.
+- Virtual Observer $x$ coordinate along the line of translation;
+- Virtual Observer $y$ coordinate on the first transverse axis;
+- and Virtual Observer $z$ coordinate on the second transverse axis.
+
+The Virtual Observer $\mathbf E$ plot should keep the branch-sum field values unscaled in diagnostics and use automatic plot scaling only for drawing.
 
 Per swarm controls:
 
@@ -223,7 +207,7 @@ Per swarm controls:
 - direction display locked to clockwise for one swarm and counter-clockwise for the other in v1;
 - and a copy/mirror control so one swarm can inherit parameters from the other with sign or phase changes.
 
-When a binary checkbox is unchecked, that binary is removed from the swarm display. The analytic delayed-emission formulas for $\mathbf E$ and comparison $\mathbf B$ should zero the contribution from both architrinos in that binary.
+When a binary checkbox is unchecked, that binary is removed from the swarm display. The Virtual Observer branch-sum formulas for $\mathbf E$ should zero the contribution from both architrinos in that binary.
 
 Control organization should assume the app may eventually need dozens of controls. The v1 interface should therefore use grouped panels, tabs, accordions, or inspector sections rather than placing every advanced parameter in one flat control wall.
 
@@ -233,54 +217,44 @@ The first prototype should expose these controls visibly in the UI panel:
 
 | Control | Default | Range | Step |
 | --- | ---: | ---: | ---: |
-| I frequency | `0.42 Hz` | `0.01` to `2.00 Hz` | `0.01` |
-| M frequency | `0.26 Hz` | `0.01` to `2.00 Hz` | `0.01` |
-| O frequency | `0.16 Hz` | `0.01` to `2.00 Hz` | `0.01` |
-| I radius | `0.90` | `0.20` to `2.40` | `0.01` |
-| M radius | `1.26` | `0.20` to `2.40` | `0.01` |
-| O radius | `1.62` | `0.20` to `2.40` | `0.01` |
+| I frequency | `4 Hz` | $2^0$ to $2^5$ | powers of two |
+| M frequency | `2 Hz` | $2^0$ to $2^5$ | powers of two |
+| O frequency | `1 Hz` | $2^0$ to $2^5$ | powers of two |
+| I radius | `0.0477` | `0.0100` to `2.4000` | `0.0001` |
+| M radius | `0.0796` | `0.0100` to `2.4000` | `0.0001` |
+| O radius | `0.1273` | `0.0100` to `2.4000` | `0.0001` |
 | I phase | `0 deg` | `0` to `360 deg` | `1 deg` |
-| M phase | `120 deg` | `0` to `360 deg` | `1 deg` |
-| O phase | `240 deg` | `0` to `360 deg` | `1 deg` |
-| pair separation | `4.00` | `0.50` to `8.00` | `0.05` |
-| time speed | `1.00` | `0.10` to `4.00` | `0.05` |
-| polarization angle | `0 deg` | `0` to `180 deg` | `1 deg` |
-| phase lag | `0 deg` | `-180` to `180 deg` | `1 deg` |
-| ellipticity | `0.00` | `-1.00` to `1.00` | `0.01` |
-| intensity | `1.00` | `0.00` to `2.00` | `0.01` |
+| M phase | `0 deg` | `0` to `360 deg` | `1 deg` |
+| O phase | `0 deg` | `0` to `360 deg` | `1 deg` |
+| pair separation ratio | `1 r` | `1e-10 r` to `1e5 r` | selectable `1` through `9` ticks per decade |
+| Slow/Fast animation scale | `0.20` | `0.025` to `1.600` | log slider |
 | analyzer angle | `0 deg` | `0` to `180 deg` | `1 deg` |
-| test point $x$ | `6.00` | `-10.00` to `10.00` | `0.05` |
-| test point $y$ | `0.00` | `-4.00` to `4.00` | `0.05` |
-| test point $z$ | `0.00` | `-4.00` to `4.00` | `0.05` |
-| near-field mix | `0.12` | `0.00` to `1.00` | `0.01` |
-| field gain | `0.04` | `0.01` to `1.00` | `0.01` |
+| Virtual Observer $x$ | `0.00` | `-10.00` to `10.00` | `0.05` |
+| Virtual Observer $y$ | `0.00` | `-4.00` to `4.00` | `0.05` |
+| Virtual Observer $z$ | `0.00` | `-4.00` to `4.00` | `0.05` |
 
-The test point $x$, $y$, and $z$ sliders should show a visible zero marker. Values within two slider steps of zero should snap to exactly `0`.
+The Virtual Observer $x$, $y$, and $z$ sliders should show a visible zero marker. Values within two slider steps of zero should snap to exactly `0`.
 
-Each swarm should have its own I/M/O frequency, radius, and phase controls. The direction controls are visible but locked in v1: left trailing is counter-clockwise and right leading is clockwise.
+Each swarm should have its own I/M/O frequency, radius, and phase controls. Frequency controls should move by exponent and show the selected value as $2^n$ on the right side of the control. The default radii should satisfy $v=2\pi r f$, with I at $1.2c_f$, M at $c_f$, and O at $0.8c_f$. The Slow/Fast animation scale should default to `0.20`, so the default visible I/M/O orbit rates are `0.8`, `0.4`, and `0.2` cycles per real second. The direction controls are visible but locked in v1: left trailing is counter-clockwise and right leading is clockwise.
 
 ## Polarization Requirements
 
-The app needs a direct way to visualize polarization.
+The app needs a direct way to visualize the polarization implied by the actual branch-sum observer field.
 
 Required v1 polarization views:
 
-- linear polarization angle in the transverse plane;
-- circular polarization handedness indicator;
-- ellipticity or phase-lag control for non-linear polarization states;
+- fitted linear polarization angle in the transverse plane;
+- fitted circular polarization handedness indicator;
+- fitted ellipticity or phase-lag indicator for non-linear polarization states;
 - analyzer angle control;
-- projected accepted and rejected components for the current analyzer angle;
-- and a visual link between the swarm-pair state and the observer-level polarization readout.
+- scalar analyzer projection fraction for the current analyzer angle;
+- and a transverse $E_y/E_z$ inset that keeps the observer-level polarization readout visually separate from the swarm-pair substrate animation.
 
 Useful additional controls:
 
-- polarization basis selector: linear, circular, or elliptical;
-- phase difference between the two transverse components;
-- intensity scale;
-- analyzer pass/reject toggle or split display;
-- and a lock that ties polarization controls to I/M/O layer phases when a specific candidate mapping is being tested.
+- and a diagnostic overlay that shows the raw one-cycle branch-sum points behind the fitted polarization curve.
 
-The app must keep the distinction between substrate animation and observer-level polarization formulas visible in the state model. A good visual match to Malus' law is a diagnostic target, not proof that the planar pair has supplied the required substrate ledger rows.
+The app must keep the distinction between substrate animation and observer-level polarization diagnostics visible in the state model. A good visual match to Malus' law is a diagnostic target, not proof that the planar pair has supplied the required substrate ledger rows.
 
 ## Observer-Field Panel
 
@@ -289,29 +263,27 @@ The lower panel should show the external fields an observer would assign to the 
 Required readouts:
 
 - $\mathbf E$ vector or waveform;
-- comparison $\mathbf B$ vector or waveform;
 - propagation direction;
-- phase relation between $\mathbf E$ and comparison $\mathbf B$;
-- current polarization state;
+- current fitted polarization state;
 - and current analyzer projection result when the analyzer is enabled.
 
-The $\mathbf E$ / comparison $\mathbf B$ panel should support both vector and waveform forms if practical:
+The $\mathbf E$ panel should support both vector and waveform forms if practical:
 
 - vector mode for immediate phase and orientation inspection;
 - waveform mode for frequency, phase, and intensity inspection over time.
 
 ## V1 Observer-Field Mapping
 
-The first prototype should base the lower E-B plot on analytic delayed-emission calculations from the architrinos in the two swarms. This mapping is diagnostic-only and should not be treated as a photon-substrate derivation.
+The first prototype should base the lower $\mathbf E$ plot on a Virtual Observer branch-sum calculation from the architrino source histories in the two swarms. This mapping is diagnostic-only and should not be treated as a photon-substrate derivation or a closure certificate.
 
-Let the propagation axis be $+\hat{\mathbf x}$, and let the transverse axes be $\hat{\mathbf y}$ and $\hat{\mathbf z}$. The measurement point is
+Let the propagation axis be $+\hat{\mathbf x}$, and let the transverse axes be $\hat{\mathbf y}$ and $\hat{\mathbf z}$. The Virtual Observer coordinate is
 
 $$
-\mathbf X_{\mathrm{test}}
+\mathbf X_{\mathrm{VO}}
 =
-x_{\mathrm{test}}\hat{\mathbf x}
-+y_{\mathrm{test}}\hat{\mathbf y}
-+z_{\mathrm{test}}\hat{\mathbf z}.
+x_{\mathrm{VO}}\hat{\mathbf x}
++y_{\mathrm{VO}}\hat{\mathbf y}
++z_{\mathrm{VO}}\hat{\mathbf z}.
 $$
 
 For swarm $s$, layer $\ell$, and architrino charge $q\in\{+1,-1\}$, use the analytic source position
@@ -332,50 +304,75 @@ $$
 +\pi\,\mathbf 1_{q=-1},
 $$
 
-where $\sigma_s=+1$ for the left trailing counter-clockwise swarm and $\sigma_s=-1$ for the right leading clockwise swarm. The delayed emission time $\tau_{s\ell q}$ for observer time $t$ is determined by
+where $\sigma_s=+1$ for the left trailing counter-clockwise swarm and $\sigma_s=-1$ for the right leading clockwise swarm.
+
+For each active source row $i=(s,\ell,q)$ and observer time $t$, solve the causal-root equation for every retained source-history root $\tau_{i,k}<t$:
 
 $$
-\tau_{s\ell q}
+F_i(t;\tau)
 =
-t-\frac{|\mathbf X_{\mathrm{test}}-\mathbf r_{s\ell q}(\tau_{s\ell q})|}{c_f}.
+\left\|
+\mathbf X_{\mathrm{VO}}-\mathbf r_i(\tau)
+\right\|
+-c_f(t-\tau)
+=0.
 $$
 
-The v1 implementation may solve this causal-delay equation by a short fixed-point iteration over the analytic source position. With
+With
 
 $$
-\mathbf n_i
+\mathbf n_{i,k}
 =
-\frac{\mathbf X_{\mathrm{test}}-\mathbf r_i(\tau_i)}
-{|\mathbf X_{\mathrm{test}}-\mathbf r_i(\tau_i)|},
+\frac{\mathbf X_{\mathrm{VO}}-\mathbf r_i(\tau_{i,k})}
+{\left\|\mathbf X_{\mathrm{VO}}-\mathbf r_i(\tau_{i,k})\right\|},
 $$
 
-and analytic source acceleration $\mathbf a_i(\tau_i)$, the provisional displayed contribution from source $i$ is
+and source velocity $\mathbf v_i(\tau_{i,k})$, compute the delay-map Jacobian
 
 $$
-\mathbf E_i(t)
+J_{i,k}
 =
-g q_i
-\left[
-\frac{\mathbf n_i(\mathbf n_i\cdot\mathbf a_i)-\mathbf a_i}{R_i}
-+\eta\frac{\mathbf n_i}{R_i^2}
-\right],
+1-\frac{\mathbf v_i(\tau_{i,k})\cdot\mathbf n_{i,k}}{c_f}.
 $$
 
-where $g$ is the field-gain display control, $\eta$ is the near-field mix control, and $R_i=|\mathbf X_{\mathrm{test}}-\mathbf r_i(\tau_i)|$. The displayed field is
+The Virtual Observer receiver acceleration is the Jacobian-weighted radial hit sum for a unit positive receiver:
 
 $$
-\mathbf E(t)=\sum_i\mathbf E_i(t).
-$$
-
-The comparison magnetic field is computed per delayed contribution and then summed:
-
-$$
-\mathbf B_{\mathrm{cmp}}(t)
+\mathbf a_{\mathrm{VO}}(t)
 =
-\sum_i\frac{1}{c_f}\mathbf n_i\times\mathbf E_i(t).
+g\sum_i\sum_k
+q_i
+\frac{\mathbf n_{i,k}}
+{R_{i,k}^2 |J_{i,k}|},
+\qquad
+R_{i,k}
+=
+\left\|
+\mathbf X_{\mathrm{VO}}-\mathbf r_i(\tau_{i,k})
+\right\|.
 $$
 
-The lower field panel should draw two separate same-width plots with the same grid, cursor, and middle-cycle guide format. The $\mathbf E$ plot appears above the comparison $\mathbf B$ plot. The $\mathbf E$ plot should draw three full cycles of $E_y$ and $E_z$ from left to right. The comparison $\mathbf B$ plot should draw three full cycles of the displayed comparison $\mathbf B_{\mathrm{cmp}}$ components from left to right. The middle cycle should be bounded by the two vertical guide lines in both plots. Both plots should update immediately when frequency, radius, phase, pair separation, test-point coordinates, field gain, near-field mix, polarization analyzer angle, or reset state changes.
+The displayed electric readout is the transverse observer reconstruction from that receiver acceleration:
+
+$$
+\mathbf E_{\perp}(t)
+=
+\left(\mathbf a_{\mathrm{VO}}(t)\cdot\hat{\mathbf y}\right)\hat{\mathbf y}
++
+\left(\mathbf a_{\mathrm{VO}}(t)\cdot\hat{\mathbf z}\right)\hat{\mathbf z}.
+$$
+
+The app should expose diagnostic rows for source count, retained root count, maximum source speed ratio, minimum $|J|$, missed source rows, nearest source distance, mean delay, and delay residual. A low $|J|$, missing root row, or super-$c_f$ source speed should mark the branch solve as unstable rather than silently treating the plotted trace as a certified field.
+
+For an ideal plane-wave comparison moving along $+\hat{\mathbf x}$, the magnetic field is recoverable from the displayed electric field:
+
+$$
+\mathbf B(t)=\frac{1}{c_f}\hat{\mathbf x}\times\mathbf E(t),
+$$
+
+so $B_y=-E_z/c_f$ and $B_z=E_y/c_f$. The app should not draw $\mathbf B$ as a separate graph unless a later diagnostic explicitly needs to compare a non-plane-wave magnetic reconstruction.
+
+The lower field panel should draw one $\mathbf E$ plot with grid, moving now cursor, and no middle-cycle guide lines, plus a transverse polarization inset. The $\mathbf E$ plot should cover three full cycles of $E_y$ and $E_z$. The waveform should remain mostly visible across wrap-around, with only a short forward gap ahead of the now cursor left blank. The $\mathbf E$ graph should auto-scale its drawing span from the maximum visible $|E_y|$ or $|E_z|$ sample while keeping diagnostics based on the unscaled branch-sum field. The polarization inset should fit the actual branch-sum $E_y(t)$ and $E_z(t)$ over one reference cycle, show $E_y$ and $E_z$ axes, draw the current field vector, leave a one-cycle fitted trail, and overlay the analyzer axis. The plot and inset should update immediately when frequency, radius, phase, pair separation, Virtual Observer coordinates, analyzer angle, or reset state changes.
 
 The analyzer projection should use
 
@@ -387,10 +384,10 @@ $$
 \sin\theta\,\hat{\mathbf z},
 $$
 
-and the displayed pass measure should be
+and the displayed analyzer fraction should be
 
 $$
-\mu_{\mathrm{pass}}
+\mu_{\mathrm{analyzer}}
 =
 \frac{|\hat{\mathbf a}\cdot\mathbf E|^2}
 {|\mathbf E|^2+\varepsilon}.
@@ -398,28 +395,28 @@ $$
 
 ## Formula Panel
 
-The formula panel should include Malus' law:
+The formula panel should fit the actual branch-sum transverse field over one reference cycle:
 
 $$
-I_{\mathrm{pass}}=I_0\cos^2\theta,
+E_y(t)\approx A_y\cos(\omega t+\phi_y),
 \qquad
-P_{\mathrm{pass}}=\cos^2\theta.
+E_z(t)\approx A_z\cos(\omega t+\phi_z),
 $$
 
-It should also reserve space for polarization formulas that help connect the app state to observer-level optics:
+then report the relative amplitude $A_z/A_y$, phase lag $\Delta\phi=\phi_z-\phi_y$, and linear, circular, or elliptical classification derived from that fit. It should also show analyzer projection formulas that help connect the fitted field to observer-level optics:
 
 $$
 \mathbf a_{\perp}
 =
 a_y\hat{\mathbf y}+a_z\hat{\mathbf z},
 \qquad
-\mu_{\mathrm{pass}}
+\mu_{\mathrm{analyzer}}
 =
 \frac{|\hat{\mathbf a}\cdot\mathbf a_{\perp}|^2}
 {|\mathbf a_{\perp}|^2+\varepsilon}.
 $$
 
-For circular basis diagnostics:
+For circular diagnostics:
 
 $$
 \boldsymbol{\epsilon}_{\lambda}
@@ -458,9 +455,10 @@ The first useful diagnostic readouts should be lightweight and explicitly non-ce
 - longitudinal leakage indicator;
 - helicity sign estimate;
 - analyzer projection intensity;
-- Malus residual for the current analyzer angle;
+- normalized ellipse-fit residual;
+- analyzer residual for the current analyzer angle;
 - phase-lock indicators for I/M/O layers;
-- and snapshot ID for exported parameter states.
+- and snapshot ID for captured diagnostic states.
 
 These readouts should be named as diagnostics or residual-style indicators, not as theorem passes.
 
@@ -469,7 +467,6 @@ These readouts should be named as diagnostics or residual-style indicators, not 
 The app should support reproducible exploration through:
 
 - named presets;
-- import/export of the full parameter state as JSON;
 - reset to default candidate state;
 - reset to last loaded preset;
 - and a diagnostic snapshot that records parameters, formula-panel values, and current readouts.
@@ -507,13 +504,11 @@ The first prototype should be verified before it is treated as complete:
 - the app route renders a nonblank visual stage;
 - the left trailing swarm rotates counter-clockwise;
 - the right leading swarm rotates clockwise;
-- the stacked $\mathbf E$ and comparison $\mathbf B$ plots draw left to right over exactly three middle-layer cycles;
-- vertical guide lines bracket the middle cycle in both plots;
-- I/M/O controls update both the visual swarms and exported state;
-- test-point controls update both delayed-emission field plots and exported state;
-- polarization and analyzer controls update formula-panel values;
+- the $\mathbf E$ plot draws left to right over exactly three middle-layer cycles;
+- I/M/O controls update the visual swarms and runtime state;
+- Virtual Observer controls update the branch-sum field plot and runtime state;
+- analyzer controls update formula-panel values;
 - pause/play and reset controls work;
-- exported JSON can be imported or replayed without losing values;
 - and browser verification confirms no visible text overlap or broken canvas sizing on the desktop target.
 
 ## V1 Non-Goals
@@ -535,8 +530,8 @@ These should remain explicit until implementation choices or theory work settle 
 
 1. How I/M/O layer parameters should map to transverse observer-field amplitudes after the provisional v1 formula panel.
 2. Whether pair separation should later enter the observer-field mapping as a physical delay, a phase delay, or a separate diagnostic.
-3. Which polarization controls should directly drive substrate parameters after the first prototype, and which should remain observer-level probes.
-4. Whether the comparison $\mathbf B$ field should remain a derived observer field only or become a provisional substrate diagnostic.
+3. Which geometry or binary controls can reliably produce fitted linear, circular, or elliptical observer-level polarization without adding synthetic source-polarization parameters.
+4. Whether a future non-plane-wave magnetic reconstruction should become a provisional substrate diagnostic.
 5. Which exported snapshot format will be easiest for later simulation or proof packets to consume.
 6. What local Noether sea state variables are needed before fixed $c_f$ can be replaced by local $c$.
 
@@ -548,14 +543,13 @@ The first implementation is acceptable when:
 - the left trailing swarm rotates counter-clockwise while the right leading swarm rotates clockwise;
 - architrino markers, orbit paths, and layered trails match the Ideal Swarm visual grammar;
 - I/M/O frequency, radius, and phase controls work for both swarms;
-- six binary enabled checkboxes default checked, remove unchecked binaries from the display, and remove their delayed-emission contributions from both field plots;
-- default I/M/O phases are `0`, `120`, and `240` degrees on both swarms;
+- six binary enabled checkboxes default checked, remove unchecked binaries from the display, and remove their Virtual Observer branch-sum contributions from the field plot;
+- default I/M/O phases are all `0` degrees on both swarms;
 - default I/M/O radii follow the `5:7:9` Ideal Swarm ratio;
 - pair separation changes visibly between the two edge-on side-view traces without changing the face-on circular orbit spacing;
 - pause/play, Space bar playback shortcut, and reset controls work;
-- the lower $\mathbf E$ / comparison $\mathbf B$ panel draws separate stacked delayed-emission field plots at the configured test point left to right over three full cycles;
-- vertical guide lines bracket the middle cycle in both field plots;
-- polarization controls affect the observer-level readout;
-- Malus' law is present with live numeric substitution;
-- app state can be reset and exported;
+- the lower $\mathbf E$ panel draws the branch-sum field plot at the configured Virtual Observer coordinate left to right over three full cycles;
+- fitted branch-sum polarization affects the observer-level readout;
+- analyzer projection is present with live numeric substitution;
+- app state can be reset;
 - and the interface avoids 3D rendering, group rotation, and proof-status claims.

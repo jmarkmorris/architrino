@@ -4,7 +4,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#080b12" />
-    <title>photon</title>
+    <title>Photon and Polarization Visualization</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    ></script>
     <script src="./vendor/markdown-it/markdown-it.min.js"></script>
     <style>
       * {
@@ -70,7 +82,7 @@
 
       .photon-field-panel {
         display: grid;
-        grid-template-rows: repeat(2, minmax(0, 1fr));
+        grid-template-columns: minmax(0, 1fr) minmax(190px, 240px);
       }
 
       .photon-field-plot {
@@ -81,12 +93,12 @@
       }
 
       .photon-field-plot + .photon-field-plot {
-        border-top: 1px solid rgba(148, 163, 184, 0.18);
+        border-left: 1px solid rgba(148, 163, 184, 0.18);
       }
 
       #photon-stage-canvas,
       #photon-electric-field-canvas,
-      #photon-magnetic-field-canvas {
+      #photon-polarization-canvas {
         display: block;
         width: 100%;
         height: 100%;
@@ -176,7 +188,7 @@
 
       .photon-doc-row {
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 7px;
         margin-bottom: 10px;
       }
@@ -200,14 +212,15 @@
         align-items: center;
         justify-content: center;
         flex: 0 0 auto;
-        width: 18px;
-        height: 14px;
-        border: 1px solid currentColor;
-        border-radius: 3px;
-        font-size: 7px;
-        font-weight: 800;
-        line-height: 1;
+        width: 16px;
+        height: 16px;
         opacity: 0.9;
+      }
+
+      .photon-md-icon svg {
+        display: block;
+        width: 15px;
+        height: 15px;
       }
 
       .photon-button-label {
@@ -256,9 +269,28 @@
         min-height: 24px;
       }
 
+      .photon-log-control-row {
+        grid-template-columns: 24px minmax(0, 1fr);
+        align-items: center;
+        gap: 3px;
+      }
+
+      .photon-playback-speed-row {
+        grid-template-columns: 44px minmax(0, 1fr) 38px;
+      }
+
       .photon-control-label {
         color: rgba(203, 213, 225, 0.78);
         font-size: 11px;
+      }
+
+      .photon-speed-end-label {
+        color: rgba(203, 213, 225, 0.78);
+        font-size: 11px;
+      }
+
+      .photon-speed-end-label.is-fast {
+        text-align: right;
       }
 
       .photon-control-input {
@@ -278,6 +310,145 @@
       .photon-range-shell .photon-control-input {
         position: relative;
         z-index: 1;
+      }
+
+      .photon-separation-picker {
+        display: grid;
+        grid-template-columns: max-content 58px minmax(86px, 1fr);
+        align-items: center;
+        gap: 5px;
+        min-width: 0;
+        overflow: visible;
+      }
+
+      .photon-separation-picker > * {
+        min-width: 0;
+      }
+
+      .photon-separation-mantissas {
+        display: grid;
+        grid-template-columns: repeat(9, 26px);
+        gap: 4px;
+        min-width: 0;
+      }
+
+      .photon-separation-mantissa-button,
+      .photon-separation-exponent-button,
+      .photon-separation-exponent-option {
+        height: 24px;
+        border: 1px solid rgba(148, 163, 184, 0.3);
+        border-radius: 5px;
+        background: rgba(15, 23, 42, 0.72);
+        color: rgba(226, 232, 240, 0.82);
+        box-sizing: border-box;
+        font: inherit;
+      }
+
+      .photon-separation-mantissa-button {
+        min-width: 0;
+        padding: 0;
+        cursor: pointer;
+        font-size: 10px;
+        font-weight: 800;
+      }
+
+      .photon-separation-mantissa-button:hover,
+      .photon-separation-mantissa-button:focus-visible,
+      .photon-separation-exponent-button:hover,
+      .photon-separation-exponent-button:focus-visible,
+      .photon-separation-exponent-option:hover,
+      .photon-separation-exponent-option:focus-visible {
+        border-color: rgba(251, 191, 36, 0.72);
+        outline: none;
+      }
+
+      .photon-separation-mantissa-button.is-selected {
+        border-color: rgba(251, 191, 36, 0.92);
+        background: rgba(251, 191, 36, 0.88);
+        color: #111827;
+      }
+
+      .photon-separation-exponent-option.is-selected {
+        border-color: rgba(251, 191, 36, 0.86);
+        background: rgba(251, 191, 36, 0.18);
+        color: #fef3c7;
+      }
+
+      .photon-separation-mantissa-button:disabled {
+        opacity: 0.36;
+        cursor: not-allowed;
+      }
+
+      .photon-separation-exponent-control {
+        position: relative;
+        display: block;
+        min-width: 0;
+        overflow: visible;
+      }
+
+      .photon-separation-exponent-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 58px;
+        padding: 0;
+        overflow: hidden;
+        cursor: pointer;
+        font-size: 10px;
+        font-weight: 800;
+        line-height: 1;
+        white-space: nowrap;
+      }
+
+      .photon-exponent-label {
+        display: inline-flex;
+        align-items: baseline;
+        justify-content: center;
+        line-height: 1;
+        pointer-events: none;
+      }
+
+      .photon-exponent-power {
+        margin-left: 1px;
+        font-size: 0.72em;
+        line-height: 0;
+        transform: translateY(-0.26em);
+      }
+
+      .photon-separation-exponent-menu {
+        position: absolute;
+        top: var(--photon-exponent-menu-top, 50%);
+        left: 0;
+        z-index: 60;
+        display: grid;
+        width: 58px;
+        max-height: 228px;
+        gap: 3px;
+        padding: 5px;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        border: 1px solid rgba(148, 163, 184, 0.32);
+        border-radius: 6px;
+        background: rgba(8, 13, 24, 0.98);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.42);
+      }
+
+      .photon-separation-exponent-menu[hidden] {
+        display: none;
+      }
+
+      .photon-separation-exponent-option {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 0 4px;
+        cursor: pointer;
+        font-size: 10px;
+        font-weight: 800;
+        line-height: 1;
+        text-align: center;
+        white-space: nowrap;
       }
 
       .photon-zero-tick {
@@ -300,6 +471,16 @@
         color: rgba(238, 243, 255, 0.9);
         font-size: 11px;
         text-align: right;
+      }
+
+      .photon-separation-output {
+        min-width: 0;
+        white-space: nowrap;
+      }
+
+      .photon-log-control-row > .photon-control-label {
+        align-self: center;
+        line-height: 24px;
       }
 
       .photon-checkbox-row {
@@ -371,24 +552,71 @@
         font-size: 11px;
       }
 
+      .photon-readout-row > span {
+        min-width: 0;
+      }
+
+      .photon-readout-row > span.has-math {
+        color: rgba(226, 232, 240, 0.9);
+      }
+
+      .photon-readout-row > span.has-math .katex {
+        font-size: 1em;
+      }
+
+      .photon-readout-row.has-quality {
+        grid-template-columns: minmax(0, 1fr) auto auto;
+      }
+
       .photon-readout-row strong {
         color: #fef3c7;
         font-size: 11px;
         white-space: nowrap;
       }
 
-      #photon-state-json {
-        width: 100%;
-        min-height: 118px;
-        resize: vertical;
-        border: 1px solid rgba(148, 163, 184, 0.2);
-        border-radius: 7px;
-        background: rgba(2, 6, 23, 0.72);
-        color: rgba(238, 243, 255, 0.9);
-        padding: 8px;
-        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      .photon-readout-quality {
+        min-width: 38px;
+        padding: 1px 5px;
+        border: 1px solid rgba(148, 163, 184, 0.22);
+        border-radius: 999px;
+        background: rgba(148, 163, 184, 0.1);
+        color: rgba(226, 232, 240, 0.76);
         font-size: 10px;
-        line-height: 1.35;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 1.25;
+        text-align: center;
+        white-space: nowrap;
+      }
+
+      .photon-readout-quality.is-great {
+        border-color: rgba(34, 197, 94, 0.5);
+        background: rgba(34, 197, 94, 0.14);
+        color: #bbf7d0;
+      }
+
+      .photon-readout-quality.is-good {
+        border-color: rgba(132, 204, 22, 0.46);
+        background: rgba(132, 204, 22, 0.13);
+        color: #d9f99d;
+      }
+
+      .photon-readout-quality.is-ok {
+        border-color: rgba(250, 204, 21, 0.46);
+        background: rgba(250, 204, 21, 0.13);
+        color: #fef08a;
+      }
+
+      .photon-readout-quality.is-poor {
+        border-color: rgba(251, 146, 60, 0.48);
+        background: rgba(251, 146, 60, 0.13);
+        color: #fed7aa;
+      }
+
+      .photon-readout-quality.is-bad {
+        border-color: rgba(248, 113, 113, 0.5);
+        background: rgba(248, 113, 113, 0.14);
+        color: #fecaca;
       }
 
       #photon-boot-error {
@@ -618,6 +846,16 @@
           max-height: none;
         }
 
+        .photon-field-panel {
+          grid-template-columns: 1fr;
+          grid-template-rows: minmax(0, 1fr) 220px;
+        }
+
+        .photon-field-plot + .photon-field-plot {
+          border-left: 0;
+          border-top: 1px solid rgba(148, 163, 184, 0.18);
+        }
+
         #photon-markdown-panel {
           position: fixed;
           inset: 12px;
@@ -635,24 +873,24 @@
         <section class="photon-field-panel">
           <div class="photon-field-plot">
             <div class="photon-field-header">
-              <span>Delayed E plot</span>
-              <span>t <output id="photon-time-output" class="photon-time-output">0.00 s</output></span>
-              <span>run <output id="photon-cycle-output" class="photon-cycle-output">11.54 s</output></span>
+              <span>Electric Field</span>
+              <span>
+                time <output id="photon-time-output" class="photon-time-output">0.00 s</output> /
+                <output id="photon-cycle-output" class="photon-cycle-output">11.54 s</output>
+              </span>
             </div>
             <canvas
               id="photon-electric-field-canvas"
-              aria-label="Delayed observer electric field plot"
+              aria-label="Virtual Observer electric field"
             ></canvas>
           </div>
           <div class="photon-field-plot">
             <div class="photon-field-header">
-              <span>Comparison B plot</span>
-              <span>t <output class="photon-time-output">0.00 s</output></span>
-              <span>run <output class="photon-cycle-output">11.54 s</output></span>
+              <span>Polarization</span>
             </div>
             <canvas
-              id="photon-magnetic-field-canvas"
-              aria-label="Delayed comparison B field plot"
+              id="photon-polarization-canvas"
+              aria-label="Transverse polarization"
             ></canvas>
           </div>
         </section>
@@ -684,8 +922,80 @@
             type="button"
             aria-label="Open Photon Guide document"
           >
-            <span class="photon-md-icon" aria-hidden="true">MD</span>
+            <span class="photon-md-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path
+                  d="M5 3H14L19 8V21H5Z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linejoin="miter"
+                />
+                <path d="M14 3V8H19Z" fill="currentColor" />
+                <path
+                  d="M7.5 12.6H16.5M7.5 16.1H16.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="butt"
+                />
+              </svg>
+            </span>
             <span class="photon-button-label">Guide</span>
+          </button>
+          <button
+            id="photon-closure-doc-button"
+            class="photon-button is-doc-button"
+            type="button"
+            aria-label="Open Photon Closure document"
+          >
+            <span class="photon-md-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path
+                  d="M5 3H14L19 8V21H5Z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linejoin="miter"
+                />
+                <path d="M14 3V8H19Z" fill="currentColor" />
+                <path
+                  d="M7.5 12.6H16.5M7.5 16.1H16.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="butt"
+                />
+              </svg>
+            </span>
+            <span class="photon-button-label">Photon Closure</span>
+          </button>
+          <button
+            id="photon-polarization-gate-doc-button"
+            class="photon-button is-doc-button"
+            type="button"
+            aria-label="Open Polarization document"
+          >
+            <span class="photon-md-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path
+                  d="M5 3H14L19 8V21H5Z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linejoin="miter"
+                />
+                <path d="M14 3V8H19Z" fill="currentColor" />
+                <path
+                  d="M7.5 12.6H16.5M7.5 16.1H16.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="butt"
+                />
+              </svg>
+            </span>
+            <span class="photon-button-label">Polarization</span>
           </button>
           <button
             id="photon-project-doc-button"
@@ -694,7 +1004,25 @@
             aria-label="Open Photon App project document"
             hidden
           >
-            <span class="photon-md-icon" aria-hidden="true">MD</span>
+            <span class="photon-md-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path
+                  d="M5 3H14L19 8V21H5Z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linejoin="miter"
+                />
+                <path d="M14 3V8H19Z" fill="currentColor" />
+                <path
+                  d="M7.5 12.6H16.5M7.5 16.1H16.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="butt"
+                />
+              </svg>
+            </span>
             <span class="photon-button-label">Project</span>
           </button>
           <button
@@ -704,7 +1032,25 @@
             aria-label="Open Photon App Requirements document"
             hidden
           >
-            <span class="photon-md-icon" aria-hidden="true">MD</span>
+            <span class="photon-md-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path
+                  d="M5 3H14L19 8V21H5Z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linejoin="miter"
+                />
+                <path d="M14 3V8H19Z" fill="currentColor" />
+                <path
+                  d="M7.5 12.6H16.5M7.5 16.1H16.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="butt"
+                />
+              </svg>
+            </span>
             <span class="photon-button-label">Requirements</span>
           </button>
         </div>
@@ -716,10 +1062,6 @@
         <section class="photon-control-section">
           <h2>Formulas</h2>
           <div id="photon-formulas" class="photon-readout-grid"></div>
-        </section>
-        <section class="photon-control-section">
-          <h2>JSON</h2>
-          <textarea id="photon-state-json" spellcheck="false"></textarea>
         </section>
       </aside>
       <aside id="photon-markdown-panel" aria-hidden="true" inert>

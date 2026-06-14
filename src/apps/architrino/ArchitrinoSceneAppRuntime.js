@@ -7669,6 +7669,41 @@ function setLevelLinkOpacity(level, opacity) {
   levelRuntime.setLevelLinkOpacity(level, opacity);
 }
 
+function estimateLabelLineCount(text, fontSize, maxWidth) {
+  const normalized = String(text ?? "").replace(/\s+/g, " ").trim();
+  if (!normalized) {
+    return 0;
+  }
+  if (!Number.isFinite(fontSize) || fontSize <= 0 || !Number.isFinite(maxWidth) || maxWidth <= 0) {
+    return 1;
+  }
+  const tokenWidths = normalized
+    .split(/\s+/)
+    .map((token) => Math.max(fontSize * 0.55, token.length * fontSize * 0.55));
+  const spaceWidth = fontSize * 0.32;
+  let lines = 1;
+  let currentWidth = 0;
+  tokenWidths.forEach((tokenWidth) => {
+    if (tokenWidth > maxWidth) {
+      if (currentWidth > 0) {
+        lines += 1;
+        currentWidth = 0;
+      }
+      lines += Math.max(0, Math.ceil(tokenWidth / maxWidth) - 1);
+      currentWidth = tokenWidth % maxWidth || maxWidth;
+      return;
+    }
+    const candidateWidth = currentWidth > 0 ? currentWidth + spaceWidth + tokenWidth : tokenWidth;
+    if (candidateWidth <= maxWidth || currentWidth <= 0) {
+      currentWidth = candidateWidth;
+      return;
+    }
+    lines += 1;
+    currentWidth = tokenWidth;
+  });
+  return lines;
+}
+
 function updateLevelLabelWrap(level) {
   if (!level) {
     return;
@@ -7701,6 +7736,17 @@ function updateLevelLabelWrap(level) {
         : typeof node.data.name === "string"
           ? node.data.name
           : "";
+    const labelSubtitle =
+      typeof node.data.labelSubtitle === "string" && node.data.labelSubtitle.trim()
+        ? node.data.labelSubtitle.trim()
+        : "";
+    const labelDates =
+      typeof node.data.labelDates === "string" && node.data.labelDates.trim()
+        ? node.data.labelDates.trim()
+        : "";
+    const hasLabelBadge =
+      (typeof node.data.labelBadge === "string" && node.data.labelBadge.trim()) ||
+      (typeof node.data.labelBadgeImage === "string" && node.data.labelBadgeImage.trim());
     const tokens = labelName
       .split(/[\s-]+/)
       .map((token) => token.replace(/[^A-Za-z0-9]/g, ""))
@@ -7710,21 +7756,48 @@ function updateLevelLabelWrap(level) {
     }, 1);
     const sizeByDiameter = diameter * 0.15;
     const sizeByToken = maxWidth / (longestToken * 0.58);
-    const titleSize = clamp(Math.min(sizeByDiameter, sizeByToken + 0.5), 10, 16);
+    let titleSize = clamp(Math.min(sizeByDiameter, sizeByToken + 0.5), 8.5, 16);
+    let titleLineCount = 1;
+    let lineHeight = 1.14;
+    let badgeSize = 14;
+    for (let i = 0; i < 3; i += 1) {
+      titleLineCount = Math.max(1, estimateLabelLineCount(labelName, titleSize, maxWidth));
+      lineHeight = titleSize <= 10.5 ? 1.18 : titleSize <= 12.5 ? 1.15 : 1.12;
+      const subtitleSizeEstimate = titleSize <= 11 ? titleSize * 0.92 : titleSize * 0.96;
+      const datesSizeEstimate = titleSize <= 11 ? titleSize * 0.92 : titleSize * 0.96;
+      badgeSize = clamp(titleSize * (titleLineCount >= 4 ? 0.82 : 0.94), 9.5, 17);
+      const titleHeight = titleLineCount * titleSize * lineHeight;
+      const subtitleLineCount = labelSubtitle
+        ? Math.max(1, estimateLabelLineCount(labelSubtitle, subtitleSizeEstimate, maxWidth))
+        : 0;
+      const datesLineCount = labelDates
+        ? Math.max(1, estimateLabelLineCount(labelDates, datesSizeEstimate, maxWidth))
+        : 0;
+      const detailHeight =
+        subtitleLineCount * subtitleSizeEstimate * 1.08 +
+        datesLineCount * datesSizeEstimate * 1.08 +
+        (hasLabelBadge ? badgeSize + 2 : 0);
+      const verticalBudget = diameter * 0.58;
+      const totalHeight = titleHeight + detailHeight;
+      if (!Number.isFinite(totalHeight) || totalHeight <= verticalBudget) {
+        break;
+      }
+      titleSize = clamp(titleSize * (verticalBudget / totalHeight), 8.5, titleSize);
+    }
 
     let titleWeight = 600;
-    if (titleSize <= 10.75) {
+    if (titleSize <= 10.75 || titleLineCount >= 4) {
       titleWeight = 400;
-    } else if (titleSize <= 12.5) {
+    } else if (titleSize <= 12.5 || titleLineCount >= 3) {
       titleWeight = 500;
     }
-    const lineHeight = titleSize <= 11.5 ? 1.22 : titleSize <= 13 ? 1.18 : 1.14;
-    const letterSpacing = titleSize <= 11.5 ? 0.01 : 0.02;
+    lineHeight = titleSize <= 10.5 ? 1.18 : titleSize <= 12.5 ? 1.15 : 1.12;
+    const letterSpacing = 0;
     const scaleSize = clamp(titleSize * 0.62, 8, 10);
     const tagSize = clamp(titleSize * 0.58, 8, 9);
-    const subtitleSize = titleSize;
-    const datesSize = titleSize;
-    const badgeSize = clamp(titleSize * 0.95, 11, 18);
+    const subtitleSize = titleSize <= 11 ? titleSize * 0.92 : titleSize * 0.96;
+    const datesSize = titleSize <= 11 ? titleSize * 0.92 : titleSize * 0.96;
+    badgeSize = clamp(titleSize * (titleLineCount >= 4 ? 0.82 : 0.94), 9.5, 17);
     const typographyKey = [
       titleSize.toFixed(2),
       titleWeight,
@@ -8522,6 +8595,13 @@ function focusOnPointer(clientX, clientY) {
       animatorUiRuntime.setAnimatorPanel(panelId);
       return true;
     }
+  }
+
+  if (hasMarkdownTarget && targetNode.data.markdownDownloadOnly === true) {
+    closeDetailPanel();
+    hideHoverTooltip();
+    markdownRuntime.downloadMarkdownSource(targetNode.data);
+    return true;
   }
 
   const prefersDocDrillDown =

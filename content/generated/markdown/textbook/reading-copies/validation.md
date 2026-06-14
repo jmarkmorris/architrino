@@ -566,12 +566,52 @@ Here $\Delta p/p$ is the fractional perturbation of a parameter or closure outpu
 Current status:
 
 - $\epsilon=|e|/6$ is treated as a discrete polarity-unit input and an explanatory target, not as a continuous fit.
-- $\kappa$ is the universal coupling in the primitive acceleration law; its numerical closure remains to be assessed because its primitive, derived, or normalization-sensitive status is still open.
+- $\kappa$ is the universal coupling in the primitive acceleration law. In the bare two-body scale closure below it combines with $c_f$ and $\epsilon$ to set length and time units rather than an independent dimensionless tuning knob, while its primitive, derived, or normalization-sensitive status in the observer-level unit map remains open.
 - $\rho_{\text{NS},0}$ and related medium-density normalizations remain naturalness risks until energy shielding and cosmological closure are quantified.
 
 #### Regulator versus physical pulse
 
 The wake-width regulator $\eta$ is a computational and analytic regularization, not a claim that causal wakes are fundamentally pulsed. It smooths causal wake surfaces so integrals and simulations can be evaluated with finite resolution. As $\eta\to0$, the intended limit is the continuous path-history law, with each discrete time step in a simulation approximating the contribution from a narrow causal wake surface rather than replacing the underlying continuous emission.
+
+#### Layer-I two-body scale closure
+
+The exact bare two-body kernel has no independent dimensionless tuning constant after the regulator is removed or treated as a numerical convention. The dimensional substrate triplet
+$$
+(c_f,\kappa,\epsilon)
+$$
+spans the base dimensions $(\mathrm{L},\mathrm{T},\mathrm{Q})$ because
+$$
+[c_f]=\mathrm{L}\,\mathrm{T}^{-1},
+\qquad
+[\kappa]=\mathrm{L}^3\,\mathrm{T}^{-2}\,\mathrm{Q}^{-2},
+\qquad
+[\epsilon]=\mathrm{Q}
+$$
+It therefore defines canonical two-body units
+$$
+Q_*=\epsilon,
+\qquad
+R_*=\frac{\kappa\epsilon^2}{c_f^2},
+\qquad
+T_*=\frac{R_*}{c_f}=\frac{\kappa\epsilon^2}{c_f^3}
+$$
+For $\tilde{\mathbf{x}}=\mathbf{x}/R_*$, $\tilde t=t/T_*$, and $\tilde q_i=q_i/\epsilon=\pm1$, the causal constraint and bare acceleration law reduce to
+$$
+\tilde r_{ij}=\tilde t-\tilde t_0
+$$
+and
+$$
+\frac{d^2\tilde{\mathbf{x}}_i}{d\tilde t^2}
+=
+\sum_j\sum_{\tilde t_0\in\tilde{\mathcal{C}}_{ij}(\tilde t)}
+\sigma_{ij}
+\frac{|\tilde q_i\tilde q_j|}
+{\tilde r_{ij}^2|\tilde J_{ij}|}
+\hat{\mathbf{r}}_{ij}
+$$
+up to the separately declared regulator ratio $\eta/R_*$ when a mollified surrogate is being used.
+
+Consequently, every dimensionless output of the isolated bare two-body problem is a pure branch-geometry result: root multiplicities, branch-birth thresholds, maximum-curvature speed ratios, residual signs, and any certified radius in units of $R_*$. This does not certify that a stable maximum-curvature binary exists. It says that if a certified two-body branch produces such a number, that number is computed by the root ledger and stability problem rather than fitted by changing a Layer-I dimensionless constant.
 
 ### Layer I: Substrate and Kernel Parameters
 
@@ -581,7 +621,7 @@ These symbols belong to the delayed microscopic law itself.
 | --- | --- | --- | --- | --- | --- |
 | K1 | $c_f$ | Fundamental parameter | Primitive | field speed of causal wake propagation | [../dynamics/master-equation.md](../../../../markdown/aaa/dynamics/master-equation.md), [../foundations/absolute-timespace.md](../../../../markdown/aaa/foundations/absolute-timespace.md) |
 | K2 | $\epsilon$ | Fundamental parameter | Primitive | potential polarity-unit magnitude, with observer-level electric charge reconstructed from it | [../assemblies/fermions/quantum-number-mapping.md](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md), [../interactions/gauge-structure-emergence.md](../../../../markdown/aaa/interactions/gauge-structure-emergence.md) |
-| K3 | $\kappa$ | Fundamental parameter or normalization-sensitive coupling | Open; universal in the substrate acceleration law | coupling multiplying $\sigma_{ij}\lvert q_iq_j\rvert/(r_{ij}^2\lvert J_{ij}\rvert)$ in the per-hit acceleration law; because a single architrino has no primitive inertial mass, this is not an $F=ma$ coefficient; dimensional row $[\kappa]=\mathrm{L}^3\,\mathrm{T}^{-2}\,\mathrm{Q}^{-2}$ | [../dynamics/master-equation.md](../../../../markdown/aaa/dynamics/master-equation.md), [architrino-si-base-units.md](../../../../markdown/aaa/validation/architrino-si-base-units.md), [../foundations/architrino.md](../../../../markdown/aaa/foundations/architrino.md) |
+| K3 | $\kappa$ | Fundamental parameter or normalization-sensitive coupling | Open as primitive/normalization split; universal in the substrate acceleration law | coupling multiplying $\sigma_{ij}\lvert q_iq_j\rvert/(r_{ij}^2\lvert J_{ij}\rvert)$ in the per-hit acceleration law; because a single architrino has no primitive inertial mass, this is not an $F=ma$ coefficient; with $c_f$ and $\epsilon$ it sets the two-body scale $R_*=\kappa\epsilon^2/c_f^2$ rather than a Layer-I dimensionless fit constant; dimensional row $[\kappa]=\mathrm{L}^3\,\mathrm{T}^{-2}\,\mathrm{Q}^{-2}$ | [../dynamics/master-equation.md](../../../../markdown/aaa/dynamics/master-equation.md), [architrino-si-base-units.md](../../../../markdown/aaa/validation/architrino-si-base-units.md), [../foundations/architrino.md](../../../../markdown/aaa/foundations/architrino.md) |
 | K4 | $\eta$ | Regulator / convention | Open but non-ontological | mollifier width used to regularize causal wake surfaces for smooth dynamics and numerics | [simulations/action-energy/well-posedness-and-regularization.md](../../../../markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md), [../dynamics/master-equation.md](../../../../markdown/aaa/dynamics/master-equation.md) |
 | K5 | $Z_e$ | Regulator / convention | Convention, default $Z_e=1$ | coarse-graining / normalization factor in the substrate-to-observer charge map | [../interactions/gauge-structure-emergence.md](../../../../markdown/aaa/interactions/gauge-structure-emergence.md), [../assemblies/fermions/quantum-number-mapping.md](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md) |
 
@@ -799,6 +839,7 @@ The current corpus supports the following conservative closure assessment.
 
 - $c_f$ is treated consistently as the substrate propagation speed, even when chapters temporarily write $v=1$.
 - $\epsilon$ is treated consistently as the potential polarity-unit magnitude.
+- The exact bare two-body kernel admits the canonical nondimensionalization by $R_*=\kappa\epsilon^2/c_f^2$ and $T_*=R_*/c_f$, so branch thresholds and residual equations are parameter-free once a branch chart is declared.
 - $\rho_{\text{NS},0}$ is the reference density symbol for the Noether sea.
 - $\Phi_{\text{eff}}=c_f^2\ln(\Omega\xi)$ is the canonical clock-channel potential definition for the exponential metric subclass, with $\xi$ retained as a geometry-first Noether swarm shape ratio.
 
@@ -806,6 +847,7 @@ The current corpus supports the following conservative closure assessment.
 
 - whether $\kappa$ is primitive, derived, or partly a normalization artifact,
 - whether $\eta$ should disappear entirely from physical statements after the weak limit is taken,
+- whether any specific maximum-curvature binary branch exists and is stable under the full signed-root, finite-window two-body dynamics,
 - the $A_0$ reference-attractor output packet,
 - the actual nested shell swarm radii/frequency ladder,
 - the shielding map $\zeta(A)$ across the fermion spectrum,
@@ -818,7 +860,7 @@ The current corpus supports the following conservative closure assessment.
 
 The shortest path to a better closure score is:
 
-1. Fix the status of $\kappa$ once, with an explicit statement of what part is physical coupling and what part is absorbed normalization.
+1. Fix the observer-level status of $\kappa$ once, with an explicit statement of what part is physical coupling, what part is absorbed normalization, and how the two-body scale $R_*=\kappa\epsilon^2/c_f^2$ enters the unit map.
 2. Derive or numerically extract a reusable constitutive parameterization for $(\Omega,\xi)$, then hold it fixed across redshift, Shapiro delay, lensing, and preferred-frame tests.
 3. Resolve the $A_0$ branch-chart revision and accepted branch packet, then replace symbolic shielding language with an operational $\zeta(A)$ extraction protocol and a reusable $\mathcal{M}_{\text{sea}}^{ab}$ response map that can be applied to electron, quark, and neutrino assemblies without redefinition.
 4. Decide whether the Planck-alignment map yields $(h,G)$ as true outputs or only as analogy-level scaling relations.
@@ -2005,7 +2047,7 @@ This page is not a dumping ground for vague uncertainty. Each tension should ide
 | Tier | Issue | Why it matters | Current repo status | Closure target | Failure condition |
 | --- | --- | --- | --- | --- | --- |
 | 1 | Weak `V-A` selection rule | The weak interaction must distinguish left-chiral fermions from right-chiral ones. | [quantum-number-mapping.md](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md) gives a geometric lock-out story, and [weak-mixing-ckm.md](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md) now identifies this as part of the shared weak-coupling-triad exposure problem, but no operator derivation is complete. | Derive a docking or coupling operator that exposes the weak-coupling triad for left-handed charged-current coupling, hides it for right-handed charged-current coupling, and then reuses the same domain for CKM/PMNS overlap and weak-reaction provenance. | If right-handed neutrino or right-handed charged-fermion coupling to `W` is not strongly suppressed in the same regime, or if the exposure domain must be redefined separately for mixing and provenance, the current weak-sector picture fails. |
-| 1 | Preferred-frame leakage | The ontology has absolute time and a medium, so observer-level Lorentz hiding must be quantitative. | The requirement is clear in [constraint-ledger.md](../../../../markdown/aaa/validation/constraint-ledger.md), and [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md) now states the moving-assembly coefficient targets, but the full attractor proof is not complete. | Show that effective clocks, rulers, and signal transport suppress measurable preferred-frame effects below current experimental bounds by deriving the coupled shape law $L_{\parallel}=L_0/\gamma$, clock law $T=\gamma T_0$, and two-way anisotropy bounds from delayed causal closure. | Any robust preferred-frame signal above the recorded bounds, or any need to tune clock and ruler coefficients independently, falsifies the observer-level spacetime closure. |
+| 1 | Preferred-frame leakage | The ontology has absolute time and a medium, so observer-level Lorentz hiding must be quantitative. | The requirement is clear in [constraint-ledger.md](../../../../markdown/aaa/validation/constraint-ledger.md), and [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md) now states the moving-assembly coefficient targets plus the translating-binary residual test, but the full attractor proof is not complete. | First solve the translating two-body branch and test $T_u/T_0=\gamma_f$ and $L_{\parallel}/L_{\perp}=1/\gamma_f$ on the same causal-root ledger; then show that nested shell swarm clocks, rulers, and signal transport suppress measurable preferred-frame effects below current experimental bounds through coupled shape, clock, and two-way anisotropy closure. | Any robust preferred-frame signal above the recorded bounds, a non-Lorentzian binary residual that cannot be traced to a controlled branch feature, or any need to tune clock and ruler coefficients independently falsifies the observer-level spacetime closure. |
 | 1 | Born-rule derivation | Quantum replacement claims are not credible without a basin-measure or equivalent statistical closure. | [wavefunction-ontology.md](../../../../markdown/aaa/quantum/wavefunction-ontology.md) and [measurement-ontology.md](../../../../markdown/aaa/quantum/measurement-ontology.md) fix the ontology; [quantum-operator-mapping.md](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md) now states the finite-time invariant-measure, thermodynamic ensemble consistency, and admissible quantization-domain targets, but the derivation is still open. | Derive outcome weights from deterministic basin measures in the same regime that yields the effective wave equation, show that the same finite-window measure projects to the thermodynamic summaries used for apparatus irreversibility, decoherence, and record formation, and restrict effective operators to a physically declared observable domain rather than a global quantization of all classical functions. | If the deterministic closure produces a non-Born weighting in validated regimes, if Born weights and thermodynamic summaries require incompatible measures, or if the operator map requires ad hoc observable-domain changes per benchmark, the current quantum story fails. |
 | 1 | Weak-field GR recovery | Redshift, Shapiro delay, lensing, and orbital tests must come from one constitutive map. | The interface now exists in [gr-phenomenology.md](../../../../markdown/aaa/spacetime/gr-phenomenology.md) and [ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md), but the shared fit is incomplete. | Produce one reusable parameter set for the weak-field metric map. | If different observables require incompatible constitutive coefficients, the emergent-metric program fails. |
 | 2 | Low-energy quantum-gravity EFT recovery | Quantized metric methods are not $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology, but their long-distance effective predictions are fixed by known low-energy degrees of freedom. | [gr-phenomenology.md](../../../../markdown/aaa/spacetime/gr-phenomenology.md) and [emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md) state the classical weak-field map; they need an explicit observer-level GR-EFT recovery gate. | Recover the standard long-distance quantum correction to the Newtonian potential using the same weak-field constitutive record that supports PPN, redshift, Shapiro delay, lensing, and gravitational-wave speed. | If the calculable low-energy quantum correction requires an independent coefficient set, spacetime closure is incomplete even if the classical observables are matched. |
@@ -2567,6 +2609,39 @@ Methodological priority:
   \right).
   $$
   Until these entries are computed on the same window, regulator, and branch chart, the binary remains an existence candidate rather than a validated closure result.
+- The first constructive energy baseline for such a branch is the branch-local work reconstruction
+  $$
+  U_{b,\mathrm{work}}^{(\eta)}(t)
+  =
+  U_b(t_\ast)
+  -
+  \int_{t_\ast}^{t}
+  \sum_i
+  \mu_{\text{arch}}\,
+  \mathbf{a}_{i,b}^{(\eta)}(t')
+  \cdot
+  \mathbf{v}_i(t')\,dt'
+  $$
+  with the same replacement by $\mu_K(\|\mathbf{v}_i\|)$ when the primitive kinetic scalar is used. For a circular branch, the period-averaged integrand reduces to $\mu_{\text{arch}}s_b\langle A_{\eta,b}^{\mathrm{tan}}\rangle_{P_b}$ in the quadratic proxy.
+- The adiabatic consistency check is branch preservation under slow drift. Along a quasi-static path $\gamma:\lambda\mapsto(R(\lambda),s(\lambda),b)$ that does not cross a root-ledger threshold, the work-integral energy change should match the energy difference inferred from the neighboring solved branch family:
+  $$
+  \Delta_{\mathrm{ad},E}^{2\mathrm{B}}(\gamma)
+  =
+  \frac{
+  \left|
+  \Delta_\gamma U_{b,\mathrm{work}}^{(\eta)}
+  -
+  \left(E_b^{(\eta)}(\lambda_1)-E_b^{(\eta)}(\lambda_0)\right)
+  \right|
+  }{
+  \left|\Delta_\gamma U_{b,\mathrm{work}}^{(\eta)}\right|
+  +
+  \left|E_b^{(\eta)}(\lambda_1)-E_b^{(\eta)}(\lambda_0)\right|
+  +
+  \varepsilon
+  }
+  $$
+  Here $E_b^{(\eta)}(\lambda)$ denotes the candidate branch energy extracted at fixed $\lambda$ by the same declared construction route. The test is valid only while the same signed causal-root ledger persists with positive Jacobian and inactive-root gap floors. A jump in the ledger is a bifurcation, not a failure of adiabatic energy consistency.
 
 Symmetric two-body on a line (exact DDE; challenges):
 - Let $x_1(t)=+\tfrac{1}{2}r(t)$ and $x_2(t)=-\tfrac{1}{2}r(t)$ with $r(t)>0$ and $v=1$. The causal-time condition implies
@@ -2871,6 +2946,42 @@ U_\ast
 \mathbf{v}_i(t')\,dt'
 $$
 This route is trajectory-local. It is useful for simulations and branch replay, but it is not an off-shell conserved charge unless the same action and boundary convention have already been declared.
+
+###### Binary Branch Work Ledger
+
+For a solved two-body branch chart $b$, the work-integral route has a concrete first test. Let $\mathbf{a}_{i,b}^{(\eta)}(t)$ be the acceleration row obtained from exactly the active causal roots retained by the binary branch chart. With the quadratic kinetic proxy, define the delivered branch power by
+$$
+P_{b,\mathrm{work}}^{(\eta)}(t)
+=
+\sum_{i=1}^{2}
+\mu_{\text{arch}}\,
+\mathbf{a}_{i,b}^{(\eta)}(t)
+\cdot
+\mathbf{v}_i(t)
+$$
+and reconstruct the compatible causal-history interaction contribution by
+$$
+U_{b,\mathrm{work}}^{(\eta)}(t)
+=
+U_b(t_\ast)
+-
+\int_{t_\ast}^{t}
+P_{b,\mathrm{work}}^{(\eta)}(t')\,dt'
+$$
+For a primitive kinetic scalar, replace $\mu_{\text{arch}}$ by $\mu_K(\|\mathbf{v}_i\|)$ inside the sum. This is the operational binary definition: the wake-history row is whatever balances the delivered branch work along the realized trajectory, after the window, regulator, and branch ledger have been declared.
+
+On a circular benchmark with speed $s_b$, the radial component is orthogonal to the receiver velocity, so the branch power is the tangential row:
+$$
+\left\langle
+P_{b,\mathrm{work}}^{(\eta)}
+\right\rangle_{P_b}
+=
+\mu_{\text{arch}}\,s_b\,
+\left\langle
+A_{\eta,b}^{\mathrm{tan}}
+\right\rangle_{P_b}
+$$
+for the quadratic proxy. A nonzero value is not by itself an energy-conservation failure; it is the quantity that the boundary flux, recoil row, or constructed wake-history term must balance. A stable binary claim must therefore compute this row on the same branch chart as the motion residuals before invoking a Noether-style conserved energy.
 
 ###### Boundary-Flux Route
 

@@ -812,6 +812,7 @@ export function createSceneGraphRuntime(deps) {
       markdownColumns: config.markdownColumns ?? null,
       markdownShowTitle: config.markdownShowTitle ?? true,
       markdownAutoOpen: config.markdownAutoOpen ?? true,
+      markdownDownloadOnly: config.markdownDownloadOnly === true,
       centerOn: config.centerOn,
       group,
       nodes,

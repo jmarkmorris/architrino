@@ -155,7 +155,7 @@ The points below are collected as a framework-internal research program, not as 
 
 ### Assumptions
 
-- The $s, p, d, f$ orbitals are treated not as abstract probability distributions, but as emergent volume-exclusion zones of ellipsoidal electron nested shell swarms carrying six axial architrinos.
+- The $s, p, d, f$ orbitals are treated not as abstract probability distributions, but as emergent volume-exclusion zones of oblate spheroidal electron nested shell swarm envelopes carrying six axial architrinos.
 - Electron nested shell swarms are assumed to couple to a central nuclear Noether swarm through local Noether sea density gradients.
 - Periodicity is assumed to be a geometric and dynamical outcome of finite-volume assembly constraints, not only a formal quantum-number indexing result.
 
@@ -164,7 +164,7 @@ The points below are collected as a framework-internal research program, not as 
 - Spiral-to-core symmetry mapping: Hyde’s 2D spiral is treated as a projection of 3D docking topology on the nuclear Noether swarm, where each subshell bifurcation corresponds to a specific set of neutral-axis docking vectors.
 - Radial quantization condition: each concentric Hyde loop is treated as a discrete boundary where the local Noether sea pressure gradient drops enough to stabilize an additional shell of precessing nested shell swarms.
 - In this view, the 8/18/32 shell periodicity emerges from finite-volume packing limits of Noether swarm assemblies under these boundary conditions.
-- Volume-exclusion mechanism: each electron nested shell swarm displaces the local Noether sea, and overlap of two precessing ellipsoidal exclusion volumes generates a sharply rising displacement-pressure gradient.
+- Volume-exclusion mechanism: each electron nested shell swarm displaces the local Noether sea, and overlap of two precessing oblate spheroidal exclusion envelopes generates a sharply rising displacement-pressure gradient.
 - Dynamical resolution rule: when exclusion volumes intersect, assemblies must either separate into orthogonal precession phases or move to a larger-radius tier.
 - Pauli exclusion is therefore modeled as a mechanical non-overlap constraint enforced by Noether sea displacement pressure rather than only an abstract occupancy postulate.
 - Subshell branching hypothesis ($s, p, d, f$): branching reflects the number and symmetry of available neutral-axis docking geometries permitted by six polar sites.
@@ -185,14 +185,14 @@ The points below are collected as a framework-internal research program, not as 
 
 ### Geometric-Periodicity Closure Program
 
-The Hyde hypothesis becomes useful only if it can be converted into a closure program with explicit geometric tests. The first step is to translate Hyde's 2D spiral ordering into a 3D close-packing algorithm for ellipsoidal electron Noether swarm assemblies.
+The Hyde hypothesis becomes useful only if it can be converted into a closure program with explicit geometric tests. The first step is to translate Hyde's 2D spiral ordering into a 3D close-packing algorithm for oblate spheroidal electron Noether swarm assemblies.
 
 The first constrained benchmark should be the Neon core ($Z=10$), with explicit boundary conditions:
 
 - an inner phase-locked pair at maximum curvature,
 - exactly eight outer electron assemblies,
 - a local Noether sea density and delay profile fixed before optimization,
-- and a no-overlap exclusion rule for precessing ellipsoidal volumes.
+- and a no-overlap exclusion rule for precessing oblate spheroidal exclusion envelopes.
 
 The outer-shell success criterion is that the eight outer assemblies converge to a stable cubic-like or antiprismatic phase-locked lattice that minimizes transport stress without exclusion-volume intersection. The important test is dynamical: this eight-body outer geometry must appear as an attractor of the modeled constraints, not merely as a manually tuned configuration.
 

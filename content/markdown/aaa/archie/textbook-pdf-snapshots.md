@@ -1,26 +1,32 @@
 # Textbook Markdown to PDF
 
-This scene is the markdown-to-PDF workspace for textbook reading copies. The released webapp at [architrino.com](https://www.architrino.com) remains the content of record. A local PDF is a reader-generated copy of the markdown view that is currently open in the app.
+This scene is the markdown-to-PDF workspace for textbook reading copies. The released webapp at [architrino.com](https://www.architrino.com) remains the content of record. A local PDF is a reader-generated copy made from a downloaded reading-copy Markdown file.
 
 ## Overview
 
-Use the scene nodes to open a markdown section, then use **Save markdown as PDF** in the toolbar. The button opens the browser print sheet so the reader can choose **Save as PDF**.
+Use the scene nodes to download generated reading-copy Markdown files. The generated chapter and full-textbook files are download-only in this scene so the browser does not try to render the full textbook inline.
 
 This keeps the source flow simple:
 
 ```text
-Textbook markdown view -> browser print sheet -> local PDF
+Textbook source markdown -> generated reading-copy Markdown -> local PDF
 ```
 
-The webapp should open the markdown first. It should not route the reader to a planned file path or a missing generated PDF.
+Refresh the reading-copy files after canonical textbook markdown, textbook scene ordering, or the generated Textbook TOC changes:
+
+```bash
+node scripts/build-scene-graph.mjs --write --strict
+node scripts/build-textbook-md-pdf.mjs --write
+node scripts/build-textbook-md-pdf.mjs --check
+```
 
 ### Source of Record
 
 The webapp remains the source of record because it can change faster, preserve interactive context, and expose the current Textbook TOC. A local PDF is useful for reading, printing, sharing, citation, and offline review, but it is not the canonical source.
 
-### Future Export Pipeline
+### Publication Export Pipeline
 
-A dedicated publication exporter can still be added later for durable public releases. That pipeline should read the generated Textbook TOC from:
+A dedicated publication exporter for durable public PDF releases should read the generated Textbook TOC from:
 
 ```text
 content/graph/textbook_toc.json
@@ -30,56 +36,56 @@ The exporter should not infer reading order from directories or filenames. The s
 
 ## Full Textbook
 
-Open the full textbook markdown view, then use **Save markdown as PDF** in the toolbar to create a local PDF from the current reader view.
+Download the full-textbook reading-copy Markdown file, then create a local PDF from that file outside the scene.
 
 ## Foundations
 
-Open the Foundations markdown view, then use **Save markdown as PDF** in the toolbar to create a local PDF from the current reader view.
+Download the Foundations reading-copy Markdown file, then create a local PDF from that file outside the scene.
 
 ## Dynamics
 
-Open the Dynamics markdown view, then use **Save markdown as PDF** in the toolbar to create a local PDF from the current reader view.
+Download the Dynamics reading-copy Markdown file, then create a local PDF from that file outside the scene.
 
 ## Noether Sea and Effective Spacetime
 
-Open the Noether sea and Effective Spacetime markdown view, then use **Save markdown as PDF** in the toolbar to create a local PDF from the current reader view.
+Download the Noether Sea and Effective Spacetime reading-copy Markdown file, then create a local PDF from that file outside the scene.
 
-## Interactions
+## Noether Swarm
 
-Open the Interactions markdown view, then use **Save markdown as PDF** in the toolbar to create a local PDF from the current reader view.
+Download the Noether Swarm reading-copy Markdown file, then create a local PDF from that file outside the scene.
 
 ## Standard Model Assemblies
 
-Open the Standard Model Assemblies markdown view, then use **Save markdown as PDF** in the toolbar to create a local PDF from the current reader view.
+Download the Standard Model Assemblies reading-copy Markdown file, then create a local PDF from that file outside the scene.
 
 ## Atomic and Nuclear Assemblies
 
-Open the Atomic and Nuclear Assemblies markdown view, then use **Save markdown as PDF** in the toolbar to create a local PDF from the current reader view.
+Download the Atomic and Nuclear Assemblies reading-copy Markdown file, then create a local PDF from that file outside the scene.
 
 ## Reactions
 
-Open the Reactions markdown view, then use **Save markdown as PDF** in the toolbar to create a local PDF from the current reader view.
+Download the Reactions reading-copy Markdown file, then create a local PDF from that file outside the scene.
 
 ## Quantum
 
-Open the Quantum markdown view, then use **Save markdown as PDF** in the toolbar to create a local PDF from the current reader view.
+Download the Quantum reading-copy Markdown file, then create a local PDF from that file outside the scene.
 
 ## Theory Bridges
 
-Open the Theory Bridges markdown view, then use **Save markdown as PDF** in the toolbar to create a local PDF from the current reader view.
+Download the Theory Bridges reading-copy Markdown file, then create a local PDF from that file outside the scene.
 
 ## Cosmology
 
-Open the Cosmology markdown view, then use **Save markdown as PDF** in the toolbar to create a local PDF from the current reader view.
+Download the Cosmology reading-copy Markdown file, then create a local PDF from that file outside the scene.
 
 ## Validation
 
-Open the Validation markdown view, then use **Save markdown as PDF** in the toolbar to create a local PDF from the current reader view.
+Download the Validation reading-copy Markdown file, then create a local PDF from that file outside the scene.
 
 ## Proof Programs
 
-Open the Proof Programs markdown view, then use **Save markdown as PDF** in the toolbar to create a local PDF from the current reader view.
+Download the Proof Programs reading-copy Markdown file, then create a local PDF from that file outside the scene.
 
 ## Philosophy-History
 
-Open the Philosophy-History markdown view, then use **Save markdown as PDF** in the toolbar to create a local PDF from the current reader view.
+Download the Philosophy-History reading-copy Markdown file, then create a local PDF from that file outside the scene.

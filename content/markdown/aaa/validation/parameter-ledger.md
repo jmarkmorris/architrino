@@ -135,12 +135,52 @@ Here $\Delta p/p$ is the fractional perturbation of a parameter or closure outpu
 Current status:
 
 - $\epsilon=|e|/6$ is treated as a discrete polarity-unit input and an explanatory target, not as a continuous fit.
-- $\kappa$ is the universal coupling in the primitive acceleration law; its numerical closure remains to be assessed because its primitive, derived, or normalization-sensitive status is still open.
+- $\kappa$ is the universal coupling in the primitive acceleration law. In the bare two-body scale closure below it combines with $c_f$ and $\epsilon$ to set length and time units rather than an independent dimensionless tuning knob, while its primitive, derived, or normalization-sensitive status in the observer-level unit map remains open.
 - $\rho_{\text{NS},0}$ and related medium-density normalizations remain naturalness risks until energy shielding and cosmological closure are quantified.
 
 ### Regulator versus physical pulse
 
 The wake-width regulator $\eta$ is a computational and analytic regularization, not a claim that causal wakes are fundamentally pulsed. It smooths causal wake surfaces so integrals and simulations can be evaluated with finite resolution. As $\eta\to0$, the intended limit is the continuous path-history law, with each discrete time step in a simulation approximating the contribution from a narrow causal wake surface rather than replacing the underlying continuous emission.
+
+### Layer-I two-body scale closure
+
+The exact bare two-body kernel has no independent dimensionless tuning constant after the regulator is removed or treated as a numerical convention. The dimensional substrate triplet
+$$
+(c_f,\kappa,\epsilon)
+$$
+spans the base dimensions $(\mathrm{L},\mathrm{T},\mathrm{Q})$ because
+$$
+[c_f]=\mathrm{L}\,\mathrm{T}^{-1},
+\qquad
+[\kappa]=\mathrm{L}^3\,\mathrm{T}^{-2}\,\mathrm{Q}^{-2},
+\qquad
+[\epsilon]=\mathrm{Q}
+$$
+It therefore defines canonical two-body units
+$$
+Q_*=\epsilon,
+\qquad
+R_*=\frac{\kappa\epsilon^2}{c_f^2},
+\qquad
+T_*=\frac{R_*}{c_f}=\frac{\kappa\epsilon^2}{c_f^3}
+$$
+For $\tilde{\mathbf{x}}=\mathbf{x}/R_*$, $\tilde t=t/T_*$, and $\tilde q_i=q_i/\epsilon=\pm1$, the causal constraint and bare acceleration law reduce to
+$$
+\tilde r_{ij}=\tilde t-\tilde t_0
+$$
+and
+$$
+\frac{d^2\tilde{\mathbf{x}}_i}{d\tilde t^2}
+=
+\sum_j\sum_{\tilde t_0\in\tilde{\mathcal{C}}_{ij}(\tilde t)}
+\sigma_{ij}
+\frac{|\tilde q_i\tilde q_j|}
+{\tilde r_{ij}^2|\tilde J_{ij}|}
+\hat{\mathbf{r}}_{ij}
+$$
+up to the separately declared regulator ratio $\eta/R_*$ when a mollified surrogate is being used.
+
+Consequently, every dimensionless output of the isolated bare two-body problem is a pure branch-geometry result: root multiplicities, branch-birth thresholds, maximum-curvature speed ratios, residual signs, and any certified radius in units of $R_*$. This does not certify that a stable maximum-curvature binary exists. It says that if a certified two-body branch produces such a number, that number is computed by the root ledger and stability problem rather than fitted by changing a Layer-I dimensionless constant.
 
 ## Layer I: Substrate and Kernel Parameters
 
@@ -150,7 +190,7 @@ These symbols belong to the delayed microscopic law itself.
 | --- | --- | --- | --- | --- | --- |
 | K1 | $c_f$ | Fundamental parameter | Primitive | field speed of causal wake propagation | [../dynamics/master-equation.md](../dynamics/master-equation.md), [../foundations/absolute-timespace.md](../foundations/absolute-timespace.md) |
 | K2 | $\epsilon$ | Fundamental parameter | Primitive | potential polarity-unit magnitude, with observer-level electric charge reconstructed from it | [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md), [../interactions/gauge-structure-emergence.md](../interactions/gauge-structure-emergence.md) |
-| K3 | $\kappa$ | Fundamental parameter or normalization-sensitive coupling | Open; universal in the substrate acceleration law | coupling multiplying $\sigma_{ij}\lvert q_iq_j\rvert/(r_{ij}^2\lvert J_{ij}\rvert)$ in the per-hit acceleration law; because a single architrino has no primitive inertial mass, this is not an $F=ma$ coefficient; dimensional row $[\kappa]=\mathrm{L}^3\,\mathrm{T}^{-2}\,\mathrm{Q}^{-2}$ | [../dynamics/master-equation.md](../dynamics/master-equation.md), [architrino-si-base-units.md](./architrino-si-base-units.md), [../foundations/architrino.md](../foundations/architrino.md) |
+| K3 | $\kappa$ | Fundamental parameter or normalization-sensitive coupling | Open as primitive/normalization split; universal in the substrate acceleration law | coupling multiplying $\sigma_{ij}\lvert q_iq_j\rvert/(r_{ij}^2\lvert J_{ij}\rvert)$ in the per-hit acceleration law; because a single architrino has no primitive inertial mass, this is not an $F=ma$ coefficient; with $c_f$ and $\epsilon$ it sets the two-body scale $R_*=\kappa\epsilon^2/c_f^2$ rather than a Layer-I dimensionless fit constant; dimensional row $[\kappa]=\mathrm{L}^3\,\mathrm{T}^{-2}\,\mathrm{Q}^{-2}$ | [../dynamics/master-equation.md](../dynamics/master-equation.md), [architrino-si-base-units.md](./architrino-si-base-units.md), [../foundations/architrino.md](../foundations/architrino.md) |
 | K4 | $\eta$ | Regulator / convention | Open but non-ontological | mollifier width used to regularize causal wake surfaces for smooth dynamics and numerics | [simulations/action-energy/well-posedness-and-regularization.md](./simulations/action-energy/well-posedness-and-regularization.md), [../dynamics/master-equation.md](../dynamics/master-equation.md) |
 | K5 | $Z_e$ | Regulator / convention | Convention, default $Z_e=1$ | coarse-graining / normalization factor in the substrate-to-observer charge map | [../interactions/gauge-structure-emergence.md](../interactions/gauge-structure-emergence.md), [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md) |
 
@@ -368,6 +408,7 @@ The current corpus supports the following conservative closure assessment.
 
 - $c_f$ is treated consistently as the substrate propagation speed, even when chapters temporarily write $v=1$.
 - $\epsilon$ is treated consistently as the potential polarity-unit magnitude.
+- The exact bare two-body kernel admits the canonical nondimensionalization by $R_*=\kappa\epsilon^2/c_f^2$ and $T_*=R_*/c_f$, so branch thresholds and residual equations are parameter-free once a branch chart is declared.
 - $\rho_{\text{NS},0}$ is the reference density symbol for the Noether sea.
 - $\Phi_{\text{eff}}=c_f^2\ln(\Omega\xi)$ is the canonical clock-channel potential definition for the exponential metric subclass, with $\xi$ retained as a geometry-first Noether swarm shape ratio.
 
@@ -375,6 +416,7 @@ The current corpus supports the following conservative closure assessment.
 
 - whether $\kappa$ is primitive, derived, or partly a normalization artifact,
 - whether $\eta$ should disappear entirely from physical statements after the weak limit is taken,
+- whether any specific maximum-curvature binary branch exists and is stable under the full signed-root, finite-window two-body dynamics,
 - the $A_0$ reference-attractor output packet,
 - the actual nested shell swarm radii/frequency ladder,
 - the shielding map $\zeta(A)$ across the fermion spectrum,
@@ -387,7 +429,7 @@ The current corpus supports the following conservative closure assessment.
 
 The shortest path to a better closure score is:
 
-1. Fix the status of $\kappa$ once, with an explicit statement of what part is physical coupling and what part is absorbed normalization.
+1. Fix the observer-level status of $\kappa$ once, with an explicit statement of what part is physical coupling, what part is absorbed normalization, and how the two-body scale $R_*=\kappa\epsilon^2/c_f^2$ enters the unit map.
 2. Derive or numerically extract a reusable constitutive parameterization for $(\Omega,\xi)$, then hold it fixed across redshift, Shapiro delay, lensing, and preferred-frame tests.
 3. Resolve the $A_0$ branch-chart revision and accepted branch packet, then replace symbolic shielding language with an operational $\zeta(A)$ extraction protocol and a reusable $\mathcal{M}_{\text{sea}}^{ab}$ response map that can be applied to electron, quark, and neutrino assemblies without redefinition.
 4. Decide whether the Planck-alignment map yields $(h,G)$ as true outputs or only as analogy-level scaling relations.

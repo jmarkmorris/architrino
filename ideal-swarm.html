@@ -200,7 +200,7 @@
 
       .ideal-swarm-doc-row {
         display: grid;
-        grid-template-columns: 1.25fr 0.82fr 1.1fr;
+        grid-template-columns: 0.82fr 1.1fr 1.25fr;
         gap: 8px;
       }
 
@@ -254,14 +254,15 @@
         align-items: center;
         justify-content: center;
         flex: 0 0 auto;
-        width: 18px;
-        height: 14px;
-        border: 1px solid currentColor;
-        border-radius: 3px;
-        font-size: 7px;
-        font-weight: 800;
-        line-height: 1;
+        width: 16px;
+        height: 16px;
         opacity: 0.9;
+      }
+
+      .ideal-swarm-md-icon svg {
+        display: block;
+        width: 15px;
+        height: 15px;
       }
 
       .ideal-swarm-button-label {
@@ -980,21 +981,30 @@
           </div>
           <div class="ideal-swarm-doc-row" aria-label="Lorentz documentation">
             <button
-              id="ideal-swarm-return-cycle-doc-button"
-              class="ideal-swarm-button is-doc-button"
-              type="button"
-              aria-label="Open Return-Cycle Lorentz Quantization document"
-            >
-              <span class="ideal-swarm-md-icon" aria-hidden="true">MD</span>
-              <span class="ideal-swarm-button-label">Return-Cycle</span>
-            </button>
-            <button
               id="ideal-swarm-notes-doc-button"
               class="ideal-swarm-button is-doc-button"
               type="button"
               aria-label="Open Ideal Swarm Guide document"
             >
-              <span class="ideal-swarm-md-icon" aria-hidden="true">MD</span>
+              <span class="ideal-swarm-md-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path
+                    d="M5 3H14L19 8V21H5Z"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linejoin="miter"
+                  ></path>
+                  <path d="M14 3V8H19Z" fill="currentColor"></path>
+                  <path
+                    d="M7.5 12.6H16.5M7.5 16.1H16.5"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="butt"
+                  ></path>
+                </svg>
+              </span>
               <span class="ideal-swarm-button-label">Guide</span>
             </button>
             <button
@@ -1003,8 +1013,53 @@
               type="button"
               aria-label="Open Lorentz Kinematics document"
             >
-              <span class="ideal-swarm-md-icon" aria-hidden="true">MD</span>
+              <span class="ideal-swarm-md-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path
+                    d="M5 3H14L19 8V21H5Z"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linejoin="miter"
+                  ></path>
+                  <path d="M14 3V8H19Z" fill="currentColor"></path>
+                  <path
+                    d="M7.5 12.6H16.5M7.5 16.1H16.5"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="butt"
+                  ></path>
+                </svg>
+              </span>
               <span class="ideal-swarm-button-label">Kinematics</span>
+            </button>
+            <button
+              id="ideal-swarm-return-cycle-doc-button"
+              class="ideal-swarm-button is-doc-button"
+              type="button"
+              aria-label="Open Return-Cycle Lorentz Quantization document"
+            >
+              <span class="ideal-swarm-md-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path
+                    d="M5 3H14L19 8V21H5Z"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linejoin="miter"
+                  ></path>
+                  <path d="M14 3V8H19Z" fill="currentColor"></path>
+                  <path
+                    d="M7.5 12.6H16.5M7.5 16.1H16.5"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="butt"
+                  ></path>
+                </svg>
+              </span>
+              <span class="ideal-swarm-button-label">Return-Cycle</span>
             </button>
           </div>
         </div>

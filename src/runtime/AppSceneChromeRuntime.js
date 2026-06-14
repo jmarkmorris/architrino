@@ -59,8 +59,17 @@ export function createAppSceneChromeRuntime({
       return;
     }
     const hasDoc = !!currentLevel?.markdownPath;
+    const isDownloadOnly = currentLevel?.markdownDownloadOnly === true;
     markdownPdfButton.classList.toggle("is-hidden", !hasDoc);
     markdownPdfButton.disabled = !hasDoc;
+    markdownPdfButton.classList.toggle("is-download-mode", hasDoc && isDownloadOnly);
+    markdownPdfButton.setAttribute(
+      "aria-label",
+      isDownloadOnly ? "Download markdown reading copy" : "Save markdown as PDF"
+    );
+    markdownPdfButton.title = isDownloadOnly
+      ? "Download markdown reading copy"
+      : "Save markdown as PDF";
   }
 
   function updateSceneInfoTrigger(canReopenInfo) {

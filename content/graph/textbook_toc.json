@@ -1001,10 +1001,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Spiral Binary Deflationary Phase",
+                "title": "Post-Threshold Self-Hit Phase",
                 "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
-                "markdownSection": "Spiral Binary Deflationary Phase",
-                "sectionKey": "spiral binary deflationary phase",
+                "markdownSection": "Post-Threshold Self-Hit Phase",
+                "sectionKey": "post threshold self hit phase",
                 "headingLevel": 2
               },
               {
@@ -10211,10 +10211,10 @@
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "Spheroid Projection",
+                        "title": "Oblate Spheroidal Envelope Projection",
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md",
-                        "markdownSection": "Spheroid Projection",
-                        "sectionKey": "spheroid projection",
+                        "markdownSection": "Oblate Spheroidal Envelope Projection",
+                        "sectionKey": "oblate spheroidal envelope projection",
                         "headingLevel": 2
                       },
                       {
