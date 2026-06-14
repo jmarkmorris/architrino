@@ -135,6 +135,83 @@ The polarization interpretation of this hypothesis is:
 
 The proof burden is to compute these cases from the delayed branch sums of the twelve architrinos and the material analyzer handoff, not by inserting polarization vectors, analyzer pass rules, or source-side polarization parameters by hand. A good visual fit in the photon app can nominate a parameter regime, but this packet can consume it only after the branch supplies the corresponding phase-lock, transverse-survival, longitudinal-leakage, helicity, and event-ledger rows.
 
+## Local-c Helical Self-Hit Hypothesis
+
+Priority-only hypothesis. When a photon branch is carried by a local Noether sea, the packet center should move at the declared photon-channel speed $c_\gamma$, while each architrino also carries transverse orbital motion in its planar swarm. For layer $k$,
+
+$$
+\mathbf v_{k,\mathrm{abs}}
+=
+c_\gamma\hat{\mathbf e}
++
+\mathbf v_{k,\perp},
+\qquad
+v_{k,\perp}=2\pi f_k R_k.
+$$
+
+For orthogonal propagation and transverse orbit,
+
+$$
+\left(\frac{v_{k,\mathrm{abs}}}{c_f}\right)^2
+=
+\left(\frac{c_\gamma}{c_f}\right)^2
++
+\left(\frac{2\pi f_kR_k}{c_f}\right)^2.
+$$
+
+Thus the same layer is sub-field-speed only when
+
+$$
+2\pi f_kR_k
+<
+\sqrt{c_f^2-c_\gamma^2}.
+$$
+
+In low-density Noether sea, $c_\gamma\approx c_f$, so the available transverse speed budget is small and ordinary orbital motion can push the source history into candidate self-hit. In dense or strong-field Noether sea, a reduced $c_\gamma$ opens a larger sub-field-speed window, so outer or retuned layers may leave the self-hit candidate regime.
+
+Equivalently, define
+
+$$
+\beta_\gamma=\frac{c_\gamma}{c_f},
+\qquad
+u_k=\frac{2\pi f_kR_k}{c_f}.
+$$
+
+Then the layer speed budget is
+
+$$
+\beta_{k,\mathrm{abs}}^2=\beta_\gamma^2+u_k^2,
+$$
+
+with the speed-budget self-hit candidate threshold
+
+$$
+u_k\gtrsim\sqrt{1-\beta_\gamma^2}.
+$$
+
+In the current photon app calibration, the default layer speeds before translation are $u_I=1.2$, $u_M=1.0$, and $u_O=0.8$. Therefore the inner layer remains super-field-speed for any nonzero $c_\gamma$, the middle layer becomes super-field-speed for any positive $c_\gamma$, and the outer layer is sub-field-speed only when $\beta_\gamma<0.6$. This app calibration is a diagnostic stress setting, not a physical proof that every photon branch must use those exact layer speeds.
+
+The same-source self-hit condition is not the speed inequality alone. A retained row requires a source-history root
+
+$$
+\|\mathbf r_{k}(t)-\mathbf r_{k}(\tau)\|=c_f(t-\tau),
+\qquad \tau<t,
+$$
+
+with a usable Jacobian and transversality floor. For a helical source history, the approximate threshold can be read as
+
+$$
+v_{k,\perp}
+\gtrsim
+\sqrt{c_f^2-c_\gamma^2},
+$$
+
+but the actual row must be solved from the delayed branch geometry.
+
+Mechanism candidate. Managed self-hit may be part of how a photon branch maintains a transverse wake ledger while moving at local $c$; in that reading it is better described first as branch maintenance or wake-coupled propagation, not literal rocket propulsion. The candidate loss condition is not merely $v_{k,\mathrm{abs}}<c_f$. It is the disappearance or rejection of the relevant same-source roots after the Jacobian floor, transversality floor, phase-lock rows, transverse-survival residual, longitudinal-leakage residual, helicity ledger, and event-balance ledger are all evaluated.
+
+A horizon or strong-gravity transition should therefore be treated as a possible failure or reorganization of the outward photon-channel branch, not simply as the point where $v_{k,\mathrm{abs}}$ becomes less than $c_f$. If a future black-hole interpretation is attempted, the horizon-side condition should be phrased as an outward-branch ledger condition: no stable outward photon channel, or failed Gate A displacement/null rows, under the local Noether sea state. The raw speed-budget threshold can nominate where a layer changes regime, but it cannot by itself identify the event horizon.
+
 ## Static Exposure And Transverse Survival
 
 Define the static exposure residual

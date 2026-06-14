@@ -358,7 +358,7 @@ test("priority markdown links stay inside the markdown runtime", async (t) => {
   globalThis.fetch = async () => ({
     ok: true,
     async text() {
-      return "# Photon App\n\n[photon-app-requirements](photon-app-requirements.md)";
+      return "# Photon App\n\n[Malus' law](../cross-theory-mapping/malus-law.md)";
     },
   });
   globalThis.window = {};
@@ -397,7 +397,7 @@ test("priority markdown links stay inside the markdown runtime", async (t) => {
 
   const link = {
     getAttribute(name) {
-      return name === "href" ? "photon-app-requirements.md" : null;
+      return name === "href" ? "../cross-theory-mapping/malus-law.md" : null;
     },
   };
   const event = {
@@ -421,7 +421,7 @@ test("priority markdown links stay inside the markdown runtime", async (t) => {
 
   assert.equal(event.defaultPrevented, true);
   assert.deepEqual(navigatedTargets, [
-    "reference/priorities/photon-app/photon-app-requirements.md",
+    "reference/priorities/cross-theory-mapping/malus-law.md",
   ]);
 });
 

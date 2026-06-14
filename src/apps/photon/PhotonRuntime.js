@@ -38,11 +38,6 @@ const PHOTON_DOCS = {
     markdownPath: "reference/priorities/photon-app/photon-app.md",
     markdownColumns: 1,
   },
-  requirements: {
-    name: "Photon App Requirements",
-    markdownPath: "reference/priorities/photon-app/photon-app-requirements.md",
-    markdownColumns: 1,
-  },
 };
 
 function queryPhotonElement(documentLike, selector) {
@@ -291,7 +286,6 @@ export function createPhotonRuntime({
     "#photon-polarization-gate-doc-button"
   );
   const projectDocButton = queryPhotonElement(documentLike, "#photon-project-doc-button");
-  const requirementsDocButton = queryPhotonElement(documentLike, "#photon-requirements-doc-button");
   const markdownPanel = queryPhotonElement(documentLike, "#photon-markdown-panel");
   const markdownTitle = queryPhotonElement(documentLike, "#photon-markdown-title");
   const markdownBody = queryPhotonElement(documentLike, "#photon-markdown-body");
@@ -420,9 +414,6 @@ export function createPhotonRuntime({
     });
     projectDocButton.addEventListener("click", () => {
       markdownRuntime.showMarkdownPanel(PHOTON_DOCS.project);
-    });
-    requirementsDocButton.addEventListener("click", () => {
-      markdownRuntime.showMarkdownPanel(PHOTON_DOCS.requirements);
     });
     markdownClose.addEventListener("click", () => {
       markdownRuntime.hideMarkdownPanel();
