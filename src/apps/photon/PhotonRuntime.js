@@ -105,9 +105,24 @@ function renderRows(documentLike, container, rows, { windowLike } = {}) {
 function renderFormulaSummary(documentLike, container, summary, { windowLike } = {}) {
   const values = [
     ["derived mode", summary.polarization.classificationLabel],
-    ["fit amp E_y", formatPhotonFixed(summary.polarization.amplitudes.y, 3)],
-    ["fit amp E_z", formatPhotonFixed(summary.polarization.amplitudes.z, 3)],
-    ["fit E_z/E_y", formatPhotonFixed(summary.polarization.amplitudes.relative, 3)],
+    [
+      "fit amp E_y",
+      formatPhotonFixed(summary.polarization.amplitudes.y, 3),
+      undefined,
+      { labelMath: "\\mathrm{fit\\ amp}\\ E_y" },
+    ],
+    [
+      "fit amp E_z",
+      formatPhotonFixed(summary.polarization.amplitudes.z, 3),
+      undefined,
+      { labelMath: "\\mathrm{fit\\ amp}\\ E_z" },
+    ],
+    [
+      "fit E_z/E_y",
+      formatPhotonFixed(summary.polarization.amplitudes.relative, 3),
+      undefined,
+      { labelMath: "\\mathrm{fit}\\ E_z/E_y" },
+    ],
     [
       "fit lag",
       summary.polarization.phaseLagDefined
