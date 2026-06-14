@@ -9,6 +9,10 @@ import {
   setPhotonPairSeparationLog10Ratio,
   setPhotonLayerValue,
 } from "./PhotonStateRuntime.js";
+import {
+  PHOTON_DEFAULT_PRESET_ID,
+  PHOTON_NAMED_PRESETS,
+} from "./PhotonPresetRuntime.js";
 
 function formatControlValue(value, digits = 2) {
   if (!Number.isFinite(Number(value))) {
@@ -588,6 +592,48 @@ function createCheckboxControl(documentLike, { label, checked, onChange }) {
   return { row, input };
 }
 
+function createPresetControl(
+  documentLike,
+  {
+    getPresetId = () => PHOTON_DEFAULT_PRESET_ID,
+    onPresetChange,
+    onResetPreset,
+  }
+) {
+  const row = createElement(documentLike, "div", "photon-preset-row");
+  const label = createElement(documentLike, "span", "photon-control-label", "Preset");
+  const actionShell = createElement(documentLike, "span", "photon-preset-actions");
+  const select = createElement(documentLike, "select", "photon-select photon-preset-select");
+  const resetButton = createButton(documentLike, "Reset preset");
+
+  select.setAttribute("aria-label", "Photon preset");
+  PHOTON_NAMED_PRESETS.forEach((preset) => {
+    const option = createElement(documentLike, "option", "", preset.name);
+    option.value = preset.id;
+    select.append(option);
+  });
+
+  select.addEventListener("change", () => {
+    onPresetChange(select.value);
+  });
+  resetButton.addEventListener("click", () => {
+    onResetPreset();
+  });
+
+  actionShell.append(select, resetButton);
+  row.append(label, actionShell);
+
+  const sync = () => {
+    const presetId = getPresetId();
+    const hasPreset = PHOTON_NAMED_PRESETS.some((preset) => preset.id === presetId);
+    select.value = hasPreset ? presetId : PHOTON_DEFAULT_PRESET_ID;
+    resetButton.title = `Reset to ${select.options[select.selectedIndex]?.textContent ?? "preset"}`;
+  };
+
+  sync();
+  return { row, select, resetButton, sync };
+}
+
 function createButton(documentLike, label, className = "photon-button") {
   const button = createElement(documentLike, "button", className, label);
   button.type = "button";
@@ -627,6 +673,9 @@ export function createPhotonControlsRuntime({
   onResetAnimation,
   onResetParameters,
   onTogglePause,
+  getPresetId,
+  onPresetChange,
+  onResetPreset,
 }) {
   const controls = [];
   const binaryControls = [];
@@ -634,6 +683,12 @@ export function createPhotonControlsRuntime({
   const onRangeStateChange = () => onStateChange({ syncControls: false, drawNow: false });
 
   const timeSection = addSection(documentLike, container, "Runtime");
+  const presetControl = createPresetControl(documentLike, {
+    getPresetId,
+    onPresetChange,
+    onResetPreset,
+  });
+  timeSection.append(presetControl.row);
   const actionGrid = createElement(documentLike, "div", "photon-action-grid");
   const pauseButton = createButton(documentLike, "Pause");
   const resetTimeButton = createButton(documentLike, "Reset time");
@@ -763,6 +818,7 @@ export function createPhotonControlsRuntime({
   });
 
   function sync(nextState) {
+    presetControl.sync(nextState);
     let index = 0;
     syncRange(controls[index], nextState.pair.pairSeparation);
     index += 1;

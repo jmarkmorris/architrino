@@ -37,6 +37,7 @@ Its job is to turn reviewed scripts and visual plans into generated or assembled
 | File | Role | Primary promotion targets |
 | --- | --- | --- |
 | [first-prototype-priorities.md](first-prototype-priorities.md) | Concrete pre-prototype decision queue, first-pass character ensemble, pilot script shape, and prototype done criteria. | First YouTube 4K HD landscape prototype script, shot list, character sheets, and toolchain trial. |
+| [character-development.md](character-development.md) | Draft character bible seed with biographies, visual prompts, voice prompts, continuity rules, dialogue roles, and open operator decisions. | Character sheets, prompt packets, voice trials, shot continuity checks, and first prototype script assignments. |
 | [videos-requirements.md](videos-requirements.md) | Stable requirements for generated-video scope, fictional character design, media types, production workflow, quality control, and platform targets. | Future video tooling, character bibles, script templates, app tutorial embeds, and public release checklists. |
 
 ## Promotion Map
@@ -44,7 +45,7 @@ Its job is to turn reviewed scripts and visual plans into generated or assembled
 | Task | Detailed file | Primary promotion target | Promotion gate |
 | --- | --- | --- | --- |
 | `first_prototype_decision_stack` | [first-prototype-priorities.md](first-prototype-priorities.md) | First prototype plan and dry-run asset packet. | The first prototype has a topic, draft character sheets, script shape, QC gate, asset storage decision, and smallest toolchain trial target. |
-| `character_ensemble` | [first-prototype-priorities.md](first-prototype-priorities.md) and [videos-requirements.md](videos-requirements.md) | Character bible and reusable prompt/style assets. | The three STEAM-undergrad characters have stable fictional identities, appearances, voices, and allowed-use boundaries across video, image, and animation. |
+| `character_ensemble` | [character-development.md](character-development.md), [first-prototype-priorities.md](first-prototype-priorities.md), and [videos-requirements.md](videos-requirements.md) | Character bible and reusable prompt/style assets. | The three STEAM-undergrad characters have stable fictional identities, appearances, voices, and allowed-use boundaries across video, image, and animation. |
 | `script_pipeline` | [first-prototype-priorities.md](first-prototype-priorities.md) and [videos-requirements.md](videos-requirements.md) | Script template and review workflow. | AI-authored scripts can be reviewed, revised, dry-run, and tied to shot plans before media generation. |
 | `quality_control_method` | [first-prototype-priorities.md](first-prototype-priorities.md) and [videos-requirements.md](videos-requirements.md) | Release checklist for public videos and app-embedded media. | Every generated clip has factual, visual, audio, accessibility, platform, and safety review before publication. |
 | `production_methodology` | [videos-requirements.md](videos-requirements.md) | Video production playbook and toolchain scripts. | A repeatable dry-run-to-final workflow can produce at least one short reviewed clip with retained source artifacts. |

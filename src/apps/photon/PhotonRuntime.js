@@ -1,8 +1,12 @@
 import {
-  createDefaultPhotonState,
   normalizePhotonState,
   wrapPhotonTime,
 } from "./PhotonStateRuntime.js";
+import {
+  PHOTON_DEFAULT_PRESET_ID,
+  createPhotonPresetState,
+  getPhotonPreset,
+} from "./PhotonPresetRuntime.js";
 import { createMarkdownRuntime } from "../../runtime/MarkdownRuntime.js";
 import { extractMarkdownSection } from "../../services/MarkdownPolicyService.js";
 import { createPhotonControlsRuntime } from "./PhotonControlsRuntime.js";
@@ -298,7 +302,8 @@ export function createPhotonRuntime({
   const timeOutputs = Array.from(documentLike.querySelectorAll(".photon-time-output"));
   const cycleOutputs = Array.from(documentLike.querySelectorAll(".photon-cycle-output"));
 
-  let state = createDefaultPhotonState();
+  let loadedPresetId = PHOTON_DEFAULT_PRESET_ID;
+  let state = createPhotonPresetState(loadedPresetId);
   let modelTime = 0;
   let lastFrame = 0;
   let controlsRuntime = null;
@@ -346,7 +351,23 @@ export function createPhotonRuntime({
   }
 
   function resetParameters() {
-    state = createDefaultPhotonState();
+    loadedPresetId = PHOTON_DEFAULT_PRESET_ID;
+    state = createPhotonPresetState(loadedPresetId);
+    modelTime = 0;
+    syncControls();
+    draw();
+  }
+
+  function applyPreset(presetId) {
+    loadedPresetId = getPhotonPreset(presetId).id;
+    state = createPhotonPresetState(loadedPresetId);
+    modelTime = 0;
+    syncControls();
+    draw();
+  }
+
+  function resetPreset() {
+    state = createPhotonPresetState(loadedPresetId);
     modelTime = 0;
     syncControls();
     draw();
@@ -399,6 +420,9 @@ export function createPhotonRuntime({
       onResetAnimation: resetAnimation,
       onResetParameters: resetParameters,
       onTogglePause: togglePause,
+      getPresetId: () => loadedPresetId,
+      onPresetChange: applyPreset,
+      onResetPreset: resetPreset,
     });
     homeButton.addEventListener("click", () => {
       windowLike.location.assign(homeHref);
@@ -445,6 +469,9 @@ export function createPhotonRuntime({
     destroy,
     getState: () => normalizePhotonState(state),
     setState,
+    getLoadedPresetId: () => loadedPresetId,
+    applyPreset,
+    resetPreset,
     getModelTime: () => modelTime,
     resetAnimation,
     resetParameters,

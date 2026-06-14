@@ -17,7 +17,7 @@ Default target:
 ## Decision Queue
 
 1. `pilot_topic` - Choose the first prototype topic. Recommended default: a YouTube landscape explainer that introduces Architrino through one visual concept and one app-navigation moment rather than trying to summarize the whole theory. Status: `active`. Depends on: none.
-2. `character_identity_sheets` - Approve first-pass character names, roles, appearances, voice directions, and boundaries. Status: `active`. Depends on: none.
+2. `character_identity_sheets` - Draft character sheets now exist in [character-development.md](character-development.md); approve or revise first-pass names, roles, appearances, voice directions, and boundaries. Status: `active`. Depends on: none.
 3. `visual_style_lock` - Choose the first prototype style. Recommended default: lifelike animated characters with consistent model sheets, not full photoreal video, until the toolchain proves character continuity across shots. Status: `active`. Depends on: `character_identity_sheets`.
 4. `voice_style_lock` - Choose provisional voice directions and pronunciation rules before generating any test narration. Status: `active`. Depends on: `character_identity_sheets`.
 5. `script_outline` - Produce a reviewed 60 to 90 second outline with lines assigned to characters, narrator beats, on-screen text, and visual beats. Status: `next`. Depends on: `pilot_topic`, `visual_style_lock`, and `voice_style_lock`.
@@ -38,11 +38,11 @@ These are draft fictional identities for prototype planning. They are not final 
 ## Character Development Checklist
 
 - [ ] Approve or rename the three draft characters.
-- [ ] Define each character's STEAM emphasis, speaking style, and recurring job in a video.
-- [ ] Create a one-paragraph public-safe biography for each character.
-- [ ] Create a visual prompt sheet for each character, including face, hair, wardrobe, posture, lighting, and negative likeness constraints.
-- [ ] Create a voice prompt sheet for each character, including pace, tone, pronunciation, and forbidden real-person imitation.
-- [ ] Create continuity rules for hair, wardrobe, color palette, posture, and camera framing.
+- [x] Define each character's STEAM emphasis, speaking style, and recurring job in a video. See [character-development.md](character-development.md).
+- [x] Create a one-paragraph public-safe biography for each character. See [character-development.md](character-development.md).
+- [x] Create a visual prompt sheet for each character, including face, hair, wardrobe, posture, lighting, and negative likeness constraints. See [character-development.md](character-development.md).
+- [x] Create a voice prompt sheet for each character, including pace, tone, pronunciation, and forbidden real-person imitation. See [character-development.md](character-development.md).
+- [x] Create continuity rules for hair, wardrobe, color palette, posture, and camera framing. See [character-development.md](character-development.md).
 - [ ] Decide whether the first prototype includes only the three students or also one `Educator`.
 
 ## Pilot Script Shape

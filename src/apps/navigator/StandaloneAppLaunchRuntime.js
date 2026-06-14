@@ -1,6 +1,7 @@
 const standaloneScenePathById = Object.freeze({
   archie__ideal_swarm: "ideal-swarm.html",
   archie__photon: "photon.html",
+  molecule: "molecule.html",
 });
 
 export function getStandaloneAppPathForScene(sceneId = "") {

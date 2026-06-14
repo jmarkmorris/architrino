@@ -21,6 +21,10 @@ import {
   setPhotonLayerValue,
 } from "../src/apps/photon/PhotonStateRuntime.js";
 import {
+  PHOTON_NAMED_PRESETS,
+  createPhotonPresetState,
+} from "../src/apps/photon/PhotonPresetRuntime.js";
+import {
   getPhotonControlZeroPositionPercent,
   getPhotonControlZeroSnapThreshold,
   getPhotonPlaybackSpeedMultiplier,
@@ -469,6 +473,43 @@ test("frequency controls use powers of two", () => {
   const state = createDefaultPhotonState();
   setPhotonLayerValue(state, "right", "M", "frequencyHz", 3);
   assert.equal(state.pair.right.layers.M.frequencyHz, 4);
+});
+
+test("named photon presets expose the required candidate configurations", () => {
+  assert.deepEqual(
+    PHOTON_NAMED_PRESETS.map((preset) => preset.id),
+    [
+      "balanced_contra_rotating_pair",
+      "linear_polarization_candidate",
+      "right_circular_candidate",
+      "left_circular_candidate",
+      "phase_offset_stress_test",
+      "layer_radius_stress_test",
+    ]
+  );
+
+  const balanced = createPhotonPresetState("balanced_contra_rotating_pair");
+  assert.equal(balanced.pair.left.layers.I.frequencyHz, 4);
+  assert.equal(balanced.pair.left.layers.M.frequencyHz, 2);
+  assert.equal(balanced.pair.left.layers.O.frequencyHz, 1);
+  assert.equal(balanced.pair.right.layers.O.enabled, true);
+
+  const linear = createPhotonPresetState("linear_polarization_candidate");
+  assert.deepEqual(
+    ["I", "M", "O"].map((layerId) => getPhotonLayerEnabled(linear, "left", layerId)),
+    [false, false, true]
+  );
+  assert.equal(computePhotonFormulaSummary(linear, 0).polarization.classification, "linear");
+
+  const right = createPhotonPresetState("right_circular_candidate");
+  const left = createPhotonPresetState("left_circular_candidate");
+  assert.ok(computePhotonFormulaSummary(right, 0).polarization.normalizedStokes.s3 > 0);
+  assert.ok(computePhotonFormulaSummary(left, 0).polarization.normalizedStokes.s3 < 0);
+
+  const radiusStress = createPhotonPresetState("layer_radius_stress_test");
+  assert.equal(radiusStress.pair.left.layers.I.radius, 0.02);
+  assert.equal(radiusStress.pair.left.layers.M.radius, 0.16);
+  assert.equal(radiusStress.pair.left.layers.O.radius, 0.32);
 });
 
 test("separation reference radius follows the largest enabled radius", () => {

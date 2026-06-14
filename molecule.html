@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#080b12" />
+    <title>Molecule Visualization</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #f4f7f2;
+        color: #172018;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      #molecule-app {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 340px;
+        width: 100%;
+        height: 100%;
+        min-width: 0;
+        min-height: 0;
+        background:
+          linear-gradient(135deg, rgba(232, 238, 228, 0.95), rgba(246, 248, 244, 0.96)),
+          #f4f7f2;
+      }
+
+      .molecule-stage {
+        position: relative;
+        min-width: 0;
+        min-height: 0;
+        overflow: hidden;
+        background:
+          linear-gradient(145deg, rgba(109, 40, 217, 0.34) 0%, rgba(76, 29, 149, 0.24) 34%, rgba(8, 11, 18, 0.96) 76%),
+          linear-gradient(180deg, #171126 0%, #080b12 100%);
+      }
+
+      #molecule-canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+        outline: none;
+        touch-action: none;
+      }
+
+      .molecule-stage-topbar {
+        position: absolute;
+        left: 16px;
+        right: 16px;
+        top: 16px;
+        z-index: 2;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+        pointer-events: none;
+      }
+
+      .molecule-title-block {
+        min-width: 0;
+        padding: 10px 12px;
+        border: 1px solid rgba(42, 64, 49, 0.14);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.78);
+        box-shadow: 0 14px 34px rgba(30, 46, 35, 0.12);
+        backdrop-filter: blur(8px);
+      }
+
+      .molecule-title-block h1 {
+        margin: 0;
+        color: #142117;
+        font-size: 18px;
+        line-height: 1.12;
+        font-weight: 780;
+        letter-spacing: 0;
+      }
+
+      .molecule-title-block p {
+        margin: 3px 0 0;
+        color: #546357;
+        font-size: 12px;
+        line-height: 1.35;
+      }
+
+      .molecule-toolbar {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        pointer-events: auto;
+      }
+
+      .molecule-button {
+        min-height: 32px;
+        padding: 0 10px;
+        border: 1px solid rgba(42, 64, 49, 0.18);
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.86);
+        color: #1c2b20;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 1;
+        cursor: pointer;
+      }
+
+      .molecule-icon-button {
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        display: inline-grid;
+        place-items: center;
+      }
+
+      .molecule-icon-button svg {
+        width: 17px;
+        height: 17px;
+        stroke-width: 2.2;
+      }
+
+      .molecule-button:hover,
+      .molecule-button:focus-visible {
+        border-color: rgba(15, 118, 110, 0.58);
+        outline: none;
+      }
+
+      .molecule-button:active {
+        transform: translateY(1px);
+      }
+
+      .molecule-readout {
+        position: absolute;
+        left: 16px;
+        bottom: 16px;
+        z-index: 2;
+        width: min(460px, calc(100% - 32px));
+        padding: 10px 12px;
+        border: 1px solid rgba(42, 64, 49, 0.14);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.78);
+        color: #2b382e;
+        box-shadow: 0 14px 34px rgba(30, 46, 35, 0.12);
+        backdrop-filter: blur(8px);
+      }
+
+      .molecule-readout-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .molecule-readout-field {
+        min-width: 0;
+      }
+
+      .molecule-readout-field span {
+        display: block;
+        color: #667466;
+        font-size: 10px;
+        font-weight: 750;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .molecule-readout-field strong {
+        display: block;
+        margin-top: 3px;
+        overflow: hidden;
+        color: #172018;
+        font-size: 13px;
+        font-weight: 750;
+        line-height: 1.25;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .molecule-side {
+        min-width: 0;
+        min-height: 0;
+        border-left: 1px solid rgba(42, 64, 49, 0.13);
+        background: rgba(252, 253, 250, 0.96);
+        display: grid;
+        grid-template-rows: auto minmax(0, 1fr) auto;
+      }
+
+      .molecule-side-header,
+      .molecule-side-footer {
+        padding: 16px;
+      }
+
+      .molecule-side-header {
+        border-bottom: 1px solid rgba(42, 64, 49, 0.11);
+      }
+
+      .molecule-side-header h2 {
+        margin: 0;
+        color: #172018;
+        font-size: 15px;
+        font-weight: 780;
+        letter-spacing: 0;
+      }
+
+      .molecule-side-header p {
+        margin: 4px 0 0;
+        color: #5f6d61;
+        font-size: 12px;
+        line-height: 1.35;
+      }
+
+      .molecule-preset-list {
+        min-height: 0;
+        overflow: auto;
+        padding: 10px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-content: start;
+        gap: 8px;
+      }
+
+      .molecule-preset-button {
+        width: 100%;
+        min-height: 58px;
+        padding: 10px;
+        border: 1px solid rgba(42, 64, 49, 0.13);
+        border-radius: 8px;
+        background: #ffffff;
+        color: #172018;
+        cursor: pointer;
+        text-align: left;
+      }
+
+      .molecule-preset-button:hover,
+      .molecule-preset-button:focus-visible {
+        border-color: rgba(15, 118, 110, 0.42);
+        outline: none;
+      }
+
+      .molecule-preset-button.is-active {
+        border-color: rgba(15, 118, 110, 0.75);
+        background: #edf8f4;
+      }
+
+      .molecule-preset-button strong {
+        display: block;
+        overflow: hidden;
+        font-size: 13px;
+        font-weight: 780;
+        line-height: 1.2;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .molecule-preset-button span {
+        display: block;
+        margin-top: 4px;
+        overflow: hidden;
+        color: #607064;
+        font-size: 11px;
+        line-height: 1.3;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .molecule-side-footer {
+        display: grid;
+        gap: 8px;
+        border-top: 1px solid rgba(42, 64, 49, 0.11);
+        color: #4b5a4f;
+        font-size: 12px;
+      }
+
+      .molecule-ledger {
+        display: grid;
+        gap: 8px;
+        padding: 10px;
+        border: 1px solid rgba(42, 64, 49, 0.12);
+        border-radius: 8px;
+        background: #f6f8f3;
+      }
+
+      .molecule-ledger h3 {
+        margin: 0;
+        color: #172018;
+        font-size: 12px;
+        font-weight: 780;
+        letter-spacing: 0;
+      }
+
+      .molecule-ledger-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
+      }
+
+      .molecule-ledger-grid span {
+        min-width: 0;
+        padding: 7px 8px;
+        border: 1px solid rgba(42, 64, 49, 0.1);
+        border-radius: 6px;
+        background: #ffffff;
+      }
+
+      .molecule-ledger-grid em {
+        display: block;
+        overflow: hidden;
+        color: #627164;
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 750;
+        line-height: 1.2;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .molecule-ledger-grid strong {
+        display: block;
+        margin-top: 3px;
+        overflow: hidden;
+        color: #172018;
+        font-size: 13px;
+        font-weight: 780;
+        line-height: 1.2;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .molecule-ledger-note {
+        margin: 0;
+        color: #637167;
+        font-size: 11px;
+        line-height: 1.35;
+      }
+
+      #molecule-boot-error {
+        position: absolute;
+        inset: 20px;
+        z-index: 20;
+        display: grid;
+        place-items: center;
+        padding: 18px;
+        border: 1px solid rgba(185, 28, 28, 0.34);
+        border-radius: 8px;
+        background: #fff7f6;
+        color: #7f1d1d;
+        font-size: 14px;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      @media (max-width: 860px) {
+        html,
+        body {
+          height: auto;
+          min-height: 100%;
+          overflow: auto;
+        }
+
+        #molecule-app {
+          grid-template-columns: 1fr;
+          grid-template-rows: minmax(420px, 58vh) minmax(300px, auto);
+          min-height: 100vh;
+          height: auto;
+        }
+
+        .molecule-side {
+          border-left: 0;
+          border-top: 1px solid rgba(42, 64, 49, 0.13);
+        }
+
+        .molecule-preset-list {
+          max-height: none;
+          overflow: visible;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .molecule-stage-topbar {
+          left: 10px;
+          right: 10px;
+          top: 10px;
+          flex-direction: column;
+        }
+
+        .molecule-title-block {
+          width: 100%;
+        }
+
+        .molecule-toolbar {
+          width: 100%;
+        }
+
+        .molecule-button {
+          flex: 1 1 0;
+        }
+
+        .molecule-icon-button {
+          flex: 0 0 32px;
+        }
+
+        .molecule-readout {
+          left: 10px;
+          right: 10px;
+          bottom: 10px;
+          width: auto;
+        }
+
+        .molecule-readout-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 6px;
+        }
+
+        .molecule-preset-list {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main id="molecule-app">
+      <section class="molecule-stage" aria-label="molecule viewer">
+        <canvas id="molecule-canvas"></canvas>
+        <div class="molecule-stage-topbar">
+          <div class="molecule-title-block">
+            <h1 id="molecule-title">Molecule</h1>
+            <p id="molecule-subtitle">Preset molecule catalog</p>
+          </div>
+          <div class="molecule-toolbar">
+            <button id="molecule-reset-button" type="button" class="molecule-button">Reset</button>
+            <button
+              id="molecule-home-button"
+              type="button"
+              class="molecule-button molecule-icon-button"
+              aria-label="Applications"
+              title="Applications"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m3 10.8 9-7.2 9 7.2" />
+                <path d="M5.2 9.6V20h4.9v-5.6h3.8V20h4.9V9.6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="molecule-readout" aria-live="polite">
+          <div class="molecule-readout-grid">
+            <div class="molecule-readout-field">
+              <span>Formula</span>
+              <strong id="molecule-formula">-</strong>
+            </div>
+            <div class="molecule-readout-field">
+              <span>Atoms</span>
+              <strong id="molecule-atom-count">-</strong>
+            </div>
+            <div class="molecule-readout-field">
+              <span>Bonds</span>
+              <strong id="molecule-bond-count">-</strong>
+            </div>
+            <div class="molecule-readout-field">
+              <span>Protons</span>
+              <strong id="molecule-proton-count">-</strong>
+            </div>
+            <div class="molecule-readout-field">
+              <span>Neutrons</span>
+              <strong id="molecule-neutron-count">-</strong>
+            </div>
+            <div class="molecule-readout-field">
+              <span>Electrons</span>
+              <strong id="molecule-electron-count">-</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+      <aside class="molecule-side">
+        <header class="molecule-side-header">
+          <h2>Presets</h2>
+          <p id="molecule-preset-summary">Curated local catalog</p>
+        </header>
+        <div id="molecule-preset-list" class="molecule-preset-list"></div>
+        <footer class="molecule-side-footer">
+          <section class="molecule-ledger" aria-labelledby="molecule-ledger-heading">
+            <h3 id="molecule-ledger-heading">Ledger</h3>
+            <div class="molecule-ledger-grid">
+              <span>
+                <em>P</em>
+                <strong id="molecule-ledger-protons">-</strong>
+              </span>
+              <span>
+                <em>N</em>
+                <strong id="molecule-ledger-neutrons">-</strong>
+              </span>
+              <span>
+                <em>e</em>
+                <strong id="molecule-ledger-electrons">-</strong>
+              </span>
+              <span>
+                <em>electrinos</em>
+                <strong id="molecule-ledger-electrinos">-</strong>
+              </span>
+              <span>
+                <em>positrinos</em>
+                <strong id="molecule-ledger-positrinos">-</strong>
+              </span>
+              <span>
+                <em>architrinos</em>
+                <strong id="molecule-ledger-architrinos">-</strong>
+              </span>
+            </div>
+            <p id="molecule-ledger-note" class="molecule-ledger-note">Typical neutral atom estimate</p>
+          </section>
+        </footer>
+      </aside>
+    </main>
+    <script type="module" src="./src/apps/molecule/main.js"></script>
+  </body>
+</html>

@@ -257,14 +257,13 @@ $$
 
 ## Open Work Queue
 
-1. `named_presets` - Add named preset selection for balanced contra-rotating pair, linear polarization candidate, right circular candidate, left circular candidate, phase-offset stress test, and layer-radius stress test. Include reset to last loaded preset. Status: `open`.
-2. `raw_polarization_overlay` - Add an optional overlay that shows raw one-cycle branch-sum points behind the fitted polarization curve. Status: `open`.
-3. `shared_visual_extraction` - Extract shared Ideal Swarm / photon architrino marker, orbit-path, tint-profile, and layered-trail helpers if the visual grammar needs to be maintained across both apps. Status: `open`.
-4. `substrate_mapping_refinement` - Refine the Virtual Observer branch-sum mapping from I/M/O layer parameters to transverse observer-field amplitudes, while preserving claim discipline. Status: `open`.
-5. `separation_mapping_refinement` - Decide whether $\Delta x$ should later enter the observer-field mapping as a physical delay, a phase delay, or a separate diagnostic. Status: `open`.
-6. `polarization_parameter_search` - Identify which geometry or binary controls can reliably produce fitted linear, circular, or elliptical observer-level polarization without adding synthetic source-polarization parameters. Status: `open`.
-7. `local_c_continuation` - Add a later speed mode that replaces fixed $c_f$ with local $c$ from declared Noether sea state variables. Status: `open`.
-8. `absolute_source_history_self_hit` - Add a local-$c$ helical source-history diagnostic that combines photon-channel translation with transverse binary motion, then reports same-source roots, Jacobian floors, and whether each layer is sub-field-speed or candidate self-hit. Status: `open`.
+1. `raw_polarization_overlay` - Add an optional overlay that shows raw one-cycle branch-sum points behind the fitted polarization curve. Status: `open`.
+2. `shared_visual_extraction` - Extract shared Ideal Swarm / photon architrino marker, orbit-path, tint-profile, and layered-trail helpers if the visual grammar needs to be maintained across both apps. Status: `open`.
+3. `substrate_mapping_refinement` - Refine the Virtual Observer branch-sum mapping from I/M/O layer parameters to transverse observer-field amplitudes, while preserving claim discipline. Status: `open`.
+4. `separation_mapping_refinement` - Decide whether $\Delta x$ should later enter the observer-field mapping as a physical delay, a phase delay, or a separate diagnostic. Status: `open`.
+5. `polarization_parameter_search` - Identify which geometry or binary controls can reliably produce fitted linear, circular, or elliptical observer-level polarization without adding synthetic source-polarization parameters. Status: `open`.
+6. `local_c_continuation` - Add a later speed mode that replaces fixed $c_f$ with local $c$ from declared Noether sea state variables. Status: `open`.
+7. `absolute_source_history_self_hit` - Add a local-$c$ helical source-history diagnostic that combines photon-channel translation with transverse binary motion, then reports same-source roots, Jacobian floors, and whether each layer is sub-field-speed or candidate self-hit. Status: `open`.
 
 ## Deferred Non-Goals
 
