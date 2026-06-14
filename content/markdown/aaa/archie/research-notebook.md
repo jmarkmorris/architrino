@@ -8,34 +8,49 @@ Each dated section should preserve the reasoning of the moment closely enough th
 
 Entries are maintained in descending date order, with the newest `##` section first.
 
+## 2026-06-14: Molecule Visualization App
+
+Relevant files:
+
+- [Molecule Visualization](../../../../molecule.html)
+- [Molecule app scene](../../../scenes/archie/molecule.json)
+- [Applications scene](../../../scenes/archie/applications.json)
+
+The standalone [Molecule Visualization](../../../../molecule.html) app became the first working molecule-viewer surface for the project. It replaced the old placeholder molecule scene with a preset-driven 3D app that lets the reader inspect curated molecules directly, rotate the model, zoom the camera, and click atoms to route into the corresponding element visualizations.
+
+The first version keeps the scope deliberately concrete. It uses app-owned molecule presets rather than remote lookup, and it uses the existing Three.js runtime already available in the web app. That made the prototype fast to build while preserving the next obvious expansion path: a curated local formula lookup, then exact structure inputs such as SMILES, InChI, MOL, SDF, XYZ, PDB, or mmCIF once the conversion path is accepted.
+
+The app also carries an $\mathbb{A}\mathbb{A}\mathbb{A}$ bookkeeping layer. For the displayed molecule it reports protons, neutrons, electrons, electrinos, positrinos, and total architrinos using the current typical neutral-atom estimate. This keeps the molecule view connected to the atom and periodic-table apps rather than treating chemistry as a separate visual island.
+
+This app took 2 hours to develop. That speed mattered because the result is not only a visualization but a new application pattern: a standalone app can be launched from the Applications scene while keeping a small scene-graph entry for navigation, search, and future documentation links.
+
 ## 2026-06-13: Photon and Polarization Visualization
 
 Relevant files:
 
 - [Photon and Polarization Visualization](../../../../photon.html)
+- [Photon Guide](photon-guide.md)
 - [Mode Taxonomy](../interactions/mode-taxonomy.md)
 - [Horizon Chirality and Planar Spin](../spacetime/horizon-chirality.md)
 - [Quantum Summary](../quantum/quantum-summary.md)
 - [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md)
 
-The standalone [Photon and Polarization Visualization](../../../../photon.html) app became the interactive inspection surface for the candidate photon planar-pair lesson. Its purpose is to make one photon-channel hypothesis concrete: a photon-like packet is modeled as two contra-rotating flat Noether swarms, with the trailing swarm rotating `CCW` and the leading swarm rotating `CW` as the pair translates along the $x$ direction. The app shows both face-on planar swarm views and a side view, because the actual planar swarms are perpendicular to the line of translation even though the face-on views are turned toward the reader for inspection.
+The standalone [Photon and Polarization Visualization](../../../../photon.html) app became the workbench for one simple photon idea: a photon-like packet might be modeled as two flat Noether swarms moving together along $x$. The trailing swarm rotates counter-clockwise, the leading swarm rotates clockwise, and the app shows both a face-on view for inspection and a side view closer to the actual geometry.
 
-The controls turn the candidate into an inspectable research object rather than a static illustration. Each swarm exposes enabled/disabled binary rows for the `I`, `M`, and `O` binaries, with frequency, radius, and phase controls. The separation control is scaled as `Sep/r`, so the distance between the trailing and leading swarms can be explored across many orders of magnitude relative to the largest active binary radius. The Virtual Observer controls place the receiver at a selected $(x,y,z)$ location, and the runtime reconstructs the displayed transverse $\mathbf E$ readout from delayed source histories, all causal roots found for the active architrinos, Jacobian-weighted hit sums, and the resulting receiver acceleration.
+The app lets the reader change the candidate instead of only looking at a picture. Each swarm has `I`, `M`, and `O` binaries with enable switches, frequency, radius, and phase controls. The $\Delta x$ control changes the gap between the two swarms in the side view, while the Virtual Observer controls choose the $(x,y,z)$ point where the app calculates the displayed electric-field readout.
 
-The app deliberately does not claim to prove photon closure. It records the geometry and measurement target in a form that can be checked visually, algebraically, and numerically. The $\mathbf B$ graph is not plotted as a separate source of evidence, because in the validated plane-wave comparison regime $\mathbf B$ is recovered from $\mathbf E$ by $\mathbf B=(1/c_f)\hat{\mathbf x}\times\mathbf E$. The useful app-level question is therefore sharper: which planar-pair settings yield a stable, transverse, low-leakage Virtual Observer $\mathbf E$ signal whose fitted polarization behaves like the expected photon-channel record?
+That electric-field readout is not hand-drawn. The runtime sums delayed contributions from the active architrinos, finds causal roots, weights them by the delay Jacobian, and reconstructs the transverse $\mathbf E$ signal at the Virtual Observer. The separate $\mathbf B$ graph is omitted because, in the plane-wave comparison case, $\mathbf B$ follows from $\mathbf E$ by $\mathbf B=(1/c_f)\hat{\mathbf x}\times\mathbf E$.
 
-The polarization section makes that burden visible. The app fits the branch-sum $E_y(t)$ and $E_z(t)$ over a reference cycle, derives amplitudes, phase lag, Stokes readouts, analyzer fraction, and fit residual, and classifies the observed trace as weak, linear, circular, or elliptical. Those readouts are diagnostic outputs of the branch-sum field, not source-side knobs inserted by hand. That distinction matters because the photon Gate B problem is precisely to recover polarization, helicity, analyzer response, and absence of a free longitudinal mode from the candidate planar-pair ledger.
+The polarization panel asks what kind of field the candidate actually produces. It fits $E_y(t)$ and $E_z(t)$ over one cycle and reports whether the observed signal looks weak, linear, circular, or elliptical. This is a diagnostic result, not a proof: the app helps find promising planar-pair settings, but photon closure still requires a separate branch-ledger argument.
 
-The supporting corpus chapters state the downstream burden. [Mode Taxonomy](../interactions/mode-taxonomy.md) owns the controlled `planar-mode` language for photon channels and keeps Gate A/Gate B as recovery obligations rather than completed derivations. [Horizon Chirality and Planar Spin](../spacetime/horizon-chirality.md) records why contra-rotating planar branch language is natural in flat or boundary-like Noether swarm regimes. [Quantum Summary](../quantum/quantum-summary.md) and [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md) keep the broader photon closure gates connected to tested energy, momentum, polarization, helicity, transition, and Bose-channel behavior.
-
-Together these surfaces turn the photon planar-pair idea into a governed research object. The app provides the visible and numerical target, the diagnostics expose branch-sum quality, the polarization fit translates the target into observer-level readouts, and the corpus chapters state what still has to be proved before the visualization can become a physical photon theorem.
+The supporting documents keep that boundary clear. [Photon Guide](photon-guide.md) explains how to use the app. [Mode Taxonomy](../interactions/mode-taxonomy.md), [Horizon Chirality and Planar Spin](../spacetime/horizon-chirality.md), [Quantum Summary](../quantum/quantum-summary.md), and [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md) state what still has to be recovered: stable transverse behavior, polarization, helicity, analyzer response, and no free longitudinal photon mode.
 
 ## 2026-06-10: Ideal Noether Swarm Lorentz Geometry
 
 Relevant files:
 
 - [Ideal Noether Swarm: Lorentz Geometry](../../../../ideal-swarm.html)
-- [Ideal Swarm Guide](ideal-swarm-notes.md)
+- [Ideal Swarm Guide](ideal-swarm-guide.md)
 - [Return-Cycle Lorentz Quantization](../philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md)
 - [Lorentz Kinematics](../spacetime/lorentz-kinematics.md)
 
@@ -43,7 +58,7 @@ The standalone [Ideal Noether Swarm: Lorentz Geometry](../../../../ideal-swarm.h
 
 The app deliberately does not claim to prove Lorentz kinematics from Noether swarm dynamics. It records the target geometry in a form that can be checked visually and algebraically: in the zero-extra-scale lesson case, the displayed oblate spheroidal envelope satisfies $R_{\parallel}=R_{\perp}/\gamma$ and $\xi=1/\gamma$. That makes the Lorentz factor more than a formula in a side panel; it becomes the aspect ratio of the displayed envelope. The app is therefore a dictionary between the formula, the return-cycle picture, and the geometry that a later branch-ledger derivation would have to recover.
 
-The three supporting documents divide the burden cleanly. [Ideal Swarm Guide](ideal-swarm-notes.md) is the app-facing explanation: it defines the lesson purpose, the control meanings, the geometry dictionary, the energy and mass-equivalent readouts, and the claim level of the surface. [Return-Cycle Lorentz Quantization](../philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md) gives the reader-facing bridge: the continuous observer-level Lorentz function is not replaced by a step function; the discrete object is the admissible material return-cycle branch whose longitudinal and transverse cycles close to the same period. [Lorentz Kinematics](../spacetime/lorentz-kinematics.md) carries the deeper proof program, where the Lorentz laws must be derived from delayed substrate dynamics, stable translating branches, closure residuals, and bounded preferred-frame leakage.
+The three supporting documents divide the burden cleanly. [Ideal Swarm Guide](ideal-swarm-guide.md) is the app-facing explanation: it defines the lesson purpose, the control meanings, the geometry dictionary, the energy and mass-equivalent readouts, and the claim level of the surface. [Return-Cycle Lorentz Quantization](../philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md) gives the reader-facing bridge: the continuous observer-level Lorentz function is not replaced by a step function; the discrete object is the admissible material return-cycle branch whose longitudinal and transverse cycles close to the same period. [Lorentz Kinematics](../spacetime/lorentz-kinematics.md) carries the deeper proof program, where the Lorentz laws must be derived from delayed substrate dynamics, stable translating branches, closure residuals, and bounded preferred-frame leakage.
 
 Together these four surfaces turned the Lorentz lesson into a governed research object. The app provides the visible target, the guide explains how to read it, the bridge names the branch-indexed mechanism, and the kinematics chapter states the mathematical work still required. That separation matters because it lets the project use the app pedagogically without mistaking a visualization for a completed theorem.
 

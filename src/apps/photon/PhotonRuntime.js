@@ -1,8 +1,12 @@
 import {
-  createDefaultPhotonState,
   normalizePhotonState,
   wrapPhotonTime,
 } from "./PhotonStateRuntime.js";
+import {
+  PHOTON_DEFAULT_PRESET_ID,
+  createPhotonPresetState,
+  getPhotonPreset,
+} from "./PhotonPresetRuntime.js";
 import { createMarkdownRuntime } from "../../runtime/MarkdownRuntime.js";
 import { extractMarkdownSection } from "../../services/MarkdownPolicyService.js";
 import { createPhotonControlsRuntime } from "./PhotonControlsRuntime.js";
@@ -17,7 +21,7 @@ import {
 const PHOTON_DOCS = {
   guide: {
     name: "Photon Guide",
-    markdownPath: "reference/priorities/photon-app/photon-guide.md",
+    markdownPath: "content/markdown/aaa/archie/photon-guide.md",
     markdownColumns: 1,
   },
   photonClosure: {
@@ -36,11 +40,6 @@ const PHOTON_DOCS = {
   project: {
     name: "Photon App",
     markdownPath: "reference/priorities/photon-app/photon-app.md",
-    markdownColumns: 1,
-  },
-  requirements: {
-    name: "Photon App Requirements",
-    markdownPath: "reference/priorities/photon-app/photon-app-requirements.md",
     markdownColumns: 1,
   },
 };
@@ -291,7 +290,6 @@ export function createPhotonRuntime({
     "#photon-polarization-gate-doc-button"
   );
   const projectDocButton = queryPhotonElement(documentLike, "#photon-project-doc-button");
-  const requirementsDocButton = queryPhotonElement(documentLike, "#photon-requirements-doc-button");
   const markdownPanel = queryPhotonElement(documentLike, "#photon-markdown-panel");
   const markdownTitle = queryPhotonElement(documentLike, "#photon-markdown-title");
   const markdownBody = queryPhotonElement(documentLike, "#photon-markdown-body");
@@ -304,7 +302,8 @@ export function createPhotonRuntime({
   const timeOutputs = Array.from(documentLike.querySelectorAll(".photon-time-output"));
   const cycleOutputs = Array.from(documentLike.querySelectorAll(".photon-cycle-output"));
 
-  let state = createDefaultPhotonState();
+  let loadedPresetId = PHOTON_DEFAULT_PRESET_ID;
+  let state = createPhotonPresetState(loadedPresetId);
   let modelTime = 0;
   let lastFrame = 0;
   let controlsRuntime = null;
@@ -352,7 +351,23 @@ export function createPhotonRuntime({
   }
 
   function resetParameters() {
-    state = createDefaultPhotonState();
+    loadedPresetId = PHOTON_DEFAULT_PRESET_ID;
+    state = createPhotonPresetState(loadedPresetId);
+    modelTime = 0;
+    syncControls();
+    draw();
+  }
+
+  function applyPreset(presetId) {
+    loadedPresetId = getPhotonPreset(presetId).id;
+    state = createPhotonPresetState(loadedPresetId);
+    modelTime = 0;
+    syncControls();
+    draw();
+  }
+
+  function resetPreset() {
+    state = createPhotonPresetState(loadedPresetId);
     modelTime = 0;
     syncControls();
     draw();
@@ -405,6 +420,9 @@ export function createPhotonRuntime({
       onResetAnimation: resetAnimation,
       onResetParameters: resetParameters,
       onTogglePause: togglePause,
+      getPresetId: () => loadedPresetId,
+      onPresetChange: applyPreset,
+      onResetPreset: resetPreset,
     });
     homeButton.addEventListener("click", () => {
       windowLike.location.assign(homeHref);
@@ -420,9 +438,6 @@ export function createPhotonRuntime({
     });
     projectDocButton.addEventListener("click", () => {
       markdownRuntime.showMarkdownPanel(PHOTON_DOCS.project);
-    });
-    requirementsDocButton.addEventListener("click", () => {
-      markdownRuntime.showMarkdownPanel(PHOTON_DOCS.requirements);
     });
     markdownClose.addEventListener("click", () => {
       markdownRuntime.hideMarkdownPanel();
@@ -454,6 +469,9 @@ export function createPhotonRuntime({
     destroy,
     getState: () => normalizePhotonState(state),
     setState,
+    getLoadedPresetId: () => loadedPresetId,
+    applyPreset,
+    resetPreset,
     getModelTime: () => modelTime,
     resetAnimation,
     resetParameters,

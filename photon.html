@@ -473,6 +473,29 @@
         text-align: right;
       }
 
+      .photon-preset-row {
+        display: grid;
+        grid-template-columns: 44px minmax(0, 1fr);
+        align-items: center;
+        gap: 8px;
+        min-height: 30px;
+      }
+
+      .photon-preset-actions {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 92px;
+        gap: 7px;
+        min-width: 0;
+      }
+
+      .photon-preset-select {
+        min-width: 0;
+        padding: 0 7px;
+        color: rgba(238, 243, 255, 0.9);
+        font-size: 11px;
+        font-weight: 700;
+      }
+
       .photon-separation-output {
         min-width: 0;
         white-space: nowrap;
@@ -1024,34 +1047,6 @@
               </svg>
             </span>
             <span class="photon-button-label">Project</span>
-          </button>
-          <button
-            id="photon-requirements-doc-button"
-            class="photon-button is-doc-button"
-            type="button"
-            aria-label="Open Photon App Requirements document"
-            hidden
-          >
-            <span class="photon-md-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" focusable="false">
-                <path
-                  d="M5 3H14L19 8V21H5Z"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linejoin="miter"
-                />
-                <path d="M14 3V8H19Z" fill="currentColor" />
-                <path
-                  d="M7.5 12.6H16.5M7.5 16.1H16.5"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="butt"
-                />
-              </svg>
-            </span>
-            <span class="photon-button-label">Requirements</span>
           </button>
         </div>
         <div id="photon-controls"></div>

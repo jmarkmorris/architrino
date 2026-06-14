@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 506,
+      "nodes": 507,
       "edges": 1249,
       "scenes": 327,
       "markdownIndexes": 0,
-      "markdownDocs": 179,
+      "markdownDocs": 180,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -170,12 +170,6 @@
       "id": "hyde_periodic_table",
       "name": "Hyde Periodic Table",
       "path": "content/scenes/chemistry/hyde_periodic_table_scene.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "molecule",
-      "name": "Molecule",
-      "path": "content/scenes/chemistry/molecule.json",
       "nodeType": "scene"
     },
     {
@@ -2111,6 +2105,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "molecule",
+      "name": "Molecule Visualization",
+      "path": "content/scenes/archie/molecule.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/reading-copies/architrino-textbook.md",
       "name": "Architrino Textbook",
       "path": "content/generated/markdown/textbook/reading-copies/architrino-textbook.md",
@@ -2225,9 +2225,9 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/archie/ideal-swarm-notes.md",
+      "id": "content/markdown/aaa/archie/ideal-swarm-guide.md",
       "name": "Ideal Swarm Guide",
-      "path": "content/markdown/aaa/archie/ideal-swarm-notes.md",
+      "path": "content/markdown/aaa/archie/ideal-swarm-guide.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2252,6 +2252,12 @@
       "id": "content/markdown/aaa/archie/navigation-and-controls.md",
       "name": "Navigation & Controls",
       "path": "content/markdown/aaa/archie/navigation-and-controls.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/archie/photon-guide.md",
+      "name": "Photon Guide",
+      "path": "content/markdown/aaa/archie/photon-guide.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3295,6 +3301,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/archie/molecule.json",
+      "nodeType": "scene",
+      "id": "molecule",
+      "name": "Molecule Visualization",
+      "path": "content/scenes/archie/molecule.json",
+      "searchTarget": "content/scenes/archie/molecule.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/archie/photon.json",
       "nodeType": "scene",
       "id": "archie__photon",
@@ -3553,15 +3568,6 @@
       "name": "Hyde Periodic Table",
       "path": "content/scenes/chemistry/hyde_periodic_table_scene.json",
       "searchTarget": "content/scenes/chemistry/hyde_periodic_table_scene.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/chemistry/molecule.json",
-      "nodeType": "scene",
-      "id": "molecule",
-      "name": "Molecule",
-      "path": "content/scenes/chemistry/molecule.json",
-      "searchTarget": "content/scenes/chemistry/molecule.json",
       "implicit": false
     },
     {
@@ -6301,12 +6307,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/archie/ideal-swarm-notes.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/ideal-swarm-guide.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/archie/ideal-swarm-notes.md",
+      "id": "content/markdown/aaa/archie/ideal-swarm-guide.md",
       "name": "Ideal Swarm Guide",
-      "path": "content/markdown/aaa/archie/ideal-swarm-notes.md",
-      "searchTarget": "content/markdown/aaa/archie/ideal-swarm-notes.md",
+      "path": "content/markdown/aaa/archie/ideal-swarm-guide.md",
+      "searchTarget": "content/markdown/aaa/archie/ideal-swarm-guide.md",
       "implicit": false
     },
     {
@@ -6343,6 +6349,15 @@
       "name": "Navigation & Controls",
       "path": "content/markdown/aaa/archie/navigation-and-controls.md",
       "searchTarget": "content/markdown/aaa/archie/navigation-and-controls.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/photon-guide.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/archie/photon-guide.md",
+      "name": "Photon Guide",
+      "path": "content/markdown/aaa/archie/photon-guide.md",
+      "searchTarget": "content/markdown/aaa/archie/photon-guide.md",
       "implicit": false
     },
     {
@@ -7751,6 +7766,13 @@
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
+      "to": "scene:content/scenes/archie/molecule.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/applications.json",
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/archie/photon.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
@@ -7762,13 +7784,6 @@
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
       "field": "scene.children[2]"
-    },
-    {
-      "from": "scene:content/scenes/archie/applications.json",
-      "to": "scene:content/scenes/chemistry/molecule.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
@@ -12035,7 +12050,7 @@
     },
     {
       "from": "scene:content/scenes/archie/ideal_swarm.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/ideal-swarm-notes.md",
+      "to": "markdown_doc:content/markdown/aaa/archie/ideal-swarm-guide.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/archie/ideal_swarm.json",
       "field": "scene.source.path"

@@ -21,11 +21,6 @@
       "path": "content/scenes/chemistry/hyde_periodic_table_scene.json"
     },
     {
-      "id": "molecule",
-      "name": "Molecule",
-      "path": "content/scenes/chemistry/molecule.json"
-    },
-    {
       "id": "periodic_table",
       "name": "Periodic Table",
       "path": "content/scenes/chemistry/periodic_table_scene.json"
@@ -1634,6 +1629,11 @@
       "id": "archie__photon",
       "name": "Photon and Polarization Visualization",
       "path": "content/scenes/archie/photon.json"
+    },
+    {
+      "id": "molecule",
+      "name": "Molecule Visualization",
+      "path": "content/scenes/archie/molecule.json"
     }
   ]
 }
