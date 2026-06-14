@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "molecule",
+    "title": "Molecule Visualization",
+    "type": "Scene-Diagram",
+    "units": "relative",
+    "wrapLabels": true,
+    "hideScaleLabels": true,
+    "layout": {
+      "type": "static"
+    }
+  },
+  "objects": []
+}

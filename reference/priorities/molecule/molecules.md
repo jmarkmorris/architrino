@@ -24,9 +24,9 @@ The app should let a user:
 
 ## Existing Scene Replacement
 
-- Replace the current placeholder molecule scene at [molecule.json](../../../content/scenes/chemistry/molecule.json) with the molecule app entry behavior.
-- Preserve the existing application hub child path from [applications.json](../../../content/scenes/archie/applications.json): node id `molecule`, scene path `content/scenes/chemistry/molecule.json`, and focus value `molecule`.
-- Preserve the scene id `molecule` so existing links such as `index.html#scene=content%2Fscenes%2Fchemistry%2Fmolecule.json&parent=content%2Fscenes%2Farchie%2Fapplications.json&focus=molecule` continue to work.
+- Replace the current placeholder molecule scene with the molecule app entry behavior.
+- Use the application hub child path from [applications.json](../../../content/scenes/archie/applications.json): node id `molecule`, scene path `content/scenes/archie/molecule.json`, and focus value `molecule`.
+- Preserve the scene id `molecule` so application-page navigation routes into the standalone molecule app.
 - Add the molecule scene to the standalone app launch resolver in [StandaloneAppLaunchRuntime.js](../../../src/apps/navigator/StandaloneAppLaunchRuntime.js), mapping scene id `molecule` to `molecule.html`.
 - The current placeholder scene objects `dna`, `protein`, and `water` are not the first prototype surface; replace them with the preset-driven molecule app.
 

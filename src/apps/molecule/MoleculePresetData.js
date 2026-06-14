@@ -2,6 +2,68 @@ function roundCoordinate(value) {
   return Number(value.toFixed(3));
 }
 
+function createPresetBuilder() {
+  const atoms = [];
+  const atomIndexByKey = new Map();
+  const atomPositionByKey = new Map();
+  const bonds = [];
+
+  function addAtom(key, element, x, y, z) {
+    atomIndexByKey.set(key, atoms.length);
+    atomPositionByKey.set(key, { x, y, z });
+    atoms.push({
+      element,
+      x: roundCoordinate(x),
+      y: roundCoordinate(y),
+      z: roundCoordinate(z),
+    });
+  }
+
+  function addBond(startKey, endKey) {
+    const start = atomIndexByKey.get(startKey);
+    const end = atomIndexByKey.get(endKey);
+    if (Number.isInteger(start) && Number.isInteger(end)) {
+      bonds.push([start, end]);
+    }
+  }
+
+  function addHydrogens(parentKey, count, options = {}) {
+    const parent = atomPositionByKey.get(parentKey);
+    if (!parent || count <= 0) {
+      return;
+    }
+    const prefix = options.prefix ?? `${parentKey}-h`;
+    const distance = options.distance ?? 0.72;
+    const baseAngle =
+      options.baseAngle ??
+      atoms.length * 0.41 + parent.x * 0.31 + parent.y * 0.17 + parent.z * 0.13;
+    for (let index = 0; index < count; index += 1) {
+      const angle = baseAngle + (index * 2 * Math.PI) / Math.max(1, count);
+      const zOffset =
+        count === 1
+          ? options.singleZ ?? 0.34
+          : (index % 2 === 0 ? 1 : -1) * (options.zSpread ?? 0.32);
+      const key = `${prefix}${index + 1}`;
+      addAtom(
+        key,
+        "H",
+        parent.x + Math.cos(angle) * distance,
+        parent.y + Math.sin(angle) * distance,
+        parent.z + zOffset
+      );
+      addBond(parentKey, key);
+    }
+  }
+
+  return {
+    addAtom,
+    addBond,
+    addHydrogens,
+    atoms,
+    bonds,
+  };
+}
+
 function createGraphenePreset() {
   const rows = 5;
   const columns = 6;
@@ -224,6 +286,298 @@ function createCarminicAcidPreset() {
   };
 }
 
+function createCaffeinePreset() {
+  const atoms = [];
+  const atomIndexByKey = new Map();
+  const bonds = [];
+
+  function addAtom(key, element, x, y, z) {
+    atomIndexByKey.set(key, atoms.length);
+    atoms.push({
+      element,
+      x: roundCoordinate(x),
+      y: roundCoordinate(y),
+      z: roundCoordinate(z),
+    });
+  }
+
+  function addBond(startKey, endKey) {
+    const start = atomIndexByKey.get(startKey);
+    const end = atomIndexByKey.get(endKey);
+    if (Number.isInteger(start) && Number.isInteger(end)) {
+      bonds.push([start, end]);
+    }
+  }
+
+  [
+    ["n1", "N", -1.85, 0.78, 0.03],
+    ["c2", "C", -0.72, 1.24, -0.02],
+    ["n3", "N", 0.38, 0.76, 0.03],
+    ["c4", "C", 0.56, -0.28, -0.02],
+    ["c5", "C", -0.54, -0.88, 0.03],
+    ["c6", "C", -1.68, -0.38, -0.02],
+    ["n7", "N", -0.28, -1.95, -0.02],
+    ["c8", "C", 1.04, -2.02, 0.03],
+    ["n9", "N", 1.56, -0.86, -0.02],
+    ["o2", "O", -0.76, 2.48, 0.05],
+    ["o6", "O", -2.78, -0.96, 0.05],
+    ["cm1", "C", -2.98, 1.54, -0.22],
+    ["cm3", "C", 1.54, 1.46, 0.22],
+    ["cm7", "C", -1.02, -3.12, 0.22],
+    ["h8", "H", 1.62, -2.92, 0.18],
+    ["h1a", "H", -3.66, 0.92, 0.14],
+    ["h1b", "H", -2.74, 1.88, -1.2],
+    ["h1c", "H", -3.34, 2.42, 0.32],
+    ["h3a", "H", 2.2, 0.86, 0.04],
+    ["h3b", "H", 1.3, 1.96, 1.18],
+    ["h3c", "H", 1.58, 2.28, -0.5],
+    ["h7a", "H", -2.08, -3.02, 0.04],
+    ["h7b", "H", -0.7, -3.92, -0.44],
+    ["h7c", "H", -0.82, -3.32, 1.28],
+  ].forEach(([key, element, x, y, z]) => addAtom(key, element, x, y, z));
+
+  [
+    ["n1", "c2"],
+    ["c2", "n3"],
+    ["n3", "c4"],
+    ["c4", "c5"],
+    ["c5", "c6"],
+    ["c6", "n1"],
+    ["c5", "n7"],
+    ["n7", "c8"],
+    ["c8", "n9"],
+    ["n9", "c4"],
+    ["c2", "o2"],
+    ["c6", "o6"],
+    ["n1", "cm1"],
+    ["n3", "cm3"],
+    ["n7", "cm7"],
+    ["c8", "h8"],
+    ["cm1", "h1a"],
+    ["cm1", "h1b"],
+    ["cm1", "h1c"],
+    ["cm3", "h3a"],
+    ["cm3", "h3b"],
+    ["cm3", "h3c"],
+    ["cm7", "h7a"],
+    ["cm7", "h7b"],
+    ["cm7", "h7c"],
+  ].forEach(([startKey, endKey]) => addBond(startKey, endKey));
+
+  return {
+    id: "caffeine",
+    name: "Caffeine",
+    formula: "C8H10N4O2",
+    format: "app-coordinates",
+    source: "curated approximate xanthine scaffold",
+    atoms,
+    bonds,
+  };
+}
+
+function createSucrosePreset() {
+  const builder = createPresetBuilder();
+  const { addAtom, addBond, addHydrogens, atoms, bonds } = builder;
+
+  [
+    ["g_o", "O", -2.35, 0.08, 0.06],
+    ["g_c1", "C", -1.22, 0.86, -0.06],
+    ["g_c2", "C", 0.06, 0.32, 0.08],
+    ["g_c3", "C", 0.22, -1.08, -0.08],
+    ["g_c4", "C", -1.0, -1.82, 0.08],
+    ["g_c5", "C", -2.22, -1.16, -0.06],
+    ["g_c6", "C", -3.54, -1.86, 0.22],
+    ["g_o2", "O", 1.18, 1.08, 0.22],
+    ["g_o3", "O", 1.46, -1.68, -0.24],
+    ["g_o4", "O", -0.9, -3.12, 0.28],
+    ["g_o6", "O", -4.58, -1.08, -0.16],
+    ["bridge_o", "O", -1.18, 2.18, 0.14],
+    ["f_c2", "C", 0.12, 2.74, -0.08],
+    ["f_o", "O", 1.28, 2.02, 0.08],
+    ["f_c5", "C", 2.26, 2.9, -0.06],
+    ["f_c4", "C", 1.88, 4.2, 0.08],
+    ["f_c3", "C", 0.48, 4.2, -0.08],
+    ["f_c1", "C", -0.06, 1.28, -0.42],
+    ["f_c6", "C", 3.68, 2.52, 0.18],
+    ["f_o1", "O", -0.72, 0.18, 0.08],
+    ["f_o3", "O", 0.0, 5.42, -0.24],
+    ["f_o4", "O", 2.64, 5.26, 0.28],
+    ["f_o6", "O", 4.38, 3.64, -0.12],
+  ].forEach(([key, element, x, y, z]) => addAtom(key, element, x, y, z));
+
+  [
+    ["g_o", "g_c1"],
+    ["g_c1", "g_c2"],
+    ["g_c2", "g_c3"],
+    ["g_c3", "g_c4"],
+    ["g_c4", "g_c5"],
+    ["g_c5", "g_o"],
+    ["g_c5", "g_c6"],
+    ["g_c2", "g_o2"],
+    ["g_c3", "g_o3"],
+    ["g_c4", "g_o4"],
+    ["g_c6", "g_o6"],
+    ["g_c1", "bridge_o"],
+    ["bridge_o", "f_c2"],
+    ["f_c2", "f_o"],
+    ["f_o", "f_c5"],
+    ["f_c5", "f_c4"],
+    ["f_c4", "f_c3"],
+    ["f_c3", "f_c2"],
+    ["f_c2", "f_c1"],
+    ["f_c5", "f_c6"],
+    ["f_c1", "f_o1"],
+    ["f_c3", "f_o3"],
+    ["f_c4", "f_o4"],
+    ["f_c6", "f_o6"],
+  ].forEach(([startKey, endKey]) => addBond(startKey, endKey));
+
+  [
+    ["g_c1", 1],
+    ["g_c2", 1],
+    ["g_c3", 1],
+    ["g_c4", 1],
+    ["g_c5", 1],
+    ["g_c6", 2],
+    ["f_c1", 2],
+    ["f_c3", 1],
+    ["f_c4", 1],
+    ["f_c5", 1],
+    ["f_c6", 2],
+  ].forEach(([key, count]) => addHydrogens(key, count, { prefix: `${key}-h` }));
+
+  [
+    "g_o2",
+    "g_o3",
+    "g_o4",
+    "g_o6",
+    "f_o1",
+    "f_o3",
+    "f_o4",
+    "f_o6",
+  ].forEach((key) =>
+    addHydrogens(key, 1, { prefix: `${key}-h`, distance: 0.54, singleZ: 0.22 })
+  );
+
+  return {
+    id: "sucrose",
+    name: "Sucrose",
+    formula: "C12H22O11",
+    format: "app-coordinates",
+    source: "curated approximate disaccharide scaffold",
+    atoms,
+    bonds,
+  };
+}
+
+function createCholesterolPreset() {
+  const builder = createPresetBuilder();
+  const { addAtom, addBond, addHydrogens, atoms, bonds } = builder;
+
+  [
+    ["c1", "C", -3.0, 0.8, 0],
+    ["c2", "C", -2.2, 1.45, 0.1],
+    ["c3", "C", -1.2, 1.0, -0.1],
+    ["c4", "C", -1.0, -0.2, 0.1],
+    ["c5", "C", -1.9, -0.95, -0.1],
+    ["c6", "C", 0.0, -0.95, 0.12],
+    ["c7", "C", 0.95, -0.25, -0.1],
+    ["c8", "C", 0.78, 0.98, 0.08],
+    ["c9", "C", -0.22, 1.38, -0.12],
+    ["c10", "C", -2.9, -0.45, 0.1],
+    ["c11", "C", 2.0, -0.85, 0.1],
+    ["c12", "C", 2.95, -0.12, -0.12],
+    ["c13", "C", 2.78, 1.12, 0.08],
+    ["c14", "C", 1.76, 1.52, -0.1],
+    ["c15", "C", 3.65, 1.98, 0.14],
+    ["c16", "C", 3.1, 3.05, -0.08],
+    ["c17", "C", 1.88, 2.72, 0.16],
+    ["c18", "C", 3.42, 0.95, 1.12],
+    ["c19", "C", -3.56, -1.42, 0.72],
+    ["c20", "C", 1.65, 3.95, -0.12],
+    ["c21", "C", 0.58, 4.22, 0.62],
+    ["c22", "C", 2.66, 4.62, 0.02],
+    ["c23", "C", 2.56, 5.92, 0.34],
+    ["c24", "C", 3.56, 6.72, -0.16],
+    ["c25", "C", 3.36, 7.98, 0.26],
+    ["c26", "C", 4.46, 8.66, -0.04],
+    ["c27", "C", 2.2, 8.56, 0.84],
+    ["o3", "O", -0.62, 1.82, -0.42],
+  ].forEach(([key, element, x, y, z]) => addAtom(key, element, x, y, z));
+
+  [
+    ["c1", "c2"],
+    ["c2", "c3"],
+    ["c3", "c4"],
+    ["c4", "c5"],
+    ["c5", "c10"],
+    ["c10", "c1"],
+    ["c5", "c6"],
+    ["c6", "c7"],
+    ["c7", "c8"],
+    ["c8", "c9"],
+    ["c9", "c10"],
+    ["c9", "c11"],
+    ["c11", "c12"],
+    ["c12", "c13"],
+    ["c13", "c14"],
+    ["c14", "c8"],
+    ["c14", "c15"],
+    ["c15", "c16"],
+    ["c16", "c17"],
+    ["c17", "c13"],
+    ["c13", "c18"],
+    ["c10", "c19"],
+    ["c17", "c20"],
+    ["c20", "c21"],
+    ["c20", "c22"],
+    ["c22", "c23"],
+    ["c23", "c24"],
+    ["c24", "c25"],
+    ["c25", "c26"],
+    ["c25", "c27"],
+    ["c3", "o3"],
+  ].forEach(([startKey, endKey]) => addBond(startKey, endKey));
+
+  [
+    ["c1", 2],
+    ["c2", 2],
+    ["c3", 1],
+    ["c4", 2],
+    ["c6", 1],
+    ["c7", 2],
+    ["c8", 1],
+    ["c9", 1],
+    ["c11", 2],
+    ["c12", 2],
+    ["c14", 1],
+    ["c15", 2],
+    ["c16", 2],
+    ["c17", 1],
+    ["c18", 3],
+    ["c19", 3],
+    ["c20", 1],
+    ["c21", 3],
+    ["c22", 2],
+    ["c23", 2],
+    ["c24", 2],
+    ["c25", 1],
+    ["c26", 3],
+    ["c27", 3],
+  ].forEach(([key, count]) => addHydrogens(key, count, { prefix: `${key}-h` }));
+  addHydrogens("o3", 1, { prefix: "o3-h", distance: 0.54, singleZ: 0.22 });
+
+  return {
+    id: "cholesterol",
+    name: "Cholesterol",
+    formula: "C27H46O",
+    format: "app-coordinates",
+    source: "curated approximate steroid scaffold",
+    atoms,
+    bonds,
+  };
+}
+
 export const MOLECULE_PRESETS = Object.freeze([
   {
     id: "water",
@@ -393,6 +747,8 @@ export const MOLECULE_PRESETS = Object.freeze([
       [5, 10],
     ],
   },
+  createCaffeinePreset(),
+  createCholesterolPreset(),
   createGraphenePreset(),
   createCarminicAcidPreset(),
   {
@@ -769,6 +1125,7 @@ export const MOLECULE_PRESETS = Object.freeze([
       [20, 48],
     ],
   },
+  createSucrosePreset(),
 ]);
 
 export const ELEMENT_RENDER_STYLES = Object.freeze({

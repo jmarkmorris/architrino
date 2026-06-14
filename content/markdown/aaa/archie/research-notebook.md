@@ -8,6 +8,22 @@ Each dated section should preserve the reasoning of the moment closely enough th
 
 Entries are maintained in descending date order, with the newest `##` section first.
 
+## 2026-06-14: Molecule Visualization App
+
+Relevant files:
+
+- [Molecule Visualization](../../../../molecule.html)
+- [Molecule app scene](../../../scenes/archie/molecule.json)
+- [Applications scene](../../../scenes/archie/applications.json)
+
+The standalone [Molecule Visualization](../../../../molecule.html) app became the first working molecule-viewer surface for the project. It replaced the old placeholder molecule scene with a preset-driven 3D app that lets the reader inspect curated molecules directly, rotate the model, zoom the camera, and click atoms to route into the corresponding element visualizations.
+
+The first version keeps the scope deliberately concrete. It uses app-owned molecule presets rather than remote lookup, and it uses the existing Three.js runtime already available in the web app. That made the prototype fast to build while preserving the next obvious expansion path: a curated local formula lookup, then exact structure inputs such as SMILES, InChI, MOL, SDF, XYZ, PDB, or mmCIF once the conversion path is accepted.
+
+The app also carries an $\mathbb{A}\mathbb{A}\mathbb{A}$ bookkeeping layer. For the displayed molecule it reports protons, neutrons, electrons, electrinos, positrinos, and total architrinos using the current typical neutral-atom estimate. This keeps the molecule view connected to the atom and periodic-table apps rather than treating chemistry as a separate visual island.
+
+This app took 2 hours to develop. That speed mattered because the result is not only a visualization but a new application pattern: a standalone app can be launched from the Applications scene while keeping a small scene-graph entry for navigation, search, and future documentation links.
+
 ## 2026-06-13: Photon and Polarization Visualization
 
 Relevant files:

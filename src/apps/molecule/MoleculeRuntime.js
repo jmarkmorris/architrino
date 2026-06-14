@@ -5,6 +5,7 @@ import {
   getElementRenderStyle,
 } from "./MoleculePresetData.js";
 import {
+  calculateAtomLedger,
   calculateMoleculeLedger,
   formatLedgerNumber,
 } from "./MoleculeLedgerRuntime.js";
@@ -16,6 +17,7 @@ const CAMERA_FOV_DEG = 42;
 const MIN_CAMERA_DISTANCE = 3.4;
 const MAX_CAMERA_DISTANCE = 32;
 const POINTER_CLICK_DISTANCE_PX = 7;
+const DEFAULT_SCREEN_OFFSET_Y_RATIO = 0.06;
 
 function queryMoleculeElement(documentLike, selector) {
   const element = documentLike.querySelector(selector);
@@ -152,6 +154,9 @@ export function createMoleculeRuntime(options = {}) {
   const windowLike = options.windowLike ?? window;
   const fetchImpl = options.fetchImpl ?? ((...args) => windowLike.fetch(...args));
   const presets = (options.presets ?? MOLECULE_PRESETS).map(normalizePreset);
+  const presetsByName = [...presets].sort((left, right) =>
+    left.name.localeCompare(right.name, undefined, { sensitivity: "base" })
+  );
   const presetById = new Map(presets.map((preset) => [preset.id, preset]));
   const sceneGraphManifestService =
     options.sceneGraphManifestService ??
@@ -161,7 +166,10 @@ export function createMoleculeRuntime(options = {}) {
 
   const dom = {
     app: queryMoleculeElement(documentLike, "#molecule-app"),
+    stage: queryMoleculeElement(documentLike, ".molecule-stage"),
     canvas: queryMoleculeElement(documentLike, "#molecule-canvas"),
+    atomLabel: queryMoleculeElement(documentLike, "#molecule-atom-label"),
+    readout: queryMoleculeElement(documentLike, ".molecule-readout"),
     title: queryMoleculeElement(documentLike, "#molecule-title"),
     subtitle: queryMoleculeElement(documentLike, "#molecule-subtitle"),
     formula: queryMoleculeElement(documentLike, "#molecule-formula"),
@@ -170,16 +178,10 @@ export function createMoleculeRuntime(options = {}) {
     protonCount: queryMoleculeElement(documentLike, "#molecule-proton-count"),
     neutronCount: queryMoleculeElement(documentLike, "#molecule-neutron-count"),
     electronCount: queryMoleculeElement(documentLike, "#molecule-electron-count"),
-    ledgerProtons: queryMoleculeElement(documentLike, "#molecule-ledger-protons"),
-    ledgerNeutrons: queryMoleculeElement(documentLike, "#molecule-ledger-neutrons"),
-    ledgerElectrons: queryMoleculeElement(documentLike, "#molecule-ledger-electrons"),
-    ledgerPositrinos: queryMoleculeElement(documentLike, "#molecule-ledger-positrinos"),
-    ledgerElectrinos: queryMoleculeElement(documentLike, "#molecule-ledger-electrinos"),
-    ledgerArchitrinos: queryMoleculeElement(documentLike, "#molecule-ledger-architrinos"),
-    ledgerNote: queryMoleculeElement(documentLike, "#molecule-ledger-note"),
-    presetSummary: queryMoleculeElement(documentLike, "#molecule-preset-summary"),
+    electrinoCount: queryMoleculeElement(documentLike, "#molecule-electrino-count"),
+    positrinoCount: queryMoleculeElement(documentLike, "#molecule-positrino-count"),
+    architrinoCount: queryMoleculeElement(documentLike, "#molecule-architrino-count"),
     presetList: queryMoleculeElement(documentLike, "#molecule-preset-list"),
-    resetButton: queryMoleculeElement(documentLike, "#molecule-reset-button"),
     homeButton: queryMoleculeElement(documentLike, "#molecule-home-button"),
   };
 
@@ -197,6 +199,7 @@ export function createMoleculeRuntime(options = {}) {
   const moleculeGroup = new THREE.Group();
   const raycaster = new THREE.Raycaster();
   const pointerNdc = new THREE.Vector2();
+  const hoverWorldPosition = new THREE.Vector3();
   const atomMeshes = [];
   const presetButtons = new Map();
 
@@ -210,7 +213,9 @@ export function createMoleculeRuntime(options = {}) {
     pointerLastX: 0,
     pointerLastY: 0,
     pointerTravel: 0,
+    dragMode: "rotate",
     hoverAtom: null,
+    hoverMesh: null,
   };
 
   scene.add(moleculeGroup);
@@ -241,6 +246,7 @@ export function createMoleculeRuntime(options = {}) {
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
     render();
+    updateAtomLabelPosition();
   }
 
   function setCameraDistance(distance) {
@@ -248,12 +254,38 @@ export function createMoleculeRuntime(options = {}) {
     camera.position.set(0, 0, state.cameraDistance);
     camera.lookAt(0, 0, 0);
     render();
+    updateAtomLabelPosition();
+  }
+
+  function getViewportWorldSize() {
+    const height = 2 * state.cameraDistance * Math.tan(THREE.MathUtils.degToRad(CAMERA_FOV_DEG) / 2);
+    return {
+      width: height * camera.aspect,
+      height,
+    };
+  }
+
+  function getPointerWorldDelta(deltaX, deltaY) {
+    const rect = dom.canvas.getBoundingClientRect();
+    const viewportWorldSize = getViewportWorldSize();
+    return {
+      x: (deltaX / Math.max(1, rect.width)) * viewportWorldSize.width,
+      y: -(deltaY / Math.max(1, rect.height)) * viewportWorldSize.height,
+    };
+  }
+
+  function getDefaultMoleculeYOffset() {
+    return getViewportWorldSize().height * DEFAULT_SCREEN_OFFSET_Y_RATIO;
   }
 
   function resetView() {
     moleculeGroup.rotation.set(-0.28, 0.46, 0);
+    moleculeGroup.position.set(0, 0, 0);
     const radius = getMoleculeRadius(state.activePreset?.atoms ?? []);
     setCameraDistance(Math.min(MAX_CAMERA_DISTANCE, Math.max(MIN_CAMERA_DISTANCE, radius * 3.6 + 2.8)));
+    moleculeGroup.position.y = getDefaultMoleculeYOffset();
+    render();
+    updateAtomLabelPosition();
   }
 
   function clearMolecule() {
@@ -263,32 +295,41 @@ export function createMoleculeRuntime(options = {}) {
     }
     atomMeshes.length = 0;
     state.hoverAtom = null;
+    state.hoverMesh = null;
+    hideAtomLabel();
+  }
+
+  function updateLedgerCounts(ledger) {
+    setText(dom.protonCount, formatLedgerNumber(ledger.protons));
+    setText(dom.neutronCount, formatLedgerNumber(ledger.neutrons));
+    setText(dom.electronCount, formatLedgerNumber(ledger.electrons));
+    setText(dom.electrinoCount, formatLedgerNumber(ledger.electrinos));
+    setText(dom.positrinoCount, formatLedgerNumber(ledger.positrinos));
+    setText(dom.architrinoCount, formatLedgerNumber(ledger.architrinos));
   }
 
   function updateReadout(preset) {
     const ledger = calculateMoleculeLedger(preset);
-    const ledgerNote = ledger.missingElements.length
-      ? `Missing ledger data for ${ledger.missingElements.join(", ")}`
-      : "Typical neutral atom estimate";
+    dom.readout.classList.remove("is-atom-hover");
     setText(dom.title, preset.name);
     setText(dom.subtitle, preset.formula || "Preset molecule catalog");
     setText(dom.formula, preset.formula || "-");
     setText(dom.atomCount, `${preset.atoms.length}`);
     setText(dom.bondCount, `${preset.bonds.length}`);
-    setText(dom.protonCount, formatLedgerNumber(ledger.protons));
-    setText(dom.neutronCount, formatLedgerNumber(ledger.neutrons));
-    setText(dom.electronCount, formatLedgerNumber(ledger.electrons));
-    setText(dom.ledgerProtons, formatLedgerNumber(ledger.protons));
-    setText(dom.ledgerNeutrons, formatLedgerNumber(ledger.neutrons));
-    setText(dom.ledgerElectrons, formatLedgerNumber(ledger.electrons));
-    setText(dom.ledgerElectrinos, formatLedgerNumber(ledger.electrinos));
-    setText(dom.ledgerPositrinos, formatLedgerNumber(ledger.positrinos));
-    setText(dom.ledgerArchitrinos, formatLedgerNumber(ledger.architrinos));
-    setText(dom.ledgerNote, ledgerNote);
+    updateLedgerCounts(ledger);
     presetButtons.forEach((button, id) => {
       button.classList.toggle("is-active", id === preset.id);
       button.setAttribute("aria-pressed", id === preset.id ? "true" : "false");
     });
+  }
+
+  function updateAtomReadout(atom) {
+    const ledger = calculateAtomLedger(atom);
+    dom.readout.classList.add("is-atom-hover");
+    setText(dom.formula, formatAtomLabel(atom) || "-");
+    setText(dom.atomCount, atom?.element || "-");
+    setText(dom.bondCount, Number.isInteger(atom?.index) ? `#${atom.index + 1}` : "-");
+    updateLedgerCounts(ledger);
   }
 
   function drawPreset(rawPreset) {
@@ -346,10 +387,9 @@ export function createMoleculeRuntime(options = {}) {
   }
 
   function renderPresetButtons() {
-    setText(dom.presetSummary, `${presets.length} local presets`);
     dom.presetList.textContent = "";
     presetButtons.clear();
-    presets.forEach((preset) => {
+    presetsByName.forEach((preset) => {
       const button = documentLike.createElement("button");
       button.type = "button";
       button.className = "molecule-preset-button";
@@ -373,14 +413,105 @@ export function createMoleculeRuntime(options = {}) {
     pointerNdc.y = -(((event.clientY - rect.top) / rect.height) * 2 - 1);
   }
 
-  function pickAtom(event) {
+  function pickAtomMesh(event) {
     if (!atomMeshes.length) {
       return null;
     }
     setPointerNdc(event);
     raycaster.setFromCamera(pointerNdc, camera);
     const hits = raycaster.intersectObjects(atomMeshes, false);
-    return hits[0]?.object?.userData?.atom ?? null;
+    return hits[0]?.object ?? null;
+  }
+
+  function pickAtom(event) {
+    return pickAtomMesh(event)?.userData?.atom ?? null;
+  }
+
+  function formatAtomLabel(atom) {
+    if (!atom?.element) {
+      return "";
+    }
+    const elementName = String(atom.elementName || atom.element).trim();
+    const symbol = String(atom.element).trim();
+    return elementName && elementName !== symbol ? `${elementName} ${symbol}` : symbol;
+  }
+
+  function hideAtomLabel() {
+    dom.atomLabel.hidden = true;
+    dom.atomLabel.setAttribute("aria-hidden", "true");
+    dom.atomLabel.textContent = "";
+  }
+
+  function updateAtomLabelPosition() {
+    if (!state.hoverMesh || !state.hoverAtom || dom.atomLabel.hidden) {
+      return;
+    }
+    moleculeGroup.updateMatrixWorld(true);
+    state.hoverMesh.getWorldPosition(hoverWorldPosition);
+    const projected = hoverWorldPosition.clone().project(camera);
+    if (projected.z < -1 || projected.z > 1) {
+      dom.atomLabel.hidden = true;
+      return;
+    }
+
+    const stageRect = dom.stage.getBoundingClientRect();
+    const canvasRect = dom.canvas.getBoundingClientRect();
+    const x =
+      canvasRect.left -
+      stageRect.left +
+      (projected.x * 0.5 + 0.5) * canvasRect.width;
+    const y =
+      canvasRect.top -
+      stageRect.top +
+      (-projected.y * 0.5 + 0.5) * canvasRect.height;
+    const clampedX = Math.min(Math.max(x, 52), Math.max(52, stageRect.width - 52));
+    const clampedY = Math.min(Math.max(y, 34), Math.max(34, stageRect.height - 150));
+    dom.atomLabel.style.left = `${Math.round(clampedX)}px`;
+    dom.atomLabel.style.top = `${Math.round(clampedY)}px`;
+  }
+
+  function showAtomLabel(mesh) {
+    const label = formatAtomLabel(mesh?.userData?.atom);
+    if (!label) {
+      hideAtomLabel();
+      return;
+    }
+    dom.atomLabel.textContent = label;
+    dom.atomLabel.hidden = false;
+    dom.atomLabel.setAttribute("aria-hidden", "false");
+    updateAtomLabelPosition();
+  }
+
+  function applyAtomHover(mesh, isHovered) {
+    if (!mesh) {
+      return;
+    }
+    mesh.scale.setScalar(isHovered ? 1.16 : 1);
+    if (mesh.material) {
+      mesh.material.emissiveIntensity = isHovered ? 0.36 : 0.05;
+    }
+    render();
+    updateAtomLabelPosition();
+  }
+
+  function setHoveredAtomMesh(mesh) {
+    if (state.hoverMesh === mesh) {
+      return;
+    }
+    applyAtomHover(state.hoverMesh, false);
+    state.hoverMesh = mesh;
+    state.hoverAtom = mesh?.userData?.atom ?? null;
+    applyAtomHover(state.hoverMesh, true);
+    dom.canvas.style.cursor = state.hoverAtom ? "pointer" : "grab";
+    if (state.hoverAtom) {
+      updateAtomReadout(state.hoverAtom);
+      showAtomLabel(state.hoverMesh);
+      return;
+    }
+    hideAtomLabel();
+    if (state.activePreset) {
+      updateReadout(state.activePreset);
+    }
   }
 
   async function resolveElementScenePath(symbol) {
@@ -423,20 +554,21 @@ export function createMoleculeRuntime(options = {}) {
     if (state.dragging) {
       return;
     }
-    const atom = pickAtom(event);
-    state.hoverAtom = atom;
-    dom.canvas.style.cursor = atom ? "pointer" : "grab";
+    setHoveredAtomMesh(pickAtomMesh(event));
   }
 
   function handlePointerDown(event) {
+    const dragStartMesh = pickAtomMesh(event);
+    setHoveredAtomMesh(null);
     state.dragging = true;
+    state.dragMode = dragStartMesh ? "pan" : "rotate";
     state.pointerId = event.pointerId;
     state.pointerStartX = event.clientX;
     state.pointerStartY = event.clientY;
     state.pointerLastX = event.clientX;
     state.pointerLastY = event.clientY;
     state.pointerTravel = 0;
-    dom.canvas.style.cursor = "grabbing";
+    dom.canvas.style.cursor = state.dragMode === "pan" ? "move" : "grabbing";
     dom.canvas.setPointerCapture?.(event.pointerId);
   }
 
@@ -450,9 +582,16 @@ export function createMoleculeRuntime(options = {}) {
     state.pointerLastX = event.clientX;
     state.pointerLastY = event.clientY;
     state.pointerTravel += Math.hypot(dx, dy);
-    moleculeGroup.rotation.y += dx * 0.008;
-    moleculeGroup.rotation.x += dy * 0.008;
+    if (state.dragMode === "pan") {
+      const delta = getPointerWorldDelta(dx, dy);
+      moleculeGroup.position.x += delta.x;
+      moleculeGroup.position.y += delta.y;
+    } else {
+      moleculeGroup.rotation.y += dx * 0.008;
+      moleculeGroup.rotation.x += dy * 0.008;
+    }
     render();
+    updateAtomLabelPosition();
   }
 
   function handlePointerUp(event) {
@@ -466,6 +605,7 @@ export function createMoleculeRuntime(options = {}) {
     );
     state.dragging = false;
     state.pointerId = null;
+    state.dragMode = "rotate";
     dom.canvas.style.cursor = "grab";
     if (Math.max(clickDistance, state.pointerTravel) <= POINTER_CLICK_DISTANCE_PX) {
       const atom = pickAtom(event);
@@ -481,6 +621,12 @@ export function createMoleculeRuntime(options = {}) {
     event.preventDefault();
     const direction = Math.sign(event.deltaY);
     setCameraDistance(state.cameraDistance + direction * 0.45);
+  }
+
+  function handlePointerLeave() {
+    if (!state.dragging) {
+      setHoveredAtomMesh(null);
+    }
   }
 
   function navigateHome() {
@@ -501,8 +647,8 @@ export function createMoleculeRuntime(options = {}) {
     dom.canvas.addEventListener("pointermove", handlePointerMove);
     dom.canvas.addEventListener("pointerup", handlePointerUp);
     dom.canvas.addEventListener("pointercancel", handlePointerUp);
+    dom.canvas.addEventListener("pointerleave", handlePointerLeave);
     dom.canvas.addEventListener("wheel", handleWheel, { passive: false });
-    dom.resetButton.addEventListener("click", resetView);
     dom.homeButton.addEventListener("click", navigateHome);
     windowLike.addEventListener("resize", resize);
     resize();
@@ -515,6 +661,7 @@ export function createMoleculeRuntime(options = {}) {
     dom.canvas.removeEventListener("pointermove", handlePointerMove);
     dom.canvas.removeEventListener("pointerup", handlePointerUp);
     dom.canvas.removeEventListener("pointercancel", handlePointerUp);
+    dom.canvas.removeEventListener("pointerleave", handlePointerLeave);
     dom.canvas.removeEventListener("wheel", handleWheel);
     clearMolecule();
     renderer.dispose();

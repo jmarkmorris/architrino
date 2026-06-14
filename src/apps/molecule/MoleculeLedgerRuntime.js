@@ -46,31 +46,44 @@ function addParticleLedger(target, particleName, count) {
   target.architrinos += particleLedger.architrinos * count;
 }
 
+function addElementLedger(target, symbol, missingElements) {
+  const normalizedSymbol = normalizeElementSymbol(symbol);
+  const elementData = ELEMENT_NUCLEON_DATA[normalizedSymbol];
+  if (!elementData) {
+    if (normalizedSymbol) {
+      missingElements.add(normalizedSymbol);
+    }
+    return;
+  }
+
+  const protons = elementData.atomicNumber;
+  const neutrons = Math.max(0, elementData.typicalMassNumber - elementData.atomicNumber);
+  const electrons = elementData.atomicNumber;
+
+  target.protons += protons;
+  target.neutrons += neutrons;
+  target.electrons += electrons;
+  addParticleLedger(target, "proton", protons);
+  addParticleLedger(target, "neutron", neutrons);
+  addParticleLedger(target, "electron", electrons);
+}
+
+export function calculateAtomLedger(atom) {
+  const ledger = createEmptyLedger();
+  const missingElements = new Set();
+
+  addElementLedger(ledger, atom?.element, missingElements);
+  ledger.missingElements = Array.from(missingElements).sort();
+  return ledger;
+}
+
 export function calculateMoleculeLedger(preset) {
   const ledger = createEmptyLedger();
   const missingElements = new Set();
   const atoms = Array.isArray(preset?.atoms) ? preset.atoms : [];
 
   atoms.forEach((atom) => {
-    const symbol = normalizeElementSymbol(atom?.element);
-    const elementData = ELEMENT_NUCLEON_DATA[symbol];
-    if (!elementData) {
-      if (symbol) {
-        missingElements.add(symbol);
-      }
-      return;
-    }
-
-    const protons = elementData.atomicNumber;
-    const neutrons = Math.max(0, elementData.typicalMassNumber - elementData.atomicNumber);
-    const electrons = elementData.atomicNumber;
-
-    ledger.protons += protons;
-    ledger.neutrons += neutrons;
-    ledger.electrons += electrons;
-    addParticleLedger(ledger, "proton", protons);
-    addParticleLedger(ledger, "neutron", neutrons);
-    addParticleLedger(ledger, "electron", electrons);
+    addElementLedger(ledger, atom?.element, missingElements);
   });
 
   ledger.missingElements = Array.from(missingElements).sort();
