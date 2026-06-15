@@ -1,5 +1,6 @@
 import {
   PHOTON_CONTROL_RANGES,
+  PHOTON_LAYER_META,
   PHOTON_LAYER_ORDER,
   getPhotonFrequencyExponent,
   getPhotonFrequencyFromExponent,
@@ -732,6 +733,15 @@ export function createPhotonControlsRuntime({
   timeSection.append(...controls.slice(-2).map((control) => control.row));
 
   const measurementSection = addSection(documentLike, container, "Measurement");
+  measurementSection.classList.add("photon-measurement-section");
+  const measurementControls = createElement(documentLike, "div", "photon-measurement-controls");
+  const measurementZeroMarker = createElement(documentLike, "span", "photon-measurement-zero-marker");
+  const measurementZeroLine = createElement(documentLike, "span", "photon-measurement-zero-line");
+  const measurementZeroLabel = createElement(documentLike, "span", "photon-measurement-zero-label", "0");
+  measurementZeroMarker.setAttribute("aria-hidden", "true");
+  measurementZeroMarker.append(measurementZeroLine, measurementZeroLabel);
+  measurementControls.append(measurementZeroMarker);
+  measurementSection.append(measurementControls);
   [
     ["x", "Observer x", PHOTON_CONTROL_RANGES.virtualObserverX, 2],
     ["y", "Observer y", PHOTON_CONTROL_RANGES.virtualObserverY, 2],
@@ -742,7 +752,6 @@ export function createPhotonControlsRuntime({
       value: state.measurement.virtualObserver[key],
       range,
       digits,
-      zeroIndicator: true,
       snapToZero: true,
       onInput: (value) => {
         getState().measurement.virtualObserver[key] = value;
@@ -750,17 +759,18 @@ export function createPhotonControlsRuntime({
       },
     });
     controls.push(control);
-    measurementSection.append(control.row);
+    measurementControls.append(control.row);
   });
   PHOTON_CONTROL_SWARM_ORDER.forEach((swarmId) => {
     const swarm = state.pair[swarmId];
     const section = addSection(documentLike, container, `${swarm.role} ${swarm.direction.toUpperCase()}`);
     PHOTON_LAYER_ORDER.forEach((layerId) => {
       const layer = getPhotonLayer(state, swarmId, layerId);
+      const layerLabel = PHOTON_LAYER_META[layerId]?.label ?? layerId;
       const group = createElement(documentLike, "div", "photon-layer-group");
-      group.append(createElement(documentLike, "h3", "", layerId));
+      group.append(createElement(documentLike, "h3", "", layerLabel));
       const enabledControl = createCheckboxControl(documentLike, {
-        label: `${swarm.role} ${layerId} binary enabled`,
+        label: `${swarm.role} ${layerLabel} binary enabled`,
         checked: layer.enabled !== false,
         onChange: (checked) => {
           const nextState = getState();

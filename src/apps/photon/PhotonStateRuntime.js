@@ -1,9 +1,9 @@
 export const PHOTON_LAYER_ORDER = Object.freeze(["I", "M", "O"]);
 
 export const PHOTON_LAYER_META = Object.freeze({
-  I: { id: "I", label: "I", color: "#7dd3fc", role: "inner" },
-  M: { id: "M", label: "M", color: "#fbbf24", role: "middle" },
-  O: { id: "O", label: "O", color: "#f472b6", role: "outer" },
+  I: { id: "I", label: "Inner", color: "#7dd3fc", role: "inner" },
+  M: { id: "M", label: "Middle", color: "#fbbf24", role: "middle" },
+  O: { id: "O", label: "Outer", color: "#f472b6", role: "outer" },
 });
 
 export const PHOTON_CHARGE_COLORS = Object.freeze({
@@ -47,6 +47,8 @@ export const PHOTON_DEFAULT_LAYER_RADII = Object.freeze({
     PHOTON_LAYER_SPEED_RATIO_TARGETS.O
   ),
 });
+
+export const PHOTON_MAX_OUTER_RADIUS = PHOTON_DEFAULT_LAYER_RADII.O;
 
 export const PHOTON_DEFAULT_LAYER_PHASES_DEG = Object.freeze({
   I: 0,
@@ -135,7 +137,7 @@ export const PHOTON_CONTROL_RANGES = Object.freeze({
     max: PHOTON_MAX_FREQUENCY_EXPONENT,
     step: 1,
   },
-  radius: { min: 0.01, max: 2.4, step: 0.0001 },
+  radius: { min: 0.01, max: 2.4, step: "any" },
   phaseDeg: { min: 0, max: 360, step: 1 },
   pairSeparation: {
     min: PHOTON_CONTROL_RANGES_MIN_PAIR_SEPARATION,
@@ -231,6 +233,28 @@ function normalizeLayerState(layer = {}, fallbackLayer = {}) {
   };
 }
 
+function normalizeSwarmLayerRadii(layers) {
+  const range = PHOTON_CONTROL_RANGES.radius;
+  layers.O.radius = clampPhotonNumber(
+    layers.O.radius,
+    range.min,
+    PHOTON_MAX_OUTER_RADIUS,
+    PHOTON_MAX_OUTER_RADIUS
+  );
+  layers.M.radius = clampPhotonNumber(
+    layers.M.radius,
+    range.min,
+    layers.O.radius,
+    Math.min(PHOTON_DEFAULT_LAYER_RADII.M, layers.O.radius)
+  );
+  layers.I.radius = clampPhotonNumber(
+    layers.I.radius,
+    range.min,
+    layers.M.radius,
+    Math.min(PHOTON_DEFAULT_LAYER_RADII.I, layers.M.radius)
+  );
+}
+
 function normalizeSwarmState(swarm = {}, fallbackSwarm = {}, side = "left") {
   const lockedDirection = side === "left" ? "ccw" : "cw";
   const lockedRole = side === "left" ? "trailing" : "leading";
@@ -241,6 +265,7 @@ function normalizeSwarmState(swarm = {}, fallbackSwarm = {}, side = "left") {
       fallbackSwarm.layers?.[layerId]
     );
   });
+  normalizeSwarmLayerRadii(layers);
   return {
     role: lockedRole,
     direction: lockedDirection,
@@ -342,10 +367,11 @@ export function getPhotonLayerRadiusBounds(state, swarmId, layerId) {
     min = layerRadius("I");
     max = layerRadius("O");
   } else if (layerId === "O") {
-    min = layerRadius("M");
+    max = PHOTON_MAX_OUTER_RADIUS;
+    min = Math.min(layerRadius("M"), max);
   }
   if (min > max) {
-    return { min: max, max: min };
+    return { min: max, max };
   }
   return { min, max };
 }

@@ -25,6 +25,10 @@
         font: inherit;
       }
 
+      input {
+        font: inherit;
+      }
+
       #molecule-app {
         position: relative;
         display: grid;
@@ -225,7 +229,98 @@
         background: #6d28d9;
         color: #ffffff;
         display: grid;
-        grid-template-rows: minmax(0, 1fr);
+        grid-template-rows: minmax(0, 1fr) auto;
+      }
+
+      .molecule-session-panel {
+        min-width: 0;
+        padding: 10px;
+        border-top: 1px solid rgba(255, 255, 255, 0.24);
+        display: grid;
+        gap: 8px;
+      }
+
+      .molecule-session-title {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.84);
+        font-size: 11px;
+        font-weight: 780;
+        letter-spacing: 0.04em;
+        line-height: 1.2;
+        text-transform: uppercase;
+      }
+
+      .molecule-session-form {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+        gap: 8px;
+      }
+
+      .molecule-session-field {
+        min-width: 0;
+        height: 36px;
+        padding: 0 10px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        background: rgba(76, 29, 149, 0.58);
+        color: #ffffff;
+        outline: none;
+      }
+
+      .molecule-session-field::placeholder {
+        color: rgba(255, 255, 255, 0.62);
+      }
+
+      .molecule-session-field:focus {
+        border-color: rgba(255, 255, 255, 0.72);
+        background: rgba(76, 29, 149, 0.78);
+      }
+
+      .molecule-session-add {
+        height: 36px;
+        padding: 0 12px;
+        border: 1px solid rgba(255, 255, 255, 0.24);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.18);
+        color: #ffffff;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 780;
+      }
+
+      .molecule-session-add:hover,
+      .molecule-session-add:focus-visible {
+        border-color: rgba(255, 255, 255, 0.72);
+        background: rgba(255, 255, 255, 0.24);
+        outline: none;
+      }
+
+      .molecule-session-add:disabled {
+        border-color: rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.58);
+        cursor: progress;
+      }
+
+      .molecule-session-status {
+        min-height: 14px;
+        color: rgba(255, 255, 255, 0.74);
+        font-size: 11px;
+        line-height: 1.25;
+      }
+
+      .molecule-session-status.is-error {
+        color: #fecaca;
+      }
+
+      .molecule-session-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .molecule-session-list:empty {
+        display: none;
       }
 
       .molecule-preset-list {
@@ -323,6 +418,10 @@
           max-height: none;
           overflow: visible;
         }
+
+        .molecule-session-form {
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+        }
       }
 
       @media (max-width: 560px) {
@@ -363,6 +462,11 @@
         }
 
         .molecule-preset-list {
+          grid-template-columns: 1fr;
+        }
+
+        .molecule-session-form,
+        .molecule-session-list {
           grid-template-columns: 1fr;
         }
       }
@@ -436,6 +540,29 @@
       </section>
       <aside class="molecule-side">
         <div id="molecule-preset-list" class="molecule-preset-list"></div>
+        <section class="molecule-session-panel" aria-label="session molecules">
+          <h2 class="molecule-session-title">Session molecules</h2>
+          <form id="molecule-session-form" class="molecule-session-form" autocomplete="off">
+            <input
+              id="molecule-session-name"
+              class="molecule-session-field"
+              type="text"
+              aria-label="Session molecule name"
+              placeholder="Name"
+            />
+            <input
+              id="molecule-session-formula"
+              class="molecule-session-field"
+              type="text"
+              aria-label="Session molecule formula"
+              placeholder="Formula"
+              required
+            />
+            <button class="molecule-session-add" type="submit">Add</button>
+          </form>
+          <div id="molecule-session-status" class="molecule-session-status" aria-live="polite"></div>
+          <div id="molecule-session-list" class="molecule-session-list"></div>
+        </section>
       </aside>
     </main>
     <script type="module" src="./src/apps/molecule/main.js"></script>

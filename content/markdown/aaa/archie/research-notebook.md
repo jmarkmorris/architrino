@@ -16,13 +16,13 @@ Relevant files:
 - [Molecule app scene](../../../scenes/archie/molecule.json)
 - [Applications scene](../../../scenes/archie/applications.json)
 
-The standalone [Molecule Visualization](../../../../molecule.html) app became the first working molecule-viewer surface for the project. It replaced the old placeholder molecule scene with a preset-driven 3D app that lets the reader inspect curated molecules directly, rotate the model, zoom the camera, and click atoms to route into the corresponding element visualizations.
+The standalone [Molecule Visualization](../../../../molecule.html) app is the project molecule-viewer surface. It gives readers a 3D ball-and-bond model for curated molecules and keeps the model connected to the Applications scene through the molecule scene entry.
 
-The first version keeps the scope deliberately concrete. It uses app-owned molecule presets rather than remote lookup, and it uses the existing Three.js runtime already available in the web app. That made the prototype fast to build while preserving the next obvious expansion path: a curated local formula lookup, then exact structure inputs such as SMILES, InChI, MOL, SDF, XYZ, PDB, or mmCIF once the conversion path is accepted.
+The app supports two molecule sources. Curated presets provide named structures such as water, caffeine, glucose, graphene, chlorophyll a, and nucleotide bases. A reader can also add a session molecule by entering a chemical formula and optional display name; if the formula matches a curated preset, the app opens that preset, and otherwise it creates a session-only molecule from the formula composition for the current browser session.
 
-The app also carries an $\mathbb{A}\mathbb{A}\mathbb{A}$ bookkeeping layer. For the displayed molecule it reports protons, neutrons, electrons, electrinos, positrinos, and total architrinos using the current typical neutral-atom estimate. This keeps the molecule view connected to the atom and periodic-table apps rather than treating chemistry as a separate visual island.
+The display is meant for direct inspection rather than a static illustration. Readers can rotate the molecule by dragging the open stage, zoom the camera, shift the molecule across the stage by dragging an atom, and hover atoms to highlight them and swap the readout from molecule totals to atom-level totals. Clicking an atom routes into that atom's element visualization, so a molecule can be used as an entry point into the periodic-table and atom apps.
 
-This app took 2 hours to develop. That speed mattered because the result is not only a visualization but a new application pattern: a standalone app can be launched from the Applications scene while keeping a small scene-graph entry for navigation, search, and future documentation links.
+The app also carries an $\mathbb{A}\mathbb{A}\mathbb{A}$ bookkeeping layer. For the displayed molecule, and for each hovered atom, it reports formula or atom label, atom count, bond count, protons, neutrons, electrons, electrinos, positrinos, and total architrinos using the current typical neutral-atom estimate. This keeps molecule visualization tied to the same ledger language as the atom and periodic-table apps rather than treating chemistry as a separate visual island.
 
 ## 2026-06-13: Photon and Polarization Visualization
 

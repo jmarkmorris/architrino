@@ -1,6 +1,7 @@
 import {
   PHOTON_CHARGE_COLORS,
   PHOTON_CONTROL_RANGES,
+  PHOTON_DEFAULT_LAYER_RADII,
   PHOTON_LAYER_META,
   PHOTON_LAYER_ORDER,
   clampPhotonNumber,
@@ -31,6 +32,7 @@ const PHOTON_FACE_PAIR_TITLE = "Contra-rotating, Offset, Planar Swarms";
 const PHOTON_STAGE_WHITE_LABEL_COLOR = "#ffffff";
 const PHOTON_TRANSLATION_AXIS_COLOR = "rgba(251, 191, 36, 0.92)";
 const PHOTON_FACE_AXIS_COLOR = "rgba(251, 191, 36, 0.82)";
+const PHOTON_FACE_CAMERA_REFERENCE_RADIUS = PHOTON_DEFAULT_LAYER_RADII.O * 1.5;
 
 let photonFieldPlotCache = {
   key: "",
@@ -248,16 +250,6 @@ function getPhotonMaxLayerRadius(state, { enabledOnly = false } = {}) {
   return radii.length > 0 ? Math.max(...radii) : 0;
 }
 
-function getPhotonSwarmMaxLayerRadius(state, swarmId, { enabledOnly = false } = {}) {
-  const radii = PHOTON_LAYER_ORDER.flatMap((layerId) => {
-    if (enabledOnly && !getPhotonLayerEnabled(state, swarmId, layerId)) {
-      return [];
-    }
-    return [getPhotonLayer(state, swarmId, layerId).radius];
-  }).filter((radius) => radius > 0);
-  return radii.length > 0 ? Math.max(...radii) : 0;
-}
-
 function drawSwarm(ctx, state, swarmId, centerX, centerY, scale, timeSeconds) {
   const pathsVisible = state.view?.pathsVisible !== false;
   const glyphRadius = Math.max(
@@ -441,14 +433,11 @@ function drawPhotonSideView(ctx, state, layout, timeSeconds) {
 }
 
 export function computePhotonStageLayout(state, cssWidth, cssHeight) {
-  const maxLayerRadius = Math.max(0.1, getPhotonMaxLayerRadius(state));
-  const leftMaxLayerRadius = Math.max(0.1, getPhotonSwarmMaxLayerRadius(state, "left"));
-  const rightMaxLayerRadius = Math.max(0.1, getPhotonSwarmMaxLayerRadius(state, "right"));
   const enabledMaxLayerRadius = getPhotonMaxLayerRadius(state, { enabledOnly: true });
   const faceRadiusPx = Math.min(cssHeight * 0.31, cssWidth * 0.15);
-  const scale = faceRadiusPx / maxLayerRadius;
-  const faceLeftScale = faceRadiusPx / leftMaxLayerRadius;
-  const faceRightScale = faceRadiusPx / rightMaxLayerRadius;
+  const scale = faceRadiusPx / PHOTON_FACE_CAMERA_REFERENCE_RADIUS;
+  const faceLeftScale = scale;
+  const faceRightScale = scale;
   const separationLog10Ratio = getPhotonSeparationLog10Ratio(state);
   const separationLogRange = PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio;
   const separationProgress = clampPhotonNumber(

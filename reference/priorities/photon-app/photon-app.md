@@ -27,7 +27,7 @@ The current app implements:
 
 - two fixed-spacing face-on flat Noether swarm views plus an edge-on side view of the same pair;
 - counter-clockwise rotation in the trailing swarm and clockwise rotation in the leading swarm;
-- per-swarm I/M/O controls for enabled state, frequency, radius, and phase;
+- per-swarm Inner/Middle/Outer controls for enabled state, frequency, radius, and phase;
 - a $\Delta x$ pair-separation control that changes the side-view trace spacing without changing the face-on orbit spacing;
 - Ideal Swarm-style architrino markers, orbit paths, and layered trails;
 - pause/play, Space bar pause/play, Reset time, Reset all, Paths, and Slow/Fast controls;
@@ -102,6 +102,8 @@ The visual stage should continue to preserve these requirements:
 - the side-view traces have height equal to the diameter of the largest enabled binary;
 - the side-view $\Delta x$ arrow spans the side-view trace centers;
 - the face-on views stay fixed for readability even when $\Delta x$ changes;
+- the face-on camera uses a stable reference scale, so radius edits move the selected orbit instead of rescaling the whole swarm;
+- the Outer orbit radius is capped at the initial/default Outer radius;
 - and the app remains 2D unless the requirements are explicitly revised.
 
 ### Controls
@@ -113,9 +115,9 @@ Current control ranges remain:
 | I frequency | `4 Hz` | $2^0$ to $2^5$ | powers of two |
 | M frequency | `2 Hz` | $2^0$ to $2^5$ | powers of two |
 | O frequency | `1 Hz` | $2^0$ to $2^5$ | powers of two |
-| I radius | `0.0477` | `0.0100` to `2.4000` | `0.0001` |
-| M radius | `0.0796` | `0.0100` to `2.4000` | `0.0001` |
-| O radius | `0.1273` | `0.0100` to `2.4000` | `0.0001` |
+| Inner radius | `0.0477` | `0.0100` to current Middle radius | continuous |
+| Middle radius | `0.0796` | current Inner radius to current Outer radius | continuous |
+| Outer radius | `0.1273` | current Middle radius to initial/default Outer radius `0.1273` | continuous |
 | I phase | `0 deg` | `0` to `360 deg` | `1 deg` |
 | M phase | `0 deg` | `0` to `360 deg` | `1 deg` |
 | O phase | `0 deg` | `0` to `360 deg` | `1 deg` |
@@ -416,7 +418,7 @@ $$
 3. `moving_apparatus_delta_x_mapping` - Use the reusable absolute-history solver to replace the co-moving $\Delta x$ diagnostic with an optional absolute-history mode where the swarms and Virtual Observer translate at $c_\gamma$, then solve whether leading and trailing source histories can causally reach the moving Virtual Observer. Status: `open`.
 4. `absolute_source_history_self_hit` - Use the reusable absolute-history solver to add a local-$c$ helical source-history diagnostic that combines photon-channel translation with transverse binary motion, then reports same-source roots, Jacobian floors, and whether each layer is sub-field-speed or candidate self-hit. Status: `open`.
 5. `substrate_mapping_refinement` - Refine the Virtual Observer branch-sum mapping from I/M/O layer parameters to transverse observer-field amplitudes, while preserving claim discipline and distinguishing co-moving diagnostics from absolute-history results. Status: `open`.
-6. `polarization_parameter_search` - Identify which geometry or binary controls can reliably produce fitted linear, circular, or elliptical observer-level polarization without adding synthetic source-polarization parameters. This search should compare co-moving fits against the absolute-history moving-apparatus roots once the shared solver exists. Status: `open`.
+6. `polarization_parameter_search` - Identify which geometry, binary controls, and full settings configurations can reliably produce fitted linear, circular, or elliptical observer-level polarization without adding synthetic source-polarization parameters. The search should include named presets and systematic configuration sweeps across enabled layers, frequency powers, radius lanes, phase offsets, $\Delta x$, Virtual Observer position, analyzer angle, and local-$c$ mode when available. The goal is to find particularly informative or insight-provoking photon configurations: cases with strong cancellation, clean linear polarization, near-circular balance, stable elliptical traces, large analyzer residuals, low fit residuals, unusual causal-root families, or sharp changes near self-hit thresholds. Each discovered configuration should be saved with its settings, plotted summaries, diagnostic readouts, and a short reason it is interesting. This search should compare co-moving fits against the absolute-history moving-apparatus roots once the shared solver exists. Status: `open`.
 7. `shared_visual_extraction` - Extract shared Ideal Swarm / photon architrino marker, orbit-path, tint-profile, and layered-trail helpers if the visual grammar needs to be maintained across both apps. Status: `open`.
 
 ## Deferred Non-Goals

@@ -1,4 +1,5 @@
 import {
+  PHOTON_DEFAULT_LAYER_RADII,
   createDefaultPhotonState,
   getPhotonRadiusForSpeedRatio,
   normalizePhotonState,
@@ -161,8 +162,8 @@ function buildPhotonPresetState(presetId) {
       analyzerAngleDeg: 90,
       radii: {
         I: 0.02,
-        M: 0.16,
-        O: 0.32,
+        M: 0.11,
+        O: PHOTON_DEFAULT_LAYER_RADII.O,
       },
     });
     return state;
