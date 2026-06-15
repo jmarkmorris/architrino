@@ -25,6 +25,39 @@ This guide is a source-intake and source-processing practice. It is not another 
 - Existing validation, gate, certificate, residual, and ledger processes remain separate. Source mining may identify benchmark pressure or an existing recovery target, but it should not create new hurdle artifacts by default.
 - Authored corpus pages should receive only the safe current substance: definitions, equations, proof routes, worked examples, claim-level corrections, or source-backed bridge prose. They should not link back to priority-only source-mining process material.
 
+## Generic Source-Mining Prompt
+
+Use this prompt when the source type is unknown, mixed, or not worth choosing a narrower template before the first pass.
+
+```text
+Cody, use the AAA corpus advancement skill in audit/report mode.
+
+Use the [source-mining-best-practice.md](reference/priorities/source-mining/source-mining-best-practice.md) processes to mine this source.
+
+Source link or attachment:
+[PASTE LINK, FILE PATH, OR ATTACHMENT DESCRIPTION]
+
+Task:
+1. Read `reference/priorities/source-mining/source-mining-best-practice.md`.
+2. Identify the source type or mixed source types.
+3. Apply the relevant source-type process from the best-practice document.
+4. Treat the initial pass as report-only unless I explicitly grant edit authority.
+5. Do not paste full copyrighted source text into the response.
+6. Extract high-quality insights, linkages, mappings, source leads, and theory-advancement candidates.
+7. Separate observable/data products from interpretation, and separate external terminology from established AAA terminology.
+8. Do not add gates, certificates, residual inventories, live-ledger checklists, or similar hurdle artifacts unless I explicitly ask for that.
+
+Expected output:
+1. Source summary.
+2. Source map.
+3. High-signal map.
+4. Corpus value assessment.
+5. Claim map: ontology / derivation or closure target / effective summary / speculation.
+6. Concrete mathematical advance if the source supports one.
+7. Affected-document table.
+8. Priority Action Menu with detailed paste-ready follow-up prompts for any work outside the current authority.
+```
+
 ## Corpus Deferral Rules
 
 The source-mining process should not add more gate or audit infrastructure to the reader-facing corpus at this point. These artifacts can remain useful as priority-only working material, but they should not be promoted into `content/markdown/aaa` unless the operator/developer explicitly selects one as a current need.
