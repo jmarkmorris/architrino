@@ -36,6 +36,7 @@ The current app implements:
 - a transverse polarization inset derived from a one-cycle branch-sum fit, with optional raw one-cycle branch-sum points behind the fit;
 - formula and diagnostic panels with quality words where the readout has a useful direction;
 - a named preset dropdown that can load a complete photon settings state and reset back to the last loaded preset;
+- a `Search configurations` workflow that generates session-local scored settings, supports preview/load/play, rename/delete, selected/all JSON export, JSON import, and promotion into session presets;
 - and in-app Markdown viewing for the user-facing guide and the two supporting corpus bridges.
 
 ## Candidate Model
@@ -414,16 +415,15 @@ $$
 
 ### Configuration Search Design
 
-The configuration search is a guided exploration tool for finding photon settings worth inspecting. It should be visible in the UI as a `Search configurations` action near the preset controls, with results shown in a compact session list.
+The configuration search is a guided exploration tool for finding photon settings worth inspecting. It is visible in the UI as a `Search configurations` action near the preset controls, with results shown in a compact session list.
 
-First implementation scope:
+Current implementation scope:
 
 - start each run from the current app settings;
 - search bounded nearby and systematic variants of enabled binaries, Inner/Middle/Outer frequency powers, radius lanes, phase offsets, $\Delta x$, Virtual Observer position, and Analyzer angle;
-- use the current co-moving branch-sum diagnostics first;
-- add local-$c$ and absolute-history comparisons after the reusable absolute-history solver exists;
+- use the current co-moving branch-sum diagnostics;
 - keep results session-local by default;
-- support JSON export/import before relying on search results for durable research capture.
+- support selected/all JSON export and JSON import.
 
 Each search result should store a complete settings snapshot, not only the changed control values. A result record should include:
 
@@ -437,7 +437,7 @@ Each search result should store a complete settings snapshot, not only the chang
 - small plot or sample summary;
 - and a short note explaining why the result is interesting.
 
-The result list should support:
+The result list supports:
 
 - previewing a result without losing the current state;
 - loading a result into the app;
@@ -445,9 +445,9 @@ The result list should support:
 - renaming or deleting a session result;
 - exporting selected results or all results as JSON;
 - importing exported results;
-- and promoting a result into the named preset set.
+- and promoting a result into the named preset set for the current session.
 
-The named preset dropdown is part of this design. It must load complete settings states, including enabled flags, frequencies, radii, phases, $\Delta x$, Virtual Observer coordinates, Analyzer angle, display toggles, and later local-$c$ mode. `Reset preset` should restore the last loaded preset or promoted result.
+The named preset dropdown is part of this design. It loads complete settings states, including enabled flags, frequencies, radii, phases, $\Delta x$, Virtual Observer coordinates, Analyzer angle, and display toggles. `Reset preset` restores the last loaded preset or promoted result.
 
 The search should flag a configuration as interesting when one or more of these traits appears:
 
@@ -468,7 +468,7 @@ Suspect numerical cases should be labeled as suspect, not good. Missed roots, ve
 3. `moving_apparatus_delta_x_mapping` - Use the reusable absolute-history solver to replace the co-moving $\Delta x$ diagnostic with an optional absolute-history mode where the swarms and Virtual Observer translate at $c_\gamma$, then solve whether leading and trailing source histories can causally reach the moving Virtual Observer. Status: `open`.
 4. `absolute_source_history_self_hit` - Use the reusable absolute-history solver to add a local-$c$ helical source-history diagnostic that combines photon-channel translation with transverse binary motion, then reports same-source roots, Jacobian floors, and whether each layer is sub-field-speed or candidate self-hit. Status: `open`.
 5. `substrate_mapping_refinement` - Refine the Virtual Observer branch-sum mapping from I/M/O layer parameters to transverse observer-field amplitudes, while preserving claim discipline and distinguishing co-moving diagnostics from absolute-history results. Status: `open`.
-6. `polarization_parameter_search` - Implement the Configuration Search Design above. Identify which geometry, binary controls, and full settings configurations can reliably produce fitted linear, circular, or elliptical observer-level polarization without adding synthetic source-polarization parameters. Compare co-moving fits against absolute-history moving-apparatus roots once the shared solver exists. Status: `open`.
+6. `configuration_search_absolute_history_comparison` - After the reusable absolute-history solver exists, extend Configuration Search scoring to compare co-moving fits against absolute-history moving-apparatus roots and local-$c$ modes. Status: `open`.
 7. `shared_visual_extraction` - Extract shared Ideal Swarm / photon architrino marker, orbit-path, tint-profile, and layered-trail helpers if the visual grammar needs to be maintained across both apps. Status: `open`.
 
 ## Deferred Non-Goals

@@ -13,7 +13,6 @@ import {
 } from "./PhotonStateRuntime.js";
 import {
   PHOTON_DEFAULT_PRESET_ID,
-  PHOTON_NAMED_PRESETS,
 } from "./PhotonPresetRuntime.js";
 
 function formatControlValue(value, digits = 2) {
@@ -598,6 +597,7 @@ function createPresetControl(
   documentLike,
   {
     getPresetId = () => PHOTON_DEFAULT_PRESET_ID,
+    getPresetOptions = () => [],
     onPresetChange,
     onResetPreset,
   }
@@ -609,11 +609,20 @@ function createPresetControl(
   const resetButton = createButton(documentLike, "Reset preset");
 
   select.setAttribute("aria-label", "Photon preset");
-  PHOTON_NAMED_PRESETS.forEach((preset) => {
-    const option = createElement(documentLike, "option", "", preset.name);
-    option.value = preset.id;
-    select.append(option);
-  });
+
+  const renderOptions = () => {
+    const selectedValue = select.value || getPresetId();
+    select.textContent = "";
+    const presetOptions = getPresetOptions();
+    presetOptions.forEach((preset) => {
+      const option = createElement(documentLike, "option", "", preset.name);
+      option.value = preset.id;
+      select.append(option);
+    });
+    select.value = presetOptions.some((preset) => preset.id === selectedValue)
+      ? selectedValue
+      : PHOTON_DEFAULT_PRESET_ID;
+  };
 
   select.addEventListener("change", () => {
     onPresetChange(select.value);
@@ -626,8 +635,10 @@ function createPresetControl(
   row.append(label, actionShell);
 
   const sync = () => {
+    renderOptions();
     const presetId = getPresetId();
-    const hasPreset = PHOTON_NAMED_PRESETS.some((preset) => preset.id === presetId);
+    const presetOptions = getPresetOptions();
+    const hasPreset = presetOptions.some((preset) => preset.id === presetId);
     select.value = hasPreset ? presetId : PHOTON_DEFAULT_PRESET_ID;
     resetButton.title = `Reset to ${select.options[select.selectedIndex]?.textContent ?? "preset"}`;
   };
@@ -641,6 +652,179 @@ function createButton(documentLike, label, className = "photon-button") {
   button.type = "button";
   bindPhotonPointerBlur(button);
   return button;
+}
+
+function formatPhotonSearchScore(score) {
+  return Number.isFinite(Number(score)) ? Number(score).toFixed(1) : "0.0";
+}
+
+function getPhotonSearchPrimaryReason(result) {
+  return Array.isArray(result?.reasons)
+    ? result.reasons.find((reason) => Number(reason.score) > 0) ?? result.reasons[0]
+    : null;
+}
+
+function formatPhotonSearchMeta(result) {
+  const polarization = result?.polarization ?? {};
+  const diagnostics = result?.diagnostics ?? {};
+  const fitResidual = Number(polarization.fitResidual);
+  const lag = Number(polarization.phaseLagDeg);
+  const rootCount = Number(diagnostics.rootCount);
+  const sourceCount = Number(diagnostics.sourceCount);
+  const parts = [
+    polarization.classificationLabel ?? "Open",
+    `fit ${Number.isFinite(fitResidual) ? fitResidual.toFixed(3) : "n/a"}`,
+    `roots ${Number.isFinite(rootCount) ? rootCount : 0}/${Number.isFinite(sourceCount) ? sourceCount : 0}`,
+  ];
+  if (polarization.phaseLagDefined !== false && Number.isFinite(lag)) {
+    parts.push(`lag ${lag.toFixed(1)} deg`);
+  }
+  return parts.join(" | ");
+}
+
+function createSearchControl(
+  documentLike,
+  {
+    getSearchResults = () => [],
+    getSearchStatus = () => "",
+    isPreviewingSearchResult = () => false,
+    onSearchConfigurations,
+    onRestoreSearchPreview,
+    onPreviewSearchResult,
+    onLoadSearchResult,
+    onPlaySearchResult,
+    onPromoteSearchResult,
+    onDeleteSearchResult,
+    onRenameSearchResult,
+    onToggleSearchResultSelected,
+    onExportSearchResults,
+    onExportSelectedSearchResults,
+    onImportSearchResults,
+  }
+) {
+  const row = createElement(documentLike, "div", "photon-search-control");
+  const toolbar = createElement(documentLike, "div", "photon-search-toolbar");
+  const searchButton = createButton(documentLike, "Search configurations");
+  const restoreButton = createButton(documentLike, "Restore preview");
+  const importButton = createButton(documentLike, "Import");
+  const exportSelectedButton = createButton(documentLike, "Export selected");
+  const exportAllButton = createButton(documentLike, "Export all");
+  const fileInput = createElement(documentLike, "input", "photon-search-file-input");
+  const status = createElement(documentLike, "p", "photon-search-status");
+  const resultsList = createElement(documentLike, "div", "photon-search-results");
+
+  fileInput.type = "file";
+  fileInput.accept = "application/json,.json";
+  fileInput.hidden = true;
+
+  searchButton.addEventListener("click", () => {
+    onSearchConfigurations?.();
+  });
+  restoreButton.addEventListener("click", () => {
+    onRestoreSearchPreview?.();
+  });
+  importButton.addEventListener("click", () => {
+    fileInput.click();
+  });
+  fileInput.addEventListener("change", () => {
+    const file = fileInput.files?.[0];
+    if (file) {
+      onImportSearchResults?.(file);
+    }
+    fileInput.value = "";
+  });
+  exportSelectedButton.addEventListener("click", () => {
+    onExportSelectedSearchResults?.();
+  });
+  exportAllButton.addEventListener("click", () => {
+    onExportSearchResults?.();
+  });
+
+  toolbar.append(searchButton, restoreButton, importButton, exportSelectedButton, exportAllButton);
+  row.append(toolbar, fileInput, status, resultsList);
+
+  const sync = () => {
+    const results = getSearchResults();
+    const selectedCount = results.filter((result) => result.selected !== false).length;
+    const previewing = isPreviewingSearchResult();
+    restoreButton.hidden = !previewing;
+    exportSelectedButton.disabled = selectedCount === 0;
+    exportAllButton.disabled = results.length === 0;
+    status.textContent =
+      getSearchStatus() ||
+      (results.length
+        ? `${results.length} configurations, ${selectedCount} selected`
+        : "No search results yet.");
+
+    resultsList.textContent = "";
+    if (results.length === 0) {
+      const empty = createElement(
+        documentLike,
+        "p",
+        "photon-search-empty",
+        "Run a search to collect configurations worth inspecting."
+      );
+      resultsList.append(empty);
+      return;
+    }
+
+    results.forEach((result) => {
+      const card = createElement(documentLike, "article", "photon-search-result");
+      if (result.suspect) {
+        card.classList.add("is-suspect");
+      }
+      const header = createElement(documentLike, "div", "photon-search-result-header");
+      const selected = createElement(documentLike, "input", "photon-search-select");
+      selected.type = "checkbox";
+      selected.checked = result.selected !== false;
+      selected.setAttribute("aria-label", `Select ${result.name}`);
+      selected.addEventListener("change", () => {
+        onToggleSearchResultSelected?.(result.id, selected.checked);
+      });
+      const nameInput = createElement(documentLike, "input", "photon-search-name-input");
+      nameInput.type = "text";
+      nameInput.value = result.name;
+      nameInput.setAttribute("aria-label", `Name for ${result.name}`);
+      nameInput.addEventListener("change", () => {
+        onRenameSearchResult?.(result.id, nameInput.value);
+      });
+      const score = createElement(
+        documentLike,
+        "span",
+        "photon-search-score",
+        result.suspect ? "suspect" : formatPhotonSearchScore(result.score)
+      );
+      header.append(selected, nameInput, score);
+
+      const reason = getPhotonSearchPrimaryReason(result);
+      const reasonText = reason
+        ? `${reason.label}: ${reason.detail}`
+        : "Reference state.";
+      const reasonElement = createElement(documentLike, "p", "photon-search-reason", reasonText);
+      const meta = createElement(documentLike, "p", "photon-search-meta", formatPhotonSearchMeta(result));
+      const actions = createElement(documentLike, "div", "photon-search-result-actions");
+      const previewButton = createButton(documentLike, "Preview");
+      const loadButton = createButton(documentLike, "Load");
+      const playButton = createButton(documentLike, "Play");
+      const promoteButton = createButton(
+        documentLike,
+        result.promotedPresetId ? "Promoted" : "Promote"
+      );
+      const deleteButton = createButton(documentLike, "Delete");
+
+      previewButton.addEventListener("click", () => onPreviewSearchResult?.(result.id));
+      loadButton.addEventListener("click", () => onLoadSearchResult?.(result.id));
+      playButton.addEventListener("click", () => onPlaySearchResult?.(result.id));
+      promoteButton.disabled = Boolean(result.promotedPresetId);
+      promoteButton.addEventListener("click", () => onPromoteSearchResult?.(result.id));
+      deleteButton.addEventListener("click", () => onDeleteSearchResult?.(result.id));
+      actions.append(previewButton, loadButton, playButton, promoteButton, deleteButton);
+      card.append(header, reasonElement, meta, actions);
+      resultsList.append(card);
+    });
+  };
+
+  return { row, sync };
 }
 
 function addSection(documentLike, parent, title) {
@@ -683,8 +867,24 @@ export function createPhotonControlsRuntime({
   onResetParameters,
   onTogglePause,
   getPresetId,
+  getPresetOptions,
   onPresetChange,
   onResetPreset,
+  getSearchResults,
+  getSearchStatus,
+  isPreviewingSearchResult,
+  onSearchConfigurations,
+  onRestoreSearchPreview,
+  onPreviewSearchResult,
+  onLoadSearchResult,
+  onPlaySearchResult,
+  onPromoteSearchResult,
+  onDeleteSearchResult,
+  onRenameSearchResult,
+  onToggleSearchResultSelected,
+  onExportSearchResults,
+  onExportSelectedSearchResults,
+  onImportSearchResults,
 }) {
   const controls = [];
   const binaryControls = [];
@@ -694,6 +894,7 @@ export function createPhotonControlsRuntime({
   const timeSection = addSection(documentLike, container, "Runtime");
   const presetControl = createPresetControl(documentLike, {
     getPresetId,
+    getPresetOptions,
     onPresetChange,
     onResetPreset,
   });
@@ -731,6 +932,26 @@ export function createPhotonControlsRuntime({
     })
   );
   timeSection.append(...controls.slice(-2).map((control) => control.row));
+
+  const searchSection = addSection(documentLike, container, "Configuration Search");
+  const searchControl = createSearchControl(documentLike, {
+    getSearchResults,
+    getSearchStatus,
+    isPreviewingSearchResult,
+    onSearchConfigurations,
+    onRestoreSearchPreview,
+    onPreviewSearchResult,
+    onLoadSearchResult,
+    onPlaySearchResult,
+    onPromoteSearchResult,
+    onDeleteSearchResult,
+    onRenameSearchResult,
+    onToggleSearchResultSelected,
+    onExportSearchResults,
+    onExportSelectedSearchResults,
+    onImportSearchResults,
+  });
+  searchSection.append(searchControl.row);
 
   const measurementSection = addSection(documentLike, container, "Measurement");
   measurementSection.classList.add("photon-measurement-section");
@@ -846,6 +1067,7 @@ export function createPhotonControlsRuntime({
 
   function sync(nextState) {
     presetControl.sync(nextState);
+    searchControl.sync(nextState);
     let index = 0;
     syncRange(controls[index], nextState.pair.pairSeparation);
     index += 1;

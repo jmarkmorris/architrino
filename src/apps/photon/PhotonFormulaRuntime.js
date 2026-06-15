@@ -681,12 +681,19 @@ export function computePhotonAverageAnalyzerFraction(
   return fractionSum / count;
 }
 
-export function computePhotonFormulaSummary(state, timeSeconds) {
+export function computePhotonFormulaSummary(state, timeSeconds, options = {}) {
   const wrappedTime = wrapPhotonTime(state, timeSeconds);
   const field = computePhotonObserverField(state, wrappedTime);
-  const polarization = buildPhotonDerivedPolarizationTrace(state, wrappedTime);
+  const polarization = buildPhotonDerivedPolarizationTrace(
+    state,
+    wrappedTime,
+    options.polarizationSampleCount ?? DEFAULT_POLARIZATION_FIT_SAMPLES
+  );
   const stokes = polarization.stokes;
-  const averageAnalyzerFraction = computePhotonAverageAnalyzerFraction(state);
+  const averageAnalyzerFraction = computePhotonAverageAnalyzerFraction(
+    state,
+    options.analyzerSampleCount ?? DEFAULT_ANALYZER_AVERAGE_SAMPLES
+  );
   const analyzerTarget = polarization.analyzerFractionTarget;
   const analyzerResidual = averageAnalyzerFraction - analyzerTarget;
   return {

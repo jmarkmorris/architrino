@@ -82,6 +82,7 @@ Each implementation step should follow the same loop:
 8. **Complete: delayed-hit rendering**: render solver-derived delayed hits with emission points, receiver points, branch/Jacobian diagnostics, hit connectors, and hit-table data.
 9. **Complete: fadeable trails**: add solid and dotted trail rendering for solver-derived paths, with lifetime, opacity, and diagnostic emphasis controls.
 10. **Current: simulation authoring UI**: add scene setup, particle setup, solver parameters, run/cache controls, and diagnostic panels to the animator authoring surface.
+    - **Review gate**: Marko needs to review the Simulation authoring panel before this step is marked complete.
 11. **Offline/cache workflow**: support long-running or high-precision simulations that bake datasets for animator playback, inspection, and export.
 12. **Parity and retirement decision**: compare animator against sim2 and `scripts/simulations/` for the covered functions, close remaining visual or solver gaps, then decide whether sim2 stays archived as reference or is removed.
 

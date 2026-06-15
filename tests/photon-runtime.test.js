@@ -56,6 +56,11 @@ import {
   getPhotonDiagnosticRows,
 } from "../src/apps/photon/PhotonDiagnosticsRuntime.js";
 import {
+  createPhotonConfigurationSearchResults,
+  parsePhotonSearchResultsJson,
+  serializePhotonSearchResults,
+} from "../src/apps/photon/PhotonSearchRuntime.js";
+import {
   advancePhotonModelTime,
   getPhotonRuntimeTimes,
   shouldHandlePhotonSpaceToggle,
@@ -620,6 +625,46 @@ test("named photon presets expose the required candidate configurations", () => 
   assert.equal(radiusStress.pair.left.layers.I.radius, 0.02);
   assert.equal(radiusStress.pair.left.layers.M.radius, 0.11);
   assert.equal(radiusStress.pair.left.layers.O.radius, PHOTON_MAX_OUTER_RADIUS);
+});
+
+test("configuration search returns scored settings snapshots", () => {
+  const state = createDefaultPhotonState();
+  const results = createPhotonConfigurationSearchResults(state, {
+    limit: 5,
+    maxCandidates: 10,
+  });
+
+  assert.ok(results.length > 0);
+  assert.ok(results.length <= 5);
+  results.forEach((result) => {
+    assert.ok(result.id.startsWith("photon-search-"));
+    assert.ok(result.name.length > 0);
+    assert.equal(result.selected, true);
+    assert.ok(Array.isArray(result.reasons));
+    assert.ok(result.reasons.length > 0);
+    assert.ok(Number.isFinite(result.score));
+    assert.equal(result.state.app, "photon");
+    assert.ok(result.polarization.classificationLabel.length > 0);
+    assert.ok(Number.isFinite(result.diagnostics.sourceCount));
+  });
+  assert.ok(results.some((result) => result.suspect === false));
+});
+
+test("configuration search results export and import full settings", () => {
+  const state = createDefaultPhotonState();
+  state.measurement.virtualObserver.y = 1.25;
+  const results = createPhotonConfigurationSearchResults(state, {
+    limit: 3,
+    maxCandidates: 8,
+  });
+  const json = serializePhotonSearchResults(results);
+  const imported = parsePhotonSearchResultsJson(json);
+
+  assert.equal(imported.length, results.length);
+  assert.equal(imported[0].state.app, "photon");
+  assert.deepEqual(imported[0].state.measurement.virtualObserver, results[0].state.measurement.virtualObserver);
+  assert.equal(imported[0].name, results[0].name);
+  assert.equal(imported[0].selected, true);
 });
 
 test("separation reference radius follows the largest enabled radius", () => {
