@@ -15,6 +15,16 @@ The goal is high-quality extraction of insights, linkages, mappings, and theory 
 - Prefer theory advancement over audit infrastructure. If a source suggests another gate, certificate, residual inventory, solver-test doc, or live-ledger checklist, keep it priority-only unless the operator/developer explicitly selects it as a current need.
 - Do not paste full transcripts, papers, articles, or copyrighted source text into reports. Use paraphrase, short compliant excerpts only when necessary, and exact timestamps, pages, slide numbers, or URLs for traceability.
 
+## Relationship To Other AAA Processes
+
+This guide is a source-intake and source-processing practice. It is not another gate system, not a certificate system, and not a competing corpus-advancement protocol.
+
+- The [corpus advancement pass](../../entourage/cody/prompts/corpus-advancement-pass.md) remains the authority for deciding whether mined material should be promoted into `content/markdown/aaa`, deferred with a blocker, staged as a discussion prompt, or rejected.
+- The Archie canon remains the authority for terminology, notation, and reader-facing style. Source mining translates external vocabulary into established project terminology; it does not update canon by itself.
+- Priority workstreams remain the staging area for unresolved source material, backlog rows, report packets, and follow-up prompts. A source-mining report is working memory and traceability, not reader-facing doctrine.
+- Existing validation, gate, certificate, residual, and ledger processes remain separate. Source mining may identify benchmark pressure or an existing recovery target, but it should not create new hurdle artifacts by default.
+- Authored corpus pages should receive only the safe current substance: definitions, equations, proof routes, worked examples, claim-level corrections, or source-backed bridge prose. They should not link back to priority-only source-mining process material.
+
 ## Corpus Deferral Rules
 
 The source-mining process should not add more gate or audit infrastructure to the reader-facing corpus at this point. These artifacts can remain useful as priority-only working material, but they should not be promoted into `content/markdown/aaa` unless the operator/developer explicitly selects one as a current need.
