@@ -9,8 +9,9 @@
 5. Path histories can consume memory quickly. The solver needs per-path data streams that keep only a bounded active window in memory, spill high-speed path data to files, and read those files back at high speed.
 6. Path-history streams need explicit indices and metadata: path id, time range, frame range, byte offsets, precision mode, units, scale normalization, schema version, checksums, provenance, and diagnostic summaries.
 7. The solver needs an explicit capability and API list before implementation: motion solving, causal-root solving, delayed-hit solving, geometry calculations, dataset output, diagnostics, worker or batch execution, path-history streaming, file-backed storage, indexed readback, and app adapters.
-8. Geometry calculations should be centralized around solver-owned simulation and geometry routines instead of being scattered across Photon, Ideal Swarm, Animator, `sim2`, and proof scripts.
-9. Once the solver design and first implementation exist, the repo needs a migration plan for existing solver use cases.
+8. Apps must be able to communicate with the solver through one shared app bridge. App code should call a stable JavaScript or TypeScript request/response API and should not need app-specific C++ or WebAssembly handling.
+9. Geometry calculations should be centralized around solver-owned simulation and geometry routines instead of being scattered across Photon, Ideal Swarm, Animator, `sim2`, and proof scripts.
+10. Once the solver design and first implementation exist, the repo needs a migration plan for existing solver use cases.
 
 ## Workstream Metadata
 
@@ -73,8 +74,9 @@ The central solver should provide these capabilities:
 10. Simulation dataset output for app playback, scrubbing, diagnostics, export, and comparison runs.
 11. Deterministic diagnostics: engine id, version, input config, timestep policy, precision settings, dynamic-range assumptions, stream storage format, root tolerances, halt status, root failure counts, and aggregate branch statistics.
 12. Worker, batch, and offline execution modes so apps can stay responsive while long or high-precision runs produce cached datasets.
-13. App adapters for Photon, Ideal Swarm, Animator, and any remaining `sim2` use cases during migration.
-14. Test fixtures or benchmark scenarios that compare old app-local behavior against solver-derived behavior before app code is simplified.
+13. A shared app-communication bridge that lets browser apps and app workers initialize the solver, submit requests, receive typed outputs, handle errors, and read stream-backed datasets without app-specific C++ handling.
+14. App adapters for Photon, Ideal Swarm, Animator, and any remaining `sim2` use cases during migration.
+15. Test fixtures or benchmark scenarios that compare old app-local behavior against solver-derived behavior before app code is simplified.
 
 ## API Surface To Design
 
@@ -90,11 +92,30 @@ The first design pass should specify these API responsibilities before names are
 | Append path samples | Chunked path data written with bounded memory, backpressure reporting, and spill-to-file status. |
 | Read path samples | High-speed range scans and random access by path id, time range, frame range, or chunk id. |
 | Read path indices and metadata | Manifest, index tables, byte offsets, time ranges, checksums, units, scale normalization, provenance, and diagnostics. |
+| Initialize app solver bridge | Version, capabilities, selected precision mode, stream support, worker status, and ready state. |
+| Submit app solver request | Request id, normalized config, cancellation handle, optional stream target, and expected output contract. |
+| Receive app solver response | Dataset summary, typed buffers or stream handles, diagnostics, halt status, and normalized error records. |
 | Produce app playback data | A dataset compatible with Animator-style frame buffers and app diagnostics. |
 | Compute shared geometry | Centralized geometry outputs for paths, distances, intersections, shell surfaces, and projection views. |
 | Run in a browser worker | Request and response messages with typed data where profiling justifies it. |
 | Run offline or in batch | CLI or script entrypoint with reproducible input, output, diagnostics, and benchmark metadata. |
 | Compare legacy paths | Parity reports that show where Photon, Ideal Swarm, Animator, and `sim2` behavior matches or diverges. |
+
+## Application Bridge Requirement
+
+The selected C++ solver must be usable from the apps through a shared bridge layer. The app should not know the solver's C++ internals. Each app should call a JavaScript or TypeScript adapter that exposes stable request, response, cancellation, dataset, stream, metadata, and diagnostic contracts.
+
+The expected browser path is:
+
+1. Compile the C++ core to WebAssembly through the selected Clang/LLVM-centered toolchain.
+2. Load the WebAssembly module from a shared solver worker.
+3. Expose a narrow JavaScript or TypeScript adapter with typed request and response messages.
+4. Move dense data through typed arrays, transferable buffers, or stream handles rather than object-heavy JSON.
+5. Keep long-running solves off the UI thread.
+6. Normalize solver halt reasons, precision failures, IO failures, and app-facing errors into one app-readable status format.
+7. Keep app-specific code limited to translating UI state into solver configs and rendering solver datasets.
+
+This requirement does add a deliberate bridge layer. It should not add special handling in each app. The correct abstraction is one shared app bridge plus focused app adapters for Photon, Ideal Swarm, Animator, and any remaining `sim2` migration path.
 
 ## Path-History Streaming And Storage
 
@@ -172,6 +193,7 @@ Detailed Rust versus option 2 comparison:
 | Path-history streaming | Strong fit. Ownership, slices, iterators, and explicit buffer lifetimes are good for bounded memory and append-only chunk writers. | Strong raw control for custom binary layouts, memory mapping, and zero-copy reads. The implementation must make stream ownership and buffer lifetimes part of the API contract. |
 | File-backed read/write performance | High. Rust can write tight binary IO and memory-mapped readers while keeping APIs safer. | Very high. Mature IO, memory mapping, and profiling paths exist across platforms. |
 | Browser/WASM app bridge | Strong. Rust-to-WASM is a common production path, and Rust can also build native CLI tools. | Strong with an explicit binding plan. Clang/LLVM and Emscripten/WASI paths are capable, and the project must keep app bindings thin and generated or tightly tested. |
+| App communication requirement | Strong. Apps would call a Rust/WASM wrapper through JavaScript or TypeScript. | Strong enough for selection, but not automatic. The C++ choice requires one shared WebAssembly worker bridge and typed JavaScript or TypeScript adapter so apps never handle C++ details directly. |
 | Native CLI and batch mode | Strong. Cargo, cross compilation, and static binaries make repeatable batch tools practical. | Strong. Native performance and mature build systems are proven; the solver must define one canonical build path instead of accepting build-system sprawl. |
 | Cody implementation quality | Strong. The type system and compiler diagnostics help keep invariants explicit. | Strong when held to the project standard. Cody is expected to implement expert-level C++ with strict invariants, tests, benchmarks, sanitizers, and small ownership-focused modules. |
 | Error handling | Strong. `Result`, typed errors, and exhaustive matching fit solver halt reasons and diagnostics. | Strong if standardized. The project should use explicit status/result types for solver halts, IO failures, precision failures, and branch diagnostics instead of mixed ad hoc conventions. |
@@ -213,29 +235,32 @@ After the first solver design lands, create a migration plan with these steps:
 1. Inventory every app-facing and script-facing use case that currently computes architrino motion, causal roots, delayed hits, or solver-adjacent geometry.
 2. Define the central solver contract, precision contract, and minimum stable dataset schema.
 3. Define the path-history stream contract, file-backed storage format, readback APIs, indices, and metadata manifest.
-4. Build a minimal benchmarked solver core and compare it against the Photon, Ideal Swarm, Animator, and `sim2` paths across ordinary and many-orders-of-magnitude scale sweeps.
-5. Verify that long path runs stay inside the declared memory budget while spilling and reading path streams at target speed.
-6. Migrate Animator first where the dataset bridge already exists.
-7. Migrate Photon causal-root diagnostics to the shared causal-root and source-history APIs.
-8. Migrate Ideal Swarm delayed-potential and self-hit calculations to shared geometry and causal-delay routines.
-9. Preserve unique `sim2` visual semantics only until Animator or the central solver owns the equivalent field-shell and delayed-hit outputs.
-10. Decide whether `sim2` is archived as a reference prototype or removed once parity and migration are complete.
-11. Remove or simplify app-local solver and geometry code after parity tests confirm the new solver path.
-12. Keep proof-program, mass-map, neutral-swarm, nested-shell, and cosmology solver families connected only where they share genuine architrino motion, branch geometry, or diagnostic contracts.
+4. Define the shared app bridge contract for WebAssembly worker initialization, request/response messages, cancellation, typed buffers, stream handles, diagnostics, and errors.
+5. Build a minimal benchmarked C++/Clang solver core and compare it against the Photon, Ideal Swarm, Animator, and `sim2` paths across ordinary and many-orders-of-magnitude scale sweeps.
+6. Verify that long path runs stay inside the declared memory budget while spilling and reading path streams at target speed.
+7. Verify that apps can use the solver through the shared bridge without app-specific C++ or WebAssembly handling.
+8. Migrate Animator first where the dataset bridge already exists.
+9. Migrate Photon causal-root diagnostics to the shared causal-root and source-history APIs.
+10. Migrate Ideal Swarm delayed-potential and self-hit calculations to shared geometry and causal-delay routines.
+11. Preserve unique `sim2` visual semantics only until Animator or the central solver owns the equivalent field-shell and delayed-hit outputs.
+12. Decide whether `sim2` is archived as a reference prototype or removed once parity and migration are complete.
+13. Remove or simplify app-local solver and geometry code after parity tests confirm the new solver path.
+14. Keep proof-program, mass-map, neutral-swarm, nested-shell, and cosmology solver families connected only where they share genuine architrino motion, branch geometry, or diagnostic contracts.
 
 ## Task Queue
 
 1. `precision_dynamic_range_contract` - Define required scale ranges, tolerance policy, residual error budgets, conditioning diagnostics, and precision modes for many-orders-of-magnitude solver runs. Status: `active`. Depends on: none.
 2. `path_history_stream_contract` - Define per-path streams, file-backed spill, high-speed readback, chunk layout, indices, metadata, and memory budgets for long path histories. Status: `active`. Depends on: `precision_dynamic_range_contract`.
-3. `language_runtime_decision` - Benchmark Rust/WASM, TypeScript typed arrays with workers, and any justified C++/WASM path against representative causal-root, source-history, precision, dynamic-range, streaming-write, and indexed-read workloads. Status: `active`. Depends on: `precision_dynamic_range_contract`, `path_history_stream_contract`.
-4. `solver_contract` - Define the central solver inputs, outputs, dataset schema, path-history stream schema, diagnostics, halt statuses, precision metadata, storage metadata, and API boundaries. Status: `active`. Depends on: `language_runtime_decision`.
-5. `geometry_centralization_inventory` - Identify duplicated or app-local solver geometry in Photon, Ideal Swarm, Animator, `sim2`, and scripts. Status: `next`. Depends on: `solver_contract`.
-6. `minimal_causal_root_core` - Implement or extract the first central causal-root core with source histories, branch diagnostics, precision diagnostics, streaming output, and benchmark hooks. Status: `next`. Depends on: `solver_contract`.
-7. `animator_adapter` - Route Animator simulation runs through the central solver contract while preserving the existing dataset playback surface. Status: `pending`. Depends on: `minimal_causal_root_core`.
-8. `photon_adapter` - Replace Photon-local causal-root diagnostics with shared source-history and causal-root calls. Status: `pending`. Depends on: `minimal_causal_root_core`.
-9. `ideal_swarm_adapter` - Replace Ideal Swarm delayed-potential and self-hit calculations with shared solver geometry. Status: `pending`. Depends on: `minimal_causal_root_core`.
-10. `sim2_retirement_plan` - Compare remaining `sim2` semantics against central solver and Animator coverage, then archive or remove `sim2` after parity. Status: `pending`. Depends on: `animator_adapter`.
-11. `legacy_solver_family_map` - Decide which non-app solver families should consume the central solver contract, which should stay separate, and which should only exchange artifacts or diagnostics. Status: `pending`. Depends on: `geometry_centralization_inventory`.
+3. `app_bridge_contract` - Define the shared WebAssembly worker bridge, JavaScript or TypeScript adapter, request/response protocol, cancellation, typed buffers, stream handles, diagnostics, and app-facing error format. Status: `active`. Depends on: `precision_dynamic_range_contract`, `path_history_stream_contract`.
+4. `cpp_clang_runtime_validation` - Benchmark the selected C++/Clang path against representative causal-root, source-history, precision, dynamic-range, streaming-write, indexed-read, and app-bridge workloads. Status: `active`. Depends on: `app_bridge_contract`.
+5. `solver_contract` - Define the central solver inputs, outputs, dataset schema, path-history stream schema, app bridge schema, diagnostics, halt statuses, precision metadata, storage metadata, and API boundaries. Status: `active`. Depends on: `cpp_clang_runtime_validation`.
+6. `geometry_centralization_inventory` - Identify duplicated or app-local solver geometry in Photon, Ideal Swarm, Animator, `sim2`, and scripts. Status: `next`. Depends on: `solver_contract`.
+7. `minimal_causal_root_core` - Implement or extract the first central causal-root core with source histories, branch diagnostics, precision diagnostics, streaming output, app-bridge output, and benchmark hooks. Status: `next`. Depends on: `solver_contract`.
+8. `animator_adapter` - Route Animator simulation runs through the central solver contract while preserving the existing dataset playback surface. Status: `pending`. Depends on: `minimal_causal_root_core`.
+9. `photon_adapter` - Replace Photon-local causal-root diagnostics with shared source-history and causal-root calls. Status: `pending`. Depends on: `minimal_causal_root_core`.
+10. `ideal_swarm_adapter` - Replace Ideal Swarm delayed-potential and self-hit calculations with shared solver geometry. Status: `pending`. Depends on: `minimal_causal_root_core`.
+11. `sim2_retirement_plan` - Compare remaining `sim2` semantics against central solver and Animator coverage, then archive or remove `sim2` after parity. Status: `pending`. Depends on: `animator_adapter`.
+12. `legacy_solver_family_map` - Decide which non-app solver families should consume the central solver contract, which should stay separate, and which should only exchange artifacts or diagnostics. Status: `pending`. Depends on: `geometry_centralization_inventory`.
 
 ## Related Priorities
 
