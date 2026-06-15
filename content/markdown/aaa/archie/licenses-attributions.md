@@ -4,6 +4,8 @@
 
 - PDG REST API data used by the project: licensed under the same terms as the corresponding edition of the *Review of Particle Physics*; starting with the 2024 edition, the *Review of Particle Physics* is published under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
+- PubChem data used by the Molecule Visualization app: live molecule lookup through [PubChem PUG REST](https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest) for compound CIDs, names, molecular formulas, and SDF structure records. PubChem is an NCBI/NLM/NIH public chemical information resource with depositor-contributed records; session lookup results are fetched at runtime, and curated preset records approximated from PubChem cite their CIDs in app data.
+
 - Hyde Periodic Table svg diagram: By Rezmason, own work, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), [Wikimedia Commons source](https://commons.wikimedia.org/w/index.php?curid=54218895).
 
 - Solvay Conference 1927 restored photograph: photograph by Benjamin Couprie, Institut International de Physique de Solvay; restoration by Wilfredor; Public Domain; [local asset](../../../assets/images/historical/solvay-conference-1927-restored.jpg); [Wikimedia Commons source](https://commons.wikimedia.org/wiki/File:Solvay_conference_1927_restored.jpg). Full catalog entry: [image manifest](../../../assets/images/images.json).
