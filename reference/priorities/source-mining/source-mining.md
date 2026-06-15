@@ -11,12 +11,12 @@
 
 ## Task Queue
 
-1. `mine_source_material` — Mine legacy and external source material. Status: `pending`. 
+1. `mine_source_material` — Mine legacy and external source material. Status: `pending`.
 2. `recover_legacy_insights` — Mine deferred product, outlook, and operational notes only when they yield concrete corpus material. Status: `pending`.
 
 ## Scope
 
-This is the ranked queue for source-material mining and corpus integration. 
+This is the ranked queue for source-material mining and corpus integration.
 
 ## Core Theory Focus Constraint
 
@@ -29,52 +29,33 @@ During the current core geometrical theory push, do not treat corpus coverage as
 - If the goal is the fastest validated-closure score increase, pair this workstream with [residual-routing-event-ledger](../nested-shell-swarm-causal-closure/residual-routing-event-ledger.md), [exposure-quotient-theorem](../mass-map/exposure-quotient-theorem.md), and [mass-map](../mass-map/mass-map.md) rather than treating prose coverage as the main lift.
 - Rule of thumb to retain: a `+10` point gain in Coverage+Interface Readiness adds about `+0.2` to the weighted total; high-weight categories such as Empirical Precision+Benchmark Validation, Formula+Coefficient Recovery, Master EOM+Local Dynamics, Parameter+Scale Closure, and Potential+Action Closure move the total more.
 
-## Source Mining Feeds
+## Process Guide
 
-- Mine material from WordPress and other prior social material (twitter).
-- Mine old PowerPoint decks.
-- Mine arXiv-style papers for definitions, examples, derivation routes, and source leads.
-- Mine YouTube videos and course playlists when transcripts, slides, or lecture notes can be reduced into concrete corpus material.
-- Mine deferred product, outlook, and operational notes only when they produce a source lead, reader-facing bridge, concrete task, or corpus integration target.
+Use [source-mining-best-practice](source-mining-best-practice.md) for source-type workflows, report shape, theory-mapping discipline, corpus deferral rules, and source-family intake rules.
 
-## Legacy Insight Intake
-
-Legacy insight material is source material for this queue, not a separate product or outlook priority. Preserve the ideas, but do not let them outrank the derivation spine. Product-facing surfaces and future-technology narrative can return only after the mathematical core is compressed and stable, or when a specific item yields a concrete corpus artifact.
-
-### Deferred Material Classes
-
-This intake includes:
-
-- broad future-technology narrative material;
-- product-facing presentation layers that do not sharpen the equations;
-- operational notes whose main value is cleanup, naming, or publication routing;
-- and other outlook work that is better handled after the core derivation spine is stable.
-
-### Legacy Operational Parking Lot
+## Legacy Operational Parking Lot
 
 - Clean up the old `neoclassical.ai` repo.
 - Try to sell the `neoclassical.ai` domain.
-- Make a new subreddit.
-- Rename the blog.
 
 ## Candidate Source-Mining Backlog
 
-Use this backlog as a triage surface, not as a requirement factory. A source earns mining time only when it can yield at least one concrete artifact: a numerical benchmark, derivation route, worked example, source lead, canonical table or figure, visual explanation, or reader-facing bridge for the active $\mathbb{A}\mathbb{A}\mathbb{A}$ theory stack.
+This backlog names high-value source families. Workflow details live in [source-mining-best-practice](source-mining-best-practice.md).
 
 ### Video And Seminar Archives
 
-| Source family | Mine first | $\mathbb{A}\mathbb{A}\mathbb{A}$ value | Mining rule |
-| --- | --- | --- | --- |
-| Perimeter Institute [PIRSA](https://pirsa.org/node) | Foundational physics, quantum gravity, black holes, cosmology, quantum information, and PSI core lecture series with PIRSA IDs and slides. | Citable seminar records and slides; good for source leads and current expert problem framing. | Mine transcript/slide pairs only when the talk yields a named equation, theorem target, benchmark, or source lead. |
-| KITP [Online Talks](https://www.kitp.ucsb.edu/online-talks) | Program talks with slides on black holes, quantum matter, cosmology, non-equilibrium dynamics, amplitudes, and gravitational waves. | Dense frontier material with speaker-provided PDFs and discussion Q&A. | Treat as source discovery first; promote only equations, constraints, and source leads. |
-| IAS / Cornell / Simons Center video lecture collections | Arkani-Hamed amplitudes, positive geometry, quantum spacetime, black holes, cosmology, and mathematical-physics lectures. | Good for disciplined comparison frameworks where spacetime, locality, and quantum mechanics are derived rather than assumed. | Route speculative geometry claims to discussion before canonization. |
-| CERN videos and public detector lectures | Detector walkthroughs, event reconstruction, trigger systems, Standard Model lectures, and open-data tutorials. | High value for end-to-end measurement provenance: collision, detector response, reconstruction, particle ID, uncertainty. | Prefer official slides and open-data notebooks over popular summaries. |
-| Sean Carroll, Quanta, Royal Institution, and similar long-form interviews/lectures | Episodes with primary researchers on black holes, cosmology tensions, quantum foundations, amplitudes, and Standard Model anomalies. | Mostly explanatory and source-lead value, not closure evidence. | Mine only when transcripts are available and the episode points to papers, equations, or clear reader explanations. |
+| Source family | Priority focus | $\mathbb{A}\mathbb{A}\mathbb{A}$ value |
+| --- | --- | --- |
+| Perimeter Institute [PIRSA](https://pirsa.org/node) | Foundational physics, quantum gravity, black holes, cosmology, quantum information, and PSI core lecture series with PIRSA IDs and slides. | Citable seminar records and slides; good for source leads and current expert problem framing. |
+| KITP [Online Talks](https://www.kitp.ucsb.edu/online-talks) | Program talks with slides on black holes, quantum matter, cosmology, non-equilibrium dynamics, amplitudes, and gravitational waves. | Dense frontier material with speaker-provided PDFs and discussion Q&A. |
+| IAS / Cornell / Simons Center video lecture collections | Arkani-Hamed amplitudes, positive geometry, quantum spacetime, black holes, cosmology, and mathematical-physics lectures. | Good for disciplined comparison frameworks where spacetime, locality, and quantum mechanics are derived rather than assumed. |
+| CERN videos and public detector lectures | Detector walkthroughs, event reconstruction, trigger systems, Standard Model lectures, and open-data tutorials. | High value for end-to-end measurement provenance: collision, detector response, reconstruction, particle ID, uncertainty. |
+| Sean Carroll, Quanta, Royal Institution, and similar long-form interviews/lectures | Episodes with primary researchers on black holes, cosmology tensions, quantum foundations, amplitudes, and Standard Model anomalies. | Mostly explanatory and source-lead value, not closure evidence. |
 
 
 ### Immediate Mining Order
 
-1. PIRSA, KITP, IAS / Cornell / Simons, and CERN public detector videos: mine transcript/slide pairs only when the source yields a named equation, theorem target, benchmark, source lead, or detector-provenance example.
+1. PIRSA, KITP, IAS / Cornell / Simons, and CERN public detector videos.
 
 ## Mining Completed
 
