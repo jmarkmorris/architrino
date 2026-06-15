@@ -38,6 +38,18 @@ Community and coverage links followed:
 - Peter Coles, [Inflationary Perturbation](https://telescoper.blog/2017/05/11/inflationary-perturbation/), In the Dark, 2017-05-11.
 - Nick Stockton, [Physicists Can't Agree on What Science Even Means Anymore](https://www.wired.com/2017/05/physicists-cant-agree-science-even-means-anymore/), Wired, 2017-05-16.
 
+Additional technical sources mined in the follow-up pass:
+
+- Planck Collaboration, [Planck 2018 results. X. Constraints on inflation](https://arxiv.org/abs/1807.06211), arXiv:1807.06211.
+- BICEP/Keck Collaboration, [BICEP / Keck XIII](https://arxiv.org/abs/2110.00483), arXiv:2110.00483.
+- Jessica A. Zebrowski et al., [First constraints on causal sources of primordial gravitational waves](https://arxiv.org/abs/2601.20958), arXiv:2601.20958.
+- Atacama Cosmology Telescope Collaboration, [DR6 gravitational lensing map and cosmological parameters](https://arxiv.org/abs/2304.05203), arXiv:2304.05203.
+- Atacama Cosmology Telescope Collaboration, [DR6 power spectrum foreground model and validation](https://arxiv.org/abs/2506.06274), arXiv:2506.06274.
+- Anna Ijjas and Paul J. Steinhardt, [The anamorphic universe](https://arxiv.org/abs/1507.03875), arXiv:1507.03875.
+- Anna Ijjas and Paul J. Steinhardt, [Implications of Planck2015 for inflationary, ekpyrotic and anamorphic bouncing cosmologies](https://arxiv.org/abs/1512.09010), arXiv:1512.09010.
+- Anna Ijjas and Paul J. Steinhardt, [Entropy, Black holes, and the New Cyclic Universe](https://arxiv.org/abs/2108.07101), arXiv:2108.07101.
+- Prateek Agrawal, Georges Obied, Paul J. Steinhardt, and Cumrun Vafa, [On the Cosmological Implications of the String Swampland](https://arxiv.org/abs/1806.09718), arXiv:1806.09718.
+
 ## Original Article: Detailed Point Summary
 
 Ijjas, Steinhardt, and Loeb argue that the post-Planck status of cosmic inflation is weaker than its public presentation suggests. Their target is not only one old inflation model but the combination of observational claims, initial-condition claims, and multiverse claims that make modern inflation highly flexible.
@@ -75,87 +87,166 @@ The rebuttal concedes that some standard models have been ruled out by data but 
 
 The Ijjas-Steinhardt-Loeb reply says the rebuttal misses the difference between older, optimistic inflation and inflation as currently understood. They argue that the claim of confirmation depends on outdated assumptions that ignored sensitivity to initial conditions and eternal inflation. Their reply emphasizes that even after fixing parameters, an inflationary model can produce an infinite diversity of outcomes with no preferred outcome, so observed agreement cannot be counted as a normal prediction. Their closing position is that the issue should not be settled by reputation or signatory count.
 
-## Community Responses By Individual
+## Condensed Controversy Map
 
-### Anna Ijjas, Paul J. Steinhardt, and Avi Loeb
+| Authors and aligned critique | Community counterpoint |
+| --- | --- |
+| Inflation has become too flexible: the observed universe can be obtained by changing the inflaton energy-density curve, initial conditions, reheating details, or multiverse measure assumptions. A framework that can absorb many unlike outcomes has weak predictive force. | Inflation is a model class, not one equation. Scientific testing can occur at the level of concrete model families. Several standard slow-roll models have made quantitative predictions for flatness, scalar tilt, adiabaticity, Gaussianity, E-mode structure, and allowed B-mode ranges. |
+| Planck did not confirm the simplest textbook models. Low tensor support and a small scalar tilt pushed the field away from many once-advertised high-scale or simple monomial potentials toward plateau-like potentials. | Ruling out some models is normal empirical narrowing. Planck 2018 favored concave slow-roll potentials and found no evidence for features beyond a simple power-law scalar spectrum, while keeping many plateau and attractor-style models viable. |
+| The lack of primordial B-mode detection undermines simple high-energy inflation pictures and weakens claims that B-modes were a near-term decisive signature. BICEP2 is a cautionary example because foreground dust first looked like a signal. | B-mode amplitude is model-dependent. BICEP/Keck sharpened the upper limit to $r_{0.05} < 0.036$ at 95% confidence, which excludes many branches but does not exclude all slow-roll or low-scale inflationary branches. Foreground modeling is now part of the empirical discipline. |
+| Inflation shifts the smoothness problem backward if it requires an already classical, smooth, flat enough patch with a carefully placed inflaton. The explanation then depends on a special initial-condition basin. | Initial-condition questions are real, but they do not by themselves erase observable successes. Attractor models and alternative inflationary mechanisms are meant to reduce sensitivity to initial conditions, and defenders argue that cosmology may need a deeper theory for the starting branch just as particle physics needs deeper parameter explanations. |
+| Eternal inflation and multiverse reasoning threaten prediction: if all physically allowed outcomes occur somewhere, observations do not select a branch without an extra measure rule. | Multiverse questions are separable from tests inside the observable patch. A local model can still predict observables for our region even if a deeper framework is needed to explain why this local model applies here. |
+| Bounce, ekpyrotic, anamorphic, or cyclic models may smooth and flatten through slow contraction or frame-invariant smoothing without producing a multiverse. They may also predict suppressed primordial tensors. | Bounce families carry their own burdens: a stable non-singular transition, perturbation matching, entropy accounting, blackbody preservation, BBN compatibility, and growth/lensing consistency. They are comparison frameworks, not automatic replacements. |
+| Public authority and signatory count should not decide a technical issue. The important question is prediction-width and falsifiability, not who endorses which paradigm. | Community responses were partly a defense against the charge that a mainstream research program had left empirical science. Several responses also acknowledged real incompleteness and difficulty defining inflation precisely, so the counterpoint is not simple triumphalism. |
+| The philosophy-of-science standard is exclusion: a successful branch should rule out nearby alternatives before data fitting, not only reproduce the observed packet after flexible adjustment. | Many mature theories have adjustable parameters and evolve through data-driven pruning. The fair standard is not zero flexibility, but declared assumptions, quantitative outputs, and reproducible failures when the declared branch misses the data. |
 
-They maintain that current inflation has lost ordinary predictive restriction because outcomes depend on initial conditions, the inflaton energy-density curve, and multiverse measure assumptions. They are not merely saying some inflationary models are wrong; they are saying the remaining framework has become too adaptable. Their positive direction is to keep open alternatives such as bouncing cosmology and to use Planck-era data as a reason to search for new early-universe mechanisms.
+## Follow-Up Source-Mining Extraction
 
-### Alan Guth
+### Current Observable Pressure
 
-Guth rejects the accusation that inflation is outside empirical science. In Undark, he calls the claim that inflation proponents accept untestability baseless. In the Atlantic account, he treats the question "what experiment would falsify inflation as a whole?" as poorly posed because inflation is an umbrella over many models. His working answer is that observation and theory should narrow the umbrella toward specific viable versions, not that all versions are instantly falsifiable at once.
+The post-2017 data landscape strengthens the need to treat the controversy as a comparison-contract problem rather than a popularity contest. Planck 2018 reports $n_{\mathrm{s}} = 0.9649 \pm 0.0042$, no evidence for running of $n_{\mathrm{s}}$, spatial flatness at about 0.4% precision when combined with BAO, and $r_{0.002} < 0.056$ when combined with BICEP2/Keck BK15. BICEP/Keck through the 2018 observing season tightened the tensor bound to $r_{0.05} < 0.036$ at 95% confidence after explicit dust, synchrotron, lensing, and noise modeling. These numbers preserve the critic-side pressure on high-tensor simple models while preserving the counterpoint that low-tensor branches remain live.
 
-### David Kaiser
+The 2026 early-causal-tensor paper is useful because it tests non-inflationary causal tensor sources rather than only slow-roll gravitational waves. Its bound $r_{\mathrm{ECT}} < 0.0077$ at 95% confidence constrains first-order phase transitions, enhanced small-scale density perturbations, and topological-defect-like early sources. For $\mathbb{A}\mathbb{A}\mathbb{A}$, this means the tensor row cannot be phrased only as "inflation yes/no." Any early release, recycling, strong-field, or phase-transition-like Noether sea branch must also forecast the low-frequency CMB B-mode tensor packet.
 
-Kaiser helped write the 33-signatory response and objected to the way the Scientific American article portrayed the inflation community. Undark reports him as arguing that earlier technical criticism had already answered much of the case and that the magazine article made researchers sound like a cult rather than a scientific community. In The Atlantic, Kaiser explains the signature-gathering strategy as a way to show that the dispute was not only three physicists against three physicists. He also acknowledges that the sides may be speaking past each other.
+ACT DR6 lensing adds a shared-state pressure. The ACT DR6 lensing map covers a large sky area and gives $S_8 = 0.840 \pm 0.028$ with BAO, or $S_8 = 0.831 \pm 0.023$ when combined with Planck CMB lensing, in agreement with $\Lambda\mathrm{CDM}$ extrapolations from Planck anisotropies. ACT foreground-validation work reports that DR6 $\Lambda\mathrm{CDM}$ and $\Lambda\mathrm{CDM} + N_{\mathrm{eff}}$ parameters shift by less than $0.5\sigma$ under tested foreground-model variations. The useful lesson is not that $\mathbb{A}\mathbb{A}\mathbb{A}$ should import $\Lambda\mathrm{CDM}$ ontology, but that foreground, lensing, damping-tail, and growth rows cannot be treated as flexible escape hatches.
 
-### Andrei Linde
+The bounce-side follow-up papers sharpen what should be mined from alternatives. Anamorphic cosmology claims a smoothing phase that behaves like contraction under some Weyl-frame-invariant criteria and expansion under others, with the stated advantage of avoiding multiverse and measure problems. The 2015 Planck/bounce review claims Planck favors simple ekpyrotic/cyclic alternatives over "classic" inflation. The 2021 cyclic entropy paper claims repeated smooth bounces can partition entropy into high matter-radiation entropy but low gravitational entropy, satisfying Weyl-curvature-style smoothness conditions. These are not $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology imports. They are source leads for initial-basin, tensor, entropy, and smoothness residuals.
 
-Linde's technical response emphasizes the success of broad inflationary families, especially attractor models whose predictions cluster near the Planck-favored region of the $(n_s,r)$ plane. Stanford's coverage presents his public argument that inflation survived serious tests: flatness, Gaussianity constraints, and Planck-era CMB results. He treats the Scientific American critique as potentially damaging to younger researchers and sees the signatory support as evidence that inflation remains a live, productive research program.
+The swampland paper is lower-priority for direct cosmology closure because the criteria are conjectural quantum-gravity comparison rules, not observational data products. Its value here is narrower: it turns "inflation is flexible" into a possible field-range and potential-slope pressure. If a future $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmology branch uses scalar-field bridge language, it should state whether that bridge is only an observer-level effective parameterization or whether it is claiming compatibility with field-range and potential-slope consistency tests.
 
-### Yasunori Nomura
+### Mapping Discipline For $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-Nomura appears in this source chain primarily as a co-author of the Scientific American rebuttal and of the technical GKL&N-side argument. His position in the shared response is that inflationary models can be empirically tested in our observable universe even if broader multiverse or deeper-framework questions remain unresolved.
+The source-mining split is:
 
-### Sean Carroll
+- Observable constraints: $n_{\mathrm{s}}$, $A_{\mathrm{s}}$, $\alpha_{\mathrm{s}}$, $r$, $C_\ell^{\mathrm{TT}}$, $C_\ell^{\mathrm{TE}}$, $C_\ell^{\mathrm{EE}}$, $C_{L}^{\phi\phi}$, adiabaticity, Gaussianity, isocurvature bounds, BBN handoff, BAO ruler calibration, and growth/lensing records.
+- Standard-theory comparison objects: slow-roll variables, inflaton potentials, plateau and attractor classes, ekpyrotic or anamorphic smoothing variables, cyclic entropy partitions, and $\Lambda\mathrm{CDM}$ parameter chains.
+- Interpretation: inflation as a confirmed origin story, multiverse selection, bounce as a replacement origin story, or cyclic cosmology as ontological history.
+- $\mathbb{A}\mathbb{A}\mathbb{A}$ target: one declared Noether sea and assembly history that projects to the observable packet without importing inflaton, multiverse, bounce, or string-landscape ontology.
 
-Carroll signed the rebuttal. The direct Preposterous Universe page returned a 403 challenge in this pass, but Gizmodo quotes his central point: judge theories by testable predictions they do make, not by untestable questions they also raise. Carroll's stance, as represented in the linked coverage, is that unanswered questions around inflation are real but do not justify declaring the field outside science. A scientist may work on the unanswered problems or work on alternatives, but the open problems are not proof of in-principle unanswerability.
+The existing [cosmology-closure](cosmology-closure.md) and [CMB](../../../content/markdown/aaa/cosmology/CMB.md) pages already contain the right native direction: slow-roll variables are comparison projections, and CMB closure uses one $\theta$ record for spectra, scalar/tensor bounds, phase coherence, vector suppression, lensing, smoothness, blackbody behavior, and growth handoff. This brainstorm should therefore sharpen the mathematical objects feeding those pages rather than creating another gate.
 
-### Renata Kallosh
+### Candidate Mathematical Advance: Prediction-Width Discipline
 
-Kallosh is reported by Gizmodo as saying she had reviewed some Steinhardt papers and found errors. In this packet she functions as a pro-inflation technical signatory whose public response is not a broad philosophy-of-science argument but a criticism of the correctness of the anti-inflation technical literature.
+The controversy can be translated into a prediction-width criterion for a declared cosmology branch. Let the branch record be
+$$
+\theta_{\mathrm{cosmo}}
+=
+\left(
+\theta_{\mathrm{sea}},
+\theta_{\mathrm{init}},
+\theta_{\mathrm{source}},
+\theta_{\mathrm{thermal}},
+\theta_{\mathrm{path}},
+\theta_{\mathrm{growth}},
+\theta_{\mathrm{frame}}
+\right)
+$$
+where the entries are respectively the Noether sea state, initial basin, source or release record, thermalization record, photon path-history record, growth/lensing record, and frame/direction record. The observer-level output packet can be written schematically as
+$$
+\mathbf{o}_{\mathrm{CMB}}^\theta
+=
+\left(
+A_{\mathrm{s}}^\theta,\,
+n_{\mathrm{s}}^\theta,\,
+\alpha_{\mathrm{s}}^\theta,\,
+r^\theta,\,
+f_{\mathrm{NL}}^\theta,\,
+\beta_{\mathrm{iso}}^\theta,\,
+C_\ell^{\mathrm{TT},\theta},\,
+C_\ell^{\mathrm{TE},\theta},\,
+C_\ell^{\mathrm{EE},\theta},\,
+C_{L}^{\phi\phi,\theta}
+\right)
+$$
+and the combined cosmology residual should read from the already-declared residual family,
+$$
+\mathcal{R}_{\mathrm{cos}}(\theta_{\mathrm{cosmo}})
+=
+\mathcal{R}_{\mathrm{CMB}}
++\mathcal{R}_{\mathrm{BAO}}
++\mathcal{R}_{\mathrm{SN}/H_0}
++\mathcal{R}_{\mathrm{WL}/\mathrm{RSD}}
++\lambda_{\mathrm{split}}\mathcal{P}_{\mathrm{proj}}.
+$$
+Fitting means $\mathcal{R}_{\mathrm{cos}}(\theta_{\mathrm{cosmo}}) \le \epsilon_{\mathrm{cos}}$. Predicting requires more: the allowed-output set near the observed packet must be narrow,
+$$
+\mathcal{O}_{\epsilon}(\theta_{\mathrm{cosmo}})
+=
+\left\{
+o \in \mathcal{O}_{\mathrm{near}}:
+\mathcal{R}_{\mathrm{cos}}(\theta_{\mathrm{cosmo}};o)
+\le
+\epsilon_{\mathrm{cos}}
+\right\},
+\qquad
+\mu\!\left(\mathcal{O}_{\epsilon}(\theta_{\mathrm{cosmo}})\right)
+\ll
+\mu(\mathcal{O}_{\mathrm{near}}).
+$$
+This is the compact $\mathbb{A}\mathbb{A}\mathbb{A}$ version of the inflation dispute. The critic-side worry is large $\mu(\mathcal{O}_{\epsilon})$: too many possible outputs are allowed. The counterpoint is that concrete branch classes can have small $\mu(\mathcal{O}_{\epsilon})$ and therefore remain predictive even when the umbrella word `inflation` is broad.
 
-### Frank Wilczek
+### Candidate Mathematical Advance: Initial-Basin Burden
 
-Wilczek is reported by Gizmodo as thinking the Scientific American article was very biased and close to slander, while also being uncomfortable with the scale of the mass-signatory response. His position is useful because it separates two judgments: he disliked the anti-inflation framing, but he also worried that a large authority-backed letter might be excessive.
+Initial-condition specialness should be represented as a basin measure, not as an analogy. Let $\Gamma_{\mathrm{init}}$ be the declared initial state or path-history chart for the branch, with measure $\mu_{\mathrm{init}}$ chosen inside the solver or closure protocol. The observed basin is
+$$
+\mathcal{B}_{\mathrm{obs}}
+=
+\left\{
+\theta_{\mathrm{init}} \in \Gamma_{\mathrm{init}}:
+\mathcal{R}_{\mathrm{cos}}(\theta_{\mathrm{cosmo}})
+\le
+\epsilon_{\mathrm{cos}}
+\right\}.
+$$
+The branch should report
+$$
+\mathcal{S}_{\mathrm{init}}
+=
+-\log
+\frac{
+\mu_{\mathrm{init}}(\mathcal{B}_{\mathrm{obs}})
+}{
+\mu_{\mathrm{init}}(\Gamma_{\mathrm{init}})
+}.
+$$
+A high $\mathcal{S}_{\mathrm{init}}$ means the branch has moved the smoothing burden into a tiny initial basin. A low value means the smoothing/release mechanism is robust under the declared chart. This directly maps the inflation initial-condition dispute onto the existing basin language in the $\mathbb{A}\mathbb{A}\mathbb{A}$ canon.
 
-### Lisa Randall
+### Candidate Mathematical Advance: Tensor And Causal-Source Split
 
-Randall is reported by Gizmodo as saying inflation is not an established truth and remains hard to define precisely. She calls the model unsatisfying, which identifies a real source of disagreement without accepting the claim that inflation is pseudoscience. Her response is a moderate pro-inflation position: the framework is scientifically live but conceptually incomplete.
+The tensor row should distinguish inflation-like vacuum tensor modes from causal-source tensor modes. For a declared branch,
+$$
+r_{\mathrm{tot}}^\theta(k_*)
+=
+r_{\mathrm{vac}}^\theta(k_*)
++r_{\mathrm{causal}}^\theta(k_*),
+$$
+with BICEP/Keck constraining the total primordial B-mode packet and the 2026 causal-source analysis adding a low-frequency causal-source bound. The usable residual is
+$$
+\mathcal{R}_{\mathrm{T}}^{\theta}
+=
+\lambda_{\mathrm{vac}}
+\max\!\left(0, r_{\mathrm{vac}}^\theta - r_{\mathrm{vac},\max}\right)^2
++
+\lambda_{\mathrm{causal}}
+\max\!\left(0, r_{\mathrm{causal}}^\theta - r_{\mathrm{ECT},\max}\right)^2
++
+\sum_{\ell \in \mathcal{L}_{\mathrm{BB}}}
+\frac{
+\left(C_{\ell,\mathrm{BB}}^{\theta} - C_{\ell,\mathrm{BB}}^{\mathrm{obs}}\right)^2
+}{
+\sigma_{\ell,\mathrm{BB}}^2
+}.
+$$
+This keeps tensor evidence from being flattened into "inflation signal" or "anti-inflation signal." In $\mathbb{A}\mathbb{A}\mathbb{A}$ it is a branch-output split: any early strong-source, release, recycling, phase-transition, or topological-defect-like comparison must say whether its tensor power is vacuum-like, causal-source-like, or absent.
 
-### Andreas Albrecht
+### Claim Map
 
-Albrecht is presented by The Atlantic as disappointed by the polarization. As a historical contributor to inflation and former Steinhardt student, his response is less about picking a winner and more about concern that the debate has become publicly adversarial. His signal for this workstream is that foundational cosmology disagreements can become distorted when they are compressed into authority contests.
-
-### Clara Moskowitz
-
-Moskowitz, the Scientific American editor of the original feature, defends the editorial choice as hosting healthy scientific debate. She notes that inflation is the majority view but argues that minority criticism can still belong in a public science venue. For source-mining purposes, this separates the editorial question from the technical question: publishing a dissenting framework is not the same as endorsing it.
-
-### Peter Woit
-
-Woit's response is sympathetic to Ijjas, Steinhardt, and Loeb on the danger of multiverse-based explanation, but he says the sides are partly talking past each other because "inflation" is used at different levels of specificity. He thinks the concrete disagreement is whether Planck confirms or disfavors the simplest models. He also criticizes both the BICEP2-era "smoking gun" rhetoric and the later PR/signatory strategy. His most useful technical point for $\mathbb{A}\mathbb{A}\mathbb{A}$ closure is the separation between simple single-field inflationary models and string-landscape multiverse claims; treating those as one evidence chain creates confusion.
-
-### John Horgan
-
-Horgan sides strongly with the Ijjas-Steinhardt-Loeb critique. He frames inflation, like string theory, as "ironic science": a theory family that may never be proven true or false. He regards the multiverse consequence and model flexibility as worsening rather than maturing the theory. His response is valuable as a philosophy-of-science pressure signal but should not be imported as technical cosmology evidence.
-
-### Peter Coles
-
-Coles gives the most balanced linked expert response. He likes inflation because it is neat and gives a simple mechanism for generating CMB-scale fluctuations of the observed kind. He dislikes the multiverse and does not see it as necessary or useful for inflation. He also says the data do not prove inflation and do not greatly narrow the model space. His complaint against the field is the proliferation of weakly motivated inflation variants. His working position is that inflation remains preferred partly because it fits important observations and partly because no compelling alternative has yet beaten it.
-
-### Ethan Siegel
-
-Siegel's Forbes article defends inflation as the leading pre-hot-big-bang framework while allowing that scientific ideas can be revised or falsified. He organizes the dispute around three layers: the big-bang problems inflation was built to solve, the generic solutions and predictions inflation supplies, and the later difficulties caused by model diversity and multiverse implications. His pro-inflation case highlights flatness, super-horizon correlations, adiabatic perturbations, limits on maximum early temperature, and consistency with CMB measurements. He treats the Steinhardt-side criticism as serious enough to explain but not strong enough to abandon inflation without a better predictive replacement.
-
-### Ryan F. Mandelbaum
-
-Mandelbaum's Gizmodo article emphasizes that calling a research program unscientific is unusually provocative when directed at mainstream cosmology. He reports that even several signatories were conflicted: inflation is not established truth, the definition of inflation is difficult, and the response letter may have been heavy-handed. The article's contribution is to show that the community response was not simply a binary pro- or anti-inflation split.
-
-### Joshua Sokol
-
-Sokol's Atlantic article frames the dispute as a public escalation of a long technical argument. He clarifies the two camps' disagreement about empirical testing: critics say the broad framework can absorb any observation, while defenders say specific model families make testable predictions for our observable universe. He also highlights the multiverse as a central sticking point and includes the Ijjas-Steinhardt-Loeb objection that invoking authority cannot resolve the issue.
-
-### Michael Schulson
-
-Schulson's Undark coverage foregrounds the media and editing controversy. He reports Kaiser's concern that Scientific American let the article characterize the inflation community unfairly, Guth's anger at the untestability charge, and Moskowitz's defense that science magazines should host debate. The article also records that Ijjas, Steinhardt, and Loeb pointed to Guth's 2014 exchange with Loeb as evidence that even proponents recognize inflation's falsifiability problem.
-
-### Nick Stockton
-
-Stockton's Wired article treats the controversy as a question about the verb-like process of doing science. The strongest contribution is not a cosmological verdict but a map of the public-facing epistemic problem: how much time and flexibility should a theory family receive before it stops being a productive scientific framework? He places both sides inside recognizable scientific practice rather than treating either side as fringe by default.
-
-### Lubos Motl
-
-The linked Motl page could not be inspected in this pass because Blogger redirected to Google sign-in. Woit characterizes the linked response as aggressively pro-inflation and personally insulting toward the critics. Because the primary page was inaccessible here, this packet should not use it as evidence beyond that limited source-map fact.
+| Claim bucket | Mined signal | $\mathbb{A}\mathbb{A}\mathbb{A}$ disposition |
+| --- | --- | --- |
+| Ontology | Inflaton fields, multiverse selection, bounce fields, and string swampland criteria are external frameworks. | Do not import as substrate ontology. Preserve the fixed Euclidean void, Noether sea, assemblies, absolute time, causal wakes, and observer-level projection variables. |
+| Derivation/closure target | One branch record must produce CMB scalar/tensor outputs, adiabaticity, Gaussianity, BBN, BAO, growth/lensing, and redshift transfer without state splitting. | Convert to branch-record, prediction-width, initial-basin, tensor-split, and shared-state residuals. These feed existing cosmology closure, not a new gate. |
+| Effective summary | $a(t)$, $H(t)$, slow-roll variables, $\Lambda\mathrm{CDM}$ parameters, curvature, and tensor-to-scalar ratio are comparison coordinates. | Use them as observer-level data-product language. They do not imply literal expansion of the Euclidean void or a fundamental scalar field. |
+| Speculation | Bounce/cyclic entropy partition, anamorphic smoothing, swampland pressure, and multiverse explanation. | Keep as comparison frameworks and source leads unless a native $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation supplies the mechanism and observable packet. |
 
 ## Extraction For Cosmology Closure
 
@@ -164,101 +255,55 @@ The linked Motl page could not be inspected in this pass because Blogger redirec
 These sources reinforce that the cosmology workstream must keep the observable packet separate from the inflationary interpretation:
 
 - Spatial curvature or flatness, usually represented by $\Omega_k$ or total $\Omega$ near unity.
-- Scalar spectral tilt $n_s$ and its deviation from exact scale invariance.
-- Scalar amplitude and the small CMB temperature anisotropy scale.
-- Tensor-to-scalar ratio $r$ and B-mode non-detection bounds.
+- Scalar spectral tilt $n_{\mathrm{s}}$ and its deviation from exact scale invariance.
+- Scalar amplitude $A_{\mathrm{s}}$ and the small CMB temperature anisotropy scale.
+- Running $\alpha_{\mathrm{s}}$ or other allowed deviations from a pure power-law scalar spectrum.
+- Tensor-to-scalar ratio $r$, including BICEP/Keck B-mode non-detection bounds.
+- Causal-source tensor constraints such as $r_{\mathrm{ECT}}$ for non-inflationary early sources.
 - E-mode polarization and the relation between temperature and polarization transfer functions.
 - Adiabatic versus isocurvature perturbation content.
 - Gaussianity and non-Gaussianity constraints.
+- CMB lensing $C_{L}^{\phi\phi}$ and its compatibility with late-time growth.
+- Foreground and calibration nuisance rows, especially dust, synchrotron, SZ, lensing, and instrument covariance.
 - Super-horizon correlation structure in the CMB and large-scale structure.
 - Reheating or post-release thermalization sufficient to recover hot-big-bang conditions.
 - Initial-condition basin: how much prior-state specialness is required for a branch to reach the observed packet.
+- Entropy and smoothness partition: whether a branch suppresses effective free gravitational modes while preserving matter-radiation thermal history.
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, none of those observables requires importing an inflaton as ontology. They are comparison handles for the existing transfer-function goal.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, none of those observables requires importing an inflaton, a multiverse, a literal bounce field, or a string landscape as ontology. They are comparison handles for the existing transfer-function goal.
 
 ### Pressure On The Existing Transfer-Function Closure
 
-The current [cosmology-closure](cosmology-closure.md) file already treats slow-roll variables as comparison projections. This source chain strengthens that choice. The native closure burden should be:
+The current [cosmology-closure](cosmology-closure.md) file already treats slow-roll variables as comparison projections and already has a shared residual form over CMB, BAO, $\mathrm{SN}/H_0$, $\mathrm{WL}/\mathrm{RSD}$, and ontology-split penalty. This source chain strengthens that choice. The native closure burden should be:
 
-- Derive the effective source record $\theta_{\mathrm{sea}}$ that produces the CMB-facing $P_\theta(k)$ and $C_\ell^{XY,\theta}$ without changing state variables between CMB, BAO, BBN, growth, and lensing.
-- State which outcomes a branch excludes before tuning to data. The branch should not only be able to fit the observed packet after enough free-function choice.
-- Separate "can fit" from "predicts under a declared branch record." This is the central lesson of the inflation controversy.
-- Track initial-condition burden as a mathematical part of the branch, not as prose. A cosmology branch that needs an already smooth, already classical, already correctly loaded prior state has not explained smoothing; it has moved the smoothing obligation.
+- Derive the effective source record $\theta_{\mathrm{sea}}$ and larger $\theta_{\mathrm{cosmo}}$ that produce CMB-facing $P_\theta(k)$, $C_\ell^{\mathrm{XY},\theta}$, tensor rows, lensing, growth, BAO, BBN, and redshift transfer without changing state variables between modules.
+- State which outcomes a branch excludes before tuning to data. The branch should not only fit the observed packet after enough free-function choice.
+- Separate "can fit" from "predicts under a declared branch record" by reporting the width of the allowed-output set.
+- Track initial-condition burden as a basin measure. A cosmology branch that needs an already smooth, already classical, already correctly loaded prior state has not explained smoothing; it has moved the smoothing obligation.
 - Keep multiverse-style explanation out of native closure unless it produces an observable comparison contract in the same branch record. Unobservable ensemble language is not useful for the current proof stack.
-
-### Candidate Theory-Advancement Targets
-
-These are not new gates. They are candidate mathematical artifacts for future closure work:
-
-1. A branch-record definition for cosmology:
-   $$
-   \theta_{\mathrm{cosmo}}
-   =
-   \left(
-   \theta_{\mathrm{sea}},
-   \theta_{\mathrm{init}},
-   \theta_{\mathrm{thermal}},
-   \theta_{\mathrm{path}},
-   \theta_{\mathrm{assembly}}
-   \right)
-   $$
-   with every CMB, BBN, BAO, growth, and lensing comparison reading from this one record.
-
-2. A predictive-restriction statement:
-   $$
-   \mathcal{O}_{\mathrm{obs}}
-   \in
-   \Pi_{\mathrm{cosmo}}(\theta_{\mathrm{cosmo}})
-   \subsetneq
-   \mathcal{O}_{\mathrm{all}},
-   $$
-   where $\Pi_{\mathrm{cosmo}}$ is the set of observer-level outputs allowed by the declared branch. The useful burden is not merely that the observed output lies inside the set, but that the set is narrow enough to exclude nearby alternatives.
-
-3. An initial-condition basin measure:
-   $$
-   \mathcal{B}_{\mathrm{obs}}
-   =
-   \left\{
-   \theta_{\mathrm{init}}:
-   R_{\mathrm{CMB}}(\theta_{\mathrm{cosmo}})
-   \leq \epsilon_{\mathrm{CMB}},
-   \;
-   R_{\mathrm{BBN}}(\theta_{\mathrm{cosmo}})
-   \leq \epsilon_{\mathrm{BBN}},
-   \;
-   R_{\mathrm{growth}}(\theta_{\mathrm{cosmo}})
-   \leq \epsilon_{\mathrm{growth}}
-   \right\}.
-   $$
-   This would make "special initial conditions" a measurable mathematical issue rather than an analogy.
-
-4. A scalar-tensor output packet:
-   $$
-   \left(
-   n_s^\theta,\,
-   A_s^\theta,\,
-   r^\theta,\,
-   f_{\mathrm{NL}}^\theta,\,
-   \alpha_s^\theta,\,
-   \beta_{\mathrm{iso}}^\theta
-   \right)
-   $$
-   derived from the native release/thermalization record. This is the comparison endpoint needed to answer the inflation debate without importing inflationary ontology.
-
-5. A multiverse-exclusion discipline for native prose: if an external source explains observed values by unobservable ensemble selection, translate only the observable comparison target into $\mathbb{A}\mathbb{A}\mathbb{A}$ terms and leave the ensemble interpretation outside the ontology.
+- Treat bounce/cyclic alternatives symmetrically: they may supply valuable smoothing and entropy ideas, but they must still satisfy CMB blackbody, scalar/tensor, BBN, BAO, growth/lensing, redshift-transfer, and shared-state requirements.
 
 ## Affected-Document Table
 
 | Path | Source signal | Useful update type | Priority | Risk |
 | --- | --- | --- | --- | --- |
-| `reference/priorities/cosmology-closure/cosmology-closure.md` | Inflation controversy sharpens the need to distinguish fit, prediction, initial-condition burden, and multiverse interpretation. | Add a short subsection under `Inflation and CMB Transfer` only if component-interface work resumes. | Medium | Low |
-| `content/markdown/aaa/cosmology/CMB.md` | Observable packet should separate $n_s$, $A_s$, $r$, Gaussianity, adiabaticity, and E/B polarization from inflationary explanation. | Reader-facing bridge only after native transfer equations are ready. | Medium | Medium |
-| `content/markdown/aaa/cosmology/cosmology-ontology.md` | Avoid importing inflaton or multiverse terminology as ontology. | Clarify comparison-framework status if current prose blurs ontology and benchmark. | Medium | Medium |
-| `content/markdown/aaa/cosmology/structure-formation.md` | Super-horizon correlations and adiabatic/isocurvature content are structure-seeding constraints. | Add only after a single branch record can connect CMB and growth. | Low | Medium |
+| `reference/priorities/cosmology-closure/cosmology-closure.md` | Inflation controversy sharpens fit-vs-prediction, prediction width, initial-basin burden, tensor-source split, and shared-state constraints. | Add a compact subsection under `Inflation and CMB Transfer` when component-interface work resumes; reuse existing $\mathcal{R}_{\mathrm{cos}}$ and $\mathcal{P}_{\mathrm{proj}}$ machinery. | High | Low |
+| `content/markdown/aaa/cosmology/CMB.md` | Existing CMB residual already covers scalar/tensor, phase, lensing, vector, smoothness, and range rows. | No immediate edit. Later, fold in causal-source tensor distinction only if it improves the existing tensor row. | Medium | Medium |
+| `content/markdown/aaa/cosmology/cosmology-ontology.md` | Source mining reinforces that inflaton, multiverse, bounce, and string-landscape language are comparison frameworks, not ontology. | No immediate edit unless current prose blurs comparison variables with substrate ontology. | Medium | Medium |
+| `content/markdown/aaa/cosmology/structure-formation.md` | ACT DR6 lensing and Planck compatibility sharpen the shared CMB-to-growth state requirement. | Add only after a single branch record can connect CMB lensing, weak lensing, and growth without splitting $\theta_{\mathrm{sea}}$. | Medium | Medium |
+| `content/markdown/aaa/cosmology/expansion-mechanism.md` | Bounce/cyclic sources are useful mainly as smoothing and entropy comparison pressure, not as literal container expansion or contraction. | No immediate edit. Preserve fixed-void ontology and use bounce language only as external comparison if needed. | Low | Medium |
+
+## Promotion Decision
+
+This packet remains `priority-only`. It contains useful mathematical targets but does not yet promote into `content/markdown/aaa` because the native branch record and output packet are not computed. The safe portion is staged here as:
+
+- `defer with blocker`: prediction-width discipline, initial-basin measure, and tensor-source split are valuable, but need a declared $\theta_{\mathrm{cosmo}}$ branch and connection to the existing $\mathcal{R}_{\mathrm{cos}}$ machinery before reader-facing promotion.
+- `priority-only`: public-response history, signatory dynamics, editorial controversy, and philosophy-of-science framing remain useful background but should not enter corpus prose except as compact comparison context.
+- `reject for promotion`: multiverse selection, inflaton ontology, bounce ontology, and swampland criteria are not native $\mathbb{A}\mathbb{A}\mathbb{A}$ claims.
 
 ## Priority Action Menu
 
-1. Promote a compact "inflation controversy as comparison contract" subsection into [cosmology-closure](cosmology-closure.md) when `component_interfaces` resumes. It should name observable outputs and initial-condition burden, not create a new validation artifact.
-2. Mine the two IS&L arXiv papers and the two GKL&N/Linde arXiv papers as a technical pair. The target should be a side-by-side table of assumptions, variables, observables, and exact disagreement points.
-3. Build a small symbolic comparison packet for $n_s^\theta$, $A_s^\theta$, $r^\theta$, $f_{\mathrm{NL}}^\theta$, and $\beta_{\mathrm{iso}}^\theta$ as observer-level outputs of a declared $\theta_{\mathrm{cosmo}}$ branch.
-4. Defer direct corpus promotion until the native transfer-function closure can state one branch record and one output packet. The current material is useful but still source-mining and planning, not reader-facing theory closure.
+1. Add a compact `Prediction Width And Initial Basin` subsection to [cosmology-closure](cosmology-closure.md) when `component_interfaces` resumes. It should reuse $\mathcal{R}_{\mathrm{cos}}$, $\mathcal{P}_{\mathrm{proj}}$, $\mathcal{O}_{\epsilon}$, and $\mathcal{S}_{\mathrm{init}}$ from this packet rather than creating a new validation artifact.
+2. Build a symbolic branch-output packet for $\theta_{\mathrm{cosmo}}$ with $A_{\mathrm{s}}^\theta$, $n_{\mathrm{s}}^\theta$, $\alpha_{\mathrm{s}}^\theta$, $r^\theta$, $r_{\mathrm{causal}}^\theta$, $f_{\mathrm{NL}}^\theta$, $\beta_{\mathrm{iso}}^\theta$, $C_\ell^{\mathrm{TT},\theta}$, $C_\ell^{\mathrm{TE},\theta}$, $C_\ell^{\mathrm{EE},\theta}$, and $C_{L}^{\phi\phi,\theta}$.
+3. Mine the linked technical PDFs in one focused paper-pair pass: IS&L 2013/2014 versus GKN/Linde 2013/2014, then Planck 2018/BICEP/Keck/ACT as empirical follow-up. The target should be exact rows for assumptions, variables, exclusions, and observational outputs.
+4. Defer direct corpus promotion until a native transfer-function branch can state one branch record, one output packet, one prediction-width measure, and one initial-basin measure.
