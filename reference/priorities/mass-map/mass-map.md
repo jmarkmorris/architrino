@@ -199,7 +199,7 @@ Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate sli
 ## Program Notes
 
 - For scorecard purposes, this is the main Parameter Closure + Mass Formulas bucket.
-- If the goal is the fastest score lift, pair this workstream with [chapter-authoring](../chapter-authoring/chapter-authoring.md) for Parameter Closure + Coverage.
+- If the goal is the fastest score lift, pair this workstream with [source-mining](../source-mining/source-mining.md) for Parameter Closure + Coverage.
 - Keep the constants question attached to the mass map only when it sharpens the derivation. Otherwise it belongs in background notes, not in the active deliverable.
 - Use the CODATA benchmark contract in [parameter-ledger](../../../content/markdown/aaa/validation/parameter-ledger.md) as a downstream scoring surface, not as a source of branch inputs. The first mass map may compare against $\alpha$, $m_p/m_e$, $m_e c^2$, $m_\mu c^2$, and hadronic mass rows only after $A_0$, $E_{\text{internal}}$, $\zeta(A)$, and $\mathcal{M}_{\text{sea}}^{ab}$ have been fixed without those rows.
 

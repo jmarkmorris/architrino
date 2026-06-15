@@ -12,6 +12,7 @@
 ## Task Queue
 
 1. `mine_source_material` — Mine legacy and external source material. Status: `pending`. 
+2. `recover_legacy_insights` — Mine deferred product, outlook, and operational notes only when they yield concrete corpus material. Status: `pending`.
 
 ## Scope
 
@@ -19,7 +20,7 @@ This is the ranked queue for source-material mining and corpus integration.
 
 ## Core Theory Focus Constraint
 
-During the current core geometrical theory push, do not treat chapter coverage as a substitute for solving the mathematics. Use this queue only when the chapter work adds or clarifies definitions, equations, closure targets, proof routes, or worked examples that directly serve the active theory stack.
+During the current core geometrical theory push, do not treat corpus coverage as a substitute for solving the mathematics. Use this queue only when the source-mining work adds or clarifies definitions, equations, closure targets, proof routes, or worked examples that directly serve the active theory stack.
 
 ## Scorecard Use
 
@@ -33,7 +34,28 @@ During the current core geometrical theory push, do not treat chapter coverage a
 - Mine material from WordPress and other prior social material (twitter).
 - Mine old PowerPoint decks.
 - Mine arXiv-style papers for definitions, examples, derivation routes, and source leads.
-- Mine YouTube videos and course playlists when transcripts, slides, or lecture notes can be reduced into concrete chapter material.
+- Mine YouTube videos and course playlists when transcripts, slides, or lecture notes can be reduced into concrete corpus material.
+- Mine deferred product, outlook, and operational notes only when they produce a source lead, reader-facing bridge, concrete task, or corpus integration target.
+
+## Legacy Insight Intake
+
+Legacy insight material is source material for this queue, not a separate product or outlook priority. Preserve the ideas, but do not let them outrank the derivation spine. Product-facing surfaces and future-technology narrative can return only after the mathematical core is compressed and stable, or when a specific item yields a concrete corpus artifact.
+
+### Deferred Material Classes
+
+This intake includes:
+
+- broad future-technology narrative material;
+- product-facing presentation layers that do not sharpen the equations;
+- operational notes whose main value is cleanup, naming, or publication routing;
+- and other outlook work that is better handled after the core derivation spine is stable.
+
+### Legacy Operational Parking Lot
+
+- Clean up the old `neoclassical.ai` repo.
+- Try to sell the `neoclassical.ai` domain.
+- Make a new subreddit.
+- Rename the blog.
 
 ## Candidate Source-Mining Backlog
 
