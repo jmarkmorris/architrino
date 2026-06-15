@@ -247,6 +247,209 @@ Required message families:
 
 Browser file-backed streaming should use Origin Private File System storage when available because it is the strongest browser fit for high-throughput worker-owned files. The bridge must report storage capability explicitly. If durable browser file streaming is unavailable, long runs should either use a native or batch path, or run with a bounded transient store and a visible capability warning.
 
+### App-Facing TypeScript Contract Draft
+
+The shared adapter should expose a small TypeScript surface. Apps import this adapter; they do not call the WebAssembly module, C++ exports, stream files, or worker protocol directly.
+
+```ts
+export type SolverAppId = "animator" | "photon" | "ideal-swarm";
+
+export type SolverRunKind =
+  | "motionSimulation"
+  | "causalRoots"
+  | "delayedHits"
+  | "sharedGeometry"
+  | "appPlayback"
+  | "validationReplay";
+
+export type SolverPrecisionPath =
+  | "auto"
+  | "scaled_f64_fast"
+  | "scaled_f64_strict"
+  | "adaptive_multirate"
+  | "event_root_focused"
+  | "extended_precision"
+  | "validation_replay";
+
+export type SolverClaimLevel =
+  | "interactive-preview"
+  | "migration-parity"
+  | "exported-dataset"
+  | "validation-evidence";
+
+export interface SolverClient {
+  init(request: SolverInitRequest): Promise<SolverInitResponse>;
+  capabilities(): Promise<SolverCapabilities>;
+  runSimulation(request: SolverRunRequest): Promise<SolverRunHandle>;
+  cancelRun(request: SolverCancelRequest): Promise<SolverStatusRecord>;
+  openStream(request: SolverOpenStreamRequest): Promise<SolverStreamHandle>;
+  readStreamRange(request: SolverReadStreamRangeRequest): Promise<SolverStreamRangeResponse>;
+  closeRun(request: SolverCloseRunRequest): Promise<SolverStatusRecord>;
+  dispose(): Promise<void>;
+}
+
+export interface SolverInitRequest {
+  appId: SolverAppId;
+  apiVersion: string;
+  requestedCapabilities: string[];
+  storagePolicy: SolverStoragePolicy;
+  threadingPolicy: SolverThreadingPolicy;
+}
+
+export interface SolverRunRequest {
+  appId: SolverAppId;
+  runKind: SolverRunKind;
+  claimLevel: SolverClaimLevel;
+  precisionPath: SolverPrecisionPath;
+  configVersion: string;
+  configHash?: string;
+  config: unknown;
+  output: SolverOutputRequest;
+}
+
+export interface SolverRunHandle {
+  requestId: string;
+  runId: string;
+  datasetId?: string;
+  cancellationToken: string;
+  acceptedPrecisionPath: SolverPrecisionPath;
+  expectedOutputs: SolverOutputKind[];
+}
+
+export type SolverOutputKind =
+  | "summary"
+  | "frameBuffer"
+  | "pathStream"
+  | "rootLedger"
+  | "delayedHitEvents"
+  | "phaseAtHit"
+  | "geometryBuffer"
+  | "diagnostics"
+  | "validationArtifacts";
+
+export interface SolverOutputRequest {
+  outputs: SolverOutputKind[];
+  streamTarget?: "worker-memory" | "opfs" | "native-file" | "caller-buffer";
+  memoryBudgetBytes: number;
+  sampleStride?: number;
+  deterministic: boolean;
+}
+```
+
+Response messages should be normalized by the shared adapter:
+
+```ts
+export type SolverWorkerMessage =
+  | { type: "progress"; runId: string; stage: string; fraction?: number }
+  | { type: "diagnostic"; runId: string; diagnostic: SolverDiagnosticRecord }
+  | { type: "completed"; runId: string; response: SolverRunResponse }
+  | { type: "halt"; runId: string; status: SolverStatusRecord }
+  | { type: "error"; requestId: string; status: SolverStatusRecord };
+
+export interface SolverRunResponse {
+  runId: string;
+  datasetId?: string;
+  summary: SolverRunSummary;
+  buffers: SolverBufferDescriptor[];
+  streams: SolverStreamDescriptor[];
+  diagnostics: SolverDiagnosticRecord[];
+  status: SolverStatusRecord;
+}
+
+export interface SolverBufferDescriptor {
+  bufferId: string;
+  layout: SolverBinaryLayoutId;
+  byteOffset: number;
+  byteLength: number;
+  rowCount: number;
+  numericType: SolverNumericType;
+  buffer: ArrayBuffer;
+}
+
+export interface SolverStreamDescriptor {
+  streamId: string;
+  manifestVersion: string;
+  indexLayout: SolverBinaryLayoutId;
+  availableRanges: SolverStreamRange[];
+  storagePolicy: SolverStoragePolicy;
+}
+```
+
+### Per-App Adapter Contracts
+
+| App adapter | Request mapping | Required solver outputs | Migration acceptance |
+| --- | --- | --- | --- |
+| Animator | Convert simulation-authoring state and assembly initial conditions into `motionSimulation` or `appPlayback` requests. | Frame buffers, path streams, field-shell geometry, delayed-hit events, root ledger, run summary, halt status, and diagnostics compatible with the existing Animator dataset playback surface. | Existing Animator playback can render solver datasets without per-frame solver execution, and parity fixtures match the current assembly-dynamics-backed path within declared tolerances. |
+| Photon | Convert photon layer parameters, source histories, receiver history, local speed parameters, and observer-field settings into `causalRoots`, `delayedHits`, and `sharedGeometry` requests. | All positive causal roots, same-source roots when enabled, phase-at-hit rows, phase-spread summaries, Jacobian diagnostics, rejected-root reasons, reconstructed receiver acceleration, and transverse-field buffers. | Photon-local causal-root diagnostics can be replaced by the shared root and phase APIs while preserving visible diagnostic behavior and exposing stronger precision/status records. |
+| Ideal Swarm | Convert flight-time, delayed-potential, circular self-hit, and path-potential settings into `causalRoots`, `delayedHits`, and `sharedGeometry` requests. | Flight-time roots, circular self-hit spans, delayed-potential geometry, root ledger rows, delayed-hit events, precision diagnostics, and geometry buffers usable by the existing profile views. | Existing `solveFlightTime` and `solveCircularSelfHitSpan` fixtures match shared-solver outputs within declared root residual and geometry tolerances. |
+
+App adapters may contain UI-to-solver normalization and solver-to-renderer formatting. They may not contain app-specific C++ handling, WebAssembly lifecycle code, stream-file parsing, or private status-code interpretation.
+
+### Status And Error Vocabulary
+
+Every halt, error, warning, or validation result should use one shared status record:
+
+```ts
+export type SolverStatusSeverity = "ok" | "info" | "warning" | "halt" | "error";
+
+export type SolverStatusCode =
+  | "ok"
+  | "cancelled"
+  | "precision_escalated"
+  | "precision_failed"
+  | "insufficient_history_depth"
+  | "insufficient_scale_resolution"
+  | "time_resolution_insufficient"
+  | "root_not_bracketed"
+  | "root_unresolved"
+  | "small_jacobian"
+  | "transversality_floor_failed"
+  | "ledger_rerun_required"
+  | "stream_memory_pressure"
+  | "stream_write_failed"
+  | "stream_read_failed"
+  | "unsupported_browser_storage"
+  | "unsupported_wasm_threads"
+  | "validation_replay_mismatch"
+  | "app_contract_error"
+  | "internal_solver_error";
+
+export interface SolverStatusRecord {
+  code: SolverStatusCode;
+  severity: SolverStatusSeverity;
+  message: string;
+  runId?: string;
+  requestId?: string;
+  stage?: string;
+  recoverable: boolean;
+  details?: Record<string, unknown>;
+}
+```
+
+Status rules:
+
+- `precision_escalated` is informational only when the solver moves to a stricter path and still satisfies the requested claim level.
+- `precision_failed` is a halt when no available stricter path can satisfy the declared error budget.
+- `ledger_rerun_required` is a halt for proof or validation consumers and a warning for interactive previews only when the manifest marks the result as preview-grade.
+- `unsupported_browser_storage` and `unsupported_wasm_threads` must not be hidden; the app bridge reports the missing capability and selects a declared fallback or halts.
+- `internal_solver_error` is reserved for invariant failures. Root failures, precision failures, and IO failures must use their specific status codes.
+
+### Binary Buffer Layouts
+
+All dense app-facing buffers should use versioned, little-endian, structure-of-arrays layouts. Every buffer descriptor declares `layout`, `numericType`, `rowCount`, byte length, coordinate convention, time convention, precision path, and whether the buffer is authoritative or an app-facing projection.
+
+| Layout id | Rows | Required columns | Primary consumers |
+| --- | --- | --- | --- |
+| `frame_buffer.v1` | One row per frame/path sample. | `frameIndex`, `time`, `pathId`, `x`, `y`, `z`, `vx`, `vy`, `vz`, `phase`, `roleCode`, `statusFlags`. | Animator playback, app previews, export. |
+| `path_chunk.v1` | One chunk per time window and bounded path bundle. | Chunk header, time bounds, frame bounds, path id range, declared sample columns, checksum trailer. | Path-history streams, indexed readback, scrubbing. |
+| `root_ledger.v1` | One row per retained, inactive, separator, or transition root row. | `receiverId`, `sourceId`, `rootId`, `rootKind`, `hitTime`, `emissionTime`, `delay`, `distance`, `residual`, `jacobian`, `jacobianSign`, `statusCode`, `firstFailureCode`. | Photon diagnostics, validation replay, proof handoff, delayed-hit reconstruction. |
+| `delayed_hit_events.v1` | One row per delayed-hit event. | `eventId`, `rootId`, `emitterId`, `receiverId`, emission point, receiver point, unit direction, `jacobian`, `strength`, `statusCode`. | Animator delayed-hit rendering, Photon hit sums, Ideal Swarm potential views. |
+| `phase_at_hit.v1` | One row per source/receiver phase record attached to a root. | `rootId`, `pathId`, `layerCode`, `roleCode`, `chargeSign`, `rootKind`, `cycleIndex`, `sourcePhase`, `receiverPhase`, `phaseSpreadGroup`. | Photon and photon-closure diagnostics. |
+| `geometry_buffer.v1` | One row per geometry primitive. | `primitiveId`, `primitiveKind`, path/source/receiver ids, points or vector payload, scalar payload, projection status. | Shells, spans, intersections, connectors, display projections. |
+| `stream_index.v1` | One row per committed chunk or event range. | `streamId`, `chunkId`, byte offset, byte length, time bounds, frame bounds, row count, checksum, index flags. | High-speed readback, recovery after interrupted runs. |
+
+`numericType` should include at least `f64`, `scaled_i64`, `interval_f64_pair`, `decimal128`, and `mp_limb_block`. Browser visual buffers may use projected `f64`, but the manifest must state when stricter authoritative data exists in stream storage or native batch artifacts.
+
 ## Threading Execution Policy
 
 Decision: use multithreading as an execution policy, not as a semantic dependency. A correct single-thread execution must exist for every solver operation. Multithreaded execution is enabled only for stages where the work is naturally independent, the result can remain deterministic when required, and benchmarks show useful speedup.
@@ -410,6 +613,22 @@ Decision: implement the solver core in C++20 with Clang/LLVM. Use one constraine
 
 The build decision does not include a Rust backup. C++ build or binding problems are treated as C++ architecture, toolchain, or boundary problems to fix directly.
 
+### Local Build Spike Result
+
+Initial local toolchain check on 2026-06-15:
+
+| Check | Command | Result | Decision impact |
+| --- | --- | --- | --- |
+| Native C++ compiler | `clang++ --version` | Present: Apple Clang 21.0.0, target `arm64-apple-darwin25.5.0`. | Native C++20 spike can start on this machine. |
+| C++20 syntax smoke | `clang++ -std=c++20 -fsyntax-only -x c++ /dev/null` | Passed. | Confirms the local compiler accepts the selected C++20 mode. |
+| CMake | `cmake --version` | Not found on `PATH`. | Required before the canonical CMake preset path can be exercised locally. |
+| Ninja | `ninja --version` | Not found on `PATH`. | Required before the canonical fast native build path can be exercised locally. |
+| Emscripten | `emcc --version` | Not found on `PATH`. | Browser WebAssembly worker build cannot be proven locally yet through Emscripten. |
+| WASM linker | `wasm-ld --version` | Not found on `PATH`. | Standalone LLVM WASM link path is not available locally yet. |
+| Apple Clang WASM target | `clang++ --target=wasm32-unknown-unknown -std=c++20 -c -x c++ /dev/null -o solver-empty.wasm.o` | Failed: no available target compatible with `wasm32-unknown-unknown`. | The installed Apple Clang is not enough by itself for the browser worker target. |
+
+Conclusion: the language choice still stands, but the first implementation pass needs a toolchain setup item before a real C++/Clang/WASM build can be considered proven. The native path can begin with Apple Clang. The canonical build path still needs CMake and Ninja. The browser path needs Emscripten or another explicit open-source LLVM WASM toolchain installed and pinned.
+
 ## Geometry Centralization Target
 
 The central solver is the preferred home for geometry calculations that are currently duplicated or implied in app-local code. The target is not a generic geometry library. The target is solver-owned geometry for architrino motion and causal interaction:
@@ -451,6 +670,21 @@ Acceptance gates:
 
 The first central core should expose source histories, branch-resolved causal roots, delayed-hit records, $1/|J_{ij}|$ branch weighting where required, diagnostics, and stream-backed output. Full motion integration can grow after the root, event, precision, stream, and app-bridge contracts are stable.
 
+### Initial Validation Fixtures
+
+Before app migration, build these focused fixtures and keep each one small enough to run in local CI:
+
+| Fixture | Source baseline | Solver output under test | Acceptance signal |
+| --- | --- | --- | --- |
+| `animator_assembly_dynamics_smoke` | Assembly-dynamics-backed Animator dataset path. | `frame_buffer.v1`, `delayed_hit_events.v1`, `root_ledger.v1`, summary diagnostics. | Existing Animator playback can render the dataset, root/hit counts match the baseline, and frame positions stay inside the declared tolerance. |
+| `photon_causal_roots_static_observer` | Photon-local `solvePhotonCausalRoots` diagnostic case. | `root_ledger.v1`, `phase_at_hit.v1`, rejected-root diagnostics, transverse-field summary. | Positive roots, no-root reasons, Jacobian diagnostics, and field summaries match the baseline within declared residual tolerances. |
+| `ideal_swarm_flight_time` | Ideal Swarm `solveFlightTime` case. | Root list, delay values, residuals, and status records. | Flight times and root residuals match the app-local baseline, including failure behavior for no-root cases. |
+| `ideal_swarm_circular_self_hit_span` | Ideal Swarm `solveCircularSelfHitSpan` case. | Self-hit span geometry and root diagnostics. | Span endpoints, delay windows, and root status match the app-local baseline within declared geometry tolerance. |
+| `path_stream_round_trip` | Synthetic multi-path run with deterministic samples. | `path_chunk.v1`, `stream_index.v1`, manifest, checksums. | Write/read round trip is byte-stable where expected, index seeks return the requested time/frame ranges, and checksum faults are detected. |
+| `precision_scale_sweep` | Synthetic source/receiver histories spanning ordinary and many-orders-of-magnitude speed/geometry scales. | Precision-path selection, root residuals, escalation records, halt records. | `auto` selects the expected path, escalates only toward stricter paths, and halts rather than silently weakening claim level. |
+| `threading_determinism` | Independent root batches with stable input ordering. | Single-thread and multithread root ledgers. | Deterministic mode produces identical ordered ledgers and reductions; preview mode records any relaxed scheduling. |
+| `app_bridge_worker_smoke` | Minimal shared-worker request from a browser app harness. | `init`, `capabilities`, `runSimulation`, `cancelRun`, `openStream`, `readStreamRange`, `dispose`. | The app uses only the shared adapter, receives normalized status records, and transfers dense buffers without app-specific WebAssembly handling. |
+
 ## Migration Plan Needed
 
 After the first solver design lands, create a migration plan for Photon, Ideal Swarm, and Animator with these steps. `sim2` and legacy solver families are excluded from migration; they may be compared, archived, or documented only where that clarifies the new solver boundary.
@@ -479,7 +713,7 @@ After the first solver design lands, create a migration plan for Photon, Ideal S
 2. `path_history_stream_contract` - Convert the chosen logical per-path stream API backed by a run-level chunked binary store, JSON manifest, event store, binary index sidecar, summary record, memory budget, fast spill, and high-speed readback into a versioned schema. Status: `active`. Depends on: `precision_dynamic_range_contract`.
 3. `app_bridge_contract` - Convert the chosen shared JavaScript adapter with TypeScript declarations and WebAssembly worker into a typed request/response, cancellation, stream-handle, diagnostics, and normalized-error contract. Status: `active`. Depends on: `precision_dynamic_range_contract`, `path_history_stream_contract`.
 4. `threading_execution_policy` - Implement the chosen native bounded task pool, browser worker baseline, deterministic mode, WebAssembly-thread gating, thread-count controls, and diagnostics. Status: `active`. Depends on: `app_bridge_contract`.
-5. `cpp_clang_runtime_validation` - Build and benchmark the selected C++20/Clang path against representative causal-root, source-history, precision, dynamic-range, streaming-write, indexed-read, app-bridge, and thread-scaling workloads. Status: `active`. Depends on: `threading_execution_policy`.
+5. `cpp_clang_runtime_validation` - Build and benchmark the selected C++20/Clang path against representative causal-root, source-history, precision, dynamic-range, streaming-write, indexed-read, app-bridge, and thread-scaling workloads. Initial local spike confirms native Apple Clang C++20 syntax support but finds CMake, Ninja, Emscripten, `wasm-ld`, and Apple Clang WASM target support unavailable on `PATH`. Status: `active-toolchain-setup-needed`. Depends on: `threading_execution_policy`.
 6. `solver_contract` - Implement the central solver inputs, outputs, dataset schema, path-history stream schema, app bridge schema, threading metadata, diagnostics, halt statuses, precision-path metadata, storage metadata, API boundaries, root-ledger completeness rows, phase-at-hit metadata, failure-code taxonomy, and provenance artifacts. Status: `active`. Depends on: `cpp_clang_runtime_validation`.
 7. `gpu_acceleration_deferral` - Keep Metal, WebGPU, and other GPU compute paths out of the first solver core and migration plan; reconsider only after CPU benchmarks identify a suitable regular hotspot. Status: `pending`. Depends on: `cpp_clang_runtime_validation`.
 8. `geometry_centralization_inventory` - Identify duplicated or app-local solver geometry in Photon, Ideal Swarm, Animator, and the assembly-dynamics path. Exclude `sim2` and legacy solver families from migration scope. Status: `next`. Depends on: `solver_contract`.

@@ -13,6 +13,7 @@
 
 1. `component_interfaces` — Build per-component observable interfaces against LambdaCDM. Status: `deferred`. Depends on: none.
 2. `predictive_pipeline` — Turn the CMB and tri-binary cosmology story into a predictive transfer-function pipeline. Status: `deferred`. Depends on: `component_interfaces`.
+3. `age_clock_convergence` — Add an oldest-object and material-clock interface for Hubble-time/time-redshift mapping, globular-cluster turnoff ages, white-dwarf cooling ages, Th/U/Eu radiochronometers, and presolar/interstellar-grain provenance. Status: `deferred`. Depends on: `component_interfaces`.
 
 ## Scope
 
@@ -26,6 +27,7 @@ This file remains the control surface for deferred cosmology closure. No sibling
 | --- | --- | --- | --- |
 | `component_interfaces` | This file | [cosmology-ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md), [BBN-constraints](../../../content/markdown/aaa/cosmology/BBN-constraints.md), [structure-formation](../../../content/markdown/aaa/cosmology/structure-formation.md), and [hubble-s8-tensions](../../../content/markdown/aaa/cosmology/hubble-s8-tensions.md) | Each observable component states exactly where $\mathbb{A}\mathbb{A}\mathbb{A}$ matches, replaces, or diverges from LambdaCDM. |
 | `predictive_pipeline` | This file | [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [structure-formation](../../../content/markdown/aaa/cosmology/structure-formation.md), and [hubble-s8-tensions](../../../content/markdown/aaa/cosmology/hubble-s8-tensions.md) | The transfer-function pipeline produces direct CMB, $H_0$, and $S_8$ comparison handles rather than narrative analogy. |
+| `age_clock_convergence` | This file | [cosmology-ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md), [expansion-mechanism](../../../content/markdown/aaa/cosmology/expansion-mechanism.md), [BBN-constraints](../../../content/markdown/aaa/cosmology/BBN-constraints.md), and [structure-formation](../../../content/markdown/aaa/cosmology/structure-formation.md) | The same Noether sea and assembly history explains why independent age clocks converge near $13$-$14\ \mathrm{Gyr}$ as an effective observer-era record, without promoting that convergence to the absolute age of the Euclidean void and without leaving older visible or material populations unaccounted for. |
 
 ## Closure Goal
 
@@ -41,8 +43,23 @@ This file remains the control surface for deferred cosmology closure. No sibling
 - BBN yields
 - Growth and lensing
 - Distance-ladder calibration
+- Oldest-object and material-clock convergence
 
 The goal is to expose exactly where $\mathbb{A}\mathbb{A}\mathbb{A}$ matches, replaces, or diverges from each component.
+
+## Age-Clock Convergence Interface
+
+Oldest-object and material-age observations are not optional background color for an unbounded-age cosmology. They are a compact convergence pressure on the effective observer chronology: multiple independent clocks cluster near $13$-$14\ \mathrm{Gyr}$ even if the Euclidean void has no mandatory one-time origin event.
+
+The interface should keep these clock families distinct:
+
+- Hubble-time and time-redshift mapping as effective observer chronology, not absolute age of the Euclidean void.
+- Globular-cluster turnoff ages as oldest-surviving stellar-population clocks.
+- White-dwarf cooling ages as remnant cooling clocks plus progenitor formation delay.
+- Th/U/Eu radiochronometers as nucleosynthetic provenance clocks.
+- Presolar and interstellar-grain ages as parent-star, ejection, mixing, and solar-system incorporation records.
+
+The closure question is why those clocks converge in the accessible material and stellar record. A viable $\mathbb{A}\mathbb{A}\mathbb{A}$ branch may interpret the convergence as the age of the current effective observer era, dominant recycling/thermalization history, or accessible star-forming material record, but it must also explain why much older visible populations are absent, reset, hidden, or outside the declared observation record.
 
 ## Tier 2 Lecture-Note Interfaces
 
