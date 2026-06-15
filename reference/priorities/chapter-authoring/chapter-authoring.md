@@ -1,4 +1,4 @@
-# Chapter Authoring and Source Mining
+# Source Mining
 
 ## Workstream Metadata
 
