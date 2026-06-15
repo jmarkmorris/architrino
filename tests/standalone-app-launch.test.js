@@ -30,6 +30,25 @@ test("Ideal Swarm scene resolves to the standalone app path", () => {
   );
 });
 
+test("Molecule scene ids and paths resolve to the standalone app path", () => {
+  assert.equal(getStandaloneAppPathForScene("molecule"), "molecule.html");
+  assert.equal(
+    getStandaloneAppPathForScene("content/scenes/archie/molecule.json"),
+    "molecule.html"
+  );
+  assert.equal(
+    getStandaloneAppPathForScene("content/scenes/chemistry/molecule.json"),
+    "molecule.html"
+  );
+  assert.equal(
+    resolveStandaloneAppHrefForScene(
+      "content/scenes/chemistry/molecule.json",
+      "http://127.0.0.1:5173/index.html#scene=content%2Fscenes%2Fchemistry%2Fmolecule.json"
+    ),
+    "http://127.0.0.1:5173/molecule.html"
+  );
+});
+
 test("unknown scene ids do not resolve to a standalone app path", () => {
   assert.equal(getStandaloneAppPathForScene(""), null);
   assert.equal(getStandaloneAppPathForScene("animator"), null);

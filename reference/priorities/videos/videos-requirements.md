@@ -44,7 +44,7 @@ Every released video asset must pass checks for:
 
 ## Character Ensemble Requirements
 
-The initial recurring ensemble should be three fictional STEAM undergraduates.
+The initial recurring ensemble should include four fictional STEAM-aligned characters: three explanatory leads and one skeptic. Any character may appear alone, with one other character, or with any subset of the ensemble.
 
 `STEAM` means:
 
@@ -56,19 +56,23 @@ The initial recurring ensemble should be three fictional STEAM undergraduates.
 
 The ensemble should have:
 
+- a sophisticated, articulate, highly educated, and well-spoken presentation register;
 - appealing, high-quality voices;
 - visually appealing lifelike and animated appearances;
+- thin, fit, athletic builds that read as regular gym habits;
+- well-fitted clothes that accentuate their bodies while staying sophisticated and camera-appropriate;
 - stable character names, roles, voice notes, and visual references;
 - enough variation to support dialogue, questions, demonstrations, and peer explanation;
-- and character boundaries that prevent identity traits from becoming stereotypes.
+- and character boundaries that prevent demographic or appearance traits from becoming stereotypes.
 
 Initial appearance directions:
 
-- an auburn-haired straight woman, optionally with Ukrainian design influence;
-- a blonde lesbian woman;
-- a light-skinned Black gay man.
+- an auburn-haired woman, optionally with Ukrainian design influence;
+- a blonde woman;
+- a light-skinned Black man;
+- a blonde woman with an experimentalist skeptic presence.
 
-These are fictional design directions. Final character sheets should define each character's role in the learning ensemble, not only their appearance or orientation.
+These are fictional design directions. Final character sheets should define each character's role in the learning ensemble, not personal-life details.
 
 Before the first prototype, each character must have:
 
@@ -79,7 +83,8 @@ Before the first prototype, each character must have:
 - a visual prompt sheet;
 - a voice prompt sheet;
 - a continuity checklist;
-- and explicit negative constraints against real-person imitation and stereotype-driven writing.
+- explicit negative constraints against real-person imitation and stereotype-driven writing;
+- and a personal-life boundary that prevents scripts from discussing dating, relationships, family, or private biography unless explicitly approved.
 
 ## Media-Type Requirements
 

@@ -129,11 +129,13 @@ The polarization interpretation of this hypothesis is:
 
 | Candidate | Phase-lock meaning | Observer-level target |
 | --- | --- | --- |
-| Linear | The branch-sum transverse ledger collapses to one stable analyzer axis. | The fitted $E_u/E_v$ or $E_y/E_z$ trace is a line and the analyzer response has a preferred axis. |
+| Linear | The branch-sum transverse ledger collapses to one stable analyzer axis. | The fitted $E_y/E_z$ trace is a line and the analyzer response has a preferred axis. |
 | Circular | Two transverse components survive with equal amplitude and relative phase $\pm90^\circ$. | The fitted transverse trace is a circle and an ideal linear analyzer gives equal pass fraction for every analyzer angle. |
 | Elliptical | Two transverse components survive with stable unequal amplitudes and/or a stable non-special phase lag. | The fitted transverse trace is an ellipse, with linear and circular behavior recovered as limiting cases. |
 
 The proof burden is to compute these cases from the delayed branch sums of the twelve architrinos and the material analyzer handoff, not by inserting polarization vectors, analyzer pass rules, or source-side polarization parameters by hand. A good visual fit in the photon app can nominate a parameter regime, but this packet can consume it only after the branch supplies the corresponding phase-lock, transverse-survival, longitudinal-leakage, helicity, and event-ledger rows.
+
+The next useful app-side input is not a better hand-selected phase preset. It is a retained-root phase ledger: source phase-at-hit, receiver phase-at-hit where the receiver is a modeled binary, root kind, cycle index, and phase-spread summaries. A phase-lock claim should be accepted here only when the delayed branch geometry supplies a low-spread causal family across cycles, including any partner-hit or same-source round-trip rows needed for the candidate polarization state.
 
 ## Local-c Helical Self-Hit Hypothesis
 

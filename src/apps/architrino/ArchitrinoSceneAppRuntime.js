@@ -7039,6 +7039,14 @@ async function jumpToScene(scenePath, options = {}) {
   if (transitionState.active) {
     return;
   }
+  const directStandaloneAppHref = resolveStandaloneAppHrefForScene(
+    scenePath,
+    globalThis.window?.location?.href
+  );
+  if (directStandaloneAppHref) {
+    globalThis.window?.location?.assign(directStandaloneAppHref);
+    return;
+  }
   const preservedWorldPosition = worldGroup.position.clone();
   const preservedLevelPosition = currentLevel
     ? currentLevel.group.position.clone()
@@ -8840,6 +8848,19 @@ async function init() {
         rootScenePath,
       })
     : requestedSceneState.scenePath || rootScenePath;
+  const directStandaloneInitialHref = resolveStandaloneAppHrefForScene(
+    requestedInitialScenePath,
+    globalThis.window?.location?.href
+  );
+  if (directStandaloneInitialHref && typeof globalThis.window?.location?.href === "string") {
+    const currentUrl = new URL(globalThis.window.location.href);
+    const targetUrl = new URL(directStandaloneInitialHref);
+    if (currentUrl.pathname !== targetUrl.pathname) {
+      targetUrl.hash = currentUrl.hash;
+      globalThis.window.location.assign(targetUrl.href);
+      return;
+    }
+  }
   const initialScene = await sceneBootstrapService.resolveInitialScene(
     requestedInitialScenePath
   );

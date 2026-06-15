@@ -5,6 +5,7 @@ import {
   getElementRenderStyle,
 } from "./MoleculePresetData.js";
 import {
+  SUPPORTED_MOLECULE_LEDGER_ELEMENTS,
   calculateAtomLedger,
   calculateMoleculeLedger,
   formatLedgerNumber,
@@ -17,7 +18,20 @@ const CAMERA_FOV_DEG = 42;
 const MIN_CAMERA_DISTANCE = 3.4;
 const MAX_CAMERA_DISTANCE = 32;
 const POINTER_CLICK_DISTANCE_PX = 7;
-const DEFAULT_SCREEN_OFFSET_Y_RATIO = 0.06;
+const FIT_EDGE_PADDING_RATIO = 0.86;
+const FIT_LEDGER_CLEARANCE_PX = 32;
+const FIT_MIN_HEIGHT_RATIO = 0.48;
+const MAX_SESSION_ATOMS = 180;
+const SESSION_MOLECULE_ID_PREFIX = "session-molecule";
+const SESSION_MOLECULE_SOURCE = "session formula composition";
+const FORMULA_SEPARATOR_PATTERN = /[.\u00b7\u2022]/gu;
+const FORMULA_LETTER_PATTERN = /^[A-Za-z]$/u;
+const FORMULA_DIGIT_PATTERN = /^\d$/u;
+const SUPPORTED_FORMULA_ELEMENTS = new Set(SUPPORTED_MOLECULE_LEDGER_ELEMENTS);
+const PUBCHEM_BASE_URL = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound";
+const PUBCHEM_LOOKUP_CID_LIMIT = 12;
+const PUBCHEM_FETCH_TIMEOUT_MS = 6500;
+const PUBCHEM_PROPERTY_FIELDS = "Title,IUPACName,MolecularFormula";
 
 function queryMoleculeElement(documentLike, selector) {
   const element = documentLike.querySelector(selector);
@@ -39,6 +53,290 @@ function setText(element, value) {
   if (element) {
     element.textContent = String(value ?? "");
   }
+}
+
+function formatMoleculeDisplayName(value) {
+  const normalized = String(value || "").trim().replace(/\s+/gu, " ");
+  if (!normalized) {
+    return "";
+  }
+  return normalized.replace(/[A-Za-z][A-Za-z']*/gu, (word) => {
+    if (word.length <= 3 && word === word.toUpperCase()) {
+      return word;
+    }
+    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+  });
+}
+
+function getBuildElementEntries(counts) {
+  return Object.entries(counts).sort(([left], [right]) => {
+    if (left === "H" && right !== "H") {
+      return 1;
+    }
+    if (right === "H" && left !== "H") {
+      return -1;
+    }
+    return left.localeCompare(right);
+  });
+}
+
+function getFormulaKeyFromCounts(counts) {
+  return Object.entries(counts)
+    .sort(([left], [right]) => left.localeCompare(right))
+    .map(([symbol, count]) => `${symbol}:${count}`)
+    .join("|");
+}
+
+function readFormulaCount(compact, index, symbol) {
+  let endIndex = index;
+  while (endIndex < compact.length && FORMULA_DIGIT_PATTERN.test(compact.charAt(endIndex))) {
+    endIndex += 1;
+  }
+  const rawCount = compact.slice(index, endIndex);
+  if (rawCount.length > 1 && rawCount.startsWith("0")) {
+    return { ok: false, message: "Use the letter O for oxygen, not zero." };
+  }
+  const count = rawCount ? Number(rawCount) : 1;
+  if (!Number.isInteger(count) || count < 1) {
+    return { ok: false, message: `${symbol} needs a positive count.` };
+  }
+  return { ok: true, count, nextIndex: endIndex };
+}
+
+function getFormulaSymbolCandidates(compact, index, hasCanonicalCase) {
+  const current = compact.charAt(index);
+  if (!FORMULA_LETTER_PATTERN.test(current)) {
+    return [];
+  }
+
+  if (hasCanonicalCase) {
+    let endIndex = index + 1;
+    while (
+      endIndex < compact.length &&
+      endIndex - index < 3 &&
+      /[a-z]/u.test(compact.charAt(endIndex))
+    ) {
+      endIndex += 1;
+    }
+    const symbol = normalizeElementSymbol(compact.slice(index, endIndex));
+    return SUPPORTED_FORMULA_ELEMENTS.has(symbol)
+      ? [{ symbol, nextIndex: endIndex }]
+      : [];
+  }
+
+  const candidates = [];
+  for (let length = 1; length <= 3 && index + length <= compact.length; length += 1) {
+    const fragment = compact.slice(index, index + length);
+    if (!/^[a-z]+$/u.test(fragment)) {
+      break;
+    }
+    const symbol = normalizeElementSymbol(fragment);
+    if (SUPPORTED_FORMULA_ELEMENTS.has(symbol)) {
+      candidates.push({ symbol, nextIndex: index + length });
+    }
+  }
+  return candidates;
+}
+
+function parseFormulaTokens(compact) {
+  const hasCanonicalCase = /[A-Z]/u.test(compact);
+  const memo = new Map();
+
+  function parseFrom(index) {
+    if (index >= compact.length) {
+      return { ok: true, tokens: [] };
+    }
+    if (memo.has(index)) {
+      return memo.get(index);
+    }
+
+    const candidates = getFormulaSymbolCandidates(compact, index, hasCanonicalCase);
+    if (!candidates.length) {
+      const failure = { ok: false, message: "Use element symbols and counts only." };
+      memo.set(index, failure);
+      return failure;
+    }
+
+    let lastFailure = null;
+    for (const candidate of candidates) {
+      const countResult = readFormulaCount(compact, candidate.nextIndex, candidate.symbol);
+      if (!countResult.ok) {
+        memo.set(index, countResult);
+        return countResult;
+      }
+      const tail = parseFrom(countResult.nextIndex);
+      if (tail.ok) {
+        const success = {
+          ok: true,
+          tokens: [{ symbol: candidate.symbol, count: countResult.count }, ...tail.tokens],
+        };
+        memo.set(index, success);
+        return success;
+      }
+      lastFailure = tail;
+    }
+
+    const failure = lastFailure ?? { ok: false, message: "Use element symbols and counts only." };
+    memo.set(index, failure);
+    return failure;
+  }
+
+  return parseFrom(0);
+}
+
+function parseFormulaInput(value) {
+  const raw = String(value ?? "").trim();
+  const compact = raw.replace(/\s+/gu, "").replace(FORMULA_SEPARATOR_PATTERN, "");
+  if (!compact) {
+    return { ok: false, message: "Enter a formula." };
+  }
+
+  const parsedTokens = parseFormulaTokens(compact);
+  if (!parsedTokens.ok) {
+    return parsedTokens;
+  }
+
+  const counts = {};
+  const symbolOrder = [];
+  let totalAtoms = 0;
+  parsedTokens.tokens.forEach(({ symbol, count }) => {
+    if (!Object.prototype.hasOwnProperty.call(counts, symbol)) {
+      symbolOrder.push(symbol);
+    }
+    counts[symbol] = (counts[symbol] ?? 0) + count;
+    totalAtoms += count;
+  });
+
+  if (totalAtoms > MAX_SESSION_ATOMS) {
+    return { ok: false, message: `Session molecules are limited to ${MAX_SESSION_ATOMS} atoms.` };
+  }
+
+  return {
+    ok: true,
+    counts,
+    formula: symbolOrder
+      .map((symbol) => `${symbol}${counts[symbol] > 1 ? counts[symbol] : ""}`)
+      .join(""),
+    formulaKey: getFormulaKeyFromCounts(counts),
+    totalAtoms,
+  };
+}
+
+function createSessionMoleculeAtoms(counts) {
+  const totalAtoms = Object.values(counts).reduce((sum, count) => sum + count, 0);
+  const atoms = [];
+  const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+  const clusterRadius = Math.max(0.9, Math.cbrt(Math.max(1, totalAtoms)) * 0.78);
+
+  getBuildElementEntries(counts).forEach(([element, count]) => {
+    for (let elementIndex = 0; elementIndex < count; elementIndex += 1) {
+      const atomIndex = atoms.length;
+      const t = totalAtoms <= 1 ? 0.5 : (atomIndex + 0.5) / totalAtoms;
+      const y = 1 - 2 * t;
+      const radiusAtY = Math.sqrt(Math.max(0, 1 - y * y));
+      const theta = atomIndex * goldenAngle;
+      const shellScale = Math.cbrt(t);
+      atoms.push({
+        element,
+        x: Number((Math.cos(theta) * radiusAtY * clusterRadius * shellScale).toFixed(3)),
+        y: Number((y * clusterRadius).toFixed(3)),
+        z: Number((Math.sin(theta) * radiusAtY * clusterRadius * shellScale).toFixed(3)),
+      });
+    }
+  });
+
+  return atoms;
+}
+
+function getDistanceSquared(left, right) {
+  const dx = left.x - right.x;
+  const dy = left.y - right.y;
+  const dz = left.z - right.z;
+  return dx * dx + dy * dy + dz * dz;
+}
+
+function createSessionMoleculeBonds(atoms) {
+  const bonds = [];
+  for (let index = 1; index < atoms.length; index += 1) {
+    const atom = atoms[index];
+    const preferredCandidates = atoms
+      .slice(0, index)
+      .map((candidate, candidateIndex) => ({ candidate, candidateIndex }))
+      .filter(({ candidate }) => atom.element !== "H" || candidate.element !== "H");
+    const candidates = preferredCandidates.length
+      ? preferredCandidates
+      : atoms.slice(0, index).map((candidate, candidateIndex) => ({ candidate, candidateIndex }));
+    const nearest = candidates.reduce(
+      (best, candidate) => {
+        const distance = getDistanceSquared(atom, candidate.candidate);
+        return distance < best.distance ? { ...candidate, distance } : best;
+      },
+      { candidateIndex: 0, distance: Infinity }
+    );
+    bonds.push([nearest.candidateIndex, index]);
+  }
+  return bonds;
+}
+
+function parseSdfMolecule(sdfText) {
+  const record = String(sdfText || "").replace(/\r/gu, "").split("$$$$")[0];
+  const lines = record.split("\n");
+  const countsLineIndex = lines.findIndex((line) => /\bV2000\b/u.test(line));
+  if (countsLineIndex < 0) {
+    return null;
+  }
+
+  const counts = lines[countsLineIndex].trim().split(/\s+/u);
+  const atomCount = Number(counts[0]);
+  const bondCount = Number(counts[1]);
+  if (
+    !Number.isInteger(atomCount) ||
+    !Number.isInteger(bondCount) ||
+    atomCount < 1 ||
+    bondCount < 0 ||
+    atomCount > MAX_SESSION_ATOMS
+  ) {
+    return null;
+  }
+
+  const atoms = [];
+  for (let index = 0; index < atomCount; index += 1) {
+    const parts = lines[countsLineIndex + 1 + index]?.trim().split(/\s+/u) ?? [];
+    const x = Number(parts[0]);
+    const y = Number(parts[1]);
+    const z = Number(parts[2]);
+    const element = normalizeElementSymbol(parts[3]);
+    if (
+      !Number.isFinite(x) ||
+      !Number.isFinite(y) ||
+      !Number.isFinite(z) ||
+      !SUPPORTED_FORMULA_ELEMENTS.has(element)
+    ) {
+      return null;
+    }
+    atoms.push({ element, x, y, z });
+  }
+
+  const bonds = [];
+  const bondStartIndex = countsLineIndex + 1 + atomCount;
+  for (let index = 0; index < bondCount; index += 1) {
+    const parts = lines[bondStartIndex + index]?.trim().split(/\s+/u) ?? [];
+    const start = Number(parts[0]) - 1;
+    const end = Number(parts[1]) - 1;
+    if (
+      Number.isInteger(start) &&
+      Number.isInteger(end) &&
+      start >= 0 &&
+      end >= 0 &&
+      start < atomCount &&
+      end < atomCount &&
+      start !== end
+    ) {
+      bonds.push([start, end]);
+    }
+  }
+
+  return { atoms, bonds };
 }
 
 function normalizePreset(rawPreset) {
@@ -89,6 +387,7 @@ function normalizePreset(rawPreset) {
     formula: String(rawPreset?.formula || "").trim(),
     format: String(rawPreset?.format || "app-coordinates").trim(),
     source: String(rawPreset?.source || "curated").trim(),
+    isSession: Boolean(rawPreset?.isSession),
     atoms,
     bonds,
   };
@@ -107,7 +406,10 @@ function centerAtoms(atoms) {
 }
 
 function getMoleculeRadius(atoms) {
-  return atoms.reduce((max, atom) => Math.max(max, atom.position.length()), 1);
+  return atoms.reduce((max, atom) => {
+    const style = getElementRenderStyle(atom.element);
+    return Math.max(max, atom.position.length() + style.radius);
+  }, 1);
 }
 
 function createBondMesh(Three, start, end, material) {
@@ -158,6 +460,16 @@ export function createMoleculeRuntime(options = {}) {
     left.name.localeCompare(right.name, undefined, { sensitivity: "base" })
   );
   const presetById = new Map(presets.map((preset) => [preset.id, preset]));
+  const presetMatchesByFormulaKey = new Map();
+  presets.forEach((preset) => {
+    const parsedFormula = parseFormulaInput(preset.formula);
+    if (!parsedFormula.ok) {
+      return;
+    }
+    const matches = presetMatchesByFormulaKey.get(parsedFormula.formulaKey) ?? [];
+    matches.push(preset);
+    presetMatchesByFormulaKey.set(parsedFormula.formulaKey, matches);
+  });
   const sceneGraphManifestService =
     options.sceneGraphManifestService ??
     createSceneGraphManifestService({
@@ -181,6 +493,12 @@ export function createMoleculeRuntime(options = {}) {
     electrinoCount: queryMoleculeElement(documentLike, "#molecule-electrino-count"),
     positrinoCount: queryMoleculeElement(documentLike, "#molecule-positrino-count"),
     architrinoCount: queryMoleculeElement(documentLike, "#molecule-architrino-count"),
+    sessionForm: queryMoleculeElement(documentLike, "#molecule-session-form"),
+    sessionNameInput: queryMoleculeElement(documentLike, "#molecule-session-name"),
+    sessionFormulaInput: queryMoleculeElement(documentLike, "#molecule-session-formula"),
+    sessionAddButton: queryMoleculeElement(documentLike, ".molecule-session-add"),
+    sessionStatus: queryMoleculeElement(documentLike, "#molecule-session-status"),
+    sessionList: queryMoleculeElement(documentLike, "#molecule-session-list"),
     presetList: queryMoleculeElement(documentLike, "#molecule-preset-list"),
     homeButton: queryMoleculeElement(documentLike, "#molecule-home-button"),
   };
@@ -202,6 +520,8 @@ export function createMoleculeRuntime(options = {}) {
   const hoverWorldPosition = new THREE.Vector3();
   const atomMeshes = [];
   const presetButtons = new Map();
+  const sessionMolecules = [];
+  const sessionById = new Map();
 
   const state = {
     activePreset: null,
@@ -216,6 +536,8 @@ export function createMoleculeRuntime(options = {}) {
     dragMode: "rotate",
     hoverAtom: null,
     hoverMesh: null,
+    nextSessionMoleculeNumber: 1,
+    sessionLookupRequestNumber: 0,
   };
 
   scene.add(moleculeGroup);
@@ -274,16 +596,54 @@ export function createMoleculeRuntime(options = {}) {
     };
   }
 
-  function getDefaultMoleculeYOffset() {
-    return getViewportWorldSize().height * DEFAULT_SCREEN_OFFSET_Y_RATIO;
+  function getMoleculeFitFrame() {
+    const canvasRect = dom.canvas.getBoundingClientRect();
+    const readoutRect = dom.readout.getBoundingClientRect();
+    const canvasHeight = Math.max(1, canvasRect.height);
+    const readoutTop =
+      Number.isFinite(readoutRect.top) && readoutRect.height > 0
+        ? readoutRect.top
+        : canvasRect.bottom;
+    const fitBottom = Math.max(
+      canvasRect.top + canvasHeight * FIT_MIN_HEIGHT_RATIO,
+      Math.min(canvasRect.bottom, readoutTop - FIT_LEDGER_CLEARANCE_PX)
+    );
+    const fitHeight = Math.max(1, fitBottom - canvasRect.top);
+    const fitCenterY = fitHeight * 0.5;
+
+    return {
+      centerNdcY: 1 - (2 * fitCenterY) / canvasHeight,
+      horizontalNdcHalf: FIT_EDGE_PADDING_RATIO,
+      verticalNdcHalf: Math.min(
+        FIT_EDGE_PADDING_RATIO,
+        (fitHeight / canvasHeight) * FIT_EDGE_PADDING_RATIO
+      ),
+    };
+  }
+
+  function getFitCameraDistance(radius, fitFrame) {
+    const tanHalfFov = Math.tan(THREE.MathUtils.degToRad(CAMERA_FOV_DEG) / 2);
+    const verticalDistance = radius / Math.max(0.1, fitFrame.verticalNdcHalf * tanHalfFov);
+    const horizontalDistance =
+      radius / Math.max(0.1, fitFrame.horizontalNdcHalf * tanHalfFov * camera.aspect);
+    return Math.min(
+      MAX_CAMERA_DISTANCE,
+      Math.max(MIN_CAMERA_DISTANCE, Math.max(verticalDistance, horizontalDistance) * 1.04)
+    );
+  }
+
+  function getDefaultMoleculeYOffset(fitFrame) {
+    const tanHalfFov = Math.tan(THREE.MathUtils.degToRad(CAMERA_FOV_DEG) / 2);
+    return fitFrame.centerNdcY * state.cameraDistance * tanHalfFov;
   }
 
   function resetView() {
     moleculeGroup.rotation.set(-0.28, 0.46, 0);
     moleculeGroup.position.set(0, 0, 0);
     const radius = getMoleculeRadius(state.activePreset?.atoms ?? []);
-    setCameraDistance(Math.min(MAX_CAMERA_DISTANCE, Math.max(MIN_CAMERA_DISTANCE, radius * 3.6 + 2.8)));
-    moleculeGroup.position.y = getDefaultMoleculeYOffset();
+    const fitFrame = getMoleculeFitFrame();
+    setCameraDistance(getFitCameraDistance(radius, fitFrame));
+    moleculeGroup.position.y = getDefaultMoleculeYOffset(fitFrame);
     render();
     updateAtomLabelPosition();
   }
@@ -312,7 +672,7 @@ export function createMoleculeRuntime(options = {}) {
     const ledger = calculateMoleculeLedger(preset);
     dom.readout.classList.remove("is-atom-hover");
     setText(dom.title, preset.name);
-    setText(dom.subtitle, preset.formula || "Preset molecule catalog");
+    setText(dom.subtitle, preset.isSession ? `Session molecule · ${preset.formula}` : preset.formula);
     setText(dom.formula, preset.formula || "-");
     setText(dom.atomCount, `${preset.atoms.length}`);
     setText(dom.bondCount, `${preset.bonds.length}`);
@@ -379,32 +739,336 @@ export function createMoleculeRuntime(options = {}) {
   }
 
   function selectPreset(presetId) {
-    const preset = presetById.get(String(presetId || "")) ?? presets[0];
+    const requestedId = String(presetId || "");
+    const preset = presetById.get(requestedId) ?? sessionById.get(requestedId) ?? presets[0];
     if (!preset) {
       return;
     }
     drawPreset(preset);
   }
 
+  function setSessionStatus(message, { isError = false } = {}) {
+    dom.sessionStatus.textContent = message;
+    dom.sessionStatus.classList.toggle("is-error", isError);
+  }
+
+  function setSessionLookupPending(isPending) {
+    dom.sessionAddButton.disabled = isPending;
+    dom.sessionFormulaInput.disabled = isPending;
+    dom.sessionNameInput.disabled = isPending;
+  }
+
+  async function fetchPubChemResource(url, readResponse) {
+    if (typeof fetchImpl !== "function") {
+      throw new Error("Molecule lookup is unavailable.");
+    }
+
+    const AbortControllerCtor =
+      windowLike.AbortController ?? globalThis.AbortController ?? null;
+    const abortController =
+      typeof AbortControllerCtor === "function" ? new AbortControllerCtor() : null;
+    const setTimeoutFn =
+      typeof windowLike.setTimeout === "function"
+        ? windowLike.setTimeout.bind(windowLike)
+        : globalThis.setTimeout;
+    const clearTimeoutFn =
+      typeof windowLike.clearTimeout === "function"
+        ? windowLike.clearTimeout.bind(windowLike)
+        : globalThis.clearTimeout;
+    const timeoutId =
+      abortController && typeof setTimeoutFn === "function"
+        ? setTimeoutFn(() => abortController.abort(), PUBCHEM_FETCH_TIMEOUT_MS)
+        : null;
+
+    try {
+      const response = await fetchImpl(url, abortController ? { signal: abortController.signal } : undefined);
+      if (!response || (typeof response.ok === "boolean" && !response.ok)) {
+        const status = response?.status ? ` (${response.status})` : "";
+        throw new Error(`PubChem request failed${status}.`);
+      }
+      return readResponse(response);
+    } finally {
+      if (timeoutId && typeof clearTimeoutFn === "function") {
+        clearTimeoutFn(timeoutId);
+      }
+    }
+  }
+
+  function fetchPubChemJson(url) {
+    return fetchPubChemResource(url, (response) => response.json());
+  }
+
+  function fetchPubChemText(url) {
+    return fetchPubChemResource(url, (response) => response.text());
+  }
+
+  function getPubChemCids(payload) {
+    const rawCids = Array.isArray(payload?.IdentifierList?.CID)
+      ? payload.IdentifierList.CID
+      : [];
+    const seen = new Set();
+    return rawCids
+      .map((cid) => Number(cid))
+      .filter((cid) => {
+        if (!Number.isInteger(cid) || cid <= 0 || seen.has(cid)) {
+          return false;
+        }
+        seen.add(cid);
+        return true;
+      });
+  }
+
+  function getPubChemProperties(payload) {
+    return Array.isArray(payload?.PropertyTable?.Properties)
+      ? payload.PropertyTable.Properties
+          .map((property) => ({
+            cid: Number(property?.CID),
+            name: formatMoleculeDisplayName(property?.Title || property?.IUPACName || ""),
+            formula: String(property?.MolecularFormula || "").trim(),
+          }))
+          .filter((property) => Number.isInteger(property.cid) && property.cid > 0)
+      : [];
+  }
+
+  function selectPubChemProperty(properties, cidCandidates, parsedFormula) {
+    const propertiesByCid = new Map(properties.map((property) => [property.cid, property]));
+    const orderedProperties = cidCandidates
+      .map((cid) => propertiesByCid.get(cid))
+      .filter(Boolean);
+    return (
+      orderedProperties.find((property) => {
+        const parsedPropertyFormula = parseFormulaInput(property.formula);
+        return parsedPropertyFormula.ok && parsedPropertyFormula.formulaKey === parsedFormula.formulaKey;
+      }) ??
+      orderedProperties[0] ??
+      null
+    );
+  }
+
+  async function fetchPubChemStructure(cid) {
+    for (const record of [
+      { query: "3d", label: "3D" },
+      { query: "2d", label: "2D" },
+    ]) {
+      try {
+        const sdfText = await fetchPubChemText(
+          `${PUBCHEM_BASE_URL}/cid/${cid}/SDF?record_type=${record.query}`
+        );
+        const structure = parseSdfMolecule(sdfText);
+        if (structure?.atoms?.length) {
+          return {
+            ...structure,
+            recordType: record.label,
+          };
+        }
+      } catch {
+        // Some compounds have no 3D conformer; try the next available structure record.
+      }
+    }
+    return null;
+  }
+
+  async function lookupPubChemMolecule(parsedFormula) {
+    const encodedFormula = encodeURIComponent(parsedFormula.formula);
+    const cidPayload = await fetchPubChemJson(
+      `${PUBCHEM_BASE_URL}/fastformula/${encodedFormula}/cids/JSON`
+    );
+    const allCidCandidates = getPubChemCids(cidPayload);
+    if (!allCidCandidates.length) {
+      return null;
+    }
+
+    const cidCandidates = allCidCandidates.slice(0, PUBCHEM_LOOKUP_CID_LIMIT);
+    const propertyPayload = await fetchPubChemJson(
+      `${PUBCHEM_BASE_URL}/cid/${cidCandidates.join(",")}/property/${PUBCHEM_PROPERTY_FIELDS}/JSON`
+    );
+    const property = selectPubChemProperty(
+      getPubChemProperties(propertyPayload),
+      cidCandidates,
+      parsedFormula
+    );
+    if (!property) {
+      return null;
+    }
+
+    const structure = await fetchPubChemStructure(property.cid);
+    return {
+      cid: property.cid,
+      name: property.name || `PubChem CID ${property.cid}`,
+      formula: parsedFormula.formula,
+      atoms: structure?.atoms ?? null,
+      bonds: structure?.bonds ?? null,
+      recordType: structure?.recordType ?? "",
+      candidateCount: allCidCandidates.length,
+      checkedCandidateCount: cidCandidates.length,
+    };
+  }
+
+  function getNextSessionMoleculeId() {
+    const id = `${SESSION_MOLECULE_ID_PREFIX}-${state.nextSessionMoleculeNumber}`;
+    state.nextSessionMoleculeNumber += 1;
+    return id;
+  }
+
+  function createPresetButton(preset) {
+    const button = documentLike.createElement("button");
+    button.type = "button";
+    button.className = "molecule-preset-button";
+    if (preset.isSession) {
+      button.classList.add("molecule-session-button");
+    }
+    button.dataset.presetId = preset.id;
+    button.setAttribute("aria-pressed", "false");
+
+    const label = documentLike.createElement("strong");
+    label.textContent = preset.name;
+    const meta = documentLike.createElement("span");
+    meta.textContent = `${preset.formula || "formula"} · ${preset.atoms.length} atoms`;
+    button.append(label, meta);
+    button.addEventListener("click", () => {
+      selectPreset(preset.id);
+      setSessionStatus("");
+    });
+    presetButtons.set(preset.id, button);
+    return button;
+  }
+
+  function renderSessionButtons() {
+    sessionMolecules.forEach((preset) => {
+      presetButtons.delete(preset.id);
+    });
+    dom.sessionList.textContent = "";
+    sessionMolecules.forEach((preset) => {
+      dom.sessionList.append(createPresetButton(preset));
+    });
+    if (state.activePreset) {
+      updateReadout(state.activePreset);
+    }
+  }
+
   function renderPresetButtons() {
     dom.presetList.textContent = "";
-    presetButtons.clear();
     presetsByName.forEach((preset) => {
-      const button = documentLike.createElement("button");
-      button.type = "button";
-      button.className = "molecule-preset-button";
-      button.dataset.presetId = preset.id;
-      button.setAttribute("aria-pressed", "false");
-
-      const label = documentLike.createElement("strong");
-      label.textContent = preset.name;
-      const meta = documentLike.createElement("span");
-      meta.textContent = `${preset.formula || "formula"} · ${preset.atoms.length} atoms`;
-      button.append(label, meta);
-      button.addEventListener("click", () => selectPreset(preset.id));
-      presetButtons.set(preset.id, button);
-      dom.presetList.append(button);
+      dom.presetList.append(createPresetButton(preset));
     });
+  }
+
+  function createSessionMolecule({ name, formula, counts, source = SESSION_MOLECULE_SOURCE }) {
+    const atoms = createSessionMoleculeAtoms(counts);
+    return normalizePreset({
+      id: getNextSessionMoleculeId(),
+      name: formatMoleculeDisplayName(name) || `Session ${formula}`,
+      formula,
+      format: "formula-composition",
+      source,
+      isSession: true,
+      atoms,
+      bonds: createSessionMoleculeBonds(atoms),
+    });
+  }
+
+  function createPubChemSessionMolecule({ name, formula, atoms, bonds, cid, recordType }) {
+    return normalizePreset({
+      id: getNextSessionMoleculeId(),
+      name: formatMoleculeDisplayName(name) || `PubChem CID ${cid}`,
+      formula,
+      format: `pubchem-${String(recordType || "sdf").toLowerCase()}-sdf`,
+      source: `PubChem CID ${cid}; ${recordType || "SDF"} SDF`,
+      isSession: true,
+      atoms,
+      bonds,
+    });
+  }
+
+  function addSessionMolecule(sessionMolecule) {
+    sessionMolecules.push(sessionMolecule);
+    sessionById.set(sessionMolecule.id, sessionMolecule);
+    renderSessionButtons();
+    selectPreset(sessionMolecule.id);
+    dom.sessionFormulaInput.value = "";
+    dom.sessionNameInput.value = "";
+  }
+
+  async function handleSessionSubmit(event) {
+    event.preventDefault();
+    const parsedFormula = parseFormulaInput(dom.sessionFormulaInput.value);
+    if (!parsedFormula.ok) {
+      setSessionStatus(parsedFormula.message, { isError: true });
+      return;
+    }
+    const requestedName = formatMoleculeDisplayName(dom.sessionNameInput.value);
+
+    const presetMatches = presetMatchesByFormulaKey.get(parsedFormula.formulaKey) ?? [];
+    if (presetMatches.length) {
+      const matchedPreset = [...presetMatches].sort((left, right) =>
+        left.name.localeCompare(right.name, undefined, { sensitivity: "base" })
+      )[0];
+      selectPreset(matchedPreset.id);
+      setSessionStatus(
+        presetMatches.length > 1
+          ? `Matched ${presetMatches.length} presets; opened ${matchedPreset.name}.`
+          : `Matched preset: ${matchedPreset.name}.`
+      );
+      return;
+    }
+
+    const lookupRequestNumber = state.sessionLookupRequestNumber + 1;
+    state.sessionLookupRequestNumber = lookupRequestNumber;
+    setSessionLookupPending(true);
+    setSessionStatus("Looking up molecule...");
+
+    try {
+      const pubChemMatch = await lookupPubChemMolecule(parsedFormula);
+      if (lookupRequestNumber !== state.sessionLookupRequestNumber) {
+        return;
+      }
+
+      if (pubChemMatch?.atoms?.length) {
+        const displayName = requestedName || pubChemMatch.name;
+        const sessionMolecule = createPubChemSessionMolecule({
+          name: displayName,
+          formula: pubChemMatch.formula,
+          atoms: pubChemMatch.atoms,
+          bonds: pubChemMatch.bonds,
+          cid: pubChemMatch.cid,
+          recordType: pubChemMatch.recordType,
+        });
+        addSessionMolecule(sessionMolecule);
+        setSessionStatus(`PubChem match: ${pubChemMatch.name} (CID ${pubChemMatch.cid}).`);
+        return;
+      }
+
+      const fallbackMolecule = createSessionMolecule({
+        name: requestedName || pubChemMatch?.name || "",
+        formula: parsedFormula.formula,
+        counts: parsedFormula.counts,
+        source: pubChemMatch?.cid
+          ? `PubChem CID ${pubChemMatch.cid}; ${SESSION_MOLECULE_SOURCE}`
+          : SESSION_MOLECULE_SOURCE,
+      });
+      addSessionMolecule(fallbackMolecule);
+      setSessionStatus(
+        pubChemMatch?.name
+          ? `Found name: ${pubChemMatch.name}; rendered formula composition.`
+          : `Added session molecule: ${fallbackMolecule.name}.`
+      );
+    } catch (error) {
+      if (lookupRequestNumber !== state.sessionLookupRequestNumber) {
+        return;
+      }
+      console.warn("[MoleculeRuntime] PubChem lookup failed", error);
+      const fallbackMolecule = createSessionMolecule({
+        name: requestedName,
+        formula: parsedFormula.formula,
+        counts: parsedFormula.counts,
+      });
+      addSessionMolecule(fallbackMolecule);
+      setSessionStatus(`Lookup unavailable; added session molecule: ${fallbackMolecule.name}.`);
+    } finally {
+      if (lookupRequestNumber === state.sessionLookupRequestNumber) {
+        setSessionLookupPending(false);
+      }
+    }
   }
 
   function setPointerNdc(event) {
@@ -641,6 +1305,7 @@ export function createMoleculeRuntime(options = {}) {
     if (!presets.length) {
       throw new Error("Molecule app requires at least one preset.");
     }
+    presetButtons.clear();
     renderPresetButtons();
     dom.canvas.style.cursor = "grab";
     dom.canvas.addEventListener("pointerdown", handlePointerDown);
@@ -650,6 +1315,7 @@ export function createMoleculeRuntime(options = {}) {
     dom.canvas.addEventListener("pointerleave", handlePointerLeave);
     dom.canvas.addEventListener("wheel", handleWheel, { passive: false });
     dom.homeButton.addEventListener("click", navigateHome);
+    dom.sessionForm.addEventListener("submit", handleSessionSubmit);
     windowLike.addEventListener("resize", resize);
     resize();
     selectPreset(presetById.has(DEFAULT_PRESET_ID) ? DEFAULT_PRESET_ID : presets[0].id);
@@ -663,6 +1329,7 @@ export function createMoleculeRuntime(options = {}) {
     dom.canvas.removeEventListener("pointercancel", handlePointerUp);
     dom.canvas.removeEventListener("pointerleave", handlePointerLeave);
     dom.canvas.removeEventListener("wheel", handleWheel);
+    dom.sessionForm.removeEventListener("submit", handleSessionSubmit);
     clearMolecule();
     renderer.dispose();
   }
@@ -676,6 +1343,7 @@ export function createMoleculeRuntime(options = {}) {
       activePresetId: state.activePreset?.id ?? null,
       cameraDistance: state.cameraDistance,
       presetCount: presets.length,
+      sessionMoleculeCount: sessionMolecules.length,
     }),
   };
 }

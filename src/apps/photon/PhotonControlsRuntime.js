@@ -1,9 +1,11 @@
 import {
   PHOTON_CONTROL_RANGES,
+  PHOTON_LAYER_META,
   PHOTON_LAYER_ORDER,
   getPhotonFrequencyExponent,
   getPhotonFrequencyFromExponent,
   getPhotonLayer,
+  getPhotonLayerRadiusBounds,
   getPhotonSeparationLog10Ratio,
   setPhotonLayerEnabled,
   setPhotonPairSeparationLog10Ratio,
@@ -658,6 +660,13 @@ function syncRange(control, value) {
   control.output.textContent = formatControlValue(value, control.digits);
 }
 
+function syncRadiusRange(control, state, swarmId, layerId) {
+  const bounds = getPhotonLayerRadiusBounds(state, swarmId, layerId);
+  control.input.min = String(bounds.min);
+  control.input.max = String(bounds.max);
+  syncRange(control, getPhotonLayer(state, swarmId, layerId).radius);
+}
+
 function syncToggleButton(button, isActive, activeLabel, inactiveLabel) {
   button.textContent = isActive ? activeLabel : inactiveLabel;
   button.classList.toggle("is-active", isActive);
@@ -724,6 +733,15 @@ export function createPhotonControlsRuntime({
   timeSection.append(...controls.slice(-2).map((control) => control.row));
 
   const measurementSection = addSection(documentLike, container, "Measurement");
+  measurementSection.classList.add("photon-measurement-section");
+  const measurementControls = createElement(documentLike, "div", "photon-measurement-controls");
+  const measurementZeroMarker = createElement(documentLike, "span", "photon-measurement-zero-marker");
+  const measurementZeroLine = createElement(documentLike, "span", "photon-measurement-zero-line");
+  const measurementZeroLabel = createElement(documentLike, "span", "photon-measurement-zero-label", "0");
+  measurementZeroMarker.setAttribute("aria-hidden", "true");
+  measurementZeroMarker.append(measurementZeroLine, measurementZeroLabel);
+  measurementControls.append(measurementZeroMarker);
+  measurementSection.append(measurementControls);
   [
     ["x", "Observer x", PHOTON_CONTROL_RANGES.virtualObserverX, 2],
     ["y", "Observer y", PHOTON_CONTROL_RANGES.virtualObserverY, 2],
@@ -734,7 +752,6 @@ export function createPhotonControlsRuntime({
       value: state.measurement.virtualObserver[key],
       range,
       digits,
-      zeroIndicator: true,
       snapToZero: true,
       onInput: (value) => {
         getState().measurement.virtualObserver[key] = value;
@@ -742,17 +759,18 @@ export function createPhotonControlsRuntime({
       },
     });
     controls.push(control);
-    measurementSection.append(control.row);
+    measurementControls.append(control.row);
   });
   PHOTON_CONTROL_SWARM_ORDER.forEach((swarmId) => {
     const swarm = state.pair[swarmId];
     const section = addSection(documentLike, container, `${swarm.role} ${swarm.direction.toUpperCase()}`);
     PHOTON_LAYER_ORDER.forEach((layerId) => {
       const layer = getPhotonLayer(state, swarmId, layerId);
+      const layerLabel = PHOTON_LAYER_META[layerId]?.label ?? layerId;
       const group = createElement(documentLike, "div", "photon-layer-group");
-      group.append(createElement(documentLike, "h3", "", layerId));
+      group.append(createElement(documentLike, "h3", "", layerLabel));
       const enabledControl = createCheckboxControl(documentLike, {
-        label: `${swarm.role} ${layerId} binary enabled`,
+        label: `${swarm.role} ${layerLabel} binary enabled`,
         checked: layer.enabled !== false,
         onChange: (checked) => {
           const nextState = getState();
@@ -771,10 +789,10 @@ export function createPhotonControlsRuntime({
       ].forEach(([key, label, range, digits]) => {
         const handleLayerInput = (value) => {
           const nextState = getState();
-          const separationLog10Ratio = getPhotonSeparationLog10Ratio(nextState);
           setPhotonLayerValue(nextState, swarmId, layerId, key, value);
           if (key === "radius") {
-            setPhotonPairSeparationLog10Ratio(nextState, separationLog10Ratio);
+            onStateChange({ syncControls: true, drawNow: false });
+            return;
           }
           onRangeStateChange();
         };
@@ -800,6 +818,15 @@ export function createPhotonControlsRuntime({
   });
 
   const analyzerSection = addSection(documentLike, container, "Analyzer");
+  const rawPolarizationControl = createCheckboxControl(documentLike, {
+    label: "Show raw polarization points",
+    checked: state.view?.rawPolarizationVisible !== false,
+    onChange: (checked) => {
+      getState().view.rawPolarizationVisible = checked;
+      onStateChange();
+    },
+  });
+  analyzerSection.append(rawPolarizationControl.row);
   [
     ["analyzerAngleDeg", "Angle", PHOTON_CONTROL_RANGES.analyzerAngleDeg, 0],
   ].forEach(([key, label, range, digits]) => {
@@ -832,7 +859,11 @@ export function createPhotonControlsRuntime({
       PHOTON_LAYER_ORDER.forEach((layerId) => {
         const layer = getPhotonLayer(nextState, swarmId, layerId);
         ["frequencyHz", "radius", "phaseDeg"].forEach((key) => {
-          syncRange(controls[index], layer[key]);
+          if (key === "radius") {
+            syncRadiusRange(controls[index], nextState, swarmId, layerId);
+          } else {
+            syncRange(controls[index], layer[key]);
+          }
           index += 1;
         });
       });
@@ -846,6 +877,7 @@ export function createPhotonControlsRuntime({
     });
     pauseButton.textContent = nextState.time.paused ? "Play" : "Pause";
     syncToggleButton(pathsButton, nextState.view.pathsVisible, "Paths on", "Paths off");
+    rawPolarizationControl.input.checked = nextState.view?.rawPolarizationVisible !== false;
   }
 
   sync(state);
