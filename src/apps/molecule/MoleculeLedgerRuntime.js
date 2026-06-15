@@ -3,13 +3,14 @@ const ELEMENT_NUCLEON_DATA = Object.freeze({
   C: { atomicNumber: 6, typicalMassNumber: 12 },
   N: { atomicNumber: 7, typicalMassNumber: 14 },
   O: { atomicNumber: 8, typicalMassNumber: 16 },
+  Mg: { atomicNumber: 12, typicalMassNumber: 24 },
   Na: { atomicNumber: 11, typicalMassNumber: 23 },
   P: { atomicNumber: 15, typicalMassNumber: 31 },
   Cl: { atomicNumber: 17, typicalMassNumber: 35 },
 });
 
 const PARTICLE_LEDGER = Object.freeze({
-  proton: { electrinos: 21, positrinos: 15, architrinos: 36 },
+  proton: { electrinos: 15, positrinos: 21, architrinos: 36 },
   neutron: { positrinos: 18, electrinos: 18, architrinos: 36 },
   electron: { electrinos: 9, positrinos: 3, architrinos: 12 },
 });

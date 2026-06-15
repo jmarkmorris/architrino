@@ -22,11 +22,15 @@ const PHOTON_FIELD_PLOT_MAX_SAMPLE_COUNT = 900;
 const PHOTON_FIELD_PLOT_SAMPLES_PER_CSS_PIXEL = 0.75;
 const PHOTON_FIELD_PLOT_FORWARD_GAP_FRACTION = 0.15;
 const PHOTON_FIELD_PLOT_TOP_INSET = 24;
-const PHOTON_FIELD_PLOT_BOTTOM_INSET = 28;
+const PHOTON_FIELD_PLOT_BOTTOM_INSET = 34;
+const PHOTON_FIELD_PANEL_BOTTOM_TEXT_INSET = 14;
 const PHOTON_FIELD_PANEL_TEXT_FONT = "700 12px Helvetica Neue, Arial, sans-serif";
-const PHOTON_STAGE_TEXT_FONT = "700 12px Helvetica Neue, Arial, sans-serif";
+const PHOTON_STAGE_TEXT_FONT = "730 12px Helvetica Neue, Arial, sans-serif";
+const PHOTON_STAGE_AXIS_GLYPH_FONT = "730 10px Helvetica Neue, Arial, sans-serif";
 const PHOTON_FACE_PAIR_TITLE = "Contra-rotating, Offset, Planar Swarms";
+const PHOTON_STAGE_WHITE_LABEL_COLOR = "#ffffff";
 const PHOTON_TRANSLATION_AXIS_COLOR = "rgba(251, 191, 36, 0.92)";
+const PHOTON_FACE_AXIS_COLOR = "rgba(251, 191, 36, 0.82)";
 
 let photonFieldPlotCache = {
   key: "",
@@ -165,25 +169,66 @@ function drawArchitrinoMarker(ctx, x, y, color, radius) {
   ctx.restore();
 }
 
-function drawPhotonFaceAxisMarker(ctx, centerX, centerY) {
-  const radius = 9;
-  ctx.save();
-  ctx.shadowColor = "rgba(251, 191, 36, 0.36)";
-  ctx.shadowBlur = 7;
-  ctx.strokeStyle = PHOTON_TRANSLATION_AXIS_COLOR;
-  ctx.fillStyle = PHOTON_TRANSLATION_AXIS_COLOR;
-  ctx.lineWidth = 1.7;
+function drawPhotonAxisArrowHead(ctx, tipX, tipY, direction, size) {
+  const lateral = size * 0.58;
   ctx.beginPath();
-  ctx.arc(centerX, centerY, radius, 0, TWO_PI);
-  ctx.stroke();
-  ctx.beginPath();
-  ctx.arc(centerX, centerY, 2.5, 0, TWO_PI);
+  if (direction === "right") {
+    ctx.moveTo(tipX, tipY);
+    ctx.lineTo(tipX - size, tipY - lateral);
+    ctx.lineTo(tipX - size, tipY + lateral);
+  } else {
+    ctx.moveTo(tipX, tipY);
+    ctx.lineTo(tipX - lateral, tipY + size);
+    ctx.lineTo(tipX + lateral, tipY + size);
+  }
+  ctx.closePath();
   ctx.fill();
-  ctx.shadowBlur = 0;
-  ctx.font = PHOTON_STAGE_TEXT_FONT;
+}
+
+function drawPhotonFaceAxisGlyph(ctx, centerX, centerY, maxRadiusPx) {
+  const radius = Math.max(18, maxRadiusPx);
+  const armLength = Math.max(18, Math.min(26, radius * 0.18));
+  const dotRadius = 3.2;
+  const originX = centerX;
+  const originY = centerY;
+  const yTipX = originX + armLength;
+  const zTipY = originY - armLength;
+
+  ctx.save();
+  ctx.strokeStyle = PHOTON_FACE_AXIS_COLOR;
+  ctx.fillStyle = PHOTON_FACE_AXIS_COLOR;
+  ctx.lineWidth = 1.3;
+  ctx.lineCap = "round";
+
+  ctx.beginPath();
+  ctx.moveTo(originX + dotRadius + 2, originY);
+  ctx.lineTo(yTipX, originY);
+  ctx.moveTo(originX, originY - dotRadius - 2);
+  ctx.lineTo(originX, zTipY);
+  ctx.stroke();
+  drawPhotonAxisArrowHead(ctx, yTipX, originY, "right", 4.4);
+  drawPhotonAxisArrowHead(ctx, originX, zTipY, "up", 4.4);
+
+  ctx.font = PHOTON_STAGE_AXIS_GLYPH_FONT;
   ctx.textAlign = "left";
   ctx.textBaseline = "middle";
-  ctx.fillText("x", centerX + radius + 6, centerY);
+  ctx.fillText("y", yTipX + 5, originY);
+  ctx.textAlign = "center";
+  ctx.textBaseline = "bottom";
+  ctx.fillText("z", originX, zTipY - 5);
+
+  ctx.strokeStyle = PHOTON_FACE_AXIS_COLOR;
+  ctx.fillStyle = PHOTON_FACE_AXIS_COLOR;
+  ctx.lineWidth = 1.2;
+  ctx.beginPath();
+  ctx.arc(originX, originY, dotRadius, 0, TWO_PI);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(originX, originY, 1.1, 0, TWO_PI);
+  ctx.fill();
+  ctx.textAlign = "left";
+  ctx.textBaseline = "top";
+  ctx.fillText("x", originX + dotRadius + 5, originY + 4);
   ctx.restore();
 }
 
@@ -203,8 +248,23 @@ function getPhotonMaxLayerRadius(state, { enabledOnly = false } = {}) {
   return radii.length > 0 ? Math.max(...radii) : 0;
 }
 
+function getPhotonSwarmMaxLayerRadius(state, swarmId, { enabledOnly = false } = {}) {
+  const radii = PHOTON_LAYER_ORDER.flatMap((layerId) => {
+    if (enabledOnly && !getPhotonLayerEnabled(state, swarmId, layerId)) {
+      return [];
+    }
+    return [getPhotonLayer(state, swarmId, layerId).radius];
+  }).filter((radius) => radius > 0);
+  return radii.length > 0 ? Math.max(...radii) : 0;
+}
+
 function drawSwarm(ctx, state, swarmId, centerX, centerY, scale, timeSeconds) {
   const pathsVisible = state.view?.pathsVisible !== false;
+  const glyphRadius = Math.max(
+    getPhotonMaxLayerRadius(state, { enabledOnly: true }),
+    getPhotonMaxLayerRadius(state),
+    0.1
+  ) * scale;
   ctx.save();
 
   PHOTON_LAYER_ORDER.forEach((layerId) => {
@@ -244,13 +304,24 @@ function drawSwarm(ctx, state, swarmId, centerX, centerY, scale, timeSeconds) {
     );
   });
 
-  drawPhotonFaceAxisMarker(ctx, centerX, centerY);
+  drawPhotonFaceAxisGlyph(ctx, centerX, centerY, glyphRadius);
+  ctx.restore();
+}
+
+function drawPhotonFaceLabels(ctx, state, layout) {
+  ctx.save();
+  ctx.fillStyle = PHOTON_STAGE_WHITE_LABEL_COLOR;
+  ctx.font = PHOTON_STAGE_TEXT_FONT;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "top";
+  ctx.fillText(state.pair.left.role, layout.faceLeftX, layout.faceLabelY);
+  ctx.fillText(state.pair.right.role, layout.faceRightX, layout.faceLabelY);
   ctx.restore();
 }
 
 function drawPhotonFacePairTitle(ctx, layout) {
   ctx.save();
-  ctx.fillStyle = "rgba(238, 243, 255, 0.82)";
+  ctx.fillStyle = PHOTON_STAGE_WHITE_LABEL_COLOR;
   ctx.font = PHOTON_STAGE_TEXT_FONT;
   ctx.textAlign = "center";
   ctx.textBaseline = "bottom";
@@ -293,7 +364,7 @@ function drawSideSwarmTrace(ctx, state, swarmId, x, centerY, halfHeight, scale, 
   });
 
   ctx.shadowBlur = 0;
-  ctx.fillStyle = "rgba(226, 232, 240, 0.74)";
+  ctx.fillStyle = PHOTON_STAGE_WHITE_LABEL_COLOR;
   ctx.font = PHOTON_STAGE_TEXT_FONT;
   ctx.textAlign = "center";
   ctx.textBaseline = "top";
@@ -316,8 +387,8 @@ function drawPhotonSideDeltaMarker(ctx, layout) {
   const arrowHead = 7;
 
   ctx.save();
-  ctx.strokeStyle = "rgba(245, 247, 255, 0.92)";
-  ctx.fillStyle = "rgba(245, 247, 255, 0.92)";
+  ctx.strokeStyle = PHOTON_STAGE_WHITE_LABEL_COLOR;
+  ctx.fillStyle = PHOTON_STAGE_WHITE_LABEL_COLOR;
   ctx.font = PHOTON_STAGE_TEXT_FONT;
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
@@ -358,7 +429,7 @@ function drawPhotonSideView(ctx, state, layout, timeSeconds) {
     return;
   }
   ctx.save();
-  ctx.fillStyle = "rgba(238, 243, 255, 0.78)";
+  ctx.fillStyle = PHOTON_STAGE_WHITE_LABEL_COLOR;
   ctx.font = PHOTON_STAGE_TEXT_FONT;
   ctx.textAlign = "center";
   ctx.textBaseline = "bottom";
@@ -371,8 +442,13 @@ function drawPhotonSideView(ctx, state, layout, timeSeconds) {
 
 export function computePhotonStageLayout(state, cssWidth, cssHeight) {
   const maxLayerRadius = Math.max(0.1, getPhotonMaxLayerRadius(state));
+  const leftMaxLayerRadius = Math.max(0.1, getPhotonSwarmMaxLayerRadius(state, "left"));
+  const rightMaxLayerRadius = Math.max(0.1, getPhotonSwarmMaxLayerRadius(state, "right"));
   const enabledMaxLayerRadius = getPhotonMaxLayerRadius(state, { enabledOnly: true });
-  const scale = Math.min(cssHeight * 0.31, cssWidth * 0.15) / Math.max(0.1, maxLayerRadius);
+  const faceRadiusPx = Math.min(cssHeight * 0.31, cssWidth * 0.15);
+  const scale = faceRadiusPx / maxLayerRadius;
+  const faceLeftScale = faceRadiusPx / leftMaxLayerRadius;
+  const faceRightScale = faceRadiusPx / rightMaxLayerRadius;
   const separationLog10Ratio = getPhotonSeparationLog10Ratio(state);
   const separationLogRange = PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio;
   const separationProgress = clampPhotonNumber(
@@ -382,10 +458,10 @@ export function computePhotonStageLayout(state, cssWidth, cssHeight) {
     0.5
   );
   const centerY = cssHeight * 0.54;
-  const faceMaxRadiusPx = maxLayerRadius * scale;
+  const faceMaxRadiusPx = faceRadiusPx;
   const faceSpacing = Math.min(
     cssWidth * 0.31,
-    Math.max(faceMaxRadiusPx * 2.35, scale * 2.6)
+    Math.max(faceMaxRadiusPx * 2.35, faceRadiusPx * 0.38)
   );
   const facePairCenterX = Math.min(
     cssWidth * 0.38,
@@ -402,11 +478,14 @@ export function computePhotonStageLayout(state, cssWidth, cssHeight) {
   const topLabelY = Math.max(24, centerY - faceMaxRadiusPx - 44);
   const sideHalfHeight = enabledMaxLayerRadius * scale;
   const bottomLabelY = centerY + sideHalfHeight + 9;
+  const faceLabelY = centerY + faceMaxRadiusPx + 9;
   const translationAxisStartX = Math.max(18, sideLeftX - 44);
   const translationAxisEndX = Math.min(cssWidth - 28, sideRightX + 64);
   const translationArrowBaseX = Math.max(translationAxisStartX + 10, translationAxisEndX - 18);
   return {
     scale,
+    faceLeftScale,
+    faceRightScale,
     centerY,
     faceLeftX,
     faceRightX,
@@ -417,6 +496,7 @@ export function computePhotonStageLayout(state, cssWidth, cssHeight) {
     sideHalfHeight,
     topLabelY,
     bottomLabelY,
+    faceLabelY,
     translationAxisStartX,
     translationAxisEndX,
     translationArrowBaseX,
@@ -471,8 +551,9 @@ export function drawPhotonSwarmStage(canvas, state, timeSeconds, options = {}) {
   ctx.restore();
 
   drawPhotonFacePairTitle(ctx, layout);
-  drawSwarm(ctx, state, "left", layout.faceLeftX, layout.centerY, layout.scale, timeSeconds);
-  drawSwarm(ctx, state, "right", layout.faceRightX, layout.centerY, layout.scale, timeSeconds);
+  drawSwarm(ctx, state, "left", layout.faceLeftX, layout.centerY, layout.faceLeftScale, timeSeconds);
+  drawSwarm(ctx, state, "right", layout.faceRightX, layout.centerY, layout.faceRightScale, timeSeconds);
+  drawPhotonFaceLabels(ctx, state, layout);
   drawPhotonSideView(ctx, state, layout, timeSeconds);
 }
 
@@ -641,6 +722,53 @@ function drawPhotonPolarizationAnalyzerAxis(ctx, trace, centerX, centerY, radius
   ctx.restore();
 }
 
+function getPhotonCenteredRawPolarizationPoint(trace, sample) {
+  return {
+    ey: (Number(sample?.ey) || 0) - (Number(trace.components?.y?.dc) || 0),
+    ez: (Number(sample?.ez) || 0) - (Number(trace.components?.z?.dc) || 0),
+  };
+}
+
+function drawPhotonPolarizationRawOverlay(ctx, trace, centerX, centerY, radius, scale) {
+  if (!trace.rawSamples.length) {
+    return;
+  }
+
+  const rawPoints = trace.rawSamples.map((sample) =>
+    mapPhotonPolarizationPoint(
+      getPhotonCenteredRawPolarizationPoint(trace, sample),
+      centerX,
+      centerY,
+      radius,
+      scale
+    )
+  );
+
+  ctx.save();
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+  ctx.strokeStyle = "rgba(253, 230, 138, 0.1)";
+  ctx.lineWidth = 0.9;
+  ctx.beginPath();
+  rawPoints.forEach((point, index) => {
+    if (index === 0) {
+      ctx.moveTo(point.x, point.y);
+    } else {
+      ctx.lineTo(point.x, point.y);
+    }
+  });
+  ctx.closePath();
+  ctx.stroke();
+
+  ctx.fillStyle = "rgba(238, 243, 255, 0.24)";
+  rawPoints.forEach((point) => {
+    ctx.beginPath();
+    ctx.arc(point.x, point.y, 1.25, 0, TWO_PI);
+    ctx.fill();
+  });
+  ctx.restore();
+}
+
 function drawPhotonPolarizationTrail(ctx, trace, centerX, centerY, radius, scale) {
   if (!trace.samples.length) {
     return;
@@ -768,7 +896,8 @@ function drawPhotonComponentPlot(canvas, state, timeSeconds, options = {}) {
     legendX += ctx.measureText(component.label).width + 16;
   });
   ctx.fillStyle = "rgba(238, 243, 255, 0.6)";
-  ctx.fillText(`Max E = ${formatPhotonPlotEmax(amplitudeScale)}`, 12, cssHeight - 10);
+  ctx.textBaseline = "bottom";
+  ctx.fillText(`Max E = ${formatPhotonPlotEmax(amplitudeScale)}`, 12, cssHeight - PHOTON_FIELD_PANEL_BOTTOM_TEXT_INSET);
   ctx.restore();
 }
 
@@ -799,6 +928,9 @@ export function drawPhotonPolarizationInset(canvas, state, timeSeconds, options 
   const radius = Math.max(42, Math.min(cssWidth - 40, cssHeight - 62) * 0.48);
 
   drawPhotonPolarizationAxes(ctx, centerX, centerY, radius);
+  if (state.view?.rawPolarizationVisible !== false) {
+    drawPhotonPolarizationRawOverlay(ctx, trace, centerX, centerY, radius, trace.scale);
+  }
   drawPhotonPolarizationTrail(ctx, trace, centerX, centerY, radius, trace.scale);
   drawPhotonPolarizationAnalyzerAxis(ctx, trace, centerX, centerY, radius, trace.scale);
   drawPhotonPolarizationCurrentVector(ctx, trace, centerX, centerY, radius, trace.scale);
@@ -808,6 +940,7 @@ export function drawPhotonPolarizationInset(canvas, state, timeSeconds, options 
   ctx.font = PHOTON_FIELD_PANEL_TEXT_FONT;
   ctx.fillText(trace.classificationLabel, 12, 34);
   ctx.fillText(trace.phaseLagDefined ? `lag ${trace.phaseLagDeg.toFixed(1)} deg` : "lag n/a", 12, 50);
-  ctx.fillText(`Max E = ${formatPhotonPlotEmax(trace.scale)}`, 12, cssHeight - 10);
+  ctx.textBaseline = "bottom";
+  ctx.fillText(`Max E = ${formatPhotonPlotEmax(trace.scale)}`, 12, cssHeight - PHOTON_FIELD_PANEL_BOTTOM_TEXT_INSET);
   ctx.restore();
 }

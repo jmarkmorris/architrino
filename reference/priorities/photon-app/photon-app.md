@@ -19,6 +19,8 @@ The deployed route is `photon.html`. The dedicated runtime lives under `src/apps
 
 The reader-facing app guide is [Photon Guide](../../../content/markdown/aaa/archie/photon-guide.md). The visible Photon UI exposes Markdown buttons for the guide, [Photon Closure](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md), and [Polarization](../../../content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
 
+Promotion note: the named preset descriptions, Virtual Observer branch-sum equations, and analyzer-fit formulas have been promoted into the reader-facing Photon Guide. The remaining app-specific control ranges, verification checklist, and open work queue stay priority-only.
+
 ## Implemented Baseline
 
 The current app implements:
@@ -31,7 +33,7 @@ The current app implements:
 - pause/play, Space bar pause/play, Reset time, Reset all, Paths, and Slow/Fast controls;
 - Virtual Observer $x$, $y$, and $z$ controls with visible zero markers and near-zero snap;
 - a three-cycle Electric Field plot based on causal-root branch sums;
-- a transverse polarization inset derived from a one-cycle branch-sum fit;
+- a transverse polarization inset derived from a one-cycle branch-sum fit, with optional raw one-cycle branch-sum points behind the fit;
 - formula and diagnostic panels with quality words where the readout has a useful direction;
 - and in-app Markdown viewing for the user-facing guide and the two supporting corpus bridges.
 
@@ -130,6 +132,8 @@ The Virtual Observer $x$, $y$, and $z$ sliders should continue to show a visible
 
 The lower Electric Field plot is based on a Virtual Observer branch-sum calculation from the architrino source histories in the two swarms. This mapping is diagnostic-only and is not a photon-substrate derivation or closure certificate.
 
+The current calculation is a co-moving diagnostic: the two swarm centers are held at fixed app-frame offsets, and the Virtual Observer is held at a fixed app-frame coordinate. This is useful for inspecting delayed superposition, but it does not yet solve the harder absolute-history problem where the entire photon candidate, including the two swarms and the Virtual Observer, translates through the Noether sea at local $c$.
+
 The Virtual Observer coordinate is
 
 $$
@@ -224,6 +228,156 @@ $$
 
 so $B_y=-E_z/c_f$ and $B_z=E_y/c_f$. The app should not draw $\mathbf B$ as a separate graph unless a later diagnostic explicitly needs to compare a non-plane-wave magnetic reconstruction.
 
+### Absolute-History Solver Burden
+
+The next $\Delta x$ refinement must treat the photon candidate as a moving apparatus. If the pair translates at $c_\gamma$, with $c_\gamma$ identified with local $c$ for the local Noether sea state, then the absolute source and receiver histories should be written in an absolute observer frame before solving causal roots.
+
+Let $\chi_s\in\{-\Delta x/2,+\Delta x/2\}$ be the trailing or leading swarm offset in the moving photon frame, and let $\chi_{\mathrm{VO}}$ be the Virtual Observer offset in that same moving frame. The current visual intuition often places the Virtual Observer near $\chi_{\mathrm{VO}}=+\Delta x/2$, but the calculation should keep this as an explicit variable.
+
+The absolute Virtual Observer history is
+
+$$
+\mathbf X_{\mathrm{VO}}(t)
+=
+\mathbf X_0
++c_\gamma t\,\hat{\mathbf x}
++\chi_{\mathrm{VO}}\hat{\mathbf x}
++y_{\mathrm{VO}}\hat{\mathbf y}
++z_{\mathrm{VO}}\hat{\mathbf z},
+$$
+
+and an absolute source history should be
+
+$$
+\mathbf r_{s\ell q}(\tau)
+=
+\mathbf X_0
++c_\gamma\tau\,\hat{\mathbf x}
++\chi_s\hat{\mathbf x}
++R_{s\ell}\cos\theta_{s\ell q}(\tau)\hat{\mathbf y}
++R_{s\ell}\sin\theta_{s\ell q}(\tau)\hat{\mathbf z}.
+$$
+
+The causal-root equation then becomes
+
+$$
+\left\|
+\mathbf X_{\mathrm{VO}}(t)-\mathbf r_{s\ell q}(\tau)
+\right\|
+=
+c_{\mathrm{sig}}(t-\tau),
+$$
+
+where $c_{\mathrm{sig}}$ is the signal speed used by the branch solver. The first implementation should expose whether $c_{\mathrm{sig}}$ is still $c_f$ or is also local $c$.
+
+With $u=t-\tau$, the longitudinal separation in the root equation is no longer just the fixed app-frame gap. It is
+
+$$
+D_x(u)
+=
+\chi_{\mathrm{VO}}-\chi_s+c_\gamma u.
+$$
+
+This is the troubling part. If $c_\gamma$ is very close to $c_{\mathrm{sig}}$, then a contribution from a source behind the Virtual Observer has a very small catch-up margin. For small transverse offset, the delay scale is approximately
+
+$$
+u
+\sim
+\frac{\chi_{\mathrm{VO}}-\chi_s}
+{c_{\mathrm{sig}}-c_\gamma}.
+$$
+
+So if local $c$ is close to $c_f$ and $c_{\mathrm{sig}}=c_f$, the received contribution from the trailing swarm may come from a very old source-history point, or may have no finite positive root in the limiting case $c_\gamma=c_{\mathrm{sig}}$. Even the leading swarm is not automatically simple: if $\chi_{\mathrm{VO}}=\chi_s$ but there is transverse orbital separation $\rho$, the root scale is
+
+$$
+u
+=
+\frac{\rho}
+{\sqrt{c_{\mathrm{sig}}^2-c_\gamma^2}},
+$$
+
+which also becomes large as $c_\gamma\to c_{\mathrm{sig}}$.
+
+This means the current co-moving branch sum is not enough for photon-substrate closure. The app needs a later absolute-history mode that:
+
+- chooses $c_\gamma/c_f$ directly or derives it from declared Noether sea variables;
+- optionally derives $c_\gamma/c_f$ from a Lorentz-factor chart when that chart is the active local-$c$ parameterization;
+- keeps $\chi_{\mathrm{VO}}$, $\chi_{\mathrm{trailing}}$, and $\chi_{\mathrm{leading}}$ explicit rather than assuming the fixed app-frame roots are physical roots;
+- solves all positive causal roots in the absolute frame;
+- reports when trailing or leading contributions have no catch-up root, very old roots, or small Jacobian margins;
+- and compares the absolute-history field against the current co-moving diagnostic field.
+
+#### Reusable Solver Contract
+
+The moving-apparatus calculation and the same-source self-hit calculation should share one reusable absolute-history solver. The solver should accept source histories, a receiver history, the declared photon-channel speed $c_\gamma$, the branch signal speed $c_{\mathrm{sig}}$, and an admissibility policy, then return:
+
+- every retained source-to-observer causal root;
+- every retained same-source causal root when self-hit diagnostics are enabled;
+- the root delay, source position, source velocity, receiver position, residual, and Jacobian for each row;
+- the source phase-at-hit for each retained root, including layer id, charge sign, leading/trailing role, orbit phase, and phase cycle index;
+- the receiver phase-at-hit for every modeled receiver binary, with `n/a` for the Virtual Observer;
+- rejected-root reasons such as insufficient history, no catch-up root, singular root, small Jacobian, or transversality-floor failure;
+- the Jacobian-weighted hit sum;
+- the reconstructed receiver acceleration;
+- and the observer-level transverse field derived from that acceleration.
+
+The Jacobian diagnostic should remain separate from the source-speed diagnostic. In this app context,
+
+$$
+J
+=
+1-\frac{\mathbf v_{\mathrm{source}}\cdot\hat{\mathbf n}}{c_{\mathrm{sig}}},
+$$
+
+so a small $|J|$ means source-history times are bunching along the causal direction. It is not the same thing as large total speed. A source can have large transverse speed while still producing a modest Jacobian effect if little of that velocity projects along $\hat{\mathbf n}$.
+
+#### Phase-Lock Diagnostics
+
+Phase-lock should be treated as an output diagnostic of this solver, not as an imposed polarization input. Once phase-at-hit is available for every retained root, the app can ask:
+
+- do same-layer leading and trailing hits arrive at repeatable phase offsets;
+- are those phase offsets stable across cycles;
+- do same-source roots return at phase positions that reinforce the emitting binary;
+- and do linear, circular, or elliptical observer candidates correspond to low phase-spread root families.
+
+Candidate phase-lock mechanisms include partner-hit loops, same-source self-hit loops, and any retained causal round-trip family whose phase rows recur across cycles. The reusable solver should therefore provide phase-spread summaries by layer, swarm role, charge sign, root kind, and cycle. These summaries should let the app distinguish a manually chosen phase preset from a causal phase-lock family produced by the delayed branch geometry.
+
+#### Field-Reconstruction Pipeline
+
+The correct pipeline is:
+
+$$
+\text{source histories + receiver history}
+\rightarrow
+\text{all causal roots}
+\rightarrow
+\text{Jacobian-weighted hit sum}
+\rightarrow
+\text{receiver acceleration}
+\rightarrow
+\mathbf E_\perp.
+$$
+
+This should not be treated as a speed-threshold shortcut. The speed budget
+
+$$
+\left(\frac{v_{k,\mathrm{abs}}}{c_f}\right)^2
+=
+\left(\frac{c_\gamma}{c_f}\right)^2
++
+\left(\frac{2\pi f_kR_k}{c_f}\right)^2
+$$
+
+can nominate self-hit candidate regimes, but a self-hit row exists only when the solver retains a positive same-source causal root with acceptable residual, Jacobian, and transverse geometry.
+
+#### Solver Precedents
+
+Existing code to mine first:
+
+- `src/apps/photon/PhotonFormulaRuntime.js` already contains the current co-moving branch-sum scanner. It is useful for the UI and formulas, but it is not the absolute moving-apparatus solver because source and receiver histories do not yet translate through the Noether sea.
+- `scripts/simulations/lib/assembly-dynamics-solver.mjs` is the closest reusable numerical pattern. It already keeps finite history, resolves all retained causal roots, separates self and partner roots, reports unresolved-root reasons, and applies the Jacobian factor $1/|J|$.
+- `src/apps/sim2/orbits.py` and `src/apps/sim2/md/design.md` are useful visual and emission-history precedents, but their hit detector is discrete emission-history crossing logic rather than the analytic branch-root solver needed here.
+
 ### Polarization And Formulas
 
 The app fits the actual branch-sum transverse field over one reference cycle:
@@ -257,13 +411,13 @@ $$
 
 ## Open Work Queue
 
-1. `raw_polarization_overlay` - Add an optional overlay that shows raw one-cycle branch-sum points behind the fitted polarization curve. Status: `open`.
-2. `shared_visual_extraction` - Extract shared Ideal Swarm / photon architrino marker, orbit-path, tint-profile, and layered-trail helpers if the visual grammar needs to be maintained across both apps. Status: `open`.
-3. `substrate_mapping_refinement` - Refine the Virtual Observer branch-sum mapping from I/M/O layer parameters to transverse observer-field amplitudes, while preserving claim discipline. Status: `open`.
-4. `separation_mapping_refinement` - Decide whether $\Delta x$ should later enter the observer-field mapping as a physical delay, a phase delay, or a separate diagnostic. Status: `open`.
-5. `polarization_parameter_search` - Identify which geometry or binary controls can reliably produce fitted linear, circular, or elliptical observer-level polarization without adding synthetic source-polarization parameters. Status: `open`.
-6. `local_c_continuation` - Add a later speed mode that replaces fixed $c_f$ with local $c$ from declared Noether sea state variables. Status: `open`.
-7. `absolute_source_history_self_hit` - Add a local-$c$ helical source-history diagnostic that combines photon-channel translation with transverse binary motion, then reports same-source roots, Jacobian floors, and whether each layer is sub-field-speed or candidate self-hit. Status: `open`.
+1. `reusable_absolute_history_solver` - Build or extract a shared solver for absolute source histories, moving receiver histories, all retained causal roots, same-source self-hit roots, source and receiver phase-at-hit rows, phase-spread diagnostics, Jacobian floors, rejected-root reasons, receiver acceleration, and observer-level field reconstruction. Mine `scripts/simulations/lib/assembly-dynamics-solver.mjs` first, but adapt it for the photon app's 3D planar-pair histories and local-$c$ translation. Status: `open`.
+2. `local_c_parameterization` - Add a speed mode that replaces fixed $c_f$ with local $c$ from either a direct $c_\gamma/c_f$ control, declared Noether sea state variables, or a Lorentz-factor chart mapping when that mapping is available. This is an input to the reusable absolute-history solver, not just a display label. Status: `open`.
+3. `moving_apparatus_delta_x_mapping` - Use the reusable absolute-history solver to replace the co-moving $\Delta x$ diagnostic with an optional absolute-history mode where the swarms and Virtual Observer translate at $c_\gamma$, then solve whether leading and trailing source histories can causally reach the moving Virtual Observer. Status: `open`.
+4. `absolute_source_history_self_hit` - Use the reusable absolute-history solver to add a local-$c$ helical source-history diagnostic that combines photon-channel translation with transverse binary motion, then reports same-source roots, Jacobian floors, and whether each layer is sub-field-speed or candidate self-hit. Status: `open`.
+5. `substrate_mapping_refinement` - Refine the Virtual Observer branch-sum mapping from I/M/O layer parameters to transverse observer-field amplitudes, while preserving claim discipline and distinguishing co-moving diagnostics from absolute-history results. Status: `open`.
+6. `polarization_parameter_search` - Identify which geometry or binary controls can reliably produce fitted linear, circular, or elliptical observer-level polarization without adding synthetic source-polarization parameters. This search should compare co-moving fits against the absolute-history moving-apparatus roots once the shared solver exists. Status: `open`.
+7. `shared_visual_extraction` - Extract shared Ideal Swarm / photon architrino marker, orbit-path, tint-profile, and layered-trail helpers if the visual grammar needs to be maintained across both apps. Status: `open`.
 
 ## Deferred Non-Goals
 

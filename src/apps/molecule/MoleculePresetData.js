@@ -578,6 +578,400 @@ function createCholesterolPreset() {
   };
 }
 
+function createGlucosePreset() {
+  const builder = createPresetBuilder();
+  const { addAtom, addBond, addHydrogens, atoms, bonds } = builder;
+
+  [
+    ["o_ring", "O", -1.28, 1.02, 0.1],
+    ["c1", "C", 0.0, 1.35, -0.08],
+    ["c2", "C", 1.18, 0.48, 0.1],
+    ["c3", "C", 0.95, -0.94, -0.08],
+    ["c4", "C", -0.34, -1.48, 0.1],
+    ["c5", "C", -1.42, -0.58, -0.08],
+    ["c6", "C", -2.82, -0.98, 0.18],
+    ["o1", "O", 0.18, 2.68, 0.16],
+    ["o2", "O", 2.38, 0.92, -0.18],
+    ["o3", "O", 1.96, -1.78, 0.18],
+    ["o4", "O", -0.52, -2.82, -0.18],
+    ["o6", "O", -3.64, 0.04, -0.1],
+  ].forEach(([key, element, x, y, z]) => addAtom(key, element, x, y, z));
+
+  [
+    ["o_ring", "c1"],
+    ["c1", "c2"],
+    ["c2", "c3"],
+    ["c3", "c4"],
+    ["c4", "c5"],
+    ["c5", "o_ring"],
+    ["c5", "c6"],
+    ["c1", "o1"],
+    ["c2", "o2"],
+    ["c3", "o3"],
+    ["c4", "o4"],
+    ["c6", "o6"],
+  ].forEach(([startKey, endKey]) => addBond(startKey, endKey));
+
+  [
+    ["c1", 1],
+    ["c2", 1],
+    ["c3", 1],
+    ["c4", 1],
+    ["c5", 1],
+    ["c6", 2],
+  ].forEach(([key, count]) => addHydrogens(key, count, { prefix: `${key}-h` }));
+  ["o1", "o2", "o3", "o4", "o6"].forEach((key) =>
+    addHydrogens(key, 1, { prefix: `${key}-h`, distance: 0.54, singleZ: 0.22 })
+  );
+
+  return {
+    id: "glucose",
+    name: "Glucose",
+    formula: "C6H12O6",
+    format: "app-coordinates",
+    source: "curated approximate hexose ring",
+    atoms,
+    bonds,
+  };
+}
+
+function createAspirinPreset() {
+  const builder = createPresetBuilder();
+  const { addAtom, addBond, addHydrogens, atoms, bonds } = builder;
+
+  [
+    ["c0", "C", 1.39, 0, 0],
+    ["c1", "C", 0.695, 1.204, 0.03],
+    ["c2", "C", -0.695, 1.204, -0.03],
+    ["c3", "C", -1.39, 0, 0.03],
+    ["c4", "C", -0.695, -1.204, -0.03],
+    ["c5", "C", 0.695, -1.204, 0.03],
+    ["carboxyl_c", "C", 2.72, 0.18, -0.08],
+    ["acetyl_c", "C", 1.24, 3.08, 0.08],
+    ["methyl_c", "C", 2.6, 3.5, -0.18],
+    ["carboxyl_o", "O", 3.48, -0.72, 0.12],
+    ["carboxyl_oh", "O", 3.06, 1.42, -0.22],
+    ["ester_o", "O", 1.18, 2.18, 0.18],
+    ["acetyl_o", "O", 0.24, 3.72, -0.02],
+  ].forEach(([key, element, x, y, z]) => addAtom(key, element, x, y, z));
+
+  [
+    ["c0", "c1"],
+    ["c1", "c2"],
+    ["c2", "c3"],
+    ["c3", "c4"],
+    ["c4", "c5"],
+    ["c5", "c0"],
+    ["c0", "carboxyl_c"],
+    ["carboxyl_c", "carboxyl_o"],
+    ["carboxyl_c", "carboxyl_oh"],
+    ["c1", "ester_o"],
+    ["ester_o", "acetyl_c"],
+    ["acetyl_c", "acetyl_o"],
+    ["acetyl_c", "methyl_c"],
+  ].forEach(([startKey, endKey]) => addBond(startKey, endKey));
+
+  ["c2", "c3", "c4", "c5"].forEach((key) => addHydrogens(key, 1, { prefix: `${key}-h` }));
+  addHydrogens("carboxyl_oh", 1, {
+    prefix: "carboxyl-oh-h",
+    distance: 0.54,
+    singleZ: 0.22,
+  });
+  addHydrogens("methyl_c", 3, { prefix: "methyl-h" });
+
+  return {
+    id: "aspirin",
+    name: "Aspirin",
+    formula: "C9H8O4",
+    format: "app-coordinates",
+    source: "curated approximate acetylsalicylic acid scaffold",
+    atoms,
+    bonds,
+  };
+}
+
+function createVitaminCPreset() {
+  const builder = createPresetBuilder();
+  const { addAtom, addBond, addHydrogens, atoms, bonds } = builder;
+
+  [
+    ["o_ring", "O", -1.08, 0.86, 0.08],
+    ["c1", "C", 0.08, 1.42, -0.06],
+    ["c2", "C", 1.24, 0.62, 0.06],
+    ["c3", "C", 1.08, -0.76, -0.06],
+    ["c4", "C", -0.18, -1.28, 0.06],
+    ["c5", "C", -1.26, -0.42, -0.06],
+    ["c6", "C", -2.62, -0.86, 0.18],
+    ["o1", "O", 0.22, 2.72, 0.14],
+    ["o2", "O", 2.38, 1.2, -0.14],
+    ["o3", "O", 2.12, -1.56, 0.14],
+    ["o4", "O", -0.36, -2.6, -0.14],
+    ["o6", "O", -3.28, 0.22, -0.1],
+  ].forEach(([key, element, x, y, z]) => addAtom(key, element, x, y, z));
+
+  [
+    ["o_ring", "c1"],
+    ["c1", "c2"],
+    ["c2", "c3"],
+    ["c3", "c4"],
+    ["c4", "c5"],
+    ["c5", "o_ring"],
+    ["c5", "c6"],
+    ["c1", "o1"],
+    ["c2", "o2"],
+    ["c3", "o3"],
+    ["c4", "o4"],
+    ["c6", "o6"],
+  ].forEach(([startKey, endKey]) => addBond(startKey, endKey));
+
+  [
+    ["c2", 1],
+    ["c3", 1],
+    ["c5", 1],
+    ["c6", 2],
+  ].forEach(([key, count]) => addHydrogens(key, count, { prefix: `${key}-h` }));
+  ["o2", "o3", "o4"].forEach((key) =>
+    addHydrogens(key, 1, { prefix: `${key}-h`, distance: 0.54, singleZ: 0.22 })
+  );
+
+  return {
+    id: "vitamin-c",
+    name: "Vitamin C",
+    formula: "C6H8O6",
+    format: "app-coordinates",
+    source: "curated approximate ascorbic acid scaffold",
+    atoms,
+    bonds,
+  };
+}
+
+function createNicotinePreset() {
+  const builder = createPresetBuilder();
+  const { addAtom, addBond, addHydrogens, atoms, bonds } = builder;
+
+  [
+    ["py_n", "N", 1.39, 0, 0],
+    ["py_c1", "C", 0.695, 1.204, 0.04],
+    ["py_c2", "C", -0.695, 1.204, -0.04],
+    ["py_c3", "C", -1.39, 0, 0.04],
+    ["py_c4", "C", -0.695, -1.204, -0.04],
+    ["py_c5", "C", 0.695, -1.204, 0.04],
+    ["link_c", "C", -2.52, -0.68, 0.28],
+    ["pyr_c2", "C", -3.58, 0.18, -0.16],
+    ["pyr_c3", "C", -4.78, -0.56, 0.16],
+    ["pyr_c4", "C", -4.36, -1.98, -0.18],
+    ["pyr_n", "N", -2.94, -2.02, 0.16],
+    ["methyl_c", "C", -2.34, -3.3, -0.14],
+  ].forEach(([key, element, x, y, z]) => addAtom(key, element, x, y, z));
+
+  [
+    ["py_n", "py_c1"],
+    ["py_c1", "py_c2"],
+    ["py_c2", "py_c3"],
+    ["py_c3", "py_c4"],
+    ["py_c4", "py_c5"],
+    ["py_c5", "py_n"],
+    ["py_c3", "link_c"],
+    ["link_c", "pyr_c2"],
+    ["pyr_c2", "pyr_c3"],
+    ["pyr_c3", "pyr_c4"],
+    ["pyr_c4", "pyr_n"],
+    ["pyr_n", "link_c"],
+    ["pyr_n", "methyl_c"],
+  ].forEach(([startKey, endKey]) => addBond(startKey, endKey));
+
+  ["py_c1", "py_c2", "py_c4", "py_c5"].forEach((key) =>
+    addHydrogens(key, 1, { prefix: `${key}-h` })
+  );
+  addHydrogens("link_c", 1, { prefix: "link-h" });
+  ["pyr_c2", "pyr_c3", "pyr_c4"].forEach((key) =>
+    addHydrogens(key, 2, { prefix: `${key}-h` })
+  );
+  addHydrogens("methyl_c", 3, { prefix: "methyl-h" });
+
+  return {
+    id: "nicotine",
+    name: "Nicotine",
+    formula: "C10H14N2",
+    format: "app-coordinates",
+    source: "curated approximate pyridine-pyrrolidine scaffold",
+    atoms,
+    bonds,
+  };
+}
+
+function createBuckminsterfullerenePreset() {
+  const atoms = [];
+  const bonds = [];
+  const bondKeys = new Set();
+  const degreeByIndex = new Map();
+  const radius = 3.1;
+  const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+
+  for (let index = 0; index < 60; index += 1) {
+    const y = 1 - (index / 59) * 2;
+    const ringRadius = Math.sqrt(Math.max(0, 1 - y * y));
+    const theta = index * goldenAngle;
+    atoms.push({
+      element: "C",
+      x: roundCoordinate(Math.cos(theta) * ringRadius * radius),
+      y: roundCoordinate(y * radius),
+      z: roundCoordinate(Math.sin(theta) * ringRadius * radius),
+    });
+    degreeByIndex.set(index, 0);
+  }
+
+  const pairs = [];
+  for (let left = 0; left < atoms.length; left += 1) {
+    for (let right = left + 1; right < atoms.length; right += 1) {
+      const dx = atoms[left].x - atoms[right].x;
+      const dy = atoms[left].y - atoms[right].y;
+      const dz = atoms[left].z - atoms[right].z;
+      pairs.push({ left, right, distance: dx * dx + dy * dy + dz * dz });
+    }
+  }
+
+  pairs.sort((left, right) => left.distance - right.distance);
+  pairs.forEach(({ left, right }) => {
+    if (bonds.length >= 90) {
+      return;
+    }
+    if ((degreeByIndex.get(left) ?? 0) >= 3 || (degreeByIndex.get(right) ?? 0) >= 3) {
+      return;
+    }
+    const key = `${left}-${right}`;
+    if (bondKeys.has(key)) {
+      return;
+    }
+    bondKeys.add(key);
+    degreeByIndex.set(left, (degreeByIndex.get(left) ?? 0) + 1);
+    degreeByIndex.set(right, (degreeByIndex.get(right) ?? 0) + 1);
+    bonds.push([left, right]);
+  });
+
+  return {
+    id: "buckminsterfullerene",
+    name: "Buckminsterfullerene",
+    formula: "C60",
+    format: "app-coordinates",
+    source: "curated approximate carbon cage",
+    atoms,
+    bonds,
+  };
+}
+
+function createChlorophyllAPreset() {
+  const builder = createPresetBuilder();
+  const { addAtom, addBond, addHydrogens, atoms, bonds } = builder;
+  const bondKeys = new Set();
+
+  function addUniqueBond(startKey, endKey) {
+    const key = [startKey, endKey].sort().join("|");
+    if (bondKeys.has(key)) {
+      return;
+    }
+    bondKeys.add(key);
+    addBond(startKey, endKey);
+  }
+
+  addAtom("mg", "Mg", 0, 0, 0);
+  for (let index = 0; index < 4; index += 1) {
+    const angle = (index * Math.PI) / 2 + Math.PI / 4;
+    addAtom(`n${index}`, "N", Math.cos(angle) * 1.08, Math.sin(angle) * 1.08, 0.02);
+    addUniqueBond("mg", `n${index}`);
+  }
+
+  for (let index = 0; index < 20; index += 1) {
+    const angle = (index * 2 * Math.PI) / 20;
+    const ringRadius = index % 5 === 0 ? 2.44 : 2.18;
+    addAtom(
+      `c${index}`,
+      "C",
+      Math.cos(angle) * ringRadius,
+      Math.sin(angle) * ringRadius,
+      (index % 2 === 0 ? 1 : -1) * 0.08
+    );
+  }
+
+  for (let index = 0; index < 20; index += 1) {
+    addUniqueBond(`c${index}`, `c${(index + 1) % 20}`);
+  }
+  [
+    ["n0", "c1"],
+    ["n0", "c2"],
+    ["n1", "c6"],
+    ["n1", "c7"],
+    ["n2", "c11"],
+    ["n2", "c12"],
+    ["n3", "c16"],
+    ["n3", "c17"],
+  ].forEach(([startKey, endKey]) => addUniqueBond(startKey, endKey));
+
+  let tailPreviousKey = "c5";
+  for (let index = 0; index < 20; index += 1) {
+    const x = 3.0 + index * 0.62;
+    const y = -1.3 - Math.sin(index * 0.65) * 0.72;
+    const z = (index % 2 === 0 ? 1 : -1) * 0.34;
+    const key = `tail${index}`;
+    addAtom(key, "C", x, y, z);
+    addUniqueBond(tailPreviousKey, key);
+    tailPreviousKey = key;
+  }
+
+  [
+    ["side0", "C", -2.92, 1.96, 0.24, "c18"],
+    ["side1", "C", -3.32, 0.22, -0.22, "c10"],
+    ["side2", "C", -2.74, -2.16, 0.22, "c12"],
+    ["side3", "C", -0.94, -3.02, -0.24, "c14"],
+    ["side4", "C", 1.12, -3.08, 0.24, "c4"],
+    ["side5", "C", 2.78, 1.98, -0.24, "c3"],
+    ["side6", "C", 0.34, 3.18, 0.24, "c0"],
+    ["side7", "C", -1.28, 3.08, -0.24, "c19"],
+    ["side8", "C", 3.72, 1.24, 0.24, "side5"],
+    ["side9", "C", 4.44, 2.22, -0.24, "side8"],
+    ["side10", "C", -4.24, -0.8, 0.24, "side1"],
+    ["side11", "C", -5.24, -0.2, -0.24, "side10"],
+    ["side12", "C", 8.1, -0.34, 0.12, "tail7"],
+    ["side13", "C", 11.24, -2.18, -0.18, "tail12"],
+    ["side14", "C", 14.06, -0.62, 0.18, "tail17"],
+  ].forEach(([key, element, x, y, z, parentKey]) => {
+    addAtom(key, element, x, y, z);
+    addUniqueBond(parentKey, key);
+  });
+
+  [
+    ["o0", "O", 3.42, 2.74, 0.18, "side9"],
+    ["o1", "O", 5.36, 2.06, -0.28, "side9"],
+    ["o2", "O", -4.88, -1.9, 0.18, "side10"],
+    ["o3", "O", -5.98, 0.86, -0.28, "side11"],
+    ["o4", "O", 2.78, -3.78, 0.18, "side4"],
+  ].forEach(([key, element, x, y, z, parentKey]) => {
+    addAtom(key, element, x, y, z);
+    addUniqueBond(parentKey, key);
+  });
+
+  Array.from({ length: 20 }, (_, index) => `c${index}`)
+    .filter((key) => !["c0", "c4", "c5", "c8", "c10"].includes(key))
+    .forEach((key) => addHydrogens(key, 1, { prefix: `${key}-h`, distance: 0.62 }));
+  Array.from({ length: 20 }, (_, index) => `tail${index}`).forEach((key, index) => {
+    addHydrogens(key, index === 19 ? 3 : 2, { prefix: `${key}-h`, distance: 0.62 });
+  });
+  ["side0", "side1", "side2", "side3", "side4"].forEach((key) =>
+    addHydrogens(key, 3, { prefix: `${key}-h`, distance: 0.62 })
+  );
+  addHydrogens("side5", 1, { prefix: "side5-h", distance: 0.62 });
+
+  return {
+    id: "chlorophyll-a",
+    name: "Chlorophyll a",
+    formula: "C55H72MgN4O5",
+    format: "app-coordinates",
+    source: "curated approximate chlorin macrocycle and phytol tail",
+    atoms,
+    bonds,
+  };
+}
+
 export const MOLECULE_PRESETS = Object.freeze([
   {
     id: "water",
@@ -1123,7 +1517,13 @@ export const MOLECULE_PRESETS = Object.freeze([
       [20, 48],
     ],
   },
+  createAspirinPreset(),
+  createBuckminsterfullerenePreset(),
+  createChlorophyllAPreset(),
+  createGlucosePreset(),
+  createNicotinePreset(),
   createSucrosePreset(),
+  createVitaminCPreset(),
 ]);
 
 export const ELEMENT_RENDER_STYLES = Object.freeze({
@@ -1131,6 +1531,7 @@ export const ELEMENT_RENDER_STYLES = Object.freeze({
   C: { name: "Carbon", color: "#2f3832", edgeColor: "#171d19", radius: 0.42 },
   N: { name: "Nitrogen", color: "#2563eb", edgeColor: "#143c93", radius: 0.4 },
   O: { name: "Oxygen", color: "#dc2626", edgeColor: "#991b1b", radius: 0.39 },
+  Mg: { name: "Magnesium", color: "#22c55e", edgeColor: "#15803d", radius: 0.5 },
   Na: { name: "Sodium", color: "#8b5cf6", edgeColor: "#5b21b6", radius: 0.48 },
   Cl: { name: "Chlorine", color: "#16a34a", edgeColor: "#166534", radius: 0.45 },
 });

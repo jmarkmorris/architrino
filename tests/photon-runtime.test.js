@@ -9,6 +9,7 @@ import {
   createDefaultPhotonState,
   getPhotonLayerEnabled,
   getPhotonLayerAngleRadians,
+  getPhotonLayerRadiusBounds,
   getPhotonFrequencyExponent,
   getPhotonFrequencyFromExponent,
   getPhotonPairSeparationFromLog10Ratio,
@@ -109,6 +110,7 @@ test("default photon state encodes trailing and leading swarm convention", () =>
   assert.deepEqual(state.measurement.virtualObserver, { x: 0, y: 0, z: 0 });
   assert.equal(state.measurement.emissionSpeedCf, 1);
   assert.deepEqual(state.polarization, { analyzerAngleDeg: 0 });
+  assert.equal(state.view.rawPolarizationVisible, true);
   assert.equal(state.pair.pairSeparation, getPhotonSeparationReferenceRadius(state));
   assert.equal(getPhotonSeparationLog10Ratio(state), 0);
   assert.deepEqual(
@@ -376,6 +378,21 @@ test("photon stage keeps face-on swarm spacing fixed while side view separation 
   );
 });
 
+test("photon face-on swarm scale is independent per swarm", () => {
+  const state = createDefaultPhotonState();
+  const base = computePhotonStageLayout(state, 933, 466);
+  const leadingInnerRadius = state.pair.right.layers.I.radius;
+  const leadingInnerPixelRadius = leadingInnerRadius * base.faceRightScale;
+
+  setPhotonLayerValue(state, "left", "O", "radius", 1.4);
+  const changed = computePhotonStageLayout(state, 933, 466);
+
+  assert.equal(changed.faceRightScale, base.faceRightScale);
+  assertNear(leadingInnerRadius * changed.faceRightScale, leadingInnerPixelRadius);
+  assert.notEqual(changed.faceLeftScale, base.faceLeftScale);
+  assert.ok(changed.faceLabelY > changed.centerY);
+});
+
 test("photon side-view height follows the largest enabled binary", () => {
   const state = createDefaultPhotonState();
   const base = computePhotonStageLayout(state, 933, 466);
@@ -475,6 +492,67 @@ test("frequency controls use powers of two", () => {
   assert.equal(state.pair.right.layers.M.frequencyHz, 4);
 });
 
+test("layer radius edits are scoped to the addressed swarm", () => {
+  const state = createDefaultPhotonState();
+  const leadingInnerRadius = state.pair.right.layers.I.radius;
+  const allowedInnerRadius =
+    (state.pair.left.layers.I.radius + state.pair.left.layers.M.radius) / 2;
+
+  setPhotonLayerValue(state, "left", "I", "radius", allowedInnerRadius);
+
+  assert.equal(state.pair.left.layers.I.radius, allowedInnerRadius);
+  assert.equal(state.pair.right.layers.I.radius, leadingInnerRadius);
+});
+
+test("layer radius edits cannot pass neighboring orbits", () => {
+  const state = createDefaultPhotonState();
+  const left = state.pair.left.layers;
+  const defaultI = left.I.radius;
+  const defaultM = left.M.radius;
+  const defaultO = left.O.radius;
+
+  assert.deepEqual(getPhotonLayerRadiusBounds(state, "left", "I"), {
+    min: PHOTON_CONTROL_RANGES.radius.min,
+    max: defaultM,
+  });
+  assert.deepEqual(getPhotonLayerRadiusBounds(state, "left", "M"), {
+    min: defaultI,
+    max: defaultO,
+  });
+  assert.deepEqual(getPhotonLayerRadiusBounds(state, "left", "O"), {
+    min: defaultM,
+    max: PHOTON_CONTROL_RANGES.radius.max,
+  });
+
+  setPhotonLayerValue(state, "left", "I", "radius", defaultM + 1);
+  assert.equal(left.I.radius, defaultM);
+  assert.equal(left.M.radius, defaultM);
+  assert.equal(left.O.radius, defaultO);
+
+  setPhotonLayerValue(state, "left", "O", "radius", defaultM - 1);
+  assert.equal(left.O.radius, defaultM);
+  assert.equal(left.M.radius, defaultM);
+
+  const right = state.pair.right.layers;
+  const rightI = right.I.radius;
+  const rightO = right.O.radius;
+  setPhotonLayerValue(state, "right", "M", "radius", rightO + 1);
+  assert.equal(right.M.radius, rightO);
+  setPhotonLayerValue(state, "right", "M", "radius", rightI - 1);
+  assert.equal(right.M.radius, rightI);
+});
+
+test("layer radius edits preserve absolute pair separation", () => {
+  const state = createDefaultPhotonState();
+  const originalSeparation = state.pair.pairSeparation;
+  const allowedInnerRadius =
+    (state.pair.left.layers.I.radius + state.pair.left.layers.M.radius) / 2;
+
+  setPhotonLayerValue(state, "left", "I", "radius", allowedInnerRadius);
+
+  assert.equal(state.pair.pairSeparation, originalSeparation);
+});
+
 test("named photon presets expose the required candidate configurations", () => {
   assert.deepEqual(
     PHOTON_NAMED_PRESETS.map((preset) => preset.id),
@@ -531,9 +609,11 @@ test("photon state normalization preserves configured values", () => {
   state.pair.right.layers.O.enabled = false;
   state.measurement.virtualObserver.x = 5.25;
   state.measurement.virtualObserver.y = -1.5;
+  state.view.rawPolarizationVisible = false;
   const normalized = normalizePhotonState(state);
 
   assert.equal(normalized.polarization.analyzerAngleDeg, 45);
+  assert.equal(normalized.view.rawPolarizationVisible, false);
   assert.equal(normalized.pair.right.layers.M.frequencyHz, 8);
   assert.equal(normalized.pair.right.layers.O.enabled, false);
   assert.equal(normalized.measurement.virtualObserver.x, 5.25);

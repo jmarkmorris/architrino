@@ -17,7 +17,9 @@ const CAMERA_FOV_DEG = 42;
 const MIN_CAMERA_DISTANCE = 3.4;
 const MAX_CAMERA_DISTANCE = 32;
 const POINTER_CLICK_DISTANCE_PX = 7;
-const DEFAULT_SCREEN_OFFSET_Y_RATIO = 0.06;
+const FIT_EDGE_PADDING_RATIO = 0.86;
+const FIT_LEDGER_CLEARANCE_PX = 32;
+const FIT_MIN_HEIGHT_RATIO = 0.48;
 
 function queryMoleculeElement(documentLike, selector) {
   const element = documentLike.querySelector(selector);
@@ -107,7 +109,10 @@ function centerAtoms(atoms) {
 }
 
 function getMoleculeRadius(atoms) {
-  return atoms.reduce((max, atom) => Math.max(max, atom.position.length()), 1);
+  return atoms.reduce((max, atom) => {
+    const style = getElementRenderStyle(atom.element);
+    return Math.max(max, atom.position.length() + style.radius);
+  }, 1);
 }
 
 function createBondMesh(Three, start, end, material) {
@@ -274,16 +279,54 @@ export function createMoleculeRuntime(options = {}) {
     };
   }
 
-  function getDefaultMoleculeYOffset() {
-    return getViewportWorldSize().height * DEFAULT_SCREEN_OFFSET_Y_RATIO;
+  function getMoleculeFitFrame() {
+    const canvasRect = dom.canvas.getBoundingClientRect();
+    const readoutRect = dom.readout.getBoundingClientRect();
+    const canvasHeight = Math.max(1, canvasRect.height);
+    const readoutTop =
+      Number.isFinite(readoutRect.top) && readoutRect.height > 0
+        ? readoutRect.top
+        : canvasRect.bottom;
+    const fitBottom = Math.max(
+      canvasRect.top + canvasHeight * FIT_MIN_HEIGHT_RATIO,
+      Math.min(canvasRect.bottom, readoutTop - FIT_LEDGER_CLEARANCE_PX)
+    );
+    const fitHeight = Math.max(1, fitBottom - canvasRect.top);
+    const fitCenterY = fitHeight * 0.5;
+
+    return {
+      centerNdcY: 1 - (2 * fitCenterY) / canvasHeight,
+      horizontalNdcHalf: FIT_EDGE_PADDING_RATIO,
+      verticalNdcHalf: Math.min(
+        FIT_EDGE_PADDING_RATIO,
+        (fitHeight / canvasHeight) * FIT_EDGE_PADDING_RATIO
+      ),
+    };
+  }
+
+  function getFitCameraDistance(radius, fitFrame) {
+    const tanHalfFov = Math.tan(THREE.MathUtils.degToRad(CAMERA_FOV_DEG) / 2);
+    const verticalDistance = radius / Math.max(0.1, fitFrame.verticalNdcHalf * tanHalfFov);
+    const horizontalDistance =
+      radius / Math.max(0.1, fitFrame.horizontalNdcHalf * tanHalfFov * camera.aspect);
+    return Math.min(
+      MAX_CAMERA_DISTANCE,
+      Math.max(MIN_CAMERA_DISTANCE, Math.max(verticalDistance, horizontalDistance) * 1.04)
+    );
+  }
+
+  function getDefaultMoleculeYOffset(fitFrame) {
+    const tanHalfFov = Math.tan(THREE.MathUtils.degToRad(CAMERA_FOV_DEG) / 2);
+    return fitFrame.centerNdcY * state.cameraDistance * tanHalfFov;
   }
 
   function resetView() {
     moleculeGroup.rotation.set(-0.28, 0.46, 0);
     moleculeGroup.position.set(0, 0, 0);
     const radius = getMoleculeRadius(state.activePreset?.atoms ?? []);
-    setCameraDistance(Math.min(MAX_CAMERA_DISTANCE, Math.max(MIN_CAMERA_DISTANCE, radius * 3.6 + 2.8)));
-    moleculeGroup.position.y = getDefaultMoleculeYOffset();
+    const fitFrame = getMoleculeFitFrame();
+    setCameraDistance(getFitCameraDistance(radius, fitFrame));
+    moleculeGroup.position.y = getDefaultMoleculeYOffset(fitFrame);
     render();
     updateAtomLabelPosition();
   }

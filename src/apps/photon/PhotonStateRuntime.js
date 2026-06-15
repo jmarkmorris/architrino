@@ -165,6 +165,7 @@ export const DEFAULT_PHOTON_STATE = Object.freeze({
   },
   view: {
     pathsVisible: true,
+    rawPolarizationVisible: true,
   },
   pair: {
     speedMode: "cf",
@@ -271,6 +272,7 @@ export function normalizePhotonState(input = DEFAULT_PHOTON_STATE) {
     },
     view: {
       pathsVisible: state.view?.pathsVisible !== false,
+      rawPolarizationVisible: state.view?.rawPolarizationVisible !== false,
     },
     pair: {
       speedMode: "cf",
@@ -326,6 +328,26 @@ export function getPhotonLayer(state, swarmId, layerId) {
 
 export function getPhotonLayerEnabled(state, swarmId, layerId) {
   return getPhotonLayer(state, swarmId, layerId).enabled !== false;
+}
+
+export function getPhotonLayerRadiusBounds(state, swarmId, layerId) {
+  const range = PHOTON_CONTROL_RANGES.radius;
+  const layerRadius = (id) =>
+    clampPhotonNumber(getPhotonLayer(state, swarmId, id).radius, range.min, range.max, range.min);
+  let min = range.min;
+  let max = range.max;
+  if (layerId === "I") {
+    max = layerRadius("M");
+  } else if (layerId === "M") {
+    min = layerRadius("I");
+    max = layerRadius("O");
+  } else if (layerId === "O") {
+    min = layerRadius("M");
+  }
+  if (min > max) {
+    return { min: max, max: min };
+  }
+  return { min, max };
 }
 
 export function getPhotonSeparationReferenceRadius(state) {
@@ -462,10 +484,11 @@ export function setPhotonLayerValue(state, swarmId, layerId, key, value) {
     return;
   }
   if (key === "radius") {
+    const radiusBounds = getPhotonLayerRadiusBounds(state, swarmId, layerId);
     layer.radius = clampPhotonNumber(
       value,
-      PHOTON_CONTROL_RANGES.radius.min,
-      PHOTON_CONTROL_RANGES.radius.max,
+      radiusBounds.min,
+      radiusBounds.max,
       layer.radius
     );
   }

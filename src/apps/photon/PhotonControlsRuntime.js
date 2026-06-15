@@ -4,6 +4,7 @@ import {
   getPhotonFrequencyExponent,
   getPhotonFrequencyFromExponent,
   getPhotonLayer,
+  getPhotonLayerRadiusBounds,
   getPhotonSeparationLog10Ratio,
   setPhotonLayerEnabled,
   setPhotonPairSeparationLog10Ratio,
@@ -658,6 +659,13 @@ function syncRange(control, value) {
   control.output.textContent = formatControlValue(value, control.digits);
 }
 
+function syncRadiusRange(control, state, swarmId, layerId) {
+  const bounds = getPhotonLayerRadiusBounds(state, swarmId, layerId);
+  control.input.min = String(bounds.min);
+  control.input.max = String(bounds.max);
+  syncRange(control, getPhotonLayer(state, swarmId, layerId).radius);
+}
+
 function syncToggleButton(button, isActive, activeLabel, inactiveLabel) {
   button.textContent = isActive ? activeLabel : inactiveLabel;
   button.classList.toggle("is-active", isActive);
@@ -771,10 +779,10 @@ export function createPhotonControlsRuntime({
       ].forEach(([key, label, range, digits]) => {
         const handleLayerInput = (value) => {
           const nextState = getState();
-          const separationLog10Ratio = getPhotonSeparationLog10Ratio(nextState);
           setPhotonLayerValue(nextState, swarmId, layerId, key, value);
           if (key === "radius") {
-            setPhotonPairSeparationLog10Ratio(nextState, separationLog10Ratio);
+            onStateChange({ syncControls: true, drawNow: false });
+            return;
           }
           onRangeStateChange();
         };
@@ -800,6 +808,15 @@ export function createPhotonControlsRuntime({
   });
 
   const analyzerSection = addSection(documentLike, container, "Analyzer");
+  const rawPolarizationControl = createCheckboxControl(documentLike, {
+    label: "Show raw polarization points",
+    checked: state.view?.rawPolarizationVisible !== false,
+    onChange: (checked) => {
+      getState().view.rawPolarizationVisible = checked;
+      onStateChange();
+    },
+  });
+  analyzerSection.append(rawPolarizationControl.row);
   [
     ["analyzerAngleDeg", "Angle", PHOTON_CONTROL_RANGES.analyzerAngleDeg, 0],
   ].forEach(([key, label, range, digits]) => {
@@ -832,7 +849,11 @@ export function createPhotonControlsRuntime({
       PHOTON_LAYER_ORDER.forEach((layerId) => {
         const layer = getPhotonLayer(nextState, swarmId, layerId);
         ["frequencyHz", "radius", "phaseDeg"].forEach((key) => {
-          syncRange(controls[index], layer[key]);
+          if (key === "radius") {
+            syncRadiusRange(controls[index], nextState, swarmId, layerId);
+          } else {
+            syncRange(controls[index], layer[key]);
+          }
           index += 1;
         });
       });
@@ -846,6 +867,7 @@ export function createPhotonControlsRuntime({
     });
     pauseButton.textContent = nextState.time.paused ? "Play" : "Pause";
     syncToggleButton(pathsButton, nextState.view.pathsVisible, "Paths on", "Paths off");
+    rawPolarizationControl.input.checked = nextState.view?.rawPolarizationVisible !== false;
   }
 
   sync(state);

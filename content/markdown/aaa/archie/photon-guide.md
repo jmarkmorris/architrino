@@ -15,7 +15,7 @@ The side view shows the same pair along the line of translation. Each planar swa
 The lower stage contains two observer-level readouts:
 
 - Electric Field: the transverse electric-field readout reconstructed from the branch-weighted causal hits at the current Virtual Observer coordinate.
-- Polarization: the transverse $E_y/E_z$ curve fitted from the actual branch-sum field over one reference cycle, with the current field vector and analyzer axis.
+- Polarization: the transverse $E_y/E_z$ curve fitted from the actual branch-sum field over one reference cycle, with the current field vector, analyzer axis, and optional raw one-cycle points.
 
 The plot covers three full middle-layer cycles. The white now line moves left to right, and the app leaves only a short forward gap ahead of that line blank so the waveform stays visible when time wraps around. For an ideal plane-wave comparison moving along $+\hat{\mathbf x}$, $\mathbf B$ is recovered from $\mathbf E$ by $\mathbf B=(1/c_f)\hat{\mathbf x}\times\mathbf E$, so it is not plotted as a separate graph.
 
@@ -23,13 +23,28 @@ The plot covers three full middle-layer cycles. The white now line moves left to
 
 Use the pause/play button to stop or resume the animation. The Space bar also toggles pause and play when focus is not inside a control.
 
-Use Reset time to restart time at the beginning of the three-cycle plot. Use Reset all to restore the default photon candidate state.
+Use the Preset menu to load a named exploratory candidate. Loading a preset resets the animation time and replaces the current controls with the preset values.
+
+Use Reset preset to return to the last loaded preset after making local edits. Use Reset time to restart time at the beginning of the three-cycle plot. Use Reset all to restore the default balanced pair.
 
 Use Paths on/off to show or hide orbit paths and path-history trails.
 
 Use Slow/Fast to scale animation time without changing the configured layer frequencies. The default Slow/Fast setting is calibrated to make the default I/M/O orbit rates visible at `0.8`, `0.4`, and `0.2` cycles per real second.
 
 Each of the six binaries has an enabled checkbox. When a binary is unchecked, it is removed from the swarm display and its two architrinos are removed from the Virtual Observer E field sum.
+
+## Named Presets
+
+Presets are starting points for inspection, not certified photon branches. They change the same visible controls that a reader can edit by hand.
+
+| Preset | What it sets up | How to read it |
+|---|---|---|
+| Balanced pair | All binaries enabled, I/M/O frequencies `4`, `2`, `1`, speed-matched default radii, and all phases at `0` degrees. | Baseline contra-rotating pair for comparing later edits. |
+| Linear candidate | Only the O binaries enabled, with both swarms phase-aligned. | A simple one-axis transverse readout candidate. |
+| Right circular candidate | All binaries enabled with a handed leading/trailing phase pattern. | A handed phase-lock candidate; it is not a certified circular photon branch. |
+| Left circular candidate | The mirror handed phase pattern of the right-circular candidate. | A comparison state for reversing the fitted handed component. |
+| Phase-offset stress | All binaries enabled, nonzero observer position, small $\Delta x$, and nontrivial phase offsets. | A stress test for the causal-root solver and polarization fit. |
+| Layer-radius stress | All binaries enabled with deliberately uneven I/M/O radii. | A stress test for radius sensitivity and side-view scaling. |
 
 ## Geometry Controls
 
@@ -45,7 +60,7 @@ The default I/M/O phases are all `0` degrees. The default I/M/O frequencies are 
 
 ## Virtual Observer Controls
 
-The Virtual Observer controls choose where the absolute-coordinate sample point is placed:
+The Virtual Observer controls choose where the sample point is placed in the app's coordinate frame:
 
 - `x` is the coordinate along the line of translation;
 - `y` is the first transverse coordinate;
@@ -55,13 +70,134 @@ The `x`, `y`, and `z` sliders mark the zero point and snap values very close to 
 
 The plotted E curve is recalculated by solving the causal-root equation from every active architrino source history to the Virtual Observer point. Each retained root contributes a radial Master-EOM-style hit weighted by $1/(R^2 |J|)$, where $R$ is the source-to-observer distance at the root and $J$ is the delay-map Jacobian. The app then reconstructs the displayed $E_y$ and $E_z$ components from the transverse part of the summed receiver acceleration.
 
-The $\mathbf E$ graph auto-scales its vertical span from the maximum visible $|E_y|$ or $|E_z|$ sample, so the curve stays readable without changing the diagnostic field values. The previous local-mix diagnostic is no longer needed because the branch-weighted receiver acceleration already uses the radial inverse-square causal-hit form.
+The $\mathbf E$ graph auto-scales its vertical span from the maximum visible $|E_y|$ or $|E_z|$ sample, so the curve stays readable without changing the diagnostic field values. The displayed field comes directly from retained roots and the radial inverse-square causal-hit form rather than from a separate near/far mixing slider.
+
+The app's diagnostic calculation can be written explicitly. The Virtual Observer coordinate is
+
+$$
+\mathbf X_{\mathrm{VO}}
+=
+x_{\mathrm{VO}}\hat{\mathbf x}
++y_{\mathrm{VO}}\hat{\mathbf y}
++z_{\mathrm{VO}}\hat{\mathbf z}
+$$
+
+For swarm $s$, layer $\ell$, and polarity sign $q\in\{+1,-1\}$, the app places the source at
+
+$$
+\mathbf r_{s\ell q}(\tau)
+=
+x_s\hat{\mathbf x}
++R_{s\ell}\cos\theta_{s\ell q}(\tau)\hat{\mathbf y}
++R_{s\ell}\sin\theta_{s\ell q}(\tau)\hat{\mathbf z}
+$$
+
+with
+
+$$
+\theta_{s\ell q}(\tau)
+=
+\phi_{s\ell}
++\sigma_s2\pi f_{s\ell}\tau
++\pi\,\mathbf 1_{q=-1}
+$$
+
+Here $\sigma_s=+1$ for the trailing counter-clockwise swarm and $\sigma_s=-1$ for the leading clockwise swarm. For each active source row $i=(s,\ell,q)$, the retained source times solve
+
+$$
+F_i(t;\tau)
+=
+\left\|
+\mathbf X_{\mathrm{VO}}-\mathbf r_i(\tau)
+\right\|
+-c_f(t-\tau)
+=0,
+\qquad
+\tau<t
+$$
+
+For each retained root $\tau_{i,k}$, define
+
+$$
+\mathbf n_{i,k}
+=
+\frac{\mathbf X_{\mathrm{VO}}-\mathbf r_i(\tau_{i,k})}
+{\left\|\mathbf X_{\mathrm{VO}}-\mathbf r_i(\tau_{i,k})\right\|},
+\qquad
+R_{i,k}
+=
+\left\|
+\mathbf X_{\mathrm{VO}}-\mathbf r_i(\tau_{i,k})
+\right\|
+$$
+
+and
+
+$$
+J_{i,k}
+=
+1-\frac{\mathbf v_i(\tau_{i,k})\cdot\mathbf n_{i,k}}{c_f}
+$$
+
+The displayed electric readout is reconstructed from the transverse part of the Jacobian-weighted radial hit sum
+
+$$
+\mathbf a_{\mathrm{VO}}(t)
+=
+g\sum_i\sum_k
+q_i
+\frac{\mathbf n_{i,k}}
+{R_{i,k}^2 |J_{i,k}|}
+$$
+
+by taking
+
+$$
+\mathbf E_{\perp}(t)
+=
+\left(\mathbf a_{\mathrm{VO}}(t)\cdot\hat{\mathbf y}\right)\hat{\mathbf y}
++
+\left(\mathbf a_{\mathrm{VO}}(t)\cdot\hat{\mathbf z}\right)\hat{\mathbf z}
+$$
+
+This is a Virtual Observer diagnostic. It uses Master-EOM-style causal hits to inspect a candidate branch, but it does not prove that the displayed state is a physical photon.
 
 ## Derived Polarization
 
-The app no longer asks the operator to set a polarization basis, linear angle, phase lag, ellipticity, or intensity. Those are now observer-level diagnostic outcomes. The formula panel fits the actual branch-sum $E_y(t)$ and $E_z(t)$ over one reference cycle, extracts the fitted amplitudes and relative phase lag, and classifies the result as weak, linear, circular, or elliptical. The polarization inset draws the fitted oscillating component centered on the $E_y/E_z$ origin, so a constant observer bias does not shift the ellipse or line.
+The app treats polarization basis, linear angle, phase lag, ellipticity, and intensity as observer-level diagnostic outcomes rather than source-side controls. The formula panel fits the actual branch-sum $E_y(t)$ and $E_z(t)$ over one reference cycle, extracts the fitted amplitudes and relative phase lag, and classifies the result as weak, linear, circular, or elliptical. The polarization inset draws the fitted oscillating component centered on the $E_y/E_z$ origin, so a constant observer bias does not shift the ellipse or line.
+
+Show raw polarization points is on by default. It draws the sampled one-cycle branch-sum points behind the fitted curve. If the points sit close to the fitted curve, the fit is visually clean. If they spread away from it, the polarization label should be treated with more caution.
+
+The one-cycle fit uses
+
+$$
+E_y(t)\approx A_y\cos(\omega t+\phi_y),
+\qquad
+E_z(t)\approx A_z\cos(\omega t+\phi_z)
+$$
+
+with phase lag $\Delta\phi=\phi_z-\phi_y$.
 
 The Analyzer angle remains a control because it is a measurement axis, not a source polarization factor. The inset overlays that analyzer axis and the formula panel reports the scalar analyzer fraction for the current field vector. The formula panel keeps the normalized ellipse-fit residual separate from the analyzer residual, which is the cycle-average analyzer fraction minus the fitted analyzer fraction.
+
+The analyzer axis is
+
+$$
+\hat{\mathbf a}
+=
+\cos\theta\,\hat{\mathbf y}
++
+\sin\theta\,\hat{\mathbf z}
+$$
+
+and the displayed analyzer fraction is
+
+$$
+\mu_{\mathrm{analyzer}}
+=
+\frac{|\hat{\mathbf a}\cdot\mathbf E|^2}
+{|\mathbf E|^2+\varepsilon}
+$$
 
 Treat polarization agreement as a diagnostic signal. A useful fit can identify a parameter regime worth studying, but it does not by itself establish a physical photon branch.
 
