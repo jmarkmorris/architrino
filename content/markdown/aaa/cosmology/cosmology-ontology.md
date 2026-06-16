@@ -262,6 +262,67 @@ Large-scale homogeneity is accepted only when this residual remains within the d
 
 The same rule applies across modules. A promoted cosmology claim must preserve one shared Noether sea state record $\theta_{\mathrm{sea}}$ through expansion, CMB transfer, BBN, growth, lensing, and local calibration. If those modules can be fit only by replacing the state record or projection map per observable family, the result is benchmark fitting rather than cosmology closure. The current dark-energy branch states this as a shared residual gate in [dark-energy.md](./dark-energy.md#inference-dependency-and-calibration-gates).
 
+### Prediction Narrowness and Initial-Basin Burden
+
+The same shared-record rule also separates a successful fit from a predictive cosmology branch. A branch may reproduce the observed packet by widening the source story, initial state, or projection map until many unlike histories are allowed. That is weaker than closure. For a declared cosmology record, write
+$$
+\theta_{\mathrm{cosmo}}
+=
+\left(
+\theta_{\mathrm{sea}},
+\theta_{\mathrm{init}},
+\theta_{\mathrm{source}},
+\theta_{\mathrm{thermal}},
+\theta_{\mathrm{path}},
+\theta_{\mathrm{growth}},
+\theta_{\mathrm{frame}}
+\right)
+$$
+where the entries are respectively the Noether sea state, initial basin, source or release record, thermalization record, path-history record, growth/lensing record, and frame record. Let $\mathcal{R}_{\mathcal{D}_{\mathrm{cos}}}(\theta_{\mathrm{cosmo}};o)$ be the shared residual over the declared cosmology data-product family. The allowed-output neighborhood is
+$$
+\mathcal{O}_{\epsilon}(\theta_{\mathrm{cosmo}})
+=
+\left\{
+o \in \mathcal{O}_{\mathrm{near}}
+:
+\mathcal{R}_{\mathcal{D}_{\mathrm{cos}}}(\theta_{\mathrm{cosmo}};o)
+\le
+\epsilon_{\mathrm{cos}}
+\right\}
+$$
+Fitting asks only that the observed packet belongs to this set. Predictive closure asks that the set be narrow under the declared comparison measure,
+$$
+\mu\!\left(\mathcal{O}_{\epsilon}(\theta_{\mathrm{cosmo}})\right)
+\ll
+\mu\!\left(\mathcal{O}_{\mathrm{near}}\right)
+$$
+This criterion does not require zero flexibility. It requires the branch record to exclude nearby alternatives before a data fit is counted as a cosmology claim.
+
+Initial-condition specialness is the companion burden. Let $\Gamma_{\mathrm{init}}$ be the declared initial state or path-history chart for the branch, with measure $\mu_{\mathrm{init}}$ internal to that chart. Define
+$$
+\mathcal{B}_{\mathrm{obs}}
+=
+\left\{
+\theta_{\mathrm{init}} \in \Gamma_{\mathrm{init}}
+:
+\mathcal{R}_{\mathcal{D}_{\mathrm{cos}}}(\theta_{\mathrm{cosmo}})
+\le
+\epsilon_{\mathrm{cos}}
+\right\}
+$$
+and report the basin burden
+$$
+\mathcal{S}_{\mathrm{init}}
+=
+-\log
+\frac{
+\mu_{\mathrm{init}}(\mathcal{B}_{\mathrm{obs}})
+}{
+\mu_{\mathrm{init}}(\Gamma_{\mathrm{init}})
+}
+$$
+A high $\mathcal{S}_{\mathrm{init}}$ means the smoothing or release explanation has been moved into a small allowed initial basin. A low value means the declared mechanism is robust under the chosen chart. This is a diagnostic on the branch record, not an external probability assigned after the dynamics.
+
 Claims about observer selection, anthropic conditioning, or typicality belong inside the same inference ledger. They should not be promoted as cosmological facts unless their weights are projected from the declared data-product family and the same shared Noether sea state record. For an observer-accessible datum $D_a$ on a window $W$, write
 $$
 P_{\theta_{\mathrm{sea}},W}(D_a)

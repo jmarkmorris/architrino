@@ -116,6 +116,59 @@ P_{X\ell}^\theta(k[\tau_0^\theta-\tau])\,d\tau.
 $$
 The source and projection terms are observer-level transfer functions. The closure burden is to derive the effective source record from Noether sea thermalization, path-history propagation, acoustic calibration, and perturbation seeding rather than importing an inflaton field.
 
+### Prediction Width and Initial Basin
+
+The inflation-contest source packet has been promoted into a branch-selection criterion rather than a new gate. A transfer-function branch must report both fit quality and predictive narrowness. For a declared cosmology record
+$$
+\theta_{\mathrm{cosmo}}
+=
+\left(
+\theta_{\mathrm{sea}},
+\theta_{\mathrm{init}},
+\theta_{\mathrm{source}},
+\theta_{\mathrm{thermal}},
+\theta_{\mathrm{path}},
+\theta_{\mathrm{growth}},
+\theta_{\mathrm{frame}}
+\right)
+$$
+the allowed-output set is
+$$
+\mathcal{O}_{\epsilon}(\theta_{\mathrm{cosmo}})
+=
+\left\{
+o \in \mathcal{O}_{\mathrm{near}}
+:
+\mathcal{R}_{\mathrm{cos}}(\theta_{\mathrm{cosmo}};o)
+\le
+\epsilon_{\mathrm{cos}}
+\right\}
+$$
+Fitting asks whether the observed packet lies in $\mathcal{O}_{\epsilon}$. Prediction asks whether $\mu(\mathcal{O}_{\epsilon}) \ll \mu(\mathcal{O}_{\mathrm{near}})$ under the declared comparison measure.
+
+The same branch should report its initial-basin burden,
+$$
+\mathcal{S}_{\mathrm{init}}
+=
+-\log
+\frac{
+\mu_{\mathrm{init}}(\mathcal{B}_{\mathrm{obs}})
+}{
+\mu_{\mathrm{init}}(\Gamma_{\mathrm{init}})
+},
+\qquad
+\mathcal{B}_{\mathrm{obs}}
+=
+\left\{
+\theta_{\mathrm{init}} \in \Gamma_{\mathrm{init}}
+:
+\mathcal{R}_{\mathrm{cos}}(\theta_{\mathrm{cosmo}})
+\le
+\epsilon_{\mathrm{cos}}
+\right\}
+$$
+High $\mathcal{S}_{\mathrm{init}}$ means the branch has moved the smoothing burden into a small starting chart. Low $\mathcal{S}_{\mathrm{init}}$ means the declared Noether sea release or thermalization mechanism is robust under the chosen chart. The corpus promotion target is now [cosmology-ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md#prediction-narrowness-and-initial-basin-burden), with the inflation-specific use in [inflation-model](../../../content/markdown/aaa/cosmology/inflation-model.md#predictive-restriction-and-initial-conditions).
+
 ### Component Perturbations and Matter Power
 
 For each comparison component $x$, use the linear state packet
@@ -262,7 +315,7 @@ where the entries denote, respectively, endpoint clock cadence, path-history pro
 
 | Source family | Data-product handles | Contract for $\mathbb{A}\mathbb{A}\mathbb{A}$ closure |
 | --- | --- | --- |
-| Planck Legacy Archive / NASA LAMBDA | CMB frequency maps, component-separated CMB maps, TT/TE/EE spectra, likelihoods, lensing-potential maps, $C_L^{\phi\phi}$ likelihoods, parameter chains | Compute $C_\ell^{TT}$, $C_\ell^{TE}$, $C_\ell^{EE}$, $C_L^{\phi\phi}$, acoustic scale, blackbody preservation, and foreground/calibration nuisance rows from one thermalization and transfer record. Do not absorb CMB lensing mismatch into a separate growth state. |
+| Planck Legacy Archive / NASA LAMBDA | CMB frequency maps, component-separated CMB maps, TT/TE/EE spectra, likelihoods, lensing-potential maps, $C_{L}^{\phi\phi}$ likelihoods, parameter chains | Compute $C_\ell^{\mathrm{TT}}$, $C_\ell^{\mathrm{TE}}$, $C_\ell^{\mathrm{EE}}$, $C_{L}^{\phi\phi}$, acoustic scale, blackbody preservation, and foreground/calibration nuisance rows from one thermalization and transfer record. Do not absorb CMB lensing mismatch into a separate growth state. |
 | ACT DR6 | High-$\ell$ TT/TE/EE spectra, covariance matrices, power-spectrum likelihoods, CMB lensing likelihood bandpowers and covariances | Cross-check Planck-derived transfer and lensing rows with an independent ground-based high-resolution CMB packet. ACT can strengthen or falsify small-scale damping, foreground, and lensing-amplitude projections without changing the CMB ontology. |
 | ACT kSZ force-law profile / SDSS halos | ACT CMB intensity maps, Sloan Digital Sky Survey halo catalogue, mean pairwise velocity estimator, separation window $30$--$230\,\mathrm{Mpc}$, and fitted force-law index $n_{\mathrm{kSZ}}^{\mathrm{obs}}=2.1\pm0.3$ from [arXiv:2604.14327](https://arxiv.org/abs/2604.14327) | Treat kSZ pairwise velocities as a direct growth-and-force-law profile benchmark. A cosmology branch may use medium response or neutral-assembly loading, but on this window its projected halo acceleration must remain close to $g(r)\propto r^{-2}$ unless the same record also fits the kSZ covariance. A MOND-like $n\simeq1$ large-scale branch fails this row unless its low-acceleration modification is screened or confined away from the ACT/SDSS halo-pair window. |
 | DESI BAO DR1/DR2 | BAO likelihoods, cosmology chains, posterior maxima, tracer/redshift-bin labels, $D_M/r_d$, $D_H/r_d$, $D_V/r_d$ comparison rows | Treat BAO as a standard-ruler packet that constrains both the effective distance map and the sound-horizon calibration $r_d^\theta$. A fit that changes $r_d^\theta$ for CMB while using a different propagation state for BAO fails shared closure. |
@@ -277,8 +330,8 @@ $$
 =
 \mathcal{R}_{\mathrm{CMB}}
 +\mathcal{R}_{\mathrm{BAO}}
-+\mathcal{R}_{\mathrm{SN/H_0}}
-+\mathcal{R}_{\mathrm{WL/RSD}}
++\mathcal{R}_{\mathrm{SN}/H_0}
++\mathcal{R}_{\mathrm{WL}/\mathrm{RSD}}
 +\lambda_{\mathrm{split}}
 \mathcal{P}_{\mathrm{proj}},
 $$
@@ -332,7 +385,7 @@ $$
 where the unavailable entries are omitted only when the data product is isotropic. For Pantheon+/SH0ES,
 
 $$
-r_{\mathrm{SN/H_0}}
+r_{\mathrm{SN}/H_0}
 \supset
 \left(
 \frac{\boldsymbol\mu^\theta-\boldsymbol\mu^{\mathrm{obs}}}{\boldsymbol\sigma_\mu},
@@ -344,7 +397,7 @@ $$
 For DES- and RSD-facing growth,
 
 $$
-r_{\mathrm{WL/RSD}}
+r_{\mathrm{WL}/\mathrm{RSD}}
 \supset
 \left(
 \frac{S_8^\theta-S_8^{\mathrm{obs}}}{\sigma_{S_8}},
@@ -371,7 +424,7 @@ r_{\mathrm{kSZ}\text{-}force}
 \lambda_{\mathrm{shared}}
 d_{\mathrm{shared}}\!\left(
 \Pi_{\mathrm{kSZ}}\theta_{\mathrm{sea}},
-\Pi_{\mathrm{WL/RSD}}\theta_{\mathrm{sea}}
+\Pi_{\mathrm{WL}/\mathrm{RSD}}\theta_{\mathrm{sea}}
 \right),
 \qquad
 n_{\mathrm{kSZ}}^{\mathrm{obs}}=2.1,\quad

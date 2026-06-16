@@ -2,12 +2,12 @@
 
 ## Workstream Status
 
-- Kind: `priority-only-source-mining`
+- Kind: `partially-promoted-source-mining`
 - Source family: public magazine article, expert rebuttal, expert reply, technical arXiv background, science-media/community responses
 - Local target: [cosmology-closure](cosmology-closure.md)
 - Capture date: 2026-06-15
 
-This file is a working extraction packet for the 2017 Scientific American inflation controversy linked from Peter Woit's [A Cosmic Controversy](https://www.math.columbia.edu/~woit/wordpress/?p=9289). It is not reader-facing corpus prose and does not add a new gate, certificate, or validation surface. Its value is to separate observable cosmology contracts from interpretation and to identify pressure on the existing cosmology transfer-function closure workstream.
+This file is a working extraction packet for the 2017 Scientific American inflation controversy linked from Peter Woit's [A Cosmic Controversy](https://www.math.columbia.edu/~woit/wordpress/?p=9289). It is not reader-facing corpus prose and does not add a new gate, certificate, or validation surface. Its safe mathematical targets were partially promoted on 2026-06-15 into [cosmology-ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md), [inflation-model](../../../content/markdown/aaa/cosmology/inflation-model.md), [CMB](../../../content/markdown/aaa/cosmology/CMB.md), and the local [cosmology-closure](cosmology-closure.md) priority control file. The remaining value of this packet is source traceability, technical follow-up, and unresolved branch computation.
 
 ## Source Map
 
@@ -287,23 +287,24 @@ The current [cosmology-closure](cosmology-closure.md) file already treats slow-r
 
 | Path | Source signal | Useful update type | Priority | Risk |
 | --- | --- | --- | --- | --- |
-| `reference/priorities/cosmology-closure/cosmology-closure.md` | Inflation controversy sharpens fit-vs-prediction, prediction width, initial-basin burden, tensor-source split, and shared-state constraints. | Add a compact subsection under `Inflation and CMB Transfer` when component-interface work resumes; reuse existing $\mathcal{R}_{\mathrm{cos}}$ and $\mathcal{P}_{\mathrm{proj}}$ machinery. | High | Low |
-| `content/markdown/aaa/cosmology/CMB.md` | Existing CMB residual already covers scalar/tensor, phase, lensing, vector, smoothness, and range rows. | No immediate edit. Later, fold in causal-source tensor distinction only if it improves the existing tensor row. | Medium | Medium |
-| `content/markdown/aaa/cosmology/cosmology-ontology.md` | Source mining reinforces that inflaton, multiverse, bounce, and string-landscape language are comparison frameworks, not ontology. | No immediate edit unless current prose blurs comparison variables with substrate ontology. | Medium | Medium |
+| `reference/priorities/cosmology-closure/cosmology-closure.md` | Inflation controversy sharpens fit-vs-prediction, prediction width, initial-basin burden, tensor-source split, and shared-state constraints. | Promoted now: added `Prediction Width and Initial Basin` under `Inflation and CMB Transfer`; remaining blocker is the actual transfer-function branch computation. | High | Low |
+| `content/markdown/aaa/cosmology/CMB.md` | Existing CMB residual already covers scalar/tensor, phase, lensing, vector, smoothness, and range rows. | Promoted now: folded in the causal-source tensor distinction as $\mathcal{R}_{\mathrm{T,split}}$ without changing CMB ontology. | Medium | Medium |
+| `content/markdown/aaa/cosmology/cosmology-ontology.md` | Source mining reinforces prediction-width discipline, initial-basin burden, and the comparison-framework status of inflaton, multiverse, bounce, and string-landscape language. | Promoted now: added `Prediction Narrowness and Initial-Basin Burden` as a shared branch-selection criterion. | Medium | Medium |
+| `content/markdown/aaa/cosmology/inflation-model.md` | Inflation comparison remains useful only when a high-curvature release branch narrows outputs and reports initial-condition burden. | Promoted now: added `Predictive Restriction and Initial Conditions` and tied it to the CMB tensor split and ontology criterion. | Medium | Medium |
 | `content/markdown/aaa/cosmology/structure-formation.md` | ACT DR6 lensing and Planck compatibility sharpen the shared CMB-to-growth state requirement. | Add only after a single branch record can connect CMB lensing, weak lensing, and growth without splitting $\theta_{\mathrm{sea}}$. | Medium | Medium |
 | `content/markdown/aaa/cosmology/expansion-mechanism.md` | Bounce/cyclic sources are useful mainly as smoothing and entropy comparison pressure, not as literal container expansion or contraction. | No immediate edit. Preserve fixed-void ontology and use bounce language only as external comparison if needed. | Low | Medium |
 
 ## Promotion Decision
 
-This packet remains `priority-only`. It contains useful mathematical targets but does not yet promote into `content/markdown/aaa` because the native branch record and output packet are not computed. The safe portion is staged here as:
+This packet is now `partially-promoted`. The public controversy history remains priority-only background, but the safe mathematical targets have been promoted into corpus and priority-control prose:
 
-- `defer with blocker`: prediction-width discipline, initial-basin measure, and tensor-source split are valuable, but need a declared $\theta_{\mathrm{cosmo}}$ branch and connection to the existing $\mathcal{R}_{\mathrm{cos}}$ machinery before reader-facing promotion.
+- `promoted now`: prediction narrowness, initial-basin burden, and causal-source tensor split were promoted into [cosmology-ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md#prediction-narrowness-and-initial-basin-burden), [inflation-model](../../../content/markdown/aaa/cosmology/inflation-model.md#predictive-restriction-and-initial-conditions), [CMB](../../../content/markdown/aaa/cosmology/CMB.md#scalar-and-tensor-closure-target), and [cosmology-closure](cosmology-closure.md#prediction-width-and-initial-basin).
+- `defer with blocker`: a computed native branch record, output packet, prediction-width measure, and initial-basin measure are still missing.
 - `priority-only`: public-response history, signatory dynamics, editorial controversy, and philosophy-of-science framing remain useful background but should not enter corpus prose except as compact comparison context.
 - `reject for promotion`: multiverse selection, inflaton ontology, bounce ontology, and swampland criteria are not native $\mathbb{A}\mathbb{A}\mathbb{A}$ claims.
 
 ## Priority Action Menu
 
-1. Add a compact `Prediction Width And Initial Basin` subsection to [cosmology-closure](cosmology-closure.md) when `component_interfaces` resumes. It should reuse $\mathcal{R}_{\mathrm{cos}}$, $\mathcal{P}_{\mathrm{proj}}$, $\mathcal{O}_{\epsilon}$, and $\mathcal{S}_{\mathrm{init}}$ from this packet rather than creating a new validation artifact.
-2. Build a symbolic branch-output packet for $\theta_{\mathrm{cosmo}}$ with $A_{\mathrm{s}}^\theta$, $n_{\mathrm{s}}^\theta$, $\alpha_{\mathrm{s}}^\theta$, $r^\theta$, $r_{\mathrm{causal}}^\theta$, $f_{\mathrm{NL}}^\theta$, $\beta_{\mathrm{iso}}^\theta$, $C_\ell^{\mathrm{TT},\theta}$, $C_\ell^{\mathrm{TE},\theta}$, $C_\ell^{\mathrm{EE},\theta}$, and $C_{L}^{\phi\phi,\theta}$.
-3. Mine the linked technical PDFs in one focused paper-pair pass: IS&L 2013/2014 versus GKN/Linde 2013/2014, then Planck 2018/BICEP/Keck/ACT as empirical follow-up. The target should be exact rows for assumptions, variables, exclusions, and observational outputs.
-4. Defer direct corpus promotion until a native transfer-function branch can state one branch record, one output packet, one prediction-width measure, and one initial-basin measure.
+1. Build a symbolic branch-output packet for $\theta_{\mathrm{cosmo}}$ with $A_{\mathrm{s}}^\theta$, $n_{\mathrm{s}}^\theta$, $\alpha_{\mathrm{s}}^\theta$, $r^\theta$, $r_{\mathrm{causal}}^\theta$, $f_{\mathrm{NL}}^\theta$, $\beta_{\mathrm{iso}}^\theta$, $C_\ell^{\mathrm{TT},\theta}$, $C_\ell^{\mathrm{TE},\theta}$, $C_\ell^{\mathrm{EE},\theta}$, and $C_{L}^{\phi\phi,\theta}$.
+2. Mine the linked technical PDFs in one focused paper-pair pass: IS&L 2013/2014 versus GKN/Linde 2013/2014, then Planck 2018/BICEP/Keck/ACT as empirical follow-up. The target should be exact rows for assumptions, variables, exclusions, and observational outputs.
+3. Compute or simulate a native transfer-function branch that can state one branch record, one output packet, one prediction-width measure, and one initial-basin measure.
