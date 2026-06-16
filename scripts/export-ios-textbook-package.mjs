@@ -66,6 +66,7 @@ const manifest = {
 
 const warnings = [];
 const errors = [];
+const diagnostics = [];
 const seenBundlePaths = new Set();
 const generatedFilePayloads = new Map();
 const searchIndex = [];
@@ -384,7 +385,7 @@ function buildSearchEntriesForChapter({ chapter, markdownText, sectionKeys }) {
   const duplicateHeadings = [...duplicateHeadingCounts.entries()];
   if (duplicateHeadings.length) {
     const duplicateCount = duplicateHeadings.reduce((sum, item) => sum + item[1], 0);
-    warnings.push(
+    diagnostics.push(
       `Chapter ${chapter.sourcePath} has ${duplicateCount} repeated heading titles (${duplicateHeadings.length} unique titles); assigned deterministic suffix anchors for intra-chapter linking.`,
     );
   }
@@ -785,6 +786,10 @@ function validateSchemaFile() {
   if (warnings.length) {
     console.log("warnings:");
     warnings.forEach((warning) => console.log(`- ${warning}`));
+  }
+  if (diagnostics.length) {
+    console.log("diagnostics:");
+    diagnostics.forEach((diagnostic) => console.log(`- ${diagnostic}`));
   }
   if (errors.length) {
     console.log("errors:");

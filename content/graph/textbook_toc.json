@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 158,
-      "sections": 1250
+      "sections": 1251
     }
   },
   "tocRoot": {
@@ -9749,6 +9749,14 @@
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
                         "markdownSection": "Hilbert-Representation Invariance Guardrail",
                         "sectionKey": "hilbert representation invariance guardrail",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Transition-Record Matrix Recovery",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
+                        "markdownSection": "Transition-Record Matrix Recovery",
+                        "sectionKey": "transition record matrix recovery",
                         "headingLevel": 2
                       },
                       {

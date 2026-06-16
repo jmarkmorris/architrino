@@ -1189,6 +1189,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
         - [QFT Locality Residual](../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md?section=QFT+Locality+Residual)
         - [Scattering-Amplitude Factorization Guardrail](../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md?section=Scattering-Amplitude+Factorization+Guardrail)
         - [Hilbert-Representation Invariance Guardrail](../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md?section=Hilbert-Representation+Invariance+Guardrail)
+        - [Transition-Record Matrix Recovery](../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md?section=Transition-Record+Matrix+Recovery)
         - [Subsystem-Partition Guardrail](../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md?section=Subsystem-Partition+Guardrail)
         - [Probability-Representation Guardrail](../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md?section=Probability-Representation+Guardrail)
         - [Admissible Quantization-Domain Guardrail](../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md?section=Admissible+Quantization-Domain+Guardrail)

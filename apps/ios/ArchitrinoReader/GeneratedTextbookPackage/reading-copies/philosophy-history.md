@@ -217,6 +217,8 @@ $$
 $$
 Here $\mathcal{E}_{\mathrm{obs}}$ is the nonempty set of observational or standard-theory contacts, $\mathcal{R}_{\mathrm{rec}}$ is the relevant recovery residual, $\mathcal{R}_{\mathrm{null}}^{\mathrm{op}}$ is the operational null-result residual from [Failure Criteria](../../../../markdown/aaa/validation/failure-criteria.md#null-result-residual-for-added-channels), and $\mathcal{S}_{\mathrm{retune}}$ records whether separate parameter choices are being used to pass different benchmarks. The rule is not anti-speculative; it simply keeps speculation in the comparison layer until it earns recovery, null-result discipline, and no-retuning closure.
 
+The same rule explains the methodological value of historical near-misses such as asymptotic-freedom discovery stories. A radical formal move may begin as a change of dimension, sign, or regularization scheme, but it becomes physics only when the result is written in a form other researchers can check and use. For $\mathbb{A}\mathbb{A}\mathbb{A}$ the corresponding lesson is direct: dissatisfaction with quantum ontology, continuum excess, or black-hole paradoxes does not by itself promote a replacement. The replacement must calculate a known benchmark, expose the residual that disciplines it, and explain why the older effective theory succeeded.
+
 #### Internal Tensions
 
 What falsificationism overstates is the speed and simplicity with which theories are abandoned. Real science often works through auxiliary assumptions, measurement uncertainty, and underdeveloped modeling. A single anomaly does not always kill a good program. The danger is therefore premature rejection of genuinely promising frameworks before their test architecture is mature.
@@ -326,6 +328,8 @@ This subject is synthetic rather than attached to one canonical school. It draws
 The central commitment is that science should contain a recognizable crisis-detection layer rather than waiting for informal prestige shifts or late-career dissent. A field should be reviewed not only for local empirical adequacy but also for signs that it is accumulating unresolved debt faster than it is achieving foundational closure. That requires explicit metrics rather than mere mood.
 
 Relevant indicators include anomaly load, ontology debt, patch density, progress latency, theory proliferation without convergence, and imbalance between effective success and explanatory integration. Anomaly load concerns the number and severity of unresolved tensions, paradoxes, and unexplained sectors. Ontology debt concerns the number of central theoretical objects that remain predictively useful while mechanistically unclear. Patch density concerns the growth of auxiliary sectors, repair layers, and interpretation families needed to preserve the framework. Progress latency concerns the elapsed time since the last widely accepted foundational closure rather than the last confirmation of an inherited prediction. Theory proliferation without convergence concerns the multiplication of interpretations or repair programs without narrowing toward a common architecture. Effective-success imbalance concerns the case in which engineering and prediction remain strong while explanatory unification remains weak.
+
+Contemporary cosmology and high-energy theory sharpen this metric pattern. When precision records remain compressible while the surrounding ontology proliferates auxiliary sectors, selection narratives, or high-dimensional completions without narrowing new observables, the crisis signal is not that the data are invalid. The signal is that patch density and theory proliferation have begun to outrun explanatory integration. The appropriate response is to preserve the measured data product and effective formal machinery while reopening the ontological reading attached to them.
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, these commitments imply a formal distinction between three things that are too often fused: empirical data, calculational formalism, and ontological interpretation. Under crisis conditions, the method should require these to be separated explicitly. The field should ask which parts of the current structure are measurements to preserve, which parts are successful effective machinery to rederive, and which parts are interpretive overlays that may need to be stripped away. Experimental survival and mathematical precision do not, by themselves, validate the dominant explanatory narrative.
 
@@ -858,6 +862,16 @@ This point becomes stronger once regime coverage is taken seriously. A theory ma
 
 What remains unsettled is the ontological meaning and explanatory location of the objects doing the predictive work. Is a wavefunction a real field, a bookkeeping device, or a summary of hidden dynamics? Is dark energy a substance, a geometric term, or a sign of mislocated inference? Are renormalized fields and vacuum sectors fundamental, or do they summarize deeper constitutive behavior? When the same predictive system permits multiple ontological stories, explanation has not finished.
 
+Quantum theory gives the cleanest version of this crisis. Its statistical predictions are among the most successful in science, but that success does not decide whether the underlying event is intrinsically probabilistic or whether the probability law is the effective pushforward of inaccessible microstate and path-history data. In $\mathbb{A}\mathbb{A}\mathbb{A}$ notation, a quantum prediction has not been ontologically located until the record probability can be read as
+
+$$
+P_{\mathrm{rec}}(R_n\mid\theta)
+=
+\mu_{*,T}\!\left(\pi_T^{-1}(R_n)\right)
+$$
+
+for the same deterministic flow, apparatus kernel, coarse-graining, and record window $\theta$ that also recover the effective wave equation. Predictive success licenses the target distribution; it does not by itself identify the substrate that generates the measure.
+
 The unresolved issue is therefore not simply interpretation in a casual sense. It is underdetermination at the level of what exists and at what layer it exists. A variable may be indispensable for calculation and still be misplaced as final ontology. Until there is a principled account of which successful objects are fundamental and which are effective summaries, predictive success remains compatible with deep ontological ambiguity.
 
 Part of that ambiguity is extrapolative. If the currently accessible domain samples only a small portion of the total physically relevant phase space, then ontological claims about ultimate structure remain partly hostage to what has not yet been probed. Large untested ranges in frequency, energy, and temperature are not mere empty margins. They are places where hidden constitutive behavior, threshold effects, or layer transitions may reside. A mature methodology should therefore distinguish carefully between "well confirmed here" and "licensed as fundamental everywhere."
@@ -958,6 +972,8 @@ Standard repairs include anti-realist or operationalist interpretations, pilot-w
 
 They remain incomplete because each pays a price. Operationalism lowers the ontological demand rather than meeting it. Pilot-wave theories recover correlations but introduce preferred structure many physicists resist. Branching ontologies preserve the formalism by multiplying realized structure. Superdeterminism weakens measurement independence in a way many regard as methodologically costly. Retrocausal models revise time-order intuitions. Causal-structure reconstructions often clarify the logic of the theorem without yet supplying a concrete underlying world-model. The repair space is rich precisely because no option has closed the issue in a broadly accepted way.
 
+The deterministic lesson retained from 't Hooft-style superdeterminism is narrower than the superdeterminist repair itself. Determinism at all levels is compatible with a substrate program; setting-dependent preparation is not required by determinism. For $\mathbb{A}\mathbb{A}\mathbb{A}$ the crisis should therefore be stated as a product-screening problem: keep measurement independence, keep no-signaling, and derive why the retained pair-provenance variables fail to factor into two independent one-wing response laws.
+
 #### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **partially clarified** by the project's willingness to consider real substrate-level causal structure not exhausted by relativistic signaling language. The proposed move is to deny Bell locality while preserving realism, forward causal order, and measurement independence. On that picture, correlated pairs inherit joint geometric constraints from a shared creation event, and those constraints are later read out locally during measurement without requiring a new superluminal signal between detectors at measurement time.
@@ -1003,6 +1019,17 @@ What is unsettled is how, or whether, both frameworks can be fundamental in thei
 More sharply, the open problem is not merely to place both theories in one mathematical container. It is to determine whether spacetime geometry, quantum state structure, field quanta, and measurement statistics are primitive constituents or emergent summaries of a deeper causal architecture. Until that is answered, the GR-QM problem remains as much ontological as formal.
 
 Black-hole horizons, singularity questions, vacuum energy, and early-universe closure intensify this pressure because they are precisely the regimes where the inherited languages are asked to overlap most aggressively. These are the points where the field most wants one final story and where the current stack most visibly resists one.
+
+Black-hole information proposals that identify or fold horizon regions are useful here as comparison pressure, not as ready ontology. Their durable signal is that horizon physics may require a non-naive map between incoming records, outgoing records, entropy, and effective geometry. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the question is whether a horizon-interface map can preserve deterministic record closure,
+
+$$
+\mathcal{H}_{\mathrm{hor}}:
+\left(\Gamma_{\mathrm{in}},\mathcal{B}_{\mathrm{hor}}\right)
+\mapsto
+\left(\Gamma_{\mathrm{out}},S_{\mathrm{out}}\right)
+$$
+
+without treating an auxiliary mirror, clone, or second exterior as the substrate object itself. The mathematical burden is a strong-field record map, not the import of a particular diagrammatic identification.
 
 There is also a regime issue. Much of the rhetoric of final unification is aimed at Planck-adjacent closure, yet experiment still probes only a narrow portion of the physically available range. That does not make unification programs irrational. It does mean that confidence about what must be quantized, what must be geometric, or what must survive unchanged into extreme regimes can outrun direct evidential support.
 
@@ -1762,9 +1789,9 @@ with $\vartheta_n=0$ as a stable attractor in the same record that recovers nucl
 
 **Issue:** Quantum Gravity and Renormalizability. **Short Name:** Quantum Gravity. **Core Non-Closure:** Gravity works as a low-energy effective theory, but perturbative quantization of the metric is ultraviolet incomplete.
 
-**Overview:** General Relativity is non-renormalizable as a quantum field theory; perturbative calculations diverge at the Planck scale. A UV-complete theory is required to describe the quantum behavior of spacetime, particularly at singularities (Big Bang, black holes). String Theory and Loop Quantum Gravity are the leading candidates, but they differ fundamentally on background independence and the nature of dimensionality. The low-energy effective-field-theory treatment of GR is already predictive at long distance; the unresolved problem is ultraviolet completion and microscopic ontology, not a blanket failure of GR and quantum theory to speak to one another. The lack of experimental data at Planckian energies makes it difficult to falsify these theories or check consistency conditions (like the Swampland conjectures) that delineate valid effective field theories from those that cannot be coupled to gravity.
+**Overview:** Perturbative quantization of the Einstein-Hilbert metric action is ultraviolet incomplete; the usual loop expansion produces divergences that cannot be absorbed into a finite set of the original couplings. This is narrower than saying that every modified gravitational action has the same power-counting problem. Higher-derivative or quadratic-curvature actions can improve perturbative power counting, but then they must answer ghost, unitarity, and ontology questions raised by their extra modes. A UV-complete theory is required to describe the quantum behavior of spacetime, particularly at singularities (Big Bang, black holes). String Theory and Loop Quantum Gravity are the leading candidates, but they differ fundamentally on background independence and the nature of dimensionality. The low-energy effective-field-theory treatment of GR is already predictive at long distance; the unresolved problem is ultraviolet completion and microscopic ontology, not a blanket failure of GR and quantum theory to speak to one another. The lack of experimental data at Planckian energies makes it difficult to falsify these theories or check consistency conditions (like the Swampland conjectures) that delineate valid effective field theories from those that cannot be coupled to gravity.
 
-**Where It Appears:** Quantizing gravity as a standard field theory leads to non-renormalizable divergences, so General Relativity is only an effective theory below the Planck scale. Black hole thermodynamics and entropy hint that spacetime has microscopic degrees of freedom, but their nature is unknown. String theory provides a UV-complete framework with extra dimensions and holography, while loop quantum gravity seeks a background-independent quantization of geometry; asymptotic safety and emergent gravity are additional routes. Potential observational windows include quantum corrections to black hole spectra, Lorentz-violation tests, or subtle signatures in primordial cosmology and gravitational waves.
+**Where It Appears:** Quantizing the Einstein-Hilbert action as a standard field theory leads to non-renormalizable divergences, so General Relativity is only an effective theory below the Planck scale. Black hole thermodynamics and entropy hint that spacetime has microscopic degrees of freedom, but their nature is unknown. Higher-derivative completions change the divergence bookkeeping but must still justify their additional mode content rather than merely shifting the problem. String theory provides a UV-complete framework with extra dimensions and holography, while loop quantum gravity seeks a background-independent quantization of geometry; asymptotic safety and emergent gravity are additional routes. Potential observational windows include quantum corrections to black hole spectra, Lorentz-violation tests, or subtle signatures in primordial cosmology and gravitational waves.
 
 **What Current Physics Gets Right:** Current physics correctly reproduces the semiclassical, field-theoretic, and information-theoretic behavior that made the problem visible in the first place. Any deeper account must therefore preserve those successes while closing the conceptual gap.
 
@@ -1825,6 +1852,8 @@ with $\vartheta_n=0$ as a stable attractor in the same record that recovers nucl
 **Where It Appears:** Microscopic laws are invariant under time reversal, yet macroscopic irreversibility emerges from statistical mechanics and the growth of entropy. This requires a special low-entropy initial condition for the universe, which is not explained by the dynamical laws themselves. Gravitational systems complicate the story because clumping can increase entropy, suggesting the early smooth universe was extraordinarily ordered. Ideas include inflationary smoothing, multiverse selection, or fundamental cosmological boundary conditions, but none provides a definitive origin of the arrow.
 
 The entropy statement also has a domain-of-validity gate. A finite subsystem admits ordinary thermodynamic entropy only after a measure, coarse-graining, and access window have been declared. In an unbounded cosmology or a source-and-sink medium history, the relevant object is not a bare "entropy of the universe" assertion, but a windowed balance among local production, boundary flux, and record/coarse-graining residuals. This preserves the Second Law as a validated effective limit while preventing it from being used as a primitive definition of time or as an unrestricted cosmological premise.
+
+The arrow problem also separates dynamical relaxation from measure-based typicality. A relaxation account must show a Noether sea or assembly-history map that carries a broad admissible basin into the observed low-defect record and then into higher-defect macroscopic states. A typicality account instead selects a measure over possible histories and argues that the observed record is probable or admissible under that measure. For $\mathbb{A}\mathbb{A}\mathbb{A}$, the first route is a mechanism claim; the second is only an interpretation unless the measure is derived from the same path-history dynamics that produces the record.
 
 **What Current Physics Gets Right:** Current physics correctly reproduces the semiclassical, field-theoretic, and information-theoretic behavior that made the problem visible in the first place. Any deeper account must therefore preserve those successes while closing the conceptual gap.
 
@@ -2631,6 +2660,8 @@ $$
 
 **Conceptual View:** A slow contracting phase smooths and flattens the universe, then
 a bounce leads to expansion.
+
+The current Turok--Boyle CPT-symmetric cosmology line should be tracked separately from this older Steinhardt--Turok ekpyrotic/cyclic entry. Its useful pressure is boundary-condition discipline: can a cosmology state a symmetric continuation, entropy-arrow account, particle-sector content, and CMB/BBN/growth residuals with fewer adjustable interpretive commitments? For $\mathbb{A}\mathbb{A}\mathbb{A}$, that is a comparison question rather than an import of CPT-mirror ontology or a right-handed-neutrino dark sector by default.
 
 **Key Equation:** Contracting equation-of-state:
 $$
@@ -8160,6 +8191,36 @@ $$
 $$
 Otherwise the effective chart has hidden a record-bearing basin behind a coordinate choice.
 
+##### Transition-Record Matrix Recovery
+
+Heisenberg-style matrix mechanics is retained here as a record-channel lesson, not as substrate ontology. A matrix entry should be read as a transition record between calibrated effective states under a declared apparatus channel. The underlying object remains the deterministic assembly, causal-wake, apparatus, and Noether sea flow; the matrix is the observer-level compression that survives after the basins, access region, and record window have been fixed.
+
+For a declared setup $\theta=(\mathcal{Q},\mathcal{K},W,T)$, let $\{B_m\}_{m\in\mathcal I_\theta}$ be the recordable basin family in the retained coarse state space, and let $R_{mn}$ be the calibrated transition record that reports a move from basin $B_m$ at $t_0$ to basin $B_n$ at $t_1\in T$. The transition-record matrix is
+$$
+M^\theta_{mn}
+=
+\mu_{*,T}\!\left(
+\left\{\gamma\mid
+\gamma(t_0)\in B_m,\ \gamma(t_1)\in B_n,\ R_{mn}(\gamma)=1
+\right\}
+\right)
+$$
+with $\widehat M_\theta=(M^\theta_{mn})_{m,n\in\mathcal I_\theta}$. This is not a primitive probability table. It is the pushed-forward finite-window basin measure for the same apparatus kernel, retained path-history data, and record-autonomy criteria used elsewhere in this chapter.
+
+Sequential noncommutativity is then an order-dependence claim about physical record channels. For two calibrated apparatus operations $A$ and $B$, define
+$$
+\Delta_{\mathrm{seq}}(A,B;\theta)
+=
+\left\|
+M^\theta_{B\circ A}
+-
+M^\theta_{A\circ B}
+\right\|_{\mathcal{K},W,T}
+$$
+where $M^\theta_{B\circ A}$ is extracted from the same substrate flow after the apparatus kernel for $A$ is applied and recorded before $B$, and $M^\theta_{A\circ B}$ reverses that sequence. A nonzero residual can recover the effective meaning of noncommuting observables: the two sequences couple to different basin boundaries, path-history records, or apparatus recoil channels. If this residual vanishes in a benchmark where standard quantum mechanics requires order dependence, the operator reconstruction has compressed away physically relevant record-channel structure.
+
+This recovery target connects to the locality, representation, quantization-domain, and apparatus-context residuals above. It does not add a separate validation bureaucracy; it states the mathematical object that must be extracted before a Heisenberg-style matrix is treated as a valid effective operator rather than as an assumed formal layer.
+
 ##### Subsystem-Partition Guardrail
 
 Entanglement and subsystem claims require the same discipline. In relativistic quantum-field descriptions, a change of observer, access region, or mode decomposition can change the effective subsystem split and therefore the entanglement assigned to the record. That dependence is useful comparison mathematics, but it is not a license to promote the chosen tensor factorization into substrate ontology.
@@ -8425,6 +8486,7 @@ Decoherence is the continuous loss of path-history coherence due to unresolved f
 
 * **Gate Latency Scaling:** Because any newly established causal-wake coupling is limited by $c_f$, a two-qubit gate such as CNOT should acquire a distance-dependent setup or fidelity timescale with a lower bound of order $\Delta t \ge d/c_f$. Existing correlations inherited from a shared preparation event are a separate case and should not be described as newly transmitted during the gate.
 * **QFT Locality Residual:** In any regime claimed to recover local QFT, the normalized commutator residual $\Delta_{\mathrm{loc}}(A,B;I)$ must remain below $\epsilon_{\mathrm{loc}}$ for calibrated record regions outside the recovered effective causal cone. Passing this test is an effective-algebra result, not a promotion of continuum-field ontology.
+* **Transition-Record Matrix Recovery:** A Heisenberg-style matrix $\widehat M_\theta$ is admissible only when its entries are recovered as finite-window basin measures for calibrated transition records. The sequence residual $\Delta_{\mathrm{seq}}(A,B;\theta)$ should reproduce order dependence for benchmark noncommuting observables without importing matrix ontology as a primitive layer.
 * **Quantization-Domain Residual:** In any regime claimed to recover quantum operators from a classical or coarse-grained chart, the admissible observable set $\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}$ and residual $\Delta_{\mathrm{qmap}}$ must be reported. A global bracket-to-commutator claim over all smooth functions is rejected by the no-go ledger rather than treated as an open $\mathbb{A}\mathbb{A}\mathbb{A}$ obligation.
 * **Observable-Domain Residual:** When two effective descriptions are claimed to be equivalent, the declared observable set and residual $\Delta_{\mathrm{obs}}$ must be reported. A small value licenses only record-channel equivalence on that apparatus window, not a substrate claim about auxiliary dimensions or continuum field objects.
 * **Coherence Limits:** The model predicts a medium-dependent contribution to coherence loss, scaling with the legacy physical density variable $\rho_{\text{NS}}(\mathbf{x},t)$ or normalized density $n(\mathbf{x},t)$. This is a closure target alongside standard thermal, electromagnetic, and apparatus-noise channels, not an already-derived absolute bound.
@@ -9393,6 +9455,8 @@ The Bohmian comparison also gives a warning about where the proof burden sits. A
 
 **Measurement independence** is preserved: the choice of measurement settings at $A$ and $B$ can be freely varied without correlation with the hidden variables $\lambda$ established at the source event. The theory does not invoke superdeterminism.
 
+The contrast with 't Hooft-style superdeterminism is exact. $\mathbb{A}\mathbb{A}\mathbb{A}$ accepts that the complete universe state is deterministic in absolute time, including the physical histories of detector-setting devices. It does not treat that global determinism as license to make the source-provenance distribution depend on the later chosen settings. The retained closure burden is instead a nonseparable pair-provenance law whose setting dependence enters only through the two local apparatus kernels and whose marginals remain no-signaling.
+
 ###### The Absolute-Time Framework and Nonlocality
 
 The existence of absolute time $t$ is essential to the consistency of this picture. In the standard relativistic framework, the absence of a preferred foliation means that "which measurement happened first" is frame-dependent for spacelike-separated events. This makes it difficult to tell a coherent story about how correlations are maintained without invoking some form of action at a distance.
@@ -9737,6 +9801,8 @@ The major responses in the literature are:
 | Pilot-Wave | Bell Locality (explicitly) | de Broglie–Bohm |
 | Superdeterminism | Measurement Independence | 't Hooft, some retrocausal models |
 | Retrocausal | Bell Locality (via future boundary conditions) | Transactional, two-state-vector |
+
+The 't Hooft comparison should be read with this distinction intact. A deterministic hidden-state program can deny measurement independence, but determinism itself does not force that denial. $\mathbb{A}\mathbb{A}\mathbb{A}$ uses the comparison historically and logically while choosing a different closure route: preserve measurement independence, preserve no-signaling, and make the product-screening failure explicit.
 
 ---
 
@@ -14492,19 +14558,19 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **What Problem They Were Trying To Solve:** He sought a deeper deterministic layer beneath quantum statistics that could restore ontological continuity without losing empirical agreement.
 
-**What They Got Right:** He correctly insisted that deterministic substrate options remain logically and physically viable and worth explicit construction. He also kept the empirical burden in view: a deeper account cannot merely reinterpret measurement language, but must recover the Standard Model, GR, quantum statistics, and strong-field thermodynamics at benchmark precision.
+**What They Got Right:** He correctly insisted that deterministic substrate options remain logically and physically viable and worth explicit construction. His standing as a renormalization and electroweak-theory physicist matters historically: the deterministic challenge is not an outsider's rejection of precision physics, but a demand that precision be placed at the right explanatory layer. He also kept the empirical burden in view: a deeper account cannot merely reinterpret measurement language, but must recover the Standard Model, GR, quantum statistics, and strong-field thermodynamics at benchmark precision.
 
-**What They Got Wrong or Overstated:** Cellular-automaton discretization, integer-only physical metaphysics, and measurement-independence denial are route-specific commitments rather than consequences of deterministic physics itself. They are too restrictive relative to continuous causal wake and assembly dynamics.
+**What They Got Wrong or Overstated:** Cellular-automaton discretization, integer-only physical metaphysics, black-hole clone identification, and measurement-independence denial are route-specific commitments rather than consequences of deterministic physics itself. They are too restrictive relative to continuous causal wake dynamics, horizon-interface geometry, and assembly dynamics.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly aligned with mechanistic divergence and validation discipline, but not with cellular-automaton ontology or superdeterministic Bell closure.
 
-**Transition Relevance**: 't Hooft is highly useful in transition for legitimizing deterministic reduction agendas and for defining test criteria against standard quantum closure, especially Born-rule recovery, Bell/no-signaling constraints, Standard Model parameter recovery, and black-hole thermodynamics.
+**Transition Relevance**: 't Hooft is highly useful in transition for legitimizing deterministic reduction agendas and for defining test criteria against standard quantum closure, especially predictive-success-versus-ontology discipline, Born-rule recovery, Bell/no-signaling constraints, Standard Model parameter recovery, continuum-limit suspicion, and black-hole thermodynamics.
 
 **Long-Term Relevance**: Long-term relevance is high as deterministic-program ancestor, with specific CA machinery optional.
 
 **Core Belief**: Quantum behavior can emerge from deeper deterministic dynamics, potentially represented by discrete update structures.
 
-**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ shares deterministic ambition but uses continuous delayed interaction dynamics with emergent discreteness at assembly scales rather than fundamental cellular-automaton update tables.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ shares deterministic ambition but uses continuous delayed interaction dynamics with emergent discreteness at assembly scales rather than fundamental cellular-automaton update tables. The useful methodological lesson is calculational discipline: a radical reformulation earns standing only when it writes down a checkable result, explains why known effective theory worked, and exposes the residuals that would fail it.
 
 **Legacy Shift**: 't Hooft's deterministic challenge is retained and broadened into explicit causal-wake and assembly ontology, while his cellular-automaton and superdeterministic routes remain comparison material rather than imported doctrine.
 
@@ -15469,6 +15535,25 @@ What this subject gets right is decisive. It keeps open the possibility that fin
 The main overstatement arises when discreteness is too quickly equated with digitality. A discrete substrate need not behave like a register of symbolic bits, and it need not inherit the semantic baggage of computer architecture. Likewise, a graph is not yet a physical ontology unless one can say what its nodes and links are, how delayed influence propagates through them, and why effective symmetries arise. The subject therefore risks replacing one abstraction with another if its combinatorial objects are left physically underinterpreted.
 
 The same caution applies to deterministic cellular-automaton programs. A reversible local update rule can be a useful comparison model because it forces the theory to state a microstate, an update law, and a recovery burden. It does not follow that the physical substrate is a literal grid, a register, or an integer-only state table. To become physics rather than representation, such a model must identify the entities being updated, the Noether sea through which influence propagates, the conservation ledgers it preserves, and the route by which quantum statistics, Standard Model parameters, GR-like behavior, and strong-field thermodynamics are recovered.
+
+This is the right place to absorb 't Hooft's strongest discrete-substrate pressure. The claim that real-number continua may be effective rather than fundamental is a useful warning against treating differential form as ontology. The excess is the further inference that only integer cellular-automaton states can be physical. $\mathbb{A}\mathbb{A}\mathbb{A}$ can accept continuum suspicion while choosing a different substrate: architrinos in a Euclidean void, causal wakes at finite speed, and Noether sea organization whose observer-level summaries may be continuous even when assembly records are discrete.
+
+A discrete or digital comparison program earns transition relevance only if its recovery residuals close as a vector, not one observable at a time:
+
+$$
+\mathcal{R}_{\mathrm{disc}}
+=
+\max\left(
+\mathcal{R}_{\mathrm{Born}},
+\mathcal{R}_{\mathrm{SM}},
+\mathcal{R}_{\mathrm{GR}},
+\mathcal{R}_{\mathrm{BH}},
+\mathcal{R}_{\mathrm{NS}}
+\right)
+\le 1
+$$
+
+Here the terms represent Born-rule statistics, Standard Model parameter and scattering recovery, relativistic/gravitational benchmarks, black-hole thermodynamic or information constraints, and no-signaling behavior. This residual is not a new gate; it states why continuum criticism alone is insufficient. The proposed substrate must recover the mature effective stack.
 
 Another tension concerns empirical recovery. Many discrete programs excel at conceptual resistance to the continuum, but fewer provide a compelling, fully worked derivation of the observed low-energy world. What they get wrong or overstate is sometimes not the discrete hypothesis itself, but the ease with which metric behavior, quantum statistics, relativistic invariance, and cosmological structure are supposed to descend from a chosen microscopic scaffold. Discreteness is a direction of repair, not a completed ontology.
 

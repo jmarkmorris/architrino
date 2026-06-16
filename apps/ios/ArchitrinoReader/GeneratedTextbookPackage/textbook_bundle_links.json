@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-06-16T18:12:47.893Z",
-  "total_links": 1315,
+  "generated_at": "2026-06-16T19:50:03.731Z",
+  "total_links": 1316,
   "links": [
     {
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
@@ -1350,6 +1350,13 @@
     {
       "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
       "target": "../../../../markdown/aaa/cosmology/cosmology-ontology.md#inference-dependency-ledger",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/cosmology/cosmology-ontology.md"
+    },
+    {
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
+      "target": "../../../../markdown/aaa/cosmology/cosmology-ontology.md#prediction-narrowness-and-initial-basin-burden",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/cosmology/cosmology-ontology.md"

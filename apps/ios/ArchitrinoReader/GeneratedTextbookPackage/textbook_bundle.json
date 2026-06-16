@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-06-16T18:12:47.893Z",
-  "package_version": "1.0.0-e2976e5b",
+  "generated_at": "2026-06-16T19:50:03.731Z",
+  "package_version": "1.0.0-74a8f952",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
     "path": "content/graph/textbook_toc.json",
-    "sha256": "e2976e5bc7a44f28f5422895b4913c03712501fc78898add8f931e94eb356904",
-    "size": 595348
+    "sha256": "74a8f952435669eeee3c2dc48f1ac816ed12ea21e9c4572231842d88d24f9182",
+    "size": 595842
   },
   "chapters": [
     {
@@ -116,8 +116,8 @@
       "sourcePath": "content/graph/textbook_toc.json",
       "role": "toc",
       "type": "json",
-      "size": 595802,
-      "sha256": "e2976e5bc7a44f28f5422895b4913c03712501fc78898add8f931e94eb356904"
+      "size": 596296,
+      "sha256": "74a8f952435669eeee3c2dc48f1ac816ed12ea21e9c4572231842d88d24f9182"
     },
     {
       "path": "reading-copies/atomic-and-nuclear-assemblies.md",
@@ -132,8 +132,8 @@
       "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 322874,
-      "sha256": "6bacbc9eb034c550681170b42ea2790eef367848f33020d81f52b5fd89d20662"
+      "size": 328537,
+      "sha256": "21450d1d4f27f104cc1c9b8dede2fb03746594b86c548d80c8fec0e9ca0d3fb9"
     },
     {
       "path": "reading-copies/dynamics.md",
@@ -172,16 +172,16 @@
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 1414961,
-      "sha256": "a6db71b554648096c9f148232aa1bb2dd3165a121ed855348db088271fb5e389"
+      "size": 1425823,
+      "sha256": "354aec12e7aa8511dfe4661e5d7c579e1f3feb0cacad1ebf4e5b77613fefb09e"
     },
     {
       "path": "reading-copies/quantum.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 161998,
-      "sha256": "1dcb8931de0ee2970bb1e290ab10b894e2ce263e4f53ae7f380cb672d4fb73cf"
+      "size": 164460,
+      "sha256": "9f4d10c2081fbeb8cfbfa1a256e3f9fff6bcf1f858b2c97ba69ef650a55f8188"
     },
     {
       "path": "reading-copies/reactions.md",
@@ -212,8 +212,8 @@
       "sourcePath": "__generated__/textbook_bundle_search_index.json",
       "role": "search",
       "type": "json",
-      "size": 6792884,
-      "sha256": "d6f63b0bac0c2cfa7a12ee589bf0f2d077c07530c004d5101fa930f5964ce74e"
+      "size": 6811939,
+      "sha256": "5201dfb92dd88f856bfc2daa6663d9754061a2764f908a1af966fb808bbd9981"
     }
   ],
   "links": [
@@ -5823,6 +5823,13 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/cosmology/CMB.md"
+    },
+    {
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
+      "target": "../../../../markdown/aaa/cosmology/cosmology-ontology.md#prediction-narrowness-and-initial-basin-burden",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/cosmology/cosmology-ontology.md"
     },
     {
       "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",

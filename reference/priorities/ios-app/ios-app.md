@@ -86,7 +86,8 @@ Treat these as backlog tickets in execution order. Keep each ticket one engineer
 3. `content_export_script` - Add an export script that copies `content/graph/textbook_toc.json`, generated reading-copy markdown, and related assets into `ios-app` bundle-ready structure. Status: `active`.
    - Script: `scripts/export-ios-textbook-package.mjs`.
    - Run with `node scripts/export-ios-textbook-package.mjs --write` and validate with `--check`.
-   - Search index generation now excludes non-deterministic fields from content hashing and writes deterministic suffix-anchor logs.
+   - Search index generation now excludes non-deterministic fields from content hashing and reports repeated heading titles as non-fatal diagnostics after assigning deterministic suffix anchors.
+   - The generated app package is excluded from the repo-wide markdown audit; `export-ios-textbook-package.mjs` owns its link and manifest validation.
 4. `bundle_validation_smoke` - Add a local check that ensures manifest consistency and detects missing markdown links, duplicate anchors, and absent assets before build integration.
 
 ### Phase 1: Reader Core
