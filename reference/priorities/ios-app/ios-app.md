@@ -77,10 +77,10 @@ Treat these as backlog tickets in execution order. Keep each ticket one engineer
 
 ### Phase 0: Foundation
 
-1. `ios_project_scaffold` - Create the SwiftUI project in-repo with iOS 18.0 / iPadOS 18.0 deployment targets, a lightweight tab shell (Textbook / Settings), and basic routing. Status: `active` (project file now scaffolded; runtime verification pending).
+1. `ios_project_scaffold` - Create the SwiftUI project in-repo with iOS 18.0 / iPadOS 18.0 deployment targets, a lightweight tab shell (Textbook / Settings), and basic routing. Status: `active` (project file and generic iOS build validation complete; simulator runtime check pending).
    - Scaffolded folder and Swift sources now exist at `apps/ios/ArchitrinoReader/`.
    - Xcode project file now exists at `apps/ios/ArchitrinoReader/ArchitrinoReader.xcodeproj`.
-   - `xcodeproj` scaffold is currently a build-synthetic project file; validate on a machine with Xcode before feature work.
+   - Generic no-signing iOS build passes with Xcode 26.5 using the `ArchitrinoReader` scheme.
 2. `content_bundle_schema_v1` - Define and document a deterministic `textbook_bundle.json` manifest schema for the app package (content hashes, generated-on, version id, TOC checksum, file map). Status: `active`.
    - Schema: `apps/ios/ArchitrinoReader/textbook_bundle_schema_v1.json`.
 3. `content_export_script` - Add an export script that copies `content/graph/textbook_toc.json`, generated reading-copy markdown, and related assets into `ios-app` bundle-ready structure. Status: `active`.

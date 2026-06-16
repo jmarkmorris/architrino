@@ -25,6 +25,7 @@ This file records completed source-mining targets. When a new source or source f
 | London Institute for Mathematical Sciences, [Neil Turok's stunningly simple, testable new theory of the universe](https://www.youtube.com/watch?v=VlP-12yc2f8), talk/interview with Neil Turok | June 16, 2026 |
 | Lex Fridman, [Biggest Mysteries in Physics: Antimatter, Dark Energy & ToE - Don Lincoln](https://www.youtube.com/watch?v=1M3Vdl6DRkU), interview with Don Lincoln | June 16, 2026 |
 | PBS Space Time, [Heisenberg Made a Discovery in 1925. We Still Can't Explain It](https://www.youtube.com/watch?v=c-Q5r3THR3M), quantum-foundations history and matrix/wave mechanics overview | June 16, 2026 |
+| MIT OpenCourseWare, [Lecture 9: Rethinking Matter](https://www.youtube.com/watch?v=a2pU4XBIaWI), David Kaiser lecture on old quantum theory, Rutherford scattering, Bohr's model, and de Broglie's matter-wave hypothesis | June 16, 2026 |
 | David Tong, [Dynamics and Relativity](https://davidtong.org/pdfs/teaching/dynamics-and-relativity/dynrel.pdf) | May 18, 2026 |
 | David Tong, [Classical Dynamics](https://davidtong.org/pdfs/teaching/classical-dynamics/clas.pdf) | May 18, 2026 |
 | David Tong, [Vector Calculus](https://davidtong.org/pdfs/teaching/vector-calculus/vc.pdf) | May 18, 2026 |

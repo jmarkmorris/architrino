@@ -69,7 +69,7 @@ struct ContentView: View {
                             .foregroundStyle(.secondary)
                     }
                     .padding()
-                } else if let command = viewModel.renderCommand {
+                } else if viewModel.renderCommand != nil {
                     ReaderWebView(renderCommand: $viewModel.renderCommand) { payload in
                         if let url = viewModel.handleWebLink(message: payload) {
                             openURL(url)
@@ -209,8 +209,7 @@ struct ContentView: View {
         .navigationTitle("Textbook")
     }
 
-    @ViewBuilder
-    private func tocHierarchyRow(_ node: TextbookTOCNode, depth: Int) -> some View {
+    private func tocHierarchyRow(_ node: TextbookTOCNode, depth: Int) -> AnyView {
         let route = viewModel.resolveTOCTarget(for: node)
         let isCurrentChapter = {
             if case .chapter(let chapterId, _) = route {
@@ -227,85 +226,89 @@ struct ContentView: View {
             return nil
         }()
 
-        if isExternalRoute {
-            HStack(spacing: 10) {
-                tocRouteIcon(for: route)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-
-                tocRowLabel(title: node.title, depth: depth)
-
-                Spacer()
-
-                Button {
-                    if let externalURL {
-                        openURL(externalURL)
-                    }
-                    if !isRegularWidth {
-                        showToc = false
-                    }
-                } label: {
-                    Image(systemName: "safari")
-                        .foregroundStyle(.blue)
-                        .imageScale(.small)
-                        .accessibilityLabel("Open scene in web app")
-                }
-                .buttonStyle(.plain)
-
-                if isCurrentChapter {
-                    Image(systemName: "checkmark")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-            }
-            .contentShape(Rectangle())
-            .padding(.vertical, 2)
-            .padding(.horizontal, 2)
-            .onTapGesture {
-                tocNotice = "“\(node.title)” is a web-app scene. Open in Safari to view the interactive version."
-                if !isRegularWidth {
-                    showToc = false
-                }
-            }
-            .background(Color.clear)
-        } else {
-            Button {
-                tocNotice = nil
-                if let external = viewModel.performTOCAction(for: node) {
-                    openURL(external)
-                }
-                if !isRegularWidth {
-                    showToc = false
-                }
-            } label: {
-                HStack(spacing: 10) {
-                    tocRouteIcon(for: route)
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-
-                    tocRowLabel(title: node.title, depth: depth)
-
-                    Spacer()
-
-                    if isCurrentChapter {
-                        Image(systemName: "checkmark")
+        return AnyView(
+            VStack(alignment: .leading, spacing: 0) {
+                if isExternalRoute {
+                    HStack(spacing: 10) {
+                        tocRouteIcon(for: route)
                             .font(.caption)
                             .foregroundStyle(.secondary)
-                    }
-                }
-                .contentShape(Rectangle())
-                .padding(.vertical, 2)
-                .padding(.horizontal, 2)
-            }
-            .contentShape(Rectangle())
-            .padding(.vertical, 2)
-            .padding(.horizontal, 2)
-            .buttonStyle(.plain)
-        }
 
-        ForEach(node.resolvedChildren) { child in
-            tocHierarchyRow(child, depth: depth + 1)
-        }
+                        tocRowLabel(title: node.title, depth: depth)
+
+                        Spacer()
+
+                        Button {
+                            if let externalURL {
+                                openURL(externalURL)
+                            }
+                            if !isRegularWidth {
+                                showToc = false
+                            }
+                        } label: {
+                            Image(systemName: "safari")
+                                .foregroundStyle(.blue)
+                                .imageScale(.small)
+                                .accessibilityLabel("Open scene in web app")
+                        }
+                        .buttonStyle(.plain)
+
+                        if isCurrentChapter {
+                            Image(systemName: "checkmark")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    .contentShape(Rectangle())
+                    .padding(.vertical, 2)
+                    .padding(.horizontal, 2)
+                    .onTapGesture {
+                        tocNotice = "“\(node.title)” is a web-app scene. Open in Safari to view the interactive version."
+                        if !isRegularWidth {
+                            showToc = false
+                        }
+                    }
+                    .background(Color.clear)
+                } else {
+                    Button {
+                        tocNotice = nil
+                        if let external = viewModel.performTOCAction(for: node) {
+                            openURL(external)
+                        }
+                        if !isRegularWidth {
+                            showToc = false
+                        }
+                    } label: {
+                        HStack(spacing: 10) {
+                            tocRouteIcon(for: route)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+
+                            tocRowLabel(title: node.title, depth: depth)
+
+                            Spacer()
+
+                            if isCurrentChapter {
+                                Image(systemName: "checkmark")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                        .contentShape(Rectangle())
+                        .padding(.vertical, 2)
+                        .padding(.horizontal, 2)
+                    }
+                    .contentShape(Rectangle())
+                    .padding(.vertical, 2)
+                    .padding(.horizontal, 2)
+                    .buttonStyle(.plain)
+                }
+
+                ForEach(node.resolvedChildren) { child in
+                    tocHierarchyRow(child, depth: depth + 1)
+                }
+            }
+        )
     }
 
     @ViewBuilder
@@ -478,7 +481,6 @@ private struct BookmarksSheet: View {
     }
 }
 
-#Preview
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()

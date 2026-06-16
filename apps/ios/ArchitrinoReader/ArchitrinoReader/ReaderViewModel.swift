@@ -28,7 +28,7 @@ final class ReaderViewModel: ObservableObject {
 
     private var markdownCache: [String: String] = [:]
 
-    struct ReaderRenderCommand: Identifiable, Codable, Equatable {
+    struct ReaderRenderCommand: Identifiable, Codable {
         let id: UUID
         let chapterId: String
         let chapterTitle: String

@@ -100,7 +100,7 @@ struct TextbookTOCSection: Decodable, Equatable {
     let headingLevel: Int?
 }
 
-struct TextbookTOCNode: Decodable, Identifiable, Hashable {
+struct TextbookTOCNode: Decodable, Identifiable {
     let id: String
     let title: String
     let kind: String?
@@ -230,7 +230,7 @@ final class ReaderTextbookLoader {
         guard FileManager.default.fileExists(atPath: url.path) else {
             throw ReaderLoadError.missingChapterText(relativePath)
         }
-        return try String(contentsOf: url)
+        return try String(contentsOf: url, encoding: .utf8)
     }
 
     struct TextbookLinkMetadataFile: Decodable {
