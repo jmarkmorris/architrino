@@ -1,18 +1,23 @@
 # Solver
 
-## Changes Wanted First
+## Requirements
 
-1. `sim2` is likely approaching retirement. Treat it as a reference prototype for field-shell and delayed-hit visual language, not as a migration target or long-term solver destination.
-2. This workstream is not about every general-purpose tool with `solve` or `solver` in its name. Its scope is tools that solve architrino motion, causal roots, delayed hits, and geometry.
-3. The solver must be high-speed and efficient enough to support interactive apps, batch simulations, and reusable diagnostics. The implementation language and runtime are therefore first-order design decisions, not afterthoughts.
-4. The solver must offer excellent precision across many orders of magnitude. Orbital speed and assembly speed may span many orders of magnitude, so dynamic range, numerical conditioning, precision paths, and explicit error budgets are core design requirements.
-5. Path histories can consume memory quickly. The solver needs per-path data streams that keep only a bounded active window in memory, spill high-speed path data to files, and read those files back at high speed.
-6. Path-history streams need explicit indices and metadata: path id, time range, frame range, byte offsets, precision path, units, scale normalization, schema version, checksums, provenance, and diagnostic summaries.
-7. The solver needs an explicit capability and API list before implementation: motion solving, causal-root solving, delayed-hit solving, geometry calculations, dataset output, diagnostics, worker or batch execution, path-history streaming, file-backed storage, indexed readback, and app adapters.
-8. The solver should use multithreading where it improves performance and makes engineering sense. Threading must be benchmark-driven, deterministic where the result requires it, and optional where single-threaded execution is safer or sufficient.
-9. Apps must be able to communicate with the solver through one shared app bridge. App code should call a stable JavaScript or TypeScript request/response API and should not need app-specific C++ or WebAssembly handling.
-10. Geometry calculations should be centralized around solver-owned simulation and geometry routines for Photon, Ideal Swarm, Animator, and the new central solver. `sim2` and legacy solver families should remain reference, archive, or separate surfaces unless a future decision explicitly reopens them.
-11. Once the solver design and first implementation exist, the repo needs a migration plan for the current app-facing migration targets: Photon, Ideal Swarm, and Animator.
+1. `sim2` was an early primitive prototype. Treat it as a source of animation intent for field-shell and delayed-hit visual ideas only, not as a code source, migration target, parity target, or long-term solver destination.
+2. The new central solver is a complete redesign. It should not be framed as a small upgrade to `sim2`, the current assembly-dynamics toy solver, or any app-local helper.
+3. This workstream is not about every general-purpose tool with `solve` or `solver` in its name. Its scope is tools that solve architrino motion, causal roots, delayed hits, and geometry.
+4. The solver must be high-speed and efficient enough to support interactive apps, batch simulations, and reusable diagnostics. The implementation language and runtime are therefore first-order design decisions, not afterthoughts.
+5. The solver must offer excellent precision across many orders of magnitude. Orbital speed and assembly speed may span many orders of magnitude, so dynamic range, numerical conditioning, precision paths, and explicit error budgets are core design requirements.
+6. Every run should declare a simulation envelope: entity count, physical scale, simulated duration, time resolution, interaction density, branch complexity, precision claim, output detail, memory budget, storage budget, and expected latency. The solver should admit, simplify, batch, escalate, or reject a run based on that envelope instead of quietly accepting a request it cannot support accurately.
+7. Path histories can consume memory quickly. The solver needs per-path data streams that keep only a bounded active window in memory, spill high-speed path data to non-volatile storage, and read those records back at high speed.
+8. Path-history streams need explicit indices and metadata: path id, time range, frame range, byte offsets, precision path, units, scale normalization, schema version, checksums, provenance, and diagnostic summaries. They should also capture inexpensive derived geometry and frame data when it is cheap to gather, because future solver speedups will likely come from fast spatial and causal queries over this recorded history.
+9. Path-history indexing should be tiered. The hot active window should keep only the indices needed to continue precise action, root, and geometry modeling over the next simulation window. Aged-out records should spill to non-volatile storage, where deeper offline indices can be built later for long-term studies, huge simulations, replay, and research.
+10. Hot-path data structures should use compact canonical encodings that are straightforward to implement and verify. Compression should usually happen after a run or during export; the solver loop should write efficient canonical chunks first and add hot-path compression only when benchmarks prove it helps.
+11. Solver work and dense data should be organized into transport-ready packets where practical. A packet should be able to move across browser workers, native threads, native processes, network services, and future GPU or service backends without inventing a second data format.
+12. The solver needs an explicit capability and API list before implementation: motion solving, causal-root solving, delayed-hit solving, geometry calculations, dataset output, diagnostics, worker or batch execution, path-history streaming, non-volatile storage, indexed readback, and app adapters.
+13. The solver should be highly parallelizable where it improves performance and makes engineering sense. Threading must be benchmark-driven, deterministic where the result requires it, and optional where single-threaded execution is safer or sufficient. Even while GPU execution is deferred, work units, data layout, and reduction rules should be designed so future GPU kernels can map onto mainstream laptop, desktop, and service GPU hardware.
+14. Apps must be able to communicate with the solver through one shared app bridge. App code should call a stable JavaScript or TypeScript request/response API and should not need app-specific C++ or WebAssembly handling.
+15. Geometry calculations should be centralized around solver-owned simulation and geometry routines for Photon, Ideal Swarm, Animator, and the new central solver. `sim2` and legacy solver families should remain reference, archive, or separate surfaces unless a future decision explicitly reopens them.
+16. Once the solver design and first implementation exist, the repo needs a migration plan for the current app-facing migration targets: Photon, Ideal Swarm, and Animator.
 
 ## Workstream Metadata
 
@@ -29,7 +34,7 @@ The repo currently has multiple solver-like paths that grew around different app
 
 Raw grep counts are misleading. A narrower inventory pass found 90 executable source files with solver-like terms under `src/apps`, `scripts`, and `pdgsolve.py`; a broader live `solve|solver` pass is even noisier. Those counts are evidence of scattered responsibilities, not the target scope for this workstream.
 
-The reusable solver target is an architrino motion and geometry solver. It should solve source histories, causal roots, branch-resolved delayed hits, Jacobian-weighted interaction terms, and app-ready simulation datasets. It must be precise over very small and very large geometry, time, velocity, residual, and branch-weight scales. It must also treat long path histories as streamable data, not as unbounded in-memory arrays. General checkers, fit helpers, layout utilities, proof sidecars, and unrelated helper functions are out of scope unless they directly consume or validate architrino motion and geometry.
+The reusable solver target is a new architrino motion and geometry solver. It should solve source histories, causal roots, branch-resolved delayed hits, Jacobian-weighted interaction terms, and app-ready simulation datasets. It must be precise over very small and very large geometry, time, velocity, residual, and branch-weight scales. It must also treat long path histories as streamable data, not as unbounded in-memory arrays. This is a complete redesign, not an incremental hardening of `sim2`, the assembly-dynamics toy solver, or an app-local helper. General checkers, fit helpers, layout utilities, proof sidecars, and unrelated helper functions are out of scope unless they directly consume or validate architrino motion and geometry.
 
 ## App-Facing Solver Paths
 
@@ -38,7 +43,7 @@ The reusable solver target is an architrino motion and geometry solver. It shoul
 | Photon | `solvePhotonCausalRoots` in [PhotonFormulaRuntime.js](../../../src/apps/photon/PhotonFormulaRuntime.js#L198) | Photon-local causal-root scan for observer-field diagnostics. |
 | Ideal Swarm | `solveFlightTime` in [IdealSwarmRuntime.js](../../../src/apps/ideal-swarm/IdealSwarmRuntime.js#L421) and `solveCircularSelfHitSpan` in [IdealSwarmPathPotentialProfile.js](../../../src/apps/ideal-swarm/IdealSwarmPathPotentialProfile.js#L53) | Delayed-potential iteration plus circular self-hit span logic. |
 | Animator | `runAnimatorSimulationWorkerRequest` in [AnimatorSimulationWorkerCoreRuntime.js](../../../src/apps/animator/AnimatorSimulationWorkerCoreRuntime.js#L21), backed by [assembly-dynamics-solver.mjs](../../../scripts/simulations/lib/assembly-dynamics-solver.mjs#L323) through [assembly-dynamics-engine.mjs](../../../scripts/simulations/lib/assembly-dynamics-engine.mjs) | Closest current app bridge to solver-derived datasets. |
-| `sim2` | hit-detection causal simulation in [orbits.py](../../../src/apps/sim2/orbits.py#L1123) | Reference prototype and retirement/archive surface, not a migration target. |
+| `sim2` | hit-detection causal simulation in [orbits.py](../../../src/apps/sim2/orbits.py#L1123) | Early primitive prototype. Preserve only the intended animation ideas where useful; do not migrate its solver code or treat it as a parity target. |
 
 ## Meaningful Solver Families
 
@@ -53,7 +58,7 @@ The reusable solver target is an architrino motion and geometry solver. It shoul
 9. Proof-program LP and collocation screen solvers.
 10. Cosmology residual-fit linear solver.
 
-Only Photon, Ideal Swarm, and Animator through the assembly-dynamics path are current migration targets. `sim2` and the non-app legacy solver families are inventory, reference, archive, or separate-maintenance surfaces, not migration targets for the central solver.
+Only Photon, Ideal Swarm, and Animator through the assembly-dynamics path are current migration targets. `sim2` is an animation-intent reference and archive surface only. The non-app legacy solver families are inventory, reference, archive, or separate-maintenance surfaces, not migration targets for the central solver.
 
 ## Cross-Priority Requirements Extracted
 
@@ -63,7 +68,7 @@ Classification rule:
 
 | Class | Meaning |
 | --- | --- |
-| `central solver contract` | Must shape the first central solver contract or its stable schema. |
+| `central solver contract` | Must define the first central solver contract or its stable schema. |
 | `app migration requirement` | Needed to migrate Photon, Ideal Swarm, or Animator through the shared solver bridge. |
 | `diagnostic or validation requirement` | Required for parity, replay, claim level, proof handoff, or branch-audit evidence, but not necessarily a first app UI feature. |
 | `reference-only requirement` | Preserved as a boundary, archive, or future interface signal; not a first central-solver implementation target. |
@@ -76,11 +81,11 @@ Extracted requirements:
 | [animator-merge](../animator-merge/animator-merge.md) | `app migration requirement`, `central solver contract` | Animator needs solver-derived motion datasets, not authored-path substitutions. The solver must emit frames, field shells, delayed-hit events, solid and dotted path data, provenance, input config, precision settings, timestep policy, diagnostics, halt status, and cacheable offline/batch outputs. Animator should be able to render a completed dataset without requiring the solver to run at display frame rate. |
 | [photon-app](../photon-app/photon-app.md) | `app migration requirement`, `central solver contract` | Photon needs absolute source and receiver histories, moving-apparatus support, declared photon-channel and branch signal speeds, all positive causal roots, same-source self-hit roots when enabled, no-catch-up and old-root diagnostics, residuals, Jacobians, transversality or small-Jacobian rejection reasons, source phase-at-hit, receiver phase-at-hit, layer/role/charge/cycle metadata, phase-spread summaries, Jacobian-weighted hit sums, reconstructed receiver acceleration, and observer-level transverse-field outputs. |
 | [simulations](../simulations/simulations.md) | `diagnostic or validation requirement`, `central solver contract` | Simulation campaigns require explicit state-history class, mesh, interpolation policy, causal-root ledger, transition or jump ledger, branch residual vector, tolerance vector, normalized root residuals, provenance log, convergence vector, finite failure-code set, promotion status, artifact hashes, and run artifacts such as manifests, root ledgers, residual tables, candidate rows, failure reports, and validation replay records. |
-| [assembly-dynamics solver](../../../scripts/simulations/lib/assembly-dynamics-solver.mjs) | `central solver contract`, `app migration requirement` | The closest reusable engine already demonstrates the central shape: source histories, finite-history causal-root search, self and partner hits, branch-resolved delayed-hit records, $1/|J_{ij}|$ weighting where required, Jacobian diagnostics, unresolved-root halt reporting, and an Animator dataset bridge. The C++ solver should preserve those successful surfaces while replacing toy-solver limitations. |
+| [assembly-dynamics solver](../../../scripts/simulations/lib/assembly-dynamics-solver.mjs) | `central solver contract`, `app migration requirement` | The closest reusable engine already demonstrates the central solver pattern: source histories, finite-history causal-root search, self and partner hits, branch-resolved delayed-hit records, $1/|J_{ij}|$ weighting where required, Jacobian diagnostics, unresolved-root halt reporting, and an Animator dataset bridge. The C++ solver should preserve those successful surfaces while replacing toy-solver limitations. |
 | [mass-map](../mass-map/mass-map.md) | `diagnostic or validation requirement`, `reference-only requirement` | Mass-map work requires $A_0$ path-history depth long enough to resolve active causal roots over a closed cycle, state/root/phase ledgers on a common period, scale separation across many orders of magnitude, branch residual rows, energy and shielding ledgers, branch metadata, active-root inventories, and failure notes. Numerical insufficiency from time resolution, history depth, or scale separation should be a solver failure code, not a branch rejection. |
 | [swarm](../swarm/swarm.md) and [all-pairs root ledger](../swarm/neutral-swarm/all-pairs-root-ledger.md) | `diagnostic or validation requirement`, `reference-only requirement` | Swarm packets require all ordered source-pair root ledgers, active and inactive root accounting, support-complete memory depth, tail exclusion or assimilation, Jacobian sign strata and floors, root continuation data, force rows tied to the same active root set, and `ledger-rerun-required` when a consumer evaluates against a different root label set. |
 | [bounded-speed all-pairs ledger handoff](../swarm/shell-swarm/bounded-speed-factor-all-pairs-ledger-handoff-contract.md) | `diagnostic or validation requirement`, `reference-only requirement` | Bounded-speed work requires explicit clock maps, inverse-clock maps, live-ledger identity, root label handoff, bounded-speed root equations, inactive-gap covers, tail interfaces, root derivative columns, force checksums, consumer checksums, Schur derivative data when roots are eliminated, and first-failure statuses. These inform diagnostics and future proof handoff, not the first app migration scope. |
-| [geometry-bridge](../geometry-bridge/geometry-bridge.md) | `diagnostic or validation requirement`, `reference-only requirement` | Geometry bridge needs branch-local response objects, root-sensitive linearization, derivative rows for $\eta$, $J$, delayed force, support, speed factors, and event endpoints, quotient or bordered inverse metadata, geometry-export packets, ledger-mismatch residuals, interval or directed-rounded certificates, and response pass/open/reject statuses. These shape solver-owned geometry diagnostics and future export packets. |
+| [geometry-bridge](../geometry-bridge/geometry-bridge.md) | `diagnostic or validation requirement`, `reference-only requirement` | Geometry bridge needs branch-local response objects, root-sensitive linearization, derivative rows for $\eta$, $J$, delayed force, support, speed factors, and event endpoints, quotient or bordered inverse metadata, geometry-export packets, ledger-mismatch residuals, interval or directed-rounded certificates, and response pass/open/reject statuses. These inform solver-owned geometry diagnostics and future export packets. |
 | [photon planar-pair ledger substrate packet](../angular-momentum-spin/photon-planar-pair-ledger-substrate-packet.md) | `diagnostic or validation requirement`, `reference-only requirement` | Photon closure needs delayed branch geometry to supply retained-root phase ledgers, planar-pair rows, root kind, cycle index, source phase-at-hit, receiver phase-at-hit where modeled, phase-spread summaries, local-$c$ same-source root solving, Jacobian and transversality floors, and event-window consistency. App fits may nominate regimes but cannot replace the root ledger. |
 | [master-equation-closure](../master-equation-closure/master-equation-closure.md) | `diagnostic or validation requirement`, `reference-only requirement` | Master-equation work requires retained branch charts, partner and self roots, inactive gaps, Jacobian floors, finite memory depth, root-transport residuals, finite-band branch tables, interval support, tail constants, variational backend diagnostics, and explicit classification of numerical finite-difference artifacts versus repair-grade tangent data. |
 | [proof-programs](../proof-programs/proof-programs.md) | `diagnostic or validation requirement`, `reference-only requirement` | Proof programs require certificate artifact discipline: preledger status, live-ledger update status, branch-chart authorization status, interval boxes, residual functions, endpoint maps, no-switch and uniqueness certificates, row consumption records, source-hash locks, and fail-closed external-input obligations. The central solver may emit artifacts for these consumers later, but proof-program solvers are not migration targets. |
@@ -92,8 +97,10 @@ Direct contract additions from the extraction:
 - Add phase-at-hit and cycle metadata for Photon and photon-closure consumers: source phase, receiver phase when modeled, layer, role, charge sign, root kind, cycle index, and phase-spread summaries.
 - Add branch-transition and jump metadata so disappearing, appearing, folded, or assimilated roots are not treated as ordinary Newton drift.
 - Add explicit failure-code taxonomy for insufficient history depth, insufficient scale separation, inadequate time resolution, unresolved roots, small Jacobian, transversality-floor failure, stream pressure, unsupported browser capability, and validation replay mismatch.
+- Add simulation-envelope discipline: entity count, assembly complexity, volume, density, duration, time resolution, interaction density, branch complexity, output detail, memory budget, storage budget, latency target, simplification policy, and admission status.
+- Add virtual-observer path-record discipline: segment time bounds, endpoint state or segment coefficients, interpolation law, coordinate frame, numeric type, error bounds, and optional dynamic replay or potential audit references.
 - Add artifact and provenance discipline: config hash, schema version, engine version, precision path, tolerance vector, interpolation policy, stream/index hashes, artifact hashes, run claim level, and promotion or migration parity status.
-- Keep first implementation scope disciplined: Photon, Ideal Swarm, and Animator are migration targets; `sim2`, mass-map, swarm, geometry-bridge, master-equation, and proof-program families are reference, validation, or future artifact consumers unless a later priority explicitly changes scope.
+- Keep first implementation scope disciplined: Photon, Ideal Swarm, and Animator are migration targets; `sim2` is animation-intent reference only; mass-map, swarm, geometry-bridge, master-equation, and proof-program families are reference, validation, or future artifact consumers unless a later priority explicitly changes scope.
 
 ## Decision Summary
 
@@ -102,21 +109,22 @@ Direct contract additions from the extraction:
 | Production language | Use C++ with Clang/LLVM only. Rust remains comparison-only and is not a fallback implementation path. |
 | C++ standard and build | Use C++20, Clang/LLVM, CMake presets, Ninja, one native CLI target, and one WebAssembly worker target. |
 | App bridge | Use one shared JavaScript adapter with TypeScript declarations, backed by a WebAssembly worker. Apps do not handle C++ or WebAssembly directly. |
-| Migration scope | Migrate Photon, Ideal Swarm, and Animator only. `sim2` and legacy solver families are reference/archive/separate surfaces. |
+| Migration scope | Migrate Photon, Ideal Swarm, and Animator only. `sim2` is animation-intent archive only; legacy solver families are reference/archive/separate surfaces. |
 | Requirement extraction | Current cross-priority solver-requirements extraction is complete. Keep the extraction ledger current before changing central solver scope. |
 | First solver core | Build the causal-root, delayed-hit, source-history, diagnostics, stream, and index core first; expand motion integration after that core is stable. |
+| Simulation envelope | Every run declares its scale and stress dimensions before execution. The solver admits, simplifies, batches, escalates, or rejects the run with diagnostics when the request exceeds the supported envelope. |
 | Precision behavior | Use an automatic precision-path selector with explicit caller override to stricter paths only. Never silently downgrade precision or claim level. |
 | Threading | Use a bounded native task pool for independent root, stream, index, batch, and replay work; use WebAssembly threads only when browser capability and determinism requirements allow. |
 | GPU acceleration | Defer GPU acceleration. Do not make Metal, WebGPU, or any GPU compute path part of the first solver core or migration plan. |
 | Geometry boundary | The solver owns causal and path-dependent geometry. Apps own visual layout, controls, styling, and renderer-specific presentation. |
-| Storage | Use logical per-path streams backed by a run-level chunked binary store, JSON manifest, binary index sidecar, event store, and summary record. |
+| Storage | Use logical per-path streams backed by a run-level chunked binary store, JSON manifest, encoding dictionary, binary index sidecar, event store, deep-index store, and summary record. |
 | Validation | Require golden parity, precision replay, stream round-trip, threading determinism, and app-bridge contract tests before migrating an app. |
 
 ## Closest Existing Reusable Engine
 
 For reusable photon and app-facing solver work, the closest existing reusable engine is the assembly-dynamics causal-root solver in [assembly-dynamics-solver.mjs](../../../scripts/simulations/lib/assembly-dynamics-solver.mjs), exposed to app datasets through [assembly-dynamics-engine.mjs](../../../scripts/simulations/lib/assembly-dynamics-engine.mjs).
 
-It already has source histories, finite-history causal-root search, self and partner hits, Jacobian weighting, Jacobian diagnostics, unresolved-root halt reporting, and an Animator dataset bridge. It is still a toy solver and does not yet provide the full geometry, API, performance, or branch-certification contract needed for a central solver.
+It already has source histories, finite-history causal-root search, self and partner hits, Jacobian weighting, Jacobian diagnostics, unresolved-root halt reporting, and an Animator dataset bridge. It is still a toy solver and does not yet provide the full geometry, API, performance, or branch-certification contract needed for a central solver. Treat it as a concept and bridge-contract reference, not as the implementation architecture to harden into the final solver.
 
 ## Solver Responsibilities
 
@@ -128,21 +136,23 @@ The central solver should provide these capabilities:
 4. Jacobian-weighted interaction terms using branch weights based on $1/|J_{ij}|$ where the current model requires that branch factor.
 5. Geometry calculations used by apps and simulations: source positions, receiver positions, distances, directions, circular self-hit spans, shell intersections, branch-local vectors, frame transforms, and planar or 3-D projection data.
 6. Scale-aware numerical precision across many orders of magnitude, including declared precision paths, conditioning diagnostics, residual error budgets, and nondimensionalized or rescaled variables where needed.
-7. Per-path history streams that append path samples without keeping entire long trajectories in memory.
-8. High-speed spill-to-file and high-speed readback for long runs, including chunked binary path data and compact metadata manifests.
-9. Indices for path id, time range, frame range, chunk offsets, delayed-hit events, causal-root events, and diagnostics so apps can scan or seek without loading the whole run.
-10. Simulation dataset output for app playback, scrubbing, diagnostics, export, and comparison runs.
-11. Deterministic diagnostics: engine id, version, input config, timestep policy, selected precision path, precision settings, dynamic-range assumptions, stream storage format, root tolerances, halt status, root failure counts, and aggregate branch statistics.
-12. Worker, batch, and offline execution modes so apps can stay responsive while long or high-precision runs produce cached datasets.
-13. Multithreaded execution where benchmarked gains justify it, especially for independent source-receiver root solves, path-stream chunk work, batch parameter sweeps, and offline replay; single-threaded fallback must remain available.
-14. Threading diagnostics: configured thread count, active worker count, scheduling mode, contention indicators, deterministic-reduction mode, and speedup versus single-thread baseline.
-15. A shared app-communication bridge that lets browser apps and app workers initialize the solver, submit requests, receive typed outputs, handle errors, and read stream-backed datasets without app-specific C++ handling.
-16. App adapters for Photon, Ideal Swarm, and Animator during migration.
-17. Test fixtures or benchmark scenarios that compare old app-local behavior against solver-derived behavior before app code is simplified.
-18. Complete root-ledger outputs for retained roots, inactive gaps, tail or separator rows, transition rows, root labels, Jacobian sign strata, residuals, and first-failure statuses.
-19. Phase-at-hit and cycle metadata for Photon and photon-closure consumers, including source phase, receiver phase when modeled, layer, role, charge sign, root kind, and phase-spread summaries.
-20. Branch-transition diagnostics for roots that appear, disappear, fold, become assimilated from a tail region, or require a ledger rerun.
-21. Validation and handoff artifacts for reference-only consumers, including artifact hashes, provenance records, tolerance vectors, convergence summaries, and promotion or parity status.
+7. Simulation envelope admission that evaluates requested scale, runtime, memory, precision, output detail, and algorithmic stress before the solver commits to a run.
+8. A minimal virtual-observer path record that separates path definition from dynamic replay and diagnostic audit data.
+9. Per-path history streams that append path samples without keeping entire long trajectories in memory.
+10. High-speed spill to non-volatile storage and high-speed readback for long runs, including chunked binary path data and compact metadata manifests.
+11. Indices for path id, time range, frame range, chunk offsets, delayed-hit events, causal-root events, and diagnostics so apps can scan or seek without loading the whole run.
+12. Simulation dataset output for app playback, scrubbing, diagnostics, export, and comparison runs.
+13. Deterministic diagnostics: engine id, version, input config, timestep policy, selected precision path, precision settings, simulation envelope, dynamic-range assumptions, stream storage format, root tolerances, halt status, root failure counts, and aggregate branch statistics.
+14. Worker, batch, and offline execution modes so apps can stay responsive while long or high-precision runs produce cached datasets.
+15. Multithreaded execution where benchmarked gains justify it, especially for independent source-receiver root solves, path-stream chunk work, batch parameter sweeps, and offline replay; single-threaded fallback must remain available.
+16. Threading diagnostics: configured thread count, active worker count, scheduling mode, contention indicators, deterministic-reduction mode, and speedup versus single-thread baseline.
+17. A shared app-communication bridge that lets browser apps and app workers initialize the solver, submit requests, receive typed outputs, handle errors, and read stream-backed datasets without app-specific C++ handling.
+18. App adapters for Photon, Ideal Swarm, and Animator during migration.
+19. Test fixtures or benchmark scenarios that compare old app-local behavior against solver-derived behavior before app code is simplified.
+20. Complete root-ledger outputs for retained roots, inactive gaps, tail or separator rows, transition rows, root labels, Jacobian sign strata, residuals, and first-failure statuses.
+21. Phase-at-hit and cycle metadata for Photon and photon-closure consumers, including source phase, receiver phase when modeled, layer, role, charge sign, root kind, and phase-spread summaries.
+22. Branch-transition diagnostics for roots that appear, disappear, fold, become assimilated from a tail region, or require a ledger rerun.
+23. Validation and handoff artifacts for reference-only consumers, including artifact hashes, provenance records, tolerance vectors, convergence summaries, and promotion or parity status.
 
 ## Chosen API Surface
 
@@ -150,7 +160,9 @@ The central API should be versioned and handle-based. Small configs, manifests, 
 
 | API responsibility | Required output |
 | --- | --- |
+| Estimate and admit a simulation envelope | Envelope classification, stress dimensions, expected resource pressure, precision path candidates, simplification options, and rejection or escalation diagnostics. |
 | Run an architrino motion simulation | Frames with positions, velocities, phases, diagnostics, and halt status. |
+| Record a minimal virtual-observer path segment | Time bounds, path id, coordinate frame, endpoint state or segment coefficients, interpolation law, numeric type, and error bounds. |
 | Solve causal roots for a source-receiver history pair | Root list with emission time, delay, residual, branch metadata, and unresolved-root diagnostics. |
 | Solve delayed hits | Hit records with emitter, receiver, emission point, receiver point, $J_{ij}$, strength, and source branch. |
 | Emit a root ledger | Active roots, inactive gaps, tail or separator rows, transition rows, root labels, root kind, residuals, Jacobian sign strata, and first-failure statuses. |
@@ -158,7 +170,7 @@ The central API should be versioned and handle-based. Small configs, manifests, 
 | Select precision path | Regime classification, selected simulation technique, numeric type, tolerance policy, scale normalization, error budget, and conditioning diagnostics. |
 | Report precision path diagnostics | Orbital speed scale, assembly speed scale, timestep policy, root residuals, accumulated error estimates, fallback reason, and validation status. |
 | Open a path-history stream | Stream id, path id mapping, declared columns, sample stride, precision metadata, and storage policy. |
-| Append path samples | Chunked path data written with bounded memory, backpressure reporting, and spill-to-file status. |
+| Append path samples | Chunked path data written with bounded memory, backpressure reporting, and spill status. |
 | Read path samples | High-speed range scans and random access by path id, time range, frame range, or chunk id. |
 | Read path indices and metadata | Manifest, index tables, byte offsets, time ranges, checksums, units, scale normalization, provenance, and diagnostics. |
 | Configure threading policy | Thread count, scheduling mode, deterministic reduction mode, browser/native support flags, fallback policy, and expected workload class. |
@@ -171,7 +183,7 @@ The central API should be versioned and handle-based. Small configs, manifests, 
 | Run in a browser worker | Request and response messages with typed data where profiling justifies it. |
 | Run offline or in batch | CLI or script entrypoint with reproducible input, output, diagnostics, and benchmark metadata. |
 | Produce validation or handoff artifacts | Provenance records, artifact hashes, convergence summaries, tolerance vectors, failure-code reports, replay status, and migration parity status. |
-| Compare migration targets and reference paths | Parity reports for Photon, Ideal Swarm, and Animator, with optional reference-only notes for `sim2` or legacy families when they clarify behavior. |
+| Compare migration targets and reference paths | Parity reports for Photon, Ideal Swarm, and Animator, with optional notes for `sim2` animation intent or legacy families only when they clarify the solver boundary. |
 
 API contract decisions:
 
@@ -181,6 +193,94 @@ API contract decisions:
 - treat all dense solver outputs as immutable after publication to the app bridge;
 - keep app-facing schema stable even if internal C++ modules are reorganized;
 - require replay metadata for every result that may be used as a benchmark, migration parity case, or exported dataset.
+
+## Simulation Capability Envelope
+
+A requested simulation has a stress profile across many resource and accuracy dimensions. The solver should describe that profile as a simulation envelope before it starts expensive work. A small-looking physical setup can still be impossible to model literally if it implies an enormous architrino count, dense all-to-all interactions, long history depth, strict precision, or high-output replay data. For example, a 1 cm spacetime volume with air and passing nutrients may require reduced modeling unless the run is intentionally scoped to a much smaller active subset or a carefully defined diagnostic slice.
+
+The envelope is not a single limit. It is a vector of pressures on the algorithm and implementation:
+
+| Dimension | Why it stresses the solver | Required envelope record |
+| --- | --- | --- |
+| Architrino count | State size, pair counts, path samples, root candidates, and memory scale with entity count. | Entity count, active subset policy, assembly grouping, and whether the run is literal or reduced. |
+| Assembly count and internal complexity | Assemblies may add internal phase, polarity, branch, and geometry structure beyond raw path count. | Assembly ids, member counts, internal degrees of freedom, and requested assembly diagnostics. |
+| Physical volume and density | Volume changes spatial separation, candidate locality, path length, and index selectivity; density drives interaction pressure. | Spatial bounds, density summary, boundary policy, and spatial-index strategy. |
+| Simulated duration | Longer runs deepen histories, increase storage, and enlarge the possible causal search window. | Time window, cycle count, history depth, active-window policy, and archival policy. |
+| Time resolution and event resolution | Fine steps improve accuracy but increase samples, root brackets, event rows, and stream volume. | Step policy, event-step policy, interpolation policy, and maximum output stride. |
+| Speed regimes | Sub-field-speed, near-field-speed, super-field-speed, and threshold crossings stress root counts and branch transitions. | Speed-regime summary, field-speed crossing rows, precision path, and branch-transition policy. |
+| Interaction graph density | All-to-all, same-source, dense neighbor sets, and long-range scans can dominate runtime. | Pair policy, same-source policy, pruning policy, work-packet partitioning, and broad-phase index plan. |
+| Branch and root density | Multiple roots, folded roots, small $|J_{ij}|$, births, deaths, and unresolved roots can dominate correctness. | Root count estimates, branch complexity flags, Jacobian floors, unresolved-root policy, and first-failure status. |
+| Geometry complexity | Curved paths, shell intersections, swept segments, local frames, and projection geometry increase both CPU and output costs. | Geometry output list, authoritative versus display projection flag, and broad-phase geometry metadata. |
+| Precision and dynamic range | Many-orders-of-magnitude scales, near-collision geometry, and cancellation require stricter methods. | Claim level, error budget, scale normalization, numeric type, and precision-path candidates. |
+| Output detail | Recording every path sample, event, local frame, and diagnostic row can exceed compute or storage budgets. | Requested outputs, sample stride, derived-column inventory, compression/export policy, and replay requirement. |
+| Memory and storage budget | Hot active windows, warm chunks, deep indices, and replay artifacts compete for bounded resources. | Memory budget, storage target, active-window size, age-out policy, and deep-index policy. |
+| Latency target | Interactive preview, app playback, batch export, and validation evidence have different acceptable runtimes. | Claim level, expected latency, execution mode, threading policy, and fallback path. |
+| Parallelism and backend | Work that partitions cleanly can scale; branch-heavy or precision-heavy work may not. | Threading mode, work-packet layout, deterministic reduction mode, and unsupported backend diagnostics. |
+| Simplification policy | Literal simulations may be too large; reduced models need explicit scope and claim limits. | Reduction method, omitted interactions, active subset, claim-level downgrade if requested, and validation obligations. |
+
+Envelope handling rules:
+
+- Admit the run when the requested envelope fits the current solver capability and declared budgets.
+- Simplify only when the caller explicitly requests a reduced model, and record what was reduced or omitted.
+- Batch or stream the run when the algorithm fits but the data volume does not fit interactive memory.
+- Escalate to stricter precision, smaller timesteps, deeper history, or offline execution when correctness requires it.
+- Reject or halt with `simulation_envelope_exceeded` when the run cannot meet the requested claim level inside the supported envelope.
+- Treat envelope expansion as normal solver evolution: add better indices, better partitioning, better precision paths, better storage, or better algorithms over time, then widen the admitted envelope with benchmarks and validation fixtures.
+
+The simulation envelope should be part of the run manifest. It should be visible to apps before a run starts, included in diagnostics during execution, and preserved in exported datasets so later readers know what was simulated, what was reduced, and what the solver did not claim.
+
+## Virtual Observer Path Record
+
+An architrino should not be treated as a human-like observer. At absolute time $t_{\mathrm{now}}$, the dynamics for one architrino are determined by its own state plus the causal-delay interaction data that reaches it from retained source histories. The virtual observer is solver instrumentation: it records enough state to define, replay, and audit the path.
+
+For one architrino at $t_{\mathrm{now}}$ with position $\mathbf{x}_i(t_{\mathrm{now}})$ and velocity $\mathbf{v}_i(t_{\mathrm{now}})$, the local dynamic inputs are:
+
+| Input class | Minimal record | Purpose |
+| --- | --- | --- |
+| Identity and role | `pathId`, architrino type or polarity, assembly id when any, role code, and active status flags. | Ties the path to charge/polarity rules, assembly bookkeeping, and app rendering. |
+| Current kinematic state | Absolute time, position, velocity, coordinate frame, units, scale normalization, and numeric type. | Defines where the architrino is and how its path is moving at the sample. |
+| Assigned assembly state when modeled | Assembly-state reference, phase, cycle index, assembly-local coordinates, and declared internal degrees of freedom for the active assembly model. | Required when the force law depends on phase, assembly structure, or internal resonance. Store compact values or references, not full assembly copies per sample. |
+| Active causal roots | Source id, receiver id, root id, root kind, emission time, hit time, delay, residual, and branch status. | Identifies which past source-history events can affect the architrino now. |
+| Branch geometry | Source point at emission, receiver point at hit, displacement, distance, direction, source velocity when needed, and local frame. | Supplies the geometry used for delayed hits, potential terms, and Jacobian evaluation. |
+| Jacobian and weighting | $J_{ij}$, sign stratum, branch weight such as $1/|J_{ij}|$ where required, floors, and rejection reason when any. | Keeps branch strength and near-singular behavior explicit. |
+| Potential summary | Net potential or force/acceleration contribution required by the current model, plus optional per-source contribution references. | Lets the integrator advance the path and lets diagnostics explain the perceived potential. |
+| Error and validity state | Tolerances, residual error estimate, interpolation error estimate, precision path, and status code. | States whether the sample is authoritative for replay, preview only, or halted. |
+
+The minimum virtual-observer record depends on the requested use:
+
+| Record level | Minimum data | What it can prove |
+| --- | --- | --- |
+| Kinematic path definition | `pathId`, time or time interval, coordinate frame, numeric type, position, velocity or segment coefficients, interpolation law, and error bounds. | Defines the path geometry precisely enough for playback, root searches, and geometry queries over the declared interval. |
+| Dynamic replay | Kinematic path definition plus integration method, timestep policy, tolerance policy, selected precision path, and either force/acceleration segment data or references to the causal-root and delayed-hit records that generated it. | Reproduces how the solver advanced the path under the declared model. |
+| Potential audit | Dynamic replay plus retained causal-root rows, delayed-hit rows, branch geometry, Jacobian rows, per-branch contribution summaries, and rejection or halt reasons. | Explains the perceived potential and lets a validation replay check branch accounting. |
+| Full validation record | Potential audit plus provenance, config hash, stream/index hashes, artifact hashes, thread policy, storage policy, and simulation envelope. | Supports migration parity, exported evidence, and long-term replay. |
+
+For path storage, the strict minimum to define a precise path is the kinematic path definition. Potential values and causal-hit ledgers are not strictly required if the path has already been recorded with a valid interpolation law and error bound. They are required when the solver must replay, audit, validate, or continue the dynamics without trusting the recorded path as an opaque curve.
+
+The preferred path segment representation is therefore segment-based, not just point samples. Each authoritative segment should declare its time bounds, endpoint state or polynomial coefficients, interpolation rule, local coordinate frame, numeric type, and maximum interpolation error. If the solver uses endpoint position and velocity, the manifest must state whether the segment is reconstructed with Hermite interpolation, another declared polynomial, or a stricter model-specific interpolant. If the required precision cannot be met by the stored segment representation, the stream must preserve denser samples, stricter coefficients, or a replay dependency on the original causal-root ledger.
+
+## Temporal Assembly Graph
+
+Assembly data should be normalized rather than copied into every architrino path row. The architrino path record should carry compact keys such as `assemblyId`, `assemblyStateId`, local role, membership interval, and membership version when those are relevant. The larger assembly state should live in an assembly-history stream or table keyed by assembly id and time interval. A path reader can join those records when a run needs assembly context; playback-only reads can skip them.
+
+The solver should emit an `assembly_membership_change` event when an architrino enters an assembly, leaves an assembly, changes assembly id, changes local role, changes binding state, or changes the mapping between architrino-local coordinates and assembly-local coordinates. This is the relational-database analogy applied to path histories: architrinos have histories, assemblies have histories, membership has its own time-indexed history, and indices can be added or optimized later as long as replay and validation fixtures preserve testable fidelity for the declared use case.
+
+The natural database structure is a temporal assembly graph. It should be implemented as solver-owned streams and indices, not as one object tree copied into every sample. An assembly, subassembly, molecule, or larger structure is a time-indexed entity with hierarchy edges and membership intervals. Stable structures can occupy very long intervals; unstable or exchanging structures can produce short membership intervals and change events. The solver should allow this hierarchy to extend only as far as the declared simulation envelope and use case require.
+
+Core temporal assembly graph record families:
+
+| Record family | Minimal keys | Purpose |
+| --- | --- | --- |
+| Architrino path history | `pathId`, time interval, path segment id, optional `assemblyId`, optional local role. | Defines the elementary path geometry and optional current assembly reference. |
+| Assembly state history | `assemblyId`, `assemblyStateId`, time interval, center or frame state, phase/cycle state when modeled, model version, status flags. | Stores assembly-level state once per interval instead of copying it to every member architrino. |
+| Assembly membership history | `pathId`, `assemblyId`, membership interval, local role, binding state, membership version. | Records which architrinos belong to which assembly over which interval. |
+| Assembly hierarchy history | parent `assemblyId`, child `assemblyId`, relation type, time interval, hierarchy version. | Represents assemblies, subassemblies, and larger containing structures without flattening the whole hierarchy into path rows. |
+| Assembly event ledger | event id, event kind, affected ids, time, prior state reference, next state reference, status. | Captures membership changes, binding changes, hierarchy changes, assembly splits/merges, threshold crossings, and instability events. |
+| Threshold and self-action ledger | affected path or assembly id, speed regime, field-speed threshold row, self-action flag, branch-transition reference. | Preserves knife-edge regimes where a small shove can change later evolution through self action or branch structure. |
+
+The graph should not assume that a proton-like or other highly stable assembly is impossible to exchange or rearrange unless the theory and fixture for that regime say so. If a run treats a stable proton-like assembly as long-lived, represent that as a long membership interval with a model version and fidelity claim, not as a hardcoded permanent containment rule. If later simulations or theory require exchange, splits, merges, or nested subassembly changes, the same event and interval model can express them.
+
+This model is intended to support many solver questions over the same data: replay a path, reconstruct an assembly, ask which assembly contained an architrino at a time, find all architrinos inside a hierarchy, trace a membership change, or re-run causal-root queries with stricter precision. It cannot make every future question free, but it keeps the data normalized and indexable so new query plans can be added without corrupting the authoritative path and event records.
 
 ## Precision Path Strategy
 
@@ -303,9 +403,16 @@ export interface SolverRunRequest {
   precisionPath: SolverPrecisionPath;
   configVersion: string;
   configHash?: string;
-  config: unknown;
+  envelope: SolverSimulationEnvelope;
+  config: SolverRunConfig;
   output: SolverOutputRequest;
 }
+
+export type SolverRunConfig =
+  | AnimatorSolverConfig
+  | PhotonSolverConfig
+  | IdealSwarmSolverConfig
+  | ValidationReplayConfig;
 
 export interface SolverRunHandle {
   requestId: string;
@@ -319,7 +426,10 @@ export interface SolverRunHandle {
 export type SolverOutputKind =
   | "summary"
   | "frameBuffer"
+  | "pathSegmentBuffer"
   | "pathStream"
+  | "assemblyMembership"
+  | "assemblyGraph"
   | "rootLedger"
   | "delayedHitEvents"
   | "phaseAtHit"
@@ -333,6 +443,29 @@ export interface SolverOutputRequest {
   memoryBudgetBytes: number;
   sampleStride?: number;
   deterministic: boolean;
+}
+
+export interface SolverSimulationEnvelope {
+  entityCount: number;
+  assemblyCount?: number;
+  spatialBounds?: SolverSpatialBounds;
+  densityEstimate?: number;
+  timeWindow: SolverTimeWindow;
+  timeResolutionHint?: number;
+  interactionPolicy: "sparse" | "neighbor-pruned" | "all-to-all" | "same-source-enabled";
+  expectedBranchComplexity: "low" | "moderate" | "high" | "unknown";
+  outputDetail: "preview" | "playback" | "export" | "validation";
+  memoryBudgetBytes: number;
+  storageBudgetBytes?: number;
+  latencyTarget: "interactive" | "background" | "batch" | "validation";
+  simplificationPolicy: "none" | "explicit-reduced-model";
+}
+
+export interface SolverSpatialBounds {
+  x: SolverRange;
+  y: SolverRange;
+  z: SolverRange;
+  units: string;
 }
 ```
 
@@ -375,6 +508,188 @@ export interface SolverStreamDescriptor {
 }
 ```
 
+Required shared support types:
+
+```ts
+export type SolverBinaryLayoutId =
+  | "frame_buffer.v1"
+  | "path_segment.v1"
+  | "assembly_state.v1"
+  | "assembly_membership.v1"
+  | "assembly_hierarchy.v1"
+  | "assembly_events.v1"
+  | "path_chunk.v1"
+  | "root_ledger.v1"
+  | "delayed_hit_events.v1"
+  | "phase_at_hit.v1"
+  | "geometry_buffer.v1"
+  | "stream_index.v1";
+
+export type SolverNumericType =
+  | "f64"
+  | "scaled_i64"
+  | "interval_f64_pair"
+  | "decimal128"
+  | "mp_limb_block";
+
+export interface SolverInitResponse {
+  apiVersion: string;
+  solverVersion: string;
+  capabilities: SolverCapabilities;
+  status: SolverStatusRecord;
+}
+
+export interface SolverCapabilities {
+  precisionPaths: SolverPrecisionPath[];
+  outputLayouts: SolverBinaryLayoutId[];
+  storage: SolverStorageCapability;
+  threading: SolverThreadingCapability;
+  maxTransferBytes: number;
+}
+
+export interface SolverStoragePolicy {
+  target: "worker-memory" | "opfs" | "native-file" | "caller-buffer";
+  durable: boolean;
+  maxBytes: number;
+}
+
+export interface SolverStorageCapability {
+  supportsOpfs: boolean;
+  supportsNativeFile: boolean;
+  supportsCallerBuffer: boolean;
+  maxRecommendedBytes: number;
+}
+
+export interface SolverThreadingPolicy {
+  mode: "single-thread" | "auto" | "fixed";
+  maxThreads?: number;
+  deterministic: boolean;
+}
+
+export interface SolverThreadingCapability {
+  nativeThreads: boolean;
+  wasmThreads: boolean;
+  browserWorker: boolean;
+  crossOriginIsolationRequired: boolean;
+}
+
+export interface SolverCancelRequest {
+  requestId?: string;
+  runId?: string;
+  reason?: string;
+}
+
+export interface SolverCloseRunRequest {
+  runId: string;
+  releaseStreams: boolean;
+}
+
+export interface SolverOpenStreamRequest {
+  runId: string;
+  datasetId?: string;
+  streamId?: string;
+  purpose: "playback" | "diagnostics" | "export" | "validation";
+}
+
+export interface SolverStreamHandle {
+  streamId: string;
+  manifestVersion: string;
+  readableLayouts: SolverBinaryLayoutId[];
+  availableRanges: SolverStreamRange[];
+}
+
+export interface SolverReadStreamRangeRequest {
+  streamId: string;
+  pathIds?: string[];
+  timeRange?: SolverRange;
+  frameRange?: SolverRange;
+  eventKinds?: string[];
+  maxBytes?: number;
+}
+
+export interface SolverStreamRangeResponse {
+  streamId: string;
+  ranges: SolverStreamRange[];
+  buffers: SolverBufferDescriptor[];
+  diagnostics: SolverDiagnosticRecord[];
+  status: SolverStatusRecord;
+}
+
+export interface SolverRange {
+  start: number;
+  end: number;
+}
+
+export interface SolverStreamRange {
+  timeRange?: SolverRange;
+  frameRange?: SolverRange;
+  byteRange: SolverRange;
+}
+```
+
+Required app config records:
+
+```ts
+export interface SolverTimeWindow {
+  start: number;
+  end: number;
+  stepHint?: number;
+  units: "solver-time" | "seconds" | "cycles";
+}
+
+export interface SolverHistoryRef {
+  pathId: string;
+  role: "source" | "receiver" | "architrino" | "assembly" | "observer";
+  source: "inlineSamples" | "streamRef" | "proceduralOrbit" | "appState";
+  streamId?: string;
+  layout?: SolverBinaryLayoutId;
+  numericType?: SolverNumericType;
+  parameters?: Record<string, number>;
+}
+
+export interface SolverPairSpec {
+  receiverId: string;
+  sourceId: string;
+  includeSameSource: boolean;
+  rootKinds: ("partner" | "same-source" | "tail" | "separator")[];
+}
+
+export interface AnimatorSolverConfig {
+  appId: "animator";
+  timeWindow: SolverTimeWindow;
+  histories: SolverHistoryRef[];
+  pairs: SolverPairSpec[];
+  requestedGeometry: ("fieldShells" | "delayedHitConnectors" | "pathTrails")[];
+}
+
+export interface PhotonSolverConfig {
+  appId: "photon";
+  timeWindow: SolverTimeWindow;
+  photonChannelSpeed: number;
+  branchSignalSpeed: number;
+  sourceHistories: SolverHistoryRef[];
+  receiverHistory: SolverHistoryRef;
+  pairs: SolverPairSpec[];
+  phaseLedger: "disabled" | "source" | "source-and-receiver";
+}
+
+export interface IdealSwarmSolverConfig {
+  appId: "ideal-swarm";
+  timeWindow: SolverTimeWindow;
+  histories: SolverHistoryRef[];
+  pairs: SolverPairSpec[];
+  requestedGeometry: ("flightTime" | "delayedPotential" | "circularSelfHitSpan")[];
+}
+
+export interface ValidationReplayConfig {
+  appId: SolverAppId;
+  baselineRunId?: string;
+  baselineArtifactHash?: string;
+  replayPrecisionPath: Exclude<SolverPrecisionPath, "auto">;
+  compareLayouts: SolverBinaryLayoutId[];
+}
+```
+
 ### Per-App Adapter Contracts
 
 | App adapter | Request mapping | Required solver outputs | Migration acceptance |
@@ -397,6 +712,7 @@ export type SolverStatusCode =
   | "cancelled"
   | "precision_escalated"
   | "precision_failed"
+  | "simulation_envelope_exceeded"
   | "insufficient_history_depth"
   | "insufficient_scale_resolution"
   | "time_resolution_insufficient"
@@ -430,6 +746,7 @@ Status rules:
 
 - `precision_escalated` is informational only when the solver moves to a stricter path and still satisfies the requested claim level.
 - `precision_failed` is a halt when no available stricter path can satisfy the declared error budget.
+- `simulation_envelope_exceeded` is a halt when the requested entity count, duration, interaction density, precision claim, output detail, memory budget, storage budget, or latency target cannot be satisfied by the current solver capability.
 - `ledger_rerun_required` is a halt for proof or validation consumers and a warning for interactive previews only when the manifest marks the result as preview-grade.
 - `unsupported_browser_storage` and `unsupported_wasm_threads` must not be hidden; the app bridge reports the missing capability and selects a declared fallback or halts.
 - `internal_solver_error` is reserved for invariant failures. Root failures, precision failures, and IO failures must use their specific status codes.
@@ -441,6 +758,11 @@ All dense app-facing buffers should use versioned, little-endian, structure-of-a
 | Layout id | Rows | Required columns | Primary consumers |
 | --- | --- | --- | --- |
 | `frame_buffer.v1` | One row per frame/path sample. | `frameIndex`, `time`, `pathId`, `x`, `y`, `z`, `vx`, `vy`, `vz`, `phase`, `roleCode`, `statusFlags`. | Animator playback, app previews, export. |
+| `path_segment.v1` | One row per authoritative interpolation segment. | `segmentId`, `pathId`, time bounds, endpoint position, endpoint velocity or coefficient offset, interpolation law, numeric type, local frame id, error bound, status flags. | Precise path definition, causal-root search, geometry queries, validation replay. |
+| `assembly_state.v1` | One row per assembly-state interval. | `assemblyId`, `assemblyStateId`, time bounds, model version, center or frame state, phase/cycle fields when modeled, stability/fidelity flags. | Assembly-aware replay, long-lived assemblies, subassembly joins, model-version audits. |
+| `assembly_membership.v1` | One row per membership interval or membership-change event. | `pathId`, `assemblyId`, `assemblyStateId`, local role, time bounds, membership version, binding state, transform reference, event kind, status flags. | Assembly-aware replay, joins from architrino histories to assembly histories, membership-change diagnostics. |
+| `assembly_hierarchy.v1` | One row per parent-child assembly interval. | Parent assembly id, child assembly id, relation type, time bounds, hierarchy version, status flags. | Nested assemblies, subassemblies, molecular or larger hierarchy queries. |
+| `assembly_events.v1` | One row per assembly, hierarchy, threshold, or self-action event. | `eventId`, event kind, affected ids, event time, prior state reference, next state reference, speed regime, branch-transition reference, status flags. | Assembly splits/merges, containment changes, field-speed threshold rows, self-action diagnostics. |
 | `path_chunk.v1` | One chunk per time window and bounded path bundle. | Chunk header, time bounds, frame bounds, path id range, declared sample columns, checksum trailer. | Path-history streams, indexed readback, scrubbing. |
 | `root_ledger.v1` | One row per retained, inactive, separator, or transition root row. | `receiverId`, `sourceId`, `rootId`, `rootKind`, `hitTime`, `emissionTime`, `delay`, `distance`, `residual`, `jacobian`, `jacobianSign`, `statusCode`, `firstFailureCode`. | Photon diagnostics, validation replay, proof handoff, delayed-hit reconstruction. |
 | `delayed_hit_events.v1` | One row per delayed-hit event. | `eventId`, `rootId`, `emitterId`, `receiverId`, emission point, receiver point, unit direction, `jacobian`, `strength`, `statusCode`. | Animator delayed-hit rendering, Photon hit sums, Ideal Swarm potential views. |
@@ -457,6 +779,7 @@ Decision: use multithreading as an execution policy, not as a semantic dependenc
 | Workload | Threading decision |
 | --- | --- |
 | Source-receiver causal-root batches | Parallelize across independent source-receiver pairs and time windows. |
+| All-to-all and same-source candidate scans | Parallelize across receiver blocks, source blocks, time slabs, spatial blocks, and emitted-shell batches; merge candidates deterministically before narrow root solving. |
 | Delayed-hit event extraction | Parallelize candidate event scans, then merge events in deterministic order. |
 | Path chunk write, checksum, and index preparation | Parallelize chunk preparation and checksums; serialize final manifest and index commits. |
 | Batch parameter sweeps | Parallelize independent runs through the native CLI and batch runner. |
@@ -467,21 +790,65 @@ Native execution should use a bounded C++ task pool with explicit thread-count c
 
 Deterministic mode is required for parity tests, validation replay, exported datasets, and any result used as evidence. Deterministic mode should use stable merge order, deterministic reductions, fixed chunk commit order, and explicit random seeds if randomized sampling is ever introduced. Interactive preview mode may relax deterministic scheduling only when the manifest states that the result is preview-grade.
 
+Parallel query execution must preserve correctness under branch complexity. Candidate broad-phase tasks can run independently, but final root ledgers, delayed-hit events, branch-transition rows, and rejection reasons must be merged in a stable order. The thread scheduler must not make all-to-all, same-source, field-speed-threshold, or branch-birth/death cases disappear because a work partition used an overly local assumption.
+
 ## GPU Acceleration Deferral
 
 Decision: defer GPU acceleration. macOS Metal, browser WebGPU, and any other GPU compute path should stay out of the first central solver core, first app migration, and initial validation gates.
+
+Deferral does not mean ignoring GPU data and work layout. The first solver should be GPU-ready in the parts where that is natural: structure-of-arrays buffers, chunked path streams, independent source-receiver batches, time-slab batches, spatial-block batches, emission-shell batches, explicit work ids, stable merge order, and deterministic reduction options. Those choices help CPU SIMD and multithreading immediately, and they also make later GPU kernels more practical on standard laptop, desktop, and service hardware.
+
+The same design should also be network-service-ready. Work should be divisible into transport packets with explicit input ranges, source and receiver blocks, time slabs, spatial blocks, precision path, buffer offsets, expected output layouts, checksum, and merge key. A packet should be usable inside one browser worker, one native task pool, one service process, or a future distributed/GPU backend. Candidate future transport families to keep in mind include MPI all-to-all collectives, InfiniBand, RDMA/RoCE, high-throughput Ethernet, NCCL-style GPU collectives, NVLink/NVSwitch-style local GPU fabrics, Metal command buffers, and WebGPU command queues. None of these are first-core dependencies; they are reference constraints for not painting the data model into a single-machine corner.
 
 The first performance focus is CPU-side: C++ data layout, cache locality, SIMD-friendly kernels, bounded multithreading, path-history streaming, indexed readback, and precision-path selection. GPU work should be reconsidered only after the CPU solver contract is stable and benchmark profiles show a regular, massively parallel hotspot that is worth isolating.
 
 Potential future GPU candidates include bulk field/grid sampling, display-oriented geometry projection, path downsampling, broad residual scans, and regular first-pass causal-root bracketing. GPU acceleration is not currently assigned to high-precision paths, arbitrary precision or interval-backed kernels, branch-heavy root isolation, deterministic validation replay, stream/index IO, or small $|J_{ij}|$ edge-case handling.
 
-If GPU acceleration is reopened later, it should enter as an optional acceleration tier behind the same solver API, with CPU parity tests, explicit precision limits, deterministic fallback, and stage-level benchmarks. The native macOS path would be Metal compute; the browser path would be WebGPU only after app deployment constraints and precision behavior are validated.
+If GPU acceleration is reopened later, it should enter as an optional acceleration tier behind the same solver API, with CPU parity tests, explicit precision limits, deterministic fallback, and stage-level benchmarks. The native macOS path would be Metal compute; the browser path would be WebGPU only after app deployment constraints and precision behavior are validated. A service-side backend may be selected later only behind the same API and parity rules, so the app contract does not depend on one vendor GPU stack.
 
 ## Path-History Streaming And Storage
 
-Long solver runs should not accumulate every path sample in application memory. The storage model should use path-history streams: append-only per-path or per-run streams that keep a short active window in memory while older samples spill to a file-backed store.
+Long solver runs should not accumulate every path sample in application memory. The storage model should use path-history streams: append-only per-path or per-run streams that keep a short active window in memory while older samples spill to non-volatile storage such as OPFS in the browser or native files in batch runs.
 
 The dense path data should use a high-throughput binary layout rather than dense JSON. JSON remains appropriate for manifests, summaries, and small diagnostic records. The binary stream should be chunked so writers can append quickly, readers can seek directly to a time or frame window, and corrupted or incomplete chunks can be detected.
+
+The storage contract should prefer compact canonical data structures over ad hoc app-specific records. A canonical encoding means one stable representation for each repeated concept: path ids, source and receiver ids, root kinds, role codes, charge signs, status flags, time samples, frame samples, local frames, bounding boxes, shell events, and branch-transition markers. Canonical encodings make hot-path C++ code simpler, make JavaScript typed-buffer reads predictable, and make later compression or export safer because repeated patterns are already normalized.
+
+Compression policy: write the hot stream in an efficient canonical chunk layout first. Do not put heavyweight compression into the solver loop unless benchmarks show that IO savings beat CPU cost and do not damage deterministic replay. After a run is finalized, chunks may be compressed, archived, exported, or re-packed into a smaller sharing format while preserving the original manifest, checksums, schema version, and replay metadata.
+
+Indexing policy: not every useful index has to exist in the hot solver loop. The solver should separate active-window indexing from finalized-history indexing. The active window needs just enough indexing to continue precise action, causal-root, delayed-hit, and geometry modeling over the next simulation window. Once a chunk is no longer needed for active dynamics, it can age out to non-volatile storage. At that point, the system may build deeper offline indices for long-term studies, very large simulations, high-accuracy replay, visualization mining, or research sweeps.
+
+Age-out must be conservative. A history chunk may leave the active window only when the solver can show that active consumers no longer need it for the next window's action, root, delayed-hit, branch-transition, or validation work. The age-out decision should consider declared memory depth, possible causal reach, unresolved roots, tail interfaces, same-source policy, speed-regime transitions, small-Jacobian neighborhoods, app playback requirements, and validation replay requirements. If the solver cannot decide safely, it should keep the chunk active, lower output stride if configured, spill a copy while retaining the needed active summary, or halt with a memory-pressure or unresolved-history diagnostic.
+
+Index tiers:
+
+| Tier | Storage state | Required index depth | Purpose |
+| --- | --- | --- | --- |
+| Hot active window | In memory plus current spill buffer. | Minimal precise indices for next-window action, root, delayed-hit, branch-transition, and geometry evaluation. | Keep simulation correct and fast while avoiding unnecessary hot-path indexing. |
+| Warm finalized chunks | Recently spilled to non-volatile storage and still likely to be read for playback, scrubbing, or near-term diagnostics. | Chunk, time, frame, path id, event, provenance, and selected broad-phase summaries. | Support app readback and near-term analysis without rebuilding every deep index. |
+| Cold archival history | Non-volatile storage for long runs, validation, export, or later research. | Optional deep indices built asynchronously or after finalization. | Enable large accurate studies, offline search, compression, replay, and new spatial/causal query experiments. |
+
+Candidate compact encodings to evaluate:
+
+| Encoding | Use when | Notes |
+| --- | --- | --- |
+| Integer dictionaries | Repeated ids, role names, root kinds, status codes, units, and app/source labels. | Keeps dense rows small and avoids repeated strings in chunk data. |
+| Structure-of-arrays columns | Hot path samples, roots, hits, phases, and geometry rows. | Supports SIMD, typed-buffer reads, GPU-ready buffers, and fast column projection. |
+| Chunk-local origin plus deltas | Time, frame, path-local coordinates, shell radii, and monotonically increasing indices. | Stores repeated local offsets cheaply while retaining absolute reconstruction through metadata. |
+| Bitsets and flag masks | Root status, candidate class, speed regime, event kind, and diagnostic thresholds. | Compact and fast when flags are stable and documented. |
+| Run-length or span rows | Long regions with unchanged status, speed regime, source-receiver admissibility, or inactive gaps. | Better as a finalized chunk or index representation unless hot-path updates are cheap. |
+| Broad-phase quantized bounds | Approximate spatial blocks, time slabs, bounding spheres, and emission-shell candidate bins. | Mark as broad-phase-only; never replace authoritative root or geometry values. |
+| Post-run compression | Archived chunks, exported datasets, or large validation artifacts. | Apply after finalization unless a benchmark proves hot compression is beneficial. |
+
+The reason to collect rich path-history data is not only replay. It is also future acceleration. If the solver already records low-cost positions, velocities, local frames, bounding ranges, emission-shell events, time ranges, and branch-local geometry, later kernels can ask much faster questions: whether one architrino's location or swept path segment can intersect the spherical emission shell from another architrino, which source-receiver pairs can possibly produce a causal root inside a time slab, or which path chunks can be skipped before expensive root isolation begins. The capture rule is therefore: gather inexpensive derived data while the solver is already touching the state, but do not add expensive diagnostic columns unless a current consumer or benchmark justifies them.
+
+This belongs to the family of computational geometry, spatiotemporal indexing, event detection, and broad-phase / narrow-phase query algorithms. Candidate techniques to investigate include bounding-volume hierarchies, space-time slabs, interval trees, spatial hashing, k-d trees, R-trees, sweep-and-prune, time-windowed nearest-neighbor search, and special-purpose light-shell or emission-shell intersection indices.
+
+The index design should not assume that either time or space alone is the right primary key. The solver should support spatial blocks, time blocks, and combined spacetime blocks, then benchmark which layout best rejects impossible candidates before narrow root solving. For example, a time-slab-first index may be best when histories are long and dense, while a spatial-block-first or bounding-volume index may be best when the local geometry is sparse. A combined spacetime-cell index may be best for emission-shell queries where both source emission time and receiver location bounds matter.
+
+The query design must also respect the many-to-many structure of the physics. Each architrino may need candidate checks against every other architrino, and same-source roots may be enabled for some runs. The number of possible source-receiver links grows quickly, so index construction and candidate filtering should be highly parallelizable across source ids, receiver ids, time slabs, spatial blocks, and emitted-shell batches. Parallel broad-phase work may over-generate candidates, but it must not lose true candidates before the narrow-phase root solver has a chance to classify them.
+
+The broad-phase layer must not assume away difficult regimes before they are mathematically excluded. Source histories may cross above or below the field-speed threshold, cross back again, produce temporary self-hit candidates, change root count, enter small-Jacobian regions, or create branch births/deaths. Until a proof, validation fixture, or declared admissibility policy excludes one of those cases, the index should preserve enough metadata to route it to a stricter root, precision, or branch-transition path rather than silently dropping it.
 
 ### Chosen Path-History Stream Contract
 
@@ -490,15 +857,21 @@ Decision: expose logical per-path streams, but store them in a run-level chunked
 | Artifact | Format | Purpose |
 | --- | --- | --- |
 | Manifest | JSON | Human-readable run contract: schema version, solver version, app source, precision path, scale normalization, units, stream layout, and compatibility notes. |
-| Path chunk store | Binary, little-endian, structure-of-arrays chunks | Dense path samples for positions, velocities, phases, branch-local values, and declared optional columns. |
+| Path chunk store | Binary, little-endian, structure-of-arrays chunks | Dense path samples, authoritative path segments, positions, velocities, phases, branch-local values, and declared optional columns. |
+| Assembly graph store | Binary state, membership, hierarchy, and event chunks | Assembly states, membership intervals, parent-child intervals, threshold events, and self-action events keyed by ids and time intervals. |
 | Event chunk store | Binary or compact JSON by event volume | Causal roots, delayed hits, halt records, precision escalations, and diagnostic threshold crossings. |
-| Index sidecar | Binary index plus manifest summary | Path id, frame, time, chunk, event, and provenance lookup tables for high-speed seeking. |
+| Encoding dictionary | JSON manifest section plus optional binary table | Canonical ids, enum codes, role maps, root-kind maps, status-code maps, unit codes, and schema constants shared by chunks. |
+| Work packet | Small JSON-compatible header plus typed binary payload references | Transport unit for source blocks, receiver blocks, time slabs, spatial blocks, precision path, input buffers, expected output layouts, checksums, and deterministic merge keys. |
+| Index sidecar | Binary index plus manifest summary | Path id, frame, time, chunk, event, spatial, emission-shell, and provenance lookup tables for high-speed seeking. |
+| Deep index store | Binary index family plus manifest rows | Optional offline indices for cold history, large studies, archived runs, replay, and research queries. |
 | Summary | JSON | Small app-readable run summary, aggregate diagnostics, min/max ranges, stream sizes, and validation replay status. |
 
 Chunk layout decision:
 
 - use time-window chunks that may contain one path or a bounded path bundle;
 - store columns in structure-of-arrays form inside each chunk for fast projection, range reads, and SIMD-friendly native scans;
+- use canonical dictionaries and compact enum codes for repeated ids, roles, root kinds, status flags, units, and event kinds;
+- define packet headers so chunks can be assigned to threads, workers, service processes, or future GPU command queues without changing the app-facing schema;
 - include chunk headers and trailers with schema id, row count, time bounds, frame bounds, byte length, and fast checksums;
 - keep hot-path chunks uncompressed by default, with optional offline compression or export after the run;
 - checkpoint indices during long runs and finalize them at completion so interrupted runs can recover committed chunks.
@@ -510,11 +883,14 @@ Precision-storage decision: stream column metadata must declare the stored numer
 Each path-history stream should support:
 
 - append-only writes from the solver loop;
-- bounded in-memory buffers with explicit backpressure when file writes fall behind;
-- fast spill-to-file during batch and long interactive runs;
+- bounded in-memory buffers with explicit backpressure when storage writes fall behind;
+- fast spill to non-volatile storage during batch and long interactive runs;
 - fast readback for app playback, scrubbing, comparison, export, and diagnostics;
 - contiguous range scans by path id and time;
 - random access by path id, frame index, time range, or chunk id;
+- broad-phase query support for path-vs-emission-shell, path-vs-path, path-vs-time-slab, and candidate causal-root searches;
+- active-window age-out decisions with conservative diagnostics when a chunk cannot safely leave hot memory;
+- optional offline deep-index construction after chunks reach non-volatile storage;
 - optional event streams for causal roots, delayed hits, halts, and diagnostic threshold crossings;
 - clear separation between dense sample data and metadata manifests.
 
@@ -523,10 +899,17 @@ Required indices:
 | Index | Purpose |
 | --- | --- |
 | Path id index | Maps architrino, receiver, source, assembly, or app path ids to stream chunks. |
+| Assembly membership index | Maps architrino path ids, assembly ids, membership intervals, assembly-state ids, and membership-change events. |
+| Assembly hierarchy index | Maps parent assembly ids, child assembly ids, hierarchy intervals, relation types, hierarchy versions, and split/merge events. |
 | Time index | Maps time ranges to chunk offsets for range reads and scrubbing. |
 | Frame index | Maps solver frame or sample numbers to chunk offsets. |
 | Chunk index | Records byte offsets, row counts, time bounds, checksums, and column layout per chunk. |
 | Event index | Locates delayed hits, causal roots, halt events, and diagnostic threshold crossings. |
+| Spatiotemporal index | Locates path chunks by time slab, spatial block, combined spacetime cell, bounding box, bounding sphere, swept segment bounds, or local-frame bounds for fast broad-phase geometry queries. |
+| Emission-shell index | Locates spherical emission-shell events by emitter id, emission time, shell radius or radius range, time slab, and candidate receiver/path bounds. |
+| Speed-regime index | Locates path segments by sub-field-speed, near-field-speed, super-field-speed, and threshold-crossing regions when a run requests those diagnostics. |
+| Active-window index | Locates only the history needed for the next action, root, delayed-hit, branch-transition, and geometry window. |
+| Deep archival index | Optional cold-history index for large simulations, long-term studies, replay, export, spatial mining, and later algorithm experiments. |
 | Provenance index | Connects chunks to solver config, precision path, scale normalization, and app adapter. |
 
 Required metadata:
@@ -535,9 +918,15 @@ Required metadata:
 - solver engine id, engine version, and API version;
 - source app or script, run id, and input config hash;
 - path id map and path role map;
+- assembly id map, assembly-state id map, assembly-membership schema version, assembly-hierarchy schema version, relation type dictionary, hierarchy-depth policy, and membership-change event policy;
 - units, coordinate convention, time convention, and scale normalization;
+- simulation envelope: entity count, assembly complexity, volume, density, duration, time resolution, interaction policy, output detail, resource budgets, latency target, simplification policy, and admission status;
 - selected precision path, stored numeric type, tolerance policy, and residual error budget;
 - chunk duration, sample stride, column layout, byte order, compression choice if any, and checksum method;
+- path-segment interpolation law, coefficient layout when any, endpoint-state convention, local frame convention, and maximum interpolation error;
+- history tier, age-out policy, active-window memory depth, archival storage target, and deep-index build status;
+- derived-column inventory, query-index version, and whether each derived column is authoritative, approximate, or broad-phase-only;
+- speed-regime summaries, field-speed threshold crossings, self-hit candidate flags, and branch-transition candidate flags when cheap to gather;
 - global and per-path time bounds, frame bounds, sample counts, and min/max ranges;
 - root, delayed-hit, halt, and diagnostic aggregate summaries;
 - compatibility notes for app playback and migration.
@@ -552,7 +941,7 @@ The selected production-core language is C++ with Clang/LLVM because the solver'
 | --- | ---: | --- |
 | Speed and throughput | 20 | Causal roots, delayed hits, geometry, and stream writes must run fast enough for interactive and batch workloads. |
 | Precision and dynamic range | 16 | The solver must stay accurate when orbital speed, assembly speed, geometry, delay, and residual scales span many orders of magnitude. |
-| Memory and streaming control | 14 | Long path histories need bounded memory, file-backed streaming, and predictable buffer ownership. |
+| Memory and streaming control | 14 | Long path histories need bounded memory, non-volatile streaming, and predictable buffer ownership. |
 | Cody implementation quality leverage | 12 | The chosen language should let Cody produce extremely high quality, reviewable, testable, maintainable solver code. |
 | Browser/WASM plus native CLI portability | 10 | The same core should support app workers and offline/batch runs. |
 | Open-source compiler/toolchain | 8 | The solver should not depend on a proprietary compiler lock-in. |
@@ -629,6 +1018,35 @@ Initial local toolchain check on 2026-06-15:
 
 Conclusion: the language choice still stands, but the first implementation pass needs a toolchain setup item before a real C++/Clang/WASM build can be considered proven. The native path can begin with Apple Clang. The canonical build path still needs CMake and Ninja. The browser path needs Emscripten or another explicit open-source LLVM WASM toolchain installed and pinned.
 
+### Toolchain Setup Decision
+
+Decision: keep the first solver implementation on the C++20, Clang/LLVM, CMake, Ninja, and WebAssembly-worker path. The setup issue is missing local tooling, not a language-decision reopening.
+
+Required setup outcomes:
+
+| Setup outcome | Requirement |
+| --- | --- |
+| Tool discovery | A build script or documented command must find `clang++`, `cmake`, `ninja`, and the selected WebAssembly compiler path before building. |
+| Version recording | Native and browser builds must record compiler, CMake, Ninja, WebAssembly toolchain, solver git revision, and build flags in the run manifest. |
+| Pinned browser toolchain | The browser build should use Emscripten or another explicit open-source LLVM WebAssembly toolchain, with the selected version recorded. |
+| No hidden fallback | If the WebAssembly toolchain is missing, the browser build fails with a clear setup error rather than silently producing a native-only result. |
+| Native-first smoke | The first implementation spike may start with native Apple Clang while the browser toolchain is installed, but the solver contract is not complete until the WebAssembly worker smoke passes. |
+
+### Packaging And Build Artifact Policy
+
+Compiled object files are intermediate build artifacts. They should not be packaged for apps or checked into source control.
+
+| Artifact class | Package decision |
+| --- | --- |
+| Browser app runtime | Package `solver.wasm`, `solver-worker.js`, shared JavaScript adapter, TypeScript declarations, schema files, and an artifact manifest. |
+| Native batch runtime | Package the final native CLI binary, schema files, benchmark fixtures needed for smoke tests, and an artifact manifest. |
+| Debug artifacts | Keep source maps, debug symbols, traces, and benchmark profiles separate from the app runtime package unless a debug package is explicitly requested. |
+| Intermediate build files | Do not package `.o`, `.obj`, `.bc`, temporary `.wasm.o`, CMake scratch files, Ninja scratch files, or linker temporary files. |
+| Developer SDK | Package headers and a static or shared library only if a future native developer SDK is explicitly created. Do not package loose `.o` files. |
+| Stream/runtime data | Package no generated path-history chunks by default. Test fixtures may include small checked fixture files only when they are intentionally part of validation. |
+
+Every packaged solver build should include a small manifest with solver version, API version, binary schema version, build target, compiler/toolchain versions, enabled precision paths, threading support, storage support, and checksums for packaged artifacts.
+
 ## Geometry Centralization Target
 
 The central solver is the preferred home for geometry calculations that are currently duplicated or implied in app-local code. The target is not a generic geometry library. The target is solver-owned geometry for architrino motion and causal interaction:
@@ -661,6 +1079,9 @@ Acceptance gates:
 | Gate | Required evidence |
 | --- | --- |
 | Schema contract | Versioned configs, responses, stream manifests, binary chunks, indices, diagnostics, and error records. |
+| Simulation envelope contract | Admission tests for entity count, volume, duration, time resolution, interaction density, branch complexity, output detail, memory budget, storage budget, latency target, simplification policy, and `simulation_envelope_exceeded` halts. |
+| Virtual-observer path record contract | Segment-level tests proving that the minimal kinematic record reconstructs path geometry within its error bound, while dynamic replay and potential audit data remain separate optional layers. |
+| Temporal assembly graph contract | Assembly-state, membership, hierarchy, event, threshold, and self-action records can reconstruct declared nested assemblies at selected times without duplicating assembly state into every path row. |
 | Precision contract | Scale sweeps over orbital speed, assembly speed, geometry scale, residual scale, and small $|J_{ij}|$ cases. |
 | Stream contract | Round-trip write/read tests, bounded-memory tests, interrupted-run recovery, index seek tests, and checksum failure tests. |
 | Ledger and provenance contract | Root-ledger completeness tests, phase-at-hit metadata tests, failure-code coverage, artifact hash checks, and validation replay provenance. |
@@ -681,48 +1102,105 @@ Before app migration, build these focused fixtures and keep each one small enoug
 | `ideal_swarm_flight_time` | Ideal Swarm `solveFlightTime` case. | Root list, delay values, residuals, and status records. | Flight times and root residuals match the app-local baseline, including failure behavior for no-root cases. |
 | `ideal_swarm_circular_self_hit_span` | Ideal Swarm `solveCircularSelfHitSpan` case. | Self-hit span geometry and root diagnostics. | Span endpoints, delay windows, and root status match the app-local baseline within declared geometry tolerance. |
 | `path_stream_round_trip` | Synthetic multi-path run with deterministic samples. | `path_chunk.v1`, `stream_index.v1`, manifest, checksums. | Write/read round trip is byte-stable where expected, index seeks return the requested time/frame ranges, and checksum faults are detected. |
+| `virtual_observer_minimal_path_record` | Synthetic path segments with known interpolation and error bounds. | `path_segment.v1`, manifest metadata, optional dynamic replay references, and optional potential audit references. | The kinematic record reconstructs the path within declared error, dynamic replay can be attached without changing the path definition, and potential audit rows can be omitted from playback-only datasets. |
+| `assembly_membership_change_trigger` | Synthetic architrino paths that enter, leave, and change roles inside declared assemblies. | `assembly_membership.v1`, path segments, assembly-state references, membership indices, and manifest metadata. | Membership changes emit deterministic events, path rows keep compact references rather than duplicated assembly state, and assembly-aware replay joins records without changing kinematic path fidelity. |
+| `temporal_assembly_hierarchy_replay` | Synthetic nested assemblies with stable intervals, subassembly changes, split/merge events, and field-speed threshold events. | `assembly_state.v1`, `assembly_membership.v1`, `assembly_hierarchy.v1`, `assembly_events.v1`, hierarchy indices, and path joins. | Queries reconstruct assembly membership and hierarchy at selected times, stable intervals remain compact, changes produce deterministic events, and replay fidelity is unchanged by adding hierarchy indices. |
+| `history_age_out_and_deep_index` | Synthetic run with chunks that become safe, unsafe, and conditionally safe to age out. | Active-window index, age-out decisions, warm/cold storage metadata, deep-index status, and diagnostics. | Safe chunks age out to non-volatile storage, unsafe chunks remain active or halt with diagnostics, and cold chunks can build optional deep indices without changing authoritative replay. |
+| `work_packet_round_trip` | Synthetic all-to-all work split into source blocks, receiver blocks, time slabs, and spatial blocks. | Work packet headers, binary payload references, checksums, output layout declarations, and merge keys. | Packets serialize, deserialize, dispatch, and merge deterministically across single-thread, multithread, worker, and service-simulated execution modes. |
+| `emission_shell_broad_phase_query` | Synthetic emitter/receiver paths with known shell intersection and non-intersection cases. | Spatiotemporal index rows, emission-shell index rows, candidate pair lists, and final narrow-phase roots. | Broad-phase query finds every true path-vs-emission-shell candidate, rejects cheap non-candidates, and records false-positive rate for benchmark comparison. |
+| `all_pairs_speed_regime_transition_query` | Synthetic all-to-all and same-source paths that cross below, near, and above field speed. | Spatiotemporal index rows, speed-regime summaries, candidate pair lists, branch-transition flags, and final root ledger. | Parallel broad-phase work preserves every true candidate through speed-regime transitions and produces deterministic merged ledgers. |
 | `precision_scale_sweep` | Synthetic source/receiver histories spanning ordinary and many-orders-of-magnitude speed/geometry scales. | Precision-path selection, root residuals, escalation records, halt records. | `auto` selects the expected path, escalates only toward stricter paths, and halts rather than silently weakening claim level. |
+| `simulation_envelope_admission` | Synthetic runs that vary entity count, spatial volume, density, duration, time resolution, interaction policy, output detail, and budgets. | Envelope classification, resource-pressure estimates, simplification options, accepted execution mode, and halt records. | Runs inside the supported envelope are admitted, reducible runs require explicit simplification, and unsupported runs halt with `simulation_envelope_exceeded`. |
 | `threading_determinism` | Independent root batches with stable input ordering. | Single-thread and multithread root ledgers. | Deterministic mode produces identical ordered ledgers and reductions; preview mode records any relaxed scheduling. |
 | `app_bridge_worker_smoke` | Minimal shared-worker request from a browser app harness. | `init`, `capabilities`, `runSimulation`, `cancelRun`, `openStream`, `readStreamRange`, `dispose`. | The app uses only the shared adapter, receives normalized status records, and transfers dense buffers without app-specific WebAssembly handling. |
 
+## Review-Ready Boundary
+
+The solver note is ready for review as a design contract, not as an implementation claim. These decisions are now settled in the document unless review changes them:
+
+| Area | Settled decision |
+| --- | --- |
+| Scope | Central solver focuses on architrino motion, causal roots, delayed hits, path histories, and solver-owned geometry. General solver-like helpers stay out of scope. |
+| Migration targets | Photon, Ideal Swarm, and Animator are migration targets. `sim2` is animation-intent archive only; legacy solver families are reference, archive, validation, or separate-maintenance surfaces. |
+| Language | C++20 with Clang/LLVM is the production-core path. Rust is comparison-only, not a fallback. |
+| Simulation envelope | Every run declares the dimensions that stress the solver. The solver must admit, simplify, batch, escalate, or reject based on the declared envelope and must preserve the envelope in the manifest. |
+| Virtual observer | The virtual observer is solver instrumentation. Its minimal path record is segment-level kinematic data with interpolation and error bounds; dynamic replay and potential audit data are normalized extra layers. |
+| Temporal assembly graph | Assembly state, membership, hierarchy, threshold events, and self-action events live in normalized graph streams keyed by ids and time intervals, not as copied fields in every path sample. |
+| App communication | Apps call one shared JavaScript or TypeScript adapter backed by a WebAssembly worker. Apps do not handle C++ or WebAssembly directly. |
+| Data movement | Metadata uses structured records; dense path, frame, root, hit, phase, geometry, and index outputs use typed buffers or stream handles. Inexpensive derived geometry should be captured when it can feed future fast queries. |
+| Work packets | Solver work should be divisible into transport-ready packets with explicit ranges, buffer references, checksums, expected outputs, and deterministic merge keys. The same packet layout should serve workers, threads, services, and future GPU backends. |
+| Canonical encodings | Hot-path data structures use compact canonical encodings, dictionaries, structure-of-arrays columns, flags, span rows, and chunk-local deltas where they simplify implementation and reduce storage. Heavy compression is post-run/export by default. |
+| Storage | Logical per-path streams are backed by a run-level chunked binary store, manifest, event store, encoding dictionary, binary index sidecar, deep-index store, and summary record. |
+| History tiers | Hot active history keeps just enough indices for the next precise action/root window. Warm and cold history can live on non-volatile storage and receive deeper offline indices later. |
+| Query acceleration | Path-history design should support future computational-geometry and spatiotemporal-index algorithms for space blocks, time blocks, combined spacetime blocks, path-vs-emission-shell, path-vs-path, speed-regime transition, same-source, all-to-all, and candidate causal-root searches. |
+| Precision | The default is `auto` with strict upward-only escalation, explicit precision paths, visible error budgets, and no silent claim-level downgrade. |
+| Parallelism | Multithreading is an optimization policy with deterministic mode, single-thread fallback, explicit diagnostics, and browser capability gating. Work units and data layouts should be GPU-ready where practical. |
+| GPU | GPU execution is deferred and is not part of the first central solver core or first app migration, but the design should preserve a future optional path to standard laptop, desktop, browser, and service GPU hardware behind the same solver API. |
+| Packaging | Apps package final runtime artifacts such as `solver.wasm`, worker, adapter, declarations, schemas, and manifests; `.o` and other intermediate build files are not packaged. |
+
+Remaining implementation work after review:
+
+1. Install or pin the missing CMake, Ninja, and WebAssembly toolchain path.
+2. Create the initial C++ package structure, CMake presets, native CLI target, and browser worker target.
+3. Convert the TypeScript contract draft into checked `.d.ts` or `.ts` source.
+4. Define the simulation envelope contract and admission fixture.
+5. Define the virtual-observer minimal path record contract and fixture.
+6. Define the temporal assembly graph contract and hierarchy replay fixture.
+7. Implement schema validation for requests, responses, manifests, binary layouts, statuses, and stream indices.
+8. Define the active-window age-out and deep-index policy.
+9. Define the work-packet transport contract and round-trip fixture.
+10. Prototype and benchmark spatiotemporal query algorithms against the emission-shell broad-phase fixture.
+11. Build the small validation fixtures listed above.
+12. Implement the minimal causal-root and delayed-hit core behind the shared app bridge.
+13. Run migration parity in order: Animator, Photon, then Ideal Swarm.
+
 ## Migration Plan Needed
 
-After the first solver design lands, create a migration plan for Photon, Ideal Swarm, and Animator with these steps. `sim2` and legacy solver families are excluded from migration; they may be compared, archived, or documented only where that clarifies the new solver boundary.
+After the first solver design lands, create a migration plan for Photon, Ideal Swarm, and Animator with these steps. `sim2` and legacy solver families are excluded from migration. `sim2` may be archived or mined for animation intent only; legacy families may be documented only where that clarifies the new solver boundary.
 
 1. Inventory Photon, Ideal Swarm, Animator, and the assembly-dynamics path for current uses of architrino motion, causal roots, delayed hits, or solver-adjacent geometry.
-2. Define the central solver contract, precision-path contract, and minimum stable dataset schema.
-3. Adopt the logical per-path stream API backed by a run-level chunked binary store, JSON manifest, binary index sidecar, event store, and summary record.
-4. Adopt the shared JavaScript adapter with TypeScript declarations, backed by a WebAssembly worker that owns C++ solver lifecycle, typed-buffer transfer, stream handles, cancellation, diagnostics, and normalized errors.
-5. Adopt the threading policy: native bounded task pool, browser worker baseline, WebAssembly internal threads only when capability and determinism requirements allow, and deterministic mode for parity or exported runs.
-6. Defer GPU acceleration; do not include Metal, WebGPU, or other GPU compute paths in the first solver core or first app migration.
-7. Build a minimal benchmarked C++/Clang solver core and compare it against Photon, Ideal Swarm, and Animator paths across ordinary and many-orders-of-magnitude orbital-speed and assembly-speed scale sweeps.
-8. Verify that long path runs stay inside the declared memory budget while spilling and reading path streams at target speed.
-9. Verify that multithreading improves the selected workloads enough to justify the complexity, and keep a correct single-thread execution path where threading is unavailable or not worth using.
-10. Verify that apps can use the solver through the shared bridge without app-specific C++ or WebAssembly handling.
-11. Migrate Animator first where the dataset bridge already exists.
-12. Migrate Photon causal-root diagnostics to the shared causal-root and source-history APIs.
-13. Migrate Ideal Swarm delayed-potential and self-hit calculations to shared geometry and causal-delay routines.
-14. Archive or keep `sim2` as a reference prototype only; do not build a central-solver adapter for it.
-15. Document the legacy solver-family boundary: proof-program, mass-map, neutral-swarm, nested-shell, cosmology, and related families are not migration targets.
-16. Remove or simplify app-local solver and geometry code after parity tests confirm the new solver path.
-17. Keep any future contact with proof-program, mass-map, neutral-swarm, nested-shell, and cosmology solver families limited to artifacts, diagnostics, or independently maintained contracts unless a later priority explicitly changes scope.
+2. Define the central solver contract, simulation-envelope contract, precision-path contract, and minimum stable dataset schema.
+3. Adopt simulation-envelope admission so each app request declares scale, duration, interaction policy, precision claim, output detail, memory budget, storage budget, latency target, and simplification policy before execution.
+4. Adopt the virtual-observer path record and temporal assembly graph so architrino paths, assembly states, memberships, hierarchy intervals, threshold events, and self-action events are normalized and joined by id and time interval.
+5. Adopt the logical per-path stream API backed by a run-level chunked binary store, JSON manifest, encoding dictionary, work packets, binary index sidecar, event store, active-window age-out policy, deep-index store, and summary record.
+6. Adopt the shared JavaScript adapter with TypeScript declarations, backed by a WebAssembly worker that owns C++ solver lifecycle, typed-buffer transfer, stream handles, cancellation, diagnostics, and normalized errors.
+7. Adopt the threading policy: native bounded task pool, browser worker baseline, WebAssembly internal threads only when capability and determinism requirements allow, and deterministic mode for parity or exported runs.
+8. Defer GPU acceleration; do not include Metal, WebGPU, or other GPU compute paths in the first solver core or first app migration.
+9. Build a minimal benchmarked C++/Clang solver core and compare it against Photon, Ideal Swarm, and Animator paths across ordinary and many-orders-of-magnitude orbital-speed and assembly-speed scale sweeps.
+10. Verify that requested simulation envelopes are admitted, simplified, batched, escalated, or rejected with explicit diagnostics.
+11. Verify that long path runs stay inside the declared memory budget while spilling and reading path streams at target speed.
+12. Verify that multithreading improves the selected workloads enough to justify the complexity, and keep a correct single-thread execution path where threading is unavailable or not worth using.
+13. Verify that apps can use the solver through the shared bridge without app-specific C++ or WebAssembly handling.
+14. Migrate Animator first where the dataset bridge already exists.
+15. Migrate Photon causal-root diagnostics to the shared causal-root and source-history APIs.
+16. Migrate Ideal Swarm delayed-potential and self-hit calculations to shared geometry and causal-delay routines.
+17. Archive or keep `sim2` as an animation-intent prototype only; do not build a central-solver adapter for it and do not use it as a parity target.
+18. Document the legacy solver-family boundary: proof-program, mass-map, neutral-swarm, nested-shell, cosmology, and related families are not migration targets.
+19. Remove or simplify app-local solver and geometry code after parity tests confirm the new solver path.
+20. Keep any future contact with proof-program, mass-map, neutral-swarm, nested-shell, and cosmology solver families limited to artifacts, diagnostics, or independently maintained contracts unless a later priority explicitly changes scope.
 
 ## Task Queue
 
 1. `precision_dynamic_range_contract` - Convert the chosen `auto` precision-path selector, strict escalation rule, validation replay rule, and error-budget metadata into the first implementation contract. Status: `active`. Depends on: none.
-2. `path_history_stream_contract` - Convert the chosen logical per-path stream API backed by a run-level chunked binary store, JSON manifest, event store, binary index sidecar, summary record, memory budget, fast spill, and high-speed readback into a versioned schema. Status: `active`. Depends on: `precision_dynamic_range_contract`.
-3. `app_bridge_contract` - Convert the chosen shared JavaScript adapter with TypeScript declarations and WebAssembly worker into a typed request/response, cancellation, stream-handle, diagnostics, and normalized-error contract. Status: `active`. Depends on: `precision_dynamic_range_contract`, `path_history_stream_contract`.
-4. `threading_execution_policy` - Implement the chosen native bounded task pool, browser worker baseline, deterministic mode, WebAssembly-thread gating, thread-count controls, and diagnostics. Status: `active`. Depends on: `app_bridge_contract`.
-5. `cpp_clang_runtime_validation` - Build and benchmark the selected C++20/Clang path against representative causal-root, source-history, precision, dynamic-range, streaming-write, indexed-read, app-bridge, and thread-scaling workloads. Initial local spike confirms native Apple Clang C++20 syntax support but finds CMake, Ninja, Emscripten, `wasm-ld`, and Apple Clang WASM target support unavailable on `PATH`. Status: `active-toolchain-setup-needed`. Depends on: `threading_execution_policy`.
-6. `solver_contract` - Implement the central solver inputs, outputs, dataset schema, path-history stream schema, app bridge schema, threading metadata, diagnostics, halt statuses, precision-path metadata, storage metadata, API boundaries, root-ledger completeness rows, phase-at-hit metadata, failure-code taxonomy, and provenance artifacts. Status: `active`. Depends on: `cpp_clang_runtime_validation`.
-7. `gpu_acceleration_deferral` - Keep Metal, WebGPU, and other GPU compute paths out of the first solver core and migration plan; reconsider only after CPU benchmarks identify a suitable regular hotspot. Status: `pending`. Depends on: `cpp_clang_runtime_validation`.
-8. `geometry_centralization_inventory` - Identify duplicated or app-local solver geometry in Photon, Ideal Swarm, Animator, and the assembly-dynamics path. Exclude `sim2` and legacy solver families from migration scope. Status: `next`. Depends on: `solver_contract`.
-9. `minimal_causal_root_core` - Implement or extract the first central causal-root core with source histories, branch diagnostics, precision diagnostics, streaming output, app-bridge output, threading diagnostics, and benchmark hooks. Status: `next`. Depends on: `solver_contract`.
-10. `animator_adapter` - Route Animator simulation runs through the central solver contract while preserving the existing dataset playback surface. Status: `pending`. Depends on: `minimal_causal_root_core`.
-11. `photon_adapter` - Replace Photon-local causal-root diagnostics with shared source-history and causal-root calls. Status: `pending`. Depends on: `minimal_causal_root_core`.
-12. `ideal_swarm_adapter` - Replace Ideal Swarm delayed-potential and self-hit calculations with shared solver geometry. Status: `pending`. Depends on: `minimal_causal_root_core`.
-13. `sim2_reference_archive_plan` - Document `sim2` as a reference/archive surface only, with no central-solver adapter and no migration path. Status: `pending`. Depends on: `solver_contract`.
-14. `legacy_solver_boundary` - Document that non-app legacy solver families stay outside central-solver migration and may only exchange artifacts, diagnostics, or independently maintained contracts. Status: `pending`. Depends on: `solver_contract`.
+2. `simulation_envelope_contract` - Define the run-admission envelope for entity count, assembly complexity, physical volume, density, simulated duration, time resolution, speed regimes, interaction graph density, branch/root density, geometry complexity, precision claim, output detail, memory budget, storage budget, latency target, backend, and simplification policy. Status: `active`. Depends on: `precision_dynamic_range_contract`.
+3. `virtual_observer_path_record_contract` - Define the minimal segment-level path record, interpolation policy, error-bound metadata, normalized assembly-membership references, membership-change events, dynamic replay attachment, and potential audit attachment. Status: `active`. Depends on: `precision_dynamic_range_contract`, `simulation_envelope_contract`.
+4. `temporal_assembly_graph_contract` - Define assembly-state history, membership intervals, parent-child hierarchy intervals, assembly events, split/merge events, threshold/self-action events, graph indices, and hierarchy replay rules. Status: `active`. Depends on: `virtual_observer_path_record_contract`.
+5. `path_history_stream_contract` - Convert the chosen logical per-path stream API backed by a run-level chunked binary store, JSON manifest, encoding dictionary, event store, binary index sidecar, summary record, memory budget, canonical compact encodings, post-run compression/export policy, active-window age-out, optional deep-index store, fast spill, and high-speed readback into a versioned schema. Status: `active`. Depends on: `precision_dynamic_range_contract`, `simulation_envelope_contract`, `virtual_observer_path_record_contract`, `temporal_assembly_graph_contract`.
+6. `history_age_out_and_deep_index_policy` - Define conservative age-out rules for hot active history, warm finalized chunks, cold archival history, non-volatile storage targets, optional offline deep indices, and diagnostics when a chunk cannot safely leave active memory. Status: `active`. Depends on: `path_history_stream_contract`.
+7. `work_packet_transport_contract` - Define transport-ready packet headers, binary payload references, checksums, output layout declarations, range ownership, and deterministic merge keys so solver work can move across workers, threads, processes, future services, and future GPU backends without a second data model. Status: `active`. Depends on: `path_history_stream_contract`, `simulation_envelope_contract`.
+8. `spatiotemporal_query_algorithm_survey` - Brainstorm, prototype, and benchmark broad-phase / narrow-phase query approaches for space blocks, time blocks, combined spacetime blocks, path-vs-emission-shell, path-vs-path, all-to-all, same-source, speed-regime transition, and candidate causal-root searches. Candidate families include bounding-volume hierarchies, interval trees, spatial hashing, k-d trees, R-trees, sweep-and-prune, and special-purpose emission-shell indices. Status: `active`. Depends on: `path_history_stream_contract`, `work_packet_transport_contract`, `history_age_out_and_deep_index_policy`, `simulation_envelope_contract`.
+9. `app_bridge_contract` - Convert the chosen shared JavaScript adapter with TypeScript declarations and WebAssembly worker into a typed request/response, cancellation, stream-handle, diagnostics, and normalized-error contract. Status: `active`. Depends on: `precision_dynamic_range_contract`, `path_history_stream_contract`, `simulation_envelope_contract`.
+10. `threading_execution_policy` - Implement the chosen native bounded task pool, browser worker baseline, deterministic mode, WebAssembly-thread gating, thread-count controls, diagnostics, and GPU-ready work partitioning where it also benefits CPU execution. Status: `active`. Depends on: `app_bridge_contract`, `work_packet_transport_contract`.
+11. `cpp_clang_runtime_validation` - Build and benchmark the selected C++20/Clang path against representative causal-root, source-history, precision, dynamic-range, simulation-envelope, virtual-observer path-record, temporal-assembly-graph, streaming-write, indexed-read, app-bridge, and thread-scaling workloads. Initial local spike confirms native Apple Clang C++20 syntax support but finds CMake, Ninja, Emscripten, `wasm-ld`, and Apple Clang WASM target support unavailable on `PATH`. Status: `active-toolchain-setup-needed`. Depends on: `threading_execution_policy`.
+12. `solver_contract` - Implement the central solver inputs, outputs, dataset schema, simulation-envelope schema, virtual-observer path-record schema, assembly-state schema, assembly-membership schema, assembly-hierarchy schema, path-history stream schema, app bridge schema, threading metadata, diagnostics, halt statuses, precision-path metadata, storage metadata, API boundaries, root-ledger completeness rows, phase-at-hit metadata, failure-code taxonomy, and provenance artifacts. Status: `active`. Depends on: `cpp_clang_runtime_validation`.
+13. `gpu_acceleration_deferral` - Keep Metal, WebGPU, service GPU, and other GPU compute paths out of the first solver core and migration plan; preserve GPU-ready data layout and work partitioning, then reconsider GPU execution only after CPU benchmarks identify a suitable regular hotspot. Status: `pending`. Depends on: `cpp_clang_runtime_validation`.
+14. `geometry_centralization_inventory` - Identify duplicated or app-local solver geometry in Photon, Ideal Swarm, Animator, and the assembly-dynamics path. Exclude `sim2` and legacy solver families from migration scope. Status: `next`. Depends on: `solver_contract`.
+15. `minimal_causal_root_core` - Implement or extract the first central causal-root core with source histories, branch diagnostics, precision diagnostics, simulation-envelope diagnostics, virtual-observer path-record output, temporal-assembly-graph output, streaming output, app-bridge output, threading diagnostics, and benchmark hooks. Status: `next`. Depends on: `solver_contract`.
+16. `animator_adapter` - Route Animator simulation runs through the central solver contract while preserving the existing dataset playback surface. Status: `pending`. Depends on: `minimal_causal_root_core`.
+17. `photon_adapter` - Replace Photon-local causal-root diagnostics with shared source-history and causal-root calls. Status: `pending`. Depends on: `minimal_causal_root_core`.
+18. `ideal_swarm_adapter` - Replace Ideal Swarm delayed-potential and self-hit calculations with shared solver geometry. Status: `pending`. Depends on: `minimal_causal_root_core`.
+19. `sim2_reference_archive_plan` - Document `sim2` as an animation-intent archive surface only, with no central-solver adapter, no migration path, and no solver parity obligation. Status: `pending`. Depends on: `solver_contract`.
+20. `legacy_solver_boundary` - Document that non-app legacy solver families stay outside central-solver migration and may only exchange artifacts, diagnostics, or independently maintained contracts. Status: `pending`. Depends on: `solver_contract`.
 
 ## Related Priorities
 
