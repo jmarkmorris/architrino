@@ -277,11 +277,17 @@ The long-term relevance of this episode is permanent process control for cosmolo
 
 What physics already had was particle-wave duality, de Broglie's pilot ideas, matrix and wave mechanics, and the brute empirical pressure of atomic and subatomic phenomena. Deterministic alternatives were not absent. The opening was to ask whether one exact microstate, evolving under hidden but lawful dynamics, could produce probabilistic-looking outcomes through multistability, path-history dependence, and measurement-context sensitivity.
 
+The opening had been prepared by the old-quantum-theory sequence before the Copenhagen settlement itself. Rutherford scattering turned atomic internal structure into a measured data product: rare large-angle alpha events forced a dense nuclear center and made atomic stability a concrete dynamical problem. Bohr then showed that an ad hoc angular-momentum rule could recover the hydrogen spectrum and preserve a high-$n$ correspondence with classical mechanics, but the rule did not explain why only those states were stable, why jumps occurred when they did, or why line intensities had the observed pattern. De Broglie's matter-wave proposal sharpened the near miss by converting one hand-inserted rule into a stability criterion: a closed orbit is allowed when the associated action closes around the cycle rather than destructively failing to return to itself.
+
+That sequence matters because it shows the field moving through four distinct levels: data product, recovery rule, stability mechanism, and later operational closure. Rutherford supplied the data pressure. Bohr supplied a successful but partly postulated recovery rule. De Broglie supplied a physical criterion that looked more like a branch-stability condition. The later Copenhagen lock-in then stabilized the formal practice while discouraging the deeper question of what substrate dynamics actually selects the branch, forms the record, and assigns the observed weights.
+
 That line is architrino-adjacent because it does not deny the empirical success of quantum statistics. It instead seeks the mechanism of outcome selection underneath them. Once one allows attractor-basin capture under delayed interaction, the probability layer can become emergent rather than primitive.
 
 ### What Current Physics Still Gets Right
 
 What still works from the Copenhagen-dominated settlement is the extraordinary calculational and pedagogical stability of quantum mechanics. The formalism became usable, productive, and extensible. It enabled atomic physics, chemistry, condensed matter theory, and later quantum technologies. The operational success of the standard framework is unquestionable.
+
+The old quantum theory also preserves real achievements. Bohr's hydrogen calculation was not a mere curiosity; it correctly exposed a spectral regularity and forced correspondence with successful classical limits. De Broglie's condition likewise captured a durable lesson: discreteness can arise from stability and closure rather than from an arbitrary catalog of allowed values. Those achievements should survive as recovery targets even when their historical ontology is not imported.
 
 ### Where Interpretation Locked In
 
@@ -291,6 +297,18 @@ The narrative lock-in was epistemic minimalism: stop asking what happens between
 
 What was occluded was the constructive search for deterministic outcome mechanism. The unfinished residue concerns not the probabilities themselves but what physically produces their realized instances. If measurement outcomes are basin captures in a deeper causal system, then the Copenhagen settlement froze inquiry one layer too high. The same basic pressure reappears today in the persistence of the measurement problem.
 
+A narrow pre-Copenhagen residue is the status of the old quantum condition itself. In modernized comparison form, the branch should not be accepted merely because it can be labeled by an integer. For a candidate effective atomic branch $\theta$ over a comparison window $W$, a closed-cycle action residual can be written as
+$$
+\Delta_{\mathrm{cycle}}(\theta;W)
+=
+\min_{n\in\mathbb Z}
+\left|
+\frac{A_{\mathrm{cycle}}(\theta;W)}{h}
+-n
+\right|
+$$
+Here $A_{\mathrm{cycle}}$ is the effective action accumulated around the declared closed branch. A de Broglie-style standing-wave description is acceptable only as the observer-level face of this closure test, not as an imported substrate ontology. The stronger $\mathbb{A}\mathbb{A}\mathbb{A}$ target is to derive small $\Delta_{\mathrm{cycle}}$ from the same causal-root, path-history, and branch-stability record that also explains record formation and transition weights.
+
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly supportive**, though only at the level of opening rather than completed theory. Transition relevance is extremely high because any architrino account of quantum phenomena must show how deterministic substrate evolution yields effective statistics and definite outcomes without recourse to epistemic surrender.
@@ -298,6 +316,8 @@ The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly supportive**, tho
 ### Recovery Target
 
 The long-term relevance of this episode is permanent until the outcome-selection problem is mechanistically closed. Recovery would require a derivation of quantum-effective behavior from deterministic path-history-sensitive microdynamics together with a concrete explanation of why experimental records stabilize into the Born-like statistics that standard quantum theory encodes so well.
+
+The narrower old-quantum recovery target is to show how spectral regularities, action-cycle discreteness, transition timing, line intensities, and classical correspondence arise from one branch record rather than from separate postulates. Passing that target would not by itself solve measurement, but it would recover the Rutherford-Bohr-de Broglie sequence at the correct level: data, effective rule, stability condition, and then substrate derivation.
 
 ---
 

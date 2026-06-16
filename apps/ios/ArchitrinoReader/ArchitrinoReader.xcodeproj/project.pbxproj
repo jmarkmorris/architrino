@@ -84,6 +84,7 @@
 				8A1F1F282D0A2B0D0073C001 /* Sources */,
 				8A1F1F122D0A2B0D0073C001 /* Frameworks */,
 				8A1F1F112D0A2B0D0073C001 /* Resources */,
+				8A1F1F292D0A2B0D0073C001 /* Copy Textbook Package */,
 			);
 			buildRules = (
 			);
@@ -151,6 +152,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8A1F1F292D0A2B0D0073C001 /* Copy Textbook Package */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/GeneratedTextbookPackage/textbook_bundle.json",
+				"$(SRCROOT)/GeneratedTextbookPackage/textbook_bundle_search_index.json",
+				"$(SRCROOT)/GeneratedTextbookPackage/textbook_bundle_links.json",
+			);
+			name = "Copy Textbook Package";
+			outputPaths = (
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GeneratedTextbookPackage/textbook_bundle.json",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\nsource_dir=\"$SRCROOT/GeneratedTextbookPackage\"\ntarget_dir=\"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/GeneratedTextbookPackage\"\nif [ ! -f \"$source_dir/textbook_bundle.json\" ]; then\n  echo \"error: Missing iOS textbook package at $source_dir/textbook_bundle.json\"\n  exit 1\nfi\nrm -rf \"$target_dir\"\nmkdir -p \"$target_dir\"\n/usr/bin/ditto \"$source_dir\" \"$target_dir\"\nif [ ! -f \"$target_dir/textbook_bundle.json\" ]; then\n  echo \"error: Failed to copy iOS textbook package into app bundle\"\n  exit 1\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
 		8A1F1F1A2D0A2B0D0073C001 /* Debug */ = {

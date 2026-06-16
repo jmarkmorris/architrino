@@ -242,6 +242,7 @@ function addChapterRecord({ entry, sectionKeys }) {
     sourcePath,
     bundlePath,
     chapterId: record.id,
+    sourceChapterId: record.id,
     id: record.id,
     title: record.title,
     sectionKeys: record.sectionKeys,
@@ -589,6 +590,19 @@ function processLink({ sourcePath, sourceChapterId }, rawTarget) {
   });
 }
 
+function validateLinkMetadata() {
+  const missingSourceChapterIds = manifest.links.filter((link) => !link.sourceChapterId);
+  if (missingSourceChapterIds.length > 0) {
+    const samples = missingSourceChapterIds
+      .slice(0, 3)
+      .map((link) => `${link.sourcePath} -> ${link.target}`)
+      .join("; ");
+    errors.push(
+      `Generated link metadata is missing sourceChapterId on ${missingSourceChapterIds.length} links. Samples: ${samples}`,
+    );
+  }
+}
+
 function writeBundleFiles() {
   const manifestPath = path.join(rootOutputPath, MANIFEST_FILE);
   const metadataPath = path.join(rootOutputPath, LINK_METADATA_FILE);
@@ -775,6 +789,7 @@ function validateSchemaFile() {
   addSearchIndexFileRecord();
 
   validateSchemaFile();
+  validateLinkMetadata();
   writeBundleFiles();
 
   console.log(`export-ios-textbook-package mode: ${mode}`);

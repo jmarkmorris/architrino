@@ -164,6 +164,7 @@ enum ReaderLoadError: Error, LocalizedError {
 }
 
 final class ReaderTextbookLoader {
+    private let packageRootPath = "GeneratedTextbookPackage"
     private let manifestPath = "GeneratedTextbookPackage/textbook_bundle.json"
     private let searchIndexPath = "GeneratedTextbookPackage/textbook_bundle_search_index.json"
     private let linksPath = "GeneratedTextbookPackage/textbook_bundle_links.json"
@@ -180,6 +181,13 @@ final class ReaderTextbookLoader {
         }
         return base
             .appendingPathComponent(relativePath, isDirectory: false)
+    }
+
+    private func packageRelativePath(_ relativePath: String) -> String {
+        if relativePath == packageRootPath || relativePath.hasPrefix("\(packageRootPath)/") {
+            return relativePath
+        }
+        return "\(packageRootPath)/\(relativePath)"
     }
 
     private func readJson<T: Decodable>(relativePath: String, as type: T.Type) throws -> T {
@@ -224,11 +232,12 @@ final class ReaderTextbookLoader {
     }
 
     func chapterMarkdown(relativePath: String) throws -> String {
-        guard let url = resourceURL(relativePath) else {
+        let bundledPath = packageRelativePath(relativePath)
+        guard let url = resourceURL(bundledPath) else {
             throw ReaderLoadError.missingBundleRoot
         }
         guard FileManager.default.fileExists(atPath: url.path) else {
-            throw ReaderLoadError.missingChapterText(relativePath)
+            throw ReaderLoadError.missingChapterText(bundledPath)
         }
         return try String(contentsOf: url, encoding: .utf8)
     }
