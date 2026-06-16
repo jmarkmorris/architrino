@@ -39,6 +39,8 @@ const CAUSAL_ROOT_ROW_F64_BYTES = 112;
 const DELAYED_HIT_ROW_F64_BYTES = 128;
 const CAUSAL_ROOT_BATCH_ITEM_ROW_F64_BYTES = 24;
 const PRECISION_DIAGNOSTIC_ROW_F64_BYTES = 96;
+const PHASE_AT_HIT_ROW_F64_BYTES = 72;
+const FRAME_BUFFER_ROW_F64_BYTES = 88;
 const DEFAULT_MAX_CAUSAL_ROOTS = 64;
 const ABI_INFO_BYTES = 24;
 
@@ -60,6 +62,8 @@ export function createSolverAppBridgeClient(options = {}) {
     module: null,
     abiInfo: null,
     streams: new Map(),
+    runs: new Map(),
+    nextRunSequence: 1,
     disposed: false,
     capabilities: createCapabilities(Boolean(options.createWasmModule)),
   };
@@ -102,21 +106,8 @@ export function createSolverAppBridgeClient(options = {}) {
 
     async runSimulation(request) {
       assertNotDisposed(state);
-      if (!request || typeof request !== "object") {
-        throw new SolverBridgeError(
-          createStatus("app_contract_error", "error", "solver request object is required", {
-            recoverable: false,
-          })
-        );
-      }
-      throw new SolverBridgeError(
-        createStatus(
-          "app_contract_error",
-          "halt",
-          "runSimulation is not implemented until the typed C ABI is added",
-          { runId: request.runId, requestId: request.requestId, recoverable: false }
-        )
-      );
+      const module = await requireWasmModule(state);
+      return runSimulationWithModule(state, module, request, state.abiInfo || defaultAbiInfo());
     },
 
     async admitSimulationEnvelope(request) {
@@ -150,6 +141,16 @@ export function createSolverAppBridgeClient(options = {}) {
       return response;
     },
 
+    async computePhaseAtHitF64(request) {
+      assertNotDisposed(state);
+      return computePhaseAtHitF64(request);
+    },
+
+    async sampleLinearMotionF64(request) {
+      assertNotDisposed(state);
+      return sampleLinearMotionF64(request);
+    },
+
     async cancelRun(request = {}) {
       assertNotDisposed(state);
       return createStatus("cancelled", "info", request.reason || "run cancellation acknowledged", {
@@ -172,6 +173,7 @@ export function createSolverAppBridgeClient(options = {}) {
       assertNotDisposed(state);
       if (request.releaseStreams) {
         state.streams.clear();
+        state.runs.delete(request.runId);
       }
       return createStatus("ok", "ok", "run resources released", {
         runId: request.runId,
@@ -183,6 +185,7 @@ export function createSolverAppBridgeClient(options = {}) {
       state.module = null;
       state.modulePromise = null;
       state.streams.clear();
+      state.runs.clear();
     },
   };
 }
@@ -533,6 +536,342 @@ function isPositiveFinite(value) {
 
 function isNonnegativeFinite(value) {
   return typeof value === "number" && Number.isFinite(value) && value >= 0;
+}
+
+function runSimulationWithModule(state, module, request, abiInfo) {
+  validateRunSimulationRequest(request);
+  const admission = admitSimulationEnvelope({
+    model: request.model,
+    errorBudget: request.errorBudget,
+    envelope: request.envelope,
+  });
+  if (!admission.admitted) {
+    throw new SolverBridgeError(
+      createStatus("simulation_envelope_exceeded", "halt", "simulation run was not admitted", {
+        recoverable: false,
+        details: admission,
+      })
+    );
+  }
+  if (request.runKind !== "causalRoots") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "halt", `run kind is not implemented: ${request.runKind}`, {
+        recoverable: false,
+      })
+    );
+  }
+
+  const rootRequest = request.config.rootRequest;
+  const rootsAndHits = solveRootsAndHitsF64WithModule(module, rootRequest, abiInfo);
+  const requestId = request.requestId || `${request.appId}-${request.runKind}-${state.nextRunSequence}`;
+  const runId = request.runId || `solver-run-${state.nextRunSequence}`;
+  const datasetId = request.datasetId || `${runId}-dataset`;
+  state.nextRunSequence += 1;
+
+  const streams = rootsAndHits.streams.map((stream) => ({
+    ...stream,
+    streamId: `${runId}:${stream.streamId}`,
+  }));
+  const completedResponse = {
+    runId,
+    datasetId,
+    summary: {
+      runId,
+      claimLevel: request.claimLevel,
+      precisionPath: admission.selectedPrecisionPath,
+      status: createStatus("ok", "ok", "causal-root simulation completed", { runId, requestId }),
+      rootCount: rootsAndHits.roots.length,
+      eventCount: rootsAndHits.hits.length,
+    },
+    buffers: rootsAndHits.buffers,
+    streams,
+    diagnostics: admission.statuses.map((status) => ({
+      code: status.code,
+      severity: status.severity,
+      message: status.message,
+      stage: status.stage,
+      details: status.details,
+    })),
+    roots: rootsAndHits.roots,
+    hits: rootsAndHits.hits,
+    status: createStatus("ok", "ok", "causal-root simulation completed", { runId, requestId }),
+  };
+
+  state.runs.set(runId, completedResponse);
+  registerResponseStreams(state, completedResponse);
+
+  return {
+    requestId,
+    runId,
+    datasetId,
+    cancellationToken: `cancel-${runId}`,
+    acceptedPrecisionPath: admission.selectedPrecisionPath,
+    expectedOutputs: request.output.outputs,
+    response: completedResponse,
+    status: createStatus("ok", "ok", "simulation run completed", { runId, requestId }),
+  };
+}
+
+function computePhaseAtHitF64(request) {
+  validatePhaseAtHitRequest(request);
+  const rows = request.roots.map((root) => {
+    const sourceCyclePosition = rawCyclePosition(root.emissionTime, request.sourceClock);
+    const receiverCyclePosition = rawCyclePosition(root.hitTime, request.receiverClock);
+    const sourcePhase = normalizedPhase(sourceCyclePosition);
+    const receiverPhase = normalizedPhase(receiverCyclePosition);
+    const phaseDelta = signedPhaseDelta(sourcePhase, receiverPhase);
+    return {
+      rootId: root.rootId,
+      statusCode: root.statusCode,
+      sourceCycleIndex: Math.floor(sourceCyclePosition),
+      receiverCycleIndex: Math.floor(receiverCyclePosition),
+      emissionTime: root.emissionTime,
+      hitTime: root.hitTime,
+      sourcePhase,
+      receiverPhase,
+      phaseDelta,
+      phaseSpread: Math.abs(phaseDelta),
+    };
+  });
+  const buffer = writePhaseAtHitRowsF64(rows);
+  return {
+    rows,
+    buffers: [
+      createBufferDescriptor(
+        "phase-at-hit",
+        "phase_at_hit.v1",
+        rows.length,
+        PHASE_AT_HIT_ROW_F64_BYTES,
+        buffer
+      ),
+    ],
+    status: createStatus("ok", "ok", "phase-at-hit diagnostics computed"),
+  };
+}
+
+function validatePhaseAtHitRequest(request) {
+  if (!request || typeof request !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "phase-at-hit request object is required", {
+        recoverable: false,
+      })
+    );
+  }
+  if (!Array.isArray(request.roots)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "phase-at-hit roots array is required", {
+        recoverable: false,
+      })
+    );
+  }
+  validatePhaseClock(request.sourceClock, "sourceClock");
+  validatePhaseClock(request.receiverClock, "receiverClock");
+  request.roots.forEach((root, index) => {
+    requireFiniteNumber(root.rootId, `roots[${index}].rootId`);
+    requireFiniteNumber(root.statusCode, `roots[${index}].statusCode`);
+    requireFiniteNumber(root.emissionTime, `roots[${index}].emissionTime`);
+    requireFiniteNumber(root.hitTime, `roots[${index}].hitTime`);
+  });
+}
+
+function validatePhaseClock(clock, label) {
+  if (!clock || typeof clock !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} is required`, {
+        recoverable: false,
+      })
+    );
+  }
+  requirePositiveFiniteNumber(clock.period, `${label}.period`);
+  if (clock.epoch != null) {
+    requireFiniteNumber(clock.epoch, `${label}.epoch`);
+  }
+  if (clock.phaseOffset != null) {
+    requireFiniteNumber(clock.phaseOffset, `${label}.phaseOffset`);
+  }
+}
+
+function rawCyclePosition(time, clock) {
+  return (time - (clock.epoch ?? 0)) / clock.period + (clock.phaseOffset ?? 0);
+}
+
+function normalizedPhase(value) {
+  const phase = value % 1;
+  return phase < 0 ? phase + 1 : phase;
+}
+
+function signedPhaseDelta(sourcePhase, receiverPhase) {
+  let delta = receiverPhase - sourcePhase;
+  while (delta > 0.5) {
+    delta -= 1;
+  }
+  while (delta < -0.5) {
+    delta += 1;
+  }
+  return delta;
+}
+
+function writePhaseAtHitRowsF64(rows) {
+  const buffer = new ArrayBuffer(rows.length * PHASE_AT_HIT_ROW_F64_BYTES);
+  const view = new DataView(buffer);
+  rows.forEach((row, index) => {
+    const ptr = index * PHASE_AT_HIT_ROW_F64_BYTES;
+    view.setInt32(ptr, row.rootId, true);
+    view.setInt32(ptr + 4, row.statusCode, true);
+    view.setBigInt64(ptr + 8, BigInt(row.sourceCycleIndex), true);
+    view.setBigInt64(ptr + 16, BigInt(row.receiverCycleIndex), true);
+    view.setFloat64(ptr + 24, row.emissionTime, true);
+    view.setFloat64(ptr + 32, row.hitTime, true);
+    view.setFloat64(ptr + 40, row.sourcePhase, true);
+    view.setFloat64(ptr + 48, row.receiverPhase, true);
+    view.setFloat64(ptr + 56, row.phaseDelta, true);
+    view.setFloat64(ptr + 64, row.phaseSpread, true);
+  });
+  return buffer;
+}
+
+function sampleLinearMotionF64(request) {
+  validateLinearMotionSampleRequest(request);
+  const rows = [];
+  let frameIndex = 0;
+  for (let time = request.startTime; time <= request.endTime + request.step * 1e-9; time += request.step) {
+    const clampedTime = time > request.endTime ? request.endTime : time;
+    const position = positionAt(request.segment, clampedTime);
+    rows.push({
+      pathKey: request.pathKey,
+      frameIndex,
+      time: clampedTime,
+      position,
+      velocity: { ...request.segment.velocity },
+      errorBound: request.segment.errorBound ?? 0,
+      stateFlags: request.stateFlags ?? 0,
+    });
+    frameIndex += 1;
+    if (clampedTime === request.endTime) {
+      break;
+    }
+  }
+  const buffer = writeMotionFrameRowsF64(rows);
+  return {
+    frames: rows,
+    buffers: [
+      createBufferDescriptor(
+        "frame-buffer",
+        "frame_buffer.v1",
+        rows.length,
+        FRAME_BUFFER_ROW_F64_BYTES,
+        buffer
+      ),
+    ],
+    status: createStatus("ok", "ok", "linear motion sampled"),
+  };
+}
+
+function validateLinearMotionSampleRequest(request) {
+  if (!request || typeof request !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "linear motion sample request object is required", {
+        recoverable: false,
+      })
+    );
+  }
+  requireNonnegativeInteger(request.pathKey, "pathKey");
+  validateSegment(request.segment, "segment");
+  requireFiniteNumber(request.startTime, "startTime");
+  requireFiniteNumber(request.endTime, "endTime");
+  requirePositiveFiniteNumber(request.step, "step");
+  if (request.endTime < request.startTime) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "motion sample time bounds are not ordered", {
+        recoverable: false,
+      })
+    );
+  }
+  if (request.startTime < request.segment.startTime || request.endTime > request.segment.endTime) {
+    throw new SolverBridgeError(
+      createStatus("insufficient_history_depth", "halt", "motion sample window is outside the retained segment", {
+        recoverable: false,
+      })
+    );
+  }
+  if (request.stateFlags != null) {
+    requireNonnegativeInteger(request.stateFlags, "stateFlags");
+  }
+}
+
+function positionAt(segment, time) {
+  const dt = time - segment.startTime;
+  return {
+    x: segment.positionAtStart.x + segment.velocity.x * dt,
+    y: segment.positionAtStart.y + segment.velocity.y * dt,
+    z: segment.positionAtStart.z + segment.velocity.z * dt,
+  };
+}
+
+function writeMotionFrameRowsF64(rows) {
+  const buffer = new ArrayBuffer(rows.length * FRAME_BUFFER_ROW_F64_BYTES);
+  const view = new DataView(buffer);
+  rows.forEach((row, index) => {
+    const ptr = index * FRAME_BUFFER_ROW_F64_BYTES;
+    view.setBigUint64(ptr, BigInt(row.pathKey), true);
+    view.setBigUint64(ptr + 8, BigInt(row.frameIndex), true);
+    view.setFloat64(ptr + 16, row.time, true);
+    view.setFloat64(ptr + 24, row.position.x, true);
+    view.setFloat64(ptr + 32, row.position.y, true);
+    view.setFloat64(ptr + 40, row.position.z, true);
+    view.setFloat64(ptr + 48, row.velocity.x, true);
+    view.setFloat64(ptr + 56, row.velocity.y, true);
+    view.setFloat64(ptr + 64, row.velocity.z, true);
+    view.setFloat64(ptr + 72, row.errorBound, true);
+    view.setUint32(ptr + 80, row.stateFlags, true);
+    view.setUint32(ptr + 84, 0, true);
+  });
+  return buffer;
+}
+
+function validateRunSimulationRequest(request) {
+  if (!request || typeof request !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "solver request object is required", {
+        recoverable: false,
+      })
+    );
+  }
+  if (!["animator", "photon", "ideal-swarm"].includes(request.appId)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "known app id is required", {
+        recoverable: false,
+      })
+    );
+  }
+  if (!DEFAULT_PRECISION_PATHS.includes(request.precisionPath)) {
+    throw new SolverBridgeError(
+      createStatus("precision_failed", "error", "known precision path is required", {
+        recoverable: false,
+      })
+    );
+  }
+  if (!request.output || !Array.isArray(request.output.outputs)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "run output contract is required", {
+        recoverable: false,
+      })
+    );
+  }
+  if (request.runKind === "causalRoots") {
+    validateCausalRootsRunConfig(request.config);
+  }
+}
+
+function validateCausalRootsRunConfig(config) {
+  if (!config || typeof config !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "causal-root run config is required", {
+        recoverable: false,
+      })
+    );
+  }
+  validateCausalRootF64Request(config.rootRequest);
 }
 
 async function loadWasmModule(state) {

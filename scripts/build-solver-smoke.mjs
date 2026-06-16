@@ -36,6 +36,8 @@ if (target === "native" || target === "all") {
   runChecked(path.join(buildRoot, "native", "architrino_solver_contract_smoke"), [], { env });
   runChecked(path.join(buildRoot, "native", "architrino_solver_batch_smoke"), [], { env });
   runChecked(path.join(buildRoot, "native", "architrino_solver_geometry_smoke"), [], { env });
+  runChecked(path.join(buildRoot, "native", "architrino_solver_motion_smoke"), [], { env });
+  runChecked(path.join(buildRoot, "native", "architrino_solver_phase_smoke"), [], { env });
   runChecked(path.join(buildRoot, "native", "architrino_solver_precision_smoke"), [], { env });
   runChecked(path.join(buildRoot, "native", "architrino_solver_stream_smoke"), [], { env });
 }
@@ -45,6 +47,7 @@ if (target === "wasm" || target === "all") {
   build("wasm");
   await verifyWasmSmoke();
   runChecked("node", ["scripts/check-solver-app-bridge.mjs"], { env });
+  runChecked("node", ["scripts/check-solver-baseline-sandbox.mjs"], { env });
 }
 
 console.log(`solver smoke build complete: ${target}`);

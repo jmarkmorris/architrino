@@ -346,4 +346,38 @@ std::vector<PathHistoryIndexRow> read_path_history_index(std::string_view indexP
   return read_rows<PathHistoryIndexRow>(indexPath, 0, rowCount, "path-history index");
 }
 
+std::vector<PathHistoryIndexRow> query_path_history_index(
+    const std::vector<PathHistoryIndexRow>& indexRows,
+    const PathHistoryQuery& query) {
+  if (query.filterTime && query.timeEnd < query.timeStart) {
+    throw std::invalid_argument("path-history query time bounds are not ordered");
+  }
+
+  std::vector<PathHistoryIndexRow> matches;
+  for (const PathHistoryIndexRow& row : indexRows) {
+    if (query.filterPath && row.pathKey != query.pathKey) {
+      continue;
+    }
+    if (query.filterTime && (row.timeEnd < query.timeStart || row.timeStart > query.timeEnd)) {
+      continue;
+    }
+    matches.push_back(row);
+  }
+  return matches;
+}
+
+std::vector<PathHistoryRowF64> read_path_history_query(
+    std::string_view dataPath,
+    const std::vector<PathHistoryIndexRow>& indexRows,
+    const PathHistoryQuery& query) {
+  const std::vector<PathHistoryIndexRow> matches = query_path_history_index(indexRows, query);
+  std::vector<PathHistoryRowF64> rows;
+  for (const PathHistoryIndexRow& match : matches) {
+    const std::vector<PathHistoryRowF64> chunkRows =
+        read_path_history_rows(dataPath, match.rowOffset, static_cast<std::size_t>(match.rowCount));
+    rows.insert(rows.end(), chunkRows.begin(), chunkRows.end());
+  }
+  return rows;
+}
+
 }  // namespace architrino::solver

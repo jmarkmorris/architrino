@@ -39,7 +39,9 @@ add_library(architrino_solver_core STATIC
   src/CausalRootBatchSolver.cpp
   src/CausalRootSolver.cpp
   src/Geometry.cpp
+  src/MotionSampler.cpp
   src/PathHistoryStream.cpp
+  src/PhaseDiagnostics.cpp
   src/PrecisionDiagnostics.cpp
   src/SolverCAbi.cpp
   src/SolverContract.cpp
@@ -103,6 +105,22 @@ if(NOT EMSCRIPTEN)
   )
 
   target_link_libraries(architrino_solver_geometry_smoke
+    PRIVATE architrino_solver_core
+  )
+
+  add_executable(architrino_solver_motion_smoke
+    native/solver_motion_smoke.cpp
+  )
+
+  target_link_libraries(architrino_solver_motion_smoke
+    PRIVATE architrino_solver_core
+  )
+
+  add_executable(architrino_solver_phase_smoke
+    native/solver_phase_smoke.cpp
+  )
+
+  target_link_libraries(architrino_solver_phase_smoke
     PRIVATE architrino_solver_core
   )
 

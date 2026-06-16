@@ -10,6 +10,7 @@ import {
   createSolverAppBridgeClient,
   hasCausalRootCAbi,
 } from "../src/solver/app/SolverAppBridge.mjs";
+import { classifySolverBaselineResponse } from "../src/solver/app/SolverBaselineComparison.mjs";
 
 const require = createRequire(import.meta.url);
 const rootDir = process.cwd();
@@ -85,6 +86,28 @@ assert(
   !rejectedAdmission.admitted && rejectedAdmission.decision === "reject",
   "expected low-memory admission rejection"
 );
+
+const motionResponse = await client.sampleLinearMotionF64({
+  pathKey: 1234,
+  segment: {
+    startTime: 0,
+    endTime: 2,
+    positionAtStart: { x: 1, y: 2, z: 3 },
+    velocity: { x: 2, y: 0.5, z: -1 },
+    errorBound: 1e-12,
+  },
+  startTime: 0,
+  endTime: 2,
+  step: 1,
+  stateFlags: 9,
+});
+assert(motionResponse.status.code === "ok", "expected motion sample status ok");
+assert(motionResponse.frames.length === 3, "expected three motion frames");
+assert(motionResponse.frames[2].position.x === 5, "expected final motion x");
+assert(motionResponse.frames[2].position.y === 3, "expected final motion y");
+assert(motionResponse.frames[2].position.z === 1, "expected final motion z");
+const frameBuffer = findBuffer(motionResponse, "frame_buffer.v1");
+assert(frameBuffer.buffer.byteLength === 264, "expected frame buffer byte length");
 
 const rootsResponse = await client.solveCausalRootsF64(fixtureRequest.request);
 assert(rootsResponse.status.code === "ok", "expected causal root bridge status ok");
@@ -213,11 +236,64 @@ assert(
     Math.abs(rootsAndHitsResponse.hits[0].strength - 1) <= 1e-10,
   "expected delayed-hit bridge values"
 );
+const phaseResponse = await client.computePhaseAtHitF64({
+  roots: rootsAndHitsResponse.roots,
+  sourceClock: { period: 2, epoch: 0, phaseOffset: 0 },
+  receiverClock: { period: 6, epoch: 0, phaseOffset: 0 },
+});
+assert(phaseResponse.status.code === "ok", "expected phase-at-hit status ok");
+assert(phaseResponse.rows.length === 1, "expected one phase-at-hit row");
+assert(phaseResponse.rows[0].sourceCycleIndex === 0, "expected source phase cycle");
+assert(phaseResponse.rows[0].receiverCycleIndex === 1, "expected receiver phase cycle");
+assert(Math.abs(phaseResponse.rows[0].sourcePhase) <= 1e-10, "expected source phase");
+assert(
+  Math.abs(phaseResponse.rows[0].receiverPhase - 2 / 3) <= 1e-10,
+  "expected receiver phase"
+);
+const phaseBuffer = findBuffer(phaseResponse, "phase_at_hit.v1");
+assert(phaseBuffer.buffer.byteLength === 72, "expected phase-at-hit buffer byte length");
 assertDeepEqual(
   normalizeJson(stripRuntimeBuffers(rootsAndHitsResponse)),
   fixtureResponse.response,
   "roots-and-hits response fixture mismatch"
 );
+const baselineComparison = classifySolverBaselineResponse({
+  baseline: fixtureResponse.response,
+  candidate: normalizeJson(stripRuntimeBuffers(rootsAndHitsResponse)),
+  tolerance: 1e-10,
+});
+assert(
+  baselineComparison.classification === "baseline_within_tolerance",
+  "expected exact fixture baseline comparison within tolerance"
+);
+const mismatchedCandidate = normalizeJson(stripRuntimeBuffers(rootsAndHitsResponse));
+mismatchedCandidate.roots[0].distance += 1;
+const mismatchComparison = classifySolverBaselineResponse({
+  baseline: fixtureResponse.response,
+  candidate: mismatchedCandidate,
+  tolerance: 1e-10,
+});
+assert(
+  mismatchComparison.classification === "baseline_investigation_required_mismatch",
+  "expected large baseline comparison mismatch classification"
+);
+
+const runHandle = await client.runSimulation(makeRunSimulationRequest());
+assert(runHandle.status.code === "ok", "expected runSimulation status ok");
+assert(runHandle.requestId === "smoke-run-request", "expected runSimulation request id");
+assert(runHandle.runId === "smoke-run", "expected runSimulation run id");
+assert(runHandle.datasetId === "smoke-run-dataset", "expected runSimulation dataset id");
+assert(runHandle.acceptedPrecisionPath === "extended_precision", "expected runSimulation precision selection");
+assert(runHandle.response.summary.rootCount === 1, "expected runSimulation root count");
+assert(runHandle.response.summary.eventCount === 1, "expected runSimulation event count");
+assert(runHandle.response.buffers.length === 2, "expected runSimulation buffers");
+assert(runHandle.response.streams[0].streamId === "smoke-run:causal-root-transient", "expected run-scoped stream id");
+const runStreamRead = await client.readStreamRange({
+  streamId: "smoke-run:causal-root-transient",
+  maxBytes: 240,
+});
+assert(runStreamRead.status.code === "ok", "expected run-scoped stream read status ok");
+assert(runStreamRead.buffers.length === 2, "expected run-scoped stream buffers");
 
 let invalidRootRejected = false;
 try {
@@ -243,14 +319,14 @@ try {
 }
 assert(invalidRootRejected, "expected invalid causal root request to be rejected");
 
-let unsupportedRunRejected = false;
+let invalidRunRejected = false;
 try {
   await client.runSimulation({ requestId: "smoke-request", runKind: "causalRoots" });
 } catch (error) {
-  unsupportedRunRejected =
+  invalidRunRejected =
     error instanceof SolverBridgeError && error.status.code === "app_contract_error";
 }
-assert(unsupportedRunRejected, "expected unsupported runSimulation to reject with app_contract_error");
+assert(invalidRunRejected, "expected invalid runSimulation to reject with app_contract_error");
 
 const closeStatus = await client.closeRun({ runId: "smoke", releaseStreams: true });
 assert(closeStatus.code === "ok", "expected closeRun status ok");
@@ -332,6 +408,34 @@ function makeAdmissionRequest(overrides = {}) {
     ...(overrides.envelope || {}),
   };
   return { model, errorBudget, envelope };
+}
+
+function makeRunSimulationRequest() {
+  const admission = makeAdmissionRequest();
+  return {
+    requestId: "smoke-run-request",
+    runId: "smoke-run",
+    datasetId: "smoke-run-dataset",
+    appId: "animator",
+    runKind: "causalRoots",
+    claimLevel: "interactive-preview",
+    precisionPath: "auto",
+    configVersion: "solver-run-smoke.v1",
+    configHash: "solver-run-smoke",
+    model: admission.model,
+    envelope: admission.envelope,
+    errorBudget: admission.errorBudget,
+    config: {
+      appId: "animator",
+      rootRequest: fixtureRequest.request,
+    },
+    output: {
+      outputs: ["rootLedger", "delayedHitEvents", "diagnostics"],
+      streamTarget: "caller-buffer",
+      memoryBudgetBytes: 64 * 1024 * 1024,
+      deterministic: true,
+    },
+  };
 }
 
 function normalizeJson(value) {

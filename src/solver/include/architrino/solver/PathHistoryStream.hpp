@@ -67,6 +67,14 @@ struct PathHistoryStreamMetadata {
   std::string metadataPath;
 };
 
+struct PathHistoryQuery {
+  std::uint64_t pathKey = 0;
+  double timeStart = 0.0;
+  double timeEnd = 0.0;
+  bool filterPath = false;
+  bool filterTime = false;
+};
+
 std::uint64_t stable_path_key(std::string_view pathId);
 PathHistoryRowF64 make_path_history_row(const LinearPathSegment& segment,
                                         std::uint64_t pathKey,
@@ -113,5 +121,10 @@ std::vector<PathHistoryRowF64> read_path_history_rows(std::string_view dataPath,
                                                       std::uint64_t rowOffset,
                                                       std::size_t rowCount);
 std::vector<PathHistoryIndexRow> read_path_history_index(std::string_view indexPath);
+std::vector<PathHistoryIndexRow> query_path_history_index(const std::vector<PathHistoryIndexRow>& indexRows,
+                                                          const PathHistoryQuery& query);
+std::vector<PathHistoryRowF64> read_path_history_query(std::string_view dataPath,
+                                                       const std::vector<PathHistoryIndexRow>& indexRows,
+                                                       const PathHistoryQuery& query);
 
 }  // namespace architrino::solver

@@ -177,9 +177,6 @@ struct ContentView: View {
                     VStack(alignment: .leading, spacing: 6) {
                         Text("Architrino Assembly Architecture Textbook")
                             .font(.headline)
-                        Text("Bundled reader")
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
                     }
                     .padding(.vertical, 4)
                 }

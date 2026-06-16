@@ -15,6 +15,16 @@ The goal is high-quality extraction of insights, linkages, mappings, and theory 
 - Prefer theory advancement over audit infrastructure. If a source suggests another gate, certificate, residual inventory, solver-test doc, or live-ledger checklist, keep it priority-only unless the operator/developer explicitly selects it as a current need.
 - Do not paste full transcripts, papers, articles, or copyrighted source text into reports. Use paraphrase, short compliant excerpts only when necessary, and exact timestamps, pages, slide numbers, or URLs for traceability.
 
+## Default Edit Authority
+
+When the operator/developer supplies source links, files, attachments, or inline comments to mine in an active source-mining thread, treat the request as edit-batch authority by default. Cody should run the full mining workflow: extract source signals, search likely corpus homes, make safe scoped edits, update source-mining history, regenerate derived artifacts when source files changed, and run practical validation checks.
+
+Do not wait for approval merely because the source is new or because a safe corpus edit is available. The operator/developer will inspect changes before commit. Stop for approval only when the next action would exceed safe scoped edit authority: canonize a new theory leap, change terminology policy or Archie canon, introduce new project terminology, create a new gate, certificate, checklist, ledger requirement, or similar hurdle artifact, make a broad multi-file rewrite, touch unrelated code or content, or resolve ambiguous or conflicting operator intent.
+
+If mined material yields one of those approval-required actions, present it as an approval box instead of silently writing it. The approval box should state the proposed change, why it exceeds safe scoped edits, affected files, and the exact authority requested. Continue implementing independent safe edits in the same pass before asking.
+
+Use audit/report mode only when the operator/developer explicitly asks for a report, audit, plan, discussion, review, or no-edit pass.
+
 ## Relationship To Other AAA Processes
 
 This guide is a source-intake and source-processing practice. It is not another gate system, not a certificate system, and not a competing corpus-advancement protocol.
@@ -34,7 +44,7 @@ The completed target list lives in [source-mining-history](source-mining-history
 Use this prompt when the source type is unknown, mixed, or not worth choosing a narrower template before the first pass.
 
 ```text
-Cody, use the AAA corpus advancement skill in audit/report mode.
+Cody, use the AAA corpus advancement skill in edit-batch mode.
 
 Use the [source-mining-best-practice.md](reference/priorities/source-mining/source-mining-best-practice.md) processes to mine this source.
 
@@ -45,11 +55,12 @@ Task:
 1. Read `reference/priorities/source-mining/source-mining-best-practice.md`.
 2. Identify the source type or mixed source types.
 3. Apply the relevant source-type process from the best-practice document.
-4. Treat the initial pass as report-only unless I explicitly grant edit authority.
+4. Treat this as edit-batch authority: make safe scoped edits without waiting for approval.
 5. Do not paste full copyrighted source text into the response.
 6. Extract high-quality insights, linkages, mappings, source leads, and theory-advancement candidates.
 7. Separate observable/data products from interpretation, and separate external terminology from established AAA terminology.
 8. Do not add gates, certificates, residual inventories, live-ledger checklists, or similar hurdle artifacts unless I explicitly ask for that.
+9. If a proposed action exceeds safe scoped edits, present an approval box with affected files and the exact authority requested.
 
 Expected output:
 1. Source summary.
@@ -59,7 +70,9 @@ Expected output:
 5. Claim map: ontology / derivation or closure target / effective summary / speculation.
 6. Concrete mathematical advance if the source supports one.
 7. Affected-document table.
-8. Priority Action Menu with detailed paste-ready follow-up prompts for any work outside the current authority.
+8. Edits made, source-mining history update, regeneration result, and validation result when applicable.
+9. Approval boxes for work outside safe scoped edit authority.
+10. Priority Action Menu with detailed paste-ready follow-up prompts for any work outside the current authority.
 ```
 
 ## Corpus Deferral Rules
@@ -105,7 +118,7 @@ Every source-mining pass should produce a compact report with these parts when a
 5. Corpus value assessment: what helps $\mathbb{A}\mathbb{A}\mathbb{A}$, what should not be imported, where the corpus already covers it, and where the corpus could be strengthened.
 6. Claim map: ontology, derivation or closure target, effective summary, speculation.
 7. Theory-advancement candidates: candidate definitions, closure equations, invariants, proof scaffolds, validation criteria, simulation targets, or disciplined discussion prompts.
-8. Affected-document table: path, issue or opportunity, source signal, recommended update, priority, risk, claim bucket, and approval requirement.
+8. Affected-document table: path, issue or opportunity, source signal, recommended update, priority, risk, claim bucket, and action taken or approval-box requirement.
 9. Priority Action Menu: paste-ready follow-up prompts for work outside the current authority.
 
 ## Source-Family Intake
@@ -146,6 +159,8 @@ Immediate mining order: PIRSA, KITP, IAS / Cornell / Simons, and CERN public det
 
 ## Source-Type Processes
 
+The prompt templates below are edit-batch defaults for ordinary source-mining intake. Convert a template to audit/report mode only when the operator/developer explicitly asks for report-only work.
+
 ### YouTube Videos, Seminars, Interviews, And Course Playlists
 
 Use this process when mining a YouTube video or a video family with available captions, metadata, slides, or linked references.
@@ -162,7 +177,7 @@ Use this process when mining a YouTube video or a video family with available ca
    - `content/markdown/aaa/archie/mathematics-terminology.md`
    - `content/markdown/aaa/archie/comparative-glossary.md`
 8. Search the corpus and priority files for directly relevant homes before recommending edits. Prefer `rg`.
-9. Treat the first pass as audit/report unless the operator/developer explicitly grants edit authority.
+9. Treat the first pass as edit-batch authority unless the operator/developer explicitly requests report-only work.
 10. Optional outreach output: write a helpful comment suitable for the video. Teach the relevant perspective in ordinary language, without using internal project terminology.
 
 YouTube mining selection criteria:
@@ -173,10 +188,10 @@ YouTube mining selection criteria:
 - Do not import the guest's theory, metaphysics, terminology, or worldview as corpus content.
 - Use external material only as a validated benchmark, comparison framework, observational pressure, mathematical technique, falsification or closure target, or a way to sharpen existing corpus prose.
 
-YouTube audit/report prompt template:
+YouTube edit-batch prompt template:
 
 ```text
-Cody, use the AAA corpus advancement skill in audit/report mode to mine this video.
+Cody, use the AAA corpus advancement skill in edit-batch mode to mine this video.
 
 Goal:
 Mine this long-form video for material that could add value to the AAA corpus, without distracting from AAA, importing another theory as doctrine, or introducing new terminology. Use `yt-dlp` to extract available subtitles/transcript and metadata.
@@ -197,7 +212,7 @@ Workflow:
    - `content/markdown/aaa/archie/mathematics-terminology.md`
    - `content/markdown/aaa/archie/comparative-glossary.md`
 8. Search the corpus for directly relevant existing theory homes before recommending edits. Prefer `rg`.
-9. Treat the initial pass as report-only. Do not edit corpus files unless I explicitly approve one of the follow-up prompts.
+9. Treat this as edit-batch authority: make safe scoped edits, update source-mining history, regenerate derived artifacts when source files changed, and run practical validation checks.
 10. Write a helpful comment I can post on the video. Attempt to teach the relevant perspective on the issues without using AAA-specific terminology.
 
 Selection criteria:
@@ -209,7 +224,8 @@ Selection criteria:
 - Separate observable/data product from interpretation.
 - If a claim is interesting but speculative, mark it as speculation and do not recommend corpus edits except as a discussion prompt.
 - If a claim is philosophically interesting but not useful for the corpus, say so briefly and move on.
-- If a claim helps advance AAA, output a prompt for that work for approval.
+- If a claim helps advance AAA and is safe to edit, incorporate it now.
+- If a proposed action exceeds safe scoped edits, present an approval box with affected files and the exact authority requested.
 
 Analysis output:
 1. Source summary:
@@ -239,7 +255,7 @@ Analysis output:
    - Priority: required / high-value / optional.
    - Risk: low / medium / high.
    - Claim bucket affected.
-   - Whether this should be edited only after approval.
+   - Action taken now, or approval-box requirement if outside safe scope.
 7. Priority Action Menu:
    - Every recommended follow-up must be a detailed paste-ready prompt.
    - Prompts should be scoped so approved items can run without interfering.
@@ -259,10 +275,10 @@ Mine slide decks as visual, textual, and speaker-context sources.
 5. Treat design slogans and visual metaphors as explanation candidates, not doctrine.
 6. Promote only definitions, equations, mappings, source leads, worked examples, and theory-advancement candidates that survive terminology and claim-level triage.
 
-PowerPoint audit/report prompt template:
+PowerPoint edit-batch prompt template:
 
 ```text
-Cody, use the AAA corpus advancement skill in audit/report mode to mine this PowerPoint or slide deck.
+Cody, use the AAA corpus advancement skill in edit-batch mode to mine this PowerPoint or slide deck.
 
 Goal:
 Mine the deck as a visual, textual, and speaker-context source. Include Notes pages as first-class source material. Extract every useful AAA-relevant definition, equation, visual mapping, figure, table, source lead, and theory-advancement candidate without importing slide slogans as doctrine.
@@ -284,7 +300,7 @@ Workflow:
    - `content/markdown/aaa/archie/mathematics-terminology.md`
    - `content/markdown/aaa/archie/comparative-glossary.md`
 9. Search the corpus and priority files for directly relevant existing theory homes before recommending edits. Prefer `rg`.
-10. Treat the initial pass as report-only. Do not edit corpus files unless I explicitly approve one of the follow-up prompts.
+10. Treat this as edit-batch authority: make safe scoped edits, update source-mining history, regenerate derived artifacts when source files changed, and run practical validation checks. Present approval boxes only for work outside safe scoped edit authority.
 
 Analysis output:
 1. Source summary:
@@ -311,7 +327,7 @@ Analysis output:
    - Priority: required / high-value / optional.
    - Risk: low / medium / high.
    - Claim bucket affected.
-   - Whether this should be edited only after approval.
+   - Action taken now, or approval-box requirement if outside safe scope.
 7. Priority Action Menu:
    - Every recommended follow-up must be a detailed paste-ready prompt.
    - Include explicit edit authority: none / safe scoped edits allowed / direct edit batch authorized.
@@ -329,10 +345,10 @@ Mine blog hierarchies as development-path sources rather than isolated posts.
 5. Keep historical process material out of the reader-facing corpus unless it yields a current definition, equation, proof route, worked example, or reader-facing bridge.
 6. Do not preserve process-history prose in corpus drafts; rewrite promoted material as current source of truth.
 
-Web hierarchy audit/report prompt template:
+Web hierarchy edit-batch prompt template:
 
 ```text
-Cody, use the AAA corpus advancement skill in audit/report mode to mine this web blog hierarchy.
+Cody, use the AAA corpus advancement skill in edit-batch mode to mine this web blog hierarchy.
 
 Goal:
 Mine the site as a development-path source, not as isolated posts. Recover high-quality insights, linkages, mappings, source leads, theory-advancement candidates, and abandoned paths while keeping historical process material out of reader-facing corpus prose unless it can be rewritten as current source of truth.
@@ -353,7 +369,7 @@ Workflow:
    - `content/markdown/aaa/archie/mathematics-terminology.md`
    - `content/markdown/aaa/archie/comparative-glossary.md`
 8. Search the corpus and priority files for directly relevant existing theory homes before recommending edits. Prefer `rg`.
-9. Treat the initial pass as report-only. Do not edit corpus files unless I explicitly approve one of the follow-up prompts.
+9. Treat this as edit-batch authority: make safe scoped edits, update source-mining history, regenerate derived artifacts when source files changed, and run practical validation checks. Present approval boxes only for work outside safe scoped edit authority.
 
 Analysis output:
 1. Source summary:
@@ -387,7 +403,7 @@ Analysis output:
    - Priority: required / high-value / optional.
    - Risk: low / medium / high.
    - Claim bucket affected.
-   - Whether this should be edited only after approval.
+   - Action taken now, or approval-box requirement if outside safe scope.
 8. Priority Action Menu:
    - Every recommended follow-up must be a detailed paste-ready prompt.
    - Include explicit edit authority: none / safe scoped edits allowed / direct edit batch authorized.
@@ -407,10 +423,10 @@ Mine research documents as structured technical sources.
 7. Translate external terminology into established project terminology only after checking local canon and nearby corpus usage.
 8. Treat imported frameworks as comparison tools unless they protect a tested observable, mathematical consistency condition, or already accepted recovery target.
 
-Research document audit/report prompt template:
+Research document edit-batch prompt template:
 
 ```text
-Cody, use the AAA corpus advancement skill in audit/report mode to mine this research document.
+Cody, use the AAA corpus advancement skill in edit-batch mode to mine this research document.
 
 Goal:
 Mine the paper, book chapter, report, or arXiv source as a structured technical source. Extract equations, definitions, theorem targets, assumptions, empirical constraints, benchmark values, figures, tables, bibliography trails, and theory-advancement candidates without importing the author's framework as AAA doctrine.
@@ -432,7 +448,7 @@ Workflow:
    - `content/markdown/aaa/archie/mathematics-terminology.md`
    - `content/markdown/aaa/archie/comparative-glossary.md`
 9. Search the corpus and priority files for directly relevant existing theory homes before recommending edits. Prefer `rg`.
-10. Treat the initial pass as report-only. Do not edit corpus files unless I explicitly approve one of the follow-up prompts.
+10. Treat this as edit-batch authority: make safe scoped edits, update source-mining history, regenerate derived artifacts when source files changed, and run practical validation checks. Present approval boxes only for work outside safe scoped edit authority.
 
 Analysis output:
 1. Source summary:
@@ -462,7 +478,7 @@ Analysis output:
    - Priority: required / high-value / optional.
    - Risk: low / medium / high.
    - Claim bucket affected.
-   - Whether this should be edited only after approval.
+   - Action taken now, or approval-box requirement if outside safe scope.
 8. Priority Action Menu:
    - Every recommended follow-up must be a detailed paste-ready prompt.
    - Include explicit edit authority: none / safe scoped edits allowed / direct edit batch authorized.
@@ -479,10 +495,10 @@ Mine encyclopedia sources as orientation and source discovery, not as authority 
 4. Treat source reliability as context-dependent and prefer independent, published sources with a reputation for fact-checking and accuracy.
 5. Do not promote a claim solely because it appears in an encyclopedia source.
 
-Wikipedia and encyclopedia audit/report prompt template:
+Wikipedia and encyclopedia edit-batch prompt template:
 
 ```text
-Cody, use the AAA corpus advancement skill in audit/report mode to mine this Wikipedia or encyclopedia source.
+Cody, use the AAA corpus advancement skill in edit-batch mode to mine this Wikipedia or encyclopedia source.
 
 Goal:
 Use the encyclopedia page for orientation, vocabulary, topic boundaries, historical context, and source discovery. Do not treat the page itself as authority for AAA corpus claims. Follow cited references where needed before recommending corpus changes.
@@ -503,7 +519,7 @@ Workflow:
    - `content/markdown/aaa/archie/mathematics-terminology.md`
    - `content/markdown/aaa/archie/comparative-glossary.md`
 8. Search the corpus and priority files for directly relevant existing theory homes before recommending edits. Prefer `rg`.
-9. Treat the initial pass as report-only. Do not edit corpus files unless I explicitly approve one of the follow-up prompts.
+9. Treat this as edit-batch authority: make safe scoped edits, update source-mining history, regenerate derived artifacts when source files changed, and run practical validation checks. Present approval boxes only for work outside safe scoped edit authority.
 
 Analysis output:
 1. Source summary:
@@ -536,7 +552,7 @@ Analysis output:
    - Priority: required / high-value / optional.
    - Risk: low / medium / high.
    - Claim bucket affected.
-   - Whether this should be edited only after approval.
+   - Action taken now, or approval-box requirement if outside safe scope.
 8. Priority Action Menu:
    - Every recommended follow-up must be a detailed paste-ready prompt.
    - Include explicit edit authority: none / safe scoped edits allowed / direct edit batch authorized.
@@ -552,10 +568,10 @@ Use portals such as PDG, CODATA, NIST, GWOSC, NASA LAMBDA, CERN, LVK, EHT, and s
 3. Separate raw measurement, processed data product, fit result, model assumption, and interpretation.
 4. Use these sources to sharpen benchmark comparisons and recovery targets, not to create new hurdle artifacts by default.
 
-Official portal audit/report prompt template:
+Official portal edit-batch prompt template:
 
 ```text
-Cody, use the AAA corpus advancement skill in audit/report mode to mine this official data, review, or reference portal.
+Cody, use the AAA corpus advancement skill in edit-batch mode to mine this official data, review, or reference portal.
 
 Goal:
 Mine the portal for measurement provenance, benchmark values, uncertainty language, release structure, official review summaries, data products, and source leads. Use the material to sharpen AAA benchmark comparisons and recovery targets, not to create new gates, certificates, residual inventories, live-ledger checklists, or similar hurdle artifacts by default.
@@ -577,7 +593,7 @@ Workflow:
    - `content/markdown/aaa/archie/mathematics-terminology.md`
    - `content/markdown/aaa/archie/comparative-glossary.md`
 9. Search the corpus and priority files for directly relevant existing theory homes before recommending edits. Prefer `rg`.
-10. Treat the initial pass as report-only. Do not edit corpus files unless I explicitly approve one of the follow-up prompts.
+10. Treat this as edit-batch authority: make safe scoped edits, update source-mining history, regenerate derived artifacts when source files changed, and run practical validation checks. Present approval boxes only for work outside safe scoped edit authority.
 
 Analysis output:
 1. Source summary:
@@ -609,7 +625,7 @@ Analysis output:
    - Priority: required / high-value / optional.
    - Risk: low / medium / high.
    - Claim bucket affected.
-   - Whether this should be edited only after approval.
+   - Action taken now, or approval-box requirement if outside safe scope.
 8. Priority Action Menu:
    - Every recommended follow-up must be a detailed paste-ready prompt.
    - Include explicit edit authority: none / safe scoped edits allowed / direct edit batch authorized.
@@ -633,10 +649,10 @@ Deferred legacy material classes:
 - operational notes whose main value is cleanup, naming, or publication routing;
 - and other outlook work that is better handled after the core derivation spine is stable.
 
-Legacy material audit/report prompt template:
+Legacy material edit-batch prompt template:
 
 ```text
-Cody, use the AAA corpus advancement skill in audit/report mode to mine this legacy social, WordPress, or operational material.
+Cody, use the AAA corpus advancement skill in edit-batch mode to mine this legacy social, WordPress, or operational material.
 
 Goal:
 Mine legacy material for original intuition, source leads, naming decisions, reader-facing bridges, analogy seeds, and theory-advancement candidates while keeping productization, outlook material, abandoned language, and historical process subordinate to current theory closure.
@@ -658,7 +674,7 @@ Workflow:
    - `content/markdown/aaa/archie/mathematics-terminology.md`
    - `content/markdown/aaa/archie/comparative-glossary.md`
 9. Search the corpus and priority files for directly relevant existing theory homes before recommending edits. Prefer `rg`.
-10. Treat the initial pass as report-only. Do not edit corpus files unless I explicitly approve one of the follow-up prompts.
+10. Treat this as edit-batch authority: make safe scoped edits, update source-mining history, regenerate derived artifacts when source files changed, and run practical validation checks. Present approval boxes only for work outside safe scoped edit authority.
 
 Analysis output:
 1. Source summary:
@@ -694,7 +710,7 @@ Analysis output:
    - Priority: required / high-value / optional.
    - Risk: low / medium / high.
    - Claim bucket affected.
-   - Whether this should be edited only after approval.
+   - Action taken now, or approval-box requirement if outside safe scope.
 8. Priority Action Menu:
    - Every recommended follow-up must be a detailed paste-ready prompt.
    - Include explicit edit authority: none / safe scoped edits allowed / direct edit batch authorized.

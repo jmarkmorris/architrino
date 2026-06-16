@@ -36,6 +36,8 @@ export interface SolverClient {
     request: SolverCausalRootBatchF64Request
   ): Promise<SolverCausalRootBatchF64Response>;
   solveRootsAndHitsF64(request: SolverCausalRootsF64Request): Promise<SolverRootsAndHitsF64Response>;
+  computePhaseAtHitF64(request: SolverPhaseAtHitF64Request): Promise<SolverPhaseAtHitF64Response>;
+  sampleLinearMotionF64(request: SolverLinearMotionSampleF64Request): Promise<SolverLinearMotionSampleF64Response>;
   cancelRun(request: SolverCancelRequest): Promise<SolverStatusRecord>;
   openStream(request: SolverOpenStreamRequest): Promise<SolverStreamHandle>;
   readStreamRange(request: SolverReadStreamRangeRequest): Promise<SolverStreamRangeResponse>;
@@ -60,6 +62,31 @@ export interface SolverVector3F64 {
   x: number;
   y: number;
   z: number;
+}
+
+export interface SolverLinearMotionSampleF64Request {
+  segment: SolverLinearPathSegmentF64;
+  pathKey: number;
+  startTime: number;
+  endTime: number;
+  step: number;
+  stateFlags?: number;
+}
+
+export interface SolverLinearMotionSampleF64Response {
+  frames: SolverMotionFrameF64[];
+  buffers: SolverBufferDescriptor[];
+  status: SolverStatusRecord;
+}
+
+export interface SolverMotionFrameF64 {
+  pathKey: number;
+  frameIndex: number;
+  time: number;
+  position: SolverVector3F64;
+  velocity: SolverVector3F64;
+  errorBound: number;
+  stateFlags: number;
 }
 
 export interface SolverCausalRootsF64Request {
@@ -128,6 +155,37 @@ export interface SolverRootsAndHitsF64Response {
   status: SolverStatusRecord;
 }
 
+export interface SolverPhaseClockF64 {
+  period: number;
+  epoch?: number;
+  phaseOffset?: number;
+}
+
+export interface SolverPhaseAtHitF64Request {
+  roots: SolverCausalRootF64[];
+  sourceClock: SolverPhaseClockF64;
+  receiverClock: SolverPhaseClockF64;
+}
+
+export interface SolverPhaseAtHitF64Response {
+  rows: SolverPhaseAtHitF64[];
+  buffers: SolverBufferDescriptor[];
+  status: SolverStatusRecord;
+}
+
+export interface SolverPhaseAtHitF64 {
+  rootId: number;
+  statusCode: number;
+  sourceCycleIndex: number;
+  receiverCycleIndex: number;
+  emissionTime: number;
+  hitTime: number;
+  sourcePhase: number;
+  receiverPhase: number;
+  phaseDelta: number;
+  phaseSpread: number;
+}
+
 export interface SolverCausalRootF64 {
   rootId: number;
   statusCode: number;
@@ -165,6 +223,9 @@ export interface SolverInitRequest {
 }
 
 export interface SolverRunRequest {
+  requestId?: string;
+  runId?: string;
+  datasetId?: string;
   appId: SolverAppId;
   runKind: SolverRunKind;
   claimLevel: SolverClaimLevel;
@@ -224,10 +285,16 @@ export interface SolverErrorBudget {
 }
 
 export type SolverRunConfig =
+  | CausalRootsSolverConfig
   | AnimatorSolverConfig
   | PhotonSolverConfig
   | IdealSwarmSolverConfig
   | ValidationReplayConfig;
+
+export interface CausalRootsSolverConfig {
+  appId: SolverAppId;
+  rootRequest: SolverCausalRootsF64Request;
+}
 
 export interface SolverRunHandle {
   requestId: string;
@@ -236,6 +303,8 @@ export interface SolverRunHandle {
   cancellationToken: string;
   acceptedPrecisionPath: SolverPrecisionPath;
   expectedOutputs: SolverOutputKind[];
+  response?: SolverRunResponse;
+  status?: SolverStatusRecord;
 }
 
 export type SolverOutputKind =
@@ -297,6 +366,8 @@ export interface SolverRunResponse {
   buffers: SolverBufferDescriptor[];
   streams: SolverStreamDescriptor[];
   diagnostics: SolverDiagnosticRecord[];
+  roots?: SolverCausalRootF64[];
+  hits?: SolverDelayedHitF64[];
   status: SolverStatusRecord;
 }
 

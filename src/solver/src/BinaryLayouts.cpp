@@ -42,6 +42,15 @@ std::string_view to_string(ByteOrder value) {
 
 BinaryLayoutDescriptor binary_layout_descriptor(BinaryLayoutId layoutId) {
   switch (layoutId) {
+    case BinaryLayoutId::FrameBufferV1:
+      return BinaryLayoutDescriptor{
+          layoutId,
+          to_string(layoutId),
+          NumericType::F64,
+          ByteOrder::LittleEndian,
+          88,
+          "path key, frame index, time, position, velocity, error bound, state flags",
+      };
     case BinaryLayoutId::PathSegmentV1:
       return BinaryLayoutDescriptor{
           layoutId,
@@ -69,6 +78,15 @@ BinaryLayoutDescriptor binary_layout_descriptor(BinaryLayoutId layoutId) {
           128,
           "event id, root id, status, emission/hit/distance/J/strength, emission point, receiver point, unit direction",
       };
+    case BinaryLayoutId::PhaseAtHitV1:
+      return BinaryLayoutDescriptor{
+          layoutId,
+          to_string(layoutId),
+          NumericType::F64,
+          ByteOrder::LittleEndian,
+          72,
+          "root id, status, source/receiver cycle indices, emission/hit time, source/receiver phase, phase delta/spread",
+      };
     case BinaryLayoutId::StreamIndexV1:
       return BinaryLayoutDescriptor{
           layoutId,
@@ -92,9 +110,11 @@ BinaryLayoutDescriptor binary_layout_descriptor(BinaryLayoutId layoutId) {
 
 std::vector<BinaryLayoutDescriptor> core_solver_layouts() {
   return {
+      binary_layout_descriptor(BinaryLayoutId::FrameBufferV1),
       binary_layout_descriptor(BinaryLayoutId::PathSegmentV1),
       binary_layout_descriptor(BinaryLayoutId::RootLedgerV1),
       binary_layout_descriptor(BinaryLayoutId::DelayedHitEventsV1),
+      binary_layout_descriptor(BinaryLayoutId::PhaseAtHitV1),
       binary_layout_descriptor(BinaryLayoutId::StreamIndexV1),
   };
 }

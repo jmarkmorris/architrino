@@ -526,10 +526,7 @@ final class ReaderViewModel: ObservableObject {
         do {
             let state = try JSONDecoder().decode(ReaderPosition.self, from: stateData)
             if package?.chapterById[state.chapterId] != nil || package?.referenceById[state.chapterId] != nil {
-                let firstChapterId = package?.manifest.chapters.first?.id
-                let isLegacyExplicitPosition = state.isExplicit == nil
-                    && (state.anchor != nil || state.chapterId != firstChapterId)
-                guard state.isExplicit == true || isLegacyExplicitPosition else {
+                guard state.isExplicit == true else {
                     currentChapterId = nil
                     currentAnchor = nil
                     defaults.removeObject(forKey: stateKey)
