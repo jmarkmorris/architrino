@@ -748,6 +748,8 @@ $$
 **Conceptual View:** A slow contracting phase smooths and flattens the universe, then
 a bounce leads to expansion.
 
+The current Turok--Boyle CPT-symmetric cosmology line should be tracked separately from this older Steinhardt--Turok ekpyrotic/cyclic entry. Its useful pressure is boundary-condition discipline: can a cosmology state a symmetric continuation, entropy-arrow account, particle-sector content, and CMB/BBN/growth residuals with fewer adjustable interpretive commitments? For $\mathbb{A}\mathbb{A}\mathbb{A}$, that is a comparison question rather than an import of CPT-mirror ontology or a right-handed-neutrino dark sector by default.
+
 **Key Equation:** Contracting equation-of-state:
 $$
 w \gg 1 \Rightarrow a(t) \propto (-t)^{2/3(1+w)}

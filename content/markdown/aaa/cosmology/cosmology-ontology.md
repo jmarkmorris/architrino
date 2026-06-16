@@ -323,6 +323,15 @@ $$
 $$
 A high $\mathcal{S}_{\mathrm{init}}$ means the smoothing or release explanation has been moved into a small allowed initial basin. A low value means the declared mechanism is robust under the chosen chart. This is a diagnostic on the branch record, not an external probability assigned after the dynamics.
 
+The same burden can be written in a compact conditioned form when the cosmology branch has already declared its constraint set:
+$$
+I_{\mathrm{init}}(\theta)
+=
+-\log
+\mu_{\mathrm{state}}\!\left(B_\theta\mid C_{\mathrm{cos}}\right)
+$$
+Here $C_{\mathrm{cos}}$ is the declared cosmology constraint set, $B_\theta$ is the subset of admissible Noether sea and path-history states that project to the observed CMB, BBN, growth/lensing, and frame packet, and $\mu_{\mathrm{state}}$ is the branch-internal state measure conditioned on $C_{\mathrm{cos}}$. A branch that explains smoothness only by making $\mu_{\mathrm{state}}(B_\theta\mid C_{\mathrm{cos}})$ tiny has relocated the burden into initial selection rather than deriving it from Noether sea dynamics.
+
 Claims about observer selection, anthropic conditioning, or typicality belong inside the same inference ledger. They should not be promoted as cosmological facts unless their weights are projected from the declared data-product family and the same shared Noether sea state record. For an observer-accessible datum $D_a$ on a window $W$, write
 $$
 P_{\theta_{\mathrm{sea}},W}(D_a)

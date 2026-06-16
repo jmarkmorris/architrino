@@ -25,6 +25,10 @@ This guide is a source-intake and source-processing practice. It is not another 
 - Existing validation, gate, certificate, residual, and ledger processes remain separate. Source mining may identify benchmark pressure or an existing recovery target, but it should not create new hurdle artifacts by default.
 - Authored corpus pages should receive only the safe current substance: definitions, equations, proof routes, worked examples, claim-level corrections, or source-backed bridge prose. They should not link back to priority-only source-mining process material.
 
+## Mining History
+
+The completed target list lives in [source-mining-history](source-mining-history.md). When a source-mining pass mines a new source or source family, add it to that history file with the source identity, link or path when available, and date mined.
+
 ## Generic Source-Mining Prompt
 
 Use this prompt when the source type is unknown, mixed, or not worth choosing a narrower template before the first pass.
