@@ -49,10 +49,29 @@ $$
 $$
 whose apparatus kernel, coarse-graining, access region, record window, record classes, and finite-time basin measure all belong to the same coupled flow. The observer-level probability is then a record statistic,
 $$
-p_k(\theta)
-=
-\mu_{*,T}\!\left(\pi^{-1}(R_k)\right)
+p_k(\theta)=\mu_{*,T}\!\left(\pi^{-1}(R_k)\right)
 $$
+is valid only after a branch has earned a record. A record is not every formal correlation, only a branch that closes the full physical transition:
+
+$$
+\mathsf R_\theta(\gamma_i,T)
+=
+\mathsf C_\theta(\gamma_i,T)\,
+\mathsf L_\theta(\gamma_i,T)\,
+\mathsf P_\theta(\gamma_i,T)\,
+\mathsf N_\theta(\gamma_i,T)
+$$
+
+where $\mathsf C_\theta$ is a genuine detector-target coupling, $\mathsf L_\theta$ is ledger closure for conservation and recoil transfer, $\mathsf P_\theta$ is persistence over the record window, and $\mathsf N_\theta$ is no-signaling consistency.
+
+For a declared packet the weighted outcome is the normalized eligible-measure:
+
+$$
+p_k^{\mathrm{rec}}(\theta)=
+\frac{\mu_{*,T}\!\left(\pi^{-1}(R_k)\cap \mathsf R_\theta^{-1}(1)\right)}
+{\sum_j\mu_{*,T}\!\left(\pi^{-1}(R_j)\cap \mathsf R_\theta^{-1}(1)\right)}
+$$
+
 not an extra rule assigned after the dynamics. This keeps the empirical measurement formalism intact while forcing the words "measurement," "outcome," and "probability" to earn a physical record channel.
 
 ### Transfer-Operator Measure Contract
