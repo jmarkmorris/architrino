@@ -7,6 +7,7 @@ struct TextbookBundleManifest: Decodable {
     let packageVersion: String
     let textbookToc: TextbookBundleTOC
     let chapters: [TextbookChapter]
+    let references: [TextbookReferenceDocument]
     let files: [TextbookBundleFile]
     let links: [TextbookLinkMetadata]
 }
@@ -38,6 +39,13 @@ struct TextbookBundleFile: Decodable {
     let sha256: String
 }
 
+struct TextbookReferenceDocument: Decodable, Identifiable, Equatable, Hashable {
+    let id: String
+    let title: String
+    let sourcePath: String
+    let bundlePath: String
+}
+
 struct TextbookLinkMetadata: Decodable, Equatable, Hashable {
     let sourceChapterId: String
     let sourcePath: String
@@ -61,14 +69,31 @@ struct TextbookSearchEntry: Decodable, Identifiable, Equatable {
     let headingLevel: Int
     let text: String
     let snippet: String
+    let snippetMarkdown: String?
     let sectionKey: String?
 
     var id: String { "\(chapterId)::\(sectionAnchor)" }
+
+    var renderedPreviewMarkdown: String {
+        let preview = (snippetMarkdown?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false)
+            ? snippetMarkdown!
+            : snippet
+        let trimmedTitle = sectionTitle.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedPreview = preview.trimmingCharacters(in: .whitespacesAndNewlines)
+        if trimmedTitle.isEmpty {
+            return trimmedPreview
+        }
+        if trimmedPreview.isEmpty {
+            return trimmedTitle
+        }
+        return "\(trimmedTitle)\n\n\(trimmedPreview)"
+    }
 }
 
 struct ReaderPosition: Codable {
     let chapterId: String
     let anchor: String?
+    let isExplicit: Bool?
 }
 
 struct ReaderBookmark: Codable, Identifiable, Equatable {
@@ -105,6 +130,8 @@ struct TextbookTOCNode: Decodable, Identifiable {
     let title: String
     let kind: String?
     let markdownPath: String?
+    let markdownSection: String?
+    let sectionKey: String?
     let scenePath: String?
     let sceneType: String?
     let sections: [TextbookTOCSection]?
@@ -254,10 +281,15 @@ struct ReaderPackageData {
     let searchIndex: TextbookSearchIndex
     let tocPackage: TextbookTOCPackage
     let tocChapterByNodeId: [String: String]
+    let tocNodeByMarkdownPath: [String: TextbookTOCNode]
     let linksBySourcePath: [String: [TextbookLinkMetadata]]
     let chapterBySourcePath: [String: TextbookChapter]
     let chapterById: [String: TextbookChapter]
     let chapterByBasename: [String: TextbookChapter]
+    let referenceBySourcePath: [String: TextbookReferenceDocument]
+    let referenceByBundlePath: [String: TextbookReferenceDocument]
+    let referenceById: [String: TextbookReferenceDocument]
+    let referenceByBasename: [String: TextbookReferenceDocument]
 }
 
 extension ReaderTextbookLoader {
@@ -272,16 +304,39 @@ extension ReaderTextbookLoader {
             chapterIds: chapterIds,
             inheritedChapterId: nil
         )
+        let tocNodeByMarkdownPath = buildTOCMarkdownPathLookup(node: tocPackage.tocRoot)
 
         var bySourcePath: [String: TextbookChapter] = [:]
         var byId: [String: TextbookChapter] = [:]
         var byBasename: [String: TextbookChapter] = [:]
+        var referenceBySourcePath: [String: TextbookReferenceDocument] = [:]
+        var referenceByBundlePath: [String: TextbookReferenceDocument] = [:]
+        var referenceById: [String: TextbookReferenceDocument] = [:]
+        var referenceByBasename: [String: TextbookReferenceDocument] = [:]
 
         for chapter in manifest.chapters {
             bySourcePath[normalizePath(chapter.markdownPath)] = chapter
             byId[chapter.id] = chapter
             byBasename[URL(fileURLWithPath: chapter.markdownPath).deletingPathExtension().lastPathComponent.lowercased()] = chapter
             byBasename[URL(fileURLWithPath: chapter.bundlePath).deletingPathExtension().lastPathComponent.lowercased()] = chapter
+        }
+
+        for reference in manifest.references {
+            referenceBySourcePath[normalizePath(reference.sourcePath)] = reference
+            referenceByBundlePath[normalizePath(reference.bundlePath)] = reference
+            referenceById[reference.id] = reference
+            referenceByBasename[
+                URL(fileURLWithPath: reference.sourcePath)
+                    .deletingPathExtension()
+                    .lastPathComponent
+                    .lowercased()
+            ] = reference
+            referenceByBasename[
+                URL(fileURLWithPath: reference.bundlePath)
+                    .deletingPathExtension()
+                    .lastPathComponent
+                    .lowercased()
+            ] = reference
         }
 
         var grouped: [String: [TextbookLinkMetadata]] = [:]
@@ -295,10 +350,15 @@ extension ReaderTextbookLoader {
             searchIndex: searchIndex,
             tocPackage: tocPackage,
             tocChapterByNodeId: tocChapterByNodeId,
+            tocNodeByMarkdownPath: tocNodeByMarkdownPath,
             linksBySourcePath: grouped,
             chapterBySourcePath: bySourcePath,
             chapterById: byId,
-            chapterByBasename: byBasename
+            chapterByBasename: byBasename,
+            referenceBySourcePath: referenceBySourcePath,
+            referenceByBundlePath: referenceByBundlePath,
+            referenceById: referenceById,
+            referenceByBasename: referenceByBasename
         )
     }
 
@@ -328,6 +388,30 @@ extension ReaderTextbookLoader {
         }
 
         return byNodeId
+    }
+
+    private func buildTOCMarkdownPathLookup(node: TextbookTOCNode) -> [String: TextbookTOCNode] {
+        var byPath: [String: TextbookTOCNode] = [:]
+
+        if let markdownPath = node.markdownPath?.trimmingCharacters(in: .whitespacesAndNewlines),
+           !markdownPath.isEmpty {
+            byPath[normalizePath(markdownPath)] = node
+        }
+
+        for section in node.resolvedSections {
+            guard let markdownPath = section.markdownPath?.trimmingCharacters(in: .whitespacesAndNewlines),
+                  !markdownPath.isEmpty else {
+                continue
+            }
+            byPath[normalizePath(markdownPath), default: node] = node
+        }
+
+        for child in node.resolvedChildren {
+            let childMap = buildTOCMarkdownPathLookup(node: child)
+            byPath.merge(childMap) { first, _ in first }
+        }
+
+        return byPath
     }
 }
 

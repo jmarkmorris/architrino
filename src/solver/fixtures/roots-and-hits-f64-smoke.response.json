@@ -1,0 +1,123 @@
+{
+  "schema": "solver-app-bridge/v1",
+  "kind": "roots-and-hits-f64-response",
+  "requestId": "causal-roots-f64-smoke",
+  "response": {
+    "roots": [
+      {
+        "rootId": 0,
+        "statusCode": 0,
+        "emissionTime": 0,
+        "hitTime": 10,
+        "delay": 10,
+        "distance": 10,
+        "residual": 0,
+        "jacobian": 1,
+        "branchWeight": 1,
+        "sourcePoint": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "receiverPoint": {
+          "x": 10,
+          "y": 0,
+          "z": 0
+        }
+      }
+    ],
+    "hits": [
+      {
+        "eventId": 0,
+        "rootId": 0,
+        "statusCode": 0,
+        "emissionTime": 0,
+        "hitTime": 10,
+        "distance": 10,
+        "jacobian": 1,
+        "strength": 1,
+        "emissionPoint": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "receiverPoint": {
+          "x": 10,
+          "y": 0,
+          "z": 0
+        },
+        "unitDirection": {
+          "x": 1,
+          "y": 0,
+          "z": 0
+        }
+      }
+    ],
+    "buffers": [
+      {
+        "bufferId": "root-ledger",
+        "layout": "root_ledger.v1",
+        "byteOffset": 0,
+        "byteLength": 112,
+        "rowCount": 1,
+        "numericType": "f64"
+      },
+      {
+        "bufferId": "delayed-hit-events",
+        "layout": "delayed_hit_events.v1",
+        "byteOffset": 0,
+        "byteLength": 128,
+        "rowCount": 1,
+        "numericType": "f64"
+      }
+    ],
+    "streams": [
+      {
+        "streamId": "causal-root-transient",
+        "manifestVersion": "solver-stream-manifest.v1",
+        "indexLayout": "stream_index.v1",
+        "availableRanges": [
+          {
+            "timeRange": {
+              "start": 10,
+              "end": 10
+            },
+            "frameRange": {
+              "start": 0,
+              "end": 0
+            },
+            "byteRange": {
+              "start": 0,
+              "end": 112
+            }
+          },
+          {
+            "timeRange": {
+              "start": 10,
+              "end": 10
+            },
+            "frameRange": {
+              "start": 0,
+              "end": 0
+            },
+            "byteRange": {
+              "start": 112,
+              "end": 240
+            }
+          }
+        ],
+        "storagePolicy": {
+          "target": "caller-buffer",
+          "durable": false,
+          "maxBytes": 240
+        }
+      }
+    ],
+    "status": {
+      "code": "ok",
+      "severity": "ok",
+      "message": "causal roots and delayed hits solved",
+      "recoverable": true
+    }
+  }
+}

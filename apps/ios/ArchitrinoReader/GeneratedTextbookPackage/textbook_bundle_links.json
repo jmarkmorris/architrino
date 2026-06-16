@@ -1,8 +1,56 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-06-16T20:43:44.473Z",
-  "total_links": 1316,
+  "generated_at": "2026-06-16T21:11:04.190Z",
+  "total_links": 1322,
   "links": [
+    {
+      "sourceChapterId": "archie-academic-style-guide",
+      "sourcePath": "content/markdown/aaa/archie/academic-style-guide.md",
+      "target": "mathematics-style-guide.md",
+      "kind": "markdown",
+      "status": "bundled_reference",
+      "targetBundlePath": "references/mathematics-style-guide.md"
+    },
+    {
+      "sourceChapterId": "archie-mathematics-terminology",
+      "sourcePath": "content/markdown/aaa/archie/mathematics-terminology.md",
+      "target": "../spacetime/ppn-parameters.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/ppn-parameters.md"
+    },
+    {
+      "sourceChapterId": "archie-terminology-usage",
+      "sourcePath": "content/markdown/aaa/archie/terminology-usage.md",
+      "target": "./academic-style-guide.md",
+      "kind": "markdown",
+      "status": "bundled_reference",
+      "targetBundlePath": "references/academic-style-guide.md"
+    },
+    {
+      "sourceChapterId": "archie-terminology-usage",
+      "sourcePath": "content/markdown/aaa/archie/terminology-usage.md",
+      "target": "./comparative-glossary.md",
+      "kind": "markdown",
+      "status": "bundled_reference",
+      "targetBundlePath": "references/comparative-glossary.md"
+    },
+    {
+      "sourceChapterId": "archie-terminology-usage",
+      "sourcePath": "content/markdown/aaa/archie/terminology-usage.md",
+      "target": "./mathematics-style-guide.md",
+      "kind": "markdown",
+      "status": "bundled_reference",
+      "targetBundlePath": "references/mathematics-style-guide.md"
+    },
+    {
+      "sourceChapterId": "archie-terminology-usage",
+      "sourcePath": "content/markdown/aaa/archie/terminology-usage.md",
+      "target": "./mathematics-terminology.md",
+      "kind": "markdown",
+      "status": "bundled_reference",
+      "targetBundlePath": "references/mathematics-terminology.md"
+    },
     {
       "sourceChapterId": "assemblies",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
@@ -2712,40 +2760,40 @@
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "target": "../../../../markdown/aaa/archie/academic-style-guide.md",
       "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/archie/academic-style-guide.md"
+      "status": "bundled_reference",
+      "targetBundlePath": "references/academic-style-guide.md"
     },
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "target": "../../../../markdown/aaa/archie/comparative-glossary.md",
       "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/archie/comparative-glossary.md"
+      "status": "bundled_reference",
+      "targetBundlePath": "references/comparative-glossary.md"
     },
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "target": "../../../../markdown/aaa/archie/mathematics-terminology.md",
       "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/archie/mathematics-terminology.md"
+      "status": "bundled_reference",
+      "targetBundlePath": "references/mathematics-terminology.md"
     },
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "target": "../../../../markdown/aaa/archie/terminology-usage.md",
       "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/archie/terminology-usage.md"
+      "status": "bundled_reference",
+      "targetBundlePath": "references/terminology-usage.md"
     },
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "target": "../../../../markdown/aaa/archie/terminology-usage.md",
       "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/archie/terminology-usage.md"
+      "status": "bundled_reference",
+      "targetBundlePath": "references/terminology-usage.md"
     },
     {
       "sourceChapterId": "foundations",

@@ -16,6 +16,8 @@ final class ReaderViewModel: ObservableObject {
     @Published var isBookmarksPresented: Bool = false
     @Published var renderCommand: ReaderRenderCommand?
     @Published var bootstrapContext: ReaderBootstrapContext?
+    @Published var readerNotice: String?
+    @Published private(set) var restoredReadingState: Bool = false
 
     private let loader = ReaderTextbookLoader()
     private let defaults = UserDefaults.standard
@@ -57,6 +59,13 @@ final class ReaderViewModel: ObservableObject {
         case none
     }
 
+    private struct ReaderDocument {
+        let id: String
+        let title: String
+        let sourcePath: String
+        let bundlePath: String
+    }
+
     init() {
         bootstrap()
     }
@@ -78,7 +87,7 @@ final class ReaderViewModel: ObservableObject {
             isReady = false
             package = data
             markdownCache.removeAll(keepingCapacity: false)
-            restoreReadingState()
+            restoredReadingState = restoreReadingState()
             buildBootstrapContext()
             errorMessage = nil
 
@@ -93,6 +102,7 @@ final class ReaderViewModel: ObservableObject {
             package = nil
             renderCommand = nil
             bootstrapContext = nil
+            restoredReadingState = false
         }
     }
 
@@ -100,6 +110,16 @@ final class ReaderViewModel: ObservableObject {
         guard let package,
               let chapterId = currentChapterId else { return nil }
         return package.chapterById[chapterId]
+    }
+
+    var currentReferenceDocument: TextbookReferenceDocument? {
+        guard let package,
+              let chapterId = currentChapterId else { return nil }
+        return package.referenceById[chapterId]
+    }
+
+    var currentDocumentTitle: String {
+        currentChapter?.title ?? currentReferenceDocument?.title ?? "Textbook"
     }
 
     var chapterCount: Int {
@@ -112,6 +132,14 @@ final class ReaderViewModel: ObservableObject {
 
     var packageVersionLabel: String {
         package?.manifest.packageVersion ?? "unavailable"
+    }
+
+    var canOpenGlossary: Bool {
+        package?.referenceById["archie-comparative-glossary"] != nil
+    }
+
+    var isCurrentPositionBookmarked: Bool {
+        currentBookmarkIndex != nil
     }
 
     func chapter(at index: Int) -> TextbookChapter? {
@@ -176,10 +204,17 @@ final class ReaderViewModel: ObservableObject {
     }
 
     func openChapter(by id: String, anchor: String?) {
-        currentAnchor = anchor
-        currentChapterId = id
-        emitRenderCommand()
-        saveReadingState()
+        guard package?.chapterById[id] != nil else { return }
+        openDocument(by: id, anchor: anchor)
+    }
+
+    func openReferenceDocument(by id: String, anchor: String?) {
+        guard package?.referenceById[id] != nil else { return }
+        openDocument(by: id, anchor: anchor)
+    }
+
+    func openGlossary() {
+        openReferenceDocument(by: "archie-comparative-glossary", anchor: nil)
     }
 
     func openSearchResult(_ result: TextbookSearchEntry) {
@@ -189,11 +224,11 @@ final class ReaderViewModel: ObservableObject {
 
     func openAnchor(_ anchor: String?) {
         guard let currentChapterId else { return }
-        openChapter(by: currentChapterId, anchor: anchor)
+        openDocument(by: currentChapterId, anchor: anchor)
     }
 
     func handleNavigationFromWeb(to chapterId: String, anchor: String?) {
-        openChapter(by: chapterId, anchor: anchor)
+        openDocument(by: chapterId, anchor: anchor)
     }
 
     func search(_ query: String) {
@@ -235,6 +270,15 @@ final class ReaderViewModel: ObservableObject {
         persistBookmarks()
     }
 
+    func toggleCurrentBookmark() {
+        if let index = currentBookmarkIndex {
+            bookmarks.remove(at: index)
+            persistBookmarks()
+            return
+        }
+        addBookmark()
+    }
+
     func removeBookmark(_ bookmark: ReaderBookmark) {
         bookmarks.removeAll { $0.id == bookmark.id }
         persistBookmarks()
@@ -258,7 +302,7 @@ final class ReaderViewModel: ObservableObject {
         }
 
         if webappTOCKinds.contains(kind) {
-            if let fallback = URL(string: appWebBaseURL) {
+            if let fallback = webAppURL(for: node) {
                 return .external(fallback)
             }
             return .none
@@ -298,8 +342,13 @@ final class ReaderViewModel: ObservableObject {
         }
 
         if payload.kind == "markdown" || payload.status == "kept_out_of_bundle" {
-            if let anchorTarget = resolveChapterTarget(from: payload.targetBundlePath ?? payload.href, defaultAnchor: payload.anchor) {
-                openChapter(by: anchorTarget.chapterId, anchor: anchorTarget.anchor)
+            if let anchorTarget = resolveDocumentTarget(from: payload.targetBundlePath ?? payload.href, defaultAnchor: payload.anchor) {
+                openDocument(by: anchorTarget.documentId, anchor: anchorTarget.anchor)
+                return nil
+            }
+
+            if payload.status == "kept_out_of_bundle" {
+                readerNotice = "This reference is not included in this app bundle."
                 return nil
             }
 
@@ -326,23 +375,30 @@ final class ReaderViewModel: ObservableObject {
         !(package?.manifest.chapters.isEmpty ?? true)
     }
 
-    func glossaryURL() -> URL? {
-        return fallbackExternalURL(for: "content/markdown/aaa/archie/comparative-glossary.md", anchor: nil)
+    private func openDocument(by id: String, anchor: String?) {
+        guard package?.chapterById[id] != nil || package?.referenceById[id] != nil else {
+            return
+        }
+        readerNotice = nil
+        currentAnchor = anchor
+        currentChapterId = id
+        emitRenderCommand()
+        saveReadingState()
     }
 
     private func emitRenderCommand() {
         guard let package,
               let chapterId = currentChapterId,
-              let chapter = package.chapterById[chapterId],
+              let document = readerDocument(by: chapterId),
               let bootstrapContext else {
             renderCommand = nil
             return
         }
 
-        let chapterMarkdown = loadChapterText(chapter)
+        let markdownText = loadDocumentText(document)
 
         var linkMap: [String: ReaderPayloadChapterLink] = [:]
-        for link in package.linksBySourcePath[normalizePath(chapter.markdownPath)] ?? [] {
+        for link in package.linksBySourcePath[normalizePath(document.sourcePath)] ?? [] {
             linkMap[link.target] = ReaderPayloadChapterLink(
                 target: link.target,
                 kind: link.kind,
@@ -353,16 +409,15 @@ final class ReaderViewModel: ObservableObject {
 
         renderCommand = ReaderRenderCommand(
             id: UUID(),
-            chapterId: chapter.id,
-            chapterTitle: chapter.title,
-            sourcePath: chapter.markdownPath,
-            markdownText: chapterMarkdown,
+            chapterId: document.id,
+            chapterTitle: document.title,
+            sourcePath: document.sourcePath,
+            markdownText: markdownText,
             linkMap: linkMap,
             initialAnchor: currentAnchor,
             fontScale: fontScale,
             bootstrapContext: bootstrapContext
         )
-        saveReadingState()
     }
 
     private func buildBootstrapContext() {
@@ -390,22 +445,60 @@ final class ReaderViewModel: ObservableObject {
             ] = chapter.id
         }
 
+        for reference in package.manifest.references {
+            bySource[normalizePath(reference.sourcePath)] = reference.id
+            bySource[normalizePath(reference.bundlePath)] = reference.id
+            byBasename[
+                URL(fileURLWithPath: reference.sourcePath)
+                    .deletingPathExtension()
+                    .lastPathComponent
+                    .lowercased()
+            ] = reference.id
+            byBasename[
+                URL(fileURLWithPath: reference.bundlePath)
+                    .deletingPathExtension()
+                    .lastPathComponent
+                    .lowercased()
+            ] = reference.id
+        }
+
         bootstrapContext = ReaderBootstrapContext(
             chapterBySourcePath: bySource,
             chapterByBasename: byBasename
         )
     }
 
-    private func loadChapterText(_ chapter: TextbookChapter) -> String {
-        if let cached = markdownCache[chapter.id] {
+    private func readerDocument(by id: String) -> ReaderDocument? {
+        guard let package else { return nil }
+        if let chapter = package.chapterById[id] {
+            return ReaderDocument(
+                id: chapter.id,
+                title: chapter.title,
+                sourcePath: chapter.markdownPath,
+                bundlePath: chapter.bundlePath
+            )
+        }
+        if let reference = package.referenceById[id] {
+            return ReaderDocument(
+                id: reference.id,
+                title: reference.title,
+                sourcePath: reference.sourcePath,
+                bundlePath: reference.bundlePath
+            )
+        }
+        return nil
+    }
+
+    private func loadDocumentText(_ document: ReaderDocument) -> String {
+        if let cached = markdownCache[document.id] {
             return cached
         }
         do {
-            let text = try loader.chapterMarkdown(relativePath: chapter.bundlePath)
-            markdownCache[chapter.id] = text
+            let text = try loader.chapterMarkdown(relativePath: document.bundlePath)
+            markdownCache[document.id] = text
             return text
         } catch {
-            return "# Failed to load chapter\n\n\(error.localizedDescription)"
+            return "# Failed to load document\n\n\(error.localizedDescription)"
         }
     }
 
@@ -413,7 +506,8 @@ final class ReaderViewModel: ObservableObject {
         guard let currentChapterId else { return }
         let state = ReaderPosition(
             chapterId: currentChapterId,
-            anchor: currentAnchor
+            anchor: currentAnchor,
+            isExplicit: true
         )
         do {
             let payload = try JSONEncoder().encode(state)
@@ -423,22 +517,33 @@ final class ReaderViewModel: ObservableObject {
         }
     }
 
-    private func restoreReadingState() {
+    private func restoreReadingState() -> Bool {
         guard let stateData = defaults.data(forKey: stateKey) else {
             currentChapterId = nil
             currentAnchor = nil
-            return
+            return false
         }
         do {
             let state = try JSONDecoder().decode(ReaderPosition.self, from: stateData)
-            if package?.chapterById[state.chapterId] != nil {
+            if package?.chapterById[state.chapterId] != nil || package?.referenceById[state.chapterId] != nil {
+                let firstChapterId = package?.manifest.chapters.first?.id
+                let isLegacyExplicitPosition = state.isExplicit == nil
+                    && (state.anchor != nil || state.chapterId != firstChapterId)
+                guard state.isExplicit == true || isLegacyExplicitPosition else {
+                    currentChapterId = nil
+                    currentAnchor = nil
+                    defaults.removeObject(forKey: stateKey)
+                    return false
+                }
                 currentChapterId = state.chapterId
                 currentAnchor = state.anchor
+                return true
             }
         } catch {
             currentChapterId = nil
             currentAnchor = nil
         }
+        return false
     }
 
     private func loadBookmarks() {
@@ -450,6 +555,13 @@ final class ReaderViewModel: ObservableObject {
             bookmarks = try JSONDecoder().decode([ReaderBookmark].self, from: data)
         } catch {
             bookmarks = []
+        }
+    }
+
+    private var currentBookmarkIndex: Int? {
+        guard let chapter = currentChapter else { return nil }
+        return bookmarks.firstIndex { bookmark in
+            bookmark.chapterId == chapter.id && bookmark.anchor == currentAnchor
         }
     }
 
@@ -483,7 +595,7 @@ final class ReaderViewModel: ObservableObject {
         )
     }
 
-    private func resolveChapterTarget(from rawTarget: String, defaultAnchor: String?) -> (chapterId: String, anchor: String?)? {
+    private func resolveDocumentTarget(from rawTarget: String, defaultAnchor: String?) -> (documentId: String, anchor: String?)? {
         guard let package else {
             return nil
         }
@@ -495,8 +607,32 @@ final class ReaderViewModel: ObservableObject {
             return (chapter.id, explicitAnchor ?? defaultAnchor)
         }
 
+        if let reference = package.referenceBySourcePath[normalized] ?? package.referenceByBundlePath[normalized] {
+            return (reference.id, explicitAnchor ?? defaultAnchor)
+        }
+
+        if let tocTarget = resolveTOCMarkdownTarget(
+            for: normalized,
+            explicitAnchor: explicitAnchor,
+            defaultAnchor: defaultAnchor
+        ) {
+            return tocTarget
+        }
+
         if let chapter = package.chapterBySourcePath[normalizePath("GeneratedTextbookPackage/\(targetPath)")] {
             return (chapter.id, explicitAnchor ?? defaultAnchor)
+        }
+
+        if let reference = package.referenceByBundlePath[normalizePath("GeneratedTextbookPackage/\(targetPath)")] {
+            return (reference.id, explicitAnchor ?? defaultAnchor)
+        }
+
+        if let tocTarget = resolveTOCMarkdownTarget(
+            for: normalizePath("GeneratedTextbookPackage/\(targetPath)"),
+            explicitAnchor: explicitAnchor,
+            defaultAnchor: defaultAnchor
+        ) {
+            return tocTarget
         }
 
         let basename = URL(fileURLWithPath: normalized)
@@ -506,8 +642,25 @@ final class ReaderViewModel: ObservableObject {
         if let chapter = package.chapterByBasename[basename] {
             return (chapter.id, explicitAnchor ?? defaultAnchor)
         }
+        if let reference = package.referenceByBasename[basename] {
+            return (reference.id, explicitAnchor ?? defaultAnchor)
+        }
 
         return nil
+    }
+
+    private func resolveTOCMarkdownTarget(
+        for normalizedPath: String,
+        explicitAnchor: String?,
+        defaultAnchor: String?
+    ) -> (documentId: String, anchor: String?)? {
+        guard let package,
+              let node = package.tocNodeByMarkdownPath[normalizedPath],
+              let chapterId = package.tocChapterByNodeId[node.id] else {
+            return nil
+        }
+        let anchor = explicitAnchor ?? defaultAnchor ?? resolveTOCAnchor(for: node, chapterId: chapterId)
+        return (chapterId, anchor)
     }
 
     private func preferredTOCTargetPath(for node: TextbookTOCNode) -> String {
@@ -520,21 +673,108 @@ final class ReaderViewModel: ObservableObject {
         return node.id
     }
 
+    private func webAppURL(for node: TextbookTOCNode) -> URL? {
+        guard let scenePath = node.scenePath?.trimmingCharacters(in: .whitespacesAndNewlines),
+              !scenePath.isEmpty else {
+            return URL(string: appWebBaseURL)
+        }
+
+        var allowed = CharacterSet.urlQueryAllowed
+        allowed.remove(charactersIn: "&=")
+        let encodedScenePath = scenePath.addingPercentEncoding(withAllowedCharacters: allowed) ?? scenePath
+        return URL(string: "\(appWebBaseURL)/#scene=\(encodedScenePath)")
+    }
+
     private func resolveTOCAnchor(for node: TextbookTOCNode, chapterId: String?) -> String? {
         guard let package,
-              let chapterId,
-              let firstSection = node.resolvedSections.first(where: { !($0.sectionKey ?? "").isEmpty }) else {
-            return nil
-        }
-        let requested = firstSection.sectionKey!.trimmingCharacters(in: .whitespacesAndNewlines)
-        if requested.isEmpty {
+              let chapterId else {
             return nil
         }
 
-        if let match = package.searchIndex.entries.first(where: { $0.chapterId == chapterId && $0.sectionKey == requested }) {
+        let chapterEntries = package.searchIndex.entries.filter { $0.chapterId == chapterId }
+        var primaryCandidates: [String] = []
+        appendTOCAnchorCandidate(node.title, to: &primaryCandidates)
+        appendTOCAnchorCandidate(node.markdownSection, to: &primaryCandidates)
+        appendTOCAnchorCandidate(node.sectionKey, to: &primaryCandidates)
+        for candidate in primaryCandidates {
+            if let match = searchEntryAnchor(matching: candidate, in: chapterEntries) {
+                return match
+            }
+        }
+
+        if let primary = primaryCandidates.first {
+            return anchorFromHeadingTitle(primary)
+        }
+
+        var fallbackCandidates: [String] = []
+        for section in node.resolvedSections {
+            appendTOCAnchorCandidate(section.markdownSection, to: &fallbackCandidates)
+            appendTOCAnchorCandidate(section.sectionKey, to: &fallbackCandidates)
+        }
+
+        for candidate in fallbackCandidates {
+            if let match = searchEntryAnchor(matching: candidate, in: chapterEntries) {
+                return match
+            }
+        }
+
+        for section in node.resolvedSections {
+            guard let requested = section.sectionKey?.trimmingCharacters(in: .whitespacesAndNewlines),
+                  !requested.isEmpty else {
+                continue
+            }
+            if let match = chapterEntries.first(where: { $0.sectionKey == requested }) {
+                return match.sectionAnchor
+            }
+        }
+
+        return fallbackCandidates.first.map(anchorFromHeadingTitle)
+    }
+
+    private func appendTOCAnchorCandidate(_ value: String?, to candidates: inout [String]) {
+        guard let trimmed = value?.trimmingCharacters(in: .whitespacesAndNewlines),
+              !trimmed.isEmpty else {
+            return
+        }
+        let normalized = normalizeHeadingKey(trimmed)
+        if candidates.contains(where: { normalizeHeadingKey($0) == normalized }) {
+            return
+        }
+        candidates.append(trimmed)
+    }
+
+    private func searchEntryAnchor(matching candidate: String, in entries: [TextbookSearchEntry]) -> String? {
+        let normalized = normalizeHeadingKey(candidate)
+        if let match = entries.first(where: { normalizeHeadingKey($0.sectionTitle) == normalized }) {
+            return match.sectionAnchor
+        }
+        if let match = entries.first(where: { normalizeHeadingKey($0.sectionKey ?? "") == normalized }) {
             return match.sectionAnchor
         }
         return nil
+    }
+
+    private func normalizeHeadingKey(_ raw: String) -> String {
+        return raw
+            .folding(options: [.diacriticInsensitive, .caseInsensitive], locale: Locale(identifier: "en_US_POSIX"))
+            .lowercased()
+            .replacingOccurrences(of: "<[^>]+>", with: " ", options: .regularExpression)
+            .replacingOccurrences(of: "[^a-z0-9\\s]+", with: " ", options: .regularExpression)
+            .replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+    private func anchorFromHeadingTitle(_ raw: String) -> String {
+        let anchor = raw
+            .folding(options: [.diacriticInsensitive, .caseInsensitive], locale: Locale(identifier: "en_US_POSIX"))
+            .lowercased()
+            .replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
+            .replacingOccurrences(of: "[\\u{2013}\\u{2014}]", with: "-", options: .regularExpression)
+            .replacingOccurrences(of: "[^a-z0-9\\-\\s]+", with: "", options: .regularExpression)
+            .replacingOccurrences(of: "\\s+", with: "-", options: .regularExpression)
+            .replacingOccurrences(of: "-+", with: "-", options: .regularExpression)
+            .trimmingCharacters(in: CharacterSet(charactersIn: "-"))
+        return anchor.isEmpty ? "section" : anchor
     }
 
     private func fallbackExternalURL(for rawTarget: String, anchor: String?) -> URL? {

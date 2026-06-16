@@ -16,8 +16,47 @@ const SEARCH_INDEX_FILE = "textbook_bundle_search_index.json";
 const MANIFEST_SCHEMA = "textbook_bundle_schema_v1";
 const PACKAGE_VERSION_PREFIX = "1.0.0";
 const SEARCH_SNIPPET_LENGTH = 220;
+const SEARCH_MARKDOWN_SNIPPET_LENGTH = 360;
 const SEARCH_INDEX_SCHEMA_VERSION = 1;
 const ARCHITRINO_WEB_BASE_URL = "https://architrino.com";
+const REFERENCE_MARKDOWN_DOCUMENTS = [
+  {
+    id: "archie-terminology-usage",
+    title: "Terminology Usage",
+    sourcePath: "content/markdown/aaa/archie/terminology-usage.md",
+    bundlePath: "references/terminology-usage.md",
+  },
+  {
+    id: "archie-comparative-glossary",
+    title: "Comparative Glossary",
+    sourcePath: "content/markdown/aaa/archie/comparative-glossary.md",
+    bundlePath: "references/comparative-glossary.md",
+  },
+  {
+    id: "archie-mathematics-terminology",
+    title: "Mathematics Terminology",
+    sourcePath: "content/markdown/aaa/archie/mathematics-terminology.md",
+    bundlePath: "references/mathematics-terminology.md",
+  },
+  {
+    id: "archie-academic-style-guide",
+    title: "Academic Style Guide",
+    sourcePath: "content/markdown/aaa/archie/academic-style-guide.md",
+    bundlePath: "references/academic-style-guide.md",
+  },
+  {
+    id: "archie-mathematics-style-guide",
+    title: "Mathematics Style Guide",
+    sourcePath: "content/markdown/aaa/archie/mathematics-style-guide.md",
+    bundlePath: "references/mathematics-style-guide.md",
+  },
+];
+const REFERENCE_MARKDOWN_BY_SOURCE_PATH = new Map(
+  REFERENCE_MARKDOWN_DOCUMENTS.map((document) => [
+    normalizeRelPath(document.sourcePath),
+    document,
+  ]),
+);
 const ASSET_EXTENSIONS = new Set([
   ".css",
   ".gif",
@@ -60,6 +99,7 @@ const manifest = {
     size: 0,
   },
   chapters: [],
+  references: [],
   files: [],
   links: [],
 };
@@ -249,6 +289,49 @@ function addChapterRecord({ entry, sectionKeys }) {
   };
 }
 
+function addReferenceDocumentRecord(document) {
+  const sourcePath = normalizeRelPath(document.sourcePath);
+  const bundlePath = normalizeRelPath(document.bundlePath);
+  const absoluteSource = path.join(ROOT_DIR, sourcePath);
+
+  if (!fs.existsSync(absoluteSource)) {
+    errors.push(`Expected reference document missing: ${sourcePath}`);
+    return null;
+  }
+
+  const buffer = fs.readFileSync(absoluteSource);
+  if (seenBundlePaths.has(bundlePath)) {
+    errors.push(`Duplicate reference bundle path: ${bundlePath}`);
+    return null;
+  }
+
+  const record = {
+    id: document.id,
+    title: document.title,
+    sourcePath,
+    bundlePath,
+  };
+
+  manifest.references.push(record);
+  manifest.files.push({
+    path: bundlePath,
+    sourcePath,
+    role: "reference",
+    type: "markdown",
+    size: buffer.length,
+    sha256: sha256Buffer(buffer),
+  });
+  seenBundlePaths.add(bundlePath);
+
+  return {
+    sourcePath,
+    bundlePath,
+    sourceChapterId: record.id,
+    id: record.id,
+    title: record.title,
+  };
+}
+
 function collectSectionKeys(entry) {
   const sections = [];
   const walk = (node) => {
@@ -316,6 +399,110 @@ function normalizeSearchText(value) {
     .trim();
 }
 
+function normalizeSearchSnippetMarkdown(value) {
+  return String(value || "")
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/~~~[\s\S]*?~~~/g, " ")
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, "$1")
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/^[ \t]*[-*_]{3,}[ \t]*$/gm, " ")
+    .replace(/[ \t]+/g, " ")
+    .replace(/\s*\n\s*/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function isEscapedAt(text, index) {
+  let slashCount = 0;
+  for (let cursor = index - 1; cursor >= 0 && text[cursor] === "\\"; cursor -= 1) {
+    slashCount += 1;
+  }
+  return slashCount % 2 === 1;
+}
+
+function countUnescapedDelimiter(text, delimiter) {
+  let count = 0;
+  let cursor = 0;
+  while (cursor < text.length) {
+    const index = text.indexOf(delimiter, cursor);
+    if (index < 0) {
+      break;
+    }
+    if (!isEscapedAt(text, index)) {
+      count += 1;
+    }
+    cursor = index + delimiter.length;
+  }
+  return count;
+}
+
+function countUnescapedSingleDollar(text) {
+  let count = 0;
+  for (let index = 0; index < text.length; index += 1) {
+    if (text[index] !== "$" || isEscapedAt(text, index)) {
+      continue;
+    }
+    if (text[index - 1] === "$" || text[index + 1] === "$") {
+      continue;
+    }
+    count += 1;
+  }
+  return count;
+}
+
+function countUnescapedSingleBacktick(text) {
+  let count = 0;
+  for (let index = 0; index < text.length; index += 1) {
+    if (text[index] !== "`" || isEscapedAt(text, index)) {
+      continue;
+    }
+    if (text[index - 1] === "`" || text[index + 1] === "`") {
+      continue;
+    }
+    count += 1;
+  }
+  return count;
+}
+
+function closeUnmatchedMarkdownDelimiters(text) {
+  let closed = text;
+  if (countUnescapedDelimiter(closed, "$$") % 2 === 1) {
+    closed += "$$";
+  }
+  if (countUnescapedSingleDollar(closed) % 2 === 1) {
+    closed += "$";
+  }
+  if (countUnescapedDelimiter(closed, "**") % 2 === 1) {
+    closed += "**";
+  }
+  if (countUnescapedSingleBacktick(closed) % 2 === 1) {
+    closed += "`";
+  }
+  return closed;
+}
+
+function truncateRenderableMarkdown(text, maxLength) {
+  if (text.length <= maxLength) {
+    return text;
+  }
+  const head = text.slice(0, maxLength);
+  const boundary = Math.max(
+    head.lastIndexOf(" "),
+    head.lastIndexOf("."),
+    head.lastIndexOf(","),
+    head.lastIndexOf(";"),
+    head.lastIndexOf(":"),
+  );
+  const cutoff = boundary > Math.floor(maxLength * 0.65) ? boundary : maxLength;
+  return `${closeUnmatchedMarkdownDelimiters(head.slice(0, cutoff).trim())}...`;
+}
+
+function buildSearchSnippetMarkdown(value) {
+  const compact = normalizeSearchSnippetMarkdown(value);
+  return truncateRenderableMarkdown(compact, SEARCH_MARKDOWN_SNIPPET_LENGTH);
+}
+
 function buildSearchEntriesForChapter({ chapter, markdownText, sectionKeys }) {
   const sectionKeySet = new Set((sectionKeys || []).map((key) => normalizeSectionKey(key)));
   const anchorCounts = new Map();
@@ -331,6 +518,7 @@ function buildSearchEntriesForChapter({ chapter, markdownText, sectionKeys }) {
   };
 
   const flushCurrent = () => {
+    const rawSectionMarkdown = currentHeading.lines.join("\n");
     const rawSectionText = currentHeading.lines.join(" ");
     const sectionText = normalizeSearchText(rawSectionText);
     if (!sectionText) {
@@ -354,6 +542,7 @@ function buildSearchEntriesForChapter({ chapter, markdownText, sectionKeys }) {
         sectionKeySet.has(normalizedKey) || normalizedKey === "top" ? normalizedKey : "",
       text: sectionText,
       snippet: sectionText.length > SEARCH_SNIPPET_LENGTH ? `${sectionText.slice(0, SEARCH_SNIPPET_LENGTH)}...` : sectionText,
+      snippetMarkdown: buildSearchSnippetMarkdown(rawSectionMarkdown),
       sourcePath: chapter.sourcePath,
     });
   };
@@ -518,6 +707,19 @@ function processLink({ sourcePath, sourceChapterId }, rawTarget) {
   }
 
   if (normalized.ext === ".md") {
+    const referenceDocument = REFERENCE_MARKDOWN_BY_SOURCE_PATH.get(normalized.resolvedPath);
+    if (referenceDocument) {
+      manifest.links.push({
+        sourceChapterId,
+        sourcePath,
+        target,
+        kind: "markdown",
+        status: "bundled_reference",
+        targetBundlePath: referenceDocument.bundlePath,
+      });
+      return;
+    }
+
     manifest.links.push({
       sourceChapterId,
       sourcePath,
@@ -783,6 +985,20 @@ function validateSchemaFile() {
     });
     collectLinks(chapterText).forEach((target) => {
       processLink(chapter, target);
+    });
+  });
+
+  REFERENCE_MARKDOWN_DOCUMENTS.forEach((document) => {
+    const reference = addReferenceDocumentRecord(document);
+    if (!reference) {
+      return;
+    }
+    const referenceText = readText(path.join(ROOT_DIR, reference.sourcePath), reference.sourcePath);
+    if (referenceText === null) {
+      return;
+    }
+    collectLinks(referenceText).forEach((target) => {
+      processLink(reference, target);
     });
   });
 

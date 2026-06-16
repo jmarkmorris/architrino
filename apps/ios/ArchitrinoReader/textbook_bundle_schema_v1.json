@@ -10,6 +10,7 @@
     "package_version",
     "textbook_toc",
     "chapters",
+    "references",
     "files",
     "links"
   ],
@@ -84,6 +85,27 @@
         }
       }
     },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "sourcePath", "bundlePath"],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "sourcePath": {
+            "type": "string"
+          },
+          "bundlePath": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "files": {
       "type": "array",
       "items": {
@@ -98,7 +120,7 @@
           },
           "role": {
             "type": "string",
-            "enum": ["toc", "chapter", "asset", "search"]
+            "enum": ["toc", "chapter", "reference", "asset", "search"]
           },
           "type": {
             "type": "string",

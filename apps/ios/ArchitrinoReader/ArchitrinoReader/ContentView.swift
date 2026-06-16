@@ -7,6 +7,8 @@ struct ContentView: View {
 
     @State private var showToc = false
     @State private var tocNotice: String?
+    @State private var showAbout = false
+    @State private var didPresentInitialToc = false
 
     private var isRegularWidth: Bool {
         horizontalSizeClass == .regular
@@ -44,6 +46,18 @@ struct ContentView: View {
         }
         .sheet(isPresented: $viewModel.isBookmarksPresented) {
             BookmarksSheet(viewModel: viewModel)
+        }
+        .sheet(isPresented: $showAbout) {
+            AboutSheet(packageVersion: viewModel.packageVersionLabel)
+        }
+        .onAppear {
+            presentInitialTOCIfNeeded()
+        }
+        .onChange(of: viewModel.isReady) { _, _ in
+            presentInitialTOCIfNeeded()
+        }
+        .onChange(of: horizontalSizeClass) { _, _ in
+            presentInitialTOCIfNeeded()
         }
     }
 
@@ -86,7 +100,7 @@ struct ContentView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
 
-                if let notice = tocNotice {
+                if let notice = viewModel.readerNotice ?? tocNotice {
                     HStack(alignment: .top, spacing: 10) {
                         Image(systemName: "info.circle")
                             .foregroundStyle(.blue)
@@ -100,6 +114,7 @@ struct ContentView: View {
                         Spacer()
 
                         Button {
+                            viewModel.readerNotice = nil
                             tocNotice = nil
                         } label: {
                             Image(systemName: "xmark.circle.fill")
@@ -116,7 +131,7 @@ struct ContentView: View {
 
                 controlBar
             }
-            .navigationTitle(viewModel.currentChapter?.title ?? "Textbook")
+            .navigationTitle(viewModel.currentDocumentTitle)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -140,11 +155,12 @@ struct ContentView: View {
                         Button {
                             viewModel.isBookmarksPresented = true
                         } label: {
-                            Image(systemName: "bookmark")
+                            Image(systemName: "list.bullet.rectangle")
                         }
+                        .accessibilityLabel("Bookmarks")
 
-                        Menu {
-                            Button("Package version \(viewModel.packageVersionLabel)") {}
+                        Button {
+                            showAbout = true
                         } label: {
                             Image(systemName: "info.circle")
                         }
@@ -157,6 +173,17 @@ struct ContentView: View {
     private var tocSidebar: some View {
         VStack(alignment: .leading, spacing: 0) {
             List {
+                Section {
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("Architrino Assembly Architecture Textbook")
+                            .font(.headline)
+                        Text("Bundled reader")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+                    .padding(.vertical, 4)
+                }
+
                 if let package = viewModel.package {
                     Section("Textbook") {
                         if package.tocPackage.tocRoot.resolvedChildren.isEmpty {
@@ -192,21 +219,33 @@ struct ContentView: View {
                     Button {
                         viewModel.isBookmarksPresented = true
                     } label: {
-                        Label("Bookmarks", systemImage: "bookmark")
+                        Label("Bookmarks", systemImage: "list.bullet.rectangle")
                     }
 
                     Button {
-                        if let glossary = viewModel.glossaryURL() {
-                            openURL(glossary)
-                        }
+                        viewModel.openGlossary()
+                        showToc = false
                     } label: {
                         Label("Glossary", systemImage: "book.pages")
                     }
+                    .disabled(!viewModel.canOpenGlossary)
                 }
             }
             .listStyle(.insetGrouped)
         }
         .navigationTitle("Textbook")
+    }
+
+    private func presentInitialTOCIfNeeded() {
+        guard !didPresentInitialToc,
+              !isRegularWidth,
+              viewModel.isReady,
+              viewModel.hasAnyContent(),
+              !viewModel.restoredReadingState else {
+            return
+        }
+        didPresentInitialToc = true
+        showToc = true
     }
 
     private func tocHierarchyRow(_ node: TextbookTOCNode, depth: Int) -> AnyView {
@@ -231,8 +270,6 @@ struct ContentView: View {
                 if isExternalRoute {
                     HStack(spacing: 10) {
                         tocRouteIcon(for: route)
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
 
                         tocRowLabel(title: node.title, depth: depth)
 
@@ -263,6 +300,7 @@ struct ContentView: View {
                     .padding(.vertical, 2)
                     .padding(.horizontal, 2)
                     .onTapGesture {
+                        viewModel.readerNotice = nil
                         tocNotice = "“\(node.title)” is a web-app scene. Open in Safari to view the interactive version."
                         if !isRegularWidth {
                             showToc = false
@@ -272,6 +310,7 @@ struct ContentView: View {
                 } else {
                     Button {
                         tocNotice = nil
+                        viewModel.readerNotice = nil
                         if let external = viewModel.performTOCAction(for: node) {
                             openURL(external)
                         }
@@ -281,8 +320,6 @@ struct ContentView: View {
                     } label: {
                         HStack(spacing: 10) {
                             tocRouteIcon(for: route)
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
 
                             tocRowLabel(title: node.title, depth: depth)
 
@@ -311,22 +348,28 @@ struct ContentView: View {
         )
     }
 
-    @ViewBuilder
     private func tocRouteIcon(for route: ReaderViewModel.TOCRoute) -> some View {
+        Image(systemName: tocRouteIconName(for: route))
+            .font(.caption)
+            .foregroundStyle(.secondary)
+            .frame(width: 22, height: 18, alignment: .center)
+    }
+
+    private func tocRouteIconName(for route: ReaderViewModel.TOCRoute) -> String {
         switch route {
         case .chapter:
-            Image(systemName: "book")
+            return "book"
         case .external:
-            Image(systemName: "safari")
+            return "safari"
         case .none:
-            Image(systemName: "link")
+            return "link"
         }
     }
 
     private func tocRowLabel(title: String, depth: Int) -> some View {
         HStack(spacing: 4) {
             Text(title)
-                .font(.body)
+                .font(.custom("HelveticaNeue", size: 17, relativeTo: .body))
                 .foregroundStyle(.primary)
                 .lineLimit(2)
                 .multilineTextAlignment(.leading)
@@ -336,20 +379,15 @@ struct ContentView: View {
 
     private var controlBar: some View {
         HStack {
-            Button {
-                viewModel.decreaseFont()
-            } label: {
-                Image(systemName: "textformat.size.smaller")
-            }
-            .disabled(viewModel.fontScale <= 0.85)
+            fontSizeControl
 
             Button {
-                viewModel.addBookmark()
+                viewModel.toggleCurrentBookmark()
             } label: {
-                Image(systemName: "bookmark.fill")
+                Image(systemName: viewModel.isCurrentPositionBookmarked ? "bookmark.fill" : "bookmark")
             }
             .disabled(viewModel.currentChapter == nil)
-            .accessibilityLabel("Add bookmark")
+            .accessibilityLabel(viewModel.isCurrentPositionBookmarked ? "Remove bookmark" : "Add bookmark")
 
             Spacer()
 
@@ -366,17 +404,41 @@ struct ContentView: View {
                 Label("Next", systemImage: "chevron.right")
             }
             .disabled(!viewModel.canGoNextChapter())
-
-            Button {
-                viewModel.increaseFont()
-            } label: {
-                Image(systemName: "textformat.size.larger")
-            }
-            .disabled(viewModel.fontScale >= 1.45)
         }
         .font(.subheadline)
         .padding(10)
         .background(.regularMaterial)
+    }
+
+    private var fontSizeControl: some View {
+        HStack(spacing: 6) {
+            Button {
+                viewModel.decreaseFont()
+            } label: {
+                Text("A")
+                    .font(.system(size: 13, weight: .semibold))
+                    .frame(width: 20, height: 28)
+            }
+            .disabled(viewModel.fontScale <= 0.85)
+            .accessibilityLabel("Decrease text size")
+
+            Text("A")
+                .font(.system(size: 18, weight: .semibold))
+                .foregroundStyle(.secondary)
+                .frame(width: 20, height: 28)
+                .accessibilityHidden(true)
+
+            Button {
+                viewModel.increaseFont()
+            } label: {
+                Text("A")
+                    .font(.system(size: 24, weight: .semibold))
+                    .frame(width: 20, height: 28)
+            }
+            .disabled(viewModel.fontScale >= 1.45)
+            .accessibilityLabel("Increase text size")
+        }
+        .frame(width: 78, alignment: .leading)
     }
 }
 
@@ -400,13 +462,10 @@ private struct SearchSheet: View {
                             Text(result.chapterTitle)
                                 .font(.subheadline)
                                 .fontWeight(.medium)
-                            Text(result.sectionTitle)
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                            Text(result.snippet)
-                                .font(.caption2)
-                                .foregroundStyle(.secondary)
-                                .lineLimit(3)
+                            SearchSnippetPreview(markdownText: result.renderedPreviewMarkdown)
+                                .frame(height: 74)
+                                .clipped()
+                                .allowsHitTesting(false)
                         }
                         .padding(.vertical, 2)
                     }
@@ -474,6 +533,55 @@ private struct BookmarksSheet: View {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Done") {
                         viewModel.isBookmarksPresented = false
+                    }
+                }
+            }
+        }
+    }
+}
+
+private struct AboutSheet: View {
+    let packageVersion: String
+
+    @Environment(\.dismiss) private var dismiss
+
+    private let websiteURL = URL(string: "https://architrino.com")!
+    private let repositoryURL = URL(string: "https://github.com/jmarkmorris/architrino")!
+
+    var body: some View {
+        NavigationStack {
+            List {
+                Section {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Architrino Assembly Architecture Textbook")
+                            .font(.headline)
+                        Text("Reader for the bundled textbook package.")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+                    .padding(.vertical, 4)
+                }
+
+                Section("Links") {
+                    Link(destination: websiteURL) {
+                        Label("architrino.com", systemImage: "safari")
+                    }
+
+                    Link(destination: repositoryURL) {
+                        Label("GitHub repository", systemImage: "chevron.left.forwardslash.chevron.right")
+                    }
+                }
+
+                Section {
+                    LabeledContent("Package version", value: packageVersion)
+                }
+            }
+            .navigationTitle("About")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Done") {
+                        dismiss()
                     }
                 }
             }

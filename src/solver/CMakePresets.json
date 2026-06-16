@@ -1,0 +1,42 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 25,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "native-debug",
+      "displayName": "Native Debug",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/../../.tmp/solver-build/native",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_CXX_COMPILER": "/opt/homebrew/opt/llvm/bin/clang++",
+        "ARCHITRINO_SOLVER_BOOST_INCLUDE_DIR": "/opt/homebrew/opt/boost/include"
+      }
+    },
+    {
+      "name": "native-release",
+      "displayName": "Native Release",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/../../.tmp/solver-build/native-release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_CXX_COMPILER": "/opt/homebrew/opt/llvm/bin/clang++",
+        "ARCHITRINO_SOLVER_BOOST_INCLUDE_DIR": "/opt/homebrew/opt/boost/include"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "native-debug",
+      "configurePreset": "native-debug"
+    },
+    {
+      "name": "native-release",
+      "configurePreset": "native-release"
+    }
+  ]
+}

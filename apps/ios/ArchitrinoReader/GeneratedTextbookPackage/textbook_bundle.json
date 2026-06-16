@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-06-16T20:43:44.473Z",
+  "generated_at": "2026-06-16T21:11:04.190Z",
   "package_version": "1.0.0-74a8f952",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
@@ -110,6 +110,38 @@
       "sectionKeys": []
     }
   ],
+  "references": [
+    {
+      "id": "archie-terminology-usage",
+      "title": "Terminology Usage",
+      "sourcePath": "content/markdown/aaa/archie/terminology-usage.md",
+      "bundlePath": "references/terminology-usage.md"
+    },
+    {
+      "id": "archie-comparative-glossary",
+      "title": "Comparative Glossary",
+      "sourcePath": "content/markdown/aaa/archie/comparative-glossary.md",
+      "bundlePath": "references/comparative-glossary.md"
+    },
+    {
+      "id": "archie-mathematics-terminology",
+      "title": "Mathematics Terminology",
+      "sourcePath": "content/markdown/aaa/archie/mathematics-terminology.md",
+      "bundlePath": "references/mathematics-terminology.md"
+    },
+    {
+      "id": "archie-academic-style-guide",
+      "title": "Academic Style Guide",
+      "sourcePath": "content/markdown/aaa/archie/academic-style-guide.md",
+      "bundlePath": "references/academic-style-guide.md"
+    },
+    {
+      "id": "archie-mathematics-style-guide",
+      "title": "Mathematics Style Guide",
+      "sourcePath": "content/markdown/aaa/archie/mathematics-style-guide.md",
+      "bundlePath": "references/mathematics-style-guide.md"
+    }
+  ],
   "files": [
     {
       "path": "graph/textbook_toc.json",
@@ -208,12 +240,52 @@
       "sha256": "7ddd9947dc12c33825ba64970efd7e2dfcd9adf0b31d839180157427e565f4dc"
     },
     {
+      "path": "references/academic-style-guide.md",
+      "sourcePath": "content/markdown/aaa/archie/academic-style-guide.md",
+      "role": "reference",
+      "type": "markdown",
+      "size": 14964,
+      "sha256": "143f40648d6d6d1c1ba3aca50ddfa19fd58486d2e200f249ed23c5eca1275c2e"
+    },
+    {
+      "path": "references/comparative-glossary.md",
+      "sourcePath": "content/markdown/aaa/archie/comparative-glossary.md",
+      "role": "reference",
+      "type": "markdown",
+      "size": 71354,
+      "sha256": "223f6ac8e20f5fb3ecd98dafc2be81c039b980ee264e6388098276321da568ba"
+    },
+    {
+      "path": "references/mathematics-style-guide.md",
+      "sourcePath": "content/markdown/aaa/archie/mathematics-style-guide.md",
+      "role": "reference",
+      "type": "markdown",
+      "size": 10869,
+      "sha256": "b58017d5a522d2b8ca8910e1db8583e5941ca23a97b7183c0bfe0bfbe8421bca"
+    },
+    {
+      "path": "references/mathematics-terminology.md",
+      "sourcePath": "content/markdown/aaa/archie/mathematics-terminology.md",
+      "role": "reference",
+      "type": "markdown",
+      "size": 31489,
+      "sha256": "cde204617214ce30b71a9b45d9d7b9adc3e1b31371d8f431e2b255c74644225b"
+    },
+    {
+      "path": "references/terminology-usage.md",
+      "sourcePath": "content/markdown/aaa/archie/terminology-usage.md",
+      "role": "reference",
+      "type": "markdown",
+      "size": 38714,
+      "sha256": "9d8daea55710a9d078c79fbb10aa53078f7c5716fcdc1d103128cacfb4e1eefa"
+    },
+    {
       "path": "textbook_bundle_search_index.json",
       "sourcePath": "__generated__/textbook_bundle_search_index.json",
       "role": "search",
       "type": "json",
-      "size": 6815123,
-      "sha256": "cb4c416ca2ff78b5a12bf558a4e7b91b452d4800e2be32b0522c6992a8f7e200"
+      "size": 8093454,
+      "sha256": "df994bb056323995cf10f03e28872ef964962a5b3a292df78a908a3d80808511"
     }
   ],
   "links": [
@@ -270,8 +342,8 @@
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "target": "../../../../markdown/aaa/archie/terminology-usage.md",
       "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/archie/terminology-usage.md"
+      "status": "bundled_reference",
+      "targetBundlePath": "references/terminology-usage.md"
     },
     {
       "sourceChapterId": "foundations",
@@ -558,32 +630,32 @@
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "target": "../../../../markdown/aaa/archie/terminology-usage.md",
       "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/archie/terminology-usage.md"
+      "status": "bundled_reference",
+      "targetBundlePath": "references/terminology-usage.md"
     },
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "target": "../../../../markdown/aaa/archie/comparative-glossary.md",
       "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/archie/comparative-glossary.md"
+      "status": "bundled_reference",
+      "targetBundlePath": "references/comparative-glossary.md"
     },
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "target": "../../../../markdown/aaa/archie/mathematics-terminology.md",
       "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/archie/mathematics-terminology.md"
+      "status": "bundled_reference",
+      "targetBundlePath": "references/mathematics-terminology.md"
     },
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "target": "../../../../markdown/aaa/archie/academic-style-guide.md",
       "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/archie/academic-style-guide.md"
+      "status": "bundled_reference",
+      "targetBundlePath": "references/academic-style-guide.md"
     },
     {
       "sourceChapterId": "foundations",
@@ -10744,6 +10816,54 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md"
+    },
+    {
+      "sourceChapterId": "archie-terminology-usage",
+      "sourcePath": "content/markdown/aaa/archie/terminology-usage.md",
+      "target": "./academic-style-guide.md",
+      "kind": "markdown",
+      "status": "bundled_reference",
+      "targetBundlePath": "references/academic-style-guide.md"
+    },
+    {
+      "sourceChapterId": "archie-terminology-usage",
+      "sourcePath": "content/markdown/aaa/archie/terminology-usage.md",
+      "target": "./mathematics-style-guide.md",
+      "kind": "markdown",
+      "status": "bundled_reference",
+      "targetBundlePath": "references/mathematics-style-guide.md"
+    },
+    {
+      "sourceChapterId": "archie-terminology-usage",
+      "sourcePath": "content/markdown/aaa/archie/terminology-usage.md",
+      "target": "./mathematics-terminology.md",
+      "kind": "markdown",
+      "status": "bundled_reference",
+      "targetBundlePath": "references/mathematics-terminology.md"
+    },
+    {
+      "sourceChapterId": "archie-terminology-usage",
+      "sourcePath": "content/markdown/aaa/archie/terminology-usage.md",
+      "target": "./comparative-glossary.md",
+      "kind": "markdown",
+      "status": "bundled_reference",
+      "targetBundlePath": "references/comparative-glossary.md"
+    },
+    {
+      "sourceChapterId": "archie-mathematics-terminology",
+      "sourcePath": "content/markdown/aaa/archie/mathematics-terminology.md",
+      "target": "../spacetime/ppn-parameters.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/ppn-parameters.md"
+    },
+    {
+      "sourceChapterId": "archie-academic-style-guide",
+      "sourcePath": "content/markdown/aaa/archie/academic-style-guide.md",
+      "target": "mathematics-style-guide.md",
+      "kind": "markdown",
+      "status": "bundled_reference",
+      "targetBundlePath": "references/mathematics-style-guide.md"
     }
   ]
 }

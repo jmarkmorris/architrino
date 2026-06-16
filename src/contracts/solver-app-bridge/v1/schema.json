@@ -1,0 +1,524 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://architrino.local/contracts/solver-app-bridge/v1/schema.json",
+  "title": "solver App Bridge Contract v1",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/causalRootsF64RequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/causalRootBatchF64RequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/causalRootBatchF64ResponseEnvelope"
+    },
+    {
+      "$ref": "#/$defs/rootsAndHitsF64ResponseEnvelope"
+    }
+  ],
+  "$defs": {
+    "causalRootsF64RequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "causal-roots-f64-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/causalRootsF64Request"
+        }
+      }
+    },
+    "causalRootBatchF64RequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "causal-root-batch-f64-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/causalRootBatchF64Request"
+        }
+      }
+    },
+    "causalRootBatchF64ResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "causal-root-batch-f64-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/causalRootBatchF64Response"
+        }
+      }
+    },
+    "rootsAndHitsF64ResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "roots-and-hits-f64-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/rootsAndHitsF64Response"
+        }
+      }
+    },
+    "causalRootsF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "receiver", "hitTime", "signalSpeed"],
+      "properties": {
+        "source": {
+          "$ref": "#/$defs/linearPathSegmentF64"
+        },
+        "receiver": {
+          "$ref": "#/$defs/linearPathSegmentF64"
+        },
+        "hitTime": {
+          "type": "number"
+        },
+        "signalSpeed": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "rootTolerance": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "maxIterations": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "scanSubdivisions": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maxRoots": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maxHits": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "causalRootBatchF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requests"],
+      "properties": {
+        "requests": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/causalRootsF64Request"
+          }
+        },
+        "maxItems": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maxRoots": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "workerCount": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "linearPathSegmentF64": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["startTime", "endTime", "positionAtStart", "velocity"],
+      "properties": {
+        "startTime": {
+          "type": "number"
+        },
+        "endTime": {
+          "type": "number"
+        },
+        "positionAtStart": {
+          "$ref": "#/$defs/vector3F64"
+        },
+        "velocity": {
+          "$ref": "#/$defs/vector3F64"
+        },
+        "errorBound": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "vector3F64": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y", "z"],
+      "properties": {
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        },
+        "z": {
+          "type": "number"
+        }
+      }
+    },
+    "rootsAndHitsF64Response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["roots", "hits", "buffers", "streams", "status"],
+      "properties": {
+        "roots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/causalRootF64"
+          }
+        },
+        "hits": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/delayedHitF64"
+          }
+        },
+        "buffers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/bufferDescriptor"
+          }
+        },
+        "streams": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/streamDescriptor"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "causalRootBatchF64Response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["items", "roots", "buffers", "status"],
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/causalRootBatchItemF64"
+          }
+        },
+        "roots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/causalRootF64"
+          }
+        },
+        "buffers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/bufferDescriptor"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "causalRootBatchItemF64": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["itemIndex", "statusCode", "rootOffset", "rootCount", "roots"],
+      "properties": {
+        "itemIndex": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "statusCode": {
+          "type": "integer"
+        },
+        "rootOffset": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rootCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "roots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/causalRootF64"
+          }
+        }
+      }
+    },
+    "causalRootF64": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rootId",
+        "statusCode",
+        "emissionTime",
+        "hitTime",
+        "delay",
+        "distance",
+        "residual",
+        "jacobian",
+        "branchWeight",
+        "sourcePoint",
+        "receiverPoint"
+      ],
+      "properties": {
+        "rootId": {
+          "type": "integer"
+        },
+        "statusCode": {
+          "type": "integer"
+        },
+        "emissionTime": {
+          "type": "number"
+        },
+        "hitTime": {
+          "type": "number"
+        },
+        "delay": {
+          "type": "number"
+        },
+        "distance": {
+          "type": "number"
+        },
+        "residual": {
+          "type": "number"
+        },
+        "jacobian": {
+          "type": "number"
+        },
+        "branchWeight": {
+          "type": "number"
+        },
+        "sourcePoint": {
+          "$ref": "#/$defs/vector3F64"
+        },
+        "receiverPoint": {
+          "$ref": "#/$defs/vector3F64"
+        }
+      }
+    },
+    "delayedHitF64": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "eventId",
+        "rootId",
+        "statusCode",
+        "emissionTime",
+        "hitTime",
+        "distance",
+        "jacobian",
+        "strength",
+        "emissionPoint",
+        "receiverPoint",
+        "unitDirection"
+      ],
+      "properties": {
+        "eventId": {
+          "type": "integer"
+        },
+        "rootId": {
+          "type": "integer"
+        },
+        "statusCode": {
+          "type": "integer"
+        },
+        "emissionTime": {
+          "type": "number"
+        },
+        "hitTime": {
+          "type": "number"
+        },
+        "distance": {
+          "type": "number"
+        },
+        "jacobian": {
+          "type": "number"
+        },
+        "strength": {
+          "type": "number"
+        },
+        "emissionPoint": {
+          "$ref": "#/$defs/vector3F64"
+        },
+        "receiverPoint": {
+          "$ref": "#/$defs/vector3F64"
+        },
+        "unitDirection": {
+          "$ref": "#/$defs/vector3F64"
+        }
+      }
+    },
+    "bufferDescriptor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bufferId", "layout", "byteOffset", "byteLength", "rowCount", "numericType"],
+      "properties": {
+        "bufferId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "layout": {
+          "type": "string",
+          "enum": ["root_ledger.v1", "delayed_hit_events.v1"]
+        },
+        "byteOffset": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "byteLength": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "numericType": {
+          "const": "f64"
+        }
+      }
+    },
+    "streamDescriptor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["streamId", "manifestVersion", "indexLayout", "availableRanges", "storagePolicy"],
+      "properties": {
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "manifestVersion": {
+          "const": "solver-stream-manifest.v1"
+        },
+        "indexLayout": {
+          "const": "stream_index.v1"
+        },
+        "availableRanges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/streamRange"
+          }
+        },
+        "storagePolicy": {
+          "$ref": "#/$defs/storagePolicy"
+        }
+      }
+    },
+    "streamRange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["timeRange", "frameRange", "byteRange"],
+      "properties": {
+        "timeRange": {
+          "$ref": "#/$defs/range"
+        },
+        "frameRange": {
+          "$ref": "#/$defs/range"
+        },
+        "byteRange": {
+          "$ref": "#/$defs/range"
+        }
+      }
+    },
+    "range": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "end"],
+      "properties": {
+        "start": {
+          "type": "number"
+        },
+        "end": {
+          "type": "number"
+        }
+      }
+    },
+    "storagePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["target", "durable", "maxBytes"],
+      "properties": {
+        "target": {
+          "const": "caller-buffer"
+        },
+        "durable": {
+          "const": false
+        },
+        "maxBytes": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "statusRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "severity", "message", "recoverable"],
+      "properties": {
+        "code": {
+          "type": "string",
+          "minLength": 1
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["ok", "info", "warning", "halt", "error"]
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1
+        },
+        "recoverable": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

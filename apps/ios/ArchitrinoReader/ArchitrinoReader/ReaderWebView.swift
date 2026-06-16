@@ -94,10 +94,9 @@ struct ReaderWebView: UIViewRepresentable {
             do {
                 let jsonData = try JSONEncoder().encode(command)
                 let jsonString = String(data: jsonData, encoding: .utf8) ?? "{}"
-                let escaped = jsonString
-                    .replacingOccurrences(of: "\\", with: "\\\\")
-                    .replacingOccurrences(of: "`", with: "\\`")
-                let script = "window.ReaderBridge && window.ReaderBridge.renderChapter(`\(escaped)`);"
+                let script = """
+                window.ReaderBridge && window.ReaderBridge.renderChapter(\(readerJavaScriptStringLiteral(jsonString)));
+                """
                 webView.evaluateJavaScript(script) { _, error in
                     if let error {
                         // Keep diagnostics available during local testing.
@@ -125,4 +124,102 @@ struct ReaderWebView: UIViewRepresentable {
             }
         }
     }
+}
+
+struct SearchSnippetPreview: UIViewRepresentable {
+    let markdownText: String
+
+    func makeUIView(context: Context) -> WKWebView {
+        let configuration = WKWebViewConfiguration()
+        configuration.defaultWebpagePreferences.allowsContentJavaScript = true
+
+        let view = WKWebView(frame: .zero, configuration: configuration)
+        view.backgroundColor = UIColor.clear
+        view.isOpaque = false
+        view.isUserInteractionEnabled = false
+        view.navigationDelegate = context.coordinator
+        view.scrollView.backgroundColor = UIColor.clear
+        view.scrollView.bounces = false
+        view.scrollView.isScrollEnabled = false
+        view.scrollView.showsHorizontalScrollIndicator = false
+        view.scrollView.showsVerticalScrollIndicator = false
+
+        if let shellURL = Bundle.main.url(
+            forResource: "SearchSnippetShell",
+            withExtension: "html",
+            subdirectory: "ReaderAssets"
+        ) {
+            view.loadFileURL(shellURL, allowingReadAccessTo: shellURL.deletingLastPathComponent())
+        }
+        context.coordinator.webView = view
+
+        return view
+    }
+
+    func updateUIView(_ uiView: WKWebView, context: Context) {
+        context.coordinator.webView = uiView
+        context.coordinator.pendingMarkdownText = markdownText
+        if context.coordinator.isReady {
+            context.coordinator.flushRenderCommand()
+        }
+    }
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator()
+    }
+
+    private struct SearchSnippetPayload: Encodable {
+        let markdownText: String
+    }
+
+    final class Coordinator: NSObject, WKNavigationDelegate {
+        weak var webView: WKWebView?
+        var isReady = false
+        var pendingMarkdownText: String?
+        var lastRenderedMarkdownText: String?
+
+        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+            isReady = true
+            flushRenderCommand()
+        }
+
+        func flushRenderCommand() {
+            guard let markdownText = pendingMarkdownText,
+                  let webView else {
+                return
+            }
+            if lastRenderedMarkdownText == markdownText {
+                pendingMarkdownText = nil
+                return
+            }
+
+            do {
+                let payload = SearchSnippetPayload(markdownText: markdownText)
+                let jsonData = try JSONEncoder().encode(payload)
+                let jsonString = String(data: jsonData, encoding: .utf8) ?? "{}"
+                let script = """
+                window.SearchSnippetBridge && window.SearchSnippetBridge.renderSnippet(\(readerJavaScriptStringLiteral(jsonString)));
+                """
+                webView.evaluateJavaScript(script) { _, error in
+                    if let error {
+                        // Keep diagnostics available during local testing.
+                        _ = error
+                    }
+                }
+                pendingMarkdownText = nil
+                lastRenderedMarkdownText = markdownText
+            } catch {
+                // non-fatal: snippet rendering falls back to an empty preview
+            }
+        }
+
+    }
+}
+
+private func readerJavaScriptStringLiteral(_ value: String) -> String {
+    guard let data = try? JSONEncoder().encode(value),
+          let literal = String(data: data, encoding: .utf8) else {
+        return "\"{}\""
+    }
+    return literal
 }

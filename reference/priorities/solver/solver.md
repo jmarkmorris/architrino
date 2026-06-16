@@ -1183,22 +1183,19 @@ The following decisions define the current design contract:
 
 Implementation order:
 
-1. Install or pin the required CMake, Ninja, and WebAssembly toolchain path.
-2. Create the initial C++ package structure, CMake presets, native CLI target, and browser worker target.
-3. Convert the TypeScript contract draft into checked `.d.ts` or `.ts` source.
-4. Define the model contract, simulation envelope contract, and admission fixture.
-5. Define the precision/error-budget propagation contract.
-6. Define the virtual-observer minimal path record contract and fixture.
-7. Define the temporal assembly graph identity lifecycle, hierarchy replay, and ambiguity contract.
-8. Implement schema validation for requests, responses, manifests, binary layouts, statuses, and stream indices.
-9. Define the numeric serialization rules for every declared numeric type.
-10. Define storage retention, cleanup, quota pressure, failed-run cleanup, export, deletion, active-window age-out, and deep-index policy.
-11. Define the work-packet transport contract and round-trip fixture.
-12. Prototype and benchmark spatiotemporal query algorithms against the emission-shell broad-phase fixture.
-13. Define the baseline-comparison sandbox and divergence classification report.
-14. Build the analytic, manufactured, invariant, and baseline fixtures listed above.
-15. Implement the minimal causal-root and delayed-hit core behind the shared app bridge.
-16. Run migration parity in order: Animator, Photon, then Ideal Swarm.
+1. Define the model contract, simulation envelope contract, and admission fixture.
+2. Define the precision/error-budget propagation contract.
+3. Define the virtual-observer minimal path record contract and fixture.
+4. Define the temporal assembly graph identity lifecycle, hierarchy replay, and ambiguity contract.
+5. Implement schema validation for requests, responses, manifests, binary layouts, statuses, and stream indices.
+6. Define the numeric serialization rules for every declared numeric type.
+7. Define storage retention, cleanup, quota pressure, failed-run cleanup, export, deletion, active-window age-out, and deep-index policy.
+8. Define the work-packet transport contract and round-trip fixture.
+9. Prototype and benchmark spatiotemporal query algorithms against the emission-shell broad-phase fixture.
+10. Define the baseline-comparison sandbox and divergence classification report.
+11. Build the analytic, manufactured, invariant, and baseline fixtures listed above.
+12. Implement the minimal causal-root and delayed-hit core behind the shared app bridge.
+13. Run migration parity in order: Animator, Photon, then Ideal Swarm.
 
 ## Migration Plan Needed
 
