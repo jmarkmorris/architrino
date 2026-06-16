@@ -147,6 +147,16 @@ This point becomes stronger once regime coverage is taken seriously. A theory ma
 
 What remains unsettled is the ontological meaning and explanatory location of the objects doing the predictive work. Is a wavefunction a real field, a bookkeeping device, or a summary of hidden dynamics? Is dark energy a substance, a geometric term, or a sign of mislocated inference? Are renormalized fields and vacuum sectors fundamental, or do they summarize deeper constitutive behavior? When the same predictive system permits multiple ontological stories, explanation has not finished.
 
+Quantum theory gives the cleanest version of this crisis. Its statistical predictions are among the most successful in science, but that success does not decide whether the underlying event is intrinsically probabilistic or whether the probability law is the effective pushforward of inaccessible microstate and path-history data. In $\mathbb{A}\mathbb{A}\mathbb{A}$ notation, a quantum prediction has not been ontologically located until the record probability can be read as
+
+$$
+P_{\mathrm{rec}}(R_n\mid\theta)
+=
+\mu_{*,T}\!\left(\pi_T^{-1}(R_n)\right)
+$$
+
+for the same deterministic flow, apparatus kernel, coarse-graining, and record window $\theta$ that also recover the effective wave equation. Predictive success licenses the target distribution; it does not by itself identify the substrate that generates the measure.
+
 The unresolved issue is therefore not simply interpretation in a casual sense. It is underdetermination at the level of what exists and at what layer it exists. A variable may be indispensable for calculation and still be misplaced as final ontology. Until there is a principled account of which successful objects are fundamental and which are effective summaries, predictive success remains compatible with deep ontological ambiguity.
 
 Part of that ambiguity is extrapolative. If the currently accessible domain samples only a small portion of the total physically relevant phase space, then ontological claims about ultimate structure remain partly hostage to what has not yet been probed. Large untested ranges in frequency, energy, and temperature are not mere empty margins. They are places where hidden constitutive behavior, threshold effects, or layer transitions may reside. A mature methodology should therefore distinguish carefully between "well confirmed here" and "licensed as fundamental everywhere."
@@ -247,6 +257,8 @@ Standard repairs include anti-realist or operationalist interpretations, pilot-w
 
 They remain incomplete because each pays a price. Operationalism lowers the ontological demand rather than meeting it. Pilot-wave theories recover correlations but introduce preferred structure many physicists resist. Branching ontologies preserve the formalism by multiplying realized structure. Superdeterminism weakens measurement independence in a way many regard as methodologically costly. Retrocausal models revise time-order intuitions. Causal-structure reconstructions often clarify the logic of the theorem without yet supplying a concrete underlying world-model. The repair space is rich precisely because no option has closed the issue in a broadly accepted way.
 
+The deterministic lesson retained from 't Hooft-style superdeterminism is narrower than the superdeterminist repair itself. Determinism at all levels is compatible with a substrate program; setting-dependent preparation is not required by determinism. For $\mathbb{A}\mathbb{A}\mathbb{A}$ the crisis should therefore be stated as a product-screening problem: keep measurement independence, keep no-signaling, and derive why the retained pair-provenance variables fail to factor into two independent one-wing response laws.
+
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **partially clarified** by the project's willingness to consider real substrate-level causal structure not exhausted by relativistic signaling language. The proposed move is to deny Bell locality while preserving realism, forward causal order, and measurement independence. On that picture, correlated pairs inherit joint geometric constraints from a shared creation event, and those constraints are later read out locally during measurement without requiring a new superluminal signal between detectors at measurement time.
@@ -292,6 +304,17 @@ What is unsettled is how, or whether, both frameworks can be fundamental in thei
 More sharply, the open problem is not merely to place both theories in one mathematical container. It is to determine whether spacetime geometry, quantum state structure, field quanta, and measurement statistics are primitive constituents or emergent summaries of a deeper causal architecture. Until that is answered, the GR-QM problem remains as much ontological as formal.
 
 Black-hole horizons, singularity questions, vacuum energy, and early-universe closure intensify this pressure because they are precisely the regimes where the inherited languages are asked to overlap most aggressively. These are the points where the field most wants one final story and where the current stack most visibly resists one.
+
+Black-hole information proposals that identify or fold horizon regions are useful here as comparison pressure, not as ready ontology. Their durable signal is that horizon physics may require a non-naive map between incoming records, outgoing records, entropy, and effective geometry. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the question is whether a horizon-interface map can preserve deterministic record closure,
+
+$$
+\mathcal{H}_{\mathrm{hor}}:
+\left(\Gamma_{\mathrm{in}},\mathcal{B}_{\mathrm{hor}}\right)
+\mapsto
+\left(\Gamma_{\mathrm{out}},S_{\mathrm{out}}\right)
+$$
+
+without treating an auxiliary mirror, clone, or second exterior as the substrate object itself. The mathematical burden is a strong-field record map, not the import of a particular diagrammatic identification.
 
 There is also a regime issue. Much of the rhetoric of final unification is aimed at Planck-adjacent closure, yet experiment still probes only a narrow portion of the physically available range. That does not make unification programs irrational. It does mean that confidence about what must be quantized, what must be geometric, or what must survive unchanged into extreme regimes can outrun direct evidential support.
 

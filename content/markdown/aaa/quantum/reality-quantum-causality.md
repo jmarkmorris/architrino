@@ -164,6 +164,16 @@ This effective unpredictability should not be collapsed into formal undecidabili
 
 Those statistics must stay tied to the same coarse-graining that carries thermodynamic cost. A probability law for threshold outcomes is not closed if the Born-style basin weights use one unresolved-history measure while the entropy, irreversibility, or apparatus-noise summaries use another. The valid target is one deterministic ensemble measure whose projections recover both the outcome frequencies and the thermodynamic summaries of the record-making interaction.
 
+This is the retained content of hidden-variable language, stripped of the misleading suggestion that the missing variables are an added nonphysical layer. The relevant hidden structure is the ordinary complete state plus path history:
+
+$$
+\Gamma_T
+=
+\left(\Gamma(t_0),\{\mathbf{x}_i(t),\mathbf{v}_i(t),q_i\}_{t\in[t_0,t_1]},\mathcal{K}_{\mathrm{app}}\right)
+$$
+
+where $\mathcal{K}_{\mathrm{app}}$ is the apparatus kernel retained for the declared record channel. Quantum randomness is closed only if pushing $\Gamma_T$ through the deterministic flow yields the same record frequencies, restartability behavior, and thermodynamic ledger used by the effective probability description.
+
 ---
 
 ## Agency and Decision

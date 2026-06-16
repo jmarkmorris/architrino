@@ -177,6 +177,8 @@ The major responses in the literature are:
 | Superdeterminism | Measurement Independence | 't Hooft, some retrocausal models |
 | Retrocausal | Bell Locality (via future boundary conditions) | Transactional, two-state-vector |
 
+The 't Hooft comparison should be read with this distinction intact. A deterministic hidden-state program can deny measurement independence, but determinism itself does not force that denial. $\mathbb{A}\mathbb{A}\mathbb{A}$ uses the comparison historically and logically while choosing a different closure route: preserve measurement independence, preserve no-signaling, and make the product-screening failure explicit.
+
 ---
 
 ## Architrino Assembly Architecture Placement

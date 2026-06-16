@@ -17,7 +17,8 @@
 13. Path-history indexing should be tiered. The hot active window should keep only the indices needed to continue precise action, root, and geometry modeling over the next simulation window. Aged-out records should spill to non-volatile storage, where deeper offline indices can be built later for long-term studies, huge simulations, replay, and research.
 14. Hot-path data structures should use compact canonical encodings that are straightforward to implement and verify. Compression should usually happen after a run or during export; the solver loop should write efficient canonical chunks first and add hot-path compression only when benchmarks prove it helps.
 15. Apps must be able to communicate with the solver through one shared app bridge. App code should call a stable JavaScript or TypeScript request/response API and should not need app-specific C++ or WebAssembly handling.
-16. Once the solver design and first implementation exist, the repo needs a migration plan for the current app-facing migration targets: Photon, Ideal Swarm, and Animator.
+16. The repo needs an isolated baseline-comparison sandbox for old app-facing solver paths. The sandbox should run fixed Photon, Ideal Swarm, and Animator baseline cases, compare them with new solver outputs inside declared tolerances, and classify differences as expected refinement, declared model-boundary difference, or investigation-required mismatch. `sim2` and legacy solver families may supply archive notes or exploratory comparisons only; they remain outside migration parity gates.
+17. Once the solver design and first implementation exist, the repo needs a migration plan for the current app-facing migration targets: Photon, Ideal Swarm, and Animator.
 
 ## Workstream Metadata
 
@@ -118,7 +119,7 @@ Direct contract additions from the extraction:
 | GPU acceleration | Defer GPU acceleration. Do not make Metal, WebGPU, or any GPU compute path part of the first solver core or migration plan. |
 | Geometry boundary | The solver owns causal and path-dependent geometry. Apps own visual layout, controls, styling, and renderer-specific presentation. |
 | Storage | Use logical per-path streams backed by a run-level chunked binary store, JSON manifest, encoding dictionary, binary index sidecar, event store, deep-index store, and summary record. |
-| Validation | Require golden parity, precision replay, stream round-trip, threading determinism, and app-bridge contract tests before migrating an app. |
+| Validation | Require isolated baseline comparisons, golden parity, precision replay, stream round-trip, threading determinism, and app-bridge contract tests before migrating an app. |
 
 ## Closest Existing Reusable Engine
 
@@ -183,7 +184,7 @@ The central API should be versioned and handle-based. Small configs, manifests, 
 | Run in a browser worker | Request and response messages with typed data where profiling justifies it. |
 | Run offline or in batch | CLI or script entrypoint with reproducible input, output, diagnostics, and benchmark metadata. |
 | Produce validation or handoff artifacts | Provenance records, artifact hashes, convergence summaries, tolerance vectors, failure-code reports, replay status, and migration parity status. |
-| Compare migration targets and reference paths | Parity reports for Photon, Ideal Swarm, and Animator, with optional notes for `sim2` animation intent or legacy families only when they clarify the solver boundary. |
+| Run baseline comparisons | Isolated old-solver sandbox runs for Photon, Ideal Swarm, and Animator, with diff reports that classify differences as expected refinement, declared model-boundary difference, or investigation-required mismatch. Optional `sim2` or legacy notes may clarify the boundary, but they do not create migration parity gates. |
 
 API contract decisions:
 
@@ -1072,7 +1073,7 @@ Chosen boundary:
 
 ## Solver Contract And Validation Policy
 
-Decision: the minimal central solver contract should be accepted only after it passes schema, precision, streaming, threading, app-bridge, and migration-parity tests. The first implementation should prioritize the causal-root and delayed-hit core because that is the shared behavior behind Photon, Ideal Swarm, and Animator.
+Decision: the minimal central solver contract should be accepted only after it passes schema, precision, streaming, threading, app-bridge, isolated baseline-comparison, and migration-parity tests. The first implementation should prioritize the causal-root and delayed-hit core because that is the shared behavior behind Photon, Ideal Swarm, and Animator.
 
 Acceptance gates:
 
@@ -1087,6 +1088,7 @@ Acceptance gates:
 | Ledger and provenance contract | Root-ledger completeness tests, phase-at-hit metadata tests, failure-code coverage, artifact hash checks, and validation replay provenance. |
 | Threading contract | Single-thread baseline, multithread speedup cases, deterministic replay cases, and browser capability fallback tests. |
 | App bridge contract | Worker initialization, cancellation, typed-buffer transfer, stream-range readback, error normalization, and unsupported-feature reporting. |
+| Baseline-comparison sandbox | Isolated old-solver harnesses for Photon, Ideal Swarm, and Animator preserve fixed input cases, baseline artifacts, new solver artifacts, tolerance rules, and divergence classifications. Large divergences must be investigated before app-local solver code is simplified. |
 | Migration parity | Animator first, then Photon, then Ideal Swarm, each with focused parity fixtures before app-local solver code is simplified. |
 
 The first central core should expose source histories, branch-resolved causal roots, delayed-hit records, $\lvert J_{ij} \rvert^{-1}$ branch weighting where required, diagnostics, and stream-backed output. Full motion integration can grow after the root, event, precision, stream, and app-bridge contracts are stable.
@@ -1097,6 +1099,7 @@ Before app migration, build these focused fixtures and keep each one small enoug
 
 | Fixture | Source baseline | Solver output under test | Acceptance signal |
 | --- | --- | --- | --- |
+| `baseline_comparison_sandbox_smoke` | Fixed Photon, Ideal Swarm, and Animator old-solver cases in isolated harnesses. | Baseline artifact, new solver artifact, tolerance file, divergence report, provenance record. | Differences are classified as expected refinement, declared model-boundary difference, or investigation-required mismatch; investigation-required mismatches block migration simplification. |
 | `animator_assembly_dynamics_smoke` | Assembly-dynamics-backed Animator dataset path. | `frame_buffer.v1`, `delayed_hit_events.v1`, `root_ledger.v1`, summary diagnostics. | Existing Animator playback can render the dataset, root/hit counts match the baseline, and frame positions stay inside the declared tolerance. |
 | `photon_causal_roots_static_observer` | Photon-local `solvePhotonCausalRoots` diagnostic case. | `root_ledger.v1`, `phase_at_hit.v1`, rejected-root diagnostics, transverse-field summary. | Positive roots, no-root reasons, Jacobian diagnostics, and field summaries match the baseline within declared residual tolerances. |
 | `ideal_swarm_flight_time` | Ideal Swarm `solveFlightTime` case. | Root list, delay values, residuals, and status records. | Flight times and root residuals match the app-local baseline, including failure behavior for no-root cases. |
@@ -1136,6 +1139,7 @@ The solver note is ready for review as a design contract, not as an implementati
 | Precision | The default is `auto` with strict upward-only escalation, explicit precision paths, visible error budgets, and no silent claim-level downgrade. |
 | Parallelism | Multithreading is an optimization policy with deterministic mode, single-thread fallback, explicit diagnostics, and browser capability gating. Work units and data layouts should be GPU-ready where practical. |
 | GPU | GPU execution is deferred and is not part of the first central solver core or first app migration, but the design should preserve a future optional path to standard laptop, desktop, browser, and service GPU hardware behind the same solver API. |
+| Baseline comparison | Old app-facing solver paths run only inside isolated comparison harnesses. Divergences are classified before migration: expected refinement, declared model-boundary difference, or investigation-required mismatch. |
 | Packaging | Apps package final runtime artifacts such as `solver.wasm`, worker, adapter, declarations, schemas, and manifests; `.o` and other intermediate build files are not packaged. |
 
 Remaining implementation work after review:
@@ -1150,9 +1154,10 @@ Remaining implementation work after review:
 8. Define the active-window age-out and deep-index policy.
 9. Define the work-packet transport contract and round-trip fixture.
 10. Prototype and benchmark spatiotemporal query algorithms against the emission-shell broad-phase fixture.
-11. Build the small validation fixtures listed above.
-12. Implement the minimal causal-root and delayed-hit core behind the shared app bridge.
-13. Run migration parity in order: Animator, Photon, then Ideal Swarm.
+11. Define the baseline-comparison sandbox and divergence classification report.
+12. Build the small validation fixtures listed above.
+13. Implement the minimal causal-root and delayed-hit core behind the shared app bridge.
+14. Run migration parity in order: Animator, Photon, then Ideal Swarm.
 
 ## Migration Plan Needed
 
@@ -1171,13 +1176,15 @@ After the first solver design lands, create a migration plan for Photon, Ideal S
 11. Verify that long path runs stay inside the declared memory budget while spilling and reading path streams at target speed.
 12. Verify that multithreading improves the selected workloads enough to justify the complexity, and keep a correct single-thread execution path where threading is unavailable or not worth using.
 13. Verify that apps can use the solver through the shared bridge without app-specific C++ or WebAssembly handling.
-14. Migrate Animator first where the dataset bridge already exists.
-15. Migrate Photon causal-root diagnostics to the shared causal-root and source-history APIs.
-16. Migrate Ideal Swarm delayed-potential and self-hit calculations to shared geometry and causal-delay routines.
-17. Archive or keep `sim2` as an animation-intent prototype only; do not build a central-solver adapter for it and do not use it as a parity target.
-18. Document the legacy solver-family boundary: proof-program, mass-map, neutral-swarm, nested-shell, cosmology, and related families are not migration targets.
-19. Remove or simplify app-local solver and geometry code after parity tests confirm the new solver path.
-20. Keep any future contact with proof-program, mass-map, neutral-swarm, nested-shell, and cosmology solver families limited to artifacts, diagnostics, or independently maintained contracts unless a later priority explicitly changes scope.
+14. Run the baseline-comparison sandbox against fixed Photon, Ideal Swarm, and Animator cases, and classify each difference as expected refinement, declared model-boundary difference, or investigation-required mismatch.
+15. Investigate all investigation-required mismatches before simplifying app-local solver code.
+16. Migrate Animator first where the dataset bridge already exists.
+17. Migrate Photon causal-root diagnostics to the shared causal-root and source-history APIs.
+18. Migrate Ideal Swarm delayed-potential and self-hit calculations to shared geometry and causal-delay routines.
+19. Archive or keep `sim2` as an animation-intent prototype only; do not build a central-solver adapter for it and do not use it as a parity target.
+20. Document the legacy solver-family boundary: proof-program, mass-map, neutral-swarm, nested-shell, cosmology, and related families are not migration targets.
+21. Remove or simplify app-local solver and geometry code after parity tests confirm the new solver path.
+22. Keep any future contact with proof-program, mass-map, neutral-swarm, nested-shell, and cosmology solver families limited to artifacts, diagnostics, or independently maintained contracts unless a later priority explicitly changes scope.
 
 ## Task Queue
 
@@ -1193,14 +1200,15 @@ After the first solver design lands, create a migration plan for Photon, Ideal S
 10. `threading_execution_policy` - Implement the chosen native bounded task pool, browser worker baseline, deterministic mode, WebAssembly-thread gating, thread-count controls, diagnostics, and GPU-ready work partitioning where it also benefits CPU execution. Status: `active`. Depends on: `app_bridge_contract`, `work_packet_transport_contract`.
 11. `cpp_clang_runtime_validation` - Build and benchmark the selected C++20/Clang path against representative causal-root, source-history, precision, dynamic-range, simulation-envelope, virtual-observer path-record, temporal-assembly-graph, streaming-write, indexed-read, app-bridge, and thread-scaling workloads. Initial local spike confirms native Apple Clang C++20 syntax support but finds CMake, Ninja, Emscripten, `wasm-ld`, and Apple Clang WASM target support unavailable on `PATH`. Status: `active-toolchain-setup-needed`. Depends on: `threading_execution_policy`.
 12. `solver_contract` - Implement the central solver inputs, outputs, dataset schema, simulation-envelope schema, virtual-observer path-record schema, assembly-state schema, assembly-membership schema, assembly-hierarchy schema, path-history stream schema, app bridge schema, threading metadata, diagnostics, halt statuses, precision-path metadata, storage metadata, API boundaries, root-ledger completeness rows, phase-at-hit metadata, failure-code taxonomy, and provenance artifacts. Status: `active`. Depends on: `cpp_clang_runtime_validation`.
-13. `gpu_acceleration_deferral` - Keep Metal, WebGPU, service GPU, and other GPU compute paths out of the first solver core and migration plan; preserve GPU-ready data layout and work partitioning, then reconsider GPU execution only after CPU benchmarks identify a suitable regular hotspot. Status: `pending`. Depends on: `cpp_clang_runtime_validation`.
-14. `geometry_centralization_inventory` - Identify duplicated or app-local solver geometry in Photon, Ideal Swarm, Animator, and the assembly-dynamics path. Exclude `sim2` and legacy solver families from migration scope. Status: `next`. Depends on: `solver_contract`.
-15. `minimal_causal_root_core` - Implement or extract the first central causal-root core with source histories, branch diagnostics, precision diagnostics, simulation-envelope diagnostics, virtual-observer path-record output, temporal-assembly-graph output, streaming output, app-bridge output, threading diagnostics, and benchmark hooks. Status: `next`. Depends on: `solver_contract`.
-16. `animator_adapter` - Route Animator simulation runs through the central solver contract while preserving the existing dataset playback surface. Status: `pending`. Depends on: `minimal_causal_root_core`.
-17. `photon_adapter` - Replace Photon-local causal-root diagnostics with shared source-history and causal-root calls. Status: `pending`. Depends on: `minimal_causal_root_core`.
-18. `ideal_swarm_adapter` - Replace Ideal Swarm delayed-potential and self-hit calculations with shared solver geometry. Status: `pending`. Depends on: `minimal_causal_root_core`.
-19. `sim2_reference_archive_plan` - Document `sim2` as an animation-intent archive surface only, with no central-solver adapter, no migration path, and no solver parity obligation. Status: `pending`. Depends on: `solver_contract`.
-20. `legacy_solver_boundary` - Document that non-app legacy solver families stay outside central-solver migration and may only exchange artifacts, diagnostics, or independently maintained contracts. Status: `pending`. Depends on: `solver_contract`.
+13. `baseline_comparison_sandbox` - Define isolated old-solver harnesses for Photon, Ideal Swarm, and Animator, fixed input cases, baseline artifacts, new solver artifacts, tolerance files, provenance records, and divergence reports that classify differences as expected refinement, declared model-boundary difference, or investigation-required mismatch. Status: `active`. Depends on: `app_bridge_contract`, `solver_contract`.
+14. `gpu_acceleration_deferral` - Keep Metal, WebGPU, service GPU, and other GPU compute paths out of the first solver core and migration plan; preserve GPU-ready data layout and work partitioning, then reconsider GPU execution only after CPU benchmarks identify a suitable regular hotspot. Status: `pending`. Depends on: `cpp_clang_runtime_validation`.
+15. `geometry_centralization_inventory` - Identify duplicated or app-local solver geometry in Photon, Ideal Swarm, Animator, and the assembly-dynamics path. Exclude `sim2` and legacy solver families from migration scope. Status: `next`. Depends on: `solver_contract`.
+16. `minimal_causal_root_core` - Implement or extract the first central causal-root core with source histories, branch diagnostics, precision diagnostics, simulation-envelope diagnostics, virtual-observer path-record output, temporal-assembly-graph output, streaming output, app-bridge output, threading diagnostics, and benchmark hooks. Status: `next`. Depends on: `solver_contract`.
+17. `animator_adapter` - Route Animator simulation runs through the central solver contract while preserving the existing dataset playback surface. Status: `pending`. Depends on: `minimal_causal_root_core`, `baseline_comparison_sandbox`.
+18. `photon_adapter` - Replace Photon-local causal-root diagnostics with shared source-history and causal-root calls. Status: `pending`. Depends on: `minimal_causal_root_core`, `baseline_comparison_sandbox`.
+19. `ideal_swarm_adapter` - Replace Ideal Swarm delayed-potential and self-hit calculations with shared solver geometry. Status: `pending`. Depends on: `minimal_causal_root_core`, `baseline_comparison_sandbox`.
+20. `sim2_reference_archive_plan` - Document `sim2` as an animation-intent archive surface only, with no central-solver adapter, no migration path, and no solver parity obligation. Status: `pending`. Depends on: `solver_contract`.
+21. `legacy_solver_boundary` - Document that non-app legacy solver families stay outside central-solver migration and may only exchange artifacts, diagnostics, or independently maintained contracts. Status: `pending`. Depends on: `solver_contract`.
 
 ## Related Priorities
 

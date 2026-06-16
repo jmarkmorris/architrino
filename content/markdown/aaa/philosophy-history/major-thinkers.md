@@ -1126,19 +1126,19 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **What Problem They Were Trying To Solve:** He sought a deeper deterministic layer beneath quantum statistics that could restore ontological continuity without losing empirical agreement.
 
-**What They Got Right:** He correctly insisted that deterministic substrate options remain logically and physically viable and worth explicit construction. He also kept the empirical burden in view: a deeper account cannot merely reinterpret measurement language, but must recover the Standard Model, GR, quantum statistics, and strong-field thermodynamics at benchmark precision.
+**What They Got Right:** He correctly insisted that deterministic substrate options remain logically and physically viable and worth explicit construction. His standing as a renormalization and electroweak-theory physicist matters historically: the deterministic challenge is not an outsider's rejection of precision physics, but a demand that precision be placed at the right explanatory layer. He also kept the empirical burden in view: a deeper account cannot merely reinterpret measurement language, but must recover the Standard Model, GR, quantum statistics, and strong-field thermodynamics at benchmark precision.
 
-**What They Got Wrong or Overstated:** Cellular-automaton discretization, integer-only physical metaphysics, and measurement-independence denial are route-specific commitments rather than consequences of deterministic physics itself. They are too restrictive relative to continuous causal wake and assembly dynamics.
+**What They Got Wrong or Overstated:** Cellular-automaton discretization, integer-only physical metaphysics, black-hole clone identification, and measurement-independence denial are route-specific commitments rather than consequences of deterministic physics itself. They are too restrictive relative to continuous causal wake dynamics, horizon-interface geometry, and assembly dynamics.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly aligned with mechanistic divergence and validation discipline, but not with cellular-automaton ontology or superdeterministic Bell closure.
 
-**Transition Relevance**: 't Hooft is highly useful in transition for legitimizing deterministic reduction agendas and for defining test criteria against standard quantum closure, especially Born-rule recovery, Bell/no-signaling constraints, Standard Model parameter recovery, and black-hole thermodynamics.
+**Transition Relevance**: 't Hooft is highly useful in transition for legitimizing deterministic reduction agendas and for defining test criteria against standard quantum closure, especially predictive-success-versus-ontology discipline, Born-rule recovery, Bell/no-signaling constraints, Standard Model parameter recovery, continuum-limit suspicion, and black-hole thermodynamics.
 
 **Long-Term Relevance**: Long-term relevance is high as deterministic-program ancestor, with specific CA machinery optional.
 
 **Core Belief**: Quantum behavior can emerge from deeper deterministic dynamics, potentially represented by discrete update structures.
 
-**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ shares deterministic ambition but uses continuous delayed interaction dynamics with emergent discreteness at assembly scales rather than fundamental cellular-automaton update tables.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ shares deterministic ambition but uses continuous delayed interaction dynamics with emergent discreteness at assembly scales rather than fundamental cellular-automaton update tables. The useful methodological lesson is calculational discipline: a radical reformulation earns standing only when it writes down a checkable result, explains why known effective theory worked, and exposes the residuals that would fail it.
 
 **Legacy Shift**: 't Hooft's deterministic challenge is retained and broadened into explicit causal-wake and assembly ontology, while his cellular-automaton and superdeterministic routes remain comparison material rather than imported doctrine.
 

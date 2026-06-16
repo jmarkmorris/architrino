@@ -215,6 +215,8 @@ $$
 $$
 Here $\mathcal{E}_{\mathrm{obs}}$ is the nonempty set of observational or standard-theory contacts, $\mathcal{R}_{\mathrm{rec}}$ is the relevant recovery residual, $\mathcal{R}_{\mathrm{null}}^{\mathrm{op}}$ is the operational null-result residual from [Failure Criteria](../validation/failure-criteria.md#null-result-residual-for-added-channels), and $\mathcal{S}_{\mathrm{retune}}$ records whether separate parameter choices are being used to pass different benchmarks. The rule is not anti-speculative; it simply keeps speculation in the comparison layer until it earns recovery, null-result discipline, and no-retuning closure.
 
+The same rule explains the methodological value of historical near-misses such as asymptotic-freedom discovery stories. A radical formal move may begin as a change of dimension, sign, or regularization scheme, but it becomes physics only when the result is written in a form other researchers can check and use. For $\mathbb{A}\mathbb{A}\mathbb{A}$ the corresponding lesson is direct: dissatisfaction with quantum ontology, continuum excess, or black-hole paradoxes does not by itself promote a replacement. The replacement must calculate a known benchmark, expose the residual that disciplines it, and explain why the older effective theory succeeded.
+
 ### Internal Tensions
 
 What falsificationism overstates is the speed and simplicity with which theories are abandoned. Real science often works through auxiliary assumptions, measurement uncertainty, and underdeveloped modeling. A single anomaly does not always kill a good program. The danger is therefore premature rejection of genuinely promising frameworks before their test architecture is mature.

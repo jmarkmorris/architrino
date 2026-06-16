@@ -21,6 +21,10 @@ This file records completed source-mining targets. When a new source or source f
 | NIST/CODATA [Fundamental Physical Constants](https://physics.nist.gov/cuu/Constants/), 2022 CODATA adjustment complete listing, plus standard / relative standard uncertainty definitions | May 19, 2026 |
 | Curt Jaimungal's long-form physicist interviews, source window January 1, 2025 through May 17, 2026 | May 17, 2026 |
 | Curt Jaimungal, [The Nobel Laureate Who (Also) Says Quantum Theory Is "Totally Wrong"](https://www.youtube.com/watch?v=gsSJPLX-BTA), interview with Gerard 't Hooft | June 16, 2026 |
+| Know Time, [Theories of Everything 101, Physics & Philosophy ft. Curt Jaimungal \| Know Time 170](https://www.youtube.com/watch?v=K_jCtpQgqB0), interview/discussion with Curt Jaimungal | June 16, 2026 |
+| London Institute for Mathematical Sciences, [Neil Turok's stunningly simple, testable new theory of the universe](https://www.youtube.com/watch?v=VlP-12yc2f8), talk/interview with Neil Turok | June 16, 2026 |
+| Lex Fridman, [Biggest Mysteries in Physics: Antimatter, Dark Energy & ToE - Don Lincoln](https://www.youtube.com/watch?v=1M3Vdl6DRkU), interview with Don Lincoln | June 16, 2026 |
+| PBS Space Time, [Heisenberg Made a Discovery in 1925. We Still Can't Explain It](https://www.youtube.com/watch?v=c-Q5r3THR3M), quantum-foundations history and matrix/wave mechanics overview | June 16, 2026 |
 | David Tong, [Dynamics and Relativity](https://davidtong.org/pdfs/teaching/dynamics-and-relativity/dynrel.pdf) | May 18, 2026 |
 | David Tong, [Classical Dynamics](https://davidtong.org/pdfs/teaching/classical-dynamics/clas.pdf) | May 18, 2026 |
 | David Tong, [Vector Calculus](https://davidtong.org/pdfs/teaching/vector-calculus/vc.pdf) | May 18, 2026 |

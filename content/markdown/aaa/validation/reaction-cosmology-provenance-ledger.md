@@ -135,18 +135,29 @@ $$
 =
 \frac{N_B(W)-N_{\bar B}(W)}{N_\gamma(W)}
 $$
+For leptogenesis-like source routes, the ledger must also carry a neutrino/antineutrino CP-asymmetry comparison term rather than assuming the external mechanism. Source leads for this row are primary neutrino-oscillation and leptogenesis sources: long-baseline $\nu/\bar\nu$ transition measurements, PMNS CP-phase summaries, and baryogenesis/leptogenesis rate calculations. The comparison term is
+$$
+\Delta_{\nu\bar\nu}^{\mathrm{CP}}(E,L;\alpha,\beta)
+=
+P_{\nu_\alpha\to\nu_\beta}(E,L)
+-
+P_{\bar\nu_\alpha\to\bar\nu_\beta}(E,L)
+$$
+where $E$ is neutrino energy, $L$ is baseline, and $\alpha,\beta$ label flavor channels. The source-window ledger may report $\Delta_{\nu\bar\nu}^{\mathrm{ledger}}(W)$ as the event-record-weighted version of this comparison over $W$, but that reported value is only an input constraint on the matter-asymmetry closure. It is not an established $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation of baryon excess.
+
 The acceptance residual should be reported as
 $$
 \mathcal{R}_{B/\gamma}(W)
 =
 \max\left(
 \frac{|\eta_B^{\mathrm{ledger}}(W)-\eta_B^{\mathrm{obs}}|}{\varepsilon_\eta},
+\frac{|\Delta_{\nu\bar\nu}^{\mathrm{ledger}}(W)-\Delta_{\nu\bar\nu}^{\mathrm{obs}}(W)|}{\varepsilon_{\nu\bar\nu}},
 \frac{|\Delta B_{\mathrm{unrec}}(W)|}{\varepsilon_B},
 \frac{|\Delta Q_{\mathrm{unrec}}(W)|}{\varepsilon_Q},
 \frac{|\Delta E_{\mathrm{unrec}}(W)|}{\varepsilon_E}
 \right)
 $$
-Here $\Delta B_{\mathrm{unrec}}$, $\Delta Q_{\mathrm{unrec}}$, and $\Delta E_{\mathrm{unrec}}$ are not new ontology. They are failure counters for baryon-number bookkeeping, electric-charge bookkeeping, and energy balance after all declared reaction, recoil, medium, and escape channels have been included. A source model may remain in the comparison ledger only when $\mathcal{R}_{B/\gamma}\le1$ and the same event record also passes the BBN photon-loading and CMB thermalization checks below.
+Here $\Delta_{\nu\bar\nu}^{\mathrm{ledger}}$, $\Delta B_{\mathrm{unrec}}$, $\Delta Q_{\mathrm{unrec}}$, and $\Delta E_{\mathrm{unrec}}$ are not new ontology. They are comparison or failure counters for CP-asymmetric neutrino/antineutrino transition rates, baryon-number bookkeeping, electric-charge bookkeeping, and energy balance after all declared reaction, recoil, medium, and escape channels have been included. A leptogenesis-like source model may remain in the comparison ledger only when $\mathcal{R}_{B/\gamma}\le1$ and the same event record also passes the BBN photon-loading and CMB thermalization checks below.
 
 ### CMB Thermalization
 
@@ -192,7 +203,7 @@ The same row must state whether the exchange is thermalizing, spectrally distort
 1. **Planar-mode threshold closure:** derive a shared threshold condition for bremsstrahlung and synchrotron photon assembly output.
 2. **Pair-production provenance closure:** prove that local Noether sea recruitment can satisfy architrino inventory, energy-momentum, and Breit-Wheeler rate constraints in the same event record.
 3. **Photon-bath closure:** show that the relevant radiation channels can maintain BBN-compatible photon loading during the deuterium bottleneck window.
-4. **Matter-asymmetry closure:** derive $\eta_B^{\mathrm{ledger}}$ from event-level reaction provenance without hidden baryon inventory, charge, or energy sources.
+4. **Matter-asymmetry closure:** derive $\eta_B^{\mathrm{ledger}}$ from event-level reaction provenance without hidden baryon inventory, charge, or energy sources; for leptogenesis-like routes, also recover $\Delta_{\nu\bar\nu}^{\mathrm{ledger}}$ from primary-source neutrino CP-asymmetry comparisons without promoting leptogenesis to doctrine.
 5. **Detailed-balance closure:** derive the rate symmetry and ensemble weight relation that make emission, absorption, and stimulated terms recover Planck occupation with zero effective photon chemical potential.
 6. **Blackbody closure:** show that distributed source channels plus Noether sea transport can generate and preserve the CMB blackbody spectrum within observational limits.
 7. **Clock/redshift closure:** use one Noether sea state map for photon propagation, endpoint clock comparison, and redshift-distance inference.
@@ -208,7 +219,7 @@ The provenance program fails for a channel if a source story cannot survive the 
 | Per-observable refit | The same Noether sea state variables must be re-fit independently for photon loading, blackbody recovery, damping, redshift, or growth observables | The cosmology interpretation loses its shared Noether sea state map |
 | Standard-limit violation | Pair, Compton-like, bremsstrahlung, synchrotron, or photon propagation channels violate validated limits in regimes where those limits are already measured | The proposed substrate route fails before it can claim new deviations |
 | Insufficient thermalization depth | $\mathcal{D}_{\mathrm{th}}$ is too small, or its channel decomposition is not tied to event records | Source photons need not relax to a Planck bath, and a nonzero effective photon chemical potential or spectral distortion remains |
-| Matter-asymmetry ledger failure | $\eta_B^{\mathrm{ledger}}$ cannot match the observed baryon-to-photon ratio without unrecorded baryon inventory, charge imbalance, or energy imbalance | A baryogenesis-like source story cannot be promoted into cosmology provenance |
+| Matter-asymmetry ledger failure | $\eta_B^{\mathrm{ledger}}$ cannot match the observed baryon-to-photon ratio, or $\Delta_{\nu\bar\nu}^{\mathrm{ledger}}$ is imported without event-record support; the source route then relies on unrecorded baryon inventory, charge imbalance, or energy imbalance | A baryogenesis-like or leptogenesis-like source story cannot be promoted into cosmology provenance |
 | BBN photon-loading failure | Source-zone photon production cannot preserve deuterium survival, helium clustering, lithium constraints, and $N_{\text{eff}}$ compatibility | The BBN local-reactor mapping cannot replace the standard photon-to-baryon environment |
 | CMB handoff failure | Blackbody precision, damping behavior, anisotropy, polarization, or TT/TE/EE coherence cannot be carried through the same transport and redshift map | CMB thermalization cannot be treated as a successful source-to-observer provenance path |
 | Frequency-exchange ledger failure | A path segment changes photon frequency without a closed medium, recoil, remnant, or side-effect row | Redshift, blueshift, SZ, or distance-ladder claims are being used without photon provenance |

@@ -233,6 +233,25 @@ The main overstatement arises when discreteness is too quickly equated with digi
 
 The same caution applies to deterministic cellular-automaton programs. A reversible local update rule can be a useful comparison model because it forces the theory to state a microstate, an update law, and a recovery burden. It does not follow that the physical substrate is a literal grid, a register, or an integer-only state table. To become physics rather than representation, such a model must identify the entities being updated, the Noether sea through which influence propagates, the conservation ledgers it preserves, and the route by which quantum statistics, Standard Model parameters, GR-like behavior, and strong-field thermodynamics are recovered.
 
+This is the right place to absorb 't Hooft's strongest discrete-substrate pressure. The claim that real-number continua may be effective rather than fundamental is a useful warning against treating differential form as ontology. The excess is the further inference that only integer cellular-automaton states can be physical. $\mathbb{A}\mathbb{A}\mathbb{A}$ can accept continuum suspicion while choosing a different substrate: architrinos in a Euclidean void, causal wakes at finite speed, and Noether sea organization whose observer-level summaries may be continuous even when assembly records are discrete.
+
+A discrete or digital comparison program earns transition relevance only if its recovery residuals close as a vector, not one observable at a time:
+
+$$
+\mathcal{R}_{\mathrm{disc}}
+=
+\max\left(
+\mathcal{R}_{\mathrm{Born}},
+\mathcal{R}_{\mathrm{SM}},
+\mathcal{R}_{\mathrm{GR}},
+\mathcal{R}_{\mathrm{BH}},
+\mathcal{R}_{\mathrm{NS}}
+\right)
+\le 1
+$$
+
+Here the terms represent Born-rule statistics, Standard Model parameter and scattering recovery, relativistic/gravitational benchmarks, black-hole thermodynamic or information constraints, and no-signaling behavior. This residual is not a new gate; it states why continuum criticism alone is insufficient. The proposed substrate must recover the mature effective stack.
+
 Another tension concerns empirical recovery. Many discrete programs excel at conceptual resistance to the continuum, but fewer provide a compelling, fully worked derivation of the observed low-energy world. What they get wrong or overstate is sometimes not the discrete hypothesis itself, but the ease with which metric behavior, quantum statistics, relativistic invariance, and cosmological structure are supposed to descend from a chosen microscopic scaffold. Discreteness is a direction of repair, not a completed ontology.
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$

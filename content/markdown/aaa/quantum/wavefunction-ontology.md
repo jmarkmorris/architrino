@@ -16,6 +16,8 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, the wavefunction $\psi(\mathbf{x}, t)$ is n
 
 The universe at the ontic level, as represented by the $\mathbb{U}_{\text{now}}$ universe-state perspective, consists of point-like architrinos executing definite trajectories $\mathbf{x}_i(t)$ in a 3D Euclidean void, interacting via a continuous superposition of causal wake surfaces. Because Physical Observers (assemblies) cannot access the exact microstate or the full path-history of the Noether sea, they must rely on statistical descriptions.
 
+This requires a two-layer use of the word superposition. Substrate superposition means linear addition of causal-wake contributions and accelerations; it is part of the deterministic dynamics. Quantum superposition of mutually exclusive outcomes is different: it is an effective branch envelope used by a Physical Observer before a record has selected a basin. A deterministic substrate can therefore reject ontic superposition of mutually exclusive macroscopic states without rejecting the wake addition that produces the effective landscape.
+
 The wavefunction encodes:
 *   **The superposed potential landscape:** A coarse-grained representation of the ambient causal wake intersections.
 *   **Informational ambiguity:** The integrated ignorance of exact source identities, distances, and path-history emission times.
@@ -240,6 +242,8 @@ Assemblies such as Noether swarms possess internal slow variables that dictate t
 Once the accumulated path-history forces push the assembly's action across the $h$-scale separatrix, the system falls into a new, distinct basin of attraction (e.g., transitioning from an excited orbital resonance to a ground state, or locking into a specific spatial trajectory). 
 
 For spin measurements, the corresponding basin program is the Stern-Gerlach-like response model in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response), where the apparatus couples to the full nested shell swarm spin ledger rather than to a preassigned spin label.
+
+The stronger deterministic statement is not that the formal wavefunction disappears from calculation. It is that a complete substrate state would already contain the realized path-history branch. The effective state must carry multiple amplitudes only because the retained observer chart has lost enough source identity, emission-time, and apparatus-kernel detail that several basin outcomes remain unresolved.
 
 *   **Before the transition:** For the declared apparatus kernel and coarse-graining, the wavefunction models the probability amplitudes of the system navigating the metastable region.
 *   **During the transition:** The discrete state changes sharply, breaking the linear approximation of the Schrödinger equation.
