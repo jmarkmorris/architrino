@@ -2,7 +2,9 @@ export type SolverAppId = "animator" | "photon" | "ideal-swarm";
 
 export type SolverRunKind =
   | "motionSimulation"
+  | "pathHistory"
   | "causalRoots"
+  | "phaseDiagnostics"
   | "delayedHits"
   | "sharedGeometry"
   | "appPlayback"
@@ -25,12 +27,39 @@ export type SolverClaimLevel =
 
 export type SolverAdmissionDecision = "admit" | "batch" | "escalate_precision" | "reject";
 
+export type SolverErrorBudgetStage =
+  | "root_isolation"
+  | "delayed_hit"
+  | "motion_integration"
+  | "stream_encoding"
+  | "stream_readback"
+  | "projection"
+  | "app_buffer";
+
+export type SolverValueAuthority = "authoritative" | "approximate" | "display-only" | "rejected";
+
 export interface SolverClient {
   init(request: SolverInitRequest): Promise<SolverInitResponse>;
   capabilities(): Promise<SolverCapabilities>;
+  planThreadingPolicy(request: SolverThreadingPlanRequest): Promise<SolverThreadingPlanResponse>;
+  prepareWorkPacketHeader(request: SolverWorkPacketHeader): Promise<SolverWorkPacketHeaderResponse>;
+  orderWorkPacketResults(request: SolverWorkPacketResultOrderRequest): Promise<SolverWorkPacketResultOrderResponse>;
+  mergeEmissionShellCandidatePacketResponsesF64(
+    request: SolverEmissionShellCandidatePacketMergeF64Request
+  ): Promise<SolverEmissionShellCandidateF64Response>;
+  planPathHistoryWorkPackets(
+    request: SolverPathHistoryWorkPacketPlanRequest
+  ): Promise<SolverPathHistoryWorkPacketPlanResponse>;
   admitSimulationEnvelope(request: SolverAdmissionRequest): Promise<SolverAdmissionResponse>;
   runSimulation(request: SolverRunRequest): Promise<SolverRunHandle>;
+  describeRun(request: SolverDescribeRunRequest): Promise<SolverRunDescription>;
+  describeStream(request: SolverDescribeStreamRequest): Promise<SolverStreamDescription>;
   diagnosePrecisionF64(request: SolverCausalRootsF64Request): Promise<SolverPrecisionDiagnosticF64Response>;
+  propagateErrorBudgetF64(request: SolverErrorBudgetPropagationRequest): Promise<SolverErrorBudgetPropagationResponse>;
+  checkRootHitInvariantsF64(request: SolverRootHitInvariantF64Request): Promise<SolverRootHitInvariantF64Response>;
+  classifyRootLedgerTransitionsF64(
+    request: SolverRootLedgerTransitionF64Request
+  ): Promise<SolverRootLedgerTransitionF64Response>;
   solveCausalRootsF64(request: SolverCausalRootsF64Request): Promise<SolverCausalRootsF64Response>;
   solveCausalRootBatchF64(
     request: SolverCausalRootBatchF64Request
@@ -40,6 +69,9 @@ export interface SolverClient {
     request: SolverRootLedgerDetailF64Request
   ): Promise<SolverRootLedgerDetailF64Response>;
   computePhaseAtHitF64(request: SolverPhaseAtHitF64Request): Promise<SolverPhaseAtHitF64Response>;
+  summarizePhaseAtHitsF64(
+    request: SolverPhaseAtHitSummaryF64Request
+  ): Promise<SolverPhaseAtHitSummaryF64Response>;
   computeSharedGeometryF64(request: SolverSharedGeometryF64Request): Promise<SolverSharedGeometryF64Response>;
   detectAssemblyMembershipEventsF64(
     request: SolverAssemblyMembershipEventsF64Request
@@ -47,6 +79,21 @@ export interface SolverClient {
   buildSpaceTimeIndexF64(request: SolverBuildSpaceTimeIndexF64Request): Promise<SolverSpaceTimeIndexF64Response>;
   querySpaceTimeIndexF64(request: SolverQuerySpaceTimeIndexF64Request): Promise<SolverSpaceTimeIndexF64Response>;
   sampleLinearMotionF64(request: SolverLinearMotionSampleF64Request): Promise<SolverLinearMotionSampleF64Response>;
+  createPathHistoryStreamF64(
+    request: SolverCreatePathHistoryStreamF64Request
+  ): Promise<SolverPathHistoryStreamF64Response>;
+  planPathHistoryStorageLifecycleF64(
+    request: SolverPathHistoryStorageLifecycleRequest
+  ): Promise<SolverPathHistoryStorageLifecycleResponse>;
+  queryEmissionShellCandidatesF64(
+    request: SolverEmissionShellCandidateF64Request
+  ): Promise<SolverEmissionShellCandidateF64Response>;
+  queryEmissionShellCandidatePacketF64(
+    request: SolverEmissionShellCandidatePacketF64Request
+  ): Promise<SolverEmissionShellCandidateF64Response>;
+  queryEmissionShellCandidatePacketsF64(
+    request: SolverEmissionShellCandidatePacketsF64Request
+  ): Promise<SolverEmissionShellCandidateF64Response>;
   cancelRun(request: SolverCancelRequest): Promise<SolverStatusRecord>;
   openStream(request: SolverOpenStreamRequest): Promise<SolverStreamHandle>;
   readStreamRange(request: SolverReadStreamRangeRequest): Promise<SolverStreamRangeResponse>;
@@ -102,6 +149,8 @@ export interface SolverMotionFrameF64 {
 export interface SolverSharedGeometryF64Request {
   pathBounds?: SolverPathBoundsF64Request[];
   spherePointIntersections?: SolverSpherePointIntersectionF64Request[];
+  delayedPotentials?: SolverDelayedPotentialF64Request[];
+  circularSelfHitSpans?: SolverCircularSelfHitSpanF64Request[];
 }
 
 export interface SolverPathBoundsF64Request {
@@ -116,9 +165,32 @@ export interface SolverSpherePointIntersectionF64Request {
   tolerance?: number;
 }
 
+export interface SolverDelayedPotentialF64Request {
+  source: SolverLinearPathSegmentF64;
+  samplePoint: SolverVector3F64;
+  observationTime: number;
+  fieldSpeed?: number;
+  normalization?: number;
+  softening?: number;
+  sourceCharge?: number;
+  iterations?: number;
+  useCausalDenominator?: boolean;
+}
+
+export interface SolverCircularSelfHitSpanF64Request {
+  fieldSpeedRatio: number;
+  fieldSpeedTolerance?: number;
+  tolerance?: number;
+  maxIterations?: number;
+  scanSubdivisions?: number;
+  maxAngle?: number;
+}
+
 export interface SolverSharedGeometryF64Response {
   pathBounds: SolverPathBoundsF64[];
   spherePointIntersections: SolverSpherePointIntersectionF64[];
+  delayedPotentials: SolverDelayedPotentialF64[];
+  circularSelfHitSpans: SolverCircularSelfHitSpanF64[];
   status: SolverStatusRecord;
 }
 
@@ -135,6 +207,36 @@ export interface SolverSpherePointIntersectionF64 {
   intersects: boolean;
   centerDistance: number;
   signedDistance: number;
+}
+
+export interface SolverDelayedPotentialF64 {
+  itemIndex: number;
+  statusCode: number;
+  tau: number;
+  emissionTime: number;
+  emissionPoint: SolverVector3F64;
+  displacement: SolverVector3F64;
+  distance: number;
+  denominator: number;
+  potential: number;
+  kappa: number;
+  iterations: number;
+  usedCausalDenominator: boolean;
+}
+
+export interface SolverCircularSelfHitSpanF64 {
+  itemIndex: number;
+  statusCode: number;
+  fieldSpeedRatio: number;
+  fieldSpeedTolerance: number;
+  regime: "sub_field" | "field_speed" | "super_field";
+  resultKind: "below_threshold" | "root_solved" | "fallback_pi";
+  span: number;
+  rootFound: boolean;
+  bracketLow: number;
+  bracketHigh: number;
+  residual: number;
+  iterations: number;
 }
 
 export interface SolverAssemblyMembershipEventsF64Request {
@@ -208,6 +310,263 @@ export interface SolverPathHistoryRowF64 {
   velocity: SolverVector3F64;
   errorBound?: number;
   stateFlags?: number;
+}
+
+export interface SolverCreatePathHistoryStreamF64Request {
+  runId: string;
+  datasetId?: string;
+  streamId: string;
+  pathRows: SolverPathHistoryRowF64[];
+  rowsPerChunk?: number;
+  storagePolicy?: SolverStoragePolicy;
+  metadata?: Partial<SolverPathHistoryStreamMetadata>;
+}
+
+export interface SolverPathHistoryStreamF64Response {
+  schema: "solver-path-history-stream.v1";
+  stream: SolverStreamDescriptor;
+  buffers: SolverBufferMetadata[];
+  summary: SolverPathHistoryStreamSummary;
+  status: SolverStatusRecord;
+}
+
+export interface SolverPathHistoryStreamSummary {
+  schema: "solver-path-history-stream-summary.v1";
+  runId: string;
+  datasetId?: string;
+  streamId: string;
+  rowCount: number;
+  chunkCount: number;
+  pathCount: number;
+  byteLength: number;
+  rowSizeBytes: number;
+  pathIndexRowCount: number;
+  pathIndexedChunkCount: number;
+  timeRange: SolverRange;
+  frameRange: SolverRange;
+  storagePolicy: SolverStoragePolicy;
+  metadata: SolverPathHistoryStreamMetadata;
+}
+
+export type SolverPathHistoryStorageTier = "active" | "warm" | "cold" | "deleted" | "unknown";
+
+export type SolverPathHistoryStorageAction =
+  | "keep_active"
+  | "spill_warm"
+  | "archive_cold"
+  | "build_deep_index"
+  | "delete"
+  | "blocked_unsafe"
+  | "unknown";
+
+export type SolverPathHistoryStorageReason =
+  | "unknown"
+  | "delete_requested"
+  | "failed_run_cleanup"
+  | "overlaps_active_window"
+  | "chunk_is_pinned_active"
+  | "aged_chunk_requires_deep_index"
+  | "storage_pressure_without_export_request"
+  | "export_retention_requested"
+  | "deep_index_already_built"
+  | "aged_out_of_active_window";
+
+export interface SolverPathHistoryStorageLifecyclePolicy {
+  activeWindow?: SolverRange;
+  deepIndexEnabled?: boolean;
+  exportRequested?: boolean;
+  failedRun?: boolean;
+  deleteRequested?: boolean;
+  activeMemoryBudgetBytes?: number;
+  storageBudgetBytes?: number;
+}
+
+export interface SolverPathHistoryChunkMetadata {
+  chunkIndex: number;
+  pathKeyStart: number;
+  pathKeyEnd: number;
+  rowOffset: number;
+  rowCount: number;
+  timeRange?: SolverRange;
+  frameRange?: SolverRange;
+  byteRange?: SolverRange;
+  timeStart?: number;
+  timeEnd?: number;
+  frameStart?: number;
+  frameEnd?: number;
+  byteOffset?: number;
+  byteLength?: number;
+  checksum64?: number | string | bigint;
+  stateFlags?: number;
+}
+
+export interface SolverPathHistoryStorageLifecycleRequest {
+  streamId?: string;
+  policy: SolverPathHistoryStorageLifecyclePolicy;
+  chunks?: SolverPathHistoryChunkMetadata[];
+}
+
+export interface SolverPathHistoryLifecycleDecision {
+  chunkIndex: number;
+  tierCode: number;
+  tier: SolverPathHistoryStorageTier;
+  actionCode: number;
+  action: SolverPathHistoryStorageAction;
+  safeToAgeOut: boolean;
+  requiresDeepIndex: boolean;
+  reasonCode: number;
+  reason: SolverPathHistoryStorageReason;
+}
+
+export interface SolverPathHistoryStorageLifecycleResponse {
+  schema: "solver-path-history-storage-lifecycle.v1";
+  streamId?: string;
+  policy: Required<Omit<SolverPathHistoryStorageLifecyclePolicy, "activeWindow">> & {
+    activeWindow?: SolverRange;
+  };
+  chunkCount: number;
+  decisions: SolverPathHistoryLifecycleDecision[];
+  status: SolverStatusRecord;
+}
+
+export interface SolverPathHistoryStreamMetadata {
+  schema: "solver-path-history-stream-metadata.v1";
+  precisionPath: SolverPrecisionPath;
+  units: string;
+  coordinateFrame: string;
+  scaleNormalization: string;
+  interpolationRule: string;
+  provenance: Record<string, unknown>;
+  diagnostics: SolverDiagnosticRecord[];
+}
+
+export interface SolverEmissionShellCandidateF64Request {
+  streamId: string;
+  signalSpeed: number;
+  tolerance?: number;
+  maxCandidates?: number;
+  sourcePathKeys?: number[];
+  receiverPathKeys?: number[];
+  sourceChunkIndices?: number[];
+  receiverChunkIndices?: number[];
+  allowSamePath?: boolean;
+  workerCount?: number;
+  timeRange?: SolverRange;
+}
+
+export interface SolverEmissionShellCandidatePacketF64Request {
+  streamId: string;
+  packet: SolverWorkPacketHeader;
+  signalSpeed: number;
+  tolerance?: number;
+  maxCandidates?: number;
+  sourcePathKeys?: number[];
+  receiverPathKeys?: number[];
+  allowSamePath?: boolean;
+  workerCount?: number;
+  timeRange?: SolverRange;
+}
+
+export interface SolverEmissionShellCandidatePacketsF64Request {
+  streamId: string;
+  packets: SolverWorkPacketHeader[];
+  signalSpeed: number;
+  tolerance?: number;
+  maxCandidatesPerPacket?: number;
+  sourcePathKeys?: number[];
+  receiverPathKeys?: number[];
+  allowSamePath?: boolean;
+  workerCount?: number;
+  timeRange?: SolverRange;
+}
+
+export interface SolverEmissionShellCandidatePacketMergeF64Request {
+  responses: SolverEmissionShellCandidateF64Response[];
+}
+
+export interface SolverEmissionShellCandidateF64Response {
+  schema: "solver-emission-shell-candidates.v1";
+  packetId?: string;
+  packetMergeOrder?: number;
+  packetMergeKey?: string;
+  streamId: string;
+  signalSpeed: number;
+  tolerance: number;
+  pairCount: number;
+  rejectedPairCount: number;
+  candidateCount: number;
+  rejectionRate: number;
+  candidateRate: number;
+  falsePositiveEstimate: SolverEmissionShellFalsePositiveEstimate;
+  scanSummary: SolverEmissionShellScanSummary;
+  truncated: boolean;
+  candidates: SolverEmissionShellCandidateF64[];
+  buffers: SolverBufferDescriptor[];
+  status: SolverStatusRecord;
+}
+
+export interface SolverEmissionShellScanSummary {
+  schema: "solver-emission-shell-scan-summary.v1";
+  executionPath: "native_c_abi" | "javascript_fallback" | "packet_merge";
+  streamChunkCount: number;
+  skippedChunkCount: number;
+  prunedByTimeChunkCount: number;
+  prunedByPathChunkCount: number;
+  pathIndexRowCount: number;
+  pathIndexedChunkCount: number;
+  indexSkippedRowCount: number;
+  scannedRowCount: number;
+  skippedRowCount: number;
+  uniqueMaterializedRowCount: number;
+  materializedRoleRowCount: number;
+  sourceRowCount: number;
+  receiverRowCount: number;
+  possiblePairUpperBound: number;
+  testedPairCount: number;
+  skippedPairCount: number;
+  rejectedPairCount: number;
+  candidateCount: number;
+  outputBufferCount: number;
+  outputByteLength: number;
+  requestedWorkerCount: number;
+  plannedWorkerCount: number;
+  truncated: boolean;
+}
+
+export interface SolverEmissionShellFalsePositiveEstimate {
+  method: "sampled_linear_segment_bisection.v1";
+  testedCandidateCount: number;
+  estimatedTruePositiveCount: number;
+  estimatedFalsePositiveCount: number;
+  estimatedFalsePositiveRate: number;
+}
+
+export interface SolverEmissionShellCandidateF64 {
+  sourcePathKey: number;
+  receiverPathKey: number;
+  sourceSegmentIndex: number;
+  receiverSegmentIndex: number;
+  sourceChunkIndex: number;
+  receiverChunkIndex: number;
+  sourceRowOffset: number;
+  receiverRowOffset: number;
+  sourceTimeRange: SolverRange;
+  receiverTimeRange: SolverRange;
+  distanceLowerBound: number;
+  distanceUpperBound: number;
+  radiusLowerBound: number;
+  radiusUpperBound: number;
+  candidateKind: "broad_phase_possible";
+  narrowPhaseEstimate: SolverEmissionShellNarrowPhaseEstimate;
+}
+
+export interface SolverEmissionShellNarrowPhaseEstimate {
+  method: "sampled_linear_segment_bisection.v1";
+  classification: "sampled_hit" | "sampled_miss";
+  sampleCount: number;
+  hitTime?: number;
+  emissionTime?: number;
+  residual: number | null;
 }
 
 export interface SolverAssemblyStateF64 {
@@ -353,6 +712,38 @@ export interface SolverPhaseAtHitF64Response {
   status: SolverStatusRecord;
 }
 
+export interface SolverPhaseAtHitSummaryF64Request {
+  rows: SolverPhaseAtHitF64[];
+}
+
+export interface SolverPhaseAtHitSummaryF64Response {
+  summary: SolverPhaseAtHitSummaryF64;
+  status: SolverStatusRecord;
+}
+
+export interface SolverPhaseAtHitSummaryF64 {
+  schema: "solver-phase-at-hit-summary.v1";
+  rowCount: number;
+  rootIdRange: SolverRange;
+  statusCounts: SolverPhaseAtHitStatusCount[];
+  sourceCycleIndexRange: SolverRange;
+  receiverCycleIndexRange: SolverRange;
+  emissionTimeRange: SolverRange;
+  hitTimeRange: SolverRange;
+  sourcePhaseRange: SolverRange;
+  receiverPhaseRange: SolverRange;
+  phaseDeltaRange: SolverRange;
+  phaseSpreadRange: SolverRange;
+  meanPhaseDelta: number;
+  meanPhaseSpread: number;
+  maxPhaseSpread: number;
+}
+
+export interface SolverPhaseAtHitStatusCount {
+  statusCode: number;
+  rowCount: number;
+}
+
 export interface SolverPhaseAtHitF64 {
   rootId: number;
   statusCode: number;
@@ -456,8 +847,32 @@ export interface SolverAdmissionResponse {
   decision: SolverAdmissionDecision;
   selectedPrecisionPath: SolverPrecisionPath;
   admitted: boolean;
+  stressSummary: SolverAdmissionStressSummary;
   statuses: SolverStatusRecord[];
   status: SolverStatusRecord;
+}
+
+export type SolverAdmissionStressDimension =
+  | "entity_count"
+  | "interaction_graph"
+  | "memory"
+  | "time_steps"
+  | "output_detail"
+  | "precision";
+
+export interface SolverAdmissionStressSummary {
+  schema: "solver-admission-stress-summary.v1";
+  entityCount: number;
+  estimatedPairCount: number;
+  entityPressure: number;
+  interactionPressure: number;
+  memoryPressure: number;
+  timeStepCountEstimate: number | null;
+  timeStepPressure: number;
+  outputPressure: number;
+  precisionPressure: number;
+  dominantStress: SolverAdmissionStressDimension;
+  pressureScore: number;
 }
 
 export interface SolverCapabilityEnvelope {
@@ -466,6 +881,7 @@ export interface SolverCapabilityEnvelope {
   minMemoryBudgetBytes?: number;
   minStorageBudgetBytesForStreaming?: number;
   minimumPositiveTolerance?: number;
+  maxInteractiveStepCount?: number;
 }
 
 export interface SolverModelContract {
@@ -490,9 +906,105 @@ export interface SolverErrorBudget {
   displayTolerance?: number;
 }
 
+export interface SolverErrorBudgetStageReport {
+  stage: SolverErrorBudgetStage;
+  estimatedAbsoluteError: number;
+  tolerance: number;
+  toleranceRatio: number;
+  authority: SolverValueAuthority;
+  status: SolverStatusRecord;
+}
+
+export interface SolverErrorBudgetPropagationReport {
+  cumulativeError: number;
+  cumulativeBudgetRatio: number;
+  authority: SolverValueAuthority;
+  stages: SolverErrorBudgetStageReport[];
+  statuses: SolverStatusRecord[];
+}
+
+export interface SolverErrorBudgetStageInput {
+  stage: SolverErrorBudgetStage;
+  estimatedAbsoluteError: number;
+}
+
+export interface SolverErrorBudgetPropagationRequest {
+  errorBudget: SolverErrorBudget;
+  stages: SolverErrorBudgetStageInput[];
+  maxRows?: number;
+}
+
+export interface SolverErrorBudgetPropagationResponse extends SolverErrorBudgetPropagationReport {
+  status: SolverStatusRecord;
+}
+
+export interface SolverRootHitInvariantOptions {
+  rootResidualTolerance?: number;
+  timeTolerance?: number;
+  distanceTolerance?: number;
+  directionTolerance?: number;
+  branchWeightTolerance?: number;
+  smallJacobianTolerance?: number;
+}
+
+export interface SolverRootHitInvariantF64Request {
+  roots?: SolverCausalRootF64[];
+  hits?: SolverDelayedHitF64[];
+  options?: SolverRootHitInvariantOptions;
+}
+
+export interface SolverRootHitInvariantF64Response {
+  rootCount: number;
+  hitCount: number;
+  statuses: SolverStatusRecord[];
+  status: SolverStatusRecord;
+}
+
+export type SolverRootLedgerTransitionKind =
+  | "retained"
+  | "appeared"
+  | "disappeared"
+  | "folded"
+  | "assimilated_from_tail"
+  | "ledger_rerun_required";
+
+export interface SolverRootLedgerTransitionF64Request {
+  priorRows: SolverRootLedgerDetailF64[];
+  nextRows: SolverRootLedgerDetailF64[];
+}
+
+export interface SolverRootLedgerTransitionF64 {
+  transitionKey: string;
+  kind: SolverRootLedgerTransitionKind;
+  priorRootKey: number;
+  nextRootKey: number;
+  sourceKey: number;
+  receiverKey: number;
+  intervalStart: number;
+  intervalEnd: number;
+  priorEntryKind: number;
+  nextEntryKind: number;
+  priorStatusCode: number;
+  nextStatusCode: number;
+  priorJacobianSignStratum: number;
+  nextJacobianSignStratum: number;
+  status: SolverStatusRecord;
+}
+
+export interface SolverRootLedgerTransitionF64Response {
+  transitions: SolverRootLedgerTransitionF64[];
+  statuses: SolverStatusRecord[];
+  status: SolverStatusRecord;
+}
+
 export type SolverRunConfig =
   | CausalRootsSolverConfig
+  | PhaseDiagnosticsSolverConfig
+  | PathHistorySolverConfig
+  | DelayedHitsSolverConfig
+  | SharedGeometrySolverConfig
   | MotionSimulationSolverConfig
+  | AppPlaybackSolverConfig
   | AnimatorSolverConfig
   | PhotonSolverConfig
   | IdealSwarmSolverConfig
@@ -503,9 +1015,44 @@ export interface CausalRootsSolverConfig {
   rootRequest: SolverCausalRootsF64Request;
 }
 
+export interface PhaseDiagnosticsSolverConfig {
+  appId: SolverAppId;
+  phaseRequest: SolverPhaseAtHitF64Request;
+}
+
+export interface PathHistorySolverConfig {
+  appId: SolverAppId;
+  streamId?: string;
+  pathRows: SolverPathHistoryRowF64[];
+  rowsPerChunk?: number;
+  storagePolicy?: SolverStoragePolicy;
+  metadata?: Partial<SolverPathHistoryStreamMetadata>;
+}
+
+export interface DelayedHitsSolverConfig {
+  appId: SolverAppId;
+  rootRequest: SolverCausalRootsF64Request;
+}
+
+export interface SharedGeometrySolverConfig {
+  appId: SolverAppId;
+  geometryRequest: SolverSharedGeometryF64Request;
+}
+
 export interface MotionSimulationSolverConfig {
   appId: SolverAppId;
   motionRequest: SolverLinearMotionSampleF64Request;
+}
+
+export interface AppPlaybackSolverConfig {
+  appId: SolverAppId;
+  sourceRunId?: string;
+  sourceDatasetId?: string;
+  frames?: SolverMotionFrameF64[];
+  roots?: SolverCausalRootF64[];
+  hits?: SolverDelayedHitF64[];
+  geometry?: SolverSharedGeometryF64Response;
+  diagnostics?: SolverDiagnosticRecord[];
 }
 
 export interface SolverRunHandle {
@@ -574,6 +1121,7 @@ export type SolverWorkerMessage =
 export interface SolverRunResponse {
   runId: string;
   datasetId?: string;
+  manifest: SolverRunManifest;
   summary: SolverRunSummary;
   buffers: SolverBufferDescriptor[];
   streams: SolverStreamDescriptor[];
@@ -581,7 +1129,86 @@ export interface SolverRunResponse {
   frames?: SolverMotionFrameF64[];
   roots?: SolverCausalRootF64[];
   hits?: SolverDelayedHitF64[];
+  phaseRows?: SolverPhaseAtHitF64[];
+  phaseSummary?: SolverPhaseAtHitSummaryF64;
+  pathHistory?: SolverPathHistoryStreamSummary;
+  geometry?: SolverSharedGeometryF64Response;
+  validationReplay?: SolverBaselineComparisonResult;
   status: SolverStatusRecord;
+}
+
+export interface SolverDescribeRunRequest {
+  runId: string;
+}
+
+export interface SolverRunDescription {
+  schema: "solver-run-description.v1";
+  runId: string;
+  datasetId?: string;
+  manifest: SolverRunManifest;
+  summary: SolverRunSummary;
+  buffers: SolverBufferMetadata[];
+  streams: SolverStreamDescriptor[];
+  diagnostics: SolverDiagnosticRecord[];
+  status: SolverStatusRecord;
+}
+
+export interface SolverRunManifest {
+  schema: "solver-run-manifest.v1";
+  manifestHash: string;
+  requestId: string;
+  runId: string;
+  datasetId: string;
+  appId: SolverAppId;
+  runKind: SolverRunKind;
+  claimLevel: SolverClaimLevel;
+  configVersion: string;
+  configHash: string;
+  model: SolverModelContract;
+  envelope: SolverSimulationEnvelope;
+  errorBudget: SolverErrorBudget;
+  requestedPrecisionPath: SolverPrecisionPath;
+  selectedPrecisionPath: SolverPrecisionPath;
+  output: SolverOutputRequest;
+  admission: SolverRunManifestAdmission;
+  provenance: SolverRunManifestProvenance;
+  deterministic: boolean;
+  buffers: SolverRunManifestBuffer[];
+  streams: SolverRunManifestStream[];
+  diagnostics: SolverDiagnosticRecord[];
+  status: SolverStatusRecord;
+}
+
+export interface SolverRunManifestAdmission {
+  decision: SolverAdmissionDecision;
+  admitted: boolean;
+  stressSummary: SolverAdmissionStressSummary;
+  statuses: SolverStatusRecord[];
+}
+
+export interface SolverRunManifestProvenance {
+  apiVersion: string;
+  solverVersion: string;
+  bridge: string;
+  wasmAbiVersion: string;
+  generatedAt: string;
+}
+
+export interface SolverRunManifestBuffer {
+  bufferId: string;
+  layout: SolverBinaryLayoutId;
+  byteLength: number;
+  rowCount: number;
+  numericType: SolverNumericType;
+  checksum: string;
+}
+
+export interface SolverRunManifestStream {
+  streamId: string;
+  manifestVersion: string;
+  indexLayout: SolverBinaryLayoutId;
+  rangeCount: number;
+  storagePolicy: SolverStoragePolicy;
 }
 
 export interface SolverBufferDescriptor {
@@ -591,8 +1218,11 @@ export interface SolverBufferDescriptor {
   byteLength: number;
   rowCount: number;
   numericType: SolverNumericType;
+  checksum?: string;
   buffer: ArrayBuffer;
 }
+
+export type SolverBufferMetadata = Omit<SolverBufferDescriptor, "buffer">;
 
 export interface SolverWorkPacketHeader {
   schema: "solver-work-packet.v1";
@@ -609,6 +1239,15 @@ export interface SolverWorkPacketHeader {
   mergeOrder: number;
   mergeKey: string;
   headerChecksum?: string;
+}
+
+export interface SolverWorkPacketHeaderResponse {
+  schema: "solver-work-packet-header.v1";
+  packet: SolverWorkPacketHeader;
+  serializedHeader: string;
+  headerChecksum: string;
+  diagnostics: SolverDiagnosticRecord[];
+  status: SolverStatusRecord;
 }
 
 export interface SolverWorkPacketIndexRange {
@@ -628,12 +1267,65 @@ export interface SolverWorkPacketBufferRef {
   checksum: string;
 }
 
+export interface SolverWorkPacketResultRef {
+  packetId: string;
+  mergeOrder: number;
+  mergeKey: string;
+  outputs: SolverWorkPacketBufferRef[];
+}
+
+export interface SolverWorkPacketResultOrderRequest {
+  results: SolverWorkPacketResultRef[];
+}
+
+export interface SolverWorkPacketResultOrderResponse {
+  schema: "solver-work-packet-result-order.v1";
+  results: SolverWorkPacketResultRef[];
+  status: SolverStatusRecord;
+}
+
+export interface SolverPathHistoryWorkPacketPlanRequest {
+  streamId: string;
+  runId: string;
+  modelId: string;
+  precisionPath: Exclude<SolverPrecisionPath, "auto">;
+  packetIdPrefix?: string;
+  timeRange?: SolverRange;
+  expectedOutputs?: SolverBinaryLayoutId[];
+  sourcePathKeys?: number[];
+  receiverPathKeys?: number[];
+  sourceChunkIndices?: number[];
+  receiverChunkIndices?: number[];
+  includeSameChunk?: boolean;
+  maxPacketCount?: number;
+}
+
+export interface SolverPathHistoryWorkPacketPlanResponse {
+  schema: "solver-path-history-work-packet-plan.v1";
+  streamId: string;
+  runId: string;
+  modelId: string;
+  precisionPath: Exclude<SolverPrecisionPath, "auto">;
+  sourceChunkCount: number;
+  receiverChunkCount: number;
+  pathIndexRowCount: number;
+  pathIndexedChunkCount: number;
+  sourcePathPrunedChunkCount: number;
+  receiverPathPrunedChunkCount: number;
+  chunkPairCount: number;
+  packetCount: number;
+  truncated: boolean;
+  packets: SolverWorkPacketHeader[];
+  status: SolverStatusRecord;
+}
+
 export interface SolverStreamDescriptor {
   streamId: string;
   manifestVersion: string;
   indexLayout: SolverBinaryLayoutId;
   availableRanges: SolverStreamRange[];
   storagePolicy: SolverStoragePolicy;
+  metadata?: SolverPathHistoryStreamMetadata;
 }
 
 export type SolverBinaryLayoutId =
@@ -649,6 +1341,8 @@ export type SolverBinaryLayoutId =
   | "delayed_hit_events.v1"
   | "phase_at_hit.v1"
   | "spacetime_index.v1"
+  | "emission_shell_candidate.v1"
+  | "emission_shell_narrow_phase.v1"
   | "stream_index.v1";
 
 export type SolverNumericType =
@@ -710,9 +1404,92 @@ export interface SolverCapabilities {
   outputLayouts: SolverBinaryLayoutId[];
   storage: SolverStorageCapability;
   threading: SolverThreadingCapability;
+  appBridge: SolverAppBridgeCapability;
   numericSerialization: SolverNumericSerializationContract;
+  errorBudgetPropagation: SolverErrorBudgetPropagationContract;
+  validation: SolverValidationCapability;
   maxTransferBytes: number;
+  wasmModuleFactory: boolean;
   abiInfo?: SolverAbiInfo;
+}
+
+export interface SolverAppBridgeCapability {
+  schema: "solver-app-bridge-capabilities.v1";
+  apiVersion: string;
+  adapterVersion: string;
+  appAdapters: SolverAppAdapterCapability[];
+  denseDataTransport: ("array-buffer" | "stream-handle")[];
+  workerModel: SolverBridgeWorkerModelCapability;
+  storageFallbacks: SolverBridgeStorageFallbackCapability;
+  streamQueries: SolverStreamQueryCapability;
+  workPackets: SolverWorkPacketCapability;
+}
+
+export interface SolverAppAdapterCapability {
+  appId: SolverAppId;
+  runKinds: SolverRunKind[];
+}
+
+export interface SolverBridgeWorkerModelCapability {
+  bridgeOwnsWasmLifecycle: boolean;
+  appsRequireCppHandling: boolean;
+  longRunningRunsOffUiThreadRequired: boolean;
+  browserWorkerAvailable: boolean;
+  wasmInternalThreadsAvailable: boolean;
+  fallback: "single-solver-worker-or-batch";
+}
+
+export interface SolverBridgeStorageFallbackCapability {
+  preferredDurableBrowserTarget: "opfs";
+  durableBrowserTargetAvailable: boolean;
+  transientTarget: "caller-buffer";
+  unsupportedStorageStatusCode: "unsupported_browser_storage";
+}
+
+export interface SolverStreamQueryCapability {
+  schema: "solver-stream-query-capabilities.v1";
+  helpers: (
+    | "createPathHistoryStreamF64"
+    | "describeStream"
+    | "readStreamRange"
+    | "queryEmissionShellCandidatesF64"
+    | "queryEmissionShellCandidatePacketF64"
+    | "queryEmissionShellCandidatePacketsF64"
+  )[];
+  pathHistoryLayouts: Array<Extract<SolverBinaryLayoutId, "path_segment.v1">>;
+  indexedFilters: ("pathKeys" | "chunkIndices" | "timeRange" | "frameRange" | "byteRange")[];
+  broadPhaseQueries: SolverBroadPhaseQueryCapability[];
+}
+
+export interface SolverBroadPhaseQueryCapability {
+  method:
+    | "queryEmissionShellCandidatesF64"
+    | "queryEmissionShellCandidatePacketF64"
+    | "queryEmissionShellCandidatePacketsF64";
+  responseSchema: "solver-emission-shell-candidates.v1";
+  candidateKind: "broad_phase_possible";
+  estimateMethod: "sampled_linear_segment_bisection.v1";
+  narrowPhaseAuthorities: ("solveCausalRootsF64" | "solveRootsAndHitsF64")[];
+}
+
+export interface SolverWorkPacketCapability {
+  schema: "solver-work-packet-capabilities.v1";
+  headerSchema: "solver-work-packet.v1";
+  helpers: (
+    | "prepareWorkPacketHeader"
+    | "orderWorkPacketResults"
+    | "planPathHistoryWorkPackets"
+    | "mergeEmissionShellCandidatePacketResponsesF64"
+  )[];
+  pathHistoryPlanFilters: (
+    | "sourcePathKeys"
+    | "receiverPathKeys"
+    | "sourceChunkIndices"
+    | "receiverChunkIndices"
+    | "timeRange"
+  )[];
+  deterministicMergeOrder: ("mergeKey" | "mergeOrder" | "packetId")[];
+  rowSizeValidation: boolean;
 }
 
 export interface SolverAbiInfo {
@@ -729,13 +1506,29 @@ export interface SolverAbiInfo {
   boundsRowF64Bytes: number;
   spherePointRequestF64Bytes: number;
   spherePointRowF64Bytes: number;
+  delayedPotentialRequestF64Bytes: number;
+  delayedPotentialRowF64Bytes: number;
+  circularSelfHitRequestF64Bytes: number;
+  circularSelfHitRowF64Bytes: number;
   assemblyStateRowF64Bytes: number;
   assemblyMembershipRowF64Bytes: number;
   assemblyHierarchyRowF64Bytes: number;
   assemblyEventRowF64Bytes: number;
   pathHistoryRowF64Bytes: number;
+  pathHistoryChunkRowBytes: number;
+  storageLifecyclePolicyBytes: number;
+  pathHistoryLifecycleDecisionRowBytes: number;
   spaceTimeIndexRowF64Bytes: number;
+  emissionShellBroadPhaseOptionsF64Bytes: number;
+  emissionShellCandidateRowF64Bytes: number;
+  emissionShellBroadPhaseSummaryBytes: number;
+  emissionShellNarrowPhaseRequestF64Bytes: number;
+  emissionShellNarrowPhaseRowF64Bytes: number;
   rootLedgerDetailRowF64Bytes: number;
+  errorBudgetF64Bytes: number;
+  errorBudgetStageInputF64Bytes: number;
+  errorBudgetStageRowF64Bytes: number;
+  errorBudgetSummaryF64Bytes: number;
 }
 
 export interface SolverNumericSerializationDescriptor {
@@ -759,6 +1552,24 @@ export interface SolverNumericSerializationContract {
   descriptors: SolverNumericSerializationDescriptor[];
 }
 
+export interface SolverErrorBudgetPropagationStageDescriptor {
+  stage: SolverErrorBudgetStage;
+  budgetField: keyof SolverErrorBudget;
+  cumulative: boolean;
+}
+
+export interface SolverErrorBudgetPropagationContract {
+  schema: "solver-error-budget-propagation.v1";
+  stages: SolverErrorBudgetPropagationStageDescriptor[];
+  authorityLevels: SolverValueAuthority[];
+}
+
+export interface SolverValidationCapability {
+  invariantChecks: Array<"root_hit_f64">;
+  transitionClassifiers: Array<"root_ledger_f64">;
+  baselineClassifications: SolverBaselineComparisonResult["classification"][];
+}
+
 export interface SolverStoragePolicy {
   target: "worker-memory" | "opfs" | "native-file" | "caller-buffer";
   durable: boolean;
@@ -776,6 +1587,37 @@ export interface SolverThreadingPolicy {
   mode: "single-thread" | "auto" | "fixed";
   maxThreads?: number;
   deterministic: boolean;
+}
+
+export interface SolverThreadingPlanRequest {
+  policy: SolverThreadingPolicy;
+  workload: SolverThreadingWorkload;
+}
+
+export interface SolverThreadingWorkload {
+  stage: string;
+  itemCount: number;
+  minItemsPerWorker?: number;
+  deterministicRequired?: boolean;
+}
+
+export interface SolverThreadingPlanResponse {
+  schema: "solver-threading-plan.v1";
+  stage: string;
+  itemCount: number;
+  minItemsPerWorker: number;
+  requestedWorkerCount: number;
+  activeWorkerCount: number;
+  schedulingMode: "idle" | "sequential" | "native-thread-pool" | "wasm-thread-pool";
+  backend: "single-thread" | "native-threads" | "wasm-threads";
+  deterministicReduction: boolean;
+  browserWorkerAvailable: boolean;
+  wasmThreadsAvailable: boolean;
+  nativeThreadsAvailable: boolean;
+  fallbackReason?: "wasm_threads_unavailable" | null;
+  speedupBaselineWorkerCount: number;
+  statuses: SolverStatusRecord[];
+  status: SolverStatusRecord;
 }
 
 export interface SolverThreadingCapability {
@@ -797,10 +1639,40 @@ export interface SolverCloseRunRequest {
 }
 
 export interface SolverOpenStreamRequest {
-  runId: string;
+  runId?: string;
   datasetId?: string;
   streamId?: string;
   purpose: "playback" | "diagnostics" | "export" | "validation";
+}
+
+export interface SolverDescribeStreamRequest {
+  streamId: string;
+}
+
+export interface SolverStreamDescription {
+  schema: "solver-stream-description.v1";
+  stream: SolverStreamDescriptor;
+  buffers: SolverBufferMetadata[];
+  index: SolverStreamIndexDescription;
+  status: SolverStatusRecord;
+}
+
+export interface SolverStreamIndexDescription {
+  schema: "solver-stream-index.v1";
+  streamId: string;
+  indexLayout: SolverBinaryLayoutId;
+  chunkCount: number;
+  pathIndexRows: SolverPathHistoryIndexMetadata[];
+}
+
+export interface SolverPathHistoryIndexMetadata {
+  pathKey: number;
+  chunkIndex: number;
+  rowOffset: number;
+  rowCount: number;
+  timeRange: SolverRange;
+  frameRange: SolverRange;
+  byteRange: SolverRange;
 }
 
 export interface SolverStreamHandle {
@@ -813,6 +1685,7 @@ export interface SolverStreamHandle {
 export interface SolverReadStreamRangeRequest {
   streamId: string;
   pathIds?: string[];
+  pathKeys?: number[];
   timeRange?: SolverRange;
   frameRange?: SolverRange;
   byteRange?: SolverRange;
@@ -896,6 +1769,44 @@ export interface ValidationReplayConfig {
   baselineArtifactHash?: string;
   replayPrecisionPath: Exclude<SolverPrecisionPath, "auto">;
   compareLayouts: SolverBinaryLayoutId[];
+  baselineResponse: SolverComparableResponse;
+  candidateResponse: SolverComparableResponse;
+  tolerance?: number;
+  refinementTolerance?: number;
+}
+
+export interface SolverComparableResponse {
+  roots?: SolverCausalRootF64[];
+  hits?: SolverDelayedHitF64[];
+  phaseRows?: SolverPhaseAtHitF64[];
+  phaseSummary?: SolverPhaseAtHitSummaryF64;
+  pathHistory?: SolverPathHistoryStreamSummary;
+  geometry?: SolverSharedGeometryF64Response;
+  buffers?: Omit<SolverBufferDescriptor, "buffer">[];
+  status?: SolverStatusRecord;
+}
+
+export interface SolverBaselineDifference {
+  kind: string;
+  path: string;
+  baseline?: unknown;
+  candidate?: unknown;
+  absoluteDifference?: number;
+  baselineType?: string;
+  candidateType?: string;
+  baselineLength?: number;
+  candidateLength?: number;
+}
+
+export interface SolverBaselineComparisonResult {
+  classification:
+    | "baseline_within_tolerance"
+    | "baseline_refined_result"
+    | "baseline_model_boundary_difference"
+    | "baseline_investigation_required_mismatch";
+  maxAbsoluteDifference: number;
+  differences: SolverBaselineDifference[];
+  status: SolverStatusRecord;
 }
 
 export interface SolverRunSummary {
@@ -907,6 +1818,10 @@ export interface SolverRunSummary {
   pathCount?: number;
   rootCount?: number;
   eventCount?: number;
+  phaseRowCount?: number;
+  pathRowCount?: number;
+  chunkCount?: number;
+  streamCount?: number;
 }
 
 export interface SolverDiagnosticRecord {

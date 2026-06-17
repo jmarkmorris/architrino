@@ -380,6 +380,8 @@ T_{\mathcal Q}S_{\mathcal Q}
 $$
 This is not an added thermodynamic postulate. It is a test that the chosen coarse variables have retained enough state counting to make relaxation and response claims reproducible.
 
+The distinction matters because energy conservation does not by itself measure work availability. Two records with the same total energy can have different free-energy diagnostics when one retains a concentrated heat, chemical, photon-channel, or potential-gradient channel and the other has dispersed the same energy into unresolved thermal, boundary, or wake-history records. A finite-window calculation must therefore close the energy ledger and the entropy ledger on the same retained record before claiming that energy remained useful, became waste heat, or crossed the boundary as low-grade radiation.
+
 For an isolated finite window, the minimum coarse thermodynamic gate is the same-record entropy-production residual
 $$
 \mathcal R_{S,W}

@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 509,
+      "nodes": 510,
       "edges": 1251,
       "scenes": 328,
       "markdownIndexes": 0,
-      "markdownDocs": 181,
+      "markdownDocs": 182,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2756,6 +2756,12 @@
       "id": "content/markdown/aaa/philosophy-history/theory-differentials.md",
       "name": "Theory Differentials",
       "path": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
+      "name": "Theory Inheritance Discipline",
+      "path": "content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -7117,6 +7123,15 @@
       "name": "Theory Differentials",
       "path": "content/markdown/aaa/philosophy-history/theory-differentials.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
+      "name": "Theory Inheritance Discipline",
+      "path": "content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
       "implicit": false
     },
     {

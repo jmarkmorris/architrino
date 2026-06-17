@@ -124,6 +124,42 @@ struct ArchitrinoSolverPrecisionDiagnosticRowF64 {
   double geometry_min;
 };
 
+struct ArchitrinoSolverErrorBudgetF64 {
+  double global_tolerance;
+  double root_isolation_tolerance;
+  double delayed_hit_tolerance;
+  double integration_tolerance;
+  double stream_encoding_tolerance;
+  double readback_tolerance;
+  double projection_tolerance;
+  double display_tolerance;
+};
+
+struct ArchitrinoSolverErrorBudgetStageInputF64 {
+  int stage;
+  int reserved0;
+  double estimated_absolute_error;
+};
+
+struct ArchitrinoSolverErrorBudgetStageRowF64 {
+  int stage;
+  int authority;
+  int status_code;
+  int status_severity;
+  double estimated_absolute_error;
+  double tolerance;
+  double tolerance_ratio;
+};
+
+struct ArchitrinoSolverErrorBudgetSummaryF64 {
+  int authority;
+  int status_code;
+  int status_severity;
+  int stage_count;
+  double cumulative_error;
+  double cumulative_budget_ratio;
+};
+
 struct ArchitrinoSolverPhaseClockF64 {
   double period;
   double epoch;
@@ -184,6 +220,46 @@ struct ArchitrinoSolverPathHistoryRowF64 {
   std::uint32_t reserved0;
 };
 
+struct ArchitrinoSolverPathHistoryChunkRow {
+  std::uint64_t chunk_index;
+  std::uint64_t path_key_start;
+  std::uint64_t path_key_end;
+  std::uint64_t row_offset;
+  std::uint64_t row_count;
+  std::uint64_t frame_start;
+  std::uint64_t frame_end;
+  double time_start;
+  double time_end;
+  std::uint64_t byte_offset;
+  std::uint64_t byte_length;
+  std::uint64_t checksum64;
+  std::uint32_t state_flags;
+  std::uint32_t reserved0;
+};
+
+struct ArchitrinoSolverStorageLifecyclePolicy {
+  double active_window_start;
+  double active_window_end;
+  std::uint32_t has_active_window;
+  std::uint32_t deep_index_enabled;
+  std::uint32_t export_requested;
+  std::uint32_t failed_run;
+  std::uint32_t delete_requested;
+  std::uint32_t reserved0;
+  std::uint64_t active_memory_budget_bytes;
+  std::uint64_t storage_budget_bytes;
+};
+
+struct ArchitrinoSolverPathHistoryLifecycleDecisionRow {
+  std::uint64_t chunk_index;
+  std::uint32_t tier;
+  std::uint32_t action;
+  std::uint32_t safe_to_age_out;
+  std::uint32_t requires_deep_index;
+  std::uint32_t reason_code;
+  std::uint32_t reserved0;
+};
+
 struct ArchitrinoSolverBoundsRowF64 {
   int item_index;
   int status_code;
@@ -208,6 +284,63 @@ struct ArchitrinoSolverSpherePointIntersectionRowF64 {
   int intersects;
   double center_distance;
   double signed_distance;
+};
+
+struct ArchitrinoSolverDelayedPotentialRequestF64 {
+  ArchitrinoSolverLinearPathSegmentF64 source;
+  ArchitrinoSolverVector3F64 sample_point;
+  double observation_time;
+  double field_speed;
+  double normalization;
+  double softening;
+  double source_charge;
+  std::uint32_t iterations;
+  std::uint32_t use_causal_denominator;
+};
+
+struct ArchitrinoSolverDelayedPotentialRowF64 {
+  int item_index;
+  int status_code;
+  double tau;
+  double emission_time;
+  double emission_x;
+  double emission_y;
+  double emission_z;
+  double displacement_x;
+  double displacement_y;
+  double displacement_z;
+  double distance;
+  double denominator;
+  double potential;
+  double kappa;
+  std::uint32_t iterations;
+  std::uint32_t used_causal_denominator;
+};
+
+struct ArchitrinoSolverCircularSelfHitSpanRequestF64 {
+  double field_speed_ratio;
+  double field_speed_tolerance;
+  double tolerance;
+  double max_angle;
+  std::uint32_t max_iterations;
+  std::uint32_t scan_subdivisions;
+  std::uint32_t reserved0;
+  std::uint32_t reserved1;
+};
+
+struct ArchitrinoSolverCircularSelfHitSpanRowF64 {
+  int item_index;
+  int status_code;
+  double field_speed_ratio;
+  double field_speed_tolerance;
+  double span;
+  double bracket_low;
+  double bracket_high;
+  double residual;
+  std::uint32_t root_found;
+  std::uint32_t iterations;
+  std::uint32_t regime;
+  std::uint32_t result_kind;
 };
 
 struct ArchitrinoSolverAssemblyStateRowF64 {
@@ -323,6 +456,59 @@ struct ArchitrinoSolverSpaceTimeQueryF64 {
   std::uint64_t subject_key;
 };
 
+struct ArchitrinoSolverEmissionShellBroadPhaseOptionsF64 {
+  double signal_speed;
+  double tolerance;
+  double time_range_start;
+  double time_range_end;
+  std::uint32_t max_candidates;
+  std::uint32_t allow_same_path;
+  std::uint32_t has_time_range;
+  std::uint32_t requested_worker_count;
+};
+
+struct ArchitrinoSolverEmissionShellCandidateRowF64 {
+  std::uint64_t source_path_key;
+  std::uint64_t receiver_path_key;
+  std::uint64_t source_segment_index;
+  std::uint64_t receiver_segment_index;
+  std::uint64_t source_row_index;
+  std::uint64_t receiver_row_index;
+  double source_time_start;
+  double source_time_end;
+  double receiver_time_start;
+  double receiver_time_end;
+  double distance_lower_bound;
+  double distance_upper_bound;
+  double radius_lower_bound;
+  double radius_upper_bound;
+};
+
+struct ArchitrinoSolverEmissionShellBroadPhaseSummary {
+  std::uint64_t pair_count;
+  std::uint64_t rejected_pair_count;
+  std::uint64_t candidate_count;
+  std::uint32_t truncated;
+  std::uint32_t planned_worker_count;
+};
+
+struct ArchitrinoSolverEmissionShellNarrowPhaseRequestF64 {
+  ArchitrinoSolverPathHistoryRowF64 source;
+  ArchitrinoSolverPathHistoryRowF64 receiver;
+  double signal_speed;
+  double tolerance;
+};
+
+struct ArchitrinoSolverEmissionShellNarrowPhaseRowF64 {
+  int item_index;
+  int status_code;
+  std::uint32_t classification;
+  std::uint32_t sample_count;
+  double hit_time;
+  double emission_time;
+  double residual;
+};
+
 struct ArchitrinoSolverAbiInfo {
   int abi_major;
   int abi_minor;
@@ -337,13 +523,29 @@ struct ArchitrinoSolverAbiInfo {
   int bounds_row_f64_bytes;
   int sphere_point_request_f64_bytes;
   int sphere_point_row_f64_bytes;
+  int delayed_potential_request_f64_bytes;
+  int delayed_potential_row_f64_bytes;
+  int circular_self_hit_request_f64_bytes;
+  int circular_self_hit_row_f64_bytes;
   int assembly_state_row_f64_bytes;
   int assembly_membership_row_f64_bytes;
   int assembly_hierarchy_row_f64_bytes;
   int assembly_event_row_f64_bytes;
   int path_history_row_f64_bytes;
+  int path_history_chunk_row_bytes;
+  int storage_lifecycle_policy_bytes;
+  int path_history_lifecycle_decision_row_bytes;
   int spacetime_index_row_f64_bytes;
+  int emission_shell_broad_phase_options_f64_bytes;
+  int emission_shell_candidate_row_f64_bytes;
+  int emission_shell_broad_phase_summary_bytes;
+  int emission_shell_narrow_phase_request_f64_bytes;
+  int emission_shell_narrow_phase_row_f64_bytes;
   int root_ledger_detail_row_f64_bytes;
+  int error_budget_f64_bytes;
+  int error_budget_stage_input_f64_bytes;
+  int error_budget_stage_row_f64_bytes;
+  int error_budget_summary_f64_bytes;
 };
 
 ArchitrinoSolverAbiInfo architrino_solver_abi_info();
@@ -385,6 +587,14 @@ int architrino_solver_diagnose_precision_f64(
     const ArchitrinoSolverCausalRootRequestF64* request,
     ArchitrinoSolverPrecisionDiagnosticRowF64* out_diagnostic);
 
+int architrino_solver_propagate_error_budget_f64(
+    const ArchitrinoSolverErrorBudgetF64* budget,
+    const ArchitrinoSolverErrorBudgetStageInputF64* observed_stages,
+    int stage_count,
+    ArchitrinoSolverErrorBudgetStageRowF64* rows,
+    int max_rows,
+    ArchitrinoSolverErrorBudgetSummaryF64* out_summary);
+
 int architrino_solver_sample_linear_motion_f64(
     const ArchitrinoSolverMotionSampleRequestF64* request,
     ArchitrinoSolverMotionFrameRowF64* frames,
@@ -415,6 +625,20 @@ int architrino_solver_intersect_sphere_points_f64(
     int max_rows,
     int* out_row_count);
 
+int architrino_solver_compute_delayed_potentials_f64(
+    const ArchitrinoSolverDelayedPotentialRequestF64* requests,
+    int request_count,
+    ArchitrinoSolverDelayedPotentialRowF64* rows,
+    int max_rows,
+    int* out_row_count);
+
+int architrino_solver_solve_circular_self_hit_spans_f64(
+    const ArchitrinoSolverCircularSelfHitSpanRequestF64* requests,
+    int request_count,
+    ArchitrinoSolverCircularSelfHitSpanRowF64* rows,
+    int max_rows,
+    int* out_row_count);
+
 int architrino_solver_detect_assembly_membership_events_f64(
     const ArchitrinoSolverAssemblyMembershipRowF64* memberships,
     int membership_count,
@@ -439,6 +663,31 @@ int architrino_solver_query_spacetime_index_f64(
     const ArchitrinoSolverSpaceTimeQueryF64* query,
     const ArchitrinoSolverSpaceTimeIndexOptionsF64* options,
     ArchitrinoSolverSpaceTimeIndexRowF64* rows,
+    int max_rows,
+    int* out_row_count);
+
+int architrino_solver_query_emission_shell_broad_phase_f64(
+    const ArchitrinoSolverPathHistoryRowF64* source_rows,
+    int source_row_count,
+    const ArchitrinoSolverPathHistoryRowF64* receiver_rows,
+    int receiver_row_count,
+    const ArchitrinoSolverEmissionShellBroadPhaseOptionsF64* options,
+    ArchitrinoSolverEmissionShellCandidateRowF64* rows,
+    int max_rows,
+    ArchitrinoSolverEmissionShellBroadPhaseSummary* out_summary);
+
+int architrino_solver_estimate_emission_shell_narrow_phase_f64(
+    const ArchitrinoSolverEmissionShellNarrowPhaseRequestF64* requests,
+    int request_count,
+    ArchitrinoSolverEmissionShellNarrowPhaseRowF64* rows,
+    int max_rows,
+    int* out_row_count);
+
+int architrino_solver_plan_path_history_storage_lifecycle(
+    const ArchitrinoSolverStorageLifecyclePolicy* policy,
+    const ArchitrinoSolverPathHistoryChunkRow* chunks,
+    int chunk_count,
+    ArchitrinoSolverPathHistoryLifecycleDecisionRow* rows,
     int max_rows,
     int* out_row_count);
 

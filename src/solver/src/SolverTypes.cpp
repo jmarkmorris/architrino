@@ -221,6 +221,24 @@ std::string_view to_string(AdmissionDecision value) {
   return "unknown";
 }
 
+std::string_view to_string(AdmissionStressDimension value) {
+  switch (value) {
+    case AdmissionStressDimension::EntityCount:
+      return "entity_count";
+    case AdmissionStressDimension::InteractionGraph:
+      return "interaction_graph";
+    case AdmissionStressDimension::Memory:
+      return "memory";
+    case AdmissionStressDimension::TimeSteps:
+      return "time_steps";
+    case AdmissionStressDimension::OutputDetail:
+      return "output_detail";
+    case AdmissionStressDimension::Precision:
+      return "precision";
+  }
+  return "unknown";
+}
+
 bool is_halt_or_error(StatusSeverity value) {
   return value == StatusSeverity::Halt || value == StatusSeverity::Error;
 }

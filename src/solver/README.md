@@ -2,7 +2,7 @@
 
 This directory is the first C++/WebAssembly scaffold for the central architrino motion and geometry solver.
 
-The first implementation target is a minimal causal-root and delayed-hit core behind a shared app bridge. The current files establish the toolchain, package boundary, native smoke targets, WebAssembly smoke target, app-facing TypeScript contract, shared geometry helpers, first shared-geometry ABI, first precision diagnostics, first deterministic batch solver, first central native parallel execution policy, first motion-frame sampler, first work-packet contract, first temporal assembly graph rows and store, first detailed root-ledger rows, and first native path-history stream.
+The first implementation target is a minimal causal-root and delayed-hit core behind a shared app bridge. The current files establish the toolchain, package boundary, native smoke targets, WebAssembly smoke target, app-facing TypeScript contract, first app-facing request adapters, shared geometry helpers, first shared-geometry ABI, first precision diagnostics, first error-budget propagation contract, first deterministic batch solver, first central native parallel execution policy, first motion-frame sampler, first work-packet contract, first temporal assembly graph rows and store, first detailed root-ledger rows, first root-transition classifier, first invariant checks, first Photon phase-diagnostics run path, first path-history run path, and first native path-history stream.
 
 ## Toolchain
 
@@ -34,9 +34,20 @@ The smoke command verifies:
 
 - C++20 native build through Clang/LLVM and Ninja;
 - Boost.Multiprecision availability;
-- model-contract, error-budget, simulation-envelope, and admission validation;
-- app bridge admission preflight for admit, batch, precision-escalation, and reject decisions;
-- first app-facing `runSimulation` path for completed causal-root datasets;
+- model-contract, error-budget, simulation-envelope, admission validation, and native admission stress summaries;
+- app bridge admission preflight for admit, batch, precision-escalation, and reject decisions with stress diagnostics;
+- app-facing run manifests with model, envelope, error-budget, precision, output, admission, provenance, buffer, stream, diagnostic, and status metadata;
+- native stage-level error-budget propagation for root isolation, delayed hits, motion integration, stream encoding, stream readback, projection, and app buffers, with authoritative, approximate, display-only, and rejected value authority;
+- first app-facing `runSimulation` paths for completed causal-root, phase-diagnostics, path-history, delayed-hit, shared-geometry, validation-replay, app-playback, and motion-frame datasets;
+- first app-facing request adapters for Photon causal-root and phase-diagnostics runs, path-history runs, Ideal Swarm delayed-hit and shared-geometry runs, Animator motion runs, Animator playback runs, generic shared-geometry runs, and validation-replay runs;
+- app-bridge capability reporting for app adapters, dense buffer/stream transport, worker fallback posture, and browser storage fallback status;
+- first app-facing threading-plan diagnostics for sequential execution and recoverable threaded fallback reporting;
+- first app-facing run-description readback for completed run manifests, summaries, buffer metadata, stream metadata, and diagnostics without dense buffer payloads;
+- first app-facing transient path-history stream creation with chunked `path_segment.v1` buffers, stream metadata, range readback, and memory-pressure rejection;
+- row-level app bridge filtering for `path_segment.v1` stream reads by path key, time range, and frame range inside larger chunks;
+- first app-facing stream-index description with path-history path key, chunk, row, time, frame, and byte-range metadata without dense payload reads;
+- app-facing path-history stream metadata for precision path, units, coordinate frame, scale normalization, interpolation rule, provenance, diagnostics, and per-chunk checksums;
+- first app-facing broad-phase emission-shell candidate query over path-history streams, with rejection rates, candidate rates, sampled false-positive estimates, and exact causal-root solving still reserved for the narrow phase;
 - first app-facing motion-frame sampling path with `frame_buffer.v1` binary output;
 - phase-at-hit diagnostics with `phase_at_hit.v1` binary output;
 - shared geometry helpers and app bridge calls for vector math, path bounds, bounds overlap, and spherical emission point checks;
@@ -44,6 +55,8 @@ The smoke command verifies:
 - precision diagnostics through C++ and C ABI paths that classify ordinary and high-dynamic-range causal-root requests, including `f64` geometry and time resolution warnings for requests that need normalized coordinates or stricter input representation;
 - high-offset causal-root solving with returned distance, residual, Jacobian, and branch weight computed from the high-precision root evaluation state;
 - deterministic causal-root solving over linear source and receiver path segments;
+- native invariant checks for finite root and delayed-hit rows, time ordering, delay and distance consistency, residual tolerance, inverse-Jacobian branch weights, and unit-direction normalization;
+- native and app-facing root-ledger transition classification for retained, appeared, disappeared, folded, assimilated-from-tail, and ledger-rerun-required root states;
 - detailed root-ledger rows for active roots, inactive search gaps, and first-failure status without changing the app-facing `root_ledger.v1` ABI;
 - delayed-hit event projection from retained causal roots;
 - deterministic batch causal-root solving through C++ and C ABI paths, with native CPU worker fan-out through the central parallel execution policy and a WebAssembly sequential fallback;
@@ -60,7 +73,7 @@ The smoke command verifies:
 - transient stream descriptors for the first root and delayed-hit buffers;
 - app bridge stream open, range readback, byte-range selection, max-byte pressure reporting, and stream release.
 - baseline response comparison with migration status classifications.
-- isolated app-labeled baseline sandbox artifacts for Animator, Photon, and Ideal Swarm smoke cases.
+- isolated baseline sandbox artifacts for Animator, Photon causal-root, Photon phase-diagnostics, Animator path-history, and Ideal Swarm smoke cases.
 - manufactured analytic causal-root validation for a moving-source delayed-hit case with known root, Jacobian, branch weight, and unit direction.
 
 ## First ABI Surface
@@ -72,41 +85,75 @@ The first checked ABI is intentionally narrow:
 - `architrino_solver_build_root_ledger_detail_f64`
 - `architrino_solver_solve_causal_root_batch_f64`
 - `architrino_solver_diagnose_precision_f64`
+- `architrino_solver_propagate_error_budget_f64`
 - `architrino_solver_sample_linear_motion_f64`
 - `architrino_solver_compute_phase_at_hit_f64`
 - `architrino_solver_compute_path_bounds_f64`
 - `architrino_solver_intersect_sphere_points_f64`
+- `architrino_solver_compute_delayed_potentials_f64`
+- `architrino_solver_solve_circular_self_hit_spans_f64`
 - `architrino_solver_detect_assembly_membership_events_f64`
 - `architrino_solver_build_spacetime_index_f64`
 - `architrino_solver_query_spacetime_index_f64`
+- `architrino_solver_query_emission_shell_broad_phase_f64`
+- `architrino_solver_estimate_emission_shell_narrow_phase_f64`
 - fixed-layout source and receiver linear path segments;
 - fixed-layout root rows that correspond to the first `root_ledger.v1` fields;
 - fixed-layout detailed root-ledger rows that correspond to the first `root_ledger_detail.v1` fields;
 - fixed-layout batch item rows that map each request to a root offset and root count;
 - fixed-layout precision diagnostic rows that report scale stress, selected precision path, and `f64` input-resolution warnings;
+- fixed-layout error-budget rows that report stage error, tolerance, tolerance ratio, status, and value authority;
 - fixed-layout delayed-hit rows that correspond to the first `delayed_hit_events.v1` fields;
 - fixed-layout motion-frame rows that correspond to the first `frame_buffer.v1` fields;
 - fixed-layout phase diagnostic rows that correspond to the first `phase_at_hit.v1` fields;
+- fixed-layout delayed-potential geometry rows that compute Ideal Swarm flight-time and potential diagnostics;
+- fixed-layout circular self-hit span rows that compute Ideal Swarm super-field self-hit geometry;
 - fixed-layout temporal assembly rows that correspond to `assembly_state.v1`, `assembly_membership.v1`, `assembly_hierarchy.v1`, and `assembly_events.v1`;
 - fixed-layout space-time index rows that correspond to `spacetime_index.v1`;
+- fixed-layout emission-shell broad-phase options, candidate rows, and summary rows for path-history candidate queries;
+- fixed-layout emission-shell narrow-phase request and estimate rows for sampled candidate classification;
 - ABI metadata for row sizes and ABI version;
-- app bridge methods `diagnosePrecisionF64`, `solveCausalRootsF64`, `buildRootLedgerDetailF64`, `solveCausalRootBatchF64`, `solveRootsAndHitsF64`, `sampleLinearMotionF64`, `computePhaseAtHitF64`, `computeSharedGeometryF64`, `detectAssemblyMembershipEventsF64`, `buildSpaceTimeIndexF64`, and `querySpaceTimeIndexF64`.
+- app bridge methods `diagnosePrecisionF64`, `propagateErrorBudgetF64`, `checkRootHitInvariantsF64`, `classifyRootLedgerTransitionsF64`, `prepareWorkPacketHeader`, `orderWorkPacketResults`, `planPathHistoryWorkPackets`, `solveCausalRootsF64`, `buildRootLedgerDetailF64`, `solveCausalRootBatchF64`, `solveRootsAndHitsF64`, `sampleLinearMotionF64`, `computePhaseAtHitF64`, `summarizePhaseAtHitsF64`, `computeSharedGeometryF64`, `detectAssemblyMembershipEventsF64`, `createPathHistoryStreamF64`, `planPathHistoryStorageLifecycleF64`, `buildSpaceTimeIndexF64`, `querySpaceTimeIndexF64`, and `queryEmissionShellCandidatesF64`.
 
 ## First Shared Geometry API
 
-`computeSharedGeometryF64` exposes the first solver-owned geometry calculations through the app bridge. The first operations batch path-segment bounds and point-on-sphere checks through the WebAssembly C ABI. This keeps broad-phase bounds and spherical-emission checks in the central solver instead of duplicating them across apps.
+`computeSharedGeometryF64` exposes the first solver-owned geometry calculations through the app bridge. The first operations batch path-segment bounds, point-on-sphere checks, delayed-potential flight-time rows, and circular self-hit spans through the WebAssembly C ABI. This keeps broad-phase bounds, spherical-emission checks, Ideal Swarm delayed-potential diagnostics, and circular self-hit span logic in the central solver surface instead of duplicating them across apps.
 
 ## First Admission API
 
-`admitSimulationEnvelope` validates a model contract, error budget, and simulation envelope before a run starts. The first bridge implementation reports whether the request should be admitted, batched, precision-escalated, or rejected, with structured status records for apps and diagnostics.
+`admitSimulationEnvelope` validates a model contract, error budget, and simulation envelope before a run starts. The first bridge implementation reports whether the request should be admitted, batched, precision-escalated, or rejected, with structured status records and a stress summary for entity count, interaction graph, memory, time-step, output-detail, and precision pressure.
 
 ## First Run API
 
-`runSimulation` now supports the first `causalRoots` and `motionSimulation` run shapes through the shared app bridge. The first implementation is synchronous: it admits the request, runs the WebAssembly causal-root, delayed-hit, or motion-frame ABI path, returns a run handle with an attached completed response, registers run-scoped streams when a run emits streams, and exposes the same stream readback path used by direct root/hit calls. Later worker/native implementations can preserve the handle shape while moving execution off the immediate call path.
+`runSimulation` now supports the first `causalRoots`, `phaseDiagnostics`, `pathHistory`, `delayedHits`, `sharedGeometry`, `validationReplay`, `appPlayback`, and `motionSimulation` run shapes through the shared app bridge. The first implementation is synchronous: it admits the request, runs the WebAssembly causal-root, phase-diagnostics, path-history, delayed-hit, shared-geometry, validation-replay, app-playback, or motion-frame path, returns a run handle with an attached completed response, registers run-scoped streams when a run emits streams, and exposes the same stream readback path used by direct root/hit calls. Later worker/native implementations can preserve the handle shape while moving execution off the immediate call path.
+
+`SolverAppAdapters.mjs` defines the first app-facing request builders on top of that run shape. The current adapters build Photon causal-root and phase-diagnostics requests, path-history requests, Ideal Swarm delayed-hit and shared-geometry requests, Animator motion-simulation requests, Animator app-playback requests, generic shared-geometry requests, and validation-replay requests. These builders centralize IDs, claim level, precision path, config version, output defaults, and app labels so migrating app code does not hand-roll solver request envelopes.
+
+The bridge capabilities include `solver-app-bridge-capabilities.v1`, which reports the available app adapters, dense-data transport modes, stream-query helpers, worker fallback posture, and browser storage fallback status. This lets apps negotiate bridge support before a run without knowing C++ exports, WebAssembly lifecycle details, or stream-file internals.
+
+`planThreadingPolicy` is the first app-facing threading diagnostic. It reports the requested worker count, active worker count, scheduling mode, backend, deterministic-reduction flag, thread capability flags, fallback reason, and status. The current WebAssembly bridge reports a recoverable sequential fallback when a caller requests fixed threads but browser or WASM thread support is unavailable; native C++ still owns the first actual task-pool execution path.
+
+`describeRun` returns metadata for a completed run already registered with the bridge. It includes the run manifest, summary, diagnostics, buffer descriptors without dense payloads, and stream descriptors with available ranges. Apps can use it to decide whether to render, range-read, export, or validate a dataset without keeping all dense buffers in application memory.
+
+`createPathHistoryStreamF64` publishes caller-buffer path-history rows as chunked `path_segment.v1` stream data through the same `openStream` and `readStreamRange` path used by root and delayed-hit streams. This is the first app-facing bridge stream for path histories. It is transient by design: durable OPFS or native-file storage remains a later backend, while the current method makes bounded chunking, metadata, range selection, and memory-pressure diagnostics available to app code now. The stream metadata records precision path, units, coordinate frame, scale normalization, interpolation rule, provenance, diagnostics, and per-chunk checksums. For `path_segment.v1` streams, `readStreamRange` can compact matching rows by path key, time range, and frame range inside a larger chunk, which gives apps indexed readback behavior before durable sidecar indices are exposed through the bridge.
+
+`describeStream` returns stream metadata without dense payloads. For `path_segment.v1` streams, it includes `solver-stream-index.v1` path-index rows with path key, chunk index, row offset, row count, time range, frame range, and byte range. This gives apps a cheap way to decide which path-history ranges to request before reading buffers.
+
+`queryEmissionShellCandidatesF64` is the first app-facing broad-phase query over path-history streams. It uses path keys, time bounds, signal speed, and path-segment bounding boxes to find source/receiver segment pairs whose distance interval can overlap an emitted-shell radius interval. The bridge scans the stream once and applies path-key/time filters before materializing full rows, so selective source/receiver queries do not allocate every path row. The same candidate filter is exposed through `architrino_solver_query_emission_shell_broad_phase_f64`, and the sampled narrow-phase estimator is exposed through `architrino_solver_estimate_emission_shell_narrow_phase_f64`, so WebAssembly-backed apps can run both candidate rejection and false-positive estimation in the C++ solver core while retaining the JavaScript bridge fallback. It reports checked pairs, rejected pairs, rejection and candidate rates, a sampled narrow-phase false-positive estimate, object rows for simple app consumers, and dense `emission_shell_candidate.v1` plus `emission_shell_narrow_phase.v1` buffers for high-volume worker and index consumers.
+
+The first `validationReplay` run shape compares a baseline response against a candidate response with the migration vocabulary `baseline_within_tolerance`, `baseline_refined_result`, `baseline_model_boundary_difference`, and `baseline_investigation_required_mismatch`. It returns the comparison as part of the run response and records the same result in the run manifest and diagnostics so replay checks can flow through the normal app bridge instead of a separate side channel. The baseline comparison helper also supports shared-geometry payloads so app-local geometry helpers can be compared against solver-owned geometry rows.
+
+The first `appPlayback` run shape accepts completed frames, causal roots, delayed hits, or shared geometry rows and republishes them under a fresh run handle and `solver-run-manifest.v1` manifest. It is an app playback and replay packaging path, not a physics execution path. This lets apps render completed solver datasets through the same manifest, diagnostics, and provenance surface used by computed runs.
+
+Every completed run response carries a `solver-run-manifest.v1` manifest. The manifest records request/run/dataset ids, app id, run kind, claim level, config version and hash, model contract, simulation envelope, error budget, requested and selected precision paths, output request, admission result with stress summary, bridge and ABI provenance, deterministic flag, buffer summaries, stream summaries, diagnostics, status, and a stable manifest hash. This is the first app-facing replay and migration-parity manifest; later durable storage can write the same object beside native or browser-backed stream artifacts.
 
 ## First Phase Diagnostics
 
 `compute_phase_at_hits` in C++ and `computePhaseAtHitF64` in the app bridge compute source and receiver phase at each retained root through the WebAssembly C ABI. The first `phase_at_hit.v1` row records root id, status, source and receiver cycle indices, emission and hit time, source and receiver phase, phase delta, and phase spread.
+
+`summarizePhaseAtHitsF64` computes the first app-facing aggregate over those phase rows. It returns `solver-phase-at-hit-summary.v1` with row count, root-id range, status-code counts, cycle-index ranges, emission/hit time ranges, source/receiver phase ranges, phase-delta range, phase-spread range, mean phase delta, mean phase spread, and maximum phase spread. This centralizes the basic Photon phase-spread summary path while preserving the row-level ABI as the authoritative diagnostic output.
+
+The first `phaseDiagnostics` run shape packages those phase rows and their summary under the normal run manifest. This gives Photon a migration-ready phase-at-hit path with `phase_at_hit.v1` buffers, app diagnostics, selected precision path, and replay metadata rather than a one-off helper call.
 
 This is a bootstrap ABI, not the final app migration API. It exists so the shared JavaScript bridge can call one real C++ solver function through WebAssembly while the full request, stream, and dataset contracts are still being implemented.
 
@@ -120,11 +167,27 @@ This is a bootstrap ABI, not the final app migration API. It exists so the share
 
 ## First Work Packets
 
-`WorkPacket.hpp` defines the first transport-ready packet header for solver work. A packet owns explicit source, receiver, path, and time ranges; declares selected precision path, expected output layouts, binary input-buffer references, checksums, merge order, and merge key; and serializes to canonical JSON-compatible bytes. `deterministic_merge_order` gives thread, worker, process, service, and future GPU backends one stable result-merge rule before those backends are implemented.
+`WorkPacket.hpp` defines the first transport-ready packet header for solver work. A packet owns explicit source, receiver, path, and time ranges; declares selected precision path, expected output layouts, binary input-buffer references, checksums, merge order, and merge key; and serializes to canonical JSON-compatible bytes. `deterministic_merge_order` gives thread, worker, process, service, and future GPU backends one stable result-merge rule before those backends are implemented. The app bridge exposes the same contract through `prepareWorkPacketHeader` and `orderWorkPacketResults`, so worker dispatch code can validate packet ranges, row sizes, checksums, canonical headers, and merge order without parsing native C++ internals. `planPathHistoryWorkPackets` creates deterministic source/receiver chunk-pair packets from an already-registered `path_segment.v1` stream, which is the first packetized broad-phase dispatch plan over path-history data.
 
 ## First Numeric Serialization Contract
 
 `NumericSerialization.hpp` defines the first canonical serialization descriptors for `f64`, `scaled_i64`, `interval_f64_pair`, `decimal128`, and `mp_limb_block`. Each descriptor records byte order, scalar size, signedness, scale-factor policy, exponent or limb layout, interval endpoint convention, rounding mode, comparison semantics, text export form, and whether the type is safe for app buffers or authoritative storage. The JSON schema mirrors this contract as `solver-numeric-serialization.v1`, and the app bridge exposes the same descriptor list through solver capabilities so apps can distinguish app-facing projected `f64` buffers from stricter stored values.
+
+## First Error-Budget Propagation Contract
+
+`ErrorBudget.hpp` defines the first stage-level propagation contract for root isolation, delayed hits, motion integration, stream encoding, stream readback, projection, and app buffers. Each stage reports estimated absolute error, tolerance, tolerance ratio, status, and value authority. The aggregate report classifies values as `authoritative`, `approximate`, `display-only`, or `rejected` so later solver outputs can state whether a value is fit for validation, migration parity, app projection, or display only. The app bridge exposes the same stage and authority vocabulary through solver capabilities as `solver-error-budget-propagation.v1`, and `propagateErrorBudgetF64` calls the fixed C ABI through WebAssembly so apps can evaluate the same propagation rule.
+
+## First Invariant Checks
+
+`InvariantChecks.hpp` defines the first native validation pass over solved causal-root and delayed-hit rows. It checks finite fields, ordered times, delay and distance consistency, residual tolerance, inverse-Jacobian branch weights, and delayed-hit unit-direction normalization. The first smoke target verifies that a valid analytic solve passes and that a deliberately corrupted delayed-hit direction fails.
+
+The shared app bridge exposes the same first validation surface as `checkRootHitInvariantsF64`. Apps and validation tooling can submit completed root and hit rows and receive structured solver status records without duplicating invariant logic in app code. This complements baseline comparison and analytic fixtures with solver-owned invariant checks.
+
+## First Root-Transition Classifier
+
+`RootLedgerTransition.hpp` defines the first transition classifier over two `root_ledger_detail.v1` snapshots. It emits retained, appeared, disappeared, folded, assimilated-from-tail, and ledger-rerun-required transition rows. Failure rows in either ledger fail closed as `ledger_rerun_required` so consumers do not treat incompatible root labels as ordinary drift.
+
+The shared app bridge exposes the same first classification surface as `classifyRootLedgerTransitionsF64`. Apps and migration checks can compare detailed root-ledger snapshots and receive stable transition keys plus structured status records without duplicating branch-transition rules in app code.
 
 ## First Temporal Assembly Graph
 
@@ -151,9 +214,11 @@ The app bridge can also open and range-read the first transient caller-buffer st
 
 Native path-history readback now includes chunk-level index queries by path key and time window. The first query helper returns matching `stream_index.v1` rows and reads the corresponding `path_segment.v1` chunks, which is the first range-query layer for larger stream-backed runs.
 
+The first `pathHistory` run shape packages caller-supplied `path_segment.v1` rows under a normal `solver-run-manifest.v1` manifest. The run response exposes the stream descriptor, chunk metadata, stream summary, diagnostics, and stable stream handle while keeping dense path rows in the stream readback path. This lets apps treat recorded path histories as solver datasets without loading every segment into app memory.
+
 ## First Storage Lifecycle Policy
 
-`StorageLifecycle.hpp` defines the first deterministic planner for path-history chunk retention. Given a policy and chunk rows, it marks chunks to remain active, spill to warm storage, archive cold, build a deep index, delete, or stay blocked in active memory when a chunk is pinned unsafe. This is a planning layer only; file movement and browser/native quota handling will use these decisions in later storage slices.
+`StorageLifecycle.hpp` defines the first deterministic planner for path-history chunk retention. Given a policy and chunk rows, it marks chunks to remain active, spill to warm storage, archive cold, build a deep index, delete, or stay blocked in active memory when a chunk is pinned unsafe. `planPathHistoryStorageLifecycleF64` exposes that planner through the WebAssembly C ABI and app bridge for either app-supplied chunk metadata or an already-registered `path_segment.v1` stream. This is a planning layer only; file movement and browser/native quota handling will use these decisions in later storage slices.
 
 ## First Space-Time Index
 
@@ -167,7 +232,7 @@ The first builder indexes `path_segment.v1` rows and `assembly_state.v1` rows, s
 
 `SolverBaselineComparison.mjs` classifies solver response differences with the migration vocabulary: `baseline_within_tolerance`, `baseline_refined_result`, `baseline_model_boundary_difference`, and `baseline_investigation_required_mismatch`. The first smoke check compares the live WebAssembly roots-and-hits response against its fixture and verifies that a deliberate numeric mismatch is reported as an investigation-required mismatch.
 
-`scripts/check-solver-baseline-sandbox.mjs` runs fixed app-labeled Animator, Photon, and Ideal Swarm smoke cases through the shared bridge. It writes artifact-only JSON output under `.tmp/solver-baseline-sandbox`, records resource caps and fixed no-randomness seed policy, and verifies each case classifies as `baseline_within_tolerance`.
+`scripts/check-solver-baseline-sandbox.mjs` runs fixed app-labeled Animator, Photon, and Ideal Swarm smoke cases through the shared bridge, including causal-root, Photon phase-diagnostics, Animator path-history, and Ideal Swarm geometry artifacts. It writes artifact-only JSON output under `.tmp/solver-baseline-sandbox`, records resource caps and fixed no-randomness seed policy, preserves each `solver-run-manifest.v1` manifest and manifest hash where a case uses `runSimulation`, and verifies each case classifies as `baseline_within_tolerance`.
 
 ## First Analytic Validation
 

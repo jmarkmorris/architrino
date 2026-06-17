@@ -37,6 +37,10 @@ Use [source-mining-best-practice](source-mining-best-practice.md) for source-typ
 
 The completed target list lives in [source-mining-history](source-mining-history.md). When a source or source family is mined, add it to that history file with the date mined.
 
+## Active Mining Batches
+
+- [Entropy video mining](entropy-video-mining.md) tracks the current operator-supplied entropy video batch for the later rollup report.
+
 ## Legacy Operational Parking Lot
 
 - Clean up the old `neoclassical.ai` repo.

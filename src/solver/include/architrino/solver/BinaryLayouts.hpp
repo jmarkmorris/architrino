@@ -21,6 +21,8 @@ enum class BinaryLayoutId {
   DelayedHitEventsV1,
   PhaseAtHitV1,
   SpaceTimeIndexV1,
+  EmissionShellCandidateV1,
+  EmissionShellNarrowPhaseV1,
   StreamIndexV1,
 };
 

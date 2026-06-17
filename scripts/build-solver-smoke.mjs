@@ -37,14 +37,17 @@ if (target === "native" || target === "all") {
   runChecked(path.join(buildRoot, "native", "architrino_solver_analytic_smoke"), [], { env });
   runChecked(path.join(buildRoot, "native", "architrino_solver_smoke"), [], { env });
   runChecked(path.join(buildRoot, "native", "architrino_solver_contract_smoke"), [], { env });
+  runChecked(path.join(buildRoot, "native", "architrino_solver_error_budget_smoke"), [], { env });
   runChecked(path.join(buildRoot, "native", "architrino_solver_batch_smoke"), [], { env });
   runChecked(path.join(buildRoot, "native", "architrino_solver_geometry_smoke"), [], { env });
+  runChecked(path.join(buildRoot, "native", "architrino_solver_invariant_smoke"), [], { env });
   runChecked(path.join(buildRoot, "native", "architrino_solver_motion_smoke"), [], { env });
   runChecked(path.join(buildRoot, "native", "architrino_solver_numeric_serialization_smoke"), [], { env });
   runChecked(path.join(buildRoot, "native", "architrino_solver_parallel_smoke"), [], { env });
   runChecked(path.join(buildRoot, "native", "architrino_solver_phase_smoke"), [], { env });
   runChecked(path.join(buildRoot, "native", "architrino_solver_precision_smoke"), [], { env });
   runChecked(path.join(buildRoot, "native", "architrino_solver_root_ledger_smoke"), [], { env });
+  runChecked(path.join(buildRoot, "native", "architrino_solver_root_transition_smoke"), [], { env });
   runChecked(path.join(buildRoot, "native", "architrino_solver_spacetime_index_smoke"), [], { env });
   runChecked(path.join(buildRoot, "native", "architrino_solver_storage_lifecycle_smoke"), [], { env });
   runChecked(path.join(buildRoot, "native", "architrino_solver_stream_smoke"), [], { env });

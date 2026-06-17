@@ -28,6 +28,10 @@ std::string_view to_string(BinaryLayoutId value) {
       return "phase_at_hit.v1";
     case BinaryLayoutId::SpaceTimeIndexV1:
       return "spacetime_index.v1";
+    case BinaryLayoutId::EmissionShellCandidateV1:
+      return "emission_shell_candidate.v1";
+    case BinaryLayoutId::EmissionShellNarrowPhaseV1:
+      return "emission_shell_narrow_phase.v1";
     case BinaryLayoutId::StreamIndexV1:
       return "stream_index.v1";
   }
@@ -152,6 +156,24 @@ BinaryLayoutDescriptor binary_layout_descriptor(BinaryLayoutId layoutId) {
           128,
           "cell coordinates, subject key, row offset, exact space/time bounds, subject kind, source layout, flags",
       };
+    case BinaryLayoutId::EmissionShellCandidateV1:
+      return BinaryLayoutDescriptor{
+          layoutId,
+          to_string(layoutId),
+          NumericType::F64,
+          ByteOrder::LittleEndian,
+          112,
+          "source/receiver path and segment keys, source/receiver row indices, source/receiver time ranges, distance bounds, radius bounds",
+      };
+    case BinaryLayoutId::EmissionShellNarrowPhaseV1:
+      return BinaryLayoutDescriptor{
+          layoutId,
+          to_string(layoutId),
+          NumericType::F64,
+          ByteOrder::LittleEndian,
+          40,
+          "item index, status, sampled hit/miss classification, sample count, hit time, emission time, residual",
+      };
     case BinaryLayoutId::StreamIndexV1:
       return BinaryLayoutDescriptor{
           layoutId,
@@ -187,6 +209,8 @@ std::vector<BinaryLayoutDescriptor> core_solver_layouts() {
       binary_layout_descriptor(BinaryLayoutId::DelayedHitEventsV1),
       binary_layout_descriptor(BinaryLayoutId::PhaseAtHitV1),
       binary_layout_descriptor(BinaryLayoutId::SpaceTimeIndexV1),
+      binary_layout_descriptor(BinaryLayoutId::EmissionShellCandidateV1),
+      binary_layout_descriptor(BinaryLayoutId::EmissionShellNarrowPhaseV1),
       binary_layout_descriptor(BinaryLayoutId::StreamIndexV1),
   };
 }

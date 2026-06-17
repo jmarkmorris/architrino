@@ -4,6 +4,30 @@
   "title": "solver App Bridge Contract v1",
   "oneOf": [
     {
+      "$ref": "#/$defs/initRequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/initResponseEnvelope"
+    },
+    {
+      "$ref": "#/$defs/capabilitiesRequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/capabilitiesResponseEnvelope"
+    },
+    {
+      "$ref": "#/$defs/threadingPlanRequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/threadingPlanResponseEnvelope"
+    },
+    {
+      "$ref": "#/$defs/admissionRequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/admissionResponseEnvelope"
+    },
+    {
       "$ref": "#/$defs/causalRootsF64RequestEnvelope"
     },
     {
@@ -17,6 +41,24 @@
     },
     {
       "$ref": "#/$defs/precisionDiagnosticF64ResponseEnvelope"
+    },
+    {
+      "$ref": "#/$defs/errorBudgetPropagationF64RequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/errorBudgetPropagationF64ResponseEnvelope"
+    },
+    {
+      "$ref": "#/$defs/rootHitInvariantF64RequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/rootHitInvariantF64ResponseEnvelope"
+    },
+    {
+      "$ref": "#/$defs/rootLedgerTransitionF64RequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/rootLedgerTransitionF64ResponseEnvelope"
     },
     {
       "$ref": "#/$defs/causalRootBatchF64RequestEnvelope"
@@ -35,6 +77,12 @@
     },
     {
       "$ref": "#/$defs/phaseAtHitF64ResponseEnvelope"
+    },
+    {
+      "$ref": "#/$defs/phaseAtHitSummaryF64RequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/phaseAtHitSummaryF64ResponseEnvelope"
     },
     {
       "$ref": "#/$defs/sharedGeometryF64RequestEnvelope"
@@ -58,13 +106,254 @@
       "$ref": "#/$defs/querySpaceTimeIndexF64RequestEnvelope"
     },
     {
+      "$ref": "#/$defs/runSimulationRequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/runSimulationResponseEnvelope"
+    },
+    {
+      "$ref": "#/$defs/describeRunRequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/describeRunResponseEnvelope"
+    },
+    {
+      "$ref": "#/$defs/cancelRunRequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/cancelRunResponseEnvelope"
+    },
+    {
+      "$ref": "#/$defs/closeRunRequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/closeRunResponseEnvelope"
+    },
+    {
+      "$ref": "#/$defs/pathHistoryStreamF64RequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/pathHistoryStreamF64ResponseEnvelope"
+    },
+    {
+      "$ref": "#/$defs/describeStreamRequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/describeStreamResponseEnvelope"
+    },
+    {
+      "$ref": "#/$defs/openStreamRequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/openStreamResponseEnvelope"
+    },
+    {
+      "$ref": "#/$defs/readStreamRangeRequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/readStreamRangeResponseEnvelope"
+    },
+    {
+      "$ref": "#/$defs/pathHistoryStorageLifecycleRequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/pathHistoryStorageLifecycleResponseEnvelope"
+    },
+    {
       "$ref": "#/$defs/workPacketHeaderEnvelope"
+    },
+    {
+      "$ref": "#/$defs/workPacketHeaderResponseEnvelope"
+    },
+    {
+      "$ref": "#/$defs/workPacketResultOrderRequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/workPacketResultOrderResponseEnvelope"
+    },
+    {
+      "$ref": "#/$defs/emissionShellCandidatePacketMergeF64RequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/pathHistoryWorkPacketPlanRequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/pathHistoryWorkPacketPlanResponseEnvelope"
+    },
+    {
+      "$ref": "#/$defs/emissionShellCandidateF64RequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/emissionShellCandidatePacketF64RequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/emissionShellCandidatePacketsF64RequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/emissionShellCandidateF64ResponseEnvelope"
     },
     {
       "$ref": "#/$defs/rootsAndHitsF64ResponseEnvelope"
     }
   ],
   "$defs": {
+    "initRequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "init-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/initRequest"
+        }
+      }
+    },
+    "initResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "init-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/initResponse"
+        }
+      }
+    },
+    "capabilitiesRequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "capabilities-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "capabilitiesResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "capabilities-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/solverCapabilities"
+        }
+      }
+    },
+    "threadingPlanRequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "threading-plan-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/threadingPlanRequest"
+        }
+      }
+    },
+    "threadingPlanResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "threading-plan-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/threadingPlanResponse"
+        }
+      }
+    },
+    "admissionRequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "admission-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/admissionRequest"
+        }
+      }
+    },
+    "admissionResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "admission-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/admissionResponse"
+        }
+      }
+    },
     "causalRootsF64RequestEnvelope": {
       "type": "object",
       "additionalProperties": false,
@@ -162,6 +451,126 @@
         },
         "response": {
           "$ref": "#/$defs/precisionDiagnosticF64Response"
+        }
+      }
+    },
+    "errorBudgetPropagationF64RequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "error-budget-propagation-f64-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/errorBudgetPropagationF64Request"
+        }
+      }
+    },
+    "errorBudgetPropagationF64ResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "error-budget-propagation-f64-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/errorBudgetPropagationF64Response"
+        }
+      }
+    },
+    "rootHitInvariantF64RequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "root-hit-invariant-f64-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/rootHitInvariantF64Request"
+        }
+      }
+    },
+    "rootHitInvariantF64ResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "root-hit-invariant-f64-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/rootHitInvariantF64Response"
+        }
+      }
+    },
+    "rootLedgerTransitionF64RequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "root-ledger-transition-f64-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/rootLedgerTransitionF64Request"
+        }
+      }
+    },
+    "rootLedgerTransitionF64ResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "root-ledger-transition-f64-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/rootLedgerTransitionF64Response"
         }
       }
     },
@@ -285,6 +694,46 @@
         }
       }
     },
+    "phaseAtHitSummaryF64RequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "phase-at-hit-summary-f64-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/phaseAtHitSummaryF64Request"
+        }
+      }
+    },
+    "phaseAtHitSummaryF64ResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "phase-at-hit-summary-f64-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/phaseAtHitSummaryF64Response"
+        }
+      }
+    },
     "workPacketHeaderEnvelope": {
       "type": "object",
       "additionalProperties": false,
@@ -302,6 +751,66 @@
         },
         "packet": {
           "$ref": "#/$defs/workPacketHeader"
+        }
+      }
+    },
+    "workPacketHeaderResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "work-packet-header-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/workPacketHeaderResponse"
+        }
+      }
+    },
+    "workPacketResultOrderRequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "work-packet-result-order-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/workPacketResultOrderRequest"
+        }
+      }
+    },
+    "workPacketResultOrderResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "work-packet-result-order-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/workPacketResultOrderResponse"
         }
       }
     },
@@ -425,6 +934,366 @@
         }
       }
     },
+    "runSimulationRequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "run-simulation-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/solverRunRequest"
+        }
+      }
+    },
+    "runSimulationResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "run-simulation-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/solverRunHandle"
+        }
+      }
+    },
+    "describeRunRequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "describe-run-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/describeRunRequest"
+        }
+      }
+    },
+    "describeRunResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "describe-run-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/solverRunDescription"
+        }
+      }
+    },
+    "cancelRunRequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "cancel-run-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/cancelRunRequest"
+        }
+      }
+    },
+    "cancelRunResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "cancel-run-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "closeRunRequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "close-run-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/closeRunRequest"
+        }
+      }
+    },
+    "closeRunResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "close-run-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "pathHistoryStreamF64RequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "path-history-stream-f64-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/pathHistoryStreamF64Request"
+        }
+      }
+    },
+    "pathHistoryStreamF64ResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "path-history-stream-f64-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/pathHistoryStreamF64Response"
+        }
+      }
+    },
+    "describeStreamRequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "describe-stream-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/describeStreamRequest"
+        }
+      }
+    },
+    "describeStreamResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "describe-stream-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/streamDescription"
+        }
+      }
+    },
+    "openStreamRequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "open-stream-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/openStreamRequest"
+        }
+      }
+    },
+    "openStreamResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "open-stream-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/openStreamResponse"
+        }
+      }
+    },
+    "readStreamRangeRequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "read-stream-range-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/readStreamRangeRequest"
+        }
+      }
+    },
+    "readStreamRangeResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "read-stream-range-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/readStreamRangeResponse"
+        }
+      }
+    },
+    "pathHistoryStorageLifecycleRequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "path-history-storage-lifecycle-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/pathHistoryStorageLifecycleRequest"
+        }
+      }
+    },
+    "pathHistoryStorageLifecycleResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "path-history-storage-lifecycle-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/pathHistoryStorageLifecycleResponse"
+        }
+      }
+    },
     "spaceTimeIndexF64ResponseEnvelope": {
       "type": "object",
       "additionalProperties": false,
@@ -442,6 +1311,146 @@
         },
         "response": {
           "$ref": "#/$defs/spaceTimeIndexF64Response"
+        }
+      }
+    },
+    "emissionShellCandidatePacketMergeF64RequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "emission-shell-candidate-packet-merge-f64-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/emissionShellCandidatePacketMergeF64Request"
+        }
+      }
+    },
+    "pathHistoryWorkPacketPlanRequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "path-history-work-packet-plan-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/pathHistoryWorkPacketPlanRequest"
+        }
+      }
+    },
+    "pathHistoryWorkPacketPlanResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "path-history-work-packet-plan-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/pathHistoryWorkPacketPlanResponse"
+        }
+      }
+    },
+    "emissionShellCandidateF64RequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "emission-shell-candidate-f64-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/emissionShellCandidateF64Request"
+        }
+      }
+    },
+    "emissionShellCandidateF64ResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "emission-shell-candidate-f64-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/emissionShellCandidateF64Response"
+        }
+      }
+    },
+    "emissionShellCandidatePacketF64RequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "emission-shell-candidate-packet-f64-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/emissionShellCandidatePacketF64Request"
+        }
+      }
+    },
+    "emissionShellCandidatePacketsF64RequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "emission-shell-candidate-packets-f64-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/emissionShellCandidatePacketsF64Request"
         }
       }
     },
@@ -552,6 +1561,1693 @@
     "precisionDiagnosticF64Request": {
       "$ref": "#/$defs/causalRootsF64Request"
     },
+    "initRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["appId", "apiVersion", "requestedCapabilities", "storagePolicy", "threadingPolicy"],
+      "properties": {
+        "appId": {
+          "$ref": "#/$defs/solverAppId"
+        },
+        "apiVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "requestedCapabilities": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "storagePolicy": {
+          "$ref": "#/$defs/solverStoragePolicy"
+        },
+        "threadingPolicy": {
+          "$ref": "#/$defs/threadingPolicy"
+        }
+      }
+    },
+    "initResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["apiVersion", "solverVersion", "capabilities", "status"],
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "solverVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "capabilities": {
+          "$ref": "#/$defs/solverCapabilities"
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "solverCapabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "precisionPaths",
+        "outputLayouts",
+        "storage",
+        "threading",
+        "appBridge",
+        "numericSerialization",
+        "errorBudgetPropagation",
+        "validation",
+        "maxTransferBytes",
+        "wasmModuleFactory"
+      ],
+      "properties": {
+        "precisionPaths": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/precisionPathId"
+          }
+        },
+        "outputLayouts": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/coreBinaryLayoutId"
+          }
+        },
+        "storage": {
+          "$ref": "#/$defs/solverStorageCapability"
+        },
+        "threading": {
+          "$ref": "#/$defs/solverThreadingCapability"
+        },
+        "appBridge": {
+          "$ref": "#/$defs/appBridgeCapability"
+        },
+        "numericSerialization": {
+          "$ref": "#/$defs/numericSerializationContract"
+        },
+        "errorBudgetPropagation": {
+          "$ref": "#/$defs/errorBudgetPropagationContract"
+        },
+        "validation": {
+          "$ref": "#/$defs/solverValidationCapability"
+        },
+        "maxTransferBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "wasmModuleFactory": {
+          "type": "boolean"
+        },
+        "abiInfo": {
+          "$ref": "#/$defs/solverAbiInfo"
+        }
+      }
+    },
+    "solverStoragePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["target", "durable", "maxBytes"],
+      "properties": {
+        "target": {
+          "type": "string",
+          "enum": ["worker-memory", "opfs", "native-file", "caller-buffer"]
+        },
+        "durable": {
+          "type": "boolean"
+        },
+        "maxBytes": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "solverStorageCapability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["supportsOpfs", "supportsNativeFile", "supportsCallerBuffer", "maxRecommendedBytes"],
+      "properties": {
+        "supportsOpfs": {
+          "type": "boolean"
+        },
+        "supportsNativeFile": {
+          "type": "boolean"
+        },
+        "supportsCallerBuffer": {
+          "type": "boolean"
+        },
+        "maxRecommendedBytes": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "solverThreadingCapability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["nativeThreads", "wasmThreads", "browserWorker", "crossOriginIsolationRequired"],
+      "properties": {
+        "nativeThreads": {
+          "type": "boolean"
+        },
+        "wasmThreads": {
+          "type": "boolean"
+        },
+        "browserWorker": {
+          "type": "boolean"
+        },
+        "crossOriginIsolationRequired": {
+          "type": "boolean"
+        }
+      }
+    },
+    "appBridgeCapability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "apiVersion",
+        "adapterVersion",
+        "appAdapters",
+        "denseDataTransport",
+        "workerModel",
+        "storageFallbacks",
+        "streamQueries",
+        "workPackets"
+      ],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge-capabilities.v1"
+        },
+        "apiVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "adapterVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "appAdapters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/appAdapterCapability"
+          }
+        },
+        "denseDataTransport": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["array-buffer", "stream-handle"]
+          }
+        },
+        "workerModel": {
+          "$ref": "#/$defs/bridgeWorkerModelCapability"
+        },
+        "storageFallbacks": {
+          "$ref": "#/$defs/bridgeStorageFallbackCapability"
+        },
+        "streamQueries": {
+          "$ref": "#/$defs/streamQueryCapability"
+        },
+        "workPackets": {
+          "$ref": "#/$defs/workPacketCapability"
+        }
+      }
+    },
+    "appAdapterCapability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["appId", "runKinds"],
+      "properties": {
+        "appId": {
+          "$ref": "#/$defs/solverAppId"
+        },
+        "runKinds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/solverRunKind"
+          }
+        }
+      }
+    },
+    "bridgeWorkerModelCapability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "bridgeOwnsWasmLifecycle",
+        "appsRequireCppHandling",
+        "longRunningRunsOffUiThreadRequired",
+        "browserWorkerAvailable",
+        "wasmInternalThreadsAvailable",
+        "fallback"
+      ],
+      "properties": {
+        "bridgeOwnsWasmLifecycle": {
+          "type": "boolean"
+        },
+        "appsRequireCppHandling": {
+          "type": "boolean"
+        },
+        "longRunningRunsOffUiThreadRequired": {
+          "type": "boolean"
+        },
+        "browserWorkerAvailable": {
+          "type": "boolean"
+        },
+        "wasmInternalThreadsAvailable": {
+          "type": "boolean"
+        },
+        "fallback": {
+          "const": "single-solver-worker-or-batch"
+        }
+      }
+    },
+    "bridgeStorageFallbackCapability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "preferredDurableBrowserTarget",
+        "durableBrowserTargetAvailable",
+        "transientTarget",
+        "unsupportedStorageStatusCode"
+      ],
+      "properties": {
+        "preferredDurableBrowserTarget": {
+          "const": "opfs"
+        },
+        "durableBrowserTargetAvailable": {
+          "type": "boolean"
+        },
+        "transientTarget": {
+          "const": "caller-buffer"
+        },
+        "unsupportedStorageStatusCode": {
+          "const": "unsupported_browser_storage"
+        }
+      }
+    },
+    "streamQueryCapability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "helpers", "pathHistoryLayouts", "indexedFilters", "broadPhaseQueries"],
+      "properties": {
+        "schema": {
+          "const": "solver-stream-query-capabilities.v1"
+        },
+        "helpers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "createPathHistoryStreamF64",
+              "describeStream",
+              "readStreamRange",
+              "queryEmissionShellCandidatesF64",
+              "queryEmissionShellCandidatePacketF64",
+              "queryEmissionShellCandidatePacketsF64"
+            ]
+          }
+        },
+        "pathHistoryLayouts": {
+          "type": "array",
+          "items": {
+            "const": "path_segment.v1"
+          }
+        },
+        "indexedFilters": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["pathKeys", "chunkIndices", "timeRange", "frameRange", "byteRange"]
+          }
+        },
+        "broadPhaseQueries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/broadPhaseQueryCapability"
+          }
+        }
+      }
+    },
+    "broadPhaseQueryCapability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["method", "responseSchema", "candidateKind", "estimateMethod", "narrowPhaseAuthorities"],
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "queryEmissionShellCandidatesF64",
+            "queryEmissionShellCandidatePacketF64",
+            "queryEmissionShellCandidatePacketsF64"
+          ]
+        },
+        "responseSchema": {
+          "const": "solver-emission-shell-candidates.v1"
+        },
+        "candidateKind": {
+          "const": "broad_phase_possible"
+        },
+        "estimateMethod": {
+          "const": "sampled_linear_segment_bisection.v1"
+        },
+        "narrowPhaseAuthorities": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["solveCausalRootsF64", "solveRootsAndHitsF64"]
+          }
+        }
+      }
+    },
+    "workPacketCapability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "headerSchema",
+        "helpers",
+        "pathHistoryPlanFilters",
+        "deterministicMergeOrder",
+        "rowSizeValidation"
+      ],
+      "properties": {
+        "schema": {
+          "const": "solver-work-packet-capabilities.v1"
+        },
+        "headerSchema": {
+          "const": "solver-work-packet.v1"
+        },
+        "helpers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "prepareWorkPacketHeader",
+              "orderWorkPacketResults",
+              "planPathHistoryWorkPackets",
+              "mergeEmissionShellCandidatePacketResponsesF64"
+            ]
+          }
+        },
+        "pathHistoryPlanFilters": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "sourcePathKeys",
+              "receiverPathKeys",
+              "sourceChunkIndices",
+              "receiverChunkIndices",
+              "timeRange"
+            ]
+          }
+        },
+        "deterministicMergeOrder": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["mergeKey", "mergeOrder", "packetId"]
+          }
+        },
+        "rowSizeValidation": {
+          "type": "boolean"
+        }
+      }
+    },
+    "solverValidationCapability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["invariantChecks", "transitionClassifiers", "baselineClassifications"],
+      "properties": {
+        "invariantChecks": {
+          "type": "array",
+          "items": {
+            "const": "root_hit_f64"
+          }
+        },
+        "transitionClassifiers": {
+          "type": "array",
+          "items": {
+            "const": "root_ledger_f64"
+          }
+        },
+        "baselineClassifications": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "baseline_within_tolerance",
+              "baseline_refined_result",
+              "baseline_model_boundary_difference",
+              "baseline_investigation_required_mismatch"
+            ]
+          }
+        }
+      }
+    },
+    "solverAbiInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "abiMajor",
+        "abiMinor",
+        "abiPatch",
+        "rootRequestF64Bytes",
+        "rootRowF64Bytes",
+        "delayedHitRowF64Bytes",
+        "motionSampleRequestF64Bytes",
+        "motionFrameRowF64Bytes",
+        "phaseClockF64Bytes",
+        "phaseAtHitRowF64Bytes",
+        "boundsRowF64Bytes",
+        "spherePointRequestF64Bytes",
+        "spherePointRowF64Bytes",
+        "delayedPotentialRequestF64Bytes",
+        "delayedPotentialRowF64Bytes",
+        "circularSelfHitRequestF64Bytes",
+        "circularSelfHitRowF64Bytes",
+        "assemblyStateRowF64Bytes",
+        "assemblyMembershipRowF64Bytes",
+        "assemblyHierarchyRowF64Bytes",
+        "assemblyEventRowF64Bytes",
+        "pathHistoryRowF64Bytes",
+        "pathHistoryChunkRowBytes",
+        "storageLifecyclePolicyBytes",
+        "pathHistoryLifecycleDecisionRowBytes",
+        "spaceTimeIndexRowF64Bytes",
+        "emissionShellBroadPhaseOptionsF64Bytes",
+        "emissionShellCandidateRowF64Bytes",
+        "emissionShellBroadPhaseSummaryBytes",
+        "emissionShellNarrowPhaseRequestF64Bytes",
+        "emissionShellNarrowPhaseRowF64Bytes",
+        "rootLedgerDetailRowF64Bytes",
+        "errorBudgetF64Bytes",
+        "errorBudgetStageInputF64Bytes",
+        "errorBudgetStageRowF64Bytes",
+        "errorBudgetSummaryF64Bytes"
+      ],
+      "properties": {
+        "abiMajor": { "type": "integer", "minimum": 0 },
+        "abiMinor": { "type": "integer", "minimum": 0 },
+        "abiPatch": { "type": "integer", "minimum": 0 },
+        "rootRequestF64Bytes": { "type": "integer", "minimum": 1 },
+        "rootRowF64Bytes": { "type": "integer", "minimum": 1 },
+        "delayedHitRowF64Bytes": { "type": "integer", "minimum": 1 },
+        "motionSampleRequestF64Bytes": { "type": "integer", "minimum": 1 },
+        "motionFrameRowF64Bytes": { "type": "integer", "minimum": 1 },
+        "phaseClockF64Bytes": { "type": "integer", "minimum": 1 },
+        "phaseAtHitRowF64Bytes": { "type": "integer", "minimum": 1 },
+        "boundsRowF64Bytes": { "type": "integer", "minimum": 1 },
+        "spherePointRequestF64Bytes": { "type": "integer", "minimum": 1 },
+        "spherePointRowF64Bytes": { "type": "integer", "minimum": 1 },
+        "delayedPotentialRequestF64Bytes": { "type": "integer", "minimum": 1 },
+        "delayedPotentialRowF64Bytes": { "type": "integer", "minimum": 1 },
+        "circularSelfHitRequestF64Bytes": { "type": "integer", "minimum": 1 },
+        "circularSelfHitRowF64Bytes": { "type": "integer", "minimum": 1 },
+        "assemblyStateRowF64Bytes": { "type": "integer", "minimum": 1 },
+        "assemblyMembershipRowF64Bytes": { "type": "integer", "minimum": 1 },
+        "assemblyHierarchyRowF64Bytes": { "type": "integer", "minimum": 1 },
+        "assemblyEventRowF64Bytes": { "type": "integer", "minimum": 1 },
+        "pathHistoryRowF64Bytes": { "type": "integer", "minimum": 1 },
+        "pathHistoryChunkRowBytes": { "type": "integer", "minimum": 1 },
+        "storageLifecyclePolicyBytes": { "type": "integer", "minimum": 1 },
+        "pathHistoryLifecycleDecisionRowBytes": { "type": "integer", "minimum": 1 },
+        "spaceTimeIndexRowF64Bytes": { "type": "integer", "minimum": 1 },
+        "emissionShellBroadPhaseOptionsF64Bytes": { "type": "integer", "minimum": 1 },
+        "emissionShellCandidateRowF64Bytes": { "type": "integer", "minimum": 1 },
+        "emissionShellBroadPhaseSummaryBytes": { "type": "integer", "minimum": 1 },
+        "emissionShellNarrowPhaseRequestF64Bytes": { "type": "integer", "minimum": 1 },
+        "emissionShellNarrowPhaseRowF64Bytes": { "type": "integer", "minimum": 1 },
+        "rootLedgerDetailRowF64Bytes": { "type": "integer", "minimum": 1 },
+        "errorBudgetF64Bytes": { "type": "integer", "minimum": 1 },
+        "errorBudgetStageInputF64Bytes": { "type": "integer", "minimum": 1 },
+        "errorBudgetStageRowF64Bytes": { "type": "integer", "minimum": 1 },
+        "errorBudgetSummaryF64Bytes": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "threadingPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "deterministic"],
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["single-thread", "auto", "fixed"]
+        },
+        "maxThreads": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "deterministic": {
+          "type": "boolean"
+        }
+      }
+    },
+    "threadingWorkload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stage", "itemCount"],
+      "properties": {
+        "stage": {
+          "type": "string",
+          "minLength": 1
+        },
+        "itemCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "minItemsPerWorker": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "deterministicRequired": {
+          "type": "boolean"
+        }
+      }
+    },
+    "threadingPlanRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy", "workload"],
+      "properties": {
+        "policy": {
+          "$ref": "#/$defs/threadingPolicy"
+        },
+        "workload": {
+          "$ref": "#/$defs/threadingWorkload"
+        }
+      }
+    },
+    "threadingPlanResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "stage",
+        "itemCount",
+        "minItemsPerWorker",
+        "requestedWorkerCount",
+        "activeWorkerCount",
+        "schedulingMode",
+        "backend",
+        "deterministicReduction",
+        "browserWorkerAvailable",
+        "wasmThreadsAvailable",
+        "nativeThreadsAvailable",
+        "speedupBaselineWorkerCount",
+        "statuses",
+        "status"
+      ],
+      "properties": {
+        "schema": {
+          "const": "solver-threading-plan.v1"
+        },
+        "stage": {
+          "type": "string",
+          "minLength": 1
+        },
+        "itemCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "minItemsPerWorker": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "requestedWorkerCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "activeWorkerCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "schedulingMode": {
+          "type": "string",
+          "enum": ["idle", "sequential", "native-thread-pool", "wasm-thread-pool"]
+        },
+        "backend": {
+          "type": "string",
+          "enum": ["single-thread", "native-threads", "wasm-threads"]
+        },
+        "deterministicReduction": {
+          "type": "boolean"
+        },
+        "browserWorkerAvailable": {
+          "type": "boolean"
+        },
+        "wasmThreadsAvailable": {
+          "type": "boolean"
+        },
+        "nativeThreadsAvailable": {
+          "type": "boolean"
+        },
+        "fallbackReason": {
+          "type": ["string", "null"],
+          "enum": ["wasm_threads_unavailable", null]
+        },
+        "speedupBaselineWorkerCount": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "statuses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/statusRecord"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "capabilityEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "maxInteractiveEntities": { "type": "integer", "minimum": 1 },
+        "maxBatchEntities": { "type": "integer", "minimum": 1 },
+        "minMemoryBudgetBytes": { "type": "integer", "minimum": 0 },
+        "minStorageBudgetBytesForStreaming": { "type": "integer", "minimum": 0 },
+        "minimumPositiveTolerance": { "type": "number", "exclusiveMinimum": 0 },
+        "maxInteractiveStepCount": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "admissionRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["model", "errorBudget", "envelope"],
+      "properties": {
+        "model": {
+          "$ref": "#/$defs/solverModelContract"
+        },
+        "errorBudget": {
+          "$ref": "#/$defs/solverErrorBudget"
+        },
+        "envelope": {
+          "$ref": "#/$defs/solverSimulationEnvelope"
+        },
+        "capability": {
+          "$ref": "#/$defs/capabilityEnvelope"
+        }
+      }
+    },
+    "admissionResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision", "selectedPrecisionPath", "admitted", "stressSummary", "statuses", "status"],
+      "properties": {
+        "decision": {
+          "type": "string",
+          "enum": ["admit", "batch", "escalate_precision", "reject"]
+        },
+        "selectedPrecisionPath": {
+          "$ref": "#/$defs/precisionPathId"
+        },
+        "admitted": {
+          "type": "boolean"
+        },
+        "stressSummary": {
+          "$ref": "#/$defs/admissionStressSummary"
+        },
+        "statuses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/statusRecord"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "causalRootsRunConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["appId", "rootRequest"],
+      "properties": {
+        "appId": {
+          "$ref": "#/$defs/solverAppId"
+        },
+        "rootRequest": {
+          "$ref": "#/$defs/causalRootsF64Request"
+        }
+      }
+    },
+    "phaseDiagnosticsRunConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["appId", "phaseRequest"],
+      "properties": {
+        "appId": {
+          "const": "photon"
+        },
+        "phaseRequest": {
+          "$ref": "#/$defs/phaseAtHitF64Request"
+        }
+      }
+    },
+    "pathHistoryRunConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["appId", "pathRows"],
+      "properties": {
+        "appId": {
+          "$ref": "#/$defs/solverAppId"
+        },
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathRows": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/pathHistoryRowF64"
+          }
+        },
+        "rowsPerChunk": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "storagePolicy": {
+          "$ref": "#/$defs/storagePolicy"
+        },
+        "metadata": {
+          "type": "object"
+        }
+      }
+    },
+    "delayedHitsRunConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["appId", "rootRequest"],
+      "properties": {
+        "appId": {
+          "$ref": "#/$defs/solverAppId"
+        },
+        "rootRequest": {
+          "$ref": "#/$defs/causalRootsF64Request"
+        }
+      }
+    },
+    "sharedGeometryRunConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["appId", "geometryRequest"],
+      "properties": {
+        "appId": {
+          "$ref": "#/$defs/solverAppId"
+        },
+        "geometryRequest": {
+          "$ref": "#/$defs/sharedGeometryF64Request"
+        }
+      }
+    },
+    "validationReplayRunConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "appId",
+        "replayPrecisionPath",
+        "compareLayouts",
+        "baselineResponse",
+        "candidateResponse"
+      ],
+      "properties": {
+        "appId": {
+          "$ref": "#/$defs/solverAppId"
+        },
+        "baselineRunId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "baselineArtifactHash": {
+          "type": "string",
+          "minLength": 1
+        },
+        "replayPrecisionPath": {
+          "type": "string",
+          "enum": [
+            "scaled_f64_fast",
+            "scaled_f64_strict",
+            "adaptive_multirate",
+            "event_root_focused",
+            "extended_precision",
+            "validation_replay"
+          ]
+        },
+        "compareLayouts": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/coreBinaryLayoutId"
+          }
+        },
+        "baselineResponse": {
+          "$ref": "#/$defs/comparableSolverResponse"
+        },
+        "candidateResponse": {
+          "$ref": "#/$defs/comparableSolverResponse"
+        },
+        "tolerance": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "refinementTolerance": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "appPlaybackRunConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["appId"],
+      "anyOf": [
+        {
+          "required": ["frames"]
+        },
+        {
+          "required": ["roots"]
+        },
+        {
+          "required": ["hits"]
+        },
+        {
+          "required": ["geometry"]
+        }
+      ],
+      "properties": {
+        "appId": {
+          "$ref": "#/$defs/solverAppId"
+        },
+        "sourceRunId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceDatasetId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "frames": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/motionFrameF64"
+          }
+        },
+        "roots": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/causalRootF64"
+          }
+        },
+        "hits": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/delayedHitF64"
+          }
+        },
+        "geometry": {
+          "$ref": "#/$defs/sharedGeometryF64Response"
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "motionSimulationRunConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["appId", "motionRequest"],
+      "properties": {
+        "appId": {
+          "$ref": "#/$defs/solverAppId"
+        },
+        "motionRequest": {
+          "$ref": "#/$defs/linearMotionSampleF64Request"
+        }
+      }
+    },
+    "solverRunConfig": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/causalRootsRunConfig"
+        },
+        {
+          "$ref": "#/$defs/phaseDiagnosticsRunConfig"
+        },
+        {
+          "$ref": "#/$defs/pathHistoryRunConfig"
+        },
+        {
+          "$ref": "#/$defs/delayedHitsRunConfig"
+        },
+        {
+          "$ref": "#/$defs/sharedGeometryRunConfig"
+        },
+        {
+          "$ref": "#/$defs/validationReplayRunConfig"
+        },
+        {
+          "$ref": "#/$defs/appPlaybackRunConfig"
+        },
+        {
+          "$ref": "#/$defs/motionSimulationRunConfig"
+        }
+      ]
+    },
+    "solverRunRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "appId",
+        "runKind",
+        "claimLevel",
+        "precisionPath",
+        "configVersion",
+        "model",
+        "envelope",
+        "errorBudget",
+        "config",
+        "output"
+      ],
+      "properties": {
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "runId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "datasetId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "appId": {
+          "$ref": "#/$defs/solverAppId"
+        },
+        "runKind": {
+          "$ref": "#/$defs/solverRunKind"
+        },
+        "claimLevel": {
+          "$ref": "#/$defs/solverClaimLevel"
+        },
+        "precisionPath": {
+          "$ref": "#/$defs/precisionPathId"
+        },
+        "configVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "configHash": {
+          "type": "string",
+          "minLength": 1
+        },
+        "model": {
+          "$ref": "#/$defs/solverModelContract"
+        },
+        "envelope": {
+          "$ref": "#/$defs/solverSimulationEnvelope"
+        },
+        "errorBudget": {
+          "$ref": "#/$defs/solverErrorBudget"
+        },
+        "config": {
+          "$ref": "#/$defs/solverRunConfig"
+        },
+        "output": {
+          "$ref": "#/$defs/solverOutputRequest"
+        }
+      }
+    },
+    "solverRunHandle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requestId", "runId", "cancellationToken", "acceptedPrecisionPath", "expectedOutputs"],
+      "properties": {
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "runId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "datasetId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cancellationToken": {
+          "type": "string",
+          "minLength": 1
+        },
+        "acceptedPrecisionPath": {
+          "$ref": "#/$defs/precisionPathId"
+        },
+        "expectedOutputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/solverOutputKind"
+          }
+        },
+        "response": {
+          "$ref": "#/$defs/solverRunResponse"
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "solverRunResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["runId", "manifest", "summary", "buffers", "streams", "diagnostics", "status"],
+      "properties": {
+        "runId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "datasetId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "manifest": {
+          "$ref": "#/$defs/runManifest"
+        },
+        "summary": {
+          "$ref": "#/$defs/solverRunSummary"
+        },
+        "buffers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/bufferDescriptor"
+          }
+        },
+        "streams": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/streamDescriptor"
+          }
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/diagnosticRecord"
+          }
+        },
+        "frames": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/motionFrameF64"
+          }
+        },
+        "roots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/causalRootF64"
+          }
+        },
+        "hits": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/delayedHitF64"
+          }
+        },
+        "phaseRows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/phaseAtHitF64"
+          }
+        },
+        "phaseSummary": {
+          "$ref": "#/$defs/phaseAtHitSummaryF64"
+        },
+        "pathHistory": {
+          "$ref": "#/$defs/pathHistoryStreamSummary"
+        },
+        "geometry": {
+          "$ref": "#/$defs/sharedGeometryF64Response"
+        },
+        "validationReplay": {
+          "$ref": "#/$defs/baselineComparisonResult"
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "solverRunSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["runId", "claimLevel", "precisionPath", "status"],
+      "properties": {
+        "runId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "claimLevel": {
+          "$ref": "#/$defs/solverClaimLevel"
+        },
+        "precisionPath": {
+          "$ref": "#/$defs/precisionPathId"
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        },
+        "frameCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rootCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "eventCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "phaseRowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathRowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "chunkCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "streamCount": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "describeRunRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["runId"],
+      "properties": {
+        "runId": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "solverRunDescription": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "runId", "manifest", "summary", "buffers", "streams", "diagnostics", "status"],
+      "properties": {
+        "schema": {
+          "const": "solver-run-description.v1"
+        },
+        "runId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "datasetId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "manifest": {
+          "$ref": "#/$defs/runManifest"
+        },
+        "summary": {
+          "$ref": "#/$defs/solverRunSummary"
+        },
+        "buffers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/bufferDescriptor"
+          }
+        },
+        "streams": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/streamDescriptor"
+          }
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/diagnosticRecord"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "cancelRunRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "runId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "closeRunRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["runId", "releaseStreams"],
+      "properties": {
+        "runId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "releaseStreams": {
+          "type": "boolean"
+        }
+      }
+    },
+    "rootHitInvariantF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "anyOf": [
+        {
+          "required": ["roots"]
+        },
+        {
+          "required": ["hits"]
+        }
+      ],
+      "properties": {
+        "roots": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/causalRootF64"
+          }
+        },
+        "hits": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/delayedHitF64"
+          }
+        },
+        "options": {
+          "$ref": "#/$defs/rootHitInvariantOptions"
+        }
+      }
+    },
+    "rootHitInvariantOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "rootResidualTolerance": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "timeTolerance": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "distanceTolerance": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "directionTolerance": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "branchWeightTolerance": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "smallJacobianTolerance": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "rootHitInvariantF64Response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rootCount", "hitCount", "statuses", "status"],
+      "properties": {
+        "rootCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hitCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "statuses": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/statusRecord"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "rootLedgerTransitionF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["priorRows", "nextRows"],
+      "properties": {
+        "priorRows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/rootLedgerDetailF64"
+          }
+        },
+        "nextRows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/rootLedgerDetailF64"
+          }
+        }
+      }
+    },
+    "rootLedgerTransitionKind": {
+      "type": "string",
+      "enum": [
+        "retained",
+        "appeared",
+        "disappeared",
+        "folded",
+        "assimilated_from_tail",
+        "ledger_rerun_required"
+      ]
+    },
+    "rootLedgerTransitionF64": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "transitionKey",
+        "kind",
+        "priorRootKey",
+        "nextRootKey",
+        "sourceKey",
+        "receiverKey",
+        "intervalStart",
+        "intervalEnd",
+        "priorEntryKind",
+        "nextEntryKind",
+        "priorStatusCode",
+        "nextStatusCode",
+        "priorJacobianSignStratum",
+        "nextJacobianSignStratum",
+        "status"
+      ],
+      "properties": {
+        "transitionKey": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$"
+        },
+        "kind": {
+          "$ref": "#/$defs/rootLedgerTransitionKind"
+        },
+        "priorRootKey": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "nextRootKey": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sourceKey": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "receiverKey": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "intervalStart": {
+          "type": "number"
+        },
+        "intervalEnd": {
+          "type": "number"
+        },
+        "priorEntryKind": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "nextEntryKind": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "priorStatusCode": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "nextStatusCode": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "priorJacobianSignStratum": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "nextJacobianSignStratum": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "rootLedgerTransitionF64Response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["transitions", "statuses", "status"],
+      "properties": {
+        "transitions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/rootLedgerTransitionF64"
+          }
+        },
+        "statuses": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/statusRecord"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "comparableSolverResponse": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "roots": {
+          "type": "array"
+        },
+        "hits": {
+          "type": "array"
+        },
+        "phaseRows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/phaseAtHitF64"
+          }
+        },
+        "phaseSummary": {
+          "$ref": "#/$defs/phaseAtHitSummaryF64"
+        },
+        "pathHistory": {
+          "type": "object"
+        },
+        "buffers": {
+          "type": "array"
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "baselineComparisonResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["classification", "maxAbsoluteDifference", "differences", "status"],
+      "properties": {
+        "classification": {
+          "type": "string",
+          "enum": [
+            "baseline_within_tolerance",
+            "baseline_refined_result",
+            "baseline_model_boundary_difference",
+            "baseline_investigation_required_mismatch"
+          ]
+        },
+        "maxAbsoluteDifference": {
+          "type": "number",
+          "minimum": 0
+        },
+        "differences": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "solverErrorBudget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "globalTolerance",
+        "rootIsolationTolerance",
+        "delayedHitTolerance",
+        "integrationTolerance",
+        "streamEncodingTolerance",
+        "readbackTolerance"
+      ],
+      "properties": {
+        "globalTolerance": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "rootIsolationTolerance": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "delayedHitTolerance": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "integrationTolerance": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "streamEncodingTolerance": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "readbackTolerance": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "projectionTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "displayTolerance": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "errorBudgetStageInput": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stage", "estimatedAbsoluteError"],
+      "properties": {
+        "stage": {
+          "$ref": "#/$defs/errorBudgetStageId"
+        },
+        "estimatedAbsoluteError": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "errorBudgetPropagationF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["errorBudget", "stages"],
+      "properties": {
+        "errorBudget": {
+          "$ref": "#/$defs/solverErrorBudget"
+        },
+        "stages": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/errorBudgetStageInput"
+          }
+        },
+        "maxRows": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "errorBudgetPropagationF64Response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cumulativeError",
+        "cumulativeBudgetRatio",
+        "authority",
+        "stages",
+        "statuses",
+        "status"
+      ],
+      "properties": {
+        "cumulativeError": {
+          "type": "number",
+          "minimum": 0
+        },
+        "cumulativeBudgetRatio": {
+          "type": "number",
+          "minimum": 0
+        },
+        "authority": {
+          "$ref": "#/$defs/valueAuthorityId"
+        },
+        "stages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/errorBudgetStageReport"
+          }
+        },
+        "statuses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/statusRecord"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
     "causalRootBatchF64Request": {
       "type": "object",
       "additionalProperties": false,
@@ -648,6 +3344,19 @@
         }
       }
     },
+    "phaseAtHitSummaryF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rows"],
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/phaseAtHitF64"
+          }
+        }
+      }
+    },
     "sharedGeometryF64Request": {
       "type": "object",
       "additionalProperties": false,
@@ -662,6 +3371,18 @@
           "type": "array",
           "items": {
             "$ref": "#/$defs/spherePointIntersectionF64Request"
+          }
+        },
+        "delayedPotentials": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/delayedPotentialF64Request"
+          }
+        },
+        "circularSelfHitSpans": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/circularSelfHitSpanF64Request"
           }
         }
       }
@@ -699,6 +3420,74 @@
         "tolerance": {
           "type": "number",
           "minimum": 0
+        }
+      }
+    },
+    "circularSelfHitSpanF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fieldSpeedRatio"],
+      "properties": {
+        "fieldSpeedRatio": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "fieldSpeedTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "tolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maxIterations": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "scanSubdivisions": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maxAngle": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "delayedPotentialF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "samplePoint", "observationTime"],
+      "properties": {
+        "source": {
+          "$ref": "#/$defs/linearPathSegmentF64"
+        },
+        "samplePoint": {
+          "$ref": "#/$defs/vector3F64"
+        },
+        "observationTime": {
+          "type": "number"
+        },
+        "fieldSpeed": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "normalization": {
+          "type": "number"
+        },
+        "softening": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "sourceCharge": {
+          "type": "number"
+        },
+        "iterations": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "useCausalDenominator": {
+          "type": "boolean"
         }
       }
     },
@@ -898,10 +3687,29 @@
         }
       }
     },
+    "phaseAtHitSummaryF64Response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["summary", "status"],
+      "properties": {
+        "summary": {
+          "$ref": "#/$defs/phaseAtHitSummaryF64"
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
     "sharedGeometryF64Response": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["pathBounds", "spherePointIntersections", "status"],
+      "required": [
+        "pathBounds",
+        "spherePointIntersections",
+        "delayedPotentials",
+        "circularSelfHitSpans",
+        "status"
+      ],
       "properties": {
         "pathBounds": {
           "type": "array",
@@ -913,6 +3721,18 @@
           "type": "array",
           "items": {
             "$ref": "#/$defs/spherePointIntersectionF64"
+          }
+        },
+        "delayedPotentials": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/delayedPotentialF64"
+          }
+        },
+        "circularSelfHitSpans": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/circularSelfHitSpanF64"
           }
         },
         "status": {
@@ -1195,6 +4015,1213 @@
         "stateFlags": {
           "type": "integer",
           "minimum": 0
+        }
+      }
+    },
+    "pathHistoryStreamF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["runId", "streamId", "pathRows"],
+      "properties": {
+        "runId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "datasetId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathRows": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/pathHistoryRowF64"
+          }
+        },
+        "rowsPerChunk": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "storagePolicy": {
+          "$ref": "#/$defs/storagePolicy"
+        },
+        "metadata": {
+          "type": "object"
+        }
+      }
+    },
+    "pathHistoryStreamF64Response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "stream", "buffers", "summary", "status"],
+      "properties": {
+        "schema": {
+          "const": "solver-path-history-stream.v1"
+        },
+        "stream": {
+          "$ref": "#/$defs/streamDescriptor"
+        },
+        "buffers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/bufferDescriptor"
+          }
+        },
+        "summary": {
+          "$ref": "#/$defs/pathHistoryStreamSummary"
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "describeStreamRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["streamId"],
+      "properties": {
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "streamDescription": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "stream", "buffers", "index", "status"],
+      "properties": {
+        "schema": {
+          "const": "solver-stream-description.v1"
+        },
+        "stream": {
+          "$ref": "#/$defs/streamDescriptor"
+        },
+        "buffers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/bufferDescriptor"
+          }
+        },
+        "index": {
+          "$ref": "#/$defs/streamIndexDescription"
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "streamIndexDescription": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "streamId", "indexLayout", "chunkCount", "pathIndexRows"],
+      "properties": {
+        "schema": {
+          "const": "solver-stream-index.v1"
+        },
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "indexLayout": {
+          "const": "stream_index.v1"
+        },
+        "chunkCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathIndexRows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/pathHistoryIndexMetadata"
+          }
+        }
+      }
+    },
+    "pathHistoryIndexMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pathKey", "chunkIndex", "rowOffset", "rowCount", "timeRange", "frameRange", "byteRange"],
+      "properties": {
+        "pathKey": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "chunkIndex": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rowOffset": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "timeRange": {
+          "$ref": "#/$defs/range"
+        },
+        "frameRange": {
+          "$ref": "#/$defs/range"
+        },
+        "byteRange": {
+          "$ref": "#/$defs/range"
+        }
+      }
+    },
+    "streamOpenPurpose": {
+      "type": "string",
+      "enum": ["playback", "diagnostics", "export", "validation"]
+    },
+    "openStreamRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["purpose"],
+      "properties": {
+        "runId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "datasetId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "purpose": {
+          "$ref": "#/$defs/streamOpenPurpose"
+        }
+      }
+    },
+    "openStreamResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["streamId", "manifestVersion", "readableLayouts", "availableRanges"],
+      "properties": {
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "manifestVersion": {
+          "const": "solver-stream-manifest.v1"
+        },
+        "readableLayouts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/coreBinaryLayoutId"
+          }
+        },
+        "availableRanges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/streamRange"
+          }
+        }
+      }
+    },
+    "readStreamRangeRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["streamId"],
+      "properties": {
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "pathKeys": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "timeRange": {
+          "$ref": "#/$defs/range"
+        },
+        "frameRange": {
+          "$ref": "#/$defs/range"
+        },
+        "byteRange": {
+          "$ref": "#/$defs/range"
+        },
+        "eventKinds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "maxBytes": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "readStreamRangeResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["streamId", "ranges", "buffers", "diagnostics", "status"],
+      "properties": {
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "ranges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/streamRange"
+          }
+        },
+        "buffers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/bufferDescriptor"
+          }
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/diagnosticRecord"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "pathHistoryStreamSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "runId",
+        "streamId",
+        "rowCount",
+        "chunkCount",
+        "pathCount",
+        "byteLength",
+        "rowSizeBytes",
+        "pathIndexRowCount",
+        "pathIndexedChunkCount",
+        "timeRange",
+        "frameRange",
+        "storagePolicy",
+        "metadata"
+      ],
+      "properties": {
+        "schema": {
+          "const": "solver-path-history-stream-summary.v1"
+        },
+        "runId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "datasetId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "chunkCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "byteLength": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rowSizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "pathIndexRowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathIndexedChunkCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "timeRange": {
+          "$ref": "#/$defs/range"
+        },
+        "frameRange": {
+          "$ref": "#/$defs/range"
+        },
+        "storagePolicy": {
+          "$ref": "#/$defs/storagePolicy"
+        },
+        "metadata": {
+          "$ref": "#/$defs/pathHistoryStreamMetadata"
+        }
+      }
+    },
+    "pathHistoryStreamMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "precisionPath",
+        "units",
+        "coordinateFrame",
+        "scaleNormalization",
+        "interpolationRule",
+        "provenance",
+        "diagnostics"
+      ],
+      "properties": {
+        "schema": {
+          "const": "solver-path-history-stream-metadata.v1"
+        },
+        "precisionPath": {
+          "$ref": "#/$defs/precisionPathId"
+        },
+        "units": {
+          "type": "string",
+          "minLength": 1
+        },
+        "coordinateFrame": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scaleNormalization": {
+          "type": "string",
+          "minLength": 1
+        },
+        "interpolationRule": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provenance": {
+          "type": "object"
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/diagnosticRecord"
+          }
+        }
+      }
+    },
+    "diagnosticRecord": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["code", "severity", "message"],
+      "properties": {
+        "code": {
+          "type": "string",
+          "minLength": 1
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["ok", "info", "warning", "halt", "error"]
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "emissionShellCandidateF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["streamId", "signalSpeed"],
+      "properties": {
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "signalSpeed": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "tolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maxCandidates": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sourcePathKeys": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "receiverPathKeys": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "sourceChunkIndices": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "receiverChunkIndices": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "allowSamePath": {
+          "type": "boolean"
+        },
+        "workerCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "timeRange": {
+          "$ref": "#/$defs/range"
+        }
+      }
+    },
+    "emissionShellCandidateF64Response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "streamId",
+        "signalSpeed",
+        "tolerance",
+        "pairCount",
+        "rejectedPairCount",
+        "candidateCount",
+        "rejectionRate",
+        "candidateRate",
+        "falsePositiveEstimate",
+        "scanSummary",
+        "truncated",
+        "candidates",
+        "buffers",
+        "status"
+      ],
+      "properties": {
+        "schema": {
+          "const": "solver-emission-shell-candidates.v1"
+        },
+        "packetId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "packetMergeOrder": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "packetMergeKey": {
+          "type": "string",
+          "minLength": 1
+        },
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "signalSpeed": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "tolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pairCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rejectedPairCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "candidateCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rejectionRate": {
+          "type": "number",
+          "minimum": 0
+        },
+        "candidateRate": {
+          "type": "number",
+          "minimum": 0
+        },
+        "falsePositiveEstimate": {
+          "$ref": "#/$defs/emissionShellFalsePositiveEstimate"
+        },
+        "scanSummary": {
+          "$ref": "#/$defs/emissionShellScanSummary"
+        },
+        "truncated": {
+          "type": "boolean"
+        },
+        "candidates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/emissionShellCandidateF64"
+          }
+        },
+        "buffers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/bufferDescriptor"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "emissionShellCandidatePacketF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["streamId", "packet", "signalSpeed"],
+      "properties": {
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "packet": {
+          "$ref": "#/$defs/workPacketHeader"
+        },
+        "signalSpeed": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "tolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maxCandidates": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sourcePathKeys": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "receiverPathKeys": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "allowSamePath": {
+          "type": "boolean"
+        },
+        "workerCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "timeRange": {
+          "$ref": "#/$defs/range"
+        }
+      }
+    },
+    "emissionShellCandidatePacketsF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["streamId", "packets", "signalSpeed"],
+      "properties": {
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "packets": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/workPacketHeader"
+          }
+        },
+        "signalSpeed": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "tolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maxCandidatesPerPacket": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sourcePathKeys": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "receiverPathKeys": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "allowSamePath": {
+          "type": "boolean"
+        },
+        "workerCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "timeRange": {
+          "$ref": "#/$defs/range"
+        }
+      }
+    },
+    "emissionShellCandidatePacketMergeF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["responses"],
+      "properties": {
+        "responses": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/emissionShellCandidateF64Response"
+          }
+        }
+      }
+    },
+    "emissionShellScanSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "executionPath",
+        "streamChunkCount",
+        "skippedChunkCount",
+        "prunedByTimeChunkCount",
+        "prunedByPathChunkCount",
+        "pathIndexRowCount",
+        "pathIndexedChunkCount",
+        "indexSkippedRowCount",
+        "scannedRowCount",
+        "skippedRowCount",
+        "uniqueMaterializedRowCount",
+        "materializedRoleRowCount",
+        "sourceRowCount",
+        "receiverRowCount",
+        "possiblePairUpperBound",
+        "testedPairCount",
+        "skippedPairCount",
+        "rejectedPairCount",
+        "candidateCount",
+        "outputBufferCount",
+        "outputByteLength",
+        "requestedWorkerCount",
+        "plannedWorkerCount",
+        "truncated"
+      ],
+      "properties": {
+        "schema": {
+          "const": "solver-emission-shell-scan-summary.v1"
+        },
+        "executionPath": {
+          "type": "string",
+          "enum": ["native_c_abi", "javascript_fallback", "packet_merge"]
+        },
+        "streamChunkCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "skippedChunkCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "prunedByTimeChunkCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "prunedByPathChunkCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathIndexRowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathIndexedChunkCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "indexSkippedRowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "scannedRowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "skippedRowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "uniqueMaterializedRowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "materializedRoleRowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sourceRowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "receiverRowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "possiblePairUpperBound": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "testedPairCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "skippedPairCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rejectedPairCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "candidateCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "outputBufferCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "outputByteLength": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "requestedWorkerCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "plannedWorkerCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "truncated": {
+          "type": "boolean"
+        }
+      }
+    },
+    "emissionShellCandidateF64": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourcePathKey",
+        "receiverPathKey",
+        "sourceSegmentIndex",
+        "receiverSegmentIndex",
+        "sourceChunkIndex",
+        "receiverChunkIndex",
+        "sourceRowOffset",
+        "receiverRowOffset",
+        "sourceTimeRange",
+        "receiverTimeRange",
+        "distanceLowerBound",
+        "distanceUpperBound",
+        "radiusLowerBound",
+        "radiusUpperBound",
+        "candidateKind",
+        "narrowPhaseEstimate"
+      ],
+      "properties": {
+        "sourcePathKey": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "receiverPathKey": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sourceSegmentIndex": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "receiverSegmentIndex": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sourceChunkIndex": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "receiverChunkIndex": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sourceRowOffset": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "receiverRowOffset": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sourceTimeRange": {
+          "$ref": "#/$defs/range"
+        },
+        "receiverTimeRange": {
+          "$ref": "#/$defs/range"
+        },
+        "distanceLowerBound": {
+          "type": "number",
+          "minimum": 0
+        },
+        "distanceUpperBound": {
+          "type": "number",
+          "minimum": 0
+        },
+        "radiusLowerBound": {
+          "type": "number",
+          "minimum": 0
+        },
+        "radiusUpperBound": {
+          "type": "number",
+          "minimum": 0
+        },
+        "candidateKind": {
+          "const": "broad_phase_possible"
+        },
+        "narrowPhaseEstimate": {
+          "$ref": "#/$defs/emissionShellNarrowPhaseEstimate"
+        }
+      }
+    },
+    "emissionShellFalsePositiveEstimate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "method",
+        "testedCandidateCount",
+        "estimatedTruePositiveCount",
+        "estimatedFalsePositiveCount",
+        "estimatedFalsePositiveRate"
+      ],
+      "properties": {
+        "method": {
+          "const": "sampled_linear_segment_bisection.v1"
+        },
+        "testedCandidateCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "estimatedTruePositiveCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "estimatedFalsePositiveCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "estimatedFalsePositiveRate": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "emissionShellNarrowPhaseEstimate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["method", "classification", "sampleCount", "residual"],
+      "properties": {
+        "method": {
+          "const": "sampled_linear_segment_bisection.v1"
+        },
+        "classification": {
+          "type": "string",
+          "enum": ["sampled_hit", "sampled_miss"]
+        },
+        "sampleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hitTime": {
+          "type": "number"
+        },
+        "emissionTime": {
+          "type": "number"
+        },
+        "residual": {
+          "type": ["number", "null"]
+        }
+      }
+    },
+    "pathHistoryStorageLifecyclePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "activeWindow": {
+          "$ref": "#/$defs/range"
+        },
+        "deepIndexEnabled": {
+          "type": "boolean"
+        },
+        "exportRequested": {
+          "type": "boolean"
+        },
+        "failedRun": {
+          "type": "boolean"
+        },
+        "deleteRequested": {
+          "type": "boolean"
+        },
+        "activeMemoryBudgetBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "storageBudgetBytes": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "pathHistoryChunkMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["chunkIndex", "pathKeyStart", "pathKeyEnd", "rowOffset", "rowCount"],
+      "properties": {
+        "chunkIndex": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathKeyStart": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathKeyEnd": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rowOffset": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "timeRange": {
+          "$ref": "#/$defs/range"
+        },
+        "frameRange": {
+          "$ref": "#/$defs/range"
+        },
+        "byteRange": {
+          "$ref": "#/$defs/range"
+        },
+        "timeStart": {
+          "type": "number"
+        },
+        "timeEnd": {
+          "type": "number"
+        },
+        "frameStart": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "frameEnd": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "byteOffset": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "byteLength": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "checksum64": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "string",
+              "minLength": 1
+            }
+          ]
+        },
+        "stateFlags": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "pathHistoryStorageLifecycleRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy"],
+      "properties": {
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "policy": {
+          "$ref": "#/$defs/pathHistoryStorageLifecyclePolicy"
+        },
+        "chunks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/pathHistoryChunkMetadata"
+          }
+        }
+      }
+    },
+    "pathHistoryStorageTier": {
+      "type": "string",
+      "enum": ["active", "warm", "cold", "deleted", "unknown"]
+    },
+    "pathHistoryStorageAction": {
+      "type": "string",
+      "enum": [
+        "keep_active",
+        "spill_warm",
+        "archive_cold",
+        "build_deep_index",
+        "delete",
+        "blocked_unsafe",
+        "unknown"
+      ]
+    },
+    "pathHistoryStorageReason": {
+      "type": "string",
+      "enum": [
+        "unknown",
+        "delete_requested",
+        "failed_run_cleanup",
+        "overlaps_active_window",
+        "chunk_is_pinned_active",
+        "aged_chunk_requires_deep_index",
+        "storage_pressure_without_export_request",
+        "export_retention_requested",
+        "deep_index_already_built",
+        "aged_out_of_active_window"
+      ]
+    },
+    "pathHistoryLifecycleDecision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "chunkIndex",
+        "tierCode",
+        "tier",
+        "actionCode",
+        "action",
+        "safeToAgeOut",
+        "requiresDeepIndex",
+        "reasonCode",
+        "reason"
+      ],
+      "properties": {
+        "chunkIndex": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "tierCode": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "tier": {
+          "$ref": "#/$defs/pathHistoryStorageTier"
+        },
+        "actionCode": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "action": {
+          "$ref": "#/$defs/pathHistoryStorageAction"
+        },
+        "safeToAgeOut": {
+          "type": "boolean"
+        },
+        "requiresDeepIndex": {
+          "type": "boolean"
+        },
+        "reasonCode": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reason": {
+          "$ref": "#/$defs/pathHistoryStorageReason"
+        }
+      }
+    },
+    "pathHistoryStorageLifecycleResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "policy", "chunkCount", "decisions", "status"],
+      "properties": {
+        "schema": {
+          "const": "solver-path-history-storage-lifecycle.v1"
+        },
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "policy": {
+          "$ref": "#/$defs/pathHistoryStorageLifecyclePolicy"
+        },
+        "chunkCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "decisions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/pathHistoryLifecycleDecision"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
         }
       }
     },
@@ -1734,6 +5761,94 @@
         }
       }
     },
+    "phaseAtHitSummaryF64": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "rowCount",
+        "rootIdRange",
+        "statusCounts",
+        "sourceCycleIndexRange",
+        "receiverCycleIndexRange",
+        "emissionTimeRange",
+        "hitTimeRange",
+        "sourcePhaseRange",
+        "receiverPhaseRange",
+        "phaseDeltaRange",
+        "phaseSpreadRange",
+        "meanPhaseDelta",
+        "meanPhaseSpread",
+        "maxPhaseSpread"
+      ],
+      "properties": {
+        "schema": {
+          "const": "solver-phase-at-hit-summary.v1"
+        },
+        "rowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rootIdRange": {
+          "$ref": "#/$defs/range"
+        },
+        "statusCounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/phaseAtHitStatusCount"
+          }
+        },
+        "sourceCycleIndexRange": {
+          "$ref": "#/$defs/range"
+        },
+        "receiverCycleIndexRange": {
+          "$ref": "#/$defs/range"
+        },
+        "emissionTimeRange": {
+          "$ref": "#/$defs/range"
+        },
+        "hitTimeRange": {
+          "$ref": "#/$defs/range"
+        },
+        "sourcePhaseRange": {
+          "$ref": "#/$defs/range"
+        },
+        "receiverPhaseRange": {
+          "$ref": "#/$defs/range"
+        },
+        "phaseDeltaRange": {
+          "$ref": "#/$defs/range"
+        },
+        "phaseSpreadRange": {
+          "$ref": "#/$defs/range"
+        },
+        "meanPhaseDelta": {
+          "type": "number"
+        },
+        "meanPhaseSpread": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maxPhaseSpread": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "phaseAtHitStatusCount": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["statusCode", "rowCount"],
+      "properties": {
+        "statusCode": {
+          "type": "integer"
+        },
+        "rowCount": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
     "pathBoundsF64": {
       "type": "object",
       "additionalProperties": false,
@@ -1776,6 +5891,133 @@
         },
         "signedDistance": {
           "type": "number"
+        }
+      }
+    },
+    "delayedPotentialF64": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "itemIndex",
+        "statusCode",
+        "tau",
+        "emissionTime",
+        "emissionPoint",
+        "displacement",
+        "distance",
+        "denominator",
+        "potential",
+        "kappa",
+        "iterations",
+        "usedCausalDenominator"
+      ],
+      "properties": {
+        "itemIndex": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "statusCode": {
+          "type": "integer"
+        },
+        "tau": {
+          "type": "number",
+          "minimum": 0
+        },
+        "emissionTime": {
+          "type": "number"
+        },
+        "emissionPoint": {
+          "$ref": "#/$defs/vector3F64"
+        },
+        "displacement": {
+          "$ref": "#/$defs/vector3F64"
+        },
+        "distance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "denominator": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "potential": {
+          "type": "number"
+        },
+        "kappa": {
+          "type": "number"
+        },
+        "iterations": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "usedCausalDenominator": {
+          "type": "boolean"
+        }
+      }
+    },
+    "circularSelfHitSpanF64": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "itemIndex",
+        "statusCode",
+        "fieldSpeedRatio",
+        "fieldSpeedTolerance",
+        "regime",
+        "resultKind",
+        "span",
+        "rootFound",
+        "bracketLow",
+        "bracketHigh",
+        "residual",
+        "iterations"
+      ],
+      "properties": {
+        "itemIndex": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "statusCode": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fieldSpeedRatio": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "fieldSpeedTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "regime": {
+          "type": "string",
+          "enum": ["sub_field", "field_speed", "super_field"]
+        },
+        "resultKind": {
+          "type": "string",
+          "enum": ["below_threshold", "root_solved", "fallback_pi"]
+        },
+        "span": {
+          "type": "number",
+          "minimum": 0
+        },
+        "rootFound": {
+          "type": "boolean"
+        },
+        "bracketLow": {
+          "type": "number",
+          "minimum": 0
+        },
+        "bracketHigh": {
+          "type": "number",
+          "minimum": 0
+        },
+        "residual": {
+          "type": "number"
+        },
+        "iterations": {
+          "type": "integer",
+          "minimum": 0
         }
       }
     },
@@ -1863,6 +6105,36 @@
         }
       }
     },
+    "workPacketHeaderResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "packet", "serializedHeader", "headerChecksum", "diagnostics", "status"],
+      "properties": {
+        "schema": {
+          "const": "solver-work-packet-header.v1"
+        },
+        "packet": {
+          "$ref": "#/$defs/workPacketHeader"
+        },
+        "serializedHeader": {
+          "type": "string",
+          "minLength": 1
+        },
+        "headerChecksum": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$"
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
     "workPacketIndexRange": {
       "type": "object",
       "additionalProperties": false,
@@ -1924,6 +6196,366 @@
         "checksum": {
           "type": "string",
           "minLength": 1
+        }
+      }
+    },
+    "workPacketResultRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["packetId", "mergeOrder", "mergeKey", "outputs"],
+      "properties": {
+        "packetId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mergeOrder": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "mergeKey": {
+          "type": "string",
+          "minLength": 1
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/workPacketBufferRef"
+          }
+        }
+      }
+    },
+    "workPacketResultOrderRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["results"],
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/workPacketResultRef"
+          }
+        }
+      }
+    },
+    "workPacketResultOrderResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "results", "status"],
+      "properties": {
+        "schema": {
+          "const": "solver-work-packet-result-order.v1"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/workPacketResultRef"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "pathHistoryWorkPacketPlanRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["streamId", "runId", "modelId", "precisionPath"],
+      "properties": {
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "runId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "modelId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "precisionPath": {
+          "type": "string",
+          "enum": [
+            "scaled_f64_fast",
+            "scaled_f64_strict",
+            "adaptive_multirate",
+            "event_root_focused",
+            "extended_precision",
+            "validation_replay"
+          ]
+        },
+        "packetIdPrefix": {
+          "type": "string",
+          "minLength": 1
+        },
+        "timeRange": {
+          "$ref": "#/$defs/range"
+        },
+        "expectedOutputs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/coreBinaryLayoutId"
+          }
+        },
+        "sourcePathKeys": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "receiverPathKeys": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "sourceChunkIndices": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "receiverChunkIndices": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "includeSameChunk": {
+          "type": "boolean"
+        },
+        "maxPacketCount": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "pathHistoryWorkPacketPlanResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "streamId",
+        "runId",
+        "modelId",
+        "precisionPath",
+        "sourceChunkCount",
+        "receiverChunkCount",
+        "pathIndexRowCount",
+        "pathIndexedChunkCount",
+        "sourcePathPrunedChunkCount",
+        "receiverPathPrunedChunkCount",
+        "chunkPairCount",
+        "packetCount",
+        "truncated",
+        "packets",
+        "status"
+      ],
+      "properties": {
+        "schema": {
+          "const": "solver-path-history-work-packet-plan.v1"
+        },
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "runId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "modelId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "precisionPath": {
+          "type": "string",
+          "enum": [
+            "scaled_f64_fast",
+            "scaled_f64_strict",
+            "adaptive_multirate",
+            "event_root_focused",
+            "extended_precision",
+            "validation_replay"
+          ]
+        },
+        "sourceChunkCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "receiverChunkCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathIndexRowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathIndexedChunkCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sourcePathPrunedChunkCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "receiverPathPrunedChunkCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "chunkPairCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "packetCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "truncated": {
+          "type": "boolean"
+        },
+        "packets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/workPacketHeader"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "errorBudgetStageId": {
+      "type": "string",
+      "enum": [
+        "root_isolation",
+        "delayed_hit",
+        "motion_integration",
+        "stream_encoding",
+        "stream_readback",
+        "projection",
+        "app_buffer"
+      ]
+    },
+    "valueAuthorityId": {
+      "type": "string",
+      "enum": ["authoritative", "approximate", "display-only", "rejected"]
+    },
+    "errorBudgetStageReport": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stage",
+        "estimatedAbsoluteError",
+        "tolerance",
+        "toleranceRatio",
+        "authority",
+        "status"
+      ],
+      "properties": {
+        "stage": {
+          "$ref": "#/$defs/errorBudgetStageId"
+        },
+        "estimatedAbsoluteError": {
+          "type": "number",
+          "minimum": 0
+        },
+        "tolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "toleranceRatio": {
+          "type": "number",
+          "minimum": 0
+        },
+        "authority": {
+          "$ref": "#/$defs/valueAuthorityId"
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "errorBudgetPropagationReport": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cumulativeError", "cumulativeBudgetRatio", "authority", "stages", "statuses"],
+      "properties": {
+        "cumulativeError": {
+          "type": "number",
+          "minimum": 0
+        },
+        "cumulativeBudgetRatio": {
+          "type": "number",
+          "minimum": 0
+        },
+        "authority": {
+          "$ref": "#/$defs/valueAuthorityId"
+        },
+        "stages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/errorBudgetStageReport"
+          }
+        },
+        "statuses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/statusRecord"
+          }
+        }
+      }
+    },
+    "errorBudgetPropagationStageDescriptor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stage", "budgetField", "cumulative"],
+      "properties": {
+        "stage": {
+          "$ref": "#/$defs/errorBudgetStageId"
+        },
+        "budgetField": {
+          "type": "string",
+          "enum": [
+            "rootIsolationTolerance",
+            "delayedHitTolerance",
+            "integrationTolerance",
+            "streamEncodingTolerance",
+            "readbackTolerance",
+            "projectionTolerance",
+            "displayTolerance"
+          ]
+        },
+        "cumulative": {
+          "type": "boolean"
+        }
+      }
+    },
+    "errorBudgetPropagationContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "stages", "authorityLevels"],
+      "properties": {
+        "schema": {
+          "const": "solver-error-budget-propagation.v1"
+        },
+        "stages": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/errorBudgetPropagationStageDescriptor"
+          }
+        },
+        "authorityLevels": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/valueAuthorityId"
+          }
         }
       }
     },
@@ -2029,6 +6661,202 @@
         }
       }
     },
+    "solverAppId": {
+      "type": "string",
+      "enum": ["animator", "photon", "ideal-swarm"]
+    },
+    "solverRunKind": {
+      "type": "string",
+      "enum": [
+        "motionSimulation",
+        "pathHistory",
+        "causalRoots",
+        "phaseDiagnostics",
+        "delayedHits",
+        "sharedGeometry",
+        "appPlayback",
+        "validationReplay"
+      ]
+    },
+    "solverClaimLevel": {
+      "type": "string",
+      "enum": ["interactive-preview", "migration-parity", "exported-dataset", "validation-evidence"]
+    },
+    "solverModelContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "modelId",
+        "equationVersion",
+        "constantsHash",
+        "causalSpeedPolicy",
+        "branchPolicy",
+        "unitConvention",
+        "compatiblePrecisionPaths"
+      ],
+      "properties": {
+        "modelId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "equationVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "forceLawVersion": {
+          "type": "string"
+        },
+        "constantsHash": {
+          "type": "string",
+          "minLength": 1
+        },
+        "causalSpeedPolicy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "branchPolicy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "unitConvention": {
+          "type": "string",
+          "minLength": 1
+        },
+        "compatiblePrecisionPaths": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/precisionPathId"
+          }
+        }
+      }
+    },
+    "solverTimeWindow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "end", "units"],
+      "properties": {
+        "start": {
+          "type": "number"
+        },
+        "end": {
+          "type": "number"
+        },
+        "stepHint": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "units": {
+          "type": "string",
+          "enum": ["solver-time", "seconds", "cycles"]
+        }
+      }
+    },
+    "solverSimulationEnvelope": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "entityCount",
+        "timeWindow",
+        "interactionPolicy",
+        "expectedBranchComplexity",
+        "outputDetail",
+        "memoryBudgetBytes",
+        "latencyTarget",
+        "simplificationPolicy"
+      ],
+      "properties": {
+        "entityCount": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "assemblyCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "timeWindow": {
+          "$ref": "#/$defs/solverTimeWindow"
+        },
+        "timeResolutionHint": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "interactionPolicy": {
+          "type": "string",
+          "enum": ["sparse", "neighbor-pruned", "all-to-all", "same-source-enabled"]
+        },
+        "expectedBranchComplexity": {
+          "type": "string",
+          "enum": ["low", "moderate", "high", "unknown"]
+        },
+        "outputDetail": {
+          "type": "string",
+          "enum": ["preview", "playback", "export", "validation"]
+        },
+        "memoryBudgetBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "storageBudgetBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "latencyTarget": {
+          "type": "string",
+          "enum": ["interactive", "background", "batch", "validation"]
+        },
+        "simplificationPolicy": {
+          "type": "string",
+          "enum": ["none", "explicit-reduced-model"]
+        }
+      }
+    },
+    "solverOutputKind": {
+      "type": "string",
+      "enum": [
+        "summary",
+        "frameBuffer",
+        "pathSegmentBuffer",
+        "pathStream",
+        "assemblyMembership",
+        "assemblyGraph",
+        "rootLedger",
+        "delayedHitEvents",
+        "phaseAtHit",
+        "geometryBuffer",
+        "diagnostics",
+        "validationArtifacts"
+      ]
+    },
+    "solverOutputRequest": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["outputs", "memoryBudgetBytes", "deterministic"],
+      "properties": {
+        "outputs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/solverOutputKind"
+          }
+        },
+        "streamTarget": {
+          "type": "string",
+          "enum": ["worker-memory", "opfs", "native-file", "caller-buffer"]
+        },
+        "memoryBudgetBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sampleStride": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "deterministic": {
+          "type": "boolean"
+        }
+      }
+    },
     "magnitudeSummary": {
       "type": "object",
       "additionalProperties": false,
@@ -2093,6 +6921,8 @@
         "delayed_hit_events.v1",
         "phase_at_hit.v1",
         "spacetime_index.v1",
+        "emission_shell_candidate.v1",
+        "emission_shell_narrow_phase.v1",
         "stream_index.v1"
       ]
     },
@@ -2122,6 +6952,298 @@
         },
         "numericType": {
           "const": "f64"
+        },
+        "checksum": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$"
+        }
+      }
+    },
+    "runManifestBuffer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bufferId", "layout", "byteLength", "rowCount", "numericType", "checksum"],
+      "properties": {
+        "bufferId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "layout": {
+          "$ref": "#/$defs/coreBinaryLayoutId"
+        },
+        "byteLength": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "numericType": {
+          "$ref": "#/$defs/numericTypeId"
+        },
+        "checksum": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$"
+        }
+      }
+    },
+    "runManifestStream": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["streamId", "manifestVersion", "indexLayout", "rangeCount", "storagePolicy"],
+      "properties": {
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "manifestVersion": {
+          "const": "solver-stream-manifest.v1"
+        },
+        "indexLayout": {
+          "const": "stream_index.v1"
+        },
+        "rangeCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "storagePolicy": {
+          "$ref": "#/$defs/storagePolicy"
+        },
+        "metadata": {
+          "$ref": "#/$defs/pathHistoryStreamMetadata"
+        }
+      }
+    },
+    "admissionStressSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "entityCount",
+        "estimatedPairCount",
+        "entityPressure",
+        "interactionPressure",
+        "memoryPressure",
+        "timeStepCountEstimate",
+        "timeStepPressure",
+        "outputPressure",
+        "precisionPressure",
+        "dominantStress",
+        "pressureScore"
+      ],
+      "properties": {
+        "schema": {
+          "const": "solver-admission-stress-summary.v1"
+        },
+        "entityCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "estimatedPairCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "entityPressure": {
+          "type": "number",
+          "minimum": 0
+        },
+        "interactionPressure": {
+          "type": "number",
+          "minimum": 0
+        },
+        "memoryPressure": {
+          "type": "number",
+          "minimum": 0
+        },
+        "timeStepCountEstimate": {
+          "type": ["number", "null"],
+          "minimum": 0
+        },
+        "timeStepPressure": {
+          "type": "number",
+          "minimum": 0
+        },
+        "outputPressure": {
+          "type": "number",
+          "minimum": 0
+        },
+        "precisionPressure": {
+          "type": "number",
+          "minimum": 0
+        },
+        "dominantStress": {
+          "type": "string",
+          "enum": ["entity_count", "interaction_graph", "memory", "time_steps", "output_detail", "precision"]
+        },
+        "pressureScore": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "runManifestAdmission": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision", "admitted", "stressSummary", "statuses"],
+      "properties": {
+        "decision": {
+          "type": "string",
+          "enum": ["admit", "batch", "escalate_precision", "reject"]
+        },
+        "admitted": {
+          "type": "boolean"
+        },
+        "stressSummary": {
+          "$ref": "#/$defs/admissionStressSummary"
+        },
+        "statuses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/statusRecord"
+          }
+        }
+      }
+    },
+    "runManifestProvenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["apiVersion", "solverVersion", "bridge", "wasmAbiVersion", "generatedAt"],
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "solverVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "bridge": {
+          "type": "string",
+          "minLength": 1
+        },
+        "wasmAbiVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "generatedAt": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "runManifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "manifestHash",
+        "requestId",
+        "runId",
+        "datasetId",
+        "appId",
+        "runKind",
+        "claimLevel",
+        "configVersion",
+        "configHash",
+        "model",
+        "envelope",
+        "errorBudget",
+        "requestedPrecisionPath",
+        "selectedPrecisionPath",
+        "output",
+        "admission",
+        "provenance",
+        "deterministic",
+        "buffers",
+        "streams",
+        "diagnostics",
+        "status"
+      ],
+      "properties": {
+        "schema": {
+          "const": "solver-run-manifest.v1"
+        },
+        "manifestHash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "runId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "datasetId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "appId": {
+          "$ref": "#/$defs/solverAppId"
+        },
+        "runKind": {
+          "$ref": "#/$defs/solverRunKind"
+        },
+        "claimLevel": {
+          "$ref": "#/$defs/solverClaimLevel"
+        },
+        "configVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "configHash": {
+          "type": "string",
+          "minLength": 1
+        },
+        "model": {
+          "$ref": "#/$defs/solverModelContract"
+        },
+        "envelope": {
+          "$ref": "#/$defs/solverSimulationEnvelope"
+        },
+        "errorBudget": {
+          "$ref": "#/$defs/solverErrorBudget"
+        },
+        "requestedPrecisionPath": {
+          "$ref": "#/$defs/precisionPathId"
+        },
+        "selectedPrecisionPath": {
+          "$ref": "#/$defs/precisionPathId"
+        },
+        "output": {
+          "$ref": "#/$defs/solverOutputRequest"
+        },
+        "admission": {
+          "$ref": "#/$defs/runManifestAdmission"
+        },
+        "provenance": {
+          "$ref": "#/$defs/runManifestProvenance"
+        },
+        "deterministic": {
+          "type": "boolean"
+        },
+        "buffers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/runManifestBuffer"
+          }
+        },
+        "streams": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/runManifestStream"
+          }
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
         }
       }
     },
@@ -2148,6 +7270,9 @@
         },
         "storagePolicy": {
           "$ref": "#/$defs/storagePolicy"
+        },
+        "metadata": {
+          "$ref": "#/$defs/pathHistoryStreamMetadata"
         }
       }
     },

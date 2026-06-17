@@ -1,6 +1,8 @@
 :root {
   --reader-font-size: 18px;
   --reader-line-height: 1.65;
+  --reader-shell-padding-inline: 16px;
+  --reader-article-max-width: 72ch;
   --reader-background: #4b0082;
   --reader-text: #ffffff;
   --reader-heading: #ffffff;
@@ -36,11 +38,11 @@ body {
 
 .reader-shell {
   min-height: 100%;
-  padding: 16px;
+  padding: 16px var(--reader-shell-padding-inline);
 }
 
 .reader-article {
-  max-width: 72ch;
+  max-width: var(--reader-article-max-width);
   margin: 0 auto;
 }
 

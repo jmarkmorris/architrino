@@ -16,6 +16,7 @@ export function classifySolverBaselineResponse(options = {}) {
 
   compareArrayLengths(differences, "roots", baseline.roots, candidate.roots);
   compareArrayLengths(differences, "hits", baseline.hits, candidate.hits);
+  compareArrayLengths(differences, "phaseRows", baseline.phaseRows, candidate.phaseRows);
   compareArrayLengths(differences, "buffers", baseline.buffers, candidate.buffers);
   if (differences.some((difference) => difference.kind === "length")) {
     return createComparisonResult("baseline_investigation_required_mismatch", differences);
@@ -23,7 +24,11 @@ export function classifySolverBaselineResponse(options = {}) {
 
   compareValue(differences, "roots", baseline.roots, candidate.roots);
   compareValue(differences, "hits", baseline.hits, candidate.hits);
+  compareValue(differences, "phaseRows", baseline.phaseRows, candidate.phaseRows);
+  compareValue(differences, "phaseSummary", baseline.phaseSummary, candidate.phaseSummary);
+  compareValue(differences, "pathHistory", baseline.pathHistory, candidate.pathHistory);
   compareValue(differences, "buffers", baseline.buffers, candidate.buffers);
+  compareValue(differences, "geometry", baseline.geometry, candidate.geometry);
   compareValue(differences, "status.code", baseline.status?.code, candidate.status?.code);
 
   const numericDifferences = differences.filter((difference) => difference.kind === "number");
@@ -94,6 +99,14 @@ function compareValue(differences, path, baseline, candidate) {
   }
 
   if (Array.isArray(baseline) && Array.isArray(candidate)) {
+    if (baseline.length !== candidate.length) {
+      differences.push({
+        kind: "length",
+        path,
+        baselineLength: baseline.length,
+        candidateLength: candidate.length,
+      });
+    }
     const count = Math.min(baseline.length, candidate.length);
     for (let index = 0; index < count; index += 1) {
       compareValue(differences, `${path}[${index}]`, baseline[index], candidate[index]);

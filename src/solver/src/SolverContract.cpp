@@ -28,12 +28,101 @@ void merge_report(ValidationReport& target, const ValidationReport& source) {
   target.statuses.insert(target.statuses.end(), source.statuses.begin(), source.statuses.end());
 }
 
-std::uint64_t all_to_all_pair_count(std::uint64_t entityCount) {
-  constexpr std::uint64_t safeLimit = std::numeric_limits<std::uint64_t>::max() / 2ULL;
-  if (entityCount > safeLimit / std::max<std::uint64_t>(entityCount, 1ULL)) {
+std::uint64_t saturating_product(std::uint64_t left, std::uint64_t right) {
+  if (left != 0 && right > std::numeric_limits<std::uint64_t>::max() / left) {
     return std::numeric_limits<std::uint64_t>::max();
   }
-  return entityCount * entityCount;
+  return left * right;
+}
+
+std::uint64_t estimate_pair_count(std::uint64_t entityCount, InteractionPolicy interactionPolicy) {
+  if (entityCount == 0) {
+    return 0;
+  }
+  if (interactionPolicy == InteractionPolicy::SameSourceEnabled) {
+    return saturating_product(entityCount, entityCount);
+  }
+  if (interactionPolicy == InteractionPolicy::AllToAll) {
+    return saturating_product(entityCount, entityCount - 1);
+  }
+  return entityCount;
+}
+
+bool is_dense_interaction(InteractionPolicy interactionPolicy) {
+  return interactionPolicy == InteractionPolicy::AllToAll ||
+         interactionPolicy == InteractionPolicy::SameSourceEnabled;
+}
+
+double positive_ratio(double numerator, double denominator) {
+  if (!std::isfinite(numerator) || !std::isfinite(denominator) || numerator < 0.0 || denominator <= 0.0) {
+    return 0.0;
+  }
+  return numerator / denominator;
+}
+
+double output_pressure(OutputDetail outputDetail) {
+  switch (outputDetail) {
+    case OutputDetail::Preview:
+      return 0.25;
+    case OutputDetail::Playback:
+      return 0.5;
+    case OutputDetail::Export:
+      return 0.75;
+    case OutputDetail::Validation:
+      return 1.0;
+  }
+  return 0.0;
+}
+
+double precision_pressure(double globalTolerance, double minimumPositiveTolerance) {
+  if (!is_positive_finite(globalTolerance) || !is_positive_finite(minimumPositiveTolerance)) {
+    return 0.0;
+  }
+  const double requestedDigits = std::max(0.0, -std::log10(globalTolerance));
+  const double minimumDigits = std::max(1.0, -std::log10(minimumPositiveTolerance));
+  return requestedDigits / minimumDigits;
+}
+
+AdmissionStressSummary summarize_admission_stress(const ErrorBudget& budget,
+                                                  const SimulationEnvelope& envelope,
+                                                  const SolverCapabilityEnvelope& capability) {
+  AdmissionStressSummary summary;
+  summary.entityCount = envelope.entityCount;
+  summary.estimatedPairCount = estimate_pair_count(envelope.entityCount, envelope.interactionPolicy);
+  summary.entityPressure = positive_ratio(static_cast<double>(envelope.entityCount),
+                                          static_cast<double>(capability.maxInteractiveEntities));
+  summary.interactionPressure =
+      is_dense_interaction(envelope.interactionPolicy)
+          ? positive_ratio(static_cast<double>(envelope.entityCount),
+                           static_cast<double>(capability.maxBatchEntities))
+          : summary.entityPressure;
+  summary.memoryPressure = positive_ratio(static_cast<double>(capability.minMemoryBudgetBytes),
+                                          static_cast<double>(envelope.memoryBudgetBytes));
+  const double step = envelope.timeResolutionHint != 0.0 ? envelope.timeResolutionHint : envelope.timeWindow.stepHint;
+  if (std::isfinite(envelope.timeWindow.start) && std::isfinite(envelope.timeWindow.end) &&
+      envelope.timeWindow.end > envelope.timeWindow.start && is_positive_finite(step)) {
+    summary.timeStepCountEstimate = std::ceil((envelope.timeWindow.end - envelope.timeWindow.start) / step);
+    summary.hasTimeStepCountEstimate = true;
+    summary.timeStepPressure = positive_ratio(summary.timeStepCountEstimate, capability.maxInteractiveStepCount);
+  }
+  summary.outputPressure = output_pressure(envelope.outputDetail);
+  summary.precisionPressure = precision_pressure(budget.globalTolerance, capability.minimumPositiveTolerance);
+
+  const std::pair<AdmissionStressDimension, double> pressures[] = {
+      {AdmissionStressDimension::EntityCount, summary.entityPressure},
+      {AdmissionStressDimension::InteractionGraph, summary.interactionPressure},
+      {AdmissionStressDimension::Memory, summary.memoryPressure},
+      {AdmissionStressDimension::TimeSteps, summary.timeStepPressure},
+      {AdmissionStressDimension::OutputDetail, summary.outputPressure},
+      {AdmissionStressDimension::Precision, summary.precisionPressure},
+  };
+  for (const auto& [dimension, pressure] : pressures) {
+    if (pressure > summary.pressureScore) {
+      summary.dominantStress = dimension;
+      summary.pressureScore = pressure;
+    }
+  }
+  return summary;
 }
 
 }  // namespace
@@ -165,6 +254,7 @@ AdmissionReport admit_simulation_envelope(const ModelContract& model,
                                           const SimulationEnvelope& envelope,
                                           const SolverCapabilityEnvelope& capability) {
   AdmissionReport admission;
+  admission.stressSummary = summarize_admission_stress(budget, envelope, capability);
   merge_report(admission.validation, validate_model_contract(model));
   merge_report(admission.validation, validate_error_budget(budget));
   merge_report(admission.validation, validate_simulation_envelope(envelope));
@@ -196,10 +286,7 @@ AdmissionReport admit_simulation_envelope(const ModelContract& model,
     return admission;
   }
 
-  const bool densePairs = envelope.interactionPolicy == InteractionPolicy::AllToAll ||
-                          envelope.interactionPolicy == InteractionPolicy::SameSourceEnabled;
-  if (densePairs && all_to_all_pair_count(envelope.entityCount) >
-                        all_to_all_pair_count(capability.maxBatchEntities)) {
+  if (is_dense_interaction(envelope.interactionPolicy) && envelope.entityCount > capability.maxBatchEntities) {
     admission.validation.add(StatusCode::SimulationEnvelopeExceeded,
                              StatusSeverity::Halt,
                              "dense interaction graph exceeds the supported batch envelope",
@@ -224,6 +311,9 @@ AdmissionReport admit_simulation_envelope(const ModelContract& model,
                              StatusSeverity::Info,
                              "selected extended precision for strict global tolerance",
                              "admission");
+    if (admission.decision == AdmissionDecision::Admit) {
+      admission.decision = AdmissionDecision::EscalatePrecision;
+    }
   } else if (has_precision_path(model, PrecisionPath::EventRootFocused)) {
     admission.selectedPrecisionPath = PrecisionPath::EventRootFocused;
   } else if (has_precision_path(model, PrecisionPath::ScaledF64Strict)) {

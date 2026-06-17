@@ -40,7 +40,9 @@ add_library(architrino_solver_core STATIC
   src/BinaryLayouts.cpp
   src/CausalRootBatchSolver.cpp
   src/CausalRootSolver.cpp
+  src/ErrorBudget.cpp
   src/Geometry.cpp
+  src/InvariantChecks.cpp
   src/MotionSampler.cpp
   src/NumericSerialization.cpp
   src/PathHistoryStream.cpp
@@ -48,6 +50,7 @@ add_library(architrino_solver_core STATIC
   src/PhaseDiagnostics.cpp
   src/PrecisionDiagnostics.cpp
   src/RootLedger.cpp
+  src/RootLedgerTransition.cpp
   src/SolverCAbi.cpp
   src/SolverContract.cpp
   src/SolverSelfTest.cpp
@@ -124,6 +127,14 @@ if(NOT EMSCRIPTEN)
     PRIVATE architrino_solver_core
   )
 
+  add_executable(architrino_solver_error_budget_smoke
+    native/solver_error_budget_smoke.cpp
+  )
+
+  target_link_libraries(architrino_solver_error_budget_smoke
+    PRIVATE architrino_solver_core
+  )
+
   add_executable(architrino_solver_batch_smoke
     native/solver_batch_smoke.cpp
   )
@@ -137,6 +148,14 @@ if(NOT EMSCRIPTEN)
   )
 
   target_link_libraries(architrino_solver_geometry_smoke
+    PRIVATE architrino_solver_core
+  )
+
+  add_executable(architrino_solver_invariant_smoke
+    native/solver_invariant_smoke.cpp
+  )
+
+  target_link_libraries(architrino_solver_invariant_smoke
     PRIVATE architrino_solver_core
   )
 
@@ -177,6 +196,14 @@ if(NOT EMSCRIPTEN)
   )
 
   target_link_libraries(architrino_solver_root_ledger_smoke
+    PRIVATE architrino_solver_core
+  )
+
+  add_executable(architrino_solver_root_transition_smoke
+    native/solver_root_transition_smoke.cpp
+  )
+
+  target_link_libraries(architrino_solver_root_transition_smoke
     PRIVATE architrino_solver_core
   )
 
@@ -236,7 +263,7 @@ if(ARCHITRINO_SOLVER_BUILD_WASM)
       "SHELL:-sMODULARIZE=1"
       "SHELL:-sEXPORT_NAME=createArchitrinoSolverSmoke"
       "SHELL:-sENVIRONMENT=web,worker,node"
-      "SHELL:-sEXPORTED_FUNCTIONS=['_malloc','_free','_architrino_solver_get_abi_info','_architrino_solver_smoke','_architrino_solver_contract_smoke','_architrino_solver_root_smoke','_architrino_solver_solve_causal_roots_f64','_architrino_solver_solve_roots_and_hits_f64','_architrino_solver_build_root_ledger_detail_f64','_architrino_solver_solve_causal_root_batch_f64','_architrino_solver_diagnose_precision_f64','_architrino_solver_sample_linear_motion_f64','_architrino_solver_compute_phase_at_hit_f64','_architrino_solver_compute_path_bounds_f64','_architrino_solver_intersect_sphere_points_f64','_architrino_solver_detect_assembly_membership_events_f64','_architrino_solver_build_spacetime_index_f64','_architrino_solver_query_spacetime_index_f64']"
+      "SHELL:-sEXPORTED_FUNCTIONS=['_malloc','_free','_architrino_solver_get_abi_info','_architrino_solver_smoke','_architrino_solver_contract_smoke','_architrino_solver_root_smoke','_architrino_solver_solve_causal_roots_f64','_architrino_solver_solve_roots_and_hits_f64','_architrino_solver_build_root_ledger_detail_f64','_architrino_solver_solve_causal_root_batch_f64','_architrino_solver_diagnose_precision_f64','_architrino_solver_propagate_error_budget_f64','_architrino_solver_sample_linear_motion_f64','_architrino_solver_compute_phase_at_hit_f64','_architrino_solver_compute_path_bounds_f64','_architrino_solver_intersect_sphere_points_f64','_architrino_solver_compute_delayed_potentials_f64','_architrino_solver_solve_circular_self_hit_spans_f64','_architrino_solver_detect_assembly_membership_events_f64','_architrino_solver_build_spacetime_index_f64','_architrino_solver_query_spacetime_index_f64','_architrino_solver_query_emission_shell_broad_phase_f64','_architrino_solver_estimate_emission_shell_narrow_phase_f64','_architrino_solver_plan_path_history_storage_lifecycle']"
       "SHELL:-sEXPORTED_RUNTIME_METHODS=['cwrap','getValue','setValue']"
     )
   endif()

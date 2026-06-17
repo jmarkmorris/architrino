@@ -96,11 +96,27 @@ struct ReaderPosition: Codable {
     let isExplicit: Bool?
 }
 
-enum ReaderTheme: String, Codable, CaseIterable, Identifiable {
+enum ReaderTheme: String, Codable, CaseIterable, Identifiable, Hashable {
     case architrinoPurple
     case light
     case warm
     case dark
+
+    var id: String { rawValue }
+}
+
+enum ReaderLineSpacing: String, Codable, CaseIterable, Identifiable, Hashable {
+    case compact
+    case standard
+    case open
+
+    var id: String { rawValue }
+}
+
+enum ReaderMarginWidth: String, Codable, CaseIterable, Identifiable, Hashable {
+    case narrow
+    case standard
+    case wide
 
     var id: String { rawValue }
 }

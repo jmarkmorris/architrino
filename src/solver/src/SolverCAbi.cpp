@@ -3,12 +3,14 @@
 #include "architrino/solver/AssemblyGraph.hpp"
 #include "architrino/solver/CausalRootBatchSolver.hpp"
 #include "architrino/solver/CausalRootSolver.hpp"
+#include "architrino/solver/ErrorBudget.hpp"
 #include "architrino/solver/Geometry.hpp"
 #include "architrino/solver/MotionSampler.hpp"
 #include "architrino/solver/PhaseDiagnostics.hpp"
 #include "architrino/solver/PrecisionDiagnostics.hpp"
 #include "architrino/solver/RootLedger.hpp"
 #include "architrino/solver/SpaceTimeIndex.hpp"
+#include "architrino/solver/StorageLifecycle.hpp"
 
 #include <algorithm>
 #include <cstddef>
@@ -25,14 +27,25 @@ static_assert(sizeof(ArchitrinoSolverRootLedgerDetailRowF64) == 192);
 static_assert(sizeof(ArchitrinoSolverDelayedHitRowF64) == 128);
 static_assert(sizeof(ArchitrinoSolverCausalRootBatchItemRowF64) == 24);
 static_assert(sizeof(ArchitrinoSolverPrecisionDiagnosticRowF64) == 96);
+static_assert(sizeof(ArchitrinoSolverErrorBudgetF64) == 64);
+static_assert(sizeof(ArchitrinoSolverErrorBudgetStageInputF64) == 16);
+static_assert(sizeof(ArchitrinoSolverErrorBudgetStageRowF64) == 40);
+static_assert(sizeof(ArchitrinoSolverErrorBudgetSummaryF64) == 32);
 static_assert(sizeof(ArchitrinoSolverPhaseClockF64) == 24);
 static_assert(sizeof(ArchitrinoSolverPhaseAtHitRowF64) == 72);
 static_assert(sizeof(ArchitrinoSolverMotionSampleRequestF64) == 112);
 static_assert(sizeof(ArchitrinoSolverMotionFrameRowF64) == 88);
 static_assert(sizeof(ArchitrinoSolverPathHistoryRowF64) == 96);
+static_assert(sizeof(ArchitrinoSolverPathHistoryChunkRow) == 104);
+static_assert(sizeof(ArchitrinoSolverStorageLifecyclePolicy) == 56);
+static_assert(sizeof(ArchitrinoSolverPathHistoryLifecycleDecisionRow) == 32);
 static_assert(sizeof(ArchitrinoSolverBoundsRowF64) == 64);
 static_assert(sizeof(ArchitrinoSolverSpherePointIntersectionRequestF64) == 64);
 static_assert(sizeof(ArchitrinoSolverSpherePointIntersectionRowF64) == 24);
+static_assert(sizeof(ArchitrinoSolverDelayedPotentialRequestF64) == 144);
+static_assert(sizeof(ArchitrinoSolverDelayedPotentialRowF64) == 112);
+static_assert(sizeof(ArchitrinoSolverCircularSelfHitSpanRequestF64) == 48);
+static_assert(sizeof(ArchitrinoSolverCircularSelfHitSpanRowF64) == 72);
 static_assert(sizeof(ArchitrinoSolverAssemblyStateRowF64) == 112);
 static_assert(sizeof(ArchitrinoSolverAssemblyMembershipRowF64) == 80);
 static_assert(sizeof(ArchitrinoSolverAssemblyHierarchyRowF64) == 56);
@@ -41,7 +54,12 @@ static_assert(sizeof(ArchitrinoSolverSpaceTimeBoundsF64) == 64);
 static_assert(sizeof(ArchitrinoSolverSpaceTimeIndexOptionsF64) == 24);
 static_assert(sizeof(ArchitrinoSolverSpaceTimeIndexRowF64) == 128);
 static_assert(sizeof(ArchitrinoSolverSpaceTimeQueryF64) == 96);
-static_assert(sizeof(ArchitrinoSolverAbiInfo) == 80);
+static_assert(sizeof(ArchitrinoSolverEmissionShellBroadPhaseOptionsF64) == 48);
+static_assert(sizeof(ArchitrinoSolverEmissionShellCandidateRowF64) == 112);
+static_assert(sizeof(ArchitrinoSolverEmissionShellBroadPhaseSummary) == 32);
+static_assert(sizeof(ArchitrinoSolverEmissionShellNarrowPhaseRequestF64) == 208);
+static_assert(sizeof(ArchitrinoSolverEmissionShellNarrowPhaseRowF64) == 40);
+static_assert(sizeof(ArchitrinoSolverAbiInfo) == 144);
 static_assert(offsetof(ArchitrinoSolverCausalRootRequestF64, hit_time) == 144);
 static_assert(offsetof(ArchitrinoSolverCausalRootRequestF64, max_iterations) == 168);
 static_assert(offsetof(ArchitrinoSolverCausalRootRowF64, emission_time) == 8);
@@ -56,6 +74,10 @@ static_assert(offsetof(ArchitrinoSolverCausalRootBatchItemRowF64, root_offset) =
 static_assert(offsetof(ArchitrinoSolverCausalRootBatchItemRowF64, root_count) == 12);
 static_assert(offsetof(ArchitrinoSolverPrecisionDiagnosticRowF64, time_orders) == 16);
 static_assert(offsetof(ArchitrinoSolverPrecisionDiagnosticRowF64, geometry_min) == 88);
+static_assert(offsetof(ArchitrinoSolverErrorBudgetStageInputF64, estimated_absolute_error) == 8);
+static_assert(offsetof(ArchitrinoSolverErrorBudgetStageRowF64, estimated_absolute_error) == 16);
+static_assert(offsetof(ArchitrinoSolverErrorBudgetStageRowF64, tolerance_ratio) == 32);
+static_assert(offsetof(ArchitrinoSolverErrorBudgetSummaryF64, cumulative_error) == 16);
 static_assert(offsetof(ArchitrinoSolverPhaseAtHitRowF64, source_cycle_index) == 8);
 static_assert(offsetof(ArchitrinoSolverPhaseAtHitRowF64, emission_time) == 24);
 static_assert(offsetof(ArchitrinoSolverPhaseAtHitRowF64, phase_spread) == 64);
@@ -65,11 +87,22 @@ static_assert(offsetof(ArchitrinoSolverMotionFrameRowF64, time) == 16);
 static_assert(offsetof(ArchitrinoSolverMotionFrameRowF64, state_flags) == 80);
 static_assert(offsetof(ArchitrinoSolverPathHistoryRowF64, start_time) == 16);
 static_assert(offsetof(ArchitrinoSolverPathHistoryRowF64, velocity_z) == 72);
+static_assert(offsetof(ArchitrinoSolverPathHistoryChunkRow, time_start) == 56);
+static_assert(offsetof(ArchitrinoSolverPathHistoryChunkRow, byte_offset) == 72);
+static_assert(offsetof(ArchitrinoSolverStorageLifecyclePolicy, active_memory_budget_bytes) == 40);
+static_assert(offsetof(ArchitrinoSolverPathHistoryLifecycleDecisionRow, safe_to_age_out) == 16);
 static_assert(offsetof(ArchitrinoSolverBoundsRowF64, min_x) == 16);
 static_assert(offsetof(ArchitrinoSolverBoundsRowF64, max_z) == 56);
 static_assert(offsetof(ArchitrinoSolverSpherePointIntersectionRequestF64, radius) == 24);
 static_assert(offsetof(ArchitrinoSolverSpherePointIntersectionRequestF64, tolerance) == 56);
 static_assert(offsetof(ArchitrinoSolverSpherePointIntersectionRowF64, center_distance) == 8);
+static_assert(offsetof(ArchitrinoSolverDelayedPotentialRequestF64, sample_point) == 72);
+static_assert(offsetof(ArchitrinoSolverDelayedPotentialRequestF64, observation_time) == 96);
+static_assert(offsetof(ArchitrinoSolverDelayedPotentialRowF64, emission_x) == 24);
+static_assert(offsetof(ArchitrinoSolverDelayedPotentialRowF64, distance) == 72);
+static_assert(offsetof(ArchitrinoSolverCircularSelfHitSpanRequestF64, max_iterations) == 32);
+static_assert(offsetof(ArchitrinoSolverCircularSelfHitSpanRowF64, span) == 24);
+static_assert(offsetof(ArchitrinoSolverCircularSelfHitSpanRowF64, regime) == 64);
 static_assert(offsetof(ArchitrinoSolverAssemblyStateRowF64, center_x) == 32);
 static_assert(offsetof(ArchitrinoSolverAssemblyStateRowF64, cycle_index) == 88);
 static_assert(offsetof(ArchitrinoSolverAssemblyMembershipRowF64, time_start) == 32);
@@ -83,6 +116,15 @@ static_assert(offsetof(ArchitrinoSolverSpaceTimeIndexRowF64, min_x) == 48);
 static_assert(offsetof(ArchitrinoSolverSpaceTimeIndexRowF64, subject_kind) == 112);
 static_assert(offsetof(ArchitrinoSolverSpaceTimeQueryF64, filter_space) == 64);
 static_assert(offsetof(ArchitrinoSolverSpaceTimeQueryF64, subject_key) == 88);
+static_assert(offsetof(ArchitrinoSolverEmissionShellBroadPhaseOptionsF64, max_candidates) == 32);
+static_assert(offsetof(ArchitrinoSolverEmissionShellBroadPhaseOptionsF64, requested_worker_count) == 44);
+static_assert(offsetof(ArchitrinoSolverEmissionShellCandidateRowF64, source_time_start) == 48);
+static_assert(offsetof(ArchitrinoSolverEmissionShellCandidateRowF64, distance_lower_bound) == 80);
+static_assert(offsetof(ArchitrinoSolverEmissionShellBroadPhaseSummary, truncated) == 24);
+static_assert(offsetof(ArchitrinoSolverEmissionShellBroadPhaseSummary, planned_worker_count) == 28);
+static_assert(offsetof(ArchitrinoSolverEmissionShellNarrowPhaseRequestF64, signal_speed) == 192);
+static_assert(offsetof(ArchitrinoSolverEmissionShellNarrowPhaseRowF64, hit_time) == 16);
+static_assert(offsetof(ArchitrinoSolverEmissionShellNarrowPhaseRowF64, residual) == 32);
 
 namespace {
 
@@ -300,6 +342,75 @@ ArchitrinoSolverSpherePointIntersectionRowF64 to_sphere_point_row(
   };
 }
 
+architrino::solver::DelayedPotentialRequest to_delayed_potential_request(
+    const ArchitrinoSolverDelayedPotentialRequestF64& row) {
+  return architrino::solver::DelayedPotentialRequest{
+      to_segment(row.source, "delayed-potential-source"),
+      to_vector(row.sample_point),
+      row.observation_time,
+      row.field_speed,
+      row.normalization,
+      row.softening,
+      row.source_charge,
+      static_cast<int>(row.iterations),
+      row.use_causal_denominator != 0,
+  };
+}
+
+ArchitrinoSolverDelayedPotentialRowF64 to_delayed_potential_row(
+    architrino::solver::DelayedPotentialResult result,
+    int itemIndex) {
+  return ArchitrinoSolverDelayedPotentialRowF64{
+      itemIndex,
+      static_cast<int>(result.statusCode),
+      result.tau,
+      result.emissionTime,
+      result.emissionPoint.x,
+      result.emissionPoint.y,
+      result.emissionPoint.z,
+      result.displacement.x,
+      result.displacement.y,
+      result.displacement.z,
+      result.distance,
+      result.denominator,
+      result.potential,
+      result.kappa,
+      static_cast<std::uint32_t>(std::max(0, result.iterations)),
+      result.usedCausalDenominator ? 1U : 0U,
+  };
+}
+
+architrino::solver::CircularSelfHitSpanRequest to_circular_self_hit_request(
+    const ArchitrinoSolverCircularSelfHitSpanRequestF64& row) {
+  return architrino::solver::CircularSelfHitSpanRequest{
+      row.field_speed_ratio,
+      row.field_speed_tolerance,
+      row.tolerance,
+      row.max_angle,
+      static_cast<int>(row.max_iterations),
+      static_cast<int>(row.scan_subdivisions),
+  };
+}
+
+ArchitrinoSolverCircularSelfHitSpanRowF64 to_circular_self_hit_row(
+    architrino::solver::CircularSelfHitSpanResult result,
+    int itemIndex) {
+  return ArchitrinoSolverCircularSelfHitSpanRowF64{
+      itemIndex,
+      static_cast<int>(result.statusCode),
+      result.fieldSpeedRatio,
+      result.fieldSpeedTolerance,
+      result.span,
+      result.bracketLow,
+      result.bracketHigh,
+      result.residual,
+      result.rootFound ? 1U : 0U,
+      static_cast<std::uint32_t>(std::max(0, result.iterations)),
+      static_cast<std::uint32_t>(result.regime),
+      static_cast<std::uint32_t>(result.resultKind),
+  };
+}
+
 architrino::solver::AssemblyMembershipRowF64 to_membership_row(
     const ArchitrinoSolverAssemblyMembershipRowF64& row) {
   return architrino::solver::AssemblyMembershipRowF64{
@@ -354,6 +465,117 @@ architrino::solver::PathHistoryRowF64 to_path_history_row(
       row.error_bound,
       row.state_flags,
       row.reserved0,
+  };
+}
+
+architrino::solver::PathHistoryChunkRow to_path_history_chunk_row(
+    const ArchitrinoSolverPathHistoryChunkRow& row) {
+  return architrino::solver::PathHistoryChunkRow{
+      row.chunk_index,
+      row.path_key_start,
+      row.path_key_end,
+      row.row_offset,
+      row.row_count,
+      row.frame_start,
+      row.frame_end,
+      row.time_start,
+      row.time_end,
+      row.byte_offset,
+      row.byte_length,
+      row.checksum64,
+      row.state_flags,
+      row.reserved0,
+  };
+}
+
+architrino::solver::StorageLifecyclePolicy to_storage_lifecycle_policy(
+    const ArchitrinoSolverStorageLifecyclePolicy& policy) {
+  return architrino::solver::StorageLifecyclePolicy{
+      policy.active_window_start,
+      policy.active_window_end,
+      policy.has_active_window != 0,
+      policy.deep_index_enabled != 0,
+      policy.export_requested != 0,
+      policy.failed_run != 0,
+      policy.delete_requested != 0,
+      policy.active_memory_budget_bytes,
+      policy.storage_budget_bytes,
+  };
+}
+
+std::uint32_t to_lifecycle_tier_code(architrino::solver::StorageLifecycleTier value) {
+  switch (value) {
+    case architrino::solver::StorageLifecycleTier::Active:
+      return 0;
+    case architrino::solver::StorageLifecycleTier::Warm:
+      return 1;
+    case architrino::solver::StorageLifecycleTier::Cold:
+      return 2;
+    case architrino::solver::StorageLifecycleTier::Deleted:
+      return 3;
+  }
+  return 255;
+}
+
+std::uint32_t to_lifecycle_action_code(architrino::solver::StorageLifecycleAction value) {
+  switch (value) {
+    case architrino::solver::StorageLifecycleAction::KeepActive:
+      return 0;
+    case architrino::solver::StorageLifecycleAction::SpillWarm:
+      return 1;
+    case architrino::solver::StorageLifecycleAction::ArchiveCold:
+      return 2;
+    case architrino::solver::StorageLifecycleAction::BuildDeepIndex:
+      return 3;
+    case architrino::solver::StorageLifecycleAction::Delete:
+      return 4;
+    case architrino::solver::StorageLifecycleAction::BlockedUnsafe:
+      return 5;
+  }
+  return 255;
+}
+
+std::uint32_t to_lifecycle_reason_code(std::string_view reason) {
+  if (reason == "delete requested") {
+    return 1;
+  }
+  if (reason == "failed run cleanup") {
+    return 2;
+  }
+  if (reason == "overlaps active window") {
+    return 3;
+  }
+  if (reason == "chunk is pinned active") {
+    return 4;
+  }
+  if (reason == "aged chunk requires deep index") {
+    return 5;
+  }
+  if (reason == "storage pressure without export request") {
+    return 6;
+  }
+  if (reason == "export retention requested") {
+    return 7;
+  }
+  if (reason == "deep index already built") {
+    return 8;
+  }
+  if (reason == "aged out of active window") {
+    return 9;
+  }
+  return 0;
+}
+
+ArchitrinoSolverPathHistoryLifecycleDecisionRow to_lifecycle_decision_row(
+    const architrino::solver::PathHistoryChunkLifecycleDecision& decision) {
+  return ArchitrinoSolverPathHistoryLifecycleDecisionRow{
+      decision.chunkIndex,
+      to_lifecycle_tier_code(decision.tier),
+      to_lifecycle_action_code(decision.action),
+      decision.safeToAgeOut ? 1U : 0U,
+      decision.requiresDeepIndex ? 1U : 0U,
+      to_lifecycle_reason_code(decision.reason),
+      0,
   };
 }
 
@@ -426,6 +648,70 @@ architrino::solver::SpaceTimeIndexRowF64 to_spacetime_index_row(
   };
 }
 
+architrino::solver::EmissionShellBroadPhaseOptions to_emission_shell_options(
+    const ArchitrinoSolverEmissionShellBroadPhaseOptionsF64& options,
+    int maxRows) {
+  const std::size_t maxCandidateCap = static_cast<std::size_t>(std::max(0, maxRows));
+  const std::size_t requestedMaxCandidates =
+      options.max_candidates == 0 ? maxCandidateCap
+                                  : static_cast<std::size_t>(options.max_candidates);
+  return architrino::solver::EmissionShellBroadPhaseOptions{
+      options.signal_speed,
+      options.tolerance,
+      std::min(requestedMaxCandidates, maxCandidateCap),
+      options.allow_same_path != 0,
+      options.has_time_range != 0,
+      options.time_range_start,
+      options.time_range_end,
+      options.requested_worker_count,
+  };
+}
+
+ArchitrinoSolverEmissionShellCandidateRowF64 to_emission_shell_candidate_row(
+    const architrino::solver::EmissionShellBroadPhaseCandidate& candidate) {
+  return ArchitrinoSolverEmissionShellCandidateRowF64{
+      candidate.sourcePathKey,
+      candidate.receiverPathKey,
+      candidate.sourceSegmentIndex,
+      candidate.receiverSegmentIndex,
+      candidate.sourceRowIndex,
+      candidate.receiverRowIndex,
+      candidate.sourceTimeStart,
+      candidate.sourceTimeEnd,
+      candidate.receiverTimeStart,
+      candidate.receiverTimeEnd,
+      candidate.distanceLowerBound,
+      candidate.distanceUpperBound,
+      candidate.radiusLowerBound,
+      candidate.radiusUpperBound,
+  };
+}
+
+ArchitrinoSolverEmissionShellBroadPhaseSummary to_emission_shell_summary(
+    const architrino::solver::EmissionShellBroadPhaseSummary& summary) {
+  return ArchitrinoSolverEmissionShellBroadPhaseSummary{
+      summary.pairCount,
+      summary.rejectedPairCount,
+      summary.candidateCount,
+      summary.truncated ? 1U : 0U,
+      summary.plannedWorkerCount,
+  };
+}
+
+ArchitrinoSolverEmissionShellNarrowPhaseRowF64 to_emission_shell_narrow_phase_row(
+    const architrino::solver::EmissionShellNarrowPhaseEstimate& estimate,
+    int itemIndex) {
+  return ArchitrinoSolverEmissionShellNarrowPhaseRowF64{
+      itemIndex,
+      static_cast<int>(estimate.statusCode),
+      static_cast<std::uint32_t>(estimate.classification),
+      estimate.sampleCount,
+      estimate.hitTime,
+      estimate.emissionTime,
+      estimate.residual,
+  };
+}
+
 ArchitrinoSolverSpaceTimeIndexRowF64 to_spacetime_index_row(
     const architrino::solver::SpaceTimeIndexRowF64& row) {
   return ArchitrinoSolverSpaceTimeIndexRowF64{
@@ -489,6 +775,71 @@ int precision_flags(const architrino::solver::PrecisionDiagnostic& diagnostic) {
     flags |= 8;
   }
   return flags;
+}
+
+int dominant_status_code(const architrino::solver::ValidationReport& validation) {
+  for (const architrino::solver::StatusRecord& status : validation.statuses) {
+    if (architrino::solver::is_halt_or_error(status.severity)) {
+      return static_cast<int>(status.code);
+    }
+  }
+  for (const architrino::solver::StatusRecord& status : validation.statuses) {
+    if (status.severity == architrino::solver::StatusSeverity::Warning) {
+      return static_cast<int>(status.code);
+    }
+  }
+  return first_status_code(validation);
+}
+
+int dominant_status_severity(const architrino::solver::ValidationReport& validation) {
+  for (const architrino::solver::StatusRecord& status : validation.statuses) {
+    if (architrino::solver::is_halt_or_error(status.severity)) {
+      return static_cast<int>(status.severity);
+    }
+  }
+  for (const architrino::solver::StatusRecord& status : validation.statuses) {
+    if (status.severity == architrino::solver::StatusSeverity::Warning) {
+      return static_cast<int>(status.severity);
+    }
+  }
+  if (validation.statuses.empty()) {
+    return static_cast<int>(architrino::solver::StatusSeverity::Ok);
+  }
+  return static_cast<int>(validation.statuses.front().severity);
+}
+
+architrino::solver::ErrorBudget to_error_budget(const ArchitrinoSolverErrorBudgetF64& budget) {
+  return architrino::solver::ErrorBudget{
+      budget.global_tolerance,
+      budget.root_isolation_tolerance,
+      budget.delayed_hit_tolerance,
+      budget.integration_tolerance,
+      budget.stream_encoding_tolerance,
+      budget.readback_tolerance,
+      budget.projection_tolerance,
+      budget.display_tolerance,
+  };
+}
+
+architrino::solver::ErrorBudgetStageInput to_error_budget_stage_input(
+    const ArchitrinoSolverErrorBudgetStageInputF64& row) {
+  return architrino::solver::ErrorBudgetStageInput{
+      static_cast<architrino::solver::ErrorBudgetStage>(row.stage),
+      row.estimated_absolute_error,
+  };
+}
+
+ArchitrinoSolverErrorBudgetStageRowF64 to_error_budget_stage_row(
+    const architrino::solver::ErrorBudgetStageReport& row) {
+  return ArchitrinoSolverErrorBudgetStageRowF64{
+      static_cast<int>(row.stage),
+      static_cast<int>(row.authority),
+      static_cast<int>(row.status.code),
+      static_cast<int>(row.status.severity),
+      row.estimatedAbsoluteError,
+      row.tolerance,
+      row.toleranceRatio,
+  };
 }
 
 int copy_roots(const std::vector<architrino::solver::CausalRoot>& source,
@@ -565,6 +916,57 @@ extern "C" int architrino_solver_diagnose_precision_f64(
   };
 
   return diagnostic.validation.ok ? 0 : -2;
+}
+
+extern "C" int architrino_solver_propagate_error_budget_f64(
+    const ArchitrinoSolverErrorBudgetF64* budget,
+    const ArchitrinoSolverErrorBudgetStageInputF64* observed_stages,
+    int stage_count,
+    ArchitrinoSolverErrorBudgetStageRowF64* rows,
+    int max_rows,
+    ArchitrinoSolverErrorBudgetSummaryF64* out_summary) {
+  if (budget == nullptr || out_summary == nullptr || stage_count < 0 || max_rows < 0) {
+    return -1;
+  }
+  if (stage_count > 0 && observed_stages == nullptr) {
+    return -1;
+  }
+
+  std::vector<architrino::solver::ErrorBudgetStageInput> cppStages;
+  cppStages.reserve(static_cast<std::size_t>(stage_count));
+  for (int index = 0; index < stage_count; ++index) {
+    cppStages.push_back(to_error_budget_stage_input(observed_stages[index]));
+  }
+
+  const architrino::solver::ErrorBudgetPropagationReport report =
+      architrino::solver::propagate_error_budget(to_error_budget(*budget), cppStages);
+
+  if (root_count_overflows(report.stages.size())) {
+    *out_summary = ArchitrinoSolverErrorBudgetSummaryF64{};
+    return -4;
+  }
+
+  *out_summary = ArchitrinoSolverErrorBudgetSummaryF64{
+      static_cast<int>(report.authority),
+      dominant_status_code(report.validation),
+      dominant_status_severity(report.validation),
+      static_cast<int>(report.stages.size()),
+      report.cumulativeError,
+      report.cumulativeBudgetRatio,
+  };
+
+  if (rows == nullptr || max_rows == 0) {
+    return report.stages.empty() ? (report.validation.ok ? 0 : -2) : -3;
+  }
+  if (max_rows < static_cast<int>(report.stages.size())) {
+    return -3;
+  }
+
+  for (std::size_t index = 0; index < report.stages.size(); ++index) {
+    rows[index] = to_error_budget_stage_row(report.stages[index]);
+  }
+
+  return report.validation.ok ? 0 : -2;
 }
 
 extern "C" int architrino_solver_build_root_ledger_detail_f64(
@@ -681,12 +1083,36 @@ int copy_spacetime_index_rows(const std::vector<architrino::solver::SpaceTimeInd
   return 0;
 }
 
+int copy_lifecycle_decision_rows(
+    const std::vector<architrino::solver::PathHistoryChunkLifecycleDecision>& source,
+    ArchitrinoSolverPathHistoryLifecycleDecisionRow* rows,
+    int maxRows,
+    int* outRowCount) {
+  if (root_count_overflows(source.size())) {
+    *outRowCount = 0;
+    return -4;
+  }
+
+  const int requiredRows = static_cast<int>(source.size());
+  *outRowCount = requiredRows;
+  if (rows == nullptr || maxRows == 0) {
+    return requiredRows == 0 ? 0 : -3;
+  }
+  if (maxRows < requiredRows) {
+    return -3;
+  }
+  for (int index = 0; index < requiredRows; ++index) {
+    rows[index] = to_lifecycle_decision_row(source[static_cast<std::size_t>(index)]);
+  }
+  return 0;
+}
+
 }  // namespace
 
 extern "C" ArchitrinoSolverAbiInfo architrino_solver_abi_info() {
   return ArchitrinoSolverAbiInfo{
       0,
-      1,
+      3,
       0,
       static_cast<int>(sizeof(ArchitrinoSolverCausalRootRequestF64)),
       static_cast<int>(sizeof(ArchitrinoSolverCausalRootRowF64)),
@@ -698,13 +1124,29 @@ extern "C" ArchitrinoSolverAbiInfo architrino_solver_abi_info() {
       static_cast<int>(sizeof(ArchitrinoSolverBoundsRowF64)),
       static_cast<int>(sizeof(ArchitrinoSolverSpherePointIntersectionRequestF64)),
       static_cast<int>(sizeof(ArchitrinoSolverSpherePointIntersectionRowF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverDelayedPotentialRequestF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverDelayedPotentialRowF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverCircularSelfHitSpanRequestF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverCircularSelfHitSpanRowF64)),
       static_cast<int>(sizeof(ArchitrinoSolverAssemblyStateRowF64)),
       static_cast<int>(sizeof(ArchitrinoSolverAssemblyMembershipRowF64)),
       static_cast<int>(sizeof(ArchitrinoSolverAssemblyHierarchyRowF64)),
       static_cast<int>(sizeof(ArchitrinoSolverAssemblyEventRowF64)),
       static_cast<int>(sizeof(ArchitrinoSolverPathHistoryRowF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverPathHistoryChunkRow)),
+      static_cast<int>(sizeof(ArchitrinoSolverStorageLifecyclePolicy)),
+      static_cast<int>(sizeof(ArchitrinoSolverPathHistoryLifecycleDecisionRow)),
       static_cast<int>(sizeof(ArchitrinoSolverSpaceTimeIndexRowF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverEmissionShellBroadPhaseOptionsF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverEmissionShellCandidateRowF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverEmissionShellBroadPhaseSummary)),
+      static_cast<int>(sizeof(ArchitrinoSolverEmissionShellNarrowPhaseRequestF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverEmissionShellNarrowPhaseRowF64)),
       static_cast<int>(sizeof(ArchitrinoSolverRootLedgerDetailRowF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverErrorBudgetF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverErrorBudgetStageInputF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverErrorBudgetStageRowF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverErrorBudgetSummaryF64)),
   };
 }
 
@@ -961,6 +1403,54 @@ extern "C" int architrino_solver_intersect_sphere_points_f64(
   return 0;
 }
 
+extern "C" int architrino_solver_compute_delayed_potentials_f64(
+    const ArchitrinoSolverDelayedPotentialRequestF64* requests,
+    int request_count,
+    ArchitrinoSolverDelayedPotentialRowF64* rows,
+    int max_rows,
+    int* out_row_count) {
+  if (requests == nullptr || out_row_count == nullptr || request_count < 0 || max_rows < 0) {
+    return -1;
+  }
+
+  *out_row_count = request_count;
+  if (rows == nullptr || max_rows < request_count) {
+    return request_count == 0 ? 0 : -3;
+  }
+
+  for (int index = 0; index < request_count; ++index) {
+    rows[index] = to_delayed_potential_row(
+        architrino::solver::compute_delayed_potential(
+            to_delayed_potential_request(requests[index])),
+        index);
+  }
+  return 0;
+}
+
+extern "C" int architrino_solver_solve_circular_self_hit_spans_f64(
+    const ArchitrinoSolverCircularSelfHitSpanRequestF64* requests,
+    int request_count,
+    ArchitrinoSolverCircularSelfHitSpanRowF64* rows,
+    int max_rows,
+    int* out_row_count) {
+  if (requests == nullptr || out_row_count == nullptr || request_count < 0 || max_rows < 0) {
+    return -1;
+  }
+
+  *out_row_count = request_count;
+  if (rows == nullptr || max_rows < request_count) {
+    return request_count == 0 ? 0 : -3;
+  }
+
+  for (int index = 0; index < request_count; ++index) {
+    rows[index] = to_circular_self_hit_row(
+        architrino::solver::solve_circular_self_hit_span(
+            to_circular_self_hit_request(requests[index])),
+        index);
+  }
+  return 0;
+}
+
 extern "C" int architrino_solver_detect_assembly_membership_events_f64(
     const ArchitrinoSolverAssemblyMembershipRowF64* memberships,
     int membership_count,
@@ -1076,6 +1566,127 @@ extern "C" int architrino_solver_query_spacetime_index_f64(
             to_spacetime_query(*query),
             to_spacetime_options(*options));
     return copy_spacetime_index_rows(matches, rows, max_rows, out_row_count);
+  } catch (...) {
+    *out_row_count = 0;
+    return -2;
+  }
+}
+
+extern "C" int architrino_solver_query_emission_shell_broad_phase_f64(
+    const ArchitrinoSolverPathHistoryRowF64* source_rows,
+    int source_row_count,
+    const ArchitrinoSolverPathHistoryRowF64* receiver_rows,
+    int receiver_row_count,
+    const ArchitrinoSolverEmissionShellBroadPhaseOptionsF64* options,
+    ArchitrinoSolverEmissionShellCandidateRowF64* rows,
+    int max_rows,
+    ArchitrinoSolverEmissionShellBroadPhaseSummary* out_summary) {
+  if (options == nullptr || out_summary == nullptr || source_row_count < 0 ||
+      receiver_row_count < 0 || max_rows < 0 ||
+      (source_row_count > 0 && source_rows == nullptr) ||
+      (receiver_row_count > 0 && receiver_rows == nullptr) ||
+      (max_rows > 0 && rows == nullptr)) {
+    return -1;
+  }
+
+  try {
+    std::vector<architrino::solver::PathHistoryRowF64> cppSourceRows;
+    cppSourceRows.reserve(static_cast<std::size_t>(source_row_count));
+    for (int index = 0; index < source_row_count; ++index) {
+      cppSourceRows.push_back(to_path_history_row(source_rows[index]));
+    }
+
+    std::vector<architrino::solver::PathHistoryRowF64> cppReceiverRows;
+    cppReceiverRows.reserve(static_cast<std::size_t>(receiver_row_count));
+    for (int index = 0; index < receiver_row_count; ++index) {
+      cppReceiverRows.push_back(to_path_history_row(receiver_rows[index]));
+    }
+
+    const architrino::solver::EmissionShellBroadPhaseOptions cppOptions =
+        to_emission_shell_options(*options, max_rows);
+    const architrino::solver::EmissionShellBroadPhaseResult result =
+        cppOptions.requestedWorkerCount > 1
+            ? architrino::solver::query_emission_shell_broad_phase_parallel(
+                  cppSourceRows,
+                  cppReceiverRows,
+                  cppOptions,
+                  architrino::solver::ParallelExecutionOptions{
+                      cppOptions.requestedWorkerCount,
+                      1,
+                      true,
+                  })
+            : architrino::solver::query_emission_shell_broad_phase(
+                  cppSourceRows,
+                  cppReceiverRows,
+                  cppOptions);
+    *out_summary = to_emission_shell_summary(result.summary);
+    for (std::size_t index = 0; index < result.candidates.size(); ++index) {
+      rows[index] = to_emission_shell_candidate_row(result.candidates[index]);
+    }
+    return 0;
+  } catch (...) {
+    *out_summary = ArchitrinoSolverEmissionShellBroadPhaseSummary{};
+    return -2;
+  }
+}
+
+extern "C" int architrino_solver_estimate_emission_shell_narrow_phase_f64(
+    const ArchitrinoSolverEmissionShellNarrowPhaseRequestF64* requests,
+    int request_count,
+    ArchitrinoSolverEmissionShellNarrowPhaseRowF64* rows,
+    int max_rows,
+    int* out_row_count) {
+  if (requests == nullptr || out_row_count == nullptr || request_count < 0 || max_rows < 0) {
+    return -1;
+  }
+
+  *out_row_count = request_count;
+  if (rows == nullptr || max_rows < request_count) {
+    return request_count == 0 ? 0 : -3;
+  }
+
+  try {
+    for (int index = 0; index < request_count; ++index) {
+      const ArchitrinoSolverEmissionShellNarrowPhaseRequestF64& request = requests[index];
+      rows[index] = to_emission_shell_narrow_phase_row(
+          architrino::solver::estimate_emission_shell_narrow_phase(
+              to_path_history_row(request.source),
+              to_path_history_row(request.receiver),
+              request.signal_speed,
+              request.tolerance),
+          index);
+    }
+    return 0;
+  } catch (...) {
+    *out_row_count = 0;
+    return -2;
+  }
+}
+
+extern "C" int architrino_solver_plan_path_history_storage_lifecycle(
+    const ArchitrinoSolverStorageLifecyclePolicy* policy,
+    const ArchitrinoSolverPathHistoryChunkRow* chunks,
+    int chunk_count,
+    ArchitrinoSolverPathHistoryLifecycleDecisionRow* rows,
+    int max_rows,
+    int* out_row_count) {
+  if (policy == nullptr || out_row_count == nullptr || chunk_count < 0 || max_rows < 0 ||
+      (chunk_count > 0 && chunks == nullptr)) {
+    return -1;
+  }
+
+  try {
+    std::vector<architrino::solver::PathHistoryChunkRow> cppChunks;
+    cppChunks.reserve(static_cast<std::size_t>(chunk_count));
+    for (int index = 0; index < chunk_count; ++index) {
+      cppChunks.push_back(to_path_history_chunk_row(chunks[index]));
+    }
+
+    const std::vector<architrino::solver::PathHistoryChunkLifecycleDecision> decisions =
+        architrino::solver::plan_path_history_storage_lifecycle(
+            to_storage_lifecycle_policy(*policy),
+            cppChunks);
+    return copy_lifecycle_decision_rows(decisions, rows, max_rows, out_row_count);
   } catch (...) {
     *out_row_count = 0;
     return -2;

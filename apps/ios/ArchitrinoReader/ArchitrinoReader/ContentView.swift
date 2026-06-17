@@ -8,6 +8,7 @@ struct ContentView: View {
     @State private var showToc = false
     @State private var tocNotice: String?
     @State private var showAbout = false
+    @State private var showReaderSettings = false
     @State private var didPresentInitialToc = false
     @State private var dismissTOCAfterRender = false
 
@@ -51,6 +52,9 @@ struct ContentView: View {
         }
         .sheet(isPresented: $showAbout) {
             AboutSheet(packageVersion: viewModel.packageVersionLabel)
+        }
+        .sheet(isPresented: $showReaderSettings) {
+            ReaderSettingsSheet(viewModel: viewModel)
         }
         .onAppear {
             presentInitialTOCIfNeeded()
@@ -413,7 +417,7 @@ struct ContentView: View {
     private var controlBar: some View {
         HStack {
             fontSizeControl
-            themeControl
+            readerSettingsControl
 
             Button {
                 viewModel.toggleCurrentBookmark()
@@ -422,6 +426,14 @@ struct ContentView: View {
             }
             .disabled(viewModel.currentChapter == nil)
             .accessibilityLabel(viewModel.isCurrentPositionBookmarked ? "Remove bookmark" : "Add bookmark")
+
+            Text(viewModel.readingProgressLabel)
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+                .lineLimit(1)
+                .minimumScaleFactor(0.75)
+                .frame(maxWidth: 92, alignment: .leading)
+                .accessibilityLabel("Reading progress \(viewModel.readingProgressLabel)")
 
             Spacer()
 
@@ -444,34 +456,24 @@ struct ContentView: View {
         .background(.regularMaterial)
     }
 
-    private var themeControl: some View {
-        Menu {
-            ForEach(ReaderTheme.allCases) { theme in
-                Button {
-                    viewModel.setTheme(theme)
-                } label: {
-                    HStack {
-                        Circle()
-                            .fill(theme.swatchColor)
-                            .frame(width: 12, height: 12)
-                        Text(theme.displayName)
-                        if viewModel.theme == theme {
-                            Image(systemName: "checkmark")
-                        }
-                    }
-                }
-            }
+    private var readerSettingsControl: some View {
+        Button {
+            showReaderSettings = true
         } label: {
-            Circle()
-                .fill(viewModel.theme.swatchColor)
-                .overlay(
-                    Circle()
-                        .stroke(.primary.opacity(0.25), lineWidth: 1)
-                )
-                .frame(width: 24, height: 24)
+            HStack(spacing: 4) {
+                Text("Aa")
+                    .font(.system(size: 16, weight: .semibold))
+                Circle()
+                    .fill(viewModel.theme.swatchColor)
+                    .overlay(
+                        Circle()
+                            .stroke(.primary.opacity(0.25), lineWidth: 1)
+                    )
+                    .frame(width: 12, height: 12)
+            }
         }
-        .frame(width: 34, height: 28)
-        .accessibilityLabel("Reader background")
+        .frame(width: 46, height: 28)
+        .accessibilityLabel("Reading settings")
     }
 
     private var fontSizeControl: some View {
@@ -535,6 +537,155 @@ private extension ReaderTheme {
 
     var readerBackgroundColor: Color {
         swatchColor
+    }
+}
+
+private extension ReaderLineSpacing {
+    var displayName: String {
+        switch self {
+        case .compact:
+            return "Compact"
+        case .standard:
+            return "Normal"
+        case .open:
+            return "Open"
+        }
+    }
+}
+
+private extension ReaderMarginWidth {
+    var displayName: String {
+        switch self {
+        case .narrow:
+            return "Narrow"
+        case .standard:
+            return "Normal"
+        case .wide:
+            return "Wide"
+        }
+    }
+}
+
+private struct ReaderSettingsSheet: View {
+    @ObservedObject var viewModel: ReaderViewModel
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        NavigationStack {
+            List {
+                Section("Theme") {
+                    HStack(spacing: 14) {
+                        ForEach(ReaderTheme.allCases) { theme in
+                            Button {
+                                viewModel.setTheme(theme)
+                            } label: {
+                                VStack(spacing: 6) {
+                                    ZStack(alignment: .bottomTrailing) {
+                                        Circle()
+                                            .fill(theme.swatchColor)
+                                            .overlay(
+                                                Circle()
+                                                    .stroke(.primary.opacity(0.22), lineWidth: 1)
+                                            )
+                                            .frame(width: 34, height: 34)
+                                        if viewModel.theme == theme {
+                                            Image(systemName: "checkmark.circle.fill")
+                                                .font(.caption)
+                                                .foregroundStyle(.blue)
+                                                .background(Circle().fill(Color(.systemBackground)))
+                                        }
+                                    }
+                                    Text(theme.displayName)
+                                        .font(.caption2)
+                                        .lineLimit(1)
+                                }
+                                .frame(width: 58)
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    }
+                    .padding(.vertical, 4)
+                }
+
+                Section("Text") {
+                    HStack(spacing: 16) {
+                        Button {
+                            viewModel.decreaseFont()
+                        } label: {
+                            Text("A")
+                                .font(.system(size: 15, weight: .semibold))
+                                .frame(width: 36, height: 36)
+                        }
+                        .disabled(viewModel.fontScale <= 0.85)
+                        .accessibilityLabel("Decrease text size")
+
+                        Slider(
+                            value: Binding(
+                                get: { viewModel.fontScale },
+                                set: { viewModel.setFontScale($0) }
+                            ),
+                            in: 0.85...1.45,
+                            step: 0.04
+                        )
+
+                        Button {
+                            viewModel.increaseFont()
+                        } label: {
+                            Text("A")
+                                .font(.system(size: 24, weight: .semibold))
+                                .frame(width: 36, height: 36)
+                        }
+                        .disabled(viewModel.fontScale >= 1.45)
+                        .accessibilityLabel("Increase text size")
+                    }
+                }
+
+                Section("Line Spacing") {
+                    Picker(
+                        "Line Spacing",
+                        selection: Binding(
+                            get: { viewModel.lineSpacing },
+                            set: { viewModel.setLineSpacing($0) }
+                        )
+                    ) {
+                        ForEach(ReaderLineSpacing.allCases) { spacing in
+                            Text(spacing.displayName).tag(spacing)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                }
+
+                Section("Margins") {
+                    Picker(
+                        "Margins",
+                        selection: Binding(
+                            get: { viewModel.marginWidth },
+                            set: { viewModel.setMarginWidth($0) }
+                        )
+                    ) {
+                        ForEach(ReaderMarginWidth.allCases) { margin in
+                            Text(margin.displayName).tag(margin)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                }
+
+                Section {
+                    Button("Reset Reading Settings") {
+                        viewModel.resetReaderAppearance()
+                    }
+                }
+            }
+            .navigationTitle("Reading")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Done") {
+                        dismiss()
+                    }
+                }
+            }
+        }
     }
 }
 

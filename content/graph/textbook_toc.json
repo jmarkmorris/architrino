@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 159,
-      "sections": 1260
+      "sections": 1264
     }
   },
   "tocRoot": {
@@ -969,10 +969,34 @@
             "sections": [
               {
                 "kind": "markdown-section",
+                "title": "Plain-Language Reading",
+                "markdownPath": "content/markdown/aaa/dynamics/entropy.md",
+                "markdownSection": "Plain-Language Reading",
+                "sectionKey": "plain language reading",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Core Definition",
                 "markdownPath": "content/markdown/aaa/dynamics/entropy.md",
                 "markdownSection": "Core Definition",
                 "sectionKey": "core definition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Work Availability And Energy Spread",
+                "markdownPath": "content/markdown/aaa/dynamics/entropy.md",
+                "markdownSection": "Work Availability And Energy Spread",
+                "sectionKey": "work availability and energy spread",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Complexity And Driven Intermediate Windows",
+                "markdownPath": "content/markdown/aaa/dynamics/entropy.md",
+                "markdownSection": "Complexity And Driven Intermediate Windows",
+                "sectionKey": "complexity and driven intermediate windows",
                 "headingLevel": 2
               },
               {
@@ -989,6 +1013,14 @@
                 "markdownPath": "content/markdown/aaa/dynamics/entropy.md",
                 "markdownSection": "Mapping Out To Effective Physics",
                 "sectionKey": "mapping out to effective physics",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Second Law And Same-Record Monotonicity",
+                "markdownPath": "content/markdown/aaa/dynamics/entropy.md",
+                "markdownSection": "Second Law And Same-Record Monotonicity",
+                "sectionKey": "second law and same record monotonicity",
                 "headingLevel": 2
               },
               {

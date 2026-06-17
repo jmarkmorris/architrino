@@ -81,8 +81,15 @@ bool solver_contract_smoke() {
       binary_layout_descriptor(BinaryLayoutId::RootLedgerV1);
   const BinaryLayoutDescriptor hitLayout =
       binary_layout_descriptor(BinaryLayoutId::DelayedHitEventsV1);
+  const BinaryLayoutDescriptor emissionCandidateLayout =
+      binary_layout_descriptor(BinaryLayoutId::EmissionShellCandidateV1);
+  const BinaryLayoutDescriptor emissionNarrowLayout =
+      binary_layout_descriptor(BinaryLayoutId::EmissionShellNarrowPhaseV1);
   if (rootLayout.rowSizeBytes != 112 || hitLayout.rowSizeBytes != 128 ||
-      rootLayout.name != "root_ledger.v1" || hitLayout.name != "delayed_hit_events.v1") {
+      emissionCandidateLayout.rowSizeBytes != 112 || emissionNarrowLayout.rowSizeBytes != 40 ||
+      rootLayout.name != "root_ledger.v1" || hitLayout.name != "delayed_hit_events.v1" ||
+      emissionCandidateLayout.name != "emission_shell_candidate.v1" ||
+      emissionNarrowLayout.name != "emission_shell_narrow_phase.v1") {
     return false;
   }
   const SolverBufferDescriptor rootBuffer =
@@ -104,6 +111,24 @@ bool solver_contract_smoke() {
   if (admission.selectedPrecisionPath != PrecisionPath::EventRootFocused) {
     return false;
   }
+  if (admission.stressSummary.dominantStress != AdmissionStressDimension::Precision ||
+      !admission.stressSummary.hasTimeStepCountEstimate ||
+      !close_to(admission.stressSummary.timeStepCountEstimate, 1000.0, 1e-9) ||
+      !close_to(admission.stressSummary.outputPressure, 0.5, 1e-12)) {
+    return false;
+  }
+
+  ErrorBudget strictBudget = budget;
+  strictBudget.globalTolerance = 1e-13;
+  strictBudget.rootIsolationTolerance = 1e-14;
+  const AdmissionReport strictAdmission =
+      admit_simulation_envelope(model, strictBudget, envelope, capability);
+  if (!strictAdmission.validation.ok ||
+      strictAdmission.decision != AdmissionDecision::EscalatePrecision ||
+      strictAdmission.selectedPrecisionPath != PrecisionPath::ExtendedPrecision ||
+      strictAdmission.stressSummary.dominantStress != AdmissionStressDimension::Precision) {
+    return false;
+  }
 
   ModelContract invalidModel = model;
   invalidModel.modelId.clear();
@@ -115,7 +140,9 @@ bool solver_contract_smoke() {
   oversized.entityCount = capability.maxBatchEntities + 1;
   oversized.interactionPolicy = InteractionPolicy::AllToAll;
   const AdmissionReport rejected = admit_simulation_envelope(model, budget, oversized, capability);
-  return !rejected.validation.ok && rejected.decision == AdmissionDecision::Reject;
+  return !rejected.validation.ok && rejected.decision == AdmissionDecision::Reject &&
+         rejected.stressSummary.dominantStress == AdmissionStressDimension::EntityCount &&
+         rejected.stressSummary.estimatedPairCount > capability.maxBatchEntities;
 }
 
 bool causal_root_smoke() {

@@ -9,6 +9,8 @@ final class ReaderViewModel: ObservableObject {
     @Published var currentAnchor: String?
     @Published var fontScale: Double = 1.0
     @Published var theme: ReaderTheme = .architrinoPurple
+    @Published var lineSpacing: ReaderLineSpacing = .standard
+    @Published var marginWidth: ReaderMarginWidth = .standard
     @Published var isReady: Bool = false
     @Published var searchText: String = ""
     @Published var searchResults: [TextbookSearchEntry] = []
@@ -26,6 +28,8 @@ final class ReaderViewModel: ObservableObject {
     private let bookmarksKey = "architrino.reader.bookmarks"
     private let fontScaleKey = "architrino.reader.fontScale"
     private let themeKey = "architrino.reader.theme"
+    private let lineSpacingKey = "architrino.reader.lineSpacing"
+    private let marginWidthKey = "architrino.reader.marginWidth"
     private let appWebBaseURL = "https://architrino.com"
     private let inAppTOCKinds: Set<String> = ["scene-index", "markdown-view"]
     private let webappTOCKinds: Set<String> = ["diagram", "markdown-tree", "markdown-split"]
@@ -42,6 +46,8 @@ final class ReaderViewModel: ObservableObject {
         let initialAnchor: String?
         let fontScale: Double
         let theme: ReaderTheme
+        let lineSpacing: ReaderLineSpacing
+        let marginWidth: ReaderMarginWidth
         let bootstrapContext: ReaderBootstrapContext
     }
 
@@ -81,6 +87,14 @@ final class ReaderViewModel: ObservableObject {
         if let storedTheme = defaults.string(forKey: themeKey),
            let resolvedTheme = ReaderTheme(rawValue: storedTheme) {
             theme = resolvedTheme
+        }
+        if let storedLineSpacing = defaults.string(forKey: lineSpacingKey),
+           let resolvedLineSpacing = ReaderLineSpacing(rawValue: storedLineSpacing) {
+            lineSpacing = resolvedLineSpacing
+        }
+        if let storedMarginWidth = defaults.string(forKey: marginWidthKey),
+           let resolvedMarginWidth = ReaderMarginWidth(rawValue: storedMarginWidth) {
+            marginWidth = resolvedMarginWidth
         }
         loadBookmarks()
         Task {
@@ -149,6 +163,18 @@ final class ReaderViewModel: ObservableObject {
         currentBookmarkIndex != nil
     }
 
+    var readingProgressLabel: String {
+        guard let package,
+              let currentChapterId else {
+            return ""
+        }
+        if let index = package.manifest.chapters.firstIndex(where: { $0.id == currentChapterId }) {
+            let percent = Int(((Double(index) + 1.0) / Double(max(1, package.manifest.chapters.count)) * 100).rounded())
+            return "\(index + 1)/\(package.manifest.chapters.count) · \(percent)%"
+        }
+        return currentReferenceDocument?.title ?? ""
+    }
+
     func chapter(at index: Int) -> TextbookChapter? {
         guard let package else { return nil }
         guard package.manifest.chapters.indices.contains(index) else { return nil }
@@ -205,6 +231,30 @@ final class ReaderViewModel: ObservableObject {
     func setTheme(_ value: ReaderTheme) {
         theme = value
         defaults.set(value.rawValue, forKey: themeKey)
+        emitRenderCommand()
+    }
+
+    func setLineSpacing(_ value: ReaderLineSpacing) {
+        lineSpacing = value
+        defaults.set(value.rawValue, forKey: lineSpacingKey)
+        emitRenderCommand()
+    }
+
+    func setMarginWidth(_ value: ReaderMarginWidth) {
+        marginWidth = value
+        defaults.set(value.rawValue, forKey: marginWidthKey)
+        emitRenderCommand()
+    }
+
+    func resetReaderAppearance() {
+        fontScale = 1.0
+        theme = .architrinoPurple
+        lineSpacing = .standard
+        marginWidth = .standard
+        defaults.set(fontScale, forKey: fontScaleKey)
+        defaults.set(theme.rawValue, forKey: themeKey)
+        defaults.set(lineSpacing.rawValue, forKey: lineSpacingKey)
+        defaults.set(marginWidth.rawValue, forKey: marginWidthKey)
         emitRenderCommand()
     }
 
@@ -418,6 +468,8 @@ final class ReaderViewModel: ObservableObject {
             initialAnchor: currentAnchor,
             fontScale: fontScale,
             theme: theme,
+            lineSpacing: lineSpacing,
+            marginWidth: marginWidth,
             bootstrapContext: bootstrapContext
         )
     }

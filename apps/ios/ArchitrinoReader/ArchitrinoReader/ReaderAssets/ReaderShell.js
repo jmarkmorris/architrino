@@ -65,6 +65,27 @@
     },
   };
 
+  const readerLineSpacings = {
+    compact: "1.45",
+    standard: "1.65",
+    open: "1.85",
+  };
+
+  const readerMargins = {
+    narrow: {
+      paddingInline: "12px",
+      articleMaxWidth: "78ch",
+    },
+    standard: {
+      paddingInline: "16px",
+      articleMaxWidth: "72ch",
+    },
+    wide: {
+      paddingInline: "28px",
+      articleMaxWidth: "64ch",
+    },
+  };
+
   let currentChapterId = null;
   let linkMap = {};
   let shellRoot = null;
@@ -118,6 +139,15 @@
     rootStyle.setProperty("--reader-table-header-background", theme.tableHeaderBackground);
     rootStyle.setProperty("--reader-code-background", theme.codeBackground);
     rootStyle.setProperty("--reader-code-text", theme.codeText);
+  }
+
+  function hydrateReaderLayout(payload) {
+    const rootStyle = document.documentElement.style;
+    const lineHeight = readerLineSpacings[payload.lineSpacing] || readerLineSpacings.standard;
+    const margin = readerMargins[payload.marginWidth] || readerMargins.standard;
+    rootStyle.setProperty("--reader-line-height", lineHeight);
+    rootStyle.setProperty("--reader-shell-padding-inline", margin.paddingInline);
+    rootStyle.setProperty("--reader-article-max-width", margin.articleMaxWidth);
   }
 
   function buildPayload(href, mapping, rawAnchor) {
@@ -304,6 +334,7 @@
     linkMap = payload.linkMap || {};
     hydrateScale(payload.fontScale);
     hydrateTheme(payload.theme);
+    hydrateReaderLayout(payload);
 
     shellRoot = document.getElementById("reader-root");
     if (!shellRoot) {

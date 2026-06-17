@@ -13,6 +13,30 @@ const schema = readJson(schemaPath);
 const request = readJson(requestPath);
 const batchResponse = readJson(batchResponsePath);
 const response = readJson(responsePath);
+const initRequest = createInitRequestEnvelope();
+const initResponse = createInitResponseEnvelope();
+const capabilitiesRequest = createCapabilitiesRequestEnvelope();
+const capabilitiesResponse = createCapabilitiesResponseEnvelope();
+const threadingPlanRequest = createThreadingPlanRequestEnvelope();
+const threadingPlanResponse = createThreadingPlanResponseEnvelope();
+const admissionRequest = createAdmissionRequestEnvelope();
+const admissionResponse = createAdmissionResponseEnvelope();
+const pathHistoryStreamRequest = createPathHistoryStreamRequestEnvelope();
+const pathHistoryStreamResponse = createPathHistoryStreamResponseEnvelope();
+const runSimulationRequest = createRunSimulationRequestEnvelope();
+const runSimulationResponse = createRunSimulationResponseEnvelope();
+const describeRunRequest = createDescribeRunRequestEnvelope();
+const describeRunResponse = createDescribeRunResponseEnvelope();
+const cancelRunRequest = createCancelRunRequestEnvelope();
+const cancelRunResponse = createCancelRunResponseEnvelope();
+const closeRunRequest = createCloseRunRequestEnvelope();
+const closeRunResponse = createCloseRunResponseEnvelope();
+const describeStreamRequest = createDescribeStreamRequestEnvelope();
+const describeStreamResponse = createDescribeStreamResponseEnvelope();
+const openStreamRequest = createOpenStreamRequestEnvelope();
+const openStreamResponse = createOpenStreamResponseEnvelope();
+const readStreamRangeRequest = createReadStreamRangeRequestEnvelope();
+const readStreamRangeResponse = createReadStreamRangeResponseEnvelope();
 
 assert(schema.$id === "https://architrino.local/contracts/solver-app-bridge/v1/schema.json", "schema id mismatch");
 assert(schema.$defs?.causalRootsF64Request, "request schema missing");
@@ -21,10 +45,58 @@ assert(schema.$defs?.rootLedgerDetailF64Response, "root-ledger detail response s
 assert(schema.$defs?.rootLedgerDetailF64, "root-ledger detail row schema missing");
 assert(schema.$defs?.precisionDiagnosticF64Request, "precision diagnostic request schema missing");
 assert(schema.$defs?.precisionDiagnosticF64Response, "precision diagnostic response schema missing");
+assert(schema.$defs?.errorBudgetPropagationF64Request, "error budget propagation request schema missing");
+assert(schema.$defs?.errorBudgetPropagationF64Response, "error budget propagation response schema missing");
+assert(schema.$defs?.solverErrorBudget, "solver error budget schema missing");
+assert(schema.$defs?.errorBudgetStageInput, "error budget stage input schema missing");
+assert(schema.$defs?.rootHitInvariantF64Request, "root-hit invariant request schema missing");
+assert(schema.$defs?.rootHitInvariantF64Response, "root-hit invariant response schema missing");
+assert(schema.$defs?.rootHitInvariantOptions, "root-hit invariant options schema missing");
+assert(schema.$defs?.rootLedgerTransitionF64Request, "root-ledger transition request schema missing");
+assert(schema.$defs?.rootLedgerTransitionF64Response, "root-ledger transition response schema missing");
+assert(schema.$defs?.rootLedgerTransitionF64, "root-ledger transition row schema missing");
+assert(schema.$defs?.rootLedgerTransitionKind, "root-ledger transition kind schema missing");
 assert(schema.$defs?.precisionPathId, "precision path schema missing");
 assert(schema.$defs?.numericTypeId, "numeric type schema missing");
 assert(schema.$defs?.numericSerializationDescriptor, "numeric serialization descriptor schema missing");
 assert(schema.$defs?.numericSerializationContract, "numeric serialization contract schema missing");
+assert(schema.$defs?.solverAppId, "solver app id schema missing");
+assert(schema.$defs?.solverRunKind, "solver run kind schema missing");
+assert(schema.$defs?.solverClaimLevel, "solver claim level schema missing");
+assert(schema.$defs?.solverModelContract, "solver model contract schema missing");
+assert(schema.$defs?.solverSimulationEnvelope, "solver simulation envelope schema missing");
+assert(schema.$defs?.solverOutputRequest, "solver output request schema missing");
+assert(schema.$defs?.solverOutputKind, "solver output kind schema missing");
+assert(schema.$defs?.causalRootsRunConfig, "causal roots run config schema missing");
+assert(schema.$defs?.phaseDiagnosticsRunConfig, "phase diagnostics run config schema missing");
+assert(schema.$defs?.pathHistoryRunConfig, "path-history run config schema missing");
+assert(schema.$defs?.delayedHitsRunConfig, "delayed hits run config schema missing");
+assert(schema.$defs?.sharedGeometryRunConfig, "shared geometry run config schema missing");
+assert(schema.$defs?.validationReplayRunConfig, "validation replay run config schema missing");
+assert(schema.$defs?.appPlaybackRunConfig, "app playback run config schema missing");
+assert(schema.$defs?.comparableSolverResponse, "comparable solver response schema missing");
+assert(schema.$defs?.baselineComparisonResult, "baseline comparison result schema missing");
+assert(schema.$defs?.motionSimulationRunConfig, "motion simulation run config schema missing");
+assert(schema.$defs?.solverRunConfig, "solver run config schema missing");
+assert(schema.$defs?.solverRunRequest, "solver run request schema missing");
+assert(schema.$defs?.solverRunHandle, "solver run handle schema missing");
+assert(schema.$defs?.solverRunResponse, "solver run response schema missing");
+assert(schema.$defs?.solverRunSummary, "solver run summary schema missing");
+assert(schema.$defs?.describeRunRequest, "describe run request schema missing");
+assert(schema.$defs?.solverRunDescription, "solver run description schema missing");
+assert(schema.$defs?.cancelRunRequest, "cancel run request schema missing");
+assert(schema.$defs?.closeRunRequest, "close run request schema missing");
+assert(schema.$defs?.runManifest, "run manifest schema missing");
+assert(schema.$defs?.runManifestBuffer, "run manifest buffer schema missing");
+assert(schema.$defs?.runManifestStream, "run manifest stream schema missing");
+assert(schema.$defs?.admissionStressSummary, "admission stress summary schema missing");
+assert(schema.$defs?.runManifestAdmission, "run manifest admission schema missing");
+assert(schema.$defs?.runManifestProvenance, "run manifest provenance schema missing");
+assert(schema.$defs?.errorBudgetStageId, "error budget stage schema missing");
+assert(schema.$defs?.valueAuthorityId, "value authority schema missing");
+assert(schema.$defs?.errorBudgetStageReport, "error budget stage report schema missing");
+assert(schema.$defs?.errorBudgetPropagationReport, "error budget propagation report schema missing");
+assert(schema.$defs?.errorBudgetPropagationContract, "error budget propagation contract schema missing");
 assert(schema.$defs?.magnitudeSummary, "magnitude summary schema missing");
 assert(schema.$defs?.causalRootBatchF64Request, "batch request schema missing");
 assert(schema.$defs?.causalRootBatchF64Response, "batch response schema missing");
@@ -32,8 +104,16 @@ assert(schema.$defs?.linearMotionSampleF64Request, "motion sample request schema
 assert(schema.$defs?.linearMotionSampleF64Response, "motion sample response schema missing");
 assert(schema.$defs?.phaseAtHitF64Request, "phase-at-hit request schema missing");
 assert(schema.$defs?.phaseAtHitF64Response, "phase-at-hit response schema missing");
+assert(schema.$defs?.phaseAtHitSummaryF64Request, "phase-at-hit summary request schema missing");
+assert(schema.$defs?.phaseAtHitSummaryF64Response, "phase-at-hit summary response schema missing");
+assert(schema.$defs?.phaseAtHitSummaryF64, "phase-at-hit summary schema missing");
+assert(schema.$defs?.phaseAtHitStatusCount, "phase-at-hit status count schema missing");
 assert(schema.$defs?.sharedGeometryF64Request, "shared geometry request schema missing");
 assert(schema.$defs?.sharedGeometryF64Response, "shared geometry response schema missing");
+assert(schema.$defs?.delayedPotentialF64Request, "delayed potential request schema missing");
+assert(schema.$defs?.delayedPotentialF64, "delayed potential row schema missing");
+assert(schema.$defs?.circularSelfHitSpanF64Request, "circular self-hit span request schema missing");
+assert(schema.$defs?.circularSelfHitSpanF64, "circular self-hit span row schema missing");
 assert(schema.$defs?.assemblyMembershipEventsF64Request, "assembly membership events request schema missing");
 assert(schema.$defs?.assemblyMembershipEventsF64Response, "assembly membership events response schema missing");
 assert(schema.$defs?.assemblyMembershipF64, "assembly membership row schema missing");
@@ -42,10 +122,51 @@ assert(schema.$defs?.buildSpaceTimeIndexF64Request, "space-time index build requ
 assert(schema.$defs?.querySpaceTimeIndexF64Request, "space-time index query request schema missing");
 assert(schema.$defs?.spaceTimeIndexF64Response, "space-time index response schema missing");
 assert(schema.$defs?.pathHistoryRowF64, "path-history row schema missing");
+assert(schema.$defs?.pathHistoryStreamF64Request, "path-history stream request schema missing");
+assert(schema.$defs?.pathHistoryStreamF64Response, "path-history stream response schema missing");
+assert(schema.$defs?.pathHistoryStreamSummary, "path-history stream summary schema missing");
+assert(schema.$defs?.pathHistoryStreamMetadata, "path-history stream metadata schema missing");
+assert(schema.$defs?.describeStreamRequest, "describe stream request schema missing");
+assert(schema.$defs?.streamDescription, "stream description schema missing");
+assert(schema.$defs?.streamIndexDescription, "stream index description schema missing");
+assert(schema.$defs?.pathHistoryIndexMetadata, "path-history index metadata schema missing");
+assert(schema.$defs?.streamOpenPurpose, "stream open purpose schema missing");
+assert(schema.$defs?.openStreamRequest, "open stream request schema missing");
+assert(schema.$defs?.openStreamResponse, "open stream response schema missing");
+assert(schema.$defs?.readStreamRangeRequest, "read stream range request schema missing");
+assert(schema.$defs?.readStreamRangeResponse, "read stream range response schema missing");
+assert(schema.$defs?.pathHistoryStorageLifecycleRequest, "path-history lifecycle request schema missing");
+assert(schema.$defs?.pathHistoryStorageLifecycleResponse, "path-history lifecycle response schema missing");
+assert(schema.$defs?.pathHistoryChunkMetadata, "path-history chunk metadata schema missing");
+assert(schema.$defs?.pathHistoryLifecycleDecision, "path-history lifecycle decision schema missing");
 assert(schema.$defs?.assemblyStateF64, "assembly state row schema missing");
 assert(schema.$defs?.spaceTimeIndexRowF64, "space-time index row schema missing");
 assert(schema.$defs?.workPacketHeader, "work packet header schema missing");
+assert(schema.$defs?.workPacketHeaderResponse, "work packet header response schema missing");
 assert(schema.$defs?.workPacketBufferRef, "work packet buffer ref schema missing");
+assert(schema.$defs?.workPacketResultRef, "work packet result ref schema missing");
+assert(schema.$defs?.workPacketResultOrderRequest, "work packet result order request schema missing");
+assert(schema.$defs?.workPacketResultOrderResponse, "work packet result order response schema missing");
+assert(schema.$defs?.pathHistoryWorkPacketPlanRequest, "path-history work packet plan request schema missing");
+assert(schema.$defs?.pathHistoryWorkPacketPlanResponse, "path-history work packet plan response schema missing");
+assert(schema.$defs?.emissionShellCandidateF64Request, "emission-shell candidate request schema missing");
+assert(
+  schema.$defs?.emissionShellCandidatePacketF64Request,
+  "emission-shell candidate packet request schema missing"
+);
+assert(
+  schema.$defs?.emissionShellCandidatePacketsF64Request,
+  "emission-shell candidate packets request schema missing"
+);
+assert(
+  schema.$defs?.emissionShellCandidatePacketMergeF64Request,
+  "emission-shell candidate packet merge request schema missing"
+);
+assert(schema.$defs?.emissionShellCandidateF64Response, "emission-shell candidate response schema missing");
+assert(schema.$defs?.emissionShellCandidateF64, "emission-shell candidate row schema missing");
+assert(schema.$defs?.emissionShellScanSummary, "emission-shell scan summary schema missing");
+assert(schema.$defs?.emissionShellFalsePositiveEstimate, "emission-shell false-positive estimate schema missing");
+assert(schema.$defs?.emissionShellNarrowPhaseEstimate, "emission-shell narrow-phase estimate schema missing");
 assert(schema.$defs?.rootsAndHitsF64Response, "response schema missing");
 assert(schema.$defs?.bufferDescriptor, "buffer descriptor schema missing");
 assert(schema.$defs?.streamDescriptor, "stream descriptor schema missing");
@@ -62,13 +183,51 @@ assertCoreBinaryLayouts([
   "delayed_hit_events.v1",
   "phase_at_hit.v1",
   "spacetime_index.v1",
+  "emission_shell_candidate.v1",
+  "emission_shell_narrow_phase.v1",
   "stream_index.v1",
 ]);
+assertEnumValues("solverRunKind", [
+  "motionSimulation",
+  "pathHistory",
+  "causalRoots",
+  "phaseDiagnostics",
+  "delayedHits",
+  "sharedGeometry",
+  "appPlayback",
+  "validationReplay",
+]);
 assertNumericTypes(["f64", "scaled_i64", "interval_f64_pair", "decimal128", "mp_limb_block"]);
+assertErrorBudgetStages([
+  "root_isolation",
+  "delayed_hit",
+  "motion_integration",
+  "stream_encoding",
+  "stream_readback",
+  "projection",
+  "app_buffer",
+]);
+assertValueAuthorities(["authoritative", "approximate", "display-only", "rejected"]);
 
 validateRequestEnvelope(request);
 validateBatchResponseEnvelope(batchResponse);
 validateResponseEnvelope(response);
+validateRunSimulationRequestEnvelope(runSimulationRequest);
+validateRunSimulationResponseEnvelope(runSimulationResponse);
+validateDescribeRunRequestEnvelope(describeRunRequest);
+validateDescribeRunResponseEnvelope(describeRunResponse);
+validateCancelRunRequestEnvelope(cancelRunRequest);
+validateCancelRunResponseEnvelope(cancelRunResponse);
+validateCloseRunRequestEnvelope(closeRunRequest);
+validateCloseRunResponseEnvelope(closeRunResponse);
+validatePathHistoryStreamRequestEnvelope(pathHistoryStreamRequest);
+validatePathHistoryStreamResponseEnvelope(pathHistoryStreamResponse);
+validateDescribeStreamRequestEnvelope(describeStreamRequest);
+validateDescribeStreamResponseEnvelope(describeStreamResponse);
+validateOpenStreamRequestEnvelope(openStreamRequest);
+validateOpenStreamResponseEnvelope(openStreamResponse);
+validateReadStreamRangeRequestEnvelope(readStreamRangeRequest);
+validateReadStreamRangeResponseEnvelope(readStreamRangeResponse);
 
 console.log("solver contract fixtures check passed.");
 
@@ -136,6 +295,223 @@ function validateResponseEnvelope(value) {
   assert(responseValue.status.code === "ok", "status code mismatch");
 }
 
+function validateRunSimulationRequestEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "run simulation request schema tag mismatch");
+  assert(value.kind === "run-simulation-request", "run simulation request kind mismatch");
+  assertNonemptyString(value.requestId, "run simulation request id");
+  const requestValue = value.request;
+  assert(requestValue.requestId === "run-contract-request", "run request id mismatch");
+  assert(requestValue.runId === "run-contract", "run id mismatch");
+  assert(requestValue.datasetId === "run-contract-dataset", "run dataset id mismatch");
+  assert(requestValue.appId === "photon", "run app id mismatch");
+  assert(requestValue.runKind === "causalRoots", "run kind mismatch");
+  assert(requestValue.claimLevel === "interactive-preview", "run claim level mismatch");
+  assert(requestValue.precisionPath === "auto", "run precision path mismatch");
+  assert(requestValue.config.rootRequest.hitTime === 10, "run root request mismatch");
+  assert(requestValue.output.outputs.includes("rootLedger"), "run output request mismatch");
+}
+
+function validateRunSimulationResponseEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "run simulation response schema tag mismatch");
+  assert(value.kind === "run-simulation-response", "run simulation response kind mismatch");
+  assertNonemptyString(value.requestId, "run simulation response request id");
+  const responseValue = value.response;
+  assert(responseValue.requestId === "run-contract-request", "run handle request id mismatch");
+  assert(responseValue.runId === "run-contract", "run handle id mismatch");
+  assert(responseValue.datasetId === "run-contract-dataset", "run handle dataset id mismatch");
+  assert(responseValue.acceptedPrecisionPath === "extended_precision", "run accepted precision mismatch");
+  assert(responseValue.expectedOutputs.includes("delayedHitEvents"), "run expected outputs mismatch");
+  assert(responseValue.status.code === "ok", "run handle status mismatch");
+  assert(responseValue.response.runId === "run-contract", "run response id mismatch");
+  assert(responseValue.response.summary.rootCount === 1, "run response root count mismatch");
+  assert(responseValue.response.manifest.manifestHash === "4444444444444444", "run manifest hash mismatch");
+  assert(responseValue.response.buffers.length === 2, "run response buffer count mismatch");
+}
+
+function validateDescribeRunRequestEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "describe run request schema tag mismatch");
+  assert(value.kind === "describe-run-request", "describe run request kind mismatch");
+  assertNonemptyString(value.requestId, "describe run request id");
+  assert(value.request.runId === "run-contract", "describe run id mismatch");
+}
+
+function validateDescribeRunResponseEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "describe run response schema tag mismatch");
+  assert(value.kind === "describe-run-response", "describe run response kind mismatch");
+  assertNonemptyString(value.requestId, "describe run response request id");
+  const responseValue = value.response;
+  assert(responseValue.schema === "solver-run-description.v1", "run description schema mismatch");
+  assert(responseValue.runId === "run-contract", "run description id mismatch");
+  assert(responseValue.manifest.requestId === "run-contract-request", "run description manifest mismatch");
+  assert(responseValue.summary.eventCount === 1, "run description event count mismatch");
+  assert(responseValue.buffers.length === 2, "run description buffer count mismatch");
+  assert(responseValue.streams.length === 1, "run description stream count mismatch");
+  assert(responseValue.status.code === "ok", "run description status mismatch");
+}
+
+function validateCancelRunRequestEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "cancel run request schema tag mismatch");
+  assert(value.kind === "cancel-run-request", "cancel run request kind mismatch");
+  assertNonemptyString(value.requestId, "cancel run request id");
+  assert(value.request.runId === "run-contract", "cancel run id mismatch");
+}
+
+function validateCancelRunResponseEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "cancel run response schema tag mismatch");
+  assert(value.kind === "cancel-run-response", "cancel run response kind mismatch");
+  assertNonemptyString(value.requestId, "cancel run response request id");
+  assert(value.response.code === "cancelled", "cancel run response status mismatch");
+}
+
+function validateCloseRunRequestEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "close run request schema tag mismatch");
+  assert(value.kind === "close-run-request", "close run request kind mismatch");
+  assertNonemptyString(value.requestId, "close run request id");
+  assert(value.request.runId === "run-contract", "close run id mismatch");
+  assert(value.request.releaseStreams === true, "close run release streams mismatch");
+}
+
+function validateCloseRunResponseEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "close run response schema tag mismatch");
+  assert(value.kind === "close-run-response", "close run response kind mismatch");
+  assertNonemptyString(value.requestId, "close run response request id");
+  assert(value.response.code === "ok", "close run response status mismatch");
+}
+
+function validatePathHistoryStreamRequestEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "path-history stream request schema tag mismatch");
+  assert(value.kind === "path-history-stream-f64-request", "path-history stream request kind mismatch");
+  assertNonemptyString(value.requestId, "path-history stream request id");
+  const requestValue = value.request;
+  assertNonemptyString(requestValue.runId, "path-history stream run id");
+  assertNonemptyString(requestValue.datasetId, "path-history stream dataset id");
+  assertNonemptyString(requestValue.streamId, "path-history stream id");
+  assertPositiveInteger(requestValue.rowsPerChunk, "path-history rows per chunk");
+  assert(Array.isArray(requestValue.pathRows), "path-history stream pathRows must be an array");
+  assert(requestValue.pathRows.length === 3, "path-history stream request row count mismatch");
+  requestValue.pathRows.forEach(validatePathHistoryRow);
+  assertStoragePolicy(requestValue.storagePolicy, 1024, "path-history stream request storage policy");
+  assert(requestValue.metadata.precisionPath === "scaled_f64_strict", "path-history request precision path mismatch");
+}
+
+function validatePathHistoryStreamResponseEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "path-history stream response schema tag mismatch");
+  assert(value.kind === "path-history-stream-f64-response", "path-history stream response kind mismatch");
+  assertNonemptyString(value.requestId, "path-history stream response request id");
+  const responseValue = value.response;
+  assert(responseValue.schema === "solver-path-history-stream.v1", "path-history stream response schema mismatch");
+  assert(responseValue.status.code === "ok", "path-history stream response status code mismatch");
+  assert(responseValue.stream.streamId === "fixture-path-history-stream", "path-history stream descriptor id mismatch");
+  assert(responseValue.stream.indexLayout === "stream_index.v1", "path-history stream index layout mismatch");
+  assert(responseValue.stream.availableRanges.length === 2, "path-history stream range count mismatch");
+  assertPathHistoryMetadata(responseValue.stream.metadata, "path-history stream descriptor metadata");
+  assert(responseValue.buffers.length === 2, "path-history stream buffer count mismatch");
+  assertBuffer(responseValue.buffers[0], "fixture-path-history-stream:path-chunk-0", "path_segment.v1", 192, 2);
+  assert(responseValue.buffers[0].checksum === "1111111111111111", "path-history first checksum mismatch");
+  assertBuffer(responseValue.buffers[1], "fixture-path-history-stream:path-chunk-1", "path_segment.v1", 96, 1);
+  assert(responseValue.buffers[1].checksum === "2222222222222222", "path-history second checksum mismatch");
+  const summary = responseValue.summary;
+  assert(summary.schema === "solver-path-history-stream-summary.v1", "path-history stream summary schema mismatch");
+  assert(summary.rowCount === 3, "path-history stream summary row count mismatch");
+  assert(summary.chunkCount === 2, "path-history stream summary chunk count mismatch");
+  assert(summary.pathCount === 2, "path-history stream summary path count mismatch");
+  assert(summary.byteLength === 288, "path-history stream summary byte length mismatch");
+  assert(summary.rowSizeBytes === 96, "path-history stream summary row size mismatch");
+  assert(summary.pathIndexRowCount === 3, "path-history stream summary index row count mismatch");
+  assert(summary.pathIndexedChunkCount === 2, "path-history stream summary indexed chunk count mismatch");
+  assertRange(summary.timeRange, 0, 3, "path-history stream summary time range");
+  assertRange(summary.frameRange, 0, 2, "path-history stream summary frame range");
+  assertStoragePolicy(summary.storagePolicy, 288, "path-history stream summary storage policy");
+  assertPathHistoryMetadata(summary.metadata, "path-history stream summary metadata");
+}
+
+function validateDescribeStreamRequestEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "describe stream request schema tag mismatch");
+  assert(value.kind === "describe-stream-request", "describe stream request kind mismatch");
+  assertNonemptyString(value.requestId, "describe stream request id");
+  assert(value.request.streamId === "fixture-path-history-stream", "describe stream id mismatch");
+}
+
+function validateDescribeStreamResponseEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "describe stream response schema tag mismatch");
+  assert(value.kind === "describe-stream-response", "describe stream response kind mismatch");
+  assertNonemptyString(value.requestId, "describe stream response request id");
+  const responseValue = value.response;
+  assert(responseValue.schema === "solver-stream-description.v1", "stream description schema mismatch");
+  assert(responseValue.status.code === "ok", "stream description status code mismatch");
+  assert(responseValue.stream.streamId === "fixture-path-history-stream", "stream description id mismatch");
+  assert(responseValue.stream.indexLayout === "stream_index.v1", "stream description index layout mismatch");
+  assertStoragePolicy(responseValue.stream.storagePolicy, 288, "stream description storage policy");
+  assertPathHistoryMetadata(responseValue.stream.metadata, "stream description metadata");
+  assert(responseValue.stream.availableRanges.length === 2, "stream description range count mismatch");
+  assert(responseValue.buffers.length === 2, "stream description buffer count mismatch");
+  assertBuffer(responseValue.buffers[0], "fixture-path-history-stream:path-chunk-0", "path_segment.v1", 192, 2);
+  assert(responseValue.buffers[0].checksum === "1111111111111111", "stream description first checksum mismatch");
+  assertBuffer(responseValue.buffers[1], "fixture-path-history-stream:path-chunk-1", "path_segment.v1", 96, 1);
+  assert(responseValue.buffers[1].checksum === "2222222222222222", "stream description second checksum mismatch");
+  assert(responseValue.index.schema === "solver-stream-index.v1", "stream index schema mismatch");
+  assert(responseValue.index.streamId === "fixture-path-history-stream", "stream index id mismatch");
+  assert(responseValue.index.indexLayout === "stream_index.v1", "stream index layout mismatch");
+  assert(responseValue.index.chunkCount === 2, "stream index chunk count mismatch");
+  assert(responseValue.index.pathIndexRows.length === 3, "stream index row count mismatch");
+  assert(responseValue.index.pathIndexRows[1].pathKey === 2001, "stream index second path key mismatch");
+  assertRange(responseValue.index.pathIndexRows[1].byteRange, 96, 192, "stream index second byte range");
+}
+
+function validateOpenStreamRequestEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "open stream request schema tag mismatch");
+  assert(value.kind === "open-stream-request", "open stream request kind mismatch");
+  assertNonemptyString(value.requestId, "open stream request id");
+  const requestValue = value.request;
+  assert(requestValue.purpose === "diagnostics", "open stream purpose mismatch");
+  assert(requestValue.streamId === "fixture-path-history-stream", "open stream id mismatch");
+}
+
+function validateOpenStreamResponseEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "open stream response schema tag mismatch");
+  assert(value.kind === "open-stream-response", "open stream response kind mismatch");
+  assertNonemptyString(value.requestId, "open stream response request id");
+  const responseValue = value.response;
+  assert(responseValue.streamId === "fixture-path-history-stream", "open stream response id mismatch");
+  assert(responseValue.manifestVersion === "solver-stream-manifest.v1", "open stream manifest mismatch");
+  assert(responseValue.readableLayouts.includes("path_segment.v1"), "open stream readable layout mismatch");
+  assert(responseValue.availableRanges.length === 2, "open stream range count mismatch");
+  assertRange(responseValue.availableRanges[0].timeRange, 0, 2, "open stream first time range");
+  assertRange(responseValue.availableRanges[0].frameRange, 0, 1, "open stream first frame range");
+  assertRange(responseValue.availableRanges[0].byteRange, 0, 192, "open stream first byte range");
+}
+
+function validateReadStreamRangeRequestEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "read stream request schema tag mismatch");
+  assert(value.kind === "read-stream-range-request", "read stream request kind mismatch");
+  assertNonemptyString(value.requestId, "read stream request id");
+  const requestValue = value.request;
+  assert(requestValue.streamId === "fixture-path-history-stream", "read stream request id mismatch");
+  assert(requestValue.pathKeys.length === 1 && requestValue.pathKeys[0] === 2000, "read stream path key mismatch");
+  assertRange(requestValue.timeRange, 0, 3, "read stream request time range");
+  assert(requestValue.maxBytes === 96, "read stream max bytes mismatch");
+}
+
+function validateReadStreamRangeResponseEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "read stream response schema tag mismatch");
+  assert(value.kind === "read-stream-range-response", "read stream response kind mismatch");
+  assertNonemptyString(value.requestId, "read stream response request id");
+  const responseValue = value.response;
+  assert(responseValue.streamId === "fixture-path-history-stream", "read stream response id mismatch");
+  assert(responseValue.status.code === "ok", "read stream status code mismatch");
+  assert(responseValue.ranges.length === 1, "read stream range count mismatch");
+  assertRange(responseValue.ranges[0].timeRange, 0, 1, "read stream response time range");
+  assertRange(responseValue.ranges[0].frameRange, 0, 0, "read stream response frame range");
+  assertRange(responseValue.ranges[0].byteRange, 0, 96, "read stream response byte range");
+  assert(responseValue.buffers.length === 1, "read stream buffer count mismatch");
+  assertBuffer(responseValue.buffers[0], "fixture-path-history-stream:path-chunk-0", "path_segment.v1", 96, 1);
+  assert(responseValue.buffers[0].checksum === "3333333333333333", "read stream checksum mismatch");
+  assert(responseValue.diagnostics.length === 1, "read stream diagnostic count mismatch");
+  assert(responseValue.diagnostics[0].code === "path_history_indexed_readback", "read stream diagnostic code mismatch");
+  assert(responseValue.diagnostics[0].stage === "stream_readback", "read stream diagnostic stage mismatch");
+  assert(responseValue.diagnostics[0].details.selectedRowCount === 1, "read stream selected rows mismatch");
+}
+
 function assertSegment(value, label) {
   assertFinite(value.startTime, `${label} start time`);
   assertFinite(value.endTime, `${label} end time`);
@@ -148,6 +524,38 @@ function assertVector(value, label) {
   assertFinite(value.x, `${label} x`);
   assertFinite(value.y, `${label} y`);
   assertFinite(value.z, `${label} z`);
+}
+
+function validatePathHistoryRow(row, index) {
+  assert(Number.isInteger(row.pathKey) && row.pathKey >= 0, `path row ${index} path key`);
+  assert(Number.isInteger(row.segmentIndex) && row.segmentIndex >= 0, `path row ${index} segment index`);
+  assertFinite(row.startTime, `path row ${index} start time`);
+  assertFinite(row.endTime, `path row ${index} end time`);
+  assert(row.endTime >= row.startTime, `path row ${index} time bounds`);
+  assertVector(row.start, `path row ${index} start`);
+  assertVector(row.velocity, `path row ${index} velocity`);
+}
+
+function assertRange(range, start, end, label) {
+  assert(range.start === start && range.end === end, `${label} expected ${start}..${end}`);
+}
+
+function assertStoragePolicy(policy, maxBytes, label) {
+  assert(policy.target === "caller-buffer", `${label} target mismatch`);
+  assert(policy.durable === false, `${label} durable mismatch`);
+  assert(policy.maxBytes === maxBytes, `${label} max bytes mismatch`);
+}
+
+function assertPathHistoryMetadata(metadata, label) {
+  assert(metadata.schema === "solver-path-history-stream-metadata.v1", `${label} schema mismatch`);
+  assert(metadata.precisionPath === "scaled_f64_strict", `${label} precision path mismatch`);
+  assert(metadata.units === "solver-si", `${label} units mismatch`);
+  assert(metadata.coordinateFrame === "absolute-lab-frame", `${label} coordinate frame mismatch`);
+  assert(metadata.scaleNormalization === "unit-test-scale", `${label} scale normalization mismatch`);
+  assert(metadata.interpolationRule === "linear-segment", `${label} interpolation rule mismatch`);
+  assert(metadata.provenance.fixture === "path-history-contract-fixture", `${label} provenance mismatch`);
+  assert(Array.isArray(metadata.diagnostics), `${label} diagnostics must be an array`);
+  assert(metadata.diagnostics[0].code === "ok", `${label} diagnostic code mismatch`);
 }
 
 function assertBuffer(value, bufferId, layout, byteLength, rowCount) {
@@ -165,11 +573,762 @@ function assertCoreBinaryLayouts(expectedLayouts) {
   }
 }
 
+function assertEnumValues(defName, expectedValues) {
+  const actualValues = schema.$defs[defName]?.enum || [];
+  for (const value of expectedValues) {
+    assert(actualValues.includes(value), `${defName} missing ${value}`);
+  }
+}
+
 function assertNumericTypes(expectedTypes) {
   const actualTypes = schema.$defs.numericTypeId?.enum || [];
   for (const numericType of expectedTypes) {
     assert(actualTypes.includes(numericType), `numeric type missing ${numericType}`);
   }
+}
+
+function assertErrorBudgetStages(expectedStages) {
+  const actualStages = schema.$defs.errorBudgetStageId?.enum || [];
+  for (const stage of expectedStages) {
+    assert(actualStages.includes(stage), `error budget stage missing ${stage}`);
+  }
+}
+
+function assertValueAuthorities(expectedAuthorities) {
+  const actualAuthorities = schema.$defs.valueAuthorityId?.enum || [];
+  for (const authority of expectedAuthorities) {
+    assert(actualAuthorities.includes(authority), `value authority missing ${authority}`);
+  }
+}
+
+function createRunSimulationRequestEnvelope() {
+  const runRequest = createSolverRunRequest();
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "run-simulation-request",
+    requestId: runRequest.requestId,
+    request: runRequest,
+  };
+}
+
+function createRunSimulationResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "run-simulation-response",
+    requestId: "run-contract-request",
+    response: {
+      requestId: "run-contract-request",
+      runId: "run-contract",
+      datasetId: "run-contract-dataset",
+      cancellationToken: "run-contract:cancel",
+      acceptedPrecisionPath: "extended_precision",
+      expectedOutputs: ["rootLedger", "delayedHitEvents", "diagnostics"],
+      response: createSolverRunResponse(),
+      status: createStatusFixture("ok", "ok", "run simulation completed"),
+    },
+  };
+}
+
+function createDescribeRunRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "describe-run-request",
+    requestId: "describe-run-contract-request",
+    request: {
+      runId: "run-contract",
+    },
+  };
+}
+
+function createDescribeRunResponseEnvelope() {
+  const runResponse = createSolverRunResponse();
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "describe-run-response",
+    requestId: "describe-run-contract-request",
+    response: {
+      schema: "solver-run-description.v1",
+      runId: runResponse.runId,
+      datasetId: runResponse.datasetId,
+      manifest: runResponse.manifest,
+      summary: runResponse.summary,
+      buffers: runResponse.buffers,
+      streams: runResponse.streams,
+      diagnostics: runResponse.diagnostics,
+      status: createStatusFixture("ok", "ok", "run description read"),
+    },
+  };
+}
+
+function createCancelRunRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "cancel-run-request",
+    requestId: "cancel-run-contract-request",
+    request: {
+      requestId: "run-contract-request",
+      runId: "run-contract",
+      reason: "contract fixture complete",
+    },
+  };
+}
+
+function createCancelRunResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "cancel-run-response",
+    requestId: "cancel-run-contract-request",
+    response: createStatusFixture("cancelled", "info", "run cancellation acknowledged", {
+      runId: "run-contract",
+      requestId: "run-contract-request",
+    }),
+  };
+}
+
+function createCloseRunRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "close-run-request",
+    requestId: "close-run-contract-request",
+    request: {
+      runId: "run-contract",
+      releaseStreams: true,
+    },
+  };
+}
+
+function createCloseRunResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "close-run-response",
+    requestId: "close-run-contract-request",
+    response: createStatusFixture("ok", "ok", "run closed", {
+      runId: "run-contract",
+      releasedStreams: true,
+    }),
+  };
+}
+
+function createSolverRunRequest() {
+  return {
+    requestId: "run-contract-request",
+    runId: "run-contract",
+    datasetId: "run-contract-dataset",
+    appId: "photon",
+    runKind: "causalRoots",
+    claimLevel: "interactive-preview",
+    precisionPath: "auto",
+    configVersion: "solver-run-contract.v1",
+    configHash: "solver-run-contract",
+    model: createRunModel(),
+    envelope: createRunEnvelope(),
+    errorBudget: createRunErrorBudget(),
+    config: {
+      appId: "photon",
+      rootRequest: request.request,
+    },
+    output: createRunOutputRequest(),
+  };
+}
+
+function createSolverRunResponse() {
+  return {
+    runId: "run-contract",
+    datasetId: "run-contract-dataset",
+    manifest: createRunManifest(),
+    summary: createRunSummary(),
+    buffers: createRunBuffers(),
+    streams: createRunStreams(),
+    diagnostics: [
+      {
+        code: "ok",
+        severity: "ok",
+        message: "run contract fixture",
+      },
+    ],
+    roots: response.response.roots,
+    hits: response.response.hits,
+    status: createStatusFixture("ok", "ok", "run response ready"),
+  };
+}
+
+function createRunManifest() {
+  return {
+    schema: "solver-run-manifest.v1",
+    manifestHash: "4444444444444444",
+    requestId: "run-contract-request",
+    runId: "run-contract",
+    datasetId: "run-contract-dataset",
+    appId: "photon",
+    runKind: "causalRoots",
+    claimLevel: "interactive-preview",
+    configVersion: "solver-run-contract.v1",
+    configHash: "solver-run-contract",
+    model: createRunModel(),
+    envelope: createRunEnvelope(),
+    errorBudget: createRunErrorBudget(),
+    requestedPrecisionPath: "auto",
+    selectedPrecisionPath: "extended_precision",
+    output: createRunOutputRequest(),
+    admission: {
+      decision: "escalate_precision",
+      admitted: true,
+      stressSummary: createAdmissionStressSummary(),
+      statuses: [createStatusFixture("precision_escalated", "info", "extended precision selected")],
+    },
+    provenance: {
+      apiVersion: "solver-app-bridge.v1",
+      solverVersion: "architrino_solver 0.1.0",
+      bridge: "js-wasm",
+      wasmAbiVersion: "0.1.0",
+      generatedAt: "2026-06-17T00:00:00.000Z",
+    },
+    deterministic: true,
+    buffers: createRunManifestBuffers(),
+    streams: createRunManifestStreams(),
+    diagnostics: [
+      {
+        code: "ok",
+        severity: "ok",
+        message: "run manifest fixture",
+      },
+    ],
+    status: createStatusFixture("ok", "ok", "run manifest ready"),
+  };
+}
+
+function createRunModel() {
+  return {
+    modelId: "aaa.central-solver",
+    equationVersion: "motion-root-v1",
+    forceLawVersion: "causal-delay-v1",
+    constantsHash: "constants:test",
+    causalSpeedPolicy: "fixed-field-speed",
+    branchPolicy: "all-positive-roots",
+    unitConvention: "solver-si",
+    compatiblePrecisionPaths: ["scaled_f64_strict", "event_root_focused", "extended_precision"],
+  };
+}
+
+function createRunEnvelope() {
+  return {
+    entityCount: 16,
+    assemblyCount: 1,
+    timeWindow: { start: 0, end: 10, stepHint: 0.01, units: "solver-time" },
+    timeResolutionHint: 0.01,
+    interactionPolicy: "neighbor-pruned",
+    expectedBranchComplexity: "low",
+    outputDetail: "playback",
+    memoryBudgetBytes: 134217728,
+    storageBudgetBytes: 536870912,
+    latencyTarget: "background",
+    simplificationPolicy: "none",
+  };
+}
+
+function createRunErrorBudget() {
+  return {
+    globalTolerance: 1e-13,
+    rootIsolationTolerance: 1e-14,
+    delayedHitTolerance: 1e-13,
+    integrationTolerance: 1e-12,
+    streamEncodingTolerance: 1e-12,
+    readbackTolerance: 1e-12,
+    projectionTolerance: 1e-9,
+    displayTolerance: 1e-6,
+  };
+}
+
+function createRunOutputRequest() {
+  return {
+    outputs: ["rootLedger", "delayedHitEvents", "diagnostics"],
+    streamTarget: "caller-buffer",
+    memoryBudgetBytes: 67108864,
+    deterministic: true,
+  };
+}
+
+function createRunSummary() {
+  return {
+    runId: "run-contract",
+    claimLevel: "interactive-preview",
+    precisionPath: "extended_precision",
+    rootCount: 1,
+    eventCount: 1,
+    status: createStatusFixture("ok", "ok", "run summary ready"),
+  };
+}
+
+function createAdmissionStressSummary() {
+  return {
+    schema: "solver-admission-stress-summary.v1",
+    entityCount: 16,
+    estimatedPairCount: 240,
+    entityPressure: 0.0016,
+    interactionPressure: 0.0024,
+    memoryPressure: 0.0001,
+    timeStepCountEstimate: 1000,
+    timeStepPressure: 0.01,
+    outputPressure: 0.001,
+    precisionPressure: 1,
+    dominantStress: "precision",
+    pressureScore: 1,
+  };
+}
+
+function createRunBuffers() {
+  return [
+    {
+      bufferId: "run-contract:root-ledger",
+      layout: "root_ledger.v1",
+      byteOffset: 0,
+      byteLength: 112,
+      rowCount: 1,
+      numericType: "f64",
+      checksum: "5555555555555555",
+    },
+    {
+      bufferId: "run-contract:delayed-hit-events",
+      layout: "delayed_hit_events.v1",
+      byteOffset: 0,
+      byteLength: 128,
+      rowCount: 1,
+      numericType: "f64",
+      checksum: "6666666666666666",
+    },
+  ];
+}
+
+function createRunManifestBuffers() {
+  return createRunBuffers().map(({ byteOffset, ...buffer }) => buffer);
+}
+
+function createRunStreams() {
+  return [
+    {
+      streamId: "run-contract:causal-root-transient",
+      manifestVersion: "solver-stream-manifest.v1",
+      indexLayout: "stream_index.v1",
+      availableRanges: [
+        {
+          timeRange: { start: 10, end: 10 },
+          frameRange: { start: 0, end: 0 },
+          byteRange: { start: 0, end: 112 },
+        },
+        {
+          timeRange: { start: 10, end: 10 },
+          frameRange: { start: 0, end: 0 },
+          byteRange: { start: 112, end: 240 },
+        },
+      ],
+      storagePolicy: {
+        target: "caller-buffer",
+        durable: false,
+        maxBytes: 240,
+      },
+    },
+  ];
+}
+
+function createRunManifestStreams() {
+  return createRunStreams().map((stream) => ({
+    streamId: stream.streamId,
+    manifestVersion: stream.manifestVersion,
+    indexLayout: stream.indexLayout,
+    rangeCount: stream.availableRanges.length,
+    storagePolicy: stream.storagePolicy,
+  }));
+}
+
+function createStatusFixture(code, severity, message, extra = {}) {
+  return {
+    code,
+    severity,
+    message,
+    recoverable: true,
+    ...extra,
+  };
+}
+
+function createPathHistoryStreamRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "path-history-stream-f64-request",
+    requestId: "path-history-stream-contract-request",
+    request: {
+      runId: "path-history-contract-run",
+      datasetId: "path-history-contract-dataset",
+      streamId: "fixture-path-history-stream",
+      pathRows: createPathHistoryRows(),
+      rowsPerChunk: 2,
+      storagePolicy: {
+        target: "caller-buffer",
+        durable: false,
+        maxBytes: 1024,
+      },
+      metadata: {
+        precisionPath: "scaled_f64_strict",
+        units: "solver-si",
+        coordinateFrame: "absolute-lab-frame",
+        scaleNormalization: "unit-test-scale",
+        interpolationRule: "linear-segment",
+        provenance: { fixture: "path-history-contract-fixture" },
+        diagnostics: [
+          {
+            code: "ok",
+            severity: "ok",
+            message: "path history contract fixture",
+          },
+        ],
+      },
+    },
+  };
+}
+
+function createPathHistoryStreamResponseEnvelope() {
+  const metadata = createPathHistoryStreamMetadata();
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "path-history-stream-f64-response",
+    requestId: "path-history-stream-contract-request",
+    response: {
+      schema: "solver-path-history-stream.v1",
+      stream: {
+        streamId: "fixture-path-history-stream",
+        manifestVersion: "solver-stream-manifest.v1",
+        indexLayout: "stream_index.v1",
+        availableRanges: [
+          {
+            timeRange: { start: 0, end: 2 },
+            frameRange: { start: 0, end: 1 },
+            byteRange: { start: 0, end: 192 },
+          },
+          {
+            timeRange: { start: 2, end: 3 },
+            frameRange: { start: 2, end: 2 },
+            byteRange: { start: 192, end: 288 },
+          },
+        ],
+        storagePolicy: {
+          target: "caller-buffer",
+          durable: false,
+          maxBytes: 288,
+        },
+        metadata,
+      },
+      buffers: [
+        {
+          bufferId: "fixture-path-history-stream:path-chunk-0",
+          layout: "path_segment.v1",
+          byteOffset: 0,
+          byteLength: 192,
+          rowCount: 2,
+          numericType: "f64",
+          checksum: "1111111111111111",
+        },
+        {
+          bufferId: "fixture-path-history-stream:path-chunk-1",
+          layout: "path_segment.v1",
+          byteOffset: 0,
+          byteLength: 96,
+          rowCount: 1,
+          numericType: "f64",
+          checksum: "2222222222222222",
+        },
+      ],
+      summary: {
+        schema: "solver-path-history-stream-summary.v1",
+        runId: "path-history-contract-run",
+        datasetId: "path-history-contract-dataset",
+        streamId: "fixture-path-history-stream",
+        rowCount: 3,
+        chunkCount: 2,
+        pathCount: 2,
+        byteLength: 288,
+        rowSizeBytes: 96,
+        pathIndexRowCount: 3,
+        pathIndexedChunkCount: 2,
+        timeRange: { start: 0, end: 3 },
+        frameRange: { start: 0, end: 2 },
+        storagePolicy: {
+          target: "caller-buffer",
+          durable: false,
+          maxBytes: 288,
+        },
+        metadata,
+      },
+      status: {
+        code: "ok",
+        severity: "ok",
+        message: "path-history stream created",
+        recoverable: true,
+      },
+    },
+  };
+}
+
+function createPathHistoryStreamMetadata() {
+  return {
+    schema: "solver-path-history-stream-metadata.v1",
+    precisionPath: "scaled_f64_strict",
+    units: "solver-si",
+    coordinateFrame: "absolute-lab-frame",
+    scaleNormalization: "unit-test-scale",
+    interpolationRule: "linear-segment",
+    provenance: { fixture: "path-history-contract-fixture" },
+    diagnostics: [
+      {
+        code: "ok",
+        severity: "ok",
+        message: "path history contract fixture",
+      },
+    ],
+  };
+}
+
+function createDescribeStreamRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "describe-stream-request",
+    requestId: "describe-stream-contract-request",
+    request: {
+      streamId: "fixture-path-history-stream",
+    },
+  };
+}
+
+function createDescribeStreamResponseEnvelope() {
+  const metadata = createPathHistoryStreamMetadata();
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "describe-stream-response",
+    requestId: "describe-stream-contract-request",
+    response: {
+      schema: "solver-stream-description.v1",
+      stream: {
+        streamId: "fixture-path-history-stream",
+        manifestVersion: "solver-stream-manifest.v1",
+        indexLayout: "stream_index.v1",
+        availableRanges: [
+          {
+            timeRange: { start: 0, end: 2 },
+            frameRange: { start: 0, end: 1 },
+            byteRange: { start: 0, end: 192 },
+          },
+          {
+            timeRange: { start: 2, end: 3 },
+            frameRange: { start: 2, end: 2 },
+            byteRange: { start: 192, end: 288 },
+          },
+        ],
+        storagePolicy: {
+          target: "caller-buffer",
+          durable: false,
+          maxBytes: 288,
+        },
+        metadata,
+      },
+      buffers: [
+        {
+          bufferId: "fixture-path-history-stream:path-chunk-0",
+          layout: "path_segment.v1",
+          byteOffset: 0,
+          byteLength: 192,
+          rowCount: 2,
+          numericType: "f64",
+          checksum: "1111111111111111",
+        },
+        {
+          bufferId: "fixture-path-history-stream:path-chunk-1",
+          layout: "path_segment.v1",
+          byteOffset: 0,
+          byteLength: 96,
+          rowCount: 1,
+          numericType: "f64",
+          checksum: "2222222222222222",
+        },
+      ],
+      index: {
+        schema: "solver-stream-index.v1",
+        streamId: "fixture-path-history-stream",
+        indexLayout: "stream_index.v1",
+        chunkCount: 2,
+        pathIndexRows: [
+          {
+            pathKey: 2000,
+            chunkIndex: 0,
+            rowOffset: 0,
+            rowCount: 1,
+            timeRange: { start: 0, end: 1 },
+            frameRange: { start: 0, end: 0 },
+            byteRange: { start: 0, end: 96 },
+          },
+          {
+            pathKey: 2001,
+            chunkIndex: 0,
+            rowOffset: 1,
+            rowCount: 1,
+            timeRange: { start: 1, end: 2 },
+            frameRange: { start: 1, end: 1 },
+            byteRange: { start: 96, end: 192 },
+          },
+          {
+            pathKey: 2000,
+            chunkIndex: 1,
+            rowOffset: 0,
+            rowCount: 1,
+            timeRange: { start: 2, end: 3 },
+            frameRange: { start: 2, end: 2 },
+            byteRange: { start: 192, end: 288 },
+          },
+        ],
+      },
+      status: {
+        code: "ok",
+        severity: "ok",
+        message: "stream description read",
+        recoverable: true,
+      },
+    },
+  };
+}
+
+function createOpenStreamRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "open-stream-request",
+    requestId: "open-stream-contract-request",
+    request: {
+      streamId: "fixture-path-history-stream",
+      purpose: "diagnostics",
+    },
+  };
+}
+
+function createOpenStreamResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "open-stream-response",
+    requestId: "open-stream-contract-request",
+    response: {
+      streamId: "fixture-path-history-stream",
+      manifestVersion: "solver-stream-manifest.v1",
+      readableLayouts: ["path_segment.v1"],
+      availableRanges: [
+        {
+          timeRange: { start: 0, end: 2 },
+          frameRange: { start: 0, end: 1 },
+          byteRange: { start: 0, end: 192 },
+        },
+        {
+          timeRange: { start: 2, end: 3 },
+          frameRange: { start: 2, end: 2 },
+          byteRange: { start: 192, end: 288 },
+        },
+      ],
+    },
+  };
+}
+
+function createReadStreamRangeRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "read-stream-range-request",
+    requestId: "read-stream-range-contract-request",
+    request: {
+      streamId: "fixture-path-history-stream",
+      pathKeys: [2000],
+      timeRange: { start: 0, end: 3 },
+      maxBytes: 96,
+    },
+  };
+}
+
+function createReadStreamRangeResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "read-stream-range-response",
+    requestId: "read-stream-range-contract-request",
+    response: {
+      streamId: "fixture-path-history-stream",
+      ranges: [
+        {
+          timeRange: { start: 0, end: 1 },
+          frameRange: { start: 0, end: 0 },
+          byteRange: { start: 0, end: 96 },
+        },
+      ],
+      buffers: [
+        {
+          bufferId: "fixture-path-history-stream:path-chunk-0",
+          layout: "path_segment.v1",
+          byteOffset: 0,
+          byteLength: 96,
+          rowCount: 1,
+          numericType: "f64",
+          checksum: "3333333333333333",
+        },
+      ],
+      diagnostics: [
+        {
+          code: "path_history_indexed_readback",
+          severity: "info",
+          message: "path-history indexed readback",
+          stage: "stream_readback",
+          details: {
+            streamId: "fixture-path-history-stream",
+            chunkIndex: 0,
+            mode: "path-key-index",
+            indexed: true,
+            scannedRowCount: 2,
+            selectedRowCount: 1,
+            indexSkippedRowCount: 1,
+          },
+        },
+      ],
+      status: {
+        code: "ok",
+        severity: "ok",
+        message: "stream range read",
+        recoverable: true,
+      },
+    },
+  };
+}
+
+function createPathHistoryRows() {
+  return [
+    {
+      pathKey: 2000,
+      segmentIndex: 0,
+      startTime: 0,
+      endTime: 1,
+      start: { x: 0, y: 0, z: 0 },
+      velocity: { x: 1, y: 0, z: 0 },
+      errorBound: 1e-12,
+      stateFlags: 1,
+    },
+    {
+      pathKey: 2001,
+      segmentIndex: 1,
+      startTime: 1,
+      endTime: 2,
+      start: { x: 1, y: 0, z: 0 },
+      velocity: { x: 1, y: 1, z: 0 },
+      errorBound: 2e-12,
+      stateFlags: 2,
+    },
+    {
+      pathKey: 2000,
+      segmentIndex: 2,
+      startTime: 2,
+      endTime: 3,
+      start: { x: 2, y: 1, z: 0 },
+      velocity: { x: 0, y: 1, z: 1 },
+      errorBound: 3e-12,
+      stateFlags: 3,
+    },
+  ];
 }
 
 function assertNonemptyString(value, label) {
