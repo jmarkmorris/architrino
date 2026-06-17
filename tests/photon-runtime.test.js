@@ -398,7 +398,7 @@ test("Photon circular-source solver request preserves source orbit geometry", ()
   const sourceRef = { swarmId: "left", layerId: "O", chargeType: "electrino" };
   const observationTime = 0.75;
   const request = createPhotonCircularSourceCausalRootRequest(state, sourceRef, observationTime);
-  const emissionTime = 0.25;
+  const emissionTime = (request.source.startTime + request.source.endTime) / 2;
   const requestPosition = evaluateCircularSourceRequestPosition(request.source, emissionTime);
   const kinematics = getPhotonArchitrinoKinematics(
     state,

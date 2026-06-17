@@ -2908,6 +2908,48 @@ assert(
   "expected run description precision summary"
 );
 
+const circularSourceRunHandle = await client.runSimulation(makeCircularSourceRunSimulationRequest());
+assert(circularSourceRunHandle.status.code === "ok", "expected circular-source runSimulation status ok");
+assert(
+  circularSourceRunHandle.response.summary.rootCount === 1 &&
+    circularSourceRunHandle.response.summary.eventCount === 0,
+  "expected circular-source run root-only summary"
+);
+assertCircularSourceRootResponse(circularSourceRunHandle.response, "circular-source run");
+assert(circularSourceRunHandle.response.hits.length === 0, "expected no circular-source delayed-hit rows yet");
+assert(
+  circularSourceRunHandle.response.rootLedgerDetails.length === 0,
+  "expected no circular-source detailed ledger rows yet"
+);
+assert(
+  findBuffer(circularSourceRunHandle.response, "root_ledger.v1").rowCount === 1 &&
+    findBuffer(circularSourceRunHandle.response, "delayed_hit_events.v1").rowCount === 0 &&
+    findBuffer(circularSourceRunHandle.response, "root_ledger_detail.v1").rowCount === 0,
+  "expected circular-source run buffers"
+);
+assert(
+  circularSourceRunHandle.response.diagnostics.some(
+    (diagnostic) =>
+      diagnostic.message.includes("circular-source") &&
+      diagnostic.details?.delayedHitProjection === "not-yet-implemented"
+  ),
+  "expected circular-source run diagnostic"
+);
+assert(
+  circularSourceRunHandle.response.manifest.buffers.length === 3 &&
+    circularSourceRunHandle.response.manifest.validationArtifacts.artifactHashes.bufferHashes.length === 3,
+  "expected circular-source run manifest buffers"
+);
+const circularSourceRunStreamRead = await client.readStreamRange({
+  streamId: "smoke-circular-source-run:causal-root-transient",
+  maxBytes: 2048,
+});
+assert(
+  circularSourceRunStreamRead.status.code === "ok" &&
+    circularSourceRunStreamRead.buffers.length === 3,
+  "expected circular-source run stream readback"
+);
+
 const normalizedRunHandle = await client.runSimulation(makeNormalizedRunSimulationRequest());
 assert(normalizedRunHandle.status.code === "ok", "expected normalized runSimulation status ok");
 assert(normalizedRunHandle.requestId === "smoke-normalized-run-request", "expected normalized run request id");
@@ -3632,6 +3674,29 @@ function makeNormalizedRunSimulationRequest() {
     normalizedRootRequest: makeNormalizedCausalRootRequest(),
     output: {
       outputs: ["rootLedger", "delayedHitEvents", "diagnostics"],
+      streamTarget: "caller-buffer",
+      memoryBudgetBytes: 64 * 1024 * 1024,
+      deterministic: true,
+    },
+  });
+}
+
+function makeCircularSourceRunSimulationRequest() {
+  const admission = makeAdmissionRequest();
+  return createPhotonCausalRootsRunRequest({
+    requestId: "smoke-circular-source-run-request",
+    runId: "smoke-circular-source-run",
+    datasetId: "smoke-circular-source-run-dataset",
+    claimLevel: "interactive-preview",
+    precisionPath: "auto",
+    configVersion: "solver-circular-source-run-smoke.v1",
+    configHash: "solver-circular-source-run-smoke",
+    model: admission.model,
+    envelope: admission.envelope,
+    errorBudget: admission.errorBudget,
+    circularSourceRootRequest: makeCircularSourceCausalRootRequest(),
+    output: {
+      outputs: ["rootLedger", "diagnostics"],
       streamTarget: "caller-buffer",
       memoryBudgetBytes: 64 * 1024 * 1024,
       deterministic: true,

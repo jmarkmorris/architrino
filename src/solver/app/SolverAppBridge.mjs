@@ -2959,6 +2959,14 @@ function normalizeMotionIntegrationReplayRequest(request) {
 }
 
 function solveRunRootsAndHitsF64WithModule(module, config, abiInfo, ids = {}) {
+  if (config.circularSourceRootRequest != null) {
+    return solveRunCircularSourceRootsF64WithModule(
+      module,
+      config.circularSourceRootRequest,
+      abiInfo,
+      ids
+    );
+  }
   if (config.normalizedRootRequest != null) {
     const normalizedRequest = config.normalizedRootRequest;
     const rootsAndHits = solveRootsAndHitsPrecisionF64WithModule(
@@ -2997,6 +3005,112 @@ function solveRunRootsAndHitsF64WithModule(module, config, abiInfo, ids = {}) {
     ...rootsAndHits,
     statuses: [createPrecisionSolveRunStatus(rootsAndHits, ids)],
   };
+}
+
+function solveRunCircularSourceRootsF64WithModule(module, request, abiInfo, ids = {}) {
+  validateCircularSourceCausalRootF64Request(request);
+  if (typeof module._malloc !== "function" || typeof module._free !== "function") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "WebAssembly allocator exports are required", {
+        recoverable: false,
+      })
+    );
+  }
+  const maxRoots = request.maxRoots ?? DEFAULT_MAX_CAUSAL_ROOTS;
+  const requestPtr = module._malloc(abiInfo.circularSourceRootRequestF64Bytes);
+  const rootsPtr = module._malloc(abiInfo.rootRowF64Bytes * maxRoots);
+  const outCountPtr = module._malloc(4);
+
+  try {
+    writeCircularSourceCausalRootRequestF64(module, requestPtr, request);
+    module.setValue(outCountPtr, 0, "i32");
+    const solve = module.cwrap("architrino_solver_solve_circular_source_causal_roots_f64", "number", [
+      "number",
+      "number",
+      "number",
+      "number",
+    ]);
+    const status = solve(requestPtr, rootsPtr, maxRoots, outCountPtr);
+    const rootCount = module.getValue(outCountPtr, "i32");
+    if (status !== 0) {
+      throw new SolverBridgeError(
+        createStatus(
+          "internal_solver_error",
+          "halt",
+          `circular-source causal root C ABI returned ${status}`,
+          {
+            recoverable: false,
+            details: { status, rootCount, maxRoots },
+          }
+        )
+      );
+    }
+
+    const roots = [];
+    for (let index = 0; index < rootCount; index += 1) {
+      roots.push(readCausalRootRowF64(module, rootsPtr + index * abiInfo.rootRowF64Bytes));
+    }
+    const rootBuffer = copyWasmBytes(module, rootsPtr, rootCount * abiInfo.rootRowF64Bytes);
+    const hitBuffer = new ArrayBuffer(0);
+    const rootLedgerBuffer = new ArrayBuffer(0);
+    const rootBufferDescriptor = createBufferDescriptor(
+      "circular-source-root-ledger",
+      "root_ledger.v1",
+      roots.length,
+      abiInfo.rootRowF64Bytes,
+      rootBuffer
+    );
+    const hitBufferDescriptor = createBufferDescriptor(
+      "circular-source-delayed-hit-events",
+      "delayed_hit_events.v1",
+      0,
+      abiInfo.delayedHitRowF64Bytes,
+      hitBuffer
+    );
+    const rootLedgerDetailBuffer = createBufferDescriptor(
+      "circular-source-root-ledger-detail",
+      "root_ledger_detail.v1",
+      0,
+      abiInfo.rootLedgerDetailRowF64Bytes,
+      rootLedgerBuffer
+    );
+    const circularStatus = createStatus(
+      "ok",
+      "info",
+      "circular-source causal-root run used root-only projection",
+      {
+        runId: ids.runId,
+        requestId: ids.requestId,
+        details: {
+          sourceModel: "circular-source",
+          delayedHitProjection: "not-yet-implemented",
+          rootLedgerDetailProjection: "not-yet-implemented",
+        },
+      }
+    );
+    return {
+      roots,
+      hits: [],
+      rootLedgerDetails: [],
+      buffers: [rootBufferDescriptor, hitBufferDescriptor, rootLedgerDetailBuffer],
+      streams: [
+        createTransientStreamDescriptor("causal-root-transient", request.hitTime, [
+          rootBufferDescriptor,
+          hitBufferDescriptor,
+          rootLedgerDetailBuffer,
+        ]),
+      ],
+      statuses: [circularStatus],
+      status: createStatus("ok", "ok", "circular-source causal roots solved", {
+        runId: ids.runId,
+        requestId: ids.requestId,
+      }),
+    };
+  } finally {
+    module._free(requestPtr);
+    module._free(rootsPtr);
+    module._free(outCountPtr);
+  }
 }
 
 function createRunPrecisionRootsAndHitsRequest(rootRequest, ids = {}) {
@@ -5782,7 +5896,7 @@ function validateCausalRootsRunConfig(config) {
       })
     );
   }
-  validateRunRootRequestConfig(config, "causal-root");
+  validateRunRootRequestConfig(config, "causal-root", { allowCircularSource: true });
 }
 
 function validatePhaseDiagnosticsRunConfig(config) {
@@ -5851,20 +5965,29 @@ function validateDelayedHitsRunConfig(config) {
   validateRunRootRequestConfig(config, "delayed-hit");
 }
 
-function validateRunRootRequestConfig(config, label) {
+function validateRunRootRequestConfig(config, label, options = {}) {
   const hasRootRequest = config.rootRequest != null;
   const hasNormalizedRootRequest = config.normalizedRootRequest != null;
-  if (hasRootRequest === hasNormalizedRootRequest) {
+  const hasCircularSourceRootRequest = config.circularSourceRootRequest != null;
+  const requestCount = Number(hasRootRequest) +
+    Number(hasNormalizedRootRequest) +
+    Number(hasCircularSourceRootRequest);
+  if (requestCount !== 1 || (hasCircularSourceRootRequest && !options.allowCircularSource)) {
+    const allowed = options.allowCircularSource
+      ? "rootRequest, normalizedRootRequest, or circularSourceRootRequest"
+      : "rootRequest or normalizedRootRequest";
     throw new SolverBridgeError(
       createStatus(
         "app_contract_error",
         "error",
-        `${label} run config must include exactly one of rootRequest or normalizedRootRequest`,
+        `${label} run config must include exactly one of ${allowed}`,
         { recoverable: false }
       )
     );
   }
-  if (hasNormalizedRootRequest) {
+  if (hasCircularSourceRootRequest) {
+    validateCircularSourceCausalRootF64Request(config.circularSourceRootRequest);
+  } else if (hasNormalizedRootRequest) {
     validateNormalizedCausalRootF64Request(config.normalizedRootRequest);
   } else {
     validateCausalRootF64Request(config.rootRequest);

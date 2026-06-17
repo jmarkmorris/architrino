@@ -74,7 +74,7 @@ export function createPhotonCausalRootsRunRequest(input) {
     configVersion: input.configVersion ?? "photon-causal-roots-adapter.v1",
     config: {
       appId: "photon",
-      ...cloneRootRequestConfig(input, "photon causal-root adapter input"),
+      ...cloneRootRequestConfig(input, "photon causal-root adapter input", { allowCircularSource: true }),
     },
   });
 }
@@ -489,11 +489,28 @@ function createDefaultPlaybackOutput(input) {
   };
 }
 
-function cloneRootRequestConfig(input, label) {
+function cloneRootRequestConfig(input, label, options = {}) {
   const hasRootRequest = input.rootRequest != null;
   const hasNormalizedRootRequest = input.normalizedRootRequest != null;
-  if (hasRootRequest === hasNormalizedRootRequest) {
-    throw new TypeError(`${label} must include exactly one of rootRequest or normalizedRootRequest`);
+  const hasCircularSourceRootRequest = input.circularSourceRootRequest != null;
+  const requestCount = Number(hasRootRequest) +
+    Number(hasNormalizedRootRequest) +
+    Number(hasCircularSourceRootRequest);
+  if (requestCount !== 1 || (hasCircularSourceRootRequest && !options.allowCircularSource)) {
+    const allowed = options.allowCircularSource
+      ? "rootRequest, normalizedRootRequest, or circularSourceRootRequest"
+      : "rootRequest or normalizedRootRequest";
+    throw new TypeError(
+      `${label} must include exactly one of ${allowed}`
+    );
+  }
+  if (hasCircularSourceRootRequest) {
+    return {
+      circularSourceRootRequest: cloneRequiredObject(
+        input.circularSourceRootRequest,
+        "circularSourceRootRequest"
+      ),
+    };
   }
   if (hasNormalizedRootRequest) {
     return {

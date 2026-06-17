@@ -9,6 +9,7 @@ import type {
   SolverCausalRootF64,
   SolverCausalRootsF64Request,
   SolverCausalRootsNormalizedF64Request,
+  SolverCircularSourceCausalRootsF64Request,
   SolverClaimLevel,
   SolverComparableResponse,
   SolverCreatePathHistoryStreamF64Request,
@@ -76,8 +77,21 @@ export interface SolverGenericRunAdapterInput extends SolverRunAdapterBaseInput 
 
 export type PhotonCausalRootsRunAdapterInput = SolverRunAdapterBaseInput &
   (
-    | { rootRequest: SolverCausalRootsF64Request; normalizedRootRequest?: never }
-    | { rootRequest?: never; normalizedRootRequest: SolverCausalRootsNormalizedF64Request }
+    | {
+        rootRequest: SolverCausalRootsF64Request;
+        normalizedRootRequest?: never;
+        circularSourceRootRequest?: never;
+      }
+    | {
+        rootRequest?: never;
+        normalizedRootRequest: SolverCausalRootsNormalizedF64Request;
+        circularSourceRootRequest?: never;
+      }
+    | {
+        rootRequest?: never;
+        normalizedRootRequest?: never;
+        circularSourceRootRequest: SolverCircularSourceCausalRootsF64Request;
+      }
   );
 
 export interface PhotonPhaseDiagnosticsRunAdapterInput extends SolverRunAdapterBaseInput {

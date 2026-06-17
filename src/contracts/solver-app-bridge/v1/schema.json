@@ -2152,6 +2152,45 @@
         }
       }
     },
+    "circularSourceCausalRootsF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "receiver", "hitTime", "signalSpeed"],
+      "properties": {
+        "source": {
+          "$ref": "#/$defs/circularPathSegmentF64"
+        },
+        "receiver": {
+          "$ref": "#/$defs/linearPathSegmentF64"
+        },
+        "hitTime": {
+          "type": "number"
+        },
+        "signalSpeed": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "rootTolerance": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "maxIterations": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        },
+        "scanSubdivisions": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        },
+        "maxRoots": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        }
+      }
+    },
     "causalRootsNormalizedF64Request": {
       "type": "object",
       "additionalProperties": false,
@@ -3034,6 +3073,9 @@
         },
         {
           "required": ["normalizedRootRequest"]
+        },
+        {
+          "required": ["circularSourceRootRequest"]
         }
       ],
       "properties": {
@@ -3045,6 +3087,9 @@
         },
         "normalizedRootRequest": {
           "$ref": "#/$defs/causalRootsNormalizedF64Request"
+        },
+        "circularSourceRootRequest": {
+          "$ref": "#/$defs/circularSourceCausalRootsF64Request"
         }
       }
     },
@@ -4372,6 +4417,41 @@
         },
         "velocity": {
           "$ref": "#/$defs/vector3F64"
+        },
+        "errorBound": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "circularPathSegmentF64": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["startTime", "endTime", "center", "radiusU", "radiusV", "angularVelocity"],
+      "properties": {
+        "startTime": {
+          "type": "number"
+        },
+        "endTime": {
+          "type": "number"
+        },
+        "center": {
+          "$ref": "#/$defs/vector3F64"
+        },
+        "radiusU": {
+          "$ref": "#/$defs/vector3F64"
+        },
+        "radiusV": {
+          "$ref": "#/$defs/vector3F64"
+        },
+        "angularVelocity": {
+          "type": "number"
+        },
+        "phaseAtEpoch": {
+          "type": "number"
+        },
+        "epochTime": {
+          "type": "number"
         },
         "errorBound": {
           "type": "number",
